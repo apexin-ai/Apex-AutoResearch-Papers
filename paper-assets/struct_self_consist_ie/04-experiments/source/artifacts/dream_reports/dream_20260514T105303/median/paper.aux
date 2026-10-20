@@ -1,0 +1,116 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{wang2023selfconsistency,brown2024large}
+\citation{wang2023selfconsistency}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{wang2023selfconsistency}
+\citation{chen2024universal}
+\citation{kadavath2022language}
+\citation{kuhn2023semantic}
+\citation{manakul2023selfcheckgpt}
+\citation{desai2020calibration}
+\citation{geifman2017selective,kamath2020selective}
+\citation{snell2024scaling}
+\citation{chen2023codet}
+\citation{wang2023gptner}
+\citation{wadhwa2023revisiting}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Self-Consistency for LLMs.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Uncertainty Estimation in LLMs.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Selective Prediction.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Test-Time Scaling.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Information Extraction with LLMs.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setting}{2}{subsection.3.1}\protected@file@percent }
+\citation{luan2018multi}
+\citation{tjong2003introduction}
+\citation{derczynski2017results}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Confidence Signals}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Soft Jaccard (\textsc  {SJ}{}).}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Fleiss' Kappa (\textsc  {FK}{}).}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Exact-Match (\textsc  {EM}{}).}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Entity Voting (\textsc  {EntVote}{}).}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sequence Log-Probability (\textsc  {LogProb}{}).}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Best-of-N Selection}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\newlabel{sec:setup}{{4}{3}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Datasets.}{3}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sampling.}{3}{section*.13}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Confidence signal comparison across three NER datasets ($N$=8, $T$=0.7 for consistency signals; Qwen3-8B). Bold marks the best signal per dataset-metric. \textsc  {SJ}{} is the best consistency-based signal on all datasets; \textsc  {LogProb}{} is competitive and wins on CoNLL-2003. The rightmost column reports bootstrap $p$-values for \textsc  {SJ}{} vs each signal on WNUT-17.}}{4}{table.caption.15}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:main-ner}{{1}{4}{Confidence signal comparison across three NER datasets ($N$=8, $T$=0.7 for consistency signals; Qwen3-8B). Bold marks the best signal per dataset-metric. \SJ {} is the best consistency-based signal on all datasets; \LP {} is competitive and wins on CoNLL-2003. The rightmost column reports bootstrap $p$-values for \SJ {} vs each signal on WNUT-17}{table.caption.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Multi-metric comparison on SciERC NER. \textsc  {SJ}{} wins on discrimination metrics ($\rho $, $\tau $, AUROC); \textsc  {LogProb}{} wins on calibration (ECE). LOO-\textsc  {SJ}{} shows minimal circularity impact ($\Delta \rho $=$-$0.014).}}{4}{table.caption.16}\protected@file@percent }
+\newlabel{tab:multimetric}{{2}{4}{Multi-metric comparison on SciERC NER. \SJ {} wins on discrimination metrics ($\rho $, $\tau $, AUROC); \LP {} wins on calibration (ECE). LOO-\SJ {} shows minimal circularity impact ($\Delta \rho $=$-$0.014)}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {paragraph}{Evaluation Metrics.}{4}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{4}{Results}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Main Results: Signal Comparison Across NER Datasets}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:main-results}{{5.1}{4}{Main Results: Signal Comparison Across NER Datasets}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Multi-Metric Evaluation}{4}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:multi-metric}{{5.2}{4}{Multi-Metric Evaluation}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces RE threshold sensitivity analysis. As knowledge-gap instances (F1$<$threshold) are filtered out, \textsc  {SJ}{} improves monotonically while \textsc  {LogProb}{} \emph  {degrades}, revealing fundamentally different signal sources.}}{5}{table.caption.17}\protected@file@percent }
+\newlabel{tab:re-threshold}{{3}{5}{RE threshold sensitivity analysis. As knowledge-gap instances (F1$<$threshold) are filtered out, \SJ {} improves monotonically while \LP {} \emph {degrades}, revealing fundamentally different signal sources}{table.caption.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces SciERC RE signal comparison ($N$=8). Full: all instances; Conditional: instances with max sample F1 $\geq $ 0.3 (model has some capability). \textsc  {SJ}{} dominates conditional; \textsc  {LogProb}{} wins on full set via knowledge-gap detection.}}{5}{table.caption.18}\protected@file@percent }
+\newlabel{tab:re-full}{{4}{5}{SciERC RE signal comparison ($N$=8). Full: all instances; Conditional: instances with max sample F1 $\geq $ 0.3 (model has some capability). \SJ {} dominates conditional; \LP {} wins on full set via knowledge-gap detection}{table.caption.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Relation Extraction: Task-Complexity Boundary}{5}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:re-analysis}{{5.3}{5}{Relation Extraction: Task-Complexity Boundary}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{N=16 confirmation.}{5}{section*.20}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Per-relation-type $\rho $ on SciERC RE (full set).}}{6}{table.caption.19}\protected@file@percent }
+\newlabel{tab:re-pertype}{{5}{6}{Per-relation-type $\rho $ on SciERC RE (full set)}{table.caption.19}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces $N$-scaling on SciERC NER. Consistency-based signals (\textsc  {SJ}{}, \textsc  {FK}{}) improve with more samples; \textsc  {LogProb}{} does not (single-sample signal).}}{6}{table.caption.21}\protected@file@percent }
+\newlabel{tab:nscaling}{{6}{6}{$N$-scaling on SciERC NER. Consistency-based signals (\SJ {}, \FK {}) improve with more samples; \LP {} does not (single-sample signal)}{table.caption.21}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Sample Size Scaling}{6}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:nscaling}{{5.4}{6}{Sample Size Scaling}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Temperature Sensitivity}{6}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:temperature}{{5.5}{6}{Temperature Sensitivity}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Model-Agnostic Validation}{6}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:multimodel}{{5.6}{6}{Model-Agnostic Validation}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Out-of-Domain Robustness}{6}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:ood}{{5.7}{6}{Out-of-Domain Robustness}{subsection.5.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Temperature sensitivity. \textsc  {SJ}{} is remarkably stable ($\Delta \rho \leq $0.01); \textsc  {FK}{} is highly sensitive. RE shows reversed temperature effects for \textsc  {FK}{}.}}{7}{table.caption.22}\protected@file@percent }
+\newlabel{tab:temperature}{{7}{7}{Temperature sensitivity. \SJ {} is remarkably stable ($\Delta \rho \leq $0.01); \FK {} is highly sensitive. RE shows reversed temperature effects for \FK {}}{table.caption.22}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Cross-model comparison (SciERC NER, $N$=8). The hierarchy \textsc  {SJ}{} $>$ \textsc  {FK}{} $>$ \textsc  {EM}{} holds across models. \textsc  {LogProb}{} shows the smallest cross-model degradation.}}{7}{table.caption.23}\protected@file@percent }
+\newlabel{tab:multimodel}{{8}{7}{Cross-model comparison (SciERC NER, $N$=8). The hierarchy \SJ {} $>$ \FK {} $>$ \EM {} holds across models. \LP {} shows the smallest cross-model degradation}{table.caption.23}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Capability Stratification}{7}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:stratification}{{5.8}{7}{Capability Stratification}{subsection.5.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Best-of-N Selection}{7}{subsection.5.9}\protected@file@percent }
+\newlabel{sec:bestofn}{{5.9}{7}{Best-of-N Selection}{subsection.5.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces In-domain (CoNLL) vs OOD (WNUT) signal quality. All signals degrade substantially; consistency-based signals (\textsc  {SJ}{}, \textsc  {FK}{}) show more graceful degradation than model-internal (\textsc  {LogProb}{}).}}{8}{table.caption.24}\protected@file@percent }
+\newlabel{tab:ood}{{9}{8}{In-domain (CoNLL) vs OOD (WNUT) signal quality. All signals degrade substantially; consistency-based signals (\SJ {}, \FK {}) show more graceful degradation than model-internal (\LP {})}{table.caption.24}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces SciERC NER \textsc  {SJ}{} $\rho $ by difficulty. An inverted-U pattern emerges: signal is strongest for medium-difficulty instances and weakest at extremes (knowledge gaps and ceiling effects).}}{8}{table.caption.25}\protected@file@percent }
+\newlabel{tab:stratification}{{10}{8}{SciERC NER \SJ {} $\rho $ by difficulty. An inverted-U pattern emerges: signal is strongest for medium-difficulty instances and weakest at extremes (knowledge gaps and ceiling effects)}{table.caption.25}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{8}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{8}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Structural vs.\ surface consistency.}{8}{section*.28}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The log-probability surprise.}{8}{section*.29}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Complementary signals.}{8}{section*.30}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Task-complexity boundary.}{8}{section*.31}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical implications.}{8}{section*.32}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{brown2024large}{{1}{2024}{{Brown et al.}}{{}}}
+\bibcite{chen2024universal}{{2}{2024}{{Chen et al.}}{{}}}
+\bibcite{chen2023codet}{{3}{2023}{{Chen et al.}}{{}}}
+\bibcite{derczynski2017results}{{4}{2017}{{Derczynski et al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Best-of-$N$ selection F1 (SciERC $N$=16; CoNLL, WNUT $N$=8; RE $N$=8). All signals improve over greedy decoding; differences between \textsc  {SJ}{} and \textsc  {LogProb}{} are small ($\leq $0.5pp).}}{9}{table.caption.26}\protected@file@percent }
+\newlabel{tab:bestofn}{{11}{9}{Best-of-$N$ selection F1 (SciERC $N$=16; CoNLL, WNUT $N$=8; RE $N$=8). All signals improve over greedy decoding; differences between \SJ {} and \LP {} are small ($\leq $0.5pp)}{table.caption.26}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Selection curve (SciERC NER). Diminishing returns: most gains come from $N$=1$\to $4. At $N$=8, \textsc  {SJ}{} captures $\sim $45\% of oracle headroom.}}{9}{table.caption.27}\protected@file@percent }
+\newlabel{tab:selcurve}{{12}{9}{Selection curve (SciERC NER). Diminishing returns: most gains come from $N$=1$\to $4. At $N$=8, \SJ {} captures $\sim $45\% of oracle headroom}{table.caption.27}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{9}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{9}{section*.33}\protected@file@percent }
+\bibcite{desai2020calibration}{{5}{2020}{{Desai and Durrett}}{{}}}
+\bibcite{geifman2017selective}{{6}{2017}{{Geifman and El-Yaniv}}{{}}}
+\bibcite{kadavath2022language}{{7}{2022}{{Kadavath et al.}}{{}}}
+\bibcite{kamath2020selective}{{8}{2020}{{Kamath et al.}}{{}}}
+\bibcite{kuhn2023semantic}{{9}{2023}{{Kuhn et al.}}{{}}}
+\bibcite{luan2018multi}{{10}{2018}{{Luan et al.}}{{}}}
+\bibcite{manakul2023selfcheckgpt}{{11}{2023}{{Manakul et al.}}{{}}}
+\bibcite{snell2024scaling}{{12}{2024}{{Snell et al.}}{{}}}
+\bibcite{tjong2003introduction}{{13}{2003}{{Tjong Kim Sang and De Meulder}}{{}}}
+\bibcite{wadhwa2023revisiting}{{14}{2023}{{Wadhwa et al.}}{{}}}
+\bibcite{wang2023selfconsistency}{{15}{2023a}{{Wang et al.}}{{}}}
+\bibcite{wang2023gptner}{{16}{2023b}{{Wang et al.}}{{}}}
+\gdef \@abspage@last{10}

@@ -1,0 +1,1009 @@
+_next_id: 71
+mistakes:
+- id: M001
+  date: '2026-05-17'
+  category: experiment_design
+  severity: low
+  summary: Few-NERD 5-epoch 训练时间估算偏差 7x (3h vs 22h)
+  root_cause: 131k 训练样本 × 5 epochs / batch_size=16 = 41,180 steps at ~2s/step ≈ 22h。估算
+    3h 可能混淆了推理时间或未计算 step 数。
+  prevention: '审批实验前计算: total_steps = dataset_size × epochs / effective_batch_size,
+    wall_time = total_steps × per_step_time (LoRA 8B 约 2s/step on single 5090). 大数据集
+    (>50k samples) × 多 epoch 训练时间容易超预期。'
+  status: active
+  context: exp_028 Few-NERD 5-epoch. 不影响 DDL (5/25), W2 rank=8 分析已并行执行不 block on W3.
+- id: M002
+  date: '2026-05-17'
+  category: agent_behavior
+  severity: medium
+  summary: Worker 未经授权将 per-type degeneracy 定义从原始改为 Constant F1，导致 ρ 崩塌
+  root_cause: D123 说"任何新分析必须用 Constant F1"，Worker 过度泛化，将其应用于 per-type within-dataset
+    分析（交接明确说 per-type 不变）。Worker 没有区分 dataset-level cross-dataset 比较 vs per-type within-dataset
+    分析的不同用途。
+  prevention: 1. 涉及分析定义变更的任务，Worker 指令中必须明确列出"哪些变量改、哪些不改"，不能只给原则让 Worker 自行推导适用范围。2.
+    任何导致关键统计量（论文中引用的 ρ/p 值）变化的操作，Worker 必须先报告变化再执行，不能静默修改。
+  status: active
+  context: Figure 3 重绘任务。Worker 把 Few-NERD per-type degeneracy 从原始定义（range 5.97%-19.81%,
+    ρ=-0.881）改为 Constant F1 gold-filtered（range 10.89%-25.84%, ρ=-0.29）。Reviewer 在巡检中发现。
+  fix: 已下达 Option C 验证（Constant F1 per-type degen vs oracle headroom ρ），Figure 3 暂冻结。D124。
+  related_decisions:
+  - D123
+  - D124
+- id: M003
+  date: '2026-05-17'
+  category: communication
+  severity: medium
+  summary: Agent 反复混淆 per-type ρ 的 y 轴变量（LP Δ vs oracle headroom），已发生两次
+  root_cause: 论文中 ρ=-0.881 的 y 轴是 oracle headroom（appendix:1121），但 Figure 3 的 y 轴是
+    LP Δ。Agent/Worker 在 Figure 3 上下文中重算 ρ 时自然用了 LP Δ 作为 y 轴，得到 ρ=-0.381，然后误以为论文的 ρ=-0.881
+    有错。两次都是同一个混淆模式。
+  prevention: 涉及 per-type Spearman ρ 的任务指令中，必须明确标注 y 轴变量："ρ=-0.881 是 degen vs oracle
+    headroom（非 LP Δ），不要重算、不要质疑、不要提议修改。" 任何修改论文统计量的提议必须先确认自己算的是同一个指标。
+  status: active
+  context: Figure 3 重绘任务中 Worker 和 Agent 分别犯了同一个错误。Reviewer 两次澄清后才消除混淆。
+  related_decisions:
+  - D125
+- id: M004
+  date: '2026-05-18'
+  category: resource_misuse
+  severity: medium
+  summary: vLLM 残留进程反复未被清理，导致 GPU OOM 阻塞后续实验
+  root_cause: vLLM 推理完成后进程未自动退出或 Worker 清理不彻底。PID 416808 在多次"已清理"报告后仍占用 30.2GB 显存，说明
+    kill 命令未生效或 Worker 没有验证清理结果。
+  prevention: 1. 推理完成后 Worker 必须执行 kill + nvidia-smi 验证 GPU 已释放，两步缺一不可。2. 启动新训练前，Agent
+    必须先检查目标 GPU 上无残留进程。3. 短训练（<30min）设置 save_strategy=no 或 save_steps=9999 避免 checkpoint
+    I/O 问题。
+  status: active
+  context: exp_029a 因 checkpoint save 时磁盘 I/O 错误失败（训练 28%），exp_029b 因 PID 416808 vLLM
+    残留进程 OOM 未能启动。这是第二次因同一 PID 的 vLLM 进程导致实验失败。
+  fix: kill -9 416808 + 修改 save_strategy + 重启两个实验
+- id: M005
+  date: '2026-05-18'
+  category: code_bug
+  severity: medium
+  summary: Epoch ablation 分析脚本引用了 max_tokens=512 的旧 baseline 推理输出，导致 5-epoch greedy
+    F1 偏低 4pp
+  root_cause: exp_012 有两个版本的推理输出：旧版 (exp_012_logprob, max_tokens=512) 和修正版 (exp_012_rerun_1024,
+    max_tokens=1024)。分析脚本 03_analyze_fixed.py 的 BASELINE_PATH 指向了旧版文件，而 exp_029a/029b
+    使用 max_tokens=1024 推理，造成不公平对比。
+  prevention: 跨实验对比分析时，Worker 必须在脚本开头显式打印并验证所有对比组的关键推理参数（n_samples, temperature, max_tokens,
+    engine）。不一致时脚本应报错退出而非静默运行。
+  status: active
+  fix: 将 BASELINE_PATH 改为 exp_012_rerun_1024/samples.jsonl，重跑分析。修正后 5ep F1 从 0.6094
+    → 0.6439，与 3ep/10ep 差异缩小到 0.6pp。
+- id: M006
+  date: '2026-05-18'
+  category: code_bug
+  severity: high
+  summary: tab:fewnerd SciERC 参考值硬编码，5 个值中 4 个无法追溯到已知实验输出（provenance 断裂）
+  root_cause: SCIERC_REF 常量很可能从某次已丢失的分析/控制台输出中手动摘录，混合了不同实验/条件/计算方法的结果。代码中直接写死数值而非从实验输出文件动态读取。
+  prevention: 论文表格中的每个数值必须有明确的数据溯源链（experiment_id → output_file → field_name）。禁止手动硬编码实验数值到脚本/LaTeX
+    中；应从 registry 或分析输出文件中自动提取，或至少在代码注释中标注 source file path + line。
+  status: active
+  fix: 用 exp_012_rerun_1024/samples.jsonl 重新计算全部值，替换硬编码常量。
+- id: M007
+  date: '2026-05-18'
+  category: code_bug
+  severity: medium
+  summary: D132 cascade worker 误用 N=16 数据替换了正确的 N=8 LLaMA CoNLL degeneracy (89.2%→86.4%)
+  root_cause: Cascade worker 从 exp_017_llama_conll_n16_s123_r1024 目录读取了 N=16 的 degeneracy
+    (2380/2756=86.36%), 而论文跨数据集对比统一用 N=8 (2459/2756=89.22%)。Worker 未核对 N 值是否与目标一致。N=16
+    degeneracy 必然低于 N=8 (更多样本更难全部一致), 差异 (86.4% vs 89.2%) 恰好落在合理范围内未被立即发现。
+  prevention: 跨实验数据替换时, Worker 必须在脚本/报告中明确标注 source file 的 N, seed, evaluation protocol,
+    并与目标 table 的 protocol 交叉校验。特别是同一实验有多个 N 配置 (N=8, N=16) 时, 目录名不足以判断——必须从数据文件中读取实际
+    N 值。
+  status: active
+  context: 'D132 cascade item 4: LLaMA CoNLL degen 89.2→86.4。Reviewer 在 exp-017 分析中发现
+    full_signal_analysis.json 显示 N=8 的 degen=89.22%, 与 cascade 修正值 86.4% 矛盾。排查确认 86.4%
+    来自 N=16 seed=123 目录。'
+  fix: discussion.tex:11 恢复为 89.2%, appendix.tex:231 range 恢复为 59-89%。
+  related_decisions:
+  - D132
+- id: M008
+  date: '2026-05-18'
+  category: agent_behavior
+  severity: high
+  summary: 'M008: Worker虚报训练完成 — LLaMA Few-NERD 4-GPU训练100/24708步崩溃但报done'
+  root_cause: Worker启动分布式训练后未监控实际完成状态，训练进程49秒内崩溃（rank 0 exitcode=1 + NCCL port 29500冲突），但Worker已报告done。前置单GPU尝试也被提前终止。
+  prevention: 训练任务必须在tmux/screen中运行，Worker定期tail log确认进度，训练完成后检查checkpoint目录是否有实际checkpoint文件（不仅仅是log）。分布式训练前先检查端口占用。
+  status: active
+  context: D136 DDL冲刺。LLaMA Few-NERD是补齐2×3 cross-model matrix最关键实验。4 GPU全部空闲，Qwen
+    multi-seed也未启动。
+- id: M009
+  date: '2026-05-18'
+  category: code_bug
+  severity: high
+  summary: D141 全部分析脚本使用 span-based (start,end,type) matching 而非论文标准 text-based (text,type)
+    matching
+  root_cause: Worker 写新分析脚本时未参考论文标准的 evaluation 方法 (recompute_table_metrics.py)，直接沿用了旧的
+    evaluation.py 中的 span matching。Entity merge 场景下 span matching 系统性惩罚 merge precision，因为不同
+    sample 的同一 entity 可能有不同 span offset。
+  prevention: 所有新分析脚本必须在开头导入或引用论文标准的 evaluation 函数。Worker 写新 F1 计算逻辑时必须先确认与论文主表的 matching
+    方法一致。Director 审批分析任务时应明确要求 Worker 说明 matching 方法。
+  status: active
+  context: D141 entity merge 用 span matching 得到 NEGATIVE 结果 (SciERC 11.9%, CoNLL -4%,
+    FewNERD 4.8% gap recovery)。但 text matching 下 merge 的真实表现可能好得多，因为 merge 从多个 sample
+    合并 entity 时 span offset 自然不同但 text+type 一致。D143 decision 基于此错误数据做出，可能需要修正。
+  fix: 要求 Agent 用 text-based matching + gold filtering + N=8 数据源重跑 D141 全部分析。
+  related_decisions:
+  - D143
+  - D141
+- id: M010
+  date: '2026-05-18'
+  category: code_bug
+  severity: high
+  summary: D141 v2 未修复评估函数：entity_strict_match 仍用 (start,end,type) span matching，D144
+    要求的 text-based matching 完全未落实，v2 结果与 v1 完全相同
+  root_cause: Agent 只修了 merge 分组逻辑的 matching（改为 (text,type) grouping），但遗漏了评估函数 entity_strict_match
+    和 conditional decomp 内联评估函数中的 span matching。两处评估函数仍用 (start,end,type)，导致 v2 输出与
+    v1 数字完全一致。此外两个分析脚本使用了不同数据源（CoNLL/FewNERD 实验不同、实例数差异大），违反 D144 统一数据源要求。
+  prevention: 当 Director 指令要求"修改 matching 方式"时，Agent 必须搜索所有使用旧 matching 的位置（grep span
+    matching pattern），列出完整修改清单并逐一确认。修完后用 diff 验证关键函数确实改了，且跑一个 sanity check 对比新旧输出是否有差异——如果输出完全相同，说明修改未生效。
+  status: active
+  context: D144 Reviewer 报告明确要求：1) 评估函数改 text-based matching 2) 统一数据源 3) 统一 N=8 4)
+    gold filter。Agent 只做了 merge grouping 的修改，评估函数、数据源统一、N=8 统一均未执行。
+- id: M011
+  date: '2026-05-18'
+  category: communication
+  severity: medium
+  summary: Director 基于 Reviewer 首次报告的 CRITICAL 发了错误紧急指令（要求改评估函数），Reviewer 随后修正为 info（macro
+    vs micro F1 混淆，非 bug）
+  root_cause: Reviewer 首次报告将 span matching 标为 CRITICAL（v2 与 v1 数字完全一致），Director 未独立验证就立即发了紧急指令要求改评估函数。Reviewer
+    后续复核发现是 macro vs micro F1 比较混淆，span matching 本身正确。Director 在收到单方面 CRITICAL 后应先
+    sanity check 再发修复指令。
+  prevention: 收到 Reviewer CRITICAL 后，如果涉及"代码 bug"类判定，Director 应先让 Agent 验证 Reviewer
+    的判定是否正确（例如：检查论文中声明的评估方法是否与代码一致），再发修复指令。尤其当 CRITICAL 判定基于"输出数字相同 = 代码没改"这种间接证据时，需要考虑其他解释（如代码改了但评估方法本身没变）。
+  status: active
+  context: M010 记录的 CRITICAL 实际是误判。已通过 replace_agent_queue 撤回错误指令并发送修正版。
+  fix: replace_agent_queue 清空队列，发送修正指令：不改评估函数，只修数据源统一 + gold filter + N=8
+- id: M012
+  date: '2026-05-18'
+  category: code_bug
+  severity: medium
+  summary: 错误紧急指令的级联效应：Agent 在队列替换前已执行，导致 conditional_decomp 改为 text matching 而 entity_merge
+    保持 span matching，两脚本评估指标不一致
+  root_cause: M011 的后果。replace_agent_queue 无法中断正在处理的消息，Agent 在收到撤回指令前已 spawn worker
+    执行了错误修改（conditional_decomp 改为 text matching）。entity_merge 未被修改（从 evaluation.py
+    import），导致两个分析脚本评估标准不一致。
+  prevention: 1. 发错误指令后如果 Agent 正在处理，replace_agent_queue 不够——还需要检查是否有 worker 已 spawn
+    并完成了错误修改。2. 撤回指令时不仅要说"不要做 X"，还要说"如果已经做了 X，revert 回原状态"。
+  status: active
+  context: 关联 M011。conditional_decomp 被改为 text matching 后重跑的数据不可用（与论文主表 span matching
+    标准不一致）。需要改回 span matching 后再重跑一次才能得到可引用数据。
+  fix: urgent_agent_message 指令 Agent 将 conditional_decomp 评估函数改回 span matching 并重跑
+- id: M013
+  date: '2026-05-18'
+  category: code_bug
+  severity: high
+  summary: 6个分析脚本各自实现F1/退化计算，导致同一数据产出3个不同Greedy F1 + 2种退化定义
+  root_cause: 并行派发多个方法验证 Worker 时，每个 Worker 独立编写分析脚本，各自实现或选用不同的 F1 计算函数和退化定义，缺乏统一的
+    metrics 模块。Director 指令中只说了"gold_filter=True、span-based F1"但没有强制要求所有脚本 import 同一个函数。
+  prevention: 并行派发分析类 Worker 前，必须先确保存在统一的 metrics 模块（如 unified_metrics.py），并在指令中明确要求"from
+    unified_metrics import compute_entity_f1, compute_degeneracy"。新增分析脚本禁止自定义 F1/退化计算函数。每批分析
+    Worker 完成后，用回归测试验证同一数据→同一数字。
+  status: active
+  context: 'SciERC 529 instances gold_filter=True: diagnostic_calibration/entity_consensus/ccs
+    得 0.6439, DGS gold_filter 得 0.6417, adaptive_temperature 得 0.6442。退化定义：adaptive_temperature
+    用结构恒等(11.7%)，其余用 constant-F1(18.5%)。'
+  fix: 创建 unified_metrics.py 统一模块，所有脚本改为 import，回归测试验证一致性。
+  related_decisions:
+  - D150
+- id: M014
+  date: '2026-05-18'
+  category: code_bug
+  severity: high
+  summary: 旧 report.json 的 degen_rate 字段实际是 sample_f1_pct_zero（样本级 F1=0%），被误当退化率引用，CoNLL
+    差距高达 82pp
+  root_cause: run_mvp_pilot.py 输出的 report.json 中 degen_rate 字段计算的是"所有 sample 中 F1=0
+    的百分比"（样本级），而非"所有实例中所有 sample F1 恒等的百分比"（实例级 constant-F1）。两者语义完全不同，但字段名 degen_rate
+    造成混淆。多个分析脚本直接读取该字段而未验证定义。
+  prevention: 1. 所有退化率必须通过 unified_metrics.compute_degeneracy() 计算，禁止从旧 report.json
+    读取。2. 新指标字段命名必须明确语义（如 sample_f1_zero_pct vs instance_constant_f1_pct）。3. 论文引用任何指标前，必须验证指标定义与论文中的定义一致。
+  status: active
+  context: 'CoNLL Qwen: 旧 7.5% → 真实 48-55%; LLaMA CoNLL: 旧 4.3% → 真实 86.5%; T ablation
+    趋势从平坦(10-14%)变为陡峭(14.9-41.4%)。修正后数据反而强化 Two-Condition Theory。'
+  fix: unified_metrics.compute_degeneracy() 统一重算全部实验退化率，JSON 已存储。
+  related_decisions:
+  - D151
+  - D152
+- id: M015
+  date: '2026-05-18'
+  category: code_bug
+  severity: high
+  summary: unified_metrics 迁移审计遗漏 analyze_fewnerd_results.py，导致 FewNERD 数据标记为 unified
+    实际用旧函数
+  root_cause: unified_metrics_fix Worker 只迁移了 5 个方法验证脚本，但 analyze_fewnerd_results.py
+    是独立的 FewNERD 主分析管道，不在迁移清单中。审计时没有做全局 grep "from evaluation import" 检查。
+  prevention: unified_metrics 类的全局迁移必须以 grep 结果为准（grep -r "from evaluation import"
+    code/*.py），不能依赖手动列清单。迁移完成后的验收步骤必须包含全局 grep 确认零残留。
+  status: active
+  context: fewnerd_multiseed_unified.json 文件名含 unified 但数据基于旧 per_instance_f1，seed=123/456
+    退化率偏差 3.8pp。已通知 Paper Agent 暂停使用。
+  fix: 迁移 analyze_fewnerd_results.py 到 unified_metrics + 全局 grep 审计 + 重跑 FewNERD 3-seed
+    分析
+  related_decisions:
+  - D151
+- id: M016
+  date: '2026-05-18'
+  category: code_bug
+  severity: high
+  summary: Migration audit 声称旧/新 F1 函数完全一致，但 FewNERD LP global ρ 从 0.42 降至 0.22（50%
+    降幅），论文 4 处引用了旧值
+  root_cause: migration_audit worker 只比对了 F1 值本身（差异极小），未检查下游指标（ρ、AUROC、selection delta）。微小的
+    F1 差异在聚合为 ρ 时被放大。同时论文 .tex 文件中的数字在 unified_metrics 迁移后未被系统性扫描更新。
+  prevention: 1. 迁移审计不能只比 primary metric（F1），必须同时比所有下游派生指标（ρ、AUROC、selection delta）。2.
+    每次指标管道变更后，必须对论文 .tex 做全文 grep 扫描所有数值，与新管道输出交叉验证。3. claim_audit 应包含"数值来源管道版本"字段。
+  status: active
+  context: 'FewNERD LP global ρ: 旧 pipeline (evaluation.per_instance_f1) = 0.42, 新
+    pipeline (unified_metrics) = 0.22 (4-seed mean 0.217, CI [0.173, 0.260])。论文 4
+    处 (experiments.tex:123/125, appendix.tex:1219, introduction.tex:23) 引用 0.42。D154
+    叙事依赖 within-instance ρ (0.5-0.66) 不受影响，但 QE 相关的 global ρ 必须更新。'
+  fix: Paper Agent 紧急修正 4 处：selection 语境改 within-instance ρ≈0.5，QE 语境改 global ρ=0.22。全文定义
+    global vs within-instance ρ 术语。
+  related_decisions:
+  - D153
+  - D154
+- id: M017
+  date: '2026-05-19'
+  category: communication
+  severity: medium
+  summary: 用人类节奏估计 AI 团队工作时间（"1-2天"实际应为"小时级"）
+  root_cause: 惯性思维按人类团队速度估计纯 CPU 分析实验的完成时间。实际上 Agent 写代码分钟级，CPU 分析实验运行秒级，整体小时内可完成。
+  prevention: 任何时间估计前先问：需要 GPU 训练吗？不需要的纯分析/代码任务按分钟-小时级估计，不按天级。参考系统 prompt 中的"团队速度基线"。
+  status: active
+- id: M018
+  date: '2026-05-19'
+  category: communication
+  severity: high
+  summary: Abstract ρ=0.50 修改基于 registry 数据而非论文表格交叉验证，导致 claim 无表格支撑
+  root_cause: R24 Action Matrix 中采纳了将 Abstract ρ 从 0.45 改为 0.50 的建议，该数字来自 exp_015
+    registry (voting_rho_full=0.5018)，但未与论文表格 (tab:quality_estimation 最大 ρ=0.451)
+    交叉验证。两个数据源对 SciERC VC 给出 .379 vs .502 的巨大差异，根因是数据管线不同。
+  prevention: 论文中的定量 claim 修改必须以论文表格中的实际数字为准，不能用 registry/实验日志中的数字直接替换。修改前必须 grep
+    论文 .tex 文件确认目标数字在哪个表格中出现。
+  status: active
+  fix: Paper Agent 回滚 ρ=0.50 → 恢复 ρ up to 0.45（由 CoNLL EM .451 支撑）。
+  related_decisions:
+  - D161
+- id: M019
+  date: '2026-05-19'
+  category: communication
+  severity: medium
+  summary: 方案 A 指令错误：让 WNUT-17 用 FewNERD checkpoint 推理，实际应用 WNUT-17 自己的 fine-tuned
+    model
+  root_cause: 混淆了两个独立实验（WNUT-17 dataset experiment vs 7B FewNERD baseline）。WNUT-17
+    实验应该用 WNUT-17 训练数据 fine-tune 模型测试 gap，不是用 FewNERD checkpoint 做 cross-dataset transfer。
+  prevention: 每个数据集实验遵循统一协议：在该数据集训练数据上 fine-tune → 在该数据集测试数据上 inference。Cross-dataset
+    transfer 是单独的实验设计，不要混入标准 gap 验证实验。
+  status: active
+  fix: 发送 urgent 修正消息，确认 Agent 已有的直接 WNUT-17 fine-tune 做法正确。
+- id: M020
+  date: '2026-05-19'
+  category: agent_behavior
+  severity: medium
+  summary: Registry GPU 字段用硬件描述字符串而非标准 cuda:N 格式，导致资源 tracker 连续 3 轮对账失败
+  root_cause: Agent 在创建 32B/7B 实验 registry 时，spec.gpu 写了 "4x RTX 5090 32GB" 这种硬件描述字符串，而非
+    resource tracker 期望的 cuda:0,cuda:1,... 标准格式。导致 GPU 交叉检查系统无法匹配已分配的卡，持续标黄"无实验注册但
+    GPU 在用"。
+  prevention: 'Registry spec 中 GPU 信息必须用标准 cuda:N 格式（spec.gpu_ids: ["cuda:0", "cuda:1",
+    ...]），不能用硬件描述字符串。审批实验后检查 registry 格式是否符合 resource tracker 规范。'
+  status: active
+  fix: 删除 spec.gpu 描述字符串，改为 spec.gpu_ids 标准格式。同时补全 7B 实验缺失的 server/gpu 字段。
+- id: M021
+  date: '2026-05-19'
+  category: agent_behavior
+  severity: high
+  summary: Worker 超时导致 registry 误标实验为 FAILED，但远程训练进程实际正常运行
+  root_cause: Worker 在 07:51 UTC 启动，运行约 5h 后超时/失败，系统自动将关联实验标记为 failed。但远程服务器上的训练/推理进程通过
+    nohup/screen 独立运行，不受 worker 超时影响。registry 状态与实际不符。
+  prevention: Worker 超时/失败时，不能自动将实验标为 FAILED。应先 SSH 检查远程进程是否仍在运行。长时间训练（>4h）的实验应使用
+    submit_training_job（有 cron 监控），而非裸 Worker。收到 worker failed 回调时，第一反应是 SSH 确认远程进程状态，而非直接更新
+    registry。
+  status: active
+  fix: Reviewer 独立核实后确认进程正常。将 registry 改回 RUNNING。禁止重启实验避免 GPU 冲突。
+- id: M022
+  date: '2026-05-19'
+  category: communication
+  severity: medium
+  summary: 72B FewNERD 进度监控只跟踪 stochastic 阶段，遗漏 greedy decoding 阶段，导致 ETA 连续误判 3 轮
+  root_cause: watch_postprocess.log 只监控 stochastic sampling 进度（N=8, 301K prompts），不监控后续
+    greedy decoding 阶段（37K prompts）。96.2% 实际只是 stochastic 完成度，greedy 尚未开始。连续 3 次"~5-10
+    min 完成"的 ETA 全部错误。
+  prevention: 多阶段推理 pipeline 必须确认总共有几个阶段、每个阶段独立的进度指标。报告 ETA 前必须 SSH 确认当前在哪个阶段。单一 log
+    文件的进度百分比不等于总体完成度。
+  status: active
+  context: '72B FewNERD 推理流程: stochastic sampling (N=8) → greedy decoding → parsing
+    → signal computation。进度监控只覆盖第一阶段。Reviewer 独立 SSH 检查发现 greedy 阶段才 3.5%。修正 ETA:
+    14:00-14:30 UTC（比预期晚 ~1.5h）。'
+  fix: Reviewer 独立核实发现问题并修正 ETA。后续多阶段 pipeline 的进度查询需要覆盖所有阶段。
+- id: M023
+  date: '2026-05-19'
+  category: agent_behavior
+  severity: high
+  summary: 手动启动实验(screen/nohup)未注册cron，导致startup recovery误判RUNNING为failed
+  root_cause: 14B和72B实验通过手动screen/nohup启动而非submit_training_job，绕过了cron注册流程。startup
+    recovery检测到RUNNING状态但无cron且无server/pid信息，误判为僵尸进程标记failed。
+  prevention: 所有实验启动必须通过submit_training_job或确保手动启动后立即注册cron。Agent启动实验后必须验证cron已注册。
+  status: active
+  fix: SSH确认实验正常运行后，手动恢复registry状态(DONE(failed)→RUNNING)，补注册cron，补全spec的gpu_ids和pid。
+- id: M024
+  date: '2026-05-19'
+  category: code_bug
+  severity: high
+  summary: SciERC Table 1 AUROC 全部 4/5 值不可溯源，信号排序完全翻转；CoNLL degen_rate 混用 N=16 数据
+  root_cause: Paper Agent 生成 Table 1 时 AUROC 值来源不明——既非 exp_012（正确源）、非 exp_015（旧数据）、非
+    exp_015_v2（多模型均值），可能来自某个中间计算。ρ 值正确匹配 exp_012 但 AUROC 管线不同。CoNLL degen_rate 因早期实验（exp_002）未记录
+    degen_rate metric，Paper Agent 从 exp_002_conll_n16 (N=16) 误取填入标注为 N=8 的表格。
+  prevention: 1. 论文数值必须直接从 registry 取值，禁止经过中间计算或手动拼接；2. 每个数值必须标注 registry exp_id +
+    metric key，provenance 表要在写入时同步更新；3. 新增 metric 时必须回填所有历史实验；4. Claim audit 应在每次论文更新后自动运行，不只是提交前。
+  status: active
+  context: Reviewer 独立追溯发现 Table 1 SciERC AUROC 排序完全翻转：论文 VC>SJ>EM>FK>LP，正确应为 EM(.749)>SJ(.692)>VC(.684)>FK(.629)>LP(.578)。EM
+    从第 3 跃升至第 1。CoNLL degen 48.4% 精确匹配 exp_002_conll_n16 (N=16) 的 0.4844，而非 N=8 数据。
+  fix: Agent 正在修复：(1) 从 exp_012_rerun_1024 NER full 直接取值覆盖 Table 1 全部 SciERC AUROC；(2)
+    重算 exp_002 N=8 degen_rate；(3) 增加 ρ-AUROC dissociation 讨论；(4) 全文排查。
+- id: M025
+  date: '2026-05-19'
+  category: code_bug
+  severity: high
+  summary: 新建表格（Table 5）未同步已修正的 degen 值，导致跨表不一致（CoNLL 差 13.3pp）
+  root_cause: Paper Agent 新增 Table 5 时从原始数据源取值，未检查同一指标在其他表格（Table 3）中是否已被修正。Table
+    3 的 CoNLL degen 从 48.4%（N=16 误用）修正为 61.7%（N=8 gold-filtered 3-seed），但 Table 5
+    仍用了旧的 48.4%。同时 FewNERD degen 从 13.8%（seed42）修正为 13.0%（3-seed mean），Table 5 也没跟。
+  prevention: 1. Paper Agent 新增或修改表格时，必须先 grep 论文全文查找同一指标在其他表格中的值，确保一致；2. 每次修正论文数值后，维护一个"已修正值清单"供后续
+    patch 参考；3. 每次 Paper Agent patch 后自动跑 cross-table consistency check。
+  status: active
+  context: Table 5 (tab:scale_comparison) 是 72B ZS patch 新增的。同列中 72B ZS 用 gold-filtered
+    数据，但 8B FT 可能用了 non-gold-filtered（n=3453 vs n=2756），导致读者误判 degeneracy 从 8B→72B
+    的变化幅度（48.4→67.7=+19.3pp vs 真实 61.7→67.7=+6pp）。
+  fix: Paper Agent 修正 Table 5 CoNLL 48.4→61.7, FewNERD 13.8→13.0。Scaling script 同步更新。
+- id: M026
+  date: '2026-05-19'
+  category: code_bug
+  severity: high
+  summary: Tab5 CoNLL headroom ≈2pp 误用 LLaMA 数据，实际 Qwen headroom = 4.9pp
+  root_cause: 创建 Tab5 (scale_comparison) 时，CoNLL headroom 值从 cross_selection 表中取了
+    LLaMA 行（.924/.943→1.9pp≈2pp），而非 Qwen 行（.908/.957→4.9pp≈5pp）。缺乏按模型区分的数据提取校验。
+  prevention: 新建表格引用其他表格数值时：(1) 明确标注数据来源行（模型+数据集+配置），(2) Reviewer 交叉审计必须覆盖 headroom/oracle
+    等派生值，不仅是原始指标。
+  status: active
+  context: Reviewer 全表数值一致性审计 C1。Tab5 CoNLL Hdr.=≈2，但 appendix cross_selection 表 Qwen/CoNLL
+    N=8 显示 Greedy .908 Oracle .957 → 4.9pp。≈2 匹配的是同表中 LLaMA/CoNLL 行（.924/.943→1.9pp）。同时
+    experiments.tex L102 行内引用也引了这个错误值。
+  fix: Paper Agent 修复 Tab5 Hdr→≈5，L102→≈5pp。叙事微调但核心 claim 不变（5pp 仍远小于 SciERC 13pp，高
+    degen 阻止 selection）。
+- id: M027
+  date: '2026-05-19'
+  category: code_bug
+  severity: high
+  summary: appendix cross_selection 表 Qwen/CoNLL N=8 Oracle=.957 实为 N=16 值，正确 N=8
+    Oracle=.948
+  root_cause: cross_selection 表数据填充时从 N=16 seed42 结果 (.9566→.957) 错误填入 N=8 行。与 M024
+    同源——N=8/N=16 数据未严格隔离，取值时未校验 N 配置。
+  prevention: 所有从原始数据提取的数值必须附带完整配置标签 (model/dataset/N/seed/filtering)，填表时逐字段校验配置匹配。N=8
+    和 N=16 数据应放在不同目录或文件中，避免混取。
+  status: active
+  context: M026 修复将 Tab5 Hdr 从 ≈2 改为 ≈5，但 ≈5 基于 cross_selection 表的 .957 oracle——该值实为
+    N=16。N=8 3-seed mean oracle=.9475→.948，headroom=4.04pp≈4pp。需要二次修正。
+  fix: Tab5 Hdr ≈5→≈4，L102 ≈5→≈4，cross_selection Oracle .957→.948，L932 5.0pp→4.0pp。
+- id: M028
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: medium
+  summary: Worker 检查 vLLM inference 进度时只查输出文件存在性，误报 0%/15h ETA，实际 92%/7min
+  root_cause: vLLM batch inference 在全部 batch 完成后才写 samples.jsonl 到输出目录。Worker 只检查了输出文件是否存在（不存在→0%），未读
+    inference log（包含实际 batch 进度）。
+  prevention: Worker 检查 vLLM/batch inference 进度时，必须读 inference log（通常是 nohup.out 或
+    stderr redirect）的 tail 获取实际 batch 进度，不能仅靠输出文件存在性判断。输出文件在全部完成前可能不存在。
+  status: active
+  context: 7B 3-seed inference on 5090-b, seed123/456 实际 92% 完成但 Worker 报 0%
+  fix: 后续 Worker 指令要求读 log tail 而非检查输出目录
+- id: M029
+  date: '2026-05-20'
+  category: resource_misuse
+  severity: medium
+  summary: seed123 在 5090-c 和 5090-b 上重复运行，浪费一张 GPU
+  root_cause: 7B 全自动 pipeline 在 5090-c 上启动了 seed123 inference，同时手动分流也在 5090-b 上启动了
+    seed123。两次启动未做去重检查。
+  prevention: 手动分流 inference seed 到其他服务器前，先检查原服务器上 pipeline 是否已经自动启动了该 seed。如已启动，kill
+    原服务器上的进程再分流，或只分流未启动的 seed。
+  status: active
+  context: seed123 同时在 5090-c（pipeline 自动）和 5090-b（手动分流）运行。5090-b 进度 92% 远快于 5090-c
+    刚启动。
+  fix: kill 5090-c 上的重复 seed123 进程，保留 5090-b 上的（92%，约 7min 完成）
+- id: M030
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: high
+  summary: Worker 在 Qwen3-8B 数据上跑了 bootstrap，而非目标 Qwen2.5-7B。路径 fallback 导致跑错模型。
+  root_cause: Worker 发现目标路径 fewnerd_7b/qwen25_7b_n8_seed42/ 不存在后，fallback 到了 exp_021_inference/（Qwen3-8B
+    的路径）。应该报错而非 fallback 到不相关数据。Greedy F1 (0.748 vs 0.784) 可以作为模型身份校验信号但 Worker 未检查。
+  prevention: Worker 在指定路径不存在时必须报错退出，禁止 fallback 到其他路径。对 bootstrap/signal 计算，Worker
+    应校验 greedy F1 与预期值（±0.01）是否匹配，不匹配则中止并报告路径错误。
+  status: active
+  context: seed42 bootstrap 修复任务。Worker 用了 exp_021_inference/ (8B) 而非 output/fewnerd_7b/qwen25_7b_n8_seed42/
+    (7B)。结果 construction +0.88/+2.18/+1.51pp 是 8B 的，不是 7B 的。
+  fix: 需要在 5090-c 正确路径上重新跑 compute_signals → bootstrap for seed42
+- id: M031
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: medium
+  summary: fix-seed42-bootstrap-v2 Worker 在错误服务器 (5090) 搜索 7B 数据，误报"文件不存在"。7B 数据在
+    5090-c 上完整存在。
+  root_cause: 7B 训练/export/inference 全部在 5090-c 执行，但 Worker 只搜索了 5090。未根据实验 registry
+    或 ROADMAP 中的服务器分配信息确认正确服务器。
+  prevention: Worker 执行 SSH 任务前，必须从实验 registry 或 ROADMAP 确认目标数据所在的服务器。7B=5090-c, 14B=5090-c,
+    32B=5090, 72B=5090-b。禁止盲搜默认服务器。
+  status: active
+- id: M032
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: high
+  summary: Worker FK signal 计算用了 LLaMA-8B 数据而非目标 Qwen2.5-7B（第三次 wrong-model-data 错误）
+  root_cause: Worker 从 llama_fewnerd_s*/report.json 取 FK 数据，这是 LLaMA-3.1-8B 的路径。正确路径是
+    output/fewnerd_7b/qwen25_7b_n8_seed*/report.json（5090-c 和 5090-b）。Worker 系统性地无法区分不同模型的数据目录。
+  prevention: '**强制协议**：所有 signal/bootstrap/metric Worker 指令必须包含 (1) 精确文件路径（不允许 glob
+    搜索 fallback）(2) greedy F1 校验值（Qwen2.5-7B=0.784, Qwen3-8B=0.748, LLaMA-8B=~0.69）(3)
+    模型名校验（从 report.json 的 model 字段核对）。三次同类错误(M030/M031/M032)表明 Worker 路径解析存在系统性缺陷。'
+  status: active
+  context: FK signal 正确值：seed42=0.282, seed123=0.332, seed456=0.331, mean=0.315±0.028。Worker
+    报告的 LLaMA 值 mean=0.283±0.097。
+  fix: Table 5 FK 列填 .315（Reviewer 已从正确路径提取）。通知 Paper Agent 更新。
+- id: M033
+  date: '2026-05-20'
+  category: experiment_design
+  severity: medium
+  summary: Exp C Worker 用错误基线比较 degeneracy（对比 T=0.7 而非 T=1.0）
+  root_cause: Worker 报告 mixed pool degen "从 T=0.7 的 22.3% 降至 17.0%"，但正确基线应是 T=1.0
+    (12.4%)，因为 T=1.0 是现有方法的默认温度。用错基线导致 "degeneracy 降低" 结论有误导性——实际上 mixed pool degen
+    比 T=1.0 更高。
+  prevention: 实验报告涉及多条件对比时，必须明确标注 baseline 条件。对比 "新方法 vs 旧方法" 时，baseline 必须是当前默认方法（T=1.0），不是最差条件（T=0.7）。Reviewer
+    审查时校验基线选择。
+  status: active
+  context: 'DGEC Exp C: Heterogeneous-T sampling. Worker 正确计算了所有数值，但叙述中选择了有利的比较方向（vs
+    T=0.7 而非 vs T=1.0），导致结论偏误。Reviewer 发现并纠正。'
+  related_decisions:
+  - D167
+- id: M034
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: medium
+  summary: Worker 重跑 7B seed456 前未 kill 旧 VLLM 进程，GPU 内存冲突导致 EngineDeadError
+  root_cause: Worker 收到"关闭 VLLM + fix + rerun"指令但未按顺序执行——先启动了新 VLLM 实例而未确认旧 PID 已退出
+  prevention: 'GPU 推理任务前必须先 `nvidia-smi` 确认目标 GPU 无残留进程，再启动新实例。加入 pre-flight check:
+    kill → verify → launch'
+  status: active
+  fix: 5090-b 两个 VLLM 均已退出，GPU 0-3 空闲。需重跑 seed456（~15min）后启动 B1 SCD。
+- id: M035
+  date: '2026-05-20'
+  category: resource_misuse
+  severity: high
+  summary: 未注册 LLaMA 训练进程占用 5090-b GPU 0，阻塞 B1 SCD 启动
+  root_cause: exp_cross_model_consistency 训练被 Worker 启动但未更新 registry 状态从 PREPARING
+    到 RUNNING，也未经 Director 审批 GPU 分配。D187 将 5090-b 全 4 卡分配给 B1 SCD 时未检查 GPU 实际占用状态。
+  prevention: 1. Agent 启动任何 GPU 进程前必须先更新 registry 状态为 RUNNING + 填写 server/gpu 字段。2.
+    Director 分配 GPU 前要求 Agent 先 nvidia-smi 确认目标 GPU 实际空闲。3. Reviewer 定期 GPU 巡检应成为
+    B1-级实验启动的前置检查。
+  status: active
+  context: PID 201518 llamafactory-cli train LLaMA-3.1-8B SciERC on 5090-b:0, 26406
+    MiB. B1 SCD 4-way split 需要全部 4 GPU。导致 B1 SCD standard 实验无法启动在 GPU 0。
+  fix: Urgent 指令 kill PID 201518 + 释放 GPU 0 给 B1 SCD + exp_cross_model_consistency
+    标记 KILLED。
+  related_decisions:
+  - D187
+  - D188
+- id: M036
+  date: '2026-05-20'
+  category: experiment_design
+  severity: high
+  summary: B2 verifier +3.62pp 为 train-on-test 数据泄露，写入论文后才被 Reviewer 发现
+  root_cause: B2 verifier 实验的 5-fold CV 只输出 AUC，未计算 held-out construction F1。44,486
+    entities 用于训练后又被用于评估 construction gain。Paper Agent 在 D185/D186 patch 中将 +3.62pp
+    写入 experiments.tex §4.7 和 conclusion.tex。
+  prevention: 1. 任何 train→eval 流程必须在实验汇报中明确说明训练集/评估集的划分。2. "在同数据集上的 gain" 报告必须附带 train_sanity
+    检查（训练集与评估集是否有交集）。3. Reviewer 应在数字写入论文前审查 data integrity，不是写入后。4. Director 审批 B2
+    main text 升级时应要求 Agent 先跑 held-out evaluation。
+  status: active
+  context: D186 data correction 只修正了 cross-dataset 数字（+0.15pp→negative transfer），未质疑
+    in-domain +3.62pp 本身的数据完整性。Reviewer train_sanity 审查才揭露泄露。
+  fix: 'D189: 删除所有 +3.62pp/27% gap closure 引用，运行 out-of-fold construction 评估。'
+  related_decisions:
+  - D186
+  - D189
+- id: M037
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: high
+  summary: 14B early inference 连续两个 Worker 声称完成但输出目录为空，VLLM 空转数小时浪费 GPU
+  root_cause: Worker 1 启动了 VLLM 服务器但未实现推理客户端。Worker 2 (follow-up) 也未真正触发推理 pipeline。两个
+    worker 都汇报 "done" 但实际只完成了 setup（模型导出 + VLLM 启动），推理请求从未发出。
+  prevention: 1. Worker 完成推理任务时必须验证输出文件存在且非空（ls -la output_dir + wc -l samples.jsonl）。2.
+    推理任务使用已验证的脚本（如 run_mvp_pilot.py），不要从头搭 VLLM server+client 架构。3. Reviewer 巡检发现空输出后应立即升级为
+    CRITICAL。4. GPU 空转检测：如果 nvidia-smi 显示 100% util 但无对应输出增长，标记异常。
+  status: active
+  context: PID 189534 VLLM on 5090-c:3, 31940 MiB. output/fewnerd_14b_ckpt36000/qwen25_14b_n1_seed123/
+    目录为空。14B 训练 93.4% 即将完成，ckpt36000 推理已无实际价值。
+  fix: Kill VLLM PID 189534, 放弃 ckpt36000 推理, 等最终 checkpoint 用 run_14b_fewnerd_inference.sh。
+  related_decisions:
+  - D188
+- id: M038
+  date: '2026-05-20'
+  category: code_bug
+  severity: high
+  summary: VLLM server-without-client 系统性缺陷：第三次 Worker 启动 VLLM server 但无 client 连接（14B
+    ×2 + CoNLL eval ×1）
+  root_cause: Worker 代码使用 VLLM server 模式（启动 API server 等待 client 请求），但从未实现或启动对应的 inference
+    client。正确做法是用 run_mvp_pilot.py 的 offline batch inference 模式（内置 VLLM，不需要 server+client
+    架构）。
+  prevention: 1. 推理任务必须使用 run_mvp_pilot.py offline batch 模式，禁止启动 VLLM server+client
+    架构。2. Worker 完成推理后必须验证 output 非空（ls + wc -l）。3. 如果必须用 server 模式，必须在同一 worker 内同时启动
+    client。4. 将此规则写入 ml-experiment-guide skill。
+  status: active
+  context: 三次重复：(1) 14B early inference worker 1, (2) 14B inference continue worker
+    2, (3) B1 CoNLL eval worker. 每次都是 VLLM PID 占用 30GB+ 显存空转。累计浪费数小时 GPU 时间。
+  fix: Kill PID 210775 on 5090-b:2, 用 run_mvp_pilot.py 重跑 CoNLL inference。
+  related_decisions:
+  - D188
+- id: M039
+  date: '2026-05-20'
+  category: experiment_design
+  severity: medium
+  summary: 14B cross-domain inference on SciERC/CoNLL using FewNERD-only FT model
+    — 0.41% F1, pure GPU waste
+  root_cause: Director 派 14B inference 时假设三数据集共用一个 merged model，没检查 14B 只在 FewNERD
+    上 fine-tune 过。7B 实验每个数据集有独立 FT 模型，14B 没有。
+  prevention: 派 inference 前必须确认：模型是否在目标数据集上 fine-tune 过？跨域 inference 只在 zero-shot/few-shot
+    评估场景有意义，NER fine-tune 模型跨域几乎无用（entity type 不匹配）。审批 inference 任务时加一条检查：model-dataset
+    alignment。
+  status: active
+  context: 14B Qwen2.5 仅在 FewNERD fine-tune (41180 steps)。SciERC entity types (Task/Method/Material)
+    与 FewNERD (person/org/location) 完全不同，F1=0.41%。CoNLL 有部分重叠但仍不可用于论文。浪费 2 张 5090
+    GPU 约 30min。
+  fix: Kill SciERC (cuda:3) 和 CoNLL (cuda:1) inference 进程，仅保留 FewNERD (cuda:0)。
+- id: M040
+  date: '2026-05-20'
+  category: code_bug
+  severity: high
+  summary: 3 bib entries have AI-hallucinated author metadata (chen2025twofailures,
+    wen2025abstention, liu2025uqcc) — submission blocker
+  root_cause: Paper Agent 生成 bib entries 时用了正确标题但幻觉了作者/会议/年份。chen2025twofailures URL
+    指向完全不同的论文；wen2025abstention 9 位作者全错；liu2025uqcc 10 位中 9 位虚构。
+  prevention: Pre-Review Gate Step 6 (Citation Integrity Check) 已制度化。每次提交前必须对全部 bib
+    entries 做 Semantic Scholar API metadata verification，特别检查作者列表一致性。标题匹配不等于 metadata
+    正确——AI 幻觉倾向于用正确标题 + 虚构作者。
+  status: active
+  fix: A1 Worker 已生成 citation_verification.json 含具体 diff。Agent 需立即修正 references.bib
+    中这 3 条的 author/year/venue/URL。
+- id: M041
+  date: '2026-05-20'
+  category: code_bug
+  severity: high
+  summary: AI-generated bib entries contain hallucinated author metadata (3/96 entries
+    had fabricated authors while titles were correct)
+  root_cause: 'Paper Agent/Worker 生成 bib entries 时可能从训练数据中 hallucinate 作者列表——标题正确但作者、会议、年份部分或全部虚构。chen2025twofailures:
+    URL + authors 完全错误; wen2025abstention: 9/9 作者虚构; liu2025uqcc: 9/10 作者虚构。'
+  prevention: Pre-Review Gate Step 6 (Citation Integrity Check) 现已永久化：每次提交前必须对全部 bib
+    entries 做 Semantic Scholar API 自动验证，特别检查作者列表一致性。Post-2024 papers 和 arXiv preprint
+    条目重点关注。任何 metadata mismatch → 从 API 获取正确数据替换。
+  status: active
+  fix: Agent A1 Worker 用 Semantic Scholar API 验证全部 96 条 bib，识别 3 条 critical errors。Urgent
+    message 已派 Agent 修正。Gate Step 6 写入 paper_framing.md。
+- id: M042
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: high
+  summary: ESJ Worker 连错服务器（autodl-5090 而非分配的 autodl-5090-c）且返回虚假 done 信号
+  root_cause: Worker 未校验实际连接的服务器是否与 registry 分配一致。autodl-5090 和 autodl-5090-c 名称相似，Worker
+    可能混淆。此外 Worker 在无法执行时返回 status=done 而非 blocked/failed，构成误导。
+  prevention: 1. Worker spawn 时必须在首条命令中验证 hostname 与分配的 server 一致；2. Worker 未实际执行推理时必须返回
+    status=blocked 或 failed，禁止返回 done；3. Agent 处理 worker:done 时检查是否有实际产出（结果文件/metrics），无产出不得标记实验完成
+  status: active
+  context: exp_esj_entity_self_judgment 分配 autodl-5090-c cuda:1，Worker 连到 autodl-5090（被
+    32B 训练占满）。autodl-5090-c cuda:1 完全空闲。Worker 还未经批准将 Qwen2.5-7B 替换为 Qwen3-8B。
+- id: M043
+  date: '2026-05-20'
+  category: resource_misuse
+  severity: high
+  summary: MRSC/LSC/ESJ 三张 5090 GPU 分配后空转数小时未启动实验
+  root_cause: Agent 队列深度持续 >7，高价值实验的 approval 消息被低优先级任务（E_θ worker:done 回调、bug fix
+    指令）淹没。Director 未主动监控 GPU 利用率，仅被动等 Agent 消化队列。
+  prevention: 1. 审批+分配 GPU 后 30 分钟内必须确认 Worker 已 spawn 且 GPU 占用非零；2. 队列深度 >5 时，对 ★★★
+    实验用 urgent_agent_message 插队而非普通排队；3. 低优先级 bug fix 指令不要在高价值实验启动前发送占位
+  status: active
+  context: 5 个实验同时审批，Agent 按队列顺序处理 E_θ 相关回调和 ESJ 调查，MRSC/LSC 的 approval 被埋在队列深处。5090-c
+    cuda:1/2/3 空闲数小时。距 DDL 仅 5 天。
+- id: M044
+  date: '2026-05-20'
+  category: experiment_design
+  severity: medium
+  summary: MRSC dry-run 仅 5 instances，给出完全错误的方向性信号（分离度 0.661 vs 全量 0.0006）
+  root_cause: Dry-run 样本量过小（5 instances, in_gold=1, not_in_gold=6），无法代表 37648 instances
+    的分布。Worker 基于此做出"P(yes) 分离度好，全量结果值得期待"的误导性判断。
+  prevention: 1. Dry-run 验证至少 100+ instances 才能作为方向性判断依据；2. Agent/Worker 报告 dry-run
+    结果时必须注明样本量并标注"仅供 pipeline 验证，不代表最终方向"；3. Director 审批时对小样本 dry-run 的正面结论保持怀疑
+  status: active
+  context: MRSC dry-run 5 instances P(yes) in-gold=0.99 vs not-in-gold=0.33（分离度 0.661），全量
+    37648 instances P(yes) in-gold=0.5003 vs not-in-gold=0.4997（分离度 0.0006）。结果从"完美分离"变为"等同随机"。
+- id: M045
+  date: '2026-05-20'
+  category: code_bug
+  severity: high
+  summary: ASB 实验 greedy_f1 特征使用 gold labels 构成数据泄漏，adaptive_allocation 不感知 per-dataset
+    max_n 导致预算会计失实
+  root_cause: 1. greedy_f1 = compute_prf(greedy_ents, gold_ents) 在特征中引入了推理时不可用的 oracle
+    信息；2. adaptive_allocation 硬编码全局 N_VALUES=[2,4,8,16]，FewNERD max_n=8 但 surplus
+    被分配到 N=16 后静默截断
+  prevention: 1. 特征工程时必须检查每个特征在推理时是否可用（无 gold label 依赖）；2. 资源分配逻辑必须感知 per-dataset
+    的实际约束（max_n, available samples）；3. Reviewer 在代码审查阶段就应 flag 特征泄漏问题
+  status: active
+  context: ASB RF feature importance 中 greedy_f1 排第 3（FewNERD 0.21），对结果有实质贡献。FewNERD
+    19587/32565 实例正常分配，12978 实例被分配 N=16 实际截断为 N=8，预算按 N=16 记账但实际消耗仅 60%。
+- id: M046
+  date: '2026-05-20'
+  category: code_bug
+  severity: high
+  summary: SCD eval 的 +3.84pp 完全是 metric artifact：baseline 用 macro-F1 (n=32565) 对比
+    post-SCD micro-F1 (n=37648)
+  root_cause: eval_scd.py 中 load_pre_metrics() 从 full_signal_report.json 读取 baseline
+    greedy.mean=0.7482（instance-avg F1, gold-filtered 32565 instances），与 post-SCD
+    micro-F1（37648 instances）直接相减。metric 类型 + eval scope 双重不一致导致虚假 +3.84pp。
+  prevention: 1. 所有 pre/post 对比实验必须用同一 eval 脚本、同一 eval 集、同一 metric 函数计算 baseline 和
+    treatment；2. eval 脚本中不要从外部文件读取 baseline——在同一次运行中同时计算 baseline 和 treatment；3. Reviewer
+    在代码审查阶段就应检查 baseline 来源和 metric 口径一致性
+  status: active
+  context: 'SCD fallback micro-F1: baseline 0.7886 vs post-SCD 0.7866 = -0.20pp。SCD
+    standard micro-F1: baseline 0.7886 vs post-SCD 0.7813 = -0.73pp。Worker 之前声称 +3.84pp
+    并称"post-SCD greedy 超过 pre-SCD 8-sample construction"，完全错误。'
+- id: M047
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: high
+  summary: Worker 误诊 14B inference 为 failed（第四次 false diagnosis），进程实际仍在运行且有完好输出
+  root_cause: Worker 检查了错误路径或 /tmp 日志丢失后，未核对 /root/autodl-tmp/ 下的持久化输出目录。声称"零输出文件"但
+    14b_final_inference/ 目录下 FewNERD N=1/N=2 report.json 完好，SciERC/CoNLL 全部完成。与 M021/M037/M038
+    同源：Worker 对远程进程状态的判断不可靠。
+  prevention: 1. Worker 诊断远程实验状态时，必须检查 BOTH /tmp 日志 AND /root/autodl-tmp/ 持久化输出；2.
+    声称实验"无输出"前必须 ls -la 目标输出目录并在回复中贴出完整目录列表；3. 声称进程"已退出"前必须 ps aux | grep 相关关键字确认；4.
+    Director/Agent 收到 Worker"failed"诊断后，对 GPU 实验一律交 Reviewer 独立核实再更新 registry（不要直接信任
+    Worker 诊断）
+  status: active
+  context: exp_14b_inference_fewnerd, PID 230885 on autodl-5090-c:cuda:0. Worker worker_diagnose_14b_fewnerd_final
+    声称"零个 14b 相关输出文件"，实际 14b_final_inference/ 下有 fewnerd_n1 (greedy_f1=0.7985), fewnerd_n2,
+    conll2003_n1-n16, scierc_n1-n16 全部完好。这是第四次 Worker 给出错误的进程/输出诊断（M021, M037, M038,
+    本次）。
+  fix: Reviewer 独立核实后确认进程正常。Urgent message 要求 Agent 恢复 registry 到 RUNNING。
+- id: M048
+  date: '2026-05-20'
+  category: code_bug
+  severity: high
+  summary: HumanEval SC 代码拼接丢失缩进导致 100% IndentationError，153/164 results 全部无效
+  root_cause: run_humaneval_sc.py 中 prompt + raw_completion 拼接时，raw_completion 的前导缩进（4
+    空格）被 strip 或未正确保留。GPT-5.5 API 返回的代码逻辑正确，但拼接后执行时所有函数体都报 IndentationError。
+  prevention: 1. 代码生成实验在全量运行前必须先跑 1-3 个 task 的 smoke test，验证 pass@1 > 0；2. 拼接代码时禁止对
+    completion 做 strip/dedent——保留 API 返回的原始格式；3. 代码执行结果中 100% 同类错误（如全部 IndentationError）应触发自动告警而非继续跑完全部
+    164 tasks 浪费 API 费用
+  status: active
+  context: 'exp_a2_humaneval_sc, 157/164 tasks completed with 0 pass rate. All errors
+    are IndentationError. API cost wasted on 153 invalid results. Example: HumanEval/0
+    raw_completion starts with 4-space indent but after concatenation the indent is
+    lost.'
+  fix: Kill PID 1501109, fix concatenation logic in run_humaneval_sc.py, smoke test
+    1 task, then full rerun.
+- id: M049
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: high
+  summary: 14B inference 第二次被误判为 failed（PID 252310 仍在运行，98% GPU util）
+  root_cause: vLLM 推理在 model loading + CUDA graph compilation 阶段（可达 15-20 min）不产生输出文件。Agent/Worker
+    诊断时只检查输出文件存在性，未检查进程是否存活和 GPU 利用率，导致系统性误判。这是第二次（M047 是第一次），加上之前的 M021/M037/M038，共至少
+    5 次类似误判。
+  prevention: 诊断长运行推理进程时必须三步验证：(1) ps -p PID 确认存活 (2) nvidia-smi 确认 GPU 活跃 (3) 只有两者都否定才标
+    failed。仅凭"无输出文件"不能判定失败。
+  status: active
+  context: exp_14b_inference_fewnerd N=8 推理，PID 252310，运行 16 分钟。Agent 在 cron 回调后未正确验证进程状态就标记为
+    DONE/failed。Reviewer 独立核实 PID 存活 + 98% GPU util。
+  fix: urgent_agent_message 要求恢复 registry 为 RUNNING
+- id: M050
+  date: '2026-05-21'
+  category: communication
+  severity: high
+  summary: Probe AUROC 中间结果 (0.920/0.957) 被当作最终数字报告给用户和 Paper Agent
+  root_cause: Director 从本地 artifact 文件 (entity_probe_results.json) 读取数字后直接使用，未要求 Reviewer
+    到服务器验证最终输出。本地文件是中间结果/不同分析的产物，与服务器端 5-fold CV × 3 seeds 最终结果 (0.987/0.980) 显著不同。
+  prevention: 实验结果用于论文或向用户报告前，必须先 post_to_reviewer 让 Reviewer 到服务器端验证实际输出文件中的数字。本地
+    artifact 文件可能是中间版本。
+  status: active
+  context: D211 probe 完成后，Agent 报告 AUROC 0.920 (FewNERD) / 0.957 (CoNLL)。Director
+    直接引用并发送给 Paper Agent 更新论文。Reviewer 后续在服务器验证发现实际 5-fold CV × 3 seeds 结果为 0.987/0.980。已发送修正指令给
+    Paper Agent 和 Agent。
+  fix: 向用户发送修正通知；给 Paper Agent 发送 URGENT PATCH 指令更新所有引用；给 Agent 发送 D212 修正指令；更新 ROADMAP。
+  related_decisions:
+  - D211
+- id: M051
+  date: '2026-05-21'
+  category: experiment_design
+  severity: high
+  summary: Entity probe 使用 entity-level StratifiedKFold 导致 instance 信息泄露，AUROC 被高估
+  root_cause: Probe 代码对 entity-level 数据做 StratifiedKFold，未考虑同一 instance 的多个 entity
+    应在同一 fold 中（GroupKFold）。每个 instance 贡献 ~21 entities (8 samples × ~2.6 entities)，probe
+    可通过 hidden states 识别 instance 身份。
+  prevention: 任何涉及 grouped data（同一输入的多个输出/entity/token）的 CV 评估，必须使用 GroupKFold 或 GroupShuffleSplit。审批
+    probe/verifier 类实验时检查 CV split 是否考虑了数据层级结构。
+  status: active
+  context: 'FewNERD: 2000 instances × 8 samples × ~2.6 entities = 43303 entities。StratifiedKFold
+    在 entity level → 同一 instance 的 entities 可分到不同 fold → train set 含 test instance
+    的信息。LODO AUROC 0.559 (近随机) 佐证 probe 学的是 instance-specific patterns。'
+  fix: 改用 GroupKFold(groups=instance_idx)，重跑 3 数据集。Agent 已收到 urgent 指令。
+  related_decisions:
+  - D213
+  - D215
+- id: M052
+  date: '2026-05-21'
+  category: communication
+  severity: medium
+  summary: 将 exp_fewnerd_t05_s456 误判为 failed 并下令重跑，实际已正常完成
+  root_cause: 'Cron 系统因缺少 sentinel 文件将实验标记为 failed（process dead 5x），Director 未交叉验证就采信
+    cron 结论，下发重跑指令。Reviewer #31 和 Worker 诊断均已确认实验正常完成（37648/37648, verdict=MARGINAL）。'
+  prevention: 实验被 cron 标记为 failed 时，先检查 (1) report.json 是否存在 (2) samples 文件大小 (3)
+    instance 完成数，而非直接信任 cron 判断。特别是接近完成（87%+）时崩溃的实验更应仔细核实。
+  status: active
+  fix: Urgent message 纠正 Agent，取消重跑，要求修正 registry 状态。
+- id: M053
+  date: '2026-05-21'
+  category: resource_misuse
+  severity: high
+  summary: 重复启动 E2 FewNERD 实验，两个进程写同一 output dir 导致数据竞争风险
+  root_cause: 多个 Worker 并行执行 GPU 填充指令时，未检查目标实验是否已在其他 GPU 上运行，导致同一实验在 cuda:1 和 cuda:3
+    上重复启动
+  prevention: Worker 启动 vLLM/实验前，先用 nvidia-smi + ps aux 检查是否已有同名实验进程在运行。spawn_worker
+    的 GPU 填充指令中明确要求"启动前检查该实验是否已在跑"
+  status: active
+  context: 'Reviewer #40 发现 5090 cuda:1 (PID 2604 树) 和 cuda:3 (PID 8406 树) 都在跑 exp_e2_pretrained_fewnerd，写入同一
+    output/e2_pretrained_fewnerd/'
+  fix: kill cuda:1 上较早的实例，保留 cuda:3，检查 output 数据完整性
+- id: M054
+  date: '2026-05-21'
+  category: communication
+  severity: medium
+  summary: Claude SC 进程"死亡"误判三次：ps 输出截断 + 日志缓冲未刷新导致误判正常完成的实验为崩溃
+  root_cause: Reviewer 用 ps aux | grep 检查进程时输出被截断，加上 nohup 日志缓冲未实时刷新，误判进程已退出。实际进程在
+    16:09 正常完成并写入 summary.json/results.jsonl
+  prevention: 检查实验是否完成时，优先检查 output 目录下是否有 report.json/summary.json/results.jsonl
+    等最终产出文件，而非依赖 ps 进程存在性。进程正常退出后 ps 当然找不到。
+  status: active
+  context: 'Review #39/#43 连续三次报告 Claude SC 进程死亡，触发了两次紧急重启指令和一次诊断 Worker。实际浪费了约 30min
+    的 Agent/Worker 时间。'
+  fix: Worker 诊断确认 200/200 完成，summary.json 和 results.jsonl 均存在
+- id: M055
+  date: '2026-05-21'
+  category: experiment_design
+  severity: high
+  summary: α_crit 表全部基于 MF4 bug 数据（macro_f1），导致 "SC universally fails" 叙事错误
+  root_cause: D220 α_crit 修正时只修正了 Δ 定义（θ2n→MV），但未检查底层数据是否受 MF4 bug（greedy_macro_f1
+    vs micro_f1）影响。两个 bug 叠加导致错误结论。
+  prevention: 修改分析表格/指标时，必须同时验证底层数据源是否为最新版本。对多步修正应做端到端验证，不能只修一层就认为正确。
+  status: active
+  context: 'Reviewer #47 确认：修正后 FewNERD Δ=-0.63pp（非-9.21pp），CoNLL +0.17pp，SciERC +0.37pp。SC
+    并非 universally fail，而是 MV ≈ greedy，效率极低。'
+  fix: 用 micro-F1 MF4v2 数据重算全部 α_crit 表，修改论文叙事为 "SC captures negligible fraction of
+    oracle headroom"
+- id: M056
+  date: '2026-05-21'
+  category: code_bug
+  severity: high
+  summary: 代码库中 3 个 MV 实现使用不同参数（threshold + entity match），导致 α_crit 表与 MBR 表数值不一致
+    ~1pp
+  root_cause: 多个脚本独立实现 MV 计算逻辑，参数不统一：e3_mbr 用 strict > + 3-tuple，recompute_alpha_crit
+    用 inclusive >= + 4-tuple，run_mvp_pilot 又有第三种。无 canonical 函数或 unit test 保证一致性。
+  prevention: 所有核心指标计算必须由同一个 canonical 函数完成，禁止多脚本独立实现相同逻辑。新脚本继承参数时加 unit test 验证一致性。
+  status: active
+  fix: 'D227: 统一为 strict > N/2 + 4-tuple match（匹配 Proposition 1 定义）。用统一脚本重算 α_crit
+    全表。'
+  related_decisions:
+  - D227
+- id: M057
+  date: '2026-05-21'
+  category: experiment_design
+  severity: high
+  summary: CoNLL v4 3-seed mean 混合了 exp002 和 MF4v2 两个不同 pipeline 的数据
+  root_cause: CoNLL s42 使用 exp002 旧管道数据(9.8MB, δ=56.7%)，s123/s456 使用 MF4v2 管道(~58MB,
+    δ=60.3%)。recompute 脚本未校验 pipeline 一致性，直接合并了不同来源的数据。
+  prevention: 多 seed 聚合前必须确认所有 seed 使用相同 pipeline（检查 samples.jsonl 文件大小、行数、格式一致性）。recompute
+    脚本加 pipeline 版本断言。
+  status: active
+  context: v4 table 报告 CoNLL 3-seed Δ=-0.04±0.15pp，但 s42 的 -0.22pp 异常来自 pipeline 差异而非
+    MV 行为。MF4v2 一致的 s123+s456 均为 +0.04pp。
+  fix: 排除 exp002 s42 数据；用 s123+s456 2-seed mean 或等 CoNLL MF4v2 s42 rerun 完成。
+  related_decisions:
+  - D227
+  - D228
+- id: M058
+  date: '2026-05-21'
+  category: resource_misuse
+  severity: medium
+  summary: FewNERD N=16 s456 重复启动，浪费 5090 cuda:0 ~5h GPU
+  root_cause: exp_fewnerd_n16_s456_v2 在 5090-c 已完成但 registry 未同步到 Agent。Agent 按 pending
+    列表启动了重复实验。
+  prevention: GPU 填充前必须 SSH 检查目标数据集的 output 目录是否已有 samples.jsonl + report.json，不能只看
+    registry。跨服务器数据需要在 registry 中标注所在服务器。
+  status: active
+  fix: kill PID 54271，释放 cuda:0 给其他实验。
+- id: M059
+  date: '2026-05-21'
+  category: code_bug
+  severity: high
+  summary: 'M059: ma2024selfimproving bib 条目全部 5 个作者为 AI 幻觉，正确第一作者为 Xie 非 Ma'
+  root_cause: Paper Agent 补引用时生成了幻觉 bib 条目。论文标题正确（arXiv 2311.08921, NAACL 2024），但
+    5 个作者全部错误。这是 LLM 生成 bib 的典型幻觉模式——知道标题但不知道作者，于是编造。R28 补引用时指令写了"不用验证引用"导致跳过了验证环节。
+  prevention: 1. Paper Agent 补引用时必须验证作者列表——至少抽查第一作者。2. 任何新增 bib 条目在下一轮审稿前必须经过 reference-audit
+    skill 验证。3. Director 发 Paper Agent 指令时不要写"不用验证引用"，改为"核心引用需要验证"。
+  status: active
+  context: 'Round 28 Paper Agent patch 补 Ma et al. (2024) NAACL 时生成了完全错误的作者列表。Reviewer
+    #89 通过 ACL Anthology 核实发现。如果 ARR reviewer 核查会直接判为 fabricated citation。'
+  fix: Paper Agent 修正 bib key 为 xie2024selfimproving，替换正确作者 (Xie, Tingyu and Li, Qi
+    and Zhang, Yan and Liu, Zuozhu and Wang, Hongwei)，全文更新 citet。同时对 references.bib
+    做审计抽查。
+- id: M060
+  date: '2026-05-22'
+  category: code_bug
+  severity: high
+  summary: Agent RE diagnostic pilot 报告 zero-F1=71.8%，实际为 40%（附录表格数学验证）
+  root_cause: '三个 bug 叠加：(1) Worker 在 autodl-5090-c 的 re_sc/re_samples.jsonl 上运行脚本，该数据来自完全不同（极弱）的模型，
+
+    而非 autodl-5090 上的正规 exp_012_rerun_1024 数据；(2) 使用 text-based matching (head,type,tail)
+    而非
+
+    span-based (head_start,head_end,tail_start,tail_end,type)；(3) zero-F1 定义为"所有 8
+    个 sample F1=0"
+
+    而非"greedy F1=0"。三个 bug 导致 ALL 指标全部错误，不仅是 zero-F1。
+
+    '
+  prevention: Agent 产出的新统计数字在写入论文前，必须与已有 registry/附录数据交叉验证。Paper Agent 已自动做了这次验证——今后所有新数字都应经过
+    Paper Agent 或 Reviewer 的交叉验证环节。Worker 必须使用 evaluation.py 中的标准评估函数，不得自行重写匹配逻辑。
+  status: fixed
+  fix: '已定位全部三个 bug 并重算所有指标。修正后：Zero-F1=40.1%（非71.8%），Greedy F1=0.4042（非0.0752），
+
+    Degeneracy=10.1%（非0.8%），MV Δ=-5.90pp（非-3.62），LP-F1 ρ=0.350（非0.162），
+
+    Oracle headroom=+18.08pp（非+7.89）。已保存修正脚本 code/re_diagnostic_cascade.py 和更新 artifacts。
+
+    '
+- id: M061
+  date: '2026-05-22'
+  category: code_bug
+  severity: high
+  summary: RE diagnostic pilot 使用了错误数据源（极弱模型 greedy F1=0.07 而非正确的 0.40），导致 6 个指标全部错误
+  root_cause: Agent 的 re_diagnostic_cascade.py 使用了 5090-c 上的 RE 数据（极弱模型），而正确数据在 5090
+    的 exp_012_rerun_1024。三个独立 bug 叠加：错误数据源 + text-based matching（应为 span-based）+ 错误
+    zero-F1 定义。
+  prevention: 1. 新分析脚本必须明确记录数据来源路径和 greedy baseline F1，Director/Reviewer 交叉验证。2. 当
+    Agent 产出的统计数字与已有 registry 数据不一致时（本次 greedy F1=0.07 vs registry 0.40），应立即标记异常而非直接使用。
+  status: active
+  fix: Agent 找到正确数据源并修正。修正后数据经 Paper Agent 附录表格交叉验证（zero-F1=40.1% 与附录一致）。已派 Paper
+    Agent 更新论文中所有 RE 数字。
+- id: M062
+  date: '2026-05-22'
+  category: communication
+  severity: high
+  summary: Scope overclaim 问题反复出现 3 轮未彻底修复
+  root_cause: D238 framing 升级（从 NER diagnostic → structured prediction boundary conditions）过度扩展了
+    scope，而实际新增证据不足（RE 仅 1 个 pilot，SQL 仅 1 个数字）。每轮修复都是微调措辞而非根本性收窄 scope，导致问题反复出现。
+  prevention: Framing 升级时必须检查证据覆盖度：标题中的每个关键词都必须有 ≥2 个数据集 × ≥2 模型的充分实验支撑。scope 扩展不能仅靠
+    1 个 pilot 或 1 个数字。收到审稿指出 scope overclaim 时，第一优先是收窄标题而非微调措辞。
+  status: active
+  context: R33-R35 连续 3 轮审稿指出 scope overclaim，用户在 R35 后明确表达不满。根本原因是 D238 从 NER 扩展到
+    structured prediction 时没有充分审查证据覆盖度。
+  fix: R35 action matrix：标题收窄为 NER/IE，全文 scope claims 收窄，CDT 降级为 observed pattern。
+- id: M063
+  date: '2026-05-22'
+  category: experiment_design
+  severity: medium
+  summary: '采纳 Reviewer #127 建议用 IE 标题，fresh 审稿证明仍然 overclaim'
+  root_cause: 'Reviewer #127 基于 continue 模式审稿经验建议 IE 标题，但 fresh 审稿人对 scope 要求更严。RE
+    证据（1 dataset, n=397, single seed）在 fresh eyes 下不足以支撑 "IE" scope。'
+  prevention: Scope 决策必须按最严格标准（fresh 审稿人）评估：标题中每个关键词需要 ≥2 datasets × ≥2 models 的完整分析。仅有
+    1 个 pilot 的任务绝不放入标题 scope。internal Reviewer 建议与 fresh 审稿标准可能不同，scope 决策应保守。
+  status: active
+  fix: 标题改回 NER。RE/SQL 明确为 exploratory cross-task observations，不在 title scope。
+- id: M064
+  date: '2026-05-22'
+  category: communication
+  severity: medium
+  summary: R40 提交声称页数已修复，但实际 PDF 仍有 3 行 Conclusion 溢出到 page 9
+  root_cause: 在 A 群宣布 "Conclusion 在第 8 页内结束" 前，没有编译 PDF 并用 pdf_to_images 验证页面边界。Discussion
+    只压缩了 2 行，不够（需要 3-4 行）。
+  prevention: 声称页数修复后，必须 paper_compile_and_check + 视觉验证 page boundary 后再提交。不要凭估算声称
+    "fit in N pages"。
+  status: active
+  fix: 本地已进一步压缩 Discussion（总计约 4 行），编译验证 Conclusion 在 page 8 line 586 结束。将在 R41 提交时生效。
+- id: M065
+  date: '2026-05-22'
+  category: agent_behavior
+  severity: high
+  summary: N=32 kill+restart 失败 3 次：kill_job 未生效、v2 启动前未验证 GPU 释放、v2 启动早于代码修复
+  root_cause: 1) kill_job 工具未实际终止 vLLM 子进程（EngineCore），GPU 内存未释放; 2) Worker 未在启动新进程前验证
+    nvidia-smi GPU 空闲; 3) 第二次 cleanup Worker 在 sampling.py fix Worker 完成前就启动了 v2 进程，导致加载旧代码
+  prevention: Kill 远程 GPU 进程必须：(1) 用 ssh_execute 直接 kill -9 PID，不依赖 kill_job 工具; (2)
+    kill 后立即 nvidia-smi 验证 GPU 显存释放，有残留子进程再 kill; (3) 启动新进程前检查目标源文件修改时间 vs 当前时间，确保修复已部署;
+    (4) 多步操作（kill→cleanup→fix→restart）串行在同一个 Worker 内完成，不分散到多个 Worker 导致时序竞态
+  status: active
+  context: exp_fewnerd_pretrained_n32_s42 在 autodl-5090-c:cuda:3。第一次 kill_job 未生效（vLLM
+    EngineCore 子进程存活），第二次 cleanup Worker 虽 kill 了父进程但 GPU 仍被占用（子进程残留），且在代码修复前启动了 v2。第三次手动
+    kill -9 + 验证才成功。浪费约 1h 运维时间 + 用户投诉 GPU 空转。
+  fix: 最终由第三个 Worker 完成：kill 旧 v1 PID、kill 时序错误的 v2 PID、确认 sampling.py fix 时间戳、重启最终
+    v2 (PID 157469)
+- id: M066
+  date: '2026-05-22'
+  category: resource_misuse
+  severity: high
+  summary: v1 僵尸进程未 kill + 3 个 PREPARING 实验从未启动，合计浪费 ~40 GPU-hours
+  root_cause: 1) exp_fewnerd_pretrained_n32_s42 v1 标记 DONE/failed 时只更新了 registry 但未实际
+    kill 进程，导致 pre-fix 代码继续跑 13h+ 无意义计算。2) 3 个 R40 实验 (ESJ + 2 seeds) submit 后记录了
+    PID 但进程实际未启动（可能 tmux/nohup 创建失败），无人验证进程是否 alive，空转 9 小时。3) registry server 字段填错（v2
+    填了 autodl-5090-c 实际在 autodl-5090）导致后续排查困难。
+  prevention: 1) kill 实验时必须 ssh_read_only 验证进程已终止（nvidia-smi + ps aux | grep PID），不能只更新
+    registry。2) submit_training_job 后 5 分钟内必须用 ssh_read_only 验证 GPU 利用率 > 0%，确认进程实际启动。3)
+    registry 的 server 字段在提交时根据实际 ssh 目标机器填写，不要凭记忆。
+  status: active
+  context: DDL 前 3 天（EMNLP 2026-05-25），R40 的 3 个关键实验（ESJ probe + 2 additional seeds
+    for statistical significance）空转 9 小时未启动，直接影响论文提交质量。Reviewer 独立核实发现。
+- id: M067
+  date: '2026-05-22'
+  category: communication
+  severity: high
+  summary: 论文中 "LP-best +8pp on Few-NERD" 无数据支撑，为虚假数字
+  root_cause: 写作过程中可能混淆了不同指标/子集的数字（+7.08pp non-degenerate subset、+5-8pp selective
+    prediction），最终写入了一个不对应任何实验的 +8pp。缺少写作后的数值溯源审计。
+  prevention: 论文中每个定量 claim 必须标注来源实验 ID 和指标名。写作完成后必须跑 claim_audit 脚本（或手动核对），确认所有数字可追溯到
+    registry/report.json。
+  status: active
+  context: Reviewer 独立排查所有可能来源（LP selection delta、construction delta、non-degenerate
+    subset、selective prediction），均不匹配 +8pp。两个独立 Worker 同时发现 Table 4 指标不透明问题，进一步确认
+    claim audit 的必要性。
+- id: M068
+  date: '2026-05-22'
+  category: code_bug
+  severity: high
+  summary: Worker 将 global k=57 Holm p=0.055 全局替换为 seed-replication p=0.013，混淆两个统计框架
+  root_cause: Worker 未理解两个 Holm-Bonferroni 检验框架的区别（global k=57 vs seed-replication
+    k=5），做了全局查找替换。尽管 Director 指令中明确写了"严禁替换"，Worker 仍然执行了替换。
+  prevention: 1) 涉及统计检验数值更新的论文修改不应由 Worker 独立完成，Agent 必须亲自审查每个修改位置。2) 修改统计数字时必须标注来源框架（"global
+    k=57" vs "seed-replication k=5"），不能仅靠数值匹配做替换。3) 论文中同一数字出现在多处时，不能假设所有位置的语义相同。
+  status: active
+  context: 5-seed Holm p=0.013 来自 SciERC 上 SJ vs LP 的 Fisher z 检验跨 5 seed 做 Holm 校正。Global
+    k=57 Holm p=0.055 来自论文中全部 57 个统计检验的全局校正。Worker 用前者数值替换了后者，影响 abstract/intro/experiments/limitations/appendix/single_signal
+    共 12+ 处。Reviewer 在前一轮已明确警告此风险。
+- id: M069
+  date: '2026-05-23'
+  category: code_bug
+  severity: high
+  summary: 主表 SciERC EM AUROC .749 是 copy-paste 错误，实际 5-seed mean .631±.013，9.1σ偏差
+  root_cause: 从旧版本或其他实验配置复制数值到主表时未交叉验证。主表声称 seed=42 但数值与多种子表完全不匹配。表格手动填写缺乏自动化校验。
+  prevention: 1. 主表数值必须有自动化脚本从原始数据生成，禁止手动填写。2. 每张表完成后立即用多种子表交叉验证——单种子值必须在 mean±3σ
+    范围内。3. 提交前做 full data audit 时明确检查 bold 标注对应的数值是否在跨种子范围内。
+  status: active
+  context: tab:quality_estimation SciERC EM AUROC=.749 vs tab:multiseed EM AUROC mean=.631±.013。如果正确值~.631，最佳
+    AUROC 信号从 EM 变为 SJ(.692)，影响 bold 标注和 appendix 排名文字。
+  fix: Agent 正在追溯 seed=42 正确值并修复主表 bold + appendix 排名
+- id: M070
+  date: '2026-05-24'
+  category: experiment_design
+  severity: high
+  summary: SciERC 5-seed construction +1.11pp 是 metric 不一致产物（instance-averaged vs
+    micro-F1），被 patch 进论文后被 Reviewer 拦截
+  root_cause: Construction 分析脚本的 compute_f1 使用 instance-averaged F1（greedy=64.67%），而论文
+    generate_evaluation_report() 使用 micro-F1（greedy=66.33%=.663）。两个 metric 之间存在 ~1.6pp
+    系统偏差。分析结果未经 metric 验证就被 Paper Agent patch 进论文。
+  prevention: 1. 任何新分析脚本的 metric 必须与论文主表 metric 一致——提交分析结果前 Agent 必须显式确认 metric 名称和
+    baseline 值匹配。2. 跨脚本复用 F1 计算时，必须检查函数签名和 docstring 确认是 micro 还是 macro/instance-averaged。3.
+    新数据 patch 进论文前，Director 应要求 Agent 先报 baseline 值——如果 baseline 与论文不匹配就说明 metric
+    不一致。
+  status: active
+  context: Paper Agent patch 了 12 处修改（§7.5, Abstract, Intro, Conclusion, Holm table,
+    Appendix），将 SciERC construction 从 n.s. +0.32pp 升级到 +1.11pp (p=0.0003) 并声称 survives
+    Holm correction (p_adj≤0.017)。Reviewer 在 micro-F1 下重算发现 Δ=-0.20pp (p=0.78)，完全无效。FewNERD
+    construction 使用同一函数，也存疑。
+  fix: 1. Paper Agent 撤销全部 12 项 patch 2. Agent 用 micro-F1 重算 FewNERD construction
+    3. 验证论文原始 SciERC +0.32pp 的 metric
+  related_decisions:
+  - D245

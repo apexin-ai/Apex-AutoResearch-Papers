@@ -1,0 +1,22 @@
+LLaMA 3.1-8B CoNLL-2003 5-Signal QE Report
+=============================================
+Degeneracy: 85.3%  |  Greedy F1: 92.8%  |  Oracle F1: 95.1%  |  Headroom: 2.3%
+
+Full Split (n=2756, 86.6% perfect):
+  SJ: rho=0.450 [0.405,0.497]  AUROC=0.752
+  FK: rho=0.443 [0.399,0.490]  AUROC=0.749
+  VC: rho=0.437 [0.393,0.483]  AUROC=0.747
+  EM: rho=0.448 [0.405,0.495]  AUROC=0.753
+  LP: rho=0.273 [0.243,0.305]  AUROC=0.739
+
+Conditional Split (n=2645, greedy F1>0, 90.3% perfect):
+  SJ: rho=0.454 [0.403,0.501]  AUROC=0.779
+  FK: rho=0.445 [0.396,0.492]  AUROC=0.775
+  VC: rho=0.387 [0.334,0.435]  AUROC=0.741
+  EM: rho=0.458 [0.407,0.504]  AUROC=0.783
+  LP: rho=0.311 [0.282,0.337]  AUROC=0.804
+
+Greedy micro-F1: P=0.937 R=0.936 F1=0.936
+Selection micro-F1: P=0.945 R=0.924 F1=0.934
+
+Remote: autodl-5090:/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll/report.json

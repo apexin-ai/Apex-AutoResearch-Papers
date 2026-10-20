@@ -1,0 +1,3 @@
+Server path: /root/autodl-tmp/struct_self_consist_ie/output/review_round2/selection_f1_table2.json
+Script: /root/autodl-tmp/struct_self_consist_ie/code/table2_selection_f1.py
+529 valid instances per seed (551 - 22 gold-empty), N=8, subtask=ner, unified pipeline.

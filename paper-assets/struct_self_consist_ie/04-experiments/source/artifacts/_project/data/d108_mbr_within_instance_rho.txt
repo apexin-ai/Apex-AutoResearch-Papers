@@ -1,0 +1,9 @@
+Files on autodl-5090:/root/autodl-tmp/struct_self_consist_ie/output/d108_mbr_within_rho/
+- results.json: Full numerical results
+- summary.txt: Paper-ready interpretation
+- analyze_within_rho.py: Analysis script
+
+Key numbers:
+SciERC (N=8, 551 inst): SJ within-rho median=0.47 (rich, n=251), across-rho=0.55, SJ closes 22.6% oracle gap
+CoNLL (N=16, 3453 inst): SJ within-rho median=0.94 (rich, n=605), across-rho=0.48, SJ closes 41.0% oracle gap
+Constant-F1 instances: SciERC 21%, CoNLL 58%

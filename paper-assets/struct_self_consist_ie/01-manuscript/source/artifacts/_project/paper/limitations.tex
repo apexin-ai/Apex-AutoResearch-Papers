@@ -1,0 +1,15 @@
+Our evaluation covers three datasets but only one RE benchmark (SciERC), where 44\% of instances receive zero F1, compressing the discriminable range and limiting signal differentiation for relation extraction.
+WNUT-17 confirms the capability boundary of our approach, but our positive results on formal-domain text (CoNLL, SciERC) have not been validated on informal or noisy text where models achieve non-trivial performance.
+
+We evaluate two model families (Qwen3-8B and LLaMA-3.1-8B), both at 8B parameters.
+Whether our findings---particularly the correlation-selection gap and the structural-over-surface signal ordering---hold for larger models (70B+) or closed-source APIs remains untested.
+Larger models may produce higher-quality and more diverse samples, potentially altering the signal landscape.
+
+Our analysis of selection potential uses unsupervised signals.
+We do not train a dedicated verifier or reward model, leaving unknown how much of the oracle headroom a supervised approach could recover.
+
+We evaluate at $N{=}8$ and $N{=}16$.
+The behavior of confidence signals at larger sample sizes (e.g., $N{=}64$ or $N{=}128$) is unknown, and $N$-scaling gains are setting-dependent: SJ improves by $+0.071$ on Qwen SciERC NER but only $+0.016$ on LLaMA SciERC NER when doubling from $N{=}8$ to $N{=}16$.
+
+On CoNLL, the SJ--FK gap is only 0.004 ($\rho{=}0.436$ vs.\ $0.431$ for LLaMA), so the structural advantage over surface signals may not generalize to all simple-schema datasets.
+Finally, log-probability was excluded from the temperature comparison ($T{=}0.7$ vs.\ $T{=}1.0$) due to missing $T{=}0.7$ logprob data, leaving its temperature sensitivity uncharacterized.

@@ -1,0 +1,92 @@
+Loading HumanEval (openai/openai_humaneval)...
+  Loaded 164 problems
+Testing API connectivity...
+  API response: ''
+  API connectivity OK
+
+Sampling 164 remaining problems (N=8, T=1.0)...
+
+[1/164] HumanEval/0
+  Sampled 8 completions in 6.4s
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=8, pipe_handle=13)
+                                                  ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/multiprocessing/spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "/usr/lib/python3.14/multiprocessing/spawn.py", line 132, in _main
+    self = reduction.pickle.load(from_parent)
+  File "/usr/lib/python3.14/multiprocessing/synchronize.py", line 117, in __setstate__
+    self._semlock = _multiprocessing.SemLock._rebuild(*state)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory
+Exception ignored while calling weakref callback <Finalize object, dead>:
+Traceback (most recent call last):
+  File "/usr/lib/python3.14/multiprocessing/util.py", line 295, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+  File "/usr/lib/python3.14/multiprocessing/synchronize.py", line 86, in _cleanup
+    sem_unlink(name)
+FileNotFoundError: [Errno 2] No such file or directory
+Exception ignored while calling weakref callback <Finalize object, dead>:
+Traceback (most recent call last):
+  File "/usr/lib/python3.14/multiprocessing/util.py", line 295, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+  File "/usr/lib/python3.14/multiprocessing/synchronize.py", line 86, in _cleanup
+    sem_unlink(name)
+FileNotFoundError: [Errno 2] No such file or directory
+Exception ignored while calling weakref callback <Finalize object, dead>:
+Traceback (most recent call last):
+  File "/usr/lib/python3.14/multiprocessing/util.py", line 295, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+  File "/usr/lib/python3.14/multiprocessing/synchronize.py", line 86, in _cleanup
+    sem_unlink(name)
+FileNotFoundError: [Errno 2] No such file or directory
+  Tests: 0/8 pass, greedy=FAIL
+[2/164] HumanEval/1
+  Sampled 8 completions in 10.7s
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=8, pipe_handle=13)
+                                                  ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/multiprocessing/spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "/usr/lib/python3.14/multiprocessing/spawn.py", line 132, in _main
+    self = reduction.pickle.load(from_parent)
+AttributeError: module '__mp_main__' has no attribute '_run_test_in_process'
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=8, pipe_handle=13)
+                                                  ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/multiprocessing/spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "/usr/lib/python3.14/multiprocessing/spawn.py", line 132, in _main
+    self = reduction.pickle.load(from_parent)
+AttributeError: module '__mp_main__' has no attribute '_run_test_in_process'
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=8, pipe_handle=13)
+                                                  ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/multiprocessing/spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "/usr/lib/python3.14/multiprocessing/spawn.py", line 132, in _main
+    self = reduction.pickle.load(from_parent)
+AttributeError: module '__mp_main__' has no attribute '_run_test_in_process'
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=8, pipe_handle=13)
+                                                  ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/multiprocessing/spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "/usr/lib/python3.14/multiprocessing/spawn.py", line 132, in _main
+    self = reduction.pickle.load(from_parent)
+AttributeError: module '__mp_main__' has no attribute '_run_test_in_process'
+/usr/lib/python3.14/multiprocessing/resource_tracker.py:396: UserWarning: resource_tracker: There appear to be 7 leaked semaphore objects to clean up at shutdown: {'/mp-8u0wophj', '/mp-5amyd06m', '/mp-2b4tjqps', '/mp-1jpn_nd4', '/mp-fnldg9gp', '/mp-vrq98w3s', '/mp-eta0lqif'}
+  warnings.warn(
+/usr/lib/python3.14/multiprocessing/resource_tracker.py:412: UserWarning: resource_tracker: '/mp-5amyd06m': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib/python3.14/multiprocessing/resource_tracker.py:412: UserWarning: resource_tracker: '/mp-2b4tjqps': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib/python3.14/multiprocessing/resource_tracker.py:412: UserWarning: resource_tracker: '/mp-1jpn_nd4': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))
+/usr/lib/python3.14/multiprocessing/resource_tracker.py:412: UserWarning: resource_tracker: '/mp-vrq98w3s': [Errno 2] No such file or directory
+  warnings.warn('resource_tracker: %r: %s' % (name, e))

@@ -1,0 +1,7 @@
+See remote: /root/autodl-tmp/struct_self_consist_ie/output/dgs_epoch_rank_analysis.json
+
+Summary:
+SciERC-3ep:  degen=6.4%  greedy=0.6501 DGS=0.6383 delta=-1.18pp [CI: -3.07, 0.72]
+SciERC-5ep:  degen=17.8% greedy=0.6439 DGS=0.6513 delta=+0.74pp [CI: -0.60, 2.11]
+SciERC-10ep: degen=47.8% greedy=0.6467 DGS=0.6567 delta=+0.99pp [CI: 0.18, 1.83]
+SciERC-rank8: degen=7.2% greedy=0.6397 DGS=0.6350 delta=-0.47pp [CI: -2.38, 1.47]

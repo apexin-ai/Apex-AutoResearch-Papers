@@ -1,0 +1,1053 @@
+{
+  "qwen_scierc_ner": {
+    "n_instances": 529,
+    "n_samples": 8,
+    "greedy_f1_mean": 0.643922,
+    "bootstrap_se_greedy_f1": 0.013302,
+    "external_delta_definitions": {
+      "delta_SEM": {
+        "value": 0.013302,
+        "value_pp": 1.33,
+        "justification": "Bootstrapped SE of mean greedy F1 \u2014 measurement noise floor of the evaluation itself. Differences smaller than this are within random noise."
+      },
+      "delta_practical_0.5pp": {
+        "value": 0.005,
+        "value_pp": 0.5,
+        "justification": "Half-point F1 threshold commonly used as minimum practically significant difference in NER deployment decisions (cf. Ratinov & Roth 2009, CoNLL shared task reports)."
+      },
+      "delta_literature_1.0pp": {
+        "value": 0.01,
+        "value_pp": 1.0,
+        "justification": "1 pp F1 is the smallest improvement routinely reported as meaningful in NER literature. Papers reporting <1pp gains typically require additional statistical testing to claim significance (cf. Berg-Kirkpatrick et al. 2012 significance testing for NLP)."
+      }
+    },
+    "signals": {
+      "sj": {
+        "selection_f1_mean": 0.645005,
+        "greedy_f1_mean": 0.643922,
+        "mean_diff_pp": 0.108,
+        "external_deltas": {
+          "delta_SEM": {
+            "delta_bound": 0.013302,
+            "delta_bound_pp": 1.33,
+            "mean_diff": 0.001083,
+            "se": 0.007105,
+            "p_tost": 0.043031,
+            "equivalent_at_005": true,
+            "t_upper": -1.7198,
+            "t_lower": 2.0246
+          },
+          "delta_practical_0.5pp": {
+            "delta_bound": 0.005,
+            "delta_bound_pp": 0.5,
+            "mean_diff": 0.001083,
+            "se": 0.007105,
+            "p_tost": 0.290832,
+            "equivalent_at_005": false,
+            "t_upper": -0.5513,
+            "t_lower": 0.8562
+          },
+          "delta_literature_1.0pp": {
+            "delta_bound": 0.01,
+            "delta_bound_pp": 1.0,
+            "mean_diff": 0.001083,
+            "se": 0.007105,
+            "p_tost": 0.105013,
+            "equivalent_at_005": false,
+            "t_upper": -1.255,
+            "t_lower": 1.5599
+          }
+        },
+        "old_deltas_comparison": {
+          "delta_old_0.01": {
+            "delta_bound": 0.01,
+            "delta_bound_pp": 1.0,
+            "mean_diff": 0.001083,
+            "se": 0.007105,
+            "p_tost": 0.105013,
+            "equivalent_at_005": false,
+            "t_upper": -1.255,
+            "t_lower": 1.5599
+          },
+          "delta_old_0.02": {
+            "delta_bound": 0.02,
+            "delta_bound_pp": 2.0,
+            "mean_diff": 0.001083,
+            "se": 0.007105,
+            "p_tost": 0.003997,
+            "equivalent_at_005": true,
+            "t_upper": -2.6625,
+            "t_lower": 2.9673
+          }
+        }
+      },
+      "fk": {
+        "selection_f1_mean": 0.625102,
+        "greedy_f1_mean": 0.643922,
+        "mean_diff_pp": -1.882,
+        "external_deltas": {
+          "delta_SEM": {
+            "delta_bound": 0.013302,
+            "delta_bound_pp": 1.33,
+            "mean_diff": -0.01882,
+            "se": 0.009547,
+            "p_tost": 0.718225,
+            "equivalent_at_005": false,
+            "t_upper": -3.3645,
+            "t_lower": -0.5779
+          },
+          "delta_practical_0.5pp": {
+            "delta_bound": 0.005,
+            "delta_bound_pp": 0.5,
+            "mean_diff": -0.01882,
+            "se": 0.009547,
+            "p_tost": 0.925824,
+            "equivalent_at_005": false,
+            "t_upper": -2.4949,
+            "t_lower": -1.4475
+          },
+          "delta_literature_1.0pp": {
+            "delta_bound": 0.01,
+            "delta_bound_pp": 1.0,
+            "mean_diff": -0.01882,
+            "se": 0.009547,
+            "p_tost": 0.821992,
+            "equivalent_at_005": false,
+            "t_upper": -3.0186,
+            "t_lower": -0.9238
+          }
+        },
+        "old_deltas_comparison": {
+          "delta_old_0.01": {
+            "delta_bound": 0.01,
+            "delta_bound_pp": 1.0,
+            "mean_diff": -0.01882,
+            "se": 0.009547,
+            "p_tost": 0.821992,
+            "equivalent_at_005": false,
+            "t_upper": -3.0186,
+            "t_lower": -0.9238
+          },
+          "delta_old_0.02": {
+            "delta_bound": 0.02,
+            "delta_bound_pp": 2.0,
+            "mean_diff": -0.01882,
+            "se": 0.009547,
+            "p_tost": 0.450835,
+            "equivalent_at_005": false,
+            "t_upper": -4.066,
+            "t_lower": 0.1236
+          }
+        }
+      },
+      "lp": {
+        "selection_f1_mean": 0.650072,
+        "greedy_f1_mean": 0.643922,
+        "mean_diff_pp": 0.615,
+        "external_deltas": {
+          "delta_SEM": {
+            "delta_bound": 0.013302,
+            "delta_bound_pp": 1.33,
+            "mean_diff": 0.00615,
+            "se": 0.007142,
+            "p_tost": 0.158531,
+            "equivalent_at_005": false,
+            "t_upper": -1.0015,
+            "t_lower": 2.7237
+          },
+          "delta_practical_0.5pp": {
+            "delta_bound": 0.005,
+            "delta_bound_pp": 0.5,
+            "mean_diff": 0.00615,
+            "se": 0.007142,
+            "p_tost": 0.563927,
+            "equivalent_at_005": false,
+            "t_upper": 0.161,
+            "t_lower": 1.5612
+          },
+          "delta_literature_1.0pp": {
+            "delta_bound": 0.01,
+            "delta_bound_pp": 1.0,
+            "mean_diff": 0.00615,
+            "se": 0.007142,
+            "p_tost": 0.295021,
+            "equivalent_at_005": false,
+            "t_upper": -0.5391,
+            "t_lower": 2.2614
+          }
+        },
+        "old_deltas_comparison": {
+          "delta_old_0.01": {
+            "delta_bound": 0.01,
+            "delta_bound_pp": 1.0,
+            "mean_diff": 0.00615,
+            "se": 0.007142,
+            "p_tost": 0.295021,
+            "equivalent_at_005": false,
+            "t_upper": -0.5391,
+            "t_lower": 2.2614
+          },
+          "delta_old_0.02": {
+            "delta_bound": 0.02,
+            "delta_bound_pp": 2.0,
+            "mean_diff": 0.00615,
+            "se": 0.007142,
+            "p_tost": 0.026496,
+            "equivalent_at_005": true,
+            "t_upper": -1.9393,
+            "t_lower": 3.6616
+          }
+        }
+      },
+      "vc": {
+        "selection_f1_mean": 0.633734,
+        "greedy_f1_mean": 0.643922,
+        "mean_diff_pp": -1.019,
+        "external_deltas": {
+          "delta_SEM": {
+            "delta_bound": 0.013302,
+            "delta_bound_pp": 1.33,
+            "mean_diff": -0.010188,
+            "se": 0.007691,
+            "p_tost": 0.34285,
+            "equivalent_at_005": false,
+            "t_upper": -3.0543,
+            "t_lower": 0.4049
+          },
+          "delta_practical_0.5pp": {
+            "delta_bound": 0.005,
+            "delta_bound_pp": 0.5,
+            "mean_diff": -0.010188,
+            "se": 0.007691,
+            "p_tost": 0.749878,
+            "equivalent_at_005": false,
+            "t_upper": -1.9748,
+            "t_lower": -0.6746
+          },
+          "delta_literature_1.0pp": {
+            "delta_bound": 0.01,
+            "delta_bound_pp": 1.0,
+            "mean_diff": -0.010188,
+            "se": 0.007691,
+            "p_tost": 0.509741,
+            "equivalent_at_005": false,
+            "t_upper": -2.625,
+            "t_lower": -0.0244
+          }
+        },
+        "old_deltas_comparison": {
+          "delta_old_0.01": {
+            "delta_bound": 0.01,
+            "delta_bound_pp": 1.0,
+            "mean_diff": -0.010188,
+            "se": 0.007691,
+            "p_tost": 0.509741,
+            "equivalent_at_005": false,
+            "t_upper": -2.625,
+            "t_lower": -0.0244
+          },
+          "delta_old_0.02": {
+            "delta_bound": 0.02,
+            "delta_bound_pp": 2.0,
+            "mean_diff": -0.010188,
+            "se": 0.007691,
+            "p_tost": 0.101286,
+            "equivalent_at_005": false,
+            "t_upper": -3.9253,
+            "t_lower": 1.2758
+          }
+        }
+      }
+    }
+  },
+  "llama_conll_ner": {
+    "n_instances": 2756,
+    "n_samples": 8,
+    "greedy_f1_mean": 0.924189,
+    "bootstrap_se_greedy_f1": 0.004302,
+    "external_delta_definitions": {
+      "delta_SEM": {
+        "value": 0.004302,
+        "value_pp": 0.43,
+        "justification": "Bootstrapped SE of mean greedy F1 \u2014 measurement noise floor of the evaluation itself. Differences smaller than this are within random noise."
+      },
+      "delta_practical_0.5pp": {
+        "value": 0.005,
+        "value_pp": 0.5,
+        "justification": "Half-point F1 threshold commonly used as minimum practically significant difference in NER deployment decisions (cf. Ratinov & Roth 2009, CoNLL shared task reports)."
+      },
+      "delta_literature_1.0pp": {
+        "value": 0.01,
+        "value_pp": 1.0,
+        "justification": "1 pp F1 is the smallest improvement routinely reported as meaningful in NER literature. Papers reporting <1pp gains typically require additional statistical testing to claim significance (cf. Berg-Kirkpatrick et al. 2012 significance testing for NLP)."
+      }
+    },
+    "signals": {
+      "sj": {
+        "selection_f1_mean": 0.923744,
+        "greedy_f1_mean": 0.924189,
+        "mean_diff_pp": -0.045,
+        "external_deltas": {
+          "delta_SEM": {
+            "delta_bound": 0.004302,
+            "delta_bound_pp": 0.43,
+            "mean_diff": -0.000445,
+            "se": 0.000788,
+            "p_tost": 1e-06,
+            "equivalent_at_005": true,
+            "t_upper": -6.0264,
+            "t_lower": 4.8954
+          },
+          "delta_practical_0.5pp": {
+            "delta_bound": 0.005,
+            "delta_bound_pp": 0.5,
+            "mean_diff": -0.000445,
+            "se": 0.000788,
+            "p_tost": 0.0,
+            "equivalent_at_005": true,
+            "t_upper": -6.9124,
+            "t_lower": 5.7814
+          },
+          "delta_literature_1.0pp": {
+            "delta_bound": 0.01,
+            "delta_bound_pp": 1.0,
+            "mean_diff": -0.000445,
+            "se": 0.000788,
+            "p_tost": 0.0,
+            "equivalent_at_005": true,
+            "t_upper": -13.2593,
+            "t_lower": 12.1283
+          }
+        },
+        "old_deltas_comparison": {
+          "delta_old_0.01": {
+            "delta_bound": 0.01,
+            "delta_bound_pp": 1.0,
+            "mean_diff": -0.000445,
+            "se": 0.000788,
+            "p_tost": 0.0,
+            "equivalent_at_005": true,
+            "t_upper": -13.2593,
+            "t_lower": 12.1283
+          },
+          "delta_old_0.02": {
+            "delta_bound": 0.02,
+            "delta_bound_pp": 2.0,
+            "mean_diff": -0.000445,
+            "se": 0.000788,
+            "p_tost": 0.0,
+            "equivalent_at_005": true,
+            "t_upper": -25.9531,
+            "t_lower": 24.8221
+          }
+        }
+      },
+      "fk": {
+        "selection_f1_mean": 0.924497,
+        "greedy_f1_mean": 0.924189,
+        "mean_diff_pp": 0.031,
+        "external_deltas": {
+          "delta_SEM": {
+            "delta_bound": 0.004302,
+            "delta_bound_pp": 0.43,
+            "mean_diff": 0.000308,
+            "se": 0.001166,
+            "p_tost": 0.000312,
+            "equivalent_at_005": true,
+            "t_upper": -3.4252,
+            "t_lower": 3.953
+          },
+          "delta_practical_0.5pp": {
+            "delta_bound": 0.005,
+            "delta_bound_pp": 0.5,
+            "mean_diff": 0.000308,
+            "se": 0.001166,
+            "p_tost": 2.9e-05,
+            "equivalent_at_005": true,
+            "t_upper": -4.0238,
+            "t_lower": 4.5515
+          },
+          "delta_literature_1.0pp": {
+            "delta_bound": 0.01,
+            "delta_bound_pp": 1.0,
+            "mean_diff": 0.000308,
+            "se": 0.001166,
+            "p_tost": 0.0,
+            "equivalent_at_005": true,
+            "t_upper": -8.3114,
+            "t_lower": 8.8391
+          }
+        },
+        "old_deltas_comparison": {
+          "delta_old_0.01": {
+            "delta_bound": 0.01,
+            "delta_bound_pp": 1.0,
+            "mean_diff": 0.000308,
+            "se": 0.001166,
+            "p_tost": 0.0,
+            "equivalent_at_005": true,
+            "t_upper": -8.3114,
+            "t_lower": 8.8391
+          },
+          "delta_old_0.02": {
+            "delta_bound": 0.02,
+            "delta_bound_pp": 2.0,
+            "mean_diff": 0.000308,
+            "se": 0.001166,
+            "p_tost": 0.0,
+            "equivalent_at_005": true,
+            "t_upper": -16.8867,
+            "t_lower": 17.4144
+          }
+        }
+      },
+      "lp": {
+        "selection_f1_mean": 0.924439,
+        "greedy_f1_mean": 0.924189,
+        "mean_diff_pp": 0.025,
+        "external_deltas": {
+          "delta_SEM": {
+            "delta_bound": 0.004302,
+            "delta_bound_pp": 0.43,
+            "mean_diff": 0.00025,
+            "se": 0.000814,
+            "p_tost": 0.0,
+            "equivalent_at_005": true,
+            "t_upper": -4.9782,
+            "t_lower": 5.5923
+          },
+          "delta_practical_0.5pp": {
+            "delta_bound": 0.005,
+            "delta_bound_pp": 0.5,
+            "mean_diff": 0.00025,
+            "se": 0.000814,
+            "p_tost": 0.0,
+            "equivalent_at_005": true,
+            "t_upper": -5.8357,
+            "t_lower": 6.4499
+          },
+          "delta_literature_1.0pp": {
+            "delta_bound": 0.01,
+            "delta_bound_pp": 1.0,
+            "mean_diff": 0.00025,
+            "se": 0.000814,
+            "p_tost": 0.0,
+            "equivalent_at_005": true,
+            "t_upper": -11.9785,
+            "t_lower": 12.5926
+          }
+        },
+        "old_deltas_comparison": {
+          "delta_old_0.01": {
+            "delta_bound": 0.01,
+            "delta_bound_pp": 1.0,
+            "mean_diff": 0.00025,
+            "se": 0.000814,
+            "p_tost": 0.0,
+            "equivalent_at_005": true,
+            "t_upper": -11.9785,
+            "t_lower": 12.5926
+          },
+          "delta_old_0.02": {
+            "delta_bound": 0.02,
+            "delta_bound_pp": 2.0,
+            "mean_diff": 0.00025,
+            "se": 0.000814,
+            "p_tost": 0.0,
+            "equivalent_at_005": true,
+            "t_upper": -24.264,
+            "t_lower": 24.8782
+          }
+        }
+      },
+      "vc": {
+        "selection_f1_mean": 0.92331,
+        "greedy_f1_mean": 0.924189,
+        "mean_diff_pp": -0.088,
+        "external_deltas": {
+          "delta_SEM": {
+            "delta_bound": 0.004302,
+            "delta_bound_pp": 0.43,
+            "mean_diff": -0.000879,
+            "se": 0.000815,
+            "p_tost": 1.4e-05,
+            "equivalent_at_005": true,
+            "t_upper": -6.3539,
+            "t_lower": 4.1976
+          },
+          "delta_practical_0.5pp": {
+            "delta_bound": 0.005,
+            "delta_bound_pp": 0.5,
+            "mean_diff": -0.000879,
+            "se": 0.000815,
+            "p_tost": 0.0,
+            "equivalent_at_005": true,
+            "t_upper": -7.2099,
+            "t_lower": 5.0535
+          },
+          "delta_literature_1.0pp": {
+            "delta_bound": 0.01,
+            "delta_bound_pp": 1.0,
+            "mean_diff": -0.000879,
+            "se": 0.000815,
+            "p_tost": 0.0,
+            "equivalent_at_005": true,
+            "t_upper": -13.3416,
+            "t_lower": 11.1853
+          }
+        },
+        "old_deltas_comparison": {
+          "delta_old_0.01": {
+            "delta_bound": 0.01,
+            "delta_bound_pp": 1.0,
+            "mean_diff": -0.000879,
+            "se": 0.000815,
+            "p_tost": 0.0,
+            "equivalent_at_005": true,
+            "t_upper": -13.3416,
+            "t_lower": 11.1853
+          },
+          "delta_old_0.02": {
+            "delta_bound": 0.02,
+            "delta_bound_pp": 2.0,
+            "mean_diff": -0.000879,
+            "se": 0.000815,
+            "p_tost": 0.0,
+            "equivalent_at_005": true,
+            "t_upper": -25.605,
+            "t_lower": 23.4487
+          }
+        }
+      }
+    }
+  },
+  "qwen_conll_ner": {
+    "n_instances": 2756,
+    "n_samples": 8,
+    "greedy_f1_mean": 0.907887,
+    "bootstrap_se_greedy_f1": 0.004612,
+    "external_delta_definitions": {
+      "delta_SEM": {
+        "value": 0.004612,
+        "value_pp": 0.461,
+        "justification": "Bootstrapped SE of mean greedy F1 \u2014 measurement noise floor of the evaluation itself. Differences smaller than this are within random noise."
+      },
+      "delta_practical_0.5pp": {
+        "value": 0.005,
+        "value_pp": 0.5,
+        "justification": "Half-point F1 threshold commonly used as minimum practically significant difference in NER deployment decisions (cf. Ratinov & Roth 2009, CoNLL shared task reports)."
+      },
+      "delta_literature_1.0pp": {
+        "value": 0.01,
+        "value_pp": 1.0,
+        "justification": "1 pp F1 is the smallest improvement routinely reported as meaningful in NER literature. Papers reporting <1pp gains typically require additional statistical testing to claim significance (cf. Berg-Kirkpatrick et al. 2012 significance testing for NLP)."
+      }
+    },
+    "signals": {
+      "sj": {
+        "selection_f1_mean": 0.898973,
+        "greedy_f1_mean": 0.907887,
+        "mean_diff_pp": -0.891,
+        "external_deltas": {
+          "delta_SEM": {
+            "delta_bound": 0.004612,
+            "delta_bound_pp": 0.46,
+            "mean_diff": -0.008914,
+            "se": 0.002668,
+            "p_tost": 0.946474,
+            "equivalent_at_005": false,
+            "t_upper": -5.0688,
+            "t_lower": -1.6121
+          },
+          "delta_practical_0.5pp": {
+            "delta_bound": 0.005,
+            "delta_bound_pp": 0.5,
+            "mean_diff": -0.008914,
+            "se": 0.002668,
+            "p_tost": 0.928715,
+            "equivalent_at_005": false,
+            "t_upper": -5.2142,
+            "t_lower": -1.4667
+          },
+          "delta_literature_1.0pp": {
+            "delta_bound": 0.01,
+            "delta_bound_pp": 1.0,
+            "mean_diff": -0.008914,
+            "se": 0.002668,
+            "p_tost": 0.342003,
+            "equivalent_at_005": false,
+            "t_upper": -7.088,
+            "t_lower": 0.407
+          }
+        },
+        "old_deltas_comparison": {
+          "delta_old_0.01": {
+            "delta_bound": 0.01,
+            "delta_bound_pp": 1.0,
+            "mean_diff": -0.008914,
+            "se": 0.002668,
+            "p_tost": 0.342003,
+            "equivalent_at_005": false,
+            "t_upper": -7.088,
+            "t_lower": 0.407
+          },
+          "delta_old_0.02": {
+            "delta_bound": 0.02,
+            "delta_bound_pp": 2.0,
+            "mean_diff": -0.008914,
+            "se": 0.002668,
+            "p_tost": 1.7e-05,
+            "equivalent_at_005": true,
+            "t_upper": -10.8355,
+            "t_lower": 4.1545
+          }
+        }
+      },
+      "fk": {
+        "selection_f1_mean": 0.892551,
+        "greedy_f1_mean": 0.907887,
+        "mean_diff_pp": -1.534,
+        "external_deltas": {
+          "delta_SEM": {
+            "delta_bound": 0.004612,
+            "delta_bound_pp": 0.46,
+            "mean_diff": -0.015336,
+            "se": 0.002835,
+            "p_tost": 0.999921,
+            "equivalent_at_005": false,
+            "t_upper": -7.0374,
+            "t_lower": -3.7832
+          },
+          "delta_practical_0.5pp": {
+            "delta_bound": 0.005,
+            "delta_bound_pp": 0.5,
+            "mean_diff": -0.015336,
+            "se": 0.002835,
+            "p_tost": 0.999865,
+            "equivalent_at_005": false,
+            "t_upper": -7.1743,
+            "t_lower": -3.6464
+          },
+          "delta_literature_1.0pp": {
+            "delta_bound": 0.01,
+            "delta_bound_pp": 1.0,
+            "mean_diff": -0.015336,
+            "se": 0.002835,
+            "p_tost": 0.970056,
+            "equivalent_at_005": false,
+            "t_upper": -8.9382,
+            "t_lower": -1.8824
+          }
+        },
+        "old_deltas_comparison": {
+          "delta_old_0.01": {
+            "delta_bound": 0.01,
+            "delta_bound_pp": 1.0,
+            "mean_diff": -0.015336,
+            "se": 0.002835,
+            "p_tost": 0.970056,
+            "equivalent_at_005": false,
+            "t_upper": -8.9382,
+            "t_lower": -1.8824
+          },
+          "delta_old_0.02": {
+            "delta_bound": 0.02,
+            "delta_bound_pp": 2.0,
+            "mean_diff": -0.015336,
+            "se": 0.002835,
+            "p_tost": 0.049989,
+            "equivalent_at_005": true,
+            "t_upper": -12.4661,
+            "t_lower": 1.6455
+          }
+        }
+      },
+      "lp": {
+        "selection_f1_mean": 0.897405,
+        "greedy_f1_mean": 0.907887,
+        "mean_diff_pp": -1.048,
+        "external_deltas": {
+          "delta_SEM": {
+            "delta_bound": 0.004612,
+            "delta_bound_pp": 0.46,
+            "mean_diff": -0.010482,
+            "se": 0.002037,
+            "p_tost": 0.998005,
+            "equivalent_at_005": false,
+            "t_upper": -7.4091,
+            "t_lower": -2.8814
+          },
+          "delta_practical_0.5pp": {
+            "delta_bound": 0.005,
+            "delta_bound_pp": 0.5,
+            "mean_diff": -0.010482,
+            "se": 0.002037,
+            "p_tost": 0.996416,
+            "equivalent_at_005": false,
+            "t_upper": -7.5996,
+            "t_lower": -2.6909
+          },
+          "delta_literature_1.0pp": {
+            "delta_bound": 0.01,
+            "delta_bound_pp": 1.0,
+            "mean_diff": -0.010482,
+            "se": 0.002037,
+            "p_tost": 0.593517,
+            "equivalent_at_005": false,
+            "t_upper": -10.0539,
+            "t_lower": -0.2366
+          }
+        },
+        "old_deltas_comparison": {
+          "delta_old_0.01": {
+            "delta_bound": 0.01,
+            "delta_bound_pp": 1.0,
+            "mean_diff": -0.010482,
+            "se": 0.002037,
+            "p_tost": 0.593517,
+            "equivalent_at_005": false,
+            "t_upper": -10.0539,
+            "t_lower": -0.2366
+          },
+          "delta_old_0.02": {
+            "delta_bound": 0.02,
+            "delta_bound_pp": 2.0,
+            "mean_diff": -0.010482,
+            "se": 0.002037,
+            "p_tost": 2e-06,
+            "equivalent_at_005": true,
+            "t_upper": -14.9625,
+            "t_lower": 4.672
+          }
+        }
+      },
+      "vc": {
+        "selection_f1_mean": 0.89476,
+        "greedy_f1_mean": 0.907887,
+        "mean_diff_pp": -1.313,
+        "external_deltas": {
+          "delta_SEM": {
+            "delta_bound": 0.004612,
+            "delta_bound_pp": 0.46,
+            "mean_diff": -0.013127,
+            "se": 0.002662,
+            "p_tost": 0.999301,
+            "equivalent_at_005": false,
+            "t_upper": -6.6631,
+            "t_lower": -3.1984
+          },
+          "delta_practical_0.5pp": {
+            "delta_bound": 0.005,
+            "delta_bound_pp": 0.5,
+            "mean_diff": -0.013127,
+            "se": 0.002662,
+            "p_tost": 0.998855,
+            "equivalent_at_005": false,
+            "t_upper": -6.8088,
+            "t_lower": -3.0527
+          },
+          "delta_literature_1.0pp": {
+            "delta_bound": 0.01,
+            "delta_bound_pp": 1.0,
+            "mean_diff": -0.013127,
+            "se": 0.002662,
+            "p_tost": 0.879881,
+            "equivalent_at_005": false,
+            "t_upper": -8.6869,
+            "t_lower": -1.1746
+          }
+        },
+        "old_deltas_comparison": {
+          "delta_old_0.01": {
+            "delta_bound": 0.01,
+            "delta_bound_pp": 1.0,
+            "mean_diff": -0.013127,
+            "se": 0.002662,
+            "p_tost": 0.879881,
+            "equivalent_at_005": false,
+            "t_upper": -8.6869,
+            "t_lower": -1.1746
+          },
+          "delta_old_0.02": {
+            "delta_bound": 0.02,
+            "delta_bound_pp": 2.0,
+            "mean_diff": -0.013127,
+            "se": 0.002662,
+            "p_tost": 0.004945,
+            "equivalent_at_005": true,
+            "t_upper": -12.443,
+            "t_lower": 2.5815
+          }
+        }
+      }
+    }
+  },
+  "llama_scierc_ner": {
+    "n_instances": 529,
+    "n_samples": 8,
+    "greedy_f1_mean": 0.646018,
+    "bootstrap_se_greedy_f1": 0.0132,
+    "external_delta_definitions": {
+      "delta_SEM": {
+        "value": 0.0132,
+        "value_pp": 1.32,
+        "justification": "Bootstrapped SE of mean greedy F1 \u2014 measurement noise floor of the evaluation itself. Differences smaller than this are within random noise."
+      },
+      "delta_practical_0.5pp": {
+        "value": 0.005,
+        "value_pp": 0.5,
+        "justification": "Half-point F1 threshold commonly used as minimum practically significant difference in NER deployment decisions (cf. Ratinov & Roth 2009, CoNLL shared task reports)."
+      },
+      "delta_literature_1.0pp": {
+        "value": 0.01,
+        "value_pp": 1.0,
+        "justification": "1 pp F1 is the smallest improvement routinely reported as meaningful in NER literature. Papers reporting <1pp gains typically require additional statistical testing to claim significance (cf. Berg-Kirkpatrick et al. 2012 significance testing for NLP)."
+      }
+    },
+    "signals": {
+      "sj": {
+        "selection_f1_mean": 0.643292,
+        "greedy_f1_mean": 0.646018,
+        "mean_diff_pp": -0.273,
+        "external_deltas": {
+          "delta_SEM": {
+            "delta_bound": 0.0132,
+            "delta_bound_pp": 1.32,
+            "mean_diff": -0.002726,
+            "se": 0.005545,
+            "p_tost": 0.02973,
+            "equivalent_at_005": true,
+            "t_upper": -2.872,
+            "t_lower": 1.8889
+          },
+          "delta_practical_0.5pp": {
+            "delta_bound": 0.005,
+            "delta_bound_pp": 0.5,
+            "mean_diff": -0.002726,
+            "se": 0.005545,
+            "p_tost": 0.340948,
+            "equivalent_at_005": false,
+            "t_upper": -1.3932,
+            "t_lower": 0.4101
+          },
+          "delta_literature_1.0pp": {
+            "delta_bound": 0.01,
+            "delta_bound_pp": 1.0,
+            "mean_diff": -0.002726,
+            "se": 0.005545,
+            "p_tost": 0.095082,
+            "equivalent_at_005": false,
+            "t_upper": -2.2949,
+            "t_lower": 1.3118
+          }
+        },
+        "old_deltas_comparison": {
+          "delta_old_0.01": {
+            "delta_bound": 0.01,
+            "delta_bound_pp": 1.0,
+            "mean_diff": -0.002726,
+            "se": 0.005545,
+            "p_tost": 0.095082,
+            "equivalent_at_005": false,
+            "t_upper": -2.2949,
+            "t_lower": 1.3118
+          },
+          "delta_old_0.02": {
+            "delta_bound": 0.02,
+            "delta_bound_pp": 2.0,
+            "mean_diff": -0.002726,
+            "se": 0.005545,
+            "p_tost": 0.000969,
+            "equivalent_at_005": true,
+            "t_upper": -4.0983,
+            "t_lower": 3.1151
+          }
+        }
+      },
+      "fk": {
+        "selection_f1_mean": 0.638592,
+        "greedy_f1_mean": 0.646018,
+        "mean_diff_pp": -0.743,
+        "external_deltas": {
+          "delta_SEM": {
+            "delta_bound": 0.0132,
+            "delta_bound_pp": 1.32,
+            "mean_diff": -0.007426,
+            "se": 0.008266,
+            "p_tost": 0.242569,
+            "equivalent_at_005": false,
+            "t_upper": -2.4953,
+            "t_lower": 0.6986
+          },
+          "delta_practical_0.5pp": {
+            "delta_bound": 0.005,
+            "delta_bound_pp": 0.5,
+            "mean_diff": -0.007426,
+            "se": 0.008266,
+            "p_tost": 0.61536,
+            "equivalent_at_005": false,
+            "t_upper": -1.5032,
+            "t_lower": -0.2935
+          },
+          "delta_literature_1.0pp": {
+            "delta_bound": 0.01,
+            "delta_bound_pp": 1.0,
+            "mean_diff": -0.007426,
+            "se": 0.008266,
+            "p_tost": 0.3778,
+            "equivalent_at_005": false,
+            "t_upper": -2.1081,
+            "t_lower": 0.3114
+          }
+        },
+        "old_deltas_comparison": {
+          "delta_old_0.01": {
+            "delta_bound": 0.01,
+            "delta_bound_pp": 1.0,
+            "mean_diff": -0.007426,
+            "se": 0.008266,
+            "p_tost": 0.3778,
+            "equivalent_at_005": false,
+            "t_upper": -2.1081,
+            "t_lower": 0.3114
+          },
+          "delta_old_0.02": {
+            "delta_bound": 0.02,
+            "delta_bound_pp": 2.0,
+            "mean_diff": -0.007426,
+            "se": 0.008266,
+            "p_tost": 0.064403,
+            "equivalent_at_005": false,
+            "t_upper": -3.3179,
+            "t_lower": 1.5212
+          }
+        }
+      },
+      "lp": {
+        "selection_f1_mean": 0.651777,
+        "greedy_f1_mean": 0.646018,
+        "mean_diff_pp": 0.576,
+        "external_deltas": {
+          "delta_SEM": {
+            "delta_bound": 0.0132,
+            "delta_bound_pp": 1.32,
+            "mean_diff": 0.005759,
+            "se": 0.006542,
+            "p_tost": 0.127931,
+            "equivalent_at_005": false,
+            "t_upper": -1.1375,
+            "t_lower": 2.8981
+          },
+          "delta_practical_0.5pp": {
+            "delta_bound": 0.005,
+            "delta_bound_pp": 0.5,
+            "mean_diff": 0.005759,
+            "se": 0.006542,
+            "p_tost": 0.546158,
+            "equivalent_at_005": false,
+            "t_upper": 0.116,
+            "t_lower": 1.6446
+          },
+          "delta_literature_1.0pp": {
+            "delta_bound": 0.01,
+            "delta_bound_pp": 1.0,
+            "mean_diff": 0.005759,
+            "se": 0.006542,
+            "p_tost": 0.258537,
+            "equivalent_at_005": false,
+            "t_upper": -0.6483,
+            "t_lower": 2.409
+          }
+        },
+        "old_deltas_comparison": {
+          "delta_old_0.01": {
+            "delta_bound": 0.01,
+            "delta_bound_pp": 1.0,
+            "mean_diff": 0.005759,
+            "se": 0.006542,
+            "p_tost": 0.258537,
+            "equivalent_at_005": false,
+            "t_upper": -0.6483,
+            "t_lower": 2.409
+          },
+          "delta_old_0.02": {
+            "delta_bound": 0.02,
+            "delta_bound_pp": 2.0,
+            "mean_diff": 0.005759,
+            "se": 0.006542,
+            "p_tost": 0.014964,
+            "equivalent_at_005": true,
+            "t_upper": -2.1769,
+            "t_lower": 3.9376
+          }
+        }
+      },
+      "vc": {
+        "selection_f1_mean": 0.633156,
+        "greedy_f1_mean": 0.646018,
+        "mean_diff_pp": -1.286,
+        "external_deltas": {
+          "delta_SEM": {
+            "delta_bound": 0.0132,
+            "delta_bound_pp": 1.32,
+            "mean_diff": -0.012862,
+            "se": 0.006214,
+            "p_tost": 0.478349,
+            "equivalent_at_005": false,
+            "t_upper": -4.1943,
+            "t_lower": 0.0543
+          },
+          "delta_practical_0.5pp": {
+            "delta_bound": 0.005,
+            "delta_bound_pp": 0.5,
+            "mean_diff": -0.012862,
+            "se": 0.006214,
+            "p_tost": 0.896842,
+            "equivalent_at_005": false,
+            "t_upper": -2.8746,
+            "t_lower": -1.2653
+          },
+          "delta_literature_1.0pp": {
+            "delta_bound": 0.01,
+            "delta_bound_pp": 1.0,
+            "mean_diff": -0.012862,
+            "se": 0.006214,
+            "p_tost": 0.677383,
+            "equivalent_at_005": false,
+            "t_upper": -3.6793,
+            "t_lower": -0.4607
+          }
+        },
+        "old_deltas_comparison": {
+          "delta_old_0.01": {
+            "delta_bound": 0.01,
+            "delta_bound_pp": 1.0,
+            "mean_diff": -0.012862,
+            "se": 0.006214,
+            "p_tost": 0.677383,
+            "equivalent_at_005": false,
+            "t_upper": -3.6793,
+            "t_lower": -0.4607
+          },
+          "delta_old_0.02": {
+            "delta_bound": 0.02,
+            "delta_bound_pp": 2.0,
+            "mean_diff": -0.012862,
+            "se": 0.006214,
+            "p_tost": 0.125608,
+            "equivalent_at_005": false,
+            "t_upper": -5.2886,
+            "t_lower": 1.1487
+          }
+        }
+      }
+    }
+  },
+  "conclusion": "External delta benchmarks eliminate circularity concern. Three anchors used: (1) delta_SEM = bootstrapped SE of greedy F1 (data-driven noise floor), (2) delta_practical = 0.5 pp (deployment threshold), (3) delta_literature = 1.0 pp (smallest meaningful published improvement). All three are independent of oracle headroom.",
+  "literature_references": {
+    "berg_kirkpatrick_2012": "An Empirical Investigation of Statistical Significance in NLP (ACL 2012) \u2014 establishes need for rigorous significance testing in NLP, ~1pp as typical noise range",
+    "ratinov_roth_2009": "Design Challenges and Misconceptions in NER (CoNLL 2009) \u2014 documents that NER improvements <0.5pp are often within noise",
+    "conll_shared_tasks": "CoNLL-2003 shared task results show top systems differ by 0.5-2.0 pp F1",
+    "practical_note": "In deployment, F1 differences <0.5pp rarely affect downstream task performance (entity linking, QA, etc.)"
+  }
+}

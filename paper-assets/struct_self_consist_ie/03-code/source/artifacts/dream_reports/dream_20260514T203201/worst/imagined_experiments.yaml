@@ -1,0 +1,1616 @@
+tier: worst
+narrative_guidance: '完全 reframe 为 ''Why Self-Consistency Fails for Structured Prediction:
+  An Analysis of the Correlation-Selection Gap''。 在这个档位下，structural signals 对 logprob
+  的优势微弱到不具实际意义（AUROC gap 0-5pp，ρ gap -4 to +5 hundredths）， reviewer 将 paper 定性为 negative
+  result 但 novelty 不足。Nédellec & Xia 2026 被视为 scooping—— 他们已经做了 consistency-accuracy
+  相关性研究，我们的 structural metrics 被视为 minor extension。 Correlation-selection gap 被 dismiss
+  为 ''obvious: instance-level ≠ sample-level is well-known in calibration literature''。
+  NER best-of-N 全部 ≤ greedy 被解读为 the method fundamentally doesn''t work。 WNUT abandoned
+  被推断为 cherry-picking datasets。Paper 的唯一存活 claim 是 quality estimation 中 structural
+  > logprob 在 60-80% 的配置上成立但 gap 太小，不足以 justify venue contribution。 Lead with negative
+  finding + explanation 策略本身被 reviewer 视为 post-hoc rationalization。 目标从 Main 降为 Findings，但
+  Findings 概率也仅 15-35%。
+
+  '
+imagined_experiments:
+- name: baseline_logprob
+  plan_id: exp-012
+  description: '对所有 pilot 数据 (SciERC NER+RE) 提取 sequence log-probability， 计算与 F1 的
+    Spearman ρ、AUROC、Kendall τ。
+
+    '
+  expected_results:
+    scierc_ner_logprob_rho: 0.33
+    scierc_ner_logprob_auroc: 0.64
+    scierc_ner_logprob_tau: 0.24
+    scierc_ner_logprob_ece: 0.09
+    scierc_ner_sj_rho: 0.36
+    scierc_ner_sj_auroc: 0.67
+    scierc_ner_sj_minus_logprob_rho: 0.03
+    scierc_ner_sj_minus_logprob_auroc: 0.03
+    scierc_ner_fk_rho: 0.27
+    scierc_ner_greedy_logprob_rho: 0.34
+    scierc_re_logprob_rho: 0.25
+    scierc_re_logprob_auroc: 0.62
+    scierc_re_sj_rho: 0.21
+    scierc_re_sj_auroc: 0.59
+    scierc_re_cond_logprob_rho: 0.19
+    scierc_re_cond_sj_rho: 0.33
+    scierc_re_cond_sj_auroc: 0.65
+    n_ner: 529
+    n_re: 397
+  result_rationale: 'Worst 档的关键：logprob 在 NER 上与 SJ 差距仅 Δρ=0.03、ΔAUROC=0.03， 统计上 bootstrap
+    CI 重叠。原理——fine-tuned 8B 模型的 softmax 已 well-calibrated， logprob 隐式编码了 entity span
+    正确性的全部信息。SJ 的额外 8 次采样只带来 +0.03 ρ 的微弱增益， reviewer 认为这不 justify 8x 推理成本。更致命的是 greedy_logprob（单次前向传播的
+    logprob） ρ=0.34 实际上已经超过 SJ 的 ρ=0.36 的下界 CI。RE 上 logprob full ρ=0.25 > SJ full
+    ρ=0.21， 虽然 RE cond 上 SJ 反超（0.33 vs 0.19），但 reviewer 将 conditional 分析视为 cherry-picking。
+    整体结论：SJ 对 logprob 的优势在 NER 上 marginal，在 RE full 上不存在。
+
+    '
+  tables:
+  - table_id: T-012-1
+    caption: 'Confidence signal comparison: log-probability vs structural signals
+      (Spearman ρ with F1)'
+    columns:
+    - Dataset
+    - Task
+    - Log-prob ρ
+    - SJ ρ
+    - FK ρ
+    - Δ(SJ−LP)
+    - p(Δ)
+    rows:
+    - - SciERC
+      - NER-full
+      - 0.33
+      - 0.36
+      - 0.27
+      - '+0.03'
+      - 0.14
+    - - SciERC
+      - NER-cond
+      - 0.3
+      - 0.37
+      - 0.28
+      - '+0.07'
+      - 0.04
+    - - SciERC
+      - RE-full
+      - 0.25
+      - 0.21
+      - 0.25
+      - −0.04
+      - 0.32
+    - - SciERC
+      - RE-cond
+      - 0.19
+      - 0.33
+      - 0.28
+      - '+0.14'
+      - 0.002
+  figures_description:
+  - 'Fig-012-1: Scatter plot 双联——log-prob vs F1 (left) 和 SJ vs F1 (right)， SciERC
+    NER，两者 spread 几乎一样，SJ 的 regression line 斜率仅微高于 logprob， reviewer 第一眼看不出明显差别
+
+    '
+  analysis: 'Worst 档下 exp-012 的结果不是灾难性的——SJ 仍然在 NER 上微弱领先——但差距小到 reviewer 可以 legitimately
+    argue "this is not practically significant"。 特别是 Δρ=0.03 在 n=529 下 p=0.14 不显著。RE
+    full 上 logprob > SJ 给了 reviewer 弹药："SJ 在 RE 上甚至不如 logprob"。唯一亮点是 RE cond 上 SJ
+    明确领先（+0.14）， 但这需要 conditional filtering 来展示，削弱了 generality。 核心问题：reviewer 会说 "so
+    SJ is marginally better in some settings and worse in others — this is a wash,
+    not a contribution."
+
+    '
+- name: baseline_exact_match
+  plan_id: exp-013
+  description: 'Exact-match voting rate：N 个 sample 中完全相同 entity/relation set 的比例，
+    与 F1 计算 ρ/AUROC/τ。Wang et al. 2023 self-consistency 的直接结构化推广。
+
+    '
+  expected_results:
+    scierc_ner_em_rho: 0.26
+    scierc_ner_em_auroc: 0.62
+    scierc_ner_em_tau: 0.19
+    scierc_re_em_rho: 0.1
+    scierc_re_em_auroc: 0.5
+    scierc_re_em_tau: 0.08
+    scierc_ner_pct_all_match: 9.1
+    scierc_ner_pct_no_match: 38.7
+    scierc_re_pct_all_match: 1.8
+    scierc_re_pct_no_match: 68.2
+  result_rationale: 'EM 在 NER ρ=0.26 低于 SJ(0.36) 和 logprob(0.33)，在 RE ρ=0.10 是所有 signal
+    中最弱。 这符合预期——IE 输出的 surface form 变异（span boundary 差异、entity 排列顺序差异） 使得 exact-match
+    信号极度稀疏（39% NER 样本无任何 EM pair）。但在 worst 档下这个结果 反而削弱了 SJ 的叙事：reviewer 会说 "SJ 比 EM
+    好 only because EM is a strawman — the real comparison is with logprob, which is
+    free and equally good." RE 上 EM AUROC=0.50 等同于随机，证明 exact-match 在 relation extraction
+    上完全失效。
+
+    '
+  tables:
+  - table_id: T-013-1
+    caption: Exact-match voting rate distribution and correlation
+    columns:
+    - Dataset
+    - Task
+    - '% all-match'
+    - '% no-match'
+    - ρ with F1
+    - AUROC
+    rows:
+    - - SciERC
+      - NER
+      - 9.1
+      - 38.7
+      - 0.26
+      - 0.62
+    - - SciERC
+      - RE
+      - 1.8
+      - 68.2
+      - 0.1
+      - 0.5
+  figures_description:
+  - 'Fig-013-1: Histogram — EM rate 分布（0/8, 1/8, ..., 8/8）， 高度集中于 0 和 1，几乎二值化的粗粒度信号
+
+    '
+  analysis: 'EM 是 self-consistency 在结构化输出上的 naïve baseline，其弱势是意料之中的。 在 worst 档下，这个实验的价值被
+    reviewer 低估——他们认为 "of course exact-match doesn''t work for structured outputs,
+    this is obvious" 而不是将其视为 motivation for SJ。结果是 SJ > EM 这个子结论被视为 trivial。
+
+    '
+- name: baseline_entity_voting
+  plan_id: exp-014
+  description: 'Entity-level majority voting confidence：对每个 entity 统计在 N 个 sample
+    中的出现频率， 计算 instance-level 平均 voting confidence 与 F1 的相关性。
+
+    '
+  expected_results:
+    scierc_ner_voting_rho: 0.37
+    scierc_ner_voting_auroc: 0.68
+    scierc_ner_voting_tau: 0.27
+    scierc_re_voting_rho: 0.3
+    scierc_re_voting_auroc: 0.64
+    scierc_re_voting_tau: 0.22
+    scierc_ner_voting_f1_selected: 0.615
+    scierc_ner_greedy_f1: 0.648
+    scierc_ner_oracle_f1: 0.779
+    scierc_ner_voting_vs_greedy_delta: -3.3
+    scierc_re_voting_f1_selected: 0.358
+    scierc_re_greedy_f1: 0.402
+    voting_minus_sj_ner_rho: 0.01
+    voting_minus_logprob_ner_rho: 0.04
+  result_rationale: 'Entity voting ρ=0.37 在 NER 上与 SJ(0.36) 几乎持平（Δ=+0.01），AUROC 也仅微弱领先（0.68
+    vs 0.67）。 关键是 voting vs logprob 差距也很小（+0.04 ρ）。在 worst 档下三者（voting, SJ, logprob）
+    形成一个统计上无法区分的 cluster（bootstrap CI 大量重叠），reviewer 会说 "all signals perform similarly
+    — the choice of signal doesn''t matter." Voting 作为 selection strategy（而非 quality
+    estimation）失败得更彻底： voting-selected F1=0.615 低于 greedy=0.648（−3.3pp），因为 majority
+    vote 倾向于选择"平庸但安全"的 entity 而丢弃正确但少数的 entity。 RE 上 voting ρ=0.30 高于 SJ(0.21) 但仍低于
+    logprob 的下界期望。
+
+    '
+  tables:
+  - table_id: T-014-1
+    caption: Entity voting vs other signals (SciERC)
+    columns:
+    - Signal
+    - NER ρ
+    - NER AUROC
+    - RE ρ
+    - RE AUROC
+    rows:
+    - - Voting conf
+      - 0.37
+      - 0.68
+      - 0.3
+      - 0.64
+    - - Soft Jaccard
+      - 0.36
+      - 0.67
+      - 0.21
+      - 0.59
+    - - Log-prob
+      - 0.33
+      - 0.64
+      - 0.25
+      - 0.62
+    - - Fleiss' κ
+      - 0.27
+      - 0.59
+      - 0.25
+      - 0.61
+    - - Exact-match
+      - 0.26
+      - 0.62
+      - 0.1
+      - 0.5
+  figures_description:
+  - 'Fig-014-1: Bar chart — 5 signal 在 NER 上的 ρ，三者（voting/SJ/logprob） 高度接近，error bars
+    重叠，视觉上无明显优胜者
+
+    '
+  analysis: 'Entity voting 的加入没有改变整体叙事——在 worst 档下它只是 structural consistency family
+    中另一个与 logprob 差距不大的 signal。Voting 作为 selection 策略失败 （低于 greedy -3.3pp）直接支持了 correlation-selection
+    gap 的 narrative， 但 reviewer 认为这是 "expected: instance-level aggregates can''t rank
+    individual samples."
+
+    '
+- name: evaluation_metrics_expansion
+  plan_id: exp-015
+  description: '在所有 confidence signal × 所有数据集上扩展评估指标： AUROC、Kendall τ、ECE (calibration)。Leave-one-out
+    SJ 检验评估 circularity。
+
+    '
+  expected_results:
+    scierc_ner:
+      voting_rho: 0.37
+      voting_auroc: 0.68
+      voting_tau: 0.27
+      sj_rho: 0.36
+      sj_auroc: 0.67
+      sj_tau: 0.26
+      sj_ece: 0.11
+      fk_rho: 0.27
+      fk_auroc: 0.59
+      fk_tau: 0.2
+      logprob_rho: 0.33
+      logprob_auroc: 0.64
+      logprob_tau: 0.24
+      logprob_ece: 0.08
+      em_rho: 0.26
+      em_auroc: 0.62
+      em_tau: 0.19
+      loo_sj_rho: 0.35
+      loo_sj_delta: -0.01
+      n_valid: 529
+      n_cond: 501
+    scierc_re:
+      voting_rho: 0.3
+      voting_auroc: 0.64
+      sj_rho: 0.21
+      sj_auroc: 0.59
+      logprob_rho: 0.25
+      logprob_auroc: 0.62
+      n_valid: 397
+      n_cond: 296
+    conll_ner:
+      sj_rho: 0.34
+      sj_auroc: 0.68
+      logprob_rho: 0.32
+      logprob_auroc: 0.66
+      voting_rho: 0.33
+      em_rho: 0.35
+    wnut_ner:
+      sj_rho: 0.08
+      sj_auroc: 0.55
+      logprob_rho: -0.41
+      fk_rho: 0.12
+  result_rationale: '多指标扩展后的全景：AUROC gap (structural vs logprob) 在 NER 上仅 +0.03~0.04，
+    在 RE 上为负（-0.03）。ECE 上 logprob=0.08 优于 SJ=0.11，因为 logprob 天然是概率量。 Leave-one-out
+    SJ ρ=0.35 vs full SJ ρ=0.36，Δ=-0.01，排除了 circularity concern， 但 reviewer 不会因此给加分（"LOO
+    差异小是 expected, not a contribution"）。 CoNLL 上 EM(0.35) > SJ(0.34) > voting(0.33)
+    > logprob(0.32)，所有信号极接近， 因为 CoNLL 模型 F1 很高导致所有信号 ceiling-out。WNUT 上 SJ ρ=0.08
+    不显著， logprob ρ=−0.41（反相关），所有 signal 失败——但 WNUT 被 abandoned，reviewer 若推断 这一点会进一步质疑
+    generalization。
+
+    '
+  tables:
+  - table_id: T-015-1
+    caption: Comprehensive 5-signal evaluation — SciERC NER (N=8, T=1.0)
+    columns:
+    - Signal
+    - ρ
+    - AUROC
+    - τ
+    - ECE
+    - LOO-ρ
+    rows:
+    - - Voting conf
+      - 0.37
+      - 0.68
+      - 0.27
+      - 0.1
+      - —
+    - - Soft Jaccard
+      - 0.36
+      - 0.67
+      - 0.26
+      - 0.11
+      - 0.35
+    - - Log-prob
+      - 0.33
+      - 0.64
+      - 0.24
+      - 0.08
+      - —
+    - - Fleiss' κ
+      - 0.27
+      - 0.59
+      - 0.2
+      - 0.14
+      - —
+    - - Exact-match
+      - 0.26
+      - 0.62
+      - 0.19
+      - 0.16
+      - —
+  - table_id: T-015-2
+    caption: Cross-dataset AUROC comparison
+    columns:
+    - Signal
+    - SciERC-NER
+    - CoNLL-NER
+    - WNUT-NER
+    - SciERC-RE-full
+    - SciERC-RE-cond
+    rows:
+    - - Voting
+      - 0.68
+      - 0.67
+      - 0.56
+      - 0.64
+      - 0.68
+    - - SJ
+      - 0.67
+      - 0.68
+      - 0.55
+      - 0.59
+      - 0.65
+    - - Log-prob
+      - 0.64
+      - 0.66
+      - 0.36
+      - 0.62
+      - 0.55
+    - - FK
+      - 0.59
+      - 0.63
+      - 0.54
+      - 0.61
+      - 0.58
+    - - EM
+      - 0.62
+      - 0.7
+      - 0.55
+      - 0.5
+      - 0.54
+  figures_description:
+  - 'Fig-015-1: Reliability diagram (calibration) — logprob 更贴合 y=x 对角线 (ECE=0.08)，
+    SJ 系统性偏高 (ECE=0.11)
+
+    '
+  - 'Fig-015-2: ROC curve — NER 上 voting 和 SJ 的 curve 仅微幅高于 logprob， 三条 curve 几乎重叠，bootstrap
+    CI band 大量 overlap
+
+    '
+  analysis: '多指标扩展的致命结果：所有指标都确认了 structural vs logprob 差距极小。 AUROC 差距 +0.03 比 ρ 差距
+    +0.03 没有更大——不存在 "ρ understates the advantage" 的反驳。 ECE 上 logprob 甚至更好。Reviewer
+    会指出："Table 2 shows that across 5 metrics, logprob is competitive or better on
+    2 out of 5 — the claimed superiority of structural signals is at best marginal."
+    WNUT 数据如果被发现会是致命一击。
+
+    '
+- name: ner_n16_scierc
+  plan_id: exp-001
+  description: 'SciERC NER N=16, T=1.0, ft_002_v2 模型, 3 seeds (42/123/456)。 测试 N-scaling
+    效应，采集 log-prob。
+
+    '
+  expected_results:
+    ner_sj_rho_n16_s42: 0.37
+    ner_sj_rho_n16_s123: 0.36
+    ner_sj_rho_n16_s456: 0.33
+    ner_sj_rho_n16_mean: 0.353
+    ner_sj_rho_n16_std: 0.021
+    ner_voting_rho_n16_mean: 0.36
+    ner_logprob_rho_n16_mean: 0.33
+    ner_fk_rho_n16_mean: 0.26
+    ner_em_rho_n16_mean: 0.3
+    ner_sj_rho_n8_mean: 0.36
+    ner_sj_rho_delta_n16_vs_n8: -0.007
+    ner_oracle_f1_n16: 0.81
+    ner_greedy_f1: 0.655
+    ner_headroom_n16: 0.155
+    re_sj_rho_n16: 0.27
+    re_logprob_rho_n16: 0.3
+    re_voting_rho_n16: 0.35
+    re_oracle_f1_n16: 0.67
+    re_sample_f1_pct_zero: 44.3
+  result_rationale: 'N=16 对 SJ ρ 无提升甚至微降（0.353 vs N=8 的 0.36，Δ=−0.007）。 Worst 档的逻辑：SJ
+    在 N=8 时已饱和——pairwise (N choose 2) 从 28 增到 120， 但额外 sample 高度冗余。Seed-to-seed 标准差
+    σ=0.021 说明 seed456 的低值（0.33） 不是噪声而是边界情况，reviewer 可能 cherry-pick 这个 seed 来论证 SJ
+    不 robust。 更关键的是 logprob（ρ=0.33）在 N=16 上与 SJ（0.353）差距仍仅 +0.02。 RE 上 N=16 SJ ρ=0.27
+    虽比 N=8 的 0.21 有提升，但 reviewer 会指出 "even at N=16, RE SJ is still below 0.30 — the
+    method doesn''t work for RE." Oracle F1 从 0.75 升到 0.81 但 SJ 选不出更好的候选——signal ceiling
+    明确。
+
+    '
+  tables:
+  - table_id: T-001-1
+    caption: N-scaling effect on confidence signals (SciERC, 3-seed mean)
+    columns:
+    - Signal
+    - ρ@N=8
+    - ρ@N=16
+    - Δ
+    - seed σ
+    rows:
+    - - Soft Jaccard
+      - 0.36
+      - 0.353
+      - −0.007
+      - 0.021
+    - - Voting conf
+      - 0.37
+      - 0.36
+      - −0.01
+      - 0.018
+    - - Log-prob
+      - 0.33
+      - 0.33
+      - 0.0
+      - —
+    - - Fleiss' κ
+      - 0.27
+      - 0.26
+      - −0.01
+      - 0.015
+    - - Exact-match
+      - 0.26
+      - 0.3
+      - '+0.04'
+      - 0.022
+  - table_id: T-001-2
+    caption: Multi-seed robustness (SciERC NER N=16, SJ ρ)
+    columns:
+    - Seed
+    - NER ρ_SJ
+    - NER ρ_logprob
+    - RE ρ_SJ
+    rows:
+    - - 42
+      - 0.37
+      - 0.33
+      - 0.27
+    - - 123
+      - 0.36
+      - 0.34
+      - 0.26
+    - - 456
+      - 0.33
+      - 0.32
+      - 0.27
+  figures_description:
+  - 'Fig-001-1: Line plot — N vs ρ (N=4,8,16)，SJ 在 N=8 后平坦或微降， logprob 水平线几乎与 SJ 重叠
+
+    '
+  - 'Fig-001-2: 3-seed box plot — variance 小但 seed456 下拉 mean， CI 与 logprob 完全 overlap
+
+    '
+  analysis: 'N=16 实验在 worst 档下是双重打击：(1) 更多 sample 不提升 SJ——"N=8 不够"假说被否定； (2) seed-to-seed
+    variance（0.33-0.37）覆盖了 logprob 的值域（0.32-0.34）， reviewer 结论："the two signals are
+    statistically indistinguishable." RE 的改善从 0.21 到 0.27 虽然存在，但仍远低于任何有意义的阈值。
+
+    '
+- name: ner_conll2003
+  plan_id: exp-002
+  description: 'CoNLL-2003 上 fine-tune Qwen3-8B (LoRA) + NER (N=8, T=1.0)。 跨数据集泛化验证。
+
+    '
+  expected_results:
+    conll_greedy_f1: 0.907
+    conll_oracle_f1: 0.945
+    conll_headroom: 0.038
+    conll_sj_rho: 0.34
+    conll_sj_auroc: 0.68
+    conll_sj_tau: 0.3
+    conll_fk_rho: 0.31
+    conll_logprob_rho: 0.32
+    conll_logprob_auroc: 0.66
+    conll_em_rho: 0.35
+    conll_voting_rho: 0.33
+    conll_sj_minus_logprob: 0.02
+    conll_mean_sj: 0.86
+    conll_sample_f1_pct_zero: 2.8
+    n_valid: 2756
+  result_rationale: 'CoNLL 上 SJ ρ=0.34 仅比 logprob ρ=0.32 高 0.02，AUROC gap 同样仅 +0.02。
+    Worst 档的核心机制是 ceiling effect：greedy F1=0.907，mean SJ=0.86， 绝大多数 sample 已经很好（仅
+    2.8% F1=0），SJ 在高一致区域的 discriminative power 崩溃。 EM(0.35) 甚至微幅领先 SJ(0.34)——在 CoNLL
+    这种标准 NER 上 exact-match 反而 因为 entity 简单而足够有效，这直接削弱了 "soft similarity is necessary"
+    的论点。 Headroom 仅 0.038（oracle 94.5 vs greedy 90.7），best-of-N 几乎无空间。 Reviewer 会说："on
+    CoNLL, all signals including exact-match perform similarly — the structural metric
+    adds no value for standard NER tasks."
+
+    '
+  tables:
+  - table_id: T-002-1
+    caption: 'CoNLL-2003 NER: all confidence signals (N=8, T=1.0, n=2756)'
+    columns:
+    - Signal
+    - ρ
+    - AUROC
+    - τ
+    - vs SciERC Δρ
+    rows:
+    - - Exact-match
+      - 0.35
+      - 0.7
+      - 0.31
+      - '+0.09'
+    - - Soft Jaccard
+      - 0.34
+      - 0.68
+      - 0.3
+      - −0.02
+    - - Voting conf
+      - 0.33
+      - 0.67
+      - 0.29
+      - −0.04
+    - - Log-prob
+      - 0.32
+      - 0.66
+      - 0.25
+      - −0.01
+    - - Fleiss' κ
+      - 0.31
+      - 0.63
+      - 0.28
+      - '+0.04'
+  figures_description:
+  - 'Fig-002-1: SJ 分布 histogram — 高度右偏集中于 0.85-1.0， 与 SciERC 更 spread-out 的分布并排对比，直观展示
+    ceiling effect
+
+    '
+  analysis: 'CoNLL 结果在 worst 档下暴露了 SJ 的 dataset sensitivity：在 "easy" NER 上 SJ 的优势消失（Δρ=+0.02）。更致命的是
+    EM 反超 SJ—— reviewer 会问："if exact-match works just as well on CoNLL, why do we
+    need SJ?" 这将被引用为 SJ 只在 SciERC 特有的 scientific entity 复杂度下有效的证据， 泛化性成疑。
+
+    '
+- name: ner_wnut17
+  plan_id: exp-003
+  description: 'WNUT-17 (social media NER) fine-tune + inference。被 abandoned 但 data
+    存在。
+
+    '
+  expected_results:
+    wnut_greedy_f1: 0.525
+    wnut_oracle_f1: 0.664
+    wnut_headroom: 0.139
+    wnut_sj_rho_full: 0.08
+    wnut_sj_p: 0.12
+    wnut_fk_rho: 0.12
+    wnut_logprob_rho_full: -0.41
+    wnut_logprob_rho_cond: 0.35
+    wnut_sj_rho_cond: 0.28
+    wnut_sample_f1_pct_zero: 53.7
+    wnut_n_gold_empty: 598
+    wnut_n_instances: 1287
+    wnut_sj_auroc: 0.55
+    wnut_structural_beats_surface: false
+  result_rationale: 'WNUT 是 worst 档下的 smoking gun。SJ ρ=0.08 不显著（p=0.12）， 53.7% 的 sample
+    F1=0，598/1287 个 instance gold set 为空。 Logprob full ρ=−0.41（反相关！）说明模型在 noisy social
+    media text 上 完全 uncalibrated——高 logprob 的 sample 反而更可能是 confident hallucination。
+    所有 signal 在 WNUT 上失败。虽然 paper 可以 abandon 并不报告， 但 reviewer 若问 "why only 2 NER datasets?"
+    或推断 WNUT 被排除， 会质疑 dataset cherry-picking。这是 worst 档假设的核心： "WNUT abandoned (>50%
+    F1=0, structural rho not significant) 被发现或推断"。
+
+    '
+  tables:
+  - table_id: T-003-1
+    caption: WNUT-17 NER results (abandoned — included for completeness)
+    columns:
+    - Signal
+    - Full ρ
+    - Cond ρ
+    - AUROC
+    - Notes
+    rows:
+    - - Soft Jaccard
+      - 0.08
+      - 0.28
+      - 0.55
+      - p=0.12, not significant
+    - - Fleiss' κ
+      - 0.12
+      - 0.17
+      - 0.54
+      - ''
+    - - Log-prob
+      - −0.41
+      - 0.35
+      - 0.36
+      - full anti-correlated
+    - - Exact-match
+      - 0.09
+      - 0.22
+      - 0.53
+      - ''
+  figures_description: []
+  analysis: 'WNUT 被 abandoned 是正确决定——53.7% F1=0 意味着数据集超出模型能力范围。 但这在 worst 档下被解读为 "generalization
+    failure"：paper 声称 structural consistency 是 universal quality estimator， 但在 social
+    media domain 上甚至不 significant。 Reviewer 会在 weaknesses 中写："The authors only report
+    results on 2 NER datasets, both with relatively clean text. Applicability to noisy
+    domains is unknown."
+
+    '
+- name: re_diagnostic_analysis
+  plan_id: exp-004
+  description: 'RE per-relation-type 分解、bootstrap CI、threshold sensitivity、error propagation。
+
+    '
+  expected_results:
+    per_relation_type:
+      HYPONYM-OF:
+        n: 36
+        rho_sj: 0.38
+        rho_fk: 0.45
+        rho_logprob: 0.42
+      CONJUNCTION:
+        n: 86
+        rho_sj: 0.28
+        rho_fk: 0.25
+        rho_logprob: 0.32
+      USED-FOR:
+        n: 299
+        rho_sj: 0.18
+        rho_fk: 0.2
+        rho_logprob: 0.24
+      PART-OF:
+        n: 44
+        rho_sj: 0.17
+        rho_fk: 0.25
+        rho_logprob: 0.28
+      EVALUATE-FOR:
+        n: 62
+        rho_sj: 0.12
+        rho_fk: 0.18
+        rho_logprob: 0.22
+      COMPARE:
+        n: 35
+        rho_sj: 0.11
+        rho_fk: 0.13
+        rho_logprob: 0.2
+      FEATURE-OF:
+        n: 50
+        rho_sj: 0.01
+        rho_fk: 0.04
+        rho_logprob: 0.12
+    bootstrap_ci_95:
+      re_sj_full:
+      - 0.12
+      - 0.3
+      re_logprob_full:
+      - 0.16
+      - 0.34
+      re_sj_cond:
+      - 0.22
+      - 0.44
+    threshold_sensitivity:
+      thr_0pct_rho_sj: 0.21
+      thr_10pct_rho_sj: 0.28
+      thr_20pct_rho_sj: 0.33
+      thr_30pct_rho_sj: 0.3
+      thr_40pct_rho_sj: 0.25
+    error_propagation:
+      head_tail_error_pct: 55.5
+      type_error_pct: 8.3
+      head_sj_rho: 0.21
+  result_rationale: 'RE 诊断结果在 worst 档下：(1) Per-relation-type 分析显示 logprob 在 6/7 relation
+    types 上 优于 SJ，只有 HYPONYM-OF（n=36，太小不可靠）SJ 稍弱但 FK 反而最强； (2) Bootstrap CI 表明 SJ
+    full [0.12, 0.30] 与 logprob full [0.16, 0.34] 大量 overlap—— reviewer 会说 "the difference
+    is not statistically significant"； (3) Threshold sensitivity 呈 inverted-U 但 reviewer
+    认为 "this is just an artifact of removing low-performance instances — the remaining
+    instances are easier by definition"； (4) FEATURE-OF 关系 SJ ρ≈0 证明某些 relation types
+    对 consistency 完全免疫。
+
+    '
+  tables:
+  - table_id: T-004-1
+    caption: 'RE diagnostic: per-relation-type ρ (SciERC)'
+    columns:
+    - Relation
+    - n
+    - SJ ρ
+    - FK ρ
+    - Logprob ρ
+    rows:
+    - - HYPONYM-OF
+      - 36
+      - 0.38
+      - 0.45
+      - 0.42
+    - - CONJUNCTION
+      - 86
+      - 0.28
+      - 0.25
+      - 0.32
+    - - USED-FOR
+      - 299
+      - 0.18
+      - 0.2
+      - 0.24
+    - - PART-OF
+      - 44
+      - 0.17
+      - 0.25
+      - 0.28
+    - - EVALUATE-FOR
+      - 62
+      - 0.12
+      - 0.18
+      - 0.22
+    - - COMPARE
+      - 35
+      - 0.11
+      - 0.13
+      - 0.2
+    - - FEATURE-OF
+      - 50
+      - 0.01
+      - 0.04
+      - 0.12
+  - table_id: T-004-2
+    caption: Threshold sensitivity (conditional exclusion %)
+    columns:
+    - Exclusion %
+    - SJ ρ
+    - Logprob ρ
+    - n
+    rows:
+    - - 0%
+      - 0.21
+      - 0.25
+      - 397
+    - - 10%
+      - 0.28
+      - 0.3
+      - 357
+    - - 20%
+      - 0.33
+      - 0.31
+      - 318
+    - - 30%
+      - 0.3
+      - 0.28
+      - 278
+    - - 40%
+      - 0.25
+      - 0.24
+      - 238
+  figures_description:
+  - 'Fig-004-1: Threshold sensitivity curve — inverted-U 峰值在 ~20%， 但 reviewer 注意到
+    logprob 也有类似 pattern，认为 non-specific to SJ
+
+    '
+  - 'Fig-004-2: Per-relation heatmap — FEATURE-OF 行全暗色（near-zero）， USED-FOR 行（n=299，最大类）也偏弱（SJ=0.18）
+
+    '
+  analysis: 'RE 诊断在 worst 档下提供了 task-complexity boundary 的证据，但 reviewer 的反应是 "the
+    boundary is obvious — RE is harder than NER, this doesn''t need 397 instances
+    to show." Per-relation 分析被视为 descriptive not prescriptive——没有提出 actionable insight
+    告诉 practitioner 如何改进。Bootstrap CI overlap 成为 "SJ ≈ logprob on RE" 的直接证据。
+
+    '
+- name: temperature_sensitivity_analysis
+  plan_id: exp-005
+  description: 'T=0.7 vs T=1.0 对比，在所有 confidence signal 上分析温度的 signal-noise tradeoff。
+
+    '
+  expected_results:
+    ner_sj_rho_t07: 0.39
+    ner_sj_rho_t10: 0.36
+    ner_sj_delta_temp: -0.03
+    ner_logprob_rho_t07: 0.34
+    ner_logprob_rho_t10: 0.33
+    ner_logprob_delta_temp: -0.01
+    ner_fk_rho_t07: 0.32
+    ner_fk_rho_t10: 0.27
+    ner_fk_delta_temp: -0.05
+    re_sj_rho_t07: 0.23
+    re_sj_rho_t10: 0.21
+    re_logprob_rho_t07: 0.27
+    re_logprob_rho_t10: 0.25
+    ner_mean_sj_t07: 0.78
+    ner_mean_sj_t10: 0.7
+    ner_oracle_t07: 0.758
+    ner_oracle_t10: 0.776
+    sj_temp_robust: true
+    sj_delta_rho_temp: 0.03
+  result_rationale: '温度对 SJ 的影响（Δρ=−0.03）大于对 logprob（Δρ=−0.01），因为 T=1.0 增加的 sample
+    diversity 降低了 pairwise SJ 均值（0.78→0.70）并增加了噪声。 在 worst 档下 SJ 在 T=0.7 时的 "最佳"性能（ρ=0.39）与
+    logprob（0.34）差距为 +0.05， 仍在 focal_rho_gap [-0.04, 0.05] 的上界。Reviewer 会说 "SJ requires
+    careful temperature tuning to achieve even marginal gains, while logprob is robust
+    to T." FK 的温度敏感性（Δ=−0.05）被视为 surface metrics 的又一缺陷。 T=1.0 保留更多 oracle headroom（0.776
+    vs 0.758），但因为 selection 无法利用 headroom， 这个观察在 worst 档下变得 moot。
+
+    '
+  tables:
+  - table_id: T-005-1
+    caption: 'Temperature sensitivity: T=0.7 vs T=1.0 (SciERC)'
+    columns:
+    - Signal
+    - NER ρ(T=0.7)
+    - NER ρ(T=1.0)
+    - Δ
+    - RE ρ(T=0.7)
+    - RE ρ(T=1.0)
+    - Δ
+    rows:
+    - - Soft Jaccard
+      - 0.39
+      - 0.36
+      - −0.03
+      - 0.23
+      - 0.21
+      - −0.02
+    - - Log-prob
+      - 0.34
+      - 0.33
+      - −0.01
+      - 0.27
+      - 0.25
+      - −0.02
+    - - Voting conf
+      - 0.38
+      - 0.37
+      - −0.01
+      - 0.31
+      - 0.3
+      - −0.01
+    - - Fleiss' κ
+      - 0.32
+      - 0.27
+      - −0.05
+      - 0.22
+      - 0.25
+      - '+0.03'
+    - - Exact-match
+      - 0.28
+      - 0.26
+      - −0.02
+      - 0.11
+      - 0.1
+      - −0.01
+  figures_description:
+  - 'Fig-005-1: Paired scatter — 同一 instance 在 T=0.7 和 T=1.0 下的 SJ 值， 高相关 (r>0.85)
+    但 T=1.0 系统性偏低
+
+    '
+  analysis: '温度分析排除了 "用错温度" 的 confound，但在 worst 档下这反而是坏消息： 即使在最优温度 T=0.7 下 SJ 与 logprob
+    差距也仅 +0.05 ρ。 Reviewer 评论："temperature tuning is another hyperparameter burden
+    on top of N-sampling, while logprob is temperature-invariant and nearly as strong."
+
+    '
+- name: adaptive_compute_demo
+  plan_id: exp-006
+  description: 'Best-of-N selection：用各 confidence signal 选 N 个 sample 中最好的， 报告 F1
+    vs greedy/random/oracle。覆盖所有数据集和任务。
+
+    '
+  expected_results:
+    scierc_ner:
+      greedy: 0.618
+      random: 0.586
+      sj: 0.604
+      logprob: 0.609
+      fk: 0.608
+      voting: 0.596
+      em: 0.603
+      ensemble: 0.604
+      oracle: 0.769
+    scierc_re:
+      greedy: 0.374
+      random: 0.338
+      sj: 0.368
+      logprob: 0.397
+      fk: 0.37
+      voting: 0.338
+      oracle: 0.561
+    conll_ner:
+      greedy: 0.725
+      random: 0.692
+      sj: 0.718
+      logprob: 0.716
+      fk: 0.717
+      voting: 0.714
+      oracle: 0.757
+    ner_all_signals_leq_greedy: true
+    re_only_logprob_beats_greedy: true
+    re_logprob_gain_pp: 2.3
+  result_rationale: '这是 worst 档的核心 negative finding：NER 上 ALL signals ≤ greedy。 SJ(0.604)
+    < greedy(0.618) by −1.4pp，logprob(0.609) < greedy(0.618) by −0.9pp。 机制：best-of-N
+    selection 需要 PER-SAMPLE ranking ability，而 consistency signals (SJ/voting) 是 INSTANCE-LEVEL
+    aggregates——它们告诉你"这个 input 容易还是难"， 但不能告诉你"哪个 sample 更好"。即使是 logprob（唯一的 per-sample
+    signal） 在 NER 上也因为 greedy decode 已经 near-optimal 而无法提供增益。 Oracle headroom 巨大（NER
+    +15.1pp，RE +18.7pp）但没有任何 signal 能 exploit 它。 RE 上 logprob 是唯一击败 greedy 的 signal（+2.3pp），验证了
+    per-sample vs instance-level 的区分，但 reviewer 的评价是："this distinction is well-known
+    in the calibration literature; the authors are re-discovering that aggregate confidence
+    ≠ per-item ranking." CoNLL 上所有 signal 都低于 greedy（headroom 仅 3.2pp），进一步确认 ceiling
+    effect。
+
+    '
+  tables:
+  - table_id: T-006-1
+    caption: Best-of-N selection F1 (N=8/16, all datasets)
+    columns:
+    - Dataset
+    - Task
+    - Greedy
+    - Random
+    - SJ
+    - Logprob
+    - Voting
+    - Oracle
+    rows:
+    - - SciERC
+      - NER
+      - 0.618
+      - 0.586
+      - 0.604
+      - 0.609
+      - 0.596
+      - 0.769
+    - - SciERC
+      - RE
+      - 0.374
+      - 0.338
+      - 0.368
+      - 0.397
+      - 0.338
+      - 0.561
+    - - CoNLL
+      - NER
+      - 0.725
+      - 0.692
+      - 0.718
+      - 0.716
+      - 0.714
+      - 0.757
+  - table_id: T-006-2
+    caption: F1 gain over greedy (pp)
+    columns:
+    - Signal
+    - SciERC-NER
+    - SciERC-RE
+    - CoNLL-NER
+    - Cost (vs greedy)
+    rows:
+    - - Log-prob
+      - −0.9
+      - '+2.3'
+      - −0.9
+      - 0× extra
+    - - Soft Jaccard
+      - −1.4
+      - −0.6
+      - −0.7
+      - 8× inference
+    - - Voting conf
+      - −2.2
+      - −3.6
+      - −1.1
+      - 8× inference
+    - - Ensemble
+      - −1.4
+      - −0.7
+      - —
+      - 8× + logprob
+    - - Oracle
+      - '+15.1'
+      - '+18.7'
+      - '+3.2'
+      - —
+  figures_description:
+  - 'Fig-006-1: Selection curves — N vs F1 on SciERC NER， greedy 虚线在所有 signal 之上，oracle
+    远上方， 所有 selection curves 在 greedy 下方是最有视觉冲击力的结果
+
+    '
+  - 'Fig-006-2: Cost-effectiveness scatter — x=inference cost, y=ΔF1 vs greedy， 所有
+    consistency signals 在第四象限（高 cost，负 gain）， logprob 在 (1×, −0.9) 位置——even logprob
+    doesn''t help for NER
+
+    '
+  analysis: 'Best-of-N 结果是 worst 档的 headline finding，也是 reviewer 最关注的： "NER best-of-N
+    全部 ≤ greedy" 被解读为 "the method fundamentally doesn''t work"。 即使 reframe 为 correlation-selection
+    gap analysis，reviewer 仍会说 "the paper identifies a gap but offers no solution —
+    purely diagnostic with no positive outcome." Oracle gap 的巨大（+15pp NER, +19pp RE）同时是好消息（headroom
+    exists） 和坏消息（current signals waste 100% of it on NER）。RE 上 logprob 的成功（+2.3pp）
+    反而削弱了 consistency signals——"if you want selection, just use logprob."
+
+    '
+- name: ner_multi_model
+  plan_id: exp-007
+  description: 'LLaMA-3.1-8B-Instruct 在 SciERC NER/RE 上 fine-tune + inference。 Model-agnostic
+    验证。
+
+    '
+  expected_results:
+    llama_ner_greedy_f1: 0.66
+    llama_ner_oracle_f1: 0.781
+    llama_ner_headroom: 0.121
+    llama_ner_sj_rho: 0.36
+    llama_ner_fk_rho: 0.33
+    llama_ner_logprob_rho: 0.3
+    llama_ner_sj_auroc: 0.68
+    llama_ner_logprob_auroc: 0.62
+    llama_ner_sj_minus_logprob_rho: 0.06
+    llama_re_greedy_f1: 0.434
+    llama_re_sj_rho: 0.3
+    llama_re_fk_rho: 0.31
+    llama_re_logprob_rho: 0.29
+    llama_re_sj_cond_rho: 0.41
+    llama_re_logprob_cond_rho: 0.09
+    llama_ner_sample_f1_pct_zero: 11.6
+    llama_re_sample_f1_pct_zero: 41.2
+  result_rationale: 'LLaMA 上 SJ ρ=0.36 与 Qwen3 的 0.36 持平——表面看 model-agnostic， 但 worst
+    档的问题在于 logprob 在 LLaMA 上更弱（ρ=0.30 vs Qwen3 0.33）， 使得 SJ-logprob gap 在 LLaMA 上稍大（+0.06）但在
+    Qwen3 上仅 +0.03。 Reviewer 会指出："the SJ advantage depends on which model you test
+    — on Qwen3 it''s +0.03 (not significant), on LLaMA it''s +0.06 (marginal). This
+    is not a robust model-agnostic finding." RE 上 LLaMA 的 41.2% F1=0 进一步证实了 RE 的 difficulty
+    boundary。 LLaMA RE cond SJ ρ=0.41 是一个亮点，但需要 conditional filtering 来展示， 而且只在 LLaMA×SciERC
+    这一个配置上出现。
+
+    '
+  tables:
+  - table_id: T-007-1
+    caption: 'Cross-model comparison: Qwen3-8B vs LLaMA-3.1-8B (SciERC)'
+    columns:
+    - Signal
+    - Qwen3 NER ρ
+    - LLaMA NER ρ
+    - Δ
+    - Qwen3 RE ρ
+    - LLaMA RE ρ
+    - Δ
+    rows:
+    - - Soft Jaccard
+      - 0.36
+      - 0.36
+      - 0.0
+      - 0.21
+      - 0.3
+      - '+0.09'
+    - - Log-prob
+      - 0.33
+      - 0.3
+      - −0.03
+      - 0.25
+      - 0.29
+      - '+0.04'
+    - - Voting conf
+      - 0.37
+      - 0.35
+      - −0.02
+      - 0.3
+      - 0.28
+      - −0.02
+    - - Fleiss' κ
+      - 0.27
+      - 0.33
+      - '+0.06'
+      - 0.25
+      - 0.31
+      - '+0.06'
+    - - Exact-match
+      - 0.26
+      - 0.24
+      - −0.02
+      - 0.1
+      - 0.08
+      - −0.02
+  figures_description:
+  - 'Fig-007-1: 双模型 bar chart — SJ vs logprob gap 在 Qwen3 和 LLaMA 上方向一致 但幅度不稳定（+0.03
+    vs +0.06），reviewer 关注 instability
+
+    '
+  analysis: 'LLaMA 实验的 worst 档解读：model-agnostic 声称依赖于 2 个 8B 模型， reviewer 认为 "2 models
+    from the same parameter scale is not sufficient for model-agnostic claims — need
+    at least one 70B+ model." SJ-logprob gap 的跨模型 variance（+0.03 到 +0.06）被视为 instability。
+    RE 上 SJ 在 LLaMA 上反而比 Qwen3 好（0.30 vs 0.21），但这只是因为 LLaMA 的 RE greedy F1 更高（0.434
+    vs 0.374），更多 instance 进入 "capability range"。
+
+    '
+- name: re_n16_confirmation
+  plan_id: exp-008
+  description: 'RE N=16 on SciERC，确认 RE negative finding 在更高 N 下仍成立。
+
+    '
+  expected_results:
+    re_sj_rho_n16_full: 0.28
+    re_sj_rho_n16_cond: 0.35
+    re_fk_rho_n16: 0.24
+    re_logprob_rho_n16: 0.3
+    re_voting_rho_n16: 0.32
+    re_n16_vs_n8_sj_delta: 0.07
+    re_oracle_f1_n16: 0.67
+    re_greedy_f1: 0.434
+    re_headroom_n16: 0.236
+    re_sample_f1_pct_zero: 44.3
+    ner_sj_rho_n16: 0.38
+    ner_logprob_rho_n16: 0.33
+  result_rationale: 'RE N=16 SJ ρ 从 N=8 的 0.21 升到 0.28（Δ=+0.07），但仍远低于 NER 的 0.38。
+    Worst 档的解读：RE 的改善来自更多 sample 平均了 compound error noise， 但 reviewer 会说 "even at
+    N=16 (doubling compute), RE SJ ρ=0.28 is still well below the NER level — the
+    task-complexity boundary is real and not fixable by more sampling." Logprob N=16
+    ρ=0.30 再次与 SJ 持平或微超。 44.3% F1=0 sample 说明 RE 的知识缺口不是 sampling 能解决的。 Oracle headroom
+    从 0.17 升到 0.24 但 selection 仍无法利用。
+
+    '
+  tables:
+  - table_id: T-008-1
+    caption: 'RE N-scaling: N=8 vs N=16 (SciERC)'
+    columns:
+    - Signal
+    - Full ρ@N=8
+    - Full ρ@N=16
+    - Δ
+    - Cond ρ@N=16
+    rows:
+    - - Soft Jaccard
+      - 0.21
+      - 0.28
+      - '+0.07'
+      - 0.35
+    - - Voting conf
+      - 0.3
+      - 0.32
+      - '+0.02'
+      - 0.38
+    - - Log-prob
+      - 0.25
+      - 0.3
+      - '+0.05'
+      - 0.27
+    - - Fleiss' κ
+      - 0.25
+      - 0.24
+      - −0.01
+      - 0.3
+  figures_description: []
+  analysis: 'N=16 RE 的微弱改善在 worst 档下不足以改变结论。Reviewer 说： "Increasing N from 8 to 16
+    yields +0.07 ρ for SJ but SJ still underperforms logprob at N=16 (0.28 vs 0.30).
+    The computational cost doubles for negligible gain." 这个实验是 confirmatory negative——排除了
+    "N=8 不够" 的 excuse。
+
+    '
+- name: capability_stratification
+  plan_id: exp-009
+  description: '按 difficulty strata (greedy F1 buckets + 独立 proxy: sentence length,
+    entity count) 分析各 signal 的 ρ 变化。
+
+    '
+  expected_results:
+    scierc_ner:
+      by_greedy_f1:
+        hard_0_25_sj_rho: 0.16
+        med_low_sj_rho: 0.14
+        med_high_sj_rho: 0.09
+        easy_sj_rho: 0.23
+      by_sent_len:
+        Q1_sj_rho: 0.35
+        Q2_sj_rho: 0.32
+        Q3_sj_rho: 0.25
+        Q4_sj_rho: 0.3
+      by_ent_count:
+        zero_sj_rho: 0.52
+        one_two_sj_rho: 0.33
+        three_five_sj_rho: 0.28
+        six_plus_sj_rho: 0.4
+      overall_sj_rho: 0.36
+    scierc_re:
+      by_greedy_f1:
+        hard_sj_rho: -0.04
+        easy_sj_rho: 0.18
+    conll_ner:
+      by_sent_len:
+        Q1_sj_rho: 0.28
+        Q3_sj_rho: 0.38
+    proxy_independence:
+      f1_vs_slen: -0.02
+      f1_vs_ecnt: 0.01
+    inverted_u_confirmed: false
+  result_rationale: 'Worst 档下 inverted-U 假说未被确认：按 greedy F1 bucket 分层后 ρ 没有清晰的 中间峰值（med_low=0.14,
+    med_high=0.09 都低于 easy=0.23）。 Reviewer 评论："the authors claim a task-complexity
+    boundary but the stratification data doesn''t show a clean inverted-U — the pattern
+    is noisy and inconsistent." 用独立 proxy（sentence length）分层后 pattern 更模糊。 RE 上 hard
+    bucket SJ ρ=−0.04 是直接 negative——SJ 在困难 RE 实例上是 anti-correlated。 Entity count=0
+    的高 ρ（0.52）是因为 trivially correct（无 entity 要提取）， reviewer 会说这 inflates the overall
+    ρ。
+
+    '
+  tables:
+  - table_id: T-009-1
+    caption: Stratified ρ by difficulty (SciERC NER)
+    columns:
+    - Stratum
+    - n
+    - SJ ρ
+    - Logprob ρ
+    - FK ρ
+    rows:
+    - - F1 0-25%
+      - 105
+      - 0.16
+      - 0.2
+      - 0.1
+    - - F1 25-50%
+      - 63
+      - 0.14
+      - 0.18
+      - 0.12
+    - - F1 50-75%
+      - 142
+      - 0.09
+      - 0.15
+      - 0.08
+    - - F1 75-100%
+      - 130
+      - 0.23
+      - 0.28
+      - 0.18
+    - - Sent len Q1
+      - 140
+      - 0.35
+      - 0.3
+      - 0.26
+    - - Sent len Q4
+      - 132
+      - 0.3
+      - 0.28
+      - 0.22
+  figures_description:
+  - 'Fig-009-1: Scatter — F1 bucket vs ρ，无清晰 inverted-U， 散点 noisy 且 logprob 在每个 bucket
+    都接近或超过 SJ
+
+    '
+  analysis: 'Stratification 分析在 worst 档下失败——没有产出 clean diagnostic insight。 Reviewer
+    的 major weakness："The diagnostic framework claims to identify capability boundaries
+    but the stratification evidence is weak and inconsistent. This is descriptive,
+    not prescriptive — the paper doesn''t tell practitioners anything actionable."
+    这直接对应 R17 ("diagnostic framework overclaimed")。
+
+    '
+- name: selection_curves
+  plan_id: exp-010
+  description: 'Best-of-N selection curves (N=1,2,4,8,16) 可视化为 line plots。
+
+    '
+  expected_results:
+    scierc_ner:
+      N4:
+        oracle: 0.714
+        sj: 0.607
+        logprob: 0.616
+        voting: 0.594
+      N8:
+        oracle: 0.752
+        sj: 0.604
+        logprob: 0.609
+        voting: 0.591
+      N16:
+        oracle: 0.787
+        sj: 0.606
+        logprob: 0.612
+        voting: 0.585
+      greedy: 0.618
+    scierc_re:
+      N8:
+        oracle: 0.583
+        sj: 0.368
+        logprob: 0.397
+        voting: 0.338
+      N16:
+        oracle: 0.631
+        sj: 0.372
+        logprob: 0.405
+        voting: 0.34
+      greedy: 0.374
+    conll_ner:
+      N4:
+        oracle: 0.746
+        sj: 0.714
+        logprob: 0.715
+      N8:
+        oracle: 0.757
+        sj: 0.718
+        logprob: 0.716
+      greedy: 0.725
+  result_rationale: 'Selection curves 在 worst 档下产出了最具视觉冲击力的 negative result： SciERC
+    NER 上所有 signal curves 在 greedy 虚线 BELOW——oracle curve 持续上升到 0.787 但所有实际 selection
+    停留在 0.60-0.61。N 从 4→16 增加时 oracle 持续改善但 selection 不动。 Greedy 虚线高高在上（0.618）说明不采样反而更好。
+    CoNLL 上 greedy=0.725 同样高于所有 selection（0.714-0.718），headroom 仅 3.2pp 且无法被利用。RE
+    上 logprob curve 是唯一在 greedy 之上的线（+2.3pp at N=16）， 其余 signal 全部在 greedy 以下。这幅图本身就是
+    "self-consistency doesn''t work for IE" 的最直接可视化证据。
+
+    '
+  tables: []
+  figures_description:
+  - 'Fig-010-1: 3-panel line plot (SciERC NER / SciERC RE / CoNLL NER)， 每 panel: x=N,
+    y=F1，lines=Oracle/Greedy/各signal/Random。 NER panels 中 greedy 水平虚线在所有 signal 之上。
+    RE panel 中仅 logprob 穿过 greedy。 Oracle 和 selection 间的 fan-out 是 correlation-selection
+    gap 的直接可视化。
+
+    '
+  analysis: 'Selection curves 是 paper 的 Figure 1 候选——最直观地展示了 correlation-selection
+    gap：oracle 证明 headroom 存在， 但所有 signal 在 greedy 下方说明 current signals 无法 exploit
+    它。 在 worst 档下 reviewer 的评价是："Fig 1 is interesting but the paper doesn''t offer
+    any solution — it identifies a problem and stops."
+
+    '
+- name: ner_ood_robustness
+  plan_id: exp-011
+  description: 'NER consistency signal 在 OOD 实例上的表现（SciERC fine-tuned 模型 on WNUT data）。
+
+    '
+  expected_results:
+    ood_sj_rho: 0.05
+    ood_logprob_rho: 0.15
+    ood_fk_rho: 0.03
+    ood_voting_rho: 0.06
+    ood_greedy_f1: 0.28
+    ood_sample_f1_pct_zero: 62.4
+    ood_mean_sj: 0.38
+    ood_sj_auroc: 0.52
+    ood_logprob_auroc: 0.58
+    ood_degradation_sj: -0.31
+    ood_degradation_logprob: -0.18
+  result_rationale: 'OOD 场景下所有 signal 几乎崩溃：SJ ρ=0.05（与 0 无显著差异）， logprob ρ=0.15（微弱但存在）。62.4%
+    sample F1=0 说明模型在 OOD 域上 大量 hallucinate。SJ 退化幅度（−0.31）远大于 logprob（−0.18）， 原因：OOD
+    hallucination 可以是 consistent（模型反复产出同一错误 entity set）， 导致高 SJ 但低 F1（hallucination
+    consistency）。Logprob 在 OOD 时天然偏低， 保持了弱单调关系。这在 worst 档下是 "SJ 在 OOD 上完全失效" 的证据，
+    但 paper 可能不会报告这个实验（P2 priority）。如果 reviewer 推断其存在 会进一步削弱 generalization 主张。
+
+    '
+  tables:
+  - table_id: T-011-1
+    caption: In-domain vs OOD signal quality (SciERC model → WNUT data)
+    columns:
+    - Signal
+    - In-domain ρ
+    - OOD ρ
+    - Degradation
+    rows:
+    - - Log-prob
+      - 0.33
+      - 0.15
+      - −0.18
+    - - Soft Jaccard
+      - 0.36
+      - 0.05
+      - −0.31
+    - - Voting conf
+      - 0.37
+      - 0.06
+      - −0.31
+    - - Fleiss' κ
+      - 0.27
+      - 0.03
+      - −0.24
+    - - Exact-match
+      - 0.26
+      - 0.04
+      - −0.22
+  figures_description: []
+  analysis: 'P2 实验。OOD 退化符合预期但在 worst 档下如果被 reviewer 追问 会成为致命弱点。SJ 的 hallucination
+    consistency failure mode 是 consistency-based methods 的根本局限性，但 paper 若不主动报告 反而显得在回避。
+
+    '
+- name: signal_ensemble_analysis
+  plan_id: exp-016
+  description: 'SJ+logprob 相关性分析、线性组合搜索、logistic regression 集成、 Best-of-N ensemble
+    selection。
+
+    '
+  expected_results:
+    sj_logprob_pearson_ner: 0.55
+    sj_logprob_pearson_re: 0.4
+    best_linear_ner:
+      combo: SJ+voting_conf
+      alpha: 0.35
+      rho: 0.39
+    best_linear_re:
+      combo: voting_conf+logprob
+      alpha: 0.55
+      rho: 0.33
+    ensemble_ner_auroc: 0.7
+    ensemble_re_auroc: 0.66
+    best_single_ner_auroc: 0.68
+    best_single_re_auroc: 0.64
+    ensemble_ner_delta_auroc: 0.02
+    ensemble_re_delta_auroc: 0.02
+    selection_f1_ner:
+      greedy: 0.618
+      logprob: 0.609
+      sj: 0.604
+      ensemble: 0.606
+      voting: 0.596
+      random: 0.58
+      oracle: 0.769
+    selection_f1_re:
+      logprob: 0.397
+      greedy: 0.374
+      sj: 0.368
+      ensemble: 0.375
+      voting: 0.338
+      random: 0.338
+      oracle: 0.561
+    fk_negative_weight: true
+  result_rationale: 'Ensemble 的 AUROC 提升仅 +0.02 on NER（0.70 vs best single 0.68），
+    RE 上同样 +0.02。线性组合 best ρ=0.39 仅比 best single(voting 0.37) 高 +0.02。 Worst 档的关键：ensemble
+    没有 meaningful 提升，说明各 signal 高度冗余—— 它们编码了相似的信息（SJ-logprob Pearson=0.55 证实了这一点）。
+    FK 在 logistic regression 中权重为负——surface agreement 在 structural signals 存在时是 net-negative（noisy
+    proxy 被 structural signal dominated）。 Best-of-N ensemble selection 同样 ≤ greedy
+    on NER（0.606 < 0.618）， RE 上 ensemble(0.375) ≈ greedy(0.374) but < logprob alone(0.397)。
+    Reviewer 评论："even combining all signals doesn''t help — the correlation-selection
+    gap is fundamental, not fixable by ensembling."
+
+    '
+  tables:
+  - table_id: T-016-1
+    caption: Signal ensemble analysis (SciERC)
+    columns:
+    - Metric
+    - Best Single
+    - Ensemble
+    - Δ
+    rows:
+    - - NER AUROC
+      - 0.68 (voting)
+      - 0.7
+      - '+0.02'
+    - - NER ρ
+      - 0.37 (voting)
+      - 0.39 (SJ+voting α=0.35)
+      - '+0.02'
+    - - RE AUROC
+      - 0.64 (voting)
+      - 0.66
+      - '+0.02'
+    - - RE ρ
+      - 0.30 (voting)
+      - 0.33 (voting+logprob α=0.55)
+      - '+0.03'
+  - table_id: T-016-2
+    caption: 'Best-of-N selection: ensemble vs individual'
+    columns:
+    - Signal
+    - NER F1
+    - RE F1
+    rows:
+    - - Greedy
+      - 0.618
+      - 0.374
+    - - Logprob
+      - 0.609
+      - 0.397
+    - - SJ
+      - 0.604
+      - 0.368
+    - - Ensemble
+      - 0.606
+      - 0.375
+    - - Voting
+      - 0.596
+      - 0.338
+    - - Oracle
+      - 0.769
+      - 0.561
+  figures_description:
+  - 'Fig-016-1: Heatmap — logistic regression 系数，FK 为负值（红色）， SJ 和 voting 正值接近，logprob
+    正值中等
+
+    '
+  analysis: 'Ensemble 分析回答了 Dream 2 reviewer 的问题但答案是负面的： 组合 signal 不产生 meaningful
+    improvement。这支持了 worst 档叙事： "信号间高度冗余，correlation-selection gap 不是信号不足的问题， 而是 instance-level
+    metrics 的结构性局限。" 但 reviewer 会将此解读为 "insufficient methodological contribution —
+    the paper proposes nothing new."
+
+    '
+- name: ner_llama_conll
+  plan_id: exp-017
+  description: 'LLaMA-3.1-8B 在 CoNLL-2003 上 fine-tune + inference， 扩展 cross-model
+    × cross-dataset validation matrix。
+
+    '
+  expected_results:
+    greedy_f1: 0.924
+    oracle_f1: 0.945
+    oracle_headroom: 0.021
+    n_valid: 2756
+    full:
+      SJ_rho: 0.34
+      FK_rho: 0.33
+      logprob_rho: 0.31
+      EM_rho: 0.34
+      voting_rho: 0.33
+      SJ_AUROC: 0.68
+      logprob_AUROC: 0.66
+    conditional:
+      SJ_rho: 0.35
+      logprob_rho: 0.33
+    sj_minus_logprob_rho: 0.03
+    sj_minus_logprob_auroc: 0.02
+    best_of_n:
+      greedy: 0.924
+      sj_best: 0.92
+      logprob_best: 0.921
+      voting_best: 0.919
+      oracle: 0.945
+    structural_beats_logprob: true
+  result_rationale: 'LLaMA×CoNLL 是 2×2 matrix 的最后一个 cell。SJ ρ=0.34 与 Qwen3×CoNLL(0.34)
+    完全一致——structural signal 在 CoNLL 上 model-agnostic（好消息）， 但 gap vs logprob 仅 +0.03（坏消息）。Greedy
+    F1=0.924 极高（CoNLL 对 LLaMA 很容易）， headroom 仅 0.021，best-of-N 所有 signal ≤ greedy（SJ
+    0.920 < 0.924）。 AUROC gap +0.02 在 n=2756 下虽然统计显著但 practical significance 微弱。 Worst
+    档下 reviewer 看到这个结果会说："the 2×2 matrix is commendable for rigor, but it confirms
+    that on standard NER, the structural advantage is negligible (+0.02-0.03), and
+    selection never works." LLaMA×CoNLL 加入后 cross_config_structural_gt_logprob_rate
+    升到 ~0.70（7/10 configs），但 gap median 仅 +0.03。
+
+    '
+  tables:
+  - table_id: T-017-1
+    caption: LLaMA × CoNLL-2003 NER (N=8, T=1.0, n=2756)
+    columns:
+    - Signal
+    - ρ (full)
+    - AUROC
+    - ρ (cond)
+    rows:
+    - - Soft Jaccard
+      - 0.34
+      - 0.68
+      - 0.35
+    - - Exact-match
+      - 0.34
+      - 0.7
+      - 0.36
+    - - Voting conf
+      - 0.33
+      - 0.67
+      - 0.34
+    - - Fleiss' κ
+      - 0.33
+      - 0.66
+      - 0.34
+    - - Log-prob
+      - 0.31
+      - 0.66
+      - 0.33
+  - table_id: T-017-2
+    caption: 2×2 cross-validation matrix summary (NER, SJ ρ full)
+    columns:
+    - ' '
+    - Qwen3-8B
+    - LLaMA-3.1-8B
+    rows:
+    - - SciERC
+      - 0.36
+      - 0.36
+    - - CoNLL
+      - 0.34
+      - 0.34
+  - table_id: T-017-3
+    caption: '2×2 matrix: SJ − Logprob Δρ'
+    columns:
+    - ' '
+    - Qwen3-8B
+    - LLaMA-3.1-8B
+    rows:
+    - - SciERC
+      - '+0.03'
+      - '+0.06'
+    - - CoNLL
+      - '+0.02'
+      - '+0.03'
+  figures_description:
+  - 'Fig-017-1: 2×2 heatmap — SJ ρ 值，所有 cell 在 0.34-0.36 之间， cross-model×dataset consistency
+    很高但绝对值不突出
+
+    '
+  analysis: 2×2 matrix 在 worst 档下的价值是双面的：它证明了 robustness（SJ ρ 在 0.34-0.36  跨 model/dataset
+    一致），但也证明了 mediocrity（gap vs logprob 始终仅 +0.02-0.06， 从未达到让 reviewer 说 "this is
+    meaningful" 的水平）。 Reviewer 总结："the authors show a consistent but tiny advantage
+    of structural signals, which does not justify the 8× inference cost nor constitute
+    a sufficient contribution for a main conference paper." 这直接导致 R4+R19 的 rejection
+    rationale。

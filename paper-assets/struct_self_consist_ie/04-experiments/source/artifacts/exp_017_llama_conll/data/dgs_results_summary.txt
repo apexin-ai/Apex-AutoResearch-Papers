@@ -1,0 +1,1 @@
+dataset: LLaMA-CoNLL, model: LLaMA-3.1-8B, n_total: 3453, n_used: 2756, n_degenerate: 2465 (89.4%), greedy_f1: 0.9239, dgs_f1: 0.9254, oracle_f1: 0.9451, dgs_delta_pp: +0.14, nondegen_lp_delta_pp: +1.37. Full data at autodl-5090:output/exp_017_llama_conll/dgs_results.json

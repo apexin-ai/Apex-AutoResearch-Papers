@@ -1,0 +1,166 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{wang2023selfconsistency,brown2024tts,snell2024scaling}
+\citation{wang2023selfconsistency}
+\citation{cobbe2021gsm8k,lightman2023lets}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{wang2023selfconsistency}
+\citation{cisc2025acl}
+\citation{selfcertainty2026iclr}
+\citation{reasc2026}
+\citation{atomicsc2024emnlp}
+\citation{kuhn2023semantic}
+\citation{guo2017calibration,kadavath2022language,desai2020calibration}
+\citation{uqsurvey2025acl,uqcalibsurvey2025}
+\citation{semanticprobes2024}
+\citation{manakul2023selfcheckgpt}
+\citation{cocoa2025neurips}
+\citation{nedellec2026consistency}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Test-Time Scaling and Sample Selection.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Uncertainty Quantification for LLMs.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Consistency for Structured IE.}{2}{section*.3}\protected@file@percent }
+\citation{culotta2004confidence}
+\citation{xiao2019quantifying,shelmanov2021certain,he2020towards}
+\citation{kuleshov2015calibrated,jagannatha2022calibrating}
+\citation{geifman2017selective,knowyourlimits2025tacl}
+\citation{eikema2022map}
+\citation{luan2018scierc}
+\citation{tjong2003conll}
+\citation{ding2021fewnerd}
+\citation{derczynski2017wnut}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Dataset statistics. $|E|$/inst = mean entities per instance.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:datasets}{{1}{3}{Dataset statistics. $|E|$/inst = mean entities per instance}{table.1}{}}
+\newlabel{tab:datasets@cref}{{[table][1][]1}{[1][3][]3}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Confidence in Information Extraction.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{MBR Decoding.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Methodology}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Task and Datasets}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Confidence Signals}{3}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:signals}{{3.2}{3}{Confidence Signals}{subsection.3.2}{}}
+\newlabel{sec:signals@cref}{{[subsection][2][3]3.2}{[1][3][]3}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Structural Consistency.}{3}{section*.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces NER quality estimation (Spearman $\rho $). SciERC and Few-NERD report 3-seed mean $\pm $ SD. CoNLL and WNUT are single-seed. Best $\rho $ per dataset in \textbf  {bold}.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:ner_qe}{{2}{4}{NER quality estimation (Spearman $\rho $). SciERC and Few-NERD report 3-seed mean $\pm $ SD. CoNLL and WNUT are single-seed. Best $\rho $ per dataset in \textbf {bold}}{table.2}{}}
+\newlabel{tab:ner_qe@cref}{{[table][2][]2}{[1][4][]4}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Voting Confidence (VC).}{4}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Log-Probability (LP).}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Models and Training}{4}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Inference and Evaluation}{4}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:eval}{{3.4}{4}{Inference and Evaluation}{subsection.3.4}{}}
+\newlabel{sec:eval@cref}{{[subsection][4][3]3.4}{[1][4][]4}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Quality Estimation (QE).}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Selection.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Convergence Diagnostics.}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Quality Estimation Results}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Cross-Dataset NER Quality Estimation}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces SciERC RE quality estimation (3-seed mean $\rho $). Signal rankings are unstable across seeds---no signal is consistently ranked first.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:re_qe}{{3}{5}{SciERC RE quality estimation (3-seed mean $\rho $). Signal rankings are unstable across seeds---no signal is consistently ranked first}{table.3}{}}
+\newlabel{tab:re_qe@cref}{{[table][3][]3}{[1][5][]5}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Task Complexity: NER vs.\ RE}{5}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Selection Effectiveness}{5}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}When Selection Fails: High-Convergence Regimes}{5}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}When Selection Succeeds: Preserved Output Diversity}{5}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Few-NERD (3-epoch training, rank=16).}{5}{section*.12}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Best-of-$N$ selection F1 across conditions. $\Delta $ = gap vs.\ greedy in percentage points. Statistically significant gains ($p<0.05$) in \textbf  {bold}. Standard FT = LoRA rank=16, 5 epochs (3 for Few-NERD). Mild FT = LoRA rank=8, 5 epochs.}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:selection}{{4}{6}{Best-of-$N$ selection F1 across conditions. $\Delta $ = gap vs.\ greedy in percentage points. Statistically significant gains ($p<0.05$) in \textbf {bold}. Standard FT = LoRA rank=16, 5 epochs (3 for Few-NERD). Mild FT = LoRA rank=8, 5 epochs}{table.4}{}}
+\newlabel{tab:selection@cref}{{[table][4][]4}{[1][5][]6}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Output convergence diagnostics across conditions. Degen.\ = degeneracy rate (\%). LP range = median within-instance log-probability range (nats). Selection gain = LP best-of-$N$ vs.\ greedy (pp).}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:convergence}{{5}{6}{Output convergence diagnostics across conditions. Degen.\ = degeneracy rate (\%). LP range = median within-instance log-probability range (nats). Selection gain = LP best-of-$N$ vs.\ greedy (pp)}{table.5}{}}
+\newlabel{tab:convergence@cref}{{[table][5][]5}{[1][6][]6}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{SciERC with LoRA rank=8.}{6}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Non-degenerate subset analysis.}{6}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Diagnosing Output Convergence}{6}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Instance Degeneracy}{6}{subsection.6.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Degeneracy drivers across conditions. FT intensity = combination of LoRA rank and training epochs.}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:drivers}{{6}{7}{Degeneracy drivers across conditions. FT intensity = combination of LoRA rank and training epochs}{table.6}{}}
+\newlabel{tab:drivers@cref}{{[table][6][]6}{[1][7][]7}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Log-Probability Compression}{7}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Free-form decoding ablation.}{7}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Convergence Drivers}{7}{subsection.6.3}\protected@file@percent }
+\newlabel{sec:drivers}{{6.3}{7}{Convergence Drivers}{subsection.6.3}{}}
+\newlabel{sec:drivers@cref}{{[subsection][3][6]6.3}{[1][7][]7}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}LoRA Rank Ablation: Causal Evidence}{7}{subsection.6.4}\protected@file@percent }
+\newlabel{sec:ablation}{{6.4}{7}{LoRA Rank Ablation: Causal Evidence}{subsection.6.4}{}}
+\newlabel{sec:ablation@cref}{{[subsection][4][6]6.4}{[1][7][]7}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{QE is decoupled from selection.}{7}{section*.16}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces LoRA rank ablation on SciERC NER ($N{=}8$, $T{=}1.0$, $n{=}529$). Rank=8 preserves output diversity at modest F1 cost.}}{8}{table.7}\protected@file@percent }
+\newlabel{tab:ablation}{{7}{8}{LoRA rank ablation on SciERC NER ($N{=}8$, $T{=}1.0$, $n{=}529$). Rank=8 preserves output diversity at modest F1 cost}{table.7}{}}
+\newlabel{tab:ablation@cref}{{[table][7][]7}{[1][7][]8}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces SciERC NER 3-seed QE ($\rho $, $N{=}8$, $T{=}1.0$, $n{=}529$). CV = coefficient of variation.}}{8}{table.8}\protected@file@percent }
+\newlabel{tab:seeds}{{8}{8}{SciERC NER 3-seed QE ($\rho $, $N{=}8$, $T{=}1.0$, $n{=}529$). CV = coefficient of variation}{table.8}{}}
+\newlabel{tab:seeds@cref}{{[table][8][]8}{[1][8][]8}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Trade-off quantification.}{8}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Oracle headroom expansion.}{8}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Robustness Analysis}{8}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Cross-Seed Stability}{8}{subsection.7.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Prescriptive decision matrix for multi-sample selection in structured IE.}}{9}{table.9}\protected@file@percent }
+\newlabel{tab:guidelines}{{9}{9}{Prescriptive decision matrix for multi-sample selection in structured IE}{table.9}{}}
+\newlabel{tab:guidelines@cref}{{[table][9][]9}{[1][9][]9}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Cross-Model Validation}{9}{subsection.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Prescriptive Guidelines}{9}{section.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{How to diagnose the regime.}{9}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{How to control the regime.}{9}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Signal choice.}{9}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9}Discussion}{9}{section.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reinterpreting the capability--convergence relationship.}{9}{section*.22}\protected@file@percent }
+\bibcite{wang2023selfconsistency}{{1}{2023}{{Wang et~al.}}{{}}}
+\bibcite{brown2024tts}{{2}{2024}{{Brown et~al.}}{{}}}
+\bibcite{snell2024scaling}{{3}{2024}{{Snell et~al.}}{{}}}
+\bibcite{cobbe2021gsm8k}{{4}{2021}{{Cobbe et~al.}}{{}}}
+\bibcite{lightman2023lets}{{5}{2023}{{Lightman et~al.}}{{}}}
+\bibcite{cisc2025acl}{{6}{2025}{{CISC}}{{}}}
+\@writefile{toc}{\contentsline {paragraph}{QE vs.\ selection: a fundamental decoupling.}{10}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Comparison with reasoning TTS.}{10}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{10}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {10}Conclusion}{10}{section.10}\protected@file@percent }
+\bibcite{selfcertainty2026iclr}{{7}{2026}{{Self-Certainty}}{{}}}
+\bibcite{reasc2026}{{8}{2026}{{ReASC}}{{}}}
+\bibcite{atomicsc2024emnlp}{{9}{2024}{{Atomic SC}}{{}}}
+\bibcite{kuhn2023semantic}{{10}{2023}{{Kuhn et~al.}}{{}}}
+\bibcite{guo2017calibration}{{11}{2017}{{Guo et~al.}}{{}}}
+\bibcite{kadavath2022language}{{12}{2022}{{Kadavath et~al.}}{{}}}
+\bibcite{desai2020calibration}{{13}{2020}{{Desai and Durrett}}{{}}}
+\bibcite{uqsurvey2025acl}{{14}{2025}{{UQ Survey}}{{}}}
+\bibcite{uqcalibsurvey2025}{{15}{2025}{{UQ+Calibration Survey}}{{}}}
+\bibcite{semanticprobes2024}{{16}{2024}{{Semantic Probes}}{{}}}
+\bibcite{manakul2023selfcheckgpt}{{17}{2023}{{Manakul et~al.}}{{}}}
+\bibcite{cocoa2025neurips}{{18}{2025}{{CoCoA}}{{}}}
+\bibcite{nedellec2026consistency}{{19}{2026}{{N\'{e}dellec and Xia}}{{}}}
+\bibcite{culotta2004confidence}{{20}{2004}{{Culotta and McCallum}}{{}}}
+\bibcite{xiao2019quantifying}{{21}{2019}{{Xiao and Wang}}{{}}}
+\bibcite{shelmanov2021certain}{{22}{2021}{{Shelmanov et~al.}}{{}}}
+\bibcite{he2020towards}{{23}{2020}{{He et~al.}}{{}}}
+\bibcite{kuleshov2015calibrated}{{24}{2015}{{Kuleshov and Liang}}{{}}}
+\bibcite{jagannatha2022calibrating}{{25}{2022}{{Jagannatha and Yu}}{{}}}
+\bibcite{geifman2017selective}{{26}{2017}{{Geifman and El-Yaniv}}{{}}}
+\bibcite{knowyourlimits2025tacl}{{27}{2025}{{Know Your Limits}}{{}}}
+\bibcite{eikema2022map}{{28}{2022}{{Eikema et~al.}}{{}}}
+\bibcite{luan2018scierc}{{29}{2018}{{Luan et~al.}}{{}}}
+\bibcite{tjong2003conll}{{30}{2003}{{Tjong Kim~Sang and De~Meulder}}{{}}}
+\bibcite{ding2021fewnerd}{{31}{2021}{{Ding et~al.}}{{}}}
+\bibcite{derczynski2017wnut}{{32}{2017}{{Derczynski et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Few-NERD NER QE metrics (3-seed, $N{=}8$, $T{=}1.0$, $n{=}4506$).}}{12}{table.10}\protected@file@percent }
+\newlabel{tab:fewnerd_full}{{10}{12}{Few-NERD NER QE metrics (3-seed, $N{=}8$, $T{=}1.0$, $n{=}4506$)}{table.10}{}}
+\newlabel{tab:fewnerd_full@cref}{{[table][10][]10}{[1][11][]12}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Few-NERD Detailed Results}{12}{appendix.A}\protected@file@percent }
+\newlabel{app:fewnerd}{{A}{12}{Few-NERD Detailed Results}{appendix.A}{}}
+\newlabel{app:fewnerd@cref}{{[section][1][]A}{[1][11][]12}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}SciERC RE Cross-Seed Signal Rankings}{12}{appendix.B}\protected@file@percent }
+\newlabel{app:re_seeds}{{B}{12}{SciERC RE Cross-Seed Signal Rankings}{appendix.B}{}}
+\newlabel{app:re_seeds@cref}{{[section][2][]B}{[1][11][]12}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces SciERC RE signal rankings by Spearman $\rho $ (full set, 3 seeds).}}{12}{table.11}\protected@file@percent }
+\newlabel{tab:re_rankings}{{11}{12}{SciERC RE signal rankings by Spearman $\rho $ (full set, 3 seeds)}{table.11}{}}
+\newlabel{tab:re_rankings@cref}{{[table][11][]11}{[1][11][]12}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Fisher Combined P-Values}{12}{appendix.C}\protected@file@percent }
+\newlabel{app:fisher}{{C}{12}{Fisher Combined P-Values}{appendix.C}{}}
+\newlabel{app:fisher@cref}{{[section][3][]C}{[1][12][]12}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Fisher combined $p$-values for signal comparisons (SciERC NER, 3 seeds).}}{12}{table.12}\protected@file@percent }
+\newlabel{tab:fisher}{{12}{12}{Fisher combined $p$-values for signal comparisons (SciERC NER, 3 seeds)}{table.12}{}}
+\newlabel{tab:fisher@cref}{{[table][12][]12}{[1][12][]12}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Smoke Test Results}{12}{appendix.D}\protected@file@percent }
+\newlabel{app:smoke}{{D}{12}{Smoke Test Results}{appendix.D}{}}
+\newlabel{app:smoke@cref}{{[section][4][]D}{[1][12][]12}{}{}{}}
+\gdef \@abspage@last{12}

@@ -1,0 +1,108 @@
+{
+  "ner": {
+    "soft_jaccard": {
+      "T=1.0": {
+        "full_rho": 0.3825,
+        "cond_rho": 0.3762,
+        "cond_minus_full": -0.0063,
+        "cond_n": 508
+      },
+      "T=0.7": {
+        "full_rho": 0.3875,
+        "cond_rho": 0.3868,
+        "cond_minus_full": -0.0007,
+        "cond_n": 504
+      }
+    },
+    "fleiss_kappa": {
+      "T=1.0": {
+        "full_rho": 0.259,
+        "cond_rho": 0.2352,
+        "cond_minus_full": -0.0238,
+        "cond_n": 508
+      },
+      "T=0.7": {
+        "full_rho": 0.3211,
+        "cond_rho": 0.305,
+        "cond_minus_full": -0.0161,
+        "cond_n": 504
+      }
+    },
+    "mean_logprob": {
+      "T=1.0": {
+        "full_rho": 0.1396,
+        "cond_rho": 0.1627,
+        "cond_minus_full": 0.0231,
+        "cond_n": 501
+      },
+      "T=0.7": "N/A (T=0.7 not computed)"
+    },
+    "exact_match": {
+      "T=1.0": {
+        "full_rho": 0.2941,
+        "cond_rho": "N/A"
+      },
+      "T=0.7": "N/A (T=0.7 not computed)"
+    },
+    "voting_conf": {
+      "T=1.0": {
+        "full_rho": 0.3915,
+        "cond_rho": "N/A"
+      },
+      "T=0.7": "N/A (T=0.7 not computed)"
+    }
+  },
+  "re": {
+    "soft_jaccard": {
+      "T=1.0": {
+        "full_rho": 0.2441,
+        "cond_rho": 0.3161,
+        "cond_minus_full": 0.072,
+        "cond_n": 313
+      },
+      "T=0.7": {
+        "full_rho": 0.2343,
+        "cond_rho": 0.3716,
+        "cond_minus_full": 0.1373,
+        "cond_n": 301
+      }
+    },
+    "fleiss_kappa": {
+      "T=1.0": {
+        "full_rho": 0.2782,
+        "cond_rho": 0.3067,
+        "cond_minus_full": 0.0285,
+        "cond_n": 313
+      },
+      "T=0.7": {
+        "full_rho": 0.1835,
+        "cond_rho": 0.2533,
+        "cond_minus_full": 0.0698,
+        "cond_n": 301
+      }
+    },
+    "mean_logprob": {
+      "T=1.0": {
+        "full_rho": 0.2467,
+        "cond_rho": 0.1457,
+        "cond_minus_full": -0.101,
+        "cond_n": 296
+      },
+      "T=0.7": "N/A (T=0.7 not computed)"
+    },
+    "exact_match": {
+      "T=1.0": {
+        "full_rho": 0.1562,
+        "cond_rho": "N/A"
+      },
+      "T=0.7": "N/A (T=0.7 not computed)"
+    },
+    "voting_conf": {
+      "T=1.0": {
+        "full_rho": 0.3403,
+        "cond_rho": "N/A"
+      },
+      "T=0.7": "N/A (T=0.7 not computed)"
+    }
+  }
+}

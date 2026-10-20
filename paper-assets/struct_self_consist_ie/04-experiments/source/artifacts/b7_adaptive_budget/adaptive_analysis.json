@@ -1,0 +1,305 @@
+{
+  "experiment": "B7_adaptive_sampling_budget",
+  "description": "Compare uniform N=8 vs adaptive allocation based on greedy LP confidence",
+  "method": "Split instances by median greedy mean_logprob; high-conf uses fewer samples, low-conf uses N=8. Entity construction via majority vote (threshold=0.5).",
+  "datasets": {
+    "fewnerd_qwen3_8b": {
+      "n_instances": 37648,
+      "greedy_lp_stats": {
+        "mean": -0.010619,
+        "median": -0.007885,
+        "std": 0.010186,
+        "min": -0.141604,
+        "max": -4.1e-05
+      },
+      "n_high_conf": 18824,
+      "n_low_conf": 18824,
+      "strategies": {
+        "greedy": {
+          "micro_p": 78.66,
+          "micro_r": 79.02,
+          "micro_f1": 78.84,
+          "macro_f1": 77.17,
+          "macro_f1_high": 89.55,
+          "macro_f1_low": 64.79,
+          "total_samples": 37648,
+          "pct_of_uniform8": 12.5,
+          "f1_delta_vs_u8": 0.65
+        },
+        "uniform_n2": {
+          "micro_p": 66.44,
+          "micro_r": 79.61,
+          "micro_f1": 72.43,
+          "macro_f1": 72.8,
+          "macro_f1_high": 85.76,
+          "macro_f1_low": 59.83,
+          "total_samples": 75296,
+          "pct_of_uniform8": 25.0,
+          "f1_delta_vs_u8": -5.76
+        },
+        "uniform_n4": {
+          "micro_p": 77.13,
+          "micro_r": 76.99,
+          "micro_f1": 77.06,
+          "macro_f1": 75.22,
+          "macro_f1_high": 88.42,
+          "macro_f1_low": 62.02,
+          "total_samples": 150592,
+          "pct_of_uniform8": 50.0,
+          "f1_delta_vs_u8": -1.13
+        },
+        "uniform_n8": {
+          "micro_p": 80.99,
+          "micro_r": 75.58,
+          "micro_f1": 78.19,
+          "macro_f1": 75.47,
+          "macro_f1_high": 89.07,
+          "macro_f1_low": 61.87,
+          "total_samples": 301184,
+          "pct_of_uniform8": 100.0,
+          "f1_delta_vs_u8": 0.0
+        },
+        "adaptive_h1_l8": {
+          "micro_p": 81.01,
+          "micro_r": 76.11,
+          "micro_f1": 78.49,
+          "macro_f1": 75.71,
+          "macro_f1_high": 89.55,
+          "macro_f1_low": 61.87,
+          "total_samples": 169416,
+          "pct_of_uniform8": 56.2,
+          "f1_delta_vs_u8": 0.3
+        },
+        "adaptive_h2_l8": {
+          "micro_p": 76.19,
+          "micro_r": 75.81,
+          "micro_f1": 76.0,
+          "macro_f1": 73.82,
+          "macro_f1_high": 85.76,
+          "macro_f1_low": 61.87,
+          "total_samples": 188240,
+          "pct_of_uniform8": 62.5,
+          "f1_delta_vs_u8": -2.19
+        },
+        "adaptive_h3_l8": {
+          "micro_p": 80.81,
+          "micro_r": 73.73,
+          "micro_f1": 77.11,
+          "macro_f1": 74.29,
+          "macro_f1_high": 86.71,
+          "macro_f1_low": 61.87,
+          "total_samples": 207064,
+          "pct_of_uniform8": 68.8,
+          "f1_delta_vs_u8": -1.08
+        },
+        "adaptive_h4_l8": {
+          "micro_p": 80.17,
+          "micro_r": 75.58,
+          "micro_f1": 77.81,
+          "macro_f1": 75.14,
+          "macro_f1_high": 88.42,
+          "macro_f1_low": 61.87,
+          "total_samples": 225888,
+          "pct_of_uniform8": 75.0,
+          "f1_delta_vs_u8": -0.38
+        }
+      },
+      "percentile_sweep": {
+        "top25pct_h2l8": {
+          "high_pct": 25,
+          "n_high": 9412,
+          "n_low": 28236,
+          "micro_f1": 77.64,
+          "f1_delta": -0.55,
+          "total_samples": 244712,
+          "savings_pct": 18.8
+        },
+        "top33pct_h2l8": {
+          "high_pct": 33,
+          "n_high": 12424,
+          "n_low": 25224,
+          "micro_f1": 77.18,
+          "f1_delta": -1.01,
+          "total_samples": 226640,
+          "savings_pct": 24.8
+        },
+        "top50pct_h2l8": {
+          "high_pct": 50,
+          "n_high": 18824,
+          "n_low": 18824,
+          "micro_f1": 76.0,
+          "f1_delta": -2.19,
+          "total_samples": 188240,
+          "savings_pct": 37.5
+        },
+        "top67pct_h2l8": {
+          "high_pct": 67,
+          "n_high": 25224,
+          "n_low": 12424,
+          "micro_f1": 74.75,
+          "f1_delta": -3.44,
+          "total_samples": 149888,
+          "savings_pct": 50.2
+        },
+        "top75pct_h2l8": {
+          "high_pct": 75,
+          "n_high": 28236,
+          "n_low": 9412,
+          "micro_f1": 74.16,
+          "f1_delta": -4.03,
+          "total_samples": 131768,
+          "savings_pct": 56.2
+        }
+      }
+    },
+    "scierc_qwen3_8b": {
+      "n_instances": 551,
+      "greedy_lp_stats": {
+        "mean": -0.012403,
+        "median": -0.010277,
+        "std": 0.008765,
+        "min": -0.051774,
+        "max": -1e-06
+      },
+      "n_high_conf": 276,
+      "n_low_conf": 275,
+      "strategies": {
+        "greedy": {
+          "micro_p": 65.5,
+          "micro_r": 66.35,
+          "micro_f1": 65.92,
+          "macro_f1": 64.81,
+          "macro_f1_high": 69.5,
+          "macro_f1_low": 60.11,
+          "total_samples": 551,
+          "pct_of_uniform8": 12.5,
+          "f1_delta_vs_u8": -1.2
+        },
+        "uniform_n2": {
+          "micro_p": 62.84,
+          "micro_r": 70.45,
+          "micro_f1": 66.42,
+          "macro_f1": 65.99,
+          "macro_f1_high": 70.02,
+          "macro_f1_low": 61.95,
+          "total_samples": 1102,
+          "pct_of_uniform8": 25.0,
+          "f1_delta_vs_u8": -0.7
+        },
+        "uniform_n4": {
+          "micro_p": 64.76,
+          "micro_r": 68.61,
+          "micro_f1": 66.63,
+          "macro_f1": 66.11,
+          "macro_f1_high": 70.32,
+          "macro_f1_low": 61.87,
+          "total_samples": 2204,
+          "pct_of_uniform8": 50.0,
+          "f1_delta_vs_u8": -0.49
+        },
+        "uniform_n8": {
+          "micro_p": 66.3,
+          "micro_r": 67.95,
+          "micro_f1": 67.12,
+          "macro_f1": 66.02,
+          "macro_f1_high": 70.2,
+          "macro_f1_low": 61.82,
+          "total_samples": 4408,
+          "pct_of_uniform8": 100.0,
+          "f1_delta_vs_u8": 0.0
+        },
+        "adaptive_h1_l8": {
+          "micro_p": 66.16,
+          "micro_r": 67.3,
+          "micro_f1": 66.73,
+          "macro_f1": 65.67,
+          "macro_f1_high": 69.5,
+          "macro_f1_low": 61.82,
+          "total_samples": 2476,
+          "pct_of_uniform8": 56.2,
+          "f1_delta_vs_u8": -0.39
+        },
+        "adaptive_h2_l8": {
+          "micro_p": 65.35,
+          "micro_r": 68.72,
+          "micro_f1": 66.99,
+          "macro_f1": 65.93,
+          "macro_f1_high": 70.02,
+          "macro_f1_low": 61.82,
+          "total_samples": 2752,
+          "pct_of_uniform8": 62.4,
+          "f1_delta_vs_u8": -0.13
+        },
+        "adaptive_h3_l8": {
+          "micro_p": 66.39,
+          "micro_r": 67.18,
+          "micro_f1": 66.78,
+          "macro_f1": 65.8,
+          "macro_f1_high": 69.76,
+          "macro_f1_low": 61.82,
+          "total_samples": 3028,
+          "pct_of_uniform8": 68.7,
+          "f1_delta_vs_u8": -0.34
+        },
+        "adaptive_h4_l8": {
+          "micro_p": 66.11,
+          "micro_r": 68.19,
+          "micro_f1": 67.13,
+          "macro_f1": 66.08,
+          "macro_f1_high": 70.32,
+          "macro_f1_low": 61.82,
+          "total_samples": 3304,
+          "pct_of_uniform8": 75.0,
+          "f1_delta_vs_u8": 0.01
+        }
+      },
+      "percentile_sweep": {
+        "top25pct_h2l8": {
+          "high_pct": 25,
+          "n_high": 138,
+          "n_low": 413,
+          "micro_f1": 67.13,
+          "f1_delta": 0.01,
+          "total_samples": 3580,
+          "savings_pct": 18.8
+        },
+        "top33pct_h2l8": {
+          "high_pct": 33,
+          "n_high": 182,
+          "n_low": 369,
+          "micro_f1": 67.15,
+          "f1_delta": 0.03,
+          "total_samples": 3316,
+          "savings_pct": 24.8
+        },
+        "top50pct_h2l8": {
+          "high_pct": 50,
+          "n_high": 276,
+          "n_low": 275,
+          "micro_f1": 66.99,
+          "f1_delta": -0.13,
+          "total_samples": 2752,
+          "savings_pct": 37.6
+        },
+        "top67pct_h2l8": {
+          "high_pct": 67,
+          "n_high": 369,
+          "n_low": 182,
+          "micro_f1": 67.07,
+          "f1_delta": -0.05,
+          "total_samples": 2194,
+          "savings_pct": 50.2
+        },
+        "top75pct_h2l8": {
+          "high_pct": 75,
+          "n_high": 413,
+          "n_low": 138,
+          "micro_f1": 66.97,
+          "f1_delta": -0.15,
+          "total_samples": 1930,
+          "savings_pct": 56.2
+        }
+      }
+    }
+  }
+}

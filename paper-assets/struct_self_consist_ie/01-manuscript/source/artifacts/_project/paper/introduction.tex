@@ -1,0 +1,60 @@
+\section{Introduction}\label{sec:introduction}
+
+Self-consistency---sampling multiple outputs and aggregating them---has become a powerful strategy for improving language model reasoning.
+On discrete-answer tasks such as arithmetic and commonsense QA, majority voting over chain-of-thought samples yields large gains: +18 percentage points on GSM8K \cite{wang2023selfconsistency}.
+More broadly, test-time compute scaling through repeated sampling and selection has emerged as a complementary axis to model scaling, offering substantial quality improvements at inference time \cite{snell2024scaling, brown2024monkeys}.
+These results rest on a shared assumption: that among $N$ stochastic samples, a selection mechanism can identify better outputs.
+For tasks with a single correct answer, this assumption holds naturally---the majority vote is the selector.
+But information extraction (IE) poses a fundamentally different challenge.
+The output is not a single token or number; it is a \textit{set} of entities or relations with internal dependencies, where two samples may extract overlapping but non-identical structures.
+There is no obvious majority to vote on, partial agreement is the norm rather than the exception, and the space of valid outputs is combinatorially large.
+Can self-consistency still provide useful signal in this structured setting?
+
+Prior work on confidence estimation for LLM-based IE has conflated two distinct objectives.
+\textit{Quality estimation} asks which inputs the model handles reliably---a ranking over instances.
+\textit{Sample selection} asks which of $N$ candidate outputs is best for a given input---a ranking over samples.
+These require fundamentally different signal properties: the former benefits from instance-level aggregation across all $N$ samples, while the latter demands per-sample discrimination.
+Existing evaluations rarely separate the two.
+Self-consistency methods designed for discrete answers \cite{wang2023selfconsistency, chen2024usc} assume outputs can be grouped by equivalence and counted, an assumption that breaks when outputs are entity sets with partial overlap.
+Weighted variants that incorporate model confidence \cite{taubenfeld2025cisc, kang2025selfcertainty} have shown promise for best-of-$N$ selection on reasoning tasks, but their applicability to structured prediction remains untested.
+The most directly relevant study, \citet{nedellec2026consistency}, examines consistency--accuracy correlations for LLM-based entity and relation extraction but relies on surface-level matching, a limitation the authors themselves acknowledge: their approach ``overlooks semantically consistent outputs'' that differ only in surface form.
+No existing work systematically compares confidence signals across the structural, surface, and model-internal families for generative IE, nor disentangles quality estimation from sample selection in this setting.
+
+Our central finding is that consistency-based signals are effective instance-level quality estimators but poor sample selectors for structured IE.
+Consistency signals aggregate over $N$ samples to produce a single score per input, making them well-suited to predict input difficulty---instances where the model consistently extracts similar structures are indeed easier.
+Entity voting confidence, our best structural signal, achieves Spearman $\rho{=}0.38$ on SciERC NER---a moderate correlation---while Exact Match achieves the highest AUROC (0.75), revealing that ranking and binary discrimination favor different signal families.
+Yet this correlation does not translate into selection gains: on NER best-of-$N$, no signal surpasses greedy decoding despite 16 percentage points of oracle headroom.
+We term this the \textbf{correlation-selection gap} (Figure~\ref{fig:overview}).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_correlation_selection_gap}
+\caption{The correlation-selection gap in structured IE. Confidence signals achieve moderate rank correlation with instance-level quality ($\rho$ up to 0.38) but fail to improve best-of-$N$ selection over greedy decoding. The gap arises because instance-level signals predict input difficulty, not output quality among candidates.}
+\label{fig:overview}
+\end{figure}
+
+The gap arises because instance-level signals cannot discriminate among $N$ candidates that share similar consistency profiles---they predict \textit{which inputs} are hard, not \textit{which output} is best.
+Only log-probability, the sole per-sample signal in our comparison, achieves selection gains, and only on relation extraction (+2.3~pp over greedy), where per-sample variance is higher.
+We systematically evaluate five confidence signals from three families---structural (entity voting, Soft Jaccard), surface (exact match, Fleiss' $\kappa$), and model-internal (log-probability)---across NER and RE on SciERC \cite{luan2018scierc}, CoNLL-2003 \cite{tjongkimsang2003conll}, and WNUT-17 \cite{derczynski2017wnut}, using Qwen3-8B and LLaMA-3.1-8B.
+
+Our contributions are as follows:
+\begin{enumerate}
+    \item \textbf{First systematic comparison of confidence signals for generative IE.}
+    We evaluate five signals from three families on quality estimation for NER and RE.
+    Structural signals lead rank correlation on complex schemas (Voting $\rho{=}0.38$, SJ $\rho{=}0.36$ on SciERC) while surface signals dominate on simpler tasks (EM $\rho{=}0.45$ on CoNLL); AUROC rankings diverge, with Exact Match achieving the highest binary discrimination (0.75) even on hard tasks.
+
+    \item \textbf{Identification of the correlation-selection gap.}
+    We demonstrate a fundamental disconnect between quality estimation and sample selection in structured IE.
+    Despite moderate instance-level correlations ($\rho$ up to 0.38), no consistency signal improves NER best-of-$N$ over greedy decoding; only log-probability helps on RE (+2.3~pp).
+    This gap reflects the instance-level nature of consistency signals, which predict input difficulty rather than discriminating among individual samples.
+
+    \item \textbf{Task-complexity boundary conditions.}
+    Signal rankings depend on task difficulty: exact match leads on easy tasks (CoNLL), Soft Jaccard dominates on hard tasks (SciERC), and all signals converge when model capability is insufficient (WNUT-17, where 54\% of instances receive zero F1).
+    This establishes practical guidance for signal selection based on expected task difficulty.
+\end{enumerate}
+
+The remainder of this paper is organized as follows.
+\S\ref{sec:method} formalizes the problem and defines the five confidence signals.
+\S\ref{sec:experiments} presents quality estimation results, the correlation-selection gap analysis, and robustness evaluations.
+\S\ref{sec:related} situates our work in the broader landscape.
+\S\ref{sec:discussion} derives practical recommendations, and \S\ref{sec:conclusion} concludes with open directions.

@@ -1,0 +1,69 @@
+{
+  "description": "Within-instance Spearman rho(LP, F1) and corrected degeneracy (Constant F1, gold-filtered)",
+  "degeneracy_definition": "Constant F1 gold-filtered: an instance is degenerate if all N=8 samples produce the same entity-level strict-match F1 score, only counting instances with non-empty gold entities",
+  "previous_definition_was": "KeySet exact match (all samples have identical frozenset of (text, type) pairs)",
+  "data": {
+    "T=0.5": {
+      "degeneracy": {
+        "rate": 0.4026,
+        "count": 213,
+        "gold_filtered_total": 529
+      },
+      "within_instance_rho": {
+        "mean": 0.1306,
+        "median": 0.2182,
+        "std": 0.5422,
+        "valid_count": 316,
+        "valid_fraction": 0.5974
+      }
+    },
+    "T=0.8": {
+      "degeneracy": {
+        "rate": 0.2722,
+        "count": 144,
+        "gold_filtered_total": 529
+      },
+      "within_instance_rho": {
+        "mean": 0.1701,
+        "median": 0.2635,
+        "std": 0.4951,
+        "valid_count": 385,
+        "valid_fraction": 0.7278
+      }
+    },
+    "T=1.0": {
+      "degeneracy": {
+        "rate": 0.1758,
+        "count": 93,
+        "gold_filtered_total": 529
+      },
+      "within_instance_rho": {
+        "mean": 0.1449,
+        "median": 0.2474,
+        "std": 0.5000,
+        "valid_count": 436,
+        "valid_fraction": 0.8242
+      }
+    },
+    "T=1.2": {
+      "degeneracy": {
+        "rate": 0.1248,
+        "count": 66,
+        "gold_filtered_total": 529
+      },
+      "within_instance_rho": {
+        "mean": 0.2245,
+        "median": 0.3152,
+        "std": 0.4554,
+        "valid_count": 463,
+        "valid_fraction": 0.8752
+      }
+    }
+  },
+  "comparison_old_vs_new_degeneracy": {
+    "T=0.5": {"old_keyset": 0.3285, "new_constant_f1": 0.4026, "delta": 0.0741},
+    "T=0.8": {"old_keyset": 0.1960, "new_constant_f1": 0.2722, "delta": 0.0762},
+    "T=1.0": {"old_keyset": 0.1270, "new_constant_f1": 0.1758, "delta": 0.0488},
+    "T=1.2": {"old_keyset": 0.0799, "new_constant_f1": 0.1248, "delta": 0.0449}
+  }
+}

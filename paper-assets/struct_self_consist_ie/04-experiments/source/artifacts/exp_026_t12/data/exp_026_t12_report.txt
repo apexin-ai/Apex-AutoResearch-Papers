@@ -1,0 +1,1 @@
+T=1.2 SciERC NER ablation results: greedy_f1=0.6615, oracle_f1=0.7914, oracle_headroom=0.1299, fleiss_kappa=0.3559, soft_jaccard=0.6451, rho(kappa,F1)=0.3377, rho(SJ,F1)=0.3771, rho_cond(kappa)=0.2668, rho_cond(SJ)=0.3551, logprob_rho=0.1963, logprob_auroc=0.5720, verdict=MARGINAL. Remote: autodl-5090:/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t12/

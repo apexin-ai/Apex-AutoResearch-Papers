@@ -1,0 +1,68 @@
+\section{Related Work}\label{sec:related}
+
+Our work connects three research threads: self-consistency and test-time scaling methods developed for reasoning tasks, confidence estimation for structured information extraction, and broader uncertainty quantification for language models.
+
+\subsection{Self-Consistency and Test-Time Scaling}
+
+\paragraph{Self-consistency for discrete and free-form tasks.}
+Self-consistency decoding \cite{wang2023selfconsistency} improves chain-of-thought reasoning by sampling multiple rationales and selecting the most frequent answer via majority vote.
+This paradigm assumes a discrete answer space where outputs can be grouped by equivalence and counted---an assumption that holds for arithmetic, commonsense QA, and similar tasks but breaks for set-valued structured outputs.
+\citet{chen2024usc} extend self-consistency to free-form text generation by replacing exact matching with LLM-based semantic comparison, while SelfCheckGPT \cite{manakul2023selfcheckgpt} leverages cross-sample consistency to detect hallucinations in open-ended generation.
+\citet{thirukovalluru2024atomic} decompose long-form outputs into atomic sub-claims and measure per-claim consistency, moving beyond whole-output comparison.
+These methods operate on text-level equivalence or entailment; our work instead compares \textit{structured sets} of entities and relations, requiring set-theoretic similarity measures that account for partial overlap, type constraints, and span-level matching.
+
+\paragraph{Test-time scaling and sample selection.}
+A growing body of work studies how to allocate additional compute at inference time.
+\citet{snell2024scaling} characterize the scaling laws governing test-time compute, showing that repeated sampling with effective selection can substitute for model scaling.
+\citet{brown2024monkeys} demonstrate that best-of-$N$ sampling with large $N$ yields substantial gains across diverse tasks.
+Several recent methods aim to improve selection without trained reward models.
+CISC \cite{taubenfeld2025cisc} combines confidence scores with majority voting, weighting each sample's contribution to the consensus.
+Self-Certainty \cite{kang2025selfcertainty} uses KL divergence between a sample's token distribution and the prior to select high-quality outputs, demonstrating that reward-free selection is viable for mathematical reasoning.
+ReASC \cite{kim2026reasc} adaptively adjusts the number of samples based on estimated difficulty, while \citet{wang2025rankedvoting} replace plurality voting with ranked aggregation, and \citet{oh2025latentsc} perform consistency estimation in latent space rather than output space.
+
+All of these methods target reasoning and QA tasks with discrete or near-discrete answer spaces.
+Our work is, to our knowledge, the first to extend self-consistency to set-valued structured outputs in IE, and the first to identify the correlation-selection gap: strong quality estimation ($\rho{=}0.50$) coexists with selection failure (no gain over greedy on NER).
+In direct dialogue with \citet{kang2025selfcertainty}, who show that reward-free selection succeeds for reasoning, our results demonstrate that this success does not transfer to structured extraction, where the combinatorial output space and instance-level nature of consistency signals preclude effective per-sample discrimination.
+
+\subsection{Consistency and Confidence for Structured IE}
+
+The most directly relevant prior work is \citet{nedellec2026consistency}, who study consistency--accuracy correlations in hard-prompted LLMs for NER and relation extraction on plant-health data.
+Their findings corroborate our quality-estimation results: higher inter-sample consistency predicts higher extraction accuracy.
+However, three key limitations motivate our work.
+First, they rely on surface-level string matching and explicitly acknowledge that their approach ``overlooks semantically consistent outputs''---precisely the gap our Soft Jaccard signal addresses through type-aware bipartite matching with span overlap.
+Second, they do not study best-of-$N$ selection, leaving the quality-estimation-to-selection transfer question unexamined.
+Third, their evaluation covers a single domain with hard-prompted (temperature-zero) generation and no comparison across signal families.
+Our work extends their analysis to multi-domain benchmarks, temperature-based sampling, and a systematic five-signal comparison that reveals when structural signals outperform surface alternatives and vice versa.
+
+CoCoA \cite{vashurin2025cocoa} proposes a minimum Bayes risk framework that fuses model confidence with inter-sample consistency for uncertainty quantification on QA, summarization, and translation.
+Their confidence-consistency ensemble parallels our analysis of signal combinations, but they do not address structured extraction, where the unit of comparison shifts from text sequences to entity and relation sets.
+
+Our evaluation setting---LLMs performing IE as a generation task---builds on a line of work establishing generative approaches to entity and relation extraction.
+UniNER \cite{zhou2024uniner} and GoLLIE \cite{sainz2024gollie} train universal IE models via instruction tuning; \citet{wadhwa2023revisiting} and InstructUIE \cite{wang2023instructuie} demonstrate that instruction-following LLMs can perform extraction zero-shot or with minimal supervision; GenIE \cite{josifoski2022genie} and CodeIE \cite{li2023codeie} frame IE as constrained sequence generation.
+We adopt constrained decoding \cite{willard2023guided} following this paradigm and study confidence estimation as an orthogonal dimension: given that LLMs generate structured outputs, how reliably can we estimate extraction quality from multiple samples?
+
+\subsection{Uncertainty Estimation and Calibration}
+
+\paragraph{Confidence and uncertainty for LLMs.}
+Several surveys chart the landscape of confidence estimation \cite{geng2024confidence}, selective abstention \cite{wen2025know}, uncertainty quantification \cite{xia2025survey}, and their intersection with calibration \cite{hobelsberger2025systematic}.
+Our work bridges confidence estimation and selective prediction: we use confidence signals not only to rank instances by reliability but also to attempt best-of-$N$ selection, revealing that these two objectives impose different requirements on the underlying signal.
+
+Semantic uncertainty \cite{kuhn2023semantic} clusters generations by meaning rather than surface form and estimates uncertainty from cluster statistics.
+\citet{kossen2024semantic} distill semantic entropy into lightweight probes, and P(True) \cite{kadavath2022language} directly queries the model for its confidence.
+These approaches measure uncertainty over the model's belief distribution; our structural signals instead measure agreement over output \textit{structure}, comparing extracted entity sets rather than semantic content of free-form text.
+
+\paragraph{Calibration and ensembles.}
+Modern neural networks are often miscalibrated \cite{guo2017calibration}, and calibration techniques for pre-trained language models \cite{desai2020calibration} aim to align predicted probabilities with empirical accuracy.
+Our reliability diagrams assess whether confidence signals are calibrated for IE, extending calibration analysis beyond classification to structured prediction.
+Deep ensembles \cite{lakshminarayanan2017ensembles} and MC-dropout \cite{gal2016dropout} obtain uncertainty from model variation, requiring multiple forward passes through different model parameters.
+Our multi-sample approach is conceptually related---we also use variation across stochastic outputs---but requires no model modification or access to internal parameters beyond token log-probabilities, operating entirely post-hoc on generated outputs.
+
+\paragraph{Uncertainty for token-level and span-level NER.}
+Prior work on NER uncertainty operates within discriminative, pre-LLM paradigms: \citet{xiao2019uncertainty} study Bayesian inference for sequence labeling, \citet{shelmanov2021active} leverage uncertainty for active learning in NER, and \citet{zhang2023ener} estimate entity-level uncertainty from span probabilities.
+These methods assume access to per-token classification logits from a discriminative model.
+In the generative LLM setting we study, entity boundaries are implicit in the decoded text and uncertainty must be estimated from the generation process itself.
+
+\paragraph{Related paradigms.}
+Conformal prediction \cite{fisch2021conformal, angelopoulos2021conformal} provides distribution-free coverage guarantees but targets prediction sets rather than quality ranking.
+Trained verifiers \cite{cobbe2021verifiers, lightman2024verify} and reward models \cite{wang2024mathshepherd} learn to score outputs from labeled data; we focus on unsupervised signals that require no additional training.
+Selective prediction \cite{geifman2017selective} and confidence-based IE filtering \cite{culotta2004confidence} establish the broader framework of abstaining when uncertain; our contribution is characterizing which confidence signals support this objective for generative IE and where the quality-estimation-to-selection transfer breaks down.

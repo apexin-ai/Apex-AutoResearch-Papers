@@ -1,0 +1,1 @@
+Remote path: /root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/analysis.json

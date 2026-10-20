@@ -1,0 +1,285 @@
+{
+  "metadata": {
+    "pipeline": "unified_gold_filtered",
+    "date": "2026-05-15",
+    "fk_empty_fix": true,
+    "gold_filter": "exclude instances where len(gold.entities)==0",
+    "conll_n_valid": 2756,
+    "scierc_n_valid": 529
+  },
+  "results": {
+    "llama_conll_n16_seed42": {
+      "n_instances": 2756,
+      "n_total": 3453,
+      "n_gold_empty": 697,
+      "VC": 0.4746,
+      "SJ": 0.4836,
+      "FK": 0.4752,
+      "EM": 0.4818,
+      "LP": 0.3136,
+      "auroc_VC": 0.7529,
+      "auroc_SJ": 0.7496,
+      "auroc_FK": 0.7467,
+      "auroc_EM": 0.7508,
+      "auroc_LP": 0.7661
+    },
+    "llama_conll_n16_seed123": {
+      "n_instances": 2756,
+      "n_total": 3453,
+      "n_gold_empty": 697,
+      "VC": 0.4633,
+      "SJ": 0.4662,
+      "FK": 0.4573,
+      "EM": 0.4632,
+      "LP": 0.308,
+      "auroc_VC": 0.7444,
+      "auroc_SJ": 0.7391,
+      "auroc_FK": 0.7358,
+      "auroc_EM": 0.7395,
+      "auroc_LP": 0.7611
+    },
+    "llama_conll_n16_seed456": {
+      "n_instances": 2756,
+      "n_total": 3453,
+      "n_gold_empty": 697,
+      "VC": 0.4722,
+      "SJ": 0.4734,
+      "FK": 0.469,
+      "EM": 0.4752,
+      "LP": 0.3099,
+      "auroc_VC": 0.7495,
+      "auroc_SJ": 0.7428,
+      "auroc_FK": 0.7408,
+      "auroc_EM": 0.7444,
+      "auroc_LP": 0.7628
+    },
+    "qwen_scierc_n16_seed42": {
+      "n_instances": 529,
+      "n_total": 551,
+      "n_gold_empty": 22,
+      "VC": 0.3993,
+      "SJ": 0.3984,
+      "FK": 0.2876,
+      "EM": 0.3386,
+      "LP": 0.2373,
+      "auroc_VC": 0.7085,
+      "auroc_SJ": 0.7205,
+      "auroc_FK": 0.6348,
+      "auroc_EM": 0.7837,
+      "auroc_LP": 0.6096,
+      "re_n_valid": 397,
+      "re_FK": 0.2808,
+      "re_SJ": 0.2766
+    },
+    "qwen_scierc_n16_seed123": {
+      "n_instances": 529,
+      "n_total": 551,
+      "n_gold_empty": 22,
+      "VC": 0.3835,
+      "SJ": 0.4234,
+      "FK": 0.2899,
+      "EM": 0.3437,
+      "LP": 0.2391,
+      "auroc_VC": 0.7024,
+      "auroc_SJ": 0.7352,
+      "auroc_FK": 0.6292,
+      "auroc_EM": 0.7878,
+      "auroc_LP": 0.6045,
+      "re_n_valid": 397,
+      "re_FK": 0.3154,
+      "re_SJ": 0.2672
+    },
+    "qwen_scierc_n16_seed456": {
+      "n_instances": 529,
+      "n_total": 551,
+      "n_gold_empty": 22,
+      "VC": 0.4449,
+      "SJ": 0.4098,
+      "FK": 0.2723,
+      "EM": 0.3363,
+      "LP": 0.2415,
+      "auroc_VC": 0.7392,
+      "auroc_SJ": 0.7367,
+      "auroc_FK": 0.6157,
+      "auroc_EM": 0.7848,
+      "auroc_LP": 0.6054,
+      "re_n_valid": 397,
+      "re_FK": 0.2929,
+      "re_SJ": 0.2835
+    },
+    "llama_conll_n8_seed42": {
+      "n_instances": 2756,
+      "n_total": 3453,
+      "n_gold_empty": 697,
+      "VC": 0.4256,
+      "SJ": 0.4314,
+      "FK": 0.4277,
+      "EM": 0.4306,
+      "LP": 0.3072,
+      "auroc_VC": 0.7088,
+      "auroc_SJ": 0.7039,
+      "auroc_FK": 0.7026,
+      "auroc_EM": 0.7046,
+      "auroc_LP": 0.761
+    },
+    "qwen_conll_n8_seed42": {
+      "n_instances": 2756,
+      "n_total": 3453,
+      "n_gold_empty": 697,
+      "VC": 0.4237,
+      "SJ": 0.4357,
+      "FK": 0.3998,
+      "EM": 0.4507,
+      "LP": 0.3157,
+      "auroc_VC": 0.7889,
+      "auroc_SJ": 0.8008,
+      "auroc_FK": 0.7741,
+      "auroc_EM": 0.8156,
+      "auroc_LP": 0.7532
+    },
+    "llama_scierc_n8_seed42": {
+      "n_instances": 529,
+      "n_total": 551,
+      "n_gold_empty": 22,
+      "VC": 0.4331,
+      "SJ": 0.363,
+      "FK": 0.3266,
+      "EM": 0.3152,
+      "LP": 0.1827,
+      "auroc_VC": 0.7283,
+      "auroc_SJ": 0.7099,
+      "auroc_FK": 0.6648,
+      "auroc_EM": 0.7658,
+      "auroc_LP": 0.5569
+    }
+  },
+  "sanity_check_vs_rho_audit": {
+    "llama_conll_n16_seed42.FK": {
+      "expected": 0.4752,
+      "got": 0.4752,
+      "match": true
+    },
+    "llama_conll_n16_seed42.SJ": {
+      "expected": 0.4836,
+      "got": 0.4836,
+      "match": true
+    },
+    "llama_conll_n16_seed42.VC": {
+      "expected": 0.4746,
+      "got": 0.4746,
+      "match": true
+    },
+    "llama_conll_n16_seed42.EM": {
+      "expected": 0.4818,
+      "got": 0.4818,
+      "match": true
+    },
+    "llama_conll_n16_seed42.LP": {
+      "expected": 0.3136,
+      "got": 0.3136,
+      "match": true
+    },
+    "llama_conll_n16_seed456.FK": {
+      "expected": 0.469,
+      "got": 0.469,
+      "match": true
+    },
+    "llama_conll_n16_seed456.SJ": {
+      "expected": 0.4734,
+      "got": 0.4734,
+      "match": true
+    },
+    "llama_conll_n16_seed456.VC": {
+      "expected": 0.4722,
+      "got": 0.4722,
+      "match": true
+    },
+    "llama_conll_n16_seed456.EM": {
+      "expected": 0.4752,
+      "got": 0.4752,
+      "match": true
+    },
+    "llama_conll_n16_seed456.LP": {
+      "expected": 0.3099,
+      "got": 0.3099,
+      "match": true
+    },
+    "qwen_scierc_n16_seed456.FK": {
+      "expected": 0.2723,
+      "got": 0.2723,
+      "match": true
+    },
+    "qwen_scierc_n16_seed456.SJ": {
+      "expected": 0.4098,
+      "got": 0.4098,
+      "match": true
+    },
+    "qwen_scierc_n16_seed456.VC": {
+      "expected": 0.4449,
+      "got": 0.4449,
+      "match": true
+    },
+    "qwen_scierc_n16_seed456.EM": {
+      "expected": 0.3363,
+      "got": 0.3363,
+      "match": true
+    },
+    "qwen_scierc_n16_seed456.LP": {
+      "expected": 0.2415,
+      "got": 0.2415,
+      "match": true
+    }
+  },
+  "sanity_check_vs_n8_5signal": {
+    "qwen_conll_n8_seed42.SJ": {
+      "expected": 0.4357,
+      "got": 0.4357,
+      "match": true
+    },
+    "qwen_conll_n8_seed42.FK": {
+      "expected": 0.3998,
+      "got": 0.3998,
+      "match": true
+    },
+    "qwen_conll_n8_seed42.EM": {
+      "expected": 0.4507,
+      "got": 0.4507,
+      "match": true
+    },
+    "qwen_conll_n8_seed42.LP": {
+      "expected": 0.3157,
+      "got": 0.3157,
+      "match": true
+    },
+    "qwen_conll_n8_seed42.VC": {
+      "expected": 0.4237,
+      "got": 0.4237,
+      "match": true
+    },
+    "llama_scierc_n8_seed42.SJ": {
+      "expected": 0.363,
+      "got": 0.363,
+      "match": true
+    },
+    "llama_scierc_n8_seed42.FK": {
+      "expected": 0.3266,
+      "got": 0.3266,
+      "match": true
+    },
+    "llama_scierc_n8_seed42.EM": {
+      "expected": 0.3152,
+      "got": 0.3152,
+      "match": true
+    },
+    "llama_scierc_n8_seed42.LP": {
+      "expected": 0.1827,
+      "got": 0.1827,
+      "match": true
+    },
+    "llama_scierc_n8_seed42.VC": {
+      "expected": 0.4331,
+      "got": 0.4331,
+      "match": true
+    }
+  }
+}

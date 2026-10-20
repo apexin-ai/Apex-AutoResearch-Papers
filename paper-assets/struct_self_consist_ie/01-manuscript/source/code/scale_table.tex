@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llll rrr r rr r}
+\toprule
+Model & Size & Regime & Dataset & Greedy & Oracle & Head. & Degen & $\rho_{\text{LP}}$ & $\Delta_{\text{LP}}$ & $\Delta_{\text{C}}$ \\
+ & & & & F1 & F1 & (pp) & (\%) & & (pp) & (pp) \\
+\midrule
+LLaMA-3.1-8B & 8B & FT & FewNERD & \textbf{0.7842} & \textbf{0.8843} & 10.01 & 23.36 & -- & 0.36 & -- \\
+Qwen3-8B & 8B & FT & FewNERD & 0.7481 & 0.8739 & 12.58 & 12.69 & -- & \textbf{1.38} & -- \\
+Qwen3-4B & 4B & FT & SciERC & 0.6622 & 0.7925 & 13.03 & \textbf{10.40} & -- & -- & -- \\
+Qwen2.5-72B & 72B & ZS & SciERC & 0.3990 & 0.5490 & \textbf{15.00} & -- & -- & -- & -- \\
+\bottomrule
+\end{tabular}
+\caption{Scaling comparison across model families and sizes. Head.\ = oracle headroom, Degen = degeneracy rate, $\rho_{\text{LP}}$ = log-prob signal Spearman correlation, $\Delta_{\text{LP}}$ = LP selection gain, $\Delta_{\text{C}}$ = entity construction gain. Best values per column in \textbf{bold}.}
+\label{tab:scaling}
+\end{table}

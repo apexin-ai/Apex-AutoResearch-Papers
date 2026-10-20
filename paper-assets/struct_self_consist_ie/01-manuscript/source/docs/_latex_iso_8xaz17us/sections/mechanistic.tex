@@ -1,0 +1,29 @@
+\section{How Self-Verification Fails}\label{sec:mechanistic}
+
+The diagnostic framework (\S\ref{sec:method}) identifies \textit{where} self-consistency fails; this section probes \textit{why} by testing whether models can self-verify at the entity level.
+Probe experiments use Qwen2.5-7B (not the fine-tuned Qwen3-8B used in main experiments); conclusions are architecture-specific.
+We evaluate self-verification and diagnostic probes on Qwen2.5-7B\footnote{ESJ, MRSC, and LSC use Qwen2.5-7B-Instruct (zero-shot self-verification capability) rather than the fine-tuned Qwen3-8B used in the main experiments. Conclusion direction is consistent with the main experiments' negative results across all fine-tuned selection strategies. The pattern---selection failure across all signals---is independently confirmed in the Qwen3-8B main experiments, making the introspection boundary a model-independent finding within our tested scale. Probe conclusions are limited to the Qwen2.5 architecture; linear probes may underestimate representational capacity (nonlinear alternatives are left to future work).} fine-tuned for NER on Few-NERD ($N{=}8$, seed 42; full results in Appendix~\ref{app:self_verification}).
+
+\paragraph{Entity Self-Judgment (ESJ).}
+For each extracted entity, we prompt the generating model: ``Is [\textit{entity}] a [\textit{type}] entity in this sentence?''
+Entity-level AUROC is $0.512$---indistinguishable from chance---with P(yes$|$correct)${=}0.500$ and P(yes$|$incorrect)${=}0.500$.
+ESJ-weighted construction degrades F1 to $0.711$ (vs.\ greedy $0.794$).
+
+\paragraph{Multi-Round Self-Consistency (MRSC).}
+Following iterative self-refinement \cite{madaan2023selfrefine}, we re-prompt on disputed entities (agreement ${<}0.6$) with focused verification; P(yes) separation between gold and non-gold entities is $0.0006$ ($0.5003$ vs.\ $0.4997$).
+MRSC best F1 ($0.763$) falls below greedy.
+
+\paragraph{Latent Self-Consistency (LSC).}
+Mean-pooled final-layer hidden states ($d{=}3584$) provide per-sample latent representations.
+Centroid selection ($0.759$) underperforms greedy ($0.794$); latent entity confidence ($0.839$) outperforms majority vote ($0.792$) but does not close the oracle gap ($0.882$).
+
+\paragraph{Hidden-state probe.}
+A logistic regression on mean-pooled final-layer hidden states at entity spans achieves AUROC $0.636$ (Few-NERD), $0.882$ (CoNLL), $0.630$ (SciERC), evaluated with GroupKFold CV (5-fold ${\times}$ 3 seeds, groups${=}$source instance to prevent entity-level leakage; Appendix~\ref{app:hidden_probe}).
+All three exceed ESJ ($0.51$); only CoNLL approaches frequency agreement ($0.868$).
+Cross-dataset transfer is weak: leave-one-dataset-out AUROC drops to $0.559$ (Few-NERD${\to}$CoNLL) and $0.671$ (CoNLL${\to}$Few-NERD), indicating that entity error patterns are dataset-specific rather than reflecting a universal introspection boundary, limiting probe-based approaches without per-dataset calibration.
+At the sample level, an MLP probe closes only 13.9\% of the oracle gap on SciERC (Appendix~\ref{app:hidden_probe}).
+
+\paragraph{The introspection boundary.}
+Entity quality is partially encoded in hidden representations: a supervised probe (AUROC $0.63$\textendash$0.88$) consistently exceeds self-judgment (ESJ $0.51$) but only marginally exceeds multi-sample agreement ($0.87$) on CoNLL, suggesting consensus captures information beyond single-pass representations while the prompt interface fails to access even partial hidden-state signal.
+LODO transfer drops to $0.56$\textendash$0.67$, so even direct hidden-state access would not yield a universal quality signal---consistent with the negative cross-dataset verifier transfer (\S\ref{sec:verifier}).
+

@@ -1,0 +1,361 @@
+{
+  "setup": {
+    "configs_used": [
+      "scierc_qwen_s42",
+      "scierc_qwen_s123",
+      "scierc_qwen_s456",
+      "conll_qwen_s42",
+      "conll_qwen_s123",
+      "conll_qwen_s456",
+      "fewnerd_qwen_s123",
+      "fewnerd_qwen_s456",
+      "fewnerd_qwen_s789"
+    ],
+    "max_samples": 8,
+    "fewnerd_max": 3000,
+    "total_instances": 18855,
+    "total_candidates": 80647,
+    "positive_rate": 0.5532,
+    "entity_types": [
+      "",
+      " LOC",
+      " PER",
+      " PERSON",
+      "...",
+      "ACRONYM",
+      "Acronym",
+      "AnatomicalStructure",
+      "Anatomy",
+      "DATE",
+      "ENTITY",
+      "EVE",
+      "EVENT",
+      "Feature",
+      "GPE",
+      "Generic",
+      "LOC",
+      "MISC",
+      "Material",
+      "Method",
+      "Metric",
+      "OG",
+      "OR",
+      "OR:",
+      "ORG",
+      "ORGB",
+      "ORGN",
+      "ORg",
+      "OtherScientificTerm",
+      "PEO",
+      "PER",
+      "PERSON",
+      "PLAC",
+      "PROG",
+      "TEAM",
+      "TITLE",
+      "Task",
+      "UNIT",
+      "_ORG",
+      "art",
+      "building",
+      "education",
+      "event",
+      "flight",
+      "loc",
+      "location",
+      "misp",
+      "org",
+      "organisation",
+      "organization",
+      "oth",
+      "other",
+      "per",
+      "person",
+      "product",
+      "stock exchange"
+    ],
+    "fold_sizes": [
+      3771,
+      3771,
+      3771,
+      3772,
+      3770
+    ]
+  },
+  "oof_cv": {
+    "mean_auc": 0.9233,
+    "std_auc": 0.0018,
+    "per_fold_auc": [
+      0.9263,
+      0.9232,
+      0.923,
+      0.9206,
+      0.9236
+    ]
+  },
+  "overall": {
+    "greedy": {
+      "precision": 0.8211,
+      "recall": 0.8221,
+      "f1": 0.8216
+    },
+    "majority_vote_50": {
+      "precision": 0.8688,
+      "recall": 0.7495,
+      "f1": 0.8048
+    },
+    "path_a_oof": {
+      "precision": 0.8308,
+      "recall": 0.8188,
+      "f1": 0.8248,
+      "threshold": 1.25
+    },
+    "path_b_oof": {
+      "precision": 0.8737,
+      "recall": 0.7482,
+      "f1": 0.8061,
+      "filter_threshold": 0.4
+    }
+  },
+  "per_fold": [
+    {
+      "fold": 0,
+      "n_train_instances": 15084,
+      "n_test_instances": 3771,
+      "n_train_entities": 64591,
+      "n_test_entities": 16056,
+      "auc": 0.9263,
+      "pa_threshold": 1.25,
+      "pb_filter_threshold": 0.5,
+      "greedy": {
+        "precision": 0.8321,
+        "recall": 0.8328,
+        "f1": 0.8325
+      },
+      "majority_vote": {
+        "precision": 0.876,
+        "recall": 0.7579,
+        "f1": 0.8127
+      },
+      "path_a_oof": {
+        "precision": 0.8361,
+        "recall": 0.8283,
+        "f1": 0.8322
+      },
+      "path_b_oof": {
+        "precision": 0.8867,
+        "recall": 0.751,
+        "f1": 0.8132
+      }
+    },
+    {
+      "fold": 1,
+      "n_train_instances": 15084,
+      "n_test_instances": 3771,
+      "n_train_entities": 64639,
+      "n_test_entities": 16008,
+      "auc": 0.9232,
+      "pa_threshold": 1.25,
+      "pb_filter_threshold": 0.5,
+      "greedy": {
+        "precision": 0.8145,
+        "recall": 0.817,
+        "f1": 0.8158
+      },
+      "majority_vote": {
+        "precision": 0.8661,
+        "recall": 0.746,
+        "f1": 0.8016
+      },
+      "path_a_oof": {
+        "precision": 0.8302,
+        "recall": 0.8132,
+        "f1": 0.8216
+      },
+      "path_b_oof": {
+        "precision": 0.8779,
+        "recall": 0.7395,
+        "f1": 0.8028
+      }
+    },
+    {
+      "fold": 2,
+      "n_train_instances": 15084,
+      "n_test_instances": 3771,
+      "n_train_entities": 64385,
+      "n_test_entities": 16262,
+      "auc": 0.923,
+      "pa_threshold": 1.5,
+      "pb_filter_threshold": 0.5,
+      "greedy": {
+        "precision": 0.8187,
+        "recall": 0.824,
+        "f1": 0.8213
+      },
+      "majority_vote": {
+        "precision": 0.869,
+        "recall": 0.7538,
+        "f1": 0.8073
+      },
+      "path_a_oof": {
+        "precision": 0.8423,
+        "recall": 0.8084,
+        "f1": 0.825
+      },
+      "path_b_oof": {
+        "precision": 0.8809,
+        "recall": 0.747,
+        "f1": 0.8084
+      }
+    },
+    {
+      "fold": 3,
+      "n_train_instances": 15083,
+      "n_test_instances": 3772,
+      "n_train_entities": 64542,
+      "n_test_entities": 16105,
+      "auc": 0.9206,
+      "pa_threshold": 1.25,
+      "pb_filter_threshold": 0.5,
+      "greedy": {
+        "precision": 0.8214,
+        "recall": 0.8182,
+        "f1": 0.8198
+      },
+      "majority_vote": {
+        "precision": 0.8655,
+        "recall": 0.7471,
+        "f1": 0.802
+      },
+      "path_a_oof": {
+        "precision": 0.8263,
+        "recall": 0.8153,
+        "f1": 0.8207
+      },
+      "path_b_oof": {
+        "precision": 0.8758,
+        "recall": 0.741,
+        "f1": 0.8028
+      }
+    },
+    {
+      "fold": 4,
+      "n_train_instances": 15085,
+      "n_test_instances": 3770,
+      "n_train_entities": 64431,
+      "n_test_entities": 16216,
+      "auc": 0.9236,
+      "pa_threshold": 1.25,
+      "pb_filter_threshold": 0.5,
+      "greedy": {
+        "precision": 0.8189,
+        "recall": 0.8185,
+        "f1": 0.8187
+      },
+      "majority_vote": {
+        "precision": 0.8673,
+        "recall": 0.7428,
+        "f1": 0.8002
+      },
+      "path_a_oof": {
+        "precision": 0.8301,
+        "recall": 0.8174,
+        "f1": 0.8237
+      },
+      "path_b_oof": {
+        "precision": 0.88,
+        "recall": 0.7372,
+        "f1": 0.8023
+      }
+    }
+  ],
+  "per_dataset": {
+    "scierc": {
+      "n_instances": 1587,
+      "n_entities": 8274,
+      "greedy": {
+        "precision": 0.6727,
+        "recall": 0.6584,
+        "f1": 0.6655
+      },
+      "majority_vote": {
+        "precision": 0.7127,
+        "recall": 0.6125,
+        "f1": 0.6588
+      },
+      "path_a_oof": {
+        "precision": 0.6712,
+        "recall": 0.6857,
+        "f1": 0.6783,
+        "threshold": 1.0
+      },
+      "path_b_oof": {
+        "precision": 0.726,
+        "recall": 0.6071,
+        "f1": 0.6613,
+        "filter_threshold": 0.4
+      }
+    },
+    "conll": {
+      "n_instances": 8268,
+      "n_entities": 23664,
+      "greedy": {
+        "precision": 0.9099,
+        "recall": 0.9142,
+        "f1": 0.9121
+      },
+      "majority_vote": {
+        "precision": 0.9315,
+        "recall": 0.895,
+        "f1": 0.9129
+      },
+      "path_a_oof": {
+        "precision": 0.9314,
+        "recall": 0.9042,
+        "f1": 0.9176,
+        "threshold": 2.0
+      },
+      "path_b_oof": {
+        "precision": 0.9407,
+        "recall": 0.8905,
+        "f1": 0.9149,
+        "filter_threshold": 0.5
+      }
+    },
+    "fewnerd": {
+      "n_instances": 9000,
+      "n_entities": 48709,
+      "greedy": {
+        "precision": 0.7924,
+        "recall": 0.795,
+        "f1": 0.7937
+      },
+      "majority_vote": {
+        "precision": 0.853,
+        "recall": 0.6839,
+        "f1": 0.7591
+      },
+      "path_a_oof": {
+        "precision": 0.7865,
+        "recall": 0.8014,
+        "f1": 0.7939,
+        "threshold": 1.0
+      },
+      "path_b_oof": {
+        "precision": 0.856,
+        "recall": 0.6832,
+        "f1": 0.7599,
+        "filter_threshold": 0.4
+      }
+    }
+  },
+  "comparison": {
+    "oof_path_a_vs_greedy_pp": 0.32,
+    "oof_path_b_vs_greedy_pp": -1.55,
+    "oof_path_a_vs_mv_pp": 2.0,
+    "oof_path_b_vs_mv_pp": 0.13,
+    "original_b2_claim_pp": 3.62,
+    "conclusion": "OOF verifier shows marginal improvement (+0.32pp). Original +3.62pp was largely due to train-on-test leakage."
+  },
+  "elapsed_seconds": 31.7
+}

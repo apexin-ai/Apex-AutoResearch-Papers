@@ -1,0 +1,8 @@
+model_name_or_path: /root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct
+adapter_name_or_path: /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-conll2003-lora
+template: llama3
+finetuning_type: lora
+export_dir: /root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-conll2003-merged
+export_size: 5
+export_device: cpu
+export_legacy_format: false

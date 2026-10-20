@@ -1,0 +1,377 @@
+
+======================================================================
+  Qwen_FewNERD_s42_n8  (seed=42, max_n=8)
+======================================================================
+  Loaded 32565 gold-nonempty instances, N_max=8
+  Greedy F1: 0.7912
+
+  Method              N= 2  N= 4  N= 6  N= 8
+  ----------------------------------------------------------------------
+  majority_vote      0.7163  0.7703  0.7748  0.7784
+  lp_best            0.7459  0.7844  0.7899  0.7927
+  lp_weighted        0.6486  0.7741  0.7812  0.7761
+  vc_weighted        0.6486  0.7636  0.7808  0.7799
+  sj_weighted        0.6486  0.7665  0.7726  0.7725
+  theta2n            0.6486  0.7703  0.7731  0.7634
+  uniform            0.7163  0.6994  0.7731  0.7634
+
+  Transitions: 21 total
+  Inverse (F1 drops): 4/21 (19%)
+  Sig inverse (CI<0): 4/21
+  Sig positive (CI>0): 15/21
+    SIG INV: lp_weighted        N=6->8: 0.7812->0.7761 (-0.51pp) CI=[-0.61,-0.41]
+    SIG INV: theta2n            N=6->8: 0.7731->0.7634 (-0.97pp) CI=[-1.06,-0.88]
+    SIG INV: uniform            N=2->4: 0.7163->0.6994 (-1.69pp) CI=[-1.86,-1.52]
+    SIG INV: uniform            N=6->8: 0.7731->0.7634 (-0.97pp) CI=[-1.06,-0.88]
+  Time: 212.9s
+
+======================================================================
+  Qwen_FewNERD_s123_n8  (seed=123, max_n=8)
+======================================================================
+  Loaded 32565 gold-nonempty instances, N_max=8
+  Greedy F1: 0.7915
+
+  Method              N= 2  N= 4  N= 6  N= 8
+  ----------------------------------------------------------------------
+  majority_vote      0.7366  0.7806  0.7843  0.7851
+  lp_best            0.7587  0.7842  0.7896  0.7914
+  lp_weighted        0.6647  0.7817  0.7844  0.7803
+  vc_weighted        0.6647  0.7750  0.7847  0.7836
+  sj_weighted        0.6647  0.7770  0.7804  0.7795
+  theta2n            0.6647  0.7806  0.7761  0.7664
+  uniform            0.7366  0.7069  0.7761  0.7664
+
+  Transitions: 21 total
+  Inverse (F1 drops): 6/21 (29%)
+  Sig inverse (CI<0): 6/21
+  Sig positive (CI>0): 13/21
+    SIG INV: lp_weighted        N=6->8: 0.7844->0.7803 (-0.41pp) CI=[-0.50,-0.31]
+    SIG INV: vc_weighted        N=6->8: 0.7847->0.7836 (-0.11pp) CI=[-0.21,-0.01]
+    SIG INV: theta2n            N=4->6: 0.7806->0.7761 (-0.45pp) CI=[-0.56,-0.33]
+    SIG INV: theta2n            N=6->8: 0.7761->0.7664 (-0.97pp) CI=[-1.06,-0.88]
+    SIG INV: uniform            N=2->4: 0.7366->0.7069 (-2.96pp) CI=[-3.11,-2.82]
+    SIG INV: uniform            N=6->8: 0.7761->0.7664 (-0.97pp) CI=[-1.06,-0.88]
+  Time: 218.6s
+
+======================================================================
+  Qwen_FewNERD_s456_n8  (seed=456, max_n=8)
+======================================================================
+  Loaded 32565 gold-nonempty instances, N_max=8
+  Greedy F1: 0.7916
+
+  Method              N= 2  N= 4  N= 6  N= 8
+  ----------------------------------------------------------------------
+  majority_vote      0.7219  0.7756  0.7852  0.7858
+  lp_best            0.7633  0.7833  0.7897  0.7919
+  lp_weighted        0.7010  0.7771  0.7854  0.7791
+  vc_weighted        0.7010  0.7698  0.7831  0.7818
+  sj_weighted        0.7010  0.7680  0.7821  0.7792
+  theta2n            0.7010  0.7756  0.7754  0.7630
+  uniform            0.7219  0.6999  0.7754  0.7630
+
+  Transitions: 21 total
+  Inverse (F1 drops): 6/21 (29%)
+  Sig inverse (CI<0): 6/21
+  Sig positive (CI>0): 13/21
+    SIG INV: lp_weighted        N=6->8: 0.7854->0.7791 (-0.63pp) CI=[-0.72,-0.54]
+    SIG INV: vc_weighted        N=6->8: 0.7831->0.7818 (-0.13pp) CI=[-0.23,-0.03]
+    SIG INV: sj_weighted        N=6->8: 0.7821->0.7792 (-0.29pp) CI=[-0.40,-0.19]
+    SIG INV: theta2n            N=6->8: 0.7754->0.7630 (-1.24pp) CI=[-1.34,-1.15]
+    SIG INV: uniform            N=2->4: 0.7219->0.6999 (-2.21pp) CI=[-2.33,-2.08]
+    SIG INV: uniform            N=6->8: 0.7754->0.7630 (-1.24pp) CI=[-1.34,-1.15]
+  Time: 206.7s
+
+======================================================================
+  Qwen_FewNERD_s789_n8  (seed=789, max_n=8)
+======================================================================
+  Loaded 32565 gold-nonempty instances, N_max=8
+  Greedy F1: 0.7912
+
+  Method              N= 2  N= 4  N= 6  N= 8
+  ----------------------------------------------------------------------
+  majority_vote      0.7241  0.7738  0.7735  0.7758
+  lp_best            0.7633  0.7838  0.7879  0.7908
+  lp_weighted        0.6818  0.7767  0.7819  0.7786
+  vc_weighted        0.6818  0.7648  0.7805  0.7817
+  sj_weighted        0.6818  0.7696  0.7701  0.7767
+  theta2n            0.6818  0.7738  0.7711  0.7633
+  uniform            0.7241  0.6930  0.7711  0.7633
+
+  Transitions: 21 total
+  Inverse (F1 drops): 5/21 (24%)
+  Sig inverse (CI<0): 5/21
+  Sig positive (CI>0): 14/21
+    SIG INV: lp_weighted        N=6->8: 0.7819->0.7786 (-0.33pp) CI=[-0.43,-0.23]
+    SIG INV: theta2n            N=4->6: 0.7738->0.7711 (-0.27pp) CI=[-0.39,-0.16]
+    SIG INV: theta2n            N=6->8: 0.7711->0.7633 (-0.78pp) CI=[-0.88,-0.69]
+    SIG INV: uniform            N=2->4: 0.7241->0.6930 (-3.11pp) CI=[-3.25,-2.97]
+    SIG INV: uniform            N=6->8: 0.7711->0.7633 (-0.78pp) CI=[-0.88,-0.69]
+  Time: 206.4s
+
+======================================================================
+  Qwen_FewNERD_s42_n16  (seed=42, max_n=16)
+======================================================================
+  Loaded 32565 gold-nonempty instances, N_max=16
+  Greedy F1: 0.7913
+
+  Method              N= 2  N= 4  N= 6  N= 8  N=16
+  ----------------------------------------------------------------------
+  majority_vote      0.7165  0.7704  0.7749  0.7784  0.7811
+  lp_best            0.7458  0.7842  0.7900  0.7930  0.7947
+  lp_weighted        0.6480  0.7736  0.7814  0.7762  0.7472
+  vc_weighted        0.6480  0.7642  0.7809  0.7799  0.7601
+  sj_weighted        0.6480  0.7668  0.7725  0.7726  0.7626
+  theta2n            0.6480  0.7704  0.7734  0.7636  0.7273
+  uniform            0.7165  0.6994  0.7734  0.7636  0.7834
+
+  Transitions: 28 total
+  Inverse (F1 drops): 8/28 (29%)
+  Sig inverse (CI<0): 8/28
+  Sig positive (CI>0): 18/28
+    SIG INV: lp_weighted        N=6->8: 0.7814->0.7762 (-0.52pp) CI=[-0.62,-0.42]
+    SIG INV: lp_weighted        N=8->16: 0.7762->0.7472 (-2.90pp) CI=[-3.03,-2.77]
+    SIG INV: vc_weighted        N=8->16: 0.7799->0.7601 (-1.98pp) CI=[-2.11,-1.85]
+    SIG INV: sj_weighted        N=8->16: 0.7726->0.7626 (-1.00pp) CI=[-1.14,-0.87]
+    SIG INV: theta2n            N=6->8: 0.7734->0.7636 (-0.98pp) CI=[-1.08,-0.88]
+    SIG INV: theta2n            N=8->16: 0.7636->0.7273 (-3.63pp) CI=[-3.75,-3.49]
+    SIG INV: uniform            N=2->4: 0.7165->0.6994 (-1.70pp) CI=[-1.88,-1.53]
+    SIG INV: uniform            N=6->8: 0.7734->0.7636 (-0.98pp) CI=[-1.08,-0.88]
+  Time: 283.6s
+
+======================================================================
+  Qwen_FewNERD_s456_n16  (seed=456, max_n=16)
+======================================================================
+  Loaded 32565 gold-nonempty instances, N_max=16
+  Greedy F1: 0.7911
+
+  Method              N= 2  N= 4  N= 6  N= 8  N=16
+  ----------------------------------------------------------------------
+  majority_vote      0.7217  0.7754  0.7850  0.7857  0.7866
+  lp_best            0.7623  0.7829  0.7895  0.7922  0.7944
+  lp_weighted        0.7012  0.7769  0.7852  0.7789  0.7490
+  vc_weighted        0.7012  0.7700  0.7831  0.7818  0.7609
+  sj_weighted        0.7012  0.7677  0.7818  0.7790  0.7617
+  theta2n            0.7012  0.7754  0.7756  0.7631  0.7178
+  uniform            0.7217  0.7000  0.7756  0.7631  0.7795
+
+  Transitions: 28 total
+  Inverse (F1 drops): 10/28 (36%)
+  Sig inverse (CI<0): 10/28
+  Sig positive (CI>0): 15/28
+    SIG INV: lp_weighted        N=6->8: 0.7852->0.7789 (-0.63pp) CI=[-0.73,-0.54]
+    SIG INV: lp_weighted        N=8->16: 0.7789->0.7490 (-2.99pp) CI=[-3.12,-2.87]
+    SIG INV: vc_weighted        N=6->8: 0.7831->0.7818 (-0.13pp) CI=[-0.23,-0.03]
+    SIG INV: vc_weighted        N=8->16: 0.7818->0.7609 (-2.09pp) CI=[-2.22,-1.96]
+    SIG INV: sj_weighted        N=6->8: 0.7818->0.7790 (-0.29pp) CI=[-0.39,-0.19]
+    SIG INV: sj_weighted        N=8->16: 0.7790->0.7617 (-1.72pp) CI=[-1.85,-1.60]
+    SIG INV: theta2n            N=6->8: 0.7756->0.7631 (-1.25pp) CI=[-1.34,-1.16]
+    SIG INV: theta2n            N=8->16: 0.7631->0.7178 (-4.53pp) CI=[-4.66,-4.40]
+    SIG INV: uniform            N=2->4: 0.7217->0.7000 (-2.17pp) CI=[-2.30,-2.05]
+    SIG INV: uniform            N=6->8: 0.7756->0.7631 (-1.25pp) CI=[-1.34,-1.16]
+  Time: 288.1s
+
+======================================================================
+  LLaMA_FewNERD_s42_n8  (seed=42, max_n=8)
+======================================================================
+  Loaded 32565 gold-nonempty instances, N_max=8
+  Greedy F1: 0.7991
+
+  Method              N= 2  N= 4  N= 6  N= 8
+  ----------------------------------------------------------------------
+  majority_vote      0.7573  0.7893  0.7952  0.7991
+  lp_best            0.7825  0.7956  0.7980  0.7994
+  lp_weighted        0.7486  0.7949  0.7928  0.7869
+  vc_weighted        0.7486  0.7856  0.7913  0.7894
+  sj_weighted        0.7486  0.7883  0.7905  0.7891
+  theta2n            0.7486  0.7893  0.7815  0.7705
+  uniform            0.7573  0.7263  0.7815  0.7705
+
+  Transitions: 21 total
+  Inverse (F1 drops): 8/21 (38%)
+  Sig inverse (CI<0): 8/21
+  Sig positive (CI>0): 13/21
+    SIG INV: lp_weighted        N=4->6: 0.7949->0.7928 (-0.21pp) CI=[-0.33,-0.10]
+    SIG INV: lp_weighted        N=6->8: 0.7928->0.7869 (-0.59pp) CI=[-0.68,-0.50]
+    SIG INV: vc_weighted        N=6->8: 0.7913->0.7894 (-0.19pp) CI=[-0.29,-0.10]
+    SIG INV: sj_weighted        N=6->8: 0.7905->0.7891 (-0.14pp) CI=[-0.23,-0.04]
+    SIG INV: theta2n            N=4->6: 0.7893->0.7815 (-0.77pp) CI=[-0.88,-0.67]
+    SIG INV: theta2n            N=6->8: 0.7815->0.7705 (-1.10pp) CI=[-1.18,-1.03]
+    SIG INV: uniform            N=2->4: 0.7573->0.7263 (-3.09pp) CI=[-3.22,-2.97]
+    SIG INV: uniform            N=6->8: 0.7815->0.7705 (-1.10pp) CI=[-1.18,-1.03]
+  Time: 208.9s
+
+======================================================================
+  LLaMA_FewNERD_s123_n8  (seed=123, max_n=8)
+======================================================================
+  Loaded 32565 gold-nonempty instances, N_max=8
+  Greedy F1: 0.7993
+
+  Method              N= 2  N= 4  N= 6  N= 8
+  ----------------------------------------------------------------------
+  majority_vote      0.7410  0.7843  0.7933  0.7982
+  lp_best            0.7747  0.7927  0.7974  0.7996
+  lp_weighted        0.7332  0.7889  0.7912  0.7856
+  vc_weighted        0.7332  0.7803  0.7897  0.7887
+  sj_weighted        0.7332  0.7822  0.7885  0.7884
+  theta2n            0.7332  0.7843  0.7791  0.7676
+  uniform            0.7410  0.7147  0.7791  0.7676
+
+  Transitions: 21 total
+  Inverse (F1 drops): 6/21 (29%)
+  Sig inverse (CI<0): 6/21
+  Sig positive (CI>0): 14/21
+    SIG INV: lp_weighted        N=6->8: 0.7912->0.7856 (-0.56pp) CI=[-0.65,-0.47]
+    SIG INV: vc_weighted        N=6->8: 0.7897->0.7887 (-0.11pp) CI=[-0.20,-0.01]
+    SIG INV: theta2n            N=4->6: 0.7843->0.7791 (-0.52pp) CI=[-0.63,-0.41]
+    SIG INV: theta2n            N=6->8: 0.7791->0.7676 (-1.15pp) CI=[-1.23,-1.06]
+    SIG INV: uniform            N=2->4: 0.7410->0.7147 (-2.63pp) CI=[-2.77,-2.49]
+    SIG INV: uniform            N=6->8: 0.7791->0.7676 (-1.15pp) CI=[-1.23,-1.06]
+  Time: 206.1s
+
+======================================================================
+  LLaMA_FewNERD_s456_n8  (seed=456, max_n=8)
+======================================================================
+  Loaded 32565 gold-nonempty instances, N_max=8
+  Greedy F1: 0.7995
+
+  Method              N= 2  N= 4  N= 6  N= 8
+  ----------------------------------------------------------------------
+  majority_vote      0.7497  0.7840  0.7927  0.7961
+  lp_best            0.7788  0.7928  0.7980  0.8002
+  lp_weighted        0.7351  0.7879  0.7897  0.7832
+  vc_weighted        0.7351  0.7801  0.7885  0.7871
+  sj_weighted        0.7351  0.7819  0.7870  0.7862
+  theta2n            0.7351  0.7840  0.7792  0.7679
+  uniform            0.7497  0.7249  0.7792  0.7679
+
+  Transitions: 21 total
+  Inverse (F1 drops): 6/21 (29%)
+  Sig inverse (CI<0): 6/21
+  Sig positive (CI>0): 14/21
+    SIG INV: lp_weighted        N=6->8: 0.7897->0.7832 (-0.65pp) CI=[-0.74,-0.57]
+    SIG INV: vc_weighted        N=6->8: 0.7885->0.7871 (-0.13pp) CI=[-0.23,-0.03]
+    SIG INV: theta2n            N=4->6: 0.7840->0.7792 (-0.47pp) CI=[-0.60,-0.36]
+    SIG INV: theta2n            N=6->8: 0.7792->0.7679 (-1.13pp) CI=[-1.21,-1.04]
+    SIG INV: uniform            N=2->4: 0.7497->0.7249 (-2.48pp) CI=[-2.61,-2.35]
+    SIG INV: uniform            N=6->8: 0.7792->0.7679 (-1.13pp) CI=[-1.21,-1.04]
+  Time: 207.7s
+
+
+======================================================================
+CROSS-SEED CONSISTENCY ANALYSIS
+======================================================================
+
+  Group: Qwen3-8B-FT_n8 (seeds: [42, 123, 456, 789])
+  All seeds agree inverse: 4/21
+  All seeds same direction: 15/21
+    majority_vote      N=2->4: s42=positive*, s123=positive*, s456=positive*, s789=positive*  [AGREE]
+    majority_vote      N=4->6: s42=positive*, s123=positive*, s456=positive*, s789=neutral  [DISAGREE]
+    majority_vote      N=6->8: s42=positive*, s123=neutral, s456=neutral, s789=positive*  [DISAGREE]
+    lp_best            N=2->4: s42=positive*, s123=positive*, s456=positive*, s789=positive*  [AGREE]
+    lp_best            N=4->6: s42=positive*, s123=positive*, s456=positive*, s789=positive*  [AGREE]
+    lp_best            N=6->8: s42=positive*, s123=positive*, s456=positive*, s789=positive*  [AGREE]
+    lp_weighted        N=2->4: s42=positive*, s123=positive*, s456=positive*, s789=positive*  [AGREE]
+    lp_weighted        N=4->6: s42=positive*, s123=positive*, s456=positive*, s789=positive*  [AGREE]
+    lp_weighted        N=6->8: s42=inverse*, s123=inverse*, s456=inverse*, s789=inverse*  [AGREE]
+    vc_weighted        N=2->4: s42=positive*, s123=positive*, s456=positive*, s789=positive*  [AGREE]
+    vc_weighted        N=4->6: s42=positive*, s123=positive*, s456=positive*, s789=positive*  [AGREE]
+    vc_weighted        N=6->8: s42=neutral, s123=inverse*, s456=inverse*, s789=positive*  [DISAGREE]
+    sj_weighted        N=2->4: s42=positive*, s123=positive*, s456=positive*, s789=positive*  [AGREE]
+    sj_weighted        N=4->6: s42=positive*, s123=positive*, s456=positive*, s789=neutral  [DISAGREE]
+    sj_weighted        N=6->8: s42=neutral, s123=neutral, s456=inverse*, s789=positive*  [DISAGREE]
+    theta2n            N=2->4: s42=positive*, s123=positive*, s456=positive*, s789=positive*  [AGREE]
+    theta2n            N=4->6: s42=positive*, s123=inverse*, s456=neutral, s789=inverse*  [DISAGREE]
+    theta2n            N=6->8: s42=inverse*, s123=inverse*, s456=inverse*, s789=inverse*  [AGREE]
+    uniform            N=2->4: s42=inverse*, s123=inverse*, s456=inverse*, s789=inverse*  [AGREE]
+    uniform            N=4->6: s42=positive*, s123=positive*, s456=positive*, s789=positive*  [AGREE]
+    uniform            N=6->8: s42=inverse*, s123=inverse*, s456=inverse*, s789=inverse*  [AGREE]
+
+  Group: Qwen3-8B-FT_n16 (seeds: [42, 456])
+  All seeds agree inverse: 8/28
+  All seeds same direction: 23/28
+    majority_vote      N=2->4: s42=positive*, s456=positive*  [AGREE]
+    majority_vote      N=4->6: s42=positive*, s456=positive*  [AGREE]
+    majority_vote      N=6->8: s42=positive*, s456=neutral  [DISAGREE]
+    majority_vote      N=8->16: s42=positive*, s456=neutral  [DISAGREE]
+    lp_best            N=2->4: s42=positive*, s456=positive*  [AGREE]
+    lp_best            N=4->6: s42=positive*, s456=positive*  [AGREE]
+    lp_best            N=6->8: s42=positive*, s456=positive*  [AGREE]
+    lp_best            N=8->16: s42=positive*, s456=positive*  [AGREE]
+    lp_weighted        N=2->4: s42=positive*, s456=positive*  [AGREE]
+    lp_weighted        N=4->6: s42=positive*, s456=positive*  [AGREE]
+    lp_weighted        N=6->8: s42=inverse*, s456=inverse*  [AGREE]
+    lp_weighted        N=8->16: s42=inverse*, s456=inverse*  [AGREE]
+    vc_weighted        N=2->4: s42=positive*, s456=positive*  [AGREE]
+    vc_weighted        N=4->6: s42=positive*, s456=positive*  [AGREE]
+    vc_weighted        N=6->8: s42=neutral, s456=inverse*  [DISAGREE]
+    vc_weighted        N=8->16: s42=inverse*, s456=inverse*  [AGREE]
+    sj_weighted        N=2->4: s42=positive*, s456=positive*  [AGREE]
+    sj_weighted        N=4->6: s42=positive*, s456=positive*  [AGREE]
+    sj_weighted        N=6->8: s42=neutral, s456=inverse*  [DISAGREE]
+    sj_weighted        N=8->16: s42=inverse*, s456=inverse*  [AGREE]
+    theta2n            N=2->4: s42=positive*, s456=positive*  [AGREE]
+    theta2n            N=4->6: s42=positive*, s456=neutral  [DISAGREE]
+    theta2n            N=6->8: s42=inverse*, s456=inverse*  [AGREE]
+    theta2n            N=8->16: s42=inverse*, s456=inverse*  [AGREE]
+    uniform            N=2->4: s42=inverse*, s456=inverse*  [AGREE]
+    uniform            N=4->6: s42=positive*, s456=positive*  [AGREE]
+    uniform            N=6->8: s42=inverse*, s456=inverse*  [AGREE]
+    uniform            N=8->16: s42=positive*, s456=positive*  [AGREE]
+
+  Group: LLaMA-3.1-8B-FT_n8 (seeds: [42, 123, 456])
+  All seeds agree inverse: 6/21
+  All seeds same direction: 19/21
+    majority_vote      N=2->4: s42=positive*, s123=positive*, s456=positive*  [AGREE]
+    majority_vote      N=4->6: s42=positive*, s123=positive*, s456=positive*  [AGREE]
+    majority_vote      N=6->8: s42=positive*, s123=positive*, s456=positive*  [AGREE]
+    lp_best            N=2->4: s42=positive*, s123=positive*, s456=positive*  [AGREE]
+    lp_best            N=4->6: s42=positive*, s123=positive*, s456=positive*  [AGREE]
+    lp_best            N=6->8: s42=positive*, s123=positive*, s456=positive*  [AGREE]
+    lp_weighted        N=2->4: s42=positive*, s123=positive*, s456=positive*  [AGREE]
+    lp_weighted        N=4->6: s42=inverse*, s123=positive*, s456=positive*  [DISAGREE]
+    lp_weighted        N=6->8: s42=inverse*, s123=inverse*, s456=inverse*  [AGREE]
+    vc_weighted        N=2->4: s42=positive*, s123=positive*, s456=positive*  [AGREE]
+    vc_weighted        N=4->6: s42=positive*, s123=positive*, s456=positive*  [AGREE]
+    vc_weighted        N=6->8: s42=inverse*, s123=inverse*, s456=inverse*  [AGREE]
+    sj_weighted        N=2->4: s42=positive*, s123=positive*, s456=positive*  [AGREE]
+    sj_weighted        N=4->6: s42=positive*, s123=positive*, s456=positive*  [AGREE]
+    sj_weighted        N=6->8: s42=inverse*, s123=neutral, s456=neutral  [DISAGREE]
+    theta2n            N=2->4: s42=positive*, s123=positive*, s456=positive*  [AGREE]
+    theta2n            N=4->6: s42=inverse*, s123=inverse*, s456=inverse*  [AGREE]
+    theta2n            N=6->8: s42=inverse*, s123=inverse*, s456=inverse*  [AGREE]
+    uniform            N=2->4: s42=inverse*, s123=inverse*, s456=inverse*  [AGREE]
+    uniform            N=4->6: s42=positive*, s123=positive*, s456=positive*  [AGREE]
+    uniform            N=6->8: s42=inverse*, s123=inverse*, s456=inverse*  [AGREE]
+
+Saved to /root/autodl-tmp/struct_self_consist_ie/artifacts/multiseed_inverse_scaling/
+
+
+======================================================================
+SUMMARY TABLE
+======================================================================
+
+Config                         Seed N_max  Total  Inv SigInv SigPos
+---------------------------------------------------------------------------
+LLaMA_FewNERD_s123_n8           123     8     21    6      6     14
+LLaMA_FewNERD_s42_n8             42     8     21    8      8     13
+LLaMA_FewNERD_s456_n8           456     8     21    6      6     14
+Qwen_FewNERD_s123_n8            123     8     21    6      6     13
+Qwen_FewNERD_s42_n16             42    16     28    8      8     18
+Qwen_FewNERD_s42_n8              42     8     21    4      4     15
+Qwen_FewNERD_s456_n16           456    16     28   10     10     15
+Qwen_FewNERD_s456_n8            456     8     21    6      6     13
+Qwen_FewNERD_s789_n8            789     8     21    5      5     14
+
+
+PER-METHOD INVERSE COUNT (Qwen N=8, 3 transitions each)
+Method              s 42  s123  s456  s789  Consistent?
+----------------------------------------------------------------------
+majority_vote         0     0     0     0  YES
+lp_best               0     0     0     0  YES
+lp_weighted           1     1     1     1  YES
+vc_weighted           0     1     1     0  NO
+sj_weighted           0     0     1     0  NO
+theta2n               1     2     1     2  NO
+uniform               2     2     2     2  YES
+
+DONE

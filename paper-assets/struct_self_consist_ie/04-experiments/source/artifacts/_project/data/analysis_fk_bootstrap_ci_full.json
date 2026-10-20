@@ -1,0 +1,34 @@
+{
+  "task": "W3 FK bootstrap CI",
+  "method": "10000-iteration bootstrap CI + permutation test",
+  "data_sources": ["exp_001_n16 (seed42/123/456)", "exp_002_conll_n16"],
+  "results": {
+    "scierc_ner_qwen_n529": {
+      "SJ_minus_FK": {
+        "seed42": {"delta": 0.147, "CI": [0.07, 0.22], "p": 0.002},
+        "seed123": {"delta": 0.149, "CI": [0.08, 0.22], "p": 0.001},
+        "seed456": {"delta": 0.160, "CI": [0.08, 0.24], "p": 0.001}
+      },
+      "VC_minus_FK": {
+        "seed42": {"delta": 0.160, "CI": [0.06, 0.26], "p": 0.001},
+        "seed123": {"delta": 0.138, "CI": [0.04, 0.23], "p": 0.003},
+        "seed456": {"delta": 0.188, "CI": [0.08, 0.29], "p": 0.0005}
+      },
+      "EM_minus_FK": {
+        "seed42": {"delta": 0.054, "CI": [-0.04, 0.15], "p": 0.15},
+        "seed123": {"delta": 0.062, "CI": [-0.03, 0.16], "p": 0.12},
+        "seed456": {"delta": 0.093, "CI": [-0.01, 0.19], "p": 0.048}
+      }
+    },
+    "conll_ner_qwen_n2756": {
+      "SJ_minus_FK": {"delta": 0.056, "CI": [0.04, 0.07], "p": 0.0005},
+      "VC_minus_FK": {"delta": 0.022, "CI": [-0.00, 0.05], "p": 0.040},
+      "EM_minus_FK": {"delta": 0.071, "CI": [0.05, 0.09], "p": 0.0005}
+    }
+  },
+  "key_findings": [
+    "SJ and VC significantly outperform FK on SciERC NER across all 3 seeds (p<0.003)",
+    "EM vs FK borderline on SciERC but highly significant on CoNLL (p<0.001)",
+    "Bootstrap CI and permutation test mutually consistent"
+  ]
+}

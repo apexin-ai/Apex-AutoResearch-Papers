@@ -1,0 +1,80 @@
+% Requires: \usepackage{booktabs, multirow}
+\begin{table*}[t]
+\centering
+\caption{Comparison of constrained vs.\ free-form decoding on SciERC (Qwen3-8B, $N{=}8$, $T{=}1.0$, seed=42).}
+\label{tab:freeform-ablation}
+
+%% ---- Panel A: Logprob Distribution ----
+\vspace{2pt}
+{\small\textsc{Panel A: Logprob Distribution}}
+\vspace{2pt}
+
+\begin{tabular}{lccc}
+\toprule
+Metric & Constrained & Free-form & $\Delta$ \\
+\midrule
+Mean LP std        & 0.0206 & 0.0199 & $-$0.0007 \\
+Mean LP range      & 0.0623 & 0.0599 & $-$0.0024 \\
+Tied fraction ($\varepsilon{=}0.05$) & 59.7\% & 57.7\% & $-$2.0\,pp \\
+\bottomrule
+\end{tabular}
+
+\vspace{8pt}
+
+%% ---- Panel B: Selection F1 ----
+{\small\textsc{Panel B: Selection F1}}
+\vspace{2pt}
+
+\begin{tabular}{llccc}
+\toprule
+Task & Method & Constrained & Free-form & $\Delta$ \\
+\midrule
+\multirow{3}{*}{NER}
+  & Greedy        & 0.6182 & 0.6204 & \textbf{+0.0022} \\
+  & LP-selected   & 0.6241 & 0.6222 & $-$0.0019 \\
+  & Selection gap & +0.0059 & +0.0018 & $-$0.0041 \\
+\midrule
+\multirow{3}{*}{RE}
+  & Greedy        & 0.2913 & 0.2880 & $-$0.0033 \\
+  & LP-selected   & 0.2845 & 0.3050 & \textbf{+0.0205} \\
+  & Selection gap & $-$0.0068 & +0.0169 & \textbf{+0.0237} \\
+\bottomrule
+\end{tabular}
+
+\vspace{8pt}
+
+%% ---- Panel C: QE Signal Quality (Spearman ρ) ----
+{\small\textsc{Panel C: QE Signal Quality (Spearman $\rho$)}}
+\vspace{2pt}
+
+\begin{tabular}{l ccc ccc}
+\toprule
+ & \multicolumn{3}{c}{NER ($n{=}529$)} & \multicolumn{3}{c}{RE ($n{=}397$)} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+Signal & Constr. & Free & $\Delta$ & Constr. & Free & $\Delta$ \\
+\midrule
+SJ & 0.3599 & 0.3774 & \textbf{+0.0175} & 0.2503 & 0.2728 & \textbf{+0.0225} \\
+FK & 0.2665 & 0.3197 & \textbf{+0.0532} & 0.2752 & 0.3145 & \textbf{+0.0393} \\
+LP & 0.2052 & 0.2129 & \textbf{+0.0077} & 0.2662 & 0.3042 & \textbf{+0.0379} \\
+EM & 0.2945 & 0.3171 & \textbf{+0.0225} & 0.1344 & 0.1367 & \textbf{+0.0024} \\
+VC & 0.3792 & 0.4089 & \textbf{+0.0297} & 0.3498 & 0.3234 & $-$0.0263 \\
+\bottomrule
+\end{tabular}
+
+\vspace{8pt}
+
+%% ---- Panel D: Parse Rate ----
+{\small\textsc{Panel D: Parse Rate (Free-form)}}
+\vspace{2pt}
+
+\begin{tabular}{lc}
+\toprule
+Metric & Value \\
+\midrule
+Total samples          & 4408 \\
+Parse rate             & 99.95\% \\
+Instances 8/8 valid    & 549\,/\,551 (99.6\%) \\
+\bottomrule
+\end{tabular}
+
+\end{table*}

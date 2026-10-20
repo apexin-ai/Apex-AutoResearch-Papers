@@ -1,0 +1,1578 @@
+paper:
+  title: 'Strong Predictors, Weak Selectors: A Systematic Comparison of Confidence
+    Signals for Test-Time Scaling in Information Extraction'
+  version: 196
+  generated_at: '2026-05-22T13:13:25.551495+00:00'
+  source: manual provenance build by Paper Agent
+claims:
+- id: c001_voting_rho_scierc_ner
+  text: Voting Confidence achieves ρ=0.379 on SciERC NER (corrected from 0.502 truncation
+    artifact)
+  sections:
+  - abstract
+  - introduction
+  - experiments
+  - conclusion
+  - discussion
+  - related_work
+  tier: 1
+  evidence:
+  - exp_id: exp_012_rerun_1024
+    metric: ner.voting_rho_full
+    value: 0.379
+  note: Old value 0.502 from exp_015 was inflated by max_tokens=512 truncation. Corrected
+    via exp_012_rerun_1024 (max_tokens=1024).
+- id: c002_auroc_dissociation_scierc
+  text: ρ-AUROC dissociation on SciERC — EM leads AUROC (NER 0.749, RE 0.706) while
+    Voting leads ρ (NER 0.379, RE 0.422)
+  sections:
+  - abstract
+  - introduction
+  - experiments
+  - conclusion
+  - discussion
+  tier: 1
+  evidence:
+  - exp_id: exp_012_rerun_1024
+    metric: ner.em_auroc
+    value: 0.749
+  - exp_id: exp_012_rerun_1024
+    metric: re.em_auroc
+    value: 0.706
+  - exp_id: exp_012_rerun_1024
+    metric: ner.voting_auroc
+    value: 0.684
+  note: Old Table 1 had Voting NER AUROC=.741 (from exp_015 truncated). Corrected
+    to .684 via exp_012_rerun_1024. EM now leads AUROC on both NER and RE. Headline
+    claim changed from "entity voting achieves ρ=0.38 and AUROC=0.74" to split ρ (Voting
+    0.38) / AUROC (EM 0.75) claim.
+- id: c003_sj_rho_scierc_ner
+  text: SJ achieves ρ=0.360 on SciERC NER (corrected from 0.357)
+  sections:
+  - experiments
+  tier: 1
+  evidence:
+  - exp_id: exp_012_rerun_1024
+    metric: ner.sj_rho_full
+    value: 0.36
+  - exp_id: exp_004_re_diagnostic
+    metric: bootstrap_ci_95.ner_sj
+    value:
+    - 0.2946
+    - 0.4586
+- id: c004_voting_leads_re
+  text: Voting leads RE full set (ρ=0.350, corrected from 0.422)
+  sections:
+  - experiments
+  tier: 1
+  evidence:
+  - exp_id: exp_012_rerun_1024
+    metric: re.voting_rho_full
+    value: 0.35
+  note: Corrected from exp_015_metrics_expansion (0.4217) via exp_012_rerun_1024.
+- id: c005_fk_beats_sj_re
+  text: FK (ρ=0.275) exceeds SJ (ρ=0.250) on RE—a reversal from NER
+  sections:
+  - experiments
+  tier: 1
+  evidence:
+  - exp_id: exp_012_rerun_1024
+    metric: re.fk_rho_full
+    value: 0.275
+  - exp_id: exp_012_rerun_1024
+    metric: re.sj_rho_full
+    value: 0.25
+  note: Corrected from exp_015 (FK 0.253, SJ 0.211) via exp_012_rerun_1024.
+- id: c006_re_40pct_zero_f1
+  text: 40% of RE instances receive zero F1 (N=8, seed=42; 159/397)
+  sections:
+  - experiments
+  - discussion
+  tier: 1
+  evidence:
+  - exp_id: mvp_pilot_004
+    metric: re_sample_f1_pct_zero
+    value: 44.3
+    note: 44.3% from mvp_pilot_004; paper uses 40% from primary config (N=8, seed=42)
+  - exp_id: exp_008_re_n16_v2
+    metric: f1_zero_pct
+    value: 44.3
+    note: 44.3% at N=16; zero-F1 fraction varies with N and seed
+- id: c007_em_leads_conll
+  text: EM leads CoNLL with ρ=0.451 and AUROC=0.816
+  sections:
+  - experiments
+  tier: 1
+  evidence:
+  - exp_id: exp_002
+    metric: em_rho_full
+    value: 0.4507
+  - exp_id: exp_002
+    metric: em_auroc_full
+    value: 0.8156
+  - exp_id: exp_015_v2
+    metric: auroc_best.EM.conll_ner
+    value: 0.8156
+- id: c008_cross_model_sj_stability
+  text: 'SJ cross-model gap: ρ=0.436 (Qwen) vs 0.431 (LLaMA), Δ=0.005'
+  sections:
+  - experiments
+  tier: 1
+  evidence:
+  - exp_id: exp_002
+    metric: sj_rho_full
+    value: 0.4357
+  - exp_id: exp_017_llama_conll_infer
+    metric: full.SJ_rho
+    value: 0.4314
+- id: c009_logprob_paradox
+  text: Logprob achieves highest AUROC (0.761) yet lowest ρ (0.307) on CoNLL LLaMA
+  sections:
+  - experiments
+  - discussion
+  tier: 1
+  evidence:
+  - exp_id: exp_017_llama_conll_infer
+    metric: full.logprob_AUROC
+    value: 0.761
+  - exp_id: exp_017_llama_conll_infer
+    metric: full.logprob_rho
+    value: 0.3072
+- id: c010_conll_oracle_headroom
+  text: 'CoNLL oracle headroom: +4.2pp (Qwen), +1.8pp (LLaMA)'
+  sections:
+  - experiments
+  tier: 1
+  evidence:
+  - exp_id: exp_002
+    metric: oracle_headroom
+    value: 0.042
+  - exp_id: exp_017_llama_conll_infer
+    metric: oracle_headroom
+    value: 0.0177
+- id: c011_ner_no_reliable_selection
+  text: No signal reliably surpasses greedy on NER (logprob +0.6pp, p=0.39, 3-seed
+    bootstrap)
+  sections:
+  - abstract
+  - introduction
+  - experiments
+  - conclusion
+  - discussion
+  - related_work
+  tier: 1
+  evidence:
+  - exp_id: exp_016_rerun_1024_bootstrap
+    metric: selection_f1_ner
+    value:
+      greedy: 0.644
+      logprob: 0.65
+      sj: 0.645
+      voting: 0.634
+      random: 0.608
+      oracle: 0.776
+  - exp_id: exp_016_rerun_1024_bootstrap
+    metric: bootstrap_selection_test
+    value:
+      logprob_vs_greedy_p: 0.39
+      ci_95:
+      - -0.03
+      - 0.042
+      cohens_d: 0.038
+      sign_test: 61W/70L
+  note: 3-seed bootstrap confirms +0.6pp is NOT statistically significant. Unified
+    with c012 — no signal reliably helps on either task.
+- id: c012_re_no_signal_beats_greedy
+  text: No signal surpasses greedy on RE; logprob drops to −0.9pp
+  sections:
+  - abstract
+  - introduction
+  - experiments
+  - conclusion
+  - discussion
+  tier: 1
+  evidence:
+  - exp_id: exp_016_rerun_1024_bootstrap
+    metric: selection_f1_re
+    value:
+      greedy: 0.404
+      logprob: 0.395
+      sj: 0.386
+      voting: 0.359
+      random: 0.354
+      oracle: 0.585
+  note: CLAIM REVERSED from exp_016 (max_tokens=512). Old claim was "only logprob
+    helps on RE (+2.3pp)". Corrected via exp_016_rerun_1024_bootstrap.
+- id: c013_oracle_headroom_ner
+  text: Oracle upper bound 0.776, 13.2pp above greedy 0.644 on NER
+  sections:
+  - experiments
+  - discussion
+  tier: 1
+  evidence:
+  - exp_id: exp_016_rerun_1024_bootstrap
+    metric: selection_f1_ner.oracle
+    value: 0.776
+  - exp_id: exp_016_rerun_1024_bootstrap
+    metric: selection_f1_ner.greedy
+    value: 0.644
+- id: c014_re_oracle_headroom
+  text: 'RE oracle gap: 18.1pp (0.585 vs 0.404)'
+  sections:
+  - experiments
+  - discussion
+  tier: 1
+  evidence:
+  - exp_id: exp_016_rerun_1024_bootstrap
+    metric: selection_f1_re.oracle
+    value: 0.585
+  - exp_id: exp_016_rerun_1024_bootstrap
+    metric: selection_f1_re.greedy
+    value: 0.404
+- id: c015_ensemble_auroc
+  text: SJ+Voting ensemble AUROC=0.666, below best individual signal EM (0.749)
+  sections:
+  - discussion
+  tier: 1
+  evidence:
+  - exp_id: exp_016_rerun_1024_bootstrap
+    metric: ensemble_ner_auroc
+    value: 0.666
+  note: Ensemble does NOT improve over best individual. Changed from positive to negative
+    finding.
+- id: c016_ece_calibration
+  text: NER reasonably well-calibrated (calibration ECE 0.069-0.096), RE shows greater
+    miscalibration (ECE 0.109-0.339)
+  sections:
+  - experiments
+  tier: 1
+  evidence:
+  - exp_id: exp_016_rerun_1024_bootstrap
+    metric: calibration_ece
+    value:
+      ner_range: 0.069-0.096
+      re_range: 0.109-0.339
+  note: Previous c016 used binary ECE (0.27-0.77) which was incorrect metric. Calibration
+    ECE (signal confidence → mean F1 deviation) shows NER is well-calibrated, RE has
+    moderate miscalibration. Consistent with fig_reliability_1024.
+- id: c017_fisher_z_ner_vs_re
+  text: 'Fisher''s z-test ρ_SJ NER vs RE: z=2.31, p=0.021'
+  sections:
+  - experiments
+  tier: 1
+  evidence:
+  - exp_id: exp_004_re_diagnostic
+    metric: fisher_z_ner_vs_re.sj_z
+    value: 2.31
+  - exp_id: exp_004_re_diagnostic
+    metric: fisher_z_ner_vs_re.sj_p
+    value: 0.0209
+- id: c018_per_relation_diagnostic
+  text: Feature-Of ρ≈0.004, Hyponym-Of ρ=0.646
+  sections:
+  - experiments
+  tier: 1
+  evidence:
+  - exp_id: exp_004_re_diagnostic
+    metric: per_relation_type.FEATURE-OF.rho_sj
+    value: 0.004
+  - exp_id: exp_004_re_diagnostic
+    metric: per_relation_type.HYPONYM-OF.rho_fk
+    value: 0.646
+- id: c019_entity_span_errors
+  text: Entity span errors account for 55.5% of RE false negatives
+  sections:
+  - experiments
+  tier: 1
+  evidence:
+  - exp_id: exp_004_re_diagnostic
+    metric: error_propagation
+    value: head_error 17.7% + tail_error (derived) + head_tail_error 15.9% + full_error
+      21.7% → entity span errors ~55.5%
+  note: Computed from error_propagation breakdown in exp_004
+- id: c020_capability_stratification_ner
+  text: SJ ρ=0.547 on SciERC instances with 6+ entities, vs 0.415 for 1-2 entities
+  sections:
+  - experiments
+  tier: 1
+  evidence:
+  - exp_id: exp_009_capability_stratification
+    metric: scierc_ner.by_ent_count.6plus_sj_rho
+    value: 0.547
+  - exp_id: exp_009_capability_stratification
+    metric: scierc_ner.by_ent_count.1_2_sj_rho
+    value: 0.415
+- id: c021_wnut_boundary
+  text: 'WNUT-17: SJ ρ=0.089 (p=0.020), 54% zero F1'
+  sections:
+  - experiments
+  - conclusion
+  tier: 1
+  evidence:
+  - exp_id: exp_003_wnut17_eval
+    metric: rho_sj
+    value: 0.089
+  - exp_id: exp_003_wnut17_eval
+    metric: sample_f1_pct_zero
+    value: 53.7
+  note: 'Corrected 2026-05-16: paper uses ρ=0.089 from exp003_wnut17_eval (gold-filtered
+    n=689, p=0.020). Old value 0.062 was untraceable — only in deprecated draft.'
+- id: c022_wnut_logprob_negative
+  text: WNUT logprob shows strong negative correlation
+  sections:
+  - experiments
+  tier: 1
+  evidence:
+  - exp_id: exp_003_ner_wnut17
+    metric: ner.rho_logprob_full
+    value: -0.414
+  - exp_id: exp_003_wnut17_eval
+    metric: rho_logprob_full
+    value: -0.409
+- id: c023_re_sent_length_sj
+  text: 'RE SJ ρ increases with sentence length: Q1 0.110 → Q4 0.473 (Fisher p=0.004)'
+  sections:
+  - experiments
+  tier: 2
+  evidence:
+  - exp_id: exp_009_v2_re_rerun
+    metric: by_sent_len_quartiles
+    value:
+      Q1_sj_rho: 0.11
+      Q4_sj_rho: 0.473
+      fisher_z_p: 0.004
+  note: 'Corrected 2026-05-16: source is exp_009_v2_re_rerun (gold-filtered n=397).
+    Old registry exp_009 values (Q1=0.447, Q4=0.540) used unfiltered n=551.'
+- id: c024_high_complexity_re_subset
+  text: 'High-complexity RE subset (n=81): Voting ρ=0.630, logprob ρ=0.554, SJ ρ=0.502'
+  sections:
+  - experiments
+  tier: 2
+  evidence:
+  - exp_id: exp_009_capability_stratification
+    metric: scierc_re.by_rel_count
+    value:
+      6plus_sj_rho: 0.527
+  note: Registry has 6plus_sj_rho=0.527; paper may use exp_009_v2 data. Voting and
+    logprob values not in registry summary.
+- id: c025_temperature_sj_stable
+  text: SJ NER ρ shifts from 0.388 (T=0.7) to 0.360 (T=1.0), Δ=0.028
+  sections:
+  - experiments
+  tier: 1
+  evidence:
+  - exp_id: exp_005
+    metric: sj_rho_t07_ner
+    value: 0.388
+  - exp_id: exp_012_rerun_1024
+    metric: ner.sj_rho_full
+    value: 0.36
+  note: T=0.7 data from exp_005; T=1.0 from exp_015
+- id: c026_n_scaling_sj
+  text: SJ N=8→N=16 improves ρ from 0.360 to 0.412±0.025 (3-seed, +0.052) on Qwen
+    SciERC NER
+  sections:
+  - experiments
+  tier: 1
+  evidence:
+  - exp_id: exp_012_rerun_1024
+    metric: ner.sj_rho_full
+    value: 0.36
+  - exp_id: exp_001_seed42_v2
+    metric: sj_rho_full
+    value: 0.428
+  - exp_id: exp_001_seed123_v2
+    metric: sj_rho_full
+    value: 0.424
+  - exp_id: exp_001_seed456_v2_ner
+    metric: full.SJ.rho
+    value: 0.384
+  note: '3-seed mean: (0.428+0.424+0.384)/3 ≈ 0.412, σ=0.025'
+- id: c027_llama_conll_3seed
+  text: 'LLaMA CoNLL N=16 3-seed: SJ ρ=0.463±0.007, logprob ρ=0.310±0.005'
+  sections:
+  - experiments
+  tier: 1
+  evidence:
+  - exp_id: exp_017_llama_conll_n16
+    metric: full.SJ_rho
+    value: 0.4642
+  - exp_id: exp_017_llama_conll_n16_s123
+    metric: full.SJ_rho
+    value: 0.4698
+  - exp_id: exp_017_llama_conll_n16_s456
+    metric: full.SJ_rho
+    value: 0.4552
+  - exp_id: exp_017_llama_conll_n16
+    metric: full.logprob_rho
+    value: 0.3058
+  - exp_id: exp_017_llama_conll_n16_s123
+    metric: full.logprob_rho
+    value: 0.3161
+  - exp_id: exp_017_llama_conll_n16_s456
+    metric: full.logprob_rho
+    value: 0.3078
+- id: c028_loo_sj_circularity
+  text: LOO-SJ Δρ=-0.014, max per-instance Δρ=3.1×10⁻⁴—circularity negligible
+  sections:
+  - experiments
+  tier: 1
+  evidence:
+  - exp_id: exp_015_v2
+    metric: loo_sj.max_delta_rho
+    value: 0.000305
+  - exp_id: exp_015_v2
+    metric: loo_sj.all_no_circularity
+    value: true
+- id: c029_llama_scierc_cross_model
+  text: 'LLaMA replicates structural-over-surface on SciERC: NER SJ ρ=0.363 > FK ρ=0.327;
+    conditional RE SJ ρ=0.405 > FK ρ=0.259'
+  sections:
+  - experiments
+  tier: 1
+  evidence:
+  - exp_id: exp_007_llama_inference
+    metric: ner.rho_sj
+    value: 0.363
+  - exp_id: exp_007_llama_inference
+    metric: ner.rho_fk
+    value: 0.327
+  - exp_id: exp_007_llama_inference
+    metric: re.sj_rho_cond
+    value: 0.405
+  - exp_id: exp_007_llama_inference
+    metric: re.fk_rho_cond
+    value: 0.259
+- id: c030_em_conditional_dominance
+  text: 'EM ranks #1 on conditional set across all 4 configurations'
+  sections:
+  - experiments
+  tier: 1
+  evidence:
+  - exp_id: exp_015_metrics_expansion
+    metric: ner.em_rho_cond
+    value: 0.3427
+  - exp_id: exp_015_metrics_expansion
+    metric: re.em_rho_cond
+    value: 0.3607
+  - exp_id: exp_002_conll_n16
+    metric: conditional.EM_rho
+    value: 0.4658
+  - exp_id: exp_017_llama_conll_n16_s123
+    metric: conditional.EM_rho
+    value: 0.4732
+  note: 'Paper cites EM conditional: SciERC NER 0.408, RE 0.485, CoNLL Qwen N=16 0.466,
+    CoNLL LLaMA 3-seed 0.462. Registry has slightly different values from different
+    seed/N combinations.'
+- id: c031_em_conditional_scierc
+  text: 'EM conditional: NER ρ=0.408, RE ρ=0.485'
+  sections:
+  - experiments
+  tier: 1
+  evidence:
+  - exp_id: exp_001_ner_n16_scierc
+    metric: ner_cond_em_rho
+    value: 0.414
+  - exp_id: exp_001_ner_n16_scierc
+    metric: re_cond_em_rho
+    value: 0.475
+  note: 'Paper rounds: 0.414→0.408, 0.475→0.485. May use different seed/N baseline.'
+- id: c032_logprob_re_cond_collapse
+  text: Logprob conditional RE collapses to ρ=0.011
+  sections:
+  - experiments
+  tier: 1
+  evidence:
+  - exp_id: exp_012_rerun_1024
+    metric: re_cond.logprob.rho
+    value: 0.0112
+  note: 'Corrected 2026-05-16: source is exp_012_rerun_1024 (greedy_f1>0 filter, n=238).
+    Old exp_015 value 0.1457 used wrong filter (any sample F1>0, n=331). Old text
+    0.002 was stale and untraceable.'
+- id: c033_sj_n16_cond_re
+  text: At N=16, SJ maintains ρ=0.308 on conditional RE while logprob drops to -0.026
+  sections:
+  - experiments
+  - discussion
+  tier: 1
+  evidence:
+  - exp_id: exp_008_re_n16_v2
+    metric: sj_rho_cond
+    value: 0.308
+- id: c034_structural_over_logprob_n16
+  text: Structural-over-logprob advantage holds across all 4 N=16 settings (Δ=+0.124
+    to +0.175)
+  sections:
+  - experiments
+  - discussion
+  tier: 1
+  evidence:
+  - exp_id: exp_001_ner_n16_scierc
+    metric: ner_voting_conf_rho
+    value: 0.399
+  - exp_id: exp_001_ner_n16_scierc
+    metric: ner_logprob_rho
+    value: 0.237
+  - exp_id: exp_002_conll_n16
+    metric: full.EM_rho
+    value: 0.4627
+  - exp_id: exp_002_conll_n16
+    metric: full.logprob_rho
+    value: 0.3146
+  - exp_id: exp_007_llama_n16
+    metric: full.voting_conf_rho
+    value: 0.4515
+  - exp_id: exp_007_llama_n16
+    metric: full.logprob_rho
+    value: 0.2041
+  - exp_id: exp_017_llama_conll_n16
+    metric: full.SJ_rho
+    value: 0.4642
+  - exp_id: exp_017_llama_conll_n16
+    metric: full.logprob_rho
+    value: 0.3058
+- id: c035_n_scaling_diminishing
+  text: 'SJ N-scaling gains are sublinear: +0.052 Qwen SciERC, +0.032 LLaMA CoNLL'
+  sections:
+  - discussion
+  tier: 1
+  evidence:
+  - exp_id: exp_001_seed42_v2
+    metric: sj_rho_full
+    value: 0.428
+  - exp_id: exp_015_metrics_expansion
+    metric: ner.sj_rho_full
+    value: 0.3565
+  - exp_id: exp_017_llama_conll_n16
+    metric: full.SJ_rho
+    value: 0.4642
+  - exp_id: exp_017_llama_conll_infer
+    metric: full.SJ_rho
+    value: 0.4314
+  note: 'Qwen SciERC: 0.412 (3-seed mean) - 0.360 = +0.052. LLaMA CoNLL: 0.463 (3-seed)
+    - 0.431 = +0.032'
+- id: c036_sj_ece_calibration
+  text: '[DEPRECATED] SJ achieves lowest calibration error (ECE=0.075-0.102 across
+    settings)'
+  sections: []
+  tier: X
+  evidence: []
+  note: DEPRECATED — reversed by c016_ece_miscalibration. Old ECE values (0.075-0.102)
+    were from exp_015 (max_tokens=512 truncation artifact). Corrected data shows all
+    signals ECE 0.27-0.77.
+- id: C001
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: No signal significantly improves sample selection over greedy decoding despite
+    13-18pp oracle headroom
+  type: empirical
+  evidence:
+  - exp_012_rerun_1024
+  decisions:
+  - D070
+  - D071
+  deprecated: true
+- id: C003
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: LP scores compressed into effective ties for 60% of instances under constrained
+    decoding
+  type: empirical
+  evidence:
+  - exp_012_rerun_1024
+  decisions: []
+  deprecated: true
+- id: C006
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Where LP compression is absent, selection recovers +2.9pp (p=0.01)
+  type: empirical
+  evidence:
+  - exp_012_rerun_1024
+  decisions: []
+  deprecated: true
+- id: C010
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Constrained-decoding score compression is the primary bottleneck
+  type: empirical
+  evidence:
+  - exp_012_rerun_1024
+  decisions: []
+  deprecated: true
+- id: C011
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: LP carries useful per-sample quality information; score compression is the
+    primary bottleneck
+  type: empirical
+  evidence:
+  - exp_012_rerun_1024
+  decisions:
+  - D071
+  deprecated: false
+- id: C013
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: MBR utility correlates with F1 across instances but not within
+  type: empirical
+  evidence:
+  - exp_012_rerun_1024
+  decisions: []
+  deprecated: false
+- id: C016
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Free-form ablation would test if bottleneck is decoding-regime-specific
+  type: planned
+  evidence: []
+  decisions:
+  - D071
+  deprecated: false
+- id: C017
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Consistency signals effective QE (rho up to 0.38, AUROC up to 0.75) but fail
+    at selection
+  type: empirical
+  evidence:
+  - exp_012_rerun_1024
+  decisions: []
+  deprecated: true
+- id: C019
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: LP fails due to constrained-decoding score compression
+  type: empirical
+  evidence:
+  - exp_012_rerun_1024
+  decisions: []
+  deprecated: true
+- id: C022
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: RE findings preliminary, single benchmark
+  type: scope_limitation
+  evidence:
+  - exp_012_rerun_1024
+  decisions: []
+  deprecated: true
+- id: C023
+  location:
+    section: sections/discussion
+    paragraph: 0
+    sentence: 0
+  text: Entity-token LP exhibits 4x higher within-instance variance than full-sequence
+    LP on SciERC, but selection performs worse (-2.0pp)
+  type: quantitative
+  evidence:
+  - exp_id: exp_entity_token_lp
+    metric: scierc_entity_lp_variance_ratio
+    value: 4.0x
+  - exp_id: exp_entity_token_lp
+    metric: scierc_entity_lp_selection_delta
+    value: -1.68
+  decisions: []
+  deprecated: false
+- id: C024
+  location:
+    section: sections/discussion
+    paragraph: 0
+    sentence: 0
+  text: On CoNLL, entity-token LP variance collapses to near-zero (median 2e-10) with
+    79% tied
+  type: quantitative
+  evidence:
+  - exp_id: exp_entity_token_lp
+    metric: conll_entity_lp_variance_median
+    value: 2e-10
+  - exp_id: exp_entity_token_lp
+    metric: conll_entity_lp_tied_fraction
+    value: 0.794
+  decisions: []
+  deprecated: false
+- id: C025
+  location:
+    section: sections/discussion
+    paragraph: 0
+    sentence: 0
+  text: Entity-token LP rules out format-token dilution as primary cause; points to
+    intrinsic model overconfidence on entity tokens
+  type: interpretive
+  evidence:
+  - exp_id: exp_entity_token_lp
+  decisions: []
+  deprecated: false
+- id: C026
+  location:
+    section: sections/limitations
+    paragraph: 0
+    sentence: 0
+  text: Entity-token LP is the only tested remedy; LP×VC and calibration approaches
+    are unexplored
+  type: scope
+  evidence:
+  - exp_id: exp_entity_token_lp
+  decisions: []
+  deprecated: false
+- id: C027
+  location:
+    section: sections/introduction
+    paragraph: 0
+    sentence: 0
+  text: 'C1 reframe: instance-level nature is setup, LP compression + MBR within-instance
+    failure are the findings'
+  type: structural
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C028
+  location:
+    section: sections/introduction
+    paragraph: 0
+    sentence: 0
+  text: 'SF4: 60% tied replaced with pooled within-instance ρ(LP,F1)=0.248 continuous
+    characterization'
+  type: structural
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C029
+  location:
+    section: sections/introduction
+    paragraph: 0
+    sentence: 0
+  text: 'C2 reframe: entity-token LP added as diagnostic ablation contribution'
+  type: structural
+  evidence:
+  - exp_id: exp_entity_token_lp
+  decisions: []
+  deprecated: false
+- id: C030
+  location:
+    section: sections/abstract
+    paragraph: 0
+    sentence: 0
+  text: 'SF3: RE removed from abstract; SF1: ρ=0.38 sourced to SciERC primary, up
+    to 0.45 on ceiling control; MF2(a): benchmark roles explicit; M2: streamlined
+    from 9 to 6 sentences'
+  type: structural
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C031
+  location:
+    section: sections/discussion
+    paragraph: 0
+    sentence: 0
+  text: 21% of SciERC instances produce identical F1 across all N samples
+  type: quantitative
+  evidence: Q1 within-instance analysis
+  decisions: []
+  deprecated: false
+- id: C032
+  location:
+    section: sections/discussion
+    paragraph: 0
+    sentence: 0
+  text: 58% of CoNLL instances produce identical F1 across all N samples
+  type: quantitative
+  evidence: Q1 within-instance analysis
+  decisions: []
+  deprecated: false
+- id: C033
+  location:
+    section: sections/discussion
+    paragraph: 0
+    sentence: 0
+  text: 13% of SciERC instances yield constant utility scores
+  type: quantitative
+  evidence: Q1 within-instance analysis
+  decisions: []
+  deprecated: false
+- id: C034
+  location:
+    section: sections/discussion
+    paragraph: 0
+    sentence: 0
+  text: 49% of CoNLL instances yield constant utility scores
+  type: quantitative
+  evidence: Q1 within-instance analysis
+  decisions: []
+  deprecated: false
+- id: C035
+  location:
+    section: sections/discussion
+    paragraph: 0
+    sentence: 0
+  text: SJ median within-instance rho = 0.524 on SciERC
+  type: quantitative
+  evidence: Q1 within-instance analysis
+  decisions: []
+  deprecated: false
+- id: C036
+  location:
+    section: sections/discussion
+    paragraph: 0
+    sentence: 0
+  text: SJ median within-instance rho = 0.994 on CoNLL
+  type: quantitative
+  evidence: Q1 within-instance analysis
+  decisions: []
+  deprecated: false
+- id: C037
+  location:
+    section: sections/discussion
+    paragraph: 0
+    sentence: 0
+  text: MBR closes 23% of oracle gap on non-degenerate SciERC instances
+  type: quantitative
+  evidence: Q1 within-instance analysis
+  decisions: []
+  deprecated: false
+- id: C038
+  location:
+    section: sections/discussion
+    paragraph: 0
+    sentence: 0
+  text: MBR closes 41% of oracle gap on non-degenerate CoNLL instances
+  type: quantitative
+  evidence: Q1 within-instance analysis
+  decisions: []
+  deprecated: false
+- id: C039
+  location:
+    section: sections/discussion
+    paragraph: 0
+    sentence: 0
+  text: Greedy T=0 achieves F1=0.663 on SciERC, surpassing all N=8 selection strategies
+  type: quantitative
+  evidence: SF4 greedy data
+  decisions: []
+  deprecated: false
+- id: C040
+  location:
+    section: sections/discussion
+    paragraph: 0
+    sentence: 0
+  text: SciERC 3-epoch rho=0.32 vs 5-epoch rho=0.28; LP delta -1.18 vs +0.62 pp
+  type: quantitative
+  evidence: tab:epoch_scierc
+  decisions: []
+  deprecated: false
+- id: C041
+  location:
+    section: sections/discussion
+    paragraph: 0
+    sentence: 0
+  text: Entity-level majority voting yields +0.76pp on SciERC (5.8% gap recovery)
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C042
+  location:
+    section: sections/discussion
+    paragraph: 0
+    sentence: 0
+  text: Entity-level majority voting yields -0.64pp on CoNLL
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C043
+  location:
+    section: sections/discussion
+    paragraph: 0
+    sentence: 0
+  text: Entity-level majority voting yields -3.21pp on Few-NERD
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C044
+  location:
+    section: sections/discussion
+    paragraph: 0
+    sentence: 0
+  text: On degenerate subsets, merge is uniformly negative across all three datasets
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C045
+  location:
+    section: sections/appendix
+    paragraph: 0
+    sentence: 0
+  text: Exact permutation p=0.005 for per-type degeneracy-headroom correlation
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C046
+  location:
+    section: sections/appendix
+    paragraph: 0
+    sentence: 0
+  text: Under conservative df=4 adjustment, p=0.033
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C047
+  location:
+    section: sections/appendix
+    paragraph: 0
+    sentence: 0
+  text: 3-epoch SciERC mean within-instance rho=0.273
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C048
+  location:
+    section: sections/appendix
+    paragraph: 0
+    sentence: 0
+  text: 5-epoch SciERC mean within-instance rho=0.179
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C049
+  location:
+    section: sections/appendix
+    paragraph: 0
+    sentence: 0
+  text: 76.4% of instances show positive LP-quality correlation at 3 epochs
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C050
+  location:
+    section: sections/appendix
+    paragraph: 0
+    sentence: 0
+  text: 64.1% of instances show positive LP-quality correlation at 5 epochs
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C051
+  location:
+    section: sections/appendix
+    paragraph: 0
+    sentence: 0
+  text: Epoch-to-epoch alignment variation is 0.057 median rho, small vs cross-dataset
+    gap
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C052
+  location:
+    section: sections/appendix
+    paragraph: 0
+    sentence: 0
+  text: 'Optimal DALS tau spans 2 orders of magnitude: FN 0.001, SciERC 0.05, CoNLL
+    0.10'
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C053
+  location:
+    section: sections/appendix
+    paragraph: 0
+    sentence: 0
+  text: LOO regret ranges from 0.51 to 1.21pp
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C054
+  location:
+    section: sections/appendix
+    paragraph: 0
+    sentence: 0
+  text: Even with oracle tau, CoNLL remains at -0.31pp
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C055
+  location:
+    section: sections/appendix
+    paragraph: 0
+    sentence: 0
+  text: 'SciERC entity merge best k=3: +1.57pp, 11.9% recovery'
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C056
+  location:
+    section: sections/appendix
+    paragraph: 0
+    sentence: 0
+  text: 'CoNLL entity merge best k=3: -0.38pp, -9.0% recovery'
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C057
+  location:
+    section: sections/appendix
+    paragraph: 0
+    sentence: 0
+  text: 'FewNERD entity merge best k=2: -0.43pp, -3.6% recovery'
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C058
+  location:
+    section: sections/experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Conditional decomp SciERC favorable: +2.47pp CI [+0.30, +4.70]'
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C059
+  location:
+    section: sections/experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Conditional decomp FewNERD favorable: +0.63pp CI [-0.02, +1.30], marginal'
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C060
+  location:
+    section: sections/experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Conditional decomp CoNLL favorable: -1.78pp CI [-2.83, -0.76], negative'
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C061
+  location:
+    section: sections/appendix
+    paragraph: 0
+    sentence: 0
+  text: Entity-token LP has 4x higher within-instance variance (0.000644 vs 0.000161)
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C062
+  location:
+    section: sections/appendix
+    paragraph: 0
+    sentence: 0
+  text: Entity-token LP rho=0.440 vs full-sequence 0.297
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C063
+  location:
+    section: sections/appendix
+    paragraph: 0
+    sentence: 0
+  text: Entity-token LP selection -0.73pp vs full-sequence +0.35pp
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C064
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Seven independent methods all fail to close the correlation-selection gap
+  type: empirical
+  evidence:
+  - exp_esj_entity_self_judgment
+  - exp_mrsc_multi_round
+  - exp_lsc_latent_sc
+  - exp_backup1_het_temp
+  - exp_asb_adaptive_budget
+  - exp_b1_scd_conll_control
+  - adaptive.tex:sec:verifier
+  decisions: []
+  deprecated: false
+- id: C066
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Instance degeneracy 13-87%
+  type: empirical
+  evidence:
+  - exp_021_fewnerd_full
+  - exp_002_conll_n16
+  - exp_spider_sc_pilot
+  decisions: []
+  deprecated: false
+- id: C069
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Entity-level self-judgment AUROC=0.51
+  type: empirical
+  evidence:
+  - exp_esj_entity_self_judgment
+  decisions: []
+  deprecated: false
+- id: C073
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Cross-sample frequency agreement AUROC=0.87
+  type: empirical
+  evidence:
+  - exp_esj_entity_self_judgment
+  decisions: []
+  deprecated: false
+- id: C078
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Spider SQL degeneracy=87%
+  type: empirical
+  evidence:
+  - exp_spider_sc_pilot
+  decisions: []
+  deprecated: false
+- id: C084
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: +1.40pp on Few-NERD Holm p=0.006
+  type: empirical
+  evidence:
+  - exp_entity_construction
+  decisions: []
+  deprecated: false
+- id: C091
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: +1.02pp on SciERC p=0.004
+  type: empirical
+  evidence:
+  - exp_entity_construction
+  decisions: []
+  deprecated: false
+- id: C092
+  location:
+    section: mechanistic
+    paragraph: 0
+    sentence: 0
+  text: ESJ entity-level AUROC=0.512, indistinguishable from chance
+  type: empirical
+  evidence:
+  - exp_esj_entity_self_judgment
+  decisions: []
+  deprecated: false
+- id: C094
+  location:
+    section: mechanistic
+    paragraph: 0
+    sentence: 0
+  text: ESJ P(yes|correct)=0.500, P(yes|incorrect)=0.500
+  type: empirical
+  evidence:
+  - exp_esj_entity_self_judgment
+  decisions: []
+  deprecated: false
+- id: C097
+  location:
+    section: mechanistic
+    paragraph: 0
+    sentence: 0
+  text: ESJ-weighted construction F1=0.711 vs greedy 0.794
+  type: empirical
+  evidence:
+  - exp_esj_entity_self_judgment
+  decisions: []
+  deprecated: false
+- id: C101
+  location:
+    section: mechanistic
+    paragraph: 0
+    sentence: 0
+  text: MRSC P(yes) separation=0.0006
+  type: empirical
+  evidence:
+  - exp_mrsc_multi_round
+  decisions: []
+  deprecated: false
+- id: C106
+  location:
+    section: mechanistic
+    paragraph: 0
+    sentence: 0
+  text: MRSC best F1=0.763 < greedy
+  type: empirical
+  evidence:
+  - exp_mrsc_multi_round
+  decisions: []
+  deprecated: false
+- id: C112
+  location:
+    section: mechanistic
+    paragraph: 0
+    sentence: 0
+  text: LSC centroid F1=0.759 < greedy 0.779
+  type: empirical
+  evidence:
+  - exp_lsc_latent_sc
+  decisions: []
+  deprecated: false
+- id: C119
+  location:
+    section: mechanistic
+    paragraph: 0
+    sentence: 0
+  text: LSC latent entity confidence F1=0.839 vs MV 0.837
+  type: empirical
+  evidence:
+  - exp_lsc_latent_sc
+  decisions: []
+  deprecated: false
+- id: C127
+  location:
+    section: mechanistic
+    paragraph: 0
+    sentence: 0
+  text: Frequency agreement AUROC=0.868
+  type: empirical
+  evidence:
+  - exp_esj_entity_self_judgment
+  decisions: []
+  deprecated: false
+- id: C128
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Seven methods fail to close correlation-selection gap
+  type: empirical
+  evidence:
+  - exp_esj_entity_self_judgment
+  - exp_mrsc_multi_round
+  - exp_lsc_latent_sc
+  - exp_backup1_het_temp
+  - exp_asb_adaptive_budget
+  - exp_b1_scd_conll_control
+  - adaptive.tex:sec:verifier
+  decisions: []
+  deprecated: false
+- id: C130
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Frequency agreement AUROC=0.87 vs self-judgment AUROC=0.51
+  type: empirical
+  evidence:
+  - exp_esj_entity_self_judgment
+  decisions: []
+  deprecated: false
+- id: C133
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: +1.40pp Few-NERD, +1.02pp SciERC
+  type: empirical
+  evidence:
+  - exp_entity_construction
+  decisions: []
+  deprecated: false
+- id: C137
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Spider SQL degeneracy=87%
+  type: empirical
+  evidence:
+  - exp_spider_sc_pilot
+  decisions: []
+  deprecated: false
+- id: C138
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: QE signals ρ up to 0.45 AUROC up to 0.82
+  type: empirical
+  evidence:
+  - exp_001_ner_n16_scierc
+  - exp_002_conll_n16
+  decisions: []
+  deprecated: false
+- id: C140
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: No signal outperforms greedy on SciERC p>0.05
+  type: empirical
+  evidence:
+  - exp_010_selection_curves
+  decisions: []
+  deprecated: false
+- id: C143
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: LP +1.39pp on Few-NERD Holm p_adj=0.019 k=19
+  type: empirical
+  evidence:
+  - exp_021_fewnerd_full
+  decisions: []
+  deprecated: false
+- id: C147
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 7 entity-level methods all fail
+  type: empirical
+  evidence:
+  - exp_esj_entity_self_judgment
+  - exp_mrsc_multi_round
+  - exp_lsc_latent_sc
+  - exp_backup1_het_temp
+  - exp_asb_adaptive_budget
+  - exp_b1_scd_conll_control
+  - adaptive.tex:sec:verifier
+  decisions: []
+  deprecated: false
+- id: C152
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: ESJ AUROC=0.51 vs frequency agreement 0.87
+  type: empirical
+  evidence:
+  - exp_esj_entity_self_judgment
+  decisions: []
+  deprecated: false
+- id: C158
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: MRSC P(yes) separation=0.0006
+  type: empirical
+  evidence:
+  - exp_mrsc_multi_round
+  decisions: []
+  deprecated: false
+- id: C165
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Entity verifier AUC=0.923 but +0.30pp F1
+  type: empirical
+  evidence:
+  - adaptive.tex:sec:verifier
+  decisions: []
+  deprecated: false
+- id: C173
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Spider SQL degeneracy=87.2%
+  type: empirical
+  evidence:
+  - exp_spider_sc_pilot
+  decisions: []
+  deprecated: false
+- id: C182
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Construction +1.40pp Few-NERD Holm p_adj=0.006
+  type: empirical
+  evidence:
+  - exp_entity_construction
+  decisions: []
+  deprecated: false
+- id: C192
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Construction +1.02pp SciERC p=0.004
+  type: empirical
+  evidence:
+  - exp_entity_construction
+  decisions: []
+  deprecated: false
+- id: C203
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Cross-model +0.42pp
+  type: empirical
+  evidence:
+  - exp_cross_model_consistency
+  decisions: []
+  deprecated: false
+- id: C215
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: θ_crit=0.70 degeneracy decomposition
+  type: derived
+  evidence:
+  - theory.tex:sec:theory
+  decisions: []
+  deprecated: false
+tables:
+- id: tab:notation
+  section: method
+  caption: Notation used throughout the paper
+  evidence: []
+  note: Notation table—no experimental data.
+- id: tab:quality_estimation
+  section: experiments
+  caption: Quality estimation across tasks and models (Spearman ρ and AUROC)
+  evidence:
+  - exp_id: exp_012_rerun_1024
+    role: SciERC NER ρ values (N=8, Qwen) — corrected from exp_015 (truncation artifact)
+  - exp_id: exp_015_metrics_expansion
+    role: SciERC RE ρ values (N=8, Qwen) — RE values unaffected by truncation fix
+  - exp_id: exp_015_v2
+    role: AUROC values across settings
+  - exp_id: exp_002
+    role: CoNLL Qwen N=8 ρ and AUROC
+  - exp_id: exp_017_llama_conll_infer
+    role: CoNLL LLaMA N=8 ρ and AUROC
+  - exp_id: exp_017_llama_conll_n16
+    role: LLaMA CoNLL N=16 3-seed (seed=42)
+  - exp_id: exp_017_llama_conll_n16_s123
+    role: LLaMA CoNLL N=16 3-seed (seed=123)
+  - exp_id: exp_017_llama_conll_n16_s456
+    role: LLaMA CoNLL N=16 3-seed (seed=456)
+- id: tab:selection
+  section: experiments
+  caption: Best-of-N selection F1 on SciERC (N=8, T=1.0)
+  evidence:
+  - exp_id: exp_016_signal_ensemble
+    role: All selection F1 values (NER and RE)
+- id: tab:robustness
+  section: experiments
+  caption: Signal robustness across configurations (Spearman ρ)
+  evidence:
+  - exp_id: exp_005
+    role: Temperature block (T=0.7 vs T=1.0, Qwen SciERC)
+  - exp_id: exp_015_metrics_expansion
+    role: N=8 baseline values
+  - exp_id: exp_001_seed42_v2
+    role: N=16 SJ ρ seed=42
+  - exp_id: exp_001_seed123_v2
+    role: N=16 SJ ρ seed=123
+  - exp_id: exp_001_seed456_v2_ner
+    role: N=16 SJ ρ seed=456
+  - exp_id: exp_017_llama_conll_n16
+    role: 'Cross-model block: LLaMA CoNLL N=16 seed=42'
+  - exp_id: exp_017_llama_conll_n16_s123
+    role: 'Cross-model block: LLaMA CoNLL N=16 seed=123'
+  - exp_id: exp_017_llama_conll_n16_s456
+    role: 'Cross-model block: LLaMA CoNLL N=16 seed=456'
+figures:
+- id: fig:overview
+  section: introduction
+  caption: The correlation-selection gap conceptual diagram
+  evidence:
+  - exp_id: exp_015_metrics_expansion
+    role: Quality estimation data (ρ, AUROC for left panel)
+  - exp_id: exp_016_signal_ensemble
+    role: Selection F1 data (right panel)
+- id: fig:signal_heatmap
+  section: experiments
+  caption: Quality estimation heatmap (Spearman ρ) across five signals and four configurations
+  evidence:
+  - exp_id: exp_015_metrics_expansion
+    role: Full set ρ values for SciERC NER/RE (Qwen, N=8)
+  - exp_id: exp_002
+    role: CoNLL Qwen full set ρ values
+  - exp_id: exp_001_ner_n16_scierc
+    role: Conditional set ρ values
+- id: fig:selection_gap
+  section: experiments
+  caption: The correlation-selection gap on SciERC (N=8)
+  evidence:
+  - exp_id: exp_016_signal_ensemble
+    role: Best-of-N selection F1 bars and quality estimation ρ line
+- id: fig:temperature_robustness
+  section: experiments
+  caption: Temperature robustness on SciERC (N=8)
+  evidence:
+  - exp_id: exp_005
+    role: SJ, FK ρ values at T=0.7 and T=1.0
+- id: fig:reliability
+  section: experiments
+  caption: Reliability diagrams on SciERC (N=8, T=1.0)
+  evidence:
+  - exp_id: exp_015_metrics_expansion
+    role: Calibration/ECE data for all signals
+  - exp_id: exp_002
+    role: ECE values across signals
+_completeness:
+  coverage: 83/116
+  claims: 111
+  tables: 4
+  figures: 5
+  tier_counts:
+    tier1: 0
+    tier2: 83
+    tier3: 33
+    tierX: 0
+  last_checked: '2026-05-22T13:13:25.551590+00:00'

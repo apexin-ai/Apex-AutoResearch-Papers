@@ -1,0 +1,18 @@
+Table 33: CoNLL Free-form vs Constrained Decoding Ablation
+N=8, T=1.0, seed=42, gold-filtered instances=2756
+
+                        Constrained      Free-form        Delta
+--------------------------------------------------------------
+greedy_f1                  0.9088         0.9046        -0.42 pp
+mv_strict_f1               0.8992         0.8994        +0.01 pp
+mv_delta (pp)                -0.96            -0.52        +0.43 pp
+lp_f1                      0.8981         0.8951        -0.30 pp
+lp_delta (pp)                -1.07            -0.95        +0.12 pp
+degeneracy_rate               56.9%          60.0%       +3.0 pp
+lp_std_ratio               0.0256         0.0235        -0.0022
+
+Key findings:
+1. Degeneracy INCREASES in freeform (+3pp) → degeneracy is model-intrinsic, not constrained decoding artifact
+2. MV strict F1 virtually identical → MV robust to constraint removal
+3. Greedy F1 drops 0.42pp without grammar (expected: freeform can produce malformed outputs)
+4. LP std ratio decreases → less logprob spread in freeform, consistent with higher degeneracy

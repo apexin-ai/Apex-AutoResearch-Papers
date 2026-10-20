@@ -1,0 +1,154 @@
+{
+  "experiment": "exp_dgec_sj_construction",
+  "subset": "qwen3_8b_ft",
+  "method": "SJ two-tier entity construction: freq > 0.5 always included; freq in (2/N, 0.5] included if mean SJ of contributing samples >= instance median SJ.",
+  "description": "SJ construction on Qwen3-8B FT configs (3 datasets × 3 seeds). Supplements the main SJ construction results which covered Qwen2.5-7B FT and 72B ZS/FS.",
+  "parameters": {
+    "N": 8,
+    "bootstrap_B": 10000,
+    "bootstrap_seed": 42
+  },
+  "results": [
+    {
+      "config": "fewnerd/qwen3_8b/ft/seed42",
+      "dataset": "FewNERD",
+      "model": "Qwen3-8B",
+      "regime": "fine-tuned",
+      "n_instances": 32565,
+      "greedy_f1": 0.7478,
+      "sj_constructed_f1": 0.7300,
+      "delta_f1_pp": -1.78,
+      "bootstrap_p": 1.0,
+      "ci_95": [-0.0200, -0.0156],
+      "mean_degeneracy": 0.1004,
+      "greedy_f1_verified": true
+    },
+    {
+      "config": "fewnerd/qwen3_8b/ft/seed123",
+      "dataset": "FewNERD",
+      "model": "Qwen3-8B",
+      "regime": "fine-tuned",
+      "n_instances": 32565,
+      "greedy_f1": 0.7480,
+      "sj_constructed_f1": 0.7316,
+      "delta_f1_pp": -1.64,
+      "bootstrap_p": 1.0,
+      "ci_95": [-0.0185, -0.0142],
+      "mean_degeneracy": 0.0927,
+      "greedy_f1_verified": true
+    },
+    {
+      "config": "fewnerd/qwen3_8b/ft/seed456",
+      "dataset": "FewNERD",
+      "model": "Qwen3-8B",
+      "regime": "fine-tuned",
+      "n_instances": 32565,
+      "greedy_f1": 0.7486,
+      "sj_constructed_f1": 0.7384,
+      "delta_f1_pp": -1.02,
+      "bootstrap_p": 1.0,
+      "ci_95": [-0.0122, -0.0082],
+      "mean_degeneracy": 0.0817,
+      "greedy_f1_verified": true
+    },
+    {
+      "config": "scierc/qwen3_8b/ft/seed42",
+      "dataset": "SciERC",
+      "model": "Qwen3-8B",
+      "regime": "fine-tuned",
+      "n_instances": 529,
+      "greedy_f1": 0.6439,
+      "sj_constructed_f1": 0.6479,
+      "delta_f1_pp": 0.39,
+      "bootstrap_p": 0.284,
+      "ci_95": [-0.0094, 0.0176],
+      "mean_degeneracy": 0.1134,
+      "greedy_f1_verified": true
+    },
+    {
+      "config": "scierc/qwen3_8b/ft/seed123",
+      "dataset": "SciERC",
+      "model": "Qwen3-8B",
+      "regime": "fine-tuned",
+      "n_instances": 529,
+      "greedy_f1": 0.6457,
+      "sj_constructed_f1": 0.6437,
+      "delta_f1_pp": -0.21,
+      "bootstrap_p": 0.6127,
+      "ci_95": [-0.0163, 0.0120],
+      "mean_degeneracy": 0.1115,
+      "greedy_f1_verified": true
+    },
+    {
+      "config": "scierc/qwen3_8b/ft/seed456",
+      "dataset": "SciERC",
+      "model": "Qwen3-8B",
+      "regime": "fine-tuned",
+      "n_instances": 529,
+      "greedy_f1": 0.6478,
+      "sj_constructed_f1": 0.6339,
+      "delta_f1_pp": -1.39,
+      "bootstrap_p": 0.9818,
+      "ci_95": [-0.0280, -0.0007],
+      "mean_degeneracy": 0.1323,
+      "greedy_f1_verified": true
+    },
+    {
+      "config": "conll/qwen3_8b/ft/seed42",
+      "dataset": "CoNLL-2003",
+      "model": "Qwen3-8B",
+      "regime": "fine-tuned",
+      "n_instances": 2756,
+      "greedy_f1": 0.9079,
+      "sj_constructed_f1": 0.8995,
+      "delta_f1_pp": -0.83,
+      "bootstrap_p": 0.9996,
+      "ci_95": [-0.0134, -0.0034],
+      "mean_degeneracy": 0.5686,
+      "greedy_f1_verified": true
+    },
+    {
+      "config": "conll/qwen3_8b/ft/seed123",
+      "dataset": "CoNLL-2003",
+      "model": "Qwen3-8B",
+      "regime": "fine-tuned",
+      "n_instances": 2756,
+      "greedy_f1": 0.9077,
+      "sj_constructed_f1": 0.9047,
+      "delta_f1_pp": -0.29,
+      "bootstrap_p": 0.9213,
+      "ci_95": [-0.0071, 0.0012],
+      "mean_degeneracy": 0.6049,
+      "greedy_f1_verified": true
+    },
+    {
+      "config": "conll/qwen3_8b/ft/seed456",
+      "dataset": "CoNLL-2003",
+      "model": "Qwen3-8B",
+      "regime": "fine-tuned",
+      "n_instances": 2756,
+      "greedy_f1": 0.9070,
+      "sj_constructed_f1": 0.9033,
+      "delta_f1_pp": -0.36,
+      "bootstrap_p": 0.9703,
+      "ci_95": [-0.0073, 0.0001],
+      "mean_degeneracy": 0.6030,
+      "greedy_f1_verified": true
+    }
+  ],
+  "cross_seed_summary": {
+    "fewnerd": {
+      "mean_delta_pp": -1.48,
+      "all_seeds_negative": true,
+      "all_significant_p1": true
+    },
+    "scierc": {
+      "mean_delta_pp": -0.40,
+      "mixed": true
+    },
+    "conll": {
+      "mean_delta_pp": -0.50,
+      "all_seeds_negative": true
+    }
+  }
+}

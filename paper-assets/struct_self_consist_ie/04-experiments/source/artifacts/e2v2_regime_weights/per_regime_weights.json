@@ -1,0 +1,149 @@
+{
+  "ft": {
+    "group": "regime_ft",
+    "n_configs": 10,
+    "n_instances": 201960,
+    "configs": [
+      "Qwen3_8B_ft_conll_s123",
+      "Qwen3_8B_ft_conll_s456",
+      "Qwen3_8B_ft_scierc_s456",
+      "Qwen3_8B_ft_scierc_s789",
+      "Qwen3_8B_ft_fewnerd_s123",
+      "Qwen3_8B_ft_fewnerd_s456",
+      "Qwen3_8B_ft_fewnerd_s789",
+      "LLaMA_8B_ft_fewnerd_s42",
+      "LLaMA_8B_ft_fewnerd_s123",
+      "LLaMA_8B_ft_fewnerd_s456"
+    ],
+    "best_weights": {
+      "SJ": 0.0,
+      "FK": 0.0,
+      "VC": 0.1,
+      "EM": 0.0,
+      "LP": 0.9
+    },
+    "full_data_f1": 0.7807,
+    "cv_f1": 0.7807,
+    "top3_weights": [
+      {
+        "weights": {
+          "SJ": 0.0,
+          "FK": 0.0,
+          "VC": 0.1,
+          "EM": 0.0,
+          "LP": 0.9
+        },
+        "f1": 0.7807
+      },
+      {
+        "weights": {
+          "SJ": 0.0,
+          "FK": 0.0,
+          "VC": 0.2,
+          "EM": 0.0,
+          "LP": 0.8
+        },
+        "f1": 0.779
+      },
+      {
+        "weights": {
+          "SJ": 0.0,
+          "FK": 0.0,
+          "VC": 0.0,
+          "EM": 0.0,
+          "LP": 1.0
+        },
+        "f1": 0.7776
+      }
+    ],
+    "single_signal_f1": {
+      "SJ": 0.7507,
+      "FK": 0.7497,
+      "VC": 0.75,
+      "EM": 0.7391,
+      "LP": 0.7776
+    },
+    "best_single_signal": "LP",
+    "best_single_f1": 0.7776,
+    "delta_vs_best_single_pp": 0.3,
+    "bootstrap_ens_vs_best_single": {
+      "delta": 0.003037,
+      "delta_pp": 0.3,
+      "p_value": 0.0,
+      "significant_005": true
+    },
+    "loo_validation": [
+      {
+        "held_out": "Qwen3_8B_ft_conll_s123",
+        "loo_weights": {"SJ": 0.0, "FK": 0.0, "VC": 0.1, "EM": 0.0, "LP": 0.9},
+        "loo_test_f1": 0.907,
+        "full_weights_test_f1": 0.907,
+        "delta_pp": 0.0
+      },
+      {
+        "held_out": "Qwen3_8B_ft_conll_s456",
+        "loo_weights": {"SJ": 0.0, "FK": 0.0, "VC": 0.1, "EM": 0.0, "LP": 0.9},
+        "loo_test_f1": 0.9018,
+        "full_weights_test_f1": 0.9018,
+        "delta_pp": 0.0
+      },
+      {
+        "held_out": "Qwen3_8B_ft_scierc_s456",
+        "loo_weights": {"SJ": 0.0, "FK": 0.0, "VC": 0.1, "EM": 0.0, "LP": 0.9},
+        "loo_test_f1": 0.6476,
+        "full_weights_test_f1": 0.6476,
+        "delta_pp": 0.0
+      },
+      {
+        "held_out": "Qwen3_8B_ft_scierc_s789",
+        "loo_weights": {"SJ": 0.0, "FK": 0.0, "VC": 0.1, "EM": 0.0, "LP": 0.9},
+        "loo_test_f1": 0.6575,
+        "full_weights_test_f1": 0.6575,
+        "delta_pp": 0.0
+      },
+      {
+        "held_out": "Qwen3_8B_ft_fewnerd_s123",
+        "loo_weights": {"SJ": 0.0, "FK": 0.0, "VC": 0.1, "EM": 0.0, "LP": 0.9},
+        "loo_test_f1": 0.7706,
+        "full_weights_test_f1": 0.7706,
+        "delta_pp": 0.0
+      },
+      {
+        "held_out": "Qwen3_8B_ft_fewnerd_s456",
+        "loo_weights": {"SJ": 0.0, "FK": 0.0, "VC": 0.1, "EM": 0.0, "LP": 0.9},
+        "loo_test_f1": 0.7679,
+        "full_weights_test_f1": 0.7679,
+        "delta_pp": 0.0
+      },
+      {
+        "held_out": "Qwen3_8B_ft_fewnerd_s789",
+        "loo_weights": {"SJ": 0.0, "FK": 0.0, "VC": 0.1, "EM": 0.0, "LP": 0.9},
+        "loo_test_f1": 0.7666,
+        "full_weights_test_f1": 0.7666,
+        "delta_pp": 0.0
+      },
+      {
+        "held_out": "LLaMA_8B_ft_fewnerd_s42",
+        "loo_weights": {"SJ": 0.0, "FK": 0.0, "VC": 0.1, "EM": 0.0, "LP": 0.9},
+        "loo_test_f1": 0.7858,
+        "full_weights_test_f1": 0.7858,
+        "delta_pp": 0.0
+      },
+      {
+        "held_out": "LLaMA_8B_ft_fewnerd_s123",
+        "loo_weights": {"SJ": 0.0, "FK": 0.0, "VC": 0.1, "EM": 0.0, "LP": 0.9},
+        "loo_test_f1": 0.7882,
+        "full_weights_test_f1": 0.7882,
+        "delta_pp": 0.0
+      },
+      {
+        "held_out": "LLaMA_8B_ft_fewnerd_s456",
+        "loo_weights": {"SJ": 0.0, "FK": 0.0, "VC": 0.1, "EM": 0.0, "LP": 0.9},
+        "loo_test_f1": 0.7881,
+        "full_weights_test_f1": 0.7881,
+        "delta_pp": 0.0
+      }
+    ],
+    "loo_mean_delta_pp": 0.0
+  }
+}

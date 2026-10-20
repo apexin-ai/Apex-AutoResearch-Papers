@@ -1,0 +1,38 @@
+% Bootstrap CI for N-scaling (N=8 vs N=16), B=10000
+% voting_conf regenerated 2026-05-15 after majority-filter bug fix
+\begin{table}[t]
+\centering
+\caption{Spearman $\rho$ between consistency signals and instance-level F1 (N=16 samples). Bootstrap 95\% CI for $\Delta\rho = \rho_{16} - \rho_8$ shown in brackets (B=10{,}000).}
+\label{tab:bootstrap_nscaling}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Signal & Qwen/CoNLL & Qwen/SciERC & LLaMA/CoNLL & LLaMA/SciERC \\
+\midrule
+\textrm{SJ} & $0.450$ [-0.014, +0.035] & $0.428$ [+0.004, +0.128] & $0.464$ [-0.004, +0.071] & $0.379$ [-0.042, +0.065] \\
+\textrm{FK} & $0.393$ [-0.041, +0.019] & $0.281$ [-0.041, +0.127] & $0.457$ [-0.009, +0.068] & $0.308$ [-0.103, +0.052] \\
+\textrm{EM} & $0.461$ [-0.015, +0.032] & $0.341$ [-0.049, +0.065] & $0.462$ [-0.006, +0.067] & $0.328$ [-0.045, +0.058] \\
+\textrm{VC} & $0.429$ [-0.025, +0.026] & $0.441$ [-0.023, +0.114] & $0.455$ [-0.008, +0.069] & $0.452$ [-0.046, +0.076] \\
+\textrm{LP} & $0.315$ [-0.015, +0.012] & $0.219$ [-0.059, +0.033] & $0.306$ [-0.012, +0.010] & $0.204$ [-0.020, +0.068] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% 3-Seed robustness: mean rho +/- sd
+\begin{table}[t]
+\centering
+\caption{3-seed robustness of consistency signals (Spearman $\rho$, mean $\pm$ sd).}
+\label{tab:3seed_robustness}
+\small
+\begin{tabular}{llccccc}
+\toprule
+Setting & Eval & \textrm{SJ} & \textrm{FK} & \textrm{EM} & \textrm{VC} & \textrm{LP} \\
+\midrule
+Qwen/SciERC & Full & $0.412 \pm 0.025$ & $0.260 \pm 0.032$ & $0.329 \pm 0.011$ & $0.422 \pm 0.017$ & $0.234 \pm 0.016$ \\
+Qwen/SciERC & Cond & $0.365 \pm 0.014$ & $0.176 \pm 0.019$ & $0.408 \pm 0.006$ & $0.346 \pm 0.007$ & $0.167 \pm 0.009$ \\
+\midrule
+LLaMA/CoNLL & Full & $0.463 \pm 0.007$ & $0.455 \pm 0.006$ & $0.460 \pm 0.008$ & $0.458 \pm 0.003$ & $0.310 \pm 0.005$ \\
+LLaMA/CoNLL & Cond & $0.461 \pm 0.010$ & $0.451 \pm 0.009$ & $0.462 \pm 0.011$ & $0.401 \pm 0.007$ & $0.325 \pm 0.006$ \\
+\bottomrule
+\end{tabular}
+\end{table}

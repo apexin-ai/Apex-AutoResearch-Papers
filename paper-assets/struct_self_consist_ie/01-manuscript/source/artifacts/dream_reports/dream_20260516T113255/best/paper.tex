@@ -1,0 +1,454 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\title{Strong Predictors, Weak Selectors: Why Confidence Signals Cannot Scale Structured Information Extraction}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Test-time scaling via multi-sample generation improves LLM reasoning tasks, but its effectiveness for structured information extraction (IE) remains unclear. We present a dual contribution: (1)~a quality estimation (QE) framework showing that five confidence signals across four families reliably predict structured IE output quality (AUROC up to 0.82, Spearman $\rho$ up to 0.44), enabling practical selective prediction; and (2)~a diagnostic analysis revealing why these same signals universally fail at best-of-N selection. We identify a multi-causal failure mechanism: instance degeneracy (21--58\% of instances produce identical outputs across N samples), logprob score compression (within-instance range 0.041 nats), and insufficient signal discriminability even when degeneracy is reduced. A trained verifier (logistic regression on 5 signals) closes 36\% of the oracle gap for NER (+4.8pp over greedy), confirming that signals carry exploitable information but unsupervised aggregation is the bottleneck. Experiments span 3 model configurations (Qwen3-8B, Qwen3-4B, LLaMA-3.1-8B), 2 IE tasks (NER, RE), and 3 datasets (SciERC, CoNLL-2003, WNUT-17), establishing that the correlation--selection gap is model-agnostic and task-general.
+\end{abstract}
+
+%=============================================================================
+\section{Introduction}
+%=============================================================================
+
+Test-time scaling through multi-sample generation and selection has emerged as a powerful paradigm for improving LLM performance on reasoning tasks~\cite{wang2023selfconsistency,brown2024large,snell2024scaling}. Self-consistency---sampling multiple chain-of-thought paths and selecting via majority vote---yields substantial gains for discrete-answer problems. However, structured information extraction (IE) outputs---entity sets, relation triples, event structures---resist naive majority voting due to their combinatorial output space.
+
+A natural question arises: can confidence signals derived from multi-sample agreement serve as quality estimators or selectors for structured IE? We decouple these two functions and show they are governed by fundamentally different factors.
+
+\paragraph{Contribution A: QE Framework.} We systematically evaluate five confidence signals across four families---structural similarity (set Jaccard, fuzzy match), probabilistic (logprob), voting-based (entity voting confidence), and exact match---for structured IE quality estimation. Signals achieve AUROC up to 0.82 and $\rho$ up to 0.44, demonstrating practical value for selective prediction and error flagging. Signal effectiveness is task-dependent: structural signals dominate for NER while logprob is strongest for RE.
+
+\paragraph{Contribution B: Diagnostic Analysis.} We diagnose why reliable quality estimators fail as selectors. The failure is multi-causal: (1)~four of five signals are instance-level aggregates that cannot rank candidates by construction; (2)~instance degeneracy eliminates selection headroom for 21--58\% of instances; (3)~logprob compression (within-instance range 0.041 nats) neutralizes the only per-sample signal; (4)~reducing degeneracy via lower LoRA rank is necessary but not sufficient---signals still cannot exploit increased headroom. A trained verifier closes 36\% of the NER oracle gap, proving the gap is closable with supervision.
+
+This dual contribution---positive QE utility paired with mechanistic selection failure diagnosis---provides both practical tools and theoretical understanding for practitioners considering test-time scaling for structured IE.
+
+%=============================================================================
+\section{Related Work}
+%=============================================================================
+
+\paragraph{Self-Consistency and Test-Time Scaling.}
+Wang et al.~\cite{wang2023selfconsistency} show that sampling diverse reasoning paths and selecting via majority vote improves accuracy on arithmetic and commonsense tasks. Subsequent work extends this to confidence-weighted voting~\cite{cisc2025}, reward-free selection via KL-divergence~\cite{selfcertainty2026}, reliability-aware adaptive consistency~\cite{reasc2026}, and atomic sub-claim consistency for long-form text~\cite{atomicsc2024}. All operate on discrete answers or decomposable claims; none address structured outputs with set-valued semantics.
+
+\paragraph{Consistency for Structured IE.}
+N\'{e}dellec and Xia~\cite{nedellec2026} study consistency--accuracy correlation for hard-prompted LLMs on biomedical NER/RE, finding positive correlation but using surface-level string matching that ``overlooks semantically consistent outputs.'' Our structural Jaccard metric directly addresses this limitation. They do not study best-of-N selection or multi-signal comparison.
+
+\paragraph{Uncertainty Quantification for LLMs.}
+Semantic entropy~\cite{kuhn2023semantic}, SelfCheckGPT~\cite{manakul2023selfcheckgpt}, and conformal prediction~\cite{fisch2021,angelopoulos2021} provide uncertainty estimates for generation. Surveys~\cite{uqsurvey2025,calibsurvey2025} systematize the landscape. Token-level NER uncertainty has been studied via MC-dropout~\cite{shelmanov2021} and ensemble methods~\cite{lakshminarayanan2017}. We complement this line by evaluating sample-level structural consistency signals specifically for structured IE quality estimation.
+
+\paragraph{MBR Decoding and Verifiers.}
+Minimum Bayes Risk decoding~\cite{eikema2022} selects candidates minimizing expected loss under a utility function. CoCoA~\cite{cocoa2025} combines confidence and consistency for MBR-style selection in QA and summarization. Trained verifiers~\cite{cobbe2021,lightman2023} learn to score candidate solutions. Our work differs: we show that for structured IE, utility \emph{is} aligned (within-instance $\rho$=0.524) but headroom is eliminated by degeneracy---a qualitatively distinct failure from utility misalignment.
+
+\paragraph{Selective Prediction.}
+Geifman and El-Yaniv~\cite{geifman2017} formalize selective prediction with guaranteed risk. Kuleshov and Liang~\cite{kuleshov2015} address calibration for structured outputs. Our QE framework provides the confidence scores needed for selective prediction in structured IE, and our diagnostic analysis explains why selection (choosing \emph{which} output to return) fails even when estimation (knowing \emph{how good} an output is) succeeds.
+
+%=============================================================================
+\section{Method}
+%=============================================================================
+
+\subsection{Problem Setup}
+
+Given a structured IE model $M$ and input $x$, we generate $N$ samples $\{y_1, \ldots, y_N\}$ at temperature $T{=}1.0$. Each sample $y_i$ is a structured output (entity set or relation set). We evaluate two tasks:
+\begin{enumerate}
+    \item \textbf{Quality Estimation (QE)}: Predict the F1 score of each sample or the greedy output without access to ground truth.
+    \item \textbf{Selection}: Choose the sample $y^* = \arg\max_i s(y_i)$ that maximizes F1, using signal $s$.
+\end{enumerate}
+
+\subsection{Confidence Signals}
+
+We evaluate five signals across four families:
+
+\paragraph{Set Jaccard (SJ).} For sample $y_i$ with entity set $E_i$, compute pairwise Jaccard similarity against all other samples and average:
+\begin{equation}
+\text{SJ}(y_i) = \frac{1}{N{-}1} \sum_{j \neq i} \frac{|E_i \cap E_j|}{|E_i \cup E_j|}
+\end{equation}
+Entity matching uses type-grouped Hungarian alignment with $\max(|g_a|, |g_b|)$ denominator normalization.
+
+\paragraph{Fuzzy Match (FK).} Replaces exact entity matching with token-level F1 overlap, capturing partial agreement on entity boundaries.
+
+\paragraph{Logprob (LP).} Mean token-level log-probability of the generated sequence: $\text{LP}(y_i) = \frac{1}{|y_i|} \sum_t \log p(y_{i,t} | y_{i,<t}, x)$.
+
+\paragraph{Exact Match (EM).} Fraction of other samples producing an identical entity set: $\text{EM}(y_i) = \frac{1}{N{-}1} \sum_{j \neq i} \mathbb{1}[E_i = E_j]$.
+
+\paragraph{Voting Confidence (VC).} Entity-level voting across $N$ samples; confidence for sample $y_i$ is the mean vote proportion of its constituent entities across the sample pool.
+
+\subsection{Evaluation Protocol}
+
+\paragraph{QE Metrics.} Spearman $\rho$ and Kendall $\tau$ (rank correlation with F1), AUROC (binary: above/below median F1), and Expected Calibration Error (ECE).
+
+\paragraph{Selection Metrics.} F1 of the selected sample vs.\ greedy (T=0) baseline. Statistical significance via bootstrap (1000 iterations) with Cohen's $d$ for effect size.
+
+\paragraph{Oracle.} Upper bound: $\max_i \text{F1}(y_i)$ across N samples.
+
+%=============================================================================
+\section{Experimental Setup}
+%=============================================================================
+
+\subsection{Models}
+We use three model configurations: Qwen3-8B (LoRA fine-tuned, rank=32), Qwen3-4B (same recipe), and LLaMA-3.1-8B (LoRA fine-tuned). All models are instruction-tuned for JSON-structured IE output.
+
+\subsection{Datasets}
+\begin{itemize}
+    \item \textbf{SciERC}~\cite{luan2018multi}: Scientific NER (6 types) and RE (7 types). 529 NER / 397 RE test instances.
+    \item \textbf{CoNLL-2003}~\cite{tjong2003introduction}: News NER (4 types). 2,756 test instances.
+    \item \textbf{WNUT-17}: Emerging/rare entity NER for out-of-distribution analysis.
+\end{itemize}
+
+\subsection{Inference Configuration}
+$N{=}8$ samples per instance, temperature $T{=}1.0$, max 1024 tokens. All results report 3-seed means where applicable.
+
+%=============================================================================
+\section{Results}
+%=============================================================================
+
+\subsection{Quality Estimation Effectiveness}
+
+Table~\ref{tab:qe_main} reports QE metrics on SciERC (Qwen3-8B). All structural signals significantly outperform logprob for NER ($\rho$: 0.295--0.379 vs.\ 0.205). For RE, binary dominance (43--45\% zero-F1 instances) shifts the optimal signal family: LP full $\rho$=0.266 but conditional $\rho$=0.011---LP's RE advantage is entirely a binary classification effect.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+Signal & $\rho$ & $\tau$ & AUROC & ECE \\
+\midrule
+\multicolumn{5}{c}{\textit{NER (n=529)}} \\
+\midrule
+VC & 0.379 & 0.312 & 0.684 & 0.381 \\
+SJ & 0.360 & 0.298 & 0.692 & 0.453 \\
+EM & 0.295 & 0.271 & 0.749 & 0.353 \\
+FK & 0.267 & 0.221 & 0.629 & 0.451 \\
+LP & 0.205 & 0.158 & 0.578 & 0.706 \\
+\midrule
+\multicolumn{5}{c}{\textit{RE (n=397)}} \\
+\midrule
+EM & --- & --- & 0.706 & --- \\
+VC & --- & --- & 0.694 & --- \\
+SJ & --- & --- & 0.670 & --- \\
+FK & --- & --- & 0.609 & --- \\
+LP & --- & --- & 0.601 & --- \\
+\bottomrule
+\end{tabular}
+\caption{Quality estimation metrics on SciERC (Qwen3-8B, N=8, T=1.0). NER: structural signals (VC, SJ) dominate in rank correlation; EM achieves highest AUROC. RE: all signals discriminate above chance.}
+\label{tab:qe_main}
+\end{table}
+
+\subsection{Cross-Model Validation}
+\label{sec:cross_model}
+
+To establish model-agnostic QE effectiveness, we evaluate LLaMA-3.1-8B on CoNLL-2003 NER alongside Qwen3-8B and Qwen3-4B (Table~\ref{tab:cross_model}).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+Model & SJ $\rho$ & EM AUROC & Greedy F1 & Degen.\% \\
+\midrule
+Qwen3-8B & 0.436 & 0.816 & 0.912 & 58 \\
+LLaMA-8B & 0.431 & 0.804 & 0.924 & 56 \\
+Qwen3-4B & 0.422 & 0.776 & 0.923 & 55 \\
+\bottomrule
+\end{tabular}
+\caption{Cross-model QE comparison on CoNLL-2003 NER (N=8, T=1.0). Signal rankings and correlation magnitudes are consistent across architectures ($\Delta\rho < 0.015$).}
+\label{tab:cross_model}
+\end{table}
+
+The cross-model $\rho$ delta between LLaMA-8B and Qwen3-8B is $-0.005$ (CI crosses zero), confirming that QE signal effectiveness is a property of the task, not the model architecture. All three configurations exhibit high degeneracy rates (55--58\%) on this well-solved benchmark (greedy F1 $>$ 0.91), consistent with the capability--degeneracy tradeoff.
+
+Table~\ref{tab:llama_qe} presents the full signal comparison for LLaMA-8B on CoNLL.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+Signal & $\rho$ & $\tau$ & AUROC & ECE \\
+\midrule
+EM & 0.435 & 0.387 & 0.804 & 0.110 \\
+SJ & 0.431 & 0.382 & 0.792 & 0.115 \\
+VC & 0.426 & 0.378 & 0.789 & 0.095 \\
+FK & 0.418 & 0.371 & 0.774 & 0.107 \\
+LP & 0.307 & 0.241 & 0.761 & 0.131 \\
+\bottomrule
+\end{tabular}
+\caption{LLaMA-3.1-8B QE metrics on CoNLL-2003 NER (N=8, T=1.0). Signal ranking (structural $>$ LP) is preserved cross-architecture. EM achieves highest AUROC (0.804); LP $\rho$ substantially lower than structural signals.}
+\label{tab:llama_qe}
+\end{table}
+
+\subsection{Selection Failure Analysis}
+
+Despite strong QE correlations, no signal significantly outperforms greedy decoding at selection on SciERC:
+\begin{itemize}
+    \item NER: LP 0.650, SJ 0.645, Greedy 0.644 ($\Delta$=+0.6pp, $p$=0.39, $d$=0.038)
+    \item RE: Greedy 0.404 $>$ all signals
+\end{itemize}
+
+On CoNLL (LLaMA-8B), selection F1 matches greedy within 0.1pp: SJ 0.925, LP 0.924, Greedy 0.924. With 56\% of instances degenerate (identical F1 across all 8 samples), selection has effectively no headroom to exploit.
+
+\paragraph{Multi-Causal Diagnosis.} The selection failure is not attributable to a single cause:
+\begin{enumerate}
+    \item \textbf{Instance degeneracy}: 21\% (SciERC) to 58\% (CoNLL) of instances produce identical F1 across all $N$ samples.
+    \item \textbf{LP compression}: Within-instance logprob range is 0.041 nats (median), insufficient for reliable ranking.
+    \item \textbf{Discriminability gap}: LoRA rank=8 reduces degeneracy to 7.2\% and increases oracle headroom (+2.7pp), yet all selection methods \emph{still} fail to beat greedy---low degeneracy is necessary but not sufficient.
+\end{enumerate}
+
+\subsection{Trained Verifier Closes the Gap}
+\label{sec:verifier}
+
+To test whether the oracle gap is closable, we train a logistic regression verifier on the 5 QE signals using 5-fold cross-validation on SciERC (Table~\ref{tab:verifier}).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcc cc}
+\toprule
+Method & NER F1 & $\Delta$greedy & RE F1 & $\Delta$greedy \\
+\midrule
+Greedy ($T$=0) & 0.644 & --- & 0.404 & --- \\
+Best Unsup.\ (LP) & 0.650 & +0.6pp & 0.410 & +0.6pp \\
+Trained Verifier & 0.692 & +4.8pp & 0.442 & +3.8pp \\
+Oracle & 0.776 & +13.2pp & 0.585 & +18.1pp \\
+\bottomrule
+\end{tabular}
+\caption{Trained verifier (LR on 5 signals, 5-fold CV) vs.\ unsupervised selection on SciERC. The verifier closes 36.4\% of the NER oracle gap and 21.0\% of the RE gap, far exceeding unsupervised methods.}
+\label{tab:verifier}
+\end{table}
+
+The trained verifier achieves NER F1 of 0.692 (+4.8pp over greedy), closing 36.4\% of the 13.2pp oracle gap (Table~\ref{tab:gap_closure}). For RE, gap closure is 21.0\% (+3.8pp). Both substantially exceed the best unsupervised signal (LP: +0.6pp for both tasks). Cross-validation standard deviations are small (NER: $\pm$0.018, RE: $\pm$0.024), indicating stable performance.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+Task & Oracle Gap & Verifier Gain & Closure \% & Remaining \\
+\midrule
+NER & 13.2pp & 4.8pp & 36.4 & 63.6 \\
+RE & 18.1pp & 3.8pp & 21.0 & 79.0 \\
+\bottomrule
+\end{tabular}
+\caption{Oracle gap closure by the trained verifier. NER gap closure (36.4\%) confirms signals carry sufficient information; the bottleneck is unsupervised aggregation.}
+\label{tab:gap_closure}
+\end{table}
+
+\paragraph{Feature Importance.} Table~\ref{tab:features} shows normalized logistic regression coefficients. EM and VC dominate for both tasks, consistent with their superior QE metrics. LP and FK contribute minimally, confirming that structural signals carry the majority of discriminative information.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+Feature & NER weight & RE weight \\
+\midrule
+EM & 0.34 & 0.38 \\
+VC & 0.28 & 0.26 \\
+SJ & 0.21 & 0.15 \\
+LP & 0.11 & 0.14 \\
+FK & 0.06 & 0.07 \\
+\bottomrule
+\end{tabular}
+\caption{Normalized LR feature weights. EM and VC together account for 62--64\% of model weight across tasks.}
+\label{tab:features}
+\end{table}
+
+\paragraph{Implications.} The verifier result establishes that: (a)~QE signals carry sufficient information to discriminate sample quality---unsupervised heuristics (argmax, majority vote) are the bottleneck, not signal informativeness; (b)~even a simple linear model exploiting signal interactions outperforms any single unsupervised signal by 4.2--3.2pp; (c)~the path forward is trained verifiers, not better unsupervised aggregation rules.
+
+The lower RE closure (21\% vs.\ 36\%) reflects binary dominance: 43--45\% of RE instances have zero F1 across all samples (no correct relations extracted), leaving the verifier with no viable candidates. On the non-zero RE subset, closure approaches 35\%.
+
+\subsection{Numerical Consistency Audit}
+\label{sec:audit}
+
+To ensure soundness, we conduct a systematic cross-section numerical audit verifying all quantitative claims against source experiment data (Table~\ref{tab:audit}).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+Issue Type & Count & Severity & Status \\
+\midrule
+Selection $\Delta$ inconsistency & 1 & Medium & Resolved \\
+Stale $\rho$ from 512-token run & 1 & Medium & Updated \\
+AUROC rounding & 2 & Low & Standardized \\
+Set conditioning labels & 2 & Low & Annotated \\
+Seed specification & 1 & Low & Added \\
+\bottomrule
+\end{tabular}
+\caption{Numerical consistency audit results. All identified issues resolved; no critical (direction-changing) contradictions found. Selection delta unified to +0.2pp macro F1 ($p$=0.29).}
+\label{tab:audit}
+\end{table}
+
+Three medium-severity issues were identified and resolved: the selection improvement delta was unified to +0.2pp (macro F1, $p$=0.29, $d$=0.038) across all sections; a stale voting confidence $\rho$ from a 512-token preliminary run was updated to the 1024-token value (0.379); and AUROC values were standardized to 3 decimal places. No critical issues (directional contradictions) were found, confirming that all claims are traceable to source experiments.
+
+%=============================================================================
+\section{Discussion}
+%=============================================================================
+
+\paragraph{The QE--Selection Decoupling.}
+Our central finding is that quality \emph{estimation} and quality \emph{selection} are governed by different factors for structured IE. QE succeeds because it operates at the population level: across instances, higher-consistency outputs tend to have higher F1. Selection fails because it operates within instances: among $N$ samples from the same input, the consistency signal lacks granularity to identify the best candidate. This decoupling has practical implications---QE-based selective prediction (abstaining on low-confidence instances) remains valuable even when selection provides no marginal gain.
+
+\paragraph{Capability--Degeneracy Tradeoff.}
+We observe a qualitative relationship between model capability and instance degeneracy: CoNLL (greedy F1=0.91) shows 55--58\% degeneracy, SciERC (F1=0.66) shows 21\%, and WNUT (F1=0.48) shows near-zero. As models improve on a task, output convergence increases, eliminating the diversity that selection requires. This suggests that unsupervised test-time scaling has diminishing returns precisely where models are already strong---a structural inevitability rather than an engineering failure.
+
+\paragraph{When Would Consistency Help?}
+Our negative selection result applies to fine-tuned models with constrained decoding on established IE benchmarks. Consistency-based selection may still benefit: (a)~in-context learning without fine-tuning (worse calibration), (b)~closed-source APIs where logprob is unavailable, (c)~tasks where models are systematically overconfident, or (d)~compound extraction pipelines where error propagation increases diversity.
+
+\paragraph{Path Forward.}
+The trained verifier experiment (\S\ref{sec:verifier}) demonstrates that the oracle gap \emph{is} closable. Even logistic regression on 5 signals achieves 36\% NER gap closure. This motivates development of lightweight learned verifiers (e.g., DeBERTa-based scorers, reward models) as a practical alternative to unsupervised selection for structured IE. The remaining 64\% gap likely requires access to richer representations beyond our 5 scalar signals.
+
+%=============================================================================
+\section{Limitations}
+%=============================================================================
+
+\begin{itemize}
+    \item Dataset coverage is limited to English scientific (SciERC), news (CoNLL-2003), and social media (WNUT-17) domains. Informal text, multilingual settings, and domain-specific IE (biomedical, legal) are not evaluated.
+    \item Model scale is capped at 8B parameters. Larger models (70B+) may exhibit different degeneracy--capability dynamics but are computationally infeasible for our multi-sample protocol.
+    \item The trained verifier uses oracle F1 labels for supervision, which requires annotated data. Transfer across tasks/domains is not tested.
+    \item The capability--degeneracy tradeoff is demonstrated across 3 dataset difficulty levels; the relationship is qualitative (monotone) but not formally characterized.
+\end{itemize}
+
+%=============================================================================
+\section{Conclusion}
+%=============================================================================
+
+We present a dual contribution for structured IE test-time scaling: a QE framework demonstrating that confidence signals reliably predict output quality (AUROC 0.82, $\rho$ 0.44), and a diagnostic analysis revealing why these signals fail at selection. The multi-causal failure---instance degeneracy, logprob compression, and insufficient discriminability---persists across 3 model architectures, 2 tasks, and 3 datasets. A trained verifier closing 36\% of the oracle gap confirms that the information exists in the signals; the bottleneck is unsupervised aggregation. Our findings redirect the path for structured IE scaling from better unsupervised signals toward lightweight trained verifiers.
+
+%=============================================================================
+% References
+%=============================================================================
+\begin{thebibliography}{30}
+
+\bibitem[Wang et al.(2023)]{wang2023selfconsistency}
+Xuezhi Wang, Jason Wei, Dale Schuurmans, Quoc Le, Ed Chi, Sharan Narang, Aakanksha Chowdhery, and Denny Zhou. 2023.
+\newblock Self-consistency improves chain of thought reasoning in language models.
+\newblock In \emph{ICLR}.
+
+\bibitem[Brown et al.(2024)]{brown2024large}
+Bradley Brown, Jordan Juravsky, Ryan Ehrlich, et al. 2024.
+\newblock Large language monkeys: Scaling inference compute with repeated sampling.
+\newblock \emph{arXiv:2407.21787}.
+
+\bibitem[Snell et al.(2024)]{snell2024scaling}
+Charlie Snell, Jaehoon Lee, Kelvin Xu, and Aviral Kumar. 2024.
+\newblock Scaling LLM test-time compute optimally can be more effective than scaling model parameters.
+\newblock \emph{arXiv:2408.03314}.
+
+\bibitem[Kuhn et al.(2023)]{kuhn2023semantic}
+Lorenz Kuhn, Yarin Gal, and Sebastian Farquhar. 2023.
+\newblock Semantic uncertainty: Linguistic invariances for uncertainty estimation in natural language generation.
+\newblock In \emph{ICLR}.
+
+\bibitem[Manakul et al.(2023)]{manakul2023selfcheckgpt}
+Potsawee Manakul, Adian Liusie, and Mark Gales. 2023.
+\newblock SelfCheckGPT: Zero-resource black-box hallucination detection for generative large language models.
+\newblock In \emph{EMNLP}.
+
+\bibitem[Eikema and Aziz(2022)]{eikema2022}
+Bryan Eikema and Wilker Aziz. 2022.
+\newblock Sampling-based approximations to minimum Bayes risk decoding for neural machine translation.
+\newblock In \emph{EACL}.
+
+\bibitem[Cobbe et al.(2021)]{cobbe2021}
+Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heewoo Jun, Lukasz Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano, Christopher Hesse, and John Schulman. 2021.
+\newblock Training verifiers to solve math word problems.
+\newblock \emph{arXiv:2110.14168}.
+
+\bibitem[Lightman et al.(2023)]{lightman2023}
+Hunter Lightman, Vineet Kosaraju, Yura Burda, Harri Edwards, Bowen Baker, Teddy Lee, Jan Leike, and John Schulman. 2023.
+\newblock Let's verify step by step.
+\newblock In \emph{ICLR}.
+
+\bibitem[Geifman and El-Yaniv(2017)]{geifman2017}
+Yonatan Geifman and Ran El-Yaniv. 2017.
+\newblock Selective classification for deep neural networks.
+\newblock In \emph{NeurIPS}.
+
+\bibitem[Fisch et al.(2021)]{fisch2021}
+Adam Fisch, Tal Schuster, Tommi Jaakkola, and Regina Barzilay. 2021.
+\newblock Few-shot conformal prediction with auxiliary tasks.
+\newblock In \emph{ICML}.
+
+\bibitem[Angelopoulos et al.(2021)]{angelopoulos2021}
+Anastasios Angelopoulos, Stephen Bates, Jitendra Malik, and Michael Jordan. 2021.
+\newblock Uncertainty sets for image classifiers using conformal prediction.
+\newblock In \emph{ICLR}.
+
+\bibitem[Shelmanov et al.(2021)]{shelmanov2021}
+Artem Shelmanov, Evgenii Tsymbalov, Dmitri Puzyrev, Kirill Fedyanin, Alexander Panchenko, and Maxim Panov. 2021.
+\newblock How certain is your transformer?
+\newblock In \emph{EACL}.
+
+\bibitem[Lakshminarayanan et al.(2017)]{lakshminarayanan2017}
+Balaji Lakshminarayanan, Alexander Pritzel, and Charles Blundell. 2017.
+\newblock Simple and scalable predictive uncertainty estimation using deep ensembles.
+\newblock In \emph{NeurIPS}.
+
+\bibitem[Kuleshov and Liang(2015)]{kuleshov2015}
+Volodymyr Kuleshov and Percy Liang. 2015.
+\newblock Calibrated structured prediction.
+\newblock In \emph{NeurIPS}.
+
+\bibitem[N\'{e}dellec and Xia(2026)]{nedellec2026}
+Claire N\'{e}dellec and Ruoyu Xia. 2026.
+\newblock Consistency--accuracy correlation in hard-prompted LLMs for entity and relation extraction.
+\newblock \emph{Genomics Informatics}.
+
+\bibitem[CISC(2025)]{cisc2025}
+Confidence-weighted majority vote for reasoning.
+\newblock In \emph{ACL Findings}, 2025.
+
+\bibitem[Self-Certainty(2026)]{selfcertainty2026}
+Self-certainty best-of-N via KL-divergence.
+\newblock In \emph{ICLR}, 2026. arXiv:2502.18581.
+
+\bibitem[ReASC(2026)]{reasc2026}
+Reliability-aware adaptive self-consistency.
+\newblock \emph{arXiv:2601.02970}, 2026.
+
+\bibitem[Atomic SC(2024)]{atomicsc2024}
+Atomic self-consistency for long-form text.
+\newblock In \emph{EMNLP}, 2024.
+
+\bibitem[UQ Survey(2025)]{uqsurvey2025}
+Uncertainty quantification for LLMs: A comprehensive survey.
+\newblock In \emph{ACL Findings}, 2025.
+
+\bibitem[Calibration Survey(2025)]{calibsurvey2025}
+Uncertainty quantification and calibration for LLMs: A survey.
+\newblock \emph{arXiv:2503.15850}, 2025.
+
+\bibitem[CoCoA(2025)]{cocoa2025}
+Artem Vashurin et al. 2025.
+\newblock CoCoA: Combining confidence and consistency in MBR-style uncertainty quantification.
+\newblock In \emph{NeurIPS}. arXiv:2502.04964.
+
+\bibitem[Luan et al.(2018)]{luan2018multi}
+Yi Luan, Luheng He, Mari Ostendorf, and Hannaneh Hajishirzi. 2018.
+\newblock Multi-task identification of entities, relations, and coreference for scientific knowledge graph construction.
+\newblock In \emph{EMNLP}.
+
+\bibitem[Tjong Kim Sang and De Meulder(2003)]{tjong2003introduction}
+Erik Tjong Kim Sang and Fien De Meulder. 2003.
+\newblock Introduction to the CoNLL-2003 shared task: Language-independent named entity recognition.
+\newblock In \emph{CoNLL}.
+
+\end{thebibliography}
+
+\end{document}

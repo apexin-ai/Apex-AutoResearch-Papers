@@ -1,0 +1,1 @@
+see remote: /root/autodl-tmp/struct_self_consist_ie/output/review_round9_experiments/freeform_conll/summary.json on autodl-5090. Key results — Greedy F1: 0.9035±0.0004, LP range median: 0.0581±0.0072, rho_SJ: 0.4606±0.0188, rho_LP: 0.3262±0.0120. LP compression confirmed as model-intrinsic on CoNLL free-form decoding.

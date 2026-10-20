@@ -1,0 +1,121 @@
+{
+  "qwen_scierc_ner": {
+    "n_instances": 529,
+    "n_samples_per_instance": 8,
+    "fk_mean": 0.401547,
+    "fk_std": 0.29995,
+    "fk_median": 0.369089,
+    "fk_iqr": [
+      0.205727,
+      0.542857
+    ],
+    "bootstrap_95ci": [
+      0.375848,
+      0.427557
+    ],
+    "fk_f1_spearman_rho": 0.266511,
+    "fk_f1_spearman_p": 4.716829112137585e-10,
+    "permutation_test": {
+      "real_fk_mean": 0.401547,
+      "null_fk_mean": -0.140602,
+      "null_fk_std": 0.000218,
+      "p_value": 0.0,
+      "n_permutations": 5000,
+      "effect_size_d": 2490.07
+    },
+    "split_half": {
+      "mean_r": 0.394699,
+      "std_r": 0.02605,
+      "n_splits": 100
+    },
+    "ttest_one_sided": {
+      "t_stat": 30.7613,
+      "p_value": 4.049585083641733e-120,
+      "n": 529
+    },
+    "wilcoxon": {
+      "W": 137670.0,
+      "p_value": 1.3461217669338056e-82
+    }
+  },
+  "llama_conll_ner": {
+    "n_instances": 2756,
+    "n_samples_per_instance": 8,
+    "fk_mean": 0.927397,
+    "fk_std": 0.215516,
+    "fk_median": 1.0,
+    "fk_iqr": [
+      1.0,
+      1.0
+    ],
+    "bootstrap_95ci": [
+      0.91936,
+      0.93538
+    ],
+    "fk_f1_spearman_rho": 0.427669,
+    "fk_f1_spearman_p": 5.659809172786799e-123,
+    "permutation_test": {
+      "real_fk_mean": 0.927397,
+      "null_fk_mean": -0.14156,
+      "null_fk_std": 7.6e-05,
+      "p_value": 0.0,
+      "n_permutations": 5000,
+      "effect_size_d": 14121.04
+    },
+    "split_half": {
+      "mean_r": 0.578152,
+      "std_r": 0.016864,
+      "n_splits": 100
+    },
+    "ttest_one_sided": {
+      "t_stat": 225.8635,
+      "p_value": 0.0,
+      "n": 2756
+    },
+    "wilcoxon": {
+      "W": 3797688.0,
+      "p_value": 0.0
+    }
+  },
+  "qwen_conll_ner": {
+    "n_instances": 2756,
+    "n_samples_per_instance": 8,
+    "fk_mean": 0.720242,
+    "fk_std": 0.37043,
+    "fk_median": 1.0,
+    "fk_iqr": [
+      0.490644,
+      1.0
+    ],
+    "bootstrap_95ci": [
+      0.706318,
+      0.733923
+    ],
+    "fk_f1_spearman_rho": 0.399805,
+    "fk_f1_spearman_p": 2.6472486805154954e-106,
+    "permutation_test": {
+      "real_fk_mean": 0.720242,
+      "null_fk_mean": -0.141642,
+      "null_fk_std": 7.3e-05,
+      "p_value": 0.0,
+      "n_permutations": 5000,
+      "effect_size_d": 11809.7
+    },
+    "split_half": {
+      "mean_r": 0.519964,
+      "std_r": 0.009403,
+      "n_splits": 100
+    },
+    "ttest_one_sided": {
+      "t_stat": 102.0547,
+      "p_value": 0.0,
+      "n": 2756
+    },
+    "wilcoxon": {
+      "W": 3754210.5,
+      "p_value": 0.0
+    }
+  },
+  "conclusion": "Instance-level FK analysis confirms within-instance agreement is significantly above random across all configurations. SciERC (n=529): FK=0.4015, permutation p=0.0, t(528)=30.8, p=4.05e-120. CoNLL-LLaMA (n=2756): FK=0.9274, permutation p=0.0, t(2755)=225.9, p=0.00e+00. With n=529-2756 instances, statistical power is no longer a concern.",
+  "method_note": "FK is computed per-instance: N=8 samples treated as 8 raters on entity presence/absence. Permutation test shuffles sample assignments across instances to create null distribution. Bootstrap CI is BCa-percentile over 10000 resamples. Split-half: 4+4 samples, Spearman correlation over 100 random splits. t-test and Wilcoxon are one-sided (FK > 0) with instance as unit of analysis."
+}

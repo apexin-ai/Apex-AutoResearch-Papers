@@ -1,0 +1,82 @@
+\begin{table*}[t]
+\centering
+\small
+\caption{Complete enumeration of $k{=}57$ statistical tests subject to Holm--Bonferroni correction. Raw $p$: uncorrected $p$-value as reported. $p_{\text{adj}}$: Holm--Bonferroni adjusted $p$-value. $^\dagger$Survives correction at $\alpha{=}0.05$.}
+\label{tab:holm_family}
+\begin{tabular}{clllcc}
+\toprule
+\# & Family & Test Description & Raw $p$ & $p_{\text{adj}}$ & Sig. \\
+\midrule
+\multicolumn{6}{l}{\textit{Selection}} \\
+1 & & SciERC NER LP selection ($N{=}8$, Qwen, Table~3) & $0.290$ & $1.0$ &  \\
+2 & & SciERC NER SJ selection ($N{=}8$, Qwen, Table~3) & $0.670$ & $1.0$ &  \\
+3 & & SciERC NER FK selection ($N{=}8$, Qwen, Table~3) & $0.790$ & $1.0$ &  \\
+4 & & WNUT-17 LP selection ($N{=}8$, Qwen) & $0.720$ & $1.0$ &  \\
+5 & & CoNLL LP selection ($N{=}8$, Qwen) & $1.0$ & $1.0$ &  \\
+6 & & Few-NERD LP selection ($N{=}8$, Qwen, 3-seed) & $0.001$ & $0.055$ &  \\
+7 & & SciERC NER SJ selection ($N{=}8$, LLaMA-3B) & $0.175$ & $1.0$ &  \\
+8 & & SciERC NER LP selection ($N{=}32$, Qwen) & $0.091$ & $1.0$ &  \\
+9 & & SciERC NER FK selection ($N{=}32$, Qwen) & $0.101$ & $1.0$ &  \\
+10 & & SciERC NER SJ selection ($N{=}32$, Qwen) & $0.244$ & $1.0$ &  \\
+11 & & SciERC NER EM selection ($N{=}32$, Qwen) & $0.355$ & $1.0$ &  \\
+12 & & SciERC NER VC selection ($N{=}32$, Qwen) & $1.0$ & $1.0$ &  \\
+13 & & SciERC RE LP selection ($N{=}16$, 4B, Fisher) & $0.058$ & $1.0$ &  \\
+14 & & SciERC RE VC selection ($N{=}16$, 4B, Fisher) & $0.973$ & $1.0$ &  \\
+15 & & SciERC RE FK selection ($N{=}16$, 4B, Fisher) & $0.985$ & $1.0$ &  \\
+16 & & SciERC RE SJ selection ($N{=}16$, 4B, Fisher) & $0.993$ & $1.0$ &  \\
+17 & & SciERC RE EM selection ($N{=}16$, 4B, Fisher) & $0.999$ & $1.0$ &  \\
+18 & & SciERC LP selection, non-tied subset ($\varepsilon{=}0.05$) & $0.004$ & $0.180$ &  \\
+19 & & Few-NERD LP selection ($N{=}8$, LLaMA, 3-seed) & $0.001$ & $0.055$ &  \\
+\addlinespace
+\multicolumn{6}{l}{\textit{Construction}} \\
+20 & & SciERC LP-weighted construction (Qwen, 3-seed) & $0.004$ & $0.180$ &  \\
+21 & & SciERC uniform construction (Qwen, 3-seed) & $0.023$ & $0.874$ &  \\
+22 & & Few-NERD LP-weighted construction (Qwen) & $0.001$ & $0.055$ &  \\
+23 & & Few-NERD uniform construction (Qwen) & $0.003$ & $0.138$ &  \\
+24 & & CoNLL uniform construction (Qwen) & $0.500$ & $1.0$ &  \\
+25 & & SciERC ZS construction (72B) & $0.008$ & $0.320$ &  \\
+26 & & SciERC FS construction (72B) & $0.544$ & $1.0$ &  \\
+27 & & CoNLL FS construction (72B) & $0.417$ & $1.0$ &  \\
+28 & & Few-NERD FS construction (72B) & $0.401$ & $1.0$ &  \\
+29 & & SciERC cross-model LP-weighted construction & $0.001$ & $0.055$ &  \\
+\addlinespace
+\multicolumn{6}{l}{\textit{Calibration}} \\
+30 & & SciERC MF-Platt vs Raw LP & $0.720$ & $1.0$ &  \\
+31 & & CoNLL MF-Platt vs Raw LP & $0.310$ & $1.0$ &  \\
+32 & & Few-NERD MF-Platt vs Raw LP & $0.830$ & $1.0$ &  \\
+\addlinespace
+\multicolumn{6}{l}{\textit{Signal $\Delta\rho$}} \\
+33 & & SciERC $\Delta\rho$ SJ$-$LP ($N{=}8$, seed 42) & $0.001$ & $0.055$ &  \\
+34 & & SciERC $\Delta\rho$ VC$-$SJ ($N{=}8$, seed 42) & $0.300$ & $1.0$ &  \\
+35 & & SciERC $\Delta\rho$ SJ$-$EM ($N{=}8$, seed 42) & $0.045$ & $1.0$ &  \\
+36 & & CoNLL $\Delta\rho$ EM$-$FK ($N{=}16$) & $0.001$ & $0.055$ &  \\
+37 & & CoNLL $\Delta\rho$ SJ$-$FK ($N{=}16$) & $0.001$ & $0.055$ &  \\
+38 & & CoNLL $\Delta\rho$ VC$-$FK ($N{=}16$) & $0.040$ & $1.0$ &  \\
+39 & & SciERC $\Delta\rho$ SJ$-$FK (LLaMA, permutation) & $0.060$ & $1.0$ &  \\
+40 & & SciERC RE $\Delta\rho$ SJ$-$FK (full-set) & $0.530$ & $1.0$ &  \\
+41 & & RE SJ $\rho$ Q1 vs Q4 sentence length (Fisher $z$) & $0.004$ & $0.180$ &  \\
+\addlinespace
+\multicolumn{6}{l}{\textit{Correlation}} \\
+42 & & Cross-dataset degeneracy--LP gain ($n{=}23$) & $0.810$ & $1.0$ &  \\
+43 & & Per-type degeneracy--headroom (Few-NERD, Spearman) & $0.004$ & $0.180$ &  \\
+44 & & Per-type degeneracy--headroom (exact permutation) & $0.005$ & $0.205$ &  \\
+45 & & Per-type degeneracy--headroom ($\text{df}{=}4$ adjusted) & $0.033$ & $1.0$ &  \\
+46 & & SciERC per-type degeneracy--LP ($\rho{=}0.14$) & $0.790$ & $1.0$ &  \\
+47 & & Kruskal--Wallis per-type LP heterogeneity (SciERC) & $0.796$ & $1.0$ &  \\
+\addlinespace
+\multicolumn{6}{l}{\textit{FS error}} \\
+48 & & FS vs ZS error overlap (SciERC, permutation) & $0.840$ & $1.0$ &  \\
+49 & & FS vs ZS error overlap (CoNLL, permutation) & $0.640$ & $1.0$ &  \\
+50 & & FS vs ZS entity entropy (SciERC) & $0.810$ & $1.0$ &  \\
+51 & & FS vs ZS entity entropy (CoNLL, Wilcoxon) & ${<}10^{-4}$ & ${<}.001$ & $\dagger$ \\
+\addlinespace
+\multicolumn{6}{l}{\textit{Other}} \\
+52 & & LP distribution seed 42 vs 456 (Mann--Whitney) & $0.550$ & $1.0$ &  \\
+53 & & RE LP selection reversal (free-form, 4-seed) & ${<}.001$ & $0.006$ & $\dagger$ \\
+54 & & WNUT-17 conditional $\rho$ VC ($p$-value) & $0.487$ & $1.0$ &  \\
+55 & & WNUT-17 conditional $\rho$ FK ($p$-value) & $0.002$ & $0.094$ &  \\
+56 & & SciERC LP favorable subset ($+$2.47 pp) & $0.015$ & $0.585$ &  \\
+57 & & CoNLL LP favorable subset ($-$1.78 pp) & $0.001$ & $0.055$ &  \\
+\bottomrule
+\end{tabular}
+\end{table*}

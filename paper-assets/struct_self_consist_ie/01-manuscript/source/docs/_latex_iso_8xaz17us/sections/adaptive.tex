@@ -1,0 +1,39 @@
+\section{Adaptive Methods}\label{sec:adaptive}
+
+Since instance-level selection yields no detectable gains (\S\ref{sec:selection_gap}), we present exploratory attempts informed by diagnostic findings to extract value from multi-sample generation beyond single-signal sample ranking.
+Table~\ref{tab:method_summary} summarizes all 9 method categories evaluated; only cross-model ensembles yield a positive result, though on a single dataset.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Summary of 9 method categories tested (including MV baseline, LP selection, and cross-model ensemble beyond self-verification methods in Appendix~\ref{sec:mechanistic} and adaptive methods in this section). $\Delta$F1 vs.\ greedy; dataset in parentheses. Full coverage in Appendix~\ref{app:method_coverage}.}
+\label{tab:method_summary}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}llrl@{}}
+\toprule
+Category & Method & $\Delta$F1 / metric & § \\
+\midrule
+Freq.\ voting & MV & baseline & \ref{sec:prescriptive} \\
+LP selection & Best-of-$N$ (LP) & $+1.39$\,pp (FN)$^\dagger$ & \ref{sec:selection_gap} \\
+Self-verif.\ (prompt) & ESJ & AUROC $0.51$ & App.~\ref{sec:mechanistic} \\
+Multi-round refine. & MRSC & $-3.1$\,pp (FN) & App.~\ref{sec:mechanistic} \\
+Latent aggregation & LSC & $-3.5$\,pp (FN) & App.~\ref{sec:mechanistic} \\
+Adaptive gating & DALS & $+0.71$\,pp (SciERC)$^\ddagger$ & App.~\ref{app:dals} \\
+Supervised verifier & LGB & $+0.30$\,pp (OOF) & \ref{sec:verifier} \\
+Sup.\ combination & LR/MLP/RF & $-0.4$ to $-3.1$\,pp & App.~\ref{app:supervised_combination} \\
+Cross-model & Qwen$+$LLaMA & $\mathbf{+0.42}$\,pp (FN) & \ref{sec:cross_model} \\
+\bottomrule
+\end{tabular}}
+{\footnotesize $^\dagger$Few-NERD only; SciERC $+0.2$\,pp ($p{=}0.29$). $^\ddagger$Seed-sensitive ($\sigma{=}0.48$\,pp).}
+\end{table}
+
+\subsection{Cross-Model Self-Consistency}\label{sec:cross_model}
+
+Mixing samples from architecturally distinct models can partially bypass within-model degeneracy.
+Combining 4 samples each from Qwen3-8B and LLaMA-3.1-8B (Few-NERD) yields $+0.42$\,pp over pure LLaMA ($p{<}0.001$, CI $[0.27, 0.58]$; $N{=}8$ total).
+This observation is preliminary (single dataset, $n{=}4{+}4$ samples); cross-dataset validation is needed before drawing general conclusions.
+
+\subsection{Trained Verifiers: High Discrimination, Low Transfer}\label{sec:verifier}
+
+A LightGBM entity-level classifier (5 features: agreement count, LP, VC, SJ, FK) achieves AUC${=}0.923{\pm}0.002$ out-of-fold but translates to only $+0.30$\,pp overall: frequency-based construction already captures most verifier signal.
+Cross-dataset transfer is negative ($-0.76$ to $-1.02$\,pp; Appendix~\ref{app:verifier_transfer}), as feature importance shifts across entity-type complexity; even near-perfect entity classification cannot close the gap.

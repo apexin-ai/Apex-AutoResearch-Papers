@@ -1,0 +1,22 @@
+{
+  "A_standard": {
+    "description": "Train-aligned baseline template (same as FT training format)",
+    "system": null,
+    "user_template": "Extract all structured information (entities and relations) from the following text. Output a JSON object.\n\nText: {text}\nSchema: Entity types: person, organization, location, building, art, product, event, other\n\nOutput format: {\"entities\": [{\"text\": \"...\", \"type\": \"...\", \"start\": <int>, \"end\": <int>}], \"relations\": [{\"head\": \"...\", \"tail\": \"...\", \"type\": \"...\", \"head_start\": <int>, \"head_end\": <int>, \"tail_start\": <int>, \"tail_end\": <int>}], \"events\": []}"
+  },
+  "B_expert": {
+    "description": "Expert persona via system message — emphasizes precision and offset correctness",
+    "system": "You are an expert named entity recognition system. You identify every named entity in the input text with high precision. Output character-level offsets using Python slice convention: text[start:end] == entity_text.",
+    "user_template": "Extract all named entities from the following text.\n\nText: {text}\n\nEntity types: person, organization, location, building, art, product, event, other\n\nOutput a JSON object:\n{\"entities\": [{\"text\": \"...\", \"type\": \"...\", \"start\": <int>, \"end\": <int>}], \"relations\": [], \"events\": []}"
+  },
+  "C_descriptive": {
+    "description": "Rich type descriptions — provides definitions for each entity type",
+    "system": null,
+    "user_template": "Extract named entities from the following text. Classify each entity using the type definitions below.\n\nEntity type definitions:\n- person: Person names (politicians, athletes, authors, scientists)\n- organization: Organizations, companies, teams, institutions, agencies\n- location: Geographic locations, countries, cities, regions\n- building: Buildings, facilities, landmarks, airports, stadiums\n- art: Artworks, songs, films, books, creative works, albums\n- product: Commercial products, software, vehicles, technologies\n- event: Events, competitions, wars, festivals, ceremonies\n- other: Other named entities not fitting the above categories\n\nText: {text}\n\nOutput format:\n{\"entities\": [{\"text\": \"exact span from text\", \"type\": \"TYPE\", \"start\": <char_offset>, \"end\": <char_offset>}], \"relations\": [], \"events\": []}"
+  },
+  "D_recall": {
+    "description": "Recall-focused — emphasizes exhaustive extraction of borderline entities",
+    "system": null,
+    "user_template": "Carefully read the text below and extract ALL named entities. Be thorough: include every entity that matches any of the given types, even if borderline.\n\nText: {text}\nEntity types: person, organization, location, building, art, product, event, other\n\nFor each entity, provide the exact text span, type, and character offsets (start = first char index, end = index after last char).\nOutput:\n{\"entities\": [{\"text\": \"...\", \"type\": \"...\", \"start\": <int>, \"end\": <int>}], \"relations\": [], \"events\": []}"
+  }
+}

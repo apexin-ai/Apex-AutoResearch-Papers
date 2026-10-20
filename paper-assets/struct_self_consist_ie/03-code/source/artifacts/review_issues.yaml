@@ -1,0 +1,439 @@
+issues:
+# ===== ROUND 46 MUST-FIX (CONSENSUS) =====
+- id: R45-N1
+  summary: "模型覆盖面过窄（仅 2 个 ~8B 模型族），标题/摘要普适性声称超出证据范围"
+  category: experiment
+  severity: critical
+  status: in_progress
+  first_raised_round: 43
+  last_seen_round: 46
+  mentions:
+    - round: 43
+      reviewers: [1, 2]
+      note: "R43-W5 作为 warning 提出，已通过 Limitations 声明部分解决"
+    - round: 45
+      reviewers: [1, 2]
+      note: "R1 升级为 Must-Fix (N2)。R2 AGREE。Table 43 显示 degeneracy 是 model-family-dependent。"
+    - round: 46
+      reviewers: [1, 2]
+      note: "R1-N1 再次提出。R2 AGREE。论文自身数据构成内在张力：Table 44 显示 72B headroom 8.1pp，Limitations 承认 frontier degeneracy 8.5-24%，但框架预测低退化→SC 有效的方向未在大模型上验证。"
+  action_items:
+    - round: 45
+      action: "收紧 title/abstract/intro 的普适性表述，显式限定为 7-14B fine-tuned models"
+      assigned_to: paper_agent
+      status: in_progress
+    - round: 46
+      action: "标题/摘要明确限定为 fine-tuned 7-14B open-weight models；或补充至少一个 30B+/proprietary 模型验证"
+      assigned_to: paper_agent
+      status: open
+
+- id: R46-N2
+  summary: "退化分解上界（§6.3）数学上 trivial（partition 定义直接推出），以 Theorem/Corollary 形式 overclaim 理论贡献"
+  category: method
+  severity: critical
+  status: open
+  first_raised_round: 38
+  last_seen_round: 46
+  mentions:
+    - round: 43
+      reviewers: [1, 2]
+      note: "R43-N2 通过三阶段重构解决，bound 不再独立贡献。标记 resolved。"
+    - round: 46
+      reviewers: [1, 2]
+      note: "R1-N2 重新提出。R2 AGREE。上界本质是分组恒等式+trivial 约束，recovery ratio 3-12% 极度宽松。但 R2 补充：分解为 (1-D)·G_nd·α 三个可独立量化因子在诊断层面有用，问题在于用 Theorem 格式 overclaim 数学贡献。"
+  action_items:
+    - round: 46
+      action: "将 §6.3 从 Theorem/Corollary 形式重新定位为 empirical decomposition framework；移除形式化证明框架，改用文字叙述分解的诊断价值"
+      assigned_to: paper_agent
+      status: open
+
+- id: R46-N3
+  summary: "SQL 跨任务证据仅一个退化率数字（87.2%），与 abstract 'confirm task-specific failure modes' 声明严重不匹配"
+  category: framing
+  severity: critical
+  status: open
+  first_raised_round: 37
+  last_seen_round: 46
+  mentions:
+    - round: 43
+      reviewers: [1, 2]
+      note: "R43-W2 通过 abstract 加 'preliminary cross-task pilots' 限定词解决。标记 resolved。"
+    - round: 46
+      reviewers: [1, 2]
+      note: "R2-N1 重新提出，R1 AGREE 并补充：Appendix ah SQL 引用的是外部结果（GPT-3.5）而非本文 fine-tuned 模型，不能与 NER 退化率直接对比。Abstract 用 'confirm' 一词暗示系统性验证，但 SQL 实际证据仅一个统计量。"
+  action_items:
+    - round: 46
+      action: "将 SQL 从 abstract 中移除或降级为 'anecdotal observation'；或补充 SQL 的完整信号分析和 selection 实验"
+      assigned_to: paper_agent
+      status: open
+
+# ===== ROUND 46 SHOULD-FIX =====
+- id: R46-W1
+  summary: "Few-NERD 正面结果（+1.39pp）未被充分利用为诊断框架预测能力的正面验证"
+  category: framing
+  severity: warning
+  status: open
+  first_raised_round: 46
+  last_seen_round: 46
+  mentions:
+    - round: 46
+      reviewers: [1, 2]
+      note: "R1-W1 提出，R2 AGREE。Few-NERD 退化率最低(13%)时 LP 获得 +1.39pp，是框架 '低退化→SC 有效' 预测的最佳正面验证。但论文 framing 偏向 'SC fails'，把 Few-NERD 当作例外而非验证。"
+  action_items:
+    - round: 46
+      action: "在 §8 Discussion 中将 Few-NERD 重构为框架预测能力的正面验证（'框架不仅诊断失败，也预测成功'）；补充 Few-NERD 低退化原因分析"
+      assigned_to: paper_agent
+      status: open
+
+- id: R46-W2
+  summary: "Entity construction +1.40pp 在全局 Holm 校正下 p_adj=0.055，abstract/Figure 1 中 framing 过于突出"
+  category: method
+  severity: warning
+  status: in_progress
+  first_raised_round: 34
+  last_seen_round: 46
+  mentions:
+    - round: 43
+      reviewers: [1, 2]
+      note: "R43-N4 通过 prescriptive→exploratory 重定位解决"
+    - round: 45
+      reviewers: [1, 2]
+      note: "R2-W3 重提，R1 AGREE"
+    - round: 46
+      reviewers: [1, 2]
+      note: "R2 列为 Must-Fix(N2)，但 R1 REBUT 降级为 should-fix：核心贡献是诊断性的非建设性的，family-wise k=21 下 p=0.013 是 significant 的。Director 判定 should-fix——R1 论据充分（核心 claim 由 TOST 支撑，+1.40pp 是框架验证非核心 claim），但 abstract framing 确实需更谨慎。"
+  action_items:
+    - round: 46
+      action: "Abstract 中为 +1.40pp 加 qualifier（如 'marginally significant under global correction'）；Figure 1 标注 '+1.4pp' 为单配置/单数据集结果"
+      assigned_to: paper_agent
+      status: open
+
+- id: R45-W2
+  summary: "与 Landesberg (2026) 并行发现的差异化论述不够充分"
+  category: framing
+  severity: warning
+  status: in_progress
+  first_raised_round: 39
+  last_seen_round: 46
+  mentions:
+    - round: 42
+      reviewers: [1, 2]
+      note: "R41-N4 通过 §2 四维度对比解决"
+    - round: 45
+      reviewers: [1, 2]
+      note: "R2-W1 重新提出。R1 AGREE。§2 末尾 concurrent work 段过于简短。"
+    - round: 46
+      reviewers: [1, 2]
+      note: "R2-W1 再次提出，R1 AGREE。§2 concurrent work 段仍仅约4行，Table 1 维度选择单方面偏向本文。需扩展至完整段落并承认 Landesberg 优势。"
+  action_items:
+    - round: 45
+      action: "Introduction 中增加一段明确说明与 Landesberg 的关系"
+      assigned_to: paper_agent
+      status: in_progress
+    - round: 46
+      action: "§2 concurrent work 扩展至至少一个完整段落，明确陈述 Landesberg 在哪些方面更深入，以及本文在哪些方面互补"
+      assigned_to: paper_agent
+      status: open
+
+- id: R45-W4
+  summary: "2-3 seeds 统计推断力有限，seed-level variance 估计基础不足"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 40
+  last_seen_round: 46
+  mentions:
+    - round: 43
+      reviewers: [1, 2]
+      note: "R43-N1 通过 power-aware negative claims 解决"
+    - round: 45
+      reviewers: [1, 2]
+      note: "R1-W2。R2 AGREE。cross-seed 变异分析仅 3 个数据点。"
+    - round: 46
+      reviewers: [1, 2]
+      note: "R1-W2 再次提出，R2 AGREE。Table 11 LP on SciERC 95% CI [-0.41, +2.34] 跨零点。2-3 seeds 的基础设计与上层统计方法的精密度之间存在不匹配。"
+  action_items:
+    - round: 46
+      action: "至少在一个核心配置（如 SciERC Qwen3-8B）上运行 5 seeds，验证 bootstrap CI 稳定性"
+      assigned_to: paper_agent
+      status: open
+
+- id: R46-W5
+  summary: "MBR 连接（§6.1, Proposition 1）novelty 声明过高，本质是已知 MBR 理论的直接应用"
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 46
+  last_seen_round: 46
+  mentions:
+    - round: 46
+      reviewers: [1, 2]
+      note: "R1-W4 提出，R2 AGREE。Proposition 1 在 entity-wise independence 假设下是标准 MBR 理论的直接应用。概念上有用但不构成独立理论贡献。"
+  action_items:
+    - round: 46
+      action: "将 Proposition 1 定位为 'connecting existing MBR theory to NER entity construction' 而非原创理论结果；正文中说明 entity-wise independence 局限性"
+      assigned_to: paper_agent
+      status: open
+
+- id: R46-W6
+  summary: "Entity-level construction 在大多数配置下呈 inverse scaling，作为建设性贡献价值存疑"
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 46
+  last_seen_round: 46
+  mentions:
+    - round: 46
+      reviewers: [1, 2]
+      note: "R2-W3 提出，R1 AGREE。40/58 transitions 呈 inverse scaling，但归因分析不够深入。如果方法在大多数配置下有害，'建设性贡献'定位需更强 qualification。"
+  action_items:
+    - round: 46
+      action: "对 inverse scaling 给出更详细归因分析；或明确将 entity-level construction 定位为 preliminary exploration"
+      assigned_to: paper_agent
+      status: open
+
+# ===== ROUND 46 MINOR =====
+- id: R46-M1
+  summary: "Abstract '+1.40pp' 与正文 '+1.39pp' 四舍五入不一致"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 46
+  last_seen_round: 46
+  mentions:
+    - round: 46
+      reviewers: [1, 2]
+      note: "R2-M1，R1 AGREE。"
+
+- id: R46-M2
+  summary: "§4 第2段信息密度过高（10+统计量连续出现）"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 46
+  last_seen_round: 46
+  mentions:
+    - round: 46
+      reviewers: [1, 2]
+      note: "R2-M2，R1 AGREE。"
+
+- id: R46-M3
+  summary: "Figure 1 '+1.4pp' 仅适用于 Few-NERD，在 overview figure 中不加限定可能误导"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 45
+  last_seen_round: 46
+  mentions:
+    - round: 45
+      reviewers: [1, 2]
+      note: "R45-M1 相关"
+    - round: 46
+      reviewers: [1, 2]
+      note: "R2-M3 和 R1 Minor 均提出。在全局校正下为边缘显著，overview figure 中不限定数据集可能误导。"
+
+- id: R46-M4
+  summary: "Appendix 36 页，正文对关键 appendix 分析的引导不足"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 46
+  last_seen_round: 46
+  mentions:
+    - round: 46
+      reviewers: [1, 2]
+      note: "R2-M4，R1 AGREE。特别是 Appendix i/s/x 包含重要分析但正文指引隐蔽。"
+
+- id: R46-M5
+  summary: "§3.1 符号首次出现时定义不够直观，Table 5 符号表在 Appendix 较远"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 43
+  last_seen_round: 46
+  mentions:
+    - round: 43
+      reviewers: [2]
+      note: "R43-M4"
+    - round: 46
+      reviewers: [1, 2]
+      note: "R2-M5，R1 AGREE。"
+
+- id: R46-M6
+  summary: "MDE≈1.5pp 应在 §4 或 §7 首次出现时定义，而非仅在 Limitations 中"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 46
+  last_seen_round: 46
+  mentions:
+    - round: 46
+      reviewers: [1]
+      note: "R1 Minor。"
+
+- id: R46-M7
+  summary: "§3.1 'capability ceiling' 中 N≤16 缺乏选择依据说明"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 46
+  last_seen_round: 46
+  mentions:
+    - round: 46
+      reviewers: [1]
+      note: "R1 Minor。Appendix n 分析了 N 到 32，应在正文解释 N=16 的选择理由。"
+
+# ===== ROUND 45 遗留（本轮未提及） =====
+- id: R45-W3
+  summary: "Failure mode 四种模式的层次化关系未显式形式化"
+  category: method
+  severity: warning
+  status: in_progress
+  first_raised_round: 45
+  last_seen_round: 45
+  mentions:
+    - round: 45
+      reviewers: [1, 2]
+      note: "R1-N1 (critical)。R2 REBUT 降级为 should-fix。Director 判定 should-fix。"
+    - round: 46
+      reviewers: []
+      note: "本轮未提及，可能已修复，待 Research Director 确认"
+
+- id: R45-W5
+  summary: "Table 1 novelty comparison 维度选择偏向本文"
+  category: framing
+  severity: warning
+  status: in_progress
+  first_raised_round: 43
+  last_seen_round: 46
+  mentions:
+    - round: 45
+      reviewers: [1, 2]
+      note: "R2-W2 重提。R1 AGREE。"
+    - round: 46
+      reviewers: [1, 2]
+      note: "合并入 R45-W2 (Landesberg 差异化)，R2-W1 再次提出 Table 1 偏向问题。"
+
+- id: R45-W6
+  summary: "实践指导（Appendix ah/ae）在主文可见性不足"
+  category: writing
+  severity: warning
+  status: in_progress
+  first_raised_round: 45
+  last_seen_round: 45
+  mentions:
+    - round: 45
+      reviewers: [1, 2]
+      note: "R2-W4 提出缺乏实践指导。R1 REBUT——可见性问题非缺失问题。"
+    - round: 46
+      reviewers: []
+      note: "本轮未提及，可能已修复，待 Research Director 确认"
+
+- id: R45-M1
+  summary: "Figure 2 标记点小、线条细"
+  category: writing
+  severity: info
+  status: in_progress
+  first_raised_round: 45
+  last_seen_round: 45
+  mentions:
+    - round: 46
+      reviewers: []
+      note: "本轮未提及"
+
+- id: R45-M2
+  summary: "MBR 缩写在 abstract/introduction 中未展开全称"
+  category: writing
+  severity: info
+  status: in_progress
+  first_raised_round: 45
+  last_seen_round: 45
+  mentions:
+    - round: 46
+      reviewers: []
+      note: "本轮未提及"
+
+- id: R43-M1
+  summary: "Footnote 1 (RE F1 confound) 建议提升到正文"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 43
+  last_seen_round: 43
+  mentions:
+    - round: 46
+      reviewers: []
+      note: "本轮未提及"
+
+- id: R43-M3
+  summary: "§3 应在首段明确提及 diagnostic sequence 而非 causal chain"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 43
+  last_seen_round: 43
+  mentions:
+    - round: 46
+      reviewers: []
+      note: "本轮未提及，可能已修复"
+
+# ===== EARLIER ROUNDS — RESOLVED (精简保留) =====
+- id: R43-N1
+  summary: "2-3 seeds 统计推断力不足，核心 negative claims 无法区分真无效应和检测力不足"
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 40
+  last_seen_round: 43
+  resolution: "全文 negative claims 改为 'yields no detectable gains'，加 MDE ~1.5pp/CI 限定。"
+  resolution_round: 43
+
+- id: R43-N3
+  summary: "观察性设计下因果措辞系统性过强"
+  category: writing
+  severity: critical
+  status: resolved
+  first_raised_round: 43
+  last_seen_round: 43
+  resolution: "全文因果措辞替换为关联/观察性表述。"
+  resolution_round: 43
+
+- id: R43-N5
+  summary: "标题 'Why SC Fails for NER' 与正文 conditional success 结论不匹配"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 40
+  last_seen_round: 43
+  resolution: "标题改 'When Self-Consistency Fails for NER'。"
+  resolution_round: 43
+
+- id: R43-W1
+  summary: "Few-NERD 3-epoch vs 5-epoch 混淆未充分解决"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 38
+  last_seen_round: 43
+  resolution: "Greedy 0.748 vs 0.798 说明已加。"
+  resolution_round: 43
+
+- id: R43-W3
+  summary: "正文数字密度过高"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 37
+  last_seen_round: 43
+  resolution: "Abstract 精简为 6 个关键数字。"
+  resolution_round: 43
+
+- id: R43-M2
+  summary: "Mechanistic evidence 在 Appendix 却作为正文贡献点列出"
+  category: framing
+  severity: info
+  status: resolved
+  first_raised_round: 43
+  last_seen_round: 43
+  resolution: "三阶段结构不再将 mechanistic evidence 列为独立贡献。"
+  resolution_round: 43

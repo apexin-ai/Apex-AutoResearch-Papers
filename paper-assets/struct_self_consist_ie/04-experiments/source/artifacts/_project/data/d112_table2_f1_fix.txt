@@ -1,0 +1,12 @@
+Output directory: /root/autodl-tmp/struct_self_consist_ie/output/d112_table2_fix/
+Files: corrected_table2.json, bootstrap_results.json, cross_dataset_check.json, clarification_v2.txt, investigation.md, fix_table2.py
+
+Summary:
+- Greedy corrected: 0.6448 (macro F1, 529 instances)
+- Greedy buggy: 0.6633 (micro F1, 551 instances)
+- Inflation: 1.85 pp
+- LP selection F1: 0.6468, delta vs greedy = +0.20 pp, p = 0.385
+- Conclusion change: Greedy no longer surpasses selection - they are equivalent (p=0.39)
+- CoNLL: no issue (micro-macro gap < 0.1 pp)
+- WNUT: 10 pp micro-macro gap (expected given 46% gold-empty instances)
+- SciERC RE: 2.5 pp gap

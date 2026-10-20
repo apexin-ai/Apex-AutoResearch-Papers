@@ -1,0 +1,1 @@
+Remote path: /root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/samples.jsonl (2.5MB, 200 instances x 16 samples + greedy + logprobs)

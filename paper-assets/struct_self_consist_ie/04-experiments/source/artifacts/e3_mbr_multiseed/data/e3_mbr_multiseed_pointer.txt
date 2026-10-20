@@ -1,0 +1,1 @@
+See server files: autodl-5090:/root/autodl-tmp/struct_self_consist_ie/output/e3_mbr_multiseed_results.json and autodl-5090-c same path. Script: code/e3_mbr_multiseed.py

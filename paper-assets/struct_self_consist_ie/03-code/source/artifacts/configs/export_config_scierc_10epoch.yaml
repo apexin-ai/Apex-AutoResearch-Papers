@@ -1,0 +1,8 @@
+model_name_or_path: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B
+adapter_name_or_path: /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-10epoch-lora
+template: qwen3
+finetuning_type: lora
+export_dir: /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-10epoch-merged
+export_size: 5
+export_device: cpu
+export_legacy_format: false

@@ -1,0 +1,95 @@
+\relax 
+\bibstyle{acl_natbib}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{wang2023selfconsistency,snell2024scaling}
+\citation{eikema2022sampling}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contribution 1: Quality Estimation Framework.}{1}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contribution 2: Diagnosing Two Failure Mechanisms + Capability Trap.}{1}{section*.2}\protected@file@percent }
+\citation{wang2023selfconsistency}
+\citation{cisc2025}
+\citation{selfcertainty2026}
+\citation{reasc2026}
+\citation{nedellec2026}
+\citation{kuhn2023semantic}
+\citation{fisch2021conformal,angelopoulos2021conformal}
+\citation{shelmanov2021uncertainty}
+\citation{vashurin2025cocoa}
+\citation{eikema2022sampling}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Test-Time Scaling and Sample Selection.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Consistency for Structured IE.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Uncertainty Quantification for LLMs.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{MBR Decoding.}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setup}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Confidence Signals}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Structural Jaccard (SJ).}{2}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Fuzzy Token Overlap (FK).}{2}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Exact Match (EM).}{2}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Voting Confidence (VC).}{2}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Log-Probability (LP).}{2}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Failure Mechanism Diagnosis}{2}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Instance Degeneracy.}{2}{section*.12}\protected@file@percent }
+\citation{luan2018scierc}
+\citation{sang2003conll}
+\citation{ding2021fewnerd}
+\citation{derczynski2017wnut}
+\@writefile{toc}{\contentsline {paragraph}{LP Compression.}{3}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Capability Trap.}{3}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Datasets}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Models and Training}{3}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Inference}{3}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{3}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Quality Estimation: Signals Reliably Predict Quality}{3}{subsection.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces SciERC NER quality estimation ($\rho $, 3-seed mean $\pm $ SD). Fisher combined $p$=0.028 for SJ$>$LP.}}{3}{table.caption.15}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:qe_scierc}{{1}{3}{SciERC NER quality estimation ($\rho $, 3-seed mean $\pm $ SD). Fisher combined $p$=0.028 for SJ$>$LP}{table.caption.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Few-NERD QE correlation (3-seed mean $\pm $ SD, $N$=8, 1380 valid instances).}}{3}{table.caption.16}\protected@file@percent }
+\newlabel{tab:qe_fewnerd}{{2}{3}{Few-NERD QE correlation (3-seed mean $\pm $ SD, $N$=8, 1380 valid instances)}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {paragraph}{Task-Dependent Signal Effectiveness.}{3}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Selection: Signals Predominantly Fail}{3}{subsection.5.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Selection F1 on SciERC NER ($N$=8, $T$=1.0). Bootstrap 95\% CI for LP vs.\ greedy: [$-$0.030, +0.042], $p$=0.39.}}{4}{table.caption.18}\protected@file@percent }
+\newlabel{tab:selection_scierc}{{3}{4}{Selection F1 on SciERC NER ($N$=8, $T$=1.0). Bootstrap 95\% CI for LP vs.\ greedy: [$-$0.030, +0.042], $p$=0.39}{table.caption.18}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Selection F1 on Few-NERD NER ($N$=8, $T$=1.0). Permutation $p$=0.42 for best signal vs.\ greedy.}}{4}{table.caption.19}\protected@file@percent }
+\newlabel{tab:selection_fewnerd}{{4}{4}{Selection F1 on Few-NERD NER ($N$=8, $T$=1.0). Permutation $p$=0.42 for best signal vs.\ greedy}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Failure Mechanism 1: Instance Degeneracy}{4}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scale Evidence.}{4}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Failure Mechanism 2: Log-Prob Compression}{4}{subsection.5.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Cross-dataset degeneracy and capability. Monotonicity holds ($R^2$=0.72 for linear fit on F1 vs.\ degeneracy).}}{4}{table.caption.20}\protected@file@percent }
+\newlabel{tab:degeneracy}{{5}{4}{Cross-dataset degeneracy and capability. Monotonicity holds ($R^2$=0.72 for linear fit on F1 vs.\ degeneracy)}{table.caption.20}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces LoRA rank ablation on SciERC NER. Reducing rank from 16 to 8 decreases degeneracy by 9pp while F1 drops only 2.2pp.}}{4}{table.caption.23}\protected@file@percent }
+\newlabel{tab:lora_ablation}{{6}{4}{LoRA rank ablation on SciERC NER. Reducing rank from 16 to 8 decreases degeneracy by 9pp while F1 drops only 2.2pp}{table.caption.23}{}}
+\@writefile{toc}{\contentsline {paragraph}{Non-Degenerate Subset.}{4}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}LoRA Rank Ablation: Disentangling Capability from Fine-Tuning}{4}{subsection.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Degeneracy Attribution.}{4}{section*.24}\protected@file@percent }
+\citation{wang2023selfconsistency}
+\citation{cobbe2021verifiers,lightman2023stepwise}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Non-degenerate subset analysis. Selection improves when degeneracy is reduced, but remains modest on the full set.}}{5}{table.caption.25}\protected@file@percent }
+\newlabel{tab:nondegen}{{7}{5}{Non-degenerate subset analysis. Selection improves when degeneracy is reduced, but remains modest on the full set}{table.caption.25}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces SciERC NER 3-seed stability ($\rho $).}}{5}{table.caption.28}\protected@file@percent }
+\newlabel{tab:3seed}{{8}{5}{SciERC NER 3-seed stability ($\rho $)}{table.caption.28}{}}
+\@writefile{toc}{\contentsline {paragraph}{Selection Still Fails.}{5}{section*.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Cross-Dataset and Cross-Model Validation}{5}{subsection.5.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{3-Seed Stability.}{5}{section*.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Fisher Combined Tests.}{5}{section*.29}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scale Ablation (4B vs.\ 8B).}{5}{section*.30}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Claim audit summary. All issues are presentational; no methodological problems identified.}}{5}{table.caption.32}\protected@file@percent }
+\newlabel{tab:audit}{{9}{5}{Claim audit summary. All issues are presentational; no methodological problems identified}{table.caption.32}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-Architecture.}{5}{section*.31}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Numerical Consistency Audit}{5}{subsection.5.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{5}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{When Would Consistency Help?}{5}{section*.33}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Distinction from Predictability.}{5}{section*.34}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Path Forward.}{5}{section*.35}\protected@file@percent }
+\bibdata{custom}
+\bibstyle{acl_natbib}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{6}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A}Few-NERD Smoke Test}{6}{appendix.A}\protected@file@percent }
+\newlabel{app:smoke}{{A}{6}{Few-NERD Smoke Test}{appendix.A}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Few-NERD smoke test (200 instances, 1-epoch LoRA, $N$=8).}}{6}{table.caption.37}\protected@file@percent }
+\newlabel{tab:smoke}{{10}{6}{Few-NERD smoke test (200 instances, 1-epoch LoRA, $N$=8)}{table.caption.37}{}}
+\gdef \@abspage@last{6}

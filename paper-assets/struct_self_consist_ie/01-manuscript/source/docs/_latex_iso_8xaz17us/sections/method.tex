@@ -1,0 +1,85 @@
+\section{Method}\label{sec:method}
+
+\subsection{Problem Formulation}\label{sec:formulation}
+
+Given model $\mathcal{M}$ and input $x$, we sample $N$ outputs $\{y_1, \ldots, y_N\}$ at temperature $T > 0$ via constrained decoding \cite{willard2023guided}, where each $y_i$ is an entity set.
+A \textbf{per-sample signal} $c_{\text{ps}}: (x, y_i) \to \mathbb{R}$ scores each output independently; an \textbf{instance-level signal} $c_{\text{il}}: (x, \{y_i\}_{i=1}^N) \to \mathbb{R}$ produces a single score per input (notation in Appendix~\ref{app:notation}).
+Of five signals, only LP scores each sample independently; the other four are instance-level aggregates assigning identical scores to all $N$ candidates.
+Ensemble optimization assigns dominant weight to LP (mean $0.78$; Appendix~\ref{app:supervised_combination}); when LP fails (few-shot: $\rho{\to}0$; \S\ref{sec:scaling}), no alternative per-sample signal exists.
+
+\subsection{Confidence Signals}\label{sec:signals}
+
+Throughout, entity matching uses exact span and type match (a predicted entity is correct iff its character offsets and type label both match a gold entity).
+Four are \textit{consistency signals}: \textit{structural} (Soft Jaccard [SJ], entity voting confidence [VC]) and \textit{surface} (exact match [EM], Fleiss' $\kappa$ [FK]); log-probability [LP] is the sole \textit{model-internal}, per-sample signal.
+
+\paragraph{Log-probability (model-internal, per-sample).}
+For sample $y_i$ with tokens $t_1, \ldots, t_{|y_i|}$:
+\begin{equation}\label{eq:logprob}
+c_{\text{lp}}(y_i) = \frac{1}{|y_i|} \sum_{j=1}^{|y_i|} \log p_{\mathcal{M}}(t_j \mid t_{<j}, x)
+\end{equation}
+
+\paragraph{Exact match voting (surface, instance-level).}
+The proportion of samples producing the most common output:
+\begin{equation}\label{eq:em}
+c_{\text{em}}(x) = \frac{1}{N} \max_{y} \big|\{i : y_i = y\}\big|
+\end{equation}
+
+\paragraph{Fleiss' $\kappa$ (surface, instance-level).}
+We adapt \citet{fleiss1971agreement} to entity sets: items are unique (text, type) tuples across all $N$ samples; each sample assigns binary present/absent labels, yielding a $|E_\cup| \times 2$ rating matrix:
+\begin{equation}\label{eq:fk}
+\kappa = \frac{\bar{P} - \bar{P}_e}{1 - \bar{P}_e}
+\end{equation}
+where $\bar{P}$ is mean observed and $\bar{P}_e$ expected agreement.
+FK relies on exact string matching (independence analysis in Appendix~\ref{app:fk_independence}).
+
+\paragraph{Soft Jaccard (structural, instance-level).}
+For samples $y_i, y_j$, we group extractions by type, compute max-weight bipartite matching (Hungarian algorithm, token-level IoU), and define:
+\begin{equation}\label{eq:sj}
+\text{SJ}(y_i, y_j) = \frac{\sum_{m \in M} \text{sim}(a_m, b_m)}{\sum_{g} \max(|g_i|, |g_j|)}
+\end{equation}
+where $M$ is the matched set, $\text{sim}(a_m, b_m)$ is the token-level IoU, and $\max(|g_i|, |g_j|)$ penalizes length asymmetry.
+The instance-level QE signal averages over all pairs: $c_{\text{sj}}(x) = \binom{N}{2}^{-1} \sum_{i<j} \text{SJ}(y_i, y_j)$.\footnote{When $E_\cup = \emptyset$, SJ is defined as 1 (perfect agreement on empty output).}
+For selection, consensus-proximity converts instance-level signals to per-sample rankings via MBR utility (\S\ref{sec:mbr_theory}).
+
+\paragraph{Entity voting confidence (structural, instance-level).}
+For each entity $e$ in the union $E_\cup$ of all samples, we compute frequency $\text{freq}(e) = |\{i : e \in y_i\}| / N$.
+The instance-level confidence is the mean frequency:
+\begin{equation}\label{eq:voting}
+c_{\text{vote}}(x) = \frac{1}{|E_\cup|} \sum_{e \in E_\cup} \text{freq}(e)
+\end{equation}
+When $E_\cup = \emptyset$, $c_{\mathrm{vc}}(x) = 0$.
+
+\subsection{Evaluation Framework}\label{sec:evaluation}
+
+\paragraph{Quality estimation.}
+Spearman $\rho$ between the signal and instance-level F1 (per-instance entity-level F1 counting exact span-and-type matches), and AUROC classifying instances as above/below median F1.
+Both quality estimation and selection exclude instances with no gold annotations: $n{=}529$ on SciERC, $n{=}2{,}756$ on CoNLL (Appendix~\ref{app:additional}).
+
+\paragraph{Sample selection.}
+Best-of-$N$ F1: per-sample signals (LP) directly rank candidates; instance-level signals rank via consensus-proximity (MBR utility; see SJ definition above).
+Baselines: \textit{oracle} (highest-F1 sample) and \textit{greedy} ($T{=}0$ argmax decoding).
+We define \textbf{instance degeneracy} as the fraction of instances where all $N$ samples yield identical F1;\footnote{``Identical F1'' means constant F1 across all $N$ samples for a given instance, not necessarily F1${=}1.0$. Samples may differ in surface form but produce the same entity set and thus the same score.} for these instances, no signal can improve selection.
+We report F1 under the protocol matching each experiment's configuration (seed, epoch, $N$); each table specifies its protocol.
+
+\paragraph{Experimental overview.}
+We evaluate across four NER benchmarks spanning a difficulty gradient (SciERC, Few-NERD, CoNLL, WNUT-17), two model families (Qwen3-8B, LLaMA-3.1-8B-Instruct), and $N \in \{2, \ldots, 64\}$ samples, with extensions to 4B/14B scale ablations, Qwen2.5-72B and GPT-5.5 zero-shot, RE, and SQL parsing (\S\ref{sec:experiments}).
+Each signal is evaluated for both population-level quality estimation ($\rho$, AUROC with oracle F1) and instance-level selection gain ($\Delta$F1 over greedy).
+
+%% Prescriptive framework content is in Discussion §5 (sec:selection_method label there)
+%% to stay within 8-page main body limit
+
+\subsection{Entity Construction as MBR Decoding}\label{sec:mbr_theory}
+
+Entity-level construction (\S\ref{sec:selection_method}) is a special case of minimum Bayes risk (MBR) decoding \cite{kumar2004minimum, eikema2020map}, extended from candidate selection ($\arg\max_{y \in \{y_1,\ldots,y_N\}}$) to construction over all subsets of $E_\cup{=}\bigcup_i y_i$.
+
+\begin{proposition}[Entity construction as MBR for balanced set-overlap]\label{prop:construction_mbr}
+Under entity-wise independence with utility $u(\hat{y}, y') = |\hat{y} \cap y'| - \alpha|\hat{y} \setminus y'|$ ($\alpha \geq 1$), the MBR-optimal constructed set is
+\begin{equation}\label{eq:mbr_construction}
+\hat{y}_{\textup{MBR}} \!=\! \bigl\{e \!{\in}\! E_\cup \!:\! \hat{p}(e) \!>\! \tfrac{\alpha}{\alpha{+}1}\bigr\},\; \hat{p}(e) \!=\! \tfrac{1}{N} \textstyle\sum\nolimits_{i} \mathbf{1}[e \!{\in}\! y_i]
+\end{equation}
+The special case $\alpha{=}1$ yields $\hat{p}(e) > \tfrac{1}{2}$, the strict majority-vote threshold used throughout (proof in Appendix~\ref{app:mbr_proof}).\footnote{We use strict majority (count $> N/2$); with $N{=}8$, an entity is included if ${\geq}5$ of 8 samples contain it.}
+\end{proposition}
+
+\noindent\textbf{Remark.}
+Set-level F1 admits no closed-form threshold \cite{dembczynski2011exact}; we use $\alpha{=}1$ throughout, which induces similar thresholds for typical NER sizes ($|E_\cup| \leq 30$).
+Signal weights $w_i$ yield quality-weighted MBR: $\hat{p}_w(e) = \sum_{i} w_i \, \mathbf{1}[e {\in} y_i] / \sum_{i} w_i$; weighting improves when $w_i$ correlates with instance quality but degrades otherwise (\S\ref{sec:selection_method}).

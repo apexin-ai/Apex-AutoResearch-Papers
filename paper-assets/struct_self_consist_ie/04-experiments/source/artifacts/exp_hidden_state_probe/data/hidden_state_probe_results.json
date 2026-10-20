@@ -1,0 +1,14 @@
+{
+  "experiment": "exp_hidden_state_probe",
+  "date": "2026-05-21",
+  "results": {
+    "fewnerd": {"auroc": 0.9872, "std": 0.0007, "n_entities": 10508, "positive_rate": 0.798},
+    "conll": {"auroc": 0.9796, "std": 0.0036, "n_entities": 7849, "positive_rate": 0.912}
+  },
+  "baselines": {
+    "mv_agreement_auroc": 0.87,
+    "esj_prompt_auroc": 0.51
+  },
+  "method": "LogisticRegression, 5-fold CV x 3 seeds, StandardScaler, last-layer mean-pool entity span hidden states (4096-dim)",
+  "interpretation": "Probe AUROC ~0.98 >> MV 0.87 >> ESJ 0.51. Entity quality info is deeply encoded in hidden states. Prompt-based self-judgment is a complete interface failure."
+}

@@ -1,0 +1,329 @@
+{
+  "FewNERD": {
+    "dataset": "FewNERD",
+    "data_path": "/root/autodl-tmp/struct_self_consist_ie/output/exp_021_inference/samples.jsonl",
+    "n_instances": 32565,
+    "max_n": 8,
+    "n_subsamples": 10,
+    "budget_per_instance": 8,
+    "seed": 42,
+    "n_cv_folds": 5,
+    "elapsed_seconds": 214.6,
+    "mean_f1_by_n": {
+      "2": 0.728,
+      "4": 0.7725,
+      "8": 0.7842
+    },
+    "optimal_n_distribution": {
+      "2": 12927,
+      "4": 9937,
+      "8": 9701
+    },
+    "mean_optimal_n": 4.4,
+    "cv_results": {
+      "LogisticRegression": {
+        "macro_f1": 0.4751,
+        "fold_f1s": [
+          0.4731,
+          0.4725,
+          0.4764,
+          0.4697,
+          0.4835
+        ],
+        "mean_fold_f1": 0.475,
+        "std_fold_f1": 0.0047
+      },
+      "RandomForest": {
+        "macro_f1": 0.5594,
+        "fold_f1s": [
+          0.5647,
+          0.5537,
+          0.5569,
+          0.5616,
+          0.5595
+        ],
+        "mean_fold_f1": 0.5593,
+        "std_fold_f1": 0.0038
+      },
+      "MLP": {
+        "macro_f1": 0.5765,
+        "fold_f1s": [
+          0.5825,
+          0.5758,
+          0.5798,
+          0.5628,
+          0.5805
+        ],
+        "mean_fold_f1": 0.5763,
+        "std_fold_f1": 0.0071
+      }
+    },
+    "best_model": "MLP",
+    "feature_names": [
+      "agreement_n2",
+      "degen_rate_n2",
+      "entity_count_n2",
+      "lp_variance_n2",
+      "text_length"
+    ],
+    "feature_importance": {
+      "degen_rate_n2": 0.3393,
+      "agreement_n2": 0.2993,
+      "entity_count_n2": 0.2228,
+      "lp_variance_n2": 0.1223,
+      "text_length": 0.0162
+    },
+    "evaluation": {
+      "metric": "micro_f1",
+      "greedy_f1": 0.7911,
+      "uniform_f1": 0.7842,
+      "adaptive_f1": 0.7842,
+      "adaptive_fold_mean_f1": 0.7842,
+      "adaptive_fold_std_f1": 0.0018,
+      "adaptive_fold_f1s": [
+        0.7872,
+        0.7815,
+        0.7844,
+        0.7835,
+        0.7845
+      ],
+      "oracle_adaptive_f1": 0.7842,
+      "full_n_f1": 0.7842,
+      "delta_adaptive_vs_uniform": 0.0,
+      "delta_oracle_vs_uniform": 0.0,
+      "adaptive_avg_n": 8.0,
+      "oracle_avg_n": 8.0,
+      "adaptive_allocation_dist": {
+        "2": 0,
+        "4": 0,
+        "8": 32565
+      },
+      "adaptive_total_budget": 260520
+    },
+    "fixes_applied": [
+      "removed greedy_f1 feature (data leakage via gold labels)",
+      "max_n-aware adaptive_allocation (no surplus to unreachable N)",
+      "K-fold downstream eval (no train=test leakage)",
+      "micro-F1 (global TP/FP/FN, not per-instance average)"
+    ]
+  },
+  "SciERC": {
+    "dataset": "SciERC",
+    "data_path": "/root/autodl-tmp/struct_self_consist_ie/output/exp_026_t10_seed42/samples.jsonl",
+    "n_instances": 529,
+    "max_n": 8,
+    "n_subsamples": 10,
+    "budget_per_instance": 8,
+    "seed": 42,
+    "n_cv_folds": 5,
+    "elapsed_seconds": 8.4,
+    "mean_f1_by_n": {
+      "2": 0.6408,
+      "4": 0.6623,
+      "8": 0.6657
+    },
+    "optimal_n_distribution": {
+      "2": 237,
+      "4": 126,
+      "8": 166
+    },
+    "mean_optimal_n": 4.36,
+    "cv_results": {
+      "LogisticRegression": {
+        "macro_f1": 0.3945,
+        "fold_f1s": [
+          0.376,
+          0.4414,
+          0.3602,
+          0.424,
+          0.3703
+        ],
+        "mean_fold_f1": 0.3944,
+        "std_fold_f1": 0.0321
+      },
+      "RandomForest": {
+        "macro_f1": 0.4408,
+        "fold_f1s": [
+          0.3994,
+          0.4209,
+          0.4424,
+          0.5051,
+          0.4353
+        ],
+        "mean_fold_f1": 0.4406,
+        "std_fold_f1": 0.0354
+      },
+      "MLP": {
+        "macro_f1": 0.4662,
+        "fold_f1s": [
+          0.4428,
+          0.4598,
+          0.4145,
+          0.5107,
+          0.4806
+        ],
+        "mean_fold_f1": 0.4617,
+        "std_fold_f1": 0.0327
+      }
+    },
+    "best_model": "MLP",
+    "feature_names": [
+      "agreement_n2",
+      "degen_rate_n2",
+      "entity_count_n2",
+      "lp_variance_n2",
+      "text_length"
+    ],
+    "feature_importance": {
+      "agreement_n2": 0.3182,
+      "degen_rate_n2": 0.2672,
+      "entity_count_n2": 0.1462,
+      "lp_variance_n2": 0.1432,
+      "text_length": 0.1253
+    },
+    "evaluation": {
+      "metric": "micro_f1",
+      "greedy_f1": 0.6649,
+      "uniform_f1": 0.6657,
+      "adaptive_f1": 0.6657,
+      "adaptive_fold_mean_f1": 0.6649,
+      "adaptive_fold_std_f1": 0.0232,
+      "adaptive_fold_f1s": [
+        0.6588,
+        0.6395,
+        0.6527,
+        0.6656,
+        0.708
+      ],
+      "oracle_adaptive_f1": 0.6657,
+      "full_n_f1": 0.6657,
+      "delta_adaptive_vs_uniform": 0.0,
+      "delta_oracle_vs_uniform": 0.0,
+      "adaptive_avg_n": 8.0,
+      "oracle_avg_n": 8.0,
+      "adaptive_allocation_dist": {
+        "2": 0,
+        "4": 0,
+        "8": 529
+      },
+      "adaptive_total_budget": 4232
+    },
+    "fixes_applied": [
+      "removed greedy_f1 feature (data leakage via gold labels)",
+      "max_n-aware adaptive_allocation (no surplus to unreachable N)",
+      "K-fold downstream eval (no train=test leakage)",
+      "micro-F1 (global TP/FP/FN, not per-instance average)"
+    ]
+  },
+  "CoNLL": {
+    "dataset": "CoNLL",
+    "data_path": "/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/samples.jsonl",
+    "n_instances": 2756,
+    "max_n": 16,
+    "n_subsamples": 10,
+    "budget_per_instance": 8,
+    "seed": 42,
+    "n_cv_folds": 5,
+    "elapsed_seconds": 8.7,
+    "mean_f1_by_n": {
+      "2": 0.8705,
+      "4": 0.9044,
+      "8": 0.9128,
+      "16": 0.9153
+    },
+    "optimal_n_distribution": {
+      "2": 1748,
+      "4": 570,
+      "8": 252,
+      "16": 186
+    },
+    "mean_optimal_n": 3.91,
+    "cv_results": {
+      "LogisticRegression": {
+        "macro_f1": 0.3852,
+        "fold_f1s": [
+          0.4163,
+          0.4061,
+          0.3853,
+          0.3269,
+          0.3877
+        ],
+        "mean_fold_f1": 0.3844,
+        "std_fold_f1": 0.031
+      },
+      "RandomForest": {
+        "macro_f1": 0.5125,
+        "fold_f1s": [
+          0.5033,
+          0.5409,
+          0.4903,
+          0.5003,
+          0.528
+        ],
+        "mean_fold_f1": 0.5126,
+        "std_fold_f1": 0.0188
+      },
+      "MLP": {
+        "macro_f1": 0.473,
+        "fold_f1s": [
+          0.4413,
+          0.5046,
+          0.4788,
+          0.4663,
+          0.4631
+        ],
+        "mean_fold_f1": 0.4708,
+        "std_fold_f1": 0.0208
+      }
+    },
+    "best_model": "RandomForest",
+    "feature_names": [
+      "agreement_n2",
+      "degen_rate_n2",
+      "entity_count_n2",
+      "lp_variance_n2",
+      "text_length"
+    ],
+    "feature_importance": {
+      "degen_rate_n2": 0.3881,
+      "agreement_n2": 0.3718,
+      "entity_count_n2": 0.138,
+      "text_length": 0.0521,
+      "lp_variance_n2": 0.0499
+    },
+    "evaluation": {
+      "metric": "micro_f1",
+      "greedy_f1": 0.9124,
+      "uniform_f1": 0.9128,
+      "adaptive_f1": 0.9095,
+      "adaptive_fold_mean_f1": 0.91,
+      "adaptive_fold_std_f1": 0.0044,
+      "adaptive_fold_f1s": [
+        0.9106,
+        0.9018,
+        0.9153,
+        0.9116,
+        0.9106
+      ],
+      "oracle_adaptive_f1": 0.9139,
+      "full_n_f1": 0.9153,
+      "delta_adaptive_vs_uniform": -0.0033,
+      "delta_oracle_vs_uniform": 0.0012,
+      "adaptive_avg_n": 8.0,
+      "oracle_avg_n": 8.0,
+      "adaptive_allocation_dist": {
+        "2": 1571,
+        "4": 4,
+        "8": 1,
+        "16": 1180
+      },
+      "adaptive_total_budget": 22046
+    },
+    "fixes_applied": [
+      "removed greedy_f1 feature (data leakage via gold labels)",
+      "max_n-aware adaptive_allocation (no surplus to unreachable N)",
+      "K-fold downstream eval (no train=test leakage)",
+      "micro-F1 (global TP/FP/FN, not per-instance average)"
+    ]
+  }
+}

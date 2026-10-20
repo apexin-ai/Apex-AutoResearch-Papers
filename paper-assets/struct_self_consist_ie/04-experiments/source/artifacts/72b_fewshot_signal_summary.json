@@ -1,0 +1,55 @@
+{
+  "model": "Qwen2.5-72B-Instruct-AWQ",
+  "setting": "3-shot few-shot",
+  "n_samples": 8,
+  "datasets": {
+    "scierc": {
+      "n_instances": 529,
+      "greedy_f1": 0.461,
+      "oracle_f1": 0.604,
+      "degeneracy_rate": 0.166,
+      "construction_lp_weighted_f1": 0.461,
+      "construction_delta": -0.0008,
+      "construction_p": 0.54,
+      "signals_rho": {
+        "LP": 0.060,
+        "SJ": 0.293,
+        "FK": 0.301,
+        "VC": 0.258,
+        "EM": 0.205
+      }
+    },
+    "conll2003": {
+      "n_instances": 2756,
+      "greedy_f1": 0.745,
+      "oracle_f1": 0.796,
+      "degeneracy_rate": 0.700,
+      "construction_lp_weighted_f1": 0.745,
+      "construction_delta": 0.0003,
+      "construction_p": 0.42,
+      "signals_rho": {
+        "LP": 0.106,
+        "SJ": 0.442,
+        "FK": 0.451,
+        "VC": 0.426,
+        "EM": 0.403
+      }
+    },
+    "fewnerd": {
+      "n_instances": 32565,
+      "greedy_f1": 0.619,
+      "oracle_f1": 0.702,
+      "degeneracy_rate": 0.452,
+      "construction_lp_weighted_f1": 0.619,
+      "construction_delta": 0.02,
+      "construction_p": 0.401,
+      "signals_rho": {
+        "LP": 0.161,
+        "SJ": 0.345,
+        "FK": 0.327,
+        "VC": 0.410,
+        "EM": 0.302
+      }
+    }
+  }
+}

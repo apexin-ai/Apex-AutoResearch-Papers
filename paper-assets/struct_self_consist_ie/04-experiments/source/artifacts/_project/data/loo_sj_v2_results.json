@@ -1,0 +1,7 @@
+See output/loo_sj_cross_dataset/results.json on autodl-5090. Key corrected values:
+
+Qwen_CoNLL: N8 ρ_full=0.4357 ρ_loo=0.438 Δ=-0.002; N16 ρ_full=0.4496 ρ_loo=0.4449 Δ=0.005
+Qwen_SciERC: N8 ρ_full=0.3565 ρ_loo=0.359 Δ=-0.002; N16 ρ_full=0.428 ρ_loo=0.43 Δ=-0.002
+LLaMA_SciERC: N8 ρ_full=0.363 ρ_loo=0.3544 Δ=0.009; N16 ρ_full=0.3791 ρ_loo=0.3753 Δ=0.004
+
+All |Δρ| < 0.01 — no circularity. CoNLL n=2756 (filtered 697), SciERC n=529 (filtered 22).

@@ -1,0 +1,67 @@
+% N-scaling appendix tables for Structured Self-Consistency paper
+% Requires: booktabs package
+
+%%% Table 1: N=8 vs N=16 Comparison (Spearman ρ)
+\begin{table}[t]
+\centering
+\caption{Effect of sample pool size on signal quality (Qwen3-8B, SciERC, 3-seed mean Spearman $\rho$).}
+\label{tab:n-scaling}
+\small
+\begin{tabular}{l ccc ccc}
+\toprule
+ & \multicolumn{3}{c}{\textbf{NER} $\rho$} & \multicolumn{3}{c}{\textbf{RE} $\rho$} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+Signal & $N\!=\!8$ & $N\!=\!16$ & $\Delta$ & $N\!=\!8$ & $N\!=\!16$ & $\Delta$ \\
+\midrule
+SJ & 0.3641 & 0.4105 & \textbf{+0.0464} & 0.2485 & 0.2758 & \textbf{+0.0273} \\
+FK & 0.2536 & 0.2833 & \textbf{+0.0297} & 0.2903 & 0.2964 & \textbf{+0.0061} \\
+VC & 0.3861 & 0.4092 & \textbf{+0.0231} & 0.3088 & 0.3738 & \textbf{+0.0650} \\
+LP & 0.2167 & 0.2393 & \textbf{+0.0226} & 0.2970 & 0.3100 & \textbf{+0.0130} \\
+EM & 0.3071 & 0.3395 & \textbf{+0.0324} & 0.1353 & 0.1506 & \textbf{+0.0153} \\
+\midrule
+Mean & 0.3055 & 0.3364 & \textbf{+0.0308} & 0.2560 & 0.2813 & \textbf{+0.0253} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%%% Table 2: Cross-seed Signal Ranking Stability (Kendall's W)
+\begin{table}[t]
+\centering
+\caption{Cross-seed signal ranking stability (Kendall's $W$, 3 seeds).}
+\label{tab:ranking-stability}
+\small
+\begin{tabular}{ll cc l}
+\toprule
+Model & Task & $N$ & Kendall's $W$ & Consensus ranking \\
+\midrule
+Qwen  & NER & 8  & 1.000 & VC $>$ SJ $>$ EM $>$ FK $>$ LP \\
+Qwen  & NER & 16 & 0.956 & SJ $\approx$ VC $>$ EM $>$ FK $>$ LP \\
+Qwen  & RE  & 8  & 0.822 & VC $>$ LP $>$ FK $>$ SJ $>$ EM \\
+Qwen  & RE  & 16 & 0.956 & VC $>$ LP $>$ FK $>$ SJ $>$ EM \\
+LLaMA & NER & 8  & 1.000 & VC $>$ SJ $>$ EM $>$ FK $>$ LP \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%%% Table 3: Per-signal Cross-seed σ Comparison
+\begin{table}[t]
+\centering
+\caption{Cross-seed standard deviation ($\sigma$) of Spearman $\rho$ at $N\!=\!8$ vs.\ $N\!=\!16$ (Qwen3-8B, SciERC, 3 seeds).}
+\label{tab:sigma-comparison}
+\small
+\begin{tabular}{l cc cc}
+\toprule
+ & \multicolumn{2}{c}{\textbf{NER} $\sigma_\rho$} & \multicolumn{2}{c}{\textbf{RE} $\sigma_\rho$} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+Signal & $N\!=\!8$ & $N\!=\!16$ & $N\!=\!8$ & $N\!=\!16$ \\
+\midrule
+SJ & 0.0179 & 0.0102 & 0.0015 & 0.0067 \\
+FK & 0.0157 & 0.0079 & 0.0121 & 0.0143 \\
+VC & 0.0187 & 0.0260 & 0.0244 & 0.0158 \\
+EM & 0.0076 & 0.0031 & 0.0157 & 0.0049 \\
+LP & 0.0125 & 0.0017 & 0.0218 & 0.0152 \\
+\midrule
+Mean & 0.0145 & 0.0098 & 0.0151 & 0.0114 \\
+\bottomrule
+\end{tabular}
+\end{table}

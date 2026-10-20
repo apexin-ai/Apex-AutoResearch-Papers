@@ -1,0 +1,7 @@
+See output/bootstrap_ci_nscaling/results.json on autodl-5090. Key corrected ρ values:
+
+Qwen_CoNLL (n=2756): SJ ρ8=0.4389 ρ16=0.4496 Δ=0.011 CI=[-0.014,0.035]; FK ρ8=0.4038 ρ16=0.3928; EM ρ8=0.4523 ρ16=0.4612; VC ρ8=0.345 ρ16=0.37; LP ρ8=0.3158 ρ16=0.3146
+Qwen_SciERC (n=529): SJ ρ8=0.3624 ρ16=0.428 Δ=0.065 CI=[0.004,0.128]*; FK ρ8=0.2386 ρ16=0.2809; EM ρ8=0.3339 ρ16=0.3409
+LLaMA_SciERC (n=529): SJ ρ8=0.3672 ρ16=0.3791; FK ρ8=0.3332 ρ16=0.3081; EM ρ8=0.3224 ρ16=0.3281
+
+* Only Qwen_SciERC SJ has CI excluding 0 (sig at 95%).

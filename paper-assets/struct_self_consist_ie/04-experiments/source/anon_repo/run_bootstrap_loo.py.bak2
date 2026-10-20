@@ -1,0 +1,334 @@
+#!/usr/bin/env python3
+"""Bootstrap CI for N-scaling + LOO-SJ circularity check."""
+
+import json
+import os
+import sys
+import time
+import numpy as np
+from scipy.optimize import linear_sum_assignment
+from scipy.stats import spearmanr
+from itertools import combinations
+from collections import Counter
+
+BASE = "/root/autodl-tmp/struct_self_consist_ie"
+
+# =========================================================================
+# Signal computation (self-contained)
+# =========================================================================
+
+def span_soft_jaccard(s1s, s1e, s2s, s2e):
+    overlap = max(0, min(s1e, s2e) - max(s1s, s2s))
+    union = (s1e - s1s) + (s2e - s2s) - overlap
+    return overlap / union if union > 0 else 0.0
+
+def ner_soft_jaccard_pair(ents_a, ents_b):
+    if not ents_a and not ents_b: return 1.0
+    if not ents_a or not ents_b: return 0.0
+    types = set()
+    ga_map, gb_map = {}, {}
+    for e in ents_a:
+        t = e["type"]; types.add(t); ga_map.setdefault(t, []).append(e)
+    for e in ents_b:
+        t = e["type"]; types.add(t); gb_map.setdefault(t, []).append(e)
+    total_score, total_weight = 0.0, 0
+    for t in types:
+        ga, gb = ga_map.get(t, []), gb_map.get(t, [])
+        denom = max(len(ga), len(gb))
+        if denom == 0: continue
+        total_weight += denom
+        if not ga or not gb: continue
+        cost = np.zeros((len(ga), len(gb)))
+        for i, ea in enumerate(ga):
+            for j, eb in enumerate(gb):
+                cost[i, j] = span_soft_jaccard(ea["start"], ea["end"], eb["start"], eb["end"])
+        ri, ci = linear_sum_assignment(-cost)
+        total_score += cost[ri, ci].sum()
+    return total_score / total_weight if total_weight > 0 else 1.0
+
+def compute_sj(samples):
+    n = len(samples)
+    if n <= 1: return 1.0
+    scores = []
+    for i, j in combinations(range(n), 2):
+        scores.append(ner_soft_jaccard_pair(
+            samples[i].get("entities", []), samples[j].get("entities", [])))
+    return float(np.mean(scores))
+
+def compute_sj_pairwise_matrix(samples):
+    n = len(samples)
+    if n <= 1: return np.ones((n, n)), 1.0
+    mat = np.ones((n, n))
+    scores = []
+    for i, j in combinations(range(n), 2):
+        s = ner_soft_jaccard_pair(
+            samples[i].get("entities", []), samples[j].get("entities", []))
+        mat[i, j] = mat[j, i] = s
+        scores.append(s)
+    return mat, float(np.mean(scores))
+
+def compute_fk(samples):
+    nr = len(samples)
+    if nr <= 1: return 1.0
+    all_keys = set()
+    esets = []
+    for s in samples:
+        keys = {(e["text"], e["type"]) for e in s.get("entities", [])}
+        esets.append(keys); all_keys |= keys
+    ns = len(all_keys)
+    if ns <= 0: return 1.0
+    kl = sorted(all_keys)
+    rat = np.zeros((ns, 2), dtype=np.int64)
+    for es in esets:
+        for idx, key in enumerate(kl):
+            rat[idx, 1 if key in es else 0] += 1
+    if np.all(np.max(rat, axis=1) == nr): return 1.0
+    Pi = (np.sum(rat**2, axis=1) - nr) / (nr * (nr - 1))
+    Pb = np.mean(Pi)
+    pj = np.sum(rat, axis=0) / (ns * nr)
+    Pe = np.sum(pj**2)
+    if abs(1.0 - Pe) < 1e-12: return 1.0
+    return float((Pb - Pe) / (1.0 - Pe))
+
+def compute_em(samples):
+    n = len(samples)
+    if n < 2: return 1.0
+    skeys = [frozenset((e.get("text",""), e.get("type","")) for e in s.get("entities",[])) for s in samples]
+    match = sum(1 for i in range(n) for j in range(i+1, n) if skeys[i] == skeys[j])
+    total = n * (n-1) // 2
+    return match / total if total > 0 else 1.0
+
+def compute_vc(samples):
+    n = len(samples)
+    counter = Counter()
+    for s in samples:
+        for e in s.get("entities", []):
+            counter[(e.get("text",""), e.get("type",""))] += 1
+    maj = [v/n for v in counter.values() if v > n/2]
+    return float(np.mean(maj)) if maj else 0.0
+
+def compute_logprob_signal(inst, n_samples=None):
+    samples = inst.get("samples", [])
+    if n_samples is not None:
+        samples = samples[:n_samples]
+    lps = [s["mean_logprob"] for s in samples if "mean_logprob" in s]
+    if not lps:
+        lp_arr = inst.get("logprobs", [])
+        if lp_arr:
+            lps = list(lp_arr[:n_samples] if n_samples else lp_arr)
+    return float(np.mean(lps)) if lps else 0.0
+
+def per_instance_f1(pred, gold):
+    ps = {(e["start"], e["end"], e["type"]) for e in pred.get("entities", [])}
+    gs = {(e["start"], e["end"], e["type"]) for e in gold.get("entities", [])}
+    tp = len(ps & gs); fp = len(ps - gs); fn = len(gs - ps)
+    p = tp/(tp+fp) if (tp+fp) else 0.0
+    r = tp/(tp+fn) if (tp+fn) else 0.0
+    return 2*p*r/(p+r) if (p+r) else 0.0
+
+# =========================================================================
+# Helpers
+# =========================================================================
+
+def load_instances(path):
+    insts = []
+    with open(path) as f:
+        for line in f:
+            line = line.strip()
+            if line:
+                insts.append(json.loads(line))
+    return insts
+
+def filter_gold_nonempty(instances):
+    return [inst for inst in instances if len(inst["gold"].get("entities", [])) > 0]
+
+def compute_all_signals(instances, n_samples=None):
+    sj, fk, em, vc, lp, f1 = [], [], [], [], [], []
+    for inst in instances:
+        samps = inst["samples"][:n_samples] if n_samples else inst["samples"]
+        gold = inst["gold"]
+        greedy = inst.get("greedy", samps[0] if samps else {"entities": []})
+        sj.append(compute_sj(samps))
+        fk.append(compute_fk(samps))
+        em.append(compute_em(samps))
+        vc.append(compute_vc(samps))
+        lp.append(compute_logprob_signal(inst, n_samples))
+        f1.append(per_instance_f1(greedy, gold))
+    return {k: np.array(v) for k, v in zip(
+        ["SJ","FK","EM","voting_conf","logprob"], [sj,fk,em,vc,lp])}, np.array(f1)
+
+def bootstrap_delta_rho(sig16, sig8, f1, B=10000, seed=42):
+    rng = np.random.RandomState(seed)
+    n = len(f1)
+    results = {}
+    for name in sig16:
+        s16, s8 = sig16[name], sig8[name]
+        rho16 = float(spearmanr(s16, f1).statistic)
+        rho8 = float(spearmanr(s8, f1).statistic)
+        deltas = []
+        for _ in range(B):
+            idx = rng.randint(0, n, size=n)
+            r16 = spearmanr(s16[idx], f1[idx]).statistic
+            r8 = spearmanr(s8[idx], f1[idx]).statistic
+            if np.isnan(r16) or np.isnan(r8): continue
+            deltas.append(float(r16 - r8))
+        da = np.array(deltas)
+        lo, hi = np.percentile(da, [2.5, 97.5])
+        results[name] = {
+            "rho_n16": round(rho16, 4),
+            "rho_n8": round(rho8, 4),
+            "delta_rho_point": round(rho16 - rho8, 4),
+            "delta_rho_mean": round(float(np.mean(da)), 4),
+            "ci_95_lo": round(float(lo), 4),
+            "ci_95_hi": round(float(hi), 4),
+            "p_positive": round(float(np.mean(da > 0)), 4),
+            "n_valid_bootstrap": len(deltas),
+        }
+    return results
+
+# =========================================================================
+# Part 2: LOO-SJ
+# =========================================================================
+
+def compute_loo_sj_analysis(instances):
+    full_sj, loo_sj, f1s = [], [], []
+    for inst in instances:
+        samples = inst["samples"]
+        gold = inst["gold"]
+        greedy = inst.get("greedy", samples[0] if samples else {"entities": []})
+        n = len(samples)
+        mat, fsj = compute_sj_pairwise_matrix(samples)
+        full_sj.append(fsj)
+        if n <= 2:
+            loo_sj.append(fsj)
+        else:
+            all_sum = sum(mat[i,j] for i,j in combinations(range(n), 2))
+            loo_means = []
+            for k in range(n):
+                pk_sum = sum(mat[k,j] for j in range(n) if j != k)
+                loo_sum = all_sum - pk_sum
+                loo_np = (n-1)*(n-2)//2
+                loo_means.append(loo_sum / loo_np if loo_np > 0 else 1.0)
+            loo_sj.append(float(np.mean(loo_means)))
+        f1s.append(per_instance_f1(greedy, gold))
+    fa, la, f1a = np.array(full_sj), np.array(loo_sj), np.array(f1s)
+    rf = float(spearmanr(fa, f1a).statistic)
+    rl = float(spearmanr(la, f1a).statistic)
+    d = fa - la
+    return {
+        "rho_full_sj": round(rf, 4), "rho_loo_sj": round(rl, 4),
+        "rho_delta": round(rf - rl, 4),
+        "max_abs_delta_sj": round(float(np.max(np.abs(d))), 6),
+        "mean_delta_sj": round(float(np.mean(d)), 6),
+        "std_delta_sj": round(float(np.std(d)), 6),
+        "n_instances": len(instances),
+    }
+
+# =========================================================================
+# Main
+# =========================================================================
+
+def main():
+    datasets = [
+        {"name": "Qwen_CoNLL",
+         "n8": f"{BASE}/output/exp002_conll2003/samples.jsonl",
+         "n16": f"{BASE}/output/exp_002_conll_n16/samples.jsonl"},
+        {"name": "Qwen_SciERC",
+         "n8": f"{BASE}/output/exp_012_logprob/samples_with_logprobs.jsonl",
+         "n16": f"{BASE}/output/exp_001_seed42_v2/samples.jsonl"},
+        {"name": "LLaMA_SciERC",
+         "n8": f"{BASE}/output/exp007_llama_inference/samples.jsonl",
+         "n16": f"{BASE}/output/exp_007_llama_n16/samples.jsonl"},
+    ]
+
+    # ---- Part 1: Bootstrap CI ----
+    print("=" * 60)
+    print("Part 1: Bootstrap CI for N-scaling")
+    print("=" * 60)
+    bootstrap_results = {}
+    for ds in datasets:
+        print(f"\n--- {ds['name']} ---")
+        t0 = time.time()
+        i8_raw = load_instances(ds["n8"])
+        i16_raw = load_instances(ds["n16"])
+        i8 = filter_gold_nonempty(i8_raw)
+        i16 = filter_gold_nonempty(i16_raw)
+        print(f"  N=8: {len(i8)} inst (filtered {len(i8_raw)-len(i8)} gold_empty, {len(i8[0]['samples'])} samp/inst)")
+        print(f"  N=16: {len(i16)} inst (filtered {len(i16_raw)-len(i16)} gold_empty, {len(i16[0]['samples'])} samp/inst)")
+
+        # Verify ID alignment
+        ids8 = [x["id"] for x in i8]
+        ids16 = [x["id"] for x in i16]
+        if ids8 != ids16:
+            print("  WARNING: IDs not aligned, matching by ID...")
+            id_map = {x["id"]: x for x in i8}
+            i8_aligned = [id_map[x["id"]] for x in i16 if x["id"] in id_map]
+            i16_aligned = [x for x in i16 if x["id"] in id_map]
+            i8, i16 = i8_aligned, i16_aligned
+            print(f"  After alignment: {len(i8)} instances")
+
+        print("  Computing signals for N=8...")
+        sig8, f1_8 = compute_all_signals(i8)
+        print("  Computing signals for N=16...")
+        sig16, f1_16 = compute_all_signals(i16)
+        print("  Computing signals for N=16-first8 (paired)...")
+        sig16f8, _ = compute_all_signals(i16, n_samples=8)
+
+        f1 = f1_16  # ground truth from N=16 greedy
+
+        print("  Bootstrap: actual N=8 vs N=16 (B=10000)...")
+        res_actual = bootstrap_delta_rho(sig16, sig8, f1, B=10000)
+        print("  Bootstrap: paired first-8 vs full-16 (B=10000)...")
+        res_paired = bootstrap_delta_rho(sig16, sig16f8, f1, B=10000)
+
+        bootstrap_results[ds["name"]] = {
+            "n_instances": len(i16),
+            "n8_samples_per_inst": len(i8[0]["samples"]),
+            "n16_samples_per_inst": len(i16[0]["samples"]),
+            "actual_n8_vs_n16": res_actual,
+            "paired_first8_vs_full16": res_paired,
+        }
+        elapsed = time.time() - t0
+        print(f"  Completed in {elapsed:.1f}s")
+        print(f"\n  {'Signal':12s} {'rho_8':>7s} {'rho_16':>7s} {'Dmean':>7s} {'CI_lo':>7s} {'CI_hi':>7s} {'p>0':>6s}")
+        for sig in ["SJ","FK","EM","voting_conf","logprob"]:
+            r = res_actual[sig]
+            print(f"  {sig:12s} {r['rho_n8']:7.4f} {r['rho_n16']:7.4f} {r['delta_rho_mean']:7.4f} "
+                  f"{r['ci_95_lo']:7.4f} {r['ci_95_hi']:7.4f} {r['p_positive']:6.4f}")
+
+    out1 = f"{BASE}/output/bootstrap_ci_nscaling"
+    os.makedirs(out1, exist_ok=True)
+    with open(f"{out1}/results.json", "w") as f:
+        json.dump(bootstrap_results, f, indent=2)
+    print(f"\nPart 1 saved: {out1}/results.json")
+
+    # ---- Part 2: LOO-SJ ----
+    print("\n" + "=" * 60)
+    print("Part 2: LOO-SJ Circularity Check (cross-dataset)")
+    print("=" * 60)
+    loo_results = {}
+    for ds in datasets:
+        for label, path in [("N8", ds["n8"]), ("N16", ds["n16"])]:
+            key = f"{ds['name']}_{label}"
+            print(f"\n--- {key} ---")
+            t0 = time.time()
+            insts_raw = load_instances(path)
+            insts = filter_gold_nonempty(insts_raw)
+            print(f"  Loaded {len(insts)} inst (filtered {len(insts_raw)-len(insts)} gold_empty)")
+            res = compute_loo_sj_analysis(insts)
+            loo_results[key] = res
+            elapsed = time.time() - t0
+            print(f"  rho_full={res['rho_full_sj']:.4f}  rho_loo={res['rho_loo_sj']:.4f}  "
+                  f"Drho={res['rho_delta']:.4f}  max|DSJ|={res['max_abs_delta_sj']:.6f}  ({elapsed:.1f}s)")
+
+    out2 = f"{BASE}/output/loo_sj_cross_dataset"
+    os.makedirs(out2, exist_ok=True)
+    with open(f"{out2}/results.json", "w") as f:
+        json.dump(loo_results, f, indent=2)
+    print(f"\nPart 2 saved: {out2}/results.json")
+
+    print("\n" + "=" * 60)
+    print("All done.")
+
+if __name__ == "__main__":
+    main()

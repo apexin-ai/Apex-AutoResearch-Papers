@@ -1,0 +1,98 @@
+{
+  "fold1_test_conll": {
+    "xgb_gain": {
+      "agreement_count": 0.430828720331192,
+      "vc": 0.43033933639526367,
+      "lp_token": 0.015569023787975311,
+      "lp_span": 0.029570596292614937,
+      "sample_mean_lp": 0.01785563863813877,
+      "sj": 0.01479666493833065,
+      "entity_type_enc": 0.01796158403158188,
+      "entity_length": 0.015186026692390442,
+      "entity_char_length": 0.014032675884664059,
+      "entity_position": 0.01385972648859024,
+      "model_size_log": 0.0,
+      "dataset_enc": 0.0,
+      "regime_enc": 0.0
+    },
+    "lgb_splits": {
+      "agreement_count": 298,
+      "vc": 192,
+      "lp_token": 615,
+      "lp_span": 803,
+      "sample_mean_lp": 797,
+      "sj": 705,
+      "entity_type_enc": 530,
+      "entity_length": 246,
+      "entity_char_length": 733,
+      "entity_position": 1036,
+      "model_size_log": 0,
+      "dataset_enc": 0,
+      "regime_enc": 0
+    }
+  },
+  "fold2_test_scierc": {
+    "xgb_gain": {
+      "agreement_count": 0.35301294922828674,
+      "vc": 0.4393840730190277,
+      "lp_token": 0.006995593663305044,
+      "lp_span": 0.010073778219521046,
+      "sample_mean_lp": 0.012594703584909439,
+      "sj": 0.009524607099592686,
+      "entity_type_enc": 0.022523514926433563,
+      "entity_length": 0.008751823566854,
+      "entity_char_length": 0.007697838358581066,
+      "entity_position": 0.00872276071459055,
+      "model_size_log": 0.0,
+      "dataset_enc": 0.12071837484836578,
+      "regime_enc": 0.0
+    },
+    "lgb_splits": {
+      "agreement_count": 364,
+      "vc": 207,
+      "lp_token": 647,
+      "lp_span": 806,
+      "sample_mean_lp": 852,
+      "sj": 654,
+      "entity_type_enc": 628,
+      "entity_length": 185,
+      "entity_char_length": 671,
+      "entity_position": 922,
+      "model_size_log": 0,
+      "dataset_enc": 10,
+      "regime_enc": 0
+    }
+  },
+  "fold3_test_fewnerd": {
+    "xgb_gain": {
+      "agreement_count": 0.3671882152557373,
+      "vc": 0.43178653717041016,
+      "lp_token": 0.010653525590896606,
+      "lp_span": 0.011390674859285355,
+      "sample_mean_lp": 0.012310359627008438,
+      "sj": 0.013371209613978863,
+      "entity_type_enc": 0.018609225749969482,
+      "entity_length": 0.013688393868505955,
+      "entity_char_length": 0.013420326635241508,
+      "entity_position": 0.013116471469402313,
+      "model_size_log": 0.0,
+      "dataset_enc": 0.09446496516466141,
+      "regime_enc": 0.0
+    },
+    "lgb_splits": {
+      "agreement_count": 417,
+      "vc": 228,
+      "lp_token": 467,
+      "lp_span": 522,
+      "sample_mean_lp": 823,
+      "sj": 685,
+      "entity_type_enc": 611,
+      "entity_length": 226,
+      "entity_char_length": 833,
+      "entity_position": 909,
+      "model_size_log": 0,
+      "dataset_enc": 110,
+      "regime_enc": 0
+    }
+  }
+}

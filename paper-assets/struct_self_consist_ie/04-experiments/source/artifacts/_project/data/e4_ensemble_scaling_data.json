@@ -1,0 +1,47 @@
+{
+  "analysis": "E4 Ensemble Scaling - Frontier SC",
+  "dataset": "FewNERD (first 200 test instances, seed=42)",
+  "n_instances": 200,
+  "n_samples_per_model": 8,
+  "temperature": 1.0,
+  "matching": "text (case-insensitive)",
+  "metric_type": "instance-average F1 (NOT micro-F1)",
+  "models": ["GPT-5.5", "Gemini-2.5Pro", "Claude-Sonnet4", "DeepSeek"],
+  "single_model": {
+    "GPT-5.5": {"greedy": 0.6382, "mv": 0.6521, "oracle": 0.7203, "mv_gain_pp": 1.39, "selection_gap_pp": 6.82, "degen": 0.500},
+    "Gemini-2.5Pro": {"greedy": 0.6301, "mv": 0.6446, "oracle": 0.7575, "mv_gain_pp": 1.45, "selection_gap_pp": 11.29, "degen": 0.285},
+    "Claude-Sonnet4": {"greedy": 0.6068, "mv": 0.6226, "oracle": 0.6544, "mv_gain_pp": 1.58, "selection_gap_pp": 3.18, "degen": 0.740},
+    "DeepSeek": {"greedy": 0.3992, "mv": 0.4243, "oracle": 0.7140, "mv_gain_pp": 2.51, "selection_gap_pp": 28.97, "degen": 0.055}
+  },
+  "error_correlation_pearson_r": {
+    "GPT-5.5 x Gemini-2.5Pro": 0.8155,
+    "GPT-5.5 x Claude-Sonnet4": 0.7121,
+    "GPT-5.5 x DeepSeek": 0.2830,
+    "Gemini-2.5Pro x Claude-Sonnet4": 0.6898,
+    "Gemini-2.5Pro x DeepSeek": 0.2521,
+    "Claude-Sonnet4 x DeepSeek": 0.2323,
+    "mean_r": 0.4975
+  },
+  "scaling_curve": {
+    "1": {"greedy_sel": 0.5558, "cross_oracle": 0.7306},
+    "2": {"greedy_sel": 0.6939, "cross_oracle": 0.7918},
+    "3": {"greedy_sel": 0.7337, "cross_oracle": 0.8200},
+    "4": {"greedy_sel": 0.7571, "cross_oracle": 0.8361}
+  },
+  "ensemble_summary": {
+    "best_single_greedy": 0.6382,
+    "best_single_mv": 0.6521,
+    "best_single_oracle": 0.7575,
+    "4model_greedy_selection": 0.7571,
+    "4model_cross_oracle": 0.8361,
+    "gain_greedy_sel_pp": 11.89,
+    "gain_cross_oracle_pp": 7.86
+  },
+  "complementarity_unique_best_pct": {
+    "Claude-Sonnet4": 9.5,
+    "Gemini-2.5Pro": 8.0,
+    "DeepSeek": 8.0,
+    "GPT-5.5": 6.0,
+    "tied": 68.5
+  }
+}

@@ -1,0 +1,147 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\bibstyle{plainnat}
+\citation{wang2023selfconsistency,snell2024scaling,brown2024large}
+\citation{wang2023selfconsistency}
+\citation{eikema2022sampling}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{wang2023selfconsistency}
+\citation{liang2025cisc}
+\citation{zhao2026selfcertainty}
+\citation{li2026reasc}
+\citation{snell2024scaling}
+\citation{brown2024large}
+\citation{eikema2022sampling,freitag2022high}
+\citation{eikema2022sampling}
+\citation{vashurin2025cocoa}
+\citation{kuhn2023semantic}
+\citation{kossen2024semantic}
+\citation{guo2017calibration,kadavath2022language,desai2020calibration}
+\citation{geifman2017selective,whitehead2025know}
+\citation{ye2025uq,huang2025uqcalibration,chen2024confidence}
+\citation{manakul2023selfcheckgpt}
+\citation{li2024atomic}
+\citation{chen2025latent}
+\citation{nedellec2026consistency}
+\citation{lakshminarayanan2017simple,gal2016dropout,xiao2019quantifying,shelmanov2021certain}
+\citation{culotta2004confidence}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Test-Time Scaling and Self-Consistency.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{MBR Decoding and Sample Selection.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Uncertainty Quantification for LLMs.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Consistency for Structured IE.}{2}{section*.5}\protected@file@percent }
+\citation{lightman2023lets}
+\citation{cobbe2021training}
+\citation{sang2003conll}
+\citation{luan2018scierc}
+\citation{ding2021fewnerd}
+\@writefile{toc}{\contentsline {paragraph}{Verifier and Reward Models.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Methodology}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Methodology}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Confidence Signals}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Set Jaccard (SJ).}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{F-K Overlap (FK).}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Exact Match (EM).}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Voting Confidence (VC).}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Generation Logprob (LP).}{3}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Evaluation Metrics}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\newlabel{sec:setup}{{4}{3}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Datasets}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{CoNLL-2003 \citep  {sang2003conll}.}{3}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{SciERC \citep  {luan2018scierc}.}{3}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Few-NERD \citep  {ding2021fewnerd}.}{3}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Models and Training}{3}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Primary model.}{3}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scale ablation.}{4}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-architecture.}{4}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LoRA rank ablation.}{4}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Inference}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{4}{Results}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Quality Estimation Across Datasets}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:qe}{{5.1}{4}{Quality Estimation Across Datasets}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Task-dependent signal ranking.}{4}{section*.20}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Quality estimation on NER (Qwen3-8B, $N{=}8$, $T{=}1.0$). SciERC values are 3-seed means. Best $\rho $ and AUROC in \textbf  {bold}.}}{4}{table.caption.19}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:qe_comparison}{{1}{4}{Quality estimation on NER (Qwen3-8B, $N{=}8$, $T{=}1.0$). SciERC values are 3-seed means. Best $\rho $ and AUROC in \textbf {bold}}{table.caption.19}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Best-of-$N$ selection F1 ($N{=}8$, Qwen3-8B). $\Delta $ is percentage points vs.\ greedy. No signal significantly outperforms greedy on any dataset.}}{4}{table.caption.21}\protected@file@percent }
+\newlabel{tab:selection}{{2}{4}{Best-of-$N$ selection F1 ($N{=}8$, Qwen3-8B). $\Delta $ is percentage points vs.\ greedy. No signal significantly outperforms greedy on any dataset}{table.caption.21}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Universal Selection Failure}{4}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:selection}{{5.2}{4}{Universal Selection Failure}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces The capability trap across three NER datasets (Qwen3-8B). Higher F1 $\rightarrow $ higher degeneracy $\rightarrow $ less selection headroom. $R^2{=}0.94$ for the F1--degeneracy relationship.}}{5}{table.caption.22}\protected@file@percent }
+\newlabel{tab:trap}{{3}{5}{The capability trap across three NER datasets (Qwen3-8B). Higher F1 $\rightarrow $ higher degeneracy $\rightarrow $ less selection headroom. $R^2{=}0.94$ for the F1--degeneracy relationship}{table.caption.22}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Failure Mechanism 1: Instance Degeneracy}{5}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:degeneracy}{{5.3}{5}{Failure Mechanism 1: Instance Degeneracy}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Failure Mechanism 2: Logprob Compression}{5}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:compression}{{5.4}{5}{Failure Mechanism 2: Logprob Compression}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Free-form decoding ablation.}{5}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Entity-token logprob.}{5}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}The Capability Trap}{5}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:trap}{{5.5}{5}{The Capability Trap}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-dataset evidence.}{5}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scale ablation.}{5}{section*.26}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces LoRA rank ablation on SciERC NER (Qwen3-8B). Halving adapter capacity has minimal effect ($\Delta {\leq }2$pp on degeneracy) while all metrics remain within 5pp equivalence.}}{6}{table.caption.28}\protected@file@percent }
+\newlabel{tab:lora}{{4}{6}{LoRA rank ablation on SciERC NER (Qwen3-8B). Halving adapter capacity has minimal effect ($\Delta {\leq }2$pp on degeneracy) while all metrics remain within 5pp equivalence}{table.caption.28}{}}
+\@writefile{toc}{\contentsline {paragraph}{LoRA rank ablation.}{6}{section*.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Cross-Model and Robustness Validation}{6}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:robustness}{{5.6}{6}{Cross-Model and Robustness Validation}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-architecture.}{6}{section*.29}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Three-seed consistency.}{6}{section*.30}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Few-NERD seed stability.}{6}{section*.33}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Three-seed QE consistency on SciERC NER (Qwen3-8B, $N{=}8$). All signals show SD $\leq $ 0.012.}}{6}{table.caption.31}\protected@file@percent }
+\newlabel{tab:3seed}{{5}{6}{Three-seed QE consistency on SciERC NER (Qwen3-8B, $N{=}8$). All signals show SD $\leq $ 0.012}{table.caption.31}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Confidence interval narrowing from 2 to 3 seeds on SciERC NER. All primary claims maintain significance.}}{6}{table.caption.32}\protected@file@percent }
+\newlabel{tab:ci}{{6}{6}{Confidence interval narrowing from 2 to 3 seeds on SciERC NER. All primary claims maintain significance}{table.caption.32}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{6}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{6}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{The correlation--selection gap is structural.}{6}{section*.34}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications for test-time scaling.}{6}{section*.35}\protected@file@percent }
+\citation{cobbe2021training,lightman2023lets}
+\citation{wang2023selfconsistency}
+\bibcite{brown2024large}{{1}{2024}{{Brown et~al.}}{{}}}
+\bibcite{chen2024confidence}{{2}{2024}{{Chen et~al.}}{{}}}
+\bibcite{chen2025latent}{{3}{2025}{{Chen et~al.}}{{}}}
+\bibcite{cobbe2021training}{{4}{2021}{{Cobbe et~al.}}{{}}}
+\bibcite{culotta2004confidence}{{5}{2004}{{Culotta \& McCallum}}{{}}}
+\bibcite{desai2020calibration}{{6}{2020}{{Desai \& Durrett}}{{}}}
+\bibcite{ding2021fewnerd}{{7}{2021}{{Ding et~al.}}{{}}}
+\bibcite{eikema2022sampling}{{8}{2022}{{Eikema \& Aziz}}{{}}}
+\bibcite{freitag2022high}{{9}{2022}{{Freitag et~al.}}{{}}}
+\@writefile{toc}{\contentsline {paragraph}{When would consistency help?}{7}{section*.36}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Path forward.}{7}{section*.37}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Non-obviousness.}{7}{section*.38}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Limitations}{7}{section.7}\protected@file@percent }
+\newlabel{sec:limitations}{{7}{7}{Limitations}{section.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{7}{section.8}\protected@file@percent }
+\newlabel{sec:conclusion}{{8}{7}{Conclusion}{section.8}{}}
+\bibcite{gal2016dropout}{{10}{2016}{{Gal \& Ghahramani}}{{}}}
+\bibcite{geifman2017selective}{{11}{2017}{{Geifman \& El-Yaniv}}{{}}}
+\bibcite{guo2017calibration}{{12}{2017}{{Guo et~al.}}{{}}}
+\bibcite{huang2025uqcalibration}{{13}{2025}{{Huang et~al.}}{{}}}
+\bibcite{kadavath2022language}{{14}{2022}{{Kadavath et~al.}}{{}}}
+\bibcite{kossen2024semantic}{{15}{2024}{{Kossen et~al.}}{{}}}
+\bibcite{kuhn2023semantic}{{16}{2023}{{Kuhn et~al.}}{{}}}
+\bibcite{lakshminarayanan2017simple}{{17}{2017}{{Lakshminarayanan et~al.}}{{}}}
+\bibcite{li2024atomic}{{18}{2024}{{Li et~al.}}{{}}}
+\bibcite{li2026reasc}{{19}{2026}{{Li et~al.}}{{}}}
+\bibcite{liang2025cisc}{{20}{2025}{{Liang et~al.}}{{}}}
+\bibcite{lightman2023lets}{{21}{2023}{{Lightman et~al.}}{{}}}
+\bibcite{luan2018scierc}{{22}{2018}{{Luan et~al.}}{{}}}
+\bibcite{manakul2023selfcheckgpt}{{23}{2023}{{Manakul et~al.}}{{}}}
+\bibcite{nedellec2026consistency}{{24}{2026}{{N\'{e}dellec \& Xia}}{{}}}
+\bibcite{sang2003conll}{{25}{2003}{{Sang \& De~Meulder}}{{}}}
+\bibcite{shelmanov2021certain}{{26}{2021}{{Shelmanov et~al.}}{{}}}
+\bibcite{snell2024scaling}{{27}{2024}{{Snell et~al.}}{{}}}
+\bibcite{vashurin2025cocoa}{{28}{2025}{{Vashurin et~al.}}{{}}}
+\bibcite{wang2023selfconsistency}{{29}{2023}{{Wang et~al.}}{{}}}
+\bibcite{whitehead2025know}{{30}{2025}{{Whitehead et~al.}}{{}}}
+\bibcite{xiao2019quantifying}{{31}{2019}{{Xiao \& Wang}}{{}}}
+\bibcite{ye2025uq}{{32}{2025}{{Ye et~al.}}{{}}}
+\bibcite{zhao2026selfcertainty}{{33}{2026}{{Zhao et~al.}}{{}}}
+\gdef \@abspage@last{8}

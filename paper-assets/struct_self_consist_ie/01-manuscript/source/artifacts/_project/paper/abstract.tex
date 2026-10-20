@@ -1,0 +1,8 @@
+\begin{abstract}
+Test-time scaling through multi-sample generation promises quality improvements for LLM-based information extraction, but which confidence signals best serve quality estimation versus sample selection remains unclear.
+We systematically compare five confidence signals from three families---structural (entity voting, Soft Jaccard), surface (exact match, Fleiss' $\kappa$), and model-internal (log-probability)---across NER and relation extraction on SciERC and CoNLL-2003, with WNUT-17 as a boundary probe, using two model families (Qwen3-8B, LLaMA-3.1-8B).
+We find that structural signals (entity voting $\rho{=}0.38$, Soft Jaccard $\rho{=}0.36$) lead rank correlation on complex schemas while surface signals dominate on simpler tasks; however, this correlation does not translate into selection gains---no signal surpasses greedy decoding on NER best-of-$N$, while only log-probability helps on relation extraction (+2.3~pp).
+We term this disconnect the \textit{correlation-selection gap}: instance-level consistency signals predict which inputs the model handles reliably, not which output is best among $N$ candidates.
+Signal rankings further depend on task difficulty---exact match dominates easy tasks, structural signals dominate hard tasks, and all signals converge when model capability is insufficient---establishing that signal choice should be guided by task difficulty and intended application.
+These results reframe consistency signals as quality estimators rather than output selectors for structured IE.
+\end{abstract}

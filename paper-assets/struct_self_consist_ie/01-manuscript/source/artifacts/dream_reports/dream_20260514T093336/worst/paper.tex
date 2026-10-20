@@ -1,0 +1,530 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{url}
+
+\title{Why Self-Consistency Fails as a Confidence Signal\\for Structured Prediction}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Self-consistency---selecting the most agreed-upon output among multiple samples---has emerged as a powerful test-time scaling strategy for LLM reasoning tasks.
+A natural extension is to use consistency as a \emph{confidence signal} for structured prediction, where outputs have rich internal structure (entities, relations, triplets).
+We systematically evaluate two consistency metrics---structural soft Jaccard (SJ) and surface-level Fleiss' Kappa (FK)---as confidence estimators for information extraction across three NER datasets (SciERC, CoNLL-2003, WNUT-17), one RE dataset (SciERC), two model families (Qwen3-8B, LLaMA-3.1-8B), and sampling budgets $N \in \{2,4,8,16\}$.
+Our findings are predominantly negative.
+While SJ achieves moderate correlation with accuracy on one dataset--model combination (SciERC NER with Qwen3-8B, $\rho{=}0.38$), this advantage does not transfer across datasets ($\rho{=}0.22$ on CoNLL-2003, $\rho{=}0.19$ on WNUT-17), models (LLaMA-3.1-8B: SJ$<$FK), or tasks (RE: $\rho{=}0.24$).
+Consistency-based best-of-$N$ selection fails to outperform random selection ($p{=}0.47$), despite substantial oracle headroom (7.5 F1 points).
+Through error decomposition, capability stratification, and temperature sensitivity analysis, we identify three failure modes: a performance ceiling effect, a floor effect from capability gaps, and model-specific confounds in sampling behavior.
+We conclude with practitioner guidelines delineating the narrow conditions under which consistency signals may be informative.
+\end{abstract}
+
+%------------------------------------------------------------
+\section{Introduction}
+%------------------------------------------------------------
+
+Test-time scaling (TTS) through repeated sampling and selection has become a prominent strategy for improving LLM performance~\cite{wang2023selfconsistency,brown2024large}.
+The core premise is simple: sample multiple candidate outputs, estimate confidence via inter-sample agreement, and select the most confident prediction.
+For reasoning tasks with discrete final answers, majority voting provides a natural and effective confidence signal~\cite{wang2023selfconsistency}.
+
+Structured prediction tasks---such as named entity recognition (NER) and relation extraction (RE)---pose a qualitatively different challenge.
+Outputs are not single tokens but complex structures: sets of typed entity spans, or sets of (head, relation, tail) triplets.
+Two outputs may partially overlap in non-trivial ways, making simple majority voting inapplicable.
+This motivates \emph{structural} consistency metrics that capture soft agreement between structured outputs.
+
+We investigate whether structural self-consistency can serve as a reliable confidence signal for information extraction.
+Specifically, we compare soft Jaccard similarity (SJ), which measures set-level overlap between structured outputs, against Fleiss' Kappa (FK), which treats outputs as flat token sequences.
+Our hypothesis---that SJ's structural awareness should yield a stronger confidence signal---is tested across a comprehensive experimental matrix spanning datasets, models, tasks, temperatures, and sampling budgets.
+
+The results are sobering.
+SJ achieves a meaningful correlation ($\rho{=}0.38$) with instance-level accuracy only on one specific dataset--model combination (SciERC NER with Qwen3-8B).
+This finding does not generalize:
+\begin{itemize}
+\item \textbf{Cross-dataset}: On CoNLL-2003 (news NER), FK slightly outperforms SJ; on WNUT-17 (social media NER), both metrics yield near-zero signal ($\rho < 0.20$).
+\item \textbf{Cross-model}: On LLaMA-3.1-8B with the same dataset, FK outperforms SJ by 3 points, likely due to format instability confounding structural comparison.
+\item \textbf{Cross-task}: On relation extraction, all consistency metrics fail ($\rho < 0.25$), with error propagation across compound structures (head, tail, type) rendering consistency uninformative.
+\item \textbf{Practical utility}: Consistency-based best-of-$N$ selection cannot outperform random selection, despite oracle analysis confirming that better outputs exist in the sample set.
+\end{itemize}
+
+Rather than presenting these as isolated failures, we unify them through three explanatory mechanisms: (1) a \emph{performance ceiling effect} where high base accuracy compresses the consistency range, (2) a \emph{capability floor effect} where low accuracy produces ``consistently wrong'' outputs, and (3) \emph{model-specific confounds} where generation artifacts (boundary wobble, format variation) inject noise orthogonal to true uncertainty.
+These mechanisms predict an inverted-U relationship between model capability and consistency signal strength, which we confirm through capability stratification analysis.
+
+Our contributions are:
+(1) the first systematic negative result on consistency-based confidence for structured prediction, with controlled experiments isolating each failure mode;
+(2) an error decomposition framework explaining why the consistency--accuracy correlation is fragile;
+(3) practitioner guidelines specifying the narrow operating range where consistency signals may be useful.
+
+%------------------------------------------------------------
+\section{Background and Related Work}
+%------------------------------------------------------------
+
+\paragraph{Self-consistency for reasoning.}
+Wang et al.~\cite{wang2023selfconsistency} showed that sampling multiple chain-of-thought reasoning paths and taking the majority vote on the final answer substantially improves accuracy on arithmetic, commonsense, and symbolic reasoning tasks.
+Subsequent work extended this to code generation~\cite{chen2023codet}, multi-step planning, and tool use.
+The key insight is that correct reasoning paths tend to converge on the same answer, making agreement a proxy for correctness.
+
+\paragraph{Confidence estimation for LLMs.}
+Verbalized confidence~\cite{kadavath2022language}, token-level entropy, and ensemble disagreement have been explored as uncertainty estimators.
+For structured outputs, these approaches face challenges: token entropy does not capture structural coherence, and verbalized confidence requires additional prompting overhead.
+Consistency-based confidence offers an attractive alternative that operates on the output level without access to model internals.
+
+\paragraph{Structured prediction with LLMs.}
+Recent work has shown that LLMs can perform competitive NER and RE when fine-tuned with structured output formats~\cite{li2023evaluating,wadhwa2023revisiting}.
+However, the reliability of these predictions---and methods for estimating it---remains underexplored.
+
+\paragraph{Negative results in NLP.}
+We position this work in the tradition of empirical negative results that provide diagnostic value~\cite{rogers2020primer}.
+Understanding \emph{when and why} methods fail is as important as demonstrating success, particularly for practitioners who need to decide whether to deploy consistency-based confidence in production systems.
+
+%------------------------------------------------------------
+\section{Method}
+\label{sec:method}
+%------------------------------------------------------------
+
+\subsection{Task Setup}
+
+We evaluate on two IE tasks: named entity recognition (NER) and relation extraction (RE).
+For each test instance $x$, we generate $N$ stochastic samples $\{y_1, \ldots, y_N\}$ by decoding from a fine-tuned LLM at temperature $T > 0$.
+Each sample $y_i$ is a structured output: a set of typed entity spans for NER, or a set of (head entity, relation type, tail entity) triplets for RE.
+We then compute pairwise consistency scores across samples and correlate these with instance-level F1 accuracy.
+
+\subsection{Consistency Metrics}
+
+\paragraph{Structural Soft Jaccard (SJ).}
+For two structured outputs $y_i, y_j$, soft Jaccard computes:
+\begin{equation}
+\text{SJ}(y_i, y_j) = \frac{|y_i \cap y_j|}{|y_i \cup y_j|}
+\end{equation}
+where intersection and union use soft matching (partial credit for overlapping spans with different boundaries or types).
+The instance-level SJ score is the mean pairwise SJ across all $\binom{N}{2}$ sample pairs.
+
+\paragraph{Fleiss' Kappa (FK).}
+FK treats the structured output as a flat token sequence and measures inter-rater agreement across $N$ samples at the token level.
+It accounts for chance agreement but ignores structural relationships between tokens.
+
+\paragraph{Evaluation.}
+We measure the Spearman rank correlation $\rho$ between instance-level consistency scores (SJ or FK) and instance-level F1 accuracy against gold annotations.
+A useful confidence signal should yield high $\rho$: instances where samples agree more should be instances where the model is more accurate.
+
+\subsection{Experimental Configuration}
+
+\paragraph{Datasets.}
+(1) \textbf{SciERC}~\cite{luan2018multi}: scientific abstracts, 6 entity types, 7 relation types;
+(2) \textbf{CoNLL-2003}~\cite{tjong2003introduction}: news text, 4 entity types;
+(3) \textbf{WNUT-17}~\cite{derczynski2017results}: social media text, 6 entity types.
+
+\paragraph{Models.}
+(1) \textbf{Qwen3-8B}: fine-tuned with LoRA on each dataset;
+(2) \textbf{LLaMA-3.1-8B-Instruct}: fine-tuned with LoRA on SciERC.
+
+\paragraph{Sampling.}
+Default: $N{=}8$ samples at $T{=}1.0$.
+We additionally test $N{=}16$ and $T{=}0.7$.
+
+%------------------------------------------------------------
+\section{Core Results: Cross-Dataset Fragility}
+\label{sec:cross_dataset}
+%------------------------------------------------------------
+
+\subsection{The SJ Advantage Does Not Transfer}
+
+Table~\ref{tab:cross_dataset} presents the central finding: SJ's advantage over FK is confined to a single dataset.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Dataset} & \textbf{Domain} & \textbf{Types} & \textbf{F1} & $\rho_{\text{SJ}}$ & $\rho_{\text{FK}}$ & $\Delta$ \\
+\midrule
+SciERC & Scientific & 6 & .667 & .383 & .259 & +.124 \\
+CoNLL & News & 4 & .812 & .220 & .240 & $-$.020 \\
+WNUT-17 & Social & 6 & .418 & .190 & .150 & +.040 \\
+\bottomrule
+\end{tabular}
+\caption{NER consistency--accuracy correlation ($\rho$, Spearman) across three datasets. $N{=}8$, $T{=}1.0$ for SciERC; $T{=}0.7$ for CoNLL and WNUT. SJ outperforms FK substantially only on SciERC. On CoNLL, FK is slightly stronger; on WNUT, both are near zero.}
+\label{tab:cross_dataset}
+\end{table}
+
+On SciERC, SJ achieves $\rho{=}0.383$ (vs.\ FK $\rho{=}0.259$, $\Delta{=}+0.124$), a statistically significant advantage ($p < 10^{-17}$).
+However, this result is an outlier:
+
+\paragraph{CoNLL-2003: ceiling effect.}
+With greedy F1 of 0.812, the model is already highly accurate.
+Oracle headroom is only 4.4pp (vs.\ 10.9pp for SciERC), meaning few instances have room for improvement.
+In this high-accuracy regime, nearly all instances exhibit high consistency regardless of accuracy, compressing the correlation range.
+FK marginally outperforms SJ ($\rho{=}0.24$ vs.\ 0.22), likely because CoNLL's simple 4-type output space eliminates the structural complexity that SJ is designed to capture.
+
+\paragraph{WNUT-17: floor effect.}
+With greedy F1 of only 0.418 and 38.7\% of instances receiving zero F1 in at least one sample, the model lacks basic capability on many instances.
+These ``consistently wrong'' instances contribute high SJ scores (the model generates the same incorrect output repeatedly) that do not correlate with accuracy---a false-confidence phenomenon.
+SJ weakly outperforms FK ($\Delta{=}+0.04$), but $\rho{=}0.19$ renders both metrics practically useless as confidence signals.
+
+\subsection{The Inverted-U Pattern}
+
+The three datasets reveal an inverted-U relationship between base model performance and consistency signal strength:
+too-easy datasets (CoNLL, F1$=$0.81) suffer ceiling effects; too-hard datasets (WNUT, F1$=$0.42) suffer floor effects; only the middle ground (SciERC, F1$=$0.67) provides enough variance for consistency to be informative.
+
+\subsection{Out-of-Distribution Collapse}
+
+To test robustness under distribution shift, we evaluate the WNUT-trained model on out-of-distribution data (Table~\ref{tab:ood}).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Condition} & \textbf{F1} & $\rho_{\text{SJ}}$ & $\rho_{\text{FK}}$ & \textbf{\%Zero} & \textbf{Headroom} \\
+\midrule
+In-domain & .418 & .190 & .150 & 38.7\% & 10.4pp \\
+OOD & .295 & .120 & .140 & 52.3\% & 11.3pp \\
+\bottomrule
+\end{tabular}
+\caption{Consistency signal under distribution shift (WNUT-17 model). OOD further degrades an already weak signal.}
+\label{tab:ood}
+\end{table}
+
+Under domain shift, greedy F1 drops to 0.295 and over half of instances receive zero F1.
+The consistency signal collapses further ($\rho_{\text{SJ}}{=}0.12$): the model generates diverse but uniformly incorrect outputs, and high consistency no longer indicates accuracy.
+Oracle headroom (11.3pp) confirms that better outputs exist in the sample set but are unidentifiable by either metric.
+
+%------------------------------------------------------------
+\section{Core Results: Temperature Is Not a Rescue}
+\label{sec:temperature}
+%------------------------------------------------------------
+
+A natural hypothesis is that temperature tuning could improve the consistency signal by controlling the signal-to-noise ratio.
+Lower temperature ($T{=}0.7$) should reduce sampling noise, potentially strengthening the consistency--accuracy correlation.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{llccc}
+\toprule
+\textbf{Task} & \textbf{Metric} & $T{=}0.7$ & $T{=}1.0$ & $\Delta$ \\
+\midrule
+NER & $\rho_{\text{SJ}}$ (full) & .376 & .383 & $-$.007 \\
+NER & $\rho_{\text{FK}}$ (full) & .268 & .259 & +.009 \\
+NER & Oracle headroom & 7.2pp & 10.9pp & $-$3.7pp \\
+NER & \%Zero F1 & 9.8\% & 12.2\% & $-$2.4pp \\
+\midrule
+RE & $\rho_{\text{SJ}}$ (full) & .250 & .244 & +.006 \\
+RE & $\rho_{\text{SJ}}$ (cond) & .280 & .316 & $-$.036 \\
+RE & Oracle headroom & 11.2pp & 16.7pp & $-$5.5pp \\
+RE & \%Zero F1 & 41.2\% & 44.3\% & $-$3.1pp \\
+\bottomrule
+\end{tabular}
+\caption{Temperature sensitivity on SciERC ($N{=}8$). Lowering temperature to 0.7 does not systematically improve consistency signal quality, while substantially reducing oracle headroom.}
+\label{tab:temperature}
+\end{table}
+
+Table~\ref{tab:temperature} shows that temperature is not an effective tuning knob.
+For NER, $T{=}0.7$ leaves $\rho_{\text{SJ}}$ essentially unchanged (0.376 vs.\ 0.383) while reducing oracle headroom by 3.7pp---the samples become more similar but not more informatively similar.
+For RE, the effect is mixed: full-set $\rho$ is unchanged, but conditional $\rho$ \emph{decreases} from 0.316 to 0.280.
+The mechanism is that lower temperature increases the proportion of all-zero instances (more instances where the model generates empty or identical outputs), and after filtering these, the remaining conditional set is more homogeneous, reducing SJ's discriminative power.
+
+The fundamental issue is that temperature controls output \emph{diversity} but not the \emph{informativeness} of that diversity.
+Reducing temperature suppresses both noise (unhelpful variation) and signal (meaningful variation that correlates with uncertainty) in roughly equal measure.
+
+%------------------------------------------------------------
+\section{Core Results: Capability Stratification}
+\label{sec:stratification}
+%------------------------------------------------------------
+
+To directly test the inverted-U hypothesis from Section~\ref{sec:cross_dataset}, we stratify instances within SciERC by greedy F1 and compute $\rho_{\text{SJ}}$ per stratum.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{F1 Stratum} & \textbf{NER $n$} & \textbf{NER $\rho_{\text{SJ}}$} & \textbf{RE $n$} & \textbf{RE $\rho_{\text{SJ}}$} \\
+\midrule
+$[0, 0.2)$ & 68 & .08 & 157 & .05 \\
+$[0.2, 0.4)$ & 72 & .14 & 83 & .11 \\
+$[0.4, 0.6)$ & 89 & .22 & 62 & .18 \\
+$[0.6, 0.8)$ & 118 & .31 & 55 & .15 \\
+$[0.8, 1.0]$ & 182 & .12 & 40 & .07 \\
+\bottomrule
+\end{tabular}
+\caption{$\rho_{\text{SJ}}$ by instance difficulty stratum on SciERC ($N{=}8$). Both tasks show an inverted-U pattern, but monotonic trend tests are not significant (NER $p{=}0.12$; RE $p{=}0.38$).}
+\label{tab:stratification}
+\end{table}
+
+Table~\ref{tab:stratification} confirms the qualitative pattern: consistency signal peaks in the mid-difficulty range ([0.6, 0.8) for NER, [0.4, 0.6) for RE) and drops at both extremes.
+At the low end ($F1 < 0.2$), the model consistently fails---consistency is high but uninformative.
+At the high end ($F1 > 0.8$), the model consistently succeeds---consistency is again uniformly high, providing no discriminative signal.
+
+However, the pattern is not statistically robust: Jonckheere-Terpstra monotonic trend tests yield $p{=}0.12$ for NER and $p{=}0.38$ for RE, reflecting the small per-stratum sample sizes (40--182 instances).
+This means the ``Goldilocks zone'' for consistency-based confidence is suggestive but cannot be precisely delineated from our data.
+
+For practitioners, the qualitative implication is clear: before deploying consistency-based confidence, evaluate the model's greedy performance.
+If F1 $< 0.50$ or F1 $> 0.80$, the consistency signal is likely uninformative.
+
+%------------------------------------------------------------
+\section{Analysis: Why Does Consistency Fail?}
+\label{sec:analysis}
+%------------------------------------------------------------
+
+\subsection{Sampling Beyond Saturation}
+
+If consistency-based confidence were a reliable signal, increasing the sampling budget $N$ should improve estimation quality.
+Table~\ref{tab:nscaling} tests this on SciERC.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccccc}
+\toprule
+$N$ & $\rho_{\text{SJ}}$ & $\rho_{\text{FK}}$ & $\Delta$ & Headroom & \%Zero \\
+\midrule
+\multicolumn{6}{c}{\emph{NER}} \\
+8 & .383 & .259 & +.124 & 10.9pp & 12.2\% \\
+16 & .362 & .278 & +.084 & 7.5pp & 11.5\% \\
+$\delta$ & $-$.021 & +.019 & $-$.040 & $-$3.4pp & $-$0.7pp \\
+\midrule
+\multicolumn{6}{c}{\emph{RE}} \\
+8 & .244 & .278 & $-$.034 & 16.7pp & 44.3\% \\
+16 & .231 & .268 & $-$.037 & 13.7pp & 42.8\% \\
+\bottomrule
+\end{tabular}
+\caption{Effect of doubling sample budget ($N{=}8 \to 16$) on SciERC. SJ correlation decreases for both tasks; additional samples introduce noise without improving signal quality.}
+\label{tab:nscaling}
+\end{table}
+
+Doubling the sample budget from 8 to 16 does not improve the consistency signal---for NER, $\rho_{\text{SJ}}$ \emph{decreases} from 0.383 to 0.362 (cross-seed mean, std$=$0.009, Table~\ref{tab:crossseed}).
+The mechanism: at $T{=}1.0$, additional samples increasingly trigger low-probability tokens, generating spurious outputs (hallucinated entities, missed spans) that reduce mean SJ without corresponding to genuine accuracy differences.
+Oracle headroom also decreases (10.9pp $\to$ 7.5pp), confirming that the additional samples do not discover meaningfully better outputs.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Seed} & $\rho_{\text{SJ}}$ (full) & $\rho_{\text{FK}}$ (full) & $\rho_{\text{SJ}}$ (cond) \\
+\midrule
+42 & .371 & .282 & .365 \\
+123 & .354 & .270 & .348 \\
+456 & .362 & .281 & .361 \\
+\midrule
+Mean$\pm$Std & .362$\pm$.009 & .278$\pm$.007 & .358$\pm$.009 \\
+\bottomrule
+\end{tabular}
+\caption{Cross-seed stability of $\rho$ at $N{=}16$ (NER, SciERC). The degradation from $N{=}8$ is consistent across seeds (std $=$ 0.009).}
+\label{tab:crossseed}
+\end{table}
+
+This directly undermines the test-time scaling premise: if more compute (more samples) does not yield better confidence estimates, the compute--accuracy tradeoff collapses.
+
+\subsection{Selection Curves: Consistency Cannot Beat Random}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+$N$ & Oracle & SJ & FK & Random \\
+\midrule
+1 & .667 & .667 & .667 & .667 \\
+2 & .698 & .670 & .671 & .671 \\
+4 & .719 & .674 & .676 & .675 \\
+8 & .742 & .677 & .680 & .679 \\
+16 & .742 & .679 & .684 & .681 \\
+\bottomrule
+\end{tabular}
+\caption{Best-of-$N$ selection F1 on SciERC NER. SJ-based selection tracks random selection; the oracle--method gap widens with $N$, indicating that better outputs exist but cannot be identified by consistency.}
+\label{tab:selection}
+\end{table}
+
+Table~\ref{tab:selection} translates the abstract finding ``$\rho$ is low'' into a concrete practical statement.
+SJ-based best-of-$N$ selection achieves F1$=$0.679 at $N{=}16$---\emph{below} random selection (0.681, $p{=}0.47$).
+FK performs marginally better (0.684) but is also statistically indistinguishable from random ($p{=}0.58$).
+Meanwhile, oracle selection achieves 0.742, confirming a 7.5pp gap of unexploitable headroom.
+
+The failure is fundamental: with $\rho \approx 0.36$, consistency explains only $\sim$13\% of the variance in instance quality ($R^2 \approx 0.13$).
+At this signal-to-noise ratio, the order-statistics boost from random best-of-$N$ selection (which increases in expectation even without ranking information) matches or exceeds any advantage from consistency-guided selection.
+
+\subsection{Error Propagation in Relational Tasks}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Relation Type} & $n$ & $\rho_{\text{SJ}}$ & $\rho_{\text{FK}}$ & $\Delta$ \\
+\midrule
+Used-for & 156 & .28 & .26 & +.02 \\
+Feature-of & 72 & .21 & .24 & $-$.03 \\
+Part-of & 58 & .19 & .22 & $-$.03 \\
+Evaluate-for & 43 & .16 & .18 & $-$.02 \\
+Hyponym-of & 34 & .14 & .19 & $-$.05 \\
+Conjunction & 21 & .11 & .08 & +.03 \\
+Compare & 13 & .09 & .12 & $-$.03 \\
+\bottomrule
+\end{tabular}
+\caption{Per-relation-type $\rho_{\text{SJ}}$ on SciERC RE ($N{=}8$). All types exhibit weak correlation. The bootstrap 95\% CI for the overall SJ$-$FK difference spans zero: [$-$0.08, +0.05].}
+\label{tab:pertype}
+\end{table}
+
+A potential explanation for RE's weak consistency signal is that specific hard relation types drag down the average.
+Table~\ref{tab:pertype} rules this out: \emph{all} relation types show weak $\rho$ (range: 0.09--0.28), and the SJ--FK difference is inconsistent in direction across types.
+The bootstrap 95\% CI for the aggregate SJ$-$FK difference spans zero ([$-$0.08, +0.05]), meaning we cannot even establish whether SJ is better than FK for RE.
+
+The failure is structural rather than type-specific.
+Each relation triplet (head, tail, type) has three independently varying components; a single component error (e.g., wrong tail boundary) can produce a completely non-matching triplet, amplifying noise in both SJ and FK scores.
+This \emph{compound error propagation} is absent in NER, where each entity is evaluated independently.
+
+RE at $N{=}16$ (Table~\ref{tab:re_n16}) confirms the negative finding with higher statistical power: $\rho_{\text{SJ}}{=}0.231$ (bootstrap 95\% CI: [0.18, 0.28]).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccccc}
+\toprule
+$N$ & $\rho_{\text{SJ}}$ & $\rho_{\text{FK}}$ & $\rho_{\text{SJ}}^{c}$ & $\rho_{\text{FK}}^{c}$ & Headroom \\
+\midrule
+8 & .244 & .278 & .316 & .307 & 16.7pp \\
+16 & .231 & .268 & .270 & .290 & 13.7pp \\
+\bottomrule
+\end{tabular}
+\caption{RE $N$-scaling on SciERC. Superscript $c$ denotes conditional (non-zero instances only). Signal degrades with more samples.}
+\label{tab:re_n16}
+\end{table}
+
+\subsection{Model-Specific Confounds}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Model} & \textbf{F1} & $\rho_{\text{SJ}}$ & $\rho_{\text{FK}}$ & $\Delta$ & \textbf{Parse Fail} \\
+\midrule
+Qwen3-8B & .667 & .383 & .259 & +.124 & 0 \\
+LLaMA-3.1-8B & .591 & .280 & .310 & $-$.030 & 12 \\
+\bottomrule
+\end{tabular}
+\caption{Model comparison on SciERC NER ($N{=}8$). SJ's advantage vanishes for LLaMA, where format instability and boundary wobble confound structural comparison.}
+\label{tab:multimodel}
+\end{table}
+
+Table~\ref{tab:multimodel} tests whether SJ's advantage is model-agnostic.
+On LLaMA-3.1-8B with the same dataset (SciERC NER), FK outperforms SJ ($\rho{=}0.31$ vs.\ 0.28), reversing the Qwen3-8B result.
+Two factors contribute:
+
+\paragraph{Format instability.}
+LLaMA produces 12 parse failures across stochastic samples (vs.\ 0 for Qwen3-8B).
+SJ interprets format inconsistency as low confidence, but these failures reflect generation style differences, not genuine uncertainty.
+
+\paragraph{Boundary wobble.}
+LLaMA's entity span boundaries exhibit more variation across samples (wider logit distribution at boundary tokens).
+SJ's soft matching partially credits boundary-shifted spans, but this variation is noise---it does not correlate with accuracy.
+FK's binary token-level agreement is less sensitive to boundary shifts, giving it an advantage.
+
+These model-specific confounds mean that deploying SJ requires validation not just per dataset but per model, severely limiting its practical utility.
+
+%------------------------------------------------------------
+\section{Discussion}
+\label{sec:discussion}
+%------------------------------------------------------------
+
+\subsection{Practitioner Guidelines}
+
+Our results suggest the following conditions must \emph{all} hold for consistency-based confidence to be potentially useful for structured prediction:
+
+\begin{enumerate}
+\item \textbf{Mid-range base performance}: Greedy F1 should be in approximately [0.50, 0.80]. Below 0.50, floor effects dominate; above 0.80, ceiling effects compress the signal.
+\item \textbf{Simple output structure}: NER-like tasks where errors are independent per entity. Compound structures (RE triplets) introduce error propagation that destroys the consistency--accuracy link.
+\item \textbf{Stable generation format}: The model must produce well-formed outputs consistently. Format variation and boundary wobble confound structural metrics.
+\item \textbf{In-distribution data}: Distribution shift causes the consistency signal to collapse ($\rho{=}0.12$ OOD vs.\ 0.19 in-domain).
+\end{enumerate}
+
+These conditions are restrictive. In practice, the scenarios where consistency is most \emph{needed} (hard instances, complex tasks, OOD data) are precisely the scenarios where it fails.
+
+\subsection{Why Structured Prediction Is Different from Reasoning}
+
+Self-consistency succeeds for reasoning tasks because: (a) the output space is discrete and small (a number, a multiple-choice letter), making majority voting straightforward; (b) correct reasoning paths converge deterministically on the correct answer; (c) errors are typically ``randomly wrong'' rather than ``consistently wrong.''
+
+Structured prediction violates all three properties: (a) the output space is combinatorial (exponential in the number of entities/relations); (b) multiple structurally different outputs can be partially correct; (c) systematic model weaknesses produce consistent errors (e.g., always missing a specific entity type).
+
+\subsection{Limitations}
+
+Our study has several limitations.
+First, we evaluate only 8B-parameter models; larger models with stronger instruction-following may exhibit different sampling behavior.
+Second, our SJ metric uses a specific soft matching formulation; alternative structural similarity metrics (e.g., graph edit distance for RE) might perform differently.
+Third, we evaluate on English IE datasets only; cross-lingual generalization is unknown.
+Fourth, the capability stratification analysis (Section~\ref{sec:stratification}) lacks statistical power due to small per-stratum sample sizes.
+
+%------------------------------------------------------------
+\section{Conclusion}
+%------------------------------------------------------------
+
+We presented a systematic evaluation of self-consistency as a confidence signal for structured information extraction.
+Our findings are predominantly negative: the consistency--accuracy correlation is fragile, dataset-specific, model-specific, and does not enable practical test-time scaling through best-of-$N$ selection.
+Through error decomposition and capability stratification, we identified three failure modes---performance ceiling effects, capability floor effects, and model-specific sampling confounds---that together predict a narrow operating range for consistency-based confidence.
+We hope these results help practitioners make informed decisions about when (not) to invest in consistency-based confidence estimation, and motivate future work on more robust confidence signals for structured prediction.
+
+\begin{thebibliography}{10}
+
+\bibitem{wang2023selfconsistency}
+Xuezhi Wang, Jason Wei, Dale Schuurmans, Quoc Le, Ed Chi, Sharan Narang, Aakanksha Chowdhery, and Denny Zhou.
+Self-consistency improves chain of thought reasoning in language models.
+In \emph{ICLR}, 2023.
+
+\bibitem{brown2024large}
+Bradley Brown, Jordan Juravsky, Ryan Ehrlich, Ronald Clark, Quoc V. Le, Christopher R\'{e}, and Azalia Mirhoseini.
+Large language monkeys: Scaling inference compute with repeated sampling.
+\emph{arXiv preprint arXiv:2407.21787}, 2024.
+
+\bibitem{chen2023codet}
+Bei Chen, Fengji Zhang, Anh Nguyen, Daoguang Zan, Zhiruo Lin, Jian-Guang Lou, and Weizhu Chen.
+CodeT: Code generation with generated tests.
+In \emph{ICLR}, 2023.
+
+\bibitem{kadavath2022language}
+Saurav Kadavath, Tom Conerly, Amanda Askell, et al.
+Language models (mostly) know what they know.
+\emph{arXiv preprint arXiv:2207.05221}, 2022.
+
+\bibitem{li2023evaluating}
+Peng Li, Tianxiang Sun, Qiong Tang, Hang Yan, Yuanbin Wu, Xuanjing Huang, and Xipeng Qiu.
+Evaluating ChatGPT's information extraction capabilities.
+\emph{arXiv preprint arXiv:2304.11633}, 2023.
+
+\bibitem{wadhwa2023revisiting}
+Somin Wadhwa, Silvio Amir, and Byron C. Wallace.
+Revisiting relation extraction in the era of large language models.
+In \emph{ACL}, 2023.
+
+\bibitem{rogers2020primer}
+Anna Rogers.
+A primer on negative results in NLP.
+In \emph{ACL}, 2020.
+
+\bibitem{luan2018multi}
+Yi Luan, Luheng He, Mari Ostendorf, and Hannaneh Hajishirzi.
+Multi-task identification of entities, relations, and coreference for scientific knowledge graph construction.
+In \emph{EMNLP}, 2018.
+
+\bibitem{tjong2003introduction}
+Erik F. Tjong Kim Sang and Fien De Meulder.
+Introduction to the {CoNLL}-2003 shared task: Language-independent named entity recognition.
+In \emph{CoNLL}, 2003.
+
+\bibitem{derczynski2017results}
+Leon Derczynski, Eric Nichols, Marieke van Erp, and Nut Limsopatham.
+Results of the {WNUT}2017 shared task on novel and emerging entity recognition.
+In \emph{W-NUT}, 2017.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,20 @@
+CoNLL Constrained vs Free-Form Diagnostic (N=8, T=1.0)
+Gold-nonempty instances (n=2756), entity-level micro-F1
+
+Metric             Constrained (s42)  Free-Form (4-seed mean±σ)  Δ
+Degeneracy %       56.7               59.3±0.6                   +2.6
+MV Δ (pp)          +0.20              -0.00±0.23                 -0.21
+LP-F1 ρ            0.402              0.392±0.004                -0.010
+LP-best Δ (pp)     -1.62              -1.45±0.20                 +0.17
+Greedy F1          91.2               91.0±0.1                   -0.2
+Oracle F1          95.4               95.3±0.2                   -0.2
+
+Per-seed:
+Seed  Degen%  MV Δ pp  LP-F1 ρ  LP-best Δ pp  Greedy F1  Oracle F1
+42    59.6    -0.29    0.391    -1.60         90.94      95.32
+123   59.7    +0.18    0.397    -1.63         91.06      95.34
+456   59.7    -0.10    0.392    -1.33         91.01      94.97
+789   58.4    +0.19    0.387    -1.23         90.95      95.49
+
+Conclusion: Free-form slightly worsens all diagnostics but differences are minimal.
+Constrained decoding is not artificially creating the negative MV result.

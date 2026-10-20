@@ -1,0 +1,24 @@
+5-epoch Entity Construction (FewNERD, N=8, T=1.0, seed=42):
+  n_instances:                  32565 (gold-nonempty subset)
+  degeneracy_rate:              25.7% (8375/32565)
+  
+  greedy_f1:                    0.7979 (micro) / 0.7807 (macro)
+  lp_weighted_construction_f1:  0.7893 (micro) / 0.7828 (macro)   [θ=0.25]
+  uniform_construction_f1:      0.7771 (micro) / 0.7761 (macro)   [θ=0.25]
+  Δ_lp_construction:            -0.87 pp (micro) / +0.20 pp (macro)
+  Δ_uniform_construction:       -2.08 pp (micro) / -0.47 pp (macro)
+
+  Best LP-weighted across θ sweep:
+    macro: θ=0.25  F1=0.7828  Δ=+0.20pp
+    micro: θ=0.50  F1=0.7980  Δ=+0.01pp
+
+3-epoch cross-validation (exp021, seed=42):
+  greedy_f1:                    0.7911 (micro) / 0.7478 (macro)
+  lp_weighted_construction_f1:  0.7766 (micro) / 0.7566 (macro)  [θ=0.25]
+  Δ_lp_construction:            -1.45 pp (micro) / +0.88 pp (macro, single seed)
+  
+  Paper reference "+1.40pp" = multi-seed AVERAGE (seeds 42/123/456/789) macro-F1
+  Single-seed macro deltas: 42→+0.88, 123→+2.18, 456→+1.51, 789→+1.02
+
+Degeneracy comparison: 3-epoch ~10% → 5-epoch 25.7% (2.6× increase)
+Construction gain: 3-epoch +1.40pp (multi-seed avg) → 5-epoch +0.20pp (85.7% reduction)

@@ -1,0 +1,15 @@
+{
+  "experiment": "exp_freeform_ablation",
+  "model": "checkpoints/qwen3-8b-scierc-merged-v2",
+  "dataset": "scierc",
+  "n_instances": 551,
+  "n_samples": 8,
+  "temperature": 1.0,
+  "max_tokens": 1024,
+  "seed": 456,
+  "use_grammar": false,
+  "total_samples": 4408,
+  "total_parsed": 4407,
+  "parse_rate_pct": 99.98,
+  "elapsed_seconds": 232.4
+}

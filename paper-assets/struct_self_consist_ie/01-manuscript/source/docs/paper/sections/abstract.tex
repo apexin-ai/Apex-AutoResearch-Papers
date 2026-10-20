@@ -1,0 +1,8 @@
+\begin{abstract}
+Test-time compute scaling via repeated sampling yields large gains on discrete-answer reasoning, but whether these gains transfer to named entity recognition (NER) remains open.
+Across four NER datasets with fine-tuned 7--14B models, we find that quality estimation signals predict output quality well (area under the ROC curve [AUROC] up to $0.82$), yet selecting among candidates produces no detectable improvement over greedy decoding, even with 64 samples.
+We term this disconnect the \textbf{correlation-selection gap} and trace it to two co-occurring conditions: \textit{degeneracy}, where multiple samples collapse to identical predictions, and \textit{signal alignment collapse}, where per-sample scores fail to discriminate quality within an instance.
+Entity-level construction offers conditional gains ($+1.40$ percentage points [pp] on Few-NERD) where the framework identifies favorable conditions, but exhibits inverse scaling in most configurations.
+Cross-task pilots on relation extraction (RE) and SQL parsing confirm task-specific failure modes.
+The framework is primarily diagnostic, informing when repeated sampling helps for structured prediction and when greedy decoding remains the better default\footnote{Code and data are available at \url{https://anonymous.4open.science/r/struct_self_consist_ie-85D4/}.}.
+\end{abstract}

@@ -1,0 +1,208 @@
+#!/usr/bin/env python3
+"""LOO-SJ circularity check v2 — fixed formulation.
+
+Mean-LOO-SJ = Full-SJ by mathematical identity, so that comparison is trivial.
+This script computes the meaningful version:
+1. Single-holdout LOO: for each instance, use SJ_loo(k=0) instead of full SJ.
+   If ρ(SJ_loo_k0, F1) ≈ ρ(SJ_full, F1), no circularity.
+2. Per-instance LOO sensitivity: std of {SJ_loo(k)} across k.
+   Reports how much SJ changes when individual samples are removed.
+3. Per-sample LOO: for each (instance, sample_k) pair, compute SJ_loo(k) and
+   per-sample F1. Compare ρ vs using SJ_full for all k.
+"""
+
+import json, os, time
+import numpy as np
+from scipy.optimize import linear_sum_assignment
+from scipy.stats import spearmanr
+from itertools import combinations
+
+BASE = "/root/autodl-tmp/struct_self_consist_ie"
+
+def span_soft_jaccard(s1s, s1e, s2s, s2e):
+    overlap = max(0, min(s1e, s2e) - max(s1s, s2s))
+    union = (s1e - s1s) + (s2e - s2s) - overlap
+    return overlap / union if union > 0 else 0.0
+
+def ner_soft_jaccard_pair(ents_a, ents_b):
+    if not ents_a and not ents_b: return 1.0
+    if not ents_a or not ents_b: return 0.0
+    types = set()
+    ga_map, gb_map = {}, {}
+    for e in ents_a:
+        t = e["type"]; types.add(t); ga_map.setdefault(t, []).append(e)
+    for e in ents_b:
+        t = e["type"]; types.add(t); gb_map.setdefault(t, []).append(e)
+    total_score, total_weight = 0.0, 0
+    for t in types:
+        ga, gb = ga_map.get(t, []), gb_map.get(t, [])
+        denom = max(len(ga), len(gb))
+        if denom == 0: continue
+        total_weight += denom
+        if not ga or not gb: continue
+        cost = np.zeros((len(ga), len(gb)))
+        for i, ea in enumerate(ga):
+            for j, eb in enumerate(gb):
+                cost[i, j] = span_soft_jaccard(ea["start"], ea["end"], eb["start"], eb["end"])
+        ri, ci = linear_sum_assignment(-cost)
+        total_score += cost[ri, ci].sum()
+    return total_score / total_weight if total_weight > 0 else 1.0
+
+def per_instance_f1(pred, gold):
+    ps = {(e["start"], e["end"], e["type"]) for e in pred.get("entities", [])}
+    gs = {(e["start"], e["end"], e["type"]) for e in gold.get("entities", [])}
+    tp = len(ps & gs); fp = len(ps - gs); fn = len(gs - ps)
+    p = tp/(tp+fp) if (tp+fp) else 0.0
+    r = tp/(tp+fn) if (tp+fn) else 0.0
+    return 2*p*r/(p+r) if (p+r) else 0.0
+
+def load_instances(path):
+    insts = []
+    with open(path) as f:
+        for line in f:
+            line = line.strip()
+            if line: insts.append(json.loads(line))
+    return insts
+
+def loo_sj_analysis(instances):
+    n_inst = len(instances)
+    full_sj_arr = np.zeros(n_inst)
+    greedy_f1_arr = np.zeros(n_inst)
+    loo_k0_arr = np.zeros(n_inst)
+    loo_std_arr = np.zeros(n_inst)
+    loo_min_arr = np.zeros(n_inst)
+    loo_max_arr = np.zeros(n_inst)
+
+    # For per-sample analysis
+    all_loo_sj = []
+    all_full_sj_rep = []
+    all_sample_f1 = []
+
+    for idx, inst in enumerate(instances):
+        samples = inst["samples"]
+        gold = inst["gold"]
+        greedy = inst.get("greedy", samples[0] if samples else {"entities": []})
+        n = len(samples)
+
+        # Compute pairwise SJ matrix
+        mat = np.ones((n, n))
+        for i, j in combinations(range(n), 2):
+            s = ner_soft_jaccard_pair(
+                samples[i].get("entities", []), samples[j].get("entities", []))
+            mat[i, j] = mat[j, i] = s
+
+        # Full SJ
+        all_pairs = [mat[i,j] for i,j in combinations(range(n), 2)]
+        full_sj = float(np.mean(all_pairs)) if all_pairs else 1.0
+        full_sj_arr[idx] = full_sj
+
+        # Greedy F1
+        gf1 = per_instance_f1(greedy, gold)
+        greedy_f1_arr[idx] = gf1
+
+        # LOO(k) for each k
+        if n <= 2:
+            loo_vals = [full_sj] * n
+        else:
+            all_sum = sum(all_pairs)
+            n_pairs_full = len(all_pairs)
+            loo_vals = []
+            for k in range(n):
+                pk_sum = sum(mat[k, j] for j in range(n) if j != k)
+                loo_sum = all_sum - pk_sum
+                loo_np = (n-1)*(n-2)//2
+                loo_vals.append(loo_sum / loo_np if loo_np > 0 else 1.0)
+
+        loo_k0_arr[idx] = loo_vals[0]
+        loo_std_arr[idx] = float(np.std(loo_vals))
+        loo_min_arr[idx] = min(loo_vals)
+        loo_max_arr[idx] = max(loo_vals)
+
+        # Per-sample F1 and paired LOO-SJ
+        for k in range(n):
+            sf1 = per_instance_f1(samples[k], gold)
+            all_loo_sj.append(loo_vals[k])
+            all_full_sj_rep.append(full_sj)
+            all_sample_f1.append(sf1)
+
+    # Correlations with greedy F1
+    rho_full = float(spearmanr(full_sj_arr, greedy_f1_arr).statistic)
+    rho_loo_k0 = float(spearmanr(loo_k0_arr, greedy_f1_arr).statistic)
+    rho_loo_std = float(spearmanr(loo_std_arr, greedy_f1_arr).statistic)
+
+    # Per-sample analysis (pooled across all instances and samples)
+    all_loo_sj = np.array(all_loo_sj)
+    all_full_sj_rep = np.array(all_full_sj_rep)
+    all_sample_f1 = np.array(all_sample_f1)
+    rho_persamp_loo = float(spearmanr(all_loo_sj, all_sample_f1).statistic)
+    rho_persamp_full = float(spearmanr(all_full_sj_rep, all_sample_f1).statistic)
+
+    return {
+        "greedy_f1_analysis": {
+            "rho_full_sj": round(rho_full, 4),
+            "rho_loo_k0": round(rho_loo_k0, 4),
+            "delta_rho_full_minus_loo_k0": round(rho_full - rho_loo_k0, 4),
+        },
+        "per_sample_analysis": {
+            "rho_loo_sj_vs_sample_f1": round(rho_persamp_loo, 4),
+            "rho_full_sj_vs_sample_f1": round(rho_persamp_full, 4),
+            "delta_rho_full_minus_loo": round(rho_persamp_full - rho_persamp_loo, 4),
+            "n_pairs": len(all_loo_sj),
+        },
+        "loo_sensitivity": {
+            "mean_loo_std": round(float(np.mean(loo_std_arr)), 6),
+            "max_loo_std": round(float(np.max(loo_std_arr)), 6),
+            "mean_loo_range": round(float(np.mean(loo_max_arr - loo_min_arr)), 6),
+            "max_loo_range": round(float(np.max(loo_max_arr - loo_min_arr)), 6),
+            "rho_loo_std_vs_f1": round(rho_loo_std, 4),
+        },
+        "n_instances": n_inst,
+    }
+
+def main():
+    datasets = [
+        {"name": "Qwen_CoNLL",
+         "n8": f"{BASE}/output/exp002_conll2003/samples.jsonl",
+         "n16": f"{BASE}/output/exp_002_conll_n16/samples.jsonl"},
+        {"name": "Qwen_SciERC",
+         "n8": f"{BASE}/output/exp_012_logprob/samples_with_logprobs.jsonl",
+         "n16": f"{BASE}/output/exp_001_seed42_v2/samples.jsonl"},
+        {"name": "LLaMA_SciERC",
+         "n8": f"{BASE}/output/exp007_llama_inference/samples.jsonl",
+         "n16": f"{BASE}/output/exp_007_llama_n16/samples.jsonl"},
+    ]
+
+    print("=" * 60)
+    print("LOO-SJ Circularity Check v2")
+    print("=" * 60)
+    results = {}
+
+    for ds in datasets:
+        for label, path in [("N8", ds["n8"]), ("N16", ds["n16"])]:
+            key = f"{ds['name']}_{label}"
+            print(f"\n--- {key} ---")
+            t0 = time.time()
+            insts = load_instances(path)
+            res = loo_sj_analysis(insts)
+            results[key] = res
+            elapsed = time.time() - t0
+
+            g = res["greedy_f1_analysis"]
+            p = res["per_sample_analysis"]
+            s = res["loo_sensitivity"]
+            print(f"  Greedy: rho_full={g['rho_full_sj']:.4f}  rho_loo_k0={g['rho_loo_k0']:.4f}  "
+                  f"Drho={g['delta_rho_full_minus_loo_k0']:.4f}")
+            print(f"  Per-sample: rho_full={p['rho_full_sj_vs_sample_f1']:.4f}  "
+                  f"rho_loo={p['rho_loo_sj_vs_sample_f1']:.4f}  "
+                  f"Drho={p['delta_rho_full_minus_loo']:.4f}")
+            print(f"  Sensitivity: mean_std={s['mean_loo_std']:.6f}  "
+                  f"max_range={s['max_loo_range']:.6f}  ({elapsed:.1f}s)")
+
+    out = f"{BASE}/output/loo_sj_cross_dataset"
+    os.makedirs(out, exist_ok=True)
+    with open(f"{out}/results.json", "w") as f:
+        json.dump(results, f, indent=2)
+    print(f"\nSaved: {out}/results.json")
+
+if __name__ == "__main__":
+    main()

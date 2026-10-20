@@ -1,0 +1,19 @@
+\begin{table}[h]
+\centering
+\caption{Per-entity-type LP selection analysis on Few-NERD.}
+\label{tab:per_type_lp}
+\begin{tabular}{lrrrrrrr}
+\toprule
+Entity Type & N & Degen.\% & Greedy F1 & LP Sel F1 & $\Delta$ (pp) & LP $\rho$ & Headroom \\
+\midrule
+Event & 1306 & 6.0 & 0.6551 & 0.6616 & +0.65 & 0.457 & 16.14 \\
+Other & 3433 & 6.6 & 0.6374 & 0.6847 & \textbf{+4.73} & 0.491 & 19.40 \\
+Organization & 6647 & 6.7 & 0.7203 & 0.7324 & +1.21 & 0.509 & 13.32 \\
+Building & 1587 & 7.2 & 0.7024 & 0.7047 & +0.23 & 0.478 & 14.90 \\
+Product & 2276 & 8.2 & 0.6564 & 0.6765 & +2.01 & 0.483 & 15.77 \\
+Location & 8023 & 11.4 & 0.7926 & 0.7979 & +0.53 & 0.520 & 10.27 \\
+Person & 8016 & 13.4 & 0.8220 & 0.8345 & +1.25 & 0.544 & 9.22 \\
+Art & 1277 & 19.8 & 0.7557 & 0.7540 & -0.17 & 0.451 & 9.21 \\
+\bottomrule
+\end{tabular}
+\end{table}

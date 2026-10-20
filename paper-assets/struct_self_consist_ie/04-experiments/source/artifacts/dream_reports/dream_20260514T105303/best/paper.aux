@@ -1,0 +1,161 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{wang2023selfconsistency}
+\citation{kadavath2022language}
+\citation{kuhn2023semantic}
+\citation{manakul2023selfcheckgpt}
+\citation{wang2023selfconsistency}
+\citation{chen2024universal}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{wang2023selfconsistency}
+\citation{chen2024universal}
+\citation{kadavath2022language}
+\citation{kuhn2023semantic}
+\citation{manakul2023selfcheckgpt}
+\citation{desai2020calibration}
+\citation{jiang2021can}
+\citation{li2023evaluating}
+\citation{xu2024large}
+\citation{wang2023instructuie}
+\citation{derczynski2016broad}
+\citation{cobbe2021training}
+\citation{lightman2024lets}
+\citation{madaan2023self}
+\citation{yao2023tree}
+\citation{geifman2017selective}
+\citation{el2010foundations}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Self-Consistency for LLMs.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Uncertainty Estimation in LLMs.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Information Extraction with LLMs.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Test-Time Scaling.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Selective Prediction.}{2}{section*.5}\protected@file@percent }
+\citation{fleiss1971measuring}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setup}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Confidence Signals}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Soft Jaccard (SJ).}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Fleiss' Kappa (FK).}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sequence Log-Probability.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Exact-Match Voting Rate.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Entity-Level Majority Voting.}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Best-of-$N$ Selection}{3}{subsection.3.3}\protected@file@percent }
+\citation{luan2018multi}
+\citation{tjong2003introduction}
+\citation{derczynski2017results}
+\citation{qwen2025qwen3}
+\citation{hu2022lora}
+\citation{touvron2023llama}
+\citation{kwon2023efficient}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Confidence signal comparison on SciERC NER ($N{=}16$). SJ achieves the best performance across all metrics. ECE: lower is better.}}{4}{table.caption.14}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:main_ner}{{1}{4}{Confidence signal comparison on SciERC NER ($N{=}16$). SJ achieves the best performance across all metrics. ECE: lower is better}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Evaluation Protocol}{4}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{4}{section.4}\protected@file@percent }
+\newlabel{sec:setup}{{4}{4}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Datasets.}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{4}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sampling.}{4}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{4}{Results}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}SJ Outperforms All Baselines on NER}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:main_ner}{{5.1}{4}{SJ Outperforms All Baselines on NER}{subsection.5.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Multi-seed robustness ($N{=}16$, SciERC NER). Std$=0.01$ across seeds confirms stability.}}{5}{table.caption.15}\protected@file@percent }
+\newlabel{tab:multiseed}{{2}{5}{Multi-seed robustness ($N{=}16$, SciERC NER). Std$=0.01$ across seeds confirms stability}{table.caption.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Effect of sampling budget on signal quality (SciERC NER).}}{5}{table.caption.18}\protected@file@percent }
+\newlabel{tab:nscaling}{{3}{5}{Effect of sampling budget on signal quality (SciERC NER)}{table.caption.18}{}}
+\@writefile{toc}{\contentsline {paragraph}{Why does SJ outperform log-probability?}{5}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why does SJ outperform entity voting?}{5}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}N-Scaling: From $N{=}8$ to $N{=}16$}{5}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:nscaling}{{5.2}{5}{N-Scaling: From $N{=}8$ to $N{=}16$}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Cross-Dataset Generalization}{5}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:crossdataset}{{5.3}{5}{Cross-Dataset Generalization}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Cross-Model Generalization}{5}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:crossmodel}{{5.4}{5}{Cross-Model Generalization}{subsection.5.4}{}}
+\citation{wang2023selfconsistency}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Cross-dataset comparison ($N{=}8$, $T{=}0.7$, Qwen3-8B). The ranking SJ $>$ FK $>$ EV $>$ Logprob $>$ EM is preserved across all domains.}}{6}{table.caption.19}\protected@file@percent }
+\newlabel{tab:crossdataset}{{4}{6}{Cross-dataset comparison ($N{=}8$, $T{=}0.7$, Qwen3-8B). The ranking SJ $>$ FK $>$ EV $>$ Logprob $>$ EM is preserved across all domains}{table.caption.19}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Cross-model comparison (SciERC NER, $N{=}8$, $T{=}0.7$).}}{6}{table.caption.20}\protected@file@percent }
+\newlabel{tab:crossmodel}{{5}{6}{Cross-model comparison (SciERC NER, $N{=}8$, $T{=}0.7$)}{table.caption.20}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Best-of-$N$ Selection}{6}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:bestofn}{{5.5}{6}{Best-of-$N$ Selection}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Selection curves.}{6}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Exact-Match Baseline: Why Soft Matching Is Necessary}{6}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:exact_match}{{5.6}{6}{Exact-Match Baseline: Why Soft Matching Is Necessary}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Entity Voting: A Competitive but Limited Baseline}{6}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:entity_voting}{{5.7}{6}{Entity Voting: A Competitive but Limited Baseline}{subsection.5.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Log-Probability vs.\ SJ: Complementary Information}{6}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:logprob}{{5.8}{6}{Log-Probability vs.\ SJ: Complementary Information}{subsection.5.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Best-of-$N$ selection F1 across datasets and methods ($N{=}16$).}}{7}{table.caption.21}\protected@file@percent }
+\newlabel{tab:bestofn}{{6}{7}{Best-of-$N$ selection F1 across datasets and methods ($N{=}16$)}{table.caption.21}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Pairwise F1 gains (percentage points) from best-of-$N$ selection.}}{7}{table.caption.22}\protected@file@percent }
+\newlabel{tab:f1gains}{{7}{7}{Pairwise F1 gains (percentage points) from best-of-$N$ selection}{table.caption.22}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Diagnostic Analysis: Relation Extraction}{7}{subsection.5.9}\protected@file@percent }
+\newlabel{sec:re_diagnostic}{{5.9}{7}{Diagnostic Analysis: Relation Extraction}{subsection.5.9}{}}
+\@writefile{toc}{\contentsline {paragraph}{Conditional threshold sensitivity.}{7}{section*.29}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{$N{=}16$ confirmation.}{7}{section*.31}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.10}Temperature Sensitivity}{7}{subsection.5.10}\protected@file@percent }
+\newlabel{sec:temperature}{{5.10}{7}{Temperature Sensitivity}{subsection.5.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.11}Capability Stratification}{7}{subsection.5.11}\protected@file@percent }
+\newlabel{sec:stratification}{{5.11}{7}{Capability Stratification}{subsection.5.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Selection curves on SciERC NER: F1 by $N$ and method.}}{8}{table.caption.24}\protected@file@percent }
+\newlabel{tab:selcurve}{{8}{8}{Selection curves on SciERC NER: F1 by $N$ and method}{table.caption.24}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Exact-match voting statistics (SciERC, $N{=}8$). The extremely low EM rates demonstrate that exact-match voting is inadequate for structured outputs.}}{8}{table.caption.25}\protected@file@percent }
+\newlabel{tab:em}{{9}{8}{Exact-match voting statistics (SciERC, $N{=}8$). The extremely low EM rates demonstrate that exact-match voting is inadequate for structured outputs}{table.caption.25}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.12}Out-of-Domain Robustness}{8}{subsection.5.12}\protected@file@percent }
+\newlabel{sec:ood}{{5.12}{8}{Out-of-Domain Robustness}{subsection.5.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{8}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{8}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Why structural consistency outperforms model confidence.}{8}{section*.36}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The compound error boundary.}{8}{section*.37}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical implications.}{8}{section*.38}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.39}\protected@file@percent }
+\bibcite{chen2024universal}{Chen et~al.(2024)}
+\bibcite{cobbe2021training}{Cobbe et~al.(2021)}
+\bibcite{derczynski2017results}{Derczynski et~al.(2017)}
+\bibcite{derczynski2016broad}{Derczynski et~al.(2016)}
+\bibcite{desai2020calibration}{Desai and Durrett(2020)}
+\bibcite{el2010foundations}{El-Yaniv and Wiener(2010)}
+\bibcite{fleiss1971measuring}{Fleiss(1971)}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Entity voting vs.\ SJ selection (SciERC NER, $N{=}8$).}}{9}{table.caption.26}\protected@file@percent }
+\newlabel{tab:entity_voting}{{10}{9}{Entity voting vs.\ SJ selection (SciERC NER, $N{=}8$)}{table.caption.26}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Log-prob vs.\ SJ/FK correlation (SciERC, $N{=}8$).}}{9}{table.caption.27}\protected@file@percent }
+\newlabel{tab:logprob}{{11}{9}{Log-prob vs.\ SJ/FK correlation (SciERC, $N{=}8$)}{table.caption.27}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{9}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{9}{Conclusion}{section.7}{}}
+\bibcite{geifman2017selective}{Geifman and El-Yaniv(2017)}
+\bibcite{hu2022lora}{Hu et~al.(2022)}
+\bibcite{jiang2021can}{Jiang et~al.(2021)}
+\bibcite{kadavath2022language}{Kadavath et~al.(2022)}
+\bibcite{kuhn2023semantic}{Kuhn et~al.(2023)}
+\bibcite{kwon2023efficient}{Kwon et~al.(2023)}
+\bibcite{li2023evaluating}{Li et~al.(2023)}
+\bibcite{lightman2024lets}{Lightman et~al.(2024)}
+\bibcite{luan2018multi}{Luan et~al.(2018)}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces RE per-relation-type analysis (SciERC, $N{=}8$). All types show degraded $\rho $ relative to NER.}}{10}{table.caption.28}\protected@file@percent }
+\newlabel{tab:re_pertype}{{12}{10}{RE per-relation-type analysis (SciERC, $N{=}8$). All types show degraded $\rho $ relative to NER}{table.caption.28}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Conditional threshold sensitivity (SciERC RE). Higher thresholds improve signal quality at the cost of coverage.}}{10}{table.caption.30}\protected@file@percent }
+\newlabel{tab:threshold}{{13}{10}{Conditional threshold sensitivity (SciERC RE). Higher thresholds improve signal quality at the cost of coverage}{table.caption.30}{}}
+\bibcite{madaan2023self}{Madaan et~al.(2023)}
+\bibcite{manakul2023selfcheckgpt}{Manakul et~al.(2023)}
+\bibcite{qwen2025qwen3}{Qwen Team(2025)}
+\bibcite{tjong2003introduction}{Tjong Kim~Sang and De~Meulder(2003)}
+\bibcite{touvron2023llama}{Touvron et~al.(2023)}
+\bibcite{wang2023selfconsistency}{Wang et~al.(2023a)}
+\bibcite{wang2023instructuie}{Wang et~al.(2023b)}
+\bibcite{xu2024large}{Xu et~al.(2024)}
+\bibcite{yao2023tree}{Yao et~al.(2023)}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Temperature $\times $ signal interaction (SciERC NER, $N{=}8$). SJ is the most temperature-robust signal.}}{11}{table.caption.32}\protected@file@percent }
+\newlabel{tab:temp}{{14}{11}{Temperature $\times $ signal interaction (SciERC NER, $N{=}8$). SJ is the most temperature-robust signal}{table.caption.32}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces SJ $\rho $ by greedy F1 bucket (SciERC NER, $N{=}16$), showing an inverted-U pattern.}}{11}{table.caption.33}\protected@file@percent }
+\newlabel{tab:strat}{{15}{11}{SJ $\rho $ by greedy F1 bucket (SciERC NER, $N{=}16$), showing an inverted-U pattern}{table.caption.33}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces SJ $\rho $ by independent proxy (SciERC NER, $N{=}16$).}}{12}{table.caption.34}\protected@file@percent }
+\newlabel{tab:proxy}{{16}{12}{SJ $\rho $ by independent proxy (SciERC NER, $N{=}16$)}{table.caption.34}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces In-domain vs.\ OOD comparison (WNUT$\to $CoNLL).}}{12}{table.caption.35}\protected@file@percent }
+\newlabel{tab:ood}{{17}{12}{In-domain vs.\ OOD comparison (WNUT$\to $CoNLL)}{table.caption.35}{}}
+\gdef \@abspage@last{12}

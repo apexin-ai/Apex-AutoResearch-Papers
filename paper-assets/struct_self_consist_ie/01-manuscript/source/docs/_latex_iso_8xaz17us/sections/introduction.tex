@@ -1,0 +1,33 @@
+\section{Introduction}\label{sec:introduction}
+
+Test-time compute scaling, including self-consistency \cite{wang2023selfconsistency}, best-of-$N$ \cite{snell2025scaling, brown2024monkeys}, and extended reasoning \cite{muennighoff2025s1}, yields large gains on discrete-answer tasks where outputs admit equivalence classes or execution-based verification.
+For NER, where outputs are entity sets with partial overlap, the boundary conditions for effective scaling are unknown; prior work reports task-level correlations \cite{yao2026consistency} and qualitative diversity collapse \cite{yun2025price} but no instance-level diagnostic framework.
+
+Using NER (four datasets, primarily 7--14B fine-tuned; tentative cross-scale observations to 72B) and RE as case studies, we identify a \textbf{correlation-selection gap}: quality estimation signals predict output quality ($\rho$ up to $0.45$, AUROC $0.82$; Table~\ref{tab:quality_estimation}), yet selection yields no detectable gains---MV ${<}1$ percentage point (pp) even at $N{=}64$ (Figure~\ref{fig:n_scaling}; Table~\ref{tab:selection}).
+This gap decomposes into a definitional layer---four instance-level signals assign identical scores to all candidates---and an empirical one: LP, the only per-sample signal, also yields no gains, through within-instance compression (\S\ref{sec:selection_gap}).
+A hidden-state probe confirms models encode entity quality internally (AUROC $0.63$\textendash$0.88$; Appendix~\ref{sec:mechanistic}), exposing an \textit{introspection boundary} \cite{huang2024large}.
+A \textit{diagnostic framework} localizes the failure to two co-occurring conditions, degeneracy ($12$--$68$\%) and signal alignment collapse ($\alpha{\to}0$; $\alpha$ here denotes LP-F1 alignment), which co-occur with selection failure (Table~\ref{tab:method_summary}).
+The framework decomposes observed failures post-hoc rather than predicting which instances will fail a priori; our analysis is observational and all reported associations are correlational, not causal.
+The optimal strategy is dataset-dependent (LP $+1.39$\,pp on Few-NERD; MV $+0.6$\,pp on CoNLL), and RE reveals a distinct bottleneck ($40$\% zero-F1; Appendix~\ref{app:re_extension}).
+Exploratory entity-level construction yields conditional improvement ($+1.40$\,pp on Few-NERD, 3-epoch; global Holm $p_{\text{adj}}{=}0.055$, suggestive; per-family $p_{\text{adj}}{=}0.006$, post-hoc family partition; diminishes at convergence) where the framework identifies favorable conditions---low degeneracy and LP-F1 alignment---but inverse scaling in most $N$-transitions confirms that scaling is harmful in the majority of configurations.
+
+These findings rest on four NER benchmarks, two model families with 4B--72B ablations, $N {\in} \{2, \ldots, 64\}$, and exploratory extensions to RE\footnote{RE F1 is confounded by entity span errors: the majority of zero-F1 RE instances reflect upstream NER mismatches rather than relation classification failure (Appendix~\ref{app:re_extension}).} and SQL parsing ($87.2$\% degeneracy).
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{fig_overview}
+\caption{Overview of the correlation-selection gap (diagnostic sequence, not causal chain). Representative values across datasets: AUROC from CoNLL EM; $\rho$ and entity-construction gain from Few-NERD (Qwen3-8B, $N{=}8$, $T{=}1.0$; Tables~\ref{tab:quality_estimation},~\ref{tab:entity_construction}). \textbf{Left}: consistency signals estimate instance quality. \textbf{Center}: instance-level signals assign identical scores to all $N$ candidates, so selection cannot outperform greedy. \textbf{Right}: LP-weighted entity construction ($\theta{=}2/N$) yields conditional gains ($+1.40$\,pp on Few-NERD; \S\ref{sec:prescriptive}).}
+\label{fig:overview}
+\end{figure*}
+
+Our investigation proceeds in three stages:
+\begin{enumerate}[nosep]
+\item \textbf{Discover} [\S\ref{sec:qe_results}].
+QE signals achieve AUROC up to $0.82$; while \citet{yao2026consistency} report task-level correlation ($\rho$ up to 0.47), our instance-level decomposition reveals why correlation does not yield selection gains.
+\item \textbf{Diagnose} [\S\ref{sec:selection_gap}, \S\ref{sec:adaptive}, \S\ref{sec:theory}].
+A diagnostic cascade---degeneracy, LP compression, signal alignment---quantifies failure mechanisms at entity level; \citet{yun2025price} describe diversity collapse qualitatively, we provide quantitative decomposition ($D$, $\alpha$, LP range). A necessary condition bound (\S\ref{sec:theory}) confirms $\alpha$ as the binding constraint (3--12\% recovery ratio). Hidden-state probes reveal an introspection boundary (AUROC $0.63$--$0.88$ vs.\ ESJ $\approx 0.50$; Appendix~\ref{sec:mechanistic}).
+\item \textbf{Construct (exploratory)} [\S\ref{sec:prescriptive}].
+Entity-level construction yields $+1.40$\,pp on Few-NERD where the cascade identifies favorable conditions. Unlike \citet{xie2023zeroshot}'s zero-shot entity voting, we aggregate stochastic samples from fine-tuned models.
+\end{enumerate}
+
+The paper is organized as follows: \S\ref{sec:related} contextualizes our contributions relative to prior art; \S\ref{sec:method} defines the diagnostic framework and confidence signals; \S\ref{sec:selection_gap} establishes the correlation-selection gap; \S\ref{sec:adaptive} evaluates adaptive methods; \S\ref{sec:theory_scaling} provides scaling analysis and degeneracy decomposition; \S\ref{sec:experiments} presents the main experimental results.

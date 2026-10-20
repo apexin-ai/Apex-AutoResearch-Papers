@@ -1,0 +1,316 @@
+{
+  "per_seed": {
+    "42": {
+      "n_instances": 529,
+      "n_samples": 8,
+      "greedy_f1": 0.6439,
+      "oracle_f1": 0.7758,
+      "unsup_selection_f1": {
+        "SJ": 0.645,
+        "FK": 0.6448,
+        "LP": 0.6501,
+        "EM": 0.6362,
+        "VC": 0.6256
+      },
+      "lr_selection_f1_loo": 0.6484,
+      "lr_selection_f1_5fold": 0.6475,
+      "lr_auroc_loo": 0.6795,
+      "lr_auroc_5fold": 0.6794,
+      "single_signal_aurocs": {
+        "SJ": 0.6715,
+        "FK": 0.6154,
+        "LP": 0.6116,
+        "EM": 0.6472,
+        "VC": 0.6879
+      },
+      "feature_importance": {
+        "SJ": -0.1739,
+        "FK": 0.0925,
+        "LP": 0.1161,
+        "EM": 0.1913,
+        "VC": 0.6455
+      },
+      "ablation": {
+        "SJ": {
+          "auroc_without": 0.6814,
+          "delta": -0.0019
+        },
+        "FK": {
+          "auroc_without": 0.6802,
+          "delta": -0.0007
+        },
+        "LP": {
+          "auroc_without": 0.6788,
+          "delta": 0.0007
+        },
+        "EM": {
+          "auroc_without": 0.678,
+          "delta": 0.0015
+        },
+        "VC": {
+          "auroc_without": 0.6577,
+          "delta": 0.0218
+        }
+      },
+      "learning_curve": {
+        "0.1": {
+          "mean_auroc": 0.6201,
+          "std_auroc": 0.0755,
+          "n_train": 52
+        },
+        "0.25": {
+          "mean_auroc": 0.6682,
+          "std_auroc": 0.0384,
+          "n_train": 132
+        },
+        "0.5": {
+          "mean_auroc": 0.6629,
+          "std_auroc": 0.0293,
+          "n_train": 264
+        },
+        "0.75": {
+          "mean_auroc": 0.679,
+          "std_auroc": 0.0145,
+          "n_train": 396
+        },
+        "1.0": {
+          "mean_auroc": 0.6795,
+          "std_auroc": 0.0,
+          "n_train": 529
+        }
+      }
+    },
+    "123": {
+      "n_instances": 529,
+      "n_samples": 8,
+      "greedy_f1": 0.6457,
+      "oracle_f1": 0.7805,
+      "unsup_selection_f1": {
+        "SJ": 0.6475,
+        "FK": 0.6468,
+        "LP": 0.6436,
+        "EM": 0.6381,
+        "VC": 0.6204
+      },
+      "lr_selection_f1_loo": 0.6467,
+      "lr_selection_f1_5fold": 0.6452,
+      "lr_auroc_loo": 0.7016,
+      "lr_auroc_5fold": 0.7107,
+      "single_signal_aurocs": {
+        "SJ": 0.6919,
+        "FK": 0.63,
+        "LP": 0.6132,
+        "EM": 0.6596,
+        "VC": 0.7089
+      },
+      "feature_importance": {
+        "SJ": -0.0996,
+        "FK": 0.1324,
+        "LP": 0.0914,
+        "EM": 0.1588,
+        "VC": 0.6768
+      },
+      "ablation": {
+        "SJ": {
+          "auroc_without": 0.7036,
+          "delta": -0.002
+        },
+        "FK": {
+          "auroc_without": 0.7016,
+          "delta": 0.0
+        },
+        "LP": {
+          "auroc_without": 0.7007,
+          "delta": 0.0009
+        },
+        "EM": {
+          "auroc_without": 0.7011,
+          "delta": 0.0006
+        },
+        "VC": {
+          "auroc_without": 0.6781,
+          "delta": 0.0235
+        }
+      },
+      "learning_curve": {
+        "0.1": {
+          "mean_auroc": 0.574,
+          "std_auroc": 0.0899,
+          "n_train": 52
+        },
+        "0.25": {
+          "mean_auroc": 0.7078,
+          "std_auroc": 0.0277,
+          "n_train": 132
+        },
+        "0.5": {
+          "mean_auroc": 0.6883,
+          "std_auroc": 0.0327,
+          "n_train": 264
+        },
+        "0.75": {
+          "mean_auroc": 0.7053,
+          "std_auroc": 0.0181,
+          "n_train": 396
+        },
+        "1.0": {
+          "mean_auroc": 0.7016,
+          "std_auroc": 0.0,
+          "n_train": 529
+        }
+      }
+    },
+    "789": {
+      "n_instances": 529,
+      "n_samples": 8,
+      "greedy_f1": 0.6511,
+      "oracle_f1": 0.7885,
+      "unsup_selection_f1": {
+        "SJ": 0.6378,
+        "FK": 0.641,
+        "LP": 0.6478,
+        "EM": 0.6406,
+        "VC": 0.6195
+      },
+      "lr_selection_f1_loo": 0.649,
+      "lr_selection_f1_5fold": 0.6487,
+      "lr_auroc_loo": 0.7109,
+      "lr_auroc_5fold": 0.7152,
+      "single_signal_aurocs": {
+        "SJ": 0.6893,
+        "FK": 0.602,
+        "LP": 0.6124,
+        "EM": 0.6468,
+        "VC": 0.7223
+      },
+      "feature_importance": {
+        "SJ": -0.0845,
+        "FK": 0.0432,
+        "LP": 0.1073,
+        "EM": -0.0438,
+        "VC": 0.9198
+      },
+      "ablation": {
+        "SJ": {
+          "auroc_without": 0.7128,
+          "delta": -0.0019
+        },
+        "FK": {
+          "auroc_without": 0.7123,
+          "delta": -0.0014
+        },
+        "LP": {
+          "auroc_without": 0.7074,
+          "delta": 0.0035
+        },
+        "EM": {
+          "auroc_without": 0.7131,
+          "delta": -0.0022
+        },
+        "VC": {
+          "auroc_without": 0.6774,
+          "delta": 0.0335
+        }
+      },
+      "learning_curve": {
+        "0.1": {
+          "mean_auroc": 0.5954,
+          "std_auroc": 0.0839,
+          "n_train": 52
+        },
+        "0.25": {
+          "mean_auroc": 0.7172,
+          "std_auroc": 0.0586,
+          "n_train": 132
+        },
+        "0.5": {
+          "mean_auroc": 0.7097,
+          "std_auroc": 0.0249,
+          "n_train": 264
+        },
+        "0.75": {
+          "mean_auroc": 0.7161,
+          "std_auroc": 0.014,
+          "n_train": 396
+        },
+        "1.0": {
+          "mean_auroc": 0.7109,
+          "std_auroc": 0.0,
+          "n_train": 529
+        }
+      }
+    }
+  },
+  "aggregated": {
+    "lr_selection_f1_loo": {
+      "mean": 0.648,
+      "std": 0.0012,
+      "per_seed": {
+        "42": 0.6484,
+        "123": 0.6467,
+        "789": 0.649
+      }
+    },
+    "greedy_f1": {
+      "mean": 0.6469,
+      "std": 0.0037
+    },
+    "oracle_f1": {
+      "mean": 0.7816,
+      "std": 0.0064
+    },
+    "gap_closure_pct": 0.8,
+    "oracle_gap": 0.1347,
+    "lr_gain_over_greedy": 0.0011,
+    "unsup_SJ_selection_f1": {
+      "mean": 0.6434,
+      "std": 0.005
+    },
+    "unsup_FK_selection_f1": {
+      "mean": 0.6442,
+      "std": 0.0029
+    },
+    "unsup_LP_selection_f1": {
+      "mean": 0.6472,
+      "std": 0.0033
+    },
+    "unsup_EM_selection_f1": {
+      "mean": 0.6383,
+      "std": 0.0022
+    },
+    "unsup_VC_selection_f1": {
+      "mean": 0.6218,
+      "std": 0.0033
+    },
+    "best_unsup_signal": "LP",
+    "best_unsup_selection_f1": 0.6472,
+    "lr_vs_best_unsup": 0.0009,
+    "lr_auroc_loo": {
+      "mean": 0.6973,
+      "std": 0.0161
+    },
+    "single_SJ_auroc": {
+      "mean": 0.6842,
+      "std": 0.0111
+    },
+    "single_FK_auroc": {
+      "mean": 0.6158,
+      "std": 0.014
+    },
+    "single_LP_auroc": {
+      "mean": 0.6124,
+      "std": 0.0008
+    },
+    "single_EM_auroc": {
+      "mean": 0.6512,
+      "std": 0.0073
+    },
+    "single_VC_auroc": {
+      "mean": 0.7064,
+      "std": 0.0173
+    },
+    "best_single_auroc_signal": "VC",
+    "best_single_auroc": 0.7064,
+    "lr_auroc_vs_best_single": -0.009
+  }
+}

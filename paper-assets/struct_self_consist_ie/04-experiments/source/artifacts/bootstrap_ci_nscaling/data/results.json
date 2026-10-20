@@ -1,0 +1,24 @@
+See server: autodl-5090:/root/autodl-tmp/struct_self_consist_ie/output/bootstrap_ci_nscaling/results.json
+
+Summary (actual N=8 vs N=16):
+
+Qwen_CoNLL (n=3453):
+  SJ:          rho8=0.125 rho16=0.145 Δ=+0.020 CI[-0.007,+0.048] p=0.927
+  FK:          rho8=0.132 rho16=0.184 Δ=+0.052 CI[+0.015,+0.087] p=0.998 ***
+  EM:          rho8=0.102 rho16=0.106 Δ=+0.004 CI[-0.019,+0.028] p=0.641
+  voting_conf: rho8=0.709 rho16=0.716 Δ=+0.007 CI[-0.007,+0.022] p=0.834
+  logprob:     rho8=-0.200 rho16=-0.214 Δ=-0.014 CI[-0.028,-0.000] p=0.021
+
+Qwen_SciERC (n=551):
+  SJ:          rho8=0.377 rho16=0.431 Δ=+0.054 CI[-0.009,+0.117] p=0.951
+  FK:          rho8=0.271 rho16=0.325 Δ=+0.055 CI[-0.027,+0.138] p=0.902
+  EM:          rho8=0.304 rho16=0.297 Δ=-0.006 CI[-0.064,+0.052] p=0.411
+  voting_conf: rho8=0.366 rho16=0.390 Δ=+0.024 CI[-0.045,+0.094] p=0.750
+  logprob:     rho8=0.221 rho16=0.203 Δ=-0.017 CI[-0.065,+0.030] p=0.239
+
+LLaMA_SciERC (n=551):
+  SJ:          rho8=0.359 rho16=0.355 Δ=-0.004 CI[-0.058,+0.051] p=0.446
+  FK:          rho8=0.346 rho16=0.315 Δ=-0.031 CI[-0.106,+0.044] p=0.215
+  EM:          rho8=0.277 rho16=0.274 Δ=-0.003 CI[-0.054,+0.049] p=0.456
+  voting_conf: rho8=0.403 rho16=0.405 Δ=+0.002 CI[-0.058,+0.062] p=0.531
+  logprob:     rho8=0.168 rho16=0.171 Δ=+0.003 CI[-0.044,+0.050] p=0.551

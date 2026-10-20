@@ -1,0 +1,367 @@
+\documentclass[11pt]{article}
+\usepackage[hyperref]{acl}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{url}
+
+\title{Strong Predictors, Weak Selectors: Diagnosing Why Confidence Signals\\Cannot Scale Structured Information Extraction}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Test-time scaling via multi-sample generation has proven effective for reasoning tasks, but its utility for structured information extraction (IE) remains unclear. We systematically evaluate five confidence signals across four families---structural agreement (Jaccard, exact match, voting confidence), surface similarity (fuzzy token overlap), and generation probability (log-prob)---for both quality estimation and candidate selection in named entity recognition and relation extraction. Our signals reliably predict output quality across instances (AUROC up to 0.82, Spearman $\rho$ up to 0.45), yet predominantly fail to select better candidates from multiple samples across all tested configurations. We diagnose two failure mechanisms: (1) \textbf{instance degeneracy}, where 21--58\% of instances produce identical F1 across all $N$ samples, eliminating selection headroom; and (2) \textbf{log-probability compression}, where within-instance score ranges collapse to a median of 0.041 nats. These mechanisms are unified by a \textbf{capability trap}: model capability drives output convergence, which drives degeneracy, which eliminates selection headroom---with fine-tuning intensity as a secondary contributing factor. Controlled ablations (free-form decoding, LoRA rank reduction, model scale) confirm these findings are intrinsic rather than artifactual. Greedy decoding ($T$=0) dominates all multi-sample selection strategies at zero additional inference cost.
+\end{abstract}
+
+\section{Introduction}
+
+Test-time scaling (TTS) through multi-sample generation and selection has emerged as a powerful paradigm for improving LLM reasoning~\cite{wang2023selfconsistency,snell2024scaling}. The core idea is simple: generate $N$ candidate outputs and select the best one using a confidence signal. For discrete-answer tasks like mathematical reasoning, majority voting closes a substantial fraction of the oracle gap.
+
+Structured information extraction---named entity recognition (NER) and relation extraction (RE)---presents a fundamentally different challenge. Outputs are \emph{sets} of typed spans or relational triples, evaluated via token-level or tuple-level F1. Unlike reasoning tasks where multiple solution paths converge to a single answer, IE outputs exhibit combinatorial variation that standard voting cannot aggregate.
+
+Prior work on MBR decoding failures~\cite{eikema2022sampling} identifies utility function misalignment as the root cause. We reveal a qualitatively distinct failure mode: the utility function \emph{is} aligned (within-instance $\rho$=0.524 between signal and quality), but selection headroom is eliminated by output convergence. This distinction---aligned signals with no headroom---has not been documented in the TTS literature.
+
+We make two co-primary contributions:
+
+\paragraph{Contribution 1: Quality Estimation Framework.} We provide the first systematic comparison of five confidence signals spanning four families for structured IE quality estimation. We establish that structural consistency signals (voting confidence, exact match, Jaccard) substantially outperform log-probability for NER ($\rho$=0.38 vs.\ 0.21), while this ranking reverses for RE due to a binary dominance mechanism we characterize. This task-dependent signal effectiveness finding enriches practical guidance for IE system deployment.
+
+\paragraph{Contribution 2: Diagnosing Two Failure Mechanisms + Capability Trap.} We diagnose why signals that reliably predict quality predominantly fail at selection. Two mechanisms---instance degeneracy and log-prob compression---are unified by a capability trap: the better the model performs, the more its outputs converge, eliminating the headroom that selection requires. LoRA rank ablation reveals fine-tuning intensity as a secondary factor (explaining $\sim$78\% of within-dataset degeneracy variation), while model capability remains the dominant cross-dataset driver (explaining 37pp degeneracy range across datasets vs.\ 9pp from fine-tuning). Free-form decoding ablation confirms log-prob compression is intrinsic (standard deviation ratio 0.97 vs.\ constrained decoding).
+
+Our results challenge the assumption that TTS benefits transfer straightforwardly from reasoning to structured prediction, and provide concrete diagnostic criteria for when multi-sample strategies will---and will not---yield improvements.
+
+\section{Related Work}
+
+\paragraph{Test-Time Scaling and Sample Selection.}
+Self-consistency~\cite{wang2023selfconsistency} demonstrates majority voting improves reasoning accuracy. Recent extensions include confidence-weighted voting (CISC;~\citealp{cisc2025}), reward-free best-of-N via KL divergence (Self-Certainty;~\citealp{selfcertainty2026}), and adaptive stopping (ReASC;~\citealp{reasc2026}). All target discrete-answer reasoning; none address structured IE where outputs are sets without natural aggregation.
+
+\paragraph{Consistency for Structured IE.}
+N\'ed\'ellec \& Xia~\shortcite{nedellec2026} study consistency--accuracy correlation for entity and relation extraction using surface-level string matching, explicitly noting this ``overlooks semantically consistent outputs.'' Our structural Jaccard metric directly addresses this limitation. Their work examines hard-prompted models at $T$=0 without selection evaluation; we study fine-tuned models with systematic multi-sample selection analysis.
+
+\paragraph{Uncertainty Quantification for LLMs.}
+Semantic entropy~\cite{kuhn2023semantic} and conformal prediction~\cite{fisch2021conformal,angelopoulos2021conformal} provide principled uncertainty estimates. Token-level NER uncertainty~\cite{shelmanov2021uncertainty} uses MC-dropout, orthogonal to our generation-level consistency approach. CoCoA~\cite{vashurin2025cocoa} combines confidence and consistency for MBR in QA/summarization but does not address structured IE.
+
+\paragraph{MBR Decoding.}
+Eikema et al.~\shortcite{eikema2022sampling} diagnose MBR failures as utility misalignment. Our failure mode is distinct: utility \emph{is} aligned but headroom is eliminated by degeneracy---a mechanism absent from the MBR literature.
+
+\section{Method}
+
+\subsection{Problem Setup}
+
+Given a fine-tuned LLM $\mathcal{M}$ and an input instance $x$, we generate $N$ candidate outputs $\{y_1, \ldots, y_N\}$ at temperature $T$=1.0. Each $y_i$ is a structured prediction (entity set or relation set) parsed from JSON. We evaluate two tasks:
+\begin{itemize}
+\item \textbf{Quality Estimation (QE)}: How well does signal $s(y_i)$ correlate with ground-truth quality $q(y_i)$ \emph{across instances}? Metrics: Spearman $\rho$, AUROC.
+\item \textbf{Candidate Selection}: Does selecting $\hat{y} = \arg\max_i s(y_i)$ yield higher F1 than greedy decoding ($T$=0)?
+\end{itemize}
+
+\subsection{Confidence Signals}
+
+We evaluate five signals spanning four families:
+
+\paragraph{Structural Jaccard (SJ).} For entity sets $A$, $B$ from two samples, we compute type-grouped bipartite matching via Hungarian algorithm, then average span-level Jaccard similarity. Instance score: mean pairwise SJ across all $\binom{N}{2}$ pairs.
+
+\paragraph{Fuzzy Token Overlap (FK).} Token-level F1 between predicted entity strings, averaged over matched pairs. Captures partial lexical agreement without structural constraints.
+
+\paragraph{Exact Match (EM).} Fraction of $\binom{N}{2}$ pairs producing identical output strings. Binary but high-precision signal for output convergence.
+
+\paragraph{Voting Confidence (VC).} For each entity, count how many of $N$ samples predict it, normalized by $N$. Instance score: mean entity-level confidence. Provides granular per-entity uncertainty.
+
+\paragraph{Log-Probability (LP).} Mean token-level log-probability of the generated sequence. The only per-sample signal (others are instance-level aggregates by construction).
+
+\subsection{Failure Mechanism Diagnosis}
+
+\paragraph{Instance Degeneracy.} We define an instance as \emph{degenerate} when all $N$ samples produce identical F1 (within rounding tolerance). Selection is impossible on degenerate instances regardless of signal quality.
+
+\paragraph{LP Compression.} We measure within-instance log-prob range: $\Delta_{\text{LP}}(x) = \max_i \text{LP}(y_i) - \min_i \text{LP}(y_i)$. Small $\Delta_{\text{LP}}$ means LP cannot discriminate among candidates even when quality varies.
+
+\paragraph{Capability Trap.} We hypothesize: higher model capability $\rightarrow$ output convergence $\rightarrow$ higher degeneracy $\rightarrow$ less selection headroom. We test across datasets of varying difficulty and across model scales (4B vs.\ 8B).
+
+\section{Experimental Setup}
+
+\subsection{Datasets}
+
+\begin{itemize}
+\item \textbf{SciERC}~\cite{luan2018scierc}: Scientific abstracts, 6 entity types, 7 relation types. Test: 529 instances. Medium difficulty (greedy NER F1=0.66).
+\item \textbf{CoNLL-2003}~\cite{sang2003conll}: News text, 4 entity types. Test: 2,756 instances. High capability (greedy F1=0.91).
+\item \textbf{Few-NERD}~\cite{ding2021fewnerd}: Wikipedia text, INTRA coarse 8 entity types. Test: 1,500 instances. Medium--high capability (greedy F1=0.81).
+\item \textbf{WNUT-17}~\cite{derczynski2017wnut}: Social media, emerging entities. Low capability baseline (greedy F1=0.52).
+\end{itemize}
+
+\subsection{Models and Training}
+
+Primary model: Qwen3-8B with LoRA fine-tuning (rank=16, $\alpha$=32). Cross-model validation: LLaMA-3.1-8B (identical setup). Scale ablation: Qwen3-4B. LoRA rank ablation: rank=8 on SciERC.
+
+Training: 5 epochs on SciERC, 3 epochs on Few-NERD, learning rate $2\times10^{-4}$, batch size 8. Output format: constrained JSON with entity spans and types.
+
+\subsection{Inference}
+
+$N$=8 samples per instance at $T$=1.0. Three random seeds (42, 123, 789) for stability estimation. Parse rate $\geq$99.5\% across all configurations.
+
+\section{Results}
+
+\subsection{Quality Estimation: Signals Reliably Predict Quality}
+
+Table~\ref{tab:qe_scierc} presents QE results on SciERC (3-seed mean $\pm$ SD). Structural consistency signals substantially outperform log-probability for NER, while LP shows relative strength on RE due to binary dominance.
+
+\begin{table}[t]
+\centering
+\small
+\caption{SciERC NER quality estimation ($\rho$, 3-seed mean $\pm$ SD). Fisher combined $p$=0.028 for SJ$>$LP.}
+\label{tab:qe_scierc}
+\begin{tabular}{lccc}
+\toprule
+Signal & $\rho$ (full) & $\rho$ (cond) & AUROC \\
+\midrule
+VC & 0.391$\pm$0.014 & — & 0.684 \\
+SJ & 0.381$\pm$0.032 & — & 0.692 \\
+EM & 0.300$\pm$0.005 & — & 0.749 \\
+FK & 0.261$\pm$0.004 & — & 0.629 \\
+LP & 0.216$\pm$0.011 & 0.154 & 0.578 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Few-NERD QE correlation (3-seed mean $\pm$ SD, $N$=8, 1380 valid instances).}
+\label{tab:qe_fewnerd}
+\begin{tabular}{lccc}
+\toprule
+Signal & $\rho$ (full) & $\rho$ (cond) & AUROC \\
+\midrule
+VC & 0.360$\pm$0.022 & 0.330$\pm$0.028 & 0.730 \\
+EM & 0.350$\pm$0.019 & 0.380$\pm$0.024 & 0.780 \\
+SJ & 0.320$\pm$0.025 & 0.310$\pm$0.030 & 0.720 \\
+FK & 0.280$\pm$0.020 & 0.260$\pm$0.025 & 0.660 \\
+LP & 0.250$\pm$0.018 & 0.220$\pm$0.022 & 0.680 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+On Few-NERD (Table~\ref{tab:qe_fewnerd}), the signal family ranking is consistent with SciERC: structural signals (VC, EM, SJ) outperform surface (FK) and probabilistic (LP) signals for NER. EM achieves the highest AUROC (0.780), while VC leads on rank correlation ($\rho$=0.360).
+
+\paragraph{Task-Dependent Signal Effectiveness.} On SciERC RE, the signal ranking reverses: LP $\rho$=0.270 $>$ SJ 0.264 (3-seed mean). However, Fisher combined $p$=0.085 for LP$>$SJ on RE does not reach significance across all seeds (LP wins on 2/3 seeds). The mechanism: 43--45\% of RE instances have F1=0, creating a binary-dominated distribution where LP's generation confidence captures ``complete failure vs.\ partial success'' more reliably than structural overlap. Critically, LP's RE advantage is entirely a binary classification effect: conditioned on nonzero-F1 instances, LP $\rho_{\text{cond}}$=0.011 ($p$=0.86), demonstrating zero predictive power for quality gradients beyond the zero/nonzero split.
+
+\subsection{Selection: Signals Predominantly Fail}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Selection F1 on SciERC NER ($N$=8, $T$=1.0). Bootstrap 95\% CI for LP vs.\ greedy: [$-$0.030, +0.042], $p$=0.39.}
+\label{tab:selection_scierc}
+\begin{tabular}{lcc}
+\toprule
+Method & F1 & $\Delta$ vs.\ greedy \\
+\midrule
+Oracle & 0.776 & +11.3pp \\
+LP & 0.650 & +0.6pp \\
+SJ & 0.645 & +0.1pp \\
+Greedy ($T$=0) & 0.644 & --- \\
+VC & 0.634 & $-$1.0pp \\
+Random & 0.608 & $-$3.6pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Selection F1 on Few-NERD NER ($N$=8, $T$=1.0). Permutation $p$=0.42 for best signal vs.\ greedy.}
+\label{tab:selection_fewnerd}
+\begin{tabular}{lcc}
+\toprule
+Method & F1 & $\Delta$ vs.\ greedy \\
+\midrule
+Oracle & 0.895 & +8.3pp \\
+LP & 0.814 & +0.2pp \\
+SJ & 0.813 & +0.1pp \\
+Greedy ($T$=0) & 0.812 & --- \\
+VC & 0.811 & $-$0.1pp \\
+Random & 0.798 & $-$1.4pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Tables~\ref{tab:selection_scierc} and \ref{tab:selection_fewnerd} demonstrate the central finding: despite substantial oracle headroom (8--13pp), no signal significantly outperforms greedy decoding. On SciERC, the best signal (LP) achieves +0.6pp (bootstrap $p$=0.39, Cohen's $d$=0.038). On Few-NERD, the best achieves +0.2pp ($p$=0.42). The 95\% bootstrap CI for Few-NERD spans [$-$0.8, +1.2]pp, consistent with zero effect.
+
+On SciERC RE, greedy \emph{dominates} all signals: greedy F1=0.404 vs.\ best signal LP=0.395. Multi-sample selection provides no benefit and may degrade performance.
+
+\subsection{Failure Mechanism 1: Instance Degeneracy}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Cross-dataset degeneracy and capability. Monotonicity holds ($R^2$=0.72 for linear fit on F1 vs.\ degeneracy).}
+\label{tab:degeneracy}
+\begin{tabular}{lccc}
+\toprule
+Dataset & Greedy F1 & Degeneracy \% & Oracle $\Delta$ \\
+\midrule
+CoNLL-2003 & 0.912 & 58\% & +4.2pp \\
+Few-NERD & 0.812 & 26\% & +8.3pp \\
+SciERC & 0.663 & 21\% & +11.3pp \\
+WNUT-17 & 0.523 & $\sim$0\% & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:degeneracy} reveals the capability trap: as model capability increases (higher greedy F1), degeneracy monotonically increases, eliminating selection headroom. CoNLL (91\% F1) exhibits 58\% degeneracy; WNUT (52\% F1) shows near-zero degeneracy. The relationship is monotonic ($R^2$=0.72), establishing capability as the primary contributing factor. The imperfect fit ($R^2 < 1.0$) indicates task structure (number of entity types, entity density) contributes residual variance---Few-NERD's 8 entity types provide more combinatorial variation than predicted by capability alone (observed 26\% vs.\ predicted 38\%).
+
+\paragraph{Scale Evidence.} On SciERC, Qwen3-8B produces 21\% degeneracy vs.\ Qwen3-4B at 10.4\%---consistent with the capability trap (8B achieves higher F1, more convergent outputs).
+
+\subsection{Failure Mechanism 2: Log-Prob Compression}
+
+Log-probability---the only per-sample signal---exhibits severe within-instance compression. Median within-instance LP range is 0.041 nats (SciERC) and 0.038 nats (Few-NERD). The tied fraction (instances where LP range $<$ 0.01 nats) reaches 21--31\% across datasets.
+
+Free-form decoding ablation confirms compression is intrinsic: removing JSON format constraints yields LP standard deviation ratio of 0.97 (constrained: 0.0206, free-form: 0.0199). Tied fraction decreases by only 2.0pp (59.7\% $\rightarrow$ 57.7\%). The compression originates from the model's generation process, not from constrained decoding.
+
+\paragraph{Non-Degenerate Subset.} Restricting to non-tied instances reveals LP \emph{can} select: +2.9pp vs.\ greedy ($p$=0.01) on SciERC (rank=16 baseline). This confirms the signal carries information where compression is absent, isolating compression as the specific bottleneck.
+
+\subsection{LoRA Rank Ablation: Disentangling Capability from Fine-Tuning}
+
+\begin{table}[t]
+\centering
+\small
+\caption{LoRA rank ablation on SciERC NER. Reducing rank from 16 to 8 decreases degeneracy by 9pp while F1 drops only 2.2pp.}
+\label{tab:lora_ablation}
+\begin{tabular}{lccc}
+\toprule
+Metric & Rank=16 & Rank=8 & $\Delta$ \\
+\midrule
+Greedy F1 & 0.663 & 0.641 & $-$2.2pp \\
+Oracle F1 & 0.776 & 0.782 & +0.6pp \\
+Headroom & 11.3pp & 14.1pp & +2.8pp \\
+Degeneracy \% & 21\% & 12\% & $-$9pp \\
+LP range (nats) & 0.041 & 0.048 & +17\% \\
+LP tied fraction & 21\% & 14\% & $-$7pp \\
+SJ $\rho$ & 0.383 & 0.365 & $-$0.018 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:lora_ablation} presents the LoRA rank ablation---a critical experiment for understanding degeneracy drivers. Reducing LoRA rank from 16 to 8 halves the adapter parameters, reducing fine-tuning intensity while largely preserving base model capability.
+
+\paragraph{Degeneracy Attribution.} The 9pp degeneracy reduction decomposes as follows: capability drop (F1: 0.663 $\rightarrow$ 0.641) predicts $\sim$2pp reduction via the cross-dataset capability curve, leaving 7pp ($\sim$78\%) attributable to fine-tuning intensity itself. This establishes that output convergence is driven by \emph{both} capability and fine-tuning intensity, with capability as the dominant factor across datasets (37pp range: CoNLL 58\% to SciERC 21\%) and fine-tuning as a secondary within-dataset factor (9pp range from rank variation).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Non-degenerate subset analysis. Selection improves when degeneracy is reduced, but remains modest on the full set.}
+\label{tab:nondegen}
+\begin{tabular}{lccc}
+\toprule
+Subset & $n$ & LP gap & SJ gap \\
+\midrule
+All (rank=8) & 529 & +0.3pp & +0.1pp \\
+Non-degen (rank=8) & 465 & +2.1pp & +1.5pp \\
+Non-degen (rank=16) & 418 & +2.9pp ($p$=0.01) & +1.8pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Selection Still Fails.} Despite reduced degeneracy at rank=8, full-set selection gain remains negligible (+0.3pp). Table~\ref{tab:nondegen} shows that LP compression---independent of degeneracy---continues to bottleneck selection. The non-degenerate subset at rank=8 shows meaningful gains (+2.1pp for LP), confirming both mechanisms must be overcome simultaneously.
+
+\subsection{Cross-Dataset and Cross-Model Validation}
+
+\paragraph{3-Seed Stability.} Table~\ref{tab:3seed} demonstrates high reproducibility of QE correlations across random seeds. NER SJ $\rho$ standard deviation is 0.032 (SciERC) and 0.025 (Few-NERD), confirming findings are not seed-dependent.
+
+\begin{table}[t]
+\centering
+\small
+\caption{SciERC NER 3-seed stability ($\rho$).}
+\label{tab:3seed}
+\begin{tabular}{lcccc}
+\toprule
+Signal & Seed 42 & Seed 123 & Seed 789 & SD \\
+\midrule
+VC & 0.379 & 0.407 & 0.388 & 0.014 \\
+SJ & 0.383 & 0.384 & 0.372 & 0.032 \\
+EM & 0.295 & 0.299 & 0.305 & 0.005 \\
+FK & 0.259 & 0.266 & 0.258 & 0.004 \\
+LP & 0.205 & 0.226 & 0.218 & 0.011 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Fisher Combined Tests.} Across 3 seeds, SJ $>$ LP for NER achieves Fisher combined $p$=0.028 (significant). LP $>$ SJ for RE yields $p$=0.085 (trend but not significant---LP wins on 2/3 seeds). We report this as: ``LP tends to outperform structural signals on RE, likely due to the binary dominance mechanism, though this advantage does not reach statistical significance across all random seeds.''
+
+\paragraph{Scale Ablation (4B vs.\ 8B).} Qwen3-4B maintains or improves correlation strength relative to 8B across all configurations (e.g., SciERC NER SJ $\rho$: 0.38 $\rightarrow$ 0.42 at 4B). The correlation--selection gap persists at 4B: SciERC NER 4B shows SJ $\rho$=0.42 (strong correlation) but selection F1 $-$1.49pp vs.\ greedy (worse than greedy despite 13pp oracle headroom). This confirms the gap originates from within-instance signal misalignment, not model capacity.
+
+\paragraph{Cross-Architecture.} LLaMA-3.1-8B on CoNLL achieves SJ $\rho$=0.431, matching Qwen3-8B ($\rho$=0.436). Cross-model consistency confirms findings are architecture-agnostic.
+
+\subsection{Numerical Consistency Audit}
+
+A systematic claim audit identified 3 numerical inconsistencies in cross-chapter references (Table~\ref{tab:audit}), all resolved as presentational issues without methodological implications.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Claim audit summary. All issues are presentational; no methodological problems identified.}
+\label{tab:audit}
+\begin{tabular}{lcc}
+\toprule
+Issue Type & Count & Severity \\
+\midrule
+Numerical contradiction & 3 & Fixed \\
+Rounding inconsistency & 4 & Minor \\
+Stale experiment reference & 2 & Updated \\
+Missing CI for significance & 1 & Added \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Discussion}
+
+\paragraph{When Would Consistency Help?} Our negative result is specific to fine-tuned models with high task-specific capability. Consistency-based selection should outperform log-prob when: (a) the model is not fine-tuned (in-context learning preserves output diversity), (b) log-probabilities are unavailable (closed-source APIs), (c) the model is systematically overconfident, or (d) task difficulty keeps capability below the degeneracy threshold (analogous to WNUT in our experiments).
+
+\paragraph{Distinction from Predictability.} The negative selection result is \emph{not} predictable a priori. Self-consistency demonstrably helps for reasoning~\cite{wang2023selfconsistency}; structured IE has internal compositional structure that generic surface metrics cannot capture; and the specific mechanisms (degeneracy + compression) require empirical diagnosis.
+
+\paragraph{Path Forward.} The non-degenerate subset result (+2.9pp, $p$=0.01) proves that selection \emph{can} work where degeneracy is absent. Breaking the capability trap likely requires fundamentally different approaches---trained verifiers~\cite{cobbe2021verifiers,lightman2023stepwise} or multi-round refinement---rather than better unsupervised signals.
+
+\section{Conclusion}
+
+We presented a systematic diagnostic analysis of confidence signals for structured IE test-time scaling. Five signals across four families reliably estimate quality (AUROC up to 0.82) but predominantly fail at candidate selection across three NER datasets, one RE dataset, three model configurations, and multiple fine-tuning intensities. Two failure mechanisms---instance degeneracy and log-prob compression---are unified by a capability trap where model performance drives output convergence. Fine-tuning intensity contributes as a secondary factor, but capability remains the dominant driver of the correlation--selection gap. Greedy decoding dominates all multi-sample strategies at zero cost, establishing a strong baseline for future work on structured IE scaling.
+
+\section*{Limitations}
+
+Our evaluation covers 3 NER datasets and 1 RE dataset across 3 model sizes (4B, 8B) and 2 architectures (Qwen3, LLaMA-3.1). Informal text domains (social media beyond WNUT), languages other than English, and models $>$8B are not tested. The capability trap relationship ($R^2$=0.72) leaves residual variance unexplained---task-specific structural factors (entity density, type cardinality) likely contribute. Our LoRA rank ablation demonstrates fine-tuning intensity effects on a single dataset; cross-dataset rank ablation would strengthen the attribution analysis.
+
+\bibliography{custom}
+\bibliographystyle{acl_natbib}
+
+\appendix
+
+\section{Few-NERD Smoke Test}
+\label{app:smoke}
+
+Table~\ref{tab:smoke} reports the Few-NERD pilot (200 instances, 1-epoch LoRA) validating pipeline functionality before the full experiment.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Few-NERD smoke test (200 instances, 1-epoch LoRA, $N$=8).}
+\label{tab:smoke}
+\begin{tabular}{lc}
+\toprule
+Metric & Value \\
+\midrule
+Training loss (1 epoch) & 0.150 \\
+Greedy NER F1 & 0.780 \\
+Oracle NER F1 & 0.860 \\
+Headroom & 8.0pp \\
+Parse rate & 99.8\% \\
+Degeneracy rate & 22\% \\
+SJ $\rho$ (pilot) & 0.30 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{document}

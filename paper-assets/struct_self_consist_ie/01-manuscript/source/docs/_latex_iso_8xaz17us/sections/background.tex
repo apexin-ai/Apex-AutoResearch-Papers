@@ -1,0 +1,45 @@
+\section{Related Work}\label{sec:related}
+
+\paragraph{Test-time scaling and self-consistency.}\label{sec:yun_contrast}
+Self-consistency \cite{wang2023selfconsistency} and best-of-$N$ with scaling laws \cite{snell2025scaling, brown2024monkeys, gao2023scaling} yield large gains on reasoning; recent extensions include reward-tail-guided search \cite{li2026rewardtail}. Reward-free selectors \cite{taubenfeld2025cisc, kang2025selfcertainty} and trained verifiers \cite{cobbe2021verifiers, lightman2024verify, li2023stepaware} target discrete-answer settings.
+SC can fail when consistent outputs are wrong \cite{chen2023twofailures}; free-form \cite{chen2024usc} and atomic \cite{thirukovalluru2024atomic} variants face limits where sub-output agreement does not yield selection gain. Iterative self-verification \cite{shinn2023reflexion} offers an alternative, but our ESJ and MRSC results (\S\ref{sec:selection_gap}) show such approaches also fail for NER.
+\citet{yun2025price} identify diversity collapse under constrained decoding; we extend their qualitative account with quantitative diagnostics (\S\ref{sec:selection_gap}).
+
+\paragraph{Consistency for structured IE.}
+\citet{yao2026consistency} show consistency correlates with accuracy for LLM-based NER/RE ($\rho$ up to 0.47); we extend to instance-level analysis: (1)~task-level $\rho$ masks instance-level degeneracy; (2)~we decompose failure into degeneracy and LP compression; (3)~pre-deployment diagnostics that task-level correlation cannot provide.
+Critically, their task-level granularity cannot distinguish instances where scaling helps from those where it harms; our entity-level decomposition addresses this gap (Table~\ref{tab:novelty_comparison}).
+\citet{xie2023zeroshot} propose entity voting for zero-shot NER; \citet{xie2024selfimproving} report positive SC where zero-shot diversity is high.
+
+\paragraph{Uncertainty estimation and MBR.}
+Our selection instantiates MBR decoding \cite{eikema2022sampling}; \citet{eikema2025structured} find MBR utilities degrade on structured outputs, consistent with our LP compression findings.
+LP is well-calibrated at population level \cite{kadavath2022language, tian2023calibration} and motivated as a quality signal by noisy channel models \cite{yee2019noisy}, yet too compressed within instances for selection.
+Complementary approaches include uncertainty estimation for autoregressive structured prediction \cite{malinin2021uncertainty}, calibration of pre-trained transformers \cite{desai2020calibration}, large-scale uncertainty quantification \cite{xiao2022uncertainty}, semantic uncertainty \cite{kuhn2023semantic}, selective prediction \cite{geifman2017selective}, and conformal prediction \cite{angelopoulos2023conformal}.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Novelty comparison with closest related work along six dimensions.}
+\label{tab:novelty_comparison}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Dimension & \citet{yao2026consistency} & \citet{yun2025price} & \citet{landesberg2026bon} & Ours \\
+\midrule
+Domain & NER/RE & Reasoning & Reasoning & NER/RE/SQL \\
+Granularity & Task & Task & Prompt & Instance \\
+Failure mechanism & --- & Diversity collapse & Baseline effects & Degeneracy $+$ $\alpha$ \\
+Diagnostic framework & $\rho$ only & Qualitative & $r$ global/local & $D$, $G_{\text{nd}}$, $\alpha$, LP \\
+Scale range & Single & --- & Single & 4B--72B+API \\
+Prescriptive & No & No & No & Conditional ($p_{\text{adj}}{=}0.055$) \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\paragraph{Concurrent work.}
+\citet{landesberg2026bon} independently document a correlation-selection gap in best-of-$N$ reasoning: global judge $r{=}0.47$ masks within-prompt $r{=}0.27$ (Table~\ref{tab:novelty_comparison}).
+This concurrent discovery validates the gap as cross-domain.
+The studies diverge in four respects (Table~\ref{tab:novelty_comparison}):
+\textit{(a)~domain}: reasoning (scalar judgments) vs.\ NER/RE (entity sets with partial overlap);
+\textit{(b)~failure mechanism}: prompt-level baseline effects vs.\ degeneracy ($12$--$68$\%) and signal alignment collapse ($\alpha{\to}0$), mechanisms specific to structured prediction;
+\textit{(c)~granularity}: prompt-level $r$ decomposition vs.\ instance- and entity-level diagnostics ($D$, $G_{\textup{nd}}$, $\alpha$);
+\textit{(d)~prescriptive}: no constructive remedy vs.\ entity-level construction with MBR grounding (Proposition~\ref{prop:construction_mbr}).

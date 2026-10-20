@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "task": "NER-only (SciERC)",
+    "N": 16,
+    "T": 1.0,
+    "instances": 551,
+    "seeds": [42, 123, 456],
+    "model": "Qwen2.5-7B-Instruct (LoRA)",
+    "date": "2026-05-14"
+  },
+  "full": {
+    "n": 529,
+    "rho": {
+      "SJ":          {"seed42": 0.4280, "seed123": 0.4244, "seed456": 0.3838, "mean": 0.4121, "sd": 0.0245},
+      "FK":          {"seed42": 0.2809, "seed123": 0.2752, "seed456": 0.2234, "mean": 0.2598, "sd": 0.0317},
+      "logprob":     {"seed42": 0.2194, "seed123": 0.2513, "seed456": 0.2322, "mean": 0.2343, "sd": 0.0161},
+      "EM":          {"seed42": 0.3347, "seed123": 0.3369, "seed456": 0.3162, "mean": 0.3293, "sd": 0.0114},
+      "voting_conf": {"seed42": 0.4408, "seed123": 0.4131, "seed456": 0.4111, "mean": 0.4217, "sd": 0.0166}
+    },
+    "auroc": {
+      "SJ":          {"seed42": 0.7368, "seed123": 0.7363, "seed456": 0.7107, "mean": 0.7279, "sd": 0.0149},
+      "FK":          {"seed42": 0.6099, "seed123": 0.6268, "seed456": 0.5768, "mean": 0.6045, "sd": 0.0253},
+      "logprob":     {"seed42": 0.5870, "seed123": 0.6062, "seed456": 0.5938, "mean": 0.5957, "sd": 0.0097},
+      "EM":          {"seed42": 0.7902, "seed123": 0.7807, "seed456": 0.7683, "mean": 0.7797, "sd": 0.0110},
+      "voting_conf": {"seed42": 0.7340, "seed123": 0.7167, "seed456": 0.7121, "mean": 0.7209, "sd": 0.0115}
+    },
+    "ranking_rho": ["voting_conf", "SJ", "EM", "FK", "logprob"],
+    "ranking_auroc": ["EM", "SJ", "voting_conf", "FK", "logprob"]
+  },
+  "conditional": {
+    "n": [477, 477, 479],
+    "rho": {
+      "SJ":          {"seed42": 0.3688, "seed123": 0.3757, "seed456": 0.3494, "mean": 0.3646, "sd": 0.0136},
+      "FK":          {"seed42": 0.1934, "seed123": 0.1785, "seed456": 0.1565, "mean": 0.1761, "sd": 0.0186},
+      "logprob":     {"seed42": 0.1560, "seed123": 0.1727, "seed456": 0.1707, "mean": 0.1665, "sd": 0.0092},
+      "EM":          {"seed42": 0.4151, "seed123": 0.4036, "seed456": 0.4058, "mean": 0.4082, "sd": 0.0061},
+      "voting_conf": {"seed42": 0.3531, "seed123": 0.3393, "seed456": 0.3459, "mean": 0.3461, "sd": 0.0069}
+    },
+    "auroc": {
+      "SJ":          {"seed42": 0.7193, "seed123": 0.7213, "seed456": 0.6985, "mean": 0.7130, "sd": 0.0126},
+      "FK":          {"seed42": 0.5893, "seed123": 0.6054, "seed456": 0.5610, "mean": 0.5853, "sd": 0.0225},
+      "logprob":     {"seed42": 0.5694, "seed123": 0.5844, "seed456": 0.5758, "mean": 0.5765, "sd": 0.0075},
+      "EM":          {"seed42": 0.7972, "seed123": 0.7869, "seed456": 0.7801, "mean": 0.7881, "sd": 0.0087},
+      "voting_conf": {"seed42": 0.7122, "seed123": 0.6979, "seed456": 0.6937, "mean": 0.7013, "sd": 0.0097}
+    },
+    "ranking_rho": ["EM", "SJ", "voting_conf", "FK", "logprob"],
+    "ranking_auroc": ["EM", "SJ", "voting_conf", "FK", "logprob"]
+  },
+  "analysis": {
+    "structural_beats_surface": "3/3 seeds (SJ > FK for all seeds, all structural > logprob)",
+    "cross_seed_ranking_consistent": true,
+    "top3_stable": "EM, SJ, voting_conf always top-3 across all seeds and both splits",
+    "bottom2_stable": "FK, logprob always bottom-2 (swap 4th/5th in seed456 full)",
+    "conditional_ranking_perfectly_consistent": "EM > SJ > voting_conf > FK > logprob in all 3 seeds"
+  }
+}

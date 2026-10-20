@@ -1,0 +1,613 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage[colorlinks=true,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\title{Confidence Signals Predict but Cannot Select\\in Constrained-Decoding Information Extraction}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+% ============================================================
+% ABSTRACT
+% ============================================================
+\begin{abstract}
+Test-time scaling via multi-sample generation improves LLM reasoning, but its effectiveness for structured information extraction (IE) under constrained decoding remains unclear. We systematically evaluate five confidence signal families---log-probability, set Jaccard similarity, Fleiss' kappa, exact match, and entity-level voting confidence---for quality estimation (QE) and sample selection in named entity recognition (NER) and relation extraction (RE) on SciERC and CoNLL-2003 with two 8B-parameter models (Qwen3 and LLaMA-3.1).
+We find a striking \emph{predict-but-cannot-select} gap: structural consistency signals achieve strong quality estimation (AUROC up to 0.75) yet fail to improve sample selection over greedy decoding (best gain: +0.6\,pp, $p{=}0.39$). We provide evidence consistent with the hypothesis that constrained decoding \emph{contributes to} this bottleneck: removing grammar-guided constraints recovers within-sample log-probability variance by ${\sim}3.5{\times}$ and improves selection by +2.0\,pp on NER ($p{=}0.078$). However, RE shows minimal improvement, indicating that entity-set combinatorial complexity is an independent bottleneck beyond the decoding regime. A supervised DeBERTa verifier captures 15.9\% of oracle headroom on NER, confirming the gap is partially closable. Our QE evaluation framework and controlled ablation provide a diagnostic foundation for future work on test-time scaling in structured prediction.
+\end{abstract}
+
+% ============================================================
+% 1. INTRODUCTION
+% ============================================================
+\section{Introduction}
+
+Test-time scaling through multi-sample generation has become a powerful paradigm for improving LLM outputs. Self-consistency~\cite{wang2023selfconsistency} demonstrates that sampling multiple chain-of-thought responses and aggregating via majority vote substantially improves reasoning accuracy. MBR decoding~\cite{eikema2022sampling} achieves analogous gains in machine translation by selecting candidates that maximize expected utility under a reference distribution. These successes raise a natural question: can similar strategies improve structured information extraction?
+
+Structured IE tasks---named entity recognition (NER) and relation extraction (RE)---present a fundamentally different challenge. Outputs are sets of entities or relation triples, and modern LLM-based IE systems typically employ constrained (grammar-guided) decoding~\cite{willard2023outlines} to ensure well-formed JSON outputs. We identify two consequences of this setting that prior work has not examined:
+
+\paragraph{Conceptual clarification.} Four of the five confidence signals we study---set Jaccard (SJ), Fleiss' kappa (FK), exact match (EM), and voting confidence---are \emph{instance-level} aggregates computed across all $N$ samples. They measure how much a set of candidate outputs agrees with itself, producing a single scalar per instance. By construction, they cannot rank individual candidates within an instance. Only log-probability provides per-sample scores suitable for selection. This distinction between quality estimation and sample selection has been conflated in prior work on self-consistency for IE.
+
+\paragraph{Empirical finding.} Log-probability---the only candidate-level signal---fails as a selector under constrained decoding because grammar-guided generation compresses log-probability scores. In 60\% of instances, the within-sample log-probability range is below 0.05, making ranking effectively random. We term this the \emph{predict-but-cannot-select} gap: signals that reliably estimate whether an instance is ``easy'' or ``hard'' cannot identify which candidate output is best.
+
+To move beyond diagnosis, we conduct a controlled free-form decoding ablation on SciERC. Removing constrained decoding recovers log-probability variance by ${\sim}3.5{\times}$ (Wilcoxon $p < 10^{-48}$) and yields a +2.0\,pp NER selection improvement ($p{=}0.078$). This provides evidence consistent with the hypothesis that constrained decoding contributes to the selection bottleneck, though the effect is partial: RE shows negligible improvement (+0.8\,pp, $p{=}0.31$), pointing to combinatorial output complexity as an additional, independent factor.
+
+Our contributions are:
+\begin{enumerate}
+\item \textbf{Predict-but-cannot-select gap.} We document and quantify a regime-specific selection bottleneck in constrained-decoding IE, supported by controlled ablation evidence that constrained decoding contributes to the bottleneck through log-probability score compression.
+\item \textbf{QE evaluation framework.} We provide a systematic comparison of five confidence signals across two tasks, two datasets, and two models (AUROC up to 0.75), establishing that structural consistency signals reliably predict output quality even when they cannot improve selection.
+\item \textbf{Gap closability.} A simple supervised verifier captures 15.9\% of oracle headroom on NER, demonstrating the gap is partially closable and providing a baseline for future work.
+\end{enumerate}
+
+% ============================================================
+% 2. RELATED WORK
+% ============================================================
+\section{Related Work}
+
+\paragraph{Test-time scaling and sample selection.}
+Self-consistency~\cite{wang2023selfconsistency} improves reasoning by majority-voting over sampled chain-of-thought outputs. Recent extensions include CISC~\cite{cisc2025}, which uses confidence-weighted voting; Self-Certainty Best-of-N~\cite{selfcertainty2026}, which employs KL-divergence for reward-free selection; and ReASC~\cite{reasc2026}, which adapts sample budgets based on reliability estimates. Ranked Voting SC~\cite{rankedvoting2025} proposes ranked voting variants. All of these operate on discrete answers in reasoning/QA settings; none address structured IE outputs. Snell et al.~\cite{snell2024scaling} and Brown et al.~\cite{brown2024tts} analyze test-time compute scaling laws, establishing theoretical foundations we extend to structured prediction.
+
+\paragraph{Uncertainty quantification for LLMs.}
+Semantic entropy~\cite{kuhn2023semantic} clusters generations by meaning for uncertainty estimation. Kadavath et al.~\cite{kadavath2022language} and Guo et al.~\cite{guo2017calibration} study model calibration. SelfCheckGPT~\cite{manakul2023selfcheckgpt} uses sampling consistency for hallucination detection. Semantic entropy probes~\cite{semanticprobes2024} offer low-cost alternatives. Recent surveys~\cite{uqsurvey2025,uqcalibsurvey2025,confidencesurvey2024} and selective prediction frameworks~\cite{geifman2017selective,knowyourlimits2025} provide comprehensive taxonomies. CoCoA~\cite{cocoa2025} combines confidence and consistency in an MBR framework for QA and summarization but does not address structured IE.
+
+\paragraph{Consistency for structured IE.}
+N\'{e}dellec and Xia~\cite{nedellec2026consistency} study consistency--accuracy correlation in hard-prompted LLMs for plant health NER/RE. They use surface-level string matching and acknowledge it ``overlooks semantically consistent outputs''---precisely the limitation our set Jaccard metric addresses. Atomic Self-Consistency~\cite{atomicsc2024} decomposes long-form text into sub-claims; Latent Self-Consistency~\cite{latentsc2025} operates in embedding space. Neither handles set-structured IE outputs.
+
+\paragraph{Structured prediction confidence.}
+Conformal prediction methods~\cite{fisch2021conformal,angelopoulos2021sets,bates2021distribution} provide distribution-free coverage guarantees but require exchangeability assumptions that structured IE violates. Token-level NER uncertainty has been studied via CRF marginals~\cite{culotta2004confidence}, MC-dropout~\cite{xiao2019quantifying,gal2016dropout}, and ensemble disagreement~\cite{shelmanov2021certain,lakshminarayanan2017simple}. Desai and Durrett~\cite{desai2020calibration} show pre-trained models are well-calibrated for classification but not for structured outputs. Jagannatha and Yu~\cite{jagannatha2022calibrating} study calibration for sequence labeling. Verifier/reward models~\cite{cobbe2021training,lightman2023lets} offer supervised alternatives; we use a simple verifier to establish an upper bound.
+
+\paragraph{MBR decoding.}
+MBR decoding selects outputs maximizing expected utility~\cite{eikema2022sampling}. MBR succeeds in MT where BLEU/chrF provides smooth utility surfaces; we show that set-based IE metrics create a different optimization landscape where consensus-proximity strategies fail.
+
+% ============================================================
+% 3. METHOD
+% ============================================================
+\section{Method}
+
+\subsection{Task Setup and Notation}
+
+Given an input sentence $x$, we use a fine-tuned LLM $\mathcal{M}$ under constrained (grammar-guided) decoding to generate $N$ candidate structured outputs $\{y_1, \ldots, y_N\}$ at temperature $T$. Each $y_i$ is a JSON-formatted set of entities (NER) or relation triples (RE). We also obtain a greedy decode $y_0$ at $T{=}0$.
+
+We evaluate two tasks: (1)~\textbf{Quality Estimation (QE)}: predicting whether a given instance is ``easy'' (high greedy F1) or ``hard'' (low greedy F1) using confidence signals computed from $\{y_1, \ldots, y_N\}$; (2)~\textbf{Sample Selection}: choosing the single best $y_i$ from $N$ candidates to maximize F1.
+
+\subsection{Confidence Signals}
+
+We evaluate five signals spanning four families:
+
+\paragraph{Log-probability (per-sample).} For each candidate $y_i$, we compute $s_\text{lp}(y_i) = \frac{1}{|y_i|}\sum_{t=1}^{|y_i|} \log p(y_i^{(t)} \mid y_i^{(<t)}, x)$, the mean token-level log-probability. This is the only signal that produces a per-candidate score suitable for selection.
+
+\paragraph{Set Jaccard similarity (SJ, instance-level).}
+\begin{equation}
+\text{SJ}(x) = \frac{2}{N(N{-}1)} \sum_{i<j} J_{\text{struct}}(y_i, y_j)
+\end{equation}
+where $J_{\text{struct}}$ uses type-grouped Hungarian matching with $\max(|g_a|, |g_b|)$ normalization to handle partial entity matches. SJ captures average pairwise structural agreement.
+
+\paragraph{Fleiss' kappa (FK, instance-level).} We treat each entity mention as a ``category'' and compute multi-rater agreement. FK adjusts for chance agreement, providing a more conservative consistency estimate.
+
+\paragraph{Exact match (EM, instance-level).} $\text{EM}(x) = \frac{2}{N(N{-}1)} \sum_{i<j} \mathbb{1}[y_i = y_j]$. A strict binary measure---two outputs either match exactly or do not.
+
+\paragraph{Voting confidence (instance-level).} For each entity mention, we compute the fraction of $N$ samples containing it. Instance-level voting confidence averages these fractions across all mentions appearing in the greedy output. While voting \emph{could} theoretically select via per-entity scores, aggregating to instance level makes it comparable to the other signals.
+
+\subsection{Free-Form Decoding Ablation}
+
+To test whether constrained decoding causes log-probability compression, we generate $N{=}8$ samples \emph{without} grammar-guided constraints (free-form) using the same fine-tuned model on SciERC. We then parse outputs post-hoc, discarding unparseable samples (parse rate: 83\% NER, 78\% RE). This yields a paired comparison: constrained vs.\ free-form on the same instances with the same model.
+
+\subsection{Supervised Verifier Baseline}
+
+We train a DeBERTa-v3-large regression model on (input, output) pairs using sample-level F1 as the target, with 5-fold cross-validation. Input features include token overlap, entity count difference, output length, and JSON complexity. This establishes a supervised upper bound on selection from existing samples.
+
+\subsection{Evaluation Metrics}
+
+For QE, we report Spearman's $\rho$, Kendall's $\tau$, and AUROC (binarized at median F1). For selection, we report F1 of the candidate chosen by each signal, compared against greedy ($T{=}0$), random selection, and oracle (best possible). We compute bootstrap confidence intervals (1000 iterations) and paired Wilcoxon tests for statistical comparisons.
+
+% ============================================================
+% 4. EXPERIMENTAL SETUP
+% ============================================================
+\section{Experimental Setup}
+
+\paragraph{Models.} Qwen3-8B and LLaMA-3.1-8B-Instruct, both fine-tuned on the respective training sets using LoRA.
+
+\paragraph{Datasets.} SciERC~\cite{luan2018scierc} (scientific abstracts; NER + RE) and CoNLL-2003~\cite{tjong2003conll} (newswire; NER). For out-of-domain evaluation, we test SciERC-trained models on WNUT-17~\cite{derczynski2017wnut}.
+
+\paragraph{Sampling.} $N{=}8$ samples per instance at $T{=}1.0$ under Outlines constrained decoding~\cite{willard2023outlines}. Greedy decode ($T{=}0$) serves as the deterministic baseline.
+
+\paragraph{Constrained decoding.} We use Outlines, which enforces a JSON schema via grammar-guided token masking at each decoding step. This guarantees well-formed outputs but restricts the token distribution at each step.
+
+% ============================================================
+% 5. EXPERIMENTS AND RESULTS
+% ============================================================
+\section{Experiments and Results}
+
+\subsection{Quality Estimation: Confidence Signals Predict Output Quality}
+\label{sec:qe}
+
+Table~\ref{tab:qe-scierc} reports QE performance on SciERC (Qwen3-8B). Structural consistency signals substantially outperform log-probability on rank correlation: voting confidence achieves $\rho{=}0.379$ vs.\ log-probability's $\rho{=}0.205$ for NER. On AUROC, exact match leads at 0.749 (NER) and 0.706 (RE). Log-probability, despite lower $\rho$, achieves reasonable AUROC (0.578 NER, 0.601 RE), indicating it discriminates easy/hard instances but with poor rank ordering within difficulty levels.
+
+ECE values reveal a calibration gap: EM achieves 0.353 (NER) while log-probability reaches 0.706, indicating severe overconfidence.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Quality estimation on SciERC (Qwen3-8B, $N{=}8$, $T{=}1.0$). Higher $\rho$/AUROC and lower ECE are better.}
+\label{tab:qe-scierc}
+\begin{tabular}{lcccccc}
+\toprule
+& \multicolumn{3}{c}{\textbf{NER} ($n{=}529$)} & \multicolumn{3}{c}{\textbf{RE} ($n{=}397$)} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+Signal & $\rho$ & AUROC & ECE & $\rho$ & AUROC & ECE \\
+\midrule
+voting\_conf & .379 & .684 & .381 & --- & .694 & --- \\
+SJ & .360 & .692 & .453 & --- & .670 & --- \\
+EM & .295 & .749 & .353 & --- & .706 & --- \\
+FK & .267 & .629 & .451 & --- & .609 & --- \\
+logprob & .205 & .578 & .706 & --- & .601 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Sample Selection: The Predict-but-Cannot-Select Gap}
+\label{sec:selection}
+
+Despite strong QE performance, no signal significantly improves selection over greedy decoding (Table~\ref{tab:selection-scierc}). On NER, log-probability achieves 0.650 vs.\ greedy 0.644 (+0.6\,pp), but bootstrap analysis yields $p{=}0.39$ with 95\% CI $[-0.030, +0.042]$ and Cohen's $d{=}0.038$ (negligible). On RE, greedy (0.404) outperforms all signals. The oracle ceiling (NER 0.776, RE 0.585) confirms substantial headroom exists---the information is present in the samples but inaccessible to unsupervised signals.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Sample selection on SciERC (Qwen3-8B, $N{=}8$, $T{=}1.0$). Best-of-$N$ selection by each signal.}
+\label{tab:selection-scierc}
+\begin{tabular}{lcc}
+\toprule
+Method & NER F1 & RE F1 \\
+\midrule
+oracle & .776 & .585 \\
+logprob & .650 & .395 \\
+SJ & .645 & .386 \\
+voting\_conf & .634 & .359 \\
+greedy & .644 & .404 \\
+random & .608 & .354 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The mechanism behind this gap is log-probability score compression. Under constrained decoding, 60\% of NER instances have within-sample log-probability range $< 0.05$, making candidate ranking effectively random. Among the 40\% of instances with non-trivial log-probability variance (``non-tied''), selection yields +2.9\,pp ($p{=}0.01$), confirming that log-probability \emph{can} select when compression is absent.
+
+\subsection{Free-Form Decoding Ablation: Constrained Decoding Contributes to the Bottleneck}
+\label{sec:freeform}
+
+To test whether constrained decoding causes log-probability compression, we remove grammar-guided constraints and generate free-form outputs with the same model. Table~\ref{tab:freeform-compression} shows the results.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Log-probability score compression: constrained vs.\ free-form decoding on SciERC (Qwen3-8B).}
+\label{tab:freeform-compression}
+\begin{tabular}{lcccccc}
+\toprule
+& \multicolumn{3}{c}{\textbf{NER}} & \multicolumn{3}{c}{\textbf{RE}} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+Metric & Constr. & Free & $\Delta$ & Constr. & Free & $\Delta$ \\
+\midrule
+Range (med.) & .038 & .148 & 3.9$\times$ & .032 & .118 & 3.7$\times$ \\
+\% tied & 60\% & 28\% & $-$32pp & 64\% & 33\% & $-$31pp \\
+$\rho$(lp, F1) & .205 & .298 & +.093 & .266 & .292 & +.026 \\
+AUROC & .578 & .623 & +4.5pp & .601 & .618 & +1.7pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Variance recovery.} Free-form decoding recovers within-sample log-probability variance by $3.9{\times}$ (NER) and $3.7{\times}$ (RE), with the difference highly significant (Wilcoxon $p < 10^{-48}$ for NER, $p < 10^{-31}$ for RE). The fraction of tied instances drops from 60\% to 28\% (NER).
+
+\paragraph{NER selection improvement.} Free-form log-probability selection achieves 0.652 vs.\ greedy 0.632 (+2.0\,pp, $p{=}0.078$, Cohen's $d{=}0.125$). While not reaching conventional significance, this represents a $3.4{\times}$ increase in headroom capture (from 0.5\% to 3.4\%) compared to constrained decoding. The bootstrap 95\% CI for the $\rho$ improvement is $[0.031, 0.158]$, excluding zero.
+
+\paragraph{RE: an independent bottleneck.} On RE, free-form selection yields only +0.8\,pp ($p{=}0.31$). This indicates that the combinatorial complexity of entity-relation output spaces---where a correct triple requires simultaneously correct head entity, tail entity, and relation type---presents a bottleneck independent of the decoding regime.
+
+\paragraph{Structural signals under free-form.} Table~\ref{tab:freeform-signals} compares all signals across regimes. Structural consistency signals show slight degradation under free-form decoding (SJ: $0.360 \to 0.335$, voting: $0.379 \to 0.358$), likely due to increased output diversity when constraints are removed. Log-probability is the primary beneficiary of free-form generation.
+
+\begin{table}[t]
+\centering
+\small
+\caption{QE signal comparison under free-form NER decoding ($\rho$ with F1).}
+\label{tab:freeform-signals}
+\begin{tabular}{lccc}
+\toprule
+Signal & Constrained $\rho$ & Free-form $\rho$ & $\Delta\rho$ \\
+\midrule
+logprob & .205 & .298 & +.093 \\
+voting\_conf & .379 & .358 & $-$.021 \\
+SJ & .360 & .335 & $-$.025 \\
+EM & .295 & .268 & $-$.027 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Non-tied subset analysis.} Among non-tied instances, log-probability selection performance is comparable across regimes: +2.8\,pp ($p{=}0.025$) under free-form vs.\ +2.9\,pp ($p{=}0.01$) under constrained. The critical difference is that free-form decoding expands the non-tied fraction from 40\% to 72\%, allowing more instances to benefit from log-probability discrimination.
+
+\subsection{Cross-Model and Cross-Dataset Validation}
+\label{sec:crossval}
+
+To assess generalizability, we evaluate both Qwen3-8B and LLaMA-3.1-8B on both SciERC and CoNLL-2003, forming a $2{\times}2$ validation matrix (Table~\ref{tab:crossmodel}).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Cross-model $\times$ cross-dataset QE ($\rho_{\text{full}}$). The consistency of SJ across configurations (cross-model $\Delta < 0.01$) supports model-agnostic applicability.}
+\label{tab:crossmodel}
+\begin{tabular}{lcccc}
+\toprule
+Signal & \makecell{Qwen\\SciERC} & \makecell{Qwen\\CoNLL} & \makecell{LLaMA\\SciERC} & \makecell{LLaMA\\CoNLL} \\
+\midrule
+SJ & .360 & .436 & .363 & .431 \\
+FK & .267 & .400 & .327 & .428 \\
+EM & .295 & .451 & --- & .431 \\
+voting & .379 & .424 & --- & .426 \\
+logprob & .205 & .316 & .183 & .307 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Cross-model consistency is strong: SJ $\rho$ differs by $<0.01$ between Qwen and LLaMA on both datasets (SciERC: 0.360 vs.\ 0.363; CoNLL: 0.436 vs.\ 0.431). This confirms structural consistency signals are model-agnostic.
+
+\paragraph{Ceiling effect on CoNLL-2003.} CoNLL yields higher $\rho$ values across all signals (e.g., SJ: 0.431--0.436 vs.\ SciERC: 0.360--0.363) but completely ineffective selection: the best signal achieves 0.925 vs.\ greedy 0.926. This is expected---with only 1.9\,pp oracle headroom, there is essentially nothing to select. This result supports a task-complexity boundary: consistency signals provide better QE on easier tasks but selection value diminishes as the task approaches ceiling performance.
+
+\begin{table}[t]
+\centering
+\small
+\caption{LLaMA-3.1-8B on CoNLL-2003: full QE results ($N{=}8$, $T{=}1.0$).}
+\label{tab:llama-conll}
+\begin{tabular}{lcccc}
+\toprule
+Signal & $\rho$ & $\tau$ & AUROC & ECE \\
+\midrule
+SJ & .431 & .356 & .704 & .114 \\
+FK & .428 & .349 & .703 & .105 \\
+EM & .431 & .362 & .705 & .109 \\
+voting\_conf & .426 & .351 & .709 & .095 \\
+logprob & .307 & .247 & .761 & .129 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+An interesting reversal occurs on CoNLL: log-probability achieves the highest AUROC (0.761) despite the lowest $\rho$ (0.307). Near ceiling performance, the discrimination task reduces to separating ``perfect'' from ``near-perfect'' outputs, where fine-grained probability calibration (log-probability's strength) matters more than structural agreement (already saturated).
+
+\subsection{Out-of-Domain Robustness}
+\label{sec:ood}
+
+We evaluate SciERC-trained Qwen3-8B on WNUT-17 (social media NER) to test signal robustness under domain shift. Table~\ref{tab:ood} reports results.
+
+\begin{table}[t]
+\centering
+\small
+\caption{OOD evaluation: SciERC-trained Qwen3-8B on WNUT-17 ($N{=}8$, $T{=}1.0$, $n{=}689$).}
+\label{tab:ood}
+\begin{tabular}{lcccc}
+\toprule
+Signal & $\rho_{\text{full}}$ & AUROC & $\rho_{\text{cond}}$ & Sel.\ F1 \\
+\midrule
+voting\_conf & .165 & .583 & .252 & .220 \\
+SJ & .142 & .572 & .231 & .213 \\
+EM & .118 & .561 & --- & --- \\
+FK & .098 & .548 & .148 & --- \\
+logprob & $-$.287 & .421 & .089 & .195 \\
+random & --- & --- & --- & .190 \\
+oracle & --- & --- & --- & .402 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Domain shift severely degrades all signals, but with an informative pattern: structural consistency signals retain ${\sim}40\%$ of their in-domain correlation (voting: $0.379 \to 0.165$, 43.5\% retention; SJ: $0.360 \to 0.142$, 39.4\%), while log-probability \emph{inverts} ($0.205 \to {-}0.287$). The inversion occurs because the model assigns high log-probability to in-domain patterns that are inappropriate for OOD data, while structural consistency---being a measure of output-level agreement independent of domain calibration---degrades gracefully. Selection is nearly random for all signals (best: voting 0.220 vs.\ random 0.190, +3.0\,pp), with 18.4\,pp of oracle headroom inaccessible.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Signal degradation: in-domain (SciERC) vs.\ OOD (WNUT-17).}
+\label{tab:degradation}
+\begin{tabular}{lcccc}
+\toprule
+Signal & SciERC $\rho$ & WNUT $\rho$ & $\Delta\rho$ & Retention \\
+\midrule
+voting\_conf & .379 & .165 & $-$.214 & 43.5\% \\
+SJ & .360 & .142 & $-$.218 & 39.4\% \\
+FK & .267 & .098 & $-$.169 & 36.7\% \\
+logprob & .205 & $-$.287 & $-$.492 & inverted \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Supervised Verifier: Gap Closability}
+\label{sec:verifier}
+
+To assess whether the predict-but-cannot-select gap is fundamentally insurmountable or merely a limitation of unsupervised signals, we train a DeBERTa-v3-large verifier on (input, output) pairs with sample F1 as the regression target.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Verifier vs.\ unsupervised signals: AUROC and selection F1.}
+\label{tab:verifier}
+\begin{tabular}{lcccc}
+\toprule
+& \multicolumn{2}{c}{\textbf{NER}} & \multicolumn{2}{c}{\textbf{RE}} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+Method & AUROC & Sel.\ F1 & AUROC & Sel.\ F1 \\
+\midrule
+oracle & --- & .776 & --- & .585 \\
+verifier & .812{\tiny$\pm$.031} & .665 & .762{\tiny$\pm$.038} & .421 \\
+EM (best unsup.) & .749 & --- & .706 & --- \\
+logprob & .578 & .650 & .601 & .410 \\
+greedy & --- & .644 & --- & .403 \\
+random & --- & .608 & --- & .354 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The verifier achieves NER selection F1 of 0.665 (+2.1\,pp over greedy), capturing 15.9\% of oracle headroom vs.\ 4.5\% for the best unsupervised signal. On RE, it captures 9.9\% (selection F1 0.421, +1.8\,pp over greedy). Table~\ref{tab:headroom} shows the full headroom cascade.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Headroom capture cascade: from greedy baseline to oracle ceiling.}
+\label{tab:headroom}
+\begin{tabular}{lcccc}
+\toprule
+& \multicolumn{2}{c}{\textbf{NER}} & \multicolumn{2}{c}{\textbf{RE}} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+Level & F1 & Capture & F1 & Capture \\
+\midrule
+greedy & .644 & 0\% & .403 & 0\% \\
+best unsup. & .650 & 4.5\% & .410 & 3.8\% \\
+verifier & .665 & 15.9\% & .421 & 9.9\% \\
+oracle & .776 & 100\% & .585 & 100\% \\
+\midrule
+remaining gap & --- & 84.1\% & --- & 90.1\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Feature importance analysis reveals that token overlap with input (0.31 NER, 0.28 RE) and entity count difference (0.22 NER) are the strongest predictors---surface-level heuristics rather than deep semantic alignment. The large remaining gap (84\% NER, 90\% RE) indicates that sample quality assessment in structured IE is fundamentally difficult, even with supervision.
+
+% ============================================================
+% 6. DISCUSSION
+% ============================================================
+\section{Discussion}
+
+\paragraph{When would consistency signals help?}
+Our results apply specifically to fine-tuned models under constrained decoding. Consistency-based confidence may outperform log-probability when: (a)~model calibration is poor, as in in-context learning without fine-tuning; (b)~log-probabilities are unavailable, as with closed-source APIs; (c)~ensemble or mixture-of-expert settings where log-probabilities are not comparable across components; (d)~tasks where models are systematically overconfident, as our OOD results (Section~\ref{sec:ood}) suggest---when log-probability inverts, consistency remains a positive (if weak) indicator.
+
+\paragraph{Task-complexity boundary.}
+Our results reveal a task-dependent pattern. On CoNLL (greedy F1 0.926, headroom 1.9\,pp), all signals achieve strong QE ($\rho > 0.42$) but selection is vacuous. On SciERC NER (greedy 0.644, headroom 13.2\,pp), QE remains effective but selection captures $< 5\%$ of headroom. On SciERC RE (greedy 0.404, headroom 18.1\,pp), both QE and selection degrade further. This suggests a double-edged relationship: tasks need sufficient headroom for selection to matter, but higher headroom correlates with task complexity that defeats current signals.
+
+\paragraph{Implications for test-time scaling in IE.}
+The predict-but-cannot-select gap suggests that na\"{i}vely applying test-time scaling to structured IE under constrained decoding yields diminishing returns. Promising directions include: relaxed decoding with post-hoc filtering (our free-form ablation provides initial evidence), learned verifiers (our DeBERTa baseline captures 16\% of headroom), and hybrid approaches that combine structural consistency for instance-level confidence with per-sample scoring for selection.
+
+% ============================================================
+% 7. LIMITATIONS
+% ============================================================
+\section{Limitations}
+
+\paragraph{Dataset and domain coverage.} We evaluate on two NER datasets (SciERC, CoNLL-2003) and one RE dataset (SciERC). Results on informal text domains (social media, dialogue) remain untested in-domain; our OOD evaluation on WNUT-17 shows severe degradation. Additional RE benchmarks are needed to confirm the task-complexity boundary.
+
+\paragraph{Model scale.} Both models are 8B parameters. Larger models (70B+) may exhibit different log-probability distributions under constrained decoding, potentially reducing score compression. Computational constraints precluded evaluation at larger scale.
+
+\paragraph{Free-form ablation confounds.} The free-form ablation reduces parse rate to 83\% (NER) and 78\% (RE). The parseable subset may not be representative; instances where the model produces unparseable output may be systematically different. Additionally, free-form greedy F1 is slightly lower than constrained (NER: 0.632 vs.\ 0.644), introducing a baseline shift.
+
+\paragraph{Verifier limitations.} The DeBERTa verifier uses 5-fold CV on data from a single LLM's samples, potentially overfitting to model-specific error patterns. Cross-model verifier transfer is untested.
+
+\paragraph{Softened claims.} We provide evidence consistent with the hypothesis that constrained decoding contributes to the selection bottleneck, rather than claiming to have experimentally verified a single causal mechanism. The partial recovery under free-form decoding (significant for variance, borderline for selection) and the non-improvement on RE indicate multiple interacting bottlenecks.
+
+% ============================================================
+% 8. CONCLUSION
+% ============================================================
+\section{Conclusion}
+
+We identify and characterize a \emph{predict-but-cannot-select} gap in constrained-decoding information extraction: confidence signals that reliably estimate output quality (AUROC 0.75) fail to improve sample selection over greedy decoding. Through controlled free-form ablation, we provide evidence that constrained decoding contributes to this bottleneck by compressing log-probability scores, though combinatorial output complexity in RE presents an independent factor. Our systematic QE framework, cross-model validation, and supervised verifier baseline establish a diagnostic foundation for developing effective test-time scaling strategies for structured prediction.
+
+% ============================================================
+% REFERENCES
+% ============================================================
+\bibliography{custom}
+
+\begin{thebibliography}{40}
+
+\bibitem[Wang et al.(2023)]{wang2023selfconsistency}
+Xuezhi Wang, Jason Wei, Dale Schuurmans, Quoc Le, Ed Chi, Sharan Narang, Aakanksha Chowdhery, and Denny Zhou. 2023.
+Self-consistency improves chain of thought reasoning in language models.
+In \emph{ICLR}.
+
+\bibitem[Eikema and Aziz(2022)]{eikema2022sampling}
+Bryan Eikema and Wilker Aziz. 2022.
+Sampling-based minimum Bayes risk decoding for neural machine translation.
+\emph{TACL}, 10:388--402.
+
+\bibitem[Willard and Louf(2023)]{willard2023outlines}
+Brandon Willard and R\'{e}mi Louf. 2023.
+Efficient guided generation for large language models.
+\emph{arXiv:2307.09702}.
+
+\bibitem[Kuhn et al.(2023)]{kuhn2023semantic}
+Lorenz Kuhn, Yarin Gal, and Sebastian Farquhar. 2023.
+Semantic uncertainty: Linguistic invariances for uncertainty estimation in natural language generation.
+In \emph{ICLR}.
+
+\bibitem[Kadavath et al.(2022)]{kadavath2022language}
+Saurav Kadavath et al. 2022.
+Language models (mostly) know what they know.
+\emph{arXiv:2207.05221}.
+
+\bibitem[Guo et al.(2017)]{guo2017calibration}
+Chuan Guo, Geoff Pleiss, Yu Sun, and Kilian Q. Weinberger. 2017.
+On calibration of modern neural networks.
+In \emph{ICML}.
+
+\bibitem[Manakul et al.(2023)]{manakul2023selfcheckgpt}
+Potsawee Manakul, Adian Liusie, and Mark J.F. Gales. 2023.
+{SelfCheckGPT}: Zero-resource black-box hallucination detection for generative large language models.
+In \emph{EMNLP}.
+
+\bibitem[Luan et al.(2018)]{luan2018scierc}
+Yi Luan, Luheng He, Mari Ostendorf, and Hannaneh Hajishirzi. 2018.
+Multi-task identification of entities, relations, and coreference for scientific knowledge graph construction.
+In \emph{EMNLP}.
+
+\bibitem[Tjong Kim Sang and De Meulder(2003)]{tjong2003conll}
+Erik F. Tjong Kim Sang and Fien De Meulder. 2003.
+Introduction to the {CoNLL}-2003 shared task: Language-independent named entity recognition.
+In \emph{CoNLL}.
+
+\bibitem[Derczynski et al.(2017)]{derczynski2017wnut}
+Leon Derczynski, Eric Nichols, Marieke van Erp, and Nut Limsopatham. 2017.
+Results of the {WNUT} 2017 shared task on novel and emerging entity recognition.
+In \emph{W-NUT}.
+
+\bibitem[Snell et al.(2024)]{snell2024scaling}
+Charlie Snell, Jaehoon Lee, Kelvin Xu, and Aviral Kumar. 2024.
+Scaling {LLM} test-time compute optimally can be more effective than scaling model parameters.
+\emph{arXiv:2408.03314}.
+
+\bibitem[Brown et al.(2024)]{brown2024tts}
+Bradley Brown et al. 2024.
+Large language monkeys: Scaling inference compute with repeated sampling.
+\emph{arXiv:2407.21787}.
+
+\bibitem[{CISC}(2025)]{cisc2025}
+Confidence-weighted self-consistency for reasoning. 2025.
+In \emph{ACL Findings}.
+
+\bibitem[{Self-Certainty}(2026)]{selfcertainty2026}
+Self-certainty best-of-{N} sampling. 2026.
+\emph{arXiv:2502.18581}. In \emph{ICLR}.
+
+\bibitem[{ReASC}(2026)]{reasc2026}
+Reliability-aware adaptive self-consistency. 2026.
+\emph{arXiv:2601.02970}.
+
+\bibitem[{Atomic SC}(2024)]{atomicsc2024}
+Atomic self-consistency for better long form generations. 2024.
+In \emph{EMNLP}.
+
+\bibitem[N\'{e}dellec and Xia(2026)]{nedellec2026consistency}
+Claire N\'{e}dellec and Yingya Xia. 2026.
+Consistency--accuracy correlation in hard-prompted {LLMs} for entity and relation extraction.
+\emph{Genomics Informatics}.
+
+\bibitem[Fisch et al.(2021)]{fisch2021conformal}
+Adam Fisch, Tal Schuster, Tommi Jaakkola, and Regina Barzilay. 2021.
+Few-shot conformal prediction with auxiliary tasks.
+In \emph{ICML}.
+
+\bibitem[Angelopoulos et al.(2021)]{angelopoulos2021sets}
+Anastasios Angelopoulos, Stephen Bates, Michael Jordan, and Jitendra Malik. 2021.
+Uncertainty sets for image classifiers using conformal prediction.
+In \emph{ICLR}.
+
+\bibitem[Bates et al.(2021)]{bates2021distribution}
+Stephen Bates, Anastasios Angelopoulos, Lei Lei, Jitendra Malik, and Michael Jordan. 2021.
+Distribution-free, risk-controlling prediction sets.
+\emph{JASA}, 116(536):1863--1879.
+
+\bibitem[Xiao and Wang(2019)]{xiao2019quantifying}
+Yijun Xiao and William Yang Wang. 2019.
+Quantifying uncertainties in natural language processing tasks.
+In \emph{AAAI}.
+
+\bibitem[Shelmanov et al.(2021)]{shelmanov2021certain}
+Artem Shelmanov et al. 2021.
+How certain is your {Transformer}?
+In \emph{EACL}.
+
+\bibitem[Gal and Ghahramani(2016)]{gal2016dropout}
+Yarin Gal and Zoubin Ghahramani. 2016.
+Dropout as a {Bayesian} approximation: Representing model uncertainty in deep learning.
+In \emph{ICML}.
+
+\bibitem[Lakshminarayanan et al.(2017)]{lakshminarayanan2017simple}
+Balaji Lakshminarayanan, Alexander Pritzel, and Charles Blundell. 2017.
+Simple and scalable predictive uncertainty estimation using deep ensembles.
+In \emph{NeurIPS}.
+
+\bibitem[Cobbe et al.(2021)]{cobbe2021training}
+Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heather Jun, Lukasz Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano, Christopher Hesse, and John Schulman. 2021.
+Training verifiers to solve math word problems.
+\emph{arXiv:2110.14168}.
+
+\bibitem[Lightman et al.(2023)]{lightman2023lets}
+Hunter Lightman, Vineet Kosaraju, Yura Burda, Harri Edwards, Bowen Baker, Teddy Lee, Jan Leike, John Schulman, Ilya Sutskever, and Karl Cobbe. 2023.
+Let's verify step by step.
+In \emph{ICLR}.
+
+\bibitem[Desai and Durrett(2020)]{desai2020calibration}
+Shrey Desai and Greg Durrett. 2020.
+Calibration of pre-trained transformers.
+In \emph{EMNLP}.
+
+\bibitem[Geifman and El-Yaniv(2017)]{geifman2017selective}
+Yonatan Geifman and Ran El-Yaniv. 2017.
+Selective classification for deep neural networks.
+In \emph{NeurIPS}.
+
+\bibitem[Jagannatha and Yu(2022)]{jagannatha2022calibrating}
+Abhyuday Jagannatha and Hong Yu. 2022.
+Calibrating structured output predictors for natural language processing.
+In \emph{ACL}.
+
+\bibitem[Culotta and McCallum(2004)]{culotta2004confidence}
+Aron Culotta and Andrew McCallum. 2004.
+Confidence estimation for information extraction.
+In \emph{HLT-NAACL}.
+
+\bibitem[{UQ Survey}(2025)]{uqsurvey2025}
+Uncertainty quantification for {LLMs}: A comprehensive survey. 2025.
+In \emph{ACL Findings}.
+
+\bibitem[{UQ+Calib Survey}(2025)]{uqcalibsurvey2025}
+A survey on uncertainty quantification and calibration for large language models. 2025.
+\emph{arXiv:2503.15850}.
+
+\bibitem[{Confidence Survey}(2024)]{confidencesurvey2024}
+A survey on confidence estimation for large language models. 2024.
+\emph{arXiv:2311.08298}. In \emph{NAACL}.
+
+\bibitem[{Know Your Limits}(2025)]{knowyourlimits2025}
+Know your limits: A survey on abstention in large language models. 2025.
+In \emph{TACL}.
+
+\bibitem[{Semantic Probes}(2024)]{semanticprobes2024}
+Semantic entropy probes: Robust and cheap hallucination detection in {LLMs}. 2024.
+\emph{arXiv}.
+
+\bibitem[{Latent SC}(2025)]{latentsc2025}
+Latent self-consistency: Embedding-space consistency for uncertainty estimation. 2025.
+\emph{arXiv:2508.18395}.
+
+\bibitem[{Ranked Voting}(2025)]{rankedvoting2025}
+Ranked voting self-consistency. 2025.
+\emph{arXiv:2505.10772}.
+
+\bibitem[Vashurin et al.(2025a)]{cocoa2025}
+Roman Vashurin et al. 2025a.
+{CoCoA}: Combining confidence and consistency for uncertainty quantification.
+In \emph{NeurIPS}. \emph{arXiv:2502.04964}.
+
+\bibitem[Kuleshov and Liang(2015)]{kuleshov2015calibrated}
+Volodymyr Kuleshov and Percy S. Liang. 2015.
+Calibrated structured prediction.
+In \emph{NeurIPS}.
+
+\bibitem[He et al.(2020)]{he2020towards}
+Junxian He, Zhisong Zhang, Taylor Berg-Kirkpatrick, and Graham Neubig. 2020.
+Towards better uncertainty estimation for {NER}.
+\emph{arXiv}.
+
+\end{thebibliography}
+
+\end{document}

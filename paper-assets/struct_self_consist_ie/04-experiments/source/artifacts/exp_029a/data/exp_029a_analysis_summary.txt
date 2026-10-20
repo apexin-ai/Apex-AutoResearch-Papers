@@ -1,0 +1,1 @@
+See server: /root/autodl-tmp/struct_self_consist_ie/output/exp_029a_scierc_3epoch/analysis_results.json. Key results: degeneracy=6.43%, greedy_F1=0.6501, oracle_F1=0.7998, headroom=14.97pp, LP_sel_delta=-1.18pp, best_QE=FK(AUROC=0.7523), within_instance_median_rho=0.3172. Verdict: SUCCESS.

@@ -1,0 +1,18 @@
+W3 FK Bootstrap CI Analysis
+
+Method: 10,000-iteration bootstrap CI + permutation test (replacing n=5 t-test)
+
+SciERC NER (Qwen, 3 seeds, n=529):
+- SJ-FK: seed42 +0.147 CI[+0.07,+0.22] p=0.002; seed123 +0.149 CI[+0.08,+0.22] p=0.001; seed456 +0.160 CI[+0.08,+0.24] p=0.001
+- VC-FK: seed42 +0.160 CI[+0.06,+0.26] p=0.001; seed123 +0.138 CI[+0.04,+0.23] p=0.003; seed456 +0.188 CI[+0.08,+0.29] p<0.001
+- EM-FK: seed42 +0.054 CI[-0.04,+0.15] n.s.; seed123 +0.062 CI[-0.03,+0.16] n.s.; seed456 +0.093 CI[-0.01,+0.19] p=0.048
+
+CoNLL NER (Qwen, n=2756):
+- SJ-FK: +0.056 CI[+0.04,+0.07] p<0.001
+- VC-FK: +0.022 CI[-0.00,+0.05] p=0.040
+- EM-FK: +0.071 CI[+0.05,+0.09] p<0.001
+
+Key findings:
+1. SJ and VC significantly outperform FK on SciERC NER across all 3 seeds (p<0.003), delta 0.14-0.19
+2. EM vs FK borderline on SciERC (2/3 seeds n.s.) but highly significant on CoNLL (delta=0.071, p<0.001)
+3. Bootstrap CI and permutation test conclusions highly consistent (mutual robustness check)

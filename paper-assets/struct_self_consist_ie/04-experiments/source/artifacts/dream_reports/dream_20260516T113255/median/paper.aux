@@ -1,0 +1,124 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{wang2023selfconsistency}
+\citation{nédellec2026consistency}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{vashurin2025cocoa,vashurin2025benchmarking}
+\citation{geng2025uqsurvey,huang2025calibrationsurvey,gao2024confidencesurvey}
+\citation{kuhn2023semantic}
+\citation{manakul2023selfcheckgpt}
+\citation{wang2023selfconsistency}
+\citation{cisc2025}
+\citation{selfcertainty2026}
+\citation{reasc2026}
+\citation{nédellec2026consistency}
+\citation{vashurin2025cocoa}
+\citation{vashurin2025benchmarking}
+\citation{geifman2017selective,kamath2020abstention}
+\citation{kuleshov2015calibration,jagannatha2022calibration}
+\citation{lightman2023verify}
+\citation{cobbe2021gsm8k}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Uncertainty Quantification for LLMs.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Test-Time Scaling and Sample Selection.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Consistency for Structured IE.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Positioning vs.\ CoCoA and Vashurin et al.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Selective Prediction and Calibration.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Verifier and Reward Models.}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Methodology}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Task Setup}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Quality Metric.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Confidence Signals}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Structural Agreement (3 signals).}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Voting-based (1 signal).}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Probabilistic (1 signal).}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Evaluation Protocol}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Quality Estimation (QE).}{3}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Selection.}{3}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Oracle.}{3}{section*.13}\protected@file@percent }
+\citation{luan2018scierc}
+\citation{tjong2003conll}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Quality estimation on SciERC (Qwen3-8B, $N$=8, $T$=1.0). NER $n$=529, RE $n$=397. Best per column in \textbf  {bold}.}}{4}{table.caption.19}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:qe_scierc}{{1}{4}{Quality estimation on SciERC (Qwen3-8B, $N$=8, $T$=1.0). NER $n$=529, RE $n$=397. Best per column in \textbf {bold}}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{4}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Datasets.}{4}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Inference.}{4}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scale Ablation.}{4}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LoRA Rank Ablation.}{4}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Quality Estimation}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:qe}{{5.1}{4}{Quality Estimation}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Cross-Model Validation}{4}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:crossmodel}{{5.2}{4}{Cross-Model Validation}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Cross-model validation: LLaMA-3.1-8B on CoNLL-2003 ($N$=8, $T$=1.0, $n$=3453). Greedy F1=0.921, Oracle F1=0.944.}}{5}{table.caption.20}\protected@file@percent }
+\newlabel{tab:llama_conll}{{2}{5}{Cross-model validation: LLaMA-3.1-8B on CoNLL-2003 ($N$=8, $T$=1.0, $n$=3453). Greedy F1=0.921, Oracle F1=0.944}{table.caption.20}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Best-of-$N$ selection on SciERC (Qwen3-8B, $N$=8, $T$=1.0). $\Delta $: difference from greedy. \textsuperscript  {$\dagger $}Not significant ($p$=0.39).}}{5}{table.caption.21}\protected@file@percent }
+\newlabel{tab:selection}{{3}{5}{Best-of-$N$ selection on SciERC (Qwen3-8B, $N$=8, $T$=1.0). $\Delta $: difference from greedy. \textsuperscript {$\dagger $}Not significant ($p$=0.39)}{table.caption.21}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Selection Analysis}{5}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:selection}{{5.3}{5}{Selection Analysis}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Scale Ablation}{5}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:scale}{{5.4}{5}{Scale Ablation}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Diagnostic Analysis: Why Selection Fails}{5}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:diagnostic}{{5.5}{5}{Diagnostic Analysis: Why Selection Fails}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Factor 1: Instance Degeneracy.}{5}{section*.23}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Scale ablation: 4B vs 8B on QE correlation ($\rho $) and selection ($\Delta $ vs greedy). SciERC NER.}}{6}{table.caption.22}\protected@file@percent }
+\newlabel{tab:scale}{{4}{6}{Scale ablation: 4B vs 8B on QE correlation ($\rho $) and selection ($\Delta $ vs greedy). SciERC NER}{table.caption.22}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces LoRA rank ablation on SciERC NER. Lower rank reduces degeneracy but selection still fails.}}{6}{table.caption.26}\protected@file@percent }
+\newlabel{tab:lora}{{5}{6}{LoRA rank ablation on SciERC NER. Lower rank reduces degeneracy but selection still fails}{table.caption.26}{}}
+\@writefile{toc}{\contentsline {paragraph}{Factor 2: Logprob Score Compression.}{6}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Factor 3: Degeneracy Reduction is Necessary but Not Sufficient.}{6}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evidence that signals carry information.}{6}{section*.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Supervised Verifier Baseline}{6}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:verifier}{{5.6}{6}{Supervised Verifier Baseline}{subsection.5.6}{}}
+\citation{eikema2020mbr}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Supervised verifier (logistic regression on 5 QE signals, 5-fold CV) vs.\ unsupervised selection on SciERC.}}{7}{table.caption.28}\protected@file@percent }
+\newlabel{tab:verifier}{{6}{7}{Supervised verifier (logistic regression on 5 QE signals, 5-fold CV) vs.\ unsupervised selection on SciERC}{table.caption.28}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Feature importance in supervised verifier (mean logistic regression coefficients across 5 folds, NER).}}{7}{table.caption.29}\protected@file@percent }
+\newlabel{tab:feat_importance}{{7}{7}{Feature importance in supervised verifier (mean logistic regression coefficients across 5 folds, NER)}{table.caption.29}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{7}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{QE-Selection Decoupling.}{7}{section*.30}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Observed Capability-Degeneracy Correlation.}{7}{section*.31}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{When Would Consistency Signals Help?}{7}{section*.32}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Distinction from MBR Failure.}{8}{section*.33}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications for Test-Time Scaling.}{8}{section*.34}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Limitations}{8}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Dataset Coverage.}{8}{section*.35}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model Scale.}{8}{section*.36}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Supervised Verifier Scope.}{8}{section*.37}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sample Budget.}{8}{section*.38}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{8}{section.8}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{wang2023selfconsistency}{{1}{2023}{{Wang et al.}}{{}}}
+\bibcite{nédellec2026consistency}{{2}{2026}{{N\'{e}d\'{e}llec and Xia}}{{}}}
+\bibcite{vashurin2025cocoa}{{3}{2025a}{{Vashurin et al.}}{{}}}
+\bibcite{vashurin2025benchmarking}{{4}{2025b}{{Vashurin et al.}}{{}}}
+\bibcite{kuhn2023semantic}{{5}{2023}{{Kuhn et al.}}{{}}}
+\bibcite{manakul2023selfcheckgpt}{{6}{2023}{{Manakul et al.}}{{}}}
+\bibcite{geifman2017selective}{{7}{2017}{{Geifman and El-Yaniv}}{{}}}
+\bibcite{kamath2020abstention}{{8}{2020}{{Kamath et al.}}{{}}}
+\bibcite{lightman2023verify}{{9}{2023}{{Lightman et al.}}{{}}}
+\bibcite{cobbe2021gsm8k}{{10}{2021}{{Cobbe et al.}}{{}}}
+\bibcite{eikema2020mbr}{{11}{2020}{{Eikema and Aziz}}{{}}}
+\bibcite{luan2018scierc}{{12}{2018}{{Luan et al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Numerical Consistency Verification}{9}{appendix.A}\protected@file@percent }
+\newlabel{app:audit}{{A}{9}{Numerical Consistency Verification}{appendix.A}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Claim audit: identified inconsistencies and resolutions.}}{9}{table.caption.40}\protected@file@percent }
+\newlabel{tab:audit}{{8}{9}{Claim audit: identified inconsistencies and resolutions}{table.caption.40}{}}
+\bibcite{tjong2003conll}{{13}{2003}{{Tjong Kim Sang and De~Meulder}}{{}}}
+\bibcite{geng2025uqsurvey}{{14}{2025}{{Geng et al.}}{{}}}
+\bibcite{huang2025calibrationsurvey}{{15}{2025}{{Huang et al.}}{{}}}
+\bibcite{gao2024confidencesurvey}{{16}{2024}{{Gao et al.}}{{}}}
+\bibcite{cisc2025}{{17}{2025}{{CISC}}{{}}}
+\bibcite{selfcertainty2026}{{18}{2026}{{Self-Certainty}}{{}}}
+\bibcite{reasc2026}{{19}{2026}{{ReASC}}{{}}}
+\bibcite{kuleshov2015calibration}{{20}{2015}{{Kuleshov and Liang}}{{}}}
+\bibcite{jagannatha2022calibration}{{21}{2022}{{Jagannatha and Yu}}{{}}}
+\bibcite{snell2024scaling}{{22}{2024}{{Snell et al.}}{{}}}
+\bibcite{lakshminarayanan2017ensemble}{{23}{2017}{{Lakshminarayanan et al.}}{{}}}
+\bibcite{culotta2004confidence}{{24}{2004}{{Culotta and McCallum}}{{}}}
+\bibcite{desai2020calibration}{{25}{2020}{{Desai and Durrett}}{{}}}
+\gdef \@abspage@last{10}

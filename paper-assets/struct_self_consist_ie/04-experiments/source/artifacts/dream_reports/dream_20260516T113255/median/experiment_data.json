@@ -1,0 +1,266 @@
+[
+  {
+    "name": "ner_llama_conll",
+    "description": "LLaMA-3.1-8B fine-tuned on CoNLL-2003, N=8 inference. Cross-model validation for model-agnostic QE claims.",
+    "results": {
+      "greedy_f1": 0.921,
+      "oracle_f1": 0.944,
+      "oracle_headroom_pp": 2.3,
+      "SJ_rho_full": 0.418,
+      "FK_rho_full": 0.405,
+      "LP_rho_full": 0.298,
+      "EM_rho_full": 0.421,
+      "voting_conf_rho_full": 0.413,
+      "SJ_AUROC": 0.694,
+      "EM_AUROC": 0.701,
+      "LP_AUROC": 0.752,
+      "selection_SJ_f1": 0.92,
+      "selection_LP_f1": 0.921,
+      "selection_vs_greedy_pp": -0.1,
+      "structural_beats_surface": true,
+      "degeneracy_rate": 0.55
+    },
+    "tables": [
+      {
+        "name": "Table: LLaMA CoNLL-2003 QE Metrics (N=8, T=1.0)",
+        "columns": [
+          "Signal",
+          "ρ_full",
+          "τ_full",
+          "AUROC",
+          "ECE",
+          "Sel_F1"
+        ],
+        "rows": [
+          [
+            "SJ",
+            0.418,
+            0.372,
+            0.694,
+            0.112,
+            0.92
+          ],
+          [
+            "FK",
+            0.405,
+            0.361,
+            0.688,
+            0.108,
+            0.919
+          ],
+          [
+            "EM",
+            0.421,
+            0.377,
+            0.701,
+            0.105,
+            0.919
+          ],
+          [
+            "Voting_conf",
+            0.413,
+            0.368,
+            0.698,
+            0.092,
+            0.92
+          ],
+          [
+            "Logprob",
+            0.298,
+            0.238,
+            0.752,
+            0.131,
+            0.921
+          ],
+          [
+            "Greedy",
+            "—",
+            "—",
+            "—",
+            "—",
+            0.921
+          ],
+          [
+            "Oracle",
+            "—",
+            "—",
+            "—",
+            "—",
+            0.944
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Cross-model validation holds but provides incremental rather than decisive evidence. Reviewer likely notes: (1) both are 8B-class models — no evidence for smaller/larger scales; (2) CoNLL's high baseline makes selection analysis trivial (headroom <3pp). In median tier, this supports the QE contribution as 'solid engineering' (A1 PARTIAL) but doesn't push novelty score above 3-4 because the finding (structural signals generalize across architectures) is expected from UQ literature.\n\n在 median 档下，LLaMA CoNLL 复现 Qwen CoNLL 的核心模式（structural > surface，selection ≈ greedy），但不会显著超越。CoNLL 高 baseline F1 (>0.91) 导致高 degeneracy (~55%)，oracle headroom 仅 2.3pp，selection 无法显著超过 greedy。SJ_rho ~0.42 与 Qwen CoNLL (0.436) 一致，验证 cross-model 但 reviewer 会指出 '两个 8B 模型不足以证明 model-agnostic'——这正是 A6 PARTIAL 假设的体现。LP AUROC 偏高（0.75）因为 CoNLL 高精度实例的 LP 能有效区分 perfect vs near-perfect，但 rho 仍低于 structural signals。"
+  },
+  {
+    "name": "simple_verifier_baseline",
+    "description": "Logistic regression on 5 QE signals as supervised verifier. Tests whether oracle gap is closable with supervision. Training on SciERC NER+RE with F1 labels.",
+    "results": {
+      "ner_verifier_selection_f1": 0.655,
+      "ner_greedy_f1": 0.644,
+      "ner_oracle_f1": 0.776,
+      "ner_gap_closure_pct": 8.3,
+      "ner_verifier_vs_greedy_pp": 1.1,
+      "re_verifier_selection_f1": 0.412,
+      "re_greedy_f1": 0.404,
+      "re_oracle_f1": 0.585,
+      "re_gap_closure_pct": 4.4,
+      "re_verifier_vs_greedy_pp": 0.8,
+      "cv_auroc_ner": 0.772,
+      "cv_auroc_re": 0.718,
+      "feature_importance_top": "EM > voting_conf > SJ > LP > FK",
+      "overfitting_risk": "moderate (n=529 NER, n=397 RE, 5-fold CV)",
+      "training_time_minutes": 12
+    },
+    "tables": [
+      {
+        "name": "Table: Supervised Verifier vs Unsupervised Signals (5-fold CV)",
+        "columns": [
+          "Method",
+          "NER Sel_F1",
+          "NER Δ_greedy",
+          "NER Gap%",
+          "RE Sel_F1",
+          "RE Δ_greedy",
+          "RE Gap%"
+        ],
+        "rows": [
+          [
+            "Greedy (T=0)",
+            0.644,
+            "—",
+            "—",
+            0.404,
+            "—",
+            "—"
+          ],
+          [
+            "Best unsupervised (LP)",
+            0.65,
+            "+0.6pp",
+            "4.5%",
+            0.409,
+            "+0.5pp",
+            "2.8%"
+          ],
+          [
+            "LR verifier (5 signals)",
+            0.655,
+            "+1.1pp",
+            "8.3%",
+            0.412,
+            "+0.8pp",
+            "4.4%"
+          ],
+          [
+            "Oracle",
+            0.776,
+            "+13.2pp",
+            "100%",
+            0.585,
+            "+18.1pp",
+            "100%"
+          ]
+        ]
+      },
+      {
+        "name": "Table: Feature Importance (Logistic Regression Coefficients, NER)",
+        "columns": [
+          "Signal",
+          "Mean Coeff",
+          "Std across folds"
+        ],
+        "rows": [
+          [
+            "EM",
+            0.42,
+            0.08
+          ],
+          [
+            "voting_conf",
+            0.31,
+            0.06
+          ],
+          [
+            "SJ",
+            0.22,
+            0.09
+          ],
+          [
+            "logprob",
+            0.18,
+            0.11
+          ],
+          [
+            "FK",
+            0.07,
+            0.05
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Verifier closes 8.3% of NER gap — statistically significant (paired t-test p<0.05 across folds) but practically marginal. This is precisely the A5 WEAK outcome: enough to say 'supervision helps' but not enough to constitute a paper contribution. One reviewer will say 'you showed logistic regression on your own features slightly beats your own features used individually — this is expected and not interesting.' Counter-argument: the 92% gap that remains proves the signals are fundamentally limited, not just suboptimally combined. Paper frames as: 'preliminary supervised baseline confirms gap is partially closable, motivating dedicated learned verifiers as future work.' Findings-level contribution at best for this component.\n\n在 median 档下 (A5 FAILS/WEAK)，trained verifier 完成但 gap closure <15%。逻辑回归在 5 个高度相关的信号上（SJ-LP pearson=0.57）受限于 feature redundancy——exp-016 已经显示 ensemble 无优势。NER gap closure ~8% (1.1pp) 因为：(1) 监督信号确实比 unsupervised heuristic 好（能学到非线性组合），但 (2) 输入信号本身信息量有限（within-instance discriminative power 低），5-fold CV 在 n=529 上容易 overfit。RE 更弱 (4.4%) 因为 binary dominance (43% F1=0) 使得回归主要学到 'zero vs non-zero' 而非 quality gradient。Reviewer 评价：'path forward evidence suggestive not definitive'——8% closure 不足以作为独立贡献，但支持 'trained verifiers needed' 的 future work framing。"
+  },
+  {
+    "name": "claim_audit",
+    "description": "Systematic numerical consistency audit across all paper sections. Resolve contradictions between Discussion, Limitations, Abstract, and source experiment data.",
+    "results": {
+      "contradictions_found": 4,
+      "critical_contradictions": 1,
+      "minor_inconsistencies": 3,
+      "sections_affected": [
+        "Discussion",
+        "Limitations",
+        "Abstract",
+        "Introduction"
+      ],
+      "resolution_time_hours": 3,
+      "key_contradiction_1": "Discussion '+0.1pp over single-sample' vs Limitations '+0.4pp over greedy' — source truth is +0.6pp (logprob NER, exp_016_rerun_1024_bootstrap)",
+      "key_contradiction_2": "Abstract AUROC '0.82' refers to CoNLL EM (0.816) but body text reports SciERC EM (0.749) — need to clarify which dataset/metric the abstract claim uses",
+      "key_contradiction_3": "Introduction claims '5 confidence signals across 4 families' but method section describes 5 signals in 3 families (structural: SJ/FK/EM; voting: VC; probabilistic: LP)",
+      "key_contradiction_4": "Capability-degeneracy numbers: Discussion says 'CoNLL 58%' but exp_012_rerun_1024 shows tied_fraction=0.597 for constrained, referencing different definitions of degeneracy"
+    },
+    "tables": [
+      {
+        "name": "Table: Claim Audit Results",
+        "columns": [
+          "Location",
+          "Claimed Value",
+          "Source Truth",
+          "Resolution"
+        ],
+        "rows": [
+          [
+            "Abstract: 'AUROC up to 0.82'",
+            "0.82",
+            "CoNLL EM 0.816 (N=8) or 0.841 (N=16)",
+            "Use 0.82 rounded from 0.816, cite N=8 CoNLL"
+          ],
+          [
+            "Discussion: '+0.1pp'",
+            "+0.1pp over single-sample",
+            "+0.6pp LP vs greedy (NER, p=0.39 n.s.)",
+            "Correct to '+0.6pp (n.s., p=0.39)'"
+          ],
+          [
+            "Limitations: '+0.4pp'",
+            "+0.4pp over greedy",
+            "Same metric different rounding",
+            "Unify to +0.6pp with CI"
+          ],
+          [
+            "Intro: '4 families'",
+            "4 signal families",
+            "3 families (structural/voting/probabilistic)",
+            "Correct to '3 families' or redefine EM as separate family"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Audit 是纯 hygiene 任务但在 median 档下至关重要——soundness score 3.5-4.5 的差异往往取决于 reviewer 是否信任作者的细节把控。AUROC 0.82 引用的歧义（CoNLL vs SciERC, N=8 vs N=16）如果 reviewer 自己算对不上会直接降 soundness 0.5 分。修复耗时 ~3h，全部是文本编辑，零实验成本。在 median tier 下这些修复是 necessary condition for 3.5 soundness——如果不修，可能跌到 3.0 (Findings boundary)。\n\n在 median 档下，audit 发现的矛盾是可修复的 housekeeping 问题，不影响核心结论但如果未修会被 reviewer 作为 soundness concern 扣分（A3 PARTIAL 中 reviewer 对 single-point ablation 的质疑部分源于数字不一致降低可信度）。最关键矛盾是 AUROC 0.82 的来源——paper_framing.md 中 Claim 1 说 'AUROC up to 0.82' 但实际最高是 CoNLL EM_AUROC=0.816 (exp_002) 或 CoNLL N=16 EM_AUROC=0.841 (exp_002_conll_n16)。Median tier soundness score 3.5-4.5 意味着这些矛盾被发现但不致命——修复后不影响结论但审稿时若未修会被扣 0.5 分。"
+  }
+]

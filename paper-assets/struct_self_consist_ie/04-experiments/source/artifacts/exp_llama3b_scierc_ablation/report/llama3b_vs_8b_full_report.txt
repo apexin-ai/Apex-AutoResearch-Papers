@@ -1,0 +1,41 @@
+SCALE ABLATION: LLaMA-3.2-3B vs LLaMA-3.1-8B — SciERC NER
+
+=== 5-SIGNAL CORRELATION (Spearman rho) ===
+
+FULL split (n=529, gold-empty=22 excluded):
+Signal    8B rho   3B rho   delta    8B AUROC  3B AUROC
+Voting    0.405    0.460   +0.055    0.697     0.743
+SJ        0.310    0.375   +0.066    0.668     0.738
+FK        0.235    0.268   +0.032    0.607     0.671
+EM        0.259    0.334   +0.075    0.717     0.776
+LP        0.150    0.266   +0.116    0.532     0.633
+
+CONDITIONAL split (greedy_f1 > 0):
+Signal    8B rho   3B rho   delta    8B AUROC  3B AUROC
+Voting    0.308    0.382   +0.074    0.671     0.722
+SJ        0.272    0.345   +0.073    0.657     0.729
+FK        0.147    0.213   +0.065    0.587     0.660
+EM        0.317    0.395   +0.079    0.724     0.782
+LP        0.081    0.210   +0.129    0.513     0.616
+
+=== F1 METRICS ===
+8B: greedy=0.646, oracle=0.775, headroom=+0.129
+3B: greedy=0.627, oracle=0.763, headroom=+0.136
+
+=== SELECTION F1 (single-seed, bootstrap N=10000) ===
+Method      8B sel_F1  3B sel_F1
+Greedy      0.646      0.627
+SJ          0.638      0.633 (3B delta=+0.006, p=0.175)
+FK          0.640      0.630 (3B delta=+0.003, p=0.337)
+VC          0.640      0.611 (3B delta=-0.015, p=0.973)
+EM          0.629      0.617 (3B delta=-0.009, p=0.912)
+LP          0.648      0.628 (3B delta=+0.001, p=0.434)
+Oracle      0.775      0.763
+
+=== KEY FINDINGS ===
+1. All 5 signals show HIGHER rho for 3B vs 8B (delta +0.03 to +0.13)
+2. SJ > FK ordering preserved in both models (3B gap=0.108, 8B gap=0.074)
+3. structural_beats_surface = True for both
+4. LP rho shows largest improvement in 3B (+0.116 full, +0.129 cond)
+5. Selection F1: SJ shows positive trend for 3B (+0.006) but not significant (p=0.175)
+6. The "correlation-selection gap" persists: high rho but limited selection gain

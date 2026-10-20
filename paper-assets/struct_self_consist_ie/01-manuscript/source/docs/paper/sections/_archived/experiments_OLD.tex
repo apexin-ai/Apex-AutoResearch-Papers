@@ -1,0 +1,256 @@
+\section{Experiments}
+\label{sec:experiments}
+
+\subsection{Experimental Setup}
+\label{sec:setup}
+
+\paragraph{Datasets.}
+We evaluate on four English NER benchmarks spanning a difficulty gradient, each serving a distinct role.
+\textbf{SciERC} \cite{luan2018scierc} (551 test instances, 6 entity types) is the primary medium-difficulty test bed where models achieve ${\approx}$65\% F1.
+\textbf{Few-NERD} \cite{ding2021fewnerd} (INTRA coarse; 37{,}648 instances, 8 entity types, ${\approx}$75\% F1) provides a low-degeneracy contrast where LP selection succeeds (\S\ref{sec:fewnerd}).
+\textbf{CoNLL-2003} \cite{tjongkimsang2003conll} (3{,}453 test sentences, 4 entity types, ${\approx}$91\% F1) serves as a ceiling-effect control where limited oracle headroom constrains selection gains.
+\textbf{WNUT-17} \cite{derczynski2017wnut} (1{,}287 social media instances, 51\% zero F1) probes the signal-collapse boundary where model capability is insufficient.
+
+\paragraph{Models and sampling.}
+\textbf{Qwen3-8B} and \textbf{LLaMA-3.1-8B-Instruct} are LoRA fine-tuned using LLaMA Factory \cite{zheng2024llamafactory} (training details in Appendix~\ref{app:training}; Few-NERD uses 3 epochs vs.\ 5 for others due to earlier convergence; Appendix~\ref{app:epoch_confound}).
+We draw $N{=}8$ samples at $T{=}1.0$ (primary) with vLLM constrained decoding \cite{willard2023guided}, with $N{=}16$ for scaling experiments (Appendix~\ref{app:n_scaling}).
+
+%% ============================================================
+\subsection{Quality Estimation Results}
+\label{sec:qe_results}
+
+\begin{table*}[t]
+\centering
+\small
+\caption{NER quality estimation ($\rho$ and AUROC; $N{=}8$, primary seed${=}42$; 3-seed $\sigma{\leq}0.026$ in Table~\ref{tab:multiseed}). AUROC binarizes at per-dataset median F1. Best in \textbf{bold}. RE in Appendix~\ref{app:re_extension}; $N{=}16$ in Table~\ref{tab:robustness}.}
+\label{tab:quality_estimation}
+\begin{tabular}{ll cc cc cc}
+\toprule
+& & \multicolumn{2}{c}{\textbf{SciERC}} & \multicolumn{2}{c}{\textbf{CoNLL (Qwen)}} & \multicolumn{2}{c}{\textbf{CoNLL (LLaMA)}} \\
+\cmidrule(lr){3-4} \cmidrule(lr){5-6} \cmidrule(lr){7-8}
+Signal & Family & $\rho$ & AUC & $\rho$ & AUC & $\rho$ & AUC \\
+\midrule
+VC & Structural & \textbf{.379} & .684 & .424 & .789 & .426 & .709 \\
+SJ  & Structural & .360 & .692 & .436 & .801 & \textbf{.431} & .704 \\
+FK & Surface & .267 & .629 & .400 & .774 & .428 & .703 \\
+EM  & Surface    & .295 & \textbf{.749} & \textbf{.451} & \textbf{.816} & \textbf{.431} & .705 \\
+\midrule
+LP     & Model      & .205 & .578 & .316 & .753 & .307 & \textbf{.761} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Table~\ref{tab:quality_estimation} presents $\rho$ and AUROC for five signals across tasks and models ($\varepsilon$-free; $\varepsilon{=}0.05$ applies to selection only, stable across $[0, 0.2]$, Appendix~\ref{app:epsilon_robustness}).
+
+\paragraph{Signal rankings are difficulty-dependent.}
+On SciERC (medium difficulty), structural signals lead (VC $\rho{=}0.379$, SJ $0.360$) over LP ($0.205$); bootstrap CIs confirm the gap ($\Delta\rho{=}{+}0.155$; Appendix~\ref{app:bootstrap_signal}).
+On CoNLL (single-sample F1${\approx}$0.91), EM leads both $\rho$ and AUROC ($0.816$).
+At the signal-collapse boundary (WNUT-17, macro F1${\approx}$42\%), full-set correlations are dominated by the zero/non-zero boundary (VC $\rho{=}0.724$ at $N{=}16$, but conditional $\rho{=}0.038$; Table~\ref{tab:wnut}); LP shows the reverse (conditional $\rho{=}0.350$; Figure~\ref{fig:signal_heatmap}).
+%% WNUT collapse detail moved to keep main text concise; see Table~\ref{tab:wnut}.
+
+%% ============================================================
+\subsection{The Correlation-Selection Gap}
+\label{sec:selection_gap}
+
+Four of five signals (SJ, FK, EM, VC) assign identical scores to all candidates from the same input by construction (\S\ref{sec:formulation}); they can estimate quality across instances but cannot rank candidates within an instance.
+The empirical question is whether LP, the sole per-sample signal, can exploit its candidate-discriminative nature for selection.
+LP selection effectiveness is primarily determined by LP-quality alignment rather than degeneracy level (\S\ref{sec:discussion}).
+Cross-instance $\rho$ (Table~\ref{tab:quality_estimation}) is attenuated by varying instance difficulty; within-instance $\rho$ directly measures whether LP discriminates candidates for a fixed input, making it the relevant predictor of selection success.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Best-of-$N$ NER selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$, 2-seed mean${\pm}\sigma$). LP is per-sample; others use consensus-proximity. Best non-oracle in \textbf{bold}. Non-tied subset in \S\ref{sec:discussion}; RE in Appendix~\ref{app:re_extension}. $^\dagger$Instance-level signals assign one score per input; per-sample ranking $p$-values are undefined.}
+\label{tab:selection}
+\begin{tabular}{lcc}
+\toprule
+Method & NER F1 & $p$ \\
+\midrule
+Oracle & $0.775 \pm 0.001$ & --- \\
+Greedy ($T{=}0$) & $0.645 \pm 0.001$ & --- \\
+\midrule
+\multicolumn{3}{l}{\textit{Per-sample signal}} \\
+LP           & $\mathbf{0.647} \pm 0.005$ & .29 \\
+\midrule
+\multicolumn{3}{l}{\textit{Instance-level signals (consensus-proximity selection)}} \\
+SJ           & $0.646 \pm 0.002$ & .67 \\
+FK           & $0.646 \pm 0.001$ & .79 \\
+EM           & $0.637 \pm 0.001$ & n/a$^\dagger$ \\
+VC           & $0.623 \pm 0.004$ & n/a$^\dagger$ \\
+\midrule
+Random           & $0.610 \pm 0.003$ & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig_selection_gap}
+\caption{The correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: quality estimation $\rho$ (seed 42); line with error bars: $\Delta$F1 vs.\ greedy (3-seed mean, seeds 42/123/456). Despite $\rho$ up to 0.38, no signal significantly outperforms greedy (all $p{>}0.05$; Table~\ref{tab:selection}). Dashed green: oracle upper bound ($+13.0$~pp); dotted gray: random baseline.}
+\label{fig:selection_gap}
+\end{figure}
+
+Instance-level signals assign identical QE scores to all candidates; MBR conversion does not improve over greedy on the primary test bed (Table~\ref{tab:selection}; Figure~\ref{fig:selection_gap}).
+Instance-level signals predict \textit{which inputs} the model handles reliably, not \textit{which output} is best.
+
+\paragraph{LP: the sole per-sample signal also fails.}
+On SciERC ($n{=}529$, 2-seed sign tests\footnote{MDE${\approx}$1.5~pp at 80\% power ($n{=}529$); Few-NERD ($n{=}32{,}565$; MDE${\approx}$0.22~pp) provides the definitive test.}), the oracle (0.775) reveals 13.0~pp of headroom, but LP achieves $+0.2$~pp ($p{=}0.29$), below the MDE (${\approx}$1.5~pp); selection effects below this threshold cannot be reliably detected.
+The pattern holds across CoNLL and WNUT-17 (Table~\ref{tab:cross_selection}); under stringent TOST anchors, some configurations show significant \textit{degradation} (Appendix~\ref{app:tost}).
+Few-NERD provides the definitive contrast: LP achieves $+1.39$~pp ($p{<}0.001$) at low degeneracy (\S\ref{sec:fewnerd}), while structural signals still degrade selection.
+
+\paragraph{Qualitative factors governing selection effectiveness.}
+Three factors shape LP selection gains: (1)~\textit{instance degeneracy} (SciERC 17.8\%, CoNLL 61.7\%; Table~\ref{tab:fewnerd}); (2)~\textit{oracle headroom} (CoNLL ${\approx}4$\,pp vs.\ SciERC 13.0\,pp); (3)~\textit{LP-quality alignment} (Few-NERD $\rho{\approx}0.5$--$0.7$ vs.\ SciERC $\rho{\approx}0.26$).
+The pattern matches observations: Few-NERD (low degeneracy, strong alignment) yields $+1.39$\,pp; SciERC (weak alignment) $+0.04{\pm}0.48$\,pp (3-seed; Table~\ref{tab:multiseed}); CoNLL (high degeneracy) none; WNUT-17 shows reversed LP ($\rho{=}{-}0.446$) yet QE remains effective (VC $\rho{=}0.724$, $N{=}16$; Table~\ref{tab:wnut}).
+The factors do not combine into a predictive model ($R^2{<}0$, 23 configurations) but each is supported by controlled ablations (\S\ref{sec:fewnerd}, \S\ref{sec:discussion}).
+
+%% ============================================================
+\subsection{Cross-Dataset Contrast: Few-NERD}
+\label{sec:fewnerd}
+
+\begin{table}[t]
+\centering
+\small
+\caption{LP selection across datasets (Qwen3-8B, $N{=}8$, $T{=}1.0$, gold-filtered). Few-NERD/CoNLL: 3-seed means; SciERC: single-seed (3-seed in Table~\ref{tab:multiseed}). $p$: paired bootstrap.}
+\label{tab:fewnerd}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}lrccccr@{}}
+\toprule
+Dataset & $n$ & Greedy & Degen.\% & LP $\rho$ & LP $\Delta$ & $p$ \\
+\midrule
+WNUT-17 & 1{,}287 & .452 & 67.9\% & $-$.446 & $-$0.45\,pp & .72 \\
+CoNLL & 2{,}756 & .908 & 61.7\% & .302 & $-$0.85\,pp & 1.0 \\
+SciERC & 529 & .644 & 17.8\% & .205 & $+$0.61\,pp & .193 \\
+Few-NERD & 32{,}565 & .748 & 13.0\% & .220 & $\mathbf{+1.39}$\,pp & ${<}.001$ \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+Few-NERD (Table~\ref{tab:fewnerd}) confirms LP selection at low degeneracy ($+1.39$~pp, $p{<}0.001$; structural signals degrade: VC $-1.79$, SJ $-2.14$~pp), with LP 50$\times$ more seed-stable ($\sigma{=}0.04$ vs.\ SJ $2.02$~pp), generalizing to LLaMA (Table~\ref{tab:cross_selection}). Training convergence modulates degeneracy (5-epoch: $31$\%, halving LP gains; Appendix~\ref{app:epoch_confound}).
+
+\paragraph{Degeneracy alone does not predict LP direction.}
+Across 23 configurations, degeneracy does not predict LP gain ($\rho{=}0.052$, $p{=}0.81$; Figure~\ref{fig:degeneracy_scatter}), though it causally modulates LP within fixed settings ($\rho{=}{-}0.881$; Appendix~\ref{app:per_type_lp}). Cross-dataset prediction requires LP signal quality (Appendix~\ref{app:conditional_decomp}).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_degeneracy_lp_scatter.pdf}
+\caption{Instance degeneracy vs.\ LP selection gain across 23 configurations ($N{=}8$; $\rho{=}0.052$, $p{=}0.81$). Within Few-NERD per-entity-type analysis ($\rho{=}{-}0.881$; Appendix~\ref{app:per_type_lp}), degeneracy predicts LP gain when alignment is held constant.}
+\label{fig:degeneracy_scatter}
+\end{figure}
+
+Structural signals remain negative regardless of sample budget; $N$-scaling analyses are in Appendix~\ref{app:n_scaling}.
+
+%% ============================================================
+\subsection{Robustness}
+\label{sec:robustness_main}
+
+Consistency signals are robust across $T{\in}\{0.7, 1.0\}$ with sublinear $N$-scaling gains (Table~\ref{tab:robustness}); signal rankings are stable across seeds ($W{=}1.0$; Table~\ref{tab:ranking-stability}). NER calibration is reasonable (ECE 0.069--0.096; Appendix~\ref{app:calibration}).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Scale ablation: 8B vs.\ 4B QE $\rho$ ($N{=}8$, $T{=}1.0$, seed 42). RE in Appendix~\ref{app:re_extension}.}
+\label{tab:scale_ablation}
+\begin{tabular}{@{}ll cc r@{}}
+\toprule
+& & \textbf{8B} & \textbf{4B} & $\Delta$ \\
+\midrule
+CoNLL & SJ & .436 & .422 & $-$.014 \\
+      & FK & .400 & .418 & $+$.018 \\
+SciERC & SJ & .360 & .422 & $+$.062 \\
+       & FK & .267 & .326 & $+$.059 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Scale robustness.}
+With Qwen3-4B (Table~\ref{tab:scale_ablation}), QE is comparable (mean $|\Delta\rho|{=}0.042$), yet selection remains below greedy despite 13.0~pp headroom. Task difficulty is a stronger predictor than model scale within the 3B--8B range (Appendix~\ref{app:llama3b}).
+Degeneracy scales with capability: 8B shows 17.8\% vs.\ 4B's 10.4\% on SciERC (Table~\ref{tab:degeneracy}).
+
+\paragraph{Controlled ablations.}
+LoRA rank${=}8$ (vs.\ 32) lowers degeneracy to 7.2\% but LP remains below greedy ($\rho{\approx}0.24$), confirming low degeneracy and adequate alignment are independently necessary ($T{=}1.2$; \S\ref{sec:discussion}).
+Supervised classifiers, a DeBERTa verifier, and hidden state probes all fail to close the gap (Appendix~\ref{app:supervised_combination}, \ref{app:hidden_probe}); the bottleneck extends to model-internal representations.
+
+%% ============================================================
+\subsection{Scaling Behavior}
+\label{sec:scaling}
+
+We test whether the gap persists across scales and model families using Qwen2.5 (7B fine-tuned, 72B zero-shot and few-shot) alongside the primary Qwen3-8B.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Cross-scale and cross-family comparison ($N{=}8$, $T{=}1.0$). Hdr.\ = oracle $-$ greedy (pp). Degen.: instance degeneracy (\%). $^\star$Qwen2.5; unmarked: Qwen3. $^\dagger$Not computed.}
+\label{tab:scale_comparison}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}llccccccc@{}}
+\toprule
+Dataset & Regime & Greedy & Hdr. & Degen. & VC & SJ & FK & LP \\
+\midrule
+SciERC & 8B FT  & .644 & 13.0 & 17.8 & .379 & .360 & .267 & .205 \\
+       & 72B ZS$^\star$ & .399 & 15.0 & 21.0 & .277 & .217 & .227 & .081 \\
+\midrule
+Few-NERD & 7B FT$^\star$ & .784 & 9.2 & 31.7 & .404 & .388 & .315 & .346 \\
+         & 8B FT & .748 & 12.4 & 13.0 & .386 & .300 & .313 & .220 \\
+         & 72B ZS$^\star$ & .628 & ---$^\dagger$ & 46.2 & .416 & .345 & ---$^\dagger$ & .119 \\
+\midrule
+CoNLL  & 8B FT  & .908 & ${\approx}$4 & 61.7 & .424 & .436 & .400 & .302 \\
+       & 72B ZS$^\star$ & .712 & 5.3 & 67.7 & .297 & .304 & .302 & $-$.002 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+LP $\rho$ drops without fine-tuning (Table~\ref{tab:scale_comparison}) and LP selection fails on all datasets. Structural signals generalize (Few-NERD VC $\rho{=}0.416$). Degeneracy increases (Few-NERD: $46.2$\% vs.\ $13.0$\%; CoNLL: $67.7$\% vs.\ $61.7$\%); this comparison simultaneously varies model family, regime, and quantization, so individual effects cannot be disentangled.
+LP-weighted construction yields $+1.53$\,pp on SciERC 72B ZS ($p{=}0.008$, CI [$+0.25$, $+2.82$]), recovering $10.2$\% of headroom. Construction fails on Few-NERD ($-0.20$\,pp) and CoNLL ($-0.37$\,pp) where degeneracy exceeds $46$\%---consistent with FT-regime degeneracy gating.
+
+\paragraph{Few-shot demonstrations improve QE but not construction.}
+Adding 3-shot demonstrations to 72B improves greedy on SciERC and CoNLL ($+3.3$--$6.2$\,pp) but not Few-NERD ($-0.9$\,pp), and strengthens structural QE (CoNLL SJ $\rho$ $.304{\to}.442$, LP $-.002{\to}.106$). Yet construction is ineffective across all three datasets (SciERC $-0.08$\,pp, CoNLL $+0.03$\,pp, Few-NERD $+0.02$\,pp; all n.s.). On SciERC, this failure despite low degeneracy shows the bottleneck is regime-dependent (the mechanism is not simple error correlation; Appendix~\ref{app:fs_error}); on Few-NERD, high FS degeneracy ($45.2$\%) places it in the expected failure regime.
+
+\paragraph{Degeneracy is model-family-dependent, not scale-dependent.}
+Qwen2.5 exhibits systematically higher degeneracy than Qwen3 on Few-NERD (7B--72B: $31.7$--$46.2$\% vs.\ Qwen3-8B: $13.0$\%; Table~\ref{tab:scale_comparison}), confirming degeneracy is shaped by architecture rather than parameter count. Construction fails for all Qwen2.5 configurations on Few-NERD (both n.s.); 3$\to$5 epochs triples degeneracy within the same model (\S\ref{sec:fewnerd}).
+
+Oracle F1 follows $F_1(N) = a - b \cdot N^{-c}$ ($R^2 > 0.999$; Figure~\ref{fig:oracle_scaling}): FewNERD ($c{\approx}0.61$) scales comparably to reasoning tasks \cite{brown2024monkeys}, while SciERC converges more slowly ($c{\approx}0.35$); a single stochastic sample underperforms greedy ($N{\geq}4$ needed to match).
+The ceiling grows---but confidence-based aggregation recovers ${<}1$\,pp, establishing a persistent aggregation gap.
+
+%% ============================================================
+\subsection{Prescriptive Results}
+\label{sec:prescriptive}
+
+Since instance-level selection fails, we present approaches that extract value from multi-sample generation without sample ranking.
+
+\paragraph{Entity-level construction.}
+We aggregate entities across samples, retaining those exceeding $\theta{=}2/N$, with LP-weighted or uniform scoring ($\theta$ stable in $[0.15, 0.35]$; Appendix~\ref{app:theta_sweep}). In zero-shot, LP-weighting is necessary (SciERC $+1.5$\,pp; \S\ref{sec:scaling}).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Entity construction vs.\ greedy ($\Delta$ macro F1; $N{=}8$, $T{=}1.0$, Qwen3-8B, multi-seed mean${\pm}\sigma$). $\theta{=}2/N$. $p$: paired bootstrap vs.\ greedy. Best in \textbf{bold}. $^\dagger$Survives Holm--Bonferroni correction ($k{=}57$). $^\ddagger$LP-weighted not computed; uniform only.}
+\label{tab:entity_construction}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}llcccc@{}}
+\toprule
+Dataset & Wt. & Greedy & Constr. & $\Delta$ & $p$ \\
+\midrule
+SciERC & LP & $.646{\pm}.002$ & $\mathbf{.656{\pm}.003}$ & $+1.02{\pm}0.49$\,pp & .004 \\
+       & Unif. & $.646{\pm}.002$ & $.653{\pm}.006$ & $+0.74{\pm}0.71$\,pp & .023 \\
+\addlinespace
+Few-NERD & LP & $.748$ & $\mathbf{.762{\pm}.005}$ & $+1.40{\pm}0.51$\,pp & ${<}.001^\dagger$ \\
+         & Unif. & $.748$ & $.756{\pm}.006$ & $+0.74{\pm}0.58$\,pp & .003 \\
+\addlinespace
+CoNLL$^\ddagger$ & Unif. & .908 & .904 & $-0.39$\,pp & n.s. \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+LP-weighted construction improves on Few-NERD ($+1.40{\pm}0.51$\,pp, $p{<}0.001$; survives Holm--Bonferroni at $k{=}57$) and SciERC ($+1.02{\pm}0.49$\,pp, $p{=}0.004$, $p_{\text{adj}}{=}0.20$; Table~\ref{tab:entity_construction}), recovering 8--11\% of oracle headroom. CoNLL shows no gain ($-0.39$\,pp), consistent with high degeneracy ($N$-scaling in Appendix~\ref{app:n_scaling}).
+
+\paragraph{LP-alignment gating.}
+Construction and LP selection are complementary, governed by $\rho_{\text{adj}}$: Few-NERD ($\rho_{\text{adj}}{=}0.516$) favors both, while SciERC ($\rho_{\text{adj}}{=}0.167$) favors construction only. A three-way routing protocol ($\rho_{\text{adj}} \geq 0.3$: LP; $<0.3$ with positive construction: construction; else: greedy) is stable across $\tau{\in}[0.2, 0.4]$.
+
+\paragraph{Trained entity-level verifier.}
+Entity verification features achieve AUC${=}0.923{\pm}0.002$ (LightGBM, OOF evaluation) but yield only $+0.30$\,pp overall via construction ($+1.28$\,pp SciERC, $+0.02$\,pp Few-NERD).
+Cross-dataset transfer is negative (Few-NERD: $-0.76$, $-1.02$\,pp; Appendix~\ref{app:verifier_transfer}), demonstrating dataset-specific feature mappings. This motivates distillation approaches using each dataset's own SC consensus as supervision.
+
+\paragraph{Selective prediction.}
+QE signals support selective prediction: at 80\% coverage, filtering low-confidence instances yields $+5$--$8$\,pp F1 (AUPRC 0.70--0.92; Table~\ref{tab:cross_selection}).
+
+\phantomsection\label{sec:selection_results}

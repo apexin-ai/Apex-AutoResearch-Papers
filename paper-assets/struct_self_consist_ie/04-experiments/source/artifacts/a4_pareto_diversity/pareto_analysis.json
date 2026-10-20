@@ -1,0 +1,135 @@
+{
+  "dataset": "SciERC",
+  "model": "Qwen3-8B",
+  "N": 8,
+  "theta": 0.25,
+  "construction_method": "threshold confirmation (fixed θ=0.25) vs greedy",
+  "data_points": {
+    "T=0.7": {
+      "diversity_1_minus_degen": 0.7769,
+      "diversity_std": 0.0,
+      "unique_per_N": 0.3412,
+      "uniform_delta_pp": 1.81,
+      "uniform_delta_std": 0.0,
+      "vc_delta_pp": 1.17,
+      "vc_delta_std": 0.0,
+      "n_seeds": 1,
+      "category": "single",
+      "pareto_optimal_uniform": true,
+      "pareto_optimal_vc": false
+    },
+    "T=0.8": {
+      "diversity_1_minus_degen": 0.8195,
+      "diversity_std": 0.012,
+      "unique_per_N": 0.3713,
+      "uniform_delta_pp": 1.25,
+      "uniform_delta_std": 0.78,
+      "vc_delta_pp": 1.68,
+      "vc_delta_std": 0.3,
+      "n_seeds": 2,
+      "category": "single",
+      "pareto_optimal_uniform": false,
+      "pareto_optimal_vc": true
+    },
+    "T=1.0": {
+      "diversity_1_minus_degen": 0.8765,
+      "diversity_std": 0.0085,
+      "unique_per_N": 0.4246,
+      "uniform_delta_pp": 0.75,
+      "uniform_delta_std": 0.22,
+      "vc_delta_pp": 1.21,
+      "vc_delta_std": 0.64,
+      "n_seeds": 3,
+      "category": "single",
+      "pareto_optimal_uniform": true,
+      "pareto_optimal_vc": true
+    },
+    "Mix 0.7+1.0": {
+      "diversity_1_minus_degen": 0.8299,
+      "diversity_std": 0.0038,
+      "unique_per_N": 0.3858,
+      "uniform_delta_pp": 1.43,
+      "uniform_delta_std": 0.3,
+      "vc_delta_pp": 1.67,
+      "vc_delta_std": 0.17,
+      "n_seeds": 3,
+      "category": "mixed",
+      "pareto_optimal_uniform": true,
+      "pareto_optimal_vc": true
+    },
+    "Mix 0.8+1.0": {
+      "diversity_1_minus_degen": 0.7893,
+      "diversity_std": 0.0067,
+      "unique_per_N": 0.3236,
+      "uniform_delta_pp": -0.17,
+      "uniform_delta_std": 0.13,
+      "vc_delta_pp": 0.48,
+      "vc_delta_std": 0.12,
+      "n_seeds": 2,
+      "category": "mixed",
+      "pareto_optimal_uniform": false,
+      "pareto_optimal_vc": false
+    }
+  },
+  "pareto_frontier": {
+    "uniform_construction": [
+      {
+        "label": "T=0.7",
+        "diversity_1_minus_degen": 0.7769,
+        "delta_f1_pp": 1.81
+      },
+      {
+        "label": "Mix 0.7+1.0",
+        "diversity_1_minus_degen": 0.8299,
+        "delta_f1_pp": 1.43
+      },
+      {
+        "label": "T=1.0",
+        "diversity_1_minus_degen": 0.8765,
+        "delta_f1_pp": 0.75
+      }
+    ],
+    "vc_construction": [
+      {
+        "label": "T=0.8",
+        "diversity_1_minus_degen": 0.8195,
+        "delta_f1_pp": 1.68
+      },
+      {
+        "label": "Mix 0.7+1.0",
+        "diversity_1_minus_degen": 0.8299,
+        "delta_f1_pp": 1.67
+      },
+      {
+        "label": "T=1.0",
+        "diversity_1_minus_degen": 0.8765,
+        "delta_f1_pp": 1.21
+      }
+    ]
+  },
+  "cross_dataset_reference": [
+    {
+      "label": "SciERC\nbaseline",
+      "degen": 0.178,
+      "delta": 1.54
+    },
+    {
+      "label": "CoNLL",
+      "degen": 0.484,
+      "delta": 0.1
+    },
+    {
+      "label": "FewNERD",
+      "degen": 0.071,
+      "delta": 1.32
+    }
+  ],
+  "key_findings": [
+    "Uniform Pareto frontier: T=0.7 → Mix 0.7+1.0 → T=1.0 (T=0.8 dominated by Mix 0.7+1.0)",
+    "VC Pareto frontier: T=0.8 → Mix 0.7+1.0 → T=1.0 (T=0.7 dominated by T=0.8 under VC)",
+    "VC construction mitigates the diversity-quality trade-off: flatter Pareto slope (quality drop per unit diversity is ~50% smaller)",
+    "Mix 0.8+1.0 is Pareto-dominated under both metrics: mixing two close temperatures yields higher degeneracy than either component",
+    "Mix 0.7+1.0 is Pareto-optimal under both uniform and VC: well-separated temperatures produce complementary diversity",
+    "Best VC ΔF1 is T=0.8 (+1.68pp) but with lower diversity; Mix 0.7+1.0 achieves nearly identical quality (+1.67pp) with higher diversity"
+  ]
+}

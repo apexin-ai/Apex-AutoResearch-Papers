@@ -1,0 +1,18 @@
+% Entity-wise Independence Analysis
+% For use in Appendix or Response to Reviewers
+
+\paragraph{Entity-wise Independence Analysis.}
+A natural concern is whether entities within the same instance are extracted independently across samples, since correlated extraction could weaken the theoretical basis of entity-level voting.
+We analyze co-occurrence patterns across $N{=}8$ samples for all entity pairs within each instance.
+
+For each pair of gold entities $(e_i, e_j)$ in an instance, we compute the co-occurrence ratio $r = P(e_i \wedge e_j) / (P(e_i) \cdot P(e_j))$, where $r{=}1$ indicates independence.
+We test significance via Fisher's exact test, which is extremely conservative at $N{=}8$ (Monte Carlo simulation yields a 0.35\% false-positive rate under true independence, far below the nominal 5\%).
+
+Across three datasets, we find that the \textbf{majority of entity pairs are trivially independent}: 67.6\% (FewNERD), 77.9\% (CoNLL), and 80.4\% (SciERC) of pairs include at least one entity that is deterministically present or absent across all samples.
+Among the remaining \emph{testable} pairs (where both entities have intermediate extraction probability), we observe mild positive dependence: the mean co-occurrence ratio is 1.38 (FewNERD), 1.33 (CoNLL), and 1.33 (SciERC), with interquartile ranges tightly concentrated around 1.0 (e.g., [0.98, 1.33] for FewNERD).
+Fisher's exact test identifies 12.1\% (FewNERD), 44.0\% (CoNLL), and 12.7\% (SciERC) of testable pairs as significantly dependent at $p < 0.05$.
+
+Three observations mitigate this dependence.
+\textbf{First}, the dependence is exclusively positive---entities tend to co-appear rather than compete (negative dependence $<$0.2\% across all datasets). This is the favorable direction: ``good'' samples tend to extract most entities correctly, making per-entity frequency a reliable voting signal.
+\textbf{Second}, the all-or-nothing analysis confirms that the joint probability of extracting all entities is only 2--11\% above the independence prediction ($P_\text{obs}/P_\text{exp}$: 1.02 for CoNLL, 1.05 for SciERC, 1.11 for FewNERD), indicating that the independence approximation remains tight at the instance level.
+\textbf{Third}, entity construction operates via per-entity majority voting, which depends on each entity's \emph{marginal} frequency across samples. Positive inter-entity correlation inflates or deflates all marginal frequencies in the same direction, preserving relative ranking and thus voting outcomes.

@@ -1,0 +1,8 @@
+model_name_or_path: /root/autodl-tmp/.hf_cache/models--Qwen--Qwen2.5-32B-Instruct/snapshots/5ede1c97bbab6ce5cda5812749b4c0bdf79b18dd/
+adapter_name_or_path: /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-32b-fewnerd-qlora-s42
+template: qwen
+finetuning_type: lora
+export_dir: /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-32b-fewnerd-merged
+export_size: 5
+export_device: cpu
+export_legacy_format: false

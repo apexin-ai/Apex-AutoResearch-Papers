@@ -1,0 +1,69 @@
+% Responsible NLP Research Checklist
+% Following the ACL Rolling Review guidelines:
+% https://aclrollingreview.org/responsibleNLPresearch/
+
+\subsection*{A\hspace{0.5em} For Every Submission}
+
+\begin{enumerate}
+\item[A1.] \textbf{Did you discuss the limitations of your work?}\\
+Yes. See the Limitations section after the Conclusion.
+
+\item[A2.] \textbf{Did you discuss any potential risks of your work?}\\
+Yes. This work analyzes existing confidence signals for NER and identifies when they fail; the findings reduce risk of deploying unreliable confidence-based selection in production systems. No dual-use concerns.
+
+\item[A3.] \textbf{Do the abstract and introduction summarize the paper's main claims?}\\
+Yes. The Abstract and Section~\ref{sec:introduction} (3 enumerated contributions) summarize all main claims with supporting evidence pointers.
+\end{enumerate}
+
+\subsection*{B\hspace{0.5em} Did you use or create scientific artifacts?}
+
+Yes. We use existing datasets and pre-trained models.
+
+\begin{enumerate}
+\item[B1.] \textbf{Did you cite the creators of artifacts you used?}\\
+Yes. All datasets are cited: SciERC \cite{luan2018scierc}, CoNLL-2003 \cite{tjongkimsang2003conll}, Few-NERD \cite{ding2021fewnerd}, WNUT-17 \cite{derczynski2017wnut}. Models: Qwen3-8B/4B and LLaMA-3.1-8B-Instruct. Training framework: LLaMA Factory \cite{zheng2024llamafactory}. Constrained decoding: XGrammar \cite{dong2024xgrammar}. See Sections~\ref{sec:introduction}, \ref{sec:evaluation}, and Appendix~\ref{app:training}.
+
+\item[B2.] \textbf{Did you discuss the license or terms for use and/or distribution of any artifacts?}\\
+Partially. CoNLL-2003 is derived from the Reuters RCV1 corpus, available under a NIST agreement for research. SciERC, Few-NERD, and WNUT-17 are publicly available research benchmarks. Qwen3 and LLaMA-3.1 are open-weight models released under their respective licenses (Qwen License, Llama 3.1 Community License). Code and data will be released upon acceptance.
+
+\item[B3.] \textbf{Did you discuss if your use of existing artifact(s) was consistent with their intended use?}\\
+Yes. All datasets are used for their intended NER evaluation purpose. Models are used for fine-tuning and inference on NER, consistent with their general-purpose design.
+
+\item[B4.] \textbf{Did you discuss the steps taken to check whether the data contains any information that names or uniquely identifies individual people or offensive content?}\\
+N/A. We use established, widely-studied NER benchmarks (news articles, scientific abstracts, social media). No new data was collected or annotated.
+
+\item[B5.] \textbf{Did you provide documentation of the artifacts?}\\
+Yes. Dataset domains and characteristics are described in Section~\ref{sec:evaluation}. Training configuration details are in Appendix~\ref{app:training}.
+
+\item[B6.] \textbf{Did you report relevant statistics like the number of examples, details of train/test/dev splits, etc.?}\\
+Yes. Instance counts are reported in Table~\ref{tab:fewnerd} and throughout Section~\ref{sec:experiments}. Gold-filtering counts, dataset sizes, and evaluation protocol details are in Section~\ref{sec:evaluation}.
+\end{enumerate}
+
+\subsection*{C\hspace{0.5em} Did you run computational experiments?}
+
+Yes. See Section~\ref{sec:experiments}.
+
+\begin{enumerate}
+\item[C1.] \textbf{Did you report the number of parameters in the models used, the total computational budget, and computing infrastructure used?}\\
+Partially. Model sizes (4B, 8B parameters) are stated in Section~\ref{sec:introduction}. LoRA configuration and training hyperparameters are in Appendix~\ref{app:training}. Computing infrastructure: 4$\times$ NVIDIA RTX 5090 GPUs. We do not report total GPU hours; each model fine-tunes in under 2 hours and inference for $N{=}8$ samples across all test sets completes in under 1 hour per configuration.
+
+\item[C2.] \textbf{Did you discuss the experimental setup, including hyperparameter search and best-found hyperparameter values?}\\
+Yes. Appendix~\ref{app:training} (Table~\ref{tab:training}) reports all hyperparameters: LoRA rank/alpha, learning rate, batch size, epochs, optimizer, precision, etc. Both models use identical settings to ensure fair comparison. No extensive hyperparameter search was performed; we use standard LoRA fine-tuning defaults. LoRA rank is ablated in Section~\ref{sec:robustness_main}.
+
+\item[C3.] \textbf{Did you report descriptive statistics about your results?}\\
+Yes. We report multi-seed results (5 seeds; $\sigma$ in Table~\ref{tab:multiseed}), bootstrap 95\% confidence intervals (Tables~\ref{tab:selection}, \ref{tab:fewnerd_full}), paired bootstrap $p$-values throughout, and minimum detectable effect sizes (Section~\ref{sec:selection_gap}). Tables clearly indicate whether values are single-seed, multi-seed means, or confidence intervals.
+
+\item[C4.] \textbf{If you used existing packages, did you report the implementation, model, and parameter settings used?}\\
+Yes. LLaMA Factory \cite{zheng2024llamafactory} for fine-tuning and XGrammar \cite{dong2024xgrammar} for constrained decoding are cited with version-relevant details in Appendix~\ref{app:training}. Evaluation uses standard span-level micro-F1 (converted to per-instance macro-F1 as described in Section~\ref{sec:evaluation}).
+\end{enumerate}
+
+\subsection*{D\hspace{0.5em} Did you use human annotators or research with human subjects?}
+
+No. All experiments use existing annotated benchmarks. No new human annotation or human subjects research was conducted.
+
+\subsection*{E\hspace{0.5em} AI Assistants}
+
+\begin{enumerate}
+\item[E1.] \textbf{Did you include information in your paper about your use of AI assistants?}\\
+Yes. See Appendix~\ref{app:ai-assistants}.
+\end{enumerate}

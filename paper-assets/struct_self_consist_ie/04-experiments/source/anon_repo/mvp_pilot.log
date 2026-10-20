@@ -1,0 +1,34 @@
+Loaded 551 test instances from scierc
+INFO 05-14 16:07:44 [utils.py:233] non-default args: {'max_model_len': 4096, 'disable_log_stats': True, 'model': '/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora'}
+Traceback (most recent call last):
+  File "/root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py", line 311, in <module>
+    main()
+  File "/root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py", line 156, in main
+    sampler = VLLMSampler(
+              ^^^^^^^^^^^^
+  File "/root/autodl-tmp/struct_self_consist_ie/code/sampling.py", line 114, in __init__
+    self.llm = LLM(
+               ^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/vllm/entrypoints/llm.py", line 382, in __init__
+    self.llm_engine = LLMEngine.from_engine_args(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/vllm/v1/engine/llm_engine.py", line 169, in from_engine_args
+    vllm_config = engine_args.create_engine_config(usage_context)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/vllm/engine/arg_utils.py", line 1508, in create_engine_config
+    model_config = self.create_model_config()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/vllm/engine/arg_utils.py", line 1360, in create_model_config
+    return ModelConfig(
+           ^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/pydantic/_internal/_dataclasses.py", line 121, in __init__
+    s.__pydantic_validator__.validate_python(ArgsKwargs(args, kwargs), self_instance=s)
+pydantic_core._pydantic_core.ValidationError: 1 validation error for ModelConfig
+  Value error, Invalid repository ID or local directory specified: '/root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-scierc-lora'.
+Please verify the following requirements:
+1. Provide a valid Hugging Face repository ID.
+2. Specify a local directory that contains a recognized configuration file.
+   - For Hugging Face models: ensure the presence of a 'config.json'.
+   - For Mistral models: ensure the presence of a 'params.json'.
+ [type=value_error, input_value=ArgsKwargs((), {'model': ...rocessor_plugin': None}), input_type=ArgsKwargs]
+    For further information visit https://errors.pydantic.dev/2.12/v/value_error

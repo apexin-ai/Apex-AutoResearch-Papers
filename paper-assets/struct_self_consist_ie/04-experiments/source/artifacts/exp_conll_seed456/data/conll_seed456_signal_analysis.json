@@ -1,0 +1,1 @@
+dataset: conll, seed: 456, n_samples: 8, n_instances: 2756, greedy_f1: 0.9076, oracle_f1: 0.9443, headroom_pp: 3.67, degeneracy_rate: 0.6303 (1737/2756), signal_rho: SJ=0.4747 FK=0.4727 VC=0.4848 EM=0.4842 LP=0.3168, selection_f1: SJ=0.9028 FK=0.9030 VC=0.9003 EM=0.9001 LP=0.8999, dgs_f1: 0.9005, dgs_delta_pp: -0.71

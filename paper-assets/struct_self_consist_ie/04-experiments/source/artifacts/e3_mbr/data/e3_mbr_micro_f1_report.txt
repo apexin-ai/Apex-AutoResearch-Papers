@@ -1,0 +1,17 @@
+E3 MBR Micro-F1 Results (2026-05-21)
+
+Micro-F1 Comparison:
+Dataset    Greedy    LP      MBR     MV      Oracle  | MBR-Grd  MV-Grd   LP-Grd
+SciERC     0.6663  0.6639  0.6657  0.6579  0.7795  | -0.06pp  -0.84pp  -0.24pp
+CoNLL      0.9116  0.8968  0.9115  0.9132  0.9547  | -0.01pp  +0.15pp  -1.49pp
+FewNERD    0.7916  0.7919  0.7840  0.7690  0.8856  | -0.76pp  -2.27pp  +0.02pp
+
+Instance-Avg F1 Comparison:
+Dataset    Greedy    LP      MBR     MV      Oracle  | MBR-Grd  MV-Grd   LP-Grd
+SciERC     0.6456  0.6475  0.6483  0.6282  0.7734  | +0.26pp  -1.74pp  +0.19pp
+CoNLL      0.9070  0.8989  0.9025  0.8940  0.9494  | -0.45pp  -1.30pp  -0.81pp
+FewNERD    0.7486  0.7623  0.7419  0.6903  0.8751  | -0.67pp  -5.84pp  +1.37pp
+
+MBR Oracle Gap Closure (micro-F1): SciERC -0.5%, CoNLL -0.1%, FewNERD -8.1%
+Data: scierc_mf4v2_seed456, exp_002_conll_n16_r1024, fewnerd_mf4v2_seed456
+Script: code/e3_mbr_micro_f1.py

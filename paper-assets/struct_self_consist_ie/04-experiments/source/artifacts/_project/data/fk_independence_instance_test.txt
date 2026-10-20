@@ -1,0 +1,5 @@
+Full results in server: analysis_round8/fk_independence_instance_test.json
+
+SciERC (Qwen): n=529, FK=0.402, 95%CI=[0.376,0.428], t(528)=30.8, p=4.0e-120, permutation p<0.001
+LLaMA CoNLL: n=2756, FK=0.927, 95%CI=[0.919,0.935], t(2755)=225.9, p<1e-300, permutation p<0.002
+Qwen CoNLL: n=2756, FK=0.720, 95%CI=[0.706,0.734], t(2755)=102.1, p<1e-300, permutation p<0.002

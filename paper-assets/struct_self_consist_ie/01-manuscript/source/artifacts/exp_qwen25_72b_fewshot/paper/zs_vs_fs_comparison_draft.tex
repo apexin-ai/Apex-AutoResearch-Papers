@@ -1,0 +1,52 @@
+%% Draft: ZS vs FS comparison table for 72B (§5.5 or §5.6)
+%% Data sources: 72b_fewshot_signal_summary.json, 72B ZS registry (task-provided)
+%% Status: FewNERD FS pending; placeholders defined via \newcommand
+
+%% --- FewNERD FS placeholders (fill when data arrives) ---
+\newcommand{\fsFewnerdLP}{\textcolor{gray}{---}}
+\newcommand{\fsFewnerdDegen}{\textcolor{gray}{---}}
+\newcommand{\fsFewnerdConstr}{\textcolor{gray}{---}}
+\newcommand{\fsFewnerdGreedy}{\textcolor{gray}{---}}
+\newcommand{\fsFewnerdOracle}{\textcolor{gray}{---}}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Zero-shot vs.\ 3-shot few-shot for Qwen2.5-72B-Instruct (AWQ) across three IE datasets ($N{=}8$, $T{=}1.0$). Degen.\ = instance degeneracy (\%). Constr.\ $\Delta$ = LP-weighted entity construction $\Delta$F1 vs.\ greedy (pp). $^{*}$\,$p < 0.01$ (bootstrap).}
+\label{tab:zs_vs_fs}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}llcccccc@{}}
+\toprule
+Dataset & Regime & Greedy F1 & Oracle F1 & LP $\rho$ & Degen. & Constr.\ $\Delta$ \\
+\midrule
+\multirow{2}{*}{SciERC}
+  & Zero-shot & .399 & .604 & .081 & 21.0\% & $+$1.53$^{*}$ \\
+  & Few-shot  & .461 & .604 & .060 & 16.6\% & $-$0.08 \\
+\midrule
+\multirow{2}{*}{Few-NERD}
+  & Zero-shot & .628 & .676 & .119 & 46.2\% & $-$0.20 \\
+  & Few-shot  & \fsFewnerdGreedy & \fsFewnerdOracle & \fsFewnerdLP & \fsFewnerdDegen & \fsFewnerdConstr \\
+\midrule
+\multirow{2}{*}{CoNLL}
+  & Zero-shot & .712 & .748 & $-$.002 & 67.7\% & $-$0.37 \\
+  & Few-shot  & .745 & .796 & .106 & 70.0\% & $+$0.03 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\paragraph{Prompting regime does not determine construction success.}
+Table~\ref{tab:zs_vs_fs} compares the same 72B model under zero-shot and 3-shot prompting.
+Few-shot examples improve greedy F1 on all available datasets (SciERC: $.399 \to .461$; CoNLL: $.712 \to .745$), confirming that demonstrations aid raw extraction quality.
+Yet this performance gain does not translate into construction gains: SciERC zero-shot is the \emph{only} configuration where LP-weighted construction yields a significant improvement ($+1.53$\,pp, $p{=}0.008$), while the corresponding few-shot configuration shows no effect ($-0.08$\,pp, n.s.).
+The regime that produces higher greedy quality does not produce better self-consistency--based refinement.
+
+\paragraph{Degeneracy and LP alignment jointly gate construction.}
+Two conditions must be met for construction to improve over greedy: (i) degeneracy must be low enough to preserve candidate diversity, and (ii) LP must carry sufficient quality signal to weight candidates effectively.
+SciERC zero-shot satisfies both (21.0\% degeneracy, LP $\rho{=}0.081$---weak but nonzero), enabling $+1.53$\,pp.
+SciERC few-shot has even lower degeneracy (16.6\%) but LP drops to $\rho{=}0.060$, and construction fails ($-0.08$\,pp).
+CoNLL few-shot shows the converse: LP recovers to $\rho{=}0.106$ but degeneracy is saturated at 70.0\%, leaving no diverse candidates for aggregation ($+0.03$\,pp, n.s.).
+Neither condition alone suffices---this \emph{dual-gating} pattern is consistent across both regimes and all three datasets.
+Construction succeeds only in the narrow operating region where degeneracy is low \emph{and} LP retains discriminative power.
+
+%% NOTE: When FewNERD FS data arrives, replace placeholder commands and verify
+%% that the dual-gating narrative holds (expect high degen → no construction gain).

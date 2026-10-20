@@ -1,0 +1,105 @@
+Loading HumanEval (openai/openai_humaneval)...
+  Loaded 164 problems
+Sampling 164 remaining problems (N=8, T=1.0)...
+
+[1/164] HumanEval/0
+  Sampled 8 completions in 17.5s
+  Tests: 8/8 pass, greedy=PASS
+[2/164] HumanEval/1
+  Sampled 8 completions in 8.9s
+  Tests: 8/8 pass, greedy=PASS
+[3/164] HumanEval/2
+  Sampled 8 completions in 8.5s
+  Tests: 8/8 pass, greedy=PASS
+[4/164] HumanEval/3
+  Sampled 8 completions in 10.5s
+  Tests: 8/8 pass, greedy=PASS
+[5/164] HumanEval/4
+  Sampled 8 completions in 18.8s
+  Tests: 8/8 pass, greedy=PASS
+[6/164] HumanEval/5
+  Sampled 8 completions in 6.6s
+  Tests: 8/8 pass, greedy=PASS
+[7/164] HumanEval/6
+  Sampled 8 completions in 12.4s
+  Tests: 7/8 pass, greedy=PASS
+[8/164] HumanEval/7
+  Sampled 8 completions in 7.7s
+  Tests: 8/8 pass, greedy=PASS
+[9/164] HumanEval/8
+  Sampled 8 completions in 9.3s
+  Tests: 8/8 pass, greedy=PASS
+[10/164] HumanEval/9
+  Sampled 8 completions in 14.3s
+  Tests: 8/8 pass, greedy=PASS
+[11/164] HumanEval/10
+  Sampled 8 completions in 11.8s
+  Tests: 8/8 pass, greedy=PASS
+[12/164] HumanEval/11
+  Sampled 8 completions in 26.4s
+  Tests: 8/8 pass, greedy=PASS
+[13/164] HumanEval/12
+  Sampled 8 completions in 11.8s
+  Tests: 8/8 pass, greedy=PASS
+[14/164] HumanEval/13
+  Sampled 8 completions in 7.6s
+  Tests: 8/8 pass, greedy=PASS
+[15/164] HumanEval/14
+  Sampled 8 completions in 9.3s
+  Tests: 8/8 pass, greedy=PASS
+[16/164] HumanEval/15
+  Sampled 8 completions in 6.9s
+  Tests: 8/8 pass, greedy=PASS
+[17/164] HumanEval/16
+  Sampled 8 completions in 8.5s
+  Tests: 8/8 pass, greedy=PASS
+[18/164] HumanEval/17
+  Sampled 8 completions in 12.6s
+  Tests: 8/8 pass, greedy=PASS
+[19/164] HumanEval/18
+  Sampled 8 completions in 16.3s
+  Tests: 5/8 pass, greedy=PASS
+[20/164] HumanEval/19
+  Sampled 8 completions in 10.2s
+  Tests: 8/8 pass, greedy=PASS
+[21/164] HumanEval/20
+  Sampled 8 completions in 10.2s
+  Tests: 8/8 pass, greedy=PASS
+[22/164] HumanEval/21
+  Sampled 8 completions in 10.0s
+  Tests: 7/8 pass, greedy=PASS
+[23/164] HumanEval/22
+  Sampled 8 completions in 14.5s
+  Tests: 8/8 pass, greedy=PASS
+[24/164] HumanEval/23
+  API error (attempt 1/5): Error code: 402 - {'detail': 'Insufficient balance'}
+  Retrying in 2.6s...
+  API error (attempt 2/5): Error code: 402 - {'detail': 'Insufficient balance'}
+  Retrying in 4.0s...
+  API error (attempt 3/5): Error code: 402 - {'detail': 'Insufficient balance'}
+  Retrying in 8.3s...
+  API error (attempt 4/5): Error code: 402 - {'detail': 'Insufficient balance'}
+  Retrying in 16.2s...
+Traceback (most recent call last):
+  File "/root/autodl-tmp/struct_self_consist_ie/experiments/humaneval_sc/run_humaneval_sc.py", line 528, in <module>
+    main()
+  File "/root/autodl-tmp/struct_self_consist_ie/experiments/humaneval_sc/run_humaneval_sc.py", line 524, in main
+    run_pipeline(args)
+  File "/root/autodl-tmp/struct_self_consist_ie/experiments/humaneval_sc/run_humaneval_sc.py", line 405, in run_pipeline
+    raw_samples = api_sample(
+                  ^^^^^^^^^^^
+  File "/root/autodl-tmp/struct_self_consist_ie/experiments/humaneval_sc/run_humaneval_sc.py", line 103, in api_sample
+    response = client.chat.completions.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/openai/_utils/_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/openai/resources/chat/completions/completions.py", line 1204, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/openai/_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/openai/_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.APIStatusError: Error code: 402 - {'detail': 'Insufficient balance'}

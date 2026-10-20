@@ -1,0 +1,73 @@
+2026-05-20 19:26:26 [INFO] Loading FewNERD from HuggingFace (DFKI-SLT/few-nerd, supervised)...
+2026-05-20 19:26:26 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/DFKI-SLT/few-nerd/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-05-20 19:26:26 [INFO] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/DFKI-SLT/few-nerd/205f3e9c9f3577ea2561d43f2f62dc249ab92d5b/README.md "HTTP/1.1 200 OK"
+2026-05-20 19:26:26 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/DFKI-SLT/few-nerd/resolve/205f3e9c9f3577ea2561d43f2f62dc249ab92d5b/few-nerd.py "HTTP/1.1 404 Not Found"
+2026-05-20 19:26:27 [INFO] HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/DFKI-SLT/few-nerd/DFKI-SLT/few-nerd.py "HTTP/1.1 404 Not Found"
+2026-05-20 19:26:27 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/DFKI-SLT/few-nerd/revision/205f3e9c9f3577ea2561d43f2f62dc249ab92d5b "HTTP/1.1 200 OK"
+2026-05-20 19:26:27 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/DFKI-SLT/few-nerd/resolve/205f3e9c9f3577ea2561d43f2f62dc249ab92d5b/.huggingface.yaml "HTTP/1.1 404 Not Found"
+2026-05-20 19:26:27 [INFO] HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=DFKI-SLT/few-nerd "HTTP/1.1 200 OK"
+2026-05-20 19:26:27 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/DFKI-SLT/few-nerd/tree/205f3e9c9f3577ea2561d43f2f62dc249ab92d5b/inter?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-05-20 19:26:28 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/DFKI-SLT/few-nerd/tree/205f3e9c9f3577ea2561d43f2f62dc249ab92d5b?recursive=false&expand=false "HTTP/1.1 200 OK"
+2026-05-20 19:26:28 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/DFKI-SLT/few-nerd/resolve/205f3e9c9f3577ea2561d43f2f62dc249ab92d5b/dataset_infos.json "HTTP/1.1 404 Not Found"
+2026-05-20 19:26:28 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/DFKI-SLT/few-nerd/tree/205f3e9c9f3577ea2561d43f2f62dc249ab92d5b/supervised?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-05-20 19:26:35 [INFO]   Total test: 37648, with entities: 32565
+2026-05-20 19:26:35 [INFO]   Sampled 200 instances (seed=42)
+2026-05-20 19:26:35 [INFO] ============================================================
+2026-05-20 19:26:35 [INFO] Running model: gpt-5.5 (openai/gpt-5.5)
+2026-05-20 19:26:35 [INFO] ============================================================
+2026-05-20 19:26:35 [INFO] Model gpt-5.5: 0 done, 200 remaining
+2026-05-20 19:26:35 [INFO]   [1/200] id=fewnerd_test_24225 len=160 entities=3
+2026-05-20 19:26:37 [INFO] HTTP Request: POST http://47.94.22.126/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-05-20 19:26:37 [WARNING]   Model openai/gpt-5.5 does not support temperature=0.0, retrying with temperature=1
+2026-05-20 19:26:52 [INFO] HTTP Request: POST http://47.94.22.126/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-20 19:27:08 [INFO] HTTP Request: POST http://47.94.22.126/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-20 19:27:26 [INFO] HTTP Request: POST http://47.94.22.126/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-20 19:27:41 [INFO] HTTP Request: POST http://47.94.22.126/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-20 19:27:58 [INFO] HTTP Request: POST http://47.94.22.126/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-20 19:28:15 [INFO] HTTP Request: POST http://47.94.22.126/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-20 19:28:34 [INFO] HTTP Request: POST http://47.94.22.126/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-20 19:28:52 [INFO] HTTP Request: POST http://47.94.22.126/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-20 19:29:06 [INFO] HTTP Request: POST http://47.94.22.126/v1/chat/completions "HTTP/1.1 200 OK"
+Traceback (most recent call last):
+  File "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/experiments/frontier_sc/run_frontier_sc.py", line 781, in <module>
+    main()
+    ~~~~^^
+  File "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/experiments/frontier_sc/run_frontier_sc.py", line 710, in main
+    results = run_model(
+        client, model_name, model_id, instances,
+        args.n_samples, args.temperature, output_dir,
+        resume=not args.no_resume,
+    )
+  File "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/experiments/frontier_sc/run_frontier_sc.py", line 634, in run_model
+    metrics = compute_instance_metrics(greedy_parsed, sc_parsed, inst["entities"])
+  File "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/experiments/frontier_sc/run_frontier_sc.py", line 390, in compute_instance_metrics
+    greedy_ents = entity_set(greedy_parsed)
+  File "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/experiments/frontier_sc/run_frontier_sc.py", line 343, in entity_set
+    return {(e["start"], e["end"], e["type"]) for e in entities}
+             ~^^^^^^^^^
+TypeError: string indices must be integers, not 'str'
+1/chat/completions "HTTP/1.1 200 OK"
+2026-05-20 19:27:01 [INFO] HTTP Request: POST http://47.94.22.126/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-20 19:27:18 [INFO] HTTP Request: POST http://47.94.22.126/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-20 19:27:29 [INFO] HTTP Request: POST http://47.94.22.126/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-20 19:27:48 [INFO] HTTP Request: POST http://47.94.22.126/v1/chat/completions "HTTP/1.1 200 OK"
+Traceback (most recent call last):
+  File "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/experiments/frontier_sc/run_frontier_sc.py", line 769, in <module>
+    "models": {m: MODELS[m] for m in args.models},
+    
+  File "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/experiments/frontier_sc/run_frontier_sc.py", line 698, in main
+        json.dump({"seed": args.seed, "n": len(id_list), "ids": id_list}, f, indent=2)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    all_summaries = {}
+    ^^^^^
+  File "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/experiments/frontier_sc/run_frontier_sc.py", line 622, in run_model
+    len(inst["text"]),
+          ^^^^^^^^^^^^
+  File "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/experiments/frontier_sc/run_frontier_sc.py", line 378, in compute_instance_metrics
+    fn = len(gold_set - pred_set)
+                  ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/experiments/frontier_sc/run_frontier_sc.py", line 331, in entity_set
+    })
+     ^
+TypeError: string indices must be integers, not 'str'

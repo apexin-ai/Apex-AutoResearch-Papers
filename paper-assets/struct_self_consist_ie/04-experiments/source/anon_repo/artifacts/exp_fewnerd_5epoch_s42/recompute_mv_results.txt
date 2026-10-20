@@ -1,0 +1,14 @@
+Dataset: fewnerd, Seed: 42
+  n=32565 gold-nonempty (of 37648 total)
+  greedy_f1:       0.7980
+  mv_strict_f1:    0.7935  (>N/2, need>=5/8)
+  mv_incl_f1:      0.7968  (>=N/2, need>=4/8)
+  oracle_f1:       0.8781
+  Δ_SC strict:     -0.45pp
+  Δ_SC incl:       -0.12pp
+  δ (degen):       25.7%
+  α_crit strict:   0.3990
+  α_crit incl:     0.3990
+  α_crit_eff str:  0.5369
+  α_crit_eff incl: 0.5369
+JSON:{"n_total": 37648, "n_gold_nonempty": 32565, "greedy_f1": 0.797973146766809, "mv_strict_f1": 0.793471992411299, "mv_incl_f1": 0.7967687912520934, "oracle_f1": 0.8780961732254979, "delta_sc_strict_pp": -0.45011543555100175, "delta_sc_incl_pp": -0.12043555147155383, "degen": 0.2568708736373407, "alpha_crit_strict": 0.3989865733834045, "alpha_crit_incl": 0.3989865733834045, "alpha_crit_eff_strict": 0.5369007339764696, "alpha_crit_eff_incl": 0.5369007339764696, "dataset": "fewnerd", "seed": 42}

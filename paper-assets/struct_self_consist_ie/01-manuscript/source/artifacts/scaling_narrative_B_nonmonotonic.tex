@@ -1,0 +1,28 @@
+%% Version B: Non-monotonic scaling narrative (some scale point breaks monotonicity)
+%% Use condition: Qwen2.5 FT results show degeneracy does NOT rise monotonically with scale.
+%% Status: Placeholder framework — fill numbers when exp results arrive.
+
+%% ---- Placeholder commands (replace with actual values) ----
+\newcommand{\scaleSevenDegen}{XX.X}    % 7B degeneracy %
+\newcommand{\scaleFourteenDegen}{XX.X} % 14B degeneracy %
+\newcommand{\scaleThirtytwoDegen}{XX.X}% 32B degeneracy %
+\newcommand{\scaleSevenGreedy}{.XXX}   % 7B greedy F1
+\newcommand{\scaleFourteenGreedy}{.XXX}% 14B greedy F1
+\newcommand{\scaleThirtytwoGreedy}{.XXX}% 32B greedy F1
+\newcommand{\scaleSevenConstr}{X.XX}   % 7B construction Δ (pp)
+\newcommand{\scaleFourteenConstr}{X.XX}% 14B construction Δ (pp)
+\newcommand{\scaleThirtytwoConstr}{X.XX}% 32B construction Δ (pp)
+\newcommand{\scaleSevenLP}{.XXX}       % 7B LP ρ
+\newcommand{\scaleFourteenLP}{.XXX}    % 14B LP ρ
+\newcommand{\scaleThirtytwoLP}{.XXX}   % 32B LP ρ
+
+%% ---- Narrative ----
+
+\paragraph{Degeneracy is not a simple function of scale.}
+We fine-tune Qwen2.5 at three scales (7B, 14B, 32B) with an identical QLoRA recipe on Few-NERD ($N{=}8$, $T{=}1.0$).
+Degeneracy does not increase monotonically with parameter count: $\scaleSevenDegen\%\to\scaleFourteenDegen\%\to\scaleThirtytwoDegen\%$ (Figure~\ref{fig:scaling_curve}a), indicating that model-specific factors beyond raw scale---such as pretraining data composition or architecture choices within the Qwen2.5 family---modulate the capability--diversity tradeoff.
+Nonetheless, the gating relationship between degeneracy and construction effectiveness remains intact: LP-weighted construction $\Delta$F1 tracks degeneracy rather than parameter count ($\scaleSevenConstr$, $\scaleFourteenConstr$, $\scaleThirtytwoConstr$\,pp), with the largest gains at the scale point exhibiting lowest degeneracy regardless of model size.
+
+This result reframes degeneracy as a \emph{diagnostic} rather than a predictable consequence of scaling.
+The epoch dimension reinforces this view: extending Qwen3-8B training from 3 to 5 epochs on Few-NERD raises degeneracy from 11.1\% to 31.3\% (\S\ref{sec:fewnerd}), showing that training choices can shift degeneracy as much as a $4{\times}$ increase in parameters.
+The practical implication is that practitioners should measure degeneracy post-hoc rather than predict it from model size: a mid-scale model with favorable output diversity may benefit more from self-consistency aggregation than a larger model whose samples have collapsed.

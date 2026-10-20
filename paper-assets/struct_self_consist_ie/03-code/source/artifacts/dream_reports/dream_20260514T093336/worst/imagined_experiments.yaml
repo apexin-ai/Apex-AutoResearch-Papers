@@ -1,0 +1,821 @@
+tier: worst
+narrative_guidance: '原始 framing 全部废弃。不能再 claim "SJ is better than FK for IE"。转为 negative-result-driven
+  analytical paper——"Why Self-Consistency Fails as a Confidence Signal for Structured
+  Prediction"。 新 storyline：(1) 系统性地测试了 consistency-based confidence 在 IE 上的表现， (2)
+  发现即使 SJ 在单数据集上优于 FK，该优势不跨数据集迁移， (3) 通过 error decomposition 和 dataset characteristic
+  analysis 解释失败原因 （entity type granularity、annotation noise、output space complexity），
+  (4) 给出 practitioner guideline：什么条件下 consistency signal 可能有效。 exp-009 (capability
+  stratification) 和 exp-005 (temperature sensitivity) 从 supporting 升级为 core experiments。
+  仍然是 EMNLP-caliber contribution，但需要大幅增加 analysis depth 来补偿缺失的 positive result。
+
+  '
+imagined_experiments:
+- name: ner_n16_scierc
+  plan_id: exp-001
+  description: 'NER N=16 on SciERC (ft_002_v2)。测试增加采样数是否能将 rho 推过 0.40。 3 seeds (42,
+    123, 456) 用于 rho 稳定性检验。
+
+    '
+  expected_results:
+    ner_rho_sj_full_seed42: 0.371
+    ner_rho_sj_full_seed123: 0.354
+    ner_rho_sj_full_seed456: 0.362
+    ner_rho_sj_full_mean: 0.362
+    ner_rho_sj_full_std: 0.009
+    ner_rho_fk_full_mean: 0.278
+    ner_rho_sj_cond_mean: 0.358
+    ner_rho_fk_cond_mean: 0.264
+    ner_greedy_f1: 0.667
+    ner_oracle_f1_n16: 0.742
+    ner_oracle_headroom_n16: 0.075
+    ner_oracle_headroom_n8_baseline: 0.109
+    ner_sj_beats_fk: true
+    ner_rho_delta_n16_minus_n8: -0.014
+    ner_sample_f1_pct_zero: 11.5
+    p_sj_full: 2.8e-17
+  result_rationale: 'N=16 未能提升 rho 反而轻微下降（0.383→0.362）。机制：ft_002_v2 在 SciERC 上 greedy
+    F1=0.667，模型 confidence 已较高，额外 8 个 sample 引入的不是 "uncertainty-driven variation"
+    而是 "sampling noise"——在 T=1.0 下，低概率 token 被采到的机会增加，产生偶发性的 spurious outputs（如漏标一个
+    entity 或 hallucinate 一个不存在的 entity type），这些 outlier 拉低了 SJ 均值但不对应 真实的 accuracy
+    差异。oracle headroom 从 10.9pp 降至 7.5pp 也证实了这点： N=16 的额外样本并未发现更好的输出，反而稀释了 N=8 中已经存在的好样本的权重。
+    跨 seed 的 std=0.009 说明这不是随机波动而是系统性 pattern。SJ 仍然 beat FK （因为 FK 也同步下降），但 delta
+    缩小，两者都在 0.35-0.37 的 plateau。 这直接否定了 "more samples → better signal" 的 test-time
+    scaling 核心假设。
+
+    '
+  tables:
+  - name: 'Table: N-scaling effect on NER rho (SciERC, ft_002_v2)'
+    columns:
+    - N
+    - rho_sj_full
+    - rho_fk_full
+    - sj_minus_fk
+    - oracle_headroom
+    - pct_zero_f1
+    rows:
+    - - 8
+      - 0.383
+      - 0.259
+      - '+0.124'
+      - 10.9pp
+      - 12.2%
+    - - 16
+      - 0.362
+      - 0.278
+      - '+0.084'
+      - 7.5pp
+      - 11.5%
+    - - delta
+      - '-0.021'
+      - '+0.019'
+      - '-0.040'
+      - -3.4pp
+      - -0.7pp
+  - name: 'Table: Cross-seed rho stability (N=16)'
+    columns:
+    - seed
+    - rho_sj_full
+    - rho_fk_full
+    - rho_sj_cond
+    rows:
+    - - 42
+      - 0.371
+      - 0.282
+      - 0.365
+    - - 123
+      - 0.354
+      - 0.27
+      - 0.348
+    - - 456
+      - 0.362
+      - 0.281
+      - 0.361
+    - - mean±std
+      - 0.362±0.009
+      - 0.278±0.007
+      - 0.358±0.009
+  figures_description:
+  - 'Fig: rho vs N 折线图 (N=1,2,4,8,16)。SJ 和 FK 两条线在 N=8 处 peak 后 plateau/下降，shaded
+    area 表示 3-seed CI。'
+  - 'Fig: oracle headroom vs N 递减曲线，表明额外 samples 未找到更好输出。'
+  analysis: 'N=16 不仅未提升 rho，反而使 SJ 信号略有退化。这是 worst case 的核心打击： 如果 more samples 不能
+    improve signal quality，那么 test-time scaling 的 compute-accuracy tradeoff 就不成立。在
+    negative result paper 中，这成为 Section 4.1 的关键发现——"Sampling beyond saturation: diminishing
+    returns in consistency estimation"。需要用 per-instance analysis 展示 N=16 的额外 samples
+    主要在 high-confidence instances 上引入 noise（这些 instance 本来 N=8 已经给出一致的好预测），而在 low-confidence
+    instances 上也没有帮助 （因为 model 根本不具备该 instance 的知识，更多 sample 只是更多 wrong answers）。
+
+    '
+- name: ner_conll2003
+  plan_id: exp-002
+  description: 'Fine-tune Qwen3-8B on CoNLL-2003 (LoRA) + NER pilot (N=8, T=0.7)。
+    验证 Claim 1 的跨数据集泛化。
+
+    '
+  expected_results:
+    ft_ner_f1_greedy: 0.812
+    ft_re_f1_greedy: null
+    ner_rho_sj_full: 0.22
+    ner_rho_fk_full: 0.24
+    ner_rho_sj_cond: 0.25
+    ner_rho_fk_cond: 0.27
+    ner_sj_beats_fk_full: false
+    ner_sj_beats_fk_cond: false
+    sj_minus_fk_delta_full: -0.02
+    ner_oracle_f1: 0.856
+    ner_oracle_headroom: 0.044
+    ner_sample_f1_pct_zero: 4.2
+    ner_greedy_f1: 0.812
+    p_sj_full: 0.00031
+  result_rationale: 'CoNLL-2003 只有 4 种 entity type (PER, ORG, LOC, MISC)，输出空间远小于 SciERC
+    (6 types: Method, Task, Material, Metric, OtherScientificTerm, Generic)。 在简单输出空间下，FK
+    的 "flat token agreement" 足以捕获一致性信息，SJ 的 "structural similarity" 优势消失。具体来说：(1)
+    CoNLL 的 entity boundary 更清晰（新闻文本 vs 科学论文），模型 greedy F1 高达 0.812，sample 间变异 极小（pct_zero=4.2%），consistency
+    几乎是 ceiling，rho 被 range restriction 压低；(2) 4-type 系统中，两个 sample 如果识别了同一个 span
+    但 type 不同， 只有 4 种可能——FK 的 exact match 在这个低基数下和 SJ 的 soft match 没有 区别差异；(3) CoNLL
+    的标注质量远高于 SciERC（IAA > 0.95 vs SciERC ~0.80）， annotation noise 更低意味着 model uncertainty
+    更少地反映在 consistency 上。 FK 反超 SJ 2pp 虽小但一致。这证明 SJ 优势是 dataset-specific artifact。
+
+    '
+  tables:
+  - name: 'Table: Cross-dataset NER comparison (N=8)'
+    columns:
+    - dataset
+    - n_types
+    - rho_sj
+    - rho_fk
+    - sj_minus_fk
+    - greedy_f1
+    - oracle_headroom
+    rows:
+    - - SciERC
+      - 6
+      - 0.383
+      - 0.259
+      - '+0.124'
+      - 0.667
+      - 10.9pp
+    - - CoNLL-2003
+      - 4
+      - 0.22
+      - 0.24
+      - '-0.020'
+      - 0.812
+      - 4.4pp
+  figures_description:
+  - 'Fig: SJ vs FK rho 的 dataset-by-dataset 对比 bar chart，error bar 来自 bootstrap。SciERC
+    上 SJ >> FK，CoNLL 上 FK ≥ SJ。'
+  - 'Fig: scatter plot of per-instance SJ vs F1 on CoNLL，point cloud 高度聚集在右上角（high
+    SJ, high F1），几乎无 discriminative power。'
+  analysis: 'CoNLL-2003 的失败有两层含义：(1) rho 本身低（0.22）说明 consistency signal 在高准确率 regime
+    下 discriminative power 不足——当 greedy 已经 0.81 时， 几乎所有 instance 都 high-consistency-high-accuracy，没有
+    variation 来建立 correlation；(2) SJ < FK 说明 structural metric 在简单输出空间下没有优势。 这不是 model
+    quality issue（greedy F1 更高），而是 consistency-as-confidence 在 "easy dataset" 上的根本限制。在
+    negative result paper 中归为 "the performance ceiling effect"——当 base model 足够好时，consistency
+    无法区分 "slightly uncertain" 和 "very confident"。
+
+    '
+- name: ner_dataset3
+  plan_id: exp-003
+  description: 'Fine-tune Qwen3-8B on WNUT-17 (LoRA) + NER pilot (N=8, T=0.7)。 第三个数据集验证跨数据集泛化。
+
+    '
+  expected_results:
+    ft_ner_f1_greedy: 0.418
+    ner_rho_sj_full: 0.19
+    ner_rho_fk_full: 0.15
+    ner_rho_sj_cond: 0.26
+    ner_rho_fk_cond: 0.2
+    ner_sj_beats_fk_full: true
+    sj_minus_fk_delta_full: 0.04
+    ner_oracle_f1: 0.522
+    ner_oracle_headroom: 0.104
+    ner_sample_f1_pct_zero: 38.7
+    ner_all_zero_filtered: 89
+    n_test: 1287
+    p_sj_full: 0.0074
+  result_rationale: 'WNUT-17 是 noisy social media NER（tweets, Reddit），标注质量低，entity
+    mentions 高度非规范（缩写、slang、hashtag 中的 entity）。Qwen3-8B fine-tune on WNUT 的 greedy
+    F1 仅 0.418——模型在这种 domain 上 struggle。两个问题 叠加导致 rho 极低：(1) 高 pct_zero (38.7%) 表示大量
+    instance 模型完全 无法处理，consistency 对这些 instance 无信号（全部 output 都是 wrong，但 "consistently
+    wrong" 的 SJ 仍可能较高——classic false-confidence 问题）； (2) annotation noise——WNUT 的
+    IAA 远低于 CoNLL/SciERC，部分 gold annotation 本身有争议，模型的 "inconsistency" 可能反映的是标注模糊而非模型不确定性。
+    SJ 仍微弱地 beat FK (delta=0.04pp)，但 rho=0.19 说明 consistency 几乎不是 一个 useful confidence
+    signal。这和 CoNLL 的失败模式相反但殊途同归： CoNLL 太简单导致 ceiling effect，WNUT 太难导致 floor effect。
+
+    '
+  tables:
+  - name: 'Table: Three-dataset NER comparison'
+    columns:
+    - dataset
+    - domain
+    - n_types
+    - greedy_f1
+    - rho_sj
+    - rho_fk
+    - sj_minus_fk
+    - headroom
+    rows:
+    - - SciERC
+      - scientific
+      - 6
+      - 0.667
+      - 0.383
+      - 0.259
+      - '+0.124'
+      - 10.9pp
+    - - CoNLL-2003
+      - news
+      - 4
+      - 0.812
+      - 0.22
+      - 0.24
+      - '-0.020'
+      - 4.4pp
+    - - WNUT-17
+      - social-media
+      - 6
+      - 0.418
+      - 0.19
+      - 0.15
+      - '+0.040'
+      - 10.4pp
+  figures_description:
+  - 'Fig: 三数据集 rho 对比图，x轴=greedy F1，y轴=rho_sj。呈倒U形：SciERC 在 sweet spot (F1~0.67)，CoNLL
+    太高，WNUT 太低。'
+  - 'Fig: pct_zero vs rho scatter，展示 zero-F1 率和 rho 的负相关。'
+  analysis: '三数据集结果呈现清晰的 inverted-U pattern：consistency signal 只在 model performance
+    的 "中间地带" 有效。太高（CoNLL, F1=0.81）→ ceiling，太低 （WNUT, F1=0.42）→ floor。SciERC (F1=0.67)
+    恰好在 sweet spot。 这是 negative result paper 最有价值的发现之一——consistency-based confidence
+    有一个 narrow operating range，依赖于 base model 在特定 dataset 上的 performance level。对 practitioner
+    的 guideline：先评估 greedy performance，如果 F1 < 0.50 或 F1 > 0.80，consistency signal
+    可能不可靠。
+
+    '
+- name: re_diagnostic_analysis
+  plan_id: exp-004
+  description: 'Per-relation-type consistency breakdown on existing pilot_004/005
+    data。 分析哪些 relation type 的 SJ correlation 最高/最低。
+
+    '
+  expected_results:
+    used_by_rho_sj: 0.28
+    feature_of_rho_sj: 0.21
+    part_of_rho_sj: 0.19
+    evaluate_for_rho_sj: 0.16
+    hyponym_of_rho_sj: 0.14
+    conjunction_rho_sj: 0.11
+    compare_rho_sj: 0.09
+    overall_re_rho_sj: 0.244
+    rho_vs_freq_spearman: 0.41
+    rho_vs_freq_p: 0.15
+    rho_range: '[0.09, 0.28]'
+    bootstrap_ci_95_sj_minus_fk: '[-0.08, 0.05]'
+  result_rationale: 'Per-relation-type 分析显示所有 type 的 rho 都很低（0.09-0.28），没有任何 type
+    接近 NER-level 的 0.38。频率最高的 Used-for (~40% of instances) rho 最高但也只有 0.28，这主要是因为
+    sample size 给了更稳定的估计而非信号本身更强。 低频 type (Compare, Conjunction 各 <20 instances) 的
+    rho 极不稳定。 rho 和 type frequency 的 Spearman correlation r=0.41 但 p=0.15（N=7 types
+    太少，无法达到显著）。关键发现：即使是 "最简单" 的 relation type (Used-for, 双向 entity pair + 一个 type
+    label)，SJ rho 也远低于 NER 的 span-only task。 这证实 E1 的诊断：问题不在特定 relation type 而在 relational
+    prediction 的 compound structure 本身。Bootstrap CI for SJ-FK delta 跨零（[-0.08, 0.05]），
+    说明 SJ 在 RE 上是否优于 FK 连统计显著性都无法确立。
+
+    '
+  tables:
+  - name: 'Table: Per-relation-type SJ rho'
+    columns:
+    - relation_type
+    - n_instances
+    - rho_sj
+    - rho_fk
+    - sj_minus_fk
+    rows:
+    - - Used-for
+      - 156
+      - 0.28
+      - 0.26
+      - '+0.02'
+    - - Feature-of
+      - 72
+      - 0.21
+      - 0.24
+      - '-0.03'
+    - - Part-of
+      - 58
+      - 0.19
+      - 0.22
+      - '-0.03'
+    - - Evaluate-for
+      - 43
+      - 0.16
+      - 0.18
+      - '-0.02'
+    - - Hyponym-of
+      - 34
+      - 0.14
+      - 0.19
+      - '-0.05'
+    - - Conjunction
+      - 21
+      - 0.11
+      - 0.08
+      - '+0.03'
+    - - Compare
+      - 13
+      - 0.09
+      - 0.12
+      - '-0.03'
+  figures_description:
+  - 'Fig: per-relation-type rho bar chart (SJ vs FK)，按 frequency 降序排列。所有 bar 都 < 0.30，SJ
+    和 FK 交替领先。'
+  - 'Fig: rho vs relation frequency scatter + regression line，呈弱正相关但不显著。'
+  analysis: '这个分析对 negative result paper 至关重要——它提供了 "mechanistic explanation" 而非仅仅说
+    "RE doesn''t work"。所有 relation type 均匀地差，排除了 "特定 hard relation type 拉低平均" 的解释。这与
+    E1 的 component-wise analysis 一致：问题是 structural 的，不是 type-specific 的。 在论文中，这成为
+    Section 5.2 "Error propagation is type-agnostic"。
+
+    '
+- name: temperature_sensitivity_analysis
+  plan_id: exp-005
+  description: 'T=0.7 vs T=1.0 系统性对比，分析 signal-noise tradeoff。 升级为 core experiment。
+
+    '
+  expected_results:
+    ner_rho_sj_t07: 0.376
+    ner_rho_sj_t10: 0.383
+    ner_rho_fk_t07: 0.268
+    ner_rho_fk_t10: 0.259
+    ner_oracle_headroom_t07: 0.072
+    ner_oracle_headroom_t10: 0.109
+    ner_pct_zero_t07: 9.8
+    ner_pct_zero_t10: 12.2
+    ner_all_zero_count_t07: 28
+    ner_all_zero_count_t10: 21
+    re_rho_sj_t07: 0.25
+    re_rho_sj_t10: 0.244
+    re_cond_rho_sj_t07: 0.28
+    re_cond_rho_sj_t10: 0.316
+    re_oracle_headroom_t07: 0.112
+    re_oracle_headroom_t10: 0.167
+    re_pct_zero_t07: 41.2
+    re_pct_zero_t10: 44.3
+  result_rationale: 'T=0.7 的效果是 mixed 而非 clearly beneficial：NER 上 rho 基本不变（0.383→0.376），
+    oracle headroom 显著下降（10.9pp→7.2pp），意味着 T=0.7 压缩了 output diversity 但没有提升 signal
+    quality。SJ rho 微降是因为 T=0.7 使 samples 更 homogeneous， reduced variance 同时 reduce
+    了 correlation 的 statistical power。FK 略升 （T=0.7 下 token-level agreement 更高，FK 的
+    range 扩大）。 RE 上更 tricky：full rho 微升（0.244→0.25）但 conditional rho 反降 （0.316→0.28）。机制：T=0.7
+    增加了 all-zero instances（28 vs 21 for NER; 对 RE 从 84 增到 ~95），这些被 filter 后 conditional
+    set 变小且 composition 变了——剩下的 "conditional" instances 在 T=0.7 下更 homogeneous，反而
+    降低了 SJ 的 discriminative power。 总体：temperature 不是一个有效的调节 knob。在 negative result
+    paper 中 这是关键 Section——"Temperature tuning cannot rescue weak consistency signals"。
+
+    '
+  tables:
+  - name: 'Table: Temperature sensitivity (NER + RE)'
+    columns:
+    - task
+    - metric
+    - T=0.7
+    - T=1.0
+    - delta
+    rows:
+    - - NER
+      - rho_sj_full
+      - 0.376
+      - 0.383
+      - '-0.007'
+    - - NER
+      - rho_fk_full
+      - 0.268
+      - 0.259
+      - '+0.009'
+    - - NER
+      - oracle_headroom
+      - 7.2pp
+      - 10.9pp
+      - -3.7pp
+    - - NER
+      - pct_zero
+      - 9.8%
+      - 12.2%
+      - -2.4pp
+    - - RE
+      - rho_sj_full
+      - 0.25
+      - 0.244
+      - '+0.006'
+    - - RE
+      - rho_sj_cond
+      - 0.28
+      - 0.316
+      - '-0.036'
+    - - RE
+      - oracle_headroom
+      - 11.2pp
+      - 16.7pp
+      - -5.5pp
+    - - RE
+      - pct_zero
+      - 41.2%
+      - 44.3%
+      - -3.1pp
+  figures_description:
+  - 'Fig: 2x2 panel (NER/RE × rho/headroom)，T=0.7 vs T=1.0 comparison。所有 panel 都显示
+    tradeoff 是 flat-to-negative。'
+  - 'Fig: signal-noise tradeoff curve：x=oracle headroom (diversity proxy), y=rho_sj。理想曲线应
+    upward-sloping（更多 diversity → worse signal），但实际是 flat，说明 diversity reduction 没有
+    proportional signal gain。'
+  analysis: 'Temperature analysis 在 worst case 下成为 core finding：consistency-based
+    confidence 不仅在 cross-dataset 上 fragile，连最基本的 hyperparameter tuning 都无法系统性 improve
+    它。这给 practitioner 的 takeaway 是：不要指望通过调 temperature 来 "fix" 弱 consistency signal。在论文中这支持
+    Section 4.3 "The signal-noise tradeoff is not tunable" 的论点。
+
+    '
+- name: adaptive_compute_demo
+  plan_id: exp-006
+  description: 'NER best-of-N selection：SJ vs FK vs random vs greedy。 使用 exp-001 的
+    N=16 数据。
+
+    '
+  expected_results:
+    f1_greedy: 0.667
+    f1_random_bon16: 0.681
+    f1_fk_bon16: 0.684
+    f1_sj_bon16: 0.679
+    f1_oracle_bon16: 0.742
+    sj_gain_over_greedy: 1.2
+    sj_gain_over_random: -0.2
+    fk_gain_over_random: 0.3
+    sj_vs_random_p_value: 0.47
+    sj_vs_fk_p_value: 0.62
+  result_rationale: '在 worst case 下 N=16 的 rho 只有 0.362，这意味着 SJ ranking 和 true F1
+    ranking 的 agreement 不足以实现有效 selection。具体：rho=0.36 对应 ~13% 的 ranking variance explained
+    (R²≈0.13)，也就是说 87% 的 selection decision 基本是 noise。SJ-based selection 仅获得 +1.2pp
+    over greedy， 而 random selection 也能获得 +1.4pp（因为 best-of-N 本身有 order statistics
+    的 upward bias——即使 random 选，N=16 中的 maximum 期望也高于 mean）。 SJ selection (0.679) 甚至不如
+    random (0.681) 和 FK (0.684)。FK 微弱领先 是因为 N=16 下 FK 的 rho 反而比 N=8 时略升（0.259→0.278），且
+    FK 作为 discrete metric 在 selection 的 tie-breaking 上有优势。 Bootstrap test 显示 SJ vs
+    random 的差异不显著 (p=0.47)。 这彻底否定了 "SJ enables practical test-time scaling" 的 claim。
+
+    '
+  tables:
+  - name: 'Table: Adaptive compute results (NER, SciERC, N=16)'
+    columns:
+    - method
+    - F1
+    - gain_over_greedy
+    - gain_over_random
+    - p_vs_random
+    rows:
+    - - greedy
+      - 0.667
+      - —
+      - —
+      - —
+    - - random-best-of-16
+      - 0.681
+      - +1.4pp
+      - —
+      - —
+    - - FK-best-of-16
+      - 0.684
+      - +1.7pp
+      - +0.3pp
+      - 0.58
+    - - SJ-best-of-16
+      - 0.679
+      - +1.2pp
+      - -0.2pp
+      - 0.47
+    - - oracle-best-of-16
+      - 0.742
+      - +7.5pp
+      - +6.1pp
+      - <1e-10
+  figures_description:
+  - 'Fig: bar chart of F1 by selection method。SJ、FK、random 三者几乎无差异，都远低于 oracle，表明
+    headroom exists but signals can''t exploit it。'
+  - 'Fig: selection efficiency curve：(F1_method - F1_greedy) / (F1_oracle - F1_greedy)
+    作为 ''signal efficiency''。SJ=16%, FK=23%, random=19%。'
+  analysis: 'Adaptive compute 的失败是 worst case 最 damaging 的结果——它直接否定了论文 的 practical
+    motivation。即使 oracle headroom 有 7.5pp（说明 N=16 中确实 存在更好的输出），SJ 和 FK 都无法有效识别它们。在
+    negative result paper 中 这支持核心论点："consistency ≠ confidence for structured prediction"。
+    实际 headroom 的存在 vs 无法利用 形成鲜明对比，成为 Figure 1 的素材。
+
+    '
+- name: ner_multi_model
+  plan_id: exp-007
+  description: 'LLaMA-3.1-8B-Instruct fine-tune on SciERC + NER pilot (N=8, T=0.7)。
+    测试 model-agnostic 假设。
+
+    '
+  expected_results:
+    ft_ner_f1_greedy: 0.591
+    ner_rho_sj_full: 0.28
+    ner_rho_fk_full: 0.31
+    ner_rho_sj_cond: 0.31
+    ner_rho_fk_cond: 0.33
+    ner_sj_beats_fk_full: false
+    sj_minus_fk_delta: -0.03
+    ner_oracle_f1: 0.718
+    ner_oracle_headroom: 0.127
+    ner_sample_f1_pct_zero: 22.6
+    parse_failures_stochastic: 12
+  result_rationale: 'LLaMA-3.1-8B 在 SciERC NER 上 fine-tune 后 greedy F1=0.591，低于 Qwen3-8B
+    的 0.667。更重要的是，LLaMA 的 sampling behavior 不同于 Qwen： (1) LLaMA 在 structured output
+    generation 上更 prone to format variation （偶发 parse failure=12，Qwen 的 ft_002_v2
+    是 0），这些 format inconsistency 被 SJ 错误地解读为 "low confidence" 但实际上是 generation style
+    差异； (2) LLaMA 的 logit distribution 在 entity boundary 上更 diffuse（Qwen3 有 更好的 instruction
+    following），导致 sample 间的 entity span 变异更多是 "boundary wobble" 而非 "genuine uncertainty"。FK
+    反而 beat SJ 因为 FK 的 binary agreement 对 boundary 偏移不敏感（只看 token overlap）， 而 SJ 的
+    soft matching 被 boundary 偏移 confound。 这表明 SJ 的效果不仅 dataset-specific 还 model-specific——只在
+    Qwen3-8B + SciERC 的特定组合下有效。
+
+    '
+  tables:
+  - name: 'Table: Model comparison on SciERC NER (N=8)'
+    columns:
+    - model
+    - greedy_f1
+    - rho_sj
+    - rho_fk
+    - sj_minus_fk
+    - parse_fail
+    rows:
+    - - Qwen3-8B
+      - 0.667
+      - 0.383
+      - 0.259
+      - '+0.124'
+      - 0
+    - - LLaMA-3.1-8B
+      - 0.591
+      - 0.28
+      - 0.31
+      - '-0.030'
+      - 12
+  figures_description:
+  - 'Fig: 两个 model 的 per-instance SJ vs F1 scatter plot 对比。Qwen 有清晰的 positive trend，LLaMA
+    的 cloud 更 diffuse 且有一簇 low-SJ-but-high-F1 points（boundary wobble 导致）。'
+  analysis: 'Multi-model 的失败为 negative result paper 增加了一个重要维度： SJ 的效果取决于 model 的 sampling
+    behavior（output format stability、 boundary precision）。这不是 consistency-as-confidence
+    的固有属性， 而是特定 model 的 artifact。在论文中归为 Section 5.3 "Model-specific confounds in consistency
+    estimation"——boundary wobble 和 format variation 是 SJ metric 无法区分的 noise sources。
+
+    '
+- name: re_n16_confirmation
+  plan_id: exp-008
+  description: 'RE N=16 on SciERC，确认 RE negative finding with higher statistical power。
+
+    '
+  expected_results:
+    re_rho_sj_full: 0.231
+    re_rho_fk_full: 0.268
+    re_rho_sj_cond: 0.27
+    re_rho_fk_cond: 0.29
+    re_sj_beats_fk_full: false
+    re_sj_beats_fk_cond: false
+    re_greedy_f1: 0.421
+    re_oracle_f1_n16: 0.558
+    re_oracle_headroom_n16: 0.137
+    re_sample_f1_pct_zero: 42.8
+    re_all_zero_filtered: 92
+    sj_minus_fk_delta_full: -0.037
+    bootstrap_ci_95_rho_sj: '[0.18, 0.28]'
+  result_rationale: 'RE 在 N=16 下 rho 甚至轻微下降（0.244→0.231），与 NER 的 pattern 一致。 机制相同：额外
+    samples 增加 noise，relational output 的 compound structure 使 noise 更严重——每个 relation
+    triplet 有 3 个可独立出错的 component (head, tail, type)，N=16 下 spurious triplet 的组合爆炸更剧烈。
+    Conditional rho 也下降到 0.27（从 0.316），因为 T=1.0 下 N=16 的 all-zero filter 更激进（92 instances
+    removed），剩余 conditional set 更 homogeneous。 Bootstrap CI [0.18, 0.28] 确认 rho_sj
+    < 0.30 with high confidence。 SJ 在 full 和 conditional set 上均输给 FK，进一步证实 RE 上 structural
+    metric 没有优势。这为 negative result paper 提供了 "confirmed with adequate statistical
+    power" 的论证。
+
+    '
+  tables:
+  - name: 'Table: RE N-scaling (SciERC)'
+    columns:
+    - N
+    - rho_sj_full
+    - rho_fk_full
+    - rho_sj_cond
+    - rho_fk_cond
+    - headroom
+    rows:
+    - - 8
+      - 0.244
+      - 0.278
+      - 0.316
+      - 0.307
+      - 16.7pp
+    - - 16
+      - 0.231
+      - 0.268
+      - 0.27
+      - 0.29
+      - 13.7pp
+  figures_description:
+  - 'Fig: RE rho 的 bootstrap distribution histogram (N=16)，虚线标注 0.30 threshold，>95%
+    的 distribution 在 0.30 以下。'
+  analysis: 'N=16 confirmation 使 RE negative result 从 "suggestive" 变为 "definitive"。
+    Combined with E1 component analysis and exp-004 per-type analysis， 构成三重证据链证明 consistency-based
+    confidence 在 RE 上 fundamentally 失败。
+
+    '
+- name: capability_stratification
+  plan_id: exp-009
+  description: '按 greedy F1 分层（buckets）分析 rho 在不同 difficulty strata 的变化。 升级为 core
+    experiment。
+
+    '
+  expected_results:
+    ner_strata:
+      f1_0_to_0.2_rho_sj: 0.08
+      f1_0.2_to_0.4_rho_sj: 0.14
+      f1_0.4_to_0.6_rho_sj: 0.22
+      f1_0.6_to_0.8_rho_sj: 0.31
+      f1_0.8_to_1.0_rho_sj: 0.12
+    re_strata:
+      f1_0_to_0.2_rho_sj: 0.05
+      f1_0.2_to_0.4_rho_sj: 0.11
+      f1_0.4_to_0.6_rho_sj: 0.18
+      f1_0.6_to_0.8_rho_sj: 0.15
+      f1_0.8_to_1.0_rho_sj: 0.07
+    ner_monotonic_test_p: 0.12
+    re_monotonic_test_p: 0.38
+  result_rationale: 'Stratification 显示 rho 的 difficulty-dependent pattern 存在但不 clean：
+    (1) NER 上大致呈倒 U 形——极低 F1 (<0.2) 和极高 F1 (>0.8) strata 的 rho 都很低，中间 strata 最高 (0.31
+    at 0.6-0.8)。低端低是因为 model consistently fails（no signal），高端低是因为 consistently succeeds
+    （ceiling effect），和 exp-002/003 的 cross-dataset pattern 一致。 但 Jonckheere-Terpstra
+    monotonic trend test p=0.12 不显著，不能 claim "rho increases with model capability"。(2)
+    RE 上 pattern 更 noisy， 最高的 stratum (0.4-0.6) 也只有 rho=0.18，monotonic test p=0.38
+    完全不显著。 关键问题：每个 stratum 的 n 很小（50-120 instances），statistical power 不足以在单个 stratum
+    内建立 reliable rho 估计。这使得 "capability-dependent signal" 的论点 suggestive 而非 conclusive。
+
+    '
+  tables:
+  - name: 'Table: rho_sj by difficulty stratum'
+    columns:
+    - stratum
+    - ner_n
+    - ner_rho_sj
+    - re_n
+    - re_rho_sj
+    rows:
+    - - '[0, 0.2)'
+      - 68
+      - 0.08
+      - 157
+      - 0.05
+    - - '[0.2, 0.4)'
+      - 72
+      - 0.14
+      - 83
+      - 0.11
+    - - '[0.4, 0.6)'
+      - 89
+      - 0.22
+      - 62
+      - 0.18
+    - - '[0.6, 0.8)'
+      - 118
+      - 0.31
+      - 55
+      - 0.15
+    - - '[0.8, 1.0]'
+      - 182
+      - 0.12
+      - 40
+      - 0.07
+  figures_description:
+  - 'Fig: line plot of rho_sj vs difficulty stratum for NER and RE。NER 呈 inverted-U，RE
+    是 flat-with-noise。Error bars (bootstrap) 大且 overlapping。'
+  - 'Fig: heatmap of n_instances × stratum × task，highlighting the small-n problem
+    in high strata。'
+  analysis: 'Stratification 在 worst case 下提供了 nuanced 但 inconclusive 的结果。 Inverted-U
+    pattern 和 cross-dataset 的 inverted-U 一致（都是 difficulty-driven）， 但单数据集内的 statistical
+    power 不足。在 negative result paper 中，这仍然 有价值：它定性地指出 consistency signal 有一个 "Goldilocks
+    zone" (not too easy, not too hard)，但无法精确定义这个 zone 的边界。 这成为 Section 6 "Towards
+    a theory of consistency effectiveness" 的 speculative-but-grounded 讨论。
+
+    '
+- name: selection_curves
+  plan_id: exp-010
+  description: 'Best-of-N selection curves for N=1,2,4,8,16，SJ vs FK vs random on
+    NER。
+
+    '
+  expected_results:
+    f1_at_n1: 0.667
+    f1_sj_at_n2: 0.67
+    f1_sj_at_n4: 0.674
+    f1_sj_at_n8: 0.677
+    f1_sj_at_n16: 0.679
+    f1_random_at_n2: 0.671
+    f1_random_at_n4: 0.675
+    f1_random_at_n8: 0.679
+    f1_random_at_n16: 0.681
+    f1_oracle_at_n2: 0.698
+    f1_oracle_at_n4: 0.719
+    f1_oracle_at_n8: 0.742
+    f1_oracle_at_n16: 0.742
+  result_rationale: 'Selection curves 展示了 devastating 的 pattern：SJ-based selection
+    curve 始终在 random selection curve 之下或与之重叠。Oracle curve 持续上升直到 N=8（N=16 时 plateau），说明更好的输出
+    exist in the sample set，但 SJ 无法识别它们。具体：(1) N=2 时 SJ 和 random 几乎相同（0.670 vs 0.671），
+    因为只有两个选择，rho=0.36 的 pairwise accuracy 只有 ~60%，和 random 50% 的差距太小；(2) 随着 N 增加，random
+    的 order-statistics boost 反而比 SJ 的 selection accuracy improvement 更大——random-best-of-N
+    有 closed-form 的 expected maximum 增长，而 SJ-based selection 受限于 rho<0.40 的 poor ranking
+    quality。 这是 negative result paper 的 key visualization——一张图就能传达 "consistency signal
+    doesn''t enable test-time scaling"。
+
+    '
+  tables:
+  - name: 'Table: Selection curves (NER, SciERC)'
+    columns:
+    - N
+    - oracle
+    - SJ
+    - FK
+    - random
+    rows:
+    - - 1
+      - 0.667
+      - 0.667
+      - 0.667
+      - 0.667
+    - - 2
+      - 0.698
+      - 0.67
+      - 0.671
+      - 0.671
+    - - 4
+      - 0.719
+      - 0.674
+      - 0.676
+      - 0.675
+    - - 8
+      - 0.742
+      - 0.677
+      - 0.68
+      - 0.679
+    - - 16
+      - 0.742
+      - 0.679
+      - 0.684
+      - 0.681
+  figures_description:
+  - 'Fig: Selection curves (F1 vs N)。Oracle 快速上升，SJ/FK/random 三条线 bunched together
+    缓慢上升。Shaded area between oracle and methods = ''unrealized potential''。这是 paper
+    Figure 1 candidate。'
+  analysis: 'Selection curves 是 worst case 下最直观的 visualization。它将 abstract 的 "rho
+    is low" 翻译成 concrete 的 "you can''t improve F1"。 Oracle-method gap 随 N 扩大（N=16
+    时 oracle=0.742 vs SJ=0.679, gap=6.3pp）， 说明 headroom exists but is unexploitable。
+
+    '
+- name: ner_ood_robustness
+  plan_id: exp-011
+  description: 'Cross-domain transfer test for NER consistency signal。 用 WNUT-17 fine-tuned
+    model 在 unseen domain 上测试。
+
+    '
+  expected_results:
+    ner_rho_sj_ood: 0.12
+    ner_rho_fk_ood: 0.14
+    ner_greedy_f1_ood: 0.295
+    ner_oracle_f1_ood: 0.408
+    ner_oracle_headroom_ood: 0.113
+    ner_sample_f1_pct_zero_ood: 52.3
+  result_rationale: 'OOD 下 model performance 剧烈下降（greedy F1=0.295），超过一半 instances
+    F1=0。这是 exp-003 (WNUT) 的 floor effect 的极端版本。consistency signal 在 OOD 下完全崩溃 (rho=0.12)，因为模型对
+    OOD instances 的 sampling behavior 是 "randomly wrong in different ways"——每个 sample
+    犯不同的错误，high consistency 不 correlate with accuracy。这和 in-domain 的 "consistently
+    wrong" pattern 不同：OOD 下甚至 consistency 本身都不稳定。 Oracle headroom 11.3pp 存在但完全 unexploitable。
+
+    '
+  tables:
+  - name: 'Table: In-distribution vs OOD NER comparison'
+    columns:
+    - condition
+    - greedy_f1
+    - rho_sj
+    - rho_fk
+    - pct_zero
+    - headroom
+    rows:
+    - - in-domain
+      - 0.418
+      - 0.19
+      - 0.15
+      - 38.7%
+      - 10.4pp
+    - - OOD
+      - 0.295
+      - 0.12
+      - 0.14
+      - 52.3%
+      - 11.3pp
+  figures_description:
+  - 'Fig: in-domain vs OOD rho comparison bar chart，两者都 << 0.30，OOD 更差。'
+  analysis: OOD 结果是 negative result paper 的 final nail：consistency signal 不仅 不跨数据集迁移（exp-002/003），不跨模型迁移（exp-007），在
+    domain shift 下更是 completely fails。这为 practitioner guideline 增加了第三条限制： "do not
+    use consistency-based confidence on out-of-distribution data"。

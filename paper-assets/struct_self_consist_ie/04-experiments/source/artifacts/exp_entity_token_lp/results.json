@@ -1,0 +1,78 @@
+{
+  "scierc": {
+    "dataset": "scierc",
+    "n_total": 551,
+    "n_valid": 529,
+    "greedy_f1": 0.6429983733108385,
+    "full_lp_selection_f1": 0.6465039652268608,
+    "entity_lp_selection_f1": 0.6262459361314027,
+    "majority_vote_f1": 0.6265373258445356,
+    "oracle_f1": 0.7844964476817029,
+    "full_lp_delta": 0.003505591916022288,
+    "entity_lp_delta": -0.016752437179435864,
+    "entity_vs_full_delta": -0.020258029095458152,
+    "disagree_count": 443,
+    "entity_wins_when_disagree": 80,
+    "full_wins_when_disagree": 105,
+    "ties_when_disagree": 258,
+    "full_lp": {
+      "median_variance": 0.00016065077696107125,
+      "mean_variance": 0.0006540246723003611,
+      "median_range": 0.04018381627722567,
+      "mean_range": 0.05760699685499195,
+      "tied_fraction": 0.01890359168241966
+    },
+    "entity_lp": {
+      "median_variance": 0.0006437901489664227,
+      "mean_variance": 0.013380278179309153,
+      "median_range": 0.06618957259244872,
+      "mean_range": 0.1693791928516029,
+      "tied_fraction": 0.3497854077253219
+    },
+    "entity_token_stats": {
+      "median_entity_tokens": 10.0,
+      "mean_entity_tokens": 11.65212061779848,
+      "median_total_tokens": 188.0,
+      "mean_entity_fraction": 0.05300978800099932
+    },
+    "zscore_note": "z-score is a monotonic transform within each instance, so argmax(z_lps) == argmax(raw_lps). Z-score normalization does not change within-instance ranking or selection F1."
+  },
+  "conll": {
+    "dataset": "conll2003",
+    "n_total": 3453,
+    "n_valid": 2756,
+    "greedy_f1": 0.9065454371652614,
+    "full_lp_selection_f1": 0.8989247338753038,
+    "entity_lp_selection_f1": 0.865919823530045,
+    "majority_vote_f1": 0.8879150926311501,
+    "oracle_f1": 0.9480499966893289,
+    "full_lp_delta": -0.007620703289957564,
+    "entity_lp_delta": -0.04062561363521633,
+    "entity_vs_full_delta": -0.033004910345258764,
+    "disagree_count": 1920,
+    "entity_wins_when_disagree": 94,
+    "full_wins_when_disagree": 242,
+    "ties_when_disagree": 1584,
+    "full_lp": {
+      "median_variance": 0.00045780080350837254,
+      "mean_variance": 0.001252724150418877,
+      "median_range": 0.06333741437371973,
+      "mean_range": 0.07754982214371056,
+      "tied_fraction": 0.18432510885341075
+    },
+    "entity_lp": {
+      "median_variance": 2.0234442084871325e-10,
+      "mean_variance": 0.03814837542769906,
+      "median_range": 3.7798592406293935e-05,
+      "mean_range": 0.13555026504200815,
+      "tied_fraction": 0.7940251572327044
+    },
+    "entity_token_stats": {
+      "median_entity_tokens": 5.0,
+      "mean_entity_tokens": 5.959807371735507,
+      "median_total_tokens": 66.0,
+      "mean_entity_fraction": 0.07705538602827823
+    },
+    "zscore_note": "z-score is a monotonic transform within each instance, so argmax(z_lps) == argmax(raw_lps). Z-score normalization does not change within-instance ranking or selection F1."
+  }
+}

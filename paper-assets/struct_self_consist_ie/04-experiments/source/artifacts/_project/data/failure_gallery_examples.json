@@ -1,0 +1,195 @@
+{
+  "degenerate": [
+    {
+      "instance_id": "fewnerd_test_00469",
+      "sentence": "His undergraduate studies at the University of Notre Dame were interrupted by Army service in World War II .",
+      "gold_entities": [
+        {"text": "University of Notre Dame", "type": "building"}
+      ],
+      "predicted_entities_all_samples": [
+        {"text": "University of Notre Dame", "type": "organization"},
+        {"text": "World War II", "type": "event"}
+      ],
+      "n_samples": 8,
+      "n_unique_outputs": 1,
+      "agreement_rate": 1.0,
+      "entity_f1": 0.0,
+      "n_gold": 1,
+      "n_pred": 2,
+      "n_correct": 0,
+      "sentence_length": 108,
+      "has_predictions": true,
+      "source_exp": "exp_021_fewnerd_n8_seed123",
+      "explanation": "All 8 samples identical (F1=0.00), 0/1 gold matched — model predicts correct text but wrong type (organization vs building) plus hallucinated 'World War II'"
+    },
+    {
+      "instance_id": "fewnerd_test_02015",
+      "sentence": "There have been confirmed usages and reports of the deployment of the `` SPQ `` template in ;",
+      "gold_entities": [
+        {"text": "SPQ", "type": "organization"}
+      ],
+      "predicted_entities_all_samples": [
+        {"text": "SPQ", "type": "product"}
+      ],
+      "n_samples": 8,
+      "n_unique_outputs": 1,
+      "agreement_rate": 1.0,
+      "entity_f1": 0.0,
+      "n_gold": 1,
+      "n_pred": 1,
+      "n_correct": 0,
+      "sentence_length": 93,
+      "has_predictions": true,
+      "source_exp": "exp_021_fewnerd_n8_seed123",
+      "explanation": "All 8 samples identical (F1=0.00), 0/1 gold matched — correct entity text 'SPQ' but wrong type (product vs organization), all samples agree on wrong type"
+    },
+    {
+      "instance_id": "fewnerd_test_16612",
+      "sentence": "On stage , the band uses different kinds of instruments like synths , guitars , cello , glockenspiel and a bass played with a sickle .",
+      "gold_entities": [
+        {"text": "synths", "type": "product"},
+        {"text": "guitars", "type": "product"},
+        {"text": "cello", "type": "product"},
+        {"text": "glockenspiel", "type": "product"},
+        {"text": "bass", "type": "product"},
+        {"text": "sickle", "type": "product"}
+      ],
+      "predicted_entities_all_samples": [],
+      "n_samples": 8,
+      "n_unique_outputs": 1,
+      "agreement_rate": 1.0,
+      "entity_f1": 0.0,
+      "n_gold": 6,
+      "n_pred": 0,
+      "n_correct": 0,
+      "sentence_length": 134,
+      "has_predictions": false,
+      "source_exp": "exp_021_fewnerd_n8_seed456",
+      "explanation": "All 8 samples predict empty entity set despite 6 gold entities — complete degenerate miss, SC provides zero signal"
+    }
+  ],
+  "lp_inversion": [
+    {
+      "instance_id": "fewnerd_test_01046",
+      "sentence": "Cramer pitched for the Orange County Flyers of the independent Golden League in 2008 .",
+      "entity_text": "Cramer",
+      "entity_type": "person",
+      "entity_span": "0-6",
+      "mean_sample_logprob": -0.045948,
+      "frequency": 1.0,
+      "n_samples_with": 8,
+      "n_total": 8,
+      "is_correct": false,
+      "gold_entities": [
+        {"text": "Orange County Flyers", "type": "organization"},
+        {"text": "independent Golden League", "type": "organization"}
+      ],
+      "source_exp": "exp_021_fewnerd_n8_seed123",
+      "explanation": "High-confidence hallucination: 'Cramer' (person) in 8/8 samples (logprob=-0.046), not in gold set despite being a plausible entity — LP signal misleads"
+    },
+    {
+      "instance_id": "fewnerd_test_31667",
+      "sentence": "`` There are other costs that are not as easy to calculate but are equally disturbing , '' according to UK Royal Air Force Wing Commander and FOD researcher Richard Friend .",
+      "entity_text": "Richard Friend",
+      "entity_type": "person",
+      "entity_span": "157-171",
+      "mean_sample_logprob": -0.049775,
+      "frequency": 1.0,
+      "n_samples_with": 8,
+      "n_total": 8,
+      "is_correct": false,
+      "gold_entities": [
+        {"text": "UK Royal Air Force", "type": "organization"},
+        {"text": "FOD", "type": "organization"}
+      ],
+      "source_exp": "exp_021_fewnerd_n8_seed123",
+      "explanation": "High-confidence hallucination: 'Richard Friend' (person) in 8/8 samples (logprob=-0.050), not in gold — model identifies real entity but gold annotation omits it, LP cannot distinguish"
+    },
+    {
+      "instance_id": "fewnerd_test_28689",
+      "sentence": "In contrast to the carrier , amphibious , and naval gunfire support forces and , at least during early 1965 , the coastal patrol force , which Commander Seventh Fleet directed , the Navy 's forces within South Vietnam were operationally controlled by COMUSMACV .",
+      "entity_text": "COMUSMACV",
+      "entity_type": "organization",
+      "entity_span": "251-260",
+      "mean_sample_logprob": -0.049521,
+      "frequency": 1.0,
+      "n_samples_with": 8,
+      "n_total": 8,
+      "is_correct": false,
+      "gold_entities": [
+        {"text": "Seventh Fleet", "type": "organization"},
+        {"text": "South Vietnam", "type": "location"}
+      ],
+      "source_exp": "exp_021_fewnerd_n8_seed123",
+      "explanation": "High-confidence hallucination: 'COMUSMACV' (organization) in 8/8 samples (logprob=-0.050), not in gold — LP fails to flag because model is genuinely confident about this entity"
+    }
+  ],
+  "esj_failure": [
+    {
+      "instance_id": "fewnerd_test_00230",
+      "sentence": "Les Blank ( November 27 , 1935 – April 7 , 2013 ) was an American documentary filmmaker best known for his portraits of American traditional musicians .",
+      "entity_text": "American",
+      "entity_type": "location",
+      "esj_score": 1.0,
+      "actual_correct": false,
+      "failure_subtype": "overconfident",
+      "n_samples_with": 8,
+      "n_total": 8,
+      "gold_entities": [
+        {"text": "Les Blank", "type": "person"}
+      ],
+      "source_exp": "exp_021_fewnerd_n8_seed123",
+      "explanation": "All 8 samples predict 'American' as location entity (consensus=100%) — but gold doesn't include it; ESJ gives max confidence to non-gold entity"
+    },
+    {
+      "instance_id": "fewnerd_test_01046",
+      "sentence": "Cramer pitched for the Orange County Flyers of the independent Golden League in 2008 .",
+      "entity_text": "Cramer",
+      "entity_type": "person",
+      "esj_score": 1.0,
+      "actual_correct": false,
+      "failure_subtype": "overconfident",
+      "n_samples_with": 8,
+      "n_total": 8,
+      "gold_entities": [
+        {"text": "Orange County Flyers", "type": "organization"},
+        {"text": "independent Golden League", "type": "organization"}
+      ],
+      "source_exp": "exp_021_fewnerd_n8_seed123",
+      "explanation": "All 8 samples predict 'Cramer' as person (consensus=100%) — ESJ gives max confidence but entity is not in gold"
+    },
+    {
+      "instance_id": "fewnerd_test_00002",
+      "sentence": "They finished the season 14–19 , 9–9 in C-USA play to finish in seventh place .",
+      "entity_text": "C-USA play",
+      "entity_type": "event",
+      "esj_score": 0.0,
+      "actual_correct": true,
+      "failure_subtype": "underconfident",
+      "n_samples_with": 0,
+      "n_total": 8,
+      "gold_entities": [
+        {"text": "C-USA play", "type": "event"}
+      ],
+      "source_exp": "exp_021_fewnerd_n8_seed123",
+      "explanation": "Gold entity 'C-USA play' (event) never predicted in any of 8 samples — ESJ gives 0% confidence to a correct entity"
+    }
+  ],
+  "metadata": {
+    "total_degenerate_found": 1358,
+    "total_lp_inversion_found": 3827,
+    "total_esj_overconfident_found": 1134,
+    "total_esj_underconfident_found": 6843,
+    "experiments_scanned": [
+      "exp_021_fewnerd_n8_seed123",
+      "exp_021_fewnerd_n8_seed456",
+      "exp_026_t10_seed42"
+    ],
+    "dataset": "FewNERD (primary), SciERC T=1.0",
+    "model": "Qwen fine-tuned, N=8 samples",
+    "filtering": "Strict: excluded span-boundary near-misses and text-match near-misses; degenerate requires prediction != gold",
+    "note_on_lp_inversion": "LP inversion examples show entities the model is confident about (high logprob, 100% frequency) that are not in the gold standard. In some cases these are genuine annotation gaps rather than model hallucinations — this is precisely the failure mode: LP cannot distinguish the two.",
+    "note_on_esj": "ESJ (Entity Self-Judgment) is proxied by entity-level consensus frequency across N samples. Actual model-based ESJ verification was not run; consensus serves as the self-judgment signal.",
+    "note_on_overlap": "fewnerd_test_01046 appears in both lp_inversion and esj_failure — this instance exhibits simultaneous failure of both LP and ESJ signals"
+  }
+}

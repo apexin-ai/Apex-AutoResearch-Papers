@@ -1,0 +1,1 @@
+See server: /root/autodl-tmp/struct_self_consist_ie/output/diagnostic_calibration/diagnostic_calibration_scatter.png

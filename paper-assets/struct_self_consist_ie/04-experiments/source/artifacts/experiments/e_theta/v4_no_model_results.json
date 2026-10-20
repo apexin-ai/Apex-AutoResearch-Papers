@@ -1,0 +1,122 @@
+{
+  "variant": "v4_no_model_id_logreg",
+  "description": "No model_id features (is_qwen, is_llama removed). Tests cross-model generalization.",
+  "features_used": [
+    "degeneracy_level",
+    "lp_variance",
+    "sample_count_N",
+    "is_scierc",
+    "is_conll",
+    "is_fewnerd",
+    "agreement_mean",
+    "n_unique_entities"
+  ],
+  "per_config_results": {
+    "scierc_qwen_s42": {
+      "n_instances": 551,
+      "adaptive_f1": 0.651551,
+      "fixed_theta05_f1": 0.653288,
+      "oracle_f1": 0.702512,
+      "delta_adaptive_vs_fixed": -0.001738,
+      "predicted_theta_dist": {
+        "0.3": 551
+      }
+    },
+    "scierc_qwen_s123": {
+      "n_instances": 551,
+      "adaptive_f1": 0.648051,
+      "fixed_theta05_f1": 0.645554,
+      "oracle_f1": 0.702835,
+      "delta_adaptive_vs_fixed": 0.002496,
+      "predicted_theta_dist": {
+        "0.3": 551
+      }
+    },
+    "scierc_qwen_s456": {
+      "n_instances": 551,
+      "adaptive_f1": 0.646142,
+      "fixed_theta05_f1": 0.64441,
+      "oracle_f1": 0.701276,
+      "delta_adaptive_vs_fixed": 0.001732,
+      "predicted_theta_dist": {
+        "0.3": 551
+      }
+    },
+    "conll_qwen_s123": {
+      "n_instances": 3453,
+      "adaptive_f1": 0.90137,
+      "fixed_theta05_f1": 0.906943,
+      "oracle_f1": 0.932385,
+      "delta_adaptive_vs_fixed": -0.005573,
+      "predicted_theta_dist": {
+        "0.3": 3453
+      }
+    },
+    "fewnerd_qwen_s123": {
+      "n_instances": 37648,
+      "adaptive_f1": 0.779308,
+      "fixed_theta05_f1": 0.755813,
+      "oracle_f1": 0.816023,
+      "delta_adaptive_vs_fixed": 0.023496,
+      "predicted_theta_dist": {
+        "0.3": 37648
+      }
+    },
+    "scierc_llama_s42": {
+      "n_instances": 551,
+      "adaptive_f1": 0.646112,
+      "fixed_theta05_f1": 0.64207,
+      "oracle_f1": 0.692601,
+      "delta_adaptive_vs_fixed": 0.004042,
+      "predicted_theta_dist": {
+        "0.3": 551
+      }
+    },
+    "conll_llama_s42": {
+      "n_instances": 3453,
+      "adaptive_f1": 0.928145,
+      "fixed_theta05_f1": 0.929722,
+      "oracle_f1": 0.934194,
+      "delta_adaptive_vs_fixed": -0.001577,
+      "predicted_theta_dist": {
+        "0.3": 3453
+      }
+    }
+  },
+  "overall_adaptive_f1": 0.793123,
+  "overall_fixed_f1": 0.774656,
+  "overall_oracle_f1": 0.827865,
+  "delta_adaptive_vs_fixed": 0.018467,
+  "feature_importance": {
+    "degeneracy_level": 0.009045,
+    "lp_variance": 0.004405,
+    "sample_count_N": 0.0,
+    "is_scierc": 0.001865,
+    "is_conll": -0.000967,
+    "is_fewnerd": -0.000132,
+    "agreement_mean": 0.00606,
+    "n_unique_entities": 0.005246
+  },
+  "n_configs": 7,
+  "n_instances_total": 46758,
+  "theta_grid": [
+    0.3,
+    0.35,
+    0.4,
+    0.45,
+    0.5,
+    0.55,
+    0.6,
+    0.65,
+    0.7
+  ],
+  "v1_comparison": {
+    "v1_overall_adaptive_f1": 0.793123,
+    "v1_overall_fixed_f1": 0.774656,
+    "v1_delta_adaptive_vs_fixed": 0.018467,
+    "v4_delta_adaptive_vs_fixed": 0.018467,
+    "gap_v4_minus_v1_delta": -0.0,
+    "gap_v4_minus_v1_adaptive_f1": -0.0,
+    "model_id_matters": false
+  }
+}

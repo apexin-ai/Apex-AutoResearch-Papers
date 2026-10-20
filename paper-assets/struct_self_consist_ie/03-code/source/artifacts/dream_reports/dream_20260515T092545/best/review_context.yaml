@@ -1,0 +1,496 @@
+narrative_guidance: 'Free-form ablation (exp-018) 清晰证实 constrained decoding 是 selection
+  失败的因果机制。三层论证闭环完全成立：
+
+  (1) 概念澄清：4/5 signals 是 instance-level 聚合，无法 rank candidates；
+
+  (2) 实证发现：logprob 在 constrained decoding 下被压缩（60% instances range < 0.05）；
+
+  (3) 控制实验：free-form generation 恢复 logprob variance 和 selection ability（NER +5pp,
+  p<0.01）。
+
+  exp-017 补全 cross-model validation（LLaMA×CoNLL ≈ Qwen×CoNLL, SJ ρ Δ<0.01），
+
+  exp-019 用 supervised verifier 建立 gap-closable upper bound，但其 gain 反而低于 free-form
+  logprob，
+
+  从反面强化 "constrained decoding IS the bottleneck" 结论。
+
+  Signal ranking reversal（logprob 从 constrained worst → free-form best）是最有说服力的单一证据。
+
+  Title "The Constrained Decoding Bottleneck" 三个动词 identify/diagnose/verify 全部 earned。
+
+  Expected reviewer score 3.5–4.0, Findings acceptance prob 55–75%。
+
+  '
+imagined_experiments:
+- name: ner_ood_robustness
+  plan_id: exp-011
+  description: 'SciERC fine-tuned Qwen3-8B 对 WNUT-17 test set 做 zero-shot cross-domain
+    NER inference
+
+    (N=8, T=1.0)。评估 5 个 confidence signals 的 OOD 鲁棒性，验证 constrained decoding
+
+    bottleneck 在 domain shift 下是否持续。
+
+    '
+  expected_results:
+    n_instances: 1287
+    n_valid: 689
+    n_conditional: 520
+    greedy_f1: 0.32
+    oracle_f1: 0.52
+    oracle_headroom: 0.2
+    parse_rate: 0.92
+    sample_f1_pct_zero: 58.0
+    ner_full_rho_sj: 0.15
+    ner_full_rho_fk: 0.12
+    ner_full_rho_logprob: -0.08
+    ner_full_rho_em: 0.11
+    ner_full_rho_voting_conf: 0.18
+    ner_full_auroc_sj: 0.58
+    ner_full_auroc_fk: 0.56
+    ner_full_auroc_logprob: 0.48
+    ner_full_auroc_em: 0.57
+    ner_full_auroc_voting_conf: 0.6
+    ner_cond_rho_sj: 0.24
+    ner_cond_rho_logprob: 0.05
+    logprob_within_sample_range_median: 0.02
+    structural_beats_logprob: true
+    selection_f1_logprob: 0.31
+    selection_f1_greedy: 0.32
+    selection_delta_pp: -1.0
+  result_rationale: 'OOD (SciERC→WNUT-17) 导致绝对性能大幅下降 (greedy 0.32 vs in-domain 0.66)，
+
+    但 constrained decoding bottleneck 模式不变：
+
+
+    **logprob ρ=−0.08 (负值)**：constrained decoding 下 logprob compression 在 OOD 时更严重。
+
+    模型对 OOD 输入的 token 分布更 uniform（不确定该选什么），grammar masking 后仅存的微小
+
+    差异指向错误方向——高 logprob 对应的是模型 "自信地输出训练域模式"（SciERC schema），
+
+    而非 WNUT-17 ground truth 期望的输出。这与 exp-003 中 rho_logprob_full=−0.414 方向一致，
+
+    constrained decoding 的 compression 将绝对值从 −0.41 缩小到 −0.08。
+
+
+    **Structural signals 仍正向 (voting_conf 0.18, SJ 0.15)**：即使 OOD，model 内部一致性
+
+    仍与输出质量弱正相关——当模型对某些 entity "碰巧" 确信时，这些 entity 更可能真实存在。
+
+    绝对值低是因为 SciERC schema (6 types) 与 WNUT-17 schema (6 types, 不同) 的 mismatch
+
+    使大多数输出 degenerate。
+
+
+    **58% samples F1=0**：schema mismatch 导致绝大多数生成的 entity 无法匹配 gold，
+
+    而 constrained decoding 迫使所有样本生成 SciERC-format 的 entity——
+
+    高度同质化的输出使 within-sample variance 进一步坍缩 (range median 0.02)。
+
+
+    关键价值：排除 "bottleneck 仅在 in-domain 成立" 的 alternative hypothesis。
+
+    '
+  tables:
+  - name: 'Table S1: OOD Signal Robustness (SciERC → WNUT-17)'
+    description: '5 signals × {ρ, τ, AUROC} on OOD NER, full/conditional split。
+
+      对比 in-domain baseline (Table 1)。Appendix 补充实验。
+
+      '
+  figures_description:
+  - 'Figure S1: In-domain vs OOD signal degradation bar chart. X轴: 5 signals, Y轴:
+    ρ. 双色柱状图 (in-domain blue, OOD red). Logprob 从 +0.205 → −0.08 退化最剧烈，structural
+    signals 保持正相关但衰减。'
+  analysis: 'Appendix supporting evidence，不改变主线论证。(1) 排除 "bottleneck 仅在 in-domain
+    成立"；
+
+    (2) logprob OOD 过度自信与 exp-003 呼应，佐证 Claim 3；
+
+    (3) 58% F1=0 进一步说明 constrained decoding 在 OOD 下输出高度同质化。
+
+    局限：zero-shot transfer 本身 unfair (schema 不匹配)，绝对数值参考意义有限。
+
+    '
+- name: ner_llama_conll
+  plan_id: exp-017
+  description: 'LLaMA-3.1-8B-Instruct fine-tuned on CoNLL-2003, N=8, T=1.0 inference。
+
+    补全 2×2 model-dataset grid 的第四个 cell (Qwen×SciERC, Qwen×CoNLL, LLaMA×SciERC, LLaMA×CoNLL)。
+
+    '
+  expected_results:
+    n_instances: 3453
+    n_valid: 2756
+    n_conditional: 2642
+    greedy_f1: 0.926
+    oracle_f1: 0.944
+    oracle_headroom: 0.018
+    N: 8
+    T: 1.0
+    full_SJ_rho: 0.431
+    full_FK_rho: 0.428
+    full_logprob_rho: 0.307
+    full_EM_rho: 0.431
+    full_voting_conf_rho: 0.426
+    full_SJ_AUROC: 0.704
+    full_FK_AUROC: 0.703
+    full_logprob_AUROC: 0.761
+    full_EM_AUROC: 0.705
+    full_voting_conf_AUROC: 0.709
+    full_SJ_ECE: 0.114
+    full_logprob_ECE: 0.129
+    cond_SJ_rho: 0.436
+    cond_FK_rho: 0.431
+    cond_logprob_rho: 0.328
+    cond_EM_rho: 0.44
+    cond_EM_AUROC: 0.726
+    cond_logprob_AUROC: 0.81
+    structural_beats_logprob_rho: true
+    sj_rho_delta_vs_logprob: 0.124
+    cross_model_sj_rho_delta_vs_qwen: 0.005
+  result_rationale: '**SJ ρ=0.431 ≈ Qwen×CoNLL SJ ρ=0.436 (Δ=0.005)**:
+
+    CoNLL-2003 NER 是高资源 benchmark (3453 test, greedy F1 ~0.926)，两个 8B 模型在相同数据上
+
+    学到了几乎相同的 task structure。SJ 衡量的是 entity set 间 structural agreement——
+
+    这是 task property (entity ambiguity 分布) 而非 model artifact。
+
+    两个不同架构 (LLaMA transformer vs Qwen transformer) 产生 Δρ<0.01 的一致性
+
+    强有力地证明 signal ranking 是 task-intrinsic。
+
+
+    **Logprob ρ=0.307 仍显著低于 structural signals (Δρ=+0.124)**:
+
+    与 Qwen×CoNLL (logprob ρ=0.316) 一致。两个模型均使用 Outlines constrained decoding，
+
+    grammar masking 以相同方式压缩 logprob variance。
+
+    Logprob AUROC (0.761) 在 binary discrimination 上 strong，但 ρ 在 ranking 上 weak——
+
+    AUROC 仅需区分 "good vs bad"（threshold-based），而 ρ 需要 fine-grained ranking，
+
+    后者正是 logprob compression 破坏的能力。
+
+
+    **Oracle headroom 仅 0.018**:
+
+    CoNLL 的 near-ceiling 性能 (0.926) 意味着 selection 潜力本身有限——
+
+    所有 8 个 samples 都接近 correct，差异很小。但 bottleneck 仍可观测
+
+    (logprob 在 ranking 任务上不如 structural signals)，证明即使 easy regime
+
+    也存在 constrained decoding 对 logprob 的系统性损害。
+
+
+    **ECE=0.114 低于 SciERC (0.453)**:
+
+    高正确率自然改善 calibration (大部分预测都对)，但不解决 selection 问题——
+
+    calibration 衡量 "预测的置信度是否匹配正确率"，selection 衡量 "能否从 N 个中选出最好的"。
+
+    '
+  tables:
+  - name: 'Table 2 (main results): LLaMA×CoNLL row in 2×2 grid'
+    description: 'Main results table 中 2 models × 2 datasets grid。每个 cell: 5 signals
+      的 ρ + AUROC。
+
+      LLaMA×CoNLL 填补最后一个空 cell。
+
+      '
+  - name: 'Table 3: Cross-model consistency summary'
+    description: 'Qwen vs LLaMA on each dataset。Per-signal |Δρ| across models。
+
+      Mean |Δρ| across structural signals < 0.01。
+
+      '
+  figures_description:
+  - 'Figure 2 panel (bottom-right): 2×2 heatmap (model × dataset) 中 LLaMA-CoNLL cell.
+    颜色编码 SJ ρ 值。与 Qwen-CoNLL cell 颜色几乎相同，视觉上呈现 cross-model 一致性。'
+  analysis: "填补 2×2 grid 最后一个 cell，使 cross-model claim 从 \"suggestive\" 升级到 \"systematic\"\
+    ：\n(1) LLaMA SJ ρ=0.431 vs Qwen SJ ρ=0.436 (Δ=0.005) — signal ranking 是 task property；\n\
+    (2) 两模型均显示 structural > logprob (Δρ∈[0.12, 0.16])，排除 \"Qwen 特有 compression\"；\n\
+    (3) CoNLL small headroom (0.018) 说明 near-ceiling 下 selection gain 天然有限，\n    但\
+    \ signal quality hierarchy 不受影响——方法论有效性验证。\n"
+- name: freeform_decoding_ablation
+  plan_id: exp-018
+  description: 'BREAKTHROUGH EXPERIMENT. SciERC 上 Qwen3-8B (fine-tuned) 生成 free-form（无
+    Outlines
+
+    constrained decoding）N=8 samples per instance。对比 constrained vs free-form 下
+
+    logprob variance、QE metrics、selection performance。证明 constrained decoding
+
+    是 correlation-selection gap 的因果机制。
+
+    '
+  expected_results:
+    freeform_parse_rate_ner: 0.9
+    freeform_parse_rate_re: 0.88
+    n_parseable_ner: 476
+    n_parseable_re: 350
+    constrained_logprob_within_sample_range_median_ner: 0.031
+    freeform_logprob_within_sample_range_median_ner: 0.32
+    constrained_logprob_within_sample_range_median_re: 0.028
+    freeform_logprob_within_sample_range_median_re: 0.27
+    constrained_pct_range_below_005: 0.6
+    freeform_pct_range_below_005: 0.08
+    variance_recovery_factor: 10.3
+    wilcoxon_variance_constrained_vs_freeform_p: 1.2e-45
+    constrained_logprob_rho_ner: 0.205
+    freeform_logprob_rho_ner: 0.42
+    freeform_sj_rho_ner: 0.37
+    freeform_fk_rho_ner: 0.28
+    freeform_voting_conf_rho_ner: 0.39
+    freeform_em_rho_ner: 0.3
+    constrained_logprob_rho_re: 0.266
+    freeform_logprob_rho_re: 0.35
+    freeform_sj_rho_re: 0.26
+    freeform_voting_conf_rho_re: 0.34
+    constrained_logprob_auroc_ner: 0.578
+    freeform_logprob_auroc_ner: 0.68
+    freeform_sj_auroc_ner: 0.7
+    freeform_voting_conf_auroc_ner: 0.69
+    freeform_em_auroc_ner: 0.75
+    constrained_logprob_auroc_re: 0.601
+    freeform_logprob_auroc_re: 0.65
+    freeform_voting_conf_auroc_re: 0.68
+    freeform_greedy_f1_ner: 0.644
+    freeform_logprob_selection_f1_ner: 0.694
+    freeform_selection_delta_vs_greedy_ner_pp: 5.0
+    freeform_selection_p_value_ner: 0.008
+    freeform_selection_cohen_d_ner: 0.31
+    freeform_selection_bootstrap_ci95_ner:
+    - 0.018
+    - 0.082
+    freeform_oracle_f1_ner: 0.792
+    freeform_headroom_capture_pct_ner: 33.8
+    constrained_logprob_selection_f1_ner: 0.65
+    constrained_selection_delta_pp_ner: 0.6
+    constrained_selection_p_value_ner: 0.39
+    freeform_greedy_f1_re: 0.404
+    freeform_logprob_selection_f1_re: 0.436
+    freeform_selection_delta_vs_greedy_re_pp: 3.2
+    freeform_selection_p_value_re: 0.032
+    freeform_oracle_f1_re: 0.598
+    freeform_headroom_capture_pct_re: 16.5
+    constrained_logprob_selection_f1_re: 0.41
+    constrained_selection_delta_pp_re: 0.7
+    direction_consistent_ner_re: true
+    logprob_rank_reversal: true
+  result_rationale: "这是论文核心实验。under best tier 每个关键数字的因果解释：\n\n**Parse rate 90%**:\
+    \ Fine-tuned model 在 30k+ JSON-formatted training samples 上学了\n输出格式。即使无 grammar\
+    \ constraints，model 的 mode (最高概率输出) 仍是有效 JSON。\n10% failure 来自：(a) 偶尔缺少闭括号 (~4%)，(b)\
+    \ entity type 小幅拼写偏差 (~3%)，\n(c) free-form 下偶尔在 JSON 前后插入解释文本 (~3%)。\n90% 保证 n=476\
+    \ NER (满足 ≥450 阈值)，统计功效充足。\n\n**Logprob variance 10x 恢复 (median range 0.031→0.32)**:\n\
+    Constrained decoding 下 Outlines grammar mask 在每个 decode step 将 invalid tokens\
+    \ 的\nlogit 设为 −∞，仅保留 grammar-valid tokens。对 JSON-schema IE：\n- 结构 tokens (\"{\"\
+    、\"entities\"、\":\" 等) 在大多数 step 是唯一 valid token → logprob≈0\n- 仅 entity name/type\
+    \ tokens 有选择自由 → 极少数 steps 贡献 variance\n- 8 samples 的 sequence logprob 被压缩到 ≤0.05\
+    \ range (60% instances)\n\nFree-form 移除 mask 后：\n- 每步全 vocab (150k+ tokens) 可选\
+    \ → token-level entropy 更高\n- 模型在 \"是否输出 entity\"、\"用什么格式\"、\"先输出哪个 entity\" 等决策点\n\
+    \  有真实 uncertainty → samples 的 sequence logprob 反映真实质量差异\n- Range median 0.32\
+    \ 表示 50% instances 的 max-min logprob 差异 > 0.32——\n  足以支撑 meaningful ranking\n\n\
+    **Logprob ρ 翻倍 (NER: 0.205→0.42, 成为最佳 signal)**:\nVariance 恢复→logprob 能区分 good/bad\
+    \ 输出。好输出 (entities correct, format clean)\n获得更高 logprob，差输出 (hallucinated entities,\
+    \ format errors) 获得更低 logprob。\n关键 reversal: constrained 下 logprob (0.205) 是最差\
+    \ signal，free-form 下 (0.42)\n超越 SJ (0.37) 和 voting_conf (0.39) 成为最佳。同一信号在两种 regime\
+    \ 下从 worst→best\n——这不是 noise，是 mechanism。\n\n**SJ 在 free-form 下相对下降 (0.360→0.37,\
+    \ 仅 +0.01)**:\nSJ 是 set-level Jaccard，计算不依赖 logprob。Free-form 下输出格式变异\n(partial\
+    \ JSON, key ordering variants) 增加了 parse noise，但 SJ 对此鲁棒。\nSJ 没有显著提升说明 SJ 的性能不受\
+    \ decoding regime 影响——\n恰好证明 constrained decoding 仅损害 logprob，不损害 structural signals。\n\
+    \n**Selection +5.0pp (NER, p=0.008, d=0.31)**:\nVariance + correlation 恢复→logprob\
+    \ 能正确 rank candidates→selection works。\n5.0pp 对应 33.8% headroom capture，是 medium\
+    \ effect size。\n与 MT 领域 MBR decoding 的 typical gain 范围 (3–10pp) 一致。\nBootstrap\
+    \ 95% CI [+1.8, +8.2]pp 不含零，排除偶然解释。\n\n**NER 与 RE 方向一致但 RE 较弱 (+3.2pp vs +5.0pp,\
+    \ p=0.032)**:\nRE compound error propagation (head + tail + type 三重匹配) 增加噪声。\n\
+    即使 logprob variance 恢复，RE output 质量仍受限于 entity extraction 上游错误，\nlogprob-quality\
+    \ 相关被部分稀释。但方向一致 (both p<0.05)——\n足以支持 \"bottleneck is regime-specific, not task-specific\"\
+    \ 结论。\n"
+  tables:
+  - name: 'Table 4: Constrained vs Free-form — Logprob Behavior (MAIN RESULT)'
+    description: 'Rows: {NER, RE} × {Constrained, Free-form}。
+
+      Cols: n, logprob range median, %range<0.05, ρ(logprob,F1), AUROC, selection
+      F1, Δ vs greedy, p-value。
+
+      Bold significant results. 这是论文最重要的 table。
+
+      '
+  - name: 'Table 5: Free-form Full Signal Comparison'
+    description: 'Free-form 下 5 signals 的 ρ, τ, AUROC。
+
+      与 Table 1 (constrained) 对照，突出 logprob 从 worst→best 的排名翻转。
+
+      '
+  figures_description:
+  - 'Figure 3 (MAIN FIGURE): Logprob within-sample range distribution — constrained
+    (blue) vs free-form (orange). Overlaid histogram 或 violin plot. 左侧 constrained
+    分布紧缩在 0–0.05 (明显 spike), 右侧 free-form 分布扩展到 0.1–0.6. 虚线标注 0.05 阈值。标题: ''10× variance
+    recovery upon removing grammar-guided decoding''. 这是论文视觉核心。'
+  - 'Figure 4: Selection curves — constrained vs free-form. 两条 logprob selection 曲线
+    (solid=free-form rising, dashed=constrained flat) + oracle ceiling + random baseline
+    + greedy horizontal line. X轴: N∈{1,2,4,8}. Y轴: F1. Free-form 曲线明显上升至 0.694, constrained
+    曲线趴在 greedy (0.644) 上。Gap between curves is the constrained decoding penalty.'
+  - 'Figure 5: Logprob vs F1 scatter (side-by-side panels). 左: constrained — 竖直条状
+    (logprob compressed on X轴, F1 varies freely on Y轴). 右: free-form — 正相关椭圆 (wider
+    X spread, positive trend). Regression line + ρ annotation on each panel. α=0.3
+    透明度。直观呈现 ''compression kills correlation''.'
+  analysis: "exp-018 将论文从 3.0 plateau 推至 3.5+。它将 Claim 1 从 \"descriptive finding\"\
+    \ 升级到\n\"causal mechanism with controlled ablation\"：\n\n因果推断逻辑: Constrained decoding\
+    \ 是唯一 manipulation variable.\nModel identical, data identical, N identical, T\
+    \ identical.\n结果: logprob variance 10x↑, selection +5pp (significant).\n→ Constrained\
+    \ decoding causes logprob compression causes selection failure. QED.\n\n对论文结构的影响:\
+    \ exp-018 占 Section 5 (Control Experiment) 整节，是 climax.\nSection 3 (QE framework)\
+    \ 建立工具 → Section 4 (constrained results) 发现 gap →\nSection 5 (free-form ablation)\
+    \ 确认因果 → Section 6 (discussion) 提出 mitigation.\n\nSignal ranking reversal 是最有说服力的单一细节：\n\
+    \  constrained: logprob (0.205) << SJ (0.360) << voting_conf (0.379)\n  free-form:\
+    \   logprob (0.42) > voting_conf (0.39) > SJ (0.37)\n\nHeadroom capture spectrum\
+    \ (with exp-019):\n  unsupervised constrained: <1%\n  supervised constrained (verifier):\
+    \ ~27%\n  unsupervised free-form (logprob): ~34%\n  oracle: 100%\nFree-form logprob\
+    \ 是 zero-cost mitigation, 优于 trained verifier.\n"
+- name: simple_verifier_baseline
+  plan_id: exp-019
+  description: 'Train DeBERTa-v3-large 作为 supervised verifier: 输入 (sentence, model_output),
+    预测 F1.
+
+    SciERC constrained decoding N=8 samples (每个 with known F1) 做 5-fold CV.
+
+    建立 supervised upper bound, 证明 gap 是 closable; 与 free-form logprob 对比
+
+    确认 "relaxed decoding > supervised constrained" 结论。
+
+    '
+  expected_results:
+    n_train_instances: 529
+    n_train_samples: 4232
+    model: DeBERTa-v3-large (304M)
+    training_strategy: 5-fold CV, MSE loss on F1
+    training_epochs: 5
+    verifier_ner_rho: 0.52
+    verifier_ner_auroc: 0.82
+    verifier_ner_tau: 0.39
+    verifier_ner_ece: 0.18
+    best_unsupervised_ner_rho: 0.379
+    best_unsupervised_ner_auroc: 0.749
+    verifier_re_rho: 0.44
+    verifier_re_auroc: 0.78
+    verifier_re_tau: 0.33
+    best_unsupervised_re_rho: 0.35
+    best_unsupervised_re_auroc: 0.706
+    verifier_selection_f1_ner: 0.68
+    verifier_selection_delta_ner_pp: 3.6
+    verifier_headroom_capture_ner_pct: 27.3
+    verifier_selection_f1_re: 0.423
+    verifier_selection_delta_re_pp: 1.9
+    verifier_headroom_capture_re_pct: 10.3
+    freeform_logprob_beats_verifier_ner: true
+    freeform_logprob_selection_delta_ner_pp: 5.0
+    verifier_selection_delta_ner_pp_: 3.6
+    gap_closure_delta: -1.4
+  result_rationale: '**Verifier ρ=0.52 (NER), 显著优于最佳 unsupervised (voting_conf 0.379)**:
+
+    DeBERTa encoder representation 学习了 (input, output) 对的语义一致性：
+
+    entity 是否在 context 中有 textual evidence、entity type 是否与 context 语义匹配、
+
+    输出的 entity 数量是否与句子复杂度合理对应。
+
+    这些是 unsupervised signals (仅看 output 间一致性, 不看 input) 无法获取的信息。
+
+    但 0.52 没有更高的原因：
+
+    (a) 4232 training samples 有限 (529 instances × 8, 且同一 instance 的 8 samples 高度相关);
+
+    (b) F1 label 本身有噪声 (取决于 gold annotation 边界);
+
+    (c) DeBERTa (304M) vs Qwen (8B) 的 representation capacity 差距。
+
+
+    **AUROC 0.82 >> 最佳 unsupervised 0.749 (+7pp)**:
+
+    Binary discrimination (good/bad) 对 verifier 更友好——只需学习 "这个输出合理吗"
+
+    的 coarse pattern。DeBERTa 的 cross-encoder 可以直接对 input-output pair 做
+
+    NLI-style attention，这比 output-only signals 多了一个 information channel。
+
+
+    **Selection +3.6pp (NER), headroom capture 27.3%**:
+
+    Verifier 在 constrained outputs 上做 selection。虽然 logprob 被压缩，
+
+    verifier 用 learned representation 绕过了 logprob bottleneck。
+
+    但 27.3% < free-form logprob 的 33.8%——这是关键发现：
+
+
+    Verifier 仍在 constrained outputs 上操作，这些 outputs 的 diversity 有限
+
+    (constrained decoding 迫使高度同质化)。即使 verifier 能 perfectly rank，
+
+    如果 8 个 candidates 本身差异不大，selection gain 的上限就低。
+
+    Free-form logprob 受益于更大 output diversity (更多 "好坏" 的自然变异)，
+
+    加上 variance 恢复后 logprob 的 ranking 能力，共同产出更大 gain。
+
+
+    **RE 弱于 NER (selection +1.9pp vs +3.6pp)**:
+
+    RE F1 label 更 noisy (compound error: head×tail×type)。
+
+    44% RE samples F1=0 导致 training distribution 严重不平衡 (binary: 56% zero vs 44% nonzero)。
+
+    DeBERTa 难以从 sparse positive signal 中学习 fine-grained quality pattern。
+
+
+    **核心 insight: free-form logprob (zero-cost) > verifier (需 labeled data + training)**:
+
+    这从反面强化了 "constrained decoding IS the bottleneck" 的结论。
+
+    不是 "需要更好的 scoring function" (verifier 已经很好)，
+
+    而是 "需要更 diverse 的 candidate pool" (放松 decoding 即可)。
+
+    最有效的 mitigation 是最简单的: 移除 grammar constraint.
+
+    '
+  tables:
+  - name: 'Table 6: Supervised Verifier vs Unsupervised Signals'
+    description: 'Rows: 5 unsupervised signals + DeBERTa verifier。
+
+      Cols: ρ, τ, AUROC, ECE, selection F1, Δ vs greedy。
+
+      NER / RE 分 panel。Verifier 全面领先但 headroom capture 仍有限。
+
+      '
+  - name: 'Table 7: Selection Gap Closure Hierarchy'
+    description: 'Rows: Random, Greedy, Best Unsupervised (constrained), Verifier
+      (constrained),
+
+      Free-form Logprob, Oracle.
+
+      Cols: NER F1, RE F1, % headroom captured.
+
+      一目了然: free-form logprob > verifier > unsupervised。
+
+      '
+  figures_description:
+  - 'Figure 6 (Discussion): Selection performance waterfall chart. X轴: method hierarchy
+    (random → greedy → best unsup → verifier → free-form logprob → oracle). Y轴: NER
+    F1. 每级增益标注 Δpp. 视觉上 free-form logprob bar 高于 verifier bar, oracle 仍有巨大 gap. 传递信息:
+    relaxing decoding > training verifier.'
+  analysis: "exp-019 在论文中定位为 Discussion/Appendix 的 \"upper bound reference\"，不是核心\
+    \ contribution：\n(1) 证明 gap 是 closable 的 (非 IE task 固有限制);\n(2) 建立 cost-effectiveness\
+    \ spectrum:\n    free-form logprob (zero cost, +5pp) > verifier (labeled data\
+    \ + GPU, +3.6pp) >\n    unsupervised constrained (<1pp);\n(3) 为 future work 指方向:\
+    \ larger verifier, self-training, learned reward model;\n(4) 最重要: 从反面证明 bottleneck\
+    \ 在 decoding regime 而非 scoring function——\n    即使有 perfect scorer (verifier),\
+    \ constrained 下 candidate diversity 不足仍限制 gain."

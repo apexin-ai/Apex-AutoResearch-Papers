@@ -1,0 +1,156 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{wang2023selfconsistency}
+\citation{eikema2022sampling}
+\citation{cobbe2021training,lightman2023lets}
+\citation{willard2023efficient}
+\citation{nedellec2026consistency}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{wang2023selfconsistency}
+\citation{cisc2025}
+\citation{selfcertainty2026}
+\citation{reasc2026}
+\citation{rankedvoting2025}
+\citation{atomicsc2024}
+\citation{uqsurvey2025}
+\citation{uqcalibsurvey2025}
+\citation{kuhn2023semantic}
+\citation{seprobes2024}
+\citation{latentsc2025}
+\citation{manakul2023selfcheckgpt}
+\citation{cocoa2025}
+\citation{vashurin2025systematic}
+\citation{guo2017calibration}
+\citation{geifman2017selective,abstentionsurvey2025}
+\citation{confestsurvey2024}
+\citation{kuleshov2015calibration}
+\citation{jagannatha2022calibrating}
+\citation{gal2016dropout,xiao2019quantifying,shelmanov2021certain}
+\citation{lakshminarayanan2017simple,he2020towards}
+\citation{nedellec2026consistency}
+\citation{willard2023efficient}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Test-Time Scaling and Sample Selection.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Uncertainty Quantification for LLMs.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Confidence and Calibration.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Consistency for Structured IE.}{2}{section*.4}\protected@file@percent }
+\citation{cobbe2021training}
+\citation{lightman2023lets}
+\citation{snell2024scaling,brown2024large}
+\@writefile{toc}{\contentsline {paragraph}{Constrained Decoding and Structured Generation.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Verifiers and Reward Models.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setting}{3}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:problem}{{3.1}{3}{Problem Setting}{subsection.3.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Confidence Signals}{3}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:signals}{{3.2}{3}{Confidence Signals}{subsection.3.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Log-probability (LogProb).}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Set Jaccard Similarity (SJ).}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Fleiss' Kappa (FK).}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Exact Match Rate (EM).}{3}{section*.10}\protected@file@percent }
+\citation{eikema2022sampling}
+\citation{qwen2024}
+\citation{llama31}
+\citation{luan2018multi}
+\citation{tjong2003conll}
+\citation{willard2023efficient}
+\@writefile{toc}{\contentsline {paragraph}{Voting Confidence (VotConf).}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Instance-level vs.\ per-sample distinction.}{4}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Evaluation Metrics}{4}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:metrics}{{3.3}{4}{Evaluation Metrics}{subsection.3.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Quality estimation.}{4}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Selection.}{4}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{4}{section.4}\protected@file@percent }
+\newlabel{sec:setup}{{4}{4}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Models.}{4}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Datasets.}{4}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Decoding.}{4}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Baselines.}{4}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{4}{Results}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Quality Estimation Under Constrained Decoding}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:qe}{{5.1}{4}{Quality Estimation Under Constrained Decoding}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-model validation.}{4}{section*.20}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Quality estimation on SciERC (Qwen3-8B, constrained decoding, $N\!=\!8$, $T\!=\!1.0$). $\rho $: Spearman correlation with F1. Bold: best per column.}}{5}{table.caption.19}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:qe_scierc}{{1}{5}{Quality estimation on SciERC (Qwen3-8B, constrained decoding, $N\!=\!8$, $T\!=\!1.0$). $\rho $: Spearman correlation with F1. Bold: best per column}{table.caption.19}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Cross-model validation on CoNLL-2003 NER (constrained, $N\!=\!8$, $T\!=\!1.0$). Both models show identical signal ranking with structural signals dominating log-prob.}}{5}{table.caption.21}\protected@file@percent }
+\newlabel{tab:crossmodel}{{2}{5}{Cross-model validation on CoNLL-2003 NER (constrained, $N\!=\!8$, $T\!=\!1.0$). Both models show identical signal ranking with structural signals dominating log-prob}{table.caption.21}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}The Correlation--Selection Gap}{5}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:gap}{{5.2}{5}{The Correlation--Selection Gap}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Diagnosing the Bottleneck: Log-Prob Compression}{5}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:diagnosis}{{5.3}{5}{Diagnosing the Bottleneck: Log-Prob Compression}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Controlled Ablation: Free-Form Decoding}{5}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:freeform}{{5.4}{5}{Controlled Ablation: Free-Form Decoding}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Log-prob variance recovery.}{5}{section*.23}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Best-of-$N$ selection F1 under constrained decoding (SciERC, Qwen3-8B). No signal significantly outperforms greedy. Oracle headroom confirms selection failure, not candidate quality.}}{6}{table.caption.22}\protected@file@percent }
+\newlabel{tab:selection_constrained}{{3}{6}{Best-of-$N$ selection F1 under constrained decoding (SciERC, Qwen3-8B). No signal significantly outperforms greedy. Oracle headroom confirms selection failure, not candidate quality}{table.caption.22}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Constrained vs.\ free-form decoding: log-prob behavior and selection (SciERC, Qwen3-8B). Free-form recovers log-prob variance and enables significant selection gains. This is the paper's central result.}}{6}{table.caption.25}\protected@file@percent }
+\newlabel{tab:freeform_main}{{4}{6}{Constrained vs.\ free-form decoding: log-prob behavior and selection (SciERC, Qwen3-8B). Free-form recovers log-prob variance and enables significant selection gains. This is the paper's central result}{table.caption.25}{}}
+\@writefile{toc}{\contentsline {paragraph}{Selection performance recovery.}{6}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Signal ranking reversal.}{6}{section*.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Supervised Verifier Baseline}{6}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:verifier}{{5.5}{6}{Supervised Verifier Baseline}{subsection.5.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Signal comparison under free-form decoding (SciERC NER, Qwen3-8B, $n = 476$). Log-prob reverses from worst (constrained, Table~\ref {tab:qe_scierc}) to best. Structural signals remain stable.}}{7}{table.caption.27}\protected@file@percent }
+\newlabel{tab:freeform_signals}{{5}{7}{Signal comparison under free-form decoding (SciERC NER, Qwen3-8B, $n = 476$). Log-prob reverses from worst (constrained, Table~\ref {tab:qe_scierc}) to best. Structural signals remain stable}{table.caption.27}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Supervised verifier (DeBERTa-v3-large, 5-fold CV) vs.\ unsupervised signals under constrained decoding (SciERC, Qwen3-8B). Verifier improves estimation but selection gains remain limited by candidate homogeneity.}}{7}{table.caption.28}\protected@file@percent }
+\newlabel{tab:verifier}{{6}{7}{Supervised verifier (DeBERTa-v3-large, 5-fold CV) vs.\ unsupervised signals under constrained decoding (SciERC, Qwen3-8B). Verifier improves estimation but selection gains remain limited by candidate homogeneity}{table.caption.28}{}}
+\@writefile{toc}{\contentsline {paragraph}{Free-form log-prob outperforms the supervised verifier.}{7}{section*.29}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{7}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{7}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Why constrained decoding compresses log-prob.}{7}{section*.31}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why structural signals are unaffected.}{7}{section*.32}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{When would consistency-based selection help?}{7}{section*.33}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{wang2023selfconsistency}{{1}{2023}{{Wang et~al.}}{{}}}
+\bibcite{eikema2022sampling}{{2}{2022}{{Eikema and Aziz}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Selection gap-closure hierarchy (SciERC NER). Free-form log-prob (zero additional cost) outperforms the supervised verifier (requires labeled data and training), confirming that the bottleneck is candidate diversity, not scoring quality.}}{8}{table.caption.30}\protected@file@percent }
+\newlabel{tab:hierarchy}{{7}{8}{Selection gap-closure hierarchy (SciERC NER). Free-form log-prob (zero additional cost) outperforms the supervised verifier (requires labeled data and training), confirming that the bottleneck is candidate diversity, not scoring quality}{table.caption.30}{}}
+\@writefile{toc}{\contentsline {paragraph}{Practical implications.}{8}{section*.34}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.35}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{8}{section.7}\protected@file@percent }
+\bibcite{willard2023efficient}{{3}{2023}{{Willard and Louf}}{{}}}
+\bibcite{cobbe2021training}{{4}{2021}{{Cobbe et~al.}}{{}}}
+\bibcite{lightman2023lets}{{5}{2023}{{Lightman et~al.}}{{}}}
+\bibcite{kuhn2023semantic}{{6}{2023}{{Kuhn et~al.}}{{}}}
+\bibcite{manakul2023selfcheckgpt}{{7}{2023}{{Manakul et~al.}}{{}}}
+\bibcite{guo2017calibration}{{8}{2017}{{Guo et~al.}}{{}}}
+\bibcite{geifman2017selective}{{9}{2017}{{Geifman and El-Yaniv}}{{}}}
+\bibcite{gal2016dropout}{{10}{2016}{{Gal and Ghahramani}}{{}}}
+\bibcite{lakshminarayanan2017simple}{{11}{2017}{{Lakshminarayanan et~al.}}{{}}}
+\bibcite{xiao2019quantifying}{{12}{2019}{{Xiao and Wang}}{{}}}
+\bibcite{shelmanov2021certain}{{13}{2021}{{Shelmanov et~al.}}{{}}}
+\bibcite{he2020towards}{{14}{2020}{{He et~al.}}{{}}}
+\bibcite{kuleshov2015calibration}{{15}{2015}{{Kuleshov and Liang}}{{}}}
+\bibcite{jagannatha2022calibrating}{{16}{2022}{{Jagannatha and Yu}}{{}}}
+\bibcite{snell2024scaling}{{17}{2024}{{Snell et~al.}}{{}}}
+\bibcite{brown2024large}{{18}{2024}{{Brown et~al.}}{{}}}
+\bibcite{luan2018multi}{{19}{2018}{{Luan et~al.}}{{}}}
+\bibcite{tjong2003conll}{{20}{2003}{{Tjong Kim~Sang and De~Meulder}}{{}}}
+\bibcite{nedellec2026consistency}{{21}{2026}{{N{\'e}dellec and Xia}}{{}}}
+\bibcite{uqsurvey2025}{{22}{2025}{{UQ Survey}}{{}}}
+\bibcite{uqcalibsurvey2025}{{23}{2025}{{UQ+Calibration Survey}}{{}}}
+\bibcite{cisc2025}{{24}{2025}{{CISC}}{{}}}
+\bibcite{selfcertainty2026}{{25}{2026}{{Self-Certainty}}{{}}}
+\bibcite{reasc2026}{{26}{2026}{{ReASC}}{{}}}
+\bibcite{rankedvoting2025}{{27}{2025}{{Ranked Voting SC}}{{}}}
+\bibcite{atomicsc2024}{{28}{2024}{{Atomic SC}}{{}}}
+\bibcite{seprobes2024}{{29}{2024}{{SE Probes}}{{}}}
+\bibcite{latentsc2025}{{30}{2025}{{Latent SC}}{{}}}
+\bibcite{abstentionsurvey2025}{{31}{2025}{{Abstention Survey}}{{}}}
+\bibcite{confestsurvey2024}{{32}{2024}{{Conf.\ Est.\ Survey}}{{}}}
+\bibcite{cocoa2025}{{33}{2025a}{{Vashurin et~al.}}{{}}}
+\bibcite{vashurin2025systematic}{{34}{2025b}{{Vashurin et~al.}}{{}}}
+\bibcite{qwen2024}{{35}{2024}{{Qwen}}{{}}}
+\bibcite{llama31}{{36}{2024}{{Dubey et~al.}}{{}}}
+\bibcite{culotta2004confidence}{{37}{2004}{{Culotta and McCallum}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Out-of-Domain Robustness}{10}{appendix.A}\protected@file@percent }
+\newlabel{app:ood}{{A}{10}{Out-of-Domain Robustness}{appendix.A}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces OOD signal robustness (SciERC $\to $ WNUT-17, Qwen3-8B, constrained, $N\!=\!8$). Bottleneck pattern persists: log-prob negative, structural signals weakly positive.}}{11}{table.caption.37}\protected@file@percent }
+\newlabel{tab:ood}{{8}{11}{OOD signal robustness (SciERC $\to $ WNUT-17, Qwen3-8B, constrained, $N\!=\!8$). Bottleneck pattern persists: log-prob negative, structural signals weakly positive}{table.caption.37}{}}
+\gdef \@abspage@last{11}

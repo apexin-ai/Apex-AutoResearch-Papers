@@ -1,0 +1,8 @@
+\begin{abstract}
+Test-time compute scaling (repeated sampling with self-consistency or best-of-$N$) yields large gains on discrete-answer reasoning, but whether these gains transfer to NER remains open.
+We characterize when scaling succeeds and fails, using NER (four datasets, primarily 7--14B fine-tuned) as the primary analysis, with preliminary cross-task pilots (RE, SQL).
+Quality estimation signals predict output quality (AUROC up to $0.82$), yet instance-level selection yields no detectable gains (${<}1$\,pp; CI crosses zero), revealing a \textbf{correlation-selection gap}.
+A diagnostic framework identifies two co-occurring conditions, \textit{degeneracy} (i.e., multiple outputs collapsing to identical predictions) and signal alignment collapse, that are jointly associated with scaling returns; cross-task exploration confirms task-specific failure modes.
+Entity-level construction yields conditional gains ($+1.40$\,pp on Few-NERD under 3-epoch training; collapses at convergence; global Holm $p_{\text{adj}}{=}0.055$, suggestive; per-family $p_{\text{adj}}{=}0.006$, post-hoc family partition) but exhibits inverse scaling in most configurations.
+The framework is primarily diagnostic, with limited predictive power for identifying favorable conditions, informing resource allocation decisions before investing in repeated inference.
+\end{abstract}

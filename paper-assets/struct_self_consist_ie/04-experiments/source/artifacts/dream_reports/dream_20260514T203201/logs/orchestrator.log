@@ -1,0 +1,8 @@
+2026-05-14 20:41:26,374 WARNING core.tools.dream  [dream] Phase 2 best parse failed (attempt 0): while parsing a flow sequence
+  in "<unicode string>", line 500, column 18:
+            columns: [Subtask, SJ_ρ, FK_ρ, Logprob_ρ, ... 
+                     ^
+expected ',' or ']', but got '?'
+  in "<unicode string>", line 500, column 65:
+     ...  FK_ρ, Logprob_ρ, Struct>Surface?]
+                                         ^

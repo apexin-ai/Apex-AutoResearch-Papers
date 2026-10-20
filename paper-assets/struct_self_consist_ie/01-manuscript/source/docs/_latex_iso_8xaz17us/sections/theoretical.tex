@@ -1,0 +1,10 @@
+\section{Theoretical Analysis}\label{sec:theory}
+
+\begin{theorem}[Degeneracy Upper Bound]\label{thm:degeneracy_bound}
+For any aggregation method $A$: $\mathbb{E}[\Delta F_1(A)] \leq (1 - D) \cdot G_{\textup{nd}}$,
+where $D$ is the degeneracy rate and $G_{\textup{nd}}$ the oracle gap on non-degenerate instances.
+For signal-based methods with alignment $\alpha \in [0,1]$, this tightens to $(1{-}D) \cdot G_{\textup{nd}} \cdot \alpha$ (proof in Appendix~\ref{app:bound_proof}).
+\end{theorem}
+
+\noindent With $G_{\textup{nd}}{\approx}14.8$\,pp and $\alpha{\approx}0.068$, the critical threshold is $\theta_{\textup{crit}}{=}0.70$: when $D{>}70$\%, SC gain falls below $0.3$\,pp.
+Across 16 configurations, all gains respect the bound (ratio 3--12\%; Figure~\ref{fig:bound}); the bound is loose because $\alpha$---not $D$---is the bottleneck.

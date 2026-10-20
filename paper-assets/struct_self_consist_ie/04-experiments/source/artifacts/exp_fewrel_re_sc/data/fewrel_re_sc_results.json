@@ -1,0 +1,48 @@
+{
+  "n_instances": 256,
+  "n_samples": 8,
+  "high_thresh": 0.5,
+  "medium_thresh": 0.25,
+  "dataset": "fewrel",
+  "greedy_f1_mean": 0.0735,
+  "construction_f1_mean": 0.0679,
+  "majority_vote_f1_mean": 0.0591,
+  "oracle_f1_mean": 0.1768,
+  "fleiss_kappa_mean": 0.1506,
+  "soft_jaccard_mean": 0.3918,
+  "degeneracy_rate": 0.0586,
+  "n_degenerate": 15,
+  "n_nondegenerate": 241,
+  "greedy_micro_f1": {"precision": 0.0562, "recall": 0.1133, "f1": 0.0751},
+  "construction_micro_f1": {"precision": 0.0778, "recall": 0.1016, "f1": 0.0881},
+  "failure_modes": {
+    "F2_low_agreement": 194,
+    "F3_high_agreement_low_quality": 39,
+    "F1_degeneracy": 15,
+    "none": 6,
+    "F4_lp_quality_gap": 2
+  },
+  "failure_mode_pcts": {
+    "F2_low_agreement": 75.78,
+    "F3_high_agreement_low_quality": 15.23,
+    "F1_degeneracy": 5.86,
+    "none": 2.34,
+    "F4_lp_quality_gap": 0.78
+  },
+  "nondegen_greedy_f1_mean": 0.0601,
+  "nondegen_construction_f1_mean": 0.0542,
+  "nondegen_diff": -0.0059,
+  "bootstrap": {
+    "observed_diff": -0.0056,
+    "ci_95": [-0.0216, 0.0097],
+    "p_value": 0.7572,
+    "cohens_d": -0.0448,
+    "B": 10000,
+    "n_positive": 9,
+    "n_negative": 8,
+    "n_tied": 239
+  },
+  "server": "autodl-5090-c",
+  "gpu": "cuda:1",
+  "model": "Qwen2.5-7B-Instruct"
+}

@@ -1,0 +1,20 @@
+BH FDR vs Holm-Bonferroni (α=0.05, k=57)
+
+Global: Uncorrected 23/57 | BH 19/57 | Holm 10/57
+
+BH显著但Holm不显著的9个检验:
+#18 SciERC LP sel non-tied (p=0.004, BH=0.0143, Holm=0.180)
+#20 SciERC LP favorable subset (p=0.015, BH=0.0450, Holm=0.585)
+#22 SciERC LP-wt construction (p=0.004, BH=0.0143, Holm=0.180)
+#25 Few-NERD uniform construction (p=0.003, BH=0.0143, Holm=0.138)
+#27 SciERC ZS construction 72B (p=0.008, BH=0.0253, Holm=0.320)
+#43 RE SJ ρ Q1 vs Q4 sent len (p=0.004, BH=0.0143, Holm=0.180)
+#45 Per-type deg-headroom FewNERD Spearman (p=0.004, BH=0.0143, Holm=0.180)
+#46 Per-type deg-headroom exact perm (p=0.005, BH=0.0168, Holm=0.205)
+#57 WNUT-17 conditional ρ FK (p=0.002, BH=0.0104, Holm=0.094)
+
+Selection family (21 tests): BH 5/21, Holm 0/21 → core null holds
+Construction family (10 tests): BH 6/10 → stronger evidence under BH
+
+FDR sensitivity: α=0.01→10 rejected, α=0.05→19, α=0.10→21, α=0.20→26
+Core null invariant across all α levels.

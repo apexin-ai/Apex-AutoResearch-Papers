@@ -1,0 +1,163 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{wang2023selfconsistency}
+\citation{eikema2022sampling}
+\citation{willard2023outlines}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Conceptual clarification.}{1}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Empirical finding.}{1}{section*.2}\protected@file@percent }
+\citation{wang2023selfconsistency}
+\citation{cisc2025}
+\citation{selfcertainty2026}
+\citation{reasc2026}
+\citation{rankedvoting2025}
+\citation{snell2024scaling}
+\citation{brown2024tts}
+\citation{kuhn2023semantic}
+\citation{kadavath2022language}
+\citation{guo2017calibration}
+\citation{manakul2023selfcheckgpt}
+\citation{semanticprobes2024}
+\citation{uqsurvey2025}
+\citation{uqcalibsurvey2025}
+\citation{confidencesurvey2024}
+\citation{geifman2017selective}
+\citation{knowyourlimits2025}
+\citation{cocoa2025}
+\citation{nedellec2026consistency}
+\citation{atomicsc2024}
+\citation{latentsc2025}
+\citation{fisch2021conformal}
+\citation{angelopoulos2021sets}
+\citation{bates2021distribution}
+\citation{culotta2004confidence}
+\citation{xiao2019quantifying}
+\citation{gal2016dropout}
+\citation{shelmanov2021certain}
+\citation{lakshminarayanan2017simple}
+\citation{desai2020calibration}
+\citation{jagannatha2022calibrating}
+\citation{cobbe2021training}
+\citation{lightman2023lets}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Test-time scaling and sample selection.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Uncertainty quantification for LLMs.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Consistency for structured IE.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Structured prediction confidence.}{2}{section*.6}\protected@file@percent }
+\citation{eikema2022sampling}
+\@writefile{toc}{\contentsline {paragraph}{MBR decoding.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Task Setup and Notation}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Confidence Signals}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Log-probability (per-sample).}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Set Jaccard similarity (SJ, instance-level).}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Fleiss' kappa (FK, instance-level).}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Exact match (EM, instance-level).}{3}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Voting confidence (instance-level).}{3}{section*.12}\protected@file@percent }
+\citation{luan2018scierc}
+\citation{tjong2003conll}
+\citation{derczynski2017wnut}
+\citation{willard2023outlines}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Free-Form Decoding Ablation}{4}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Supervised Verifier Baseline}{4}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Evaluation Metrics}{4}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{4}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Datasets.}{4}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sampling.}{4}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Constrained decoding.}{4}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiments and Results}{4}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Quality Estimation: Confidence Signals Predict Output Quality}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:qe}{{5.1}{4}{Quality Estimation: Confidence Signals Predict Output Quality}{subsection.5.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Quality estimation on SciERC (Qwen3-8B, $N{=}8$, $T{=}1.0$). Higher $\rho $/AUROC and lower ECE are better.}}{5}{table.caption.17}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:qe-scierc}{{1}{5}{Quality estimation on SciERC (Qwen3-8B, $N{=}8$, $T{=}1.0$). Higher $\rho $/AUROC and lower ECE are better}{table.caption.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Sample selection on SciERC (Qwen3-8B, $N{=}8$, $T{=}1.0$). Best-of-$N$ selection by each signal.}}{5}{table.caption.18}\protected@file@percent }
+\newlabel{tab:selection-scierc}{{2}{5}{Sample selection on SciERC (Qwen3-8B, $N{=}8$, $T{=}1.0$). Best-of-$N$ selection by each signal}{table.caption.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Sample Selection: The Predict-but-Cannot-Select Gap}{5}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:selection}{{5.2}{5}{Sample Selection: The Predict-but-Cannot-Select Gap}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Free-Form Decoding Ablation: Constrained Decoding Contributes to the Bottleneck}{5}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:freeform}{{5.3}{5}{Free-Form Decoding Ablation: Constrained Decoding Contributes to the Bottleneck}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Variance recovery.}{5}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{NER selection improvement.}{5}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RE: an independent bottleneck.}{5}{section*.22}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Log-probability score compression: constrained vs.\ free-form decoding on SciERC (Qwen3-8B).}}{6}{table.caption.19}\protected@file@percent }
+\newlabel{tab:freeform-compression}{{3}{6}{Log-probability score compression: constrained vs.\ free-form decoding on SciERC (Qwen3-8B)}{table.caption.19}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces QE signal comparison under free-form NER decoding ($\rho $ with F1).}}{6}{table.caption.24}\protected@file@percent }
+\newlabel{tab:freeform-signals}{{4}{6}{QE signal comparison under free-form NER decoding ($\rho $ with F1)}{table.caption.24}{}}
+\@writefile{toc}{\contentsline {paragraph}{Structural signals under free-form.}{6}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Non-tied subset analysis.}{6}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Cross-Model and Cross-Dataset Validation}{6}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:crossval}{{5.4}{6}{Cross-Model and Cross-Dataset Validation}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Ceiling effect on CoNLL-2003.}{6}{section*.27}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Cross-model $\times $ cross-dataset QE ($\rho _{\text  {full}}$). The consistency of SJ across configurations (cross-model $\Delta < 0.01$) supports model-agnostic applicability.}}{7}{table.caption.26}\protected@file@percent }
+\newlabel{tab:crossmodel}{{5}{7}{Cross-model $\times $ cross-dataset QE ($\rho _{\text {full}}$). The consistency of SJ across configurations (cross-model $\Delta < 0.01$) supports model-agnostic applicability}{table.caption.26}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces LLaMA-3.1-8B on CoNLL-2003: full QE results ($N{=}8$, $T{=}1.0$).}}{7}{table.caption.28}\protected@file@percent }
+\newlabel{tab:llama-conll}{{6}{7}{LLaMA-3.1-8B on CoNLL-2003: full QE results ($N{=}8$, $T{=}1.0$)}{table.caption.28}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Out-of-Domain Robustness}{7}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:ood}{{5.5}{7}{Out-of-Domain Robustness}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Supervised Verifier: Gap Closability}{7}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:verifier}{{5.6}{7}{Supervised Verifier: Gap Closability}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{7}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{When would consistency signals help?}{7}{section*.33}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces OOD evaluation: SciERC-trained Qwen3-8B on WNUT-17 ($N{=}8$, $T{=}1.0$, $n{=}689$).}}{8}{table.caption.29}\protected@file@percent }
+\newlabel{tab:ood}{{7}{8}{OOD evaluation: SciERC-trained Qwen3-8B on WNUT-17 ($N{=}8$, $T{=}1.0$, $n{=}689$)}{table.caption.29}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Signal degradation: in-domain (SciERC) vs.\ OOD (WNUT-17).}}{8}{table.caption.30}\protected@file@percent }
+\newlabel{tab:degradation}{{8}{8}{Signal degradation: in-domain (SciERC) vs.\ OOD (WNUT-17)}{table.caption.30}{}}
+\@writefile{toc}{\contentsline {paragraph}{Task-complexity boundary.}{8}{section*.34}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications for test-time scaling in IE.}{8}{section*.35}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Limitations}{8}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Dataset and domain coverage.}{8}{section*.36}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model scale.}{8}{section*.37}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Free-form ablation confounds.}{8}{section*.38}\protected@file@percent }
+\bibdata{custom}
+\bibcite{wang2023selfconsistency}{Wang et al.(2023)}
+\bibcite{eikema2022sampling}{Eikema and Aziz(2022)}
+\bibcite{willard2023outlines}{Willard and Louf(2023)}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Verifier vs.\ unsupervised signals: AUROC and selection F1.}}{9}{table.caption.31}\protected@file@percent }
+\newlabel{tab:verifier}{{9}{9}{Verifier vs.\ unsupervised signals: AUROC and selection F1}{table.caption.31}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Headroom capture cascade: from greedy baseline to oracle ceiling.}}{9}{table.caption.32}\protected@file@percent }
+\newlabel{tab:headroom}{{10}{9}{Headroom capture cascade: from greedy baseline to oracle ceiling}{table.caption.32}{}}
+\@writefile{toc}{\contentsline {paragraph}{Verifier limitations.}{9}{section*.39}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Softened claims.}{9}{section*.40}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{9}{section.8}\protected@file@percent }
+\bibcite{kuhn2023semantic}{Kuhn et al.(2023)}
+\bibcite{kadavath2022language}{Kadavath et al.(2022)}
+\bibcite{guo2017calibration}{Guo et al.(2017)}
+\bibcite{manakul2023selfcheckgpt}{Manakul et al.(2023)}
+\bibcite{luan2018scierc}{Luan et al.(2018)}
+\bibcite{tjong2003conll}{Tjong Kim Sang and De Meulder(2003)}
+\bibcite{derczynski2017wnut}{Derczynski et al.(2017)}
+\bibcite{snell2024scaling}{Snell et al.(2024)}
+\bibcite{brown2024tts}{Brown et al.(2024)}
+\bibcite{cisc2025}{{CISC}(2025)}
+\bibcite{selfcertainty2026}{{Self-Certainty}(2026)}
+\bibcite{reasc2026}{{ReASC}(2026)}
+\bibcite{atomicsc2024}{{Atomic SC}(2024)}
+\bibcite{nedellec2026consistency}{N\'{e}dellec and Xia(2026)}
+\bibcite{fisch2021conformal}{Fisch et al.(2021)}
+\bibcite{angelopoulos2021sets}{Angelopoulos et al.(2021)}
+\bibcite{bates2021distribution}{Bates et al.(2021)}
+\bibcite{xiao2019quantifying}{Xiao and Wang(2019)}
+\bibcite{shelmanov2021certain}{Shelmanov et al.(2021)}
+\bibcite{gal2016dropout}{Gal and Ghahramani(2016)}
+\bibcite{lakshminarayanan2017simple}{Lakshminarayanan et al.(2017)}
+\bibcite{cobbe2021training}{Cobbe et al.(2021)}
+\bibcite{lightman2023lets}{Lightman et al.(2023)}
+\bibcite{desai2020calibration}{Desai and Durrett(2020)}
+\bibcite{geifman2017selective}{Geifman and El-Yaniv(2017)}
+\bibcite{jagannatha2022calibrating}{Jagannatha and Yu(2022)}
+\bibcite{culotta2004confidence}{Culotta and McCallum(2004)}
+\bibcite{uqsurvey2025}{{UQ Survey}(2025)}
+\bibcite{uqcalibsurvey2025}{{UQ+Calib Survey}(2025)}
+\bibcite{confidencesurvey2024}{{Confidence Survey}(2024)}
+\bibcite{knowyourlimits2025}{{Know Your Limits}(2025)}
+\bibcite{semanticprobes2024}{{Semantic Probes}(2024)}
+\bibcite{latentsc2025}{{Latent SC}(2025)}
+\bibcite{rankedvoting2025}{{Ranked Voting}(2025)}
+\bibcite{cocoa2025}{Vashurin et al.(2025a)}
+\bibcite{kuleshov2015calibrated}{Kuleshov and Liang(2015)}
+\bibcite{he2020towards}{He et al.(2020)}
+\gdef \@abspage@last{11}

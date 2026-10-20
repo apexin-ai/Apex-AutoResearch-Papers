@@ -1,0 +1,28 @@
+{
+  "ner": {
+    "subtask": "ner",
+    "n": 529,
+    "summary": {
+      "greedy": 0.6094,
+      "random_avg": 0.5796,
+      "sj_best": 0.6042,
+      "voting_conf_best": 0.5959,
+      "logprob_best": 0.6087,
+      "ensemble_best": 0.6043,
+      "oracle": 0.7692
+    }
+  },
+  "re": {
+    "subtask": "re",
+    "n": 397,
+    "summary": {
+      "greedy": 0.3735,
+      "random_avg": 0.338,
+      "sj_best": 0.368,
+      "voting_conf_best": 0.3379,
+      "logprob_best": 0.3971,
+      "ensemble_best": 0.3673,
+      "oracle": 0.5608
+    }
+  }
+}

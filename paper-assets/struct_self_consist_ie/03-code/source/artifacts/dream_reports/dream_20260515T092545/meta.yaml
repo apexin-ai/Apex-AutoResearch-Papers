@@ -1,0 +1,3002 @@
+dream_id: dream_20260515T092545
+project: struct_self_consist_ie
+venue: EMNLP 2026 Findings
+focus: 'Paper has been reframed from "systematic comparison + negative finding" to
+  "identifying, diagnosing, and experimentally verifying a regime-specific selection
+  bottleneck caused by constrained decoding". The breakthrough experiment is free-form
+  decoding ablation (exp-018) that proves score compression is the mechanism. Evaluate
+  whether this reframing + new experiment breaks through the 3.0/5 plateau to 3.5+.
+  Key question: does the constrained decoding bottleneck story have enough intellectual
+  depth for Findings acceptance?'
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: Free-form ablation 清晰证实 constrained decoding 是 selection 失败的因果机制；bottleneck
+        story 完全成立
+      key_assumptions:
+      - 'exp-018: 去除 constrained decoding 后 logprob within-sample variance 显著恢复（中位数
+        range 从 <0.05 → >0.20）'
+      - 'exp-018: free-form logprob selection 显著优于 greedy（p<0.05），证明 selection ability
+        可恢复'
+      - parse rate ≥85%，可分析样本量充足（n≥450 NER）
+      - constrained vs free-form 对比在 NER 和 RE 上方向一致
+      - paper writing 到位：35+ refs、3+ figures、proper contribution framing
+      number_ranges:
+        freeform_parse_rate:
+        - 0.85
+        - 0.95
+        freeform_logprob_within_sample_range_median:
+        - 0.2
+        - 0.5
+        freeform_logprob_rho_with_f1:
+        - 0.35
+        - 0.5
+        freeform_logprob_selection_delta_vs_greedy_pp:
+        - 3.0
+        - 8.0
+        freeform_logprob_selection_p_value:
+        - 0.001
+        - 0.05
+        freeform_logprob_auroc:
+        - 0.65
+        - 0.72
+        constrained_logprob_rho_with_f1:
+        - 0.2
+        - 0.21
+        constrained_logprob_auroc:
+        - 0.57
+        - 0.58
+        expected_reviewer_score:
+        - 3.5
+        - 4.0
+        findings_acceptance_prob:
+        - 0.55
+        - 0.75
+      narrative_direction: '原始 D070 framing 完全成立。三层论证闭环：(1) 概念澄清 QE≠selection， (2)
+        实证发现 logprob score compression under constrained decoding， (3) 控制实验证实去除约束后
+        selection 恢复。 Title 可保留 "The Constrained Decoding Bottleneck"。 Claim 1 用 "identify,
+        diagnose, and experimentally verify"，三个动词全部 earned。 Non-tied subset (+2.9pp)
+        + free-form ablation 共同指向 relaxed decoding 作为 actionable mitigation。 论文结构：问题提出
+        → QE framework (Claim 2) → 发现 gap → 机制诊断 → 控制验证 → 实践路径。
+
+        '
+    median:
+      tier: median
+      meaning: Free-form 恢复 logprob variance 但 selection 提升有限；constrained decoding
+        是贡献因素之一但非唯一瓶颈
+      key_assumptions:
+      - 'exp-018: logprob within-sample variance 有 2-4x 提升（range 中位数 0.10-0.20），方向正确但非压倒性'
+      - 'exp-018: free-form logprob selection 优于 greedy +1~3pp，但统计显著性边缘（p=0.05-0.15）'
+      - parse rate 75-90%，可用样本量较 constrained 减少 10-25%
+      - NER 上方向清晰，RE 上 free-form 改善不明显（RE 的 bottleneck 可能多源）
+      - 存在 confound：free-form 输出的 parsing noise 引入额外误差
+      number_ranges:
+        freeform_parse_rate:
+        - 0.75
+        - 0.9
+        freeform_logprob_within_sample_range_median:
+        - 0.1
+        - 0.2
+        freeform_logprob_rho_with_f1:
+        - 0.25
+        - 0.35
+        freeform_logprob_selection_delta_vs_greedy_pp:
+        - 1.0
+        - 3.0
+        freeform_logprob_selection_p_value:
+        - 0.05
+        - 0.15
+        freeform_logprob_auroc:
+        - 0.6
+        - 0.65
+        constrained_logprob_rho_with_f1:
+        - 0.2
+        - 0.21
+        constrained_logprob_auroc:
+        - 0.57
+        - 0.58
+        expected_reviewer_score:
+        - 3.0
+        - 3.5
+        findings_acceptance_prob:
+        - 0.3
+        - 0.5
+      narrative_direction: '需将 "experimentally verify" 软化为 "provide evidence consistent
+        with"。 Claim 1 从 "constrained decoding IS the bottleneck" 调整为 "constrained
+        decoding CONTRIBUTES TO the bottleneck, as evidenced by partial recovery of
+        logprob discrimination under free-form generation"。 补充讨论：score compression
+        是必要条件但非充分条件，IE 输出的组合复杂性 (entity set 的高维离散空间) 是独立于 decoding regime 的额外困难。 论文贡献权重重新分配：Claim
+        2 (QE framework, AUROC 0.75) 升级为 co-primary contribution， 与 Claim 1 (partial
+        bottleneck diagnosis) 并列。 Title 调整为 "Confidence Signals Predict but Cannot
+        Select in Constrained-Decoding Information Extraction"（去掉 "Bottleneck" 的因果暗示）。
+        需要额外补充 exp-019 simple verifier 或 non-tied subset 扩展分析来充实论文。
+
+        '
+    worst:
+      tier: worst
+      meaning: Free-form 未恢复 selection ability；constrained decoding bottleneck 假说不成立，gap
+        源于 IE 本身
+      key_assumptions:
+      - 'exp-018: logprob variance 提升微弱（range 中位数 <0.10）或虽提升但 selection 无改善'
+      - 'exp-018: free-form logprob selection vs greedy < +1pp，p>0.2，与 constrained
+        下结果无实质差异'
+      - parse rate 可能偏低（60-80%），且可解析子集本身偏向 easy instances（selection bias）
+      - 机制假说被否定：score compression 不是 selection 失败的主因，问题在于 IE 输出空间的组合复杂性使得单一 scalar
+        signal 根本无法有效排序
+      - 回到 D070 前的 framing 困境：论文的 primary contribution 缩回为 systematic negative finding
+        + QE evaluation
+      number_ranges:
+        freeform_parse_rate:
+        - 0.6
+        - 0.8
+        freeform_logprob_within_sample_range_median:
+        - 0.05
+        - 0.1
+        freeform_logprob_rho_with_f1:
+        - 0.15
+        - 0.25
+        freeform_logprob_selection_delta_vs_greedy_pp:
+        - -1.0
+        - 1.0
+        freeform_logprob_selection_p_value:
+        - 0.2
+        - 0.8
+        freeform_logprob_auroc:
+        - 0.55
+        - 0.6
+        constrained_logprob_rho_with_f1:
+        - 0.2
+        - 0.21
+        constrained_logprob_auroc:
+        - 0.57
+        - 0.58
+        expected_reviewer_score:
+        - 2.5
+        - 3.0
+        findings_acceptance_prob:
+        - 0.1
+        - 0.25
+      narrative_direction: '核心 reframing 失败，需要第二次 pivot。放弃 "bottleneck" 因果叙事， 转向 "fundamental
+        selection hardness in structured prediction" angle： (1) IE 输出是 set-of-sets（entity
+        set × relation set），其组合空间使得 任何 instance-level scalar signal 的排序能力存在 information-theoretic
+        上限； (2) 这与 reasoning/QA 的离散答案空间形成 structural contrast—— self-consistency 成功于后者恰因答案空间小；
+        (3) QE 仍然有效（AUROC 0.75）说明信号捕捉了 difficulty 但无法区分 同一 difficulty 水平内的 quality
+        variation。 Title 改为 "Why Self-Consistency Fails for Structured Prediction:
+        The Selection Hardness of Set-Valued Outputs"。 Claim 1 变为 universal negative
+        finding + structural explanation。 Claim 2 (QE framework) 升级为 primary contribution。
+        风险：与 pre-D070 framing 差距不大，reviewer 可能认为 depth 不够。 必须靠 (a) exp-018 作为 well-designed
+        null result 的方法论严谨性， (b) information-theoretic argument 的新颖性来撑住分数。 仍冲 Findings，但需要
+        paper writing 极其精炼。'
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260515T092545/best/paper.pdf
+  imagined_experiments:
+  - name: ner_ood_robustness
+    plan_id: exp-011
+    description: 'SciERC fine-tuned Qwen3-8B 对 WNUT-17 test set 做 zero-shot cross-domain
+      NER inference
+
+      (N=8, T=1.0)。评估 5 个 confidence signals 的 OOD 鲁棒性，验证 constrained decoding
+
+      bottleneck 在 domain shift 下是否持续。
+
+      '
+    expected_results:
+      n_instances: 1287
+      n_valid: 689
+      n_conditional: 520
+      greedy_f1: 0.32
+      oracle_f1: 0.52
+      oracle_headroom: 0.2
+      parse_rate: 0.92
+      sample_f1_pct_zero: 58.0
+      ner_full_rho_sj: 0.15
+      ner_full_rho_fk: 0.12
+      ner_full_rho_logprob: -0.08
+      ner_full_rho_em: 0.11
+      ner_full_rho_voting_conf: 0.18
+      ner_full_auroc_sj: 0.58
+      ner_full_auroc_fk: 0.56
+      ner_full_auroc_logprob: 0.48
+      ner_full_auroc_em: 0.57
+      ner_full_auroc_voting_conf: 0.6
+      ner_cond_rho_sj: 0.24
+      ner_cond_rho_logprob: 0.05
+      logprob_within_sample_range_median: 0.02
+      structural_beats_logprob: true
+      selection_f1_logprob: 0.31
+      selection_f1_greedy: 0.32
+      selection_delta_pp: -1.0
+    result_rationale: 'OOD (SciERC→WNUT-17) 导致绝对性能大幅下降 (greedy 0.32 vs in-domain 0.66)，
+
+      但 constrained decoding bottleneck 模式不变：
+
+
+      **logprob ρ=−0.08 (负值)**：constrained decoding 下 logprob compression 在 OOD 时更严重。
+
+      模型对 OOD 输入的 token 分布更 uniform（不确定该选什么），grammar masking 后仅存的微小
+
+      差异指向错误方向——高 logprob 对应的是模型 "自信地输出训练域模式"（SciERC schema），
+
+      而非 WNUT-17 ground truth 期望的输出。这与 exp-003 中 rho_logprob_full=−0.414 方向一致，
+
+      constrained decoding 的 compression 将绝对值从 −0.41 缩小到 −0.08。
+
+
+      **Structural signals 仍正向 (voting_conf 0.18, SJ 0.15)**：即使 OOD，model 内部一致性
+
+      仍与输出质量弱正相关——当模型对某些 entity "碰巧" 确信时，这些 entity 更可能真实存在。
+
+      绝对值低是因为 SciERC schema (6 types) 与 WNUT-17 schema (6 types, 不同) 的 mismatch
+
+      使大多数输出 degenerate。
+
+
+      **58% samples F1=0**：schema mismatch 导致绝大多数生成的 entity 无法匹配 gold，
+
+      而 constrained decoding 迫使所有样本生成 SciERC-format 的 entity——
+
+      高度同质化的输出使 within-sample variance 进一步坍缩 (range median 0.02)。
+
+
+      关键价值：排除 "bottleneck 仅在 in-domain 成立" 的 alternative hypothesis。
+
+      '
+    tables:
+    - name: 'Table S1: OOD Signal Robustness (SciERC → WNUT-17)'
+      description: '5 signals × {ρ, τ, AUROC} on OOD NER, full/conditional split。
+
+        对比 in-domain baseline (Table 1)。Appendix 补充实验。
+
+        '
+    figures_description:
+    - 'Figure S1: In-domain vs OOD signal degradation bar chart. X轴: 5 signals, Y轴:
+      ρ. 双色柱状图 (in-domain blue, OOD red). Logprob 从 +0.205 → −0.08 退化最剧烈，structural
+      signals 保持正相关但衰减。'
+    analysis: 'Appendix supporting evidence，不改变主线论证。(1) 排除 "bottleneck 仅在 in-domain
+      成立"；
+
+      (2) logprob OOD 过度自信与 exp-003 呼应，佐证 Claim 3；
+
+      (3) 58% F1=0 进一步说明 constrained decoding 在 OOD 下输出高度同质化。
+
+      局限：zero-shot transfer 本身 unfair (schema 不匹配)，绝对数值参考意义有限。
+
+      '
+  - name: ner_llama_conll
+    plan_id: exp-017
+    description: 'LLaMA-3.1-8B-Instruct fine-tuned on CoNLL-2003, N=8, T=1.0 inference。
+
+      补全 2×2 model-dataset grid 的第四个 cell (Qwen×SciERC, Qwen×CoNLL, LLaMA×SciERC,
+      LLaMA×CoNLL)。
+
+      '
+    expected_results:
+      n_instances: 3453
+      n_valid: 2756
+      n_conditional: 2642
+      greedy_f1: 0.926
+      oracle_f1: 0.944
+      oracle_headroom: 0.018
+      N: 8
+      T: 1.0
+      full_SJ_rho: 0.431
+      full_FK_rho: 0.428
+      full_logprob_rho: 0.307
+      full_EM_rho: 0.431
+      full_voting_conf_rho: 0.426
+      full_SJ_AUROC: 0.704
+      full_FK_AUROC: 0.703
+      full_logprob_AUROC: 0.761
+      full_EM_AUROC: 0.705
+      full_voting_conf_AUROC: 0.709
+      full_SJ_ECE: 0.114
+      full_logprob_ECE: 0.129
+      cond_SJ_rho: 0.436
+      cond_FK_rho: 0.431
+      cond_logprob_rho: 0.328
+      cond_EM_rho: 0.44
+      cond_EM_AUROC: 0.726
+      cond_logprob_AUROC: 0.81
+      structural_beats_logprob_rho: true
+      sj_rho_delta_vs_logprob: 0.124
+      cross_model_sj_rho_delta_vs_qwen: 0.005
+    result_rationale: '**SJ ρ=0.431 ≈ Qwen×CoNLL SJ ρ=0.436 (Δ=0.005)**:
+
+      CoNLL-2003 NER 是高资源 benchmark (3453 test, greedy F1 ~0.926)，两个 8B 模型在相同数据上
+
+      学到了几乎相同的 task structure。SJ 衡量的是 entity set 间 structural agreement——
+
+      这是 task property (entity ambiguity 分布) 而非 model artifact。
+
+      两个不同架构 (LLaMA transformer vs Qwen transformer) 产生 Δρ<0.01 的一致性
+
+      强有力地证明 signal ranking 是 task-intrinsic。
+
+
+      **Logprob ρ=0.307 仍显著低于 structural signals (Δρ=+0.124)**:
+
+      与 Qwen×CoNLL (logprob ρ=0.316) 一致。两个模型均使用 Outlines constrained decoding，
+
+      grammar masking 以相同方式压缩 logprob variance。
+
+      Logprob AUROC (0.761) 在 binary discrimination 上 strong，但 ρ 在 ranking 上 weak——
+
+      AUROC 仅需区分 "good vs bad"（threshold-based），而 ρ 需要 fine-grained ranking，
+
+      后者正是 logprob compression 破坏的能力。
+
+
+      **Oracle headroom 仅 0.018**:
+
+      CoNLL 的 near-ceiling 性能 (0.926) 意味着 selection 潜力本身有限——
+
+      所有 8 个 samples 都接近 correct，差异很小。但 bottleneck 仍可观测
+
+      (logprob 在 ranking 任务上不如 structural signals)，证明即使 easy regime
+
+      也存在 constrained decoding 对 logprob 的系统性损害。
+
+
+      **ECE=0.114 低于 SciERC (0.453)**:
+
+      高正确率自然改善 calibration (大部分预测都对)，但不解决 selection 问题——
+
+      calibration 衡量 "预测的置信度是否匹配正确率"，selection 衡量 "能否从 N 个中选出最好的"。
+
+      '
+    tables:
+    - name: 'Table 2 (main results): LLaMA×CoNLL row in 2×2 grid'
+      description: 'Main results table 中 2 models × 2 datasets grid。每个 cell: 5 signals
+        的 ρ + AUROC。
+
+        LLaMA×CoNLL 填补最后一个空 cell。
+
+        '
+    - name: 'Table 3: Cross-model consistency summary'
+      description: 'Qwen vs LLaMA on each dataset。Per-signal |Δρ| across models。
+
+        Mean |Δρ| across structural signals < 0.01。
+
+        '
+    figures_description:
+    - 'Figure 2 panel (bottom-right): 2×2 heatmap (model × dataset) 中 LLaMA-CoNLL
+      cell. 颜色编码 SJ ρ 值。与 Qwen-CoNLL cell 颜色几乎相同，视觉上呈现 cross-model 一致性。'
+    analysis: "填补 2×2 grid 最后一个 cell，使 cross-model claim 从 \"suggestive\" 升级到 \"systematic\"\
+      ：\n(1) LLaMA SJ ρ=0.431 vs Qwen SJ ρ=0.436 (Δ=0.005) — signal ranking 是 task\
+      \ property；\n(2) 两模型均显示 structural > logprob (Δρ∈[0.12, 0.16])，排除 \"Qwen 特有\
+      \ compression\"；\n(3) CoNLL small headroom (0.018) 说明 near-ceiling 下 selection\
+      \ gain 天然有限，\n    但 signal quality hierarchy 不受影响——方法论有效性验证。\n"
+  - name: freeform_decoding_ablation
+    plan_id: exp-018
+    description: 'BREAKTHROUGH EXPERIMENT. SciERC 上 Qwen3-8B (fine-tuned) 生成 free-form（无
+      Outlines
+
+      constrained decoding）N=8 samples per instance。对比 constrained vs free-form 下
+
+      logprob variance、QE metrics、selection performance。证明 constrained decoding
+
+      是 correlation-selection gap 的因果机制。
+
+      '
+    expected_results:
+      freeform_parse_rate_ner: 0.9
+      freeform_parse_rate_re: 0.88
+      n_parseable_ner: 476
+      n_parseable_re: 350
+      constrained_logprob_within_sample_range_median_ner: 0.031
+      freeform_logprob_within_sample_range_median_ner: 0.32
+      constrained_logprob_within_sample_range_median_re: 0.028
+      freeform_logprob_within_sample_range_median_re: 0.27
+      constrained_pct_range_below_005: 0.6
+      freeform_pct_range_below_005: 0.08
+      variance_recovery_factor: 10.3
+      wilcoxon_variance_constrained_vs_freeform_p: 1.2e-45
+      constrained_logprob_rho_ner: 0.205
+      freeform_logprob_rho_ner: 0.42
+      freeform_sj_rho_ner: 0.37
+      freeform_fk_rho_ner: 0.28
+      freeform_voting_conf_rho_ner: 0.39
+      freeform_em_rho_ner: 0.3
+      constrained_logprob_rho_re: 0.266
+      freeform_logprob_rho_re: 0.35
+      freeform_sj_rho_re: 0.26
+      freeform_voting_conf_rho_re: 0.34
+      constrained_logprob_auroc_ner: 0.578
+      freeform_logprob_auroc_ner: 0.68
+      freeform_sj_auroc_ner: 0.7
+      freeform_voting_conf_auroc_ner: 0.69
+      freeform_em_auroc_ner: 0.75
+      constrained_logprob_auroc_re: 0.601
+      freeform_logprob_auroc_re: 0.65
+      freeform_voting_conf_auroc_re: 0.68
+      freeform_greedy_f1_ner: 0.644
+      freeform_logprob_selection_f1_ner: 0.694
+      freeform_selection_delta_vs_greedy_ner_pp: 5.0
+      freeform_selection_p_value_ner: 0.008
+      freeform_selection_cohen_d_ner: 0.31
+      freeform_selection_bootstrap_ci95_ner:
+      - 0.018
+      - 0.082
+      freeform_oracle_f1_ner: 0.792
+      freeform_headroom_capture_pct_ner: 33.8
+      constrained_logprob_selection_f1_ner: 0.65
+      constrained_selection_delta_pp_ner: 0.6
+      constrained_selection_p_value_ner: 0.39
+      freeform_greedy_f1_re: 0.404
+      freeform_logprob_selection_f1_re: 0.436
+      freeform_selection_delta_vs_greedy_re_pp: 3.2
+      freeform_selection_p_value_re: 0.032
+      freeform_oracle_f1_re: 0.598
+      freeform_headroom_capture_pct_re: 16.5
+      constrained_logprob_selection_f1_re: 0.41
+      constrained_selection_delta_pp_re: 0.7
+      direction_consistent_ner_re: true
+      logprob_rank_reversal: true
+    result_rationale: "这是论文核心实验。under best tier 每个关键数字的因果解释：\n\n**Parse rate 90%**:\
+      \ Fine-tuned model 在 30k+ JSON-formatted training samples 上学了\n输出格式。即使无 grammar\
+      \ constraints，model 的 mode (最高概率输出) 仍是有效 JSON。\n10% failure 来自：(a) 偶尔缺少闭括号 (~4%)，(b)\
+      \ entity type 小幅拼写偏差 (~3%)，\n(c) free-form 下偶尔在 JSON 前后插入解释文本 (~3%)。\n90% 保证\
+      \ n=476 NER (满足 ≥450 阈值)，统计功效充足。\n\n**Logprob variance 10x 恢复 (median range\
+      \ 0.031→0.32)**:\nConstrained decoding 下 Outlines grammar mask 在每个 decode step\
+      \ 将 invalid tokens 的\nlogit 设为 −∞，仅保留 grammar-valid tokens。对 JSON-schema IE：\n\
+      - 结构 tokens (\"{\"、\"entities\"、\":\" 等) 在大多数 step 是唯一 valid token → logprob≈0\n\
+      - 仅 entity name/type tokens 有选择自由 → 极少数 steps 贡献 variance\n- 8 samples 的 sequence\
+      \ logprob 被压缩到 ≤0.05 range (60% instances)\n\nFree-form 移除 mask 后：\n- 每步全 vocab\
+      \ (150k+ tokens) 可选 → token-level entropy 更高\n- 模型在 \"是否输出 entity\"、\"用什么格式\"\
+      、\"先输出哪个 entity\" 等决策点\n  有真实 uncertainty → samples 的 sequence logprob 反映真实质量差异\n\
+      - Range median 0.32 表示 50% instances 的 max-min logprob 差异 > 0.32——\n  足以支撑 meaningful\
+      \ ranking\n\n**Logprob ρ 翻倍 (NER: 0.205→0.42, 成为最佳 signal)**:\nVariance 恢复→logprob\
+      \ 能区分 good/bad 输出。好输出 (entities correct, format clean)\n获得更高 logprob，差输出 (hallucinated\
+      \ entities, format errors) 获得更低 logprob。\n关键 reversal: constrained 下 logprob\
+      \ (0.205) 是最差 signal，free-form 下 (0.42)\n超越 SJ (0.37) 和 voting_conf (0.39) 成为最佳。同一信号在两种\
+      \ regime 下从 worst→best\n——这不是 noise，是 mechanism。\n\n**SJ 在 free-form 下相对下降 (0.360→0.37,\
+      \ 仅 +0.01)**:\nSJ 是 set-level Jaccard，计算不依赖 logprob。Free-form 下输出格式变异\n(partial\
+      \ JSON, key ordering variants) 增加了 parse noise，但 SJ 对此鲁棒。\nSJ 没有显著提升说明 SJ 的性能不受\
+      \ decoding regime 影响——\n恰好证明 constrained decoding 仅损害 logprob，不损害 structural\
+      \ signals。\n\n**Selection +5.0pp (NER, p=0.008, d=0.31)**:\nVariance + correlation\
+      \ 恢复→logprob 能正确 rank candidates→selection works。\n5.0pp 对应 33.8% headroom capture，是\
+      \ medium effect size。\n与 MT 领域 MBR decoding 的 typical gain 范围 (3–10pp) 一致。\n\
+      Bootstrap 95% CI [+1.8, +8.2]pp 不含零，排除偶然解释。\n\n**NER 与 RE 方向一致但 RE 较弱 (+3.2pp\
+      \ vs +5.0pp, p=0.032)**:\nRE compound error propagation (head + tail + type\
+      \ 三重匹配) 增加噪声。\n即使 logprob variance 恢复，RE output 质量仍受限于 entity extraction 上游错误，\n\
+      logprob-quality 相关被部分稀释。但方向一致 (both p<0.05)——\n足以支持 \"bottleneck is regime-specific,\
+      \ not task-specific\" 结论。\n"
+    tables:
+    - name: 'Table 4: Constrained vs Free-form — Logprob Behavior (MAIN RESULT)'
+      description: 'Rows: {NER, RE} × {Constrained, Free-form}。
+
+        Cols: n, logprob range median, %range<0.05, ρ(logprob,F1), AUROC, selection
+        F1, Δ vs greedy, p-value。
+
+        Bold significant results. 这是论文最重要的 table。
+
+        '
+    - name: 'Table 5: Free-form Full Signal Comparison'
+      description: 'Free-form 下 5 signals 的 ρ, τ, AUROC。
+
+        与 Table 1 (constrained) 对照，突出 logprob 从 worst→best 的排名翻转。
+
+        '
+    figures_description:
+    - 'Figure 3 (MAIN FIGURE): Logprob within-sample range distribution — constrained
+      (blue) vs free-form (orange). Overlaid histogram 或 violin plot. 左侧 constrained
+      分布紧缩在 0–0.05 (明显 spike), 右侧 free-form 分布扩展到 0.1–0.6. 虚线标注 0.05 阈值。标题: ''10×
+      variance recovery upon removing grammar-guided decoding''. 这是论文视觉核心。'
+    - 'Figure 4: Selection curves — constrained vs free-form. 两条 logprob selection
+      曲线 (solid=free-form rising, dashed=constrained flat) + oracle ceiling + random
+      baseline + greedy horizontal line. X轴: N∈{1,2,4,8}. Y轴: F1. Free-form 曲线明显上升至
+      0.694, constrained 曲线趴在 greedy (0.644) 上。Gap between curves is the constrained
+      decoding penalty.'
+    - 'Figure 5: Logprob vs F1 scatter (side-by-side panels). 左: constrained — 竖直条状
+      (logprob compressed on X轴, F1 varies freely on Y轴). 右: free-form — 正相关椭圆 (wider
+      X spread, positive trend). Regression line + ρ annotation on each panel. α=0.3
+      透明度。直观呈现 ''compression kills correlation''.'
+    analysis: "exp-018 将论文从 3.0 plateau 推至 3.5+。它将 Claim 1 从 \"descriptive finding\"\
+      \ 升级到\n\"causal mechanism with controlled ablation\"：\n\n因果推断逻辑: Constrained\
+      \ decoding 是唯一 manipulation variable.\nModel identical, data identical, N identical,\
+      \ T identical.\n结果: logprob variance 10x↑, selection +5pp (significant).\n→\
+      \ Constrained decoding causes logprob compression causes selection failure.\
+      \ QED.\n\n对论文结构的影响: exp-018 占 Section 5 (Control Experiment) 整节，是 climax.\n\
+      Section 3 (QE framework) 建立工具 → Section 4 (constrained results) 发现 gap →\nSection\
+      \ 5 (free-form ablation) 确认因果 → Section 6 (discussion) 提出 mitigation.\n\nSignal\
+      \ ranking reversal 是最有说服力的单一细节：\n  constrained: logprob (0.205) << SJ (0.360)\
+      \ << voting_conf (0.379)\n  free-form:   logprob (0.42) > voting_conf (0.39)\
+      \ > SJ (0.37)\n\nHeadroom capture spectrum (with exp-019):\n  unsupervised constrained:\
+      \ <1%\n  supervised constrained (verifier): ~27%\n  unsupervised free-form (logprob):\
+      \ ~34%\n  oracle: 100%\nFree-form logprob 是 zero-cost mitigation, 优于 trained\
+      \ verifier.\n"
+  - name: simple_verifier_baseline
+    plan_id: exp-019
+    description: 'Train DeBERTa-v3-large 作为 supervised verifier: 输入 (sentence, model_output),
+      预测 F1.
+
+      SciERC constrained decoding N=8 samples (每个 with known F1) 做 5-fold CV.
+
+      建立 supervised upper bound, 证明 gap 是 closable; 与 free-form logprob 对比
+
+      确认 "relaxed decoding > supervised constrained" 结论。
+
+      '
+    expected_results:
+      n_train_instances: 529
+      n_train_samples: 4232
+      model: DeBERTa-v3-large (304M)
+      training_strategy: 5-fold CV, MSE loss on F1
+      training_epochs: 5
+      verifier_ner_rho: 0.52
+      verifier_ner_auroc: 0.82
+      verifier_ner_tau: 0.39
+      verifier_ner_ece: 0.18
+      best_unsupervised_ner_rho: 0.379
+      best_unsupervised_ner_auroc: 0.749
+      verifier_re_rho: 0.44
+      verifier_re_auroc: 0.78
+      verifier_re_tau: 0.33
+      best_unsupervised_re_rho: 0.35
+      best_unsupervised_re_auroc: 0.706
+      verifier_selection_f1_ner: 0.68
+      verifier_selection_delta_ner_pp: 3.6
+      verifier_headroom_capture_ner_pct: 27.3
+      verifier_selection_f1_re: 0.423
+      verifier_selection_delta_re_pp: 1.9
+      verifier_headroom_capture_re_pct: 10.3
+      freeform_logprob_beats_verifier_ner: true
+      freeform_logprob_selection_delta_ner_pp: 5.0
+      verifier_selection_delta_ner_pp_: 3.6
+      gap_closure_delta: -1.4
+    result_rationale: '**Verifier ρ=0.52 (NER), 显著优于最佳 unsupervised (voting_conf 0.379)**:
+
+      DeBERTa encoder representation 学习了 (input, output) 对的语义一致性：
+
+      entity 是否在 context 中有 textual evidence、entity type 是否与 context 语义匹配、
+
+      输出的 entity 数量是否与句子复杂度合理对应。
+
+      这些是 unsupervised signals (仅看 output 间一致性, 不看 input) 无法获取的信息。
+
+      但 0.52 没有更高的原因：
+
+      (a) 4232 training samples 有限 (529 instances × 8, 且同一 instance 的 8 samples 高度相关);
+
+      (b) F1 label 本身有噪声 (取决于 gold annotation 边界);
+
+      (c) DeBERTa (304M) vs Qwen (8B) 的 representation capacity 差距。
+
+
+      **AUROC 0.82 >> 最佳 unsupervised 0.749 (+7pp)**:
+
+      Binary discrimination (good/bad) 对 verifier 更友好——只需学习 "这个输出合理吗"
+
+      的 coarse pattern。DeBERTa 的 cross-encoder 可以直接对 input-output pair 做
+
+      NLI-style attention，这比 output-only signals 多了一个 information channel。
+
+
+      **Selection +3.6pp (NER), headroom capture 27.3%**:
+
+      Verifier 在 constrained outputs 上做 selection。虽然 logprob 被压缩，
+
+      verifier 用 learned representation 绕过了 logprob bottleneck。
+
+      但 27.3% < free-form logprob 的 33.8%——这是关键发现：
+
+
+      Verifier 仍在 constrained outputs 上操作，这些 outputs 的 diversity 有限
+
+      (constrained decoding 迫使高度同质化)。即使 verifier 能 perfectly rank，
+
+      如果 8 个 candidates 本身差异不大，selection gain 的上限就低。
+
+      Free-form logprob 受益于更大 output diversity (更多 "好坏" 的自然变异)，
+
+      加上 variance 恢复后 logprob 的 ranking 能力，共同产出更大 gain。
+
+
+      **RE 弱于 NER (selection +1.9pp vs +3.6pp)**:
+
+      RE F1 label 更 noisy (compound error: head×tail×type)。
+
+      44% RE samples F1=0 导致 training distribution 严重不平衡 (binary: 56% zero vs 44%
+      nonzero)。
+
+      DeBERTa 难以从 sparse positive signal 中学习 fine-grained quality pattern。
+
+
+      **核心 insight: free-form logprob (zero-cost) > verifier (需 labeled data + training)**:
+
+      这从反面强化了 "constrained decoding IS the bottleneck" 的结论。
+
+      不是 "需要更好的 scoring function" (verifier 已经很好)，
+
+      而是 "需要更 diverse 的 candidate pool" (放松 decoding 即可)。
+
+      最有效的 mitigation 是最简单的: 移除 grammar constraint.
+
+      '
+    tables:
+    - name: 'Table 6: Supervised Verifier vs Unsupervised Signals'
+      description: 'Rows: 5 unsupervised signals + DeBERTa verifier。
+
+        Cols: ρ, τ, AUROC, ECE, selection F1, Δ vs greedy。
+
+        NER / RE 分 panel。Verifier 全面领先但 headroom capture 仍有限。
+
+        '
+    - name: 'Table 7: Selection Gap Closure Hierarchy'
+      description: 'Rows: Random, Greedy, Best Unsupervised (constrained), Verifier
+        (constrained),
+
+        Free-form Logprob, Oracle.
+
+        Cols: NER F1, RE F1, % headroom captured.
+
+        一目了然: free-form logprob > verifier > unsupervised。
+
+        '
+    figures_description:
+    - 'Figure 6 (Discussion): Selection performance waterfall chart. X轴: method hierarchy
+      (random → greedy → best unsup → verifier → free-form logprob → oracle). Y轴:
+      NER F1. 每级增益标注 Δpp. 视觉上 free-form logprob bar 高于 verifier bar, oracle 仍有巨大 gap.
+      传递信息: relaxing decoding > training verifier.'
+    analysis: "exp-019 在论文中定位为 Discussion/Appendix 的 \"upper bound reference\"，不是核心\
+      \ contribution：\n(1) 证明 gap 是 closable 的 (非 IE task 固有限制);\n(2) 建立 cost-effectiveness\
+      \ spectrum:\n    free-form logprob (zero cost, +5pp) > verifier (labeled data\
+      \ + GPU, +3.6pp) >\n    unsupervised constrained (<1pp);\n(3) 为 future work\
+      \ 指方向: larger verifier, self-training, learned reward model;\n(4) 最重要: 从反面证明\
+      \ bottleneck 在 decoding regime 而非 scoring function——\n    即使有 perfect scorer\
+      \ (verifier), constrained 下 candidate diversity 不足仍限制 gain."
+  review_report: '---
+
+    dream_id: dream_20260515T092545
+
+    tier: best
+
+    overall_score: borderline accept
+
+    timestamp: 2026-05-15T10:13:03.719214+00:00
+
+    ---
+
+
+
+    # Dream Review Report — Full Roundtable
+
+
+    **Paper:** "The Constrained Decoding Bottleneck: Why Confidence Signals Predict
+    but Cannot Select in Information Extraction"
+
+    **Venue Target:** EMNLP 2026 Findings
+
+    **Scoring Rubric:** ACL Rolling Review (1–5 scale, half-point increments)
+
+    **Review Mode:** Full (2 Reviewers, 4-step roundtable)
+
+
+    ---
+
+
+    ## Step 1: Independent Reviews
+
+
+    ### R1 — Methods and Experiments
+
+
+    #### Summary
+
+    The paper systematically evaluates five confidence signals for best-of-N selection
+    in structured IE under constrained decoding, identifying a "correlation–selection
+    gap" where signals that estimate quality (AUROC up to 0.75) fail to select better
+    candidates than greedy decoding. A controlled free-form ablation recovers log-prob
+    variance by 10× and enables significant selection gains (+5.0pp NER, p=0.008).
+    The experimental design is statistically rigorous, with bootstrap CIs, permutation
+    tests, Cohen''s d, and cross-model validation.
+
+
+    #### Strengths
+
+    - **S1 (Statistical rigor):** Bootstrap resampling (1000 iterations), permutation
+    p-values, Cohen''s d effect sizes, and cross-model validation far exceed the typical
+    IE paper. The null result under constrained decoding (NER +0.6pp, p=0.39, d=0.038)
+    is reported honestly rather than spun.
+
+    - **S2 (Per-sample vs. instance-level distinction):** The paper clearly formalizes
+    that 4/5 signals produce a single score per instance and therefore cannot rank
+    candidates by construction. This is a definitional property, but stating it explicitly
+    and then testing whether consensus-proximity (MBR-style) selection can recover
+    discrimination is methodologically sound.
+
+    - **S3 (Free-form ablation is well-controlled):** Same model, data, N, and T —
+    the only variable is the grammar constraint. The 10.3× variance recovery (0.031→0.320)
+    with Wilcoxon p=1.2×10⁻⁴⁵ and the signal ranking reversal (logprob worst→best)
+    provide compelling causal evidence. This is the paper''s strongest experimental
+    contribution.
+
+    - **S4 (Verifier comparison adds practical value):** The finding that zero-cost
+    free-form logprob (+5.0pp) exceeds a supervised DeBERTa verifier (+3.6pp) under
+    constrained decoding is a striking result that reframes the bottleneck as candidate
+    diversity rather than scoring quality.
+
+    - **S5 (Cross-model validation):** LLaMA vs. Qwen on CoNLL-2003 producing SJ ρ
+    Δ=0.005 rules out model-specific artifacts and establishes signal ranking as a
+    task property.
+
+
+    #### Weaknesses
+
+    - **W1 (2×2 model-dataset grid is thin for generalization claims):** Two 8B models
+    from different families is a reasonable start, but the paper''s language ("across
+    model families," "model-agnostic") overstates what two data points establish.
+    Both use identical training recipes (LoRA, same hyperparameters). Whether findings
+    hold for larger models (70B+), instruction-tuned models without task-specific
+    fine-tuning, or closed-source APIs remains open.
+
+    - **W2 (N=8 as sole selection evaluation point):** The paper argues N=8 suffices
+    based on QE metric saturation, but the selection problem is fundamentally different.
+    With 60% of instances LP-tied at N=8, larger N could break ties by increasing
+    the chance of a sufficiently different candidate. The oracle headroom grows with
+    N, but selection performance at N>8 is not reported.
+
+    - **W3 (RE evidence is underpowered):** A single RE benchmark (SciERC, 397 instances,
+    40% zero F1) with extreme per-relation variability does not robustly support RE-related
+    claims. The "preliminary" qualifier appears inconsistently — present in some table
+    captions but absent from the Abstract and Introduction.
+
+    - **W4 (Free-form ablation has selection bias from parse failures):** 10% of free-form
+    outputs fail to parse, and these are excluded. If unparseable outputs are systematically
+    the worst (or best) candidates, the remaining n=476 is a biased subset. The paper
+    does not analyze whether parse failure correlates with output quality.
+
+    - **W5 (No N-scaling curve for selection):** A plot of selection F1 vs. N∈{1,2,4,8,16}
+    under both regimes would significantly strengthen the paper. The free-form regime
+    should show an upward curve (logprob selection improves with more candidates)
+    while constrained stays flat.
+
+
+    #### R1 Preliminary Scores
+
+    - Soundness: 3.5/5
+
+    - Excitement: 3.0/5
+
+    - Reproducibility: 4.0/5
+
+    - Overall: 3.0/5
+
+    - Confidence: 4/5
+
+
+    ---
+
+
+    ### R2 — Novelty and Related Work
+
+
+    #### Summary
+
+    The paper identifies constrained decoding as a causal bottleneck for test-time
+    selection in structured IE, supported by a five-signal evaluation framework and
+    a controlled free-form ablation. The related work coverage is comprehensive (~35
+    references), and the positioning against the most closely related work (Nédellec
+    and Xia, 2026) is explicit.
+
+
+    #### Strengths
+
+    - **S1 (Well-posed research question with practical importance):** The distinction
+    between quality estimation and sample selection is genuinely underappreciated
+    in the test-time scaling literature. Practitioners deploying multi-sample IE pipelines
+    will benefit from this finding.
+
+    - **S2 (Comprehensive related work coverage):** The paper cites relevant work
+    across self-consistency, UQ, calibration, constrained decoding, verifiers, and
+    structured IE, including very recent work (CISC, Self-Certainty, ReASC, Latent
+    SC, CoCoA, Vashurin 2025b).
+
+    - **S3 (MBR connection is insightful):** Framing consensus-proximity selection
+    as MBR decoding and noting that utility–quality correlation holds across instances
+    but breaks within them connects to a rich MT literature.
+
+    - **S4 (Signal ranking reversal is the strongest novelty signal):** The complete
+    reversal of logprob from worst (ρ=0.205) to best (ρ=0.420) across decoding regimes
+    is a single, memorable finding that is difficult to dismiss as an artifact.
+
+
+    #### Weaknesses
+
+    - **W1 (LP compression under grammar masking is somewhat predictable):** Grammar-guided
+    decoding masks invalid tokens, making most generation steps near-deterministic
+    for JSON-schema outputs (structural tokens like `{`, `"entities"`, `:` have no
+    alternatives). The consequence for sequence-level score variance follows from
+    the mechanics of the approach. The paper would benefit from acknowledging this
+    more explicitly rather than presenting it as if it were unexpected. Quantifying
+    the fraction of deterministic decode steps would make the mechanism concrete.
+
+    - **W2 (Positioning against Nédellec and Xia overstates the gap):** Of the four
+    claimed advances (a–d), advance (a) — demonstrating that correlation does not
+    translate to selection — is the genuine differentiator. Advance (b) is an experimental
+    design choice, (c) is quantitative expansion, and (d) strengthens the causal claim
+    but was already foreshadowed by the compression diagnosis. The honest delta is
+    primarily (a) + the free-form ablation.
+
+    - **W3 (Semantic entropy not evaluated):** Kuhn et al. (2023) cluster generations
+    by meaning and compute entropy — directly applicable to entity sets via SJ-based
+    clustering. Its omission weakens the "systematic" comparison claim. Similarly,
+    verbalized confidence (Xiong et al. 2024) is cited but not tested.
+
+    - **W4 (Scope limited to JSON-schema IE):** The paper does not discuss whether
+    the bottleneck applies to other structured generation tasks (code generation with
+    syntax constraints, SQL generation). If the bottleneck is specific to high structural-token-ratio
+    formats, the findings may not generalize. At minimum, a discussion paragraph is
+    warranted.
+
+    - **W5 (Missing related work on constrained decoding and diversity):** The claim
+    of "first evidence that grammar masking compresses log-prob variance" would benefit
+    from surveying the structured generation literature more carefully (e.g., Grammar-Aligned
+    Decoding, SGLang documentation on output diversity, MBR failure modes in low-diversity
+    settings).
+
+
+    #### R2 Preliminary Scores
+
+    - Soundness: 3.5/5
+
+    - Excitement: 3.0/5
+
+    - Reproducibility: 4.0/5
+
+    - Overall: 3.0/5
+
+    - Confidence: 4/5
+
+
+    ---
+
+
+    ## Step 2: Cross-Sharing
+
+
+    ### Points of Agreement
+
+    1. **Statistical methodology is strong** — both reviewers commend the bootstrap
+    CIs, permutation tests, effect sizes, and cross-model validation as well above
+    the IE literature norm.
+
+    2. **The free-form ablation is the paper''s strongest contribution** — the 10×
+    variance recovery and signal ranking reversal provide compelling causal evidence.
+    R1 and R2 both rate this as the key experiment.
+
+    3. **RE evidence is underpowered** — single benchmark, 397 instances, high zero-F1
+    rate. Both agree this needs stronger qualification.
+
+    4. **Scope/generalizability is limited** — only 8B models, only JSON-schema IE.
+    Both flag this as a ceiling on the contribution''s impact.
+
+    5. **Semantic entropy is a notable omission** — both reviewers note it as a relevant
+    baseline that would strengthen the "systematic" claim.
+
+    6. **The paper is well-written** with clear narrative structure (QE succeeds →
+    selection fails → diagnose → ablate → confirm).
+
+
+    ### Points of Disagreement
+
+    1. **Novelty of LP compression:** R2 views it as somewhat predictable from grammar
+    masking mechanics; R1 finds the quantitative characterization (60% tied, range
+    0.031) to be a genuine contribution even if the direction is unsurprising. **Resolution:**
+    The mechanism is foreseeable but the quantitative severity and its practical consequences
+    (complete selection failure despite strong QE) are not obvious a priori. The paper
+    should acknowledge the intuitive direction while emphasizing the severity.
+
+    2. **Excitement level:** R1 initially leaned 2.5 (concerned about the "definitional"
+    nature of instance-level signals) but revised upward upon considering the free-form
+    ablation as causal evidence. R2 is at 3.0, recognizing practical value. **Resolution:**
+    Converged at 3.0 — the finding is genuinely useful for the structured IE community
+    and the free-form ablation elevates it beyond a purely descriptive study.
+
+
+    ---
+
+
+    ## Step 3: Convergence
+
+
+    ### Consensus Assessment
+
+
+    **Core contribution quality:** The paper makes three contributions of decreasing
+    importance: (1) the controlled free-form ablation demonstrating that constrained
+    decoding causally compresses logprob and kills selection, (2) the systematic five-signal
+    QE evaluation revealing the correlation–selection gap, and (3) the verifier comparison
+    showing that candidate diversity matters more than scoring quality. Contribution
+    (1) is the load-bearing result — without it, the paper would be a descriptive
+    study. With it, the paper provides actionable mechanistic insight.
+
+
+    **Key weaknesses (ranked by impact):**
+
+    1. **Scope:** Only 8B models, JSON-schema IE. The bottleneck may manifest differently
+    or not at all for larger models, other structured tasks, or other constrained
+    decoding frameworks.
+
+    2. **RE underpowered:** Single dataset weakens cross-task claims.
+
+    3. **Missing baselines:** Semantic entropy and verbalized confidence are natural
+    candidates for the "systematic" comparison.
+
+    4. **N-scaling gap:** No selection performance at N>8.
+
+    5. **Parse failure bias:** 10% free-form parse failures excluded without analysis
+    of whether they correlate with quality.
+
+
+    **Findings-level assessment:** The paper meets the Findings bar. The research
+    question is well-posed and practically important, the experimental methodology
+    is rigorous, the free-form ablation provides causal evidence for the central claim,
+    and the findings are actionable (use free-form + post-hoc parsing). The limitations
+    (model scale, task scope, single RE dataset) prevent main conference acceptance
+    but do not undermine the core contribution.
+
+
+    ---
+
+
+    ## Step 4: Consolidated Scores
+
+
+    | Dimension | R1 | R2 | Final |
+
+    |-----------|----|----|-------|
+
+    | Soundness | 3.5 | 3.5 | **3.5** |
+
+    | Excitement | 3.0 | 3.0 | **3.0** |
+
+    | Reproducibility | 4.0 | 4.0 | **4.0** |
+
+    | Overall | 3.0 | 3.0 | **3.0** |
+
+    | Confidence | 4 | 4 | **4** |
+
+
+    ### Score Justifications
+
+
+    **Soundness: 3.5/5 (between Acceptable and Strong)**
+
+    The free-form ablation is well-controlled and provides genuine causal evidence.
+    Statistical methodology is exemplary. Cross-model validation strengthens the claims.
+    However: RE is underpowered (single dataset), the 2×2 grid is thin for the generalization
+    language used, and the parse failure selection bias in the free-form condition
+    is unaddressed.
+
+
+    **Excitement: 3.0/5 (Interesting)**
+
+    The correlation–selection gap and its causal attribution to constrained decoding
+    are useful findings for the structured IE community. The signal ranking reversal
+    is memorable and surprising in magnitude. The practical mitigation (free-form
+    + post-hoc parsing) is actionable. However, the LP compression direction is foreseeable
+    from grammar masking mechanics, the scope is limited to 8B JSON-schema IE, and
+    the paper identifies a problem more than it proposes a novel solution.
+
+
+    **Reproducibility: 4.0/5 (Mostly Reproducible)**
+
+    Models (Qwen3-8B, LLaMA-3.1-8B), datasets (SciERC, CoNLL-2003, WNUT-17), training
+    configurations (LoRA hyperparameters), decoding parameters (Outlines, N=8, T=1.0),
+    and evaluation protocol (type-grouped Hungarian matching) are well-documented.
+    Code release is not mentioned.
+
+
+    **Overall: 3.0/5 (Findings acceptance)**
+
+    A methodologically rigorous paper with a practically important finding. The three-stage
+    investigation (QE succeeds → selection fails → constrained decoding is the cause)
+    is logically compelling. The free-form ablation provides the causal evidence needed
+    to support the title''s "bottleneck" claim. The verifier comparison adds practical
+    nuance. Limitations in scope (model scale, task diversity, single RE dataset)
+    and missing baselines (semantic entropy) prevent a higher rating but do not undermine
+    the core contribution.
+
+
+    ---
+
+
+    ## Consolidated Recommendations
+
+
+    ### For Acceptance (Findings)
+
+    The paper is suitable for EMNLP 2026 Findings in its current form, with the following
+    revisions recommended:
+
+
+    ### Must-Fix Before Camera-Ready
+
+    1. **Qualify RE claims consistently.** The "preliminary" qualifier appears in
+    some table captions but is absent from the Abstract ("NER and RE"), Introduction
+    contributions, and several Discussion paragraphs. Either add a second RE dataset
+    or consistently qualify all RE claims throughout.
+
+    2. **Analyze parse failure bias.** Report whether the 10% free-form parse failures
+    correlate with output quality (e.g., are they systematically low-quality candidates
+    whose exclusion inflates the +5.0pp gain?).
+
+    3. **Temper generalization language.** Phrases like "across model families" and
+    "model-agnostic" overstate what two 8B models with identical training recipes
+    establish. Use "across two 8B model architectures" or similar.
+
+
+    ### Strongly Recommended
+
+    4. **Add semantic entropy as a baseline** (or discuss its exclusion with a concrete
+    justification).
+
+    5. **Quantify deterministic decode steps.** Report the fraction of generation
+    steps with a single valid token under the JSON schema to make the compression
+    mechanism concrete.
+
+    6. **Add an N-scaling selection curve** (N∈{1,2,4,8} or {1,2,4,8,16}) under both
+    regimes to show that free-form selection improves with N while constrained stays
+    flat.
+
+    7. **Discuss generalizability to other structured tasks** (code generation, SQL)
+    in at least one paragraph — is the bottleneck specific to high structural-token-ratio
+    formats?
+
+
+    ### Nice-to-Have
+
+    8. Histogram visualization of within-instance LP range distributions (constrained
+    vs. free-form) — more immediate than the 60%<0.05 statistic.
+
+    9. Explore MBR with alternative utility functions (BERTScore, embedding similarity)
+    to determine whether SJ-based MBR''s failure is utility-specific or fundamental.
+
+    10. Report the ensemble (logistic regression on all 5 signals) result, even if
+    negative — signal redundancy is informative.
+
+
+    ---
+
+
+    ## Experiment Coverage Assessment
+
+
+    Comparing the paper against the review context''s imagined experiment list:
+
+
+    | Experiment | Plan ID | Covered in Paper? | Assessment |
+
+    |-----------|---------|-------------------|------------|
+
+    | OOD Robustness (SciERC→WNUT-17) | exp-011 | ✅ Appendix A, Table 8 | Adequate.
+    Results match expected patterns (LP ρ=−0.08, structural signals weakly positive).
+    Brief but sufficient for appendix. |
+
+    | Cross-model (LLaMA×CoNLL) | exp-017 | ✅ Table 2, Section 5.1 | Well-presented.
+    SJ ρ Δ=0.005 is compelling. Missing Qwen×CoNLL ρ values in Table 2 (only SJ and
+    LogProb shown). |
+
+    | Free-form ablation | exp-018 | ✅ Section 5.4, Tables 4-5 | **Core experiment.**
+    10× variance recovery, +5.0pp NER (p=0.008), signal ranking reversal — all key
+    results present. Figures (LP distribution, selection curves, scatter) described
+    in context but paper uses tables instead. |
+
+    | Supervised verifier | exp-019 | ✅ Section 5.5, Tables 6-7 | Complete. Gap-closure
+    hierarchy (Table 7) is particularly effective — shows free-form logprob > verifier
+    at a glance. |
+
+
+    **Coverage: 4/4 imagined experiments present.** The paper successfully integrates
+    all planned experiments. The main gap vs. the imagined experiment plan is the
+    absence of the described figures (LP distribution histogram, selection curves,
+    LP-vs-F1 scatter) — the paper relies on tables instead, which is less visually
+    compelling but informationally complete.
+
+    '
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260515T092545/median/paper.pdf
+  imagined_experiments:
+  - name: ner_ood_robustness
+    plan_id: exp-011
+    description: 'SciERC fine-tuned Qwen3-8B 模型在 WNUT-17 测试集上的跨域 zero-shot NER 推理，
+      评估 consistency signals 在 OOD 条件下的退化模式。N=8, T=1.0。
+
+      '
+    expected_results:
+      n_instances: 1287
+      n_gold_nonempty: 689
+      n_valid_after_filter: 689
+      greedy_f1: 0.218
+      oracle_f1: 0.402
+      oracle_headroom: 0.184
+      sample_f1_mean: 0.152
+      sample_f1_pct_zero: 62.4
+      parse_failure_rate: 0.03
+      sj_rho_full: 0.142
+      sj_auroc_full: 0.572
+      sj_tau_full: 0.105
+      fk_rho_full: 0.098
+      fk_auroc_full: 0.548
+      em_rho_full: 0.118
+      em_auroc_full: 0.561
+      voting_conf_rho_full: 0.165
+      voting_conf_auroc_full: 0.583
+      logprob_rho_full: -0.287
+      logprob_auroc_full: 0.421
+      n_cond: 312
+      sj_rho_cond: 0.231
+      fk_rho_cond: 0.148
+      logprob_rho_cond: 0.089
+      voting_conf_rho_cond: 0.252
+      selection_logprob: 0.195
+      selection_sj: 0.213
+      selection_voting: 0.22
+      selection_random: 0.19
+      selection_oracle: 0.402
+    result_rationale: 'OOD 条件下，模型对 WNUT-17 社交媒体文本的 NER 能力大幅下降（greedy F1 从 SciERC 的
+      0.66 降至 0.22）。62% 的 sample F1=0 意味着模型在多数 OOD 实例上几乎无法正确抽取。在此背景下：
+
+      (1) Logprob 严重失效（rho=-0.287）：模型对 in-domain pattern 赋予高 logprob，但这些 pattern 在
+      OOD 数据上不适用，导致 logprob 与 F1 负相关。这与 WNUT-17 in-domain 实验 (logprob rho=-0.41) 方向一致，在跨域条件下更加极端。
+
+      (2) 结构化信号退化但保持正相关（SJ rho 0.14, voting_conf rho 0.17）：因为 consistency 是 output-level
+      agreement 的度量，不依赖模型对 domain 的 calibration。即使模型在 OOD 上 表现差，当多个 sample 碰巧给出相似答案时，这些答案更可能接近正确。
+
+      (3) Conditional set (greedy F1>0, n=312) 上信号恢复到 0.23-0.25，说明模型"能做"的子集上 consistency
+      仍有判别力，但 OOD 下这个子集很小。
+
+      (4) Selection 几乎无效：最好的 voting 选择 (0.220) 仅比 random (0.190) 高 3pp， oracle headroom
+      18.4pp 几乎无法被 unsupervised signal 捕获。
+
+      这对论文 Claim 3 (task-complexity boundary) 提供了扩展证据：信号有效性不仅受 task 结构 复杂性影响，还受 domain
+      shift 影响。在 median 档下，这是 Limitations 中的重要素材 而非独立贡献。
+
+      '
+    tables:
+    - title: 'Table: OOD Cross-Domain QE Results (SciERC→WNUT-17)'
+      columns:
+      - Signal
+      - ρ_full
+      - AUROC_full
+      - ρ_cond
+      - Selection_F1
+      rows:
+      - - voting_conf
+        - 0.165
+        - 0.583
+        - 0.252
+        - 0.22
+      - - SJ
+        - 0.142
+        - 0.572
+        - 0.231
+        - 0.213
+      - - EM
+        - 0.118
+        - 0.561
+        - —
+        - —
+      - - FK
+        - 0.098
+        - 0.548
+        - 0.148
+        - —
+      - - logprob
+        - -0.287
+        - 0.421
+        - 0.089
+        - 0.195
+      - - random
+        - —
+        - —
+        - —
+        - 0.19
+      - - oracle
+        - —
+        - —
+        - —
+        - 0.402
+    - title: 'Table: In-Domain vs OOD Signal Degradation'
+      columns:
+      - Signal
+      - SciERC_ρ
+      - WNUT_OOD_ρ
+      - Δρ
+      - Retention_%
+      rows:
+      - - voting_conf
+        - 0.379
+        - 0.165
+        - -0.214
+        - 43.5%
+      - - SJ
+        - 0.36
+        - 0.142
+        - -0.218
+        - 39.4%
+      - - FK
+        - 0.267
+        - 0.098
+        - -0.169
+        - 36.7%
+      - - logprob
+        - 0.205
+        - -0.287
+        - -0.492
+        - inverted
+    figures_description:
+    - 'Fig: Bar chart comparing signal ρ on in-domain SciERC vs OOD WNUT-17, showing
+      structural signals degrade ~60% while logprob inverts. Error bars from bootstrap
+      CI.'
+    - 'Fig: Scatter plot of per-instance logprob vs F1 on OOD, showing negative trend
+      with high-logprob cluster at F1=0 (overconfidence on OOD).'
+    analysis: 'OOD 实验在 median 档下是 Limitations 材料。关键发现：structural consistency 在 OOD
+      下退化 但保持正相关方向（retention ~40%），而 logprob 完全失效并反转。这进一步支持了 QE framework (Claim 2)
+      中 structural signals 的 robustness 优势，但不足以构成独立贡献。 论文中以一段讨论处理：承认 OOD generalization
+      不足，但指出 structural signals 的相对优势 在 OOD 下更加突出（logprob 失效时 consistency 仍可用）。 对
+      reviewer score 的影响：neutral，P2 实验不影响核心评分。
+
+      '
+  - name: ner_llama_conll
+    plan_id: exp-017
+    description: 'LLaMA-3.1-8B-Instruct fine-tuned on CoNLL-2003, NER inference N=8,
+      T=1.0。 2×2 cross-model × cross-dataset validation矩阵的最后一格。
+
+      '
+    expected_results:
+      n_instances: 3453
+      n_valid: 2756
+      n_conditional: 2640
+      N: 8
+      T: 1.0
+      greedy_f1: 0.926
+      oracle_f1: 0.945
+      oracle_headroom: 0.019
+      sj_rho_full: 0.431
+      sj_auroc_full: 0.704
+      sj_ece_full: 0.114
+      fk_rho_full: 0.428
+      fk_auroc_full: 0.703
+      fk_ece_full: 0.105
+      logprob_rho_full: 0.307
+      logprob_auroc_full: 0.761
+      logprob_ece_full: 0.129
+      em_rho_full: 0.431
+      em_auroc_full: 0.705
+      em_ece_full: 0.109
+      voting_conf_rho_full: 0.426
+      voting_conf_auroc_full: 0.709
+      voting_conf_ece_full: 0.095
+      sj_rho_cond: 0.436
+      fk_rho_cond: 0.431
+      logprob_rho_cond: 0.328
+      em_rho_cond: 0.44
+      voting_conf_rho_cond: 0.374
+      selection_greedy: 0.926
+      selection_sj: 0.924
+      selection_logprob: 0.925
+      selection_voting_conf: 0.925
+      selection_random: 0.921
+      selection_oracle: 0.945
+      qwen_sj_rho_full: 0.436
+      llama_sj_rho_full: 0.431
+      cross_model_delta_sj: -0.005
+      qwen_logprob_rho_full: 0.316
+      llama_logprob_rho_full: 0.307
+      cross_model_delta_logprob: -0.009
+    result_rationale: 'CoNLL-2003 是成熟的 NER benchmark，Qwen 和 LLaMA 在此数据集上都能达到 >92%
+      greedy F1。 在 median 档下：
+
+      (1) SJ rho ~0.43 与 Qwen 的 0.436 几乎一致（delta < 0.01），确认 cross-model consistency。
+      这是论文最需要的结果：证明 structural consistency signals 的有效性不依赖特定模型架构。
+
+      (2) 所有 structural signals (SJ/FK/EM/voting) 在 rho 上聚集在 0.42-0.43 区间， 远高于 logprob
+      的 0.307。但 AUROC 上 logprob (0.761) 反超所有 structural signals (~0.704)。 这是 CoNLL
+      ceiling effect：greedy F1=0.926 意味着大多数 instance 的 F1 很高， 区分"极好 vs 好"需要的是 calibration
+      precision (logprob 的优势) 而非 structural agreement (已经接近 ceiling)。这个 AUROC 反转不影响论文叙事，因为
+      QE 的主要 claim 是在 rho 上。
+
+      (3) Selection 完全无效：最好的 signal 甚至不如 greedy，因为 headroom 只有 1.9pp。 这是 ceiling effect
+      的直接后果——当 greedy 已经 92.6% 时，best-of-N 几乎没有空间改善。 这支持论文 Claim 1 的补充论点：selection
+      gap 在 easy task 上消失不是因为 signal 变好了， 而是因为 headroom 本身就小。
+
+      (4) ECE 值在 0.09-0.13 范围，远好于 SciERC 的 0.35-0.71，说明 CoNLL 上模型 calibration 本身就好很多。
+
+      '
+    tables:
+    - title: 'Table: 2×2 Cross-Model × Cross-Dataset QE Summary (ρ_full)'
+      columns:
+      - Signal
+      - Qwen×SciERC
+      - Qwen×CoNLL
+      - LLaMA×SciERC
+      - LLaMA×CoNLL
+      rows:
+      - - SJ
+        - 0.36
+        - 0.436
+        - 0.363
+        - 0.431
+      - - FK
+        - 0.267
+        - 0.4
+        - 0.327
+        - 0.428
+      - - logprob
+        - 0.205
+        - 0.316
+        - 0.183
+        - 0.307
+      - - voting_conf
+        - 0.379
+        - 0.424
+        - —
+        - 0.426
+      - - EM
+        - 0.295
+        - 0.451
+        - —
+        - 0.431
+    - title: 'Table: LLaMA CoNLL Full Results'
+      columns:
+      - Signal
+      - ρ_full
+      - τ_full
+      - AUROC
+      - ECE
+      rows:
+      - - SJ
+        - 0.431
+        - 0.356
+        - 0.704
+        - 0.114
+      - - FK
+        - 0.428
+        - 0.349
+        - 0.703
+        - 0.105
+      - - EM
+        - 0.431
+        - 0.362
+        - 0.705
+        - 0.109
+      - - voting_conf
+        - 0.426
+        - 0.351
+        - 0.709
+        - 0.095
+      - - logprob
+        - 0.307
+        - 0.247
+        - 0.761
+        - 0.129
+    figures_description:
+    - 'Fig: 2×2 heatmap of SJ ρ across {Qwen, LLaMA} × {SciERC, CoNLL}, showing consistent
+      pattern (structural > logprob) with < 0.01 cross-model delta.'
+    analysis: 'exp-017 补全了 2×2 cross-validation 矩阵。Median 档下 SJ rho cross-model delta
+      < 0.01 足以支撑 "model-agnostic" claim (R2 concern 解决)。但 CoNLL ceiling effect 使得
+      selection 完全无效、AUROC 出现 logprob 反超现象——论文需要解释这不是 contradiction 而是 task-difficulty
+      dependent 的合理结果。这加强了 Claim 3 (task-complexity boundary) 的论述：在 easy NER (CoNLL)
+      上 consistency 的 QE 价值降低因为 headroom 本身就小。
+
+      '
+  - name: freeform_decoding_ablation
+    plan_id: exp-018
+    description: 'SciERC 上 Qwen3-8B 的 free-form decoding ablation。移除 Outlines 约束解码，
+      生成 8 个 free-form 样本/实例。对比 constrained vs free-form 的 logprob variance、 selection
+      performance、QE metrics。论文 Claim 1 的核心实验证据。
+
+      '
+    expected_results:
+      n_instances_ner: 529
+      n_instances_re: 397
+      N: 8
+      T: 1.0
+      model: qwen3-8b-scierc-merged-v2
+      freeform_parse_rate_ner: 0.83
+      freeform_parse_rate_re: 0.78
+      freeform_n_parseable_ner: 439
+      freeform_n_parseable_re: 310
+      freeform_effective_N_mean_ner: 6.6
+      freeform_effective_N_mean_re: 6.2
+      constrained_logprob_within_sample_range_median_ner: 0.038
+      freeform_logprob_within_sample_range_median_ner: 0.148
+      variance_recovery_ratio_ner: 3.89
+      constrained_pct_tied_ner: 0.6
+      freeform_pct_tied_ner: 0.28
+      constrained_logprob_within_sample_range_median_re: 0.032
+      freeform_logprob_within_sample_range_median_re: 0.118
+      variance_recovery_ratio_re: 3.69
+      constrained_pct_tied_re: 0.64
+      freeform_pct_tied_re: 0.33
+      constrained_ner_logprob_rho: 0.205
+      freeform_ner_logprob_rho: 0.298
+      delta_ner_logprob_rho: 0.093
+      delta_ner_logprob_rho_pct: 45.4%
+      constrained_ner_logprob_auroc: 0.578
+      freeform_ner_logprob_auroc: 0.623
+      delta_ner_logprob_auroc_pp: 4.5
+      freeform_ner_sj_rho: 0.335
+      freeform_ner_voting_conf_rho: 0.358
+      freeform_ner_em_rho: 0.268
+      constrained_re_logprob_rho: 0.266
+      freeform_re_logprob_rho: 0.292
+      delta_re_logprob_rho: 0.026
+      delta_re_logprob_rho_pct: 9.8%
+      constrained_re_logprob_auroc: 0.601
+      freeform_re_logprob_auroc: 0.618
+      delta_re_logprob_auroc_pp: 1.7
+      freeform_re_sj_rho: 0.228
+      freeform_re_voting_conf_rho: 0.319
+      constrained_ner_greedy_f1: 0.644
+      constrained_ner_logprob_selection_f1: 0.65
+      constrained_ner_selection_delta_pp: 0.6
+      constrained_ner_selection_p: 0.39
+      freeform_ner_greedy_f1: 0.632
+      freeform_ner_logprob_selection_f1: 0.652
+      freeform_ner_selection_delta_pp: 2.0
+      freeform_ner_selection_p: 0.078
+      freeform_ner_selection_cohens_d: 0.125
+      constrained_re_greedy_f1: 0.403
+      constrained_re_logprob_selection_f1: 0.41
+      constrained_re_selection_delta_pp: 0.7
+      freeform_re_greedy_f1: 0.388
+      freeform_re_logprob_selection_f1: 0.396
+      freeform_re_selection_delta_pp: 0.8
+      freeform_re_selection_p: 0.31
+      constrained_ner_oracle_f1: 0.776
+      constrained_ner_headroom_capture_pct: 0.5
+      freeform_ner_oracle_f1: 0.748
+      freeform_ner_headroom_capture_pct: 3.4
+      constrained_re_oracle_f1: 0.585
+      constrained_re_headroom_capture_pct: 0.0
+      freeform_re_oracle_f1: 0.541
+      freeform_re_headroom_capture_pct: 1.3
+      freeform_ner_nontied_fraction: 0.72
+      freeform_ner_nontied_logprob_delta_pp: 2.8
+      freeform_ner_nontied_logprob_p: 0.025
+      constrained_ner_nontied_fraction: 0.4
+      constrained_ner_nontied_logprob_delta_pp: 2.9
+      constrained_ner_nontied_logprob_p: 0.01
+      paired_wilcoxon_variance_constrained_vs_free_ner_p: 1.2e-48
+      paired_wilcoxon_variance_constrained_vs_free_re_p: 3.7e-31
+      bootstrap_rho_diff_ner_ci95:
+      - 0.031
+      - 0.158
+      bootstrap_rho_diff_re_ci95:
+      - -0.029
+      - 0.082
+    result_rationale: '这是 median 档的核心实验。结果"方向正确但非压倒性"，原因如下：
+
+      **Logprob Variance 恢复 (NER 3.9x, RE 3.7x)**： Constrained decoding 通过 grammar
+      mask 在每一步将 token 概率重新归一化到合法 token 子集。 当 valid next token 只有少数几个（如 JSON 的结构 token
+      `, : { } [ ]`），logprob 差异被 压缩到极窄范围。Free-form 移除了这层限制，模型可以在完整 vocabulary 上分配概率，
+      因此 sample 间 logprob 差异自然恢复。3.5-4x 的恢复比率在预期范围内（不是 10x）， 因为 fine-tuned 模型已经学会了
+      JSON 格式，即使无约束也倾向于输出结构化内容， 所以不会完全回到 free-text 的 variance 水平。
+
+      **NER Selection 改善 +2.0pp (p=0.078) vs Constrained +0.6pp (p=0.39)**： Variance
+      恢复使 logprob 能更好地区分好坏 sample。但改善有限的原因： (a) Parse rate 83% 意味着有效 N 从 8 降到 ~6.6，减少了
+      selection pool； (b) 未能 parse 的 sample 可能恰好是 logprob 能最好区分的那些（因为它们偏离 JSON 格式最远，
+      logprob 最低）——filtering 掉它们减弱了 logprob 的判别力； (c) Logprob 即使不被压缩，也只是生成概率的度量，不直接对应
+      task-level quality。 P=0.078 在传统 0.05 阈值下不显著，但方向明确。
+
+      **RE 改善不明显 (+0.8pp, p=0.31)**： RE 的 bottleneck 是多源的。即使 logprob variance 恢复（3.7x），RE
+      的 selection 仍然受限于：(a) entity set 的组合爆炸——relation triple 的正确性依赖 head entity、
+      tail entity、relation type 三者同时正确，consistency 空间是高维离散的； (b) RE 的 parse rate 更低（78%），有效样本量进一步减少；(c)
+      RE 的 40%+ sample F1=0 意味着大量 sample 是完全无用的，logprob 无法在"全错"和"全对"之间有效区分。 这是 median
+      档叙事的关键：RE 上缺乏改善说明 constrained decoding 不是唯一瓶颈。
+
+      **Free-form greedy F1 略低于 constrained (NER 0.632 vs 0.644, RE 0.388 vs 0.403)**：
+      两个原因：(1) free-form 输出需要 parsing，parsing failure 被排除后仍有部分 parse 成功但内容有微小错误的 sample（如多余空格导致
+      entity span 偏移）； (2) 无约束下模型偶尔输出格式正确但内容冗余的 JSON（如重复 entity），这些 technically parseable
+      但 F1 较低。
+
+      **Non-tied 分析的关键对比**： Free-form 下 72% 的 instance 是 non-tied（vs constrained 40%）。在
+      non-tied 子集上， free-form logprob +2.8pp (p=0.025) 与 constrained non-tied +2.9pp
+      (p=0.01) 几乎一致。 这说明：当 logprob 有足够 variance 时（无论是通过 free-form 还是 natural non-tied），
+      其判别力是相似的。Constrained decoding 的问题是人为制造了 60% 的 tied instances。
+
+      '
+    tables:
+    - title: 'Table A: Logprob Score Compression — Constrained vs Free-form'
+      columns:
+      - Metric
+      - NER_Constrained
+      - NER_Freeform
+      - Δ
+      - RE_Constrained
+      - RE_Freeform
+      - Δ
+      rows:
+      - - within-sample range median
+        - 0.038
+        - 0.148
+        - 3.9×
+        - 0.032
+        - 0.118
+        - 3.7×
+      - - '% tied (range<0.05)'
+        - 60%
+        - 28%
+        - −32pp
+        - 64%
+        - 33%
+        - −31pp
+      - - logprob ρ with F1
+        - 0.205
+        - 0.298
+        - '+0.093'
+        - 0.266
+        - 0.292
+        - '+0.026'
+      - - logprob AUROC
+        - 0.578
+        - 0.623
+        - +4.5pp
+        - 0.601
+        - 0.618
+        - +1.7pp
+    - title: 'Table B: NER Selection — Constrained vs Free-form'
+      columns:
+      - Method
+      - Constrained_F1
+      - Freeform_F1
+      rows:
+      - - greedy
+        - 0.644
+        - 0.632
+      - - logprob best-of-N
+        - 0.65
+        - 0.652
+      - - Δ vs greedy (pp)
+        - '+0.6'
+        - '+2.0'
+      - - p-value
+        - 0.39
+        - 0.078
+      - - Cohen's d
+        - 0.038
+        - 0.125
+      - - oracle
+        - 0.776
+        - 0.748
+      - - headroom capture
+        - 0.5%
+        - 3.4%
+    - title: 'Table C: RE Selection — Constrained vs Free-form'
+      columns:
+      - Method
+      - Constrained_F1
+      - Freeform_F1
+      rows:
+      - - greedy
+        - 0.403
+        - 0.388
+      - - logprob best-of-N
+        - 0.41
+        - 0.396
+      - - Δ vs greedy (pp)
+        - '+0.7'
+        - '+0.8'
+      - - p-value
+        - —
+        - 0.31
+      - - oracle
+        - 0.585
+        - 0.541
+    - title: 'Table D: All Signals QE Comparison — Free-form NER'
+      columns:
+      - Signal
+      - Constrained_ρ
+      - Freeform_ρ
+      - Δρ
+      rows:
+      - - logprob
+        - 0.205
+        - 0.298
+        - '+0.093'
+      - - voting_conf
+        - 0.379
+        - 0.358
+        - −0.021
+      - - SJ
+        - 0.36
+        - 0.335
+        - −0.025
+      - - EM
+        - 0.295
+        - 0.268
+        - −0.027
+      - - FK
+        - 0.267
+        - —
+        - —
+    - title: 'Table E: Non-tied Subset Analysis'
+      columns:
+      - Regime
+      - Non-tied_%
+      - logprob_Δ_pp
+      - p-value
+      rows:
+      - - Constrained
+        - 40%
+        - '+2.9'
+        - 0.01
+      - - Free-form
+        - 72%
+        - '+2.8'
+        - 0.025
+    figures_description:
+    - 'Fig 1 (KEY FIGURE): Paired histogram of within-sample logprob range distribution,
+      constrained (blue, peaked near 0) vs free-form (orange, spread to 0.3+). Vertical
+      dashed line at range=0.05 marking the "tied" threshold. Annotated with median
+      values and recovery ratio.
+
+      '
+    - 'Fig 2: NER selection delta (pp over greedy) bar chart, constrained vs free-form,
+      with bootstrap 95% CI error bars. Shows constrained delta CI crossing zero,
+      free-form CI barely crossing zero (borderline significant).
+
+      '
+    - 'Fig 3: Scatter plot of per-instance logprob range (x) vs logprob-selected F1
+      minus greedy F1 (y), color-coded by regime (constrained vs free-form). Shows
+      that selection improvement concentrates in high-range region, and free-form
+      shifts the mass rightward.
+
+      '
+    - 'Fig 4 (NER vs RE contrast): Side-by-side comparison of Δρ (logprob rho improvement)
+      for NER (+0.093) and RE (+0.026), illustrating that RE bottleneck is multi-source.
+
+      '
+    analysis: 'Median 档下 exp-018 的论文叙事：
+
+      **可写入论文的 claim**： "Removing constrained decoding recovers logprob within-sample
+      variance by ~3.5–4× (median range 0.038→0.148 for NER) and improves logprob-F1
+      correlation (ρ: 0.205→0.298, +45%). This provides evidence consistent with the
+      hypothesis that constrained decoding contributes to the selection bottleneck."
+
+      **必须加的 hedge**： (a) "However, the selection improvement remains modest (+2.0pp,
+      p=0.078) and does not reach conventional significance thresholds." (b) "On RE,
+      free-form decoding yields minimal improvement (+0.8pp, p=0.31), suggesting that
+      the combinatorial complexity of entity-relation output spaces presents an independent
+      bottleneck beyond the decoding regime." (c) "The reduced parse rate (83% NER,
+      78% RE) introduces a confound: the parseable subset may not be representative
+      of the full instance distribution."
+
+      **对论文整体评分的影响**： 在 median 档下，exp-018 将 Claim 1 从"speculative"提升为"empirically
+      supported but not definitive"。Reviewer 会认可 variance recovery 的统计显著性（Wilcoxon
+      p<1e-48）， 但会 push back on selection improvement 的 borderline p-value。RE 上的负结果
+      会被视为诚实的 limitation 而非致命缺陷。 预期 reviewer score 从无 exp-018 的 ~2.8 提升到 ~3.2，但不足以确保
+      acceptance。 需要 Claim 2 (QE framework) 作为 co-primary contribution 来弥补。
+
+      '
+  - name: simple_verifier_baseline
+    plan_id: exp-019
+    description: '训练 DeBERTa-v3-large 做 (input, output) → F1 预测的回归/分类 verifier。 训练数据来自
+      existing N=8 constrained samples。5-fold CV 评估。 目的：证明 selection gap IS closable，为
+      unsupervised signals 提供 supervised upper bound。
+
+      '
+    expected_results:
+      model: DeBERTa-v3-large
+      training_instances_ner: 4232
+      training_instances_re: 3176
+      cv_folds: 5
+      input_format: concat(sentence, generated_output)
+      target: sample F1 (regression) + binary good/bad (F1 > median)
+      ner_verifier_auroc_mean: 0.812
+      ner_verifier_auroc_std: 0.031
+      ner_verifier_rho_mean: 0.508
+      ner_verifier_rho_std: 0.042
+      ner_verifier_selection_f1: 0.665
+      ner_verifier_greedy_f1: 0.644
+      ner_verifier_selection_delta_pp: 2.1
+      ner_verifier_oracle_f1: 0.776
+      ner_verifier_headroom_capture_pct: 15.9
+      ner_verifier_vs_best_unsupervised_auroc_delta: 0.063
+      re_verifier_auroc_mean: 0.762
+      re_verifier_auroc_std: 0.038
+      re_verifier_rho_mean: 0.425
+      re_verifier_rho_std: 0.051
+      re_verifier_selection_f1: 0.421
+      re_verifier_greedy_f1: 0.403
+      re_verifier_selection_delta_pp: 1.8
+      re_verifier_oracle_f1: 0.585
+      re_verifier_headroom_capture_pct: 9.9
+      re_verifier_vs_best_unsupervised_auroc_delta: 0.056
+      feature_importance_ner:
+        output_length: 0.18
+        entity_count_diff: 0.22
+        token_overlap_with_input: 0.31
+        output_json_complexity: 0.15
+        learned_representation: 0.14
+      feature_importance_re:
+        output_length: 0.12
+        entity_pair_count: 0.19
+        token_overlap_with_input: 0.28
+        relation_type_distribution: 0.24
+        learned_representation: 0.17
+      gap_unsupervised_to_verifier_ner_pp: 2.1
+      gap_verifier_to_oracle_ner_pp: 11.1
+      gap_unsupervised_to_verifier_re_pp: 1.8
+      gap_verifier_to_oracle_re_pp: 16.4
+    result_rationale: 'Median 档下 simple verifier 的表现"部分 close gap 但远不及 oracle"：
+
+      **NER AUROC 0.812 (vs 最好无监督 EM 0.749, +6.3pp)**： Verifier 通过学习 input-output
+      alignment features（特别是 token overlap 和 entity count 差异）获得了超越 unsupervised signal
+      的判别力。DeBERTa 的 cross-attention 能检测到 output 中是否包含 input 中明显存在的 entity（一种 faithfulness
+      度量），这是 consistency-based signals 无法捕获的信息。但 +6.3pp 的提升modest，因为： (a) 训练数据有限（~4200
+      samples, 5-fold CV 意味着每折训练~3360）； (b) F1 label 本身有 noise（partial match 导致连续
+      F1 分布，不是干净的 binary）； (c) DeBERTa 只看到 (input, output) pair，不看 ground truth，所以它学到的是
+      "这个 output 看起来像不像一个好答案"的启发式，而非真正的 quality assessment。
+
+      **RE AUROC 0.762 (vs EM 0.706, +5.6pp)**： RE 上 verifier 的提升更小，原因与 exp-018 类似：relation
+      triple 的正确性需要 同时判断 head/tail/type 三个维度，DeBERTa 在单个 forward pass 中难以精确评估 这种组合正确性。Feature
+      importance 显示 relation_type_distribution (0.24) 和 token_overlap (0.28) 是最重要的特征，说明
+      verifier 主要学习了 surface-level 启发式 而非深层 semantic 对齐。
+
+      **Selection headroom capture NER 15.9%, RE 9.9%**： 即使是 supervised verifier 也只能捕获
+      10-16% 的 oracle headroom。这说明 selection problem 在 structured IE 中是 fundamentally
+      hard——不仅仅是 signal quality 的问题，而是 per-sample quality assessment 在 structured
+      output 空间中 information-theoretically difficult。Oracle headroom 的存在证明信息在 sample
+      中， 但从 (input, output) pair 中推断 quality 的难度远超 reasoning task 中的 "答案对不对"的判断。
+
+      **对论文叙事的价值**： Verifier 结果将 unsupervised-supervised-oracle 三级 gap 量化： unsupervised:
+      ~0-1% headroom capture simple verifier: ~10-16% oracle: 100% 这将 negative finding（signals
+      don''t work）转化为 constructive contribution （quantified gap with supervised upper
+      bound showing partial closability）。 在 median 档下，这足以增加 0.2-0.3 的 reviewer score。
+
+      '
+    tables:
+    - title: 'Table: Verifier vs Unsupervised Signals — Summary'
+      columns:
+      - Method
+      - NER_AUROC
+      - NER_Selection_F1
+      - RE_AUROC
+      - RE_Selection_F1
+      rows:
+      - - oracle
+        - —
+        - 0.776
+        - —
+        - 0.585
+      - - verifier (DeBERTa)
+        - 0.812
+        - 0.665
+        - 0.762
+        - 0.421
+      - - EM (best unsupervised)
+        - 0.749
+        - —
+        - 0.706
+        - —
+      - - voting_conf
+        - 0.684
+        - —
+        - 0.694
+        - —
+      - - SJ
+        - 0.692
+        - —
+        - 0.67
+        - —
+      - - logprob
+        - 0.578
+        - 0.65
+        - 0.601
+        - 0.41
+      - - greedy
+        - —
+        - 0.644
+        - —
+        - 0.403
+      - - random
+        - —
+        - 0.608
+        - —
+        - 0.354
+    - title: 'Table: Headroom Capture Cascade'
+      columns:
+      - Level
+      - NER_F1
+      - NER_Capture_%
+      - RE_F1
+      - RE_Capture_%
+      rows:
+      - - greedy (baseline)
+        - 0.644
+        - 0%
+        - 0.403
+        - 0%
+      - - best unsupervised (logprob)
+        - 0.65
+        - 4.5%
+        - 0.41
+        - 3.8%
+      - - simple verifier
+        - 0.665
+        - 15.9%
+        - 0.421
+        - 9.9%
+      - - oracle
+        - 0.776
+        - 100%
+        - 0.585
+        - 100%
+      - - remaining gap
+        - —
+        - 84.1%
+        - —
+        - 90.1%
+    figures_description:
+    - 'Fig: "Headroom cascade" waterfall chart showing F1 progression from greedy
+      → best unsupervised → simple verifier → oracle, with annotated headroom capture
+      percentages. Illustrates that 84-90% of oracle headroom remains uncaptured even
+      with supervised approaches.
+
+      '
+    - 'Fig: Reliability diagram (calibration plot) comparing verifier predicted probability
+      vs actual F1>median rate, alongside unsupervised signal calibration curves.
+      Shows verifier is better calibrated than all unsupervised signals.
+
+      '
+    analysis: 'Median 档下 exp-019 为论文增加一个 proof-of-concept：selection gap is partially
+      closable。 关键数字是 headroom cascade（greedy 0% → unsupervised ~4% → verifier ~16%
+      → oracle 100%）。 这将论文从纯 diagnostic（"these signals don''t work"）推进到 partially
+      constructive （"here''s how much a simple supervised approach can recover, and
+      here''s the remaining gap"）。
+
+      但在 median 档下这只是 supplementary contribution，不改变论文的核心结构。 Reviewer 可能会质疑：(a) DeBERTa
+      verifier 引入了额外的计算成本（但远低于 N×LLM 的成本）， (b) 5-fold CV 的 variance 较大（std ~0.03-0.05），(c)
+      训练数据来自同一 LLM 的 samples， verifier 可能过拟合于特定 model 的错误模式。这些都是 legitimate limitations。
+
+      对整体 reviewer score 的影响：从 exp-018 alone 的 ~3.2 提升到 ~3.3-3.4。 Combined with Claim
+      2 as co-primary, median 档总体 expected score 3.0-3.5， findings acceptance probability
+      0.3-0.5。'
+  review_report: '---
+
+    dream_id: dream_20260515T092545
+
+    tier: median
+
+    overall_score: borderline
+
+    timestamp: 2026-05-15T10:22:33.363207+00:00
+
+    ---
+
+
+    # Dream Review Report: "Confidence Signals Predict but Cannot Select in Constrained-Decoding
+    Information Extraction"
+
+
+    **Target Venue**: EMNLP 2026 Findings
+
+    **Review Mode**: Full (2-Reviewer Roundtable)
+
+    **Date**: 2026-05-15
+
+
+    ---
+
+
+    ## Consolidated Scores (ARR Scale)
+
+
+    | Dimension | Score | Descriptor |
+
+    |-----------|-------|------------|
+
+    | Soundness | 3.5 / 5 | Between Acceptable and Strong |
+
+    | Excitement | 3 / 5 | Borderline |
+
+    | Overall Assessment | 3 / 5 | Borderline |
+
+    | Reviewer Confidence | 4 / 5 | High |
+
+
+    ---
+
+
+    ## 1. Paper Summary
+
+
+    This paper systematically evaluates five confidence signal families—log-probability,
+    set Jaccard similarity (SJ), Fleiss'' kappa (FK), exact match (EM), and voting
+    confidence—for quality estimation (QE) and sample selection in LLM-based NER and
+    RE under constrained (grammar-guided) decoding. Using two 8B-parameter models
+    (Qwen3-8B, LLaMA-3.1-8B) across SciERC, CoNLL-2003, and WNUT-17, the paper identifies
+    a "predict-but-cannot-select" gap: structural consistency signals achieve strong
+    instance-level quality prediction (AUROC up to 0.75) but fail to improve per-sample
+    selection over greedy decoding (best gain: +0.6pp, p=0.39). A controlled free-form
+    decoding ablation recovers logprob variance by ~3.5×, improving NER selection
+    by +2.0pp (p=0.078) but showing negligible RE improvement. A supervised DeBERTa
+    verifier captures 15.9% of NER oracle headroom, establishing a partial upper bound
+    on gap closability.
+
+
+    ---
+
+
+    ## 2. Experiment Coverage Assessment
+
+
+    The review_context.yaml specifies 4 imagined experiments:
+
+
+    | Experiment | Plan ID | Covered in Paper? | Section |
+
+    |------------|---------|-------------------|---------|
+
+    | NER OOD Robustness (SciERC→WNUT-17) | exp-011 | ✅ Yes | §5.5, Tables 7-8 |
+
+    | LLaMA CoNLL NER (cross-model validation) | exp-017 | ✅ Yes | §5.4, Tables 5-6
+    |
+
+    | Free-form Decoding Ablation | exp-018 | ✅ Yes | §5.3, Tables 3-4 |
+
+    | Simple Verifier Baseline | exp-019 | ✅ Yes | §5.6, Tables 9-10 |
+
+
+    **Coverage**: 4/4 imagined experiments are present in the paper. The experimental
+    scope matches the design.
+
+
+    ---
+
+
+    ## 3. Strengths
+
+
+    ### S1. Clean Conceptual Contribution (R1 + R2 agreement)
+
+    The disentanglement of quality estimation (instance-level: "is this instance easy
+    or hard?") from sample selection (per-sample: "which candidate is best?") is the
+    paper''s most valuable insight. Four of five signals are instance-level aggregates
+    that *by construction* cannot rank candidates within an instance. Only log-probability
+    provides per-sample scores, and it is compressed by constrained decoding. This
+    clarification addresses a genuine conflation in prior work on self-consistency
+    for IE.
+
+
+    ### S2. Rigorous Statistical Methodology (R1 lead)
+
+    The paper employs bootstrap confidence intervals (1000 iterations), paired Wilcoxon
+    tests, Cohen''s d effect sizes, and proper baselines (greedy, random, oracle).
+    The non-tied subset analysis (40% non-tied instances showing +2.9pp, p=0.01) provides
+    clean mechanistic confirmation that logprob *can* discriminate when variance is
+    present. This level of statistical rigor is above average for NLP empirical papers.
+
+
+    ### S3. Controlled Free-Form Ablation (R1 + R2 agreement)
+
+    The most novel empirical contribution. Removing Outlines grammar constraints while
+    keeping all other factors constant (model, prompts, temperature) recovers logprob
+    within-sample variance by 3.9× (NER) and 3.7× (RE), with Wilcoxon p < 10⁻⁴⁸. This
+    provides direct evidence that constrained decoding contributes to the selection
+    bottleneck. The honest reporting of borderline NER improvement (p=0.078) and RE
+    non-improvement (p=0.31) strengthens credibility.
+
+
+    ### S4. Cross-Model and Cross-Dataset Validation (R1 lead)
+
+    The 2×2 model × dataset matrix (Table 5) showing SJ ρ cross-model delta < 0.01
+    is strong evidence of model-agnostic signal behavior. The CoNLL ceiling effect
+    analysis (greedy F1=0.926, headroom 1.9pp → selection meaningless) provides a
+    useful task-complexity boundary interpretation.
+
+
+    ### S5. Informative OOD Analysis (R2 lead)
+
+    The WNUT-17 evaluation revealing that structural signals retain ~40% of in-domain
+    ρ while logprob *inverts* (0.205 → −0.287) is a genuinely interesting finding.
+    It demonstrates that consistency-based signals, while degraded, maintain directional
+    validity under domain shift—a practically important property.
+
+
+    ### S6. Gap Closability via Supervised Verifier (R1 + R2 agreement)
+
+    The headroom cascade (greedy 0% → best unsupervised 4.5% → verifier 15.9% → oracle
+    100% on NER) transforms a purely negative finding into a partially constructive
+    one. The large remaining gap (84% NER, 90% RE) frames a concrete open problem.
+
+
+    ---
+
+
+    ## 4. Weaknesses
+
+
+    ### W1. Core Finding is Moderately Predictable (R1 + R2 agreement, Major)
+
+    For fine-tuned models generating near-identical structured JSON outputs under
+    grammar-guided constraints, the finding that unsupervised signals cannot distinguish
+    among very similar candidates is not highly surprising. The four instance-level
+    signals are *definitionally* unable to select; the log-probability compression
+    under constrained decoding is a natural consequence of vocabulary restriction
+    at each step. The paper argues non-obviousness by analogy to MBR success in machine
+    translation, but this analogy is imperfect: MT outputs are sequences with continuous
+    similarity metrics (BLEU/chrF), while IE outputs are discrete sets. A stronger
+    articulation of what specific prior work would have predicted success here is
+    needed.
+
+
+    ### W2. Single RE Benchmark (R1 + R2 agreement, Major)
+
+    All RE results derive from SciERC alone. The paper flags this repeatedly (5+ times),
+    which is commendably honest, but it limits generalizability of approximately one-third
+    of the claimed findings. The 40% zero-F1 rate on RE creates a severe floor effect.
+    Additional RE benchmarks (ACE05, DocRED, TACRED) would substantially strengthen
+    the paper.
+
+
+    ### W3. Free-Form Ablation Limited to One Configuration (R1 lead, Major)
+
+    The ablation—the paper''s most important mechanistic finding—covers only Qwen3-8B
+    on SciERC. Without replication on LLaMA or CoNLL, it is unclear whether the variance
+    recovery and borderline NER selection improvement generalize. This is particularly
+    concerning given the RE non-result (p=0.31), which could be dataset-specific or
+    fundamental.
+
+
+    ### W4. No Entropy-Based Signal Tested (R1 lead, Moderate)
+
+    Given that log-probability is the sole per-sample signal and is the key bottleneck,
+    testing predictive entropy (sum of token-level entropies) or generation-level
+    entropy as an alternative would strengthen the claim that model-internal signals
+    generically fail under constrained decoding. This would be a low-cost addition
+    since token-level logprobs are already collected.
+
+
+    ### W5. N and T Under-Explored for Selection (R1 lead, Moderate)
+
+    The paper fixes N=8 and T=1.0 for selection experiments. Whether higher diversity
+    (T=1.2+) or much larger candidate pools (N=32, N=64) could unlock selection is
+    not addressed. At larger N, oracle headroom increases, potentially creating more
+    room for signals to discriminate. Even a simulation-based analysis would be informative.
+
+
+    ### W6. No Deep Analysis of WHY Consensus Fails for IE vs MT (R1 + R2 agreement,
+    Moderate)
+
+    The paper notes that MBR decoding succeeds in MT where BLEU/chrF provides smooth
+    utility surfaces, and that set-based IE metrics create a different optimization
+    landscape. But no formal or empirical analysis explains *what structural property*
+    of IE outputs causes utility-quality misalignment within instances. Is it the
+    discrete set structure? Combinatorial output space? Error correlation? This theoretical
+    gap weakens the paper''s explanatory power.
+
+
+    ### W7. CoCoA Under-Discussed (R2 lead, Minor)
+
+    CoCoA (Vashurin et al. 2025a) combines confidence and consistency in an MBR framework
+    for QA and summarization. As the closest methodological analog, it deserves deeper
+    engagement—particularly explaining why the MBR approach that works for QA fails
+    for structured IE. The current one-sentence mention is insufficient.
+
+
+    ---
+
+
+    ## 5. Questions for Authors
+
+
+    1. **Entropy-based alternative**: Have you tested predictive entropy (sum of token-level
+    entropies per sample) as an alternative per-sample signal? Since token-level logprobs
+    are already collected, this would be a low-cost addition that could strengthen
+    the claim about model-internal signal failure under constrained decoding.
+
+
+    2. **Within-instance utility correlation**: You argue MBR-style consensus proximity
+    fails within instances. Can you quantify this directly—e.g., a distribution of
+    within-instance Kendall τ between consensus-proximity scores and per-sample F1?
+    This would make the claim precise.
+
+
+    3. **N-scaling for selection**: Your N-scaling analysis focuses on QE. At N=64,
+    oracle headroom is substantially larger. Would logprob selection improve, or does
+    compression persist regardless of N? Even a simulation extrapolation would be
+    informative.
+
+
+    4. **CoNLL cross-model detail**: The < 0.01 SJ ρ delta is impressive but occurs
+    on the easiest dataset where all signals converge. What is the cross-model delta
+    on SciERC? Is the model-agnostic claim equally strong on harder tasks?
+
+
+    5. **Why does RE show negligible free-form improvement?** Is this the combinatorial
+    entity-set complexity you hypothesize, or could it be an artifact of the 78% parse
+    rate (more aggressive filtering on RE)? Did you analyze whether filtered-out RE
+    samples are systematically different?
+
+
+    ---
+
+
+    ## 6. Detailed Assessment by Dimension
+
+
+    ### Soundness (3.5/5)
+
+    The experimental design is solid: 2 tasks × 2-3 datasets × 2 models, with proper
+    controls and above-average statistical rigor. The five signals are well-chosen
+    and well-defined. The free-form ablation is well-controlled. Claims are appropriately
+    softened ("evidence consistent with" rather than "proves"). Deductions: (a) free-form
+    ablation on single configuration, (b) single RE benchmark, (c) missing entropy-based
+    signal, (d) N/T not explored for selection. These prevent a "Strong" rating but
+    the core methodology is sound.
+
+
+    ### Excitement (3/5)
+
+    The QE-vs-selection disentanglement is a useful conceptual contribution, and the
+    systematic evaluation is thorough. However, the core finding is moderately predictable
+    given the nature of constrained decoding and instance-level aggregation. The paper
+    documents a problem well but advances only modestly toward a solution (the verifier
+    captures only 16% of headroom). The free-form ablation and OOD logprob-inversion
+    findings add novelty. For Findings, this is adequate; for the main conference,
+    the novelty bar would not be met.
+
+
+    ### Overall Assessment (3/5 — Borderline)
+
+    A careful, well-executed empirical study that establishes a useful negative result
+    (the predict-but-cannot-select gap) with honest statistical reporting. The systematic
+    QE framework, cross-model validation, and free-form ablation provide practical
+    value for the IE community. The paper is well-written, well-organized, and self-aware
+    about limitations. However, the moderate predictability of the core finding, limited
+    scope (8B models, 2 NER + 1 RE datasets), and lack of a compelling explanation
+    for *why* the gap exists (beyond the descriptive level) place it at the borderline
+    for Findings acceptance. The strongest argument for acceptance is that this is
+    a systematic, carefully hedged negative result that could save other researchers
+    from repeating the same unsuccessful approach.
+
+
+    ---
+
+
+    ## 7. Roundtable Discussion Summary
+
+
+    ### Points of Agreement
+
+    - The QE-vs-selection conceptual distinction is the paper''s most durable contribution
+
+    - Statistical methodology is above-average and honest
+
+    - Single RE benchmark is the most significant scope limitation
+
+    - Core finding is useful but excitement is limited by predictability
+
+    - Free-form ablation is the most novel experimental contribution
+
+    - Paper is appropriate for Findings consideration but does not clearly exceed
+    the bar
+
+
+    ### Points of Initial Disagreement, Resolved
+
+    - **Soundness** (R1: 4 vs R2: 3.5): Resolved to 3.5. R1''s higher rating was based
+    on strong controls and statistical rigor; R2''s lower rating reflected scope limitations
+    (single ablation config, missing signals). The scope concerns are legitimate deductions
+    from an otherwise strong methodology.
+
+    - **Excitement** (R1: 3 vs R2: 2.5): Resolved to 3. R2 argued the finding is largely
+    expected; R1 credited the systematic framework and diagnostic value. For Findings,
+    systematic negative results have value, justifying the higher bound.
+
+    - **Overall** (R1: 3.5 vs R2: 3.0): Resolved to 3.0. The paper has genuine merit
+    for Findings but the convergence of moderate novelty, limited scope, and borderline
+    statistical significance on the key free-form result (p=0.078) places it at borderline
+    rather than leaning accept.
+
+
+    ### Recommendation
+
+    **Borderline for EMNLP 2026 Findings.** The paper would be strengthened most by:
+    (1) replicating the free-form ablation on a second configuration, (2) adding an
+    entropy-based per-sample signal, and (3) deeper engagement with why consensus-proximity
+    fails for IE. If any of these additions pushed the NER selection result to significance
+    or revealed new structure, the paper would move to a clear accept.
+
+
+    ---
+
+
+    ## 8. Meta-Review
+
+
+    This paper presents a systematic empirical investigation of confidence signals
+    for quality estimation and sample selection in constrained-decoding information
+    extraction. The central "predict-but-cannot-select" finding—that signals predicting
+    instance quality well (AUROC 0.75) fail to improve per-sample selection—is documented
+    with appropriate statistical rigor across multiple models and datasets. The conceptual
+    disentanglement of QE from selection, the free-form decoding ablation recovering
+    logprob variance, and the supervised verifier headroom cascade are the most valuable
+    contributions.
+
+
+    The paper''s primary weakness is that the core finding is moderately predictable
+    given the mechanics of constrained decoding (vocabulary restriction → logprob
+    compression) and the instance-level nature of 4/5 signals. Scope limitations (single
+    RE benchmark, single ablation configuration, 8B models only) and the borderline
+    statistical significance of the key free-form NER result (p=0.078) prevent a confident
+    accept recommendation.
+
+
+    For EMNLP 2026 Findings, this is a borderline submission. The careful methodology,
+    honest hedging of claims, and practical diagnostic value argue for acceptance;
+    the moderate novelty and limited scope argue against. The paper would benefit
+    from targeted additions (second ablation configuration, entropy signal, deeper
+    MBR analysis) that could tip the balance.
+
+    '
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260515T092545/worst/paper.pdf
+  imagined_experiments:
+  - name: freeform_decoding_ablation
+    plan_id: exp-018
+    description: '移除 Outlines constrained decoding，对 SciERC NER+RE 生成 8 个 free-form
+      samples/instance。 对比 constrained vs free-form 的 logprob variance、selection F1、QE
+      指标。
+
+      '
+    expected_results:
+      freeform_parse_rate_ner: 0.72
+      freeform_parse_rate_re: 0.65
+      freeform_n_valid_ner: 381
+      freeform_n_valid_re: 258
+      constrained_logprob_range_median: 0.03
+      freeform_logprob_range_median: 0.07
+      freeform_logprob_range_iqr:
+      - 0.03
+      - 0.14
+      pct_instances_range_lt_005_constrained: 0.6
+      pct_instances_range_lt_005_freeform: 0.38
+      constrained_logprob_rho_ner: 0.205
+      freeform_logprob_rho_ner: 0.22
+      freeform_logprob_rho_ner_p: 4.0e-05
+      constrained_logprob_rho_re: 0.266
+      freeform_logprob_rho_re: 0.19
+      freeform_logprob_rho_re_p: 0.002
+      constrained_logprob_auroc_ner: 0.578
+      freeform_logprob_auroc_ner: 0.57
+      constrained_logprob_auroc_re: 0.6
+      freeform_logprob_auroc_re: 0.56
+      constrained_greedy_f1_ner: 0.644
+      freeform_greedy_f1_ner: 0.631
+      freeform_logprob_selection_f1_ner: 0.634
+      freeform_logprob_selection_delta_vs_greedy_ner_pp: 0.3
+      freeform_logprob_selection_p_ner: 0.42
+      constrained_greedy_f1_re: 0.403
+      freeform_greedy_f1_re: 0.382
+      freeform_logprob_selection_f1_re: 0.379
+      freeform_logprob_selection_delta_vs_greedy_re_pp: -0.3
+      freeform_logprob_selection_p_re: 0.65
+      freeform_oracle_f1_ner: 0.74
+      freeform_oracle_headroom_ner: 0.109
+      freeform_oracle_f1_re: 0.53
+      freeform_oracle_headroom_re: 0.148
+      parseable_subset_mean_greedy_f1_ner: 0.68
+      full_set_mean_greedy_f1_ner: 0.644
+      parseable_subset_mean_greedy_f1_re: 0.44
+      full_set_mean_greedy_f1_re: 0.403
+      freeform_sj_rho_ner: 0.34
+      freeform_voting_conf_rho_ner: 0.36
+      freeform_sj_rho_re: 0.21
+      freeform_selection_delta_ci95_ner:
+      - -0.025
+      - 0.031
+      freeform_selection_delta_ci95_re:
+      - -0.035
+      - 0.029
+      freeform_cohen_d_ner: 0.04
+      freeform_cohen_d_re: -0.03
+    result_rationale: 'Worst 档的核心逻辑：constrained decoding 确实压缩了 logprob range（中位数 0.03），移除约束后
+      range 上升到 0.07——但这远不够。0.07 的 range 意味着 8 个 sample 的 logprob 仍然聚集在一个 很窄的带内，无法有效区分质量差异。原因在于：fine-tuned
+      8B 模型在 SciERC 上的 output distribution 本身就很 peaked——不论是否有 grammar constraint，模型对于给定
+      input 的 "preferred output mode" 高度集中。Constrained decoding 只是略微加剧了已经存在的低 entropy
+      问题。
+
+      Parse rate 仅 ~70% 是因为 fine-tuning 时用了 constrained decoding 作为 training-time
+      format guarantee，模型并未充分学会 JSON format 的内在结构。更关键的是，parseable subset 偏向 easy instances（mean
+      greedy F1 0.68 vs full set 0.644），因为 format-compliant 的 free-form output 更可能出现在模型
+      "confident" 的 instances 上——这些恰恰是 oracle headroom 更小、selection 价值更低的 instances。
+
+      Selection F1 几乎不变（NER +0.3pp, p=0.42; RE -0.3pp, p=0.65）直接否定了 bottleneck 假说。
+      如果 score compression 是 selection 失败的主因，那么恢复 variance 应该恢复 selection——但没有。 这说明
+      logprob 作为 scalar signal 的排序失败不是因为被压缩，而是因为 IE 的 set-valued output 空间中，generation
+      probability 与 output quality（F1）之间本就不存在强的单调关系。一个 sample 可以有高 logprob（模型 confident）但
+      F1 低（confident about wrong entities），也可以有低 logprob （探索性 output）但 F1 高（偶然命中更多
+      gold entities）。
+
+      RE 更差是因为 free-form 下 relation format 的 parse failure 更高（35%），且 RE 的组合空间 (entity
+      pairs × relation types) 远大于 NER，使得 scalar signal 的信息论上限更低。
+
+      '
+    tables:
+    - name: 'Table: Constrained vs Free-form Logprob Comparison'
+      columns:
+      - Metric
+      - Constrained
+      - Free-form
+      - Δ
+      - p-value
+      rows:
+      - - NER logprob range median
+        - '0.03'
+        - '0.07'
+        - '+0.04'
+        - <0.001
+      - - NER logprob ρ(F1)
+        - '0.205'
+        - '0.22'
+        - '+0.015'
+        - —
+      - - NER logprob AUROC
+        - '0.578'
+        - '0.57'
+        - −0.008
+        - —
+      - - NER logprob selection F1
+        - '0.650'
+        - '0.634'
+        - −0.016
+        - —
+      - - NER selection Δ vs greedy (pp)
+        - '+0.6'
+        - '+0.3'
+        - −0.3
+        - '0.42'
+      - - RE logprob range median
+        - '0.02'
+        - '0.06'
+        - '+0.04'
+        - <0.001
+      - - RE logprob ρ(F1)
+        - '0.266'
+        - '0.19'
+        - −0.076
+        - —
+      - - RE logprob AUROC
+        - '0.600'
+        - '0.56'
+        - −0.040
+        - —
+      - - RE selection Δ vs greedy (pp)
+        - '+0.7'
+        - −0.3
+        - −1.0
+        - '0.65'
+    - name: 'Table: Parse Rate and Selection Bias'
+      columns:
+      - Subset
+      - NER n
+      - NER mean F1
+      - RE n
+      - RE mean F1
+      rows:
+      - - Full set (constrained)
+        - '529'
+        - '0.644'
+        - '397'
+        - '0.403'
+      - - Parseable (free-form)
+        - '381'
+        - '0.680'
+        - '258'
+        - '0.440'
+      - - Unparseable (free-form)
+        - '148'
+        - '0.551'
+        - '139'
+        - '0.334'
+    figures_description:
+    - 'Figure: Logprob within-sample range distribution (violin plot). Left=constrained,
+      right=free-form. Constrained 分布极度右偏，60% 实例 range<0.05， peak 在 0.01-0.02。Free-form
+      分布稍宽但仍然右偏，38% 实例 range<0.05，peak 在 0.04-0.06。 两个分布有大量重叠，说明 variance 提升不够 dramatic。
+
+      '
+    - 'Figure: Selection F1 vs N curves (constrained vs free-form, side-by-side).
+      两条 logprob selection 线几乎重叠于 greedy baseline 附近，远低于 oracle ceiling。 Free-form
+      oracle ceiling 略低（因为 parse failure 减少了有效候选池）。 视觉上立刻可见：移除 constraint 没有改变 selection
+      的 fundamental flatness。
+
+      '
+    analysis: 'exp-018 在 worst 档下产生的是一个 well-designed null result：controlled ablation
+      证明 score compression 不是 selection 失败的 root cause。这既是坏消息（D070 reframing 的核心因果叙事被否定）
+      也是好消息（universal negative finding 比 regime-specific finding 更有 generality）。
+
+      但叙事需要第二次 pivot。新的 argument structure： (1) IE output 是 set-of-sets（entity set
+      × relation set），组合空间使得任何 instance-level scalar signal 的排序能力存在 information-theoretic
+      上限——一个数字无法 encode "which entities are correct and which are not"； (2) 与 reasoning/QA
+      的离散答案空间形成 structural contrast：self-consistency 在 QA 上成功 恰因答案空间小（majority vote
+      在 5-10 个 candidate 中选）； (3) QE 仍然有效（AUROC 0.75）说明 signals 捕捉了 instance difficulty，但无法区分
+      same-difficulty 内的 quality variation。
+
+      关键风险：parse rate 偏低 + selection bias 使得 null result 的说服力打折扣。 Reviewer 可能 argue
+      "你的 free-form 实验 underpowered（n=381 NER, n=258 RE）， 且 parseable subset 本身偏向
+      easy instances"。需要在 paper 中做 sensitivity analysis （only on instances where all
+      8 free-form samples parse），并 acknowledge limitation。
+
+      Expected reviewer score 在此档下降到 2.5-3.0 区间。Findings 接收概率 10-25%。
+
+      '
+  - name: ner_llama_conll
+    plan_id: exp-017
+    description: 'LLaMA-3.1-8B fine-tuned on CoNLL-2003 进行 NER inference (N=8, T=1.0)。
+      Cross-model × cross-dataset validation，强化 model-agnostic claim。
+
+      '
+    expected_results:
+      greedy_f1: 0.918
+      oracle_f1: 0.945
+      oracle_headroom: 0.027
+      n_instances: 3453
+      n_valid: 2756
+      sj_rho_full: 0.43
+      fk_rho_full: 0.42
+      logprob_rho_full: 0.31
+      em_rho_full: 0.43
+      voting_conf_rho_full: 0.42
+      sj_auroc_full: 0.7
+      logprob_auroc_full: 0.76
+      logprob_selection_f1: 0.919
+      sj_selection_f1: 0.916
+      voting_selection_f1: 0.917
+      random_selection_f1: 0.912
+      oracle_f1_selection: 0.945
+      qwen_conll_sj_rho: 0.436
+      llama_conll_sj_rho: 0.43
+      delta_sj_rho: -0.006
+    result_rationale: 'Worst 档对 exp-017 的影响有限——这个实验是 cross-model validation，不直接依赖
+      bottleneck 假说。 CoNLL-2003 是 "easy" NER dataset（greedy F1 ~0.92），oracle headroom
+      仅 ~0.027， selection 的理论上限就很低。LLaMA 在 CoNLL 上的表现应与 Qwen 高度一致 （exp_017_llama_conll_infer
+      已有 SJ ρ=0.431 的数据佐证），因为两个 8B 模型在 well-studied benchmark 上的 behavior 趋同。
+
+      在 worst 档下，这个实验的结果本身是 "positive"（cross-model consistency confirmed）， 但对论文的帮助有限：它只证明了
+      QE 信号的 model-agnostic property，而 worst 档的核心问题 是 selection 失败的叙事需要 pivot。Cross-model
+      validation 对 "fundamental hardness" 叙事是中性的——不增强也不削弱。
+
+      Selection F1 在 CoNLL 上接近 greedy（+0.1pp），与 SciERC 的 pattern 一致。 但因为 headroom
+      只有 2.7pp，即使 oracle 也只能提升这么多，所以 selection failure 在 CoNLL 上的 diagnostic value
+      很低。
+
+      '
+    tables:
+    - name: 'Table: Cross-Model QE Comparison on CoNLL-2003'
+      columns:
+      - Signal
+      - Qwen ρ
+      - LLaMA ρ
+      - Δρ
+      - Qwen AUROC
+      - LLaMA AUROC
+      rows:
+      - - SJ
+        - '0.436'
+        - '0.43'
+        - −0.006
+        - '0.80'
+        - '0.70'
+      - - FK
+        - '0.400'
+        - '0.42'
+        - '+0.020'
+        - '0.77'
+        - '0.70'
+      - - logprob
+        - '0.316'
+        - '0.31'
+        - −0.006
+        - '0.75'
+        - '0.76'
+      - - EM
+        - '0.451'
+        - '0.43'
+        - −0.021
+        - '0.82'
+        - '0.70'
+      - - voting_conf
+        - '0.424'
+        - '0.42'
+        - −0.004
+        - '0.79'
+        - '0.71'
+    figures_description:
+    - 'Figure: Cross-model ρ scatter plot (Qwen x-axis, LLaMA y-axis, each point =
+      one signal). Points clustered near diagonal, confirming model-agnostic signal
+      behavior. Logprob 明显低于 structural signals 在两个模型上都成立。
+
+      '
+    analysis: 'Cross-model validation 成功但对 worst 档的核心困境帮助不大。可以作为 Table 1 的一行补充 model-agnostic
+      evidence，但不改变 selection failure 的 narrative。在 worst 档的 paper 中，这个实验从 "strengthening
+      the bottleneck claim" 降级为 "confirming QE generalization"。
+
+      '
+  - name: ner_ood_robustness
+    plan_id: exp-011
+    description: '在 OOD 条件下（cross-domain transfer）测试 NER consistency signal 的鲁棒性。
+      依赖 exp-003 (WNUT-17) 的 fine-tuned model 做 domain shift 测试。
+
+      '
+    expected_results:
+      ood_greedy_f1: 0.35
+      ood_oracle_f1: 0.52
+      ood_headroom: 0.17
+      ood_sj_rho_full: 0.05
+      ood_fk_rho_full: 0.08
+      ood_logprob_rho_full: -0.3
+      ood_voting_conf_rho_full: 0.09
+      ood_sj_auroc: 0.53
+      ood_logprob_auroc: 0.42
+      ood_sample_f1_pct_zero: 62.0
+      ood_n_instances: 1287
+      ood_logprob_negative_rho: true
+      ood_logprob_overconfidence_on_wrong: true
+    result_rationale: 'OOD 条件下所有信号急剧退化。Greedy F1 降到 ~0.35 意味着模型在目标域基本失效， >60% samples
+      F1=0。在这个 regime 下： (1) SJ/FK/voting 的 ρ 接近 0 因为大部分 instances 的 N 个 samples 全部
+      F1=0， 无 variance 可供 correlation 捕捉； (2) Logprob 出现 WNUT-17 同样的 pathology：ρ 为负（-0.30），模型对
+      OOD 输入 过度自信——logprob 高的 samples 反而更差，因为模型 "confidently" 产出 in-domain patterns
+      而非 target domain 的正确 entities； (3) 这与 exp-003 (WNUT-17 logprob ρ=-0.41) 的发现一致。
+
+      在 worst 档下，这个实验的解读方向改变：不再是 "OOD shows limitations of consistency signals" （这太
+      obvious），而是作为 "logprob overconfidence under distribution shift" 的额外证据， 支持 "scalar
+      signals fail for structural reasons, not just compression" 的论点。 但 P2 priority
+      + exp-003 已经 orphaned 意味着这个实验大概率不会执行。
+
+      '
+    tables:
+    - name: 'Table: In-domain vs OOD Signal Comparison'
+      columns:
+      - Signal
+      - In-domain ρ (SciERC)
+      - OOD ρ
+      - Δρ
+      rows:
+      - - SJ
+        - '0.36'
+        - '0.05'
+        - −0.31
+      - - FK
+        - '0.27'
+        - '0.08'
+        - −0.19
+      - - logprob
+        - '0.21'
+        - −0.30
+        - −0.51
+      - - voting_conf
+        - '0.38'
+        - '0.09'
+        - −0.29
+    figures_description:
+    - 'Figure: Logprob vs F1 scatter (in-domain vs OOD side-by-side). In-domain: weak
+      positive trend. OOD: clear negative trend，高 logprob 区域 聚集了 F1=0 的点，低 logprob
+      区域反而有非零 F1 的点。
+
+      '
+    analysis: 'OOD 实验在 worst 档下提供的额外信息有限——exp-003 WNUT-17 已经展示了同样的 pathology。 且 exp-003
+      status=orphaned，exp-011 依赖 exp-003，实际执行概率极低。 如果执行，它强化了 "logprob is unreliable
+      under shift" 的 claim，但这不是论文的核心。 建议 worst 档下不投入 GPU hours 在这个实验上，将资源集中于 exp-018
+      的 robustness checks。
+
+      '
+  - name: simple_verifier_baseline
+    plan_id: exp-019
+    description: '训练 supervised verifier（DeBERTa-v3-large 或 Qwen3-8B classification
+      head）在 existing (input, output, F1) 数据上。测试 verifier 能否部分 close selection gap，
+      为 unsupervised signal 的 failure 提供 upper bound。
+
+      '
+    expected_results:
+      train_n_instances: 529
+      train_n_samples_per_instance: 8
+      train_total_pairs: 4232
+      train_val_split: 5-fold CV
+      deberta_auroc_ner: 0.72
+      deberta_auroc_re: 0.66
+      deberta_selection_f1_ner: 0.652
+      deberta_selection_delta_vs_greedy_ner_pp: 0.8
+      deberta_selection_p_ner: 0.18
+      deberta_selection_f1_re: 0.398
+      deberta_selection_delta_vs_greedy_re_pp: -0.5
+      deberta_selection_p_re: 0.55
+      best_unsupervised_auroc_ner: 0.749
+      deberta_vs_best_unsupervised_auroc_ner: -0.029
+      best_unsupervised_selection_ner: 0.65
+      deberta_vs_best_unsupervised_selection_ner: 0.002
+      oracle_selection_f1_ner: 0.776
+      oracle_selection_f1_re: 0.588
+      verifier_headroom_capture_ner_pct: 6.1
+      verifier_headroom_capture_re_pct: 0.0
+    result_rationale: 'Worst 档下 supervised verifier 也基本失败，原因有三层：
+
+      (1) 训练数据不足：529 instances × 8 samples = 4232 training pairs，对于 DeBERTa 这种 encoder
+      来说数据量极少。5-fold CV 下每折只有 ~3400 training pairs，严重 overfit 风险。 即使不 overfit，模型学到的更多是
+      "哪些 input 难"（instance difficulty）而非 "哪个 output 好"（within-instance quality variation），因为
+      inter-instance F1 variance 远大于 intra-instance F1 variance。
+
+      (2) Feature gap：DeBERTa 只能看到 (input, output) text pair，无法 access logprob 或 其他
+      generation metadata。它本质上在做 NLI-style 判断 "output 是否合理"，而 IE 的 "合理性" 需要 precise
+      span matching，这超出了 encoder 的 zero-shot 能力。即使 fine-tune， 4K pairs 不足以学会 IE-specific
+      quality patterns。
+
+      (3) IE 的组合复杂性：即使 verifier AUROC 达到 0.72（超过 logprob 的 0.578）， 这仍然是 instance-level
+      discrimination（"这个 instance 的 output 总体好不好"）， 而非 within-instance ranking（"这
+      8 个 candidate 中哪个最好"）。 AUROC 0.72 不等于 selection 能力——exp-016 已经证明 AUROC 0.749
+      的 EM 信号 selection 也只有 +0.6pp（n.s.）。
+
+      Verifier 的 headroom capture rate 极低（NER 6.1%，RE 0%）与 unsupervised signals 的
+      pattern 一致，说明 selection gap 不是 "signals 太弱" 而是 "task structure 使得 instance-level
+      scoring 根本不够"。这反而支持了 worst 档的核心论点：需要 sub-instance level 的 selection mechanism（如
+      entity-level MBR），scalar scoring 存在 fundamental ceiling。
+
+      但 reviewer 价值有限：verifier 没有显著超过 best unsupervised signal， "supervised 也不行" 这个
+      claim 在 4K training pairs 下 underpowered， reviewer 会 argue "给足够数据 verifier 肯定能
+      work"。
+
+      '
+    tables:
+    - name: 'Table: Supervised Verifier vs Unsupervised Signals'
+      columns:
+      - Method
+      - NER AUROC
+      - NER Sel. F1
+      - RE AUROC
+      - RE Sel. F1
+      rows:
+      - - DeBERTa verifier (5-fold CV)
+        - '0.72'
+        - '0.652'
+        - '0.66'
+        - '0.398'
+      - - EM (best unsupervised AUROC)
+        - '0.749'
+        - '0.650'
+        - '0.706'
+        - '0.403'
+      - - Logprob (best unsupervised sel.)
+        - '0.578'
+        - '0.650'
+        - '0.600'
+        - '0.410'
+      - - Greedy baseline
+        - —
+        - '0.644'
+        - —
+        - '0.403'
+      - - Oracle
+        - —
+        - '0.776'
+        - —
+        - '0.588'
+    figures_description:
+    - 'Figure: Headroom capture bar chart. Oracle headroom (full bar) vs each method''s
+      capture (filled portion). 所有 bars 几乎为空——NER oracle headroom 13.2pp 中 verifier
+      仅 capture 0.8pp，logprob capture 0.6pp。RE 所有方法 capture 0pp。 视觉冲击力强，直接传达 "selection
+      is fundamentally hard" 的 message。
+
+      '
+    analysis: exp-019 在 worst 档下的价值在于 closing the loop：即使 supervised signal 也无法显著
+      close selection gap，说明问题不在于 signal quality 而在于 task structure。但执行条件 苛刻（需要 exp-018
+      先完成 + 还有 DDL 前时间），且 4K training data 的 verifier 说服力 有限。建议：如果时间允许，作为 1 天 quick
+      experiment 执行，结果写入 Discussion 而非 main results。如果时间不够，在 paper 中引用 exp-016 ensemble（logistic
+      regression on 5 signals）作为 proxy supervised baseline，其 AUROC 0.735 已经 ≤ best
+      single signal EM 0.749，传达同样的 message。
+  review_report: '---
+
+    dream_id: dream_20260515T092545
+
+    tier: worst
+
+    overall_score: borderline accept
+
+    timestamp: 2026-05-15T10:28:51.587084+00:00
+
+    ---
+
+
+    # Dream Review Report — EMNLP 2026 Findings
+
+
+    **Paper**: "Why Confidence Signals Predict but Cannot Select in Structured Information
+    Extraction"
+
+    **Venue**: EMNLP 2026 Findings (ARR review form, 1–5 scale with half-increments)
+
+    **Review mode**: Full (2 reviewers, 4-step roundtable)
+
+
+    ---
+
+
+    ## Consolidated Scores
+
+
+    | Dimension | R1 (Methods+Exp) | R2 (Novelty+RW) | Consensus |
+
+    |-----------|:-:|:-:|:-:|
+
+    | Soundness | 3.5 | 3.5 | **3.5** |
+
+    | Excitement | 3.0 | 2.5 | **2.5** |
+
+    | Overall | 3.0 | 3.0 | **3.0** |
+
+    | Confidence | 4.0 | 4.0 | **4.0** |
+
+
+    **Headline assessment**: Borderline Findings accept. The paper identifies a real
+    and underexplored phenomenon (the correlation–selection gap) with rigorous statistical
+    methodology, but universality claims exceed the evidence, novelty is primarily
+    empirical/negative with no proposed solution, and several experimental gaps (single
+    RE benchmark, single-config ablation, no supervised baseline) limit the strength
+    of the "fundamental limitation" framing.
+
+
+    ---
+
+
+    ## Paper Summary
+
+
+    The paper evaluates five confidence signals (log-probability, set Jaccard, Fleiss''
+    kappa, exact match, entity voting) for quality estimation (QE) and best-of-N selection
+    in structured IE (NER, RE) using fine-tuned 8B models (Qwen3-8B, LLaMA-3.1-8B)
+    under constrained decoding. The central finding is a **correlation–selection gap**:
+    signals that reliably estimate output quality (EM AUROC 0.749) completely fail
+    to improve selection over greedy decoding (best Δ = +0.6pp, p=0.39). A controlled
+    free-form decoding ablation shows that removing grammar constraints increases
+    log-prob variance (median range 0.03→0.07) but yields no selection improvement,
+    refuting the constrained-decoding bottleneck hypothesis. Cross-model validation
+    on CoNLL-2003 confirms QE signal consistency. A supervised DeBERTa verifier captures
+    only 6.1% of oracle headroom on NER and 0% on RE.
+
+
+    ---
+
+
+    ## Agreed Strengths
+
+
+    1. **The correlation–selection gap is a genuinely useful conceptual contribution.**
+    The explicit decomposition of confidence utility into quality estimation vs. sample
+    selection, and the empirical demonstration that these decouple for structured
+    IE, fills a real gap. The term is well-defined and memorable.
+
+
+    2. **The free-form decoding ablation is the paper''s strongest empirical novelty.**
+    Testing whether log-probability compression is caused by constrained decoding
+    vs. being model-intrinsic is exactly the right falsification experiment. The near-identical
+    variance (std ratio ~0.97x, tied fraction shift of only ~2pp) provides convincing
+    evidence within the tested configuration.
+
+
+    3. **Exemplary statistical methodology for a negative-result paper.** Bootstrap
+    resampling (B=1000), effect sizes (Cohen''s d=0.038), 95% CIs ([−3.0, +4.2]pp),
+    permutation p-values, and equivalence testing. This rigor is uncommon in empirical
+    NLP and lends genuine credibility to the null finding.
+
+
+    4. **Comprehensive related work and fair positioning.** 20+ references spanning
+    self-consistency, MBR decoding, uncertainty quantification, conformal prediction,
+    and structured IE. The three-point differentiation from Nédellec & Xia (2026)
+    — structural vs. surface matching, no selection study, single domain — is concrete
+    and does not misrepresent the prior work.
+
+
+    5. **Honest and transparent reporting throughout.** RE results consistently flagged
+    as "preliminary, single benchmark." The parseable-subset bias in the free-form
+    ablation is acknowledged and correctly argued to favor (not hurt) the negative
+    conclusion. P-values are reported even when they weaken the narrative.
+
+
+    6. **Cross-model consistency is a genuine validation.** Signal rankings replicate
+    across Qwen3-8B and LLaMA-3.1-8B on CoNLL-2003 (|Δρ| ≤ 0.021 for all signals),
+    strengthening the QE framework''s generalizability claim.
+
+
+    ---
+
+
+    ## Agreed Weaknesses
+
+
+    ### Major
+
+
+    **W1. The free-form ablation is conducted on a single model (Qwen3-8B) and a single
+    dataset (SciERC), yet the paper draws claims about intrinsic/fundamental properties
+    of structured IE.** The RE log-prob selection flip (+2.4pp swing from constrained
+    to free-form) is dismissed as noise but is within the same order of magnitude
+    as the effects being studied. A second ablation configuration (LLaMA or CoNLL)
+    would substantially strengthen the "intrinsic" claim. As it stands, "not constrained-decoding-specific"
+    ≠ "fundamental."
+
+
+    **W2. RE evaluation rests entirely on SciERC with 40% zero-F1 instances.** This
+    creates a floor effect that compresses the discriminable range. The selection
+    failure on RE may be partly an artifact of model incapability rather than a fundamental
+    property of structured IE. A second RE dataset (TACRED, DocRED, ACE05) would materially
+    strengthen the claim. The paper acknowledges this but still frames the gap as
+    applying to "structured IE" broadly.
+
+
+    **W3. No supervised selection baseline executed.** The experiment plan included
+    a DeBERTa verifier (exp-019) that was cancelled. Without it, the paper cannot
+    distinguish "unsupervised signals are insufficient" from "no selection mechanism
+    works for structured IE." The 6.1% headroom capture figure in the paper relies
+    on this cancelled experiment''s projected results. If these are simulated/imagined
+    rather than actual, this is a critical issue. The paper''s strongest claim — that
+    the gap is fundamental — requires evidence that even supervised approaches struggle,
+    but this evidence base is thin.
+
+
+    **W4. Universality claims exceed the evidence.** The paper uses "fundamental,"
+    "intrinsic," and "universal" to describe findings from two 8B models, two NER
+    datasets, one RE dataset, N ≤ 16. The gap may not hold for: (a) larger models
+    (70B+) with higher-quality samples, (b) larger N where MBR estimates stabilize,
+    (c) different IE formulations (code-generation-based, retrieval-augmented), or
+    (d) prompted (non-fine-tuned) models where LP variance is presumably higher. The
+    paper should use "robust across our experimental conditions" rather than "fundamental."
+
+
+    ### Minor
+
+
+    **W5. The definitional component of the gap (4/5 signals are instance-level and
+    cannot rank candidates by definition) is not a discovery.** The paper acknowledges
+    this but sometimes conflates it with the genuinely interesting empirical finding
+    that log-probability and voting confidence also fail. Sharper separation would
+    improve clarity.
+
+
+    **W6. The MBR/consensus-proximity failure analysis is underdeveloped.** The paper
+    claims SJ-based selection instantiates MBR with structural utility and that MBR
+    fails for IE despite succeeding in MT. But there is no analysis of within-instance
+    utility-F1 correlation distributions, no comparison of different utility functions,
+    and no mechanistic explanation of *why* MBR fails here. CoCoA (Vashurin et al.
+    2025a) — the closest methodological analog — is under-discussed (single sentence
+    in related work).
+
+
+    **W7. Single seed (seed=42) for primary experiments.** The 3-seed analysis is
+    only reported for robustness checks (N=16), not for the primary N=8 SciERC configuration.
+    Given that the multi-seed analysis shows σ up to 0.025 and seed-to-seed Δρ up
+    to 0.044, bootstrap p=0.39 from a single seed is less definitive than presented.
+
+
+    **W8. WNUT-17 OOD analysis conflates training data artifacts with distribution
+    shift.** The 63.8% empty-instance training data could produce a strong empty-output
+    prior, making the negative LP correlation (ρ=−0.41) a training artifact rather
+    than an OOD overconfidence finding. The paper should distinguish these explanations.
+
+
+    **W9. Reference quality.** Several citations use placeholder-style names ("CISC
+    authors, 2025", "Self-Certainty authors, 2026", "ReASC authors, 2026"). Some venue
+    attributions appear inconsistent between documents. The bibliography should be
+    audited before submission.
+
+
+    **W10. No evaluation at N=32/64/128.** The paper claims the gap is fundamental
+    but only tests N ≤ 16. Oracle headroom grows with N; whether signal-based selection
+    remains flat at large N is an open question that would substantially strengthen
+    or weaken the claim.
+
+
+    ---
+
+
+    ## Questions for Authors
+
+
+    1. **Larger N**: Have you evaluated selection at N=32+? If oracle headroom grows
+    but selection stays flat, that clinches the "fundamental gap" claim. If LP selection
+    improves, the story changes.
+
+
+    2. **Supervised baseline status**: Are the DeBERTa verifier results (Table 7:
+    6.1% headroom capture) from actual experiments or from the imagined/projected
+    experiment plan? If projected, this must be clearly stated or removed.
+
+
+    3. **Free-form ablation generalization**: The RE LP selection flip (+2.4pp swing)
+    under free-form decoding is potentially important. Was there any attempt to replicate
+    on LLaMA or CoNLL?
+
+
+    4. **Within-instance MBR failure**: Can you report the distribution of within-instance
+    Spearman ρ(SJ_proximity, F1) across instances? This would quantify the MBR failure
+    mode precisely and strengthen the theoretical argument.
+
+
+    5. **Prompted vs. fine-tuned**: Nédellec & Xia (2026) study hard-prompted LLMs.
+    Would you expect the correlation–selection gap to also hold in the prompted setting,
+    where LP variance is presumably higher?
+
+
+    6. **CoCoA comparison**: CoCoA fuses confidence and consistency via MBR for QA/summarization/translation.
+    Your SJ+LP ensemble is conceptually similar. Can you articulate mechanistically
+    why their approach succeeds but yours fails?
+
+
+    ---
+
+
+    ## Experiment Coverage Assessment
+
+
+    | Planned Experiment | Covered in Paper | Assessment |
+
+    |---|---|---|
+
+    | exp-018: Free-form decoding ablation | Yes (Section 4.3, Table 3-4) | Core ablation
+    present but single-config |
+
+    | exp-017: LLaMA CoNLL cross-model | Yes (Section 4.4, Table 5) | Adequate coverage
+    |
+
+    | exp-011: OOD robustness | Yes (Section 4.5, Table 6) | Present but WNUT-17 confound
+    unresolved |
+
+    | exp-019: Supervised verifier | Yes (Section 4.6, Table 7) | Results presented
+    but experiment may be imagined rather than executed — critical verification needed
+    |
+
+
+    ---
+
+
+    ## Verdict and Recommendations
+
+
+    **For Findings acceptance**, the paper needs:
+
+    1. Tone down universality claims ("fundamental" → "robust across tested conditions")
+
+    2. Clarify whether supervised verifier results are actual or projected
+
+    3. Deepen the MBR failure analysis and CoCoA comparison
+
+
+    **Would strengthen the paper but not blocking**:
+
+    4. Second ablation configuration (LLaMA or CoNLL free-form)
+
+    5. Second RE dataset
+
+    6. Evaluation at N=32+
+
+    7. Multi-seed for primary N=8 results
+
+
+    The paper is at the Findings borderline. The correlation–selection gap is a real
+    contribution, the statistical methodology is strong, and the free-form ablation
+    is well-motivated. But the gap between the strength of the claims ("fundamental,"
+    "universal") and the evidence (2 models × 2–3 datasets × N ≤ 16 × single ablation
+    config) is the central tension. A more modest framing with the same evidence would
+    be a more convincing paper.
+
+
+    ---
+
+
+    *Review conducted 2026-05-15 | 2 reviewers (R1 Methods+Experiments, R2 Novelty+Related
+    Work) | Full 4-step roundtable*'
+  error: ''
+errors: {}
+score_anomaly: 评分顺序异常：best(borderline accept) == worst(borderline accept)，建议谨慎解读
+created_at: '2026-05-15T10:29:02+00:00'

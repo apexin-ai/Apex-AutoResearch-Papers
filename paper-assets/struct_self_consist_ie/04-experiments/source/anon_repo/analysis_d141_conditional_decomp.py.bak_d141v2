@@ -1,0 +1,212 @@
+#!/usr/bin/env python3
+"""D141 Task 2: Conditional Success Decomposition
+Decomposes LP selection effectiveness into 4 buckets based on:
+- Condition 1 (Non-degenerate): at least 2 samples have different entity F1
+- Condition 2 (LP discriminative): within-instance LP range > median LP range
+"""
+
+import json
+import numpy as np
+import os
+
+BASE = "/root/autodl-tmp/struct_self_consist_ie"
+OUT_DIR = os.path.join(BASE, "output/d141_conditional_decomp")
+os.makedirs(OUT_DIR, exist_ok=True)
+
+DATASETS = {
+    "SciERC": os.path.join(BASE, "output/exp_012_rerun_1024/samples.jsonl"),
+    "CoNLL": os.path.join(BASE, "output/exp_002_conll_n16/samples.jsonl"),
+    "FewNERD": os.path.join(BASE, "output/exp_021_inference/samples.jsonl"),
+}
+
+
+def entity_f1(pred_entities, gold_entities):
+    pred_set = {(e["start"], e["end"], e["type"]) for e in pred_entities}
+    gold_set = {(e["start"], e["end"], e["type"]) for e in gold_entities}
+    tp = len(pred_set & gold_set)
+    fp = len(pred_set - gold_set)
+    fn = len(gold_set - pred_set)
+    if tp == 0:
+        return 0.0
+    p = tp / (tp + fp)
+    r = tp / (tp + fn)
+    return 2 * p * r / (p + r)
+
+
+def load_instances(path):
+    instances = []
+    with open(path) as f:
+        for line in f:
+            inst = json.loads(line)
+            gold_ents = inst["gold"].get("entities", [])
+            if len(gold_ents) == 0:
+                continue
+
+            samples = inst["samples"]
+            greedy = inst.get("greedy")
+            logprobs = inst.get("logprobs", [])
+
+            sample_f1s = [entity_f1(s.get("entities", []), gold_ents) for s in samples]
+            greedy_f1 = entity_f1(greedy.get("entities", []), gold_ents) if greedy else 0.0
+
+            lp_range = max(logprobs) - min(logprobs) if len(logprobs) >= 2 else 0.0
+
+            if logprobs:
+                best_idx = int(np.argmax(logprobs[:len(samples)]))
+                lp_sel_f1 = sample_f1s[best_idx]
+            else:
+                lp_sel_f1 = sample_f1s[0] if sample_f1s else 0.0
+
+            unique_f1s = set(round(f, 8) for f in sample_f1s)
+            is_degenerate = len(unique_f1s) <= 1
+
+            instances.append({
+                "greedy_f1": greedy_f1,
+                "lp_sel_f1": lp_sel_f1,
+                "lp_range": lp_range,
+                "is_degenerate": is_degenerate,
+            })
+    return instances
+
+
+def bootstrap_delta_ci(deltas, n_boot=10000, seed=42):
+    rng = np.random.RandomState(seed)
+    arr = np.array(deltas)
+    n = len(arr)
+    if n == 0:
+        return 0.0, 0.0
+    boots = np.array([arr[rng.choice(n, n, replace=True)].mean() for _ in range(n_boot)])
+    return float(np.percentile(boots, 2.5)), float(np.percentile(boots, 97.5))
+
+
+def analyze_dataset(name, path):
+    print(f"Loading {name} from {path}...")
+    instances = load_instances(path)
+    print(f"  {len(instances)} instances (after gold-empty filter)")
+
+    lp_ranges = [inst["lp_range"] for inst in instances]
+    median_lr = float(np.median(lp_ranges))
+    print(f"  Median LP range: {median_lr:.6f}")
+
+    buckets = {"Favorable": [], "Cond1-only": [], "Cond2-only": [], "Unfavorable": []}
+    for inst in instances:
+        c1 = not inst["is_degenerate"]
+        c2 = inst["lp_range"] > median_lr
+        if c1 and c2:
+            buckets["Favorable"].append(inst)
+        elif c1 and not c2:
+            buckets["Cond1-only"].append(inst)
+        elif not c1 and c2:
+            buckets["Cond2-only"].append(inst)
+        else:
+            buckets["Unfavorable"].append(inst)
+
+    result = {
+        "dataset": name,
+        "n_total": len(instances),
+        "median_lp_range": round(median_lr, 6),
+        "buckets": {},
+    }
+
+    for bname in ["Favorable", "Cond1-only", "Cond2-only", "Unfavorable"]:
+        binsts = buckets[bname]
+        n_inst = len(binsts)
+        pct = n_inst / len(instances) * 100 if instances else 0
+
+        if n_inst == 0:
+            result["buckets"][bname] = {
+                "n_inst": 0, "pct": 0.0,
+                "greedy_f1": 0.0, "lp_f1": 0.0,
+                "delta": 0.0, "ci_lo": 0.0, "ci_hi": 0.0,
+            }
+            continue
+
+        greedy_f1s = [i["greedy_f1"] for i in binsts]
+        lp_f1s = [i["lp_sel_f1"] for i in binsts]
+        deltas = [lp - g for lp, g in zip(lp_f1s, greedy_f1s)]
+
+        mean_greedy = float(np.mean(greedy_f1s))
+        mean_lp = float(np.mean(lp_f1s))
+        mean_delta = float(np.mean(deltas))
+        ci_lo, ci_hi = bootstrap_delta_ci(deltas)
+
+        result["buckets"][bname] = {
+            "n_inst": n_inst,
+            "pct": round(pct, 2),
+            "greedy_f1": round(mean_greedy, 4),
+            "lp_f1": round(mean_lp, 4),
+            "delta": round(mean_delta, 4),
+            "ci_lo": round(ci_lo, 4),
+            "ci_hi": round(ci_hi, 4),
+        }
+
+    return result
+
+
+def main():
+    all_results = {}
+    for name, path in DATASETS.items():
+        if not os.path.exists(path):
+            print(f"WARNING: {path} not found, skipping {name}")
+            continue
+        all_results[name] = analyze_dataset(name, path)
+
+    with open(os.path.join(OUT_DIR, "results.json"), "w") as f:
+        json.dump(all_results, f, indent=2)
+
+    lines = ["# D141 Task 2: Conditional Success Decomposition\n\n"]
+    lines.append("## Methodology\n\n")
+    lines.append("For each test instance with N samples:\n")
+    lines.append("- **Condition 1 (Non-degenerate)**: at least 2 samples have different entity-level F1\n")
+    lines.append("- **Condition 2 (LP discriminative)**: within-instance LP range > median LP range\n\n")
+    lines.append("Four buckets: Favorable (C1+C2), Cond1-only (C1 only), Cond2-only (C2 only), Unfavorable (neither)\n\n")
+    lines.append("All F1 values are macro-averaged (mean of per-instance F1). Delta = LP_sel - Greedy.\n\n")
+
+    for name in ["SciERC", "CoNLL", "FewNERD"]:
+        if name not in all_results:
+            continue
+        res = all_results[name]
+        lines.append(f"## {name} (N={res['n_total']}, median LP range={res['median_lp_range']:.6f})\n\n")
+        lines.append("| Bucket | N_inst | % | Greedy_F1 | LP_F1 | Delta | 95% CI |\n")
+        lines.append("|--------|--------|---|-----------|-------|-------|--------|\n")
+        for bname in ["Favorable", "Cond1-only", "Cond2-only", "Unfavorable"]:
+            b = res["buckets"][bname]
+            ci_str = f"[{b['ci_lo']:.4f}, {b['ci_hi']:.4f}]"
+            lines.append(f"| {bname} | {b['n_inst']} | {b['pct']:.1f} | {b['greedy_f1']:.4f} | {b['lp_f1']:.4f} | {b['delta']:+.4f} | {ci_str} |\n")
+        lines.append("\n")
+
+    lines.append("## Summary\n\n")
+    for name in ["SciERC", "CoNLL", "FewNERD"]:
+        if name not in all_results:
+            continue
+        res = all_results[name]
+        fav = res["buckets"]["Favorable"]
+        unfav = res["buckets"]["Unfavorable"]
+        c1 = res["buckets"]["Cond1-only"]
+        c2 = res["buckets"]["Cond2-only"]
+        lines.append(f"**{name}**:\n")
+        lines.append(f"- Favorable: Delta={fav['delta']:+.4f} CI={[fav['ci_lo'], fav['ci_hi']]} ({fav['pct']:.1f}%)\n")
+        lines.append(f"- Cond1-only: Delta={c1['delta']:+.4f} ({c1['pct']:.1f}%)\n")
+        lines.append(f"- Cond2-only: Delta={c2['delta']:+.4f} ({c2['pct']:.1f}%)\n")
+        lines.append(f"- Unfavorable: Delta={unfav['delta']:+.4f} ({unfav['pct']:.1f}%)\n\n")
+
+    with open(os.path.join(OUT_DIR, "report.md"), "w") as f:
+        f.writelines(lines)
+
+    print(f"\nResults saved to {OUT_DIR}/")
+    print("\n=== TABLES ===\n")
+    for name in ["SciERC", "CoNLL", "FewNERD"]:
+        if name not in all_results:
+            continue
+        res = all_results[name]
+        print(f"--- {name} (N={res['n_total']}, median LP range={res['median_lp_range']:.6f}) ---")
+        print(f"{'Bucket':15s} {'N':>6s} {'%':>6s} {'Greedy':>8s} {'LP_sel':>8s} {'Delta':>8s} {'95% CI':>22s}")
+        for bname in ["Favorable", "Cond1-only", "Cond2-only", "Unfavorable"]:
+            b = res["buckets"][bname]
+            ci_str = f"[{b['ci_lo']:.4f}, {b['ci_hi']:.4f}]"
+            print(f"{bname:15s} {b['n_inst']:6d} {b['pct']:5.1f}% {b['greedy_f1']:8.4f} {b['lp_f1']:8.4f} {b['delta']:+8.4f} {ci_str:>22s}")
+        print()
+
+
+if __name__ == "__main__":
+    main()

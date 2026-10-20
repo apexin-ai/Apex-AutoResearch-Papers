@@ -1,0 +1,57 @@
+This is BibTeX, Version 0.99d (TeX Live 2025/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: paper.aux
+The style file: acl_natbib.bst
+Illegal, another \bibstyle command---line 84 of file paper.aux
+ : \bibstyle
+ :          {acl_natbib}
+I'm skipping whatever remains of this command
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Database file #1: custom.bib
+You've used 28 entries,
+            3764 wiz_defined-function locations,
+            848 strings with 9677 characters,
+and the built_in function-call counts, 17484 in all, are:
+= -- 1465
+> -- 842
+< -- 21
++ -- 335
+- -- 251
+* -- 1001
+:= -- 2705
+add.period$ -- 112
+call.type$ -- 28
+change.case$ -- 258
+chr.to.int$ -- 31
+cite$ -- 28
+duplicate$ -- 1154
+empty$ -- 1285
+format.name$ -- 332
+if$ -- 3775
+int.to.chr$ -- 2
+int.to.str$ -- 5
+missing$ -- 258
+newline$ -- 144
+num.names$ -- 112
+pop$ -- 726
+preamble$ -- 1
+purify$ -- 194
+quote$ -- 0
+skip$ -- 949
+stack$ -- 0
+substring$ -- 312
+swap$ -- 483
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 252
+warning$ -- 0
+while$ -- 84
+width$ -- 0
+write$ -- 339
+(There was 1 error message)

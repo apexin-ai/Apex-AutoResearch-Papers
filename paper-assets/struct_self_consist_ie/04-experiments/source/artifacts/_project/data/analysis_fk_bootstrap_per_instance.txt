@@ -1,0 +1,25 @@
+FK Bootstrap Per-instance Analysis
+
+SciERC NER (N=8, n=529):
+Signal rhos (Spearman with greedy F1):
+  FK: 0.267 CI[0.176, 0.354]
+  SJ: 0.360 CI[0.277, 0.437]
+  VC: 0.379 CI[0.299, 0.456]
+  EM: 0.295 CI[0.212, 0.371]
+
+FK vs others (bootstrap + permutation):
+  FK vs SJ: delta=-0.093 CI[-0.159,-0.031] p=0.080 (n.s.)
+  FK vs VC: delta=-0.113 CI[-0.200,-0.026] p=0.031 (*)
+  FK vs EM: delta=-0.028 CI[-0.118,+0.064] p=0.622 (n.s.)
+
+FK excess agreement: 0.240 CI[0.217,0.265], P_o=0.749, P_e=0.509
+
+CoNLL NER (N=16, n=2756):
+FK vs others:
+  FK vs SJ: delta=-0.056 CI[-0.071,-0.041] p=0.0001 (***)
+  FK vs VC: delta=-0.022 CI[-0.045,+0.002] p=0.078 (n.s.)
+  FK vs EM: delta=-0.071 CI[-0.089,-0.053] p=0.0001 (***)
+
+FK excess agreement: 0.582 CI[0.567,0.597]
+
+Key: FK consistently weakest signal. CoNLL large-n confirms significance for FK vs SJ/EM.

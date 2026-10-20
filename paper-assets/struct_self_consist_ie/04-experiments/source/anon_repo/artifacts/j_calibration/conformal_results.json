@@ -1,0 +1,141 @@
+{
+  "per_config": {
+    "scierc_qwen8b_s123": {
+      "coverage": 0.5471698113207547,
+      "avg_set_size": 5.2981132075471695,
+      "median_set_size": 5.0,
+      "threshold": 0.0,
+      "quantile_value": 1.0,
+      "n_cal": 264,
+      "n_test": 265,
+      "n_covered": 145
+    },
+    "scierc_qwen8b_s456": {
+      "coverage": 0.5509433962264151,
+      "avg_set_size": 5.230188679245283,
+      "median_set_size": 4.0,
+      "threshold": 0.0,
+      "quantile_value": 1.0,
+      "n_cal": 264,
+      "n_test": 265,
+      "n_covered": 146
+    },
+    "scierc_llama8b_s123": {
+      "coverage": 0.5056603773584906,
+      "avg_set_size": 4.841509433962264,
+      "median_set_size": 4.0,
+      "threshold": 0.0,
+      "quantile_value": 1.0,
+      "n_cal": 264,
+      "n_test": 265,
+      "n_covered": 134
+    },
+    "scierc_llama8b_s456": {
+      "coverage": 0.4867924528301887,
+      "avg_set_size": 4.837735849056604,
+      "median_set_size": 4.0,
+      "threshold": 0.0,
+      "quantile_value": 1.0,
+      "n_cal": 264,
+      "n_test": 265,
+      "n_covered": 129
+    },
+    "scierc_qwen4b": {
+      "coverage": 0.6264150943396226,
+      "avg_set_size": 6.418867924528302,
+      "median_set_size": 6.0,
+      "threshold": 0.0,
+      "quantile_value": 1.0,
+      "n_cal": 264,
+      "n_test": 265,
+      "n_covered": 166
+    },
+    "scierc_3epoch": {
+      "coverage": 0.6528301886792452,
+      "avg_set_size": 6.958490566037736,
+      "median_set_size": 6.0,
+      "threshold": 0.0,
+      "quantile_value": 1.0,
+      "n_cal": 264,
+      "n_test": 265,
+      "n_covered": 173
+    },
+    "conll_n8_s123": {
+      "coverage": 0.9238026124818578,
+      "avg_set_size": 2.9129172714078373,
+      "median_set_size": 2.0,
+      "threshold": 0.125,
+      "quantile_value": 0.875,
+      "n_cal": 1378,
+      "n_test": 1378,
+      "n_covered": 1273
+    },
+    "conll_n8_s456": {
+      "coverage": 0.9310595065312046,
+      "avg_set_size": 2.9129172714078373,
+      "median_set_size": 2.0,
+      "threshold": 0.125,
+      "quantile_value": 0.875,
+      "n_cal": 1378,
+      "n_test": 1378,
+      "n_covered": 1283
+    },
+    "fewnerd_n8_s123": {
+      "coverage": 0.7932,
+      "avg_set_size": 5.1664,
+      "median_set_size": 4.0,
+      "threshold": 0.0,
+      "quantile_value": 1.0,
+      "n_cal": 2500,
+      "n_test": 2500,
+      "n_covered": 1983
+    },
+    "fewnerd_n8_s456": {
+      "coverage": 0.792,
+      "avg_set_size": 5.3668,
+      "median_set_size": 4.0,
+      "threshold": 0.0,
+      "quantile_value": 1.0,
+      "n_cal": 2500,
+      "n_test": 2500,
+      "n_covered": 1980
+    }
+  },
+  "per_dataset": {
+    "scierc": {
+      "coverage": 0.5658475110270952,
+      "avg_set_size": 5.43289224952741,
+      "median_set_size": 5.0,
+      "threshold": 0.0,
+      "quantile_value": 1.0,
+      "n_cal": 1587,
+      "n_test": 1587,
+      "n_covered": 898
+    },
+    "conll": {
+      "coverage": 0.9252539912917271,
+      "avg_set_size": 2.8193033381712627,
+      "median_set_size": 2.0,
+      "threshold": 0.125,
+      "quantile_value": 0.875,
+      "n_cal": 2756,
+      "n_test": 2756,
+      "n_covered": 2550
+    },
+    "fewnerd": {
+      "coverage": 0.7892,
+      "avg_set_size": 5.323,
+      "median_set_size": 4.0,
+      "threshold": 0.0,
+      "quantile_value": 1.0,
+      "n_cal": 5000,
+      "n_test": 5000,
+      "n_covered": 3946
+    }
+  },
+  "settings": {
+    "alpha": 0.1,
+    "seed": 42,
+    "split_ratio": 0.5
+  }
+}

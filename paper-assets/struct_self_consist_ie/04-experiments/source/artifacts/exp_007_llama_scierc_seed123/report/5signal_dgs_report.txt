@@ -1,0 +1,1 @@
+See remote: /root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_scierc_seed123/5signal_dgs_report.json on autodl-5090. Key results: Greedy F1=0.6454, Oracle F1=0.7657, Headroom=12.04pp. 5-signal rho (full): SJ=0.3552, FK=0.2897, logprob=0.197, EM=0.2844, voting_conf=0.4193. DGS delta=-0.38pp (CI includes 0).

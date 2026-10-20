@@ -1,0 +1,56 @@
+\section{Single-Signal Selection Results}\label{sec:selection_gap}
+
+\paragraph{Definitional vs.\ empirical.}
+We decompose the correlation-selection gap into two layers.
+The first is structural: four of five signals are instance-level aggregates that assign identical scores to all $N$ candidates from a given input (\S\ref{sec:formulation}), so they estimate quality across inputs but cannot rank candidates within an instance; selection failure is a design property, not an empirical finding.
+The second layer is empirical and constitutes the core diagnostic: LP, the only per-sample signal, suffers compression under constrained decoding, with 60\% of SciERC instances showing within-instance LP range below 0.041 nats (Appendix~\ref{app:logprob_ties}), leaving insufficient variation for sample discrimination. This compression is model-intrinsic: free-form decoding yields nearly identical LP distributions (within-instance std ratio $0.97{\times}$; Appendices~\ref{app:freeform_ablation},~\ref{app:lp_failure_stability}). Even where LP varies, selection gains depend on LP-quality alignment rather than degeneracy alone.
+Cross-instance $\rho$ (Table~\ref{tab:quality_estimation}) is attenuated by varying instance difficulty; within-instance $\rho$ directly measures whether LP discriminates candidates for a fixed input, making it the relevant predictor of selection success.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Best-of-$N$ selection (macro F1) on SciERC ($N{=}8$, $T{=}1.0$). Selection signals: 2-seed mean${\pm}\sigma$; baselines: 3-seed (Oracle${=}0.775$, Greedy${=}0.645$). LP is per-sample; others use consensus-proximity. $^\dagger$One score per input.}
+\label{tab:selection}
+\begin{tabular}{lcc}
+\toprule
+Method & NER F1 & $p$ \\
+\midrule
+Oracle & $0.775 \pm 0.001$ & --- \\
+Greedy ($T{=}0$) & $0.645 \pm 0.001$ & --- \\
+\midrule
+LP           & $\mathbf{0.647} \pm 0.005$ & .29 \\
+SJ           & $0.646 \pm 0.002$ & .67 \\
+FK           & $0.646 \pm 0.001$ & .79 \\
+EM           & $0.637 \pm 0.001$ & n/a$^\dagger$ \\
+VC           & $0.623 \pm 0.004$ & n/a$^\dagger$ \\
+\midrule
+Random       & $0.610 \pm 0.003$ & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig_selection_gap}
+\caption{Correlation-selection gap on SciERC ($N{=}8$, $T{=}1.0$). Bars: QE $\rho$; line: $\Delta$F1 vs.\ greedy (3-seed mean). Despite $\rho$ up to 0.38, no signal outperforms greedy (all $p{\geq}0.29$). Dashed green: oracle headroom ($+13.0$\,pp; oracle headroom $=$ best-of-$N$ F1 $-$ greedy F1); dotted gray: random.}
+\label{fig:selection_gap}
+\end{figure}
+
+Despite $\rho$ up to 0.38, no signal outperforms greedy on SciERC (Table~\ref{tab:selection}; Figure~\ref{fig:selection_gap}); the oracle shows 13.0\,pp headroom, but LP achieves $+0.2$\,pp ($p{=}0.29$), below MDE (${\approx}$1.5\,pp at $n{=}529$, 2--3 seeds; Appendix~\ref{app:bootstrap_signal}).
+All selection experiments use 2--3 training seeds; bootstrap CIs are reported in Appendix~\ref{app:bootstrap_signal}.
+The pattern holds across CoNLL and WNUT-17 (Table~\ref{tab:cross_selection}).
+Few-NERD provides the clearest positive case: LP achieves $+1.39$\,pp ($p{<}0.001$; Holm $p_{\text{adj}}{=}0.021$, selection family $k{=}21$)\footnote{Under global correction ($k{=}57$), LP-best selection reaches Holm $p_{\text{adj}}{=}0.055$ (BH $p_{\text{adj}}{=}0.003$).} at low degeneracy (13.0\% vs.\ 12.2--67.9\%), while structural signals still degrade (VC $-1.79$, SJ $-2.14$\,pp; \S\ref{sec:fewnerd}).
+
+\paragraph{Diagnostic framework.}
+Three co-occurring factors jointly characterize the gap:
+(1)~instance degeneracy sets the ceiling (SciERC 12.2\%, CoNLL 61.7\%);
+(2)~oracle headroom bounds the opportunity within non-degenerate instances (CoNLL ${\approx}4$\,pp vs.\ SciERC 13.0\,pp);
+(3)~LP compression limits exploitation (Few-NERD within-instance $\rho{\approx}0.5$--$0.7$ vs.\ SciERC $\rho{\approx}0.26$).
+Degeneracy does not predict LP gain across datasets ($\rho{=}0.052$, $n{=}23$, $p{=}0.81$; Figure~\ref{fig:degeneracy_scatter}), though it co-varies with LP within fixed settings ($\rho{=}{-}0.881$; Appendix~\ref{app:per_type_lp}).
+These conditions interact ($R^2{<}0$); on non-degenerate instances, $\alpha$ approaches zero ($0.000$--$0.121$) despite $\rho$ up to 0.45 (\S\ref{sec:theory}).
+
+\paragraph{Mechanistic evidence (Appendix~\ref{sec:mechanistic}).}
+Why does signal alignment collapse? Probing experiments on Qwen2.5-7B-Instruct reveal an \textit{introspection boundary}: hidden-state linear probes achieve entity-level AUROC $0.63$--$0.88$, substantially exceeding prompt-based self-judgment (ESJ AUROC $0.51$; confirmed on Qwen3-8B: AUROC $0.50$--$0.55$; Appendix~\ref{app:esj}), yet cross-dataset transfer drops to $0.56$--$0.67$ (LODO).
+Entity self-judgment, multi-round refinement ($-3.1$\,pp vs.\ greedy), and latent centroid selection ($-3.5$\,pp) all fail to improve over greedy decoding.
+Entity quality is partially encoded in representations but inaccessible through the generation interface, consistent with the signal alignment collapse observed across all configurations.
+Cross-model validation on Qwen3-8B confirms chance-level ESJ performance (AUROC $0.50$--$0.55$; Appendix~\ref{app:esj}), suggesting the introspection boundary is architecture-general rather than model-specific.

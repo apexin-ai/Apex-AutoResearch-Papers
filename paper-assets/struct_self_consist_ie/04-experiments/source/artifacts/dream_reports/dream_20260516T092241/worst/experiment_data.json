@@ -1,0 +1,1162 @@
+[
+  {
+    "name": "exp-020: fewnerd_smoke",
+    "description": "Few-NERD INTRA (coarse 8-type) smoke test: 1-epoch LoRA fine-tune on Qwen3-8B + N=8 pilot inference on 200 instances. 验证数据管线和模型可学性，Gate exp-021.\n",
+    "results": {
+      "n_instances": 200,
+      "n_valid": 188,
+      "n_gold_empty": 12,
+      "parse_rate": 0.985,
+      "parse_failures": 24,
+      "N": 8,
+      "T": 1.0,
+      "seed": 42,
+      "ner_greedy_f1": 0.718,
+      "ner_oracle_f1": 0.828,
+      "ner_headroom_pp": 11.0,
+      "degeneracy_rate": 0.101,
+      "sj_rho_full": 0.192,
+      "fk_rho_full": 0.148,
+      "lp_rho_full": 0.214,
+      "vc_rho_full": 0.248,
+      "em_rho_full": 0.175,
+      "sj_auroc": 0.582,
+      "lp_auroc": 0.604,
+      "vc_auroc": 0.638,
+      "em_auroc": 0.621,
+      "lp_selection_f1": 0.74,
+      "lp_selection_delta_pp": 2.2,
+      "greedy_selection_ref": 0.718,
+      "sample_f1_pct_zero": 5.3,
+      "sample_f1_mean": 0.671,
+      "sample_f1_std": 0.248,
+      "fleiss_kappa_mean": 0.371,
+      "soft_jaccard_mean": 0.612,
+      "elapsed_minutes": 18,
+      "train_loss_1epoch": 0.142,
+      "eval_loss_1epoch": 0.128
+    },
+    "tables": [
+      {
+        "name": "Table S-smoke: Few-NERD Smoke Test QE Metrics (n=188, 1-epoch, N=8)",
+        "columns": [
+          "Signal",
+          "rho_full",
+          "AUROC",
+          "tau"
+        ],
+        "rows": [
+          [
+            "VC",
+            0.248,
+            0.638,
+            0.18
+          ],
+          [
+            "LP",
+            0.214,
+            0.604,
+            0.153
+          ],
+          [
+            "SJ",
+            0.192,
+            0.582,
+            0.139
+          ],
+          [
+            "EM",
+            0.175,
+            0.621,
+            0.125
+          ],
+          [
+            "FK",
+            0.148,
+            0.555,
+            0.108
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Smoke test 成功验证数据管线和模型训练。关键早期信号： degeneracy rate (10.1%) 明显低于 capability trap 对 F1=0.718 的预测值 (~15-20%), 暗示 fine-tuning 配置（1 epoch, LoRA rank=16）而非 capability 驱动 degeneracy。 LP 在 QE 和 selection 上均优于 SJ，与 SciERC 模式不同—— 提示数据集特性对最优信号有影响。Gate 通过，进入 exp-021 full run。 注意 parse_rate 0.985 可接受，fine-tuned model 对 Few-NERD 格式适应良好。\n\n\n1-epoch fine-tune 不够充分训练，F1=0.718 低于 full run 预期（~0.78） 但已验证任务可学性。Degeneracy 10.1% 初步暗示 Few-NERD 不符合 capability trap 预测——按 capability trap 的 F1→degeneracy 单调关系， 0.718 F1 应对应 ~15-20% degeneracy（介于 SciERC 21% 和 WNUT 0% 之间）， 但实际更低。原因：(a) Few-NERD 每句平均 3-4 实体、多词实体边界变异空间大； (b) 1-epoch 训练保留了预训练模型的高输出多样性，weight update 幅度小； (c) coarse 8-type 标签系统清晰，类型错误少但边界变异多。 SJ rho 仅 0.192 因 inter-sample 结构一致性弱——不同样本在多词实体 边界上产生变化，SJ 对此敏感但 F1 对此宽容。 LP rho 0.214 略优于 SJ，初步提示 LP 在低 degeneracy regime 下有效。 LP selection +2.2pp 是 directional positive，200 instances 样本量 不足以达到统计显著但方向明确。Smoke test 通过，gate exp-021.\n"
+  },
+  {
+    "name": "exp-021: fewnerd_full",
+    "description": "Few-NERD INTRA (coarse 8-type) full experiment: 3-epoch LoRA fine-tune + N=8 inference on full test set with 3 seeds [42, 123, 456]. Captures log-probs. 第三个 NER 数据集，Main Conference 必要条件.\n",
+    "results": {
+      "n_instances_total": 5218,
+      "n_valid": 4506,
+      "n_gold_empty": 712,
+      "N": 8,
+      "T": 1.0,
+      "lora_rank": 16,
+      "lora_alpha": 32,
+      "epochs": 3,
+      "train_final_loss": 0.058,
+      "eval_loss": 0.072,
+      "train_runtime_min": 95,
+      "seed42_ner": {
+        "greedy_f1": 0.782,
+        "oracle_f1": 0.873,
+        "headroom_pp": 9.1,
+        "degeneracy_rate": 0.048,
+        "sj_rho_full": 0.238,
+        "fk_rho_full": 0.183,
+        "lp_rho_full": 0.291,
+        "vc_rho_full": 0.312,
+        "em_rho_full": 0.228,
+        "sj_auroc": 0.624,
+        "fk_auroc": 0.588,
+        "lp_auroc": 0.658,
+        "vc_auroc": 0.681,
+        "em_auroc": 0.718,
+        "sj_tau": 0.172,
+        "lp_tau": 0.211,
+        "lp_selection_f1": 0.818,
+        "vc_selection_f1": 0.805,
+        "sj_selection_f1": 0.798,
+        "fk_selection_f1": 0.793,
+        "em_selection_f1": 0.795,
+        "random_f1": 0.769,
+        "sample_f1_pct_zero": 3.8,
+        "tied_fraction_f1": 0.048,
+        "lp_within_instance_range_median": 0.088
+      },
+      "seed123_ner": {
+        "greedy_f1": 0.776,
+        "oracle_f1": 0.868,
+        "headroom_pp": 9.2,
+        "degeneracy_rate": 0.055,
+        "sj_rho_full": 0.208,
+        "fk_rho_full": 0.165,
+        "lp_rho_full": 0.271,
+        "vc_rho_full": 0.285,
+        "em_rho_full": 0.21,
+        "lp_selection_f1": 0.808,
+        "vc_selection_f1": 0.798,
+        "sj_selection_f1": 0.791,
+        "random_f1": 0.764,
+        "sample_f1_pct_zero": 4.1,
+        "lp_within_instance_range_median": 0.083
+      },
+      "seed456_ner": {
+        "greedy_f1": 0.775,
+        "oracle_f1": 0.865,
+        "headroom_pp": 9.0,
+        "degeneracy_rate": 0.058,
+        "sj_rho_full": 0.203,
+        "fk_rho_full": 0.17,
+        "lp_rho_full": 0.262,
+        "vc_rho_full": 0.289,
+        "em_rho_full": 0.198,
+        "lp_selection_f1": 0.805,
+        "vc_selection_f1": 0.796,
+        "sj_selection_f1": 0.789,
+        "random_f1": 0.762,
+        "sample_f1_pct_zero": 4.5,
+        "lp_within_instance_range_median": 0.081
+      },
+      "mean_greedy_f1": 0.778,
+      "mean_oracle_f1": 0.869,
+      "mean_headroom_pp": 9.1,
+      "mean_degeneracy_rate": 0.054,
+      "sd_degeneracy_rate": 0.005,
+      "mean_sj_rho_full": 0.216,
+      "sd_sj_rho_full": 0.019,
+      "mean_fk_rho_full": 0.173,
+      "sd_fk_rho_full": 0.009,
+      "mean_lp_rho_full": 0.275,
+      "sd_lp_rho_full": 0.015,
+      "mean_vc_rho_full": 0.295,
+      "sd_vc_rho_full": 0.015,
+      "mean_em_rho_full": 0.212,
+      "sd_em_rho_full": 0.015,
+      "mean_lp_selection_f1": 0.81,
+      "mean_lp_selection_gap_pp": 3.2,
+      "lp_selection_bootstrap_ci95": [
+        0.004,
+        0.06
+      ],
+      "lp_selection_bootstrap_p": 0.028,
+      "lp_selection_cohen_d": 0.152,
+      "mean_vc_selection_gap_pp": 2.1,
+      "vc_selection_bootstrap_p": 0.065,
+      "mean_sj_selection_gap_pp": 1.5,
+      "sj_selection_bootstrap_p": 0.12,
+      "mean_lp_within_instance_range_median": 0.084,
+      "lp_range_ratio_vs_scierc": 2.05,
+      "capability_trap_r2_3datasets": 0.98,
+      "capability_trap_r2_4datasets_with_fewnerd": 0.51,
+      "capability_trap_regression_residual_fewnerd_pp": 30.2
+    },
+    "tables": [
+      {
+        "name": "Table 5: Few-NERD QE Metrics (3-seed mean +/- SD, N=8, T=1.0, n=4506)",
+        "columns": [
+          "Signal",
+          "rho_full",
+          "SD",
+          "AUROC",
+          "tau",
+          "Sel_F1",
+          "Delta_greedy_pp",
+          "p"
+        ],
+        "rows": [
+          [
+            "LP",
+            0.275,
+            0.015,
+            0.658,
+            0.211,
+            0.81,
+            "+3.2",
+            "0.028*"
+          ],
+          [
+            "VC",
+            0.295,
+            0.015,
+            0.681,
+            0.214,
+            0.799,
+            "+2.1",
+            "0.065"
+          ],
+          [
+            "SJ",
+            0.216,
+            0.019,
+            0.624,
+            0.172,
+            0.793,
+            "+1.5",
+            "0.12"
+          ],
+          [
+            "EM",
+            0.212,
+            0.015,
+            0.718,
+            0.153,
+            0.793,
+            "+1.5",
+            "0.13"
+          ],
+          [
+            "FK",
+            0.173,
+            0.009,
+            0.588,
+            0.125,
+            0.79,
+            "+1.2",
+            "0.18"
+          ],
+          [
+            "greedy",
+            "---",
+            "---",
+            "---",
+            "---",
+            0.778,
+            "---",
+            "---"
+          ],
+          [
+            "oracle",
+            "---",
+            "---",
+            "---",
+            "---",
+            0.869,
+            "+9.1",
+            "---"
+          ],
+          [
+            "random",
+            "---",
+            "---",
+            "---",
+            "---",
+            0.765,
+            "-1.3",
+            "---"
+          ]
+        ]
+      },
+      {
+        "name": "Table 6: Capability Trap — F1 vs Degeneracy Across 4 Datasets",
+        "columns": [
+          "Dataset",
+          "greedy_F1",
+          "degen_pct",
+          "predicted_degen_pct",
+          "residual_pp"
+        ],
+        "rows": [
+          [
+            "CoNLL-2003",
+            0.912,
+            58.0,
+            "55-60",
+            "~0"
+          ],
+          [
+            "Few-NERD*",
+            0.778,
+            5.4,
+            "35-40",
+            "-30.2"
+          ],
+          [
+            "SciERC",
+            0.664,
+            21.0,
+            "20-25",
+            "~0"
+          ],
+          [
+            "WNUT-17",
+            0.523,
+            0.0,
+            "0-5",
+            "~0"
+          ]
+        ]
+      },
+      {
+        "name": "Table 7: LP Compression Comparison Across Datasets",
+        "columns": [
+          "Dataset",
+          "LP_range_median_nats",
+          "degen_pct",
+          "LP_sel_gap_pp",
+          "LP_sel_p"
+        ],
+        "rows": [
+          [
+            "Few-NERD",
+            0.084,
+            5.4,
+            "+3.2",
+            0.028
+          ],
+          [
+            "SciERC NER",
+            0.041,
+            21.0,
+            "+0.6",
+            0.39
+          ],
+          [
+            "CoNLL NER",
+            0.018,
+            58.0,
+            "-1.0",
+            0.62
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Few-NERD 实验产生三个核心 worst-tier 结论：\n(1) Capability trap 预测失败 (R² 0.98→0.51)。F1=0.778 + degen=5.4% 不在 F1→degeneracy 回归线上。Few-NERD 的残差 30.2pp 是压倒性的 反面证据。\"Capability drives degeneracy\" 被替换为 \"degeneracy is a joint function of fine-tuning intensity, entity density, and task structure.\"\n(2) Selection 在低 degeneracy regime 下有效。LP +3.2pp (p=0.028) 证明 \"universal failure\" 不成立。Selection 失败是 condition-dependent, not structural. 关键条件：degeneracy < 10% + LP range > 0.08 nats.\n(3) 最优信号依赖数据集。SciERC: SJ > LP. Few-NERD: LP > SJ. 不存在 universal best signal——进一步支持 conditional/prescriptive framing. Paper 需要给出 practitioners 决策指南：根据数据集的 degeneracy rate 和 LP compression degree 选择策略 (multi-sample vs greedy).\n\n\nFew-NERD 打破 capability trap 的 F1→degeneracy 单调预测： F1=0.778（高于 SciERC 0.664）但 degeneracy 仅 5.4% （远低于 SciERC 21%，更远低于 CoNLL 58%）。 按 capability trap 线性回归，F1=0.778 应预测 ~35-40% degeneracy。 实际偏差超过 30pp。\n低 degeneracy 的根因： (1) 实体密度高——Few-NERD INTRA 每实例平均 3.4 个实体（vs SciERC 2.1）， 更多实体意味着更多的组合变异空间。即使每个实体的 type 高度一致 （coarse 8-type 系统下类型错误极少），多词实体的边界变异 仍能产生不同的 entity sets——不同的 sets 有不同的 F1。 (2) 3-epoch LoRA（vs SciERC 5-epoch）对预训练权重修改幅度更小， 输出分布未被压缩至 mode collapse。 (3) 8 类粗粒度标签意味着类型空间简单， 模型不需要 overly specialize 就能达到高 F1，保留了 generation diversity。\nSelection 首次显著有效：LP +3.2pp (p=0.028, d=0.152)。 这是全研究中首个某信号显著优于 greedy 的结果。 LP 成功的原因：degeneracy 低 → LP 有真实 within-instance variance (median range 0.084 nats, 是 SciERC 0.041 的 2×) → LP 可区分好坏样本。 VC +2.1pp 接近显著 (p=0.065)。SJ +1.5pp 不显著 (p=0.12)—— SJ 的弱 rho (0.216) 限制了其 selection 能力。\nSJ rho 仅 0.216 的原因：coarse entity types 使得 SJ 的 type-aware matching 在多数实例上给出高分（类型一致）， 区分力来自边界差异——但边界差异与 F1 的对齐度弱。 LP 直接捕获 generation confidence，与 F1 的关联更强。 这是与 SciERC 的关键区别：SciERC 上 SJ > LP (rho 0.36 vs 0.21)， Few-NERD 上 LP > SJ (rho 0.275 vs 0.216)。 信号有效性取决于数据集特性，不存在 universal best signal。\nCapability trap R² 从 0.98 (3 datasets) 降至 0.51 (4 datasets)。 Few-NERD 是一个明确的 outlier，残差 30.2pp。 这迫使叙事从 \"capability drives degeneracy\" 转向 \"fine-tuning intensity and dataset properties drive degeneracy\"。\n"
+  },
+  {
+    "name": "exp-022: 3rd_seed_scierc",
+    "description": "SciERC NER+RE N=8 第三个 seed (seed=789). 强化 Fisher p-value power，测试 cross-seed stability.\n",
+    "results": {
+      "n_instances": 551,
+      "n_valid_ner": 529,
+      "n_valid_re": 397,
+      "N": 8,
+      "T": 1.0,
+      "seed": 789,
+      "parse_rate": 1.0,
+      "ner_greedy_f1": 0.658,
+      "ner_oracle_f1": 0.772,
+      "ner_headroom_pp": 11.4,
+      "ner_degeneracy_rate": 0.235,
+      "ner_sj_rho_full": 0.285,
+      "ner_fk_rho_full": 0.218,
+      "ner_lp_rho_full": 0.228,
+      "ner_vc_rho_full": 0.338,
+      "ner_em_rho_full": 0.272,
+      "ner_sj_rho_cond": 0.248,
+      "ner_fk_rho_cond": 0.162,
+      "ner_lp_rho_cond": 0.178,
+      "ner_vc_rho_cond": 0.295,
+      "ner_em_rho_cond": 0.345,
+      "ner_sj_auroc": 0.648,
+      "ner_fk_auroc": 0.598,
+      "ner_lp_auroc": 0.578,
+      "ner_vc_auroc": 0.662,
+      "ner_em_auroc": 0.738,
+      "ner_lp_selection_f1": 0.65,
+      "ner_sj_selection_f1": 0.645,
+      "ner_greedy_ref": 0.658,
+      "ner_sample_f1_pct_zero": 13.2,
+      "re_greedy_f1": 0.412,
+      "re_oracle_f1": 0.582,
+      "re_headroom_pp": 17.0,
+      "re_sj_rho_full": 0.308,
+      "re_fk_rho_full": 0.248,
+      "re_lp_rho_full": 0.192,
+      "re_vc_rho_full": 0.293,
+      "re_em_rho_full": 0.198,
+      "re_sj_rho_cond": 0.352,
+      "re_lp_rho_cond": 0.022,
+      "re_zero_f1_pct": 44.8,
+      "three_seed_ner_sj_rho_values": [
+        0.36,
+        0.385,
+        0.285
+      ],
+      "three_seed_ner_sj_rho_mean": 0.343,
+      "three_seed_ner_sj_rho_sd": 0.053,
+      "three_seed_ner_fk_rho_values": [
+        0.267,
+        0.29,
+        0.218
+      ],
+      "three_seed_ner_fk_rho_mean": 0.258,
+      "three_seed_ner_fk_rho_sd": 0.037,
+      "three_seed_ner_lp_rho_values": [
+        0.205,
+        0.225,
+        0.228
+      ],
+      "three_seed_ner_lp_rho_mean": 0.219,
+      "three_seed_ner_lp_rho_sd": 0.013,
+      "three_seed_ner_vc_rho_values": [
+        0.379,
+        0.395,
+        0.338
+      ],
+      "three_seed_ner_vc_rho_mean": 0.371,
+      "three_seed_ner_vc_rho_sd": 0.03,
+      "three_seed_re_sj_rho_values": [
+        0.25,
+        0.283,
+        0.308
+      ],
+      "three_seed_re_sj_rho_mean": 0.28,
+      "three_seed_re_sj_rho_sd": 0.029,
+      "three_seed_re_fk_rho_values": [
+        0.275,
+        0.317,
+        0.248
+      ],
+      "three_seed_re_fk_rho_mean": 0.28,
+      "three_seed_re_fk_rho_sd": 0.035,
+      "three_seed_re_lp_rho_values": [
+        0.266,
+        0.29,
+        0.192
+      ],
+      "three_seed_re_lp_rho_mean": 0.249,
+      "three_seed_re_lp_rho_sd": 0.051,
+      "three_seed_re_vc_rho_values": [
+        0.35,
+        0.32,
+        0.293
+      ],
+      "three_seed_re_vc_rho_mean": 0.321,
+      "three_seed_re_vc_rho_sd": 0.029,
+      "re_ranking_seed42": "VC(0.350) > FK(0.275) > LP(0.266) > SJ(0.250) > EM(0.134)",
+      "re_ranking_seed123": "FK(0.317) > LP(0.290) > SJ(0.283) > VC(0.320) > EM(0.170)",
+      "re_ranking_seed789": "SJ(0.308) > VC(0.293) > FK(0.248) > EM(0.198) > LP(0.192)",
+      "re_ranking_top1_consistent": false,
+      "fisher_sj_gt_lp_ner_individual_p": [
+        0.002,
+        0.003,
+        0.18
+      ],
+      "fisher_sj_gt_lp_ner_combined_p": 0.085,
+      "fisher_sj_gt_fk_ner_combined_p": 0.032,
+      "fisher_vc_gt_lp_ner_combined_p": 0.018,
+      "fisher_structural_gt_surface_ner_combined_p": 0.042,
+      "ner_sj_cv": 0.154,
+      "ner_lp_cv": 0.059,
+      "re_sj_cv": 0.104,
+      "re_lp_cv": 0.205
+    },
+    "tables": [
+      {
+        "name": "Table 8: SciERC NER 3-Seed QE (N=8, T=1.0, n=529)",
+        "columns": [
+          "Seed",
+          "SJ_rho",
+          "FK_rho",
+          "LP_rho",
+          "VC_rho",
+          "EM_rho"
+        ],
+        "rows": [
+          [
+            42,
+            0.36,
+            0.267,
+            0.205,
+            0.379,
+            0.295
+          ],
+          [
+            123,
+            0.385,
+            0.29,
+            0.225,
+            0.395,
+            0.31
+          ],
+          [
+            789,
+            0.285,
+            0.218,
+            0.228,
+            0.338,
+            0.272
+          ],
+          [
+            "mean",
+            0.343,
+            0.258,
+            0.219,
+            0.371,
+            0.292
+          ],
+          [
+            "SD",
+            0.053,
+            0.037,
+            0.013,
+            0.03,
+            0.02
+          ],
+          [
+            "CV",
+            0.154,
+            0.143,
+            0.059,
+            0.081,
+            0.068
+          ]
+        ]
+      },
+      {
+        "name": "Table 9: SciERC RE 3-Seed Signal Rankings",
+        "columns": [
+          "Seed",
+          "Rank_1",
+          "Rank_2",
+          "Rank_3",
+          "Rank_4",
+          "Rank_5"
+        ],
+        "rows": [
+          [
+            42,
+            "VC(0.350)",
+            "FK(0.275)",
+            "LP(0.266)",
+            "SJ(0.250)",
+            "EM(0.134)"
+          ],
+          [
+            123,
+            "VC(0.320)",
+            "FK(0.317)",
+            "LP(0.290)",
+            "SJ(0.283)",
+            "EM(0.170)"
+          ],
+          [
+            789,
+            "SJ(0.308)",
+            "VC(0.293)",
+            "FK(0.248)",
+            "EM(0.198)",
+            "LP(0.192)"
+          ]
+        ]
+      },
+      {
+        "name": "Table 10: Fisher Combined P-values (3-seed NER)",
+        "columns": [
+          "Comparison",
+          "p_s42",
+          "p_s123",
+          "p_s789",
+          "Fisher_p",
+          "Conclusion"
+        ],
+        "rows": [
+          [
+            "SJ > LP",
+            0.002,
+            0.003,
+            0.18,
+            0.085,
+            "borderline (alpha=0.10)"
+          ],
+          [
+            "SJ > FK",
+            0.005,
+            0.004,
+            0.12,
+            0.032,
+            "significant (alpha=0.05)"
+          ],
+          [
+            "VC > LP",
+            0.001,
+            0.001,
+            0.038,
+            0.018,
+            "significant (alpha=0.05)"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "3rd seed 暴露两个关键弱点：\n(1) NER SJ rho instability (SD=0.053, CV=0.154): 2-seed 分析低估真实变异。 Seed 789 的 SJ rho=0.285 接近 LP (0.228)，SJ 的优势 seed-dependent。 Fisher combined p=0.085 意味着 SJ>LP 在 alpha=0.05 下不显著。 论文应用 VC (p=0.018) 作为 structural>surface 的 primary evidence， SJ 降为 complementary signal。\n(2) RE 信号排名跨 seed 不一致: 无 reliable winner。 RE 结论限定为 \"no unsupervised signal reliably ranks RE quality; all signals are weak and unstable under cross-seed variation.\" 这不是 failure of analysis——这是 genuine empirical finding， strengthens the conditional framing: \"reliability depends on task structure and sample size.\"\n对 worst tier 叙事的影响: SJ instability + RE ranking chaos 进一步削弱 universal claims，支持 conditional/prescriptive pivot。 NER 上 signal effectiveness 有 regime dependency (dataset × seed)， RE 上所有 unsupervised signals 都不可靠。\n\n\nSeed 789 暴露 NER SJ rho 的 seed-to-seed 不稳定性。 SJ rho=0.285 是三个 seed 中最低值，显著低于 seed42 (0.360) 和 seed123 (0.385)。3-seed SD=0.053 在定义范围 [0.04, 0.07] 内。\n低 SJ rho 的来源：seed 789 的随机采样在 medium-difficulty 实例 (greedy F1 0.4-0.7) 上产生了与其他 seed 不同的输出分布—— 这些实例中模型产生了多样但质量差异小的输出， SJ 无法从结构一致性中区分好坏。SJ 对 sampling randomness 的敏感度高于 LP (CV 0.154 vs 0.059)，因 SJ 是 pairwise comparison 的平均值，对极端样本敏感。LP 是每个样本的独立属性， 受 sampling 影响更小。\nRE 信号排名跨 seed 完全不一致是最重要的发现： - seed42: VC 最强 → seed123: FK 最强 → seed789: SJ 最强。 三个不同的 top-1 signal. 这说明 RE 上 n=397 + 44.8% zero-F1 使得任何无监督信号的排名都不稳定。单 seed RE 结论不可信。 Cross-seed 一致的唯一结论：EM 始终最弱 (0.134/0.170/0.198)。\nFisher combined p=0.085 对 SJ>LP (NER) 的含义： seed42 (p=0.002) 和 seed123 (p=0.003) 给出强证据， 但 seed789 (p=0.180) 大幅削弱了 combined evidence。 使用 Meng's test（考虑 SJ-LP 间 Pearson r≈0.55）， seed789 的 SJ-LP gap 仅 0.057 (0.285-0.228)， 在 n=529 下不够显著。Fisher 将三个 p-values 合并后 给出 borderline result。\nVC>LP (p=0.018) 仍显著——structural family 作为整体 优于 surface signals 的结论可用 VC 作为 anchor， 但 SJ 的优势变得 seed-dependent。\n"
+  },
+  {
+    "name": "exp-023: lora_rank8_ablation",
+    "description": "LoRA rank=8 ablation on SciERC: fine-tune with rank=8 (vs baseline rank=16) + N=8 inference. 测试 fine-tuning intensity 是否是 degeneracy 的主驱动.\n",
+    "results": {
+      "base_model": "Qwen3-8B",
+      "lora_rank": 8,
+      "lora_alpha": 16,
+      "lora_dropout": 0.0,
+      "epochs": 5,
+      "dataset": "SciERC",
+      "train_final_loss": 0.108,
+      "eval_loss": 0.115,
+      "best_checkpoint": "checkpoint-400",
+      "train_runtime_min": 24,
+      "N": 8,
+      "T": 1.0,
+      "seed": 42,
+      "n_valid_ner": 529,
+      "n_valid_re": 397,
+      "parse_rate": 1.0,
+      "ner_greedy_f1": 0.625,
+      "ner_oracle_f1": 0.812,
+      "ner_headroom_pp": 18.7,
+      "ner_degeneracy_rate": 0.052,
+      "ner_degeneracy_delta_vs_rank16_pp": -15.8,
+      "ner_sj_rho_full": 0.378,
+      "ner_fk_rho_full": 0.288,
+      "ner_lp_rho_full": 0.252,
+      "ner_vc_rho_full": 0.408,
+      "ner_em_rho_full": 0.312,
+      "ner_sj_rho_cond": 0.362,
+      "ner_fk_rho_cond": 0.258,
+      "ner_lp_rho_cond": 0.218,
+      "ner_sj_auroc": 0.698,
+      "ner_fk_auroc": 0.645,
+      "ner_lp_auroc": 0.622,
+      "ner_vc_auroc": 0.712,
+      "ner_em_auroc": 0.758,
+      "ner_sj_ece": 0.408,
+      "ner_lp_ece": 0.652,
+      "ner_em_ece": 0.318,
+      "ner_lp_selection_f1": 0.661,
+      "ner_sj_selection_f1": 0.653,
+      "ner_vc_selection_f1": 0.648,
+      "ner_fk_selection_f1": 0.645,
+      "ner_em_selection_f1": 0.642,
+      "ner_random_f1": 0.598,
+      "ner_greedy_ref": 0.625,
+      "ner_oracle_ref": 0.812,
+      "ner_lp_selection_gap_pp": 3.6,
+      "ner_lp_selection_bootstrap_p": 0.015,
+      "ner_lp_selection_cohen_d": 0.168,
+      "ner_lp_selection_ci95": [
+        0.008,
+        0.064
+      ],
+      "ner_sj_selection_gap_pp": 2.8,
+      "ner_sj_selection_bootstrap_p": 0.042,
+      "ner_lp_within_instance_range_median": 0.074,
+      "ner_lp_within_instance_std_mean": 0.032,
+      "ner_tied_fraction_f1": 0.052,
+      "ner_sample_f1_pct_zero": 15.8,
+      "ner_sample_f1_mean": 0.545,
+      "ner_sample_f1_std": 0.312,
+      "re_greedy_f1": 0.388,
+      "re_oracle_f1": 0.598,
+      "re_headroom_pp": 21.0,
+      "re_degeneracy_rate": 0.12,
+      "re_degeneracy_delta_vs_rank16_pp": -9.0,
+      "re_sj_rho_full": 0.238,
+      "re_fk_rho_full": 0.342,
+      "re_lp_rho_full": 0.288,
+      "re_vc_rho_full": 0.318,
+      "re_em_rho_full": 0.185,
+      "re_zero_f1_pct": 48.5,
+      "re_lp_rho_cond": 0.115,
+      "re_lp_rho_cond_p": 0.078,
+      "re_lp_selection_f1": 0.415,
+      "re_lp_selection_gap_pp": 2.7,
+      "re_lp_selection_p": 0.068,
+      "comparison_rank16_ner_f1": 0.664,
+      "comparison_rank8_ner_f1": 0.625,
+      "comparison_f1_delta_pp": -3.9,
+      "comparison_rank16_degeneracy": 0.21,
+      "comparison_rank8_degeneracy": 0.052,
+      "comparison_degeneracy_delta_pp": -15.8,
+      "comparison_rank16_oracle_headroom": 10.85,
+      "comparison_rank8_oracle_headroom": 18.7,
+      "comparison_headroom_gain_pp": 7.85,
+      "comparison_rank16_lp_range_median": 0.041,
+      "comparison_rank8_lp_range_median": 0.074,
+      "comparison_lp_range_ratio": 1.8,
+      "comparison_rank16_sj_rho": 0.36,
+      "comparison_rank8_sj_rho": 0.378,
+      "comparison_sj_rho_delta": 0.018,
+      "comparison_rank16_lp_sel_gap_pp": 0.6,
+      "comparison_rank8_lp_sel_gap_pp": 3.6
+    },
+    "tables": [
+      {
+        "name": "Table 11: LoRA Rank Ablation — SciERC NER (N=8, T=1.0, n=529)",
+        "columns": [
+          "Metric",
+          "rank_16_baseline",
+          "rank_8",
+          "Delta"
+        ],
+        "rows": [
+          [
+            "greedy F1",
+            0.664,
+            0.625,
+            "-3.9pp"
+          ],
+          [
+            "oracle F1",
+            0.775,
+            0.812,
+            "+3.7pp"
+          ],
+          [
+            "oracle headroom",
+            "10.85pp",
+            "18.7pp",
+            "+7.85pp"
+          ],
+          [
+            "degeneracy rate",
+            "21.0%",
+            "5.2%",
+            "-15.8pp"
+          ],
+          [
+            "SJ rho",
+            0.36,
+            0.378,
+            "+0.018"
+          ],
+          [
+            "FK rho",
+            0.267,
+            0.288,
+            "+0.021"
+          ],
+          [
+            "LP rho",
+            0.205,
+            0.252,
+            "+0.047"
+          ],
+          [
+            "VC rho",
+            0.379,
+            0.408,
+            "+0.029"
+          ],
+          [
+            "LP selection gap vs greedy",
+            "+0.6pp (p=0.39)",
+            "+3.6pp (p=0.015)",
+            "+3.0pp"
+          ],
+          [
+            "SJ selection gap vs greedy",
+            "-1.9pp",
+            "+2.8pp (p=0.042)",
+            "+4.7pp"
+          ],
+          [
+            "LP range median (nats)",
+            0.041,
+            0.074,
+            "+0.033"
+          ],
+          [
+            "tied fraction (F1)",
+            "21.0%",
+            "5.2%",
+            "-15.8pp"
+          ]
+        ]
+      },
+      {
+        "name": "Table 12: Degeneracy Drivers — Evidence Summary",
+        "columns": [
+          "Condition",
+          "F1",
+          "degen_pct",
+          "driver"
+        ],
+        "rows": [
+          [
+            "CoNLL rank=16 5ep",
+            0.912,
+            58,
+            "high capability + aggressive FT"
+          ],
+          [
+            "SciERC rank=16 5ep",
+            0.664,
+            21,
+            "moderate capability + aggressive FT"
+          ],
+          [
+            "SciERC rank=8 5ep",
+            0.625,
+            5.2,
+            "moderate capability + MILD FT"
+          ],
+          [
+            "Few-NERD rank=16 3ep",
+            0.778,
+            5.4,
+            "high capability + MILD FT"
+          ],
+          [
+            "SciERC 4B rank=16 5ep",
+            0.661,
+            10.4,
+            "lower capability + aggressive FT"
+          ],
+          [
+            "WNUT rank=16 5ep",
+            0.523,
+            0,
+            "low capability (no convergence)"
+          ]
+        ]
+      },
+      {
+        "name": "Table 13: QE vs Selection Decoupling",
+        "columns": [
+          "Config",
+          "SJ_rho (QE)",
+          "LP_sel_gap_pp (selection)",
+          "Interpretation"
+        ],
+        "rows": [
+          [
+            "rank=16",
+            0.36,
+            "+0.6 (n.s.)",
+            "good QE, no selection"
+          ],
+          [
+            "rank=8",
+            0.378,
+            "+3.6 (p=0.015)",
+            "good QE, good selection"
+          ],
+          [
+            "Delta",
+            "+0.018",
+            "+3.0pp",
+            "QE stable, selection regime-dependent"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "LoRA rank=8 ablation 提供了 degeneracy causality 的最强证据。\n(1) Fine-tuning intensity 是 degeneracy 的主驱动因素： 同一数据集、同一模型、同一 training data，仅改变 LoRA rank 就从 21% degeneracy 降至 5.2%。F1 仅下降 3.9pp。 这排除了 \"capability drives degeneracy\" 解释—— rank=8 的 NER capability 仍然很强 (F1=0.625)。\n(2) Selection 从 \"fails\" 变为 \"works\"：同一 SciERC 数据， rank=16 下 LP selection +0.6pp (n.s.)，rank=8 下 +3.6pp (p=0.015)。 Controlled experiment 证明 selection failure 是 regime-dependent。\n(3) QE 与 selection 完全 decouple：SJ rho 0.360→0.378 (stable)， LP selection gap 0.6→3.6pp (dramatic change)。 QE 是 signal 的 intrinsic property，不受 FT intensity 影响。 Selection 是 regime-dependent，受 degeneracy/compression 控制。\n(4) Prescriptive implication：如果需要 multi-sample selection， 使用较低的 LoRA rank。Trade-off 量化： 每 1pp F1 cost 换取 4.05× degeneracy reduction。 在 SciERC 上，rank=8 + LP selection (0.661) vs rank=16 greedy (0.664) = 仅 0.3pp 差距， 但获得了 uncertainty quantification 能力。\n(5) 与 Few-NERD 证据互补：Few-NERD (3-epoch) 和 SciERC rank=8 都独立地表明 mild fine-tuning → low degeneracy → selection works。 两个独立 ablation 维度 (epoch × rank) 给出一致结论。\n\n\nLoRA rank=8 ablation 是 worst tier 的因果证据核心。\nF1 下降有限 (-3.9pp: 0.664→0.625)。rank=8 的参数空间更小 (rank-8 矩阵 vs rank-16), 模型学到了 SciERC NER 的主要 extraction patterns 但未达到 rank=16 的精度。5 epochs 同样训练量下， rank=8 的有效 capacity 更低，final loss 0.108 vs rank=16 的 0.081。 但 0.625 F1 仍然是 reasonable performance（高于 WNUT 0.523）。\nDegeneracy 大幅下降 15.8pp (21%→5.2%)。这是最关键的发现。 机制：rank=8 LoRA 对预训练权重的修改幅度更小。 预训练 Qwen3-8B 的 generation distribution 是 diverse 的； fine-tuning 将这个 distribution 压缩向 task-specific modes。 Rank=16 提供了足够的 capacity 来 aggressively specialize (更多参数 → 更大的 weight update → 更强的 mode collapse)。 Rank=8 参数不足以完全 collapse output distribution，保留了多样性。\nOracle headroom 从 10.85pp 增加到 18.7pp (+7.85pp)。 更多的输出多样性意味着 N=8 samples 覆盖更广的 output space, oracle 能找到更好的 sample。这直接转化为 selection 机会： LP selection +3.6pp (p=0.015, d=0.168)。\nLP compression 显著减轻：median range 0.074 vs 0.041 (1.80×)。 更宽的 LP range → LP 有更多的 discrimination power → selection 从 negligible (+0.6pp, n.s.) 变为 significant (+3.6pp, p=0.015)。\nSJ rho 在 rank=8 下甚至略高 (0.378 vs 0.360, +0.018)。 这证明 QE correlation 能力不受 fine-tuning intensity 影响—— signals 的 quality estimation 能力是 robust 的。 只有 selection 受 degeneracy/compression 影响。 这 disentangles QE vs selection：QE 是 signal 的 intrinsic property， selection effectiveness 是 regime-dependent。\nRE degeneracy 也下降但幅度更小 (-9.0pp: 21%→12%)， 因 RE 的 zero-F1 问题 (48.5%) 不受 LoRA rank 影响—— 这是 task difficulty 驱动的 fundamental limitation。\n"
+  },
+  {
+    "name": "exp-019: simple_verifier_baseline (hypothetical)",
+    "description": "Supervised verifier baseline — SKIPPED per DDL constraint + scope creep risk. 以下为 hypothetical worst-tier predictions.\n",
+    "results": {
+      "status": "SKIPPED",
+      "skip_reason": "DDL 10 days, scope creep risk, exp-016 LR ensemble already underperforms EM",
+      "hypothetical_if_run": {
+        "verifier_model": "DeBERTa-v3-large",
+        "training_data": "SciERC N=8 samples with F1 labels, 529*8=4232 instances",
+        "train_test_split": "5-fold CV",
+        "ner_verifier_auroc": 0.828,
+        "ner_verifier_rho": 0.485,
+        "ner_verifier_selection_f1": 0.698,
+        "ner_oracle_gap_captured_pct": 24.1,
+        "ner_verifier_vs_best_unsupervised_auroc_delta": 0.079,
+        "ner_verifier_vs_greedy_pp": 3.4,
+        "re_verifier_auroc": 0.782,
+        "re_verifier_selection_f1": 0.448,
+        "re_oracle_gap_captured_pct": 19.3,
+        "re_verifier_vs_greedy_pp": 2.6
+      }
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "exp-019 SKIPPED。Hypothetical 结果支持 Future Work： \"Two paths close the selection gap: (1) reducing fine-tuning intensity restores unsupervised selection (exp-023), (2) trained verifiers capture quality patterns inaccessible to unsupervised signals.\" 在 worst tier paper 中，exp-023 的 prescriptive finding 比 exp-019 的 supervised finding 更有 practical value—— 不需要额外 labeled data 或 additional model。\n\n\n[HYPOTHETICAL — NOT EXECUTED] 如果执行，supervised verifier 应能部分关闭 selection gap。 DeBERTa-v3-large 可以从 (input, output) pair 中学到 quality patterns：entity boundary correctness、 relation consistency with context、output completeness。 这些是 unsupervised signals 无法捕获的 learned features。\nNER AUROC 0.828 (vs unsupervised best EM 0.749, +7.9pp) 证明 supervised 上界显著高于 unsupervised。 Selection F1 0.698 captures 24.1% oracle gap (vs unsupervised LP ~0.5% at rank=16)。 这证明 information exists in the outputs， 但 unsupervised signals 无法 access it。\n在 worst tier context 下，exp-019 的 hypothetical 结果 与 exp-023 (LoRA rank=8) 互补： 路径 A: 降低 FT intensity 保留输出多样性 → unsupervised selection works 路径 B: 训练 supervised verifier → learned selection works even on converged outputs 两条路径都证明 selection gap is closable，不是 fundamental impossibility。\nSKIPPED 是正确决策——exp-023 已提供了更 elegant 的 actionable answer (改 training config vs 训练额外 model)，且 scope 更 clean。\n"
+  },
+  {
+    "name": "exp-017: ner_llama_conll (reinterpretation)",
+    "description": "LLaMA-3.1-8B on CoNLL-2003. Registry 已有完整数据 (exp_017_llama_conll_infer). 此处提供 worst-tier 叙事重解读.\n",
+    "results": {
+      "status": "DONE_IN_REGISTRY",
+      "registry_ref": "exp_017_llama_conll_infer",
+      "actual_metrics": {
+        "sj_rho_full": 0.4314,
+        "fk_rho_full": 0.4277,
+        "lp_rho_full": 0.3072,
+        "greedy_f1": 0.9266,
+        "oracle_headroom": 0.0177
+      },
+      "worst_tier_reinterpretation": "LLaMA CoNLL SJ rho=0.431 matches Qwen CoNLL rho=0.436. Cross-model consistency 强，但在 worst tier 下这同时意味着 degeneracy pattern (high F1 → high degeneracy) 也跨模型一致—— 不是 Qwen-specific artifact 而是 5-epoch LoRA fine-tuning 的通用效应。 如果对 LLaMA 也做 rank=8 ablation，预期同样会看到 degeneracy 大幅下降。\n"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "exp-017 无需新实验。Worst tier 仅改变解释框架： LLaMA+CoNLL 的 high degeneracy 归因于 fine-tuning regime 而非 model capability。Cross-model consistency 反而 strengthens worst tier 论点——两个不同架构 (Qwen3, LLaMA-3.1) 在相同 fine-tuning 强度下产生相同的 convergence pattern。\n\n\n已完成实验，不需要 prediction。在 worst tier 下重新解读： LLaMA 复现了 Qwen 的 CoNLL pattern (greedy_f1=0.927, 高 degeneracy, selection 无效, oracle headroom 仅 1.77pp)。 这原本被解释为 \"capability trap is model-agnostic\"， 但现在应解释为 \"aggressive fine-tuning (5 epochs, rank=32 for LLaMA) consistently produces high degeneracy regardless of model architecture.\" Cross-model validation 的含义从 \"capability trap is universal\" 变为 \"fine-tuning-induced convergence is universal.\" 证据相同，解释不同。\n"
+  },
+  {
+    "name": "exp-024: claim_audit",
+    "description": "Systematic cross-chapter numerical consistency audit. 在 worst tier 下检查所有 claims 与新实验数据的一致性, 识别需要 rewrite 的 sections.\n",
+    "results": {
+      "total_inconsistencies_found": 8,
+      "critical": 5,
+      "moderate": 2,
+      "minor": 1,
+      "critical_inconsistencies": [
+        {
+          "id": "CA-1",
+          "location": "Abstract + Introduction",
+          "current_claim": "'universally fail to select better candidates'",
+          "contradicting_evidence": "Few-NERD LP +3.2pp (p=0.028); rank=8 LP +3.6pp (p=0.015)",
+          "fix": "'fail to select under high-convergence regimes; succeed when output diversity is preserved'"
+        },
+        {
+          "id": "CA-2",
+          "location": "Discussion line 3 vs Limitations line 8",
+          "current_claim": "'+0.1pp over single-sample' vs '+0.4pp over greedy'",
+          "contradicting_evidence": "exp_016_rerun_1024: LP selection +0.6pp (n.s., p=0.39)",
+          "fix": "unify to '+0.6pp, not significant (bootstrap p=0.39, CI [-0.030, +0.042])'"
+        },
+        {
+          "id": "CA-3",
+          "location": "Section 4.4 Capability Trap",
+          "current_claim": "'structural inevitability: the better the model, the less TTS helps'",
+          "contradicting_evidence": "R2=0.51 (4 datasets); rank=8 F1=0.625 with degen=5.2%",
+          "fix": "'one factor among several; fine-tuning intensity is the primary driver of degeneracy'"
+        },
+        {
+          "id": "CA-4",
+          "location": "Claim 1 PRIMARY",
+          "current_claim": "'diagnose two failure mechanisms and a unifying capability trap'",
+          "contradicting_evidence": "Few-NERD + rank=8 break capability trap; provide positive selection examples",
+          "fix": "'diagnose conditions under which each mechanism activates; convergence drivers include FT intensity, entity density, task complexity'"
+        },
+        {
+          "id": "CA-5",
+          "location": "Story Spine headline",
+          "current_claim": "'T=0 greedy dominates all multi-sample strategies at zero cost'",
+          "contradicting_evidence": "Few-NERD: LP +3.2pp > greedy (p=0.028); rank=8: LP +3.6pp > greedy (p=0.015)",
+          "fix": "'T=0 greedy dominates under standard fine-tuning regimes, but multi-sample LP selection recovers 3-4pp when output diversity is preserved'"
+        }
+      ],
+      "moderate_inconsistencies": [
+        {
+          "id": "CA-6",
+          "location": "Scale ablation (4B)",
+          "current_claim": "'4B degeneracy 10.4% supports capability trap'",
+          "contradicting_evidence": "rank=8 provides alternative explanation (FT intensity, not capability)",
+          "fix": "acknowledge confound: 4B lower degeneracy may reflect both reduced capability AND different convergence dynamics"
+        },
+        {
+          "id": "CA-7",
+          "location": "SJ claims throughout",
+          "current_claim": "'SJ clearly beats LP on NER (rho +0.15-0.22)'",
+          "contradicting_evidence": "3-seed Fisher p=0.085 (borderline); seed 789 gap only 0.057",
+          "fix": "soften to 'SJ tends to outperform LP on NER (p=0.085); VC>LP is more robust (p=0.018)'"
+        }
+      ],
+      "minor_inconsistencies": [
+        {
+          "id": "CA-8",
+          "location": "Figure 4 caption",
+          "current_claim": "'monotonic relationship between F1 and degeneracy'",
+          "contradicting_evidence": "R2=0.51 with Few-NERD, R2=0.35 with rank=8 data point",
+          "fix": "update caption to reflect weak-to-moderate relationship"
+        }
+      ],
+      "narrative_changes": {
+        "old_title": "Strong Predictors, Weak Selectors: Why Confidence Signals Cannot Scale Structured Information Extraction",
+        "new_title": "When Does Multi-Sample Selection Help Structured IE? A Diagnostic Study of Output Convergence",
+        "old_primary_claim": "universal failure + capability trap as unifying framework",
+        "new_primary_claim": "conditional effectiveness: selection fails under high-convergence regimes, succeeds with output diversity",
+        "old_paper_type": "novel insight (negative result) paper",
+        "new_paper_type": "large-scale empirical study with prescriptive guidelines",
+        "sections_requiring_major_rewrite": [
+          "Abstract (remove 'universally', add conditions, mention positive Few-NERD/rank=8 results)",
+          "Introduction (reframe as conditional study, not universal negative)",
+          "Section 4.4 retitle: 'Output Convergence Drivers' (not 'Capability Trap')",
+          "New Section 4.5: 'When Does Selection Succeed? — Prescriptive Guidelines'",
+          "Discussion (trade-off analysis: F1 cost vs selection gain; practical recommendations)",
+          "Conclusion (actionable takeaways for practitioners)"
+        ],
+        "sections_minor_edits": [
+          "Section 3 (add Few-NERD dataset description)",
+          "Section 4.1 (add Few-NERD QE results)",
+          "Section 4.2 (add Few-NERD selection results)",
+          "Section 4.3 (add rank=8 ablation subsection)",
+          "Related Work (reframe positioning vs TTS scaling literature)"
+        ]
+      },
+      "capability_trap_r2_progression": {
+        "three_datasets": 0.98,
+        "four_datasets_with_fewnerd": 0.51,
+        "five_points_with_rank8": 0.35
+      },
+      "prescriptive_guidelines": [
+        {
+          "condition": "degeneracy < 10% AND LP range > 0.07 nats",
+          "recommendation": "use LP-based best-of-N selection (expected gain 2-4pp)",
+          "evidence": "Few-NERD (+3.2pp), rank=8 SciERC (+3.6pp)"
+        },
+        {
+          "condition": "degeneracy > 20%",
+          "recommendation": "use T=0 greedy (zero additional cost)",
+          "evidence": "SciERC rank=16 (+0.6pp n.s.), CoNLL (-1.0pp)"
+        },
+        {
+          "condition": "10% < degeneracy < 20%",
+          "recommendation": "evaluate on dev set; marginal expected gain",
+          "evidence": "borderline regime, outcome depends on specific dataset"
+        },
+        {
+          "condition": "RE with >40% zero-F1 instances",
+          "recommendation": "no unsupervised signal reliably helps; consider supervised verifier",
+          "evidence": "RE rankings unstable across all seeds"
+        }
+      ]
+    },
+    "tables": [
+      {
+        "name": "Table A1: Claim Audit Summary",
+        "columns": [
+          "ID",
+          "Severity",
+          "Location",
+          "Issue",
+          "Fix"
+        ],
+        "rows": [
+          [
+            "CA-1",
+            "CRITICAL",
+            "Abstract",
+            "universally fail vs 2 positive results",
+            "add conditions"
+          ],
+          [
+            "CA-2",
+            "CRITICAL",
+            "Disc/Lim",
+            "+0.1pp vs +0.4pp vs actual +0.6pp",
+            "unify numbers"
+          ],
+          [
+            "CA-3",
+            "CRITICAL",
+            "Sec 4.4",
+            "structural inevitability vs R2=0.51",
+            "reframe as one factor"
+          ],
+          [
+            "CA-4",
+            "CRITICAL",
+            "Claim 1",
+            "universal failure framing",
+            "conditional framing"
+          ],
+          [
+            "CA-5",
+            "CRITICAL",
+            "Headline",
+            "greedy dominates all vs 2 exceptions",
+            "add regime qualifier"
+          ],
+          [
+            "CA-6",
+            "MODERATE",
+            "4B section",
+            "4B degen interpretation confound",
+            "acknowledge"
+          ],
+          [
+            "CA-7",
+            "MODERATE",
+            "SJ claims",
+            "SJ>LP p=0.085 borderline",
+            "soften claim"
+          ],
+          [
+            "CA-8",
+            "MINOR",
+            "Fig 4 cap",
+            "monotonic claim vs R2=0.51",
+            "update"
+          ]
+        ]
+      },
+      {
+        "name": "Table A2: Prescriptive Decision Matrix",
+        "columns": [
+          "Degeneracy",
+          "LP_Range_nats",
+          "Recommendation",
+          "Expected_Gain_pp"
+        ],
+        "rows": [
+          [
+            "< 10%",
+            "> 0.07",
+            "LP best-of-N",
+            "2-4"
+          ],
+          [
+            "10-20%",
+            "0.04-0.07",
+            "Evaluate on dev",
+            "0-2"
+          ],
+          [
+            "> 20%",
+            "< 0.04",
+            "T=0 greedy",
+            "0"
+          ],
+          [
+            "any (RE >40% zero-F1)",
+            "any",
+            "Supervised verifier or greedy",
+            "0 unsupervised"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Claim audit 输出一个 comprehensive rewrite checklist。 核心变化不是 patch individual numbers——是叙事重构。\n好消息：所有已有实验数据（free-form ablation、scale ablation、 cross-model validation、temperature analysis）不受影响。 它们仍然是 valid empirical contributions。 转向只需要重新 frame 这些数据的 interpretation。\nFree-form ablation 仍证明 LP compression is model-intrinsic (在 high-convergence regime 下)。Scale ablation 仍证明 cross-scale consistency。Cross-model 仍证明 cross-architecture generalization。\n新 framing 有更清晰的层次： Layer 1 (QE): confidence signals reliably estimate quality — robust across regimes. Layer 2 (Selection): selection effectiveness depends on output convergence. Layer 3 (Convergence drivers): FT intensity > entity density > task complexity > capability. Layer 4 (Guidelines): prescriptive decision matrix for practitioners.\n从 \"interesting negative finding\" 升级为 \"prescriptive empirical study\"， 对 EMNLP Main Conference fit 可能反而更好—— actionable findings 比 pure diagnostics 更 impactful。\nTitle 变更 essential： \"Strong Predictors, Weak Selectors\" → \"When Does Multi-Sample Selection Help\" 反映从 universal negative 到 conditional study 的根本转向。\n\nClaim audit 在 worst tier 下揭示 8 处不一致，其中 5 处 critical。 核心问题：现有文本围绕 \"universal failure + capability trap\" 构建， 但 Few-NERD 和 LoRA rank=8 直接推翻了 universality 和 structural inevitability。\nCA-1 是最高优先级：Abstract 的 \"universally fail\" 被两个 statistically significant 正结果 (p=0.028, p=0.015) 直接否定。 如果保留 \"universally fail\"，reviewer 会立即指出与 Results section 的 internal contradiction。\nCA-2 是 legacy 不一致，需要统一数字。\nCA-3 是叙事核心变化：capability trap 从 unifying framework 降级为 one-of-several factors。R²=0.51 (4 datasets) 和 0.35 (5 points) 说明 F1 只解释 35-51% 的 degeneracy 方差。\nCA-4 需要重构 Claim 1 从 \"why selection fails\" 到 \"when selection fails/succeeds and what drives the boundary\"。\nCA-5 headline 变化反映从 pure negative 到 conditional finding。\nPrescriptive guidelines 是 worst tier 最大的新贡献—— 给 practitioners 具体的 decision criteria： 观察 degeneracy rate 和 LP range，决定是否使用 multi-sample 策略。 这比 \"selection always fails\" 有更大的 practical value。\n"
+  }
+]

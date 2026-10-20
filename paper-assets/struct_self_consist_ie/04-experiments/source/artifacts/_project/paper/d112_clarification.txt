@@ -1,0 +1,12 @@
+## Clarification: Random vs Single-sample gap in Table 2
+
+We thank the reviewer for identifying this discrepancy. Upon investigation, we found a labeling error in Table 2: the row labeled "Single" (described in the caption as "one T=1.0 draw") was computed using greedy decoding (T=0, argmax) rather than a single stochastic sample at T=1.0. The macro-averaged F1 of greedy decoding (0.645) naturally exceeds the expected F1 of stochastic samples at T=1.0 (0.610), explaining the 3.5pp gap.
+
+The correct interpretation is:
+
+- **Greedy (T=0)**: F1 = 0.663 (micro) / 0.645 (macro). Deterministic argmax decoding. Serves as a strong single-pass baseline requiring no sampling overhead.
+- **Random (T=1.0)**: F1 = 0.610. Mean per-instance F1 averaged over N=8 stochastic samples. This equals the expected F1 of any single T=1.0 draw by linearity of expectation.
+
+Under correct T=1.0 sampling, E[Single] = E[Random] = 0.610, confirming the reviewer's expectation that these should be equal.
+
+We will correct Table 2 by (a) replacing the "Single" row label with "Greedy (macro)" to accurately reflect the T=0 computation, and (b) noting that selection signals improve over random selection (LP: +3.7pp, SJ/FK: +3.6pp) but fail to match greedy decoding, reinforcing our correlation-selection gap finding.

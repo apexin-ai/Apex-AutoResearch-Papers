@@ -1,0 +1,285 @@
+\section{Experiments}
+\label{sec:experiments}
+
+\subsection{Experimental Setup}
+\label{sec:setup}
+
+\paragraph{Datasets.}
+We evaluate on three English IE benchmarks spanning a difficulty gradient.
+\textbf{SciERC} \cite{luan2018scierc} contains 551 test instances from scientific abstracts annotated for joint NER (6 entity types) and RE (7 relation types), representing a complex schema with overlapping structures.
+\textbf{CoNLL-2003} \cite{tjongkimsang2003conll} provides 3{,}453 test sentences from newswire with 4 entity types, serving as a high-accuracy benchmark where models achieve ${>}$91\% micro F1.
+\textbf{WNUT-17} \cite{derczynski2017wnut} consists of 1{,}287 test instances from social media with emerging entities, used to probe method boundaries where model capability is insufficient.
+This gradient---from near-solved (CoNLL) through challenging (SciERC) to infeasible (WNUT-17)---enables systematic characterization of how signal effectiveness varies with task difficulty (\S\ref{sec:complexity_robustness}).
+
+\paragraph{Models.}
+Our primary model is \textbf{Qwen3-8B}, fine-tuned with LoRA ($r{=}32$) separately per dataset.
+For cross-model validation, we evaluate \textbf{LLaMA-3.1-8B-Instruct} to assess whether structural confidence signals transfer across architectures and training regimes.
+
+\paragraph{Sampling and Evaluation.}
+For each test instance, we draw $N$ independent samples at temperature $T{=}1.0$, with $T{=}0.7$ for robustness analysis.
+We use $N{=}8$ for both SciERC and CoNLL in the primary evaluation, and $N{=}16$ for SciERC scaling experiments.
+Quality estimation is measured along two axes: \textit{rank correlation} with instance-level F1 via Spearman $\rho$ and Kendall $\tau$, and \textit{binary discrimination} via AUROC (instances above vs.\ below median F1).
+Downstream utility is assessed through \textbf{best-of-$N$ selection F1}: the F1 obtained when each signal selects one sample per instance.
+Instance-level F1 uses exact span matching for NER and head-tail-label matching for RE, where a relation is correct only when both argument entities and the relation label match the gold annotation.
+The greedy decoding baseline ($T{=}0$, $N{=}1$) establishes performance without test-time scaling.
+
+\paragraph{Confidence Signals.}
+We compare five signals from three families (detailed in \S\ref{sec:signals}).
+\textit{Structural} signals operate on extracted entity/relation sets: \textbf{Voting Confidence} aggregates per-extraction frequency across samples, and \textbf{Soft Jaccard (SJ)} measures pairwise set similarity \cite{jaccard1901distribution}.
+\textit{Surface} signals operate on string representations: \textbf{Fleiss' $\kappa$ (FK)} quantifies inter-sample agreement treating samples as independent annotators \cite{fleiss1971agreement}, and \textbf{Exact Match (EM)} computes the fraction of identical sample pairs.
+The \textit{model-internal} signal is \textbf{log-probability (logprob)}, the mean token-level log-likelihood.
+
+\paragraph{Implementation.}
+Inference uses vLLM with XGrammar constrained decoding \cite{willard2023guided} to enforce valid JSON output structure.
+A span realignment post-processing step corrects character-level offset mismatches between generated and gold annotation spans.
+All confidence signals are computed from the $N$ samples without access to gold labels.
+
+%% ============================================================
+\subsection{Quality Estimation Results}
+\label{sec:qe_results}
+
+\begin{table*}[t]
+\centering
+\small
+\caption{Quality estimation across tasks and models (Spearman $\rho$ and AUROC). All results use $N{=}8$ samples at $T{=}1.0$. Best value per column in \textbf{bold}. SciERC evaluates joint NER (6 types) and RE (7 types); CoNLL evaluates NER (4 types) with two model families. RE results are preliminary (single dataset).}
+\label{tab:quality_estimation}
+\begin{tabular}{ll cc cc cc cc}
+\toprule
+& & \multicolumn{2}{c}{\textbf{SciERC NER}} & \multicolumn{2}{c}{\textbf{SciERC RE}} & \multicolumn{2}{c}{\textbf{CoNLL (Qwen)}} & \multicolumn{2}{c}{\textbf{CoNLL (LLaMA)}} \\
+\cmidrule(lr){3-4} \cmidrule(lr){5-6} \cmidrule(lr){7-8} \cmidrule(lr){9-10}
+Signal & Family & $\rho$ & AUC & $\rho$ & AUC & $\rho$ & AUC & $\rho$ & AUC \\
+\midrule
+Voting Conf. & Structural & \textbf{.379} & .684 & \textbf{.350} & .694 & .424 & .789 & .426 & .709 \\
+Soft Jaccard  & Structural & .360 & .692 & .250 & .670 & .436 & .801 & \textbf{.431} & .704 \\
+Fleiss' $\kappa$ & Surface & .267 & .629 & .275 & .609 & .400 & .774 & .428 & .703 \\
+Exact Match  & Surface    & .295 & \textbf{.749} & .134 & \textbf{.706} & \textbf{.451} & \textbf{.816} & \textbf{.431} & .705 \\
+Log-prob     & Model      & .205 & .578 & .266 & .601 & .316 & .753 & .307 & \textbf{.761} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Table~\ref{tab:quality_estimation} presents rank correlation ($\rho$) and AUROC for five confidence signals across tasks and models.
+
+\paragraph{Structural signals dominate rank correlation on complex schemas.}
+On SciERC NER, structural signals lead rank correlation: Voting Confidence achieves $\rho{=}0.379$ with SJ close behind ($\rho{=}0.360$), both substantially outperforming surface and model-internal alternatives ($\rho{\leq}0.295$).
+Voting's edge over SJ reflects its extraction-level granularity: it rewards entities that appear consistently while penalizing hallucinated or missed ones, whereas SJ compares entire sets and is sensitive to both overlap and total extraction count.
+The structural lead persists on RE, where Voting ($\rho{=}0.350$) again leads.
+However, AUROC rankings diverge: Exact Match achieves the highest AUROC on both NER (0.749) and RE (0.706) despite its lower $\rho$, revealing a ranking-discrimination dissociation we analyze below (\S\ref{sec:complexity_robustness}).
+All signals weaken on RE: 40\% of instances receive zero F1, creating a floor effect that compresses the discriminable range.
+FK ($\rho{=}0.275$) exceeds SJ ($\rho{=}0.250$) on RE---a reversal from NER showing no single structural signal dominates across both tasks.
+
+\paragraph{Signal rankings shift with task difficulty.}
+On CoNLL NER, where greedy decoding achieves ${>}$91\% micro F1, the signal landscape changes substantially.
+Exact Match leads with $\rho{=}0.451$ and AUROC${=}0.816$, surpassing SJ ($\rho{=}0.436$) and Voting ($\rho{=}0.424$).
+When most samples are near-correct, binary agreement captures the remaining variance more efficiently than set-level similarity.
+This reversal---EM${>}$SJ on easy tasks vs.\ SJ${>}$EM on hard tasks---demonstrates that optimal signal choice depends on intrinsic task difficulty.
+
+\paragraph{Cross-model stability.}
+Comparing Qwen and LLaMA on CoNLL, SJ shows remarkable stability: $\rho{=}0.436$ (Qwen) vs.\ $\rho{=}0.431$ (LLaMA), a gap of only 0.005.
+This model-agnostic property is expected for structural signals that operate on outputs rather than internal model states, and provides the strongest evidence that SJ generalizes across architectures.
+The SJ--FK gap also narrows with schema simplification: $\Delta\rho{=}0.092$ on SciERC NER (6 entity types) vs.\ $\Delta\rho{=}0.003$ on CoNLL with LLaMA (4 types), suggesting that set-level structure contributes less when the type inventory is small.
+
+\paragraph{The logprob paradox.}
+Log-probability reveals a dissociation between ranking and classification.
+On CoNLL with LLaMA, it achieves the highest AUROC (0.761) yet the lowest $\rho$ (0.307) among all signals.
+This pattern indicates that logprob assigns well-separated scores to easy vs.\ hard instances (strong binary discrimination) but provides little resolution within each group (weak ranking), making it better suited for binary filtering than continuous quality estimation.
+We return to this distinction in \S\ref{sec:complexity_robustness} and visualize it in Figure~\ref{fig:signal_heatmap}.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_signal_heatmap_1024}
+\caption{Signal quality heatmap across tasks and models. Color intensity encodes Spearman $\rho$; structural signals (VC, SJ) dominate on complex schemas (SciERC) while surface signals (EM) lead on simpler tasks (CoNLL).}
+\label{fig:signal_heatmap}
+\end{figure}
+
+\paragraph{Oracle headroom and practical ceilings.}
+On CoNLL, oracle best-of-$N$ selection yields only +4.2~pp (Qwen) and +1.8~pp (LLaMA) over greedy.
+When the model already operates near its performance ceiling, confidence signals serve as \textit{reliability assurance}---confirming that outputs are trustworthy---rather than enabling selective prediction gains.
+We therefore focus selection analysis (\S\ref{sec:selection_gap}) on SciERC, where oracle headroom exceeds 16~pp.
+
+%% ============================================================
+\subsection{The Correlation-Selection Gap}
+\label{sec:selection_gap}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Best-of-$N$ selection F1 on SciERC ($N{=}8$, $T{=}1.0$). Best non-oracle result per column in \textbf{bold}. EM produces binary agreement without sample ranking. RE results are preliminary (single dataset, single model).}
+\label{tab:selection}
+\begin{tabular}{lcc}
+\toprule
+Method & NER F1 & RE F1 \\
+\midrule
+Oracle & 0.769 & 0.561 \\
+\midrule
+Log-prob           & 0.609 & \textbf{0.397} \\
+Ensemble (SJ+Vot.) & 0.604 & 0.367 \\
+Soft Jaccard       & 0.604 & 0.368 \\
+Voting             & 0.596 & 0.338 \\
+Exact Match        & ---   & ---   \\
+\midrule
+Greedy ($T{=}0$)   & \textbf{0.609} & 0.374 \\
+Random             & 0.580 & 0.338 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Despite strong quality estimation, confidence signals yield limited gains when used for best-of-$N$ selection.
+Table~\ref{tab:selection} compares selection F1 on SciERC ($N{=}8$).
+
+\paragraph{NER: no signal surpasses greedy.}
+The oracle upper bound (0.769) reveals 16.0~pp of headroom above greedy (0.609).
+Yet no confidence signal closes this gap.
+Log-probability (0.609) merely ties greedy; the best quality estimator, Voting ($\rho{=}0.379$), selects to only 0.596, \textit{below} greedy.
+An ensemble of SJ and Voting (AUROC${=}0.735$) also fails, achieving 0.604.
+The greedy--logprob tie is revealing: log-probability selects the sample with highest model confidence, which on average matches the deterministic greedy output, implying that the $N$ samples cluster at a similar quality level with insufficient variance for any signal to exploit.
+The Random baseline (0.580) confirms that not all samples are equal---uniform selection loses 2.9~pp vs.\ greedy---but the discriminative structure captured by confidence signals adds no value beyond greedy's deterministic choice.
+
+\paragraph{RE: logprob uniquely succeeds.}
+For RE, log-probability is the only signal to exceed greedy (0.397 vs.\ 0.374, +2.3~pp).
+Structural signals trail or match greedy: SJ selects to 0.368 and Voting to 0.338.
+The oracle gap of 18.7~pp (0.561 vs.\ 0.374) indicates substantially more per-instance variance than NER.
+Log-probability's success here may stem from its per-token nature: unlike instance-level consistency signals, logprob evaluates each sample independently, enabling it to distinguish a particularly successful extraction from its peers even when all extractions share similar structural consistency.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_selection_gap}
+\caption{The correlation-selection gap on SciERC ($N{=}8$). Left: moderate QE correlation (Spearman $\rho$ up to 0.38). Right: negligible selection gains (best-of-$N$ F1 at or below greedy). Dashed line indicates greedy baseline.}
+\label{fig:selection_gap}
+\end{figure}
+
+\paragraph{Quality estimation $\neq$ output selection.}
+We attribute this gap (Figure~\ref{fig:selection_gap}) to a fundamental distinction: instance-level confidence signals predict \textit{which inputs} the model handles reliably, not \textit{which output} among $N$ candidates is best for a given input.
+When per-sample variance is low relative to instance-level difficulty---as in NER, where the model often produces $N$ similar extractions---even perfect quality estimation cannot discriminate among near-identical candidates.
+
+\paragraph{Implications for test-time scaling.}
+This correlation-selection gap has direct consequences for test-time scaling in IE \cite{brown2024monkeys, snell2024scaling}.
+Scaling inference compute through repeated sampling assumes a selector can identify the best sample.
+Our results show that for structured prediction, existing confidence signals serve as quality \textit{estimators}---useful for flagging unreliable predictions---but not as effective \textit{selectors}.
+Closing this gap likely requires signals that capture per-sample rather than per-instance variation, such as trained verifiers \cite{cobbe2021verifiers} or pairwise comparison models.
+
+%% ============================================================
+\subsection{Task Complexity and Signal Robustness}
+\label{sec:complexity_robustness}
+
+\paragraph{Task difficulty as a boundary condition.}
+Signal effectiveness varies systematically with task difficulty.
+On CoNLL (greedy micro F1${>}$0.91), EM leads all signals ($\rho{=}0.451$); on SciERC NER (micro F1$\,{\approx}\,$0.66), SJ overtakes EM ($\rho{=}0.357$ vs.\ 0.257); on SciERC RE, where 44\% of instances score zero F1, all signals converge to $\rho{\approx}0.25$.
+The NER--RE difference is statistically confirmed: Fisher's $z$-test comparing SJ $\rho$ between NER ($\rho{=}0.357$) and RE ($\rho{=}0.211$) yields $z{=}2.31$, $p{=}0.021$, confirming statistically significant task-dependent degradation.
+
+\paragraph{Per-relation diagnostic.}
+RE signal degradation is relation-specific.
+\textsc{Feature-Of} has near-zero correlation ($\rho{=}0.004$), while \textsc{Hyponym-Of} achieves $\rho{=}0.646$.
+The primary bottleneck is entity span errors, which account for 55.5\% of RE false negatives---a prerequisite failure that consistency signals cannot detect, as they measure agreement among equally incorrect extractions.
+
+\paragraph{Capability stratification.}
+SJ effectiveness scales with structural complexity: on SciERC instances with 6+ entities, $\rho{=}0.547$, compared to $\rho{=}0.415$ for 1--2 entities.
+Similarly, RE instances with ${\geq}3$ relation triples ($n{=}81$) yield substantially stronger correlations (Voting $\rho{=}0.630$, SJ $\rho{=}0.502$), demonstrating that within the model's capability range, increased output complexity amplifies structural signal advantage.
+The SJ advantage over logprob remains stable across sentence-length quartiles ($\Delta\rho{\approx}0.08$--$0.20$), and three independent complexity proxies (entity count, sentence length, relation density) show weak mutual correlation ($|r|{<}0.15$), indicating a genuinely multi-dimensional benefit rather than a single confound.
+
+\paragraph{Method boundary: WNUT-17.}
+WNUT-17 establishes where the approach breaks down.
+SJ achieves $\rho{=}0.062$ ($p{=}0.106$, not statistically significant), with 54\% of instances at zero F1.
+Log-probability shows a strong \textit{negative} correlation ($\rho{=}{-}0.411$): the model is confidently wrong on novel entities, a calibration failure that no post-hoc consistency signal can remedy.
+This is a boundary of the method, not a limitation of the datasets.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Signal robustness across temperature and sample size on SciERC (Spearman $\rho$). $^\dagger$Mean over 3 seeds ($\sigma{=}0.025$; individual: 0.428, 0.424, 0.384). RE results are preliminary (single dataset).}
+\label{tab:robustness}
+\begin{tabular}{llcc}
+\toprule
+& & NER $\rho$ & RE $\rho$ \\
+\midrule
+\multicolumn{4}{l}{\textit{Temperature} ($N{=}8$)} \\
+\quad SJ & $T{=}0.7$ & 0.388 & 0.234 \\
+\quad SJ & $T{=}1.0$ & 0.357 & 0.211 \\
+\quad FK & $T{=}0.7$ & 0.321 & 0.184 \\
+\quad FK & $T{=}1.0$ & 0.265 & 0.253 \\
+\midrule
+\multicolumn{4}{l}{\textit{Sample size} ($T{=}1.0$)} \\
+\quad SJ & $N{=}8$  & 0.357 & 0.211 \\
+\quad SJ & $N{=}16$ & 0.412$^\dagger$ & 0.281 \\
+\quad FK & $N{=}8$  & 0.265 & 0.253 \\
+\quad FK & $N{=}16$ & 0.280 & 0.279 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Robustness analysis.}
+Table~\ref{tab:robustness} reports signal stability across temperature and sample size on SciERC.
+\textit{Temperature.}
+SJ NER $\rho$ shifts from 0.388 ($T{=}0.7$) to 0.357 ($T{=}1.0$), a difference of 0.031 whose bootstrap confidence interval includes zero.
+FK shows mixed behavior: NER $\rho$ drops by 0.056, while RE $\rho$ increases by 0.069, likely reflecting reduced diversity at lower temperature interacting differently across tasks.
+Across all comparisons, the SJ--FK relative ordering is preserved at both temperatures on NER (0.388 vs.\ 0.321 at $T{=}0.7$; 0.357 vs.\ 0.265 at $T{=}1.0$), indicating a stable signal hierarchy despite numerically small temperature effects.
+
+\textit{Sample size.}
+Increasing from $N{=}8$ to $N{=}16$ yields meaningful gains for SJ on NER: $\rho$ improves from 0.357 to $0.412{\pm}0.025$ (three seeds: 0.428, 0.424, 0.384).
+FK benefits less ($\rho{\approx}0.280$ at $N{=}16$ vs.\ 0.265 at $N{=}8$).
+For RE at $N{=}16$, SJ ($\rho{=}0.281$), FK ($\rho{=}0.279$), and logprob ($\rho{=}0.287$) all plateau at comparable levels, suggesting that compound entity-then-relation errors impose a ceiling that additional samples cannot overcome.
+
+\paragraph{Scale ablation: 4B vs.\ 8B.}
+To isolate whether the correlation-selection gap is an artifact of model capacity, we replicate the core evaluation with Qwen3-4B, a model with half the parameters of our primary 8B model.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Scale ablation: 4B vs.\ 8B on quality estimation ($\rho$) and selection (F1). All results use $N{=}8$, $T{=}1.0$. 8B values reproduced from Tables~\ref{tab:quality_estimation}--\ref{tab:selection}.}
+\label{tab:scale-ablation}
+\begin{tabular}{lcccccc}
+\toprule
+& \multicolumn{2}{c}{\textbf{CoNLL NER}} & \multicolumn{2}{c}{\textbf{SciERC NER}} & \multicolumn{2}{c}{\textbf{SciERC RE}} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
+& 8B & 4B & 8B & 4B & 8B & 4B \\
+\midrule
+SJ $\rho$ & .436 & .422 & .360 & .422 & .250 & .267 \\
+FK $\rho$ & .400 & .418 & .267 & .326 & .275 & .359 \\
+\midrule
+Greedy F1 & .912 & .923 & .609 & .662 & .374 & --- \\
+Oracle F1 & ---  & .940 & .769 & .784 & --- & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:scale-ablation} reveals that quality estimation correlations at 4B are preserved or even strengthened: SciERC NER SJ rises from $\rho{=}0.360$ (8B) to $\rho{=}0.422$ (4B), a $+6.2$~pp increase, and FK improves from $\rho{=}0.267$ to $\rho{=}0.326$.
+Yet the selection gap persists: on SciERC NER, all 4B signals perform \textit{worse} than greedy (SJ $-1.49$~pp, FK $-1.56$~pp, LP $-2.23$~pp), despite 13~pp of oracle headroom.
+On CoNLL, 4B oracle headroom is only 1.70~pp, leaving all signals within $\leq$0.1~pp of greedy---marginal by any standard.
+The gap is therefore independent of model capacity; task difficulty and per-sample variance remain the primary drivers.
+
+\paragraph{Free-form decoding ablation.}
+One concern is that constrained decoding (XGrammar) artificially compresses log-probability distributions, creating the tied-score phenomenon.
+We test this by running SciERC NER inference without grammar constraints, relying solely on the fine-tuned model's learned output format.
+The fine-tuned model achieves a 99.95\% valid JSON parse rate without constraints, confirming that grammar enforcement is unnecessary for well-tuned models.
+Crucially, LP standard deviation is virtually unchanged (0.0206 $\to$ 0.0199, ratio 0.97), and the tied fraction drops by only 2~pp (59.7\% $\to$ 57.7\%).
+NER selection gain decreases from $+0.59$~pp to $+0.18$~pp---both negligible (Table~\ref{tab:freeform-ablation} in the Appendix).
+Score compression is therefore intrinsic to the model and task, not an artifact of constrained decoding.
+This reinforces the universality of the correlation-selection gap: relaxing decoding constraints does not restore log-probability's discriminative power for selection.
+
+\paragraph{Cross-model transfer.}
+LLaMA-3.1-8B-Instruct replicates the structural-over-surface ordering on SciERC NER (SJ $\rho{=}0.325{\pm}0.021$, FK $\rho{=}0.256{\pm}0.024$, 3-seed mean).
+On CoNLL, the cross-model gap is minimal (Table~\ref{tab:quality_estimation}): SJ achieves $\rho{=}0.431$ (LLaMA) vs.\ 0.436 (Qwen), $\Delta{=}0.005$.
+On conditional RE (non-zero F1 instances), SJ recovers to $\rho{=}0.405$ while FK drops to $\rho{=}0.259$, confirming that structural advantage is robust across both models and evaluation conditions.
+
+\paragraph{Evaluation circularity.}
+Leave-one-out SJ (LOO-SJ), which excludes the target sample when computing confidence, yields $\Delta\rho{=}{-}0.014$ relative to standard SJ, with a maximum per-instance $\Delta\rho$ of $3.1{\times}10^{-4}$.
+Evaluation circularity is negligible.
+
+\paragraph{Conditional filtering reveals signal divergence.}
+We define instances as \textit{tied} when the within-sample log-probability range falls below $\varepsilon{=}0.05$ nats; results are robust to $\varepsilon \in \{0.01, 0.05, 0.10\}$ (tied fractions of 45\%, 60\%, 72\% on NER, with consistent patterns across all thresholds).
+Filtering to non-zero F1 instances (oracle $>$ 0) improves RE correlations (SJ $\rho{=}0.316$ from 0.250 at $N{=}8$) while NER remains stable ($\rho{\approx}0.38$).
+At $N{=}16$, signal families diverge sharply on conditional RE: SJ maintains $\rho{=}0.308$, while logprob drops to $\rho{=}{-}0.026$---effectively zero---showing that logprob's apparent RE utility at $N{=}8$ does not generalize to larger sample sets.
+For applications that can first filter out catastrophic failures, SJ's effective ranking approaches $\rho{\approx}0.4$ on both NER and RE, a regime where quality-aware aggregation can provide meaningful benefit.
+
+\paragraph{Binary filtering vs.\ continuous ranking.}
+The logprob paradox observed in Table~\ref{tab:quality_estimation}---highest AUROC (0.761) but lowest $\rho$ (0.307) on CoNLL with LLaMA---reflects a fundamental distinction in how signals encode quality information.
+Log-probability provides coarse separation between reliable and unreliable instances (suited for accept/reject thresholds), while structural signals like SJ and Voting provide finer-grained ranking (suited for prioritization and quality-aware aggregation).
+Figure~\ref{fig:reliability} visualizes this complementarity across the difficulty spectrum.
+Practitioners should select signal type based on the downstream application: binary filtering favors logprob; ranking-dependent decisions favor structural consistency.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_reliability_1024}
+\caption{Reliability diagrams for confidence signals on SciERC NER. Structural signals (VC, SJ) show better calibration than log-probability, which exhibits overconfidence in the low-quality regime.}
+\label{fig:reliability}
+\end{figure}

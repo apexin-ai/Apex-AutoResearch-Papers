@@ -1,0 +1,16 @@
+Data points (unified):
+CoNLL: degen=48.4%, LP_delta=-0.81pp
+SciERC: degen=17.8%, LP_delta=+0.74pp
+FewNERD: degen=7.1%, LP_delta=+1.37pp
+
+Per-type (FewNERD):
+event: 5.97%, +0.65pp
+other: 6.61%, +4.73pp
+organization: 6.74%, +1.21pp
+building: 7.18%, +0.23pp
+product: 8.17%, +2.01pp
+location: 11.42%, +0.53pp
+person: 13.42%, +1.25pp
+art: 19.81%, -0.17pp
+
+Spearman: dataset-level rho=-1.0 (n=3), 11-point rho=-0.5455 (p=0.0827)

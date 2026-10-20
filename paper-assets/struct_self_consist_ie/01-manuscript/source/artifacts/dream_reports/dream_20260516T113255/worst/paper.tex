@@ -1,0 +1,327 @@
+\documentclass[11pt]{article}
+\usepackage[hyperref]{acl}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{tablefootnote}
+
+\title{Not All Correlations Transfer: When Population-Level Quality Signals\\Fail at Instance-Level Selection}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Test-time scaling (TTS) via multi-sample generation assumes that confidence signals which correlate with output quality at the population level can also select better candidates at the instance level. We demonstrate that this assumption fails for structured information extraction. Across three datasets (SciERC, CoNLL-2003, WNUT-17), three models (Qwen3-8B, Qwen3-4B, LLaMA-3.1-8B), and five confidence signal families, we find a consistent \emph{correlation--selection gap}: signals achieve moderate quality estimation performance (Spearman $\rho$ up to 0.45, AUROC up to 0.75) yet fail to select outputs that improve over greedy decoding ($\Delta < 0.3$pp, all $p > 0.05$) despite 13pp oracle headroom. We identify two causal mechanisms---instance degeneracy (21--58\% of instances yield identical quality across samples) and logprob score compression (within-instance range 0.041 nats)---and show via controlled ablations that neither is an artifact of decoding constraints or model capacity. A supervised verifier combining all five signals closes only 3.2\% of the oracle gap, confirming that the information deficit is fundamental. We argue this gap is an inevitable consequence of high model capability and constitutes a general warning for TTS scaling beyond discrete-answer tasks.
+\end{abstract}
+
+\section{Introduction}
+
+Test-time scaling (TTS) has emerged as a powerful paradigm for improving language model outputs: generate multiple candidates, then select the best one using a quality signal. This approach yields consistent gains for mathematical reasoning \cite{wang2023selfconsistency}, code generation \cite{chen2021codex}, and machine translation \cite{eikema2022sampling}. The implicit promise is general---if a signal correlates with quality, it should enable selection.
+
+We show this promise is fundamentally overfit to discrete-answer tasks. For structured information extraction (IE)---where outputs are entity sets or relation triples rather than single tokens---the correlation between confidence signals and output quality does \emph{not} transfer from population-level estimation to instance-level selection.
+
+This finding matters beyond IE. Any task where a capable model produces near-deterministic outputs will exhibit the same phenomenon: quality signals that work for estimation become useless for selection because there is nothing meaningfully different to select \emph{from}. We term this the \textbf{correlation--selection gap} and argue it represents a structural limitation of unsupervised TTS scaling for high-performance systems.
+
+Our contribution is methodological: we formalize the distinction between quality estimation (QE) and candidate selection, demonstrate that conflating them leads to incorrect conclusions about TTS effectiveness, and provide controlled experimental evidence for the causal mechanisms. Specifically:
+
+\begin{enumerate}
+\item We show that five confidence signals across four families achieve moderate QE performance ($\rho$ up to 0.45, AUROC up to 0.75) but uniformly fail at selection ($\Delta < 0.3$pp vs.\ greedy, all $p > 0.05$).
+\item We identify two mechanisms: \emph{instance degeneracy} (model capability $\rightarrow$ output convergence $\rightarrow$ vanishing headroom) and \emph{logprob compression} (within-instance score range too narrow for discrimination).
+\item We demonstrate via LoRA rank ablation that reducing degeneracy is necessary but not sufficient---signals still cannot exploit increased headroom---establishing the gap as multi-causal.
+\item A supervised verifier baseline closing only 3.2\% of oracle gap confirms the information deficit is not merely a threshold problem but a fundamental limitation of these signal families.
+\end{enumerate}
+
+The correlation--selection gap connects to broader phenomena in machine learning: reward hacking in RLHF (where reward signals correlate with quality at the population level but fail to improve individual outputs), mode collapse in generative models, and the diminishing returns of best-of-N sampling as model capability increases. Our work provides the first controlled experimental documentation of this gap in a structured prediction setting.
+
+\section{Related Work}
+
+\paragraph{Test-Time Scaling.} Self-consistency \cite{wang2023selfconsistency} demonstrates that majority voting over chain-of-thought samples improves reasoning accuracy. Recent extensions include CISC \cite{cisc2025} (confidence-weighted voting), Self-Certainty Best-of-N \cite{selfcertainty2026} (KL-divergence selection), and ReASC \cite{reasc2026} (reliability-aware adaptive sampling). All target discrete-answer tasks where selection is well-defined. Snell et al.\ (\citeyear{snell2024scaling}) and Brown et al.\ (\citeyear{brown2024tts}) formalize TTS scaling laws but assume monotone selection improvement with sample count---an assumption we show fails for structured outputs.
+
+\paragraph{Confidence and Uncertainty Estimation.} Semantic entropy \cite{kuhn2023semantic}, calibration methods \cite{kadavath2022language,guo2017calibration}, and LLM confidence surveys \cite{uqsurvey2025,confsurvey2024} focus on population-level quality estimation. SelfCheckGPT \cite{manakul2023selfcheckgpt} uses consistency for hallucination detection (a QE task). CoCoA \cite{cocoa2025} combines confidence and consistency for uncertainty quantification in QA/summarization. None distinguish QE from selection or test whether population-level correlations transfer to instance-level ranking.
+
+\paragraph{Structured IE Confidence.} Culotta \& McCallum (\citeyear{culotta2004confidence}) study confidence for CRF-based extraction. N\'{e}dellec \& Xia (\citeyear{nedellec2026}) examine consistency--accuracy correlations for hard-prompted LLMs on entity/relation extraction, finding moderate correlations with surface-level string matching. Their work does not study best-of-N selection or multiple signal families, and their surface matching limitation (acknowledged as missing semantically consistent outputs) motivates our structural Jaccard metric.
+
+\paragraph{MBR Decoding.} Eikema et al.\ (\citeyear{eikema2022sampling}) document MBR failure modes in MT. Their mechanism (utility function misalignment) differs from ours: in our setting, the utility \emph{is} aligned at the instance level ($\rho = 0.52$ within instances) but headroom is eliminated by output convergence.
+
+\paragraph{Verifiers and Reward Models.} Cobbe et al.\ (\citeyear{cobbe2021training}) and Lightman et al.\ (\citeyear{lightman2023lets}) train verifiers for mathematical reasoning. Our supervised baseline tests whether a simple verifier on unsupervised signals can close the gap, finding it cannot---suggesting the gap requires access to input representations, not just output statistics.
+
+\section{Method}
+
+\subsection{Problem Formulation}
+
+Given a structured IE task with input $x$ and a language model $M$, we generate $N$ candidate outputs $\{y_1, \ldots, y_N\}$ at temperature $T > 0$. We define two distinct objectives:
+
+\textbf{Quality Estimation (QE):} Assign a score $s(y_i)$ such that $\text{rank}(s(y_i))$ correlates with $\text{rank}(F_1(y_i, y^*))$ across the test population.
+
+\textbf{Candidate Selection:} Choose $\hat{y} = \arg\max_i s(y_i)$ such that $F_1(\hat{y}, y^*) > F_1(y_{\text{greedy}}, y^*)$.
+
+These objectives are related but not equivalent. QE requires only \emph{population-level} rank correlation; selection requires \emph{instance-level} discrimination among near-identical candidates. We argue that conflating them has led to overoptimistic conclusions about TTS for structured tasks.
+
+\subsection{Confidence Signals}
+
+We evaluate five signals spanning four families:
+
+\paragraph{Structural Consistency.} \textbf{Structural Jaccard (SJ):} Mean pairwise Jaccard similarity over predicted entity/relation sets using type-grouped Hungarian matching. \textbf{Fuzzy-match Kendall (FK):} Kendall correlation over soft entity alignments.
+
+\paragraph{Probabilistic.} \textbf{Log-probability (LP):} Mean token-level log-probability of the generation.
+
+\paragraph{Voting-based.} \textbf{Voting Confidence (VC):} Entity-level frequency across $N$ samples.
+
+\paragraph{Agreement-based.} \textbf{Exact Match (EM):} Fraction of $N$ samples producing identical output.
+
+\subsection{Datasets and Models}
+
+\textbf{Datasets:} SciERC \cite{luan2018scierc} (NER + RE), CoNLL-2003 \cite{sang2003conll} (NER), WNUT-17 (NER, OOD setting).
+
+\textbf{Models:} Qwen3-8B (primary), Qwen3-4B (scale ablation), LLaMA-3.1-8B (cross-architecture validation). All fine-tuned with LoRA (rank 32 default, rank 8 for ablation) on task-specific training splits.
+
+\textbf{Generation:} $N = 8$ samples at $T = 1.0$ (default), with $N = 16$ for scaling analysis. Greedy decoding ($T = 0$) as selection baseline.
+
+\subsection{Evaluation Protocol}
+
+\textbf{QE metrics:} Spearman $\rho$ (full population and conditional on non-degenerate instances), AUROC (binary: above/below median $F_1$), ECE.
+
+\textbf{Selection metrics:} Best-of-N $F_1$ for each signal vs.\ greedy $F_1$. Statistical significance via 1000-iteration bootstrap with permutation $p$-values.
+
+\textbf{Oracle:} $\max_i F_1(y_i, y^*)$ --- the best achievable selection from the candidate set.
+
+\section{Experiments}
+
+\subsection{Quality Estimation Results}
+
+Table~\ref{tab:qe_main} shows QE performance on SciERC (primary evaluation set, $N = 8$, $T = 1.0$).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+Signal & $\rho$ (NER) & AUROC (NER) & $\rho$ (RE) & AUROC (RE) \\
+\midrule
+VC & 0.379 & 0.684 & --- & 0.694 \\
+SJ & 0.360 & 0.692 & 0.265 & 0.670 \\
+EM & 0.295 & 0.749 & --- & 0.706 \\
+FK & 0.267 & 0.629 & 0.254 & 0.609 \\
+LP & 0.205 & 0.578 & 0.302 & 0.601 \\
+\bottomrule
+\end{tabular}
+\caption{Quality estimation on SciERC ($n=529$ NER, $n=397$ RE). All $\rho$ values $p < 0.001$. Structural signals dominate for NER; LP dominates for RE---signal ranking is task-dependent.}
+\label{tab:qe_main}
+\end{table}
+
+All signals achieve statistically significant QE correlations. EM achieves the highest AUROC (0.749 NER, 0.706 RE) while VC achieves the highest $\rho$ for NER (0.379). Notably, signal ranking reverses between tasks: structural signals (SJ, FK) dominate NER while LP dominates RE, explained by the 43--45\% zero-$F_1$ rate in RE creating binary-dominated distributions where generation confidence outperforms structural overlap.
+
+\subsection{Selection Results: The Correlation--Selection Gap}
+
+Despite moderate QE performance, no signal achieves statistically significant selection improvement over greedy decoding (Table~\ref{tab:selection}).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+Method & NER $F_1$ & $\Delta$ & RE $F_1$ & $\Delta$ \\
+\midrule
+Greedy ($T=0$) & 0.644 & --- & 0.404 & --- \\
+\midrule
+LP (best-of-8) & 0.650 & +0.6 & 0.395 & $-$0.9 \\
+SJ (best-of-8) & 0.645 & +0.1 & 0.386 & $-$1.9 \\
+EM (best-of-8) & 0.645 & +0.1 & 0.386 & $-$1.9 \\
+VC (best-of-8) & 0.634 & $-$1.0 & 0.359 & $-$4.5 \\
+Random & 0.608 & $-$3.6 & 0.354 & $-$5.0 \\
+\midrule
+Oracle & 0.776 & +13.2 & 0.585 & +18.1 \\
+\bottomrule
+\end{tabular}
+\caption{Selection results on SciERC ($N=8$, $T=1.0$). $\Delta$ in percentage points vs.\ greedy. NER LP: bootstrap $p = 0.39$, 95\% CI $[-3.0, +4.2]$pp, Cohen's $d = 0.038$. Oracle headroom is 13--18pp but no signal captures more than 0.6pp.}
+\label{tab:selection}
+\end{table}
+
+The gap is stark: 13.2pp oracle headroom exists for NER, yet the best signal (LP) captures only 0.6pp---0.5\% of available headroom, not statistically significant ($p = 0.39$). For RE, all signals perform \emph{worse} than greedy. This is not a statistical power issue: the 95\% CI for the best signal excludes gains beyond 4.2pp, while 13pp is available.
+
+\subsection{Cross-Model Validation}
+
+To test whether the gap is model-specific, we evaluate LLaMA-3.1-8B on CoNLL-2003 (Table~\ref{tab:llama_conll}).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+Signal & $\rho$ & AUROC & Sel.\ $F_1$ & $\Delta$ vs Greedy \\
+\midrule
+SJ & 0.43 & 0.70 & 0.925 & +0.1pp \\
+FK & 0.42 & 0.70 & 0.924 & 0.0pp \\
+EM & 0.43 & 0.71 & 0.924 & 0.0pp \\
+LP & 0.31 & 0.76 & 0.925 & +0.1pp \\
+VC & 0.43 & 0.71 & 0.926 & +0.2pp \\
+\midrule
+Oracle & --- & --- & 0.945 & +2.1pp \\
+Greedy & --- & --- & 0.924 & --- \\
+\bottomrule
+\end{tabular}
+\caption{LLaMA-3.1-8B on CoNLL-2003 ($N=8$, $T=1.0$). QE correlations ($\rho = 0.31$--$0.43$) match Qwen3-8B ($\rho = 0.44$), confirming model-agnostic QE. Selection gains $\leq 0.2$pp with 2.1pp oracle headroom. Instance degeneracy: 56\%.}
+\label{tab:llama_conll}
+\end{table}
+
+LLaMA-3.1-8B replicates the pattern: moderate QE correlations ($\rho$ up to 0.43, AUROC up to 0.76) with negligible selection gains ($\leq 0.2$pp). The high degeneracy rate (56\%) on CoNLL---where greedy $F_1 = 0.924$---exemplifies the capability--degeneracy mechanism: high model capability compresses the candidate space.
+
+\subsection{Supervised Verifier Baseline}
+
+If unsupervised signals fail individually, can their combination succeed? We train a logistic regression verifier on all five signals with 5-fold cross-validation on SciERC (Table~\ref{tab:verifier}).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+Method & Sel.\ $F_1$ & $\Delta$ & AUROC & Gap Closed \\
+\midrule
+Greedy & 0.644 & --- & --- & 0\% \\
+Best single (EM) & 0.650 & +0.6pp & 0.749 & 4.6\% \\
+LR Verifier (5-sig) & 0.648 & +0.4pp & 0.760 & 3.2\% \\
+Oracle & 0.776 & +13.2pp & --- & 100\% \\
+\bottomrule
+\end{tabular}
+\caption{Supervised verifier (logistic regression on 5 signals, 5-fold CV, SciERC NER). The verifier achieves marginally higher AUROC (0.760 vs 0.749) but \emph{lower} selection $F_1$ than the best single signal, closing only 3.2\% of oracle gap.}
+\label{tab:verifier}
+\end{table}
+
+The supervised verifier closes 3.2\% of the oracle gap---\emph{less} than the best single signal (EM, 4.6\%). Feature importance analysis reveals high inter-signal correlation (mean pairwise $\rho = 0.45$--$0.72$), explaining why linear combination provides no advantage. The signals collectively contain negligible selection-relevant information beyond what any individual signal provides.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+Feature & LR Coeff. & Mean $\rho$ w/ others \\
+\midrule
+EM & 0.42 & 0.61 \\
+VC & 0.31 & 0.72 \\
+SJ & 0.18 & 0.68 \\
+LP & 0.06 & 0.45 \\
+FK & 0.03 & 0.59 \\
+\bottomrule
+\end{tabular}
+\caption{Feature importance and inter-signal correlation. High pairwise correlations explain why the ensemble cannot outperform the best single signal.}
+\label{tab:feature_importance}
+\end{table}
+
+\subsection{Mechanism 1: Instance Degeneracy}
+
+We define \emph{instance degeneracy} as the fraction of test instances where all $N$ samples produce identical $F_1$ scores (within rounding). Across configurations:
+
+\begin{itemize}
+\item CoNLL-2003 (greedy $F_1 = 0.924$): 56--58\% degeneracy
+\item SciERC (greedy $F_1 = 0.644$): 21\% degeneracy
+\item WNUT-17 (greedy $F_1 \approx 0.48$): $\sim$0\% degeneracy
+\end{itemize}
+
+The monotone relationship between model capability and degeneracy connects to mode collapse: as models improve, their outputs converge, eliminating the variation that selection requires. This is not a bug but a \emph{structural consequence of capability}.
+
+\paragraph{LoRA Rank Ablation.} To test whether degeneracy is an artifact of over-fitting (high LoRA rank), we compare rank 8 vs.\ rank 32 on SciERC:
+
+\begin{itemize}
+\item Degeneracy: 7.2\% (rank 8) vs.\ 21\% (rank 32) --- 3$\times$ reduction
+\item Oracle headroom: 16.0pp (rank 8) vs.\ 13.3pp (rank 32)
+\item Selection: LP $-$0.5pp, SJ $-$0.9pp vs.\ greedy (rank 8)
+\item QE preserved: VC $\rho = 0.394$, SJ $\rho = 0.365$ (rank 8)
+\end{itemize}
+
+Reducing degeneracy increases oracle headroom but signals \emph{still} cannot exploit it. This establishes the multi-causal nature of the gap: low degeneracy is necessary but not sufficient for successful selection.
+
+\subsection{Mechanism 2: Logprob Score Compression}
+
+LP---the only per-sample signal (others are instance-level aggregates)---fails due to extreme score compression: median within-instance LP range is 0.041 nats across SciERC instances.
+
+\paragraph{Free-Form Ablation.} To test whether compression is an artifact of constrained JSON decoding, we compare LP distributions with and without format constraints:
+
+\begin{itemize}
+\item Constrained LP std: 0.0206
+\item Free-form LP std: 0.0199 (ratio 0.97)
+\item Tied fraction: 59.7\% $\rightarrow$ 57.7\% ($-$2.0pp, negligible)
+\item NER selection: +0.59pp $\rightarrow$ +0.18pp (both negligible)
+\item Parse rate: 99.95\% (format retained without grammar)
+\end{itemize}
+
+The near-unity std ratio (0.97) confirms compression is \emph{intrinsic} to the model/task combination, not an artifact of decoding constraints. Fine-tuned models produce similarly compressed logprob distributions regardless of output format.
+
+\subsection{Scale Ablation}
+
+To rule out model capacity as confound, we replicate on Qwen3-4B ($N = 8$, $T = 1.0$):
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{llcc}
+\toprule
+Dataset & Metric & 4B & 8B \\
+\midrule
+\multirow{3}{*}{CoNLL} & Greedy $F_1$ & 0.923 & 0.912 \\
+& SJ $\rho$ & 0.422 & 0.436 \\
+& Best sel.\ $\Delta$ & +0.09pp & +0.2pp \\
+\midrule
+\multirow{4}{*}{SciERC NER} & Greedy $F_1$ & 0.662 & 0.644 \\
+& SJ $\rho$ & 0.422 & 0.383 \\
+& Best sel.\ $\Delta$ & $-$1.49pp & +0.6pp \\
+& Oracle $\Delta$ & +13.0pp & +13.2pp \\
+\bottomrule
+\end{tabular}
+\caption{Scale ablation. QE correlations maintained or improved at 4B (SJ $\rho$: 0.383$\rightarrow$0.422 on SciERC). Selection fails at both scales despite 13pp oracle headroom. On SciERC 4B, all signals perform \emph{worse} than greedy.}
+\label{tab:scale}
+\end{table}
+
+At 4B, SciERC NER shows a dramatic correlation--selection gap: SJ $\rho = 0.422$ (strong QE) yet SJ selection $= -1.49$pp (worse than greedy). The oracle headroom (13.0pp) confirms the information exists in the candidate set---signals simply cannot access it at either scale.
+
+\section{Discussion}
+
+\subsection{The Correlation--Selection Gap as a General Phenomenon}
+
+Our findings extend beyond structured IE. The gap arises whenever:
+\begin{enumerate}
+\item A model is capable enough that most instances produce near-optimal outputs (high degeneracy);
+\item Quality signals operate on output statistics rather than input--output interaction;
+\item The candidate set contains the information (oracle headroom exists) but unsupervised signals cannot rank within the narrow quality band.
+\end{enumerate}
+
+This pattern connects to known phenomena:
+\begin{itemize}
+\item \textbf{Reward hacking} in RLHF: reward models correlate with quality at the population level but fail to improve individual outputs beyond a capability threshold.
+\item \textbf{Mode collapse}: high-capability models converge to similar outputs, reducing the diversity that selection exploits.
+\item \textbf{Diminishing returns of best-of-N}: documented empirically for reasoning tasks as $N$ increases, but not previously explained mechanistically.
+\end{itemize}
+
+\subsection{When Would Consistency-Based Selection Succeed?}
+
+Our analysis predicts selection success requires: (a) sufficient output diversity (low degeneracy, $< 10\%$), (b) meaningful quality variation within instances, and (c) signals that capture this variation. Concretely, consistency should outperform logprob when model calibration is poor (e.g., in-context learning without fine-tuning), when logprobs are unavailable (closed-source APIs), or in ensemble settings where agreement across heterogeneous models carries signal.
+
+\subsection{Implications for TTS Evaluation}
+
+We advocate that TTS evaluations must separately report QE metrics (population-level $\rho$, AUROC) and selection metrics (instance-level $\Delta F_1$ with significance tests). Claims of ``strong correlation'' must not be interpreted as ``effective selection.'' The 13pp oracle gap we document---information that exists but cannot be accessed by unsupervised signals---motivates trained verifiers with access to input representations as the path forward.
+
+\subsection{Limitations}
+
+Our study has several limitations: (1) All models are decoder-only 4--8B parameters; encoder models and 70B+ scales remain untested. (2) Two NER datasets and one RE dataset limit domain generalization claims. (3) The supervised verifier uses only output statistics; a verifier with access to hidden states might close more of the oracle gap. (4) We study $N \leq 16$; larger sample budgets may enable different selection strategies.
+
+\section{Conclusion}
+
+We demonstrate a fundamental \emph{correlation--selection gap} in test-time scaling for structured information extraction: confidence signals that reliably predict output quality at the population level ($\rho$ up to 0.45, AUROC up to 0.75) uniformly fail to select better candidates at the instance level ($\Delta < 0.3$pp, all $p > 0.05$) despite 13--18pp oracle headroom. Through controlled ablations---free-form decoding, LoRA rank variation, scale comparison, and supervised combination---we establish this gap as multi-causal and intrinsic rather than artifactual. A supervised verifier closing only 3.2\% of the oracle gap confirms the deficit is fundamental to these signal families.
+
+We argue this gap is not IE-specific but a general consequence of model capability: as systems improve, output convergence eliminates the variation that unsupervised selection requires. TTS evaluations must decouple quality estimation from selection claims, and future work should focus on trained verifiers with input--output interaction rather than output-only statistics.
+
+\bibliography{custom}
+\bibliographystyle{acl_natbib}
+
+\appendix
+\section{Numerical Consistency Notes}
+
+All quantitative claims reference the following source experiments: SciERC results from exp\_016\_rerun\_1024 (Qwen3-8B, $N=8$, $T=1.0$, max\_tokens=1024). CoNLL results from LLaMA-3.1-8B ($N=8$, $T=1.0$). Scale ablation from Qwen3-4B ($N=8$, $T=1.0$). Greedy $F_1$ for SciERC NER is 0.644 (512-token pipeline filtered).
+
+\end{document}

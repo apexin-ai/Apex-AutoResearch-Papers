@@ -1,0 +1,47 @@
+\section{Diagnostic Framework}\label{sec:method}
+
+Our analysis is observational: we characterize statistical associations between agreement signals and output quality without claiming causal mechanisms.
+
+\subsection{Problem Formulation}\label{sec:formulation}
+
+Given model $\mathcal{M}$ and input $x$, we sample $N$ outputs $\{y_1, \ldots, y_N\}$ at temperature $T > 0$ via constrained decoding \cite{willard2023guided}, where each $y_i$ is an entity set.
+A \textbf{per-sample signal} $c_{\text{ps}}: (x, y_i) \to \mathbb{R}$ scores each output independently; an \textbf{instance-level signal} $c_{\text{il}}: (x, \{y_i\}_{i=1}^N) \to \mathbb{R}$ produces a single score per input (notation in Appendix~\ref{app:notation}).
+This distinction is consequential: 4 of 5 signals are instance-level aggregates assigning identical scores to all $N$ candidates.
+Only LP carries per-sample discriminative power: ensemble optimization assigns LP mean weight $0.78$, with structural signals receiving zero weight (Appendix~\ref{app:supervised_combination}).
+When LP fails, as in few-shot regimes where LP $\rho{\to}0$ (\S\ref{sec:scaling}), no alternative per-sample signal exists.
+
+We define the \textbf{capability ceiling} as the practical performance upper bound achievable through self-consistency at realistic sample budgets ($N{\leq}16$), beyond which diminishing returns render further scaling impractical.
+
+\subsection{Confidence Signals}\label{sec:signals}
+
+Entity matching uses exact span and type match.
+We distinguish two signal families: four \textit{agreement signals} computed across samples (\textit{structural}: Soft Jaccard [SJ], entity voting confidence [VC]; \textit{surface}: exact match [EM], Fleiss' $\kappa$ [FK]) and log-probability [LP] as the sole \textit{model-internal} signal, derived from generation probabilities and providing per-sample discrimination.
+
+\paragraph{Log-probability (per-sample).}
+$c_{\text{lp}}(y_i) = |y_i|^{-1} \sum_{j} \log p_{\mathcal{M}}(t_j \mid t_{<j}, x)$.
+Mean LP is preferred over cumulative sequence-level LP as length normalization eliminates length bias ($+4.6$ F1 points; Appendix~\ref{app:token_signal}).
+
+\paragraph{Soft Jaccard (structural, instance-level).}
+For samples $y_i, y_j$, we group by type, compute max-weight bipartite matching (Hungarian algorithm, token-level IoU):
+\begin{equation}\label{eq:sj}
+\text{SJ}(y_i, y_j) = \frac{\sum_{m \in M} \text{sim}(a_m, b_m)}{\sum_{g} \max(|g_i|, |g_j|)}
+\end{equation}
+Instance-level QE averages over all pairs: $c_{\text{sj}}(x) = \binom{N}{2}^{-1} \sum_{i<j} \text{SJ}(y_i, y_j)$.
+For selection, consensus-proximity converts to per-sample rankings via MBR (\S\ref{sec:mbr_theory}).
+
+\paragraph{Other signals.}
+EM: proportion of samples producing the most common output ($c_{\text{em}}(x) = N^{-1} \max_{y} |\{i : y_i = y\}|$).
+FK: inter-rater agreement \cite{fleiss1971agreement} adapted to entity sets, treating unique (text, type) tuples as items with binary present/absent labels (Appendix~\ref{app:fk_independence}).
+VC: mean entity frequency $\text{freq}(e) = |\{i : e \in y_i\}| / N$ across $E_\cup$ (Appendix~\ref{app:verbalized_confidence}).\footnote{When $E_\cup = \emptyset$, SJ${=}1$ (perfect agreement on empty output); $\text{VC}{=}0$.}
+
+\subsection{Evaluation}\label{sec:evaluation}
+
+\paragraph{Quality estimation.}
+Spearman $\rho$ between signal and instance-level F1 (exact span-and-type match), and AUROC classifying above/below median F1.
+Both exclude instances with no gold annotations: $n{=}529$ on SciERC, $n{=}2{,}756$ on CoNLL (Appendices~\ref{app:additional},~\ref{app:eval_protocol}).
+
+\paragraph{Sample selection.}
+Best-of-$N$ F1: LP ranks candidates directly; instance-level signals rank via consensus-proximity.
+Baselines: \textit{oracle} (highest-F1 sample) and \textit{greedy} ($T{=}0$).
+\textbf{Instance degeneracy}: fraction of instances where all $N$ samples yield identical F1;\footnote{``Identical F1'' means constant F1 across all $N$ samples for a given instance, not necessarily F1${=}1.0$. This includes three distinct cases: (1)~identical entity sets (true output collapse), (2)~different entity sets that happen to achieve the same F1 (coincidental F1 tie), and (3)~different entity boundaries with identical span-level scores. Entity-set exact-match degeneracy (case 1 only) is lower ($9$--$26$\% vs.\ $13$--$31$\% constant-F1; Appendix~\ref{app:epoch_confound}); we use constant-F1 as the operationally relevant definition since selection cannot improve F1 regardless of which case applies.} for these, no signal can improve selection.
+We adopt \textit{degeneracy} (from statistical mechanics: multiple microstates mapping to identical macrostates) to distinguish from training convergence and to emphasize the many-to-one collapse of distinct samples onto identical entity sets.

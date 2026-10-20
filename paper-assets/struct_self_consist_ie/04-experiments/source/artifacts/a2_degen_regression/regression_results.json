@@ -1,0 +1,238 @@
+{
+  "n_points": 30,
+  "linear": {
+    "equation": "degen = 129.5 \u00d7 F1 + -56.9",
+    "slope": 129.537,
+    "intercept": -56.887,
+    "R2": 0.4139,
+    "r": 0.6433,
+    "p_value": 0.00012564,
+    "std_err": 29.131
+  },
+  "quadratic": {
+    "equation": "degen = 470.3\u00d7F1\u00b2 + -538.0\u00d7F1 + 171.5",
+    "coefficients": [
+      470.269,
+      -537.957,
+      171.509
+    ],
+    "R2": 0.592
+  },
+  "spearman": {
+    "rho": 0.5194,
+    "p_value": 0.0032664
+  },
+  "summary": "Positive correlation: higher greedy F1 \u2192 higher degeneracy rate. Spearman \u03c1=0.519 (p=3.27e-03). Linear R\u00b2=0.414. Quadratic R\u00b2=0.592. The relationship is largely driven by dataset difficulty: CoNLL (easy, high F1) has very high degeneracy, while SciERC (hard, low F1) has low degeneracy.",
+  "data_points": [
+    {
+      "model": "Qwen3-8B",
+      "regime": "FT",
+      "dataset": "SciERC",
+      "greedy_f1": 0.6439,
+      "degen_pct": 17.77
+    },
+    {
+      "model": "Qwen3-8B",
+      "regime": "FT",
+      "dataset": "SciERC",
+      "greedy_f1": 0.6457,
+      "degen_pct": 17.2
+    },
+    {
+      "model": "Qwen3-8B",
+      "regime": "FT",
+      "dataset": "SciERC",
+      "greedy_f1": 0.6478,
+      "degen_pct": 20.42
+    },
+    {
+      "model": "Qwen3-8B",
+      "regime": "FT",
+      "dataset": "CoNLL",
+      "greedy_f1": 0.907,
+      "degen_pct": 57.95
+    },
+    {
+      "model": "Qwen3-8B",
+      "regime": "FT",
+      "dataset": "CoNLL",
+      "greedy_f1": 0.9077,
+      "degen_pct": 63.03
+    },
+    {
+      "model": "Qwen3-8B",
+      "regime": "FT",
+      "dataset": "CoNLL",
+      "greedy_f1": 0.907,
+      "degen_pct": 62.88
+    },
+    {
+      "model": "Qwen3-8B",
+      "regime": "FT",
+      "dataset": "FewNERD",
+      "greedy_f1": 0.7478,
+      "degen_pct": 14.43
+    },
+    {
+      "model": "Qwen3-8B",
+      "regime": "FT",
+      "dataset": "FewNERD",
+      "greedy_f1": 0.748,
+      "degen_pct": 13.12
+    },
+    {
+      "model": "Qwen3-8B",
+      "regime": "FT",
+      "dataset": "FewNERD",
+      "greedy_f1": 0.7486,
+      "degen_pct": 12.12
+    },
+    {
+      "model": "Qwen3-8B",
+      "regime": "FT",
+      "dataset": "FewNERD",
+      "greedy_f1": 0.7478,
+      "degen_pct": 11.77
+    },
+    {
+      "model": "Qwen3-4B",
+      "regime": "FT",
+      "dataset": "SciERC",
+      "greedy_f1": 0.6622,
+      "degen_pct": 10.4
+    },
+    {
+      "model": "Qwen3-4B",
+      "regime": "FT",
+      "dataset": "CoNLL",
+      "greedy_f1": 0.9212,
+      "degen_pct": 90.57
+    },
+    {
+      "model": "Qwen2.5-7B",
+      "regime": "FT",
+      "dataset": "FewNERD",
+      "greedy_f1": 0.7851,
+      "degen_pct": 31.1
+    },
+    {
+      "model": "Qwen2.5-7B",
+      "regime": "FT",
+      "dataset": "FewNERD",
+      "greedy_f1": 0.785,
+      "degen_pct": 32.8
+    },
+    {
+      "model": "Qwen2.5-7B",
+      "regime": "FT",
+      "dataset": "FewNERD",
+      "greedy_f1": 0.7825,
+      "degen_pct": 31.3
+    },
+    {
+      "model": "Qwen2.5-72B",
+      "regime": "ZS",
+      "dataset": "SciERC",
+      "greedy_f1": 0.3993,
+      "degen_pct": 21.0
+    },
+    {
+      "model": "Qwen2.5-72B",
+      "regime": "ZS",
+      "dataset": "CoNLL",
+      "greedy_f1": 0.712,
+      "degen_pct": 67.7
+    },
+    {
+      "model": "Qwen2.5-72B",
+      "regime": "ZS",
+      "dataset": "FewNERD",
+      "greedy_f1": 0.6281,
+      "degen_pct": 46.2
+    },
+    {
+      "model": "Qwen2.5-72B",
+      "regime": "FS",
+      "dataset": "SciERC",
+      "greedy_f1": 0.461,
+      "degen_pct": 16.6
+    },
+    {
+      "model": "Qwen2.5-72B",
+      "regime": "FS",
+      "dataset": "CoNLL",
+      "greedy_f1": 0.745,
+      "degen_pct": 70.0
+    },
+    {
+      "model": "Qwen2.5-72B",
+      "regime": "FS",
+      "dataset": "FewNERD",
+      "greedy_f1": 0.619,
+      "degen_pct": 45.2
+    },
+    {
+      "model": "LLaMA-3.1-8B",
+      "regime": "FT",
+      "dataset": "SciERC",
+      "greedy_f1": 0.646,
+      "degen_pct": 24.95
+    },
+    {
+      "model": "LLaMA-3.1-8B",
+      "regime": "FT",
+      "dataset": "SciERC",
+      "greedy_f1": 0.6454,
+      "degen_pct": 26.65
+    },
+    {
+      "model": "LLaMA-3.1-8B",
+      "regime": "FT",
+      "dataset": "SciERC",
+      "greedy_f1": 0.6459,
+      "degen_pct": 27.41
+    },
+    {
+      "model": "LLaMA-3.1-8B",
+      "regime": "FT",
+      "dataset": "CoNLL",
+      "greedy_f1": 0.9239,
+      "degen_pct": 89.44
+    },
+    {
+      "model": "LLaMA-3.1-8B",
+      "regime": "FT",
+      "dataset": "CoNLL",
+      "greedy_f1": 0.9238,
+      "degen_pct": 89.3
+    },
+    {
+      "model": "LLaMA-3.1-8B",
+      "regime": "FT",
+      "dataset": "CoNLL",
+      "greedy_f1": 0.9242,
+      "degen_pct": 89.44
+    },
+    {
+      "model": "LLaMA-3.1-8B",
+      "regime": "FT",
+      "dataset": "FewNERD",
+      "greedy_f1": 0.7841,
+      "degen_pct": 27.32
+    },
+    {
+      "model": "LLaMA-3.1-8B",
+      "regime": "FT",
+      "dataset": "FewNERD",
+      "greedy_f1": 0.784,
+      "degen_pct": 24.63
+    },
+    {
+      "model": "LLaMA-3.1-8B",
+      "regime": "FT",
+      "dataset": "FewNERD",
+      "greedy_f1": 0.7844,
+      "degen_pct": 18.13
+    }
+  ]
+}

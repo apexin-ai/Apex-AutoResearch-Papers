@@ -1,0 +1,75 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Self-consistency in LLM reasoning.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Test-time scaling.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Confidence estimation for IE.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Agreement metrics.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setup}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Structural Self-Consistency via Soft Jaccard}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Baseline: Fleiss' Kappa}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Evaluation Protocol}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Best-of-$N$ Selection}{3}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Datasets}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Models}{3}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Cross-dataset NER consistency signal comparison. $\rho _{\mathrm  {SJ}}$ and $\rho _{\mathrm  {FK}}$: Spearman correlation between consistency score and instance F1. $\Delta $: $\rho _{\mathrm  {SJ}}- \rho _{\mathrm  {FK}}$. All differences significant at $p < 10^{-27}$.}}{4}{table.caption.5}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:cross_dataset}{{1}{4}{Cross-dataset NER consistency signal comparison. $\rhosj $ and $\rhofk $: Spearman correlation between consistency score and instance F1. $\Delta $: $\rhosj - \rhofk $. All differences significant at $p < 10^{-27}$}{table.caption.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces N-scaling effect on SciERC NER consistency signal.}}{4}{table.caption.6}\protected@file@percent }
+\newlabel{tab:n_scaling}{{2}{4}{N-scaling effect on SciERC NER consistency signal}{table.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Sampling Configuration}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Cross-Dataset NER Results}{4}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}N-Scaling Effect}{4}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:n_scaling}{{5.2}{4}{N-Scaling Effect}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Cross-Model Validation}{4}{subsection.5.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Cross-model NER results on SciERC ($N\!=\!8$).}}{5}{table.caption.7}\protected@file@percent }
+\newlabel{tab:cross_model}{{3}{5}{Cross-model NER results on SciERC ($N\!=\!8$)}{table.caption.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces In-domain vs.\ out-of-distribution NER consistency signal (OntoNotes, $N\!=\!8$).}}{5}{table.caption.8}\protected@file@percent }
+\newlabel{tab:ood}{{4}{5}{In-domain vs.\ out-of-distribution NER consistency signal (OntoNotes, $N\!=\!8$)}{table.caption.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Out-of-Distribution Robustness}{5}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Temperature Sensitivity}{5}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:temperature}{{5.5}{5}{Temperature Sensitivity}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Relation Extraction: Diagnostic Analysis}{5}{subsection.5.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.1}NER vs.\ RE under N-Scaling}{5}{subsubsection.5.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.2}Per-Relation-Type Breakdown}{5}{subsubsection.5.6.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Temperature sensitivity analysis on SciERC. Full: all instances; Cond: excluding all-zero instances.}}{6}{table.caption.9}\protected@file@percent }
+\newlabel{tab:temperature}{{5}{6}{Temperature sensitivity analysis on SciERC. Full: all instances; Cond: excluding all-zero instances}{table.caption.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces NER vs.\ RE under N-scaling on SciERC. The divergent N-scaling behavior demonstrates the fundamental difference in consistency signal quality between entity-level and relational tasks.}}{6}{table.caption.10}\protected@file@percent }
+\newlabel{tab:ner_vs_re}{{6}{6}{NER vs.\ RE under N-scaling on SciERC. The divergent N-scaling behavior demonstrates the fundamental difference in consistency signal quality between entity-level and relational tasks}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Capability Stratification}{6}{subsection.5.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Adaptive Compute: Best-of-$N$ Selection}{6}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:adaptive}{{5.8}{6}{Adaptive Compute: Best-of-$N$ Selection}{subsection.5.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Per-relation-type consistency analysis on SciERC RE. Types sorted by $\rho _{\mathrm  {SJ}}$ descending.}}{7}{table.caption.11}\protected@file@percent }
+\newlabel{tab:per_relation}{{7}{7}{Per-relation-type consistency analysis on SciERC RE. Types sorted by $\rhosj $ descending}{table.caption.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Capability-stratified $\rho _{\mathrm  {SJ}}$ analysis on SciERC ($N\!=\!16$). Instances grouped by greedy F1.}}{7}{table.caption.12}\protected@file@percent }
+\newlabel{tab:stratification}{{8}{7}{Capability-stratified $\rhosj $ analysis on SciERC ($N\!=\!16$). Instances grouped by greedy F1}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Selection Curves}{7}{subsection.5.9}\protected@file@percent }
+\newlabel{sec:curves}{{5.9}{7}{Selection Curves}{subsection.5.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{7}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why does structural consistency work for NER but not (fully) for RE?}{7}{section*.15}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{wang2023selfconsistency}{{1}{}{{}}{{}}}
+\bibcite{brown2020language}{{2}{}{{}}{{}}}
+\bibcite{snell2024scaling}{{3}{}{{}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Best-of-$N$ selection results on SciERC NER ($N\!=\!16$).}}{8}{table.caption.13}\protected@file@percent }
+\newlabel{tab:adaptive}{{9}{8}{Best-of-$N$ selection results on SciERC NER ($N\!=\!16$)}{table.caption.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Best-of-$N$ selection F1 as a function of $N$ on SciERC NER.}}{8}{table.caption.14}\protected@file@percent }
+\newlabel{tab:selection_curves}{{10}{8}{Best-of-$N$ selection F1 as a function of $N$ on SciERC NER}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {paragraph}{Practical recommendations.}{8}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{8}{section.7}\protected@file@percent }
+\bibcite{lu2022unified}{{4}{}{{}}{{}}}
+\bibcite{luan2018scierc}{{5}{}{{}}{{}}}
+\bibcite{tjong2003conll}{{6}{}{{}}{{}}}
+\bibcite{pradhan2013ontonotes}{{7}{}{{}}{{}}}
+\bibcite{fleiss1971measuring}{{8}{}{{}}{{}}}
+\bibcite{jaccard1912distribution}{{9}{}{{}}{{}}}
+\bibcite{hu2022lora}{{10}{}{{}}{{}}}
+\providecommand\NAT@force@numbers{}\NAT@force@numbers
+\gdef \@abspage@last{9}

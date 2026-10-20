@@ -1,0 +1,1 @@
+SciERC: VerbConf rho=0.2965, sel_f1=0.6195 (delta=-0.0245), mean=8.58. CoNLL: VerbConf rho=0.3366, sel_f1=0.8886 (delta=-0.0193), mean=9.24. VerbConf is worst signal for selection F1 on both datasets. Severe score compression (8-10 range). Supports score compression hypothesis.

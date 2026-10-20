@@ -1,0 +1,64 @@
+%% Draft: Zero-shot / Scaling paragraph for \S5.5 (Scaling Behavior)
+%% Exp ID: exp_qwen25_72b_zeroshot (all 72B ZS numbers)
+%% Status: Draft for Paper Agent integration. Replaces current \S5.5 content.
+%% Pending: 7B/14B/32B FT results for full scaling curve; 72B FT for regime disentanglement.
+
+\subsection{Scaling Behavior}
+\label{sec:scaling}
+
+To test whether the correlation-selection gap is specific to fine-tuned models, we evaluate Qwen2.5-72B-Instruct (AWQ 4-bit) in a zero-shot setting across all three primary datasets ($N{=}8$, $T{=}1.0$, no task-specific training).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Fine-tuned 8B vs.\ zero-shot 72B: QE correlations and entity construction ($N{=}8$, $T{=}1.0$). Degen.\ = instance degeneracy (\%). Constr.\ = LP-weighted entity construction $\Delta$F1 vs.\ greedy (pp). $^\dagger$Majority voting (uniform weights).}
+\label{tab:zs_72b}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}llcccccr@{}}
+\toprule
+Dataset & Regime & Greedy & Degen. & LP $\rho$ & SJ $\rho$ & VC $\rho$ & Constr. \\
+\midrule
+SciERC & 8B FT  & .645 & 17.8\% & .205 & .360 & .379 & $+$1.02 \\
+       & 72B ZS & .399 & 21.0\% & .081 & .217 & .277 & $+$1.53 \\
+\midrule
+Few-NERD & 8B FT & .748 & 13.0\% & .220 & .380 & --- & $+$1.40 \\
+         & 72B ZS & .628 & 46.2\% & .119 & .345 & .416 & $-$0.20 \\
+\midrule
+CoNLL  & 8B FT  & .908 & 61.7\% & .302 & .436 & .424 & $-$0.39 \\
+       & 72B ZS & .712 & 67.7\% & $-$.002 & .304 & .297 & $-$0.37 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\paragraph{LP requires fine-tuning calibration.}
+Table~\ref{tab:zs_72b} compares QE correlations between regimes.
+LP $\rho$ drops to near zero in the zero-shot setting: from $0.205$ to $0.081$ on SciERC, $0.220$ to $0.119$ on Few-NERD, and $0.302$ to $-0.002$ on CoNLL.
+Fine-tuning calibrates the model's token-level confidence to task-specific quality gradients; without this calibration, LP provides little discriminative signal for candidate quality.
+
+\paragraph{Structural signals generalize beyond fine-tuning.}
+VC and SJ retain moderate correlations in the zero-shot regime (VC $\rho{=}0.277$--$0.416$, SJ $\rho{=}0.217$--$0.345$), despite the absence of task-specific training.
+These signals measure inter-sample agreement, a property of output consistency that does not require the model's confidence to be calibrated to a particular task.
+The divergence between LP and structural signals under zero-shot conditions reflects the correlation-selection gap from a complementary angle: structural signals capture consistency as a task-agnostic distributional property, while LP depends on fine-tuning to align confidence with performance.
+
+\paragraph{Degeneracy gates construction effectiveness.}
+Entity construction (\S\ref{sec:prescriptive}) with LP-weighting yields $+1.53$\,pp on SciERC ($p{=}0.008$, 95\% CI [$+0.25$, $+2.82$]\,pp), where zero-shot degeneracy is lowest (21.0\%).
+Majority voting also improves SciERC by $+1.39$\,pp; the marginal contribution of LP-weighting over uniform voting is $+0.14$\,pp.
+On Few-NERD (46.2\% degeneracy, $-0.20$\,pp) and CoNLL (67.7\%, $-0.37$\,pp), construction provides no benefit.
+This monotonic relationship between degeneracy and construction gain is consistent with the gating hypothesis from \S\ref{sec:fewnerd}: construction recovers value only when candidate diversity is sufficient for recall-driven aggregation.
+
+\paragraph{The gap is not a fine-tuning artifact.}
+Zero-shot LP $\rho$ approaches zero on all three datasets, and LP selection fails on SciERC ($-0.1$\,pp) and CoNLL ($-0.4$\,pp).
+The same structural factors identified in \S\ref{sec:selection_gap} operate here: weak LP-quality alignment and instance degeneracy compress the effective candidate space.
+That the gap persists at $9{\times}$ the parameter count, in a zero-shot regime without LoRA fine-tuning, and across three datasets with varying difficulty is consistent with the gap being a structural property of self-consistency applied to structured IE rather than an artifact of a specific training configuration.
+
+%% Placeholder: scaling curve figure
+\begin{figure}[t]
+\centering
+% \includegraphics[width=\columnwidth]{figures/fig_scaling_curve.pdf}
+\textcolor{red}{TODO: Scaling curve (4B/8B/14B/32B/72B). Panels: (a) greedy/oracle F1 and headroom, (b) signal $\rho$. Separate lines for fine-tuned vs.\ zero-shot.}
+\caption{\textcolor{red}{TODO: Signal quality and oracle headroom across model scales.}}
+\label{fig:scaling_curve}
+\end{figure}
+
+%% TODO: 7B/14B/32B fine-tuned results to complete the scaling curve.
+%% TODO: 72B fine-tuned results to disentangle scale effect from training regime effect.

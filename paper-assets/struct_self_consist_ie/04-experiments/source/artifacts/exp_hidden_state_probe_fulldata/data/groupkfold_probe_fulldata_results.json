@@ -1,0 +1,67 @@
+{
+  "experiment": "exp_hidden_state_probe_fulldata",
+  "description": "Full-data GroupKFold Hidden State Probe (LogisticRegression, 5-fold, 3 seeds)",
+  "model": "Qwen3-8B (fine-tuned, bf16)",
+  "probe": "LogisticRegression(max_iter=1000, C=1.0, solver=lbfgs) + StandardScaler",
+  "cv": "GroupKFold(n_splits=5) grouped by instance_idx",
+  "seeds": [42, 123, 456],
+  "datasets": {
+    "conll": {
+      "n_instances": 850,
+      "n_entities": 14777,
+      "n_positive": 13268,
+      "n_negative": 1509,
+      "positive_rate": 0.8979,
+      "groupkfold_auroc_mean": 0.8824,
+      "groupkfold_auroc_std": 0.0001,
+      "groupkfold_auroc_per_seed": [0.8822, 0.8826, 0.8824],
+      "stratifiedkfold_auroc_mean": 0.9786,
+      "stratifiedkfold_auroc_std": 0.0016,
+      "stratifiedkfold_auroc_per_seed": [0.9802, 0.9765, 0.9792],
+      "leakage_delta": 0.0962,
+      "subset_500inst_auroc": 0.885,
+      "mv_baseline_auroc": 0.87
+    },
+    "fewnerd": {
+      "n_instances": 1698,
+      "n_entities": 41096,
+      "n_positive": 32000,
+      "n_negative": 9096,
+      "positive_rate": 0.7787,
+      "groupkfold_auroc_mean": 0.6361,
+      "groupkfold_auroc_std": 0.0001,
+      "groupkfold_auroc_per_seed": [0.6359, 0.6361, 0.6363],
+      "stratifiedkfold_auroc_mean": 0.9802,
+      "stratifiedkfold_auroc_std": 0.0002,
+      "stratifiedkfold_auroc_per_seed": [0.9805, 0.9802, 0.9800],
+      "leakage_delta": 0.3441,
+      "subset_500inst_auroc": 0.651,
+      "mv_baseline_auroc": 0.87
+    },
+    "scierc": {
+      "n_instances": 539,
+      "n_entities": 13188,
+      "n_positive": 8562,
+      "n_negative": 4626,
+      "positive_rate": 0.6492,
+      "groupkfold_auroc_mean": 0.6304,
+      "groupkfold_auroc_std": 0.0002,
+      "groupkfold_auroc_per_seed": [0.6304, 0.6306, 0.6302],
+      "stratifiedkfold_auroc_mean": 0.9763,
+      "stratifiedkfold_auroc_std": 0.0002,
+      "stratifiedkfold_auroc_per_seed": [0.9761, 0.9765, 0.9761],
+      "leakage_delta": 0.3459,
+      "subset_500inst_auroc": 0.634,
+      "mv_baseline_auroc": 0.87
+    }
+  },
+  "summary": {
+    "best_groupkfold_dataset": "conll",
+    "best_groupkfold_auroc": 0.8824,
+    "conll_exceeds_mv_baseline": true,
+    "fewnerd_exceeds_mv_baseline": false,
+    "scierc_exceeds_mv_baseline": false,
+    "avg_leakage_delta": 0.2621,
+    "fulldata_vs_500inst_consistent": true
+  }
+}

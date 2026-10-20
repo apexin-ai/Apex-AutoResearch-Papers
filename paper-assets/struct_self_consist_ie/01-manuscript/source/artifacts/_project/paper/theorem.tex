@@ -1,0 +1,138 @@
+% Degeneracy Upper Bound on Self-Consistency Gain
+% Standalone theorem + proof for inclusion in paper
+
+\subsection{Information-Theoretic Upper Bound on SC Gain}
+\label{sec:degeneracy-bound}
+
+We formalize the intuition that degeneracy---the phenomenon where all $N$ sampled outputs are identical---imposes a fundamental ceiling on the gain achievable by any self-consistency aggregation method.
+
+\begin{definition}[Instance-Level Degeneracy]
+\label{def:degeneracy}
+Given a generative model $\mathcal{M}$, an input instance $x$, and $N$ i.i.d.\ samples $\{y_1, \ldots, y_N\} \sim \mathcal{M}(\cdot \mid x)$, instance $x$ is \emph{degenerate} if $y_1 = y_2 = \cdots = y_N$. The \emph{degeneracy rate} of $\mathcal{M}$ on dataset $\mathcal{D}$ is
+\[
+D \;=\; \frac{1}{|\mathcal{D}|} \sum_{x \in \mathcal{D}} \mathbb{1}\!\bigl[y_1(x) = \cdots = y_N(x)\bigr].
+\]
+\end{definition}
+
+\begin{definition}[Oracle Gap]
+\label{def:oracle-gap}
+The \emph{non-degenerate oracle gap} is the expected F1 improvement achievable by an oracle selector on non-degenerate instances:
+\[
+G_{\text{nd}} \;=\; \mathbb{E}\!\bigl[F_1^{\text{oracle}}(x) - F_1^{\text{greedy}}(x) \;\big|\; x \in \mathcal{D}_{\neg D}\bigr],
+\]
+where $\mathcal{D}_{\neg D} = \{x \in \mathcal{D} : x \text{ is non-degenerate}\}$ and $F_1^{\text{oracle}}(x) = \max_{i \in [N]} F_1(y_i(x), \hat{y}(x))$ selects the sample maximizing instance-level F1 against the gold label $\hat{y}(x)$.
+\end{definition}
+
+\begin{theorem}[Degeneracy Upper Bound]
+\label{thm:degeneracy-bound}
+Let $A$ be any aggregation method that maps $N$ samples to a single output (including selection, construction, and voting methods). Then the expected F1 gain of $A$ over greedy decoding satisfies:
+\begin{equation}
+\label{eq:weak-bound}
+\mathbb{E}\!\bigl[\Delta F_1(A)\bigr] \;\leq\; (1 - D) \cdot G_{\emph{nd}}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Partition $\mathcal{D}$ into degenerate instances $\mathcal{D}_D$ (fraction $D$) and non-degenerate instances $\mathcal{D}_{\neg D}$ (fraction $1-D$). By the law of total expectation:
+\begin{align}
+\mathbb{E}[\Delta F_1(A)]
+&= D \cdot \mathbb{E}[\Delta F_1(A) \mid x \in \mathcal{D}_D] \;+\; (1-D) \cdot \mathbb{E}[\Delta F_1(A) \mid x \in \mathcal{D}_{\neg D}]. \label{eq:decomp}
+\end{align}
+
+\textbf{Term 1 (degenerate instances).}
+For $x \in \mathcal{D}_D$, all $N$ samples are identical: $y_1 = \cdots = y_N = y^*$. Any deterministic aggregation $A$ can only output $y^*$ (or a subset/superset of its entities, in the case of construction methods). Since $y^*$ equals the greedy output, $A(x) = \text{greedy}(x)$, hence $\Delta F_1(A, x) = 0$ for all $x \in \mathcal{D}_D$.\footnote{For construction methods that threshold entity inclusion, the constructed output on degenerate instances equals the greedy output because every entity receives the maximum possible vote (all $N$ samples agree).}
+
+\textbf{Term 2 (non-degenerate instances).}
+For $x \in \mathcal{D}_{\neg D}$, the gain of $A$ is bounded by the oracle gain:
+\[
+\Delta F_1(A, x) \;\leq\; F_1^{\text{oracle}}(x) - F_1^{\text{greedy}}(x).
+\]
+Taking expectations over non-degenerate instances:
+\[
+\mathbb{E}[\Delta F_1(A) \mid x \in \mathcal{D}_{\neg D}] \;\leq\; G_{\text{nd}}.
+\]
+
+Substituting into~\eqref{eq:decomp}:
+\[
+\mathbb{E}[\Delta F_1(A)] \;\leq\; D \cdot 0 + (1-D) \cdot G_{\text{nd}} \;=\; (1-D) \cdot G_{\text{nd}}. \qedhere
+\]
+\end{proof}
+
+\begin{theorem}[Signal-Adjusted Bound]
+\label{thm:signal-bound}
+Let $s: \{y_1, \ldots, y_N\} \to \mathbb{R}^N$ be a quality signal used to weight or select among samples (e.g., log-probability, vote count, set Jaccard). Define the \emph{signal alignment} $\alpha \in [0, 1]$ as the fraction of the oracle gap recovered by signal-based aggregation on non-degenerate instances:
+\[
+\alpha \;=\; \frac{\mathbb{E}[\Delta F_1(A_s) \mid x \in \mathcal{D}_{\neg D}]}{G_{\emph{nd}}}.
+\]
+Then:
+\begin{equation}
+\label{eq:signal-bound}
+\mathbb{E}[\Delta F_1(A_s)] \;=\; (1-D) \cdot G_{\emph{nd}} \cdot \alpha.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Direct substitution of the definition of $\alpha$ into the decomposition~\eqref{eq:decomp}:
+\[
+\mathbb{E}[\Delta F_1(A_s)] = (1-D) \cdot \mathbb{E}[\Delta F_1(A_s) \mid \mathcal{D}_{\neg D}] = (1-D) \cdot G_{\text{nd}} \cdot \alpha. \qedhere
+\]
+\end{proof}
+
+\begin{corollary}[Critical Degeneracy Threshold]
+\label{cor:theta-critical}
+For the expected SC gain to exceed a statistical significance threshold $\varepsilon > 0$, the degeneracy rate must satisfy:
+\begin{equation}
+\label{eq:theta-critical}
+D \;<\; \theta_{\emph{crit}} \;\stackrel{\text{def}}{=}\; 1 - \frac{\varepsilon}{G_{\emph{nd}} \cdot \alpha}.
+\end{equation}
+When $D \geq \theta_{\emph{crit}}$, no signal-based SC method can yield statistically significant improvement.
+\end{corollary}
+
+\begin{proof}
+From Theorem~\ref{thm:signal-bound}, $\mathbb{E}[\Delta F_1] \geq \varepsilon$ requires $(1-D) \cdot G_{\text{nd}} \cdot \alpha \geq \varepsilon$, i.e., $D \leq 1 - \varepsilon / (G_{\text{nd}} \cdot \alpha)$.
+\end{proof}
+
+\paragraph{Tighter bound via partial degeneracy.}
+The binary partition in Theorem~\ref{thm:degeneracy-bound} is conservative: it treats all non-degenerate instances as equally exploitable. A tighter analysis considers \emph{partial degeneracy}---the fraction $k/N$ of samples identical to the mode.
+
+\begin{definition}[Effective Diversity]
+\label{def:effective-diversity}
+For instance $x$ with samples $\{y_1, \ldots, y_N\}$, let $m(x)$ be the mode output and $k(x) = |\{i : y_i = m(x)\}|$ the mode count. The \emph{effective diversity} is
+\[
+\eta(x) = 1 - \frac{k(x)}{N}.
+\]
+Note $\eta(x) = 0$ iff $x$ is degenerate, and $\eta(x) \leq 1 - 1/N$.
+\end{definition}
+
+\begin{proposition}[Diversity-Weighted Bound]
+\label{prop:diversity-bound}
+Under the assumption that the oracle gap on instance $x$ scales with effective diversity:
+\[
+F_1^{\emph{oracle}}(x) - F_1^{\emph{greedy}}(x) \;\leq\; c \cdot \eta(x)
+\]
+for some constant $c > 0$, we obtain:
+\begin{equation}
+\label{eq:diversity-bound}
+\mathbb{E}[\Delta F_1(A)] \;\leq\; c \cdot \mathbb{E}[\eta(x)] \cdot \alpha.
+\end{equation}
+Since $\mathbb{E}[\eta(x)] \leq (1-D)(1-1/N)$, this refines the bound in~\eqref{eq:signal-bound} when partial degeneracy is prevalent.
+\end{proposition}
+
+\paragraph{Finite-sample correction.}
+With $N$ i.i.d.\ samples from a model with per-instance generation entropy $H(x)$, the probability that all $N$ samples are identical is $p_{\text{degen}}(x) = \sum_y p(y \mid x)^N$. For high-confidence instances (one output dominates), $p_{\text{degen}} \approx p_{\max}^N \to 1$ exponentially in $N$. Thus:
+\begin{equation}
+\label{eq:finite-sample}
+D(N) = \mathbb{E}_x\!\left[\sum_y p(y \mid x)^N\right] \;\xrightarrow{N \to \infty}\; \Pr[H(x) = 0],
+\end{equation}
+which shows that increasing $N$ cannot reduce degeneracy below the fraction of deterministic instances. In the limit, SC gain is bounded by the fraction of instances with non-zero generation entropy.
+
+\paragraph{Numerical instantiation.}
+For $N = 8$ with empirically observed parameters from our experiments:
+\begin{itemize}
+\item \textbf{Low degeneracy} (SciERC, FewNERD FT): $D \approx 0.12$--$0.21$, $G_{\text{nd}} \approx 14$--$15$ pp. Bound: $(1-D) \cdot G_{\text{nd}} \approx 11$--$13$ pp. With empirical $\alpha \approx 0.08$--$0.11$, predicted gain $\approx 0.9$--$1.5$ pp, matching observed $\Delta \approx 0.4$--$1.6$ pp.
+
+\item \textbf{High degeneracy} (CoNLL FT): $D \approx 0.63$, $G_{\text{nd}} \approx 10$--$11$ pp. Bound: $(1-D) \cdot G_{\text{nd}} \approx 3.7$--$4.0$ pp. With $\alpha \approx 0.08$, predicted gain $\approx 0.3$ pp $< \varepsilon$, consistent with observed negative $\Delta$.
+
+\item \textbf{Critical threshold}: With $\varepsilon = 0.3$ pp (our significance cutoff), $G_{\text{nd}} = 12$ pp, and $\alpha = 0.10$:
+$\theta_{\text{crit}} = 1 - 0.3 / (12.0 \times 0.10) = 0.75$. Configurations with $D > 0.75$ are predicted to show no significant SC gain, consistent with CoNLL-FT and LLaMA-CoNLL configurations ($D = 0.60$--$0.90$) where all methods underperform greedy.
+\end{itemize}

@@ -1,0 +1,79 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{wang2023selfconsistency}
+\citation{chen2024usc}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{wang2023selfconsistency}
+\citation{chen2024usc}
+\citation{kadavath2022language}
+\citation{kuhn2023semantic}
+\citation{desai2020calibration}
+\citation{manakul2023selfcheckgpt}
+\citation{lu2022unified,wadhwa2023revisiting}
+\citation{geifman2017selective}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Self-Consistency for LLMs.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Confidence Estimation and Calibration.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Information Extraction with LLMs.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Selective Prediction.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setup}{2}{subsection.3.1}\protected@file@percent }
+\citation{luan2018scierc}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Confidence Signals}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sequence Log-Probability.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Soft Jaccard (SJ).}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Fleiss' Kappa (FK).}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Exact-Match Voting Rate.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Entity-Level Majority Voting.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Evaluation Protocol}{3}{subsection.3.3}\protected@file@percent }
+\citation{tjong2003conll}
+\citation{derczynski2017wnut}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Confidence signal comparison: Spearman $\rho $ with instance-level F1 across NER datasets. Best in \textbf  {bold}, second \underline  {underlined}. All correlations significant at $p<0.001$.}}{4}{table.caption.10}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:main_comparison}{{1}{4}{Confidence signal comparison: Spearman $\rho $ with instance-level F1 across NER datasets. Best in \textbf {bold}, second \underline {underlined}. All correlations significant at $p<0.001$}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Datasets}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Models}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Sampling Configuration}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Log-Probability Dominates Consistency Signals on NER}{4}{subsection.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Comprehensive evaluation metrics on SciERC NER. LOO-$\rho $: leave-one-out SJ as circularity check.}}{5}{table.caption.11}\protected@file@percent }
+\newlabel{tab:full_metrics}{{2}{5}{Comprehensive evaluation metrics on SciERC NER. LOO-$\rho $: leave-one-out SJ as circularity check}{table.caption.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces AUROC comparison across tasks and datasets.}}{5}{table.caption.12}\protected@file@percent }
+\newlabel{tab:auroc_cross}{{3}{5}{AUROC comparison across tasks and datasets}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Comprehensive Evaluation Metrics}{5}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}AUROC Across Tasks and Datasets}{5}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Best-of-$N$ Selection: The Downstream Impact}{5}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}N-Scaling: More Samples Do Not Help}{5}{subsection.5.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Best-of-$N$ selection F1 (\%, $N$=8). ``Extra cost'' indicates additional inference relative to greedy decoding.}}{6}{table.caption.13}\protected@file@percent }
+\newlabel{tab:best_of_n}{{4}{6}{Best-of-$N$ selection F1 (\%, $N$=8). ``Extra cost'' indicates additional inference relative to greedy decoding}{table.caption.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces N-scaling effect on confidence signal quality (SciERC NER). Seed $\sigma $ computed over 3 seeds at $N$=16.}}{6}{table.caption.14}\protected@file@percent }
+\newlabel{tab:n_scaling}{{5}{6}{N-scaling effect on confidence signal quality (SciERC NER). Seed $\sigma $ computed over 3 seeds at $N$=16}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Task-Complexity Boundary: RE Degradation}{6}{subsection.5.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Cross-Model Validation}{6}{subsection.5.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Temperature Sensitivity}{6}{subsection.5.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces RE diagnostic: all signals on full vs.\ conditional (knowledge-gap filtered) instance set. 95\% bootstrap CIs in brackets.}}{7}{table.caption.15}\protected@file@percent }
+\newlabel{tab:re_diagnostic}{{6}{7}{RE diagnostic: all signals on full vs.\ conditional (knowledge-gap filtered) instance set. 95\% bootstrap CIs in brackets}{table.caption.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Per-relation-type $\rho $ (SciERC RE).}}{7}{table.caption.16}\protected@file@percent }
+\newlabel{tab:per_relation}{{7}{7}{Per-relation-type $\rho $ (SciERC RE)}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Exact-Match Voting and Entity Voting}{7}{subsection.5.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.10}Difficulty Stratification: Inverted-U Pattern}{7}{subsection.5.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.11}Out-of-Domain Robustness}{7}{subsection.5.11}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Cross-model comparison on SciERC NER.}}{8}{table.caption.17}\protected@file@percent }
+\newlabel{tab:cross_model}{{8}{8}{Cross-model comparison on SciERC NER}{table.caption.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Temperature sensitivity: $T$=0.7 vs.\ $T$=1.0 on SciERC.}}{8}{table.caption.18}\protected@file@percent }
+\newlabel{tab:temperature}{{9}{8}{Temperature sensitivity: $T$=0.7 vs.\ $T$=1.0 on SciERC}{table.caption.18}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Analysis and Discussion}{8}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Why Does Log-Prob Win?}{8}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}When Does Consistency Fail?}{8}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Soft Jaccard as Best-Practice Consistency}{8}{subsection.6.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Exact-match voting rate distribution.}}{9}{table.caption.19}\protected@file@percent }
+\newlabel{tab:exact_match}{{10}{9}{Exact-match voting rate distribution}{table.caption.19}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Stratified $\rho $ by difficulty bucket (SciERC NER, greedy F1 ranges).}}{9}{table.caption.20}\protected@file@percent }
+\newlabel{tab:stratification}{{11}{9}{Stratified $\rho $ by difficulty bucket (SciERC NER, greedy F1 ranges)}{table.caption.20}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{9}{section.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces In-domain vs.\ OOD signal quality (SciERC model on WNUT data).}}{10}{table.caption.21}\protected@file@percent }
+\newlabel{tab:ood}{{12}{10}{In-domain vs.\ OOD signal quality (SciERC model on WNUT data)}{table.caption.21}{}}
+\gdef \@abspage@last{10}

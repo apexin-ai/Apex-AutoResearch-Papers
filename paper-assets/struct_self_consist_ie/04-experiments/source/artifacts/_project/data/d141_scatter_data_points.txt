@@ -1,0 +1,14 @@
+Qwen3-8B SciERC 3ep: F1=0.6501, degen=6.43%
+Qwen3-8B SciERC 5ep: F1=0.6439, degen=17.77%
+Qwen3-8B SciERC 10ep: F1=0.6467, degen=47.83%
+Qwen3-8B CoNLL: F1=0.9070, degen=48.44%
+Qwen3-8B FewNERD: F1=0.7478, degen=13.75%
+Qwen3-4B SciERC: F1=0.6622, degen=10.40%
+Qwen3-4B CoNLL: F1=0.9212, degen=90.57%
+LLaMA-3B SciERC: F1=0.6460, degen=24.95%
+LLaMA-3B CoNLL: F1=0.9239, degen=86.47%
+Qwen3-8B FewNERD 5ep: F1=0.7773, degen=31.33%
+
+Spearman rho=0.6121, p=0.06
+Full data at: autodl-5090:/root/autodl-tmp/struct_self_consist_ie/output/d141_degeneracy_scatter/
+Scatter plot: scatter_plot.png (300 DPI)

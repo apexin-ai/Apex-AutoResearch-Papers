@@ -1,0 +1,19 @@
+\begin{table*}[t]
+\centering
+\caption{Full zero-shot vs.\ few-shot comparison for Qwen2.5-72B-Instruct-AWQ ($N{=}8$). Only SciERC under zero-shot yields a significant construction gain.}
+\label{tab:72b_zs_vs_fs}
+\begin{tabular}{ll rrrrr rr r}
+\toprule
+Dataset & Regime & Degen\% & LP $\rho$ & SJ $\rho$ & FK $\rho$ & VC $\rho$ & Greedy F1 & Constr $\Delta$ & $p$ \\
+\midrule
+SciERC  & ZS & 21.0 & .081  & .217 & .227 & .277 & .399 & \textbf{+1.53} & .008 \\
+SciERC  & FS & 16.6 & .060  & .293 & .301 & .258 & .461 & $-$0.08 & .544 \\
+\midrule
+CoNLL   & ZS & 67.7 & $-$.002 & .304 & .302 & .297 & .712 & $-$0.37 & --- \\
+CoNLL   & FS & 70.0 & .106  & .442 & .451 & .426 & .745 & +0.03 & .417 \\
+\midrule
+FewNERD & ZS & 46.2 & .119  & .345 & .321 & .416 & .628 & $-$0.20 & --- \\
+FewNERD & FS & 45.2 & .161  & .345 & .327 & .410 & .619 & +0.02 & .401 \\
+\bottomrule
+\end{tabular}
+\end{table*}

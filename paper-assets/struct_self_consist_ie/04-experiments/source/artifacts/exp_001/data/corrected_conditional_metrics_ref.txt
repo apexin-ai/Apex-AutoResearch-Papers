@@ -1,0 +1,1 @@
+See server: /root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/corrected_conditional_metrics.json. Key values: NER SJ rho_cond=0.349 n_cond=478; RE SJ rho_cond=0.318 n_cond=238; RE exact_match rho_cond=0.475 (best signal conditional).

@@ -1,0 +1,140 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{wang2023selfconsistency}
+\citation{nedellec2026consistency}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{wang2023selfconsistency}
+\citation{cisc2025}
+\citation{selfcertainty2026}
+\citation{reasc2026}
+\citation{atomicsc2024}
+\citation{nedellec2026consistency}
+\citation{kuhn2023semantic}
+\citation{manakul2023selfcheckgpt}
+\citation{kadavath2022language}
+\citation{guo2017calibration}
+\citation{desai2020calibration}
+\citation{geng2024survey}
+\citation{xiong2024llmconfidence}
+\citation{gal2016dropout,shelmanov2021certain}
+\citation{lakshminarayanan2017simple}
+\citation{culotta2004confidence}
+\citation{snell2024scaling}
+\citation{brown2024large}
+\citation{cobbe2021training}
+\citation{lightman2023lets}
+\citation{cocoa2025}
+\citation{geifman2017selective}
+\citation{kuleshov2015calibration,jagannatha2022structured}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Self-consistency for reasoning.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Consistency for structured IE.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LLM uncertainty and calibration.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Confidence for NER/IE.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Test-time scaling and verifiers.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Selective prediction.}{2}{section*.6}\protected@file@percent }
+\citation{luan2018multi}
+\citation{tjong2003conll}
+\citation{derczynski2017results}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Task and Notation}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Confidence Signals}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Log-probability (LP).}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Exact-match rate (EM).}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Fleiss' $\kappa $ (FK).}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Soft Jaccard (SJ).}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Entity voting confidence (VC).}{3}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Evaluation Protocol}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Quality estimation.}{3}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Best-of-N selection.}{3}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Leave-one-out validation.}{3}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\newlabel{sec:setup}{{4}{3}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.15}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Confidence signal comparison on SciERC (N=8, T=1.0). $\rho $: Spearman correlation with F1. LOO-$\rho $: leave-one-out SJ.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:signal_comparison}{{1}{4}{Confidence signal comparison on SciERC (N=8, T=1.0). $\rho $: Spearman correlation with F1. LOO-$\rho $: leave-one-out SJ}{table.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Datasets.}{4}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sampling.}{4}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{4}{Results}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Quality Estimation: Signal Comparison}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:quality}{{5.1}{4}{Quality Estimation: Signal Comparison}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Cross-Dataset Generalization}{4}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:cross_dataset}{{5.2}{4}{Cross-Dataset Generalization}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Cross-dataset AUROC comparison (N=8, T=1.0, Qwen3-8B).}}{5}{table.2}\protected@file@percent }
+\newlabel{tab:cross_dataset}{{2}{5}{Cross-dataset AUROC comparison (N=8, T=1.0, Qwen3-8B)}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces $2 \times 2$ cross-validation: NER SJ $\rho $ (full) and SJ$-$LP $\Delta \rho $ in parentheses.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:cross_model}{{3}{5}{$2 \times 2$ cross-validation: NER SJ $\rho $ (full) and SJ$-$LP $\Delta \rho $ in parentheses}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Cross-Model Validation}{5}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:cross_model}{{5.3}{5}{Cross-Model Validation}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}N-Scaling Analysis}{5}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:nscaling}{{5.4}{5}{N-Scaling Analysis}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Temperature Sensitivity}{5}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:temperature}{{5.5}{5}{Temperature Sensitivity}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}The Correlation--Selection Gap}{5}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:selection}{{5.6}{5}{The Correlation--Selection Gap}{subsection.5.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces N-scaling: $N=8$ vs $N=16$ (SciERC, Qwen3-8B, 3-seed mean for NER).}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:nscaling}{{4}{6}{N-scaling: $N=8$ vs $N=16$ (SciERC, Qwen3-8B, 3-seed mean for NER)}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Temperature sensitivity on SciERC (Qwen3-8B, N=8).}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:temperature}{{5}{6}{Temperature sensitivity on SciERC (Qwen3-8B, N=8)}{table.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Selection curves.}{6}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Signal ensembles.}{6}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}RE Diagnostic Analysis}{6}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:re_diagnostic}{{5.7}{6}{RE Diagnostic Analysis}{subsection.5.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Best-of-N selection F1 and gain over greedy (pp). All NER signals $\leq $ greedy.}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:selection}{{6}{7}{Best-of-N selection F1 and gain over greedy (pp). All NER signals $\leq $ greedy}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Per-relation-type $\rho $ on SciERC RE (N=8, T=1.0).}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:re_diagnostic}{{7}{7}{Per-relation-type $\rho $ on SciERC RE (N=8, T=1.0)}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Capability Stratification}{7}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:stratification}{{5.8}{7}{Capability Stratification}{subsection.5.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Out-of-Domain Robustness}{7}{subsection.5.9}\protected@file@percent }
+\newlabel{sec:ood}{{5.9}{7}{Out-of-Domain Robustness}{subsection.5.9}{}}
+\bibcite{wang2023selfconsistency}{{1}{2023}{{Wang et al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Stratified $\rho $ by difficulty quartile (SciERC NER).}}{8}{table.8}\protected@file@percent }
+\newlabel{tab:stratification}{{8}{8}{Stratified $\rho $ by difficulty quartile (SciERC NER)}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces In-domain vs.\ OOD signal quality (SciERC model $\to $ WNUT data).}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:ood}{{9}{8}{In-domain vs.\ OOD signal quality (SciERC model $\to $ WNUT data)}{table.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{8}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{8}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Practical implications.}{8}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{When might consistency help?}{8}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{8}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{8}{Conclusion}{section.7}{}}
+\bibcite{nedellec2026consistency}{{2}{2026}{{N\'{e}dellec and Xia}}{{}}}
+\bibcite{chen2024usc}{{3}{2024}{{Chen et al.}}{{}}}
+\bibcite{kuhn2023semantic}{{4}{2023}{{Kuhn et al.}}{{}}}
+\bibcite{manakul2023selfcheckgpt}{{5}{2023}{{Manakul et al.}}{{}}}
+\bibcite{kadavath2022language}{{6}{2022}{{Kadavath et al.}}{{}}}
+\bibcite{guo2017calibration}{{7}{2017}{{Guo et al.}}{{}}}
+\bibcite{desai2020calibration}{{8}{2020}{{Desai and Durrett}}{{}}}
+\bibcite{gal2016dropout}{{9}{2016}{{Gal and Ghahramani}}{{}}}
+\bibcite{shelmanov2021certain}{{10}{2021}{{Shelmanov et al.}}{{}}}
+\bibcite{lakshminarayanan2017simple}{{11}{2017}{{Lakshminarayanan et al.}}{{}}}
+\bibcite{culotta2004confidence}{{12}{2004}{{Culotta and McCallum}}{{}}}
+\bibcite{snell2024scaling}{{13}{2024}{{Snell et al.}}{{}}}
+\bibcite{brown2024large}{{14}{2024}{{Brown et al.}}{{}}}
+\bibcite{cobbe2021training}{{15}{2021}{{Cobbe et al.}}{{}}}
+\bibcite{lightman2023lets}{{16}{2023}{{Lightman et al.}}{{}}}
+\bibcite{geifman2017selective}{{17}{2017}{{Geifman and El-Yaniv}}{{}}}
+\bibcite{kuleshov2015calibration}{{18}{2015}{{Kuleshov and Liang}}{{}}}
+\bibcite{jagannatha2022structured}{{19}{2022}{{Jagannatha and Yu}}{{}}}
+\bibcite{cisc2025}{{20}{2025}{{CISC}}{{}}}
+\bibcite{selfcertainty2026}{{21}{2026}{{Self-Certainty}}{{}}}
+\bibcite{reasc2026}{{22}{2026}{{ReASC}}{{}}}
+\bibcite{atomicsc2024}{{23}{2024}{{Atomic SC}}{{}}}
+\bibcite{cocoa2025}{{24}{2025}{{Vashurin et al.}}{{}}}
+\bibcite{geng2024survey}{{25}{2025}{{Geng et al.}}{{}}}
+\bibcite{xiong2024llmconfidence}{{26}{2024}{{Xiong et al.}}{{}}}
+\bibcite{luan2018multi}{{27}{2018}{{Luan et al.}}{{}}}
+\bibcite{tjong2003conll}{{28}{2003}{{Tjong Kim Sang and De Meulder}}{{}}}
+\bibcite{derczynski2017results}{{29}{2017}{{Derczynski et al.}}{{}}}
+\bibcite{knowyourlimits2025}{{30}{2025}{{Know Your Limits}}{{}}}
+\bibcite{fisch2021conformal}{{31}{2021}{{Fisch et al.}}{{}}}
+\bibcite{xiao2019quantifying}{{32}{2019}{{Xiao and Wang}}{{}}}
+\gdef \@abspage@last{10}

@@ -1,0 +1,64 @@
+{
+  "model": "Qwen2.5-72B-Instruct-AWQ",
+  "setting": "zero-shot",
+  "n_samples": 8,
+  "date": "2025-05-19",
+  "datasets": {
+    "scierc": {
+      "n_instances": 529,
+      "greedy_f1": 0.3993,
+      "greedy_ci": [0.3750, 0.4249],
+      "oracle_f1": 0.5489,
+      "oracle_ci": [0.5240, 0.5740],
+      "oracle_headroom": 0.1496,
+      "majority_vote_f1": 0.4132,
+      "lp_selection_f1": 0.3984,
+      "lp_selection_delta": -0.0010,
+      "consensus_lp_weighted_f1": 0.4146,
+      "consensus_theta2n_f1": 0.3941,
+      "best_consensus_variant": {"config": "high=0.6_medium=0.2", "f1": 0.4048},
+      "degeneracy_rate": null,
+      "signals_rho": {
+        "LP": 0.081,
+        "SJ": 0.217,
+        "FK": 0.227,
+        "VC": 0.277,
+        "EM": 0.181
+      }
+    },
+    "conll2003": {
+      "n_instances": 2756,
+      "greedy_f1": 0.7120,
+      "greedy_ci": [0.6973, 0.7271],
+      "oracle_f1": 0.7651,
+      "oracle_ci": [0.7508, 0.7792],
+      "oracle_headroom": 0.0531,
+      "majority_vote_f1": 0.7034,
+      "lp_selection_f1": 0.7080,
+      "lp_selection_delta": -0.0039,
+      "consensus_lp_weighted_f1": 0.7083,
+      "consensus_theta2n_f1": 0.7028,
+      "best_consensus_variant": {"config": "high=0.7_medium=0.3", "f1": 0.7089},
+      "degeneracy_rate": null,
+      "signals_rho": {
+        "LP": -0.002,
+        "SJ": 0.304,
+        "FK": 0.302,
+        "VC": 0.297,
+        "EM": 0.281
+      }
+    },
+    "fewnerd": {
+      "status": "not_started_or_unknown",
+      "note": "No fewnerd directory or output found under 72b_zeroshot/. Inference may not have been launched yet."
+    }
+  },
+  "key_observations": [
+    "LP signal is effectively dead for zero-shot: rho=0.081 (SciERC), rho=-0.002 (CoNLL). LP selection hurts both datasets.",
+    "VC is the strongest signal on SciERC (0.277); SJ is strongest on CoNLL (0.304). All non-LP signals cluster in 0.18-0.30 range.",
+    "Greedy F1 is substantially lower than fine-tuned 7B on SciERC (0.40 vs ~0.55+), but CoNLL is competitive (0.71).",
+    "Oracle headroom is large: SciERC 14.96pp, CoNLL 5.31pp. Room for improvement exists but LP cannot capture it.",
+    "No aggregation method reliably beats greedy. MV gives +1.4pp on SciERC but -0.9pp on CoNLL.",
+    "Degeneracy data not present in signal report; would need separate computation from samples.jsonl."
+  ]
+}

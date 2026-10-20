@@ -1,0 +1,34 @@
+\section{Discussion}\label{sec:discussion}
+
+\paragraph{Practical recommendations.}
+Our results suggest different signal choices depending on the deployment scenario.
+For per-instance rank correlation, entity voting provides the strongest single signal ($\rho{=}0.38$, Table~\ref{tab:quality_estimation}), though SJ follows closely ($\rho{=}0.36$).
+When temperature or cross-condition robustness is required, SJ is preferable: its temperature sensitivity is small with bootstrap CIs including zero (Table~\ref{tab:robustness}), and it generalizes beyond entity-level structure to any set-valued output.
+Under conditional filtering, SJ achieves $\rho{\approx}0.4$ on both NER and RE (\S\ref{sec:complexity_robustness}), and its ensemble with voting reaches AUROC${=}0.735$ (\S\ref{sec:selection_gap}).
+For binary accept/reject decisions, logprob is most effective (AUROC${=}0.761$ on CoNLL with LLaMA).
+For best-of-$N$ selection, greedy decoding is near-optimal on NER; on RE, logprob is the only helpful signal (+2.3~pp, Table~\ref{tab:selection}).
+
+\paragraph{Signals discriminate between instances, not within strata.}
+When instances are stratified by greedy F1, within-stratum correlations approach zero for all signals.
+Confidence signals capture \textit{between-instance} quality differences---identifying which inputs the model handles reliably---rather than providing fine-grained discrimination among instances of similar difficulty.
+This is the complementary face of the correlation-selection gap (\S\ref{sec:selection_gap}): signals that predict input difficulty cannot rank outputs within a difficulty stratum.
+The practical implication is that these signals are well-suited for routing and triage---flagging uncertain instances for human review---but not for fine-grained ranking within a difficulty tier.
+
+\paragraph{Task-difficulty-dependent signal selection.}
+Across all three $N{=}16$ settings, the structural-over-logprob ordering holds consistently (\S\ref{sec:complexity_robustness}).
+However, the \textit{optimal} signal shifts with task difficulty: EM dominates on easy tasks (CoNLL, greedy F1${>}$0.91), Voting and SJ dominate on hard tasks (SciERC, F1$\,{\approx}\,$0.66), and all signals converge when model capability is insufficient (WNUT-17, 54\% zero F1).
+This ordering is model-agnostic---cross-model rankings between Qwen and LLaMA are identical---suggesting that the difficulty gradient, not model-specific behavior, determines which signal family is most informative.
+
+\paragraph{Capability boundary framework.}
+Structural signals are most effective within the model's capability range.
+Beyond it---RE with 40\% zero-F1 instances, WNUT-17 with 54\%---all signals converge toward zero or negative correlation.
+Within the capability range, output complexity modulates signal effectiveness: the high-complexity RE subset ($n{=}81$; instances with ${\geq}3$ relation triples, see \S\ref{sec:complexity_robustness}) yields substantially stronger correlations (Voting $\rho{=}0.630$, SJ $\rho{=}0.502$) than the full set.
+Conditional filtering further separates signal families: at $N{=}16$, SJ maintains $\rho{=}0.308$ on RE while logprob collapses to $\rho{=}{-}0.026$ (\S\ref{sec:complexity_robustness}).
+The ``sweet spot'' for structural confidence signals is the intersection of sufficient model capability and sufficient output complexity---a regime where the model can produce varied but partially correct extractions rather than uniform failures.
+
+\paragraph{Methodological implications of $\rho$--AUROC separation.}
+The ranking-discrimination dissociation appears across multiple settings: on SciERC NER, Exact Match achieves the highest AUROC (0.749) yet only moderate $\rho$ (0.295); on CoNLL with LLaMA, logprob shows the lowest $\rho$ (0.307) yet highest AUROC (0.761, Table~\ref{tab:quality_estimation}).
+This reveals that rank correlation and binary discrimination measure fundamentally different signal properties.
+Signals with coarse but well-separated scores excel at binary filtering, while structural signals provide finer-grained ranking across the quality spectrum.
+Different downstream decisions therefore require different signals: threshold-based filtering favors logprob; ranking-dependent applications favor structural consistency.
+Evaluating confidence signals on a single metric risks selecting the wrong signal for the intended use case.

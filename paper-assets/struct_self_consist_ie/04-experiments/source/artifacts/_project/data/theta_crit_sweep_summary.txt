@@ -1,0 +1,5 @@
+θ_crit=0.70 is robust. No conclusion changes across {0.60, 0.65, 0.70, 0.75, 0.80}.
+Only CoNLL configs are sensitive (D=0.63-0.70 at boundary).
+α≈0.068 is the binding constraint (8-33× tighter than degeneracy).
+Entity construction independent of θ_crit.
+Script: code/theta_crit_sweep.py | Output: output/theta_crit_sweep_results.txt

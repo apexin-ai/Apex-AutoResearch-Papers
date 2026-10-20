@@ -1,0 +1,345 @@
+设置成功
+注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证
+[INFO|2026-05-14 15:43:16] llamafactory.hparams.parser:465 >> Process rank: 0, world size: 1, device: cuda:0, distributed training: False, compute dtype: torch.bfloat16
+[INFO|tokenization_utils_base.py:2093] 2026-05-14 15:43:16,478 >> loading file vocab.json
+[INFO|tokenization_utils_base.py:2093] 2026-05-14 15:43:16,478 >> loading file merges.txt
+[INFO|tokenization_utils_base.py:2093] 2026-05-14 15:43:16,478 >> loading file tokenizer.json
+[INFO|tokenization_utils_base.py:2093] 2026-05-14 15:43:16,479 >> loading file added_tokens.json
+[INFO|tokenization_utils_base.py:2093] 2026-05-14 15:43:16,479 >> loading file special_tokens_map.json
+[INFO|tokenization_utils_base.py:2093] 2026-05-14 15:43:16,479 >> loading file tokenizer_config.json
+[INFO|tokenization_utils_base.py:2093] 2026-05-14 15:43:16,479 >> loading file chat_template.jinja
+[INFO|tokenization_utils_base.py:2364] 2026-05-14 15:43:16,747 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+[INFO|configuration_utils.py:763] 2026-05-14 15:43:16,747 >> loading configuration file /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/config.json
+[INFO|configuration_utils.py:839] 2026-05-14 15:43:16,749 >> Model config Qwen3Config {
+  "architectures": [
+    "Qwen3ForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "bos_token_id": 151643,
+  "dtype": "bfloat16",
+  "eos_token_id": 151645,
+  "head_dim": 128,
+  "hidden_act": "silu",
+  "hidden_size": 4096,
+  "initializer_range": 0.02,
+  "intermediate_size": 12288,
+  "layer_types": [
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention"
+  ],
+  "max_position_embeddings": 40960,
+  "max_window_layers": 36,
+  "model_type": "qwen3",
+  "num_attention_heads": 32,
+  "num_hidden_layers": 36,
+  "num_key_value_heads": 8,
+  "rms_norm_eps": 1e-06,
+  "rope_scaling": null,
+  "rope_theta": 1000000,
+  "sliding_window": null,
+  "tie_word_embeddings": false,
+  "transformers_version": "4.57.1",
+  "use_cache": true,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+[INFO|tokenization_utils_base.py:2093] 2026-05-14 15:43:16,749 >> loading file vocab.json
+[INFO|tokenization_utils_base.py:2093] 2026-05-14 15:43:16,749 >> loading file merges.txt
+[INFO|tokenization_utils_base.py:2093] 2026-05-14 15:43:16,749 >> loading file tokenizer.json
+[INFO|tokenization_utils_base.py:2093] 2026-05-14 15:43:16,749 >> loading file added_tokens.json
+[INFO|tokenization_utils_base.py:2093] 2026-05-14 15:43:16,749 >> loading file special_tokens_map.json
+[INFO|tokenization_utils_base.py:2093] 2026-05-14 15:43:16,749 >> loading file tokenizer_config.json
+[INFO|tokenization_utils_base.py:2093] 2026-05-14 15:43:16,749 >> loading file chat_template.jinja
+[INFO|tokenization_utils_base.py:2364] 2026-05-14 15:43:17,031 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+[WARNING|2026-05-14 15:43:17] llamafactory.data.template:148 >> You are using reasoning template, please add `_nothink` suffix if the model is not a reasoning model. e.g., qwen3_vl_nothink
+[INFO|2026-05-14 15:43:17] llamafactory.data.loader:143 >> Loading dataset llmfactory_train.json...
+[INFO|2026-05-14 15:43:17] llamafactory.data.loader:143 >> Loading dataset llmfactory_dev.json...
+training example:
+input_ids:
+[151644, 872, 198, 28959, 678, 32930, 1995, 320, 10499, 323, 4300, 8, 504, 279, 2701, 1467, 13, 9258, 264, 4718, 1633, 382, 1178, 25, 6364, 374, 6839, 311, 387, 1356, 63633, 12577, 389, 279, 8037, 315, 29378, 804, 315, 279, 15576, 943, 429, 21058, 25470, 83187, 23170, 5312, 12, 10182, 9128, 16448, 3030, 4494, 25, 21281, 11, 10230, 11, 6730, 11, 52458, 11, 6944, 50565, 1086, 17249, 11, 5430, 198, 33790, 4494, 25, 21968, 4477, 11, 3418, 41, 9083, 11, 96392, 52, 2336, 7276, 868, 11, 46760, 12, 12483, 11, 472, 9954, 52275, 44, 12, 12483, 11, 6766, 12, 12483, 11, 65217, 7276, 868, 271, 5097, 3561, 25, 5212, 10499, 788, 16303, 1125, 330, 65334, 788, 16303, 1125, 330, 12389, 788, 3056, 532, 2461, 4300, 11, 1968, 374, 279, 3832, 5387, 323, 9787, 374, 279, 1633, 5387, 13, 151645, 198, 151644, 77091, 198, 151667, 271, 151668, 271, 4913, 10499, 788, 61753, 1318, 788, 330, 22574, 497, 330, 1313, 788, 330, 13415, 497, 330, 2468, 788, 220, 15, 11, 330, 408, 788, 220, 22, 2137, 5212, 1318, 788, 330, 1015, 5986, 804, 497, 330, 1313, 788, 330, 11409, 50565, 1086, 17249, 497, 330, 2468, 788, 220, 20, 23, 11, 330, 408, 788, 220, 22, 16, 2137, 5212, 1318, 788, 330, 6627, 398, 83187, 23170, 5312, 12, 10182, 9128, 497, 330, 1313, 788, 330, 11409, 50565, 1086, 17249, 497, 330, 2468, 788, 220, 16, 16, 15, 11, 330, 408, 788, 220, 16, 20, 16, 72441, 330, 65334, 788, 10071, 330, 12389, 788, 3056, 92, 151645, 198]
+inputs:
+<|im_start|>user
+Extract all structured information (entities and relations) from the following text. Output a JSON object.
+
+Text: English is shown to be trans-context-free on the basis of coordinations of the respectively type that involve strictly syntactic cross-serial agreement .
+Entity types: Generic, Material, Method, Metric, OtherScientificTerm, Task
+Relation types: COMPARE, CONJUNCTION, EVALUATE-FOR, FEATURE-OF, HYPONYM-OF, PART-OF, USED-FOR
+
+Output format: {"entities": [...], "relations": [...], "events": []}
+For relations, head is the subject entity and tail is the object entity.<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+{"entities": [{"text": "English", "type": "Material", "start": 0, "end": 7}, {"text": "coordinations", "type": "OtherScientificTerm", "start": 58, "end": 71}, {"text": "strictly syntactic cross-serial agreement", "type": "OtherScientificTerm", "start": 110, "end": 151}], "relations": [], "events": []}<|im_end|>
+
+label_ids:
+[-100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, 151667, 271, 151668, 271, 4913, 10499, 788, 61753, 1318, 788, 330, 22574, 497, 330, 1313, 788, 330, 13415, 497, 330, 2468, 788, 220, 15, 11, 330, 408, 788, 220, 22, 2137, 5212, 1318, 788, 330, 1015, 5986, 804, 497, 330, 1313, 788, 330, 11409, 50565, 1086, 17249, 497, 330, 2468, 788, 220, 20, 23, 11, 330, 408, 788, 220, 22, 16, 2137, 5212, 1318, 788, 330, 6627, 398, 83187, 23170, 5312, 12, 10182, 9128, 497, 330, 1313, 788, 330, 11409, 50565, 1086, 17249, 497, 330, 2468, 788, 220, 16, 16, 15, 11, 330, 408, 788, 220, 16, 20, 16, 72441, 330, 65334, 788, 10071, 330, 12389, 788, 3056, 92, 151645, 198]
+labels:
+<think>
+
+</think>
+
+{"entities": [{"text": "English", "type": "Material", "start": 0, "end": 7}, {"text": "coordinations", "type": "OtherScientificTerm", "start": 58, "end": 71}, {"text": "strictly syntactic cross-serial agreement", "type": "OtherScientificTerm", "start": 110, "end": 151}], "relations": [], "events": []}<|im_end|>
+
+eval example:
+input_ids:
+[151644, 872, 198, 28959, 678, 32930, 1995, 320, 10499, 323, 4300, 8, 504, 279, 2701, 1467, 13, 9258, 264, 4718, 1633, 382, 1178, 25, 1096, 5567, 18404, 458, 12111, 369, 24231, 28293, 6396, 1154, 6083, 1154, 11379, 1154, 17716, 1154, 323, 452, 88987, 504, 458, 2168, 8500, 315, 264, 32856, 398, 85472, 69543, 1103, 1633, 1212, 28727, 75952, 16448, 3030, 4494, 25, 21281, 11, 10230, 11, 6730, 11, 52458, 11, 6944, 50565, 1086, 17249, 11, 5430, 198, 33790, 4494, 25, 21968, 4477, 11, 3418, 41, 9083, 11, 96392, 52, 2336, 7276, 868, 11, 46760, 12, 12483, 11, 472, 9954, 52275, 44, 12, 12483, 11, 6766, 12, 12483, 11, 65217, 7276, 868, 271, 5097, 3561, 25, 5212, 10499, 788, 16303, 1125, 330, 65334, 788, 16303, 1125, 330, 12389, 788, 3056, 532, 2461, 4300, 11, 1968, 374, 279, 3832, 5387, 323, 9787, 374, 279, 1633, 5387, 13, 151645, 198, 151644, 77091, 198, 151667, 271, 151668, 271, 4913, 10499, 788, 61753, 1318, 788, 330, 19688, 497, 330, 1313, 788, 330, 19964, 497, 330, 2468, 788, 220, 17, 18, 11, 330, 408, 788, 220, 18, 17, 2137, 5212, 1318, 788, 330, 64947, 287, 28293, 6396, 1154, 6083, 1154, 11379, 1154, 17716, 1154, 323, 452, 88987, 497, 330, 1313, 788, 330, 6262, 497, 330, 2468, 788, 220, 18, 22, 11, 330, 408, 788, 220, 16, 15, 15, 2137, 5212, 1318, 788, 330, 1805, 8500, 497, 330, 1313, 788, 330, 13415, 497, 330, 2468, 788, 220, 16, 15, 24, 11, 330, 408, 788, 220, 16, 17, 18, 2137, 5212, 1318, 788, 330, 14408, 307, 398, 85472, 69543, 1103, 1633, 497, 330, 1313, 788, 330, 13415, 497, 330, 2468, 788, 220, 16, 17, 24, 11, 330, 408, 788, 220, 16, 21, 16, 2137, 5212, 1318, 788, 330, 67, 11202, 75952, 497, 330, 1313, 788, 330, 11409, 50565, 1086, 17249, 497, 330, 2468, 788, 220, 16, 21, 23, 11, 330, 408, 788, 220, 16, 23, 23, 72441, 330, 65334, 788, 61753, 1983, 788, 330, 19688, 497, 330, 14586, 788, 330, 64947, 287, 28293, 6396, 1154, 6083, 1154, 11379, 1154, 17716, 1154, 323, 452, 88987, 497, 330, 1313, 788, 330, 15796, 7276, 868, 497, 330, 1983, 4906, 788, 220, 17, 18, 11, 330, 1983, 6213, 788, 220, 18, 17, 11, 330, 14586, 4906, 788, 220, 18, 22, 11, 330, 14586, 6213, 788, 220, 16, 15, 15, 2137, 5212, 1983, 788, 330, 1805, 8500, 497, 330, 14586, 788, 330, 19688, 497, 330, 1313, 788, 330, 15796, 7276, 868, 497, 330, 1983, 4906, 788, 220, 16, 15, 24, 11, 330, 1983, 6213, 788, 220, 16, 17, 18, 11, 330, 14586, 4906, 788, 220, 17, 18, 11, 330, 14586, 6213, 788, 220, 18, 17, 2137, 5212, 1983, 788, 330, 14408, 307, 398, 85472, 69543, 1103, 1633, 497, 330, 14586, 788, 330, 1805, 8500, 497, 330, 1313, 788, 330, 71913, 12, 12483, 497, 330, 1983, 4906, 788, 220, 16, 17, 24, 11, 330, 1983, 6213, 788, 220, 16, 21, 16, 11, 330, 14586, 4906, 788, 220, 16, 15, 24, 11, 330, 14586, 6213, 788, 220, 16, 17, 18, 2137, 5212, 1983, 788, 330, 67, 11202, 75952, 497, 330, 14586, 788, 330, 14408, 307, 398, 85472, 69543, 1103, 1633, 497, 330, 1313, 788, 330, 71913, 12, 12483, 497, 330, 1983, 4906, 788, 220, 16, 21, 23, 11, 330, 1983, 6213, 788, 220, 16, 23, 23, 11, 330, 14586, 4906, 788, 220, 16, 17, 24, 11, 330, 14586, 6213, 788, 220, 16, 21, 16, 72441, 330, 12389, 788, 3056, 92, 151645, 198]
+[INFO|configuration_utils.py:763] 2026-05-14 15:43:18,276 >> loading configuration file /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/config.json
+[INFO|configuration_utils.py:839] 2026-05-14 15:43:18,277 >> Model config Qwen3Config {
+  "architectures": [
+    "Qwen3ForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "bos_token_id": 151643,
+  "dtype": "bfloat16",
+  "eos_token_id": 151645,
+  "head_dim": 128,
+  "hidden_act": "silu",
+  "hidden_size": 4096,
+  "initializer_range": 0.02,
+  "intermediate_size": 12288,
+  "layer_types": [
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention"
+  ],
+  "max_position_embeddings": 40960,
+  "max_window_layers": 36,
+  "model_type": "qwen3",
+  "num_attention_heads": 32,
+  "num_hidden_layers": 36,
+  "num_key_value_heads": 8,
+  "rms_norm_eps": 1e-06,
+  "rope_scaling": null,
+  "rope_theta": 1000000,
+  "sliding_window": null,
+  "tie_word_embeddings": false,
+  "transformers_version": "4.57.1",
+  "use_cache": true,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+inputs:
+<|im_start|>user
+Extract all structured information (entities and relations) from the following text. Output a JSON object.
+
+Text: This paper presents an algorithm for computing optical flow , shape , motion , lighting , and albedo from an image sequence of a rigidly-moving Lambertian object under distant illumination .
+Entity types: Generic, Material, Method, Metric, OtherScientificTerm, Task
+Relation types: COMPARE, CONJUNCTION, EVALUATE-FOR, FEATURE-OF, HYPONYM-OF, PART-OF, USED-FOR
+
+Output format: {"entities": [...], "relations": [...], "events": []}
+For relations, head is the subject entity and tail is the object entity.<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+{"entities": [{"text": "algorithm", "type": "Generic", "start": 23, "end": 32}, {"text": "computing optical flow , shape , motion , lighting , and albedo", "type": "Task", "start": 37, "end": 100}, {"text": "image sequence", "type": "Material", "start": 109, "end": 123}, {"text": "rigidly-moving Lambertian object", "type": "Material", "start": 129, "end": 161}, {"text": "distant illumination", "type": "OtherScientificTerm", "start": 168, "end": 188}], "relations": [{"head": "algorithm", "tail": "computing optical flow , shape , motion , lighting , and albedo", "type": "USED-FOR", "head_start": 23, "head_end": 32, "tail_start": 37, "tail_end": 100}, {"head": "image sequence", "tail": "algorithm", "type": "USED-FOR", "head_start": 109, "head_end": 123, "tail_start": 23, "tail_end": 32}, {"head": "rigidly-moving Lambertian object", "tail": "image sequence", "type": "FEATURE-OF", "head_start": 129, "head_end": 161, "tail_start": 109, "tail_end": 123}, {"head": "distant illumination", "tail": "rigidly-moving Lambertian object", "type": "FEATURE-OF", "head_start": 168, "head_end": 188, "tail_start": 129, "tail_end": 161}], "events": []}<|im_end|>
+
+label_ids:
+[-100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, 151667, 271, 151668, 271, 4913, 10499, 788, 61753, 1318, 788, 330, 19688, 497, 330, 1313, 788, 330, 19964, 497, 330, 2468, 788, 220, 17, 18, 11, 330, 408, 788, 220, 18, 17, 2137, 5212, 1318, 788, 330, 64947, 287, 28293, 6396, 1154, 6083, 1154, 11379, 1154, 17716, 1154, 323, 452, 88987, 497, 330, 1313, 788, 330, 6262, 497, 330, 2468, 788, 220, 18, 22, 11, 330, 408, 788, 220, 16, 15, 15, 2137, 5212, 1318, 788, 330, 1805, 8500, 497, 330, 1313, 788, 330, 13415, 497, 330, 2468, 788, 220, 16, 15, 24, 11, 330, 408, 788, 220, 16, 17, 18, 2137, 5212, 1318, 788, 330, 14408, 307, 398, 85472, 69543, 1103, 1633, 497, 330, 1313, 788, 330, 13415, 497, 330, 2468, 788, 220, 16, 17, 24, 11, 330, 408, 788, 220, 16, 21, 16, 2137, 5212, 1318, 788, 330, 67, 11202, 75952, 497, 330, 1313, 788, 330, 11409, 50565, 1086, 17249, 497, 330, 2468, 788, 220, 16, 21, 23, 11, 330, 408, 788, 220, 16, 23, 23, 72441, 330, 65334, 788, 61753, 1983, 788, 330, 19688, 497, 330, 14586, 788, 330, 64947, 287, 28293, 6396, 1154, 6083, 1154, 11379, 1154, 17716, 1154, 323, 452, 88987, 497, 330, 1313, 788, 330, 15796, 7276, 868, 497, 330, 1983, 4906, 788, 220, 17, 18, 11, 330, 1983, 6213, 788, 220, 18, 17, 11, 330, 14586, 4906, 788, 220, 18, 22, 11, 330, 14586, 6213, 788, 220, 16, 15, 15, 2137, 5212, 1983, 788, 330, 1805, 8500, 497, 330, 14586, 788, 330, 19688, 497, 330, 1313, 788, 330, 15796, 7276, 868, 497, 330, 1983, 4906, 788, 220, 16, 15, 24, 11, 330, 1983, 6213, 788, 220, 16, 17, 18, 11, 330, 14586, 4906, 788, 220, 17, 18, 11, 330, 14586, 6213, 788, 220, 18, 17, 2137, 5212, 1983, 788, 330, 14408, 307, 398, 85472, 69543, 1103, 1633, 497, 330, 14586, 788, 330, 1805, 8500, 497, 330, 1313, 788, 330, 71913, 12, 12483, 497, 330, 1983, 4906, 788, 220, 16, 17, 24, 11, 330, 1983, 6213, 788, 220, 16, 21, 16, 11, 330, 14586, 4906, 788, 220, 16, 15, 24, 11, 330, 14586, 6213, 788, 220, 16, 17, 18, 2137, 5212, 1983, 788, 330, 67, 11202, 75952, 497, 330, 14586, 788, 330, 14408, 307, 398, 85472, 69543, 1103, 1633, 497, 330, 1313, 788, 330, 71913, 12, 12483, 497, 330, 1983, 4906, 788, 220, 16, 21, 23, 11, 330, 1983, 6213, 788, 220, 16, 23, 23, 11, 330, 14586, 4906, 788, 220, 16, 17, 24, 11, 330, 14586, 6213, 788, 220, 16, 21, 16, 72441, 330, 12389, 788, 3056, 92, 151645, 198]
+labels:
+<think>
+
+</think>
+
+{"entities": [{"text": "algorithm", "type": "Generic", "start": 23, "end": 32}, {"text": "computing optical flow , shape , motion , lighting , and albedo", "type": "Task", "start": 37, "end": 100}, {"text": "image sequence", "type": "Material", "start": 109, "end": 123}, {"text": "rigidly-moving Lambertian object", "type": "Material", "start": 129, "end": 161}, {"text": "distant illumination", "type": "OtherScientificTerm", "start": 168, "end": 188}], "relations": [{"head": "algorithm", "tail": "computing optical flow , shape , motion , lighting , and albedo", "type": "USED-FOR", "head_start": 23, "head_end": 32, "tail_start": 37, "tail_end": 100}, {"head": "image sequence", "tail": "algorithm", "type": "USED-FOR", "head_start": 109, "head_end": 123, "tail_start": 23, "tail_end": 32}, {"head": "rigidly-moving Lambertian object", "tail": "image sequence", "type": "FEATURE-OF", "head_start": 129, "head_end": 161, "tail_start": 109, "tail_end": 123}, {"head": "distant illumination", "tail": "rigidly-moving Lambertian object", "type": "FEATURE-OF", "head_start": 168, "head_end": 188, "tail_start": 129, "tail_end": 161}], "events": []}<|im_end|>
+
+[INFO|2026-05-14 15:43:18] llamafactory.model.model_utils.kv_cache:143 >> KV cache is disabled during training.
+[WARNING|logging.py:328] 2026-05-14 15:43:18,392 >> `torch_dtype` is deprecated! Use `dtype` instead!
+[INFO|modeling_utils.py:1169] 2026-05-14 15:43:18,393 >> loading weights file /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/model.safetensors.index.json
+[INFO|modeling_utils.py:1243] 2026-05-14 15:43:18,393 >> Will use dtype=torch.bfloat16 as defined in model's config object
+[INFO|modeling_utils.py:2341] 2026-05-14 15:43:18,393 >> Instantiating Qwen3ForCausalLM model under default dtype torch.bfloat16.
+[INFO|configuration_utils.py:986] 2026-05-14 15:43:18,394 >> Generate config GenerationConfig {
+  "bos_token_id": 151643,
+  "eos_token_id": 151645,
+  "use_cache": false
+}
+
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:03,  1.27it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.28it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.29it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:02<00:00,  1.39it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.83it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.56it/s]
+[INFO|configuration_utils.py:939] 2026-05-14 15:43:21,844 >> loading configuration file /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/generation_config.json
+[INFO|configuration_utils.py:986] 2026-05-14 15:43:21,844 >> Generate config GenerationConfig {
+  "bos_token_id": 151643,
+  "do_sample": true,
+  "eos_token_id": [
+    151645,
+    151643
+  ],
+  "pad_token_id": 151643,
+  "temperature": 0.6,
+  "top_k": 20,
+  "top_p": 0.95
+}
+
+[INFO|dynamic_module_utils.py:423] 2026-05-14 15:43:21,844 >> Could not locate the custom_generate/generate.py inside /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B.
+[INFO|2026-05-14 15:43:21] llamafactory.model.model_utils.checkpointing:143 >> Gradient checkpointing enabled.
+[INFO|2026-05-14 15:43:21] llamafactory.model.model_utils.attention:143 >> Using torch SDPA for faster training and inference.
+[INFO|2026-05-14 15:43:21] llamafactory.model.adapter:143 >> Upcasting trainable params to float32.
+[INFO|2026-05-14 15:43:21] llamafactory.model.adapter:143 >> Fine-tuning method: LoRA
+[INFO|2026-05-14 15:43:21] llamafactory.model.model_utils.misc:143 >> Found linear modules: v_proj,gate_proj,q_proj,k_proj,o_proj,up_proj,down_proj
+[INFO|2026-05-14 15:43:24] llamafactory.model.loader:143 >> trainable params: 87,293,952 || all params: 8,278,029,312 || trainable%: 1.0545
+[WARNING|trainer.py:906] 2026-05-14 15:43:24,223 >> The model is already on multiple devices. Skipping the move to device specified in `args`.
+[INFO|trainer.py:749] 2026-05-14 15:43:24,808 >> Using auto half precision backend
+[WARNING|trainer.py:982] 2026-05-14 15:43:24,809 >> The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.
+[INFO|trainer.py:2519] 2026-05-14 15:43:25,020 >> ***** Running training *****
+[INFO|trainer.py:2520] 2026-05-14 15:43:25,021 >>   Num examples = 1,861
+[INFO|trainer.py:2521] 2026-05-14 15:43:25,021 >>   Num Epochs = 5
+[INFO|trainer.py:2522] 2026-05-14 15:43:25,021 >>   Instantaneous batch size per device = 4
+[INFO|trainer.py:2525] 2026-05-14 15:43:25,021 >>   Total train batch size (w. parallel, distributed & accumulation) = 16
+[INFO|trainer.py:2526] 2026-05-14 15:43:25,021 >>   Gradient Accumulation steps = 4
+[INFO|trainer.py:2527] 2026-05-14 15:43:25,021 >>   Total optimization steps = 585
+[INFO|trainer.py:2528] 2026-05-14 15:43:25,023 >>   Number of trainable parameters = 87,293,952
+  0%|          | 0/585 [00:00<?, ?it/s]  0%|          | 1/585 [00:03<35:25,  3.64s/it]  0%|          | 2/585 [00:06<33:17,  3.43s/it]  1%|          | 3/585 [00:09<29:50,  3.08s/it]  1%|          | 4/585 [00:12<29:09,  3.01s/it]  1%|          | 5/585 [00:15<27:42,  2.87s/it]  1%|          | 6/585 [00:18<28:27,  2.95s/it]  1%|          | 7/585 [00:21<29:41,  3.08s/it]  1%|▏         | 8/585 [00:24<28:49,  3.00s/it]  2%|▏         | 9/585 [00:29<33:41,  3.51s/it]  2%|▏         | 10/585 [00:31<31:55,  3.33s/it]                                                  2%|▏         | 10/585 [00:31<31:55,  3.33s/it]  2%|▏         | 11/585 [00:34<29:57,  3.13s/it]  2%|▏         | 12/585 [00:36<25:40,  2.69s/it]  2%|▏         | 13/585 [00:38<24:44,  2.59s/it]  2%|▏         | 14/585 [00:40<23:43,  2.49s/it]  3%|▎         | 15/585 [00:43<24:43,  2.60s/it]  3%|▎         | 16/585 [00:46<24:53,  2.63s/it]  3%|▎         | 17/585 [00:50<28:21,  3.00s/it]  3%|▎         | 18/585 [00:53<27:34,  2.92s/it]  3%|▎         | 19/585 [00:55<25:19,  2.68s/it]  3%|▎         | 20/585 [00:59<28:38,  3.04s/it]                                                  3%|▎         | 20/585 [00:59<28:38,  3.04s/it]  4%|▎         | 21/585 [01:01<26:57,  2.87s/it]  4%|▍         | 22/585 [01:05<28:46,  3.07s/it]  4%|▍         | 23/585 [01:08<29:32,  3.15s/it]  4%|▍         | 24/585 [01:11<28:23,  3.04s/it]  4%|▍         | 25/585 [01:14<28:30,  3.05s/it]  4%|▍         | 26/585 [01:16<25:57,  2.79s/it]  5%|▍         | 27/585 [01:20<28:24,  3.05s/it]  5%|▍         | 28/585 [01:22<27:22,  2.95s/it]  5%|▍         | 29/585 [01:25<26:36,  2.87s/it]  5%|▌         | 30/585 [01:29<29:26,  3.18s/it]                                                  5%|▌         | 30/585 [01:29<29:26,  3.18s/it]  5%|▌         | 31/585 [01:32<29:19,  3.18s/it]  5%|▌         | 32/585 [01:35<29:34,  3.21s/it]  6%|▌         | 33/585 [01:38<28:39,  3.11s/it]  6%|▌         | 34/585 [01:41<27:21,  2.98s/it]  6%|▌         | 35/585 [01:44<27:39,  3.02s/it]  6%|▌         | 36/585 [01:47<26:52,  2.94s/it]  6%|▋         | 37/585 [01:49<25:48,  2.83s/it]  6%|▋         | 38/585 [01:53<27:11,  2.98s/it]  7%|▋         | 39/585 [01:55<26:24,  2.90s/it]  7%|▋         | 40/585 [01:58<24:37,  2.71s/it]                                                  7%|▋         | 40/585 [01:58<24:37,  2.71s/it]  7%|▋         | 41/585 [02:01<26:41,  2.94s/it]  7%|▋         | 42/585 [02:05<28:35,  3.16s/it]  7%|▋         | 43/585 [02:09<30:53,  3.42s/it]  8%|▊         | 44/585 [02:14<35:51,  3.98s/it]  8%|▊         | 45/585 [02:17<33:58,  3.77s/it]  8%|▊         | 46/585 [02:20<31:42,  3.53s/it]  8%|▊         | 47/585 [02:24<30:45,  3.43s/it]  8%|▊         | 48/585 [02:27<31:56,  3.57s/it]  8%|▊         | 49/585 [02:31<32:33,  3.64s/it]  9%|▊         | 50/585 [02:34<29:43,  3.33s/it]                                                  9%|▊         | 50/585 [02:34<29:43,  3.33s/it]  9%|▊         | 51/585 [02:37<27:50,  3.13s/it]  9%|▉         | 52/585 [02:39<26:33,  2.99s/it]  9%|▉         | 53/585 [02:42<25:30,  2.88s/it]  9%|▉         | 54/585 [02:45<26:56,  3.04s/it]  9%|▉         | 55/585 [02:48<25:20,  2.87s/it] 10%|▉         | 56/585 [02:52<28:22,  3.22s/it] 10%|▉         | 57/585 [02:54<24:46,  2.82s/it] 10%|▉         | 58/585 [02:57<25:32,  2.91s/it] 10%|█         | 59/585 [03:00<27:37,  3.15s/it] 10%|█         | 60/585 [03:04<27:18,  3.12s/it]                                                 10%|█         | 60/585 [03:04<27:18,  3.12s/it] 10%|█         | 61/585 [03:06<25:58,  2.97s/it] 11%|█         | 62/585 [03:09<24:18,  2.79s/it] 11%|█         | 63/585 [03:12<24:50,  2.85s/it] 11%|█         | 64/585 [03:14<24:41,  2.84s/it] 11%|█         | 65/585 [03:18<26:19,  3.04s/it] 11%|█▏        | 66/585 [03:20<24:42,  2.86s/it] 11%|█▏        | 67/585 [03:23<23:22,  2.71s/it] 12%|█▏        | 68/585 [03:26<24:45,  2.87s/it] 12%|█▏        | 69/585 [03:29<26:19,  3.06s/it] 12%|█▏        | 70/585 [03:32<25:18,  2.95s/it]                                                 12%|█▏        | 70/585 [03:32<25:18,  2.95s/it] 12%|█▏        | 71/585 [03:35<24:20,  2.84s/it] 12%|█▏        | 72/585 [03:38<25:30,  2.98s/it] 12%|█▏        | 73/585 [03:41<24:45,  2.90s/it]{'loss': 0.7717, 'grad_norm': 2.0631256103515625, 'learning_rate': 3.050847457627119e-05, 'epoch': 0.09}
+{'loss': 0.2695, 'grad_norm': 0.24626998603343964, 'learning_rate': 6.440677966101695e-05, 'epoch': 0.17}
+{'loss': 0.164, 'grad_norm': 0.1207876056432724, 'learning_rate': 9.830508474576272e-05, 'epoch': 0.26}
+{'loss': 0.144, 'grad_norm': 0.17984825372695923, 'learning_rate': 0.00013220338983050849, 'epoch': 0.34}
+{'loss': 0.1253, 'grad_norm': 0.20358380675315857, 'learning_rate': 0.00016610169491525423, 'epoch': 0.43}
+{'loss': 0.1187, 'grad_norm': 0.15034137666225433, 'learning_rate': 0.0002, 'epoch': 0.52}
+{'loss': 0.1134, 'grad_norm': 0.20217099785804749, 'learning_rate': 0.00019982169268675023, 'epoch': 0.6}
+Traceback (most recent call last):
+  File "/root/miniconda3/bin/llamafactory-cli", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/llamafactory/cli.py", line 24, in main
+    launcher.launch()
+  File "/root/miniconda3/lib/python3.12/site-packages/llamafactory/launcher.py", line 157, in launch
+    run_exp()
+  File "/root/miniconda3/lib/python3.12/site-packages/llamafactory/train/tuner.py", line 126, in run_exp
+    _training_function(config={"args": args, "callbacks": callbacks})
+  File "/root/miniconda3/lib/python3.12/site-packages/llamafactory/train/tuner.py", line 88, in _training_function
+    run_sft(model_args, data_args, training_args, finetuning_args, generating_args, callbacks)
+  File "/root/miniconda3/lib/python3.12/site-packages/llamafactory/train/sft/workflow.py", line 134, in run_sft
+    train_result = trainer.train(resume_from_checkpoint=training_args.resume_from_checkpoint)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py", line 2325, in train
+    return inner_training_loop(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py", line 2674, in _inner_training_loop
+    tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py", line 4020, in training_step
+    loss = self.compute_loss(model, inputs, num_items_in_batch=num_items_in_batch)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/llamafactory/train/sft/trainer.py", line 117, in compute_loss
+    return super().compute_loss(model, inputs, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py", line 4110, in compute_loss
+    outputs = model(**inputs)
+              ^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/accelerate/utils/operations.py", line 819, in forward
+    return model_forward(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/accelerate/utils/operations.py", line 807, in __call__
+    return convert_to_fp32(self.model_forward(*args, **kwargs))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/amp/autocast_mode.py", line 44, in decorate_autocast
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/peft/peft_model.py", line 1850, in forward
+    return self.base_model(
+           ^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/peft/tuners/tuners_utils.py", line 222, in forward
+    return self.model.forward(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/transformers/utils/generic.py", line 918, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py", line 498, in forward
+    loss = self.loss_function(logits=logits, labels=labels, vocab_size=self.config.vocab_size, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/transformers/loss/loss_utils.py", line 67, in ForCausalLMLoss
+    loss = fixed_cross_entropy(logits, shift_labels, num_items_in_batch, ignore_index, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/transformers/loss/loss_utils.py", line 36, in fixed_cross_entropy
+    loss = nn.functional.cross_entropy(source, target, ignore_index=ignore_index, reduction=reduction)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/nn/functional.py", line 3504, in cross_entropy
+    return torch._C._nn.cross_entropy_loss(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 3.68 GiB. GPU 0 has a total capacity of 31.36 GiB of which 3.61 GiB is free. Including non-PyTorch memory, this process has 27.74 GiB memory in use. Of the allocated memory 24.22 GiB is allocated by PyTorch, and 2.90 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+ 12%|█▏        | 73/585 [03:44<26:15,  3.08s/it]

@@ -1,0 +1,115 @@
+% E5: Hyperparameter Tables for Appendix
+% Auto-generated from experiment registry (2026-05-21)
+
+% ============================================================
+% Table A: Fine-tuning Hyperparameters
+% ============================================================
+\begin{table*}[t]
+\centering
+\caption{Fine-tuning hyperparameters for all models. All models use LoRA/QLoRA with AdamW optimizer via LLaMA Factory. ``Eff.\ Batch'' = per-device batch $\times$ gradient accumulation $\times$ GPUs.}
+\label{tab:ft-hyperparams}
+\small
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{llcccccccc}
+\toprule
+\textbf{Model} & \textbf{Dataset} & \textbf{Quant.} & \textbf{LoRA $r$/$\alpha$} & \textbf{LR} & \textbf{Eff.\ Batch} & \textbf{Epochs} & \textbf{$|$Train$|$} & \textbf{GPU} & \textbf{Time} \\
+\midrule
+\multicolumn{10}{l}{\textit{Primary models (main experiments)}} \\
+Qwen3-8B        & SciERC    & --     & 32\,/\,64 & 2e-4 & 16  & 5  & 1{,}861   & 1$\times$5090 & 29m \\
+Qwen3-8B        & CoNLL-03  & --     & 32\,/\,64 & 2e-4 & 16  & 5  & 14{,}041  & 1$\times$5090 & N/A \\
+Qwen3-8B        & FewNERD   & --     & 32\,/\,64 & 2e-4 & 16  & 5  & 131{,}767 & 4$\times$5090 & N/A \\
+LLaMA-3.1-8B    & SciERC    & --     & 32\,/\,64 & 2e-4 & 16  & 5  & 1{,}861   & 1$\times$5090 & 25m \\
+LLaMA-3.1-8B    & CoNLL-03  & --     & 32\,/\,64 & 2e-4 & 16  & 5  & 14{,}037  & 1$\times$5090 & N/A \\
+LLaMA-3.1-8B    & FewNERD   & --     & 32\,/\,64 & 2e-4 & 16  & 3  & 131{,}767 & 1$\times$5090 & 15.4h \\
+\midrule
+\multicolumn{10}{l}{\textit{Scale ablation models}} \\
+Qwen3-4B        & SciERC    & --     & 32\,/\,64 & 2e-4 & 16  & 5  & 551       & 1$\times$5090 & N/A \\
+Qwen3-4B        & CoNLL-03  & --     & 32\,/\,64 & 2e-4 & 16  & 5  & 14{,}041  & 1$\times$5090 & 20m \\
+Qwen2.5-7B      & FewNERD   & 4-bit  & 32\,/\,64 & 2e-4 & 32  & 5  & 131{,}767 & 1$\times$5090 & N/A \\
+Qwen2.5-14B     & FewNERD   & QLoRA  & 32\,/\,64 & 2e-4 & 16  & 5  & 131{,}767 & 2$\times$5090 & 29.8h \\
+Qwen2.5-32B     & FewNERD   & 4-bit  & 32\,/\,64 & 2e-4 & 16  & 5  & 131{,}767 & 4$\times$5090 & 38.5h \\
+\midrule
+\multicolumn{10}{l}{\textit{LoRA rank ablation (Qwen3-8B, SciERC)}} \\
+Qwen3-8B        & SciERC    & --     & 8\,/\,16  & 2e-4 & 16  & 5  & 1{,}861   & 1$\times$5090 & 29m \\
+Qwen3-8B        & SciERC    & --     & 16\,/\,32 & 2e-4 & 16  & 3  & 1{,}861   & 1$\times$5090 & 18m \\
+Qwen3-8B        & SciERC    & --     & 32\,/\,64 & 2e-4 & 16  & 5  & 1{,}861   & 1$\times$5090 & 29m \\
+\midrule
+\multicolumn{10}{l}{\textit{Epoch ablation (Qwen3-8B, SciERC, $r$=32)}} \\
+Qwen3-8B        & SciERC    & --     & 32\,/\,64 & 2e-4 & 16  & 3  & 1{,}861   & 1$\times$5090 & N/A \\
+Qwen3-8B        & SciERC    & --     & 32\,/\,64 & 2e-4 & 16  & 5  & 1{,}861   & 1$\times$5090 & 29m \\
+Qwen3-8B        & SciERC    & --     & 32\,/\,64 & 2e-4 & 16  & 10 & 1{,}861   & 1$\times$5090 & N/A \\
+\midrule
+\multicolumn{10}{l}{\textit{Self-Consistency Distillation (SCD)}} \\
+Qwen3-8B (SCD)  & FewNERD   & --     & 32\,/\,64 & 2e-4 & 16  & 2  & 32{,}565  & 1$\times$5090 & 7.1h \\
+\bottomrule
+\end{tabular}
+\begin{flushleft}
+\footnotesize
+\textbf{Notes:} All LoRA adapters target \texttt{q/k/v/o/gate/up/down\_proj}. Gradient checkpointing enabled for all runs. ``4-bit'' denotes QLoRA with NF4 quantization (bitsandbytes). Training times marked N/A were not recorded in experiment logs. Qwen2.5-72B is used for inference only (no fine-tuning). NVIDIA RTX 5090 (32\,GB each).
+\end{flushleft}
+\end{table*}
+
+% ============================================================
+% Table B: Inference Configuration
+% ============================================================
+\begin{table}[t]
+\centering
+\caption{Inference configurations across experiments. $N$ = number of sampled outputs per instance, $T$ = sampling temperature.}
+\label{tab:inference-config}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Setting} & \textbf{$N$} & \textbf{$T$} & \textbf{Seeds} & \textbf{Decoding} \\
+\midrule
+Default           & 8   & 1.0 & 42         & Constrained \\
+Multi-seed        & 8   & 1.0 & 42,123,456 & Constrained \\
+\midrule
+\multicolumn{5}{l}{\textit{Temperature ablation}} \\
+Low temp          & 8   & 0.5 & 42,123,456 & Constrained \\
+Medium temp       & 8   & 0.8 & 42,123,456 & Constrained \\
+High temp         & 8   & 1.2 & 42,123,456 & Constrained \\
+\midrule
+\multicolumn{5}{l}{\textit{$N$ ablation}} \\
+Minimal           & 1   & 1.0 & 42         & Constrained \\
+Small             & 2   & 1.0 & 42         & Constrained \\
+Medium            & 4   & 1.0 & 42         & Constrained \\
+Large             & 16  & 1.0 & 42,123,456 & Constrained \\
+XL                & 32  & 1.0 & 42         & Constrained \\
+\midrule
+\multicolumn{5}{l}{\textit{Ablation variants}} \\
+Free-form         & 8   & 1.0 & 42,123,456,789 & Unconstrained \\
+Prompted diversity& 8   & 1.0 & 42         & Constrained \\
+Multi-round SC    & 8   & 1.0 & 42         & Constrained \\
+\bottomrule
+\end{tabular}
+\begin{flushleft}
+\footnotesize
+\textbf{Notes:} ``Constrained'' uses XGrammar-based structured decoding to enforce valid JSON output. ``Unconstrained'' generates free-form text parsed post-hoc. All local inference runs on NVIDIA RTX 5090 via vLLM. \texttt{max\_tokens}=4096 for all configurations.
+\end{flushleft}
+\end{table}
+
+% ============================================================
+% Table C: Frontier Model API Configuration
+% ============================================================
+\begin{table}[t]
+\centering
+\caption{Frontier model API configurations. All evaluated on FewNERD test set (200 instances) with $N$=8, $T$=1.0, seed=42.}
+\label{tab:frontier-config}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Model} & \textbf{Provider} & \textbf{$N$} & \textbf{$T$} & \textbf{Max Tokens} & \textbf{Workers} \\
+\midrule
+GPT-5.5              & OpenAI    & 8 & 1.0 & 4{,}096 & 4 \\
+Claude Sonnet 4      & Anthropic & 8 & 1.0 & 4{,}096 & 4 \\
+Gemini-2.5-Pro       & Google    & 8 & 1.0 & 4{,}096 & 4 \\
+DeepSeek-Chat        & DeepSeek  & 8 & 1.0 & 4{,}096 & 4 \\
+\bottomrule
+\end{tabular}
+\begin{flushleft}
+\footnotesize
+\textbf{Notes:} All API calls routed through a unified OpenAI-compatible proxy. Entity matching uses case-insensitive text+type comparison. Seed=42 for all runs.
+\end{flushleft}
+\end{table}

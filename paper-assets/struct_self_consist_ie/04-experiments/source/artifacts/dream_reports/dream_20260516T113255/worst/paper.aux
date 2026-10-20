@@ -1,0 +1,75 @@
+\relax 
+\bibstyle{acl_natbib}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{wang2023selfconsistency}
+\citation{chen2021codex}
+\citation{eikema2022sampling}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{wang2023selfconsistency}
+\citation{cisc2025}
+\citation{selfcertainty2026}
+\citation{reasc2026}
+\citation{snell2024scaling}
+\citation{brown2024tts}
+\citation{kuhn2023semantic}
+\citation{kadavath2022language,guo2017calibration}
+\citation{uqsurvey2025,confsurvey2024}
+\citation{manakul2023selfcheckgpt}
+\citation{cocoa2025}
+\citation{culotta2004confidence}
+\citation{nedellec2026}
+\citation{eikema2022sampling}
+\citation{cobbe2021training}
+\citation{lightman2023lets}
+\citation{luan2018scierc}
+\citation{sang2003conll}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Test-Time Scaling.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Confidence and Uncertainty Estimation.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Structured IE Confidence.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{MBR Decoding.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Verifiers and Reward Models.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Confidence Signals}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Structural Consistency.}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Probabilistic.}{2}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Voting-based.}{2}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Agreement-based.}{2}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Datasets and Models}{2}{subsection.3.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Quality estimation on SciERC ($n=529$ NER, $n=397$ RE). All $\rho $ values $p < 0.001$. Structural signals dominate for NER; LP dominates for RE---signal ranking is task-dependent.}}{3}{table.caption.10}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:qe_main}{{1}{3}{Quality estimation on SciERC ($n=529$ NER, $n=397$ RE). All $\rho $ values $p < 0.001$. Structural signals dominate for NER; LP dominates for RE---signal ranking is task-dependent}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Evaluation Protocol}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Quality Estimation Results}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Selection Results: The Correlation--Selection Gap}{3}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Selection results on SciERC ($N=8$, $T=1.0$). $\Delta $ in percentage points vs.\ greedy. NER LP: bootstrap $p = 0.39$, 95\% CI $[-3.0, +4.2]$pp, Cohen's $d = 0.038$. Oracle headroom is 13--18pp but no signal captures more than 0.6pp.}}{3}{table.caption.11}\protected@file@percent }
+\newlabel{tab:selection}{{2}{3}{Selection results on SciERC ($N=8$, $T=1.0$). $\Delta $ in percentage points vs.\ greedy. NER LP: bootstrap $p = 0.39$, 95\% CI $[-3.0, +4.2]$pp, Cohen's $d = 0.038$. Oracle headroom is 13--18pp but no signal captures more than 0.6pp}{table.caption.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces LLaMA-3.1-8B on CoNLL-2003 ($N=8$, $T=1.0$). QE correlations ($\rho = 0.31$--$0.43$) match Qwen3-8B ($\rho = 0.44$), confirming model-agnostic QE. Selection gains $\leq 0.2$pp with 2.1pp oracle headroom. Instance degeneracy: 56\%.}}{3}{table.caption.12}\protected@file@percent }
+\newlabel{tab:llama_conll}{{3}{3}{LLaMA-3.1-8B on CoNLL-2003 ($N=8$, $T=1.0$). QE correlations ($\rho = 0.31$--$0.43$) match Qwen3-8B ($\rho = 0.44$), confirming model-agnostic QE. Selection gains $\leq 0.2$pp with 2.1pp oracle headroom. Instance degeneracy: 56\%}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Cross-Model Validation}{3}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Supervised Verifier Baseline}{3}{subsection.4.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Supervised verifier (logistic regression on 5 signals, 5-fold CV, SciERC NER). The verifier achieves marginally higher AUROC (0.760 vs 0.749) but \emph  {lower} selection $F_1$ than the best single signal, closing only 3.2\% of oracle gap.}}{4}{table.caption.13}\protected@file@percent }
+\newlabel{tab:verifier}{{4}{4}{Supervised verifier (logistic regression on 5 signals, 5-fold CV, SciERC NER). The verifier achieves marginally higher AUROC (0.760 vs 0.749) but \emph {lower} selection $F_1$ than the best single signal, closing only 3.2\% of oracle gap}{table.caption.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Feature importance and inter-signal correlation. High pairwise correlations explain why the ensemble cannot outperform the best single signal.}}{4}{table.caption.14}\protected@file@percent }
+\newlabel{tab:feature_importance}{{5}{4}{Feature importance and inter-signal correlation. High pairwise correlations explain why the ensemble cannot outperform the best single signal}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Mechanism 1: Instance Degeneracy}{4}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LoRA Rank Ablation.}{4}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Mechanism 2: Logprob Score Compression}{4}{subsection.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Free-Form Ablation.}{4}{section*.16}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Scale ablation. QE correlations maintained or improved at 4B (SJ $\rho $: 0.383$\rightarrow $0.422 on SciERC). Selection fails at both scales despite 13pp oracle headroom. On SciERC 4B, all signals perform \emph  {worse} than greedy.}}{5}{table.caption.17}\protected@file@percent }
+\newlabel{tab:scale}{{6}{5}{Scale ablation. QE correlations maintained or improved at 4B (SJ $\rho $: 0.383$\rightarrow $0.422 on SciERC). Selection fails at both scales despite 13pp oracle headroom. On SciERC 4B, all signals perform \emph {worse} than greedy}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Scale Ablation}{5}{subsection.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{5}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}The Correlation--Selection Gap as a General Phenomenon}{5}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}When Would Consistency-Based Selection Succeed?}{5}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Implications for TTS Evaluation}{5}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Limitations}{5}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{5}{section.6}\protected@file@percent }
+\bibdata{custom}
+\bibstyle{acl_natbib}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Numerical Consistency Notes}{6}{appendix.A}\protected@file@percent }
+\gdef \@abspage@last{6}

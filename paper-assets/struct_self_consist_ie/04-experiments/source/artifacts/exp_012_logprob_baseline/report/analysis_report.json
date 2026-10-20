@@ -1,0 +1,9 @@
+See full report on server: /root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/analysis_report.json
+
+Key results:
+NER Full (n=529): SJ rho=0.3565 >> logprob rho=0.1396, AUROC 0.689 vs 0.591
+NER Cond (n=501): SJ rho=0.4120 >> logprob rho=0.1627, AUROC 0.706 vs 0.597
+RE Full (n=397): logprob rho=0.2467 > SJ rho=0.2112 (marginal, delta=0.036), but FK rho=0.2528 beats both
+RE Cond (n=296): SJ rho=0.3683 >> logprob rho=0.1457, AUROC 0.684 vs 0.549
+
+Verdict: SJ wins NER decisively; RE full is mixed but SJ wins conditional set by large margin.

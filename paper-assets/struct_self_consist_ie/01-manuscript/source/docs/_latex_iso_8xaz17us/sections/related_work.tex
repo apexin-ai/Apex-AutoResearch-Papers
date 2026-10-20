@@ -1,0 +1,16 @@
+\section{Related Work}\label{sec:related}
+
+\paragraph{Test-time compute scaling and best-of-$N$.}
+Self-consistency \cite{wang2023selfconsistency} and best-of-$N$ with compute-optimal allocation \cite{snell2025scaling, brown2024monkeys} drive large gains on reasoning and code tasks.
+Reward-free selectors \cite{taubenfeld2025cisc, kang2025selfcertainty} and BoN scaling laws \cite{gao2023scaling} reduce or characterize inference cost, while trained verifiers \cite{cobbe2021verifiers, lightman2024verify} learn per-sample scoring.
+All target discrete-answer settings; structured prediction requires different aggregation because degeneracy operates at the entity-set level.
+
+\paragraph{Consistency for structured IE.}
+\citet{yao2026consistency} show consistency correlates with accuracy for LLM-based NER/RE; we diagnose degeneracy and LP compression as conditions associated with the failure of this correlation to yield selection gains.
+\citet{xie2023zeroshot} propose entity voting for zero-shot NER, the closest prior work to our entity-level construction; our approach aggregates stochastic samples from a single fine-tuned model without prompt engineering.
+\citet{yun2025price} show structured formats induce diversity collapse; our LP compression (median range 0.041 nats) corroborates this for NER.
+Our evaluation builds on generative IE \cite{zhou2024uniner, sainz2024gollie} and constrained decoding \cite{willard2023guided, dong2024xgrammar}.
+
+\paragraph{Uncertainty estimation and MBR decoding.}
+Our selection strategies instantiate MBR decoding \cite{eikema2022sampling}; \citet{eikema2025structured} find MBR utilities degrade on structured outputs, while our diagnosis identifies degeneracy as the primary bottleneck.
+Semantic uncertainty \cite{kuhn2023semantic} and confidence estimation \cite{geng2024confidence, xia2025survey} provide complementary model-internal alternatives; our QE signals with AUROC up to 0.82 connect to selective prediction \cite{geifman2017selective} and support abstention independent of sample selection.

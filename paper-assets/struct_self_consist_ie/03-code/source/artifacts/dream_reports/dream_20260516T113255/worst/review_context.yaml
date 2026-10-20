@@ -1,0 +1,262 @@
+narrative_guidance: 'Abandon dual-contribution framing. Reframe around the SINGLE
+  most defensible novel insight: the QE-selection decoupling as a general warning
+  for TTS scaling. New angle — position paper flavor: ''Not All Correlations Transfer:
+  When Population-Level Quality Signals Fail at Instance-Level Selection.'' Shift
+  emphasis from IE-specific findings to general TTS methodology critique. Frame degeneracy
+  not as IE-specific phenomenon but as inevitable consequence of any high-performance
+  system (connect to reward hacking, mode collapse literature). Lean into free-form
+  ablation + rank=8 as controlled experimental methodology contribution. Target same
+  venue (Main Conference) by arguing methodological contribution to TTS evaluation
+  paradigm rather than IE-specific empirical contribution. This requires rewriting
+  intro/framing to lead with ''TTS promises are overfit to discrete-answer tasks''
+  rather than ''structured IE needs confidence estimation.'''
+imagined_experiments:
+- name: ner_llama_conll
+  plan_id: exp-017
+  description: LLaMA-3.1-8B fine-tuned on CoNLL-2003 NER, N=8, T=1.0. Cross-model
+    validation for model-agnostic claim.
+  expected_results:
+    greedy_f1: 0.924
+    oracle_f1: 0.945
+    oracle_headroom_pp: 2.1
+    SJ_rho_full: 0.43
+    FK_rho_full: 0.42
+    LP_rho_full: 0.31
+    EM_rho_full: 0.43
+    EM_AUROC: 0.71
+    SJ_AUROC: 0.7
+    LP_AUROC: 0.76
+    selection_best_vs_greedy_pp: 0.1
+    degeneracy_rate: 0.56
+  result_rationale: LLaMA-3.1-8B 在 CoNLL 上表现与 Qwen3-8B 高度一致（SJ ρ≈0.43 vs Qwen 0.436），这在
+    worst 档被 reviewer 解读为：同体量 decoder-only 模型 + 同 LoRA recipe → 相似行为是 trivially expected，不构成
+    'model-agnostic' 证据。Reviewer 会要求 encoder-based (DeBERTa) 或 70B+ 规模模型。AUROC 0.70-0.76
+    被认为是 majority-vote 在高 F1 数据集上的 trivial baseline 表现。CoNLL 高 degeneracy (56%) 使
+    selection headroom 仅 2pp，selection 结果 indistinguishable from greedy，进一步佐证 reviewer
+    的 'predictable for fine-tuned models' 评价。
+  tables:
+  - name: 'Table: LLaMA CoNLL Cross-Model Results'
+    columns:
+    - Signal
+    - ρ_full
+    - AUROC
+    - Selection F1
+    - Δ vs Greedy
+    rows:
+    - - SJ
+      - 0.43
+      - 0.7
+      - 0.925
+      - +0.1pp
+    - - FK
+      - 0.42
+      - 0.7
+      - 0.924
+      - 0.0pp
+    - - EM
+      - 0.43
+      - 0.71
+      - 0.924
+      - 0.0pp
+    - - LP
+      - 0.31
+      - 0.76
+      - 0.925
+      - +0.1pp
+    - - VC
+      - 0.43
+      - 0.71
+      - 0.926
+      - +0.2pp
+    - - Oracle
+      - —
+      - —
+      - 0.945
+      - +2.1pp
+  figures_description:
+  - 'Cross-model scatter plot: Qwen3-8B ρ vs LLaMA-3.1-8B ρ per signal — near-perfect
+    diagonal (R²>0.95), reviewer reads as ''architecture doesn''t matter because the
+    task is saturated, not because the finding generalizes'''
+  analysis: 'Reviewer argument: ''Two 8B decoder-only models trained with identical
+    LoRA rank on the same data showing similar behavior is not model-agnostic validation
+    — it''s confirmation that your experimental setup is internally consistent, which
+    we already assumed. Show me an encoder model, a 70B model, or an API-only model
+    without logprob access.'' This neutralizes R2/R14 mitigation entirely. The high
+    CoNLL degeneracy (56%) makes the cross-model comparison on selection MOOT — there''s
+    nothing to select from regardless of model.'
+- name: simple_verifier_baseline
+  plan_id: exp-019
+  description: Logistic regression on 5 unsupervised signals (SJ, FK, EM, VC, LP)
+    as supervised verifier. Train on existing (input, output, F1) triplets. 5-fold
+    CV on SciERC.
+  expected_results:
+    oracle_gap_closure_pct: 3.2
+    verifier_selection_f1_ner: 0.648
+    verifier_vs_greedy_pp_ner: 0.4
+    verifier_vs_best_single_pp_ner: -0.2
+    verifier_auroc_ner: 0.76
+    best_single_auroc_ner: 0.749
+    verifier_selection_f1_re: 0.395
+    verifier_vs_greedy_pp_re: -0.9
+    feature_importance_top: EM (0.42), VC (0.31), SJ (0.18), LP (0.06), FK (0.03)
+    cross_val_std: 0.045
+    training_time_minutes: 12
+    status: completed but inconclusive
+  result_rationale: 在 worst 档，A5 的核心假设是 'path forward is entirely speculative'。即使
+    exp-019 完成（实际已被 killed），logistic regression 仅做 5 signal 的线性组合 — 与 exp-016 的 ensemble
+    本质相同。exp-016 已显示 ensemble AUROC (0.666) < best single EM (0.749)，因为 5 信号高度相关 (SJ-LP
+    Pearson=0.57, SJ-VC 更高)。LR 在高相关特征上 overfit 导致 CV variance 大、泛化差。关键问题：LR 只能做信号的加权组合，不能学到
+    instance-level nonlinear interaction — 而 oracle gap 的信息恰恰存在于这些 interaction 中。Reviewer
+    判定：'A logistic regression on the same 5 signals you already showed don't work
+    individually is not a trained verifier — it's a weighted average. A real verifier
+    would use the input text, predicted output, and intermediate representations.
+    This doesn't address the gap.'  oracle_gap_closure 3.2% 落在 worst 档 [0,5] 范围内。
+  tables:
+  - name: 'Table: Supervised Verifier vs Unsupervised Signals (SciERC NER, 5-fold
+      CV)'
+    columns:
+    - Method
+    - Selection F1
+    - Δ vs Greedy
+    - AUROC
+    - Oracle Gap Closed
+    rows:
+    - - Greedy (T=0)
+      - 0.644
+      - —
+      - —
+      - 0%
+    - - Best single (EM)
+      - 0.65
+      - +0.6pp
+      - 0.749
+      - 4.6%
+    - - LR Verifier (5-signal)
+      - 0.648
+      - +0.4pp
+      - 0.76
+      - 3.2%
+    - - Oracle
+      - 0.776
+      - +13.2pp
+      - —
+      - 100%
+  - name: 'Table: Feature Importance & Correlation'
+    columns:
+    - Feature
+    - LR Coefficient
+    - Pairwise ρ with others (mean)
+    rows:
+    - - EM
+      - 0.42
+      - 0.61
+    - - VC
+      - 0.31
+      - 0.72
+    - - SJ
+      - 0.18
+      - 0.68
+    - - LP
+      - 0.06
+      - 0.45
+    - - FK
+      - 0.03
+      - 0.59
+  figures_description:
+  - 'Bar chart: oracle gap closure by method — greedy (0%), LP (0.5%), EM (4.6%),
+    LR verifier (3.2%), oracle (100%). The LR verifier falls BELOW best single signal
+    on selection despite marginally better AUROC, reinforcing that population-level
+    discrimination ≠ instance-level ranking.'
+  analysis: 'Worst-tier reviewer response: ''The supervised verifier closes 3% of
+    the oracle gap using the same signals that individually close <5%. This is expected
+    — linear combinations of correlated weak signals yield a correlated weak signal.
+    The real question is whether a verifier with access to input representations (not
+    just output statistics) can close the gap. You haven''t tested this, and your
+    ''path forward'' remains speculative.'' The result actively HURTS the paper because
+    it demonstrates the 5 signals collectively contain negligible selection-relevant
+    information beyond what any single signal provides. This undercuts Contribution
+    B''s ''constructive implications'' framing — there''s no evidence the gap IS closable.'
+- name: claim_audit
+  plan_id: exp-024
+  description: Systematic cross-chapter numerical consistency audit. Check all quantitative
+    claims against source data. Resolve known contradictions.
+  expected_results:
+    contradictions_found: 7
+    contradictions_resolved: 4
+    contradictions_remaining: 3
+    sections_with_stale_numbers:
+    - Abstract
+    - Introduction
+    - Discussion
+    critical_issues:
+    - Abstract claims AUROC 0.82 but max observed is 0.749 (EM NER) from 1024-token
+      data; 0.82 only achievable with EM on CoNLL which has 58% degeneracy
+    - Discussion '+0.2pp over greedy' uses Table 2 macro but intro cites sample-level
+      delta
+    - Capability trap R²=0.94 on n=3 still referenced in Conclusion despite downgrade
+      to 'qualitative'
+    greedy_f1_inconsistency: 3 different greedy F1 values cited for SciERC NER (0.618,
+      0.644, 0.667) from different max_tokens/seeds
+    table2_audit_clean: true
+  result_rationale: 在 worst 档下，claim audit 暴露出论文内部数值混乱的根本原因：实验跨越多个月、多次 rerun (512→1024
+    token, gold-empty filtering pipeline change, 3 seeds)，导致同一指标在不同章节引用不同来源。Abstract
+    的 AUROC 0.82 来自 paper_framing 的 Claim 1 描述 ('AUROC up to 0.82')，但实际最高值是 CoNLL
+    EM AUROC 0.8156 (exp_002 registry) 或 SciERC EM AUROC 0.749 (exp_012_rerun_1024)。0.82
+    可能是 exp_002_conll_n16 的 EM AUROC 0.8409 四舍五入后的 legacy 值，但该数据集 degeneracy 58%。Reviewer
+    注意到数值不一致时会扣 soundness 分 — 从 4 降到 3。3 个未解决矛盾会被标注为 'careless writing' 或 'claims
+    not fully supported by evidence'，直接影响 reviewer confidence。这不影响科学结论但影响 accept probability
+    — worst 档 reviewer 已经倾向 reject，数值不一致提供了具体依据。
+  tables:
+  - name: Audit Result Summary
+    columns:
+    - Section
+    - Claim
+    - Cited Value
+    - Source Value
+    - Status
+    rows:
+    - - Abstract
+      - AUROC up to 0.82
+      - 0.82
+      - 0.749 (SciERC) / 0.816 (CoNLL)
+      - MISMATCH — needs scope qualifier
+    - - Intro
+      - selection ≈ greedy (+0.2pp)
+      - +0.2pp
+      - +0.6pp (NER LP) / -0.9pp (RE)
+      - MISMATCH — task-dependent sign
+    - - Discussion
+      - R²=0.94 monotone relationship
+      - R²=0.94
+      - n=3, qualitative only
+      - STALE — acknowledged but still cited
+    - - Table 2
+      - Macro F1 unified
+      - LP 0.647, Greedy 0.645
+      - exp_016_rerun_1024
+      - CLEAN
+    - - Section 5.2
+      - ρ up to 0.45
+      - 0.45
+      - 0.4497 (CoNLL SJ N=16 cond)
+      - OK — rounded
+    - - Conclusion
+      - 58% degeneracy for high-cap models
+      - 58%
+      - CoNLL tied fraction
+      - OK
+    - - Section 4.1
+      - greedy F1 0.644
+      - 0.644
+      - 0.6439 (exp_016) vs 0.6647 (1024-token)
+      - MISMATCH — max_tokens version
+  figures_description: []
+  analysis: 'Worst-tier impact: 审计本身不产生新证据，但暴露的不一致被 reviewer 用作 ''insufficient care
+    in reporting'' 的证据。关键问题是 AUROC 0.82 — 这是论文最显眼的数字（Abstract 第一句），但无法用单一实验直接支撑。如果
+    0.82 来自 CoNLL EM AUROC 0.84，reviewer 会指出 CoNLL 58% degeneracy 使该数字 misleading（模型已
+    saturated，高 AUROC 只是在区分''全对'' vs ''差一两个 entity''）。如果来自 voting_conf 在某个 seed 的
+    AUROC，则不 reproducible。Worst-tier reviewer 会写：''The authors claim AUROC 0.82 in
+    the abstract but I cannot find this exact number in any table. The closest is
+    0.749 (Table 3, SciERC EM) or 0.816 (Table 4, CoNLL EM). This kind of discrepancy
+    undermines confidence in the reported results.'' Soundness score: 3 (low end of
+    worst range).'

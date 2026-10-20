@@ -1,0 +1,223 @@
+{
+  "experiment": "exp_dgec_vc_construction",
+  "subset": "qwen3_8b_ft",
+  "method": "VC-weighted entity construction",
+  "description": "VC construction on Qwen3-8B FT configs (3 datasets × 3 seeds). Supplements the main VC construction results which covered Qwen2.5-7B FT and 72B ZS/FS.",
+  "parameters": {
+    "N": 8,
+    "threshold": 0.25,
+    "bootstrap_B": 10000,
+    "bootstrap_seed": 42,
+    "alpha": 0.05
+  },
+  "data_sources": {
+    "fewnerd/seed42": "exp_021_inference/samples.jsonl",
+    "fewnerd/seed123": "exp_021_fewnerd_n8_seed123/samples.jsonl",
+    "fewnerd/seed456": "exp_021_fewnerd_n8_seed456/samples.jsonl",
+    "scierc/seed42": "exp_012_rerun_1024/samples.jsonl",
+    "scierc/seed123": "exp_018_qwen_scierc_seed123/samples.jsonl",
+    "scierc/seed456": "exp_018_qwen_scierc_seed456/samples.jsonl",
+    "conll/seed42": "exp002_conll2003/samples.jsonl",
+    "conll/seed123": "exp_002_conll_n8_seed123/samples.jsonl",
+    "conll/seed456": "exp_002_conll_n8_seed456/samples.jsonl"
+  },
+  "results": [
+    {
+      "config": "fewnerd/qwen3_8b/ft/seed42",
+      "dataset": "FewNERD",
+      "model": "Qwen3-8B",
+      "regime": "fine-tuned",
+      "n_instances": 32565,
+      "greedy_f1": 0.7478,
+      "vc_constructed_f1": 0.7448,
+      "delta_f1_pp": -0.30,
+      "bootstrap_p": 0.9969,
+      "ci_95": [-0.0052, -0.0008],
+      "cohens_d": -0.015,
+      "mean_degeneracy": 0.1004,
+      "nondegen_diff_pp": -0.34,
+      "nondegen_p": 0.9979,
+      "greedy_f1_verified": true
+    },
+    {
+      "config": "fewnerd/qwen3_8b/ft/seed123",
+      "dataset": "FewNERD",
+      "model": "Qwen3-8B",
+      "regime": "fine-tuned",
+      "n_instances": 32565,
+      "greedy_f1": 0.7480,
+      "vc_constructed_f1": 0.7571,
+      "delta_f1_pp": 0.91,
+      "bootstrap_p": 0.0,
+      "ci_95": [0.0068, 0.0115],
+      "cohens_d": 0.042,
+      "mean_degeneracy": 0.0927,
+      "nondegen_diff_pp": 1.00,
+      "nondegen_p": 0.0,
+      "greedy_f1_verified": true
+    },
+    {
+      "config": "fewnerd/qwen3_8b/ft/seed456",
+      "dataset": "FewNERD",
+      "model": "Qwen3-8B",
+      "regime": "fine-tuned",
+      "n_instances": 32565,
+      "greedy_f1": 0.7486,
+      "vc_constructed_f1": 0.7545,
+      "delta_f1_pp": 0.59,
+      "bootstrap_p": 0.0,
+      "ci_95": [0.0038, 0.0081],
+      "cohens_d": 0.030,
+      "mean_degeneracy": 0.0817,
+      "nondegen_diff_pp": 0.64,
+      "nondegen_p": 0.0,
+      "greedy_f1_verified": true
+    },
+    {
+      "config": "scierc/qwen3_8b/ft/seed42",
+      "dataset": "SciERC",
+      "model": "Qwen3-8B",
+      "regime": "fine-tuned",
+      "n_instances": 529,
+      "greedy_f1": 0.6439,
+      "vc_constructed_f1": 0.6579,
+      "delta_f1_pp": 1.40,
+      "bootstrap_p": 0.0169,
+      "ci_95": [0.0010, 0.0276],
+      "cohens_d": 0.088,
+      "mean_degeneracy": 0.1134,
+      "nondegen_diff_pp": 1.58,
+      "nondegen_p": 0.0196,
+      "greedy_f1_verified": true
+    },
+    {
+      "config": "scierc/qwen3_8b/ft/seed123",
+      "dataset": "SciERC",
+      "model": "Qwen3-8B",
+      "regime": "fine-tuned",
+      "n_instances": 529,
+      "greedy_f1": 0.6457,
+      "vc_constructed_f1": 0.6554,
+      "delta_f1_pp": 0.96,
+      "bootstrap_p": 0.0873,
+      "ci_95": [-0.0040, 0.0237],
+      "cohens_d": 0.058,
+      "mean_degeneracy": 0.1115,
+      "nondegen_diff_pp": 1.08,
+      "nondegen_p": 0.0872,
+      "greedy_f1_verified": true
+    },
+    {
+      "config": "scierc/qwen3_8b/ft/seed456",
+      "dataset": "SciERC",
+      "model": "Qwen3-8B",
+      "regime": "fine-tuned",
+      "n_instances": 529,
+      "greedy_f1": 0.6478,
+      "vc_constructed_f1": 0.6413,
+      "delta_f1_pp": -0.65,
+      "bootstrap_p": 0.8335,
+      "ci_95": [-0.0196, 0.0067],
+      "cohens_d": -0.043,
+      "mean_degeneracy": 0.1323,
+      "nondegen_diff_pp": -0.75,
+      "nondegen_p": 0.8319,
+      "greedy_f1_verified": true
+    },
+    {
+      "config": "conll/qwen3_8b/ft/seed42",
+      "dataset": "CoNLL-2003",
+      "model": "Qwen3-8B",
+      "regime": "fine-tuned",
+      "n_instances": 2756,
+      "greedy_f1": 0.9079,
+      "vc_constructed_f1": 0.9041,
+      "delta_f1_pp": -0.38,
+      "bootstrap_p": 0.9548,
+      "ci_95": [-0.0083, 0.0007],
+      "cohens_d": -0.032,
+      "mean_degeneracy": 0.5686,
+      "nondegen_diff_pp": -0.89,
+      "nondegen_p": 0.951,
+      "greedy_f1_verified": true
+    },
+    {
+      "config": "conll/qwen3_8b/ft/seed123",
+      "dataset": "CoNLL-2003",
+      "model": "Qwen3-8B",
+      "regime": "fine-tuned",
+      "n_instances": 2756,
+      "greedy_f1": 0.9077,
+      "vc_constructed_f1": 0.9083,
+      "delta_f1_pp": 0.07,
+      "bootstrap_p": 0.3836,
+      "ci_95": [-0.0038, 0.0053],
+      "cohens_d": 0.005,
+      "mean_degeneracy": 0.6049,
+      "nondegen_diff_pp": 0.17,
+      "nondegen_p": 0.3956,
+      "greedy_f1_verified": true
+    },
+    {
+      "config": "conll/qwen3_8b/ft/seed456",
+      "dataset": "CoNLL-2003",
+      "model": "Qwen3-8B",
+      "regime": "fine-tuned",
+      "n_instances": 2756,
+      "greedy_f1": 0.9070,
+      "vc_constructed_f1": 0.9015,
+      "delta_f1_pp": -0.54,
+      "bootstrap_p": 0.9983,
+      "ci_95": [-0.0091, -0.0017],
+      "cohens_d": -0.055,
+      "mean_degeneracy": 0.6030,
+      "nondegen_diff_pp": -1.36,
+      "nondegen_p": 0.9985,
+      "greedy_f1_verified": true
+    }
+  ],
+  "cross_seed_summary": {
+    "fewnerd": {
+      "mean_greedy_f1": 0.7481,
+      "mean_vc_f1": 0.7521,
+      "mean_delta_pp": 0.40,
+      "seeds_positive": 2,
+      "seeds_negative": 1,
+      "mean_degeneracy": 0.0916
+    },
+    "scierc": {
+      "mean_greedy_f1": 0.6458,
+      "mean_vc_f1": 0.6515,
+      "mean_delta_pp": 0.57,
+      "seeds_positive": 2,
+      "seeds_negative": 1,
+      "mean_degeneracy": 0.1191
+    },
+    "conll": {
+      "mean_greedy_f1": 0.9075,
+      "mean_vc_f1": 0.9046,
+      "mean_delta_pp": -0.28,
+      "seeds_positive": 1,
+      "seeds_negative": 2,
+      "mean_degeneracy": 0.5922
+    }
+  },
+  "lp_comparison": {
+    "note": "LP construction results from exp_021_inference/results.json (seed42 only)",
+    "fewnerd_seed42": {
+      "lp_delta_pp": 0.88,
+      "vc_delta_pp": -0.30,
+      "lp_better": true
+    },
+    "scierc_seed42": {
+      "lp_delta_pp": 0.61,
+      "vc_delta_pp": 1.40,
+      "vc_better": true
+    },
+    "conll_seed42": {
+      "lp_delta_pp": -1.05,
+      "vc_delta_pp": -0.38,
+      "both_negative": true
+    }
+  }
+}

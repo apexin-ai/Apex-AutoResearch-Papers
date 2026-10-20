@@ -1,0 +1,4 @@
+Remote files on autodl-5090:
+- Results JSON: /root/autodl-tmp/struct_self_consist_ie/output/ccs_selection_results.json
+- Markdown report: /root/autodl-tmp/struct_self_consist_ie/output/ccs_selection_report.md
+- Script: /root/autodl-tmp/struct_self_consist_ie/code/ccs_selection.py

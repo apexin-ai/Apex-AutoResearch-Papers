@@ -1,0 +1,105 @@
+{
+  "audit_date": "2026-05-15",
+  "pipeline": "unified (gold-filtered, consistency.py FK/SJ, evaluation.py per_instance_f1)",
+  "filter": "exclude instances where len(gold.entities) == 0",
+  "experiments": {
+    "exp_017_llama_conll_n16_r1024": {
+      "description": "LLaMA CoNLL seed42 n16 r1024",
+      "n_total": 3453,
+      "n_gold_empty": 697,
+      "n_valid": 2756,
+      "n_conditional": 2641,
+      "old_registry_rho_fk": 0.8095,
+      "old_registry_rho_sj": 0.1815,
+      "unified_full": {
+        "rho_fk": 0.4752,
+        "rho_sj": 0.4836,
+        "rho_vc": 0.4746,
+        "rho_em": 0.4818,
+        "rho_lp": 0.3136,
+        "auroc_fk": 0.7467,
+        "auroc_sj": 0.7496,
+        "auroc_vc": 0.7529,
+        "auroc_em": 0.7508,
+        "auroc_lp": 0.7661,
+        "median_f1": 1.0
+      },
+      "unified_conditional": {
+        "rho_fk": 0.4767,
+        "rho_sj": 0.4856
+      }
+    },
+    "exp_017_llama_conll_n16_s456_r1024": {
+      "description": "LLaMA CoNLL seed456 n16 r1024",
+      "n_total": 3453,
+      "n_gold_empty": 697,
+      "n_valid": 2756,
+      "n_conditional": 2642,
+      "old_registry_rho_fk": 0.8085,
+      "old_registry_rho_sj": 0.1895,
+      "unified_full": {
+        "rho_fk": 0.469,
+        "rho_sj": 0.4734,
+        "rho_vc": 0.4722,
+        "rho_em": 0.4752,
+        "rho_lp": 0.3099,
+        "auroc_fk": 0.7408,
+        "auroc_sj": 0.7428,
+        "auroc_vc": 0.7495,
+        "auroc_em": 0.7444,
+        "auroc_lp": 0.7628,
+        "median_f1": 1.0
+      },
+      "unified_conditional": {
+        "rho_fk": 0.4694,
+        "rho_sj": 0.4728
+      }
+    },
+    "exp_001_n16_seed456": {
+      "description": "Qwen SciERC seed456 joint n16",
+      "n_total": 551,
+      "n_gold_empty": 22,
+      "n_valid": 529,
+      "n_conditional": 478,
+      "old_registry_rho_fk": 0.3448,
+      "old_registry_rho_sj": 0.4134,
+      "unified_full_ner": {
+        "rho_fk": 0.2723,
+        "rho_sj": 0.4098,
+        "rho_vc": 0.4449,
+        "rho_em": 0.3363,
+        "rho_lp": 0.2415,
+        "auroc_fk": 0.6179,
+        "auroc_sj": 0.6823,
+        "auroc_vc": 0.6981,
+        "auroc_em": 0.649,
+        "auroc_lp": 0.5885,
+        "median_f1": 0.6667
+      },
+      "unified_conditional_ner": {
+        "rho_fk": 0.1887,
+        "rho_sj": 0.3735
+      },
+      "unified_re": {
+        "n_re_valid": 397,
+        "rho_fk": 0.2929,
+        "rho_sj": 0.2835
+      }
+    },
+    "exp_011_ood_conll_to_scierc": {
+      "description": "OOD ConLL-trained on SciERC test",
+      "n_total": 551,
+      "n_gold_empty": 22,
+      "n_valid": 529,
+      "n_conditional": 12,
+      "registry_already_correct": true,
+      "unified_full": {
+        "rho_fk": -0.0695,
+        "rho_sj": -0.1857,
+        "rho_vc": 0.1972,
+        "rho_em": -0.2015,
+        "rho_lp": -0.1521
+      }
+    }
+  }
+}

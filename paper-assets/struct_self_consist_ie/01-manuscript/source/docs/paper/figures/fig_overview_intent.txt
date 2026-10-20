@@ -1,0 +1,11 @@
+This paper investigates self-consistency methods for structured information extraction (IE), specifically named entity recognition (NER). The core finding is a "Correlation-Selection Gap": while consistency signals correlate well with output quality (enabling quality estimation), they fail at sample selection because they assign identical scores to all N candidates from the same input.
+
+The diagnostic framework has three stages:
+
+STAGE 1 - QUALITY ESTIMATION: Given an input x, we generate N samples (y₁, y₂, ..., yₙ) using temperature sampling (T=1.0). We compute a consistency score S for each input instance by measuring agreement among the N samples. This score correlates with actual output quality (F1): high S implies high F1, low S implies low F1. Metrics: AUROC ≈ 0.82, Spearman ρ = 0.39. Conclusion: consistency is an effective quality estimator.
+
+STAGE 2 - SAMPLE SELECTION: The natural next step is to use the consistency signal to select the best sample among the N candidates. However, this fails because the consistency score is an instance-level signal — it assigns the same score S to ALL N candidates y₁...yₙ generated from the same input x. Since all candidates receive identical scores, the signal cannot discriminate among them. Result: best-of-N selection performs no better than greedy decoding. This gap between correlation ability and selection ability is the "Correlation-Selection Gap" — the central finding of the paper.
+
+STAGE 3 - ENTITY-LEVEL CONSTRUCTION: Instead of selecting one complete sample, we construct a new output at the entity level. Using entity-level majority voting, we keep an entity if its frequency across the N samples meets a threshold θ = 2/N. This constructs a NEW output that doesn't correspond to any single sample. Result: +1.4 percentage points improvement on Few-NERD (4-seed average). This resolution works because it operates at entity granularity rather than instance level.
+
+The three stages flow left to right: Quality Estimation → (Correlation-Selection Gap) → Sample Selection (fails) → (Resolution) → Entity-Level Construction (works).

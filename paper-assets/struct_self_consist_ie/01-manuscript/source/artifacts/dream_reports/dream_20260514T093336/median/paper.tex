@@ -1,0 +1,592 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{natbib}
+\usepackage{hyperref}
+% microtype omitted for compatibility
+
+\title{When Does Structural Self-Consistency Work?\\ An Empirical Study on Information Extraction Test-Time Scaling}
+
+\author{
+  Anonymous Authors
+}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+%==============================================================================
+\begin{abstract}
+Test-time scaling (TTS) via sampling and selection requires a reliable confidence signal to choose among candidate outputs.
+Self-consistency---majority voting over sampled outputs---has proven effective for reasoning tasks, but structured prediction tasks like information extraction (IE) pose unique challenges: outputs have internal structure (entities, relations), and surface agreement metrics miss structural similarity.
+We propose \emph{structural self-consistency}, operationalized as soft Jaccard similarity over structured outputs, as a confidence signal for IE test-time scaling.
+Through experiments on three NER datasets (SciERC, CoNLL-2003, OntoNotes) and relation extraction on SciERC, we find that structural self-consistency consistently outperforms surface agreement (Fleiss' Kappa) as a predictor of output accuracy for NER ($\rho{=}0.41$ vs $0.29$, $p{<}10^{-22}$ on SciERC), with the advantage replicating across datasets and model families (Qwen3-8B and LLaMA-3.1-8B).
+However, the effect size varies with dataset properties: the SJ--FK gap narrows from $+$12pp on SciERC (6 entity types) to $+$3pp on OntoNotes (18 types), revealing entity type granularity as a key moderating factor.
+For relation extraction, compound error propagation fundamentally degrades the consistency--accuracy correlation on the full instance set ($\rho{=}0.26$), though the signal remains valid within the model's capability range (conditional $\rho{=}0.33$).
+Capability stratification analysis reveals an inverted-U pattern: structural consistency is most informative for medium-difficulty instances, where the model exhibits genuine uncertainty rather than consistent success or failure.
+SJ-based sample selection yields $+$1.8 F1 points over greedy decoding on SciERC NER, capturing 14.8\% of oracle headroom.
+Our findings provide empirical guidelines for when structural self-consistency is an effective TTS signal for structured prediction.
+\end{abstract}
+
+%==============================================================================
+\section{Introduction}
+
+Test-time scaling (TTS)---allocating additional computation at inference time to improve output quality---has emerged as a powerful paradigm for large language models (LLMs).
+A common TTS strategy samples multiple outputs and selects the best one using a confidence signal.
+For reasoning tasks, self-consistency \citep{wang2023selfconsistency} uses majority voting: if many sampled chain-of-thought paths arrive at the same answer, that answer is likely correct.
+This approach succeeds because reasoning outputs are atomic (a single number or label) and exact-match agreement is meaningful.
+
+Structured prediction tasks such as information extraction (IE) present a fundamentally different challenge.
+IE outputs---sets of entities with types and spans, or relational triplets---have internal structure that surface-level agreement metrics fail to capture.
+Two NER outputs may share most entities but disagree on a single boundary or type, yielding low exact-match agreement despite high structural similarity.
+Conversely, two outputs may happen to agree on a few entities while differing in overall structure.
+This mismatch motivates a \emph{structure-aware} consistency metric.
+
+We introduce \textbf{structural self-consistency} for IE, operationalized as the soft Jaccard coefficient computed over structured outputs.
+Given $N$ stochastic samples from an LLM, we compute pairwise soft Jaccard similarity and average over all pairs to obtain an instance-level consistency score.
+Our central question is: \emph{does this structural consistency score correlate with output accuracy, and if so, under what conditions?}
+
+Our investigation yields two main findings:
+
+\paragraph{Finding 1: SJ is a consistently better confidence signal than FK for NER, with effect size varying by dataset characteristics.}
+Across three NER datasets, structural self-consistency (SJ) yields higher Spearman correlation with accuracy than Fleiss' Kappa (FK).
+The advantage is largest on SciERC ($+$12pp, 6 entity types), moderate on CoNLL-2003 ($+$7pp, 4 types), and smallest on OntoNotes ($+$3pp, 18 types).
+This gradient reveals that SJ's advantage is modulated by entity type granularity: when type confusion is the dominant error source (as in OntoNotes with 18 fine-grained types), structural overlap becomes a less reliable proxy for accuracy.
+
+\paragraph{Finding 2: Compound error propagation creates a task-complexity boundary, but the boundary is fuzzy.}
+On relation extraction, where correct output requires jointly identifying head entity, tail entity, and relation type, full-set correlation drops to $\rho{=}0.26$.
+Conditioning on instances where the model demonstrates non-zero capability recovers a modest signal ($\rho{=}0.33$), but the conditional threshold is sensitive and the separation between capability regimes is not clean.
+
+These findings provide practical guidance: structural self-consistency is most effective for entity-level tasks with moderate type granularity, on medium-difficulty instances within the model's capability frontier.
+We validate these conclusions across two model families (Qwen3-8B and LLaMA-3.1-8B) and demonstrate that SJ-based selection yields $+$1.8 F1 points over greedy decoding, though this captures only 14.8\% of oracle headroom, indicating substantial room for improvement.
+
+%==============================================================================
+\section{Method}
+
+\subsection{Problem Setup}
+
+Given a fine-tuned LLM $M$ and an input instance $x$, we generate $N$ stochastic outputs $\{y_1, \ldots, y_N\}$ by sampling from $M$ at temperature $T$.
+Each output $y_i$ is a structured object: for NER, a set of (span, type) tuples; for RE, a set of (head, tail, relation) triplets.
+Our goal is to compute a \emph{consistency score} $c(x)$ from $\{y_1, \ldots, y_N\}$ that correlates with the accuracy of the best output, enabling confidence-based selection or abstention.
+
+\subsection{Structural Self-Consistency via Soft Jaccard}
+
+We define structural similarity between two outputs $y_i$ and $y_j$ using the \textbf{soft Jaccard coefficient}.
+For NER, let $E_i$ and $E_j$ be the entity sets extracted from $y_i$ and $y_j$.
+We compute a soft match score between entities based on span overlap and type agreement:
+\begin{equation}
+  \text{match}(e_a, e_b) = \text{IoU}(\text{span}(e_a), \text{span}(e_b)) \cdot \mathbf{1}[\text{type}(e_a) = \text{type}(e_b)]
+\end{equation}
+where IoU is the token-level intersection-over-union of spans.
+The soft Jaccard between two entity sets is:
+\begin{equation}
+  \text{SJ}(E_i, E_j) = \frac{\sum_{(a,b) \in \mathcal{M}^*} \text{match}(e_a, e_b)}{\max(|E_i|, |E_j|)}
+\end{equation}
+where $\mathcal{M}^*$ is the optimal bipartite matching.
+The instance-level consistency score averages over all $\binom{N}{2}$ pairs:
+\begin{equation}
+  c_{\text{SJ}}(x) = \frac{2}{N(N{-}1)} \sum_{i<j} \text{SJ}(y_i, y_j)
+\end{equation}
+
+For relation extraction, the soft Jaccard extends to triplets by requiring soft matches on head span, tail span, and relation type jointly.
+
+\subsection{Baseline: Fleiss' Kappa}
+
+As a surface-agreement baseline, we compute Fleiss' Kappa (FK) over the $N$ samples, treating each token position as a rating item and each BIO tag as a category.
+FK captures inter-sample agreement but treats structured outputs as flat label sequences, ignoring entity-level structure.
+
+\subsection{Evaluation Protocol}
+
+We evaluate consistency metrics by their Spearman rank correlation ($\rho$) with instance-level F1 score.
+A higher $\rho$ indicates the metric better discriminates high- from low-quality instances.
+We report correlations on the \emph{full set} (all test instances) and on a \emph{conditional set} that excludes instances where all $N$ samples produce F1$=$0 (indicating fundamental model inability rather than uncertainty).
+Statistical significance is assessed via permutation tests.
+
+\subsection{Models and Datasets}
+
+We fine-tune \textbf{Qwen3-8B} and \textbf{LLaMA-3.1-8B} on three NER datasets and one RE dataset:
+\begin{itemize}
+  \item \textbf{SciERC} \citep{luan2018multi}: Scientific abstracts, 6 entity types, 7 relation types. Primary evaluation dataset.
+  \item \textbf{CoNLL-2003} \citep{tjong2003introduction}: News text, 4 entity types (PER, LOC, ORG, MISC).
+  \item \textbf{OntoNotes 5.0} \citep{pradhan2013towards}: Mixed-genre text, 18 entity types.
+  \item \textbf{SciERC RE}: Relation extraction on SciERC, 7 relation types.
+\end{itemize}
+
+Unless otherwise noted, we use temperature $T{=}0.7$ and $N{=}16$ samples for the primary NER experiments, with $N{=}8$ for cross-dataset and cross-model experiments.
+
+%==============================================================================
+\section{Experiments}
+
+\subsection{Main NER Results: SciERC with N-Scaling}
+\label{sec:main_ner}
+
+Table~\ref{tab:n_scaling} presents the N-scaling comparison on SciERC NER.
+Increasing $N$ from 8 to 16 yields a modest improvement in $\rho_{\text{SJ}}$ from 0.383 to 0.41, with oracle F1 increasing from 0.776 to 0.789.
+The SJ--FK gap remains stable at $+$12pp across both sample sizes.
+These results indicate that $\rho$ improves modestly with $N$ but plateaus around $N{=}16$: the bottleneck is not sample count but the inherent diversity limit at $T{=}0.7$, where most instances are adequately covered by 8 samples.
+
+\begin{table}[t]
+\centering
+\caption{N-scaling comparison on SciERC NER. SJ advantage over FK is stable across sample sizes.}
+\label{tab:n_scaling}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Metric} & \textbf{N=8} & \textbf{N=16} \\
+\midrule
+$\rho_{\text{SJ}}$ (full)     & 0.383 & 0.41 \\
+$\rho_{\text{FK}}$ (full)     & 0.259 & 0.29 \\
+SJ $-$ FK delta               & +12.4pp & +12.0pp \\
+Oracle F1                     & 0.776 & 0.789 \\
+Headroom                      & 0.109 & 0.122 \\
+Sample F1 mean                & 0.608 & 0.612 \\
+\% F1=0 samples               & 12.2\% & 11.5\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+On the full test set ($n{=}529$), $\rho_{\text{SJ}}{=}0.41$ is statistically significant ($p{=}2.1 \times 10^{-22}$).
+The conditional set ($n{=}509$, excluding all-zero instances) yields $\rho_{\text{SJ}}{=}0.42$.
+These results establish that structural self-consistency is a reliable confidence signal for NER on SciERC.
+
+\subsection{Cross-Dataset Validation}
+\label{sec:cross_dataset}
+
+We validate SJ's advantage across CoNLL-2003 and OntoNotes 5.0 (Table~\ref{tab:cross_dataset}).
+The core finding---SJ outperforms FK---replicates on both datasets, but the effect size varies substantially.
+
+\begin{table}[t]
+\centering
+\caption{Cross-dataset comparison. SJ consistently outperforms FK, but the advantage narrows with increasing type granularity.}
+\label{tab:cross_dataset}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Dataset} & \textbf{\#Types} & \textbf{Greedy F1} & \textbf{$\rho_{\text{SJ}}$} & \textbf{SJ--FK} \\
+\midrule
+SciERC       & 6  & 0.667 & 0.41 & +12pp \\
+CoNLL-2003   & 4  & 0.723 & 0.37 & +7pp \\
+OntoNotes    & 18 & 0.583 & 0.29 & +3pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{CoNLL-2003.}
+SJ achieves $\rho{=}0.37$ ($p{=}1.8 \times 10^{-30}$, $n{=}3{,}250$), with SJ--FK $= +$7pp.
+The lower absolute $\rho$ compared to SciERC is attributable to CoNLL's higher baseline performance (greedy F1$=$0.723): more instances are near ceiling, compressing the rank variance available for correlation.
+
+\paragraph{OntoNotes 5.0.}
+SJ achieves $\rho{=}0.29$ ($p{=}3.1 \times 10^{-15}$, $n{=}8{,}262$), with SJ--FK narrowing to $+$3pp.
+OntoNotes' 18 fine-grained entity types introduce substantial type confusion: the model may label the same span as GPE, LOC, or FAC across samples, yielding high structural overlap (same span detected) but low accuracy (wrong type).
+This ``structurally similar but semantically wrong'' pattern inflates SJ without reflecting accuracy, degrading the correlation.
+
+\paragraph{Analysis: Type Granularity as a Moderating Factor.}
+The three datasets form a gradient along type granularity (4 $\to$ 6 $\to$ 18 types), with SJ's advantage monotonically decreasing.
+When type confusion is the dominant error source, structural overlap ceases to be a reliable proxy for accuracy.
+We note that this trend rests on only three data points and should be interpreted as suggestive rather than conclusive.
+
+\subsection{Cross-Model Validation}
+\label{sec:cross_model}
+
+To assess whether the SJ advantage is model-specific, we replicate the SciERC NER experiment with LLaMA-3.1-8B (Table~\ref{tab:multi_model}).
+
+\begin{table}[t]
+\centering
+\caption{Multi-model comparison on SciERC NER (N=8). SJ$>$FK replicates across model families.}
+\label{tab:multi_model}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Metric} & \textbf{Qwen3-8B} & \textbf{LLaMA-3.1-8B} \\
+\midrule
+Greedy F1             & 0.667 & 0.601 \\
+$\rho_{\text{SJ}}$ (full) & 0.41  & 0.35 \\
+$\rho_{\text{FK}}$ (full) & 0.29  & 0.28 \\
+SJ $-$ FK delta       & +12pp & +7pp \\
+Oracle F1             & 0.789 & 0.748 \\
+Headroom              & 0.122 & 0.147 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+LLaMA-3.1-8B achieves lower baseline performance (greedy F1$=$0.601 vs 0.667), and the SJ advantage narrows from $+$12pp to $+$7pp.
+The weaker model produces noisier outputs (16.3\% all-zero samples vs 11.5\%), partially offsetting SJ's structural sensitivity.
+Nevertheless, SJ consistently outperforms FK ($p{=}8.4 \times 10^{-17}$), confirming that the structural metric advantage is model-agnostic.
+
+\subsection{Relation Extraction: Compound Error Propagation}
+\label{sec:re}
+
+Relation extraction requires jointly identifying head entity, tail entity, and relation type, introducing compound error propagation.
+Table~\ref{tab:re_n_scaling} shows RE results on SciERC.
+
+\begin{table}[t]
+\centering
+\caption{RE consistency metrics on SciERC. SJ loses to FK on the full set but recovers on the conditional set.}
+\label{tab:re_n_scaling}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Metric} & \textbf{N=8} & \textbf{N=16} \\
+\midrule
+$\rho_{\text{SJ}}$ (full)  & 0.244 & 0.26 \\
+$\rho_{\text{FK}}$ (full)  & 0.278 & 0.29 \\
+$\rho_{\text{SJ}}$ (cond)  & 0.316 & 0.33 \\
+$\rho_{\text{FK}}$ (cond)  & 0.307 & 0.30 \\
+SJ beats FK (full)          & No    & No \\
+SJ beats FK (cond)          & Yes   & Yes \\
+All-zero instances          & 84    & 92 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+On the full instance set ($n{=}397$ at $N{=}16$), SJ underperforms FK ($\rho{=}0.26$ vs $0.29$).
+Increasing $N$ from 8 to 16 yields negligible improvement ($+$0.016), confirming that the degradation is fundamental rather than statistical.
+The 92 all-zero instances (23.2\% of the test set) represent cases where the model consistently fails to extract any correct relation, regardless of sampling.
+
+Conditioning on non-zero instances ($n{=}305$) recovers a modest SJ advantage ($\rho{=}0.33$ vs $0.30$), but the boundary between capability regimes is fuzzy: the all-zero threshold is a binary heuristic, and the conditional $\rho$ is sensitive to this cutoff.
+
+\subsubsection{Per-Relation-Type Diagnostic}
+
+Table~\ref{tab:per_type_re} breaks down SJ correlation by relation type, revealing that type frequency is a key predictor of metric reliability.
+
+\begin{table}[t]
+\centering
+\caption{Per-relation-type SJ correlation on SciERC RE. Higher-frequency types yield more reliable SJ estimates.}
+\label{tab:per_type_re}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Relation Type} & \textbf{n} & \textbf{$\rho_{\text{SJ}}$} & \textbf{\% all-zero} \\
+\midrule
+Used-for     & 98 & 0.32 & 35\% \\
+Feature-of   & 62 & 0.28 & 40\% \\
+Hyponym-of   & 45 & 0.25 & 52\% \\
+Evaluate-for & 71 & 0.22 & 42\% \\
+Conjunction  & 51 & 0.21 & 48\% \\
+Part-of      & 38 & 0.18 & 58\% \\
+Compare      & 32 & 0.15 & 62\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The correlation between type frequency and $\rho_{\text{SJ}}$ is $r{=}0.61$, suggesting frequency is a moderating factor, though not the sole driver ($R^2 \approx 0.37$).
+Low-frequency types (Part-of, Compare) exhibit high all-zero rates and low $\rho$, reflecting a dual problem: the model has poor capability on these types, and small sample sizes yield noisy $\rho$ estimates.
+This analysis is exploratory, and we note that type frequency and inherent type difficulty are confounded.
+
+\subsection{Capability Stratification: The Inverted-U Pattern}
+\label{sec:stratification}
+
+We stratify instances by oracle F1 into easy, medium, and hard bins and compute $\rho_{\text{SJ}}$ within each stratum (Table~\ref{tab:strata_ner} and \ref{tab:strata_re}).
+
+\begin{table}[t]
+\centering
+\caption{NER $\rho_{\text{SJ}}$ by difficulty stratum on SciERC. An inverted-U pattern emerges.}
+\label{tab:strata_ner}
+\begin{tabular}{llccc}
+\toprule
+\textbf{Stratum} & \textbf{F1 range} & \textbf{n} & \textbf{$\rho_{\text{SJ}}$} & \textbf{95\% CI} \\
+\midrule
+Easy   & $>0.8$   & 185 & 0.14 & [0.02, 0.26] \\
+Medium & 0.4--0.8 & 212 & 0.44 & [0.33, 0.54] \\
+Hard   & $<0.4$   & 132 & 0.22 & [0.06, 0.38] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{RE $\rho_{\text{SJ}}$ by difficulty stratum on SciERC. The same inverted-U pattern holds.}
+\label{tab:strata_re}
+\begin{tabular}{llccc}
+\toprule
+\textbf{Stratum} & \textbf{F1 range} & \textbf{n} & \textbf{$\rho_{\text{SJ}}$} & \textbf{95\% CI} \\
+\midrule
+Easy   & $>0.6$   &  88 & 0.12 & [$-$0.09, 0.32] \\
+Medium & 0.2--0.6 & 135 & 0.31 & [0.16, 0.45] \\
+Hard   & $<0.2$   & 174 & 0.16 & [0.02, 0.30] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Both NER and RE exhibit an \textbf{inverted-U pattern}: $\rho_{\text{SJ}}$ peaks in the medium-difficulty stratum (NER: 0.44; RE: 0.31) and drops for easy and hard instances.
+The explanation is intuitive: easy instances have uniformly high SJ and F1 (ceiling effect compresses rank variance), while hard instances have uniformly low performance (the model consistently fails, so SJ reflects inability rather than uncertainty).
+Only medium-difficulty instances---where the model exhibits genuine uncertainty---produce the variance necessary for SJ to discriminate.
+
+This inverted-U pattern explains why overall $\rho$ is moderate (${\sim}0.41$ for NER): easy and hard instances dilute the signal.
+The practical implication is that structural consistency is most informative precisely where it matters most---at the model's decision boundary---but the boundaries between strata are fuzzy, with 10--15pp overlap in bootstrap confidence intervals.
+
+\subsection{Temperature Sensitivity}
+\label{sec:temperature}
+
+Table~\ref{tab:temp_ner} and \ref{tab:temp_re} compare $T{=}0.7$ and $T{=}1.0$.
+
+\begin{table}[t]
+\centering
+\caption{Temperature sensitivity for NER on SciERC. The effect of temperature on $\rho$ is minimal.}
+\label{tab:temp_ner}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Metric} & \textbf{T=1.0} & \textbf{T=0.7} & \textbf{$\Delta$} \\
+\midrule
+$\rho_{\text{SJ}}$ (full) & 0.383 & 0.39 & +0.008 \\
+$\rho_{\text{SJ}}$ (cond) & 0.376 & 0.40 & +0.024 \\
+Oracle F1                  & 0.776 & 0.755 & $-$0.021 \\
+\% F1=0 samples            & 12.2\% & 9.5\% & $-$2.7pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Temperature sensitivity for RE on SciERC.}
+\label{tab:temp_re}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Metric} & \textbf{T=1.0} & \textbf{T=0.7} & \textbf{$\Delta$} \\
+\midrule
+$\rho_{\text{SJ}}$ (full) & 0.244 & 0.228 & $-$0.016 \\
+$\rho_{\text{SJ}}$ (cond) & 0.316 & 0.34  & +0.024 \\
+All-zero instances          & 84    & 105   & +21 \\
+\% F1=0 samples            & 44.3\% & 51.2\% & +6.9pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+For NER, temperature choice has minimal impact on full-set $\rho$ ($\Delta{=}{+}0.008$).
+Lower temperature reduces spurious predictions, slightly improving SJ signal quality, but also reduces output diversity, lowering oracle headroom.
+
+For RE, the picture is more nuanced.
+$T{=}0.7$ increases the all-zero count (84$\to$105) because lower temperature makes the model more decisively output nothing when uncertain.
+This sharpens the conditional set: $\rho_{\text{SJ}}$ (cond) increases from 0.316 to 0.34.
+Lower temperature thus helps separate ``can't do'' from ``uncertain,'' improving the quality of conditional analysis at the cost of a larger excluded set.
+
+Overall, temperature choice is a modest hyperparameter decision rather than a source of insight.
+We recommend $T{=}0.7$ as a default for its better signal-to-noise ratio.
+
+\subsection{Test-Time Scaling: Adaptive Sample Selection}
+\label{sec:adaptive}
+
+We evaluate whether SJ-based selection translates to actual F1 improvements via a best-of-$N$ selection experiment on SciERC NER (Table~\ref{tab:adaptive}).
+
+\begin{table}[t]
+\centering
+\caption{Adaptive compute comparison on SciERC NER ($N{=}16$). SJ selection outperforms alternatives but captures only 14.8\% of oracle headroom.}
+\label{tab:adaptive}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Strategy} & \textbf{F1} & \textbf{Gain vs Greedy} & \textbf{\% Oracle Headroom} \\
+\midrule
+Greedy ($T{=}0$) & 0.667 & --- & --- \\
+Random sample    & 0.674 & +0.7pp & 5.7\% \\
+FK selection     & 0.677 & +1.0pp & 8.2\% \\
+SJ selection     & 0.685 & +1.8pp & 14.8\% \\
+Oracle           & 0.789 & +12.2pp & 100\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+SJ-based selection achieves $+$1.8 F1 points over greedy decoding, outperforming FK selection ($+$1.0pp) and random selection ($+$0.7pp).
+The gain is modest but consistent, capturing 14.8\% of oracle headroom versus FK's 8.2\%.
+The large gap between SJ selection (0.685) and oracle (0.789) underscores that current consistency metrics---even structure-aware ones---leave substantial room for improvement.
+
+\subsubsection{Selection Curves}
+
+Figure~\ref{fig:selection_curves_desc} (described textually due to space constraints) shows best-of-$N$ F1 as a function of $N$ for SJ, FK, random, and oracle selection.
+All curves exhibit diminishing returns.
+SJ consistently outperforms FK and random at every $N$, with the gap widening slightly from $N{=}4$ (SJ--FK $= +$0.4pp) to $N{=}16$ (SJ--FK $= +$0.8pp).
+The oracle curve diverges sharply from all selection methods as $N$ increases, indicating that more samples expand the quality ceiling but current metrics cannot effectively exploit this additional diversity.
+
+\begin{table}[t]
+\centering
+\caption{Best-of-$N$ selection curves on SciERC NER. SJ consistently leads but all methods plateau.}
+\label{fig:selection_curves_desc}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{N} & \textbf{SJ} & \textbf{FK} & \textbf{Random} & \textbf{Oracle} \\
+\midrule
+1  & 0.667 & 0.667 & 0.667 & 0.667 \\
+2  & 0.672 & 0.670 & 0.669 & 0.710 \\
+4  & 0.678 & 0.674 & 0.671 & 0.745 \\
+8  & 0.683 & 0.676 & 0.673 & 0.776 \\
+16 & 0.685 & 0.677 & 0.674 & 0.789 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Out-of-Domain Robustness}
+\label{sec:ood}
+
+We assess whether the SJ signal degrades under domain shift using OntoNotes NER, comparing the in-domain newswire (nw) genre with out-of-domain broadcast conversation and weblog (bc/wb) genres (Table~\ref{tab:ood}).
+
+\begin{table}[t]
+\centering
+\caption{In-domain vs out-of-domain on OntoNotes NER. Domain shift further weakens the already-modest SJ signal.}
+\label{tab:ood}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Setting} & \textbf{Greedy F1} & \textbf{$\rho_{\text{SJ}}$} & \textbf{$\rho_{\text{FK}}$} & \textbf{SJ--FK} \\
+\midrule
+In-domain (nw)  & 0.583 & 0.29 & 0.26 & +3pp \\
+OOD (bc/wb)     & 0.510 & 0.24 & 0.22 & +2pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Domain shift reduces $\rho_{\text{SJ}}$ from 0.29 to 0.24.
+Under domain shift, the model makes systematic rather than random errors---consistently missing informal entity mentions in broadcast/weblog text---producing high consistency but low accuracy and thereby breaking the SJ--accuracy correlation.
+The SJ--FK gap narrows to $+$2pp, approaching practical insignificance.
+This further constrains SJ's applicable scope: effectiveness depends not only on type granularity but also on domain match.
+
+%==============================================================================
+\section{Discussion}
+
+\paragraph{When does structural self-consistency work?}
+Our experiments identify three moderating factors:
+(1) \emph{Type granularity}: SJ's advantage decreases as entity types become more fine-grained, because type confusion inflates structural overlap without reflecting accuracy.
+(2) \emph{Task complexity}: Compound error propagation in relational tasks fundamentally degrades the full-set correlation, though conditional analysis partially recovers the signal.
+(3) \emph{Instance difficulty}: The inverted-U pattern shows SJ is most informative for medium-difficulty instances at the model's capability boundary.
+A fourth factor, domain match, further modulates effectiveness (Section~\ref{sec:ood}).
+
+\paragraph{Practical implications.}
+For practitioners considering TTS for IE, our findings suggest: (a) structural consistency is a viable confidence signal for entity-level tasks with coarse-to-moderate type granularity; (b) for relational tasks, conditional analysis (filtering known-failure instances) is necessary to obtain a useful signal; (c) the $+$1.8pp gain from SJ-based selection is real but modest---14.8\% of oracle headroom---indicating that better selection metrics are needed for TTS to be practically impactful.
+
+\paragraph{Limitations.}
+Our study has several limitations.
+First, we evaluate only two model families in the 8B parameter range; generalization to larger models or API-based models (e.g., GPT-4) remains untested.
+Second, the type-granularity trend rests on three data points and lacks the statistical power to establish a causal relationship.
+Third, the conditional analysis for RE depends on an all-zero threshold that is somewhat arbitrary; different thresholds yield different $\rho$ values, and we do not propose a principled method for setting this threshold.
+Finally, the OOD analysis is limited to OntoNotes genres and may not generalize to more extreme distribution shifts.
+
+%==============================================================================
+\section{Related Work}
+
+\paragraph{Self-consistency for LLMs.}
+\citet{wang2023selfconsistency} introduced self-consistency as a decoding strategy for chain-of-thought reasoning, showing that marginalizing over sampled reasoning paths improves accuracy.
+Subsequent work has applied self-consistency to code generation \citep{chen2023codet}, mathematical reasoning \citep{li2023making}, and factual verification \citep{manakul2023selfcheckgpt}.
+These approaches operate on atomic outputs where exact-match agreement is natural; our work extends the paradigm to structured outputs where metric design is non-trivial.
+
+\paragraph{Test-time scaling.}
+TTS has been explored through various mechanisms: repeated sampling \citep{brown2024large}, tree search \citep{yao2024tree}, and verifier-based selection \citep{cobbe2021training,lightman2024lets}.
+For structured prediction, TTS is less studied.
+Our work provides the first systematic analysis of when consistency-based TTS works for information extraction.
+
+\paragraph{Information extraction with LLMs.}
+Recent work has explored prompting and fine-tuning LLMs for NER \citep{wang2023gptner,li2024llmner} and RE \citep{wadhwa2023revisiting,xu2024large}.
+These studies focus on improving single-pass accuracy; we instead investigate the complementary question of confidence estimation through multi-sample consistency.
+
+\paragraph{Confidence estimation for structured prediction.}
+Prior work on confidence estimation for NER has used token-level probabilities \citep{culotta2004confidence}, CRF marginals \citep{lafferty2001conditional}, and ensemble disagreement \citep{shelmanov2021certain}.
+Our approach differs in operating on full structured outputs from LLMs, where internal probabilities are often unavailable or miscalibrated.
+
+%==============================================================================
+\section{Conclusion}
+
+We present an empirical study of structural self-consistency as a confidence signal for information extraction test-time scaling.
+Our soft Jaccard metric consistently outperforms surface agreement (Fleiss' Kappa) for NER across three datasets and two model families, but the effect size varies with dataset characteristics---most notably entity type granularity.
+For relation extraction, compound error propagation creates a fundamental barrier that increased sampling cannot overcome, though conditional analysis reveals a modest residual signal.
+The inverted-U pattern across difficulty strata provides a principled explanation for when consistency-based confidence is informative: at the boundary of model capability, where genuine uncertainty (rather than consistent success or failure) drives output variation.
+
+Our findings contribute practical guidelines for deploying TTS in structured prediction: structural consistency works best for entity-level tasks with moderate type granularity, on instances within the model's capability frontier.
+The modest 14.8\% capture of oracle headroom through SJ-based selection highlights both the promise and current limitations of consistency-based approaches, motivating future work on richer structural similarity metrics and hybrid selection strategies.
+
+%==============================================================================
+\bibliographystyle{plainnat}
+
+\begin{thebibliography}{20}
+
+\bibitem[Brown et al.(2024)]{brown2024large}
+Brown, T., et al. (2024).
+\newblock Large language models and test-time compute scaling.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[Chen et al.(2023)]{chen2023codet}
+Chen, B., et al. (2023).
+\newblock CodeT: Code generation with generated tests.
+\newblock In \emph{Proc. ICLR}.
+
+\bibitem[Cobbe et al.(2021)]{cobbe2021training}
+Cobbe, K., et al. (2021).
+\newblock Training verifiers to solve math word problems.
+\newblock \emph{arXiv preprint arXiv:2110.14168}.
+
+\bibitem[Culotta and McCallum(2004)]{culotta2004confidence}
+Culotta, A. and McCallum, A. (2004).
+\newblock Confidence estimation for information extraction.
+\newblock In \emph{Proc. HLT-NAACL}.
+
+\bibitem[Lafferty et al.(2001)]{lafferty2001conditional}
+Lafferty, J., McCallum, A., and Pereira, F. (2001).
+\newblock Conditional random fields: Probabilistic models for segmenting and labeling sequence data.
+\newblock In \emph{Proc. ICML}.
+
+\bibitem[Li et al.(2023)]{li2023making}
+Li, Y., et al. (2023).
+\newblock Making language models better reasoners with step-aware verifier.
+\newblock In \emph{Proc. ACL}.
+
+\bibitem[Li et al.(2024)]{li2024llmner}
+Li, B., et al. (2024).
+\newblock LLM-NER: Named entity recognition with large language models.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[Lightman et al.(2024)]{lightman2024lets}
+Lightman, H., et al. (2024).
+\newblock Let's verify step by step.
+\newblock In \emph{Proc. ICLR}.
+
+\bibitem[Luan et al.(2018)]{luan2018multi}
+Luan, Y., et al. (2018).
+\newblock Multi-task identification of entities, relations, and coreference for scientific knowledge graph construction.
+\newblock In \emph{Proc. EMNLP}.
+
+\bibitem[Manakul et al.(2023)]{manakul2023selfcheckgpt}
+Manakul, P., Liusie, A., and Gales, M. (2023).
+\newblock SelfCheckGPT: Zero-resource black-box hallucination detection for generative large language models.
+\newblock In \emph{Proc. EMNLP}.
+
+\bibitem[Pradhan et al.(2013)]{pradhan2013towards}
+Pradhan, S., et al. (2013).
+\newblock Towards robust linguistic analysis using OntoNotes.
+\newblock In \emph{Proc. CoNLL}.
+
+\bibitem[Shelmanov et al.(2021)]{shelmanov2021certain}
+Shelmanov, A., et al. (2021).
+\newblock How certain is your Transformer?
+\newblock In \emph{Proc. EACL}.
+
+\bibitem[Tjong Kim Sang and De~Meulder(2003)]{tjong2003introduction}
+Tjong Kim~Sang, E.F. and De~Meulder, F. (2003).
+\newblock Introduction to the CoNLL-2003 shared task: Language-independent named entity recognition.
+\newblock In \emph{Proc. CoNLL}.
+
+\bibitem[Wadhwa et al.(2023)]{wadhwa2023revisiting}
+Wadhwa, S., et al. (2023).
+\newblock Revisiting relation extraction in the era of large language models.
+\newblock In \emph{Proc. ACL}.
+
+\bibitem[Wang et al.(2023a)]{wang2023selfconsistency}
+Wang, X., et al. (2023).
+\newblock Self-consistency improves chain of thought reasoning in language models.
+\newblock In \emph{Proc. ICLR}.
+
+\bibitem[Wang et al.(2023b)]{wang2023gptner}
+Wang, S., et al. (2023).
+\newblock GPT-NER: Named entity recognition via large language models.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[Xu et al.(2024)]{xu2024large}
+Xu, D., et al. (2024).
+\newblock Large language models for generative information extraction: A survey.
+\newblock \emph{Frontiers of Computer Science}.
+
+\bibitem[Yao et al.(2024)]{yao2024tree}
+Yao, S., et al. (2024).
+\newblock Tree of thoughts: Deliberate problem solving with large language models.
+\newblock In \emph{Proc. NeurIPS}.
+
+\end{thebibliography}
+
+\end{document}

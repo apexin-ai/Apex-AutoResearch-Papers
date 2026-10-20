@@ -1,0 +1,18 @@
+\section{Conclusion}\label{sec:conclusion}
+
+This work provides the first systematic evaluation of confidence signals for test-time scaling in generative information extraction.
+By comparing five signals from three families---structural, surface, and model-internal---across NER and RE tasks of varying difficulty, we disentangle two objectives that prior work has conflated: quality estimation (ranking instances by expected performance) and sample selection (choosing the best output among $N$ candidates).
+Our experiments on SciERC, CoNLL-2003, and WNUT-17 with Qwen3-8B and LLaMA-3.1-8B reveal that these objectives require fundamentally different signal properties.
+
+Three findings anchor our analysis.
+First, consistency-based signals are effective quality estimators: structural signals (Voting $\rho{=}0.38$, SJ $\rho{=}0.36$) lead rank correlation on complex schemas, while Exact Match achieves the highest binary discrimination (AUROC${=}0.75$) even on hard tasks---revealing that ranking and classification favor different signal families.
+Second, the \textit{correlation-selection gap} shows that strong instance-level correlation does not yield selection gains---no consistency signal surpasses greedy decoding on NER best-of-$N$, and only log-probability helps on RE (+2.3~pp)---because instance-level signals cannot discriminate among candidates with similar consistency profiles.
+Third, signal rankings depend on task difficulty: exact match leads on easy tasks, Soft Jaccard and voting lead on hard tasks, and all signals converge when model capability is insufficient, establishing practical guidance for signal choice.
+
+Ablations confirm the gap's robustness: it persists at 4B scale and under free-form decoding without grammar constraints (\S\ref{sec:experiments}).
+
+Several directions remain open.
+Trained verifiers or reward models could close the selection gap by learning per-sample quality discrimination that unsupervised consistency signals lack.
+Cross-task transfer of confidence signals beyond IE---to structured prediction tasks such as semantic parsing and code generation---would test the generality of our findings.
+Integration with conformal prediction could convert continuous confidence scores into calibrated coverage guarantees.
+Finally, scaling analysis with larger models (70B+) and more diverse IE tasks would clarify whether increased model capability narrows or widens the correlation-selection gap.

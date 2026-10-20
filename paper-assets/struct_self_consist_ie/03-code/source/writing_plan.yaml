@@ -1,0 +1,571 @@
+meta:
+  venue: EMNLP 2026 Main (via ARR May)
+  track: main
+  template: null  # ARR/ACL format — need to download acl2023.sty or latest ARR template
+  template_note: "No local template found. Worker should download latest ARR LaTeX template from ACL Rolling Review."
+  page_limit: 8  # + unlimited references
+  deadline: 2026-05-25
+  core_claim: >
+    Structural consistency signals are the strongest unsupervised quality estimators for LLM-based IE —
+    entity voting leads ρ (0.38) while EM leads AUROC (0.75), with soft Jaccard as complementary robust signal
+    (temperature-stable: NER Δρ=0.028; conditional filtering ρ=0.31). A correlation-selection gap means
+    this does not translate to best-of-N selection — no signal reliably surpasses greedy on either task
+    (p>0.39, bootstrap). Signal effectiveness is task-difficulty-dependent: easy tasks favor exact-match,
+    hard tasks favor structural consistency, and SJ strength scales with both sample size (N=8→16 ρ +0.052)
+    and instance complexity (entity count 6+ ρ=0.55). RE reveals a capability boundary: when compound
+    error propagation dominates (~44% zero-F1), all signals weaken (ρ=0.134-0.350) — conditional filtering restores
+    structural signal advantage (SJ ρ=0.31) while logprob collapses (ρ=-0.03).
+  created_at: 2026-05-14T13:00:00Z
+  selected_title: "Strong Predictors, Weak Selectors: A Systematic Comparison of Confidence Signals for Test-Time Scaling in Information Extraction"
+  director_approval: "2026-05-14 approved with modifications: title #2 selected, RE must distinguish joint vs RE-only protocol (D023), 3 tables confirmed (tab_robustness kept), exp_003/exp_007 pending — Director will notify for Patch"
+  re_protocol_note: "D023: Joint RE SJ ρ=0.267 < FK ρ=0.315; RE-only SJ ρ=0.304 > FK ρ=0.269. Table 1 must label protocol. Discussion must address joint error propagation."
+  d024_re_data_update: >
+    D024 (2026-05-14): 3-seed N=16 T=1.0 confirms RE full set SJ NOT superior to FK.
+    FORBIDDEN: claim "SJ consistently outperforms FK across all tasks".
+    Correct narrative: NER SJ robust > FK; RE full set all signals weak + indistinguishable (~44% zero-F1);
+    RE conditional set SJ recovers advantage (Δ=0.15-0.21 over FK) and logprob near-zero.
+    Table 1 must include both full and conditional RE rows.
+    Conditional analysis = unique contribution, emphasize in Discussion.
+  d035_narrative_update: >
+    D035 (2026-05-14): Heatmap data source unified to exp_015. NER full: voting ρ=0.502 (was 0.392),
+    SJ ρ=0.357 (was 0.383). Voting significantly leads SJ (NER +0.145), NOT "statistically equivalent".
+    FORBIDDEN: "SJ ≈ voting". Correct: same family, complementary — voting strongest per-instance,
+    SJ more robust cross-condition. SJ unique value: (a) temperature numerically stable (RE Δρ=0.010, NER Δρ=0.014; bootstrap CI includes 0, not statistically significant),
+    (b) generalizes to any structured output not limited to entity, (c) conditional filtering ρ=0.412,
+    (d) ensemble with voting AUROC 0.735 complementary.
+    exp_009 findings (Claim 3): SJ high entity count (6+) ρ=0.547, low (1-2) ρ=0.415;
+    SJ >> logprob advantage stable across all sentence length quartiles (Δρ≈0.08-0.20);
+    two proxies (entity count, sentence length) weakly correlated with F1 (|r|<0.15, measuring input complexity not output quality) but moderately correlated with each other (ρ=0.650, overlapping dimensions). CORRECTED 2026-05-14: was "three independent proxies" — proxy-proxy correlation is NOT weak; only proxy-F1 correlation is weak.
+  d037_n16_re_refinement: >
+    D037 (2026-05-14): N=16 NER (exp_001_seed42_v2/seed123_v2): SJ ρ=0.428/0.424, cross-seed Δ<0.01.
+    N=8→16 SJ +0.071, FK +0.016 — SJ scaling gain >> FK. RE N=16 (exp_008_re_n16_v2):
+    full logprob ρ=0.287 > SJ 0.281 ≈ FK 0.279 (all ~flat, compound error ceiling).
+    RE cond: SJ ρ=0.308 vs logprob ρ=-0.026 (p=0.685, logprob completely fails).
+    FORBIDDEN: "structural signals universally outperform logprob" — only true within model capability range.
+    Unified framework: structural signals strongest within model capability range; beyond it, all signals converge.
+    RE 44% zero-F1 must be noted as limitation in paper.
+  d038_temperature_precision: >
+    D038 (2026-05-14): Temperature robustness must distinguish NER vs RE.
+    SJ NER Δρ=0.014 (MODERATE), SJ RE Δρ=0.010 (ROBUST). FORBIDDEN: generic "SJ Δρ≤0.01".
+    FK NER Δρ=0.06, RE Δρ=0.097 — FK temperature sensitivity confirmed.
+    Bootstrap 95% CI all include 0 → NOT statistically significant.
+    FORBIDDEN: "significantly" for temperature differences → use "numerically small".
+    "Conditional filtering >> temperature tuning" scope excludes logprob (no T=0.7 logprob data),
+    paper must note this limitation.
+  d049_n8_vs_n16_labeling: >
+    D049 (2026-05-14): SciERC uses N=16, CoNLL uses N=8. Tables MUST annotate N per row.
+    Limitations must discuss N's impact on consistency estimation stability.
+    No N=16 CoNLL experiment (cost unjustified). Table format: include N column or footnote.
+  d050_conll_headroom_honesty: >
+    D050 (2026-05-14): CoNLL oracle headroom only +1.77pp (greedy 0.927 → oracle 0.944).
+    FORBIDDEN: claim "improves F1" for CoNLL. Correct framing by scenario:
+    (a) High-performance (CoNLL): quality estimation = reliability assurance (confirming output quality)
+    (b) Challenging (SciERC): quality estimation = filtering unreliable instances + selective prediction.
+    This further supports Claim 2 (correlation-selection gap): small headroom → selection meaningless.
+    Discussion must distinguish these two use cases explicitly.
+  d051_rho_auroc_separation: >
+    D051 (2026-05-14): exp_017 shows logprob has lowest ρ but highest AUROC; structural signals reverse.
+    Interpretation: logprob better for binary filtering (good/bad threshold), structural signals better
+    for rank-ordering (continuous quality prediction). Discussion should present this as methodological
+    contribution — different signals suit different downstream decision scenarios.
+    This enriches the "strong predictors, weak selectors" narrative with granularity.
+  d052_auroc_data_source_correction: >
+    D052 (2026-05-14): CRITICAL — Table 1 SciERC NER AUROC was sourced from exp_015_metrics_expansion
+    (single seed 42), but ρ values were from exp_015_v2 (multi-seed). Corrected NER AUROC to exp_015_v2:
+    Voting .728→.741, SJ .666→.715, FK .624→.629, EM .623→.757, Logprob .559→.581.
+    EM AUROC jumps from 5th to 1st on SciERC NER (.757 > Voting .741). Bold migrated accordingly.
+    Cascade: abstract/intro/conclusion "AUROC 0.73" → "0.74" (Voting .741 rounds to .74).
+    RE AUROC flagged for same cross-validation — current values match exp_015_metrics_expansion,
+    not exp_015_v2. Director decision pending on RE correction.
+    AUTHORITATIVE SOURCE: exp_015_v2 for all SciERC AUROC values going forward.
+  d045_wnut17_boundary: >
+    D045 (2026-05-14): WNUT-17 NER (Qwen, N=16, T=1.0): SJ ρ=0.062 (p=0.106, NOT significant),
+    54% F1=0, logprob ρ=-0.411. Serves as Claim 3 capability boundary cross-domain evidence.
+    Consistent with RE 44% zero-F1 pattern: model capability insufficient → all signals fail.
+    Logprob strong negative correlation worth discussing (possible calibration issue).
+    Writing: use as boundary evidence in method_boundary + Limitations.
+  d046_3seed_ner: >
+    D046 (2026-05-14): SciERC NER (Qwen, N=16, 3 seeds): seed42=0.428, seed123=0.424, seed456=0.384.
+    Mean ρ=0.412±0.025, all 3 seeds structural>surface. Paper reports mean±std.
+    Table 1/tab_robustness should use mean±std for N=16 NER SJ.
+  d047_llama_conll: >
+    D047 (2026-05-14): exp_017 LLaMA-3.1-8B CoNLL NER (N=8, T=1.0):
+    SJ ρ=0.431, FK ρ=0.428, logprob ρ=0.307, greedy_f1=0.927, oracle_f1=0.944, headroom=0.018.
+    structural_beats_surface=true. SJ ρ vs Qwen CoNLL (0.436): Δ=0.005 — strongest model-agnostic evidence.
+    WRITING CONSTRAINTS: (a) CoNLL oracle headroom only 0.018 (LLaMA)/0.032 (Qwen) → focus on
+    correlation/discrimination (ρ, AUROC), NOT claim selection improvement on CoNLL.
+    (b) SJ vs FK advantage on CoNLL only 0.004 (vs SciERC +0.10~0.16) → Discussion must note
+    schema complexity effect: CoNLL 4 entity types, clear annotation → SJ soft matching advantage minimal.
+    SJ advantage scales with schema complexity (SciERC 6 types > CoNLL 4 types).
+    Table 1 gets new row: CoNLL NER (LLaMA).
+  d048_cross_config_panorama: >
+    D048 (2026-05-14): Cross-config panorama summary:
+    NER 4/4 configurations pass (structural>surface): SciERC NER Qwen N=16 3-seed 0.412±0.025,
+    CoNLL NER Qwen N=8 0.436, CoNLL NER LLaMA N=8 0.431, SciERC NER LLaMA N=8 0.363.
+    RE and WNUT-17 are honest limitations (RE: compound error, WNUT-17: model capability).
+    Consider Supplementary panorama table or merge into Table 1.
+  title_candidates:
+    - "The Correlation-Selection Gap: Structural Consistency Predicts Quality but Fails at Selection in LLM-based Information Extraction"
+    - "Strong Predictors, Weak Selectors: A Systematic Comparison of Confidence Signals for Test-Time Scaling in Information Extraction"
+    - "When Consistency Predicts Quality but Not Selection: Confidence Signals for Structured Prediction with LLMs"
+
+paper_outline:
+  - section: abstract
+    word_budget: 200
+    core_bullets:
+      - "Problem: LLM multi-sample generation for IE lacks guidance on which confidence signals to trust, and for what purpose"
+      - "Approach: Systematic comparison of 5 confidence signals across 4 families on NER and RE"
+      - "Finding 1: Entity voting achieves ρ=0.50 and AUROC 0.73, leading all signals for quality estimation (logprob ρ=0.14); soft Jaccard complements with cross-condition robustness (numerically small temperature sensitivity: NER Δρ=0.014, RE Δρ=0.010)"
+      - "Finding 2: Correlation-selection gap — despite strong ρ up to 0.50, no signal beats greedy for NER best-of-N; only logprob helps RE (+2.4pp)"
+      - "Finding 3: Signal ranking is task-difficulty-dependent — EM > SJ on easy tasks, SJ > EM on hard tasks"
+    dependencies: [experiments, method, introduction]
+    registry_refs: [mvp_pilot_004, exp_012_logprob_baseline, exp_014_entity_majority_voting, exp_015_metrics_expansion, exp_016_signal_ensemble, exp_002, exp_009_capability_stratification]
+
+  - section: introduction
+    word_budget: 1200
+    core_bullets:
+      - "Hook: Self-consistency voting has shown remarkable gains for reasoning tasks (+18pp on GSM8K). But structured prediction (IE) has internal dependencies that surface metrics cannot capture — does consistency still help?"
+      - "Gap: Prior work conflates quality estimation (predicting which outputs are reliable) with sample selection (choosing the best output). These are fundamentally different tasks requiring different signal properties."
+      - "Insight: Consistency signals are instance-level aggregates that predict input difficulty, NOT sample-level discriminators that identify the best output. This explains why high correlation (ρ up to 0.50) fails to enable selection."
+      - "Contributions: (C1) First systematic comparison of 5 confidence signals for quality estimation in generative IE; (C2) Identification of the correlation-selection gap; (C3) Task-complexity boundary — signal ranking depends on task difficulty"
+      - "Contextualize negative result: non-obvious because self-consistency works for reasoning, and structural prediction has richer internal structure"
+    dependencies: [experiments]
+    citation_hints:
+      - "Wang et al. 2023 (self-consistency)"
+      - "Chen et al. 2024 (USC)"
+      - "Snell et al. 2024 / Brown et al. 2024 (TTS scaling)"
+      - "Nédellec & Xia 2026 (consistency for IE — cite their surface-matching limitation as SJ motivation)"
+    figures: [fig_overview]
+
+  - section: related_work
+    word_budget: 1200
+    structure_note: "Restructured per Director R10. New subsections: 'Test-Time Scaling & Sample Selection' (CISC/Self-Certainty/ReASC/Atomic SC) + 'Consistency for Structured IE' (Nédellec & Xia 2026, CoCoA Vashurin 2025)."
+    core_bullets:
+      - "Opening: Position in landscape via surveys — Confidence Estimation Survey (Geng et al., NAACL 2024, arXiv 2311.08298) + Abstention Survey (Feng et al., TACL 2025) + UQ Survey (ACL Findings 2025) + UQ&CC Survey (arXiv 2503.15850). Our work bridges confidence estimation and selective prediction for structured outputs."
+      - "Cluster 1 — Self-consistency & LLM agreement: Wang 2023 (SC-CoT), USC Chen 2024, SelfCheckGPT Manakul 2023, Atomic SC (EMNLP 2024, sub-claim consistency for long-form text). Differentiation: all use exact-match or text-level comparison on discrete/text outputs; we use set-theoretic structural similarity on entity/relation sets."
+      - "NEW Cluster — Test-Time Scaling & Sample Selection (dedicated subsection): CISC (ACL Findings 2025, arXiv 2502.06233, confidence-weighted majority vote), Self-Certainty BoN (ICLR 2026, arXiv 2502.18581, KL-divergence selection), ReASC (arXiv 2601.02970, adaptive sampling), Ranked Voting SC (arXiv 2505.10772), Latent SC (arXiv 2508.18395). KEY FRAMING: ALL operate on reasoning/QA with discrete answer spaces. We are FIRST to (a) extend SC to set-valued structured outputs (IE), (b) discover correlation-selection gap: strong quality estimation ↛ selection ability. Self-Certainty BoN is direct academic dialogue: they demonstrate reward-free selection works for reasoning; we show it FAILS for structured IE NER."
+      - "NEW Cluster — Consistency for Structured IE (dedicated subsection): Nédellec & Xia (Genomics Informatics, 2026-02, PMC12888769) — most direct competitor: consistency-accuracy correlation in hard-prompted LLMs for NER/RE on plant-health data. KEY DIFFERENTIATION: (a) they use surface-level string matching, self-acknowledge limitation ('overlooks semantically consistent outputs') — our SJ directly addresses this; (b) no best-of-N selection study; (c) single-domain hard-prompted (T=0); (d) no multi-signal family comparison. CoCoA (Vashurin et al., NeurIPS 2025, arXiv 2502.04964) — MBR framework fusing confidence+consistency for UQ on QA/summarization/translation, parallels our exp-016 ensemble but not structured IE. Vashurin et al. (arXiv 2510.20460, 2025) — systematic evaluation of 4 UQ methods (VCE/MSP/SC/CoCoA), tasks exclude structured IE. FRAMING: Nédellec & Xia's surface-matching limitation motivates SJ; CoCoA's confidence+consistency fusion parallels our ensemble analysis; both confirm structured IE as underexplored."
+      - "Cluster 2 — Uncertainty estimation & calibration: Kuhn 2023 semantic uncertainty, Semantic Entropy Probes (arXiv 2406.15927), Kadavath 2022 P(True), Guo 2017, Desai & Durrett 2020 → we compare model confidence with output-space consistency"
+      - "Cluster 3 — Conformal prediction: Fisch 2021, Angelopoulos 2021 → guarantees coverage, not ranking"
+      - "Cluster 4 — Token/span-level uncertainty for NER: Xiao & Wang 2019, Shelmanov 2021, He 2020 → CRF/classifier uncertainty, we study generative LLM setting"
+      - "Cluster 5 — Ensemble & MC-dropout: Lakshminarayanan 2017, Gal & Ghahramani 2016 → require model modification; our signals are post-hoc"
+      - "Cluster 6 — Verifier/reward models: Cobbe 2021, Lightman 2023 → supervised; we study unsupervised signals"
+      - "Cluster 7 — TTS scaling theory: Snell 2024, Brown 2024 → we provide empirical evidence for IE"
+      - "Cluster 8 — IE confidence & selective prediction: Culotta & McCallum 2004, Geifman & El-Yaniv 2017, Jagannatha & Yu 2022 → pre-LLM approaches"
+    required_refs:
+      must_cite:
+        - key: "cisc_2025"
+          title: "Confidence Improves Self-Consistency in LLMs"
+          venue: "ACL Findings 2025"
+          arxiv: "2502.06233"
+          differentiation: "Confidence-weighted majority vote for reasoning. We use structural similarity for set-structured IE."
+        - key: "self_certainty_bon_2026"
+          title: "Scalable Best-of-N Selection for LLMs via Self-Certainty"
+          venue: "ICLR 2026"
+          arxiv: "2502.18581"
+          differentiation: "KL-divergence selection for reasoning. DIRECT DIALOGUE: we find correlation-selection gap blocks selection for structured IE NER."
+        - key: "reasc_2026"
+          title: "Reliability-Aware Adaptive Self-Consistency for Efficient Sampling"
+          arxiv: "2601.02970"
+          differentiation: "Adaptive sampling for reasoning. Still limited to discrete answers."
+        - key: "atomic_sc_2024"
+          title: "Atomic Self-Consistency"
+          venue: "EMNLP 2024"
+          url: "aclanthology.org/2024.emnlp-main.706"
+          differentiation: "Sub-claim consistency for long-form text. We measure entity-set level structural similarity."
+        - key: "nedellec_xia_2026"
+          title: "Consistency–accuracy correlation in hard-prompted LLMs for entity and relation extraction: empirical findings from plant-health data"
+          venue: "Genomics Informatics, 2026-02"
+          pmc: "PMC12888769"
+          differentiation: "Most direct competitor. Surface-level string matching for consistency-accuracy on NER/RE. Self-acknowledges 'overlooks semantically consistent outputs' — our SJ addresses this. No selection study, single domain, hard-prompted only."
+      should_cite:
+        - key: "uq_survey_acl2025"
+          title: "A Survey of Uncertainty Estimation Methods on LLMs"
+          venue: "ACL Findings 2025"
+        - key: "uqcc_survey_2025"
+          title: "Uncertainty Quantification and Confidence Calibration in LLMs: A Survey"
+          arxiv: "2503.15850"
+        - key: "semantic_entropy_probes_2024"
+          title: "Semantic Entropy Probes"
+          arxiv: "2406.15927"
+        - key: "latent_sc_2025"
+          title: "Latent Self-Consistency"
+          arxiv: "2508.18395"
+        - key: "ranked_voting_sc_2025"
+          title: "Ranked Voting based Self-Consistency of LLMs"
+          arxiv: "2505.10772"
+        - key: "confidence_survey_2024"
+          title: "A Survey of Confidence Estimation and Calibration in LLMs"
+          venue: "NAACL 2024"
+          arxiv: "2311.08298"
+        - key: "abstention_survey_2025"
+          title: "Know Your Limits: A Survey of Abstention in LLMs"
+          venue: "TACL 2025"
+        - key: "cocoa_vashurin_2025"
+          title: "CoCoA: Combining Confidence and Consistency for LLM Uncertainty Quantification"
+          venue: "NeurIPS 2025"
+          arxiv: "2502.04964"
+          differentiation: "MBR framework fusing confidence+consistency. Parallels our exp-016 ensemble (SJ+logprob) but not structured IE."
+        - key: "vashurin_uq_eval_2025"
+          title: "Systematic Evaluation of UQ Methods for LLMs"
+          arxiv: "2510.20460"
+          differentiation: "VCE/MSP/SC/CoCoA four-method evaluation. Tasks exclude structured IE — our work fills this gap."
+    verification_status: "pending — Director says need WebSearch verification for bib accuracy"
+    dependencies: [introduction]
+
+  - section: method
+    word_budget: 1000
+    core_bullets:
+      - "Problem formulation: given LLM M, input x, N stochastic samples {y_1,...,y_N}, define confidence signal c(x, {y_i}) → ℝ"
+      - "Signal 1 — Log-probability: c_lp(y_i) = (1/|y_i|) Σ log p(t_j|t_{<j}, x). Per-sample signal. Clarify: sequence-level mean, not token-level max."
+      - "Signal 2 — Exact-match voting: c_em(x) = max_y |{i: y_i = y}| / N. Instance-level."
+      - "Signal 3 — Fleiss' Kappa (FK): token-level inter-rater agreement. Instance-level."
+      - "Signal 4 — Soft Jaccard (SJ): set-aware structural similarity via type-grouped bipartite matching. Instance-level. Key: uses Hungarian matching with max(|A|,|B|) normalization."
+      - "Signal 5 — Entity voting confidence: per-entity majority voting rate, averaged. Instance-level."
+      - "Distinction: log-prob is PER-SAMPLE (ranks candidates), others are INSTANCE-LEVEL (aggregate across samples). This distinction is central to the correlation-selection gap."
+      - "Evaluation: quality estimation (ρ, τ, AUROC vs F1) and sample selection (best-of-N F1)"
+    dependencies: []
+    notation_table:
+      M: "language model"
+      x: "input instance"
+      y_i: "i-th stochastic sample"
+      N: "number of samples"
+      c: "confidence signal"
+      SJ: "soft Jaccard similarity"
+      FK: "Fleiss' Kappa"
+      EM: "exact-match voting rate"
+
+  - section: experiments
+    word_budget: 2400
+    subsections:
+      - name: setup
+        word_budget: 500
+        core_bullets:
+          - "Datasets: SciERC (science, 551 test, NER+RE joint), CoNLL-2003 (news, 3453 test, NER), WNUT-17 (social media, NER — method boundary analysis)"
+          - "Model: Qwen3-8B fine-tuned with LoRA (r=32) per dataset. LLaMA-3.1-8B-Instruct for cross-model validation (exp_007 SciERC, exp_017 CoNLL)."
+          - "Sampling: N=8 primary, N=16 for scaling analysis. T=1.0 standard, T=0.7 for robustness."
+          - "Evaluation: greedy F1 as reference, per-instance F1 vs each signal's ρ/τ/AUROC, best-of-N selection F1"
+          - "Implementation: vLLM inference, XGrammar constrained decoding, span realignment post-processing"
+
+      - name: quality_estimation
+        word_budget: 600
+        core_bullets:
+          - "Table 1: All 5 signals × {SciERC NER, SciERC RE, CoNLL NER} × {ρ, τ, AUROC}"
+          - "SciERC NER (exp_015 unified): voting 0.728 > SJ 0.666 >> FK 0.624 ≈ EM 0.623 >> logprob 0.559 (AUROC). ρ: voting 0.502 >> SJ 0.357 > FK 0.265 ≈ EM 0.257 >> logprob 0.140"
+          - "CoNLL NER (Qwen): EM 0.816 > SJ 0.801 > EV 0.789 > FK 0.774 > logprob 0.753 — EM > SJ on easy task!"
+          - "CoNLL NER (LLaMA, exp_017): SJ ρ=0.431, FK ρ=0.428, logprob ρ=0.307. SJ ρ vs Qwen 0.436 (Δ=0.005) — strongest model-agnostic evidence. SJ-FK gap only 0.004 (vs SciERC ~0.10) — schema complexity effect."
+          - "SciERC RE (exp_015 unified): voting 0.716 > logprob 0.635 ≈ FK 0.631 > SJ 0.582 > EM 0.504 — degraded (AUROC). ρ: voting 0.422 > FK 0.253 ≈ logprob 0.247 > SJ 0.211 > EM 0.100"
+          - "Key: voting is NER strongest single signal (ρ=0.502); within consistency family voting >> SJ per-instance but SJ offers unique cross-condition robustness (temp Δρ numerically small: NER 0.014, RE 0.010; cond ρ=0.412). EM dominates on easy tasks (CoNLL). D035: FORBIDDEN 'SJ ≈ voting'."
+        registry_refs: [mvp_pilot_004, exp_012_logprob_baseline, exp_013_exact_match_voting, exp_014_entity_majority_voting, exp_015_metrics_expansion, exp_002, exp_017_llama_conll_infer]
+        tables: [tab_quality_estimation]
+
+      - name: correlation_selection_gap
+        word_budget: 600
+        core_bullets:
+          - "Table 2: Best-of-N selection F1 for each signal vs greedy vs oracle"
+          - "NER: greedy 0.609 ≥ ALL signals (logprob 0.609, SJ 0.604, voting 0.596). Oracle 0.769 (+16pp headroom)"
+          - "RE: logprob 0.397 > greedy 0.374 (+2.4pp). SJ 0.368, voting 0.338 ≈ random. Oracle 0.561 (+18.7pp)"
+          - "CoNLL: voting 0.914 > greedy 0.912 (+0.18pp) — first instance where voting beats greedy, on easy task"
+          - "Explanation: instance-level signals predict WHICH INPUTS are reliable, not WHICH OUTPUTS are best. Only per-sample logprob can rank candidates."
+          - "Ensemble analysis: SJ+voting NER ρ=0.489 (+23%), AUROC 0.735 (+3.5pp). But ensemble SELECTION still fails."
+        registry_refs: [exp_016_signal_ensemble, exp_002]
+        tables: [tab_selection]
+        figures: [fig_selection_gap]
+
+      - name: task_complexity
+        word_budget: 400
+        core_bullets:
+          - "Signal ranking shifts with task difficulty: CoNLL (easy, F1=0.91) EM>SJ; SciERC NER (hard, F1=0.66) SJ>EM; SciERC RE (harder) all signals converge to ~0.28 ρ — compound error ceiling. Unified framework: structural signals strongest within model capability range; beyond it all signals converge."
+          - "RE diagnostic: FEATURE-OF near-zero ρ, HYPONYM-OF ρ=0.65. Entity span errors = 55.5% of RE FN."
+          - "Fisher z-test: NER ρ_sj significantly > RE ρ_sj (p=0.021)"
+          - "Compound error propagation: head_sj ρ=0.21 (vs NER 0.38) — fundamental, not formula issue"
+          - "exp_009 capability stratification (Claim 3): SJ strength scales with entity count — 6+ entities ρ=0.547, 1-2 entities ρ=0.415. SJ >> logprob advantage stable across all sentence length quartiles (Δρ≈0.08-0.20). Two proxies (sent_len, ent_count) weakly correlated with F1 (|r|<0.15) but moderately correlated with each other (ρ=0.650); overlapping not independent dimensions. rel_count reserved for RE discussion (collinear with ent_count, ρ=0.769)."
+        registry_refs: [exp_004_re_diagnostic, e1_component_wise_re_sj, exp_002, exp_009_capability_stratification]
+
+      - name: analysis
+        word_budget: 300
+        core_bullets:
+          - "Temperature robustness: SJ numerically small sensitivity — NER Δρ=0.014 (moderate), RE Δρ=0.010 (robust); FK NER Δρ=0.06, RE Δρ=0.097 (high sensitivity). Bootstrap 95% CI all include 0 → differences not statistically significant → use 'numerically small' not 'significantly'. D038: logprob excluded from T comparison (no T=0.7 logprob data). Conditional filtering >> temperature tuning scope does NOT include logprob."
+          - "N-scaling: NER SJ improves N=8→16 (ρ 0.357→0.428, +0.071), FK only +0.016 — SJ scaling gain 4.4× FK. Cross-seed Δ<0.01 (0.428/0.424). RE N=16: logprob ρ=0.287 > SJ 0.281 ≈ FK 0.279 (all flat, compound error ceiling)."
+          - "LOO-SJ: Δρ=-0.014, evaluation circularity minimal"
+          - "Conditional filtering: NER cond SJ ρ=0.412, RE cond SJ ρ=0.368 (N=8) / 0.308 (N=16) vs logprob cond ρ=-0.026 (N=16, completely fails). Separating knowledge-gap errors critical — structural signals retain value, logprob collapses."
+          - "Cross-model: LLaMA-3.1-8B confirms SJ>FK on NER (SciERC ρ 0.363 vs 0.327; CoNLL ρ 0.431 vs 0.428). RE cond SJ recovers (0.405 vs 0.259). CoNLL cross-model Δ=0.005 strongest model-agnostic evidence. NER 4/4 configs pass structural>surface."
+          - "3-seed stability (D046): SciERC NER N=16 SJ ρ across 3 seeds: 0.428/0.424/0.384, mean=0.412±0.025. All seeds structural>surface."
+        registry_refs: [exp_005, exp_001_ner_n16_scierc, exp_001_seed42_v2, exp_001_seed123_v2, exp_008_re_n16_v2, exp_015_metrics_expansion, exp_007_llama_inference, exp_017_llama_conll_infer]
+        figures: [fig_signal_heatmap]
+
+      - name: method_boundary
+        word_budget: 400
+        core_bullets:
+          - "D029: WNUT-17 as method boundary analysis — When Does Structural Consistency Fail?"
+          - "WNUT-17 (Qwen, N=16, T=1.0): SJ ρ=0.062 (p=0.106, NOT significant), 54% F1=0. Root cause: training data 63.8% empty instances (vs SciERC 0%), model learns strong empty-output prior. Logprob ρ=-0.411 (strong negative — possible calibration issue, discuss)."
+          - "16/16 samples all empty → SJ=1.0 but F1=0, systematically inflates consistency for wrong predictions"
+          - "Logprob also fails: empty predictions get logprob=-0.007 (extreme high confidence), ρ=-0.41 (anti-correlated)"
+          - "Conditional filtering partially helps: post-filter logprob ρ=+0.35, but SJ remains weak"
+          - "Conclusion: SJ effectiveness requires model to have basic task competence — degenerate training data (>50% empty) invalidates all unsupervised signals"
+          - "This is NOT a dataset limitation but a method boundary: identifies preconditions for structural consistency"
+        registry_refs: [exp_003_wnut17_eval]
+
+    registry_refs: [mvp_pilot_004, mvp_pilot_005, exp_001_ner_n16_scierc, exp_001_seed42_v2, exp_001_seed123_v2, exp_008_re_n16_v2, exp_002, exp_004_re_diagnostic, exp_005, exp_012_logprob_baseline, exp_013_exact_match_voting, exp_014_entity_majority_voting, exp_015_metrics_expansion, exp_016_signal_ensemble, e1_component_wise_re_sj, exp_007_llama_inference, exp_003_wnut17_eval, exp_009_capability_stratification]
+    tables: [tab_quality_estimation, tab_selection]
+    figures: [fig_selection_gap, fig_signal_heatmap, fig_reliability]
+
+  - section: discussion
+    word_budget: 500
+    core_bullets:
+      - "When WOULD consistency help: (a) poor calibration (ICL without fine-tuning), (b) closed-source APIs (no logprob), (c) ensemble/mixture settings, (d) systematically overconfident models"
+      - "Non-obviousness of negative result: self-consistency works for reasoning (+18pp GSM8K), structured prediction has rich internal structure, the DEGREE of gap and task-complexity boundary are not predictable a priori"
+      - "Practical recommendations: quality estimation → voting (strongest per-instance) or SJ (when temperature-robustness/generalizability matters); best-of-N → logprob (RE only); NER → greedy is near-optimal"
+      - "SJ unique positioning: same consistency family as voting but complementary — (a) temperature numerically stable (NER Δρ=0.014, RE Δρ=0.010; bootstrap CI includes 0), (b) generalizes to any structured output not limited to entity, (c) conditional filtering ρ=0.412 still strong, (d) with voting ensemble AUROC 0.735. Framing: 'voting stronger per-instance, SJ more robust cross-condition'. D038: FORBIDDEN 'significantly' for temperature — use 'numerically small'."
+      - "Conditional analysis as unique contribution: separating knowledge-gap errors (RE ~44% zero-F1, WNUT-17 ~64% empty) reveals hidden signal value — SJ recovers on RE cond (ρ=0.308 at N=16) while logprob collapses (ρ=-0.026)"
+      - "Capability boundary framework: structural signals are strongest quality estimators within model capability range; beyond it (RE compound errors), all signals converge — but conditional filtering restores structural advantage"
+      - "Limitations: 1 RE dataset (SciERC, 44% zero-F1 limits signal discrimination), 2 model families (Qwen3 + LLaMA), no supervised upper bound beyond logistic regression proxy. RE zero-F1 proportion must be explicitly noted. WNUT-17 confirms boundary but informal text domains (social media) remain unvalidated for positive results. CoNLL SJ-FK gap only 0.004 — SJ advantage may not generalize to simple schema datasets."
+    dependencies: [experiments]
+
+  - section: conclusion
+    word_budget: 300
+    core_bullets:
+      - "Summary: first systematic comparison of confidence signals for quality estimation vs selection in generative IE"
+      - "Three findings: (1) structural consistency best for quality estimation, (2) correlation-selection gap, (3) task-complexity boundary"
+      - "Future work: supervised verifiers, cross-task transfer of confidence signals, conformal prediction integration, scaling to larger models"
+    dependencies: [experiments, discussion]
+
+visualization_plan:
+  - fig_id: fig_overview
+    type: conceptual
+    tool: matplotlib
+    description: >
+      Overview figure (1-column) illustrating the paper's core finding. Left: quality estimation
+      (consistency signals predict which instances are reliable). Right: sample selection (the same
+      signals fail to pick the best sample). Shows the conceptual distinction between instance-level
+      and per-sample signals. Simple schematic with boxes and arrows — not a full architecture diagram.
+    placement: introduction
+    aspect_ratio: "2:1"
+    data_source: "manual"
+
+  - fig_id: fig_selection_gap
+    type: statistical
+    tool: matplotlib
+    description: >
+      Two-panel figure. Left panel: grouped bar chart of AUROC for quality estimation (5 signals,
+      SciERC NER). Right panel: grouped bar chart of best-of-N selection F1 (same 5 signals + greedy
+      + oracle, SciERC NER + RE). Horizontal dashed line at greedy F1. Visualizes the gap: high AUROC
+      does NOT translate to high selection F1. Include error bars from bootstrap CI where available.
+    data_source: "registry: exp_016_signal_ensemble, exp_012_logprob_baseline, exp_014_entity_majority_voting"
+    placement: experiments
+    aspect_ratio: "2:1"
+
+  - fig_id: fig_signal_heatmap
+    type: statistical
+    tool: matplotlib
+    description: >
+      Heatmap (signals as rows, datasets/tasks as columns) showing Spearman ρ values. Columns:
+      SciERC NER (N=8), SciERC RE (N=8), CoNLL NER (N=8). Rows: voting_conf, SJ, EM, FK, logprob.
+      Color-coded from red (low) to green (high). Annotated with ρ values. Visualizes task-complexity
+      boundary: signal ranking shifts across columns.
+    data_source: "registry: exp_015_metrics_expansion (SciERC NER+RE unified), exp_002 (CoNLL). D035: heatmap data source unified to exp_015."
+    placement: experiments
+    aspect_ratio: "4:3"
+
+  - fig_id: fig_reliability
+    type: statistical
+    tool: matplotlib
+    description: >
+      Reliability diagram (2 panels: NER, RE). For each signal, bin instances by predicted confidence
+      (decile), plot mean predicted confidence vs mean actual F1. Perfect calibration = diagonal.
+      Shows which signals are well-calibrated vs overconfident. Focus on SJ, voting_conf, logprob (3 curves per panel).
+    caption_notes: >
+      Caption or surrounding text MUST note two definition differences:
+      (1) F1 definition: y-axis uses mean_sample_f1 (average F1 across N stochastic samples per instance),
+      distinct from greedy F1 used in Table 1 ρ/AUROC targets — this is the calibration-appropriate measure
+      since confidence signals aggregate over stochastic samples.
+      (2) Logprob normalization: logprob is globally min-max normalized to [0,1] (SJ and voting_conf are
+      naturally [0,1]). ECE absolute values are therefore NOT directly comparable across signals — only
+      relative calibration patterns (over/under-confident regions) are meaningful.
+    data_source: "registry: mvp_pilot_004, exp_012_logprob_baseline, exp_014_entity_majority_voting"
+    placement: experiments
+    aspect_ratio: "2:1"
+
+table_plan:
+  - table_id: tab_quality_estimation
+    caption: "Quality estimation performance of five confidence signals across tasks and datasets. ρ: Spearman correlation with instance-level F1. AUROC: discriminative power for identifying above-median instances. Best in bold, second-best underlined."
+    placement: experiments
+    type: comparison
+    columns: [Signal, Family, SciERC NER ρ, SciERC NER AUROC, SciERC RE ρ, SciERC RE AUROC, CoNLL NER ρ, CoNLL NER AUROC]
+    data_source: "registry: exp_015_metrics_expansion (SciERC unified), exp_002 (CoNLL Qwen), exp_017_llama_conll_infer (CoNLL LLaMA). D035: SciERC data source unified to exp_015."
+    notes: "N=8, T=1.0 for all. CoNLL n=2756 valid, SciERC NER n=529, RE n=397. Table includes both Qwen and LLaMA rows for CoNLL to demonstrate model-agnostic pattern."
+
+  - table_id: tab_selection
+    caption: "Best-of-N selection F1 using each signal for sample ranking. Oracle selects the sample with highest true F1. Greedy uses T=0 decoding (no sampling). Bold: methods beating greedy."
+    placement: experiments
+    type: comparison
+    columns: [Method, SciERC NER F1, SciERC RE F1]
+    data_source: "registry: exp_016_signal_ensemble"
+    notes: "N=8, T=1.0. Include: oracle, logprob, SJ, ensemble, voting, EM, random, greedy."
+
+  - table_id: tab_robustness
+    caption: "Robustness analysis: temperature sensitivity (T=0.7 vs T=1.0) and sample scaling (N=8 vs N=16) on SciERC."
+    placement: experiments
+    type: comparison
+    columns: [Signal, NER ρ (T=0.7), NER ρ (T=1.0), Δ, RE ρ (T=0.7), RE ρ (T=1.0), Δ]
+    data_source: "registry: exp_015_metrics_expansion (N=8 baseline), mvp_pilot_005 (T=0.7), exp_001_seed42_v2, exp_001_seed123_v2 (N=16 NER), exp_008_re_n16_v2 (N=16 RE)"
+    notes: "Temperature rows from exp_015 (T=1.0) vs pilot_005 (T=0.7). N-scaling from exp_001_v2 (N=16 NER, 2 seeds) + exp_008_v2 (N=16 RE). D037: SJ N-scaling gain (+0.071) >> FK (+0.016). RE N=16 all signals flat ~0.28."
+
+literature_strategy:
+  citation_budget: 50
+  macro_context:
+    - "confidence estimation for LLM outputs"
+    - "test-time scaling and self-consistency"
+    - "uncertainty quantification for structured prediction"
+    - "information extraction with large language models"
+  micro_clusters:
+    - cluster_name: "self_consistency_reasoning"
+      search_queries:
+        - "self-consistency chain-of-thought Wang 2023"
+        - "universal self-consistency Chen 2024"
+        - "SelfCheckGPT hallucination detection Manakul 2023"
+        - "confidence improves self-consistency CISC 2025"
+        - "self-certainty best-of-N selection ICLR 2026"
+        - "reliability-aware adaptive self-consistency ReASC 2026"
+        - "ranked voting self-consistency 2025"
+      must_cite:
+        - "Wang et al. 2023 — Self-Consistency Improves Chain of Thought Reasoning"
+        - "Chen et al. 2024 — Universal Self-Consistency"
+        - "Manakul et al. 2023 — SelfCheckGPT"
+        - "CISC, ACL Findings 2025 (arXiv 2502.06233) — Confidence Improves Self-Consistency"
+        - "Self-Certainty BoN, ICLR 2026 (arXiv 2502.18581) — Scalable Best-of-N via Self-Certainty"
+        - "ReASC (arXiv 2601.02970) — Reliability-Aware Adaptive Self-Consistency"
+        - "Ranked Voting SC (arXiv 2505.10772) — Ranked Voting based Self-Consistency"
+      target_count: 8
+
+    - cluster_name: "consistency_structured_ie"
+      search_queries:
+        - "consistency accuracy correlation LLM entity relation extraction 2026"
+        - "Nédellec Xia consistency plant health NER RE"
+        - "CoCoA confidence consistency uncertainty quantification NeurIPS 2025"
+        - "Vashurin uncertainty estimation LLM evaluation 2025"
+      must_cite:
+        - "Nédellec & Xia, Genomics Informatics 2026-02 (PMC12888769) — Consistency-accuracy correlation in hard-prompted LLMs for entity and relation extraction"
+      should_cite:
+        - "Vashurin et al., NeurIPS 2025 (arXiv 2502.04964) — CoCoA: Combining Confidence and Consistency"
+        - "Vashurin et al. (arXiv 2510.20460, 2025) — Systematic evaluation of UQ methods for LLMs"
+      target_count: 3
+
+    - cluster_name: "confidence_surveys"
+      search_queries:
+        - "survey confidence estimation calibration LLM NAACL 2024"
+        - "know your limits survey abstention LLM TACL 2025"
+      must_cite:
+        - "Geng et al., NAACL 2024 (arXiv 2311.08298) — Survey of Confidence Estimation and Calibration in LLMs"
+        - "Feng et al., TACL 2025 — Know Your Limits: Survey of Abstention in LLMs"
+      target_count: 2
+
+    - cluster_name: "uncertainty_calibration"
+      search_queries:
+        - "semantic uncertainty LLM Kuhn 2023"
+        - "language model calibration P(True) Kadavath 2022"
+        - "calibration modern neural networks Guo 2017"
+        - "calibration NLP sequence labeling Desai Durrett 2020"
+        - "verbalized confidence LLM 2024"
+      must_cite:
+        - "Kuhn et al. 2023 — Semantic Uncertainty"
+        - "Kadavath et al. 2022 — Language Models (Mostly) Know What They Know"
+        - "Guo et al. 2017 — On Calibration of Modern Neural Networks"
+        - "Desai & Durrett 2020 — Calibration of Pre-trained Transformers"
+      target_count: 6
+
+    - cluster_name: "conformal_prediction"
+      search_queries:
+        - "conformal prediction structured outputs NLP 2021"
+        - "conformal prediction NER sequence labeling"
+        - "distribution-free uncertainty sets Angelopoulos"
+      must_cite:
+        - "Fisch et al. 2021 — Few-Shot Conformal Prediction with Auxiliary Tasks"
+        - "Angelopoulos et al. 2021 — Uncertainty Sets for Image Classifiers"
+      target_count: 3
+
+    - cluster_name: "token_span_uncertainty_ner"
+      search_queries:
+        - "uncertainty estimation named entity recognition"
+        - "confidence estimation sequence labeling CRF"
+        - "selective prediction NER 2021"
+      must_cite:
+        - "Xiao & Wang 2019 — Quantifying Uncertainties in NLP"
+        - "Shelmanov et al. 2021 — Active Learning + Uncertainty NER"
+      target_count: 3
+
+    - cluster_name: "ensemble_mc_dropout"
+      search_queries:
+        - "deep ensemble uncertainty Lakshminarayanan 2017"
+        - "MC dropout uncertainty Gal Ghahramani 2016"
+        - "ensemble diversity uncertainty estimation NLP"
+      must_cite:
+        - "Lakshminarayanan et al. 2017 — Simple and Scalable Predictive Uncertainty Estimation"
+        - "Gal & Ghahramani 2016 — Dropout as a Bayesian Approximation"
+      target_count: 3
+
+    - cluster_name: "verifier_reward_models"
+      search_queries:
+        - "training verifiers solve math word problems Cobbe 2021"
+        - "process reward model Lightman 2023"
+        - "outcome reward model LLM verification 2024"
+      must_cite:
+        - "Cobbe et al. 2021 — Training Verifiers to Solve Math Word Problems"
+        - "Lightman et al. 2023 — Let's Verify Step by Step"
+      target_count: 3
+
+    - cluster_name: "tts_scaling"
+      search_queries:
+        - "scaling LLM test-time compute Snell 2024"
+        - "test-time compute scaling 2024"
+        - "compute-optimal inference LLM"
+      must_cite:
+        - "Snell et al. 2024 — Scaling LLM Test-Time Compute"
+        - "Brown et al. 2024 (or relevant TTS scaling paper)"
+      target_count: 3
+
+    - cluster_name: "structured_calibration_ie"
+      search_queries:
+        - "calibration structured prediction Kuleshov 2015"
+        - "calibration information extraction Jagannatha 2022"
+        - "confidence estimation relation extraction"
+        - "Culotta McCallum 2004 confidence estimation"
+      must_cite:
+        - "Kuleshov & Liang 2015 — Calibrated Structured Prediction"
+        - "Culotta & McCallum 2004 — Confidence Estimation for IE"
+      target_count: 3
+
+    - cluster_name: "selective_prediction"
+      search_queries:
+        - "selective prediction abstention Geifman El-Yaniv 2017"
+        - "selective classification deep learning"
+        - "learning to abstain NLP 2023"
+      must_cite:
+        - "Geifman & El-Yaniv 2017 — Selective Classification for Deep Neural Networks"
+      target_count: 2
+
+    - cluster_name: "generative_ie"
+      search_queries:
+        - "generative information extraction LLM 2024"
+        - "LLM named entity recognition in-context learning"
+        - "universal information extraction UIE 2023 2024"
+        - "structured prediction LLM prompting"
+      must_cite: []
+      target_count: 4
+
+    - cluster_name: "agreement_metrics"
+      search_queries:
+        - "Fleiss Kappa inter-rater agreement"
+        - "Jaccard similarity set matching NLP"
+        - "inter-annotator agreement NER"
+      must_cite: []
+      target_count: 2
+
+writing_order:
+  - experiments
+  - method
+  - introduction
+  - related_work
+  - discussion
+  - abstract
+  - conclusion

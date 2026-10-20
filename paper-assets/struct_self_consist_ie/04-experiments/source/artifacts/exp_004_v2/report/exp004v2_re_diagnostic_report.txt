@@ -1,0 +1,52 @@
+exp-004 v2 RE Relation-Type Stratified Diagnostic
+
+Data: exp_012_logprob/samples_with_logprobs.jsonl (551 inst, 397 with gold RE)
+Gold relation types: USED-FOR=533, CONJUNCTION=123, EVALUATE-FOR=91, HYPONYM-OF=67, PART-OF=63, FEATURE-OF=59, COMPARE=38
+
+=== Per-Type Instance-Level Metrics ===
+Type             N    F1    rho_SJ  rho_FK  rho_VC  rho_LP  rho_EM  AUC_SJ
+USED-FOR       299  0.393  +0.223  +0.243  +0.418  +0.232  +0.117  +0.582
+PART-OF         44  0.257  +0.058  +0.205  +0.489  +0.319  -0.122  +0.512
+FEATURE-OF      50  0.218  +0.058  +0.327  +0.462  +0.253  -0.223  +0.510
+COMPARE         35  0.366  +0.098  +0.311  +0.497  +0.077  -0.053  +0.628
+CONJUNCTION     86  0.373  +0.089  +0.151  +0.581  +0.186  -0.042  +0.536
+HYPONYM-OF      36  0.403  +0.097  +0.212  +0.644  +0.188  -0.072  +0.494
+EVALUATE-FOR    62  0.301  +0.218  +0.373  +0.457  +0.208  -0.004  +0.601
+
+=== Bootstrap 95% CI for SJ rho ===
+USED-FOR      rho=+0.2233  CI=[+0.1106, +0.3345]  SIGNIFICANT
+PART-OF       rho=+0.0581  CI=[-0.2429, +0.3527]
+FEATURE-OF    rho=+0.0575  CI=[-0.2157, +0.3216]
+COMPARE       rho=+0.0983  CI=[-0.2342, +0.4154]
+CONJUNCTION   rho=+0.0890  CI=[-0.1336, +0.3016]
+HYPONYM-OF    rho=+0.0972  CI=[-0.2499, +0.4215]
+EVALUATE-FOR  rho=+0.2181  CI=[-0.0343, +0.4410]
+
+=== Type-Filtered Voting Confidence ===
+USED-FOR      rho=0.4925  CI=[0.3978, 0.5810]
+PART-OF       rho=0.6925  CI=[0.4966, 0.8228]
+
+=== Threshold Sensitivity (SJ) ===
+Thr   N_acc  Cov    F1_acc  F1_rej  %Correct
+0.30  342    0.862  0.403   0.193   58%
+0.50  242    0.610  0.433   0.280   61%
+0.80   79    0.199  0.498   0.342   62%
+
+=== Threshold Sensitivity (VC) ===
+Thr   N_acc  Cov    F1_acc  F1_rej  %Correct
+0.30  276    0.695  0.470   0.153   68%
+0.50  138    0.348  0.533   0.289   69%
+0.70   66    0.166  0.616   0.325   76%
+
+=== Cross-Type Comparisons ===
+No significant pairwise SJ rho differences (all 21 CIs include 0)
+
+=== Key Findings ===
+1. Voting confidence dominates all signals across all 7 relation types (rho 0.42-0.64)
+2. SJ only significantly predictive for USED-FOR (rho=0.22, CI excludes 0)
+3. Type-filtered voting for PART-OF reaches rho=0.69 — relation-specific thresholds valuable
+4. Exact match rate poor/negative for most non-USED-FOR types
+5. VC threshold=0.7: 17% coverage, F1=0.616, 76% correct
+
+Server outputs: /root/autodl-tmp/struct_self_consist_ie/output/exp004v2_re_diagnostic/
+Files: per_relation_type.json, threshold_sensitivity.json, cross_type_comparison.json, full_report.json

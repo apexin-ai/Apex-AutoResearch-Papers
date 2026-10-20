@@ -1,0 +1,8 @@
+Files saved on autodl-5090:
+- /root/autodl-tmp/struct_self_consist_ie/output/d108_greedy_f1/results.json (96 rows, full data)
+- /root/autodl-tmp/struct_self_consist_ie/output/d108_greedy_f1/table.md (16 canonical rows)
+
+Reference values verified:
+- SciERC NER (Qwen 8B): 0.6633 ✓
+- SciERC RE (Qwen 8B): 0.4289 ✓
+- CoNLL NER (Qwen 8B): 0.9067 ✓

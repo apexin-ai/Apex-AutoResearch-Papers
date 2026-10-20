@@ -1,0 +1,118 @@
+\relax 
+\bibstyle{acl_natbib}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{wang2023selfconsistency}
+\citation{eikema2020map}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{wang2023selfconsistency}
+\citation{cisc2025}
+\citation{selfcertainty2026}
+\citation{reasc2026}
+\citation{atomicsc2024}
+\citation{kadavath2022language,kuhn2023semantic}
+\citation{kuhn2023semantic}
+\citation{semanticprobes2024}
+\citation{manakul2023selfcheckgpt}
+\citation{uqsurvey2025acl,uqcalibsurvey2025}
+\citation{eikema2020map}
+\citation{cocoa2025}
+\citation{vashurin2025systematic}
+\citation{guo2017calibration,desai2020calibration}
+\citation{geifman2017selective,knowyourlimits2025}
+\citation{fisch2021conformal,angelopoulos2021sets}
+\citation{nedellec2026consistency}
+\citation{xiao2019quantifying,shelmanov2021certain}
+\citation{culotta2004confidence}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Test-Time Scaling and Self-Consistency.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Uncertainty Quantification for LLMs.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{MBR Decoding and Sample Selection.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Calibration and Selective Prediction.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Consistency for Structured IE.}{2}{section*.5}\protected@file@percent }
+\citation{cobbe2021training}
+\citation{lightman2023lets}
+\citation{luan2018multi}
+\citation{tjong2003introduction}
+\@writefile{toc}{\contentsline {paragraph}{Verifier and Reward Models.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setting}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Confidence Signals}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Generation probability.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Structural consistency.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Inter-annotator agreement.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Entity voting.}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Instance-level vs.\ per-sample distinction.}{3}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Evaluation Protocol}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Setup}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Datasets.}{3}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sampling.}{3}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Main Results: The Correlation--Selection Gap}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:main_results}{{4.2}{3}{Main Results: The Correlation--Selection Gap}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Quality estimation on SciERC ($N$=8, $T$=1.0, constrained decoding). Structural consistency signals (voting, SJ, EM) substantially outperform log-probability.}}{4}{table.caption.15}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:qe_main}{{1}{4}{Quality estimation on SciERC ($N$=8, $T$=1.0, constrained decoding). Structural consistency signals (voting, SJ, EM) substantially outperform log-probability}{table.caption.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Best-of-$N$ selection F1 on SciERC. No signal significantly outperforms greedy decoding. Oracle headroom: NER +13.2pp, RE +18.1pp. Ensemble: 5-fold CV logistic regression on all five signals.}}{4}{table.caption.16}\protected@file@percent }
+\newlabel{tab:selection_main}{{2}{4}{Best-of-$N$ selection F1 on SciERC. No signal significantly outperforms greedy decoding. Oracle headroom: NER +13.2pp, RE +18.1pp. Ensemble: 5-fold CV logistic regression on all five signals}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {paragraph}{Calibration.}{4}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Free-Form Decoding Ablation}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:freeform}{{4.3}{4}{Free-Form Decoding Ablation}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Parse rate and selection bias in free-form generation. Parseable instances are systematically easier, biasing the evaluable subset.}}{4}{table.caption.19}\protected@file@percent }
+\newlabel{tab:parse_bias}{{3}{4}{Parse rate and selection bias in free-form generation. Parseable instances are systematically easier, biasing the evaluable subset}{table.caption.19}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Constrained vs.\ free-form decoding. Removing grammar constraints increases log-prob variance but does not improve selection. Effect sizes are negligible (Cohen's $d$ $<$ 0.05).}}{4}{table.caption.21}\protected@file@percent }
+\newlabel{tab:freeform_main}{{4}{4}{Constrained vs.\ free-form decoding. Removing grammar constraints increases log-prob variance but does not improve selection. Effect sizes are negligible (Cohen's $d$ $<$ 0.05)}{table.caption.21}{}}
+\@writefile{toc}{\contentsline {paragraph}{Parse rate.}{4}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Variance recovery is insufficient.}{4}{section*.20}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Cross-model QE on CoNLL-2003 NER. Signal rankings are consistent across Qwen3-8B and LLaMA-3.1-8B ($|\Delta \rho |$ $\leq $ 0.021 for all signals).}}{5}{table.caption.24}\protected@file@percent }
+\newlabel{tab:crossmodel}{{5}{5}{Cross-model QE on CoNLL-2003 NER. Signal rankings are consistent across Qwen3-8B and LLaMA-3.1-8B ($|\Delta \rho |$ $\leq $ 0.021 for all signals)}{table.caption.24}{}}
+\@writefile{toc}{\contentsline {paragraph}{Oracle headroom persists.}{5}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Interpretation.}{5}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Cross-Model Validation}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:crossmodel}{{4.4}{5}{Cross-Model Validation}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Signal degradation under distribution shift. Log-prob becomes \emph  {anti-correlated} with quality---the model is most confident on its worst outputs.}}{5}{table.caption.25}\protected@file@percent }
+\newlabel{tab:ood}{{6}{5}{Signal degradation under distribution shift. Log-prob becomes \emph {anti-correlated} with quality---the model is most confident on its worst outputs}{table.caption.25}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Supervised verifier vs.\ unsupervised signals. The verifier does not significantly outperform the best unsupervised signal and captures minimal oracle headroom.}}{5}{table.caption.26}\protected@file@percent }
+\newlabel{tab:verifier}{{7}{5}{Supervised verifier vs.\ unsupervised signals. The verifier does not significantly outperform the best unsupervised signal and captures minimal oracle headroom}{table.caption.26}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Out-of-Domain Robustness}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:ood}{{4.5}{5}{Out-of-Domain Robustness}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Supervised Verifier Baseline}{5}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:verifier}{{4.6}{5}{Supervised Verifier Baseline}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Analysis}{6}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Why Scalar Signals Fail for Set-Valued Outputs}{6}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}The Role of Parse Rate and Selection Bias}{6}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}When Would Consistency Help?}{6}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{6}{section.6}\protected@file@percent }
+\bibdata{custom}
+\bibcite{knowyourlimits2025}{{1}{2025}{{Abstention Survey authors}}{{}}}
+\bibcite{angelopoulos2021sets}{{2}{2021}{{Angelopoulos et~al.}}{{Angelopoulos, Bates, Malik, and Jordan}}}
+\bibcite{atomicsc2024}{{3}{2024}{{Atomic SC authors}}{{}}}
+\bibcite{cisc2025}{{4}{2025}{{CISC authors}}{{}}}
+\bibcite{cobbe2021training}{{5}{2021}{{Cobbe et~al.}}{{Cobbe, Kosaraju, Bavarian, Chen, Jun, Kaiser, Prafulla, Tworek, Hilton, Nakano, Hesse, and Schulman}}}
+\bibcite{culotta2004confidence}{{6}{2004}{{Culotta and McCallum}}{{}}}
+\bibcite{desai2020calibration}{{7}{2020}{{Desai and Durrett}}{{}}}
+\bibcite{eikema2020map}{{8}{2020}{{Eikema and Aziz}}{{}}}
+\bibcite{fisch2021conformal}{{9}{2021}{{Fisch et~al.}}{{Fisch, Schuster, Jaakkola, and Barzilay}}}
+\bibcite{geifman2017selective}{{10}{2017}{{Geifman and El-Yaniv}}{{}}}
+\bibcite{guo2017calibration}{{11}{2017}{{Guo et~al.}}{{Guo, Pleiss, Sun, and Weinberger}}}
+\bibcite{kadavath2022language}{{12}{2022}{{Kadavath et~al.}}{{}}}
+\bibcite{kuhn2023semantic}{{13}{2023}{{Kuhn et~al.}}{{Kuhn, Gal, and Farquhar}}}
+\bibcite{lightman2023lets}{{14}{2023}{{Lightman et~al.}}{{Lightman, Kosaraju, Burda, Edwards, Baker, Lee, Leike, Schulman, Sutskever, and Cobbe}}}
+\bibcite{luan2018multi}{{15}{2018}{{Luan et~al.}}{{Luan, He, Ostendorf, and Hajishirzi}}}
+\bibcite{manakul2023selfcheckgpt}{{16}{2023}{{Manakul et~al.}}{{Manakul, Liusie, and Gales}}}
+\bibcite{nedellec2026consistency}{{17}{2026}{{N{\'e}dellec and Xia}}{{}}}
+\bibcite{reasc2026}{{18}{2026}{{ReASC authors}}{{}}}
+\bibcite{selfcertainty2026}{{19}{2026}{{Self-Certainty authors}}{{}}}
+\bibcite{semanticprobes2024}{{20}{2024}{{Semantic Probes authors}}{{}}}
+\bibcite{shelmanov2021certain}{{21}{2021}{{Shelmanov et~al.}}{{}}}
+\bibcite{tjong2003introduction}{{22}{2003}{{Tjong Kim~Sang and De~Meulder}}{{}}}
+\bibcite{uqcalibsurvey2025}{{23}{2025}{{UQ Calibration Survey authors}}{{}}}
+\bibcite{uqsurvey2025acl}{{24}{2025}{{UQ Survey authors}}{{}}}
+\bibcite{cocoa2025}{{25}{2025{a}}{{Vashurin et~al.}}{{}}}
+\bibcite{vashurin2025systematic}{{26}{2025{b}}{{Vashurin et~al.}}{{}}}
+\bibcite{wang2023selfconsistency}{{27}{2023}{{Wang et~al.}}{{Wang, Wei, Schuurmans, Le, Chi, Narang, Chowdhery, and Zhou}}}
+\bibcite{xiao2019quantifying}{{28}{2019}{{Xiao and Wang}}{{}}}
+\bibstyle{acl_natbib}
+\gdef \@abspage@last{7}

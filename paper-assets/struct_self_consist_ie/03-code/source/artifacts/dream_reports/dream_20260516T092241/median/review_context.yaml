@@ -1,0 +1,544 @@
+narrative_guidance: '将 ''capability trap'' 从 ''structural inevitability'' 弱化为 ''primary
+  contributing factor alongside fine-tuning regime''。两个 failure mechanisms (degeneracy
+  + LP compression) 仍完全成立——它们的证据全部来自已完成实验，不受新实验影响。调整 claims 强度：''universally fail''
+  → ''predominantly fail across tested configurations''。LoRA ablation 变为 nuanced finding：''output
+  convergence is driven by capability AND fine-tuning intensity, with capability as
+  the dominant factor.'' 将 QE evaluation framework (Claim 2) 提升为 co-primary contribution。标题微调为
+  ''Strong Predictors, Weak Selectors: Diagnosing Why...'' 强调诊断而非绝对性。目标：EMNLP Main（adjusted
+  claims）或 strong Findings。'
+imagined_experiments:
+- name: fewnerd_smoke
+  plan_id: exp-020
+  description: Few-NERD INTRA coarse 8-type, 1-epoch LoRA fine-tune + 200-instance
+    N=8 pilot. Gate for full run.
+  expected_results:
+    train_loss_1epoch: 0.15
+    eval_loss_1epoch: 0.12
+    greedy_f1_200inst: 0.78
+    parse_rate: 0.998
+    pilot_sj_rho_full: 0.3
+    pilot_degeneracy_rate: 0.22
+    pilot_oracle_f1: 0.86
+    pilot_headroom_pp: 8.0
+    inference_time_200inst_minutes: 12
+    n_entity_types: 8
+    sample_f1_pct_zero: 8.5
+  result_rationale: Few-NERD INTRA coarse（8类通用实体：Person, Organization, Location, Building,
+    Product, Event, Art, Other）比 SciERC 更标准化但比 CoNLL 更细粒度。1-epoch LoRA 已足够让 Qwen3-8B
+    学会格式和基本类型映射（类似 SciERC ft_001 在 1 epoch 后 NER F1=0.60）。Few-NERD 训练集大（~66K samples），1
+    epoch 足以收敛基本模式。Greedy F1=0.78 符合 median 范围 [0.75, 0.85] 的下半段，因为只有 1 epoch。Degeneracy
+    0.22 在 pilot（200 inst）上初步可见但 CI 宽——这个 pilot 主要验证 pipeline 可行性，不做结论。
+  tables:
+  - name: 'Table: Few-NERD Smoke Test Summary'
+    columns:
+    - Metric
+    - Value
+    rows:
+    - - Training loss (1 epoch)
+      - '0.150'
+    - - Greedy NER F1 (200 inst)
+      - '0.780'
+    - - Oracle NER F1
+      - '0.860'
+    - - Headroom
+      - 8.0pp
+    - - Parse rate
+      - 99.8%
+    - - Degeneracy rate (pilot)
+      - 22%
+    - - SJ ρ (pilot)
+      - '0.30'
+  figures_description:
+  - 'Training loss curve: single epoch, smooth decrease from ~0.8 to 0.15'
+  analysis: Smoke test PASS。模型成功学会 Few-NERD 格式和 8 类实体标注。Greedy F1=0.78 介于 SciERC（0.66）和
+    CoNLL（0.91）之间，符合 Few-NERD 的中等难度定位。Degeneracy 初步估计 ~22%，低于 capability trap 线性外推的预测值（~35-40%），暗示
+    median tier 的'部分确认但不完美拟合'结论。Pipeline validated，proceed to exp-021。
+- name: fewnerd_full
+  plan_id: exp-021
+  description: Few-NERD 3-epoch LoRA + full test set N=8, 3 seeds. 5 signals + degeneracy
+    + selection.
+  expected_results:
+    train_loss_3epoch: 0.065
+    eval_loss_3epoch: 0.078
+    greedy_f1: 0.812
+    oracle_f1: 0.895
+    oracle_headroom_pp: 8.3
+    n_test_instances: 1500
+    n_valid_after_gold_filter: 1380
+    parse_rate: 0.999
+    degeneracy_rate: 0.26
+    degeneracy_rate_3seed_mean: 0.25
+    degeneracy_rate_3seed_sd: 0.018
+    sj_rho_full: 0.33
+    fk_rho_full: 0.28
+    logprob_rho_full: 0.25
+    em_rho_full: 0.35
+    voting_conf_rho_full: 0.36
+    sj_auroc_full: 0.72
+    em_auroc_full: 0.78
+    voting_conf_auroc_full: 0.73
+    logprob_auroc_full: 0.68
+    sj_rho_cond: 0.31
+    em_rho_cond: 0.38
+    voting_conf_rho_cond: 0.33
+    sj_rho_3seed_mean: 0.32
+    sj_rho_3seed_sd: 0.025
+    selection_f1_greedy: 0.812
+    selection_f1_sj: 0.813
+    selection_f1_logprob: 0.814
+    selection_f1_voting_conf: 0.811
+    selection_f1_random: 0.798
+    selection_f1_oracle: 0.895
+    selection_gap_best_minus_greedy_pp: 0.2
+    selection_bootstrap_ci_95_low: -0.8
+    selection_bootstrap_ci_95_high: 1.2
+    selection_permutation_p: 0.42
+    capability_trap_f1_vs_degeneracy_r2_with_fewnerd: 0.72
+    capability_trap_monotonicity: true
+    lp_within_instance_range_median: 0.038
+    lp_tied_fraction: 0.31
+    sample_f1_pct_zero: 6.2
+  result_rationale: 3-epoch fine-tune 使 greedy F1 从 smoke 的 0.78 提升到 0.812，对应 median
+    范围 [0.75,0.85] 的中部。Degeneracy rate 0.26 的关键逻辑：capability trap 预测在 F1=0.81 时 degeneracy
+    应~38%（CoNLL 0.91→58%, SciERC 0.66→21% 的线性外推），但实际只有 26%。原因：(1) Few-NERD 有 8 种实体类型（vs
+    CoNLL 的 4 种），类型多样性提供更多变异维度，使得即使 overall F1 高，individual spans 仍有组合空间；(2) Few-NERD
+    实例更长/实体更密，per-instance 的 combinatorial space 抑制了完全 convergence。这就是 median 的核心信号：monotonicity
+    成立（F1 越高 degeneracy 越高），但 R²=0.72 而非 0.95——task structure（类型数、实体密度）是 residual
+    variance 的来源。Selection gap +0.2pp 的逻辑：degeneracy 26% 介于 SciERC（21%，gap≈0）和 CoNLL（58%，gap≈0）之间，bootstrap
+    p=0.42 说明完全不显著。信号排序 VC>EM>SJ>FK>LP 与 CoNLL 类似但 SJ-LP gap 更小（0.08 vs SciERC 的 0.15），因为
+    8 类系统的 LP 信号比 6 类科学文本更 informative。
+  tables:
+  - name: 'Table: Few-NERD Full Results — QE Correlation (ρ, 3-seed mean±sd)'
+    columns:
+    - Signal
+    - NER ρ (full)
+    - NER ρ (cond)
+    - AUROC
+    rows:
+    - - Voting_conf
+      - 0.360±0.022
+      - 0.330±0.028
+      - '0.730'
+    - - EM
+      - 0.350±0.019
+      - 0.380±0.024
+      - '0.780'
+    - - SJ
+      - 0.320±0.025
+      - 0.310±0.030
+      - '0.720'
+    - - FK
+      - 0.280±0.020
+      - 0.260±0.025
+      - '0.660'
+    - - Logprob
+      - 0.250±0.018
+      - 0.220±0.022
+      - '0.680'
+  - name: 'Table: Few-NERD Selection F1 (N=8, T=1.0)'
+    columns:
+    - Method
+    - F1
+    - Δ vs greedy (pp)
+    rows:
+    - - Oracle
+      - '0.895'
+      - '+8.3'
+    - - Logprob
+      - '0.814'
+      - '+0.2'
+    - - SJ
+      - '0.813'
+      - '+0.1'
+    - - Greedy (T=0)
+      - '0.812'
+      - —
+    - - Voting_conf
+      - '0.811'
+      - '-0.1'
+    - - Random
+      - '0.798'
+      - '-1.4'
+  - name: 'Table: Capability Trap — Cross-Dataset Degeneracy'
+    columns:
+    - Dataset
+    - Greedy F1
+    - Degeneracy %
+    - Predicted %
+    - Residual
+    rows:
+    - - CoNLL-2003
+      - '0.912'
+      - 58%
+      - —
+      - —
+    - - Few-NERD
+      - '0.812'
+      - 26%
+      - 38%
+      - -12pp
+    - - SciERC
+      - '0.663'
+      - 21%
+      - —
+      - —
+    - - WNUT-17
+      - '0.523'
+      - ~0%
+      - —
+      - —
+  figures_description:
+  - 'Scatter: F1 vs degeneracy rate (4 datasets). Regression line R²=0.72. Few-NERD
+    sits below the line, indicating task structure modulates the capability-degeneracy
+    relationship.'
+  - 'Bar chart: Selection F1 across 4 datasets. All signals ≈ greedy on Few-NERD.
+    Error bars (3-seed) overlap heavily.'
+  analysis: Few-NERD 为 capability trap 提供 partial confirmation：degeneracy 单调性成立（F1
+    越高，degeneracy 越高），但 R² 从 3-point 的 0.95+ 下降到 4-point 的 0.72。这要求将 capability trap
+    从 'structural inevitability' 调整为 'primary contributing factor'，因为 task structure（类型数量、实体密度）引入了不可忽略的
+    residual。Selection 结果（+0.2pp, p=0.42）处于 median 定义的模糊区间——不显著优于 greedy，但也没有像 SciERC
+    那样 greedy 明确 dominate。这使得 'universally fail' 需弱化为 'predominantly fail'。QE signals
+    仍然有效（SJ ρ=0.32 > LP ρ=0.25），支撑 Claim 2 的 QE framework contribution。
+- name: 3rd_seed_scierc
+  plan_id: exp-022
+  description: SciERC NER+RE N=8, seed=789. 第3个 seed 用于 Fisher combined p-value。
+  expected_results:
+    ner_greedy_f1: 0.661
+    ner_oracle_f1: 0.779
+    ner_headroom_pp: 11.8
+    ner_sj_rho_full: 0.372
+    ner_fk_rho_full: 0.258
+    ner_logprob_rho_full: 0.218
+    ner_em_rho_full: 0.305
+    ner_voting_conf_rho_full: 0.388
+    ner_sj_auroc: 0.698
+    ner_em_auroc: 0.755
+    re_greedy_f1: 0.415
+    re_oracle_f1: 0.582
+    re_headroom_pp: 16.7
+    re_sj_rho_full: 0.258
+    re_fk_rho_full: 0.285
+    re_logprob_rho_full: 0.242
+    re_voting_conf_rho_full: 0.34
+    re_sample_f1_pct_zero: 44.8
+    re_lp_gt_sj: false
+    re_sj_minus_lp_rho: 0.016
+    ner_sj_rho_3seed_mean: 0.381
+    ner_sj_rho_3seed_sd: 0.032
+    re_sj_rho_3seed_mean: 0.261
+    re_sj_rho_3seed_sd: 0.012
+    re_lp_rho_3seed_mean: 0.268
+    re_lp_rho_3seed_sd: 0.038
+    fisher_combined_p_sj_gt_lp_ner: 0.028
+    fisher_combined_p_sj_gt_lp_ner_significant: true
+    fisher_combined_p_lp_gt_sj_re: 0.085
+    fisher_combined_p_lp_gt_sj_re_significant: false
+    selection_f1_greedy: 0.661
+    selection_f1_logprob: 0.654
+    selection_f1_sj: 0.651
+    selection_f1_oracle: 0.779
+    degeneracy_rate_ner: 0.23
+    n_instances: 529
+    parse_rate: 1.0
+  result_rationale: 'Seed=789 的 NER 结果高度稳定（SJ ρ=0.372 vs 已有 seeds 0.383/0.384/0.360，3-seed
+    SD=0.032 落入 median 范围 [0.02, 0.045]）。关键 median 特征在 RE：seed 789 上 SJ ρ=0.258 略高于
+    LP ρ=0.242，打破了 seeds 42/123 上 LP>SJ 的 pattern（seed42: LP 0.267 > SJ 0.250; seed123:
+    LP 0.300 > SJ 0.283）。这使得 Fisher combined p for LP>SJ on RE = 0.085（不显著）。翻转原因：RE
+    的 zero-F1 rate 在不同 seeds 间波动（43-45%），seed=789 恰好有较少的 ''complete failure'' instances
+    进入 high-LP bin，削弱了 LP 的 binary classification 优势。NER 上 SJ>LP 的 Fisher p=0.028
+    仍然显著，支撑 ''structural signals dominate for NER'' 的结论。但 RE signal ranking 的不稳定性要求将
+    ''LP>SJ for RE'' 从 ''definitive finding'' 降级为 ''tendency across most seeds''。'
+  tables:
+  - name: 'Table: 3-Seed SciERC NER ρ Stability'
+    columns:
+    - Signal
+    - Seed 42
+    - Seed 123
+    - Seed 789
+    - Mean
+    - SD
+    rows:
+    - - SJ
+      - '0.383'
+      - '0.384'
+      - '0.372'
+      - '0.381'
+      - '0.032'
+    - - FK
+      - '0.259'
+      - '0.266'
+      - '0.258'
+      - '0.261'
+      - '0.004'
+    - - LP
+      - '0.205'
+      - '0.226'
+      - '0.218'
+      - '0.216'
+      - '0.011'
+    - - VC
+      - '0.379'
+      - '0.407'
+      - '0.388'
+      - '0.391'
+      - '0.014'
+    - - EM
+      - '0.295'
+      - '0.299'
+      - '0.305'
+      - '0.300'
+      - '0.005'
+  - name: 'Table: 3-Seed SciERC RE ρ — LP vs SJ Ranking'
+    columns:
+    - Signal
+    - Seed 42
+    - Seed 123
+    - Seed 789
+    - Mean
+    - SD
+    rows:
+    - - LP
+      - '0.267'
+      - '0.300'
+      - '0.242'
+      - '0.270'
+      - '0.029'
+    - - SJ
+      - '0.250'
+      - '0.283'
+      - '0.258'
+      - '0.264'
+      - '0.017'
+    - - LP>SJ?
+      - Yes (+0.017)
+      - Yes (+0.017)
+      - No (-0.016)
+      - —
+      - —
+  - name: 'Table: Fisher Combined p-values (3 seeds)'
+    columns:
+    - Hypothesis
+    - Fisher χ²
+    - df
+    - p
+    - Significant?
+    rows:
+    - - 'NER: SJ > LP'
+      - '14.2'
+      - '6'
+      - '0.028'
+      - Yes (p<0.05)
+    - - 'RE: LP > SJ'
+      - '10.8'
+      - '6'
+      - '0.085'
+      - 'No'
+  figures_description:
+  - 'Forest plot: per-seed ρ estimates with 95% bootstrap CI for SJ and LP, NER and
+    RE separately. NER CIs non-overlapping (SJ > LP clear). RE CIs overlapping in
+    seed 789.'
+  analysis: 第3个 seed 确认 NER 结论完全稳定（SJ > LP, Fisher p=0.028）。RE 上 LP>SJ 的 ranking 在
+    seed 789 翻转（SJ 0.258 > LP 0.242），使得 3-seed Fisher p=0.085 未达显著水平。这是 median tier
+    的核心特征之一：RE signal ranking 不够 robust 以做 definitive claim。Paper 中需表述为 'LP tends
+    to outperform structural signals on RE (2/3 seeds), likely due to binary dominance
+    mechanism, though this advantage does not reach statistical significance across
+    all random seeds (Fisher p=0.085).' Primary claims（capability trap、NER structural>surface、selection
+    fails）在 3-seed 下完全稳定。
+- name: lora_rank8_ablation
+  plan_id: exp-023
+  description: LoRA rank=8 (vs baseline rank=16) fine-tune on SciERC + N=8 inference.
+    Tests fine-tuning intensity vs capability as degeneracy driver.
+  expected_results:
+    train_loss_5epoch: 0.095
+    eval_loss_5epoch: 0.105
+    ner_greedy_f1: 0.641
+    ner_oracle_f1: 0.782
+    ner_headroom_pp: 14.1
+    degeneracy_rate_r8: 0.12
+    degeneracy_rate_r16_baseline: 0.21
+    degeneracy_delta_pp: 9.0
+    ner_sj_rho_full: 0.365
+    ner_fk_rho_full: 0.27
+    ner_logprob_rho_full: 0.195
+    ner_voting_conf_rho_full: 0.39
+    ner_sj_auroc: 0.69
+    selection_f1_greedy_r8: 0.641
+    selection_f1_logprob_r8: 0.644
+    selection_f1_sj_r8: 0.642
+    selection_f1_oracle_r8: 0.782
+    selection_gap_logprob_minus_greedy_pp: 0.3
+    lp_within_instance_range_median_r8: 0.048
+    lp_tied_fraction_r8: 0.14
+    re_greedy_f1: 0.385
+    re_oracle_f1: 0.568
+    re_degeneracy_rate_r8: 0.08
+    re_sample_f1_pct_zero: 48.2
+    greedy_f1_delta_r8_minus_r16: -0.022
+    sj_rho_delta_r8_minus_r16: 0.005
+    headroom_delta_r8_minus_r16_pp: 3.0
+    non_degen_selection_gap_pp: 2.1
+    n_instances: 529
+    parse_rate: 0.995
+  result_rationale: LoRA rank=8 的参数容量是 rank=16 的一半，模型 fine-tuning 强度更低。这导致两个效果：(1)
+    greedy F1 略降（0.641 vs 0.663，-2.2pp），因为模型对 SciERC schema 的记忆不如 rank=16 完整；(2) 输出多样性更高，因为
+    lower-rank adaptation 保留了更多 base model 的 stochastic behavior，degeneracy 从 21%
+    降到 12%（-9pp，落入 median 范围 [5,15]）。关键逻辑：如果 degeneracy 纯粹由 capability 驱动，则 F1 降低应该已经自动解释
+    degeneracy 下降（按 capability trap curve：F1 从 0.66 降到 0.64 预测 degeneracy 从 21% 降到
+    ~19%，仅 -2pp）。但实际下降 9pp >> 2pp 的 capability-predicted 下降，说明 fine-tuning intensity
+    本身是 independent contributing factor。Median 解读：capability trap 解释了约 22% 的 degeneracy
+    reduction（2/9），fine-tuning intensity 解释了剩余 78%。但 capability 仍是跨 dataset 的 primary
+    driver（CoNLL 58% vs SciERC 21% 的差异远大于 rank ablation 的 9pp）。LP compression 也略微缓解（range
+    median 0.048 vs 0.041），因为 lower fine-tuning 保留了更多 generation-level diversity。Selection
+    仍不显著（+0.3pp），因为即使 degeneracy 降低，LP compression 仍存在。
+  tables:
+  - name: 'Table: LoRA Rank Ablation — Degeneracy & Performance'
+    columns:
+    - Metric
+    - Rank=16 (baseline)
+    - Rank=8
+    - Δ
+    rows:
+    - - NER Greedy F1
+      - '0.663'
+      - '0.641'
+      - -2.2pp
+    - - NER Oracle F1
+      - '0.776'
+      - '0.782'
+      - +0.6pp
+    - - NER Headroom
+      - 11.3pp
+      - 14.1pp
+      - +2.8pp
+    - - NER Degeneracy %
+      - 21%
+      - 12%
+      - -9pp
+    - - LP range (median nats)
+      - '0.041'
+      - '0.048'
+      - +17%
+    - - LP tied fraction
+      - '0.21'
+      - '0.14'
+      - -7pp
+    - - NER SJ ρ
+      - '0.383'
+      - '0.365'
+      - '-0.018'
+    - - Best selection F1
+      - 0.650 (LP)
+      - 0.644 (LP)
+      - -0.6pp
+  - name: 'Table: Degeneracy Attribution (NER)'
+    columns:
+    - Driver
+    - Predicted Δ degen
+    - Actual Δ degen
+    - Attribution %
+    rows:
+    - - Capability (F1 drop 0.66→0.64)
+      - -2pp
+      - —
+      - 22%
+    - - Fine-tuning intensity (rank 16→8)
+      - —
+      - -7pp
+      - 78%
+    - - Total observed
+      - —
+      - -9pp
+      - 100%
+  - name: 'Table: Non-degenerate Subset Analysis (rank=8)'
+    columns:
+    - Subset
+    - n
+    - LP selection gap
+    - SJ selection gap
+    rows:
+    - - All instances
+      - '529'
+      - +0.3pp
+      - +0.1pp
+    - - Non-degenerate only
+      - '465'
+      - +2.1pp
+      - +1.5pp
+    - - Non-degen, rank=16 baseline
+      - '418'
+      - +2.9pp (p=0.01)
+      - +1.8pp
+  figures_description:
+  - 'Paired bar chart: degeneracy rate by rank (8 vs 16) and dataset (SciERC NER,
+    SciERC RE). Clear reduction at rank=8.'
+  - 'Scatter: per-instance F1 variance (rank=8 vs rank=16). Rank=8 shows wider spread,
+    especially in mid-F1 range.'
+  analysis: LoRA rank=8 ablation 是 median tier 的 defining experiment。Degeneracy 下降
+    9pp（从 21% 到 12%）中，capability drop（F1 -2.2pp）仅能解释约 2pp，剩余 7pp 必须归因于 fine-tuning
+    intensity itself。这迫使论文承认 capability trap 不是 sole driver——fine-tuning regime 是
+    independent contributing factor。但关键上下文是：跨 dataset 的 degeneracy variation（CoNLL
+    58% vs SciERC 21% = 37pp range）远大于 rank ablation 的 9pp，所以 capability 仍是 'dominant
+    factor'。Paper framing 调整为：'Output convergence is driven by model capability (primary,
+    explaining cross-dataset variance) AND fine-tuning intensity (secondary, contributing
+    5-15pp within-dataset). The capability trap remains the unifying explanation for
+    why test-time scaling provides diminishing returns as model quality improves.'
+    Selection 仍然 fails 即使 degeneracy 降低，因为 LP compression 是 independent bottleneck（不随
+    LoRA rank 改变）。
+- name: claim_audit
+  plan_id: exp-024
+  description: Cross-chapter numerical consistency audit. 检查所有定量 claims vs source
+    data。
+  expected_results:
+    contradictions_found: 3
+    contradiction_1:
+      location: Discussion vs Limitations
+      issue: Discussion says '+0.1pp over single-sample', Limitations says '+0.4pp
+        over greedy'
+      resolution: 'Both refer to different comparisons: +0.1pp = best signal vs random
+        single, +0.4pp (incorrect) should be +0.6pp = LP vs greedy (from exp_016_rerun_1024).
+        Standardize to LP vs greedy +0.6pp throughout.'
+    contradiction_2:
+      location: Abstract vs Results
+      issue: Abstract claims 'AUROC up to 0.82' but Results table shows max 0.749
+        (EM on NER)
+      resolution: '0.82 comes from CoNLL (SJ AUROC=0.8008 in exp_002, EM AUROC=0.8156).
+        Must specify which dataset in Abstract or use max across all: CoNLL EM AUROC
+        0.82.'
+    contradiction_3:
+      location: Intro vs Section 5
+      issue: Intro claims '21-58% of instances produce identical F1' — percentages
+        are from 1024-token data but cited numbers use mixed sources
+      resolution: 'Verify degeneracy rates from consistent 1024-token runs. SciERC
+        (1024): ~21% (from exp_012_rerun_1024 tied fraction). CoNLL: derive from exp_002
+        data.'
+    minor_issues_found: 4
+    total_resolution_time_hours: 2
+  result_rationale: Numerical inconsistencies 是 paper 在多轮实验迭代中积累的必然结果。本项目经历了 512→1024
+    token 数据迁移、gold-empty filtering pipeline 修正、多 seed 数值更新等，每次都有部分 claims 未同步更新。Median
+    tier 假设找到 3 个显著矛盾（realistic for a ~8-page paper with dense quantitative claims）而非
+    catastrophic level（>5）的问题。这些都是 presentational issues 而非 methodological problems——底层实验数据一致。
+  tables:
+  - name: 'Table: Claim Audit Summary'
+    columns:
+    - Issue Type
+    - Count
+    - Severity
+    rows:
+    - - Major numerical contradiction
+      - '3'
+      - Must fix before submission
+    - - Minor rounding/precision inconsistency
+      - '4'
+      - Fix in final pass
+    - - Stale reference to old experiment
+      - '2'
+      - Update citation
+    - - Missing CI/p-value for claimed significance
+      - '1'
+      - Add from bootstrap data
+  figures_description: []
+  analysis: Audit 发现 3 个需要修正的矛盾，均为 presentation-level 问题。最关键的是 Discussion/Limitations
+    中对 selection gap magnitude 的不一致引用——这在 median tier 下尤其敏感，因为 adjusted claims 要求精确措辞（'predominantly
+    fail' 而非 'universally fail'）。所有矛盾均可通过引用正确的 source experiment（exp_012_rerun_1024
+    为 SciERC 的 canonical source，exp_002 为 CoNLL）解决。无 methodological 问题。建议统一使用 1024-token
+    pipeline 数据作为 paper 中所有 SciERC metrics 的来源。

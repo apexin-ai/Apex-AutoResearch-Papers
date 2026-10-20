@@ -1,0 +1,70 @@
+{
+  "within_dataset_cv": {
+    "fewnerd": {
+      "auroc_mean": 0.9204,
+      "auroc_std": 0.0006,
+      "auroc_per_seed": [0.9213, 0.9200, 0.9200],
+      "accuracy_mean": 0.9064,
+      "f1_mean": 0.9372
+    },
+    "conll": {
+      "auroc_mean": 0.9567,
+      "auroc_std": 0.0009,
+      "auroc_per_seed": [0.9578, 0.9568, 0.9555],
+      "accuracy_mean": 0.9576,
+      "f1_mean": 0.9762
+    }
+  },
+  "leave_one_dataset_out": {
+    "fewnerd": {
+      "train_on": ["conll"],
+      "test_on": "fewnerd",
+      "n_train": 16683,
+      "n_test": 43303,
+      "auroc_mean": 0.5594,
+      "auroc_std": 0.0
+    },
+    "conll": {
+      "train_on": ["fewnerd"],
+      "test_on": "conll",
+      "n_train": 43303,
+      "n_test": 16683,
+      "auroc_mean": 0.6706,
+      "auroc_std": 0.0
+    }
+  },
+  "overall_within_auroc": 0.9386,
+  "overall_lodo_auroc": 0.6150,
+  "baselines": {
+    "random": 0.50,
+    "esj_prompt_based": 0.51,
+    "mv_agreement": 0.87
+  },
+  "extraction_stats": {
+    "fewnerd": {
+      "n_instances": 2000,
+      "n_samples": 8,
+      "n_entities": 43303,
+      "positive_rate": 0.735,
+      "extraction_time_s": 595
+    },
+    "conll": {
+      "n_instances": 1000,
+      "n_samples": 8,
+      "n_entities": 16683,
+      "positive_rate": 0.885,
+      "extraction_time_s": 301
+    }
+  },
+  "interpretation": "CONFIRMED: entity quality info strongly encoded in hidden states (probe AUROC 0.92-0.96) but inaccessible via prompting (ESJ AUROC 0.51). Single-sample probe exceeds multi-sample MV (0.87). Cross-dataset transfer weaker (LODO 0.62), suggesting domain-specific encoding.",
+  "protocol": {
+    "probe": "LogisticRegression(C=1.0, max_iter=1000)",
+    "cv_folds": 5,
+    "seeds": [42, 123, 456],
+    "scaler": "StandardScaler",
+    "label": "binary: in_gold (1) vs not_in_gold (0)",
+    "feature": "mean-pool hidden states at entity span tokens (last layer)",
+    "model": "Qwen3-8B fine-tuned (merged checkpoints)"
+  },
+  "note": "SciERC not yet included (checkpoint not available on 5090-c); results from 2 of 3 datasets"
+}

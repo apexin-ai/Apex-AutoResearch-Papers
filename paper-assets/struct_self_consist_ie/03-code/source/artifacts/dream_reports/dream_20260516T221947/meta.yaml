@@ -1,0 +1,46 @@
+dream_id: dream_20260516T221947
+project: struct_self_consist_ie
+venue: ''
+focus: 'Verify whether the degeneracy-gating causal chain (3 datasets: CoNLL 58%→fail,
+  SciERC 21%→weak, Few-NERD 10%→strong LP selection) plus cross-dataset "correlation≠selection"
+  validation pushes the paper from Findings 3.0 to Main Conference ≥3.5. Key improvements
+  since Dream #2: (1) predictive mechanism with 3 data points, (2) LP significance
+  on Few-NERD p<0.001, (3) bootstrap significance tests, (4) regime-dependent claim
+  properly qualified, (5) Fomicheva 2020 + literature integration, (6) all numerical
+  corrections verified.'
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions: {}
+scenarios:
+- tier: best
+  pdf_path: ''
+  imagined_experiments: []
+  review_report: ''
+  error: 'phase1: Phase 1 failed: [Errno 7] Argument list too long: ''/usr/bin/claude'''
+- tier: median
+  pdf_path: ''
+  imagined_experiments: []
+  review_report: ''
+  error: 'phase1: Phase 1 failed: [Errno 7] Argument list too long: ''/usr/bin/claude'''
+- tier: worst
+  pdf_path: ''
+  imagined_experiments: []
+  review_report: ''
+  error: 'phase1: Phase 1 failed: [Errno 7] Argument list too long: ''/usr/bin/claude'''
+errors:
+  best:
+    phase2: 'phase1: Phase 1 failed: [Errno 7] Argument list too long: ''/usr/bin/claude'''
+    write: null
+    review: null
+  median:
+    phase2: 'phase1: Phase 1 failed: [Errno 7] Argument list too long: ''/usr/bin/claude'''
+    write: null
+    review: null
+  worst:
+    phase2: 'phase1: Phase 1 failed: [Errno 7] Argument list too long: ''/usr/bin/claude'''
+    write: null
+    review: null
+score_anomaly: ''
+created_at: '2026-05-16T22:19:58+00:00'

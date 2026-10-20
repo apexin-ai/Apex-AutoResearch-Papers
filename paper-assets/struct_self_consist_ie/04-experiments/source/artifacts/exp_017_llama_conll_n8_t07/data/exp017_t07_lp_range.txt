@@ -1,0 +1,5 @@
+LP Range T=0.7: median=1.15e-05, tied(eps=0.05)=95.79%
+LP Range T=1.0: median=2.28e-04, tied(eps=0.05)=86.76%
+Signals (rho/AUROC): SJ=0.3934/0.6506, FK=0.3879/0.6488, VC=0.3750/0.6551, EM=0.3888/0.6494, LP=0.2951/0.7509
+Selection F1: greedy=0.9242, oracle=0.9391, SJ=0.9247, FK=0.9254, VC=0.9264, EM=0.9255, LP=0.9248
+Full JSON: autodl-5090:/root/autodl-tmp/struct_self_consist_ie/output/analysis_round8/exp017_t07_lp_range.json

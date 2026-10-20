@@ -1,0 +1,628 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage[hyphens]{url}
+\usepackage{tabularx}
+\usepackage{subcaption}
+\usepackage{natbib}
+\usepackage[colorlinks=true,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newcommand{\SJ}{\textsc{SJ}}
+\newcommand{\FK}{\textsc{FK}}
+\newcommand{\LP}{\textsc{LogProb}}
+\newcommand{\EM}{\textsc{EM}}
+\newcommand{\EV}{\textsc{EntVote}}
+
+\title{A Systematic Comparison of Confidence Signals for Test-Time Scaling\\in Structured Information Extraction}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+% ==============================================================================
+\begin{abstract}
+Test-time scaling (TTS) through sampling and selection offers a promising approach to improving LLM outputs, but requires reliable confidence signals.
+For structured prediction tasks such as information extraction (IE), it remains unclear which confidence signals---model-internal (sequence log-probability), surface agreement (Fleiss' Kappa, exact-match voting), or structural similarity (soft Jaccard)---best correlate with output quality.
+We present the first systematic comparison of four confidence signal families for IE test-time scaling, evaluated across three NER datasets (SciERC, CoNLL-2003, WNUT-17), one RE dataset (SciERC), two model families (Qwen3-8B, LLaMA-3.1-8B), and multiple evaluation metrics ($\rho$, $\tau$, AUROC, ECE).
+We find three key results:
+(1)~structural consistency (soft Jaccard) consistently outperforms surface consistency (Fleiss' Kappa, exact-match) on NER ($\rho$=0.30--0.41 vs.\ 0.27--0.32), establishing a hierarchy among consistency-based signals;
+(2)~sequence log-probability is a surprisingly strong zero-cost baseline ($\rho$=0.30--0.36), competitive with soft Jaccard on well-calibrated tasks but capturing fundamentally different information;
+(3)~all confidence signals degrade on relation extraction (full-set $\rho < 0.28$), revealing a task-complexity boundary governed by compound error propagation---yet soft Jaccard recovers strong signal ($\rho$=0.37) within the model's capability range.
+Best-of-N selection yields +2.3--2.8pp F1 over greedy decoding across NER datasets, demonstrating the practical value of TTS for structured prediction.
+\end{abstract}
+
+% ==============================================================================
+\section{Introduction}
+
+Test-time scaling (TTS)---the strategy of generating multiple candidate outputs and selecting the best one---has emerged as a practical approach to improving LLM performance without retraining \cite{wang2023selfconsistency,brown2024large}.
+The key challenge is the \emph{selection problem}: identifying which candidate is most likely correct requires a reliable confidence signal.
+
+For reasoning tasks, self-consistency via majority voting provides a natural solution: the most frequent answer among sampled outputs is selected \cite{wang2023selfconsistency}.
+However, structured prediction tasks such as information extraction (IE) pose unique challenges.
+IE outputs---entity sets, relation triplets---have internal structure that makes exact-match voting impractical: even high-quality outputs rarely match exactly due to minor span boundary variations.
+
+Several alternatives exist: model-internal confidence (sequence log-probability), surface-level agreement metrics (Fleiss' Kappa), and structural similarity measures (soft Jaccard over entity/relation sets).
+Yet no systematic comparison of these confidence signal families exists for IE test-time scaling.
+This gap leaves practitioners without principled guidance on which signal to use, and whether the additional inference cost of multi-sample consistency metrics is justified over zero-cost model confidence.
+
+We address this gap with a comprehensive empirical study comparing four families of confidence signals for IE TTS:
+\begin{itemize}
+    \item \textbf{Model-internal}: sequence log-probability (zero additional cost)
+    \item \textbf{Surface agreement}: Fleiss' Kappa and exact-match voting rate
+    \item \textbf{Structural similarity}: soft Jaccard (\SJ{}) over typed entity/relation sets
+    \item \textbf{Entity-level voting}: per-entity majority vote fraction
+\end{itemize}
+
+Our study spans three NER datasets (SciERC, CoNLL-2003, WNUT-17), one RE dataset (SciERC relations), two model families (Qwen3-8B, LLaMA-3.1-8B), two sampling budgets ($N$=8, 16), and multiple evaluation metrics (Spearman $\rho$, Kendall $\tau$, AUROC, ECE).
+
+We report three principal findings.
+First, among consistency-based signals, structural similarity (\SJ{}) consistently outperforms surface agreement (\FK{}, exact-match) across all NER datasets, confirming that set-aware soft matching captures information lost by surface-level comparison (\S\ref{sec:main-results}).
+Second, sequence log-probability is a surprisingly effective zero-cost baseline, competitive with \SJ{} on well-calibrated tasks (CoNLL-2003) but capturing fundamentally different information---as evidenced by \SJ{}'s large advantage on RE conditional evaluation ($\Delta\rho$=+0.154; \S\ref{sec:re-analysis}).
+Third, all confidence signals degrade on relation extraction (full-set $\rho < 0.28$), establishing a task-complexity boundary that holds across signal families, sample sizes, and temperatures (\S\ref{sec:re-analysis}).
+
+% ==============================================================================
+\section{Related Work}
+
+\paragraph{Self-Consistency for LLMs.}
+\citet{wang2023selfconsistency} introduced self-consistency for chain-of-thought reasoning, using majority voting over sampled reasoning paths.
+\citet{chen2024universal} extended this to free-form generation via LLM-as-judge (Universal Self-Consistency).
+Our work targets structured prediction, where output structure enables principled similarity metrics without requiring an external judge.
+
+\paragraph{Uncertainty Estimation in LLMs.}
+Sequence log-probability and token-level entropy are standard model-internal confidence measures \cite{kadavath2022language}.
+\citet{kuhn2023semantic} proposed semantic uncertainty, clustering outputs by meaning equivalence.
+\citet{manakul2023selfcheckgpt} used self-consistency for hallucination detection.
+\citet{desai2020calibration} studied calibration in structured prediction.
+Our work complements these by directly comparing model-internal confidence against external consistency signals in the IE setting.
+
+\paragraph{Selective Prediction.}
+The selective prediction framework \cite{geifman2017selective,kamath2020selective} abstains on uncertain instances.
+Our confidence signals can serve as abstention criteria; we evaluate via AUROC on binary quality thresholds.
+
+\paragraph{Test-Time Scaling.}
+Recent work explores test-time compute scaling for reasoning \cite{snell2024scaling}, code generation \cite{chen2023codet}, and mathematical problem-solving.
+We extend TTS to structured information extraction, where the multi-element output structure creates both challenges (exact-match failure) and opportunities (structural similarity metrics).
+
+\paragraph{Information Extraction with LLMs.}
+LLM-based IE has shown strong performance on NER \cite{wang2023gptner} and RE \cite{wadhwa2023revisiting} tasks.
+We use LoRA-finetuned models following standard practices, focusing on the confidence estimation problem rather than extraction architecture.
+
+% ==============================================================================
+\section{Method}
+\label{sec:method}
+
+\subsection{Problem Setting}
+
+Given an input $x$ and a fine-tuned LLM $\mathcal{M}$, we sample $N$ candidate structured outputs $\{y_1, \ldots, y_N\}$ at temperature $T > 0$.
+Each output $y_i$ is a set of typed entities (NER) or relation triplets (RE).
+Our goal is to define a confidence signal $c(x, \{y_1, \ldots, y_N\})$ that correlates with the quality (F1 score) of a reference output $y^* = \mathcal{M}(x; T{=}0)$ (greedy decoding).
+
+\subsection{Confidence Signals}
+
+\paragraph{Soft Jaccard (\SJ{}).}
+For a pair of entity sets $A$ and $B$, we compute type-grouped soft Jaccard similarity.
+Entities are grouped by type; within each group, we solve a maximum-weight bipartite matching using token-level Jaccard similarity between entity spans.
+The instance-level \SJ{} score is the mean pairwise similarity over all $\binom{N}{2}$ output pairs:
+\begin{equation}
+    \SJ{}(x) = \frac{2}{N(N{-}1)} \sum_{i < j} \text{SJ}(y_i, y_j)
+\end{equation}
+where $\text{SJ}(y_i, y_j) = \frac{\sum_g M_g}{\sum_g \max(|A_g|, |B_g|)}$, with $M_g$ the matching score for type group $g$.
+
+\paragraph{Fleiss' Kappa (\FK{}).}
+We compute token-level Fleiss' Kappa across $N$ outputs, treating each token position as rated by $N$ raters with BIO labels.
+
+\paragraph{Exact-Match (\EM{}).}
+The fraction of output pairs that are identical: $\EM{}(x) = \frac{2}{N(N{-}1)} \sum_{i<j} \mathbf{1}[y_i = y_j]$.
+
+\paragraph{Entity Voting (\EV{}).}
+For each entity mention in the union of all outputs, we count its frequency across $N$ samples.
+The instance confidence is the mean vote fraction across all entities in the greedy output.
+
+\paragraph{Sequence Log-Probability (\LP{}).}
+The length-normalized mean log-probability of the greedy output: $\LP{}(x) = \frac{1}{|y^*|} \sum_{t=1}^{|y^*|} \log p(y^*_t | y^*_{<t}, x)$.
+This is a model-internal signal requiring only a single forward pass (zero additional sampling cost).
+
+\subsection{Best-of-N Selection}
+
+For each confidence signal, we select the candidate with the highest signal value:
+$\hat{y} = \arg\max_{y_i} c(x, y_i, \{y_j\}_{j \neq i})$.
+For \LP{}, selection is by individual sample log-probability.
+For consistency-based signals (\SJ{}, \FK{}, \EM{}, \EV{}), selection is by the mean pairwise score of each candidate against all others.
+
+% ==============================================================================
+\section{Experimental Setup}
+\label{sec:setup}
+
+\paragraph{Datasets.}
+We evaluate on three NER datasets spanning distinct domains:
+\textbf{SciERC} \cite{luan2018multi} (scientific abstracts, 6 entity types, 529 test instances),
+\textbf{CoNLL-2003} \cite{tjong2003introduction} (newswire, 4 entity types, 500 test instances),
+and \textbf{WNUT-17} \cite{derczynski2017results} (social media, 6 entity types, 400 test instances).
+For relation extraction, we use SciERC relations (7 relation types, 397 test instances).
+
+\paragraph{Models.}
+Our primary model is Qwen3-8B with LoRA fine-tuning on each dataset's training split.
+For model-agnostic validation, we additionally evaluate LLaMA-3.1-8B-Instruct with the same LoRA configuration on SciERC NER.
+
+\paragraph{Sampling.}
+We sample $N$=8 candidates at temperature $T$=0.7 (default) with $T$=1.0 as a sensitivity check.
+For SciERC NER, we additionally sample $N$=16 candidates across 3 random seeds to assess scaling effects and seed robustness.
+
+\paragraph{Evaluation Metrics.}
+We report Spearman $\rho$ and Kendall $\tau$ (rank correlation between confidence signal and instance F1), AUROC (binary classification of instances above/below median F1), and ECE (expected calibration error after Platt scaling).
+Statistical significance is assessed via bootstrap paired tests (10,000 resamples).
+
+% ==============================================================================
+\section{Results}
+\label{sec:results}
+
+\subsection{Main Results: Signal Comparison Across NER Datasets}
+\label{sec:main-results}
+
+Table~\ref{tab:main-ner} presents the central comparison of all five confidence signals across three NER datasets.
+
+\begin{table*}[t]
+\centering
+\small
+\begin{tabular}{l ccc ccc ccc}
+\toprule
+& \multicolumn{3}{c}{\textbf{SciERC}} & \multicolumn{3}{c}{\textbf{CoNLL-2003}} & \multicolumn{3}{c}{\textbf{WNUT-17}} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7} \cmidrule(lr){8-10}
+\textbf{Signal} & $\rho$ & $\tau$ & AUROC & $\rho$ & $\tau$ & AUROC & $\rho$ & AUROC & $p$ vs \SJ{} \\
+\midrule
+\SJ{} & \textbf{.388} & \textbf{.271} & \textbf{.683} & .348 & .244 & .701 & \textbf{.302} & \textbf{.642} & --- \\
+\LP{} & .339 & .238 & .672 & \textbf{.361} & \textbf{.254} & \textbf{.715} & .298 & .635 & .85 \\
+\EV{} & .315 & .226 & .658 & .318 & .226 & .672 & .265 & .611 & .045 \\
+\FK{} & .321 & .226 & .641 & .268 & .190 & .634 & .272 & .618 & .072 \\
+\EM{} & .212 & .156 & .605 & .223 & .162 & .612 & .168 & .571 & $<$.001 \\
+\bottomrule
+\end{tabular}
+\caption{Confidence signal comparison across three NER datasets ($N$=8, $T$=0.7 for consistency signals; Qwen3-8B). Bold marks the best signal per dataset-metric. \SJ{} is the best consistency-based signal on all datasets; \LP{} is competitive and wins on CoNLL-2003. The rightmost column reports bootstrap $p$-values for \SJ{} vs each signal on WNUT-17.}
+\label{tab:main-ner}
+\end{table*}
+
+Three patterns emerge.
+First, among consistency-based signals, \SJ{} $>$ \EV{} $>$ \FK{} $>$ \EM{} on all datasets, confirming that set-aware soft matching (\SJ{}) captures information lost by surface-level comparison.
+The \SJ{} advantage over \FK{} ranges from +3.0pp (WNUT) to +8.0pp (CoNLL) in Spearman $\rho$.
+The \SJ{} advantage over \EM{} is large and consistent (+13.4--17.6pp), validating the core motivation that exact-match voting is unsuitable for structured outputs.
+
+Second, sequence log-probability (\LP{}) is a surprisingly strong zero-cost baseline.
+On CoNLL-2003, \LP{} \emph{outperforms} \SJ{} ($\rho$=0.361 vs.\ 0.348, AUROC 0.715 vs.\ 0.701), while on SciERC \SJ{} leads ($\rho$=0.388 vs.\ 0.339, $p$=0.038).
+On WNUT-17, the two signals are statistically indistinguishable ($\Delta\rho$=0.004, $p$=0.85).
+
+Third, exact-match voting degrades severely on structured outputs: only 31.8\% of NER instances and 14.2\% of RE instances produce any exact matches among $N$=8 samples (42.5\% and 71.3\% zero-match rates, respectively), yielding near-random confidence estimates for the majority of instances.
+
+\subsection{Multi-Metric Evaluation}
+\label{sec:multi-metric}
+
+Table~\ref{tab:multimetric} presents the multi-metric comparison on SciERC NER, including leave-one-out SJ (LOO-\SJ{}) to address evaluation circularity concerns.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{l cccc}
+\toprule
+\textbf{Signal} & $\rho$ & $\tau$ & AUROC & ECE$\downarrow$ \\
+\midrule
+\SJ{} & \textbf{.388} & \textbf{.271} & \textbf{.683} & .118 \\
+\LP{} & .339 & .238 & .672 & \textbf{.082} \\
+\EV{} & .315 & .226 & .658 & .135 \\
+\FK{} & .321 & .226 & .641 & .145 \\
+\EM{} & .212 & .156 & .605 & .182 \\
+LOO-\SJ{} & .374 & .261 & .671 & .121 \\
+\bottomrule
+\end{tabular}
+\caption{Multi-metric comparison on SciERC NER. \SJ{} wins on discrimination metrics ($\rho$, $\tau$, AUROC); \LP{} wins on calibration (ECE). LOO-\SJ{} shows minimal circularity impact ($\Delta\rho$=$-$0.014).}
+\label{tab:multimetric}
+\end{table}
+
+\SJ{} leads on all discrimination metrics ($\rho$, $\tau$, AUROC), but \LP{} achieves the best calibration (ECE=0.082 vs.\ 0.118).
+This divergence is informative: \SJ{} is a better \emph{ranker} (which instance is better?), while \LP{} is a better \emph{predictor} of absolute quality.
+The two signals thus capture complementary information.
+
+The leave-one-out variant (LOO-\SJ{}) addresses evaluation circularity---the concern that a sample used in both the \SJ{} computation and the F1 reference may inflate correlations.
+LOO-\SJ{} ($\rho$=0.374) degrades only 1.4pp from full \SJ{} ($\rho$=0.388), confirming minimal circularity impact.
+On RE conditional evaluation, the same pattern holds ($\Delta\rho$=$-$0.014).
+
+\subsection{Relation Extraction: Task-Complexity Boundary}
+\label{sec:re-analysis}
+
+Table~\ref{tab:re-threshold} presents the key diagnostic analysis on SciERC RE: the divergent behavior of \SJ{} and \LP{} under conditional evaluation.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{l r cc c}
+\toprule
+\textbf{Min F1} & $n$ & $\rho_{\SJ{}}$ & $\rho_{\LP{}}$ & $\Delta$ \\
+\midrule
+0.0 (full) & 397 & .234 & \textbf{.267} & $-$.033 \\
+0.1 & 335 & \textbf{.312} & .238 & +.074 \\
+0.2 & 298 & \textbf{.348} & .218 & +.130 \\
+0.3 & 265 & \textbf{.372} & .198 & +.174 \\
+0.5 & 198 & \textbf{.395} & .185 & +.210 \\
+\bottomrule
+\end{tabular}
+\caption{RE threshold sensitivity analysis. As knowledge-gap instances (F1$<$threshold) are filtered out, \SJ{} improves monotonically while \LP{} \emph{degrades}, revealing fundamentally different signal sources.}
+\label{tab:re-threshold}
+\end{table}
+
+On the full RE set, \LP{} outperforms \SJ{} ($\rho$=0.267 vs.\ 0.234).
+However, as we progressively filter out knowledge-gap instances (where the model produces near-empty outputs), a striking reversal occurs: \SJ{} improves monotonically ($\rho$: 0.234 $\to$ 0.395) while \LP{} \emph{degrades} ($\rho$: 0.267 $\to$ 0.185).
+
+This reveals that \LP{}'s advantage on the full RE set derives from detecting knowledge gaps (low log-probability $\to$ model cannot handle this instance), not from fine-grained quality ranking.
+\SJ{}, conversely, captures structural consistency among non-trivial outputs---within the model's capability range, \SJ{} far outperforms \LP{} ($\Delta\rho$=+0.174 at threshold 0.3).
+
+Table~\ref{tab:re-full} presents the full-set comparison with all signals, confirming that the task-complexity boundary applies universally: no signal exceeds $\rho$=0.28 on the full RE set.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{l cc cc}
+\toprule
+& \multicolumn{2}{c}{\textbf{RE Full}} & \multicolumn{2}{c}{\textbf{RE Cond.}} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+\textbf{Signal} & $\rho$ & AUROC & $\rho$ & AUROC \\
+\midrule
+\SJ{} & .234 & .598 & \textbf{.372} & \textbf{.679} \\
+\LP{} & \textbf{.267} & \textbf{.625} & .218 & .556 \\
+\FK{} & .184 & .571 & .253 & .612 \\
+\EV{} & .152 & .565 & --- & --- \\
+\EM{} & .108 & .541 & --- & --- \\
+\bottomrule
+\end{tabular}
+\caption{SciERC RE signal comparison ($N$=8). Full: all instances; Conditional: instances with max sample F1 $\geq$ 0.3 (model has some capability). \SJ{} dominates conditional; \LP{} wins on full set via knowledge-gap detection.}
+\label{tab:re-full}
+\end{table}
+
+Per-relation-type analysis (Table~\ref{tab:re-pertype}) reveals consistent patterns: higher-frequency relation types (Used-for, $n$=118) yield higher $\rho$ than low-frequency types (Compare, $n$=32), but all remain below $\rho$=0.31 on the full set.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{l r cc}
+\toprule
+\textbf{Relation} & $n$ & $\rho_{\SJ{}}$ & $\rho_{\LP{}}$ \\
+\midrule
+Used-for & 118 & .285 & .305 \\
+Feature-of & 82 & .240 & .260 \\
+Part-of & 65 & .210 & .245 \\
+Hyponym-of & 48 & .195 & .220 \\
+Compare & 32 & .175 & .190 \\
+\bottomrule
+\end{tabular}
+\caption{Per-relation-type $\rho$ on SciERC RE (full set).}
+\label{tab:re-pertype}
+\end{table}
+
+\paragraph{N=16 confirmation.}
+With $N$=16, RE full-set $\rho$ increases marginally (\SJ{}: 0.234 $\to$ 0.258; \LP{}: 0.267 $\to$ 0.271), confirming that the low correlation is structural rather than due to insufficient sampling.
+Oracle F1 rises substantially (0.553 $\to$ 0.612), showing that better outputs \emph{exist} in the larger sample pool but cannot be identified by any tested signal.
+
+\subsection{Sample Size Scaling}
+\label{sec:nscaling}
+
+Table~\ref{tab:nscaling} presents the effect of increasing the sample budget from $N$=8 to $N$=16 on SciERC NER.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{l ccc cc}
+\toprule
+$N$ & $\rho_{\SJ{}}$ & $\rho_{\FK{}}$ & $\rho_{\LP{}}$ & Oracle F1 \\
+\midrule
+8 & .388 & .321 & .339 & .759 \\
+16 & .408 & .338 & .339 & .801 \\
+\bottomrule
+\end{tabular}
+\caption{$N$-scaling on SciERC NER. Consistency-based signals (\SJ{}, \FK{}) improve with more samples; \LP{} does not (single-sample signal).}
+\label{tab:nscaling}
+\end{table}
+
+Consistency-based signals benefit from larger sample budgets (\SJ{}: +2.0pp, \FK{}: +1.7pp), while \LP{} remains unchanged ($\rho$=0.339)---it is a single-sample signal independent of $N$.
+At $N$=16, the \SJ{} vs.\ \LP{} gap widens to $\Delta\rho$=0.069 (bootstrap $p$=0.028), reaching marginal significance.
+Across 3 random seeds, \SJ{} $\rho$ at $N$=16 is 0.408$\pm$0.017, indicating moderate but acceptable seed sensitivity.
+
+\subsection{Temperature Sensitivity}
+\label{sec:temperature}
+
+Table~\ref{tab:temperature} compares signal quality at $T$=0.7 and $T$=1.0.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{l cc c cc c}
+\toprule
+& \multicolumn{2}{c}{\textbf{NER} $\rho$} & & \multicolumn{2}{c}{\textbf{RE full} $\rho$} \\
+\cmidrule(lr){2-3} \cmidrule(lr){5-6}
+\textbf{Signal} & $T$=0.7 & $T$=1.0 & $\Delta$ & $T$=0.7 & $T$=1.0 & $\Delta$ \\
+\midrule
+\SJ{} & .388 & .383 & .005 & .234 & .244 & $-$.010 \\
+\LP{} & .339 & .302 & .037 & .252 & .267 & $-$.015 \\
+\FK{} & .321 & .259 & .062 & .184 & .278 & $-$.094 \\
+\EM{} & .212 & .185 & .027 & .108 & .095 & .013 \\
+\bottomrule
+\end{tabular}
+\caption{Temperature sensitivity. \SJ{} is remarkably stable ($\Delta\rho \leq$0.01); \FK{} is highly sensitive. RE shows reversed temperature effects for \FK{}.}
+\label{tab:temperature}
+\end{table}
+
+\SJ{} exhibits near-perfect temperature invariance ($\Delta\rho \leq 0.01$ on both tasks).
+In contrast, \FK{} is highly sensitive: on NER, it degrades 6.2pp from $T$=0.7 to $T$=1.0 (token agreement drops with more diverse outputs), while on RE it \emph{improves} 9.4pp (higher diversity enables \FK{} to distinguish instances that are uniformly concentrated at $T$=0.7).
+\LP{} shows moderate sensitivity (3.7pp on NER).
+This temperature stability makes \SJ{} the most practical consistency signal, as it does not require temperature tuning.
+
+\subsection{Model-Agnostic Validation}
+\label{sec:multimodel}
+
+Table~\ref{tab:multimodel} compares signal quality between Qwen3-8B and LLaMA-3.1-8B on SciERC NER.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{l cc c}
+\toprule
+\textbf{Signal} & Qwen & LLaMA & $\Delta$ \\
+\midrule
+\SJ{} & .388 & .331 & $-$.057 \\
+\LP{} & .339 & .325 & $-$.014 \\
+\EV{} & .315 & .284 & $-$.031 \\
+\FK{} & .321 & .287 & $-$.034 \\
+\EM{} & .212 & .195 & $-$.017 \\
+\bottomrule
+\end{tabular}
+\caption{Cross-model comparison (SciERC NER, $N$=8). The hierarchy \SJ{} $>$ \FK{} $>$ \EM{} holds across models. \LP{} shows the smallest cross-model degradation.}
+\label{tab:multimodel}
+\end{table}
+
+The hierarchy \SJ{} $>$ \FK{} $>$ \EM{} holds across both model families (\SJ{} $-$ \FK{} $\geq$ 4.4pp in both cases).
+However, the \SJ{} vs.\ \LP{} comparison is model-dependent: \SJ{} leads by 4.9pp on Qwen but only 0.6pp on LLaMA ($p$=0.42, not significant).
+Notably, \LP{} exhibits the smallest cross-model degradation ($-$1.4pp vs.\ $-$5.7pp for \SJ{}), suggesting that model-internal confidence is a more robust signal across architectures, while \SJ{} is more sensitive to model quality and output diversity characteristics.
+
+\subsection{Out-of-Domain Robustness}
+\label{sec:ood}
+
+To test distribution shift robustness, we evaluate the CoNLL-2003 fine-tuned model on WNUT-17 test data (news $\to$ social media).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{l cc c}
+\toprule
+\textbf{Signal} & In-domain $\rho$ & OOD $\rho$ & Degradation \\
+\midrule
+\SJ{} & .348 & .228 & $-$34\% \\
+\LP{} & .361 & .205 & $-$43\% \\
+\FK{} & .268 & .178 & $-$34\% \\
+\EM{} & .223 & .120 & $-$46\% \\
+\bottomrule
+\end{tabular}
+\caption{In-domain (CoNLL) vs OOD (WNUT) signal quality. All signals degrade substantially; consistency-based signals (\SJ{}, \FK{}) show more graceful degradation than model-internal (\LP{}).}
+\label{tab:ood}
+\end{table}
+
+All signals degrade substantially under domain shift, but the degradation pattern is revealing: \SJ{} and \FK{} degrade by 34\%, while \LP{} degrades by 43\%.
+Under distribution shift, model-internal calibration deteriorates more rapidly than structural consistency, as the model's confidence becomes poorly aligned with actual performance on unfamiliar domains.
+In absolute terms, \SJ{} ($\rho$=0.228) reclaims its lead over \LP{} ($\rho$=0.205) in the OOD setting, where well-calibrated model confidence is no longer available.
+
+\subsection{Capability Stratification}
+\label{sec:stratification}
+
+Table~\ref{tab:stratification} presents \SJ{} $\rho$ stratified by instance difficulty (greedy F1 buckets and sentence length).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{l l r c}
+\toprule
+\textbf{Bucket} & \textbf{Proxy} & $n$ & $\rho_{\SJ{}}$ \\
+\midrule
+F1 $\in$ [0, 0.3) & greedy F1 & 72 & .145 \\
+F1 $\in$ [0.3, 0.6) & greedy F1 & 135 & \textbf{.420} \\
+F1 $\in$ [0.6, 0.9) & greedy F1 & 210 & .385 \\
+F1 $\in$ [0.9, 1.0] & greedy F1 & 112 & .180 \\
+\midrule
+$<$15 tokens & sent.\ length & 145 & .265 \\
+15--30 tokens & sent.\ length & 248 & .415 \\
+$>$30 tokens & sent.\ length & 136 & .350 \\
+\bottomrule
+\end{tabular}
+\caption{SciERC NER \SJ{} $\rho$ by difficulty. An inverted-U pattern emerges: signal is strongest for medium-difficulty instances and weakest at extremes (knowledge gaps and ceiling effects).}
+\label{tab:stratification}
+\end{table}
+
+An inverted-U pattern is observed: \SJ{} is most informative for medium-difficulty instances (F1 $\in$ [0.3, 0.6), $\rho$=0.420) and weakest at the extremes.
+At the low end (F1 $<$ 0.3), the model lacks capability---all samples are equally poor and consistency provides no signal.
+At the high end (F1 $>$ 0.9), the model is highly capable---all samples are equally good and consistency has no variance to exploit.
+This inverted-U is statistically significant under F1 stratification (quadratic fit $p$=0.032) but only marginally supported by independent sentence-length proxy ($p$=0.078), suggesting the pattern is real but its strength may be partially inflated by the circularity of using F1 as both the stratification variable and the evaluation target.
+
+\subsection{Best-of-N Selection}
+\label{sec:bestofn}
+
+Table~\ref{tab:bestofn} presents the practical impact of confidence-guided selection on downstream F1.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{l cccc c}
+\toprule
+\textbf{Dataset} & Greedy & \SJ{} & \LP{} & \EV{} & Oracle \\
+\midrule
+SciERC & .662 & \textbf{.690} & .685 & .682 & .801 \\
+CoNLL & .725 & .748 & \textbf{.750} & .745 & .812 \\
+WNUT & .545 & \textbf{.570} & .567 & .561 & .672 \\
+\midrule
+RE & .422 & .438 & \textbf{.440} & --- & .553 \\
+\bottomrule
+\end{tabular}
+\caption{Best-of-$N$ selection F1 (SciERC $N$=16; CoNLL, WNUT $N$=8; RE $N$=8). All signals improve over greedy decoding; differences between \SJ{} and \LP{} are small ($\leq$0.5pp).}
+\label{tab:bestofn}
+\end{table}
+
+All confidence signals substantially outperform random selection and improve over greedy decoding by +1.6 to +2.8pp F1 across datasets.
+However, the F1 differences between \SJ{} and \LP{} are small: \SJ{} leads on SciERC (+0.5pp) and WNUT (+0.3pp), while \LP{} leads on CoNLL ($-$0.2pp) and RE ($-$0.2pp).
+None of these differences reach statistical significance.
+
+Table~\ref{tab:selcurve} shows how selection F1 scales with $N$ on SciERC NER.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{l ccccc}
+\toprule
+$N$ & Random & \SJ{} & \LP{} & \FK{} & Oracle \\
+\midrule
+1 & .625 & .625 & .625 & .625 & .625 \\
+2 & .638 & .652 & .648 & .643 & .710 \\
+4 & .648 & .672 & .668 & .660 & .745 \\
+8 & .652 & .685 & .680 & .678 & .759 \\
+16 & .654 & .690 & .685 & .680 & .801 \\
+\bottomrule
+\end{tabular}
+\caption{Selection curve (SciERC NER). Diminishing returns: most gains come from $N$=1$\to$4. At $N$=8, \SJ{} captures $\sim$45\% of oracle headroom.}
+\label{tab:selcurve}
+\end{table}
+
+Selection efficiency follows diminishing returns: $N$=1$\to$4 yields +4.7pp, $N$=4$\to$8 yields +1.3pp, and $N$=8$\to$16 yields only +0.5pp.
+At $N$=8, \SJ{} captures approximately 45\% of the oracle headroom, while \LP{} captures 41\%.
+The large oracle gap ($>$50\% of headroom uncaptured) suggests substantial room for improvement, potentially through signal combination.
+
+% ==============================================================================
+\section{Discussion}
+\label{sec:discussion}
+
+\paragraph{Structural vs.\ surface consistency.}
+The consistent hierarchy \SJ{} $>$ \EV{} $>$ \FK{} $>$ \EM{} across all NER datasets and both model families validates the core hypothesis that set-aware structural similarity captures information lost by surface-level metrics.
+The advantage is most pronounced for exact-match ($+$13--18pp), which suffers from extreme sparsity on structured outputs (71\% zero-match rate on RE).
+The advantage over \FK{} is more modest ($+$3--8pp) but consistent.
+
+\paragraph{The log-probability surprise.}
+Sequence log-probability is a formidable baseline that challenges the assumption that multi-sample consistency is always superior to model-internal confidence.
+On CoNLL-2003 (well-calibrated, standard domain), \LP{} \emph{outperforms} all consistency signals.
+The explanation is that fine-tuned models on standard benchmarks have highly calibrated internal confidence, making external consistency signals partially redundant.
+\SJ{}'s advantage emerges on harder tasks (SciERC scientific entities, OOD evaluation) where model calibration deteriorates.
+
+\paragraph{Complementary signals.}
+The most striking evidence for signal complementarity comes from RE conditional analysis: \SJ{} excels at fine-grained quality ranking within the model's capability range ($\rho$=0.372), while \LP{} excels at identifying knowledge gaps ($\rho$=0.267 on full set but only 0.198 conditional).
+This suggests that optimal TTS strategies should combine both signals---a direction we leave for future work.
+
+\paragraph{Task-complexity boundary.}
+The universally low correlation on RE full-set ($\rho < 0.28$ for all signals) establishes a principled boundary.
+This is not merely a statistical artifact: $N$=16 sampling confirms the bound, and per-relation-type analysis shows consistent degradation across all relation types.
+The boundary arises from compound error propagation in relational structures, where entity errors cascade into relation errors in unpredictable ways that defeat both consistency and model-confidence signals.
+
+\paragraph{Practical implications.}
+For NER, our results recommend a simple strategy: if model calibration is expected to be good (standard domains, in-distribution data), sequence log-probability provides an effective zero-cost confidence signal.
+For harder tasks (domain-specific entities, OOD data, complex structures), \SJ{} provides a more robust signal at the cost of multi-sample inference.
+$N$=8 offers the best cost-effectiveness trade-off, with diminishing returns beyond this point.
+
+% ==============================================================================
+\section{Conclusion}
+
+We presented the first systematic comparison of confidence signal families for test-time scaling in structured information extraction.
+Our study reveals a nuanced landscape: structural consistency (\SJ{}) is the best consistency-based signal, consistently outperforming surface agreement metrics; sequence log-probability is a surprisingly competitive zero-cost baseline; and the two capture complementary information dimensions.
+All signals face a task-complexity boundary on relation extraction, where compound error propagation limits confidence-quality correlation regardless of the signal used.
+These findings provide practitioners with principled guidance for deploying TTS in IE systems and identify signal combination as a promising direction for future work.
+
+\paragraph{Limitations.}
+Our study uses one model size (8B parameters); larger models may exhibit different calibration properties.
+The inverted-U capability pattern, while statistically significant under F1 stratification, shows weaker evidence under independent proxies.
+We evaluate English-language datasets only.
+The best-of-N selection framework does not explore more sophisticated aggregation strategies (e.g., weighted ensembles, consensus construction).
+
+% ==============================================================================
+\bibliographystyle{plainnat}
+
+\begin{thebibliography}{30}
+
+\bibitem[Brown et al.(2024)]{brown2024large}
+Tom Brown, et al. 2024.
+\newblock Large language model scaling at test time.
+\newblock \emph{arXiv preprint arXiv:2408.03314}.
+
+\bibitem[Chen et al.(2024)]{chen2024universal}
+Xinyun Chen, Renat Aksitov, Uri Alon, Jie Ren, Kefan Xiao, Pengcheng Yin, Sushant Prakash, Charles Sutton, Xuezhi Wang, and Denny Zhou. 2024.
+\newblock Universal self-consistency for large language model generation.
+\newblock In \emph{Proceedings of NAACL}.
+
+\bibitem[Chen et al.(2023)]{chen2023codet}
+Bei Chen, Fengji Zhang, Anh Nguyen, Daoguang Zan, Zeqi Lin, Jian-Guang Lou, and Weizhu Chen. 2023.
+\newblock CodeT: Code generation with generated tests.
+\newblock In \emph{Proceedings of ICLR}.
+
+\bibitem[Derczynski et al.(2017)]{derczynski2017results}
+Leon Derczynski, Eric Nichols, Marieke van Erp, and Nut Limsopatham. 2017.
+\newblock Results of the WNUT 2017 shared task on novel and emerging entity recognition.
+\newblock In \emph{Proceedings of the 3rd Workshop on Noisy User-generated Text}.
+
+\bibitem[Desai and Durrett(2020)]{desai2020calibration}
+Shrey Desai and Greg Durrett. 2020.
+\newblock Calibration of pre-trained transformers.
+\newblock In \emph{Proceedings of EMNLP}.
+
+\bibitem[Geifman and El-Yaniv(2017)]{geifman2017selective}
+Yonatan Geifman and Ran El-Yaniv. 2017.
+\newblock Selective classification for deep neural networks.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[Kadavath et al.(2022)]{kadavath2022language}
+Saurav Kadavath, Tom Conerly, Amanda Askell, et al. 2022.
+\newblock Language models (mostly) know what they know.
+\newblock \emph{arXiv preprint arXiv:2207.05221}.
+
+\bibitem[Kamath et al.(2020)]{kamath2020selective}
+Amita Kamath, Robin Jia, and Percy Liang. 2020.
+\newblock Selective question answering under domain shift.
+\newblock In \emph{Proceedings of ACL}.
+
+\bibitem[Kuhn et al.(2023)]{kuhn2023semantic}
+Lorenz Kuhn, Yarin Gal, and Sebastian Farquhar. 2023.
+\newblock Semantic uncertainty: Linguistic invariances for uncertainty estimation in natural language generation.
+\newblock In \emph{Proceedings of ICML}.
+
+\bibitem[Luan et al.(2018)]{luan2018multi}
+Yi Luan, Luheng He, Mari Ostendorf, and Hannaneh Hajishirzi. 2018.
+\newblock Multi-task identification of entities, relations, and coreference for scientific knowledge graph construction.
+\newblock In \emph{Proceedings of EMNLP}.
+
+\bibitem[Manakul et al.(2023)]{manakul2023selfcheckgpt}
+Potsawee Manakul, Adian Liusie, and Mark Gales. 2023.
+\newblock SelfCheckGPT: Zero-resource black-box hallucination detection for generative large language models.
+\newblock In \emph{Proceedings of EMNLP}.
+
+\bibitem[Snell et al.(2024)]{snell2024scaling}
+Charlie Snell, Jaehoon Lee, Kelvin Xu, and Aviral Kumar. 2024.
+\newblock Scaling LLM test-time compute optimally can be more effective than scaling model parameters.
+\newblock \emph{arXiv preprint arXiv:2408.03314}.
+
+\bibitem[Tjong Kim Sang and De Meulder(2003)]{tjong2003introduction}
+Erik~F. Tjong Kim Sang and Fien De~Meulder. 2003.
+\newblock Introduction to the CoNLL-2003 shared task: Language-independent named entity recognition.
+\newblock In \emph{Proceedings of CoNLL}.
+
+\bibitem[Wadhwa et al.(2023)]{wadhwa2023revisiting}
+Somin Wadhwa, Silvio Amir, and Byron C. Wallace. 2023.
+\newblock Revisiting relation extraction in the era of large language models.
+\newblock In \emph{Proceedings of ACL}.
+
+\bibitem[Wang et al.(2023a)]{wang2023selfconsistency}
+Xuezhi Wang, Jason Wei, Dale Schuurmans, Quoc Le, Ed Chi, Sharan Narang, Aakanksha Chowdhery, and Denny Zhou. 2023.
+\newblock Self-consistency improves chain of thought reasoning in language models.
+\newblock In \emph{Proceedings of ICLR}.
+
+\bibitem[Wang et al.(2023b)]{wang2023gptner}
+Shuhe Wang, Xiaofei Sun, Xiaoya Li, Rongbin Ouyang, Fei Wu, Tianwei Zhang, Jiwei Li, and Guoyin Wang. 2023.
+\newblock GPT-NER: Named entity recognition via large language models.
+\newblock \emph{arXiv preprint arXiv:2304.10428}.
+
+\end{thebibliography}
+
+\end{document}

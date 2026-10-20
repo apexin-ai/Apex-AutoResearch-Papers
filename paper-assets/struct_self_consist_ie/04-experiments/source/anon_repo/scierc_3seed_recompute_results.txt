@@ -1,0 +1,106 @@
+======================================================================
+SciERC MF4v2 3-Seed Full Recompute Results
+Seeds: 42, 123, 456 | N=8 | Entity match: 4-tuple (text, type, start, end)
+======================================================================
+
+--- seed42 (n=529 gold-nonempty of 551) ---
+  greedy_f1:          0.6683
+  oracle_f1:          0.7840
+  mv_f1 (strict):     0.6558
+  δ (degeneracy):     0.1342  (13.4%)
+  α_crit:             0.3341
+  consensus_constr:   0.6697
+  sel_LP_f1:          0.6651
+  sel_SJ_f1:          0.6579
+  sel_random_f1:      0.6348
+  n_conditional:      481
+  Full-set ρ:
+      SJ: ρ=+0.3524  p=6.55e-17
+      FK: ρ=+0.2507  p=5.02e-09
+      EM: ρ=+0.2947  p=4.66e-12
+      VC: ρ=+0.3970  p=2.04e-21
+      LP: ρ=+0.2098  p=1.12e-06
+  Conditional ρ (greedy F1>0, n=481):
+      SJ: ρ=+0.3323  p=7.29e-14
+      FK: ρ=+0.1852  p=4.39e-05
+      EM: ρ=+0.3642  p=1.56e-16
+      VC: ρ=+0.3253  p=2.56e-13
+      LP: ρ=+0.1635  p=3.17e-04
+
+--- seed123 (n=529 gold-nonempty of 551) ---
+  greedy_f1:          0.6663
+  oracle_f1:          0.7789
+  mv_f1 (strict):     0.6652
+  δ (degeneracy):     0.1096  (11.0%)
+  α_crit:             0.3331
+  consensus_constr:   0.6745
+  sel_LP_f1:          0.6718
+  sel_SJ_f1:          0.6618
+  sel_random_f1:      0.6181
+  n_conditional:      479
+  Full-set ρ:
+      SJ: ρ=+0.3681  p=2.02e-18
+      FK: ρ=+0.2457  p=1.03e-08
+      EM: ρ=+0.3187  p=5.88e-14
+      VC: ρ=+0.3843  p=4.61e-20
+      LP: ρ=+0.2209  p=2.87e-07
+  Conditional ρ (greedy F1>0, n=479):
+      SJ: ρ=+0.3049  p=9.20e-12
+      FK: ρ=+0.1534  p=7.58e-04
+      EM: ρ=+0.3670  p=1.03e-16
+      VC: ρ=+0.3036  p=1.14e-11
+      LP: ρ=+0.1508  p=9.32e-04
+
+--- seed456 (n=529 gold-nonempty of 551) ---
+  greedy_f1:          0.6663
+  oracle_f1:          0.7795
+  mv_f1 (strict):     0.6577
+  δ (degeneracy):     0.1210  (12.1%)
+  α_crit:             0.3331
+  consensus_constr:   0.6661
+  sel_LP_f1:          0.6639
+  sel_SJ_f1:          0.6667
+  sel_random_f1:      0.6282
+  n_conditional:      478
+  Full-set ρ:
+      SJ: ρ=+0.3756  p=3.65e-19
+      FK: ρ=+0.2832  p=3.25e-11
+      EM: ρ=+0.3223  p=2.99e-14
+      VC: ρ=+0.4117  p=4.66e-23
+      LP: ρ=+0.2184  p=3.92e-07
+  Conditional ρ (greedy F1>0, n=478):
+      SJ: ρ=+0.3355  p=4.88e-14
+      FK: ρ=+0.1926  p=2.24e-05
+      EM: ρ=+0.4102  p=7.99e-21
+      VC: ρ=+0.3494  p=3.57e-15
+      LP: ρ=+0.1628  p=3.52e-04
+
+======================================================================
+AGGREGATED (mean ± σ over 3 seeds)
+======================================================================
+  Greedy F1                       0.6669 ± 0.0009
+  Oracle F1                       0.7808 ± 0.0023
+  MV F1 (strict >N/2)             0.6596 ± 0.0040
+  δ (degeneracy)                  0.1216 ± 0.0100  (12.2% ± 1.0%)
+  α_crit = F1_gr/2                0.3335 ± 0.0005
+  Consensus Construct F1          0.6701 ± 0.0034
+  Selection F1 (LP)               0.6669 ± 0.0035
+  Selection F1 (SJ)               0.6621 ± 0.0036
+
+  Signal ρ (full-set, mean ± σ):
+      SJ: ρ = +0.3654 ± 0.0097
+      FK: ρ = +0.2599 ± 0.0166
+      EM: ρ = +0.3119 ± 0.0123
+      VC: ρ = +0.3977 ± 0.0112
+      LP: ρ = +0.2164 ± 0.0047
+
+  Signal ρ (conditional, mean ± σ):
+      SJ: ρ = +0.3242 ± 0.0137
+      FK: ρ = +0.1770 ± 0.0170
+      EM: ρ = +0.3805 ± 0.0211
+      VC: ρ = +0.3261 ± 0.0187
+      LP: ρ = +0.1590 ± 0.0058
+
+Note: ESJ/MRSC/LSC are model-inference probes, not computable from samples.jsonl.
+      SJ selection uses leave-one-out consensus proximity (MBR-style).
+      Instance-level signals (FK/EM/VC) have no within-instance ranking → sel ≈ random.

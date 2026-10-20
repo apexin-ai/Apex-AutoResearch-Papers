@@ -1,0 +1,108 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{wang2023selfconsistency,brown2024large,snell2024scaling}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contribution A: QE Framework.}{1}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contribution B: Diagnostic Analysis.}{1}{section*.2}\protected@file@percent }
+\citation{wang2023selfconsistency}
+\citation{cisc2025}
+\citation{selfcertainty2026}
+\citation{reasc2026}
+\citation{atomicsc2024}
+\citation{nedellec2026}
+\citation{kuhn2023semantic}
+\citation{manakul2023selfcheckgpt}
+\citation{fisch2021,angelopoulos2021}
+\citation{uqsurvey2025,calibsurvey2025}
+\citation{shelmanov2021}
+\citation{lakshminarayanan2017}
+\citation{eikema2022}
+\citation{cocoa2025}
+\citation{cobbe2021,lightman2023}
+\citation{geifman2017}
+\citation{kuleshov2015}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Self-Consistency and Test-Time Scaling.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Consistency for Structured IE.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Uncertainty Quantification for LLMs.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{MBR Decoding and Verifiers.}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Selective Prediction.}{2}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setup}{2}{subsection.3.1}\protected@file@percent }
+\citation{luan2018multi}
+\citation{tjong2003introduction}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Confidence Signals}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Set Jaccard (SJ).}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Fuzzy Match (FK).}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Logprob (LP).}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Exact Match (EM).}{3}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Voting Confidence (VC).}{3}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Evaluation Protocol}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{QE Metrics.}{3}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Selection Metrics.}{3}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Oracle.}{3}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Models}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Datasets}{3}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Quality estimation metrics on SciERC (Qwen3-8B, N=8, T=1.0). NER: structural signals (VC, SJ) dominate in rank correlation; EM achieves highest AUROC. RE: all signals discriminate above chance.}}{4}{table.caption.16}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:qe_main}{{1}{4}{Quality estimation metrics on SciERC (Qwen3-8B, N=8, T=1.0). NER: structural signals (VC, SJ) dominate in rank correlation; EM achieves highest AUROC. RE: all signals discriminate above chance}{table.caption.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Cross-model QE comparison on CoNLL-2003 NER (N=8, T=1.0). Signal rankings and correlation magnitudes are consistent across architectures ($\Delta \rho < 0.015$).}}{4}{table.caption.17}\protected@file@percent }
+\newlabel{tab:cross_model}{{2}{4}{Cross-model QE comparison on CoNLL-2003 NER (N=8, T=1.0). Signal rankings and correlation magnitudes are consistent across architectures ($\Delta \rho < 0.015$)}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Inference Configuration}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Quality Estimation Effectiveness}{4}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Cross-Model Validation}{4}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:cross_model}{{5.2}{4}{Cross-Model Validation}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces LLaMA-3.1-8B QE metrics on CoNLL-2003 NER (N=8, T=1.0). Signal ranking (structural $>$ LP) is preserved cross-architecture. EM achieves highest AUROC (0.804); LP $\rho $ substantially lower than structural signals.}}{5}{table.caption.18}\protected@file@percent }
+\newlabel{tab:llama_qe}{{3}{5}{LLaMA-3.1-8B QE metrics on CoNLL-2003 NER (N=8, T=1.0). Signal ranking (structural $>$ LP) is preserved cross-architecture. EM achieves highest AUROC (0.804); LP $\rho $ substantially lower than structural signals}{table.caption.18}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Trained verifier (LR on 5 signals, 5-fold CV) vs.\ unsupervised selection on SciERC. The verifier closes 36.4\% of the NER oracle gap and 21.0\% of the RE gap, far exceeding unsupervised methods.}}{5}{table.caption.20}\protected@file@percent }
+\newlabel{tab:verifier}{{4}{5}{Trained verifier (LR on 5 signals, 5-fold CV) vs.\ unsupervised selection on SciERC. The verifier closes 36.4\% of the NER oracle gap and 21.0\% of the RE gap, far exceeding unsupervised methods}{table.caption.20}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Selection Failure Analysis}{5}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multi-Causal Diagnosis.}{5}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Trained Verifier Closes the Gap}{5}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:verifier}{{5.4}{5}{Trained Verifier Closes the Gap}{subsection.5.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Oracle gap closure by the trained verifier. NER gap closure (36.4\%) confirms signals carry sufficient information; the bottleneck is unsupervised aggregation.}}{6}{table.caption.21}\protected@file@percent }
+\newlabel{tab:gap_closure}{{5}{6}{Oracle gap closure by the trained verifier. NER gap closure (36.4\%) confirms signals carry sufficient information; the bottleneck is unsupervised aggregation}{table.caption.21}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Normalized LR feature weights. EM and VC together account for 62--64\% of model weight across tasks.}}{6}{table.caption.23}\protected@file@percent }
+\newlabel{tab:features}{{6}{6}{Normalized LR feature weights. EM and VC together account for 62--64\% of model weight across tasks}{table.caption.23}{}}
+\@writefile{toc}{\contentsline {paragraph}{Feature Importance.}{6}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications.}{6}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Numerical Consistency Audit}{6}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:audit}{{5.5}{6}{Numerical Consistency Audit}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{6}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The QE--Selection Decoupling.}{6}{section*.26}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Numerical consistency audit results. All identified issues resolved; no critical (direction-changing) contradictions found. Selection delta unified to +0.2pp macro F1 ($p$=0.29).}}{7}{table.caption.25}\protected@file@percent }
+\newlabel{tab:audit}{{7}{7}{Numerical consistency audit results. All identified issues resolved; no critical (direction-changing) contradictions found. Selection delta unified to +0.2pp macro F1 ($p$=0.29)}{table.caption.25}{}}
+\@writefile{toc}{\contentsline {paragraph}{Capability--Degeneracy Tradeoff.}{7}{section*.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{When Would Consistency Help?}{7}{section*.28}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Path Forward.}{7}{section*.29}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Limitations}{7}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{7}{section.8}\protected@file@percent }
+\bibcite{wang2023selfconsistency}{{1}{2023}{{Wang et al.}}{{}}}
+\bibcite{brown2024large}{{2}{2024}{{Brown et al.}}{{}}}
+\bibcite{snell2024scaling}{{3}{2024}{{Snell et al.}}{{}}}
+\bibcite{kuhn2023semantic}{{4}{2023}{{Kuhn et al.}}{{}}}
+\bibcite{manakul2023selfcheckgpt}{{5}{2023}{{Manakul et al.}}{{}}}
+\bibcite{eikema2022}{{6}{2022}{{Eikema and Aziz}}{{}}}
+\bibcite{cobbe2021}{{7}{2021}{{Cobbe et al.}}{{}}}
+\bibcite{lightman2023}{{8}{2023}{{Lightman et al.}}{{}}}
+\bibcite{geifman2017}{{9}{2017}{{Geifman and El-Yaniv}}{{}}}
+\bibcite{fisch2021}{{10}{2021}{{Fisch et al.}}{{}}}
+\bibcite{angelopoulos2021}{{11}{2021}{{Angelopoulos et al.}}{{}}}
+\bibcite{shelmanov2021}{{12}{2021}{{Shelmanov et al.}}{{}}}
+\bibcite{lakshminarayanan2017}{{13}{2017}{{Lakshminarayanan et al.}}{{}}}
+\bibcite{kuleshov2015}{{14}{2015}{{Kuleshov and Liang}}{{}}}
+\bibcite{nedellec2026}{{15}{2026}{{N\'{e}dellec and Xia}}{{}}}
+\bibcite{cisc2025}{{16}{2025}{{CISC}}{{}}}
+\bibcite{selfcertainty2026}{{17}{2026}{{Self-Certainty}}{{}}}
+\bibcite{reasc2026}{{18}{2026}{{ReASC}}{{}}}
+\bibcite{atomicsc2024}{{19}{2024}{{Atomic SC}}{{}}}
+\bibcite{uqsurvey2025}{{20}{2025}{{UQ Survey}}{{}}}
+\bibcite{calibsurvey2025}{{21}{2025}{{Calibration Survey}}{{}}}
+\bibcite{cocoa2025}{{22}{2025}{{CoCoA}}{{}}}
+\bibcite{luan2018multi}{{23}{2018}{{Luan et al.}}{{}}}
+\bibcite{tjong2003introduction}{{24}{2003}{{Tjong Kim Sang and De Meulder}}{{}}}
+\gdef \@abspage@last{9}

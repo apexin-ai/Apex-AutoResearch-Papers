@@ -1,0 +1,11 @@
+### Model
+model_name_or_path: /root/autodl-tmp/.hf_cache/Qwen2.5-7B-Instruct
+adapter_name_or_path: /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-7b-wnut17-qlora-s42
+template: qwen
+finetuning_type: lora
+
+### Export
+export_dir: /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen25-7b-wnut17-merged
+export_size: 5
+export_device: cpu
+export_legacy_format: false

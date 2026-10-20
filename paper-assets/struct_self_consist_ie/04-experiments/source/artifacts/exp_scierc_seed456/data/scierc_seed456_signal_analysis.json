@@ -1,0 +1,1 @@
+dataset: scierc, seed: 456, n_samples: 8, n_instances: 529, greedy_f1: 0.6453, oracle_f1: 0.7726, headroom_pp: 12.72, degeneracy_rate: 0.1928 (102/529), signal_rho: SJ=0.3941 FK=0.4023 VC=0.4137 EM=0.3378 LP=0.2280, selection_f1: SJ=0.6442 FK=0.6423 VC=0.6141 EM=0.6377 LP=0.6423, dgs_f1: 0.6423, dgs_delta_pp: -0.30

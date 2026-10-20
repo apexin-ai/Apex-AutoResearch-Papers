@@ -1,0 +1,47 @@
+\section{Threshold Regime Analysis}\label{sec:theory_scaling}
+
+\subsection{Entity Construction as MBR Decoding}\label{sec:mbr_theory}
+
+Following the MBR framework (Appendix~\ref{app:mbr_proof}), entity-level construction selects $\hat{y}_{\textup{MBR}} = \{e \in E_\cup : \hat{p}(e) > \alpha/(\alpha{+}1)\}$ under balanced set-overlap utility; $\alpha{=}1$ recovers the majority-vote threshold $\hat{p}(e) > \tfrac{1}{2}$ used throughout (Proposition~\ref{prop:construction_mbr}; empirical validation: Table~\ref{tab:entity_construction}).
+Thus majority vote is MBR decoding under set-overlap utility.
+Signal-derived weights $w_i$ yield quality-weighted MBR (LP-weighted construction): $\hat{p}_w(e) = \sum_{i} w_i \, \mathbf{1}[e {\in} y_i] / \sum_{i} w_i$.
+Weighted MBR improves when $w_i$ correlates with $u(y_i, y^*)$ within instances; when this correlation is weak (LP on SciERC: $\rho{\approx}0.2$; few-shot: \S\ref{sec:scaling}), weighting degrades (\S\ref{sec:prescriptive}).
+
+\subsection{Scaling and Inverse Scaling}\label{sec:scaling}
+
+Oracle F1 follows $F_1(N) = a - b \cdot N^{-c}$ ($R^2 > 0.999$; empirical fit in Figure~\ref{fig:oracle_scaling}): Few-NERD ($c{\approx}0.61$) scales comparably to reasoning tasks \cite{brown2024monkeys}, while SciERC converges more slowly ($c{\approx}0.35$).
+The ceiling grows, but confidence-based aggregation recovers ${<}1$\,pp---a persistent aggregation gap.
+The gap persists across scales and families: scaling from 8B to 14B FT increases oracle headroom ($+1.2$\,pp) with minimal greedy gain ($+0.9$\,pp), and GPT-5.5 (200 Few-NERD instances, zero-shot) exhibits the same pattern---50\% degeneracy, SJ $\rho{=}0.346$, MV $+1.4$\,pp yet 6.8\,pp oracle headroom unrealized.\footnote{10.1\% of GPT-5.5 samples produced unparseable output; these are excluded from all metrics. See Appendix~\ref{app:frontier_sc}.}
+Degeneracy is model-family-dependent rather than scale-dependent (Qwen2.5: $31.7$--$46.2$\% vs.\ Qwen3: $13.0$\% vs.\ GPT-5.5: $50$\% on Few-NERD; Appendix~\ref{app:cross_scale}).
+
+\paragraph{Inverse scaling under adaptive thresholds.}
+Increasing $N$ \textit{decreases} construction F1 in 40 of 58 transitions ($p{<}0.05$; Appendix~\ref{app:n_scaling}).
+Methods using $\theta{=}2/N$ are most affected ($-3.09$\,pp at $N{=}8$, $-6.90$\,pp at $N{=}16$ vs.\ greedy on Few-NERD); majority vote ($\theta{=}\tfrac{1}{2}$) reduces the delta to $-0.87$/$-0.60$\,pp---severity reduction, not immunity (Table~\ref{tab:theta_sweep}).
+Few-shot demonstrations improve QE (CoNLL SJ $\rho$ $.30{\to}.44$) but not construction (all n.s.; Appendix~\ref{app:fs_error}).
+
+\subsection{Degeneracy Decomposition}\label{sec:theory}
+
+\noindent\textbf{Degeneracy Decomposition.}\label{thm:degeneracy_bound}
+For any aggregation method $A$: $\mathbb{E}[\Delta F_1(A)] \leq (1 - D) \cdot G_{\textup{nd}}$,
+where $D$ is the degeneracy rate and $G_{\textup{nd}}$ the oracle gap on non-degenerate instances.
+For signal-based methods with alignment $\alpha \in [0,1]$, this tightens to $(1{-}D) \cdot G_{\textup{nd}} \cdot \alpha$ (proof in Appendix~\ref{app:bound_proof}).
+
+\noindent Across 16 configurations, all gains respect this bound (ratio 3--12\%; Figure~\ref{fig:bound}), with $\alpha$---not $D$---as the bottleneck.
+Tightening requires improving within-instance alignment, which neither signal combination (\S\ref{sec:robustness_main}) nor verifier-based construction (\S\ref{sec:verifier}) achieves.
+
+\begin{proposition}[Entity Selection Bound]\label{prop:entity_selection_bound}
+Let $\mathcal{M}^+ {=} \hat{y}_{\textup{MV}} \setminus \hat{y}_{\textup{gr}}$ be entities added by majority vote (precision $\pi_{\mathcal{M}^+}$) and $\delta$ the instance degeneracy rate.
+\begin{enumerate}[label=\textup{(\alph*)},nosep,leftmargin=*]
+\item On degenerate instances, $\hat{y}_{\textup{MV}} {=} \hat{y}_{\textup{gr}}$ and $\Delta F_1 {=} 0$.
+\item $\mathbb{E}[\Delta F_1] = (1{-}\delta) \cdot \mathbb{E}[\Delta F_1 \mid \textup{non-deg.}]$.
+\item $\Delta F_1 > 0$ only if $\pi_{\mathcal{M}^+} > \alpha_{\textup{crit}} \triangleq F_1^{\textup{gr}}/2$.
+\end{enumerate}
+\end{proposition}
+\noindent\textit{Proof.}
+(a)~Identical samples $\Rightarrow$ $k(e)/N \in \{0,1\}$; MV reproduces greedy.
+(b)~Total expectation.
+(c)~Adding $m$ entities with precision $\pi$ changes $F_1$ by $\tfrac{2m(\pi - F_1^{\textup{gr}}/2)}{|\hat{y}_{\textup{gr}}| + |G| + m}$ (Appendix~\ref{app:alpha_crit}).~$\square$
+
+\noindent Table~\ref{tab:alpha_crit} validates: $|\Delta| {<} 1$\,pp on all datasets.
+CoNLL ($\delta{=}60.3\% > 1{-}\alpha_{\textup{crit}}{=}54.4\%$) exceeds the impossibility threshold $\delta > 1 {-} \alpha_{\textup{crit}}$; SciERC ($\alpha_{\textup{crit}}{=}0.333$, lowest bar) is the only dataset where a trained verifier achieves positive gain ($+1.28$\,pp; \S\ref{sec:verifier}).
+MV is not ineffective but \textit{neutral under degeneracy}, capturing ${<}2\%$ of oracle headroom.

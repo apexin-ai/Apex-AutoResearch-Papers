@@ -1,0 +1,2189 @@
+dream_id: dream_20260516T113255
+project: struct_self_consist_ie
+venue: EMNLP 2026 Main Conference
+focus: 'D116 DUAL CONTRIBUTION reframe: (A) QE positive (AUROC 0.82) + (B) selection
+  diagnostic (multi-causal: degeneracy + LP compression + rank=8 shows necessary-not-sufficient).
+  Key updates since last Dream: (1) Table 2 fixed to macro F1 — selection ≈ greedy
+  (+0.2pp, p=.29), not "greedy surpasses all"; (2) exp-023 LoRA rank=8 done — degeneracy
+  7.2% but selection still fails, strongest experiment per last Dream; (3) trained
+  verifier baseline (logistic regression) in progress; (4) R²=0.94 on n=3 downgraded
+  to qualitative illustration; (5) "capability trap" renamed to "capability-degeneracy
+  tradeoff"; (6) QE-vs-selection decoupling identified as most novel insight. Question:
+  does the dual-contribution reframe + trained verifier + rank=8 multi-causal evidence
+  push from 3.0 to ≥3.5 (Main Conference)?'
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: 'Dual contribution fully lands: QE recognized as practical + diagnostic
+        recognized as novel mechanistic insight; trained verifier confirms gap is
+        closable'
+      key_assumptions:
+      - 'A1: QE AUROC 0.82 seen as non-trivial over naive baselines (EM voting not
+        obvious to reviewers)'
+      - 'A2: QE-vs-selection decoupling recognized as conceptually novel — no prior
+        work cleanly separates these'
+      - 'A3: Multi-causal chain (degeneracy + LP compression + rank=8 necessary-not-sufficient)
+        seen as rigorous causal analysis, not post-hoc description'
+      - 'A4: Capability-degeneracy tradeoff accepted as genuinely novel finding with
+        implications beyond IE'
+      - 'A5: Trained verifier closes meaningful portion of oracle gap — proves signals
+        are informative, unsupervised aggregation is the bottleneck'
+      - 'A6: 3 model configs (Qwen3-8B/4B + LLaMA-8B) × 2 NER datasets + 1 RE dataset
+        accepted as sufficient for claims scoped to fine-tuned generative IE'
+      number_ranges:
+        arr_reviewer_avg:
+        - 3.5
+        - 4.0
+        trained_verifier_oracle_gap_closure_pct:
+        - 25
+        - 50
+        qe_auroc_best_signal_ner:
+        - 0.75
+        - 0.82
+        selection_vs_greedy_pp:
+        - -0.5
+        - 0.5
+        novelty_reviewer_score:
+        - 4
+        - 5
+        soundness_reviewer_score:
+        - 4
+        - 5
+        main_conference_accept_prob:
+        - 0.55
+        - 0.75
+      narrative_direction: 'Original dual-contribution framing stands. Paper title
+        ''Strong Predictors, Weak Selectors'' is validated. Claims: (A) first systematic
+        QE framework for structured IE with practical selective prediction value;
+        (B) first multi-causal diagnosis of WHY selection fails with constructive
+        resolution (trained verifier proves the gap is closable). Capability-degeneracy
+        tradeoff framed as general principle for TTS scaling. No claims need softening.'
+    median:
+      tier: median
+      meaning: QE contribution accepted but seen as expected; diagnostic contribution
+        valued but 'descriptive not prescriptive' concern partially sustained; trained
+        verifier absent or marginal
+      key_assumptions:
+      - 'A1 PARTIAL: QE is solid engineering but reviewers note existing UQ/calibration
+        literature covers similar ground — incremental rather than novel'
+      - 'A2 HOLDS: QE-vs-selection decoupling still seen as useful conceptual distinction'
+      - 'A3 PARTIAL: Multi-causal evidence is thorough but one reviewer sees rank=8
+        as single-point ablation (wants rank={4,8,16,32} sweep)'
+      - 'A4 CONTESTED: Capability-degeneracy tradeoff on n=3 datasets questioned statistically
+        — qualitative illustration accepted but not as strong claim'
+      - 'A5 FAILS/WEAK: Trained verifier either not completed by deadline OR closes
+        <15% of gap — ''path forward'' evidence is suggestive not definitive'
+      - 'A6 PARTIAL: One reviewer flags missing 3rd NER dataset or informal-domain
+        coverage as limiting generalization claims'
+      number_ranges:
+        arr_reviewer_avg:
+        - 3.0
+        - 3.5
+        trained_verifier_oracle_gap_closure_pct:
+        - 0
+        - 15
+        qe_auroc_best_signal_ner:
+        - 0.75
+        - 0.82
+        selection_vs_greedy_pp:
+        - -0.5
+        - 0.5
+        novelty_reviewer_score:
+        - 3
+        - 4
+        soundness_reviewer_score:
+        - 3.5
+        - 4.5
+        main_conference_accept_prob:
+        - 0.25
+        - 0.45
+      narrative_direction: 'Soften primary contribution framing: QE becomes ''systematic
+        evaluation confirming and extending known UQ principles to structured IE''
+        (not ''first framework''). Diagnostic contribution needs hedging — ''we identify
+        contributing factors'' rather than ''we diagnose the complete causal chain.''
+        Drop ''capability-degeneracy tradeoff'' as a named contribution; keep as observed
+        correlation in Discussion. Add paragraph explicitly positioning vs CoCoA/Vashurin
+        2025 to preempt ''incremental over existing UQ'' criticism. If verifier weak,
+        frame as ''preliminary evidence that supervised approaches are needed'' with
+        Future Work expansion. May need to accept Findings if one reviewer scores
+        ≤3.0.'
+    worst:
+      tier: worst
+      meaning: QE seen as incremental over calibration literature; diagnostic seen
+        as predictable negative result for fine-tuned models; framing collapses to
+        'well-executed but unsurprising empirical study'
+      key_assumptions:
+      - 'A1 FAILS: Reviewer argues EM AUROC 0.75/0.82 is trivially expected — exact-match
+        voting is not a novel signal, just majority-vote applied to structured outputs
+        (Wang et al. 2023 direct extension)'
+      - 'A2 FAILS: QE-vs-selection decoupling seen as ''obvious in hindsight'' — population
+        correlation ≠ instance ranking is a known statistical property, not a discovery'
+      - 'A3 FAILS: Multi-causal framing seen as post-hoc rationalization — ''you ran
+        experiments, found multiple failure modes, and called it a framework'' without
+        predictive power'
+      - 'A4 FAILS: Capability-degeneracy is seen as restating ''better models have
+        less variance'' — trivially expected from fine-tuning convergence'
+      - 'A5 FAILS: No trained verifier evidence (deadline miss) — ''path forward''
+        is entirely speculative'
+      - 'A6 FAILS: Two reviewers flag dataset scope — ''only scientific abstracts
+        + news NER, no practical IE deployment scenario (biomedical, financial, social
+        media)'''
+      number_ranges:
+        arr_reviewer_avg:
+        - 2.5
+        - 3.0
+        trained_verifier_oracle_gap_closure_pct:
+        - 0
+        - 5
+        qe_auroc_best_signal_ner:
+        - 0.75
+        - 0.82
+        selection_vs_greedy_pp:
+        - -0.5
+        - 0.5
+        novelty_reviewer_score:
+        - 2
+        - 3
+        soundness_reviewer_score:
+        - 3
+        - 4
+        main_conference_accept_prob:
+        - 0.05
+        - 0.15
+      narrative_direction: 'Abandon dual-contribution framing. Reframe around the
+        SINGLE most defensible novel insight: the QE-selection decoupling as a general
+        warning for TTS scaling. New angle — position paper flavor: ''Not All Correlations
+        Transfer: When Population-Level Quality Signals Fail at Instance-Level Selection.''
+        Shift emphasis from IE-specific findings to general TTS methodology critique.
+        Frame degeneracy not as IE-specific phenomenon but as inevitable consequence
+        of any high-performance system (connect to reward hacking, mode collapse literature).
+        Lean into free-form ablation + rank=8 as controlled experimental methodology
+        contribution. Target same venue (Main Conference) by arguing methodological
+        contribution to TTS evaluation paradigm rather than IE-specific empirical
+        contribution. This requires rewriting intro/framing to lead with ''TTS promises
+        are overfit to discrete-answer tasks'' rather than ''structured IE needs confidence
+        estimation.'''
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260516T113255/best/paper.pdf
+  imagined_experiments:
+  - name: ner_llama_conll
+    plan_id: exp-017
+    description: LLaMA-3.1-8B fine-tuned on CoNLL-2003, N=8 inference. Cross-model
+      validation for model-agnostic QE claim.
+    expected_results:
+      greedy_f1: 0.924
+      oracle_f1: 0.946
+      oracle_headroom_pp: 2.2
+      SJ_rho_full: 0.431
+      FK_rho_full: 0.418
+      LP_rho_full: 0.307
+      EM_rho_full: 0.435
+      VC_rho_full: 0.426
+      SJ_AUROC: 0.792
+      EM_AUROC: 0.804
+      LP_AUROC: 0.761
+      selection_sj_f1: 0.925
+      selection_lp_f1: 0.924
+      selection_vs_greedy_pp: 0.1
+      degeneracy_rate: 0.56
+      structural_beats_surface: true
+      cross_model_rho_delta_vs_qwen: -0.005
+    result_rationale: '在 best 档下，A6 成立：3 model configs 被接受为充分。LLaMA-8B 在 CoNLL 上的
+      表现应与 Qwen3-8B CoNLL (SJ ρ=0.436, AUROC=0.801) 高度一致，因为：(1) CoNLL 是 成熟的 NER 数据集，两个
+      8B 模型经 LoRA 微调后能力相近（greedy F1 均 ~0.92）； (2) 高能力→高退化率(~56%)→极小 selection headroom（~2.2pp），与
+      Qwen CoNLL 的 4.2pp headroom 和 58% 退化率一致；(3) QE 相关性由 population-level 变异驱动， 与模型架构无关。cross-model
+      delta < 1pp 的 ρ 差异证明信号有效性是任务属性而非 模型属性。Selection ≈ greedy（±0.1pp）因 headroom 本身就极小。
+
+      '
+    tables:
+    - name: 'Table: LLaMA CoNLL QE Metrics (N=8, T=1.0)'
+      columns:
+      - Signal
+      - ρ_full
+      - τ_full
+      - AUROC
+      - ECE
+      rows:
+      - - SJ
+        - 0.431
+        - 0.382
+        - 0.792
+        - 0.115
+      - - FK
+        - 0.418
+        - 0.371
+        - 0.774
+        - 0.107
+      - - EM
+        - 0.435
+        - 0.387
+        - 0.804
+        - 0.11
+      - - VC
+        - 0.426
+        - 0.378
+        - 0.789
+        - 0.095
+      - - LP
+        - 0.307
+        - 0.241
+        - 0.761
+        - 0.131
+    - name: 'Table: Cross-Model Comparison (CoNLL NER, N=8)'
+      columns:
+      - Model
+      - SJ_ρ
+      - EM_AUROC
+      - Greedy_F1
+      - Degeneracy_%
+      rows:
+      - - Qwen3-8B
+        - 0.436
+        - 0.816
+        - 0.912
+        - 58
+      - - LLaMA-8B
+        - 0.431
+        - 0.804
+        - 0.924
+        - 56
+      - - Qwen3-4B
+        - 0.422
+        - 0.776
+        - 0.923
+        - 55
+    figures_description:
+    - Bar chart comparing 5-signal ρ across Qwen3-8B vs LLaMA-8B on CoNLL — visual
+      confirmation of cross-model consistency (all bars within ±0.02)
+    analysis: 'LLaMA CoNLL 结果确认 QE 信号有效性是模型无关的。SJ ρ=0.431 vs Qwen ρ=0.436 (Δ=-0.005,
+      CI crosses zero) 表明信号排名稳定：structural > surface 在两个架构上 均成立。EM AUROC 0.804 接近
+      best-tier 上限 0.82。极高退化率(56%) 解释了为何 selection 无法超越 greedy：56% 的实例上所有 N 个样本 F1
+      相同，无论用什么信号 都无法改善。这进一步验证 capability-degeneracy tradeoff——CoNLL 作为"已解决" 任务（F1>0.92），模型收敛程度极高。
+
+      '
+  - name: simple_verifier_baseline
+    plan_id: exp-019
+    description: Logistic regression trained verifier on 5 signals (SJ, FK, LP, EM,
+      VC) using existing (input, output, F1) data. 5-fold CV on SciERC NER+RE. Tests
+      whether supervised combination closes oracle gap.
+    expected_results:
+      ner_verifier_selection_f1: 0.692
+      ner_greedy_f1: 0.644
+      ner_oracle_f1: 0.776
+      ner_gap_closure_pct: 36.4
+      ner_verifier_vs_greedy_pp: 4.8
+      ner_verifier_auroc: 0.81
+      re_verifier_selection_f1: 0.442
+      re_greedy_f1: 0.404
+      re_oracle_f1: 0.585
+      re_gap_closure_pct: 21.0
+      re_verifier_vs_greedy_pp: 3.8
+      re_verifier_auroc: 0.78
+      best_unsupervised_ner_selection_f1: 0.65
+      best_unsupervised_re_selection_f1: 0.41
+      verifier_vs_best_unsupervised_ner_pp: 4.2
+      verifier_vs_best_unsupervised_re_pp: 3.2
+      top_features_by_weight:
+      - EM
+      - VC
+      - SJ
+      - LP
+      - FK
+      cv_std_ner: 0.018
+      cv_std_re: 0.024
+    result_rationale: '在 best 档下，A5 成立：trained verifier closes 25-50% of oracle gap。Logistic
+      regression 能达到 ~36% (NER) 和 ~21% (RE) 的 gap closure，原因： (1) 5 个信号之间存在互补信息——exp_016
+      已证明 SJ-LP pearson=0.57（NER），即约 32% 方差不共享，LR 能利用这部分正交信息； (2) EM 在 conditional
+      set 上 ρ=0.36 且 AUROC=0.75，作为 binary discriminator 与连续信号(SJ/LP)组合后能捕获"全对 vs 部分对
+      vs 全错"三层结构； (3) NER gap closure 高于 RE 因为 NER 信号整体更强（best ρ=0.38 vs RE 0.35），
+      且 RE 有 40%+ 的 zero-F1 实例使得 LR 在这些实例上退化为随机； (4) 36% closure 对应 +4.8pp over greedy，远超无监督最佳(LP
+      +0.6pp, p=0.39)， 证明信号携带信息但无监督聚合方式太弱——这是 Contribution B 的核心论证支柱； (5) RE closure
+      较低(21%) 因为 binary dominance 问题——45% zero-F1 实例上 verifier 也无法从全错样本中选出正确的（不存在正确样本）。但
+      21% 仍 >> 0%，证明 gap IS closable。CV std ~0.02 表明结果稳定，不是过拟合。
+
+      '
+    tables:
+    - name: 'Table: Trained Verifier vs Unsupervised Selection (SciERC, N=8)'
+      columns:
+      - Method
+      - NER_F1
+      - NER_Δ_greedy
+      - RE_F1
+      - RE_Δ_greedy
+      rows:
+      - - Greedy (T=0)
+        - 0.644
+        - —
+        - 0.404
+        - —
+      - - Best Unsupervised (LP)
+        - 0.65
+        - +0.6pp
+        - 0.41
+        - +0.6pp
+      - - Trained Verifier (LR)
+        - 0.692
+        - +4.8pp
+        - 0.442
+        - +3.8pp
+      - - Oracle
+        - 0.776
+        - +13.2pp
+        - 0.585
+        - +18.1pp
+    - name: 'Table: Oracle Gap Closure Breakdown'
+      columns:
+      - Task
+      - Oracle_Gap
+      - Verifier_Gain
+      - Closure_%
+      - Remaining_Gap
+      rows:
+      - - NER
+        - 13.2pp
+        - 4.8pp
+        - 36.4
+        - 63.6
+      - - RE
+        - 18.1pp
+        - 3.8pp
+        - 21.0
+        - 79.0
+    - name: 'Table: LR Feature Importance (|coefficient|, normalized)'
+      columns:
+      - Feature
+      - NER_weight
+      - RE_weight
+      rows:
+      - - EM
+        - 0.34
+        - 0.38
+      - - VC
+        - 0.28
+        - 0.26
+      - - SJ
+        - 0.21
+        - 0.15
+      - - LP
+        - 0.11
+        - 0.14
+      - - FK
+        - 0.06
+        - 0.07
+    figures_description:
+    - 'Gap closure waterfall chart: greedy → best unsupervised → trained verifier
+      → oracle, showing the verifier captures 36% of the remaining gap that unsupervised
+      methods cannot access'
+    - 'Scatter plot: verifier predicted score vs actual F1, showing calibration (expected
+      r² ~0.35 for NER, ~0.20 for RE)'
+    analysis: 'Trained verifier 实验是 best 档的关键区分器。36% NER gap closure 证明： (a) 信号确实携带足够信息来区分样本质量——unsupervised
+      聚合（取 argmax）是瓶颈； (b) 无监督方法的失败不是因为信号无信息，而是因为 instance-level aggregation （如 LP
+      argmax）无法利用信号间的交互模式； (c) 即使简单 LR 就能获得显著增益，说明更强的 verifier（DeBERTa、reward model）
+      可能进一步缩小 gap。这直接支撑 paper 的 constructive resolution： "we show WHAT WOULD BE NEEDED"
+      不是空话，而是有实验证据的。 RE closure 较低但非零(21%) 的原因是 binary dominance——这恰好验证了 Claim 3 的
+      task-complexity boundary：RE 的 zero-F1 实例本身就没有好样本可选，verifier 在这些实例上也无能为力，但在非零子集上
+      closure 接近 35%。
+
+      '
+  - name: claim_audit
+    plan_id: exp-024
+    description: Systematic cross-chapter numerical consistency audit. Resolve all
+      quantitative contradictions between Discussion, Limitations, Abstract, Introduction
+      and source experiment data.
+    expected_results:
+      contradictions_found: 3
+      contradictions_resolved: 3
+      critical_issues: 0
+      minor_corrections_needed: 5
+      table2_consistency: true
+      abstract_numbers_match_source: true
+      discussion_limitations_aligned: true
+      selection_delta_unified: +0.2pp (macro F1, p=0.29)
+    result_rationale: '在 best 档下，claim audit 应发现少量可修复的不一致但无 critical issues。原因： (1)
+      D116 之后 Table 2 已统一为 macro F1（selection ≈ greedy, +0.2pp, p=0.29）， 主要矛盾（Discussion
+      "+0.1pp" vs Limitations "+0.4pp"）已在 framing 更新中修正； (2) 剩余不一致预计来自：早期实验(512 token)
+      vs 1024 token rerun 的数值差异 未完全传播到所有章节；exp_012 vs exp_012_rerun_1024 的 voting_conf
+      ρ 差异 (0.502→0.379) 可能在某些段落仍引用旧值； (3) 5 项 minor corrections 典型来源：四舍五入不一致（如 "AUROC
+      0.75" vs 实际 0.749）、不同 seed 的数值混用、conditional vs full set 标注不清； (4) 无 critical
+      issues 因为核心 claim 的数值（selection ≈ greedy, QE AUROC ~0.75-0.82, degeneracy 21-58%）已通过
+      3-seed bootstrap 确认，不存在方向性错误。 Best 档假设 soundness score 4-5，这要求所有数值可追溯到源实验——audit
+      确保这一点。
+
+      '
+    tables:
+    - name: 'Table: Audit Results Summary'
+      columns:
+      - Issue_Type
+      - Count
+      - Severity
+      - Resolution
+      rows:
+      - - Selection delta inconsistency
+        - 1
+        - Medium
+        - Unified to +0.2pp (macro F1)
+      - - Stale voting_conf ρ from 512-token run
+        - 1
+        - Medium
+        - Updated to 0.379 (1024-token)
+      - - Rounding inconsistency (AUROC)
+        - 2
+        - Low
+        - Standardized to 3 decimal places
+      - - Conditional vs full set unlabeled
+        - 2
+        - Low
+        - Added (full) or (cond) labels
+      - - Seed not specified in claim
+        - 1
+        - Low
+        - Added 3-seed mean ± SD
+    figures_description: []
+    analysis: Audit 在 best 档下是 soundness 保障而非风险。3 个中等问题均已有明确修复路径： selection delta
+      统一为 bootstrap-confirmed 数值（+0.2pp, p=0.29, d=0.038）， voting_conf 统一为 1024-token
+      rerun 数据。无 critical issues 意味着 reviewer 在核查数值时不会发现方向性矛盾——这对 soundness score
+      4-5 是必要条件。 Minor corrections（四舍五入、标注规范）不影响结论但体现 rigor。
+  review_report: '---
+
+    dream_id: dream_20260516T113255
+
+    tier: best
+
+    overall_score: 3.0 — Findings
+
+    timestamp: 2026-05-16T12:01:50.963475+00:00
+
+    ---
+
+
+    # Dream Review Report: "Strong Predictors, Weak Selectors"
+
+
+    **Dream ID**: 20260516T113255 | **Tier**: best | **Venue**: EMNLP 2026 Main Conference
+    (ARR)
+
+
+    ---
+
+
+    ## Meta-Review Summary
+
+
+    This paper decouples quality estimation (QE) from best-of-N selection for structured
+    information extraction, showing that five confidence signals predict output quality
+    (AUROC up to 0.82) but universally fail to improve selection over greedy decoding.
+    A multi-causal failure diagnosis (instance degeneracy, logprob compression, insufficient
+    discriminability) is supported across 3 models, 2 IE tasks, and 3 datasets. A
+    trained logistic regression verifier closes 36% of the NER oracle gap, establishing
+    that the information exists in the signals but unsupervised aggregation is the
+    bottleneck.
+
+
+    The dual-contribution framing is coherent: Contribution A (QE framework) provides
+    practical value for selective prediction, while Contribution B (diagnostic analysis)
+    provides mechanistic understanding. The paper''s strongest element is the multi-causal
+    diagnosis, which goes beyond simple "it doesn''t work" negative results. However,
+    several methodological gaps and novelty concerns limit the paper to borderline
+    Findings/Conference territory.
+
+
+    ---
+
+
+    ## R1 Review: Methods & Experiments
+
+
+    ### Summary
+
+    The experimental design covers meaningful breadth (3 models, 2 tasks, 3 datasets)
+    with appropriate statistical methodology (bootstrap + Cohen''s d). The five-signal
+    taxonomy is well-specified, and the multi-causal diagnosis is the paper''s methodological
+    highlight. However, critical missing controls—particularly around N-scaling, temperature
+    ablation, and the LoRA rank confound—leave key claims insufficiently supported.
+
+
+    ### Strengths
+
+    - **Well-defined QE/selection decoupling** with appropriate metrics for each task
+    (rank correlation + AUROC for QE; bootstrap significance + Cohen''s d for selection).
+    This is a genuine conceptual contribution to the evaluation methodology.
+
+    - **Systematic five-signal coverage** across four families. The Set Jaccard formulation
+    with type-grouped Hungarian alignment and max(|g_a|,|g_b|) denominator normalization
+    is non-trivial and well-specified.
+
+    - **Multi-causal diagnosis is convincing**: degeneracy alone does not explain
+    failure (LoRA rank=8 ablation reduces degeneracy 3× yet selection still fails),
+    and LP compression is quantified precisely (0.041 nats within-instance range).
+    The combination is more informative than either mechanism alone.
+
+    - **Cross-model validation is meaningful**: three architectures showing near-identical
+    SJ ρ (0.422–0.436) on CoNLL establishes model-agnostic behavior. The Δρ < 0.015
+    across architectures is compelling.
+
+    - **Trained verifier experiment** is well-controlled (5-fold CV, feature importance
+    analysis, CV std reported) and transforms a purely negative paper into one with
+    constructive direction. The 36% gap closure is non-trivial.
+
+    - **Capability–degeneracy tradeoff** (CoNLL 58% degen at 91% F1 vs. SciERC 21%
+    at 66% F1 vs. WNUT ~0% at 48% F1) is an insightful empirical regularity with implications
+    beyond this paper.
+
+
+    ### Weaknesses
+
+    - **N=8 is unjustified and potentially insufficient.** The self-consistency literature
+    typically uses N=40+ (Wang et al. 2023 use N=40). Without an N-scaling analysis,
+    the "selection universally fails" claim may be conflated with "N is too small
+    for structured outputs." This is the most significant threat to the paper''s central
+    thesis.
+
+    - **WNUT-17 is underreported.** The abstract and conclusion claim 3 datasets,
+    but WNUT-17 appears only qualitatively in the Discussion ("near-zero degeneracy").
+    No tables report WNUT QE metrics or selection results. This weakens the "3 datasets"
+    breadth claim.
+
+    - **RE evaluation is incomplete.** Table 1 reports only AUROC for RE (no ρ, τ,
+    or ECE). The binary dominance issue (43–45% zero-F1 instances) motivates this
+    omission, but the paper should either report full metrics with explanation or
+    explicitly justify the gap.
+
+    - **Trained verifier uses oracle F1 labels.** This fundamentally limits the practical
+    contribution of §5.4. The verifier requires ground-truth annotations—it cannot
+    be deployed zero-resource. The 36% headline may mislead readers about practical
+    applicability. Cross-domain/task transfer is untested.
+
+    - **LoRA rank ablation is confounded.** Changing LoRA rank changes model capability
+    (potentially degrading F1), not just degeneracy. Greedy F1 for the rank=8 model
+    is not reported. If rank=8 substantially degrades performance, the "selection
+    still fails" claim has a different interpretation.
+
+    - **Missing non-degenerate subset analysis.** The experiment plan mentions +2.9pp
+    (p=0.004) on non-tied instances—this is strong evidence that should appear in
+    the main paper but is absent.
+
+    - **No MBR decoding baseline.** SJ-based selection is essentially MBR with Jaccard
+    utility, but this connection is neither formalized nor empirically compared.
+
+    - **No temperature ablation.** T=1.0 is used uniformly without justification.
+    Temperature significantly affects both diversity and degeneracy.
+
+
+    ### Questions for Authors
+
+    1. What is the greedy F1 of the LoRA rank=8 model?
+
+    2. Why not report selection on the non-degenerate subset formally?
+
+    3. How does selection scale with N (N=4, 8, 16, 32)?
+
+    4. Have you tested richer verifier features (pairwise interactions, signal variance
+    across samples)?
+
+    5. Table 2: Qwen3-4B (0.923) and LLaMA-8B (0.924) outperform Qwen3-8B (0.912)
+    on CoNLL. Explanation?
+
+
+    ### R1 Scores
+
+    - **Soundness**: 3.5/5
+
+    - **Excitement**: 3.5/5
+
+    - **Overall Assessment**: 3.5/5
+
+    - **Confidence**: 4/5
+
+    - **Reproducibility**: 3.5/5
+
+
+    ---
+
+
+    ## R2 Review: Novelty & Related Work
+
+
+    ### Summary
+
+    The QE–selection decoupling is a genuinely novel conceptual distinction. The multi-causal
+    failure mechanism (degeneracy + LP compression + discriminability gap) represents
+    a deeper analysis than prior work on consistency for IE. However, the QE framework
+    (Contribution A) is largely incremental over Nédellec & Xia (2026), the title
+    overstates ("Cannot"), and several important lines of related work are missing.
+
+
+    ### Strengths
+
+    - **QE–selection decoupling is novel.** Prior work treats consistency as a monolithic
+    signal; this paper''s distinction between population-level prediction and within-instance
+    ranking is a genuine conceptual contribution that reframes the problem.
+
+    - **Multi-causal diagnosis goes beyond prior work.** Nédellec & Xia (2026) showed
+    correlation exists; this paper explains why correlation does not translate to
+    selection gain. The three-mechanism explanation (degeneracy, LP compression, discriminability
+    gap) is structured and falsifiable.
+
+    - **Capability–degeneracy tradeoff** has implications beyond IE—it suggests a
+    fundamental tension in test-time scaling for any task where models are near-converged.
+
+    - **Evaluation breadth is adequate**: 3 model architectures, 3 datasets spanning
+    3 domains (scientific, news, social media), 2 IE tasks.
+
+    - **The trained verifier provides constructive resolution**, preventing this from
+    being a purely negative result.
+
+
+    ### Weaknesses
+
+    - **Contribution A (QE) is incremental over Nédellec & Xia (2026).** That work
+    already established consistency–accuracy correlation for NER/RE. This paper adds
+    better metrics (structural Jaccard vs. string matching) and multi-signal comparison,
+    but the core finding—consistency predicts quality—is known. The paper should more
+    explicitly characterize what is new vs. what is replicated.
+
+    - **Title "Cannot" overstates.** The trained verifier partially succeeds (36%
+    gap closure), and the paper itself identifies conditions where consistency might
+    help (ICL, closed-source APIs). "Cannot" implies impossibility; the actual finding
+    is "unsupervised signals fail under the tested conditions." A more accurate title
+    would use "do not" rather than "cannot."
+
+    - **Trained verifier experiment is too thin for its narrative weight.** A 5-feature
+    logistic regression is a minimal baseline, not a convincing "path forward." The
+    paper proposes DeBERTa-based verifiers and reward models but implements neither.
+    The gap between the LR floor (36%) and the suggested ceiling is uncharacterized.
+
+    - **Capability–degeneracy claim rests on 3 data points** (CoNLL, SciERC, WNUT)
+    with confounds (different domains, entity type systems, dataset sizes). The monotone
+    relationship could be driven by domain difficulty rather than capability per se.
+
+    - **Negative result is partially predictable.** For fine-tuned models on well-solved
+    benchmarks (CoNLL greedy F1 > 0.91), high degeneracy is expected. The contribution
+    is stronger for the SciERC case (F1=0.66, 21% degeneracy) where failure is less
+    obvious.
+
+
+    ### Missing Related Work
+
+    - **Reward models for non-math domains**: The paper cites Cobbe et al. (2021)
+    and Lightman et al. (2023) for math, but misses reward model work applied to NLG
+    quality (e.g., InstructGPT RLHF, ArmoRM, Skywork-Reward) which are directly relevant
+    to the "trained verifier" direction.
+
+    - **Broader test-time scaling**: DeepSeek-R1, QwQ, and Wu et al. (2024, "Inference
+    Scaling Laws") extend test-time compute beyond self-consistency. The paper''s
+    framing of test-time scaling is narrow.
+
+    - **Universal Self-Consistency** (Chen et al. 2024): uses LLM-as-judge for self-consistency
+    on free-form tasks—directly relevant as an alternative aggregation mechanism the
+    paper does not consider.
+
+    - **Constrained/structured decoding**: PICARD, grammar-constrained generation—these
+    affect output diversity and degeneracy but are not discussed.
+
+    - **CRF-era NER uncertainty**: Culotta & McCallum (2004), Settles & Craven (2008)—confidence
+    estimation for structured prediction has a long history predating LLMs.
+
+    - **Entity linking confidence**: Ganea & Hofmann (2017), Wu et al. (2020)—related
+    confidence estimation for structured NLP tasks.
+
+    - **Multi-output evaluation**: The choice of instance-level F1 vs. entity-level
+    evaluation affects what "quality" means; this design decision needs more discussion
+    relative to prior IE evaluation work.
+
+
+    ### Questions for Authors
+
+    1. How does this work differ from simply applying MBR decoding with Jaccard utility?
+    The SJ signal is formally equivalent.
+
+    2. Would Universal Self-Consistency (LLM-as-judge selecting among samples) circumvent
+    the degeneracy problem?
+
+    3. The Discussion suggests consistency might help for ICL without fine-tuning—have
+    you verified this? Even a small experiment would substantially strengthen the
+    paper.
+
+    4. Is the capability-degeneracy tradeoff truly about capability, or about calibration?
+    A well-calibrated model should produce diverse outputs even at high accuracy.
+
+
+    ### R2 Scores
+
+    - **Soundness**: 3.5/5
+
+    - **Excitement**: 3.0/5
+
+    - **Overall Assessment**: 3.0/5
+
+    - **Confidence**: 4/5
+
+    - **Reproducibility**: 3.5/5
+
+
+    ---
+
+
+    ## Roundtable Synthesis (Step 3–4)
+
+
+    ### Points of Agreement
+
+    1. **QE–selection decoupling is a genuine contribution** — both reviewers recognize
+    this as novel and practically useful.
+
+    2. **Multi-causal diagnosis is the paper''s strongest element** — well-structured,
+    falsifiable, goes beyond prior work.
+
+    3. **N=8 without justification is a significant gap** — threatens the generality
+    of the "universal failure" claim.
+
+    4. **Trained verifier is constructive but preliminary** — oracle labels limit
+    practicality; 5-feature LR is a floor, not a ceiling.
+
+    5. **Cross-model validation is solid** — Δρ < 0.015 across architectures is convincing.
+
+    6. **Title overstates** — "Cannot" is inaccurate given the verifier partially
+    succeeds.
+
+    7. **WNUT-17 underreporting weakens the "3 datasets" claim.**
+
+
+    ### Key Disagreement: Excitement/Overall
+
+    - R1 (3.5): values the diagnostic depth and practical QE utility.
+
+    - R2 (3.0): sees QE as incremental over Nédellec & Xia (2026); negative result
+    partially predictable.
+
+    - **Resolution**: The diagnostic analysis genuinely advances understanding beyond
+    Nédellec & Xia, but Contribution A in isolation is incremental. The paper''s value
+    is primarily in Contribution B (diagnostic) + the verifier experiment. This is
+    solid Findings material; reaching Main Conference requires addressing N-scaling,
+    full WNUT results, and either a stronger verifier or an ICL comparison experiment.
+
+
+    ### Consolidated Scores (Meta-Review)
+
+
+    | Dimension | R1 | R2 | Consensus |
+
+    |-----------|----|----|-----------|
+
+    | Soundness | 3.5 | 3.5 | **3.5** |
+
+    | Excitement | 3.5 | 3.0 | **3.0** |
+
+    | Overall | 3.5 | 3.0 | **3.0** |
+
+    | Confidence | 4 | 4 | **4** |
+
+    | Reproducibility | 3.5 | 3.5 | **3.5** |
+
+
+    ### Final Recommendation: **3.0 — Findings**
+
+
+    The paper makes a genuine conceptual contribution (QE-selection decoupling) backed
+    by a well-structured multi-causal diagnosis. However, the following issues prevent
+    a Main Conference recommendation:
+
+
+    1. **N=8 is unjustified** and potentially confounds the "universal failure" conclusion.
+
+    2. **Contribution A (QE) is incremental** over Nédellec & Xia (2026).
+
+    3. **Title overstates** the negative result.
+
+    4. **WNUT-17 is not fully reported** despite being claimed as a contribution.
+
+    5. **Trained verifier is too preliminary** (oracle labels, minimal model) to serve
+    as a convincing "path forward."
+
+
+    **To reach Main Conference (4.0)**, the authors would need to: (a) add N-scaling
+    analysis showing the failure persists at N=32+; (b) report full WNUT-17 results;
+    (c) implement at least one neural verifier baseline; (d) soften the title; (e)
+    add the non-degenerate subset analysis to the main paper.
+
+
+    ### Experiment Coverage Assessment
+
+    All 3 planned experiments from the design document are reflected in the paper:
+
+    - **ner_llama_conll** (exp-017) → Tables 2–3, Section 5.2 ✓
+
+    - **simple_verifier_baseline** (exp-019) → Tables 4–6, Section 5.4 ✓
+
+    - **claim_audit** (exp-024) → Table 7, Section 5.5 ✓
+
+
+    Coverage is complete relative to the experiment plan. The claim audit (Table 7/Section
+    5.5) is unusual for a research paper—it reads more like internal QA than a contribution—but
+    does not detract from the paper.
+
+
+    ### Actionable Revision Priorities (ranked)
+
+    1. **[Critical]** Add N-scaling experiment (N=4,8,16,32) on at least SciERC.
+
+    2. **[Critical]** Report full WNUT-17 QE and selection results in a table.
+
+    3. **[High]** Report greedy F1 for LoRA rank=8 model to deconfound the ablation.
+
+    4. **[High]** Add non-degenerate subset selection analysis as a formal table.
+
+    5. **[High]** Soften title from "Cannot" to "Do Not" or similar.
+
+    6. **[Medium]** Add MBR baseline and formalize the SJ-MBR connection.
+
+    7. **[Medium]** Add temperature ablation (T=0.5, 0.7, 1.0, 1.5).
+
+    8. **[Medium]** Expand related work: Universal Self-Consistency, reward models
+    for non-math, CRF-era uncertainty.
+
+    9. **[Low]** Consider a neural verifier (MLP or DeBERTa) to better characterize
+    the ceiling.
+
+    10. **[Low]** Remove or downplay Section 5.5 (claim audit) — space is better used
+    for missing experiments.
+
+    '
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260516T113255/median/paper.pdf
+  imagined_experiments:
+  - name: ner_llama_conll
+    plan_id: exp-017
+    description: LLaMA-3.1-8B fine-tuned on CoNLL-2003, N=8 inference. Cross-model
+      validation for model-agnostic QE claims.
+    expected_results:
+      greedy_f1: 0.921
+      oracle_f1: 0.944
+      oracle_headroom_pp: 2.3
+      SJ_rho_full: 0.418
+      FK_rho_full: 0.405
+      LP_rho_full: 0.298
+      EM_rho_full: 0.421
+      voting_conf_rho_full: 0.413
+      SJ_AUROC: 0.694
+      EM_AUROC: 0.701
+      LP_AUROC: 0.752
+      selection_SJ_f1: 0.92
+      selection_LP_f1: 0.921
+      selection_vs_greedy_pp: -0.1
+      structural_beats_surface: true
+      degeneracy_rate: 0.55
+    result_rationale: 在 median 档下，LLaMA CoNLL 复现 Qwen CoNLL 的核心模式（structural > surface，selection
+      ≈ greedy），但不会显著超越。CoNLL 高 baseline F1 (>0.91) 导致高 degeneracy (~55%)，oracle headroom
+      仅 2.3pp，selection 无法显著超过 greedy。SJ_rho ~0.42 与 Qwen CoNLL (0.436) 一致，验证 cross-model
+      但 reviewer 会指出 '两个 8B 模型不足以证明 model-agnostic'——这正是 A6 PARTIAL 假设的体现。LP AUROC
+      偏高（0.75）因为 CoNLL 高精度实例的 LP 能有效区分 perfect vs near-perfect，但 rho 仍低于 structural
+      signals。
+    tables:
+    - name: 'Table: LLaMA CoNLL-2003 QE Metrics (N=8, T=1.0)'
+      columns:
+      - Signal
+      - ρ_full
+      - τ_full
+      - AUROC
+      - ECE
+      - Sel_F1
+      rows:
+      - - SJ
+        - 0.418
+        - 0.372
+        - 0.694
+        - 0.112
+        - 0.92
+      - - FK
+        - 0.405
+        - 0.361
+        - 0.688
+        - 0.108
+        - 0.919
+      - - EM
+        - 0.421
+        - 0.377
+        - 0.701
+        - 0.105
+        - 0.919
+      - - Voting_conf
+        - 0.413
+        - 0.368
+        - 0.698
+        - 0.092
+        - 0.92
+      - - Logprob
+        - 0.298
+        - 0.238
+        - 0.752
+        - 0.131
+        - 0.921
+      - - Greedy
+        - —
+        - —
+        - —
+        - —
+        - 0.921
+      - - Oracle
+        - —
+        - —
+        - —
+        - —
+        - 0.944
+    figures_description:
+    - Bar chart comparing SJ_rho across 3 model configs (Qwen-8B, Qwen-4B, LLaMA-8B)
+      on CoNLL — all in 0.40-0.45 range, demonstrating cross-model stability
+    analysis: 'Cross-model validation holds but provides incremental rather than decisive
+      evidence. Reviewer likely notes: (1) both are 8B-class models — no evidence
+      for smaller/larger scales; (2) CoNLL''s high baseline makes selection analysis
+      trivial (headroom <3pp). In median tier, this supports the QE contribution as
+      ''solid engineering'' (A1 PARTIAL) but doesn''t push novelty score above 3-4
+      because the finding (structural signals generalize across architectures) is
+      expected from UQ literature.'
+  - name: simple_verifier_baseline
+    plan_id: exp-019
+    description: Logistic regression on 5 QE signals as supervised verifier. Tests
+      whether oracle gap is closable with supervision. Training on SciERC NER+RE with
+      F1 labels.
+    expected_results:
+      ner_verifier_selection_f1: 0.655
+      ner_greedy_f1: 0.644
+      ner_oracle_f1: 0.776
+      ner_gap_closure_pct: 8.3
+      ner_verifier_vs_greedy_pp: 1.1
+      re_verifier_selection_f1: 0.412
+      re_greedy_f1: 0.404
+      re_oracle_f1: 0.585
+      re_gap_closure_pct: 4.4
+      re_verifier_vs_greedy_pp: 0.8
+      cv_auroc_ner: 0.772
+      cv_auroc_re: 0.718
+      feature_importance_top: EM > voting_conf > SJ > LP > FK
+      overfitting_risk: moderate (n=529 NER, n=397 RE, 5-fold CV)
+      training_time_minutes: 12
+    result_rationale: 在 median 档下 (A5 FAILS/WEAK)，trained verifier 完成但 gap closure
+      <15%。逻辑回归在 5 个高度相关的信号上（SJ-LP pearson=0.57）受限于 feature redundancy——exp-016 已经显示
+      ensemble 无优势。NER gap closure ~8% (1.1pp) 因为：(1) 监督信号确实比 unsupervised heuristic
+      好（能学到非线性组合），但 (2) 输入信号本身信息量有限（within-instance discriminative power 低），5-fold
+      CV 在 n=529 上容易 overfit。RE 更弱 (4.4%) 因为 binary dominance (43% F1=0) 使得回归主要学到
+      'zero vs non-zero' 而非 quality gradient。Reviewer 评价：'path forward evidence suggestive
+      not definitive'——8% closure 不足以作为独立贡献，但支持 'trained verifiers needed' 的 future
+      work framing。
+    tables:
+    - name: 'Table: Supervised Verifier vs Unsupervised Signals (5-fold CV)'
+      columns:
+      - Method
+      - NER Sel_F1
+      - NER Δ_greedy
+      - NER Gap%
+      - RE Sel_F1
+      - RE Δ_greedy
+      - RE Gap%
+      rows:
+      - - Greedy (T=0)
+        - 0.644
+        - —
+        - —
+        - 0.404
+        - —
+        - —
+      - - Best unsupervised (LP)
+        - 0.65
+        - +0.6pp
+        - 4.5%
+        - 0.409
+        - +0.5pp
+        - 2.8%
+      - - LR verifier (5 signals)
+        - 0.655
+        - +1.1pp
+        - 8.3%
+        - 0.412
+        - +0.8pp
+        - 4.4%
+      - - Oracle
+        - 0.776
+        - +13.2pp
+        - 100%
+        - 0.585
+        - +18.1pp
+        - 100%
+    - name: 'Table: Feature Importance (Logistic Regression Coefficients, NER)'
+      columns:
+      - Signal
+      - Mean Coeff
+      - Std across folds
+      rows:
+      - - EM
+        - 0.42
+        - 0.08
+      - - voting_conf
+        - 0.31
+        - 0.06
+      - - SJ
+        - 0.22
+        - 0.09
+      - - logprob
+        - 0.18
+        - 0.11
+      - - FK
+        - 0.07
+        - 0.05
+    figures_description:
+    - 'Selection curve (F1 vs method) showing: random < unsupervised cluster (LP/SJ/VC
+      all within 0.5pp) < LR verifier (+1.1pp) << oracle (+13.2pp). The massive remaining
+      gap visualizes why ''trained verifier needed'' is understatement.'
+    analysis: 'Verifier closes 8.3% of NER gap — statistically significant (paired
+      t-test p<0.05 across folds) but practically marginal. This is precisely the
+      A5 WEAK outcome: enough to say ''supervision helps'' but not enough to constitute
+      a paper contribution. One reviewer will say ''you showed logistic regression
+      on your own features slightly beats your own features used individually — this
+      is expected and not interesting.'' Counter-argument: the 92% gap that remains
+      proves the signals are fundamentally limited, not just suboptimally combined.
+      Paper frames as: ''preliminary supervised baseline confirms gap is partially
+      closable, motivating dedicated learned verifiers as future work.'' Findings-level
+      contribution at best for this component.'
+  - name: claim_audit
+    plan_id: exp-024
+    description: Systematic numerical consistency audit across all paper sections.
+      Resolve contradictions between Discussion, Limitations, Abstract, and source
+      experiment data.
+    expected_results:
+      contradictions_found: 4
+      critical_contradictions: 1
+      minor_inconsistencies: 3
+      sections_affected:
+      - Discussion
+      - Limitations
+      - Abstract
+      - Introduction
+      resolution_time_hours: 3
+      key_contradiction_1: Discussion '+0.1pp over single-sample' vs Limitations '+0.4pp
+        over greedy' — source truth is +0.6pp (logprob NER, exp_016_rerun_1024_bootstrap)
+      key_contradiction_2: Abstract AUROC '0.82' refers to CoNLL EM (0.816) but body
+        text reports SciERC EM (0.749) — need to clarify which dataset/metric the
+        abstract claim uses
+      key_contradiction_3: 'Introduction claims ''5 confidence signals across 4 families''
+        but method section describes 5 signals in 3 families (structural: SJ/FK/EM;
+        voting: VC; probabilistic: LP)'
+      key_contradiction_4: 'Capability-degeneracy numbers: Discussion says ''CoNLL
+        58%'' but exp_012_rerun_1024 shows tied_fraction=0.597 for constrained, referencing
+        different definitions of degeneracy'
+    result_rationale: 在 median 档下，audit 发现的矛盾是可修复的 housekeeping 问题，不影响核心结论但如果未修会被
+      reviewer 作为 soundness concern 扣分（A3 PARTIAL 中 reviewer 对 single-point ablation
+      的质疑部分源于数字不一致降低可信度）。最关键矛盾是 AUROC 0.82 的来源——paper_framing.md 中 Claim 1 说 'AUROC
+      up to 0.82' 但实际最高是 CoNLL EM_AUROC=0.816 (exp_002) 或 CoNLL N=16 EM_AUROC=0.841
+      (exp_002_conll_n16)。Median tier soundness score 3.5-4.5 意味着这些矛盾被发现但不致命——修复后不影响结论但审稿时若未修会被扣
+      0.5 分。
+    tables:
+    - name: 'Table: Claim Audit Results'
+      columns:
+      - Location
+      - Claimed Value
+      - Source Truth
+      - Resolution
+      rows:
+      - - 'Abstract: ''AUROC up to 0.82'''
+        - '0.82'
+        - CoNLL EM 0.816 (N=8) or 0.841 (N=16)
+        - Use 0.82 rounded from 0.816, cite N=8 CoNLL
+      - - 'Discussion: ''+0.1pp'''
+        - +0.1pp over single-sample
+        - +0.6pp LP vs greedy (NER, p=0.39 n.s.)
+        - Correct to '+0.6pp (n.s., p=0.39)'
+      - - 'Limitations: ''+0.4pp'''
+        - +0.4pp over greedy
+        - Same metric different rounding
+        - Unify to +0.6pp with CI
+      - - 'Intro: ''4 families'''
+        - 4 signal families
+        - 3 families (structural/voting/probabilistic)
+        - Correct to '3 families' or redefine EM as separate family
+    figures_description: []
+    analysis: Audit 是纯 hygiene 任务但在 median 档下至关重要——soundness score 3.5-4.5 的差异往往取决于
+      reviewer 是否信任作者的细节把控。AUROC 0.82 引用的歧义（CoNLL vs SciERC, N=8 vs N=16）如果 reviewer
+      自己算对不上会直接降 soundness 0.5 分。修复耗时 ~3h，全部是文本编辑，零实验成本。在 median tier 下这些修复是 necessary
+      condition for 3.5 soundness——如果不修，可能跌到 3.0 (Findings boundary)。
+  review_report: '---
+
+    dream_id: dream_20260516T113255
+
+    tier: median
+
+    overall_score: borderline — recommend Findings
+
+    timestamp: 2026-05-16T12:11:12.244298+00:00
+
+    ---
+
+
+    # Dream Review Report: "Strong Predictors, Weak Selectors: Why Confidence Signals
+    Cannot Scale Structured Information Extraction"
+
+
+    **Venue**: EMNLP 2026 Main Conference (via ACL Rolling Review)
+
+    **Review Mode**: Full (2 Reviewers + Roundtable)
+
+    **Dream ID**: 20260516T113255
+
+
+    ---
+
+
+    ## Venue Calibration
+
+
+    EMNLP 2026 uses ACL Rolling Review with three scoring dimensions: Soundness (1–5),
+    Excitement (1–5), Overall (1–5). Acceptance rate ~22%. Scores anchored to ARR
+    rubric: 5=Excellent, 4=Strong, 3=Acceptable, 2=Poor, 1=Major issues.
+
+
+    ---
+
+
+    ## Reviewer 1 (R1): Methods and Experiments
+
+
+    ### Summary
+
+    The paper evaluates 5 confidence signals across 3 families for structured IE (NER
+    + RE), finding strong population-level QE (AUROC up to 0.82, ρ up to 0.45) but
+    failure at instance-level selection (+0.6pp over greedy, p=0.39, d=0.038) despite
+    13pp oracle headroom. Diagnostic analysis identifies three contributing factors:
+    instance degeneracy, LP score compression, and persistence under reduced degeneracy.
+
+
+    ### Strengths
+
+    1. **QE-selection decoupling** is a well-executed conceptual separation. Distinguishing
+    population-level prediction from instance-level selection is a genuine methodological
+    insight not clearly articulated in prior TTS work for structured outputs.
+
+    2. **LoRA rank ablation** is elegantly designed. Reducing degeneracy from 21%
+    to 7.2% while preserving QE correlation (ρ 0.360→0.365) yet still failing at selection
+    provides strong multi-causal evidence.
+
+    3. **Honest statistical reporting**: Bootstrap CI [−3.0, +4.2]pp, p=0.39, d=0.038
+    for the central negative claim. The paper does not overstate a null finding.
+
+    4. **Breadth of evaluation**: 5 signals × 4 QE metrics × selection × 3 datasets
+    × 3 models is a comprehensive matrix.
+
+    5. **Free-form decoding ablation** showing LP compression is intrinsic (constrained:
+    0.0206 vs free-form: 0.0199, ratio 0.97) rules out a common confound.
+
+
+    ### Weaknesses
+
+    1. **Small effective sample sizes**: SciERC NER n=529, RE n=397 with 43–45% zero-F1;
+    effective RE size ~220. Bootstrap CI width of 7.2pp means the negative result
+    could reflect insufficient power rather than fundamental impossibility.
+
+    2. **"Model-agnostic" overclaimed**: Two 8B architectures (Qwen, LLaMA) + one
+    4B from the same Qwen family does not establish model-agnosticity. Should say
+    "consistent across tested configurations."
+
+    3. **Missing entity-token-only LP baseline**: The paper hypothesizes LP fails
+    because format/template tokens dilute entity-level signal but never tests the
+    obvious fix (averaging LP only over entity-span tokens).
+
+    4. **Semantic entropy not evaluated**: The most theoretically motivated UQ signal
+    from the LLM uncertainty literature (Kuhn et al. 2023) is discussed in related
+    work but absent from experiments.
+
+    5. **Verifier uses oracle F1 labels**: The 8.3% gap closure is an upper bound
+    on these 5 features, not a practical method. Only logistic regression tested —
+    no MLP, random forest, or gradient-boosted alternative.
+
+    6. **Single RE dataset** (SciERC only): No second RE dataset (TACRED, DocRED)
+    to validate RE-specific claims.
+
+    7. **Aggregate vs per-sample handling confused**: Paper''s Eq. (1) defines SJ
+    as per-instance aggregate, but Section 3.3 implies per-sample SJ scores exist
+    (mean pairwise similarity of sample_i against others). If SJ can rank candidates,
+    the "4/5 signals cannot rank" framing is misleading.
+
+
+    ### Numerical Consistency Issues
+
+    - Abstract claims "AUROC up to 0.82" — highest in tables is 0.816 (CoNLL EM, Table
+    2), rounded up. Borderline acceptable but imprecise.
+
+    - Abstract claims "ρ up to 0.45" — highest reported is 0.421 (EM, Table 2). The
+    0.45 claim appears inflated.
+
+    - Appendix A self-audit catches 4 inconsistencies but misses the abstract-table
+    discrepancies above.
+
+
+    ### Reproducibility
+
+    - Model names, N, T specified. Metric equations provided.
+
+    - **Gaps**: No code/data release. LoRA hyperparameters (LR, epochs, batch size)
+    not reported. Hungarian matching thresholds for SJ not specified. No compute budget
+    or hardware details.
+
+
+    ### R1 Scores
+
+    - **Soundness**: 3.0/5
+
+    - **Excitement**: 3.0/5
+
+    - **Overall**: 3.0/5
+
+
+    ---
+
+
+    ## Reviewer 2 (R2): Novelty and Related Work
+
+
+    ### Novelty Assessment
+
+
+    **QE Contribution (A)**: The paper frames this as "confirming and extending known
+    UQ principles to structured IE." This is an honest characterization — the signals
+    (Jaccard, Kappa, EM, voting, logprob) are standard measures applied to structured
+    outputs. More systematic benchmark than conceptual advance.
+
+
+    **Diagnostic Contribution (B)**:
+
+    - *Instance degeneracy*: Not itself novel — Snell et al. (2024) already discusses
+    compute-optimal allocation conditioning on difficulty. The specific empirical
+    thresholds (21–58% tied across tasks) add incremental domain-specific value but
+    the concept is known.
+
+    - *LP compression* (0.041 nats median range): Interesting empirical observation
+    that follows naturally from autoregressive generation for structured outputs —
+    once the model commits to a structural template, token-level variation is minimal.
+
+    - *Persistence under reduced degeneracy* (LoRA rank=8): The most novel finding
+    — demonstrates multi-causality. But the mechanism ("signals lack discriminative
+    power even with headroom") restates that unsupervised heuristics are weaker than
+    supervised verifiers, which is well-established.
+
+
+    **QE-Selection Decoupling**: Partially tautological. 4/5 signals produce one score
+    per instance and trivially cannot rank candidates within an instance. The genuinely
+    empirical content is that LP (the only per-sample signal) also fails, attributed
+    to compression. The paper frames the definitional property as an empirical discovery.
+
+
+    **Capability-degeneracy correlation**: Based on 3 data points, acknowledged as
+    "illustrative." This is speculation, not a contribution.
+
+
+    ### Related Work Gaps
+
+    - **MBR literature**: Kumar & Byrne (2004), Freitag et al. (2022) discuss MBR
+    failure in structured prediction — the paper''s "degeneracy" explanation may be
+    a special case of MBR failure when the reference distribution collapses.
+
+    - **Active learning / query-by-committee**: Disagreement as informativeness signal
+    is foundational to QBC (Seung et al. 1992). Relevant parallel uncited.
+
+    - **Conformal prediction for structured outputs**: Fisch et al., Angelopoulos
+    et al. — cited in one sentence but deeper engagement warranted for set-valued
+    predictions.
+
+    - **Best-of-N with process reward models**: Wang et al. 2024 (Math-Shepherd),
+    Hosseini et al. 2024 — natural comparison for "what would be needed" only mentioned
+    in passing.
+
+
+    ### Positioning Concerns
+
+    - **CoCoA contrast unfair**: Paper only tests linear combination of 5 signals
+    (logistic regression), not CoCoA''s actual MBR-style framework where consistency
+    defines the utility function and confidence weights the reference. The dismissal
+    of ensemble approaches based solely on linear combination is potentially unfair.
+
+    - **SJ vs surface matching advantage not empirically demonstrated**: EM actually
+    outperforms SJ on CoNLL (ρ 0.421 vs 0.418) and is competitive across configs.
+    The claimed advantage of structural metrics over Nédéllec & Xia''s surface matching
+    is task-dependent, not universal.
+
+    - **Title "Cannot" overclaims**: Evidence shows "Do Not" or "Fail To" for specific
+    signals at 4B–8B scale. No impossibility result established.
+
+
+    ### Writing Quality
+
+    Framing is commendably honest in the body ("confirming and extending," "contributing
+    factors," "preliminary evidence"). Title overclaims relative to evidence. Exposition
+    is clear and well-organized.
+
+
+    ### R2 Scores
+
+    - **Soundness**: 3.0/5
+
+    - **Excitement**: 2.5/5
+
+    - **Overall**: 3.0/5
+
+
+    ---
+
+
+    ## Roundtable Discussion
+
+
+    ### Step 2: Cross-Sharing Key Exchanges
+
+
+    **R1 conceded** to R2 that the QE-selection decoupling is partially tautological
+    (4/5 signals definitionally cannot select), revising Excitement from 3.5→3.0.
+
+
+    **R2 conceded** to R1 that the LoRA rank ablation, while confirming known calibration
+    phenomena, is well-designed as domain-specific causal evidence. R2 lowered Soundness
+    from 3.5→3.0 based on R1''s numerical inconsistency findings and SJ definitional
+    confusion.
+
+
+    **Both agreed**: Title overclaims; cross-model validation insufficient for "model-agnostic";
+    missing baselines are addressable in revision but weaken current claims.
+
+
+    ### Step 3: Convergence — Resolution of Key Disagreements
+
+
+    **1. Tautology vs Empirical Finding**
+
+    *Resolved*: R2 substantially correct. The "QE-selection decoupling" conflates
+    (a) a definitional truism (4/5 signals are per-instance aggregates that cannot
+    discriminate among samples) with (b) a genuine empirical finding (LP compression,
+    free-form ablation showing it''s intrinsic, +2.9pp recovery on non-degenerate
+    subset). The contribution is narrower than framed but real. The SJ definitional
+    confusion (Eq. 1 vs Section 3.3) must be resolved.
+
+
+    **2. Instance Degeneracy: Rebranding vs Novel Characterization**
+
+    *Resolved*: Both partially correct. The abstract concept is known (Snell et al.
+    2024), but the paper provides concrete empirical thresholds specific to structured
+    IE (60% tied at ε=0.05, task-difficulty dependence). Incremental empirical value,
+    not "novel contribution."
+
+
+    **3. LoRA Rank Ablation**
+
+    *Resolved*: R1''s assessment prevails. The specific experiment design — showing
+    reduced degeneracy (21%→7.2%) with preserved QE correlation (ρ 0.360→0.365) yet
+    failed selection — is solid domain-specific causal evidence. Worthy of inclusion,
+    should not be framed as discovering a new phenomenon.
+
+
+    **4. Missing Baselines**
+
+    *Resolved*: Not fatal individually, but collectively weaken "first systematic
+    comparison" claim. Entity-token LP and semantic entropy are addressable in revision.
+    CoCoA MBR-style comparison is the most damaging omission — paper should discuss
+    why it was not tested.
+
+
+    **5. Numerical Inconsistencies**
+
+    *Resolved*: Core table data appears internally consistent. Abstract rounding (AUROC
+    0.82 from 0.816, ρ 0.45 from 0.421) is sloppy but not fraudulent. Does not undermine
+    central claims but reflects careless presentation. Requires numerical pass before
+    publication.
+
+
+    ---
+
+
+    ## Step 4: Consolidated Assessment
+
+
+    ### Consensus Scores
+
+
+    | Dimension | R1 | R2 | Consensus |
+
+    |---|---|---|---|
+
+    | **Soundness** | 3.0 | 3.0 | **3.0** |
+
+    | **Excitement** | 3.0 | 2.5 | **2.5–3.0** |
+
+    | **Overall** | 3.0 | 3.0 | **3.0** |
+
+    | **Confidence** | 4/5 | 4/5 | **4/5** |
+
+
+    ### Venue Recommendation: **EMNLP 2026 Findings**
+
+
+    The paper identifies a practically important phenomenon with rigorous methodology,
+    but:
+
+    - The core finding is partially definitional (4/5 signals) with one genuine empirical
+    kernel (LP failure + diagnostics)
+
+    - No new method proposed; supervised verifier is preliminary (8.3% gap closure)
+
+    - Contribution pattern (systematic comparison + negative result + diagnostic)
+    fits Findings better than Main
+
+    - Main would require either a stronger positive contribution (method closing more
+    of oracle gap) or broader scope (multiple model scales, more tasks)
+
+
+    ### Top 3 Required Revisions
+
+
+    **C1. Reframe contribution hierarchy.** Clearly separate the definitional layer
+    (4/5 signals cannot select by construction — state in one sentence) from the empirical
+    layer (LP compression diagnosis, free-form ablation, non-tied subset recovery).
+    Currently the paper inflates the contribution by framing the definitional property
+    as a unified empirical discovery.
+
+
+    **C2. Resolve SJ definitional confusion.** Eq. (1) defines SJ as per-instance
+    aggregate, but Section 3.3 implies per-sample SJ scores. Clarify whether SJ produces
+    per-sample rankings; if so, report SJ-based selection results. This directly affects
+    the paper''s central framing.
+
+
+    **C3. Scope claims to evidence.** Replace "cannot scale" with "fail to scale"
+    in title. Replace "model-agnostic" with "consistent across tested 4B–8B configurations."
+    Correct abstract: ρ ≤ 0.421 (not "up to 0.45"), AUROC = 0.816 (not "0.82").
+
+
+    ### Top 3 Suggestions
+
+
+    **S1. Add entity-token-only LP analysis.** The paper hypothesizes LP dilution
+    from format tokens but never tests it. Computing LP only over entity-span tokens
+    would either confirm or falsify the hypothesis at zero additional inference cost.
+
+
+    **S2. Engage deeply with CoCoA.** Discuss why MBR-style fusion was not tested,
+    and whether CoCoA''s formulation would predict the correlation-selection gap for
+    structured outputs. This strengthens the "structured IE is different" argument.
+
+
+    **S3. Multi-seed selection validation.** The central claim rests on p=0.39 from
+    one configuration. Report selection results across multiple seeds for SciERC NER
+    LP to confirm the null result is robust.
+
+
+    ### Meta-Review
+
+
+    This paper investigates whether confidence signals from multi-sample LLM generation
+    can select better structured IE outputs. The experimental scope is commendable:
+    five signals across three datasets with multiple models, supported by rigorous
+    statistics (bootstrap CIs, effect sizes). The central finding — that signals achieving
+    ρ up to 0.42 and AUROC up to 0.82 at population-level QE fail at instance-level
+    selection (+0.6pp, p=0.39, with 13pp oracle headroom) — has genuine practical
+    value. However, both reviewers converge on a fundamental framing concern: four
+    of five signals fail at selection by mathematical construction (they produce one
+    scalar per instance), making the "gap" partially tautological. The true empirical
+    contribution is narrower but real: logprob score compression, its persistence
+    under free-form decoding, and partial recovery on non-degenerate subsets (+2.9pp,
+    p=0.004). The LoRA rank ablation demonstrating multi-causality is the strongest
+    experiment. Missing baselines (entity-token LP, semantic entropy, MBR-style combination)
+    and numerical imprecision in the abstract weaken confidence. With reframing to
+    honestly separate definitional from empirical content and claim-scope corrections,
+    this is appropriate for EMNLP Findings as a rigorous diagnostic study.'
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260516T113255/worst/paper.pdf
+  imagined_experiments:
+  - name: ner_llama_conll
+    plan_id: exp-017
+    description: LLaMA-3.1-8B fine-tuned on CoNLL-2003 NER, N=8, T=1.0. Cross-model
+      validation for model-agnostic claim.
+    expected_results:
+      greedy_f1: 0.924
+      oracle_f1: 0.945
+      oracle_headroom_pp: 2.1
+      SJ_rho_full: 0.43
+      FK_rho_full: 0.42
+      LP_rho_full: 0.31
+      EM_rho_full: 0.43
+      EM_AUROC: 0.71
+      SJ_AUROC: 0.7
+      LP_AUROC: 0.76
+      selection_best_vs_greedy_pp: 0.1
+      degeneracy_rate: 0.56
+    result_rationale: LLaMA-3.1-8B 在 CoNLL 上表现与 Qwen3-8B 高度一致（SJ ρ≈0.43 vs Qwen 0.436），这在
+      worst 档被 reviewer 解读为：同体量 decoder-only 模型 + 同 LoRA recipe → 相似行为是 trivially
+      expected，不构成 'model-agnostic' 证据。Reviewer 会要求 encoder-based (DeBERTa) 或 70B+
+      规模模型。AUROC 0.70-0.76 被认为是 majority-vote 在高 F1 数据集上的 trivial baseline 表现。CoNLL
+      高 degeneracy (56%) 使 selection headroom 仅 2pp，selection 结果 indistinguishable
+      from greedy，进一步佐证 reviewer 的 'predictable for fine-tuned models' 评价。
+    tables:
+    - name: 'Table: LLaMA CoNLL Cross-Model Results'
+      columns:
+      - Signal
+      - ρ_full
+      - AUROC
+      - Selection F1
+      - Δ vs Greedy
+      rows:
+      - - SJ
+        - 0.43
+        - 0.7
+        - 0.925
+        - +0.1pp
+      - - FK
+        - 0.42
+        - 0.7
+        - 0.924
+        - 0.0pp
+      - - EM
+        - 0.43
+        - 0.71
+        - 0.924
+        - 0.0pp
+      - - LP
+        - 0.31
+        - 0.76
+        - 0.925
+        - +0.1pp
+      - - VC
+        - 0.43
+        - 0.71
+        - 0.926
+        - +0.2pp
+      - - Oracle
+        - —
+        - —
+        - 0.945
+        - +2.1pp
+    figures_description:
+    - 'Cross-model scatter plot: Qwen3-8B ρ vs LLaMA-3.1-8B ρ per signal — near-perfect
+      diagonal (R²>0.95), reviewer reads as ''architecture doesn''t matter because
+      the task is saturated, not because the finding generalizes'''
+    analysis: 'Reviewer argument: ''Two 8B decoder-only models trained with identical
+      LoRA rank on the same data showing similar behavior is not model-agnostic validation
+      — it''s confirmation that your experimental setup is internally consistent,
+      which we already assumed. Show me an encoder model, a 70B model, or an API-only
+      model without logprob access.'' This neutralizes R2/R14 mitigation entirely.
+      The high CoNLL degeneracy (56%) makes the cross-model comparison on selection
+      MOOT — there''s nothing to select from regardless of model.'
+  - name: simple_verifier_baseline
+    plan_id: exp-019
+    description: Logistic regression on 5 unsupervised signals (SJ, FK, EM, VC, LP)
+      as supervised verifier. Train on existing (input, output, F1) triplets. 5-fold
+      CV on SciERC.
+    expected_results:
+      oracle_gap_closure_pct: 3.2
+      verifier_selection_f1_ner: 0.648
+      verifier_vs_greedy_pp_ner: 0.4
+      verifier_vs_best_single_pp_ner: -0.2
+      verifier_auroc_ner: 0.76
+      best_single_auroc_ner: 0.749
+      verifier_selection_f1_re: 0.395
+      verifier_vs_greedy_pp_re: -0.9
+      feature_importance_top: EM (0.42), VC (0.31), SJ (0.18), LP (0.06), FK (0.03)
+      cross_val_std: 0.045
+      training_time_minutes: 12
+      status: completed but inconclusive
+    result_rationale: 在 worst 档，A5 的核心假设是 'path forward is entirely speculative'。即使
+      exp-019 完成（实际已被 killed），logistic regression 仅做 5 signal 的线性组合 — 与 exp-016 的
+      ensemble 本质相同。exp-016 已显示 ensemble AUROC (0.666) < best single EM (0.749)，因为
+      5 信号高度相关 (SJ-LP Pearson=0.57, SJ-VC 更高)。LR 在高相关特征上 overfit 导致 CV variance 大、泛化差。关键问题：LR
+      只能做信号的加权组合，不能学到 instance-level nonlinear interaction — 而 oracle gap 的信息恰恰存在于这些
+      interaction 中。Reviewer 判定：'A logistic regression on the same 5 signals you already
+      showed don't work individually is not a trained verifier — it's a weighted average.
+      A real verifier would use the input text, predicted output, and intermediate
+      representations. This doesn't address the gap.'  oracle_gap_closure 3.2% 落在
+      worst 档 [0,5] 范围内。
+    tables:
+    - name: 'Table: Supervised Verifier vs Unsupervised Signals (SciERC NER, 5-fold
+        CV)'
+      columns:
+      - Method
+      - Selection F1
+      - Δ vs Greedy
+      - AUROC
+      - Oracle Gap Closed
+      rows:
+      - - Greedy (T=0)
+        - 0.644
+        - —
+        - —
+        - 0%
+      - - Best single (EM)
+        - 0.65
+        - +0.6pp
+        - 0.749
+        - 4.6%
+      - - LR Verifier (5-signal)
+        - 0.648
+        - +0.4pp
+        - 0.76
+        - 3.2%
+      - - Oracle
+        - 0.776
+        - +13.2pp
+        - —
+        - 100%
+    - name: 'Table: Feature Importance & Correlation'
+      columns:
+      - Feature
+      - LR Coefficient
+      - Pairwise ρ with others (mean)
+      rows:
+      - - EM
+        - 0.42
+        - 0.61
+      - - VC
+        - 0.31
+        - 0.72
+      - - SJ
+        - 0.18
+        - 0.68
+      - - LP
+        - 0.06
+        - 0.45
+      - - FK
+        - 0.03
+        - 0.59
+    figures_description:
+    - 'Bar chart: oracle gap closure by method — greedy (0%), LP (0.5%), EM (4.6%),
+      LR verifier (3.2%), oracle (100%). The LR verifier falls BELOW best single signal
+      on selection despite marginally better AUROC, reinforcing that population-level
+      discrimination ≠ instance-level ranking.'
+    analysis: 'Worst-tier reviewer response: ''The supervised verifier closes 3% of
+      the oracle gap using the same signals that individually close <5%. This is expected
+      — linear combinations of correlated weak signals yield a correlated weak signal.
+      The real question is whether a verifier with access to input representations
+      (not just output statistics) can close the gap. You haven''t tested this, and
+      your ''path forward'' remains speculative.'' The result actively HURTS the paper
+      because it demonstrates the 5 signals collectively contain negligible selection-relevant
+      information beyond what any single signal provides. This undercuts Contribution
+      B''s ''constructive implications'' framing — there''s no evidence the gap IS
+      closable.'
+  - name: claim_audit
+    plan_id: exp-024
+    description: Systematic cross-chapter numerical consistency audit. Check all quantitative
+      claims against source data. Resolve known contradictions.
+    expected_results:
+      contradictions_found: 7
+      contradictions_resolved: 4
+      contradictions_remaining: 3
+      sections_with_stale_numbers:
+      - Abstract
+      - Introduction
+      - Discussion
+      critical_issues:
+      - Abstract claims AUROC 0.82 but max observed is 0.749 (EM NER) from 1024-token
+        data; 0.82 only achievable with EM on CoNLL which has 58% degeneracy
+      - Discussion '+0.2pp over greedy' uses Table 2 macro but intro cites sample-level
+        delta
+      - Capability trap R²=0.94 on n=3 still referenced in Conclusion despite downgrade
+        to 'qualitative'
+      greedy_f1_inconsistency: 3 different greedy F1 values cited for SciERC NER (0.618,
+        0.644, 0.667) from different max_tokens/seeds
+      table2_audit_clean: true
+    result_rationale: 在 worst 档下，claim audit 暴露出论文内部数值混乱的根本原因：实验跨越多个月、多次 rerun (512→1024
+      token, gold-empty filtering pipeline change, 3 seeds)，导致同一指标在不同章节引用不同来源。Abstract
+      的 AUROC 0.82 来自 paper_framing 的 Claim 1 描述 ('AUROC up to 0.82')，但实际最高值是 CoNLL
+      EM AUROC 0.8156 (exp_002 registry) 或 SciERC EM AUROC 0.749 (exp_012_rerun_1024)。0.82
+      可能是 exp_002_conll_n16 的 EM AUROC 0.8409 四舍五入后的 legacy 值，但该数据集 degeneracy 58%。Reviewer
+      注意到数值不一致时会扣 soundness 分 — 从 4 降到 3。3 个未解决矛盾会被标注为 'careless writing' 或 'claims
+      not fully supported by evidence'，直接影响 reviewer confidence。这不影响科学结论但影响 accept
+      probability — worst 档 reviewer 已经倾向 reject，数值不一致提供了具体依据。
+    tables:
+    - name: Audit Result Summary
+      columns:
+      - Section
+      - Claim
+      - Cited Value
+      - Source Value
+      - Status
+      rows:
+      - - Abstract
+        - AUROC up to 0.82
+        - 0.82
+        - 0.749 (SciERC) / 0.816 (CoNLL)
+        - MISMATCH — needs scope qualifier
+      - - Intro
+        - selection ≈ greedy (+0.2pp)
+        - +0.2pp
+        - +0.6pp (NER LP) / -0.9pp (RE)
+        - MISMATCH — task-dependent sign
+      - - Discussion
+        - R²=0.94 monotone relationship
+        - R²=0.94
+        - n=3, qualitative only
+        - STALE — acknowledged but still cited
+      - - Table 2
+        - Macro F1 unified
+        - LP 0.647, Greedy 0.645
+        - exp_016_rerun_1024
+        - CLEAN
+      - - Section 5.2
+        - ρ up to 0.45
+        - 0.45
+        - 0.4497 (CoNLL SJ N=16 cond)
+        - OK — rounded
+      - - Conclusion
+        - 58% degeneracy for high-cap models
+        - 58%
+        - CoNLL tied fraction
+        - OK
+      - - Section 4.1
+        - greedy F1 0.644
+        - 0.644
+        - 0.6439 (exp_016) vs 0.6647 (1024-token)
+        - MISMATCH — max_tokens version
+    figures_description: []
+    analysis: 'Worst-tier impact: 审计本身不产生新证据，但暴露的不一致被 reviewer 用作 ''insufficient care
+      in reporting'' 的证据。关键问题是 AUROC 0.82 — 这是论文最显眼的数字（Abstract 第一句），但无法用单一实验直接支撑。如果
+      0.82 来自 CoNLL EM AUROC 0.84，reviewer 会指出 CoNLL 58% degeneracy 使该数字 misleading（模型已
+      saturated，高 AUROC 只是在区分''全对'' vs ''差一两个 entity''）。如果来自 voting_conf 在某个 seed
+      的 AUROC，则不 reproducible。Worst-tier reviewer 会写：''The authors claim AUROC 0.82
+      in the abstract but I cannot find this exact number in any table. The closest
+      is 0.749 (Table 3, SciERC EM) or 0.816 (Table 4, CoNLL EM). This kind of discrepancy
+      undermines confidence in the reported results.'' Soundness score: 3 (low end
+      of worst range).'
+  review_report: '---
+
+    dream_id: dream_20260516T113255
+
+    tier: worst
+
+    overall_score: borderline findings (2.5/5)
+
+    timestamp: 2026-05-16T12:19:18.482723+00:00
+
+    ---
+
+
+    # Dream Review Report: "Not All Correlations Transfer: When Population-Level Quality
+    Signals Fail at Instance-Level Selection"
+
+
+    **Venue**: EMNLP 2026 Main Conference (via ACL Rolling Review)
+
+    **Review Mode**: Full (2-Reviewer Roundtable)
+
+    **Date**: 2026-05-16
+
+
+    ---
+
+
+    ## Consolidated Scores (Post-Roundtable)
+
+
+    | Dimension | R1 (Methods+Experiments) | R2 (Novelty+Related Work) | Consensus
+    |
+
+    |---|---|---|---|
+
+    | Soundness | 3.5 | 3.5 | **3.5** (between Acceptable and Strong) |
+
+    | Excitement | 2.5 | 2.0 | **2** (Potentially Interesting) |
+
+    | Overall Assessment | 2.75 | 2.75 | **2.5** (Borderline Findings) |
+
+    | Confidence | 4 | 4 | **4** |
+
+
+    **Recommendation**: Borderline Findings — below the EMNLP main conference threshold
+    (~22% acceptance). The paper documents a real phenomenon with above-average experimental
+    effort, but limited novelty, narrow experimental scope, numerical inconsistencies,
+    and a weak verifier baseline prevent acceptance.
+
+
+    ---
+
+
+    ## 1. Paper Summary
+
+
+    The paper formalizes a "correlation–selection gap" in test-time scaling (TTS)
+    for structured information extraction: confidence signals that correlate with
+    output quality at the population level (quality estimation, QE; ρ up to 0.45,
+    AUROC up to 0.75) fail to select better candidates at the instance level (Δ <
+    0.3pp vs greedy, all p > 0.05) despite 13–18pp oracle headroom. Two causal mechanisms
+    are identified — instance degeneracy (21–58% of instances yield identical quality
+    across samples) and logprob score compression (within-instance range 0.041 nats).
+    Controlled ablations (LoRA rank, free-form decoding, scale, supervised verifier)
+    establish the gap as multi-causal. Experiments span 3 datasets (SciERC, CoNLL-2003,
+    WNUT-17), 3 models (Qwen3-8B, Qwen3-4B, LLaMA-3.1-8B), and 5 confidence signal
+    families.
+
+
+    ---
+
+
+    ## 2. Strengths
+
+
+    **S1. Clear conceptual contribution (R1+R2 agree).** The QE vs. selection decomposition
+    is well-formulated and genuinely useful. The paper correctly identifies that conflating
+    population-level correlation with instance-level selection capability has led
+    to overoptimistic conclusions about TTS for structured tasks. This distinction,
+    while not entirely new, has not been articulated with this clarity for structured
+    outputs.
+
+
+    **S2. Thorough ablation chain (R1+R2 agree).** The diagnostic chain — free-form
+    decoding, entity-token LP isolation, LoRA rank ablation, verbalized confidence,
+    scale ablation, supervised verifier, cross-model replication — is commendably
+    comprehensive for a negative-result paper. The LoRA rank ablation showing degeneracy
+    reduction is necessary-but-not-sufficient is the strongest experimental contribution.
+
+
+    **S3. Difficulty gradient design (R1).** Using SciERC (medium difficulty), CoNLL
+    (ceiling control), and WNUT-17 (signal-collapse boundary) with explicit roles
+    for each dataset is sound experimental design.
+
+
+    **S4. Statistical methodology (partial — R1).** The paper deploys bootstrap CIs,
+    TOST equivalence testing, Cohen''s d, Bonferroni correction, and Fisher''s z-test.
+    While application is inconsistent in places (see W4), the ambition is above average.
+
+
+    **S5. Practical QE value (R2).** The positive result — that structural signals
+    reliably predict output quality with difficulty-dependent rankings — is independently
+    useful. Practitioner guidance (VC for medium-difficulty, EM for easy/binary) is
+    actionable.
+
+
+    **S6. Honest limitations (R1+R2 agree).** The paper is transparent about scope:
+    decoder-only models only, 4–8B scale, limited RE coverage, no trained verifier
+    with input representations.
+
+
+    ---
+
+
+    ## 3. Weaknesses
+
+
+    ### Major
+
+
+    **W1. Limited novelty of the core observation (R2, endorsed by R1).** The finding
+    that "capable models produce similar outputs, leaving little room for selection"
+    is a straightforward consequence of model convergence already documented in adjacent
+    settings:
+
+    - Kirk et al. (2024): diversity collapse in RLHF-trained models
+
+    - Brown et al. (2024, "Large Language Monkeys"): diminishing returns of best-of-N
+
+    - Eikema & Aziz (2022): MBR gains diminish when hypothesis space concentrates
+
+
+    The "correlation–selection gap" terminology is new, but the underlying phenomenon
+    is not. The paper''s contribution is rigorous empirical quantification in NER
+    rather than conceptual discovery. For a 22% acceptance-rate venue, the novelty
+    bar requires more than careful confirmation of expected behavior. **Both reviewers
+    independently assessed novelty as medium-low.**
+
+
+    **W2. Narrow experimental scope undermines generality claims (R1+R2 agree).**
+    The paper evaluates only decoder-only models (3B–8B) with LoRA fine-tuning. The
+    "model-agnostic" claim rests on Qwen3-8B and LLaMA-3.1-8B — two 8B decoder-only
+    models with identical LoRA recipes. No encoder-based model (DeBERTa, BERT-CRF),
+    no 70B+ model, and no closed-source API model is tested. The instance degeneracy
+    phenomenon could plausibly be specific to LoRA fine-tuning of mid-scale decoder-only
+    models. The title ("Not All Correlations Transfer") and framing suggest a general
+    lesson for TTS, but the evidence is from one task family (NER + exploratory RE)
+    with one model architecture class.
+
+
+    **W3. Weak supervised verifier baseline (R1+R2 agree).** The logistic regression
+    on 5 signals is not a meaningful test of whether learned scoring can close the
+    oracle gap. R1''s decomposition is sharp: 4 of 5 features (SJ, FK, EM, VC) are
+    instance-level aggregates identical across candidates within an instance. This
+    makes the LR effectively a univariate LP selector with regularization. The conclusion
+    that "the bottleneck is in the features, not the aggregation" is valid only for
+    these specific features. A verifier using hidden states, output embeddings, or
+    a cross-encoder reranker was not tested. The paper''s claim that "closing the
+    gap requires content-aware verifiers" is a plausible hypothesis, not a demonstrated
+    finding.
+
+
+    **W4. Numerical inconsistencies across the paper (R1, endorsed by R2).** Multiple
+    version-drift issues undermine reporting reliability:
+
+    - **AUROC headline**: Abstract/intro claim "AUROC up to 0.82" but this comes from
+    CoNLL EM (0.816 rounded), not the primary test bed SciERC (0.749). This is misleading
+    as a headline figure.
+
+    - **P-value discrepancy**: Table 2 reports LP selection p = 0.39 (bootstrap),
+    but the paper also references different statistical tests in different places
+    without reconciliation.
+
+    - **Supervised verifier**: Main text references gap closed and AUROC values that
+    may reflect different experimental configurations (3-fold vs 5-fold CV) without
+    clearly stating which is definitive.
+
+    - **Oracle NER**: Minor discrepancy between 0.776 and 0.778 across different references.
+
+    - **Greedy F1**: 0.644 vs 0.645 appears in different locations.
+
+
+    None suggest fabrication — they reflect version drift across experiment iterations
+    — but they indicate insufficient quality control in the final manuscript. **R2
+    downgraded Soundness from 4 to 3.5 after reviewing R1''s numerical audit.**
+
+
+    **W5. Instance degeneracy on CoNLL is partially tautological (R2).** CoNLL with
+    92% greedy F1 and 58% degeneracy reduces to: "a near-perfect model produces the
+    same near-perfect output every time." Including CoNLL''s 58% in the headline "21–58%"
+    range inflates the apparent severity. The informative case is SciERC (21% degeneracy
+    at 66% F1), which is already acknowledged as the primary test bed.
+
+
+    ### Minor
+
+
+    **W6. Statistical power concerns (R1+R2).** The primary selection analysis uses
+    limited seeds on n=529 (SciERC). Power to detect small but real improvements (1–2pp)
+    is limited. TOST equivalence results are configuration-dependent.
+
+
+    **W7. Temperature sensitivity under-explored (R1).** Only T=0.7 and T=1.0 tested.
+    Higher temperatures (T=1.5, T=2.0) would directly test the degeneracy and compression
+    mechanisms — the most natural experimental lever for the paper''s own hypotheses.
+
+
+    **W8. WNUT gold-empty filtering.** 46.5% of WNUT instances removed due to empty
+    gold labels. This aggressive filtering is not adequately justified and may bias
+    results.
+
+
+    **W9. Instance degeneracy definition.** "Constant F1" conflates two distinct phenomena:
+    (a) all N outputs are identical strings, and (b) outputs differ but coincidentally
+    achieve the same F1. The paper reports both (11% identical vs 21% constant-F1
+    on SciERC) but the headline uses the broader definition without sufficient clarification.
+
+
+    **W10. Missing direct comparison with Yao et al. (R2).** The most directly comparable
+    prior work (consistency–accuracy correlations for LLM-based IE) is not quantitatively
+    compared. Without Yao et al.''s numbers, the marginal contribution is hard to
+    assess.
+
+
+    ---
+
+
+    ## 4. Questions for Authors
+
+
+    1. The abstract claims "AUROC up to 0.82" — is this from CoNLL EM (0.816 rounded)?
+    If so, the primary test bed (SciERC) reaches only 0.749. Should the headline reflect
+    the primary test bed?
+
+
+    2. The non-tied LP subset shows +2.9pp (p=0.004), surviving Bonferroni correction.
+    This is a genuine positive selection result. What characterizes these ~210 instances?
+    Could a meta-classifier predict which instances have sufficient LP spread for
+    successful selection? This seems like the paper''s most interesting finding and
+    deserves more prominence.
+
+
+    3. The RE free-form ablation shows LP selection consistently improves (+1.8pp
+    across seeds). Why is this relegated to the appendix rather than developed as
+    a positive contribution?
+
+
+    4. Have you considered diversity-promoting decoding (diverse beam search, higher
+    nucleus sampling p) rather than standard temperature sampling? Instance degeneracy
+    might partly reflect the decoding strategy.
+
+
+    5. What are Yao et al.''s specific correlation values? How do they compare to
+    your ρ values? Did they attempt selection?
+
+
+    6. At higher temperatures (T=1.5, T=2.0), degeneracy should decrease. Is there
+    a temperature sweet spot where selection becomes viable?
+
+
+    7. What happens if the supervised verifier uses model hidden states or output
+    embeddings instead of the 5 hand-crafted signals?
+
+
+    ---
+
+
+    ## 5. Missing Experiments (Priority-Ordered)
+
+
+    1. **Higher temperature ablation** (T=1.5, T=2.0) — directly tests the paper''s
+    own mechanisms
+
+    2. **Stronger verifier** (MLP on hidden states or cross-encoder reranker) — would
+    test whether the oracle gap is truly unclosable
+
+    3. **Encoder-based model** (DeBERTa-NER or BERT-CRF) — tests whether degeneracy
+    is decoder-only specific
+
+    4. **70B+ or API model** — tests scale generalization
+
+    5. **Develop the non-tied LP positive result** — the +2.9pp finding deserves its
+    own analysis
+
+    6. **Additional RE benchmarks** (TACRED, ACE05) — would elevate RE from "exploratory"
+
+
+    ---
+
+
+    ## 6. Missing Related Work
+
+
+    - **Diverse decoding**: Vijayakumar et al. (2016, Diverse Beam Search), Ippolito
+    et al. (2019), Li et al. (2016) — directly relevant since the paper diagnoses
+    output concentration but does not consider diversity-promoting alternatives
+
+    - **Broader MBR**: Bertsch et al. (2023, "It''s MBR All the Way Down"), Trabelsi
+    et al. (2024, Efficient MBR)
+
+    - **Structured prediction calibration**: Wiseman et al. (2016), Belanger & McCallum
+    (2016)
+
+    - **Ensemble selection in NLP**: Florian et al. (2003), Sim et al. (2007), Rosti
+    et al. (2007)
+
+    - **Mode collapse in fine-tuning**: Shumailov et al. (2024, "The Curse of Recursion")
+
+    - **Token-level vs sequence-level scoring**: Murray & Chiang (2018)
+
+
+    ---
+
+
+    ## 7. Novelty Assessment
+
+
+    **Medium-Low.** The core findings decompose into:
+
+    - (a) Instance-level aggregate signals (SJ, FK, EM, VC) cannot by construction
+    discriminate among candidates for a given input — this is partly definitional,
+    not empirical
+
+    - (b) Capable fine-tuned models produce concentrated outputs — known from diversity
+    collapse and MBR literature
+
+    - (c) Log-probability is a weak per-sample signal for structured extraction —
+    expected given known calibration issues
+
+
+    The conceptual advance beyond "best-of-N has diminishing returns when the model
+    is already good" is present but modest. The QE-vs-selection framework is a useful
+    contribution, and the multi-causal diagnostic chain (especially the LoRA rank
+    necessity-but-not-sufficiency result) adds empirical depth. However, for a 22%
+    acceptance venue, the novelty requires more than careful empirical confirmation
+    of expected behavior in a specific domain.
+
+
+    ---
+
+
+    ## 8. Experiment Design Coverage
+
+
+    Checked against the full experiment plan:
+
+    - **ner_llama_conll (exp-017)**: Covered in Table 3. Cross-model validation is
+    present but weak — two 8B decoder-only models with identical LoRA recipe is internally
+    consistent but does not constitute model-agnostic evidence.
+
+    - **simple_verifier_baseline (exp-019)**: Covered in Table 4. LR on 5 correlated
+    signals is effectively a weighted average; closes less gap than best single signal.
+    Validates the negative but does not test the constructive hypothesis.
+
+    - **claim_audit (exp-024)**: Partially addressed — the paper includes Appendix
+    A (Numerical Consistency Notes) and the abstract AUROC was adjusted from 0.82
+    to 0.75 in the text (though 0.82 may persist in some locations). Several inconsistencies
+    remain unresolved.
+
+
+    ---
+
+
+    ## 9. Roundtable Narrative
+
+
+    **Step 1 (Independent)**: R1 focused on methods/experiments and identified numerical
+    inconsistencies, narrow cross-model validation, and the weak verifier. Scored
+    Soundness 3.5, Excitement 3, Overall 3.0. R2 focused on novelty/related work and
+    found the core observation to be an expected consequence of model convergence,
+    with medium-low novelty. Scored Soundness 4, Excitement 2, Overall 3.0.
+
+
+    **Step 2 (Cross-sharing)**: R1 accepted R2''s novelty critique and lowered Excitement
+    from 3 to 2.5. R1 highlighted the non-tied LP subset (+2.9pp) as an underexploited
+    positive finding. R2 accepted R1''s numerical consistency analysis and lowered
+    Soundness from 4 to 3.5. R2 pushed back on R1''s "statistical rigor" strength,
+    arguing that deploying many tests inconsistently is not rigor.
+
+
+    **Step 3 (Convergence)**: Both reviewers converged on Soundness 3.5, Overall 2.75.
+    Key areas of agreement: (1) narrow model diversity undermines generality claims,
+    (2) weak verifier is not a fair test, (3) numerical inconsistencies indicate insufficient
+    quality control, (4) limited novelty for a top venue. The strongest disagreement
+    was on Excitement (R1: 2.5, R2: 2), resolved to 2 in the consensus given the confirmed
+    low novelty.
+
+
+    **Step 4 (Synthesis)**: Final consensus is **Overall 2.5 (Borderline Findings)**.
+    The paper has a defensible core idea and above-average experimental effort, but
+    the combination of (a) limited novelty over known phenomena, (b) narrow scope
+    that cannot support the generality claims, (c) a weak verifier baseline that leaves
+    the most important question unanswered, and (d) numerical version-drift issues
+    places it below even the Findings threshold as currently written. A revision addressing
+    the verifier gap (hidden-state verifier), broadening model diversity (encoder
+    model or 70B+), developing the positive sub-results (non-tied LP, RE free-form),
+    and resolving numerical inconsistencies could elevate this to a solid Findings
+    paper.
+
+
+    ---
+
+
+    ## 10. Actionable Revision Priorities
+
+
+    1. **Fix numerical inconsistencies**: Reconcile AUROC headline, p-values, verifier
+    numbers, greedy F1 across all sections. Use a single definitive experiment run
+    for each claim.
+
+    2. **Develop the non-tied LP positive finding**: The +2.9pp (p=0.004) result is
+    the paper''s most interesting finding. Characterize what makes these instances
+    amenable to selection. This transforms the paper from pure negative result to
+    "selection works under specific conditions."
+
+    3. **Implement a stronger verifier**: Even a 2-layer MLP on hidden states would
+    test whether the oracle gap is closable. The current LR baseline proves nothing
+    about learned verifiers.
+
+    4. **Add one encoder-based model**: A DeBERTa or BERT-CRF on SciERC would test
+    whether degeneracy is architecture-dependent.
+
+    5. **Test higher temperatures**: T=1.5 or T=2.0 directly tests the degeneracy
+    mechanism.
+
+    6. **Reframe the narrative**: Lead with the conditions under which selection succeeds
+    vs fails (the non-tied LP analysis), rather than a blanket negative result. This
+    is both more accurate and more useful.'
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-16T12:19:30+00:00'
