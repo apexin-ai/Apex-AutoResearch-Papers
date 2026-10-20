@@ -1205,6 +1205,38 @@
         }
       ],
       "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39397907680"
+    },
+    "trace-verdict-study/workspace.tar.gz": {
+      "status": "uploaded",
+      "source": {
+        "bytes": 431274411,
+        "etag": "\"2670c126dd42a827521e6229a8986778-52\"",
+        "modified": "2026-05-31T17:35:15+00:00"
+      },
+      "archive_sha256": "f92eedf83eb75c67c64105722135d95cd5b1823f0a34613de04b0a0316824b1c",
+      "projects": [
+        "div_cal_verify",
+        "trace-verdict-study"
+      ],
+      "counts": [
+        {
+          "project": "div_cal_verify",
+          "title": "The Embedding Alignment Gap: Why Diversity-Based Data Selection Accelerates Model Collapse in Iterative Self-Training",
+          "paper_pdf": "paper.pdf",
+          "code_count": 77,
+          "data_count": 228,
+          "trace_count": 336
+        },
+        {
+          "project": "trace-verdict-study",
+          "title": "Trace Verbosity Degrades SFT Verdict Prediction: A Case Study in Information Density Effects",
+          "paper_pdf": "paper.pdf",
+          "code_count": 426,
+          "data_count": 1550,
+          "trace_count": 2404
+        }
+      ],
+      "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39397907680"
     }
   }
 }

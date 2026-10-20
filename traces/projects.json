@@ -379,6 +379,22 @@
       }
     },
     {
+      "project": "div_cal_verify",
+      "title": "The Embedding Alignment Gap: Why Diversity-Based Data Selection Accelerates Model Collapse in Iterative Self-Training",
+      "catalog": "../paper-assets/div_cal_verify/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 336,
+        "messages": 19867,
+        "user_turns": 855,
+        "tool_calls": 7798,
+        "unparsed_lines": 133,
+        "worker": 137,
+        "result": 136,
+        "conversation": 53,
+        "history": 10
+      }
+    },
+    {
       "project": "ec_hte_codex_b",
       "title": "ec hte codex b",
       "catalog": "../paper-assets/ec_hte_codex_b/05-generation-trace/catalog.json",
@@ -1071,6 +1087,22 @@
         "result": 19,
         "worker": 25,
         "conversation": 8
+      }
+    },
+    {
+      "project": "trace-verdict-study",
+      "title": "Trace Verbosity Degrades SFT Verdict Prediction: A Case Study in Information Density Effects",
+      "catalog": "../paper-assets/trace-verdict-study/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 2404,
+        "messages": 184986,
+        "user_turns": 6088,
+        "tool_calls": 72199,
+        "unparsed_lines": 920,
+        "worker": 923,
+        "result": 871,
+        "conversation": 479,
+        "history": 131
       }
     },
     {

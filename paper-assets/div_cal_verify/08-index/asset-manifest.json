@@ -1,0 +1,106 @@
+{
+  "project": "div_cal_verify",
+  "code_count": 77,
+  "data_count": 228,
+  "env_count": 1,
+  "tex_count": 19,
+  "bib_count": 2,
+  "review_count": 0,
+  "validation_count": 0,
+  "contribution_count": 3,
+  "chat_count": 53,
+  "worker_count": 273,
+  "trace_count": 336,
+  "trace_bytes": 27042914,
+  "maintenance_count": 20,
+  "provenance_count": 0,
+  "submission_count": 0,
+  "license_count": 0,
+  "paper_pdf": "paper.pdf",
+  "paper_sha256": "0837b3e703a0eaa16b82bc163914cdf93a4ccef7c7ae7a7fa6300fb84d1d9e80",
+  "title": "The Embedding Alignment Gap: Why Diversity-Based Data Selection Accelerates Model Collapse in Iterative Self-Training",
+  "pages": 16,
+  "status_marker": "Anonymous ACL submission",
+  "version_count": 6,
+  "version_paths": [
+    "docs/paper/figures/fig_ppl_trends.pdf",
+    "docs/paper/figures/fig_ratio_trajectory.pdf",
+    "docs/paper/main.pdf",
+    "artifacts/dream_reports/dream_20260513T081019/median/paper.pdf",
+    "artifacts/dream_reports/dream_20260513T081019/worst/paper.pdf",
+    "artifacts/dream_reports/dream_20260513T081019/best/paper.pdf"
+  ],
+  "archive_rel": "trace-verdict-study/workspace.tar.gz",
+  "archive_note": "Archive scan completed",
+  "archive_error": null,
+  "source_s3": {
+    "bucket": "agent-ml-research-project-backups-20260531",
+    "key": "trace-verdict-study/workspace.tar.gz",
+    "sha256": "f92eedf83eb75c67c64105722135d95cd5b1823f0a34613de04b0a0316824b1c",
+    "bytes": 431274411,
+    "etag": "\"2670c126dd42a827521e6229a8986778-52\"",
+    "modified": "2026-05-31T17:35:15+00:00"
+  },
+  "academic_record": {
+    "date": "2026-05-31",
+    "record": "Project status documents are included as source evidence; formal submission, acceptance, or publication status is unverified."
+  },
+  "criteria": [
+    {
+      "name": "Manuscript and versions",
+      "status": "Available",
+      "evidence": "19 source files; 6 PDF candidates",
+      "gap": "Candidate filenames do not establish official submission or publication.",
+      "path": "01-manuscript/"
+    },
+    {
+      "name": "Academic status",
+      "status": "Unverified",
+      "evidence": "Project status documents are included as source evidence; formal submission, acceptance, or publication status is unverified.",
+      "gap": "Official submission, acceptance, and publication were not independently checked.",
+      "path": "07-maintenance/"
+    },
+    {
+      "name": "AI / human contribution",
+      "status": "Partial",
+      "evidence": "3 task/role records",
+      "gap": "User and assistant roles do not identify people or establish author contributions.",
+      "path": "02-contributions/"
+    },
+    {
+      "name": "Generation trace",
+      "status": "Organized",
+      "evidence": "53 conversations; 273 worker logs/results; 336 source files",
+      "gap": "Overlapping snapshots are retained; credentials and binary attachments are redacted.",
+      "path": "05-generation-trace/"
+    },
+    {
+      "name": "Reproduction code",
+      "status": "Available",
+      "evidence": "77 code/configuration files; 1 environment manifests",
+      "gap": "The code is archived; experiments were not rerun for this release.",
+      "path": "03-code/"
+    },
+    {
+      "name": "Experiments and environment",
+      "status": "Partial",
+      "evidence": "228 data/result files",
+      "gap": "Original data permissions and completeness require project-specific review.",
+      "path": "04-experiments/"
+    },
+    {
+      "name": "Validation evidence",
+      "status": "Not found",
+      "evidence": "0 internal review records; 0 other audit records",
+      "gap": "Internal reviews are project evidence, not independently verified external reviews.",
+      "path": "06-validation/"
+    },
+    {
+      "name": "Maintenance",
+      "status": "Partial",
+      "evidence": "20 project documentation files; 0 license files",
+      "gap": "A project license file applies only within its stated scope.",
+      "path": "07-maintenance/"
+    }
+  ]
+}

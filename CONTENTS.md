@@ -1,6 +1,6 @@
 # Contents
 
-This catalogue covers **46 projects with manuscript PDFs** and **31 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
+This catalogue covers **48 projects with manuscript PDFs** and **31 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
 
 | Project | Manuscript | Code/config files | Data/result files | Trace sources | Recorded events |
 |---|---|---:|---:|---:|---:|
@@ -19,6 +19,7 @@ This catalogue covers **46 projects with manuscript PDFs** and **31 additional p
 | [diff_collision_sdf](paper-assets/diff_collision_sdf/README.md) | [PDF](paper-assets/diff_collision_sdf/01-manuscript/paper.pdf) | 360 | 1,053 | 1,864 | 149,990 |
 | [distill_sparse_swiglu](paper-assets/distill_sparse_swiglu/README.md) | [PDF](paper-assets/distill_sparse_swiglu/01-manuscript/paper.pdf) | 1,783 | 2,536 | 2,646 | 197,700 |
 | [distrib_canary_collapse](paper-assets/distrib_canary_collapse/README.md) | [PDF](paper-assets/distrib_canary_collapse/01-manuscript/paper.pdf) | 621 | 2,017 | 2,660 | 222,729 |
+| [div_cal_verify](paper-assets/div_cal_verify/README.md) | [PDF](paper-assets/div_cal_verify/01-manuscript/paper.pdf) | 77 | 228 | 336 | 19,867 |
 | [ec_hte_llm_annotation](paper-assets/ec_hte_llm_annotation/README.md) | [PDF](paper-assets/ec_hte_llm_annotation/01-manuscript/paper.pdf) | 161 | 423 | 434 | 75,488 |
 | [entrainment_gated_ft](paper-assets/entrainment_gated_ft/README.md) | [PDF](paper-assets/entrainment_gated_ft/01-manuscript/paper.pdf) | 150 | 431 | 599 | 80,801 |
 | [event-gated-adaptive-horizon](paper-assets/event-gated-adaptive-horizon/README.md) | [PDF](paper-assets/event-gated-adaptive-horizon/01-manuscript/paper.pdf) | 649 | 1,727 | 3,085 | 193,802 |
@@ -49,6 +50,7 @@ This catalogue covers **46 projects with manuscript PDFs** and **31 additional p
 | [structfuse-context](paper-assets/structfuse-context/README.md) | [PDF](paper-assets/structfuse-context/01-manuscript/paper.pdf) | 212 | 354 | 1,232 | 90,756 |
 | [symb_invariant_consensus](paper-assets/symb_invariant_consensus/README.md) | [PDF](paper-assets/symb_invariant_consensus/01-manuscript/paper.pdf) | 625 | 1,219 | 2,623 | 260,972 |
 | [tax_error_inject_agent](paper-assets/tax_error_inject_agent/README.md) | [PDF](paper-assets/tax_error_inject_agent/01-manuscript/paper.pdf) | 271 | 1,146 | 1,168 | 68,008 |
+| [trace-verdict-study](paper-assets/trace-verdict-study/README.md) | [PDF](paper-assets/trace-verdict-study/01-manuscript/paper.pdf) | 426 | 1,550 | 2,404 | 184,986 |
 | [xling_calib_direction](paper-assets/xling_calib_direction/README.md) | [PDF](paper-assets/xling_calib_direction/01-manuscript/paper.pdf) | 121 | 201 | 290 | 27,260 |
 | [action_cond_info_bottleneck](paper-assets/action_cond_info_bottleneck/README.md) | No PDF in snapshot | 172 | 255 | 800 | 45,967 |
 | [afford_invar](paper-assets/afford_invar/README.md) | No PDF in snapshot | 34 | 50 | 172 | 15,216 |

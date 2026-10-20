@@ -1,6 +1,6 @@
 # Research Trace Atlas
 
-Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **77 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
+Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **79 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
 
 [Offline preview](demo.html) · [Interactive browser](index.html) · [Format and provenance](FORMAT.md)
 
@@ -35,6 +35,7 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [distill_kv_rag_cache](../paper-assets/distill_kv_rag_cache/05-generation-trace/README.md) | 9 | 32 | 24 | 0 | 6,102 | [Read](../paper-assets/distill_kv_rag_cache/05-generation-trace/readable/README.md) |
 | [distill_sparse_swiglu](../paper-assets/distill_sparse_swiglu/05-generation-trace/README.md) | 582 | 1,072 | 867 | 125 | 197,700 | [Read](../paper-assets/distill_sparse_swiglu/05-generation-trace/readable/README.md) |
 | [distrib_canary_collapse](../paper-assets/distrib_canary_collapse/05-generation-trace/README.md) | 570 | 1,011 | 975 | 104 | 222,729 | [Read](../paper-assets/distrib_canary_collapse/05-generation-trace/readable/README.md) |
+| [div_cal_verify](../paper-assets/div_cal_verify/05-generation-trace/README.md) | 53 | 137 | 136 | 10 | 19,867 | [Read](../paper-assets/div_cal_verify/05-generation-trace/readable/README.md) |
 | [ec_hte_codex_b](../paper-assets/ec_hte_codex_b/05-generation-trace/README.md) | 9 | 0 | 0 | 0 | 2,848 | [Read](../paper-assets/ec_hte_codex_b/05-generation-trace/readable/README.md) |
 | [ec_hte_llm_annotation](../paper-assets/ec_hte_llm_annotation/05-generation-trace/README.md) | 72 | 183 | 175 | 4 | 75,488 | [Read](../paper-assets/ec_hte_llm_annotation/05-generation-trace/readable/README.md) |
 | [eco_alpha_beta_diversity](../paper-assets/eco_alpha_beta_diversity/05-generation-trace/README.md) | 4 | 9 | 7 | 0 | 1,818 | [Read](../paper-assets/eco_alpha_beta_diversity/05-generation-trace/readable/README.md) |
@@ -81,11 +82,12 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [tax_error_inject_agent](../paper-assets/tax_error_inject_agent/05-generation-trace/README.md) | 260 | 440 | 427 | 41 | 68,008 | [Read](../paper-assets/tax_error_inject_agent/05-generation-trace/readable/README.md) |
 | [tbab_multi_turn](../paper-assets/tbab_multi_turn/05-generation-trace/README.md) | 24 | 48 | 44 | 0 | 10,572 | [Read](../paper-assets/tbab_multi_turn/05-generation-trace/readable/README.md) |
 | [temp-adv-distill-vla](../paper-assets/temp-adv-distill-vla/05-generation-trace/README.md) | 8 | 25 | 19 | 0 | 9,052 | [Read](../paper-assets/temp-adv-distill-vla/05-generation-trace/readable/README.md) |
+| [trace-verdict-study](../paper-assets/trace-verdict-study/05-generation-trace/README.md) | 479 | 923 | 871 | 131 | 184,986 | [Read](../paper-assets/trace-verdict-study/05-generation-trace/readable/README.md) |
 | [trace_distill_repair](../paper-assets/trace_distill_repair/05-generation-trace/README.md) | 76 | 166 | 154 | 14 | 31,538 | [Read](../paper-assets/trace_distill_repair/05-generation-trace/readable/README.md) |
 | [verification_triggered_retrieval](../paper-assets/verification_triggered_retrieval/05-generation-trace/README.md) | 4 | 5 | 4 | 0 | 4,203 | [Read](../paper-assets/verification_triggered_retrieval/05-generation-trace/readable/README.md) |
 | [xling_calab_direction](../paper-assets/xling_calab_direction/05-generation-trace/README.md) | 0 | 1 | 1 | 0 | 404 | [Read](../paper-assets/xling_calab_direction/05-generation-trace/readable/README.md) |
 | [xling_calib_direction](../paper-assets/xling_calib_direction/05-generation-trace/README.md) | 48 | 123 | 119 | 0 | 27,260 | [Read](../paper-assets/xling_calib_direction/05-generation-trace/readable/README.md) |
 
-**83,833 source records · 6,725,006 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
+**86,573 source records · 6,929,859 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
 
 Source language and order are retained. A user-role message can originate from another agent or system and does not identify a human author. Missing prompts and timestamps are not reconstructed. Credentials and embedded attachment payloads are redacted.
