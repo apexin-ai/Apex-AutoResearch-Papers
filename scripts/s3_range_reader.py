@@ -4,6 +4,9 @@ import io
 import time
 import urllib.request
 
+ETAG_PART_SIZE = 8 * 1024**2
+FETCH_SIZE = 32 * 1024**2
+
 
 class RangedReader(io.RawIOBase):
     def __init__(self, item):
@@ -24,7 +27,7 @@ class RangedReader(io.RawIOBase):
         if n < 0:
             n = 16384
         while len(self.buffer) - self.cursor < n and self.offset < self.size:
-            end = min(self.size - 1, self.offset + 8 * 1024**2 - 1)
+            end = min(self.size - 1, self.offset + FETCH_SIZE - 1)
             for attempt in range(5):
                 try:
                     request = urllib.request.Request(
@@ -45,7 +48,8 @@ class RangedReader(io.RawIOBase):
             self.offset += len(data)
             self.hash.update(data)
             self.md5.update(data)
-            self.parts.append(hashlib.md5(data).digest())
+            self.parts.extend(hashlib.md5(data[i:i + ETAG_PART_SIZE]).digest()
+                              for i in range(0, len(data), ETAG_PART_SIZE))
             self.buffer = self.buffer[self.cursor:] + data
             self.cursor = 0
         result = self.buffer[self.cursor:self.cursor + n]

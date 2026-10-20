@@ -18,6 +18,27 @@ class ReleaseAssetTests(unittest.TestCase):
         # suffix. Use a subprocess so a regression cannot hang the test suite.
         program='import release_assets as a; text="a"*1000000; assert a.redact_text(text)==text'
         subprocess.run([sys.executable,'-c',program],cwd=Path(a.__file__).parent,check=True,timeout=5)
+    def test_redaction_hint_filter_preserves_regex_output(self):
+        import random, string
+        self.assertEqual(len(a.REDACT_PATTERNS),len(a.REDACT_HINTS))
+        examples=[
+            'api-key = synthetic-value', 'Bearer synthetic-token-1234567890',
+            'AKIA'+'X'*16, 'ASIA'+'X'*16,
+            'sk-ant-api'+'X'*20, 'ghp_'+'X'*32,
+            'github_pat_'+'X'*40, 'hf_'+'X'*30,
+            'AIza'+'X'*35, 'xoxb-'+'X'*20,
+            '-----BEGIN PRIVATE KEY-----synthetic-----END PRIVATE KEY-----',
+            'AWS_SECRET_ACCESS_KEY = synthetic-value',
+            'https://user:synthetic@invalid.example/path',
+        ]
+        generator=random.Random(725)
+        examples += [''.join(generator.choices(string.ascii_letters+string.digits+' _-:/',k=250)) for _ in range(100)]
+        for value in examples:
+            for text in (value, 'ordinary context '+value+' end', value.upper()):
+                expected=text
+                for pattern,replacement in a.REDACT_PATTERNS:
+                    expected=pattern.sub(replacement,expected)
+                self.assertEqual(a.redact_text(text),expected)
     def test_paths(self):
         for path in ['/absolute/file','project/../../escape']:
             with self.assertRaises(ValueError):a.safe_rel(path)

@@ -25,8 +25,24 @@ class RangeReaderTests(unittest.TestCase):
         self.assertEqual(b''.join(parts),data)
         self.assertEqual(reader.hash.hexdigest(),hashlib.sha256(data).hexdigest())
         self.assertEqual(reader.finish(),hashlib.sha256(data).hexdigest())
-        self.assertEqual(len(calls),3)
-        self.assertTrue(all(end-start+1<=8*1024**2 for start,end in calls))
+        self.assertEqual(len(calls),1)
+        self.assertTrue(all(end-start+1<=32*1024**2 for start,end in calls))
+        self.assertEqual(len(reader.parts),3)
+
+    def test_large_fetch_keeps_eight_megabyte_etag_parts(self):
+        data=bytes(range(251))*145000
+        calls=[]
+        def request(req,timeout):
+            start,end=map(int,req.get_header('Range').removeprefix('bytes=').split('-'))
+            calls.append((start,end));response=io.BytesIO(data[start:end+1]);response.status=206;return response
+        chunks=[data[i:i+8*1024**2] for i in range(0,len(data),8*1024**2)]
+        etag=hashlib.md5(b''.join(hashlib.md5(chunk).digest() for chunk in chunks)).hexdigest()+'-'+str(len(chunks))
+        item={'url':'https://example.invalid/object','metadata':{'bytes':len(data),'etag':etag}}
+        with patch('urllib.request.urlopen',request):
+            reader=stream.RangedReader(item)
+            self.assertEqual(reader.finish(),hashlib.sha256(data).hexdigest())
+        self.assertEqual(len(calls),2)
+        self.assertEqual(len(reader.parts),len(chunks))
 
     def test_streamed_workspace_collection_verifies_complete_source(self):
         import release_assets as rules

@@ -85,8 +85,13 @@ EXTRA_SECRETS = []
 def redact_text(text: str) -> str:
     for value in EXTRA_SECRETS:
         text = text.replace(value, "[REDACTED_CREDENTIAL]")
-    for pattern, replacement in REDACT_PATTERNS:
-        text = pattern.sub(replacement, text)
+    lowered = text.lower()
+    for (pattern, replacement), hints in zip(REDACT_PATTERNS, REDACT_HINTS):
+        if any(hint in lowered for hint in hints):
+            updated = pattern.sub(replacement, text)
+            if updated != text:
+                text = updated
+                lowered = text.lower()
     return text
 
 
@@ -246,6 +251,18 @@ REDACT_PATTERNS.extend([
     (re.compile(r'(?i)((?:AWS_SECRET_ACCESS_KEY|AWS_ACCESS_KEY_ID|(?<![A-Z_])[A-Z_]*(?:API_KEY|ACCESS_TOKEN|SECRET_KEY|AUTH_TOKEN|PASSWORD))\s*[\"\x27]?\s*[:=]\s*[\"\x27]?)[^\s\"\x27,;}]+'), r'\1[REDACTED]'),
     (re.compile(r'(?i)(https?://)[^\s/@:]+:[^\s/@]+@'), r'\1[REDACTED]@'),
 ])
+# Every hint is a necessary literal substring of its corresponding pattern.
+# Avoid running all credential regexes over large, ordinary research payloads.
+# Update the lowercase view after each replacement so later patterns see the
+# same text they would in the original sequential implementation.
+REDACT_HINTS = [
+    ('key', 'secret', 'password', 'passwd', 'authorization', 'cookie', 'credential'),
+    ('bearer',), ('akia',), ('sk-ant-',), ('ghp_', 'gho_', 'ghu_', 'ghs_', 'ghr_'),
+    ('hf_',), ('aiza',), ('xoxb-', 'xoxa-', 'xoxp-', 'xoxr-', 'xoxs-'),
+    ('private key-----',), ('private key-----',), ('asia',), ('github_pat_',),
+    ('sk-',), ('api_key', 'access_token', 'secret_key', 'auth_token', 'password', 'aws_access_key_id', 'aws_secret_access_key'),
+    ('http://', 'https://'),
+]
 CATEGORIES = {
  '01-manuscript':'Manuscript PDF, source, references, figures, and version candidates.',
  '02-contributions':'Recorded agent roles and task instructions.',
