@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "38972a6bdc6e9f7512af",
+  "project": "symb_invariant_consensus--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 服务器 westd-32608, root, conda base 环境. vLLM port 8000 serving QwQ-32B. 项目在 /root/symb_invariant_consensus",
+  "task_key": "1b717427-05b3-46e4-817d-8a843caa592b",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/1b717427-05b3-46e4-817d-8a843caa592b.jsonl",
+    "occurrence": 1,
+    "bytes": 831645,
+    "sha256": "a39ad88e266a1bc6cfa2bb333c0b6f4a90dfa4a8a9a1eeaaf27508ba68e353be"
+  },
+  "statistics": {
+    "messages": 310,
+    "user_turns": 1,
+    "tool_calls": 83,
+    "roles": {
+      "record": 61,
+      "user": 1,
+      "assistant": 82,
+      "tool_call": 83,
+      "tool_result": 83
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "38972a6bdc6e9f7512af-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 308,
+      "chunks": [
+        {
+          "path": "38972a6bdc6e9f7512af-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "38972a6bdc6e9f7512af-part-0002.json",
+          "message_count": 130
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-westd-32608-root-conda-base-vllm-port-8000-serving-qwq-32b-root-copy-3.md"
+}

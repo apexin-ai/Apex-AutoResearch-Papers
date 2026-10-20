@@ -1,0 +1,2250 @@
+{
+  "schema_version": "1.0",
+  "session_id": "67c347f7f2dd53eeffd6",
+  "rounds": [
+    {
+      "number": 4,
+      "messages": [
+        {
+          "source_line": 132,
+          "timestamp": "2026-05-21T06:40:26.782Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-21T06:40:26.782Z",
+                "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+                "content": "[Reviewer 2 审稿意见]:\n\n# Reviewer 2 审稿意见（Round 1）\n\n**论文**: *Beyond Self-Consistency: Why Self-Extracted Symbolic Constraints Do Not Improve LLM Reasoning*\n**审查侧重**: 新颖性 + 完整性 + 叙事质量\n**Venue**: EMNLP 2026 (via ACL Rolling Review)\n\n---\n\n## Paper Summary\n\n本文研究自提取符号约束能否突破 Self-Consistency (SC) 的性能天花板。作者提出 Symbolic Invariant Consensus Aggregation (SICA)，从 CoT 推理轨迹中提取形式逻辑约束并通过加权 Partial MAX-SAT 选择答案。在 6 个模型（Qwen2.5-7B/14B, Mistral-7B, LLaMA-3.1-8B, QwQ-32B, Qwen3-14B）、5 个数据集（FOLIO, ProofWriter, LogiQA, StrategyQA, GSM8K）、3,000+ 条件评估上，自提取约束均未改善 SC。作者将机制归因为 \"Symbolic Confirmation Bias\"——约束继承模型的分布偏差。提出三个诊断指标（Effective-K, Bias Ratio, Process-κ），测试 27 种修复策略（均失败），并提供跨架构 NLI 验证（DeBERTa）和 Disagreement-Routed Cascade (DRC) 作为建设性解决方案。\n\n---\n\n## 总体评分\n\n**Overall**: 3.0 (Findings)\n**一句话总结**: 一项执行扎实的负面结果研究，彻底证明自提取符号约束继承模型偏差，但核心发现相对于已有 self-correction failure 文献的增量新颖性有限。\n\n---\n\n## 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 3.5/5 | 实验设计严谨，多模型多数据集交叉验证充分；但 Proposition 1 和 Corollary 1 仅有非正式 proof sketch，诊断指标为已有度量的直接应用 |\n| Excitement | 2.5/5 | 核心发现（自生成验证继承偏差）对熟悉 self-correction 文献的读者可预测；建设性贡献（DRC）有实用价值但范围受限 |\n| Reproducibility | 4/5 | 方法描述清晰，模型/数据集/参数/prompt 均在附录中提供，承诺代码开源 |\n| Confidence | 4/5 | 熟悉 SC、neuro-symbolic reasoning、self-correction 文献 |\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [critical] 相对于 Huang et al. (2024) 和 Stechly et al. (2025) 的增量新颖性不足\n\n- 具体位置：§1 Introduction (page 2), §7 Discussion (page 8)\n- 问题：Huang et al. (ICLR 2024) 已证明 LLMs cannot self-correct reasoning without external feedback；Stechly et al. (ICLR 2025) 已证明 self-verification 因共享相同偏差而失败。本文的核心发现——\"自提取约束继承模型偏差\"——是上述结论在符号约束领域的直接实例化 (instantiation)，而非根本性新发现。论文在 §7 第一段确实承认了与这两篇工作的关系，但仅用一句话带过（\"Our work extends Huang et al. and Stechly et al. from natural-language self-correction to formal symbolic extraction\"），未充分论证为什么符号领域的实例化本身构成足够的新颖性。\n- 为什么影响接收：在 ACL ARR 中，Excitement 维度要求论文提供 surprising 或 field-changing insights。如果审稿人认为核心发现是可预测的，则 Excitement 评分难以达到 Conference 门槛。\n- 建议修改方向：(1) 在 Introduction 中更明确地论证**为什么符号约束不同于自然语言 self-correction**——具体说，neurosymbolic 社区（如 Logic-LM, SatLM, LINC）的隐含假设是\"一旦形式化，推理就变得可靠\"，而本文挑战的正是这个假设；(2) 将 \"Symbolic Confirmation Bias\" 定位为对 neurosymbolic reasoning 社区特有假设的反驳，而非对 self-correction failure 的泛化。\n\n**N2** [critical] SatLM 正面结果与本文负面结果的对比缺失\n\n- 具体位置：§2 Related Work (page 3), Neurosymbolic Reasoning 段落\n- 问题：SatLM (Ye et al., NeurIPS 2023) 同样使用 LLM + SAT solver，但报告了显著性能提升（在 GSM 子集上超越 program-aided LMs 23%）。本文在 §2 中仅将 SatLM 列入一串引用列表（\"Logic-LM, LINC, SatLM, PAL, PoT, Faithful CoT...\"），未讨论**为什么 SatLM works 而 SICA doesn't**。关键区别在于：SatLM 通过 declarative prompting 让 LLM 生成**完整的形式化规约**（整个问题的 SAT 编码），solver 在完整规约上运算；SICA 从已有推理轨迹中**事后提取**局部约束。前者是 specification-generation（问题描述 → 形式化），后者是 trace-constraint-extraction（推理过程 → 约束）。这个区别恰恰是 SICA 失败的核心原因——约束是推理轨迹的衍生物，自然继承轨迹中的偏差。\n- 为什么影响接收：不讨论这个对比，读者会疑惑：\"同样用 solver，为什么一个 work 一个不 work？\"这会削弱论文的论证完整性。\n- 建议修改方向：在 §2 或 §7 中用 2-3 句话明确对比：SatLM = specification-generation（LLM 不做推理，只做形式化翻译），SICA = trace-constraint-extraction（约束从推理轨迹中提取，因而继承偏差）。这个对比反而能强化论文的核心论点。\n\n**N3** [critical] \"Symbolic Confirmation Bias\" 作为术语的独立性不足\n\n- 具体位置：§3.3 (page 4), §5.2 (page 5)\n- 问题：搜索发现近期已有直接研究 CoT confirmation bias 的工作：(a) \"Unveiling Confirmation Bias in Chain-of-Thought Reasoning\" (arXiv:2506.12301, Jun 2025) 研究了 CoT 中的 confirmation bias；(b) \"Failing to Falsify: Evaluating and Mitigating Confirmation Bias in Language Models\" (arXiv:2604.02485, Apr 2026) 系统评估了 LLM 的 confirmation bias。本文的 \"Symbolic Confirmation Bias\" 概念需要与这些工作区分。此外，本文同时引用的 Amonkar et al. (2025, \"Reality Check\") 和 Chan et al. (2026, \"Position paper\") 已分别指出 LLM 形式化能力的局限性和 neurosymbolic fact-checking 中逻辑正确性不可靠。\n- 为什么影响接收：如果 \"Symbolic Confirmation Bias\" 是已有 CoT confirmation bias 在符号领域的直接映射，则该概念的新颖性进一步降低。\n- 建议修改方向：(1) 引用上述近期 confirmation bias 工作并明确区分；(2) 论证 \"Symbolic Confirmation Bias\" 的特殊性在于：即使约束通过了形式化验证（Z3 satisfiable），偏差仍然存在——这是自然语言 confirmation bias 研究未覆盖的场景。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [warning] Independence-Accuracy Trade-off 是 bias-variance tradeoff 的重述\n\n- 具体位置：§5.3 (page 6), Contribution 2 (page 2)\n- 问题：论文将 \"提高温度/多样性以增加独立性会降低准确率\" 描述为一个新发现（Contribution 2: \"Independence-Accuracy Trade-Off\"）。但这本质上是 LLM 采样中众所周知的现象——高温度增加多样性但降低质量。在 ensemble learning 文献中，bias-variance-covariance decomposition (Krogh and Vedelsby, 1994, 论文自己引用) 早已描述了类似权衡。将这个观察提升为一个独立的 contribution 显得过度声称。\n- 建议：将其定位为实验观察（\"we empirically confirm...\"）而非独立贡献，或提供超越已知 bias-variance tradeoff 的定量分析。\n\n**W2** [warning] Related Work 过度压缩，缺乏深度讨论\n\n- 具体位置：§2 (page 3)\n- 问题：三段 Related Work 中列举了约 25 篇论文，阅读体验像引用列表而非文献讨论。第二段 Neurosymbolic Reasoning 将 Logic-LM、LINC、SatLM、PAL、PoT 等方法论差异巨大的系统放在同一引用串中，未区分 (a) specification-generation (SatLM, Logic-LM), (b) program-generation (PAL, PoT), (c) trace-constraint-extraction (本文 SICA)。第三段 Test-Time Scaling 和 Self-Correction 也类似处理。\n- 建议：为 neurosymbolic reasoning 子段增加一个分类讨论（哪些系统是 specification-generation，哪些是 post-hoc verification），明确本文在分类中的位置。\n\n**W3** [warning] Proposition 1 和 Corollary 1 的形式化程度不足\n\n- 具体位置：§3.3 (page 4-5)\n- 问题：Proposition 1（Self-Extraction Ceiling）和 Corollary 1（Capability Gap Condition）以定理形式呈现，但 proof sketch 仅有 3 行（page 5 顶部）。对于使用形式化 proposition 的论文，证明应更严谨。特别是 Proposition 1 的条件 \"BR(M) > 1 and oracle improvement\"——\"oracle improvement\" 的定义并不形式化。Corollary 1 声称 combo gain \"monotonically increases in the capability gap\"，但未给出 monotonicity 的严格证明。\n- 建议：要么提供完整证明（可放在 Appendix），要么将 Proposition/Corollary 降级为 \"Empirical Claim\" 或 \"Observation\" 以匹配论证的形式化程度。\n\n**W4** [warning] 27 种修复策略在正文中展示不足\n\n- 具体位置：§5.4 (page 6), Figure 2 (page 7)\n- 问题：27 种策略是论文的重要支撑论据（\"全部失败\"强化负面结果），但正文仅用 5 行文字概述（§5.4），细节全部在 Appendix K。Figure 2 展示了 27 个点的散点图，但策略名称在图中不可读。作为核心论证的关键环节，这部分在正文中的处理过于简略。\n- 建议：在正文中至少增加一个段落，按类别讨论几个代表性策略的失败原因（例如：prompt-level 为什么不行？model-level 为什么不行？），而非仅在图例中列出。\n\n**W5** [warning] Cross-architecture NLI escape 的适用范围有限\n\n- 具体位置：§6 (page 7-8), Limitations (page 9)\n- 问题：DeBERTa NLI escape 仅在 FOLIO 和 ProofWriter 上有效——这两个数据集都有 gold logical annotations，NLI 可以直接比对前提-结论关系。Limitations 明确承认 \"cross-architecture NLI verifier (§6) provides no benefit on LogiQA\"（page 9）。这意味着 DRC 的实用性局限于具有清晰逻辑结构的任务。\n- 建议：在 §6 或 §7 中更明确地讨论 NLI escape 的适用条件（什么样的任务结构下有效），避免读者产生过度泛化的期望。\n\n---\n\n## 小问题（不影响接收）\n\n- Table 1 信息密度极高（~30 行 × 8 列），可读性较差。建议拆分为两个表或使用 highlight 标注关键结果。\n- \"Symbolic Mirage\" 作为术语在 §3.3 标题中引入后极少复用（正文中大部分使用 \"Symbolic Confirmation Bias\"）。建议统一术语或解释两者的层次关系（Mirage = phenomenon, Confirmation Bias = mechanism）。\n- Figure 1 的 caption 可以更详细地解释红色虚线框的含义。\n- §5.1 的标题 \"Condorcet Effective-K\" 中 K 与后文 κ (kappa) 容易混淆，建议用不同符号或在首次出现时明确区分。\n- Page 4, Equation (2): MAX-SAT 公式的权重 $w_{ij}$ 定义中 \"equal to the number of source traces\" 可以用数学符号更精确地表达。\n- Appendix 数量庞大（A-Z 共 22 个 appendix section），整体组织可优化。\n\n---\n\n## 主要优势\n\n1. **实验规模与严谨性出色**：6 个模型 × 5 个数据集 × 3,000+ 条件评估，含 4-seed replication、McNemar 检验、TOST 等价性检验——这种严谨程度在负面结果论文中罕见。\n2. **CJT 理论框架的引入有启发性**：用 Condorcet Jury Theorem 的独立性条件来分析 SC 的失败模式，为理解 LLM 采样的局限性提供了一个清晰的理论透镜。\n3. **建设性贡献缓解了纯负面结果的问题**：DeBERTa NLI escape + DRC 方法展示了\"怎样才行得通\"，使论文不止于\"这不行\"。DRC 以 39% verification cost 恢复 90% combo gain，实用价值高。\n4. **27 种修复策略的穷举分析**：虽然结果是负面的，但穷举本身就有价值——它关闭了许多潜在的\"也许换个策略就行\"的反驳。\n5. **写作质量整体较好**：Introduction 的动机链（SC → CJT → independence failure → symbolic mirage）清晰，从负面结果到机制解释到建设性方案的叙事弧完整。\n\n---\n\n## Questions for Authors\n\n1. SatLM 使用 LLM + SAT solver 但报告正面结果。你们认为关键区别是什么？是 specification-generation vs. trace-extraction 的区别吗？如果是，请在论文中明确讨论。\n2. Effective-K 和 Bias Ratio 作为\"诊断工具\"被列为贡献之一（Contribution 3），但 Effective-K 直接来自 Kish (1965) 的 design effect，Bias Ratio 是约束计数的简单比值，Process-κ 是 Fleiss' kappa。能否论证这些指标在 SC 诊断场景下的应用为何构成方法论贡献（而非已有度量的直接使用）？\n3. 在 DRC 中，DeBERTa NLI 作为外部验证器引入。但如果核心论点是\"自提取继承偏差\"，那么任何外部验证器都应该有效。为什么不测试其他类型的外部验证器（如 trained reward model, code execution）来验证 \"cross-architecture escape\" 的泛化性？\n4. Qwen3-14B（thinking mode）在 Table 1 中表现最好（accuracy 86%），但 SICA 仍未改善。reasoning model 是否改变了 confirmation bias 的性质？§7 中简短提及，但值得更深入分析。\n5. 论文声称 \"process-level independence\" 是第三个贡献，但 §5.3 的分析（TF-IDF cosine similarity → Fleiss' kappa）仅是标准 NLP pipeline。能否论证为什么这比简单的 answer agreement 提供了更多信息？\n\n---\n\n## Missing References\n\n1. **\"Unveiling Confirmation Bias in Chain-of-Thought Reasoning\"** (arXiv:2506.12301, Jun 2025) — 直接研究 CoT 中的 confirmation bias，与本文的 \"Symbolic Confirmation Bias\" 概念高度相关。\n2. **\"Failing to Falsify: Evaluating and Mitigating Confirmation Bias in Language Models\"** (arXiv:2604.02485, Apr 2026) — 系统评估 LLM confirmation bias 的框架，可能是 concurrent work。\n3. **\"Eidoku: A Neuro-Symbolic Verification Gate for LLM Reasoning via Structural Constraint Satisfaction\"** (arXiv:2512.20664, Dec 2025) — 将 LLM 推理验证建模为约束满足问题，与本文的 Z3 MAX-SAT 方法相关。\n4. 此外，建议在 §2 中更深入讨论 **SatLM** 和 **CRITIC** 与本文方法的区别（当前仅列在引用串中）。\n\n---\n\n## 格式与合规\n\n- ✅ 正文 8 页（§1-§8 在 pages 1-8 内）\n- ✅ Limitations section 存在（page 8-9），不计入页数\n- ✅ 匿名性完好（\"Anonymous ACL submission\"，无 de-anonymizing 信息）\n- ✅ 引用格式符合 ACL 标准（natbib, \\citep/\\citet）\n- ✅ 引用核查：56 条 bib entries, 0 orphan, 0 missing，37 条在线验证通过\n\n---\n\n## 负面结果论文的 Venue Fit 评估\n\n作为 EMNLP 2026 投稿，本文作为**负面结果论文 fit Findings 但可能不足以进入主会议**：\n\n- **Findings 适合**：soundness 和 reproducibility 均良好，负面结果有 actionable takeaway（DRC），实验规模充分。\n- **主会议有难度**：核心发现对熟悉领域的人可预测（Excitement 不足），诊断指标缺乏方法论创新，constructive contribution 适用范围有限。\n- **目标读者**：neurosymbolic reasoning 研究者（学到\"自提取不行，需要跨架构验证\"）和 SC/test-time compute scaling 研究者（学到独立性是瓶颈）。\n\n**最终评分：Overall 3.0 (Findings)，Confidence 4/5。**\n"
+              }
+            }
+          ],
+          "id": "event-000132"
+        },
+        {
+          "source_line": 133,
+          "timestamp": "2026-05-21T06:40:26.783Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-21T06:40:26.783Z",
+                "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470"
+              }
+            }
+          ],
+          "id": "event-000133"
+        },
+        {
+          "source_line": 134,
+          "timestamp": "2026-05-21T06:40:26.770Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3a59b988-bf16-44f3-8cb3-8639e2095334",
+            "isSidechain": false,
+            "type": "assistant",
+            "uuid": "5062b28f-9d97-492b-b2e7-f92544076c1b",
+            "isApiErrorMessage": false,
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "id": "3bc6cad0-fe3e-4291-a3cc-f15eda91deca",
+              "container": null,
+              "model": "<synthetic>",
+              "stop_reason": "stop_sequence",
+              "stop_sequence": "",
+              "type": "message",
+              "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": null,
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": null,
+                "iterations": null,
+                "speed": null
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000134"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "messages": [
+        {
+          "source_line": 135,
+          "timestamp": "2026-05-21T06:40:26.879Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 2 审稿意见]:\n\n# Reviewer 2 审稿意见（Round 1）\n\n**论文**: *Beyond Self-Consistency: Why Self-Extracted Symbolic Constraints Do Not Improve LLM Reasoning*\n**审查侧重**: 新颖性 + 完整性 + 叙事质量\n**Venue**: EMNLP 2026 (via ACL Rolling Review)\n\n---\n\n## Paper Summary\n\n本文研究自提取符号约束能否突破 Self-Consistency (SC) 的性能天花板。作者提出 Symbolic Invariant Consensus Aggregation (SICA)，从 CoT 推理轨迹中提取形式逻辑约束并通过加权 Partial MAX-SAT 选择答案。在 6 个模型（Qwen2.5-7B/14B, Mistral-7B, LLaMA-3.1-8B, QwQ-32B, Qwen3-14B）、5 个数据集（FOLIO, ProofWriter, LogiQA, StrategyQA, GSM8K）、3,000+ 条件评估上，自提取约束均未改善 SC。作者将机制归因为 \"Symbolic Confirmation Bias\"——约束继承模型的分布偏差。提出三个诊断指标（Effective-K, Bias Ratio, Process-κ），测试 27 种修复策略（均失败），并提供跨架构 NLI 验证（DeBERTa）和 Disagreement-Routed Cascade (DRC) 作为建设性解决方案。\n\n---\n\n## 总体评分\n\n**Overall**: 3.0 (Findings)\n**一句话总结**: 一项执行扎实的负面结果研究，彻底证明自提取符号约束继承模型偏差，但核心发现相对于已有 self-correction failure 文献的增量新颖性有限。\n\n---\n\n## 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 3.5/5 | 实验设计严谨，多模型多数据集交叉验证充分；但 Proposition 1 和 Corollary 1 仅有非正式 proof sketch，诊断指标为已有度量的直接应用 |\n| Excitement | 2.5/5 | 核心发现（自生成验证继承偏差）对熟悉 self-correction 文献的读者可预测；建设性贡献（DRC）有实用价值但范围受限 |\n| Reproducibility | 4/5 | 方法描述清晰，模型/数据集/参数/prompt 均在附录中提供，承诺代码开源 |\n| Confidence | 4/5 | 熟悉 SC、neuro-symbolic reasoning、self-correction 文献 |\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [critical] 相对于 Huang et al. (2024) 和 Stechly et al. (2025) 的增量新颖性不足\n\n- 具体位置：§1 Introduction (page 2), §7 Discussion (page 8)\n- 问题：Huang et al. (ICLR 2024) 已证明 LLMs cannot self-correct reasoning without external feedback；Stechly et al. (ICLR 2025) 已证明 self-verification 因共享相同偏差而失败。本文的核心发现——\"自提取约束继承模型偏差\"——是上述结论在符号约束领域的直接实例化 (instantiation)，而非根本性新发现。论文在 §7 第一段确实承认了与这两篇工作的关系，但仅用一句话带过（\"Our work extends Huang et al. and Stechly et al. from natural-language self-correction to formal symbolic extraction\"），未充分论证为什么符号领域的实例化本身构成足够的新颖性。\n- 为什么影响接收：在 ACL ARR 中，Excitement 维度要求论文提供 surprising 或 field-changing insights。如果审稿人认为核心发现是可预测的，则 Excitement 评分难以达到 Conference 门槛。\n- 建议修改方向：(1) 在 Introduction 中更明确地论证**为什么符号约束不同于自然语言 self-correction**——具体说，neurosymbolic 社区（如 Logic-LM, SatLM, LINC）的隐含假设是\"一旦形式化，推理就变得可靠\"，而本文挑战的正是这个假设；(2) 将 \"Symbolic Confirmation Bias\" 定位为对 neurosymbolic reasoning 社区特有假设的反驳，而非对 self-correction failure 的泛化。\n\n**N2** [critical] SatLM 正面结果与本文负面结果的对比缺失\n\n- 具体位置：§2 Related Work (page 3), Neurosymbolic Reasoning 段落\n- 问题：SatLM (Ye et al., NeurIPS 2023) 同样使用 LLM + SAT solver，但报告了显著性能提升（在 GSM 子集上超越 program-aided LMs 23%）。本文在 §2 中仅将 SatLM 列入一串引用列表（\"Logic-LM, LINC, SatLM, PAL, PoT, Faithful CoT...\"），未讨论**为什么 SatLM works 而 SICA doesn't**。关键区别在于：SatLM 通过 declarative prompting 让 LLM 生成**完整的形式化规约**（整个问题的 SAT 编码），solver 在完整规约上运算；SICA 从已有推理轨迹中**事后提取**局部约束。前者是 specification-generation（问题描述 → 形式化），后者是 trace-constraint-extraction（推理过程 → 约束）。这个区别恰恰是 SICA 失败的核心原因——约束是推理轨迹的衍生物，自然继承轨迹中的偏差。\n- 为什么影响接收：不讨论这个对比，读者会疑惑：\"同样用 solver，为什么一个 work 一个不 work？\"这会削弱论文的论证完整性。\n- 建议修改方向：在 §2 或 §7 中用 2-3 句话明确对比：SatLM = specification-generation（LLM 不做推理，只做形式化翻译），SICA = trace-constraint-extraction（约束从推理轨迹中提取，因而继承偏差）。这个对比反而能强化论文的核心论点。\n\n**N3** [critical] \"Symbolic Confirmation Bias\" 作为术语的独立性不足\n\n- 具体位置：§3.3 (page 4), §5.2 (page 5)\n- 问题：搜索发现近期已有直接研究 CoT confirmation bias 的工作：(a) \"Unveiling Confirmation Bias in Chain-of-Thought Reasoning\" (arXiv:2506.12301, Jun 2025) 研究了 CoT 中的 confirmation bias；(b) \"Failing to Falsify: Evaluating and Mitigating Confirmation Bias in Language Models\" (arXiv:2604.02485, Apr 2026) 系统评估了 LLM 的 confirmation bias。本文的 \"Symbolic Confirmation Bias\" 概念需要与这些工作区分。此外，本文同时引用的 Amonkar et al. (2025, \"Reality Check\") 和 Chan et al. (2026, \"Position paper\") 已分别指出 LLM 形式化能力的局限性和 neurosymbolic fact-checking 中逻辑正确性不可靠。\n- 为什么影响接收：如果 \"Symbolic Confirmation Bias\" 是已有 CoT confirmation bias 在符号领域的直接映射，则该概念的新颖性进一步降低。\n- 建议修改方向：(1) 引用上述近期 confirmation bias 工作并明确区分；(2) 论证 \"Symbolic Confirmation Bias\" 的特殊性在于：即使约束通过了形式化验证（Z3 satisfiable），偏差仍然存在——这是自然语言 confirmation bias 研究未覆盖的场景。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [warning] Independence-Accuracy Trade-off 是 bias-variance tradeoff 的重述\n\n- 具体位置：§5.3 (page 6), Contribution 2 (page 2)\n- 问题：论文将 \"提高温度/多样性以增加独立性会降低准确率\" 描述为一个新发现（Contribution 2: \"Independence-Accuracy Trade-Off\"）。但这本质上是 LLM 采样中众所周知的现象——高温度增加多样性但降低质量。在 ensemble learning 文献中，bias-variance-covariance decomposition (Krogh and Vedelsby, 1994, 论文自己引用) 早已描述了类似权衡。将这个观察提升为一个独立的 contribution 显得过度声称。\n- 建议：将其定位为实验观察（\"we empirically confirm...\"）而非独立贡献，或提供超越已知 bias-variance tradeoff 的定量分析。\n\n**W2** [warning] Related Work 过度压缩，缺乏深度讨论\n\n- 具体位置：§2 (page 3)\n- 问题：三段 Related Work 中列举了约 25 篇论文，阅读体验像引用列表而非文献讨论。第二段 Neurosymbolic Reasoning 将 Logic-LM、LINC、SatLM、PAL、PoT 等方法论差异巨大的系统放在同一引用串中，未区分 (a) specification-generation (SatLM, Logic-LM), (b) program-generation (PAL, PoT), (c) trace-constraint-extraction (本文 SICA)。第三段 Test-Time Scaling 和 Self-Correction 也类似处理。\n- 建议：为 neurosymbolic reasoning 子段增加一个分类讨论（哪些系统是 specification-generation，哪些是 post-hoc verification），明确本文在分类中的位置。\n\n**W3** [warning] Proposition 1 和 Corollary 1 的形式化程度不足\n\n- 具体位置：§3.3 (page 4-5)\n- 问题：Proposition 1（Self-Extraction Ceiling）和 Corollary 1（Capability Gap Condition）以定理形式呈现，但 proof sketch 仅有 3 行（page 5 顶部）。对于使用形式化 proposition 的论文，证明应更严谨。特别是 Proposition 1 的条件 \"BR(M) > 1 and oracle improvement\"——\"oracle improvement\" 的定义并不形式化。Corollary 1 声称 combo gain \"monotonically increases in the capability gap\"，但未给出 monotonicity 的严格证明。\n- 建议：要么提供完整证明（可放在 Appendix），要么将 Proposition/Corollary 降级为 \"Empirical Claim\" 或 \"Observation\" 以匹配论证的形式化程度。\n\n**W4** [warning] 27 种修复策略在正文中展示不足\n\n- 具体位置：§5.4 (page 6), Figure 2 (page 7)\n- 问题：27 种策略是论文的重要支撑论据（\"全部失败\"强化负面结果），但正文仅用 5 行文字概述（§5.4），细节全部在 Appendix K。Figure 2 展示了 27 个点的散点图，但策略名称在图中不可读。作为核心论证的关键环节，这部分在正文中的处理过于简略。\n- 建议：在正文中至少增加一个段落，按类别讨论几个代表性策略的失败原因（例如：prompt-level 为什么不行？model-level 为什么不行？），而非仅在图例中列出。\n\n**W5** [warning] Cross-architecture NLI escape 的适用范围有限\n\n- 具体位置：§6 (page 7-8), Limitations (page 9)\n- 问题：DeBERTa NLI escape 仅在 FOLIO 和 ProofWriter 上有效——这两个数据集都有 gold logical annotations，NLI 可以直接比对前提-结论关系。Limitations 明确承认 \"cross-architecture NLI verifier (§6) provides no benefit on LogiQA\"（page 9）。这意味着 DRC 的实用性局限于具有清晰逻辑结构的任务。\n- 建议：在 §6 或 §7 中更明确地讨论 NLI escape 的适用条件（什么样的任务结构下有效），避免读者产生过度泛化的期望。\n\n---\n\n## 小问题（不影响接收）\n\n- Table 1 信息密度极高（~30 行 × 8 列），可读性较差。建议拆分为两个表或使用 highlight 标注关键结果。\n- \"Symbolic Mirage\" 作为术语在 §3.3 标题中引入后极少复用（正文中大部分使用 \"Symbolic Confirmation Bias\"）。建议统一术语或解释两者的层次关系（Mirage = phenomenon, Confirmation Bias = mechanism）。\n- Figure 1 的 caption 可以更详细地解释红色虚线框的含义。\n- §5.1 的标题 \"Condorcet Effective-K\" 中 K 与后文 κ (kappa) 容易混淆，建议用不同符号或在首次出现时明确区分。\n- Page 4, Equation (2): MAX-SAT 公式的权重 $w_{ij}$ 定义中 \"equal to the number of source traces\" 可以用数学符号更精确地表达。\n- Appendix 数量庞大（A-Z 共 22 个 appendix section），整体组织可优化。\n\n---\n\n## 主要优势\n\n1. **实验规模与严谨性出色**：6 个模型 × 5 个数据集 × 3,000+ 条件评估，含 4-seed replication、McNemar 检验、TOST 等价性检验——这种严谨程度在负面结果论文中罕见。\n2. **CJT 理论框架的引入有启发性**：用 Condorcet Jury Theorem 的独立性条件来分析 SC 的失败模式，为理解 LLM 采样的局限性提供了一个清晰的理论透镜。\n3. **建设性贡献缓解了纯负面结果的问题**：DeBERTa NLI escape + DRC 方法展示了\"怎样才行得通\"，使论文不止于\"这不行\"。DRC 以 39% verification cost 恢复 90% combo gain，实用价值高。\n4. **27 种修复策略的穷举分析**：虽然结果是负面的，但穷举本身就有价值——它关闭了许多潜在的\"也许换个策略就行\"的反驳。\n5. **写作质量整体较好**：Introduction 的动机链（SC → CJT → independence failure → symbolic mirage）清晰，从负面结果到机制解释到建设性方案的叙事弧完整。\n\n---\n\n## Questions for Authors\n\n1. SatLM 使用 LLM + SAT solver 但报告正面结果。你们认为关键区别是什么？是 specification-generation vs. trace-extraction 的区别吗？如果是，请在论文中明确讨论。\n2. Effective-K 和 Bias Ratio 作为\"诊断工具\"被列为贡献之一（Contribution 3），但 Effective-K 直接来自 Kish (1965) 的 design effect，Bias Ratio 是约束计数的简单比值，Process-κ 是 Fleiss' kappa。能否论证这些指标在 SC 诊断场景下的应用为何构成方法论贡献（而非已有度量的直接使用）？\n3. 在 DRC 中，DeBERTa NLI 作为外部验证器引入。但如果核心论点是\"自提取继承偏差\"，那么任何外部验证器都应该有效。为什么不测试其他类型的外部验证器（如 trained reward model, code execution）来验证 \"cross-architecture escape\" 的泛化性？\n4. Qwen3-14B（thinking mode）在 Table 1 中表现最好（accuracy 86%），但 SICA 仍未改善。reasoning model 是否改变了 confirmation bias 的性质？§7 中简短提及，但值得更深入分析。\n5. 论文声称 \"process-level independence\" 是第三个贡献，但 §5.3 的分析（TF-IDF cosine similarity → Fleiss' kappa）仅是标准 NLP pipeline。能否论证为什么这比简单的 answer agreement 提供了更多信息？\n\n---\n\n## Missing References\n\n1. **\"Unveiling Confirmation Bias in Chain-of-Thought Reasoning\"** (arXiv:2506.12301, Jun 2025) — 直接研究 CoT 中的 confirmation bias，与本文的 \"Symbolic Confirmation Bias\" 概念高度相关。\n2. **\"Failing to Falsify: Evaluating and Mitigating Confirmation Bias in Language Models\"** (arXiv:2604.02485, Apr 2026) — 系统评估 LLM confirmation bias 的框架，可能是 concurrent work。\n3. **\"Eidoku: A Neuro-Symbolic Verification Gate for LLM Reasoning via Structural Constraint Satisfaction\"** (arXiv:2512.20664, Dec 2025) — 将 LLM 推理验证建模为约束满足问题，与本文的 Z3 MAX-SAT 方法相关。\n4. 此外，建议在 §2 中更深入讨论 **SatLM** 和 **CRITIC** 与本文方法的区别（当前仅列在引用串中）。\n\n---\n\n## 格式与合规\n\n- ✅ 正文 8 页（§1-§8 在 pages 1-8 内）\n- ✅ Limitations section 存在（page 8-9），不计入页数\n- ✅ 匿名性完好（\"Anonymous ACL submission\"，无 de-anonymizing 信息）\n- ✅ 引用格式符合 ACL 标准（natbib, \\citep/\\citet）\n- ✅ 引用核查：56 条 bib entries, 0 orphan, 0 missing，37 条在线验证通过\n\n---\n\n## 负面结果论文的 Venue Fit 评估\n\n作为 EMNLP 2026 投稿，本文作为**负面结果论文 fit Findings 但可能不足以进入主会议**：\n\n- **Findings 适合**：soundness 和 reproducibility 均良好，负面结果有 actionable takeaway（DRC），实验规模充分。\n- **主会议有难度**：核心发现对熟悉领域的人可预测（Excitement 不足），诊断指标缺乏方法论创新，constructive contribution 适用范围有限。\n- **目标读者**：neurosymbolic reasoning 研究者（学到\"自提取不行，需要跨架构验证\"）和 SC/test-time compute scaling 研究者（学到独立性是瓶颈）。\n\n**最终评分：Overall 3.0 (Findings)，Confidence 4/5。**\n"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5062b28f-9d97-492b-b2e7-f92544076c1b",
+            "isSidechain": false,
+            "promptId": "efdebad7-d82d-40b4-ba97-c4e8bff1b0a1",
+            "type": "user",
+            "uuid": "68e2d04c-4e33-4985-babc-c46b7ffba537",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000135"
+        },
+        {
+          "source_line": 136,
+          "timestamp": "2026-05-21T06:40:34.777Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Reviewer 1 和 Reviewer 2 均已完成 Round 1 独立初审。现在进入 **Step 2：交叉分享**。\n\n将每位 Reviewer 的完整审稿原文转发给对方，要求逐条回应。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "68e2d04c-4e33-4985-babc-c46b7ffba537",
+            "isSidechain": false,
+            "requestId": "req_011CbFFqUbwSAkYN8CF7K1MU",
+            "type": "assistant",
+            "uuid": "0a303307-5623-4788-92dd-4a49b3518d30",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CafbFeFXwonCoWKGEKee4t",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 5692,
+                "cache_read_input_tokens": 121068,
+                "output_tokens": 3073,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5692,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 3073,
+                    "cache_read_input_tokens": 121068,
+                    "cache_creation_input_tokens": 5692,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5692
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000136"
+        },
+        {
+          "source_line": 137,
+          "timestamp": "2026-05-21T06:40:59.382Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017AaFAmnB7sBxY9sd4SnZU4",
+              "name": "mcp__agent-ml-research__director_post_to_reviewer",
+              "input": {
+                "reviewer_id": "1",
+                "project": "symb_invariant_consensus",
+                "chat_id": "oc_c338e034cbffa10b9cc723e731d288d8",
+                "director_session_key": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:director",
+                "round_number": 1,
+                "text": "## 交叉分享：请回应 Reviewer 2 的审稿意见\n\n以下是 Reviewer 2 的完整审稿意见。请逐条回应其 Must-Fix 和 Should-Fix 问题：\n- **[AGREE]**：同意该问题，说明理由\n- **[REBUT]**：反驳该问题，提供具体证据（引用论文中的 Section/Table/Figure）\n\n---\n\n# Reviewer 2 审稿意见（Overall: 3.0 Findings）\n\n**审查侧重**: 新颖性 + 完整性 + 叙事质量\n\n## Must-Fix 问题\n\n**N1** [critical] 相对于 Huang et al. (2024) 和 Stechly et al. (2025) 的增量新颖性不足\n- Huang et al. (ICLR 2024) 已证明 LLMs cannot self-correct reasoning without external feedback；Stechly et al. (ICLR 2025) 已证明 self-verification 因共享相同偏差而失败。本文的核心发现——\"自提取约束继承模型偏差\"——是上述结论在符号约束领域的直接实例化，而非根本性新发现。\n- 建议：论证为什么符号约束不同于自然语言 self-correction——neurosymbolic 社区的隐含假设是\"一旦形式化，推理就变得可靠\"，而本文挑战的正是这个假设。\n\n**N2** [critical] SatLM 正面结果与本文负面结果的对比缺失\n- SatLM (Ye et al., NeurIPS 2023) 同样使用 LLM + SAT solver 但报告显著提升。本文未讨论为什么 SatLM works 而 SICA doesn't。关键区别在于 specification-generation（问题 → 形式化）vs trace-constraint-extraction（推理轨迹 → 约束）。\n- 建议：在 §2 或 §7 中明确对比。\n\n**N3** [critical] \"Symbolic Confirmation Bias\" 作为术语的独立性不足\n- 近期已有直接研究 CoT confirmation bias 的工作（arXiv:2506.12301, arXiv:2604.02485）。本文的概念需要与这些区分。\n- 建议：论证特殊性在于即使约束通过了 Z3 satisfiable 验证，偏差仍存在。\n\n## Should-Fix 问题\n\n**W1** [warning] Independence-Accuracy Trade-off 是 bias-variance tradeoff 的重述\n- 本质上是 LLM 采样中已知现象——高温度增加多样性但降低质量。Krogh and Vedelsby (1994) 早已描述类似权衡。\n- 建议：定位为实验观察而非独立贡献。\n\n**W2** [warning] Related Work 过度压缩，缺乏深度讨论\n- 三段 Related Work 列举约 25 篇论文，阅读体验像引用列表而非文献讨论。Neurosymbolic Reasoning 未区分 specification-generation, program-generation, trace-constraint-extraction。\n\n**W3** [warning] Proposition 1 和 Corollary 1 的形式化程度不足\n- proof sketch 仅有 3 行。建议提供完整证明或降级为 \"Empirical Claim\"。\n\n**W4** [warning] 27 种修复策略在正文中展示不足\n- 正文仅用 5 行概述，细节全在 Appendix。作为核心论证应更充分展示。\n\n**W5** [warning] Cross-architecture NLI escape 的适用范围有限\n- 仅在 FOLIO 和 ProofWriter 上有效，LogiQA 无效。DRC 实用性局限于清晰逻辑结构任务。\n\n## 主要优势\n1. 实验规模与严谨性出色（6 模型 × 5 数据集 × 3,000+ 条件评估）\n2. CJT 理论框架引入有启发性\n3. DeBERTa NLI escape + DRC 展示了\"怎样才行得通\"\n4. 27 种修复策略穷举关闭了\"也许换策略就行\"的反驳\n5. 写作质量整体较好，叙事弧完整\n\n## Missing References\n1. \"Unveiling Confirmation Bias in Chain-of-Thought Reasoning\" (arXiv:2506.12301, Jun 2025)\n2. \"Failing to Falsify: Evaluating and Mitigating Confirmation Bias in Language Models\" (arXiv:2604.02485, Apr 2026)\n3. \"Eidoku: Neuro-Symbolic Verification Gate via Structural Constraint Satisfaction\" (arXiv:2512.20664, Dec 2025)\n\n---\n\n请逐条回应上述 Must-Fix (N1-N3) 和 Should-Fix (W1-W5) 问题。"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0a303307-5623-4788-92dd-4a49b3518d30",
+            "isSidechain": false,
+            "requestId": "req_011CbFFqUbwSAkYN8CF7K1MU",
+            "type": "assistant",
+            "uuid": "5d516c6d-00b4-4389-9e83-e0e78f43603f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CafbFeFXwonCoWKGEKee4t",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 5692,
+                "cache_read_input_tokens": 121068,
+                "output_tokens": 3073,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5692,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 3073,
+                    "cache_read_input_tokens": 121068,
+                    "cache_creation_input_tokens": 5692,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5692
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000137"
+        },
+        {
+          "source_line": 138,
+          "timestamp": "2026-05-21T06:41:04.852Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017AaFAmnB7sBxY9sd4SnZU4",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reviewer_key\\\": \\\"feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5d516c6d-00b4-4389-9e83-e0e78f43603f",
+            "isSidechain": false,
+            "promptId": "efdebad7-d82d-40b4-ba97-c4e8bff1b0a1",
+            "type": "user",
+            "uuid": "131c6464-10dd-48c3-b2d8-f4fab6dbc8c8",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reviewer_key\\\": \\\"feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_1\"}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "5d516c6d-00b4-4389-9e83-e0e78f43603f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000138"
+        },
+        {
+          "source_line": 139,
+          "timestamp": "2026-05-21T06:41:26.678Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01S395tYSGfGDoeXc8UrshZB",
+              "name": "mcp__agent-ml-research__director_post_to_reviewer",
+              "input": {
+                "reviewer_id": "2",
+                "project": "symb_invariant_consensus",
+                "chat_id": "oc_c338e034cbffa10b9cc723e731d288d8",
+                "director_session_key": "feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:director",
+                "round_number": 1,
+                "text": "## 交叉分享：请回应 Reviewer 1 的审稿意见\n\n以下是 Reviewer 1 的完整审稿意见。请逐条回应其 Must-Fix 和 Should-Fix 问题：\n- **[AGREE]**：同意该问题，说明理由\n- **[REBUT]**：反驳该问题，提供具体证据（引用论文中的 Section/Table/Figure）\n\n---\n\n# Reviewer 1 审稿意见（Overall: 3.5 Borderline Conference）\n\n**审查侧重**: 方法严谨性 + 实验设计\n\n## Must-Fix 问题\n\n**N1** [critical] Proposition 1（Self-Extraction Ceiling）缺少证明\n- Section 3.3 的 Proposition 1 声称 Δ_max^self ≲ Δ_oracle / BR(M)，但全文无证明。\"≲\" 不精确。底部 proof sketch 实际是 Corollary 1 的。\n- 建议：提供正式证明或降级为 empirical observation。\n\n**N2** [critical] Fleiss' κ → Effective-K 映射的理论依据不足\n- Kish (1965) 的设计效应公式使用 ICC，不是 Fleiss' κ。论文以 \"mean pairwise r = 0.625\" 作为验证，但 r=0.625 仅中等相关，约 61% 方差未被解释。然而 K_eff 在多处被作为定量诊断指标使用。\n- 建议：报告 ICC 本身、给出 sensitivity 分析、或限定为序数诊断。\n\n**N3** [critical] Spearman ρ = 1.0 (n=6) 的 capability gap 结论依赖极小样本\n- 6 个数据点（3 NLI 架构 × 2 有效 generator 水平），且非完全独立。p=0.003 虽显著，但 6 点排列的约束很强。\n- 建议：增加 generator-verifier 组合、承认非完美单调性、降级措辞。\n\n## Should-Fix 问题\n\n**W1** [warning] DRC 的 τ 阈值在测试集上选择，无 held-out 评估\n- τ ∈ {0.3, 0.5, 0.7, 0.9} 均在同一 ProofWriter (n=600) 上选择和评估。作为第 4 个 contribution 应有更严格评估。\n\n**W2** [warning] Cross-architecture NLI escape 适用范围极窄\n- BH 后仅 2/12 条件存活。仅在弱 generator + premise-conclusion 可分解 + verifier>generator 的场景有效。\n\n**W3** [warning] 四种子复制方差大、统计功效 <21%\n- Δ ∈ {+3.43, +2.94, 0.00, −0.49}pp。Power analysis 显示观测功效均 <21%。核心 claim 应更明确承认 power limitation。\n\n**W4** [warning] TOST ±2pp margin 缺少显式理由\n- 未论证为什么 2pp 是合适的实际意义阈值。选 ±3pp 更多条件等价。\n\n**W5** [warning] Bias Ratio 无置信区间\n- BR 值（4.97×, 3.93×, 2.88×）未报告 CI 或标准误。\n\n## 主要优势\n1. 27 种补救策略穷举，说服力强\n2. Oracle 控制实验设计精良\n3. 多层次诊断体系（answer-level κ, process-level cosine, BR, C₀, entropy）\n4. 统计处理在 NLP 论文中罕见地严谨\n5. Appendix 材料极为充实\n\n## Missing References\n- Khalifa et al. (2023) \"Discriminator-Guided Multi-step Reasoning\"\n- Yao et al. (2023) \"Tree of Thoughts\"\n\n---\n\n请逐条回应上述 Must-Fix (N1-N3) 和 Should-Fix (W1-W5) 问题。"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "131c6464-10dd-48c3-b2d8-f4fab6dbc8c8",
+            "isSidechain": false,
+            "requestId": "req_011CbFFqUbwSAkYN8CF7K1MU",
+            "type": "assistant",
+            "uuid": "6edfa2f7-153e-48d9-8312-802c490e266d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CafbFeFXwonCoWKGEKee4t",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 5692,
+                "cache_read_input_tokens": 121068,
+                "output_tokens": 3073,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5692,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 3073,
+                    "cache_read_input_tokens": 121068,
+                    "cache_creation_input_tokens": 5692,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5692
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000139"
+        },
+        {
+          "source_line": 140,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[Reviewer 2 审稿意见]:  # Reviewer 2 审稿意见（Round 1）  **论文**: *Beyond Self-Consistency: Why Self-Extracted Symbolic Constraints Do Not Improve LLM Reasoning* **审查侧重**: 新颖性 + 完整性 + 叙事质量 **Venue**: EMNLP 2026…",
+                "leafUuid": "6edfa2f7-153e-48d9-8312-802c490e266d",
+                "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470"
+              }
+            }
+          ],
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review symbolic invariant consensus paper for EMNLP",
+                "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470"
+              }
+            }
+          ],
+          "id": "event-000141"
+        },
+        {
+          "source_line": 142,
+          "timestamp": "2026-05-21T06:41:28.250Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01S395tYSGfGDoeXc8UrshZB",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reviewer_key\\\": \\\"feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_2\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6edfa2f7-153e-48d9-8312-802c490e266d",
+            "isSidechain": false,
+            "promptId": "efdebad7-d82d-40b4-ba97-c4e8bff1b0a1",
+            "type": "user",
+            "uuid": "06968b19-0f55-4af2-b8e1-ceb717f8d852",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reviewer_key\\\": \\\"feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_2\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_c338e034cbffa10b9cc723e731d288d8:reviewer_2\"}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "6edfa2f7-153e-48d9-8312-802c490e266d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000142"
+        },
+        {
+          "source_line": 143,
+          "timestamp": "2026-05-21T06:41:28.255Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "06968b19-0f55-4af2-b8e1-ceb717f8d852",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "561b7e05-0362-4dd3-b166-64be0f0cb47d",
+                "timestamp": "2026-05-21T06:41:28.255Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+                "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000143"
+        },
+        {
+          "source_line": 144,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review symbolic invariant consensus paper for EMNLP",
+                "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470"
+              }
+            }
+          ],
+          "id": "event-000144"
+        },
+        {
+          "source_line": 145,
+          "timestamp": "2026-05-21T06:41:37.931Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-21T06:41:37.931Z",
+                "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+                "content": "[Reviewer 2 审稿结果]:\n审稿意见已提交给 Review Director。\n\n**审稿结论**：Overall 3.0 (Findings)，Confidence 4/5。\n\n核心判断：\n- **新颖性有限**：核心发现（自提取约束继承模型偏差）是 Huang et al. (2024) 和 Stechly et al. (2025) 已知结论在符号约束领域的 instantiation，非根本性新发现\n- **关键遗漏**：SatLM 同样用 LLM+solver 但报告正面结果，论文未讨论为什么一个 work 一个不 work（specification-generation vs. trace-extraction 的区别）\n- **主要优势**：实验规模和严谨性出色（6模型×5数据集×3000+条件×4-seed），27种策略穷举分析有价值，DRC 提供实用的建设性方案\n- **三个 Must-Fix**：(1) 增量新颖性论证不足，(2) SatLM 对比缺失，(3) \"Symbolic Confirmation Bias\" 需与近期 CoT confirmation bias 工作区分\n- **Venue fit**：适合 Findings，主会议 borderline"
+              }
+            }
+          ],
+          "id": "event-000145"
+        },
+        {
+          "source_line": 146,
+          "timestamp": "2026-05-21T06:41:37.932Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-21T06:41:37.932Z",
+                "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470"
+              }
+            }
+          ],
+          "id": "event-000146"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "messages": [
+        {
+          "source_line": 147,
+          "timestamp": "2026-05-21T06:41:37.919Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Continue from where you left off."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "561b7e05-0362-4dd3-b166-64be0f0cb47d",
+            "isSidechain": false,
+            "promptId": "1eee083e-2a67-4489-a5ce-995eace26a4d",
+            "type": "user",
+            "isMeta": true,
+            "uuid": "6224f19d-44d7-4b8e-be02-1f9fe9a5c9af",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000147"
+        },
+        {
+          "source_line": 148,
+          "timestamp": "2026-05-21T06:41:37.919Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6224f19d-44d7-4b8e-be02-1f9fe9a5c9af",
+            "isSidechain": false,
+            "type": "assistant",
+            "uuid": "cecff7d7-0d30-4069-9b90-4f374341ceaa",
+            "isApiErrorMessage": false,
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "id": "4bf40f8a-9f34-48af-ac0d-107cc1789991",
+              "container": null,
+              "model": "<synthetic>",
+              "stop_reason": "stop_sequence",
+              "stop_sequence": "",
+              "type": "message",
+              "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": null,
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": null,
+                "iterations": null,
+                "speed": null
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000148"
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "messages": [
+        {
+          "source_line": 149,
+          "timestamp": "2026-05-21T06:41:38.035Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 2 审稿结果]:\n审稿意见已提交给 Review Director。\n\n**审稿结论**：Overall 3.0 (Findings)，Confidence 4/5。\n\n核心判断：\n- **新颖性有限**：核心发现（自提取约束继承模型偏差）是 Huang et al. (2024) 和 Stechly et al. (2025) 已知结论在符号约束领域的 instantiation，非根本性新发现\n- **关键遗漏**：SatLM 同样用 LLM+solver 但报告正面结果，论文未讨论为什么一个 work 一个不 work（specification-generation vs. trace-extraction 的区别）\n- **主要优势**：实验规模和严谨性出色（6模型×5数据集×3000+条件×4-seed），27种策略穷举分析有价值，DRC 提供实用的建设性方案\n- **三个 Must-Fix**：(1) 增量新颖性论证不足，(2) SatLM 对比缺失，(3) \"Symbolic Confirmation Bias\" 需与近期 CoT confirmation bias 工作区分\n- **Venue fit**：适合 Findings，主会议 borderline"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cecff7d7-0d30-4069-9b90-4f374341ceaa",
+            "isSidechain": false,
+            "promptId": "1eee083e-2a67-4489-a5ce-995eace26a4d",
+            "type": "user",
+            "uuid": "4dafa916-be75-4239-9621-7a3bc940f7df",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000149"
+        },
+        {
+          "source_line": 150,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review symbolic invariant consensus paper for EMNLP",
+                "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470"
+              }
+            }
+          ],
+          "id": "event-000150"
+        },
+        {
+          "source_line": 151,
+          "timestamp": "2026-05-21T06:43:00.904Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-21T06:43:00.904Z",
+                "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+                "content": "[Reviewer 1 审稿意见]:\n\n# Reviewer 1 对 Reviewer 2 审稿意见的交叉回应\n\n---\n\n## Must-Fix 问题\n\n**[REBUT] R2-N1: 相对于 Huang et al. (2024) 和 Stechly et al. (2025) 的增量新颖性不足**\n\n不完全同意\"直接实例化\"的定性。论文在 Introduction 第 24-25 段明确论证了区别：\n\n> \"Prior work establishes that LLMs cannot self-correct without external feedback (Huang et al., 2024; Stechly et al., 2025), but concerns natural-language self-correction. Z3 introduces a *sound*, non-neural channel that *guarantees* logical consistency given well-formed constraints, making self-extraction under formal verification a non-trivial test case. Unlike natural-language self-correction, formal extraction produces machine-verifiable constraints, making extraction errors in principle detectable. That this stronger channel still fails—Z3 rejects only 3.4% of constraints (§5.2) because they are individually valid yet collectively biased—reveals that the bias is semantic (what gets extracted) rather than syntactic (how it is expressed).\"\n\n关键区别在于：Huang/Stechly 的结论是关于自然语言 self-correction 的——模型不能用自然语言判断自己的推理是否正确。而本文测试的是一个严格更强的条件：即使引入一个 **sound formal verifier (Z3)**，只要约束来自同一模型，形式化通道也无法突破偏差。这不是显而易见的——neurosymbolic 社区（Logic-LM, LINC, SatLM, FoVer 等）的隐含假设恰恰是\"一旦形式化+solver 验证，推理可靠性就会提升\"。Z3 只拒绝了 3.4% 的约束这一发现，说明瓶颈不在 syntactic correctness 而在 semantic bias——这是 Huang/Stechly 的自然语言框架无法区分的。\n\n**但我同意 R2 的改进建议**：论文应在 Related Work 或 Discussion 中更显式地用 1-2 段对比 Huang/Stechly，而非将区别分散在 Introduction 的一两句话中。当前的区分虽然存在但不够突出。\n\n---\n\n**[REBUT] R2-N2: SatLM 正面结果与本文负面结果的对比缺失**\n\n论文 **已经** 在 Related Work（Section 2, Neurosymbolic reasoning 段）中讨论了这个区别：\n\n> \"SatLM (Ye et al., 2024) generates complete SAT translations from problem descriptions and reports positive results; critically, SatLM's constraints derive from problem-level understanding, whereas SICA extracts from reasoning traces. Problem-level formalization avoids answer contamination; trace-level extraction inherits confirmation bias (§3.2).\"\n\n这段文字明确指出了关键区别：**specification-generation**（问题 → 形式化，无 answer contamination）vs **trace-constraint-extraction**（推理轨迹 → 约束，继承 answer-coupled bias）。Section 3.3 的 Symbolic Mirage hypothesis 进一步解释了为什么 trace-level extraction 必然失败：约束与其源 trace 的答案耦合（Eq. 4, degeneration condition），导致 MAX-SAT 退化为投票。SatLM 绕过这一问题是因为它不从 trace 中提取约束。\n\n**但我同意这值得更充分的讨论**：当前仅 2 句话的对比对于理解 \"为什么 SatLM works 而 SICA doesn't\" 可能不够充分。建议在 Discussion（Section 7）增加一段 explicit 对比，将 specification-generation / program-generation / trace-constraint-extraction 三种范式的差异系统化展开，特别是说明 trace-level extraction 的 answer contamination 为什么是结构性的（BR > 1 across all models, Table in Appendix P）。\n\n---\n\n**[AGREE] R2-N3: \"Symbolic Confirmation Bias\" 作为术语的独立性需要加强**\n\n同意需要与 R2 引用的 CoT confirmation bias 文献区分。论文当前使用\"symbolic confirmation bias\"但未引用 arXiv:2506.12301 和 arXiv:2604.02485。\n\n论文的特殊性——**即使约束通过了 Z3 satisfiability 验证，偏差仍然存在**——实际上是比 general CoT confirmation bias 更强也更令人惊讶的发现。General CoT bias 说的是 \"reasoning traces have biased content\"；本文发现的是 \"even when you extract formal logic from those traces and verify it with a sound solver, the bias survives because it's encoded in *which* constraints get extracted, not in their *syntactic validity*\"（Z3 rejects only 3.4%, Section 5.2）。\n\n但这个区别在论文中表述不够清晰。建议：(a) 引用 R2 提到的两篇 CoT confirmation bias 文献；(b) 在 Section 5.2 开头增加 1-2 句明确区分：general CoT confirmation bias 关注推理内容偏差，而 symbolic confirmation bias 的核心发现是偏差在 formal verification 后仍持续存在。\n\n---\n\n## Should-Fix 问题\n\n**[REBUT] R2-W1: Independence-Accuracy Trade-off 是 bias-variance tradeoff 的重述**\n\n部分不同意。虽然高层概念确实与 bias-variance tradeoff 相关，但论文的贡献在于 **具体量化** 了 LLM self-extraction 场景下的 trade-off 边界：\n\n1. κ ≥ 0.40 是所有非破坏性方法的下限（Table in Appendix R, 4 个方法 × 3 个模型家族）\n2. 唯一突破此下限的方法（Debate, κ = 0.15）导致 accuracy 灾难性下降（−18.6pp, p < 0.001, Table 12）\n3. 这个 ceiling 是跨架构的——LLaMA、Mistral、Qwen 三个家族均 κ ≥ 0.41\n\n这不是简单地说\"更多多样性 = 更低质量\"。论文发现的是一个 **定量边界**：在当前 7B-32B scale 下，same-model 方法无法同时实现 κ < 0.40 和 accuracy 不下降。这是一个具体的、可验证的、可能在更大规模被打破的经验发现，而非对已知原理的重述。\n\n但 Discussion 已经引用了 Krogh and Vedelsby (1994) 和 Brown (2005)，并将其定位为 ensemble tension 的具体实例（Section 7, \"Test-time scaling and ensemble diversity\" 段）。所以论文已经做了 R2 建议的事。\n\n---\n\n**[AGREE] R2-W2: Related Work 过度压缩**\n\n同意。当前 Related Work（约半页）将约 25 篇论文压缩到 3 个段落中，阅读体验确实像引用列表。特别是 Neurosymbolic Reasoning 段将 specification-generation（Logic-LM, LINC, SatLM）、program-generation（PAL, PoT）和 trace-constraint-extraction（SICA）混在一起没有清晰分类。8 页限制下空间有限，但至少应将三种范式用段落或列表区分开来，并为每种范式标明与本文的关系。这也会自然解决 R2-N2 的 SatLM 对比问题。\n\n---\n\n**[AGREE] R2-W3: Proposition 1 和 Corollary 1 形式化不足**\n\n强烈同意。这与我自己的 N1 问题完全一致。Proposition 1 无证明、\"≲\" 不精确、proof sketch 实际上是 Corollary 的。要么提供完整证明，要么降级为 Empirical Claim / Observation。\n\n---\n\n**[AGREE] R2-W4: 27 种修复策略在正文中展示不足**\n\n同意。这是论文最有说服力的论证之一（\"关闭了 'maybe a different strategy works' 的反驳空间\"），但正文 Section 5.4 仅有约 5 行文字 + Figure 2 的概览图。建议至少在正文中用 mini-table 展示 top 5 有代表性策略的结果（如 Debate/Contrastive/Cross-model/CEGIS/κ-aware SC），让读者无需翻阅 Appendix Tables 11-13 就能把握核心证据。在 8 页预算下可以从 Discussion 压缩出空间（当前 Discussion 的部分内容与 Analysis 有重复）。\n\n---\n\n**[AGREE] R2-W5: Cross-architecture NLI escape 适用范围有限**\n\n同意，与我自己的 W2 完全一致。BH 校正后仅 2/12 条件存活（均为 Mistral-7B ProofWriter）。NLI verifier 仅适用于可分解为 premise-conclusion 的任务，且要求 verifier 强于 generator。论文应更坦诚地承认这是 narrow PoC，而非暗示这是一个 general escape path。\n\n---\n\n## 关于 R2 整体评分的看法\n\nR2 给出 Overall 3.0 (Findings)，核心理由是新颖性不足。我认为这个评分偏低了 0.5 分。\n\nR2-N1 的 \"incremental novelty\" 批评有一定道理，但低估了两个关键点：(a) 从 NL self-correction 到 formal verification 下的 self-extraction 不是平凡的推广——Z3 是 sound 的，社区有理由期望它能打破偏差循环；(b) 27 种策略的穷举关闭 + 具体量化的 κ ≥ 0.40 floor + oracle control 的干净分离，在实验贡献上超越了简单的 \"领域实例化\"。\n\nR2-N2 的 SatLM 对比问题论文已有初步讨论（虽然不够充分），不应被视为 \"缺失\"。\n\n综合来看，我维持 3.5 (Borderline Conference) 的评分。如果 N1/N2/N3 的区分性讨论得到加强，这篇论文的叙事会显著改善。\n"
+              }
+            }
+          ],
+          "id": "event-000151"
+        },
+        {
+          "source_line": 152,
+          "timestamp": "2026-05-21T06:43:00.905Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-21T06:43:00.905Z",
+                "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470"
+              }
+            }
+          ],
+          "id": "event-000152"
+        },
+        {
+          "source_line": 153,
+          "timestamp": "2026-05-21T06:43:00.893Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4dafa916-be75-4239-9621-7a3bc940f7df",
+            "isSidechain": false,
+            "type": "assistant",
+            "uuid": "b157b57d-38af-4d5f-bcb1-e35bc4108068",
+            "isApiErrorMessage": false,
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "id": "faa65f17-c4ef-41e3-ba5b-2df6dbed2903",
+              "container": null,
+              "model": "<synthetic>",
+              "stop_reason": "stop_sequence",
+              "stop_sequence": "",
+              "type": "message",
+              "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": null,
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": null,
+                "iterations": null,
+                "speed": null
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000153"
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "messages": [
+        {
+          "source_line": 154,
+          "timestamp": "2026-05-21T06:43:00.987Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 1 审稿意见]:\n\n# Reviewer 1 对 Reviewer 2 审稿意见的交叉回应\n\n---\n\n## Must-Fix 问题\n\n**[REBUT] R2-N1: 相对于 Huang et al. (2024) 和 Stechly et al. (2025) 的增量新颖性不足**\n\n不完全同意\"直接实例化\"的定性。论文在 Introduction 第 24-25 段明确论证了区别：\n\n> \"Prior work establishes that LLMs cannot self-correct without external feedback (Huang et al., 2024; Stechly et al., 2025), but concerns natural-language self-correction. Z3 introduces a *sound*, non-neural channel that *guarantees* logical consistency given well-formed constraints, making self-extraction under formal verification a non-trivial test case. Unlike natural-language self-correction, formal extraction produces machine-verifiable constraints, making extraction errors in principle detectable. That this stronger channel still fails—Z3 rejects only 3.4% of constraints (§5.2) because they are individually valid yet collectively biased—reveals that the bias is semantic (what gets extracted) rather than syntactic (how it is expressed).\"\n\n关键区别在于：Huang/Stechly 的结论是关于自然语言 self-correction 的——模型不能用自然语言判断自己的推理是否正确。而本文测试的是一个严格更强的条件：即使引入一个 **sound formal verifier (Z3)**，只要约束来自同一模型，形式化通道也无法突破偏差。这不是显而易见的——neurosymbolic 社区（Logic-LM, LINC, SatLM, FoVer 等）的隐含假设恰恰是\"一旦形式化+solver 验证，推理可靠性就会提升\"。Z3 只拒绝了 3.4% 的约束这一发现，说明瓶颈不在 syntactic correctness 而在 semantic bias——这是 Huang/Stechly 的自然语言框架无法区分的。\n\n**但我同意 R2 的改进建议**：论文应在 Related Work 或 Discussion 中更显式地用 1-2 段对比 Huang/Stechly，而非将区别分散在 Introduction 的一两句话中。当前的区分虽然存在但不够突出。\n\n---\n\n**[REBUT] R2-N2: SatLM 正面结果与本文负面结果的对比缺失**\n\n论文 **已经** 在 Related Work（Section 2, Neurosymbolic reasoning 段）中讨论了这个区别：\n\n> \"SatLM (Ye et al., 2024) generates complete SAT translations from problem descriptions and reports positive results; critically, SatLM's constraints derive from problem-level understanding, whereas SICA extracts from reasoning traces. Problem-level formalization avoids answer contamination; trace-level extraction inherits confirmation bias (§3.2).\"\n\n这段文字明确指出了关键区别：**specification-generation**（问题 → 形式化，无 answer contamination）vs **trace-constraint-extraction**（推理轨迹 → 约束，继承 answer-coupled bias）。Section 3.3 的 Symbolic Mirage hypothesis 进一步解释了为什么 trace-level extraction 必然失败：约束与其源 trace 的答案耦合（Eq. 4, degeneration condition），导致 MAX-SAT 退化为投票。SatLM 绕过这一问题是因为它不从 trace 中提取约束。\n\n**但我同意这值得更充分的讨论**：当前仅 2 句话的对比对于理解 \"为什么 SatLM works 而 SICA doesn't\" 可能不够充分。建议在 Discussion（Section 7）增加一段 explicit 对比，将 specification-generation / program-generation / trace-constraint-extraction 三种范式的差异系统化展开，特别是说明 trace-level extraction 的 answer contamination 为什么是结构性的（BR > 1 across all models, Table in Appendix P）。\n\n---\n\n**[AGREE] R2-N3: \"Symbolic Confirmation Bias\" 作为术语的独立性需要加强**\n\n同意需要与 R2 引用的 CoT confirmation bias 文献区分。论文当前使用\"symbolic confirmation bias\"但未引用 arXiv:2506.12301 和 arXiv:2604.02485。\n\n论文的特殊性——**即使约束通过了 Z3 satisfiability 验证，偏差仍然存在**——实际上是比 general CoT confirmation bias 更强也更令人惊讶的发现。General CoT bias 说的是 \"reasoning traces have biased content\"；本文发现的是 \"even when you extract formal logic from those traces and verify it with a sound solver, the bias survives because it's encoded in *which* constraints get extracted, not in their *syntactic validity*\"（Z3 rejects only 3.4%, Section 5.2）。\n\n但这个区别在论文中表述不够清晰。建议：(a) 引用 R2 提到的两篇 CoT confirmation bias 文献；(b) 在 Section 5.2 开头增加 1-2 句明确区分：general CoT confirmation bias 关注推理内容偏差，而 symbolic confirmation bias 的核心发现是偏差在 formal verification 后仍持续存在。\n\n---\n\n## Should-Fix 问题\n\n**[REBUT] R2-W1: Independence-Accuracy Trade-off 是 bias-variance tradeoff 的重述**\n\n部分不同意。虽然高层概念确实与 bias-variance tradeoff 相关，但论文的贡献在于 **具体量化** 了 LLM self-extraction 场景下的 trade-off 边界：\n\n1. κ ≥ 0.40 是所有非破坏性方法的下限（Table in Appendix R, 4 个方法 × 3 个模型家族）\n2. 唯一突破此下限的方法（Debate, κ = 0.15）导致 accuracy 灾难性下降（−18.6pp, p < 0.001, Table 12）\n3. 这个 ceiling 是跨架构的——LLaMA、Mistral、Qwen 三个家族均 κ ≥ 0.41\n\n这不是简单地说\"更多多样性 = 更低质量\"。论文发现的是一个 **定量边界**：在当前 7B-32B scale 下，same-model 方法无法同时实现 κ < 0.40 和 accuracy 不下降。这是一个具体的、可验证的、可能在更大规模被打破的经验发现，而非对已知原理的重述。\n\n但 Discussion 已经引用了 Krogh and Vedelsby (1994) 和 Brown (2005)，并将其定位为 ensemble tension 的具体实例（Section 7, \"Test-time scaling and ensemble diversity\" 段）。所以论文已经做了 R2 建议的事。\n\n---\n\n**[AGREE] R2-W2: Related Work 过度压缩**\n\n同意。当前 Related Work（约半页）将约 25 篇论文压缩到 3 个段落中，阅读体验确实像引用列表。特别是 Neurosymbolic Reasoning 段将 specification-generation（Logic-LM, LINC, SatLM）、program-generation（PAL, PoT）和 trace-constraint-extraction（SICA）混在一起没有清晰分类。8 页限制下空间有限，但至少应将三种范式用段落或列表区分开来，并为每种范式标明与本文的关系。这也会自然解决 R2-N2 的 SatLM 对比问题。\n\n---\n\n**[AGREE] R2-W3: Proposition 1 和 Corollary 1 形式化不足**\n\n强烈同意。这与我自己的 N1 问题完全一致。Proposition 1 无证明、\"≲\" 不精确、proof sketch 实际上是 Corollary 的。要么提供完整证明，要么降级为 Empirical Claim / Observation。\n\n---\n\n**[AGREE] R2-W4: 27 种修复策略在正文中展示不足**\n\n同意。这是论文最有说服力的论证之一（\"关闭了 'maybe a different strategy works' 的反驳空间\"），但正文 Section 5.4 仅有约 5 行文字 + Figure 2 的概览图。建议至少在正文中用 mini-table 展示 top 5 有代表性策略的结果（如 Debate/Contrastive/Cross-model/CEGIS/κ-aware SC），让读者无需翻阅 Appendix Tables 11-13 就能把握核心证据。在 8 页预算下可以从 Discussion 压缩出空间（当前 Discussion 的部分内容与 Analysis 有重复）。\n\n---\n\n**[AGREE] R2-W5: Cross-architecture NLI escape 适用范围有限**\n\n同意，与我自己的 W2 完全一致。BH 校正后仅 2/12 条件存活（均为 Mistral-7B ProofWriter）。NLI verifier 仅适用于可分解为 premise-conclusion 的任务，且要求 verifier 强于 generator。论文应更坦诚地承认这是 narrow PoC，而非暗示这是一个 general escape path。\n\n---\n\n## 关于 R2 整体评分的看法\n\nR2 给出 Overall 3.0 (Findings)，核心理由是新颖性不足。我认为这个评分偏低了 0.5 分。\n\nR2-N1 的 \"incremental novelty\" 批评有一定道理，但低估了两个关键点：(a) 从 NL self-correction 到 formal verification 下的 self-extraction 不是平凡的推广——Z3 是 sound 的，社区有理由期望它能打破偏差循环；(b) 27 种策略的穷举关闭 + 具体量化的 κ ≥ 0.40 floor + oracle control 的干净分离，在实验贡献上超越了简单的 \"领域实例化\"。\n\nR2-N2 的 SatLM 对比问题论文已有初步讨论（虽然不够充分），不应被视为 \"缺失\"。\n\n综合来看，我维持 3.5 (Borderline Conference) 的评分。如果 N1/N2/N3 的区分性讨论得到加强，这篇论文的叙事会显著改善。\n"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b157b57d-38af-4d5f-bcb1-e35bc4108068",
+            "isSidechain": false,
+            "promptId": "4c1c1d35-a724-4acf-96cc-6c6760e00f4d",
+            "type": "user",
+            "uuid": "f8383ba0-1ad5-4336-8ef5-d9b1adb29fff",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000154"
+        },
+        {
+          "source_line": 155,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review symbolic invariant consensus paper for EMNLP",
+                "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470"
+              }
+            }
+          ],
+          "id": "event-000155"
+        },
+        {
+          "source_line": 156,
+          "timestamp": "2026-05-21T06:43:09.475Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-21T06:43:09.475Z",
+                "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+                "content": "[Reviewer 1 审稿结果]:\n已提交对 Reviewer 2 的逐条交叉回应。\n\n核心判断：R2 的三个 Must-Fix 中，N2（SatLM 对比）论文已有初步讨论（Related Work 段），我做了 REBUT 并建议扩展；N1（新颖性）我 REBUT 了\"直接实例化\"的定性但同意需要更显式对比；N3（术语区分）AGREE 需要加强。Should-Fix 中 W1（bias-variance）我 REBUT 了（论文已定位且贡献在于具体量化边界），W2-W5 均 AGREE。总体认为 R2 的 3.0 评分偏低 0.5 分。"
+              }
+            }
+          ],
+          "id": "event-000156"
+        },
+        {
+          "source_line": 157,
+          "timestamp": "2026-05-21T06:43:09.476Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-21T06:43:09.476Z",
+                "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470"
+              }
+            }
+          ],
+          "id": "event-000157"
+        },
+        {
+          "source_line": 158,
+          "timestamp": "2026-05-21T06:43:09.461Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f8383ba0-1ad5-4336-8ef5-d9b1adb29fff",
+            "isSidechain": false,
+            "type": "assistant",
+            "uuid": "43181caa-d3d9-4539-9f27-f4c4e991f758",
+            "isApiErrorMessage": false,
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "id": "b16d8926-e6b7-4657-958f-d9161232c8ac",
+              "container": null,
+              "model": "<synthetic>",
+              "stop_reason": "stop_sequence",
+              "stop_sequence": "",
+              "type": "message",
+              "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": null,
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": null,
+                "iterations": null,
+                "speed": null
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000158"
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "messages": [
+        {
+          "source_line": 159,
+          "timestamp": "2026-05-21T06:43:09.567Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 1 审稿结果]:\n已提交对 Reviewer 2 的逐条交叉回应。\n\n核心判断：R2 的三个 Must-Fix 中，N2（SatLM 对比）论文已有初步讨论（Related Work 段），我做了 REBUT 并建议扩展；N1（新颖性）我 REBUT 了\"直接实例化\"的定性但同意需要更显式对比；N3（术语区分）AGREE 需要加强。Should-Fix 中 W1（bias-variance）我 REBUT 了（论文已定位且贡献在于具体量化边界），W2-W5 均 AGREE。总体认为 R2 的 3.0 评分偏低 0.5 分。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "43181caa-d3d9-4539-9f27-f4c4e991f758",
+            "isSidechain": false,
+            "promptId": "087a6961-da61-42d1-875e-731a881d7412",
+            "type": "user",
+            "uuid": "25c790b9-a564-40cd-a198-013bca27f629",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review symbolic invariant consensus paper for EMNLP",
+                "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470"
+              }
+            }
+          ],
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": "2026-05-21T06:45:22.801Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-21T06:45:22.801Z",
+                "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+                "content": "[Reviewer 2 审稿意见]:\n\n# Reviewer 2 交叉回应 Reviewer 1 审稿意见\n\n---\n\n## Must-Fix 问题回应\n\n### [AGREE] R1-N1: Proposition 1（Self-Extraction Ceiling）缺少证明\n\n同意。我在自己的审稿中也标记了这个问题（R2-W3）。\n\n重新检查 page 4-5：Proposition 1 声称 Δ_max^self ≲ Δ_oracle / BR(M)，但 page 5 顶部的 \"Proof sketch\" 实际论证的是 **Corollary 1** 的单调性（引用 Spearman ρ = 1.0, p = 0.003 作为\"证明\"），而非 Proposition 1 的 ceiling bound。这是一个结构性问题——一个形式化的 Proposition 挂了另一个命题的经验论据。\n\n补充 R1 的观察：\"≲\" 不仅不精确，而且 Proposition 1 的左边 (Δ_max^self) 和右边 (Δ_oracle / BR(M)) 的精确含义也不够形式化——Δ_oracle 的定义依赖于 §4.3 的 oracle 实验设置，而非纯数学构造。这使得 Proposition 1 实际上是一个 empirical claim dressed as a theorem。\n\n**建议**：降级为 \"Empirical Finding 1\" 或在 Appendix 中提供基于 MAX-SAT 权重分配的完整推导。\n\n---\n\n### [AGREE，但有补充] R1-N2: Fleiss' κ → Effective-K 映射的理论依据不足\n\n总体同意 R1 的技术关切，但需要补充一个重要 nuance。\n\n**R1 正确的部分**：Kish (1965) design effect 公式 K_eff = K / (1 + (K-1)·ρ) 中 ρ 是 ICC，不是 Fleiss' κ。论文用 κ 替代 ICC 是一个近似，且验证相关性仅 r = 0.625（page 4），意味着约 61% 方差未被解释。\n\n**需要补充的 nuance**：论文在 page 4 **已明确声明** K_eff 应被解读为 ordinal diagnostic（原文：\"K_eff should be interpreted as an ordinal diagnostic—ranking which conditions have genuine vote diversity—rather than as a literal effective sample size\"）。在 Table 2 中，K_eff 主要用于 **排序** 不同条件的有效多样性（从 QwQ-1 的 ~0 到 Mistral-7B 几种设定的 1.62-1.77），这种序数使用对 κ→ICC 近似的敏感度较低。\n\n**但问题在于**：论文在其他地方超出了 ordinal 使用范围。例如 §1 abstract 中 \"Effective-K ≈ 1.20-3.62 for nominal K = 12\"、以及 §5.1 中具体的数值讨论，都带有定量含义。这种 ordinal caveat 与 quantitative usage 之间的不一致性正是 R1 关切的核心。\n\n**建议**：同意 R1 建议报告 ICC 本身，且在 Appendix 中提供 sensitivity analysis（例如：如果用 ICC 替换 κ，K_eff 排序是否改变？）。\n\n---\n\n### [AGREE] R1-N3: Spearman ρ = 1.0 (n=6) 的 capability gap 结论依赖极小样本\n\n同意。这是 Corollary 1 和 §6 capability gap 分析的关键弱点。\n\n具体证据：Figure 3 (page 7) 和相关文字显示 Spearman ρ = 1.0 基于 6 个 verifier-generator pairs（3 NLI architectures × 在 ProofWriter 上的有效 generator 水平）。n=6 时完美秩相关的 p 值约为 1/6! ≈ 0.00139（论文报告 p=0.003，可能是精确排列检验），表面上显著。但：\n\n1. **6 点的约束极强**：任何近似单调的关系都容易产生高 Spearman ρ，特别是当 6 个点来自有限的 3×2 结构时。\n2. **非完全独立**：同一 generator (Mistral-7B) 搭配 3 个不同 verifier 产生 3 个关联数据点。\n3. **反例被淡化**：Table 3 显示 LLaMA-3.1-8B 作为 generator 时，NLI combo gain 非显著甚至可能为负（page 7 右列：\"LLaMA-3.1-8B (+1.39 pp, n.a.)\"），但 LLaMA 点似乎被排除在 Spearman 计算之外（因为 BH correction 后不显著）。选择性纳入显著结果来计算 monotonicity 有循环论证的风险。\n\n**建议**：同意 R1，将 \"perfectly monotonic\" 措辞降级为 \"consistent directional trend\"，增加更多 generator-verifier 组合（如使用更多 NLI 模型或更多 generator 规模），并承认 n=6 的局限性。\n\n---\n\n## Should-Fix 问题回应\n\n### [AGREE] R1-W1: DRC 的 τ 阈值无 held-out 评估\n\n同意。Table 4 (page 8) 展示了 τ ∈ {0.3, 0.5, 0.7} 的结果，但均在同一 ProofWriter (n=600) 上选择和评估。虽然展示多个 τ 值可视为 sensitivity analysis，但这与 held-out validation 不同——所有 τ 的性能数字都是在选择集上计算的。\n\n作为 Contribution 4（DRC），方法论标准应更高。具体建议：在 ProofWriter 上 random split 为 dev/test，或在 FOLIO 上作为 held-out 验证 τ=0.7 是否迁移。如果 τ 选择对数据敏感，DRC 的 \"90% recovery at 39% cost\" 可能是 overfitted。\n\n---\n\n### [AGREE] R1-W2: Cross-architecture NLI escape 适用范围极窄\n\n强烈同意。我在自己的审稿中也标记了这个问题（R2-W5，同一关切）。\n\n补充证据：page 9 Limitations 明确承认 \"cross-architecture NLI verifier (§6) provides no benefit on LogiQA (combo Δ ≤ +1pp, all p > 0.5)\"。Table 3 (page 7) 的 BH correction 后仅 Mistral-7B 的 n=3 和 n=5 在 ProofWriter 上存活。综合两位 Reviewer 的一致意见：**NLI escape 的有效条件过于特殊化**（弱 generator + premise-conclusion decomposable + verifier >> generator），作为 constructive contribution 的说服力受限。\n\n---\n\n### [AGREE，但有 nuance] R1-W3: 四种子复制方差大、统计功效 <21%\n\n同意功效不足是一个真实问题，但需补充 context。\n\n**R1 正确的部分**：Δ ∈ {+3.43, +2.94, 0.00, −0.49}pp 的方差确实很大，Appendix E 报告的观测功效 <21% 意味着实验**无法可靠检测出真实效果**（如果存在的话）。对于声称 null result 的论文，低功效是特别危险的——它意味着不能排除存在小但真实的效果。\n\n**需要的 nuance**：论文的核心 claim 并非仅依赖四种子复制。证据链包括：(1) Table 1 的 15 个模型-数据集条件中无非退化条件达到 FDR 显著（§4.2）；(2) TOST 等价检验（虽然 R1-W4 的 margin 质疑也成立）；(3) Oracle 控制实验证明机制（约束继承偏差）；(4) 27 种策略全部失败。四种子复制是一个环节，不是唯一支柱。但 R1 正确指出论文应更显著地承认 power limitation，而非将其藏在 Appendix E。\n\n---\n\n### [AGREE] R1-W4: TOST ±2pp margin 缺少显式理由\n\n同意。TOST 等价检验的有效性完全取决于 margin 的选择。论文未论证为什么 2pp 是 LLM reasoning accuracy 上下文中的最小实际意义阈值。\n\n在 NLP 领域，常见的实际意义阈值缺乏共识（不像临床试验有 FDA 指导），但论文至少应讨论：(1) 在 FOLIO/ProofWriter 这种 ~200-600 样本的数据集上，2pp 对应多少问题的差异？(2) 如果用 ±3pp（R1 建议），结论如何变化？(3) 是否有类似 NLP 研究采用 ±2pp 作为先例？\n\n缺乏这种讨论，读者无法评估等价结论的稳健性。\n\n---\n\n### [AGREE] R1-W5: Bias Ratio 无置信区间\n\n同意。BR = 4.97× (Mistral), 3.93× (Qwen), 2.88× (LLaMA) 是从 K=12 traces 的采样中估计的，本身有抽样变异性。Bootstrap CIs 是标准做法且计算成本极低（对已有约束数据重采样即可）。不报告 CI 使得读者无法判断 BR 跨模型的差异是否显著——例如 4.97 vs. 3.93 可能在 CI 重叠范围内。\n\n---\n\n## Missing References 回应\n\n### [部分 AGREE] Yao et al. (2023) \"Tree of Thoughts\"\n\n同意 ToT 应被引用。论文在 §2 讨论 test-time compute scaling 并引用了 Snell et al. (2025) 和 DeepSeek-R1，但遗漏了 ToT——这是 structured test-time search 最具影响力的方法之一。ToT 与本文的关联在于：ToT 使用 LLM self-evaluation 来引导搜索，这也面临 self-verification bias 问题，可以作为 related work 中 \"test-time scaling + self-evaluation limitations\" 交叉点的讨论素材。\n\n### [REBUT] Khalifa et al. (2023) \"Discriminator-Guided Multi-step Reasoning\"\n\n不认为这是关键遗漏。论文已通过 Lightman et al. (2024, PRM) 和 Wang et al. (2024, Math-Shepherd) 覆盖了 trained verifier/discriminator 这条线。Khalifa et al. 的贡献方向（训练判别器引导推理）与本文的核心议题（自提取约束的局限性）关联度有限——本文的重点不是\"训练一个好的验证器\"，而是\"自提取的验证器为什么不行\"。\n\n---\n\n## 总结\n\n与 Reviewer 1 在 7/8 个问题上达成一致（3 Must-Fix 全部同意，5 Should-Fix 中 4 个完全同意、1 个有 nuance 地同意）。两位 Reviewer 的核心分歧在于 **Overall 评分**：\n\n- R1: 3.5 (Borderline Conference) — 更看重实验的严谨性和 27 策略穷举\n- R2: 3.0 (Findings) — 更看重新颖性不足（R2-N1/N2/N3，R1 未重点审查新颖性）\n\n我维持 **3.0 (Findings)** 评分。R1 的技术问题（N1-N3）进一步削弱了论文的形式化贡献声称，但不改变论文作为 solid negative result 的基本定位。如果作者能：(1) 充分回应 SatLM 对比问题（R2-N2），(2) 降级 Proposition 1 为 empirical observation（R1-N1 + R2-W3），(3) 增加 DRC held-out validation（R1-W1），论文可以 comfortably fit Findings。\n"
+              }
+            }
+          ],
+          "id": "event-000161"
+        },
+        {
+          "source_line": 162,
+          "timestamp": "2026-05-21T06:45:22.802Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-21T06:45:22.802Z",
+                "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470"
+              }
+            }
+          ],
+          "id": "event-000162"
+        },
+        {
+          "source_line": 163,
+          "timestamp": "2026-05-21T06:45:22.789Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "25c790b9-a564-40cd-a198-013bca27f629",
+            "isSidechain": false,
+            "type": "assistant",
+            "uuid": "b6565e0b-6123-4b85-998b-bd7aaaf506ca",
+            "isApiErrorMessage": false,
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "id": "50f58afb-da03-4974-8e26-88e2e8e397c3",
+              "container": null,
+              "model": "<synthetic>",
+              "stop_reason": "stop_sequence",
+              "stop_sequence": "",
+              "type": "message",
+              "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": null,
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": null,
+                "iterations": null,
+                "speed": null
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000163"
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "messages": [
+        {
+          "source_line": 164,
+          "timestamp": "2026-05-21T06:45:22.891Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 2 审稿意见]:\n\n# Reviewer 2 交叉回应 Reviewer 1 审稿意见\n\n---\n\n## Must-Fix 问题回应\n\n### [AGREE] R1-N1: Proposition 1（Self-Extraction Ceiling）缺少证明\n\n同意。我在自己的审稿中也标记了这个问题（R2-W3）。\n\n重新检查 page 4-5：Proposition 1 声称 Δ_max^self ≲ Δ_oracle / BR(M)，但 page 5 顶部的 \"Proof sketch\" 实际论证的是 **Corollary 1** 的单调性（引用 Spearman ρ = 1.0, p = 0.003 作为\"证明\"），而非 Proposition 1 的 ceiling bound。这是一个结构性问题——一个形式化的 Proposition 挂了另一个命题的经验论据。\n\n补充 R1 的观察：\"≲\" 不仅不精确，而且 Proposition 1 的左边 (Δ_max^self) 和右边 (Δ_oracle / BR(M)) 的精确含义也不够形式化——Δ_oracle 的定义依赖于 §4.3 的 oracle 实验设置，而非纯数学构造。这使得 Proposition 1 实际上是一个 empirical claim dressed as a theorem。\n\n**建议**：降级为 \"Empirical Finding 1\" 或在 Appendix 中提供基于 MAX-SAT 权重分配的完整推导。\n\n---\n\n### [AGREE，但有补充] R1-N2: Fleiss' κ → Effective-K 映射的理论依据不足\n\n总体同意 R1 的技术关切，但需要补充一个重要 nuance。\n\n**R1 正确的部分**：Kish (1965) design effect 公式 K_eff = K / (1 + (K-1)·ρ) 中 ρ 是 ICC，不是 Fleiss' κ。论文用 κ 替代 ICC 是一个近似，且验证相关性仅 r = 0.625（page 4），意味着约 61% 方差未被解释。\n\n**需要补充的 nuance**：论文在 page 4 **已明确声明** K_eff 应被解读为 ordinal diagnostic（原文：\"K_eff should be interpreted as an ordinal diagnostic—ranking which conditions have genuine vote diversity—rather than as a literal effective sample size\"）。在 Table 2 中，K_eff 主要用于 **排序** 不同条件的有效多样性（从 QwQ-1 的 ~0 到 Mistral-7B 几种设定的 1.62-1.77），这种序数使用对 κ→ICC 近似的敏感度较低。\n\n**但问题在于**：论文在其他地方超出了 ordinal 使用范围。例如 §1 abstract 中 \"Effective-K ≈ 1.20-3.62 for nominal K = 12\"、以及 §5.1 中具体的数值讨论，都带有定量含义。这种 ordinal caveat 与 quantitative usage 之间的不一致性正是 R1 关切的核心。\n\n**建议**：同意 R1 建议报告 ICC 本身，且在 Appendix 中提供 sensitivity analysis（例如：如果用 ICC 替换 κ，K_eff 排序是否改变？）。\n\n---\n\n### [AGREE] R1-N3: Spearman ρ = 1.0 (n=6) 的 capability gap 结论依赖极小样本\n\n同意。这是 Corollary 1 和 §6 capability gap 分析的关键弱点。\n\n具体证据：Figure 3 (page 7) 和相关文字显示 Spearman ρ = 1.0 基于 6 个 verifier-generator pairs（3 NLI architectures × 在 ProofWriter 上的有效 generator 水平）。n=6 时完美秩相关的 p 值约为 1/6! ≈ 0.00139（论文报告 p=0.003，可能是精确排列检验），表面上显著。但：\n\n1. **6 点的约束极强**：任何近似单调的关系都容易产生高 Spearman ρ，特别是当 6 个点来自有限的 3×2 结构时。\n2. **非完全独立**：同一 generator (Mistral-7B) 搭配 3 个不同 verifier 产生 3 个关联数据点。\n3. **反例被淡化**：Table 3 显示 LLaMA-3.1-8B 作为 generator 时，NLI combo gain 非显著甚至可能为负（page 7 右列：\"LLaMA-3.1-8B (+1.39 pp, n.a.)\"），但 LLaMA 点似乎被排除在 Spearman 计算之外（因为 BH correction 后不显著）。选择性纳入显著结果来计算 monotonicity 有循环论证的风险。\n\n**建议**：同意 R1，将 \"perfectly monotonic\" 措辞降级为 \"consistent directional trend\"，增加更多 generator-verifier 组合（如使用更多 NLI 模型或更多 generator 规模），并承认 n=6 的局限性。\n\n---\n\n## Should-Fix 问题回应\n\n### [AGREE] R1-W1: DRC 的 τ 阈值无 held-out 评估\n\n同意。Table 4 (page 8) 展示了 τ ∈ {0.3, 0.5, 0.7} 的结果，但均在同一 ProofWriter (n=600) 上选择和评估。虽然展示多个 τ 值可视为 sensitivity analysis，但这与 held-out validation 不同——所有 τ 的性能数字都是在选择集上计算的。\n\n作为 Contribution 4（DRC），方法论标准应更高。具体建议：在 ProofWriter 上 random split 为 dev/test，或在 FOLIO 上作为 held-out 验证 τ=0.7 是否迁移。如果 τ 选择对数据敏感，DRC 的 \"90% recovery at 39% cost\" 可能是 overfitted。\n\n---\n\n### [AGREE] R1-W2: Cross-architecture NLI escape 适用范围极窄\n\n强烈同意。我在自己的审稿中也标记了这个问题（R2-W5，同一关切）。\n\n补充证据：page 9 Limitations 明确承认 \"cross-architecture NLI verifier (§6) provides no benefit on LogiQA (combo Δ ≤ +1pp, all p > 0.5)\"。Table 3 (page 7) 的 BH correction 后仅 Mistral-7B 的 n=3 和 n=5 在 ProofWriter 上存活。综合两位 Reviewer 的一致意见：**NLI escape 的有效条件过于特殊化**（弱 generator + premise-conclusion decomposable + verifier >> generator），作为 constructive contribution 的说服力受限。\n\n---\n\n### [AGREE，但有 nuance] R1-W3: 四种子复制方差大、统计功效 <21%\n\n同意功效不足是一个真实问题，但需补充 context。\n\n**R1 正确的部分**：Δ ∈ {+3.43, +2.94, 0.00, −0.49}pp 的方差确实很大，Appendix E 报告的观测功效 <21% 意味着实验**无法可靠检测出真实效果**（如果存在的话）。对于声称 null result 的论文，低功效是特别危险的——它意味着不能排除存在小但真实的效果。\n\n**需要的 nuance**：论文的核心 claim 并非仅依赖四种子复制。证据链包括：(1) Table 1 的 15 个模型-数据集条件中无非退化条件达到 FDR 显著（§4.2）；(2) TOST 等价检验（虽然 R1-W4 的 margin 质疑也成立）；(3) Oracle 控制实验证明机制（约束继承偏差）；(4) 27 种策略全部失败。四种子复制是一个环节，不是唯一支柱。但 R1 正确指出论文应更显著地承认 power limitation，而非将其藏在 Appendix E。\n\n---\n\n### [AGREE] R1-W4: TOST ±2pp margin 缺少显式理由\n\n同意。TOST 等价检验的有效性完全取决于 margin 的选择。论文未论证为什么 2pp 是 LLM reasoning accuracy 上下文中的最小实际意义阈值。\n\n在 NLP 领域，常见的实际意义阈值缺乏共识（不像临床试验有 FDA 指导），但论文至少应讨论：(1) 在 FOLIO/ProofWriter 这种 ~200-600 样本的数据集上，2pp 对应多少问题的差异？(2) 如果用 ±3pp（R1 建议），结论如何变化？(3) 是否有类似 NLP 研究采用 ±2pp 作为先例？\n\n缺乏这种讨论，读者无法评估等价结论的稳健性。\n\n---\n\n### [AGREE] R1-W5: Bias Ratio 无置信区间\n\n同意。BR = 4.97× (Mistral), 3.93× (Qwen), 2.88× (LLaMA) 是从 K=12 traces 的采样中估计的，本身有抽样变异性。Bootstrap CIs 是标准做法且计算成本极低（对已有约束数据重采样即可）。不报告 CI 使得读者无法判断 BR 跨模型的差异是否显著——例如 4.97 vs. 3.93 可能在 CI 重叠范围内。\n\n---\n\n## Missing References 回应\n\n### [部分 AGREE] Yao et al. (2023) \"Tree of Thoughts\"\n\n同意 ToT 应被引用。论文在 §2 讨论 test-time compute scaling 并引用了 Snell et al. (2025) 和 DeepSeek-R1，但遗漏了 ToT——这是 structured test-time search 最具影响力的方法之一。ToT 与本文的关联在于：ToT 使用 LLM self-evaluation 来引导搜索，这也面临 self-verification bias 问题，可以作为 related work 中 \"test-time scaling + self-evaluation limitations\" 交叉点的讨论素材。\n\n### [REBUT] Khalifa et al. (2023) \"Discriminator-Guided Multi-step Reasoning\"\n\n不认为这是关键遗漏。论文已通过 Lightman et al. (2024, PRM) 和 Wang et al. (2024, Math-Shepherd) 覆盖了 trained verifier/discriminator 这条线。Khalifa et al. 的贡献方向（训练判别器引导推理）与本文的核心议题（自提取约束的局限性）关联度有限——本文的重点不是\"训练一个好的验证器\"，而是\"自提取的验证器为什么不行\"。\n\n---\n\n## 总结\n\n与 Reviewer 1 在 7/8 个问题上达成一致（3 Must-Fix 全部同意，5 Should-Fix 中 4 个完全同意、1 个有 nuance 地同意）。两位 Reviewer 的核心分歧在于 **Overall 评分**：\n\n- R1: 3.5 (Borderline Conference) — 更看重实验的严谨性和 27 策略穷举\n- R2: 3.0 (Findings) — 更看重新颖性不足（R2-N1/N2/N3，R1 未重点审查新颖性）\n\n我维持 **3.0 (Findings)** 评分。R1 的技术问题（N1-N3）进一步削弱了论文的形式化贡献声称，但不改变论文作为 solid negative result 的基本定位。如果作者能：(1) 充分回应 SatLM 对比问题（R2-N2），(2) 降级 Proposition 1 为 empirical observation（R1-N1 + R2-W3），(3) 增加 DRC held-out validation（R1-W1），论文可以 comfortably fit Findings。\n"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b6565e0b-6123-4b85-998b-bd7aaaf506ca",
+            "isSidechain": false,
+            "promptId": "1f0a7546-ec4f-451e-b76f-3a2e00a08e8e",
+            "type": "user",
+            "uuid": "ff1e750c-d865-4187-a8ee-e32a44edccab",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": "2026-05-21T06:45:47.356Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Both reviewers have completed their cross-responses. Let me now analyze the convergence:\n\n**Round 1 Cross-Response Summary:**\n\n**Consensus (AGREE on both sides):**\n1. R1-N1 / R2-W3: Proposition 1 lacks proof → both agree, should be downgraded to empirical observation\n2. R1-N3: Spearman ρ=1.0 (n=6) too small sample → R2 agrees\n\n\n3. R1-W1: DRC τ no held-out evaluation → R2 agrees\n4. R1-W2 / R2-W5: Cross-architecture NLI escape too narrow → both agree\n5. R1-W3: Four-seed replication low power → R2 agrees with nuance\n6. R1-W4: TOST ±2pp margin unjustified → R2 agrees\n7. R1-W5: BR no confidence intervals → R2 agrees\n8. R2-N3: \"Symbolic Confirmation Bias\" needs distinction from CoT confirmation bias → R1 agrees\n\nNow I'm looking at where the reviewers diverge or where one raises a point the other hasn't fully addressed yet.\n\nOn incremental novelty, R1 pushes back on calling it a \"direct instantiation\" and wants the distinction made clearer, though both agree the novelty question itself remains contested. For the SatLM comparison, R1 notes the paper does mention it in two sentences, but R2 still thinks it needs more coverage. On the independence-accuracy trade-off framing, R1 argues the contribution is actually quantifying a boundary rather than establishing a new principle, which R2 hasn't directly responded to.\n\nNow I'm seeing both reviewers have submitted their cross-responses to each other. The core disagreement comes down to overall assessment: R1 gives 3.5 (borderline accept) emphasizing the experimental rigor and comprehensive 27-strategy analysis, while R2 stays at 3.0 (findings only) arguing the novelty doesn't justify main conference publication. But looking at the specific issues, they've actually reached consensus on all the must-fix problems and most of the should-fix items.\n\nThe score gap of 0.5 points reflects a genuine difference in how they weight experimental contribution versus conceptual novelty, but it's not extreme. Both are at confidence level 4/5 and there are no contradictory claims left unresolved. I think we've converged enough to move forward without a second round. Now I need to check the visual review and external review status, update the issues file, then synthesize everything into the final report.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ff1e750c-d865-4187-a8ee-e32a44edccab",
+            "isSidechain": false,
+            "requestId": "req_011CbFGDJ5nJMCS2k7nBnM6q",
+            "type": "assistant",
+            "uuid": "6795f586-4420-4f40-bb09-5cf37afa16ce",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RPWyCjEo4NhBUEcwWZXogP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 3640,
+                "cache_read_input_tokens": 133771,
+                "output_tokens": 1244,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3640,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 1244,
+                    "cache_read_input_tokens": 133771,
+                    "cache_creation_input_tokens": 3640,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3640
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": "2026-05-21T06:45:51.341Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两位 Reviewer 的交叉回应均已收到。进入 **Step 3：收敛判断**。\n\n**收敛分析**：\n- 6 个 Must-Fix 问题（R1-N1/N2/N3, R2-N1/N2/N3）全部达成共识或明确方向\n- 8 个 Should-Fix 问题中 7 个 AGREE，1 个（R2-W1 bias-variance）R1 REBUT 但分歧不影响结论\n- 核心分歧仅在 Overall 评分：R1=3.5 vs R2=3.0，原因清晰（新颖性权重不同）\n- 无未解决的事实性矛盾\n\n**判定：关键问题已达成共识，进入 Step 4 合成报告。**\n\n现在读取视觉审查状态和 review_issues.yaml，准备合成最终报告。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6795f586-4420-4f40-bb09-5cf37afa16ce",
+            "isSidechain": false,
+            "requestId": "req_011CbFGDJ5nJMCS2k7nBnM6q",
+            "type": "assistant",
+            "uuid": "5e504622-cfc1-42dc-a72f-39556bbc5cc3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RPWyCjEo4NhBUEcwWZXogP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 3640,
+                "cache_read_input_tokens": 133771,
+                "output_tokens": 1244,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3640,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 1244,
+                    "cache_read_input_tokens": 133771,
+                    "cache_creation_input_tokens": 3640,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3640
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": "2026-05-21T06:45:51.612Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MjERBU4f3AY4AZhnbw7Mzf",
+              "name": "mcp__agent-ml-research__get_visual_check_status",
+              "input": {
+                "project": "symb_invariant_consensus"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5e504622-cfc1-42dc-a72f-39556bbc5cc3",
+            "isSidechain": false,
+            "requestId": "req_011CbFGDJ5nJMCS2k7nBnM6q",
+            "type": "assistant",
+            "uuid": "7afeb7d7-612b-4474-9144-9bac4c212cef",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RPWyCjEo4NhBUEcwWZXogP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 3640,
+                "cache_read_input_tokens": 133771,
+                "output_tokens": 1244,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3640,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 1244,
+                    "cache_read_input_tokens": 133771,
+                    "cache_creation_input_tokens": 3640,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3640
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000167"
+        },
+        {
+          "source_line": 168,
+          "timestamp": "2026-05-21T06:45:51.638Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MjERBU4f3AY4AZhnbw7Mzf",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-21T06:31:44.936589+00:00\\\", \\\"completed_at\\\": \\\"2026-05-21T06:36:04.887515+00:00\\\", \\\"findings\\\": [{\\\"severity\\\": \\\"warning\\\", \\\"dimension\\\": \\\"pages 3-5\\\", \\\"message\\\": \\\"连续 3 页无 figure/table，仅有公式穿插。Pages 3-4 的数学推导可部分豁免，但 page 5（实验 setup）为纯文本，建议将实验配置整理为 setup summary table 打破节奏\\\"}, {\\\"severity\\\": \\\"warning\\\", \\\"dimension\\\": \\\"page 7\\\", \\\"message\\\": \\\"Display items 过度拥挤：Table 2 + Figure 2 + Figure 3 + Table 3 共 4 个 display items 堆叠在同一页，视觉负荷过重。建议将 Figure 2 或 Figure 3 之一移至 page 6 或 page 8 分散\\\"}, {\\\"severity\\\": \\\"warning\\\", \\\"dimension\\\": \\\"page 7\\\", \\\"message\\\": \\\"Figure 2（27 条干预策略条形图）单栏宽度下 y 轴标签文字过小（估计 ≤6pt），打印后难以辨认。建议改为 figure* 全宽排布或精简策略数量\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 7\\\", \\\"message\\\": \\\"Figure 3 散点图的 legend 和 axis label 字号偏小，建议适当放大\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 1\\\", \\\"message\\\": \\\"首页无视觉锚点。ACL 双栏格式下常见，但若能在 page 1 右栏加入简化版 teaser figure（如 Figure 1 的精简版或核心结果示意），可强化审稿人第一印象\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 2\\\", \\\"message\\\": \\\"Figure 1 pipeline 图内文字（\\\\\\\"Extract Formal Constraints\\\\\\\"、\\\\\\\"Deduplicate\\\\\\\"等）字号偏小，建议稍放大以提升可读性\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 5\\\", \\\"message\\\": \\\"Experiments section 4.1 的 Models/Datasets/Parameters 信息密集但纯文本呈现，一个紧凑的 setup table（model × params）可同时改善可读性和 pages 3-5 的节奏问题\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 22\\\", \\\"message\\\": \\\"末页底部约 1/3 空白，appendix 页可接受但若有额外分析可填充利用\\\"}], \\\"counts\\\": {\\\"critical\\\": 0, \\\"warning\\\": 3, \\\"info\\\": 5}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7afeb7d7-612b-4474-9144-9bac4c212cef",
+            "isSidechain": false,
+            "promptId": "1f0a7546-ec4f-451e-b76f-3a2e00a08e8e",
+            "type": "user",
+            "uuid": "74e38b80-58fb-4aaa-8a96-d96a4c8d4e27",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-21T06:31:44.936589+00:00\\\", \\\"completed_at\\\": \\\"2026-05-21T06:36:04.887515+00:00\\\", \\\"findings\\\": [{\\\"severity\\\": \\\"warning\\\", \\\"dimension\\\": \\\"pages 3-5\\\", \\\"message\\\": \\\"连续 3 页无 figure/table，仅有公式穿插。Pages 3-4 的数学推导可部分豁免，但 page 5（实验 setup）为纯文本，建议将实验配置整理为 setup summary table 打破节奏\\\"}, {\\\"severity\\\": \\\"warning\\\", \\\"dimension\\\": \\\"page 7\\\", \\\"message\\\": \\\"Display items 过度拥挤：Table 2 + Figure 2 + Figure 3 + Table 3 共 4 个 display items 堆叠在同一页，视觉负荷过重。建议将 Figure 2 或 Figure 3 之一移至 page 6 或 page 8 分散\\\"}, {\\\"severity\\\": \\\"warning\\\", \\\"dimension\\\": \\\"page 7\\\", \\\"message\\\": \\\"Figure 2（27 条干预策略条形图）单栏宽度下 y 轴标签文字过小（估计 ≤6pt），打印后难以辨认。建议改为 figure* 全宽排布或精简策略数量\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 7\\\", \\\"message\\\": \\\"Figure 3 散点图的 legend 和 axis label 字号偏小，建议适当放大\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 1\\\", \\\"message\\\": \\\"首页无视觉锚点。ACL 双栏格式下常见，但若能在 page 1 右栏加入简化版 teaser figure（如 Figure 1 的精简版或核心结果示意），可强化审稿人第一印象\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 2\\\", \\\"message\\\": \\\"Figure 1 pipeline 图内文字（\\\\\\\"Extract Formal Constraints\\\\\\\"、\\\\\\\"Deduplicate\\\\\\\"等）字号偏小，建议稍放大以提升可读性\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 5\\\", \\\"message\\\": \\\"Experiments section 4.1 的 Models/Datasets/Parameters 信息密集但纯文本呈现，一个紧凑的 setup table（model × params）可同时改善可读性和 pages 3-5 的节奏问题\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 22\\\", \\\"message\\\": \\\"末页底部约 1/3 空白，appendix 页可接受但若有额外分析可填充利用\\\"}], \\\"counts\\\": {\\\"critical\\\": 0, \\\"warning\\\": 3, \\\"info\\\": 5}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"status\": \"done\", \"started_at\": \"2026-05-21T06:31:44.936589+00:00\", \"completed_at\": \"2026-05-21T06:36:04.887515+00:00\", \"findings\": [{\"severity\": \"warning\", \"dimension\": \"pages 3-5\", \"message\": \"连续 3 页无 figure/table，仅有公式穿插。Pages 3-4 的数学推导可部分豁免，但 page 5（实验 setup）为纯文本，建议将实验配置整理为 setup summary table 打破节奏\"}, {\"severity\": \"warning\", \"dimension\": \"page 7\", \"message\": \"Display items 过度拥挤：Table 2 + Figure 2 + Figure 3 + Table 3 共 4 个 display items 堆叠在同一页，视觉负荷过重。建议将 Figure 2 或 Figure 3 之一移至 page 6 或 page 8 分散\"}, {\"severity\": \"warning\", \"dimension\": \"page 7\", \"message\": \"Figure 2（27 条干预策略条形图）单栏宽度下 y 轴标签文字过小（估计 ≤6pt），打印后难以辨认。建议改为 figure* 全宽排布或精简策略数量\"}, {\"severity\": \"info\", \"dimension\": \"page 7\", \"message\": \"Figure 3 散点图的 legend 和 axis label 字号偏小，建议适当放大\"}, {\"severity\": \"info\", \"dimension\": \"page 1\", \"message\": \"首页无视觉锚点。ACL 双栏格式下常见，但若能在 page 1 右栏加入简化版 teaser figure（如 Figure 1 的精简版或核心结果示意），可强化审稿人第一印象\"}, {\"severity\": \"info\", \"dimension\": \"page 2\", \"message\": \"Figure 1 pipeline 图内文字（\\\"Extract Formal Constraints\\\"、\\\"Deduplicate\\\"等）字号偏小，建议稍放大以提升可读性\"}, {\"severity\": \"info\", \"dimension\": \"page 5\", \"message\": \"Experiments section 4.1 的 Models/Datasets/Parameters 信息密集但纯文本呈现，一个紧凑的 setup table（model × params）可同时改善可读性和 pages 3-5 的节奏问题\"}, {\"severity\": \"info\", \"dimension\": \"page 22\", \"message\": \"末页底部约 1/3 空白，appendix 页可接受但若有额外分析可填充利用\"}], \"counts\": {\"critical\": 0, \"warning\": 3, \"info\": 5}}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "7afeb7d7-612b-4474-9144-9bac4c212cef",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000168"
+        },
+        {
+          "source_line": 169,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[Reviewer 2 审稿意见]:  # Reviewer 2 交叉回应 Reviewer 1 审稿意见  ---  ## Must-Fix 问题回应  ### [AGREE] R1-N1: Proposition 1（Self-Extraction Ceiling）缺少证明  同意。我在自己的审稿中也标记了这个问题（R2-W3）。  重新检查 page 4-5：Proposition 1 声称…",
+                "leafUuid": "74e38b80-58fb-4aaa-8a96-d96a4c8d4e27",
+                "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470"
+              }
+            }
+          ],
+          "id": "event-000169"
+        },
+        {
+          "source_line": 170,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review symbolic invariant consensus paper for EMNLP",
+                "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470"
+              }
+            }
+          ],
+          "id": "event-000170"
+        },
+        {
+          "source_line": 171,
+          "timestamp": "2026-05-21T06:46:13.394Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good, visual check is done. Now let me prepare the final report. I need to:\n\n1. Synthesize findings from both reviewers + visual check\n2. Update review_issues.yaml\n3. Submit the report\n\nLet me compose the comprehensive report. I already read the review_issues.yaml earlier. Now I need to merge new findings with the existing issues.\n\nSince this is a fresh review, I should create new issues for the findings from this round. The existing issues from rounds 1-9 are historical context, but since this is fresh mode, I should treat my issues as new.\n\n\nI'm looking at the review_issues.yaml and seeing the historical issues from earlier rounds, with Round 9 items still in progress. Since I'm working in fresh mode and the config indicates review_round: 7, I should treat this as a new round. The review_reports directory shows reports up to round_6, so this would be round_7. I'll read the existing issues and add my new findings to the file.\n\nNow I'm synthesizing the two reviewers' scores—R1 gave 3.5 (Borderline Conference) and R2 gave 3.0 (Findings)—and the main disagreement centers on novelty. R2 raises a valid point about incremental novelty relative to prior work by Huang and Stechly, which R1 partially acknowledged. R1's rebuttal about the formal verification distinction using Z3 is solid, but it doesn't fully address the novelty concern. Looking at this as Director, the paper has strong experimental contributions with 27 strategies, oracle controls, and multi-model evaluation, but the conceptual advance is modest. The Z3 formal verification angle is genuinely interesting as R1 argues, though the paper needs to better articulate its positioning relative to existing work.\n\nWeighing the evidence—strong experimental execution against limited conceptual novelty, plus the unresolved issues both reviewers flagged like the missing proof for Proposition 1 and the weak κ→K_eff mapping—I'm settling on an overall score of 3.0 (Findings). The novelty concern is structural and difficult to fix in revision since the fundamental insight remains incremental relative to Huang/Stechly, even though the experimental work is solid. This is a good Findings paper that could potentially reach Borderline Conference status with substantial revisions addressing the key weaknesses.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "74e38b80-58fb-4aaa-8a96-d96a4c8d4e27",
+            "isSidechain": false,
+            "requestId": "req_011CbFGFRFCM33Yk2QgqBrWN",
+            "type": "assistant",
+            "uuid": "2b11999e-a520-437f-aa65-1bafeefa649b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012friLh5n9tbPPVahBQvEdJ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2068,
+                "cache_read_input_tokens": 137411,
+                "output_tokens": 12225,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2068,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 12225,
+                    "cache_read_input_tokens": 137411,
+                    "cache_creation_input_tokens": 2068,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2068
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000171"
+        },
+        {
+          "source_line": 172,
+          "timestamp": "2026-05-21T06:46:13.567Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "视觉审查已完成（3 warning, 5 info, 0 critical）。现在合成最终审稿报告。\n\n先更新 Issue Tracker，然后提交报告。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2b11999e-a520-437f-aa65-1bafeefa649b",
+            "isSidechain": false,
+            "requestId": "req_011CbFGFRFCM33Yk2QgqBrWN",
+            "type": "assistant",
+            "uuid": "308f8839-e829-43a9-9078-82d89e4a8417",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012friLh5n9tbPPVahBQvEdJ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2068,
+                "cache_read_input_tokens": 137411,
+                "output_tokens": 12225,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2068,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 12225,
+                    "cache_read_input_tokens": 137411,
+                    "cache_creation_input_tokens": 2068,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2068
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000172"
+        },
+        {
+          "source_line": 173,
+          "timestamp": "2026-05-21T06:49:22.732Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011ZT3HD3Zw7a2vMqTZXzneD",
+              "name": "mcp__agent-ml-research__update_review_issues",
+              "input": {
+                "project": "symb_invariant_consensus",
+                "issues_yaml": "# Round 1-8 issues (all resolved/wont_fix) — retained for history (abbreviated)\n- id: \"R1-C1\"\n  summary: \"Method Stage 3 sat() implementation undescribed\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 3\n  resolution: \"Fully formalized: Eq.(1)-(5), Algorithm 1-2, α=0.5 explicit.\"\n  resolution_round: 3\n\n- id: \"R1-C2\"\n  summary: \"Most experiments underpowered (n≤60), no power analysis\"\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  resolution: \"Power analysis + Bootstrap CIs added. Larger n conditions (200-600).\"\n  resolution_round: 3\n\n- id: \"R1-C3\"\n  summary: \"Oracle/upper-bound experiment missing\"\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  resolution: \"Dual oracle: FOLIO +14.22pp, ProofWriter +11.50pp.\"\n  resolution_round: 3\n\n- id: \"R1-C4\"\n  summary: \"Huang et al. (ICLR 2024) not cited\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 2\n  resolution: \"Huang, Stechly, Kambhampati all cited and discussed.\"\n  resolution_round: 2\n\n- id: \"R1-C5\"\n  summary: \"Critical related work missing\"\n  category: writing\n  severity: critical\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  resolution: \"~48 citations, 5 Related Work paragraphs.\"\n  resolution_round: 3\n\n- id: \"R1-C9\"\n  summary: \"Capability trap novelty unclear\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 3\n  resolution: \"Reframed as regime-dependent analysis with CJT framework.\"\n  resolution_round: 3\n\n- id: \"R3-N1\"\n  summary: \"σ(c,a) scoring inconsistent between self-extraction and oracle\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 3\n  last_seen_round: 4\n  resolution: \"Paper Agent added clarifying sentence in method.tex.\"\n  resolution_round: 4\n\n- id: \"R3-N2\"\n  summary: \"α value never specified\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 3\n  last_seen_round: 3\n  resolution: \"α=0.5 explicit in Eq.(3) and §4.1.\"\n  resolution_round: 3\n\n- id: \"R3-N3\"\n  summary: \"Discriminative rate from small pilot\"\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 3\n  last_seen_round: 3\n  resolution: \"804-instance analysis: 8.2% [CI: 7.6, 8.8].\"\n  resolution_round: 3\n\n- id: \"R3-W6\"\n  summary: \"No 70B+ model tested\"\n  category: experiment\n  severity: warning\n  status: wont_fix\n  first_raised_round: 3\n  last_seen_round: 10\n  resolution: \"Acknowledged as limitation in paper.\"\n  resolution_round: 4\n  mentions:\n    - round: 8\n      reviewers: [2]\n      note: \"R2-W4 re-raised: Abstract 'full LLM capability range' overclaims given 7B-32B only. Model range limitation persists.\"\n    - round: 9\n      reviewers: [2]\n      note: \"R9 R2-W8: DeepSeek-R1 distilled models not tested. R1 rebuts: Table 4 has DeepSeek-R1-7B data (n≤60). Scale limitation persists.\"\n    - round: 10\n      reviewers: [1, 2]\n      note: \"R10: Both reviewers note 7B-32B range. Not blocking but acknowledged.\"\n\n- id: \"R4-C1\"\n  summary: \"Cross-section Δ inconsistency\"\n  category: writing\n  severity: critical\n  status: resolved\n  first_raised_round: 4\n  last_seen_round: 4\n  resolution: \"D064+D066 full data replacement completed.\"\n  resolution_round: 4\n\n- id: \"R4-C2\"\n  summary: \"CJT framing gap\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 4\n  last_seen_round: 4\n  resolution: \"Dual-bottleneck paragraph added. Title changed.\"\n  resolution_round: 4\n\n- id: \"R4-C3\"\n  summary: \"Goldilocks zone evidence from only 1 model × 1 dataset\"\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 4\n  last_seen_round: 6\n  resolution: \"Claims downgraded to 'directional trend'. V2 framing de-emphasizes intermediate region.\"\n  resolution_round: 5\n\n- id: \"R4-W1\"\n  summary: \"Multiple testing correction\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 4\n  last_seen_round: 6\n  resolution: \"BH correction computed: PW w=3 (adj p=0.038) + PW w=5 (adj p<0.001) survive. FOLIO all n.s. Integrated into §6.\"\n  resolution_round: 7\n\n- id: \"R4-W3\"\n  summary: \"Eff-K Kish (1965) attribution / κ→ICC proxy rigor\"\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 4\n  last_seen_round: 10\n  resolution: \"Pairwise Pearson r (mean 0.625, Mistral-7B) monotonically related to κ across 4 model families. κ validated as consensus proxy.\"\n  resolution_round: 7\n  mentions:\n    - round: 10\n      reviewers: [1, 2]\n      note: \"R10-N2(Critical): Both reviewers re-raise. Paper has ordinal caveat but uses K_eff quantitatively elsewhere. Need ICC values + sensitivity analysis.\"\n\n- id: \"R4-M5\"\n  summary: \"Figure 2 old data\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 4\n  last_seen_round: 5\n  resolution: \"Figure 2 moved to Appendix in V2 page budget compression.\"\n  resolution_round: 6\n\n- id: \"R5-N1\"\n  summary: \"Oracle ceiling '24%' cross-model comparison invalid\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 5\n  last_seen_round: 5\n  resolution: \"Mistral-7B same-model oracle: +29.90pp (p<1e-13).\"\n  resolution_round: 5\n\n- id: \"R5-N2\"\n  summary: \"§4.1 Decoupling interim results (n=70/204) in main text\"\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 5\n  last_seen_round: 5\n  resolution: \"V2 framing removes §4.1 Decoupling from main text entirely.\"\n  resolution_round: 5\n\n- id: \"R5-N3\"\n  summary: \"'Fundamental' trade-off overclaimed\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 5\n  last_seen_round: 5\n  resolution: \"All 'fundamental' → 'persistent' + 'at the 7B--32B scale'.\"\n  resolution_round: 5\n\n- id: \"R5-N4\"\n  summary: \"DeBERTa PoC statistically fragile — 9 discordant pairs\"\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 5\n  last_seen_round: 5\n  resolution: \"ProofWriter w=3 +3.50pp (p=0.013, n=600) as primary finding.\"\n  resolution_round: 5\n\n- id: \"R5-N5\"\n  summary: \"Discussion/Conclusion too thin for negative paper\"\n  category: writing\n  severity: critical\n  status: resolved\n  first_raised_round: 5\n  last_seen_round: 5\n  resolution: \"Discussion ~350 words, Conclusion ~220 words.\"\n  resolution_round: 5\n\n- id: \"R5-W1\"\n  summary: \"Variable name isolation confound\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 5\n  last_seen_round: 5\n  resolution: \"Alpha-equivalence caveat added in Discussion.\"\n  resolution_round: 5\n\n- id: \"R5-W2\"\n  summary: \"Fleiss' κ as ICC proxy lacks formal justification\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 5\n  last_seen_round: 6\n  resolution: \"Caveat added. Pairwise correlation validates κ (tracked under R4-W3).\"\n  resolution_round: 5\n\n- id: \"R5-W3\"\n  summary: \"Missing ensemble diversity literature\"\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 5\n  last_seen_round: 5\n  resolution: \"Krogh & Vedelsby (1994) + Brown et al. (2005) cited.\"\n  resolution_round: 5\n\n- id: \"R5-W4\"\n  summary: \"§3/§5 content duplication\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 5\n  last_seen_round: 5\n  resolution: \"Not flagged in R6 — considered resolved.\"\n  resolution_round: 6\n\n- id: \"R5-W5\"\n  summary: \"'25+ strategies' count inflated\"\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 5\n  last_seen_round: 5\n  resolution: \"'more than twenty spanning fifteen distinct families'.\"\n  resolution_round: 5\n\n- id: \"R5-W6\"\n  summary: \"Code/data release not mentioned\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 5\n  last_seen_round: 5\n  resolution: \"Reproducibility paragraph added.\"\n  resolution_round: 5\n\n- id: \"R5-W7\"\n  summary: \"Solutions before Experiments ordering\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 5\n  last_seen_round: 5\n  resolution: \"main.tex reordered correctly.\"\n  resolution_round: 5\n\n- id: \"R5-W8\"\n  summary: \"TF-IDF cosine limitation under-discussed\"\n  category: method\n  severity: warning\n  status: wont_fix\n  first_raised_round: 5\n  last_seen_round: 10\n  resolution: \"Deferred to rebuttal. SBERT validation not worth GPU time per Reviewer assessment.\"\n  resolution_round: 7\n  mentions:\n    - round: 8\n      reviewers: [1, 2]\n      note: \"Both reviewers re-raised: R1-W5 notes Figure 2 R²≈4.4% is very low; R2-Q4 asks if TF-IDF sufficiently captures semantic similarity. Limitation persists.\"\n    - round: 9\n      reviewers: [1, 2]\n      note: \"R9 R1-W5(Info), R2-W7(Info): TF-IDF limitation re-confirmed by both reviewers. Consensus: acknowledged limitation, not blocking.\"\n    - round: 10\n      reviewers: []\n      note: \"R10: Not directly re-raised but still applicable.\"\n\n- id: \"R5-W9\"\n  summary: \"CJT novelty / Huang-Stechly distinction insufficient\"\n  category: framing\n  severity: warning\n  status: in_progress\n  first_raised_round: 5\n  last_seen_round: 10\n  resolution: \"Paper Agent added novelty differentiation paragraph (3 quantitative differentiators). Tracked jointly with R6-N3.\"\n  resolution_round: 7\n  mentions:\n    - round: 8\n      reviewers: [2]\n      note: \"R2-W1 re-raised novelty concern despite R7 fix. R1 partially rebuts, citing empirical specificity and quantitative tools. Divergence remains — see R8-W1.\"\n    - round: 9\n      reviewers: [1, 2]\n      note: \"R9 R2-W1(Critical): Novelty gap persists. R1 partially rebuts (Z3 non-triviality + exhaustive remediation). Core divergence: R1=3.5 vs R2=3.0.\"\n    - round: 10\n      reviewers: [1, 2]\n      note: \"R10-N1(Critical): Re-raised by R2, R1 partially rebuts but agrees distinction needs more prominence. Core novelty divergence persists (R1=3.5 vs R2=3.0).\"\n\n- id: \"R5-TC1\"\n  summary: \"SC tiebreaking inconsistency (dict-order vs alphabetical)\"\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 5\n  last_seen_round: 5\n  resolution: \"All tiebreaking standardized to alphabetical.\"\n  resolution_round: 5\n\n- id: \"R6-N1\"\n  summary: \"Statistical power 5.7%-20.6% — title 'Fail' overclaims\"\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 6\n  last_seen_round: 6\n  resolution: \"Title changed to 'Do Not Improve'. TOST computed: 4/15 equivalence, 5/15 genuine difference (4 negative), 6/15 underpowered.\"\n  resolution_round: 7\n\n- id: \"R6-N2\"\n  summary: \"Cross-arch PoC p=0.013 needs multiple comparison correction\"\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 6\n  last_seen_round: 6\n  resolution: \"BH correction: PW w=3 (adj p=0.038) + PW w=5 (adj p<0.001) survive. FOLIO all n.s.\"\n  resolution_round: 7\n\n- id: \"R6-N3\"\n  summary: \"Novelty vs self-correction literature (Huang/Stechly/Amonkar)\"\n  category: framing\n  severity: critical\n  status: in_progress\n  first_raised_round: 6\n  last_seen_round: 10\n  resolution: \"Novelty paragraph added (3 differentiators). §3.3 empirical bound further differentiates.\"\n  resolution_round: 7\n  mentions:\n    - round: 8\n      reviewers: [2]\n      note: \"R2-W1 re-raised novelty concern despite R7 fix.\"\n    - round: 9\n      reviewers: [1, 2]\n      note: \"R9 R2-W1(Critical): Novelty gap persists.\"\n    - round: 10\n      reviewers: [1, 2]\n      note: \"R10: R2-N1 re-raises. R1 rebuts (Z3 formal verification is non-trivial test) but agrees distinction needs more prominence. Tracked jointly with R5-W9.\"\n\n- id: \"R6-W1\"\n  summary: \"Bias ratio numbers inconsistent between main text and Table 14\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 6\n  last_seen_round: 6\n  resolution: \"Paper Agent clarified BR calculation scope.\"\n  resolution_round: 7\n\n- id: \"R6-W2\"\n  summary: \"Type A/B/C failure mode classification is post-hoc\"\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 6\n  last_seen_round: 6\n  resolution: \"Labeled as 'three empirical regimes (observation-driven)'.\"\n  resolution_round: 7\n\n- id: \"R6-W3\"\n  summary: \"Degeneration condition (Eq. 4) derivation incomplete\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 6\n  last_seen_round: 6\n  resolution: \"Constraint rejection rate 3.44% integrated as empirical evidence.\"\n  resolution_round: 7\n\n- id: \"R6-W4\"\n  summary: \"'Symbolic Mirage' terminology too marketing-like\"\n  category: framing\n  severity: warning\n  status: in_progress\n  first_raised_round: 6\n  last_seen_round: 10\n  resolution: \"Scoping sentence added. §3.3 contrasts with independently sourced constraints.\"\n  resolution_round: 7\n  mentions:\n    - round: 9\n      reviewers: [2]\n      note: \"R9 R2-W6: Terminology branding re-raised.\"\n    - round: 10\n      reviewers: [2]\n      note: \"R10: R2 notes 'Symbolic Mirage' introduced in §3.3 but rarely reused; relationship with 'Symbolic Confirmation Bias' unclear.\"\n\n- id: \"R6-W5\"\n  summary: \"α=0.5 penalty weight lacks sensitivity analysis\"\n  category: method\n  severity: info\n  status: resolved\n  first_raised_round: 6\n  last_seen_round: 6\n  resolution: \"α sensitivity: max 0.49pp variation across α∈{0.0-1.0}.\"\n  resolution_round: 7\n\n- id: \"R6-W6\"\n  summary: \"GSM8K (n=30) and AIME (n=22) in main Table 1 misleading\"\n  category: writing\n  severity: info\n  status: wont_fix\n  first_raised_round: 6\n  last_seen_round: 8\n  resolution: \"Kept with † marker and 'suggestive only' caveat.\"\n  resolution_round: 7\n\n- id: \"R6-W7\"\n  summary: \"Orphan bib entry (press2023compositionality)\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 6\n  last_seen_round: 6\n  resolution: \"press2023compositionality removed.\"\n  resolution_round: 7\n\n- id: \"R6-W8\"\n  summary: \"Reasoning models not discussed as category in Related Work\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 6\n  last_seen_round: 6\n  resolution: \"Reasoning models paragraph with κ=0.91 homogenization added.\"\n  resolution_round: 7\n\n- id: \"R6-V1\"\n  summary: \"Page 20 >75% empty white space\"\n  category: format\n  severity: warning\n  status: resolved\n  first_raised_round: 6\n  last_seen_round: 6\n  resolution: \"Page 20 now ~60% filled.\"\n  resolution_round: 7\n\n- id: \"R6-V2\"\n  summary: \"Main text only 5 display items\"\n  category: format\n  severity: info\n  status: resolved\n  first_raised_round: 6\n  last_seen_round: 8\n  resolution: \"Figure swap complete. Main text §5.5 now has intervention summary figure.\"\n  resolution_round: 8\n\n- id: \"R8-N1\"\n  summary: \"FOL terminology misleading — actual constraints are predominantly propositional\"\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 8\n  last_seen_round: 8\n  resolution: \"All 'FOL' → 'logical constraints'. Quantifier proportion added.\"\n  resolution_round: 8\n\n- id: \"R8-N2\"\n  summary: \"Cross-architecture PoC underpowered: single generator × inconsistent dataset results\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 8\n  last_seen_round: 10\n  resolution: \"§6 restructured. Clean single-generator evidence retained.\"\n  resolution_round: 8\n  mentions:\n    - round: 9\n      reviewers: [1, 2]\n      note: \"R9: NLI weight w not cross-validated; cross-arch scale insufficient.\"\n    - round: 10\n      reviewers: [1, 2]\n      note: \"R10: Both reviewers agree NLI escape too narrow (BH 2/12 survive). Consensus: narrow PoC, not general solution.\"\n\n- id: \"R8-W1\"\n  summary: \"Incremental novelty relative to Huang/Stechly\"\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 8\n  last_seen_round: 8\n  resolution: \"§2 para 5 articulates 3 quantitative differentiators.\"\n  resolution_round: 8\n\n- id: \"R8-W2\"\n  summary: \"Seed replication inconsistency\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 8\n  last_seen_round: 8\n  resolution: \"Table 1 has $^{4s}$ superscript.\"\n  resolution_round: 8\n\n- id: \"R8-W3\"\n  summary: \"Semantic deduplication missing\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 8\n  last_seen_round: 8\n  resolution: \"§3.2 reports 46.0% dedup ratio. Z3 semantic dedup discussed.\"\n  resolution_round: 8\n\n- id: \"R8-W4\"\n  summary: \"Domain diversity + model range overclaimed in Abstract\"\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 8\n  last_seen_round: 8\n  resolution: \"Abstract scope accurately reflects 7B-32B.\"\n  resolution_round: 8\n\n- id: \"R8-W5\"\n  summary: \"Constraint quality analysis based on single model family\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 8\n  last_seen_round: 8\n  resolution: \"Scoped in extended limitations.\"\n  resolution_round: 8\n\n- id: \"R8-W6\"\n  summary: \"Symbolic Confirmation Bias lacks connection to Turpin et al. unfaithful CoT\"\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 8\n  last_seen_round: 8\n  resolution: \"Turpin connection present in §3.3 and Discussion.\"\n  resolution_round: 8\n\n- id: \"R8-I1\"\n  summary: \"Missing references: Weng et al. (2023) Self-Verification and Madaan et al. (2023) Self-Refine\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 8\n  last_seen_round: 8\n  resolution: \"Both citations added.\"\n  resolution_round: 8\n\n- id: \"R8-I2\"\n  summary: \"Figure 5 buried in Appendix\"\n  category: format\n  severity: info\n  status: resolved\n  first_raised_round: 8\n  last_seen_round: 8\n  resolution: \"Figure swap complete.\"\n  resolution_round: 8\n\n- id: \"R8-I3\"\n  summary: \"83.3% confirmation bias rate needs per-model breakdown\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 8\n  last_seen_round: 8\n  resolution: \"Per-model BR already reported in §5.2.\"\n  resolution_round: 8\n\n# =========================================================\n# Round 9 issues — status updated based on R10 findings\n# =========================================================\n\n- id: \"R9-W1\"\n  summary: \"Table 1 显著性声称缺少多重比较校正（16 条件未做 BH）\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 9\n  last_seen_round: 10\n  resolution: \"Table 1 now includes BH correction (m=16). Both PW conditions show adj p=0.112. Caption notes 'BH adj. p'.\"\n  resolution_round: 10\n  mentions:\n    - round: 9\n      reviewers: [1, 2]\n      note: \"R1-W1 raised, R2 agrees.\"\n    - round: 10\n      reviewers: [1, 2]\n      note: \"R10: Table 1 caption explicitly shows BH adj p=0.112. Resolved.\"\n\n- id: \"R9-W2\"\n  summary: \"κ→Effective-K 映射形式化不足\"\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 9\n  last_seen_round: 10\n  mentions:\n    - round: 9\n      reviewers: [1, 2]\n      note: \"R1-W2 raised, R2 agrees.\"\n    - round: 10\n      reviewers: [1, 2]\n      note: \"R10-N2(Critical): Re-raised as critical by both reviewers. Paper has ordinal caveat (§3.1) but uses K_eff quantitatively elsewhere. Need ICC + sensitivity.\"\n  action_items:\n    - round: 10\n      action: \"Paper Agent: (a) report ICC values, (b) add sensitivity analysis comparing K_eff from κ vs ICC, (c) enforce ordinal usage consistently\"\n      assigned_to: \"paper_agent\"\n      status: open\n\n- id: \"R9-W3\"\n  summary: \"NLI combo weight parameter w 未交叉验证\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 9\n  last_seen_round: 10\n  mentions:\n    - round: 9\n      reviewers: [1, 2]\n      note: \"R1-W3 raised, R2 agrees.\"\n    - round: 10\n      reviewers: [1, 2]\n      note: \"R10: Subsumed under broader cross-arch narrowness concern. w=3 reported as primary but selection on test set.\"\n\n- id: \"R9-W4\"\n  summary: \"Capability Gap Hypothesis 基于极小样本 (n=6)\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 9\n  last_seen_round: 10\n  mentions:\n    - round: 9\n      reviewers: [1, 2]\n      note: \"Sigmoid fit overfitting concern.\"\n    - round: 10\n      reviewers: [1, 2]\n      note: \"R10-N3(Critical): Both agree. 'perfectly monotonic' based on n=6 non-independent points. R2 notes selective inclusion risk. Must downgrade to 'consistent directional trend'.\"\n  action_items:\n    - round: 10\n      action: \"Paper Agent: downgrade 'perfectly monotonically' to 'strongly monotonically' or 'consistent directional trend', acknowledge n=6 limitation explicitly\"\n      assigned_to: \"paper_agent\"\n      status: open\n\n- id: \"R9-W5\"\n  summary: \"T_ext=0.3 extraction temperature 缺 sensitivity analysis\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 9\n  last_seen_round: 9\n  mentions:\n    - round: 9\n      reviewers: [1, 2]\n      note: \"Extraction temperature sensitivity missing.\"\n    - round: 10\n      reviewers: []\n      note: \"R10: Not directly re-raised but still applicable.\"\n\n- id: \"R9-W6\"\n  summary: \"相对于 Huang/Stechly 的增量新颖性不足\"\n  category: framing\n  severity: warning\n  status: in_progress\n  first_raised_round: 9\n  last_seen_round: 10\n  mentions:\n    - round: 9\n      reviewers: [1, 2]\n      note: \"R2-W1(Critical), R1 partial rebut.\"\n    - round: 10\n      reviewers: [1, 2]\n      note: \"R10-N1(Critical by R2): Core divergence. R1 rebuts (Z3 formal verification non-trivial), R2 maintains instantiation view. Director sides with R2: novelty insufficient for main conference, adequate for Findings.\"\n  action_items:\n    - round: 10\n      action: \"Paper Agent: strengthen §1/§2 distinction from Huang/Stechly — emphasize Z3 formal verification channel as non-trivial test of neurosymbolic assumption\"\n      assigned_to: \"paper_agent\"\n      status: open\n\n- id: \"R9-W7\"\n  summary: \"Independence-Accuracy Trade-off 作为贡献存在部分同义反复\"\n  category: framing\n  severity: warning\n  status: in_progress\n  first_raised_round: 9\n  last_seen_round: 10\n  mentions:\n    - round: 9\n      reviewers: [1, 2]\n      note: \"R2-W2(Critical), R1 agrees on reordering contributions.\"\n    - round: 10\n      reviewers: [1, 2]\n      note: \"R10-W1: R2 re-raises, R1 rebuts (contribution is quantitative boundary κ≥0.40, not the principle). Partial divergence.\"\n\n- id: \"R9-W8\"\n  summary: \"遗漏关键相关工作：SatLM 对比不充分\"\n  category: writing\n  severity: warning\n  status: in_progress\n  first_raised_round: 9\n  last_seen_round: 10\n  mentions:\n    - round: 9\n      reviewers: [1, 2]\n      note: \"SatLM/VeriCoT/CRITIC 引用建议.\"\n    - round: 10\n      reviewers: [1, 2]\n      note: \"R10-N2(Critical by R2): SatLM comparison exists (2 sentences in §2) but insufficient. Both agree specification-generation vs trace-extraction distinction needs systematic expansion.\"\n  action_items:\n    - round: 10\n      action: \"Paper Agent: expand SatLM comparison in §2 or §7 with specification-generation / program-generation / trace-extraction taxonomy\"\n      assigned_to: \"paper_agent\"\n      status: open\n\n- id: \"R9-W9\"\n  summary: \"Abstract 'sixteen' vs §4.2 'fifteen' 数字不一致\"\n  category: writing\n  severity: info\n  status: in_progress\n  first_raised_round: 9\n  last_seen_round: 9\n  mentions:\n    - round: 9\n      reviewers: [1, 2]\n      note: \"Table 1 有 16 个 non-degenerate 行，§4.2 'fifteen' 为笔误。\"\n    - round: 10\n      reviewers: []\n      note: \"R10: Not re-raised but still needs fix.\"\n\n- id: \"R9-W10\"\n  summary: \"Cross-architecture escape 实验规模不足\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 9\n  last_seen_round: 10\n  mentions:\n    - round: 9\n      reviewers: [1, 2]\n      note: \"缺少与其他外部验证方法的对比.\"\n    - round: 10\n      reviewers: [1, 2]\n      note: \"R10-W2(R1)/W5(R2): Both strongly agree. BH 2/12 survive. NLI only works on premise-conclusion tasks with positive capability gap. Narrow PoC consensus.\"\n  action_items:\n    - round: 10\n      action: \"Paper Agent: explicitly frame as narrow PoC in §6 and Limitations, discuss NLI applicability conditions\"\n      assigned_to: \"paper_agent\"\n      status: open\n\n- id: \"R9-W11\"\n  summary: \"术语品牌化过多\"\n  category: framing\n  severity: info\n  status: in_progress\n  first_raised_round: 9\n  last_seen_round: 10\n  mentions:\n    - round: 9\n      reviewers: [1, 2]\n      note: \"'capability trap' 应弱化.\"\n    - round: 10\n      reviewers: [2]\n      note: \"R10: R2 notes 'Symbolic Mirage' introduced §3.3 but rarely reused; unclear relationship with 'Symbolic Confirmation Bias'.\"\n\n- id: \"R9-W12\"\n  summary: \"σ(c,a) provenance-based 设计未作为 design limitation 讨论\"\n  category: method\n  severity: info\n  status: in_progress\n  first_raised_round: 9\n  last_seen_round: 9\n\n- id: \"R9-VL1\"\n  summary: \"Pages 1-3 连续 3 页纯文本无 display item\"\n  category: format\n  severity: warning\n  status: in_progress\n  first_raised_round: 9\n  last_seen_round: 10\n  mentions:\n    - round: 10\n      reviewers: []\n      note: \"R10 Visual Check confirms: pages 3-5 连续无 figure/table.\"\n\n- id: \"R9-VL4\"\n  summary: \"Page 8 Conclusion 仓促\"\n  category: format\n  severity: warning\n  status: in_progress\n  first_raised_round: 9\n  last_seen_round: 10\n  mentions:\n    - round: 10\n      reviewers: [2]\n      note: \"R10: R2 notes Conclusion is compressed.\"\n\n# =========================================================\n# Round 10 (fresh review) — new issues\n# =========================================================\n\n- id: \"R10-N1\"\n  summary: \"Proposition 1 (Self-Extraction Ceiling) 无证明——empirical claim dressed as theorem\"\n  category: method\n  severity: critical\n  status: open\n  first_raised_round: 10\n  last_seen_round: 10\n  mentions:\n    - round: 10\n      reviewers: [1, 2]\n      note: \"Both reviewers identify: Proposition 1 has no proof, '≲' imprecise, proof sketch belongs to Corollary 1. R2 adds Δ_oracle definition depends on experimental setup not math. Consensus: downgrade to Empirical Finding or provide formal proof.\"\n  action_items:\n    - round: 10\n      action: \"Paper Agent: either provide complete proof in Appendix or downgrade to 'Empirical Finding 1' with explicit assumptions\"\n      assigned_to: \"paper_agent\"\n      status: open\n\n- id: \"R10-N2\"\n  summary: \"κ→K_eff 映射理论基础不足——r=0.625 验证弱，ordinal caveat 与 quantitative usage 矛盾\"\n  category: method\n  severity: critical\n  status: open\n  first_raised_round: 10\n  last_seen_round: 10\n  mentions:\n    - round: 10\n      reviewers: [1, 2]\n      note: \"Both agree. Kish (1965) uses ICC not κ. Paper has ordinal caveat but K_eff used quantitatively in abstract/§5.1. Need ICC values + sensitivity.\"\n  action_items:\n    - round: 10\n      action: \"Paper Agent: (a) report ICC values alongside κ, (b) sensitivity analysis in Appendix, (c) enforce ordinal interpretation consistently\"\n      assigned_to: \"paper_agent\"\n      status: open\n\n- id: \"R10-N3\"\n  summary: \"Capability gap 'perfectly monotonic' 结论基于 n=6 非独立数据点\"\n  category: experiment\n  severity: critical\n  status: open\n  first_raised_round: 10\n  last_seen_round: 10\n  mentions:\n    - round: 10\n      reviewers: [1, 2]\n      note: \"Both agree. 3 NLI arch × 2 generator levels, non-independent. R2 notes selective inclusion risk. n=9 robustness check (ρ=0.836) more honest.\"\n  action_items:\n    - round: 10\n      action: \"Paper Agent: downgrade 'perfectly monotonically' → 'strongly monotonically', report n=9 result as primary, acknowledge n=6 limitation\"\n      assigned_to: \"paper_agent\"\n      status: open\n\n- id: \"R10-W1\"\n  summary: \"DRC τ 阈值无 held-out 评估\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 10\n  last_seen_round: 10\n  mentions:\n    - round: 10\n      reviewers: [1, 2]\n      note: \"Both agree. τ=0.7 selected and evaluated on same ProofWriter n=600. '90% recovery at 39% cost' may be overfitted.\"\n  action_items:\n    - round: 10\n      action: \"Paper Agent: add dev/test split or cross-dataset τ validation, or explicitly flag as oracle selection\"\n      assigned_to: \"paper_agent\"\n      status: open\n\n- id: \"R10-W2\"\n  summary: \"Cross-architecture NLI escape 适用面极窄 (BH 2/12 survive)\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 10\n  last_seen_round: 10\n  mentions:\n    - round: 10\n      reviewers: [1, 2]\n      note: \"Strong consensus. Only works: weak generator + premise-conclusion decomposable + verifier>generator. LogiQA ineffective. Narrow PoC.\"\n  action_items:\n    - round: 10\n      action: \"Paper Agent: frame as narrow PoC not general escape, discuss applicability conditions explicitly\"\n      assigned_to: \"paper_agent\"\n      status: open\n\n- id: \"R10-W3\"\n  summary: \"四种子复制方差大 + 统计功效 <21%\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 10\n  last_seen_round: 10\n  mentions:\n    - round: 10\n      reviewers: [1, 2]\n      note: \"R1 raises, R2 agrees with nuance (not sole evidence pillar). Power limitation should be more prominent in main text.\"\n\n- id: \"R10-W4\"\n  summary: \"TOST ±2pp margin 缺少显式理由\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 10\n  last_seen_round: 10\n  mentions:\n    - round: 10\n      reviewers: [1, 2]\n      note: \"Both agree. No justification for why 2pp is the practical significance threshold. Need sensitivity across margins.\"\n\n- id: \"R10-W5\"\n  summary: \"Bias Ratio 无置信区间\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 10\n  last_seen_round: 10\n  mentions:\n    - round: 10\n      reviewers: [1, 2]\n      note: \"Both agree. BR values (4.97×, 3.93×, 2.88×) lack CIs. Bootstrap CI is standard and low-cost.\"\n\n- id: \"R10-W6\"\n  summary: \"SatLM specification-generation vs SICA trace-extraction 对比不充分\"\n  category: writing\n  severity: warning\n  status: open\n  first_raised_round: 10\n  last_seen_round: 10\n  mentions:\n    - round: 10\n      reviewers: [1, 2]\n      note: \"R2 raises as critical. R1 notes paper has 2 sentences but agrees needs expansion. Need systematic taxonomy in §2 or §7.\"\n\n- id: \"R10-W7\"\n  summary: \"'Symbolic Confirmation Bias' 需与近期 CoT confirmation bias 工作区分\"\n  category: framing\n  severity: warning\n  status: open\n  first_raised_round: 10\n  last_seen_round: 10\n  mentions:\n    - round: 10\n      reviewers: [1, 2]\n      note: \"R2-N3 raises. R1 agrees. Key distinction: bias survives formal Z3 verification. Need to cite arXiv:2506.12301 + arXiv:2604.02485 and differentiate.\"\n\n- id: \"R10-W8\"\n  summary: \"Related Work 过度压缩——引用列表而非文献讨论\"\n  category: writing\n  severity: warning\n  status: open\n  first_raised_round: 10\n  last_seen_round: 10\n  mentions:\n    - round: 10\n      reviewers: [1, 2]\n      note: \"R2-W2 raises, R1 agrees. Neurosymbolic paragraph mixes specification-generation/program-generation/trace-extraction without taxonomy.\"\n\n- id: \"R10-W9\"\n  summary: \"27 种修复策略在正文中展示不足\"\n  category: writing\n  severity: warning\n  status: open\n  first_raised_round: 10\n  last_seen_round: 10\n  mentions:\n    - round: 10\n      reviewers: [1, 2]\n      note: \"R2-W4 raises, R1 agrees. §5.4 仅 5 行文字 + Figure 2. Need representative strategy discussion in main text.\"\n\n- id: \"R10-I1\"\n  summary: \"Independence-Accuracy Trade-off 作为独立贡献有 bias-variance 重述嫌疑\"\n  category: framing\n  severity: info\n  status: open\n  first_raised_round: 10\n  last_seen_round: 10\n  mentions:\n    - round: 10\n      reviewers: [1, 2]\n      note: \"R2-W1 raises, R1 rebuts (quantitative boundary κ≥0.40 is the contribution, not the principle). Partial divergence.\"\n\n- id: \"R10-I2\"\n  summary: \"缺失引用：CoT confirmation bias 文献 + Eidoku + Tree of Thoughts\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 10\n  last_seen_round: 10\n  mentions:\n    - round: 10\n      reviewers: [1, 2]\n      note: \"R2 suggests arXiv:2506.12301, arXiv:2604.02485, arXiv:2512.20664. R1 suggests ToT (Yao 2023). R2 rebuts Khalifa (2023) as not critical.\"\n\n- id: \"R10-VL1\"\n  summary: \"Pages 3-5 连续无 display item；page 7 display items 过度拥挤\"\n  category: format\n  severity: warning\n  status: open\n  first_raised_round: 10\n  last_seen_round: 10\n  mentions:\n    - round: 10\n      reviewers: []\n      note: \"Visual check: pages 3-5 pure text; page 7 has 4 display items stacked. Figure 2 y-axis labels ≤6pt.\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "308f8839-e829-43a9-9078-82d89e4a8417",
+            "isSidechain": false,
+            "requestId": "req_011CbFGFRFCM33Yk2QgqBrWN",
+            "type": "assistant",
+            "uuid": "1ccf257b-db00-448f-88e2-6c8a89fe2db1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012friLh5n9tbPPVahBQvEdJ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2068,
+                "cache_read_input_tokens": 137411,
+                "output_tokens": 12225,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2068,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 12225,
+                    "cache_read_input_tokens": 137411,
+                    "cache_creation_input_tokens": 2068,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2068
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000173"
+        },
+        {
+          "source_line": 174,
+          "timestamp": "2026-05-21T06:49:22.835Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011ZT3HD3Zw7a2vMqTZXzneD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_issues.yaml\\\", \\\"bytes\\\": 31938}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1ccf257b-db00-448f-88e2-6c8a89fe2db1",
+            "isSidechain": false,
+            "promptId": "1f0a7546-ec4f-451e-b76f-3a2e00a08e8e",
+            "type": "user",
+            "uuid": "41800411-1542-44ec-9bde-d4532d3bda0f",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_issues.yaml\\\", \\\"bytes\\\": 31938}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/review_issues.yaml\", \"bytes\": 31938}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "1ccf257b-db00-448f-88e2-6c8a89fe2db1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000174"
+        },
+        {
+          "source_line": 175,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[Reviewer 2 审稿意见]:  # Reviewer 2 交叉回应 Reviewer 1 审稿意见  ---  ## Must-Fix 问题回应  ### [AGREE] R1-N1: Proposition 1（Self-Extraction Ceiling）缺少证明  同意。我在自己的审稿中也标记了这个问题（R2-W3）。  重新检查 page 4-5：Proposition 1 声称…",
+                "leafUuid": "41800411-1542-44ec-9bde-d4532d3bda0f",
+                "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470"
+              }
+            }
+          ],
+          "id": "event-000175"
+        },
+        {
+          "source_line": 176,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review symbolic invariant consensus paper for EMNLP",
+                "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470"
+              }
+            }
+          ],
+          "id": "event-000176"
+        },
+        {
+          "source_line": 177,
+          "timestamp": "2026-05-21T06:49:26.961Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Issues updated. Now let me compose and submit the final review report.",
+              "signature": "EosCCmMIDRgCKkDWHoWd52RDrgrZk01CR9g8TEYqFgRLh+j+xjVpAQOV6eb1SHFD4h8hzr6WsHlhUaWPGpZpTaODnKQUKN0HmeTvMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDLcWZS63vTNeRvmhehoMMjRrmaRXamO2JmCGIjCt0h1vJ93vV2t99uExgyRJnSDhFSz9MCrmgVCtvz35EPDdTTLml6QALhFlgVjzOZYqVjFinbe2dlgnGhoovLw98qp9LFTjjrCUzPlsKMNwTXEMBIaniuExAgGOXyDuA7OFuVWlTNeTvZaBxQNQJ/etldg2pAZ4pSY9sYq7lJxTVlSGAXnAjgBLGAE="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "41800411-1542-44ec-9bde-d4532d3bda0f",
+            "isSidechain": false,
+            "requestId": "req_011CbFGWyuQ8bingacR9gGAQ",
+            "type": "assistant",
+            "uuid": "78fbd54e-d710-4791-afd4-e6aab2dc11ae",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TMedAEQXbkGQNSSCuFHD4b",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12310,
+                "cache_read_input_tokens": 139479,
+                "output_tokens": 5793,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 12310,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 5793,
+                    "cache_read_input_tokens": 139479,
+                    "cache_creation_input_tokens": 12310,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 12310
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000177"
+        },
+        {
+          "source_line": 178,
+          "timestamp": "2026-05-21T06:49:27.432Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Issue Tracker 已更新。现在提交最终审稿报告。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "78fbd54e-d710-4791-afd4-e6aab2dc11ae",
+            "isSidechain": false,
+            "requestId": "req_011CbFGWyuQ8bingacR9gGAQ",
+            "type": "assistant",
+            "uuid": "a62deacd-ffc6-4653-8dc1-913252384300",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TMedAEQXbkGQNSSCuFHD4b",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12310,
+                "cache_read_input_tokens": 139479,
+                "output_tokens": 5793,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 12310,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 5793,
+                    "cache_read_input_tokens": 139479,
+                    "cache_creation_input_tokens": 12310,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 12310
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": "2026-05-21T06:51:29.369Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Vu6fMTZcBMzT1UodSc5L3d",
+              "name": "mcp__agent-ml-research__submit_review_report_to_research_director",
+              "input": {
+                "project": "symb_invariant_consensus",
+                "reviewer_ids_acknowledged": "[\"1\", \"2\"]",
+                "cross_response_reviewer_ids": "[\"1\", \"2\"]",
+                "overall_score": "3.0",
+                "report": "# 审稿报告（Round 10 — Fresh Review）\n\n**论文**: *Beyond Self-Consistency: Why Self-Extracted Symbolic Constraints Do Not Improve LLM Reasoning*\n**Venue**: EMNLP 2026 (via ACL Rolling Review) — Long Paper\n**ARR Deadline**: 2026-05-25\n\n---\n\n## Summary\n\n本文研究自提取符号约束能否突破 Self-Consistency (SC) 的性能天花板。作者提出 SICA（Symbolic Invariant Consensus Aggregation），从 CoT 推理轨迹中提取形式逻辑约束并通过加权 Partial MAX-SAT (Z3) 选择答案。在 6 个模型（7B-32B）、3 个逻辑推理数据集 + 3 个辅助数据集、3,000+ 条件评估上，自提取约束均未显著改善 SC（BH 校正后无条件达到显著）。作者将失败归因为 \"Symbolic Confirmation Bias\"（错误问题上 83.3% 约束支持错误多数答案，BR=4.97×），识别出 independence-accuracy trade-off（同模型 κ≥0.40 ceiling），并测试了 27 种修复策略（全部失败）。Oracle 控制确认机制本身有效（+29.90pp, +14.22pp FOLIO）。跨架构 DeBERTa NLI 验证在弱 generator 上显著有效（+6.67pp ProofWriter, p<0.001），DRC 以 39% 验证成本恢复 90% 增益。\n\n---\n\n## Strengths\n\n1. **穷举式负面结果令人信服**：27 种补救策略横跨 15 个方法族（prompt-level, method-level, solver-level, diversity-level），系统性地关闭了\"也许换策略就行\"的反驳空间。这是该领域对 self-extraction 最全面的实验评估。\n\n2. **Oracle 控制实验设计精良**：用 FOLIO gold FOL 和 ProofWriter DSL 替换自提取约束，在相同 MAX-SAT 管道下获得 +29.90/+14.22/+11.50pp 增益（p < 10⁻⁷），干净地隔离了\"约束质量\"这一瓶颈变量。这是论文方法论上最强的部分。\n\n3. **多层次诊断体系**：answer-level κ、process-level cosine similarity、confirmation bias ratio、C₀ diagnostic、entropy decomposition 从不同角度三角验证同一结论。统计处理（McNemar + BH FDR + TOST + Bootstrap CI + Power Analysis）在 NLP 论文中罕见地严谨。\n\n4. **CJT 理论框架有启发性**：用 Condorcet Jury Theorem 的独立性条件分析 SC 的失败模式，为理解 LLM 采样局限性提供了清晰的理论透镜。\n\n5. **建设性方案缓解纯负面问题**：DeBERTa NLI escape + DRC 展示了\"怎样才行得通\"，DRC 以 39% cost 恢复 90% gain 有实用价值。\n\n6. **可重复性高**：完整 prompt 模板、算法伪代码、22 个 Appendix section，代码承诺开源。\n\n---\n\n## Weaknesses\n\n### Critical（Must-Fix，影响接收决定）\n\n**C1. Proposition 1（Self-Extraction Ceiling）无证明** [R1-N1, R2-W3 — 共识]\n- §3.3 的 Proposition 1 声称 Δ_max^self ≲ Δ_oracle / BR(M)，但全文无证明或推导。\"≲\" 不精确（上界？渐近？近似？）。Page 5 的 \"proof sketch\" 实际论证的是 Corollary 1 的单调性，非 Proposition 1。Δ_oracle 的定义依赖于实验设置而非纯数学构造——这是 \"empirical claim dressed as theorem\"。\n- **必须**：提供完整证明（可放 Appendix）或降级为 \"Empirical Finding\"。\n\n**C2. κ→Effective-K 映射理论基础不足** [R1-N2, R2 交叉同意 — 共识]\n- Kish (1965) design effect 公式使用 ICC，非 Fleiss' κ。论文以 r=0.625 验证，仅中等相关（~61% 方差未被解释）。§3.1 有 ordinal diagnostic caveat，但 Abstract (\"K_eff ≈ 1.20-3.62\") 和 §5.1 中 K_eff 被作为定量指标使用——ordinal caveat 与 quantitative usage 矛盾。\n- **必须**：(a) 报告 ICC 值并与 κ 对比；(b) Appendix 中提供 sensitivity analysis；(c) 全文统一为 ordinal 使用。\n\n**C3. Capability gap \"perfectly monotonic\" 结论依赖 n=6 非独立数据点** [R1-N3, R2 交叉同意 — 共识]\n- Spearman ρ=1.0 基于 6 个 verifier-generator pairs（3 NLI 架构 × 2 有效 generator 水平），非完全独立（共享 Mistral-7B traces 和 DeBERTa verifier）。n=9 robustness check (ρ=0.836, p=0.007) 更诚实。R2 指出可能存在选择性纳入显著结果的循环论证风险。\n- **必须**：将 \"perfectly monotonically\" 降级为 \"strongly monotonically\" 或 \"consistent directional trend\"；以 n=9 result 为主；显式承认 n=6 局限。\n\n**C4. 相对于 Huang et al. (2024) / Stechly et al. (2025) 的增量新颖性论证不足** [R2-N1, R1 部分 REBUT — 分歧]\n- 核心发现——\"自提取约束继承模型偏差\"——与 Huang (LLMs cannot self-correct) 和 Stechly (self-verification limitations) 的已知结论在概念层面高度一致。R1 REBUT 指出 Z3 formal verification channel 使其非平凡（neurosymbolic 社区假设\"形式化 → 可靠\"），但 R2 认为这仍是 instantiation 而非 fundamental discovery。\n- **Director 判断**：R1 的 Z3 论据有道理——formal verification 下偏差仍存在确实比 NL self-correction 更令人惊讶。但论文当前仅用 §1 中 2 句话区分，远不够显著。如果这个区分无法在修改中变得足够有说服力，则论文的 Excitement 不足以支撑主会议。\n- **必须**：在 §1 和 §2 中用 1-2 段显式论证：(a) 为什么 Z3 formal verification 不同于 NL self-correction；(b) neurosymbolic 社区的隐含假设是什么；(c) 本文如何挑战该假设。\n\n**C5. SatLM 正面结果与 SICA 负面结果的对比不充分** [R2-N2, R1 部分 REBUT — 共识需扩展]\n- SatLM (Ye et al., NeurIPS 2023) 同样使用 LLM+SAT solver 但报告正面结果。论文在 §2 中有 2 句话对比（specification-generation vs trace-extraction），但对理解\"为什么 SatLM works 而 SICA doesn't\"远不够充分。这个对比恰恰能强化论文论点：trace-level extraction 的 answer contamination 是结构性的。\n- **必须**：在 §2 或 §7 中系统化展开 specification-generation / program-generation / trace-extraction 三种范式的对比。\n\n---\n\n### Warning（Should-Fix，影响评分但不一票否决）\n\n**W1. DRC τ 阈值无 held-out 评估** [R1-W1, R2 同意 — 共识]\n- τ ∈ {0.3, 0.5, 0.7, 0.9} 均在同一 ProofWriter (n=600) 上选择和评估。作为第 4 个正式 contribution，\"90% recovery at 39% cost\" 可能 overfitted。\n- 建议：dev/test split 或跨数据集 τ 验证，或显式标注 oracle selection。\n\n**W2. Cross-architecture NLI escape 适用面极窄** [R1-W2, R2-W5 — 强共识]\n- BH 校正后仅 2/12 条件存活（均为 Mistral-7B ProofWriter）。NLI 仅适用于弱 generator + premise-conclusion 可分解 + verifier 强于 generator 的场景。LogiQA 无效。\n- 建议：显式框定为 narrow PoC，讨论适用条件，避免暗示 general escape。\n\n**W3. 四种子复制方差大 + 统计功效 <21%** [R1-W3, R2 有 nuance 地同意 — 共识]\n- Δ ∈ {+3.43, +2.94, 0.00, −0.49}pp。Power analysis 显示所有确认性条件观测功效 <21%。R2 补充：四种子不是唯一证据支柱（还有 15 条件 FDR null + oracle + 27 策略失败），但 power limitation 应在主文更显著。\n- 建议：在核心 claim 措辞中更明确承认 power limitation。\n\n**W4. TOST ±2pp margin 缺少显式理由** [R1-W4, R2 同意 — 共识]\n- 未论证 2pp 为何是合适的实际意义阈值。NLP 领域缺乏共识，但至少应讨论 SC 文献中的典型改进幅度并展示不同 margin 下的 sensitivity。\n\n**W5. Bias Ratio 无置信区间** [R1-W5, R2 同意 — 共识]\n- BR (4.97×, 3.93×, 2.88×) 缺 CI。Bootstrap CI 计算成本极低。无 CI 则无法判断跨模型 BR 差异是否显著。\n\n**W6. \"Symbolic Confirmation Bias\" 需与近期 CoT confirmation bias 工作区分** [R2-N3, R1 同意 — 共识]\n- 近期 arXiv:2506.12301 和 arXiv:2604.02485 已研究 CoT confirmation bias。本文的特殊性——偏差在 Z3 satisfiability 验证后仍存在——需要更清晰地表述。\n\n**W7. Related Work 过度压缩** [R2-W2, R1 同意 — 共识]\n- 三段 Related Work 将约 25 篇论文压缩为引用列表。Neurosymbolic 段混合 specification-generation / program-generation / trace-extraction 未分类。\n\n**W8. 27 种修复策略正文展示不足** [R2-W4, R1 同意 — 共识]\n- §5.4 仅 5 行文字 + Figure 2 概览。作为核心论证环节应在正文增加代表性策略的分类讨论。\n\n---\n\n### Info（小问题，不影响接收）\n\n- Independence-Accuracy Trade-off 作为独立贡献有 bias-variance tradeoff 重述嫌疑（R2-W1, R1 REBUT）\n- Table 1 信息密度极高，脚注系统复杂（b, †, 4s, *, ***），可读性可优化\n- \"Symbolic Mirage\" 引入后极少复用，与 \"Symbolic Confirmation Bias\" 的层次关系不清\n- Abstract 约 250 词偏长（可接受但可精简）\n- §5.1 标题 \"Condorcet Effective-K\" 中 K 与 κ (kappa) 容易混淆\n- 缺失引用：CoT confirmation bias 文献 (arXiv:2506.12301, arXiv:2604.02485)、Eidoku (arXiv:2512.20664)、Tree of Thoughts (Yao et al., 2023)\n\n---\n\n## Reviewer Consensus\n\n以下问题两位 Reviewer 达成共识（[AGREE] 或 REBUT 后达成一致方向）：\n- [AGREE] Proposition 1 无证明，需降级或补证（C1）\n- [AGREE] κ→K_eff 映射理论基础弱，需 ICC + sensitivity（C2）\n- [AGREE] n=6 capability gap 需降级措辞（C3）\n- [AGREE] SatLM 对比需扩展（C5）\n- [AGREE] SCB 术语需与 CoT confirmation bias 区分（W6）\n- [AGREE] DRC 无 held-out（W1）\n- [AGREE] Cross-arch escape 太窄（W2）\n- [AGREE] TOST margin 无理由（W4）\n- [AGREE] BR 无 CI（W5）\n- [AGREE] Related Work 压缩（W7）\n- [AGREE] 27 策略正文不足（W8）\n\n## Reviewer Divergence\n\n**核心分歧：新颖性权重 → Overall 评分**\n- **R1 (3.5, Borderline Conference)**：更看重实验的严谨性和 27 策略穷举。认为 Z3 formal verification 使其非平凡推广，κ≥0.40 定量边界超越已知原理。\n- **R2 (3.0, Findings)**：更看重概念新颖性。认为核心发现对熟悉 self-correction 文献的读者可预测，诊断指标是已有度量的直接应用。\n- **Director 判断**：论文的实验贡献优秀，但概念增量相对于 Huang/Stechly 有限。Z3 formal verification channel 确实是更强的测试条件，但论文未充分发挥这一区分。当前版本更适合 Findings。\n\n---\n\n## Questions for Authors\n\n1. SatLM 使用 LLM+SAT solver 但报告正面结果，关键区别是否在于 specification-generation vs trace-extraction？如果是，请在论文中系统化讨论。\n2. Proposition 1 的 \"≲\" 是严格上界还是近似？能否提供形式化证明？\n3. 如果用 ICC 替代 κ 计算 K_eff，排序和结论是否改变？\n4. DRC 的 τ=0.7 在 FOLIO 上是否同样是最优？\n5. Reasoning model（Qwen3 thinking mode, κ=0.91）是否改变了 confirmation bias 的性质？\n\n---\n\n## Missing References\n\n1. **\"Unveiling Confirmation Bias in Chain-of-Thought Reasoning\"** (arXiv:2506.12301, Jun 2025) — CoT confirmation bias，与 SCB 概念直接相关\n2. **\"Failing to Falsify: Evaluating and Mitigating Confirmation Bias in Language Models\"** (arXiv:2604.02485, Apr 2026) — LLM confirmation bias 系统评估\n3. **\"Eidoku: Neuro-Symbolic Verification Gate via Structural Constraint Satisfaction\"** (arXiv:2512.20664, Dec 2025) — 约束满足验证，与 Z3 MAX-SAT 相关\n4. **Yao et al. (2023) \"Tree of Thoughts\"** — structured test-time search，self-evaluation 也面临偏差\n5. **SatLM (Ye et al., NeurIPS 2023)** — 已引用但讨论不足，需系统化展开对比\n\n---\n\n## External Review\n\n外部审稿未启用。\n\n---\n\n## Visual Layout Check（非评分项）\n\n视觉审查已完成（3 warning, 5 info, 0 critical）：\n\n| 严重度 | 位置 | 发现 |\n|--------|------|------|\n| ⚠️ Warning | Pages 3-5 | 连续 3 页无 figure/table，建议在 page 5 实验 setup 处加 summary table |\n| ⚠️ Warning | Page 7 | Display items 过度拥挤（Table 2 + Figure 2 + Figure 3 + Table 3 共 4 个），建议分散 |\n| ⚠️ Warning | Page 7 | Figure 2（27 策略条形图）y 轴标签 ≤6pt，打印后难以辨认，建议改 figure* 全宽 |\n| ℹ️ Info | Page 1 | 首页无视觉锚点，建议加 teaser figure |\n| ℹ️ Info | Page 2 | Figure 1 pipeline 图内文字偏小 |\n| ℹ️ Info | Page 5 | 实验 setup 纯文本呈现，建议 setup table |\n| ℹ️ Info | Page 7 | Figure 3 legend/axis label 字号偏小 |\n| ℹ️ Info | Page 22 | 末页底部约 1/3 空白 |\n\n---\n\n## Overall Assessment\n\n**Overall Score: 3.0 (Findings)**\n\n**评分理由**：\n- **Soundness (3.5/5)**：核心负面结论有充分实验支撑（6 模型 × 3+ 数据集 × 27 策略全部失败 + oracle 对照）；但 Proposition 1 无证明、κ→K_eff 映射理论基础弱、Spearman ρ=1.0 基于 n=6。\n- **Excitement (2.5/5)**：核心发现对熟悉 self-correction 文献的读者部分可预测；Z3 formal verification channel 是更强的测试条件但未充分论证其非平凡性；DRC 有实用价值但适用范围窄。\n- **Reproducibility (4/5)**：方法描述清晰，Appendix 材料极充实，代码承诺开源。\n\n**Confidence: 4/5**\n\n**修改建议优先级**：\n1. [最高] 加强 Huang/Stechly 区分 + SatLM 对比（C4, C5）— 这决定了论文能否从 Findings 升级到 Borderline Conference\n2. [高] Proposition 1 降级或补证（C1）\n3. [高] κ→K_eff ICC sensitivity（C2）+ capability gap 措辞降级（C3）\n4. [中] DRC held-out + cross-arch framing + BR CI（W1, W2, W5）\n5. [中] Related Work 扩展 + 27 策略正文展示（W7, W8）\n6. [低] TOST margin + SCB 术语区分 + 视觉布局（W4, W6, VL）\n\n**Venue Fit**：当前版本 **适合 Findings**，主会议需要在新颖性论证（C4）上有实质性突破。如果修改后能充分论证 Z3 formal verification channel 为何构成对 neurosymbolic 社区核心假设的非平凡挑战，评分可能提升至 3.5 (Borderline Conference)。"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a62deacd-ffc6-4653-8dc1-913252384300",
+            "isSidechain": false,
+            "requestId": "req_011CbFGWyuQ8bingacR9gGAQ",
+            "type": "assistant",
+            "uuid": "afa06834-4d8a-4c88-bcf8-22075fd98f08",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TMedAEQXbkGQNSSCuFHD4b",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12310,
+                "cache_read_input_tokens": 139479,
+                "output_tokens": 5793,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 12310,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 5793,
+                    "cache_read_input_tokens": 139479,
+                    "cache_creation_input_tokens": 12310,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 12310
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000179"
+        },
+        {
+          "source_line": 180,
+          "timestamp": "2026-05-21T06:51:34.457Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Vu6fMTZcBMzT1UodSc5L3d",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"research_director_key\\\": \\\"feishu:group:oc_970d5ea3f54df81296b97321fcded892:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "afa06834-4d8a-4c88-bcf8-22075fd98f08",
+            "isSidechain": false,
+            "promptId": "1f0a7546-ec4f-451e-b76f-3a2e00a08e8e",
+            "type": "user",
+            "uuid": "df30f2ac-de5d-47b1-b6c7-7367f518635c",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"research_director_key\\\": \\\"feishu:group:oc_970d5ea3f54df81296b97321fcded892:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"research_director_key\": \"feishu:group:oc_970d5ea3f54df81296b97321fcded892:director\"}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "afa06834-4d8a-4c88-bcf8-22075fd98f08",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000180"
+        },
+        {
+          "source_line": 181,
+          "timestamp": "2026-05-21T06:51:34.464Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "df30f2ac-de5d-47b1-b6c7-7367f518635c",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "2f8ed706-0e18-4da4-8307-05a7c9cb3295",
+                "timestamp": "2026-05-21T06:51:34.464Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+                "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": "2026-05-21T06:51:37.208Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013vmhFUWi4kMXoZBodW3VBK",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:CronDelete",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2f8ed706-0e18-4da4-8307-05a7c9cb3295",
+            "isSidechain": false,
+            "requestId": "req_011CbFGgghpfjRuVYyUiKXGt",
+            "type": "assistant",
+            "uuid": "e08cba5a-8337-465f-915a-db6d2b8fe170",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019gAxqeLdNgMPwZMnf3GTpp",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5969,
+                "cache_read_input_tokens": 151789,
+                "output_tokens": 76,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5969,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 76,
+                    "cache_read_input_tokens": 151789,
+                    "cache_creation_input_tokens": 5969,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5969
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": "2026-05-21T06:51:37.248Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_013vmhFUWi4kMXoZBodW3VBK",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "CronDelete"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e08cba5a-8337-465f-915a-db6d2b8fe170",
+            "isSidechain": false,
+            "promptId": "1f0a7546-ec4f-451e-b76f-3a2e00a08e8e",
+            "type": "user",
+            "uuid": "200c107a-be31-400a-9990-ce597b758c06",
+            "toolUseResult": {
+              "matches": [
+                "CronDelete"
+              ],
+              "query": "select:CronDelete",
+              "total_deferred_tools": 29
+            },
+            "sourceToolAssistantUUID": "e08cba5a-8337-465f-915a-db6d2b8fe170",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": "2026-05-21T06:51:40.571Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0116dVvrYJ6QJs7tpRbVWsvi",
+              "name": "CronDelete",
+              "input": {
+                "id": "a85199ed"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "200c107a-be31-400a-9990-ce597b758c06",
+            "isSidechain": false,
+            "requestId": "req_011CbFGgtksCazinbtrXJDQ3",
+            "type": "assistant",
+            "uuid": "be875639-46ab-47b1-acb6-3f0aa7ba65fc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019vXpyEug43eVmnCaaA6bwV",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 214,
+                "cache_read_input_tokens": 157758,
+                "output_tokens": 57,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 214,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 57,
+                    "cache_read_input_tokens": 157758,
+                    "cache_creation_input_tokens": 214,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 214
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": "2026-05-21T06:51:40.573Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "<tool_use_error>No scheduled job with id 'a85199ed'</tool_use_error>",
+              "is_error": true,
+              "tool_use_id": "toolu_0116dVvrYJ6QJs7tpRbVWsvi"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "be875639-46ab-47b1-acb6-3f0aa7ba65fc",
+            "isSidechain": false,
+            "promptId": "1f0a7546-ec4f-451e-b76f-3a2e00a08e8e",
+            "type": "user",
+            "uuid": "26cf5dc3-010c-4091-9ff4-249b6faf7eb8",
+            "toolUseResult": "Error: No scheduled job with id 'a85199ed'",
+            "sourceToolAssistantUUID": "be875639-46ab-47b1-acb6-3f0aa7ba65fc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review symbolic invariant consensus paper for EMNLP",
+                "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470"
+              }
+            }
+          ],
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": "2026-05-21T06:51:55.583Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-21T06:51:55.583Z",
+                "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+                "content": "[Reviewer 2 审稿结果]:\n交叉回应已提交给 Review Director。\n\n核心结论：与 Reviewer 1 在 7/8 个问题上一致。3 个 Must-Fix 全部同意（Proposition 1 无证明、κ→K_eff 近似过度使用、Spearman n=6 样本过小），5 个 Should-Fix 中 4 个同意+1 个有 nuance 同意。在 Missing References 上，同意 Tree of Thoughts 应引用，但不认为 Khalifa et al. 是关键遗漏。\n\n两位 Reviewer 的主要分歧在评分：R1 给 3.5（Borderline Conference，侧重实验严谨性），我维持 3.0（Findings，侧重新颖性不足）。"
+              }
+            }
+          ],
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": "2026-05-21T06:51:55.583Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-21T06:51:55.583Z",
+                "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470"
+              }
+            }
+          ],
+          "id": "event-000188"
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "messages": [
+        {
+          "source_line": 189,
+          "timestamp": "2026-05-21T06:51:55.570Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Continue from where you left off."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "26cf5dc3-010c-4091-9ff4-249b6faf7eb8",
+            "isSidechain": false,
+            "promptId": "af085d65-664d-40d5-b420-ac4d7308a266",
+            "type": "user",
+            "isMeta": true,
+            "uuid": "cc2b82b6-3778-436d-b3f0-34579e5631d2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": "2026-05-21T06:51:55.570Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cc2b82b6-3778-436d-b3f0-34579e5631d2",
+            "isSidechain": false,
+            "type": "assistant",
+            "uuid": "99f5974e-bc35-4ca0-af9d-0d512fab0a87",
+            "isApiErrorMessage": false,
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "id": "9c7013b6-9d82-4e3a-9bb8-a7215352097e",
+              "container": null,
+              "model": "<synthetic>",
+              "stop_reason": "stop_sequence",
+              "stop_sequence": "",
+              "type": "message",
+              "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": null,
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": null,
+                "iterations": null,
+                "speed": null
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000190"
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "messages": [
+        {
+          "source_line": 191,
+          "timestamp": "2026-05-21T06:51:55.668Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 2 审稿结果]:\n交叉回应已提交给 Review Director。\n\n核心结论：与 Reviewer 1 在 7/8 个问题上一致。3 个 Must-Fix 全部同意（Proposition 1 无证明、κ→K_eff 近似过度使用、Spearman n=6 样本过小），5 个 Should-Fix 中 4 个同意+1 个有 nuance 同意。在 Missing References 上，同意 Tree of Thoughts 应引用，但不认为 Khalifa et al. 是关键遗漏。\n\n两位 Reviewer 的主要分歧在评分：R1 给 3.5（Borderline Conference，侧重实验严谨性），我维持 3.0（Findings，侧重新颖性不足）。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "99f5974e-bc35-4ca0-af9d-0d512fab0a87",
+            "isSidechain": false,
+            "promptId": "af085d65-664d-40d5-b420-ac4d7308a266",
+            "type": "user",
+            "uuid": "df2a2f28-ac34-4d40-bcd3-e7899ca215dc",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/review_director_9c155b71",
+            "sessionId": "73cc022e-1871-4a89-8504-297fb0af7470",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000191"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "session_id": "3c2a3bf35356c224a667",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 181,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "e848291a-ae3b-4ead-ad50-0698d74fdf4e",
+                "sessionId": "0a54bbba-ab12-4891-8052-7955bc3c3797"
+              }
+            }
+          ],
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Debug SC baseline discrepancy between exp033 and exp089",
+                "sessionId": "0a54bbba-ab12-4891-8052-7955bc3c3797"
+              }
+            }
+          ],
+          "id": "event-000182"
+        }
+      ]
+    }
+  ]
+}

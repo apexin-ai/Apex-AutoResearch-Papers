@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "4831cb94e6881e3e7654",
+  "project": "symb_invariant_consensus--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: symb_invariant_consensus ## 运行环境 - 服务器名: westd-25068 - SSH 连接命令: ssh westd-25068 # 必须用此命令，~/.ssh",
+  "task_key": "19c88512-27dc-43f6-a82c-ac9fccecec5a",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/19c88512-27dc-43f6-a82c-ac9fccecec5a.jsonl",
+    "occurrence": 1,
+    "bytes": 638108,
+    "sha256": "d6c40f3098600875e866dfa6b40220400087a7496819aff4c56c905efa068bd6"
+  },
+  "statistics": {
+    "messages": 249,
+    "user_turns": 1,
+    "tool_calls": 72,
+    "roles": {
+      "record": 43,
+      "user": 1,
+      "assistant": 61,
+      "tool_call": 72,
+      "tool_result": 72
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "4831cb94e6881e3e7654-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 247,
+      "chunks": [
+        {
+          "path": "4831cb94e6881e3e7654-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "4831cb94e6881e3e7654-part-0002.json",
+          "message_count": 69
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-symb-invariant-consensus-westd-25068-ssh-ssh-westd-25068-ssh-copy-47.md"
+}

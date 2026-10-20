@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0",
+  "id": "402ddf667b1d33e18bcc",
+  "project": "symb_invariant_consensus--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> NLI tiebreaking audit 已存在: artifacts/nli_tiebreaking_audit.json - 所有 NLI combo 脚本使用 Counter.most_common(",
+  "task_key": "5d999489-92df-44bb-b9b4-f06f21229f65",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/5d999489-92df-44bb-b9b4-f06f21229f65.jsonl",
+    "occurrence": 1,
+    "bytes": 1004499,
+    "sha256": "fa27e874a1f49696bef25c28e2765e7289fac0ee5ceb8695d46002876b1a9aa2"
+  },
+  "statistics": {
+    "messages": 374,
+    "user_turns": 2,
+    "tool_calls": 105,
+    "roles": {
+      "record": 80,
+      "user": 2,
+      "assistant": 81,
+      "tool_call": 105,
+      "tool_result": 105,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "402ddf667b1d33e18bcc-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 349,
+      "chunks": [
+        {
+          "path": "402ddf667b1d33e18bcc-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "402ddf667b1d33e18bcc-part-0002.json",
+          "message_count": 171
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 23,
+      "chunks": [
+        {
+          "path": "402ddf667b1d33e18bcc-part-0002.json",
+          "message_count": 9
+        },
+        {
+          "path": "402ddf667b1d33e18bcc-part-0003.json",
+          "message_count": 14
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-nli-tiebreaking-audit-artifacts-nli-tiebreaking-audit-json-nli-c.md"
+}

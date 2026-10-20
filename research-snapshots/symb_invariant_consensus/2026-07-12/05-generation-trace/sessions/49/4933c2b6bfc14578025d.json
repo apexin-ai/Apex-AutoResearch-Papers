@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "4933c2b6bfc14578025d",
+  "project": "symb_invariant_consensus--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [HANDOFF] 你是 Research Reviewer，这是 Loop #5。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目只能用 cuda:0（westd-32608 单卡，gpu_",
+  "task_key": "2c5325e4-f861-4d71-a8a1-e668c63ddaaf",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/2c5325e4-f861-4d71-a8a1-e668c63ddaaf.jsonl",
+    "occurrence": 1,
+    "bytes": 663093,
+    "sha256": "978b9b56ff76085d6d51337c1aba1c434fb251e97f855c5fe4f2b918eeaed76b"
+  },
+  "statistics": {
+    "messages": 164,
+    "user_turns": 1,
+    "tool_calls": 50,
+    "roles": {
+      "record": 33,
+      "user": 1,
+      "assistant": 30,
+      "tool_call": 50,
+      "tool_result": 50
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "4933c2b6bfc14578025d-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 162,
+      "chunks": [
+        {
+          "path": "4933c2b6bfc14578025d-part-0001.json",
+          "message_count": 143
+        },
+        {
+          "path": "4933c2b6bfc14578025d-part-0002.json",
+          "message_count": 19
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-handoff-research-reviewer-loop-5-task-context-1-cuda-0-westd-32608-gpu.md"
+}

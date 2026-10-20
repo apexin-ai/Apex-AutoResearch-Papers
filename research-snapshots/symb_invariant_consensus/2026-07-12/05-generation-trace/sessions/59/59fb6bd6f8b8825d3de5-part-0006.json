@@ -1,0 +1,953 @@
+{
+  "schema_version": "1.0",
+  "session_id": "59fb6bd6f8b8825d3de5",
+  "rounds": [
+    {
+      "number": 41,
+      "messages": [
+        {
+          "source_line": 887,
+          "timestamp": "2026-05-15T07:34:05.493Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Mmhs55mWGJAfzHZec5nMm6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nSelf-consistency baseline for CRD comparison.\\\\nk=5 多次采样 majority vote vs single-pass CRD pipeline.\\\\n\\\\n用法:\\\\n    python3 src/self_consistency_baseline.py --output results/sc_baseline.jsonl --k 5\\\\n    python3 src/self_consistency_baseline.py --output results/sc_baseline.jsonl --k 5 --resume results/sc_baseline.jsonl\\\\n    python3 src/self_consistency_baseline.py --output results/sc_baseline.jsonl --k 5 --max-examples 10  # dry-run\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport gc\\\\nimport json\\\\nimport time\\\\nimport argparse\\\\nimport logging\\\\nfrom collections import Counter\\\\nfrom pathlib import Path\\\\nfrom typing import List, Optional, Tuple\\\\n\\\\nfrom config import (\\\\n    API_BASE_URL, API_KEY, MODEL_NAME,\\\\n    API_MAX_RETRIES, API_RETRY_DELAY, API_TIMEOUT,\\\\n    PRICE_PER_INPUT_TOKEN, PRICE_PER_OUTPUT_TOKEN,\\\\n    RESULTS_DIR,\\\\n)\\\\nfrom data_loader import load_folio\\\\nfrom formalize import (\\\\n    FOL_SYSTEM_PROMPT, FOL_USER_TEMPLATE,\\\\n    CODE_SYSTEM_PROMPT, CODE_USER_TEMPLATE,\\\\n    _extract_code, _strip_thinking, _get_client,\\\\n)\\\\nfrom executor import execute_code\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n    handlers=[\\\\n        logging.StreamHandler(),\\\\n        logging.FileHandler(RESULTS_DIR / \\\\\\\"sc_baseline.log\\\\\\\"),\\\\n    ],\\\\n)\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nTEMPERATURES = [0.6, 0.7, 0.8, 0.9, 1.0]\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Token tracking (independent from formalize's global tracker)\\\\n# ---------------------------------------------------------------------------\\\\n\\\\n_sc_usage: List[dict] = []\\\\n\\\\n\\\\ndef _reset_sc_usage():\\\\n    _sc_usage.clear()\\\\n\\\\n\\\\ndef _track(resp):\\\\n    usage = resp.usage\\\\n    if usage:\\\\n        in_tok = usage.prompt_tokens or 0\\\\n        out_tok = usage.completion_tokens or 0\\\\n        cost = getattr(usage, \\\\\\\"cost\\\\\\\", None)\\\\n        if cost is None:\\\\n            cost = in_tok * PRICE_PER_INPUT_TOKEN + out_tok * PRICE_PER_OUTPUT_TOKEN\\\\n        _sc_usage.append({\\\\n            \\\\\\\"input_tokens\\\\\\\": in_tok,\\\\n            \\\\\\\"output_tokens\\\\\\\": out_tok,\\\\n            \\\\\\\"cost_usd\\\\\\\": float(cost),\\\\n        })\\\\n\\\\n\\\\ndef _get_sc_usage() -> dict:\\\\n    total_in = sum(u[\\\\\\\"input_tokens\\\\\\\"] for u in _sc_usage)\\\\n    total_out = sum(u[\\\\\\\"output_tokens\\\\\\\"] for u in _sc_usage)\\\\n    total_cost = sum(u[\\\\\\\"cost_usd\\\\\\\"] for u in _sc_usage)\\\\n    return {\\\\n        \\\\\\\"calls\\\\\\\": len(_sc_usage),\\\\n        \\\\\\\"input_tokens\\\\\\\": total_in,\\\\n        \\\\\\\"output_tokens\\\\\\\": total_out,\\\\n        \\\\\\\"cost_usd\\\\\\\": round(total_cost, 6),\\\\n    }\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# LLM call with configurable temperature\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef _call_llm_temp(\\\\n    system_prompt: str,\\\\n    user_prompt: str,\\\\n    temperature: float,\\\\n    max_tokens: int = 4096,\\\\n    enable_thinking: bool = True,\\\\n) -> str:\\\\n    client = _get_client()\\\\n    kwargs = {}\\\\n    if not enable_thinking:\\\\n        kwargs[\\\\\\\"extra_body\\\\\\\"] = {\\\\n            \\\\\\\"chat_template_kwargs\\\\\\\": {\\\\\\\"enable_thinking\\\\\\\": False}\\\\n        }\\\\n    for attempt in range(API_MAX_RETRIES):\\\\n        try:\\\\n            resp = client.chat.completions.create(\\\\n                model=MODEL_NAME,\\\\n                messages=[\\\\n                    {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": system_prompt},\\\\n                    {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": user_prompt},\\\\n                ],\\\\n                temperature=temperature,\\\\n                max_tokens=max_tokens,\\\\n                **kwargs,\\\\n            )\\\\n            if enable_thinking and resp.choices[0].finish_reason == 'length':\\\\n                _track(resp)\\\\n                resp = client.chat.completions.create(\\\\n                    model=MODEL_NAME,\\\\n                    messages=[\\\\n                        {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": system_prompt},\\\\n                        {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": user_prompt},\\\\n                    ],\\\\n                    temperature=temperature,\\\\n                    max_tokens=max_tokens,\\\\n                    extra_body={\\\\\\\"chat_template_kwargs\\\\\\\": {\\\\\\\"enable_thinking\\\\\\\": False}},\\\\n                )\\\\n\\\\n       \\\\n\\\\n... [截断: 输出过长，省略 2706 字符] ...\\\\n\\\\nype = dis.get(\\\\\\\"agreement_type\\\\\\\", \\\\\\\"\\\\\\\")\\\\n    gt = crd_rec.get(\\\\\\\"ground_truth\\\\\\\", \\\\\\\"\\\\\\\")\\\\n    fol_v = dis.get(\\\\\\\"fol_verdict\\\\\\\", \\\\\\\"\\\\\\\")\\\\n    code_v = dis.get(\\\\\\\"code_verdict\\\\\\\", \\\\\\\"\\\\\\\")\\\\n\\\\n    # agree / both_error: consensus answer\\\\n    if atype in (\\\\\\\"agree_correct\\\\\\\", \\\\\\\"agree_wrong\\\\\\\", \\\\\\\"both_error\\\\\\\"):\\\\n        return fol_v == gt\\\\n\\\\n    # disagree: determine single final answer\\\\n    repair = crd_rec.get(\\\\\\\"repair\\\\\\\", {})\\\\n    stability = crd_rec.get(\\\\\\\"stability\\\\\\\", {})\\\\n    predicted_error_side = stability.get(\\\\\\\"predicted_error_side\\\\\\\")\\\\n\\\\n    # Try repair result first\\\\n    if repair:\\\\n        if predicted_error_side == \\\\\\\"code\\\\\\\":\\\\n            rounds = repair.get(\\\\\\\"code_targeted\\\\\\\", [])\\\\n        elif predicted_error_side == \\\\\\\"fol\\\\\\\":\\\\n            rounds = repair.get(\\\\\\\"fol_targeted\\\\\\\", [])\\\\n        else:\\\\n            rounds = repair.get(\\\\\\\"code_targeted\\\\\\\", []) or repair.get(\\\\\\\"fol_targeted\\\\\\\", [])\\\\n        if rounds:\\\\n            verdict = rounds[-1].get(\\\\\\\"exec_result\\\\\\\", {}).get(\\\\\\\"verdict\\\\\\\")\\\\n            if verdict in (\\\\\\\"True\\\\\\\", \\\\\\\"False\\\\\\\", \\\\\\\"Unknown\\\\\\\"):\\\\n                return verdict == gt\\\\n\\\\n    # No valid repair: pick reliable side via stability\\\\n    if predicted_error_side == \\\\\\\"code\\\\\\\":\\\\n        return fol_v == gt\\\\n    elif predicted_error_side == \\\\\\\"fol\\\\\\\":\\\\n        return code_v == gt\\\\n    else:\\\\n        return fol_v == gt\\\\n\\\\n\\\\ndef _crd_has_disagree(crd_rec: dict) -> bool:\\\\n    dis = crd_rec.get(\\\\\\\"disagreement\\\\\\\", {})\\\\n    return dis.get(\\\\\\\"agreement_type\\\\\\\") == \\\\\\\"disagree\\\\\\\"\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Resume support\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef _load_done_ids(path: str) -> set:\\\\n    p = Path(path)\\\\n    if not p.exists():\\\\n        return set()\\\\n    done = set()\\\\n    with open(p) as f:\\\\n        first_char = f.read(1)\\\\n        if not first_char:\\\\n            return done\\\\n        f.seek(0)\\\\n        if first_char == '[':\\\\n            for rec in json.load(f):\\\\n                if \\\\\\\"sample_id\\\\\\\" in rec:\\\\n                    done.add(rec[\\\\\\\"sample_id\\\\\\\"])\\\\n        else:\\\\n            for line in f:\\\\n                line = line.strip()\\\\n                if line:\\\\n                    rec = json.loads(line)\\\\n                    if \\\\\\\"sample_id\\\\\\\" in rec:\\\\n                        done.add(rec[\\\\\\\"sample_id\\\\\\\"])\\\\n    return done\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Main processing\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef process_one(\\\\n    example,\\\\n    temperatures: List[float],\\\\n    crd_results: dict,\\\\n) -> dict:\\\\n    _reset_sc_usage()\\\\n\\\\n    fol_preds = []\\\\n    code_preds = []\\\\n\\\\n    for temp in temperatures:\\\\n        log.info(\\\\\\\"  [%s] temp=%.1f generating FOL ...\\\\\\\", example.id, temp)\\\\n        fol_v = _generate_and_execute_fol(example.premises, example.conclusion, temp)\\\\n        fol_preds.append(fol_v)\\\\n\\\\n        log.info(\\\\\\\"  [%s] temp=%.1f generating Code ...\\\\\\\", example.id, temp)\\\\n        code_v = _generate_and_execute_code(example.premises, example.conclusion, temp)\\\\n        code_preds.append(code_v)\\\\n\\\\n    fol_mv = majority_vote(fol_preds)\\\\n    code_mv = majority_vote(code_preds)\\\\n    combined_mv = majority_vote(fol_preds + code_preds)\\\\n\\\\n    usage = _get_sc_usage()\\\\n\\\\n    crd_rec = crd_results.get(example.id)\\\\n    crd_correct = _crd_is_correct(crd_rec) if crd_rec else None\\\\n    crd_disagree = _crd_has_disagree(crd_rec) if crd_rec else None\\\\n\\\\n    rec = {\\\\n        \\\\\\\"sample_id\\\\\\\": example.id,\\\\n        \\\\\\\"gt_label\\\\\\\": example.label,\\\\n        \\\\\\\"fol_predictions\\\\\\\": fol_preds,\\\\n        \\\\\\\"code_predictions\\\\\\\": code_preds,\\\\n        \\\\\\\"fol_majority_vote\\\\\\\": fol_mv,\\\\n        \\\\\\\"code_majority_vote\\\\\\\": code_mv,\\\\n        \\\\\\\"combined_majority_vote\\\\\\\": combined_mv,\\\\n        \\\\\\\"fol_majority_correct\\\\\\\": fol_mv == example.label,\\\\n        \\\\\\\"code_majority_correct\\\\\\\": code_mv == example.label,\\\\n        \\\\\\\"combined_majority_correct\\\\\\\": combined_mv == example.label,\\\\n        \\\\\\\"crd_pipeline_correct\\\\\\\": crd_correct,\\\\n        \\\\\\\"crd_disagree\\\\\\\": crd_disagree,\\\\n        \\\\\\\"token_usage\\\\\\\": usage,\\\\n        \\\\\\\"temperatures\\\\\\\": temperatures,\\\\n    }\\\\n\\\\n    log.info(\\\\n        \\\\\\\"[%s] FOL_mv=%s Code_mv=%s Combined=%s GT=%s cost=$%.4f\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d269d494-8c68-4471-9071-45b812e421e6",
+            "isSidechain": false,
+            "promptId": "f3d559da-ca25-4b08-b38e-8c18ad0f8e4c",
+            "type": "user",
+            "uuid": "ca7957bc-a93c-4d3c-87f3-746292e77913",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nSelf-consistency baseline for CRD comparison.\\\\nk=5 多次采样 majority vote vs single-pass CRD pipeline.\\\\n\\\\n用法:\\\\n    python3 src/self_consistency_baseline.py --output results/sc_baseline.jsonl --k 5\\\\n    python3 src/self_consistency_baseline.py --output results/sc_baseline.jsonl --k 5 --resume results/sc_baseline.jsonl\\\\n    python3 src/self_consistency_baseline.py --output results/sc_baseline.jsonl --k 5 --max-examples 10  # dry-run\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport gc\\\\nimport json\\\\nimport time\\\\nimport argparse\\\\nimport logging\\\\nfrom collections import Counter\\\\nfrom pathlib import Path\\\\nfrom typing import List, Optional, Tuple\\\\n\\\\nfrom config import (\\\\n    API_BASE_URL, API_KEY, MODEL_NAME,\\\\n    API_MAX_RETRIES, API_RETRY_DELAY, API_TIMEOUT,\\\\n    PRICE_PER_INPUT_TOKEN, PRICE_PER_OUTPUT_TOKEN,\\\\n    RESULTS_DIR,\\\\n)\\\\nfrom data_loader import load_folio\\\\nfrom formalize import (\\\\n    FOL_SYSTEM_PROMPT, FOL_USER_TEMPLATE,\\\\n    CODE_SYSTEM_PROMPT, CODE_USER_TEMPLATE,\\\\n    _extract_code, _strip_thinking, _get_client,\\\\n)\\\\nfrom executor import execute_code\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n    handlers=[\\\\n        logging.StreamHandler(),\\\\n        logging.FileHandler(RESULTS_DIR / \\\\\\\"sc_baseline.log\\\\\\\"),\\\\n    ],\\\\n)\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nTEMPERATURES = [0.6, 0.7, 0.8, 0.9, 1.0]\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Token tracking (independent from formalize's global tracker)\\\\n# ---------------------------------------------------------------------------\\\\n\\\\n_sc_usage: List[dict] = []\\\\n\\\\n\\\\ndef _reset_sc_usage():\\\\n    _sc_usage.clear()\\\\n\\\\n\\\\ndef _track(resp):\\\\n    usage = resp.usage\\\\n    if usage:\\\\n        in_tok = usage.prompt_tokens or 0\\\\n        out_tok = usage.completion_tokens or 0\\\\n        cost = getattr(usage, \\\\\\\"cost\\\\\\\", None)\\\\n        if cost is None:\\\\n            cost = in_tok * PRICE_PER_INPUT_TOKEN + out_tok * PRICE_PER_OUTPUT_TOKEN\\\\n        _sc_usage.append({\\\\n            \\\\\\\"input_tokens\\\\\\\": in_tok,\\\\n            \\\\\\\"output_tokens\\\\\\\": out_tok,\\\\n            \\\\\\\"cost_usd\\\\\\\": float(cost),\\\\n        })\\\\n\\\\n\\\\ndef _get_sc_usage() -> dict:\\\\n    total_in = sum(u[\\\\\\\"input_tokens\\\\\\\"] for u in _sc_usage)\\\\n    total_out = sum(u[\\\\\\\"output_tokens\\\\\\\"] for u in _sc_usage)\\\\n    total_cost = sum(u[\\\\\\\"cost_usd\\\\\\\"] for u in _sc_usage)\\\\n    return {\\\\n        \\\\\\\"calls\\\\\\\": len(_sc_usage),\\\\n        \\\\\\\"input_tokens\\\\\\\": total_in,\\\\n        \\\\\\\"output_tokens\\\\\\\": total_out,\\\\n        \\\\\\\"cost_usd\\\\\\\": round(total_cost, 6),\\\\n    }\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# LLM call with configurable temperature\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef _call_llm_temp(\\\\n    system_prompt: str,\\\\n    user_prompt: str,\\\\n    temperature: float,\\\\n    max_tokens: int = 4096,\\\\n    enable_thinking: bool = True,\\\\n) -> str:\\\\n    client = _get_client()\\\\n    kwargs = {}\\\\n    if not enable_thinking:\\\\n        kwargs[\\\\\\\"extra_body\\\\\\\"] = {\\\\n            \\\\\\\"chat_template_kwargs\\\\\\\": {\\\\\\\"enable_thinking\\\\\\\": False}\\\\n        }\\\\n    for attempt in range(API_MAX_RETRIES):\\\\n        try:\\\\n            resp = client.chat.completions.create(\\\\n                model=MODEL_NAME,\\\\n                messages=[\\\\n                    {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": system_prompt},\\\\n                    {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": user_prompt},\\\\n                ],\\\\n                temperature=temperature,\\\\n                max_tokens=max_tokens,\\\\n                **kwargs,\\\\n            )\\\\n            if enable_thinking and resp.choices[0].finish_reason == 'length':\\\\n                _track(resp)\\\\n                resp = client.chat.completions.create(\\\\n                    model=MODEL_NAME,\\\\n                    messages=[\\\\n                        {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": system_prompt},\\\\n                        {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": user_prompt},\\\\n                    ],\\\\n                    temperature=temperature,\\\\n                    max_tokens=max_tokens,\\\\n                    extra_body={\\\\\\\"chat_template_kwargs\\\\\\\": {\\\\\\\"enable_thinking\\\\\\\": False}},\\\\n                )\\\\n\\\\n       \\\\n\\\\n... [截断: 输出过长，省略 2706 字符] ...\\\\n\\\\nype = dis.get(\\\\\\\"agreement_type\\\\\\\", \\\\\\\"\\\\\\\")\\\\n    gt = crd_rec.get(\\\\\\\"ground_truth\\\\\\\", \\\\\\\"\\\\\\\")\\\\n    fol_v = dis.get(\\\\\\\"fol_verdict\\\\\\\", \\\\\\\"\\\\\\\")\\\\n    code_v = dis.get(\\\\\\\"code_verdict\\\\\\\", \\\\\\\"\\\\\\\")\\\\n\\\\n    # agree / both_error: consensus answer\\\\n    if atype in (\\\\\\\"agree_correct\\\\\\\", \\\\\\\"agree_wrong\\\\\\\", \\\\\\\"both_error\\\\\\\"):\\\\n        return fol_v == gt\\\\n\\\\n    # disagree: determine single final answer\\\\n    repair = crd_rec.get(\\\\\\\"repair\\\\\\\", {})\\\\n    stability = crd_rec.get(\\\\\\\"stability\\\\\\\", {})\\\\n    predicted_error_side = stability.get(\\\\\\\"predicted_error_side\\\\\\\")\\\\n\\\\n    # Try repair result first\\\\n    if repair:\\\\n        if predicted_error_side == \\\\\\\"code\\\\\\\":\\\\n            rounds = repair.get(\\\\\\\"code_targeted\\\\\\\", [])\\\\n        elif predicted_error_side == \\\\\\\"fol\\\\\\\":\\\\n            rounds = repair.get(\\\\\\\"fol_targeted\\\\\\\", [])\\\\n        else:\\\\n            rounds = repair.get(\\\\\\\"code_targeted\\\\\\\", []) or repair.get(\\\\\\\"fol_targeted\\\\\\\", [])\\\\n        if rounds:\\\\n            verdict = rounds[-1].get(\\\\\\\"exec_result\\\\\\\", {}).get(\\\\\\\"verdict\\\\\\\")\\\\n            if verdict in (\\\\\\\"True\\\\\\\", \\\\\\\"False\\\\\\\", \\\\\\\"Unknown\\\\\\\"):\\\\n                return verdict == gt\\\\n\\\\n    # No valid repair: pick reliable side via stability\\\\n    if predicted_error_side == \\\\\\\"code\\\\\\\":\\\\n        return fol_v == gt\\\\n    elif predicted_error_side == \\\\\\\"fol\\\\\\\":\\\\n        return code_v == gt\\\\n    else:\\\\n        return fol_v == gt\\\\n\\\\n\\\\ndef _crd_has_disagree(crd_rec: dict) -> bool:\\\\n    dis = crd_rec.get(\\\\\\\"disagreement\\\\\\\", {})\\\\n    return dis.get(\\\\\\\"agreement_type\\\\\\\") == \\\\\\\"disagree\\\\\\\"\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Resume support\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef _load_done_ids(path: str) -> set:\\\\n    p = Path(path)\\\\n    if not p.exists():\\\\n        return set()\\\\n    done = set()\\\\n    with open(p) as f:\\\\n        first_char = f.read(1)\\\\n        if not first_char:\\\\n            return done\\\\n        f.seek(0)\\\\n        if first_char == '[':\\\\n            for rec in json.load(f):\\\\n                if \\\\\\\"sample_id\\\\\\\" in rec:\\\\n                    done.add(rec[\\\\\\\"sample_id\\\\\\\"])\\\\n        else:\\\\n            for line in f:\\\\n                line = line.strip()\\\\n                if line:\\\\n                    rec = json.loads(line)\\\\n                    if \\\\\\\"sample_id\\\\\\\" in rec:\\\\n                        done.add(rec[\\\\\\\"sample_id\\\\\\\"])\\\\n    return done\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Main processing\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef process_one(\\\\n    example,\\\\n    temperatures: List[float],\\\\n    crd_results: dict,\\\\n) -> dict:\\\\n    _reset_sc_usage()\\\\n\\\\n    fol_preds = []\\\\n    code_preds = []\\\\n\\\\n    for temp in temperatures:\\\\n        log.info(\\\\\\\"  [%s] temp=%.1f generating FOL ...\\\\\\\", example.id, temp)\\\\n        fol_v = _generate_and_execute_fol(example.premises, example.conclusion, temp)\\\\n        fol_preds.append(fol_v)\\\\n\\\\n        log.info(\\\\\\\"  [%s] temp=%.1f generating Code ...\\\\\\\", example.id, temp)\\\\n        code_v = _generate_and_execute_code(example.premises, example.conclusion, temp)\\\\n        code_preds.append(code_v)\\\\n\\\\n    fol_mv = majority_vote(fol_preds)\\\\n    code_mv = majority_vote(code_preds)\\\\n    combined_mv = majority_vote(fol_preds + code_preds)\\\\n\\\\n    usage = _get_sc_usage()\\\\n\\\\n    crd_rec = crd_results.get(example.id)\\\\n    crd_correct = _crd_is_correct(crd_rec) if crd_rec else None\\\\n    crd_disagree = _crd_has_disagree(crd_rec) if crd_rec else None\\\\n\\\\n    rec = {\\\\n        \\\\\\\"sample_id\\\\\\\": example.id,\\\\n        \\\\\\\"gt_label\\\\\\\": example.label,\\\\n        \\\\\\\"fol_predictions\\\\\\\": fol_preds,\\\\n        \\\\\\\"code_predictions\\\\\\\": code_preds,\\\\n        \\\\\\\"fol_majority_vote\\\\\\\": fol_mv,\\\\n        \\\\\\\"code_majority_vote\\\\\\\": code_mv,\\\\n        \\\\\\\"combined_majority_vote\\\\\\\": combined_mv,\\\\n        \\\\\\\"fol_majority_correct\\\\\\\": fol_mv == example.label,\\\\n        \\\\\\\"code_majority_correct\\\\\\\": code_mv == example.label,\\\\n        \\\\\\\"combined_majority_correct\\\\\\\": combined_mv == example.label,\\\\n        \\\\\\\"crd_pipeline_correct\\\\\\\": crd_correct,\\\\n        \\\\\\\"crd_disagree\\\\\\\": crd_disagree,\\\\n        \\\\\\\"token_usage\\\\\\\": usage,\\\\n        \\\\\\\"temperatures\\\\\\\": temperatures,\\\\n    }\\\\n\\\\n    log.info(\\\\n        \\\\\\\"[%s] FOL_mv=%s Code_mv=%s Combined=%s GT=%s cost=$%.4f\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nSelf-consistency baseline for CRD comparison.\\nk=5 多次采样 majority vote vs single-pass CRD pipeline.\\n\\n用法:\\n    python3 src/self_consistency_baseline.py --output results/sc_baseline.jsonl --k 5\\n    python3 src/self_consistency_baseline.py --output results/sc_baseline.jsonl --k 5 --resume results/sc_baseline.jsonl\\n    python3 src/self_consistency_baseline.py --output results/sc_baseline.jsonl --k 5 --max-examples 10  # dry-run\\n\\\"\\\"\\\"\\n\\nimport gc\\nimport json\\nimport time\\nimport argparse\\nimport logging\\nfrom collections import Counter\\nfrom pathlib import Path\\nfrom typing import List, Optional, Tuple\\n\\nfrom config import (\\n    API_BASE_URL, API_KEY, MODEL_NAME,\\n    API_MAX_RETRIES, API_RETRY_DELAY, API_TIMEOUT,\\n    PRICE_PER_INPUT_TOKEN, PRICE_PER_OUTPUT_TOKEN,\\n    RESULTS_DIR,\\n)\\nfrom data_loader import load_folio\\nfrom formalize import (\\n    FOL_SYSTEM_PROMPT, FOL_USER_TEMPLATE,\\n    CODE_SYSTEM_PROMPT, CODE_USER_TEMPLATE,\\n    _extract_code, _strip_thinking, _get_client,\\n)\\nfrom executor import execute_code\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    handlers=[\\n        logging.StreamHandler(),\\n        logging.FileHandler(RESULTS_DIR / \\\"sc_baseline.log\\\"),\\n    ],\\n)\\nlog = logging.getLogger(__name__)\\n\\nTEMPERATURES = [0.6, 0.7, 0.8, 0.9, 1.0]\\n\\n# ---------------------------------------------------------------------------\\n# Token tracking (independent from formalize's global tracker)\\n# ---------------------------------------------------------------------------\\n\\n_sc_usage: List[dict] = []\\n\\n\\ndef _reset_sc_usage():\\n    _sc_usage.clear()\\n\\n\\ndef _track(resp):\\n    usage = resp.usage\\n    if usage:\\n        in_tok = usage.prompt_tokens or 0\\n        out_tok = usage.completion_tokens or 0\\n        cost = getattr(usage, \\\"cost\\\", None)\\n        if cost is None:\\n            cost = in_tok * PRICE_PER_INPUT_TOKEN + out_tok * PRICE_PER_OUTPUT_TOKEN\\n        _sc_usage.append({\\n            \\\"input_tokens\\\": in_tok,\\n            \\\"output_tokens\\\": out_tok,\\n            \\\"cost_usd\\\": float(cost),\\n        })\\n\\n\\ndef _get_sc_usage() -> dict:\\n    total_in = sum(u[\\\"input_tokens\\\"] for u in _sc_usage)\\n    total_out = sum(u[\\\"output_tokens\\\"] for u in _sc_usage)\\n    total_cost = sum(u[\\\"cost_usd\\\"] for u in _sc_usage)\\n    return {\\n        \\\"calls\\\": len(_sc_usage),\\n        \\\"input_tokens\\\": total_in,\\n        \\\"output_tokens\\\": total_out,\\n        \\\"cost_usd\\\": round(total_cost, 6),\\n    }\\n\\n\\n# ---------------------------------------------------------------------------\\n# LLM call with configurable temperature\\n# ---------------------------------------------------------------------------\\n\\ndef _call_llm_temp(\\n    system_prompt: str,\\n    user_prompt: str,\\n    temperature: float,\\n    max_tokens: int = 4096,\\n    enable_thinking: bool = True,\\n) -> str:\\n    client = _get_client()\\n    kwargs = {}\\n    if not enable_thinking:\\n        kwargs[\\\"extra_body\\\"] = {\\n            \\\"chat_template_kwargs\\\": {\\\"enable_thinking\\\": False}\\n        }\\n    for attempt in range(API_MAX_RETRIES):\\n        try:\\n            resp = client.chat.completions.create(\\n                model=MODEL_NAME,\\n                messages=[\\n                    {\\\"role\\\": \\\"system\\\", \\\"content\\\": system_prompt},\\n                    {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_prompt},\\n                ],\\n                temperature=temperature,\\n                max_tokens=max_tokens,\\n                **kwargs,\\n            )\\n            if enable_thinking and resp.choices[0].finish_reason == 'length':\\n                _track(resp)\\n                resp = client.chat.completions.create(\\n                    model=MODEL_NAME,\\n                    messages=[\\n                        {\\\"role\\\": \\\"system\\\", \\\"content\\\": system_prompt},\\n                        {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_prompt},\\n                    ],\\n                    temperature=temperature,\\n                    max_tokens=max_tokens,\\n                    extra_body={\\\"chat_template_kwargs\\\": {\\\"enable_thinking\\\": False}},\\n                )\\n\\n       \\n\\n... [截断: 输出过长，省略 2706 字符] ...\\n\\nype = dis.get(\\\"agreement_type\\\", \\\"\\\")\\n    gt = crd_rec.get(\\\"ground_truth\\\", \\\"\\\")\\n    fol_v = dis.get(\\\"fol_verdict\\\", \\\"\\\")\\n    code_v = dis.get(\\\"code_verdict\\\", \\\"\\\")\\n\\n    # agree / both_error: consensus answer\\n    if atype in (\\\"agree_correct\\\", \\\"agree_wrong\\\", \\\"both_error\\\"):\\n        return fol_v == gt\\n\\n    # disagree: determine single final answer\\n    repair = crd_rec.get(\\\"repair\\\", {})\\n    stability = crd_rec.get(\\\"stability\\\", {})\\n    predicted_error_side = stability.get(\\\"predicted_error_side\\\")\\n\\n    # Try repair result first\\n    if repair:\\n        if predicted_error_side == \\\"code\\\":\\n            rounds = repair.get(\\\"code_targeted\\\", [])\\n        elif predicted_error_side == \\\"fol\\\":\\n            rounds = repair.get(\\\"fol_targeted\\\", [])\\n        else:\\n            rounds = repair.get(\\\"code_targeted\\\", []) or repair.get(\\\"fol_targeted\\\", [])\\n        if rounds:\\n            verdict = rounds[-1].get(\\\"exec_result\\\", {}).get(\\\"verdict\\\")\\n            if verdict in (\\\"True\\\", \\\"False\\\", \\\"Unknown\\\"):\\n                return verdict == gt\\n\\n    # No valid repair: pick reliable side via stability\\n    if predicted_error_side == \\\"code\\\":\\n        return fol_v == gt\\n    elif predicted_error_side == \\\"fol\\\":\\n        return code_v == gt\\n    else:\\n        return fol_v == gt\\n\\n\\ndef _crd_has_disagree(crd_rec: dict) -> bool:\\n    dis = crd_rec.get(\\\"disagreement\\\", {})\\n    return dis.get(\\\"agreement_type\\\") == \\\"disagree\\\"\\n\\n\\n# ---------------------------------------------------------------------------\\n# Resume support\\n# ---------------------------------------------------------------------------\\n\\ndef _load_done_ids(path: str) -> set:\\n    p = Path(path)\\n    if not p.exists():\\n        return set()\\n    done = set()\\n    with open(p) as f:\\n        first_char = f.read(1)\\n        if not first_char:\\n            return done\\n        f.seek(0)\\n        if first_char == '[':\\n            for rec in json.load(f):\\n                if \\\"sample_id\\\" in rec:\\n                    done.add(rec[\\\"sample_id\\\"])\\n        else:\\n            for line in f:\\n                line = line.strip()\\n                if line:\\n                    rec = json.loads(line)\\n                    if \\\"sample_id\\\" in rec:\\n                        done.add(rec[\\\"sample_id\\\"])\\n    return done\\n\\n\\n# ---------------------------------------------------------------------------\\n# Main processing\\n# ---------------------------------------------------------------------------\\n\\ndef process_one(\\n    example,\\n    temperatures: List[float],\\n    crd_results: dict,\\n) -> dict:\\n    _reset_sc_usage()\\n\\n    fol_preds = []\\n    code_preds = []\\n\\n    for temp in temperatures:\\n        log.info(\\\"  [%s] temp=%.1f generating FOL ...\\\", example.id, temp)\\n        fol_v = _generate_and_execute_fol(example.premises, example.conclusion, temp)\\n        fol_preds.append(fol_v)\\n\\n        log.info(\\\"  [%s] temp=%.1f generating Code ...\\\", example.id, temp)\\n        code_v = _generate_and_execute_code(example.premises, example.conclusion, temp)\\n        code_preds.append(code_v)\\n\\n    fol_mv = majority_vote(fol_preds)\\n    code_mv = majority_vote(code_preds)\\n    combined_mv = majority_vote(fol_preds + code_preds)\\n\\n    usage = _get_sc_usage()\\n\\n    crd_rec = crd_results.get(example.id)\\n    crd_correct = _crd_is_correct(crd_rec) if crd_rec else None\\n    crd_disagree = _crd_has_disagree(crd_rec) if crd_rec else None\\n\\n    rec = {\\n        \\\"sample_id\\\": example.id,\\n        \\\"gt_label\\\": example.label,\\n        \\\"fol_predictions\\\": fol_preds,\\n        \\\"code_predictions\\\": code_preds,\\n        \\\"fol_majority_vote\\\": fol_mv,\\n        \\\"code_majority_vote\\\": code_mv,\\n        \\\"combined_majority_vote\\\": combined_mv,\\n        \\\"fol_majority_correct\\\": fol_mv == example.label,\\n        \\\"code_majority_correct\\\": code_mv == example.label,\\n        \\\"combined_majority_correct\\\": combined_mv == example.label,\\n        \\\"crd_pipeline_correct\\\": crd_correct,\\n        \\\"crd_disagree\\\": crd_disagree,\\n        \\\"token_usage\\\": usage,\\n        \\\"temperatures\\\": temperatures,\\n    }\\n\\n    log.info(\\n        \\\"[%s] FOL_mv=%s Code_mv=%s Combined=%s GT=%s cost=$%.4f\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            },
+            "sourceToolAssistantUUID": "d269d494-8c68-4471-9071-45b812e421e6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno/.claude/sessions/reviewer_0fe76a8e",
+            "sessionId": "04a63bd3-f107-4416-ac4a-b3e6148c40da",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "ethereal-launching-glacier"
+          },
+          "id": "event-000887"
+        },
+        {
+          "source_line": 888,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[系统通知 — worker_done:worker_fix_sc_baseline_v2_20260515T072917]: Worker worker_fix_sc_baseline_v2_20260515T072917 已完成（status=done），请审查 Agent 的处理结果。",
+                "leafUuid": "ca7957bc-a93c-4d3c-87f3-746292e77913",
+                "sessionId": "04a63bd3-f107-4416-ac4a-b3e6148c40da"
+              }
+            }
+          ],
+          "id": "event-000888"
+        },
+        {
+          "source_line": 889,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review worker analysis repair check results",
+                "sessionId": "04a63bd3-f107-4416-ac4a-b3e6148c40da"
+              }
+            }
+          ],
+          "id": "event-000889"
+        },
+        {
+          "source_line": 890,
+          "timestamp": "2026-05-15T07:34:08.803Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I can see the new `_crd_is_correct` function. Let me also check for the temperature mode handling in `run_sc_baseline`. Let me look at lines 330-400.",
+              "signature": "EtECClkIDRgCKkCXo6iQJHe9HSa6jkLMP3AuszxljXhVMGFLFTER37PTRkHz8KFyfnkNzpSIRdmTlDs54a7JSSXhEDzVKWhprKf6Mg9jbGF1ZGUtb3B1cy00LTY4ABIMmeYwb8qRt/f7ozH3GgwkiCkdd+1F9/XIOIsiMHLKP+iUFGQW0JTWTL8zSJJZLw5zxA0qK69Ulb183TgzQBBauZmELMYbMfILExG+TCqlAZWZG6NwLJPIwKpr0amc20g+hCD2WkCyIixrPHLyaS3XsN53m+67f+FuWuAJXhOKampgxpknJtXCUciWHmdFybaLhMacuTlgb5WTKn6IaQMRs+S6gNrD+gA0t1558qaiYSaZ6iXp6Sg/NToztl+4QFPSi9CCF5T+UsZ3DSpsuArj/E6Gi4d80MMLJ+kwjvqB8bwBPRCbuQJyjA/kWp6hWTcR84C2ahgB"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ca7957bc-a93c-4d3c-87f3-746292e77913",
+            "isSidechain": false,
+            "requestId": "req_011Cb3y5EjsiwShJ6wjD4aGx",
+            "type": "assistant",
+            "uuid": "6b8acd8a-fb29-4f6c-97dd-bbc75791345f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno/.claude/sessions/reviewer_0fe76a8e",
+            "sessionId": "04a63bd3-f107-4416-ac4a-b3e6148c40da",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "ethereal-launching-glacier",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SSVfSD3kk47EFuimgrQEq7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3304,
+                "cache_read_input_tokens": 72681,
+                "output_tokens": 215,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3304,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 215,
+                    "cache_read_input_tokens": 72681,
+                    "cache_creation_input_tokens": 3304,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3304
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000890"
+        },
+        {
+          "source_line": 891,
+          "timestamp": "2026-05-15T07:34:09.311Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "看到 `_crd_is_correct` 已重写。检查温度模式处理。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6b8acd8a-fb29-4f6c-97dd-bbc75791345f",
+            "isSidechain": false,
+            "requestId": "req_011Cb3y5EjsiwShJ6wjD4aGx",
+            "type": "assistant",
+            "uuid": "b4796163-9d9a-4433-ba93-3947e8348c12",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno/.claude/sessions/reviewer_0fe76a8e",
+            "sessionId": "04a63bd3-f107-4416-ac4a-b3e6148c40da",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "ethereal-launching-glacier",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SSVfSD3kk47EFuimgrQEq7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3304,
+                "cache_read_input_tokens": 72681,
+                "output_tokens": 215,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3304,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 215,
+                    "cache_read_input_tokens": 72681,
+                    "cache_creation_input_tokens": 3304,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3304
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000891"
+        },
+        {
+          "source_line": 892,
+          "timestamp": "2026-05-15T07:34:10.232Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PBWFKkSpsBe2xoGibWNcjH",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-rtx6000pro",
+                "command": "grep -n \"def run_sc_baseline\\|mode\\|standard\\|sweep\\|temperature\" /root/autodl-tmp/crdd/src/self_consistency_baseline.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b4796163-9d9a-4433-ba93-3947e8348c12",
+            "isSidechain": false,
+            "requestId": "req_011Cb3y5EjsiwShJ6wjD4aGx",
+            "type": "assistant",
+            "uuid": "1a297593-6feb-431c-aff6-efe18c3294ca",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno/.claude/sessions/reviewer_0fe76a8e",
+            "sessionId": "04a63bd3-f107-4416-ac4a-b3e6148c40da",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "ethereal-launching-glacier",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SSVfSD3kk47EFuimgrQEq7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3304,
+                "cache_read_input_tokens": 72681,
+                "output_tokens": 215,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3304,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 215,
+                    "cache_read_input_tokens": 72681,
+                    "cache_creation_input_tokens": 3304,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3304
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000892"
+        },
+        {
+          "source_line": 893,
+          "timestamp": "2026-05-15T07:34:10.244Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PBWFKkSpsBe2xoGibWNcjH",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1a297593-6feb-431c-aff6-efe18c3294ca",
+            "isSidechain": false,
+            "promptId": "f3d559da-ca25-4b08-b38e-8c18ad0f8e4c",
+            "type": "user",
+            "uuid": "4d1cb1e0-8e1d-4ae6-b325-2a60c151bfdc",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "1a297593-6feb-431c-aff6-efe18c3294ca",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno/.claude/sessions/reviewer_0fe76a8e",
+            "sessionId": "04a63bd3-f107-4416-ac4a-b3e6148c40da",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "ethereal-launching-glacier"
+          },
+          "id": "event-000893"
+        },
+        {
+          "source_line": 894,
+          "timestamp": "2026-05-15T07:34:10.287Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "4d1cb1e0-8e1d-4ae6-b325-2a60c151bfdc",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "f2713507-bac8-45c5-88fc-2b7376bb0f25",
+                "timestamp": "2026-05-15T07:34:10.287Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno/.claude/sessions/reviewer_0fe76a8e",
+                "sessionId": "04a63bd3-f107-4416-ac4a-b3e6148c40da",
+                "version": "2.1.126",
+                "gitBranch": "HEAD",
+                "slug": "ethereal-launching-glacier"
+              }
+            }
+          ],
+          "id": "event-000894"
+        },
+        {
+          "source_line": 895,
+          "timestamp": "2026-05-15T07:34:13.855Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HYd4X6sMP4qS3LWaJ78ykP",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-rtx6000pro",
+                "command": "grep -n \"mode\" /root/autodl-tmp/crdd/src/self_consistency_baseline.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f2713507-bac8-45c5-88fc-2b7376bb0f25",
+            "isSidechain": false,
+            "requestId": "req_011Cb3y5bCRyYo8SvauHs8x7",
+            "type": "assistant",
+            "uuid": "c422977c-0da1-4a48-a80d-9d6b7712cd2c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno/.claude/sessions/reviewer_0fe76a8e",
+            "sessionId": "04a63bd3-f107-4416-ac4a-b3e6148c40da",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "ethereal-launching-glacier",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Uqz44KgB5P9fqx5P3q3zdk",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 412,
+                "cache_read_input_tokens": 75985,
+                "output_tokens": 212,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 412,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 212,
+                    "cache_read_input_tokens": 75985,
+                    "cache_creation_input_tokens": 412,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 412
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000895"
+        },
+        {
+          "source_line": 896,
+          "timestamp": "2026-05-15T07:34:14.137Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SLPmjAHDLaBnmX6vgfH6p5",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-rtx6000pro",
+                "command": "grep -n \"def run_sc\" /root/autodl-tmp/crdd/src/self_consistency_baseline.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c422977c-0da1-4a48-a80d-9d6b7712cd2c",
+            "isSidechain": false,
+            "requestId": "req_011Cb3y5bCRyYo8SvauHs8x7",
+            "type": "assistant",
+            "uuid": "15e5204c-3ab4-4223-948c-9465a87fed1a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno/.claude/sessions/reviewer_0fe76a8e",
+            "sessionId": "04a63bd3-f107-4416-ac4a-b3e6148c40da",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "ethereal-launching-glacier",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Uqz44KgB5P9fqx5P3q3zdk",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 412,
+                "cache_read_input_tokens": 75985,
+                "output_tokens": 212,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 412,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 212,
+                    "cache_read_input_tokens": 75985,
+                    "cache_creation_input_tokens": 412,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 412
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000896"
+        },
+        {
+          "source_line": 897,
+          "timestamp": "2026-05-15T07:34:14.322Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HYd4X6sMP4qS3LWaJ78ykP",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"105:                model=MODEL_NAME,\\\\n117:                    model=MODEL_NAME,\\\\n332:    mode: str = \\\\\\\"standard\\\\\\\",\\\\n334:    if mode == \\\\\\\"standard\\\\\\\":\\\\n410:    log.info(\\\\\\\"Self-Consistency Baseline Summary (k=%d, mode=%s)\\\\\\\", k, mode)\\\\n438:    ap.add_argument(\\\\\\\"--mode\\\\\\\", type=str, default=\\\\\\\"standard\\\\\\\",\\\\n449:        mode=args.mode,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c422977c-0da1-4a48-a80d-9d6b7712cd2c",
+            "isSidechain": false,
+            "promptId": "f3d559da-ca25-4b08-b38e-8c18ad0f8e4c",
+            "type": "user",
+            "uuid": "8d2aed35-7a21-48ed-ab8b-a5896b461bcc",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"105:                model=MODEL_NAME,\\\\n117:                    model=MODEL_NAME,\\\\n332:    mode: str = \\\\\\\"standard\\\\\\\",\\\\n334:    if mode == \\\\\\\"standard\\\\\\\":\\\\n410:    log.info(\\\\\\\"Self-Consistency Baseline Summary (k=%d, mode=%s)\\\\\\\", k, mode)\\\\n438:    ap.add_argument(\\\\\\\"--mode\\\\\\\", type=str, default=\\\\\\\"standard\\\\\\\",\\\\n449:        mode=args.mode,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"105:                model=MODEL_NAME,\\n117:                    model=MODEL_NAME,\\n332:    mode: str = \\\"standard\\\",\\n334:    if mode == \\\"standard\\\":\\n410:    log.info(\\\"Self-Consistency Baseline Summary (k=%d, mode=%s)\\\", k, mode)\\n438:    ap.add_argument(\\\"--mode\\\", type=str, default=\\\"standard\\\",\\n449:        mode=args.mode,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            },
+            "sourceToolAssistantUUID": "c422977c-0da1-4a48-a80d-9d6b7712cd2c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno/.claude/sessions/reviewer_0fe76a8e",
+            "sessionId": "04a63bd3-f107-4416-ac4a-b3e6148c40da",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "ethereal-launching-glacier"
+          },
+          "id": "event-000897"
+        },
+        {
+          "source_line": 898,
+          "timestamp": "2026-05-15T07:34:14.836Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SLPmjAHDLaBnmX6vgfH6p5",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"326:def run_sc_baseline(\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "15e5204c-3ab4-4223-948c-9465a87fed1a",
+            "isSidechain": false,
+            "promptId": "f3d559da-ca25-4b08-b38e-8c18ad0f8e4c",
+            "type": "user",
+            "uuid": "99b0f63e-42fe-483f-8353-da9ae1bdbdee",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"326:def run_sc_baseline(\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"326:def run_sc_baseline(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+              }
+            },
+            "sourceToolAssistantUUID": "15e5204c-3ab4-4223-948c-9465a87fed1a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno/.claude/sessions/reviewer_0fe76a8e",
+            "sessionId": "04a63bd3-f107-4416-ac4a-b3e6148c40da",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "ethereal-launching-glacier"
+          },
+          "id": "event-000898"
+        },
+        {
+          "source_line": 899,
+          "timestamp": "2026-05-15T07:34:18.068Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01E4nhYRqandA9RkJFjphrbT",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-rtx6000pro",
+                "command": "head -360 /root/autodl-tmp/crdd/src/self_consistency_baseline.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "99b0f63e-42fe-483f-8353-da9ae1bdbdee",
+            "isSidechain": false,
+            "requestId": "req_011Cb3y5vfDdEuWo1vMiN1yU",
+            "type": "assistant",
+            "uuid": "8f09e5ec-f455-42da-8494-fb0ec63f35ef",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno/.claude/sessions/reviewer_0fe76a8e",
+            "sessionId": "04a63bd3-f107-4416-ac4a-b3e6148c40da",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "ethereal-launching-glacier",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XznoArWucBPg5nEK79VLLK",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 557,
+                "cache_read_input_tokens": 76397,
+                "output_tokens": 111,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 557,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 111,
+                    "cache_read_input_tokens": 76397,
+                    "cache_creation_input_tokens": 557,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 557
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000899"
+        },
+        {
+          "source_line": 900,
+          "timestamp": "2026-05-15T07:34:18.598Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01E4nhYRqandA9RkJFjphrbT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nSelf-consistency baseline for CRD comparison.\\\\nk=5 多次采样 majority vote vs single-pass CRD pipeline.\\\\n\\\\n用法:\\\\n    python3 src/self_consistency_baseline.py --output results/sc_baseline.jsonl --k 5\\\\n    python3 src/self_consistency_baseline.py --output results/sc_baseline.jsonl --k 5 --resume results/sc_baseline.jsonl\\\\n    python3 src/self_consistency_baseline.py --output results/sc_baseline.jsonl --k 5 --max-examples 10  # dry-run\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport gc\\\\nimport json\\\\nimport time\\\\nimport argparse\\\\nimport logging\\\\nfrom collections import Counter\\\\nfrom pathlib import Path\\\\nfrom typing import List, Optional, Tuple\\\\n\\\\nfrom config import (\\\\n    API_BASE_URL, API_KEY, MODEL_NAME,\\\\n    API_MAX_RETRIES, API_RETRY_DELAY, API_TIMEOUT,\\\\n    PRICE_PER_INPUT_TOKEN, PRICE_PER_OUTPUT_TOKEN,\\\\n    RESULTS_DIR,\\\\n)\\\\nfrom data_loader import load_folio\\\\nfrom formalize import (\\\\n    FOL_SYSTEM_PROMPT, FOL_USER_TEMPLATE,\\\\n    CODE_SYSTEM_PROMPT, CODE_USER_TEMPLATE,\\\\n    _extract_code, _strip_thinking, _get_client,\\\\n)\\\\nfrom executor import execute_code\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n    handlers=[\\\\n        logging.StreamHandler(),\\\\n        logging.FileHandler(RESULTS_DIR / \\\\\\\"sc_baseline.log\\\\\\\"),\\\\n    ],\\\\n)\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nTEMPERATURES = [0.6, 0.7, 0.8, 0.9, 1.0]\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Token tracking (independent from formalize's global tracker)\\\\n# ---------------------------------------------------------------------------\\\\n\\\\n_sc_usage: List[dict] = []\\\\n\\\\n\\\\ndef _reset_sc_usage():\\\\n    _sc_usage.clear()\\\\n\\\\n\\\\ndef _track(resp):\\\\n    usage = resp.usage\\\\n    if usage:\\\\n        in_tok = usage.prompt_tokens or 0\\\\n        out_tok = usage.completion_tokens or 0\\\\n        cost = getattr(usage, \\\\\\\"cost\\\\\\\", None)\\\\n        if cost is None:\\\\n            cost = in_tok * PRICE_PER_INPUT_TOKEN + out_tok * PRICE_PER_OUTPUT_TOKEN\\\\n        _sc_usage.append({\\\\n            \\\\\\\"input_tokens\\\\\\\": in_tok,\\\\n            \\\\\\\"output_tokens\\\\\\\": out_tok,\\\\n            \\\\\\\"cost_usd\\\\\\\": float(cost),\\\\n        })\\\\n\\\\n\\\\ndef _get_sc_usage() -> dict:\\\\n    total_in = sum(u[\\\\\\\"input_tokens\\\\\\\"] for u in _sc_usage)\\\\n    total_out = sum(u[\\\\\\\"output_tokens\\\\\\\"] for u in _sc_usage)\\\\n    total_cost = sum(u[\\\\\\\"cost_usd\\\\\\\"] for u in _sc_usage)\\\\n    return {\\\\n        \\\\\\\"calls\\\\\\\": len(_sc_usage),\\\\n        \\\\\\\"input_tokens\\\\\\\": total_in,\\\\n        \\\\\\\"output_tokens\\\\\\\": total_out,\\\\n        \\\\\\\"cost_usd\\\\\\\": round(total_cost, 6),\\\\n    }\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# LLM call with configurable temperature\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef _call_llm_temp(\\\\n    system_prompt: str,\\\\n    user_prompt: str,\\\\n    temperature: float,\\\\n    max_tokens: int = 4096,\\\\n    enable_thinking: bool = True,\\\\n) -> str:\\\\n    client = _get_client()\\\\n    kwargs = {}\\\\n    if not enable_thinking:\\\\n        kwargs[\\\\\\\"extra_body\\\\\\\"] = {\\\\n            \\\\\\\"chat_template_kwargs\\\\\\\": {\\\\\\\"enable_thinking\\\\\\\": False}\\\\n        }\\\\n    for attempt in range(API_MAX_RETRIES):\\\\n        try:\\\\n            resp = client.chat.completions.create(\\\\n                model=MODEL_NAME,\\\\n                messages=[\\\\n                    {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": system_prompt},\\\\n                    {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": user_prompt},\\\\n                ],\\\\n                temperature=temperature,\\\\n                max_tokens=max_tokens,\\\\n                **kwargs,\\\\n            )\\\\n            if enable_thinking and resp.choices[0].finish_reason == 'length':\\\\n                _track(resp)\\\\n                resp = client.chat.completions.create(\\\\n                    model=MODEL_NAME,\\\\n                    messages=[\\\\n                        {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": system_prompt},\\\\n                        {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": user_prompt},\\\\n                    ],\\\\n                    temperature=temperature,\\\\n                    max_tokens=max_tokens,\\\\n                    extra_body={\\\\\\\"chat_template_kwargs\\\\\\\": {\\\\\\\"enable_thinking\\\\\\\": False}},\\\\n                )\\\\n\\\\n       \\\\n\\\\n... [截断: 输出过长，省略 4036 字符] ...\\\\n\\\\n  return dis.get(\\\\\\\"agreement_type\\\\\\\") == \\\\\\\"disagree\\\\\\\"\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Resume support\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef _load_done_ids(path: str) -> set:\\\\n    p = Path(path)\\\\n    if not p.exists():\\\\n        return set()\\\\n    done = set()\\\\n    with open(p) as f:\\\\n        first_char = f.read(1)\\\\n        if not first_char:\\\\n            return done\\\\n        f.seek(0)\\\\n        if first_char == '[':\\\\n            for rec in json.load(f):\\\\n                if \\\\\\\"sample_id\\\\\\\" in rec:\\\\n                    done.add(rec[\\\\\\\"sample_id\\\\\\\"])\\\\n        else:\\\\n            for line in f:\\\\n                line = line.strip()\\\\n                if line:\\\\n                    rec = json.loads(line)\\\\n                    if \\\\\\\"sample_id\\\\\\\" in rec:\\\\n                        done.add(rec[\\\\\\\"sample_id\\\\\\\"])\\\\n    return done\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Main processing\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef process_one(\\\\n    example,\\\\n    temperatures: List[float],\\\\n    crd_results: dict,\\\\n) -> dict:\\\\n    _reset_sc_usage()\\\\n\\\\n    fol_preds = []\\\\n    code_preds = []\\\\n\\\\n    for temp in temperatures:\\\\n        log.info(\\\\\\\"  [%s] temp=%.1f generating FOL ...\\\\\\\", example.id, temp)\\\\n        fol_v = _generate_and_execute_fol(example.premises, example.conclusion, temp)\\\\n        fol_preds.append(fol_v)\\\\n\\\\n        log.info(\\\\\\\"  [%s] temp=%.1f generating Code ...\\\\\\\", example.id, temp)\\\\n        code_v = _generate_and_execute_code(example.premises, example.conclusion, temp)\\\\n        code_preds.append(code_v)\\\\n\\\\n    fol_mv = majority_vote(fol_preds)\\\\n    code_mv = majority_vote(code_preds)\\\\n    combined_mv = majority_vote(fol_preds + code_preds)\\\\n\\\\n    usage = _get_sc_usage()\\\\n\\\\n    crd_rec = crd_results.get(example.id)\\\\n    crd_correct = _crd_is_correct(crd_rec) if crd_rec else None\\\\n    crd_disagree = _crd_has_disagree(crd_rec) if crd_rec else None\\\\n\\\\n    rec = {\\\\n        \\\\\\\"sample_id\\\\\\\": example.id,\\\\n        \\\\\\\"gt_label\\\\\\\": example.label,\\\\n        \\\\\\\"fol_predictions\\\\\\\": fol_preds,\\\\n        \\\\\\\"code_predictions\\\\\\\": code_preds,\\\\n        \\\\\\\"fol_majority_vote\\\\\\\": fol_mv,\\\\n        \\\\\\\"code_majority_vote\\\\\\\": code_mv,\\\\n        \\\\\\\"combined_majority_vote\\\\\\\": combined_mv,\\\\n        \\\\\\\"fol_majority_correct\\\\\\\": fol_mv == example.label,\\\\n        \\\\\\\"code_majority_correct\\\\\\\": code_mv == example.label,\\\\n        \\\\\\\"combined_majority_correct\\\\\\\": combined_mv == example.label,\\\\n        \\\\\\\"crd_pipeline_correct\\\\\\\": crd_correct,\\\\n        \\\\\\\"crd_disagree\\\\\\\": crd_disagree,\\\\n        \\\\\\\"token_usage\\\\\\\": usage,\\\\n        \\\\\\\"temperatures\\\\\\\": temperatures,\\\\n    }\\\\n\\\\n    log.info(\\\\n        \\\\\\\"[%s] FOL_mv=%s Code_mv=%s Combined=%s GT=%s cost=$%.4f\\\\\\\",\\\\n        example.id, fol_mv, code_mv, combined_mv, example.label, usage[\\\\\\\"cost_usd\\\\\\\"],\\\\n    )\\\\n    return rec\\\\n\\\\n\\\\ndef run_sc_baseline(\\\\n    k: int = 5,\\\\n    max_examples: Optional[int] = None,\\\\n    output_file: Optional[str] = None,\\\\n    resume_from: Optional[str] = None,\\\\n    crd_results_file: Optional[str] = None,\\\\n    mode: str = \\\\\\\"standard\\\\\\\",\\\\n):\\\\n    if mode == \\\\\\\"standard\\\\\\\":\\\\n        temperatures = [0.7] * k\\\\n    else:  # sweep\\\\n        temperatures = TEMPERATURES[:k]\\\\n        if len(temperatures) < k:\\\\n            step = 0.4 / max(k - 1, 1)\\\\n            temperatures = [round(0.6 + i * step, 2) for i in range(k)]\\\\n\\\\n    examples = load_folio(max_examples=max_examples)\\\\n    log.info(\\\\\\\"loaded %d FOLIO examples, k=%d, temperatures=%s\\\\\\\", len(examples), k, temperatures)\\\\n\\\\n    crd_results = {}\\\\n    if crd_results_file:\\\\n        crd_results = _load_crd_results(crd_results_file)\\\\n        log.info(\\\\\\\"loaded %d CRD results for comparison\\\\\\\", len(crd_results))\\\\n\\\\n    done_ids = set()\\\\n    if resume_from:\\\\n        done_ids = _load_done_ids(resume_from)\\\\n        log.info(\\\\\\\"resumed %d already-done samples\\\\\\\", len(done_ids))\\\\n\\\\n    if output_file is None:\\\\n        ts = time.strftime(\\\\\\\"%Y%m%d_%H%M%S\\\\\\\")\\\\n        output_file = str(RESULTS_DIR / f\\\\\\\"sc_baseline_{ts}.jsonl\\\\\\\")\\\\n\\\\n    global_usage = {\\\\\\\"input_tokens\\\\\\\": 0, \\\\\\\"output_tokens\\\\\\\": 0, \\\\\\\"cost_usd\\\\\\\": 0.0}\\\\n    total = len(examples)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8f09e5ec-f455-42da-8494-fb0ec63f35ef",
+            "isSidechain": false,
+            "promptId": "f3d559da-ca25-4b08-b38e-8c18ad0f8e4c",
+            "type": "user",
+            "uuid": "1ccb88f8-f790-4e52-95fc-408f06e24a1f",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nSelf-consistency baseline for CRD comparison.\\\\nk=5 多次采样 majority vote vs single-pass CRD pipeline.\\\\n\\\\n用法:\\\\n    python3 src/self_consistency_baseline.py --output results/sc_baseline.jsonl --k 5\\\\n    python3 src/self_consistency_baseline.py --output results/sc_baseline.jsonl --k 5 --resume results/sc_baseline.jsonl\\\\n    python3 src/self_consistency_baseline.py --output results/sc_baseline.jsonl --k 5 --max-examples 10  # dry-run\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport gc\\\\nimport json\\\\nimport time\\\\nimport argparse\\\\nimport logging\\\\nfrom collections import Counter\\\\nfrom pathlib import Path\\\\nfrom typing import List, Optional, Tuple\\\\n\\\\nfrom config import (\\\\n    API_BASE_URL, API_KEY, MODEL_NAME,\\\\n    API_MAX_RETRIES, API_RETRY_DELAY, API_TIMEOUT,\\\\n    PRICE_PER_INPUT_TOKEN, PRICE_PER_OUTPUT_TOKEN,\\\\n    RESULTS_DIR,\\\\n)\\\\nfrom data_loader import load_folio\\\\nfrom formalize import (\\\\n    FOL_SYSTEM_PROMPT, FOL_USER_TEMPLATE,\\\\n    CODE_SYSTEM_PROMPT, CODE_USER_TEMPLATE,\\\\n    _extract_code, _strip_thinking, _get_client,\\\\n)\\\\nfrom executor import execute_code\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n    handlers=[\\\\n        logging.StreamHandler(),\\\\n        logging.FileHandler(RESULTS_DIR / \\\\\\\"sc_baseline.log\\\\\\\"),\\\\n    ],\\\\n)\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nTEMPERATURES = [0.6, 0.7, 0.8, 0.9, 1.0]\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Token tracking (independent from formalize's global tracker)\\\\n# ---------------------------------------------------------------------------\\\\n\\\\n_sc_usage: List[dict] = []\\\\n\\\\n\\\\ndef _reset_sc_usage():\\\\n    _sc_usage.clear()\\\\n\\\\n\\\\ndef _track(resp):\\\\n    usage = resp.usage\\\\n    if usage:\\\\n        in_tok = usage.prompt_tokens or 0\\\\n        out_tok = usage.completion_tokens or 0\\\\n        cost = getattr(usage, \\\\\\\"cost\\\\\\\", None)\\\\n        if cost is None:\\\\n            cost = in_tok * PRICE_PER_INPUT_TOKEN + out_tok * PRICE_PER_OUTPUT_TOKEN\\\\n        _sc_usage.append({\\\\n            \\\\\\\"input_tokens\\\\\\\": in_tok,\\\\n            \\\\\\\"output_tokens\\\\\\\": out_tok,\\\\n            \\\\\\\"cost_usd\\\\\\\": float(cost),\\\\n        })\\\\n\\\\n\\\\ndef _get_sc_usage() -> dict:\\\\n    total_in = sum(u[\\\\\\\"input_tokens\\\\\\\"] for u in _sc_usage)\\\\n    total_out = sum(u[\\\\\\\"output_tokens\\\\\\\"] for u in _sc_usage)\\\\n    total_cost = sum(u[\\\\\\\"cost_usd\\\\\\\"] for u in _sc_usage)\\\\n    return {\\\\n        \\\\\\\"calls\\\\\\\": len(_sc_usage),\\\\n        \\\\\\\"input_tokens\\\\\\\": total_in,\\\\n        \\\\\\\"output_tokens\\\\\\\": total_out,\\\\n        \\\\\\\"cost_usd\\\\\\\": round(total_cost, 6),\\\\n    }\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# LLM call with configurable temperature\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef _call_llm_temp(\\\\n    system_prompt: str,\\\\n    user_prompt: str,\\\\n    temperature: float,\\\\n    max_tokens: int = 4096,\\\\n    enable_thinking: bool = True,\\\\n) -> str:\\\\n    client = _get_client()\\\\n    kwargs = {}\\\\n    if not enable_thinking:\\\\n        kwargs[\\\\\\\"extra_body\\\\\\\"] = {\\\\n            \\\\\\\"chat_template_kwargs\\\\\\\": {\\\\\\\"enable_thinking\\\\\\\": False}\\\\n        }\\\\n    for attempt in range(API_MAX_RETRIES):\\\\n        try:\\\\n            resp = client.chat.completions.create(\\\\n                model=MODEL_NAME,\\\\n                messages=[\\\\n                    {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": system_prompt},\\\\n                    {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": user_prompt},\\\\n                ],\\\\n                temperature=temperature,\\\\n                max_tokens=max_tokens,\\\\n                **kwargs,\\\\n            )\\\\n            if enable_thinking and resp.choices[0].finish_reason == 'length':\\\\n                _track(resp)\\\\n                resp = client.chat.completions.create(\\\\n                    model=MODEL_NAME,\\\\n                    messages=[\\\\n                        {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": system_prompt},\\\\n                        {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": user_prompt},\\\\n                    ],\\\\n                    temperature=temperature,\\\\n                    max_tokens=max_tokens,\\\\n                    extra_body={\\\\\\\"chat_template_kwargs\\\\\\\": {\\\\\\\"enable_thinking\\\\\\\": False}},\\\\n                )\\\\n\\\\n       \\\\n\\\\n... [截断: 输出过长，省略 4036 字符] ...\\\\n\\\\n  return dis.get(\\\\\\\"agreement_type\\\\\\\") == \\\\\\\"disagree\\\\\\\"\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Resume support\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef _load_done_ids(path: str) -> set:\\\\n    p = Path(path)\\\\n    if not p.exists():\\\\n        return set()\\\\n    done = set()\\\\n    with open(p) as f:\\\\n        first_char = f.read(1)\\\\n        if not first_char:\\\\n            return done\\\\n        f.seek(0)\\\\n        if first_char == '[':\\\\n            for rec in json.load(f):\\\\n                if \\\\\\\"sample_id\\\\\\\" in rec:\\\\n                    done.add(rec[\\\\\\\"sample_id\\\\\\\"])\\\\n        else:\\\\n            for line in f:\\\\n                line = line.strip()\\\\n                if line:\\\\n                    rec = json.loads(line)\\\\n                    if \\\\\\\"sample_id\\\\\\\" in rec:\\\\n                        done.add(rec[\\\\\\\"sample_id\\\\\\\"])\\\\n    return done\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Main processing\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef process_one(\\\\n    example,\\\\n    temperatures: List[float],\\\\n    crd_results: dict,\\\\n) -> dict:\\\\n    _reset_sc_usage()\\\\n\\\\n    fol_preds = []\\\\n    code_preds = []\\\\n\\\\n    for temp in temperatures:\\\\n        log.info(\\\\\\\"  [%s] temp=%.1f generating FOL ...\\\\\\\", example.id, temp)\\\\n        fol_v = _generate_and_execute_fol(example.premises, example.conclusion, temp)\\\\n        fol_preds.append(fol_v)\\\\n\\\\n        log.info(\\\\\\\"  [%s] temp=%.1f generating Code ...\\\\\\\", example.id, temp)\\\\n        code_v = _generate_and_execute_code(example.premises, example.conclusion, temp)\\\\n        code_preds.append(code_v)\\\\n\\\\n    fol_mv = majority_vote(fol_preds)\\\\n    code_mv = majority_vote(code_preds)\\\\n    combined_mv = majority_vote(fol_preds + code_preds)\\\\n\\\\n    usage = _get_sc_usage()\\\\n\\\\n    crd_rec = crd_results.get(example.id)\\\\n    crd_correct = _crd_is_correct(crd_rec) if crd_rec else None\\\\n    crd_disagree = _crd_has_disagree(crd_rec) if crd_rec else None\\\\n\\\\n    rec = {\\\\n        \\\\\\\"sample_id\\\\\\\": example.id,\\\\n        \\\\\\\"gt_label\\\\\\\": example.label,\\\\n        \\\\\\\"fol_predictions\\\\\\\": fol_preds,\\\\n        \\\\\\\"code_predictions\\\\\\\": code_preds,\\\\n        \\\\\\\"fol_majority_vote\\\\\\\": fol_mv,\\\\n        \\\\\\\"code_majority_vote\\\\\\\": code_mv,\\\\n        \\\\\\\"combined_majority_vote\\\\\\\": combined_mv,\\\\n        \\\\\\\"fol_majority_correct\\\\\\\": fol_mv == example.label,\\\\n        \\\\\\\"code_majority_correct\\\\\\\": code_mv == example.label,\\\\n        \\\\\\\"combined_majority_correct\\\\\\\": combined_mv == example.label,\\\\n        \\\\\\\"crd_pipeline_correct\\\\\\\": crd_correct,\\\\n        \\\\\\\"crd_disagree\\\\\\\": crd_disagree,\\\\n        \\\\\\\"token_usage\\\\\\\": usage,\\\\n        \\\\\\\"temperatures\\\\\\\": temperatures,\\\\n    }\\\\n\\\\n    log.info(\\\\n        \\\\\\\"[%s] FOL_mv=%s Code_mv=%s Combined=%s GT=%s cost=$%.4f\\\\\\\",\\\\n        example.id, fol_mv, code_mv, combined_mv, example.label, usage[\\\\\\\"cost_usd\\\\\\\"],\\\\n    )\\\\n    return rec\\\\n\\\\n\\\\ndef run_sc_baseline(\\\\n    k: int = 5,\\\\n    max_examples: Optional[int] = None,\\\\n    output_file: Optional[str] = None,\\\\n    resume_from: Optional[str] = None,\\\\n    crd_results_file: Optional[str] = None,\\\\n    mode: str = \\\\\\\"standard\\\\\\\",\\\\n):\\\\n    if mode == \\\\\\\"standard\\\\\\\":\\\\n        temperatures = [0.7] * k\\\\n    else:  # sweep\\\\n        temperatures = TEMPERATURES[:k]\\\\n        if len(temperatures) < k:\\\\n            step = 0.4 / max(k - 1, 1)\\\\n            temperatures = [round(0.6 + i * step, 2) for i in range(k)]\\\\n\\\\n    examples = load_folio(max_examples=max_examples)\\\\n    log.info(\\\\\\\"loaded %d FOLIO examples, k=%d, temperatures=%s\\\\\\\", len(examples), k, temperatures)\\\\n\\\\n    crd_results = {}\\\\n    if crd_results_file:\\\\n        crd_results = _load_crd_results(crd_results_file)\\\\n        log.info(\\\\\\\"loaded %d CRD results for comparison\\\\\\\", len(crd_results))\\\\n\\\\n    done_ids = set()\\\\n    if resume_from:\\\\n        done_ids = _load_done_ids(resume_from)\\\\n        log.info(\\\\\\\"resumed %d already-done samples\\\\\\\", len(done_ids))\\\\n\\\\n    if output_file is None:\\\\n        ts = time.strftime(\\\\\\\"%Y%m%d_%H%M%S\\\\\\\")\\\\n        output_file = str(RESULTS_DIR / f\\\\\\\"sc_baseline_{ts}.jsonl\\\\\\\")\\\\n\\\\n    global_usage = {\\\\\\\"input_tokens\\\\\\\": 0, \\\\\\\"output_tokens\\\\\\\": 0, \\\\\\\"cost_usd\\\\\\\": 0.0}\\\\n    total = len(examples)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nSelf-consistency baseline for CRD comparison.\\nk=5 多次采样 majority vote vs single-pass CRD pipeline.\\n\\n用法:\\n    python3 src/self_consistency_baseline.py --output results/sc_baseline.jsonl --k 5\\n    python3 src/self_consistency_baseline.py --output results/sc_baseline.jsonl --k 5 --resume results/sc_baseline.jsonl\\n    python3 src/self_consistency_baseline.py --output results/sc_baseline.jsonl --k 5 --max-examples 10  # dry-run\\n\\\"\\\"\\\"\\n\\nimport gc\\nimport json\\nimport time\\nimport argparse\\nimport logging\\nfrom collections import Counter\\nfrom pathlib import Path\\nfrom typing import List, Optional, Tuple\\n\\nfrom config import (\\n    API_BASE_URL, API_KEY, MODEL_NAME,\\n    API_MAX_RETRIES, API_RETRY_DELAY, API_TIMEOUT,\\n    PRICE_PER_INPUT_TOKEN, PRICE_PER_OUTPUT_TOKEN,\\n    RESULTS_DIR,\\n)\\nfrom data_loader import load_folio\\nfrom formalize import (\\n    FOL_SYSTEM_PROMPT, FOL_USER_TEMPLATE,\\n    CODE_SYSTEM_PROMPT, CODE_USER_TEMPLATE,\\n    _extract_code, _strip_thinking, _get_client,\\n)\\nfrom executor import execute_code\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    handlers=[\\n        logging.StreamHandler(),\\n        logging.FileHandler(RESULTS_DIR / \\\"sc_baseline.log\\\"),\\n    ],\\n)\\nlog = logging.getLogger(__name__)\\n\\nTEMPERATURES = [0.6, 0.7, 0.8, 0.9, 1.0]\\n\\n# ---------------------------------------------------------------------------\\n# Token tracking (independent from formalize's global tracker)\\n# ---------------------------------------------------------------------------\\n\\n_sc_usage: List[dict] = []\\n\\n\\ndef _reset_sc_usage():\\n    _sc_usage.clear()\\n\\n\\ndef _track(resp):\\n    usage = resp.usage\\n    if usage:\\n        in_tok = usage.prompt_tokens or 0\\n        out_tok = usage.completion_tokens or 0\\n        cost = getattr(usage, \\\"cost\\\", None)\\n        if cost is None:\\n            cost = in_tok * PRICE_PER_INPUT_TOKEN + out_tok * PRICE_PER_OUTPUT_TOKEN\\n        _sc_usage.append({\\n            \\\"input_tokens\\\": in_tok,\\n            \\\"output_tokens\\\": out_tok,\\n            \\\"cost_usd\\\": float(cost),\\n        })\\n\\n\\ndef _get_sc_usage() -> dict:\\n    total_in = sum(u[\\\"input_tokens\\\"] for u in _sc_usage)\\n    total_out = sum(u[\\\"output_tokens\\\"] for u in _sc_usage)\\n    total_cost = sum(u[\\\"cost_usd\\\"] for u in _sc_usage)\\n    return {\\n        \\\"calls\\\": len(_sc_usage),\\n        \\\"input_tokens\\\": total_in,\\n        \\\"output_tokens\\\": total_out,\\n        \\\"cost_usd\\\": round(total_cost, 6),\\n    }\\n\\n\\n# ---------------------------------------------------------------------------\\n# LLM call with configurable temperature\\n# ---------------------------------------------------------------------------\\n\\ndef _call_llm_temp(\\n    system_prompt: str,\\n    user_prompt: str,\\n    temperature: float,\\n    max_tokens: int = 4096,\\n    enable_thinking: bool = True,\\n) -> str:\\n    client = _get_client()\\n    kwargs = {}\\n    if not enable_thinking:\\n        kwargs[\\\"extra_body\\\"] = {\\n            \\\"chat_template_kwargs\\\": {\\\"enable_thinking\\\": False}\\n        }\\n    for attempt in range(API_MAX_RETRIES):\\n        try:\\n            resp = client.chat.completions.create(\\n                model=MODEL_NAME,\\n                messages=[\\n                    {\\\"role\\\": \\\"system\\\", \\\"content\\\": system_prompt},\\n                    {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_prompt},\\n                ],\\n                temperature=temperature,\\n                max_tokens=max_tokens,\\n                **kwargs,\\n            )\\n            if enable_thinking and resp.choices[0].finish_reason == 'length':\\n                _track(resp)\\n                resp = client.chat.completions.create(\\n                    model=MODEL_NAME,\\n                    messages=[\\n                        {\\\"role\\\": \\\"system\\\", \\\"content\\\": system_prompt},\\n                        {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_prompt},\\n                    ],\\n                    temperature=temperature,\\n                    max_tokens=max_tokens,\\n                    extra_body={\\\"chat_template_kwargs\\\": {\\\"enable_thinking\\\": False}},\\n                )\\n\\n       \\n\\n... [截断: 输出过长，省略 4036 字符] ...\\n\\n  return dis.get(\\\"agreement_type\\\") == \\\"disagree\\\"\\n\\n\\n# ---------------------------------------------------------------------------\\n# Resume support\\n# ---------------------------------------------------------------------------\\n\\ndef _load_done_ids(path: str) -> set:\\n    p = Path(path)\\n    if not p.exists():\\n        return set()\\n    done = set()\\n    with open(p) as f:\\n        first_char = f.read(1)\\n        if not first_char:\\n            return done\\n        f.seek(0)\\n        if first_char == '[':\\n            for rec in json.load(f):\\n                if \\\"sample_id\\\" in rec:\\n                    done.add(rec[\\\"sample_id\\\"])\\n        else:\\n            for line in f:\\n                line = line.strip()\\n                if line:\\n                    rec = json.loads(line)\\n                    if \\\"sample_id\\\" in rec:\\n                        done.add(rec[\\\"sample_id\\\"])\\n    return done\\n\\n\\n# ---------------------------------------------------------------------------\\n# Main processing\\n# ---------------------------------------------------------------------------\\n\\ndef process_one(\\n    example,\\n    temperatures: List[float],\\n    crd_results: dict,\\n) -> dict:\\n    _reset_sc_usage()\\n\\n    fol_preds = []\\n    code_preds = []\\n\\n    for temp in temperatures:\\n        log.info(\\\"  [%s] temp=%.1f generating FOL ...\\\", example.id, temp)\\n        fol_v = _generate_and_execute_fol(example.premises, example.conclusion, temp)\\n        fol_preds.append(fol_v)\\n\\n        log.info(\\\"  [%s] temp=%.1f generating Code ...\\\", example.id, temp)\\n        code_v = _generate_and_execute_code(example.premises, example.conclusion, temp)\\n        code_preds.append(code_v)\\n\\n    fol_mv = majority_vote(fol_preds)\\n    code_mv = majority_vote(code_preds)\\n    combined_mv = majority_vote(fol_preds + code_preds)\\n\\n    usage = _get_sc_usage()\\n\\n    crd_rec = crd_results.get(example.id)\\n    crd_correct = _crd_is_correct(crd_rec) if crd_rec else None\\n    crd_disagree = _crd_has_disagree(crd_rec) if crd_rec else None\\n\\n    rec = {\\n        \\\"sample_id\\\": example.id,\\n        \\\"gt_label\\\": example.label,\\n        \\\"fol_predictions\\\": fol_preds,\\n        \\\"code_predictions\\\": code_preds,\\n        \\\"fol_majority_vote\\\": fol_mv,\\n        \\\"code_majority_vote\\\": code_mv,\\n        \\\"combined_majority_vote\\\": combined_mv,\\n        \\\"fol_majority_correct\\\": fol_mv == example.label,\\n        \\\"code_majority_correct\\\": code_mv == example.label,\\n        \\\"combined_majority_correct\\\": combined_mv == example.label,\\n        \\\"crd_pipeline_correct\\\": crd_correct,\\n        \\\"crd_disagree\\\": crd_disagree,\\n        \\\"token_usage\\\": usage,\\n        \\\"temperatures\\\": temperatures,\\n    }\\n\\n    log.info(\\n        \\\"[%s] FOL_mv=%s Code_mv=%s Combined=%s GT=%s cost=$%.4f\\\",\\n        example.id, fol_mv, code_mv, combined_mv, example.label, usage[\\\"cost_usd\\\"],\\n    )\\n    return rec\\n\\n\\ndef run_sc_baseline(\\n    k: int = 5,\\n    max_examples: Optional[int] = None,\\n    output_file: Optional[str] = None,\\n    resume_from: Optional[str] = None,\\n    crd_results_file: Optional[str] = None,\\n    mode: str = \\\"standard\\\",\\n):\\n    if mode == \\\"standard\\\":\\n        temperatures = [0.7] * k\\n    else:  # sweep\\n        temperatures = TEMPERATURES[:k]\\n        if len(temperatures) < k:\\n            step = 0.4 / max(k - 1, 1)\\n            temperatures = [round(0.6 + i * step, 2) for i in range(k)]\\n\\n    examples = load_folio(max_examples=max_examples)\\n    log.info(\\\"loaded %d FOLIO examples, k=%d, temperatures=%s\\\", len(examples), k, temperatures)\\n\\n    crd_results = {}\\n    if crd_results_file:\\n        crd_results = _load_crd_results(crd_results_file)\\n        log.info(\\\"loaded %d CRD results for comparison\\\", len(crd_results))\\n\\n    done_ids = set()\\n    if resume_from:\\n        done_ids = _load_done_ids(resume_from)\\n        log.info(\\\"resumed %d already-done samples\\\", len(done_ids))\\n\\n    if output_file is None:\\n        ts = time.strftime(\\\"%Y%m%d_%H%M%S\\\")\\n        output_file = str(RESULTS_DIR / f\\\"sc_baseline_{ts}.jsonl\\\")\\n\\n    global_usage = {\\\"input_tokens\\\": 0, \\\"output_tokens\\\": 0, \\\"cost_usd\\\": 0.0}\\n    total = len(examples)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+              }
+            },
+            "sourceToolAssistantUUID": "8f09e5ec-f455-42da-8494-fb0ec63f35ef",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno/.claude/sessions/reviewer_0fe76a8e",
+            "sessionId": "04a63bd3-f107-4416-ac4a-b3e6148c40da",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "ethereal-launching-glacier"
+          },
+          "id": "event-000900"
+        },
+        {
+          "source_line": 901,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[系统通知 — worker_done:worker_fix_sc_baseline_v2_20260515T072917]: Worker worker_fix_sc_baseline_v2_20260515T072917 已完成（status=done），请审查 Agent 的处理结果。",
+                "leafUuid": "1ccb88f8-f790-4e52-95fc-408f06e24a1f",
+                "sessionId": "04a63bd3-f107-4416-ac4a-b3e6148c40da"
+              }
+            }
+          ],
+          "id": "event-000901"
+        },
+        {
+          "source_line": 902,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review worker analysis repair check results",
+                "sessionId": "04a63bd3-f107-4416-ac4a-b3e6148c40da"
+              }
+            }
+          ],
+          "id": "event-000902"
+        },
+        {
+          "source_line": 903,
+          "timestamp": "2026-05-15T07:34:46.663Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a clear picture of the v2 changes:\n\n1. **Temperature mode**: New `--mode` parameter:\n   - `standard` (default): `[0.7] * k` — fixed temp=0.7, k i.i.d. samples. This addresses my feedback.\n   - `sweep`: Original varying temperatures [0.6, 0.7, 0.8, 0.9, 1.0]\n\n2. **`_crd_is_correct` rewritten**: Now uses a proper CRD decision rule:\n   - `agree_correct/agree_wrong/both_error`: Uses consensus (fol_v == gt)\n   - `disagree`: Attempts repair first using the predicted error side, falls back to trusting the more stable side if repair fails, and defaults to FOL as a last resort. This is a major improvement over v1's simplistic \"either side correct = correct\" logic.\n\nFor the disagree cases with repair: the logic grabs the final repair round's verdict and compares it against ground truth. I'm realizing there's a potential issue here — if repair iterates through multiple rounds and an earlier round succeeded but the last one failed or crashed, we'd miss that earlier success and incorrectly return False. The current implementation only looks at the final attempt, which assumes each round builds on the previous one, but if the last round crashes or produces an invalid verdict, we lose information about prior successful repairs.\n\nFor single_error cases, the function handles them through the stability fallback since predicted_error_side is now set. And for agree_wrong — where both sides agree but are wrong — the CRD pipeline doesn't even attempt repair, so we're just returning the consensus wrong answer, which is correct. Similarly, both_error cases have no repair path and almost certainly won't match ground truth, so that's handled correctly too.\n\nThe decision rule itself looks solid: attempt repair first, then trust the reliable side based on stability, and default to FOL when there's no clear signal. The FOL default in the else clause is somewhat arbitrary, but it makes sense given FOL's stronger performance in this project.\n\nBoth concerns have been resolved—standard temperature mode is now the default, and the CRD accuracy definition has a proper decision rule. This passes.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1ccb88f8-f790-4e52-95fc-408f06e24a1f",
+            "isSidechain": false,
+            "requestId": "req_011Cb3y6Ck6TZAytMRPCzZgf",
+            "type": "assistant",
+            "uuid": "54d99a66-e07c-4a39-82b2-7f124fea000d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno/.claude/sessions/reviewer_0fe76a8e",
+            "sessionId": "04a63bd3-f107-4416-ac4a-b3e6148c40da",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "ethereal-launching-glacier",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016zLdgSTYgTHPPSopRp5CDP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3177,
+                "cache_read_input_tokens": 76954,
+                "output_tokens": 1638,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3177,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1638,
+                    "cache_read_input_tokens": 76954,
+                    "cache_creation_input_tokens": 3177,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3177
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000903"
+        },
+        {
+          "source_line": 904,
+          "timestamp": "2026-05-15T07:34:46.666Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 warning 均已修复。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "54d99a66-e07c-4a39-82b2-7f124fea000d",
+            "isSidechain": false,
+            "requestId": "req_011Cb3y6Ck6TZAytMRPCzZgf",
+            "type": "assistant",
+            "uuid": "3c9f7e80-a0a7-4141-8ae2-349f01a81c13",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno/.claude/sessions/reviewer_0fe76a8e",
+            "sessionId": "04a63bd3-f107-4416-ac4a-b3e6148c40da",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "ethereal-launching-glacier",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016zLdgSTYgTHPPSopRp5CDP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3177,
+                "cache_read_input_tokens": 76954,
+                "output_tokens": 1638,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3177,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1638,
+                    "cache_read_input_tokens": 76954,
+                    "cache_creation_input_tokens": 3177,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3177
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000904"
+        },
+        {
+          "source_line": 905,
+          "timestamp": "2026-05-15T07:34:58.143Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012v93YMTk5hT6nPMF4U6R3J",
+              "name": "mcp__agent-ml-research__reviewer_post_to_director",
+              "input": {
+                "text": "## 审查报告 — worker_fix_sc_baseline_v2_20260515T072917\n\n**结论**: PASS\n\n### 发现\n\n- [severity: info] **温度模式已修复**：新增 `--mode` 参数（默认 `standard`）。`standard` 模式使用固定 temp=0.7 的 k 次 i.i.d. 采样，符合 Wang et al. (2022) 标准 self-consistency 定义。`sweep` 模式保留原有多温度变体。解决了上轮 [severity: warning] 非标准温度扫描问题。\n\n- [severity: info] **CRD 正确率定义已重写**：`_crd_is_correct()` 现在定义了明确的 CRD 最终输出决策规则：\n  1. agree 类：共识答案（fol_v == gt）\n  2. disagree 类：优先用 repair 结果（按 `predicted_error_side` 选择对应 targeted repair 的最后一轮 verdict）\n  3. 无有效 repair：按 stability 预测选择可靠侧（error=code → trust FOL，error=fol → trust Code）\n  4. ambiguous/无预测：默认信任 FOL（合理，因 5.6:1 不对称性说明 Code 错误率远高于 FOL）\n  \n  与 SC 的 majority vote == GT 现在可公平对比。解决了上轮 [severity: warning] CRD 正确率定义过于宽松的问题。\n\n- [severity: info] 脚本仍未启动运行，exp-012 未注册到 registry。等待 Worker 启动实验。",
+                "project": "cross_representation_disagreement_diagno"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3c9f7e80-a0a7-4141-8ae2-349f01a81c13",
+            "isSidechain": false,
+            "requestId": "req_011Cb3y6Ck6TZAytMRPCzZgf",
+            "type": "assistant",
+            "uuid": "a0eb8bb3-7248-432b-85c8-8399ebe28e6b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno/.claude/sessions/reviewer_0fe76a8e",
+            "sessionId": "04a63bd3-f107-4416-ac4a-b3e6148c40da",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "ethereal-launching-glacier",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016zLdgSTYgTHPPSopRp5CDP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3177,
+                "cache_read_input_tokens": 76954,
+                "output_tokens": 1638,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3177,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1638,
+                    "cache_read_input_tokens": 76954,
+                    "cache_creation_input_tokens": 3177,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3177
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000905"
+        },
+        {
+          "source_line": 906,
+          "timestamp": "2026-05-15T07:35:02.429Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012v93YMTk5hT6nPMF4U6R3J",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_044a8fbb246e514b130c2207a1bea2aa:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a0eb8bb3-7248-432b-85c8-8399ebe28e6b",
+            "isSidechain": false,
+            "promptId": "f3d559da-ca25-4b08-b38e-8c18ad0f8e4c",
+            "type": "user",
+            "uuid": "06bd2158-cefe-4310-b02e-7f2edde805ff",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_044a8fbb246e514b130c2207a1bea2aa:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_044a8fbb246e514b130c2207a1bea2aa:director\"}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "a0eb8bb3-7248-432b-85c8-8399ebe28e6b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/cross_representation_disagreement_diagno/.claude/sessions/reviewer_0fe76a8e",
+            "sessionId": "04a63bd3-f107-4416-ac4a-b3e6148c40da",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "ethereal-launching-glacier"
+          },
+          "id": "event-000906"
+        }
+      ]
+    }
+  ]
+}

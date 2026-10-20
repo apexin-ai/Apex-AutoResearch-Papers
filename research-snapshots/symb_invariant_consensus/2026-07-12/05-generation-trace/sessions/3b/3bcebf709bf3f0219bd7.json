@@ -1,0 +1,794 @@
+{
+  "schema_version": "1.0",
+  "id": "3bcebf709bf3f0219bd7",
+  "project": "symb_invariant_consensus--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Read the following YAML files in full and report their complete contents back to me. These are paper distillation files ",
+  "task_key": "agent-aee60627d9c31287e",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-aee60627d9c31287e.jsonl",
+    "occurrence": 1,
+    "bytes": 69360,
+    "sha256": "a2d9c9a7ff0fb90eaf7f2414faa83058ec15c646522023bde5fdd32766304d86"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 1,
+    "tool_calls": 7,
+    "roles": {
+      "user": 1,
+      "assistant": 2,
+      "tool_call": 7,
+      "tool_result": 7
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T13:45:46.423Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Read the following YAML files in full and report their complete contents back to me. These are paper distillation files I need to analyze:\n\n1. /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/distill_tmp/satbench2025.yaml\n2. /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/distill_tmp/logicagent2025.yaml\n3. /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/distill_tmp/xu2026dylos.yaml\n4. /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/distill_tmp/aristotle2025.yaml\n5. /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/distill_tmp/qi2025symbolic_provers.yaml\n6. /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/distill_tmp/dissecting2025.yaml\n7. /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/distill_tmp/crest2025.yaml\n\nRead all files completely and reproduce their content exactly."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "10e3f7e8-43a8-4366-a983-91c4be072f03",
+            "agentId": "aee60627d9c31287e",
+            "type": "user",
+            "uuid": "3e780b83-c881-428a-8788-f84825a335e0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/distiller_efdee075",
+            "sessionId": "a1bafaf1-2e39-412f-94cc-d7b92935728c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T13:45:48.404Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll read all these YAML files for you. Let me fetch them in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3e780b83-c881-428a-8788-f84825a335e0",
+            "isSidechain": true,
+            "agentId": "aee60627d9c31287e",
+            "requestId": "req_011CbHi5YZF2GLVnZx9qkqUM",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "11ed9d8e-eac4-461d-a50c-6303caa59906",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/distiller_efdee075",
+            "sessionId": "a1bafaf1-2e39-412f-94cc-d7b92935728c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Diw2zmN8FxX2uiC2LwwXGZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 777,
+                "cache_read_input_tokens": 17344,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 777,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T13:45:48.559Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ErAcmDFueFpxpyLdixo1ZR",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/distill_tmp/satbench2025.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "11ed9d8e-eac4-461d-a50c-6303caa59906",
+            "isSidechain": true,
+            "agentId": "aee60627d9c31287e",
+            "requestId": "req_011CbHi5YZF2GLVnZx9qkqUM",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "700368a2-d398-4cdb-99d0-600ba00541a1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/distiller_efdee075",
+            "sessionId": "a1bafaf1-2e39-412f-94cc-d7b92935728c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Diw2zmN8FxX2uiC2LwwXGZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 777,
+                "cache_read_input_tokens": 17344,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 777,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T13:45:48.565Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ErAcmDFueFpxpyLdixo1ZR",
+              "type": "tool_result",
+              "content": "1\tpaper_key: \"satbench2025\"\n2\ttitle: \"SATBench: Benchmarking LLMs' Logical Reasoning via Automated Puzzle Generation from SAT Formulas\"\n3\tvenue: \"EMNLP 2025\"\n4\tfull_text_available: false\n5\t\n6\tresearch:\n7\t  baselines: [\"o4-mini\", \"other frontier LLMs\"]\n8\t  metrics:\n9\t    - {name: \"accuracy\", direction: \"higher_better\"}\n10\t  datasets:\n11\t    - {name: \"SATBench\", size: \"2100 puzzles with adjustable difficulty\"}\n12\t  ablation_dimensions: [\"number of clauses (difficulty)\", \"SAT vs UNSAT problems\"]\n13\t  training_recipe: {info: \"evaluation benchmark, no training; automated puzzle generation from SAT formulas + LLM translation\"}\n14\t  method_family: \"SAT-based reasoning benchmark\"\n15\t\n16\tpositioning:\n17\t  core_claim: \"LLMs have systematic failures in search-based logical reasoning: even the strongest model (o4-mini) achieves only 65% on hard UNSAT problems (near 50% random baseline), exhibiting satisfiability bias, context inconsistency, and condition omission\"\n18\t  key_results: \"o4-mini: 65.0% on hard UNSAT (random baseline: 50%); systematic failures in satisfiability bias, context inconsistency, condition omission\"\n19\t  limitations: [\"N/A\"]\n20\t  relation_to_us: \"complementary\"\n21\t\n22\tnarrative: \"N/A\"\n23\tfigures: \"N/A\"\n24\ttables: \"N/A\"\n25\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "700368a2-d398-4cdb-99d0-600ba00541a1",
+            "isSidechain": true,
+            "promptId": "10e3f7e8-43a8-4366-a983-91c4be072f03",
+            "agentId": "aee60627d9c31287e",
+            "type": "user",
+            "uuid": "11690bd9-a449-4703-94df-e88013d52908",
+            "sourceToolAssistantUUID": "700368a2-d398-4cdb-99d0-600ba00541a1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/distiller_efdee075",
+            "sessionId": "a1bafaf1-2e39-412f-94cc-d7b92935728c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T13:45:48.925Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019rvKtxARTy9jKYVxT2QShD",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/distill_tmp/logicagent2025.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "11690bd9-a449-4703-94df-e88013d52908",
+            "isSidechain": true,
+            "agentId": "aee60627d9c31287e",
+            "requestId": "req_011CbHi5YZF2GLVnZx9qkqUM",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "bdb288c2-2b03-479a-a62d-ae34c287e055",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/distiller_efdee075",
+            "sessionId": "a1bafaf1-2e39-412f-94cc-d7b92935728c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Diw2zmN8FxX2uiC2LwwXGZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 777,
+                "cache_read_input_tokens": 17344,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 777,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T13:45:48.934Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019rvKtxARTy9jKYVxT2QShD",
+              "type": "tool_result",
+              "content": "1\tpaper_key: \"logicagent2025\"\n2\ttitle: \"From Ambiguity to Verdict: A Semiotic-Grounded Multi-Perspective Agent for LLM Logical Reasoning (LogicAgent)\"\n3\tvenue: \"ACL 2026\"\n4\tfull_text_available: false\n5\t\n6\tresearch:\n7\t  baselines: [\"standard CoT prompting\", \"other reasoning agents\"]\n8\t  metrics:\n9\t    - {name: \"accuracy\", direction: \"higher_better\"}\n10\t  datasets:\n11\t    - {name: \"RepublicQA\", size: \"N/A (college-level, Flesch-Kincaid Grade 11.94)\"}\n12\t    - {name: \"ProntoQA\", size: \"N/A\"}\n13\t    - {name: \"ProofWriter\", size: \"N/A\"}\n14\t    - {name: \"FOLIO\", size: \"N/A\"}\n15\t    - {name: \"ProverQA\", size: \"N/A\"}\n16\t  ablation_dimensions: [\"semiotic square components\", \"automated deduction vs reflective verification\"]\n17\t  training_recipe: {info: \"agent-based prompting framework, no training\"}\n18\t  method_family: \"multi-perspective reasoning agent\"\n19\t\n20\tpositioning:\n21\t  core_claim: \"Semiotic-square-guided multi-perspective reasoning jointly addresses logical and semantic complexity, achieving 6.25% improvement on RepublicQA and 7.05% on mainstream logic benchmarks\"\n22\t  key_results: \"+6.25% average on RepublicQA; +7.05% average on ProntoQA, ProofWriter, FOLIO, ProverQA\"\n23\t  limitations: [\"N/A\"]\n24\t  relation_to_us: \"competitor\"\n25\t\n26\tnarrative: \"N/A\"\n27\tfigures: \"N/A\"\n28\ttables: \"N/A\"\n29\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bdb288c2-2b03-479a-a62d-ae34c287e055",
+            "isSidechain": true,
+            "promptId": "10e3f7e8-43a8-4366-a983-91c4be072f03",
+            "agentId": "aee60627d9c31287e",
+            "type": "user",
+            "uuid": "ea587a66-b950-46ed-a8ee-a9e6d7cfeeef",
+            "sourceToolAssistantUUID": "bdb288c2-2b03-479a-a62d-ae34c287e055",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/distiller_efdee075",
+            "sessionId": "a1bafaf1-2e39-412f-94cc-d7b92935728c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T13:45:49.204Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XNUpTZ9vAS9VBG4pyEwaQh",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/distill_tmp/xu2026dylos.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ea587a66-b950-46ed-a8ee-a9e6d7cfeeef",
+            "isSidechain": true,
+            "agentId": "aee60627d9c31287e",
+            "requestId": "req_011CbHi5YZF2GLVnZx9qkqUM",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7d6f2bc7-6345-4e4f-b8bf-bb92399402d6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/distiller_efdee075",
+            "sessionId": "a1bafaf1-2e39-412f-94cc-d7b92935728c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Diw2zmN8FxX2uiC2LwwXGZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 777,
+                "cache_read_input_tokens": 17344,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 777,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T13:45:49.209Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XNUpTZ9vAS9VBG4pyEwaQh",
+              "type": "tool_result",
+              "content": "1\tpaper_key: \"xu2026dylos\"\n2\ttitle: \"Adaptive LLM-Symbolic Reasoning via Dynamic Logical Solver Composition (DyLoS)\"\n3\tvenue: \"EACL 2026\"\n4\tfull_text_available: true\n5\t\n6\tresearch:\n7\t  baselines: [\"Zero-shot\", \"CoT\", \"Logic-LM\", \"LINC\", \"SymbCoT\", \"Aristotle\"]\n8\t  metrics:\n9\t    - {name: \"accuracy\", direction: \"higher_better\"}\n10\t    - {name: \"routing_accuracy\", direction: \"higher_better\"}\n11\t  datasets:\n12\t    - {name: \"PrOntoQA\", size: \"500\"}\n13\t    - {name: \"ProofWriter\", size: \"600\"}\n14\t    - {name: \"FOLIO\", size: \"204\"}\n15\t    - {name: \"LogicalDeduction\", size: \"300\"}\n16\t    - {name: \"AR-LSAT\", size: \"230\"}\n17\t  ablation_dimensions: [\"solver_type\", \"routing_strategy\", \"model_scale\", \"LoRA_finetuning\"]\n18\t  training_recipe: {optimizer: \"LoRA\", lr: \"N/A\", hardware: \"N/A\"}\n19\t  method_family: \"LLM-symbolic hybrid with dynamic solver routing\"\n20\t\n21\tpositioning:\n22\t  core_claim: \"Dynamic composition of multiple symbolic solvers (Pyke/Prover9/Z3/MiniZinc) via LLM-based routing achieves robust logical reasoning across heterogeneous problem types\"\n23\t  key_results: \"92.1% mixed reasoning (GPT-4o), +27% over zero-shot; 7B models: 8-26% baseline → 41-59.6% with LoRA\"\n24\t  limitations:\n25\t    - \"Model scale dependency — small models struggle with formalization\"\n26\t    - \"Formalization bottleneck: 60-80% of small-model errors from formalization\"\n27\t    - \"Limited solver coverage: no probabilistic/temporal/mathematical reasoning\"\n28\t  relation_to_us: \"competitor\"\n29\t\n30\tnarrative:\n31\t  story_type: \"统一框架型\"\n32\t  hook: \"Material vs formal inference dichotomy — LLMs handle material, symbolic solvers handle formal, but no system integrates both dynamically\"\n33\t  tension: \"Existing hybrid methods are locked to a single solver type, failing on problems requiring different logical paradigms\"\n34\t  key_insight: \"Revealed in Section 3 — a router that classifies reasoning type enables dynamic solver dispatch with >98% accuracy\"\n35\t  argument_chain: \"heterogeneous logical tasks → single-solver limitation → classify-then-route → multi-solver composition → validated on mixed benchmarks\"\n36\t  contribution_framing: \"3 contributions each with quantitative evidence in the intro\"\n37\t  intro_structure: \"5 paragraphs: (1) material-formal dichotomy hook, (2) existing hybrid limitations, (3) DyLoS overview, (4) contributions with numbers, (5) paper structure\"\n38\t  notable_technique: \"Every contribution claim includes specific quantitative results; material-formal inference dichotomy used as recurring anchor\"\n39\t\n40\tfigures:\n41\t  figure_count: 5\n42\t  figure1:\n43\t    type: \"method_overview\"\n44\t    description: \"3-stage pipeline: decompose → route → solve, showing 4 solver types\"\n45\t    narrative_role: \"Establishes the system architecture immediately after the problem statement\"\n46\t    design_elements: [\"flow diagram\", \"solver icons\", \"color-coded stages\"]\n47\t    visual_style: \"Left-to-right pipeline with branching at routing stage\"\n48\t  result_figures:\n49\t    - figure_id: \"Figure 3\"\n50\t      viz_type: \"bar_chart\"\n51\t      what_compared: \"Accuracy across datasets with different solvers\"\n52\t      how_gain_highlighted: \"DyLoS bar consistently highest\"\n53\t      design_note: \"Grouped by dataset, color by method\"\n54\t  ablation_figures:\n55\t    - figure_id: \"Figure 4\"\n56\t      viz_type: \"bar_chart\"\n57\t      dimensions_varied: [\"model_scale\", \"with/without_LoRA\"]\n58\t      design_note: \"Shows scaling behavior and LoRA impact\"\n59\t  figure_narrative_role: \"Fig1(architecture) → Fig2(routing) → Fig3(main results) → Fig4(scaling) → Fig5(error analysis)\"\n60\t\n61\ttables:\n62\t  table_count: 4\n63\t  main_result_table:\n64\t    table_id: \"Table 1\"\n65\t    row_axis: \"methods\"\n66\t    col_axis: \"datasets × accuracy\"\n67\t    row_organization: \"by_category\"\n68\t    col_organization: \"grouped_by_dataset\"\n69\t    highlight_strategy: \"bold_best\"\n70\t    statistical_reporting: \"single run\"\n71\t    num_baselines: 6\n72\t    design_note: \"Separates LLM-only vs hybrid methods\"\n73\t  ablation_tables:\n74\t    - table_id: \"Table 3\"\n75\t      what_varied: [\"solver_selection\", \"routing_strategy\"]\n76\t      variation_style: \"full_numbers\"\n77\t      design_note: \"Shows each solver's standalone vs combined performance\"\n78\t  supplementary_tables:\n79\t    in_appendix: true\n80\t    content: \"Prompt templates, additional model results\"\n81\t    reason: \"Space constraints\"\n82\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7d6f2bc7-6345-4e4f-b8bf-bb92399402d6",
+            "isSidechain": true,
+            "promptId": "10e3f7e8-43a8-4366-a983-91c4be072f03",
+            "agentId": "aee60627d9c31287e",
+            "type": "user",
+            "uuid": "dd9249e6-affa-40f0-b62b-e29521214efb",
+            "sourceToolAssistantUUID": "7d6f2bc7-6345-4e4f-b8bf-bb92399402d6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/distiller_efdee075",
+            "sessionId": "a1bafaf1-2e39-412f-94cc-d7b92935728c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T13:45:49.516Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MijgUSmQoDVyKjUt5Cfida",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/distill_tmp/aristotle2025.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dd9249e6-affa-40f0-b62b-e29521214efb",
+            "isSidechain": true,
+            "agentId": "aee60627d9c31287e",
+            "requestId": "req_011CbHi5YZF2GLVnZx9qkqUM",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "da43ff1f-3620-4925-9e17-afb4bfbb465b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/distiller_efdee075",
+            "sessionId": "a1bafaf1-2e39-412f-94cc-d7b92935728c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Diw2zmN8FxX2uiC2LwwXGZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 777,
+                "cache_read_input_tokens": 17344,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 777,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T13:45:49.522Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MijgUSmQoDVyKjUt5Cfida",
+              "type": "tool_result",
+              "content": "1\tpaper_key: \"aristotle2025\"\n2\ttitle: \"Aristotle: Mastering Logical Reasoning with A Logic-Complete Decompose-Search-Resolve Framework\"\n3\tvenue: \"ACL 2025\"\n4\tfull_text_available: true\n5\t\n6\tresearch:\n7\t  baselines: [\"CoT\", \"ToT\", \"CR\", \"SymbCoT\", \"Logic-LM\", \"LINC\"]\n8\t  metrics:\n9\t    - {name: \"accuracy\", direction: \"higher_better\"}\n10\t    - {name: \"one_step_inference_accuracy\", direction: \"higher_better\"}\n11\t    - {name: \"visited_nodes\", direction: \"lower_better\"}\n12\t  datasets:\n13\t    - {name: \"PrOntoQA\", size: \"500\"}\n14\t    - {name: \"ProofWriter\", size: \"600\"}\n15\t    - {name: \"FOLIO\", size: \"204\"}\n16\t    - {name: \"LogiQA\", size: \"651\"}\n17\t  ablation_dimensions: [\"CNF_decomposition\", \"search_strategy\", \"resolution_principle\", \"Prolog_translation\"]\n18\t  training_recipe: {optimizer: \"N/A\", lr: \"N/A\", hardware: \"N/A\"}\n19\t  method_family: \"symbolic logic pipeline (Prolog + CNF + resolution)\"\n20\t\n21\tpositioning:\n22\t  core_claim: \"A logic-complete framework integrating Prolog translation, CNF decomposition, and resolution principle into LLM reasoning achieves 99.7% one-step accuracy while reducing search by 52.6%\"\n23\t  key_results: \"+4.5% avg over SymbCoT (GPT-4), +5.4% (GPT-4o), +12.1% (Llama-3.1-405B); 99.7% one-step accuracy vs ToT's 74.0%\"\n24\t  limitations:\n25\t    - \"Requires all premises explicitly stated — fails on implicit knowledge (LogiQA: 31.2% vs CoT's 65.6%)\"\n26\t    - \"Computationally expensive multi-step search\"\n27\t  relation_to_us: \"competitor\"\n28\t\n29\tnarrative:\n30\t  story_type: \"突破局限型\"\n31\t  hook: \"Figure 1 teaser showing accuracy gap — quantifies the problem before explaining the solution\"\n32\t  tension: \"Existing neurosymbolic methods suffer from incomplete logical operations, leading to error accumulation in multi-step proofs\"\n33\t  key_insight: \"Sec 3.2 — replacing LLM self-evaluation with deterministic resolution principle eliminates the weakest link in the reasoning chain\"\n34\t  argument_chain: \"multi-step errors → incomplete symbolic integration → full Prolog pipeline → deterministic search → validated accuracy + efficiency\"\n35\t  contribution_framing: \"3 contributions: framework, logic-completeness proof, empirical validation\"\n36\t  intro_structure: \"6 paragraphs: (1) LLM reasoning importance, (2) existing method failures with Figure 1, (3) root cause analysis, (4) Aristotle overview, (5) contributions, (6) paper structure\"\n37\t  notable_technique: \"Teaser result figure in intro paragraph 2 — immediately quantifies the gap before any method description\"\n38\t\n39\tfigures:\n40\t  figure_count: 8\n41\t  figure1:\n42\t    type: \"teaser_result\"\n43\t    description: \"Bar chart comparing accuracy of existing methods showing performance gap\"\n44\t    narrative_role: \"Quantifies the problem in the intro before solution is described\"\n45\t    design_elements: [\"grouped bars\", \"accuracy numbers\", \"method labels\"]\n46\t    visual_style: \"Clean bar chart with clear performance gap visualization\"\n47\t  result_figures:\n48\t    - figure_id: \"Figure 4\"\n49\t      viz_type: \"scatter\"\n50\t      what_compared: \"Accuracy vs efficiency tradeoff across methods\"\n51\t      how_gain_highlighted: \"Aristotle in upper-left (high accuracy, low nodes)\"\n52\t      design_note: \"Dual-axis: accuracy vs search efficiency\"\n53\t    - figure_id: \"Figure 5\"\n54\t      viz_type: \"line_plot\"\n55\t      what_compared: \"Accuracy across reasoning depths\"\n56\t      how_gain_highlighted: \"Aristotle maintains accuracy at higher depths\"\n57\t      design_note: \"Shows robustness to depth\"\n58\t  ablation_figures:\n59\t    - figure_id: \"Figure 3\"\n60\t      viz_type: \"grouped_bar\"\n61\t      dimensions_varied: [\"CNF\", \"resolution\", \"search_strategy\"]\n62\t      design_note: \"Red gradient coloring for ablation variants\"\n63\t  figure_narrative_role: \"Fig1(teaser gap) → Fig2(method) → Fig3(ablation) → Fig4(efficiency) → Fig5(depth) → Fig6-7(case studies) → Fig8(error analysis)\"\n64\t\n65\ttables:\n66\t  table_count: 4\n67\t  main_result_table:\n68\t    table_id: \"Table 1\"\n69\t    row_axis: \"methods\"\n70\t    col_axis: \"datasets × accuracy\"\n71\t    row_organization: \"by_category\"\n72\t    col_organization: \"grouped_by_dataset\"\n73\t    highlight_strategy: \"bold_best + underline_second\"\n74\t    statistical_reporting: \"single run\"\n75\t    num_baselines: 6\n76\t    design_note: \"Categorizes methods into LLM-only, symbolic-augmented, and Aristotle\"\n77\t  ablation_tables:\n78\t    - table_id: \"Table 2\"\n79\t      what_varied: [\"CNF\", \"resolution\", \"Prolog_translation\", \"search\"]\n80\t      variation_style: \"checkmark_grid\"\n81\t      design_note: \"Systematic component removal showing each module's contribution\"\n82\t  supplementary_tables:\n83\t    in_appendix: true\n84\t    content: \"Extended results, additional models, case studies\"\n85\t    reason: \"Main paper focuses on core 4 datasets\"\n86\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "da43ff1f-3620-4925-9e17-afb4bfbb465b",
+            "isSidechain": true,
+            "promptId": "10e3f7e8-43a8-4366-a983-91c4be072f03",
+            "agentId": "aee60627d9c31287e",
+            "type": "user",
+            "uuid": "c697ac73-d80a-469f-a8e9-fe2ccb44d2a6",
+            "sourceToolAssistantUUID": "da43ff1f-3620-4925-9e17-afb4bfbb465b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/distiller_efdee075",
+            "sessionId": "a1bafaf1-2e39-412f-94cc-d7b92935728c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T13:45:49.796Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Td8WtDHCtuXCC1rpWb6FBY",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/distill_tmp/qi2025symbolic_provers.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c697ac73-d80a-469f-a8e9-fe2ccb44d2a6",
+            "isSidechain": true,
+            "agentId": "aee60627d9c31287e",
+            "requestId": "req_011CbHi5YZF2GLVnZx9qkqUM",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "75034b18-15b0-4cca-b40c-e8f59e92a9d5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/distiller_efdee075",
+            "sessionId": "a1bafaf1-2e39-412f-94cc-d7b92935728c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Diw2zmN8FxX2uiC2LwwXGZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 777,
+                "cache_read_input_tokens": 17344,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 777,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T13:45:49.802Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Td8WtDHCtuXCC1rpWb6FBY",
+              "type": "tool_result",
+              "content": "1\tpaper_key: \"qi2025symbolic_provers\"\n2\ttitle: \"Large Language Models Meet Symbolic Provers for Logical Reasoning Evaluation\"\n3\tvenue: \"ICLR 2025\"\n4\tfull_text_available: true\n5\t\n6\tresearch:\n7\t  baselines: [\"GPT-4o\", \"Claude-3.5-Sonnet\", \"Llama3.1-8B/70B\", \"Gemma2-9B/27B\", \"Mistral-7B/Large\", \"Qwen2.5-7B/32B/72B\"]\n8\t  metrics:\n9\t    - {name: \"accuracy\", direction: \"higher_better\"}\n10\t    - {name: \"ID_accuracy\", direction: \"higher_better\"}\n11\t    - {name: \"OOD_accuracy\", direction: \"higher_better\"}\n12\t  datasets:\n13\t    - {name: \"ProverQA\", size: \"1500 instances, 3 difficulty levels\"}\n14\t    - {name: \"ProofWriter\", size: \"for transfer eval\"}\n15\t    - {name: \"FOLIO\", size: \"for transfer eval\"}\n16\t  ablation_dimensions: [\"difficulty_level\", \"CoT_vs_direct\", \"finetuning_data_source\", \"ID_vs_OOD\"]\n17\t  training_recipe: {optimizer: \"SFT\", lr: \"N/A\", hardware: \"N/A\"}\n18\t  method_family: \"LLM + symbolic prover (Prover9) for benchmark generation\"\n19\t\n20\tpositioning:\n21\t  core_claim: \"Top-down generation combining LLM diversity with Prover9 rigor creates ProverQA benchmark that reveals even SOTA models barely exceed chance on hard FOL problems\"\n22\t  key_results: \"GPT-4o: 50.0%, Claude-3.5: 56.4% on hard; finetuning Llama3.1-8B on ProverQA: +34.6% ID, +7.5% OOD (vs -2.0% ProofWriter, -11.4% FOLIO)\"\n23\t  limitations:\n24\t    - \"Benchmark limited to FOL reasoning\"\n25\t    - \"Top-down generation may not cover all reasoning patterns\"\n26\t  relation_to_us: \"foundation\"\n27\t\n28\tnarrative:\n29\t  story_type: \"统一框架型\"\n30\t  hook: \"Existing benchmarks lack reliable ground truth labels and controllable difficulty\"\n31\t  tension: \"Bottom-up benchmark construction introduces label noise and uncontrolled complexity\"\n32\t  key_insight: \"Section 3 — top-down generation (goal → backward to premises) ensures logical coherence by construction\"\n33\t  argument_chain: \"benchmark limitations → top-down generation idea → Prover9 guarantees → difficulty control → model evaluation reveals gaps → finetuning transfer validates quality\"\n34\t  contribution_framing: \"3 contributions: generation framework, benchmark, comprehensive evaluation\"\n35\t  intro_structure: \"4 paragraphs: (1) importance of logical reasoning, (2) criteria for good benchmarks, (3) ProverGen framework, (4) contributions\"\n36\t  notable_technique: \"Table 1 checkmark grid as early positioning device — shows no existing benchmark meets all criteria\"\n37\t\n38\tfigures:\n39\t  figure_count: 2\n40\t  figure1:\n41\t    type: \"method_overview\"\n42\t    description: \"ProverGen pipeline: top-down generation with Prover9\"\n43\t    narrative_role: \"Establishes the generation framework\"\n44\t    design_elements: [\"pipeline flow\", \"Prover9 integration point\"]\n45\t    visual_style: \"Schematic flow diagram\"\n46\t  result_figures:\n47\t    - figure_id: \"Figure 2\"\n48\t      viz_type: \"bar_chart\"\n49\t      what_compared: \"Model accuracy across difficulty levels\"\n50\t      how_gain_highlighted: \"Performance drop at higher difficulty\"\n51\t      design_note: \"Grouped by difficulty, showing model capability gap\"\n52\t  ablation_figures: []\n53\t  figure_narrative_role: \"Fig1(method) → Fig2(results) — minimal figures, table-heavy paper\"\n54\t\n55\ttables:\n56\t  table_count: 6\n57\t  main_result_table:\n58\t    table_id: \"Table 2\"\n59\t    row_axis: \"methods\"\n60\t    col_axis: \"difficulty levels × accuracy\"\n61\t    row_organization: \"by_category\"\n62\t    col_organization: \"grouped_by_difficulty\"\n63\t    highlight_strategy: \"bold_best\"\n64\t    statistical_reporting: \"single run\"\n65\t    num_baselines: 10\n66\t    design_note: \"Comprehensive model comparison across 3 difficulty levels\"\n67\t  ablation_tables:\n68\t    - table_id: \"Table 3\"\n69\t      what_varied: [\"finetuning_data_source\", \"ID_vs_OOD\"]\n70\t      variation_style: \"full_numbers\"\n71\t      design_note: \"Transfer learning comparison showing ProverQA's superiority\"\n72\t  supplementary_tables:\n73\t    in_appendix: true\n74\t    content: \"Additional model results, generation statistics\"\n75\t    reason: \"Main paper focuses on key comparisons\"\n76\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "75034b18-15b0-4cca-b40c-e8f59e92a9d5",
+            "isSidechain": true,
+            "promptId": "10e3f7e8-43a8-4366-a983-91c4be072f03",
+            "agentId": "aee60627d9c31287e",
+            "type": "user",
+            "uuid": "2004acdd-cfe5-4c35-b6d8-d68570830f45",
+            "sourceToolAssistantUUID": "75034b18-15b0-4cca-b40c-e8f59e92a9d5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/distiller_efdee075",
+            "sessionId": "a1bafaf1-2e39-412f-94cc-d7b92935728c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T13:45:49.875Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DnEcsYYU27rsFuRPZijq1g",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/distill_tmp/dissecting2025.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2004acdd-cfe5-4c35-b6d8-d68570830f45",
+            "isSidechain": true,
+            "agentId": "aee60627d9c31287e",
+            "requestId": "req_011CbHi5YZF2GLVnZx9qkqUM",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4de54b1c-4a9d-427c-8aa2-dec92c25deea",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/distiller_efdee075",
+            "sessionId": "a1bafaf1-2e39-412f-94cc-d7b92935728c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Diw2zmN8FxX2uiC2LwwXGZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 777,
+                "cache_read_input_tokens": 17344,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 777,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T13:45:49.879Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DnEcsYYU27rsFuRPZijq1g",
+              "type": "tool_result",
+              "content": "1\tpaper_key: \"dissecting2025\"\n2\ttitle: \"Dissecting Logical Reasoning in LLMs: A Fine-Grained Evaluation\"\n3\tvenue: \"EMNLP Findings 2025\"\n4\tfull_text_available: true\n5\t\n6\tresearch:\n7\t  baselines: [\"LLaMA-3.1-8B\", \"Gemma-2-9B\", \"Mistral-v0.3-7B\", \"CoT\", \"SFT-NL\", \"SFT-Symbolic\"]\n8\t  metrics:\n9\t    - {name: \"accuracy\", direction: \"higher_better\"}\n10\t    - {name: \"atomicity\", direction: \"higher_better\"}\n11\t    - {name: \"CSS\", direction: \"higher_better\"}\n12\t    - {name: \"NSD\", direction: \"higher_better\"}\n13\t    - {name: \"RFI\", direction: \"higher_better\"}\n14\t  datasets:\n15\t    - {name: \"FLD\", size: \"multi-depth\"}\n16\t    - {name: \"FOLIO\", size: \"204\"}\n17\t    - {name: \"ProntoQA\", size: \"500\"}\n18\t  ablation_dimensions: [\"supervision_type_NL_vs_symbolic\", \"reasoning_depth\", \"model_family\"]\n19\t  training_recipe: {optimizer: \"AdamW\", lr: \"1e-6\", hardware: \"4xA100, ~2h per model\"}\n20\t  method_family: \"evaluation framework (accuracy + soundness + probing)\"\n21\t\n22\tpositioning:\n23\t  core_claim: \"Three-dimensional evaluation (accuracy + stepwise soundness + representation probing) reveals NL supervision generalizes better but symbolic supervision produces more structurally sound reasoning chains\"\n24\t  key_results: \"SFT-NL: 67.5% on FLD (from 31.7%); symbolic has higher atomicity (24.7% vs 13.0%); probing shows SFT improves generation but not internalized understanding\"\n25\t  limitations:\n26\t    - \"Limited to propositional/FOL reasoning\"\n27\t    - \"Probing only captures linear representations\"\n28\t  relation_to_us: \"foundation\"\n29\t\n30\tnarrative:\n31\t  story_type: \"化繁为简型\"\n32\t  hook: \"LLMs show improved reasoning but we lack tools to understand what exactly improves\"\n33\t  tension: \"Single-metric evaluation (accuracy) masks critical differences in reasoning quality\"\n34\t  key_insight: \"Section 4 — decomposing evaluation into accuracy/soundness/probing reveals a fundamental NL-vs-symbolic tradeoff\"\n35\t  argument_chain: \"opaque evaluation → 3-dimensional framework → NL vs symbolic comparison → surprising probing results → implications for training design\"\n36\t  contribution_framing: \"3 contributions: evaluation framework, NL-vs-symbolic findings, probing insights\"\n37\t  intro_structure: \"5 paragraphs: (1) LLM reasoning progress, (2) evaluation limitations, (3) proposed framework, (4) key findings preview, (5) paper structure\"\n38\t  notable_technique: \"Previewing surprising findings in intro to create anticipation for the full analysis\"\n39\t\n40\tfigures:\n41\t  figure_count: 5\n42\t  figure1:\n43\t    type: \"method_overview\"\n44\t    description: \"Three-dimensional evaluation framework: accuracy, soundness, probing\"\n45\t    narrative_role: \"Establishes the evaluation methodology upfront\"\n46\t    design_elements: [\"three parallel tracks\", \"metric labels\", \"color coding\"]\n47\t    visual_style: \"Schematic diagram with three evaluation dimensions\"\n48\t  result_figures:\n49\t    - figure_id: \"Figure 3\"\n50\t      viz_type: \"line_plot\"\n51\t      what_compared: \"Accuracy across reasoning depths for NL vs symbolic supervision\"\n52\t      how_gain_highlighted: \"Symbolic degrades more gracefully at higher depths\"\n53\t      design_note: \"Depth-accuracy curves are the strongest evidence\"\n54\t    - figure_id: \"Figure 4\"\n55\t      viz_type: \"heatmap\"\n56\t      what_compared: \"Probing results (CSS, NSD, RFI) across models and training types\"\n57\t      how_gain_highlighted: \"Color intensity shows where SFT helps vs doesn't\"\n58\t      design_note: \"Compact visualization of multi-dimensional probing results\"\n59\t  ablation_figures:\n60\t    - figure_id: \"Figure 5\"\n61\t      viz_type: \"bar_chart\"\n62\t      dimensions_varied: [\"model_family\", \"supervision_type\"]\n63\t      design_note: \"Cross-model consistency check\"\n64\t  figure_narrative_role: \"Fig1(framework) → Fig2(accuracy overview) → Fig3(depth analysis) → Fig4(probing) → Fig5(cross-model)\"\n65\t\n66\ttables:\n67\t  table_count: 5\n68\t  main_result_table:\n69\t    table_id: \"Table 1\"\n70\t    row_axis: \"methods\"\n71\t    col_axis: \"datasets × metrics (accuracy + soundness)\"\n72\t    row_organization: \"by_category\"\n73\t    col_organization: \"grouped_by_dataset\"\n74\t    highlight_strategy: \"bold_best\"\n75\t    statistical_reporting: \"single run\"\n76\t    num_baselines: 6\n77\t    design_note: \"Dual-metric reporting (accuracy and soundness side-by-side)\"\n78\t  ablation_tables:\n79\t    - table_id: \"Table 3\"\n80\t      what_varied: [\"supervision_type\", \"reasoning_depth\"]\n81\t      variation_style: \"full_numbers\"\n82\t      design_note: \"Depth-stratified comparison\"\n83\t  supplementary_tables:\n84\t    in_appendix: true\n85\t    content: \"Full probing results, additional model comparisons\"\n86\t    reason: \"Probing methodology details too extensive for main text\"\n87\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4de54b1c-4a9d-427c-8aa2-dec92c25deea",
+            "isSidechain": true,
+            "promptId": "10e3f7e8-43a8-4366-a983-91c4be072f03",
+            "agentId": "aee60627d9c31287e",
+            "type": "user",
+            "uuid": "ca507919-9fb6-4783-9191-00206cd705c7",
+            "sourceToolAssistantUUID": "4de54b1c-4a9d-427c-8aa2-dec92c25deea",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/distiller_efdee075",
+            "sessionId": "a1bafaf1-2e39-412f-94cc-d7b92935728c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T13:45:50.384Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01J7BSmSjm6GsNnGDkv5ALYD",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/distill_tmp/crest2025.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ca507919-9fb6-4783-9191-00206cd705c7",
+            "isSidechain": true,
+            "agentId": "aee60627d9c31287e",
+            "requestId": "req_011CbHi5YZF2GLVnZx9qkqUM",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1561cdef-6a82-4442-bca2-fa64ac984cc2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/distiller_efdee075",
+            "sessionId": "a1bafaf1-2e39-412f-94cc-d7b92935728c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Diw2zmN8FxX2uiC2LwwXGZ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 777,
+                "cache_read_input_tokens": 17344,
+                "output_tokens": 575,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 777
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 575,
+                    "cache_read_input_tokens": 17344,
+                    "cache_creation_input_tokens": 777,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 777,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T13:45:50.391Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01J7BSmSjm6GsNnGDkv5ALYD",
+              "type": "tool_result",
+              "content": "1\tpaper_key: \"crest2025\"\n2\ttitle: \"Improving LLMs' Reasoning with Consistency-Driven Self-Training (CREST)\"\n3\tvenue: \"NAACL 2025\"\n4\tfull_text_available: true\n5\t\n6\tresearch:\n7\t  baselines: [\"SFT\", \"RFT\", \"STaR\", \"REST-EM\", \"V-STaR\", \"DPO-vanilla\"]\n8\t  metrics:\n9\t    - {name: \"accuracy\", direction: \"higher_better\"}\n10\t  datasets:\n11\t    - {name: \"ReClor\", size: \"~6k\"}\n12\t    - {name: \"ARC-Challenge\", size: \"2590\"}\n13\t    - {name: \"CSQA\", size: \"~12k\"}\n14\t  ablation_dimensions: [\"follow_up_questions\", \"tolerance_parameter_t\", \"DPO_lambda\", \"sample_count_N\"]\n15\t  training_recipe: {optimizer: \"AdamW\", lr: \"5e-6\", hardware: \"4xA100\"}\n16\t  method_family: \"consistency-driven self-training\"\n17\t\n18\tpositioning:\n19\t  core_claim: \"Follow-up question consistency provides richer signal than binary answer correctness for filtering self-training rationales, enabling better SFT+DPO training\"\n20\t  key_results: \"+1.7-1.8% over best baseline on ReClor; consistent gains on ARC-C and CSQA across Llama-3-8B, Gemma-7B, Phi-2\"\n21\t  limitations:\n22\t    - \"Restricted to MCQ format\"\n23\t    - \"All follow-up questions weighted equally\"\n24\t    - \"No teacher-student setting explored\"\n25\t  relation_to_us: \"foundation\"\n26\t\n27\tnarrative:\n28\t  story_type: \"突破局限型\"\n29\t  hook: \"Self-training with LLM-generated rationales is promising but suffers from false positive rationales\"\n30\t  tension: \"Binary correctness filtering passes rationales with right answers but wrong reasoning\"\n31\t  key_insight: \"Section 3.2 — follow-up questions stress-test rationale quality beyond just checking the final answer\"\n32\t  argument_chain: \"self-training promise → false positive problem → follow-up question consistency → filtered SFT + DPO → multi-model validation\"\n33\t  contribution_framing: \"3 contributions: consistency evaluation method, 4-stage training pipeline, empirical validation\"\n34\t  intro_structure: \"4 paragraphs: (1) self-training promise, (2) false positive problem, (3) CREST solution, (4) contributions\"\n35\t  notable_technique: \"Concrete example of a false positive rationale in intro to make the problem viscerally clear\"\n36\t\n37\tfigures:\n38\t  figure_count: 4\n39\t  figure1:\n40\t    type: \"problem_illustration\"\n41\t    description: \"Example showing a rationale that gets the right answer through wrong reasoning, and how follow-up questions expose it\"\n42\t    narrative_role: \"Makes the false positive problem concrete and motivates the solution\"\n43\t    design_elements: [\"correct vs incorrect rationale comparison\", \"follow-up question examples\", \"red/green highlighting\"]\n44\t    visual_style: \"Two-column comparison with text examples\"\n45\t  result_figures:\n46\t    - figure_id: \"Figure 3\"\n47\t      viz_type: \"bar_chart\"\n48\t      what_compared: \"Methods across 3 datasets × 3 models\"\n49\t      how_gain_highlighted: \"CREST consistently highest or tied\"\n50\t      design_note: \"3×3 grid layout for comprehensive comparison\"\n51\t  ablation_figures:\n52\t    - figure_id: \"Figure 4\"\n53\t      viz_type: \"line_plot\"\n54\t      dimensions_varied: [\"tolerance_t\", \"DPO_lambda\", \"sample_N\"]\n55\t      design_note: \"Sensitivity analysis with clear optimal ranges\"\n56\t  figure_narrative_role: \"Fig1(problem example) → Fig2(method pipeline) → Fig3(main results) → Fig4(sensitivity)\"\n57\t\n58\ttables:\n59\t  table_count: 4\n60\t  main_result_table:\n61\t    table_id: \"Table 1\"\n62\t    row_axis: \"methods\"\n63\t    col_axis: \"datasets × models\"\n64\t    row_organization: \"by_category\"\n65\t    col_organization: \"grouped_by_dataset\"\n66\t    highlight_strategy: \"bold_best + underline_second\"\n67\t    statistical_reporting: \"mean across 3 seeds\"\n68\t    num_baselines: 6\n69\t    design_note: \"Separate sections for each model family\"\n70\t  ablation_tables:\n71\t    - table_id: \"Table 2\"\n72\t      what_varied: [\"follow_up_questions\", \"SFT_only_vs_SFT+DPO\"]\n73\t      variation_style: \"full_numbers\"\n74\t      design_note: \"Isolates contribution of each pipeline stage\"\n75\t  supplementary_tables:\n76\t    in_appendix: true\n77\t    content: \"Additional ablations, prompt templates, follow-up question examples\"\n78\t    reason: \"Main text focuses on core comparisons\"\n79\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1561cdef-6a82-4442-bca2-fa64ac984cc2",
+            "isSidechain": true,
+            "promptId": "10e3f7e8-43a8-4366-a983-91c4be072f03",
+            "agentId": "aee60627d9c31287e",
+            "type": "user",
+            "uuid": "4d8c96a1-4ea5-4909-999c-016eb486b6d6",
+            "sourceToolAssistantUUID": "1561cdef-6a82-4442-bca2-fa64ac984cc2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/distiller_efdee075",
+            "sessionId": "a1bafaf1-2e39-412f-94cc-d7b92935728c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T13:46:53.857Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": " Here are the complete contents of all seven YAML files:\n\n## 1. satbench2025.yaml\n\n```yaml\npaper_key: \"satbench2025\"\ntitle: \"SATBench: Benchmarking LLMs' Logical Reasoning via Automated Puzzle Generation from SAT Formulas\"\nvenue: \"EMNLP 2025\"\nfull_text_available: false\n\nresearch:\n  baselines: [\"o4-mini\", \"other frontier LLMs\"]\n  metrics:\n    - {name: \"accuracy\", direction: \"higher_better\"}\n  datasets:\n    - {name: \"SATBench\", size: \"2100 puzzles with adjustable difficulty\"}\n  ablation_dimensions: [\"number of clauses (difficulty)\", \"SAT vs UNSAT problems\"]\n  training_recipe: {info: \"evaluation benchmark, no training; automated puzzle generation from SAT formulas + LLM translation\"}\n  method_family: \"SAT-based reasoning benchmark\"\n\npositioning:\n  core_claim: \"LLMs have systematic failures in search-based logical reasoning: even the strongest model (o4-mini) achieves only 65% on hard UNSAT problems (near 50% random baseline), exhibiting satisfiability bias, context inconsistency, and condition omission\"\n  key_results: \"o4-mini: 65.0% on hard UNSAT (random baseline: 50%); systematic failures in satisfiability bias, context inconsistency, condition omission\"\n  limitations: [\"N/A\"]\n  relation_to_us: \"complementary\"\n\nnarrative: \"N/A\"\nfigures: \"N/A\"\ntables: \"N/A\"\n```\n\n## 2. logicagent2025.yaml\n\n```yaml\npaper_key: \"logicagent2025\"\ntitle: \"From Ambiguity to Verdict: A Semiotic-Grounded Multi-Perspective Agent for LLM Logical Reasoning (LogicAgent)\"\nvenue: \"ACL 2026\"\nfull_text_available: false\n\nresearch:\n  baselines: [\"standard CoT prompting\", \"other reasoning agents\"]\n  metrics:\n    - {name: \"accuracy\", direction: \"higher_better\"}\n  datasets:\n    - {name: \"RepublicQA\", size: \"N/A (college-level, Flesch-Kincaid Grade 11.94)\"}\n    - {name: \"ProntoQA\", size: \"N/A\"}\n    - {name: \"ProofWriter\", size: \"N/A\"}\n    - {name: \"FOLIO\", size: \"N/A\"}\n    - {name: \"ProverQA\", size: \"N/A\"}\n  ablation_dimensions: [\"semiotic square components\", \"automated deduction vs reflective verification\"]\n  training_recipe: {info: \"agent-based prompting framework, no training\"}\n  method_family: \"multi-perspective reasoning agent\"\n\npositioning:\n  core_claim: \"Semiotic-square-guided multi-perspective reasoning jointly addresses logical and semantic complexity, achieving 6.25% improvement on RepublicQA and 7.05% on mainstream logic benchmarks\"\n  key_results: \"+6.25% average on RepublicQA; +7.05% average on ProntoQA, ProofWriter, FOLIO, ProverQA\"\n  limitations: [\"N/A\"]\n  relation_to_us: \"competitor\"\n\nnarrative: \"N/A\"\nfigures: \"N/A\"\ntables: \"N/A\"\n```\n\n## 3. xu2026dylos.yaml\n\n```yaml\npaper_key: \"xu2026dylos\"\ntitle: \"Adaptive LLM-Symbolic Reasoning via Dynamic Logical Solver Composition (DyLoS)\"\nvenue: \"EACL 2026\"\nfull_text_available: true\n\nresearch:\n  baselines: [\"Zero-shot\", \"CoT\", \"Logic-LM\", \"LINC\", \"SymbCoT\", \"Aristotle\"]\n  metrics:\n    - {name: \"accuracy\", direction: \"higher_better\"}\n    - {name: \"routing_accuracy\", direction: \"higher_better\"}\n  datasets:\n    - {name: \"PrOntoQA\", size: \"500\"}\n    - {name: \"ProofWriter\", size: \"600\"}\n    - {name: \"FOLIO\", size: \"204\"}\n    - {name: \"LogicalDeduction\", size: \"300\"}\n    - {name: \"AR-LSAT\", size: \"230\"}\n  ablation_dimensions: [\"solver_type\", \"routing_strategy\", \"model_scale\", \"LoRA_finetuning\"]\n  training_recipe: {optimizer: \"LoRA\", lr: \"N/A\", hardware: \"N/A\"}\n  method_family: \"LLM-symbolic hybrid with dynamic solver routing\"\n\npositioning:\n  core_claim: \"Dynamic composition of multiple symbolic solvers (Pyke/Prover9/Z3/MiniZinc) via LLM-based routing achieves robust logical reasoning across heterogeneous problem types\"\n  key_results: \"92.1% mixed reasoning (GPT-4o), +27% over zero-shot; 7B models: 8-26% baseline → 41-59.6% with LoRA\"\n  limitations:\n    - \"Model scale dependency — small models struggle with formalization\"\n    - \"Formalization bottleneck: 60-80% of small-model errors from formalization\"\n    - \"Limited solver coverage: no probabilistic/temporal/mathematical reasoning\"\n  relation_to_us: \"competitor\"\n\nnarrative:\n  story_type: \"统一框架型\"\n  hook: \"Material vs formal inference dichotomy — LLMs handle material, symbolic solvers handle formal, but no system integrates both dynamically\"\n  tension: \"Existing hybrid methods are locked to a single solver type, failing on problems requiring different logical paradigms\"\n  key_insight: \"Revealed in Section 3 — a router that classifies reasoning type enables dynamic solver dispatch with >98% accuracy\"\n  argument_chain: \"heterogeneous logical tasks → single-solver limitation → classify-then-route → multi-solver composition → validated on mixed benchmarks\"\n  contribution_framing: \"3 contributions each with quantitative evidence in the intro\"\n  intro_structure: \"5 paragraphs: (1) material-formal dichotomy hook, (2) existing hybrid limitations, (3) DyLoS overview, (4) contributions with numbers, (5) paper structure\"\n  notable_technique: \"Every contribution claim includes specific quantitative results; material-formal inference dichotomy used as recurring anchor\"\n\nfigures:\n  figure_count: 5\n  figure1:\n    type: \"method_overview\"\n    description: \"3-stage pipeline: decompose → route → solve, showing 4 solver types\"\n    narrative_role: \"Establishes the system architecture immediately after the problem statement\"\n    design_elements: [\"flow diagram\", \"solver icons\", \"color-coded stages\"]\n    visual_style: \"Left-to-right pipeline with branching at routing stage\"\n  result_figures:\n    - figure_id: \"Figure 3\"\n      viz_type: \"bar_chart\"\n      what_compared: \"Accuracy across datasets with different solvers\"\n      how_gain_highlighted: \"DyLoS bar consistently highest\"\n      design_note: \"Grouped by dataset, color by method\"\n  ablation_figures:\n    - figure_id: \"Figure 4\"\n      viz_type: \"bar_chart\"\n      dimensions_varied: [\"model_scale\", \"with/without_LoRA\"]\n      design_note: \"Shows scaling behavior and LoRA impact\"\n  figure_narrative_role: \"Fig1(architecture) → Fig2(routing) → Fig3(main results) → Fig4(scaling) → Fig5(error analysis)\"\n\ntables:\n  table_count: 4\n  main_result_table:\n    table_id: \"Table 1\"\n    row_axis: \"methods\"\n    col_axis: \"datasets × accuracy\"\n    row_organization: \"by_category\"\n    col_organization: \"grouped_by_dataset\"\n    highlight_strategy: \"bold_best\"\n    statistical_reporting: \"single run\"\n    num_baselines: 6\n    design_note: \"Separates LLM-only vs hybrid methods\"\n  ablation_tables:\n    - table_id: \"Table 3\"\n      what_varied: [\"solver_selection\", \"routing_strategy\"]\n      variation_style: \"full_numbers\"\n      design_note: \"Shows each solver's standalone vs combined performance\"\n  supplementary_tables:\n    in_appendix: true\n    content: \"Prompt templates, additional model results\"\n    reason: \"Space constraints\"\n```\n\n## 4. aristotle2025.yaml\n\n```yaml\npaper_key: \"aristotle2025\"\ntitle: \"Aristotle: Mastering Logical Reasoning with A Logic-Complete Decompose-Search-Resolve Framework\"\nvenue: \"ACL 2025\"\nfull_text_available: true\n\nresearch:\n  baselines: [\"CoT\", \"ToT\", \"CR\", \"SymbCoT\", \"Logic-LM\", \"LINC\"]\n  metrics:\n    - {name: \"accuracy\", direction: \"higher_better\"}\n    - {name: \"one_step_inference_accuracy\", direction: \"higher_better\"}\n    - {name: \"visited_nodes\", direction: \"lower_better\"}\n  datasets:\n    - {name: \"PrOntoQA\", size: \"500\"}\n    - {name: \"ProofWriter\", size: \"600\"}\n    - {name: \"FOLIO\", size: \"204\"}\n    - {name: \"LogiQA\", size: \"651\"}\n  ablation_dimensions: [\"CNF_decomposition\", \"search_strategy\", \"resolution_principle\", \"Prolog_translation\"]\n  training_recipe: {optimizer: \"N/A\", lr: \"N/A\", hardware: \"N/A\"}\n  method_family: \"symbolic logic pipeline (Prolog + CNF + resolution)\"\n\npositioning:\n  core_claim: \"A logic-complete framework integrating Prolog translation, CNF decomposition, and resolution principle into LLM reasoning achieves 99.7% one-step accuracy while reducing search by 52.6%\"\n  key_results: \"+4.5% avg over SymbCoT (GPT-4), +5.4% (GPT-4o), +12.1% (Llama-3.1-405B); 99.7% one-step accuracy vs ToT's 74.0%\"\n  limitations:\n    - \"Requires all premises explicitly stated — fails on implicit knowledge (LogiQA: 31.2% vs CoT's 65.6%)\"\n    - \"Computationally expensive multi-step search\"\n  relation_to_us: \"competitor\"\n\nnarrative:\n  story_type: \"突破局限型\"\n  hook: \"Figure 1 teaser showing accuracy gap — quantifies the problem before explaining the solution\"\n  tension: \"Existing neurosymbolic methods suffer from incomplete logical operations, leading to error accumulation in multi-step proofs\"\n  key_insight: \"Sec 3.2 — replacing LLM self-evaluation with deterministic resolution principle eliminates the weakest link in the reasoning chain\"\n  argument_chain: \"multi-step errors → incomplete symbolic integration → full Prolog pipeline → deterministic search → validated accuracy + efficiency\"\n  contribution_framing: \"3 contributions: framework, logic-completeness proof, empirical validation\"\n  intro_structure: \"6 paragraphs: (1) LLM reasoning importance, (2) existing method failures with Figure 1, (3) root cause analysis, (4) Aristotle overview, (5) contributions, (6) paper structure\"\n  notable_technique: \"Teaser result figure in intro paragraph 2 — immediately quantifies the gap before any method description\"\n\nfigures:\n  figure_count: 8\n  figure1:\n    type: \"teaser_result\"\n    description: \"Bar chart comparing accuracy of existing methods showing performance gap\"\n    narrative_role: \"Quantifies the problem in the intro before solution is described\"\n    design_elements: [\"grouped bars\", \"accuracy numbers\", \"method labels\"]\n    visual_style: \"Clean bar chart with clear performance gap visualization\"\n  result_figures:\n    - figure_id: \"Figure 4\"\n      viz_type: \"scatter\"\n      what_compared: \"Accuracy vs efficiency tradeoff across methods\"\n      how_gain_highlighted: \"Aristotle in upper-left (high accuracy, low nodes)\"\n      design_note: \"Dual-axis: accuracy vs search efficiency\"\n    - figure_id: \"Figure 5\"\n      viz_type: \"line_plot\"\n      what_compared: \"Accuracy across reasoning depths\"\n      how_gain_highlighted: \"Aristotle maintains accuracy at higher depths\"\n      design_note: \"Shows robustness to depth\"\n  ablation_figures:\n    - figure_id: \"Figure 3\"\n      viz_type: \"grouped_bar\"\n      dimensions_varied: [\"CNF\", \"resolution\", \"search_strategy\"]\n      design_note: \"Red gradient coloring for ablation variants\"\n  figure_narrative_role: \"Fig1(teaser gap) → Fig2(method) → Fig3(ablation) → Fig4(efficiency) → Fig5(depth) → Fig6-7(case studies) → Fig8(error analysis)\"\n\ntables:\n  table_count: 4\n  main_result_table:\n    table_id: \"Table 1\"\n    row_axis: \"methods\"\n    col_axis: \"datasets × accuracy\"\n    row_organization: \"by_category\"\n    col_organization: \"grouped_by_dataset\"\n    highlight_strategy: \"bold_best + underline_second\"\n    statistical_reporting: \"single run\"\n    num_baselines: 6\n    design_note: \"Categorizes methods into LLM-only, symbolic-augmented, and Aristotle\"\n  ablation_tables:\n    - table_id: \"Table 2\"\n      what_varied: [\"CNF\", \"resolution\", \"Prolog_translation\", \"search\"]\n      variation_style: \"checkmark_grid\"\n      design_note: \"Systematic component removal showing each module's contribution\"\n  supplementary_tables:\n    in_appendix: true\n    content: \"Extended results, additional models, case studies\"\n    reason: \"Main paper focuses on core 4 datasets\"\n```\n\n## 5. qi2025symbolic_provers.yaml\n\n```yaml\npaper_key: \"qi2025symbolic_provers\"\ntitle: \"Large Language Models Meet Symbolic Provers for Logical Reasoning Evaluation\"\nvenue: \"ICLR 2025\"\nfull_text_available: true\n\nresearch:\n  baselines: [\"GPT-4o\", \"Claude-3.5-Sonnet\", \"Llama3.1-8B/70B\", \"Gemma2-9B/27B\", \"Mistral-7B/Large\", \"Qwen2.5-7B/32B/72B\"]\n  metrics:\n    - {name: \"accuracy\", direction: \"higher_better\"}\n    - {name: \"ID_accuracy\", direction: \"higher_better\"}\n    - {name: \"OOD_accuracy\", direction: \"higher_better\"}\n  datasets:\n    - {name: \"ProverQA\", size: \"1500 instances, 3 difficulty levels\"}\n    - {name: \"ProofWriter\", size: \"for transfer eval\"}\n    - {name: \"FOLIO\", size: \"for transfer eval\"}\n  ablation_dimensions: [\"difficulty_level\", \"CoT_vs_direct\", \"finetuning_data_source\", \"ID_vs_OOD\"]\n  training_recipe: {optimizer: \"SFT\", lr: \"N/A\", hardware: \"N/A\"}\n  method_family: \"LLM + symbolic prover (Prover9) for benchmark generation\"\n\npositioning:\n  core_claim: \"Top-down generation combining LLM diversity with Prover9 rigor creates ProverQA benchmark that reveals even SOTA models barely exceed chance on hard FOL problems\"\n  key_results: \"GPT-4o: 50.0%, Claude-3.5: 56.4% on hard; finetuning Llama3.1-8B on ProverQA: +34.6% ID, +7.5% OOD (vs -2.0% ProofWriter, -11.4% FOLIO)\"\n  limitations:\n    - \"Benchmark limited to FOL reasoning\"\n    - \"Top-down generation may not cover all reasoning patterns\"\n  relation_to_us: \"foundation\"\n\nnarrative:\n  story_type: \"统一框架型\"\n  hook: \"Existing benchmarks lack reliable ground truth labels and controllable difficulty\"\n  tension: \"Bottom-up benchmark construction introduces label noise and uncontrolled complexity\"\n  key_insight: \"Section 3 — top-down generation (goal → backward to premises) ensures logical coherence by construction\"\n  argument_chain: \"benchmark limitations → top-down generation idea → Prover9 guarantees → difficulty control → model evaluation reveals gaps → finetuning transfer validates quality\"\n  contribution_framing: \"3 contributions: generation framework, benchmark, comprehensive evaluation\"\n  intro_structure: \"4 paragraphs: (1) importance of logical reasoning, (2) criteria for good benchmarks, (3) ProverGen framework, (4) contributions\"\n  notable_technique: \"Table 1 checkmark grid as early positioning device — shows no existing benchmark meets all criteria\"\n\nfigures:\n  figure_count: 2\n  figure1:\n    type: \"method_overview\"\n    description: \"ProverGen pipeline: top-down generation with Prover9\"\n    narrative_role: \"Establishes the generation framework\"\n    design_elements: [\"pipeline flow\", \"Prover9 integration point\"]\n    visual_style: \"Schematic flow diagram\"\n  result_figures:\n    - figure_id: \"Figure 2\"\n      viz_type: \"bar_chart\"\n      what_compared: \"Model accuracy across difficulty levels\"\n      how_gain_highlighted: \"Performance drop at higher difficulty\"\n      design_note: \"Grouped by difficulty, showing model capability gap\"\n  ablation_figures: []\n  figure_narrative_role: \"Fig1(method) → Fig2(results) — minimal figures, table-heavy paper\"\n\ntables:\n  table_count: 6\n  main_result_table:\n    table_id: \"Table 2\"\n    row_axis: \"methods\"\n    col_axis: \"difficulty levels × accuracy\"\n    row_organization: \"by_category\"\n    col_organization: \"grouped_by_difficulty\"\n    highlight_strategy: \"bold_best\"\n    statistical_reporting: \"single run\"\n    num_baselines: 10\n    design_note: \"Comprehensive model comparison across 3 difficulty levels\"\n  ablation_tables:\n    - table_id: \"Table 3\"\n      what_varied: [\"finetuning_data_source\", \"ID_vs_OOD\"]\n      variation_style: \"full_numbers\"\n      design_note: \"Transfer learning comparison showing ProverQA's superiority\"\n  supplementary_tables:\n    in_appendix: true\n    content: \"Additional model results, generation statistics\"\n    reason: \"Main paper focuses on key comparisons\"\n```\n\n## 6. dissecting2025.yaml\n\n```yaml\npaper_key: \"dissecting2025\"\ntitle: \"Dissecting Logical Reasoning in LLMs: A Fine-Grained Evaluation\"\nvenue: \"EMNLP Findings 2025\"\nfull_text_available: true\n\nresearch:\n  baselines: [\"LLaMA-3.1-8B\", \"Gemma-2-9B\", \"Mistral-v0.3-7B\", \"CoT\", \"SFT-NL\", \"SFT-Symbolic\"]\n  metrics:\n    - {name: \"accuracy\", direction: \"higher_better\"}\n    - {name: \"atomicity\", direction: \"higher_better\"}\n    - {name: \"CSS\", direction: \"higher_better\"}\n    - {name: \"NSD\", direction: \"higher_better\"}\n    - {name: \"RFI\", direction: \"higher_better\"}\n  datasets:\n    - {name: \"FLD\", size: \"multi-depth\"}\n    - {name: \"FOLIO\", size: \"204\"}\n    - {name: \"ProntoQA\", size: \"500\"}\n  ablation_dimensions: [\"supervision_type_NL_vs_symbolic\", \"reasoning_depth\", \"model_family\"]\n  training_recipe: {optimizer: \"AdamW\", lr: \"1e-6\", hardware: \"4xA100, ~2h per model\"}\n  method_family: \"evaluation framework (accuracy + soundness + probing)\"\n\npositioning:\n  core_claim: \"Three-dimensional evaluation (accuracy + stepwise soundness + representation probing) reveals NL supervision generalizes better but symbolic supervision produces more structurally sound reasoning chains\"\n  key_results: \"SFT-NL: 67.5% on FLD (from 31.7%); symbolic has higher atomicity (24.7% vs 13.0%); probing shows SFT improves generation but not internalized understanding\"\n  limitations:\n    - \"Limited to propositional/FOL reasoning\"\n    - \"Probing only captures linear representations\"\n  relation_to_us: \"foundation\"\n\nnarrative:\n  story_type: \"化繁为简型\"\n  hook: \"LLMs show improved reasoning but we lack tools to understand what exactly improves\"\n  tension: \"Single-metric evaluation (accuracy) masks critical differences in reasoning quality\"\n  key_insight: \"Section 4 — decomposing evaluation into accuracy/soundness/probing reveals a fundamental NL-vs-symbolic tradeoff\"\n  argument_chain: \"opaque evaluation → 3-dimensional framework → NL vs symbolic comparison → surprising probing results → implications for training design\"\n  contribution_framing: \"3 contributions: evaluation framework, NL-vs-symbolic findings, probing insights\"\n  intro_structure: \"5 paragraphs: (1) LLM reasoning progress, (2) evaluation limitations, (3) proposed framework, (4) key findings preview, (5) paper structure\"\n  notable_technique: \"Previewing surprising findings in intro to create anticipation for the full analysis\"\n\nfigures:\n  figure_count: 5\n  figure1:\n    type: \"method_overview\"\n    description: \"Three-dimensional evaluation framework: accuracy, soundness, probing\"\n    narrative_role: \"Establishes the evaluation methodology upfront\"\n    design_elements: [\"three parallel tracks\", \"metric labels\", \"color coding\"]\n    visual_style: \"Schematic diagram with three evaluation dimensions\"\n  result_figures:\n    - figure_id: \"Figure 3\"\n      viz_type: \"line_plot\"\n      what_compared: \"Accuracy across reasoning depths for NL vs symbolic supervision\"\n      how_gain_highlighted: \"Symbolic degrades more gracefully at higher depths\"\n      design_note: \"Depth-accuracy curves are the strongest evidence\"\n    - figure_id: \"Figure 4\"\n      viz_type: \"heatmap\"\n      what_compared: \"Probing results (CSS, NSD, RFI) across models and training types\"\n      how_gain_highlighted: \"Color intensity shows where SFT helps vs doesn't\"\n      design_note: \"Compact visualization of multi-dimensional probing results\"\n  ablation_figures:\n    - figure_id: \"Figure 5\"\n      viz_type: \"bar_chart\"\n      dimensions_varied: [\"model_family\", \"supervision_type\"]\n      design_note: \"Cross-model consistency check\"\n  figure_narrative_role: \"Fig1(framework) → Fig2(accuracy overview) → Fig3(depth analysis) → Fig4(probing) → Fig5(cross-model)\"\n\ntables:\n  table_count: 5\n  main_result_table:\n    table_id: \"Table 1\"\n    row_axis: \"methods\"\n    col_axis: \"datasets × metrics (accuracy + soundness)\"\n    row_organization: \"by_category\"\n    col_organization: \"grouped_by_dataset\"\n    highlight_strategy: \"bold_best\"\n    statistical_reporting: \"single run\"\n    num_baselines: 6\n    design_note: \"Dual-metric reporting (accuracy and soundness side-by-side)\"\n  ablation_tables:\n    - table_id: \"Table 3\"\n      what_varied: [\"supervision_type\", \"reasoning_depth\"]\n      variation_style: \"full_numbers\"\n      design_note: \"Depth-stratified comparison\"\n  supplementary_tables:\n    in_appendix: true\n    content: \"Full probing results, additional model comparisons\"\n    reason: \"Probing methodology details too extensive for main text\"\n```\n\n## 7. crest2025.yaml\n\n```yaml\npaper_key: \"crest2025\"\ntitle: \"Improving LLMs' Reasoning with Consistency-Driven Self-Training (CREST)\"\nvenue: \"NAACL 2025\"\nfull_text_available: true\n\nresearch:\n  baselines: [\"SFT\", \"RFT\", \"STaR\", \"REST-EM\", \"V-STaR\", \"DPO-vanilla\"]\n  metrics:\n    - {name: \"accuracy\", direction: \"higher_better\"}\n  datasets:\n    - {name: \"ReClor\", size: \"~6k\"}\n    - {name: \"ARC-Challenge\", size: \"2590\"}\n    - {name: \"CSQA\", size: \"~12k\"}\n  ablation_dimensions: [\"follow_up_questions\", \"tolerance_parameter_t\", \"DPO_lambda\", \"sample_count_N\"]\n  training_recipe: {optimizer: \"AdamW\", lr: \"5e-6\", hardware: \"4xA100\"}\n  method_family: \"consistency-driven self-training\"\n\npositioning:\n  core_claim: \"Follow-up question consistency provides richer signal than binary answer correctness for filtering self-training rationales, enabling better SFT+DPO training\"\n  key_results: \"+1.7-1.8% over best baseline on ReClor; consistent gains on ARC-C and CSQA across Llama-3-8B, Gemma-7B, Phi-2\"\n  limitations:\n    - \"Restricted to MCQ format\"\n    - \"All follow-up questions weighted equally\"\n    - \"No teacher-student setting explored\"\n  relation_to_us: \"foundation\"\n\nnarrative:\n  story_type: \"突破局限型\"\n  hook: \"Self-training with LLM-generated rationales is promising but suffers from false positive rationales\"\n  tension: \"Binary correctness filtering passes rationales with right answers but wrong reasoning\"\n  key_insight: \"Section 3.2 — follow-up questions stress-test rationale quality beyond just checking the final answer\"\n  argument_chain: \"self-training promise → false positive problem → follow-up question consistency → filtered SFT + DPO → multi-model validation\"\n  contribution_framing: \"3 contributions: consistency evaluation method, 4-stage training pipeline, empirical validation\"\n  intro_structure: \"4 paragraphs: (1) self-training promise, (2) false positive problem, (3) CREST solution, (4) contributions\"\n  notable_technique: \"Concrete example of a false positive rationale in intro to make the problem viscerally clear\"\n\nfigures:\n  figure_count: 4\n  figure1:\n    type: \"problem_illustration\"\n    description: \"Example showing a rationale that gets the right answer through wrong reasoning, and how follow-up questions expose it\"\n    narrative_role: \"Makes the false positive problem concrete and motivates the solution\"\n    design_elements: [\"correct vs incorrect rationale comparison\", \"follow-up question examples\", \"red/green highlighting\"]\n    visual_style: \"Two-column comparison with text examples\"\n  result_figures:\n    - figure_id: \"Figure 3\"\n      viz_type: \"bar_chart\"\n      what_compared: \"Methods across 3 datasets × 3 models\"\n      how_gain_highlighted: \"CREST consistently highest or tied\"\n      design_note: \"3×3 grid layout for comprehensive comparison\"\n  ablation_figures:\n    - figure_id: \"Figure 4\"\n      viz_type: \"line_plot\"\n      dimensions_varied: [\"tolerance_t\", \"DPO_lambda\", \"sample_N\"]\n      design_note: \"Sensitivity analysis with clear optimal ranges\"\n  figure_narrative_role: \"Fig1(problem example) → Fig2(method pipeline) → Fig3(main results) → Fig4(sensitivity)\"\n\ntables:\n  table_count: 4\n  main_result_table:\n    table_id: \"Table 1\"\n    row_axis: \"methods\"\n    col_axis: \"datasets × models\"\n    row_organization: \"by_category\"\n    col_organization: \"grouped_by_dataset\"\n    highlight_strategy: \"bold_best + underline_second\"\n    statistical_reporting: \"mean across 3 seeds\"\n    num_baselines: 6\n    design_note: \"Separate sections for each model family\"\n  ablation_tables:\n    - table_id: \"Table 2\"\n      what_varied: [\"follow_up_questions\", \"SFT_only_vs_SFT+DPO\"]\n      variation_style: \"full_numbers\"\n      design_note: \"Isolates contribution of each pipeline stage\"\n  supplementary_tables:\n    in_appendix: true\n    content: \"Additional ablations, prompt templates, follow-up question examples\"\n    reason: \"Main text focuses on core comparisons\"\n```\n\nAll seven YAML files have been read and reproduced in their complete, unmodified form above."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4d8c96a1-4ea5-4909-999c-016eb486b6d6",
+            "isSidechain": true,
+            "agentId": "aee60627d9c31287e",
+            "requestId": "req_011CbHi5qicXEVeeDqK9cWFj",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "cd28bd41-334c-4370-af4d-14abe23efd0c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/distiller_efdee075",
+            "sessionId": "a1bafaf1-2e39-412f-94cc-d7b92935728c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QoiatrTzvstfCkjcU12BtU",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 8,
+                "cache_creation_input_tokens": 9638,
+                "cache_read_input_tokens": 18121,
+                "output_tokens": 7254,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 9638
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 8,
+                    "output_tokens": 7254,
+                    "cache_read_input_tokens": 18121,
+                    "cache_creation_input_tokens": 9638,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 9638,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-read-the-following-yaml-files-in-full-and-report-their-complete-contents-back-copy-4.md"
+}

@@ -1,0 +1,1830 @@
+{
+  "schema_version": "1.0",
+  "id": "7378acddf5716155f8e2",
+  "project": "symb_invariant_consensus--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260516T051642 tier=best 生成一篇完整的模拟论文。 ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码",
+  "task_key": "f02ff93e-9b14-4df7-9a49-415f61d1a358",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/f02ff93e-9b14-4df7-9a49-415f61d1a358.jsonl",
+    "occurrence": 1,
+    "bytes": 176083,
+    "sha256": "a2c396faad7410f2a63025fd827b05bf4412830c70abe1368efd7d63d0c3f9cb"
+  },
+  "statistics": {
+    "messages": 38,
+    "user_turns": 1,
+    "tool_calls": 9,
+    "roles": {
+      "record": 12,
+      "user": 1,
+      "assistant": 7,
+      "tool_call": 9,
+      "tool_result": 9
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T05:30:18.956Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-16T05:30:18.956Z",
+                "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358",
+                "content": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260516T051642 tier=best 生成一篇完整的模拟论文。\n\n## 关键规则\n1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best/paper.tex`\n2. 用 **Bash 工具** 编译：`cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best && pdflatex -interaction=nonstopmode paper.tex && pdflatex -interaction=nonstopmode paper.tex`\n3. 所有文件只写入 `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best/`，禁止写入其他目录\n4. 直接写完整 LaTeX 全文（\\documentclass ... \\end{document}），不要输出 YAML/JSON/Markdown\n5. 不走 5 步流水线，不 spawn Worker，不调 Director API——一次性写完\n6. 你必须在论文中为 experiment_data.json 中的**每个**实验设计对应的 section/table\n7. narrative_guidance 是你的写作方向指引，不要在论文正文中引用或复述此指引\n\n## 输入\n- 实验数据（JSON）：`/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best/experiment_data.json`（先 Read 此文件）\n- Venue：默认\n- Narrative guidance：原始framing完全成立。三条claim均有统计支撑：(1) SICA在200+问题上显著优于SC， tiebreaking机制通过K消融得到因果验证；(2) operating regime通过14B/7B/QwQ三点 清晰划分，C0阈值20%有实证支撑；(3) C0作为zero-cost predictor在3个模型上 展现强相关。论文以\"When Does Symbolic Consensus Help?\"为主线， tiebreaking是mechanism section，operating regime是main contribution， C0是practical takeaway。EMNLP主会完全够格。\n\n- paper_framing.md（完整版）：`/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best/paper_framing.md`（先 Read 此文件）\n\n## 质量目标\n\"够审\"级——让审稿人能评判 idea 和实验设计，不是投稿质量。包含 Abstract、Introduction、Method、Experiments、Conclusion。每个定量 claim 基于 experiment_data.json 中的数据，不得编造数字。"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T05:30:18.962Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-16T05:30:18.962Z",
+                "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T05:30:18.989Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260516T051642 tier=best 生成一篇完整的模拟论文。\n\n## 关键规则\n1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best/paper.tex`\n2. 用 **Bash 工具** 编译：`cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best && pdflatex -interaction=nonstopmode paper.tex && pdflatex -interaction=nonstopmode paper.tex`\n3. 所有文件只写入 `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best/`，禁止写入其他目录\n4. 直接写完整 LaTeX 全文（\\documentclass ... \\end{document}），不要输出 YAML/JSON/Markdown\n5. 不走 5 步流水线，不 spawn Worker，不调 Director API——一次性写完\n6. 你必须在论文中为 experiment_data.json 中的**每个**实验设计对应的 section/table\n7. narrative_guidance 是你的写作方向指引，不要在论文正文中引用或复述此指引\n\n## 输入\n- 实验数据（JSON）：`/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best/experiment_data.json`（先 Read 此文件）\n- Venue：默认\n- Narrative guidance：原始framing完全成立。三条claim均有统计支撑：(1) SICA在200+问题上显著优于SC， tiebreaking机制通过K消融得到因果验证；(2) operating regime通过14B/7B/QwQ三点 清晰划分，C0阈值20%有实证支撑；(3) C0作为zero-cost predictor在3个模型上 展现强相关。论文以\"When Does Symbolic Consensus Help?\"为主线， tiebreaking是mechanism section，operating regime是main contribution， C0是practical takeaway。EMNLP主会完全够格。\n\n- paper_framing.md（完整版）：`/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best/paper_framing.md`（先 Read 此文件）\n\n## 质量目标\n\"够审\"级——让审稿人能评判 idea 和实验设计，不是投稿质量。包含 Abstract、Introduction、Method、Experiments、Conclusion。每个定量 claim 基于 experiment_data.json 中的数据，不得编造数字。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "e1f6b07a-1aeb-471c-ae86-06da4a663c31",
+            "type": "user",
+            "uuid": "990e4ede-1e59-464e-8158-f2d4ad76d266",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T05:30:18.988Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "990e4ede-1e59-464e-8158-f2d4ad76d266",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "71aea4a5-09a0-41fe-947f-47f81c5240fc",
+                "timestamp": "2026-05-16T05:30:18.988Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+                "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T05:30:18.988Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "71aea4a5-09a0-41fe-947f-47f81c5240fc",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "b47a2b7a-21d4-450c-b674-b3f29b3ee983",
+                "timestamp": "2026-05-16T05:30:18.988Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+                "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Generate symbolic consensus research paper",
+                "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T05:30:21.512Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll start by reading the input files to understand the experiment data and paper framing."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b47a2b7a-21d4-450c-b674-b3f29b3ee983",
+            "isSidechain": false,
+            "requestId": "req_011Cb5hSiYvsJryaLsTcpkWn",
+            "type": "assistant",
+            "uuid": "bdfee0f2-35ff-4861-abc4-39c2a4197f4e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Jk8e7W1oM9ktPNCi1cJVZF",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11221,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 212,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11221,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 212,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 11221,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11221
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T05:30:22.517Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QScGdp6MSXtLJhZDcLvkue",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best/experiment_data.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bdfee0f2-35ff-4861-abc4-39c2a4197f4e",
+            "isSidechain": false,
+            "requestId": "req_011Cb5hSiYvsJryaLsTcpkWn",
+            "type": "assistant",
+            "uuid": "611cb849-3d09-43bb-be65-56bbbb31eead",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Jk8e7W1oM9ktPNCi1cJVZF",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11221,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 212,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11221,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 212,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 11221,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11221
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T05:30:22.815Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DbdvwiVBSY878ewVJZyB57",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best/paper_framing.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "611cb849-3d09-43bb-be65-56bbbb31eead",
+            "isSidechain": false,
+            "requestId": "req_011Cb5hSiYvsJryaLsTcpkWn",
+            "type": "assistant",
+            "uuid": "56ffd665-9c32-4b97-8d14-7e1fb9b8699f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Jk8e7W1oM9ktPNCi1cJVZF",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11221,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 212,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11221,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 212,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 11221,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11221
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T05:30:22.830Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QScGdp6MSXtLJhZDcLvkue",
+              "type": "tool_result",
+              "content": "1\t[\n2\t  {\n3\t    \"name\": \"sica_expanded_14b\",\n4\t    \"description\": \"在Qwen2.5-14B-Instruct上将评估集从60题扩展到204题（FOLIO 102题 + ProofWriter D5 102题）， K=12, T=0.7。与D012的60题数据合并做统计检验。\\n\",\n5\t    \"results\": {\n6\t      \"n_total\": 204,\n7\t      \"n_folio\": 102,\n8\t      \"n_proofwriter\": 102,\n9\t      \"K\": 12,\n10\t      \"sica_accuracy_combined\": 0.745,\n11\t      \"sc_accuracy_combined\": 0.706,\n12\t      \"sica_sc_gap_pp_combined\": 3.9,\n13\t      \"folio_sica\": 0.794,\n14\t      \"folio_sc\": 0.725,\n15\t      \"folio_gap_pp\": 6.9,\n16\t      \"proofwriter_sica\": 0.696,\n17\t      \"proofwriter_sc\": 0.686,\n18\t      \"proofwriter_gap_pp\": 1.0,\n19\t      \"c0_combined\": 0.51,\n20\t      \"c0_folio\": 0.54,\n21\t      \"c0_proofwriter\": 0.48,\n22\t      \"bootstrap_p_combined\": 0.023,\n23\t      \"bootstrap_p_folio\": 0.018,\n24\t      \"bootstrap_p_proofwriter\": 0.34,\n25\t      \"tiebreak_questions\": 17,\n26\t      \"tiebreak_sica_wins\": 13,\n27\t      \"tiebreak_sica_win_rate\": 0.765,\n28\t      \"c1_extraction_rate\": 0.98,\n29\t      \"c2_contradiction_problems\": 112,\n30\t      \"maxsat_exclusion_rate\": 0.031,\n31\t      \"wall_time_min\": 210\n32\t    },\n33\t    \"tables\": [\n34\t      {\n35\t        \"name\": \"Table 1: SICA vs SC Accuracy (Expanded, N=204)\",\n36\t        \"columns\": [\n37\t          \"Dataset\",\n38\t          \"N\",\n39\t          \"SC Acc\",\n40\t          \"SICA Acc\",\n41\t          \"Gap (pp)\",\n42\t          \"p-value\",\n43\t          \"C0\"\n44\t        ],\n45\t        \"rows\": [\n46\t          [\n47\t            \"FOLIO\",\n48\t            102,\n49\t            0.725,\n50\t            0.794,\n51\t            \"+6.9\",\n52\t            0.018,\n53\t            0.54\n54\t          ],\n55\t          [\n56\t            \"ProofWriter-D5\",\n57\t            102,\n58\t            0.686,\n59\t            0.696,\n60\t            \"+1.0\",\n61\t            0.34,\n62\t            0.48\n63\t          ],\n64\t          [\n65\t            \"Combined\",\n66\t            204,\n67\t            0.706,\n68\t            0.745,\n69\t            \"+3.9\",\n70\t            0.023,\n71\t            0.51\n72\t          ]\n73\t        ]\n74\t      },\n75\t      {\n76\t        \"name\": \"Table 2: Tiebreak Analysis\",\n77\t        \"columns\": [\n78\t          \"Metric\",\n79\t          \"Value\"\n80\t        ],\n81\t        \"rows\": [\n82\t          [\n83\t            \"Total questions with ties (K=12)\",\n84\t            17\n85\t          ],\n86\t          [\n87\t            \"SICA wins on ties\",\n88\t            13\n89\t          ],\n90\t          [\n91\t            \"SC wins on ties\",\n92\t            4\n93\t          ],\n94\t          [\n95\t            \"SICA tiebreak win rate\",\n96\t            \"76.5%\"\n97\t          ],\n98\t          [\n99\t            \"SICA gain from non-tie questions\",\n100\t            \"0.0pp\"\n101\t          ]\n102\t        ]\n103\t      }\n104\t    ],\n105\t    \"figures\": [],\n106\t    \"analysis\": \"这是论文的基础实验。204题的p=0.023确立了统计显著性，彻底解决了60题p=0.317的脆弱性问题。 关键发现：SICA的gain 100%来自tiebreak问题——在非tie问题上SICA与SC答案完全一致。 这不是弱点而是机制清晰性的证据：SICA是principled tiebreaker，不是magic ensemble。 ProofWriter的+1.0pp虽小但为正，消除了\\\"单域有效\\\"的攻击面。论文中可以说 \\\"SICA在两个逻辑推理benchmark上均展现正向gain，在FOLIO上达到统计显著\\\"。\\n\\n\\n60题D012中FOLIO的+6.7pp来自4/30题的tiebreak翻转。在102题上，tiebreak事件按比例 出现约8-9次（C0≈54%意味着约55题有多候选，其中K=12时约15%形成精确tie）， SICA在其中约76%的case胜出（MAX-SAT权重正确选择了约束更一致的答案）。 6.9pp的gap略高于60题的6.7pp，因为更大样本包含了更多FOLIO中语义复杂的多步推理题， 这些题上14B的trace多样性更高（更多tie机会）。ProofWriter从0pp上升到1.0pp： D012的30题PW结果为0pp并非PW上SICA无效，而是30题中碰巧没有tiebreak翻转成功。 扩展到102题后，约4-5个PW tiebreak中有2-3个SICA胜出，产生了小但正的gap。 PW的gap小于FOLIO因为PW的推理链结构更模板化（depth-5推理步骤较固定）， 导致即使有多候选，约束质量的区分度不如FOLIO的自然语言推理场景。 合并204题的bootstrap p=0.023达到p<0.05，因为FOLIO的强信号主导了combined结果。 PW单独的p=0.34未达显著——这是预期的，论文中呈现为\\\"正向趋势但需更大样本确认\\\"， 重点放在combined和FOLIO的显著性上。\\n\"\n107\t  },\n108\t  {\n109\t    \"name\": \"sica_k_ablation_14b\",\n110\t    \"description\": \"在D012的60题上测试K=6,8,12,16,20五个值（加上已有K=12作为baseline）， 分析tiebreak频率与SICA gain的关系。重点：偶数K vs 奇数K（如果加入K=9,11对比）。\\n\",\n111\t    \"results\": {\n112\t      \"k_values_tested\": [\n113\t        6,\n114\t        8,\n115\t        12,\n116\t        16,\n117\t        20\n118\t      ],\n119\t      \"results_by_k\": {\n120\t        \"k6\": {\n121\t          \"sica_acc\": 0.717,\n122\t          \"sc_acc\": 0.683,\n123\t          \"gap_pp\": 3.4,\n124\t          \"tie_count\": 6,\n125\t          \"tie_sica_wins\": 5,\n126\t          \"c0\": 0.5\n127\t        },\n128\t        \"k8\": {\n129\t          \"sica_acc\": 0.733,\n130\t          \"sc_acc\": 0.7,\n131\t          \"gap_pp\": 3.3,\n132\t          \"tie_count\": 5,\n133\t          \"tie_sica_wins\": 4,\n134\t          \"c0\": 0.52\n135\t        },\n136\t        \"k12\": {\n137\t          \"sica_acc\": 0.733,\n138\t          \"sc_acc\": 0.7,\n139\t          \"gap_pp\": 3.3,\n140\t          \"tie_count\": 4,\n141\t          \"tie_sica_wins\": 3,\n142\t          \"c0\": 0.53\n143\t        },\n144\t        \"k16\": {\n145\t          \"sica_acc\": 0.75,\n146\t          \"sc_acc\": 0.7,\n147\t          \"gap_pp\": 5.0,\n148\t          \"tie_count\": 7,\n149\t          \"tie_sica_wins\": 6,\n150\t          \"c0\": 0.55\n151\t        },\n152\t        \"k20\": {\n153\t          \"sica_acc\": 0.75,\n154\t          \"sc_acc\": 0.717,\n155\t          \"gap_pp\": 3.3,\n156\t          \"tie_count\": 5,\n157\t          \"tie_sica_wins\": 4,\n158\t          \"c0\": 0.55\n159\t        }\n160\t      },\n161\t      \"correlation_tiecount_vs_gap_r\": 0.82,\n162\t      \"correlation_k_vs_c0_r\": 0.88,\n163\t      \"odd_k_test_k9\": {\n164\t        \"gap_pp\": 0.0,\n165\t        \"tie_count\": 0,\n166\t        \"note\": \"奇数K下majority vote无精确tie，SICA≡SC\"\n167\t      },\n168\t      \"wall_time_hours\": 4.5\n169\t    },\n170\t    \"tables\": [\n171\t      {\n172\t        \"name\": \"Table 3: K Ablation Results (N=60, 14B-Instruct)\",\n173\t        \"columns\": [\n174\t          \"K\",\n175\t          \"SC Acc\",\n176\t          \"SICA Acc\",\n177\t          \"Gap (pp)\",\n178\t          \"Ties\",\n179\t          \"SICA Tie Wins\",\n180\t          \"C0\"\n181\t        ],\n182\t        \"rows\": [\n183\t          [\n184\t            6,\n185\t            0.683,\n186\t            0.717,\n187\t            \"+3.4\",\n188\t            6,\n189\t            5,\n190\t            0.5\n191\t          ],\n192\t          [\n193\t            8,\n194\t            0.7,\n195\t            0.733,\n196\t            \"+3.3\",\n197\t            5,\n198\t            4,\n199\t            0.52\n200\t          ],\n201\t          [\n202\t            \"9 (odd)\",\n203\t            0.7,\n204\t            0.7,\n205\t            \"0.0\",\n206\t            0,\n207\t            \"N/A\",\n208\t            0.52\n209\t          ],\n210\t          [\n211\t            12,\n212\t            0.7,\n213\t            0.733,\n214\t            \"+3.3\",\n215\t            4,\n216\t            3,\n217\t            0.53\n218\t          ],\n219\t          [\n220\t            16,\n221\t            0.7,\n222\t            0.75,\n223\t            \"+5.0\",\n224\t            7,\n225\t            6,\n226\t            0.55\n227\t          ],\n228\t          [\n229\t            20,\n230\t            0.717,\n231\t            0.75,\n232\t            \"+3.3\",\n233\t            5,\n234\t            4,\n235\t            0.55\n236\t          ]\n237\t        ]\n238\t      }\n239\t    ],\n240\t    \"figures\": [],\n241\t    \"analysis\": \"K消融提供了SICA机制的因果证据链：(1) SICA gain完全来自tiebreak（非tie问题gap=0）； (2) tiebreak频率由K的奇偶性和多候选率共同决定；(3) SICA在tie上的win rate>75% 说明MAX-SAT权重确实在做有意义的约束聚合而非随机选择。 论文中这构成Mechanism Section的核心：从\\\"SICA works\\\"到\\\"we know WHY it works\\\"。 reviewer如果问\\\"isn't this just a better coin flip\\\"，K=9的零gain数据是决定性反驳—— 如果SICA有tie以外的gain通道，奇数K应该也有非零gap。\\n\\n\\ntiebreak频率机制的因果检验。偶数K产生精确tie的概率取决于K和候选分布： K=6时，2候选各3票的概率较高（C(6,3)×0.5^6≈31%对于50/50 split），产生约6个tie； K=8时概率略降（C(8,4)×0.5^8≈27%），但更多trace采样使C0略升，tie仍有5个； K=16时，虽然单题精确tie概率降低（C(16,8)×0.5^16≈20%），但更多trace带来 更多多候选问题（C0升至0.55），且tie时SICA有更多约束可用（16条trace的MAX-SAT 比6条更robust），win rate从K=6的83%升至K=16的86%。K=20时SC自身精度也上升 （更多vote趋向正确答案），gap回落。关键机制证据：K=9（奇数）时tie=0，gap=0， 因为majority vote在奇数K下总有唯一赢家，SICA无介入空间。这是最干净的因果证据—— 同样的数据、同样的模型，仅K的奇偶性就决定了SICA是否有gain。 r=0.82的tiecount-gap相关说明SICA gain几乎完全由tiebreak频率驱动。\\n\"\n242\t  },\n243\t  {\n244\t    \"name\": \"tiebreak_baseline_analysis\",\n245\t    \"description\": \"在所有可用数据上比较三种tiebreak策略：SICA (MAX-SAT weighted)、SC-random（随机打破tie）、 SC-deterministic（按字母序/固定规则打破tie）。CPU-only重分析。\\n\",\n246\t    \"results\": {\n247\t      \"n_total_60q\": 60,\n248\t      \"n_tie_questions_60q\": 4,\n249\t      \"sica_acc_on_ties\": 0.75,\n250\t      \"sc_random_acc_on_ties\": 0.375,\n251\t      \"sc_deterministic_acc_on_ties\": 0.25,\n252\t      \"sica_overall\": 0.733,\n253\t      \"sc_random_overall\": 0.717,\n254\t      \"sc_deterministic_overall\": 0.7,\n255\t      \"sica_vs_random_gap_pp\": 1.6,\n256\t      \"sica_vs_deterministic_gap_pp\": 3.3,\n257\t      \"n_total_204q\": 204,\n258\t      \"n_tie_questions_204q\": 17,\n259\t      \"sica_acc_on_ties_204q\": 0.765,\n260\t      \"sc_random_acc_on_ties_204q\": 0.412,\n261\t      \"sc_random_acc_on_ties_204q_std\": 0.08,\n262\t      \"sc_deterministic_acc_on_ties_204q\": 0.294,\n263\t      \"sica_vs_random_gap_pp_204q\": 2.9,\n264\t      \"sica_vs_deterministic_gap_pp_204q\": 3.9,\n265\t      \"random_baseline_bootstrap_p\": 0.041,\n266\t      \"monte_carlo_runs_for_random\": 1000\n267\t    },\n268\t    \"tables\": [\n269\t      {\n270\t        \"name\": \"Table 4: Tiebreak Strategy Comparison (60q / 204q)\",\n271\t        \"columns\": [\n272\t          \"Strategy\",\n273\t          \"Tie Acc (60q)\",\n274\t          \"Overall (60q)\",\n275\t          \"Tie Acc (204q)\",\n276\t          \"Overall (204q)\"\n277\t        ],\n278\t        \"rows\": [\n279\t          [\n280\t            \"SC-deterministic\",\n281\t            \"25.0%\",\n282\t            \"70.0%\",\n283\t            \"29.4%\",\n284\t            \"70.6%\"\n285\t          ],\n286\t          [\n287\t            \"SC-random (E[·])\",\n288\t            \"37.5%\",\n289\t            \"71.7%\",\n290\t            \"41.2±8%\",\n291\t            \"72.0%\"\n292\t          ],\n293\t          [\n294\t            \"SICA (MAX-SAT)\",\n295\t            \"75.0%\",\n296\t            \"73.3%\",\n297\t            \"76.5%\",\n298\t            \"74.5%\"\n299\t          ]\n300\t        ]\n301\t      }\n302\t    ],\n303\t    \"figures\": [],\n304\t    \"analysis\": \"直接回应\\\"random tiebreak closes the gap\\\"的reviewer concern。数据显示： (1) SICA vs random仍有显著gap（+2.9pp on 204q, p=0.041），说明MAX-SAT权重 确实提取了有用信号；(2) 即使承认部分gain来自\\\"确定性tiebreak恰好差\\\"， SICA vs random的+2.9pp仍然是实质性改进；(3) 这进一步支持mechanism story—— 约束权重区分了推理质量高的trace和低的trace。\\n\\n\\nSC-deterministic在60题数据上是现有baseline（alphabetical tiebreak），已知tie上只有1/4正确。 SC-random的期望准确率等于tie选项中正确答案的比例：4个tie问题中，如果每题是2候选 50/50 split，random的期望准确率=0.5×(正确答案在候选中的概率)。但实际上部分tie 的候选答案不是均匀分布（有些tie是3路tie），使得random的期望值约37.5%。 SICA在tie上75%（3/4）显著高于random的37.5%，说明MAX-SAT权重不只是比random好， 而是捕捉了约束结构中的真实信号。在204题上，17个tie中SICA赢13个（76.5%）， random的蒙特卡洛模拟（1000次）显示均值41.2%±8%，SICA显著优于random（p=0.041）。 gap从+1.6pp（vs random）到+3.9pp（vs deterministic），说明SICA gain的约55% 来自\\\"比random好\\\"（MAX-SAT的真实贡献），45%来自\\\"random比deterministic好\\\" （deterministic的选择恰好偏向错误答案）。论文需要报告vs random的gap作为 SICA overhead的实际回报。\\n\"\n305\t  },\n306\t  {\n307\t    \"name\": \"sica_7b_scaling\",\n308\t    \"description\": \"在Qwen2.5-7B-Instruct上运行SICA，使用exp-001相同的问题集（或至少60题subset）， K=12, T=0.7。验证：弱模型→更高C0→更大SICA gain。\\n\",\n309\t    \"results\": {\n310\t      \"model\": \"Qwen2.5-7B-Instruct\",\n311\t      \"n_total\": 60,\n312\t      \"K\": 12,\n313\t      \"sica_accuracy\": 0.617,\n314\t      \"sc_accuracy\": 0.55,\n315\t      \"sica_sc_gap_pp\": 6.7,\n316\t      \"c0_multi_candidate_rate\": 0.68,\n317\t      \"c1_extraction_rate\": 0.93,\n318\t      \"c2_contradiction_problems\": 38,\n319\t      \"folio_sica\": 0.633,\n320\t      \"folio_sc\": 0.567,\n321\t      \"folio_gap_pp\": 6.6,\n322\t      \"proofwriter_sica\": 0.6,\n323\t      \"proofwriter_sc\": 0.533,\n324\t      \"proofwriter_gap_pp\": 6.7,\n325\t      \"tiebreak_questions\": 8,\n326\t      \"tiebreak_sica_wins\": 6,\n327\t      \"bootstrap_p\": 0.068,\n328\t      \"maxsat_exclusion_rate\": 0.052,\n329\t      \"wall_time_min\": 35\n330\t    },\n331\t    \"tables\": [\n332\t      {\n333\t        \"name\": \"Table 5: Model Scaling — SICA Effectiveness vs Model Size\",\n334\t        \"columns\": [\n335\t          \"Model\",\n336\t          \"Params\",\n337\t          \"SC Acc\",\n338\t          \"SICA Acc\",\n339\t          \"Gap (pp)\",\n340\t          \"C0\",\n341\t          \"Type\"\n342\t        ],\n343\t        \"rows\": [\n344\t          [\n345\t            \"Qwen2.5-7B-Instruct\",\n346\t            \"7B\",\n347\t            0.55,\n348\t            0.617,\n349\t            \"+6.7\",\n350\t            0.68,\n351\t            \"Instruction\"\n352\t          ],\n353\t          [\n354\t            \"Qwen2.5-14B-Instruct\",\n355\t            \"14B\",\n356\t            0.7,\n357\t            0.733,\n358\t            \"+3.3\",\n359\t            0.53,\n360\t            \"Instruction\"\n361\t          ],\n362\t          [\n363\t            \"QwQ-32B\",\n364\t            \"32B\",\n365\t            0.733,\n366\t            0.733,\n367\t            \"0.0\",\n368\t            0.036,\n369\t            \"Reasoning\"\n370\t          ]\n371\t        ]\n372\t      }\n373\t    ],\n374\t    \"figures\": [],\n375\t    \"analysis\": \"7B实验是operating regime claim的关键验证。三点数据（7B/14B/QwQ）在C0-gap空间 形成近完美线性关系，建立了C0作为predictor的实证基础。更重要的是，7B的高gap 证明了SICA对\\\"部署中最常见的模型\\\"（中小规模instruction models）最有价值—— 这是实际意义的论证。论文可以说：\\\"SICA's benefit scales inversely with model capability, making it most valuable for the cost-effective models practitioners actually deploy.\\\"\\n\\n\\n7B模型比14B弱→两个效应叠加产生更大SICA gain： (1) 更高的C0（0.68 vs 14B的0.53）：7B的推理能力较弱，对同一问题产生更多样的答案 （K=12条trace中约8条产生多候选），这意味着更多tiebreak机会。 (2) SC baseline更低（55% vs 14B的70%）：弱模型的majority vote更容易出错， 给SICA更大的改进空间。 (3) tiebreak win rate保持在75%（6/8）：MAX-SAT的约束聚合能力不依赖模型强度， 因为它是在约束层面做推理而非在答案层面。即使7B的约束质量略低 （c1_extraction_rate=0.93 vs 14B的1.0），MAX-SAT仍能从noise中提取signal。 6.7pp的gap大于14B的3.3pp，验证了C0-as-predictor的因果方向： C0更高→更多tie→更多SICA介入→更大gain。注意基线准确率从14B的70%降到55%， 这是预期的——7B在逻辑推理上天然更弱。但SICA把7B的62%拉到接近14B SC的70%， 这是一个有实际意义的结果（\\\"SICA让便宜模型接近贵模型的SC性能\\\"）。 bootstrap p=0.068在60题上略高于0.05，但在204题扩展后预计可达显著。\\n\"\n376\t  },\n377\t  {\n378\t    \"name\": \"qwq_32b_operating_regime\",\n379\t    \"description\": \"QwQ-32B负面结果格式化。数据已存在（来自MVP阶段的AIME/MATH/ProofWriter/FOLIO运行）。\\n\",\n380\t    \"results\": {\n381\t      \"status\": \"DONE — 数据已完成，无需新实验\",\n382\t      \"c0_qwq_aime\": 0.0,\n383\t      \"c0_qwq_math\": 0.0,\n384\t      \"c0_qwq_folio\": 0.036,\n385\t      \"c0_qwq_proofwriter\": 0.0,\n386\t      \"sica_sc_gap_all_tasks\": 0.0,\n387\t      \"key_finding\": \"QwQ-32B在所有任务上C0<5%，SICA≡SC。reasoning model的chain-of-thought 过程消除了trace间的答案多样性，使得K条trace几乎总是产生相同答案。\\n\"\n388\t    },\n389\t    \"tables\": [],\n390\t    \"figures\": [],\n391\t    \"analysis\": \"不需要新实验。重新格式化现有数据，在论文中作为Section 4.2 \\\"When Symbolic Consensus Degenerates\\\"的核心证据。叙事关键：这是insight而非failure。\\n\\n\\n已完成实验。QwQ-32B作为reasoning model，其extended thinking过程（数千token的 推理链）在采样时起到了\\\"内部self-consistency\\\"的作用——模型在生成最终答案前 已经内部验证了多次，导致不同trace收敛到相同答案。C0≈0意味着没有tiebreak机会， SICA退化为SC。这不是SICA的失败，而是operating regime边界的经验证据。\\n\"\n392\t  },\n393\t  {\n394\t    \"name\": \"c0_diagnostic_validation\",\n395\t    \"description\": \"汇总exp-001/002/004/005所有模型和K值的数据，绘制C0 vs SICA-SC gap的系统性分析。 验证C0作为zero-cost predictor的claim。CPU-only。\\n\",\n396\t    \"results\": {\n397\t      \"data_points\": 18,\n398\t      \"data_sources\": [\n399\t        \"7B: K=12, 1 point\",\n400\t        \"14B: K=6,8,9,12,16,20, 6 points\",\n401\t        \"QwQ: 4 tasks, 4 points\",\n402\t        \"14B expanded (204q): K=12, 1 point\",\n403\t        \"各K值下per-dataset拆分: ~6 additional points\"\n404\t      ],\n405\t      \"pearson_r_c0_vs_gap\": 0.91,\n406\t      \"spearman_rho_c0_vs_gap\": 0.88,\n407\t      \"c0_threshold_20pct_accuracy\": 1.0,\n408\t      \"c0_threshold_20pct_meaning\": \"C0>20%的所有配置均有正向SICA gain；C0<20%的所有配置gap≤0.5pp\\n\",\n409\t      \"linear_fit_slope\": 0.11,\n410\t      \"linear_fit_intercept\": -1.8,\n411\t      \"linear_fit_r2\": 0.83,\n412\t      \"practical_rule\": \"C0>20% → deploy SICA; C0<5% → skip (overhead not justified)\"\n413\t    },\n414\t    \"tables\": [\n415\t      {\n416\t        \"name\": \"Table 6: C0 as Predictor — All Configurations\",\n417\t        \"columns\": [\n418\t          \"Model\",\n419\t          \"K\",\n420\t          \"Dataset\",\n421\t          \"C0\",\n422\t          \"SICA-SC Gap (pp)\",\n423\t          \"Predicted Gap (pp)\"\n424\t        ],\n425\t        \"rows\": [\n426\t          [\n427\t            \"7B\",\n428\t            12,\n429\t            \"Combined\",\n430\t            0.68,\n431\t            6.7,\n432\t            5.7\n433\t          ],\n434\t          [\n435\t            \"14B\",\n436\t            6,\n437\t            \"Combined\",\n438\t            0.5,\n439\t            3.4,\n440\t            3.7\n441\t          ],\n442\t          [\n443\t            \"14B\",\n444\t            12,\n445\t            \"Combined\",\n446\t            0.53,\n447\t            3.3,\n448\t            4.0\n449\t          ],\n450\t          [\n451\t            \"14B\",\n452\t            16,\n453\t            \"Combined\",\n454\t            0.55,\n455\t            5.0,\n456\t            4.3\n457\t          ],\n458\t          [\n459\t            \"14B\",\n460\t            12,\n461\t            \"Expanded-204\",\n462\t            0.51,\n463\t            3.9,\n464\t            3.8\n465\t          ],\n466\t          [\n467\t            \"QwQ\",\n468\t            12,\n469\t            \"FOLIO\",\n470\t            0.036,\n471\t            0.0,\n472\t            -1.4\n473\t          ],\n474\t          [\n475\t            \"QwQ\",\n476\t            12,\n477\t            \"AIME\",\n478\t            0.0,\n479\t            0.0,\n480\t            -1.8\n481\t          ]\n482\t        ]\n483\t      }\n484\t    ],\n485\t    \"figures\": [],\n486\t    \"analysis\": \"C0验证是论文的practical takeaway——让从业者在不运行完整SICA pipeline的情况下 判断是否值得部署。r=0.91和阈值20%的完美分类给出了一个clean且actionable的规则。 论文的Algorithm 2框可以是一个两步决策流程：(1) 运行SC，计算C0； (2) if C0>20%: run SICA; else: use SC result directly。 这将SICA从\\\"总是运行的overhead\\\"变成\\\"按需部署的工具\\\"，直接回应overhead concern。\\n\\n\\nC0与SICA gap的高相关（r=0.91）来自一个简单的因果链：C0↑ → 更多多候选问题 → 更多potential ties → 更多SICA介入机会 → 更大gain。这是near-tautological的关系， 但其实用价值在于：C0可以通过单次SC投票在零额外成本下计算（不需要运行约束提取 和MAX-SAT），因此它是一个真正的zero-cost predictor。18个数据点覆盖了3个模型、 6个K值、2个数据集，提供了足够的多样性来排除过拟合。 20%阈值的选择是empirical：在C0=20%处，期望的tie问题数量约为n×0.2×P(tie|multi-candidate)， 在K=12时约为n×0.2×0.15≈3%的问题有tie。如果这3%的tiebreak win rate是75%， 总gain约为0.03×0.75×(1/n)，对于n=60这约1.5pp——勉强可检测。 低于20%则tie太少，gain不可测。\\n\"\n487\t  },\n488\t  {\n489\t    \"name\": \"sica_72b_awq\",\n490\t    \"description\": \"Qwen2.5-72B-Instruct AWQ 4-bit量化，60题，K=12。高基线非推理模型的scaling点。 P2优先级，camera-ready时间允许则加入。\\n\",\n491\t    \"results\": {\n492\t      \"model\": \"Qwen2.5-72B-Instruct-AWQ-4bit\",\n493\t      \"n_total\": 60,\n494\t      \"K\": 12,\n495\t      \"sica_accuracy\": 0.8,\n496\t      \"sc_accuracy\": 0.783,\n497\t      \"sica_sc_gap_pp\": 1.7,\n498\t      \"c0_multi_candidate_rate\": 0.32,\n499\t      \"c1_extraction_rate\": 0.99,\n500\t      \"folio_sica\": 0.833,\n501\t      \"folio_sc\": 0.8,\n502\t      \"folio_gap_pp\": 3.3,\n503\t      \"proofwriter_sica\": 0.767,\n504\t      \"proofwriter_sc\": 0.767,\n505\t      \"proofwriter_gap_pp\": 0.0,\n506\t      \"tiebreak_questions\": 2,\n507\t      \"tiebreak_sica_wins\": 2,\n508\t      \"bootstrap_p\": 0.28,\n509\t      \"wall_time_min\": 120\n510\t    },\n511\t    \"tables\": [\n512\t      {\n513\t        \"name\": \"Table 7 (camera-ready): Extended Scaling Analysis\",\n514\t        \"columns\": [\n515\t          \"Model\",\n516\t          \"Params\",\n517\t          \"Quantization\",\n518\t          \"SC\",\n519\t          \"SICA\",\n520\t          \"Gap\",\n521\t          \"C0\"\n522\t        ],\n523\t        \"rows\": [\n524\t          [\n525\t            \"7B-Instruct\",\n526\t            \"7B\",\n527\t            \"FP16\",\n528\t            0.55,\n529\t            0.617,\n530\t            \"+6.7\",\n531\t            0.68\n532\t          ],\n533\t          [\n534\t            \"14B-Instruct\",\n535\t            \"14B\",\n536\t            \"FP16\",\n537\t            0.7,\n538\t            0.733,\n539\t            \"+3.3\",\n540\t            0.53\n541\t          ],\n542\t          [\n543\t            \"72B-Instruct\",\n544\t            \"72B\",\n545\t            \"AWQ-4bit\",\n546\t            0.783,\n547\t            0.8,\n548\t            \"+1.7\",\n549\t            0.32\n550\t          ],\n551\t          [\n552\t            \"QwQ-32B\",\n553\t            \"32B\",\n554\t            \"FP16\",\n555\t            0.733,\n556\t            0.733,\n557\t            \"0.0\",\n558\t            0.036\n559\t          ]\n560\t        ]\n561\t      }\n562\t    ],\n563\t    \"figures\": [],\n564\t    \"analysis\": \"72B数据补完了scaling story：从7B（最大gain）到14B（中等gain）到72B（小gain） 到QwQ（零gain），SICA effectiveness随模型能力单调递减。但关键是这条曲线的 驱动因素不是模型大小本身，而是C0——72B虽然大但不是reasoning model，所以仍有 正向gain。这区分了\\\"模型能力\\\"和\\\"推理范式\\\"的效应，支持Claim 2（operating regime 由模型类型决定，非大小）。\\n\\n\\n72B instruction model的基线准确率高（SC≈78%），介于14B（70%）和QwQ（73%但reasoning model） 之间。高基线意味着更少的错误答案→更少的答案多样性→更低的C0（0.32 vs 14B的0.53）。 C0=0.32仍>20%阈值，所以SICA有gain，但gain小于14B（1.7pp vs 3.3pp）， 完美符合C0-gap线性关系的预测。PW上可能回到0pp（2个tie不够看到PW gain）。 这个数据点填充了Figure 5a中7B和14B之间（以及14B和QwQ之间）的空白， 使C0-gap关系更convincing。但60题的p=0.28不显著，所以这是supporting evidence 而非standalone claim——这就是为什么它是P2。\\n\"\n565\t  },\n566\t  {\n567\t    \"name\": \"constraint_quality_case_studies\",\n568\t    \"description\": \"对5-10个代表性问题做定性分析：约束是否语义有意义？被排除的约束是否对应推理错误？\\n\",\n569\t    \"results\": {\n570\t      \"n_case_studies\": 8,\n571\t      \"cases_selected\": [\n572\t        {\n573\t          \"type\": \"SICA wins tie (FOLIO)\",\n574\t          \"count\": 3\n575\t        },\n576\t        {\n577\t          \"type\": \"SICA loses tie (FOLIO)\",\n578\t          \"count\": 1\n579\t        },\n580\t        {\n581\t          \"type\": \"No tie, SICA=SC (FOLIO)\",\n582\t          \"count\": 2\n583\t        },\n584\t        {\n585\t          \"type\": \"ProofWriter high-contradiction\",\n586\t          \"count\": 2\n587\t        }\n588\t      ],\n589\t      \"qualitative_findings\": {\n590\t        \"constraint_semantic_validity\": \"6/8 cases show constraints that faithfully represent key logical relationships in the problem\",\n591\t        \"excluded_constraint_analysis\": \"In 4/5 cases with exclusions, excluded constraints correspond to identifiable reasoning errors (wrong negation, scope confusion, missed premise)\",\n592\t        \"failure_case_pattern\": \"SICA失败的1个tie case中，错误答案的trace恰好产生了更多internally-consistent但factually-wrong的约束（自洽但错误的推理链）\",\n593\t        \"constraint_redundancy\": \"约40%的约束是语义重复（同一逻辑关系的不同FOL表达），MAX-SAT的去重+权重机制处理了这种冗余\"\n594\t      }\n595\t    },\n596\t    \"tables\": [],\n597\t    \"figures\": [],\n598\t    \"analysis\": \"定性分析补充了定量结果的mechanistic story。论文中放2-3个代表性case study （可在appendix放完整8个），直观展示SICA在tie上胜出的原因（正确答案的trace 产生了更多可满足的约束），以及SICA偶尔失败的原因（错误推理也可以是internally consistent的）。后者是honest的局限性讨论。\\n\\n\\n定性分析的预期基于SICA pipeline的设计：LLM生成的FOL约束是reasoning trace的 形式化表示，因此高质量的trace应产生语义有效的约束。约束提取率c1=1.0（14B数据） 说明LLM在FOLIO类型的自然语言推理上能可靠地生成FOL。被排除的约束（exclusion rate≈3%） 理论上对应MAX-SAT判定为与多数约束矛盾的项——在推理任务中，这些通常是 错误推理步骤的形式化。定性验证这一点为SICA的\\\"约束提取→MAX-SAT聚合\\\"pipeline 提供了interpretability论证，回应\\\"MAX-SAT是不是在做有意义的事情\\\"的隐含质疑。\\n\"\n599\t  },\n600\t  {\n601\t    \"name\": \"overhead_analysis\",\n602\t    \"description\": \"Wall-time分解：每个问题的生成时间、约束提取时间、MAX-SAT求解时间。 回应\\\"overhead是否值得\\\"的concern。\\n\",\n603\t    \"results\": {\n604\t      \"n_problems_analyzed\": 60,\n605\t      \"avg_breakdown_per_problem_s\": {\n606\t        \"trace_generation\": 42.0,\n607\t        \"constraint_extraction\": 12.5,\n608\t        \"maxsat_solving\": 0.3,\n609\t        \"total_sica\": 54.8,\n610\t        \"total_sc\": 42.0\n611\t      },\n612\t      \"overhead_ratio\": 1.3,\n613\t      \"overhead_breakdown_pct\": {\n614\t        \"generation\": 76.6,\n615\t        \"extraction\": 22.8,\n616\t        \"solving\": 0.6\n617\t      },\n618\t      \"extraction_is_parallelizable\": true,\n619\t      \"extraction_parallel_overhead_s\": 3.2,\n620\t      \"parallel_overhead_ratio\": 1.08,\n621\t      \"maxsat_median_time_ms\": 12,\n622\t      \"maxsat_max_time_ms\": 340,\n623\t      \"maxsat_scales_with\": \"n_constraints (linear in practice, theoretical worst-case NP)\"\n624\t    },\n625\t    \"tables\": [\n626\t      {\n627\t        \"name\": \"Table 8: Computational Overhead Analysis\",\n628\t        \"columns\": [\n629\t          \"Component\",\n630\t          \"Time/Problem (s)\",\n631\t          \"% of Total\",\n632\t          \"Parallelizable\"\n633\t        ],\n634\t        \"rows\": [\n635\t          [\n636\t            \"Trace Generation (K=12)\",\n637\t            42.0,\n638\t            \"76.6%\",\n639\t            \"Yes (standard)\"\n640\t          ],\n641\t          [\n642\t            \"Constraint Extraction\",\n643\t            12.5,\n644\t            \"22.8%\",\n645\t            \"Yes (per-trace)\"\n646\t          ],\n647\t          [\n648\t            \"MAX-SAT Solving\",\n649\t            0.3,\n650\t            \"0.6%\",\n651\t            \"N/A (fast)\"\n652\t          ],\n653\t          [\n654\t            \"Total SICA\",\n655\t            54.8,\n656\t            \"100%\",\n657\t            \"-\"\n658\t          ],\n659\t          [\n660\t            \"Total SC (baseline)\",\n661\t            42.0,\n662\t            \"-\",\n663\t            \"-\"\n664\t          ],\n665\t          [\n666\t            \"Sequential Overhead\",\n667\t            \"+12.8s (+30%)\",\n668\t            \"-\",\n669\t            \"-\"\n670\t          ],\n671\t          [\n672\t            \"Parallel Overhead\",\n673\t            \"+3.2s (+8%)\",\n674\t            \"-\",\n675\t            \"-\"\n676\t          ]\n677\t        ]\n678\t      }\n679\t    ],\n680\t    \"figures\": [],\n681\t    \"analysis\": \"Overhead分析直接回应reviewer concern。关键message： (1) MAX-SAT本身几乎零成本（<1%）——overhead完全来自约束提取的LLM调用； (2) 约束提取可并行化，实际部署中overhead<10%； (3) 对比+6.9pp的FOLIO gain，8%的额外时间是高性价比的。 论文中可以framing为：\\\"The symbolic reasoning component (MAX-SAT) adds negligible overhead; the cost is in constraint extraction, which is embarrassingly parallel.\\\"\\n\\nSICA相比SC的额外开销来自两步：约束提取（需要额外LLM调用将每条trace转换为FOL） 和MAX-SAT求解。从D012数据看，60题×12 traces = 720次约束提取调用，总时间约750s， 平均12.5s/问题。但这些调用是独立的，可以完全并行化——如果用12个并行worker， per-problem overhead降到约3s。MAX-SAT求解（Z3 partial MAX-SAT）在约束数量<100时 通常在毫秒级完成。因此sequential overhead是30%（54.8s vs 42.0s）， 但parallel overhead只有8%（45.2s vs 42.0s）。相比SC的30%（sequential）或8%（parallel） 额外成本，SICA在FOLIO上带来+6.9pp的准确率提升——这是高性价比的。 论文可以argue：\\\"SICA adds <10% wall-time overhead when extraction is parallelized, while providing statistically significant accuracy gains.\\\"\\n\"\n682\t  }\n683\t]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "611cb849-3d09-43bb-be65-56bbbb31eead",
+            "isSidechain": false,
+            "promptId": "e1f6b07a-1aeb-471c-ae86-06da4a663c31",
+            "type": "user",
+            "uuid": "bd398186-bb8e-4dec-b69b-3eeaab696d40",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best/experiment_data.json",
+                "content": "[\n  {\n    \"name\": \"sica_expanded_14b\",\n    \"description\": \"在Qwen2.5-14B-Instruct上将评估集从60题扩展到204题（FOLIO 102题 + ProofWriter D5 102题）， K=12, T=0.7。与D012的60题数据合并做统计检验。\\n\",\n    \"results\": {\n      \"n_total\": 204,\n      \"n_folio\": 102,\n      \"n_proofwriter\": 102,\n      \"K\": 12,\n      \"sica_accuracy_combined\": 0.745,\n      \"sc_accuracy_combined\": 0.706,\n      \"sica_sc_gap_pp_combined\": 3.9,\n      \"folio_sica\": 0.794,\n      \"folio_sc\": 0.725,\n      \"folio_gap_pp\": 6.9,\n      \"proofwriter_sica\": 0.696,\n      \"proofwriter_sc\": 0.686,\n      \"proofwriter_gap_pp\": 1.0,\n      \"c0_combined\": 0.51,\n      \"c0_folio\": 0.54,\n      \"c0_proofwriter\": 0.48,\n      \"bootstrap_p_combined\": 0.023,\n      \"bootstrap_p_folio\": 0.018,\n      \"bootstrap_p_proofwriter\": 0.34,\n      \"tiebreak_questions\": 17,\n      \"tiebreak_sica_wins\": 13,\n      \"tiebreak_sica_win_rate\": 0.765,\n      \"c1_extraction_rate\": 0.98,\n      \"c2_contradiction_problems\": 112,\n      \"maxsat_exclusion_rate\": 0.031,\n      \"wall_time_min\": 210\n    },\n    \"tables\": [\n      {\n        \"name\": \"Table 1: SICA vs SC Accuracy (Expanded, N=204)\",\n        \"columns\": [\n          \"Dataset\",\n          \"N\",\n          \"SC Acc\",\n          \"SICA Acc\",\n          \"Gap (pp)\",\n          \"p-value\",\n          \"C0\"\n        ],\n        \"rows\": [\n          [\n            \"FOLIO\",\n            102,\n            0.725,\n            0.794,\n            \"+6.9\",\n            0.018,\n            0.54\n          ],\n          [\n            \"ProofWriter-D5\",\n            102,\n            0.686,\n            0.696,\n            \"+1.0\",\n            0.34,\n            0.48\n          ],\n          [\n            \"Combined\",\n            204,\n            0.706,\n            0.745,\n            \"+3.9\",\n            0.023,\n            0.51\n          ]\n        ]\n      },\n      {\n        \"name\": \"Table 2: Tiebreak Analysis\",\n        \"columns\": [\n          \"Metric\",\n          \"Value\"\n        ],\n        \"rows\": [\n          [\n            \"Total questions with ties (K=12)\",\n            17\n          ],\n          [\n            \"SICA wins on ties\",\n            13\n          ],\n          [\n            \"SC wins on ties\",\n            4\n          ],\n          [\n            \"SICA tiebreak win rate\",\n            \"76.5%\"\n          ],\n          [\n            \"SICA gain from non-tie questions\",\n            \"0.0pp\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"这是论文的基础实验。204题的p=0.023确立了统计显著性，彻底解决了60题p=0.317的脆弱性问题。 关键发现：SICA的gain 100%来自tiebreak问题——在非tie问题上SICA与SC答案完全一致。 这不是弱点而是机制清晰性的证据：SICA是principled tiebreaker，不是magic ensemble。 ProofWriter的+1.0pp虽小但为正，消除了\\\"单域有效\\\"的攻击面。论文中可以说 \\\"SICA在两个逻辑推理benchmark上均展现正向gain，在FOLIO上达到统计显著\\\"。\\n\\n\\n60题D012中FOLIO的+6.7pp来自4/30题的tiebreak翻转。在102题上，tiebreak事件按比例 出现约8-9次（C0≈54%意味着约55题有多候选，其中K=12时约15%形成精确tie）， SICA在其中约76%的case胜出（MAX-SAT权重正确选择了约束更一致的答案）。 6.9pp的gap略高于60题的6.7pp，因为更大样本包含了更多FOLIO中语义复杂的多步推理题， 这些题上14B的trace多样性更高（更多tie机会）。ProofWriter从0pp上升到1.0pp： D012的30题PW结果为0pp并非PW上SICA无效，而是30题中碰巧没有tiebreak翻转成功。 扩展到102题后，约4-5个PW tiebreak中有2-3个SICA胜出，产生了小但正的gap。 PW的gap小于FOLIO因为PW的推理链结构更模板化（depth-5推理步骤较固定）， 导致即使有多候选，约束质量的区分度不如FOLIO的自然语言推理场景。 合并204题的bootstrap p=0.023达到p<0.05，因为FOLIO的强信号主导了combined结果。 PW单独的p=0.34未达显著——这是预期的，论文中呈现为\\\"正向趋势但需更大样本确认\\\"， 重点放在combined和FOLIO的显著性上。\\n\"\n  },\n  {\n    \"name\": \"sica_k_ablation_14b\",\n    \"description\": \"在D012的60题上测试K=6,8,12,16,20五个值（加上已有K=12作为baseline）， 分析tiebreak频率与SICA gain的关系。重点：偶数K vs 奇数K（如果加入K=9,11对比）。\\n\",\n    \"results\": {\n      \"k_values_tested\": [\n        6,\n        8,\n        12,\n        16,\n        20\n      ],\n      \"results_by_k\": {\n        \"k6\": {\n          \"sica_acc\": 0.717,\n          \"sc_acc\": 0.683,\n          \"gap_pp\": 3.4,\n          \"tie_count\": 6,\n          \"tie_sica_wins\": 5,\n          \"c0\": 0.5\n        },\n        \"k8\": {\n          \"sica_acc\": 0.733,\n          \"sc_acc\": 0.7,\n          \"gap_pp\": 3.3,\n          \"tie_count\": 5,\n          \"tie_sica_wins\": 4,\n          \"c0\": 0.52\n        },\n        \"k12\": {\n          \"sica_acc\": 0.733,\n          \"sc_acc\": 0.7,\n          \"gap_pp\": 3.3,\n          \"tie_count\": 4,\n          \"tie_sica_wins\": 3,\n          \"c0\": 0.53\n        },\n        \"k16\": {\n          \"sica_acc\": 0.75,\n          \"sc_acc\": 0.7,\n          \"gap_pp\": 5.0,\n          \"tie_count\": 7,\n          \"tie_sica_wins\": 6,\n          \"c0\": 0.55\n        },\n        \"k20\": {\n          \"sica_acc\": 0.75,\n          \"sc_acc\": 0.717,\n          \"gap_pp\": 3.3,\n          \"tie_count\": 5,\n          \"tie_sica_wins\": 4,\n          \"c0\": 0.55\n        }\n      },\n      \"correlation_tiecount_vs_gap_r\": 0.82,\n      \"correlation_k_vs_c0_r\": 0.88,\n      \"odd_k_test_k9\": {\n        \"gap_pp\": 0.0,\n        \"tie_count\": 0,\n        \"note\": \"奇数K下majority vote无精确tie，SICA≡SC\"\n      },\n      \"wall_time_hours\": 4.5\n    },\n    \"tables\": [\n      {\n        \"name\": \"Table 3: K Ablation Results (N=60, 14B-Instruct)\",\n        \"columns\": [\n          \"K\",\n          \"SC Acc\",\n          \"SICA Acc\",\n          \"Gap (pp)\",\n          \"Ties\",\n          \"SICA Tie Wins\",\n          \"C0\"\n        ],\n        \"rows\": [\n          [\n            6,\n            0.683,\n            0.717,\n            \"+3.4\",\n            6,\n            5,\n            0.5\n          ],\n          [\n            8,\n            0.7,\n            0.733,\n            \"+3.3\",\n            5,\n            4,\n            0.52\n          ],\n          [\n            \"9 (odd)\",\n            0.7,\n            0.7,\n            \"0.0\",\n            0,\n            \"N/A\",\n            0.52\n          ],\n          [\n            12,\n            0.7,\n            0.733,\n            \"+3.3\",\n            4,\n            3,\n            0.53\n          ],\n          [\n            16,\n            0.7,\n            0.75,\n            \"+5.0\",\n            7,\n            6,\n            0.55\n          ],\n          [\n            20,\n            0.717,\n            0.75,\n            \"+3.3\",\n            5,\n            4,\n            0.55\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"K消融提供了SICA机制的因果证据链：(1) SICA gain完全来自tiebreak（非tie问题gap=0）； (2) tiebreak频率由K的奇偶性和多候选率共同决定；(3) SICA在tie上的win rate>75% 说明MAX-SAT权重确实在做有意义的约束聚合而非随机选择。 论文中这构成Mechanism Section的核心：从\\\"SICA works\\\"到\\\"we know WHY it works\\\"。 reviewer如果问\\\"isn't this just a better coin flip\\\"，K=9的零gain数据是决定性反驳—— 如果SICA有tie以外的gain通道，奇数K应该也有非零gap。\\n\\n\\ntiebreak频率机制的因果检验。偶数K产生精确tie的概率取决于K和候选分布： K=6时，2候选各3票的概率较高（C(6,3)×0.5^6≈31%对于50/50 split），产生约6个tie； K=8时概率略降（C(8,4)×0.5^8≈27%），但更多trace采样使C0略升，tie仍有5个； K=16时，虽然单题精确tie概率降低（C(16,8)×0.5^16≈20%），但更多trace带来 更多多候选问题（C0升至0.55），且tie时SICA有更多约束可用（16条trace的MAX-SAT 比6条更robust），win rate从K=6的83%升至K=16的86%。K=20时SC自身精度也上升 （更多vote趋向正确答案），gap回落。关键机制证据：K=9（奇数）时tie=0，gap=0， 因为majority vote在奇数K下总有唯一赢家，SICA无介入空间。这是最干净的因果证据—— 同样的数据、同样的模型，仅K的奇偶性就决定了SICA是否有gain。 r=0.82的tiecount-gap相关说明SICA gain几乎完全由tiebreak频率驱动。\\n\"\n  },\n  {\n    \"name\": \"tiebreak_baseline_analysis\",\n    \"description\": \"在所有可用数据上比较三种tiebreak策略：SICA (MAX-SAT weighted)、SC-random（随机打破tie）、 SC-deterministic（按字母序/固定规则打破tie）。CPU-only重分析。\\n\",\n    \"results\": {\n      \"n_total_60q\": 60,\n      \"n_tie_questions_60q\": 4,\n      \"sica_acc_on_ties\": 0.75,\n      \"sc_random_acc_on_ties\": 0.375,\n      \"sc_deterministic_acc_on_ties\": 0.25,\n      \"sica_overall\": 0.733,\n      \"sc_random_overall\": 0.717,\n      \"sc_deterministic_overall\": 0.7,\n      \"sica_vs_random_gap_pp\": 1.6,\n      \"sica_vs_deterministic_gap_pp\": 3.3,\n      \"n_total_204q\": 204,\n      \"n_tie_questions_204q\": 17,\n      \"sica_acc_on_ties_204q\": 0.765,\n      \"sc_random_acc_on_ties_204q\": 0.412,\n      \"sc_random_acc_on_ties_204q_std\": 0.08,\n      \"sc_deterministic_acc_on_ties_204q\": 0.294,\n      \"sica_vs_random_gap_pp_204q\": 2.9,\n      \"sica_vs_deterministic_gap_pp_204q\": 3.9,\n      \"random_baseline_bootstrap_p\": 0.041,\n      \"monte_carlo_runs_for_random\": 1000\n    },\n    \"tables\": [\n      {\n        \"name\": \"Table 4: Tiebreak Strategy Comparison (60q / 204q)\",\n        \"columns\": [\n          \"Strategy\",\n          \"Tie Acc (60q)\",\n          \"Overall (60q)\",\n          \"Tie Acc (204q)\",\n          \"Overall (204q)\"\n        ],\n        \"rows\": [\n          [\n            \"SC-deterministic\",\n            \"25.0%\",\n            \"70.0%\",\n            \"29.4%\",\n            \"70.6%\"\n          ],\n          [\n            \"SC-random (E[·])\",\n            \"37.5%\",\n            \"71.7%\",\n            \"41.2±8%\",\n            \"72.0%\"\n          ],\n          [\n            \"SICA (MAX-SAT)\",\n            \"75.0%\",\n            \"73.3%\",\n            \"76.5%\",\n            \"74.5%\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"直接回应\\\"random tiebreak closes the gap\\\"的reviewer concern。数据显示： (1) SICA vs random仍有显著gap（+2.9pp on 204q, p=0.041），说明MAX-SAT权重 确实提取了有用信号；(2) 即使承认部分gain来自\\\"确定性tiebreak恰好差\\\"， SICA vs random的+2.9pp仍然是实质性改进；(3) 这进一步支持mechanism story—— 约束权重区分了推理质量高的trace和低的trace。\\n\\n\\nSC-deterministic在60题数据上是现有baseline（alphabetical tiebreak），已知tie上只有1/4正确。 SC-random的期望准确率等于tie选项中正确答案的比例：4个tie问题中，如果每题是2候选 50/50 split，random的期望准确率=0.5×(正确答案在候选中的概率)。但实际上部分tie 的候选答案不是均匀分布（有些tie是3路tie），使得random的期望值约37.5%。 SICA在tie上75%（3/4）显著高于random的37.5%，说明MAX-SAT权重不只是比random好， 而是捕捉了约束结构中的真实信号。在204题上，17个tie中SICA赢13个（76.5%）， random的蒙特卡洛模拟（1000次）显示均值41.2%±8%，SICA显著优于random（p=0.041）。 gap从+1.6pp（vs random）到+3.9pp（vs deterministic），说明SICA gain的约55% 来自\\\"比random好\\\"（MAX-SAT的真实贡献），45%来自\\\"random比deterministic好\\\" （deterministic的选择恰好偏向错误答案）。论文需要报告vs random的gap作为 SICA overhead的实际回报。\\n\"\n  },\n  {\n    \"name\": \"sica_7b_scaling\",\n    \"description\": \"在Qwen2.5-7B-Instruct上运行SICA，使用exp-001相同的问题集（或至少60题subset）， K=12, T=0.7。验证：弱模型→更高C0→更大SICA gain。\\n\",\n    \"results\": {\n      \"model\": \"Qwen2.5-7B-Instruct\",\n      \"n_total\": 60,\n      \"K\": 12,\n      \"sica_accuracy\": 0.617,\n      \"sc_accuracy\": 0.55,\n      \"sica_sc_gap_pp\": 6.7,\n      \"c0_multi_candidate_rate\": 0.68,\n      \"c1_extraction_rate\": 0.93,\n      \"c2_contradiction_problems\": 38,\n      \"folio_sica\": 0.633,\n      \"folio_sc\": 0.567,\n      \"folio_gap_pp\": 6.6,\n      \"proofwriter_sica\": 0.6,\n      \"proofwriter_sc\": 0.533,\n      \"proofwriter_gap_pp\": 6.7,\n      \"tiebreak_questions\": 8,\n      \"tiebreak_sica_wins\": 6,\n      \"bootstrap_p\": 0.068,\n      \"maxsat_exclusion_rate\": 0.052,\n      \"wall_time_min\": 35\n    },\n    \"tables\": [\n      {\n        \"name\": \"Table 5: Model Scaling — SICA Effectiveness vs Model Size\",\n        \"columns\": [\n          \"Model\",\n          \"Params\",\n          \"SC Acc\",\n          \"SICA Acc\",\n          \"Gap (pp)\",\n          \"C0\",\n          \"Type\"\n        ],\n        \"rows\": [\n          [\n            \"Qwen2.5-7B-Instruct\",\n            \"7B\",\n            0.55,\n            0.617,\n            \"+6.7\",\n            0.68,\n            \"Instruction\"\n          ],\n          [\n            \"Qwen2.5-14B-Instruct\",\n            \"14B\",\n            0.7,\n            0.733,\n            \"+3.3\",\n            0.53,\n            \"Instruction\"\n          ],\n          [\n            \"QwQ-32B\",\n            \"32B\",\n            0.733,\n            0.733,\n            \"0.0\",\n            0.036,\n            \"Reasoning\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"7B实验是operating regime claim的关键验证。三点数据（7B/14B/QwQ）在C0-gap空间 形成近完美线性关系，建立了C0作为predictor的实证基础。更重要的是，7B的高gap 证明了SICA对\\\"部署中最常见的模型\\\"（中小规模instruction models）最有价值—— 这是实际意义的论证。论文可以说：\\\"SICA's benefit scales inversely with model capability, making it most valuable for the cost-effective models practitioners actually deploy.\\\"\\n\\n\\n7B模型比14B弱→两个效应叠加产生更大SICA gain： (1) 更高的C0（0.68 vs 14B的0.53）：7B的推理能力较弱，对同一问题产生更多样的答案 （K=12条trace中约8条产生多候选），这意味着更多tiebreak机会。 (2) SC baseline更低（55% vs 14B的70%）：弱模型的majority vote更容易出错， 给SICA更大的改进空间。 (3) tiebreak win rate保持在75%（6/8）：MAX-SAT的约束聚合能力不依赖模型强度， 因为它是在约束层面做推理而非在答案层面。即使7B的约束质量略低 （c1_extraction_rate=0.93 vs 14B的1.0），MAX-SAT仍能从noise中提取signal。 6.7pp的gap大于14B的3.3pp，验证了C0-as-predictor的因果方向： C0更高→更多tie→更多SICA介入→更大gain。注意基线准确率从14B的70%降到55%， 这是预期的——7B在逻辑推理上天然更弱。但SICA把7B的62%拉到接近14B SC的70%， 这是一个有实际意义的结果（\\\"SICA让便宜模型接近贵模型的SC性能\\\"）。 bootstrap p=0.068在60题上略高于0.05，但在204题扩展后预计可达显著。\\n\"\n  },\n  {\n    \"name\": \"qwq_32b_operating_regime\",\n    \"description\": \"QwQ-32B负面结果格式化。数据已存在（来自MVP阶段的AIME/MATH/ProofWriter/FOLIO运行）。\\n\",\n    \"results\": {\n      \"status\": \"DONE — 数据已完成，无需新实验\",\n      \"c0_qwq_aime\": 0.0,\n      \"c0_qwq_math\": 0.0,\n      \"c0_qwq_folio\": 0.036,\n      \"c0_qwq_proofwriter\": 0.0,\n      \"sica_sc_gap_all_tasks\": 0.0,\n      \"key_finding\": \"QwQ-32B在所有任务上C0<5%，SICA≡SC。reasoning model的chain-of-thought 过程消除了trace间的答案多样性，使得K条trace几乎总是产生相同答案。\\n\"\n    },\n    \"tables\": [],\n    \"figures\": [],\n    \"analysis\": \"不需要新实验。重新格式化现有数据，在论文中作为Section 4.2 \\\"When Symbolic Consensus Degenerates\\\"的核心证据。叙事关键：这是insight而非failure。\\n\\n\\n已完成实验。QwQ-32B作为reasoning model，其extended thinking过程（数千token的 推理链）在采样时起到了\\\"内部self-consistency\\\"的作用——模型在生成最终答案前 已经内部验证了多次，导致不同trace收敛到相同答案。C0≈0意味着没有tiebreak机会， SICA退化为SC。这不是SICA的失败，而是operating regime边界的经验证据。\\n\"\n  },\n  {\n    \"name\": \"c0_diagnostic_validation\",\n    \"description\": \"汇总exp-001/002/004/005所有模型和K值的数据，绘制C0 vs SICA-SC gap的系统性分析。 验证C0作为zero-cost predictor的claim。CPU-only。\\n\",\n    \"results\": {\n      \"data_points\": 18,\n      \"data_sources\": [\n        \"7B: K=12, 1 point\",\n        \"14B: K=6,8,9,12,16,20, 6 points\",\n        \"QwQ: 4 tasks, 4 points\",\n        \"14B expanded (204q): K=12, 1 point\",\n        \"各K值下per-dataset拆分: ~6 additional points\"\n      ],\n      \"pearson_r_c0_vs_gap\": 0.91,\n      \"spearman_rho_c0_vs_gap\": 0.88,\n      \"c0_threshold_20pct_accuracy\": 1.0,\n      \"c0_threshold_20pct_meaning\": \"C0>20%的所有配置均有正向SICA gain；C0<20%的所有配置gap≤0.5pp\\n\",\n      \"linear_fit_slope\": 0.11,\n      \"linear_fit_intercept\": -1.8,\n      \"linear_fit_r2\": 0.83,\n      \"practical_rule\": \"C0>20% → deploy SICA; C0<5% → skip (overhead not justified)\"\n    },\n    \"tables\": [\n      {\n        \"name\": \"Table 6: C0 as Predictor — All Configurations\",\n        \"columns\": [\n          \"Model\",\n          \"K\",\n          \"Dataset\",\n          \"C0\",\n          \"SICA-SC Gap (pp)\",\n          \"Predicted Gap (pp)\"\n        ],\n        \"rows\": [\n          [\n            \"7B\",\n            12,\n            \"Combined\",\n            0.68,\n            6.7,\n            5.7\n          ],\n          [\n            \"14B\",\n            6,\n            \"Combined\",\n            0.5,\n            3.4,\n            3.7\n          ],\n          [\n            \"14B\",\n            12,\n            \"Combined\",\n            0.53,\n            3.3,\n            4.0\n          ],\n          [\n            \"14B\",\n            16,\n            \"Combined\",\n            0.55,\n            5.0,\n            4.3\n          ],\n          [\n            \"14B\",\n            12,\n            \"Expanded-204\",\n            0.51,\n            3.9,\n            3.8\n          ],\n          [\n            \"QwQ\",\n            12,\n            \"FOLIO\",\n            0.036,\n            0.0,\n            -1.4\n          ],\n          [\n            \"QwQ\",\n            12,\n            \"AIME\",\n            0.0,\n            0.0,\n            -1.8\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"C0验证是论文的practical takeaway——让从业者在不运行完整SICA pipeline的情况下 判断是否值得部署。r=0.91和阈值20%的完美分类给出了一个clean且actionable的规则。 论文的Algorithm 2框可以是一个两步决策流程：(1) 运行SC，计算C0； (2) if C0>20%: run SICA; else: use SC result directly。 这将SICA从\\\"总是运行的overhead\\\"变成\\\"按需部署的工具\\\"，直接回应overhead concern。\\n\\n\\nC0与SICA gap的高相关（r=0.91）来自一个简单的因果链：C0↑ → 更多多候选问题 → 更多potential ties → 更多SICA介入机会 → 更大gain。这是near-tautological的关系， 但其实用价值在于：C0可以通过单次SC投票在零额外成本下计算（不需要运行约束提取 和MAX-SAT），因此它是一个真正的zero-cost predictor。18个数据点覆盖了3个模型、 6个K值、2个数据集，提供了足够的多样性来排除过拟合。 20%阈值的选择是empirical：在C0=20%处，期望的tie问题数量约为n×0.2×P(tie|multi-candidate)， 在K=12时约为n×0.2×0.15≈3%的问题有tie。如果这3%的tiebreak win rate是75%， 总gain约为0.03×0.75×(1/n)，对于n=60这约1.5pp——勉强可检测。 低于20%则tie太少，gain不可测。\\n\"\n  },\n  {\n    \"name\": \"sica_72b_awq\",\n    \"description\": \"Qwen2.5-72B-Instruct AWQ 4-bit量化，60题，K=12。高基线非推理模型的scaling点。 P2优先级，camera-ready时间允许则加入。\\n\",\n    \"results\": {\n      \"model\": \"Qwen2.5-72B-Instruct-AWQ-4bit\",\n      \"n_total\": 60,\n      \"K\": 12,\n      \"sica_accuracy\": 0.8,\n      \"sc_accuracy\": 0.783,\n      \"sica_sc_gap_pp\": 1.7,\n      \"c0_multi_candidate_rate\": 0.32,\n      \"c1_extraction_rate\": 0.99,\n      \"folio_sica\": 0.833,\n      \"folio_sc\": 0.8,\n      \"folio_gap_pp\": 3.3,\n      \"proofwriter_sica\": 0.767,\n      \"proofwriter_sc\": 0.767,\n      \"proofwriter_gap_pp\": 0.0,\n      \"tiebreak_questions\": 2,\n      \"tiebreak_sica_wins\": 2,\n      \"bootstrap_p\": 0.28,\n      \"wall_time_min\": 120\n    },\n    \"tables\": [\n      {\n        \"name\": \"Table 7 (camera-ready): Extended Scaling Analysis\",\n        \"columns\": [\n          \"Model\",\n          \"Params\",\n          \"Quantization\",\n          \"SC\",\n          \"SICA\",\n          \"Gap\",\n          \"C0\"\n        ],\n        \"rows\": [\n          [\n            \"7B-Instruct\",\n            \"7B\",\n            \"FP16\",\n            0.55,\n            0.617,\n            \"+6.7\",\n            0.68\n          ],\n          [\n            \"14B-Instruct\",\n            \"14B\",\n            \"FP16\",\n            0.7,\n            0.733,\n            \"+3.3\",\n            0.53\n          ],\n          [\n            \"72B-Instruct\",\n            \"72B\",\n            \"AWQ-4bit\",\n            0.783,\n            0.8,\n            \"+1.7\",\n            0.32\n          ],\n          [\n            \"QwQ-32B\",\n            \"32B\",\n            \"FP16\",\n            0.733,\n            0.733,\n            \"0.0\",\n            0.036\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"72B数据补完了scaling story：从7B（最大gain）到14B（中等gain）到72B（小gain） 到QwQ（零gain），SICA effectiveness随模型能力单调递减。但关键是这条曲线的 驱动因素不是模型大小本身，而是C0——72B虽然大但不是reasoning model，所以仍有 正向gain。这区分了\\\"模型能力\\\"和\\\"推理范式\\\"的效应，支持Claim 2（operating regime 由模型类型决定，非大小）。\\n\\n\\n72B instruction model的基线准确率高（SC≈78%），介于14B（70%）和QwQ（73%但reasoning model） 之间。高基线意味着更少的错误答案→更少的答案多样性→更低的C0（0.32 vs 14B的0.53）。 C0=0.32仍>20%阈值，所以SICA有gain，但gain小于14B（1.7pp vs 3.3pp）， 完美符合C0-gap线性关系的预测。PW上可能回到0pp（2个tie不够看到PW gain）。 这个数据点填充了Figure 5a中7B和14B之间（以及14B和QwQ之间）的空白， 使C0-gap关系更convincing。但60题的p=0.28不显著，所以这是supporting evidence 而非standalone claim——这就是为什么它是P2。\\n\"\n  },\n  {\n    \"name\": \"constraint_quality_case_studies\",\n    \"description\": \"对5-10个代表性问题做定性分析：约束是否语义有意义？被排除的约束是否对应推理错误？\\n\",\n    \"results\": {\n      \"n_case_studies\": 8,\n      \"cases_selected\": [\n        {\n          \"type\": \"SICA wins tie (FOLIO)\",\n          \"count\": 3\n        },\n        {\n          \"type\": \"SICA loses tie (FOLIO)\",\n          \"count\": 1\n        },\n        {\n          \"type\": \"No tie, SICA=SC (FOLIO)\",\n          \"count\": 2\n        },\n        {\n          \"type\": \"ProofWriter high-contradiction\",\n          \"count\": 2\n        }\n      ],\n      \"qualitative_findings\": {\n        \"constraint_semantic_validity\": \"6/8 cases show constraints that faithfully represent key logical relationships in the problem\",\n        \"excluded_constraint_analysis\": \"In 4/5 cases with exclusions, excluded constraints correspond to identifiable reasoning errors (wrong negation, scope confusion, missed premise)\",\n        \"failure_case_pattern\": \"SICA失败的1个tie case中，错误答案的trace恰好产生了更多internally-consistent但factually-wrong的约束（自洽但错误的推理链）\",\n        \"constraint_redundancy\": \"约40%的约束是语义重复（同一逻辑关系的不同FOL表达），MAX-SAT的去重+权重机制处理了这种冗余\"\n      }\n    },\n    \"tables\": [],\n    \"figures\": [],\n    \"analysis\": \"定性分析补充了定量结果的mechanistic story。论文中放2-3个代表性case study （可在appendix放完整8个），直观展示SICA在tie上胜出的原因（正确答案的trace 产生了更多可满足的约束），以及SICA偶尔失败的原因（错误推理也可以是internally consistent的）。后者是honest的局限性讨论。\\n\\n\\n定性分析的预期基于SICA pipeline的设计：LLM生成的FOL约束是reasoning trace的 形式化表示，因此高质量的trace应产生语义有效的约束。约束提取率c1=1.0（14B数据） 说明LLM在FOLIO类型的自然语言推理上能可靠地生成FOL。被排除的约束（exclusion rate≈3%） 理论上对应MAX-SAT判定为与多数约束矛盾的项——在推理任务中，这些通常是 错误推理步骤的形式化。定性验证这一点为SICA的\\\"约束提取→MAX-SAT聚合\\\"pipeline 提供了interpretability论证，回应\\\"MAX-SAT是不是在做有意义的事情\\\"的隐含质疑。\\n\"\n  },\n  {\n    \"name\": \"overhead_analysis\",\n    \"description\": \"Wall-time分解：每个问题的生成时间、约束提取时间、MAX-SAT求解时间。 回应\\\"overhead是否值得\\\"的concern。\\n\",\n    \"results\": {\n      \"n_problems_analyzed\": 60,\n      \"avg_breakdown_per_problem_s\": {\n        \"trace_generation\": 42.0,\n        \"constraint_extraction\": 12.5,\n        \"maxsat_solving\": 0.3,\n        \"total_sica\": 54.8,\n        \"total_sc\": 42.0\n      },\n      \"overhead_ratio\": 1.3,\n      \"overhead_breakdown_pct\": {\n        \"generation\": 76.6,\n        \"extraction\": 22.8,\n        \"solving\": 0.6\n      },\n      \"extraction_is_parallelizable\": true,\n      \"extraction_parallel_overhead_s\": 3.2,\n      \"parallel_overhead_ratio\": 1.08,\n      \"maxsat_median_time_ms\": 12,\n      \"maxsat_max_time_ms\": 340,\n      \"maxsat_scales_with\": \"n_constraints (linear in practice, theoretical worst-case NP)\"\n    },\n    \"tables\": [\n      {\n        \"name\": \"Table 8: Computational Overhead Analysis\",\n        \"columns\": [\n          \"Component\",\n          \"Time/Problem (s)\",\n          \"% of Total\",\n          \"Parallelizable\"\n        ],\n        \"rows\": [\n          [\n            \"Trace Generation (K=12)\",\n            42.0,\n            \"76.6%\",\n            \"Yes (standard)\"\n          ],\n          [\n            \"Constraint Extraction\",\n            12.5,\n            \"22.8%\",\n            \"Yes (per-trace)\"\n          ],\n          [\n            \"MAX-SAT Solving\",\n            0.3,\n            \"0.6%\",\n            \"N/A (fast)\"\n          ],\n          [\n            \"Total SICA\",\n            54.8,\n            \"100%\",\n            \"-\"\n          ],\n          [\n            \"Total SC (baseline)\",\n            42.0,\n            \"-\",\n            \"-\"\n          ],\n          [\n            \"Sequential Overhead\",\n            \"+12.8s (+30%)\",\n            \"-\",\n            \"-\"\n          ],\n          [\n            \"Parallel Overhead\",\n            \"+3.2s (+8%)\",\n            \"-\",\n            \"-\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"Overhead分析直接回应reviewer concern。关键message： (1) MAX-SAT本身几乎零成本（<1%）——overhead完全来自约束提取的LLM调用； (2) 约束提取可并行化，实际部署中overhead<10%； (3) 对比+6.9pp的FOLIO gain，8%的额外时间是高性价比的。 论文中可以framing为：\\\"The symbolic reasoning component (MAX-SAT) adds negligible overhead; the cost is in constraint extraction, which is embarrassingly parallel.\\\"\\n\\nSICA相比SC的额外开销来自两步：约束提取（需要额外LLM调用将每条trace转换为FOL） 和MAX-SAT求解。从D012数据看，60题×12 traces = 720次约束提取调用，总时间约750s， 平均12.5s/问题。但这些调用是独立的，可以完全并行化——如果用12个并行worker， per-problem overhead降到约3s。MAX-SAT求解（Z3 partial MAX-SAT）在约束数量<100时 通常在毫秒级完成。因此sequential overhead是30%（54.8s vs 42.0s）， 但parallel overhead只有8%（45.2s vs 42.0s）。相比SC的30%（sequential）或8%（parallel） 额外成本，SICA在FOLIO上带来+6.9pp的准确率提升——这是高性价比的。 论文可以argue：\\\"SICA adds <10% wall-time overhead when extraction is parallelized, while providing statistically significant accuracy gains.\\\"\\n\"\n  }\n]",
+                "numLines": 683,
+                "startLine": 1,
+                "totalLines": 683
+              }
+            },
+            "sourceToolAssistantUUID": "611cb849-3d09-43bb-be65-56bbbb31eead",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T05:30:22.835Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DbdvwiVBSY878ewVJZyB57",
+              "type": "tool_result",
+              "content": "1\t# Paper Framing — symb_invariant_consensus\n2\t\n3\t## Target Venue\n4\t- Primary: EMNLP 2026 Main (ARR May 25)\n5\t- Fallback: AAAI 2027 (Aug 1)\n6\t- Deadline: May 25, 2026 (ARR submission)\n7\t\n8\t## Core Claims (3 条)\n9\t1. **Principled Tiebreaking**: SICA resolves Self-Consistency voting ties through symbolic constraint weighting, achieving higher accuracy than arbitrary tiebreak rules on logic reasoning benchmarks (FOLIO +6.7pp, combined +3.3pp on 60 questions; target: statistically significant on 200+ questions).\n10\t2. **Operating Regime Characterization**: The effectiveness of symbolic consensus is conditional on trace diversity — SICA adds value when model outputs are diverse (instruction models, C0>20%) but provably degenerates to SC when models are self-consistent (reasoning models, C0<5%). This is a model property, not a task property.\n11\t3. **C0 as Practical Diagnostic**: Multi-candidate rate (C0) serves as a zero-cost predictor of whether SICA deployment will yield gains over SC, enabling practitioners to decide without running full symbolic analysis.\n12\t\n13\t## Core Insight\n14\tSymbolic constraint consensus doesn't uniformly improve reasoning — it specifically helps when there IS disagreement to resolve. We provide the first systematic study of WHEN symbolic consensus adds value, revealing that model architecture (reasoning vs instruction) determines the operating regime. This transforms SICA from \"yet another ensemble method\" into \"a method with formally characterizable applicability boundaries.\"\n15\t\n16\t## Story Spine\n17\t- **Problem**: Self-Consistency (SC) aggregates LLM reasoning paths via majority voting but treats all chains as opaque votes, discarding the logical structure within them. When votes are tied, SC falls back to arbitrary rules (alphabetical, random) with no principled resolution.\n18\t- **Existing approaches & gaps**: SC (Wang et al. 2023) — pure voting, no reasoning structure. USC (Chen et al. 2023) — universal SC, still voting-based. None exploit the formal logical structure within reasoning traces for consensus, and none characterize when symbolic methods help vs. don't.\n19\t- **Our framing**: SICA extracts first-order logic constraints from reasoning traces and uses weighted partial MAX-SAT to find the globally consistent answer. We show this provides principled tiebreaking (75% win rate on ties vs 25% for SC) but only when trace diversity exists. We formalize this as C0 (multi-candidate rate) and show it's governed by model type, not task type.\n20\t- **Headline result template**: \"On FOLIO, SICA achieves 80.0% vs SC's 73.3% (+6.7pp) with Qwen2.5-14B-Instruct. On the same benchmarks with QwQ-32B, SICA degenerates to SC (C0=3.6%), revealing that symbolic consensus effectiveness is governed by trace diversity, not task difficulty.\"\n21\t\n22\t## Anticipated Reviewer Concerns & Defensive Experiments\n23\t1. **\"Gains not statistically significant\"** → exp-001: Expand to 200+ questions for statistical power\n24\t2. **\"Only a better tiebreaker, not worth the overhead\"** → exp-002: K sensitivity showing benefit pattern; exp-009: overhead analysis\n25\t3. **\"Only one non-reasoning model\"** → exp-004: Add Qwen2.5-7B for scaling; exp-007: 72B-AWQ for camera-ready\n26\t4. **\"ProofWriter shows 0pp gain\"** → Domain analysis in exp-001 expanded results\n27\t5. **\"Random tiebreak baseline closes the gap\"** → exp-003: Direct SICA vs SC-random vs SC-deterministic comparison\n28\t6. **\"Why not just use a reasoning model?\"** → exp-005: QwQ-32B data shows reasoning models are self-consistent (don't need consensus improvement), but instruction models (cheaper, more deployed) benefit from SICA\n29\t\n30\t## Venue Fit Risks\n31\t- EMNLP: Contribution may feel narrow if framed as ONLY tiebreaking. Primary intellectual contribution is the \"operating regime characterization\" — the tiebreaking mechanism is evidence, not the claim.\n32\t- Cross-discipline: Combines formal logic (MAX-SAT) with NLP (LLM reasoning). MAX-SAT needs clear explanation for NLP audience.\n33\t- Negative results: QwQ-32B data must be presented as insight (\"When Does Symbolic Consensus Degenerate?\"), not failure.\n34\t- Statistical power: 60-question results are fragile. 200+ question expansion is prerequisite for credible submission.\n35\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "56ffd665-9c32-4b97-8d14-7e1fb9b8699f",
+            "isSidechain": false,
+            "promptId": "e1f6b07a-1aeb-471c-ae86-06da4a663c31",
+            "type": "user",
+            "uuid": "37fc9251-c81b-4c6b-b2b4-30b60bf11047",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best/paper_framing.md",
+                "content": "# Paper Framing — symb_invariant_consensus\n\n## Target Venue\n- Primary: EMNLP 2026 Main (ARR May 25)\n- Fallback: AAAI 2027 (Aug 1)\n- Deadline: May 25, 2026 (ARR submission)\n\n## Core Claims (3 条)\n1. **Principled Tiebreaking**: SICA resolves Self-Consistency voting ties through symbolic constraint weighting, achieving higher accuracy than arbitrary tiebreak rules on logic reasoning benchmarks (FOLIO +6.7pp, combined +3.3pp on 60 questions; target: statistically significant on 200+ questions).\n2. **Operating Regime Characterization**: The effectiveness of symbolic consensus is conditional on trace diversity — SICA adds value when model outputs are diverse (instruction models, C0>20%) but provably degenerates to SC when models are self-consistent (reasoning models, C0<5%). This is a model property, not a task property.\n3. **C0 as Practical Diagnostic**: Multi-candidate rate (C0) serves as a zero-cost predictor of whether SICA deployment will yield gains over SC, enabling practitioners to decide without running full symbolic analysis.\n\n## Core Insight\nSymbolic constraint consensus doesn't uniformly improve reasoning — it specifically helps when there IS disagreement to resolve. We provide the first systematic study of WHEN symbolic consensus adds value, revealing that model architecture (reasoning vs instruction) determines the operating regime. This transforms SICA from \"yet another ensemble method\" into \"a method with formally characterizable applicability boundaries.\"\n\n## Story Spine\n- **Problem**: Self-Consistency (SC) aggregates LLM reasoning paths via majority voting but treats all chains as opaque votes, discarding the logical structure within them. When votes are tied, SC falls back to arbitrary rules (alphabetical, random) with no principled resolution.\n- **Existing approaches & gaps**: SC (Wang et al. 2023) — pure voting, no reasoning structure. USC (Chen et al. 2023) — universal SC, still voting-based. None exploit the formal logical structure within reasoning traces for consensus, and none characterize when symbolic methods help vs. don't.\n- **Our framing**: SICA extracts first-order logic constraints from reasoning traces and uses weighted partial MAX-SAT to find the globally consistent answer. We show this provides principled tiebreaking (75% win rate on ties vs 25% for SC) but only when trace diversity exists. We formalize this as C0 (multi-candidate rate) and show it's governed by model type, not task type.\n- **Headline result template**: \"On FOLIO, SICA achieves 80.0% vs SC's 73.3% (+6.7pp) with Qwen2.5-14B-Instruct. On the same benchmarks with QwQ-32B, SICA degenerates to SC (C0=3.6%), revealing that symbolic consensus effectiveness is governed by trace diversity, not task difficulty.\"\n\n## Anticipated Reviewer Concerns & Defensive Experiments\n1. **\"Gains not statistically significant\"** → exp-001: Expand to 200+ questions for statistical power\n2. **\"Only a better tiebreaker, not worth the overhead\"** → exp-002: K sensitivity showing benefit pattern; exp-009: overhead analysis\n3. **\"Only one non-reasoning model\"** → exp-004: Add Qwen2.5-7B for scaling; exp-007: 72B-AWQ for camera-ready\n4. **\"ProofWriter shows 0pp gain\"** → Domain analysis in exp-001 expanded results\n5. **\"Random tiebreak baseline closes the gap\"** → exp-003: Direct SICA vs SC-random vs SC-deterministic comparison\n6. **\"Why not just use a reasoning model?\"** → exp-005: QwQ-32B data shows reasoning models are self-consistent (don't need consensus improvement), but instruction models (cheaper, more deployed) benefit from SICA\n\n## Venue Fit Risks\n- EMNLP: Contribution may feel narrow if framed as ONLY tiebreaking. Primary intellectual contribution is the \"operating regime characterization\" — the tiebreaking mechanism is evidence, not the claim.\n- Cross-discipline: Combines formal logic (MAX-SAT) with NLP (LLM reasoning). MAX-SAT needs clear explanation for NLP audience.\n- Negative results: QwQ-32B data must be presented as insight (\"When Does Symbolic Consensus Degenerate?\"), not failure.\n- Statistical power: 60-question results are fragile. 200+ question expansion is prerequisite for credible submission.\n",
+                "numLines": 35,
+                "startLine": 1,
+                "totalLines": 35
+              }
+            },
+            "sourceToolAssistantUUID": "56ffd665-9c32-4b97-8d14-7e1fb9b8699f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260516T051642 tier=best 生成一篇完整的模拟论文。  ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_con…",
+                "leafUuid": "37fc9251-c81b-4c6b-b2b4-30b60bf11047",
+                "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358"
+              }
+            }
+          ],
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Generate symbolic consensus research paper",
+                "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358"
+              }
+            }
+          ],
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T05:30:25.626Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a comprehensive understanding of the experiment data and paper framing. Let me write the full LaTeX paper. Let me first check if the output directory exists.",
+              "signature": "EuQCClkIDRgCKkAsqH0OwpBBuUDdarsZVJ9AaWjaCIrtv3jOcSe4wbVUjf5BWB5yVHiAuvUPq/IZDUAZM7sShRZUWHUMbYIWcy2ZMg9jbGF1ZGUtb3B1cy00LTY4ABIMM3t05vibYzi/pTt0GgyMBuqYOOqZnDJyeEkiMEhql7eSyQch86RSffwnmV/hy6VFiCiSv4xozgh+OhCjrRIGa73M09edbgd3gNKIUyq4Aa29CSnx39yEAGJ/F+RC5rfNKu913A7AVQvr9NgBYyvW1w9rLOiUcWi1oTJP7z7hXPuuPDTgBuT4xoAxAjzLjHbKSpFE21cV61oY2UofId3cAeLTScPXDVDEOOl1cf2OeKFJdBZhiHbj95d1u1YS/qJKOybWYvpMWhIvIEBT6VVA8QcGilBs8aT9D9cwE03KiKdSvgxf+1Bcdcu5zt2V8r4xvsmwOLcyf9oXTC7hceHO/4gTlUzB244YAQ=="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "37fc9251-c81b-4c6b-b2b4-30b60bf11047",
+            "isSidechain": false,
+            "requestId": "req_011Cb5hSzqU5mkGmx8D5QfKR",
+            "type": "assistant",
+            "uuid": "26232629-6c73-44f0-94b6-2eceb29a8a04",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NQ9raPzz861rvQcfua7yDh",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 13312,
+                "cache_read_input_tokens": 23062,
+                "output_tokens": 182,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 13312,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 182,
+                    "cache_read_input_tokens": 23062,
+                    "cache_creation_input_tokens": 13312,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 13312
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T05:30:26.168Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the data. Let me write the paper."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "26232629-6c73-44f0-94b6-2eceb29a8a04",
+            "isSidechain": false,
+            "requestId": "req_011Cb5hSzqU5mkGmx8D5QfKR",
+            "type": "assistant",
+            "uuid": "4d91cd9a-eada-4516-9404-dabb3e143bf4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NQ9raPzz861rvQcfua7yDh",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 13312,
+                "cache_read_input_tokens": 23062,
+                "output_tokens": 182,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 13312,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 182,
+                    "cache_read_input_tokens": 23062,
+                    "cache_creation_input_tokens": 13312,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 13312
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T05:30:28.246Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YbraanGHvu9gHeCZY9LHwT",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best/",
+                "description": "Check output directory contents"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4d91cd9a-eada-4516-9404-dabb3e143bf4",
+            "isSidechain": false,
+            "requestId": "req_011Cb5hSzqU5mkGmx8D5QfKR",
+            "type": "assistant",
+            "uuid": "9de151b2-cde2-4a12-a63e-15208678bcb5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NQ9raPzz861rvQcfua7yDh",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 13312,
+                "cache_read_input_tokens": 23062,
+                "output_tokens": 182,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 13312,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 182,
+                    "cache_read_input_tokens": 23062,
+                    "cache_creation_input_tokens": 13312,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 13312
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T05:30:28.479Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YbraanGHvu9gHeCZY9LHwT",
+              "type": "tool_result",
+              "content": "experiment_data.json\nimagined_experiments.yaml\npaper_framing.md",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9de151b2-cde2-4a12-a63e-15208678bcb5",
+            "isSidechain": false,
+            "promptId": "e1f6b07a-1aeb-471c-ae86-06da4a663c31",
+            "type": "user",
+            "uuid": "187ff819-824b-4f4a-bfc5-4b5c8c7ba929",
+            "toolUseResult": {
+              "stdout": "experiment_data.json\nimagined_experiments.yaml\npaper_framing.md",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "9de151b2-cde2-4a12-a63e-15208678bcb5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T05:32:49.056Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SyRePtqfFEv6onwaKoN2EK",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best/paper.tex",
+                "content": "\\documentclass[11pt,a4paper]{article}\n\\usepackage[hyperref]{emnlp2023}\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{booktabs}\n\\usepackage{multirow}\n\\usepackage{graphicx}\n\\usepackage{algorithm}\n\\usepackage{algorithmic}\n\\usepackage{xcolor}\n\n\\title{When Does Symbolic Consensus Help?\\\\Operating Regime Characterization for\\\\Constraint-Weighted LLM Reasoning Aggregation}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n\\begin{abstract}\nSelf-Consistency (SC) aggregates multiple LLM reasoning traces via majority voting but discards the logical structure within each trace. When votes are tied, SC falls back to arbitrary rules with no principled resolution. We propose \\textbf{SICA} (Symbolic Invariant Consensus Aggregation), which extracts first-order logic constraints from reasoning traces and uses weighted partial MAX-SAT to find the globally most consistent answer. On 204 logic reasoning problems (FOLIO + ProofWriter), SICA achieves 74.5\\% vs.\\ SC's 70.6\\% with Qwen2.5-14B-Instruct ($p=0.023$, bootstrap). Crucially, SICA's gain derives \\emph{entirely} from principled tiebreaking: on tied questions, SICA selects the correct answer 76.5\\% of the time versus 41.2\\% for random tiebreaking ($p=0.041$). We characterize SICA's \\textbf{operating regime} through the multi-candidate rate $C_0$---the fraction of questions where SC produces multiple candidate answers. Across three model scales (7B, 14B, 72B) and one reasoning model (QwQ-32B), $C_0$ correlates strongly with SICA's gain over SC ($r=0.91$, $n=18$ configurations), yielding a practical decision rule: deploy SICA when $C_0 > 20\\%$. Reasoning models exhibit $C_0 < 5\\%$, causing SICA to degenerate to SC---revealing that symbolic consensus effectiveness is governed by trace diversity, a model property, not task difficulty.\n\\end{abstract}\n\n%======================================================================\n\\section{Introduction}\n%======================================================================\n\nSelf-Consistency \\cite{wang2023selfconsistency} has become a standard technique for improving LLM reasoning: sample $K$ reasoning traces, extract answers, and take the majority vote. While effective, SC treats each trace as an opaque vote, discarding the rich logical structure within the reasoning chain. When the majority vote produces a tie---which occurs frequently with even $K$---SC falls back to arbitrary tiebreaking (alphabetical order, random selection), sacrificing accuracy at precisely the moments when the model is most uncertain.\n\nWe propose \\textbf{SICA} (Symbolic Invariant Consensus Aggregation), a post-hoc aggregation method that extracts first-order logic (FOL) constraints from each reasoning trace and uses weighted partial MAX-SAT solving to identify the answer most consistent with the aggregate constraint set. SICA operates as a principled tiebreaker: when SC produces a clear majority, SICA agrees; when votes are tied, SICA leverages symbolic structure to make an informed decision.\n\nOur contribution is not merely a new aggregation method, but a systematic characterization of \\emph{when} symbolic consensus adds value. We identify the \\textbf{multi-candidate rate} $C_0$---the fraction of questions producing multiple candidate answers under SC---as a zero-cost predictor of SICA's effectiveness. Through experiments spanning four models (7B to 72B instruction models and a 32B reasoning model), we establish three findings:\n\n\\begin{enumerate}\n\\item \\textbf{Principled Tiebreaking}: SICA resolves SC voting ties with 76.5\\% accuracy versus 41.2\\% for random tiebreaking on 204 problems ($p=0.041$), yielding a +3.9pp overall gain ($p=0.023$).\n\\item \\textbf{Operating Regime}: SICA's benefit scales with $C_0$, which is governed by model type (instruction vs.\\ reasoning), not task difficulty. The gain ranges from +6.7pp ($C_0=0.68$, 7B) to 0.0pp ($C_0 \\approx 0$, QwQ-32B).\n\\item \\textbf{Practical Diagnostic}: $C_0$ serves as a zero-cost predictor ($r=0.91$ with SICA gain across 18 configurations), enabling a simple deployment rule: run SICA when $C_0 > 20\\%$.\n\\end{enumerate}\n\n%======================================================================\n\\section{Related Work}\n%======================================================================\n\n\\paragraph{Self-Consistency and Voting.}\nWang et al.\\ (\\citeyear{wang2023selfconsistency}) introduced Self-Consistency (SC) as a decoding strategy that samples diverse reasoning paths and marginalizes over them via majority voting. Universal Self-Consistency (USC; Chen et al.\\ \\citeyear{chen2023universal}) extends SC to free-form generation by using LLMs to identify the most consistent answer, but remains a voting-based approach that does not exploit formal structure within traces.\n\n\\paragraph{Symbolic Reasoning with LLMs.}\nRecent work integrates symbolic solvers with LLMs for logical reasoning. LINC \\cite{olausson2023linc} translates natural language to FOL and uses theorem provers, while Logic-LM \\cite{pan2023logiclm} combines LLM reasoning with symbolic solvers. These approaches use symbolic methods for single-trace verification rather than multi-trace aggregation.\n\n\\paragraph{Weighted Aggregation.}\nSeveral works explore non-uniform weighting of reasoning traces. Verifier-based approaches \\cite{cobbe2021gsm8k,lightman2023lets} train separate models to score reasoning steps. SICA differs by deriving weights from constraint consistency without requiring additional training.\n\n%======================================================================\n\\section{Method}\n\\label{sec:method}\n%======================================================================\n\n\\subsection{Overview}\n\nGiven a question $q$, SICA operates in three stages: (1)~sample $K$ reasoning traces and extract candidate answers via standard SC; (2)~extract FOL constraints from each trace; (3)~use weighted partial MAX-SAT to select the answer most consistent with the aggregate constraint set.\n\n\\subsection{Constraint Extraction}\n\nFor each reasoning trace $t_i$ ($i = 1, \\ldots, K$), we prompt the LLM to extract a set of first-order logic constraints $\\mathcal{C}_i = \\{c_{i,1}, \\ldots, c_{i,m_i}\\}$ that formalize the key logical relationships used in the reasoning. Each constraint $c_{i,j}$ is a FOL formula over predicates derived from the problem statement. The extraction prompt asks the model to identify premises used, intermediate conclusions drawn, and the final conclusion, each expressed in FOL.\n\n\\subsection{Weighted Partial MAX-SAT Aggregation}\n\nLet $\\mathcal{C} = \\bigcup_{i=1}^{K} \\mathcal{C}_i$ be the aggregate constraint set. For each candidate answer $a \\in \\mathcal{A}$ (where $\\mathcal{A}$ is the set of distinct answers produced by SC), we formulate a weighted partial MAX-SAT instance:\n\\begin{equation}\na^* = \\arg\\max_{a \\in \\mathcal{A}} \\sum_{c \\in \\mathcal{C}} w(c) \\cdot \\mathbb{1}[\\text{SAT}(c \\mid a)]\n\\end{equation}\nwhere $w(c)$ is the weight of constraint $c$ (proportional to how many traces independently produced it, with deduplication of semantically equivalent constraints), and $\\text{SAT}(c \\mid a)$ indicates whether constraint $c$ is satisfiable given answer $a$.\n\nWhen $|\\mathcal{A}| = 1$ (SC has a clear majority with no tie), SICA returns the SC answer without invoking the solver. When $|\\mathcal{A}| \\geq 2$ and a tie exists, SICA selects the answer maximizing weighted constraint satisfaction.\n\n\\subsection{Multi-Candidate Rate ($C_0$)}\n\nWe define the multi-candidate rate as:\n\\begin{equation}\nC_0 = \\frac{1}{N} \\sum_{j=1}^{N} \\mathbb{1}[|\\mathcal{A}_j| > 1]\n\\end{equation}\nwhere $N$ is the number of questions and $\\mathcal{A}_j$ is the candidate set for question $j$. $C_0$ measures the fraction of questions where SC does not produce a single dominant answer. It can be computed from SC outputs alone at zero additional cost.\n\n\\subsection{Deployment Decision Rule}\n\nBased on the empirical relationship between $C_0$ and SICA gain (Section~\\ref{sec:c0_analysis}), we propose a two-step deployment rule:\n\\begin{enumerate}\n\\item Run SC; compute $C_0$ from the candidate distribution.\n\\item If $C_0 > 20\\%$: run SICA. Otherwise: use SC directly.\n\\end{enumerate}\nThis transforms SICA from an always-on method into an on-demand tool, deployed only when trace diversity indicates benefit.\n\n%======================================================================\n\\section{Experiments}\n\\label{sec:experiments}\n%======================================================================\n\n\\subsection{Setup}\n\n\\paragraph{Datasets.} We evaluate on two logic reasoning benchmarks: \\textbf{FOLIO} (102 problems) and \\textbf{ProofWriter} depth-5 (102 problems), for a combined set of 204 problems. Both require multi-step deductive reasoning over natural language premises.\n\n\\paragraph{Models.} We test four models spanning different scales and architectures: Qwen2.5-7B-Instruct (7B), Qwen2.5-14B-Instruct (14B), Qwen2.5-72B-Instruct-AWQ (72B, 4-bit quantized), and QwQ-32B (32B reasoning model).\n\n\\paragraph{Configuration.} Unless noted otherwise, $K=12$ traces are sampled at temperature $T=0.7$. Statistical significance is assessed via bootstrap resampling (10,000 iterations).\n\n%----------------------------------------------------------------------\n\\subsection{Main Results: SICA vs.\\ Self-Consistency}\n\\label{sec:main_results}\n%----------------------------------------------------------------------\n\nTable~\\ref{tab:main} presents the main comparison on 204 problems with Qwen2.5-14B-Instruct. SICA achieves 74.5\\% overall accuracy compared to SC's 70.6\\%, a gain of +3.9 percentage points ($p=0.023$). On FOLIO, the gain is +6.9pp ($p=0.018$), while ProofWriter shows a smaller +1.0pp ($p=0.34$).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lcccccc}\n\\toprule\n\\textbf{Dataset} & $N$ & \\textbf{SC} & \\textbf{SICA} & \\textbf{Gap} & $p$ & $C_0$ \\\\\n\\midrule\nFOLIO & 102 & 72.5 & 79.4 & +6.9 & .018 & .54 \\\\\nProofWriter & 102 & 68.6 & 69.6 & +1.0 & .34 & .48 \\\\\n\\midrule\nCombined & 204 & 70.6 & 74.5 & +3.9 & .023 & .51 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{SICA vs.\\ SC accuracy (\\%) on 204 problems with Qwen2.5-14B-Instruct ($K\\!=\\!12$, $T\\!=\\!0.7$). $p$-values from bootstrap resampling.}\n\\label{tab:main}\n\\end{table}\n\nThe FOLIO--ProofWriter gap is explained by task structure: FOLIO's natural language premises produce more diverse reasoning chains ($C_0 = 0.54$), while ProofWriter's templated depth-5 proofs yield more uniform traces ($C_0 = 0.48$). Constraint extraction succeeds on 98\\% of traces, and MAX-SAT excludes only 3.1\\% of constraints as contradictory.\n\n%----------------------------------------------------------------------\n\\subsection{Tiebreak Analysis}\n\\label{sec:tiebreak}\n%----------------------------------------------------------------------\n\nSICA's gain derives entirely from tied questions. On the 187 non-tied questions, SICA and SC produce identical answers. On the 17 tied questions, SICA selects the correct answer 13 times (76.5\\%), compared to random tiebreaking's expected 41.2\\% ($\\pm 8\\%$ over 1,000 Monte Carlo runs) and deterministic (alphabetical) tiebreaking's 29.4\\%.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Strategy} & \\multicolumn{2}{c}{\\textbf{Tie Acc}} & \\multicolumn{2}{c}{\\textbf{Overall}} \\\\\n\\cmidrule(lr){2-3} \\cmidrule(lr){4-5}\n & 60q & 204q & 60q & 204q \\\\\n\\midrule\nSC-deterministic & 25.0 & 29.4 & 70.0 & 70.6 \\\\\nSC-random ($\\mathbb{E}$) & 37.5 & 41.2\\tiny{$\\pm$8} & 71.7 & 72.0 \\\\\nSICA (MAX-SAT) & 75.0 & 76.5 & 73.3 & 74.5 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Tiebreak strategy comparison (\\%). SICA significantly outperforms random tiebreaking on 204 questions ($p=0.041$, Monte Carlo bootstrap).}\n\\label{tab:tiebreak}\n\\end{table}\n\nTable~\\ref{tab:tiebreak} shows that SICA's advantage over random tiebreaking is +2.9pp overall ($p=0.041$), confirming that MAX-SAT constraint weighting extracts genuine signal beyond what chance tiebreaking provides.\n\n%----------------------------------------------------------------------\n\\subsection{$K$ Ablation: Causal Evidence for Tiebreaking}\n\\label{sec:k_ablation}\n%----------------------------------------------------------------------\n\nTo establish a causal link between tiebreaking and SICA's gain, we vary $K \\in \\{6, 8, 9, 12, 16, 20\\}$ on 60 problems with Qwen2.5-14B-Instruct (Table~\\ref{tab:k_ablation}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{ccccccc}\n\\toprule\n$K$ & \\textbf{SC} & \\textbf{SICA} & \\textbf{Gap} & \\textbf{Ties} & \\textbf{Wins} & $C_0$ \\\\\n\\midrule\n6 & 68.3 & 71.7 & +3.4 & 6 & 5 & .50 \\\\\n8 & 70.0 & 73.3 & +3.3 & 5 & 4 & .52 \\\\\n9\\textsuperscript{$\\dagger$} & 70.0 & 70.0 & 0.0 & 0 & -- & .52 \\\\\n12 & 70.0 & 73.3 & +3.3 & 4 & 3 & .53 \\\\\n16 & 70.0 & 75.0 & +5.0 & 7 & 6 & .55 \\\\\n20 & 71.7 & 75.0 & +3.3 & 5 & 4 & .55 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{$K$ ablation ($N\\!=\\!60$, 14B-Instruct). Accuracy in \\%. ``Wins'' = SICA correct on tied questions. $\\dagger$Odd $K$: majority vote produces no ties, SICA $\\equiv$ SC.}\n\\label{tab:k_ablation}\n\\end{table}\n\nThe $K\\!=\\!9$ result provides the cleanest causal evidence: with odd $K$, majority voting always produces a unique winner, SICA has no tiebreaking opportunity, and the gap is exactly 0.0pp. The same data, same model, same pipeline---only the parity of $K$ determines whether SICA activates. The correlation between tie count and SICA gap is $r = 0.82$ across even-$K$ configurations, and SICA wins $>75\\%$ of ties at every $K$ tested.\n\n%----------------------------------------------------------------------\n\\subsection{Model Scaling and Operating Regime}\n\\label{sec:scaling}\n%----------------------------------------------------------------------\n\nTable~\\ref{tab:scaling} presents results across four models, revealing a clear operating regime governed by $C_0$.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\n\\textbf{Model} & \\textbf{Size} & \\textbf{SC} & \\textbf{SICA} & \\textbf{Gap} & $C_0$ \\\\\n\\midrule\n7B-Instruct & 7B & 55.0 & 61.7 & +6.7 & .68 \\\\\n14B-Instruct & 14B & 70.0 & 73.3 & +3.3 & .53 \\\\\n72B-Instruct\\textsuperscript{$\\dagger$} & 72B & 78.3 & 80.0 & +1.7 & .32 \\\\\nQwQ-32B & 32B & 73.3 & 73.3 & 0.0 & .036 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Model scaling ($N\\!=\\!60$, $K\\!=\\!12$). Accuracy in \\%. $\\dagger$AWQ 4-bit quantization. SICA gain decreases monotonically with $C_0$.}\n\\label{tab:scaling}\n\\end{table}\n\nThree patterns emerge. First, SICA's gain scales inversely with model capability among instruction models: +6.7pp (7B), +3.3pp (14B), +1.7pp (72B). This makes SICA most valuable for the cost-effective models practitioners actually deploy. Second, QwQ-32B produces $C_0 = 3.6\\%$, effectively eliminating trace diversity. Its extended chain-of-thought acts as internal self-consistency, converging traces to the same answer before SICA can intervene. Third, the instruction-vs-reasoning distinction matters more than model size: QwQ-32B (32B) has zero SICA gain despite being smaller than the 72B instruction model that still benefits.\n\n%----------------------------------------------------------------------\n\\subsection{$C_0$ as a Zero-Cost Predictor}\n\\label{sec:c0_analysis}\n%----------------------------------------------------------------------\n\nWe aggregate $C_0$ and SICA-SC gap across all 18 configurations (3 models $\\times$ multiple $K$ values and datasets). Table~\\ref{tab:c0_predictor} shows representative data points.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & $K$ & \\textbf{Data} & $C_0$ & \\textbf{Gap} & \\textbf{Pred.} \\\\\n\\midrule\n7B & 12 & Comb. & .68 & +6.7 & +5.7 \\\\\n14B & 6 & Comb. & .50 & +3.4 & +3.7 \\\\\n14B & 12 & Comb. & .53 & +3.3 & +4.0 \\\\\n14B & 16 & Comb. & .55 & +5.0 & +4.3 \\\\\n14B & 12 & 204q & .51 & +3.9 & +3.8 \\\\\nQwQ & 12 & FOLIO & .036 & 0.0 & $-$1.4 \\\\\nQwQ & 12 & AIME & .00 & 0.0 & $-$1.8 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{$C_0$ vs.\\ SICA--SC gap (pp) across configurations. ``Pred.'' from linear fit ($\\text{gap} = 0.11 \\cdot C_0 - 1.8$, $R^2\\!=\\!0.83$). Gap in pp.}\n\\label{tab:c0_predictor}\n\\end{table}\n\nThe Pearson correlation between $C_0$ and SICA gain is $r = 0.91$ ($\\rho = 0.88$ Spearman). A simple linear fit ($\\text{gap} = 0.11 \\cdot C_0 - 1.8$) achieves $R^2 = 0.83$. The $C_0 = 20\\%$ threshold perfectly separates configurations with meaningful gain ($>$1pp) from those without: all configurations with $C_0 > 20\\%$ show positive SICA gain, while all with $C_0 < 20\\%$ show $\\leq$0.5pp. This yields the practical rule: compute $C_0$ from SC outputs (zero additional cost), deploy SICA only when $C_0 > 20\\%$.\n\n%----------------------------------------------------------------------\n\\subsection{Computational Overhead}\n\\label{sec:overhead}\n%----------------------------------------------------------------------\n\nTable~\\ref{tab:overhead} decomposes SICA's wall-time cost.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Component} & \\textbf{Time/q (s)} & \\textbf{\\%} & \\textbf{Par.} \\\\\n\\midrule\nTrace generation ($K\\!=\\!12$) & 42.0 & 76.6 & Yes \\\\\nConstraint extraction & 12.5 & 22.8 & Yes \\\\\nMAX-SAT solving & 0.3 & 0.6 & -- \\\\\n\\midrule\nTotal SICA & 54.8 & 100 & -- \\\\\nTotal SC (baseline) & 42.0 & -- & -- \\\\\n\\midrule\nSequential overhead & \\multicolumn{3}{c}{+12.8s (+30\\%)} \\\\\nParallel overhead & \\multicolumn{3}{c}{+3.2s (+8\\%)} \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Wall-time decomposition per question. Constraint extraction is embarrassingly parallel across traces, reducing practical overhead to $\\sim$8\\%.}\n\\label{tab:overhead}\n\\end{table}\n\nThe MAX-SAT solver adds negligible cost ($<$1\\%, median 12ms per problem). The overhead is dominated by constraint extraction LLM calls, which are embarrassingly parallel across traces. With parallelization, SICA's overhead is $\\sim$8\\% over SC---modest relative to the +3.9pp accuracy gain on the expanded evaluation.\n\n%----------------------------------------------------------------------\n\\subsection{Qualitative Analysis}\n\\label{sec:qualitative}\n%----------------------------------------------------------------------\n\nWe conduct case studies on 8 representative problems to examine constraint quality. In 6 of 8 cases, extracted constraints faithfully represent key logical relationships in the problem. In 4 of 5 cases involving constraint exclusions, the excluded constraints correspond to identifiable reasoning errors: incorrect negation, scope confusion, or missed premises.\n\nSICA's single tie loss in our case studies reveals an instructive failure mode: the incorrect answer's traces produced internally consistent but factually wrong constraints---a coherent but incorrect reasoning chain that MAX-SAT cannot distinguish from correct reasoning on constraint structure alone. Approximately 40\\% of constraints exhibit semantic redundancy (the same logical relationship in different FOL expressions), which MAX-SAT's weighting mechanism handles through implicit deduplication.\n\n%======================================================================\n\\section{When Does Symbolic Consensus Degenerate?}\n\\label{sec:degenerate}\n%======================================================================\n\nQwQ-32B provides a clean negative result. Across all tested benchmarks (FOLIO, ProofWriter, AIME, MATH), QwQ produces $C_0 < 5\\%$, and SICA's gain is exactly 0.0pp. The mechanism is clear: QwQ's extended chain-of-thought reasoning (often thousands of tokens) acts as internal self-consistency. By the time the model produces a final answer, it has already explored and rejected alternative reasoning paths, converging all $K$ traces to the same answer. With no multi-candidate questions, there are no ties, and SICA has no opportunity to intervene.\n\nThis is not a failure of SICA but a characterization of its operating regime. Symbolic consensus is most valuable precisely where it is most needed: for instruction-tuned models that produce diverse but individually uncertain reasoning traces. Reasoning models, which achieve internal consistency through extended deliberation, do not benefit---but they also tend to be more expensive to deploy. The practical implication is that SICA targets the model class (instruction models) that practitioners use most frequently due to cost and latency constraints.\n\n%======================================================================\n\\section{Discussion}\n%======================================================================\n\n\\paragraph{Limitations.}\nOur evaluation is limited to logic reasoning benchmarks (FOLIO, ProofWriter) where FOL constraint extraction is natural. Extending SICA to mathematical reasoning or commonsense reasoning would require domain-specific constraint formalisms. The 60-question subsets for individual model evaluations (7B, 72B) do not reach statistical significance independently ($p=0.068$ and $p=0.28$ respectively); our significance claims rest on the 204-question 14B evaluation and the consistent pattern across configurations.\n\n\\paragraph{Broader Applicability.}\nThe $C_0$ diagnostic generalizes beyond SICA: any method that exploits trace diversity (ensemble methods, debate, verification cascades) should see diminishing returns as $C_0 \\to 0$. We conjecture that $C_0$ could serve as a general indicator of when post-hoc reasoning aggregation methods add value.\n\n%======================================================================\n\\section{Conclusion}\n%======================================================================\n\nWe presented SICA, a symbolic constraint aggregation method that provides principled tiebreaking for LLM self-consistency voting. On 204 logic reasoning problems, SICA achieves +3.9pp over SC ($p=0.023$) with Qwen2.5-14B-Instruct, with gains concentrated on tied questions where SICA's MAX-SAT weighting selects correctly 76.5\\% of the time. We characterized SICA's operating regime through the multi-candidate rate $C_0$: effectiveness scales from +6.7pp (7B, $C_0=0.68$) to 0.0pp (QwQ-32B, $C_0 \\approx 0$), with $C_0$ serving as a zero-cost deployment predictor ($r=0.91$). The $C_0 > 20\\%$ threshold enables practitioners to decide whether to deploy SICA without running the full symbolic pipeline, making the method practical for production use.\n\n\\bibliography{custom}\n\n\\begin{thebibliography}{10}\n\n\\bibitem[\\protect\\citename{Chen et al.}2023]{chen2023universal}\nXinyun Chen, Renat Aksitov, Uri Alon, Jie Ren, Kefan Xiao, Pengcheng Yin, Sushant Prakash, Charles Sutton, Xuezhi Wang, and Denny Zhou. 2023.\n\\newblock Universal self-consistency for large language model generation.\n\\newblock \\textit{arXiv preprint arXiv:2311.17311}.\n\n\\bibitem[\\protect\\citename{Cobbe et al.}2021]{cobbe2021gsm8k}\nKarl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heather Jun, Lukasz Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano, Christopher Hesse, and John Schulman. 2021.\n\\newblock Training verifiers to solve math word problems.\n\\newblock \\textit{arXiv preprint arXiv:2110.14168}.\n\n\\bibitem[\\protect\\citename{Lightman et al.}2023]{lightman2023lets}\nHunter Lightman, Vineet Kosaraju, Yura Burda, Harri Edwards, Bowen Baker, Teddy Lee, Jan Leike, John Schulman, Ilya Sutskever, and Karl Cobbe. 2023.\n\\newblock Let's verify step by step.\n\\newblock \\textit{arXiv preprint arXiv:2305.20050}.\n\n\\bibitem[\\protect\\citename{Olausson et al.}2023]{olausson2023linc}\nTheo X. Olausson, Alex Gu, Benjamin Lipkin, Cedegao E. Zhang, Armando Solar-Lezama, Joshua B. Tenenbaum, and Roger Levy. 2023.\n\\newblock LINC: A neurosymbolic approach for logical reasoning by combining language models with first-order logic provers.\n\\newblock In \\textit{Proceedings of EMNLP}.\n\n\\bibitem[\\protect\\citename{Pan et al.}2023]{pan2023logiclm}\nLiangming Pan, Alon Albalak, Xinyi Wang, and William Yang Wang. 2023.\n\\newblock Logic-LM: Empowering large language models with symbolic solvers for faithful logical reasoning.\n\\newblock In \\textit{Findings of EMNLP}.\n\n\\bibitem[\\protect\\citename{Wang et al.}2023]{wang2023selfconsistency}\nXuezhi Wang, Jason Wei, Dale Schuurmans, Quoc Le, Ed Chi, Sharan Narang, Aakanksha Chowdhery, and Denny Zhou. 2023.\n\\newblock Self-consistency improves chain of thought reasoning in language models.\n\\newblock In \\textit{Proceedings of ICLR}.\n\n\\end{thebibliography}\n\n\\end{document}\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "187ff819-824b-4f4a-bfc5-4b5c8c7ba929",
+            "isSidechain": false,
+            "requestId": "req_011Cb5hTQxnkXAeE26ba36sc",
+            "type": "assistant",
+            "uuid": "e5135e5c-6a8c-456e-8138-da5b803245d4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VUg1345srLS6nJMJzTxMVg",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 213,
+                "cache_read_input_tokens": 36374,
+                "output_tokens": 7800,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 213,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 7800,
+                    "cache_read_input_tokens": 36374,
+                    "cache_creation_input_tokens": 213,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 213
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T05:32:49.084Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SyRePtqfFEv6onwaKoN2EK",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best/paper.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e5135e5c-6a8c-456e-8138-da5b803245d4",
+            "isSidechain": false,
+            "promptId": "e1f6b07a-1aeb-471c-ae86-06da4a663c31",
+            "type": "user",
+            "uuid": "7ce17f3a-25d6-4497-a645-93cac8fd2efc",
+            "toolUseResult": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best/paper.tex",
+              "content": "\\documentclass[11pt,a4paper]{article}\n\\usepackage[hyperref]{emnlp2023}\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{booktabs}\n\\usepackage{multirow}\n\\usepackage{graphicx}\n\\usepackage{algorithm}\n\\usepackage{algorithmic}\n\\usepackage{xcolor}\n\n\\title{When Does Symbolic Consensus Help?\\\\Operating Regime Characterization for\\\\Constraint-Weighted LLM Reasoning Aggregation}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n\\begin{abstract}\nSelf-Consistency (SC) aggregates multiple LLM reasoning traces via majority voting but discards the logical structure within each trace. When votes are tied, SC falls back to arbitrary rules with no principled resolution. We propose \\textbf{SICA} (Symbolic Invariant Consensus Aggregation), which extracts first-order logic constraints from reasoning traces and uses weighted partial MAX-SAT to find the globally most consistent answer. On 204 logic reasoning problems (FOLIO + ProofWriter), SICA achieves 74.5\\% vs.\\ SC's 70.6\\% with Qwen2.5-14B-Instruct ($p=0.023$, bootstrap). Crucially, SICA's gain derives \\emph{entirely} from principled tiebreaking: on tied questions, SICA selects the correct answer 76.5\\% of the time versus 41.2\\% for random tiebreaking ($p=0.041$). We characterize SICA's \\textbf{operating regime} through the multi-candidate rate $C_0$---the fraction of questions where SC produces multiple candidate answers. Across three model scales (7B, 14B, 72B) and one reasoning model (QwQ-32B), $C_0$ correlates strongly with SICA's gain over SC ($r=0.91$, $n=18$ configurations), yielding a practical decision rule: deploy SICA when $C_0 > 20\\%$. Reasoning models exhibit $C_0 < 5\\%$, causing SICA to degenerate to SC---revealing that symbolic consensus effectiveness is governed by trace diversity, a model property, not task difficulty.\n\\end{abstract}\n\n%======================================================================\n\\section{Introduction}\n%======================================================================\n\nSelf-Consistency \\cite{wang2023selfconsistency} has become a standard technique for improving LLM reasoning: sample $K$ reasoning traces, extract answers, and take the majority vote. While effective, SC treats each trace as an opaque vote, discarding the rich logical structure within the reasoning chain. When the majority vote produces a tie---which occurs frequently with even $K$---SC falls back to arbitrary tiebreaking (alphabetical order, random selection), sacrificing accuracy at precisely the moments when the model is most uncertain.\n\nWe propose \\textbf{SICA} (Symbolic Invariant Consensus Aggregation), a post-hoc aggregation method that extracts first-order logic (FOL) constraints from each reasoning trace and uses weighted partial MAX-SAT solving to identify the answer most consistent with the aggregate constraint set. SICA operates as a principled tiebreaker: when SC produces a clear majority, SICA agrees; when votes are tied, SICA leverages symbolic structure to make an informed decision.\n\nOur contribution is not merely a new aggregation method, but a systematic characterization of \\emph{when} symbolic consensus adds value. We identify the \\textbf{multi-candidate rate} $C_0$---the fraction of questions producing multiple candidate answers under SC---as a zero-cost predictor of SICA's effectiveness. Through experiments spanning four models (7B to 72B instruction models and a 32B reasoning model), we establish three findings:\n\n\\begin{enumerate}\n\\item \\textbf{Principled Tiebreaking}: SICA resolves SC voting ties with 76.5\\% accuracy versus 41.2\\% for random tiebreaking on 204 problems ($p=0.041$), yielding a +3.9pp overall gain ($p=0.023$).\n\\item \\textbf{Operating Regime}: SICA's benefit scales with $C_0$, which is governed by model type (instruction vs.\\ reasoning), not task difficulty. The gain ranges from +6.7pp ($C_0=0.68$, 7B) to 0.0pp ($C_0 \\approx 0$, QwQ-32B).\n\\item \\textbf{Practical Diagnostic}: $C_0$ serves as a zero-cost predictor ($r=0.91$ with SICA gain across 18 configurations), enabling a simple deployment rule: run SICA when $C_0 > 20\\%$.\n\\end{enumerate}\n\n%======================================================================\n\\section{Related Work}\n%======================================================================\n\n\\paragraph{Self-Consistency and Voting.}\nWang et al.\\ (\\citeyear{wang2023selfconsistency}) introduced Self-Consistency (SC) as a decoding strategy that samples diverse reasoning paths and marginalizes over them via majority voting. Universal Self-Consistency (USC; Chen et al.\\ \\citeyear{chen2023universal}) extends SC to free-form generation by using LLMs to identify the most consistent answer, but remains a voting-based approach that does not exploit formal structure within traces.\n\n\\paragraph{Symbolic Reasoning with LLMs.}\nRecent work integrates symbolic solvers with LLMs for logical reasoning. LINC \\cite{olausson2023linc} translates natural language to FOL and uses theorem provers, while Logic-LM \\cite{pan2023logiclm} combines LLM reasoning with symbolic solvers. These approaches use symbolic methods for single-trace verification rather than multi-trace aggregation.\n\n\\paragraph{Weighted Aggregation.}\nSeveral works explore non-uniform weighting of reasoning traces. Verifier-based approaches \\cite{cobbe2021gsm8k,lightman2023lets} train separate models to score reasoning steps. SICA differs by deriving weights from constraint consistency without requiring additional training.\n\n%======================================================================\n\\section{Method}\n\\label{sec:method}\n%======================================================================\n\n\\subsection{Overview}\n\nGiven a question $q$, SICA operates in three stages: (1)~sample $K$ reasoning traces and extract candidate answers via standard SC; (2)~extract FOL constraints from each trace; (3)~use weighted partial MAX-SAT to select the answer most consistent with the aggregate constraint set.\n\n\\subsection{Constraint Extraction}\n\nFor each reasoning trace $t_i$ ($i = 1, \\ldots, K$), we prompt the LLM to extract a set of first-order logic constraints $\\mathcal{C}_i = \\{c_{i,1}, \\ldots, c_{i,m_i}\\}$ that formalize the key logical relationships used in the reasoning. Each constraint $c_{i,j}$ is a FOL formula over predicates derived from the problem statement. The extraction prompt asks the model to identify premises used, intermediate conclusions drawn, and the final conclusion, each expressed in FOL.\n\n\\subsection{Weighted Partial MAX-SAT Aggregation}\n\nLet $\\mathcal{C} = \\bigcup_{i=1}^{K} \\mathcal{C}_i$ be the aggregate constraint set. For each candidate answer $a \\in \\mathcal{A}$ (where $\\mathcal{A}$ is the set of distinct answers produced by SC), we formulate a weighted partial MAX-SAT instance:\n\\begin{equation}\na^* = \\arg\\max_{a \\in \\mathcal{A}} \\sum_{c \\in \\mathcal{C}} w(c) \\cdot \\mathbb{1}[\\text{SAT}(c \\mid a)]\n\\end{equation}\nwhere $w(c)$ is the weight of constraint $c$ (proportional to how many traces independently produced it, with deduplication of semantically equivalent constraints), and $\\text{SAT}(c \\mid a)$ indicates whether constraint $c$ is satisfiable given answer $a$.\n\nWhen $|\\mathcal{A}| = 1$ (SC has a clear majority with no tie), SICA returns the SC answer without invoking the solver. When $|\\mathcal{A}| \\geq 2$ and a tie exists, SICA selects the answer maximizing weighted constraint satisfaction.\n\n\\subsection{Multi-Candidate Rate ($C_0$)}\n\nWe define the multi-candidate rate as:\n\\begin{equation}\nC_0 = \\frac{1}{N} \\sum_{j=1}^{N} \\mathbb{1}[|\\mathcal{A}_j| > 1]\n\\end{equation}\nwhere $N$ is the number of questions and $\\mathcal{A}_j$ is the candidate set for question $j$. $C_0$ measures the fraction of questions where SC does not produce a single dominant answer. It can be computed from SC outputs alone at zero additional cost.\n\n\\subsection{Deployment Decision Rule}\n\nBased on the empirical relationship between $C_0$ and SICA gain (Section~\\ref{sec:c0_analysis}), we propose a two-step deployment rule:\n\\begin{enumerate}\n\\item Run SC; compute $C_0$ from the candidate distribution.\n\\item If $C_0 > 20\\%$: run SICA. Otherwise: use SC directly.\n\\end{enumerate}\nThis transforms SICA from an always-on method into an on-demand tool, deployed only when trace diversity indicates benefit.\n\n%======================================================================\n\\section{Experiments}\n\\label{sec:experiments}\n%======================================================================\n\n\\subsection{Setup}\n\n\\paragraph{Datasets.} We evaluate on two logic reasoning benchmarks: \\textbf{FOLIO} (102 problems) and \\textbf{ProofWriter} depth-5 (102 problems), for a combined set of 204 problems. Both require multi-step deductive reasoning over natural language premises.\n\n\\paragraph{Models.} We test four models spanning different scales and architectures: Qwen2.5-7B-Instruct (7B), Qwen2.5-14B-Instruct (14B), Qwen2.5-72B-Instruct-AWQ (72B, 4-bit quantized), and QwQ-32B (32B reasoning model).\n\n\\paragraph{Configuration.} Unless noted otherwise, $K=12$ traces are sampled at temperature $T=0.7$. Statistical significance is assessed via bootstrap resampling (10,000 iterations).\n\n%----------------------------------------------------------------------\n\\subsection{Main Results: SICA vs.\\ Self-Consistency}\n\\label{sec:main_results}\n%----------------------------------------------------------------------\n\nTable~\\ref{tab:main} presents the main comparison on 204 problems with Qwen2.5-14B-Instruct. SICA achieves 74.5\\% overall accuracy compared to SC's 70.6\\%, a gain of +3.9 percentage points ($p=0.023$). On FOLIO, the gain is +6.9pp ($p=0.018$), while ProofWriter shows a smaller +1.0pp ($p=0.34$).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lcccccc}\n\\toprule\n\\textbf{Dataset} & $N$ & \\textbf{SC} & \\textbf{SICA} & \\textbf{Gap} & $p$ & $C_0$ \\\\\n\\midrule\nFOLIO & 102 & 72.5 & 79.4 & +6.9 & .018 & .54 \\\\\nProofWriter & 102 & 68.6 & 69.6 & +1.0 & .34 & .48 \\\\\n\\midrule\nCombined & 204 & 70.6 & 74.5 & +3.9 & .023 & .51 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{SICA vs.\\ SC accuracy (\\%) on 204 problems with Qwen2.5-14B-Instruct ($K\\!=\\!12$, $T\\!=\\!0.7$). $p$-values from bootstrap resampling.}\n\\label{tab:main}\n\\end{table}\n\nThe FOLIO--ProofWriter gap is explained by task structure: FOLIO's natural language premises produce more diverse reasoning chains ($C_0 = 0.54$), while ProofWriter's templated depth-5 proofs yield more uniform traces ($C_0 = 0.48$). Constraint extraction succeeds on 98\\% of traces, and MAX-SAT excludes only 3.1\\% of constraints as contradictory.\n\n%----------------------------------------------------------------------\n\\subsection{Tiebreak Analysis}\n\\label{sec:tiebreak}\n%----------------------------------------------------------------------\n\nSICA's gain derives entirely from tied questions. On the 187 non-tied questions, SICA and SC produce identical answers. On the 17 tied questions, SICA selects the correct answer 13 times (76.5\\%), compared to random tiebreaking's expected 41.2\\% ($\\pm 8\\%$ over 1,000 Monte Carlo runs) and deterministic (alphabetical) tiebreaking's 29.4\\%.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Strategy} & \\multicolumn{2}{c}{\\textbf{Tie Acc}} & \\multicolumn{2}{c}{\\textbf{Overall}} \\\\\n\\cmidrule(lr){2-3} \\cmidrule(lr){4-5}\n & 60q & 204q & 60q & 204q \\\\\n\\midrule\nSC-deterministic & 25.0 & 29.4 & 70.0 & 70.6 \\\\\nSC-random ($\\mathbb{E}$) & 37.5 & 41.2\\tiny{$\\pm$8} & 71.7 & 72.0 \\\\\nSICA (MAX-SAT) & 75.0 & 76.5 & 73.3 & 74.5 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Tiebreak strategy comparison (\\%). SICA significantly outperforms random tiebreaking on 204 questions ($p=0.041$, Monte Carlo bootstrap).}\n\\label{tab:tiebreak}\n\\end{table}\n\nTable~\\ref{tab:tiebreak} shows that SICA's advantage over random tiebreaking is +2.9pp overall ($p=0.041$), confirming that MAX-SAT constraint weighting extracts genuine signal beyond what chance tiebreaking provides.\n\n%----------------------------------------------------------------------\n\\subsection{$K$ Ablation: Causal Evidence for Tiebreaking}\n\\label{sec:k_ablation}\n%----------------------------------------------------------------------\n\nTo establish a causal link between tiebreaking and SICA's gain, we vary $K \\in \\{6, 8, 9, 12, 16, 20\\}$ on 60 problems with Qwen2.5-14B-Instruct (Table~\\ref{tab:k_ablation}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{ccccccc}\n\\toprule\n$K$ & \\textbf{SC} & \\textbf{SICA} & \\textbf{Gap} & \\textbf{Ties} & \\textbf{Wins} & $C_0$ \\\\\n\\midrule\n6 & 68.3 & 71.7 & +3.4 & 6 & 5 & .50 \\\\\n8 & 70.0 & 73.3 & +3.3 & 5 & 4 & .52 \\\\\n9\\textsuperscript{$\\dagger$} & 70.0 & 70.0 & 0.0 & 0 & -- & .52 \\\\\n12 & 70.0 & 73.3 & +3.3 & 4 & 3 & .53 \\\\\n16 & 70.0 & 75.0 & +5.0 & 7 & 6 & .55 \\\\\n20 & 71.7 & 75.0 & +3.3 & 5 & 4 & .55 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{$K$ ablation ($N\\!=\\!60$, 14B-Instruct). Accuracy in \\%. ``Wins'' = SICA correct on tied questions. $\\dagger$Odd $K$: majority vote produces no ties, SICA $\\equiv$ SC.}\n\\label{tab:k_ablation}\n\\end{table}\n\nThe $K\\!=\\!9$ result provides the cleanest causal evidence: with odd $K$, majority voting always produces a unique winner, SICA has no tiebreaking opportunity, and the gap is exactly 0.0pp. The same data, same model, same pipeline---only the parity of $K$ determines whether SICA activates. The correlation between tie count and SICA gap is $r = 0.82$ across even-$K$ configurations, and SICA wins $>75\\%$ of ties at every $K$ tested.\n\n%----------------------------------------------------------------------\n\\subsection{Model Scaling and Operating Regime}\n\\label{sec:scaling}\n%----------------------------------------------------------------------\n\nTable~\\ref{tab:scaling} presents results across four models, revealing a clear operating regime governed by $C_0$.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\n\\textbf{Model} & \\textbf{Size} & \\textbf{SC} & \\textbf{SICA} & \\textbf{Gap} & $C_0$ \\\\\n\\midrule\n7B-Instruct & 7B & 55.0 & 61.7 & +6.7 & .68 \\\\\n14B-Instruct & 14B & 70.0 & 73.3 & +3.3 & .53 \\\\\n72B-Instruct\\textsuperscript{$\\dagger$} & 72B & 78.3 & 80.0 & +1.7 & .32 \\\\\nQwQ-32B & 32B & 73.3 & 73.3 & 0.0 & .036 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Model scaling ($N\\!=\\!60$, $K\\!=\\!12$). Accuracy in \\%. $\\dagger$AWQ 4-bit quantization. SICA gain decreases monotonically with $C_0$.}\n\\label{tab:scaling}\n\\end{table}\n\nThree patterns emerge. First, SICA's gain scales inversely with model capability among instruction models: +6.7pp (7B), +3.3pp (14B), +1.7pp (72B). This makes SICA most valuable for the cost-effective models practitioners actually deploy. Second, QwQ-32B produces $C_0 = 3.6\\%$, effectively eliminating trace diversity. Its extended chain-of-thought acts as internal self-consistency, converging traces to the same answer before SICA can intervene. Third, the instruction-vs-reasoning distinction matters more than model size: QwQ-32B (32B) has zero SICA gain despite being smaller than the 72B instruction model that still benefits.\n\n%----------------------------------------------------------------------\n\\subsection{$C_0$ as a Zero-Cost Predictor}\n\\label{sec:c0_analysis}\n%----------------------------------------------------------------------\n\nWe aggregate $C_0$ and SICA-SC gap across all 18 configurations (3 models $\\times$ multiple $K$ values and datasets). Table~\\ref{tab:c0_predictor} shows representative data points.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & $K$ & \\textbf{Data} & $C_0$ & \\textbf{Gap} & \\textbf{Pred.} \\\\\n\\midrule\n7B & 12 & Comb. & .68 & +6.7 & +5.7 \\\\\n14B & 6 & Comb. & .50 & +3.4 & +3.7 \\\\\n14B & 12 & Comb. & .53 & +3.3 & +4.0 \\\\\n14B & 16 & Comb. & .55 & +5.0 & +4.3 \\\\\n14B & 12 & 204q & .51 & +3.9 & +3.8 \\\\\nQwQ & 12 & FOLIO & .036 & 0.0 & $-$1.4 \\\\\nQwQ & 12 & AIME & .00 & 0.0 & $-$1.8 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{$C_0$ vs.\\ SICA--SC gap (pp) across configurations. ``Pred.'' from linear fit ($\\text{gap} = 0.11 \\cdot C_0 - 1.8$, $R^2\\!=\\!0.83$). Gap in pp.}\n\\label{tab:c0_predictor}\n\\end{table}\n\nThe Pearson correlation between $C_0$ and SICA gain is $r = 0.91$ ($\\rho = 0.88$ Spearman). A simple linear fit ($\\text{gap} = 0.11 \\cdot C_0 - 1.8$) achieves $R^2 = 0.83$. The $C_0 = 20\\%$ threshold perfectly separates configurations with meaningful gain ($>$1pp) from those without: all configurations with $C_0 > 20\\%$ show positive SICA gain, while all with $C_0 < 20\\%$ show $\\leq$0.5pp. This yields the practical rule: compute $C_0$ from SC outputs (zero additional cost), deploy SICA only when $C_0 > 20\\%$.\n\n%----------------------------------------------------------------------\n\\subsection{Computational Overhead}\n\\label{sec:overhead}\n%----------------------------------------------------------------------\n\nTable~\\ref{tab:overhead} decomposes SICA's wall-time cost.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Component} & \\textbf{Time/q (s)} & \\textbf{\\%} & \\textbf{Par.} \\\\\n\\midrule\nTrace generation ($K\\!=\\!12$) & 42.0 & 76.6 & Yes \\\\\nConstraint extraction & 12.5 & 22.8 & Yes \\\\\nMAX-SAT solving & 0.3 & 0.6 & -- \\\\\n\\midrule\nTotal SICA & 54.8 & 100 & -- \\\\\nTotal SC (baseline) & 42.0 & -- & -- \\\\\n\\midrule\nSequential overhead & \\multicolumn{3}{c}{+12.8s (+30\\%)} \\\\\nParallel overhead & \\multicolumn{3}{c}{+3.2s (+8\\%)} \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Wall-time decomposition per question. Constraint extraction is embarrassingly parallel across traces, reducing practical overhead to $\\sim$8\\%.}\n\\label{tab:overhead}\n\\end{table}\n\nThe MAX-SAT solver adds negligible cost ($<$1\\%, median 12ms per problem). The overhead is dominated by constraint extraction LLM calls, which are embarrassingly parallel across traces. With parallelization, SICA's overhead is $\\sim$8\\% over SC---modest relative to the +3.9pp accuracy gain on the expanded evaluation.\n\n%----------------------------------------------------------------------\n\\subsection{Qualitative Analysis}\n\\label{sec:qualitative}\n%----------------------------------------------------------------------\n\nWe conduct case studies on 8 representative problems to examine constraint quality. In 6 of 8 cases, extracted constraints faithfully represent key logical relationships in the problem. In 4 of 5 cases involving constraint exclusions, the excluded constraints correspond to identifiable reasoning errors: incorrect negation, scope confusion, or missed premises.\n\nSICA's single tie loss in our case studies reveals an instructive failure mode: the incorrect answer's traces produced internally consistent but factually wrong constraints---a coherent but incorrect reasoning chain that MAX-SAT cannot distinguish from correct reasoning on constraint structure alone. Approximately 40\\% of constraints exhibit semantic redundancy (the same logical relationship in different FOL expressions), which MAX-SAT's weighting mechanism handles through implicit deduplication.\n\n%======================================================================\n\\section{When Does Symbolic Consensus Degenerate?}\n\\label{sec:degenerate}\n%======================================================================\n\nQwQ-32B provides a clean negative result. Across all tested benchmarks (FOLIO, ProofWriter, AIME, MATH), QwQ produces $C_0 < 5\\%$, and SICA's gain is exactly 0.0pp. The mechanism is clear: QwQ's extended chain-of-thought reasoning (often thousands of tokens) acts as internal self-consistency. By the time the model produces a final answer, it has already explored and rejected alternative reasoning paths, converging all $K$ traces to the same answer. With no multi-candidate questions, there are no ties, and SICA has no opportunity to intervene.\n\nThis is not a failure of SICA but a characterization of its operating regime. Symbolic consensus is most valuable precisely where it is most needed: for instruction-tuned models that produce diverse but individually uncertain reasoning traces. Reasoning models, which achieve internal consistency through extended deliberation, do not benefit---but they also tend to be more expensive to deploy. The practical implication is that SICA targets the model class (instruction models) that practitioners use most frequently due to cost and latency constraints.\n\n%======================================================================\n\\section{Discussion}\n%======================================================================\n\n\\paragraph{Limitations.}\nOur evaluation is limited to logic reasoning benchmarks (FOLIO, ProofWriter) where FOL constraint extraction is natural. Extending SICA to mathematical reasoning or commonsense reasoning would require domain-specific constraint formalisms. The 60-question subsets for individual model evaluations (7B, 72B) do not reach statistical significance independently ($p=0.068$ and $p=0.28$ respectively); our significance claims rest on the 204-question 14B evaluation and the consistent pattern across configurations.\n\n\\paragraph{Broader Applicability.}\nThe $C_0$ diagnostic generalizes beyond SICA: any method that exploits trace diversity (ensemble methods, debate, verification cascades) should see diminishing returns as $C_0 \\to 0$. We conjecture that $C_0$ could serve as a general indicator of when post-hoc reasoning aggregation methods add value.\n\n%======================================================================\n\\section{Conclusion}\n%======================================================================\n\nWe presented SICA, a symbolic constraint aggregation method that provides principled tiebreaking for LLM self-consistency voting. On 204 logic reasoning problems, SICA achieves +3.9pp over SC ($p=0.023$) with Qwen2.5-14B-Instruct, with gains concentrated on tied questions where SICA's MAX-SAT weighting selects correctly 76.5\\% of the time. We characterized SICA's operating regime through the multi-candidate rate $C_0$: effectiveness scales from +6.7pp (7B, $C_0=0.68$) to 0.0pp (QwQ-32B, $C_0 \\approx 0$), with $C_0$ serving as a zero-cost deployment predictor ($r=0.91$). The $C_0 > 20\\%$ threshold enables practitioners to decide whether to deploy SICA without running the full symbolic pipeline, making the method practical for production use.\n\n\\bibliography{custom}\n\n\\begin{thebibliography}{10}\n\n\\bibitem[\\protect\\citename{Chen et al.}2023]{chen2023universal}\nXinyun Chen, Renat Aksitov, Uri Alon, Jie Ren, Kefan Xiao, Pengcheng Yin, Sushant Prakash, Charles Sutton, Xuezhi Wang, and Denny Zhou. 2023.\n\\newblock Universal self-consistency for large language model generation.\n\\newblock \\textit{arXiv preprint arXiv:2311.17311}.\n\n\\bibitem[\\protect\\citename{Cobbe et al.}2021]{cobbe2021gsm8k}\nKarl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heather Jun, Lukasz Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano, Christopher Hesse, and John Schulman. 2021.\n\\newblock Training verifiers to solve math word problems.\n\\newblock \\textit{arXiv preprint arXiv:2110.14168}.\n\n\\bibitem[\\protect\\citename{Lightman et al.}2023]{lightman2023lets}\nHunter Lightman, Vineet Kosaraju, Yura Burda, Harri Edwards, Bowen Baker, Teddy Lee, Jan Leike, John Schulman, Ilya Sutskever, and Karl Cobbe. 2023.\n\\newblock Let's verify step by step.\n\\newblock \\textit{arXiv preprint arXiv:2305.20050}.\n\n\\bibitem[\\protect\\citename{Olausson et al.}2023]{olausson2023linc}\nTheo X. Olausson, Alex Gu, Benjamin Lipkin, Cedegao E. Zhang, Armando Solar-Lezama, Joshua B. Tenenbaum, and Roger Levy. 2023.\n\\newblock LINC: A neurosymbolic approach for logical reasoning by combining language models with first-order logic provers.\n\\newblock In \\textit{Proceedings of EMNLP}.\n\n\\bibitem[\\protect\\citename{Pan et al.}2023]{pan2023logiclm}\nLiangming Pan, Alon Albalak, Xinyi Wang, and William Yang Wang. 2023.\n\\newblock Logic-LM: Empowering large language models with symbolic solvers for faithful logical reasoning.\n\\newblock In \\textit{Findings of EMNLP}.\n\n\\bibitem[\\protect\\citename{Wang et al.}2023]{wang2023selfconsistency}\nXuezhi Wang, Jason Wei, Dale Schuurmans, Quoc Le, Ed Chi, Sharan Narang, Aakanksha Chowdhery, and Denny Zhou. 2023.\n\\newblock Self-consistency improves chain of thought reasoning in language models.\n\\newblock In \\textit{Proceedings of ICLR}.\n\n\\end{thebibliography}\n\n\\end{document}\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            },
+            "sourceToolAssistantUUID": "e5135e5c-6a8c-456e-8138-da5b803245d4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260516T051642 tier=best 生成一篇完整的模拟论文。  ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_con…",
+                "leafUuid": "7ce17f3a-25d6-4497-a645-93cac8fd2efc",
+                "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358"
+              }
+            }
+          ],
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Generate symbolic consensus research paper",
+                "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358"
+              }
+            }
+          ],
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T05:32:51.917Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RLAM1kNLEFQmW4ASAaDHSy",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best && pdflatex -interaction=nonstopmode paper.tex 2>&1 | tail -30",
+                "description": "First pdflatex pass"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7ce17f3a-25d6-4497-a645-93cac8fd2efc",
+            "isSidechain": false,
+            "requestId": "req_011Cb5hdn83dujrkDcfAsqb6",
+            "type": "assistant",
+            "uuid": "b4029bde-cf44-48e5-90c3-4d0e6d6e898a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hhw8N5TnfPqi4bjF7a3duh",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7867,
+                "cache_read_input_tokens": 36587,
+                "output_tokens": 144,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7867,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 144,
+                    "cache_read_input_tokens": 36587,
+                    "cache_creation_input_tokens": 7867,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7867
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T05:32:52.494Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RLAM1kNLEFQmW4ASAaDHSy",
+              "type": "tool_result",
+              "content": "This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex)\n restricted \\write18 enabled.\nentering extended mode\n(./paper.tex\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls\nDocument Class: article 2025/01/22 v1.4n Standard LaTeX document class\n(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))\n\n! LaTeX Error: File `emnlp2023.sty' not found.\n\nType X to quit or <RETURN> to proceed,\nor enter new name. (Default extension: sty)\n\nEnter file name: \n! Emergency stop.\n<read *> \n         \nl.3 \\usepackage\n               {times}^^M\n!  ==> Fatal error occurred, no output PDF file produced!\nTranscript written on paper.log.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b4029bde-cf44-48e5-90c3-4d0e6d6e898a",
+            "isSidechain": false,
+            "promptId": "e1f6b07a-1aeb-471c-ae86-06da4a663c31",
+            "type": "user",
+            "uuid": "e03a846d-e003-453e-b0a5-ab26f47624d7",
+            "toolUseResult": {
+              "stdout": "This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex)\n restricted \\write18 enabled.\nentering extended mode\n(./paper.tex\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls\nDocument Class: article 2025/01/22 v1.4n Standard LaTeX document class\n(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))\n\n! LaTeX Error: File `emnlp2023.sty' not found.\n\nType X to quit or <RETURN> to proceed,\nor enter new name. (Default extension: sty)\n\nEnter file name: \n! Emergency stop.\n<read *> \n         \nl.3 \\usepackage\n               {times}^^M\n!  ==> Fatal error occurred, no output PDF file produced!\nTranscript written on paper.log.",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "b4029bde-cf44-48e5-90c3-4d0e6d6e898a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best",
+            "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T05:32:55.298Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The emnlp2023.sty file is not available. Let me switch to a standard article class instead.",
+              "signature": "EpYCClkIDRgCKkBr6sLR/A1LDiN6mZzhj/nA7GzzCo7FqUG9N5pEkMruv9wyeyrkynDn9LlsFASNVxb5svJMF947Svtdgx3x2YOxMg9jbGF1ZGUtb3B1cy00LTY4ABIMLlOUlo3GtvJ/5dTxGgyEQI98HzahYiESfzsiMD16jlDiAbDKjrttyFs9a7dvvByg/1xBUFIMcFGPdvgE3Hghnmt8IKLnE2OtFb5WJyprM9v7N6uiJ7ZH/zE5TFlov/U7180n5Tdhl2kvaW3Wm9lFHrMHzxC7hOeh3BB6Mz1SAEKHYjKgaRoSzhOGigTBLYG8+jqIZz9X/drKvZMLRSCyMbVbPGjntix2tzmIs/3k5Sp8AS+vvvm7hbIYAQ=="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e03a846d-e003-453e-b0a5-ab26f47624d7",
+            "isSidechain": false,
+            "requestId": "req_011Cb5he2idScoxqxQv3Ccr9",
+            "type": "assistant",
+            "uuid": "88665688-d711-416f-8c95-65de6a58e91b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best",
+            "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RJfddkoKRMv34k7rcvnpkv",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 429,
+                "cache_read_input_tokens": 44454,
+                "output_tokens": 308,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 429,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 308,
+                    "cache_read_input_tokens": 44454,
+                    "cache_creation_input_tokens": 429,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 429
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T05:32:55.807Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Missing the EMNLP style file. I'll switch to a standard article class."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "88665688-d711-416f-8c95-65de6a58e91b",
+            "isSidechain": false,
+            "requestId": "req_011Cb5he2idScoxqxQv3Ccr9",
+            "type": "assistant",
+            "uuid": "09c484f0-1dc3-4650-a51b-d616c3c15384",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best",
+            "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RJfddkoKRMv34k7rcvnpkv",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 429,
+                "cache_read_input_tokens": 44454,
+                "output_tokens": 308,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 429,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 308,
+                    "cache_read_input_tokens": 44454,
+                    "cache_creation_input_tokens": 429,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 429
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T05:32:57.573Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FgUUCoVKWA2YLSZFiNFDpS",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best/paper.tex",
+                "old_string": "\\documentclass[11pt,a4paper]{article}\n\\usepackage[hyperref]{emnlp2023}\n\\usepackage{times}\n\\usepackage{latexsym}",
+                "new_string": "\\documentclass[11pt,a4paper]{article}\n\\usepackage[margin=1in]{geometry}\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage{natbib}\n\\usepackage{hyperref}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "09c484f0-1dc3-4650-a51b-d616c3c15384",
+            "isSidechain": false,
+            "requestId": "req_011Cb5he2idScoxqxQv3Ccr9",
+            "type": "assistant",
+            "uuid": "ddc328ad-67e5-458e-a2fa-3e5c7bf3dd8e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best",
+            "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RJfddkoKRMv34k7rcvnpkv",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 429,
+                "cache_read_input_tokens": 44454,
+                "output_tokens": 308,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 429,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 308,
+                    "cache_read_input_tokens": 44454,
+                    "cache_creation_input_tokens": 429,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 429
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T05:32:57.683Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FgUUCoVKWA2YLSZFiNFDpS",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best/paper.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ddc328ad-67e5-458e-a2fa-3e5c7bf3dd8e",
+            "isSidechain": false,
+            "promptId": "e1f6b07a-1aeb-471c-ae86-06da4a663c31",
+            "type": "user",
+            "uuid": "89f86e5b-b2cb-4cec-a1ff-0be98d54eb10",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best/paper.tex",
+              "oldString": "\\documentclass[11pt,a4paper]{article}\n\\usepackage[hyperref]{emnlp2023}\n\\usepackage{times}\n\\usepackage{latexsym}",
+              "newString": "\\documentclass[11pt,a4paper]{article}\n\\usepackage[margin=1in]{geometry}\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage{natbib}\n\\usepackage{hyperref}",
+              "originalFile": null,
+              "structuredPatch": [
+                {
+                  "oldStart": 1,
+                  "oldLines": 7,
+                  "newStart": 1,
+                  "newLines": 9,
+                  "lines": [
+                    " \\documentclass[11pt,a4paper]{article}",
+                    "-\\usepackage[hyperref]{emnlp2023}",
+                    "+\\usepackage[margin=1in]{geometry}",
+                    " \\usepackage{times}",
+                    " \\usepackage{latexsym}",
+                    "+\\usepackage{natbib}",
+                    "+\\usepackage{hyperref}",
+                    " \\usepackage{amsmath}",
+                    " \\usepackage{amssymb}",
+                    " \\usepackage{booktabs}"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "ddc328ad-67e5-458e-a2fa-3e5c7bf3dd8e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best",
+            "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T05:33:01.590Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Also need to fix the bibliography section — it has both `\\bibliography{custom}` and inline `\\begin{thebibliography}`. Let me remove the dangling `\\bibliography{custom}` line."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "89f86e5b-b2cb-4cec-a1ff-0be98d54eb10",
+            "isSidechain": false,
+            "requestId": "req_011Cb5heQs9JwMzieHxtFZDd",
+            "type": "assistant",
+            "uuid": "fa96f024-ef23-4040-96e4-1613acacba75",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best",
+            "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C3PVDiQ3NcmAqGMYKNAsB7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 395,
+                "cache_read_input_tokens": 44883,
+                "output_tokens": 211,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 395,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 211,
+                    "cache_read_input_tokens": 44883,
+                    "cache_creation_input_tokens": 395,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 395
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T05:33:02.309Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LoXodFeiJ7fQjwwAVJ4Dgg",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best/paper.tex",
+                "old_string": "\\bibliography{custom}\n\n\\begin{thebibliography}{10}",
+                "new_string": "\\begin{thebibliography}{10}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fa96f024-ef23-4040-96e4-1613acacba75",
+            "isSidechain": false,
+            "requestId": "req_011Cb5heQs9JwMzieHxtFZDd",
+            "type": "assistant",
+            "uuid": "3988076a-bc2b-427c-9c9b-1d0d7f3e8535",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best",
+            "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C3PVDiQ3NcmAqGMYKNAsB7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 395,
+                "cache_read_input_tokens": 44883,
+                "output_tokens": 211,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 395,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 211,
+                    "cache_read_input_tokens": 44883,
+                    "cache_creation_input_tokens": 395,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 395
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T05:33:02.509Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LoXodFeiJ7fQjwwAVJ4Dgg",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best/paper.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3988076a-bc2b-427c-9c9b-1d0d7f3e8535",
+            "isSidechain": false,
+            "promptId": "e1f6b07a-1aeb-471c-ae86-06da4a663c31",
+            "type": "user",
+            "uuid": "656a6a49-6aef-42ac-aa61-7be123e0bde8",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best/paper.tex",
+              "oldString": "\\bibliography{custom}\n\n\\begin{thebibliography}{10}",
+              "newString": "\\begin{thebibliography}{10}",
+              "originalFile": null,
+              "structuredPatch": [
+                {
+                  "oldStart": 307,
+                  "oldLines": 8,
+                  "newStart": 307,
+                  "newLines": 6,
+                  "lines": [
+                    " ",
+                    " We presented SICA, a symbolic constraint aggregation method that provides principled tiebreaking for LLM self-consistency voting. On 204 logic reasoning problems, SICA achieves +3.9pp over SC ($p=0.023$) with Qwen2.5-14B-Instruct, with gains concentrated on tied questions where SICA's MAX-SAT weighting selects correctly 76.5\\% of the time. We characterized SICA's operating regime through the multi-candidate rate $C_0$: effectiveness scales from +6.7pp (7B, $C_0=0.68$) to 0.0pp (QwQ-32B, $C_0 \\approx 0$), with $C_0$ serving as a zero-cost deployment predictor ($r=0.91$). The $C_0 > 20\\%$ threshold enables practitioners to decide whether to deploy SICA without running the full symbolic pipeline, making the method practical for production use.",
+                    " ",
+                    "-\\bibliography{custom}",
+                    "-",
+                    " \\begin{thebibliography}{10}",
+                    " ",
+                    " \\bibitem[\\protect\\citename{Chen et al.}2023]{chen2023universal}"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "3988076a-bc2b-427c-9c9b-1d0d7f3e8535",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best",
+            "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T05:33:02.516Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "656a6a49-6aef-42ac-aa61-7be123e0bde8",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "74e41620-c249-4c07-bd98-98c53fc47002",
+                "timestamp": "2026-05-16T05:33:02.516Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best",
+                "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T05:33:05.874Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016DKo4abnx3a2e6bQQz5Czp",
+              "name": "Bash",
+              "input": {
+                "command": "pdflatex -interaction=nonstopmode paper.tex 2>&1 | tail -30",
+                "description": "First pdflatex pass"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "74e41620-c249-4c07-bd98-98c53fc47002",
+            "isSidechain": false,
+            "requestId": "req_011Cb5hemXrMN9mu5JZiTker",
+            "type": "assistant",
+            "uuid": "4eb32309-7218-460a-8949-b3e2c118bf17",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best",
+            "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DevVeppdFkTLkECJDyFHDR",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 402,
+                "cache_read_input_tokens": 45278,
+                "output_tokens": 144,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 402,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 144,
+                    "cache_read_input_tokens": 45278,
+                    "cache_creation_input_tokens": 402,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 402
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T05:33:06.640Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016DKo4abnx3a2e6bQQz5Czp",
+              "type": "tool_result",
+              "content": "LaTeX Warning: There were undefined references.\n\n\nLaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.\n\n\nPackage rerunfilecheck Warning: File `paper.out' has changed.\n(rerunfilecheck)                Rerun to get outlines right\n(rerunfilecheck)                or use package `bookmark'.\n\n )\n(see the transcript file for additional information)</usr/share/texlive/texmf-d\nist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fo\nnts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/ty\npe1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu\nblic/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am\nsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/\ncm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7\n.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></u\nsr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sha\nre/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texl\nive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/tex\nmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist\n/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/\nfonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw\n/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.\npfb>\nOutput written on paper.pdf (7 pages, 184551 bytes).\nTranscript written on paper.log.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4eb32309-7218-460a-8949-b3e2c118bf17",
+            "isSidechain": false,
+            "promptId": "e1f6b07a-1aeb-471c-ae86-06da4a663c31",
+            "type": "user",
+            "uuid": "6f804356-25b7-49ec-af78-ca931709e201",
+            "toolUseResult": {
+              "stdout": "LaTeX Warning: There were undefined references.\n\n\nLaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.\n\n\nPackage rerunfilecheck Warning: File `paper.out' has changed.\n(rerunfilecheck)                Rerun to get outlines right\n(rerunfilecheck)                or use package `bookmark'.\n\n )\n(see the transcript file for additional information)</usr/share/texlive/texmf-d\nist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fo\nnts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/ty\npe1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu\nblic/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am\nsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/\ncm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7\n.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></u\nsr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sha\nre/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texl\nive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/tex\nmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist\n/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/\nfonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw\n/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.\npfb>\nOutput written on paper.pdf (7 pages, 184551 bytes).\nTranscript written on paper.log.",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "4eb32309-7218-460a-8949-b3e2c118bf17",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best",
+            "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T05:33:13.736Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0167hoPWyTNxeC3iHF67VcpM",
+              "name": "Bash",
+              "input": {
+                "command": "pdflatex -interaction=nonstopmode paper.tex 2>&1 | tail -10",
+                "description": "Second pdflatex pass for cross-references"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6f804356-25b7-49ec-af78-ca931709e201",
+            "isSidechain": false,
+            "requestId": "req_011Cb5hf57mo8YXVFNGbLN7w",
+            "type": "assistant",
+            "uuid": "8fb9a92d-4dea-4f48-a56e-f824c75288ae",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best",
+            "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VB93TwjHL2pnmnDRYmNet3",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 806,
+                "cache_read_input_tokens": 45680,
+                "output_tokens": 148,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 806,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 148,
+                    "cache_read_input_tokens": 45680,
+                    "cache_creation_input_tokens": 806,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 806
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T05:33:14.581Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0167hoPWyTNxeC3iHF67VcpM",
+              "type": "tool_result",
+              "content": "sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sha\nre/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texl\nive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/tex\nmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist\n/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/\nfonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw\n/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.\npfb>\nOutput written on paper.pdf (7 pages, 186267 bytes).\nTranscript written on paper.log.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8fb9a92d-4dea-4f48-a56e-f824c75288ae",
+            "isSidechain": false,
+            "promptId": "e1f6b07a-1aeb-471c-ae86-06da4a663c31",
+            "type": "user",
+            "uuid": "d1d8e22d-8245-4d43-ba66-ffadb65b4e70",
+            "toolUseResult": {
+              "stdout": "sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sha\nre/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texl\nive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/tex\nmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist\n/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/\nfonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw\n/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.\npfb>\nOutput written on paper.pdf (7 pages, 186267 bytes).\nTranscript written on paper.log.",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "8fb9a92d-4dea-4f48-a56e-f824c75288ae",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best",
+            "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T05:33:22.973Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，7页PDF。\n\n输出文件：`/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best/paper.pdf`\n\n论文覆盖了全部8个实验：\n- **Table 1** — 204题主实验 (sica_expanded_14b)\n- **Table 2** — Tiebreak策略对比 (tiebreak_baseline_analysis)\n- **Table 3** — K消融 (sica_k_ablation_14b)\n- **Table 4** — 模型scaling含72B-AWQ (sica_7b_scaling + sica_72b_awq + qwq_32b_operating_regime)\n- **Table 5** — C0 predictor验证 (c0_diagnostic_validation)\n- **Table 6** — 计算开销分解 (overhead_analysis)\n- **Section 5** — QwQ退化分析 (qwq_32b_operating_regime)\n- **Section 4.6** — 定性case study (constraint_quality_case_studies)\n\n所有数字直接取自experiment_data.json，无编造。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d1d8e22d-8245-4d43-ba66-ffadb65b4e70",
+            "isSidechain": false,
+            "requestId": "req_011Cb5hff6BTBkdogqmdLQHY",
+            "type": "assistant",
+            "uuid": "79131bb6-1fbf-496b-8e8b-c4201f8fffbf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260516T051642/best",
+            "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011MM3Bko3wkiH4z1AG6AX4c",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 422,
+                "cache_read_input_tokens": 46486,
+                "output_tokens": 322,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 422,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 322,
+                    "cache_read_input_tokens": 46486,
+                    "cache_creation_input_tokens": 422,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 422
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260516T051642 tier=best 生成一篇完整的模拟论文。  ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_con…",
+                "leafUuid": "79131bb6-1fbf-496b-8e8b-c4201f8fffbf",
+                "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358"
+              }
+            }
+          ],
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Generate symbolic consensus research paper",
+                "sessionId": "f02ff93e-9b14-4df7-9a49-415f61d1a358"
+              }
+            }
+          ],
+          "id": "event-000038"
+        }
+      ],
+      "message_count": 36
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-paper-agent-dream-dream-id-dream-20260516t051642-tier-best-1-write-latex.md"
+}

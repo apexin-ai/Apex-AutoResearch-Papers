@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "id": "776984bf5580ea0df902",
+  "project": "symb_invariant_consensus--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You are Worker A in a cross-validation audit of academic citations. Your job is to independently verify EVERY entry in a",
+  "task_key": "agent-aa0b496fc67b5131e",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-aa0b496fc67b5131e.jsonl",
+    "occurrence": 1,
+    "bytes": 535873,
+    "sha256": "f7ac81d717d4ec7d8ccf9f9193b7de6516c6c173208dc0e493259a1d8b0fd6a4"
+  },
+  "statistics": {
+    "messages": 217,
+    "user_turns": 1,
+    "tool_calls": 95,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 25,
+      "tool_call": 95,
+      "tool_result": 95
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 217,
+      "chunks": [
+        {
+          "path": "776984bf5580ea0df902-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "776984bf5580ea0df902-part-0002.json",
+          "message_count": 37
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-are-worker-a-in-a-cross-validation-audit-of-academic-citations-your-job-is.md"
+}

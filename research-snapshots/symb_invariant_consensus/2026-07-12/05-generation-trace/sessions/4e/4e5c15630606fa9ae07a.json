@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "id": "4e5c15630606fa9ae07a",
+  "project": "symb_invariant_consensus--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: symb_invariant_consensus ## 运行环境 - 服务器名: westd-25068 - SSH 连接命令: ssh connect.westd.seetacloud.co",
+  "task_key": "ff7c75e6-cca3-4778-abcf-6f52d14b4460",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/ff7c75e6-cca3-4778-abcf-6f52d14b4460.jsonl",
+    "occurrence": 1,
+    "bytes": 799141,
+    "sha256": "51dc510d8d4ca4a6b4cfe75c0772a788d780e755b8e261a25b9b5796601c2122"
+  },
+  "statistics": {
+    "messages": 281,
+    "user_turns": 3,
+    "tool_calls": 78,
+    "roles": {
+      "record": 62,
+      "user": 3,
+      "assistant": 59,
+      "tool_call": 78,
+      "tool_result": 78,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "4e5c15630606fa9ae07a-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 215,
+      "chunks": [
+        {
+          "path": "4e5c15630606fa9ae07a-part-0001.json",
+          "message_count": 169
+        },
+        {
+          "path": "4e5c15630606fa9ae07a-part-0002.json",
+          "message_count": 46
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 50,
+      "chunks": [
+        {
+          "path": "4e5c15630606fa9ae07a-part-0002.json",
+          "message_count": 50
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 14,
+      "chunks": [
+        {
+          "path": "4e5c15630606fa9ae07a-part-0002.json",
+          "message_count": 14
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-symb-invariant-consensus-westd-25068-ssh-ssh-connect-westd-see-copy-142.md"
+}

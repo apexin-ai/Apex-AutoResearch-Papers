@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "id": "8d42ee0d6873b0b67c87",
+  "project": "symb_invariant_consensus--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: symb_invariant_consensus ## 运行环境 - 服务器名: westd-32608 - SSH 账户: root（调用 ssh_execute / submit_trai",
+  "task_key": "8895a722-17b1-47ec-8f47-522afe7fcb26",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/8895a722-17b1-47ec-8f47-522afe7fcb26.jsonl",
+    "occurrence": 1,
+    "bytes": 961873,
+    "sha256": "f29423d405eeb64df0117a6f34892ca36641e5f254f35400451822d60257157a"
+  },
+  "statistics": {
+    "messages": 637,
+    "user_turns": 1,
+    "tool_calls": 242,
+    "roles": {
+      "record": 91,
+      "user": 1,
+      "assistant": 61,
+      "tool_call": 242,
+      "tool_result": 242
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "8d42ee0d6873b0b67c87-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 635,
+      "chunks": [
+        {
+          "path": "8d42ee0d6873b0b67c87-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "8d42ee0d6873b0b67c87-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8d42ee0d6873b0b67c87-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "8d42ee0d6873b0b67c87-part-0004.json",
+          "message_count": 97
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-symb-invariant-consensus-westd-32608-ssh-root-ssh-execute-subm-copy-14.md"
+}

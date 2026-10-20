@@ -1,0 +1,179 @@
+{
+  "schema_version": "1.0",
+  "id": "8b70bc7fa8759d67dbc2",
+  "project": "symb_invariant_consensus--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 系统通知：审稿审批已通过。请开始审稿。 [论文提交] - 项目: symb_invariant_consensus - 论文路径: /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projec",
+  "task_key": "65a32094-28b9-4110-9ba4-8e0a0297e55b",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/65a32094-28b9-4110-9ba4-8e0a0297e55b.jsonl",
+    "occurrence": 1,
+    "bytes": 625851,
+    "sha256": "fed21fc00194e481379f22a9cb6d5f6bab433a0c792e1e38364a1c771471a8d9"
+  },
+  "statistics": {
+    "messages": 190,
+    "user_turns": 12,
+    "tool_calls": 47,
+    "roles": {
+      "record": 58,
+      "user": 12,
+      "assistant": 26,
+      "tool_call": 47,
+      "tool_result": 47
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "8b70bc7fa8759d67dbc2-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 110,
+      "chunks": [
+        {
+          "path": "8b70bc7fa8759d67dbc2-part-0001.json",
+          "message_count": 110
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "8b70bc7fa8759d67dbc2-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "8b70bc7fa8759d67dbc2-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "8b70bc7fa8759d67dbc2-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 13,
+      "chunks": [
+        {
+          "path": "8b70bc7fa8759d67dbc2-part-0001.json",
+          "message_count": 13
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "8b70bc7fa8759d67dbc2-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "8b70bc7fa8759d67dbc2-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "8b70bc7fa8759d67dbc2-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "8b70bc7fa8759d67dbc2-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 33,
+      "chunks": [
+        {
+          "path": "8b70bc7fa8759d67dbc2-part-0001.json",
+          "message_count": 22
+        },
+        {
+          "path": "8b70bc7fa8759d67dbc2-part-0002.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "8b70bc7fa8759d67dbc2-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "8b70bc7fa8759d67dbc2-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-symb-invariant-consensus-home-ubuntu-agent-ml-research-idea-gen-0513-3-projec-copy-8.md"
+}

@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "id": "662053eae52d0fe8c56b",
+  "project": "symb_invariant_consensus--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You need to read Python files from a remote server via MCP tools and write them to a local directory with anonymization.",
+  "task_key": "agent-a87e42aa9fec3cc99",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a87e42aa9fec3cc99.jsonl",
+    "occurrence": 1,
+    "bytes": 994787,
+    "sha256": "b40e0033005b96c9122e711140e54a0d31109a5b136ab136a6a8d938880a078f"
+  },
+  "statistics": {
+    "messages": 252,
+    "user_turns": 3,
+    "tool_calls": 107,
+    "roles": {
+      "user": 3,
+      "record": 1,
+      "assistant": 32,
+      "tool_call": 107,
+      "tool_result": 107,
+      "system": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 124,
+      "chunks": [
+        {
+          "path": "662053eae52d0fe8c56b-part-0001.json",
+          "message_count": 124
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 111,
+      "chunks": [
+        {
+          "path": "662053eae52d0fe8c56b-part-0001.json",
+          "message_count": 5
+        },
+        {
+          "path": "662053eae52d0fe8c56b-part-0002.json",
+          "message_count": 106
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 17,
+      "chunks": [
+        {
+          "path": "662053eae52d0fe8c56b-part-0002.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-need-to-read-python-files-from-a-remote-server-via-mcp-tools-and-write-the-copy-6.md"
+}

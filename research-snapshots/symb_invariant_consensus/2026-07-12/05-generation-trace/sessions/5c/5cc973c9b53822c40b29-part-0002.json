@@ -1,0 +1,1898 @@
+{
+  "schema_version": "1.0",
+  "session_id": "5cc973c9b53822c40b29",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 154,
+          "timestamp": "2026-05-20T01:48:05.517Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good, I can see the ICG score distributions. Many problems have competitive scores between candidates (e.g., folio_2: False=28, True=5, Unknown=10; folio_1: True=21, Unknown=30). Bootstrap subsampling should produce meaningful variation for these problems.\n\nSome problems have only one candidate with non-zero score (e.g., folio_0: Unknown=53, folio_7: Unknown=23). These would have κ=1.0 (always same answer regardless of bootstrap).\n\nThe mix of competitive and uncompetitive problems should give a meaningful aggregate κ.\n\nNow let me write and deploy the script. \n\nI'll write it locally and upload it. First, I need to handle the sica module import by adding the correct path to sys.path so I can import from the sica.z3_maxsat module. I'm going to make the script self-contained with fast string-based deduplication to avoid slow Z3 equivalence checking, and I should verify that the import path works on the server.\n\nNow I'm thinking through the actual implementation more carefully. For the ICG bootstrap, I really do need the Z3 MaxSAT solver to work, and the deduplication also requires Z3 to parse formulas properly. So I'll use the sica module but integrate my fast dedup approach. Let me write this step by step, though I'm starting to wonder if the bootstrap approach will actually produce significantly different κ values compared to the standard SC approach, given how the ICG scoring mechanism works.\n\nActually, maybe I should measure something more direct: how often the method's answer stays consistent across bootstrap samples. If every problem gets the same answer across all 12 bootstrap samples, that's κ = 1.0; if answers flip, κ drops. The proportion of problems where the answer changes across bootstraps gives a real sense of stability. Let me just implement this and see what the numbers show.\n\nAlternatively, I could try a jackknife approach instead of bootstrap—leaving one constraint set out at a time and rescoring with the remaining 9, repeating this 10 times. Each jackknife sample would give me a different scoring perspective.\n\nFor consistency across the scatter plot, I should use the same number of raters K for all methods. Since SC, Debate, and Diverse all use K=12, I'll stick with B=12 bootstrap samples for both ICG and Contrastive to keep everything comparable.\n\nNow I'm going to write the script to compute the bootstrap κ values. For ICG, I'll sample 5 out of 10 constraint sets per bootstrap replicate, and for Contrastive, I'll subsample 50% of the constraints. Though I'm concerned the Contrastive κ might be artificially high since most constraints are already satisfiable, so removing half of them won't destabilize the method much. the RATIO stays the same\n- Normalized scores stay the same → same answer → κ ≈ 1.0\n\nThe only way the Contrastive answer changes with subsampling is if:\n1. A constraint that was previously unsatisfied (excluded by MaxSAT) is removed\n2. This changes the satisfaction ratio for a candidate\n3. The ratio change is enough to flip the winner\n\nBut if most constraints are satisfied, removing any one doesn't change the ratio much. The answer is very stable.\n\nSo for Contrastive, I expect κ ≈ 1.0 and Eff-K ≈ 1.0. This means the Contrastive method effectively has 1 independent voter. Its accuracy (47.55%) is the accuracy of that single deterministic decision.\n\nFor the scatter plot, this would place Contrastive at (κ≈1.0, acc≈47.55%) — extremely high agreement, low accuracy. This is actually a very interesting data point showing that deterministic methods without ensemble effects can underperform compared to SC.\n\nFor ICG, I expect moderate κ values somewhere between SC's 0.44 and 1.0, since the constraint reranking should add some stability to the voting process while still allowing meaningful variation from the bootstrap samples. Now I'll write the script to compute these values directly, and I'll also calculate per-constraint-set answers for ICG to see how the method performs on each individual set. The variable names in the conclusion don't align with those in the constraints—the conclusion uses \"Engaged(bonnie)\" while constraints reference \"attends_school_events_bonnie\"—so this direct approach falls apart. I could try checking internal consistency within each set by running SAT checks, but most sets would be satisfiable anyway, which doesn't help discriminate between candidates. I'm realizing that per-set independent scoring fundamentally won't work for ICG because constraints are premise-based rather than answer-specific, and without the trace-mapping mechanism they can't distinguish between different answers. With trace-mapping, each set just votes for its corresponding trace's answer, which is circular. Bootstrap is really the only viable path forward here.\n\nBut wait—maybe I can sidestep the full bootstrap complexity. If I have the aggregate weight distribution across candidates from the ICG scoring, I could analytically estimate how likely subsampling 5 out of 10 constraint sets is to flip the winner. The aggregate weights tell me which candidate is ahead, and I can approximate the variance from subsampling to see if the margin is stable enough to survive random set selection.\n\nThe real issue is that I don't have per-set breakdowns, so I can't compute the exact variance—it depends on whether the winning candidate's constraints are spread evenly across sets or concentrated in a few. That's a hypergeometric distribution problem, but without the granular data, I'd need to just run the bootstrap to see what actually happens. Let me write that script now and push it to the server.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fcd4d64a-8946-4747-b3ae-151c5e5eb11d",
+            "isSidechain": false,
+            "requestId": "req_011CbCyf247atkz4ucuJ5Cy2",
+            "type": "assistant",
+            "uuid": "621326d4-6747-4376-9c98-7064327a12b4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UWG9j3oYVRsbxjbEnjs394",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 21812,
+                "cache_read_input_tokens": 86573,
+                "output_tokens": 2520,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 21812,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2520,
+                    "cache_read_input_tokens": 86573,
+                    "cache_creation_input_tokens": 21812,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 21812
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000154"
+        },
+        {
+          "source_line": 155,
+          "timestamp": "2026-05-20T01:48:05.524Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I have enough context now. The ICG scoring has competitive multi-candidate weight distributions (e.g., False=28 vs Unknown=10 vs True=5), so bootstrap subsampling will produce meaningful variation. Let me write and deploy the computation script."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "621326d4-6747-4376-9c98-7064327a12b4",
+            "isSidechain": false,
+            "requestId": "req_011CbCyf247atkz4ucuJ5Cy2",
+            "type": "assistant",
+            "uuid": "287edf7a-2044-48db-969a-f7602c019fda",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UWG9j3oYVRsbxjbEnjs394",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 21812,
+                "cache_read_input_tokens": 86573,
+                "output_tokens": 2520,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 21812,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2520,
+                    "cache_read_input_tokens": 86573,
+                    "cache_creation_input_tokens": 21812,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 21812
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000155"
+        },
+        {
+          "source_line": 156,
+          "timestamp": "2026-05-20T01:48:06.097Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AhvLpNZzcJu7FPXALEptah",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__save_project_file",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "287edf7a-2044-48db-969a-f7602c019fda",
+            "isSidechain": false,
+            "requestId": "req_011CbCyf247atkz4ucuJ5Cy2",
+            "type": "assistant",
+            "uuid": "bf62810d-22f4-41f8-a975-02c7da8a60db",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UWG9j3oYVRsbxjbEnjs394",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 21812,
+                "cache_read_input_tokens": 86573,
+                "output_tokens": 2520,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 21812,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2520,
+                    "cache_read_input_tokens": 86573,
+                    "cache_creation_input_tokens": 21812,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 21812
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000156"
+        },
+        {
+          "source_line": 157,
+          "timestamp": "2026-05-20T01:48:06.103Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01AhvLpNZzcJu7FPXALEptah",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__save_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bf62810d-22f4-41f8-a975-02c7da8a60db",
+            "isSidechain": false,
+            "promptId": "5bcb40e1-0981-47d3-94ef-a07e0138f7b9",
+            "type": "user",
+            "uuid": "8cc2227e-4f12-4f59-bf2d-50473b539453",
+            "toolUseResult": {
+              "matches": [
+                "mcp__agent-ml-research__save_project_file"
+              ],
+              "query": "select:mcp__agent-ml-research__save_project_file",
+              "total_deferred_tools": 27
+            },
+            "sourceToolAssistantUUID": "bf62810d-22f4-41f8-a975-02c7da8a60db",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000157"
+        },
+        {
+          "source_line": 158,
+          "timestamp": "2026-05-20T01:48:09.133Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me write the script and deploy it to the server via ssh_execute. I'll write it as a here-doc.",
+              "signature": "EpwCClkIDRgCKkDSNNu+insCHK5ePar/nD8IPThwW7Euurevv8se2LBtKyFbSp2Yn/rTh2ocQ0F6NBTuDZnNgSC6l13X5Ac2oTnLMg9jbGF1ZGUtb3B1cy00LTY4ABIMdYsBRJwNPJh+xMNPGgxRXh065CW86xYHxjgiMM7BriICZOahT2NmrM7lqsGbEJbMs6py+YnzqfiDYGzKz8O4XWemYtm1+9yeqNWN2Spx9Q6hAHhqq3annMGqGlLsPjxrdWOernpJYAzdWsqtkuG14dvUfJXF36u3C8ypsDkwirCHpozelZdEMuyTLHAIMB67snMO5fHTH2ERFdfrpp1zNexXv5y/+Ql7X/xwgjq62rYeu256G+o5R6aeCTPlqPkYAQ=="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8cc2227e-4f12-4f59-bf2d-50473b539453",
+            "isSidechain": false,
+            "requestId": "req_011CbCyjZ9zaxeaVEcxRLVKe",
+            "type": "assistant",
+            "uuid": "4ab05df6-fc2a-48f1-8feb-f1c73a484a0f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FNsGrG3RPg69iuDqC93u6R",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 2791,
+                "cache_read_input_tokens": 108385,
+                "output_tokens": 4118,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2791,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 4118,
+                    "cache_read_input_tokens": 108385,
+                    "cache_creation_input_tokens": 2791,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2791
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000158"
+        },
+        {
+          "source_line": 159,
+          "timestamp": "2026-05-20T01:48:09.622Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Writing the bootstrap κ computation script and deploying it to the server."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4ab05df6-fc2a-48f1-8feb-f1c73a484a0f",
+            "isSidechain": false,
+            "requestId": "req_011CbCyjZ9zaxeaVEcxRLVKe",
+            "type": "assistant",
+            "uuid": "bad1bad8-3405-466c-a17b-9dfa8f2d53b3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FNsGrG3RPg69iuDqC93u6R",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 2791,
+                "cache_read_input_tokens": 108385,
+                "output_tokens": 4118,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2791,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 4118,
+                    "cache_read_input_tokens": 108385,
+                    "cache_creation_input_tokens": 2791,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2791
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": "2026-05-20T01:49:01.267Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011N3iFR7HXNNwTgSvcAZNEB",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-25068",
+                "command": "cat > /root/symb_invariant_consensus/scripts/compute_kappa_icg_contrastive.py << 'SCRIPT_EOF'\n#!/usr/bin/env python3\n\"\"\"\nCompute Fleiss' kappa for ICG and Contrastive methods via bootstrap resampling.\n\nICG: sample m=5 out of K_icg constraint sets, run dedup+MaxSAT+InvariantScorer.\nContrastive: subsample 50% of pro/con constraints per candidate, re-run MaxSAT scoring.\nB=12 bootstrap iterations (matching K=12 of SC/Debate/Diverse).\n\"\"\"\nimport json, os, glob, sys, time\nimport numpy as np\nfrom collections import Counter\nimport logging\n\nlogging.disable(logging.CRITICAL)\n\nsys.path.insert(0, '/root/symb_invariant_consensus')\n\nfrom sica.z3_maxsat import MaxSATSolver, parse_z3_formula, UniqueConstraint, MaxSATResult\nfrom sica.scorer import InvariantScorer\n\nSEED = 42\nB = 12\nFOLIO_CATS = ['True', 'False', 'Unknown']\nCAT_IDX = {c: i for i, c in enumerate(FOLIO_CATS)}\n\n_LOGIC_MAP = {\n    'true': 'True', 'yes': 'True', '1': 'True',\n    'false': 'False', 'no': 'False', '0': 'False',\n    'unknown': 'Unknown', 'uncertain': 'Unknown', 'undetermined': 'Unknown',\n}\n\ndef norm_ans(ans):\n    s = str(ans).strip()\n    if s.startswith('\\\\text{'):\n        s = s[len('\\\\text{'):]\n        if s.endswith('}'): s = s[:-1]\n        s = s.strip()\n    r = _LOGIC_MAP.get(s.lower(), s)\n    return r if r in FOLIO_CATS else 'Unknown'\n\ndef fleiss_kappa(M):\n    M = np.array(M, dtype=float)\n    n_i = M.sum(axis=1)\n    valid = n_i >= 2\n    M, n_i = M[valid], n_i[valid]\n    n = M.shape[0]\n    if n == 0: return float('nan')\n    P_i = (np.sum(M**2, axis=1) - n_i) / (n_i * (n_i - 1))\n    P_bar = np.mean(P_i)\n    p_j = M.sum(axis=0) / n_i.sum()\n    P_e = np.sum(p_j**2)\n    if P_e >= 1.0: return 1.0\n    return float((P_bar - P_e) / (1 - P_e))\n\ndef eff_k(kappa, K=12):\n    d = 1 + (K - 1) * kappa\n    return K / d if d > 0 else float('inf')\n\n\nclass FastDedup:\n    \"\"\"String-based dedup (much faster than Z3 equivalence).\"\"\"\n    def deduplicate(self, all_constraints):\n        unique = {}\n        for trace_idx, trace_constraints in enumerate(all_constraints):\n            for c in trace_constraints:\n                z3_str = c.get('z3_formula', '').strip()\n                if not z3_str: continue\n                z3_f = parse_z3_formula(z3_str)\n                if z3_f is None: continue\n                key = z3_str\n                if key in unique:\n                    unique[key].weight += 1\n                    if trace_idx not in unique[key].source_traces:\n                        unique[key].source_traces.append(trace_idx)\n                else:\n                    unique[key] = UniqueConstraint(\n                        expression=c.get('expression', ''),\n                        z3_formula=z3_f, weight=1,\n                        source_traces=[trace_idx]\n                    )\n        return list(unique.values())\n\n\ndef compute_icg_kappa():\n    base = '/root/symb_invariant_consensus/results/exp074_icg_mistral_folio'\n    files = sorted(glob.glob(os.path.join(base, 'intermediates', '*.json')))\n    rng = np.random.RandomState(SEED)\n    m = 5\n\n    dedup = FastDedup()\n    solver = MaxSATSolver()\n    scorer = InvariantScorer(alpha=0.5, fallback_threshold=0.2)\n\n    ratings = []\n    n_flips = 0\n    n_total = 0\n\n    for fi, fpath in enumerate(files):\n        with open(fpath) as f:\n            data = json.load(f)\n        icg_sets = data.get('icg_constraint_sets', [])\n        traces = data.get('traces', [])\n        K_actual = len(icg_sets)\n        if K_actual < 2 or not traces: continue\n\n        ans_counts = Counter()\n        for t in traces:\n            a = norm_ans(t.get('answer', ''))\n            ans_counts[a] += 1\n        candidates = [c for c in FOLIO_CATS if ans_counts.get(c, 0) > 0]\n        if not candidates: continue\n\n        row = [0] * len(FOLIO_CATS)\n        answers_this_problem = []\n\n        for b in range(B):\n            m_actual = min(m, K_actual)\n            sel = set(sorted(rng.choice(K_actual, size=m_actual, replace=False).tolist()))\n            subset = [icg_sets[i] if i in sel else [] for i in range(K_actual)]\n\n            try:\n                unique = dedup.deduplicate(subset)\n                if not unique:\n                    sc_ans = ans_counts.most_common(1)[0][0]\n                    row[CAT_IDX[sc_ans]] += 1\n                    answers_this_problem.append(sc_ans)\n                    continue\n                maxsat = solver.solve(unique, timeout_ms=5000)\n                scores = scorer.score(maxsat, traces, candidates)\n                answer = scorer.select_answer(scores, dict(ans_counts))\n                ans = norm_ans(answer)\n                row[CAT_IDX[ans]] += 1\n                answers_this_problem.append(ans)\n            except Exception:\n                sc_ans = ans_counts.most_common(1)[0][0]\n                row[CAT_IDX[sc_ans]] += 1\n                answers_this_problem.append(sc_ans)\n\n        ratings.append(row)\n        n_total += 1\n        if len(set(answers_this_problem)) > 1:\n            n_flips += 1\n\n        if (fi + 1) % 50 == 0:\n            print(f\"  ICG: {fi+1}/{len(files)} problems processed, {n_flips} flips so far\")\n\n    kappa = fleiss_kappa(ratings)\n    print(f\"  ICG: {n_flips}/{n_total} problems had answer flips across bootstraps\")\n    return kappa, eff_k(kappa, B), n_total\n\n\ndef compute_contrastive_kappa():\n    base = '/root/symb_invariant_consensus/results/exp075b_contrastive_mistral_folio'\n    files = sorted(glob.glob(os.path.join(base, 'intermediates', '*.json')))\n    rng = np.random.RandomState(SEED)\n    alpha = 0.5\n    frac = 0.5\n\n    solver = MaxSATSolver()\n    ratings = []\n    n_flips = 0\n    n_total = 0\n\n    for fi, fpath in enumerate(files):\n        with open(fpath) as f:\n            data = json.load(f)\n        per_cand = data.get('per_candidate_constraints', {})\n        if not per_cand: continue\n\n        candidates = list(per_cand.keys())\n        row = [0] * len(FOLIO_CATS)\n        answers_this = []\n\n        for b in range(B):\n            best_score = -float('inf')\n            best_cand = 'Unknown'\n\n            for cand in candidates:\n                pro = per_cand[cand].get('pro', [])\n                con = per_cand[cand].get('con', [])\n\n                # subsample pro\n                if len(pro) > 1:\n                    ns = max(1, int(len(pro) * frac))\n                    idx = sorted(rng.choice(len(pro), size=ns, replace=False).tolist())\n                    pro_sub = [pro[i] for i in idx]\n                else:\n                    pro_sub = list(pro)\n\n                # subsample con\n                if len(con) > 1:\n                    ns = max(1, int(len(con) * frac))\n                    idx = sorted(rng.choice(len(con), size=ns, replace=False).tolist())\n                    con_sub = [con[i] for i in idx]\n                else:\n                    con_sub = list(con)\n\n                # score pro\n                pro_ucs = []\n                for c in pro_sub:\n                    z3f = parse_z3_formula(c.get('z3_formula', ''))\n                    if z3f is not None:\n                        pro_ucs.append(UniqueConstraint(\n                            expression=c.get('expression',''),\n                            z3_formula=z3f, weight=1, source_traces=[0]))\n                if pro_ucs:\n                    pr = solver.solve(pro_ucs, timeout_ms=2000)\n                    norm_pro = pr.total_weight / len(pro_ucs)\n                else:\n                    norm_pro = 0.0\n\n                # score con\n                con_ucs = []\n                for c in con_sub:\n                    z3f = parse_z3_formula(c.get('z3_formula', ''))\n                    if z3f is not None:\n                        con_ucs.append(UniqueConstraint(\n                            expression=c.get('expression',''),\n                            z3_formula=z3f, weight=1, source_traces=[0]))\n                if con_ucs:\n                    cr = solver.solve(con_ucs, timeout_ms=2000)\n                    norm_con = cr.total_weight / len(con_ucs)\n                else:\n                    norm_con = 0.0\n\n                score = norm_pro - alpha * norm_con\n                if score > best_score:\n                    best_score = score\n                    best_cand = cand\n\n            ans = norm_ans(best_cand)\n            row[CAT_IDX[ans]] += 1\n            answers_this.append(ans)\n\n        ratings.append(row)\n        n_total += 1\n        if len(set(answers_this)) > 1:\n            n_flips += 1\n\n        if (fi + 1) % 50 == 0:\n            print(f\"  Contrastive: {fi+1}/{len(files)} problems, {n_flips} flips\")\n\n    kappa = fleiss_kappa(ratings)\n    print(f\"  Contrastive: {n_flips}/{n_total} problems had answer flips\")\n    return kappa, eff_k(kappa, B), n_total\n\n\nif __name__ == '__main__':\n    t0 = time.time()\n\n    print(\"=== Computing ICG bootstrap kappa ===\")\n    icg_k, icg_ek, icg_n = compute_icg_kappa()\n    print(f\"  ICG: kappa={icg_k:.4f}  Eff-K={icg_ek:.2f}  n={icg_n}\\n\")\n\n    print(\"=== Computing Contrastive bootstrap kappa ===\")\n    cont_k, cont_ek, cont_n = compute_contrastive_kappa()\n    print(f\"  Contrastive: kappa={cont_k:.4f}  Eff-K={cont_ek:.2f}  n={cont_n}\\n\")\n\n    # load accuracy\n    with open('/root/symb_invariant_consensus/results/exp074_icg_mistral_folio/results.json') as f:\n        icg_acc = json.load(f)['summary']['icg_accuracy'] * 100\n    with open('/root/symb_invariant_consensus/results/exp075b_contrastive_mistral_folio/results.json') as f:\n        cont_acc = json.load(f)['summary']['contrastive_accuracy'] * 100\n\n    wall = time.time() - t0\n    print(f\"{'='*60}\")\n    print(f\"SCATTER PLOT DATA — independence vs accuracy\")\n    print(f\"{'='*60}\")\n    print(f\"{'Method':<18} {'kappa':>8} {'Eff-K':>8} {'Acc%':>8}\")\n    print(f\"{'-'*60}\")\n    print(f\"{'SC':<18} {'0.4384':>8} {'2.02':>8} {'56.86':>8}\")\n    print(f\"{'Diverse-Prompt':<18} {'0.4030':>8} {'2.21':>8} {'~57':>8}\")\n    print(f\"{'Debate':<18} {'0.1549':>8} {'4.44':>8} {'38.24':>8}\")\n    print(f\"{'ICG':<18} {icg_k:>8.4f} {icg_ek:>8.2f} {icg_acc:>8.2f}\")\n    print(f\"{'Contrastive':<18} {cont_k:>8.4f} {cont_ek:>8.2f} {cont_acc:>8.2f}\")\n    print(f\"\\nWall time: {wall:.1f}s\")\n\n    output = {\n        'icg': {'kappa': round(icg_k,4), 'eff_k': round(icg_ek,2),\n                'accuracy_pct': round(icg_acc,2), 'n': icg_n,\n                'method': 'bootstrap_constraint_subsets', 'B': B, 'm': 5, 'K_icg': 10},\n        'contrastive': {'kappa': round(cont_k,4), 'eff_k': round(cont_ek,2),\n                        'accuracy_pct': round(cont_acc,2), 'n': cont_n,\n                        'method': 'bootstrap_constraint_subsampling', 'B': B, 'frac': 0.5},\n        'reference': {\n            'sc': {'kappa': 0.4384, 'eff_k': 2.02, 'accuracy_pct': 56.86},\n            'diverse_prompt': {'kappa': 0.4030, 'eff_k': 2.21},\n            'debate': {'kappa': 0.1549, 'eff_k': 4.44, 'accuracy_pct': 38.24},\n        },\n        'wall_time_s': round(wall, 1),\n    }\n    out = '/root/symb_invariant_consensus/results/kappa_icg_contrastive.json'\n    with open(out, 'w') as f:\n        json.dump(output, f, indent=2)\n    print(f\"Saved to {out}\")\n    print(\"KAPPA_COMPUTATION_DONE\")\nSCRIPT_EOF\necho \"Script written OK\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bad1bad8-3405-466c-a17b-9dfa8f2d53b3",
+            "isSidechain": false,
+            "requestId": "req_011CbCyjZ9zaxeaVEcxRLVKe",
+            "type": "assistant",
+            "uuid": "0ce38328-f418-40e2-8eed-a78ab96ee0f8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FNsGrG3RPg69iuDqC93u6R",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 2791,
+                "cache_read_input_tokens": 108385,
+                "output_tokens": 4118,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2791,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 4118,
+                    "cache_read_input_tokens": 108385,
+                    "cache_creation_input_tokens": 2791,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2791
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "0ce38328-f418-40e2-8eed-a78ab96ee0f8",
+                "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605"
+              }
+            }
+          ],
+          "id": "event-000161"
+        },
+        {
+          "source_line": 162,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Compute Fleiss' κ and Eff-K for ICG and Contrastive methods",
+                "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605"
+              }
+            }
+          ],
+          "id": "event-000162"
+        },
+        {
+          "source_line": 163,
+          "timestamp": "2026-05-20T01:49:02.818Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011N3iFR7HXNNwTgSvcAZNEB",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0ce38328-f418-40e2-8eed-a78ab96ee0f8",
+            "isSidechain": false,
+            "promptId": "5bcb40e1-0981-47d3-94ef-a07e0138f7b9",
+            "type": "user",
+            "uuid": "cc9956f7-5e42-465e-80d7-7ac1f79a1829",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.53}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Script written OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.53}}"
+              }
+            },
+            "sourceToolAssistantUUID": "0ce38328-f418-40e2-8eed-a78ab96ee0f8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000163"
+        },
+        {
+          "source_line": 164,
+          "timestamp": "2026-05-20T01:49:06.451Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run the script (constraint C001)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cc9956f7-5e42-465e-80d7-7ac1f79a1829",
+            "isSidechain": false,
+            "requestId": "req_011CbCyojSybYaQAnETgyfZd",
+            "type": "assistant",
+            "uuid": "0a7ad065-c068-429f-ad2f-28ada2da616b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XhpZRhdMAer98DEtG1LEAH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4197,
+                "cache_read_input_tokens": 111176,
+                "output_tokens": 478,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4197,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 478,
+                    "cache_read_input_tokens": 111176,
+                    "cache_creation_input_tokens": 4197,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4197
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": "2026-05-20T01:49:11.609Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JXmYDavAJ5AVYMQLVHrBza",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-25068",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python -c \"\nimport sys\nsys.path.insert(0, '.')\nfrom sica.z3_maxsat import MaxSATSolver, parse_z3_formula, UniqueConstraint\nfrom sica.scorer import InvariantScorer\nprint('Imports OK')\n\n# Test on one file\nimport json\nwith open('results/exp074_icg_mistral_folio/intermediates/folio_0.json') as f:\n    d = json.load(f)\nprint(f'ICG constraint sets: {len(d[\\\"icg_constraint_sets\\\"])}')\nprint(f'Traces: {len(d[\\\"traces\\\"])}')\nprint(f'First set has {len(d[\\\"icg_constraint_sets\\\"][0])} constraints')\n\nwith open('results/exp075b_contrastive_mistral_folio/intermediates/folio_0.json') as f:\n    d2 = json.load(f)\ncands = list(d2['per_candidate_constraints'].keys())\nprint(f'Contrastive candidates: {cands}')\nfor c in cands:\n    pro = d2['per_candidate_constraints'][c].get('pro',[])\n    con = d2['per_candidate_constraints'][c].get('con',[])\n    print(f'  {c}: pro={len(pro)}, con={len(con)}')\nprint('Dry-run OK')\n\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0a7ad065-c068-429f-ad2f-28ada2da616b",
+            "isSidechain": false,
+            "requestId": "req_011CbCyojSybYaQAnETgyfZd",
+            "type": "assistant",
+            "uuid": "e6f6b524-716b-4f45-ad24-1dc73f9f0fb1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XhpZRhdMAer98DEtG1LEAH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4197,
+                "cache_read_input_tokens": 111176,
+                "output_tokens": 478,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4197,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 478,
+                    "cache_read_input_tokens": 111176,
+                    "cache_creation_input_tokens": 4197,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4197
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": "2026-05-20T01:49:12.642Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JXmYDavAJ5AVYMQLVHrBza",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Imports OK\\\\nICG constraint sets: 10\\\\nTraces: 12\\\\nFirst set has 6 constraints\\\\nContrastive candidates: ['False', 'True', 'Unknown']\\\\n  False: pro=0, con=0\\\\n  True: pro=1, con=0\\\\n  Unknown: pro=5, con=5\\\\nDry-run OK\\\\n\\\", \\\"stderr\\\": \\\"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.02}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e6f6b524-716b-4f45-ad24-1dc73f9f0fb1",
+            "isSidechain": false,
+            "promptId": "5bcb40e1-0981-47d3-94ef-a07e0138f7b9",
+            "type": "user",
+            "uuid": "e5d0519d-847c-48ec-a2ea-3e34e0e10051",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Imports OK\\\\nICG constraint sets: 10\\\\nTraces: 12\\\\nFirst set has 6 constraints\\\\nContrastive candidates: ['False', 'True', 'Unknown']\\\\n  False: pro=0, con=0\\\\n  True: pro=1, con=0\\\\n  Unknown: pro=5, con=5\\\\nDry-run OK\\\\n\\\", \\\"stderr\\\": \\\"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.02}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Imports OK\\nICG constraint sets: 10\\nTraces: 12\\nFirst set has 6 constraints\\nContrastive candidates: ['False', 'True', 'Unknown']\\n  False: pro=0, con=0\\n  True: pro=1, con=0\\n  Unknown: pro=5, con=5\\nDry-run OK\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"
+              }
+            },
+            "sourceToolAssistantUUID": "e6f6b524-716b-4f45-ad24-1dc73f9f0fb1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": "2026-05-20T01:49:16.046Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Imports and data loading work. Running the full computation now."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e5d0519d-847c-48ec-a2ea-3e34e0e10051",
+            "isSidechain": false,
+            "requestId": "req_011CbCypTR6sqkd9eG4g1C1V",
+            "type": "assistant",
+            "uuid": "43d0b3cc-cfb2-467e-9958-4c7e8e7ca604",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VV2icc13o3yF2nG1WJGoKJ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 676,
+                "cache_read_input_tokens": 115373,
+                "output_tokens": 151,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 676,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 151,
+                    "cache_read_input_tokens": 115373,
+                    "cache_creation_input_tokens": 676,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 676
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000167"
+        },
+        {
+          "source_line": 168,
+          "timestamp": "2026-05-20T01:49:16.616Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016WTqe3PSDFx2iqCAmGDdTr",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-25068",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/symb_invariant_consensus && python scripts/compute_kappa_icg_contrastive.py 2>&1"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "43d0b3cc-cfb2-467e-9958-4c7e8e7ca604",
+            "isSidechain": false,
+            "requestId": "req_011CbCypTR6sqkd9eG4g1C1V",
+            "type": "assistant",
+            "uuid": "b40253cd-4238-41be-b9eb-c99a2896fbad",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VV2icc13o3yF2nG1WJGoKJ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 676,
+                "cache_read_input_tokens": 115373,
+                "output_tokens": 151,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 676,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 151,
+                    "cache_read_input_tokens": 115373,
+                    "cache_creation_input_tokens": 676,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 676
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000168"
+        },
+        {
+          "source_line": 169,
+          "timestamp": "2026-05-20T01:49:30.122Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016WTqe3PSDFx2iqCAmGDdTr",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Computing ICG bootstrap kappa ===\\\\n  ICG: 50/204 problems processed, 24 flips so far\\\\n  ICG: 100/204 problems processed, 45 flips so far\\\\n  ICG: 150/204 problems processed, 68 flips so far\\\\n  ICG: 200/204 problems processed, 89 flips so far\\\\n  ICG: 91/204 problems had answer flips across bootstraps\\\\n  ICG: kappa=0.7188  Eff-K=1.35  n=204\\\\n\\\\n=== Computing Contrastive bootstrap kappa ===\\\\n  Contrastive: 50/204 problems, 1 flips\\\\n  Contrastive: 150/204 problems, 5 flips\\\\n  Contrastive: 200/204 problems, 8 flips\\\\n  Contrastive: 8/163 problems had answer flips\\\\n  Contrastive: kappa=0.9643  Eff-K=1.03  n=163\\\\n\\\\n============================================================\\\\nSCATTER PLOT DATA — independence vs accuracy\\\\n============================================================\\\\nMethod                kappa    Eff-K     Acc%\\\\n------------------------------------------------------------\\\\nSC                   0.4384     2.02    56.86\\\\nDiverse-Prompt       0.4030     2.21      ~57\\\\nDebate               0.1549     4.44    38.24\\\\nICG                  0.7188     1.35    51.96\\\\nContrastive          0.9643     1.03    47.55\\\\n\\\\nWall time: 11.7s\\\\nSaved to /root/symb_invariant_consensus/results/kappa_icg_contrastive.json\\\\nKAPPA_COMPUTATION_DONE\\\\n\\\", \\\"stderr\\\": \\\"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 13.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b40253cd-4238-41be-b9eb-c99a2896fbad",
+            "isSidechain": false,
+            "promptId": "5bcb40e1-0981-47d3-94ef-a07e0138f7b9",
+            "type": "user",
+            "uuid": "e75646e0-bd6f-4f75-bf6a-d4f125005956",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Computing ICG bootstrap kappa ===\\\\n  ICG: 50/204 problems processed, 24 flips so far\\\\n  ICG: 100/204 problems processed, 45 flips so far\\\\n  ICG: 150/204 problems processed, 68 flips so far\\\\n  ICG: 200/204 problems processed, 89 flips so far\\\\n  ICG: 91/204 problems had answer flips across bootstraps\\\\n  ICG: kappa=0.7188  Eff-K=1.35  n=204\\\\n\\\\n=== Computing Contrastive bootstrap kappa ===\\\\n  Contrastive: 50/204 problems, 1 flips\\\\n  Contrastive: 150/204 problems, 5 flips\\\\n  Contrastive: 200/204 problems, 8 flips\\\\n  Contrastive: 8/163 problems had answer flips\\\\n  Contrastive: kappa=0.9643  Eff-K=1.03  n=163\\\\n\\\\n============================================================\\\\nSCATTER PLOT DATA — independence vs accuracy\\\\n============================================================\\\\nMethod                kappa    Eff-K     Acc%\\\\n------------------------------------------------------------\\\\nSC                   0.4384     2.02    56.86\\\\nDiverse-Prompt       0.4030     2.21      ~57\\\\nDebate               0.1549     4.44    38.24\\\\nICG                  0.7188     1.35    51.96\\\\nContrastive          0.9643     1.03    47.55\\\\n\\\\nWall time: 11.7s\\\\nSaved to /root/symb_invariant_consensus/results/kappa_icg_contrastive.json\\\\nKAPPA_COMPUTATION_DONE\\\\n\\\", \\\"stderr\\\": \\\"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 13.48}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"=== Computing ICG bootstrap kappa ===\\n  ICG: 50/204 problems processed, 24 flips so far\\n  ICG: 100/204 problems processed, 45 flips so far\\n  ICG: 150/204 problems processed, 68 flips so far\\n  ICG: 200/204 problems processed, 89 flips so far\\n  ICG: 91/204 problems had answer flips across bootstraps\\n  ICG: kappa=0.7188  Eff-K=1.35  n=204\\n\\n=== Computing Contrastive bootstrap kappa ===\\n  Contrastive: 50/204 problems, 1 flips\\n  Contrastive: 150/204 problems, 5 flips\\n  Contrastive: 200/204 problems, 8 flips\\n  Contrastive: 8/163 problems had answer flips\\n  Contrastive: kappa=0.9643  Eff-K=1.03  n=163\\n\\n============================================================\\nSCATTER PLOT DATA — independence vs accuracy\\n============================================================\\nMethod                kappa    Eff-K     Acc%\\n------------------------------------------------------------\\nSC                   0.4384     2.02    56.86\\nDiverse-Prompt       0.4030     2.21      ~57\\nDebate               0.1549     4.44    38.24\\nICG                  0.7188     1.35    51.96\\nContrastive          0.9643     1.03    47.55\\n\\nWall time: 11.7s\\nSaved to /root/symb_invariant_consensus/results/kappa_icg_contrastive.json\\nKAPPA_COMPUTATION_DONE\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 13.48}}"
+              }
+            },
+            "sourceToolAssistantUUID": "b40253cd-4238-41be-b9eb-c99a2896fbad",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000169"
+        },
+        {
+          "source_line": 170,
+          "timestamp": "2026-05-20T01:49:30.129Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "e75646e0-bd6f-4f75-bf6a-d4f125005956",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "49d9c43e-2e4f-4b45-bf92-e7dc90845e25",
+                "timestamp": "2026-05-20T01:49:30.129Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+                "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000170"
+        },
+        {
+          "source_line": 171,
+          "timestamp": "2026-05-20T01:49:43.954Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The computation completed successfully. Results:\n\n| Method | κ | Eff-K | Acc% |\n|--------|---|-------|------|\n| SC | 0.4384 | 2.02 | 56.86 |\n| Diverse-Prompt | 0.4030 | 2.21 | ~57 |\n| Debate | 0.1549 | 4.44 | 38.24 |\n| ICG | 0.7188 | 1.35 | 51.96 |\n\n\n| Contrastive | 0.9643 | 1.03 | 47.55 |\n\nLooking at the full picture, Contrastive is too rigid with near-perfect agreement but the lowest accuracy, while ICG shows better diversity with moderate agreement but still underperforms compared to SC's balanced approach.\n\nSC hits the sweet spot with moderate agreement around κ=0.4 and about 2 effective independent voters, achieving the best accuracy at 56.86%. Diverse-Prompt performs similarly with slightly more independence. Debate goes too far in the other direction—maximum diversity with 4.4 effective voters but the lowest quality per voter, tanking accuracy to 38.24%. The pattern is clear: there's an optimal zone where you get enough independence to benefit from aggregation without sacrificing individual voter quality.\n\nNow I'm saving these results and registering the artifact.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "49d9c43e-2e4f-4b45-bf92-e7dc90845e25",
+            "isSidechain": false,
+            "requestId": "req_011CbCyqkFQT79EuFtFidraA",
+            "type": "assistant",
+            "uuid": "c28ff20e-b9f7-484f-8b9c-4324fcae9fd3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015QJsTaRt7eV5xcxGHoT17j",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 814,
+                "cache_read_input_tokens": 116049,
+                "output_tokens": 698,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 814,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 698,
+                    "cache_read_input_tokens": 116049,
+                    "cache_creation_input_tokens": 814,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 814
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000171"
+        },
+        {
+          "source_line": 172,
+          "timestamp": "2026-05-20T01:49:43.955Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Computation done in 11.7s. Now let me register the artifact and copy the results."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c28ff20e-b9f7-484f-8b9c-4324fcae9fd3",
+            "isSidechain": false,
+            "requestId": "req_011CbCyqkFQT79EuFtFidraA",
+            "type": "assistant",
+            "uuid": "a6791539-55ad-4692-a995-ae6d717ef2ef",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015QJsTaRt7eV5xcxGHoT17j",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 814,
+                "cache_read_input_tokens": 116049,
+                "output_tokens": 698,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 814,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 698,
+                    "cache_read_input_tokens": 116049,
+                    "cache_creation_input_tokens": 814,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 814
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000172"
+        },
+        {
+          "source_line": 173,
+          "timestamp": "2026-05-20T01:49:44.956Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WB4xZ7VZ7HSW1pj25ZWfUA",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__register_artifact",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a6791539-55ad-4692-a995-ae6d717ef2ef",
+            "isSidechain": false,
+            "requestId": "req_011CbCyqkFQT79EuFtFidraA",
+            "type": "assistant",
+            "uuid": "cbcbc580-9079-49b2-b156-5372846557e7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015QJsTaRt7eV5xcxGHoT17j",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 814,
+                "cache_read_input_tokens": 116049,
+                "output_tokens": 698,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 814,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 698,
+                    "cache_read_input_tokens": 116049,
+                    "cache_creation_input_tokens": 814,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 814
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000173"
+        },
+        {
+          "source_line": 174,
+          "timestamp": "2026-05-20T01:49:44.960Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01WB4xZ7VZ7HSW1pj25ZWfUA",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cbcbc580-9079-49b2-b156-5372846557e7",
+            "isSidechain": false,
+            "promptId": "5bcb40e1-0981-47d3-94ef-a07e0138f7b9",
+            "type": "user",
+            "uuid": "78493a13-2028-48d9-a16f-76e36ab776d5",
+            "toolUseResult": {
+              "matches": [
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 27
+            },
+            "sourceToolAssistantUUID": "cbcbc580-9079-49b2-b156-5372846557e7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000174"
+        },
+        {
+          "source_line": 175,
+          "timestamp": "2026-05-20T01:49:50.434Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ABLP53P5VSwCHqxDV8PuKR",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "kappa_icg_contrastive",
+                "type": "data",
+                "description": "Fleiss' κ and Eff-K for ICG and Contrastive methods via bootstrap resampling. ICG: κ=0.7188, Eff-K=1.35, acc=51.96%. Contrastive: κ=0.9643, Eff-K=1.03, acc=47.55%. For independence-accuracy scatter plot.",
+                "project": "symb_invariant_consensus",
+                "source_path": "/root/symb_invariant_consensus/results/kappa_icg_contrastive.json",
+                "tags": [
+                  "kappa",
+                  "independence",
+                  "scatter-plot",
+                  "icg",
+                  "contrastive"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "78493a13-2028-48d9-a16f-76e36ab776d5",
+            "isSidechain": false,
+            "requestId": "req_011CbCyrr5AvnBgG9WaKsiYe",
+            "type": "assistant",
+            "uuid": "65b97ee9-125e-4fcd-a4f9-75c26ee884f3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Soop3HXY7RSEHkUegPDDfG",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1322,
+                "cache_read_input_tokens": 116863,
+                "output_tokens": 295,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1322,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 295,
+                    "cache_read_input_tokens": 116863,
+                    "cache_creation_input_tokens": 1322,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1322
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000175"
+        },
+        {
+          "source_line": 176,
+          "timestamp": "2026-05-20T01:49:50.447Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ABLP53P5VSwCHqxDV8PuKR",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/symb_invariant_consensus/results/kappa_icg_contrastive.json\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "65b97ee9-125e-4fcd-a4f9-75c26ee884f3",
+            "isSidechain": false,
+            "promptId": "5bcb40e1-0981-47d3-94ef-a07e0138f7b9",
+            "type": "user",
+            "uuid": "114f506a-3335-4410-934e-ab59a111b4ff",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/symb_invariant_consensus/results/kappa_icg_contrastive.json\\\", \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/symb_invariant_consensus/results/kappa_icg_contrastive.json\", \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "65b97ee9-125e-4fcd-a4f9-75c26ee884f3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000176"
+        },
+        {
+          "source_line": 177,
+          "timestamp": "2026-05-20T01:49:55.014Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The register_artifact tool looks for the file locally, not on the remote server. Let me read the results from the server and register it with content instead.",
+              "signature": "EtoCClkIDRgCKkAEprr+3ytiEm7/hIuPN5w0kxJieDjyLWL9HmiP2QWJydowYMihwaW1WYBUvUljXNh9Tr4RTGiPf9oH46JekvGiMg9jbGF1ZGUtb3B1cy00LTY4ABIMdYgtIaNY/AZtUaUyGgxgx8e46S6LQRFmBUgiMD5L3n+KohbIl90tlP0miHh4+EjoKG62Yqx0zLKnhED5w/KbeFcXRa/E7c9P19H2lyquAScdVvZYc+U/Kekt7H4xKjXPLyYAYdSRuvHa/uB0MPnEewSKwDgEVViRfAIGx8N4vm6smsSHwNfm+F5tgQvmk2QjcjDfYNTp7GM6MMeTYfMab+90JRH4p/eezPei3FiAoYycI/lyZI3n3o/IpTwGF7nDCtIw1QDqrYPNgg/D7QMZdKO8F3+U4/hILCZ+Wk2P8irDW/x92FPskfT1wNjqAeeAZsuYJAlh4ofvfjnXSRgB"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "114f506a-3335-4410-934e-ab59a111b4ff",
+            "isSidechain": false,
+            "requestId": "req_011CbCysFN9R1tMSUi2Tro3y",
+            "type": "assistant",
+            "uuid": "269cd0e2-92f8-4514-9e5d-93d5726d9585",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BCkZXyLsTb8tGjyPBZ3QcP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 368,
+                "cache_read_input_tokens": 118185,
+                "output_tokens": 156,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 368,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 156,
+                    "cache_read_input_tokens": 118185,
+                    "cache_creation_input_tokens": 368,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 368
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000177"
+        },
+        {
+          "source_line": 178,
+          "timestamp": "2026-05-20T01:49:55.668Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01J1a896TTGxmMrSRQP26heq",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-25068",
+                "command": "cat /root/symb_invariant_consensus/results/kappa_icg_contrastive.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "269cd0e2-92f8-4514-9e5d-93d5726d9585",
+            "isSidechain": false,
+            "requestId": "req_011CbCysFN9R1tMSUi2Tro3y",
+            "type": "assistant",
+            "uuid": "6aa16268-3005-42d2-81c7-ba4dd28f2a78",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BCkZXyLsTb8tGjyPBZ3QcP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 368,
+                "cache_read_input_tokens": 118185,
+                "output_tokens": 156,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 368,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 156,
+                    "cache_read_input_tokens": 118185,
+                    "cache_creation_input_tokens": 368,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 368
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": "2026-05-20T01:49:56.780Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01J1a896TTGxmMrSRQP26heq",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"icg\\\\\\\": {\\\\n    \\\\\\\"kappa\\\\\\\": 0.7188,\\\\n    \\\\\\\"eff_k\\\\\\\": 1.35,\\\\n    \\\\\\\"accuracy_pct\\\\\\\": 51.96,\\\\n    \\\\\\\"n\\\\\\\": 204,\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"bootstrap_constraint_subsets\\\\\\\",\\\\n    \\\\\\\"B\\\\\\\": 12,\\\\n    \\\\\\\"m\\\\\\\": 5,\\\\n    \\\\\\\"K_icg\\\\\\\": 10\\\\n  },\\\\n  \\\\\\\"contrastive\\\\\\\": {\\\\n    \\\\\\\"kappa\\\\\\\": 0.9643,\\\\n    \\\\\\\"eff_k\\\\\\\": 1.03,\\\\n    \\\\\\\"accuracy_pct\\\\\\\": 47.55,\\\\n    \\\\\\\"n\\\\\\\": 163,\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"bootstrap_constraint_subsampling\\\\\\\",\\\\n    \\\\\\\"B\\\\\\\": 12,\\\\n    \\\\\\\"frac\\\\\\\": 0.5\\\\n  },\\\\n  \\\\\\\"reference\\\\\\\": {\\\\n    \\\\\\\"sc\\\\\\\": {\\\\n      \\\\\\\"kappa\\\\\\\": 0.4384,\\\\n      \\\\\\\"eff_k\\\\\\\": 2.02,\\\\n      \\\\\\\"accuracy_pct\\\\\\\": 56.86\\\\n    },\\\\n    \\\\\\\"diverse_prompt\\\\\\\": {\\\\n      \\\\\\\"kappa\\\\\\\": 0.403,\\\\n      \\\\\\\"eff_k\\\\\\\": 2.21\\\\n    },\\\\n    \\\\\\\"debate\\\\\\\": {\\\\n      \\\\\\\"kappa\\\\\\\": 0.1549,\\\\n      \\\\\\\"eff_k\\\\\\\": 4.44,\\\\n      \\\\\\\"accuracy_pct\\\\\\\": 38.24\\\\n    }\\\\n  },\\\\n  \\\\\\\"wall_time_s\\\\\\\": 11.7\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6aa16268-3005-42d2-81c7-ba4dd28f2a78",
+            "isSidechain": false,
+            "promptId": "5bcb40e1-0981-47d3-94ef-a07e0138f7b9",
+            "type": "user",
+            "uuid": "c0c5266a-17a8-4490-b6c8-5d213085f8b6",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"icg\\\\\\\": {\\\\n    \\\\\\\"kappa\\\\\\\": 0.7188,\\\\n    \\\\\\\"eff_k\\\\\\\": 1.35,\\\\n    \\\\\\\"accuracy_pct\\\\\\\": 51.96,\\\\n    \\\\\\\"n\\\\\\\": 204,\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"bootstrap_constraint_subsets\\\\\\\",\\\\n    \\\\\\\"B\\\\\\\": 12,\\\\n    \\\\\\\"m\\\\\\\": 5,\\\\n    \\\\\\\"K_icg\\\\\\\": 10\\\\n  },\\\\n  \\\\\\\"contrastive\\\\\\\": {\\\\n    \\\\\\\"kappa\\\\\\\": 0.9643,\\\\n    \\\\\\\"eff_k\\\\\\\": 1.03,\\\\n    \\\\\\\"accuracy_pct\\\\\\\": 47.55,\\\\n    \\\\\\\"n\\\\\\\": 163,\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"bootstrap_constraint_subsampling\\\\\\\",\\\\n    \\\\\\\"B\\\\\\\": 12,\\\\n    \\\\\\\"frac\\\\\\\": 0.5\\\\n  },\\\\n  \\\\\\\"reference\\\\\\\": {\\\\n    \\\\\\\"sc\\\\\\\": {\\\\n      \\\\\\\"kappa\\\\\\\": 0.4384,\\\\n      \\\\\\\"eff_k\\\\\\\": 2.02,\\\\n      \\\\\\\"accuracy_pct\\\\\\\": 56.86\\\\n    },\\\\n    \\\\\\\"diverse_prompt\\\\\\\": {\\\\n      \\\\\\\"kappa\\\\\\\": 0.403,\\\\n      \\\\\\\"eff_k\\\\\\\": 2.21\\\\n    },\\\\n    \\\\\\\"debate\\\\\\\": {\\\\n      \\\\\\\"kappa\\\\\\\": 0.1549,\\\\n      \\\\\\\"eff_k\\\\\\\": 4.44,\\\\n      \\\\\\\"accuracy_pct\\\\\\\": 38.24\\\\n    }\\\\n  },\\\\n  \\\\\\\"wall_time_s\\\\\\\": 11.7\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"icg\\\": {\\n    \\\"kappa\\\": 0.7188,\\n    \\\"eff_k\\\": 1.35,\\n    \\\"accuracy_pct\\\": 51.96,\\n    \\\"n\\\": 204,\\n    \\\"method\\\": \\\"bootstrap_constraint_subsets\\\",\\n    \\\"B\\\": 12,\\n    \\\"m\\\": 5,\\n    \\\"K_icg\\\": 10\\n  },\\n  \\\"contrastive\\\": {\\n    \\\"kappa\\\": 0.9643,\\n    \\\"eff_k\\\": 1.03,\\n    \\\"accuracy_pct\\\": 47.55,\\n    \\\"n\\\": 163,\\n    \\\"method\\\": \\\"bootstrap_constraint_subsampling\\\",\\n    \\\"B\\\": 12,\\n    \\\"frac\\\": 0.5\\n  },\\n  \\\"reference\\\": {\\n    \\\"sc\\\": {\\n      \\\"kappa\\\": 0.4384,\\n      \\\"eff_k\\\": 2.02,\\n      \\\"accuracy_pct\\\": 56.86\\n    },\\n    \\\"diverse_prompt\\\": {\\n      \\\"kappa\\\": 0.403,\\n      \\\"eff_k\\\": 2.21\\n    },\\n    \\\"debate\\\": {\\n      \\\"kappa\\\": 0.1549,\\n      \\\"eff_k\\\": 4.44,\\n      \\\"accuracy_pct\\\": 38.24\\n    }\\n  },\\n  \\\"wall_time_s\\\": 11.7\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"
+              }
+            },
+            "sourceToolAssistantUUID": "6aa16268-3005-42d2-81c7-ba4dd28f2a78",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000179"
+        },
+        {
+          "source_line": 180,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "c0c5266a-17a8-4490-b6c8-5d213085f8b6",
+                "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605"
+              }
+            }
+          ],
+          "id": "event-000180"
+        },
+        {
+          "source_line": 181,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Compute Fleiss' κ and Eff-K for ICG and Contrastive methods",
+                "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605"
+              }
+            }
+          ],
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": "2026-05-20T01:50:04.027Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WjNuXQnT4gsho3YMHbT5io",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "kappa_icg_contrastive",
+                "type": "data",
+                "description": "Fleiss' κ and Eff-K for ICG and Contrastive methods via bootstrap resampling. ICG: κ=0.7188, Eff-K=1.35, acc=51.96%. Contrastive: κ=0.9643, Eff-K=1.03, acc=47.55%. For independence-accuracy scatter plot.",
+                "project": "symb_invariant_consensus",
+                "content": "{\n  \"icg\": {\n    \"kappa\": 0.7188,\n    \"eff_k\": 1.35,\n    \"accuracy_pct\": 51.96,\n    \"n\": 204,\n    \"method\": \"bootstrap_constraint_subsets\",\n    \"B\": 12,\n    \"m\": 5,\n    \"K_icg\": 10\n  },\n  \"contrastive\": {\n    \"kappa\": 0.9643,\n    \"eff_k\": 1.03,\n    \"accuracy_pct\": 47.55,\n    \"n\": 163,\n    \"method\": \"bootstrap_constraint_subsampling\",\n    \"B\": 12,\n    \"frac\": 0.5\n  },\n  \"reference\": {\n    \"sc\": {\"kappa\": 0.4384, \"eff_k\": 2.02, \"accuracy_pct\": 56.86},\n    \"diverse_prompt\": {\"kappa\": 0.403, \"eff_k\": 2.21},\n    \"debate\": {\"kappa\": 0.1549, \"eff_k\": 4.44, \"accuracy_pct\": 38.24}\n  },\n  \"wall_time_s\": 11.7\n}",
+                "content_filename": "kappa_icg_contrastive.json",
+                "tags": [
+                  "kappa",
+                  "independence",
+                  "scatter-plot",
+                  "icg",
+                  "contrastive"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c0c5266a-17a8-4490-b6c8-5d213085f8b6",
+            "isSidechain": false,
+            "requestId": "req_011CbCysi9xFtB3Emn3c72oK",
+            "type": "assistant",
+            "uuid": "21a23316-9b5b-4cd8-ae3d-acd4f92c8c61",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01G3ZuADzPf4arWcXcR96oZ7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 728,
+                "cache_read_input_tokens": 118553,
+                "output_tokens": 606,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 728,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 606,
+                    "cache_read_input_tokens": 118553,
+                    "cache_creation_input_tokens": 728,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 728
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": "2026-05-20T01:50:04.039Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'icg': {'kappa': 0.7188,...}}, 'wall_time_s': 11.7}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+              "is_error": true,
+              "tool_use_id": "toolu_01WjNuXQnT4gsho3YMHbT5io"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "21a23316-9b5b-4cd8-ae3d-acd4f92c8c61",
+            "isSidechain": false,
+            "promptId": "5bcb40e1-0981-47d3-94ef-a07e0138f7b9",
+            "type": "user",
+            "uuid": "48ac8a7d-b9ba-4e22-980d-d4cbe31cd679",
+            "toolUseResult": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'icg': {'kappa': 0.7188,...}}, 'wall_time_s': 11.7}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+            "sourceToolAssistantUUID": "21a23316-9b5b-4cd8-ae3d-acd4f92c8c61",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": "2026-05-20T01:50:10.606Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Lu2sHQzMcVS8KPocgjnFJe",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "kappa_icg_contrastive",
+                "type": "data",
+                "description": "Fleiss kappa and Eff-K for ICG and Contrastive methods via bootstrap resampling. ICG: kappa=0.7188 Eff-K=1.35 acc=51.96%. Contrastive: kappa=0.9643 Eff-K=1.03 acc=47.55%. For independence-accuracy scatter plot.",
+                "project": "symb_invariant_consensus",
+                "content": "{\"icg\":{\"kappa\":0.7188,\"eff_k\":1.35,\"accuracy_pct\":51.96,\"n\":204,\"method\":\"bootstrap_constraint_subsets\",\"B\":12,\"m\":5,\"K_icg\":10},\"contrastive\":{\"kappa\":0.9643,\"eff_k\":1.03,\"accuracy_pct\":47.55,\"n\":163,\"method\":\"bootstrap_constraint_subsampling\",\"B\":12,\"frac\":0.5},\"reference\":{\"sc\":{\"kappa\":0.4384,\"eff_k\":2.02,\"accuracy_pct\":56.86},\"diverse_prompt\":{\"kappa\":0.403,\"eff_k\":2.21},\"debate\":{\"kappa\":0.1549,\"eff_k\":4.44,\"accuracy_pct\":38.24}},\"wall_time_s\":11.7}",
+                "content_filename": "kappa_icg_contrastive.json",
+                "tags": [
+                  "kappa",
+                  "independence",
+                  "scatter-plot",
+                  "icg",
+                  "contrastive"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "48ac8a7d-b9ba-4e22-980d-d4cbe31cd679",
+            "isSidechain": false,
+            "requestId": "req_011CbCytFLvr5RBj9sjpVJmL",
+            "type": "assistant",
+            "uuid": "27773c09-6c69-40ec-b394-49a79d338d4c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SpeZAT4GxdBruMuBVmu3J2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 725,
+                "cache_read_input_tokens": 119281,
+                "output_tokens": 507,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 725,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 507,
+                    "cache_read_input_tokens": 119281,
+                    "cache_creation_input_tokens": 725,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 725
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": "2026-05-20T01:50:10.613Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'icg': {'kappa': 0.7188,...}}, 'wall_time_s': 11.7}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+              "is_error": true,
+              "tool_use_id": "toolu_01Lu2sHQzMcVS8KPocgjnFJe"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "27773c09-6c69-40ec-b394-49a79d338d4c",
+            "isSidechain": false,
+            "promptId": "5bcb40e1-0981-47d3-94ef-a07e0138f7b9",
+            "type": "user",
+            "uuid": "3f35815e-61f6-4441-908f-a82f83bd251d",
+            "toolUseResult": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'icg': {'kappa': 0.7188,...}}, 'wall_time_s': 11.7}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+            "sourceToolAssistantUUID": "27773c09-6c69-40ec-b394-49a79d338d4c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": "2026-05-20T01:50:16.857Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011tL26ytud4QBp4Qc9hBz1F",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/kappa_icg_contrastive.json",
+                "content": "{\n  \"icg\": {\n    \"kappa\": 0.7188,\n    \"eff_k\": 1.35,\n    \"accuracy_pct\": 51.96,\n    \"n\": 204,\n    \"method\": \"bootstrap_constraint_subsets\",\n    \"B\": 12,\n    \"m\": 5,\n    \"K_icg\": 10\n  },\n  \"contrastive\": {\n    \"kappa\": 0.9643,\n    \"eff_k\": 1.03,\n    \"accuracy_pct\": 47.55,\n    \"n\": 163,\n    \"method\": \"bootstrap_constraint_subsampling\",\n    \"B\": 12,\n    \"frac\": 0.5\n  },\n  \"reference\": {\n    \"sc\": {\"kappa\": 0.4384, \"eff_k\": 2.02, \"accuracy_pct\": 56.86},\n    \"diverse_prompt\": {\"kappa\": 0.403, \"eff_k\": 2.21},\n    \"debate\": {\"kappa\": 0.1549, \"eff_k\": 4.44, \"accuracy_pct\": 38.24}\n  },\n  \"wall_time_s\": 11.7\n}\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3f35815e-61f6-4441-908f-a82f83bd251d",
+            "isSidechain": false,
+            "requestId": "req_011CbCytjkE3sCXQfLq15YSP",
+            "type": "assistant",
+            "uuid": "dd836b08-2a44-4210-9b75-8cf4478b4a53",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KgsKGLqHRdvXQkz2z3ptmi",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 626,
+                "cache_read_input_tokens": 120006,
+                "output_tokens": 422,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 626,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 422,
+                    "cache_read_input_tokens": 120006,
+                    "cache_creation_input_tokens": 626,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 626
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": "2026-05-20T01:50:16.871Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011tL26ytud4QBp4Qc9hBz1F",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/kappa_icg_contrastive.json"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dd836b08-2a44-4210-9b75-8cf4478b4a53",
+            "isSidechain": false,
+            "promptId": "5bcb40e1-0981-47d3-94ef-a07e0138f7b9",
+            "type": "user",
+            "uuid": "b7116557-ad38-4c5b-9dc9-0dd57290790f",
+            "toolUseResult": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/kappa_icg_contrastive.json",
+              "content": "{\n  \"icg\": {\n    \"kappa\": 0.7188,\n    \"eff_k\": 1.35,\n    \"accuracy_pct\": 51.96,\n    \"n\": 204,\n    \"method\": \"bootstrap_constraint_subsets\",\n    \"B\": 12,\n    \"m\": 5,\n    \"K_icg\": 10\n  },\n  \"contrastive\": {\n    \"kappa\": 0.9643,\n    \"eff_k\": 1.03,\n    \"accuracy_pct\": 47.55,\n    \"n\": 163,\n    \"method\": \"bootstrap_constraint_subsampling\",\n    \"B\": 12,\n    \"frac\": 0.5\n  },\n  \"reference\": {\n    \"sc\": {\"kappa\": 0.4384, \"eff_k\": 2.02, \"accuracy_pct\": 56.86},\n    \"diverse_prompt\": {\"kappa\": 0.403, \"eff_k\": 2.21},\n    \"debate\": {\"kappa\": 0.1549, \"eff_k\": 4.44, \"accuracy_pct\": 38.24}\n  },\n  \"wall_time_s\": 11.7\n}\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            },
+            "sourceToolAssistantUUID": "dd836b08-2a44-4210-9b75-8cf4478b4a53",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": "2026-05-20T01:50:36.316Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果如下：\n\n| Method | κ | Eff-K | Acc% |\n|---|---|---|---|\n| **Debate** | 0.1549 | 4.44 | 38.24 |\n| **Diverse-Prompt** | 0.4030 | 2.21 | ~57 |\n| **SC** | 0.4384 | 2.02 | 56.86 |\n| **ICG** | 0.7188 | 1.35 | 51.96 |\n| **Contrastive** | 0.9643 | 1.03 | 47.55 |\n\n**方法说明**：\n- **ICG κ**：bootstrap 采样 5/10 个独立约束集 → dedup + MaxSAT + InvariantScorer → 12 个 bootstrap raters。204 题中 91 题(44.6%)在不同 bootstrap 间答案发生变化。\n- **Contrastive κ**：对每个 candidate 的 pro/con 约束各采样 50% → 重跑 MaxSAT 评分 → 12 个 bootstrap raters。163 题（41 题 degenerate 跳过）中仅 8 题(4.9%)发生答案翻转。\n\n**散点图故事**：5 个点呈现清晰的倒 U 形——Debate 过于独立(κ=0.15)但投票质量低 → acc 最低；SC/Diverse 处于甜点区(κ≈0.4)→ acc 最高；ICG/Contrastive 过于确定性(κ>0.7)→ 约束评分太稳定，无法从聚合中获益，acc 反而下降。Contrastive 几乎完全确定性(κ=0.96, Eff-K≈1)，相当于单一投票者。\n\n数据已保存到 `artifacts/kappa_icg_contrastive.json` 和服务器 `results/kappa_icg_contrastive.json`。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b7116557-ad38-4c5b-9dc9-0dd57290790f",
+            "isSidechain": false,
+            "requestId": "req_011CbCyuCM8CuaEeywfGWpiG",
+            "type": "assistant",
+            "uuid": "d73b095a-4ad6-4b7c-b95a-a170a5828c28",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D9ZqhoRMwor3fm5zjQnFVG",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 482,
+                "cache_read_input_tokens": 120632,
+                "output_tokens": 555,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 482,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 555,
+                    "cache_read_input_tokens": 120632,
+                    "cache_creation_input_tokens": 482,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 482
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "d73b095a-4ad6-4b7c-b95a-a170a5828c28",
+                "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605"
+              }
+            }
+          ],
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Compute Fleiss' κ and Eff-K for ICG and Contrastive methods",
+                "sessionId": "dc5c7eff-8791-4479-9786-d9af6bd01605"
+              }
+            }
+          ],
+          "id": "event-000190"
+        }
+      ]
+    }
+  ]
+}

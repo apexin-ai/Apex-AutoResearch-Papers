@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "6f27b64ae643ef1d49c2",
+  "project": "symb_invariant_consensus--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: symb_invariant_consensus ## 运行环境 - 服务器名: westd-25068 - SSH 连接命令: ssh connect.westd.seetacloud.co",
+  "task_key": "a51fea5f-90bb-4054-8ece-aee8fac2fc74",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/a51fea5f-90bb-4054-8ece-aee8fac2fc74.jsonl",
+    "occurrence": 1,
+    "bytes": 856861,
+    "sha256": "7a6012fa7f1840a46c40aff9e6f8d65b1a14c8cc5deab95190233c6561611571"
+  },
+  "statistics": {
+    "messages": 483,
+    "user_turns": 1,
+    "tool_calls": 143,
+    "roles": {
+      "record": 79,
+      "user": 1,
+      "assistant": 117,
+      "tool_call": 143,
+      "tool_result": 143
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "6f27b64ae643ef1d49c2-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 481,
+      "chunks": [
+        {
+          "path": "6f27b64ae643ef1d49c2-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "6f27b64ae643ef1d49c2-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "6f27b64ae643ef1d49c2-part-0003.json",
+          "message_count": 123
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-symb-invariant-consensus-westd-25068-ssh-ssh-connect-westd-see-copy-70.md"
+}

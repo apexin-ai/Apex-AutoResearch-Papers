@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.0",
+  "id": "75193ee2ab0fdbba034e",
+  "project": "symb_invariant_consensus--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: symb_invariant_consensus ## 运行环境 - 服务器名: westd-32608 - SSH 账户: root（调用 ssh_execute / submit_trai",
+  "task_key": "126f25f9-86f3-4c7b-aa31-06c556fa3d00",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/126f25f9-86f3-4c7b-aa31-06c556fa3d00.jsonl",
+    "occurrence": 1,
+    "bytes": 1716992,
+    "sha256": "411c25c851c69883396dc24f2ae40ef0d6bfccdb7807f3941f55845016e5db66"
+  },
+  "statistics": {
+    "messages": 1041,
+    "user_turns": 2,
+    "tool_calls": 380,
+    "roles": {
+      "record": 150,
+      "user": 2,
+      "assistant": 128,
+      "tool_call": 380,
+      "tool_result": 380,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "75193ee2ab0fdbba034e-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 877,
+      "chunks": [
+        {
+          "path": "75193ee2ab0fdbba034e-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "75193ee2ab0fdbba034e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "75193ee2ab0fdbba034e-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "75193ee2ab0fdbba034e-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "75193ee2ab0fdbba034e-part-0005.json",
+          "message_count": 159
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 162,
+      "chunks": [
+        {
+          "path": "75193ee2ab0fdbba034e-part-0005.json",
+          "message_count": 21
+        },
+        {
+          "path": "75193ee2ab0fdbba034e-part-0006.json",
+          "message_count": 141
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-symb-invariant-consensus-westd-32608-ssh-root-ssh-execute-subm-copy-69.md"
+}

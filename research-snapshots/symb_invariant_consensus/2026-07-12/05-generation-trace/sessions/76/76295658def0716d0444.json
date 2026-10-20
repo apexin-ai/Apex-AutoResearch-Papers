@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "id": "76295658def0716d0444",
+  "project": "symb_invariant_consensus--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: symb_invariant_consensus ## 运行环境 - 服务器名: westd-25068 - SSH 连接命令: ssh westd-25068 # 必须用此命令，~/.ssh",
+  "task_key": "7fba2b5a-b938-4b02-8219-1515accf93fd",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/7fba2b5a-b938-4b02-8219-1515accf93fd.jsonl",
+    "occurrence": 1,
+    "bytes": 1256131,
+    "sha256": "00f5faf6e2d2bca5687fa21036071b32091973c52d8d87adf6f434ae8c925db4"
+  },
+  "statistics": {
+    "messages": 832,
+    "user_turns": 1,
+    "tool_calls": 320,
+    "roles": {
+      "record": 122,
+      "user": 1,
+      "assistant": 69,
+      "tool_call": 320,
+      "tool_result": 320
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "76295658def0716d0444-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 830,
+      "chunks": [
+        {
+          "path": "76295658def0716d0444-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "76295658def0716d0444-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "76295658def0716d0444-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "76295658def0716d0444-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "76295658def0716d0444-part-0005.json",
+          "message_count": 112
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-symb-invariant-consensus-westd-25068-ssh-ssh-westd-25068-ssh-copy-434.md"
+}

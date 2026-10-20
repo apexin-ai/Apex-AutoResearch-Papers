@@ -1,0 +1,457 @@
+{
+  "schema_version": "1.0",
+  "session_id": "670acdd56e5721e829ca",
+  "rounds": [
+    {
+      "number": 198,
+      "messages": [
+        {
+          "source_line": 2949,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[系统通知 — roadmap_updated]: [系统通知] ROADMAP.md 已更新（原因：R1-Distill full 204 final: SICA>SC +1.96pp. gpt-5.5/o3 SC complete.），请审查研究方向和计划的合理性。",
+                "leafUuid": "dde3c321-716e-4ecf-9a6f-11df907988ba",
+                "sessionId": "12e33589-a1fa-4cec-9a22-5756072f7e3e"
+              }
+            }
+          ],
+          "id": "event-002949"
+        },
+        {
+          "source_line": 2950,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review paper V11+ and validate constraints",
+                "sessionId": "12e33589-a1fa-4cec-9a22-5756072f7e3e"
+              }
+            }
+          ],
+          "id": "event-002950"
+        },
+        {
+          "source_line": 2951,
+          "timestamp": "2026-05-21T17:57:50.162Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The crossmodel-sica experiment is still actively running. The log shows at 01:56:47 UTC:\n- \"Generated 12 Mistral traces\" — generating Mistral traces\n- \"Mistral same-model extraction: 58 constraints\" — self-extraction\n- \"Mistral->Qwen3 cross-extraction: 215 constraints\" — cross-extraction Mistral→Qwen3\n\nImportantly, all requests are going to port 8000 (Mistral), not port 8001 (Qwen3). \n\nSo GPU 1 (Qwen3-14B) is idle because Phase 2 is extracting constraints from the Qwen3 traces that were generated in Phase 1, but doing that extraction with Mistral rather than Qwen3 itself. The stored traces are just being read and processed by Mistral running on GPU 0. The arrow notation is ambiguous—\"Mistral→Qwen3\" could mean either Qwen3 extracting from Mistral traces or Mistral extracting from Qwen3 traces. Since all HTTP requests are hitting port 8000 (Mistral), the current phase is likely Mistral extracting from Qwen3 traces, which would correspond to the `extraction_qwen3_cross_mistral` directory.\n\nThis explains why GPU 1 (Qwen3) appears idle—Phase 2 only uses Mistral, so it's not a problem, just expected behavior for this extraction phase.\n\nNow I'm reviewing the ROADMAP against the actual observations. The document is largely accurate: the R1-Distill metrics are correct, the gpt-5.5 and o3 SC values check out, and GPU 3 has been repurposed with a new Mistral deployment running at full capacity (confirmed by the process ID).\n\nThere are a few cautions though. The 70B AWQ download estimate of around an hour is probably too optimistic given we're only at 20GB of 100GB so far, though the download rate is picking up. GPU 1 sitting idle makes sense during this Mistral-only phase. The o3 empty trace issue is acknowledged but there's no concrete cleanup plan yet.\n\nLooking at the timeline for the next few days—Paper Agent V16 Patch on May 22, compile on May 23, review on May 24, submit on May 25—it's tight but feasible. The critical blocker is whether gpt-5.5 extraction finishes in time, since everything else depends on that completing first.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dde3c321-716e-4ecf-9a6f-11df907988ba",
+            "isSidechain": false,
+            "requestId": "req_011CbG9TLSFQjpKeo8anGJsr",
+            "type": "assistant",
+            "uuid": "ee75a31e-25dc-43ab-a1f2-4528314730cd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/reviewer_342b9753",
+            "sessionId": "12e33589-a1fa-4cec-9a22-5756072f7e3e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "effervescent-marinating-rose",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TeRTEimBLmdm8rQ9uPbMyn",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1995,
+                "cache_read_input_tokens": 107461,
+                "output_tokens": 2308,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1995,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2308,
+                    "cache_read_input_tokens": 107461,
+                    "cache_creation_input_tokens": 1995,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1995
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-002951"
+        },
+        {
+          "source_line": 2952,
+          "timestamp": "2026-05-21T17:57:51.151Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "ROADMAP 内容与独立核实数据一致。几个状态核对。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ee75a31e-25dc-43ab-a1f2-4528314730cd",
+            "isSidechain": false,
+            "requestId": "req_011CbG9TLSFQjpKeo8anGJsr",
+            "type": "assistant",
+            "uuid": "ac9bcd93-380f-469a-b045-157b31d3e4b3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/reviewer_342b9753",
+            "sessionId": "12e33589-a1fa-4cec-9a22-5756072f7e3e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "effervescent-marinating-rose",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TeRTEimBLmdm8rQ9uPbMyn",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1995,
+                "cache_read_input_tokens": 107461,
+                "output_tokens": 2308,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1995,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2308,
+                    "cache_read_input_tokens": 107461,
+                    "cache_creation_input_tokens": 1995,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1995
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-002952"
+        },
+        {
+          "source_line": 2953,
+          "timestamp": "2026-05-21T17:58:10.355Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SKGBYoesh9xNDFa7i4SBMs",
+              "name": "mcp__agent-ml-research__reviewer_post_to_director",
+              "input": {
+                "text": "## 审查报告 — ROADMAP 更新 + R1-Distill 最终数据 + exp-d135 状态\n\n**结论**: PASS（附 2 个 warning）\n\n### R1-Distill 204 题最终数据（独立核实）\n\nWorker 报告 Δ=+1.96pp，实际文件 crossmodel_metrics.json 显示 **Δ=+2.45pp**（SC=152/204=74.51%, SICA=157/204=76.96%）。ROADMAP 已采纳修正值。\n\n独立核实结果：\n- per_trace_constraints_v2: 全部 204 个 folio_*.json 文件存在 ✓\n- SC: grep sc_correct=true → 152, false → 52 → 152/204=74.51% ✓\n- SICA: grep sica_correct=true → 157, false → 47 → 157/204=76.96% ✓\n- extraction_rate=93.34%, Process-κ=0.2477, Answer-κ=0.6944 ✓\n- Mean BR=2.92×, n_br_finite=26 ✓\n\n[severity: info] R1-Distill 全 204 题数据可信，可入 V16 论文。\n\n### GPU 状态核实\n\n- [severity: info] GPU 3 已重部署：R1-Distill vLLM (PID 449434) 已被 kill，新 Mistral vLLM (PID 466621, 87924 MiB, 100% util) 部署中。ROADMAP 描述正确。\n- [severity: info] GPU 1 (Qwen3-14B) 0% util：Cross-model SICA Phase 2 当前阶段只用 Mistral (port 8000)，Qwen3 闲置是预期行为（Qwen3 traces 已生成完毕，当前在做 Mistral 对 Qwen3 traces 的 cross-extraction）。\n\n### Warnings\n\n- [severity: warning] **70B AWQ 下载 ETA 偏乐观**：westd-25068 当前仅 20GB/~100GB（temp 目录）。ROADMAP 标 \"~1h\" 但实际可能需 3-4 小时。建议调整 ETA 或降低 70B 对 V16 的优先级——如果 May 22 PM 前完不成，V16 可先不含 70B 数据。\n\n- [severity: warning] **Worker 93 题 baseline 数据与原始 crossmodel_summary.json 不匹配**：Worker 称 93 题 SC=75.27%/SICA=78.49%/Δ=+3.22pp，但原始 crossmodel_summary.json 记录 SC=73.12%/SICA=75.27%/Δ=+2.15pp。疑似 Worker 使用了不同计算方法。最终 204 题数据已独立核实无误（Δ=+2.45pp），但 93-vs-204 对比表中的 93 题数据不应作为论文引用来源。论文应只用 204 题完整数据。",
+                "project": "symb_invariant_consensus"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ac9bcd93-380f-469a-b045-157b31d3e4b3",
+            "isSidechain": false,
+            "requestId": "req_011CbG9TLSFQjpKeo8anGJsr",
+            "type": "assistant",
+            "uuid": "144a7fb1-0efe-4bcd-8ec1-6701c73867b9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/reviewer_342b9753",
+            "sessionId": "12e33589-a1fa-4cec-9a22-5756072f7e3e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "effervescent-marinating-rose",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TeRTEimBLmdm8rQ9uPbMyn",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1995,
+                "cache_read_input_tokens": 107461,
+                "output_tokens": 2308,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1995,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2308,
+                    "cache_read_input_tokens": 107461,
+                    "cache_creation_input_tokens": 1995,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1995
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-002953"
+        },
+        {
+          "source_line": 2954,
+          "timestamp": "2026-05-21T17:58:13.915Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SKGBYoesh9xNDFa7i4SBMs",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_970d5ea3f54df81296b97321fcded892:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "144a7fb1-0efe-4bcd-8ec1-6701c73867b9",
+            "isSidechain": false,
+            "promptId": "2f018632-6a26-453d-a9cb-1d8bf90b4dd6",
+            "type": "user",
+            "uuid": "8af1465d-7e31-4a48-80cc-d1a4649c03bc",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_970d5ea3f54df81296b97321fcded892:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_970d5ea3f54df81296b97321fcded892:director\"}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "144a7fb1-0efe-4bcd-8ec1-6701c73867b9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/reviewer_342b9753",
+            "sessionId": "12e33589-a1fa-4cec-9a22-5756072f7e3e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "effervescent-marinating-rose"
+          },
+          "id": "event-002954"
+        },
+        {
+          "source_line": 2955,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review paper V11+ and validate constraints",
+                "sessionId": "12e33589-a1fa-4cec-9a22-5756072f7e3e"
+              }
+            }
+          ],
+          "id": "event-002955"
+        },
+        {
+          "source_line": 2956,
+          "timestamp": "2026-05-21T17:58:20.888Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-21T17:58:20.888Z",
+                "sessionId": "12e33589-a1fa-4cec-9a22-5756072f7e3e",
+                "content": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+              }
+            }
+          ],
+          "id": "event-002956"
+        },
+        {
+          "source_line": 2957,
+          "timestamp": "2026-05-21T17:58:20.889Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-21T17:58:20.889Z",
+                "sessionId": "12e33589-a1fa-4cec-9a22-5756072f7e3e"
+              }
+            }
+          ],
+          "id": "event-002957"
+        }
+      ]
+    },
+    {
+      "number": 199,
+      "messages": [
+        {
+          "source_line": 2958,
+          "timestamp": "2026-05-21T17:58:20.877Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Continue from where you left off."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8af1465d-7e31-4a48-80cc-d1a4649c03bc",
+            "isSidechain": false,
+            "promptId": "e7224450-dd26-485d-bf7d-dd9e6d27373a",
+            "type": "user",
+            "isMeta": true,
+            "uuid": "bef896e5-fa4f-450a-9731-d47a7078aafa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/reviewer_342b9753",
+            "sessionId": "12e33589-a1fa-4cec-9a22-5756072f7e3e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "effervescent-marinating-rose"
+          },
+          "id": "event-002958"
+        },
+        {
+          "source_line": 2959,
+          "timestamp": "2026-05-21T17:58:20.877Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bef896e5-fa4f-450a-9731-d47a7078aafa",
+            "isSidechain": false,
+            "type": "assistant",
+            "uuid": "6660bf13-9974-451e-8ee5-8709d99b8bbe",
+            "isApiErrorMessage": false,
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/reviewer_342b9753",
+            "sessionId": "12e33589-a1fa-4cec-9a22-5756072f7e3e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "effervescent-marinating-rose",
+            "message": {
+              "id": "30f13567-a9a6-4659-be39-4f7447ff57e0",
+              "container": null,
+              "model": "<synthetic>",
+              "stop_reason": "stop_sequence",
+              "stop_sequence": "",
+              "type": "message",
+              "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": null,
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": null,
+                "iterations": null,
+                "speed": null
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-002959"
+        }
+      ]
+    },
+    {
+      "number": 200,
+      "messages": [
+        {
+          "source_line": 2960,
+          "timestamp": "2026-05-21T17:58:21.050Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6660bf13-9974-451e-8ee5-8709d99b8bbe",
+            "isSidechain": false,
+            "promptId": "e7224450-dd26-485d-bf7d-dd9e6d27373a",
+            "type": "user",
+            "uuid": "6b47468a-9805-4275-bf73-10a8597e1e3a",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/.claude/sessions/reviewer_342b9753",
+            "sessionId": "12e33589-a1fa-4cec-9a22-5756072f7e3e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "effervescent-marinating-rose"
+          },
+          "id": "event-002960"
+        }
+      ]
+    }
+  ]
+}
