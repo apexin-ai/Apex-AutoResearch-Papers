@@ -1,0 +1,80 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{jacobs2023contamination,li2024task}
+\citation{shi2024detecting}
+\citation{oren2024proving}
+\citation{golchin2024time,li2024constat}
+\citation{meijer2001person,karabatsos2003comparing}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{shi2024detecting}
+\citation{li2024constat}
+\citation{oren2024proving,golchin2024time}
+\citation{drasgow1985appropriateness,snijders2001}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Benchmark Contamination Detection}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}IRT and Person-Fit Statistics}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Simulation power at 15\% contamination and predicted real-data AUROC. Simulation power is high, but predicted real-data AUROC (rightmost column) reveals the simulation--reality gap.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:sim_power}{{1}{3}{Simulation power at 15\% contamination and predicted real-data AUROC. Simulation power is high, but predicted real-data AUROC (rightmost column) reveals the simulation--reality gap}{table.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method: IRT-FIT}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Detection Framework}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Detection Frontier}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Simulation Power Analysis}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:simulation}{{4.1}{3}{Simulation Power Analysis}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Pilot: Qwen3.5-9B $\times $ MMLU. $\Delta l_{z}^{*}$ at 15\% contamination is negligible ($d=0.22$, $p=0.38$). Even 50\% contamination fails to reach significance.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:pilot}{{2}{4}{Pilot: Qwen3.5-9B $\times $ MMLU. $\Delta l_{z}^{*}$ at 15\% contamination is negligible ($d=0.22$, $p=0.38$). Even 50\% contamination fails to reach significance}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces $\Delta l_{z}^{*}$ Cohen's $d$ (4-model average) by contamination level and benchmark.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:cohen_d}{{3}{4}{$\Delta l_{z}^{*}$ Cohen's $d$ (4-model average) by contamination level and benchmark}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Controlled Contamination Experiments}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:controlled}{{4.2}{4}{Controlled Contamination Experiments}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Pilot study.}{4}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Full experiment.}{4}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}4PL vs.\ 3PL Ablation}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Post-RL Signal Retention}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:postrl}{{4.4}{4}{Post-RL Signal Retention}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces AUROC for contamination detection via $\Delta l_{z}^{*}$ by contamination level and benchmark.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:auroc}{{4}{5}{AUROC for contamination detection via $\Delta l_{z}^{*}$ by contamination level and benchmark}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Per-model $\Delta l_{z}^{*}$ at 15\% MMLU contamination.}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:per_model}{{5}{5}{Per-model $\Delta l_{z}^{*}$ at 15\% MMLU contamination}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Baseline Comparison: Detection Frontier}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:baseline}{{4.5}{5}{Baseline Comparison: Detection Frontier}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Leaderboard-Scale Audit}{5}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:leaderboard}{{4.6}{5}{Leaderboard-Scale Audit}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Response pattern typology.}{5}{section*.3}\protected@file@percent }
+\citation{hong2021multiscale}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces 4PL vs.\ 3PL comparison. Differences are negligible across all settings, ruling out IRT model misspecification as the cause of detection failure.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:4pl3pl}{{6}{6}{4PL vs.\ 3PL comparison. Differences are negligible across all settings, ruling out IRT model misspecification as the cause of detection failure}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Post-RL signal retention. GRPO eliminates the already-weak $\Delta l_{z}^{*}$ signal.}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:postrl}{{7}{6}{Post-RL signal retention. GRPO eliminates the already-weak $\Delta l_{z}^{*}$ signal}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}MMLU Domain-Level Analysis}{6}{subsection.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Multiscale Cross-Benchmark Aggregation}{6}{subsection.4.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{6}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}The Binary Response Information Bottleneck}{6}{subsection.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Detection frontier: AUROC by method and information level (MMLU, 15\% and 50\% contamination).}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:frontier}{{8}{7}{Detection frontier: AUROC by method and information level (MMLU, 15\% and 50\% contamination)}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces AUROC at 15\% contamination across benchmarks.}}{7}{table.9}\protected@file@percent }
+\newlabel{tab:frontier_bench}{{9}{7}{AUROC at 15\% contamination across benchmarks}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Universal Model Misfit as Independent Finding}{7}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Detection Frontier Implications}{7}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{7}{section.6}\protected@file@percent }
+\bibcite{drasgow1985appropriateness}{{1}{1985}{{Drasgow et al.}}{{}}}
+\bibcite{golchin2024time}{{2}{2024}{{Golchin and Surdeanu}}{{}}}
+\bibcite{hong2021multiscale}{{3}{2021}{{Hong et al.}}{{}}}
+\bibcite{jacobs2023contamination}{{4}{2023}{{Jacobs et al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Universal model misfit across 5{,}847 leaderboard models. 96--99\% produce extreme $l_{z}^{*}$ values.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:leaderboard}{{10}{8}{Universal model misfit across 5{,}847 leaderboard models. 96--99\% produce extreme $l_{z}^{*}$ values}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Response pattern typology from $K$-means on ($\theta $, $l_{z}^{*}$). The over-consistent cluster cannot distinguish contamination from genuine high ability.}}{8}{table.11}\protected@file@percent }
+\newlabel{tab:typology}{{11}{8}{Response pattern typology from $K$-means on ($\theta $, $l_{z}^{*}$). The over-consistent cluster cannot distinguish contamination from genuine high ability}{table.11}{}}
+\bibcite{karabatsos2003comparing}{{5}{2003}{{Karabatsos}}{{}}}
+\bibcite{li2024task}{{6}{2024a}{{Li et al.}}{{}}}
+\bibcite{li2024constat}{{7}{2024b}{{Li et al.}}{{}}}
+\bibcite{meijer2001person}{{8}{2001}{{Meijer and Sijtsma}}{{}}}
+\bibcite{oren2024proving}{{9}{2024}{{Oren et al.}}{{}}}
+\bibcite{shi2024detecting}{{10}{2024}{{Shi et al.}}{{}}}
+\bibcite{snijders2001}{{11}{2001}{{Snijders}}{{}}}
+\bibcite{wang2025post}{{12}{2025}{{Wang et al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Domain-level $\Delta l_{z}^{*}$ in controlled experiment (MMLU, 4-model average). Even at 50\% contamination, only 3/57 domains show significant shifts.}}{9}{table.12}\protected@file@percent }
+\newlabel{tab:domain}{{12}{9}{Domain-level $\Delta l_{z}^{*}$ in controlled experiment (MMLU, 4-model average). Even at 50\% contamination, only 3/57 domains show significant shifts}{table.12}{}}
+\gdef \@abspage@last{9}

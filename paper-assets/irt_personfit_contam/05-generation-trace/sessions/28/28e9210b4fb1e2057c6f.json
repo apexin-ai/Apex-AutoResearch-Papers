@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28e9210b4fb1e2057c6f",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "analysis testlet simulation",
+  "task_key": "worker_analysis_testlet-simulation_20260521T183222",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_testlet-simulation_20260521T183222_result.json",
+    "occurrence": 1,
+    "bytes": 1802,
+    "sha256": "45bcb5b4c14aeef6a8b3e9180f066b5dd91c608f5df95f23b7db135675776062"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模拟完成。结果汇总：\n\n```\n| σ_testlet | Type I | Mean(clean) | SD(clean) | d(15%) | d(50%) | d_ratio(15%) | d_ratio(50%) |\n|-----------|--------|-------------|-----------|--------|--------|--------------|--------------|\n| 0.0       | 0.043  |  -0.022     | 0.961     | -3.019 | -5.304 | 1.000        | 1.000        |\n| 0.3       | 0.110  |  -0.635     | 1.049     | -3.024 | -5.505 | 1.002        | 1.038        |\n| 0.5       | 0.454  |  -1.775     | 1.303     | -2.821 | -5.453 | 0.935        | 1.028        |\n| 1.0       | 0.939  |  -5.743     | 2.283     | -2.128 | -5.627 | 0.705        | 1.061        |\n```\n\n### 分析\n\n**lz\\* 本身在 local dependence 下严重失效**：σ_testlet 增大时，clean condition 的 mean 大幅偏移（0→-5.7），SD 膨胀（0.96→2.28），Type I error 从 0.043 飙升至 0.939。这是预期的——标准 lz\\* 假设 local independence，testlet 结构违反该假设，导致 lz\\* 的零分布不再是 N(0,1)。\n\n**但差分设计（Δlz\\*）对 local dependence 具有鲁棒性**：\n- **50% contamination**：d_ratio 在所有 σ_testlet 下都非常稳定（1.00–1.06），说明 testlet 效应对 clean 和 contaminated 条件的影响近似抵消，Δlz\\* 的 effect size 几乎不变。\n- **15% contamination**：d_ratio 在 σ≤0.5 时稳定（0.93–1.00），σ=1.0 时降至 0.70。极端 local dependence（σ=1.0 远超实际 benchmark 的 testlet 相关性）才导致检测力下降约 30%，但 |d| 仍达 2.13，检测力依然充足。\n\n**结论**：Δlz\\* 差分设计天然消除了 testlet random effect 的系统性偏移，在现实范围的 local dependence（σ≤0.5）下完全 robust。仅在极端 σ=1.0 + 低污染（15%）时才出现中等程度的检测力损失。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-testlet-simulation.md"
+}

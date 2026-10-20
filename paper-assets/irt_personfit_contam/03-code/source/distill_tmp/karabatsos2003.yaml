@@ -1,0 +1,52 @@
+paper_key: "karabatsos2003"
+title: "Comparing the Aberrant Response Detection Performance of Thirty-Six Person-Fit Statistics"
+venue: "Applied Measurement in Education 2003"
+full_text_available: false
+
+research:
+  baselines:
+    - "lz (likelihood-based)"
+    - "lz* (corrected lz)"
+    - "Ht (Sijtsma & Meijer)"
+    - "Gnormed (normalized G)"
+    - "U3 (van der Flier)"
+    - "C (caution index)"
+    - "W (Wright & Stone)"
+    - "ECI (error/caution indices)"
+    - "ZU (standardized U)"
+    - "r_pbis (point-biserial agreement)"
+    - "NCI (norm conformity index)"
+    - "A (agreement index)"
+    - "D (disagreement index)"
+    - "E (dependability index)"
+    - "(+ ~22 additional person-fit statistics, 36 total)"
+  metrics:
+    - {name: "detection rate (power)", direction: "higher_better"}
+    - {name: "Type I error rate", direction: "lower_better"}
+  datasets:
+    - {name: "simulated response data", size: "multiple conditions"}
+  ablation_dimensions:
+    - "IRT model (Rasch, 2PL, 3PL)"
+    - "test length (short vs long)"
+    - "type of aberrance (cheating, guessing, sleeping, creative responding, random responding)"
+    - "proportion of aberrant items"
+    - "sample size"
+  training_recipe:
+    simulation: "Monte Carlo simulation under IRT models"
+    aberrance_generation: "systematic manipulation of response patterns"
+    model_fitting: "IRT parameter estimation then person-fit computation"
+  method_family: "person-fit statistics"
+
+positioning:
+  core_claim: "Comprehensive comparison of 36 person-fit statistics reveals that no single statistic uniformly dominates; Ht and related nonparametric statistics tend to perform well across diverse aberrance types and testing conditions."
+  key_results: "Nonparametric statistics (especially Ht) showed competitive or superior detection power compared to parametric alternatives across most aberrance types; performance rankings varied by type of aberrance and IRT model."
+  limitations:
+    - "Limited to dichotomous item response data"
+    - "Simulation-based only; no large-scale empirical validation"
+    - "Assumes unidimensional IRT models"
+    - "Does not address polytomous or mixed-format items"
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

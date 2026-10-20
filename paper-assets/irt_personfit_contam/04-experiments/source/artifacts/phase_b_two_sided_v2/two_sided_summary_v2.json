@@ -1,0 +1,611 @@
+{
+  "n_boot": 1000,
+  "fdr_alpha": 0.05,
+  "total_cells": 60,
+  "total_flagged": 57,
+  "flagged_pct": 95.0,
+  "by_benchmark": {
+    "arc_c": {
+      "n_flagged": 11,
+      "flagged_models": [
+        "360GPT2-Pro",
+        "DeepSeek-V3",
+        "Doubao-pro",
+        "Gemini-1.5",
+        "Gemma-2B-it",
+        "Hunyuan-Turbo",
+        "Mistral-7B-Instruct-v0.1",
+        "Moonshot-v1",
+        "Qwen-Plus",
+        "Qwen2.5-3B-Instruct",
+        "Vicuna-7B-v1.3"
+      ]
+    },
+    "gsm8k": {
+      "n_flagged": 12,
+      "flagged_models": [
+        "360GPT2-Pro",
+        "DeepSeek-V3",
+        "Doubao-pro",
+        "Gemini-1.5",
+        "Gemma-2B-it",
+        "Hunyuan-Turbo",
+        "Mistral-7B-Instruct-v0.1",
+        "Moonshot-v1",
+        "Qwen-Plus",
+        "Qwen2.5-3B-Instruct",
+        "Vicuna-7B-v1.3",
+        "Yi-Lightning"
+      ]
+    },
+    "hellaswag": {
+      "n_flagged": 12,
+      "flagged_models": [
+        "360GPT2-Pro",
+        "DeepSeek-V3",
+        "Doubao-pro",
+        "Gemini-1.5",
+        "Gemma-2B-it",
+        "Hunyuan-Turbo",
+        "Mistral-7B-Instruct-v0.1",
+        "Moonshot-v1",
+        "Qwen-Plus",
+        "Qwen2.5-3B-Instruct",
+        "Vicuna-7B-v1.3",
+        "Yi-Lightning"
+      ]
+    },
+    "humaneval": {
+      "n_flagged": 10,
+      "flagged_models": [
+        "DeepSeek-V3",
+        "Doubao-pro",
+        "Gemini-1.5",
+        "Gemma-2B-it",
+        "Hunyuan-Turbo",
+        "Mistral-7B-Instruct-v0.1",
+        "Moonshot-v1",
+        "Qwen-Plus",
+        "Qwen2.5-3B-Instruct",
+        "Vicuna-7B-v1.3"
+      ]
+    },
+    "mmlu": {
+      "n_flagged": 12,
+      "flagged_models": [
+        "360GPT2-Pro",
+        "DeepSeek-V3",
+        "Doubao-pro",
+        "Gemini-1.5",
+        "Gemma-2B-it",
+        "Hunyuan-Turbo",
+        "Mistral-7B-Instruct-v0.1",
+        "Moonshot-v1",
+        "Qwen-Plus",
+        "Qwen2.5-3B-Instruct",
+        "Vicuna-7B-v1.3",
+        "Yi-Lightning"
+      ]
+    }
+  },
+  "by_model": {
+    "360GPT2-Pro": {
+      "n_flagged": 4,
+      "flagged_benchmarks": [
+        "arc_c",
+        "gsm8k",
+        "hellaswag",
+        "mmlu"
+      ]
+    },
+    "DeepSeek-V3": {
+      "n_flagged": 5,
+      "flagged_benchmarks": [
+        "arc_c",
+        "gsm8k",
+        "hellaswag",
+        "humaneval",
+        "mmlu"
+      ]
+    },
+    "Doubao-pro": {
+      "n_flagged": 5,
+      "flagged_benchmarks": [
+        "arc_c",
+        "gsm8k",
+        "hellaswag",
+        "humaneval",
+        "mmlu"
+      ]
+    },
+    "Gemini-1.5": {
+      "n_flagged": 5,
+      "flagged_benchmarks": [
+        "arc_c",
+        "gsm8k",
+        "hellaswag",
+        "humaneval",
+        "mmlu"
+      ]
+    },
+    "Gemma-2B-it": {
+      "n_flagged": 5,
+      "flagged_benchmarks": [
+        "arc_c",
+        "gsm8k",
+        "hellaswag",
+        "humaneval",
+        "mmlu"
+      ]
+    },
+    "Hunyuan-Turbo": {
+      "n_flagged": 5,
+      "flagged_benchmarks": [
+        "arc_c",
+        "gsm8k",
+        "hellaswag",
+        "humaneval",
+        "mmlu"
+      ]
+    },
+    "Mistral-7B-Instruct-v0.1": {
+      "n_flagged": 5,
+      "flagged_benchmarks": [
+        "arc_c",
+        "gsm8k",
+        "hellaswag",
+        "humaneval",
+        "mmlu"
+      ]
+    },
+    "Moonshot-v1": {
+      "n_flagged": 5,
+      "flagged_benchmarks": [
+        "arc_c",
+        "gsm8k",
+        "hellaswag",
+        "humaneval",
+        "mmlu"
+      ]
+    },
+    "Qwen-Plus": {
+      "n_flagged": 5,
+      "flagged_benchmarks": [
+        "arc_c",
+        "gsm8k",
+        "hellaswag",
+        "humaneval",
+        "mmlu"
+      ]
+    },
+    "Qwen2.5-3B-Instruct": {
+      "n_flagged": 5,
+      "flagged_benchmarks": [
+        "arc_c",
+        "gsm8k",
+        "hellaswag",
+        "humaneval",
+        "mmlu"
+      ]
+    },
+    "Vicuna-7B-v1.3": {
+      "n_flagged": 5,
+      "flagged_benchmarks": [
+        "arc_c",
+        "gsm8k",
+        "hellaswag",
+        "humaneval",
+        "mmlu"
+      ]
+    },
+    "Yi-Lightning": {
+      "n_flagged": 3,
+      "flagged_benchmarks": [
+        "gsm8k",
+        "hellaswag",
+        "mmlu"
+      ]
+    }
+  },
+  "flagged_cells": [
+    {
+      "model": "360GPT2-Pro",
+      "benchmark": "arc_c",
+      "lz_star": 2.898,
+      "empirical_p": 0.008,
+      "bh_adjusted_p": 0.0092
+    },
+    {
+      "model": "DeepSeek-V3",
+      "benchmark": "arc_c",
+      "lz_star": 3.022,
+      "empirical_p": 0.002,
+      "bh_adjusted_p": 0.0026
+    },
+    {
+      "model": "Doubao-pro",
+      "benchmark": "arc_c",
+      "lz_star": 2.324,
+      "empirical_p": 0.025,
+      "bh_adjusted_p": 0.0268
+    },
+    {
+      "model": "Gemini-1.5",
+      "benchmark": "arc_c",
+      "lz_star": 2.05,
+      "empirical_p": 0.046,
+      "bh_adjusted_p": 0.0484
+    },
+    {
+      "model": "Gemma-2B-it",
+      "benchmark": "arc_c",
+      "lz_star": 6.214,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "Hunyuan-Turbo",
+      "benchmark": "arc_c",
+      "lz_star": 3.569,
+      "empirical_p": 0.001,
+      "bh_adjusted_p": 0.0014
+    },
+    {
+      "model": "Mistral-7B-Instruct-v0.1",
+      "benchmark": "arc_c",
+      "lz_star": 5.597,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "Moonshot-v1",
+      "benchmark": "arc_c",
+      "lz_star": 2.746,
+      "empirical_p": 0.007,
+      "bh_adjusted_p": 0.0082
+    },
+    {
+      "model": "Qwen-Plus",
+      "benchmark": "arc_c",
+      "lz_star": 2.851,
+      "empirical_p": 0.007,
+      "bh_adjusted_p": 0.0082
+    },
+    {
+      "model": "Qwen2.5-3B-Instruct",
+      "benchmark": "arc_c",
+      "lz_star": 3.434,
+      "empirical_p": 0.001,
+      "bh_adjusted_p": 0.0014
+    },
+    {
+      "model": "Vicuna-7B-v1.3",
+      "benchmark": "arc_c",
+      "lz_star": 2.979,
+      "empirical_p": 0.002,
+      "bh_adjusted_p": 0.0026
+    },
+    {
+      "model": "360GPT2-Pro",
+      "benchmark": "gsm8k",
+      "lz_star": 7.216,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "DeepSeek-V3",
+      "benchmark": "gsm8k",
+      "lz_star": 7.894,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "Doubao-pro",
+      "benchmark": "gsm8k",
+      "lz_star": 2.65,
+      "empirical_p": 0.012,
+      "bh_adjusted_p": 0.0131
+    },
+    {
+      "model": "Gemini-1.5",
+      "benchmark": "gsm8k",
+      "lz_star": -7.773,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "Gemma-2B-it",
+      "benchmark": "gsm8k",
+      "lz_star": 10.019,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "Hunyuan-Turbo",
+      "benchmark": "gsm8k",
+      "lz_star": 6.749,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "Mistral-7B-Instruct-v0.1",
+      "benchmark": "gsm8k",
+      "lz_star": 11.658,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "Moonshot-v1",
+      "benchmark": "gsm8k",
+      "lz_star": 7.799,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "Qwen-Plus",
+      "benchmark": "gsm8k",
+      "lz_star": 7.174,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "Qwen2.5-3B-Instruct",
+      "benchmark": "gsm8k",
+      "lz_star": 10.821,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "Vicuna-7B-v1.3",
+      "benchmark": "gsm8k",
+      "lz_star": 8.63,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "Yi-Lightning",
+      "benchmark": "gsm8k",
+      "lz_star": 6.03,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "360GPT2-Pro",
+      "benchmark": "hellaswag",
+      "lz_star": 16.04,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "DeepSeek-V3",
+      "benchmark": "hellaswag",
+      "lz_star": 14.808,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "Doubao-pro",
+      "benchmark": "hellaswag",
+      "lz_star": 17.739,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "Gemini-1.5",
+      "benchmark": "hellaswag",
+      "lz_star": -15.303,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "Gemma-2B-it",
+      "benchmark": "hellaswag",
+      "lz_star": 23.931,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "Hunyuan-Turbo",
+      "benchmark": "hellaswag",
+      "lz_star": 20.42,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "Mistral-7B-Instruct-v0.1",
+      "benchmark": "hellaswag",
+      "lz_star": 31.855,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "Moonshot-v1",
+      "benchmark": "hellaswag",
+      "lz_star": 13.234,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "Qwen-Plus",
+      "benchmark": "hellaswag",
+      "lz_star": 8.241,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "Qwen2.5-3B-Instruct",
+      "benchmark": "hellaswag",
+      "lz_star": 18.862,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "Vicuna-7B-v1.3",
+      "benchmark": "hellaswag",
+      "lz_star": 28.378,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "Yi-Lightning",
+      "benchmark": "hellaswag",
+      "lz_star": 18.01,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "DeepSeek-V3",
+      "benchmark": "humaneval",
+      "lz_star": 2.348,
+      "empirical_p": 0.012,
+      "bh_adjusted_p": 0.0131
+    },
+    {
+      "model": "Doubao-pro",
+      "benchmark": "humaneval",
+      "lz_star": 2.529,
+      "empirical_p": 0.01,
+      "bh_adjusted_p": 0.0113
+    },
+    {
+      "model": "Gemini-1.5",
+      "benchmark": "humaneval",
+      "lz_star": -3.128,
+      "empirical_p": 0.002,
+      "bh_adjusted_p": 0.0026
+    },
+    {
+      "model": "Gemma-2B-it",
+      "benchmark": "humaneval",
+      "lz_star": 3.823,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "Hunyuan-Turbo",
+      "benchmark": "humaneval",
+      "lz_star": 2.831,
+      "empirical_p": 0.005,
+      "bh_adjusted_p": 0.0062
+    },
+    {
+      "model": "Mistral-7B-Instruct-v0.1",
+      "benchmark": "humaneval",
+      "lz_star": 4.231,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "Moonshot-v1",
+      "benchmark": "humaneval",
+      "lz_star": 3.808,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "Qwen-Plus",
+      "benchmark": "humaneval",
+      "lz_star": 2.813,
+      "empirical_p": 0.006,
+      "bh_adjusted_p": 0.0073
+    },
+    {
+      "model": "Qwen2.5-3B-Instruct",
+      "benchmark": "humaneval",
+      "lz_star": 3.523,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "Vicuna-7B-v1.3",
+      "benchmark": "humaneval",
+      "lz_star": 3.063,
+      "empirical_p": 0.002,
+      "bh_adjusted_p": 0.0026
+    },
+    {
+      "model": "360GPT2-Pro",
+      "benchmark": "mmlu",
+      "lz_star": 19.789,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "DeepSeek-V3",
+      "benchmark": "mmlu",
+      "lz_star": 18.236,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "Doubao-pro",
+      "benchmark": "mmlu",
+      "lz_star": -21.333,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "Gemini-1.5",
+      "benchmark": "mmlu",
+      "lz_star": 31.815,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "Gemma-2B-it",
+      "benchmark": "mmlu",
+      "lz_star": 24.701,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "Hunyuan-Turbo",
+      "benchmark": "mmlu",
+      "lz_star": 16.565,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "Mistral-7B-Instruct-v0.1",
+      "benchmark": "mmlu",
+      "lz_star": 34.901,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "Moonshot-v1",
+      "benchmark": "mmlu",
+      "lz_star": 20.216,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "Qwen-Plus",
+      "benchmark": "mmlu",
+      "lz_star": 36.154,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "Qwen2.5-3B-Instruct",
+      "benchmark": "mmlu",
+      "lz_star": 26.193,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "Vicuna-7B-v1.3",
+      "benchmark": "mmlu",
+      "lz_star": 27.39,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    },
+    {
+      "model": "Yi-Lightning",
+      "benchmark": "mmlu",
+      "lz_star": 36.128,
+      "empirical_p": 0.0,
+      "bh_adjusted_p": 0.0
+    }
+  ]
+}

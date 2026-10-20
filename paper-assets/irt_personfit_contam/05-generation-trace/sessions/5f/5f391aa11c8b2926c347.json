@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f391aa11c8b2926c347",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code grpo step500 eval",
+  "task_key": "worker_code_grpo-step500-eval_20260521T134024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_grpo-step500-eval_20260521T134024_result.json",
+    "occurrence": 1,
+    "bytes": 2935,
+    "sha256": "b0c14b5dcd3823daba8685e440b0531201dafab7c8c7d07341d867f7350b49d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整 HT 统计结果已出。以下是 **Base → SFT → GRPO step 500** 三阶段完整对比：\n\n---\n\n## 完整评估报告：GRPO v3 Step 500\n\n### 核心指标对比\n\n| 指标 | Base | SFT | GRPO s500 | SFT→GRPO Δ |\n|------|------|-----|-----------|-------------|\n| **theta_mle** | 0.095 | 0.228 | 0.157 | **-0.071** |\n| **lz\\*** | 5.970 | 2.914 | 7.771 | **+4.857** |\n| **accuracy_overall** | 70.24% | 73.39% | 71.44% | **-1.95pp** |\n| **accuracy_seen** | 70.04% | 83.10% | 73.03% | **-10.07pp** |\n| **accuracy_unseen** | 70.27% | 71.67% | 71.16% | **-0.51pp** |\n| **lz\\*_seen** | 2.498 | -0.395 | 3.410 | **+3.805** |\n| **lz\\*_unseen** | 5.427 | 3.278 | 7.000 | **+3.722** |\n\n### HT 统计对比\n\n| 指标 | Base | SFT | GRPO s500 | SFT→GRPO Δ |\n|------|------|-----|-----------|-------------|\n| **ht_parametric** | -0.0442 | -0.0078 | -0.0349 | **-0.0271** |\n| **ht_param_seen** | -0.0485 | +0.0357 | -0.0282 | **-0.0639** |\n| **ht_param_unseen** | -0.0434 | -0.0198 | -0.0362 | **-0.0164** |\n| **ht_nonparametric** | 0.1748 | 0.1874 | 0.1678 | **-0.0196** |\n| **guttman_errors** | 7,206,274 | 7,215,778 | 6,750,803 | **-464,975** |\n\n### 关键发现\n\n1. **污染信号被彻底破坏**：SFT 的 seen/unseen accuracy gap 从 11.43pp（83.10% vs 71.67%）缩小到 1.87pp（73.03% vs 71.16%），几乎回到 base 水平（-0.23pp）。lz\\*_seen 从异常负值 -0.395 恶化到 3.410。\n\n2. **整体能力下降**：overall accuracy 从 73.39%→71.44%，theta 从 0.228→0.157。GRPO 不仅没提升能力，反而比 SFT 退步，甚至 unseen accuracy 也从 71.67%→71.16%。\n\n3. **HT 统计佐证**：\n   - ht_param_seen 从 +0.0357（SFT 的正值=seen items 上表现异常好）→ -0.0282（GRPO 回到负值），说明 seen items 上的异常优势消失。\n   - ht_nonparametric 从 0.1874→0.1678，Guttman errors 减少 46.5 万，说明 response pattern 变得更「随机」/less structured。\n   - 整体 ht_parametric 从 -0.0078→-0.0349，接近 base 的 -0.0442，说明模型回归到更 aberrant 的状态。\n\n4. **lz\\* 全面恶化**：overall lz\\* 从 2.914→7.771，比 base（5.970）还差。GRPO 使模型的作答模式变得更加不符合 IRT 模型预期。\n\n### GRPO 训练状态\n\n- Step 1732/3000（58%），ETA ~55 min\n- grad_norm 已恢复到 0.41-0.50（此前一段时间为 0）\n- reward=0.55，entropy=1.5\n- clip_ratio 仍极低（~0.003-0.007）\n\n### 判断\n\n**GRPO v3 step 500 对模型是破坏性的。** 它没有实现\"在保持污染信号的同时提升能力\"的目标，而是：\n- 将污染带来的 seen accuracy 优势几乎完全抹除（-10pp）\n- 同时降低了整体能力（-1.95pp overall）\n- 使 person-fit 统计量全面恶化\n\n建议 **不继续** 当前 GRPO v3 训练，或需要从根本上修改 GRPO 的 reward 设计，加入保护 seen items accuracy 的约束。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-grpo-step500-eval.md"
+}

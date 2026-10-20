@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59abdce9ecfae4285aad",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops 50s3 fixed theta final",
+  "task_key": "worker_ops_50s3-fixed-theta-final_20260522T202928",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_50s3-fixed-theta-final_20260522T202928_result.json",
+    "occurrence": 1,
+    "bytes": 440,
+    "sha256": "ba00befae2e811f47e51a956c2f98c5e024f0653fd8a02a47c848e8357df8834"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n```\n50% s3 θ-fixed:\n- lz_fixed = 13.0362\n- d_fixed = 9.7961\n- CI_95 = [8.1748, 16.4615]\n\n15% s2 in theta_fixed_all_seeds.json: YES (newly added)\n- lz_fixed = 11.8704\n- d_fixed = 7.7869\n- CI_95 = [6.5065, 13.0514]\n```\n\n两项均已更新到 `theta_fixed_all_seeds.json`。contam_50_s3 补充了 `theta_mle=0.4261`、`lz_star_free=2.8695`、`accuracy=0.7666`；contam_15_s2 为全新计算并写入。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-50s3-fixed-theta-final.md"
+}

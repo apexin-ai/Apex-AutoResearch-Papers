@@ -1,0 +1,8 @@
+Benchmark contamination in Large Language Models (LLMs) undermines evaluation validity, yet most detection methods require privileged access to training data, model internals, or output probabilities.
+We present the first controlled characterization of Item Response Theory (IRT) person-fit statistics for detecting supervised fine-tuning (SFT) contamination, requiring only binary response patterns and calibrated four-parameter logistic item parameters; diagnostic $\theta$-anchoring requires a clean baseline.
+A contaminated LLM produces aberrant response patterns analogous to a test-taker with item preknowledge.
+Using $\ell_z^*$ in a matched-difference design ($\Delta\ell_z^*$) across three 7--8B model families ($n{=}10$ clean seeds per family) on MMLU (14,042 items) and ARC-Challenge (295 items), we identify three boundaries:
+(1) model-specific $\theta$-shift dynamics, where contamination-induced ability inflation absorbs the person-fit signal; $\theta$-anchoring amplifies detection by 2.4$\times$ while reducing coefficient of variation from 60\% to 19\%;
+(2) a detection-diagnosis tradeoff where simpler statistics yield stronger detection but lack $\ell_z^*$'s diagnostic capabilities (seen/unseen decomposition, mechanistic $\theta$-shift analysis);
+and (3, exploratory) ability-dependent non-monotonic dose-response under free-$\theta$ estimation, driven by $\theta$-shift absorption; $\theta$-anchored analysis reveals stable positive dose-response.
+These findings establish when and why binary response patterns carry contamination information beyond aggregate accuracy. We release our code and data at\footnote{\url{https://github.com/anonymous-nlp-2026-2/irt_personfit_contam}}.

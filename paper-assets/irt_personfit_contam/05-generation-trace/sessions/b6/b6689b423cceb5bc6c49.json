@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6689b423cceb5bc6c49",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops mass eval",
+  "task_key": "worker_ops_mass-eval_20260523T124335",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_mass-eval_20260523T124335_result.json",
+    "occurrence": 1,
+    "bytes": 1269,
+    "sha256": "731200d1f5da49a1e85ae42d1876d36bc75ea71812319b0cfa3380313880f0c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**All 9 evals complete.** Here's the full summary:\n\n## Results Summary\n\n| Experiment | Model | Condition | lz_star | acc_overall | acc_seen | acc_unseen | Cohen's d |\n|---|---|---|---|---|---|---|---|\n| exp-llama-25pct-s1 | Llama | contam_25 | -4.616 | 0.672 | 0.770 | 0.639 | **-5.124** |\n| exp-llama-15pct-s3 | Llama | contam_15_s3 | -4.507 | 0.658 | 0.785 | 0.636 | **-4.994** |\n| exp-llama-5pct-s2 | Llama | contam_5_s2 | -4.460 | 0.636 | 0.786 | 0.629 | **-4.938** |\n| exp-llama-25pct-s2 | Llama | contam_25_s2 | -3.249 | 0.679 | 0.777 | 0.647 | **-3.496** |\n| exp-llama-50pct-s3 | Llama | contam_50_s3 | -2.810 | 0.712 | 0.768 | 0.656 | **-2.973** |\n| exp-mistral-5pct-s2 | Mistral | contam_5_s2 | -5.896 | 0.569 | 0.771 | 0.559 | **-4.835** |\n| exp-mistral-50pct-s3 | Mistral | contam_50_s3 | -5.236 | 0.677 | 0.751 | 0.603 | **-4.512** |\n| exp-mistral-15pct-s3 | Mistral | contam_15_s3 | -3.127 | 0.597 | 0.770 | 0.567 | **-3.485** |\n| exp-mistral-5pct-s1 | Mistral | contam_5 | -1.766 | 0.571 | 0.766 | 0.560 | **-2.822** |\n\nAll experiments registered with metrics and marked as `success`. All Cohen's d values are strongly negative (|d| > 2.8), indicating robust contamination detection across all conditions, models, and seeds."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-mass-eval.md"
+}

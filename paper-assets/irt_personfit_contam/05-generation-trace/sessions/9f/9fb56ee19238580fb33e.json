@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9fb56ee19238580fb33e",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops check mistral gpu",
+  "task_key": "worker_ops_check-mistral-gpu_20260526T111128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-mistral-gpu_20260526T111128_result.json",
+    "occurrence": 1,
+    "bytes": 433,
+    "sha256": "91924996a6e9d804e36917afd77d1565b202ee42f42c3dc1af0c1ded18597a8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**westd-35694 无法连接。** 所有 SSH 连接均返回 `Unable to connect to port 35694 on 36.103.198.204`。\n\n这是 AutoDL 实例，重启后 SSH 端口会变。当前实例可能：\n1. **已关机/休眠** — 需要去 AutoDL 控制台开机\n2. **端口已变** — 需要去控制台查看新的 SSH 端口，然后更新 `~/.ssh/config`\n\n请去 AutoDL 控制台确认实例状态和当前 SSH 端口。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-mistral-gpu.md"
+}

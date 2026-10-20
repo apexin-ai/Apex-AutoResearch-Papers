@@ -1,0 +1,43 @@
+Figure 1: IRT Person-Fit Framework for LLM Benchmark Contamination Detection
+
+This is a 2x2 composite figure (4 panels arranged in a 2-column, 2-row grid) for an EMNLP 2026 paper. The figure width should be full-width (~7.2 inches). Use Nature Publishing Group academic color palette: navy #3C5488, red/coral #E64B35, teal #00A087. White background, minimal design, light gray grid lines, no chartjunk. Panel labels (a)-(d) in bold sans-serif font, positioned at top-left of each panel.
+
+## Panel (a) - Top Left: "4PL Item Response Model"
+A single smooth S-shaped (sigmoid) Item Characteristic Curve (ICC) from a 4-Parameter Logistic (4PL) IRT model.
+- X-axis: theta (ability parameter), range -3 to +3, labeled as "θ (Ability)"
+- Y-axis: P(correct), range 0 to 1
+- The ICC curve should be drawn in navy (#3C5488), showing a smooth sigmoid going from a lower asymptote c_i ≈ 0.25 to an upper asymptote d_i ≈ 0.92
+- Draw a horizontal dashed line at y=0.25 labeled "c_i (guessing)" in gray
+- Draw a horizontal dashed line at y=0.92 labeled "d_i (upper asymp.)" in gray
+- Draw a vertical dashed line at theta=+0.20 in teal (#00A087) labeled "Clean θ=+0.20"
+- Draw a vertical dashed line at theta=-2.22 in red (#E64B35) labeled "Contam. θ=-2.22"
+- Where each vertical line intersects the ICC, place a dot marker
+
+## Panel (b) - Top Right: "ℓz* Detection Signal"
+Two overlapping kernel density (KDE) curves showing the distribution of person-fit statistic lz* values.
+- X-axis: "ℓz* (Person-Fit Statistic)", range approximately -4 to +3
+- Y-axis: "Density"
+- Blue/navy (#3C5488) filled density curve (with alpha=0.3 fill): labeled "Clean seeds (N=10)", centered approximately at +0.20
+- Red/coral (#E64B35) filled density curve (with alpha=0.3 fill): labeled "Contaminated", centered approximately at -2.22
+- Between the two peaks, draw a horizontal double-headed arrow labeled "Δℓz* = 2.4"
+- Legend in upper-right corner
+
+## Panel (c) - Bottom Left: "θ-Shift Absorption"
+A grouped bar chart comparing Cohen's |d| effect sizes between two conditions.
+- X-axis: Two groups: "Free-θ" and "Fixed-θ"
+- Y-axis: "Cohen's |d|", range 0 to 14
+- For the Qwen model: Free-θ bar = 5.08 (navy #3C5488), Fixed-θ bar = 12.32 (teal #00A087)
+- Add value labels on top of each bar
+- Draw a bracket or arrow between the two bars with annotation "2.4× amplification" or "2.4×"
+- Keep it clean and simple
+
+## Panel (d) - Bottom Right: "Dose-Response (Free-θ)"
+Line plot showing how Cohen's |d| changes across contamination levels.
+- X-axis: "Contamination Level (%)", values at 5, 15, 25, 50
+- Y-axis: "Cohen's |d|", range 0 to 9
+- Qwen line (navy #3C5488, solid, circle markers): data points 4.15, 5.36, 7.44, 5.08. This line is NON-MONOTONIC, rising to peak at 25% then dropping at 50%.
+- Llama line (red #E64B35, dashed, square markers): data points 2.57, 2.80, 2.56, 2.30. This line is relatively FLAT.
+- Annotate the Qwen peak at 25% with "peak" or a small arrow
+- Legend showing "Qwen-2.5-7B" and "Llama-3.1-8B"
+
+Overall layout: Use matplotlib's subplot with tight_layout or constrained_layout. Add a subtle shared title or keep panel titles only. Font size appropriate for single-column or full-width figure in an academic paper (axis labels ~9pt, tick labels ~8pt).

@@ -1,0 +1,48 @@
+{
+  "exp_id": "exp-extended-sim",
+  "project": "irt_personfit_contam",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T09:31:30.112Z",
+    "updated_at": "2026-05-20T09:32:03.177Z",
+    "hypothesis": "Extended simulation with finer contamination levels (60/75/90%) and fixed 100% NaN handling will reveal the precise dual-regime crossover point where lz* flips from negative (aberrant) to positive (over-consistent), and inverted-U power curve shape is confirmed across all benchmarks",
+    "parent": "sim_001",
+    "spec": {
+      "command": "python src/simulation.py",
+      "server": "local (CPU)",
+      "data_path": "artifacts/psn_irt_params/",
+      "data_count": "25862 items (5 benchmarks) × 11 levels × 2000 sims = 110K trials",
+      "model_name": "N/A (simulation)",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "artifacts/extended_simulation/",
+      "checkpoint_source": "sim_001 (extended with new levels)",
+      "eval_data": "4PL params from PSN-IRT, simulated responses"
+    },
+    "metrics": {
+      "n_sims": 2000,
+      "levels": "0/3/5/10/15/25/50/60/75/90/100",
+      "n_excluded_100pct": 0,
+      "inverted_u_all_5": true,
+      "dual_regime_crossover": "75-90%",
+      "mmlu_power_15pct": 0.9845,
+      "hellaswag_power_15pct": 0.7525,
+      "gsm8k_power_15pct": 0.5905,
+      "arc_c_power_15pct": 0.127,
+      "humaneval_power_15pct": 0.2625,
+      "mmlu_100pct_lz_star": 31.815,
+      "hellaswag_100pct_lz_star": 26.297,
+      "gsm8k_100pct_lz_star": 8.253,
+      "arc_c_100pct_lz_star": 4.339,
+      "humaneval_100pct_lz_star": 3.529,
+      "mmlu_peak_power": "98.45% at 15%",
+      "mmlu_90pct_lz_star_mean": 15.02
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T09:32:03.209122+00:00",
+  "trigger": "update_registry"
+}

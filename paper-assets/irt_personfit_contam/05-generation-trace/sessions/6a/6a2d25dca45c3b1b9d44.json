@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a2d25dca45c3b1b9d44",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code exp ml classifier baseline",
+  "task_key": "worker_code_exp-ml-classifier-baseline_20260520T120133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-ml-classifier-baseline_20260520T120133_result.json",
+    "occurrence": 1,
+    "bytes": 134,
+    "sha256": "ff4d2dfd05975afd895e2bc3ec02b7012f2f484da54e3f6e520dd1d06caa6323"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitor timed out — no action needed, the experiment already completed successfully and all artifacts are registered."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-ml-classifier-baseline.md"
+}

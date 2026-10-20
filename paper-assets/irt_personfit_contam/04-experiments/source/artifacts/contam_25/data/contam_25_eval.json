@@ -1,0 +1,1 @@
+condition: contam_25, lz_star: 2.6429, accuracy: 0.7405, accuracy_seen: 0.8105, accuracy_unseen: 0.7171, theta_mle: 0.2576, cohens_d: -8.2153, bootstrap_ci_pct: [-18.88, -5.73], bootstrap_ci_bca: [-14.71, -4.94], dose_response: d15=-6.57 d25=-8.22 d50=-1.90

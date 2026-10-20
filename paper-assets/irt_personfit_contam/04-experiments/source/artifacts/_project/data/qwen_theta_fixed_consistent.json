@@ -1,0 +1,1 @@
+See /root/autodl-tmp/qwen_theta_fixed_consistent.json on westd-35694. theta_fixed=-0.1022, clean lz_fixed mean=7.352, contam_15 lz_fixed=10.12, contam_50 lz_fixed=15.78. Cohen d: contam_15 d=-5.27 [-7.79,-3.97], contam_50 d=-16.09 [-24.79,-12.10].

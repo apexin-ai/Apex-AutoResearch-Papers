@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b542f6bf891e2440aede",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops check pilot training progress",
+  "task_key": "worker_ops_check-pilot-training-progress_20260523T152416",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-pilot-training-progress_20260523T152416_result.json",
+    "occurrence": 1,
+    "bytes": 578,
+    "sha256": "4d0b807a86534ab2edf4ad2a1f47e522262e4a0030f87ac92472ed54f7783395"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Llama Pilot S1 训练进度\n\n| 实验 | 进度 | Epoch | Loss | Token Acc | ETA |\n|------|------|-------|------|-----------|-----|\n| **15pct** | 1248/1335 (93%) | 2.0 | 1.451 | 0.6314 | ~2 min |\n| **50pct** | 1184/2256 (52%) | ~1.0 | 1.532 | 0.6428 | ~21 min |\n\n## GPU 状态\n\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 25.3/97.9 GB | 97% |\n| 1 | 16.6/97.9 GB | 94% |\n| 2 | 空闲 | 0% |\n| 3 | 空闲 | 0% |\n\n15pct 即将完成（~2分钟），50pct 还需约 21 分钟。两个训练分别跑在 GPU 0 和 GPU 1 上。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-pilot-training-progress.md"
+}

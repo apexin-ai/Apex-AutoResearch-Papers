@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1b188dce671eb7fc14c",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "paper fix heatmap mistral50",
+  "task_key": "worker_paper_fix-heatmap-mistral50_20260524T112141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-heatmap-mistral50_20260524T112141_result.json",
+    "occurrence": 1,
+    "bytes": 136,
+    "sha256": "f03d8aeafff9929dc04cb2256ba14c4e7d38199f8e505324457450ff51917ebb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Mistral 50% 的 heatmap 值已从 3.50 [2.1, 9.4] 更新为 4.09 (±0.53)，图已重新生成并提交（`02e320b`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-heatmap-mistral50.md"
+}

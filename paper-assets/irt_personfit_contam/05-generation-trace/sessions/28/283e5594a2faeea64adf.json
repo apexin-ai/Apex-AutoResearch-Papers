@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "283e5594a2faeea64adf",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code cleanup 19912 mistral s4s7",
+  "task_key": "worker_code_cleanup-19912-mistral-s4s7_20260521T134007",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cleanup-19912-mistral-s4s7_20260521T134007_result.json",
+    "occurrence": 1,
+    "bytes": 790,
+    "sha256": "9b46ac67adf76a16691d464948f5084bb82e9adfd2d36e1810ba1b69b5469f70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 产出汇总\n\n| 项目 | 结果 |\n|------|------|\n| **Kill 冗余进程** | 全部清除，GPUs 0-2 已释放至 0 MiB |\n| **Mistral 代码** | `/root/autodl-tmp/ctrl_contam_mistral/train.py` 已存在，SEED_MAP 包含 clean_s4-s7 |\n| **4 个训练状态** | 全部启动成功 |\n\n| GPU | Condition | PID | 显存 | 状态 |\n|-----|-----------|-----|------|------|\n| 0 | clean_s5 | 36082 | 8369 MiB | 45/939 steps, ~1.13s/it |\n| 1 | clean_s6 | 36162 | 8283 MiB | 运行中 |\n| 2 | clean_s7 | 36239 | 8561 MiB | 运行中 |\n| 3 | clean_s4 | (已运行) | 9339 MiB | 136/939 steps, ~1.09s/it |\n\n**预计训练时长**: 939 steps × ~1.15s/step ≈ **18 分钟/任务**。clean_s4 已跑了 ~3 分钟，s5-s7 刚启动，全部完成约需 **15-18 分钟**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cleanup-19912-mistral-s4s7.md"
+}

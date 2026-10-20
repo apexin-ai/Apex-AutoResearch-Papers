@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-4pl-real-data-degradation",
+  "project": "irt_personfit_contam",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:29:58.285Z",
+    "updated_at": "2026-05-20T14:30:12.827Z",
+    "hypothesis": "Forcing d=1.0 (3PL degradation) on PSN-IRT 4PL parameters systematically distorts lz* values for real LLM response data, with the largest distortion on benchmarks/models where items have low d_feasibility, providing empirical evidence (beyond simulation) that the 4PL upper asymptote is essential for accurate person-fit measurement in LLM evaluation"
+  },
+  "timestamp": "2026-05-20T14:30:12.861310+00:00",
+  "trigger": "update_registry"
+}

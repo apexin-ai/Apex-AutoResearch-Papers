@@ -1,0 +1,42 @@
+{
+  "exp_id": "phase_b_personfit",
+  "project": "irt_personfit_contam",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T08:34:21.694Z",
+    "updated_at": "2026-05-20T08:34:53.788Z",
+    "hypothesis": "Real LLM benchmark response data from PSN-IRT 12 models shows significant inter-model variation in person-fit statistics (lz*, outfit, infit), with specific models exhibiting anomalous patterns indicative of benchmark contamination — particularly Gemini-1.5 with accuracy-ability dissociation",
+    "spec": {
+      "command": "python src/phase_b_personfit.py",
+      "server": "local (CPU)",
+      "data_path": "artifacts/psn_irt_phase_b/combine.csv + artifacts/psn_irt_params/",
+      "data_count": "12 models × 41871 items (5 benchmarks: MMLU 14042, HellaSwag 10042, GSM8K 1319, ARC-C 295, HumanEval 164)",
+      "model_name": "N/A (person-fit computation on existing response data)",
+      "seed": "N/A (deterministic computation)",
+      "checkpoint_path": "N/A (analysis, no model)",
+      "log_path": "artifacts/phase_b_results/personfit_summary.json"
+    },
+    "metrics": {
+      "lz_star_sd_all_gt_0.5": true,
+      "mmlu_lz_star_mean": 24.19,
+      "mmlu_lz_star_sd": 16.47,
+      "hellaswag_lz_star_mean": 20.09,
+      "hellaswag_lz_star_sd": 17.59,
+      "gsm8k_lz_star_mean": 8.22,
+      "gsm8k_lz_star_sd": 8.97,
+      "gemini15_mmlu_lz_star": 34.75,
+      "gemini15_mmlu_accuracy": 1,
+      "gemini15_mmlu_theta": 0.78,
+      "gemini15_flagged_benchmarks": "3/5 (HellaSwag, GSM8K, HumanEval negative lz*)",
+      "cross_benchmark_spearman_significant": "1/10 (GSM8K vs HumanEval rho=0.62 p=0.031)",
+      "n_models": 12,
+      "n_benchmarks": 5
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T08:34:53.797874+00:00",
+  "trigger": "update_registry"
+}

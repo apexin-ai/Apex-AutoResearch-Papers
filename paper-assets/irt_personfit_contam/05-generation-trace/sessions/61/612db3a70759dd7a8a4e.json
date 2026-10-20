@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "612db3a70759dd7a8a4e",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "paper writing sec limitations",
+  "task_key": "worker_paper_writing_sec_limitations_20260520T235421",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_sec_limitations_20260520T235421_result.json",
+    "occurrence": 1,
+    "bytes": 693,
+    "sha256": "183efc5e4501beef00fe2836040e9c3d5a4b88f78a4c1cade51fd0f476a2a7b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Limitations section written (~240 words). Covers all 6 outlined elements:\n\n1. **Single model family** (Qwen2.5-7B) + QLoRA conservative framing (UC-3: rank-16 limits memorization → 38% is lower bound → full FT would be stronger)\n2. **PSN-IRT dependency** + MML-EM refit failure ($r_a = 0.127$) → neural IRT needed for self-calibration\n3. **SFT-only** contamination; post-RL deferred\n4. **Power vs. benchmark size** (ARC-C $d = 0.45$, need ≥7,958 items for 80% power)\n5. **Universal misfit** → absolute $\\ell_z^*$ thresholds inapplicable → $\\Delta\\ell_z^*$ design required\n6. **MML-EM discrimination recovery failure** → external parameter bank dependency"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-sec-limitations.md"
+}

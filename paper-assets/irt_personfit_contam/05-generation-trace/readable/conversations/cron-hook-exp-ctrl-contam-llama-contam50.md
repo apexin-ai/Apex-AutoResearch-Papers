@@ -1,0 +1,1227 @@
+# cron hook exp ctrl contam llama contam50
+
+**What Can IRT Person-Fit Statistics Reveal About SFT-Stage Benchmark Contamination?** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 35
+- **Recorded user turns:** 1
+- **Tool calls:** 17
+- **Original source:** `logs/chats/cron_hook_exp-ctrl-contam-llama-contam50.jsonl`
+- **Structured JSON:** [`8d491dbad8eb64e40b77.json`](../../sessions/8d/8d491dbad8eb64e40b77.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+35 recorded events
+
+### User
+
+_source line 1 · 2026-05-21T13:06:59.662571+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #2。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- westd-35694 GPU 白名单: cuda:0/1/2/3（4× RTX PRO 6000 Blackwell 96GB），项目专属
+- Llama 模型来源是 ModelScope `LLM-Research/Meta-Llama-3.1-8B-Instruct`，不是 HuggingFace 直接下载（AutoDL 网络限制）
+- Qwen pilot 的 Cohen's d 统一用 ddof=1（n=3 clean seeds），Llama 实验也必须保持一致
+- WANDB_MODE=disabled——所有 Llama 实验没有 W&B 数据，必须从本地 log 和 results 目录提取指标
+- ctrl_contam_pilot（Qwen）的 baseline 数据不能直接用于 Llama 的 Cohen's d 计算——Llama 需要自己的 clean baseline（exp-ctrl-contam-llama-clean 正在跑）
+
+### 2. 🖥️ 基础设施快照
+- 服务器: westd-35694，工作目录 `/root/autodl-tmp/ctrl_contam_llama`
+- Python: `/root/miniconda3/bin/python`，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- Qwen pilot 目录: `/root/autodl-tmp/ctrl_contam_pilot`（已完成，checkpoints 在 `checkpoints/` 下）
+- Llama 训练 log: `/root/autodl-tmp/ctrl_contam_llama/logs/{clean,contam_15,contam_50}_train.log`
+- Cron log: `/root/runs/irt_personfit_contam/exp-ctrl-contam-llama-{clean,contam15,contam50}.log`
+- IRT 参数文件: `artifacts/psn_irt_params/mmlu_params.csv`（本地，4PL 参数）
+- 活跃进程: exp-ctrl-contam-llama-clean (cuda:0, PID 未记录在 registry 但 RUNNING 状态)
+- cuda:1 和 cuda:2 刚释放（contam15/contam50 已完成），cuda:3 空闲
+
+### 3. 📊 当前状态
+我刚将 exp-ctrl-contam-llama-contam50 和 exp-ctrl-contam-llama-contam15 从 PREPARING 推进到 ANALYZING（通过 QUEUED→RUNNING→ANALYZING 状态链）。**尚未派 Worker 读取结果**——handoff 打断了分析流程。
+
+Registry 状态:
+- `exp-ctrl-contam-llama-contam50`: **ANALYZING** — 50% MMLU contamination on Llama, 训练已完成(21:02 UTC)
+- `exp-ctrl-contam-llama-contam15`: **ANALYZING** — 15% MMLU contamination on Llama, 训练已完成(21:02 UTC)
+- `exp-ctrl-contam-llama-clean`: **RUNNING** — Llama clean baseline on cuda:0, 仍在跑
+- `exp-ctrl-contam-llama`: **PREPARING** — 伞实验，parent=exp-ctrl-contam-pilot
+- 其余 PREPARING 的是 pilot 子实验的历史残留（pilot 汇总实验 exp-ctrl-contam-pilot 已 DONE/success）
+
+无活跃 Worker。无等待中的 cron 回调（reconcile 返回 0）。
+
+### 4. 📋 待办
+- **立即**: spawn Worker SSH 到 westd-35694 读取 contam50 和 contam15 的训练 log + eval 结果 → 提取 lz*, accuracy, theta_mle → update_registry(metrics) → 推进到 DONE
+- exp-ctrl-contam-llama-clean cron 回调到达 → 同样 spawn Worker 分析 → 拿到 clean lz* baseline
+- clean 完成后 → 计算 Llama 的 Δlz* 和 Cohen's d（对标 Qwen pilot: contam15 d=-3.58, contam50 d=-1.56 free / d=9.21 fixed）
+- Llama 三条件全部 DONE → 汇总 cross-model generalizability 结论 → update exp-ctrl-contam-llama 伞实验 → 向 Director 汇报完整 Llama 结果
+- 如果 Llama |d| ≥ 2.0 at 15% → hypothesis confirmed，跨家族泛化成立，Claim 强度 +0.25
+- 如果 Llama |d| < 1.0 → partial/negative，需推导：是 Llama 特有问题还是方法局限？检查 θ-shift 是否更严重
+- cuda:1/2/3 空闲 → 向 Director 提议是否启动 exp-post-rl 或其他矩阵格子
+
+### 5. 🎯 战略上下文
+- 项目核心: lz* 作为 LLM benchmark 污染检测的最小信息操作点。Paper framing 详见 paper_framing.md
+- Llama 实验（exp-ctrl-contam-llama）直接回应 REV-ADD-2（单模型泛化性质疑），是 Qwen pilot 之后最关键的实验
+- Qwen pilot 关键数据点: contam15 d_free=-3.58, d_fixed=2.95; contam50 d_free=-1.56, d_fixed=9.21; θ-fixed 恢复单调剂量-反应（ratio=2.93）
+- **θ-shift 是已知现象**: contamination 提升 θ_mle → 用 free θ 时 contam50 的 |Δlz*| 反而比 contam15 小（inverted）。θ-fixed 分析是方法论贡献，Llama 预期也会出现
+- Figure 2 "Theory" 线有 CRITICAL 问题（M005: PCHIP 插值冒充理论模型），Paper Agent 需修正
+- ARR DDL 未确认（5/25 or 6/15），全局阻塞
+- 易错点: train.py 的 eval 部分可能只输出训练 loss——如果 log 中没有 lz* 数据，需要单独跑 eval 脚本（参考 pilot 的 eval 流程）。不要假设 train.py 自动输出所有指标
+- MML-EM refit Path D 已死（a_r=0.13），不要再尝试经典 IRT 重拟合
+
+## 项目硬约束 (memory.md 节选)
+
+## GPU 审计 (2026-05-21 15:47 UTC)
+
+### GPU 占用总览
+| GPU | PID | Process | VRAM | Status |
+|-----|------|---------|------|--------|
+| 0 | 98622 | eval_lz.py --condition clean_s5 --gpu 0 | 8,628 MiB | **ZOMBIE** — s5 results 已存在 |
+| 0 | 99214 | train.py --condition clean_s7 --gpu 3 | 37,694 MiB | 运行中, 56/939 steps (~6%) |
+| 1 | 96745 | train.py --condition clean_s6 --gpu 0 | 23,102 MiB | **ZOMBIE** — 训练已完成，模型已保存 |
+| 2 | 97791 | train_grpo.py | 8,062 MiB | 运行中, 134/14042 steps (~1%), ETA ~20h |
+| 3 | 99807 | train.py --condition clean_s8 --gpu 0 | 27,470 MiB | 运行中 (无日志) |
+
+### 进程状态
+- **PID 97791 (GRPO)**: 存活, step 134/14042, epoch 0.0078, ~5.1s/step, reward 0.3-0.78 波动, ETA ~19h
+- **PID 96745 (s6 train)**: 存活但已完成 — 3 epoch 训练结束, model saved to checkpoints/clean_s6, 仍占 GPU 1 23GB
+- **PID 99214 (s7 train)**: 存活, 56/939 steps (~6%), ~2s/step
+- **PID 99807 (s8 train)**: 存活, 无日志输出
+- **PID 98622 (s5 eval)**: 存活但 s5 results 已存在 — zombie
+- **PID 98896, 98897**: 已死亡
+
+### Eval 结果
+| Condition | Accuracy | θ_MLE | lz* |
+|-----------|----------|-------|-----|
+| clean_s3 | 0.6783 | -0.1068 | 9.5293 |
+| clean_s4 | 0.6786 | -0.1092 | 8.9673 |
+| clean_s5 | 0.6787 | -0.0875 | 8.5322 |
+| clean_s6 | — | — | — (训练刚完成, eval 未开始) |
+
+### HT post-RL 结果
+| Stage | Accuracy | θ_MLE | lz* | acc_seen | acc_unseen | lz*_seen | lz*_unseen |
+|-------|----------|-------|-----|----------|------------|----------|------------|
+| SFT | 0.7339 | +0.2281 | 2.914 | 0.8310 | 0.7167 | -0.395 | 3.278 |
+
+base_results.json 也存在。
+
+### 建议操作
+1. **Kill PID 98622** — s5 eval zombie, 浪费 GPU 0 上 8.6GB
+2. **Kill PID 96745** — s6 训练已完成, 浪费 GPU 1 上 23.1GB → 释放后可启动 s6 eval
+3. s7 (GPU 0) 和 s8 (GPU 3) 正常运行中, 不动
+4. GRPO (GPU 2) 正常运行中, 不动
+5. GPU 1 清理后启动 clean_s6 eval
+
+## 可查的历史
+前 2 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:exp-ctrl-contam-llama-contam50",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-21T13:07:10.930396+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-ctrl-contam-llama-contam50",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-21T13:07:10.983269+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-ctrl-contam-llama-contam50",
+  "tool": "ToolSearch",
+  "elapsed_ms": 52
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-21T13:07:13.897074+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "irt_personfit_contam",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-ctrl-contam-llama-contam50",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "irt_personfit_contam",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-21T13:07:14.349429+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-ctrl-contam-llama-contam50",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T13:07:14.854367+00:00_
+
+Error: result (83,638 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0519-3-projects-irt-personfit-contam--claude-sessions-agent-0c707a6f/336657f2-7576-411f-a854-096c6b8c240c/tool-results/mcp-agent-ml-research-read_registry-1779368834679.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0519-3-projects-irt-personfit-contam--claude-sessions-agent-0c707a6f/336657f2-7576-411f-a854-096c6b8c240c/tool-results/mcp-agent-ml-research-read_registry-1779368834679.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0519-3-projects-irt-personfit-contam--claude-sessions-agent-0c707a6f/336657f2-7576-411f-a854-096c6b8c240c/tool-results/mcp-agent-ml-research-read_registry-1779368834679.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-ctrl-contam-llama-contam50",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 957
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-21T13:07:14.854720+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-ctrl-contam-llama-contam50",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 505
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-21T13:07:14.854880+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "irt_personfit_contam",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-ctrl-contam-llama-contam50",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "irt_personfit_contam",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-21T13:07:14.855023+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "irt_personfit_contam"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-ctrl-contam-llama-contam50",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "irt_personfit_contam"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T13:07:14.905541+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/report.md\", \"content\": \"# Handover — 2026-05-21\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- exp-post-rl-v3: GRPO with num_generations=16 + temperature=1.2 produces measurable parameter update while preserving lz* contamination signal (R7 post-RL robustness)（准备中）\\n- arcc-clean-s10（准备中）\\n- arcc-clean-s9（准备中）\\n- arcc-clean-s8（准备中）\\n- arcc-clean-s7（准备中）\\n- exp-arcc-benchmark: ℓz* contamination detection generalizes beyond MMLU to ARC-Challenge, a second benchmark with PSN-IRT 4PL calibration — demonstrating cross-benchmark applicability and addressing reviewer concern about single-benchmark evaluation.（准备中）\\n- exp-ctrl-contam-qwen-clean-s10: Tenth independent clean Qwen2.5-7B-Instruct baseline (seed=307) for n=10 Cohen's d variance estimation（准备中）\\n- exp-constat-comparison: ConStat (NeurIPS 2024) requires multi-benchmark performance scores for contamination detection, making it inapplicable or underpowered in single-benchmark scenarios. ℓz* operates on binary response patterns from a single benchmark, demonstrating superior minimal-information detection capability.（准备中）\\n- exp-arcc-clean-s1: ARC-Challenge clean baseline (seed=42) for cross-benchmark ℓz* detection — establishing clean lz* distribution on a second benchmark with PSN-IRT 4PL calibration（准备中）\\n- exp-mia-mink-comparison: MIA methods (Min-K%/Min-K%++) fail to detect contamination in post-RL (GRPO) models because RL fine-tuning disrupts token-level log-prob distributions, while ℓz* remains effective because it operates on response-pattern-level statistics that survive RL post-training — demonstrating robustness advantage over MIA approaches.（准备中）\\n- …另有 5 项\\n\\n## 近期结论\\n- **eval-mistral-clean-s3** (success): Mistral clean_s3 (seed 3) LoRA adapter trained on clean MMLU data will show lz* near zero, consistent with no contamination si
+…[truncated 736 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-ctrl-contam-llama-contam50",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-21T13:07:14.906014+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/ROADMAP.md\", \"content\": \"# irt_personfit_contam — Research Dashboard\\n\\n> 最后更新: 2026-05-21 10:16 UTC | 更新原因: 新增 westd-19912 (4 GPU), 8 卡总配置, seeds n=9 d=-6.5, MIA base done, ARC-C 并行启动\\n\\n> 核心方向\\nIRT person-fit (ℓz*) 检测 LLM benchmark contamination——minimal-information operating point。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research + 审稿 — **冲 4.0 (Main) 模式** (D025)\\n- **Dream Round 2**: Best 3.0 / Median 3.0 / Worst 2.5\\n- **Seeds n=9 完成**: lz* mean=8.74, std=0.73, Cohen's d ≈ -6.5 (vs n=3 的 -3.42)。s10 训练中\\n- **三模型族 (D023)**: Qwen -4.83 / Llama -2.85 / Mistral -6.80\\n- **lz* vs HT (D024)**: 65x 灵敏度差异\\n- **GRPO**: step ~500/14042, cuda:2@westd-35694, ETA ~18h。计划 step 2000 中间 eval (D026)\\n- **MIA 对比**: base AUC≈0.49（近随机）✓, sft eval 完成待收集\\n- **ConStat**: bugfix 完成（Snijders 校正 + 阈值方向），策略定为 info-cost + 真实数据对比\\n- **ARC-C**: 代码+数据就绪，clean_s1 训练中@westd-35694\\n- **Paper**: 8.0p + Limitations 3 点 + Patch 5+6 完成\\n\\n## GPU 资源（8 卡）\\n| 服务器 | GPU | 当前任务 |\\n|--------|-----|---------|\\n| westd-35694:cuda:0 | ARC-C clean_s1 训练 → s8 eval 完成 |\\n| westd-35694:cuda:1 | s10 训练 (seed=307) |\\n| westd-35694:cuda:2 | **GRPO** (~18h) |\\n| westd-35694:cuda:3 | MIA sft eval → 完成后排其他 |\\n| westd-19912:cuda:0 | **新** → ARC-C clean_s1 (或环境搭建中) |\\n| westd-19912:cuda:1 | **新** → ARC-C clean_s2 |\\n| westd-19912:cuda:2 | **新** → ARC-C contam_15 |\\n| westd-19912:cuda:3 | **新** → ARC-C contam_50 |\\n\\n## 近期任务 — Path to 4.0\\n### P0: 正在执行\\n- [x] Seeds n=9 (Cohen's d ≈ -6.5)\\n- [x] MIA base eval (AUC ≈ 0.49, baseline valid)\\n- [x] ConStat bugfix (Snijders + threshold)\\n- [ ] s10 训练+eval → n=10 final\\n- [ ] MIA sft eval → sft vs base 对比\\n- [ ] **westd-19912 环境搭建 → ARC-C 4 条件并行**\\n- [ ] GRPO step 2000 中间 eval (D026)\\n\\n### P1: 排队中\\n- [ ] ARC-C eval (训练完成后)\\n- [ ] GRPO 完成 → post-RL eval (lz* + HT + MIA)\\n- [ ] Post-RL Llama (cuda
+…[truncated 1861 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-ctrl-contam-llama-contam50",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-21T13:07:29.711965+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0519-3-projects-irt-personfit-contam--claude-sessions-agent-0c707a6f/336657f2-7576-411f-a854-096c6b8c240c/tool-results/mcp-agent-ml-research-read_registry-1779368834679.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Show all non-DONE experiments, plus recent DONE ones\nfor exp in experiments:\n    eid = exp.get('exp_id','?')\n    status = exp.get('status','?')\n    conclusion = exp.get('conclusion','')\n    hyp = exp.get('hypothesis','')[:80] if exp.get('hypothesis') else ''\n    metrics = exp.get('metrics', {})\n    updated = exp.get('updated_at','')\n    \n    # Show RUNNING, ANALYZING, PREPARING, QUEUED, ALLOCATED\n    if status in ['RUNNING', 'ANALYZING', 'PREPARING', 'QUEUED', 'ALLOCATED']:\n        print(f'{eid}: {status} | {conclusion} | updated={updated}')\n        if metrics:\n            print(f'  metrics: {json.dumps(metrics)}')\n        if hyp:\n            print(f'  hyp: {hyp}')\n        print()\n\"\n",
+  "description": "Extract non-DONE experiments from registry JSON"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-ctrl-contam-llama-contam50",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0519-3-projects-irt-personfit-contam--claude-sessions-agent-0c707a6f/336657f2-7576-411f-a854-096c6b8c240c/tool-results/mcp-agent-ml-research-read_registry-1779368834679.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Show all non-DONE experiments, plus recent DONE ones\nfor exp in experiments:\n    eid = exp.get('exp_id','?')\n    status = exp.get('status','?')\n    conclusion = exp.get('conclusion','')\n    hyp = exp.get('hypothesis','')[:80] if exp.get('hypothesis') else ''\n    metrics = exp.get('metrics', {})\n    updated = exp.get('updated_at','')\n    \n    # Show RUNNING, ANALYZING, PREPARING, QUEUED, ALLOCATED\n    if status in ['RUNNING', 'ANALYZING', 'PREPARING', 'QUEUED', 'ALLOCATED']:\n        print(f'{eid}: {status} | {conclusion} | updated={updated}')\n        if metrics:\n            print(f'  metrics: {json.dumps(metrics)}')\n        if hyp:\n            print(f'  hyp: {hyp}')\n        print()\n\"\n",
+    "description": "Extract non-DONE experiments from registry JSON"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-21T13:07:30.165659+00:00_
+
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 9, in &lt;module>
+    eid = exp.get('exp_id','?')
+          ^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-ctrl-contam-llama-contam50",
+  "tool": "Bash",
+  "elapsed_ms": 453
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-21T13:07:36.637778+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0519-3-projects-irt-personfit-contam--claude-sessions-agent-0c707a6f/336657f2-7576-411f-a854-096c6b8c240c/tool-results/mcp-agent-ml-research-read_registry-1779368834679.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult_str = data['result']\nresult = json.loads(result_str)\n# Probe structure\nd = result.get('data', result)\nprint('Top keys:', list(d.keys()) if isinstance(d, dict) else type(d))\nif isinstance(d, dict):\n    for k, v in d.items():\n        if isinstance(v, list):\n            print(f'{k}: list of {len(v)}, first type: {type(v[0]) if v else \\\"empty\\\"}')\n            if v and isinstance(v[0], str):\n                print(f'  first item: {v[0][:200]}')\n        elif isinstance(v, dict):\n            print(f'{k}: dict with keys {list(v.keys())[:5]}')\n        else:\n            print(f'{k}: {type(v).__name__} = {str(v)[:100]}')\n\" 2>&1 | head -20\n",
+  "description": "Probe registry JSON structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-ctrl-contam-llama-contam50",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0519-3-projects-irt-personfit-contam--claude-sessions-agent-0c707a6f/336657f2-7576-411f-a854-096c6b8c240c/tool-results/mcp-agent-ml-research-read_registry-1779368834679.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult_str = data['result']\nresult = json.loads(result_str)\n# Probe structure\nd = result.get('data', result)\nprint('Top keys:', list(d.keys()) if isinstance(d, dict) else type(d))\nif isinstance(d, dict):\n    for k, v in d.items():\n        if isinstance(v, list):\n            print(f'{k}: list of {len(v)}, first type: {type(v[0]) if v else \\\"empty\\\"}')\n            if v and isinstance(v[0], str):\n                print(f'  first item: {v[0][:200]}')\n        elif isinstance(v, dict):\n            print(f'{k}: dict with keys {list(v.keys())[:5]}')\n        else:\n            print(f'{k}: {type(v).__name__} = {str(v)[:100]}')\n\" 2>&1 | head -20\n",
+    "description": "Probe registry JSON structure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-21T13:07:36.840298+00:00_
+
+Top keys: ['experiments', 'count', 'total', 'baseline']
+experiments: dict with keys ['exp-arcc-clean-s10', 'exp-arcc-clean-s9', 'exp-arcc-clean-s8', 'exp-arcc-clean-s7', 'exp-ctrl-contam-llama-clean-s10']
+count: int = 67
+total: int = 67
+baseline: NoneType = None
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-ctrl-contam-llama-contam50",
+  "tool": "Bash",
+  "elapsed_ms": 202
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-21T13:07:43.413727+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0519-3-projects-irt-personfit-contam--claude-sessions-agent-0c707a6f/336657f2-7576-411f-a854-096c6b8c240c/tool-results/mcp-agent-ml-research-read_registry-1779368834679.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\nfor eid, exp in exps.items():\n    status = exp.get('status','?')\n    if status in ['RUNNING', 'ANALYZING', 'PREPARING', 'QUEUED', 'ALLOCATED']:\n        conclusion = exp.get('conclusion','')\n        metrics = exp.get('metrics', {})\n        updated = exp.get('updated_at','')\n        server = exp.get('spec', {}).get('server', '') if exp.get('spec') else ''\n        gpu = exp.get('spec', {}).get('gpu', '') if exp.get('spec') else ''\n        print(f'{eid}: {status} | conclusion={conclusion} | updated={updated} | server={server} gpu={gpu}')\n        if metrics:\n            print(f'  metrics: {json.dumps(metrics)}')\n        print()\n\"\n",
+  "description": "Extract RUNNING/ANALYZING/PREPARING experiments from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-ctrl-contam-llama-contam50",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0519-3-projects-irt-personfit-contam--claude-sessions-agent-0c707a6f/336657f2-7576-411f-a854-096c6b8c240c/tool-results/mcp-agent-ml-research-read_registry-1779368834679.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\nfor eid, exp in exps.items():\n    status = exp.get('status','?')\n    if status in ['RUNNING', 'ANALYZING', 'PREPARING', 'QUEUED', 'ALLOCATED']:\n        conclusion = exp.get('conclusion','')\n        metrics = exp.get('metrics', {})\n        updated = exp.get('updated_at','')\n        server = exp.get('spec', {}).get('server', '') if exp.get('spec') else ''\n        gpu = exp.get('spec', {}).get('gpu', '') if exp.get('spec') else ''\n        print(f'{eid}: {status} | conclusion={conclusion} | updated={updated} | server={server} gpu={gpu}')\n        if metrics:\n            print(f'  metrics: {json.dumps(metrics)}')\n        print()\n\"\n",
+    "description": "Extract RUNNING/ANALYZING/PREPARING experiments from registry"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-21T13:07:43.514733+00:00_
+
+exp-ctrl-contam-llama-clean-s10: PREPARING | conclusion= | updated=2026-05-21T13:04:26.843Z | server=westd-35694 gpu=['cuda:3']
+
+exp-ctrl-contam-llama-clean-s9: PREPARING | conclusion= | updated=2026-05-21T13:04:25.842Z | server=westd-35694 gpu=['cuda:1']
+
+exp-ctrl-contam-llama-clean-s8: PREPARING | conclusion= | updated=2026-05-21T13:04:24.947Z | server=westd-35694 gpu=['cuda:0']
+
+exp-post-rl-v3: PREPARING | conclusion= | updated=2026-05-21T12:47:34.274Z | server=westd-35694 gpu=['cuda:2']
+
+arcc-clean-s10: PREPARING | conclusion= | updated=2026-05-21T12:10:04.708Z | server=westd-19912 gpu=['cuda:3']
+
+arcc-clean-s9: PREPARING | conclusion= | updated=2026-05-21T12:10:03.378Z | server=westd-19912 gpu=['cuda:2']
+
+arcc-clean-s8: PREPARING | conclusion= | updated=2026-05-21T12:10:01.469Z | server=westd-19912 gpu=['cuda:1']
+
+arcc-clean-s7: PREPARING | conclusion= | updated=2026-05-21T12:10:00.031Z | server=westd-19912 gpu=['cuda:0']
+
+exp-arcc-benchmark: PREPARING | conclusion= | updated=2026-05-21T11:20:59.126Z | server= gpu=
+  metrics: {"19912_clean_s1_acc": 0.902, "19912_clean_s1_lz": -5.448, "19912_clean_s2_acc": 0.895, "19912_clean_s2_lz": -5.433, "19912_contam15_acc": 0.909, "19912_contam15_lz": -4.917, "19912_contam15_lz_seen": 0.568, "19912_contam50_acc": 0.942, "19912_contam50_lz": -4.573, "19912_contam50_lz_seen": -0.331, "35694_clean_s1_acc": 0.895, "35694_clean_s1_lz": -5.511, "35694_clean_s2_acc": 0.898, "35694_clean_s2_lz": -5.493, "35694_contam15_acc": 0.909, "35694_contam15_lz": -5.032, "35694_contam15_lz_seen": 0.186, "35694_contam50_acc": 0.946, "35694_contam50_lz": -4.185, "35694_contam50_lz_seen": -0.475}
+
+exp-ctrl-contam-qwen-clean-s10: PREPARING | conclusion= | updated=2026-05-21T11:20:55.470Z | server= gpu=
+  metrics: {"accuracy": 0.676, "lz_star": 8.149, "theta_mle": -0.116, "n_items": 14042}
+
+exp-constat-comparison: PREPARING | conclusion= | updated=2026-05-21T10:57:28.101Z | server= gpu=
+
+exp-arcc-clean-s1: PREPARING | conclusion= | updated=2026-0
+…[truncated 995 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-ctrl-contam-llama-contam50",
+  "tool": "Bash",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-21T13:07:55.007528+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0519-3-projects-irt-personfit-contam--claude-sessions-agent-0c707a6f/336657f2-7576-411f-a854-096c6b8c240c/tool-results/mcp-agent-ml-research-read_registry-1779368834679.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# Find Llama experiments and RUNNING experiments\ntargets = ['exp-ctrl-contam-llama', 'exp-ctrl-contam-llama-clean', 'exp-ctrl-contam-llama-contam15', 'exp-ctrl-contam-llama-contam50', 'exp-post-rl']\nfor t in targets:\n    if t in exps:\n        e = exps[t]\n        print(f'{t}: status={e.get(\\\"status\\\")} conclusion={e.get(\\\"conclusion\\\",\\\"\\\")} updated={e.get(\\\"updated_at\\\",\\\"\\\")}')\n        if e.get('metrics'):\n            print(f'  metrics: {json.dumps(e[\\\"metrics\\\"])}')\n        if e.get('spec'):\n            s = e['spec']\n            print(f'  spec: server={s.get(\\\"server\\\",\\\"\\\")} gpu={s.get(\\\"gpu\\\",\\\"\\\")} command={str(s.get(\\\"command\\\",\\\"\\\"))[:100]}')\n        print()\n    else:\n        print(f'{t}: NOT FOUND')\n        print()\n\n# Also show RUNNING status exps\nprint('=== ALL RUNNING ===')\nfor eid, exp in exps.items():\n    if exp.get('status') == 'RUNNING':\n        print(f'{eid}: RUNNING | updated={exp.get(\\\"updated_at\\\",\\\"\\\")}')\n        if exp.get('spec'):\n            print(f'  server={exp[\\\"spec\\\"].get(\\\"server\\\",\\\"\\\")} gpu={exp[\\\"spec\\\"].get(\\\"gpu\\\",\\\"\\\")}')\n\nprint()\nprint('=== ALL ANALYZING ===')\nfor eid, exp in exps.items():\n    if exp.get('status') == 'ANALYZING':\n        print(f'{eid}: ANALYZING | updated={exp.get(\\\"updated_at\\\",\\\"\\\")}')\n\"\n",
+  "description": "Check Llama experiment statuses and all RUNNING/ANALYZING experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-ctrl-contam-llama-contam50",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0519-3-projects-irt-personfit-contam--claude-sessions-agent-0c707a6f/336657f2-7576-411f-a854-096c6b8c240c/tool-results/mcp-agent-ml-research-read_registry-1779368834679.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# Find Llama experiments and RUNNING experiments\ntargets = ['exp-ctrl-contam-llama', 'exp-ctrl-contam-llama-clean', 'exp-ctrl-contam-llama-contam15', 'exp-ctrl-contam-llama-contam50', 'exp-post-rl']\nfor t in targets:\n    if t in exps:\n        e = exps[t]\n        print(f'{t}: status={e.get(\\\"status\\\")} conclusion={e.get(\\\"conclusion\\\",\\\"\\\")} updated={e.get(\\\"updated_at\\\",\\\"\\\")}')\n        if e.get('metrics'):\n            print(f'  metrics: {json.dumps(e[\\\"metrics\\\"])}')\n        if e.get('spec'):\n            s = e['spec']\n            print(f'  spec: server={s.get(\\\"server\\\",\\\"\\\")} gpu={s.get(\\\"gpu\\\",\\\"\\\")} command={str(s.get(\\\"command\\\",\\\"\\\"))[:100]}')\n        print()\n    else:\n        print(f'{t}: NOT FOUND')\n        print()\n\n# Also show RUNNING status exps\nprint('=== ALL RUNNING ===')\nfor eid, exp in exps.items():\n    if exp.get('status') == 'RUNNING':\n        print(f'{eid}: RUNNING | updated={exp.get(\\\"updated_at\\\",\\\"\\\")}')\n        if exp.get('spec'):\n            print(f'  server={exp[\\\"spec\\\"].get(\\\"server\\\",\\\"\\\")} gpu={exp[\\\"spec\\\"].get(\\\"gpu\\\",\\\"\\\")}')\n\nprint()\nprint('=== ALL ANALYZING ===')\nfor eid, exp in exps.items():\n    if exp.get('status') == 'ANALYZING':\n        print(f'{eid}: ANALYZING | updated={exp.get(\\\"updated_at\\\",\\\"\\\")}')\n\"\n",
+    "description": "Check Llama experiment statuses and all RUNNING/ANALYZING experiments"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-21T13:07:55.058254+00:00_
+
+exp-ctrl-contam-llama: status=DONE conclusion=success updated=2026-05-21T01:53:06.443Z
+  metrics: {"lz_star_corrected": true, "method": "Snijders (2001) lz*", "clean_lz_star": 0.8446, "clean_s2_lz_star": -0.1823, "clean_s3_lz_star": -1.0844, "clean_mean_lz_star": -0.1407, "clean_std_lz_star": 0.9652, "clean_acc": 0.5914, "clean_theta": -0.6661, "contam_15_lz_star": -2.9922, "contam_15_acc": 0.6654, "contam_15_theta": -0.276, "contam_15_delta_lz_star": -2.8515, "contam_50_lz_star": -3.3313, "contam_50_acc": 0.6983, "contam_50_theta": -0.149, "contam_50_delta_lz_star": -3.1906, "cohens_d_contam_15_ddof1": -2.95, "cohens_d_contam_50_ddof1": -3.31, "theta_fixed": -0.666, "contam_15_lz_star_fixed": 0.959, "contam_50_lz_star_fixed": 1.172, "dose_response_ratio_free": 1.09, "dose_response_ratio_fixed": 2.87, "monotonic_free": true, "monotonic_fixed": true}
+  spec: server=westd-35694 gpu= command=python train.py --condition {clean,contam_15,contam_50} --gpu {0,1,2}
+
+exp-ctrl-contam-llama-clean: status=DONE conclusion=success updated=2026-05-21T05:04:02.710Z
+  metrics: {"lz_star": 0.8446, "acc": 0.5914, "theta": -0.6661, "seed": 42, "method": "Snijders (2001) lz*"}
+  spec: server=westd-35694 gpu= command=source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/ctrl_co
+
+exp-ctrl-contam-llama-contam15: status=DONE conclusion=success updated=2026-05-21T11:15:59.136Z
+  metrics: {"lz_star": -2.9922, "acc": 0.6654, "theta_mle": -0.276, "acc_seen": 0.742, "acc_unseen": 0.652, "delta_lz_star": -2.8515, "cohens_d_ddof1": -2.95, "method": "Snijders (2001) lz*"}
+  spec: server=westd-35694 gpu=['cuda:1'] command=bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tm
+
+exp-ctrl-contam-llama-contam50: status=DONE conclusion=success updated=2026-05-21T11:15:59.751Z
+  metrics: {"lz_star": -3.3313, "acc": 0.6983, "theta_mle": -0.149, "acc_seen": 0.735, "acc_unseen": 0.661, "delta_lz_star": -3.1906, "cohens_d_ddo
+…[truncated 469 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-ctrl-contam-llama-contam50",
+  "tool": "Bash",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-21T13:08:12.630654+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0519-3-projects-irt-personfit-contam--claude-sessions-agent-0c707a6f/336657f2-7576-411f-a854-096c6b8c240c/tool-results/mcp-agent-ml-research-read_registry-1779368834679.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# Show all DONE experiments sorted by updated_at, most recent first\ndone = [(eid, e) for eid, e in exps.items() if e.get('status') == 'DONE']\ndone.sort(key=lambda x: x[1].get('updated_at', ''), reverse=True)\n\nprint(f'Total DONE: {len(done)}')\nprint()\nfor eid, e in done[:20]:\n    print(f'{eid}: {e.get(\\\"conclusion\\\",\\\"\\\")} | updated={e.get(\\\"updated_at\\\",\\\"\\\")}')\n    if e.get('spec', {}).get('server'):\n        print(f'  server={e[\\\"spec\\\"][\\\"server\\\"]}')\n\"\n",
+  "description": "List recent DONE experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-ctrl-contam-llama-contam50",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0519-3-projects-irt-personfit-contam--claude-sessions-agent-0c707a6f/336657f2-7576-411f-a854-096c6b8c240c/tool-results/mcp-agent-ml-research-read_registry-1779368834679.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# Show all DONE experiments sorted by updated_at, most recent first\ndone = [(eid, e) for eid, e in exps.items() if e.get('status') == 'DONE']\ndone.sort(key=lambda x: x[1].get('updated_at', ''), reverse=True)\n\nprint(f'Total DONE: {len(done)}')\nprint()\nfor eid, e in done[:20]:\n    print(f'{eid}: {e.get(\\\"conclusion\\\",\\\"\\\")} | updated={e.get(\\\"updated_at\\\",\\\"\\\")}')\n    if e.get('spec', {}).get('server'):\n        print(f'  server={e[\\\"spec\\\"][\\\"server\\\"]}')\n\"\n",
+    "description": "List recent DONE experiments"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-21T13:08:12.732616+00:00_
+
+Total DONE: 49
+
+exp-arcc-clean-s10: success | updated=2026-05-21T13:05:54.577Z
+  server=westd-19912
+exp-arcc-clean-s9: success | updated=2026-05-21T13:05:53.688Z
+  server=westd-19912
+exp-arcc-clean-s8: success | updated=2026-05-21T13:05:52.824Z
+  server=westd-19912
+exp-arcc-clean-s7: success | updated=2026-05-21T13:05:51.824Z
+  server=westd-19912
+eval-mistral-clean-s3: success | updated=2026-05-21T13:00:42.054Z
+  server=westd-35694
+eval-mistral-clean-s2: success | updated=2026-05-21T13:00:41.390Z
+  server=westd-35694
+exp-post-rl: negative | updated=2026-05-21T12:47:18.550Z
+  server=westd-35694
+exp-ctrl-contam-llama-clean-s7: success | updated=2026-05-21T12:44:14.678Z
+  server=westd-35694
+exp-ctrl-contam-llama-clean-s6: success | updated=2026-05-21T12:44:13.998Z
+  server=westd-35694
+exp-ctrl-contam-llama-clean-s5: success | updated=2026-05-21T12:44:13.366Z
+  server=westd-35694
+exp-ctrl-contam-llama-clean-s4: success | updated=2026-05-21T12:44:12.382Z
+  server=westd-35694
+exp-ctrl-contam-pilot: success | updated=2026-05-21T11:44:22.927Z
+  server=westd-35694
+exp-ctrl-contam-llama-contam50: success | updated=2026-05-21T11:15:59.751Z
+  server=westd-35694
+exp-ctrl-contam-llama-contam15: success | updated=2026-05-21T11:15:59.136Z
+  server=westd-35694
+exp-ctrl-contam-qwen-clean-s9: success | updated=2026-05-21T09:13:10.810Z
+  server=westd-35694
+exp-ctrl-contam-qwen-clean-s7: success | updated=2026-05-21T09:13:10.213Z
+  server=westd-35694
+exp-ctrl-contam-qwen-clean-s8: success | updated=2026-05-21T09:12:28.785Z
+  server=westd-35694
+exp-ctrl-contam-qwen-clean-s6: success | updated=2026-05-21T09:12:27.846Z
+  server=westd-35694
+exp-ctrl-contam-qwen-clean-s5: success | updated=2026-05-21T08:25:54.248Z
+  server=westd-35694
+exp-ctrl-contam-qwen-clean-s4: success | updated=2026-05-21T08:25:52.756Z
+  server=westd-35694
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-ctrl-contam-llama-contam50",
+  "tool": "Bash",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-21T13:08:50.841150+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__load_project_config",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-ctrl-contam-llama-contam50",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__load_project_config",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-21T13:08:50.893476+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-ctrl-contam-llama-contam50",
+  "tool": "ToolSearch",
+  "elapsed_ms": 52
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-21T13:08:55.008487+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "irt_personfit_contam",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-ctrl-contam-llama-contam50",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "irt_personfit_contam",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-21T13:08:55.310824+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"irt_personfit_contam\", \"section\": \"execution\", \"config\": {\"execution\": {\"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"servers\": [{\"account\": \"root\", \"server\": \"westd-35694\"}, {\"account\": \"root\", \"server\": \"westd-19912\"}]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-ctrl-contam-llama-contam50",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 302
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-21T13:08:55.361427+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "irt_personfit_contam",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-ctrl-contam-llama-contam50",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "irt_personfit_contam",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-21T13:08:55.413000+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_code_19912-arcc-eval-then-llama_20260521T124530\", \"task_type\": \"code:19912-arcc-eval-then-llama\", \"project\": \"irt_personfit_contam\", \"status\": \"running\", \"started_at\": \"2026-05-21T12:45:30.527515+00:00\", \"ended_at\": null}, {\"worker_id\": \"worker_code_check-19912-fill_20260521T130313\", \"task_type\": \"code:check-19912-fill\", \"project\": \"irt_personfit_contam\", \"status\": \"running\", \"started_at\": \"2026-05-21T13:03:14.083851+00:00\", \"ended_at\": null}, {\"worker_id\": \"worker_code_ssh-probe-35694_20260521T130840\", \"task_type\": \"code:ssh-probe-35694\", \"project\": \"irt_personfit_contam\", \"status\": \"running\", \"started_at\": \"2026-05-21T13:08:40.950245+00:00\", \"ended_at\": null}], \"count\": 3}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-ctrl-contam-llama-contam50",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-21T13:09:26.735281+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0519-3-projects-irt-personfit-contam--claude-sessions-agent-0c707a6f/336657f2-7576-411f-a854-096c6b8c240c/tool-results/mcp-agent-ml-research-read_registry-1779368834679.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# Show all arcc and llama-clean experiments\nprint('=== ARC-C experiments ===')\nfor eid, e in sorted(exps.items()):\n    if 'arcc' in eid.lower():\n        m = e.get('metrics', {})\n        acc = m.get('accuracy', m.get('acc', ''))\n        lz = m.get('lz_star', m.get('lz', ''))\n        print(f'{eid}: {e[\\\"status\\\"]} {e.get(\\\"conclusion\\\",\\\"\\\")} | acc={acc} lz={lz} | server={e.get(\\\"spec\\\",{}).get(\\\"server\\\",\\\"\\\")}')\n\nprint()\nprint('=== Llama clean seeds ===')\nfor eid, e in sorted(exps.items()):\n    if 'llama-clean' in eid.lower() or 'llama_clean' in eid.lower():\n        m = e.get('metrics', {})\n        acc = m.get('accuracy', m.get('acc', ''))\n        lz = m.get('lz_star', m.get('lz', ''))\n        theta = m.get('theta_mle', m.get('theta', ''))\n        print(f'{eid}: {e[\\\"status\\\"]} {e.get(\\\"conclusion\\\",\\\"\\\")} | acc={acc} lz={lz} theta={theta}')\n\nprint()\nprint('=== Qwen clean seeds ===')\nfor eid, e in sorted(exps.items()):\n    if 'qwen-clean' in eid.lower() or 'qwen_clean' in eid.lower():\n        m = e.get('metrics', {})\n        lz = m.get('lz_star', m.get('lz', ''))\n        print(f'{eid}: {e[\\\"status\\\"]} {e.get(\\\"conclusion\\\",\\\"\\\")} | lz={lz}')\n\nprint()\nprint('=== GRPO / post-rl ===')\nfor eid, e in sorted(exps.items()):\n    if 'post-rl' in eid.lower() or 'grpo' in eid.lower():\n        print(f'{eid}: {e[\\\"status\\\"]} {e.get(\\\"conclusion\\\",\\\"\\\")} | updated={e.get(\\\"updated_at\\\",\\\"\\\")}')\n        if e.get('metrics'):\n            print(f'  metrics: {json.dumps(e[\\\"metrics\\\"])}')\n\nprint()\nprint('=== MIA / ConStat ===')\nfor eid, e in sorted(exps.items()):\n    if 'mia' in eid.lower() or 'constat' in eid.lower():\n        print(f'{eid}: {e[\\\"status\\\"]} {e.get(\\\"conclusion\\\",\\\"\\\")} | updated={e.get(\\\"updated_at\\\",\\\"\\\")}')\n        if e.get('metrics'):\n            print(f'  metrics: {json.dumps(e[\\\"metrics\\\"])}')\n\nprint()\nprint('=== Mistral ===')\nfor eid, e in sorted(exps.items()):\n    if 'mistral' in eid.lower():\n        m = e.get('metrics', {})\n        lz = m.get('lz_star', m.get('lz', ''))\n        print(f'{eid}: {e[\\\"status\\\"]} {e.get(\\\"conclusion\\\",\\\"\\\")} | lz={lz}')\n\"\n",
+  "description": "Categorized view of all experiment groups"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-ctrl-contam-llama-contam50",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0519-3-projects-irt-personfit-contam--claude-sessions-agent-0c707a6f/336657f2-7576-411f-a854-096c6b8c240c/tool-results/mcp-agent-ml-research-read_registry-1779368834679.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# Show all arcc and llama-clean experiments\nprint('=== ARC-C experiments ===')\nfor eid, e in sorted(exps.items()):\n    if 'arcc' in eid.lower():\n        m = e.get('metrics', {})\n        acc = m.get('accuracy', m.get('acc', ''))\n        lz = m.get('lz_star', m.get('lz', ''))\n        print(f'{eid}: {e[\\\"status\\\"]} {e.get(\\\"conclusion\\\",\\\"\\\")} | acc={acc} lz={lz} | server={e.get(\\\"spec\\\",{}).get(\\\"server\\\",\\\"\\\")}')\n\nprint()\nprint('=== Llama clean seeds ===')\nfor eid, e in sorted(exps.items()):\n    if 'llama-clean' in eid.lower() or 'llama_clean' in eid.lower():\n        m = e.get('metrics', {})\n        acc = m.get('accuracy', m.get('acc', ''))\n        lz = m.get('lz_star', m.get('lz', ''))\n        theta = m.get('theta_mle', m.get('theta', ''))\n        print(f'{eid}: {e[\\\"status\\\"]} {e.get(\\\"conclusion\\\",\\\"\\\")} | acc={acc} lz={lz} theta={theta}')\n\nprint()\nprint('=== Qwen clean seeds ===')\nfor eid, e in sorted(exps.items()):\n    if 'qwen-clean' in eid.lower() or 'qwen_clean' in eid.lower():\n        m = e.get('metrics', {})\n        lz = m.get('lz_star', m.get('lz', ''))\n        print(f'{eid}: {e[\\\"status\\\"]} {e.get(\\\"conclusion\\\",\\\"\\\")} | lz={lz}')\n\nprint()\nprint('=== GRPO / post-rl ===')\nfor eid, e in sorted(exps.items()):\n    if 'post-rl' in eid.lower() or 'grpo' in eid.lower():\n        print(f'{eid}: {e[\\\"status\\\"]} {e.get(\\\"conclusion\\\",\\\"\\\")} | updated={e.get(\\\"updated_at\\\",\\\"\\\")}')\n        if e.get('metrics'):\n            print(f'  metrics: {json.dumps(e[\\\"metrics\\\"])}')\n\nprint()\nprint('=== MIA / ConStat ===')\nfor eid, e in sorted(exps.items()):\n    if 'mia' in eid.lower() or 'constat' in eid.lower():\n        print(f'{eid}: {e[\\\"status\\\"]} {e.get(\\\"conclusion\\\",\\\"\\\")} | updated={e.get(\\\"updated_at\\\",\\\"\\\")}')\n        if e.get('metrics'):\n            print(f'  metrics: {json.dumps(e[\\\"metrics\\\"])}')\n\nprint()\nprint('=== Mistral ===')\nfor eid, e in sorted(exps.items()):\n    if 'mistral' in eid.lower():\n        m = e.get('metrics', {})\n        lz = m.get('lz_star', m.get('lz', ''))\n        print(f'{eid}: {e[\\\"status\\\"]} {e.get(\\\"conclusion\\\",\\\"\\\")} | lz={lz}')\n\"\n",
+    "description": "Categorized view of all experiment groups"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-21T13:09:26.836202+00:00_
+
+=== ARC-C experiments ===
+arcc-clean-s10: PREPARING  | acc= lz= | server=westd-19912
+arcc-clean-s7: PREPARING  | acc= lz= | server=westd-19912
+arcc-clean-s8: PREPARING  | acc= lz= | server=westd-19912
+arcc-clean-s9: PREPARING  | acc= lz= | server=westd-19912
+exp-arcc-benchmark: PREPARING  | acc= lz= | server=
+exp-arcc-clean-s1: PREPARING  | acc=0.8949 lz=-5.5107 | server=
+exp-arcc-clean-s10: DONE success | acc=0.9051 lz=-5.0733 | server=westd-19912
+exp-arcc-clean-s2: PREPARING  | acc= lz= | server=
+exp-arcc-clean-s7: DONE success | acc=0.8915 lz=-5.5852 | server=westd-19912
+exp-arcc-clean-s8: DONE success | acc=0.9051 lz=-5.4001 | server=westd-19912
+exp-arcc-clean-s9: DONE success | acc=0.9017 lz=-5.5359 | server=westd-19912
+
+=== Llama clean seeds ===
+exp-ctrl-contam-llama-clean: DONE success | acc=0.5914 lz=0.8446 theta=-0.6661
+exp-ctrl-contam-llama-clean-s10: PREPARING  | acc= lz= theta=
+exp-ctrl-contam-llama-clean-s2: DONE success | acc=0.5954 lz=-0.1823 theta=-0.63
+exp-ctrl-contam-llama-clean-s3: DONE success | acc=0.5943 lz=-1.0844 theta=-0.64
+exp-ctrl-contam-llama-clean-s4: DONE success | acc= lz=0.0206 theta=-0.6435
+exp-ctrl-contam-llama-clean-s5: DONE success | acc= lz=1.7323 theta=-0.63
+exp-ctrl-contam-llama-clean-s6: DONE success | acc= lz=2.8466 theta=-0.6027
+exp-ctrl-contam-llama-clean-s7: DONE success | acc= lz=-0.4007 theta=-0.6356
+exp-ctrl-contam-llama-clean-s8: PREPARING  | acc= lz= theta=
+exp-ctrl-contam-llama-clean-s9: PREPARING  | acc= lz= theta=
+
+=== Qwen clean seeds ===
+exp-ctrl-contam-qwen-clean-s10: PREPARING  | lz=8.149
+exp-ctrl-contam-qwen-clean-s4: DONE success | lz=8.967
+exp-ctrl-contam-qwen-clean-s5: DONE success | lz=8.532
+exp-ctrl-contam-qwen-clean-s6: DONE success | lz=8.245
+exp-ctrl-contam-qwen-clean-s7: DONE success | lz=8.77
+exp-ctrl-contam-qwen-clean-s8: DONE success | lz=9.111
+exp-ctrl-contam-qwen-clean-s9: DONE success | lz=9.013
+
+=== GRPO / post-rl ===
+exp-post-rl: DONE negative | updated=2026-05-21T12:47:18.550Z
+exp-post-rl-v3:
+…[truncated 709 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-ctrl-contam-llama-contam50",
+  "tool": "Bash",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-21T13:09:47.920020+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "irt_personfit_contam",
+  "file": "memory.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-ctrl-contam-llama-contam50",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "irt_personfit_contam",
+    "file": "memory.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-21T13:09:47.971361+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/memory.md\", \"content\": \"# Memory — irt_personfit_contam\\n\\n## OOM 教训 (2026-05-20)\\n- 7.6GB RAM 机器上，N_SIM×n_items float64 矩阵不能一次性分配。MMLU 10K×14042×8B ≈ 1.07GB 单个矩阵，compute_lz_star 内部创建 ~7 个同尺寸中间数组 → OOM\\n- 解决方案：BATCH_SIZE=500 分批计算 + N_SIM 降至 2000（统计效力足够）\\n- generate_response 和 compute_lz_star 都需要分批\\n\\n## Worker context exhaustion 教训 (2026-05-20)\\n- exp-v1-irt-refit-expanded Worker 跑 1.5 小时后崩溃，无输出。任务是从 HuggingFace 下载 500+ 模型的 per-item 数据并拟合 IRT。\\n- **根因**: 大量 HF API 调用 + 数据处理的累积输出耗尽 Worker context window。\\n- **教训**: 涉及大规模数据下载（100+ datasets）的任务必须分批 + checkpoint 中间结果，或拆成多个 Worker 串行执行。单个 Worker 不适合做 1.5hr+ 的重型数据工程。\\n- **补充 (同日)**: ssh_read_only 读取大 JSON 文件（8MB+ 单行）也会撑爆 context。Worker 操作远程大文件必须用 python 脚本提取摘要，不要 cat/head。\\n- **补充 (同日)**: Worker 无法在进程内长时间等待（~2 min 就退出）。涉及 GPU 训练 + eval 的任务应分阶段处理：训练完成后由 cron 回调触发 eval Worker，或由主 Agent 定时派 Worker 检查。\\n\\n## sim_001 关键发现 (2026-05-20)\\n- **Null check 全通过**：PSN-IRT 神经网络估计的 4PL 参数与经典 IRT 兼容，lz* ≈ N(0,1)\\n  - 大 benchmark（GSM8K/HellaSwag/MMLU）KS p 全部 > 0.01\\n  - 小 benchmark（HumanEval/ARC-C）KS p < 0.01，但属预期（items 太少，CLT 近似弱）\\n- **检测力与 n_items 强正相关**：MMLU(14042)=97.9% >> HellaSwag(10042)=73.3% >> GSM8K(1319)=57.8% >> ARC-C(295)=12.9%\\n- **Inverted-U 所有 benchmark 可观测**：power 在 25-50% contamination 达峰，100% 全部 NaN（全答对 → MLE 不收敛）\\n\\n## PSN-IRT 12 模型身份 (2026-05-20)\\n\\n**来源**：arXiv:2505.15055 (AAAI 2026 Oral)，GitHub repo `Joe-Hall-Lee/PSN-IRT`\\n\\n| student_id | θ | 正确率 | 模型名称 | 类型 |\\n|---|---|---|---|---|\\n| 0 | 1.46 | 80.6% | 360GPT2-Pro | API |\\n| 1 | 3.77 | 85.7% | DeepSeek-V3 | API |\\n| 2 | 1.14 | 78.9% | Doubao-pro | API |\\n| 3 | 0.78 | 84.5% | Gemini-1.5 | API |\\n| 4 | -3.38 | 23.1% | Gemma-2B-it | 开源 2B |\\n| 5 | 1.73 | 82.1% | Hunyuan-Turbo | API |\\n| 6 | -1.37 | 40.0% | Mistral-7B-Instruct-v0.1 | 开源 7B |\\n| 7 | 0.93 | 77.0% | Moonshot-v1 | API |\\n| 8 | 0.96 | 
+…[truncated 13974 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-ctrl-contam-llama-contam50",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-21T13:10:30.803575+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "code:gpu-probe-35694",
+  "project": "irt_personfit_contam",
+  "task_prompt": "## 任务：探测 westd-35694 GPU 和进程状态\n\n用 ssh_read_only 连接 westd-35694，执行以下探测（尽量合并成少量命令）：\n\n### 1. GPU 状态\n```bash\nnvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader\nnvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader\n```\n\n### 2. 关键进程状态\n```bash\n# 检查之前审计的 PID 是否还在\nfor pid in 97791 98622 96745 99214 99807; do\n  ps -p $pid -o pid,etime,cmd --no-headers 2>/dev/null || echo \"PID $pid: DEAD\"\ndone\n\n# 检查所有 python 训练进程\nps aux | grep -E \"train|eval|grpo\" | grep -v grep\n```\n\n### 3. GRPO 进度（如果还在跑）\n```bash\n# GRPO log\ntail -20 /root/autodl-tmp/post_rl_contam/logs/grpo_train.log 2>/dev/null || echo \"NO GRPO LOG\"\n# 也检查 tmux sessions\ntmux list-sessions 2>/dev/null || echo \"NO TMUX\"\n```\n\n### 4. Llama clean seeds s7/s8 完成状态\n```bash\n# 检查 s7 和 s8 是否有 eval 结果\nls -la /root/autodl-tmp/ctrl_contam_llama/results/clean_s7* /root/autodl-tmp/ctrl_contam_llama/results/clean_s8* 2>/dev/null || echo \"NO RESULTS\"\nls -la /root/autodl-tmp/ctrl_contam_llama/checkpoints/clean_s7/ /root/autodl-tmp/ctrl_contam_llama/checkpoints/clean_s8/ 2>/dev/null || echo \"NO CHECKPOINTS\"\n```\n\n### 5. Qwen s10 状态\n```bash\nls -la /root/autodl-tmp/ctrl_contam_pilot/results/clean_s10* /root/autodl-tmp/ctrl_contam_pilot/checkpoints/clean_s10/ 2>/dev/null || echo \"NO S10\"\n# 检查 s10 train log\ntail -5 /root/autodl-tmp/ctrl_contam_pilot/logs/clean_s10_train.log 2>/dev/null || echo \"NO S10 LOG\"\n```\n\n### 6. MIA sft eval 状态\n```bash\nls -la /root/autodl-tmp/post_rl_contam/results/mia_*sft* 2>/dev/null || echo \"NO MIA SFT RESULTS\"\n```\n\n### 7. 磁盘\n```bash\ndf -h / /root/autodl-tmp 2>/dev/null\n```\n\n**输出格式**：汇总每块 GPU 的状态（空闲/被什么进程占用/VRAM 使用），列出所有发现的完成/进行中的任务。",
+  "tool_groups": "['ssh']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-ctrl-contam-llama-contam50",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "code:gpu-probe-35694",
+    "project": "irt_personfit_contam",
+    "task_prompt": "## 任务：探测 westd-35694 GPU 和进程状态\n\n用 ssh_read_only 连接 westd-35694，执行以下探测（尽量合并成少量命令）：\n\n### 1. GPU 状态\n```bash\nnvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader\nnvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader\n```\n\n### 2. 关键进程状态\n```bash\n# 检查之前审计的 PID 是否还在\nfor pid in 97791 98622 96745 99214 99807; do\n  ps -p $pid -o pid,etime,cmd --no-headers 2>/dev/null || echo \"PID $pid: DEAD\"\ndone\n\n# 检查所有 python 训练进程\nps aux | grep -E \"train|eval|grpo\" | grep -v grep\n```\n\n### 3. GRPO 进度（如果还在跑）\n```bash\n# GRPO log\ntail -20 /root/autodl-tmp/post_rl_contam/logs/grpo_train.log 2>/dev/null || echo \"NO GRPO LOG\"\n# 也检查 tmux sessions\ntmux list-sessions 2>/dev/null || echo \"NO TMUX\"\n```\n\n### 4. Llama clean seeds s7/s8 完成状态\n```bash\n# 检查 s7 和 s8 是否有 eval 结果\nls -la /root/autodl-tmp/ctrl_contam_llama/results/clean_s7* /root/autodl-tmp/ctrl_contam_llama/results/clean_s8* 2>/dev/null || echo \"NO RESULTS\"\nls -la /root/autodl-tmp/ctrl_contam_llama/checkpoints/clean_s7/ /root/autodl-tmp/ctrl_contam_llama/checkpoints/clean_s8/ 2>/dev/null || echo \"NO CHECKPOINTS\"\n```\n\n### 5. Qwen s10 状态\n```bash\nls -la /root/autodl-tmp/ctrl_contam_pilot/results/clean_s10* /root/autodl-tmp/ctrl_contam_pilot/checkpoints/clean_s10/ 2>/dev/null || echo \"NO S10\"\n# 检查 s10 train log\ntail -5 /root/autodl-tmp/ctrl_contam_pilot/logs/clean_s10_train.log 2>/dev/null || echo \"NO S10 LOG\"\n```\n\n### 6. MIA sft eval 状态\n```bash\nls -la /root/autodl-tmp/post_rl_contam/results/mia_*sft* 2>/dev/null || echo \"NO MIA SFT RESULTS\"\n```\n\n### 7. 磁盘\n```bash\ndf -h / /root/autodl-tmp 2>/dev/null\n```\n\n**输出格式**：汇总每块 GPU 的状态（空闲/被什么进程占用/VRAM 使用），列出所有发现的完成/进行中的任务。",
+    "tool_groups": "['ssh']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-21T13:10:37.037377+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_gpu-probe-35694_20260521T131031\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/logs/workers/worker_code_gpu-probe-35694_20260521T131031.log\", \"setup_data\": {}, \"message\": \"Worker worker_code_gpu-probe-35694_20260521T131031 started. Use get_worker_status('worker_code_gpu-probe-35694_20260521T131031') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp-ctrl-contam-llama-contam50",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 6233
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-21T13:10:37.088078+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "code:gpu-probe-19912",
+  "project": "irt_personfit_contam",
+  "task_prompt": "## 任务：探测 westd-19912 GPU 和进程状态\n\n用 ssh_read_only 连接 westd-19912，执行以下探测（尽量合并成少量命令）：\n\n### 1. GPU 状态\n```bash\nnvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader\nnvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader 2>/dev/null || echo \"NO COMPUTE APPS\"\n```\n\n### 2. 所有 python 训练/eval 进程\n```bash\nps aux | grep -E \"python|train|eval\" | grep -v grep\n```\n\n### 3. ARC-C 实验结果\n```bash\n# 检查所有 ARC-C 结果文件\nfind /root/autodl-tmp/ -path \"*arcc*\" -name \"*.json\" -o -path \"*arc_c*\" -name \"*.json\" -o -path \"*arc-c*\" -name \"*.json\" 2>/dev/null | head -30\nls -la /root/autodl-tmp/*/results/ 2>/dev/null\n# 也看看项目目录结构\nls -la /root/autodl-tmp/ 2>/dev/null\n```\n\n### 4. tmux sessions\n```bash\ntmux list-sessions 2>/dev/null || echo \"NO TMUX\"\n```\n\n### 5. 磁盘\n```bash\ndf -h / /root/autodl-tmp 2>/dev/null\n```\n\n### 6. 环境状态\n```bash\nwhich python3 && python3 --version\nsource /root/miniconda3/etc/profile.d/conda.sh 2>/dev/null && conda activate base 2>/dev/null && which python && python --version\n```\n\n**输出格式**：汇总每块 GPU 的状态（空闲/被什么进程占用），列出所有发现的 ARC-C 实验结果文件，磁盘使用情况。",
+  "tool_groups": "['ssh']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp-ctrl-contam-llama-contam50",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "code:gpu-probe-19912",
+    "project": "irt_personfit_contam",
+    "task_prompt": "## 任务：探测 westd-19912 GPU 和进程状态\n\n用 ssh_read_only 连接 westd-19912，执行以下探测（尽量合并成少量命令）：\n\n### 1. GPU 状态\n```bash\nnvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader\nnvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader 2>/dev/null || echo \"NO COMPUTE APPS\"\n```\n\n### 2. 所有 python 训练/eval 进程\n```bash\nps aux | grep -E \"python|train|eval\" | grep -v grep\n```\n\n### 3. ARC-C 实验结果\n```bash\n# 检查所有 ARC-C 结果文件\nfind /root/autodl-tmp/ -path \"*arcc*\" -name \"*.json\" -o -path \"*arc_c*\" -name \"*.json\" -o -path \"*arc-c*\" -name \"*.json\" 2>/dev/null | head -30\nls -la /root/autodl-tmp/*/results/ 2>/dev/null\n# 也看看项目目录结构\nls -la /root/autodl-tmp/ 2>/dev/null\n```\n\n### 4. tmux sessions\n```bash\ntmux list-sessions 2>/dev/null || echo \"NO TMUX\"\n```\n\n### 5. 磁盘\n```bash\ndf -h / /root/autodl-tmp 2>/dev/null\n```\n\n### 6. 环境状态\n```bash\nwhich python3 && python3 --version\nsource /root/miniconda3/etc/profile.d/conda.sh 2>/dev/null && conda activate base 2>/dev/null && which python && python --version\n```\n\n**输出格式**：汇总每块 GPU 的状态（空闲/被什么进程占用），列出所有发现的 ARC-C 实验结果文件，磁盘使用情况。",
+    "tool_groups": "['ssh']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-21T13:26:59.890576+00:00_
+
+3 个老 Worker 跑了 8+ 小时。现在需要确认两台服务器的实际 GPU 状态。派两个 Worker 并行探测。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:exp-ctrl-contam-llama-contam50"
+}
+```
+
+</details>
+
+---

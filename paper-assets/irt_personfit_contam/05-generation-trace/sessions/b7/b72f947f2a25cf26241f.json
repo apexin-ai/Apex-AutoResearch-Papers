@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b72f947f2a25cf26241f",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "paper research",
+  "task_key": "worker_paper_research_20260520T211837",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_20260520T211837_result.json",
+    "occurrence": 1,
+    "bytes": 952,
+    "sha256": "f28bafa2e84f1a4a470861f199514cabd7c129c036e6c344033edfb3798ef456"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "contamination-detection cluster 完成：10 篇全部 verified。\n\n**已验证的 3 篇原有条目：**\n1. `constat2024` — Dekoninck et al., NeurIPS 2024\n2. `minkprob2024` — Shi et al., ICLR 2024\n3. `codec2026` — Zawalski et al., ICLR 2026\n\n**新增 7 篇：**\n4. `oren2024` — Proving Test Set Contamination (ICLR 2024, exchangeability-based black-box test)\n5. `golchin2024` — Time Travel in LLMs (ICLR 2024, guided-instruction probing)\n6. `dodge2021` — Documenting C4 (EMNLP 2021, corpus-benchmark overlap)\n7. `sainz2023` — NLP Evaluation in Trouble (Findings of EMNLP 2023, contamination levels taxonomy)\n8. `jacovi2023` — Stop Uploading Test Data in Plain Text (EMNLP 2023, mitigation strategies)\n9. `magar2022` — Data Contamination: From Memorization to Exploitation (ACL 2022)\n10. `deng2024` — Investigating Data Contamination in Modern Benchmarks (NAACL 2024)\n\n`total_papers` 已更新为 25。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-copy-3.md"
+}

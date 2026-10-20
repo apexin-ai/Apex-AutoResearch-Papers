@@ -1,0 +1,6 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = true
+[remote "origin"]
+	url = https://anonymous-nlp-2026-2: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@github.com/anonymous-nlp-2026-2/irt_personfit_contam.git

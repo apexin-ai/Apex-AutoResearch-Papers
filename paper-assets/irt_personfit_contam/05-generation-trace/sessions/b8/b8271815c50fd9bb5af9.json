@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "b8271815c50fd9bb5af9",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "code eval llama s4s7 35694",
+  "task_key": "worker_code_eval-llama-s4s7-35694_20260521T122425",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval-llama-s4s7-35694_20260521T122425.log",
+    "occurrence": 1,
+    "bytes": 1665944,
+    "sha256": "650d12befa31bf2e76e38d358583295c05d117e725f5e6d3f36b9d72386295d1"
+  },
+  "statistics": {
+    "messages": 1008,
+    "user_turns": 1,
+    "tool_calls": 424,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 152,
+      "tool_call": 424,
+      "tool_result": 424,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 681,
+      "chunks": [
+        {
+          "path": "b8271815c50fd9bb5af9-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b8271815c50fd9bb5af9-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "b8271815c50fd9bb5af9-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "b8271815c50fd9bb5af9-part-0004.json",
+          "message_count": 141
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 327,
+      "chunks": [
+        {
+          "path": "b8271815c50fd9bb5af9-part-0004.json",
+          "message_count": 39
+        },
+        {
+          "path": "b8271815c50fd9bb5af9-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "b8271815c50fd9bb5af9-part-0006.json",
+          "message_count": 108
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-eval-llama-s4s7-35694.md"
+}

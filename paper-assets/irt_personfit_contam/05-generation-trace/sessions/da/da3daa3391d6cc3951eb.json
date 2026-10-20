@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da3daa3391d6cc3951eb",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code westd19912 setup arcc",
+  "task_key": "worker_code_westd19912-setup-arcc_20260521T101704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_westd19912-setup-arcc_20260521T101704_result.json",
+    "occurrence": 1,
+    "bytes": 1054,
+    "sha256": "a951c66cf6e0943cb6c775c8bab9fb02ce0fcdc18dc7cf921efa6aad1bd68815"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总如下：\n\n---\n\n## 环境搭建 + 训练启动报告\n\n### 环境\n| 项目 | 信息 |\n|------|------|\n| 镜像 | 非 aml-train（通用 AutoDL） |\n| Python | 3.12.3 (miniconda3 conda base) |\n| PyTorch | 2.8.0+cu128, CUDA 13.0 |\n| GPU | 4× NVIDIA RTX PRO 6000 Blackwell 96GB |\n| 磁盘 | 根 30GB / 数据盘 250GB |\n\n### 训练进程\n\n| GPU | Condition | PID | Steps | 状态 |\n|-----|-----------|-----|-------|------|\n| cuda:0 | clean_s1 | 5528 | 0/939 | 训练中 ~1s/it |\n| cuda:1 | clean_s2 | 6181 | 0/939 | 训练中 ~1s/it |\n| cuda:2 | contam_15 | 6810 | 0/948 | 训练中 ~1s/it |\n| cuda:3 | contam_50 | 7450 | 0/966 | 训练中 ~1s/it |\n\n### nvidia-smi 确认\n- GPU 0: 37.6GB / 96GB, 89% util\n- GPU 1: 34.3GB / 96GB, 95% util\n- GPU 2: 27.2GB / 96GB, 90% util\n- GPU 3: 18.9GB / 96GB, 96% util\n\n4/4 GPU 全部在用，4 个条件并行训练正常运行。wandb 设为 offline 模式（本地日志存储）。预计每个条件约 15-16 分钟完成（~1s/step × ~950 steps）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-westd19912-setup-arcc.md"
+}

@@ -1,0 +1,46 @@
+{
+  "exp_id": "exp-clean-control-delta",
+  "project": "irt_personfit_contam",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:57:39.694Z",
+    "updated_at": "2026-05-20T12:08:35.683Z",
+    "hypothesis": "Δlz* between two independent clean response vectors (same θ, different random seeds) has E[Δlz*]≈0 and controlled variance, confirming that non-zero Δlz* in contamination experiments reflects genuine contamination signal rather than estimation noise",
+    "spec": {
+      "command": "python run_clean_control.py",
+      "server": "local",
+      "data_path": "artifacts/psn_irt_params/",
+      "data_count": "500 θ per benchmark × 5 benchmarks",
+      "model_name": "4PL IRT simulation",
+      "seed": "42,123",
+      "checkpoint_path": "artifacts/clean_control_delta/",
+      "log_path": "artifacts/clean_control_delta/delta_report.md"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "clean_vs_clean_mean_abs": {
+        "mmlu": 0.01,
+        "hellaswag": 0.125,
+        "gsm8k": 0.021,
+        "arc_c": 0.095,
+        "humaneval": 0.02
+      },
+      "clean_vs_clean_all_nonsig": true,
+      "clean_vs_contam_all_sig": true,
+      "cohens_d": {
+        "mmlu": 2.66,
+        "hellaswag": 1.85,
+        "gsm8k": 1.85,
+        "arc_c": 0.45,
+        "humaneval": 1.07
+      },
+      "arc_c_note": "d=0.45 < 0.5 threshold due to only 295 items, but still p<1e-10"
+    },
+    "completed_at": "2026-05-20T12:08:35.683Z"
+  },
+  "timestamp": "2026-05-20T12:08:35.777267+00:00",
+  "trigger": "update_registry"
+}

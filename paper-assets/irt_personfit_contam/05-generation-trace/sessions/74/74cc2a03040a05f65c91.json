@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74cc2a03040a05f65c91",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code eval s6 s8 cuda0",
+  "task_key": "worker_code_eval-s6-s8-cuda0_20260521T082927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval-s6-s8-cuda0_20260521T082927_result.json",
+    "occurrence": 1,
+    "bytes": 882,
+    "sha256": "982ff5c3b365f29a95ad35409c6468ac78c56c79a1aff29471b5d313bee7bc2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "s7 尚未 eval。汇总已有结果：\n\n## Eval 结果汇总\n\n| Condition | Accuracy | lz* | theta_mle | n_items |\n|-----------|----------|-----|-----------|---------|\n| clean_s1 | 0.6787 | 9.468 | -0.0987 | 14042 |\n| clean_s2 | 0.6789 | 7.054 | -0.0842 | 14042 |\n| clean_s3 | 0.6783 | 9.529 | -0.1068 | 14042 |\n| clean_s4 | 0.6786 | 8.967 | -0.1092 | 14042 |\n| clean_s5 | 0.6787 | 8.532 | -0.0875 | 14042 |\n| clean_s6 | 0.6771 | 8.245 | -0.1036 | 14042 |\n| clean_s7 | — | — | — | 未跑 |\n| **clean_s8** | **0.6768** | **9.111** | **-0.1035** | **14042** |\n\n**汇总统计（s1-s6, s8，共 7 seeds）：**\n- Accuracy: 0.6768 ~ 0.6789，均值 ≈ 0.6782，极差 0.0021\n- lz*: 7.054 ~ 9.529，均值 ≈ 8.701\n- theta_mle: -0.1092 ~ -0.0842，均值 ≈ -0.0991\n\ns7 checkpoint 存在但未 eval。需要我继续在 cuda:0 上跑 s7 吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-s6-s8-cuda0.md"
+}

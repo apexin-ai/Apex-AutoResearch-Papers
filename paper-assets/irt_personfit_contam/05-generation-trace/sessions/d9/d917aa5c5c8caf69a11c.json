@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d917aa5c5c8caf69a11c",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code fill 19912 post arcc",
+  "task_key": "worker_code_fill-19912-post-arcc_20260521T112420",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fill-19912-post-arcc_20260521T112420_result.json",
+    "occurrence": 1,
+    "bytes": 1217,
+    "sha256": "d2463b7d502e25a73b1177e304147ff19f023c94dd011669be2a7dbafc5cf853"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n**GPU 全部满载，无需填充。** 上一个 worker 已经按 fallback 方案启动了 ARC-C clean_s3-s6 seed 扩展。\n\n### 当前任务（已在跑）\n| GPU | 任务 | PID | Seed | 启动时间 | 进度 |\n|-----|------|-----|------|----------|------|\n| 0 | clean_s3 | 13508 | 456 | 1分45秒前 | ~94/939 (10%) |\n| 1 | clean_s4 | 15450/15451 | 301 | 44秒前 | ~52/939 (5.5%) |\n| 2 | clean_s5 | 15463/15464 | 302 | 43秒前 | ~52/939 (5.5%) |\n| 3 | clean_s6 | 15438/15439 | 303 | 44秒前 | ~53/939 (5.6%) |\n\nGPU 显存：42/26/28/25 GB（97 GB 卡），利用率 78-95%。\n\n### 监测要点\n- 训练速度 ~1.05 s/step，每条 939 步，约 16-17 分钟完成\n- 磁盘 16/250 GB，充足\n- 日志：`/root/autodl-tmp/ctrl_contam_arcc/logs/arcc_clean_s{3,4,5,6}.log`\n\n### 不启动新任务的理由\n1. 4 张 GPU 都在 78-95% 利用率，无可用算力\n2. 训练已稳定推进（s3 已到 10%，无报错）\n3. 强行启动 Llama 下载/SFT 会和正在跑的 ARC-C 抢显存/PCIe 带宽，反而拖慢现有任务\n\nARC-C seed 训练约 16 分钟后完成，届时会自动进入 eval（如果 train.py 配了 eval hook）或需要手动启动 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fill-19912-post-arcc.md"
+}

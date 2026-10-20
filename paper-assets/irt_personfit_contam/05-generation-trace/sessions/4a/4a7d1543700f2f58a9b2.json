@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a7d1543700f2f58a9b2",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "paper final ddl fixes",
+  "task_key": "worker_paper_final-ddl-fixes_20260524T084846",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_final-ddl-fixes_20260524T084846_result.json",
+    "occurrence": 1,
+    "bytes": 1166,
+    "sha256": "b6040ae8c39352a1eac9848496476a88ec31ec149f532ca679bc1fc03ba74335"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Push 成功。逐项报告：\n\n| # | 检查项 | 结果 |\n|---|--------|------|\n| 1 | Abstract ≤ 200 words | ✅ 198 words，无需修改 |\n| 2 | Limitations section | ✅ 正文中，仅一个，覆盖 3 个点（scale/architecture、单 seed 复现性、PSN-IRT 依赖） |\n| 3 | Seen/unseen 定义 | ⚠️→✅ 原文缺少显式定义。已在 Method §3.3 \"Contamination model\" 段落添加一句定义 |\n| 4 | GRPO 超参 | ⚠️→✅ 原 appendix 缺少。已从服务器 `train_grpo.py` 提取并添加 Table（lr=5e-6, batch=2, grad_accum=4, 16 generations, temp=1.2, 1500 steps, correctness reward ±1.0） |\n| 5 | 页数 | ✅ 主文（至 Conclusion）占满 8 页，Limitations 在第 9 页（不计入页数限制），总 16 页 |\n| 6 | Figure 文件 | ✅ 4 个引用的 figure 均存在（fig_1_response_pattern, fig_heatmap, fig_theta_scatter, fig_grpo），heatmap 和 scatter 为 May 24 最新版 |\n| 7 | 编译 + 推送 | ✅ PDF 编译成功（16 pages, 无 undefined ref/citation），已推送至 `anonymous-nlp-2026-2/irt_personfit_contam` main 分支（同时补推了之前缺失的 fig_1 和 fig_grpo） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-final-ddl-fixes.md"
+}

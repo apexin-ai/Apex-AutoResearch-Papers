@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "799e7f64b327debc0311",
+  "project": "irt_personfit_contam",
+  "kind": "conversation",
+  "title": "ops anon repo prep",
+  "task_key": "worker_ops_anon-repo-prep_20260523T125059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_anon-repo-prep_20260523T125059.jsonl",
+    "occurrence": 1,
+    "bytes": 19,
+    "sha256": "13fdd77f538e8864d6f744d5fb5fdfe4fe5626416e94399c6823a94754106074"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "record": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "truncated": true
+              }
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/ops-anon-repo-prep.md"
+}

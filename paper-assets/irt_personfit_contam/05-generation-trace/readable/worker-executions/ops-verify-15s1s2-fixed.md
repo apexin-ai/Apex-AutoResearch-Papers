@@ -1,0 +1,1578 @@
+# ops verify 15s1s2 fixed
+
+**What Can IRT Person-Fit Statistics Reveal About SFT-Stage Benchmark Contamination?** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 32
+- **Recorded user turns:** 0
+- **Tool calls:** 9
+- **Original source:** `logs/workers/worker_ops_verify-15s1s2-fixed_20260522T202953.log`
+- **Structured JSON:** [`1abb8a8344e1499e8593.json`](../../sessions/1a/1abb8a8344e1499e8593.json)
+
+## Before a recorded user message
+
+32 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam",
+  "session_id": "6960198f-bf44-4b88-a8a3-a7d1192fb26b",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "b3c6eac8-b22e-495c-adc1-66b7c1474188",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0519-3-projects-irt-personfit-contam/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779489600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "ebb658ee-6849-4e46-b8bc-78b3a2f6be6b",
+  "session_id": "6960198f-bf44-4b88-a8a3-a7d1192fb26b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+我先读取服务器上的现有数据和代码，确认当前方法。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6960198f-bf44-4b88-a8a3-a7d1192fb26b",
+  "uuid": "5f9d424f-5308-4b12-9ed8-4b9251e4ae2f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UMEXyTCC459WpdMAiAaEoX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12037,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12037
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01TPD63G7PXzey77kKpnuuSu`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6960198f-bf44-4b88-a8a3-a7d1192fb26b",
+  "uuid": "4cf36f67-0786-4cd4-8f45-54609b7f57b3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UMEXyTCC459WpdMAiAaEoX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12037,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12037
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T20:30:08.019Z_
+
+<details><summary>↩ Tool result · `toolu_01TPD63G7PXzey77kKpnuuSu`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6960198f-bf44-4b88-a8a3-a7d1192fb26b",
+  "uuid": "9487a3ed-2917-4eb2-a4ac-d78fb7936abd",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the current theta_fixed_all_seeds.json and checking the result files exist.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6960198f-bf44-4b88-a8a3-a7d1192fb26b",
+  "uuid": "a2f9d9c3-f3fa-4fb9-9896-cf0dde8555ae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A5CGgH5Qo73BsW69FdHoi9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 697,
+      "cache_read_input_tokens": 23878,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 697
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01M66pQeSa5UwXN5ZTVUgWwN`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "cat /root/autodl-tmp/ctrl_contam_pilot/results/theta_fixed_all_seeds.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6960198f-bf44-4b88-a8a3-a7d1192fb26b",
+  "uuid": "be3af787-fa7c-4a05-a335-74c57367c100",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A5CGgH5Qo73BsW69FdHoi9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 697,
+      "cache_read_input_tokens": 23878,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 697
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DjwsZqd6PjmUtCT3DjTx39`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "ls -la /root/autodl-tmp/ctrl_contam_pilot/results/contam_15_results.json /root/autodl-tmp/ctrl_contam_pilot/results/contam_15_s2_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6960198f-bf44-4b88-a8a3-a7d1192fb26b",
+  "uuid": "66de1825-087e-40b2-94a9-00b04c1ea0c3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A5CGgH5Qo73BsW69FdHoi9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 697,
+      "cache_read_input_tokens": 23878,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 697
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-22T20:30:14.618Z_
+
+<details><summary>↩ Tool result · `toolu_01M66pQeSa5UwXN5ZTVUgWwN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"theta_fixed\\\": -0.10223831233869138,\\n  \\\"clean_baseline\\\": {\\n    \\\"lz_fixed_values\\\": [\\n      8.114437362083612,\\n      6.458587370456475,\\n      7.947136322190985,\\n      7.406778231131619,\\n      7.620495505583358,\\n      6.94627632465298,\\n      7.777467374274676,\\n      7.681793885891907,\\n      7.032436579213817,\\n      6.536739933571236\\n    ],\\n    \\\"lz_fixed_mean\\\": 7.352214888905067,\\n    \\\"lz_fixed_std\\\": 0.5802242937357958,\\n    \\\"lz_star_fixed_values\\\": [\\n      9.581393501535008,\\n      7.626193203430892,\\n      9.383847199197707,\\n      8.745801297658005,\\n      8.998155122479675,\\n      8.202048258809487,\\n      9.183504910208717,\\n      9.070535236655841,\\n      8.303784863123829,\\n      7.718474458056758\\n    ],\\n    \\\"lz_star_fixed_mean\\\": 8.681373805115593,\\n    \\\"lz_star_fixed_std\\\": 0.6851192546522252,\\n    \\\"n\\\": 10\\n  },\\n  \\\"contam_results\\\": {\\n    \\\"contam_15_s3\\\": {\\n      \\\"lz_fixed\\\": 11.990423500533353,\\n      \\\"lz_star_fixed\\\": 14.158093861872258,\\n      \\\"d_fixed\\\": 7.993820082515,\\n      \\\"d_star_fixed\\\": 7.993820082514999,\\n      \\\"ci_95\\\": [\\n        6.67951670730684,\\n        13.400239532926241\\n      ],\\n      \\\"ci_star_95\\\": [\\n        6.679516707306841,\\n        13.400239532926243\\n      ],\\n      \\\"theta_mle\\\": 0.22830938903218248,\\n      \\\"lz_star_free\\\": 5.443643005220427,\\n      \\\"accuracy\\\": 0.7350092579404643\\n    },\\n    \\\"contam_25\\\": {\\n      \\\"lz_fixed\\\": 10.228615888662473,\\n      \\\"lz_star_fixed\\\": 12.07778055731555,\\n      \\\"d_fixed\\\": 4.9573949777896935,\\n      \\\"d_star_fixed\\\": 4.957394977789692,\\n      \\\"ci_95\\\": [\\n        4.125734950080856,\\n        8.119413179627534\\n      ],\\n      \\\"ci_star_95\\\": [\\n        4.125734950080858,\\n        8.11941317962753\\n      ],\\n      \\\"theta_mle\\\": 0.25756078096380414,\\n      \\\"lz_star_free\\\": 2.642898917689469,\\n      \\\"accuracy\\\": 0.7404928072924085\\n    },\\n    \\\"contam_25_s2\\\": {\\n      \\\"lz_fixed\\\": 10.469658286379564,\\n      \\\"lz_star_fixed\\\": 12.362399435991316,\\n      \\\"d_fixed\\\": 5.372824666479788,\\n      \\\"d_star_fixed\\\": 5.372824666479788,\\n      \\\"ci_95\\\": [\\n        4.475348897283763,\\n        8.83201673343495\\n      ],\\n      \\\"ci_star_95\\\": [\\n        4.475348897283763,\\n        8.832016733434955\\n      ],\\n      \\\"theta_mle\\\": 0.291453783679972,\\n      \\\"lz_star_free\\\": 2.2286589551980667,\\n      \\\"accuracy\\\": 0.7451217775245691\\n    },\\n    \\\"contam_25_s3\\\": {\\n      \\\"lz_fixed\\\": 11.610638102604433,\\n      \\\"lz_star_fixed\\\": 13.709649542035935,\\n      \\\"d_fixed\\\": 7.339270795232219,\\n      \\\"d_star_fixed\\\": 7.33927079523222,\\n      \\\"ci_95\\\": [\\n        6.135452806535524,\\n        12.260512770288969\\n      ],\\n      \\\"ci_star_95\\\": [\\n        6.135452806535525,\\n        12.260512770288967\\n      ],\\n      \\\"theta_mle\\\": 0.23686574344882105,\\n      \\\"lz_star_free\\\": 4.782085199622304,\\n      \\\"accuracy\\\": 0.7424156103119214\\n    },\\n    \\\"contam_50_s2\\\": {\\n      \\\"lz_fixed\\\": 14.686728140513951,\\n      \\\"lz_star_fixed\\\": 17.341845809528564,\\n      \\\"d_fixed\\\": 12.64082412748585,\\n      \\\"d_star_fixed\\\": 12.640824127485851,\\n      \\\"ci_95\\\": [\\n        10.537428925373748,\\n        21.46206654784946\\n      ],\\n      \\\"ci_star_95\\\": [\\n        10.537428925373746,\\n        21.46206654784946\\n      ],\\n      \\\"theta_mle\\\": 0.44134001428058744,\\n      \\\"lz_star_free\\\": 4.7029437527863855,\\n      \\\"accuracy\\\": 0.7669847600056972\\n    },\\n    \\\"contam_50_s3\\\": {\\n      \\\"lz_fixed\\\": 13.03616826382415,\\n      \\\"lz_star_fixed\\\": 15.39289199169427,\\n      \\\"d_fixed\\\": 9.796131317292382,\\n      \\\"d_star_fixed\\\": 9.796131317292382,\\n      \\\"ci_95\\\": [\\n        8.17480776223453,\\n        16.461456946455517\\n      ],\\n      \\\"ci_star_95\\\": [\\n        8.17480776223453,\\n        16.461456946455517\\n      ]\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.16}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6960198f-bf44-4b88-a8a3-a7d1192fb26b",
+  "uuid": "7aed2ac6-c431-4e0a-930b-ebf3ffc51303",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"theta_fixed\\\\\\\": -0.10223831233869138,\\\\n  \\\\\\\"clean_baseline\\\\\\\": {\\\\n    \\\\\\\"lz_fixed_values\\\\\\\": [\\\\n      8.114437362083612,\\\\n      6.458587370456475,\\\\n      7.947136322190985,\\\\n      7.406778231131619,\\\\n      7.620495505583358,\\\\n      6.94627632465298,\\\\n      7.777467374274676,\\\\n      7.681793885891907,\\\\n      7.032436579213817,\\\\n      6.536739933571236\\\\n    ],\\\\n    \\\\\\\"lz_fixed_mean\\\\\\\": 7.352214888905067,\\\\n    \\\\\\\"lz_fixed_std\\\\\\\": 0.5802242937357958,\\\\n    \\\\\\\"lz_star_fixed_values\\\\\\\": [\\\\n      9.581393501535008,\\\\n      7.626193203430892,\\\\n      9.383847199197707,\\\\n      8.745801297658005,\\\\n      8.998155122479675,\\\\n      8.202048258809487,\\\\n      9.183504910208717,\\\\n      9.070535236655841,\\\\n      8.303784863123829,\\\\n      7.718474458056758\\\\n    ],\\\\n    \\\\\\\"lz_star_fixed_mean\\\\\\\": 8.681373805115593,\\\\n    \\\\\\\"lz_star_fixed_std\\\\\\\": 0.6851192546522252,\\\\n    \\\\\\\"n\\\\\\\": 10\\\\n  },\\\\n  \\\\\\\"contam_results\\\\\\\": {\\\\n    \\\\\\\"contam_15_s3\\\\\\\": {\\\\n      \\\\\\\"lz_fixed\\\\\\\": 11.990423500533353,\\\\n      \\\\\\\"lz_star_fixed\\\\\\\": 14.158093861872258,\\\\n      \\\\\\\"d_fixed\\\\\\\": 7.993820082515,\\\\n      \\\\\\\"d_star_fixed\\\\\\\": 7.993820082514999,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        6.67951670730684,\\\\n        13.400239532926241\\\\n      ],\\\\n      \\\\\\\"ci_star_95\\\\\\\": [\\\\n        6.679516707306841,\\\\n        13.400239532926243\\\\n      ],\\\\n      \\\\\\\"theta_mle\\\\\\\": 0.22830938903218248,\\\\n      \\\\\\\"lz_star_free\\\\\\\": 5.443643005220427,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.7350092579404643\\\\n    },\\\\n    \\\\\\\"contam_25\\\\\\\": {\\\\n      \\\\\\\"lz_fixed\\\\\\\": 10.228615888662473,\\\\n      \\\\\\\"lz_star_fixed\\\\\\\": 12.07778055731555,\\\\n      \\\\\\\"d_fixed\\\\\\\": 4.9573949777896935,\\\\n      \\\\\\\"d_star_fixed\\\\\\\": 4.957394977789692,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        4.125734950080856,\\\\n        8.119413179627534\\\\n      ],\\\\n      \\\\\\\"ci_star_95\\\\\\\": [\\\\n        4.125734950080858,\\\\n        8.11941317962753\\\\n      ],\\\\n      \\\\\\\"theta_mle\\\\\\\": 0.25756078096380414,\\\\n      \\\\\\\"lz_star_free\\\\\\\": 2.642898917689469,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.7404928072924085\\\\n    },\\\\n    \\\\\\\"contam_25_s2\\\\\\\": {\\\\n      \\\\\\\"lz_fixed\\\\\\\": 10.469658286379564,\\\\n      \\\\\\\"lz_star_fixed\\\\\\\": 12.362399435991316,\\\\n      \\\\\\\"d_fixed\\\\\\\": 5.372824666479788,\\\\n      \\\\\\\"d_star_fixed\\\\\\\": 5.372824666479788,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        4.475348897283763,\\\\n        8.83201673343495\\\\n      ],\\\\n      \\\\\\\"ci_star_95\\\\\\\": [\\\\n        4.475348897283763,\\\\n        8.832016733434955\\\\n      ],\\\\n      \\\\\\\"theta_mle\\\\\\\": 0.291453783679972,\\\\n      \\\\\\\"lz_star_free\\\\\\\": 2.2286589551980667,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.7451217775245691\\\\n    },\\\\n    \\\\\\\"contam_25_s3\\\\\\\": {\\\\n      \\\\\\\"lz_fixed\\\\\\\": 11.610638102604433,\\\\n      \\\\\\\"lz_star_fixed\\\\\\\": 13.709649542035935,\\\\n      \\\\\\\"d_fixed\\\\\\\": 7.339270795232219,\\\\n      \\\\\\\"d_star_fixed\\\\\\\": 7.33927079523222,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        6.135452806535524,\\\\n        12.260512770288969\\\\n      ],\\\\n      \\\\\\\"ci_star_95\\\\\\\": [\\\\n        6.135452806535525,\\\\n        12.260512770288967\\\\n      ],\\\\n      \\\\\\\"theta_mle\\\\\\\": 0.23686574344882105,\\\\n      \\\\\\\"lz_star_free\\\\\\\": 4.782085199622304,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.7424156103119214\\\\n    },\\\\n    \\\\\\\"contam_50_s2\\\\\\\": {\\\\n      \\\\\\\"lz_fixed\\\\\\\": 14.686728140513951,\\\\n      \\\\\\\"lz_star_fixed\\\\\\\": 17.341845809528564,\\\\n      \\\\\\\"d_fixed\\\\\\\": 12.64082412748585,\\\\n      \\\\\\\"d_star_fixed\\\\\\\": 12.640824127485851,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        10.537428925373748,\\\\n        21.46206654784946\\\\n      ],\\\\n      \\\\\\\"ci_star_95\\\\\\\": [\\\\n        10.537428925373746,\\\\n        21.46206654784946\\\\n      ],\\\\n      \\\\\\\"theta_mle\\\\\\\": 0.44134001428058744,\\\\n      \\\\\\\"lz_star_free\\\\\\\": 4.7029437527863855,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.7669847600056972\\\\n    },\\\\n    \\\\\\\"contam_50_s3\\\\\\\": {\\\\n      \\\\\\\"lz_fixed\\\\\\\": 13.03616826382415,\\\\n      \\\\\\\"lz_star_fixed\\\\\\\": 15.39289199169427,\\\\n      \\\\\\\"d_fixed\\\\\\\": 9.796131317292382,\\\\n      \\\\\\\"d_star_fixed\\\\\\\": 9.796131317292382,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        8.17480776223453,\\\\n        16.461456946455517\\\\n      ],\\\\n      \\\\\\\"ci_star_95\\\\\\\": [\\\\n        8.17480776223453,\\\\n        16.461456946455517\\\\n      ]\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.16}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"theta_fixed\\\": -0.10223831233869138,\\n  \\\"clean_baseline\\\": {\\n    \\\"lz_fixed_values\\\": [\\n      8.114437362083612,\\n      6.458587370456475,\\n      7.947136322190985,\\n      7.406778231131619,\\n      7.620495505583358,\\n      6.94627632465298,\\n      7.777467374274676,\\n      7.681793885891907,\\n      7.032436579213817,\\n      6.536739933571236\\n    ],\\n    \\\"lz_fixed_mean\\\": 7.352214888905067,\\n    \\\"lz_fixed_std\\\": 0.5802242937357958,\\n    \\\"lz_star_fixed_values\\\": [\\n      9.581393501535008,\\n      7.626193203430892,\\n      9.383847199197707,\\n      8.745801297658005,\\n      8.998155122479675,\\n      8.202048258809487,\\n      9.183504910208717,\\n      9.070535236655841,\\n      8.303784863123829,\\n      7.718474458056758\\n    ],\\n    \\\"lz_star_fixed_mean\\\": 8.681373805115593,\\n    \\\"lz_star_fixed_std\\\": 0.6851192546522252,\\n    \\\"n\\\": 10\\n  },\\n  \\\"contam_results\\\": {\\n    \\\"contam_15_s3\\\": {\\n      \\\"lz_fixed\\\": 11.990423500533353,\\n      \\\"lz_star_fixed\\\": 14.158093861872258,\\n      \\\"d_fixed\\\": 7.993820082515,\\n      \\\"d_star_fixed\\\": 7.993820082514999,\\n      \\\"ci_95\\\": [\\n        6.67951670730684,\\n        13.400239532926241\\n      ],\\n      \\\"ci_star_95\\\": [\\n        6.679516707306841,\\n        13.400239532926243\\n      ],\\n      \\\"theta_mle\\\": 0.22830938903218248,\\n      \\\"lz_star_free\\\": 5.443643005220427,\\n      \\\"accuracy\\\": 0.7350092579404643\\n    },\\n    \\\"contam_25\\\": {\\n      \\\"lz_fixed\\\": 10.228615888662473,\\n      \\\"lz_star_fixed\\\": 12.07778055731555,\\n      \\\"d_fixed\\\": 4.9573949777896935,\\n      \\\"d_star_fixed\\\": 4.957394977789692,\\n      \\\"ci_95\\\": [\\n        4.125734950080856,\\n        8.119413179627534\\n      ],\\n      \\\"ci_star_95\\\": [\\n        4.125734950080858,\\n        8.11941317962753\\n      ],\\n      \\\"theta_mle\\\": 0.25756078096380414,\\n      \\\"lz_star_free\\\": 2.642898917689469,\\n      \\\"accuracy\\\": 0.7404928072924085\\n    },\\n    \\\"contam_25_s2\\\": {\\n      \\\"lz_fixed\\\": 10.469658286379564,\\n      \\\"lz_star_fixed\\\": 12.362399435991316,\\n      \\\"d_fixed\\\": 5.372824666479788,\\n      \\\"d_star_fixed\\\": 5.372824666479788,\\n      \\\"ci_95\\\": [\\n        4.475348897283763,\\n        8.83201673343495\\n      ],\\n      \\\"ci_star_95\\\": [\\n        4.475348897283763,\\n        8.832016733434955\\n      ],\\n      \\\"theta_mle\\\": 0.291453783679972,\\n      \\\"lz_star_free\\\": 2.2286589551980667,\\n      \\\"accuracy\\\": 0.7451217775245691\\n    },\\n    \\\"contam_25_s3\\\": {\\n      \\\"lz_fixed\\\": 11.610638102604433,\\n      \\\"lz_star_fixed\\\": 13.709649542035935,\\n      \\\"d_fixed\\\": 7.339270795232219,\\n      \\\"d_star_fixed\\\": 7.33927079523222,\\n      \\\"ci_95\\\": [\\n        6.135452806535524,\\n        12.260512770288969\\n      ],\\n      \\\"ci_star_95\\\": [\\n        6.135452806535525,\\n        12.260512770288967\\n      ],\\n      \\\"theta_mle\\\": 0.23686574344882105,\\n      \\\"lz_star_free\\\": 4.782085199622304,\\n      \\\"accuracy\\\": 0.7424156103119214\\n    },\\n    \\\"contam_50_s2\\\": {\\n      \\\"lz_fixed\\\": 14.686728140513951,\\n      \\\"lz_star_fixed\\\": 17.341845809528564,\\n      \\\"d_fixed\\\": 12.64082412748585,\\n      \\\"d_star_fixed\\\": 12.640824127485851,\\n      \\\"ci_95\\\": [\\n        10.537428925373748,\\n        21.46206654784946\\n      ],\\n      \\\"ci_star_95\\\": [\\n        10.537428925373746,\\n        21.46206654784946\\n      ],\\n      \\\"theta_mle\\\": 0.44134001428058744,\\n      \\\"lz_star_free\\\": 4.7029437527863855,\\n      \\\"accuracy\\\": 0.7669847600056972\\n    },\\n    \\\"contam_50_s3\\\": {\\n      \\\"lz_fixed\\\": 13.03616826382415,\\n      \\\"lz_star_fixed\\\": 15.39289199169427,\\n      \\\"d_fixed\\\": 9.796131317292382,\\n      \\\"d_star_fixed\\\": 9.796131317292382,\\n      \\\"ci_95\\\": [\\n        8.17480776223453,\\n        16.461456946455517\\n      ],\\n      \\\"ci_star_95\\\": [\\n        8.17480776223453,\\n        16.461456946455517\\n      ]\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.16}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-22T20:30:15.138Z_
+
+<details><summary>↩ Tool result · `toolu_01DjwsZqd6PjmUtCT3DjTx39`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 98717 May 21 07:17 /root/autodl-tmp/ctrl_contam_pilot/results/contam_15_results.json\\n-rw-r--r-- 1 root root 98677 May 22 20:43 /root/autodl-tmp/ctrl_contam_pilot/results/contam_15_s2_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6960198f-bf44-4b88-a8a3-a7d1192fb26b",
+  "uuid": "e9b5e66f-2c62-4280-92b9-a1db4745d004",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 98717 May 21 07:17 /root/autodl-tmp/ctrl_contam_pilot/results/contam_15_results.json\\\\n-rw-r--r-- 1 root root 98677 May 22 20:43 /root/autodl-tmp/ctrl_contam_pilot/results/contam_15_s2_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 98717 May 21 07:17 /root/autodl-tmp/ctrl_contam_pilot/results/contam_15_results.json\\n-rw-r--r-- 1 root root 98677 May 22 20:43 /root/autodl-tmp/ctrl_contam_pilot/results/contam_15_s2_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I can see that theta_fixed_all_seeds.json contains results for contam_15_s3, contam_25, contam_25_s2, contam_25_s3, contam_50_s2, contam_50_s3 — but NOT for contam_15_s1 or contam_15_s2. The reviewer is pointing out that the 15% s1 (d_fixed=4.77) and s2 (d_fixed=7.79) values might have been calculated with a different method.
+
+The key parameters from the JSON:
+
+
+- theta_fixed = -0.10223831233869138
+- clean_baseline lz_fixed_mean = 7.352214888905067
+- clean_baseline lz_fixed_std = 0.5802242937357958
+- d_fixed formula: (lz_fixed - lz_fixed_mean) / lz_fixed_std
+
+Now I need to load the response vectors from the s1 and s2 results files, apply the theta value to compute lz_fixed for both, then calculate d_fixed using the standardization formula to see if I get matching values.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6960198f-bf44-4b88-a8a3-a7d1192fb26b",
+  "uuid": "c4238f26-dc45-400e-970b-1a5aea20ebf0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JELrKhqRG9vj1PDjbY3eqQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2518,
+      "cache_read_input_tokens": 24575,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2518
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+theta_fixed_all_seeds.json 中缺少 15% s1 和 s2。现在查看计算脚本和结果文件结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6960198f-bf44-4b88-a8a3-a7d1192fb26b",
+  "uuid": "27e7b6a2-3dde-4770-b677-e4ce6ca9d1dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JELrKhqRG9vj1PDjbY3eqQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2518,
+      "cache_read_input_tokens": 24575,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2518
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015QtSw7FXWPz2s25VhnJiK7`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "find /root/autodl-tmp/ctrl_contam_pilot -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6960198f-bf44-4b88-a8a3-a7d1192fb26b",
+  "uuid": "36ed193d-d8e0-41a4-8e0e-5a1e7c1f59f0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JELrKhqRG9vj1PDjbY3eqQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2518,
+      "cache_read_input_tokens": 24575,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2518
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-22T20:30:28.809Z_
+
+<details><summary>↩ Tool result · `toolu_015QtSw7FXWPz2s25VhnJiK7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/ctrl_contam_pilot/prepare_data.py\\n/root/autodl-tmp/ctrl_contam_pilot/train.py\\n/root/autodl-tmp/ctrl_contam_pilot/eval_lz.py\\n/root/autodl-tmp/ctrl_contam_pilot/compute_delta.py\\n/root/autodl-tmp/ctrl_contam_pilot/theta_fixed_recompute.py\\n/root/autodl-tmp/ctrl_contam_pilot/theta_fixed_lzstar.py\\n/root/autodl-tmp/ctrl_contam_pilot/recompute_theta_fixed_n10.py\\n/root/autodl-tmp/ctrl_contam_pilot/unified_lz_recompute.py\\n/root/autodl-tmp/ctrl_contam_pilot/gen_contam_25.py\\n/root/autodl-tmp/ctrl_contam_pilot/gen_contam_5.py\\n/root/autodl-tmp/ctrl_contam_pilot/compute_cohens_d.py\\n/root/autodl-tmp/ctrl_contam_pilot/compute_contam5_cohens_d.py\\n/root/autodl-tmp/ctrl_contam_pilot/compute_fixed_theta.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6960198f-bf44-4b88-a8a3-a7d1192fb26b",
+  "uuid": "524ac202-c6bd-435a-9f4c-a98099f6c894",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/ctrl_contam_pilot/prepare_data.py\\\\n/root/autodl-tmp/ctrl_contam_pilot/train.py\\\\n/root/autodl-tmp/ctrl_contam_pilot/eval_lz.py\\\\n/root/autodl-tmp/ctrl_contam_pilot/compute_delta.py\\\\n/root/autodl-tmp/ctrl_contam_pilot/theta_fixed_recompute.py\\\\n/root/autodl-tmp/ctrl_contam_pilot/theta_fixed_lzstar.py\\\\n/root/autodl-tmp/ctrl_contam_pilot/recompute_theta_fixed_n10.py\\\\n/root/autodl-tmp/ctrl_contam_pilot/unified_lz_recompute.py\\\\n/root/autodl-tmp/ctrl_contam_pilot/gen_contam_25.py\\\\n/root/autodl-tmp/ctrl_contam_pilot/gen_contam_5.py\\\\n/root/autodl-tmp/ctrl_contam_pilot/compute_cohens_d.py\\\\n/root/autodl-tmp/ctrl_contam_pilot/compute_contam5_cohens_d.py\\\\n/root/autodl-tmp/ctrl_contam_pilot/compute_fixed_theta.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/ctrl_contam_pilot/prepare_data.py\\n/root/autodl-tmp/ctrl_contam_pilot/train.py\\n/root/autodl-tmp/ctrl_contam_pilot/eval_lz.py\\n/root/autodl-tmp/ctrl_contam_pilot/compute_delta.py\\n/root/autodl-tmp/ctrl_contam_pilot/theta_fixed_recompute.py\\n/root/autodl-tmp/ctrl_contam_pilot/theta_fixed_lzstar.py\\n/root/autodl-tmp/ctrl_contam_pilot/recompute_theta_fixed_n10.py\\n/root/autodl-tmp/ctrl_contam_pilot/unified_lz_recompute.py\\n/root/autodl-tmp/ctrl_contam_pilot/gen_contam_25.py\\n/root/autodl-tmp/ctrl_contam_pilot/gen_contam_5.py\\n/root/autodl-tmp/ctrl_contam_pilot/compute_cohens_d.py\\n/root/autodl-tmp/ctrl_contam_pilot/compute_contam5_cohens_d.py\\n/root/autodl-tmp/ctrl_contam_pilot/compute_fixed_theta.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NCYbSxRh7AEwJ5kWUL21gD`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "head -100 /root/autodl-tmp/ctrl_contam_pilot/results/contam_15_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6960198f-bf44-4b88-a8a3-a7d1192fb26b",
+  "uuid": "cd0ad1b5-8c72-4400-ae30-da6a6910995a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JELrKhqRG9vj1PDjbY3eqQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2518,
+      "cache_read_input_tokens": 24575,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2518
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-22T20:30:29.400Z_
+
+<details><summary>↩ Tool result · `toolu_01NCYbSxRh7AEwJ5kWUL21gD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"condition\\\": \\\"contam_15\\\",\\n  \\\"theta_mle\\\": 0.1970583788764187,\\n  \\\"lz_star\\\": 3.8493704831627817,\\n  \\\"accuracy_overall\\\": 0.7310212220481412,\\n  \\\"accuracy_seen\\\": 0.8243114909781576,\\n  \\\"accuracy_unseen\\\": 0.7145609919571045,\\n  \\\"lz_star_seen\\\": 0.6720645272268987,\\n  \\\"lz_star_unseen\\\": 3.914254363584793,\\n  \\\"response_vector\\\": [\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    0,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6960198f-bf44-4b88-a8a3-a7d1192fb26b",
+  "uuid": "1c03c203-e844-47bb-91b1-012cb5360bc5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"condition\\\\\\\": \\\\\\\"contam_15\\\\\\\",\\\\n  \\\\\\\"theta_mle\\\\\\\": 0.1970583788764187,\\\\n  \\\\\\\"lz_star\\\\\\\": 3.8493704831627817,\\\\n  \\\\\\\"accuracy_overall\\\\\\\": 0.7310212220481412,\\\\n  \\\\\\\"accuracy_seen\\\\\\\": 0.8243114909781576,\\\\n  \\\\\\\"accuracy_unseen\\\\\\\": 0.7145609919571045,\\\\n  \\\\\\\"lz_star_seen\\\\\\\": 0.6720645272268987,\\\\n  \\\\\\\"lz_star_unseen\\\\\\\": 3.914254363584793,\\\\n  \\\\\\\"response_vector\\\\\\\": [\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"condition\\\": \\\"contam_15\\\",\\n  \\\"theta_mle\\\": 0.1970583788764187,\\n  \\\"lz_star\\\": 3.8493704831627817,\\n  \\\"accuracy_overall\\\": 0.7310212220481412,\\n  \\\"accuracy_seen\\\": 0.8243114909781576,\\n  \\\"accuracy_unseen\\\": 0.7145609919571045,\\n  \\\"lz_star_seen\\\": 0.6720645272268987,\\n  \\\"lz_star_unseen\\\": 3.914254363584793,\\n  \\\"response_vector\\\": [\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    0,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me look at the computation script that generated theta_fixed_all_seeds.json to understand the exact method.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6960198f-bf44-4b88-a8a3-a7d1192fb26b",
+  "uuid": "045b7091-3a39-485d-a8e3-581480d97fd8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BDV8FLpQTT4P7ESfPH6ytN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1839,
+      "cache_read_input_tokens": 27093,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1839
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CdfNxiFUzU6XwHj9wiyjQH`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "cat /root/autodl-tmp/ctrl_contam_pilot/unified_lz_recompute.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6960198f-bf44-4b88-a8a3-a7d1192fb26b",
+  "uuid": "023a5fbf-4322-4f6b-8a80-b99168933c84",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BDV8FLpQTT4P7ESfPH6ytN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1839,
+      "cache_read_input_tokens": 27093,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1839
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-22T20:30:35.102Z_
+
+<details><summary>↩ Tool result · `toolu_01CdfNxiFUzU6XwHj9wiyjQH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nUnified lz* recomputation for Qwen MMLU.\\nSingle-source: Snijders (2001) lz* + Drasgow lz + theta_MLE.\\nAll 12 conditions from response vectors.\\n\\\"\\\"\\\"\\n\\nimport numpy as np\\nimport json\\nimport csv\\nimport os\\nfrom pathlib import Path\\n\\nBASE_DIR = \\\"/root/autodl-tmp/ctrl_contam_pilot\\\"\\nEPS = 1e-10\\n\\n\\ndef load_irt_params(path):\\n    a, b, c, d = [], [], [], []\\n    with open(path, \\\"r\\\") as f:\\n        reader = csv.DictReader(f)\\n        for row in reader:\\n            a.append(float(row[\\\"a_discrimination\\\"]))\\n            b.append(float(row[\\\"b_difficulty\\\"]))\\n            c.append(float(row[\\\"c_guessing\\\"]))\\n            d.append(float(row[\\\"d_feasibility\\\"]))\\n    return np.array(a), np.array(b), np.array(c), np.array(d)\\n\\n\\ndef load_response_vector(path):\\n    with open(path, \\\"r\\\") as f:\\n        data = json.load(f)\\n    return np.array(data[\\\"response_vector\\\"], dtype=np.float64)\\n\\n\\ndef icc_4pl(theta, a, b, c, d):\\n    z = a * (theta - b)\\n    z = np.clip(z, -30, 30)\\n    P = c + (d - c) / (1.0 + np.exp(-z))\\n    P = np.clip(P, EPS, 1.0 - EPS)\\n    return P\\n\\n\\ndef icc_derivative(theta, a, b, c, d):\\n    P = icc_4pl(theta, a, b, c, d)\\n    denom = d - c + EPS\\n    P_prime = a * (P - c) * (d - P) / denom\\n    return P, P_prime\\n\\n\\ndef estimate_theta_mle(response, a, b, c, d, theta_init=0.0, max_iter=100, tol=1e-6):\\n    theta = theta_init\\n    for _ in range(max_iter):\\n        P, P_prime = icc_derivative(theta, a, b, c, d)\\n        PQ = P * (1.0 - P)\\n        PQ = np.clip(PQ, EPS, None)\\n\\n        L_prime = np.sum((response - P) * P_prime / PQ)\\n        I_theta = np.sum(P_prime ** 2 / PQ)\\n\\n        if I_theta < EPS:\\n            break\\n\\n        delta = L_prime / I_theta\\n        theta = theta + delta\\n        theta = np.clip(theta, -4.0, 4.0)\\n\\n        if abs(delta) < tol:\\n            break\\n\\n    return float(theta)\\n\\n\\ndef compute_lz_and_lz_star(response, a, b, c, d, theta):\\n    P, P_prime = icc_derivative(theta, a, b, c, d)\\n    P = np.clip(P, EPS, 1.0 - EPS)\\n    PQ = P * (1.0 - P)\\n    PQ = np.clip(PQ, EPS, None)\\n\\n    log_P = np.log(P)\\n    log_Q = np.log(1.0 - P)\\n    log_ratio = log_P - log_Q\\n\\n    l0 = np.sum(response * log_P + (1.0 - response) * log_Q)\\n    E_l = np.sum(P * log_P + (1.0 - P) * log_Q)\\n    Var_l = np.sum(PQ * log_ratio ** 2)\\n\\n    if Var_l < EPS:\\n        lz = 0.0\\n    else:\\n        lz = (l0 - E_l) / np.sqrt(Var_l)\\n\\n    I_theta = np.sum(P_prime ** 2 / PQ)\\n    h_j = P_prime * log_ratio\\n    C_theta = np.sum(h_j)\\n\\n    if I_theta < EPS:\\n        Var_star = Var_l\\n    else:\\n        Var_star = Var_l - C_theta ** 2 / I_theta\\n\\n    if Var_star < EPS:\\n        lz_star = lz\\n    else:\\n        lz_star = (l0 - E_l) / np.sqrt(Var_star)\\n\\n    return float(lz), float(lz_star)\\n\\n\\ndef bootstrap_cohens_d(clean_vals, contam_val, n_boot=10000, seed=42):\\n    clean_arr = np.array(clean_vals)\\n    rng = np.random.RandomState(seed)\\n    n = len(clean_arr)\\n\\n    # Point estimate\\n\\n    clean_std = np.std(clean_arr, ddof=1)\\n    if clean_std < EPS:\\n        return 0.0, 0.0, 0.0\\n    d_obs = (contam_val - np.mean(clean_arr)) / clean_std\\n\\n    # Bootstrap: resample clean, keep contam fixed\\n    d_boots = np.empty(n_boot)\\n    for i in range(n_boot):\\n        boot_clean = rng.choice(clean_arr, size=n, replace=True)\\n\\n        s = np.std(boot_clean, ddof=1)\\n        if s < EPS:\\n            d_boots[i] = 0.0\\n        else:\\n            d_boots[i] = (contam_val - np.mean(boot_clean)) / s\\n\\n    ci_lo = float(np.percentile(d_boots, 2.5))\\n    ci_hi = float(np.percentile(d_boots, 97.5))\\n    return float(d_obs), ci_lo, ci_hi\\n\\n\\n# ---- Main ----\\nprint(\\\"Loading IRT parameters...\\\")\\na, b, c, d = load_irt_params(os.path.join(BASE_DIR, \\\"mmlu_params.csv\\\"))\\nprint(f\\\"  {len(a)} items loaded\\\")\\n\\nconditions = [f\\\"clean_s{i}\\\" for i in range(1, 11)] + [\\\"contam_15\\\", \\\"contam_50\\\"]\\n\\nresults = {}\\nprint(\\\"\\\\n=== Phase 1: Per-condition MLE theta + lz + lz* ===\\\")\\nfor cond in conditions:\\n    path = os.path.join(BASE_DIR, \\\"results\\\", f\\\"{cond}_results.json\\\")\\n    if not os.path.exists(path):\\n        print(f\\\"  WARNING: {path} not found, skipping\\\")\\n        continue\\n\\n    resp = load_response_vector(path)\\n    assert len(resp) == len(a), f\\\"Length mismatch: resp={len(resp)}, params={len(a)}\\\"\\n\\n    theta = estimate_theta_mle(resp, a, b, c, d)\\n    lz, lz_star = compute_lz_and_lz_star(resp, a, b, c, d, theta)\\n    acc = float(np.mean(resp))\\n\\n    results[cond] = {\\n        \\\"theta_mle\\\": theta,\\n        \\\"lz\\\": lz,\\n        \\\"lz_star\\\": lz_star,\\n        \\\"accuracy\\\": acc,\\n    }\\n    print(f\\\"  {cond:12s}  theta={theta:+.4f}  lz={lz:+.4f}  lz*={lz_star:+.4f}  acc={acc:.4f}\\\")\\n\\n# Phase 2: theta-fixed\\nprint(\\\"\\\\n=== Phase 2: Theta-fixed analysis ===\\\")\\nclean_thetas = [results[f\\\"clean_s{i}\\\"][\\\"theta_mle\\\"] for i in range(1, 11)]\\ntheta_fixed = float(np.mean(clean_thetas))\\nprint(f\\\"  theta_fixed (mean of 10 clean) = {theta_fixed:.6f}\\\")\\n\\nfor cond in conditions:\\n    path = os.path.join(BASE_DIR, \\\"results\\\", f\\\"{cond}_results.json\\\")\\n    resp = load_response_vector(path)\\n    lz_f, lz_star_f = compute_lz_and_lz_star(resp, a, b, c, d, theta_fixed)\\n    results[cond][\\\"lz_fixed\\\"] = lz_f\\n    results[cond][\\\"lz_star_fixed\\\"] = lz_star_f\\n\\n# Table 1\\nprint(\\\"\\\\n\\\" + \\\"=\\\" * 95)\\nprint(\\\"Table 1: Per-condition values (unified recomputation)\\\")\\nprint(\\\"=\\\" * 95)\\nprint(f\\\"{'Condition':>12s} | {'theta_MLE':>9s} | {'lz (Drasgow)':>12s} | {'lz* (Snijders)':>14s} | {'lz*_fixed':>10s} | {'accuracy':>8s}\\\")\\nprint(\\\"-\\\" * 95)\\nfor cond in conditions:\\n    r = results[cond]\\n    print(f\\\"{cond:>12s} | {r['theta_mle']:>+9.4f} | {r['lz']:>+12.4f} | {r['lz_star']:>+14.4f} | {r['lz_star_fixed']:>+10.4f} | {r['accuracy']:>8.4f}\\\")\\n\\n# Phase 3: Cohen's d\\nprint(\\\"\\\\n\\\" + \\\"=\\\" * 95)\\nprint(\\\"Table 2: Cohen's d + 95% Bootstrap CI\\\")\\nprint(\\\"=\\\" * 95)\\n\\nclean_lz_stars = [results[f\\\"clean_s{i}\\\"][\\\"lz_star\\\"] for i in range(1, 11)]\\nclean_lz_stars_fixed = [results[f\\\"clean_s{i}\\\"][\\\"lz_star_fixed\\\"] for i in range(1, 11)]\\n\\ncohens_d_results = {}\\nfor contam_cond in [\\\"contam_15\\\", \\\"contam_50\\\"]:\\n    d_free, ci_lo_free, ci_hi_free = bootstrap_cohens_d(\\n        clean_lz_stars, results[contam_cond][\\\"lz_star\\\"]\\n    )\\n    d_fixed, ci_lo_fixed, ci_hi_fixed = bootstrap_cohens_d(\\n        clean_lz_stars_fixed, results[contam_cond][\\\"lz_star_fixed\\\"]\\n    )\\n\\n    cohens_d_results[contam_cond] = {\\n        \\\"free_theta\\\": {\\\"d\\\": d_free, \\\"ci_lo\\\": ci_lo_free, \\\"ci_hi\\\": ci_hi_free},\\n        \\\"fixed_theta\\\": {\\\"d\\\": d_fixed, \\\"ci_lo\\\": ci_lo_fixed, \\\"ci_hi\\\": ci_hi_fixed},\\n    }\\n\\nprint(f\\\"{'Metric':>20s} | {'d(15%)':>8s} | {'95% CI':>20s} | {'d(50%)':>8s} | {'95% CI':>20s}\\\")\\nprint(\\\"-\\\" * 95)\\nfor label, key in [(\\\"lz* free-theta\\\", \\\"free_theta\\\"), (\\\"lz* theta-fixed\\\", \\\"fixed_theta\\\")]:\\n    r15 = cohens_d_results[\\\"contam_15\\\"][key]\\n    r50 = cohens_d_results[\\\"contam_50\\\"][key]\\n    print(f\\\"{label:>20s} | {r15['d']:>+8.4f} | [{r15['ci_lo']:>+8.4f}, {r15['ci_hi']:>+8.4f}] | {r50['d']:>+8.4f} | [{r50['ci_lo']:>+8.4f}, {r50['ci_hi']:>+8.4f}]\\\")\\n\\n# Save JSON\\noutput = {\\n    \\\"meta\\\": {\\n        \\\"description\\\": \\\"Unified lz* recomputation - Snijders (2001)\\\",\\n        \\\"n_items\\\": int(len(a)),\\n        \\\"theta_fixed\\\": theta_fixed,\\n        \\\"implementation\\\": \\\"unified_lz_recompute.py\\\",\\n        \\\"note\\\": \\\"All values from single codebase, single execution\\\"\\n    },\\n    \\\"per_condition\\\": results,\\n    \\\"cohens_d\\\": cohens_d_results,\\n}\\n\\nout_path = os.path.join(BASE_DIR, \\\"unified_lz_results.json\\\")\\nwith open(out_path, \\\"w\\\") as f:\\n    json.dump(output, f, indent=2)\\nprint(f\\\"\\\\nResults saved to {out_path}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6960198f-bf44-4b88-a8a3-a7d1192fb26b",
+  "uuid": "a58c47a7-23e3-4cb6-822c-1e035d89f43f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nUnified lz* recomputation for Qwen MMLU.\\\\nSingle-source: Snijders (2001) lz* + Drasgow lz + theta_MLE.\\\\nAll 12 conditions from response vectors.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport numpy as np\\\\nimport json\\\\nimport csv\\\\nimport os\\\\nfrom pathlib import Path\\\\n\\\\nBASE_DIR = \\\\\\\"/root/autodl-tmp/ctrl_contam_pilot\\\\\\\"\\\\nEPS = 1e-10\\\\n\\\\n\\\\ndef load_irt_params(path):\\\\n    a, b, c, d = [], [], [], []\\\\n    with open(path, \\\\\\\"r\\\\\\\") as f:\\\\n        reader = csv.DictReader(f)\\\\n        for row in reader:\\\\n            a.append(float(row[\\\\\\\"a_discrimination\\\\\\\"]))\\\\n            b.append(float(row[\\\\\\\"b_difficulty\\\\\\\"]))\\\\n            c.append(float(row[\\\\\\\"c_guessing\\\\\\\"]))\\\\n            d.append(float(row[\\\\\\\"d_feasibility\\\\\\\"]))\\\\n    return np.array(a), np.array(b), np.array(c), np.array(d)\\\\n\\\\n\\\\ndef load_response_vector(path):\\\\n    with open(path, \\\\\\\"r\\\\\\\") as f:\\\\n        data = json.load(f)\\\\n    return np.array(data[\\\\\\\"response_vector\\\\\\\"], dtype=np.float64)\\\\n\\\\n\\\\ndef icc_4pl(theta, a, b, c, d):\\\\n    z = a * (theta - b)\\\\n    z = np.clip(z, -30, 30)\\\\n    P = c + (d - c) / (1.0 + np.exp(-z))\\\\n    P = np.clip(P, EPS, 1.0 - EPS)\\\\n    return P\\\\n\\\\n\\\\ndef icc_derivative(theta, a, b, c, d):\\\\n    P = icc_4pl(theta, a, b, c, d)\\\\n    denom = d - c + EPS\\\\n    P_prime = a * (P - c) * (d - P) / denom\\\\n    return P, P_prime\\\\n\\\\n\\\\ndef estimate_theta_mle(response, a, b, c, d, theta_init=0.0, max_iter=100, tol=1e-6):\\\\n    theta = theta_init\\\\n    for _ in range(max_iter):\\\\n        P, P_prime = icc_derivative(theta, a, b, c, d)\\\\n        PQ = P * (1.0 - P)\\\\n        PQ = np.clip(PQ, EPS, None)\\\\n\\\\n        L_prime = np.sum((response - P) * P_prime / PQ)\\\\n        I_theta = np.sum(P_prime ** 2 / PQ)\\\\n\\\\n        if I_theta < EPS:\\\\n            break\\\\n\\\\n        delta = L_prime / I_theta\\\\n        theta = theta + delta\\\\n        theta = np.clip(theta, -4.0, 4.0)\\\\n\\\\n        if abs(delta) < tol:\\\\n            break\\\\n\\\\n    return float(theta)\\\\n\\\\n\\\\ndef compute_lz_and_lz_star(response, a, b, c, d, theta):\\\\n    P, P_prime = icc_derivative(theta, a, b, c, d)\\\\n    P = np.clip(P, EPS, 1.0 - EPS)\\\\n    PQ = P * (1.0 - P)\\\\n    PQ = np.clip(PQ, EPS, None)\\\\n\\\\n    log_P = np.log(P)\\\\n    log_Q = np.log(1.0 - P)\\\\n    log_ratio = log_P - log_Q\\\\n\\\\n    l0 = np.sum(response * log_P + (1.0 - response) * log_Q)\\\\n    E_l = np.sum(P * log_P + (1.0 - P) * log_Q)\\\\n    Var_l = np.sum(PQ * log_ratio ** 2)\\\\n\\\\n    if Var_l < EPS:\\\\n        lz = 0.0\\\\n    else:\\\\n        lz = (l0 - E_l) / np.sqrt(Var_l)\\\\n\\\\n    I_theta = np.sum(P_prime ** 2 / PQ)\\\\n    h_j = P_prime * log_ratio\\\\n    C_theta = np.sum(h_j)\\\\n\\\\n    if I_theta < EPS:\\\\n        Var_star = Var_l\\\\n    else:\\\\n        Var_star = Var_l - C_theta ** 2 / I_theta\\\\n\\\\n    if Var_star < EPS:\\\\n        lz_star = lz\\\\n    else:\\\\n        lz_star = (l0 - E_l) / np.sqrt(Var_star)\\\\n\\\\n    return float(lz), float(lz_star)\\\\n\\\\n\\\\ndef bootstrap_cohens_d(clean_vals, contam_val, n_boot=10000, seed=42):\\\\n    clean_arr = np.array(clean_vals)\\\\n    rng = np.random.RandomState(seed)\\\\n    n = len(clean_arr)\\\\n\\\\n    # Point estimate\\\\n\\\\n    clean_std = np.std(clean_arr, ddof=1)\\\\n    if clean_std < EPS:\\\\n        return 0.0, 0.0, 0.0\\\\n    d_obs = (contam_val - np.mean(clean_arr)) / clean_std\\\\n\\\\n    # Bootstrap: resample clean, keep contam fixed\\\\n    d_boots = np.empty(n_boot)\\\\n    for i in range(n_boot):\\\\n        boot_clean = rng.choice(clean_arr, size=n, replace=True)\\\\n\\\\n        s = np.std(boot_clean, ddof=1)\\\\n        if s < EPS:\\\\n            d_boots[i] = 0.0\\\\n        else:\\\\n            d_boots[i] = (contam_val - np.mean(boot_clean)) / s\\\\n\\\\n    ci_lo = float(np.percentile(d_boots, 2.5))\\\\n    ci_hi = float(np.percentile(d_boots, 97.5))\\\\n    return float(d_obs), ci_lo, ci_hi\\\\n\\\\n\\\\n# ---- Main ----\\\\nprint(\\\\\\\"Loading IRT parameters...\\\\\\\")\\\\na, b, c, d = load_irt_params(os.path.join(BASE_DIR, \\\\\\\"mmlu_params.csv\\\\\\\"))\\\\nprint(f\\\\\\\"  {len(a)} items loaded\\\\\\\")\\\\n\\\\nconditions = [f\\\\\\\"clean_s{i}\\\\\\\" for i in range(1, 11)] + [\\\\\\\"contam_15\\\\\\\", \\\\\\\"contam_50\\\\\\\"]\\\\n\\\\nresults = {}\\\\nprint(\\\\\\\"\\\\\\\\n=== Phase 1: Per-condition MLE theta + lz + lz* ===\\\\\\\")\\\\nfor cond in conditions:\\\\n    path = os.path.join(BASE_DIR, \\\\\\\"results\\\\\\\", f\\\\\\\"{cond}_results.json\\\\\\\")\\\\n    if not os.path.exists(path):\\\\n        print(f\\\\\\\"  WARNING: {path} not found, skipping\\\\\\\")\\\\n        continue\\\\n\\\\n    resp = load_response_vector(path)\\\\n    assert len(resp) == len(a), f\\\\\\\"Length mismatch: resp={len(resp)}, params={len(a)}\\\\\\\"\\\\n\\\\n    theta = estimate_theta_mle(resp, a, b, c, d)\\\\n    lz, lz_star = compute_lz_and_lz_star(resp, a, b, c, d, theta)\\\\n    acc = float(np.mean(resp))\\\\n\\\\n    results[cond] = {\\\\n        \\\\\\\"theta_mle\\\\\\\": theta,\\\\n        \\\\\\\"lz\\\\\\\": lz,\\\\n        \\\\\\\"lz_star\\\\\\\": lz_star,\\\\n        \\\\\\\"accuracy\\\\\\\": acc,\\\\n    }\\\\n    print(f\\\\\\\"  {cond:12s}  theta={theta:+.4f}  lz={lz:+.4f}  lz*={lz_star:+.4f}  acc={acc:.4f}\\\\\\\")\\\\n\\\\n# Phase 2: theta-fixed\\\\nprint(\\\\\\\"\\\\\\\\n=== Phase 2: Theta-fixed analysis ===\\\\\\\")\\\\nclean_thetas = [results[f\\\\\\\"clean_s{i}\\\\\\\"][\\\\\\\"theta_mle\\\\\\\"] for i in range(1, 11)]\\\\ntheta_fixed = float(np.mean(clean_thetas))\\\\nprint(f\\\\\\\"  theta_fixed (mean of 10 clean) = {theta_fixed:.6f}\\\\\\\")\\\\n\\\\nfor cond in conditions:\\\\n    path = os.path.join(BASE_DIR, \\\\\\\"results\\\\\\\", f\\\\\\\"{cond}_results.json\\\\\\\")\\\\n    resp = load_response_vector(path)\\\\n    lz_f, lz_star_f = compute_lz_and_lz_star(resp, a, b, c, d, theta_fixed)\\\\n    results[cond][\\\\\\\"lz_fixed\\\\\\\"] = lz_f\\\\n    results[cond][\\\\\\\"lz_star_fixed\\\\\\\"] = lz_star_f\\\\n\\\\n# Table 1\\\\nprint(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 95)\\\\nprint(\\\\\\\"Table 1: Per-condition values (unified recomputation)\\\\\\\")\\\\nprint(\\\\\\\"=\\\\\\\" * 95)\\\\nprint(f\\\\\\\"{'Condition':>12s} | {'theta_MLE':>9s} | {'lz (Drasgow)':>12s} | {'lz* (Snijders)':>14s} | {'lz*_fixed':>10s} | {'accuracy':>8s}\\\\\\\")\\\\nprint(\\\\\\\"-\\\\\\\" * 95)\\\\nfor cond in conditions:\\\\n    r = results[cond]\\\\n    print(f\\\\\\\"{cond:>12s} | {r['theta_mle']:>+9.4f} | {r['lz']:>+12.4f} | {r['lz_star']:>+14.4f} | {r['lz_star_fixed']:>+10.4f} | {r['accuracy']:>8.4f}\\\\\\\")\\\\n\\\\n# Phase 3: Cohen's d\\\\nprint(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 95)\\\\nprint(\\\\\\\"Table 2: Cohen's d + 95% Bootstrap CI\\\\\\\")\\\\nprint(\\\\\\\"=\\\\\\\" * 95)\\\\n\\\\nclean_lz_stars = [results[f\\\\\\\"clean_s{i}\\\\\\\"][\\\\\\\"lz_star\\\\\\\"] for i in range(1, 11)]\\\\nclean_lz_stars_fixed = [results[f\\\\\\\"clean_s{i}\\\\\\\"][\\\\\\\"lz_star_fixed\\\\\\\"] for i in range(1, 11)]\\\\n\\\\ncohens_d_results = {}\\\\nfor contam_cond in [\\\\\\\"contam_15\\\\\\\", \\\\\\\"contam_50\\\\\\\"]:\\\\n    d_free, ci_lo_free, ci_hi_free = bootstrap_cohens_d(\\\\n        clean_lz_stars, results[contam_cond][\\\\\\\"lz_star\\\\\\\"]\\\\n    )\\\\n    d_fixed, ci_lo_fixed, ci_hi_fixed = bootstrap_cohens_d(\\\\n        clean_lz_stars_fixed, results[contam_cond][\\\\\\\"lz_star_fixed\\\\\\\"]\\\\n    )\\\\n\\\\n    cohens_d_results[contam_cond] = {\\\\n        \\\\\\\"free_theta\\\\\\\": {\\\\\\\"d\\\\\\\": d_free, \\\\\\\"ci_lo\\\\\\\": ci_lo_free, \\\\\\\"ci_hi\\\\\\\": ci_hi_free},\\\\n        \\\\\\\"fixed_theta\\\\\\\": {\\\\\\\"d\\\\\\\": d_fixed, \\\\\\\"ci_lo\\\\\\\": ci_lo_fixed, \\\\\\\"ci_hi\\\\\\\": ci_hi_fixed},\\\\n    }\\\\n\\\\nprint(f\\\\\\\"{'Metric':>20s} | {'d(15%)':>8s} | {'95% CI':>20s} | {'d(50%)':>8s} | {'95% CI':>20s}\\\\\\\")\\\\nprint(\\\\\\\"-\\\\\\\" * 95)\\\\nfor label, key in [(\\\\\\\"lz* free-theta\\\\\\\", \\\\\\\"free_theta\\\\\\\"), (\\\\\\\"lz* theta-fixed\\\\\\\", \\\\\\\"fixed_theta\\\\\\\")]:\\\\n    r15 = cohens_d_results[\\\\\\\"contam_15\\\\\\\"][key]\\\\n    r50 = cohens_d_results[\\\\\\\"contam_50\\\\\\\"][key]\\\\n    print(f\\\\\\\"{label:>20s} | {r15['d']:>+8.4f} | [{r15['ci_lo']:>+8.4f}, {r15['ci_hi']:>+8.4f}] | {r50['d']:>+8.4f} | [{r50['ci_lo']:>+8.4f}, {r50['ci_hi']:>+8.4f}]\\\\\\\")\\\\n\\\\n# Save JSON\\\\noutput = {\\\\n    \\\\\\\"meta\\\\\\\": {\\\\n        \\\\\\\"description\\\\\\\": \\\\\\\"Unified lz* recomputation - Snijders (2001)\\\\\\\",\\\\n        \\\\\\\"n_items\\\\\\\": int(len(a)),\\\\n        \\\\\\\"theta_fixed\\\\\\\": theta_fixed,\\\\n        \\\\\\\"implementation\\\\\\\": \\\\\\\"unified_lz_recompute.py\\\\\\\",\\\\n        \\\\\\\"note\\\\\\\": \\\\\\\"All values from single codebase, single execution\\\\\\\"\\\\n    },\\\\n    \\\\\\\"per_condition\\\\\\\": results,\\\\n    \\\\\\\"cohens_d\\\\\\\": cohens_d_results,\\\\n}\\\\n\\\\nout_path = os.path.join(BASE_DIR, \\\\\\\"unified_lz_results.json\\\\\\\")\\\\nwith open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n    json.dump(output, f, indent=2)\\\\nprint(f\\\\\\\"\\\\\\\\nResults saved to {out_path}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nUnified lz* recomputation for Qwen MMLU.\\nSingle-source: Snijders (2001) lz* + Drasgow lz + theta_MLE.\\nAll 12 conditions from response vectors.\\n\\\"\\\"\\\"\\n\\nimport numpy as np\\nimport json\\nimport csv\\nimport os\\nfrom pathlib import Path\\n\\nBASE_DIR = \\\"/root/autodl-tmp/ctrl_contam_pilot\\\"\\nEPS = 1e-10\\n\\n\\ndef load_irt_params(path):\\n    a, b, c, d = [], [], [], []\\n    with open(path, \\\"r\\\") as f:\\n        reader = csv.DictReader(f)\\n        for row in reader:\\n            a.append(float(row[\\\"a_discrimination\\\"]))\\n            b.append(float(row[\\\"b_difficulty\\\"]))\\n            c.append(float(row[\\\"c_guessing\\\"]))\\n            d.append(float(row[\\\"d_feasibility\\\"]))\\n    return np.array(a), np.array(b), np.array(c), np.array(d)\\n\\n\\ndef load_response_vector(path):\\n    with open(path, \\\"r\\\") as f:\\n        data = json.load(f)\\n    return np.array(data[\\\"response_vector\\\"], dtype=np.float64)\\n\\n\\ndef icc_4pl(theta, a, b, c, d):\\n    z = a * (theta - b)\\n    z = np.clip(z, -30, 30)\\n    P = c + (d - c) / (1.0 + np.exp(-z))\\n    P = np.clip(P, EPS, 1.0 - EPS)\\n    return P\\n\\n\\ndef icc_derivative(theta, a, b, c, d):\\n    P = icc_4pl(theta, a, b, c, d)\\n    denom = d - c + EPS\\n    P_prime = a * (P - c) * (d - P) / denom\\n    return P, P_prime\\n\\n\\ndef estimate_theta_mle(response, a, b, c, d, theta_init=0.0, max_iter=100, tol=1e-6):\\n    theta = theta_init\\n    for _ in range(max_iter):\\n        P, P_prime = icc_derivative(theta, a, b, c, d)\\n        PQ = P * (1.0 - P)\\n        PQ = np.clip(PQ, EPS, None)\\n\\n        L_prime = np.sum((response - P) * P_prime / PQ)\\n        I_theta = np.sum(P_prime ** 2 / PQ)\\n\\n        if I_theta < EPS:\\n            break\\n\\n        delta = L_prime / I_theta\\n        theta = theta + delta\\n        theta = np.clip(theta, -4.0, 4.0)\\n\\n        if abs(delta) < tol:\\n            break\\n\\n    return float(theta)\\n\\n\\ndef compute_lz_and_lz_star(response, a, b, c, d, theta):\\n    P, P_prime = icc_derivative(theta, a, b, c, d)\\n    P = np.clip(P, EPS, 1.0 - EPS)\\n    PQ = P * (1.0 - P)\\n    PQ = np.clip(PQ, EPS, None)\\n\\n    log_P = np.log(P)\\n    log_Q = np.log(1.0 - P)\\n    log_ratio = log_P - log_Q\\n\\n    l0 = np.sum(response * log_P + (1.0 - response) * log_Q)\\n    E_l = np.sum(P * log_P + (1.0 - P) * log_Q)\\n    Var_l = np.sum(PQ * log_ratio ** 2)\\n\\n    if Var_l < EPS:\\n        lz = 0.0\\n    else:\\n        lz = (l0 - E_l) / np.sqrt(Var_l)\\n\\n    I_theta = np.sum(P_prime ** 2 / PQ)\\n    h_j = P_prime * log_ratio\\n    C_theta = np.sum(h_j)\\n\\n    if I_theta < EPS:\\n        Var_star = Var_l\\n    else:\\n        Var_star = Var_l - C_theta ** 2 / I_theta\\n\\n    if Var_star < EPS:\\n        lz_star = lz\\n    else:\\n        lz_star = (l0 - E_l) / np.sqrt(Var_star)\\n\\n    return float(lz), float(lz_star)\\n\\n\\ndef bootstrap_cohens_d(clean_vals, contam_val, n_boot=10000, seed=42):\\n    clean_arr = np.array(clean_vals)\\n    rng = np.random.RandomState(seed)\\n    n = len(clean_arr)\\n\\n    # Point estimate\\n\\n    clean_std = np.std(clean_arr, ddof=1)\\n    if clean_std < EPS:\\n        return 0.0, 0.0, 0.0\\n    d_obs = (contam_val - np.mean(clean_arr)) / clean_std\\n\\n    # Bootstrap: resample clean, keep contam fixed\\n    d_boots = np.empty(n_boot)\\n    for i in range(n_boot):\\n        boot_clean = rng.choice(clean_arr, size=n, replace=True)\\n\\n        s = np.std(boot_clean, ddof=1)\\n        if s < EPS:\\n            d_boots[i] = 0.0\\n        else:\\n            d_boots[i] = (contam_val - np.mean(boot_clean)) / s\\n\\n    ci_lo = float(np.percentile(d_boots, 2.5))\\n    ci_hi = float(np.percentile(d_boots, 97.5))\\n    return float(d_obs), ci_lo, ci_hi\\n\\n\\n# ---- Main ----\\nprint(\\\"Loading IRT parameters...\\\")\\na, b, c, d = load_irt_params(os.path.join(BASE_DIR, \\\"mmlu_params.csv\\\"))\\nprint(f\\\"  {len(a)} items loaded\\\")\\n\\nconditions = [f\\\"clean_s{i}\\\" for i in range(1, 11)] + [\\\"contam_15\\\", \\\"contam_50\\\"]\\n\\nresults = {}\\nprint(\\\"\\\\n=== Phase 1: Per-condition MLE theta + lz + lz* ===\\\")\\nfor cond in conditions:\\n    path = os.path.join(BASE_DIR, \\\"results\\\", f\\\"{cond}_results.json\\\")\\n    if not os.path.exists(path):\\n        print(f\\\"  WARNING: {path} not found, skipping\\\")\\n        continue\\n\\n    resp = load_response_vector(path)\\n    assert len(resp) == len(a), f\\\"Length mismatch: resp={len(resp)}, params={len(a)}\\\"\\n\\n    theta = estimate_theta_mle(resp, a, b, c, d)\\n    lz, lz_star = compute_lz_and_lz_star(resp, a, b, c, d, theta)\\n    acc = float(np.mean(resp))\\n\\n    results[cond] = {\\n        \\\"theta_mle\\\": theta,\\n        \\\"lz\\\": lz,\\n        \\\"lz_star\\\": lz_star,\\n        \\\"accuracy\\\": acc,\\n    }\\n    print(f\\\"  {cond:12s}  theta={theta:+.4f}  lz={lz:+.4f}  lz*={lz_star:+.4f}  acc={acc:.4f}\\\")\\n\\n# Phase 2: theta-fixed\\nprint(\\\"\\\\n=== Phase 2: Theta-fixed analysis ===\\\")\\nclean_thetas = [results[f\\\"clean_s{i}\\\"][\\\"theta_mle\\\"] for i in range(1, 11)]\\ntheta_fixed = float(np.mean(clean_thetas))\\nprint(f\\\"  theta_fixed (mean of 10 clean) = {theta_fixed:.6f}\\\")\\n\\nfor cond in conditions:\\n    path = os.path.join(BASE_DIR, \\\"results\\\", f\\\"{cond}_results.json\\\")\\n    resp = load_response_vector(path)\\n    lz_f, lz_star_f = compute_lz_and_lz_star(resp, a, b, c, d, theta_fixed)\\n    results[cond][\\\"lz_fixed\\\"] = lz_f\\n    results[cond][\\\"lz_star_fixed\\\"] = lz_star_f\\n\\n# Table 1\\nprint(\\\"\\\\n\\\" + \\\"=\\\" * 95)\\nprint(\\\"Table 1: Per-condition values (unified recomputation)\\\")\\nprint(\\\"=\\\" * 95)\\nprint(f\\\"{'Condition':>12s} | {'theta_MLE':>9s} | {'lz (Drasgow)':>12s} | {'lz* (Snijders)':>14s} | {'lz*_fixed':>10s} | {'accuracy':>8s}\\\")\\nprint(\\\"-\\\" * 95)\\nfor cond in conditions:\\n    r = results[cond]\\n    print(f\\\"{cond:>12s} | {r['theta_mle']:>+9.4f} | {r['lz']:>+12.4f} | {r['lz_star']:>+14.4f} | {r['lz_star_fixed']:>+10.4f} | {r['accuracy']:>8.4f}\\\")\\n\\n# Phase 3: Cohen's d\\nprint(\\\"\\\\n\\\" + \\\"=\\\" * 95)\\nprint(\\\"Table 2: Cohen's d + 95% Bootstrap CI\\\")\\nprint(\\\"=\\\" * 95)\\n\\nclean_lz_stars = [results[f\\\"clean_s{i}\\\"][\\\"lz_star\\\"] for i in range(1, 11)]\\nclean_lz_stars_fixed = [results[f\\\"clean_s{i}\\\"][\\\"lz_star_fixed\\\"] for i in range(1, 11)]\\n\\ncohens_d_results = {}\\nfor contam_cond in [\\\"contam_15\\\", \\\"contam_50\\\"]:\\n    d_free, ci_lo_free, ci_hi_free = bootstrap_cohens_d(\\n        clean_lz_stars, results[contam_cond][\\\"lz_star\\\"]\\n    )\\n    d_fixed, ci_lo_fixed, ci_hi_fixed = bootstrap_cohens_d(\\n        clean_lz_stars_fixed, results[contam_cond][\\\"lz_star_fixed\\\"]\\n    )\\n\\n    cohens_d_results[contam_cond] = {\\n        \\\"free_theta\\\": {\\\"d\\\": d_free, \\\"ci_lo\\\": ci_lo_free, \\\"ci_hi\\\": ci_hi_free},\\n        \\\"fixed_theta\\\": {\\\"d\\\": d_fixed, \\\"ci_lo\\\": ci_lo_fixed, \\\"ci_hi\\\": ci_hi_fixed},\\n    }\\n\\nprint(f\\\"{'Metric':>20s} | {'d(15%)':>8s} | {'95% CI':>20s} | {'d(50%)':>8s} | {'95% CI':>20s}\\\")\\nprint(\\\"-\\\" * 95)\\nfor label, key in [(\\\"lz* free-theta\\\", \\\"free_theta\\\"), (\\\"lz* theta-fixed\\\", \\\"fixed_theta\\\")]:\\n    r15 = cohens_d_results[\\\"contam_15\\\"][key]\\n    r50 = cohens_d_results[\\\"contam_50\\\"][key]\\n    print(f\\\"{label:>20s} | {r15['d']:>+8.4f} | [{r15['ci_lo']:>+8.4f}, {r15['ci_hi']:>+8.4f}] | {r50['d']:>+8.4f} | [{r50['ci_lo']:>+8.4f}, {r50['ci_hi']:>+8.4f}]\\\")\\n\\n# Save JSON\\noutput = {\\n    \\\"meta\\\": {\\n        \\\"description\\\": \\\"Unified lz* recomputation - Snijders (2001)\\\",\\n        \\\"n_items\\\": int(len(a)),\\n        \\\"theta_fixed\\\": theta_fixed,\\n        \\\"implementation\\\": \\\"unified_lz_recompute.py\\\",\\n        \\\"note\\\": \\\"All values from single codebase, single execution\\\"\\n    },\\n    \\\"per_condition\\\": results,\\n    \\\"cohens_d\\\": cohens_d_results,\\n}\\n\\nout_path = os.path.join(BASE_DIR, \\\"unified_lz_results.json\\\")\\nwith open(out_path, \\\"w\\\") as f:\\n    json.dump(output, f, indent=2)\\nprint(f\\\"\\\\nResults saved to {out_path}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to understand the method. Looking at `unified_lz_recompute.py`, it processes only `contam_15` and `contam_50` conditions. The theta_fixed_all_seeds.json was generated by a different script. Let me look at the script that generated theta_fixed_all_seeds.json.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6960198f-bf44-4b88-a8a3-a7d1192fb26b",
+  "uuid": "1db9fec3-1384-4d3b-8c9d-97285563d30c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NLEVGah4YzvdYaUsaySPWR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3970,
+      "cache_read_input_tokens": 28932,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3970
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PU8i9DGY3GyxiJiUV2bKM7`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "cat /root/autodl-tmp/ctrl_contam_pilot/recompute_theta_fixed_n10.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6960198f-bf44-4b88-a8a3-a7d1192fb26b",
+  "uuid": "ed8e5ceb-4343-4591-9a0e-9a48dd27e800",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NLEVGah4YzvdYaUsaySPWR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3970,
+      "cache_read_input_tokens": 28932,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3970
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-22T20:30:42.018Z_
+
+<details><summary>↩ Tool result · `toolu_01PU8i9DGY3GyxiJiUV2bKM7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nRecompute theta-fixed lz (Drasgow 1985) for all 12 Qwen conditions using\\nthe same computation that produced registry values.\\ntheta_fixed = mean of 10 clean seeds' theta_MLE.\\n\\\"\\\"\\\"\\nimport json, os, csv, math\\nimport numpy as np\\n\\nRESULTS_DIR = '/root/autodl-tmp/ctrl_contam_pilot/results'\\nPARAMS_FILE = '/root/autodl-tmp/ctrl_contam_pilot/mmlu_params.csv'\\n\\n# --- Load 4PL IRT parameters (indexed by position, not item_idx) ---\\nparams = []\\nwith open(PARAMS_FILE) as f:\\n    reader = csv.DictReader(f)\\n    for row in reader:\\n        params.append({\\n            'a': float(row['a_discrimination']),\\n            'b': float(row['b_difficulty']),\\n            'c': float(row['c_guessing']),\\n            'd': float(row['d_feasibility'])\\n        })\\nprint(f\\\"Loaded {len(params)} item parameters\\\")\\n\\n# --- Same functions from theta_fixed_lzstar.py (registry source) ---\\n\\ndef compute_lz_drasgow(response_vector, params, theta):\\n    \\\"\\\"\\\"Drasgow (1985) lz — no variance correction. This is the registry computation.\\\"\\\"\\\"\\n    n = min(len(response_vector), len(params))\\n    l0, el0, var_l0 = 0.0, 0.0, 0.0\\n    for i in range(n):\\n        x = response_vector[i]\\n        p = params[i]\\n        a, b, c, d = p['a'], p['b'], p['c'], p['d']\\n        prob = c + (d - c) / (1.0 + math.exp(-a * (theta - b)))\\n        prob = max(min(prob, 1.0 - 1e-10), 1e-10)\\n        log_p = math.log(prob)\\n        log_q = math.log(1.0 - prob)\\n        l0 += x * log_p + (1 - x) * log_q\\n        el0 += prob * log_p + (1 - prob) * log_q\\n        var_l0 += prob * (1 - prob) * (log_p - log_q) ** 2\\n    if var_l0 <= 0:\\n        return float('nan')\\n    return (l0 - el0) / math.sqrt(var_l0)\\n\\n# --- Load all 12 conditions ---\\nconditions = [f'clean_s{i}' for i in range(1, 11)] + ['contam_15', 'contam_50']\\ndata = {}\\nfor cond in conditions:\\n    fpath = os.path.join(RESULTS_DIR, f'{cond}_results.json')\\n    if os.path.exists(fpath):\\n        data[cond] = json.load(open(fpath))\\n        print(f\\\"Loaded {cond}: theta_mle={data[cond]['theta_mle']:.6f}\\\")\\n    else:\\n        print(f\\\"WARNING: {fpath} not found!\\\")\\n\\n# --- theta_fixed = mean of 10 clean theta_MLEs ---\\nclean_thetas = {f'clean_s{i}': data[f'clean_s{i}']['theta_mle'] for i in range(1, 11)}\\ntheta_fixed = np.mean(list(clean_thetas.values()))\\nprint(f\\\"\\\\ntheta_fixed = mean of 10 clean seeds = {theta_fixed:.6f}\\\")\\nfor k, v in clean_thetas.items():\\n    print(f\\\"  {k}: {v:.6f}\\\")\\n\\n# --- Step 1: Verify free-theta lz matches registry ---\\nprint(f\\\"\\\\n{'='*70}\\\")\\nprint(\\\"VERIFICATION: free-theta lz (should match registry)\\\")\\nprint(f\\\"{'='*70}\\\")\\nfor cond in conditions:\\n    rv = data[cond]['response_vector']\\n    theta_mle = data[cond]['theta_mle']\\n    lz_free = compute_lz_drasgow(rv, params, theta_mle)\\n    lz_uncorrected_field = data[cond].get('lz_uncorrected', None)\\n    match = \\\"\\\"\\n    if lz_uncorrected_field is not None:\\n        match = f\\\" registry={lz_uncorrected_field:.4f} match={abs(lz_free - lz_uncorrected_field) < 1e-6}\\\"\\n    print(f\\\"  {cond:<12} lz_free={lz_free:.4f}{match}\\\")\\n\\n# --- Step 2: Compute theta-fixed lz for all 12 conditions ---\\nprint(f\\\"\\\\n{'='*70}\\\")\\nprint(f\\\"THETA-FIXED LZ (Drasgow 1985, theta_fixed={theta_fixed:.6f})\\\")\\nprint(f\\\"{'='*70}\\\")\\nprint(f\\\"{'Cond':<12} {'theta_MLE':>10} {'lz_free':>10} {'lz_fixed':>10}\\\")\\n\\nresults = {'theta_fixed': theta_fixed, 'clean_thetas': clean_thetas, 'conditions': {}}\\nclean_lz_fixed = []\\nclean_lz_free = []\\n\\nfor cond in conditions:\\n    rv = data[cond]['response_vector']\\n    theta_mle = data[cond]['theta_mle']\\n    lz_free = compute_lz_drasgow(rv, params, theta_mle)\\n    lz_fixed = compute_lz_drasgow(rv, params, theta_fixed)\\n\\n    results['conditions'][cond] = {\\n        'theta_mle': theta_mle,\\n        'lz_free': lz_free,\\n        'lz_fixed': lz_fixed,\\n        'accuracy': data[cond].get('accuracy_overall', None),\\n    }\\n    if cond.startswith('clean_'):\\n        clean_lz_fixed.append(lz_fixed)\\n        clean_lz_free.append(lz_free)\\n\\n    print(f\\\"  {cond:<12} {theta_mle:>10.4f} {lz_free:>10.4f} {lz_fixed:>10.4f}\\\")\\n\\n# --- Step 3: Cohen's d + Bootstrap CI ---\\nprint(f\\\"\\\\n{'='*70}\\\")\\nprint(\\\"COHEN'S D + BOOTSTRAP CI\\\")\\nprint(f\\\"{'='*70}\\\")\\n\\nclean_fixed_arr = np.array(clean_lz_fixed)\\nclean_free_arr = np.array(clean_lz_free)\\n\\ndef bootstrap_cohens_d(clean_values, contam_value, n_bootstrap=10000, seed=42):\\n    rng = np.random.RandomState(seed)\\n    n = len(clean_values)\\n    ds = []\\n    for _ in range(n_bootstrap):\\n        sample = rng.choice(clean_values, size=n, replace=True)\\n        s = np.std(sample, ddof=1)\\n        if s < 1e-10:\\n            continue\\n        d = (np.mean(sample) - contam_value) / s\\n        ds.append(d)\\n    ds = np.array(ds)\\n    return np.mean(ds), np.percentile(ds, 2.5), np.percentile(ds, 97.5)\\n\\ncohens_d_results = {}\\nfor contam in ['contam_15', 'contam_50']:\\n    lz_fixed_contam = results['conditions'][contam]['lz_fixed']\\n    lz_free_contam = results['conditions'][contam]['lz_free']\\n\\n    d_fixed, ci_lo_fixed, ci_hi_fixed = bootstrap_cohens_d(clean_fixed_arr, lz_fixed_contam)\\n    d_free, ci_lo_free, ci_hi_free = bootstrap_cohens_d(clean_free_arr, lz_free_contam)\\n\\n    cohens_d_results[contam] = {\\n        'lz_fixed': {'d': d_fixed, 'ci_95': [ci_lo_fixed, ci_hi_fixed]},\\n        'lz_free': {'d': d_free, 'ci_95': [ci_lo_free, ci_hi_free]},\\n    }\\n    print(f\\\"\\\\n{contam}:\\\")\\n    print(f\\\"  lz_fixed: d={d_fixed:.4f}  95% CI=[{ci_lo_fixed:.4f}, {ci_hi_fixed:.4f}]\\\")\\n    print(f\\\"  lz_free:  d={d_free:.4f}  95% CI=[{ci_lo_free:.4f}, {ci_hi_free:.4f}]\\\")\\n\\nresults['cohens_d'] = cohens_d_results\\nresults['clean_summary'] = {\\n    'lz_fixed_mean': float(np.mean(clean_fixed_arr)),\\n    'lz_fixed_std': float(np.std(clean_fixed_arr, ddof=1)),\\n    'lz_free_mean': float(np.mean(clean_free_arr)),\\n    'lz_free_std': float(np.std(clean_free_arr, ddof=1)),\\n}\\n\\n# --- Save ---\\nout_path = '/root/autodl-tmp/qwen_theta_fixed_consistent.json'\\nwith open(out_path, 'w') as f:\\n    json.dump(results, f, indent=2, default=lambda x: float(x) if isinstance(x, np.floating) else x)\\nprint(f\\\"\\\\nSaved to {out_path}\\\")\\n\\n# Also save to results dir\\nout_path2 = os.path.join(RESULTS_DIR, 'theta_fixed_n10_consistent.json')\\nwith open(out_path2, 'w') as f:\\n    json.dump(results, f, indent=2, default=lambda x: float(x) if isinstance(x, np.floating) else x)\\nprint(f\\\"Saved to {out_path2}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6960198f-bf44-4b88-a8a3-a7d1192fb26b",
+  "uuid": "3c718310-72f0-4309-9dc6-0b2703f4b44a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nRecompute theta-fixed lz (Drasgow 1985) for all 12 Qwen conditions using\\\\nthe same computation that produced registry values.\\\\ntheta_fixed = mean of 10 clean seeds' theta_MLE.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json, os, csv, math\\\\nimport numpy as np\\\\n\\\\nRESULTS_DIR = '/root/autodl-tmp/ctrl_contam_pilot/results'\\\\nPARAMS_FILE = '/root/autodl-tmp/ctrl_contam_pilot/mmlu_params.csv'\\\\n\\\\n# --- Load 4PL IRT parameters (indexed by position, not item_idx) ---\\\\nparams = []\\\\nwith open(PARAMS_FILE) as f:\\\\n    reader = csv.DictReader(f)\\\\n    for row in reader:\\\\n        params.append({\\\\n            'a': float(row['a_discrimination']),\\\\n            'b': float(row['b_difficulty']),\\\\n            'c': float(row['c_guessing']),\\\\n            'd': float(row['d_feasibility'])\\\\n        })\\\\nprint(f\\\\\\\"Loaded {len(params)} item parameters\\\\\\\")\\\\n\\\\n# --- Same functions from theta_fixed_lzstar.py (registry source) ---\\\\n\\\\ndef compute_lz_drasgow(response_vector, params, theta):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Drasgow (1985) lz — no variance correction. This is the registry computation.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n = min(len(response_vector), len(params))\\\\n    l0, el0, var_l0 = 0.0, 0.0, 0.0\\\\n    for i in range(n):\\\\n        x = response_vector[i]\\\\n        p = params[i]\\\\n        a, b, c, d = p['a'], p['b'], p['c'], p['d']\\\\n        prob = c + (d - c) / (1.0 + math.exp(-a * (theta - b)))\\\\n        prob = max(min(prob, 1.0 - 1e-10), 1e-10)\\\\n        log_p = math.log(prob)\\\\n        log_q = math.log(1.0 - prob)\\\\n        l0 += x * log_p + (1 - x) * log_q\\\\n        el0 += prob * log_p + (1 - prob) * log_q\\\\n        var_l0 += prob * (1 - prob) * (log_p - log_q) ** 2\\\\n    if var_l0 <= 0:\\\\n        return float('nan')\\\\n    return (l0 - el0) / math.sqrt(var_l0)\\\\n\\\\n# --- Load all 12 conditions ---\\\\nconditions = [f'clean_s{i}' for i in range(1, 11)] + ['contam_15', 'contam_50']\\\\ndata = {}\\\\nfor cond in conditions:\\\\n    fpath = os.path.join(RESULTS_DIR, f'{cond}_results.json')\\\\n    if os.path.exists(fpath):\\\\n        data[cond] = json.load(open(fpath))\\\\n        print(f\\\\\\\"Loaded {cond}: theta_mle={data[cond]['theta_mle']:.6f}\\\\\\\")\\\\n    else:\\\\n        print(f\\\\\\\"WARNING: {fpath} not found!\\\\\\\")\\\\n\\\\n# --- theta_fixed = mean of 10 clean theta_MLEs ---\\\\nclean_thetas = {f'clean_s{i}': data[f'clean_s{i}']['theta_mle'] for i in range(1, 11)}\\\\ntheta_fixed = np.mean(list(clean_thetas.values()))\\\\nprint(f\\\\\\\"\\\\\\\\ntheta_fixed = mean of 10 clean seeds = {theta_fixed:.6f}\\\\\\\")\\\\nfor k, v in clean_thetas.items():\\\\n    print(f\\\\\\\"  {k}: {v:.6f}\\\\\\\")\\\\n\\\\n# --- Step 1: Verify free-theta lz matches registry ---\\\\nprint(f\\\\\\\"\\\\\\\\n{'='*70}\\\\\\\")\\\\nprint(\\\\\\\"VERIFICATION: free-theta lz (should match registry)\\\\\\\")\\\\nprint(f\\\\\\\"{'='*70}\\\\\\\")\\\\nfor cond in conditions:\\\\n    rv = data[cond]['response_vector']\\\\n    theta_mle = data[cond]['theta_mle']\\\\n    lz_free = compute_lz_drasgow(rv, params, theta_mle)\\\\n    lz_uncorrected_field = data[cond].get('lz_uncorrected', None)\\\\n    match = \\\\\\\"\\\\\\\"\\\\n    if lz_uncorrected_field is not None:\\\\n        match = f\\\\\\\" registry={lz_uncorrected_field:.4f} match={abs(lz_free - lz_uncorrected_field) < 1e-6}\\\\\\\"\\\\n    print(f\\\\\\\"  {cond:<12} lz_free={lz_free:.4f}{match}\\\\\\\")\\\\n\\\\n# --- Step 2: Compute theta-fixed lz for all 12 conditions ---\\\\nprint(f\\\\\\\"\\\\\\\\n{'='*70}\\\\\\\")\\\\nprint(f\\\\\\\"THETA-FIXED LZ (Drasgow 1985, theta_fixed={theta_fixed:.6f})\\\\\\\")\\\\nprint(f\\\\\\\"{'='*70}\\\\\\\")\\\\nprint(f\\\\\\\"{'Cond':<12} {'theta_MLE':>10} {'lz_free':>10} {'lz_fixed':>10}\\\\\\\")\\\\n\\\\nresults = {'theta_fixed': theta_fixed, 'clean_thetas': clean_thetas, 'conditions': {}}\\\\nclean_lz_fixed = []\\\\nclean_lz_free = []\\\\n\\\\nfor cond in conditions:\\\\n    rv = data[cond]['response_vector']\\\\n    theta_mle = data[cond]['theta_mle']\\\\n    lz_free = compute_lz_drasgow(rv, params, theta_mle)\\\\n    lz_fixed = compute_lz_drasgow(rv, params, theta_fixed)\\\\n\\\\n    results['conditions'][cond] = {\\\\n        'theta_mle': theta_mle,\\\\n        'lz_free': lz_free,\\\\n        'lz_fixed': lz_fixed,\\\\n        'accuracy': data[cond].get('accuracy_overall', None),\\\\n    }\\\\n    if cond.startswith('clean_'):\\\\n        clean_lz_fixed.append(lz_fixed)\\\\n        clean_lz_free.append(lz_free)\\\\n\\\\n    print(f\\\\\\\"  {cond:<12} {theta_mle:>10.4f} {lz_free:>10.4f} {lz_fixed:>10.4f}\\\\\\\")\\\\n\\\\n# --- Step 3: Cohen's d + Bootstrap CI ---\\\\nprint(f\\\\\\\"\\\\\\\\n{'='*70}\\\\\\\")\\\\nprint(\\\\\\\"COHEN'S D + BOOTSTRAP CI\\\\\\\")\\\\nprint(f\\\\\\\"{'='*70}\\\\\\\")\\\\n\\\\nclean_fixed_arr = np.array(clean_lz_fixed)\\\\nclean_free_arr = np.array(clean_lz_free)\\\\n\\\\ndef bootstrap_cohens_d(clean_values, contam_value, n_bootstrap=10000, seed=42):\\\\n    rng = np.random.RandomState(seed)\\\\n    n = len(clean_values)\\\\n    ds = []\\\\n    for _ in range(n_bootstrap):\\\\n        sample = rng.choice(clean_values, size=n, replace=True)\\\\n        s = np.std(sample, ddof=1)\\\\n        if s < 1e-10:\\\\n            continue\\\\n        d = (np.mean(sample) - contam_value) / s\\\\n        ds.append(d)\\\\n    ds = np.array(ds)\\\\n    return np.mean(ds), np.percentile(ds, 2.5), np.percentile(ds, 97.5)\\\\n\\\\ncohens_d_results = {}\\\\nfor contam in ['contam_15', 'contam_50']:\\\\n    lz_fixed_contam = results['conditions'][contam]['lz_fixed']\\\\n    lz_free_contam = results['conditions'][contam]['lz_free']\\\\n\\\\n    d_fixed, ci_lo_fixed, ci_hi_fixed = bootstrap_cohens_d(clean_fixed_arr, lz_fixed_contam)\\\\n    d_free, ci_lo_free, ci_hi_free = bootstrap_cohens_d(clean_free_arr, lz_free_contam)\\\\n\\\\n    cohens_d_results[contam] = {\\\\n        'lz_fixed': {'d': d_fixed, 'ci_95': [ci_lo_fixed, ci_hi_fixed]},\\\\n        'lz_free': {'d': d_free, 'ci_95': [ci_lo_free, ci_hi_free]},\\\\n    }\\\\n    print(f\\\\\\\"\\\\\\\\n{contam}:\\\\\\\")\\\\n    print(f\\\\\\\"  lz_fixed: d={d_fixed:.4f}  95% CI=[{ci_lo_fixed:.4f}, {ci_hi_fixed:.4f}]\\\\\\\")\\\\n    print(f\\\\\\\"  lz_free:  d={d_free:.4f}  95% CI=[{ci_lo_free:.4f}, {ci_hi_free:.4f}]\\\\\\\")\\\\n\\\\nresults['cohens_d'] = cohens_d_results\\\\nresults['clean_summary'] = {\\\\n    'lz_fixed_mean': float(np.mean(clean_fixed_arr)),\\\\n    'lz_fixed_std': float(np.std(clean_fixed_arr, ddof=1)),\\\\n    'lz_free_mean': float(np.mean(clean_free_arr)),\\\\n    'lz_free_std': float(np.std(clean_free_arr, ddof=1)),\\\\n}\\\\n\\\\n# --- Save ---\\\\nout_path = '/root/autodl-tmp/qwen_theta_fixed_consistent.json'\\\\nwith open(out_path, 'w') as f:\\\\n    json.dump(results, f, indent=2, default=lambda x: float(x) if isinstance(x, np.floating) else x)\\\\nprint(f\\\\\\\"\\\\\\\\nSaved to {out_path}\\\\\\\")\\\\n\\\\n# Also save to results dir\\\\nout_path2 = os.path.join(RESULTS_DIR, 'theta_fixed_n10_consistent.json')\\\\nwith open(out_path2, 'w') as f:\\\\n    json.dump(results, f, indent=2, default=lambda x: float(x) if isinstance(x, np.floating) else x)\\\\nprint(f\\\\\\\"Saved to {out_path2}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nRecompute theta-fixed lz (Drasgow 1985) for all 12 Qwen conditions using\\nthe same computation that produced registry values.\\ntheta_fixed = mean of 10 clean seeds' theta_MLE.\\n\\\"\\\"\\\"\\nimport json, os, csv, math\\nimport numpy as np\\n\\nRESULTS_DIR = '/root/autodl-tmp/ctrl_contam_pilot/results'\\nPARAMS_FILE = '/root/autodl-tmp/ctrl_contam_pilot/mmlu_params.csv'\\n\\n# --- Load 4PL IRT parameters (indexed by position, not item_idx) ---\\nparams = []\\nwith open(PARAMS_FILE) as f:\\n    reader = csv.DictReader(f)\\n    for row in reader:\\n        params.append({\\n            'a': float(row['a_discrimination']),\\n            'b': float(row['b_difficulty']),\\n            'c': float(row['c_guessing']),\\n            'd': float(row['d_feasibility'])\\n        })\\nprint(f\\\"Loaded {len(params)} item parameters\\\")\\n\\n# --- Same functions from theta_fixed_lzstar.py (registry source) ---\\n\\ndef compute_lz_drasgow(response_vector, params, theta):\\n    \\\"\\\"\\\"Drasgow (1985) lz — no variance correction. This is the registry computation.\\\"\\\"\\\"\\n    n = min(len(response_vector), len(params))\\n    l0, el0, var_l0 = 0.0, 0.0, 0.0\\n    for i in range(n):\\n        x = response_vector[i]\\n        p = params[i]\\n        a, b, c, d = p['a'], p['b'], p['c'], p['d']\\n        prob = c + (d - c) / (1.0 + math.exp(-a * (theta - b)))\\n        prob = max(min(prob, 1.0 - 1e-10), 1e-10)\\n        log_p = math.log(prob)\\n        log_q = math.log(1.0 - prob)\\n        l0 += x * log_p + (1 - x) * log_q\\n        el0 += prob * log_p + (1 - prob) * log_q\\n        var_l0 += prob * (1 - prob) * (log_p - log_q) ** 2\\n    if var_l0 <= 0:\\n        return float('nan')\\n    return (l0 - el0) / math.sqrt(var_l0)\\n\\n# --- Load all 12 conditions ---\\nconditions = [f'clean_s{i}' for i in range(1, 11)] + ['contam_15', 'contam_50']\\ndata = {}\\nfor cond in conditions:\\n    fpath = os.path.join(RESULTS_DIR, f'{cond}_results.json')\\n    if os.path.exists(fpath):\\n        data[cond] = json.load(open(fpath))\\n        print(f\\\"Loaded {cond}: theta_mle={data[cond]['theta_mle']:.6f}\\\")\\n    else:\\n        print(f\\\"WARNING: {fpath} not found!\\\")\\n\\n# --- theta_fixed = mean of 10 clean theta_MLEs ---\\nclean_thetas = {f'clean_s{i}': data[f'clean_s{i}']['theta_mle'] for i in range(1, 11)}\\ntheta_fixed = np.mean(list(clean_thetas.values()))\\nprint(f\\\"\\\\ntheta_fixed = mean of 10 clean seeds = {theta_fixed:.6f}\\\")\\nfor k, v in clean_thetas.items():\\n    print(f\\\"  {k}: {v:.6f}\\\")\\n\\n# --- Step 1: Verify free-theta lz matches registry ---\\nprint(f\\\"\\\\n{'='*70}\\\")\\nprint(\\\"VERIFICATION: free-theta lz (should match registry)\\\")\\nprint(f\\\"{'='*70}\\\")\\nfor cond in conditions:\\n    rv = data[cond]['response_vector']\\n    theta_mle = data[cond]['theta_mle']\\n    lz_free = compute_lz_drasgow(rv, params, theta_mle)\\n    lz_uncorrected_field = data[cond].get('lz_uncorrected', None)\\n    match = \\\"\\\"\\n    if lz_uncorrected_field is not None:\\n        match = f\\\" registry={lz_uncorrected_field:.4f} match={abs(lz_free - lz_uncorrected_field) < 1e-6}\\\"\\n    print(f\\\"  {cond:<12} lz_free={lz_free:.4f}{match}\\\")\\n\\n# --- Step 2: Compute theta-fixed lz for all 12 conditions ---\\nprint(f\\\"\\\\n{'='*70}\\\")\\nprint(f\\\"THETA-FIXED LZ (Drasgow 1985, theta_fixed={theta_fixed:.6f})\\\")\\nprint(f\\\"{'='*70}\\\")\\nprint(f\\\"{'Cond':<12} {'theta_MLE':>10} {'lz_free':>10} {'lz_fixed':>10}\\\")\\n\\nresults = {'theta_fixed': theta_fixed, 'clean_thetas': clean_thetas, 'conditions': {}}\\nclean_lz_fixed = []\\nclean_lz_free = []\\n\\nfor cond in conditions:\\n    rv = data[cond]['response_vector']\\n    theta_mle = data[cond]['theta_mle']\\n    lz_free = compute_lz_drasgow(rv, params, theta_mle)\\n    lz_fixed = compute_lz_drasgow(rv, params, theta_fixed)\\n\\n    results['conditions'][cond] = {\\n        'theta_mle': theta_mle,\\n        'lz_free': lz_free,\\n        'lz_fixed': lz_fixed,\\n        'accuracy': data[cond].get('accuracy_overall', None),\\n    }\\n    if cond.startswith('clean_'):\\n        clean_lz_fixed.append(lz_fixed)\\n        clean_lz_free.append(lz_free)\\n\\n    print(f\\\"  {cond:<12} {theta_mle:>10.4f} {lz_free:>10.4f} {lz_fixed:>10.4f}\\\")\\n\\n# --- Step 3: Cohen's d + Bootstrap CI ---\\nprint(f\\\"\\\\n{'='*70}\\\")\\nprint(\\\"COHEN'S D + BOOTSTRAP CI\\\")\\nprint(f\\\"{'='*70}\\\")\\n\\nclean_fixed_arr = np.array(clean_lz_fixed)\\nclean_free_arr = np.array(clean_lz_free)\\n\\ndef bootstrap_cohens_d(clean_values, contam_value, n_bootstrap=10000, seed=42):\\n    rng = np.random.RandomState(seed)\\n    n = len(clean_values)\\n    ds = []\\n    for _ in range(n_bootstrap):\\n        sample = rng.choice(clean_values, size=n, replace=True)\\n        s = np.std(sample, ddof=1)\\n        if s < 1e-10:\\n            continue\\n        d = (np.mean(sample) - contam_value) / s\\n        ds.append(d)\\n    ds = np.array(ds)\\n    return np.mean(ds), np.percentile(ds, 2.5), np.percentile(ds, 97.5)\\n\\ncohens_d_results = {}\\nfor contam in ['contam_15', 'contam_50']:\\n    lz_fixed_contam = results['conditions'][contam]['lz_fixed']\\n    lz_free_contam = results['conditions'][contam]['lz_free']\\n\\n    d_fixed, ci_lo_fixed, ci_hi_fixed = bootstrap_cohens_d(clean_fixed_arr, lz_fixed_contam)\\n    d_free, ci_lo_free, ci_hi_free = bootstrap_cohens_d(clean_free_arr, lz_free_contam)\\n\\n    cohens_d_results[contam] = {\\n        'lz_fixed': {'d': d_fixed, 'ci_95': [ci_lo_fixed, ci_hi_fixed]},\\n        'lz_free': {'d': d_free, 'ci_95': [ci_lo_free, ci_hi_free]},\\n    }\\n    print(f\\\"\\\\n{contam}:\\\")\\n    print(f\\\"  lz_fixed: d={d_fixed:.4f}  95% CI=[{ci_lo_fixed:.4f}, {ci_hi_fixed:.4f}]\\\")\\n    print(f\\\"  lz_free:  d={d_free:.4f}  95% CI=[{ci_lo_free:.4f}, {ci_hi_free:.4f}]\\\")\\n\\nresults['cohens_d'] = cohens_d_results\\nresults['clean_summary'] = {\\n    'lz_fixed_mean': float(np.mean(clean_fixed_arr)),\\n    'lz_fixed_std': float(np.std(clean_fixed_arr, ddof=1)),\\n    'lz_free_mean': float(np.mean(clean_free_arr)),\\n    'lz_free_std': float(np.std(clean_free_arr, ddof=1)),\\n}\\n\\n# --- Save ---\\nout_path = '/root/autodl-tmp/qwen_theta_fixed_consistent.json'\\nwith open(out_path, 'w') as f:\\n    json.dump(results, f, indent=2, default=lambda x: float(x) if isinstance(x, np.floating) else x)\\nprint(f\\\"\\\\nSaved to {out_path}\\\")\\n\\n# Also save to results dir\\nout_path2 = os.path.join(RESULTS_DIR, 'theta_fixed_n10_consistent.json')\\nwith open(out_path2, 'w') as f:\\n    json.dump(results, f, indent=2, default=lambda x: float(x) if isinstance(x, np.floating) else x)\\nprint(f\\\"Saved to {out_path2}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand the method. The key functions are:
+1. `compute_lz_drasgow` - computes lz using Drasgow (1985) formula with a given theta
+2. Bootstrap Cohen's d: resamples clean values, computes d = (mean(boot_clean) - contam_val) / std(boot_clean)
+
+Note in `recompute_theta_fixed_n10.py`, the bootstrap formula is `d = (np.mean(sample) - contam_value) / s`, which means d = (clean_mean - contam_value) / clean_std. This gives a negative d when contam_value > clean_mean.
+
+
+But the d_fixed values in theta_fixed_all_seeds.json are positive (like 7.99), so I need to track down which script actually generated that file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6960198f-bf44-4b88-a8a3-a7d1192fb26b",
+  "uuid": "551ec4db-464c-4cdb-8c40-ce22a6d3735a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017EtVmB2YLNiBxZ9b6MoD1D",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3104,
+      "cache_read_input_tokens": 32902,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3104
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Q1NrgD4zv62qBEQ6ZJuhKa`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "cat /root/autodl-tmp/ctrl_contam_pilot/compute_fixed_theta.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6960198f-bf44-4b88-a8a3-a7d1192fb26b",
+  "uuid": "e7ed6b60-af2f-4832-9278-090a5fdb4f7b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017EtVmB2YLNiBxZ9b6MoD1D",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3104,
+      "cache_read_input_tokens": 32902,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3104
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-22T20:30:58.449Z_
+
+<details><summary>↩ Tool result · `toolu_01Q1NrgD4zv62qBEQ6ZJuhKa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import csv\\nimport json\\nimport os\\nimport numpy as np\\n\\nBASE_DIR = \\\"/root/autodl-tmp/ctrl_contam_pilot\\\"\\nPARAMS_PATH = os.path.join(BASE_DIR, \\\"mmlu_params.csv\\\")\\nRESULTS_DIR = os.path.join(BASE_DIR, \\\"results\\\")\\nTHETA_FIXED = -0.10223831233869138\\n\\ndef load_irt_params(path):\\n    params = {}\\n    with open(path) as f:\\n        reader = csv.DictReader(f)\\n        for row in reader:\\n            idx = int(row[\\\"item_idx\\\"])\\n            params[idx] = {\\n                \\\"a\\\": float(row[\\\"a_discrimination\\\"]),\\n                \\\"b\\\": float(row[\\\"b_difficulty\\\"]),\\n                \\\"c\\\": float(row[\\\"c_guessing\\\"]),\\n                \\\"d\\\": float(row[\\\"d_feasibility\\\"]),\\n            }\\n    return params\\n\\ndef irf_4pl(theta, a, b, c, d):\\n    return c + (d - c) / (1.0 + np.exp(-a * (theta - b)))\\n\\ndef compute_lz_drasgow(responses, irt_params, theta):\\n    \\\"\\\"\\\"Drasgow's lz (uncorrected) — matches lz_fixed in theta_fixed_n10_consistent.json\\\"\\\"\\\"\\n    l0 = 0.0\\n    E_l0 = 0.0\\n    Var_l0 = 0.0\\n    for i in range(len(responses)):\\n        if i not in irt_params:\\n            continue\\n        p = irt_params[i]\\n        a, b, c, d = p[\\\"a\\\"], p[\\\"b\\\"], p[\\\"c\\\"], p[\\\"d\\\"]\\n        P = irf_4pl(theta, a, b, c, d)\\n        P = np.clip(P, 1e-10, 1.0 - 1e-10)\\n        Q = 1.0 - P\\n        x = responses[i]\\n        log_P = np.log(P)\\n        log_Q = np.log(Q)\\n        l0 += x * log_P + (1 - x) * log_Q\\n        E_l0 += P * log_P + Q * log_Q\\n        g = log_P - log_Q\\n        Var_l0 += P * Q * g ** 2\\n    if Var_l0 < 1e-15:\\n        return 0.0\\n    return (l0 - E_l0) / np.sqrt(Var_l0)\\n\\ndef compute_lz_star(responses, irt_params, theta):\\n    \\\"\\\"\\\"lz* with Snijders (2001) variance correction\\\"\\\"\\\"\\n    l0 = 0.0\\n    E_l0 = 0.0\\n    Var_l0 = 0.0\\n    I_theta = 0.0\\n    C_theta = 0.0\\n    for i in range(len(responses)):\\n        if i not in irt_params:\\n            continue\\n        p = irt_params[i]\\n        a, b, c, d = p[\\\"a\\\"], p[\\\"b\\\"], p[\\\"c\\\"], p[\\\"d\\\"]\\n        P = irf_4pl(theta, a, b, c, d)\\n        P = np.clip(P, 1e-10, 1.0 - 1e-10)\\n        Q = 1.0 - P\\n        x = responses[i]\\n        log_P = np.log(P)\\n        log_Q = np.log(Q)\\n        l0 += x * log_P + (1 - x) * log_Q\\n        E_l0 += P * log_P + Q * log_Q\\n        g = log_P - log_Q\\n        Var_l0 += P * Q * g ** 2\\n        z = a * (theta - b)\\n        sigma = 1.0 / (1.0 + np.exp(-np.clip(z, -30, 30)))\\n        dP = a * (d - c) * sigma * (1.0 - sigma)\\n        h = dP / (P * Q)\\n        I_theta += P * Q * h ** 2\\n        C_theta += P * Q * h * g\\n    if Var_l0 < 1e-15:\\n        return 0.0\\n    Var_star = Var_l0 - C_theta ** 2 / I_theta if I_theta > 1e-15 else Var_l0\\n    if Var_star <= 0:\\n        Var_star = Var_l0\\n    return (l0 - E_l0) / np.sqrt(Var_star)\\n\\ndef bootstrap_cohens_d(contam_val, clean_values, n_boot=10000, seed=42):\\n    rng = np.random.RandomState(seed)\\n    clean_arr = np.array(clean_values)\\n    n = len(clean_arr)\\n    ds = []\\n    for _ in range(n_boot):\\n        idx = rng.randint(0, n, size=n)\\n        boot = clean_arr[idx]\\n        d = (contam_val - np.mean(boot)) / np.std(boot, ddof=1)\\n        ds.append(d)\\n    ds = np.array(ds)\\n    return np.percentile(ds, 2.5), np.percentile(ds, 97.5)\\n\\n# Load IRT params\\nirt_params = load_irt_params(PARAMS_PATH)\\nn_items = len(irt_params)\\n\\n# Conditions to compute\\nconditions = [\\n    \\\"contam_15_s3\\\",\\n    \\\"contam_25\\\",\\n    \\\"contam_25_s2\\\",\\n    \\\"contam_25_s3\\\",\\n    \\\"contam_50_s2\\\",\\n]\\n\\n# Also verify clean baseline\\nclean_conditions = [f\\\"clean_s{i}\\\" for i in range(1, 11)]\\n\\n# Load clean lz_fixed from existing file for verification\\nwith open(os.path.join(RESULTS_DIR, \\\"theta_fixed_n10_consistent.json\\\")) as f:\\n    existing = json.load(f)\\n\\nprint(f\\\"theta_fixed = {THETA_FIXED}\\\")\\nprint(f\\\"n_irt_items = {n_items}\\\")\\nprint()\\n\\n# Compute clean baseline with fixed theta\\nprint(\\\"=== CLEAN BASELINE (fixed theta) ===\\\")\\nclean_lz_fixed = []\\nclean_lz_star_fixed = []\\nfor cond in clean_conditions:\\n    fpath = os.path.join(RESULTS_DIR, f\\\"{cond}_results.json\\\")\\n    with open(fpath) as f:\\n        data = json.load(f)\\n    resp = data[\\\"response_vector\\\"]\\n    lz_val = compute_lz_drasgow(resp, irt_p\\n\\n... [截断: 输出过长，省略 1063 字符] ...\\n\\nd(f)\\n    resp = data[\\\"response_vector\\\"]\\n    lz_val = compute_lz_drasgow(resp, irt_params, THETA_FIXED)\\n    lz_star_val = compute_lz_star(resp, irt_params, THETA_FIXED)\\n    d = (lz_val - np.mean(clean_lz_arr)) / np.std(clean_lz_arr, ddof=1)\\n    d_star = (lz_star_val - np.mean(clean_lz_star_arr)) / np.std(clean_lz_star_arr, ddof=1)\\n    print(f\\\"  {cond}: lz_fixed={lz_val:.6f}, d_fixed={d:.3f} (expected={expected_d}), lz_star_fixed={lz_star_val:.6f}, d_star_fixed={d_star:.3f}\\\")\\n\\n# Also verify contam_15_s2 (d_fixed = 7.79)\\nfpath = os.path.join(RESULTS_DIR, \\\"contam_15_s2_results.json\\\")\\nwith open(fpath) as f:\\n    data = json.load(f)\\nresp = data[\\\"response_vector\\\"]\\nlz_val = compute_lz_drasgow(resp, irt_params, THETA_FIXED)\\nlz_star_val = compute_lz_star(resp, irt_params, THETA_FIXED)\\nd = (lz_val - np.mean(clean_lz_arr)) / np.std(clean_lz_arr, ddof=1)\\nprint(f\\\"  contam_15_s2: lz_fixed={lz_val:.6f}, d_fixed={d:.3f} (expected=7.79), lz_star_fixed={lz_star_val:.6f}\\\")\\n\\n# Compute for missing conditions\\nprint(\\\"\\\\n=== NEW COMPUTATIONS ===\\\")\\nresults = {}\\nfor cond in conditions:\\n    fpath = os.path.join(RESULTS_DIR, f\\\"{cond}_results.json\\\")\\n    if not os.path.exists(fpath):\\n        print(f\\\"  {cond}: SKIPPED (no results file)\\\")\\n        continue\\n    with open(fpath) as f:\\n        data = json.load(f)\\n    resp = data[\\\"response_vector\\\"]\\n    lz_val = compute_lz_drasgow(resp, irt_params, THETA_FIXED)\\n    lz_star_val = compute_lz_star(resp, irt_params, THETA_FIXED)\\n    d = (lz_val - np.mean(clean_lz_arr)) / np.std(clean_lz_arr, ddof=1)\\n    d_star = (lz_star_val - np.mean(clean_lz_star_arr)) / np.std(clean_lz_star_arr, ddof=1)\\n    ci_lo, ci_hi = bootstrap_cohens_d(lz_val, clean_lz_fixed)\\n    ci_star_lo, ci_star_hi = bootstrap_cohens_d(lz_star_val, clean_lz_star_fixed)\\n    results[cond] = {\\n        \\\"lz_fixed\\\": lz_val,\\n        \\\"lz_star_fixed\\\": lz_star_val,\\n        \\\"d_fixed\\\": d,\\n        \\\"d_star_fixed\\\": d_star,\\n        \\\"ci_95\\\": [ci_lo, ci_hi],\\n        \\\"ci_star_95\\\": [ci_star_lo, ci_star_hi],\\n        \\\"theta_mle\\\": data[\\\"theta_mle\\\"],\\n        \\\"lz_star_free\\\": data[\\\"lz_star\\\"],\\n        \\\"accuracy\\\": data[\\\"accuracy_overall\\\"],\\n    }\\n    print(f\\\"  {cond}: lz_fixed={lz_val:.4f}, d_fixed={d:.3f}, CI=[{ci_lo:.3f}, {ci_hi:.3f}] | lz*_fixed={lz_star_val:.4f}, d*_fixed={d_star:.3f}, CI*=[{ci_star_lo:.3f}, {ci_star_hi:.3f}]\\\")\\n\\n# Check contam_50_s3\\nfpath = os.path.join(RESULTS_DIR, \\\"contam_50_s3_results.json\\\")\\nif os.path.exists(fpath):\\n    with open(fpath) as f:\\n        data = json.load(f)\\n    resp = data[\\\"response_vector\\\"]\\n    lz_val = compute_lz_drasgow(resp, irt_params, THETA_FIXED)\\n    lz_star_val = compute_lz_star(resp, irt_params, THETA_FIXED)\\n    d = (lz_val - np.mean(clean_lz_arr)) / np.std(clean_lz_arr, ddof=1)\\n    d_star = (lz_star_val - np.mean(clean_lz_star_arr)) / np.std(clean_lz_star_arr, ddof=1)\\n    ci_lo, ci_hi = bootstrap_cohens_d(lz_val, clean_lz_fixed)\\n    ci_star_lo, ci_star_hi = bootstrap_cohens_d(lz_star_val, clean_lz_star_fixed)\\n    results[\\\"contam_50_s3\\\"] = {\\n        \\\"lz_fixed\\\": lz_val, \\\"lz_star_fixed\\\": lz_star_val,\\n        \\\"d_fixed\\\": d, \\\"d_star_fixed\\\": d_star,\\n        \\\"ci_95\\\": [ci_lo, ci_hi], \\\"ci_star_95\\\": [ci_star_lo, ci_star_hi],\\n    }\\n    print(f\\\"  contam_50_s3: lz_fixed={lz_val:.4f}, d_fixed={d:.3f}, CI=[{ci_lo:.3f}, {ci_hi:.3f}]\\\")\\nelse:\\n    print(f\\\"  contam_50_s3: SKIPPED (no results file yet)\\\")\\n\\n# Save results\\noutput = {\\n    \\\"theta_fixed\\\": THETA_FIXED,\\n    \\\"clean_baseline\\\": {\\n        \\\"lz_fixed_values\\\": clean_lz_fixed,\\n        \\\"lz_fixed_mean\\\": float(np.mean(clean_lz_arr)),\\n        \\\"lz_fixed_std\\\": float(np.std(clean_lz_arr, ddof=1)),\\n        \\\"lz_star_fixed_values\\\": clean_lz_star_fixed,\\n        \\\"lz_star_fixed_mean\\\": float(np.mean(clean_lz_star_arr)),\\n        \\\"lz_star_fixed_std\\\": float(np.std(clean_lz_star_arr, ddof=1)),\\n        \\\"n\\\": len(clean_lz_fixed),\\n    },\\n    \\\"contam_results\\\": results,\\n}\\nout_path = os.path.join(RESULTS_DIR, \\\"theta_fixed_all_seeds.json\\\")\\nwith open(out_path, \\\"w\\\") as f:\\n    json.dump(output, f, indent=2)\\nprint(f\\\"\\\\nSaved to {out_path}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6960198f-bf44-4b88-a8a3-a7d1192fb26b",
+  "uuid": "635952d2-0ec9-4354-88c0-0b8f5ee82940",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import csv\\\\nimport json\\\\nimport os\\\\nimport numpy as np\\\\n\\\\nBASE_DIR = \\\\\\\"/root/autodl-tmp/ctrl_contam_pilot\\\\\\\"\\\\nPARAMS_PATH = os.path.join(BASE_DIR, \\\\\\\"mmlu_params.csv\\\\\\\")\\\\nRESULTS_DIR = os.path.join(BASE_DIR, \\\\\\\"results\\\\\\\")\\\\nTHETA_FIXED = -0.10223831233869138\\\\n\\\\ndef load_irt_params(path):\\\\n    params = {}\\\\n    with open(path) as f:\\\\n        reader = csv.DictReader(f)\\\\n        for row in reader:\\\\n            idx = int(row[\\\\\\\"item_idx\\\\\\\"])\\\\n            params[idx] = {\\\\n                \\\\\\\"a\\\\\\\": float(row[\\\\\\\"a_discrimination\\\\\\\"]),\\\\n                \\\\\\\"b\\\\\\\": float(row[\\\\\\\"b_difficulty\\\\\\\"]),\\\\n                \\\\\\\"c\\\\\\\": float(row[\\\\\\\"c_guessing\\\\\\\"]),\\\\n                \\\\\\\"d\\\\\\\": float(row[\\\\\\\"d_feasibility\\\\\\\"]),\\\\n            }\\\\n    return params\\\\n\\\\ndef irf_4pl(theta, a, b, c, d):\\\\n    return c + (d - c) / (1.0 + np.exp(-a * (theta - b)))\\\\n\\\\ndef compute_lz_drasgow(responses, irt_params, theta):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Drasgow's lz (uncorrected) — matches lz_fixed in theta_fixed_n10_consistent.json\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    l0 = 0.0\\\\n    E_l0 = 0.0\\\\n    Var_l0 = 0.0\\\\n    for i in range(len(responses)):\\\\n        if i not in irt_params:\\\\n            continue\\\\n        p = irt_params[i]\\\\n        a, b, c, d = p[\\\\\\\"a\\\\\\\"], p[\\\\\\\"b\\\\\\\"], p[\\\\\\\"c\\\\\\\"], p[\\\\\\\"d\\\\\\\"]\\\\n        P = irf_4pl(theta, a, b, c, d)\\\\n        P = np.clip(P, 1e-10, 1.0 - 1e-10)\\\\n        Q = 1.0 - P\\\\n        x = responses[i]\\\\n        log_P = np.log(P)\\\\n        log_Q = np.log(Q)\\\\n        l0 += x * log_P + (1 - x) * log_Q\\\\n        E_l0 += P * log_P + Q * log_Q\\\\n        g = log_P - log_Q\\\\n        Var_l0 += P * Q * g ** 2\\\\n    if Var_l0 < 1e-15:\\\\n        return 0.0\\\\n    return (l0 - E_l0) / np.sqrt(Var_l0)\\\\n\\\\ndef compute_lz_star(responses, irt_params, theta):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"lz* with Snijders (2001) variance correction\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    l0 = 0.0\\\\n    E_l0 = 0.0\\\\n    Var_l0 = 0.0\\\\n    I_theta = 0.0\\\\n    C_theta = 0.0\\\\n    for i in range(len(responses)):\\\\n        if i not in irt_params:\\\\n            continue\\\\n        p = irt_params[i]\\\\n        a, b, c, d = p[\\\\\\\"a\\\\\\\"], p[\\\\\\\"b\\\\\\\"], p[\\\\\\\"c\\\\\\\"], p[\\\\\\\"d\\\\\\\"]\\\\n        P = irf_4pl(theta, a, b, c, d)\\\\n        P = np.clip(P, 1e-10, 1.0 - 1e-10)\\\\n        Q = 1.0 - P\\\\n        x = responses[i]\\\\n        log_P = np.log(P)\\\\n        log_Q = np.log(Q)\\\\n        l0 += x * log_P + (1 - x) * log_Q\\\\n        E_l0 += P * log_P + Q * log_Q\\\\n        g = log_P - log_Q\\\\n        Var_l0 += P * Q * g ** 2\\\\n        z = a * (theta - b)\\\\n        sigma = 1.0 / (1.0 + np.exp(-np.clip(z, -30, 30)))\\\\n        dP = a * (d - c) * sigma * (1.0 - sigma)\\\\n        h = dP / (P * Q)\\\\n        I_theta += P * Q * h ** 2\\\\n        C_theta += P * Q * h * g\\\\n    if Var_l0 < 1e-15:\\\\n        return 0.0\\\\n    Var_star = Var_l0 - C_theta ** 2 / I_theta if I_theta > 1e-15 else Var_l0\\\\n    if Var_star <= 0:\\\\n        Var_star = Var_l0\\\\n    return (l0 - E_l0) / np.sqrt(Var_star)\\\\n\\\\ndef bootstrap_cohens_d(contam_val, clean_values, n_boot=10000, seed=42):\\\\n    rng = np.random.RandomState(seed)\\\\n    clean_arr = np.array(clean_values)\\\\n    n = len(clean_arr)\\\\n    ds = []\\\\n    for _ in range(n_boot):\\\\n        idx = rng.randint(0, n, size=n)\\\\n        boot = clean_arr[idx]\\\\n        d = (contam_val - np.mean(boot)) / np.std(boot, ddof=1)\\\\n        ds.append(d)\\\\n    ds = np.array(ds)\\\\n    return np.percentile(ds, 2.5), np.percentile(ds, 97.5)\\\\n\\\\n# Load IRT params\\\\nirt_params = load_irt_params(PARAMS_PATH)\\\\nn_items = len(irt_params)\\\\n\\\\n# Conditions to compute\\\\nconditions = [\\\\n    \\\\\\\"contam_15_s3\\\\\\\",\\\\n    \\\\\\\"contam_25\\\\\\\",\\\\n    \\\\\\\"contam_25_s2\\\\\\\",\\\\n    \\\\\\\"contam_25_s3\\\\\\\",\\\\n    \\\\\\\"contam_50_s2\\\\\\\",\\\\n]\\\\n\\\\n# Also verify clean baseline\\\\nclean_conditions = [f\\\\\\\"clean_s{i}\\\\\\\" for i in range(1, 11)]\\\\n\\\\n# Load clean lz_fixed from existing file for verification\\\\nwith open(os.path.join(RESULTS_DIR, \\\\\\\"theta_fixed_n10_consistent.json\\\\\\\")) as f:\\\\n    existing = json.load(f)\\\\n\\\\nprint(f\\\\\\\"theta_fixed = {THETA_FIXED}\\\\\\\")\\\\nprint(f\\\\\\\"n_irt_items = {n_items}\\\\\\\")\\\\nprint()\\\\n\\\\n# Compute clean baseline with fixed theta\\\\nprint(\\\\\\\"=== CLEAN BASELINE (fixed theta) ===\\\\\\\")\\\\nclean_lz_fixed = []\\\\nclean_lz_star_fixed = []\\\\nfor cond in clean_conditions:\\\\n    fpath = os.path.join(RESULTS_DIR, f\\\\\\\"{cond}_results.json\\\\\\\")\\\\n    with open(fpath) as f:\\\\n        data = json.load(f)\\\\n    resp = data[\\\\\\\"response_vector\\\\\\\"]\\\\n    lz_val = compute_lz_drasgow(resp, irt_p\\\\n\\\\n... [截断: 输出过长，省略 1063 字符] ...\\\\n\\\\nd(f)\\\\n    resp = data[\\\\\\\"response_vector\\\\\\\"]\\\\n    lz_val = compute_lz_drasgow(resp, irt_params, THETA_FIXED)\\\\n    lz_star_val = compute_lz_star(resp, irt_params, THETA_FIXED)\\\\n    d = (lz_val - np.mean(clean_lz_arr)) / np.std(clean_lz_arr, ddof=1)\\\\n    d_star = (lz_star_val - np.mean(clean_lz_star_arr)) / np.std(clean_lz_star_arr, ddof=1)\\\\n    print(f\\\\\\\"  {cond}: lz_fixed={lz_val:.6f}, d_fixed={d:.3f} (expected={expected_d}), lz_star_fixed={lz_star_val:.6f}, d_star_fixed={d_star:.3f}\\\\\\\")\\\\n\\\\n# Also verify contam_15_s2 (d_fixed = 7.79)\\\\nfpath = os.path.join(RESULTS_DIR, \\\\\\\"contam_15_s2_results.json\\\\\\\")\\\\nwith open(fpath) as f:\\\\n    data = json.load(f)\\\\nresp = data[\\\\\\\"response_vector\\\\\\\"]\\\\nlz_val = compute_lz_drasgow(resp, irt_params, THETA_FIXED)\\\\nlz_star_val = compute_lz_star(resp, irt_params, THETA_FIXED)\\\\nd = (lz_val - np.mean(clean_lz_arr)) / np.std(clean_lz_arr, ddof=1)\\\\nprint(f\\\\\\\"  contam_15_s2: lz_fixed={lz_val:.6f}, d_fixed={d:.3f} (expected=7.79), lz_star_fixed={lz_star_val:.6f}\\\\\\\")\\\\n\\\\n# Compute for missing conditions\\\\nprint(\\\\\\\"\\\\\\\\n=== NEW COMPUTATIONS ===\\\\\\\")\\\\nresults = {}\\\\nfor cond in conditions:\\\\n    fpath = os.path.join(RESULTS_DIR, f\\\\\\\"{cond}_results.json\\\\\\\")\\\\n    if not os.path.exists(fpath):\\\\n        print(f\\\\\\\"  {cond}: SKIPPED (no results file)\\\\\\\")\\\\n        continue\\\\n    with open(fpath) as f:\\\\n        data = json.load(f)\\\\n    resp = data[\\\\\\\"response_vector\\\\\\\"]\\\\n    lz_val = compute_lz_drasgow(resp, irt_params, THETA_FIXED)\\\\n    lz_star_val = compute_lz_star(resp, irt_params, THETA_FIXED)\\\\n    d = (lz_val - np.mean(clean_lz_arr)) / np.std(clean_lz_arr, ddof=1)\\\\n    d_star = (lz_star_val - np.mean(clean_lz_star_arr)) / np.std(clean_lz_star_arr, ddof=1)\\\\n    ci_lo, ci_hi = bootstrap_cohens_d(lz_val, clean_lz_fixed)\\\\n    ci_star_lo, ci_star_hi = bootstrap_cohens_d(lz_star_val, clean_lz_star_fixed)\\\\n    results[cond] = {\\\\n        \\\\\\\"lz_fixed\\\\\\\": lz_val,\\\\n        \\\\\\\"lz_star_fixed\\\\\\\": lz_star_val,\\\\n        \\\\\\\"d_fixed\\\\\\\": d,\\\\n        \\\\\\\"d_star_fixed\\\\\\\": d_star,\\\\n        \\\\\\\"ci_95\\\\\\\": [ci_lo, ci_hi],\\\\n        \\\\\\\"ci_star_95\\\\\\\": [ci_star_lo, ci_star_hi],\\\\n        \\\\\\\"theta_mle\\\\\\\": data[\\\\\\\"theta_mle\\\\\\\"],\\\\n        \\\\\\\"lz_star_free\\\\\\\": data[\\\\\\\"lz_star\\\\\\\"],\\\\n        \\\\\\\"accuracy\\\\\\\": data[\\\\\\\"accuracy_overall\\\\\\\"],\\\\n    }\\\\n    print(f\\\\\\\"  {cond}: lz_fixed={lz_val:.4f}, d_fixed={d:.3f}, CI=[{ci_lo:.3f}, {ci_hi:.3f}] | lz*_fixed={lz_star_val:.4f}, d*_fixed={d_star:.3f}, CI*=[{ci_star_lo:.3f}, {ci_star_hi:.3f}]\\\\\\\")\\\\n\\\\n# Check contam_50_s3\\\\nfpath = os.path.join(RESULTS_DIR, \\\\\\\"contam_50_s3_results.json\\\\\\\")\\\\nif os.path.exists(fpath):\\\\n    with open(fpath) as f:\\\\n        data = json.load(f)\\\\n    resp = data[\\\\\\\"response_vector\\\\\\\"]\\\\n    lz_val = compute_lz_drasgow(resp, irt_params, THETA_FIXED)\\\\n    lz_star_val = compute_lz_star(resp, irt_params, THETA_FIXED)\\\\n    d = (lz_val - np.mean(clean_lz_arr)) / np.std(clean_lz_arr, ddof=1)\\\\n    d_star = (lz_star_val - np.mean(clean_lz_star_arr)) / np.std(clean_lz_star_arr, ddof=1)\\\\n    ci_lo, ci_hi = bootstrap_cohens_d(lz_val, clean_lz_fixed)\\\\n    ci_star_lo, ci_star_hi = bootstrap_cohens_d(lz_star_val, clean_lz_star_fixed)\\\\n    results[\\\\\\\"contam_50_s3\\\\\\\"] = {\\\\n        \\\\\\\"lz_fixed\\\\\\\": lz_val, \\\\\\\"lz_star_fixed\\\\\\\": lz_star_val,\\\\n        \\\\\\\"d_fixed\\\\\\\": d, \\\\\\\"d_star_fixed\\\\\\\": d_star,\\\\n        \\\\\\\"ci_95\\\\\\\": [ci_lo, ci_hi], \\\\\\\"ci_star_95\\\\\\\": [ci_star_lo, ci_star_hi],\\\\n    }\\\\n    print(f\\\\\\\"  contam_50_s3: lz_fixed={lz_val:.4f}, d_fixed={d:.3f}, CI=[{ci_lo:.3f}, {ci_hi:.3f}]\\\\\\\")\\\\nelse:\\\\n    print(f\\\\\\\"  contam_50_s3: SKIPPED (no results file yet)\\\\\\\")\\\\n\\\\n# Save results\\\\noutput = {\\\\n    \\\\\\\"theta_fixed\\\\\\\": THETA_FIXED,\\\\n    \\\\\\\"clean_baseline\\\\\\\": {\\\\n        \\\\\\\"lz_fixed_values\\\\\\\": clean_lz_fixed,\\\\n        \\\\\\\"lz_fixed_mean\\\\\\\": float(np.mean(clean_lz_arr)),\\\\n        \\\\\\\"lz_fixed_std\\\\\\\": float(np.std(clean_lz_arr, ddof=1)),\\\\n        \\\\\\\"lz_star_fixed_values\\\\\\\": clean_lz_star_fixed,\\\\n        \\\\\\\"lz_star_fixed_mean\\\\\\\": float(np.mean(clean_lz_star_arr)),\\\\n        \\\\\\\"lz_star_fixed_std\\\\\\\": float(np.std(clean_lz_star_arr, ddof=1)),\\\\n        \\\\\\\"n\\\\\\\": len(clean_lz_fixed),\\\\n    },\\\\n    \\\\\\\"contam_results\\\\\\\": results,\\\\n}\\\\nout_path = os.path.join(RESULTS_DIR, \\\\\\\"theta_fixed_all_seeds.json\\\\\\\")\\\\nwith open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n    json.dump(output, f, indent=2)\\\\nprint(f\\\\\\\"\\\\\\\\nSaved to {out_path}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"import csv\\nimport json\\nimport os\\nimport numpy as np\\n\\nBASE_DIR = \\\"/root/autodl-tmp/ctrl_contam_pilot\\\"\\nPARAMS_PATH = os.path.join(BASE_DIR, \\\"mmlu_params.csv\\\")\\nRESULTS_DIR = os.path.join(BASE_DIR, \\\"results\\\")\\nTHETA_FIXED = -0.10223831233869138\\n\\ndef load_irt_params(path):\\n    params = {}\\n    with open(path) as f:\\n        reader = csv.DictReader(f)\\n        for row in reader:\\n            idx = int(row[\\\"item_idx\\\"])\\n            params[idx] = {\\n                \\\"a\\\": float(row[\\\"a_discrimination\\\"]),\\n                \\\"b\\\": float(row[\\\"b_difficulty\\\"]),\\n                \\\"c\\\": float(row[\\\"c_guessing\\\"]),\\n                \\\"d\\\": float(row[\\\"d_feasibility\\\"]),\\n            }\\n    return params\\n\\ndef irf_4pl(theta, a, b, c, d):\\n    return c + (d - c) / (1.0 + np.exp(-a * (theta - b)))\\n\\ndef compute_lz_drasgow(responses, irt_params, theta):\\n    \\\"\\\"\\\"Drasgow's lz (uncorrected) — matches lz_fixed in theta_fixed_n10_consistent.json\\\"\\\"\\\"\\n    l0 = 0.0\\n    E_l0 = 0.0\\n    Var_l0 = 0.0\\n    for i in range(len(responses)):\\n        if i not in irt_params:\\n            continue\\n        p = irt_params[i]\\n        a, b, c, d = p[\\\"a\\\"], p[\\\"b\\\"], p[\\\"c\\\"], p[\\\"d\\\"]\\n        P = irf_4pl(theta, a, b, c, d)\\n        P = np.clip(P, 1e-10, 1.0 - 1e-10)\\n        Q = 1.0 - P\\n        x = responses[i]\\n        log_P = np.log(P)\\n        log_Q = np.log(Q)\\n        l0 += x * log_P + (1 - x) * log_Q\\n        E_l0 += P * log_P + Q * log_Q\\n        g = log_P - log_Q\\n        Var_l0 += P * Q * g ** 2\\n    if Var_l0 < 1e-15:\\n        return 0.0\\n    return (l0 - E_l0) / np.sqrt(Var_l0)\\n\\ndef compute_lz_star(responses, irt_params, theta):\\n    \\\"\\\"\\\"lz* with Snijders (2001) variance correction\\\"\\\"\\\"\\n    l0 = 0.0\\n    E_l0 = 0.0\\n    Var_l0 = 0.0\\n    I_theta = 0.0\\n    C_theta = 0.0\\n    for i in range(len(responses)):\\n        if i not in irt_params:\\n            continue\\n        p = irt_params[i]\\n        a, b, c, d = p[\\\"a\\\"], p[\\\"b\\\"], p[\\\"c\\\"], p[\\\"d\\\"]\\n        P = irf_4pl(theta, a, b, c, d)\\n        P = np.clip(P, 1e-10, 1.0 - 1e-10)\\n        Q = 1.0 - P\\n        x = responses[i]\\n        log_P = np.log(P)\\n        log_Q = np.log(Q)\\n        l0 += x * log_P + (1 - x) * log_Q\\n        E_l0 += P * log_P + Q * log_Q\\n        g = log_P - log_Q\\n        Var_l0 += P * Q * g ** 2\\n        z = a * (theta - b)\\n        sigma = 1.0 / (1.0 + np.exp(-np.clip(z, -30, 30)))\\n        dP = a * (d - c) * sigma * (1.0 - sigma)\\n        h = dP / (P * Q)\\n        I_theta += P * Q * h ** 2\\n        C_theta += P * Q * h * g\\n    if Var_l0 < 1e-15:\\n        return 0.0\\n    Var_star = Var_l0 - C_theta ** 2 / I_theta if I_theta > 1e-15 else Var_l0\\n    if Var_star <= 0:\\n        Var_star = Var_l0\\n    return (l0 - E_l0) / np.sqrt(Var_star)\\n\\ndef bootstrap_cohens_d(contam_val, clean_values, n_boot=10000, seed=42):\\n    rng = np.random.RandomState(seed)\\n    clean_arr = np.array(clean_values)\\n    n = len(clean_arr)\\n    ds = []\\n    for _ in range(n_boot):\\n        idx = rng.randint(0, n, size=n)\\n        boot = clean_arr[idx]\\n        d = (contam_val - np.mean(boot)) / np.std(boot, ddof=1)\\n        ds.append(d)\\n    ds = np.array(ds)\\n    return np.percentile(ds, 2.5), np.percentile(ds, 97.5)\\n\\n# Load IRT params\\nirt_params = load_irt_params(PARAMS_PATH)\\nn_items = len(irt_params)\\n\\n# Conditions to compute\\nconditions = [\\n    \\\"contam_15_s3\\\",\\n    \\\"contam_25\\\",\\n    \\\"contam_25_s2\\\",\\n    \\\"contam_25_s3\\\",\\n    \\\"contam_50_s2\\\",\\n]\\n\\n# Also verify clean baseline\\nclean_conditions = [f\\\"clean_s{i}\\\" for i in range(1, 11)]\\n\\n# Load clean lz_fixed from existing file for verification\\nwith open(os.path.join(RESULTS_DIR, \\\"theta_fixed_n10_consistent.json\\\")) as f:\\n    existing = json.load(f)\\n\\nprint(f\\\"theta_fixed = {THETA_FIXED}\\\")\\nprint(f\\\"n_irt_items = {n_items}\\\")\\nprint()\\n\\n# Compute clean baseline with fixed theta\\nprint(\\\"=== CLEAN BASELINE (fixed theta) ===\\\")\\nclean_lz_fixed = []\\nclean_lz_star_fixed = []\\nfor cond in clean_conditions:\\n    fpath = os.path.join(RESULTS_DIR, f\\\"{cond}_results.json\\\")\\n    with open(fpath) as f:\\n        data = json.load(f)\\n    resp = data[\\\"response_vector\\\"]\\n    lz_val = compute_lz_drasgow(resp, irt_p\\n\\n... [截断: 输出过长，省略 1063 字符] ...\\n\\nd(f)\\n    resp = data[\\\"response_vector\\\"]\\n    lz_val = compute_lz_drasgow(resp, irt_params, THETA_FIXED)\\n    lz_star_val = compute_lz_star(resp, irt_params, THETA_FIXED)\\n    d = (lz_val - np.mean(clean_lz_arr)) / np.std(clean_lz_arr, ddof=1)\\n    d_star = (lz_star_val - np.mean(clean_lz_star_arr)) / np.std(clean_lz_star_arr, ddof=1)\\n    print(f\\\"  {cond}: lz_fixed={lz_val:.6f}, d_fixed={d:.3f} (expected={expected_d}), lz_star_fixed={lz_star_val:.6f}, d_star_fixed={d_star:.3f}\\\")\\n\\n# Also verify contam_15_s2 (d_fixed = 7.79)\\nfpath = os.path.join(RESULTS_DIR, \\\"contam_15_s2_results.json\\\")\\nwith open(fpath) as f:\\n    data = json.load(f)\\nresp = data[\\\"response_vector\\\"]\\nlz_val = compute_lz_drasgow(resp, irt_params, THETA_FIXED)\\nlz_star_val = compute_lz_star(resp, irt_params, THETA_FIXED)\\nd = (lz_val - np.mean(clean_lz_arr)) / np.std(clean_lz_arr, ddof=1)\\nprint(f\\\"  contam_15_s2: lz_fixed={lz_val:.6f}, d_fixed={d:.3f} (expected=7.79), lz_star_fixed={lz_star_val:.6f}\\\")\\n\\n# Compute for missing conditions\\nprint(\\\"\\\\n=== NEW COMPUTATIONS ===\\\")\\nresults = {}\\nfor cond in conditions:\\n    fpath = os.path.join(RESULTS_DIR, f\\\"{cond}_results.json\\\")\\n    if not os.path.exists(fpath):\\n        print(f\\\"  {cond}: SKIPPED (no results file)\\\")\\n        continue\\n    with open(fpath) as f:\\n        data = json.load(f)\\n    resp = data[\\\"response_vector\\\"]\\n    lz_val = compute_lz_drasgow(resp, irt_params, THETA_FIXED)\\n    lz_star_val = compute_lz_star(resp, irt_params, THETA_FIXED)\\n    d = (lz_val - np.mean(clean_lz_arr)) / np.std(clean_lz_arr, ddof=1)\\n    d_star = (lz_star_val - np.mean(clean_lz_star_arr)) / np.std(clean_lz_star_arr, ddof=1)\\n    ci_lo, ci_hi = bootstrap_cohens_d(lz_val, clean_lz_fixed)\\n    ci_star_lo, ci_star_hi = bootstrap_cohens_d(lz_star_val, clean_lz_star_fixed)\\n    results[cond] = {\\n        \\\"lz_fixed\\\": lz_val,\\n        \\\"lz_star_fixed\\\": lz_star_val,\\n        \\\"d_fixed\\\": d,\\n        \\\"d_star_fixed\\\": d_star,\\n        \\\"ci_95\\\": [ci_lo, ci_hi],\\n        \\\"ci_star_95\\\": [ci_star_lo, ci_star_hi],\\n        \\\"theta_mle\\\": data[\\\"theta_mle\\\"],\\n        \\\"lz_star_free\\\": data[\\\"lz_star\\\"],\\n        \\\"accuracy\\\": data[\\\"accuracy_overall\\\"],\\n    }\\n    print(f\\\"  {cond}: lz_fixed={lz_val:.4f}, d_fixed={d:.3f}, CI=[{ci_lo:.3f}, {ci_hi:.3f}] | lz*_fixed={lz_star_val:.4f}, d*_fixed={d_star:.3f}, CI*=[{ci_star_lo:.3f}, {ci_star_hi:.3f}]\\\")\\n\\n# Check contam_50_s3\\nfpath = os.path.join(RESULTS_DIR, \\\"contam_50_s3_results.json\\\")\\nif os.path.exists(fpath):\\n    with open(fpath) as f:\\n        data = json.load(f)\\n    resp = data[\\\"response_vector\\\"]\\n    lz_val = compute_lz_drasgow(resp, irt_params, THETA_FIXED)\\n    lz_star_val = compute_lz_star(resp, irt_params, THETA_FIXED)\\n    d = (lz_val - np.mean(clean_lz_arr)) / np.std(clean_lz_arr, ddof=1)\\n    d_star = (lz_star_val - np.mean(clean_lz_star_arr)) / np.std(clean_lz_star_arr, ddof=1)\\n    ci_lo, ci_hi = bootstrap_cohens_d(lz_val, clean_lz_fixed)\\n    ci_star_lo, ci_star_hi = bootstrap_cohens_d(lz_star_val, clean_lz_star_fixed)\\n    results[\\\"contam_50_s3\\\"] = {\\n        \\\"lz_fixed\\\": lz_val, \\\"lz_star_fixed\\\": lz_star_val,\\n        \\\"d_fixed\\\": d, \\\"d_star_fixed\\\": d_star,\\n        \\\"ci_95\\\": [ci_lo, ci_hi], \\\"ci_star_95\\\": [ci_star_lo, ci_star_hi],\\n    }\\n    print(f\\\"  contam_50_s3: lz_fixed={lz_val:.4f}, d_fixed={d:.3f}, CI=[{ci_lo:.3f}, {ci_hi:.3f}]\\\")\\nelse:\\n    print(f\\\"  contam_50_s3: SKIPPED (no results file yet)\\\")\\n\\n# Save results\\noutput = {\\n    \\\"theta_fixed\\\": THETA_FIXED,\\n    \\\"clean_baseline\\\": {\\n        \\\"lz_fixed_values\\\": clean_lz_fixed,\\n        \\\"lz_fixed_mean\\\": float(np.mean(clean_lz_arr)),\\n        \\\"lz_fixed_std\\\": float(np.std(clean_lz_arr, ddof=1)),\\n        \\\"lz_star_fixed_values\\\": clean_lz_star_fixed,\\n        \\\"lz_star_fixed_mean\\\": float(np.mean(clean_lz_star_arr)),\\n        \\\"lz_star_fixed_std\\\": float(np.std(clean_lz_star_arr, ddof=1)),\\n        \\\"n\\\": len(clean_lz_fixed),\\n    },\\n    \\\"contam_results\\\": results,\\n}\\nout_path = os.path.join(RESULTS_DIR, \\\"theta_fixed_all_seeds.json\\\")\\nwith open(out_path, \\\"w\\\") as f:\\n    json.dump(output, f, indent=2)\\nprint(f\\\"\\\\nSaved to {out_path}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture. The `compute_fixed_theta.py` script is what generated `theta_fixed_all_seeds.json`. It:
+
+1. Uses `compute_lz_drasgow` (Drasgow 1985 lz, not lz*)
+2. theta_fixed = -0.10223831233869138
+3. clean baseline: 10 clean seeds' lz_fixed values → mean=7.3522, std=0.5802
+4. d_fixed = (lz_val - clean_mean) / clean_std
+
+Note that in this script, only specific conditions are computed: contam_15_s3, contam_25, contam_25_s2, contam_25_s3, contam_50_s2. 
+
+I see that contam_15_s2 and contam_15_s1 are verified separately rather than included in the main results—contam_15_s2 shows d_fixed = 7.79, and these verification checks suggest the script handles certain conditions differently than others.
+
+The real issue is that these 15% contamination samples with d_fixed values of 4.77 and 7.79 aren't in the main theta_fixed_all_seeds.json file, which means they were likely computed using a different script or with different parameters. I need to recreate the exact computation method from compute_fixed_theta.py, apply it to both the s1 and s2 results files for the 15% contamination case, and then compare my computed d_fixed and bootstrap confidence intervals against those old values to verify they match.
+
+Writing verification script...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6960198f-bf44-4b88-a8a3-a7d1192fb26b",
+  "uuid": "e2c2bed0-8d46-4f23-a06b-e44f86547543",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ZpFCtrvEmkzBhHk7Tan6g",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4604,
+      "cache_read_input_tokens": 36006,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4604
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+方法已确认。现在写脚本用完全相同的方法重算 15% s1 和 s2。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6960198f-bf44-4b88-a8a3-a7d1192fb26b",
+  "uuid": "83b110dd-eb07-4311-8f98-39c7d861a601",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ZpFCtrvEmkzBhHk7Tan6g",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4604,
+      "cache_read_input_tokens": 36006,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4604
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_018r42hrJaqTQom7ZX6eccMB`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && WANDB_MODE=disabled python3 -c \"\nimport csv, json, os, math\nimport numpy as np\n\nBASE_DIR = '/root/autodl-tmp/ctrl_contam_pilot'\nPARAMS_PATH = os.path.join(BASE_DIR, 'mmlu_params.csv')\nRESULTS_DIR = os.path.join(BASE_DIR, 'results')\nTHETA_FIXED = -0.10223831233869138\n\n# Load IRT params (indexed by position)\nparams = {}\nwith open(PARAMS_PATH) as f:\n    reader = csv.DictReader(f)\n    for row in reader:\n        idx = int(row['item_idx'])\n        params[idx] = {\n            'a': float(row['a_discrimination']),\n            'b': float(row['b_difficulty']),\n            'c': float(row['c_guessing']),\n            'd': float(row['d_feasibility']),\n        }\nprint(f'n_items = {len(params)}')\n\ndef irf_4pl(theta, a, b, c, d):\n    return c + (d - c) / (1.0 + np.exp(-a * (theta - b)))\n\ndef compute_lz_drasgow(responses, irt_params, theta):\n    l0, E_l0, Var_l0 = 0.0, 0.0, 0.0\n    for i in range(len(responses)):\n        if i not in irt_params:\n            continue\n        p = irt_params[i]\n        a, b, c, d = p['a'], p['b'], p['c'], p['d']\n        P = irf_4pl(theta, a, b, c, d)\n        P = np.clip(P, 1e-10, 1.0 - 1e-10)\n        Q = 1.0 - P\n        x = responses[i]\n        log_P = np.log(P)\n        log_Q = np.log(Q)\n        l0 += x * log_P + (1 - x) * log_Q\n        E_l0 += P * log_P + Q * log_Q\n        Var_l0 += P * Q * (log_P - log_Q) ** 2\n    if Var_l0 < 1e-15:\n        return 0.0\n    return (l0 - E_l0) / np.sqrt(Var_l0)\n\n# Compute clean baseline (same as compute_fixed_theta.py)\nclean_lz_fixed = []\nfor i in range(1, 11):\n    fpath = os.path.join(RESULTS_DIR, f'clean_s{i}_results.json')\n    with open(fpath) as f:\n        data = json.load(f)\n    resp = data['response_vector']\n    lz_val = compute_lz_drasgow(resp, params, THETA_FIXED)\n    clean_lz_fixed.append(lz_val)\n\nclean_arr = np.array(clean_lz_fixed)\nclean_mean = float(np.mean(clean_arr))\nclean_std = float(np.std(clean_arr, ddof=1))\nprint(f'Clean baseline (n=10): mean={clean_mean:.6f}, std={clean_std:.6f}')\nprint(f'Expected:              mean=7.352215, std=0.580224')\nprint(f'Match: mean={abs(clean_mean - 7.352214888905067) < 1e-6}, std={abs(clean_std - 0.5802242937357958) < 1e-6}')\nprint()\n\n# Bootstrap function (same as compute_fixed_theta.py)\ndef bootstrap_cohens_d(contam_val, clean_values, n_boot=10000, seed=42):\n    rng = np.random.RandomState(seed)\n    clean_arr = np.array(clean_values)\n    n = len(clean_arr)\n    ds = []\n    for _ in range(n_boot):\n        idx = rng.randint(0, n, size=n)\n        boot = clean_arr[idx]\n        s = np.std(boot, ddof=1)\n        if s < 1e-10:\n            continue\n        d = (contam_val - np.mean(boot)) / s\n        ds.append(d)\n    ds = np.array(ds)\n    return np.percentile(ds, 2.5), np.percentile(ds, 97.5)\n\n# Compute for 15% s1\nfpath_s1 = os.path.join(RESULTS_DIR, 'contam_15_results.json')\nwith open(fpath_s1) as f:\n    data_s1 = json.load(f)\nresp_s1 = data_s1['response_vector']\nlz_s1 = compute_lz_drasgow(resp_s1, params, THETA_FIXED)\nd_s1 = (lz_s1 - clean_mean) / clean_std\nci_lo_s1, ci_hi_s1 = bootstrap_cohens_d(lz_s1, clean_lz_fixed)\n\n# Compute for 15% s2\nfpath_s2 = os.path.join(RESULTS_DIR, 'contam_15_s2_results.json')\nwith open(fpath_s2) as f:\n    data_s2 = json.load(f)\nresp_s2 = data_s2['response_vector']\nlz_s2 = compute_lz_drasgow(resp_s2, params, THETA_FIXED)\nd_s2 = (lz_s2 - clean_mean) / clean_std\nci_lo_s2, ci_hi_s2 = bootstrap_cohens_d(lz_s2, clean_lz_fixed)\n\n# Also verify contam_15_s3 matches theta_fixed_all_seeds.json\nfpath_s3 = os.path.join(RESULTS_DIR, 'contam_15_s3_results.json')\nwith open(fpath_s3) as f:\n    data_s3 = json.load(f)\nresp_s3 = data_s3['response_vector']\nlz_s3 = compute_lz_drasgow(resp_s3, params, THETA_FIXED)\nd_s3 = (lz_s3 - clean_mean) / clean_std\n\nprint('=== RESULTS ===')\nprint(f'15% s1: lz_fixed={lz_s1:.6f}, d_fixed={d_s1:.4f}, CI=[{ci_lo_s1:.4f}, {ci_hi_s1:.4f}]')\nprint(f'15% s2: lz_fixed={lz_s2:.6f}, d_fixed={d_s2:.4f}, CI=[{ci_lo_s2:.4f}, {ci_hi_s2:.4f}]')\nprint(f'15% s3: lz_fixed={lz_s3:.6f}, d_fixed={d_s3:.4f} (expected=7.9938 from JSON)')\nprint()\nprint(f'Old reported values: s1=4.77, s2=7.79')\nprint(f'Recalculated:        s1={d_s1:.2f}, s2={d_s2:.2f}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6960198f-bf44-4b88-a8a3-a7d1192fb26b",
+  "uuid": "9a916fd3-3fc5-40e6-addd-4bbd23bf67d4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ZpFCtrvEmkzBhHk7Tan6g",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4604,
+      "cache_read_input_tokens": 36006,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4604
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-22T20:31:50.822Z_
+
+<details><summary>↩ Tool result · `toolu_018r42hrJaqTQom7ZX6eccMB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"n_items = 14042\\nClean baseline (n=10): mean=7.352215, std=0.580224\\nExpected:              mean=7.352215, std=0.580224\\nMatch: mean=True, std=True\\n\\n=== RESULTS ===\\n15% s1: lz_fixed=10.119604, d_fixed=4.7695, CI=[3.9677, 7.7856]\\n15% s2: lz_fixed=11.870352, d_fixed=7.7869, CI=[6.5065, 13.0514]\\n15% s3: lz_fixed=11.990424, d_fixed=7.9938 (expected=7.9938 from JSON)\\n\\nOld reported values: s1=4.77, s2=7.79\\nRecalculated:        s1=4.77, s2=7.79\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.61}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6960198f-bf44-4b88-a8a3-a7d1192fb26b",
+  "uuid": "a1be6a99-51c7-4ec4-8473-9346e5e79d42",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"n_items = 14042\\\\nClean baseline (n=10): mean=7.352215, std=0.580224\\\\nExpected:              mean=7.352215, std=0.580224\\\\nMatch: mean=True, std=True\\\\n\\\\n=== RESULTS ===\\\\n15% s1: lz_fixed=10.119604, d_fixed=4.7695, CI=[3.9677, 7.7856]\\\\n15% s2: lz_fixed=11.870352, d_fixed=7.7869, CI=[6.5065, 13.0514]\\\\n15% s3: lz_fixed=11.990424, d_fixed=7.9938 (expected=7.9938 from JSON)\\\\n\\\\nOld reported values: s1=4.77, s2=7.79\\\\nRecalculated:        s1=4.77, s2=7.79\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.61}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"n_items = 14042\\nClean baseline (n=10): mean=7.352215, std=0.580224\\nExpected:              mean=7.352215, std=0.580224\\nMatch: mean=True, std=True\\n\\n=== RESULTS ===\\n15% s1: lz_fixed=10.119604, d_fixed=4.7695, CI=[3.9677, 7.7856]\\n15% s2: lz_fixed=11.870352, d_fixed=7.7869, CI=[6.5065, 13.0514]\\n15% s3: lz_fixed=11.990424, d_fixed=7.9938 (expected=7.9938 from JSON)\\n\\nOld reported values: s1=4.77, s2=7.79\\nRecalculated:        s1=4.77, s2=7.79\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.61}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+结果完全一致：
+
+```
+15% s1 θ-fixed: old=4.77, recalc=4.7695 (lz_fixed=10.1196, CI=[3.97, 7.79])
+15% s2 θ-fixed: old=7.79, recalc=7.7869 (lz_fixed=11.8704, CI=[6.51, 13.05])
+
+一致性判断：一致
+```
+
+验证确认：
+- Clean baseline 完全匹配 (mean=7.3522, std=0.5802, n=10)
+- θ_fixed = -0.1022（10个clean seed的MLE均值）
+- 15% s3 也精确匹配 JSON 中的 7.9938
+- s1 和 s2 使用了相同的基线、相同的方法、相同的 theta，不存在 reviewer 担心的"不同基线"问题
+
+s1 (d=4.77) 和 s2 (d=7.79) 的差异是真实的 seed 间变异——不同 contamination seed 导致被污染的题目不同，从而 lz_fixed 不同。这与 s3 (d=7.99) 幅度接近 s2，进一步说明 s1 是偏低的 seed，而非方法不一致。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6960198f-bf44-4b88-a8a3-a7d1192fb26b",
+  "uuid": "11ef9bd8-56e9-45ce-96e6-d38002d9db41",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VquVz26BXYmz1bHrsB2hjN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2880,
+      "cache_read_input_tokens": 40610,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2880
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 32_
+
+结果完全一致：
+
+```
+15% s1 θ-fixed: old=4.77, recalc=4.7695 (lz_fixed=10.1196, CI=[3.97, 7.79])
+15% s2 θ-fixed: old=7.79, recalc=7.7869 (lz_fixed=11.8704, CI=[6.51, 13.05])
+
+一致性判断：一致
+```
+
+验证确认：
+- Clean baseline 完全匹配 (mean=7.3522, std=0.5802, n=10)
+- θ_fixed = -0.1022（10个clean seed的MLE均值）
+- 15% s3 也精确匹配 JSON 中的 7.9938
+- s1 和 s2 使用了相同的基线、相同的方法、相同的 theta，不存在 reviewer 担心的"不同基线"问题
+
+s1 (d=4.77) 和 s2 (d=7.79) 的差异是真实的 seed 间变异——不同 contamination seed 导致被污染的题目不同，从而 lz_fixed 不同。这与 s3 (d=7.99) 幅度接近 s2，进一步说明 s1 是偏低的 seed，而非方法不一致。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 117457,
+  "duration_api_ms": 114370,
+  "num_turns": 10,
+  "stop_reason": "end_turn",
+  "session_id": "6960198f-bf44-4b88-a8a3-a7d1192fb26b",
+  "total_cost_usd": 0.43206275,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 31649,
+    "cache_read_input_tokens": 225837,
+    "output_tokens": 4794,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 31649,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 366,
+        "cache_read_input_tokens": 40610,
+        "cache_creation_input_tokens": 2880,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2880
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1308,
+      "outputTokens": 24,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001428,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 12,
+      "outputTokens": 4794,
+      "cacheReadInputTokens": 225837,
+      "cacheCreationInputTokens": 31649,
+      "webSearchRequests": 0,
+      "costUSD": 0.43063475,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "1d79b7a8-77b7-4908-ac5a-f565e5ad4312"
+}
+```
+
+</details>
+
+---

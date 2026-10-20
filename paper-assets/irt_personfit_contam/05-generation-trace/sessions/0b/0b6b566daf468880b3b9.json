@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b6b566daf468880b3b9",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code app seed sensitivity",
+  "task_key": "worker_code_app-seed-sensitivity_20260521T021633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_app-seed-sensitivity_20260521T021633_result.json",
+    "occurrence": 1,
+    "bytes": 975,
+    "sha256": "fa0e931154b67b3d52d29d79ba0a7a8ef18596e1f5e31bd60ebbd5f5bfdd871d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "生成完成。输出文件在 `artifacts/seed_sensitivity/` 下：\n\n| 文件 | 内容 |\n|------|------|\n| `seed_sensitivity_tables.tex` | 3 个 LaTeX 表格（seed sensitivity / Cohen's d CI / cross-family consistency） |\n| `seed_sensitivity_analysis.json` | 完整数值数据 |\n| `generate_seed_sensitivity.py` | 生成脚本 |\n\n关键发现：\n\n- **Qwen**: acc 和 θ\\_MLE 跨 seed 极稳定（CV < 0.12），ℓz\\* 变异稍大（CV=0.16，std=1.41）但远小于 contamination 造成的偏移\n- **Llama**: ℓz\\* 均值接近 0（mean=-0.14），CV 被放大到 6.86——但绝对 std=0.97，和 Qwen 同量级\n- **Analytic CI** 因 df=2 极宽（t\\_crit=4.303），均跨 0——这是 n=3 的固有局限\n- **Bootstrap CI** 更紧且全部不含 0，支持 contamination detection 结论在所有条件下成立\n- **跨家族一致性**：两个模型在 15% 和 50% contamination 下 d 均为负且 |d|>0.8，detection 方向一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-app-seed-sensitivity.md"
+}

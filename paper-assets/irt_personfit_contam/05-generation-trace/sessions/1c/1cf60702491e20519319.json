@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1cf60702491e20519319",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "research exp leaderboard data recon",
+  "task_key": "worker_research_exp-leaderboard-data-recon_20260520T095549",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_exp-leaderboard-data-recon_20260520T095549_result.json",
+    "occurrence": 1,
+    "bytes": 968,
+    "sha256": "d5316b84b1c93b72e61d4ebcc25f40497b2beab19cb52f59e0d7ad2298d217c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp-leaderboard-data-recon → DONE (success)**\n\n**核心结论**: Open LLM Leaderboard v1 的 `details` 数据集包含 **per-item binary response data**，覆盖 13,000+ 模型和我们 5 个 benchmark 中的 4 个（MMLU, HellaSwag, ARC-Challenge, GSM8K）。HumanEval 不在 v1 中。\n\n**数据格式**: 每个模型一个 HF dataset (`open-llm-leaderboard-old/details_{model}`)，按 benchmark 分 config，每行一道题，包含 `acc`/`acc_norm` 二值字段（可直接转为 0/1 binary response）。Parquet 格式，`load_dataset()` 即可加载。\n\n**GPU 预算**: 0 GPU-hours（数据已有）。仅 HumanEval 需自己跑推理（164 题，每个 7B 模型约 5 分钟）。\n\n**下一步**: 写下载脚本，从 v1 details 中提取目标模型的 binary response matrix，对齐 PSN-IRT item parameters，计算 lz*。需注意 item ordering 对齐问题。\n\n报告已保存至 `artifacts/leaderboard_data_recon/report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-exp-leaderboard-data-recon.md"
+}

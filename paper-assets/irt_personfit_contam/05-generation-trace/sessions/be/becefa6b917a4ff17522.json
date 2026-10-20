@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "becefa6b917a4ff17522",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code exp ctrl contam llama setup",
+  "task_key": "worker_code_exp-ctrl-contam-llama-setup_20260520T202348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-ctrl-contam-llama-setup_20260520T202348_result.json",
+    "occurrence": 1,
+    "bytes": 757,
+    "sha256": "1c4d313513d630601e4986595ce0a4d1afcc69b384e5f01030236d73d789c9dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动并在正常运行：\n\n- **模型加载**: 291/291 权重加载完成，正在进入训练阶段\n- **GPU 0**: NVIDIA RTX PRO 6000 (98GB)，占用 10.6GB VRAM（QLoRA 4bit 加载）\n- **进程**: PID 38815 (python) 在 GPU 0 上运行\n- **数据**: 5000 条 clean Alpaca 样本\n\n**完成总结**:\n| Phase | 状态 |\n|-------|------|\n| 1. 磁盘+GPU检查 | ✓ 4x RTX PRO 6000 (98GB each), 充足磁盘 |\n| 2. 模型下载 | ✓ Llama-3.1-8B-Instruct 15GB via aria2c |\n| 3. 代码适配 | ✓ train.py / eval_lz.py / prepare_data.py |\n| 4. 数据准备 | ✓ clean(5000) / contam_15(7106) / contam_50(12021), seed=999 |\n| 5. Clean训练提交 | ✓ PID 38815, GPU 0, registry: exp-ctrl-contam-llama-clean RUNNING |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-ctrl-contam-llama-setup.md"
+}

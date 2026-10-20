@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d1cc3f9b794da08ab53",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops s3 backup v3",
+  "task_key": "worker_ops_s3-backup-v3_20260525T210631",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_s3-backup-v3_20260525T210631_result.json",
+    "occurrence": 1,
+    "bytes": 593,
+    "sha256": "cf44e2e24c3c223417054aa5e17c81904f026719c12615ede38c3f7dfdaf5da5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n- **Tarball:** `irt_personfit_contam-final-20260525T205541Z.tar.gz` — 13.0 GB\n- **S3 URI:** `s3://agent-ml-manager-backups-emnlp/manager-backup/backends/irt_personfit_contam/project-archive/irt_personfit_contam-final-20260525T205541Z.tar.gz`\n- **上传速率:** 16.9 MB/s，耗时 787.6s\n- **备份内容:** code 111M, checkpoints 20G, data 111M, results 40M, paper 712K\n\n注意事项：由于服务器根分区已满和 BE 本地磁盘不足，采用了服务器直传 S3 的方式（而非经 BE 中转）。所有临时文件和密钥已清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-s3-backup-v3.md"
+}

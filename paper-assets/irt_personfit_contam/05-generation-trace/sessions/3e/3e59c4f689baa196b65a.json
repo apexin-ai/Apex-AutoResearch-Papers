@@ -1,0 +1,1335 @@
+{
+  "schema_version": "1.0",
+  "id": "3e59c4f689baa196b65a",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "code theta fixed n3 recompute",
+  "task_key": "worker_code_theta-fixed-n3-recompute_20260520T205807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_theta-fixed-n3-recompute_20260520T205807.log",
+    "occurrence": 1,
+    "bytes": 65138,
+    "sha256": "c26d9f419df27310b259debabfed7c67150dd2645e1849d9a34382c120ba973e"
+  },
+  "statistics": {
+    "messages": 31,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 9,
+      "tool_result": 9,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam",
+                "session_id": "166b14f0-3aa0-4f50-a5a4-39ba1e8ba820",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "8a26c836-d830-4607-9e1c-2ce2babb3177",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0519-3-projects-irt-personfit-contam/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779319200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "f61670bf-d6bc-4172-bc1c-63d16b6690c2",
+                "session_id": "166b14f0-3aa0-4f50-a5a4-39ba1e8ba820"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to:\n1. Run a θ-fixed recomputation script on the server with θ_fixed=-0.0966\n2. Fix compute_delta.py's ddof issue\n\nLet me start by loading the SSH tools and executing the tasks.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "166b14f0-3aa0-4f50-a5a4-39ba1e8ba820",
+            "uuid": "6b169538-f038-44ff-93e3-1eabe5123678",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015KTqGtQ1KmjBmigFGsRzg9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13748,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13748
+                },
+                "output_tokens": 28,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "执行两个任务：θ-fixed 重算和 ddof 修复。先加载 SSH 工具。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "166b14f0-3aa0-4f50-a5a4-39ba1e8ba820",
+            "uuid": "018271a3-74d1-4943-8c1c-49adc03e19d1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015KTqGtQ1KmjBmigFGsRzg9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13748,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13748
+                },
+                "output_tokens": 28,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Boro9PmEjDtkiGbpkDtXWQ",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "166b14f0-3aa0-4f50-a5a4-39ba1e8ba820",
+            "uuid": "fc423ec7-e114-4f68-835c-7916302c298d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015KTqGtQ1KmjBmigFGsRzg9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13748,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13748
+                },
+                "output_tokens": 28,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T20:58:20.944Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01Boro9PmEjDtkiGbpkDtXWQ",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__detect_image"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "166b14f0-3aa0-4f50-a5a4-39ba1e8ba820",
+            "uuid": "9157dce7-7012-4502-ac34-9510d75707ae",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__detect_image"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先并行执行：查看 compute_delta.py 的 ddof 情况，同时运行 θ-fixed 重算脚本。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "166b14f0-3aa0-4f50-a5a4-39ba1e8ba820",
+            "uuid": "caf9c465-981f-4293-a238-4c6a0f0a5c8f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B93tMm1YYYZJSajZNLFsPa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 977,
+                "cache_read_input_tokens": 25589,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 977
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JG3nSCKbTQUjbf6ij1iHjV",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-35694",
+                "command": "grep -n \"ddof\\|np.std\" /root/autodl-tmp/ctrl_contam_pilot/compute_delta.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "166b14f0-3aa0-4f50-a5a4-39ba1e8ba820",
+            "uuid": "0a6cd943-acd9-4986-aab1-d0b6f3d5dae3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B93tMm1YYYZJSajZNLFsPa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 977,
+                "cache_read_input_tokens": 25589,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 977
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T20:58:25.342Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JG3nSCKbTQUjbf6ij1iHjV",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "166b14f0-3aa0-4f50-a5a4-39ba1e8ba820",
+            "uuid": "29ea2249-9e4d-48b9-a192-c6116434a461",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01J9xoTcnX58R6JPWThTNPwF",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-35694",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/ctrl_contam_pilot && python3 << 'PYEOF'\nimport json, numpy as np, pandas as pd\n\n# Load IRT parameters\nparams = pd.read_csv('mmlu_params.csv')\na = params['a'].values\nb = params['b'].values\nc = params['c'].values\nd = params['d'].values\nn_items = len(a)\n\ntheta_fixed = -0.0966  # mean(s1, s2, s3)\n\ndef compute_lz_star_fixed(response_vector, theta):\n    \"\"\"Compute lz* with fixed theta.\"\"\"\n    x = np.array(response_vector)\n    P = c + (d - c) / (1 + np.exp(-a * (theta - b)))\n    P = np.clip(P, 1e-10, 1-1e-10)\n    \n    l0 = np.sum(x * np.log(P) + (1-x) * np.log(1-P))\n    El0 = np.sum(P * np.log(P) + (1-P) * np.log(1-P))\n    Var_l0 = np.sum(P * (1-P) * (np.log(P) - np.log(1-P))**2)\n    \n    lz_star = (l0 - El0) / np.sqrt(Var_l0)\n    return lz_star\n\n# Load results and compute\nconditions = ['clean_s1', 'clean_s2', 'clean_s3', 'contam_15', 'contam_50']\nresults = {}\nfor cond in conditions:\n    with open(f'results/{cond}_results.json') as f:\n        data = json.load(f)\n    rv = data['response_vector']\n    lz_fixed = compute_lz_star_fixed(rv, theta_fixed)\n    results[cond] = {\n        'lz_free': data['lz_star'],\n        'lz_fixed': float(lz_fixed),\n        'theta_mle': data.get('theta_mle', None),\n        'accuracy': data.get('accuracy', None)\n    }\n    print(f\"{cond}: lz_free={data['lz_star']:.4f}, lz_fixed={lz_fixed:.4f}, theta_mle={data.get('theta_mle','?'):.4f}\")\n\n# Compute baselines and Cohen's d (n=3, ddof=1)\nclean_lz_fixed = [results[f'clean_s{i}']['lz_fixed'] for i in [1,2,3]]\nclean_lz_free = [results[f'clean_s{i}']['lz_free'] for i in [1,2,3]]\n\nmean_fixed = float(np.mean(clean_lz_fixed))\nstd_fixed = float(np.std(clean_lz_fixed, ddof=1))\nmean_free = float(np.mean(clean_lz_free))\nstd_free = float(np.std(clean_lz_free, ddof=1))\n\nprint(f\"\\n=== Baseline (n=3, ddof=1) ===\")\nprint(f\"Free:  mean={mean_free:.4f}, std={std_free:.4f}\")\nprint(f\"Fixed: mean={mean_fixed:.4f}, std={std_fixed:.4f}\")\n\nprint(f\"\\n=== Cohen's d (n=3, ddof=1) ===\")\nprint(f\"{'Cond':<12} {'lz_free':>8} {'lz_fixed':>9} {'d_free':>7} {'d_fixed':>8} {'absorbed':>9}\")\noutput = {'theta_fixed': theta_fixed, 'conditions': {}, 'baseline': {}}\noutput['baseline'] = {\n    'free': {'mean': mean_free, 'std': std_free},\n    'fixed': {'mean': mean_fixed, 'std': std_fixed}\n}\n\nfor cond in conditions:\n    r = results[cond]\n    d_free = (r['lz_free'] - mean_free) / std_free if std_free > 0 else None\n    d_fixed = (r['lz_fixed'] - mean_fixed) / std_fixed if std_fixed > 0 else None\n    absorbed = r['lz_fixed'] - r['lz_free']\n    print(f\"{cond:<12} {r['lz_free']:>8.4f} {r['lz_fixed']:>9.4f} {d_free:>7.2f} {d_fixed:>8.2f} {absorbed:>9.4f}\")\n    output['conditions'][cond] = {\n        'lz_free': r['lz_free'],\n        'lz_fixed': r['lz_fixed'],\n        'theta_mle': r['theta_mle'],\n        'accuracy': r['accuracy'],\n        'd_free': float(d_free) if d_free else None,\n        'd_fixed': float(d_fixed) if d_fixed else None,\n        'absorbed': float(absorbed)\n    }\n\n# Delta lz* for contam conditions\nprint(f\"\\n=== Delta_lz* (vs baseline mean) ===\")\nfor cond in ['contam_15', 'contam_50']:\n    delta_free = results[cond]['lz_free'] - mean_free\n    delta_fixed = results[cond]['lz_fixed'] - mean_fixed\n    print(f\"{cond}: delta_lz_free={delta_free:.4f}, delta_lz_fixed={delta_fixed:.4f}\")\n\nwith open('results/theta_fixed_n3.json', 'w') as f:\n    json.dump(output, f, indent=2)\nprint(f\"\\nSaved results/theta_fixed_n3.json\")\nprint(json.dumps(output, indent=2))\nPYEOF\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "166b14f0-3aa0-4f50-a5a4-39ba1e8ba820",
+            "uuid": "bcb72e9a-a5a3-481c-a654-e86a87ff7d58",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B93tMm1YYYZJSajZNLFsPa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 977,
+                "cache_read_input_tokens": 25589,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 977
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T20:58:38.780Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01J9xoTcnX58R6JPWThTNPwF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/ctrl_contam_pilot && python3 << \\\\\\\\'PYEOF\\\\\\\\'\\\\\\\\nimport json, numpy as np, pandas as pd\\\\\\\\n\\\\\\\\n# Load IRT parameters\\\\\\\\nparams = pd.read_csv(\\\\\\\\'mmlu_params.csv\\\\\\\\')\\\\\\\\na = params[\\\\\\\\'a\\\\\\\\'].values\\\\\\\\nb = params[\\\\\\\\'b\\\\\\\\'].values\\\\\\\\nc = params[\\\\\\\\'c\\\\\\\\'].values\\\\\\\\nd = params[\\\\\\\\'d\\\\\\\\'].values\\\\\\\\nn_items = len(a)\\\\\\\\n\\\\\\\\ntheta_fixed = -0.0966  # mean(s1, s2, s3)\\\\\\\\n\\\\\\\\ndef compute_lz_star_fixed(response_vector, theta):\\\\\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute lz* with fixed theta.\\\\\\\"\\\\\\\"\\\\\\\"\\\\\\\\n    x = np.array(response_vector)\\\\\\\\n    P = c + (d - c) / (1 + np.exp(-a * (theta - b)))\\\\\\\\n    P = np.clip(P, 1e-10, 1-1e-10)\\\\\\\\n    \\\\\\\\n    l0 = np.sum(x * np.log(P) + (1-x) * np.log(1-P))\\\\\\\\n    El0 = np.sum(P * np.log(P) + (1-P) * np.log(1-P))\\\\\\\\n    Var_l0 = np.sum(P * (1-P) * (np.log(P) - np.log(1-P))**2)\\\\\\\\n    \\\\\\\\n    lz_star = (l0 - El0) / np.sqrt(Var_l0)\\\\\\\\n    return lz_star\\\\\\\\n\\\\\\\\n# Load results and compute\\\\\\\\nconditions = [\\\\\\\\'clean_s1\\\\\\\\', \\\\\\\\'clean_s2\\\\\\\\', \\\\\\\\'clean_s3\\\\\\\\', \\\\\\\\'contam_15\\\\\\\\', \\\\\\\\'contam_50\\\\\\\\']\\\\\\\\nresults = {}\\\\\\\\nfor cond in conditions:\\\\\\\\n    with open(f\\\\\\\\'results/{cond}_results.json\\\\\\\\') as f:\\\\\\\\n        data = json.load(f)\\\\\\\\n    rv = data[\\\\\\\\'response_vector\\\\\\\\']\\\\\\\\n    lz_fixed = compute_lz_star_fixed(rv, theta_fixed)\\\\\\\\n    results[cond] = {\\\\\\\\n        \\\\\\\\'lz_free\\\\\\\\': data[\\\\\\\\'lz_star\\\\\\\\'],\\\\\\\\n        \\\\\\\\'lz_fixed\\\\\\\\': float(lz_fixed),\\\\\\\\n        \\\\\\\\'theta_mle\\\\\\\\': data.get(\\\\\\\\'theta_mle\\\\\\\\', None),\\\\\\\\n        \\\\\\\\'accuracy\\\\\\\\': data.get(\\\\\\\\'accuracy\\\\\\\\', None)\\\\\\\\n    }\\\\\\\\n    print(f\\\\\\\"{cond}: lz_free={data[\\\\\\\\'lz_star\\\\\\\\']:.4f}, lz_fixed={lz_fixed:.4f}, theta_mle={data.get(\\\\\\\\'theta_mle\\\\\\\\',\\\\\\\\'?\\\\\\\\'):.4f}\\\\\\\")\\\\\\\\n\\\\\\\\n# Compute baselines and Cohen\\\\\\\\'s d (n=3, ddof=1)\\\\\\\\nclean_lz_fixed = [results[f\\\\\\\\'clean_s{i}\\\\\\\\'][\\\\\\\\'lz_fixed\\\\\\\\'] for i in [1,2,3]]\\\\\\\\nclean_lz_free = [results[f\\\\\\\\'clean_s{i}\\\\\\\\'][\\\\\\\\'lz_free\\\\\\\\'] for i in [1,2,3]]\\\\\\\\n\\\\\\\\nmean_fixed = float(np.mean(clean_lz_fixed))\\\\\\\\nstd_fixed = float(np.std(clean_lz_fixed, ddof=1))\\\\\\\\nmean_free = float(np.mean(clean_lz_free))\\\\\\\\nstd_free = float(np.std(clean_lz_free, ddof=1))\\\\\\\\n\\\\\\\\nprint(f\\\\\\\"\\\\\\\\\\\\\\\\n=== Baseline (n=3, ddof=1) ===\\\\\\\")\\\\\\\\nprint(f\\\\\\\"Free:  mean={mean_free:.4f}, std={std_free:.4f}\\\\\\\")\\\\\\\\nprint(f\\\\\\\"Fixed: mean={mean_fixed:.4f}, std={std_fixed:.4f}\\\\\\\")\\\\\\\\n\\\\\\\\nprint(f\\\\\\\"\\\\\\\\\\\\\\\\n=== Cohen\\\\\\\\'s d (n=3, ddof=1) ===\\\\\\\")\\\\\\\\nprint(f\\\\\\\"{\\\\\\\\'Cond\\\\\\\\':<12} {\\\\\\\\'lz_free\\\\\\\\':>8} {\\\\\\\\'lz_fixed\\\\\\\\':>9} {\\\\\\\\'d_free\\\\\\\\':>7} {\\\\\\\\'d_fixed\\\\\\\\':>8} {\\\\\\\\'absorbed\\\\\\\\':>9}\\\\\\\")\\\\\\\\noutput = {\\\\\\\\'theta_fixed\\\\\\\\': theta_fixed, \\\\\\\\'conditions\\\\\\\\': {}, \\\\\\\\'baseline\\\\\\\\': {}}\\\\\\\\noutput[\\\\\\\\'baseline\\\\\\\\'] = {\\\\\\\\n    \\\\\\\\'free\\\\\\\\': {\\\\\\\\'mean\\\\\\\\': mean_free, \\\\\\\\'std\\\\\\\\': std_free},\\\\\\\\n    \\\\\\\\'fixed\\\\\\\\': {\\\\\\\\'mean\\\\\\\\': mean_fixed, \\\\\\\\'std\\\\\\\\': std_fixed}\\\\\\\\n}\\\\\\\\n\\\\\\\\nfor cond in conditions:\\\\\\\\n    r = results[cond]\\\\\\\\n    d_free = (r[\\\\\\\\'lz_free\\\\\\\\'] - mean_free) / std_free if std_free > 0 else None\\\\\\\\n    d_fixed = (r[\\\\\\\\'lz_fixed\\\\\\\\'] - mean_fixed) / std_fixed if std_fixed > 0 else None\\\\\\\\n    absorbed = r[\\\\\\\\'lz_fixed\\\\\\\\'] - r[\\\\\\\\'lz_free\\\\\\\\']\\\\\\\\n    print(f\\\\\\\"{cond:<12} {r[\\\\\\\\'lz_free\\\\\\\\']:>8.4f} {r[\\\\\\\\'lz_fixed\\\\\\\\']:>9.4f} {d_free:>7.2f} {d_fixed:>8.2f} {absorbed:>9.4f}\\\\\\\")\\\\\\\\n    output[\\\\\\\\'conditions\\\\\\\\'][cond] = {\\\\\\\\n        \\\\\\\\'lz_free\\\\\\\\': r[\\\\\\\\'lz_free\\\\\\\\'],\\\\\\\\n        \\\\\\\\'lz_fixed\\\\\\\\': r[\\\\\\\\'lz_fixed\\\\\\\\'],\\\\\\\\n        \\\\\\\\'theta_mle\\\\\\\\': r[\\\\\\\\'theta_mle\\\\\\\\'],\\\\\\\\n        \\\\\\\\'accuracy\\\\\\\\': r[\\\\\\\\'accuracy\\\\\\\\'],\\\\\\\\n        \\\\\\\\'d_free\\\\\\\\': float(d_free) if d_free else None,\\\\\\\\n        \\\\\\\\'d_fixed\\\\\\\\': float(d_fixed) if d_fixed else None,\\\\\\\\n        \\\\\\\\'absorbed\\\\\\\\': float(absorbed)\\\\\\\\n    }\\\\\\\\n\\\\\\\\n# Delta lz* for contam conditions\\\\\\\\nprint(f\\\\\\\"\\\\\\\\\\\\\\\\n=== Delta_lz* (vs baseline mean) ===\\\\\\\")\\\\\\\\nfor cond in [\\\\\\\\'contam_15\\\\\\\\', \\\\\\\\'contam_50\\\\\\\\']:\\\\\\\\n    delta_free = results[cond][\\\\\\\\'lz_free\\\\\\\\'] - mean_free\\\\\\\\n    delta_fixed = results[cond][\\\\\\\\'lz_fixed\\\\\\\\'] - mean_fixed\\\\\\\\n    print(f\\\\\\\"{cond}: delta_lz_free={delta_free:.4f}, delta_lz_fixed={delta_fixed:.4f}\\\\\\\")\\\\\\\\n\\\\\\\\nwith open(\\\\\\\\'results/theta_fixed_n3.json\\\\\\\\', \\\\\\\\'w\\\\\\\\') as f:\\\\\\\\n    json.dump(output, f, indent=2)\\\\\\\\nprint(f\\\\\\\"\\\\\\\\\\\\\\\\nSaved results/theta_fixed_n3.json\\\\\\\")\\\\\\\\nprint(json.dumps(output, indent=2))\\\\\\\\nPYEOF\\\\\\\\n'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nThe above exception was the direct cause of the following exception:\\\\n\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"<stdin>\\\\\\\", line 5, in <module>\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/pandas/core/frame.py\\\\\\\", line 4378, in __getitem__\\\\n    indexer = self.columns.get_loc(key)\\\\n              ^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/pandas/core/indexes/base.py\\\\\\\", line 3648, in get_loc\\\\n    raise KeyError(key) from err\\\\nKeyError: 'a'\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.61}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "166b14f0-3aa0-4f50-a5a4-39ba1e8ba820",
+            "uuid": "b334341a-18da-4be3-9bf1-0de515b8647e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/ctrl_contam_pilot && python3 << \\\\\\\\'PYEOF\\\\\\\\'\\\\\\\\nimport json, numpy as np, pandas as pd\\\\\\\\n\\\\\\\\n# Load IRT parameters\\\\\\\\nparams = pd.read_csv(\\\\\\\\'mmlu_params.csv\\\\\\\\')\\\\\\\\na = params[\\\\\\\\'a\\\\\\\\'].values\\\\\\\\nb = params[\\\\\\\\'b\\\\\\\\'].values\\\\\\\\nc = params[\\\\\\\\'c\\\\\\\\'].values\\\\\\\\nd = params[\\\\\\\\'d\\\\\\\\'].values\\\\\\\\nn_items = len(a)\\\\\\\\n\\\\\\\\ntheta_fixed = -0.0966  # mean(s1, s2, s3)\\\\\\\\n\\\\\\\\ndef compute_lz_star_fixed(response_vector, theta):\\\\\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute lz* with fixed theta.\\\\\\\"\\\\\\\"\\\\\\\"\\\\\\\\n    x = np.array(response_vector)\\\\\\\\n    P = c + (d - c) / (1 + np.exp(-a * (theta - b)))\\\\\\\\n    P = np.clip(P, 1e-10, 1-1e-10)\\\\\\\\n    \\\\\\\\n    l0 = np.sum(x * np.log(P) + (1-x) * np.log(1-P))\\\\\\\\n    El0 = np.sum(P * np.log(P) + (1-P) * np.log(1-P))\\\\\\\\n    Var_l0 = np.sum(P * (1-P) * (np.log(P) - np.log(1-P))**2)\\\\\\\\n    \\\\\\\\n    lz_star = (l0 - El0) / np.sqrt(Var_l0)\\\\\\\\n    return lz_star\\\\\\\\n\\\\\\\\n# Load results and compute\\\\\\\\nconditions = [\\\\\\\\'clean_s1\\\\\\\\', \\\\\\\\'clean_s2\\\\\\\\', \\\\\\\\'clean_s3\\\\\\\\', \\\\\\\\'contam_15\\\\\\\\', \\\\\\\\'contam_50\\\\\\\\']\\\\\\\\nresults = {}\\\\\\\\nfor cond in conditions:\\\\\\\\n    with open(f\\\\\\\\'results/{cond}_results.json\\\\\\\\') as f:\\\\\\\\n        data = json.load(f)\\\\\\\\n    rv = data[\\\\\\\\'response_vector\\\\\\\\']\\\\\\\\n    lz_fixed = compute_lz_star_fixed(rv, theta_fixed)\\\\\\\\n    results[cond] = {\\\\\\\\n        \\\\\\\\'lz_free\\\\\\\\': data[\\\\\\\\'lz_star\\\\\\\\'],\\\\\\\\n        \\\\\\\\'lz_fixed\\\\\\\\': float(lz_fixed),\\\\\\\\n        \\\\\\\\'theta_mle\\\\\\\\': data.get(\\\\\\\\'theta_mle\\\\\\\\', None),\\\\\\\\n        \\\\\\\\'accuracy\\\\\\\\': data.get(\\\\\\\\'accuracy\\\\\\\\', None)\\\\\\\\n    }\\\\\\\\n    print(f\\\\\\\"{cond}: lz_free={data[\\\\\\\\'lz_star\\\\\\\\']:.4f}, lz_fixed={lz_fixed:.4f}, theta_mle={data.get(\\\\\\\\'theta_mle\\\\\\\\',\\\\\\\\'?\\\\\\\\'):.4f}\\\\\\\")\\\\\\\\n\\\\\\\\n# Compute baselines and Cohen\\\\\\\\'s d (n=3, ddof=1)\\\\\\\\nclean_lz_fixed = [results[f\\\\\\\\'clean_s{i}\\\\\\\\'][\\\\\\\\'lz_fixed\\\\\\\\'] for i in [1,2,3]]\\\\\\\\nclean_lz_free = [results[f\\\\\\\\'clean_s{i}\\\\\\\\'][\\\\\\\\'lz_free\\\\\\\\'] for i in [1,2,3]]\\\\\\\\n\\\\\\\\nmean_fixed = float(np.mean(clean_lz_fixed))\\\\\\\\nstd_fixed = float(np.std(clean_lz_fixed, ddof=1))\\\\\\\\nmean_free = float(np.mean(clean_lz_free))\\\\\\\\nstd_free = float(np.std(clean_lz_free, ddof=1))\\\\\\\\n\\\\\\\\nprint(f\\\\\\\"\\\\\\\\\\\\\\\\n=== Baseline (n=3, ddof=1) ===\\\\\\\")\\\\\\\\nprint(f\\\\\\\"Free:  mean={mean_free:.4f}, std={std_free:.4f}\\\\\\\")\\\\\\\\nprint(f\\\\\\\"Fixed: mean={mean_fixed:.4f}, std={std_fixed:.4f}\\\\\\\")\\\\\\\\n\\\\\\\\nprint(f\\\\\\\"\\\\\\\\\\\\\\\\n=== Cohen\\\\\\\\'s d (n=3, ddof=1) ===\\\\\\\")\\\\\\\\nprint(f\\\\\\\"{\\\\\\\\'Cond\\\\\\\\':<12} {\\\\\\\\'lz_free\\\\\\\\':>8} {\\\\\\\\'lz_fixed\\\\\\\\':>9} {\\\\\\\\'d_free\\\\\\\\':>7} {\\\\\\\\'d_fixed\\\\\\\\':>8} {\\\\\\\\'absorbed\\\\\\\\':>9}\\\\\\\")\\\\\\\\noutput = {\\\\\\\\'theta_fixed\\\\\\\\': theta_fixed, \\\\\\\\'conditions\\\\\\\\': {}, \\\\\\\\'baseline\\\\\\\\': {}}\\\\\\\\noutput[\\\\\\\\'baseline\\\\\\\\'] = {\\\\\\\\n    \\\\\\\\'free\\\\\\\\': {\\\\\\\\'mean\\\\\\\\': mean_free, \\\\\\\\'std\\\\\\\\': std_free},\\\\\\\\n    \\\\\\\\'fixed\\\\\\\\': {\\\\\\\\'mean\\\\\\\\': mean_fixed, \\\\\\\\'std\\\\\\\\': std_fixed}\\\\\\\\n}\\\\\\\\n\\\\\\\\nfor cond in conditions:\\\\\\\\n    r = results[cond]\\\\\\\\n    d_free = (r[\\\\\\\\'lz_free\\\\\\\\'] - mean_free) / std_free if std_free > 0 else None\\\\\\\\n    d_fixed = (r[\\\\\\\\'lz_fixed\\\\\\\\'] - mean_fixed) / std_fixed if std_fixed > 0 else None\\\\\\\\n    absorbed = r[\\\\\\\\'lz_fixed\\\\\\\\'] - r[\\\\\\\\'lz_free\\\\\\\\']\\\\\\\\n    print(f\\\\\\\"{cond:<12} {r[\\\\\\\\'lz_free\\\\\\\\']:>8.4f} {r[\\\\\\\\'lz_fixed\\\\\\\\']:>9.4f} {d_free:>7.2f} {d_fixed:>8.2f} {absorbed:>9.4f}\\\\\\\")\\\\\\\\n    output[\\\\\\\\'conditions\\\\\\\\'][cond] = {\\\\\\\\n        \\\\\\\\'lz_free\\\\\\\\': r[\\\\\\\\'lz_free\\\\\\\\'],\\\\\\\\n        \\\\\\\\'lz_fixed\\\\\\\\': r[\\\\\\\\'lz_fixed\\\\\\\\'],\\\\\\\\n        \\\\\\\\'theta_mle\\\\\\\\': r[\\\\\\\\'theta_mle\\\\\\\\'],\\\\\\\\n        \\\\\\\\'accuracy\\\\\\\\': r[\\\\\\\\'accuracy\\\\\\\\'],\\\\\\\\n        \\\\\\\\'d_free\\\\\\\\': float(d_free) if d_free else None,\\\\\\\\n        \\\\\\\\'d_fixed\\\\\\\\': float(d_fixed) if d_fixed else None,\\\\\\\\n        \\\\\\\\'absorbed\\\\\\\\': float(absorbed)\\\\\\\\n    }\\\\\\\\n\\\\\\\\n# Delta lz* for contam conditions\\\\\\\\nprint(f\\\\\\\"\\\\\\\\\\\\\\\\n=== Delta_lz* (vs baseline mean) ===\\\\\\\")\\\\\\\\nfor cond in [\\\\\\\\'contam_15\\\\\\\\', \\\\\\\\'contam_50\\\\\\\\']:\\\\\\\\n    delta_free = results[cond][\\\\\\\\'lz_free\\\\\\\\'] - mean_free\\\\\\\\n    delta_fixed = results[cond][\\\\\\\\'lz_fixed\\\\\\\\'] - mean_fixed\\\\\\\\n    print(f\\\\\\\"{cond}: delta_lz_free={delta_free:.4f}, delta_lz_fixed={delta_fixed:.4f}\\\\\\\")\\\\\\\\n\\\\\\\\nwith open(\\\\\\\\'results/theta_fixed_n3.json\\\\\\\\', \\\\\\\\'w\\\\\\\\') as f:\\\\\\\\n    json.dump(output, f, indent=2)\\\\\\\\nprint(f\\\\\\\"\\\\\\\\\\\\\\\\nSaved results/theta_fixed_n3.json\\\\\\\")\\\\\\\\nprint(json.dumps(output, indent=2))\\\\\\\\nPYEOF\\\\\\\\n'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nThe above exception was the direct cause of the following exception:\\\\n\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"<stdin>\\\\\\\", line 5, in <module>\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/pandas/core/frame.py\\\\\\\", line 4378, in __getitem__\\\\n    indexer = self.columns.get_loc(key)\\\\n              ^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/pandas/core/indexes/base.py\\\\\\\", line 3648, in get_loc\\\\n    raise KeyError(key) from err\\\\nKeyError: 'a'\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.61}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/ctrl_contam_pilot && python3 << \\\\'PYEOF\\\\'\\\\nimport json, numpy as np, pandas as pd\\\\n\\\\n# Load IRT parameters\\\\nparams = pd.read_csv(\\\\'mmlu_params.csv\\\\')\\\\na = params[\\\\'a\\\\'].values\\\\nb = params[\\\\'b\\\\'].values\\\\nc = params[\\\\'c\\\\'].values\\\\nd = params[\\\\'d\\\\'].values\\\\nn_items = len(a)\\\\n\\\\ntheta_fixed = -0.0966  # mean(s1, s2, s3)\\\\n\\\\ndef compute_lz_star_fixed(response_vector, theta):\\\\n    \\\"\\\"\\\"Compute lz* with fixed theta.\\\"\\\"\\\"\\\\n    x = np.array(response_vector)\\\\n    P = c + (d - c) / (1 + np.exp(-a * (theta - b)))\\\\n    P = np.clip(P, 1e-10, 1-1e-10)\\\\n    \\\\n    l0 = np.sum(x * np.log(P) + (1-x) * np.log(1-P))\\\\n    El0 = np.sum(P * np.log(P) + (1-P) * np.log(1-P))\\\\n    Var_l0 = np.sum(P * (1-P) * (np.log(P) - np.log(1-P))**2)\\\\n    \\\\n    lz_star = (l0 - El0) / np.sqrt(Var_l0)\\\\n    return lz_star\\\\n\\\\n# Load results and compute\\\\nconditions = [\\\\'clean_s1\\\\', \\\\'clean_s2\\\\', \\\\'clean_s3\\\\', \\\\'contam_15\\\\', \\\\'contam_50\\\\']\\\\nresults = {}\\\\nfor cond in conditions:\\\\n    with open(f\\\\'results/{cond}_results.json\\\\') as f:\\\\n        data = json.load(f)\\\\n    rv = data[\\\\'response_vector\\\\']\\\\n    lz_fixed = compute_lz_star_fixed(rv, theta_fixed)\\\\n    results[cond] = {\\\\n        \\\\'lz_free\\\\': data[\\\\'lz_star\\\\'],\\\\n        \\\\'lz_fixed\\\\': float(lz_fixed),\\\\n        \\\\'theta_mle\\\\': data.get(\\\\'theta_mle\\\\', None),\\\\n        \\\\'accuracy\\\\': data.get(\\\\'accuracy\\\\', None)\\\\n    }\\\\n    print(f\\\"{cond}: lz_free={data[\\\\'lz_star\\\\']:.4f}, lz_fixed={lz_fixed:.4f}, theta_mle={data.get(\\\\'theta_mle\\\\',\\\\'?\\\\'):.4f}\\\")\\\\n\\\\n# Compute baselines and Cohen\\\\'s d (n=3, ddof=1)\\\\nclean_lz_fixed = [results[f\\\\'clean_s{i}\\\\'][\\\\'lz_fixed\\\\'] for i in [1,2,3]]\\\\nclean_lz_free = [results[f\\\\'clean_s{i}\\\\'][\\\\'lz_free\\\\'] for i in [1,2,3]]\\\\n\\\\nmean_fixed = float(np.mean(clean_lz_fixed))\\\\nstd_fixed = float(np.std(clean_lz_fixed, ddof=1))\\\\nmean_free = float(np.mean(clean_lz_free))\\\\nstd_free = float(np.std(clean_lz_free, ddof=1))\\\\n\\\\nprint(f\\\"\\\\\\\\n=== Baseline (n=3, ddof=1) ===\\\")\\\\nprint(f\\\"Free:  mean={mean_free:.4f}, std={std_free:.4f}\\\")\\\\nprint(f\\\"Fixed: mean={mean_fixed:.4f}, std={std_fixed:.4f}\\\")\\\\n\\\\nprint(f\\\"\\\\\\\\n=== Cohen\\\\'s d (n=3, ddof=1) ===\\\")\\\\nprint(f\\\"{\\\\'Cond\\\\':<12} {\\\\'lz_free\\\\':>8} {\\\\'lz_fixed\\\\':>9} {\\\\'d_free\\\\':>7} {\\\\'d_fixed\\\\':>8} {\\\\'absorbed\\\\':>9}\\\")\\\\noutput = {\\\\'theta_fixed\\\\': theta_fixed, \\\\'conditions\\\\': {}, \\\\'baseline\\\\': {}}\\\\noutput[\\\\'baseline\\\\'] = {\\\\n    \\\\'free\\\\': {\\\\'mean\\\\': mean_free, \\\\'std\\\\': std_free},\\\\n    \\\\'fixed\\\\': {\\\\'mean\\\\': mean_fixed, \\\\'std\\\\': std_fixed}\\\\n}\\\\n\\\\nfor cond in conditions:\\\\n    r = results[cond]\\\\n    d_free = (r[\\\\'lz_free\\\\'] - mean_free) / std_free if std_free > 0 else None\\\\n    d_fixed = (r[\\\\'lz_fixed\\\\'] - mean_fixed) / std_fixed if std_fixed > 0 else None\\\\n    absorbed = r[\\\\'lz_fixed\\\\'] - r[\\\\'lz_free\\\\']\\\\n    print(f\\\"{cond:<12} {r[\\\\'lz_free\\\\']:>8.4f} {r[\\\\'lz_fixed\\\\']:>9.4f} {d_free:>7.2f} {d_fixed:>8.2f} {absorbed:>9.4f}\\\")\\\\n    output[\\\\'conditions\\\\'][cond] = {\\\\n        \\\\'lz_free\\\\': r[\\\\'lz_free\\\\'],\\\\n        \\\\'lz_fixed\\\\': r[\\\\'lz_fixed\\\\'],\\\\n        \\\\'theta_mle\\\\': r[\\\\'theta_mle\\\\'],\\\\n        \\\\'accuracy\\\\': r[\\\\'accuracy\\\\'],\\\\n        \\\\'d_free\\\\': float(d_free) if d_free else None,\\\\n        \\\\'d_fixed\\\\': float(d_fixed) if d_fixed else None,\\\\n        \\\\'absorbed\\\\': float(absorbed)\\\\n    }\\\\n\\\\n# Delta lz* for contam conditions\\\\nprint(f\\\"\\\\\\\\n=== Delta_lz* (vs baseline mean) ===\\\")\\\\nfor cond in [\\\\'contam_15\\\\', \\\\'contam_50\\\\']:\\\\n    delta_free = results[cond][\\\\'lz_free\\\\'] - mean_free\\\\n    delta_fixed = results[cond][\\\\'lz_fixed\\\\'] - mean_fixed\\\\n    print(f\\\"{cond}: delta_lz_free={delta_free:.4f}, delta_lz_fixed={delta_fixed:.4f}\\\")\\\\n\\\\nwith open(\\\\'results/theta_fixed_n3.json\\\\', \\\\'w\\\\') as f:\\\\n    json.dump(output, f, indent=2)\\\\nprint(f\\\"\\\\\\\\nSaved results/theta_fixed_n3.json\\\")\\\\nprint(json.dumps(output, indent=2))\\\\nPYEOF\\\\n'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nThe above exception was the direct cause of the following exception:\\n\\nTraceback (most recent call last):\\n  File \\\"<stdin>\\\", line 5, in <module>\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/pandas/core/frame.py\\\", line 4378, in __getitem__\\n    indexer = self.columns.get_loc(key)\\n              ^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/pandas/core/indexes/base.py\\\", line 3648, in get_loc\\n    raise KeyError(key) from err\\nKeyError: 'a'\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.61}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Two issues:\n1. The grep with pipe was blocked by ssh_read_only - need to use grep without pipe\n2. The Python script failed because mmlu_params.csv doesn't have column 'a' - need to check the actual column names\n\nLet me check both: the column names in mmlu_params.csv, and the ddof in compute_delta.py.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "166b14f0-3aa0-4f50-a5a4-39ba1e8ba820",
+            "uuid": "11f0e3c7-451d-4669-80f6-06de6ad80d4c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CgNZRiK1PaFxR9cfQxed9Y",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4249,
+                "cache_read_input_tokens": 26566,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4249
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "mmlu_params.csv 列名不是 'a'/'b'/'c'/'d'，需要先检查。并行查看 CSV 头和 compute_delta.py。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "166b14f0-3aa0-4f50-a5a4-39ba1e8ba820",
+            "uuid": "281c8652-a936-4511-affc-d6870c0c1343",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CgNZRiK1PaFxR9cfQxed9Y",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4249,
+                "cache_read_input_tokens": 26566,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4249
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01U6sNcM8trqvKpT4XynSH15",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-35694",
+                "command": "head -3 /root/autodl-tmp/ctrl_contam_pilot/mmlu_params.csv",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "166b14f0-3aa0-4f50-a5a4-39ba1e8ba820",
+            "uuid": "4d73f8ab-6b4e-459f-9a56-0edd43935126",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CgNZRiK1PaFxR9cfQxed9Y",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4249,
+                "cache_read_input_tokens": 26566,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4249
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T20:58:45.778Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01U6sNcM8trqvKpT4XynSH15",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"item_idx,a_discrimination,b_difficulty,c_guessing,d_feasibility\\\\r\\\\n0,0.584142,-1.5606533,0.5717044,0.9729782\\\\r\\\\n1,1.9111078,-0.64062166,0.05028729,0.96004045\\\\r\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.83}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "166b14f0-3aa0-4f50-a5a4-39ba1e8ba820",
+            "uuid": "ba9b473b-d83d-4adf-a3c3-84542d0cf6d0",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"item_idx,a_discrimination,b_difficulty,c_guessing,d_feasibility\\\\r\\\\n0,0.584142,-1.5606533,0.5717044,0.9729782\\\\r\\\\n1,1.9111078,-0.64062166,0.05028729,0.96004045\\\\r\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.83}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"item_idx,a_discrimination,b_difficulty,c_guessing,d_feasibility\\r\\n0,0.584142,-1.5606533,0.5717044,0.9729782\\r\\n1,1.9111078,-0.64062166,0.05028729,0.96004045\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YEZFQHf5S9rME6aFGHeS8z",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-35694",
+                "command": "grep -n \"ddof\" /root/autodl-tmp/ctrl_contam_pilot/compute_delta.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "166b14f0-3aa0-4f50-a5a4-39ba1e8ba820",
+            "uuid": "85e5f811-d453-4ee1-b813-5b0013e8a6d6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CgNZRiK1PaFxR9cfQxed9Y",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4249,
+                "cache_read_input_tokens": 26566,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4249
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T20:58:46.385Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YEZFQHf5S9rME6aFGHeS8z",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"33:    lz_clean_std = np.std([lz_clean_1, lz_clean_2], ddof=0)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "166b14f0-3aa0-4f50-a5a4-39ba1e8ba820",
+            "uuid": "271f9241-22ed-4f0e-9fe4-969f50e99ae1",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"33:    lz_clean_std = np.std([lz_clean_1, lz_clean_2], ddof=0)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"33:    lz_clean_std = np.std([lz_clean_1, lz_clean_2], ddof=0)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016giEMQpUu6Ti2k31xzkwEz",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-35694",
+                "command": "grep -n \"np.std\" /root/autodl-tmp/ctrl_contam_pilot/compute_delta.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "166b14f0-3aa0-4f50-a5a4-39ba1e8ba820",
+            "uuid": "d1f088e9-9027-4e94-9ff8-120788b830f8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CgNZRiK1PaFxR9cfQxed9Y",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4249,
+                "cache_read_input_tokens": 26566,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4249
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T20:58:46.984Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016giEMQpUu6Ti2k31xzkwEz",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"33:    lz_clean_std = np.std([lz_clean_1, lz_clean_2], ddof=0)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "166b14f0-3aa0-4f50-a5a4-39ba1e8ba820",
+            "uuid": "b3029a75-ea01-49c7-b4ef-e7d773b45e4e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"33:    lz_clean_std = np.std([lz_clean_1, lz_clean_2], ddof=0)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"33:    lz_clean_std = np.std([lz_clean_1, lz_clean_2], ddof=0)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I know:\n1. CSV columns are: `item_idx`, `a_discrimination`, `b_difficulty`, `c_guessing`, `d_feasibility`\n2. compute_delta.py line 33 has `ddof=0` which needs to be changed to `ddof=1`\n\nLet me also check what the results JSON files look like to confirm the key names.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "166b14f0-3aa0-4f50-a5a4-39ba1e8ba820",
+            "uuid": "94e09245-e0b2-4a18-8b27-4a5ce1642835",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016RnWjBio93pRa7cbdye4ns",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 951,
+                "cache_read_input_tokens": 30815,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 951
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "列名是 `a_discrimination`, `b_difficulty`, `c_guessing`, `d_feasibility`。compute_delta.py 第33行有 `ddof=0` 需改为 `ddof=1`。\n\n并行执行：修正后的 θ-fixed 重算 + 修复 ddof。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "166b14f0-3aa0-4f50-a5a4-39ba1e8ba820",
+            "uuid": "561df46e-12f2-4c7d-b2ee-5b391918bda0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016RnWjBio93pRa7cbdye4ns",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 951,
+                "cache_read_input_tokens": 30815,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 951
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Tgaa6EWgZ4Jv94iVkntXte",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-35694",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/ctrl_contam_pilot && python3 -c \"\nimport json, numpy as np, pandas as pd\n\nparams = pd.read_csv('mmlu_params.csv')\na = params['a_discrimination'].values\nb = params['b_difficulty'].values\nc = params['c_guessing'].values\nd = params['d_feasibility'].values\n\ntheta_fixed = -0.0966\n\ndef compute_lz_star_fixed(response_vector, theta):\n    x = np.array(response_vector)\n    P = c + (d - c) / (1 + np.exp(-a * (theta - b)))\n    P = np.clip(P, 1e-10, 1-1e-10)\n    l0 = np.sum(x * np.log(P) + (1-x) * np.log(1-P))\n    El0 = np.sum(P * np.log(P) + (1-P) * np.log(1-P))\n    Var_l0 = np.sum(P * (1-P) * (np.log(P) - np.log(1-P))**2)\n    return (l0 - El0) / np.sqrt(Var_l0)\n\nconditions = ['clean_s1', 'clean_s2', 'clean_s3', 'contam_15', 'contam_50']\nresults = {}\nfor cond in conditions:\n    with open(f'results/{cond}_results.json') as f:\n        data = json.load(f)\n    rv = data['response_vector']\n    lz_fixed = compute_lz_star_fixed(rv, theta_fixed)\n    results[cond] = {\n        'lz_free': data['lz_star'],\n        'lz_fixed': float(lz_fixed),\n        'theta_mle': data.get('theta_mle', None),\n        'accuracy': data.get('accuracy', None)\n    }\n    print(f'{cond}: lz_free={data[\\\"lz_star\\\"]:.4f}, lz_fixed={lz_fixed:.4f}, theta_mle={data.get(\\\"theta_mle\\\",\\\"?\\\"):.4f}')\n\nclean_lz_fixed = [results[f'clean_s{i}']['lz_fixed'] for i in [1,2,3]]\nclean_lz_free = [results[f'clean_s{i}']['lz_free'] for i in [1,2,3]]\n\nmean_fixed = float(np.mean(clean_lz_fixed))\nstd_fixed = float(np.std(clean_lz_fixed, ddof=1))\nmean_free = float(np.mean(clean_lz_free))\nstd_free = float(np.std(clean_lz_free, ddof=1))\n\nprint(f'\\n=== Baseline (n=3, ddof=1) ===')\nprint(f'Free:  mean={mean_free:.4f}, std={std_free:.4f}')\nprint(f'Fixed: mean={mean_fixed:.4f}, std={std_fixed:.4f}')\n\nprint(f'\\n=== Cohen d (n=3, ddof=1) ===')\nprint(f'{\\\"Cond\\\":<12} {\\\"lz_free\\\":>8} {\\\"lz_fixed\\\":>9} {\\\"d_free\\\":>7} {\\\"d_fixed\\\":>8} {\\\"absorbed\\\":>9}')\n\noutput = {'theta_fixed': theta_fixed, 'conditions': {}, 'baseline': {}}\noutput['baseline'] = {\n    'free': {'mean': mean_free, 'std': std_free},\n    'fixed': {'mean': mean_fixed, 'std': std_fixed}\n}\n\nfor cond in conditions:\n    r = results[cond]\n    d_free = (r['lz_free'] - mean_free) / std_free if std_free > 0 else None\n    d_fixed = (r['lz_fixed'] - mean_fixed) / std_fixed if std_fixed > 0 else None\n    absorbed = r['lz_fixed'] - r['lz_free']\n    print(f'{cond:<12} {r[\\\"lz_free\\\"]:>8.4f} {r[\\\"lz_fixed\\\"]:>9.4f} {d_free:>7.2f} {d_fixed:>8.2f} {absorbed:>9.4f}')\n    output['conditions'][cond] = {\n        'lz_free': r['lz_free'],\n        'lz_fixed': r['lz_fixed'],\n        'theta_mle': r['theta_mle'],\n        'accuracy': r['accuracy'],\n        'd_free': float(d_free) if d_free else None,\n        'd_fixed': float(d_fixed) if d_fixed else None,\n        'absorbed': float(absorbed)\n    }\n\nprint(f'\\n=== Delta_lz* (vs baseline mean) ===')\nfor cond in ['contam_15', 'contam_50']:\n    delta_free = results[cond]['lz_free'] - mean_free\n    delta_fixed = results[cond]['lz_fixed'] - mean_fixed\n    print(f'{cond}: delta_lz_free={delta_free:.4f}, delta_lz_fixed={delta_fixed:.4f}')\n\nwith open('results/theta_fixed_n3.json', 'w') as f:\n    json.dump(output, f, indent=2)\nprint(f'\\nSaved results/theta_fixed_n3.json')\nprint(json.dumps(output, indent=2))\n\"\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "166b14f0-3aa0-4f50-a5a4-39ba1e8ba820",
+            "uuid": "c8d4c33b-7576-40ca-ad14-0a541efe97b7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016RnWjBio93pRa7cbdye4ns",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 951,
+                "cache_read_input_tokens": 30815,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 951
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A7i4ZAdxLUAuh5KBxgzfFG",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-35694",
+                "command": "sed -i 's/ddof=0/ddof=1/g' /root/autodl-tmp/ctrl_contam_pilot/compute_delta.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "166b14f0-3aa0-4f50-a5a4-39ba1e8ba820",
+            "uuid": "4a4ed23d-360d-4896-8fa7-10b579595088",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016RnWjBio93pRa7cbdye4ns",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 951,
+                "cache_read_input_tokens": 30815,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 951
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T20:59:05.639Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Tgaa6EWgZ4Jv94iVkntXte",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"clean_s1: lz_free=8.0101, lz_fixed=7.9501, theta_mle=-0.0987\\\\nclean_s2: lz_free=5.9440, lz_fixed=6.2996, theta_mle=-0.0842\\\\nclean_s3: lz_free=8.0806, lz_fixed=7.7808, theta_mle=-0.1068\\\\ncontam_15: lz_free=3.0046, lz_fixed=10.0224, theta_mle=0.1971\\\\ncontam_50: lz_free=5.4480, lz_fixed=15.7080, theta_mle=0.3703\\\\n\\\\n=== Baseline (n=3, ddof=1) ===\\\\nFree:  mean=7.3449, std=1.2137\\\\nFixed: mean=7.3435, std=0.9080\\\\n\\\\n=== Cohen d (n=3, ddof=1) ===\\\\nCond          lz_free  lz_fixed  d_free  d_fixed  absorbed\\\\nclean_s1       8.0101    7.9501    0.55     0.67   -0.0600\\\\nclean_s2       5.9440    6.2996   -1.15    -1.15    0.3555\\\\nclean_s3       8.0806    7.7808    0.61     0.48   -0.2998\\\\ncontam_15      3.0046   10.0224   -3.58     2.95    7.0178\\\\ncontam_50      5.4480   15.7080   -1.56     9.21   10.2600\\\\n\\\\n=== Delta_lz* (vs baseline mean) ===\\\\ncontam_15: delta_lz_free=-4.3403, delta_lz_fixed=2.6790\\\\ncontam_50: delta_lz_free=-1.8969, delta_lz_fixed=8.3646\\\\n\\\\nSaved results/theta_fixed_n3.json\\\\n{\\\\n  \\\\\\\"theta_fixed\\\\\\\": -0.0966,\\\\n  \\\\\\\"conditions\\\\\\\": {\\\\n    \\\\\\\"clean_s1\\\\\\\": {\\\\n      \\\\\\\"lz_free\\\\\\\": 8.01009041187934,\\\\n      \\\\\\\"lz_fixed\\\\\\\": 7.950062074982232,\\\\n      \\\\\\\"theta_mle\\\\\\\": -0.0986527567242099,\\\\n      \\\\\\\"accuracy\\\\\\\": null,\\\\n      \\\\\\\"d_free\\\\\\\": 0.5480631479571778,\\\\n      \\\\\\\"d_fixed\\\\\\\": 0.6680452343947818,\\\\n      \\\\\\\"absorbed\\\\\\\": -0.060028336897107515\\\\n    },\\\\n    \\\\\\\"clean_s2\\\\\\\": {\\\\n      \\\\\\\"lz_free\\\\\\\": 5.944047910541453,\\\\n      \\\\\\\"lz_fixed\\\\\\\": 6.299578769975273,\\\\n      \\\\\\\"theta_mle\\\\\\\": -0.08419128365675109,\\\\n      \\\\\\\"accuracy\\\\\\\": null,\\\\n      \\\\\\\"d_free\\\\\\\": -1.1542134241598188,\\\\n      \\\\\\\"d_fixed\\\\\\\": -1.1496736906361598,\\\\n      \\\\\\\"absorbed\\\\\\\": 0.35553085943382\\\\n    },\\\\n    \\\\\\\"clean_s3\\\\\\\": {\\\\n      \\\\\\\"lz_free\\\\\\\": 8.080590398603904,\\\\n      \\\\\\\"lz_fixed\\\\\\\": 7.7807962023115484,\\\\n      \\\\\\\"theta_mle\\\\\\\": -0.10680139600711859,\\\\n      \\\\\\\"accuracy\\\\\\\": null,\\\\n      \\\\\\\"d_free\\\\\\\": 0.6061502762026386,\\\\n      \\\\\\\"d_fixed\\\\\\\": 0.4816284562413779,\\\\n      \\\\\\\"absorbed\\\\\\\": -0.29979419629235604\\\\n    },\\\\n    \\\\\\\"contam_15\\\\\\\": {\\\\n      \\\\\\\"lz_free\\\\\\\": 3.0045964353509347,\\\\n      \\\\\\\"lz_fixed\\\\\\\": 10.022431242508778,\\\\n      \\\\\\\"theta_mle\\\\\\\": 0.1970583788764187,\\\\n      \\\\\\\"accuracy\\\\\\\": null,\\\\n      \\\\\\\"d_free\\\\\\\": -3.576118771146307,\\\\n      \\\\\\\"d_fixed\\\\\\\": 2.950397708991754,\\\\n      \\\\\\\"absorbed\\\\\\\": 7.017834807157843\\\\n    },\\\\n    \\\\\\\"contam_50\\\\\\\": {\\\\n      \\\\\\\"lz_free\\\\\\\": 5.448014241389145,\\\\n      \\\\\\\"lz_fixed\\\\\\\": 15.708049575110564,\\\\n      \\\\\\\"theta_mle\\\\\\\": 0.37026214499905313,\\\\n      \\\\\\\"accuracy\\\\\\\": null,\\\\n      \\\\\\\"d_free\\\\\\\": -1.562910967135056,\\\\n      \\\\\\\"d_fixed\\\\\\\": 9.212112694124281,\\\\n      \\\\\\\"absorbed\\\\\\\": 10.260035333721419\\\\n    }\\\\n  },\\\\n  \\\\\\\"baseline\\\\\\\": {\\\\n    \\\\\\\"free\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 7.3449095736749,\\\\n      \\\\\\\"std\\\\\\\": 1.2136937881771472\\\\n    },\\\\n    \\\\\\\"fixed\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 7.343479015756351,\\\\n      \\\\\\\"std\\\\\\\": 0.9079969858259929\\\\n    }\\\\n  }\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.82}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "166b14f0-3aa0-4f50-a5a4-39ba1e8ba820",
+            "uuid": "770c1aee-8154-44e7-aa4b-01b14eeb0d57",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"clean_s1: lz_free=8.0101, lz_fixed=7.9501, theta_mle=-0.0987\\\\nclean_s2: lz_free=5.9440, lz_fixed=6.2996, theta_mle=-0.0842\\\\nclean_s3: lz_free=8.0806, lz_fixed=7.7808, theta_mle=-0.1068\\\\ncontam_15: lz_free=3.0046, lz_fixed=10.0224, theta_mle=0.1971\\\\ncontam_50: lz_free=5.4480, lz_fixed=15.7080, theta_mle=0.3703\\\\n\\\\n=== Baseline (n=3, ddof=1) ===\\\\nFree:  mean=7.3449, std=1.2137\\\\nFixed: mean=7.3435, std=0.9080\\\\n\\\\n=== Cohen d (n=3, ddof=1) ===\\\\nCond          lz_free  lz_fixed  d_free  d_fixed  absorbed\\\\nclean_s1       8.0101    7.9501    0.55     0.67   -0.0600\\\\nclean_s2       5.9440    6.2996   -1.15    -1.15    0.3555\\\\nclean_s3       8.0806    7.7808    0.61     0.48   -0.2998\\\\ncontam_15      3.0046   10.0224   -3.58     2.95    7.0178\\\\ncontam_50      5.4480   15.7080   -1.56     9.21   10.2600\\\\n\\\\n=== Delta_lz* (vs baseline mean) ===\\\\ncontam_15: delta_lz_free=-4.3403, delta_lz_fixed=2.6790\\\\ncontam_50: delta_lz_free=-1.8969, delta_lz_fixed=8.3646\\\\n\\\\nSaved results/theta_fixed_n3.json\\\\n{\\\\n  \\\\\\\"theta_fixed\\\\\\\": -0.0966,\\\\n  \\\\\\\"conditions\\\\\\\": {\\\\n    \\\\\\\"clean_s1\\\\\\\": {\\\\n      \\\\\\\"lz_free\\\\\\\": 8.01009041187934,\\\\n      \\\\\\\"lz_fixed\\\\\\\": 7.950062074982232,\\\\n      \\\\\\\"theta_mle\\\\\\\": -0.0986527567242099,\\\\n      \\\\\\\"accuracy\\\\\\\": null,\\\\n      \\\\\\\"d_free\\\\\\\": 0.5480631479571778,\\\\n      \\\\\\\"d_fixed\\\\\\\": 0.6680452343947818,\\\\n      \\\\\\\"absorbed\\\\\\\": -0.060028336897107515\\\\n    },\\\\n    \\\\\\\"clean_s2\\\\\\\": {\\\\n      \\\\\\\"lz_free\\\\\\\": 5.944047910541453,\\\\n      \\\\\\\"lz_fixed\\\\\\\": 6.299578769975273,\\\\n      \\\\\\\"theta_mle\\\\\\\": -0.08419128365675109,\\\\n      \\\\\\\"accuracy\\\\\\\": null,\\\\n      \\\\\\\"d_free\\\\\\\": -1.1542134241598188,\\\\n      \\\\\\\"d_fixed\\\\\\\": -1.1496736906361598,\\\\n      \\\\\\\"absorbed\\\\\\\": 0.35553085943382\\\\n    },\\\\n    \\\\\\\"clean_s3\\\\\\\": {\\\\n      \\\\\\\"lz_free\\\\\\\": 8.080590398603904,\\\\n      \\\\\\\"lz_fixed\\\\\\\": 7.7807962023115484,\\\\n      \\\\\\\"theta_mle\\\\\\\": -0.10680139600711859,\\\\n      \\\\\\\"accuracy\\\\\\\": null,\\\\n      \\\\\\\"d_free\\\\\\\": 0.6061502762026386,\\\\n      \\\\\\\"d_fixed\\\\\\\": 0.4816284562413779,\\\\n      \\\\\\\"absorbed\\\\\\\": -0.29979419629235604\\\\n    },\\\\n    \\\\\\\"contam_15\\\\\\\": {\\\\n      \\\\\\\"lz_free\\\\\\\": 3.0045964353509347,\\\\n      \\\\\\\"lz_fixed\\\\\\\": 10.022431242508778,\\\\n      \\\\\\\"theta_mle\\\\\\\": 0.1970583788764187,\\\\n      \\\\\\\"accuracy\\\\\\\": null,\\\\n      \\\\\\\"d_free\\\\\\\": -3.576118771146307,\\\\n      \\\\\\\"d_fixed\\\\\\\": 2.950397708991754,\\\\n      \\\\\\\"absorbed\\\\\\\": 7.017834807157843\\\\n    },\\\\n    \\\\\\\"contam_50\\\\\\\": {\\\\n      \\\\\\\"lz_free\\\\\\\": 5.448014241389145,\\\\n      \\\\\\\"lz_fixed\\\\\\\": 15.708049575110564,\\\\n      \\\\\\\"theta_mle\\\\\\\": 0.37026214499905313,\\\\n      \\\\\\\"accuracy\\\\\\\": null,\\\\n      \\\\\\\"d_free\\\\\\\": -1.562910967135056,\\\\n      \\\\\\\"d_fixed\\\\\\\": 9.212112694124281,\\\\n      \\\\\\\"absorbed\\\\\\\": 10.260035333721419\\\\n    }\\\\n  },\\\\n  \\\\\\\"baseline\\\\\\\": {\\\\n    \\\\\\\"free\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 7.3449095736749,\\\\n      \\\\\\\"std\\\\\\\": 1.2136937881771472\\\\n    },\\\\n    \\\\\\\"fixed\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 7.343479015756351,\\\\n      \\\\\\\"std\\\\\\\": 0.9079969858259929\\\\n    }\\\\n  }\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.82}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"clean_s1: lz_free=8.0101, lz_fixed=7.9501, theta_mle=-0.0987\\nclean_s2: lz_free=5.9440, lz_fixed=6.2996, theta_mle=-0.0842\\nclean_s3: lz_free=8.0806, lz_fixed=7.7808, theta_mle=-0.1068\\ncontam_15: lz_free=3.0046, lz_fixed=10.0224, theta_mle=0.1971\\ncontam_50: lz_free=5.4480, lz_fixed=15.7080, theta_mle=0.3703\\n\\n=== Baseline (n=3, ddof=1) ===\\nFree:  mean=7.3449, std=1.2137\\nFixed: mean=7.3435, std=0.9080\\n\\n=== Cohen d (n=3, ddof=1) ===\\nCond          lz_free  lz_fixed  d_free  d_fixed  absorbed\\nclean_s1       8.0101    7.9501    0.55     0.67   -0.0600\\nclean_s2       5.9440    6.2996   -1.15    -1.15    0.3555\\nclean_s3       8.0806    7.7808    0.61     0.48   -0.2998\\ncontam_15      3.0046   10.0224   -3.58     2.95    7.0178\\ncontam_50      5.4480   15.7080   -1.56     9.21   10.2600\\n\\n=== Delta_lz* (vs baseline mean) ===\\ncontam_15: delta_lz_free=-4.3403, delta_lz_fixed=2.6790\\ncontam_50: delta_lz_free=-1.8969, delta_lz_fixed=8.3646\\n\\nSaved results/theta_fixed_n3.json\\n{\\n  \\\"theta_fixed\\\": -0.0966,\\n  \\\"conditions\\\": {\\n    \\\"clean_s1\\\": {\\n      \\\"lz_free\\\": 8.01009041187934,\\n      \\\"lz_fixed\\\": 7.950062074982232,\\n      \\\"theta_mle\\\": -0.0986527567242099,\\n      \\\"accuracy\\\": null,\\n      \\\"d_free\\\": 0.5480631479571778,\\n      \\\"d_fixed\\\": 0.6680452343947818,\\n      \\\"absorbed\\\": -0.060028336897107515\\n    },\\n    \\\"clean_s2\\\": {\\n      \\\"lz_free\\\": 5.944047910541453,\\n      \\\"lz_fixed\\\": 6.299578769975273,\\n      \\\"theta_mle\\\": -0.08419128365675109,\\n      \\\"accuracy\\\": null,\\n      \\\"d_free\\\": -1.1542134241598188,\\n      \\\"d_fixed\\\": -1.1496736906361598,\\n      \\\"absorbed\\\": 0.35553085943382\\n    },\\n    \\\"clean_s3\\\": {\\n      \\\"lz_free\\\": 8.080590398603904,\\n      \\\"lz_fixed\\\": 7.7807962023115484,\\n      \\\"theta_mle\\\": -0.10680139600711859,\\n      \\\"accuracy\\\": null,\\n      \\\"d_free\\\": 0.6061502762026386,\\n      \\\"d_fixed\\\": 0.4816284562413779,\\n      \\\"absorbed\\\": -0.29979419629235604\\n    },\\n    \\\"contam_15\\\": {\\n      \\\"lz_free\\\": 3.0045964353509347,\\n      \\\"lz_fixed\\\": 10.022431242508778,\\n      \\\"theta_mle\\\": 0.1970583788764187,\\n      \\\"accuracy\\\": null,\\n      \\\"d_free\\\": -3.576118771146307,\\n      \\\"d_fixed\\\": 2.950397708991754,\\n      \\\"absorbed\\\": 7.017834807157843\\n    },\\n    \\\"contam_50\\\": {\\n      \\\"lz_free\\\": 5.448014241389145,\\n      \\\"lz_fixed\\\": 15.708049575110564,\\n      \\\"theta_mle\\\": 0.37026214499905313,\\n      \\\"accuracy\\\": null,\\n      \\\"d_free\\\": -1.562910967135056,\\n      \\\"d_fixed\\\": 9.212112694124281,\\n      \\\"absorbed\\\": 10.260035333721419\\n    }\\n  },\\n  \\\"baseline\\\": {\\n    \\\"free\\\": {\\n      \\\"mean\\\": 7.3449095736749,\\n      \\\"std\\\": 1.2136937881771472\\n    },\\n    \\\"fixed\\\": {\\n      \\\"mean\\\": 7.343479015756351,\\n      \\\"std\\\": 0.9079969858259929\\n    }\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.82}}"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T20:59:06.167Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A7i4ZAdxLUAuh5KBxgzfFG",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "166b14f0-3aa0-4f50-a5a4-39ba1e8ba820",
+            "uuid": "bd5a5450-379a-40a1-9f3e-d96e37607671",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证 ddof 修复。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "166b14f0-3aa0-4f50-a5a4-39ba1e8ba820",
+            "uuid": "a40a46c3-500b-4da6-b821-d15573d0d0ab",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014D1tFnxXLKPawthJLcFyMU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3636,
+                "cache_read_input_tokens": 31766,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3636
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014wczMGpYLbii6FQtwziyY6",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-35694",
+                "command": "grep -n \"ddof\" /root/autodl-tmp/ctrl_contam_pilot/compute_delta.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "166b14f0-3aa0-4f50-a5a4-39ba1e8ba820",
+            "uuid": "65f6c8ff-a07c-48c8-b51a-59d0c5d71cda",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014D1tFnxXLKPawthJLcFyMU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3636,
+                "cache_read_input_tokens": 31766,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3636
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T20:59:09.756Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014wczMGpYLbii6FQtwziyY6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"33:    lz_clean_std = np.std([lz_clean_1, lz_clean_2], ddof=1)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "166b14f0-3aa0-4f50-a5a4-39ba1e8ba820",
+            "uuid": "57495dc5-4c14-49a9-bf4d-e0f0dd77dbf2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"33:    lz_clean_std = np.std([lz_clean_1, lz_clean_2], ddof=1)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"33:    lz_clean_std = np.std([lz_clean_1, lz_clean_2], ddof=1)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务均完成。\n\n---\n\n### 任务 1：θ-fixed 重算结果（θ\\_fixed = -0.0966）\n\n| Condition | lz\\*\\_free | lz\\*\\_fixed | θ\\_mle | d\\_free | d\\_fixed | absorbed |\n|-----------|-----------|------------|--------|---------|----------|----------|\n| clean\\_s1 | 8.0101 | 7.9501 | -0.0987 | 0.55 | 0.67 | -0.0600 |\n| clean\\_s2 | 5.9440 | 6.2996 | -0.0842 | -1.15 | -1.15 | 0.3555 |\n| clean\\_s3 | 8.0806 | 7.7808 | -0.1068 | 0.61 | 0.48 | -0.2998 |\n| contam\\_15 | 3.0046 | **10.0224** | 0.1971 | -3.58 | **2.95** | **7.0178** |\n| contam\\_50 | 5.4480 | **15.7080** | 0.3703 | -1.56 | **9.21** | **10.2600** |\n\n**Baseline (n=3, ddof=1):**\n- Free: mean=7.3449, std=1.2137\n- Fixed: mean=7.3435, std=0.9080\n\n**Δlz\\* (vs baseline mean):**\n- contam\\_15: Δfree=-4.3403, Δfixed=+2.6790\n- contam\\_50: Δfree=-1.8969, Δfixed=+8.3646\n\n结果已保存至 `results/theta_fixed_n3.json`。\n\n### 任务 2：compute\\_delta.py ddof 修复\n\n第33行 `ddof=0` → `ddof=1`，已确认修复。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "166b14f0-3aa0-4f50-a5a4-39ba1e8ba820",
+            "uuid": "1d9bc975-2b65-4621-a589-4c790d6b22cd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016bAEREcZ7xLjeBtjGj7LBe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 246,
+                "cache_read_input_tokens": 35402,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 246
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务均完成。\n\n---\n\n### 任务 1：θ-fixed 重算结果（θ\\_fixed = -0.0966）\n\n| Condition | lz\\*\\_free | lz\\*\\_fixed | θ\\_mle | d\\_free | d\\_fixed | absorbed |\n|-----------|-----------|------------|--------|---------|----------|----------|\n| clean\\_s1 | 8.0101 | 7.9501 | -0.0987 | 0.55 | 0.67 | -0.0600 |\n| clean\\_s2 | 5.9440 | 6.2996 | -0.0842 | -1.15 | -1.15 | 0.3555 |\n| clean\\_s3 | 8.0806 | 7.7808 | -0.1068 | 0.61 | 0.48 | -0.2998 |\n| contam\\_15 | 3.0046 | **10.0224** | 0.1971 | -3.58 | **2.95** | **7.0178** |\n| contam\\_50 | 5.4480 | **15.7080** | 0.3703 | -1.56 | **9.21** | **10.2600** |\n\n**Baseline (n=3, ddof=1):**\n- Free: mean=7.3449, std=1.2137\n- Fixed: mean=7.3435, std=0.9080\n\n**Δlz\\* (vs baseline mean):**\n- contam\\_15: Δfree=-4.3403, Δfixed=+2.6790\n- contam\\_50: Δfree=-1.8969, Δfixed=+8.3646\n\n结果已保存至 `results/theta_fixed_n3.json`。\n\n### 任务 2：compute\\_delta.py ddof 修复\n\n第33行 `ddof=0` → `ddof=1`，已确认修复。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 61546,
+            "duration_api_ms": 59765,
+            "num_turns": 10,
+            "stop_reason": "end_turn",
+            "session_id": "166b14f0-3aa0-4f50-a5a4-39ba1e8ba820",
+            "total_cost_usd": 0.35750925,
+            "usage": {
+              "input_tokens": 9,
+              "cache_creation_input_tokens": 23807,
+              "cache_read_input_tokens": 161979,
+              "output_tokens": 4978,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 23807,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 514,
+                  "cache_read_input_tokens": 35402,
+                  "cache_creation_input_tokens": 246,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 246
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 3121,
+                "outputTokens": 22,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.003231,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 9,
+                "outputTokens": 4978,
+                "cacheReadInputTokens": 161979,
+                "cacheCreationInputTokens": 23807,
+                "webSearchRequests": 0,
+                "costUSD": 0.35427825,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "487db6d9-ad97-42f2-bc6f-1128f3493d57"
+          },
+          "id": "event-000031"
+        }
+      ],
+      "message_count": 31
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-theta-fixed-n3-recompute.md"
+}

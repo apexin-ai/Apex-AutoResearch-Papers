@@ -1,0 +1,112 @@
+paper_key: "atlas2025"
+title: "Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks"
+venue: "Preprint 2025"
+full_text_available: true
+
+research:
+  baselines:
+    - "Random100 (uniform random sampling of 100 items)"
+    - "TinyBenchmarks (clustering-based item selection)"
+    - "MetaBench-Primary (iterative stable subset identification)"
+    - "MetaBench-Secondary (curated split variant of MetaBench)"
+  metrics:
+    - {name: "MAE (Mean Absolute Error) of ability estimation", direction: "lower_better"}
+    - {name: "IES (Information Efficiency Score = MAE x num_items)", direction: "lower_better"}
+    - {name: "SE (Standard Error of ability estimate)", direction: "lower_better"}
+    - {name: "RMSEA (model fit via M2 statistic)", direction: "lower_better"}
+    - {name: "Rank displacement (% models shifting >10 positions)", direction: "descriptive"}
+    - {name: "Test overlap rate", direction: "lower_better"}
+    - {name: "Item exposure rate", direction: "lower_better"}
+  datasets:
+    - {name: "WinoGrande", size: "1,045 items after filtering; 4,680 calibration + 521 test models"}
+    - {name: "TruthfulQA", size: "627 items after filtering; 4,635 calibration + 516 test models"}
+    - {name: "HellaSwag", size: "5,600 items after filtering; 3,467 calibration + 386 test models"}
+    - {name: "GSM8K", size: "1,306 items after filtering; 3,775 calibration + 420 test models"}
+    - {name: "ARC", size: "839 items after filtering; 3,747 calibration + 417 test models"}
+  ablation_dimensions:
+    - "Precision threshold tau (SE <= 0.1, 0.2, 0.3)"
+    - "Item bank partitioning (K non-overlapping subsets)"
+    - "Item filtering criteria (point-biserial correlation threshold)"
+    - "Ability estimation method (WLE vs EAP)"
+  training_recipe:
+    model: "3PL IRT (Three-Parameter Logistic)"
+    calibration_software: "mirt R package"
+    ability_estimation: "Weighted Likelihood Estimator (WLE) for calibration, Expected A Posteriori (EAP) for adaptive updates"
+    linking: "Common-person calibration with partition-based approach"
+    item_selection: "Fisher information-guided, top-5 random selection"
+    stopping_criterion: "SE(theta) <= tau, with item bounds [30, 500]"
+    hardware: "Not specified (no GPU training required; IRT calibration is CPU-based)"
+  method_family: "IRT-based adaptive testing (Computerized Adaptive Testing) for LLM evaluation"
+
+positioning:
+  core_claim: "Adaptive IRT-based evaluation can replace static benchmark testing, reducing items by up to 90% while revealing latent ability differences that raw accuracy obscures -- particularly at performance extremes where accuracy suffers from ceiling/floor effects."
+  key_results: "HellaSwag: 41 items (0.157 MAE) vs 5,600 full bank (99.3% reduction); TruthfulQA: 48 items (0.064 MAE); 23-31% of models shift >10 rank positions under IRT vs accuracy; RMSEA 0.044-0.069 (good-to-acceptable fit) vs TinyBenchmarks' 364.24 (poor fit); test overlap 11-23%, exposure <12%, runtime 9.4-75.5s per model"
+  limitations:
+    - "Requires a large calibration pool of models (3,000-4,700) to estimate item parameters reliably"
+    - "Current evaluation limited to binary (correct/incorrect) response formats -- not applicable to open-ended generation tasks"
+    - "Item parameters assumed static -- does not account for data contamination or memorization over time"
+    - "Only validated on 5 benchmarks; generalization to other domains (coding, multimodal) unverified"
+    - "Common-person linking assumes stable model population; may degrade with distribution shift in future model releases"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "LLM evaluation requires thousands of items, making it expensive, slow, and impractical at scale -- but most items are uninformative and accuracy metrics obscure meaningful differences."
+  tension: "Three fundamental problems: (1) accuracy obscures meaningful differences between models with distinct error patterns, especially at extremes; (2) static evaluations treat all items as equally valuable; (3) complete benchmark evaluation is computationally wasteful. Existing IRT approaches (TinyBenchmarks, MetaBench) remain static and rarely validate model fit."
+  key_insight: "Fisher information-guided adaptive item selection enables precision-controlled evaluation that dynamically adjusts to each model's ability level, achieving 90% item reduction while simultaneously surfacing ability distinctions that raw accuracy compresses away at performance extremes."
+  argument_chain: "accuracy metrics are fundamentally flawed (ceiling/floor effects, equal item weighting) -> IRT provides form-invariant, uncertainty-aware ability estimates -> but existing IRT methods are static and lack fit validation -> ATLAS introduces adaptive item selection with SE-based stopping -> validated on 5 benchmarks showing 90% reduction + rank reordering + superior model fit"
+  contribution_framing: "Four numbered contributions: (1) identify limitations + show IRT superiority, (2) introduce ATLAS framework with 90% reduction claim, (3) psychometric analysis revealing 23-31% rank reordering, (4) rigorous validation methodology (RMSEA, common-person linking). Contributions escalate from diagnosis to solution to analysis to validation."
+  intro_structure: "4 paragraphs: P1 = problem statement (expensive evaluation, fixed item sets); P2 = three specific limitations of accuracy metrics; P3 = introduce ATLAS and its approach; P4 = key results and performance claims"
+  notable_technique: "The 'two models, same accuracy, different abilities' demonstration (Figure 3) is a compelling rhetorical device -- showing that two models with identical 0.833 accuracy receive theta_A=1.2 vs theta_B=0.6 because they solve qualitatively different items. This makes the abstract IRT advantage immediately tangible."
+
+figures:
+  figure_count: 3
+  figure1:
+    type: "teaser_result"
+    description: "Five scatter plots (one per benchmark) comparing subset-predicted ability estimates (y-axis) against whole-bank reference abilities (x-axis) for all methods. Points along the identity line indicate perfect agreement."
+    narrative_role: "Serves as the primary visual evidence that ATLAS maintains tighter alignment with ground-truth abilities than all baselines, especially in extreme ability regions. Placed after the method section to immediately demonstrate the framework's advantage."
+    design_elements: ["identity line for reference", "per-benchmark subplots", "multi-method overlay with distinct colors/markers", "highlights of high-ability regime deviations"]
+    visual_style: "5-panel grid layout; scatter points with method-specific colors; identity diagonal line; clean axes with ability scale labels; variance of competing methods visually apparent through point spread"
+  result_figures:
+    - figure_id: "Figure 1"
+      viz_type: "scatter_plot_grid"
+      what_compared: "Predicted vs reference ability estimates across 5 benchmarks for ATLAS vs 4 baselines"
+      how_gain_highlighted: "ATLAS points cluster tightly around the identity line while baselines show systematic deviation and greater variance, especially at extremes"
+      design_note: "Using scatter plots with identity line makes agreement/disagreement immediately visual; the 5-panel layout enables cross-benchmark comparison at a glance"
+    - figure_id: "Figure 2"
+      viz_type: "dual_panel (scatter + rank_comparison)"
+      what_compared: "Left: IRT ability vs raw accuracy showing nonlinear relationship and ceiling/floor effects. Right: rank comparison showing 23-31% of models shift >10 positions"
+      how_gain_highlighted: "Ceiling/floor compression regions annotated; percentage labels on rank shifts quantify the practical significance of IRT reranking"
+      design_note: "Dual-panel design pairs the conceptual insight (left: why accuracy is flawed) with the practical consequence (right: how rankings change), making the abstract statistical argument concrete"
+  ablation_figures:
+    - figure_id: "Figure 3"
+      viz_type: "heatmap"
+      dimensions_varied: ["item difficulty level (D1-D10)", "model identity (Model A vs B)"]
+      design_note: "Minimal 2-row heatmap with 10 difficulty columns; darker = correct. The left-right gradient contrast between rows makes the 'same accuracy, different ability' insight instantly visible. Elegant in simplicity -- only two data points needed to make the argument."
+  figure_narrative_role: "Figure 1 (result: ATLAS vs baselines alignment) -> Figure 2 (motivation/analysis: why IRT beats accuracy at extremes) -> Figure 3 (insight: concrete example of two models with same accuracy but different abilities). The sequence moves from 'ATLAS works' to 'why accuracy is flawed' to 'intuitive proof of concept'."
+
+tables:
+  table_count: 3
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "methods (Random100, TinyBenchmarks, MetaBench-P, MetaBench-S, ATLAS_0.1, ATLAS_0.2, ATLAS_0.3)"
+    col_axis: "benchmarks (WinoGrande, TruthfulQA, HellaSwag) x metrics (MAE+-SE, Items, IES)"
+    row_organization: "by_category (baselines first, then ATLAS variants by precision threshold)"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best + underline_second + dashed_underline_third"
+    statistical_reporting: "MAE +- SE across test models"
+    num_baselines: 4
+    design_note: "Three-tier highlighting (bold/underline/dashed) is more nuanced than typical bold-only, allowing readers to see competitive proximity. ATLAS variants shown at multiple precision thresholds to reveal the efficiency-accuracy tradeoff. GSM8K and ARC deferred to appendix to keep main table focused."
+  ablation_tables:
+    - table_id: "Table 1"
+      what_varied: ["item selection method (TinyBenchmarks vs MetaBench vs ATLAS)", "benchmark"]
+      variation_style: "full_numbers"
+      design_note: "Model fit validation table (RMSEA values + categorical fit labels). Serves double duty: validates ATLAS's psychometric rigor AND exposes competitors' poor fit (TinyBenchmarks RMSEA >300). Placing this before the performance tables establishes that ATLAS's item parameters are trustworthy before showing they are efficient."
+    - table_id: "Table 3"
+      what_varied: ["method", "benchmark"]
+      variation_style: "full_numbers"
+      design_note: "Accuracy reconstruction table parallels Table 2 structure but measures whether IRT ability can recover raw accuracy (MAE of reconstructed vs actual accuracy). Demonstrates that the IRT transformation is faithful -- ability estimates preserve the accuracy ordering while adding discriminative power."
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 4: qualitative comparison matrix of IRT methods (9 criteria x 3 methods); Table 5: calibration dataset statistics (model counts, item counts, K partitions, RMSEA per benchmark); Tables 6-7: GSM8K and ARC results (same format as Tables 2-3); Table 8: test overlap rates, item exposure, and runtime statistics"
+    reason: "Main text keeps 3 representative benchmarks (WinoGrande, TruthfulQA, HellaSwag) for readability; remaining 2 benchmarks (GSM8K, ARC) go to appendix since they show consistent patterns. Methodological comparison (Table 4) and dataset statistics (Table 5) are reference material that supports but doesn't drive the narrative."

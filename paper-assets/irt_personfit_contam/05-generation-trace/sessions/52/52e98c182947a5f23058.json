@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52e98c182947a5f23058",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops monitor 50s3 eval",
+  "task_key": "worker_ops_monitor-50s3-eval_20260522T193052",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_monitor-50s3-eval_20260522T193052_result.json",
+    "occurrence": 1,
+    "bytes": 833,
+    "sha256": "2c920bb0cab902e525cc7cdb035f6761d2dc6201095aa35dc6bef511a3cb1214"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已获取。汇总报告如下：\n\n---\n\n## contam_50_s3 评估结果\n\n**Accuracy**\n| | Overall | Seen (7021) | Unseen (7021) |\n|---|---|---|---|\n| acc | 0.7666 | 0.8029 | 0.7302 |\n\n**Free-θ (MLE)**\n- θ_mle = 0.4261\n- lz\\* = 2.8695\n- |d| = **7.91**, 95% CI = [5.52, 18.29]\n  - baseline: mean=8.6838, std=0.7353, n=10\n\n**Fixed-θ (θ = −0.1022)**\n- lz_fixed = 13.0362\n- lz\\*_fixed = 15.3929\n- d_fixed = **9.80**, 95% CI = [8.18, 16.46]\n  - baseline: mean=7.3522, std=0.5802, n=10\n\n**对比其他 50% seeds**\n\n| Seed | d (free-θ) | d_fixed |\n|------|-----------|---------|\n| s1 (50%) | — | 14.52 |\n| s2 (50%) | — | 12.64 |\n| **s3 (50%)** | **7.91** | **9.80** |\n\ncontam_50_s3 的 fixed-θ d=9.80 低于 s1/s2（14.52/12.64），但仍然是极显著的异常信号。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-monitor-50s3-eval.md"
+}

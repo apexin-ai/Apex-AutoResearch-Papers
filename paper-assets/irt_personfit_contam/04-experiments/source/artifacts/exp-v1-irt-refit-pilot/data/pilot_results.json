@@ -1,0 +1,528 @@
+{
+  "n_models": 63,
+  "n_items": 14042,
+  "n_mapped_items": 12441,
+  "n_zero_var_items": 38,
+  "overall_accuracy": 0.4264530671025472,
+  "fitting_time_2pl_sec": 8.908243894577026,
+  "fitting_time_3pl_sec": 12.130531311035156,
+  "parameter_comparison_2pl": {
+    "a_discrimination": {
+      "pearson_r": -0.08364859261035873,
+      "pearson_p": 9.141856902224992e-21,
+      "spearman_r": -0.05177310195110716,
+      "spearman_p": 7.558180808294792e-09,
+      "v1_mean": 1.4326068540343733,
+      "v1_std": 1.4169615567910723,
+      "psn_mean": 1.2098651102486135,
+      "psn_std": 0.515543668081817
+    },
+    "b_difficulty": {
+      "pearson_r": 0.5717650692843136,
+      "pearson_p": 0.0,
+      "spearman_r": 0.6296517625785727,
+      "spearman_p": 0.0,
+      "v1_mean": 1.6598423883774045,
+      "v1_std": 2.877363355845276,
+      "psn_mean": -0.8282696809235592,
+      "psn_std": 0.7449664458383186
+    },
+    "c_guessing": {
+      "v1_fixed": 0.0,
+      "psn_mean": 0.22785811334691747,
+      "psn_std": 0.18212731453410885,
+      "note": "v1 c is fixed, not estimated"
+    },
+    "d_feasibility": {
+      "psn_mean": 0.8978331295900651,
+      "psn_std": 0.14315509457114273,
+      "note": "v1 does not estimate d; uses d=1.0"
+    }
+  },
+  "parameter_comparison_3pl": {
+    "a_discrimination": {
+      "pearson_r": 0.11094672707545947,
+      "pearson_p": 2.2495417280408332e-35,
+      "spearman_r": 0.11131852559774921,
+      "spearman_p": 1.3324637839306585e-35,
+      "v1_mean": 2.9660634807358646,
+      "v1_std": 1.9249949993529292,
+      "psn_mean": 1.2098651102486135,
+      "psn_std": 0.515543668081817
+    },
+    "b_difficulty": {
+      "pearson_r": 0.6256526765927275,
+      "pearson_p": 0.0,
+      "spearman_r": 0.6560053892376118,
+      "spearman_p": 0.0,
+      "v1_mean": 2.0718467764700628,
+      "v1_std": 2.668991245407111,
+      "psn_mean": -0.8282696809235592,
+      "psn_std": 0.7449664458383186
+    },
+    "c_guessing": {
+      "v1_fixed": 0.25,
+      "psn_mean": 0.22785811334691747,
+      "psn_std": 0.18212731453410885,
+      "note": "v1 c is fixed, not estimated"
+    },
+    "d_feasibility": {
+      "psn_mean": 0.8978331295900651,
+      "psn_std": 0.14315509457114273,
+      "note": "v1 does not estimate d; uses d=1.0"
+    }
+  },
+  "lz_star_stats": {
+    "mean": 11.68882847864405,
+    "std": 6.684567791747415,
+    "min": -5.875383026952177,
+    "max": 23.37499091218986,
+    "n_flagged_1_96": 1,
+    "n_flagged_2_58": 1
+  },
+  "per_model": [
+    {
+      "model": "mistralai__Mistral-7B-Instruct-v0.1",
+      "accuracy": 0.5372454066372312,
+      "theta": 1.1081612321526253,
+      "lz_star": 11.872686303364993
+    },
+    {
+      "model": "mistralai__Mistral-7B-v0.1",
+      "accuracy": 0.6264064948013104,
+      "theta": 1.8799916240887584,
+      "lz_star": 11.030331403917767
+    },
+    {
+      "model": "lmsys__vicuna-7b-v1.3",
+      "accuracy": 0.4718701039737929,
+      "theta": 0.47692293894393445,
+      "lz_star": 11.087613913031115
+    },
+    {
+      "model": "lmsys__vicuna-7b-v1.5",
+      "accuracy": 0.4990742059535679,
+      "theta": 0.7971833640287902,
+      "lz_star": 18.122296303783713
+    },
+    {
+      "model": "lmsys__vicuna-13b-v1.5",
+      "accuracy": 0.5572568010254949,
+      "theta": 1.3871896376881945,
+      "lz_star": 22.990115751287295
+    },
+    {
+      "model": "meta-llama__Llama-2-7b-hf",
+      "accuracy": 0.42764563452499643,
+      "theta": 0.09322843692828119,
+      "lz_star": 15.328137702016006
+    },
+    {
+      "model": "meta-llama__Llama-2-13b-hf",
+      "accuracy": 0.5356786782509614,
+      "theta": 1.1283435777496562,
+      "lz_star": 16.141958728764337
+    },
+    {
+      "model": "meta-llama__Llama-2-70b-hf",
+      "accuracy": 0.6918530123913972,
+      "theta": 2.934984375644458,
+      "lz_star": 17.179968656295678
+    },
+    {
+      "model": "tiiuae__falcon-7b",
+      "accuracy": 0.27310924369747897,
+      "theta": -2.1478431869179264,
+      "lz_star": 15.40757373244256
+    },
+    {
+      "model": "tiiuae__falcon-7b-instruct",
+      "accuracy": 0.25210084033613445,
+      "theta": -3.1736879585582907,
+      "lz_star": 9.800529652562004
+    },
+    {
+      "model": "tiiuae__falcon-40b",
+      "accuracy": 0.5587523144851161,
+      "theta": 1.2614440278262156,
+      "lz_star": 5.534274135384371
+    },
+    {
+      "model": "mosaicml__mpt-7b",
+      "accuracy": 0.27553055120353226,
+      "theta": -2.3770797210210515,
+      "lz_star": 7.809936841879194
+    },
+    {
+      "model": "mosaicml__mpt-7b-instruct",
+      "accuracy": 0.3157669847600057,
+      "theta": -1.613510608132061,
+      "lz_star": 6.385046841654468
+    },
+    {
+      "model": "mosaicml__mpt-7b-chat",
+      "accuracy": 0.3698191140863125,
+      "theta": -0.586047493028376,
+      "lz_star": 5.623340661855812
+    },
+    {
+      "model": "mosaicml__mpt-30b",
+      "accuracy": 0.4749323458196838,
+      "theta": 0.5430185734793015,
+      "lz_star": 12.480406510192683
+    },
+    {
+      "model": "mosaicml__mpt-30b-chat",
+      "accuracy": 0.5018515880928642,
+      "theta": 0.7545313763873062,
+      "lz_star": 9.194510768878237
+    },
+    {
+      "model": "EleutherAI__pythia-12b-deduped",
+      "accuracy": 0.2594359777809429,
+      "theta": -2.496743049111977,
+      "lz_star": 14.07935481766722
+    },
+    {
+      "model": "EleutherAI__pythia-6.7b",
+      "accuracy": 0.24711579547073068,
+      "theta": -3.5536924829396552,
+      "lz_star": 11.646523986000409
+    },
+    {
+      "model": "EleutherAI__gpt-neo-1.3B",
+      "accuracy": 0.24462327303802878,
+      "theta": -3.9999992761495347,
+      "lz_star": 3.4991266217405337
+    },
+    {
+      "model": "EleutherAI__gpt-neo-2.7B",
+      "accuracy": 0.2672696197122917,
+      "theta": -3.692452331735292,
+      "lz_star": 4.788142172163371
+    },
+    {
+      "model": "EleutherAI__gpt-j-6b",
+      "accuracy": 0.26940606751175045,
+      "theta": -2.7496043173547253,
+      "lz_star": 9.87920564037352
+    },
+    {
+      "model": "togethercomputer__RedPajama-INCITE-7B-Base",
+      "accuracy": 0.2748896168636946,
+      "theta": -3.2862895485221295,
+      "lz_star": 2.0972667682880552
+    },
+    {
+      "model": "togethercomputer__RedPajama-INCITE-7B-Instruct",
+      "accuracy": 0.3730950007121493,
+      "theta": -0.532533831369916,
+      "lz_star": 9.291382090833899
+    },
+    {
+      "model": "stabilityai__stablelm-tuned-alpha-7b",
+      "accuracy": 0.24148981626548924,
+      "theta": -3.9999995014640697,
+      "lz_star": 8.343634319997339
+    },
+    {
+      "model": "Open-Orca__OpenOrca-Platypus2-13B",
+      "accuracy": 0.5932203389830508,
+      "theta": 1.6305154373319934,
+      "lz_star": 3.6588613353260104
+    },
+    {
+      "model": "NousResearch__Nous-Hermes-13b",
+      "accuracy": 0.49430280586810993,
+      "theta": 0.780556280573237,
+      "lz_star": 22.62197198954679
+    },
+    {
+      "model": "teknium__OpenHermes-13B",
+      "accuracy": 0.5602478279447373,
+      "theta": 1.389948159683722,
+      "lz_star": 20.27267335451835
+    },
+    {
+      "model": "WizardLM__WizardLM-13B-V1.2",
+      "accuracy": 0.5388833499501495,
+      "theta": 1.2372783609550757,
+      "lz_star": 16.13000171214639
+    },
+    {
+      "model": "garage-bAInd__Platypus2-70B-instruct",
+      "accuracy": 0.7124341261928501,
+      "theta": 3.5787264342738503,
+      "lz_star": 2.0226045616784005
+    },
+    {
+      "model": "garage-bAInd__Platypus2-13B",
+      "accuracy": 0.5735650192280302,
+      "theta": 1.5381984772165784,
+      "lz_star": 5.057964511391054
+    },
+    {
+      "model": "microsoft__phi-1_5",
+      "accuracy": 0.4242273180458624,
+      "theta": -0.21485228025609093,
+      "lz_star": 5.386627311927107
+    },
+    {
+      "model": "Qwen__Qwen-7B",
+      "accuracy": 0.584247258225324,
+      "theta": 1.4078975258452007,
+      "lz_star": 5.472965642848004
+    },
+    {
+      "model": "Qwen__Qwen-14B",
+      "accuracy": 0.6625124626121635,
+      "theta": 2.1326562930936643,
+      "lz_star": 1.5535397156146797
+    },
+    {
+      "model": "bigscience__bloom-7b1",
+      "accuracy": 0.26071784646061813,
+      "theta": -2.1115479181258947,
+      "lz_star": 23.37499091218986
+    },
+    {
+      "model": "cerebras__Cerebras-GPT-6.7B",
+      "accuracy": 0.2612163509471585,
+      "theta": -3.9999995005572053,
+      "lz_star": 3.5279176433557873
+    },
+    {
+      "model": "cerebras__Cerebras-GPT-2.7B",
+      "accuracy": 0.25452214784218774,
+      "theta": -3.9999994733540127,
+      "lz_star": 4.648102863582718
+    },
+    {
+      "model": "openlm-research__open_llama_7b",
+      "accuracy": 0.3023073636234155,
+      "theta": -1.597962425541146,
+      "lz_star": 14.003336102157435
+    },
+    {
+      "model": "openlm-research__open_llama_13b",
+      "accuracy": 0.42543797179888904,
+      "theta": -0.053255650315614585,
+      "lz_star": 12.616919042723483
+    },
+    {
+      "model": "openlm-research__open_llama_3b",
+      "accuracy": 0.2662013958125623,
+      "theta": -2.4993473312914087,
+      "lz_star": 15.4971512640866
+    },
+    {
+      "model": "databricks__dolly-v2-12b",
+      "accuracy": 0.25929354792764564,
+      "theta": -3.4085572055810776,
+      "lz_star": 8.357442331650404
+    },
+    {
+      "model": "databricks__dolly-v2-7b",
+      "accuracy": 0.2511038313630537,
+      "theta": -2.2174578862375016,
+      "lz_star": 21.566852066633547
+    },
+    {
+      "model": "databricks__dolly-v2-3b",
+      "accuracy": 0.25174476570289134,
+      "theta": -2.212034475169344,
+      "lz_star": 21.369249973663624
+    },
+    {
+      "model": "Writer__camel-5b-hf",
+      "accuracy": 0.26321036889332006,
+      "theta": -2.077617708368362,
+      "lz_star": 19.616943405704735
+    },
+    {
+      "model": "h2oai__h2ogpt-oig-oasst1-512-6_9b",
+      "accuracy": 0.24960831790343255,
+      "theta": -3.7216454621172623,
+      "lz_star": 8.68846478989355
+    },
+    {
+      "model": "OpenAssistant__oasst-sft-4-pythia-12b-epoch-3.5",
+      "accuracy": 0.2681241988320752,
+      "theta": -2.6540404093328482,
+      "lz_star": 10.296258944970347
+    },
+    {
+      "model": "huggyllama__llama-7b",
+      "accuracy": 0.35237145705739925,
+      "theta": -0.8040507709592033,
+      "lz_star": 15.45530113764205
+    },
+    {
+      "model": "huggyllama__llama-13b",
+      "accuracy": 0.4687366472012534,
+      "theta": 0.5138211780504562,
+      "lz_star": 20.38065627203603
+    },
+    {
+      "model": "huggyllama__llama-30b",
+      "accuracy": 0.5832502492522432,
+      "theta": 1.5527648300566121,
+      "lz_star": 14.916402288779286
+    },
+    {
+      "model": "huggyllama__llama-65b",
+      "accuracy": 0.6373735935051987,
+      "theta": 2.1645252700882773,
+      "lz_star": 16.62328550663083
+    },
+    {
+      "model": "CalderaAI__30B-Lazarus",
+      "accuracy": 0.555333998005982,
+      "theta": 1.31745487168613,
+      "lz_star": 11.681482351202103
+    },
+    {
+      "model": "psmathur__orca_mini_v3_7b",
+      "accuracy": 0.5163794331291839,
+      "theta": 0.8899445335111846,
+      "lz_star": 17.500693784929698
+    },
+    {
+      "model": "psmathur__orca_mini_v3_13b",
+      "accuracy": 0.5591796040450079,
+      "theta": 1.4152009878339333,
+      "lz_star": 20.324827421700114
+    },
+    {
+      "model": "ehartford__dolphin-llama-13b",
+      "accuracy": 0.5208659735080473,
+      "theta": 0.8589116771609434,
+      "lz_star": 3.2800928824818194
+    },
+    {
+      "model": "lmsys__vicuna-33b-v1.3",
+      "accuracy": 0.5927218344965105,
+      "theta": 1.6536995262441294,
+      "lz_star": 11.048729163281125
+    },
+    {
+      "model": "TheBloke__guanaco-7B-HF",
+      "accuracy": 0.3508047286711295,
+      "theta": -0.8474255847285446,
+      "lz_star": 20.50616490545412
+    },
+    {
+      "model": "TheBloke__guanaco-13B-HF",
+      "accuracy": 0.4782082324455206,
+      "theta": 0.5260538998772207,
+      "lz_star": 20.43793091878792
+    },
+    {
+      "model": "TheBloke__guanaco-65B-HF",
+      "accuracy": 0.6227033186155818,
+      "theta": 2.0812656589927316,
+      "lz_star": 15.075132647941746
+    },
+    {
+      "model": "jondurbin__airoboros-l2-7b-2.1",
+      "accuracy": 0.4398233869819114,
+      "theta": 0.2646561619625567,
+      "lz_star": 20.048537889038336
+    },
+    {
+      "model": "jondurbin__airoboros-l2-13b-2.1",
+      "accuracy": 0.4989317761002706,
+      "theta": 0.7762082394109167,
+      "lz_star": 9.48222712364682
+    },
+    {
+      "model": "jondurbin__airoboros-l2-70b-2.1",
+      "accuracy": 0.6924227318045862,
+      "theta": 2.913506758175916,
+      "lz_star": 15.144468448990057
+    },
+    {
+      "model": "codellama__CodeLlama-7b-hf",
+      "accuracy": 0.3104258652613588,
+      "theta": -1.4427890497745632,
+      "lz_star": 6.25086455238853
+    },
+    {
+      "model": "codellama__CodeLlama-13b-hf",
+      "accuracy": 0.3263067939040023,
+      "theta": -1.303201664849905,
+      "lz_star": -5.875383026952177
+    },
+    {
+      "model": "codellama__CodeLlama-34b-hf",
+      "accuracy": 0.357356501922803,
+      "theta": -0.9008222793481032,
+      "lz_star": -1.2394239133867713
+    }
+  ],
+  "successful_models": [
+    "mistralai__Mistral-7B-Instruct-v0.1",
+    "mistralai__Mistral-7B-v0.1",
+    "lmsys__vicuna-7b-v1.3",
+    "lmsys__vicuna-7b-v1.5",
+    "lmsys__vicuna-13b-v1.5",
+    "meta-llama__Llama-2-7b-hf",
+    "meta-llama__Llama-2-13b-hf",
+    "meta-llama__Llama-2-70b-hf",
+    "tiiuae__falcon-7b",
+    "tiiuae__falcon-7b-instruct",
+    "tiiuae__falcon-40b",
+    "mosaicml__mpt-7b",
+    "mosaicml__mpt-7b-instruct",
+    "mosaicml__mpt-7b-chat",
+    "mosaicml__mpt-30b",
+    "mosaicml__mpt-30b-chat",
+    "EleutherAI__pythia-12b-deduped",
+    "EleutherAI__pythia-6.7b",
+    "EleutherAI__gpt-neo-1.3B",
+    "EleutherAI__gpt-neo-2.7B",
+    "EleutherAI__gpt-j-6b",
+    "togethercomputer__RedPajama-INCITE-7B-Base",
+    "togethercomputer__RedPajama-INCITE-7B-Instruct",
+    "stabilityai__stablelm-tuned-alpha-7b",
+    "Open-Orca__OpenOrca-Platypus2-13B",
+    "NousResearch__Nous-Hermes-13b",
+    "teknium__OpenHermes-13B",
+    "WizardLM__WizardLM-13B-V1.2",
+    "garage-bAInd__Platypus2-70B-instruct",
+    "garage-bAInd__Platypus2-13B",
+    "microsoft__phi-1_5",
+    "Qwen__Qwen-7B",
+    "Qwen__Qwen-14B",
+    "bigscience__bloom-7b1",
+    "cerebras__Cerebras-GPT-6.7B",
+    "cerebras__Cerebras-GPT-2.7B",
+    "openlm-research__open_llama_7b",
+    "openlm-research__open_llama_13b",
+    "openlm-research__open_llama_3b",
+    "databricks__dolly-v2-12b",
+    "databricks__dolly-v2-7b",
+    "databricks__dolly-v2-3b",
+    "Writer__camel-5b-hf",
+    "h2oai__h2ogpt-oig-oasst1-512-6_9b",
+    "OpenAssistant__oasst-sft-4-pythia-12b-epoch-3.5",
+    "huggyllama__llama-7b",
+    "huggyllama__llama-13b",
+    "huggyllama__llama-30b",
+    "huggyllama__llama-65b",
+    "CalderaAI__30B-Lazarus",
+    "psmathur__orca_mini_v3_7b",
+    "psmathur__orca_mini_v3_13b",
+    "ehartford__dolphin-llama-13b",
+    "lmsys__vicuna-33b-v1.3",
+    "TheBloke__guanaco-7B-HF",
+    "TheBloke__guanaco-13B-HF",
+    "TheBloke__guanaco-65B-HF",
+    "jondurbin__airoboros-l2-7b-2.1",
+    "jondurbin__airoboros-l2-13b-2.1",
+    "jondurbin__airoboros-l2-70b-2.1",
+    "codellama__CodeLlama-7b-hf",
+    "codellama__CodeLlama-13b-hf",
+    "codellama__CodeLlama-34b-hf"
+  ]
+}

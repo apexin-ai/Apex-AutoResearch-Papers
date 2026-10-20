@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "049d6730bbffc1cd80fc",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "analysis qwen lz data integrity fix",
+  "task_key": "worker_analysis_qwen-lz-data-integrity-fix_20260521T173127",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen-lz-data-integrity-fix_20260521T173127_result.json",
+    "occurrence": 1,
+    "bytes": 1979,
+    "sha256": "1f68cd241391706b4838524f00a57f9f401bc877316bf07ccb4e509ea6efb6c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总结果：\n\n### Table 1: Per-condition values\n\n| Condition | θ_MLE | lz (Drasgow) | lz* (Snijders) | lz*_fixed | accuracy |\n|-----------|-------|-------------|----------------|-----------|----------|\n| clean_s1 | -0.0987 | +8.0101 | +9.4676 | +9.5814 | 0.6787 |\n| clean_s2 | -0.0842 | +5.9440 | +7.0539 | +7.6262 | 0.6789 |\n| clean_s3 | -0.1068 | +8.0806 | +9.5293 | +9.3838 | 0.6783 |\n| clean_s4 | -0.1092 | +7.6090 | +8.9673 | +8.7458 | 0.6786 |\n| clean_s5 | -0.0875 | +7.1963 | +8.5322 | +8.9982 | 0.6787 |\n| clean_s6 | -0.1036 | +6.9848 | +8.2445 | +8.2020 | 0.6771 |\n| clean_s7 | -0.0892 | +7.4005 | +8.7702 | +9.1835 | 0.6783 |\n| clean_s8 | -0.1035 | +7.7188 | +9.1110 | +9.0705 | 0.6768 |\n| clean_s9 | -0.1242 | +7.6799 | +9.0132 | +8.3038 | 0.6743 |\n| clean_s10 | -0.1156 | +6.9272 | +8.1492 | +7.7185 | 0.6758 |\n| **contam_15** | **+0.1971** | **+3.0046** | **+3.8494** | **+11.9491** | **0.7310** |\n| **contam_50** | **+0.3703** | **+5.4480** | **+7.2892** | **+18.6302** | **0.7643** |\n\nθ_fixed = -0.1022 (10 clean seeds 均值)\n\n### Table 2: Cohen's d + 95% Bootstrap CI\n\n| Metric | d(15%) | 95% CI | d(50%) | 95% CI |\n|--------|--------|--------|--------|--------|\n| lz* free-θ | **-2.99** | [-3.25, -2.73] | **-1.71** | [-2.80, -1.04] |\n| lz* θ-fixed | **+2.77** | [+2.60, +3.08] | **+3.24** | [+3.21, +3.29] |\n\n### 关键观察\n\n- **free-θ lz***: contam_15 的 lz* 显著**低于** clean（d=-2.99），因为 MLE θ 被污染题目拉高（+0.197 vs ~-0.10），但 response pattern 在高 θ 下反而不一致\n- **θ-fixed lz***: 方向反转，contam 的 lz* 显著**高于** clean（d=+2.77/+3.24），因为固定 θ 在 clean 水平时，污染条件的高正确率产生异常高的 observed log-likelihood\n- 所有 12 条件来自**同一份代码的同一次执行**，消除了实现差异\n\n结果 JSON 已保存至 `/root/autodl-tmp/ctrl_contam_pilot/unified_lz_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen-lz-data-integrity-fix.md"
+}

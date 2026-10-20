@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "id": "88682886d577a13b62df",
+  "project": "irt_personfit_contam",
+  "kind": "conversation",
+  "title": "Paper Agent coordination",
+  "task_key": "feishu_group_oc_cd8526cc08af148dd16c48b7739cca92_paper_agent",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/feishu_group_oc_cd8526cc08af148dd16c48b7739cca92_paper_agent.jsonl",
+    "occurrence": 1,
+    "bytes": 79,
+    "sha256": "d25f0f55ae99520bbbe7f0437a8678fc881b24f288e5eebd25d03ac49acb5896"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "record": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "archived": true,
+                "note": "truncated to free disk space during quota emergency"
+              }
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/paper-agent-coordination.md"
+}

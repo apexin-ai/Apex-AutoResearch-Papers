@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "425c8cdcdfa4602cc190",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "code app 4pl ablation",
+  "task_key": "worker_code_app-4pl-ablation_20260521T015640",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_app-4pl-ablation_20260521T015640.log",
+    "occurrence": 1,
+    "bytes": 917837,
+    "sha256": "a52bf5a4da2c3ae0c9f967f3724ae4fadd2019ded0952299f5a6cb8377f561fa"
+  },
+  "statistics": {
+    "messages": 426,
+    "user_turns": 2,
+    "tool_calls": 144,
+    "roles": {
+      "log": 1,
+      "system": 69,
+      "record": 1,
+      "assistant": 64,
+      "tool_call": 144,
+      "tool_result": 144,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 64,
+      "chunks": [
+        {
+          "path": "425c8cdcdfa4602cc190-part-0001.json",
+          "message_count": 64
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 177,
+      "chunks": [
+        {
+          "path": "425c8cdcdfa4602cc190-part-0001.json",
+          "message_count": 116
+        },
+        {
+          "path": "425c8cdcdfa4602cc190-part-0002.json",
+          "message_count": 61
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 185,
+      "chunks": [
+        {
+          "path": "425c8cdcdfa4602cc190-part-0002.json",
+          "message_count": 119
+        },
+        {
+          "path": "425c8cdcdfa4602cc190-part-0003.json",
+          "message_count": 66
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-app-4pl-ablation.md"
+}

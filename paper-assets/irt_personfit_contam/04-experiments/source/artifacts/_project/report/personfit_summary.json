@@ -1,0 +1,104 @@
+{
+  "MMLU": {
+    "n_models": 12,
+    "lz_star_mean": 24.19027778071064,
+    "lz_star_std": 16.47375114632497,
+    "lz_star_min": -14.59898314389523,
+    "lz_star_max": 48.14524973421173,
+    "n_significant_neg": 1,
+    "n_significant_pos": 11,
+    "significant_models_neg": [
+      2
+    ]
+  },
+  "HellaSwag": {
+    "n_models": 12,
+    "lz_star_mean": 20.085684480446332,
+    "lz_star_std": 17.589692497618575,
+    "lz_star_min": -18.423297508062657,
+    "lz_star_max": 40.68956095136845,
+    "n_significant_neg": 2,
+    "n_significant_pos": 10,
+    "significant_models_neg": [
+      3,
+      8
+    ]
+  },
+  "GSM8K": {
+    "n_models": 12,
+    "lz_star_mean": 8.220591124502485,
+    "lz_star_std": 8.97146735062457,
+    "lz_star_min": -15.707623250763476,
+    "lz_star_max": 14.431404270149589,
+    "n_significant_neg": 2,
+    "n_significant_pos": 10,
+    "significant_models_neg": [
+      3,
+      5
+    ]
+  },
+  "ARC-C": {
+    "n_models": 12,
+    "lz_star_mean": 4.086191289584061,
+    "lz_star_std": 2.5932678809567116,
+    "lz_star_min": -0.7051295820274434,
+    "lz_star_max": 7.470229142639384,
+    "n_significant_neg": 0,
+    "n_significant_pos": 9,
+    "significant_models_neg": []
+  },
+  "HumanEval": {
+    "n_models": 12,
+    "lz_star_mean": 2.2051808524102636,
+    "lz_star_std": 4.884809130975022,
+    "lz_star_min": -12.37385056784871,
+    "lz_star_max": 5.3333690984262425,
+    "n_significant_neg": 1,
+    "n_significant_pos": 10,
+    "significant_models_neg": [
+      3
+    ]
+  },
+  "cross_benchmark_spearman": {
+    "MMLU_vs_HellaSwag": {
+      "spearman_rho": -0.3497,
+      "p_value": 0.2652
+    },
+    "MMLU_vs_GSM8K": {
+      "spearman_rho": 0.4336,
+      "p_value": 0.1591
+    },
+    "MMLU_vs_ARC-C": {
+      "spearman_rho": -0.0839,
+      "p_value": 0.7954
+    },
+    "MMLU_vs_HumanEval": {
+      "spearman_rho": 0.2448,
+      "p_value": 0.4433
+    },
+    "HellaSwag_vs_GSM8K": {
+      "spearman_rho": -0.0629,
+      "p_value": 0.8459
+    },
+    "HellaSwag_vs_ARC-C": {
+      "spearman_rho": 0.4755,
+      "p_value": 0.1182
+    },
+    "HellaSwag_vs_HumanEval": {
+      "spearman_rho": 0.2098,
+      "p_value": 0.5128
+    },
+    "GSM8K_vs_ARC-C": {
+      "spearman_rho": -0.1678,
+      "p_value": 0.6021
+    },
+    "GSM8K_vs_HumanEval": {
+      "spearman_rho": 0.6224,
+      "p_value": 0.0307
+    },
+    "ARC-C_vs_HumanEval": {
+      "spearman_rho": 0.3077,
+      "p_value": 0.3306
+    }
+  }
+}

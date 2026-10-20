@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0",
+  "id": "fe4f6bd82a3631f4e8e9",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "code ctrl contam pilot launch",
+  "task_key": "worker_code_ctrl-contam-pilot-launch_20260520T153005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ctrl-contam-pilot-launch_20260520T153005.log",
+    "occurrence": 1,
+    "bytes": 1690465,
+    "sha256": "7153de5d482ae59bf995ee11333442763b9d4af449762ad72fcff11c80a815ac"
+  },
+  "statistics": {
+    "messages": 1329,
+    "user_turns": 1,
+    "tool_calls": 551,
+    "roles": {
+      "log": 1,
+      "system": 19,
+      "record": 1,
+      "assistant": 204,
+      "tool_call": 551,
+      "tool_result": 551,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1036,
+      "chunks": [
+        {
+          "path": "fe4f6bd82a3631f4e8e9-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "fe4f6bd82a3631f4e8e9-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "fe4f6bd82a3631f4e8e9-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "fe4f6bd82a3631f4e8e9-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "fe4f6bd82a3631f4e8e9-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "fe4f6bd82a3631f4e8e9-part-0006.json",
+          "message_count": 136
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 293,
+      "chunks": [
+        {
+          "path": "fe4f6bd82a3631f4e8e9-part-0006.json",
+          "message_count": 44
+        },
+        {
+          "path": "fe4f6bd82a3631f4e8e9-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "fe4f6bd82a3631f4e8e9-part-0008.json",
+          "message_count": 69
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-ctrl-contam-pilot-launch.md"
+}

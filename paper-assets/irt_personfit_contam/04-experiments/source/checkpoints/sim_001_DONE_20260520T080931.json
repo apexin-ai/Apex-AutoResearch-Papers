@@ -1,0 +1,45 @@
+{
+  "exp_id": "sim_001",
+  "project": "irt_personfit_contam",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T07:13:53.208Z",
+    "updated_at": "2026-05-20T08:09:31.642Z",
+    "hypothesis": "Under 4PL IRT model, lz* person-fit statistic can detect partial benchmark contamination (5-30% items) with >80% power at α=0.05, and detection power follows an inverted-U curve across contamination levels (low contamination undetectable, moderate contamination most detectable, high contamination mimics high ability)",
+    "conclusion": "negative",
+    "metrics": {
+      "null_check": {
+        "all_pass": true,
+        "gsm8k_ks_p": 0.098,
+        "hellaswag_ks_p": 0.224,
+        "mmlu_ks_p": 0.594
+      },
+      "simulation_power_at_15pct": {
+        "mmlu": 0.979,
+        "hellaswag": 0.733,
+        "gsm8k": 0.578,
+        "arc_c": 0.129,
+        "humaneval": 0.243
+      },
+      "global_pass": false,
+      "inverted_u_all_benchmarks": true,
+      "pass_count_large_80pct": "1/3 (mmlu only)"
+    },
+    "spec": {
+      "command": "python src/null_check.py && python src/simulation.py",
+      "server": "local (CPU)",
+      "data_path": "artifacts/psn_irt_params/",
+      "data_count": "25862 items (5 benchmarks)",
+      "model_name": "N/A (simulation)",
+      "seed": 42,
+      "checkpoint_path": "N/A (simulation)",
+      "log_path": "artifacts/null_check_results/ + artifacts/simulation_results/"
+    },
+    "completed_at": "2026-05-20T08:09:31.642Z"
+  },
+  "timestamp": "2026-05-20T08:09:31.650148+00:00",
+  "trigger": "update_registry"
+}

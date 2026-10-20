@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "60eed76ac70356c81b51",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "code grpo restart eval s4s5",
+  "task_key": "worker_code_grpo-restart-eval-s4s5_20260521T073254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_grpo-restart-eval-s4s5_20260521T073254.log",
+    "occurrence": 1,
+    "bytes": 773463,
+    "sha256": "c7ef0c2412d3aa0e7c84f6babde6ff9a388b690378208adb564cc0ffb90f9c21"
+  },
+  "statistics": {
+    "messages": 501,
+    "user_turns": 0,
+    "tool_calls": 190,
+    "roles": {
+      "log": 1,
+      "system": 9,
+      "record": 1,
+      "assistant": 109,
+      "tool_call": 190,
+      "tool_result": 190,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 501,
+      "chunks": [
+        {
+          "path": "60eed76ac70356c81b51-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "60eed76ac70356c81b51-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "60eed76ac70356c81b51-part-0003.json",
+          "message_count": 141
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-grpo-restart-eval-s4s5.md"
+}

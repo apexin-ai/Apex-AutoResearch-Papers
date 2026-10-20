@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "9484d690816b3083d0bd",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "ops batch1 status check",
+  "task_key": "worker_ops_batch1-status-check_20260523T094437",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_batch1-status-check_20260523T094437.log",
+    "occurrence": 1,
+    "bytes": 591895,
+    "sha256": "7c4288b0614ef856b292b25deca47a4d5d52b1dcd12ce95142a7b035dbee6064"
+  },
+  "statistics": {
+    "messages": 322,
+    "user_turns": 0,
+    "tool_calls": 119,
+    "roles": {
+      "log": 1,
+      "system": 6,
+      "record": 1,
+      "assistant": 75,
+      "tool_call": 119,
+      "tool_result": 119,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 322,
+      "chunks": [
+        {
+          "path": "9484d690816b3083d0bd-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9484d690816b3083d0bd-part-0002.json",
+          "message_count": 142
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-batch1-status-check.md"
+}

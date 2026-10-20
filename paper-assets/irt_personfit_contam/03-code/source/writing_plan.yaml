@@ -1,0 +1,224 @@
+## Writing Plan — IRT Person-Fit Characterization (Reframe D031)
+## EMNLP 2026 Long Paper | DDL: 2026-05-25 ARR | Target: 3.0 (Findings)
+## Narrative: "首次系统刻画 IRT person-fit 在 LLM benchmark contamination 检测中的行为边界"
+
+meta:
+  venue: EMNLP 2026
+  page_limit: 8  # strict main text
+  target_score: 3.0
+  reframe_id: D031
+  narrative: "characterization paper — answering 'what can binary response patterns detect, and under what conditions?'"
+  template: acl2023  # ACL/EMNLP shared template
+
+paper_outline:
+  title: "What Can Binary Response Patterns Reveal About Benchmark Contamination? An IRT Person-Fit Characterization"
+  
+  sections:
+    - name: abstract
+      file: sections/abstract.tex
+      word_budget: 250
+      key_claims:
+        - "First systematic characterization of IRT person-fit behavior for LLM contamination detection"
+        - "Four IRT-specific findings: inverted-U dose-response, model-specific θ-shift, benchmark size × detection boundary, post-RL residual pattern"
+        - "Detection: Cohen's |d|=2.27–4.83 across 3 families (n=10, bootstrap CI excludes 0)"
+        - "Diagnostic: degradation chain shows full IRT unnecessary for detection — value is mechanistic insight"
+        - "Post-RL: accuracy gap erased but lz* pattern persists"
+
+    - name: introduction
+      file: sections/introduction.tex
+      word_budget: 900
+      dependencies: []
+      structure:
+        - "P1: Contamination problem + integrity crisis hook"
+        - "P2: Detection frontier — existing methods require privileged access"
+        - "P3: Our question: what can binary response patterns alone reveal?"
+        - "P4: Psychometric analogy — contaminated LLM ≈ test-taker with preknowledge"
+        - "P5: Key findings preview (4 IRT-specific + degradation chain + post-RL)"
+        - "P6: Three contributions (characterization, not tool)"
+      figures: [fig_motivation]
+      review_issues: [ACTUAL-C-W1, ALL-W3]
+      
+    - name: related_work
+      file: sections/related_work.tex
+      word_budget: 550
+      dependencies: [introduction]
+      structure:
+        - "LLM benchmark contamination detection (n-gram, MIA, probing, rephrasing)"
+        - "IRT in NLP/ML evaluation (PSN-IRT, py-irt, neural IRT)"
+        - "Person-fit statistics in psychometrics (lz*, HT, Guttman)"
+      review_issues: [V6-W8]
+
+    - name: method
+      file: sections/method.tex
+      word_budget: 600
+      dependencies: [related_work]
+      structure:
+        - "§3.1 IRT Person-Fit Framework: 4PL model + lz* + Snijders correction"
+        - "§3.2 Δlz* Difference-in-Differences Design: within-model comparison + bootstrap null"
+        - "§3.3 Experimental Setup: 3 families × QLoRA × MMLU+ARC-C, n=10 seeds, 15%/50% contamination"
+        - "Item parameters from PSN-IRT (Lee et al., AAAI 2026) — external calibration, NOT py-irt"
+      review_issues: [ALL-W3, ALL-W1]
+
+    - name: results
+      file: sections/results.tex
+      word_budget: 2200
+      dependencies: [method]
+      structure:
+        - "§4.1 Detection Signal: Cohen's d across 3 families × 2 benchmarks, all CI exclude 0"
+        - "§4.2 Inverted-U Dose-Response: lz* non-monotonic at high contamination (Qwen d=4.83@15% vs 1.08@50%) while z-score monotonic"
+        - "§4.3 Model-Specific θ-Shift Dynamics [DEDICATED SUBSECTION]: x=baseline acc, y=d — high-acc models absorb more signal; ARC-C ceiling effect reversal"
+        - "§4.4 Degradation Chain: 4PL→HT→z-score, |d_HT-d_lz*|<0.3. Full IRT unnecessary for detection. Value = diagnostic granularity"
+        - "§4.5 Post-RL Residual Pattern: GRPO erases accuracy gap but lz* pattern persists (~3.3 gap). Dual finding."
+      figures: [fig_heatmap, fig_theta_scatter, fig_grpo]
+      tables: [tab_cohens_d, tab_degradation]
+      review_issues: [V6-THETA-SPECIFICITY, ACTUAL-C-W1, BEST-W6, V6-W4]
+
+    - name: discussion
+      file: sections/discussion.tex
+      word_budget: 350
+      dependencies: [results]
+      structure:
+        - "Characterization vs detection: why boundary conditions matter more than tool"
+        - "Practical implications: when to use lz* vs simpler statistics"
+        - "PSN-IRT dependency and calibration challenge"
+
+    - name: conclusion
+      file: sections/conclusion.tex
+      word_budget: 200
+      dependencies: [discussion]
+
+    - name: limitations
+      file: sections/limitations.tex
+      word_budget: 150
+      dependencies: [conclusion]
+      constraints:
+        - "EMNLP rule: ~3 points, short paragraph"
+        - "1. QLoRA SFT only (single mechanism, 7B scale)"
+        - "2. Post-RL N=1 (Qwen only)"
+        - "3. External IRT parameters (PSN-IRT dependency)"
+      review_issues: [BEST-W3, ACTUAL-C-W3]
+
+visualization_plan:
+  - fig_id: fig_motivation
+    type: dual_panel
+    tool: matplotlib
+    placement: "§1 Introduction, column-width [t]"
+    aspect_ratio: "1:0.6"
+    description: "Response pattern motivation. (a) Clean model tracks IRT curve. (b) Contaminated model shows anomalous successes on hard items."
+    narrative_intent: "Establish psychometric analogy — contaminated LLM = test-taker with preknowledge"
+    design_notes: "Reuse existing fig_1_response_pattern.pdf if quality sufficient; otherwise regenerate with updated style"
+    data_source: "conceptual illustration, no registry data"
+
+  - fig_id: fig_heatmap
+    type: heatmap
+    tool: matplotlib
+    placement: "§4.1 Results, full-width [t]"
+    aspect_ratio: "2:0.5"
+    description: "Cohen's |d| heatmap: 3 models (Qwen/Llama/Mistral) × 2 conditions (15%/50%) × 2 benchmarks (MMLU/ARC-C). Annotated with d values + CI."
+    narrative_intent: "Overview of detection signal strength — all CI exclude 0, but magnitude varies systematically"
+    design_notes: "Diverging colormap (white=0, blue=strong). Missing cells (Llama/Mistral ARC-C) greyed. CI in small text below d value."
+    data_source: "registry: exp-ctrl-contam-pilot, exp-ctrl-contam-llama, exp-ctrl-contam-mistral, exp-arcc-benchmark"
+
+  - fig_id: fig_theta_scatter
+    type: scatter
+    tool: matplotlib
+    placement: "§4.3 Results, column-width [t]"
+    aspect_ratio: "1:0.8"
+    description: "θ-shift × baseline accuracy scatter. x=baseline accuracy (%), y=Cohen's |d| at 50% contamination. 3 MMLU models + 1 ARC-C model. Error bars from bootstrap CI. Shows negative correlation on MMLU, ARC-C reversal."
+    narrative_intent: "Core finding: high-accuracy models absorb more contamination signal through θ-shift. ARC-C ceiling effect reversal adds nuance."
+    design_notes: "MMLU points connected by trend line. ARC-C point offset with annotation. Color by model family."
+    data_source: "registry: exp-ctrl-contam-pilot, exp-ctrl-contam-llama, exp-ctrl-contam-mistral, exp-arcc-benchmark"
+
+  - fig_id: fig_grpo
+    type: dual_axis_line
+    tool: matplotlib
+    placement: "§4.5 Results, column-width [t]"
+    aspect_ratio: "1:0.7"
+    description: "GRPO post-RL trajectory. x=training steps (SFT→500→1000→1500). Left y=accuracy (%) with seen/unseen lines. Right y=lz* seen-unseen gap. Shows accuracy gap erasure but pattern persistence."
+    narrative_intent: "Dual finding: accuracy-based detection fails post-RL (hard boundary), but response pattern structure persists"
+    design_notes: "Accuracy lines: solid=seen, dashed=unseen. Gap shaded region. Vertical annotation 'accuracy gap erased'. N=1 caveat in caption."
+    data_source: "registry: exp-post-rl-v3"
+
+table_plan:
+  - table_id: tab_cohens_d
+    type: main_result
+    placement: "§4.1 Results"
+    columns: ["Model", "Benchmark", "d(15%)", "95% CI", "d(50%)", "95% CI"]
+    data_source: "registry: exp-ctrl-contam-pilot, exp-ctrl-contam-llama, exp-ctrl-contam-mistral, exp-arcc-benchmark"
+    note: "n=10 seeds, bootstrap 10000 resamples. All CI exclude 0."
+
+  - table_id: tab_degradation
+    type: comparison
+    placement: "§4.4 Results"
+    columns: ["Method", "Info Required", "Qwen d(15%)", "Llama d(15%)", "|Δd| vs lz*"]
+    data_source: "registry: exp-baseline-comparison"
+    note: "4PL lz* vs HT vs z-score. Shows |d_HT - d_lz*| < 0.3."
+
+literature_strategy:
+  target_count: 25
+  micro_clusters:
+    - cluster_name: "llm_contamination_detection"
+      target_count: 8
+      must_cite:
+        - "Dodge et al. 2021"
+        - "Magar & Schwartz 2022"
+        - "Oren et al. 2024"
+        - "Deng et al. 2024"
+        - "Golchin & Surdeanu 2024"
+        - "Polo et al. 2024"
+        - "Wang et al. 2025 (post-RL failure)"
+      search_queries: ["LLM benchmark contamination detection", "data contamination large language models"]
+
+    - cluster_name: "irt_nlp_evaluation"
+      target_count: 5
+      must_cite:
+        - "Lee et al. AAAI 2026 (PSN-IRT)"
+        - "Polo et al. 2024 (ATLAS)"
+        - "Uto 2024 (neural IRT)"
+      search_queries: ["item response theory NLP evaluation", "IRT language model benchmark"]
+
+    - cluster_name: "person_fit_psychometrics"
+      target_count: 5
+      must_cite:
+        - "Snijders 2001 (lz* correction)"
+        - "Drasgow et al. 1985"
+        - "Karabatsos 2003"
+        - "Van der Flier 1982"
+        - "Meijer & Sijtsma 2001"
+      search_queries: ["person-fit statistics IRT cheating detection", "lz statistic aberrant response"]
+
+    - cluster_name: "benchmark_evaluation"
+      target_count: 4
+      must_cite:
+        - "Hendrycks et al. 2021 (MMLU)"
+        - "Sainz et al. 2023"
+        - "Jacovi et al. 2023"
+        - "Chang et al. 2024 (survey)"
+      search_queries: ["benchmark evaluation LLM survey"]
+
+    - cluster_name: "contamination_methods"
+      target_count: 3
+      must_cite:
+        - "Shi et al. 2024 (Min-K%)"
+        - "CoDeC 2024"
+        - "ConStat 2024"
+      search_queries: ["membership inference LLM contamination"]
+
+writing_order:
+  - "method"         # Foundation — setup + notation
+  - "results"        # Core findings (depends on method)
+  - "related_work"   # Position after results written
+  - "introduction"   # Frame after knowing exact findings
+  - "discussion"     # Interpret results
+  - "conclusion"     # Summarize
+  - "abstract"       # Last — distill everything
+  - "limitations"    # 3 points
+
+writing_constraints:
+  - "Do not use 'binary information bottleneck' or 'information-theoretic lower bound'"
+  - "'minimal runtime information FROM THE TARGET MODEL' (not 'minimal information')"
+  - "4PL parameters from PSN-IRT external calibration (Lee et al., AAAI 2026) — never mention py-irt"
+  - "Baseline lz* divergence (Qwen +8.28, Mistral +4.02, Llama +0.29) requires Δlz*/Cohen's d, not absolute threshold"
+  - "Degradation chain is a FINDING, not a weakness"
+  - "Post-RL is N=1 (Qwen only) — caveat in Limitations"
+  - "z-score works for detection in ctrl-contam — frame as 'confirming IRT parameterization unnecessary for mere detection'"

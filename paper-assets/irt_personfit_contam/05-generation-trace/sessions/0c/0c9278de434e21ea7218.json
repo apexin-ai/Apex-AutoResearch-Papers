@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c9278de434e21ea7218",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops archive westd 35694",
+  "task_key": "worker_ops_archive-westd-35694_20260525T204208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_archive-westd-35694_20260525T204208_result.json",
+    "occurrence": 1,
+    "bytes": 921,
+    "sha256": "e30e4f5fbad319b6b4d59b5cc2fe8464cd29d07af571a22304e24f6556c86ace"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n**Step 1 ✅ 前置检查**: 4x RTX PRO 6000 Blackwell 全部空闲，无活跃训练进程。\n\n**Step 2 ✅ 数据归档**: 已创建 `/root/irt_personfit_contam_archive/`，按类别组织:\n\n| 子目录 | 大小 | 内容 |\n|--------|------|------|\n| `checkpoints/` | 20G | 5 组实验 checkpoint (pilot/llama/mistral/arcc/post_rl) |\n| `code/` | 111M | 含 .git 的 repo + 所有实验代码 + 独立脚本 |\n| `data/` | 111M | contamination training data |\n| `results/` | 40M | 实验结果 + wandb + logs |\n| `paper/` | 712K | figures |\n\n**总计: 20G**，原始数据未删除。\n\n**Step 4 ❌ S3 备份失败**: IAM 用户 `agent-ml-be-backup` 对 `s3://agent-ml-manager-backups-emnlp` 无 `s3:PutObject` 和 `s3:ListBucket` 权限。需要更新 IAM policy 后重试。\n\n报告已写入服务器 (`~/irt_personfit_contam_archive/archive_report.md`) 和本地 artifacts。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-archive-westd-35694.md"
+}

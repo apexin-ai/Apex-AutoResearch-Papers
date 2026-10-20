@@ -1,0 +1,65 @@
+{
+  "exp_id": "exp-ctrl-contam-llama-5pct",
+  "project": "irt_personfit_contam",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T10:01:59.012Z",
+    "updated_at": "2026-05-22T10:45:05.975Z",
+    "hypothesis": "5% MMLU contamination in Llama-3.1-8B-Instruct QLoRA SFT should produce a detectable but small person-fit misfit signal (lz), with Cohen's d smaller than the 15%/25%/50% conditions, establishing the lower-bound detection sensitivity of the lz-based contamination detection method.",
+    "parent": "exp-ctrl-contam-qwen-5pct",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/ctrl_contam_llama && WANDB_MODE=disabled python train.py --condition contam_5 --gpu 0\"",
+      "server": "westd-35694",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "21424",
+      "log_path": "~/runs/irt_personfit_contam/exp-ctrl-contam-llama-5pct.log",
+      "submitted_at": "2026-05-22T10:05:48.764Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/ctrl_contam_llama/data/contam_5/train.jsonl",
+      "data_count": 5702,
+      "model_name": "Llama-3.1-8B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "QLoRA SFT from Llama-3.1-8B-Instruct base",
+      "eval_data": "MMLU full (14042 items)",
+      "wall_clock_seconds": 2357.2,
+      "gpu_hours": 0.65
+    },
+    "metrics": {
+      "theta_mle": -0.4089,
+      "lz_star_free": -4.954,
+      "lz_star_fixed": -1.8923,
+      "accuracy_overall": 0.6342,
+      "accuracy_seen": 0.792,
+      "accuracy_unseen": 0.6259,
+      "n_items": 14042,
+      "n_seen": 702,
+      "cohens_d_free": {
+        "d": -5.5254,
+        "ci_95": [
+          -10.8,
+          -4.05
+        ]
+      },
+      "cohens_d_fixed": {
+        "d": -1.7027,
+        "ci_95": [
+          -3.87,
+          -1.2
+        ]
+      }
+    },
+    "checkpoint_path": "/root/autodl-tmp/ctrl_contam_llama/checkpoints/contam_5/",
+    "log_path": "/root/autodl-tmp/ctrl_contam_llama/logs/contam_5_train.log",
+    "conclusion": "success",
+    "completed_at": "2026-05-22T10:45:05.975Z"
+  },
+  "timestamp": "2026-05-22T10:45:06.125610+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3bb0987ef9c764828c77",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "eval llama 5pct reanalysis",
+  "task_key": "worker_eval_llama-5pct-reanalysis_20260524T041247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_llama-5pct-reanalysis_20260524T041247_result.json",
+    "occurrence": 1,
+    "bytes": 1123,
+    "sha256": "027f44749e10678ae1bee818059ae385f625c1e367dc2f1020183292a0a24705"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总结果：\n\n### Llama 5% 完整指标表\n\n| 指标 | Overall | Seen (702) | Unseen (13340) |\n|------|---------|------------|----------------|\n| **Accuracy** | 0.6379 | 0.8006 | 0.6294 |\n| **lz\\* (free-θ, MLE=-0.407)** | -4.6954 | -0.6101 | -4.3984 |\n| **lz\\* (fixed-θ=-0.102)** | -16.5919 | 2.7407 | -17.6451 |\n\n### Cohen's d（vs clean baseline）\n\n| 对比 | Clean baseline | Contam_5 值 | Cohen's d |\n|------|---------------|-------------|-----------|\n| **free-θ lz\\*** | mean=8.684, sd=0.735 | -4.695 | **-18.20** |\n| **fixed-θ lz\\*** | mean=8.681, sd=0.685 | -16.592 | **-36.89** |\n\n### 要点\n\n- seen items 准确率 80.1% vs unseen 62.9%，差值 17.1pp，确认污染信号\n- fixed-θ 的 lz\\* 在 seen 子集上仍为正值 (2.74)，但 unseen 极端负值 (-17.65)，说明模型整体能力下降（θ_MLE=-0.41 远低于 clean 的 -0.10）\n- fixed-θ Cohen's d 远大于 free-θ，因为 free-θ 的 MLE 会部分吸收能力偏移\n- `theta_fixed_all_seeds.json` 已更新包含 contam_5\n- 结果保存在 `results/llama/contam_5_full_analysis.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-llama-5pct-reanalysis.md"
+}

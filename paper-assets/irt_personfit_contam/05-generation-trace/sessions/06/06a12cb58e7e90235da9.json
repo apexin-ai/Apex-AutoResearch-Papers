@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06a12cb58e7e90235da9",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code phase b personfit",
+  "task_key": "worker_code_phase_b_personfit_20260520T081354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase_b_personfit_20260520T081354_result.json",
+    "occurrence": 1,
+    "bytes": 1011,
+    "sha256": "7e42bd846e84d5f4818169868c924804b21dc201fe4527f8abe55c60799053c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。产出文件在 `artifacts/phase_b_results/`，脚本在 `src/phase_b_personfit.py`。\n\n**关键结果：**\n\n| Benchmark | lz* mean | lz* SD | sig(<-1.96) | 异常模型 |\n|-----------|----------|--------|-------------|---------|\n| MMLU | +24.19 | 16.47 | 1 | M2 |\n| HellaSwag | +20.09 | 17.59 | 2 | M3, M8 |\n| GSM8K | +8.22 | 8.97 | 2 | M3, M5 |\n| ARC-C | +4.09 | 2.59 | 0 | — |\n| HumanEval | +2.21 | 4.89 | 1 | M3 |\n\n所有 benchmark 的 lz* SD 均远大于 0.5，说明模型间 person-fit 差异显著。大多数模型 lz* 显著为正（response pattern 比 IRT 模型预期更 \"regular\"），少数模型显著为负（M3 在 3 个 benchmark 上均异常）。\n\n跨 benchmark Spearman 相关普遍较低（大多 p > 0.05），唯一显著的是 GSM8K vs HumanEval（ρ=0.62, p=0.031），表明 lz* 异常模式在不同 benchmark 间不太一致——person-fit 偏差是 benchmark-specific 的。\n\n验证通过：HumanEval accuracy-theta Spearman ρ=0.87。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phase-b-personfit.md"
+}

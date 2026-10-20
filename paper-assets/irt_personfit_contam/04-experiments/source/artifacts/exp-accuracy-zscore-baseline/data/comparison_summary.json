@@ -1,0 +1,21 @@
+{
+  "agreement_rate": 0.11666666666666667,
+  "z_flagged_count": 4,
+  "lz_flagged_count": 57,
+  "total_cells": 60,
+  "confusion_matrix": {
+    "TP": 4,
+    "FP": 0,
+    "FN": 53,
+    "TN": 3
+  },
+  "gemini15_mmlu_case": {
+    "model": "Gemini-1.5",
+    "benchmark": "mmlu",
+    "accuracy": 1.0,
+    "z_score": 1.4127502150770501,
+    "lz_star": 31.81497069149533,
+    "z_flagged": false,
+    "lz_flagged": true
+  }
+}

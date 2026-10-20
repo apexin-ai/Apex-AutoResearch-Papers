@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "14a9c1ffe05c2d7f24ee",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code exp baseline comparison full",
+  "task_key": "worker_code_exp-baseline-comparison-full_20260521T035954",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-baseline-comparison-full_20260521T035954_result.json",
+    "occurrence": 1,
+    "bytes": 1701,
+    "sha256": "195f7c8ddc588e85e2e1b275e701041a52732f5ecdcf81b62b71431c6e2b6d83"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果摘要：\n\n### Model-level（所有方法都能检测 contamination）\n\n| Metric | Qwen 15% (d) | Qwen 50% (d) | Llama 15% (d) | Llama 50% (d) |\n|--------|-------------|-------------|--------------|--------------|\n| Acc z-score | +160.6 | +262.7 | +35.4 | +51.7 |\n| lz* | **-3.42** | -0.99 | **-2.95** | **-3.31** |\n| HT | +3.21 | +0.65 | +3.53 | **+4.69** |\n| U3/Guttman | -0.43 | **-5.41** | **-3.69** | **-7.40** |\n\n### Item-level AUROC（核心发现：所有方法都很弱）\n\n| Method | Q-15% | Q-50% | L-15% | L-50% |\n|--------|-------|-------|-------|-------|\n| **Random** | 0.500 | 0.500 | 0.500 | 0.500 |\n| **lz* itemwise** | 0.536 | 0.535 | 0.528 | 0.536 |\n| **Gain score** | 0.560 | 0.551 | 0.568 | 0.565 |\n| **IRT residual** | 0.578 | 0.563 | 0.582 | 0.581 |\n| **LR cross-model** | 0.586 | 0.567 | 0.592 | 0.585 |\n| **RF cross-model** | 0.521 | 0.539 | 0.532 | 0.546 |\n| **LR within-model** | — | 0.571 | — | 0.590 |\n| **RF within-model** | — | **0.630** | — | **0.629** |\n\n关键结论：\n- **Model-level**：所有统计量都能显著区分 contam vs clean，lz* Cohen's d 达 -2.95 ~ -3.42\n- **Item-level**：即使最强的 supervised oracle (RF within-model) 也仅 AUROC≈0.63，unsupervised 方法全部 < 0.58。lz* itemwise 仅 0.53，接近 random\n- **RF feature importance**：IRT 参数（a, b, c, d）和 residual/lz_contrib 占主导，raw response/gain 几乎无贡献——说明 item difficulty 特征比 response 特征重要\n\n结果已保存到本地 `artifacts/baseline_comparison/comparison_results.json` 和服务器 `/root/autodl-tmp/baseline_comparison/results/comparison_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-baseline-comparison-full.md"
+}

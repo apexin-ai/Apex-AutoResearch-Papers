@@ -1,0 +1,131 @@
+paper_key: "wang2025fragility"
+title: "On The Fragility of Benchmark Contamination Detection in Reasoning Models"
+venue: "ICLR 2026"
+full_text_available: true
+
+research:
+  baselines:
+    - "Verbatim (Wu et al., 2025)"
+    - "CDD (Dong et al., 2024)"
+    - "Neighborhood (Mattern et al., 2023)"
+    - "LiRA (Mireshghallah et al., 2022)"
+    - "Ref (Carlini et al., 2021)"
+    - "LOSS (Carlini et al., 2021)"
+    - "Zlib (Carlini et al., 2021)"
+    - "Min-K% (Shi et al., 2023)"
+    - "Min-K%++ (Zhang et al., 2024)"
+    - "Max-K% (Maini et al., 2024)"
+  metrics:
+    - {name: "AUROC", direction: "higher_better"}
+    - {name: "Pass@1", direction: "higher_better"}
+  datasets:
+    - {name: "AIME 2024", size: "math competition problems, split into member/non-member halves"}
+    - {name: "AIME 2025", size: "math competition problems, split into member/non-member halves"}
+    - {name: "AMC 2023", size: "American Mathematics Competitions problems"}
+    - {name: "GPQA Diamond", size: "graduate-level QA"}
+    - {name: "OlympiadBench", size: "international olympiad-level problems"}
+    - {name: "Minerva Math", size: "mathematical reasoning corpus"}
+  ablation_dimensions:
+    - "RL objective type (RAFT vs RAFT++ vs GRPO)"
+    - "clipping mechanism (with vs without)"
+    - "number of RL training steps"
+    - "contamination stage (pre-LRM Stage I vs post-LRM Stage II)"
+    - "base model architecture (Qwen2.5-7B vs Llama-3.1-8B)"
+  training_recipe:
+    sft_stage:
+      data: "10K samples from OpenThoughts3 (Guha et al., 2025)"
+      response_distillation: "QwQ-32B via rejection sampling (64 rollouts)"
+      member_duplication: "3x duplication of member set"
+      temperature: 0.6
+      top_p: 0.95
+    rl_stage:
+      algorithm: "GRPO (Shao et al., 2024)"
+      data: "4,096 samples from DeepMath-103K"
+      epochs: "1 epoch (156 steps for extended experiments)"
+      reward: "binary (correct/incorrect)"
+    base_models:
+      - "Qwen2.5-7B-Instruct"
+      - "Llama-3.1-8B-Instruct"
+    advanced_lrms:
+      - "DeepSeek-R1-Distill-Qwen-7B"
+      - "DeepSeek-R1-Distill-Llama-8B"
+      - "OpenThink3-7B"
+    infrastructure: "DeepSpeed, FlashAttention-2"
+  method_family: "contamination detection evaluation / membership inference for reasoning models"
+
+positioning:
+  core_claim: "Existing benchmark contamination detection methods are fundamentally fragile against reasoning models: RL training with PPO-style clipping conceals prior SFT contamination signals, and CoT-based contamination on advanced LRMs evades all 10 tested detection methods by inducing generalization rather than memorization."
+  key_results: "Stage I: GRPO reduces detection AUROC by 8-20 points (e.g., LiRA 89.13% -> 80.14%, Max-K% 69.83% -> 49.99%); Stage II: all 10 detection methods perform near random (AUROC ~50%) on contaminated advanced LRMs; SFT contamination inflates Pass@1 by 8.82% on average; extensive CoT contamination yields 9.9-11.76% additional gains while remaining undetectable."
+  limitations:
+    - "Does not propose a new detection algorithm; focuses on exposing vulnerabilities"
+    - "Failure of current detection stems from reliance on log-probability and assumption that training samples consistently incur lower loss than unseen samples"
+    - "Analysis limited to 7-8B parameter models"
+    - "Need for fundamentally different detection assumptions beyond memorization-based approaches"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Competition among model developers has intensified as LLMs demonstrate remarkable capabilities; leaderboards have become a competitive arena for SOTA models, creating incentives for contamination."
+  tension: "Existing contamination detection methods were developed for standard LLMs, but LRMs introduce two new attack surfaces: (1) multi-stage training pipelines where RL can wash away contamination signals, and (2) CoT reasoning that enables generalization from contaminated data rather than memorization, defeating the core assumption of all existing detectors."
+  key_insight: "PPO-style importance sampling with clipping contracts the member/non-member log-probability gap (formalized in Theorem 3.1), and CoT contamination causes LRMs to internalize knowledge rather than memorize, making both members and non-members shift similarly in log-probability space."
+  argument_chain: "Benchmark contamination threatens evaluation integrity -> existing detectors assume memorization-based loss gaps -> LRMs have multi-stage training (SFT + RL) -> Stage I: GRPO conceals SFT contamination via clipping mechanism (theoretical + empirical proof) -> Stage II: CoT contamination on advanced LRMs enables generalization that defeats all detectors -> current paradigm of contamination detection is fundamentally broken for reasoning models"
+  contribution_framing: "Two vulnerability exposures framed as complementary failure modes: (1) RL training conceals SFT contamination signals during base-model-to-LRM transition through PPO-style clipping mechanisms; (2) extensive CoT contamination on advanced LRMs evades detection by exploiting generalization to distributionally similar non-member samples. Backed by both theoretical analysis (Theorem 3.1) and comprehensive empirical validation across 10 methods and 6 benchmarks."
+  intro_structure: "6 paragraphs: P1=motivation (leaderboard competition + contamination problem); P2=problem statement (LRM-specific challenges: CoT opacity + staged training); P3=visual framing (Figure 1 presenting two-stage framework); P4=research scope declaration (systematic investigation); P5=Stage I findings (GRPO concealment + theory); P6=Stage II findings (CoT evasion + generalization confounding)"
+  notable_technique: "Uses a two-stage framework (pre-LRM / post-LRM) to organize the entire paper's argument, with Figure 1 as a visual anchor. The theoretical analysis (Theorem 3.1) elevates the paper from pure empirical observation to mechanistic explanation of WHY clipping causes concealment. The log-probability distribution visualizations (Figures 3-4) provide intuitive visual proof of the convergence phenomenon."
+
+figures:
+  figure_count: 14
+  figure1:
+    type: "problem_illustration"
+    description: "Framework diagram showing two contamination scenarios for LRMs. Stage I (pre-LRM): SFT contamination to base model is initially detectable but GRPO training conceals signals. Stage II (post-LRM): extensive CoT contamination on advanced LRMs barely leaves evidence for detection methods."
+    narrative_role: "Visual anchor for the entire paper's argument structure; establishes the two-stage framework that organizes all subsequent experiments"
+    design_elements: ["two-stage flow diagram", "before/after comparison", "detection signal visualization (strong vs weak)", "color-coded stages"]
+    visual_style: "Clean flow diagram with two parallel pathways (Stage I and Stage II), using visual metaphors for signal strength to convey detectability degradation"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "line_plot"
+      what_compared: "AUROC trends across training steps for SFT-contaminated models further trained with different RL objectives (GRPO, RAFT, RAFT++)"
+      how_gain_highlighted: "Monotonic decline in AUROC as RL steps increase, showing convergence toward random chance (50%)"
+      design_note: "Multi-panel line plots across benchmarks showing temporal degradation; effective at conveying the progressive concealment dynamic"
+    - figure_id: "Figure 3"
+      viz_type: "distribution_plot"
+      what_compared: "Log-probability distributions of members vs non-members before and after GRPO training on GPQA-Diamond and OlympiadBench"
+      how_gain_highlighted: "Overlapping distributions after GRPO visually demonstrate why detectors fail; clear before/after contrast"
+      design_note: "Density plots with member/non-member overlay; the visual convergence of two distributions is the most intuitive evidence in the paper"
+    - figure_id: "Figure 4"
+      viz_type: "distribution_plot"
+      what_compared: "Log-probability distributions for advanced LRMs (R1-Distill-Llama, R1-Distill-Qwen) before and after SFT contamination"
+      how_gain_highlighted: "Both member and non-member distributions shift similarly, showing generalization rather than memorization"
+      design_note: "Parallel structure with Figure 3 enables direct comparison between Stage I and Stage II mechanisms"
+  ablation_figures:
+    - figure_id: "Figure 2 (also serves as ablation)"
+      viz_type: "line_plot"
+      dimensions_varied: ["RL objective (RAFT vs RAFT++ vs GRPO)", "training steps"]
+      design_note: "RAFT (no clipping) preserves detectability while RAFT++ and GRPO (with clipping) reduce AUROC by 14-19 points; embedded ablation within result figure"
+  figure_narrative_role: "Figure 1 (framework overview) -> Figure 2 (Stage I temporal dynamics + ablation) -> Figure 3 (Stage I mechanistic explanation via distributions) -> Figure 4 (Stage II mechanistic explanation via distributions). Narrative flows from problem framing to temporal evidence to mechanistic explanation, applied first to Stage I then Stage II."
+
+tables:
+  table_count: 6
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "detection methods"
+    col_axis: "benchmarks (6 datasets)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "delta values showing AUROC change; no bold/underline formatting; relies on magnitude of deltas to convey significance"
+    statistical_reporting: "single-run AUROC percentages with delta (before/after GRPO difference)"
+    num_baselines: 10
+    design_note: "10 methods x 6 benchmarks matrix with before/after GRPO comparison; methods grouped into 4 categories (generation-based, perturbation-based, reference-based, reference-free) with category headers; delta column makes degradation immediately visible"
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["RL objective (RAFT, RAFT++, GRPO)", "clipping (with/without)"]
+      variation_style: "checkmark_grid"
+      design_note: "Uses checkmark/cross symbols to indicate clipping on/off; isolates clipping as the causal mechanism by comparing same objectives with and without clipping; RAFT without clipping preserves detectability while RAFT++ and GRPO with clipping reduce it by 14-19 AUROC points"
+    - table_id: "Table 1"
+      what_varied: ["training data (clean vs contaminated SFT)", "RL training (clean vs contaminated GRPO)"]
+      variation_style: "full_numbers"
+      design_note: "2x2 factorial design (clean/contaminated x SFT/RL) showing performance inflation; demonstrates contamination provides 8.82% average gain via SFT"
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 6 shows QwQ-32B rejection sampling solve rates across benchmarks (86.05% average); Tables 7+ contain extended results for Llama base model, per-dataset breakdowns, additional RL step analyses, and full detection method results across all experimental conditions (estimated 17+ appendix tables total)"
+    reason: "Main text focuses on Qwen results and key comparisons; Llama replication and exhaustive per-dataset results moved to appendix to maintain narrative focus while providing full reproducibility evidence"

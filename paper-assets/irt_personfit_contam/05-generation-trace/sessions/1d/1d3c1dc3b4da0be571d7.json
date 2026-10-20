@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d3c1dc3b4da0be571d7",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code clean s3 eval final",
+  "task_key": "worker_code_clean-s3-eval-final_20260520T191449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_clean-s3-eval-final_20260520T191449_result.json",
+    "occurrence": 1,
+    "bytes": 116,
+    "sha256": "0ae5df7924358556ace17bc93c13e2842caa09c659695fc300153c712327a927"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练进度 426/939 (45%)，~2 s/it，预计还需 ~17 分钟完成。已设置 2 分钟后轮询。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-clean-s3-eval-final.md"
+}

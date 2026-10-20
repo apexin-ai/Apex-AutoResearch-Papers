@@ -1,0 +1,44 @@
+{
+  "exp_id": "exp-ctrl-contam-mistral-contam15",
+  "project": "irt_personfit_contam",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T04:52:14.095Z",
+    "updated_at": "2026-05-21T06:33:24.260Z",
+    "spec": {
+      "command": "python train.py --condition contam_15 --gpu 0",
+      "server": "westd-35694",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "75850",
+      "log_path": "~/runs/irt_personfit_contam/exp-ctrl-contam-mistral-contam15.log",
+      "submitted_at": "2026-05-21T04:52:13.995Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/ctrl_contam_mistral/",
+      "data_count": 1335,
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "seed": 42
+    },
+    "metrics": {
+      "lz_star": -1.3849,
+      "acc_overall": 0.5949,
+      "acc_seen": 0.7436,
+      "acc_unseen": 0.5686,
+      "theta_mle": -0.7129,
+      "lz_star_seen": -1.0838,
+      "lz_star_unseen": -0.0956,
+      "method": "Snijders (2001) lz*"
+    },
+    "checkpoint_path": "/root/autodl-tmp/ctrl_contam_mistral/checkpoints/contam_15/",
+    "log_path": "/root/autodl-tmp/ctrl_contam_mistral/results/contam_15_results.json",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T06:33:24.326667+00:00",
+  "trigger": "update_registry"
+}

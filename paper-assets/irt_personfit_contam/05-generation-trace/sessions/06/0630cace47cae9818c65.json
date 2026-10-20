@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0630cace47cae9818c65",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops push anon repo",
+  "task_key": "worker_ops_push-anon-repo_20260523T185107",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_push-anon-repo_20260523T185107_result.json",
+    "occurrence": 1,
+    "bytes": 189,
+    "sha256": "b053254412a93ad196894cf1fb1fcb960e92eec99bd763193f35b2b66481c198"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已推送到 GitHub：\n- Commit: `c9ef6c5`\n- 变更: 24 files changed, 4172 insertions(+), 26 deletions(-)\n- 分支: `main` → `anonymous-nlp-2026-2/irt_personfit_contam`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-push-anon-repo.md"
+}

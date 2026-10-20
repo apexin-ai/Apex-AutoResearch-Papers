@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "1f6276d0a0cdc39d0929",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "ops reeval old llama s1",
+  "task_key": "worker_ops_reeval-old-llama-s1_20260523T124931",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_reeval-old-llama-s1_20260523T124931.log",
+    "occurrence": 1,
+    "bytes": 1009040,
+    "sha256": "fb966c72fd82e259a6b273a7e6cc68ed18687f13f5bb7da61e54b9398e76a36e"
+  },
+  "statistics": {
+    "messages": 777,
+    "user_turns": 0,
+    "tool_calls": 336,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 99,
+      "tool_call": 336,
+      "tool_result": 336,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 777,
+      "chunks": [
+        {
+          "path": "1f6276d0a0cdc39d0929-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1f6276d0a0cdc39d0929-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "1f6276d0a0cdc39d0929-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "1f6276d0a0cdc39d0929-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "1f6276d0a0cdc39d0929-part-0005.json",
+          "message_count": 57
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-reeval-old-llama-s1.md"
+}

@@ -1,0 +1,65 @@
+{
+  "exp_id": "exp-4pl-ablation",
+  "project": "irt_personfit_contam",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T13:02:59.785Z",
+    "updated_at": "2026-05-20T13:50:29.519Z",
+    "hypothesis": "The 4PL model's upper asymptote parameter d significantly improves contamination detection sensitivity compared to 3PL(d=1) and 2PL(c=0.25,d=1), because d captures ceiling effects in LLM response patterns that mask contamination signal when fixed at 1.0",
+    "spec": {
+      "command": "python 4pl_ablation.py",
+      "server": "local(CPU)",
+      "data_path": "artifacts/psn_irt_params/ (5 benchmark param files)",
+      "data_count": "500 persons x 10 sims x 9 contam levels x 5 benchmarks x 3 models = 675K trials",
+      "model_name": "4PL/3PL(d=1)/2PL(c=0.25,d=1) simulation",
+      "seed": "42",
+      "checkpoint_path": "artifacts/4pl_ablation/",
+      "log_path": "artifacts/4pl_ablation/ablation_report.md"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "hypothesis_confirmed": true,
+      "far_4pl": "~5% (well-calibrated)",
+      "far_3pl": "4.7-16.5% (inflated)",
+      "far_2pl": "50-100% (catastrophic, unusable)",
+      "mean_power_gain_4pl_vs_3pl": {
+        "MMLU": "+27.3pp",
+        "HellaSwag": "+26.1pp",
+        "GSM8K": "+20.3pp",
+        "ARC_C": "+14.8pp",
+        "HumanEval": "+13.7pp"
+      },
+      "max_power_gain_4pl_vs_3pl": {
+        "MMLU": "+49.0pp",
+        "HellaSwag": "+59.6pp",
+        "GSM8K": "+39.7pp",
+        "ARC_C": "+54.6pp",
+        "HumanEval": "+30.6pp"
+      },
+      "power_at_25pct": {
+        "4PL": {
+          "MMLU": 0.776,
+          "HellaSwag": 0.534,
+          "GSM8K": 0.73,
+          "ARC_C": 0.132,
+          "HumanEval": 0.318
+        },
+        "3PL": {
+          "MMLU": 0.329,
+          "HellaSwag": 0.28,
+          "GSM8K": 0.334,
+          "ARC_C": 0.091,
+          "HumanEval": 0.165
+        }
+      },
+      "d_bucket_analysis": "d<0.8: +6.8pp to +61.2pp; d>=0.95: negligible",
+      "key_finding": "4PL d parameter essential for LLM contamination detection. 46% MMLU items have d<0.95. Ignoring d (3PL) halves detection power on average. 2PL completely miscalibrated (FAR 50-100%)."
+    },
+    "completed_at": "2026-05-20T13:50:29.519Z"
+  },
+  "timestamp": "2026-05-20T13:50:29.559183+00:00",
+  "trigger": "update_registry"
+}

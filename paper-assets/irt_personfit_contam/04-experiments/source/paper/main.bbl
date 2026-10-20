@@ -1,0 +1,332 @@
+\begin{thebibliography}{41}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Bordt et~al.(2025)Bordt, Srinivas, Boreiko, and von
+  Luxburg}]{bordt2025forget}
+Sebastian Bordt, Suraj Srinivas, Valentyn Boreiko, and Ulrike von Luxburg.
+  2025.
+\newblock \href {https://arxiv.org/abs/2410.03249} {How much can we forget
+  about data contamination?}
+\newblock In \emph{Proceedings of the 42nd International Conference on Machine
+  Learning (ICML)}.
+
+\bibitem[{Chang et~al.(2024)Chang, Wang, Wang, Wu, Yang, Zhu, Chen, Yi, Wang,
+  Wang, Ye, Zhang, Chang, Yu, Yang, and Xie}]{chang2024survey}
+Y.~Chang, X.~Wang, J.~Wang, Y.~Wu, L.~Yang, K.~Zhu, H.~Chen, X.~Yi, C.~Wang,
+  Y.~Wang, W.~Ye, Y.~Zhang, Y.~Chang, P.~S. Yu, Q.~Yang, and X.~Xie. 2024.
+\newblock \href {https://doi.org/10.1145/3641289} {A survey on evaluation of
+  large language models}.
+\newblock \emph{ACM Transactions on Intelligent Systems and Technology}.
+
+\bibitem[{Clark et~al.(2018)Clark, Cowhey, Etzioni, Khot, Sabharwal, Schoenick,
+  and Tafjord}]{clark2018arc}
+Peter Clark, Isaac Cowhey, Oren Etzioni, Tushar Khot, Ashish Sabharwal, Carissa
+  Schoenick, and Oyvind Tafjord. 2018.
+\newblock Think you have solved question answering? try {ARC}, the {AI2}
+  reasoning challenge.
+\newblock \emph{arXiv preprint arXiv:1803.05457}.
+
+\bibitem[{Dekoninck et~al.(2024)Dekoninck, M{\"u}ller, and
+  Vechev}]{constat2024}
+J.~Dekoninck, M.~M{\"u}ller, and M.~Vechev. 2024.
+\newblock \href {https://arxiv.org/abs/2405.16281} {{ConStat}:
+  Performance-based contamination detection in large language models}.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}.
+
+\bibitem[{Deng et~al.(2024)Deng, Zhao, Tang, Gerstein, and Cohan}]{deng2024}
+C.~Deng, Y.~Zhao, X.~Tang, M.~Gerstein, and A.~Cohan. 2024.
+\newblock \href {https://doi.org/10.18653/v1/2024.naacl-long.482}
+  {Investigating data contamination in modern benchmarks for large language
+  models}.
+\newblock In \emph{Proceedings of the 2024 Conference of the North American
+  Chapter of the Association for Computational Linguistics (NAACL)}.
+
+\bibitem[{Dodge et~al.(2021)Dodge, Sap, Marasovi{\'c}, Agnew, Ilharco,
+  Groeneveld, Mitchell, and Gardner}]{dodge2021}
+J.~Dodge, M.~Sap, A.~Marasovi{\'c}, W.~Agnew, G.~Ilharco, D.~Groeneveld,
+  M.~Mitchell, and M.~Gardner. 2021.
+\newblock \href {https://doi.org/10.18653/v1/2021.emnlp-main.98} {Documenting
+  large webtext corpora: A case study on the colossal clean crawled corpus}.
+\newblock In \emph{Proceedings of the 2021 Conference on Empirical Methods in
+  Natural Language Processing (EMNLP)}.
+
+\bibitem[{Drasgow et~al.(1985)Drasgow, Levine, and Williams}]{drasgow1985}
+F.~Drasgow, M.~V. Levine, and E.~A. Williams. 1985.
+\newblock \href {https://doi.org/10.1111/j.2044-8317.1985.tb00817.x}
+  {Appropriateness measurement with polychotomous item response models and
+  standardized indices}.
+\newblock \emph{British Journal of Mathematical and Statistical Psychology},
+  38(1):67--86.
+
+\bibitem[{Embretson and Reise(2000)}]{embretson2000}
+Susan~E. Embretson and Steven~P. Reise. 2000.
+\newblock \emph{Item Response Theory for Psychologists}.
+\newblock Lawrence Erlbaum Associates, Mahwah, NJ.
+
+\bibitem[{Fu et~al.(2025)Fu, Uzuner, Yetisgen, and Xia}]{fu2025contamination}
+Yujuan Fu, Ozlem Uzuner, Meliha Yetisgen, and Fei Xia. 2025.
+\newblock \href {https://arxiv.org/abs/2410.18966} {Does data contamination
+  detection work (well) for {LLMs}? {A} survey and evaluation on detection
+  assumptions}.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  NAACL 2025}.
+
+\bibitem[{Gao et~al.(2023)Gao, Tow, Abbasi, Biderman, Black, DiPofi, Foster,
+  Golding, Hsu, Le~Noac'h, Li, McDonell, Muennighoff, Ociepa, Phang, Reynolds,
+  Schoelkopf, Skowron, Sutawika, Tang, Thite, Wang, Wang, and
+  Zou}]{eval-harness}
+Leo Gao, Jonathan Tow, Baber Abbasi, Stella Biderman, Sid Black, Anthony
+  DiPofi, Charles Foster, Laurence Golding, Jeffrey Hsu, Alber Le~Noac'h,
+  Haonan Li, Kyle McDonell, Niklas Muennighoff, Chris Ociepa, Jason Phang,
+  Laria Reynolds, Hailey Schoelkopf, Aviya Skowron, Lintang Sutawika, and 5
+  others. 2023.
+\newblock \href {https://github.com/EleutherAI/lm-evaluation-harness} {A
+  framework for few-shot language model evaluation}.
+
+\bibitem[{Golchin and Surdeanu(2024)}]{golchin2024}
+S.~Golchin and M.~Surdeanu. 2024.
+\newblock \href {https://arxiv.org/abs/2308.08493} {Time travel in {LLMs}:
+  Tracing data contamination in large language models}.
+\newblock In \emph{Proceedings of the 12th International Conference on Learning
+  Representations (ICLR)}.
+
+\bibitem[{Golchin and Surdeanu(2025)}]{golchin2024quiz}
+Shahriar Golchin and Mihai Surdeanu. 2025.
+\newblock Data contamination quiz: A tool to detect and estimate contamination
+  in large language models.
+\newblock \emph{Transactions of the Association for Computational Linguistics
+  (TACL)}, 13:809--830.
+
+\bibitem[{Han et~al.(2026)Han, Song, Lee, and Jo}]{han2026quantifying}
+Jongwook Han, Woojung Song, Jonggeun Lee, and Yohan Jo. 2026.
+\newblock \href {https://arxiv.org/abs/2510.07175} {Quantifying data
+  contamination in psychometric evaluations of {LLMs}}.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  EACL 2026}.
+
+\bibitem[{Hedges(1981)}]{hedges1981}
+Larry~V. Hedges. 1981.
+\newblock Distribution theory for {Glass}'s estimator of effect size and
+  related estimators.
+\newblock \emph{Journal of Educational Statistics}, 6(2):107--128.
+
+\bibitem[{Hendrycks et~al.(2021)Hendrycks, Burns, Basart, Zou, Mazeika, Song,
+  and Steinhardt}]{hendrycks2021mmlu}
+D.~Hendrycks, C.~Burns, S.~Basart, A.~Zou, M.~Mazeika, D.~Song, and
+  J.~Steinhardt. 2021.
+\newblock \href {https://arxiv.org/abs/2009.03300} {Measuring massive multitask
+  language understanding}.
+\newblock In \emph{Proceedings of the 9th International Conference on Learning
+  Representations (ICLR)}.
+
+\bibitem[{Jacovi et~al.(2023)Jacovi, Caciularu, Goldman, and
+  Goldberg}]{jacovi2023}
+A.~Jacovi, A.~Caciularu, O.~Goldman, and Y.~Goldberg. 2023.
+\newblock \href {https://doi.org/10.18653/v1/2023.emnlp-main.308} {Stop
+  uploading test data in plain text: Practical strategies for mitigating data
+  contamination by evaluation benchmarks}.
+\newblock In \emph{Proceedings of the 2023 Conference on Empirical Methods in
+  Natural Language Processing (EMNLP)}.
+
+\bibitem[{Karabatsos(2003)}]{karabatsos2003}
+G.~Karabatsos. 2003.
+\newblock \href {https://doi.org/10.1207/S15324818AME1604_2} {Comparing the
+  aberrant response detection performance of thirty-six person-fit statistics}.
+\newblock \emph{Applied Measurement in Education}, 16(4):277--298.
+
+\bibitem[{Kattamuri et~al.(2025)Kattamuri, Fartale, Vats, Raja, and
+  Prasad}]{kattamuri2025radar}
+Ashish Kattamuri, Harshwardhan Fartale, Arpita Vats, Rahul Raja, and Ishita
+  Prasad. 2025.
+\newblock \href {https://arxiv.org/abs/2510.08931} {{RADAR}: Mechanistic
+  pathways for detecting data contamination in {LLM} evaluation}.
+\newblock In \emph{NeurIPS 2025 Workshop on Evaluating the Evolving LLM
+  Lifecycle}.
+
+\bibitem[{Lalor et~al.(2019)Lalor, Wu, and Yu}]{lalor2019}
+John~P. Lalor, Hao Wu, and Hong Yu. 2019.
+\newblock \href {https://doi.org/10.18653/v1/D19-1434} {Learning latent
+  parameters without human response patterns: Item response theory with
+  artificial crowds}.
+\newblock In \emph{Proceedings of the 2019 Conference on Empirical Methods in
+  Natural Language Processing (EMNLP-IJCNLP)}, pages 4249--4259. Association
+  for Computational Linguistics.
+
+\bibitem[{Li et~al.(2025)Li, Tang, Chen, Cheng, Metoyer, Hua, and
+  Chawla}]{atlas2025}
+P.~Li, X.~Tang, S.~Chen, Y.~Cheng, R.~Metoyer, T.~Hua, and N.~V. Chawla. 2025.
+\newblock \href {https://arxiv.org/abs/2511.04689} {Adaptive testing for {LLM}
+  evaluation: A psychometric alternative to static benchmarks}.
+\newblock \emph{arXiv preprint arXiv:2511.04689}.
+
+\bibitem[{Magar and Schwartz(2022)}]{magar2022}
+I.~Magar and R.~Schwartz. 2022.
+\newblock \href {https://doi.org/10.18653/v1/2022.acl-short.18} {Data
+  contamination: From memorization to exploitation}.
+\newblock In \emph{Proceedings of the 60th Annual Meeting of the Association
+  for Computational Linguistics (ACL)}.
+
+\bibitem[{Magis et~al.(2012)Magis, Ra{\^i}che, and B{\'e}land}]{magis2012}
+David Magis, Gilles Ra{\^i}che, and S{\'e}bastien B{\'e}land. 2012.
+\newblock \href {https://doi.org/10.3102/1076998610396894} {A didactic
+  presentation of {Snijders's} $\ell_z^*$ index of person fit with emphasis on
+  response model selection and ability estimation}.
+\newblock \emph{Journal of Educational and Behavioral Statistics},
+  37(1):57--81.
+
+\bibitem[{Mart{\'\i}nez-Plumed et~al.(2019)Mart{\'\i}nez-Plumed, Prud{\^e}ncio,
+  Mart{\'\i}nez-Us{\'o}, and Hern{\'a}ndez-Orallo}]{martinezplumed2019}
+F.~Mart{\'\i}nez-Plumed, R.~B.~C. Prud{\^e}ncio, A.~Mart{\'\i}nez-Us{\'o}, and
+  J.~Hern{\'a}ndez-Orallo. 2019.
+\newblock \href {https://doi.org/10.1016/j.artint.2018.09.004} {Item response
+  theory in {AI}: Analysing machine learning classifiers at the instance
+  level}.
+\newblock \emph{Artificial Intelligence}, 271:18--42.
+
+\bibitem[{Oren et~al.(2024)Oren, Meister, Chatterji, Ladhak, and
+  Hashimoto}]{oren2024}
+Y.~Oren, N.~Meister, N.~S. Chatterji, F.~Ladhak, and T.~Hashimoto. 2024.
+\newblock \href {https://arxiv.org/abs/2310.17623} {Proving test set
+  contamination in black box language models}.
+\newblock In \emph{Proceedings of the 12th International Conference on Learning
+  Representations (ICLR)}.
+
+\bibitem[{Polo et~al.(2024)Polo, Weber, Choshen, Sun, Xu, and
+  Yurochkin}]{polo2024tinybenchmarks}
+F.~M. Polo, L.~Weber, L.~Choshen, Y.~Sun, G.~Xu, and M.~Yurochkin. 2024.
+\newblock \href {https://arxiv.org/abs/2402.14992} {tinybenchmarks: Evaluating
+  {LLMs} with fewer examples}.
+\newblock In \emph{Proceedings of the 41st International Conference on Machine
+  Learning (ICML)}, volume 235 of \emph{Proceedings of Machine Learning
+  Research}, pages 34303--34326. PMLR.
+
+\bibitem[{Rodriguez et~al.(2021)Rodriguez, Barrow, Hoyle, Lalor, Jia, and
+  Boyd-Graber}]{rodriguez2021}
+Pedro Rodriguez, Joe Barrow, Alexander Hoyle, John~P. Lalor, Robin Jia, and
+  Jordan Boyd-Graber. 2021.
+\newblock \href {https://doi.org/10.18653/v1/2021.acl-long.346} {Evaluation
+  examples are not equally informative: How should that change {NLP}
+  leaderboards?}
+\newblock In \emph{Proceedings of the 59th Annual Meeting of the Association
+  for Computational Linguistics (ACL)}, pages 4486--4503. Association for
+  Computational Linguistics.
+
+\bibitem[{Sainz et~al.(2023)Sainz, Campos, Garc{\'\i}a-Ferrero, Etxaniz,
+  Lopez~de Lacalle, and Agirre}]{sainz2023}
+O.~Sainz, J.~Campos, I.~Garc{\'\i}a-Ferrero, J.~Etxaniz, O.~Lopez~de Lacalle,
+  and E.~Agirre. 2023.
+\newblock \href {https://doi.org/10.18653/v1/2023.findings-emnlp.722} {{NLP}
+  evaluation in trouble: On the need to measure {LLM} data contamination for
+  each benchmark}.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  EMNLP 2023}.
+
+\bibitem[{Shao et~al.(2024)Shao, Wang, Zhu, Xu, Song, Bi, Zhang, Zhang, Li, Wu,
+  and Guo}]{shao2024}
+Zhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu, Junxiao Song, Xiao Bi, Haowei
+  Zhang, Mingchuan Zhang, Y.K. Li, Y.~Wu, and Daya Guo. 2024.
+\newblock {DeepSeekMath}: Pushing the limits of mathematical reasoning in open
+  language models.
+\newblock \emph{arXiv preprint arXiv:2402.03300}.
+
+\bibitem[{Shi et~al.(2024)Shi, Ajith, Xia, Huang, Liu, Blevins, Chen, and
+  Zettlemoyer}]{minkprob2024}
+W.~Shi, A.~Ajith, M.~Xia, Y.~Huang, D.~Liu, T.~Blevins, D.~Chen, and
+  L.~Zettlemoyer. 2024.
+\newblock \href {https://arxiv.org/abs/2310.16789} {Detecting pretraining data
+  from large language models}.
+\newblock In \emph{Proceedings of the 12th International Conference on Learning
+  Representations (ICLR)}.
+
+\bibitem[{Sinharay(2016)}]{sinharay2016}
+Sandip Sinharay. 2016.
+\newblock \href {https://doi.org/10.1111/jedm.12101} {Assessment of person fit
+  using resampling-based approaches}.
+\newblock \emph{Journal of Educational Measurement}, 53(1):63--85.
+
+\bibitem[{Sinharay(2017)}]{sinharay2017}
+Sandip Sinharay. 2017.
+\newblock \href {https://doi.org/10.1177/0146621617698453} {Which statistic
+  should be used to detect item preknowledge when the set of compromised items
+  is known?}
+\newblock \emph{Applied Psychological Measurement}, 41(6):403--421.
+
+\bibitem[{Snijders(2001)}]{snijders2001}
+T.~A.~B. Snijders. 2001.
+\newblock \href {https://doi.org/10.1007/BF02294437} {Asymptotic null
+  distribution of person fit statistics with estimated person parameter}.
+\newblock \emph{Psychometrika}, 66(3):331--342.
+
+\bibitem[{St-Onge et~al.(2011)St-Onge, Valois, Abdous, and
+  Germain}]{stonge2011}
+Christina St-Onge, Pierre Valois, Belkacem Abdous, and St{\'e}phane Germain.
+  2011.
+\newblock \href {https://doi.org/10.1177/0146621611405706} {Accuracy of
+  person-fit statistics: A {Monte Carlo} study of the influence of aberrance
+  rates}.
+\newblock \emph{Applied Psychological Measurement}, 35(6):419--432.
+
+\bibitem[{Tao et~al.(2026)Tao, Wang, Dong, Liu, Zhang, Hu, and
+  Li}]{selfcritique2026}
+Y.~Tao, T.~Wang, Y.~Dong, H.~Liu, K.~Zhang, X.~Hu, and G.~Li. 2026.
+\newblock \href {https://arxiv.org/abs/2510.09259} {Detecting data
+  contamination from reinforcement learning post-training for large language
+  models}.
+\newblock In \emph{Proceedings of the 14th International Conference on Learning
+  Representations (ICLR)}.
+
+\bibitem[{Van~der Flier(1982)}]{vanderflier1982}
+H.~Van~der Flier. 1982.
+\newblock \href {https://doi.org/10.1177/0022002182013003001} {Deviant response
+  patterns and comparability of test scores}.
+\newblock \emph{Journal of Cross-Cultural Psychology}, 13(3):267--298.
+
+\bibitem[{Wang et~al.(2025)Wang, Li, Ko, and Zhang}]{wang2025fragility}
+H.~Wang, H.~Li, B.~Ko, and H.~Zhang. 2025.
+\newblock \href {https://arxiv.org/abs/2510.02386} {On the fragility of
+  benchmark contamination detection in reasoning models}.
+\newblock \emph{arXiv preprint arXiv:2510.02386}.
+
+\bibitem[{Zawalski et~al.(2026)Zawalski, Boubdir, Ba{\l}azy, Nushi, and
+  Ribalta}]{codec2026}
+M.~Zawalski, M.~Boubdir, K.~Ba{\l}azy, B.~Nushi, and P.~Ribalta. 2026.
+\newblock \href {https://arxiv.org/abs/2510.27055} {Detecting data
+  contamination in {LLMs} via in-context learning}.
+\newblock In \emph{Proceedings of the 14th International Conference on Learning
+  Representations (ICLR)}.
+
+\bibitem[{Zhang et~al.(2026)Zhang, Yang, Yan, Bao, Zhang, and
+  Zhang}]{zhang2026rlvr}
+H.~Zhang, Y.~Yang, J.~Yan, G.~Bao, Y.~Zhang, and Y.~Zhang. 2026.
+\newblock \href {https://arxiv.org/abs/2602.11792} {Detecting {RLVR} training
+  data via structural convergence of reasoning}.
+\newblock \emph{arXiv preprint arXiv:2602.11792}.
+
+\bibitem[{Zhang et~al.(2024)Zhang, Lin, and Wan}]{pacost2024}
+Huixuan Zhang, Yun Lin, and Xiaojun Wan. 2024.
+\newblock \href {https://arxiv.org/abs/2406.18326} {{PaCoST}: Paired confidence
+  significance testing for benchmark contamination detection in large language
+  models}.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  EMNLP 2024}.
+
+\bibitem[{Zhou et~al.(2026)Zhou, Huang, Zhao, Han, Wang, Chen, Yang, Bao, Dong,
+  Xu, Zhu, Cao, and Zhao}]{psnirt2026}
+H.~Zhou, H.~Huang, Z.~Zhao, L.~Han, H.~Wang, K.~Chen, M.~Yang, W.~Bao, J.~Dong,
+  B.~Xu, C.~Zhu, H.~Cao, and T.~Zhao. 2026.
+\newblock \href {https://doi.org/10.1609/aaai.v40i41.40814} {Lost in
+  benchmarks? rethinking large language model benchmarking with item response
+  theory}.
+\newblock In \emph{Proceedings of the AAAI Conference on Artificial
+  Intelligence (AAAI)}, volume~40, pages 35085--35093.
+
+\bibitem[{Zhou et~al.(2023)Zhou, Zhu, Chen, Chen, Zhao, Chen, Lin, Wen, and
+  Han}]{zhou2023benchmark}
+Kun Zhou, Yutao Zhu, Zhipeng Chen, Wentong Chen, Wayne~Xin Zhao, Xu~Chen,
+  Yankai Lin, Ji-Rong Wen, and Jiawei Han. 2023.
+\newblock \href {https://arxiv.org/abs/2311.01964} {Don't make your {LLM} an
+  evaluation benchmark cheater}.
+\newblock \emph{arXiv preprint arXiv:2311.01964}.
+
+\end{thebibliography}

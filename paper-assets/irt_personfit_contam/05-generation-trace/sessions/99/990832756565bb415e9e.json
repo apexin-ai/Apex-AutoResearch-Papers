@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "990832756565bb415e9e",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code llama clean seeds eval cohens d",
+  "task_key": "worker_code_llama-clean-seeds-eval-cohens-d_20260521T005713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama-clean-seeds-eval-cohens-d_20260521T005713_result.json",
+    "occurrence": 1,
+    "bytes": 933,
+    "sha256": "8bb2f0f00dfbb32fabcaea4b7427e997e3ea2427d8f2ba8a17dfca6985d30b6b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n```\n=== Llama n=3 Cohen's d (Snijders ℓz*) ===\n\n| Condition  | seed | lz*     | acc    | θ      |\n|------------|------|---------|--------|--------|\n| clean      | 42   |  0.8446 | 0.5914 | -0.666 |\n| clean_s2   | 123  | -0.1823 | 0.5954 | -0.630 |\n| clean_s3   | 456  | -1.0844 | 0.5943 | -0.640 |\n| contam_15  | 42   | -2.9922 | 0.6654 | -0.276 |\n| contam_50  | 42   | -3.3313 | 0.6983 | -0.149 |\n\nBaseline (n=3): mean=-0.1407, std=0.9652\nCohen's d (ddof=1): contam_15=-2.95, contam_50=-3.31\n\n对比 Qwen: contam_15 d=-3.42, contam_50 d=-0.99\n```\n\n关键观察：\n- Llama 两个 contamination 条件的 Cohen's d 都很大（|d|>2.9），效应极显著\n- contam_50 的 |d| 在 Llama 上（3.31）远大于 Qwen（0.99），说明 Llama 对 50% 污染更敏感\n- clean baseline 的 lz* 方差较大（std=0.97），3 个 seed 的 lz* 从 -1.08 到 +0.84 变化不小"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-clean-seeds-eval-cohens-d.md"
+}

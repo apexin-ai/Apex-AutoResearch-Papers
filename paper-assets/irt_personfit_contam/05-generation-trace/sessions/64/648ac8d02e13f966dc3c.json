@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "648ac8d02e13f966dc3c",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "code exp ctrl contam mistral setup",
+  "task_key": "worker_code_exp-ctrl-contam-mistral-setup_20260521T042208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-ctrl-contam-mistral-setup_20260521T042208.log",
+    "occurrence": 1,
+    "bytes": 1086204,
+    "sha256": "9719e28a69150ec266b6c9bf3b202ca548cbf84b84e6f06d5dc0591b63208473"
+  },
+  "statistics": {
+    "messages": 688,
+    "user_turns": 1,
+    "tool_calls": 265,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 150,
+      "tool_call": 265,
+      "tool_result": 265,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 630,
+      "chunks": [
+        {
+          "path": "648ac8d02e13f966dc3c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "648ac8d02e13f966dc3c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "648ac8d02e13f966dc3c-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "648ac8d02e13f966dc3c-part-0004.json",
+          "message_count": 90
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 58,
+      "chunks": [
+        {
+          "path": "648ac8d02e13f966dc3c-part-0004.json",
+          "message_count": 58
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-ctrl-contam-mistral-setup.md"
+}

@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "c67bae53b02357ea6c1f",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "audit paper data correctness v2",
+  "task_key": "worker_audit_paper-data-correctness-v2_20260524T061618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_paper-data-correctness-v2_20260524T061618.log",
+    "occurrence": 1,
+    "bytes": 1481148,
+    "sha256": "1ada552aa3f9fa6ed45ec4deb42ba7256b3ae06622ff8124dfdcdbf9d22efc5c"
+  },
+  "statistics": {
+    "messages": 410,
+    "user_turns": 2,
+    "tool_calls": 156,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 1,
+      "assistant": 86,
+      "tool_call": 156,
+      "user": 2,
+      "tool_result": 156,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "c67bae53b02357ea6c1f-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 225,
+      "chunks": [
+        {
+          "path": "c67bae53b02357ea6c1f-part-0001.json",
+          "message_count": 119
+        },
+        {
+          "path": "c67bae53b02357ea6c1f-part-0002.json",
+          "message_count": 106
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 179,
+      "chunks": [
+        {
+          "path": "c67bae53b02357ea6c1f-part-0002.json",
+          "message_count": 73
+        },
+        {
+          "path": "c67bae53b02357ea6c1f-part-0003.json",
+          "message_count": 106
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-paper-data-correctness-v2.md"
+}

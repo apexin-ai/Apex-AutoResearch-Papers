@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "203b9fa60173b2873df4",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code ht post rl analysis",
+  "task_key": "worker_code_ht-post-rl-analysis_20260521T062608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ht-post-rl-analysis_20260521T062608_result.json",
+    "occurrence": 1,
+    "bytes": 169,
+    "sha256": "8507009a7c6c225cd0ec1fa5704da842dfb01eeabb056aad7ec93d50f955159d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GRPO training still running (~58%). I'll check back in 30 minutes. Once it finishes I'll run the GRPO eval and produce the final 3-stage comparison table."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ht-post-rl-analysis.md"
+}

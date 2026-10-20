@@ -1,0 +1,44 @@
+{
+  "exp_id": "exp-ctrl-contam-pilot-clean-s3",
+  "project": "irt_personfit_contam",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T19:04:43.485Z",
+    "updated_at": "2026-05-20T19:12:37.318Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/ctrl_contam_pilot && python train.py --condition clean_s3 --gpu 0 2>&1 | tee /root/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log\"",
+      "server": "westd-35694",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "29341",
+      "log_path": "~/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log",
+      "submitted_at": "2026-05-20T19:04:43.430Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/ctrl_contam_pilot/data/clean_s3/train.jsonl",
+      "data_count": "5000",
+      "model_name": "Qwen/Qwen2.5-7B-Instruct (QLoRA r=16 alpha=32)",
+      "seed": "456"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T19:10:46.528Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T19:10:47.862644+00:00"
+        }
+      ]
+    },
+    "hypothesis": "Third clean seed (seed=456) for baseline lz* variance estimation: adding a third independent clean control strengthens Cohen's d denominator (n=3 vs n=2), providing more reliable effect size estimates for contamination detection"
+  },
+  "timestamp": "2026-05-20T19:12:37.368912+00:00",
+  "trigger": "update_registry"
+}

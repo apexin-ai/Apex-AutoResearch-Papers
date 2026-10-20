@@ -1,0 +1,11 @@
+\begin{abstract}
+Benchmark contamination in Large Language Models (LLMs) undermines the validity of public evaluations, yet most detection methods require privileged access to training data, model internals, or output probabilities.
+We introduce \textsc{IRT-Fit}, a framework that detects supervised fine-tuning (SFT) contamination from binary (correct/incorrect) response patterns alone, the minimal-information operating point.
+The core insight is psychometric: a contaminated model produces aberrant response patterns analogous to a test-taker with item preknowledge.
+\textsc{IRT-Fit} quantifies this aberrance with the standardized person-fit statistic $\ell_z^*$ under a four-parameter logistic (4PL) Item Response Theory (IRT) model.
+%
+In controlled experiments on Qwen2.5-7B, injecting 15\% of MMLU items into SFT training yields Cohen's $|d|=3.42$ between contaminated and clean conditions ($n=3$ clean seeds), with cross-family confirmation on Llama-3.1-8B ($|\Delta\ell_z^*|=3.84$).
+A closed-form power function derived via Gauss--Hermite quadrature ($R^2=0.957$) links benchmark size to detection sensitivity: 80\% power at 15\% contamination requires $n \geq 7{,}958$ items (under MMLU item parameters).
+Applying \textsc{IRT-Fit} to 12 models across 5 benchmarks, we find that 57 of 60 model-benchmark cells exhibit response-pattern anomalies under the 4PL model (BH-FDR $\alpha=0.05$), while only 4 are flagged by an accuracy $z$-score baseline.
+This 14$\times$ gap reveals universal model misfit invisible to accuracy-based evaluation.
+\end{abstract}

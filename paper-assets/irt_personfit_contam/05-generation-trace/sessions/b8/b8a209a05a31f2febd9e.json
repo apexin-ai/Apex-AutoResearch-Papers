@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "b8a209a05a31f2febd9e",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "code ht post rl analysis",
+  "task_key": "worker_code_ht-post-rl-analysis_20260521T062608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ht-post-rl-analysis_20260521T062608.log",
+    "occurrence": 1,
+    "bytes": 1139264,
+    "sha256": "82444bf02f2ff20e5c95c1bf9d210d0a0652b154aef9e85864e232570c800090"
+  },
+  "statistics": {
+    "messages": 866,
+    "user_turns": 1,
+    "tool_calls": 384,
+    "roles": {
+      "log": 1,
+      "system": 11,
+      "record": 1,
+      "assistant": 82,
+      "tool_call": 384,
+      "tool_result": 384,
+      "result": 2,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 827,
+      "chunks": [
+        {
+          "path": "b8a209a05a31f2febd9e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b8a209a05a31f2febd9e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "b8a209a05a31f2febd9e-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "b8a209a05a31f2febd9e-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "b8a209a05a31f2febd9e-part-0005.json",
+          "message_count": 107
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 39,
+      "chunks": [
+        {
+          "path": "b8a209a05a31f2febd9e-part-0005.json",
+          "message_count": 39
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-ht-post-rl-analysis.md"
+}

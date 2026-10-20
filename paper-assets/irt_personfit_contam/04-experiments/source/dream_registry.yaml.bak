@@ -1,0 +1,169 @@
+dreams:
+  dream_20260520T082549:
+    dream_id: dream_20260520T082549
+    project: irt_personfit_contam
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 重点评估：(1) 双侧检测框架是否足够新颖作为独立贡献 (2) 仅 12 模型 + 5 benchmarks 是否 scope 太窄 (3)
+      Gemini-1.5 case study 是否足够有说服力（无 ground truth）(4) 控制实验设计是否能回应 "no ground truth"
+      的审稿意见
+    what_if: []
+    pid: null
+    chat_id: oc_9840a7d708128f2f1d02985bd9b8d901
+    card_message_id: om_x100b6fe34e2ef0a8c4dd6fdd17ebfd5
+    started_at: '2026-05-20T08:25:49+00:00'
+    updated_at: '2026-05-20T09:26:00+00:00'
+    stages_completed:
+    - imagine
+    - write
+    error: 'zombie: orchestrator process crashed'
+    context_hash: b0ad9aaef37c8f21bafa06845bffb1dbd52d547e5a41e29603c4d5b23ecac57b
+    review_quality:
+      best: simulated
+  dream_20260520T092614:
+    dream_id: dream_20260520T092614
+    project: irt_personfit_contam
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 重点评估：(1) 双侧检测框架是否足够新颖作为独立贡献 (2) 仅 12 模型 + 5 benchmarks 是否 scope 太窄 (3)
+      Gemini-1.5 case study 是否足够有说服力（无 ground truth）(4) 控制实验设计是否能回应 "no ground truth"
+      的审稿意见
+    what_if: []
+    pid: 68527
+    chat_id: oc_9840a7d708128f2f1d02985bd9b8d901
+    card_message_id: om_x100b6fe3ada18ca4c4ebb6695b9d40e
+    started_at: '2026-05-20T09:26:14+00:00'
+    updated_at: '2026-05-20T10:23:17+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 76fd6965e9e33f031618a591b4360b23a531f437b12f6fd7beda5b90b9bea777
+  dream_20260520T105545:
+    dream_id: dream_20260520T105545
+    project: irt_personfit_contam
+    status: done
+    review_mode: simple
+    review_visible: true
+    writing_visible: true
+    venue: emnlp-2026
+    focus: ''
+    what_if: []
+    pid: 76040
+    chat_id: oc_9840a7d708128f2f1d02985bd9b8d901
+    card_message_id: om_x100b6fed7dd2a8b8c3992385151e0b0
+    started_at: '2026-05-20T10:55:45+00:00'
+    updated_at: '2026-05-20T11:34:50+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 47227ae89b9044d8bb0321ec9bb1fcc5205623522a6ade19ae2eb61beb705cef
+    review_quality:
+      best: simulated
+  dream_20260520T190245:
+    dream_id: dream_20260520T190245
+    project: irt_personfit_contam
+    status: done
+    review_mode: simple
+    review_visible: true
+    writing_visible: true
+    venue: emnlp-2026
+    focus: ''
+    what_if: []
+    pid: 25354
+    chat_id: oc_9840a7d708128f2f1d02985bd9b8d901
+    card_message_id: om_x100b6fd41bae58a8b14a677f042c8d4
+    started_at: '2026-05-20T19:02:45+00:00'
+    updated_at: '2026-05-20T19:47:01+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: e8cbed6684407a6d8a428fbf033b3c2f7f822cb4a04bdae97af5eb1d3155ecb1
+    review_quality:
+      best: simulated
+  dream_20260521T032820:
+    dream_id: dream_20260521T032820
+    project: irt_personfit_contam
+    status: done
+    review_mode: simple
+    review_visible: true
+    writing_visible: true
+    venue: emnlp-2026
+    focus: ''
+    what_if: []
+    pid: 88497
+    chat_id: oc_9840a7d708128f2f1d02985bd9b8d901
+    card_message_id: om_x100b6fd3f39d0c80b286a9f09f486b3
+    started_at: '2026-05-21T03:28:20+00:00'
+    updated_at: '2026-05-21T04:16:25+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: c90313ed04aa2d986330622dd2ba8d62f106ead47c6fba762b3fc08e3019a1cc
+    review_quality:
+      best: simulated
+      median: simulated
+  dream_20260521T044802:
+    dream_id: dream_20260521T044802
+    project: irt_personfit_contam
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: emnlp-2026
+    focus: 'paper_framing.md 已更新: (1) R²=0.65 降级为 empirical trend; (2) baseline comparison
+      结果整合 (lz* vs Guttman 8× 效应量, item-level 全方法 near-random); (3) memorization fraction
+      跨家族一致性 (35-38%); (4) acc z-score sensitivity/specificity framing. 正在进行: seeds
+      n=10扩展, post-RL GRPO, Mistral第三家族.'
+    what_if: []
+    pid: 97315
+    chat_id: oc_9840a7d708128f2f1d02985bd9b8d901
+    card_message_id: om_x100b6fdca6e668b0b4b25b271d0f6b0
+    started_at: '2026-05-21T04:48:02+00:00'
+    updated_at: '2026-05-21T05:57:24+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 8ca0d87bac63b83a8d4f1da6f43433f737d080dd713b8f285d04c1aaaba37e43
+    review_quality:
+      best: simulated
+      median: simulated
+  dream_20260521T122444:
+    dream_id: dream_20260521T122444
+    project: irt_personfit_contam
+    status: reviewing
+    review_mode: simple
+    review_visible: true
+    writing_visible: true
+    venue: emnlp-2026
+    focus: ''
+    what_if: []
+    pid: 160852
+    chat_id: oc_9840a7d708128f2f1d02985bd9b8d901
+    card_message_id: om_x100b6fdbd61f091cb3c5f4bd3a4e55c
+    started_at: '2026-05-21T12:24:44+00:00'
+    updated_at: '2026-05-21T13:18:49+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 8f99266ca40de98928b176d12b865d99d724171658b1b0a642fd7bac81b17be2
+    review_quality:
+      best: simulated
+      median: simulated

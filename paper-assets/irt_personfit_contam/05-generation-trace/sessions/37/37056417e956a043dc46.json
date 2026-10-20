@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "37056417e956a043dc46",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "ops mistral theta fixed n10",
+  "task_key": "worker_ops_mistral-theta-fixed-n10_20260522T082124",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_mistral-theta-fixed-n10_20260522T082124.log",
+    "occurrence": 1,
+    "bytes": 742935,
+    "sha256": "1e2ced6dd581a66059e3577cba593ca36a7f99d81ff61952c735013dbbdb342c"
+  },
+  "statistics": {
+    "messages": 193,
+    "user_turns": 0,
+    "tool_calls": 71,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 47,
+      "tool_call": 71,
+      "tool_result": 71,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 193,
+      "chunks": [
+        {
+          "path": "37056417e956a043dc46-part-0001.json",
+          "message_count": 157
+        },
+        {
+          "path": "37056417e956a043dc46-part-0002.json",
+          "message_count": 36
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-mistral-theta-fixed-n10.md"
+}

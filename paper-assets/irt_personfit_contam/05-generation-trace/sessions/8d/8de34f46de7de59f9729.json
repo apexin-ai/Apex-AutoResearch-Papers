@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8de34f46de7de59f9729",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "paper writing abstract",
+  "task_key": "worker_paper_writing_abstract_20260521T001413",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_abstract_20260521T001413_result.json",
+    "occurrence": 1,
+    "bytes": 349,
+    "sha256": "af4120277c2933d068d5e4d63bfe7f34e1ce3279b400cb22db6ecef912da1cea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Abstract written (~190 words). Structure: problem (privileged-access gap) → method (IRT-FIT, $\\ell_z^*$ under 4PL) → three result highlights (|d|=3.58, R²=0.957 power function, 57/60 universal misfit) → closing contrast with accuracy baseline. SFT scope is explicit, no banned terms used, no em-dashes, all numbers match spec."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-abstract.md"
+}

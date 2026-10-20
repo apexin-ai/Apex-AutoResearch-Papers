@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "30ae663dee1b1c8cb5b9",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops read contam reeval results",
+  "task_key": "worker_ops_read-contam-reeval-results_20260523T133259",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_read-contam-reeval-results_20260523T133259_result.json",
+    "occurrence": 1,
+    "bytes": 2203,
+    "sha256": "1621d62c3c945d2608acb1565894ea6091a84f75147aac939360d46d125151b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 1. V2 contam_50_s1（pilot/llama）— 已完成\n\n| 指标 | 值 |\n|------|-----|\n| theta_mle | **-0.1490** |\n| lz_star (overall) | **-3.3313** |\n| accuracy_overall | **0.6983** |\n| accuracy_seen | 0.6914 |\n| accuracy_unseen | 0.7053 |\n| lz_star_seen | -1.9171 |\n| lz_star_unseen | -2.8092 |\n| n_items | 14042 (seen=7021, unseen=7021) |\n\n### 2. V2 contam_15_s1 — 仍在运行\n\n进度：**7000/14042（~50%）**，当前 acc=0.6606。文件尚未生成。\n\n### 3. V1 contam_15（ctrl_contam_llama）\n\n| 指标 | 值 |\n|------|-----|\n| theta_mle | **-0.2761** |\n| lz_star (overall) | **-2.9922** |\n| lz_uncorrected | -2.6572 |\n| accuracy_overall | **0.6654** |\n| accuracy_seen | 0.7707 |\n| accuracy_unseen | 0.6469 |\n| lz_star_seen | -0.5727 |\n| lz_star_unseen | -2.4945 |\n| n_items | 14042 (seen=2106, unseen=11936) |\n\n### 4. V1 contam_50（ctrl_contam_llama）\n\n| 指标 | 值 |\n|------|-----|\n| theta_mle | **-0.1490** |\n| lz_star (overall) | **-3.3313** |\n| lz_uncorrected | -2.8581 |\n| accuracy_overall | **0.6983** |\n| accuracy_seen | 0.7573 |\n| accuracy_unseen | 0.6394 |\n| lz_star_seen | -1.2956 |\n| lz_star_unseen | -2.2149 |\n| n_items | 14042 (seen=7021, unseen=7021) |\n\n### V1 vs V2 对比（contam_50）\n\nV1 和 V2 的 overall 指标完全相同（theta=-0.1490, lz*=-3.3313, acc=0.6983），说明 response vector 一致，只是 seen/unseen 的随机划分不同（不同 seed）。\n\n关键差异在 seen/unseen 分拆：\n- **V1**: acc_seen=0.7573 > acc_unseen=0.6394（seen 显著高于 unseen，**符合预期**）\n- **V2 s1**: acc_seen=0.6914 < acc_unseen=0.7053（seen 反而**低于** unseen）\n\n这说明 V2 s1 的随机种子恰好把较难的题分给了 seen 组，contamination 效应在这个 seed 下被 item difficulty 分布掩盖了。\n\n### Clean seed re-eval 状态\n\n`ctrl_contam_llama/results/` 下有 clean_s2 到 clean_s10（共10个 clean 结果），全部在 5/21-5/22 完成。`pilot/llama/` 下无 clean 结果文件。\n\n### pilot/llama 目录其他已完成文件\n\n除 contam_50_s1 外还有：contam_15_s2、contam_50_s2、contam_5、contam_25（均已完成）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-read-contam-reeval-results.md"
+}

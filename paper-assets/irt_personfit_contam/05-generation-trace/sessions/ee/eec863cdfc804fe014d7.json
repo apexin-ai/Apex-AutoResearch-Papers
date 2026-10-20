@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eec863cdfc804fe014d7",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code clean s3 verify eval",
+  "task_key": "worker_code_clean-s3-verify-eval_20260520T190520",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_clean-s3-verify-eval_20260520T190520_result.json",
+    "occurrence": 1,
+    "bytes": 110,
+    "sha256": "dac59b24b69230c07a19ef83a0165f218f5c5a4a0ed2d1a2ab046eb7455548a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已用 `WANDB_MODE=disabled` 重新启动。等待约 70 秒后验证 GPU 是否活跃。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-clean-s3-verify-eval.md"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-clean-control-delta",
+  "project": "irt_personfit_contam",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:57:39.694Z",
+    "updated_at": "2026-05-20T12:08:17.026Z",
+    "hypothesis": "Δlz* between two independent clean response vectors (same θ, different random seeds) has E[Δlz*]≈0 and controlled variance, confirming that non-zero Δlz* in contamination experiments reflects genuine contamination signal rather than estimation noise"
+  },
+  "timestamp": "2026-05-20T12:08:17.089176+00:00",
+  "trigger": "update_registry"
+}

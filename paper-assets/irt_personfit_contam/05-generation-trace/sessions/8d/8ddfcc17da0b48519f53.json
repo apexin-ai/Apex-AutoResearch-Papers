@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ddfcc17da0b48519f53",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops check multiseed progress",
+  "task_key": "worker_ops_check-multiseed-progress_20260522T140531",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-multiseed-progress_20260522T140531_result.json",
+    "occurrence": 1,
+    "bytes": 791,
+    "sha256": "6ffbb3ac3e74049a25d072605a7ced1dc26569ff813ee89d83d66f737898e88a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Multi-seed 训练进度汇报\n\n### 正在训练\n| 条件 | 进度 | GPU | ETA |\n|------|------|-----|-----|\n| `contam_25_s3` | **65%** (1049/1596 steps), epoch 1.90 | GPU 0 (27GB, 96%) | ~11 min |\n\n### 已完成（checkpoint + results 齐全）\n\n**Contam 条件：**\n| 条件 | Seeds 完成 |\n|------|-----------|\n| `contam_5` | s1 |\n| `contam_15` | s1, s2 |\n| `contam_25` | s1, s2 (s3 训练中) |\n| `contam_50` | s1 |\n\n**Clean 条件：** s1-s10 全部完成\n\n### GPU 状态\n- GPU 0: `contam_25_s3` 占用 27GB/98GB\n- GPU 1-3: **空闲**\n\n### 无错误\n训练日志正常，loss ~1.4，token accuracy ~0.65，无异常。`contam_25_s3` 预计约 11 分钟后完成。\n\n3 张 GPU 空闲，如果需要启动更多 seed 的训练可以并行跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-multiseed-progress.md"
+}

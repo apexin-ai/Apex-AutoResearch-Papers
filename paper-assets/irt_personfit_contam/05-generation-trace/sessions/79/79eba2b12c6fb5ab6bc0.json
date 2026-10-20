@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79eba2b12c6fb5ab6bc0",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code qwen theta fixed verify",
+  "task_key": "worker_code_qwen-theta-fixed-verify_20260520T234008",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwen-theta-fixed-verify_20260520T234008_result.json",
+    "occurrence": 1,
+    "bytes": 1569,
+    "sha256": "58eccf05d1acab217cdede801004341de6f6c4fd654e84f9cb39f8d22d0b30f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== θ_fixed 分析验证 ===\nθ_fixed = -0.0965 (来源: n=3 clean θ_MLE 均值, 不受 ℓz* 校正影响 ✓)\n\nlz* 公式: 旧脚本用 Drasgow 1985 ℓz（无 Var* 校正）\n需要重算: 是 — 已用 Snijders 2001 ℓz* 重算完毕\n\n| Condition | θ_free  | lz*_fixed (old Drasgow) | lz*_fixed (new Snijders) | Δlz*_fixed (old) | Δlz*_fixed (new) |\n|-----------|---------|-------------------------|--------------------------|-------------------|-------------------|\n| clean_s1  | -0.0987 | 7.9501                  | 9.4004                   | +0.6066           | +0.7174            |\n| clean_s2  | -0.0842 | 6.2996                  | 7.4485                   | -1.0439           | -1.2345            |\n| clean_s3  | -0.1068 | 7.7808                  | 9.2002                   | +0.4373           | +0.5172            |\n| contam_15 | +0.1971 | 10.0224                 | 11.8520                  | +2.6790           | +3.1690            |\n| contam_50 | +0.3703 | 15.7080                 | 18.5764                  | +8.3646           | +9.8934            |\n\n新 dose-response ratio: |Δcontam_50| / |Δcontam_15| = 3.1219\n对比旧 ratio: 3.1223 → 3.1219 (几乎无变化)\n```\n\n**结论**: Snijders 校正使所有 lz\\*\\_fixed 绝对值增大 ~18%（因为 Var\\* < Var），但由于校正因子对各 condition 近似等比例缩放，dose-response ratio 基本不变（3.12 → 3.12）。θ\\_fixed 值不受影响。\n\n结果已保存至 `/root/autodl-tmp/ctrl_contam_pilot/results/theta_fixed_n3_lzstar.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-qwen-theta-fixed-verify.md"
+}

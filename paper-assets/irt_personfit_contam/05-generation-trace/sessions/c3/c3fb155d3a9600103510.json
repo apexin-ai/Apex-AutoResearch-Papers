@@ -1,0 +1,135 @@
+{
+  "schema_version": "1.0",
+  "id": "c3fb155d3a9600103510",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "train qwen multiseed v2",
+  "task_key": "worker_train_qwen-multiseed-v2_20260522T120149",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_qwen-multiseed-v2_20260522T120149.log",
+    "occurrence": 1,
+    "bytes": 3257110,
+    "sha256": "1c4d95a6e991653adddf3b9773abc50298c8680e7157094584aa1cfb56b10f0b"
+  },
+  "statistics": {
+    "messages": 2681,
+    "user_turns": 3,
+    "tool_calls": 1236,
+    "roles": {
+      "log": 1,
+      "system": 32,
+      "record": 1,
+      "assistant": 169,
+      "tool_call": 1236,
+      "tool_result": 1236,
+      "result": 3,
+      "user": 3
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 713,
+      "chunks": [
+        {
+          "path": "c3fb155d3a9600103510-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c3fb155d3a9600103510-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c3fb155d3a9600103510-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "c3fb155d3a9600103510-part-0004.json",
+          "message_count": 173
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 914,
+      "chunks": [
+        {
+          "path": "c3fb155d3a9600103510-part-0004.json",
+          "message_count": 7
+        },
+        {
+          "path": "c3fb155d3a9600103510-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "c3fb155d3a9600103510-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "c3fb155d3a9600103510-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "c3fb155d3a9600103510-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "c3fb155d3a9600103510-part-0009.json",
+          "message_count": 180
+        },
+        {
+          "path": "c3fb155d3a9600103510-part-0010.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 1008,
+      "chunks": [
+        {
+          "path": "c3fb155d3a9600103510-part-0010.json",
+          "message_count": 173
+        },
+        {
+          "path": "c3fb155d3a9600103510-part-0011.json",
+          "message_count": 180
+        },
+        {
+          "path": "c3fb155d3a9600103510-part-0012.json",
+          "message_count": 180
+        },
+        {
+          "path": "c3fb155d3a9600103510-part-0013.json",
+          "message_count": 180
+        },
+        {
+          "path": "c3fb155d3a9600103510-part-0014.json",
+          "message_count": 180
+        },
+        {
+          "path": "c3fb155d3a9600103510-part-0015.json",
+          "message_count": 115
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 46,
+      "chunks": [
+        {
+          "path": "c3fb155d3a9600103510-part-0015.json",
+          "message_count": 46
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/train-qwen-multiseed-v2.md"
+}

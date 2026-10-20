@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f92976323c50cc3eda98",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code grpo mid eval cohend",
+  "task_key": "worker_code_grpo-mid-eval-cohend_20260521T112250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_grpo-mid-eval-cohend_20260521T112250_result.json",
+    "occurrence": 1,
+    "bytes": 1310,
+    "sha256": "9557a9e5bf74ae2ba318205a62e2727423050b1c41c97eedd916026a9811212e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 结果汇总\n\n### Task B: Cohen's d（完成）\n\n| | lz\\* (overall) | Cohen's d | 95% CI | n_items |\n|---|---|---|---|---|\n| Clean (n=10) | mean=8.684, sd=0.735 | — | — | 14042 |\n| **Contam 15%** | 3.849 | **6.575** | [4.514, 15.199] | 14042 (seen=2106) |\n| **Contam 50%** | 7.289 | **1.897** | [1.041, 4.923] | 14042 (seen=7021) |\n\n两个 contam 条件的 effect size 都很大（远超 d=0.8 的 \"large\" 门槛）。contam_15 偏离 clean 均值 6.6 个标准差，contam_50 偏离 1.9 个标准差。n_items=14042 与 GRPO setup 一致。\n\n结果已保存到 `/root/autodl-tmp/ctrl_contam_pilot/results/cohens_d_n10.json`。\n\n### Task A: GRPO 中间 eval（阻塞 → 已修复）\n\n**发现问题**：GRPO 训练在 step 2628/14042 处中止（进程不存在），`save_strategy=\"epoch\"` 导致无任何 checkpoint 保存，训练进度全部丢失。\n\n**已采取措施**：\n1. 修改 `train_grpo.py`：`save_strategy=\"steps\"`, `save_steps=3000`, `save_total_limit=3`\n2. 在 cuda:0 上重启训练（PID 130586），日志 `grpo_run3.log`\n3. wandb 不可用，当前用 `WANDB_MODE=disabled` 运行\n\n**下一步**：第一个 checkpoint（step 3000）预计约 4-5 小时后可用，届时可在空闲 GPU 上跑 `eval_with_ht.py --stage grpo`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-grpo-mid-eval-cohend.md"
+}

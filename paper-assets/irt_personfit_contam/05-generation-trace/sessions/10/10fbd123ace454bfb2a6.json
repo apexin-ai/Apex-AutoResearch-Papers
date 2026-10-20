@@ -1,0 +1,138 @@
+{
+  "schema_version": "1.0",
+  "id": "10fbd123ace454bfb2a6",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "paper consistency fixes batch",
+  "task_key": "worker_paper_consistency-fixes-batch_20260524T104914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_consistency-fixes-batch_20260524T104914.log",
+    "occurrence": 1,
+    "bytes": 627626,
+    "sha256": "dfb4e7c98c455a5b734776b49476cf51f50ad0ced03de3d30d34b6614b141baf"
+  },
+  "statistics": {
+    "messages": 192,
+    "user_turns": 8,
+    "tool_calls": 68,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 42,
+      "tool_call": 68,
+      "tool_result": 68,
+      "user": 8,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 167,
+      "chunks": [
+        {
+          "path": "10fbd123ace454bfb2a6-part-0001.json",
+          "message_count": 156
+        },
+        {
+          "path": "10fbd123ace454bfb2a6-part-0002.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "10fbd123ace454bfb2a6-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "10fbd123ace454bfb2a6-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "10fbd123ace454bfb2a6-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "10fbd123ace454bfb2a6-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "10fbd123ace454bfb2a6-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "10fbd123ace454bfb2a6-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "10fbd123ace454bfb2a6-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 10,
+      "chunks": [
+        {
+          "path": "10fbd123ace454bfb2a6-part-0002.json",
+          "message_count": 10
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-consistency-fixes-batch.md"
+}

@@ -1,0 +1,41 @@
+{
+  "exp_id": "exp-ctrl-contam-qwen-clean-s4",
+  "project": "irt_personfit_contam",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T06:30:49.211Z",
+    "updated_at": "2026-05-21T07:31:54.557Z",
+    "hypothesis": "Fourth independent clean Qwen2.5-7B-Instruct baseline (seed=301) for expanded n=10 Cohen's d variance estimation, improving statistical power of contamination effect size measurement",
+    "parent": "exp-ctrl-contam-pilot",
+    "spec": {
+      "command": "python train.py --condition clean_s4 --gpu 0",
+      "server": "westd-35694",
+      "data_path": "/root/autodl-tmp/ctrl_contam_pilot/data/clean_s4/train.jsonl",
+      "data_count": 5000,
+      "model_name": "Qwen/Qwen2.5-7B-Instruct",
+      "seed": 301,
+      "checkpoint_source": "Qwen/Qwen2.5-7B-Instruct (base)",
+      "eval_data": "N/A (training experiment)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T07:10:47.090Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "success",
+    "completed_at": "2026-05-21T07:10:47.604Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T07:10:51.941601+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-21T07:31:54.676918+00:00",
+  "trigger": "update_registry"
+}

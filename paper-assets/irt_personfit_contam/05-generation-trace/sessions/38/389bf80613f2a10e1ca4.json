@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "389bf80613f2a10e1ca4",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code cuda2 grpo protect",
+  "task_key": "worker_code_cuda2-grpo-protect_20260521T073552",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cuda2-grpo-protect_20260521T073552_result.json",
+    "occurrence": 1,
+    "bytes": 1031,
+    "sha256": "10f3e8f1c342bc0ab648e7c77b188d3cd2b41ef2bb723081f655198f179c4883"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nGRPO STATUS: DEAD (PID 93846) → already restarted as PID 97791 (running 1h22m)\nGRPO STEP: 11/14042 (most time spent loading model)\nGRPO PARAMS: per_device_batch=2, grad_accum=4, lr=5e-6 ✓, num_generations=8 ✓\nGRPO HEALTH: no loss/grad_norm/clip_ratio in log yet (only progress bar through step 11)\n\nCUDA:2 CLEANUP: killed PID 97296 (train.py clean_s7). cuda:2 now GRPO-only.\n\nGPU STATUS:\ncuda:0: PID 92119 (eval_lz.py clean_s4) + PID 96262 (eval_lz.py clean_s4) — 17212MiB\ncuda:1: PID 96745 (train.py clean_s6) — 23111MiB\ncuda:2: PID 97791 (train_grpo.py) — GRPO only ✓\ncuda:3: PID 94961 (eval_lz.py clean_s5) — 8639MiB\n```\n\n**Note:** The \"128\" parameter — actual effective batch per step is `2 * 4 = 8` prompts (or `2 * 4 * 8 = 64` completions). Neither matches 128. If 128 was intended, `gradient_accumulation_steps` or `per_device_train_batch_size` may need adjustment. The GRPO (PID 97791) is currently running and progressing normally; the s7 conflict has been eliminated."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cuda2-grpo-protect.md"
+}

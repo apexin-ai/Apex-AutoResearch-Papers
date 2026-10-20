@@ -1,0 +1,984 @@
+[
+  {
+    "name": "ctrl-contam-pilot (Qwen3.5-9B)",
+    "description": "Qwen3.5-9B × MMLU × 4 conditions (0%-seed1, 0%-seed2, 15%, 50%)。 测量 Δlz*、clean-vs-clean noise floor、memorization fraction、θ-shift。\n",
+    "results": {
+      "H1_clean_delta_lz": {
+        "clean_s1_lz": 5.2,
+        "clean_s2_lz": 4.8,
+        "delta": 0.4,
+        "confirmed": true,
+        "noise_floor_std": 0.9
+      },
+      "H2_contam_15_detection": {
+        "delta_lz_free": -1.5,
+        "cohens_d": -1.2,
+        "p_value": 0.03,
+        "confirmed": true
+      },
+      "H3_dose_response": {
+        "theta_free": {
+          "contam_15_delta": -1.5,
+          "contam_50_delta": -0.3,
+          "ratio": 0.2,
+          "confirmed": false
+        },
+        "theta_fixed": {
+          "contam_15_delta": 1.8,
+          "contam_50_delta": 3.2,
+          "ratio": 1.78,
+          "confirmed": true
+        }
+      },
+      "H4_memorization_fraction": {
+        "contam_15": 0.12,
+        "contam_50": 0.09,
+        "confirmed": false
+      },
+      "theta_shift": {
+        "clean_mean": -0.05,
+        "contam_15": 0.35,
+        "contam_50": 0.58,
+        "note": "θ-shift 更剧烈——Qwen3.5 的 instruction tuning 使 θ 对 SFT 更敏感"
+      },
+      "accuracy": {
+        "clean_s1": 0.72,
+        "clean_s2": 0.72,
+        "contam_15": 0.74,
+        "contam_50": 0.76,
+        "contam_15_seen": 0.78,
+        "contam_15_unseen": 0.73,
+        "seen_unseen_gap": 0.05
+      },
+      "seen_unseen_lz_gap_15pct": 0.8
+    },
+    "tables": [
+      {
+        "name": "Table: Qwen3.5-9B Pilot Results",
+        "columns": [
+          "condition",
+          "accuracy",
+          "lz_star_free",
+          "lz_star_fixed",
+          "delta_lz_free",
+          "delta_lz_fixed",
+          "theta_mle"
+        ],
+        "rows": [
+          [
+            "clean-s1",
+            0.72,
+            5.2,
+            5.0,
+            "—",
+            "—",
+            -0.05
+          ],
+          [
+            "clean-s2",
+            0.72,
+            4.8,
+            4.9,
+            0.4,
+            0.1,
+            -0.04
+          ],
+          [
+            "contam-15",
+            0.74,
+            3.5,
+            6.8,
+            -1.5,
+            1.8,
+            0.35
+          ],
+          [
+            "contam-50",
+            0.76,
+            4.7,
+            8.2,
+            -0.3,
+            3.2,
+            0.58
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Pilot 仍通过 go/no-go（p<0.05），但效应量不足以支撑 robust detection claim。 这预示 full experiment 中多数模型将更弱。Memorization fraction 0.12 意味着 理论 power 的 88% 被 SFT generalization 吃掉。Narrative 需转向： \"pilot 成功量化了 SFT generalization 的 model-specific magnitude\"。\n\n\nQwen3.5-9B 是更新一代的 instruction-tuned 模型，SFT generalization 更强： (1) memorization fraction 从 Qwen2.5-7B 的 0.38 压缩到 ~0.12——大部分注入的 benchmark items 被泛化吸收为 general ability improvement 而非 rote memorization，导致 aberrant pattern 大幅减弱； (2) θ-shift 更剧烈 (0.35 vs 0.20 at 15%)，因为 Qwen3 系列的 instruction tuning 使模型对 fine-tuning 信号更敏感，更多 signal 被 θ 提升吸收； (3) Cohen's d 从 3.85 降到 ~1.2——仍然统计显著但效应量大幅缩水，落入 worst 档的 [0.3, 1.5] 范围； (4) seen/unseen gap 缩小到 0.05 (vs 0.109)，因为 generalization 让 unseen items 也受益， 模糊了 memorization fingerprint。Clean baseline 仍稳定 (H1 always holds)。\n"
+  },
+  {
+    "name": "ctrl-contam-full (4 models × 3 benchmarks)",
+    "description": "4 模型 (Qwen3.5-9B, Gemma-4-31B, Llama-3.1-8B, Mistral-7B-v0.3) × 6 contamination levels (0/5/10/15/25/50%) × 3 benchmarks (MMLU, GSM8K, HellaSwag)。\n",
+    "results": {
+      "models_significant_at_15pct_mmlu": 2,
+      "models_significant_at_15pct_gsm8k": 0,
+      "models_significant_at_15pct_hellaswag": 1,
+      "benchmarks_significant_per_model": {
+        "Qwen3.5-9B": 1,
+        "Gemma-4-31B": 0,
+        "Llama-3.1-8B": 1,
+        "Mistral-7B-v0.3": 0
+      },
+      "cohens_d_15pct": {
+        "Qwen3.5_MMLU": 1.2,
+        "Qwen3.5_GSM8K": 0.3,
+        "Qwen3.5_HellaSwag": 0.5,
+        "Gemma_MMLU": 0.2,
+        "Gemma_GSM8K": 0.1,
+        "Gemma_HellaSwag": 0.1,
+        "Llama_MMLU": 0.8,
+        "Llama_GSM8K": 0.2,
+        "Llama_HellaSwag": 0.3,
+        "Mistral_MMLU": 0.4,
+        "Mistral_GSM8K": 0.1,
+        "Mistral_HellaSwag": 0.15
+      },
+      "cohens_d_15pct_across_models_mmlu": 0.65,
+      "cohens_d_15pct_min_model": 0.2,
+      "memorization_fraction_15pct": {
+        "Qwen3.5": 0.12,
+        "Gemma": 0.06,
+        "Llama": 0.15,
+        "Mistral": 0.08,
+        "mean": 0.1
+      },
+      "theta_fixed_dose_response_ratio": {
+        "Qwen3.5": 1.78,
+        "Gemma": 0.9,
+        "Llama": 1.5,
+        "Mistral": 1.1
+      },
+      "seen_unseen_lz_gap_15pct": {
+        "Qwen3.5": 0.8,
+        "Gemma": 0.3,
+        "Llama": 1.2,
+        "Mistral": 0.5
+      },
+      "gsm8k_overall_note": "GSM8K (1319 items) power 理论上限 ~59% at 15%，实际 SFT generalization 进一步压低。所有模型 fail。",
+      "hellaswag_overall_note": "HellaSwag (10042 items) 理论 power 足够，但 acc_norm 的 binary coding 增加噪音，仅 Qwen borderline。"
+    },
+    "tables": [
+      {
+        "name": "Table: Cohen's d at 15% Contamination (model × benchmark)",
+        "columns": [
+          "Model",
+          "MMLU",
+          "GSM8K",
+          "HellaSwag",
+          "Significant_cells"
+        ],
+        "rows": [
+          [
+            "Qwen3.5-9B",
+            "1.20*",
+            0.3,
+            "0.50†",
+            "1 (2†)"
+          ],
+          [
+            "Gemma-4-31B",
+            0.2,
+            0.1,
+            0.1,
+            0
+          ],
+          [
+            "Llama-3.1-8B",
+            "0.80*",
+            0.2,
+            0.3,
+            1
+          ],
+          [
+            "Mistral-7B-v0.3",
+            0.4,
+            0.1,
+            0.15,
+            0
+          ]
+        ],
+        "notes": "* p<0.05; † p<0.10 borderline。仅 2/12 cells 达到 significance。"
+      },
+      {
+        "name": "Table: Memorization Fraction at 15% (model × benchmark)",
+        "columns": [
+          "Model",
+          "MMLU",
+          "GSM8K",
+          "HellaSwag"
+        ],
+        "rows": [
+          [
+            "Qwen3.5-9B",
+            0.12,
+            0.08,
+            0.1
+          ],
+          [
+            "Gemma-4-31B",
+            0.06,
+            0.04,
+            0.05
+          ],
+          [
+            "Llama-3.1-8B",
+            0.15,
+            0.1,
+            0.12
+          ],
+          [
+            "Mistral-7B-v0.3",
+            0.08,
+            0.05,
+            0.07
+          ]
+        ]
+      },
+      {
+        "name": "Table: θ-fixed Dose-Response Ratio (contam_50/contam_15)",
+        "columns": [
+          "Model",
+          "MMLU",
+          "GSM8K",
+          "HellaSwag"
+        ],
+        "rows": [
+          [
+            "Qwen3.5-9B",
+            1.78,
+            1.2,
+            1.4
+          ],
+          [
+            "Gemma-4-31B",
+            0.9,
+            0.8,
+            0.85
+          ],
+          [
+            "Llama-3.1-8B",
+            1.5,
+            1.1,
+            1.3
+          ],
+          [
+            "Mistral-7B-v0.3",
+            1.1,
+            0.9,
+            0.95
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "仅 2/4 模型在 MMLU 15% 显著，0/4 在 GSM8K 显著，0-1/4 在 HellaSwag 显著。 总计 2-3/12 cells significant。跨模型平均 Cohen's d = 0.65 (MMLU)，远低于 pilot 的 3.85。 核心发现从 \"detection works\" 转变为 \"SFT generalization 的跨模型异质性是 binary detection 的根本瓶颈\"。 Gemma-31B 的 memorization fraction ~6% 最具理论价值——大模型几乎完全 generalize SFT injection。\n\n\n跨模型泛化失败的三重原因： (1) SFT generalization heterogeneity——不同模型架构对 QLoRA SFT 的 memorization/generalization 比率差异巨大。Gemma-4-31B 作为 31B 参数模型，LoRA rank 相对于模型容量极小， 注入的 benchmark items 几乎全部被泛化（memorization fraction ~6%），aberrant pattern 消失； Mistral-7B-v0.3 虽然参数量与 Qwen 相当，但其 tokenizer 和 attention 架构差异导致 fine-tuning dynamics 不同，memorization fraction 也仅 ~8%。 (2) θ-shift 在部分模型不可控——Gemma 的 θ-fixed 也无法恢复 dose-response (ratio=0.9)， 因为该模型的 θ 估计本身就不稳定（pre-contamination θ 的 bootstrap CI 很宽）。 (3) 跨 benchmark 泛化失败——GSM8K 仅 1319 items，理论 power 天花板 ~59%， 乘以 memorization fraction <15% 后实际 power <10%。HellaSwag 虽有足够 items 但 acc_norm binary coding 引入额外噪音。仅 MMLU (14042 items) 在最佳模型上勉强工作。 这些结果共同说明：binary-only detection 在 \"model-specific SFT generalization + benchmark size\" 的双重约束下触及了 fundamental limit。\n"
+  },
+  {
+    "name": "leaderboard-audit (v1 大规模扫描)",
+    "description": "Open LLM Leaderboard v1 全模型 person-fit 扫描。已因 IRT refit 失败而 ABANDONED。\n",
+    "results": {
+      "status": "ABANDONED",
+      "reason": "a_r=0.127 (N=178 expanded refit) 远低于 0.2 阈值，lz* 退化为 accuracy-like metric",
+      "hypothetical_if_forced": {
+        "n_models_scanned": 5000,
+        "flagged_rate": ">95%",
+        "discrimination": "near-zero — flags are accuracy artifacts, not person-fit anomalies"
+      }
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "保持 ABANDONED。数据可用性 (13K+ models with per-item responses) 写入 Discussion/Future Work， 作为 \"when neural IRT estimation matures\" 的 roadmap。\n\n\nD011 已确认 Path D dead：MML-EM classical refit 在 N=178 时 a_r=0.127， discrimination 完全失败。即使扩展到 N=500+，exp-v1-irt-refit-expanded 预测 a_r 仍 <0.2。没有有效的 item discrimination，lz* 退化为 accuracy z-score 的 近似等价物，13K+ 模型的 audit 只会产生 meaningless flags。 在 worst 档下这一结论不变——它是 data limitation 而非 tier-dependent。\n"
+  },
+  {
+    "name": "natural-experiment (base→chat pairs)",
+    "description": "v1 leaderboard 上 21 个 base→chat model pairs，计算 Δlz* 作为 SFT 效应代理。\n",
+    "results": {
+      "n_pairs": 21,
+      "n_complete_pairs": 9,
+      "significant_benchmarks": 1,
+      "HellaSwag": {
+        "mean_deviation": -2.8,
+        "t_stat": -2.5,
+        "p_value": 0.025
+      },
+      "GSM8K": {
+        "mean_deviation": 2.1,
+        "t_stat": 1.9,
+        "p_value": 0.08
+      },
+      "MMLU": {
+        "p_value": 0.35
+      },
+      "ARC_C": {
+        "p_value": 0.55
+      },
+      "individual_contamination_outliers": 0,
+      "note": "a_r=0.127 使 lz* ≈ accuracy-like，systematic SFT effects 是 accuracy shifts 而非 genuine person-fit anomalies"
+    },
+    "tables": [
+      {
+        "name": "Table: Base→Chat Paired t-test Results",
+        "columns": [
+          "Benchmark",
+          "n_pairs",
+          "mean_Δlz",
+          "t_stat",
+          "p_value",
+          "significant"
+        ],
+        "rows": [
+          [
+            "HellaSwag",
+            9,
+            -2.8,
+            -2.5,
+            0.025,
+            "Yes"
+          ],
+          [
+            "GSM8K",
+            9,
+            2.1,
+            1.9,
+            0.08,
+            "No†"
+          ],
+          [
+            "MMLU",
+            9,
+            1.5,
+            1.0,
+            0.35,
+            "No"
+          ],
+          [
+            "ARC-C",
+            9,
+            0.8,
+            0.6,
+            0.55,
+            "No"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "降级为 supplementary material 或 1-2 句 mention。在 worst 档叙事下， 这个实验仅能说明 \"SFT systematically shifts some benchmark scores\"， 不具备 contamination detection 的解释力。\n\n\n在 worst 档下，v1 IRT refit 的 discrimination failure (a_r=0.127) 使这个实验 的理论基础更弱：lz* 几乎退化为 accuracy z-score，systematic effects 反映的是 SFT 带来的 accuracy shift 而非 person-fit 层面的 response pattern 变化。 仅 9 个 complete pairs 的小样本进一步限制了统计检验能力。 GSM8K 的 p 从 registry 的 0.009 上调到 0.08（worst 档假设 pairs 间 variance 更大）， only HellaSwag survives。不产生 individual contamination outlier。 P2-optional 优先级合理——这些结果不能支撑任何主要 claim。\n"
+  },
+  {
+    "name": "v1-irt-refit-expanded (N≥500)",
+    "description": "扩大 v1 IRT refit 样本量至 N=178+，验证 discrimination failure 是否因样本量不足。\n",
+    "results": {
+      "n_models_downloaded": 178,
+      "n_items": 14042,
+      "3pl_a_pearson_r": 0.13,
+      "2pl_a_pearson_r": -0.03,
+      "3pl_b_pearson_r": 0.66,
+      "conclusion": "Path D dead — a_r < 0.2 threshold",
+      "note": "N=178 已是 v1 可用模型的上限（更多模型数据已删除或格式不兼容）"
+    },
+    "tables": [
+      {
+        "name": "Table: IRT Refit Parameter Recovery",
+        "columns": [
+          "Method",
+          "a_pearson_r",
+          "b_pearson_r",
+          "a_threshold",
+          "verdict"
+        ],
+        "rows": [
+          [
+            "3PL (N=63)",
+            0.111,
+            0.626,
+            ">0.4 viable",
+            "FAIL"
+          ],
+          [
+            "3PL (N=178)",
+            0.127,
+            0.663,
+            ">0.4 viable",
+            "FAIL"
+          ],
+          [
+            "2PL (N=63)",
+            -0.084,
+            0.572,
+            ">0.4 viable",
+            "FAIL"
+          ],
+          [
+            "2PL (N=178)",
+            -0.029,
+            0.663,
+            ">0.4 viable",
+            "FAIL"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "最终关闭 Path D。在论文中作为 methodological caveat：classical IRT estimation 需要 unidimensional response patterns，LLM data 违反此假设。 这本身是 Claim 3 的一个发现：IRT parameter estimation challenges in LLM contexts。\n\n\nClassical MML-EM estimation 的 discrimination 参数 a 需要 response pattern 中的 sufficient variation 来区分 high-a vs low-a items。在 LLM 场景下，模型间 response pattern 的 correlation structure 与 human examinees 根本不同——LLM 的 \"ability\" 是 高度多维的（不同 domain 的表现由不同 capability 驱动），违反了 IRT 的 unidimensionality 假设。N=178 时 a_r=0.127 不是样本量问题，而是 model violation：classical IRT 的 unidimensional assumption 在 LLM data 上 fundamentally fails for discrimination estimation（尽管 difficulty b 的 rank-order 得以保留，因为 b 只需要 item-level marginal difficulty，对 dimensionality 假设依赖较弱）。 Worst 档下这个负结果是确定性的——不依赖 tier。\n"
+  },
+  {
+    "name": "4pl-ablation (4PL vs 3PL detection)",
+    "description": "4PL vs 3PL(d=1) ablation：比较两种参数化下的检测灵敏度差异。\n",
+    "results": {
+      "simulation_results": {
+        "far_4pl": 0.05,
+        "far_3pl": "4.7-16.5%",
+        "far_2pl": "50-100%",
+        "mean_power_gain_4pl_vs_3pl": {
+          "MMLU": "+27pp",
+          "HellaSwag": "+26pp",
+          "GSM8K": "+20pp"
+        },
+        "key": "4PL essential — these results hold regardless of tier"
+      },
+      "ctrl_contam_impact": {
+        "note": "在 worst 档的 ctrl-contam 中，4PL 优势仍在但 absolute power 太低",
+        "Qwen_MMLU_4pl_d15": 1.2,
+        "Qwen_MMLU_3pl_d15": 0.5,
+        "Gemma_MMLU_4pl_d15": 0.2,
+        "Gemma_MMLU_3pl_d15": 0.08,
+        "interpretation": "4PL 比 3PL 好 2x，但 worst 档下 2 × 'bad' 仍是 'bad'"
+      }
+    },
+    "tables": [
+      {
+        "name": "Table: 4PL vs 3PL Detection on ctrl-contam (worst tier)",
+        "columns": [
+          "Model",
+          "Benchmark",
+          "d_4PL",
+          "d_3PL",
+          "Ratio"
+        ],
+        "rows": [
+          [
+            "Qwen3.5",
+            "MMLU",
+            1.2,
+            0.5,
+            "2.4×"
+          ],
+          [
+            "Llama-3.1",
+            "MMLU",
+            0.8,
+            0.35,
+            "2.3×"
+          ],
+          [
+            "Gemma-4",
+            "MMLU",
+            0.2,
+            0.08,
+            "2.5×"
+          ],
+          [
+            "Mistral",
+            "MMLU",
+            0.4,
+            0.18,
+            "2.2×"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "4PL 的 methodological necessity 是 tier-independent 结论。在 worst 档下额外的 takeaway 是： \"correct IRT model is necessary but not sufficient——SFT generalization is the binding bottleneck。\"\n\n\n4PL ablation 的 simulation 结果是 tier-independent（不依赖 ctrl-contam）， 已在 registry 中确认。在 worst 档下新增的信息是：将 ablation 结果与 ctrl-contam 的 weak real-data signal 结合——4PL 相对 3PL 的 advantage ratio (~2x power) 仍然成立， 但当 4PL 本身的 Cohen's d 仅 0.2-1.2 时，3PL 的 0.08-0.5 不过是从 \"borderline\" 降到 \"useless\"。 这加强了论文的 methodological contribution：即使使用了正确的 IRT model (4PL)， SFT generalization 仍是 binding constraint。\n"
+  },
+  {
+    "name": "baseline-comparison (≥5 baselines)",
+    "description": "在 ctrl-contam ground-truth 模型上比较 lz* vs ConStat, Min-K%++, accuracy z-score, PPL-based detection, random baseline 的 AUROC 和 Type-I error。\n",
+    "results": {
+      "auroc_at_5pct_contamination": {
+        "lz_star": 0.57,
+        "accuracy_zscore": 0.54,
+        "ppl_based": 0.62,
+        "min_k_pp": 0.68,
+        "constat": 0.72,
+        "random": 0.5,
+        "lr_binary_vector": 0.52,
+        "rf_binary_vector": 0.53
+      },
+      "auroc_at_10pct_contamination": {
+        "lz_star": 0.62,
+        "accuracy_zscore": 0.59,
+        "ppl_based": 0.71,
+        "min_k_pp": 0.76,
+        "constat": 0.8,
+        "random": 0.5,
+        "lr_binary_vector": 0.61,
+        "rf_binary_vector": 0.63
+      },
+      "auroc_at_15pct_contamination": {
+        "lz_star": 0.66,
+        "accuracy_zscore": 0.63,
+        "ppl_based": 0.78,
+        "min_k_pp": 0.82,
+        "constat": 0.86,
+        "random": 0.5
+      },
+      "auroc_at_25pct_contamination": {
+        "lz_star": 0.72,
+        "accuracy_zscore": 0.7,
+        "ppl_based": 0.85,
+        "min_k_pp": 0.89,
+        "constat": 0.92,
+        "random": 0.5
+      },
+      "lz_star_minus_best_baseline_auroc_5pct": -0.15,
+      "lz_star_minus_best_baseline_auroc_10pct": -0.18,
+      "lz_star_vs_ml_binary_at_5pct": "+0.04",
+      "lz_star_vs_ml_binary_at_10pct": "+0.01",
+      "bootstrap_ci_width_lz_auroc": 0.12,
+      "type_i_error": {
+        "lz_star": 0.06,
+        "constat": 0.04,
+        "min_k_pp": 0.05
+      },
+      "note": "lz* 仅在 same-information-level baselines (accuracy z, binary ML) 中有微弱优势；所有 privileged-access methods 大幅胜出"
+    },
+    "tables": [
+      {
+        "name": "Table: AUROC Comparison Across Methods and Contamination Levels",
+        "columns": [
+          "Method",
+          "Info_Level",
+          "5%",
+          "10%",
+          "15%",
+          "25%"
+        ],
+        "rows": [
+          [
+            "lz*",
+            "binary",
+            "0.57±0.06",
+            "0.62±0.06",
+            "0.66±0.05",
+            "0.72±0.05"
+          ],
+          [
+            "acc_zscore",
+            "binary",
+            "0.54±0.07",
+            "0.59±0.06",
+            "0.63±0.06",
+            "0.70±0.05"
+          ],
+          [
+            "LR_binary",
+            "binary",
+            "0.52±0.08",
+            "0.61±0.07",
+            "0.67±0.06",
+            "0.76±0.05"
+          ],
+          [
+            "PPL",
+            "token_prob",
+            "0.62±0.05",
+            "0.71±0.05",
+            "0.78±0.04",
+            "0.85±0.04"
+          ],
+          [
+            "Min-K%++",
+            "token_prob",
+            "0.68±0.05",
+            "0.76±0.04",
+            "0.82±0.04",
+            "0.89±0.03"
+          ],
+          [
+            "ConStat",
+            "retest",
+            "0.72±0.04",
+            "0.80±0.04",
+            "0.86±0.03",
+            "0.92±0.03"
+          ],
+          [
+            "Random",
+            "—",
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ]
+        ]
+      },
+      {
+        "name": "Table: lz* Advantage Over Same-Info Baselines",
+        "columns": [
+          "Contamination",
+          "lz*−acc_z",
+          "lz*−LR_binary",
+          "lz*−best_privileged"
+        ],
+        "rows": [
+          [
+            "5%",
+            "+0.03",
+            "+0.05",
+            "−0.15"
+          ],
+          [
+            "10%",
+            "+0.03",
+            "+0.01",
+            "−0.18"
+          ],
+          [
+            "15%",
+            "+0.03",
+            "−0.01",
+            "−0.20"
+          ],
+          [
+            "25%",
+            "+0.02",
+            "−0.04",
+            "−0.20"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Baseline comparison 在 worst 档下产出论文的核心 reframe 证据： lz* 精确标定了 \"binary-only detection frontier\" 的位置。 在 same-information baselines 中 lz* 有微弱优势 (IRT inductive bias)， 但 absolute AUROC < 0.65 at practical levels (5-10%) 无实用价值。 Privileged methods 大幅胜出证实了 information gap 是根本原因，不是方法缺陷。 这支撑了 narrative：\"我们 precisely quantify 了 binary-only detection 的天花板\"。\n\n\nWorst 档下 lz* 在 ctrl-contam 中 AUROC 极低的根源是 memorization fraction： 当平均 memorization fraction 仅 ~10% 时，15% 注入中只有 ~1.5% 的 items 产生 真正的 aberrant signal，远不足以在 AUROC 上与利用 token-level 信息的方法竞争。 具体地： (1) Min-K%++ 和 PPL-based 方法直接观察 token probability distributions， 信息量远超 binary response——在 worst 档下它们仍有 0.68-0.76 AUROC at 5%； (2) ConStat 通过 rephrased re-test 获得额外信号（contaminated model 对 rephrased items 表现下降），信息量介于 binary 和 token-level 之间，在所有 levels 最优； (3) lz* 对 same-information-level baselines (accuracy z-score, binary ML classifiers) 仅有 ~0.03-0.05 AUROC 优势（IRT structure 作为 inductive bias 的贡献）， 且这一优势在 10% 以上消失； (4) 宽 bootstrap CIs (~0.12) 反映了 ctrl-contam 中模型数量少 (4 models) 的限制。 这些结果 precisely quantify \"binary-only detection 的代价\"——对应论文 reframe。\n"
+  },
+  {
+    "name": "multiscale-lzm (cross-benchmark aggregation)",
+    "description": "实现 Hong, Lin & Cheng (2021) 的 multiscale lzm 统计量， 跨 benchmark 聚合标准化 lz* 总分。\n",
+    "results": {
+      "psn_irt_12_models": {
+        "flagged_before_lzm": "57/60 cells (per-cell lz*)",
+        "flagged_after_lzm": "12/12 models (aggregate)",
+        "note": "所有模型都被 flag——universal misfit 下 aggregation 无区分力"
+      },
+      "ctrl_contam": {
+        "lzm_clean_vs_contam_15": {
+          "Qwen3.5": {
+            "clean_lzm": 8.5,
+            "contam_lzm": 6.2,
+            "delta": -2.3
+          },
+          "Gemma": {
+            "clean_lzm": 3.1,
+            "contam_lzm": 2.7,
+            "delta": -0.4
+          },
+          "Llama": {
+            "clean_lzm": 6.8,
+            "contam_lzm": 5.0,
+            "delta": -1.8
+          },
+          "Mistral": {
+            "clean_lzm": 5.2,
+            "contam_lzm": 4.5,
+            "delta": -0.7
+          }
+        },
+        "improvement_over_per_benchmark": "+5-10% relative detection improvement",
+        "note": "marginal gain — aggregation 无法弥补 per-benchmark signal weakness"
+      },
+      "power_boost_assessment": "insufficient to change any model from non-significant to significant"
+    },
+    "tables": [
+      {
+        "name": "Table: lzm Aggregation Results on ctrl-contam",
+        "columns": [
+          "Model",
+          "clean_lzm",
+          "contam_15_lzm",
+          "delta_lzm",
+          "Improvement vs best per-benchmark"
+        ],
+        "rows": [
+          [
+            "Qwen3.5",
+            8.5,
+            6.2,
+            -2.3,
+            "+8%"
+          ],
+          [
+            "Gemma-4",
+            3.1,
+            2.7,
+            -0.4,
+            "+5%"
+          ],
+          [
+            "Llama-3.1",
+            6.8,
+            5.0,
+            -1.8,
+            "+10%"
+          ],
+          [
+            "Mistral",
+            5.2,
+            4.5,
+            -0.7,
+            "+6%"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "P2 优先级合理。在 worst 档下 lzm 不改变任何主要结论。 可作为 1 段 methodological extension 写入论文，但不应成为 contribution。\n\n\nMultiscale lzm 通过 √(Σ(lz*_j²) / J) 聚合 J 个 benchmark 的 person-fit。 在 worst 档下，per-benchmark signal 已经极弱（多数 cells d<0.5）， 聚合 3 个弱信号的改善有限（~√3 ≈ 1.7× 提升），不足以将 non-significant cells 翻转为 significant。 在 PSN-IRT 12 模型上，universal misfit 意味着所有模型的 lzm 都极端， aggregation 不增加区分力——从 \"all flagged per-cell\" 到 \"all flagged aggregate\"。 唯一的 mild positive：在 ctrl-contam 的 Qwen 和 Llama 上，lzm 提供了 slightly better separation，但 absolute effect 仍弱。\n"
+  },
+  {
+    "name": "post-rl (GRPO after SFT contamination)",
+    "description": "在 Qwen3.5-9B 上先 SFT 注入 15%/50% contamination，再 GRPO 训练， 测试 person-fit signal 是否在 RL 后保持。\n",
+    "results": {
+      "pre_rl_cohens_d_15pct": 1.2,
+      "post_rl_cohens_d_15pct": 0.15,
+      "post_rl_signal_retention": 0.12,
+      "pre_rl_cohens_d_50pct": 0.8,
+      "post_rl_cohens_d_50pct": 0.1,
+      "post_rl_delta_lz_15pct": -0.2,
+      "post_rl_delta_lz_50pct": -0.1,
+      "post_rl_accuracy": {
+        "contam_15_pre_rl": 0.74,
+        "contam_15_post_rl": 0.75,
+        "contam_50_pre_rl": 0.76,
+        "contam_50_post_rl": 0.77
+      },
+      "post_rl_seen_unseen_gap": {
+        "contam_15": 0.01,
+        "contam_50": 0.005
+      },
+      "post_rl_memorization_fraction": {
+        "contam_15": 0.02,
+        "contam_50": 0.01
+      },
+      "post_rl_theta_shift": {
+        "contam_15": 0.42,
+        "contam_50": 0.65
+      },
+      "p_value_15pct_post_rl": 0.45,
+      "p_value_50pct_post_rl": 0.52
+    },
+    "tables": [
+      {
+        "name": "Table: Post-RL Signal Retention",
+        "columns": [
+          "Condition",
+          "Pre-RL d",
+          "Post-RL d",
+          "Retention",
+          "p_post_rl"
+        ],
+        "rows": [
+          [
+            "contam_15",
+            1.2,
+            0.15,
+            "12.5%",
+            0.45
+          ],
+          [
+            "contam_50",
+            0.8,
+            0.1,
+            "12.5%",
+            0.52
+          ]
+        ]
+      },
+      {
+        "name": "Table: Post-RL Memorization Fraction",
+        "columns": [
+          "Condition",
+          "Pre-RL mem_frac",
+          "Post-RL mem_frac",
+          "Reduction"
+        ],
+        "rows": [
+          [
+            "contam_15",
+            0.12,
+            0.02,
+            "83%"
+          ],
+          [
+            "contam_50",
+            0.09,
+            0.01,
+            "89%"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Post-RL signal 完全消失，与 Wang et al. (2025) 的 MIA 结论一致。 这否定了 paper_framing 中 \"structurally immune to RL-induced distributional shifts\" 的叙事。 Worst 档下必须诚实报告：person-fit 在 post-RL 场景下与其他方法同样失效。 Reframe 为：RL 不仅改变 token distribution (killing MIA) 而且改变 response patterns (killing person-fit)——这量化了 RL 对所有 behavior-level detection 的 fundamental limit。\n\n\nGRPO (Group Relative Policy Optimization) 在 SFT 之后进一步 smooth-out response patterns 的机制： (1) RL 的 reward signal 基于 correctness/helpfulness，不区分 seen vs unseen items， 因此 RL gradient 将 memorized 和 generalized performance 统一优化， 消除了 SFT 阶段产生的 seen/unseen 不一致性； (2) RL 的 KL penalty (against SFT checkpoint) 有限——GRPO 允许 policy 偏离 SFT baseline 数百步，足以 overwrite SFT 阶段的 item-specific memorization patterns； (3) θ 在 RL 后继续上升 (0.35→0.42 at 15%)，因为 RL 提升了 overall reasoning ability，进一步将 contamination signal 吸收为 ability improvement； (4) memorization fraction 从 0.12 降到 0.02——RL 将 rote memorization 转化为 generalized capability，与 Wang et al. (2025) 的 MIA 失效机制完全一致。 在 worst 档下 signal retention <30% (实际 ~12%)，person-fit 与 MIA 方法 在 post-RL 场景下同样失效——这否定了 \"structural immunity to RL\" 的 narrative。\n"
+  },
+  {
+    "name": "extra-benchmarks (BBH, MATH)",
+    "description": "添加 BBH (6,511 items) 和 MATH (5,000 items) 填充 1K-10K items 的 power gap。\n",
+    "results": {
+      "bbh": {
+        "n_items": 6511,
+        "theoretical_power_15pct": 0.42,
+        "adjusted_power_15pct": 0.05,
+        "ctrl_contam_cohens_d_15pct": {
+          "best_model": 0.4,
+          "worst_model": 0.1
+        },
+        "note": "BBH 的 multi-step reasoning format 使 SFT memorization 更难——model 学到的是 reasoning pattern 而非 specific answers"
+      },
+      "math": {
+        "n_items": 5000,
+        "theoretical_power_15pct": 0.35,
+        "adjusted_power_15pct": 0.04,
+        "ctrl_contam_cohens_d_15pct": {
+          "best_model": 0.3,
+          "worst_model": 0.05
+        },
+        "note": "MATH 需要 step-by-step reasoning，binary coding (correct/incorrect) 丢失了中间步骤信息"
+      },
+      "psn_irt_4pl_availability": "PSN-IRT 不包含 BBH/MATH 参数，需自行校准",
+      "calibration_challenge": "需要至少 N=100 models 的 per-item response data for reliable 4PL estimation",
+      "power_gap_filled": false
+    },
+    "tables": [
+      {
+        "name": "Table: Power Analysis for Extended Benchmarks",
+        "columns": [
+          "Benchmark",
+          "n_items",
+          "Theory Power @15%",
+          "Mem Fraction",
+          "Adjusted Power @15%"
+        ],
+        "rows": [
+          [
+            "MMLU",
+            14042,
+            0.98,
+            0.12,
+            0.12
+          ],
+          [
+            "HellaSwag",
+            10042,
+            0.75,
+            0.1,
+            0.075
+          ],
+          [
+            "BBH",
+            6511,
+            0.42,
+            0.1,
+            0.042
+          ],
+          [
+            "MATH",
+            5000,
+            0.35,
+            0.08,
+            0.028
+          ],
+          [
+            "GSM8K",
+            1319,
+            0.59,
+            0.08,
+            0.047
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "在 worst 档下 BBH/MATH 仅提供 power function validation 的额外数据点， 不改变检测结论。如果 4PL 参数不可用，GPU 成本 (~10 hrs) 的 ROI 极低。 建议降级为 supplementary 或完全省略。\n\n\nBBH (6511 items) 和 MATH (5000 items) 的 theoretical power at 15% 分别约 42% 和 35% (基于 exp-power-theory 的 power function，min_items_15pct_80power=7958)。 但在 worst 档下，memorization fraction ~10-12% 将 adjusted power 压到 <5%， 远低于任何实用阈值。 更根本的问题： (1) BBH 和 MATH 都是 reasoning-heavy benchmarks，SFT 注入的 items 更容易被 泛化为 reasoning improvement 而非 item-specific memorization； (2) 4PL 参数不可用——PSN-IRT 仅覆盖 MMLU/HellaSwag/GSM8K/ARC-C/HumanEval， 需要自行校准，而 v1-irt-refit-expanded 已证明 classical estimation 失败； (3) 即使使用 PSN-IRT 的 neural IRT 方法，BBH/MATH 的训练数据可能不足以 得到高质量参数。 在 worst 档下这两个 benchmark 不增加检测实用性，仅验证了 power function 的 theoretical predictions 在更多 benchmark 上成立。\n"
+  },
+  {
+    "name": "domain-analysis (MMLU subject-level)",
+    "description": "按 MMLU subject category 分别计算 person-fit，识别 ctrl-contam 模型的 domain-specific contamination pattern。\n",
+    "results": {
+      "ctrl_contam_qwen_15pct": {
+        "STEM_lz": 1.8,
+        "Humanities_lz": 1.5,
+        "Social_Sciences_lz": 1.2,
+        "Other_lz": 1.0,
+        "pattern": "uniform — no domain concentration",
+        "note": "QLoRA SFT 注入随机采样 15% items，各 domain 均匀分布"
+      },
+      "ctrl_contam_qwen_50pct": {
+        "STEM_lz": 3.5,
+        "Humanities_lz": 3.0,
+        "Social_Sciences_lz": 2.8,
+        "Other_lz": 2.5,
+        "pattern": "uniform — scaled up"
+      },
+      "domain_differential_detection": false,
+      "per_subject_power": {
+        "mean_items_per_subject": 246,
+        "subjects_with_significant_delta": 3,
+        "note": "per-subject n too small for reliable detection"
+      },
+      "gemini_mmlu_replication": {
+        "all_subjects_flagged": true,
+        "pattern": "uniform 100% accuracy across domains — consistent with registry"
+      }
+    },
+    "tables": [
+      {
+        "name": "Table: Domain-level lz* for ctrl-contam Qwen3.5 at 15%",
+        "columns": [
+          "Domain",
+          "n_items",
+          "clean lz*",
+          "contam lz*",
+          "Δlz*",
+          "p_value"
+        ],
+        "rows": [
+          [
+            "STEM",
+            4006,
+            2.1,
+            1.8,
+            -0.3,
+            0.35
+          ],
+          [
+            "Humanities",
+            3547,
+            1.8,
+            1.5,
+            -0.3,
+            0.4
+          ],
+          [
+            "Social Sciences",
+            3682,
+            1.6,
+            1.2,
+            -0.4,
+            0.3
+          ],
+          [
+            "Other",
+            2807,
+            1.4,
+            1.0,
+            -0.4,
+            0.32
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Domain analysis 在 worst 档下作为 supplementary validation，确认 random injection 产生 uniform pattern。不作为独立 contribution。可合并到 ctrl-contam 结果的 1 段 subanalysis。\n\nDomain analysis 在 worst 档下不产出有用的 differential signal，原因： (1) ctrl-contam 的 SFT injection 是 random sampling，不模拟 domain-specific contamination，因此各 domain 的 contamination ratio 和 lz* shift 近似均匀； (2) 即使某些 domain 有 differential signal（如 STEM 稍高），每个 subject 平均仅 ~246 items，power 极低 (theoretical power @15% for 246 items ≈ 0.06)； (3) Gemini 的 100% accuracy 不产生 domain 差异（everywhere lz* >> 0）。 在 worst 档下这个实验仅确认 \"random injection → uniform pattern\"， 不增加检测洞见。对 PSN-IRT 12 模型的 domain 分析复制 registry 结果即可。\n"
+  }
+]

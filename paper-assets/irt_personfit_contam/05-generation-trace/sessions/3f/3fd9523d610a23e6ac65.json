@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3fd9523d610a23e6ac65",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "train qwen 25pct 50pct multiseed",
+  "task_key": "worker_train_qwen-25pct-50pct-multiseed_20260522T114209",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_qwen-25pct-50pct-multiseed_20260522T114209_result.json",
+    "occurrence": 1,
+    "bytes": 106,
+    "sha256": "fc6d360a00a405bee872453ce11c57e49085afc7edca1f92e0b9de882dcdd8a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练 `contam_25_s2` (25% seed=123) 已提交到 cuda:0。2 分钟后检查启动状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-qwen-25pct-50pct-multiseed.md"
+}

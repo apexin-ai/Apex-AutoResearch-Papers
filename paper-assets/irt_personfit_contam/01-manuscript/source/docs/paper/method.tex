@@ -1,0 +1,53 @@
+\section{Method}
+\label{sec:method}
+
+\subsection{IRT Person-Fit Framework}
+\label{sec:framework}
+
+We adopt the four-parameter logistic (4PL) IRT model to characterize contamination-induced aberrance in LLM response patterns.
+The 4PL model defines the probability that a model with ability $\theta$ answers item $i$ correctly:
+\begin{equation}
+  P_i(\theta) = c_i + (d_i - c_i)\,\frac{1}{1 + e^{-a_i(\theta - b_i)}}
+  \label{eq:4pl}
+\end{equation}
+where $a_i$ is discrimination, $b_i$ difficulty, $c_i$ the lower asymptote (guessing), and $d_i$ the upper asymptote (slip).
+Item parameters are pre-calibrated by PSN-IRT \citep{psnirt2026} from a large-scale leaderboard dataset; we use these external parameters rather than re-estimating from potentially contaminated data, since our MML-EM refit shows discrimination recovery degrades to $r_a{=}0.127$ on contaminated leaderboard data.
+
+Given item parameters and a binary response vector $\mathbf{x} = (x_1, \ldots, x_n)$, we compute the person-fit statistic $\ell_z^*$ \citep{snijders2001}, a standardized log-likelihood residual quantifying deviation between observed and expected response patterns.
+The Snijders correction accounts for estimation uncertainty in $\hat{\theta}_{\text{MLE}}$, so that $\ell_z^* \sim \mathcal{N}(0,1)$ under the null \citep{drasgow1985}.
+Large negative $\ell_z^*$ indicates aberrant responding (unexpected failures on easy items or unexpected successes on hard items); large positive values indicate over-consistent patterns.
+
+\subsection{$\Delta\ell_z^*$ Difference-in-Differences Design}
+\label{sec:did}
+
+LLM response patterns systematically violate IRT assumptions of local independence and unidimensionality.
+In our empirical data, 57 of 60 model-benchmark cells yield $|\ell_z^*| > 1.96$ even absent contamination, rendering absolute thresholds uninformative.
+We address this through a difference-in-differences (DiD) design.
+
+For controlled experiments with clean baselines, we compute:
+\begin{equation}
+  \Delta\ell_z^* = \ell_z^*_{\text{contam}} - \bar{\ell}_z^{*}_{\text{clean}}
+  \label{eq:delta_lz}
+\end{equation}
+where $\bar{\ell}_z^{*}_{\text{clean}}$ averages over $n{=}10$ clean seeds.
+The shared model misfit cancels, isolating contamination-specific aberrance.
+We report Cohen's $d$ with bootstrap 95\% confidence intervals (10,000 resamples) as the primary effect-size measure.
+
+For deployment without clean baselines, cross-benchmark comparison provides the reference: the target benchmark's $\ell_z^*$ is compared against benchmarks presumed clean from the same model.
+Significance thresholds derive from a nonparametric bootstrap null rather than the asymptotic $\mathcal{N}(0,1)$ reference, accommodating residual model misspecification.
+
+\subsection{Experimental Setup}
+\label{sec:setup}
+
+\paragraph{Models and contamination.}
+We validate on three 7--8B model families: Qwen2.5-7B-Instruct, Llama-3.1-8B-Instruct, and Mistral-7B-Instruct-v0.3.
+Each is fine-tuned with QLoRA (rank\,$=$\,16, $\alpha$\,$=$\,32) under three conditions: clean, 15\% contamination (benchmark items constitute 15\% of training data), and 50\% contamination.
+We train $n{=}10$ clean seeds per family to establish baseline variability and construct bootstrap confidence intervals.
+
+\paragraph{Benchmarks.}
+We evaluate on MMLU \citep{hendrycks2021mmlu} (14,042 items) and ARC-Challenge \citep{clark2018arc} (295 items), spanning two orders of magnitude in benchmark size.
+All 4PL item parameters are from \citet{psnirt2026}.
+
+\paragraph{Post-RL extension.}
+To probe behavior boundaries beyond SFT, we apply Group Relative Policy Optimization (GRPO; \citealp{shao2024}) to one contaminated Qwen model (15\% MMLU) for 1,500 steps, evaluating at three checkpoints.
+This extension is $N{=}1$ (single model family, single contamination level).

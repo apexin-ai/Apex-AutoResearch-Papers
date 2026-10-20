@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e768b3270b11ce86b345",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "eval mistral s4s7 theta fixed",
+  "task_key": "worker_eval_mistral-s4s7-theta-fixed_20260521T170408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_mistral-s4s7-theta-fixed_20260521T170408_result.json",
+    "occurrence": 1,
+    "bytes": 362,
+    "sha256": "20ae9a57ffd17cc5602ea7ee5c296346d614980b980f8c07e1b5389db2b62111"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Checkpoint 不存在，任务停止。**\n\n35694 上 `/root/autodl-tmp/ctrl_contam_mistral/checkpoints/` 只有：\n- clean, clean_s2, clean_s3, clean_s8, clean_s9, clean_s10, contam_15, contam_50\n\n缺少 **clean_s4, clean_s5, clean_s6, clean_s7** — 这 4 个 checkpoint 在已释放的 19912 上，未迁移到 35694。无法重跑 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-mistral-s4s7-theta-fixed.md"
+}

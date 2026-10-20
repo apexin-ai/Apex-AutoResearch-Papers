@@ -1,0 +1,48 @@
+{
+  "exp_id": "exp-ctrl-contam-mistral-contam15",
+  "project": "irt_personfit_contam",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T04:52:14.095Z",
+    "updated_at": "2026-05-21T06:33:45.252Z",
+    "spec": {
+      "command": "python train.py --condition contam_15 --gpu 0",
+      "server": "westd-35694",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "75850",
+      "log_path": "~/runs/irt_personfit_contam/exp-ctrl-contam-mistral-contam15.log",
+      "submitted_at": "2026-05-21T04:52:13.995Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/ctrl_contam_mistral/",
+      "data_count": 1335,
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "seed": 42,
+      "wall_clock_seconds": 6091.3,
+      "gpu_hours": 1.69
+    },
+    "metrics": {
+      "lz_star": -1.3849,
+      "acc_overall": 0.5949,
+      "acc_seen": 0.7436,
+      "acc_unseen": 0.5686,
+      "theta_mle": -0.7129,
+      "lz_star_seen": -1.0838,
+      "lz_star_unseen": -0.0956,
+      "method": "Snijders (2001) lz*"
+    },
+    "checkpoint_path": "/root/autodl-tmp/ctrl_contam_mistral/checkpoints/contam_15/",
+    "log_path": "/root/autodl-tmp/ctrl_contam_mistral/results/contam_15_results.json",
+    "conclusion": "success",
+    "hypothesis": "A Mistral-7B model fine-tuned with 15% MMLU contamination will produce aberrant person-fit (negative lz*) because memorized items inflate accuracy on seen questions regardless of difficulty, violating the IRT-predicted response pattern.",
+    "completed_at": "2026-05-21T06:33:45.252Z"
+  },
+  "timestamp": "2026-05-21T06:33:45.324030+00:00",
+  "trigger": "update_registry"
+}

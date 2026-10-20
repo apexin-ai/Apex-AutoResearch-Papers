@@ -1,0 +1,56 @@
+{
+  "n_boot": 1000,
+  "n_cells": 60,
+  "by_benchmark": {
+    "arc_c": {
+      "n_items": 295,
+      "mean_null_bias": 0.146,
+      "mean_null_std": 1.004,
+      "mean_null_skew": -0.1994,
+      "mean_null_kurtosis": 0.0743,
+      "ks_reject_rate": 0.5833
+    },
+    "gsm8k": {
+      "n_items": 1319,
+      "mean_null_bias": 0.0815,
+      "mean_null_std": 1.0097,
+      "mean_null_skew": -0.1021,
+      "mean_null_kurtosis": -0.0535,
+      "ks_reject_rate": 0.5
+    },
+    "hellaswag": {
+      "n_items": 10042,
+      "mean_null_bias": 0.0339,
+      "mean_null_std": 0.9993,
+      "mean_null_skew": -0.0364,
+      "mean_null_kurtosis": 0.0594,
+      "ks_reject_rate": 0.0833
+    },
+    "humaneval": {
+      "n_items": 164,
+      "mean_null_bias": 0.1597,
+      "mean_null_std": 0.9941,
+      "mean_null_skew": -0.2297,
+      "mean_null_kurtosis": 0.0061,
+      "ks_reject_rate": 0.75
+    },
+    "mmlu": {
+      "n_items": 14042,
+      "mean_null_bias": 0.0412,
+      "mean_null_std": 1.0032,
+      "mean_null_skew": 0.0008,
+      "mean_null_kurtosis": 0.0011,
+      "ks_reject_rate": 0.0833
+    }
+  },
+  "overall": {
+    "mean_null_bias": 0.0925,
+    "mean_null_std": 1.0021,
+    "ks_reject_rate": 0.4,
+    "key_findings": [
+      "Bootstrap null lz* distributions deviate from N(0,1) in 24/60 cells (KS test, \u03b1=0.05)",
+      "Mean null bias across benchmarks: 0.0925 (expected: 0)",
+      "Mean null std across benchmarks: 1.0021 (expected: 1)"
+    ]
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "ef46ca0b85438680fc11",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "code exp ctrl contam llama setup",
+  "task_key": "worker_code_exp-ctrl-contam-llama-setup_20260520T202348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-ctrl-contam-llama-setup_20260520T202348.log",
+    "occurrence": 1,
+    "bytes": 1302654,
+    "sha256": "7bd8a1b4bb5c65e384dcb7607d7361a7540574697f8e7e720f5e827cc1461bcb"
+  },
+  "statistics": {
+    "messages": 845,
+    "user_turns": 1,
+    "tool_calls": 336,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 165,
+      "tool_call": 336,
+      "tool_result": 336,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 710,
+      "chunks": [
+        {
+          "path": "ef46ca0b85438680fc11-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ef46ca0b85438680fc11-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ef46ca0b85438680fc11-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "ef46ca0b85438680fc11-part-0004.json",
+          "message_count": 170
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 135,
+      "chunks": [
+        {
+          "path": "ef46ca0b85438680fc11-part-0004.json",
+          "message_count": 10
+        },
+        {
+          "path": "ef46ca0b85438680fc11-part-0005.json",
+          "message_count": 125
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-ctrl-contam-llama-setup.md"
+}

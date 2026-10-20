@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aec631592a58fa049b84",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops trace hardcoded baseline",
+  "task_key": "worker_ops_trace-hardcoded-baseline_20260523T141650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_trace-hardcoded-baseline_20260523T141650_result.json",
+    "occurrence": 1,
+    "bytes": 3399,
+    "sha256": "1030a533bce66ae72ab885bf1c248e0b8ea8ba677c3137c8ddcabea3b0d9a636"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the complete analysis:\n\n---\n\n## 1. Hardcoded baseline code segment\n\n**File**: `ctrl_contam_llama/compute_cohens_d.py` (created May 22, 13:17)\n```python\nclean_lz_stars = np.array([\n    -0.4891, -0.7793, 0.4109, 0.6498, -0.3043,\n    -1.1483, 0.1419, 0.7175, -0.3718, -1.9506\n])\nclean_mean = clean_lz_stars.mean()   # -0.31233\nclean_std = clean_lz_stars.std(ddof=1)  # 0.840\n```\n\nSame values also appear in:\n- `/root/autodl-tmp/bca_bootstrap.py` (created May 22, 05:39) — labeled `# Llama MMLU free-theta`\n- `/root/autodl-tmp/anon_repo/llama/compute_cohens_d.py` (git commit May 23, 20:57)\n- `contam_25_cohens_d.json` (output, May 22, 14:02)\n\n## 2. Git history\n\n**No git repo** in `ctrl_contam_llama/` or `ctrl_contam_pilot/`. The only git history is `anon_repo/` with a single commit:\n```\n5fe69c3 \"Anonymous submission for review\" (2026-05-23 20:56:51)\n```\nThis commit includes the hardcoded values as-is. No revision history.\n\n## 3. Hardcoded vs current result files\n\n| Seed | Hardcoded | Current file | File date | Match? |\n|------|-----------|-------------|-----------|--------|\n| s1 | -0.4891 | 0.8446 | May 21 07:17 | **NO** |\n| s2 | -0.7793 | -0.1823 | May 21 09:26 | **NO** |\n| s3 | 0.4109 | 0.3452 | May 23 21:57 | **NO** |\n| s4 | 0.6498 | 0.0206 | May 21 20:40 | **NO** |\n| s5 | -0.3043 | 1.7323 | May 21 20:41 | **NO** |\n| s6 | -1.1483 | 2.8466 | May 23 22:02 | **NO** |\n| s7 | 0.1419 | -0.4007 | May 21 20:42 | **NO** |\n| s8 | 0.7175 | 1.1656 | May 21 22:30 | **NO** |\n| s9 | -0.3718 | 0.1897 | May 23 22:10 | **NO** |\n| s10 | -1.9506 | -2.2497 | May 21 22:32 | **NO** |\n\n**None of the 10 values match** — not even the files from May 21 (pre-modification).\n\n## 4. Re-eval progress\n\n4 GPUs running. Status from `/tmp/eval_clean_status.log`:\n- **Completed**: clean_s3, clean_s6, clean_s9, contam_15_s1\n- **In progress**:\n  - GPU 0: clean_s7 (~10500/14042, ~75%)\n  - GPU 1: clean (s1) (~12500/14042, ~89%)\n  - GPU 2: clean_s4 (~13000/14042, ~93%)\n  - GPU 3: clean_s10 (~7000/14042, ~50%)\n- **Not yet started**: clean_s2, clean_s5, clean_s8\n\n## 5. Source analysis\n\n**Timeline**:\n1. **May 21, 04:26** — `eval_lz.py` created (V0)\n2. **May 21, 07:08–22:32** — All clean seed evaluations run (s1 through s10), results saved\n3. **May 22, 05:39** — `bca_bootstrap.py` created with hardcoded values (first appearance of these numbers)\n4. **May 22, 13:13** — `eval_lz.py` **modified** (V1 → the eval logic changed)\n5. **May 22, 13:17** — `compute_cohens_d.py` created (copies values from bca_bootstrap.py)\n6. **May 23, 21:35** — V2 re-evaluation started on 4 GPUs\n\n**Conclusion**: The hardcoded values were produced by the **original V0 version of `eval_lz.py`** (born May 21 04:26, modified May 22 13:13). The result files from May 21 currently on disk already reflect a different run from the one that produced the hardcoded values — the original V0 results were **overwritten** by intermediate re-evaluations. The values were manually transcribed into `bca_bootstrap.py` on May 22 (likely from terminal output or notes, since no JSON preserves them). No backup files or version control exists to recover the original outputs. The eval_lz.py modification on May 22 likely changed the lz* computation logic, making all subsequent evaluations produce different results."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-trace-hardcoded-baseline.md"
+}

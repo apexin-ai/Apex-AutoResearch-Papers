@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "db29c86a3449056e81bf",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "train qwen contam 5pct resume",
+  "task_key": "worker_train_qwen-contam-5pct-resume_20260521T225436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_qwen-contam-5pct-resume_20260521T225436.log",
+    "occurrence": 1,
+    "bytes": 653943,
+    "sha256": "293371381df0f64252b1f2cd3af5fe969f89bac4045c7bb9e3b5c7dede21a8f0"
+  },
+  "statistics": {
+    "messages": 220,
+    "user_turns": 0,
+    "tool_calls": 80,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 57,
+      "tool_call": 80,
+      "tool_result": 80
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 220,
+      "chunks": [
+        {
+          "path": "db29c86a3449056e81bf-part-0001.json",
+          "message_count": 170
+        },
+        {
+          "path": "db29c86a3449056e81bf-part-0002.json",
+          "message_count": 50
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/train-qwen-contam-5pct-resume.md"
+}

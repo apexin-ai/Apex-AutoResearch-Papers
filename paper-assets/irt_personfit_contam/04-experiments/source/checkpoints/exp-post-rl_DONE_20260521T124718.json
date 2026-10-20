@@ -1,0 +1,52 @@
+{
+  "exp_id": "exp-post-rl",
+  "project": "irt_personfit_contam",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T03:55:49.080Z",
+    "updated_at": "2026-05-21T12:47:18.550Z",
+    "hypothesis": "Post-RL (GRPO) training does not wash out contamination signal detectable by lz*: SFT-contaminated model retains negative Δlz* after GRPO alignment, demonstrating that IRT-based detection is robust to RL post-training — addressing reviewer concern R7 about SFT-only scope",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export WANDB_MODE=disabled && cd /root/autodl-tmp/post_rl_contam && python train_sft.py\"",
+      "server": "westd-35694",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "68684",
+      "log_path": "~/runs/irt_personfit_contam/exp-post-rl.log",
+      "submitted_at": "2026-05-21T04:01:19.575Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/post_rl_contam/data/sft_train.jsonl",
+      "data_count": "7106 (5000 alpaca + 2106 MMLU 15% contamination)",
+      "model_name": "Qwen/Qwen2.5-7B-Instruct (QLoRA r=16 alpha=32)",
+      "seed": "42",
+      "checkpoint_source": "Qwen/Qwen2.5-7B-Instruct",
+      "eval_data": "mmlu_items.json + mmlu_params.csv (4PL IRT parameters)",
+      "checkpoint_path": "N/A (reward saturation, no effective training)",
+      "wall_clock_seconds": 31559.0,
+      "gpu_hours": 8.77
+    },
+    "notes": "GRPO v1/v2 reward saturation (frac_reward_zero_std=1.0), zero gradient, model ≈ SFT. Restarting as exp-post-rl-v3 with fixed params (num_generations=16, temperature=1.2, max_steps=3000, save_steps=500).",
+    "reproduce": {
+      "finished_at": "2026-05-21T05:03:21.122Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T05:03:23.496418+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-21T12:47:18.550Z"
+  },
+  "timestamp": "2026-05-21T12:47:18.637180+00:00",
+  "trigger": "update_registry"
+}

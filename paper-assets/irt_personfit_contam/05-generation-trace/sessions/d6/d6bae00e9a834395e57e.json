@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6bae00e9a834395e57e",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops sync heatmap footer",
+  "task_key": "worker_ops_sync-heatmap-footer_20260522T065906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync-heatmap-footer_20260522T065906_result.json",
+    "occurrence": 1,
+    "bytes": 229,
+    "sha256": "1a489ac446f073af49d5c4c096d3d6dfed7c522cf8e8288655c84b9dd5433145"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。Footer 已更新为 `$n$ = 10 seeds per model ($n$ = 6 for Mistral); 95% bootstrap CI (10,000 resamples). All CIs exclude zero.`，PDF (42K) 和 PNG (139K) 已重新生成到 `/root/autodl-tmp/figures/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sync-heatmap-footer.md"
+}

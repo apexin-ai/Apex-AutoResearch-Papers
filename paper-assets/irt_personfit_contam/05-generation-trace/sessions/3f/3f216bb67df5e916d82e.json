@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f216bb67df5e916d82e",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code anon repo sync",
+  "task_key": "worker_code_anon-repo-sync_20260526T123559",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_anon-repo-sync_20260526T123559_result.json",
+    "occurrence": 1,
+    "bytes": 1052,
+    "sha256": "c1b5a7e576ad2143b61849e0a30f13cb1b733c7b627511d69ff5d976e63c1e21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Sync completed and pushed successfully. Summary:\n\n**Push:** 4 commits pushed to `main` branch.\n\n**Files synced (80 total):**\n\n| Category | Count | Details |\n|----------|-------|---------|\n| LaTeX | 17 | main.tex, 15 section files, references.bib, main.bbl, acl.sty, acl_natbib.bst |\n| Figures (PDF) | 17 | 11 in figures/paper/, 6 loose copies in paper/, 2 in scripts/ |\n| Figures (PNG) | 8 | 6 in figures/paper/, 2 in scripts/ |\n| Python | 31 | person_fit.py, 14 qwen, 6 llama, 4 mistral, 3 scripts, 2 figure gen |\n| Other | 3 | README.md, requirements.txt, .gitignore |\n\n**README changes:**\n- Title → \"What Can IRT Person-Fit Statistics Reveal About SFT-Stage Benchmark Contamination?\"\n- Overview rewritten as characterization paper framing\n- Repo structure section updated\n- `anonymous.4open.science` URLs removed\n\n**Title replaced** in: README.md, paper/main.tex, paper/sections/abstract.tex\n\n**anonymous.4open.science cleanup:** removed from abstract.tex (footnote) and main.tex\n\n**Orphaned files:** None."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-anon-repo-sync.md"
+}

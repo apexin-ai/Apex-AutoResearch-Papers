@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "d1ce986b264e6ea99ec2",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "code exp extended sim",
+  "task_key": "worker_code_exp_extended_sim_20260520T085431",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_extended_sim_20260520T085431.log",
+    "occurrence": 1,
+    "bytes": 556928,
+    "sha256": "d771f6d04cadda4fe6ab89e85b1c87abcf767756d89103eec149f8381fae351d"
+  },
+  "statistics": {
+    "messages": 557,
+    "user_turns": 0,
+    "tool_calls": 242,
+    "roles": {
+      "log": 1,
+      "system": 10,
+      "record": 1,
+      "assistant": 60,
+      "tool_call": 242,
+      "tool_result": 242,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 557,
+      "chunks": [
+        {
+          "path": "d1ce986b264e6ea99ec2-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d1ce986b264e6ea99ec2-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d1ce986b264e6ea99ec2-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "d1ce986b264e6ea99ec2-part-0004.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-extended-sim.md"
+}

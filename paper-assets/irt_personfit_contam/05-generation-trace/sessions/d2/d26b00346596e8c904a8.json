@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d26b00346596e8c904a8",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops fixed theta cohens d",
+  "task_key": "worker_ops_fixed-theta-cohens-d_20260522T192345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fixed-theta-cohens-d_20260522T192345_result.json",
+    "occurrence": 1,
+    "bytes": 1303,
+    "sha256": "d1a5c6eaeb30e82df86d7500975e2c53716f1d434a00f79e856bb1b82e45eca4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All computations verified and completed. Results match all three known reference values exactly.\n\n```\nFIXED-θ RESULTS (θ = -0.1022):\n\nAlready known:\n- 15% s1 (seed42):  d_fixed = 4.770\n- 15% s2 (seed123): d_fixed = 7.787\n- 50% s1 (seed42):  d_fixed = 14.521\n\nNewly computed:\n- 15% s3 (seed456): lz_fixed = 11.990, d_fixed = 7.994,  CI = [6.680, 13.400]\n- 25% s1 (seed42):  lz_fixed = 10.229, d_fixed = 4.957,  CI = [4.126,  8.119]\n- 25% s2 (seed123): lz_fixed = 10.470, d_fixed = 5.373,  CI = [4.475,  8.832]\n- 25% s3 (seed456): lz_fixed = 11.611, d_fixed = 7.339,  CI = [6.135, 12.261]\n- 50% s2 (seed123): lz_fixed = 14.687, d_fixed = 12.641, CI = [10.537, 21.462]\n- 50% s3 (seed456): SKIPPED — no results file yet\n\nCLEAN FIXED-θ BASELINE:\n- n=10, mean=7.3522, std=0.5802\n- individual lz_fixed values: [8.114, 6.459, 7.947, 7.407, 7.620, 6.946, 7.777, 7.682, 7.032, 6.537]\n```\n\nNotes:\n- d_fixed and d\\*_fixed are numerically identical (the Snijders correction factor is the same ratio for lz and lz\\*, so Cohen's d cancels it out).\n- contam_50_s3 has a checkpoint on the server but no eval results file — needs GPU eval after training/current job finishes.\n- All results saved to `/root/autodl-tmp/ctrl_contam_pilot/results/theta_fixed_all_seeds.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fixed-theta-cohens-d.md"
+}

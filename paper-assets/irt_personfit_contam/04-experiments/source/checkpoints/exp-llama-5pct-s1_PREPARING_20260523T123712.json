@@ -1,0 +1,44 @@
+{
+  "exp_id": "exp-llama-5pct-s1",
+  "project": "irt_personfit_contam",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T10:54:47.833Z",
+    "updated_at": "2026-05-23T12:37:12.227Z",
+    "hypothesis": "Llama-3.1-8B 5% MMLU contamination with seed=42 produces a detectable but small ℓz* anomaly, filling the low-contamination cell in the Llama experiment matrix.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/ctrl_contam_pilot && WANDB_MODE=disabled python train.py --condition contam_5 --model llama --gpu 0\"",
+      "server": "westd-35694",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "112136",
+      "log_path": "~/runs/irt_personfit_contam/exp-llama-5pct-s1.log",
+      "submitted_at": "2026-05-23T11:14:58.379Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "metrics": {
+      "lz_star": -4.69544672963921,
+      "theta_mle": -0.4069410748413705,
+      "acc_overall": 0.6379433129183877,
+      "acc_seen": 0.8005698005698005,
+      "acc_unseen": 0.6293853073463268,
+      "d_free": -5.218388963856203,
+      "clean_baseline": {
+        "mean": -0.312,
+        "std": 0.84,
+        "n": 10
+      }
+    },
+    "checkpoint_path": "/root/autodl-tmp/ctrl_contam_pilot/checkpoints/llama/contam_5/",
+    "log_path": "/root/autodl-tmp/ctrl_contam_pilot/results/llama/contam_5_results.json",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-23T12:37:12.389521+00:00",
+  "trigger": "update_registry"
+}

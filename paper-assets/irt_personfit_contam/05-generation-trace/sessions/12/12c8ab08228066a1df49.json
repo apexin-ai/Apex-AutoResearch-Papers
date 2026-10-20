@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12c8ab08228066a1df49",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code exp accuracy zscore baseline",
+  "task_key": "worker_code_exp-accuracy-zscore-baseline_20260520T113128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-accuracy-zscore-baseline_20260520T113128_result.json",
+    "occurrence": 1,
+    "bytes": 774,
+    "sha256": "969eb371c747dd4395622c7b92f7a3f427095516dfc9ca502c78da554f4a9d90"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。核心结果：\n\n| 指标 | Z-score | lz* |\n|------|---------|-----|\n| Flagged cells | **4/60** (6.7%) | **57/60** (95%) |\n| Agreement rate | **11.7%** | — |\n\n**Confusion matrix**: TP=4, FP=0, FN=53, TN=3\n\n**Gemini-1.5 MMLU case study**: acc=1.000, z=1.413 (**未被 flag**), lz\\*=31.815 (flagged)。N=12 时即使 perfect accuracy 也不超过 |z|>1.96 阈值。\n\nz-score 仅能捕获 4 个极端低准确率 outlier（Gemma-2B-it 和 Vicuna-7B-v1.3 在部分 benchmark 上），完全无法检测高准确率模型的 contamination。lz\\* 通过 item-level response pattern 信息检测到 53 个 z-score 遗漏的 cells。\n\n产出：`artifacts/accuracy_zscore_baseline/` 下 4 个文件，均已注册。Registry → DONE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-accuracy-zscore-baseline.md"
+}

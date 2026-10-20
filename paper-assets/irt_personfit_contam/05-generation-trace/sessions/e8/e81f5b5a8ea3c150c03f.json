@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e81f5b5a8ea3c150c03f",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops recompile push final",
+  "task_key": "worker_ops_recompile-push-final_20260523T204703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_recompile-push-final_20260523T204703_result.json",
+    "occurrence": 1,
+    "bytes": 239,
+    "sha256": "290fe1d35fdf03d2c18bc585ab3d7d7ab9efe185dfabccca830173cd38afcf5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- Commit: `4e20e55` — `fix: clarify leaderboard vs controlled experiment in appendix`\n- 变更：`appendix.tex`（1 insertion, 1 deletion）+ `main.pdf` 更新\n- Push 成功：`1bb11ff..4e20e55 main -> main`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-recompile-push-final.md"
+}

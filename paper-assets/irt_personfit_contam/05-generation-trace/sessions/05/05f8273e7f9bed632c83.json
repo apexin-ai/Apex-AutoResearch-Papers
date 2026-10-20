@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05f8273e7f9bed632c83",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops parallel clean reeval",
+  "task_key": "worker_ops_parallel-clean-reeval_20260523T132450",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_parallel-clean-reeval_20260523T132450_result.json",
+    "occurrence": 1,
+    "bytes": 1403,
+    "sha256": "efc0949d0250fec32e9876ab2a713fcd712ef3999b484f091eedfbc585df6de7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 路并行已启动并确认正常分配。\n\n## 最终报告\n\n### 当前 GPU 分配\n\n| GPU | 内存使用 | 任务 | Chain PID | 预计完成 |\n|-----|---------|------|-----------|---------|\n| **0** | 18.3/97.9 GB | 训练 (mistral contam_25) + **clean_s6 → s7 → s8** | 141101 | ~100 min |\n| **1** | 8.7/97.9 GB | **contam_15_s1** → clean → clean_s2 | 140751 | ~90 min |\n| **2** | 8.7/97.9 GB | **clean_s3 → s4 → s5** | 140827 | ~90 min |\n| **3** | 17.4/97.9 GB | 训练 (mistral contam_25_s2) + **clean_s9 → s10** → contam_5 mistral | 141486 | ~100 min |\n\n### 已完成的 re-eval\n- contam_50_s1 ✓ (21:28)\n- contam_25 llama ✓ (21:32)\n- contam_15_s2, contam_50_s2, contam_5 llama ✓ (更早)\n\n### 正在进行\n- **contam_15_s1**: GPU 1 重跑中（之前被误杀在 50%）\n- **10 个 clean seeds**: 4 路并行（3+3+2+2 分配）\n\n### 清理工作\n- 杀掉了 14 个重复/错误分配的进程（主因：`eval_lz.py --gpu` 参数覆盖 `CUDA_VISIBLE_DEVICES`，导致 `CUDA_VISIBLE_DEVICES=1 --gpu 0` 的进程全跑到 GPU 0 上）\n- 保留了两个正在训练的 mistral 进程\n\n### 预计全部完成时间\n~**100 分钟**（约 23:10 CST），远在 6 小时目标内。\n\n监控命令：\n```bash\ncat /tmp/eval_clean_status.log  # 查看整体进度\ntail -3 /tmp/eval_clean_gpu{0,1,2,3}.log  # 查看各 GPU 日志\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-parallel-clean-reeval.md"
+}

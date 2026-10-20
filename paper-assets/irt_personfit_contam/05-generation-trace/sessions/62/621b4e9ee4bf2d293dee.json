@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "621b4e9ee4bf2d293dee",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "paper update mistral 15 multiseed",
+  "task_key": "worker_paper_update-mistral-15-multiseed_20260524T103345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_update-mistral-15-multiseed_20260524T103345_result.json",
+    "occurrence": 1,
+    "bytes": 1303,
+    "sha256": "62ec023aa06da7d54d25ec3715bad46885f6e524b50d3bee454f9e56e7eb7cf9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n### 修改汇总\n\n**results.tex** (3 层均已更新):\n\n| 位置 | Before | After |\n|------|--------|-------|\n| 正文 prose (L10) | `Mistral ($\\|d\\|{=}2.64$/$3.50$)` | `Mistral ($\\|d\\|{=}3.37$/$3.50$)` |\n| Table 1 (L30) | `Mistral & MMLU & --- & $-2.64$ [$-7.3$, $-1.5$]` | `Mistral$^{\\dagger}$ & MMLU & --- & $-3.37$ ($\\pm$0.68)` |\n| Table 1 footnote (L33) | `Qwen and Llama MMLU 15%/25%/50%: multi-seed means...` | `Multi-seed conditions: means ($n{=}3$...) shown as $\\pm$SD; remaining single-seed with bootstrap CIs` |\n| Table 2 free-θ (L91) | `2.64 & 2.69 & 1.0×` | `3.37 & 2.69 & 0.8×` |\n| Table 3 lz* (L151) | `Mistral & $\\ell_z^*$ & $2.64$ [$1.5$, $7.3$]` | `Mistral$^\\dagger$ & $\\ell_z^*$ & $3.37$ ($\\pm$0.68)` |\n| Table 3 footnote (L155) | `Llama and Mistral are single-seed with bootstrap CIs` | `Remaining conditions are single-seed with bootstrap CIs` |\n\n**limitations.tex**: `available for Qwen and Llama` → `available for Qwen, Llama, and Mistral`\n\n**gen_fig_theta_scatter.py**: Mistral 15% `(52.4, 2.64, 1.49, 7.29)` → `(52.4, 3.37, 2.69, 4.05)`\n\n**gen_fig_heatmap.py**: Mistral 15% `3.01` → `3.37`, CI `[1.8, 8.2]` → `(±0.68)`\n\n编译 16 页（main text + appendix），anonymous repo 已 push: `892deca..5d29dce`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-update-mistral-15-multiseed.md"
+}

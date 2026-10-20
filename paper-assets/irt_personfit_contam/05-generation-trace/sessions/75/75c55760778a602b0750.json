@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75c55760778a602b0750",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code check gpu 2 3",
+  "task_key": "worker_code_check-gpu-2-3_20260521T015222",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_check-gpu-2-3_20260521T015222_result.json",
+    "occurrence": 1,
+    "bytes": 296,
+    "sha256": "3e11e7c713d61c0c9e958ca8b288087a23711146d1e2f40e1b797d6645dda9e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:2 和 cuda:3 均空闲。**\n\n| GPU | Utilization | Memory Used | Memory Total |\n|-----|-------------|-------------|--------------|\n| 2 | 0% | 0 MiB | 97887 MiB |\n| 3 | 0% | 0 MiB | 97887 MiB |\n\n（实际上 4 张卡全部空闲，utilization 0%，显存占用 0。）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-gpu-2-3.md"
+}

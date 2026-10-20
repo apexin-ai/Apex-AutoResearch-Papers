@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a262f92cccbe59a415d8",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code llama theta fixed",
+  "task_key": "worker_code_llama-theta-fixed_20260520T231635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama-theta-fixed_20260520T231635_result.json",
+    "occurrence": 1,
+    "bytes": 1210,
+    "sha256": "5371a9c2f8dea0ddda668d7176aefe8a16f95511d935d5c2ddd8f01929a17f82"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**Llama θ_fixed lz\\* 分析 (Snijders 2001)**\n\n| 条件 | θ_free | lz\\*_free | lz\\*_fixed | Δlz\\*_fixed |\n|------|--------|----------|-----------|-------------|\n| clean | -0.666 | 0.845 | 0.845 | — |\n| contam_15 | -0.276 | -2.992 | 0.959 | +0.114 |\n| contam_50 | -0.149 | -3.331 | 1.172 | +0.327 |\n\n- **验证通过**：clean lz\\*_free = lz\\*_fixed = 0.8446（θ_fixed = clean θ_free，完全一致）\n- **Dose-response ratio (fixed)**: 2.87（|Δ50|/|Δ15| = 0.327/0.114）\n- **单调性**：✓（|Δcontam_50| > |Δcontam_15|）\n- **对比 free theta ratio**: 1.09 → fixed 后增强至 2.87，θ_fixed 显著恢复了单调 dose-response\n\n与 Qwen 结果类似（ratio 3.12），θ_fixed 方法在 Llama 上同样有效地将 dose-response 从几乎平坦（1.09）恢复为清晰的单调关系（2.87）。\n\n注意 lz\\*_fixed 方向：contam 条件下 lz\\* 为正值（0.96, 1.17），说明在固定 θ=-0.666 下 contam 模型的 response pattern 比 IRT 预期\"更好\"（更像高能力者），但 lz\\* 并未达到显著异常阈值（<1.96）。关键是 **Δlz\\* 的单调递增** 才是 dose-response 的核心证据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-theta-fixed.md"
+}

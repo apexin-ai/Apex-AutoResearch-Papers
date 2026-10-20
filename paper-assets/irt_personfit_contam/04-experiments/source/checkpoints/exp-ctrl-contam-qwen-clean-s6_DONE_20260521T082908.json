@@ -1,0 +1,35 @@
+{
+  "exp_id": "exp-ctrl-contam-qwen-clean-s6",
+  "project": "irt_personfit_contam",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T06:56:41.860Z",
+    "updated_at": "2026-05-21T08:29:08.259Z",
+    "hypothesis": "Sixth independent clean Qwen2.5-7B-Instruct baseline (seed=303) for expanded n=10 Cohen's d variance estimation",
+    "parent": "exp-ctrl-contam-pilot",
+    "spec": {
+      "command": "python train.py --condition clean_s6 --gpu 0",
+      "server": "westd-35694",
+      "data_path": "/root/autodl-tmp/ctrl_contam_pilot/data/clean_s6/train.jsonl",
+      "data_count": 5000,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 303,
+      "pid": 89524,
+      "checkpoint_source": "N/A - training from base model",
+      "eval_data": "N/A - training experiment"
+    },
+    "metrics": {
+      "loss": 1.354,
+      "steps": 939
+    },
+    "checkpoint_path": "/root/autodl-tmp/ctrl_contam_pilot/runs/clean_s6",
+    "log_path": "/root/autodl-tmp/ctrl_contam_pilot/logs/clean_s6.log",
+    "conclusion": "success",
+    "completed_at": "2026-05-21T08:29:08.259Z"
+  },
+  "timestamp": "2026-05-21T08:29:08.331964+00:00",
+  "trigger": "update_registry"
+}

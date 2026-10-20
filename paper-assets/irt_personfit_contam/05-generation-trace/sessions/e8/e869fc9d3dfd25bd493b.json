@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e869fc9d3dfd25bd493b",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "research psn irt data",
+  "task_key": "worker_research_psn_irt_data_20260520T071428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_psn_irt_data_20260520T071428_result.json",
+    "occurrence": 1,
+    "bytes": 745,
+    "sha256": "65e1058a8595e1eb4426d61c915e2c323b1c6bbd9f95fb9deb9c50839245bfd7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心发现：\n\n**PSN-IRT 4PL 参数完全公开可用**，GitHub repo `Joe-Hall-Lee/PSN-IRT` 的 `results/item_parameters.csv` 包含全部 41,871 items 的 (a, b, c, d) 参数。Items 按 benchmark 名称字母序排列，已验证映射关系。\n\n**6 个目标 benchmark 覆盖情况**：\n- MMLU (14,042), GSM8K (1,319), HumanEval (164), ARC-C (295), HellaSwag (10,042) — PSN-IRT 全部覆盖\n- **TruthfulQA — PSN-IRT 不含**，但 ATLAS 项目 (3PL, `Peiyu-Georgia-Li/ATLAS`) 有 628 items 的参数\n\n已提取的文件在 `artifacts/psn_irt_params/`，带 benchmark 标签的整合文件 `item_parameters_all.csv` 和 5 个单独 benchmark 文件。完整报告在 `artifacts/psn_irt_data_report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-psn-irt-data.md"
+}

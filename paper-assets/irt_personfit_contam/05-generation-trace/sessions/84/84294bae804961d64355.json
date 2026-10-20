@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84294bae804961d64355",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "eval mistral contam25 read results",
+  "task_key": "worker_eval_mistral-contam25-read-results_20260524T063910",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_mistral-contam25-read-results_20260524T063910_result.json",
+    "occurrence": 1,
+    "bytes": 1091,
+    "sha256": "ea83a94930de70558f72f5d4d602840ddb82b8b136441ac38f8062b137cfdbbe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here are the complete contam_25 Mistral results:\n\n## contam_25 完整指标\n\n| Metric | Value |\n|--------|-------|\n| n_seen | 3,510 |\n| n_unseen | 10,532 |\n| θ_MLE | -0.544 |\n| **Accuracy** | overall: 0.620, seen: 0.754, unseen: 0.575 |\n| **lz\\* free** | overall: **-3.066**, seen: -1.866, unseen: -0.865 |\n| **lz\\* fixed** | **-7.276** |\n\n### Cohen's d\n\n| θ mode | point | 95% CI |\n|--------|-------|--------|\n| free (baseline: μ=4.024, σ=2.052) | **3.46** | — |\n| fixed (baseline: μ=3.291, σ=2.522) | **4.19** | [2.66, 13.64] |\n\n## 更新后的剂量表\n\n| 条件 | lz\\*_fixed | Cohen's d (fixed) | 95% CI |\n|------|-----------|-----------|--------|\n| contam_5 | -6.64 | 3.94 | [2.47, 12.93] |\n| contam_15 | -3.48 | 2.69 | [1.53, 9.06] |\n| **contam_25** | **-7.28** | **4.19** | **[2.66, 13.64]** |\n| contam_50 | -11.33 | 5.80 | [3.87, 18.45] |\n\n注意 contam_15 → contam_25 存在跳跃（d 从 2.69 升到 4.19），剂量-效应关系非严格单调（contam_5 的 d=3.94 反而高于 contam_15 的 2.69）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-mistral-contam25-read-results.md"
+}

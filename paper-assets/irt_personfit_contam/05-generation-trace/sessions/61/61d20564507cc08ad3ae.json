@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61d20564507cc08ad3ae",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops kill dup eval",
+  "task_key": "worker_ops_kill-dup-eval_20260523T125009",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-dup-eval_20260523T125009_result.json",
+    "occurrence": 1,
+    "bytes": 1496,
+    "sha256": "8826a3c6e565d5bfa4df576e34746cb4b05eda39ff2f9da0c9a50fdce9f35d91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Killed the two duplicate `contam_25 llama` processes on GPU 3 (PIDs 130063, 130608 + parent shells). However, two **new** eval processes appeared on GPU 3 right after (likely spawned by another agent):\n\n- **PID 131131**: `contam_25 llama` on GPU 3\n- **PID 131201**: `contam_15_s1 llama` on GPU 3\n\n## Report\n\n**Killed:**\n- PID 123754 — already dead\n- PIDs 130058/130063 — duplicate `contam_25 llama` on GPU 3\n- PIDs 130601/130606/130608 — duplicate `contam_25 llama` on GPU 3\n\n**Currently running eval processes (4 GPUs):**\n\n| GPU | PID | Condition | Model | Notes |\n|-----|-----|-----------|-------|-------|\n| 0 | 123059 | contam_25 | llama | Part of chain (→ contam_5 mistral next) |\n| 1 | 128364 | contam_15_s3 | llama | Part of chain (→ contam_25_s2 llama, etc.) |\n| 2 | 124248 | contam_5 | mistral | Standalone |\n| 3 | 128943 | contam_50_s3 | llama | Part of chain (→ contam_5_s2 llama, etc.) |\n| 3 | 131131 | contam_25 | llama | **New, appeared after cleanup** |\n| 3 | 131201 | contam_15_s1 | llama | **New, appeared after cleanup** |\n\n**GPU memory after cleanup:**\n\n| GPU | Used | Total | Util |\n|-----|------|-------|------|\n| 0 | 41.5 GB | 97.9 GB | 96% |\n| 1 | 16.3 GB | 97.9 GB | 93% |\n| 2 | 22.8 GB | 97.9 GB | 98% |\n| 3 | 8.7 GB | 97.9 GB | 91% |\n\nGPU 0 freed ~8.6 GB from the killed process. GPU 3 still has 3 eval processes — the two new ones (131131, 131201) may need to be killed if they weren't intentionally launched."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-dup-eval.md"
+}

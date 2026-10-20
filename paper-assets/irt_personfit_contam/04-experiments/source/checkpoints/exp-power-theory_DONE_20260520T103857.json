@@ -1,0 +1,39 @@
+{
+  "exp_id": "exp-power-theory",
+  "project": "irt_personfit_contam",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T09:53:40.117Z",
+    "updated_at": "2026-05-20T10:38:57.599Z",
+    "hypothesis": "Detection power of lz* follows an analytic function of n_items and contamination level derivable from Snijders (2001) variance formula, and this theoretical curve explains the empirically observed inverted-U shape and n_items dependence with R²>0.95 against simulation data",
+    "parent": "exp-extended-sim",
+    "spec": {
+      "command": "python src/power_theory.py",
+      "server": "local(CPU)",
+      "data_path": "artifacts/extended_simulation/ + artifacts/psn_irt_params/",
+      "data_count": "55 simulation points + 25862 item params",
+      "model_name": "N/A",
+      "seed": "N/A",
+      "checkpoint_path": "artifacts/power_theory/",
+      "log_path": "artifacts/power_theory/power_theory_summary.json",
+      "checkpoint_source": "N/A",
+      "eval_data": "artifacts/extended_simulation/two_sided_power.csv"
+    },
+    "metrics": {
+      "R2_two_sided": 0.9572,
+      "RMSE_two_sided": 0.0746,
+      "R2_left_tail": 0.9764,
+      "R2_mean_lz": 0.9948,
+      "sqrt_n_R2_avg": 0.88,
+      "crossover_range_pct": "81-85%",
+      "min_items_15pct_80power": 7958
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-20T10:38:57.599Z"
+  },
+  "timestamp": "2026-05-20T10:38:57.635039+00:00",
+  "trigger": "update_registry"
+}

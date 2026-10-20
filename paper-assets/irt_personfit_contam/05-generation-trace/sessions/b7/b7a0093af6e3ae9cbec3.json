@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b7a0093af6e3ae9cbec3",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops llama 5pct monitor eval",
+  "task_key": "worker_ops_llama-5pct-monitor-eval_20260522T102341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama-5pct-monitor-eval_20260522T102341_result.json",
+    "occurrence": 1,
+    "bytes": 110,
+    "sha256": "f91effdf16230ce4b6225ad3b4daf8f004c7f32b4f51a36c9ac623f5ca2d0473"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练当前 955/1071（89%），约 2 分钟内完成。已设置 2.5 分钟后轮询检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama-5pct-monitor-eval.md"
+}

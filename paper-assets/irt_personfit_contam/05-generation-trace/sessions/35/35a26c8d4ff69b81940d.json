@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "35a26c8d4ff69b81940d",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "paper writing sec ctrl contam",
+  "task_key": "worker_paper_writing_sec_ctrl_contam_20260520T224331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_sec_ctrl_contam_20260520T224331_result.json",
+    "occurrence": 1,
+    "bytes": 319,
+    "sha256": "8fb0937df5238e916d11ffacaa60adb39f8cf48c79f67a6963bfda015188eded"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Written to `sec_ctrl_contam.tex`. ~290 words covering all five numbered findings with the Figure 3 float. Key style choices: individual seed reporting with s2 variance noted, Cohen's d with ddof=1, no dashes, no -ing phrase endings, and the caption notes the $\\theta_{\\text{fixed}}$ computation method."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-sec-ctrl-contam.md"
+}

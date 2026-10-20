@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af85ed6d35de61ea715b",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops mistral baseline audit",
+  "task_key": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_mistral-baseline-audit_20260523T150325_result.json",
+    "occurrence": 1,
+    "bytes": 2471,
+    "sha256": "a1054f629612435dfb28d6b94530822241c0ad61759bc3be83865ca1240d5db1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。以下是完整结果。\n\n---\n\n## Mistral Clean Baseline 审计报告\n\n### 1. Baseline 来源确认\n\n**mean=4.024, SD=2.052** 来自 `bca_bootstrap.py` 第 88 行的 10 个 hardcoded free-theta lz* 值：\n\n```python\nmistral_free = [5.4175, -1.0456, 3.2792, 3.9558, 4.4910, 5.5030, 5.8982, 5.7996, 3.5214, 3.4159]\n```\n\nmean(10 values) = 4.0236 ≈ 4.024 ✓\n\n### 2. Eval 版本：**V1（Snijders 2001 corrected）**\n\n`eval_lz.py` 第 116-150 行的 `compute_lz_star` 实现包含完整的 Snijders 校正：\n```python\nVar_star = Var_l0 - C_theta ** 2 / I_theta\nreturn (l0 - E_l0) / np.sqrt(Var_star)\n```\n\n**与 Llama 不同，Mistral 不存在 V0/V1 问题。** eval 从一开始就是 V1。\n\n### 3. 6 个 result 文件 vs hardcoded 值对比\n\n| Seed | Result file lz* | bca hardcoded | 匹配 |\n|------|----------------|---------------|------|\n| clean (s1) | 5.4175 | 5.4175 | ✓ |\n| clean_s2 | -1.0456 | -1.0456 | ✓ |\n| clean_s3 | 3.2792 | 3.2792 | ✓ |\n| clean_s8 | 5.7996 | 5.7996 | ✓ |\n| clean_s9 | 3.5214 | 3.5214 | ✓ |\n| clean_s10 | 3.4159 | 3.4159 | ✓ |\n\n6 个可验证的值全部一致。\n\n### 4. Checkpoint 路径（6 个存活）\n\n```\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean/\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s2/\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s3/\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s8/\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s9/\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s10/\n```\n\n每个 checkpoint 下有 3 个子 checkpoint（313/626/939）+ 最终 adapter。\n\n### 5. 丢失的 s4-s7\n\n- **Checkpoints**: 不在此服务器，随旧服务器 19912 丢失\n- **Result files**: 不在此服务器，同样丢失\n- **theta_MLE 值**：在 `theta_fixed_n10_recompute.py` 中有 hardcoded 保留（s4=-1.169, s5=-1.100, s6=-1.141, s7=-1.075）\n- **lz* 值**：在 `bca_bootstrap.py` 中有 hardcoded 保留（s4=3.9558, s5=4.4910, s6=5.5030, s7=5.8982）\n- 这 4 个 lz* 值无法独立验证\n\n### 6. 结论\n\n| 问题 | 状态 |\n|------|------|\n| Mistral 是否存在 V0→V1 问题？ | **否**，eval_lz.py 始终是 V1 |\n| hardcoded 值与 result 文件一致？ | **是**（6/6 匹配） |\n| 需要 re-eval Mistral clean seeds？ | **不需要**（eval 版本正确） |\n| s4-s7 可恢复？ | **不可**（checkpoint 和 result 均丢失） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-mistral-baseline-audit.md"
+}

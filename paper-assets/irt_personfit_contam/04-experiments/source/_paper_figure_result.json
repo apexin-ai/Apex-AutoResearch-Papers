@@ -1,0 +1,130 @@
+{
+  "figures_found": [
+    {
+      "number": "1",
+      "env_type": "figure",
+      "image_path": "fig_1_response_pattern.pdf",
+      "caption": "A clean model's responses track the IRT-predicted probability curve (left); a contaminated model shows anomalous successes on hard items (right, red diamonds), producing a large $|\\Delta\\ell_z^*|$ sig",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": true,
+      "source_file": "sections/introduction.tex"
+    },
+    {
+      "number": "2",
+      "env_type": "figure*",
+      "image_path": "fig_heatmap.pdf",
+      "caption": "Cohen's $|d|$ heatmap (values from Table~\\ref{tab:cohens_d}; multi-seed means where available). Blue intensity reflects effect-size magnitude. Grey cells: conditions not tested.",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "sections/results.tex"
+    },
+    {
+      "number": "3",
+      "env_type": "figure",
+      "image_path": "fig_theta_scatter.pdf",
+      "caption": "Baseline accuracy vs.\\ Cohen's $|d|$ for all model-benchmark combinations (multi-seed means where available; per-seed values in Appendix~\\ref{app:reproducibility}). Diamonds: 5\\%; triangles: 15\\%; squ",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "sections/results.tex"
+    },
+    {
+      "number": "4",
+      "env_type": "figure",
+      "image_path": "fig_dose_response.pdf",
+      "caption": "Dose-response trajectories for Cohen's $|d|$ on MMLU. Qwen free-$\\theta$ (circles) exhibits non-monotonic behavior---signal peaks at 25\\% then declines as $\\theta$-shift absorbs the aberrance. Fixed-$",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "sections/results.tex"
+    },
+    {
+      "number": "A.1",
+      "env_type": "figure",
+      "image_path": "fig_grpo.pdf",
+      "caption": "Post-RL trajectory for Qwen contaminated at 15\\% on MMLU. Left axis: accuracy on seen (solid) and unseen (dashed) items. Right axis: $\\ell_z^*$ seen-unseen gap (green diamonds). GRPO erases the accura",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "sections/appendix.tex"
+    }
+  ],
+  "results": [
+    {
+      "number": "2",
+      "status": "added",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "6",
+      "status": "added",
+      "tool": "",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "5",
+      "status": "added",
+      "tool": "unknown",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.2",
+      "status": "added",
+      "tool": "unknown",
+      "iterations": 0,
+      "error": ""
+    }
+  ],
+  "post_review": {
+    "compile": {
+      "success": true,
+      "pdf_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/_latex_iso_z_v8xrup/main.pdf"
+    },
+    "figure_check": {
+      "passed": false,
+      "critical": [
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Limitations' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "warning": [
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Ethics Statement' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "info": [],
+      "summary": "1 critical, 1 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/paper",
+      "sections": [],
+      "critical": [],
+      "warning": [
+        {
+          "kind": "no_paper_tex",
+          "message": "No section .tex files found under /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/paper",
+          "location": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/paper"
+        }
+      ],
+      "info": [],
+      "summary": {
+        "critical": 0,
+        "warning": 1,
+        "info": 0
+      }
+    }
+  },
+  "backup_dir": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/paper/_figure_backups/20260524_130531",
+  "error": "",
+  "timestamp": "2026-05-24T13:22:56.425080+00:00"
+}

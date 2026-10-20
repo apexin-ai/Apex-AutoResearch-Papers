@@ -1,0 +1,72 @@
+{
+  "exp_id": "exp-ctrl-contam-qwen-15pct-multiseed",
+  "project": "irt_personfit_contam",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T11:39:44.457Z",
+    "updated_at": "2026-05-22T14:12:22.699Z",
+    "hypothesis": "QLoRA contamination training with different random seeds produces consistent lz* effect sizes (low inter-seed variance), demonstrating that the single-run Cohen's d values reported in the paper are representative rather than stochastic outliers. This directly addresses reviewer concern R5-N1 about single-run reliability.",
+    "spec": {
+      "command": "WANDB_MODE=disabled python train.py --condition contam_15 --seed 123 --gpu 0",
+      "server": "westd-35694",
+      "data_path": "/root/autodl-tmp/ctrl_contam_pilot/data/contam_15/train.jsonl",
+      "data_count": "same as contam_15",
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": "123 (additional to original seed 42)",
+      "checkpoint_path": "/root/autodl-tmp/ctrl_contam_pilot/checkpoints/contam_15_s2/",
+      "log_path": "/root/autodl-tmp/ctrl_contam_pilot/results/contam_15_s2/"
+    },
+    "metrics": {
+      "seed_42": {
+        "lz_star_free": 3.8494,
+        "d_free": -6.57,
+        "d_free_ci": [
+          -15.19,
+          -4.54
+        ],
+        "d_fixed": 4.77,
+        "d_fixed_ci": [
+          3.96,
+          7.76
+        ]
+      },
+      "seed_123": {
+        "lz_star_free": 4.939,
+        "d_free": -5.09,
+        "d_free_ci": [
+          -11.72,
+          -3.44
+        ],
+        "d_fixed": 7.79,
+        "d_fixed_ci": [
+          6.49,
+          12.99
+        ]
+      },
+      "stats_free": {
+        "mean_abs_d": 5.83,
+        "sd": 1.05,
+        "range": [
+          5.09,
+          6.57
+        ]
+      },
+      "stats_fixed": {
+        "mean_abs_d": 6.28,
+        "sd": 2.13,
+        "range": [
+          4.77,
+          7.79
+        ]
+      },
+      "n_seeds": 2
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-22T14:12:22.699Z"
+  },
+  "timestamp": "2026-05-22T14:12:22.825805+00:00",
+  "trigger": "update_registry"
+}

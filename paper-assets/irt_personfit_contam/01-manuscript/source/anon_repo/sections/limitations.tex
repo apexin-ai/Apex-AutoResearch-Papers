@@ -1,0 +1,5 @@
+\section*{Limitations}
+
+Our controlled experiments cover three 7--8B model families with QLoRA fine-tuning; generalization to larger scales, mixture-of-experts architectures, full-parameter fine-tuning, and pretraining-stage contamination remains untested.
+Most contamination conditions use a single training run, and multi-seed replication (available for Qwen, Llama, and Mistral) reveals high seed dependence at 50\% contamination (CV${=}$60\%), partially resolved by $\theta$-anchoring; the post-RL characterization is $N{=}1$.
+The framework depends on pre-calibrated 4PL item parameters from PSN-IRT, whose calibration sample may include contaminated models, and we do not provide head-to-head comparison with logit-based methods (MIA, ConStat) that operate at a different information level.

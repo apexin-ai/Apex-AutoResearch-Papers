@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "0b8051c13d942901a986",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "code llama status eval",
+  "task_key": "worker_code_llama-status-eval_20260520T225334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama-status-eval_20260520T225334.log",
+    "occurrence": 1,
+    "bytes": 838003,
+    "sha256": "4e7b0ba068fed758ad45eec6074a5723bf4579e2dd5c4878145cf7ab2b22f93c"
+  },
+  "statistics": {
+    "messages": 703,
+    "user_turns": 0,
+    "tool_calls": 328,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 43,
+      "tool_call": 328,
+      "tool_result": 328,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 703,
+      "chunks": [
+        {
+          "path": "0b8051c13d942901a986-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0b8051c13d942901a986-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "0b8051c13d942901a986-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "0b8051c13d942901a986-part-0004.json",
+          "message_count": 163
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-llama-status-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "152f4d0c5f3542d52693",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code exp 4pl real data degradation",
+  "task_key": "worker_code_exp-4pl-real-data-degradation_20260520T143122",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-4pl-real-data-degradation_20260520T143122_result.json",
+    "occurrence": 1,
+    "bytes": 897,
+    "sha256": "209417b798a38d2462807c1628b9b26c0e20ffb2e4bc6194173a3d82439bd036"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。6 个产出已注册。核心发现：\n\n**d 参数影响极其显著，尤其对高能力模型。** 4PL 与 3PL(d=1) 的 lz* 仅有弱相关（r=0.225, RMSE=68.41），主要由高 θ 模型驱动：\n\n| 影响维度 | 结果 |\n|---------|------|\n| 最受影响 benchmark | MMLU（mean\\|Δlz*\\|=58.3），46% items d<0.95 |\n| 最受影响模型 | DeepSeek-V3（θ=3.77），MMLU 上 3PL lz* 从 +16.4 暴跌至 -340.6 |\n| 低能力模型 | Gemma-2B-it / Vicuna / Mistral 几乎不受影响（\\|Δlz*\\|<2） |\n| 偏移方向 | 3PL 系统性压低高能力模型的 lz*，因为 d=1 使 P→1，放大了少量错误的异常程度 |\n\n**结论**：在 LLM benchmark 数据上，忽略 d 参数会使 lz* 对高能力模型完全失效——d 引入的偏差远超任何 contamination 信号。4PL 的 d 参数对有效的 person-fit 分析不可或缺。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-4pl-real-data-degradation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9878ece299accec20f48",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code 19912 arcc eval then llama",
+  "task_key": "worker_code_19912-arcc-eval-then-llama_20260521T124530",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_19912-arcc-eval-then-llama_20260521T124530_result.json",
+    "occurrence": 1,
+    "bytes": 2068,
+    "sha256": "f04dc04f04529e996bc56087c501888dcfa290efc6daa288434a5868edaaaaf8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## Final Status Report\n\n### Phase 1: ARC-C Training Check\nAll clean_s7-s10 training completed on westd-19912. Checkpoints present.\n\n### Phase 2: ARC-C s7-s10 Eval Results\n\n| Condition | theta_mle | lz_star | accuracy | n_items |\n|-----------|-----------|---------|----------|---------|\n| clean_s7  | 0.706     | -5.585  | 89.15%   | 295     |\n| clean_s8  | 0.851     | -5.400  | 90.51%   | 295     |\n| clean_s9  | 0.887     | -5.536  | 90.17%   | 295     |\n| clean_s10 | 0.811     | -5.073  | 90.51%   | 295     |\n\nAll lz* values strongly negative (range -5.07 to -5.59), consistent with clean (non-contaminated) models showing expected response patterns.\n\n### Phase 3: Llama Deployment to westd-19912\n- **Model**: Llama-3.1-8B-Instruct downloaded via ModelScope (4 shards, ~15.1GB total)\n- **train.py**: Written with extended SEED_MAP (s8=305, s9=306, s10=307, s11=308)\n- **Data**: alpaca_data.json fetched via git sparse clone from GitHub, clean/train.jsonl generated (5000 items, MD5 matches 35694: `c3db36bad71fb0bb64e6ca77eeae6de4`)\n\n### Phase 4: Llama Training on westd-19912\n\n| Condition  | GPU | Seed | PID   | tmux session    | Status   |\n|------------|-----|------|-------|-----------------|----------|\n| clean_s8   | 0   | 305  | 32686 | llama_clean_s8  | RUNNING  |\n| clean_s9   | 1   | 306  | 32762 | llama_clean_s9  | RUNNING  |\n| clean_s10  | 2   | 307  | 32838 | llama_clean_s10 | RUNNING  |\n| clean_s11  | 3   | 308  | 33176 | llama_clean_s11 | RUNNING  |\n\nAll 4 jobs tokenizing + training confirmed (939 steps, ~2.2s/it on GPUs 0-2, ~1.1s/it on GPU 3). ETA: ~35 min on GPU 3, ~70 min on GPUs 0-2.\n\n### Anomalies\n- GPU 3 trains ~2x faster than GPUs 0-2 (1.1s/it vs 2.2s/it) — possibly different memory contention or PCIe topology. Not a problem, just asymmetric completion times.\n- eval_lz.py and mmlu_params.csv not yet transferred to 19912 (needed for MMLU eval after training, not blocking training).\n\n### Cleanup\n- HTTP server on 35694 (PID 143280) killed\n- Temp files on 19912 removed"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-19912-arcc-eval-then-llama.md"
+}

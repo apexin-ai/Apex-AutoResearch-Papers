@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "d8d0e29d94b004cc20d9",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "paper fix table3 mistral single seed",
+  "task_key": "worker_paper_fix-table3-mistral-single-seed_20260524T111301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-table3-mistral-single-seed_20260524T111301.log",
+    "occurrence": 1,
+    "bytes": 620787,
+    "sha256": "521a0fca383f6d9b6e28ab5aaed95d4ffa356921e98da9ca7c4656ed335daeb8"
+  },
+  "statistics": {
+    "messages": 152,
+    "user_turns": 1,
+    "tool_calls": 56,
+    "roles": {
+      "log": 1,
+      "system": 13,
+      "record": 1,
+      "assistant": 26,
+      "tool_call": 56,
+      "tool_result": 54,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 119,
+      "chunks": [
+        {
+          "path": "d8d0e29d94b004cc20d9-part-0001.json",
+          "message_count": 119
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 33,
+      "chunks": [
+        {
+          "path": "d8d0e29d94b004cc20d9-part-0001.json",
+          "message_count": 27
+        },
+        {
+          "path": "d8d0e29d94b004cc20d9-part-0002.json",
+          "message_count": 6
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-fix-table3-mistral-single-seed.md"
+}

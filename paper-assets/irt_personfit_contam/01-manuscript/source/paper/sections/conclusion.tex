@@ -1,0 +1,8 @@
+\section{Conclusion}\label{sec:conclusion}
+
+We presented the first empirical characterization of IRT person-fit statistics for LLM benchmark contamination detection, evaluating $\ell_z^*$ across three 7--8B model families (Qwen, Llama, Mistral), two benchmarks (MMLU, ARC-C), and four contamination levels (5\%--50\%).
+Our controlled experiments reveal three behavioral boundaries: (i)~$\theta$-shift absorption, where contamination inflates ability estimates and attenuates person-fit signals in a model-dependent manner, necessitating $\theta$-anchoring for high-ability models; (ii)~a detection-diagnosis tradeoff, where simpler statistics detect more powerfully but only $\ell_z^*$ supports mechanistic analysis; and (iii)~non-monotonic dose-response under free-$\theta$ estimation, which is a $\theta$-estimation artifact eliminated by anchoring.
+These findings establish that binary response patterns, combined with externally calibrated item parameters, carry sufficient information for contamination detection, though diagnostic $\theta$-anchoring additionally requires a clean baseline; detection and diagnosis require different tools.
+
+A preliminary post-RL pilot suggests person-fit anomalies persist after RL, complementing logit-based methods that fail in this setting.
+Future work should extend to larger models, pretraining-stage contamination, and multi-family post-RL validation.

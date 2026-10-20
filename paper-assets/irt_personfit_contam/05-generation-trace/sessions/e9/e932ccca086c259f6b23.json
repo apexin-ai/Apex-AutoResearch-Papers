@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "e932ccca086c259f6b23",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "code mistral eval s4s7 19912",
+  "task_key": "worker_code_mistral-eval-s4s7-19912_20260521T145553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mistral-eval-s4s7-19912_20260521T145553.log",
+    "occurrence": 1,
+    "bytes": 861888,
+    "sha256": "7c0e935b1ebc5c2f2b34f7f50b11cc13f784d0b343214b505784e00f1235a40e"
+  },
+  "statistics": {
+    "messages": 646,
+    "user_turns": 0,
+    "tool_calls": 295,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 52,
+      "tool_call": 295,
+      "tool_result": 295,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 646,
+      "chunks": [
+        {
+          "path": "e932ccca086c259f6b23-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e932ccca086c259f6b23-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e932ccca086c259f6b23-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "e932ccca086c259f6b23-part-0004.json",
+          "message_count": 106
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-mistral-eval-s4s7-19912.md"
+}

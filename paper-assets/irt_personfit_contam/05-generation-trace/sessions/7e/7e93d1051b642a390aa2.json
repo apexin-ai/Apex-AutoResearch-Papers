@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "7e93d1051b642a390aa2",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "code p0 grpo fix eval pipeline",
+  "task_key": "worker_code_p0-grpo-fix-eval-pipeline_20260521T071635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_p0-grpo-fix-eval-pipeline_20260521T071635.log",
+    "occurrence": 1,
+    "bytes": 689625,
+    "sha256": "e3c7cac6908289f6f85c413612f66222cb87486a43ea89bcd048fcd5206eb5b1"
+  },
+  "statistics": {
+    "messages": 331,
+    "user_turns": 0,
+    "tool_calls": 124,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 80,
+      "tool_call": 124,
+      "tool_result": 124
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 331,
+      "chunks": [
+        {
+          "path": "7e93d1051b642a390aa2-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7e93d1051b642a390aa2-part-0002.json",
+          "message_count": 151
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-p0-grpo-fix-eval-pipeline.md"
+}

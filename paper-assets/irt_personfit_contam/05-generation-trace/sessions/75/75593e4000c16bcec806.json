@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75593e4000c16bcec806",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code ctrl contam pilot deploy",
+  "task_key": "worker_code_ctrl-contam-pilot-deploy_20260520T144815",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ctrl-contam-pilot-deploy_20260520T144815_result.json",
+    "occurrence": 1,
+    "bytes": 555,
+    "sha256": "0afd1a7c93056b659fde4b4ec19032f19154f113594edbb5f3b531b62ce3f039"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型下载仍在进行中，4个 shard 并行下载：\n\n| Shard | Progress | Speed | ETA |\n|-------|----------|-------|-----|\n| 1/4 (3.67G) | 41% (1.50G) | 838 KB/s | ~46 min |\n| 2/4 (3.60G) | 41% (1.47G) | 806 KB/s | ~47 min |\n| 3/4 (3.60G) | 41% (1.49G) | 869 KB/s | ~43 min |\n| 4/4 (3.31G) | 48% (1.59G) | 933 KB/s | ~33 min |\n\n瓶颈是 shard 2，预计还需约 **45-50 分钟**完成。下载完成后我会继续执行 dry-run → 提交训练。\n\n需要我定期轮询状态，还是你下载完成后再叫我继续？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ctrl-contam-pilot-deploy.md"
+}

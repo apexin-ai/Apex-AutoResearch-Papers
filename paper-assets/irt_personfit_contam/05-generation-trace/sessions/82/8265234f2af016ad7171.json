@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "8265234f2af016ad7171",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "code exp natural experiment",
+  "task_key": "worker_code_exp-natural-experiment_20260520T125039",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-natural-experiment_20260520T125039.log",
+    "occurrence": 1,
+    "bytes": 568925,
+    "sha256": "cf009be662fa5627c5db3839608d377459c2c3bcab73ccbea17a9eecd35f2ac0"
+  },
+  "statistics": {
+    "messages": 262,
+    "user_turns": 0,
+    "tool_calls": 100,
+    "roles": {
+      "log": 1,
+      "system": 10,
+      "record": 1,
+      "assistant": 49,
+      "tool_call": 100,
+      "tool_result": 100,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 262,
+      "chunks": [
+        {
+          "path": "8265234f2af016ad7171-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8265234f2af016ad7171-part-0002.json",
+          "message_count": 82
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-natural-experiment.md"
+}

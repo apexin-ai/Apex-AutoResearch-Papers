@@ -1,0 +1,37 @@
+{
+  "exp_id": "exp-llama-15pct-s3",
+  "project": "irt_personfit_contam",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T09:44:06.341Z",
+    "updated_at": "2026-05-23T14:10:37.397Z",
+    "hypothesis": "Llama-3.1-8B 15% MMLU contamination with seed=456 produces consistent ℓz* anomaly, completing 3-seed reproducibility evidence for this model-condition pair.",
+    "spec": {
+      "model_name": "Llama-3.1-8B-Instruct",
+      "seed": 456,
+      "data_path": "/root/autodl-tmp/ctrl_contam_pilot/data/contam_15/train.jsonl",
+      "data_count": 5000,
+      "server": "westd-35694",
+      "command": "python train.py --condition contam_15_s3 --model llama --gpu 0"
+    },
+    "metrics": {
+      "lz_star": -4.5067,
+      "theta_mle": -0.3251,
+      "acc_overall": 0.6584,
+      "acc_seen": 0.7854,
+      "acc_unseen": 0.636,
+      "d_free": -4.994,
+      "clean_baseline": {
+        "mean": -0.312,
+        "std": 0.84,
+        "n": 10
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-23T14:10:37.548723+00:00",
+  "trigger": "update_registry"
+}

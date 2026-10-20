@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "855ccf8ce1aa6716587e",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code eval llama s4s7 35694",
+  "task_key": "worker_code_eval-llama-s4s7-35694_20260521T122425",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval-llama-s4s7-35694_20260521T122425_result.json",
+    "occurrence": 1,
+    "bytes": 2540,
+    "sha256": "5013ed7c50390a6b506ceecd3cfc8c03540c8d94e2c5819c592ff2458c2df06c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the complete summary.\n\n---\n\n## 产出总结\n\n### 1. Phase 1: Llama clean_s4-s7 Eval 结果（4 GPU 并行，已完成）\n\n| Seed | theta_mle | lz* | accuracy | n_items |\n|------|-----------|-----|----------|---------|\n| s4 | -0.644 | 0.021 | 0.592 | 14042 |\n| s5 | -0.630 | 1.732 | 0.597 | 14042 |\n| s6 | -0.603 | 2.847 | 0.601 | 14042 |\n| s7 | -0.636 | -0.401 | 0.593 | 14042 |\n\nRegistry: 4 条均已注册为 DONE。\n\n### 2. Phase 2: GPU 分配 + PID\n\n| GPU | 任务 | PID | 状态 |\n|-----|------|-----|------|\n| 0 | Mistral clean_s2 eval | 139998 | **DONE** (~14min) |\n| 1 | Mistral clean_s3 eval | 140492 | **DONE** (~14min) |\n| 2 | GRPO v3 training (exp-post-rl-v3) | 141861 | **RUNNING** step 264/3000 |\n| 3 | (空闲——Llama s2/s3 已有结果) | — | — |\n\n### 3. Phase 2 Eval 结果: Mistral clean_s2/s3\n\n| Condition | theta_mle | lz* | accuracy | n_items |\n|-----------|-----------|-----|----------|---------|\n| clean_s2 | -0.963 | -1.046 | 0.543 | 14042 |\n| clean_s3 | -0.973 | 3.279 | 0.541 | 14042 |\n\nRegistry: 2 条均已注册为 DONE。\n\n### 4. GRPO v3 启动验证\n\n- **启动成功**：经两次修复后（`generation_batch_size=16` + `WANDB_MODE=disabled`）正常启动\n- **当前进度**：step 264/3000，~2.65s/it，ETA ~2h\n- **frac_reward_zero_std**：所有 logged steps 均在 0.2-0.8 范围内，**全部 < 1.0** ✓\n- 关键指标趋势：\n  - reward: -0.1 ~ 0.925（波动正常，overall 正向）\n  - entropy: 1.6-1.9（健康范围）\n  - clip_ratio: < 0.005（很低，训练稳定）\n- **日志路径**：`~/runs/irt_personfit_contam/exp-post-rl-v3.log`\n- **tmux session**：`exp-post-rl-v3`\n\n### 5. 异常 / 注意事项\n\n1. **lz\\* 跨 seed 方差大**：Llama clean seeds lz\\* 范围 [-0.401, 2.847]，Mistral clean seeds 范围 [-1.046, 3.279]。clean 条件下 lz\\* 的 seed 间变异远大于预期（理论上应接近 0），这对后续用 lz\\* 区分 clean vs contam 的 discriminability 可能构成挑战。\n2. **GRPO v3 metrics 延迟可见**：因 `report_to=\"wandb\"` + `WANDB_MODE=disabled`，前 ~100 步的 metrics 未实时输出到 log（仅 tqdm progress bar），后续 step 才开始 flush metrics 行。建议未来将 `report_to=\"none\"` 或配置 wandb offline 以确保 stdout 日志完整。\n3. **Phase 1 nohup 路径问题**：batch 启动 4 个 nohup 子进程时，3 个未继承 conda PATH 导致 `python` not found，需用绝对路径 `/root/miniconda3/bin/python`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-llama-s4s7-35694.md"
+}

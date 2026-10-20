@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6c30bbe851b9497eec9",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "eval grpo mia",
+  "task_key": "worker_eval_grpo-mia_20260523T005921",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_grpo-mia_20260523T005921_result.json",
+    "occurrence": 1,
+    "bytes": 720,
+    "sha256": "3d871a6513524e28f77efb4f3584596770b9db831c5e3d9db3429e6715727a55"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个 GRPO checkpoint 全部完成。汇总结果：\n\n## MIA AUC-ROC 结果（Min-K% 10%）\n\n| Stage | AUC-ROC |\n|---|---|\n| Base | 0.4929 |\n| SFT (15%) | 0.6111 |\n| GRPO step 500 | 0.4929 |\n| GRPO step 1000 | 0.4928 |\n| GRPO step 1500 | 0.4930 |\n\n三个 GRPO checkpoint 的 MIA AUC-ROC 在所有指标上几乎完全一致（0.486–0.493），与 base model 无差异，全部接近随机水平 0.5。GRPO RL 训练没有让 MIA 检测能力恢复——SFT 引入的可区分性（0.611）在 GRPO 之后完全消失，回到了 base 水平。\n\n这说明 GRPO 的 RL 训练有效地\"洗掉\"了 SFT 阶段留下的 membership 信号，使得 Min-K% MIA 无法区分 seen/unseen 数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-grpo-mia.md"
+}

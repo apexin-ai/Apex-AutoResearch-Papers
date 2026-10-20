@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "232c3d311a6cf8b7e479",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "analysis false positive rate",
+  "task_key": "worker_analysis_false-positive-rate_20260524T082828",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_false-positive-rate_20260524T082828_result.json",
+    "occurrence": 1,
+    "bytes": 718,
+    "sha256": "17bbf99731a2247f317a52551403b48856d51bcfd0df3eff01210a1457acb567"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n**数据**：26 个 clean seeds（Qwen 10, Llama 10, Mistral 6）\n\n**lz* 分布**：\n- Qwen: mean=8.68, 全部强正值\n- Llama: mean=0.26, 范围 [-2.25, 2.85]\n- Mistral: mean=3.40, 范围 [-1.05, 5.80]\n\n**False Positive Rate**：\n| 阈值 | FPR |\n|------|-----|\n| α=0.05 (lz*<-1.96) | 1/26 = 3.8% |\n| α=0.01 (lz*<-2.58) | 0/26 = 0% |\n| α=0.001 (lz*<-3.0) | 0/26 = 0% |\n\n唯一的 borderline case 是 Llama s10（lz*=-2.25），介于 0.05 和 0.01 阈值之间，符合预期 Type I error rate。\n\n文件已写入 `artifacts/rebuttal/false_positive_analysis.tex`，包含 FPR 汇总表、逐 seed 审计表、以及可直接嵌入论文的分析段落。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-false-positive-rate.md"
+}

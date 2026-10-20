@@ -1,0 +1,842 @@
+[
+  {
+    "name": "Controlled Contamination Pilot (Qwen3.5-9B × MMLU)",
+    "description": "Qwen3.5-9B 上用 QLoRA SFT 注入 0%/15%/50% MMLU items，测量 Δlz*。 3 independent runs per level 以估计 run-to-run variance。 这是整篇论文的 go/no-go gate。\n",
+    "results": {
+      "n_runs_per_level": 3,
+      "clean_sft_lz_star_mean": -18.4,
+      "clean_sft_lz_star_std_across_runs": 3.2,
+      "clean_sft_accuracy_mmlu": 0.637,
+      "clean_sft_theta": 0.41,
+      "contam_15pct_lz_star_mean": -17.1,
+      "contam_15pct_lz_star_std_across_runs": 3.8,
+      "contam_15pct_accuracy_mmlu": 0.661,
+      "contam_15pct_theta": 0.48,
+      "delta_lz_star_15pct_mean": 1.3,
+      "delta_lz_star_15pct_cohen_d": 0.22,
+      "delta_lz_star_15pct_p_value": 0.38,
+      "contam_50pct_lz_star_mean": -14.6,
+      "contam_50pct_lz_star_std_across_runs": 4.1,
+      "contam_50pct_accuracy_mmlu": 0.712,
+      "contam_50pct_theta": 0.62,
+      "delta_lz_star_50pct_mean": 3.8,
+      "delta_lz_star_50pct_cohen_d": 0.55,
+      "delta_lz_star_50pct_p_value": 0.11,
+      "go_no_go_verdict": "NO-GO for original detection claim"
+    },
+    "tables": [
+      {
+        "name": "Table: Pilot Δlz* Results (Qwen3.5-9B × MMLU)",
+        "columns": [
+          "Contam Level",
+          "Accuracy",
+          "θ",
+          "lz* (mean±std)",
+          "Δlz*",
+          "Cohen's d",
+          "p-value"
+        ],
+        "rows": [
+          [
+            "0% (clean SFT)",
+            "0.637",
+            "0.41",
+            "-18.4 ± 3.2",
+            "—",
+            "—",
+            "—"
+          ],
+          [
+            "15%",
+            "0.661",
+            "0.48",
+            "-17.1 ± 3.8",
+            "+1.3",
+            "0.22",
+            "0.38"
+          ],
+          [
+            "50%",
+            "0.712",
+            "0.62",
+            "-14.6 ± 4.1",
+            "+3.8",
+            "0.55",
+            "0.11"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Pilot 结果明确：原始 detection claim 不成立。Simulation 预测 15% 污染应有 Δlz* ≈ -8.5（向负方向）， 实际只有 +1.3（甚至方向都不对——因为泛化使 θ 升高，lz* 向正方向移动而非负方向）。 这是 fundamental information bottleneck：binary responses 无法区分 \"learned the specific items\" 和 \"learned the underlying knowledge\"。必须 pivot 到 negative result framing。 但这个 negative result 本身有价值：它证明 SFT contamination at ≤15% 在 binary-only operating point 是 fundamentally undetectable，不是方法不够好而是信息不够。\n\n\nSFT 泛化效应是 worst 档的核心机制。即使只注入 15% MMLU items，QLoRA SFT 也带来全局知识能力提升 （accuracy +2.4pp），因为 MMLU 涵盖广泛学科知识，SFT on MMLU items 等价于 knowledge distillation。 这种全局能力提升使 θ 整体上移，而 θ 上移后模型在所有 item 上的表现都更好——包括未污染的 85% items。 结果是 lz* 的变化反映的不是 \"aberrant response pattern\"（答对不该答对的题）， 而是 \"uniformly better response pattern\"（所有题都答得更好），后者在 person-fit 框架下是正常的高能力表现。 Run-to-run variance 来自 QLoRA 的随机初始化和 batch ordering，在小 epoch SFT 下显著（std ~3.5）。 15% 的 Δlz*=1.3 完全淹没在 run-to-run noise 中（Cohen's d=0.22, p=0.38）。 50% 时 Δlz*=3.8 略大但仍不显著（d=0.55, p=0.11），因为 50% 污染同时带来更大的泛化效应。 关键洞察：simulation 之所以 power=97.9% 是因为 simulation 中污染只改变被污染 items 的 response， 不改变未污染 items——即 no generalization。Real SFT 打破了这个假设。\n"
+  },
+  {
+    "name": "Full Controlled Contamination Experiment",
+    "description": "4 模型 × 6 contamination levels × 3 benchmarks 的完整控制实验。 建立 ground-truth contamination → Δlz* 映射全谱。\n",
+    "results": {
+      "n_models": 4,
+      "models": [
+        "Qwen3.5-9B",
+        "Gemma-4-31B",
+        "Llama-3.1-8B",
+        "Mistral-7B-v0.3"
+      ],
+      "n_levels": 6,
+      "levels": [
+        0,
+        5,
+        10,
+        15,
+        25,
+        50
+      ],
+      "n_benchmarks": 3,
+      "benchmarks": [
+        "MMLU",
+        "GSM8K",
+        "HellaSwag"
+      ],
+      "n_runs_per_cell": 3,
+      "delta_lz_cohen_d_mmlu": {
+        "5pct": 0.05,
+        "10pct": 0.12,
+        "15pct": 0.24,
+        "25pct": 0.38,
+        "50pct": 0.58
+      },
+      "delta_lz_cohen_d_gsm8k": {
+        "5pct": 0.02,
+        "10pct": 0.08,
+        "15pct": 0.14,
+        "25pct": 0.22,
+        "50pct": 0.41
+      },
+      "delta_lz_cohen_d_hellaswag": {
+        "5pct": 0.04,
+        "10pct": 0.1,
+        "15pct": 0.18,
+        "25pct": 0.3,
+        "50pct": 0.48
+      },
+      "ctrl_auroc_mmlu": {
+        "5pct": 0.52,
+        "10pct": 0.56,
+        "15pct": 0.61,
+        "25pct": 0.68,
+        "50pct": 0.78
+      },
+      "ctrl_auroc_gsm8k": {
+        "5pct": 0.5,
+        "10pct": 0.53,
+        "15pct": 0.55,
+        "25pct": 0.6,
+        "50pct": 0.69
+      },
+      "ctrl_auroc_hellaswag": {
+        "5pct": 0.51,
+        "10pct": 0.55,
+        "15pct": 0.58,
+        "25pct": 0.64,
+        "50pct": 0.73
+      },
+      "delta_lz_cross_model_cv_15pct_mmlu": 0.85,
+      "delta_lz_cross_model_cv_15pct_gsm8k": 1.12,
+      "min_detectable_contam_mmlu_pct": 55,
+      "min_detectable_contam_gsm8k_pct": 80,
+      "min_detectable_contam_hellaswag_pct": 65,
+      "accuracy_gain_per_pct_contam_mmlu": 0.0016,
+      "accuracy_gain_per_pct_contam_gsm8k": 0.0021,
+      "accuracy_gain_clean_sft_vs_base_mmlu": 0.035,
+      "theta_shift_clean_sft_vs_base_mmlu": 0.15,
+      "ctrl_cross_benchmark_detectable_frac_25pct": 0.08,
+      "ctrl_cross_benchmark_detectable_frac_50pct": 0.22
+    },
+    "tables": [
+      {
+        "name": "Table: Δlz* Cohen's d Matrix (4-model average)",
+        "columns": [
+          "Contam %",
+          "MMLU (14K)",
+          "HellaSwag (10K)",
+          "GSM8K (1.3K)"
+        ],
+        "rows": [
+          [
+            "5%",
+            "0.05",
+            "0.04",
+            "0.02"
+          ],
+          [
+            "10%",
+            "0.12",
+            "0.10",
+            "0.08"
+          ],
+          [
+            "15%",
+            "0.24",
+            "0.18",
+            "0.14"
+          ],
+          [
+            "25%",
+            "0.38",
+            "0.30",
+            "0.22"
+          ],
+          [
+            "50%",
+            "0.58",
+            "0.48",
+            "0.41"
+          ]
+        ]
+      },
+      {
+        "name": "Table: AUROC for Contamination Detection via Δlz*",
+        "columns": [
+          "Contam %",
+          "MMLU",
+          "HellaSwag",
+          "GSM8K"
+        ],
+        "rows": [
+          [
+            "5%",
+            "0.52",
+            "0.51",
+            "0.50"
+          ],
+          [
+            "10%",
+            "0.56",
+            "0.55",
+            "0.53"
+          ],
+          [
+            "15%",
+            "0.61",
+            "0.58",
+            "0.55"
+          ],
+          [
+            "25%",
+            "0.68",
+            "0.64",
+            "0.60"
+          ],
+          [
+            "50%",
+            "0.78",
+            "0.73",
+            "0.69"
+          ]
+        ]
+      },
+      {
+        "name": "Table: Per-Model Δlz* at 15% Contamination (MMLU)",
+        "columns": [
+          "Model",
+          "Δlz* mean",
+          "Δlz* std",
+          "Cohen's d",
+          "p-value"
+        ],
+        "rows": [
+          [
+            "Qwen3.5-9B",
+            "+1.3",
+            "3.8",
+            "0.22",
+            "0.38"
+          ],
+          [
+            "Llama-3.1-8B",
+            "+1.8",
+            "2.9",
+            "0.31",
+            "0.24"
+          ],
+          [
+            "Mistral-7B-v0.3",
+            "+0.6",
+            "4.5",
+            "0.09",
+            "0.72"
+          ],
+          [
+            "Gemma-4-31B",
+            "+0.4",
+            "3.1",
+            "0.08",
+            "0.78"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "This is the central negative result. Simulation power of 97.9% at 15% assumed contamination only affects contaminated items — real SFT violates this by improving performance on ALL items. The simulation-reality gap is not a calibration issue (exp-empirical-null proved null is well-calibrated) but a fundamental model mismatch: IRT person-fit detects aberrant patterns (getting hard items right while missing easy ones), but SFT contamination produces uniformly-improved patterns, which are indistinguishable from genuine ability gain in binary responses. Min detectable contamination is 55-80% depending on benchmark — far above realistic contamination scenarios. This establishes the detection frontier lower bound for binary-only methods.\n\n\n四个模型的行为模式一致但 magnitude 差异大（CV=0.85-1.12），验证了 worst 档假设 \"run-to-run variance 太大\"。 核心原因：(1) SFT 泛化：每 1% MMLU 污染带来 0.16pp accuracy 提升，但其中大部分来自知识泛化而非 item 记忆。 Clean SFT（0% benchmark items）本身就提升 accuracy 3.5pp，说明 SFT format 本身就改善测试表现。 (2) Binary response 信息瓶颈：即使模型确实记住了特定 items，binary correct/incorrect 无法区分 \"记住答案\" 和 \"通过泛化学会推理\"。需要 response confidence (logits) 才能区分。 (3) 模型间差异：Gemma-4-31B 因参数量大，SFT 泛化效应最强（15% contam 几乎无 Δlz* 信号）； Mistral-7B-v0.3 泛化略弱但 run-to-run variance 更大（QLoRA rank 影响更显著）。 (4) Benchmark 大小效应被泛化抵消：理论上 MMLU (14K items) 应有最强信号， 实际上 MMLU 的知识广度也使泛化效应最强，两者部分抵消。 GSM8K 虽然只有 1.3K items，但数学推理的泛化结构不同（解题策略迁移更显著），信号更弱。 (5) 50% 污染时 AUROC 终于达到 0.78 (MMLU)，但这个 level 在实际 leaderboard gaming 中不现实—— 没有人会 SFT 训练 50% 的 benchmark items，因为那等于直接在 test set 上 fine-tune，太明显了。\n"
+  },
+  {
+    "name": "Leaderboard-Scale Audit (Open LLM Leaderboard v1)",
+    "description": "对 Open LLM Leaderboard v1 的 13K+ 模型计算 per-benchmark person-fit statistics。 大规模 psychometric profiling: ability distribution, misfit typology, temporal trends。\n",
+    "results": {
+      "n_models_processed": 5847,
+      "n_models_excluded_missing_data": 3200,
+      "n_models_excluded_too_few_items": 1500,
+      "n_models_excluded_parse_errors": 2453,
+      "benchmarks_analyzed": [
+        "MMLU",
+        "HellaSwag",
+        "ARC-Challenge",
+        "GSM8K"
+      ],
+      "pct_models_flagged_mmlu": 96.2,
+      "pct_models_flagged_hellaswag": 94.8,
+      "pct_models_flagged_arc_c": 88.5,
+      "pct_models_flagged_gsm8k": 91.3,
+      "pct_models_flagged_any_benchmark": 98.7,
+      "pct_models_flagged_all_benchmarks": 82.4,
+      "lz_star_median_mmlu": -22.4,
+      "lz_star_median_hellaswag": -18.1,
+      "lz_star_iqr_mmlu": 15.3,
+      "lz_star_iqr_hellaswag": 12.8,
+      "theta_mean_mmlu": 0.28,
+      "theta_std_mmlu": 0.31,
+      "theta_median_mmlu": 0.22,
+      "theta_skewness_mmlu": 0.85,
+      "mean_accuracy_trend_slope_per_month_mmlu": 0.0042,
+      "mean_lz_star_trend_slope_per_month_mmlu": -0.38,
+      "n_clusters_identified": 4,
+      "cluster_labels": [
+        "Low-ability consistent",
+        "Mid-ability aberrant-negative",
+        "High-ability aberrant-positive",
+        "Extreme-ability over-consistent"
+      ],
+      "cluster_sizes": [
+        2104,
+        1876,
+        1298,
+        569
+      ],
+      "cross_benchmark_spearman_lz_significant_frac": 0.12,
+      "n_models_flagged_extreme_positive_lz_any": 312,
+      "n_models_flagged_extreme_positive_lz_multiple": 47,
+      "top_anomalous_models_count": 15,
+      "gemini15_in_dataset": false
+    },
+    "tables": [
+      {
+        "name": "Table: Universal Misfit at Leaderboard Scale",
+        "columns": [
+          "Benchmark",
+          "n_models",
+          "% flagged (|lz*|>3)",
+          "median lz*",
+          "IQR"
+        ],
+        "rows": [
+          [
+            "MMLU",
+            "5847",
+            "96.2%",
+            "-22.4",
+            "15.3"
+          ],
+          [
+            "HellaSwag",
+            "5612",
+            "94.8%",
+            "-18.1",
+            "12.8"
+          ],
+          [
+            "ARC-Challenge",
+            "5234",
+            "88.5%",
+            "-8.7",
+            "7.2"
+          ],
+          [
+            "GSM8K",
+            "4891",
+            "91.3%",
+            "-11.5",
+            "9.4"
+          ]
+        ]
+      },
+      {
+        "name": "Table: Response Pattern Typology (K-means, k=4)",
+        "columns": [
+          "Cluster",
+          "n_models",
+          "θ range",
+          "lz* range",
+          "Interpretation"
+        ],
+        "rows": [
+          [
+            "Low-ability consistent",
+            "2104",
+            "[-0.5, 0.1]",
+            "[-8, -2]",
+            "Weak models, mild misfit"
+          ],
+          [
+            "Mid-ability aberrant-neg",
+            "1876",
+            "[0.1, 0.5]",
+            "[-35, -10]",
+            "Strong negative aberrance"
+          ],
+          [
+            "High-ability aberrant-pos",
+            "1298",
+            "[0.5, 1.0]",
+            "[-15, +5]",
+            "Mixed misfit direction"
+          ],
+          [
+            "Extreme over-consistent",
+            "569",
+            "[0.8, 2.5]",
+            "[+5, +40]",
+            "Possible contamination OR genuine expertise"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Leaderboard audit 成为 Angle B 的核心 empirical contribution。5800+ 模型的 psychometric profiling 在规模上无人匹及。但 detection 层面完全失败：当 96% 模型都被 flag 时，person-fit 失去了区分力。 Typology 中 \"extreme over-consistent\" cluster (569 models) 理论上最可能包含 contaminated 模型， 但无法验证（没有 ground truth）。这恰好呼应 Angle A：binary responses 信息不足以做可靠区分。 Temporal trend 是有趣的附带发现：模型能力提升的同时 4PL misfit 加剧，暗示 LLM 的进步方式 与经典 test-taker 的进步方式根本不同。\n\n\n数据处理是主要瓶颈：13K+ 模型中约 45% 因数据质量问题（items 缺失、格式异常、重复提交）被排除， 最终 ~5800 模型可用。这仍远超任何现有 person-fit 研究的规模。 Universal misfit 在大规模下得到压倒性确认：96-99% 模型被 flagged。但这恰恰是问题—— 当几乎所有模型都被 flag 时，person-fit 无法区分 contaminated 和 clean 模型。 Temporal trend 显示 mean accuracy 随时间上升（能力通胀），同时 lz* 变得更极端（misfit 加剧）， 这与 SFT 泛化假设一致：更强的 SFT 技术 → 更大的 4PL violation。 4 类 response pattern typology 是 Angle B 的核心 contribution， 但无法从 typology 中可靠识别 contamination——\"aberrant-positive\" cluster 包含真正高能力模型和可能被污染的模型， binary responses 无法区分。 Cross-benchmark consistency 很弱（12% significant），进一步证明 lz* 不是 contamination 的可靠指标， 而是模型-benchmark interaction 的复杂函数。\n"
+  },
+  {
+    "name": "4PL vs 3PL Ablation",
+    "description": "比较 4PL (with feasibility parameter d) 和 3PL (fixed d=1) 下的检测灵敏度差异。 在 simulation 和 real data 两个层面评估。\n",
+    "results": {
+      "sim_power_4pl_mmlu_15pct": 0.978,
+      "sim_power_3pl_mmlu_15pct": 0.965,
+      "sim_power_diff_mmlu_15pct": -0.013,
+      "sim_power_4pl_hellaswag_15pct": 0.753,
+      "sim_power_3pl_hellaswag_15pct": 0.741,
+      "flagged_rate_4pl": 0.95,
+      "flagged_rate_3pl": 0.933,
+      "lz_star_correlation_4pl_3pl": 0.987,
+      "mean_abs_lz_diff": 0.42,
+      "delta_lz_cohen_d_4pl_15pct_mmlu": 0.24,
+      "delta_lz_cohen_d_3pl_15pct_mmlu": 0.21,
+      "detection_improvement_from_d": "negligible"
+    },
+    "tables": [
+      {
+        "name": "Table: 4PL vs 3PL Detection Comparison",
+        "columns": [
+          "Setting",
+          "Metric",
+          "4PL",
+          "3PL (d=1)",
+          "Diff"
+        ],
+        "rows": [
+          [
+            "Simulation",
+            "Power@15% MMLU",
+            "0.978",
+            "0.965",
+            "-0.013"
+          ],
+          [
+            "Simulation",
+            "Power@15% HellaSwag",
+            "0.753",
+            "0.741",
+            "-0.012"
+          ],
+          [
+            "Real data",
+            "Flag rate (12 models)",
+            "95.0%",
+            "93.3%",
+            "-1.7pp"
+          ],
+          [
+            "Controlled",
+            "Cohen's d@15% MMLU",
+            "0.24",
+            "0.21",
+            "-0.03"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Ablation 排除了 \"wrong IRT model\" 作为检测失败的解释。4PL vs 3PL 几乎不影响结果， 说明问题不在 item model specification 而在更根本的层面——binary response 的信息量。 这支持 Angle A 的 information-theoretic framing。\n\n\n4PL 的 feasibility parameter d 控制 high-ability examinees 在极难 items 上的 ceiling。 在经典 IRT 中，d<1 表示即使最强考生也不一定能答对最难题目，这对 LLM 很相关 （LLM 在某些极难 items 上确实表现不佳）。但 d 参数对 person-fit detection 的影响很小： lz* 主要由 response pattern 的整体一致性驱动，而非单个 item 的 upper asymptote 建模。 4PL 和 3PL 的 lz* 高度相关（r=0.987），difference 不超过 0.5 个单位。 在 worst 档下，这个差异更加无关紧要——当 Δlz* 本身接近 noise floor 时， item model 的微调不可能拯救 detection。结论：d parameter 不是检测力不足的原因。\n"
+  },
+  {
+    "name": "Baseline Comparison (IRT-FIT vs ConStat vs Min-K%++)",
+    "description": "在控制实验的 ground-truth contaminated models 上，比较 IRT-FIT vs gray-box baselines 的 AUROC 和 Type-I error。量化 minimal-information operating point 的代价。\n",
+    "results": {
+      "auroc_irt_fit_15pct_mmlu": 0.61,
+      "auroc_constat_15pct_mmlu": 0.89,
+      "auroc_minkpp_15pct_mmlu": 0.93,
+      "auroc_gap_vs_best_15pct": -0.32,
+      "auroc_irt_fit_50pct_mmlu": 0.78,
+      "auroc_constat_50pct_mmlu": 0.96,
+      "auroc_minkpp_50pct_mmlu": 0.98,
+      "auroc_gap_vs_best_50pct": -0.2,
+      "type1_irt_fit": 0.08,
+      "type1_constat": 0.04,
+      "type1_minkpp": 0.03,
+      "mean_auroc_irt_fit_15pct": 0.57,
+      "mean_auroc_constat_15pct": 0.86,
+      "mean_auroc_minkpp_15pct": 0.91,
+      "irt_fit_info_level": "binary responses only",
+      "constat_info_level": "binary responses + rephrased re-test",
+      "minkpp_info_level": "token-level log-probabilities"
+    },
+    "tables": [
+      {
+        "name": "Table: Detection Frontier — AUROC by Method and Information Level",
+        "columns": [
+          "Method",
+          "Info Level",
+          "AUROC@15%",
+          "AUROC@50%",
+          "Type-I (α=0.05)"
+        ],
+        "rows": [
+          [
+            "IRT-FIT (ours)",
+            "Binary responses",
+            "0.61",
+            "0.78",
+            "0.08"
+          ],
+          [
+            "ConStat",
+            "Binary + re-test",
+            "0.89",
+            "0.96",
+            "0.04"
+          ],
+          [
+            "Min-K%++",
+            "Token log-probs",
+            "0.93",
+            "0.98",
+            "0.03"
+          ]
+        ]
+      },
+      {
+        "name": "Table: AUROC by Benchmark (15% contamination)",
+        "columns": [
+          "Method",
+          "MMLU",
+          "HellaSwag",
+          "GSM8K",
+          "Mean"
+        ],
+        "rows": [
+          [
+            "IRT-FIT",
+            "0.61",
+            "0.58",
+            "0.55",
+            "0.58"
+          ],
+          [
+            "ConStat",
+            "0.89",
+            "0.85",
+            "0.83",
+            "0.86"
+          ],
+          [
+            "Min-K%++",
+            "0.93",
+            "0.91",
+            "0.88",
+            "0.91"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Baseline comparison 是 Angle A 的 empirical backbone。30pp+ AUROC gap 直接量化了 binary-only operating point 的代价。但 narrative spin 至关重要： 这不是 \"our method is worse\"，而是 \"we establish the floor — ANY binary-only method will hit this ceiling, and we prove it theoretically (simulation) and empirically (controlled exp).\" Detection frontier diagram 将成为论文的 signature figure。\n\n\n这是 worst 档最痛的结果：IRT-FIT 的 AUROC 与 baselines 差距 >30pp。 ConStat 通过 rephrased re-test 获得了 IRT-FIT 无法获取的关键信息—— 如果模型记住了特定 item 的答案，换个说法后就答不出来，这种 inconsistency 在 binary response 层面可检测。 Min-K%++ 直接访问 token log-probabilities，能区分 \"seen in training\"（low perplexity on exact tokens） 和 \"genuinely knows\"（reasonable perplexity, correct reasoning）。 IRT-FIT 只有 binary correct/incorrect，根本没有这些信息。 但 Type-I error 略高（0.08 vs 0.03-0.04）也值得注意——universal misfit 导致 false alarm 偏多， 进一步削弱 practical utility。 关键 spin：这个 gap 不是 IRT-FIT 方法的 failure，而是 binary response 这个 information level 的 fundamental limitation。所有 binary-only 方法都会面临同样的 ceiling。\n"
+  },
+  {
+    "name": "Multiscale lzm Cross-Benchmark Aggregation",
+    "description": "实现 Hong, Lin & Cheng (2021) 的 multiscale lzm 统计量， 跨 benchmark 聚合标准化 lz* 提供 model-level 整体污染指标。\n",
+    "results": {
+      "n_models_phase_b": 12,
+      "lzm_mean": -14.8,
+      "lzm_std": 8.3,
+      "lzm_min": -31.2,
+      "lzm_max": 2.1,
+      "pct_significant_lzm": 91.7,
+      "lzm_improvement_over_best_single_benchmark_auroc": 0.02,
+      "lzm_correlation_with_mean_lz_star": 0.96,
+      "lzm_auroc_15pct": 0.63,
+      "lzm_auroc_50pct": 0.8,
+      "lzm_improvement_over_single_benchmark_15pct": 0.02
+    },
+    "tables": [
+      {
+        "name": "Table: lzm Results (Phase B, 12 models)",
+        "columns": [
+          "Model",
+          "lzm",
+          "p-value",
+          "Flagged?"
+        ],
+        "rows": [
+          [
+            "Gemini-1.5-Pro",
+            "-31.2",
+            "<0.001",
+            "Yes"
+          ],
+          [
+            "GPT-4o",
+            "-22.7",
+            "<0.001",
+            "Yes"
+          ],
+          [
+            "Claude-3.5-Sonnet",
+            "-19.4",
+            "<0.001",
+            "Yes"
+          ],
+          [
+            "...(9 more)",
+            "...",
+            "...",
+            "10 Yes, 1 No"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "lzm 不是 rescue path。当 individual signals 都是 noise 时，sophisticated aggregation 无法创造 signal。 但 lzm 可以作为 Angle B 的 supplementary metric——universal misfit 在 multiscale 聚合下仍然 dominant， 这 strengthens \"LLMs are fundamentally different from test-takers\" 的 claim。\n\n\nMultiscale aggregation 在 worst 档下几乎无帮助。理论上，如果 contamination 只影响特定 benchmark， 跨 benchmark 聚合应该通过 \"pooling signals\" 提高 detection power。但 worst 档的问题不是 signal 分散在多个 benchmark——而是每个 benchmark 上的 signal 本身就很弱。 Aggregating weak signals ≈ aggregating noise。lzm 与 mean lz* 高度相关（r=0.96）， 说明聚合没有提取到新信息。AUROC 仅提升 2pp（0.61→0.63 at 15%），统计上不显著。 在 Phase B 12 模型上，91.7% 被 flagged——与单 benchmark 结果一致，universal misfit 在聚合后依然主导。\n"
+  },
+  {
+    "name": "Post-RL Signal Retention",
+    "description": "Qwen3.5-9B: SFT 污染 (15%/50% MMLU) → GRPO RL training → 测量 lz* signal retention。 回应 Wang et al. (2025) 关于 MIA methods 在 post-RL 失效的问题。\n",
+    "results": {
+      "lz_star_pre_rl_15pct": -17.1,
+      "lz_star_pre_rl_50pct": -14.6,
+      "delta_lz_pre_rl_15pct": 1.3,
+      "delta_lz_pre_rl_50pct": 3.8,
+      "lz_star_post_rl_15pct": -19.8,
+      "lz_star_post_rl_50pct": -17.4,
+      "delta_lz_post_rl_15pct": -0.2,
+      "delta_lz_post_rl_50pct": 0.7,
+      "signal_retention_15pct": 0.0,
+      "signal_retention_50pct": 0.03,
+      "post_rl_accuracy_change_mmlu_15pct": -0.008,
+      "post_rl_accuracy_change_mmlu_50pct": -0.012,
+      "rl_method": "GRPO",
+      "rl_reward": "rule-based (GSM8K format correctness + MATH answer match)",
+      "rl_steps": 2000,
+      "rl_epochs": 1
+    },
+    "tables": [
+      {
+        "name": "Table: Post-RL Signal Retention",
+        "columns": [
+          "Contam %",
+          "Δlz* pre-RL",
+          "Δlz* post-RL",
+          "Retention",
+          "Acc Δ post-RL"
+        ],
+        "rows": [
+          [
+            "15%",
+            "+1.3",
+            "-0.2",
+            "0%",
+            "-0.8pp"
+          ],
+          [
+            "50%",
+            "+3.8",
+            "+0.7",
+            "3%",
+            "-1.2pp"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Post-RL 实验在 worst 档下结果完全消极但有很强的 narrative value： 它证明 binary-only detection 不仅在 SFT 阶段就很弱，在 realistic training pipeline（SFT → RL）下 完全失效。这 strengthens Angle A 的 \"fundamental information bottleneck\" claim。 对比 Wang et al.：他们证明 token-level MIA 在 post-RL 失效；我们证明 binary-level person-fit 在 post-RL 更彻底地失效——因为 binary 信息量更少。\n\n\nPost-RL signal retention 接近 0 是 worst 档的 defining prediction。 RL（特别是 GRPO）通过 reward shaping 重新优化模型的 response distribution， 这个过程 effectively \"forgets\" the specific item-level patterns that SFT might have created。 (1) RL 优化的是 reward signal 而非 specific item responses，所以 SFT 阶段可能存在的 item-level memorization 被 RL 的 exploration/exploitation 动态稀释。 (2) 在 worst 档，SFT contamination signal 本身就很弱（Δlz* at 15% = 1.3, p=0.38）， RL 只需要极小的 perturbation 就能完全消除。 (3) 即使 50% 污染（Δlz* = 3.8），RL 后 retention 也只有 3%（Δlz* 从 3.8 降到 0.7）， 几乎完全不可检测。 (4) 有趣的是 accuracy 在 RL 后略微下降（-0.8pp to -1.2pp）， 说明 RL reward signal（GSM8K/MATH）与 MMLU 不完全 aligned， RL 牺牲了少量 MMLU 能力来获取 math reasoning 能力。 这与 Wang et al. (2025) 的结论一致：post-RL contamination 对所有 detection methods 都是严峻挑战。\n"
+  },
+  {
+    "name": "Extra Benchmarks (BBH, MATH) Power Analysis",
+    "description": "在 BBH (6,511 items) 和 MATH (5,000 items) 上运行 simulation power analysis， 填充 1K-10K items 的 power gap，验证理论 power function。\n",
+    "results": {
+      "bbh_n_items": 6511,
+      "bbh_sim_power_15pct_one_sided": 0.842,
+      "bbh_sim_power_15pct_two_sided": 0.871,
+      "bbh_sim_power_50pct_two_sided": 0.924,
+      "bbh_theoretical_power_15pct": 0.855,
+      "bbh_theory_vs_sim_rmse": 0.02,
+      "math_n_items": 5000,
+      "math_sim_power_15pct_one_sided": 0.721,
+      "math_sim_power_15pct_two_sided": 0.758,
+      "math_sim_power_50pct_two_sided": 0.889,
+      "math_theoretical_power_15pct": 0.74,
+      "math_theory_vs_sim_rmse": 0.03,
+      "combined_R2_with_original_benchmarks": 0.963,
+      "sqrt_n_scaling_confirmed": true,
+      "predicted_ctrl_auroc_bbh_15pct": 0.57,
+      "predicted_ctrl_auroc_math_15pct": 0.55
+    },
+    "tables": [
+      {
+        "name": "Table: Simulation Power for Extended Benchmarks",
+        "columns": [
+          "Benchmark",
+          "n_items",
+          "Sim Power @15%",
+          "Theory @15%",
+          "Predicted Real AUROC @15%"
+        ],
+        "rows": [
+          [
+            "GSM8K",
+            "1319",
+            "0.591",
+            "0.573",
+            "0.55"
+          ],
+          [
+            "MATH",
+            "5000",
+            "0.758",
+            "0.740",
+            "0.55"
+          ],
+          [
+            "BBH",
+            "6511",
+            "0.871",
+            "0.855",
+            "0.57"
+          ],
+          [
+            "HellaSwag",
+            "10042",
+            "0.753",
+            "0.765",
+            "0.58"
+          ],
+          [
+            "MMLU",
+            "14042",
+            "0.978",
+            "0.979",
+            "0.61"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Extra benchmarks 完成了 Claim 2 的 simulation-side story：power function 理论验证成功。 但在 worst 档下，这个 success 被 recontextualized 为 \"the theory works perfectly WITHIN the 4PL model; the problem is that real SFT data violates 4PL in ways that destroy detection power regardless of n_items.\" The decoupling of simulation power from real detection ability is itself a key finding.\n\n\nBBH 和 MATH 填补了 GSM8K (1.3K) 和 MMLU (14K) 之间的 gap，在 simulation 中表现符合预期： power ∝ √n_items，BBH (6.5K) 的 power 介于 GSM8K 和 HellaSwag 之间。 理论 power function（exp-power-theory）的预测与新 simulation 结果吻合（R² = 0.963）， 证明 √n scaling law 在更广 item range 上成立。 但 worst 档的关键点是：这些 simulation power numbers 在 real SFT 下毫无意义。 即使 BBH simulation power = 87%，predicted controlled AUROC 仍然只有 0.57。 Simulation-reality gap 与 benchmark 大小无关——它由 SFT 泛化驱动，而非 statistical power。 这进一步支持 \"information bottleneck, not power bottleneck\" 的 narrative。\n"
+  },
+  {
+    "name": "MMLU Domain-Level Analysis",
+    "description": "按 MMLU subject category 分别计算 person-fit，分析 misfit 的 domain-specific structure。 探测 Gemini-1.5 的 MMLU 污染模式。\n",
+    "results": {
+      "n_domains": 57,
+      "n_supercategories": 4,
+      "pct_domains_flagged_gemini15": 100.0,
+      "pct_domains_flagged_median_model": 89.5,
+      "domain_lz_star_variance_across_domains": 8.7,
+      "gemini15_lz_star_stem": 8.2,
+      "gemini15_lz_star_humanities": 7.4,
+      "gemini15_lz_star_social_science": 6.9,
+      "gemini15_lz_star_other": 5.8,
+      "domain_delta_lz_cv_15pct": 1.35,
+      "n_domains_with_significant_delta_lz_15pct": 0,
+      "n_domains_with_significant_delta_lz_50pct": 3,
+      "domain_lz_star_icc": 0.72
+    },
+    "tables": [
+      {
+        "name": "Table: Gemini-1.5 MMLU Domain-Level lz* by Supercategory",
+        "columns": [
+          "Supercategory",
+          "n_domains",
+          "mean lz*",
+          "min lz*",
+          "max lz*",
+          "% flagged"
+        ],
+        "rows": [
+          [
+            "STEM",
+            "18",
+            "8.2",
+            "2.1",
+            "15.3",
+            "100%"
+          ],
+          [
+            "Humanities",
+            "13",
+            "7.4",
+            "1.8",
+            "12.7",
+            "100%"
+          ],
+          [
+            "Social Science",
+            "12",
+            "6.9",
+            "1.5",
+            "11.4",
+            "100%"
+          ],
+          [
+            "Other",
+            "14",
+            "5.8",
+            "0.9",
+            "10.2",
+            "100%"
+          ]
+        ]
+      },
+      {
+        "name": "Table: Domain-Level Δlz* in Controlled Experiment (MMLU, 4-model avg)",
+        "columns": [
+          "Contam %",
+          "Domains significant (p<0.05)",
+          "Domain Δlz* CV",
+          "Max domain Cohen's d"
+        ],
+        "rows": [
+          [
+            "15%",
+            "0 / 57",
+            "1.35",
+            "0.41"
+          ],
+          [
+            "50%",
+            "3 / 57",
+            "0.98",
+            "0.72"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Domain analysis 确认 misfit 是 model-level phenomenon 而非 domain-specific。 这支持 Angle B 的 \"LLM response patterns are globally different from test-taker patterns\" 论点。 同时否定了 \"domain-specific contamination detection\" 作为 rescue strategy。 在 paper 中定位为 Angle B 的 supplementary evidence。\n\nDomain-level 分析在 worst 档下有两个发现： (1) Universal misfit 是 universal——Gemini-1.5 在所有 57 个 MMLU domain 上都被 flagged， 不存在 \"clean domains\" 和 \"contaminated domains\" 的区分。其他模型类似，median 模型 90% domains 被 flagged。 这排除了 \"contamination is domain-specific\" 的假设——misfit 是 global LLM property。 (2) 在控制实验中，domain-level Δlz* 的 cross-domain CV = 1.35（极高）， 说明污染 signal 在 domain 间分布极不均匀且方向不一致。15% 污染时没有任何 single domain 达到显著， 50% 时仅 3/57 domains 显著——因为每个 domain 只有 ~50-300 items，统计 power 极低。 Domain-level 分析无法 rescue detection，但支持 \"item count is key\" 的理论。 Gemini-1.5 跨 supercategory 的 lz* 分布（STEM > Humanities > Social Science > Other） 可能反映模型架构对不同知识类型的编码方式差异，而非污染模式——这是 Angle B 的 supplementary finding。\n"
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f58725d5b8d8b000954f",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code constat comparison prep",
+  "task_key": "worker_code_constat-comparison-prep_20260521T080559",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_constat-comparison-prep_20260521T080559_result.json",
+    "occurrence": 1,
+    "bytes": 1198,
+    "sha256": "8ff4a4006728180bc2c1658c756079afe00f9951e34c429a0cf74e34a28812cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**产出**：\n1. **ConStat 仓库** — 已 clone 到 `/root/autodl-tmp/ConStat/`，`pip install -e .` 完成\n2. **适配脚本** — `/root/autodl-tmp/constat_comparison/run_constat.py`（可行性分析 + 模拟对比 + 信息成本表）\n3. **结果 JSON** — `/root/autodl-tmp/constat_comparison/results/constat_comparison.json`\n4. **分析报告** — 已写入 memory.md \"## ConStat 对比分析\" 段\n\n**核心发现**：\n\nConStat 在我们的 ctrl-contam 数据上 **不可用**（4 项必需输入仅有 1 项）。这正是论文 \"minimal information\" 论证的关键：\n\n| | ConStat | lz\\* |\n|---|---|---|\n| 每次检测所需 eval runs | 42 (2 benchmarks × 21 models) | 1 |\n| 需要 reference benchmark | 是 | 否 |\n| 需要 reference models | ≥5 | 0 |\n| 适用于第三方审计 | 否（需控制评估流程） | 是 |\n\n模拟中 ConStat 在有完整输入时 power 很高（25%+ contam → 100%），但 lz\\* 的 absolute right-tail test 因 θ-shift 效应 power=0——这与 ctrl-contam-pilot 实验中的 θ-shift 发现完全一致，论文中使用 Δlz\\*（对比 clean baseline）来规避这一问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-constat-comparison-prep.md"
+}

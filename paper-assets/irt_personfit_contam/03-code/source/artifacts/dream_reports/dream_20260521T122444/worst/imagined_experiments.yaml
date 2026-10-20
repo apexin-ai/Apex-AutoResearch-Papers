@@ -1,0 +1,560 @@
+tier: worst
+narrative_guidance: 'Reframe: NOT a detection superiority paper. Post-RL GRPO eliminates
+  all binary-only detection signals (|d|<0.5). HT matches or exceeds lz* in every
+  tested condition — no empirical basis for claiming lz* advantage over simpler difficulty-only
+  statistics. Paper pivots to three-pronged contribution: (A) First systematic IRT
+  person-fit study of LLM response patterns — universal 4PL misfit (57/60 flagged)
+  is a novel cognitive finding, not a detection artifact. (B) Scope-honest SFT detection
+  — IRT-FIT detects intentional SFT contamination (|d|>2.5 across two families) with
+  explicit scope boundary: post-RL smooths binary signal below detection for ALL binary-only
+  methods. The RL boundary is itself a contribution mapping the detection frontier''s
+  limits. (C) Framework + toolkit — open-source IRT-FIT toolkit, θ-shift methodology,
+  memorization fraction quantification, and 13K+ model data availability. Contributions
+  are methodological, not SOTA claims. ConStat (retest AUROC 0.85-0.95) and Min-K++
+  (SFT AUROC 0.65-0.75) outperform lz* when given more information access. lz* only
+  beats Guttman/U3/random (2-3 baselines). The "minimal-information" framing must
+  honestly acknowledge the cost: lower power than methods with richer signals. Target
+  EMNLP as evaluation methodology paper with community tooling impact.
+
+  '
+imagined_experiments:
+- name: Controlled Contamination Pilot (Qwen × MMLU)
+  plan_id: exp-ctrl-contam-pilot
+  description: 'Qwen2.5-7B-Instruct × 4 conditions (0%-seed1/0%-seed2/15%/50%) × MMLU.
+    Go/no-go signal for the paper. Measures Δlz*, clean noise floor, memorization
+    fraction.
+
+    '
+  expected_results:
+    n_clean_seeds: 2
+    clean_seed1_lz_star: 8.9
+    clean_seed2_lz_star: 8.4
+    clean_vs_clean_delta_lz: 0.5
+    clean_mean_lz_star: 8.65
+    clean_std_lz_star: 0.35
+    contam_15_lz_star: 4.1
+    contam_50_lz_star: 7.5
+    delta_lz_contam15: -4.55
+    delta_lz_contam50: -1.15
+    cohens_d_contam15: -3.1
+    cohens_d_contam50: -0.9
+    theta_shift_15: 0.28
+    theta_shift_50: 0.45
+    memorization_fraction_15: 0.36
+    memorization_fraction_50: 0.3
+    theta_fixed_contam15_lz: 11.5
+    theta_fixed_contam50_lz: 17.8
+    theta_fixed_ratio: 3.0
+    ht_d_contam15: -3.0
+    ht_d_contam50: -0.85
+    acc_contam15: 0.71
+    acc_contam50: 0.725
+    acc_seen_contam15: 0.78
+    acc_unseen_contam15: 0.68
+  result_rationale: 'SFT with QLoRA directly injects benchmark items into training.
+    Model memorizes ~36% of seen items (consistent with QLoRA''s partial parameter
+    update — full FT would memorize more). At 15%, 2106 items are seen; ~758 are memorized,
+    creating a diffuse aberrance signal detectable at model level. Cohen''s d ~3.1
+    because lz* aggregates 14042 item-level weak signals. Non-monotonicity at 50%
+    (|d|=0.9 < 3.1) because θ-shift absorbs aberrance: contaminating 50% raises θ_MLE
+    by ~0.45, making previously-aberrant correct answers look expected. θ-fixed analysis
+    restores monotonicity (ratio ~3.0). HT matches lz* (d ~3.0 vs 3.1) because the
+    dominant signal is difficulty-ordering violation — items the model "should" get
+    wrong are answered correctly — and HT captures this with only item difficulty.
+    The full 4PL parameterization (a, c, d) adds negligible incremental signal at
+    model level when the difficulty violation is already large. Clean-vs-clean Δlz*
+    ~0.5 confirms noise floor is small relative to contam signal.
+
+    '
+  tables:
+  - 'Table: Pilot results — lz* and HT Cohen''s d across conditions, with θ-free and
+    θ-fixed'
+  figures_description:
+  - 'Bar chart: Δlz* for clean-vs-clean (noise floor) vs clean-vs-contam15 vs clean-vs-contam50,
+    error bars from 2-seed clean variance'
+  - 'Scatter: seen vs unseen item accuracy at 15% and 50% contamination, showing memorization
+    fingerprint'
+  analysis: 'Go signal confirmed for SFT scope. But HT matching lz* is a warning:
+    the simpler statistic captures the same information at model level. Non-monotonicity
+    under free-θ motivates θ-fixed methodology. Paper can claim SFT detection with
+    |d|>2.5 but must acknowledge HT parity.
+
+    '
+- name: Full Controlled Contamination (4 Models × 6 Levels × 3 Benchmarks)
+  plan_id: exp-ctrl-contam
+  description: 'Qwen2.5-7B-Instruct, Gemma-4-31B, Llama-3.1-8B-Instruct, Mistral-7B-v0.3
+    × 0%/5%/10%/15%/25%/50% × MMLU/GSM8K/HellaSwag.
+
+    '
+  expected_results:
+    n_families_validated: 2
+    qwen_mmlu_d15: -3.1
+    qwen_mmlu_d50: -0.9
+    llama_mmlu_d15: -2.7
+    llama_mmlu_d50: -3.0
+    mistral_mmlu_d15: -2.4
+    mistral_mmlu_d50: -2.8
+    gemma_mmlu_d15: -1.8
+    gemma_mmlu_d50: -2.2
+    qwen_gsm8k_d15: -1.4
+    llama_gsm8k_d15: -1.2
+    qwen_hellaswag_d15: -1.8
+    llama_hellaswag_d15: -1.5
+    qwen_ht_mmlu_d15: -3.0
+    llama_ht_mmlu_d15: -2.6
+    cross_family_mf_range: 0.30-0.40
+    cross_family_mf_std: 0.04
+    theta_fixed_monotonic_all: true
+    dose_response_5pct_detectable: false
+    dose_response_10pct_detectable: marginal (d ~0.8-1.2 on MMLU only)
+    min_contam_for_detection_mmlu: 10-15%
+    min_contam_for_detection_gsm8k: 25%
+    min_contam_for_detection_hellaswag: 15-25%
+  result_rationale: 'Only 2 families (Qwen + Llama) are fully validated with 3+ clean
+    seeds each — Mistral and Gemma have single clean seeds, insufficient for rigorous
+    Cohen''s d with CI. Gemma-4-31B shows weaker detection (d ~1.8) because larger
+    models have more latent capacity to absorb contamination without creating aberrant
+    patterns — the 31B model generalizes from seen items more smoothly than 7-9B models,
+    reducing the memorization fraction to ~0.25. GSM8K (1319 items) and HellaSwag
+    (10042 items) show weaker detection than MMLU (14042 items), consistent with power
+    function — fewer items = less aggregation power. GSM8K is particularly weak because
+    its chain-of-thought format means SFT contamination partially teaches reasoning,
+    not just memorization. HT matches lz* across all conditions (|d_HT - d_lz*| <
+    0.3) because difficulty-ordering violation dominates in all model-benchmark combinations.
+    At 5% contamination, signal is indistinguishable from noise (only ~700 items seen
+    on MMLU, ~250 memorized — insufficient for model-level detection). Cross-family
+    MF consistency (0.30-0.40, std ~0.04) supports the generalizability of the memorization
+    fraction concept. θ-fixed universally restores monotonicity, confirming this as
+    a model-independent phenomenon.
+
+    '
+  tables:
+  - 'Table: Cohen''s d matrix — rows=models, cols=benchmarks×levels, bold best per
+    column'
+  - 'Table: HT vs lz* Cohen''s d comparison — no significant difference in any cell'
+  - 'Table: Memorization fraction across models and levels — 30-40% range'
+  figures_description:
+  - 'Dose-response curves: Δlz* vs contamination level, one line per model, faceted
+    by benchmark. Free-θ (left) vs θ-fixed (right)'
+  - 'Heatmap: Cohen''s d by model×benchmark at 15% contamination, showing power degrades
+    with fewer items'
+  - Cross-family memorization fraction bar chart with 95% CI, showing consistency
+  analysis: 'SFT detection validated across 2 families with multiple seeds, but cross-family
+    scope is limited. Gemma''s weaker signal warns that larger models may approach
+    the detection boundary even for SFT. GSM8K near the detectability threshold at
+    15%. HT parity across all 4×6×3 conditions eliminates empirical lz* advantage
+    — the paper must rely on data-independent differentiation (parametric null, Snijders
+    correction, 4PL item weighting).
+
+    '
+- name: Leaderboard Audit (ABANDONED)
+  plan_id: exp-leaderboard-audit
+  description: 'Open LLM Leaderboard v1 大规模扫描。已放弃因 IRT refit 失败。
+
+    '
+  expected_results:
+    status: ABANDONED
+    reason: a_r=0.111 (discrimination) + item alignment 54.56% → 13K audit infeasible
+    v1_data_availability: 13K+ models with per-item binary data
+    future_work_note: Data availability mentioned in Discussion; audit deferred to
+      future work pending neural IRT estimation advances
+  result_rationale: 'Classical IRT estimation (MML-EM) with N=63-178 models produces
+    a_r=0.111 (well below 0.2 threshold), making the refitted parameters effectively
+    discrimination-free. lz* computed with these parameters collapses to an accuracy-like
+    metric, losing the IRT advantage. The root cause is that classical IRT assumes
+    large samples of independent examinees, but LLM response patterns violate this
+    (models are not independent draws from a population; they share training data
+    and architectures). Item alignment at 54.56% further degrades parameter quality.
+    This failure is a genuine methodological finding about the gap between classical
+    and neural IRT estimation requirements.
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 'ABANDONED. Not a paper weakness — frame as honest methodological caveat
+    in Section 6 (IRT parameter estimation challenges). The 13K+ data availability
+    is a future-work contribution. Paper uses PSN-IRT validated parameters (external
+    calibration) instead.
+
+    '
+- name: Natural Experiment (Base→Chat Pairs)
+  plan_id: exp-natural-experiment
+  description: 'v1 leaderboard base→chat model pairs: Δlz* = lz*(chat) - lz*(base)
+    as SFT effect proxy.
+
+    '
+  expected_results:
+    n_viable_pairs: 5
+    hellaswag_mean_deviation: -3.2
+    hellaswag_p_value: 0.003
+    gsm8k_mean_deviation: 3.5
+    gsm8k_p_value: 0.015
+    mmlu_p_value: 0.18
+    arcc_p_value: 0.42
+    individual_outliers_detected: 0
+    statistical_power_for_individual_detection: insufficient
+  result_rationale: 'With a_r=0.111, lz* is essentially accuracy-weighted, not IRT-weighted.
+    The HellaSwag and GSM8K systematic effects reflect aggregate SFT training dynamics
+    (SFT systematically changes performance patterns on these benchmarks), not contamination-specific
+    signals. Only 5 viable pairs provide no statistical power for detecting individual
+    contamination outliers — even a genuinely contaminated model would not stand out
+    from the systematic SFT effect. MMLU and ARC-C show no significant systematic
+    effect (p>0.1), possibly because SFT effects on these benchmarks are more heterogeneous
+    across model families. The P2-optional priority is justified: results are mildly
+    interesting (systematic SFT effects exist) but contribute nothing to the contamination
+    detection narrative.
+
+    '
+  tables:
+  - 'Table: Paired t-test results by benchmark — HellaSwag and GSM8K significant,
+    MMLU/ARC-C not'
+  figures_description:
+  - 'Paired difference plot: Δlz*(chat-base) per benchmark with CI, showing systematic
+    direction for HellaSwag/GSM8K'
+  analysis: 'Deprioritized. Systematic SFT effects are a minor observation for Discussion
+    section. No contamination detection capability. Frame as: "natural experiments
+    show SFT consistently changes lz* patterns, motivating the controlled contamination
+    approach."
+
+    '
+- name: v1 IRT Refit Expanded (Path D Closure)
+  plan_id: exp-v1-irt-refit-expanded
+  description: '扩大 v1 IRT 重拟合至 N≥500, 验证 a_r=0.111 是否因样本量不足。
+
+    '
+  expected_results:
+    n_models_downloaded: 500
+    3pl_a_pearson_r: 0.13
+    2pl_a_pearson_r: -0.02
+    3pl_b_pearson_r: 0.66
+    a_r_threshold: 0.2
+    a_r_verdict: dead (a_r < 0.2)
+    path_d_status: closed
+  result_rationale: 'Expanding from N=63→178 only improved a_r from 0.111 to 0.127.
+    Extrapolating to N=500, the marginal gain is diminishing (~0.13-0.14). The fundamental
+    issue is not sample size but model heterogeneity: LLMs from different families/scales
+    violate the classical IRT assumption that all examinees are drawn from a single
+    latent trait distribution. A 7B model and a 70B model are not "two examinees differing
+    in ability" — they differ structurally in how they process items. Classical MML-EM
+    cannot recover meaningful discrimination parameters from this heterogeneous sample.
+    b_r stabilizes at ~0.66 because difficulty is a more robust property (hard items
+    are hard for all models), while discrimination is model-architecture-dependent.
+    This definitively closes Path D.
+
+    '
+  tables:
+  - 'Table: IRT refit metrics at N=63, N=178, N=500 — showing a_r plateau below 0.2'
+  figures_description:
+  - 'Line plot: a_r and b_r as function of sample size N, showing b_r convergence
+    and a_r plateau'
+  analysis: 'Path D confirmed dead. Paper Section 6 (Empirical Findings) reports this
+    as a methodological caveat: classical IRT estimation from heterogeneous LLM samples
+    fails on discrimination. Frames the gap between classical (small N, homogeneous)
+    and neural IRT (large N, heterogeneous) estimation as an open problem for the
+    community.
+
+    '
+- name: 4PL vs 3PL Ablation
+  plan_id: exp-4pl-ablation
+  description: '4PL vs 3PL(d=1) 检测灵敏度比较。量化 d 参数对 FAR 和 power 的影响。
+
+    '
+  expected_results:
+    far_4pl: 0.05
+    far_3pl: 0.05-0.16
+    far_2pl: 0.50-1.00
+    mean_power_gain_4pl_vs_3pl_mmlu: 0.25
+    mean_power_gain_4pl_vs_3pl_hellaswag: 0.24
+    mean_power_gain_4pl_vs_3pl_gsm8k: 0.19
+    pct_mmlu_items_d_lt_0.95: 0.46
+    max_power_gain_at_low_d: 0.55
+    real_data_correlation_4pl_3pl: 0.23
+    deepseek_delta_lz: 340
+  result_rationale: '4PL d parameter models the probability ceiling — P(correct) for
+    very high ability examinees. 46% of MMLU items have d<0.95, meaning even the best
+    models have <95% ceiling probability. When d=1 is forced (3PL), these items''
+    response probabilities approach 1 for high-ability models, making any incorrect
+    answer look extremely aberrant and inflating lz*. This creates both inflated FAR
+    (false aberrance from normal ceiling effects) and reduced detection power (genuine
+    contamination signal is masked by the d-induced noise). The +25pp mean power gain
+    on MMLU reflects 4PL''s ability to correctly model ceiling effects so that only
+    genuine difficulty-ordering violations are flagged. 2PL is catastrophic because
+    removing both c (guessing) and d (ceiling) makes the model unable to account for
+    40-60% of MMLU response variability. This result is tier-independent — it reflects
+    a structural property of IRT parameterization, not a property of the detection
+    frontier.
+
+    '
+  tables:
+  - 'Table: FAR and power by parameterization (2PL/3PL/4PL) × benchmark'
+  - 'Table: Power gain stratified by d-parameter bucket'
+  figures_description:
+  - 'ROC curves: 4PL vs 3PL vs 2PL on MMLU at 15% contamination'
+  - 'Scatter: item-level d parameter vs power gain (4PL over 3PL), showing low-d items
+    drive the advantage'
+  analysis: 'Strong methodological contribution independent of worst-tier narrative.
+    4PL is essential for LLM contamination detection — this justifies the PSN-IRT
+    parameter dependency. However, since HT (difficulty-only) matches lz* empirically,
+    the 4PL advantage is theoretical (better calibrated null, correct ceiling modeling)
+    rather than empirical detection superiority. Tension: 4PL matters for calibration,
+    but HT doesn''t need 4PL and still matches.
+
+    '
+- name: Baseline Comparison (≥5 Baselines)
+  plan_id: exp-baseline-comparison
+  description: 'IRT-FIT vs 5+ baselines on ground-truth contaminated models: ConStat
+    (re-test), Min-K%++ (token probs), accuracy z-score, PPL-based, HT, Guttman/U3,
+    random.
+
+    '
+  expected_results:
+    n_baselines: 7
+    n_baselines_beaten: 3
+    model_level_lz_star_d_15: -3.1
+    model_level_ht_d_15: -3.0
+    model_level_guttman_d_15: -0.4
+    model_level_u3_d_15: -0.45
+    model_level_acc_zscore: 155
+    constat_retest_auroc: 0.88
+    mink_sft_auroc: 0.68
+    ppl_sft_auroc: 0.63
+    random_auroc: 0.5
+    item_level_all_auroc_range: 0.50-0.63
+    item_level_best_oracle_rf: 0.63
+    lz_star_vs_ht_diff: not significant (p>0.3)
+    bootstrap_ci_width_lz_d: 1.2
+  result_rationale: 'Under worst tier, lz* only beats 3 baselines: Guttman (d~0.4),
+    U3 (d~0.45), and random (d=0). HT matches lz* (d~3.0 vs 3.1, difference not significant
+    with n=3 clean seeds). ConStat with rephrased re-testing achieves AUROC 0.88 because
+    re-testing provides a fundamentally richer signal — it creates a second independent
+    measurement of the same items, enabling paired comparison. This is strictly more
+    informative than binary-only. Min-K++ achieves SFT AUROC 0.68 because token-level
+    probability distributions contain granular memorization signatures (specific logit
+    patterns on memorized items) that binary responses discard. PPL-based detection
+    gets 0.63 on SFT (above random but weak). All item-level methods are near-random
+    (0.50-0.63) including oracle RF, confirming that contamination signal is diffuse
+    — memorization fraction ~35% means 65% of seen items show no memorization signal.
+    acc z-score achieves z~155 (trivially detects) but is non-specific: it can''t
+    distinguish contamination from genuine ability. The key worst-tier finding: methods
+    with more information access (ConStat > Min-K++ > PPL > lz*) consistently outperform.
+    lz*''s value is only at the minimal-information operating point, not detection
+    performance.
+
+    '
+  tables:
+  - 'Table: Model-level detection comparison — rows=methods (8), cols=models×conditions,
+    Cohen''s d or AUROC'
+  - 'Table: Item-level AUROC — all methods 0.50-0.63, confirming model-level aggregation
+    is key'
+  - 'Table: Information access hierarchy — method, info required, SFT detection, post-RL
+    detection'
+  figures_description:
+  - 'Detection frontier plot: x=information access level (binary→retest→token probs→logits→weights),
+    y=detection power. lz* at the bottom-left.'
+  - 'Paired bar chart: lz* vs HT Cohen''s d per condition, showing no significant
+    difference'
+  - 'ROC curves: ConStat vs Min-K++ vs lz* on SFT contamination'
+  analysis: 'Paper cannot claim detection superiority. Must reframe as: "We establish
+    the minimal-information operating point. Methods with more information access
+    outperform — this is expected and honest. Our contribution is the framework (connecting
+    psychometrics to LLM evaluation) and the characterization (θ-shift, memorization
+    fraction, RL boundary). lz* beats only classical person-fit (Guttman/U3) and random
+    — the 8× gap over Guttman shows IRT parameterization matters, but HT achieves
+    the same with only difficulty." Bootstrap CIs (6/8 peer papers report none) remain
+    a differentiator.
+
+    '
+- name: Multiscale lzm Statistic
+  plan_id: exp-multiscale-lzm
+  description: '跨 benchmark 聚合的标准化 lz* 总分 (Hong, Lin & Cheng, 2021)。 PSN-IRT 12 模型
+    + 控制实验模型验证。
+
+    '
+  expected_results:
+    psn_12_models_lzm_flagged: 11/12
+    psn_lzm_vs_individual_lz_agreement: 0.92
+    ctrl_contam_lzm_d_15: -2.8
+    ctrl_contam_lzm_d_50: -0.8
+    lzm_adds_discrimination_beyond_individual: false
+    lzm_reduces_false_positive: false
+    cross_benchmark_correlation: 0.15
+  result_rationale: 'lzm aggregates standardized lz* scores across benchmarks. Since
+    individual benchmark lz* values are already extreme for nearly all models (57/60
+    flagged), aggregation cannot reduce flagging — it merely averages universally-extreme
+    signals. The cross-benchmark correlation of lz* is low (~0.15, only GSM8K-HumanEval
+    significant at r=0.62), meaning lzm doesn''t capture a coherent "cross-benchmark
+    contamination" signal — it just averages independent benchmark-specific misfit.
+    For ctrl-contam models, lzm Cohen''s d (~2.8) is slightly lower than the best
+    individual benchmark (MMLU d~3.1) because GSM8K and HellaSwag dilute the signal.
+    lzm does not add value beyond individual benchmark analysis in this context. The
+    theoretical appeal (Hong et al. 2021 designed lzm for multi-test batteries where
+    aggregation recovers signal from individually-weak tests) doesn''t apply because
+    each benchmark already has strong model-level signal.
+
+    '
+  tables:
+  - 'Table: lzm vs individual benchmark lz* — flagging agreement rate'
+  figures_description:
+  - 'Parallel coordinates: lz* across 5 benchmarks for 12 models, colored by lzm flag'
+  analysis: 'lzm is a methodological contribution (implementing Hong et al. 2021 for
+    LLM context) but does not improve detection in practice. Brief mention in Method
+    section; not a headline result. Could become useful if applied to many small benchmarks
+    where individual power is insufficient.
+
+    '
+- name: Post-RL Hypothesis Test (GRPO)
+  plan_id: exp-post-rl
+  description: 'Qwen3.5-9B: SFT contamination (15%) → GRPO training → measure if person-fit
+    detection survives. Responds to Wang et al. (2025) MIA failure.
+
+    '
+  expected_results:
+    sft_only_lz_star_d: -3.1
+    post_grpo_lz_star_d: -0.25
+    post_grpo_ht_d: -0.2
+    post_grpo_mia_auroc: 0.51
+    post_grpo_mink_auroc: 0.52
+    post_grpo_ppl_auroc: 0.49
+    post_grpo_acc_delta: 0.03
+    post_grpo_lz_star_value: 8.1
+    post_grpo_clean_lz_star: 8.65
+    post_grpo_delta_lz: -0.55
+    memorization_fraction_post_rl: 0.05
+    seen_unseen_acc_gap_post_rl: 0.01
+    difficulty_ordering_restored: true
+  result_rationale: 'GRPO (Group Relative Policy Optimization) trains the model to
+    maximize reward on a general objective. During RL, the model''s policy is updated
+    to produce correct answers through reasoning rather than memorization. The SFT-induced
+    memorization signature — where specific items are answered correctly regardless
+    of difficulty ordering — is overwritten because: (1) RL reward is based on correctness,
+    not memorization; the model learns to derive answers rather than recall them;
+    (2) GRPO uses group-relative rewards, normalizing performance within batches,
+    which smooths out item-specific memorization spikes; (3) RL training updates ALL
+    model parameters (not just LoRA adapters), distributing the contamination knowledge
+    across the full parameter space and destroying the localized aberrance pattern.
+    Post-RL, the model still achieves ~3% accuracy gain on seen items (residual knowledge)
+    but the difficulty-ordering is restored — it gets hard-seen items wrong at expected
+    rates. This makes lz* return to near-baseline (~8.1 vs clean 8.65). The seen/unseen
+    accuracy gap collapses from ~0.10 (SFT) to ~0.01 (post-RL). HT also fails (d~0.20)
+    because difficulty ordering is restored. MIA/Min-K++ fail (AUROC~0.51) consistent
+    with Wang et al. (2025). ALL binary-only AND token-probability methods are at
+    random. This is the structural limitation: RL transforms memorization into generalization-like
+    behavior that is indistinguishable from genuine learning at all currently-accessible
+    observation levels.
+
+    '
+  tables:
+  - 'Table: Pre-RL vs Post-RL detection — all methods, showing collapse from d>2.5
+    to d<0.5'
+  - 'Table: Seen/unseen accuracy gap pre-RL vs post-RL'
+  figures_description:
+  - 'Before/after bar chart: Cohen''s d for lz*, HT, and effect sizes for MIA/Min-K++
+    pre-RL and post-RL'
+  - 'Item difficulty curve: P(correct) vs item difficulty for clean, SFT-only, and
+    post-RL models. SFT shows aberrant bump on seen items; post-RL smooth curve indistinguishable
+    from clean'
+  - 'Memorization fraction decay: MF from SFT (~0.36) → post-RL (~0.05), visualizing
+    signal destruction'
+  analysis: 'This is the worst-tier defining result. ALL binary-only methods (lz*,
+    HT, Guttman, U3, accuracy) and ALL token-probability methods (MIA, Min-K++, PPL)
+    fail post-RL. The paper must honestly report this as a scope boundary: IRT-FIT
+    detects SFT contamination but NOT post-RL contamination. Frame as contribution:
+    "We map the detection frontier — establishing where binary detection works (SFT)
+    and precisely where it fails (post-RL)." The RL boundary finding is itself publishable:
+    it extends Wang et al. (2025) from 10 log-prob methods to include person-fit and
+    all binary-only methods.
+
+    '
+- name: Extra Benchmarks (BBH + MATH)
+  plan_id: exp-extra-benchmarks
+  description: 'BBH (6,511 items) 和 MATH (5,000 items) 填充 1K-10K items 的 power gap。
+
+    '
+  expected_results:
+    bbh_available_in_psnirt: false
+    math_available_in_psnirt: false
+    bbh_4pl_self_calibrated: true
+    math_4pl_self_calibrated: true
+    bbh_power_15pct_sim: 0.78
+    math_power_15pct_sim: 0.68
+    bbh_ctrl_contam_d_15: -1.8
+    math_ctrl_contam_d_15: -1.4
+    bbh_ht_d_15: -1.7
+    math_ht_d_15: -1.3
+    power_function_fit_with_bbh_math: 0.62
+    self_calibrated_vs_psnirt_degradation: 15-25% power loss
+  result_rationale: 'BBH and MATH are unlikely to be in PSN-IRT (which covers standard
+    benchmarks: MMLU, HellaSwag, GSM8K, ARC-C, HumanEval). Self-calibrating 4PL parameters
+    from the limited LLM sample (N=12-20 models) introduces the same discrimination
+    failure as Path D (a_r < 0.2), resulting in 15-25% power loss vs PSN-IRT calibrated
+    parameters. BBH (6511 items) achieves simulated power ~0.78 at 15% but real-data
+    d ~1.8 (lower than MMLU''s ~3.1) due to self-calibration degradation and BBH''s
+    complex format (multi-step reasoning items where SFT contamination signal is weaker
+    — the model may memorize the answer but not the reasoning path, and BBH scoring
+    often requires the full reasoning). MATH (5000 items) is worse: math problems
+    have high guessing variance and the SFT signal is diluted by the symbolic nature
+    of responses. Both benchmarks confirm the power function trend (more items = more
+    power) but with lower coefficients than MMLU-calibrated parameters would predict.
+    R² drops from 0.957 to ~0.62 when self-calibrated benchmarks are included, showing
+    the power function is parameter-dependent.
+
+    '
+  tables:
+  - 'Table: Power comparison — MMLU/HellaSwag/GSM8K (PSN-IRT) vs BBH/MATH (self-calibrated)'
+  figures_description:
+  - 'Updated power function plot: n_items vs detection power, with BBH/MATH points
+    below the PSN-IRT curve'
+  analysis: 'BBH and MATH fill the 1K-10K gap but with degraded performance due to
+    self-calibration. This reinforces the PSN-IRT parameter dependency — IRT-FIT''s
+    power depends on parameter quality, not just benchmark size. Paper should report
+    these as secondary results with the self-calibration caveat. Does not change worst-tier
+    narrative.
+
+    '
+- name: MMLU Domain-Level Analysis
+  plan_id: exp-domain-analysis
+  description: 'MMLU domain 级别分析：按 subject category 分别计算 person-fit， 识别 contamination
+    是全面还是集中在特定 domain。
+
+    '
+  expected_results:
+    gemini_subjects_flagged: 50/57
+    gemini_all_domains_uniform: true
+    gemini_stem_lz: 21.0
+    gemini_humanities_lz: 18.0
+    gemini_social_sciences_lz: 16.0
+    gemini_other_lz: 15.5
+    doubao_domain_asymmetric: true
+    doubao_stem_lz: -2.0
+    doubao_humanities_lz: -13.0
+    yi_lightning_highest_lz: 48.0
+    domain_concentration_index: 0.85
+    contamination_uniform_pct: 80% of models
+  result_rationale: 'Gemini-1.5 with 100% MMLU accuracy trivially flags all domains
+    — with perfect accuracy, every subject produces extreme positive lz* (over-consistent).
+    STEM slightly higher than humanities because STEM items have lower average d parameter
+    (ceiling effects more pronounced), amplifying the over-consistency signal. Most
+    models (~80%) show uniform contamination across domains because: (1) if contamination
+    is via training data inclusion, it''s unlikely to be domain-selective (entire
+    benchmark is either included or not); (2) SFT on randomly-sampled benchmark items
+    distributes contamination proportionally across domains. Doubao shows domain asymmetry
+    (STEM normal, humanities aberrant) suggesting selective knowledge — possibly stronger
+    humanities training data or benchmark-specific tuning. This is interesting but
+    doesn''t affect the detection narrative. Yi-Lightning''s extreme lz*=48 is driven
+    by very high accuracy on hard items across all domains.
+
+    '
+  tables:
+  - 'Table: lz* by domain category for top-5 most anomalous models'
+  - 'Table: Domain concentration index — fraction of models with uniform vs concentrated
+    misfit'
+  figures_description:
+  - 'Heatmap: models (rows) × MMLU categories (cols), color=lz*, showing uniform vs
+    asymmetric patterns'
+  - 'Radar chart: Gemini vs Doubao domain profiles, illustrating uniform vs selective
+    misfit'
+  analysis: Domain analysis provides interpretability (which subjects drive anomalies)
+    but doesn't improve detection power. 80% uniform contamination is unsurprising.
+    Doubao's asymmetry is a case study for Discussion. Paper Section 5c (empirical
+    findings). Under worst tier, this is a descriptive contribution, not a detection
+    advance.

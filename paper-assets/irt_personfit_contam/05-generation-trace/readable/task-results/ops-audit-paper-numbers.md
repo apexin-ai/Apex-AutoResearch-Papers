@@ -1,0 +1,159 @@
+# ops audit paper numbers
+
+**What Can IRT Person-Fit Statistics Reveal About SFT-Stage Benchmark Contamination?** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_ops_audit-paper-numbers_20260523T191619_result.json`
+- **Structured JSON:** [`7f18dda8e0cd18665b50.json`](../../sessions/7f/7f18dda8e0cd18665b50.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+Now I have all data needed. Here's the complete audit report.
+
+---
+
+## 数据自查报告 — Part A
+
+### ✅ 已核对一致
+
+**Abstract 数字追溯:**
+- `2.4×` ← Table 2 (results.tex:93): Qwen 50% ratio = 2.4× ($5.08 \to 12.32$)
+- `60%` ← Appendix tab:reproducibility (appendix.tex:359): free-θ 50% CV = 59.6% ≈ 60%
+- `19%` ← Appendix tab:reproducibility (appendix.tex:359): fixed-θ 50% CV = 19.3% ≈ 19%
+- `14,042` ← 全文一致
+- `295` ← 全文一致
+- `n=10` ← 全文一致
+- `three 7–8B model families` ← 全文一致 (Qwen/Llama/Mistral)
+
+**旧值残留扫描:**
+- `2.27` (旧 d_free 15%) — **未发现**，已清除 ✅
+- `2.50` (旧 d_free 50%) — **未发现**，已清除 ✅
+- `-0.31` / `0.31` (旧 Llama baseline) — **未发现**，已清除 ✅
+- `2.97` — 仅出现于 results.tex:94 (Table 2 fixed-θ CI [0.17, 2.97]) 和 appendix.tex:262 (BCa 段)，均为 fixed-θ 分析的合法引用 ✅
+- `0.84` — 仅出现于 results.tex:94 (Table 2 d_fixed=0.84)，为合法值 ✅
+
+**Table 1 ↔ 正文 prose 交叉验证 (results.tex):**
+- Llama d: 2.11/1.99/2.33 ← Table 1 line 29 ✅
+- Qwen d: 4.15 (5%) / 5.36 (15%) / 7.44 (25%) / 5.08 (50%) ← Table 1 line 28 ✅
+- Mistral d: 3.01/3.50 ← Table 1 line 30 ✅
+- ARC-C Qwen d: 3.16 (15%) / 5.30 (50%) ← Table 1 line 31 ✅
+- d range "1.99–7.44" ← min=Llama 25%, max=Qwen 25% ✅
+- Baselines: Qwen +8.68 (SD=0.74), Llama +0.26 (SD=1.54) ← appendix tab:reproducibility / tab:llama_multiseed ✅
+
+**Table 2 ↔ Table 1 d_free 一致性:**
+- 全部 7 个 d_free 值完全匹配 ✅
+
+**Table 2 ↔ Appendix 交叉验证:**
+- Qwen 15% d_fixed=6.85 (±1.80) ← appendix.tex:357 mean=6.85, SD=1.80 ✅
+- Qwen 50% d_fixed=12.32 (±2.38) ← appendix.tex:357 mean=12.32, SD=2.38 ✅
+- Qwen 25% d_fixed mean=5.89 (prose line 163) ← appendix.tex:357 ✅
+
+**Table 3 ↔ Appendix HT/Acc multi-seed:**
+- Qwen HT 15%: 5.83 (±1.30), 50%: 5.29 (±3.41) ← appendix tab:ht_acc_multiseed ✅
+- Qwen Acc z 15%: 45.0 (±2.5), 50%: 70.0 (±1.1) ← appendix tab:ht_acc_multiseed ✅
+
+**Dose-response trajectory (results.tex:162–164):**
+- Qwen: 4.15→5.36→7.44→5.08 ← Table 1 multi-seed means ✅
+- CV=60% range [1.90, 7.91] ← appendix tab:reproducibility seed 42/456 ✅
+- Fixed-θ: 5.89 at 25%, 12.32 at 50%, CV 19% ← appendix tab:reproducibility ✅
+- Llama: 2.11→1.99→2.33 ← Table 1 ✅
+
+**Discussion/Conclusion/Limitations 数字:**
+- CV 60% ✅, N=1 (post-RL) ✅, 57/60 cells ✅, r_a=0.127 ✅
+- Min-K% AUC 0.611→0.493 ✅, ℓz* gap ~3.3 ✅
+- R²=0.957 ✅, >93% power ✅
+
+**Appendix 内部一致性:**
+- tab:seed_sensitivity caption 标注 "superseded by n=10 analysis" ✅
+- BCa CI [0.17, 2.97] 属于 fixed-θ 分析，不受 free-θ baseline 更新影响 ✅
+- Llama multi-seed table (tab:llama_multiseed) 使用 n=10 baseline (ℓz*=+0.26, s=1.54) ✅
+
+**Figure 脚本 — Llama 数据点 (gen_fig_theta_scatter.py):**
+- 15%: (59.4, 2.11, 1.40, 4.80) ← Table 1 ✅
+- 25%: (59.4, 1.99, 1.30, 4.40) ← Table 1 ✅
+- 50%: (59.4, 2.33, 1.60, 5.10) ← Table 1 ✅
+
+---
+
+### ⚠️ 发现的不一致 / 需修复
+
+**1. results.tex:71 — Llama ratio 0.3× vs 0.4× 混用**
+正文 line 71: "Llama ... shows **0.3×** despite comparable θ-shift"
+同一段 line 72: "0.26 → **0.4×** at 50%"
+Table 2 (line 94): Llama 50% ratio = **0.4×**; Llama 15% ratio = **0.3×**
+
+上下文（该段讨论 50% contamination 下三个 model 的 ratio）要求 line 71 应为 **0.4×**（50%），不应是 0.3×（15%）。与同段 line 72 的 "0.4× at 50%" 直接矛盾。
+
+**2. ARC-C 50% CI 上界: Table 1 vs Figure 脚本**
+- Table 1 (results.tex:31): `[3.6, 15.2]`
+- gen_fig_heatmap.py line 40: `'[3.6, 15.5]'`
+- gen_fig_theta_scatter.py line 47: `ci_hi=15.49`（→ 15.5）
+
+两个 figure 脚本一致 (15.5)，Table 1 说 15.2。**Table 1 与 figures 不一致。**
+
+**3. Mistral 50% CI 上界: scatter 脚本 vs Table 1/heatmap**
+- gen_fig_theta_scatter.py line 46: `ci_hi=9.59`（rounds to 9.6）
+- Table 1 (results.tex:30): `[−9.4, −2.1]` → |d| CI 上界 = 9.4
+- gen_fig_heatmap.py line 42: `'[2.1, 9.4]'`
+
+Table 1 和 heatmap 一致 (9.4)，scatter 说 9.59。**scatter 与 Table 1/heatmap 不一致。**
+
+**4. Qwen 15% d (seed 42): figure 脚本 vs appendix**
+- gen_fig_heatmap.py line 34: `6.58`
+- gen_fig_theta_scatter.py line 32: `6.58`
+- Appendix tab:reproducibility (appendix.tex:353): seed 42 = `6.57`
+
+两个 figure 脚本一致 (6.58)，appendix 说 6.57。**0.01 差异，可能是中间计算精度问题。**
+
+**5. Appendix §baseline_meaning (appendix.tex:130) — 数据源混淆**
+"Mistral (acc=0.514, lowest among the 12 models) exhibits ℓz*=+5.42 (second highest)"
+
+这些值来自 PSN-IRT leaderboard 的 12 模型分析（sec_empirical.tex，未编译入最终论文）。
+主文 controlled experiment (n=10): Mistral acc=**52.4%**(=0.524), ℓz*=**+4.02** (SD=2.05)。
+
+问题：
+- "12 models" 引用了论文中已移除的 section（sec_empirical 未被 main.tex 编入）
+- acc: 0.514 vs 0.524（1pp 差异，不同数据源）
+- ℓz*: +5.42 vs +4.02（不同数据源）
+- 读者会误以为 appendix 的 Mistral 值与主文一致
+
+**6. ARC-C Qwen baseline accuracy: 90.0% vs 89.9%**
+- results.tex lines 58, 59: `90.0%`
+- gen_fig_theta_scatter.py lines 35, 47: `89.9`
+
+数值差 0.1pp。
+
+---
+
+### ❌ 待人工确认的疑点
+
+**1. results.tex:14 — Qwen contaminated ℓz* at 15% = +3.85**
+"Qwen's contaminated ℓz* at 15% (+3.85) is still positive."
+
+无法从论文中任何 table 追溯此值：
+- 若用 multi-seed mean d=-5.36: contam_ℓz* = 8.68 + (-5.36)(0.74) = **4.71** ≠ 3.85
+- 若用 seed 42 d=-6.57: contam_ℓz* = 8.68 + (-6.57)(0.74) = **3.82** ≈ 3.85
+
+最接近 seed 42 的计算值 (3.82)，但差 0.03。此值可能来自 raw 数据而非 table 推导。定性结论（"still positive"）不受影响，但具体数字需核对原始数据。
+
+旧版 sec_ctrl_contam.tex:39 使用 **+3.84**（也不完全一致）。
+
+**2. Discussion "n > 7,000 items" (discussion.tex:14) vs Appendix "n ≥ 7,958" (appendix.tex:10)**
+Discussion 说 "n > 7,000 items for 80% power"，appendix simulation 精确值为 7,958。讨论中向下取整约 12%，可能给读者过于乐观的印象。建议统一为 "~8,000" 或 "> 7,900"。
+
+**3. "57/60 model-benchmark cells" 和 "4/60 cells" (results.tex:125–126)**
+这些数字来自 12 models × 5 benchmarks 的 leaderboard 分析。该分析的 full section (sec_empirical.tex) 未编入最终论文。主文引用了结论但未交代数据来源 — 读者无法验证 57/60 从何而来。
+
+---

@@ -1,0 +1,149 @@
+{
+  "n_pairs": 21,
+  "benchmarks": [
+    "MMLU",
+    "HellaSwag",
+    "ARC-Challenge",
+    "GSM8K"
+  ],
+  "n_pair_benchmark_combinations": 61,
+  "n_complete_pairs": 9,
+  "irt_fitting": {
+    "MMLU": {
+      "n_models": 63,
+      "n_items": 14042,
+      "c_param": 0.25,
+      "a_range": [
+        0.01,
+        5.0
+      ],
+      "b_range": [
+        -6.0,
+        6.0
+      ]
+    },
+    "HellaSwag": {
+      "n_models": 57,
+      "n_items": 10042,
+      "c_param": 0.25,
+      "a_range": [
+        0.01,
+        5.0
+      ],
+      "b_range": [
+        -6.0,
+        6.0
+      ]
+    },
+    "ARC-Challenge": {
+      "n_models": 57,
+      "n_items": 1172,
+      "c_param": 0.25,
+      "a_range": [
+        0.01,
+        5.0
+      ],
+      "b_range": [
+        -6.0,
+        6.0
+      ]
+    },
+    "GSM8K": {
+      "n_models": 45,
+      "n_items": 1319,
+      "c_param": 0.0,
+      "a_range": [
+        0.15901244519867963,
+        5.0
+      ],
+      "b_range": [
+        -0.48727151362397614,
+        6.0
+      ]
+    }
+  },
+  "lz_star_per_benchmark": {
+    "MMLU": {
+      "mean": 11.68882847864405,
+      "std": 6.684567791747415,
+      "min": -5.875383026952177,
+      "max": 23.37499091218986
+    },
+    "HellaSwag": {
+      "mean": 12.530300394032274,
+      "std": 9.60535976239184,
+      "min": -7.885024722656741,
+      "max": 35.907778092693846
+    },
+    "ARC-Challenge": {
+      "mean": 6.3018949412801994,
+      "std": 2.7936540497925613,
+      "min": -2.2349438989529586,
+      "max": 12.532330757035423
+    },
+    "GSM8K": {
+      "mean": -0.3190293801235551,
+      "std": 3.4222040196468284,
+      "min": -12.010428322057725,
+      "max": 4.532910778859613
+    }
+  },
+  "delta_lz_star_per_benchmark": {
+    "MMLU": {
+      "mean": -1.316783181882455,
+      "std": 5.1171570078028825
+    },
+    "HellaSwag": {
+      "mean": -6.817274767824835,
+      "std": 5.563509564532318
+    },
+    "ARC-Challenge": {
+      "mean": -3.874808815793805,
+      "std": 2.4507830938547825
+    },
+    "GSM8K": {
+      "mean": 0.4304973099457755,
+      "std": 1.1989524670713732
+    }
+  },
+  "deviation_tests": {
+    "MMLU": {
+      "n_pairs": 16,
+      "mean_deviation": 1.1667977352364498,
+      "std_deviation": 2.979785555035408,
+      "median_deviation": 0.6392165120373309,
+      "t_statistic": 1.5165481251920503,
+      "p_value": 0.150170328217425,
+      "mean_delta_lz_star": -1.316783181882455
+    },
+    "HellaSwag": {
+      "n_pairs": 15,
+      "mean_deviation": -3.400818936977138,
+      "std_deviation": 3.203293996958501,
+      "median_deviation": -2.0261697700785635,
+      "t_statistic": -3.9723794658570837,
+      "p_value": 0.0013893361650221894,
+      "mean_delta_lz_star": -6.817274767824835
+    },
+    "ARC-Challenge": {
+      "n_pairs": 15,
+      "mean_deviation": -0.4583529849461088,
+      "std_deviation": 1.882987588275629,
+      "median_deviation": 0.07400218796190794,
+      "t_statistic": -0.9107865832743098,
+      "p_value": 0.3778229880848878,
+      "mean_delta_lz_star": -3.874808815793805
+    },
+    "GSM8K": {
+      "n_pairs": 10,
+      "mean_deviation": 3.9218815065065504,
+      "std_deviation": 3.50924819070542,
+      "median_deviation": 3.284359344550121,
+      "t_statistic": 3.352753604228418,
+      "p_value": 0.008486317259363555,
+      "mean_delta_lz_star": 0.4304973099457755
+    }
+  },
+  "outlier_pairs": [],
+  "runtime_sec": 924.4020450115204
+}

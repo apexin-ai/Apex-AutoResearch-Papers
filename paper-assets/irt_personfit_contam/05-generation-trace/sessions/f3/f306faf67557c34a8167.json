@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f306faf67557c34a8167",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops check item selection seeds",
+  "task_key": "worker_ops_check-item-selection-seeds_20260523T145838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-item-selection-seeds_20260523T145838_result.json",
+    "occurrence": 1,
+    "bytes": 771,
+    "sha256": "d3fb0d582de1b9a7cf5e887d31792070b8f0717a55f07eea92426ecdc6185267"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| 模型 | Item selection seed | 来源文件 |\n|------|-------------------|----------|\n| **Llama** | **42** | `ctrl_contam_pilot/prepare_data.py` |\n| **Qwen** | **42** | `anon_repo/qwen/prepare_data.py` |\n| **Mistral** | **999** | `ctrl_contam_mistral/prepare_data.py` |\n\n**Mistral 不一致。** Mistral 的 `rng_contam = random.Random(999)`，而 Llama 和 Qwen 都是 `random.Random(42)`。\n\n注意 Mistral 脚本注释写的是 `\"seed=999 (same as Llama for cross-model comparability)\"`，这条注释是错误的——Llama 实际用的是 42，不是 999。seed 不同意味着 Mistral 的 contaminated item subset 与 Llama/Qwen 的不同（虽然都是从同一个 MMLU 14042 items 中抽取，但 shuffle 顺序不同）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-item-selection-seeds.md"
+}

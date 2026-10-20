@@ -1,0 +1,55 @@
+{
+  "exp_id": "exp-post-rl-v3",
+  "project": "irt_personfit_contam",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T12:45:42.860Z",
+    "updated_at": "2026-05-21T14:25:46.116Z",
+    "spec": {
+      "command": "python train_grpo.py --gpu 2",
+      "server": "westd-35694",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "141861",
+      "log_path": "~/runs/irt_personfit_contam/exp-post-rl-v3.log",
+      "submitted_at": "2026-05-21T12:47:09.005Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "/root/autodl-tmp/post_rl_contam/outputs/grpo/checkpoint-500",
+      "data_path": "/root/autodl-tmp/post_rl_contam/data/",
+      "data_count": "14042 MMLU items",
+      "model_name": "Qwen2.5-7B-Instruct (SFT checkpoint + GRPO)",
+      "seed": "42",
+      "checkpoint_source": "exp-post-rl SFT checkpoint",
+      "eval_data": "mmlu_items.json + mmlu_params.csv"
+    },
+    "hypothesis": "GRPO with num_generations=16 + temperature=1.2 produces measurable parameter update while preserving lz* contamination signal (R7 post-RL robustness)",
+    "parent": "exp-post-rl",
+    "metrics": {
+      "step500_theta": 0.157,
+      "step500_lz_star": 7.771,
+      "step500_acc_overall": 0.7144,
+      "step500_acc_seen": 0.7303,
+      "step500_acc_unseen": 0.7116,
+      "step500_lz_seen": 3.41,
+      "step500_lz_unseen": 7,
+      "step500_ht_param": -0.0349,
+      "step500_ht_param_seen": -0.0282,
+      "step500_ht_nonparam": 0.1678,
+      "sft_baseline_lz_star": 2.914,
+      "sft_baseline_acc": 0.7339,
+      "sft_baseline_acc_seen": 0.831,
+      "delta_lz_sft_to_grpo": 4.857,
+      "delta_acc_seen_sft_to_grpo": -0.1007
+    },
+    "conclusion": "negative",
+    "notes": "GRPO v3 step 500 eval: contamination signal destroyed. seen/unseen gap 11.43pp→1.87pp, lz* 2.914→7.771, HT_param_seen +0.036→-0.028. GRPO washes out SFT contamination. Killed at step ~1732/3000 by Director (D033). Useful as negative result: \"post-RL washes out lz* signal → pre-RL checkpoint evaluation is critical\"."
+  },
+  "timestamp": "2026-05-21T14:25:46.219241+00:00",
+  "trigger": "update_registry"
+}

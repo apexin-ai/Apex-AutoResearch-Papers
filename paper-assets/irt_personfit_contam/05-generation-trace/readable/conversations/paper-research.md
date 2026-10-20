@@ -1,0 +1,3038 @@
+# paper research
+
+**What Can IRT Person-Fit Statistics Reveal About SFT-Stage Benchmark Contamination?** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 89
+- **Recorded user turns:** 0
+- **Tool calls:** 44
+- **Original source:** `logs/chats/worker_paper_research_20260520T213656.jsonl`
+- **Structured JSON:** [`aa19c781ac7b26ccc03e.json`](../../sessions/aa/aa19c781ac7b26ccc03e.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+89 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-20T21:44:21.504799+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/literature_map.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/literature_map.yaml"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-20T21:44:21.505267+00:00_
+
+1	meta:
+2	  last_updated: '2026-05-20T08:00:00Z'
+3	  total_papers: 25
+4	categories:
+5	  - key: irt-llm
+6	    label: IRT for LLM Evaluation
+7	  - key: contamination-detection
+8	    label: Benchmark Contamination Detection
+9	  - key: person-fit
+10	    label: Person-Fit Statistics (Psychometrics)
+11	  - key: post-rl-contamination
+12	    label: Post-RL Contamination
+13	  - key: irt-foundations
+14	    label: IRT Foundations
+15	papers:
+16	  psnirt2026:
+17	    title: "Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory"
+18	    authors: []
+19	    year: 2026
+20	    venue: AAAI 2026 Oral
+21	    url: "https://arxiv.org/abs/2505.15055"
+22	    doi: ""
+23	    bibtex_key: psnirt2026
+24	    category: irt-llm
+25	    role: foundation
+26	    relevance: "Provides calibrated 4PL item parameters (a,b,c,d) for 41,871 items across 11 benchmarks — the item bank our method builds on"
+27	    abstract: ""
+28	    semantic_scholar_id: ""
+29	    verified: false
+30	    added_by: director
+31	    added_at: '2026-05-20T08:00:00Z'
+32	
+33	  atlas2025:
+34	    title: "Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks"
+35	    authors: []
+36	    year: 2025
+37	    venue: ""
+38	    url: "https://arxiv.org/abs/2511.04689"
+39	    doi: ""
+40	    bibtex_key: atlas2025
+41	    category: irt-llm
+42	    role: background
+43	    relevance: "ATLAS uses IRT for adaptive testing efficiency; related IRT-for-LLM work but not person-fit"
+44	    abstract: ""
+45	    semantic_scholar_id: ""
+46	    verified: false
+47	    added_by: director
+48	    added_at: '2026-05-20T08:00:00Z'
+49	
+50	  constat2024:
+51	    title: "ConStat: Performance-Based Contamination Detection in Large Language Models"
+52	    authors: ["Dekoninck, J.", "Müller, M.", "Vechev, M."]
+53	    year: 2024
+54	    venue: "NeurIPS 2024"
+55	    url: "https://arxiv.org/abs/2405.16281"
+56	    doi: ""
+57	    bibtex_key: constat2024
+58	    category: contamination-detection
+59	    role: direct-compet
+…[truncated 15714 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-20T21:44:21.505548+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:WebSearch",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-20T21:44:21.505699+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-20T21:44:21.505842+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arxiv 2505.15055 \"Lost in Benchmarks\" Item Response Theory LLM AAAI 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arxiv 2505.15055 \"Lost in Benchmarks\" Item Response Theory LLM AAAI 2026"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-20T21:44:21.506015+00:00_
+
+Web search results for query: "arxiv 2505.15055 "Lost in Benchmarks" Item Response Theory LLM AAAI 2026"
+
+Links: [{"title":"[2505.15055] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://arxiv.org/abs/2505.15055"},{"title":"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory | Proceedings of the AAAI Conference on Artificial Intelligence","url":"https://ojs.aaai.org/index.php/AAAI/article/view/40814"},{"title":"[Literature Review] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://www.themoonlight.io/en/review/lost-in-benchmarks-rethinking-large-language-model-benchmarking-with-item-response-theory"},{"title":"GitHub - Joe-Hall-Lee/PSN-IRT: [AAAI 2026 Oral] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory · GitHub","url":"https://github.com/Joe-Hall-Lee/PSN-IRT"},{"title":"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://arxiv.org/pdf/2505.15055"},{"title":"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with","url":"https://ojs.aaai.org/index.php/AAAI/article/view/40814/44775"},{"title":"Paper page - Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://huggingface.co/papers/2505.15055"},{"title":"(PDF) Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://www.researchgate.net/publication/391954139_Lost_in_Benchmarks_Rethinking_Large_Language_Model_Benchmarking_with_Item_Response_Theory"},{"title":"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://chatpaper.com/paper/139423"},{"title":"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://arxiv.org/html/2505.15055v2"}]
+
+Based on the search
+…[truncated 1287 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-20T21:44:21.506178+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arxiv 2511.04689 \"Adaptive Testing for LLM Evaluation\" ATLAS psychometric"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arxiv 2511.04689 \"Adaptive Testing for LLM Evaluation\" ATLAS psychometric"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-20T21:44:21.506345+00:00_
+
+Web search results for query: "arxiv 2511.04689 "Adaptive Testing for LLM Evaluation" ATLAS psychometric"
+
+Links: [{"title":"[2511.04689] Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks","url":"https://arxiv.org/abs/2511.04689"},{"title":"ADAPTIVE TESTING FOR LLM EVALUATION: A","url":"https://arxiv.org/pdf/2511.04689"},{"title":"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks","url":"https://arxiv.org/html/2511.04689v1"},{"title":"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks | OpenReview","url":"https://openreview.net/forum?id=iX39LhePyd"},{"title":"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks | Request PDF","url":"https://www.researchgate.net/publication/397441932_Adaptive_Testing_for_LLM_Evaluation_A_Psychometric_Alternative_to_Static_Benchmarks"},{"title":"Efficiently Measuring the Cognitive Ability of LLMs: An Adaptive Testing Perspective","url":"https://arxiv.org/html/2306.10512v1"},{"title":"Leveraging Computerized Adaptive Testing for Cost-effective Evaluation of Large Language Models in Medical Benchmarking","url":"https://arxiv.org/pdf/2603.23506"},{"title":"[PDF] Adaptive Testing for LLM Evaluation: A Psychometric ...","url":"https://www.semanticscholar.org/paper/Adaptive-Testing-for-LLM-Evaluation:-A-Psychometric-Li-Tang/087ce2837a0d5562bc95a40e77a327a6d033366c"}]
+
+I found the paper! Here are the search results for arxiv 2511.04689:
+
+## Key Information
+
+ATLAS is an adaptive testing framework based on Item Response Theory (IRT) that estimates model ability using Fisher information-guided item selection.
+
+**Main Contribution:** ATLAS reduces the number of required items by up to 90% while maintaining measurement precision. For example, it matches whole-bank ability estimates using only 41 items (0.157 MAE) on HellaSwag (5,600 items).
+
+**Problem Addressed:** Evaluating large language models typically requir
+…[truncated 941 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-20T21:44:21.506497+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arxiv 2510.02386 \"Fragility of Benchmark Contamination Detection\" reasoning models"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arxiv 2510.02386 \"Fragility of Benchmark Contamination Detection\" reasoning models"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T21:44:21.506648+00:00_
+
+Web search results for query: "arxiv 2510.02386 "Fragility of Benchmark Contamination Detection" reasoning models"
+
+Links: [{"title":"[2510.02386] On The Fragility of Benchmark Contamination Detection in Reasoning Models","url":"https://arxiv.org/abs/2510.02386"},{"title":"[PDF] On The Fragility of Benchmark Contamination Detection in Reasoning Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/On-The-Fragility-of-Benchmark-Contamination-in-Wang-Li/9a5bf5d3c7116cc4a104c06599fbcef2d1b5abf3"},{"title":"On The Fragility of Benchmark Contamination Detection in Reasoning Models","url":"https://www.researchgate.net/publication/396223620_On_The_Fragility_of_Benchmark_Contamination_Detection_in_Reasoning_Models"},{"title":"DynaSolidGeo: A Dynamic Benchmark for Genuine Spatial Mathematical Reasoning of VLMs in Solid Geometry","url":"https://arxiv.org/html/2510.22340v1"},{"title":"On The Fragility of Benchmark Contamination Detection in Reasoning Models","url":"https://arxiv.org/pdf/2510.02386"}]
+
+I found the research paper you were looking for. Here are the key details about arxiv 2510.02386:
+
+**Title:** On The Fragility of Benchmark Contamination Detection in Reasoning Models
+
+**Authors:** Han Wang, Haoyu Li, Brian Ko, and Huan Zhang
+
+**Main Findings:**
+
+The paper addresses how leaderboards for Large Reasoning Models (LRMs) have turned evaluation into a competition, and that incorporating evaluation benchmarks into training data—known as benchmark contamination—yields inflated performance.
+
+The study finds that evading contamination detections for LRMs is alarmingly easy. Specifically:
+
+- When a base model evolves into an LRM via supervised fine-tuning (SFT) and reinforcement learning (RL), contamination during SFT can be identified by detection methods, yet even brief GRPO training can markedly conceal contamination signals.
+
+- PPO style importance sampling and clipping objectives are identified as the root cause of detection concealment, suggesting a 
+…[truncated 530 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-20T21:44:21.506799+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arxiv 2510.09259 \"Detecting Data Contamination from Reinforcement Learning Post-training\" ICLR 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arxiv 2510.09259 \"Detecting Data Contamination from Reinforcement Learning Post-training\" ICLR 2026"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T21:44:21.506936+00:00_
+
+Web search results for query: "arxiv 2510.09259 "Detecting Data Contamination from Reinforcement Learning Post-training" ICLR 2026"
+
+Links: [{"title":"[2510.09259] Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models","url":"https://arxiv.org/abs/2510.09259"},{"title":"Paper page - Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models","url":"https://huggingface.co/papers/2510.09259"},{"title":"detecting data contamination from reinforcement learning ...","url":"https://arxiv.org/pdf/2510.09259"},{"title":"Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models | Request PDF","url":"https://www.researchgate.net/publication/396459308_Detecting_Data_Contamination_from_Reinforcement_Learning_Post-training_for_Large_Language_Models"},{"title":"Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models","url":"https://arxiv.org/html/2510.09259v1"},{"title":"Detecting Data Contamination in LLMs via In-Context Learning","url":"https://arxiv.org/pdf/2510.27055"}]
+
+Based on the search results, I found the paper you're looking for:
+
+**Paper Details:**
+
+The paper "Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models" is arxiv:2510.09259, with authors Yongding Tao, Tian Wang, Yihong Dong, Huanyu Liu, Kechi Zhang, Xiaolong Hu, and Ge Li. It was submitted on October 10, 2025, with the latest version on March 18, 2026.
+
+**Paper Summary:**
+
+Data contamination poses a significant threat to the reliable evaluation of Large Language Models (LLMs), arising when benchmark samples may inadvertently appear in training sets, compromising the validity of reported performance. While detection methods have been developed for the pre-training and Supervised Fine-Tuning stages, a critical research gap exists for the increasingly significant phase of Reinforcement Learning (RL) post-traini
+…[truncated 661 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-20T21:44:21.507082+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Burnham 2024 \"Item Response Theory\" AI evaluation psychometric LLM"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Burnham 2024 \"Item Response Theory\" AI evaluation psychometric LLM"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T21:44:21.507232+00:00_
+
+Web search results for query: "Burnham 2024 "Item Response Theory" AI evaluation psychometric LLM"
+
+Links: [{"title":"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks","url":"https://arxiv.org/html/2511.04689v2"},{"title":"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://arxiv.org/html/2505.15055v2"},{"title":"Estimating LLM Grading Ability and Response Difficulty in Automatic Short Answer Grading via Item Response Theory","url":"https://arxiv.org/html/2605.00238"},{"title":"Diagnosing the Reliability of LLM-as-a-Judge via Item Response Theory","url":"https://arxiv.org/pdf/2602.00521"},{"title":"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks","url":"https://arxiv.org/pdf/2511.04689"},{"title":"Learning Compact Representations of LLM Abilities via Item Response Theory","url":"https://arxiv.org/pdf/2510.00844"},{"title":"Leveraging LLM respondents for item evaluation: A psychometric analysis - Liu - 2025 - British Journal of Educational Technology - Wiley Online Library","url":"https://bera-journals.onlinelibrary.wiley.com/doi/10.1111/bjet.13570?af=R"}]
+
+Based on the search results, I found several relevant papers on Item Response Theory (IRT) applied to AI evaluation and LLMs, though I didn't find a specific 2024 paper by an author named Burnham. Here are the key findings:
+
+## Recent Work on IRT and LLM Evaluation
+
+Item Response Theory (IRT) has recently been applied to LLM evaluation, with item parameters such as difficulty, discrimination, and guessing, as well as latent ability estimates for models.
+
+Several significant research directions have emerged:
+
+1. **Adaptive Testing**: IRT-based ability estimation induces substantial rank reordering (23–31% of models shift by more than 10 positions) when applied to major benchmarks, highlighting the importance of psychometric validation.
+
+2. **Benchmark Analysis**: Item Response Theory offer
+…[truncated 890 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-20T21:44:21.507392+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Jacobs 2024 psychometrics AI large language models evaluation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Jacobs 2024 psychometrics AI large language models evaluation"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-20T21:44:21.507539+00:00_
+
+Web search results for query: "Jacobs 2024 psychometrics AI large language models evaluation"
+
+Links: [{"title":"Quantifying AI Psychology: A Psychometrics Benchmark for Large Language Models","url":"https://arxiv.org/html/2406.17675v1"},{"title":"Evaluating Large Language Models with Psychometrics","url":"https://arxiv.org/html/2406.17675"},{"title":"A psychometric framework for evaluating and shaping personality traits in large language models | Nature Machine Intelligence","url":"https://www.nature.com/articles/s42256-025-01115-6"},{"title":"AI Psychometrics: Evaluating the Psychological Reasoning of Large Language Models with Psychometric Validities","url":"https://arxiv.org/pdf/2603.11279"},{"title":"Do Large Language Models Have a Personality? A Psychometric Evaluation with Implications for Clinical Medicine and Mental Health AI","url":"https://www.medrxiv.org/content/10.1101/2025.03.14.25323987.full.pdf"},{"title":"AI Psychometrics: Assessing the Psychological Profiles of Large Language Models Through Psychometric Inventories - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC11373167/"},{"title":"AI Psychometrics: Assessing the Psychological Profiles of Large Language Models Through Psychometric Inventories - Max Pellert, Clemens M. Lechner, Claudia Wagner, Beatrice Rammstedt, Markus Strohmaier, 2024","url":"https://journals.sagepub.com/doi/10.1177/17456916231214460"}]
+
+I found several relevant results about psychometric evaluation of large language models. Here's a summary of what the search returned:
+
+## Key Research Findings
+
+Jacobs and Wallach (2021) and Wang et al. (2023a) emphasized the importance of stable, reliable measurements in AI through psychometric frameworks.
+
+Several 2024 studies have explored psychometric evaluation of LLMs:
+
+- Psychometric profiling enables researchers to study and compare LLMs in terms of noncognitive characteristics, and standard psychometric inventories originally designed for assessing human traits can be repurposed
+…[truncated 959 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-20T21:44:21.507682+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"item response theory\" \"large language model\" evaluation benchmark 2024 2025 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"item response theory\" \"large language model\" evaluation benchmark 2024 2025 arXiv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T21:44:21.507821+00:00_
+
+Web search results for query: ""item response theory" "large language model" evaluation benchmark 2024 2025 arXiv"
+
+Links: [{"title":"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://arxiv.org/html/2505.15055v3"},{"title":"[PDF] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Lost-in-Benchmarks-Rethinking-Large-Language-Model-Zhou-Huang/a43a21d3b8bcede381110da630421afca45c8e5d"},{"title":"Toward a unified framework for data-efficient evaluation of large language models","url":"https://arxiv.org/html/2510.04051"},{"title":"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://www.emergentmind.com/papers/2505.15055"},{"title":"Latency-Response Theory Model: Evaluating Large Language","url":"https://www.arxiv.org/pdf/2512.07019"},{"title":"Lifting the benchmark iceberg with item-response theory | OpenReview","url":"https://openreview.net/forum?id=ZyVQqK7mcP"},{"title":"[2505.15055] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://arxiv.org/abs/2505.15055"},{"title":"(PDF) Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://www.researchgate.net/publication/391954139_Lost_in_Benchmarks_Rethinking_Large_Language_Model_Benchmarking_with_Item_Response_Theory"},{"title":"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://arxiv.org/pdf/2505.15055"}]
+
+I found several relevant papers on item response theory applied to large language model evaluation and benchmarking. Here are the key findings:
+
+## Recent Papers on arXiv
+
+Item Response Theory (IRT) offers a psychometric framework for data-driven, item-level analysis of LLM benchmarks.
+
+**"Lost in Benchmarks? Rethinking Large Language Model Benchmar
+…[truncated 1212 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-20T21:44:21.507985+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Gu Xu \"IRT for AI\" item response theory artificial intelligence evaluation 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Gu Xu \"IRT for AI\" item response theory artificial intelligence evaluation 2024"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T21:44:21.508141+00:00_
+
+Web search results for query: "Gu Xu "IRT for AI" item response theory artificial intelligence evaluation 2024"
+
+Links: [{"title":"Item response theory in AI: Analysing machine learning classifiers at the instance level | Request PDF","url":"https://www.researchgate.net/publication/330771284_Item_response_theory_in_AI_Analysing_machine_learning_classifiers_at_the_instance_level"},{"title":"Scalable Learning of Item Response Theory Models The conference version of this paper appeared in the 27th International Conference on Artificial Intelligence and Statistics (AISTATS) 2024, pages 1234–1242.","url":"https://arxiv.org/html/2403.00680"},{"title":"Applying Item Response Theory to Distinguish Between Human and Generative AI Responses to Multiple-Choice Assessments","url":"https://arxiv.org/html/2412.02713v2"},{"title":"Frontiers | State-Aware Deep Item Response Theory using student facial features","url":"https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2023.1324279/full"},{"title":"[2411.02414] Fairness Evaluation with Item Response Theory","url":"https://arxiv.org/abs/2411.02414"},{"title":"Item Response Theory for Natural Language Processing","url":"https://eacl2024irt.github.io/"},{"title":"Comprehensive Algorithm Portfolio Evaluation using Item Response Theory","url":"https://arxiv.org/pdf/2307.15850"},{"title":"Item response theory in AI: Analysing machine learning classifiers at the instance level - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S0004370219300220"}]
+
+I've performed the web search for your query about Gu Xu and IRT for AI. The search results show several relevant papers and resources about the application of Item Response Theory to artificial intelligence and machine learning evaluation in 2024.
+
+**Key findings from the search:**
+
+IRT has been applied to assess machine learning models, evaluate sample difficulty, enhance recommendation systems, rank leaderboards, and evaluate LLM capabili
+…[truncated 971 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-20T21:44:21.508280+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Martinez-Plumed Hernandez-Orallo \"Item response theory\" AI machine learning classifiers instance level"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Martinez-Plumed Hernandez-Orallo \"Item response theory\" AI machine learning classifiers instance level"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-20T21:44:21.508448+00:00_
+
+Web search results for query: "Martinez-Plumed Hernandez-Orallo "Item response theory" AI machine learning classifiers instance level"
+
+Links: [{"title":"Item response theory in AI: Analysing machine learning classifiers at the instance level","url":"https://riunet.upv.es/handle/10251/139921"},{"title":"Item response theory in AI: Analysing machine learning classifiers at the instance level - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S0004370219300220"},{"title":"Item response theory in AI: : Analysing machine learning classifiers at the instance level: Artificial Intelligence: Vol 271, No C","url":"https://dl.acm.org/doi/10.1016/j.artint.2018.09.004"},{"title":"Item response theory in AI: Analysing machine learning classifiers at the instance level | Request PDF","url":"https://www.researchgate.net/publication/330771284_Item_response_theory_in_AI_Analysing_machine_learning_classifiers_at_the_instance_level"},{"title":"Item Response Theory for Natural Language Processing","url":"https://aclanthology.org/2024.eacl-tutorials.2.pdf"},{"title":"(Open Access) Making sense of item response theory in machine learning (2016) | Fernando Martínez-Plumed | 74 Citations","url":"https://scispace.com/papers/making-sense-of-item-response-theory-in-machine-learning-1n0w302wv7"},{"title":"Making Sense of Item Response Theory in Machine Learning","url":"https://dl.acm.org/doi/pdf/10.3233/978-1-61499-672-9-1140"},{"title":"Using Item Response Theory for Explainable Machine Learning in Predicting Mortality in the Intensive Care Unit: Case-Based Approach | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Using-Item-Response-Theory-for-Explainable-Machine-Kline-Kline/0af6554db972394a6d2a1c8cb63f41960dba531d"},{"title":"IOS Press Ebooks - Making Sense of Item Response Theory in Machine Learning","url":"https://ebooks.iospress.nl/volumearticle/44867"}]
+
+Based on the search results, I found relevant information about this research:
+
+Martínez-Plume
+…[truncated 1298 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-20T21:44:21.508617+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Polo 2024 \"tinyBenchmarks\" efficient LLM evaluation arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Polo 2024 \"tinyBenchmarks\" efficient LLM evaluation arXiv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T21:44:21.508763+00:00_
+
+Web search results for query: "Polo 2024 "tinyBenchmarks" efficient LLM evaluation arXiv"
+
+Links: [{"title":"[2402.14992v2] tinyBenchmarks: evaluating LLMs with fewer examples","url":"https://arxiv.org/abs/2402.14992v2"},{"title":"[2402.14992] tinyBenchmarks: evaluating LLMs with fewer examples","url":"https://arxiv.org/abs/2402.14992"},{"title":"tinyBenchmarks: evaluating LLMs with fewer examples | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/tinybenchmarks-evaluating-llms-fewer-examples"},{"title":"lm-evaluation-harness/lm_eval/tasks/tinyBenchmarks/README.md at main · EleutherAI/lm-evaluation-harness","url":"https://github.com/EleutherAI/lm-evaluation-harness/blob/main/lm_eval/tasks/tinyBenchmarks/README.md"},{"title":"tinyBenchmarks: evaluating LLMs with fewer examples - ADS","url":"https://ui.adsabs.harvard.edu/abs/2024arXiv240214992P/abstract"},{"title":"GitHub - felipemaiapolo/tinyBenchmarks: Evaluating LLMs with fewer examples · GitHub","url":"https://github.com/felipemaiapolo/tinyBenchmarks"},{"title":"(PDF) tinyBenchmarks: evaluating LLMs with fewer examples","url":"https://www.researchgate.net/publication/383238265_tinyBenchmarks_evaluating_LLMs_with_fewer_examples"},{"title":"[PDF] tinyBenchmarks: evaluating LLMs with fewer examples | Semantic Scholar","url":"https://www.semanticscholar.org/paper/tinyBenchmarks:-evaluating-LLMs-with-fewer-examples-Polo-Weber/4c0f88e80320885e8289a9af781a1101717104f2"},{"title":"tinyBenchmarks: evaluating LLMs with fewer examples","url":"https://arxiv.org/pdf/2402.14992"}]
+
+I found the research paper you're looking for! Here's what I found:
+
+The paper "tinyBenchmarks: evaluating LLMs with fewer examples" was authored by Felipe Maia Polo, Lucas Weber, Leshem Choshen, Yuekai Sun, Gongjun Xu, and Mikhail Yurochkin, and was submitted on February 22, 2024 with a final revision on May 26, 2024.
+
+**Main Contribution:**
+The paper investigates strategies to reduce the number of evaluations needed to assess
+…[truncated 750 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-20T21:44:21.508900+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Chang 2024 \"A Survey on Evaluation of Large Language Models\" comprehensive survey arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Chang 2024 \"A Survey on Evaluation of Large Language Models\" comprehensive survey arXiv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-20T21:44:21.509033+00:00_
+
+Web search results for query: "Chang 2024 "A Survey on Evaluation of Large Language Models" comprehensive survey arXiv"
+
+Links: [{"title":"A Survey on Employing Large Language Models for Text-to-SQL Tasks","url":"https://arxiv.org/html/2407.15186v1"},{"title":"A Systematic Survey and Critical Review on Evaluating Large Language Models: Challenges, Limitations, and Recommendations","url":"https://arxiv.org/html/2407.04069v1"},{"title":"Large Language Models for Data Annotation and Synthesis: A Survey","url":"https://arxiv.org/html/2402.13446v3"},{"title":"Development and evaluation of large-language models (LLMs) for oncology: A scoping review | PLOS Digital Health","url":"https://journals.plos.org/digitalhealth/article?id=10.1371%2Fjournal.pdig.0000980"},{"title":"[2307.03109] A Survey on Evaluation of Large Language Models","url":"https://arxiv.org/abs/2307.03109"},{"title":"Human evaluation of large language models in healthcare: gaps, challenges, and the need for standardization | npj Health Systems","url":"https://www.nature.com/articles/s44401-025-00043-2"}]
+
+I found the paper you're looking for! "A Survey on Evaluation of Large Language Models" by Yupeng Chang and colleagues (2024) was published in ACM Transactions on Intelligent Systems and Technology, volume 15, issue 3.
+
+The comprehensive survey examines evaluation methods for large language models, focusing on three key dimensions: what to evaluate, where to evaluate, and how to evaluate. The paper addresses the increasing importance of LLM evaluation not only at the task level, but also at the society level for better understanding of their potential risks.
+
+The paper is available on arXiv as preprint 2307.03109, and has been widely cited in subsequent research on LLM evaluation methodologies.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-20T21:44:21.509162+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Hendrycks 2021 \"Measuring Massive Multitask Language Understanding\" MMLU NeurIPS"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Hendrycks 2021 \"Measuring Massive Multitask Language Understanding\" MMLU NeurIPS"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-20T21:44:21.509305+00:00_
+
+Web search results for query: "Hendrycks 2021 "Measuring Massive Multitask Language Understanding" MMLU NeurIPS"
+
+Links: [{"title":"MMLU benchmark overview | arduin.io","url":"https://arduin.io/blog/mmlu-overview/"},{"title":"GitHub - Helw150/mmlu: Measuring Massive Multitask Language Understanding | ICLR 2021","url":"https://github.com/Helw150/mmlu"},{"title":"cais/mmlu · Datasets at Hugging Face","url":"https://huggingface.co/datasets/cais/mmlu"},{"title":"GitHub - hendrycks/test: Measuring Massive Multitask Language Understanding | ICLR 2021 · GitHub","url":"https://github.com/hendrycks/test"},{"title":"CMMLU: Measuring massive multitask language understanding in Chinese | alphaXiv","url":"https://www.alphaxiv.org/overview/2306.09212"},{"title":"[2009.03300] Measuring Massive Multitask Language Understanding","url":"https://arxiv.org/abs/2009.03300"},{"title":"test/README.md at master · hendrycks/test","url":"https://github.com/hendrycks/test/blob/master/README.md"},{"title":"Measuring Massive Multitask Language Understanding","url":"https://arxiv.org/pdf/2009.03300"}]
+
+Based on the search results, I found information about the Hendrycks 2021 paper on MMLU:
+
+The paper "Measuring Massive Multitask Language Understanding" was authored by Dan Hendrycks, Collin Burns, Steven Basart, Andy Zou, Mantas Mazeika, Dawn Song, and Jacob Steinhardt and was published at ICLR 2021.
+
+Note: The search results indicate the paper was published at **ICLR 2021** (International Conference on Learning Representations), not NeurIPS as mentioned in your query.
+
+The paper proposes a new test to measure a text model's multitask accuracy covering 57 tasks including elementary mathematics, US history, computer science, law, and more. To attain high accuracy on this test, models must possess extensive world knowledge and problem solving ability.
+
+The findings showed that while most recent models had near random-chance accuracy, the very largest GPT-3 model improved over random chance by almos
+…[truncated 334 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-20T21:44:21.509475+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Beeching 2023 \"Open LLM Leaderboard\" HuggingFace technical report"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Beeching 2023 \"Open LLM Leaderboard\" HuggingFace technical report"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-20T21:44:21.509613+00:00_
+
+Web search results for query: "Beeching 2023 "Open LLM Leaderboard" HuggingFace technical report"
+
+Links: [{"title":"Understanding LLM Development Through Longitudinal Study: Insights from the Open Ko-LLM Leaderboard","url":"https://arxiv.org/html/2409.03257v1"},{"title":"Open Ko-LLM Leaderboard: Evaluating Large Language Models in Korean with Ko-H5 Benchmark","url":"https://arxiv.org/html/2405.20574v2"},{"title":"(PDF) Understanding LLM Development Through Longitudinal Study: Insights from the Open Ko-LLM Leaderboard","url":"https://www.researchgate.net/publication/383791856_Understanding_LLM_Development_Through_Longitudinal_Study_Insights_from_the_Open_Ko-LLM_Leaderboard"},{"title":"Ed Beeching on LinkedIn: Open LLM Leaderboard - a Hugging Face Space by HuggingFaceH4","url":"https://www.linkedin.com/posts/ed-beeching-3553b468_open-llm-leaderboard-a-hugging-face-space-activity-7062445613002420224-rz82"},{"title":"blog/leaderboard-vectara.md at main · huggingface/blog","url":"https://github.com/huggingface/blog/blob/main/leaderboard-vectara.md"},{"title":"(PDF) Open Ko-LLM Leaderboard: Evaluating Large Language Models in Korean with Ko-H5 Benchmark","url":"https://www.researchgate.net/publication/381108506_Open_Ko-LLM_Leaderboard_Evaluating_Large_Language_Models_in_Korean_with_Ko-H5_Benchmark"}]
+
+Based on the search results, I found information about the Beeching et al. 2023 Open LLM Leaderboard:
+
+The work was authored by Edward Beeching, Clémentine Fourrier, Nathan Habib, Sheon Han, Nathan Lambert, Nazneen Rajani, Omar Sanseviero, Lewis Tunstall, and Thomas Wolf in 2023, titled "Open llm leaderboard (2023-2024)" and is available at https://huggingface.co/spaces/open-llm-leaderboard-old/open_llm_leaderboard.
+
+The Open LLM Leaderboard, operated by Hugging Face, is prominent and provides a global benchmark for LLMs developed by many companies and research institutions. The leaderboard assesses models across six diverse tasks, including the AI2 Reasoning Challenge (ARC
+…[truncated 528 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-20T21:44:21.509746+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Gao 2024 \"A Framework for Few-Shot Language Model Evaluation\" lm-evaluation-harness EleutherAI"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Gao 2024 \"A Framework for Few-Shot Language Model Evaluation\" lm-evaluation-harness EleutherAI"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-20T21:44:21.509883+00:00_
+
+Web search results for query: "Gao 2024 "A Framework for Few-Shot Language Model Evaluation" lm-evaluation-harness EleutherAI"
+
+Links: [{"title":"GitHub - EleutherAI/lm-evaluation-harness at 42dc244867889a19ae80847254a481f446f6e4b7 · GitHub","url":"https://github.com/EleutherAI/lm-evaluation-harness/tree/42dc244867889a19ae80847254a481f446f6e4b7"},{"title":"GitHub - EleutherAI/lm-evaluation-harness at v0.4.9.1 · GitHub","url":"https://github.com/EleutherAI/lm-evaluation-harness/tree/v0.4.9.1"},{"title":"GitHub - EleutherAI/lm-evaluation-harness: A framework for few-shot evaluation of language models.","url":"https://github.com/EleutherAI/lm-evaluation-harness/tree/main"},{"title":"GitHub - EleutherAI/lm-evaluation-harness: A framework for few-shot evaluation of language models. · GitHub","url":"https://github.com/EleutherAI/lm-evaluation-harness"},{"title":"lm-evaluation-harness/README.md at main · EleutherAI/lm-evaluation-harness","url":"https://github.com/EleutherAI/lm-evaluation-harness/blob/main/README.md"},{"title":"GitHub - insait-institute/lm-evaluation-harness-bg: A framework for few-shot evaluation of language models, extended with benchmarks by https://insait.ai/ · GitHub","url":"https://github.com/insait-institute/lm-evaluation-harness-bg"},{"title":"lm-evaluation-harness/CITATION.bib at main · EleutherAI/lm-evaluation-harness","url":"https://github.com/EleutherAI/lm-evaluation-harness/blob/main/CITATION.bib"},{"title":"GitHub - HazyResearch/based-evaluation-harness: A framework for few-shot evaluation of language models. · GitHub","url":"https://github.com/HazyResearch/based-evaluation-harness"}]
+
+Based on the search results, I found information about the work you're looking for:
+
+The paper by Gao, Leo and colleagues titled "A framework for few-shot language model evaluation" was published in December 2023 on Zenodo. More recent versions have also been published, with "The Language Model Evaluation Harness" being published in July 2024.
+
+The lm-evaluation
+…[truncated 624 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-20T21:44:21.510022+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Gao Tow Abbasi Biderman 2024 \"Language Model Evaluation Harness\" arXiv paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Gao Tow Abbasi Biderman 2024 \"Language Model Evaluation Harness\" arXiv paper"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-20T21:44:21.510154+00:00_
+
+Web search results for query: "Gao Tow Abbasi Biderman 2024 "Language Model Evaluation Harness" arXiv paper"
+
+Links: [{"title":"Language Model Evaluation Harness","url":"https://github.com/EleutherAI/lm-evaluation-harness"},{"title":"arXiv:2312.07910v3 [cs.AI] 20 Aug 2024","url":"https://arxiv.org/pdf/2312.07910"},{"title":"Challenges in Language Model Evaluations","url":"https://lm-evaluation-challenges.github.io/"},{"title":"[2405.14782] Lessons from the Trenches on Reproducible Evaluation of Language Models","url":"https://arxiv.org/abs/2405.14782"},{"title":"[2405.14782v2] Lessons from the Trenches on Reproducible Evaluation of Language Models","url":"https://arxiv.org/abs/2405.14782v2"},{"title":"[PDF] Lessons from the Trenches on Reproducible Evaluation of Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Lessons-from-the-Trenches-on-Reproducible-of-Models-Biderman-Schoelkopf/dfa0de5cae63eacd675339fc81b13479c51bb153"},{"title":"Lessons from the Trenches on Reproducible Evaluation of Language Models | Julen Etxaniz","url":"https://julenetxaniz.eus/en/publication/biderman-2024-lmevaluation/"},{"title":"OLMo : Accelerating the Science of Language Models","url":"https://aclanthology.org/2024.acl-long.841.pdf"},{"title":"PromptBench: A Unified Library for Evaluation of Large Language Models","url":"https://arxiv.org/html/2312.07910v1"}]
+
+Based on the search results, I found information about the Language Model Evaluation Harness paper by these authors:
+
+The Language Model Evaluation Harness was published in July 2024, authored by Gao, Tow, Abbasi, Biderman, Black, DiPofi, Foster, Golding, Hsu, Le Noac'h, Li, McDonell, Muennighoff, Ociepa, Phang, Reynolds, Schoelkopf, Skowron, Sutawika, Tang, Thite, Wang, Wang, and Zou.
+
+The search results also reveal a related paper: "Lessons from the Trenches on Reproducible Evaluation of Language Models" (arXiv:2405.14782) was authored by Stella Biderman, Hailey Schoelkopf, Lintang Sutawika, Leo Gao
+…[truncated 471 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-20T21:44:21.510294+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"post-training contamination\" OR \"reinforcement learning contamination\" LLM benchmark detection 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"post-training contamination\" OR \"reinforcement learning contamination\" LLM benchmark detection 2025 2026"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-20T21:44:21.510454+00:00_
+
+Web search results for query: ""post-training contamination" OR "reinforcement learning contamination" LLM benchmark detection 2025 2026"
+
+Links: [{"title":"[2510.09259] Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models","url":"https://arxiv.org/abs/2510.09259"},{"title":"Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models","url":"https://arxiv.org/pdf/2510.09259"},{"title":"Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models","url":"https://arxiv.org/html/2510.09259v2"},{"title":"Paper page - Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models","url":"https://huggingface.co/papers/2510.09259"},{"title":"Did the Model See the Benchmark During Training? Detecting LLM Contamination","url":"https://kaitchup.substack.com/p/did-the-model-see-the-benchmark-during"},{"title":"Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models | Request PDF","url":"https://www.researchgate.net/publication/396459308_Detecting_Data_Contamination_from_Reinforcement_Learning_Post-training_for_Large_Language_Models"}]
+
+Based on the search results, here's what I found about post-training contamination and reinforcement learning contamination detection for LLMs in 2025-2026:
+
+## Key Research Findings
+
+Data contamination poses a significant threat to reliable LLM evaluation, arising when benchmark samples may inadvertently appear in training sets, compromising reported performance.
+
+### The Research Gap
+
+While detection methods have been developed for the pre-training and Supervised Fine-Tuning stages, a critical research gap exists for the increasingly significant phase of Reinforcement Learning (RL) post-training. Techniques like Reinforcement Learning with Verifiable Rewards (RLVR) are now essential for improving LLM reasoning.
+
+### Recent Detection Method
+
+A significant 
+…[truncated 866 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-20T21:44:21.510593+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "benchmark contamination reasoning model RLVR GRPO detection evasion 2025 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "benchmark contamination reasoning model RLVR GRPO detection evasion 2025 arXiv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-20T21:44:21.510724+00:00_
+
+Web search results for query: "benchmark contamination reasoning model RLVR GRPO detection evasion 2025 arXiv"
+
+Links: [{"title":"[2510.02386] On The Fragility of Benchmark Contamination Detection in Reasoning Models","url":"https://arxiv.org/abs/2510.02386"},{"title":"On The Fragility of Benchmark Contamination Detection in Reasoning Models","url":"https://arxiv.org/html/2510.02386v1"},{"title":"On The Fragility of Benchmark Contamination Detection in Reasoning Models","url":"https://arxiv.org/pdf/2510.02386"},{"title":"On The Fragility of Benchmark Contamination Detection in Reasoning Models","url":"https://www.researchgate.net/publication/396223620_On_The_Fragility_of_Benchmark_Contamination_Detection_in_Reasoning_Models"},{"title":"Detecting RLVR Training Data via Structural Convergence of Reasoning","url":"https://arxiv.org/pdf/2602.11792"},{"title":"Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models","url":"https://arxiv.org/html/2510.09259"},{"title":"Beyond Memorization: Reasoning-Driven Synthesis as a Mitigation Strategy Against Benchmark Contamination","url":"https://arxiv.org/pdf/2509.00072"}]
+
+The search returned several highly relevant papers on benchmark contamination detection in reasoning models. Here are the key findings:
+
+## Primary Research
+
+The main paper "On The Fragility of Benchmark Contamination Detection in Reasoning Models" evaluates 10 representative contamination detection methods and finds that while SFT contamination to the base model is initially detectable, contamination evidence can be concealed through subsequent GRPO (Shao et al., 2024) training with clean samples.
+
+## Key Findings on GRPO and Detection Evasion
+
+The researchers conducted controlled experiments showing that the GRPO optimization objective might be the primary driver for obscuring contamination, and performed theoretical analysis showing that the PPO-style importance sampling/clipping gate can drive the drop in detection 
+…[truncated 761 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-20T21:44:21.510877+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arxiv 2602.11792 \"Detecting RLVR Training Data\" structural convergence reasoning authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arxiv 2602.11792 \"Detecting RLVR Training Data\" structural convergence reasoning authors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-20T21:44:21.511009+00:00_
+
+Web search results for query: "arxiv 2602.11792 "Detecting RLVR Training Data" structural convergence reasoning authors"
+
+Links: [{"title":"[2602.11792] Detecting RLVR Training Data via Structural Convergence of Reasoning","url":"https://arxiv.org/abs/2602.11792"},{"title":"Detecting RLVR Training Data via Structural Convergence of Reasoning","url":"https://arxiv.org/html/2602.11792"},{"title":"Detecting RLVR Training Data via Structural Convergence of Reasoning","url":"https://arxiv.org/pdf/2602.11792"},{"title":"Noisy Data is Destructive to Reinforcement Learning with Verifiable Rewards","url":"https://arxiv.org/pdf/2603.16140"},{"title":"Open-Medical-R1: How to Choose Data for RLVR Training at Medicine Domain","url":"https://arxiv.org/pdf/2504.13950"}]
+
+Based on the search results, here's information about arxiv paper 2602.11792:
+
+**Title:** Detecting RLVR Training Data via Structural Convergence of Reasoning
+
+**Authors:** Hongbo Zhang, Yue Yang, Jianhao Yan, Guangsheng Bao, Yue Zhang, and Yue Zhang
+
+**Key Findings:**
+
+RLVR induces a distinctive behavioral signature: prompts encountered during RLVR training result in more rigid and similar generations, while unseen prompts retain greater diversity.
+
+**Main Contribution:**
+
+The authors introduce Min-kNN Distance, a simple black-box detector that quantifies this collapse by sampling multiple completions for a given prompt and computing the average of the k smallest nearest-neighbor edit distances. Min-kNN Distance requires no access to the reference model or token probabilities.
+
+**Background:**
+
+Reinforcement learning with verifiable rewards (RLVR) is central to training modern reasoning models, but the undisclosed training data raises concerns about benchmark contamination. Unlike pretraining methods, which optimize models using token-level probabilities, RLVR fine-tunes models based on reward feedback from self-generated reasoning trajectories, making conventional likelihood-based detection methods less effectiv
+…[truncated 105 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-20T21:44:21.511143+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Hendrycks Burns Basart Zou Mazeika Song Steinhardt \"Measuring Massive Multitask\" ICLR 2021 DOI"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Hendrycks Burns Basart Zou Mazeika Song Steinhardt \"Measuring Massive Multitask\" ICLR 2021 DOI"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-20T21:44:21.511284+00:00_
+
+Web search results for query: "Hendrycks Burns Basart Zou Mazeika Song Steinhardt "Measuring Massive Multitask" ICLR 2021 DOI"
+
+Links: [{"title":"GitHub - hendrycks/test: Measuring Massive Multitask Language Understanding | ICLR 2021","url":"https://github.com/hendrycks/test?tab=readme-ov-file"},{"title":"GitHub - hendrycks/test: Measuring Massive Multitask Language Understanding | ICLR 2021 · GitHub","url":"https://github.com/hendrycks/test"},{"title":"GitHub - zijian-hu/mmlu: Measuring Massive Multitask Language Understanding | ICLR 2021 · GitHub","url":"https://github.com/zijian-hu/mmlu"},{"title":"GitHub - Helw150/mmlu: Measuring Massive Multitask Language Understanding | ICLR 2021","url":"https://github.com/Helw150/mmlu"},{"title":"GitHub - standardgalactic/mmlu: Measuring Massive Multitask Language Understanding | ICLR 2021 · GitHub","url":"https://github.com/standardgalactic/mmlu"},{"title":"GitHub - ollmer/mmlu: Measuring Massive Multitask Language Understanding | ICLR 2021 · GitHub","url":"https://github.com/ollmer/mmlu"},{"title":"GitHub - CreoleHustle/mmlu: Measuring Massive Multitask Language Understanding | ICLR 2021","url":"https://github.com/CreoleHustle/mmlu"},{"title":"test/README.md at master · hendrycks/test","url":"https://github.com/hendrycks/test/blob/master/README.md"},{"title":"Dan Hendrycks UC Berkeley hendrycks@berkeley.edu www.danhendrycks.com Education","url":"https://people.eecs.berkeley.edu/~hendrycks/CV.pdf"},{"title":"Measuring Massive Multitask Language Understanding","url":"https://arxiv.org/pdf/2009.03300"}]
+
+Based on the search results, I found information about the paper you're looking for. The paper is "Measuring Massive Multitask Language Understanding" by Dan Hendrycks, Collin Burns, Steven Basart, Andy Zou, Mantas Mazeika, Dawn Song, and Jacob Steinhardt, published at ICLR 2021.
+
+The arxiv PDF link is available at https://arxiv.org/pdf/2009.03300, which shows the paper's arxiv ID is 2009.03300. However, the search results don
+…[truncated 497 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-20T21:44:21.511449+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Chang Yupeng Wang Xu 2024 \"survey evaluation large language models\" TIST ACM DOI authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Chang Yupeng Wang Xu 2024 \"survey evaluation large language models\" TIST ACM DOI authors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-20T21:44:21.511586+00:00_
+
+Web search results for query: "Chang Yupeng Wang Xu 2024 "survey evaluation large language models" TIST ACM DOI authors"
+
+Links: [{"title":"A Survey on Evaluation of Large Language Models - The Hong Kong University of Science and Technology","url":"https://researchportal.hkust.edu.hk/en/publications/a-survey-on-evaluation-of-large-language-models/"},{"title":"A Survey on Evaluation of Large Language Models | ACM Transactions on Intelligent Systems and Technology","url":"https://dl.acm.org/doi/full/10.1145/3641289"},{"title":"111 A Survey on Evaluation of Large Language Models","url":"https://arxiv.org/pdf/2307.03109"},{"title":"(PDF) A Survey on Evaluation of Large Language Models","url":"https://www.researchgate.net/publication/377639945_A_Survey_on_Evaluation_of_Large_Language_Models"},{"title":"[2307.03109v9] A Survey on Evaluation of Large Language Models","url":"https://arxiv.org/abs/2307.03109v9"},{"title":"[2307.03109] A Survey on Evaluation of Large Language Models","url":"https://arxiv.org/abs/2307.03109"},{"title":"Survey on Knowledge Distillation for Large Language Models: Methods, Evaluation, and Application | ACM Transactions on Intelligent Systems and Technology","url":"https://dl.acm.org/doi/10.1145/3699518"},{"title":"A Survey on the Memory Mechanism of Large Language Model-based Agents | ACM Transactions on Information Systems","url":"https://dl.acm.org/doi/abs/10.1145/3748302"}]
+
+Based on the search results, I found the publication you're looking for:
+
+**Title:** A Survey on Evaluation of Large Language Models
+
+**Authors:** Chang, Y., Wang, X., Wang, J., Wu, Y., Yang, L., Zhu, K., Chen, H., Yi, X., Wang, C., Wang, Y., Ye, W., Zhang, Y., Chang, Y., Yu, P. S., Yang, Q., & Xie, X.
+
+**Publication Details:** ACM Transactions on Intelligent Systems and Technology, 15(3), Article 39
+
+**DOI:** https://doi.org/10.1145/3641289
+
+**Publication Date:** 2024
+
+The full author list includes Yupeng Chang and Xu Wang as the first two authors, along with 14 other co-
+…[truncated 241 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-20T21:44:21.511725+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Polo Weber Choshen Sun Xu Yurochkin tinyBenchmarks venue ICML NeurIPS 2024 DOI published"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Polo Weber Choshen Sun Xu Yurochkin tinyBenchmarks venue ICML NeurIPS 2024 DOI published"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-20T21:44:21.511865+00:00_
+
+Web search results for query: "Polo Weber Choshen Sun Xu Yurochkin tinyBenchmarks venue ICML NeurIPS 2024 DOI published"
+
+Links: [{"title":"tinyBenchmarks: evaluating LLMs with fewer examples","url":"https://proceedings.mlr.press/v235/maia-polo24a.html"},{"title":"GitHub - felipemaiapolo/tinyBenchmarks: Evaluating LLMs with fewer examples · GitHub","url":"https://github.com/felipemaiapolo/tinyBenchmarks"},{"title":"(PDF) tinyBenchmarks: evaluating LLMs with fewer examples","url":"https://www.researchgate.net/publication/383238265_tinyBenchmarks_evaluating_LLMs_with_fewer_examples"},{"title":"[PDF] tinyBenchmarks: evaluating LLMs with fewer examples | Semantic Scholar","url":"https://www.semanticscholar.org/paper/4c0f88e80320885e8289a9af781a1101717104f2"},{"title":"[2402.14992] tinyBenchmarks: evaluating LLMs with fewer examples","url":"https://arxiv.org/abs/2402.14992"},{"title":"[2402.14992v2] tinyBenchmarks: evaluating LLMs with fewer examples","url":"https://arxiv.org/abs/2402.14992v2"},{"title":"tinyBenchmarks | Proceedings of the 41st International Conference on Machine Learning","url":"https://dl.acm.org/doi/10.5555/3692070.3693466"},{"title":"README.md · tinyBenchmarks/tinyMMLU at main","url":"https://huggingface.co/datasets/tinyBenchmarks/tinyMMLU/blob/main/README.md"},{"title":"tinyBenchmarks: evaluating LLMs with fewer examples - ADS","url":"https://ui.adsabs.harvard.edu/abs/2024arXiv240214992P/abstract"},{"title":"Papers | Yuekai Sun","url":"https://yuekai.github.io/papers/"}]
+
+Based on the search results, here is the information about the tinyBenchmarks paper:
+
+**Title:** tinyBenchmarks: evaluating LLMs with fewer examples
+
+**Authors:** Felipe Maia Polo, Lucas Weber, Leshem Choshen, Yuekai Sun, Gongjun Xu, and Mikhail Yurochkin
+
+**Venue:** Proceedings of the 41st International Conference on Machine Learning (ICML) in 2024
+
+**Publication Details:** Proceedings of Machine Learning Research 235:34303-34326
+
+**DOI/URL:** https://proceedings.mlr.press/v235/ma
+…[truncated 363 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-20T21:44:21.512015+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Martinez-Plumed Hernandez-Orallo 2019 \"Item response theory in AI\" Artificial Intelligence journal DOI volume"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Martinez-Plumed Hernandez-Orallo 2019 \"Item response theory in AI\" Artificial Intelligence journal DOI volume"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-20T21:44:21.512154+00:00_
+
+Web search results for query: "Martinez-Plumed Hernandez-Orallo 2019 "Item response theory in AI" Artificial Intelligence journal DOI volume"
+
+Links: [{"title":"The DMIP Team","url":"https://dmip.webs.upv.es/publications.html"},{"title":"Journal of Medical Internet Research - Using Item Response Theory for Explainable Machine Learning in Predicting Mortality in the Intensive Care Unit: Case-Based Approach","url":"https://www.jmir.org/2020/9/e20268/"},{"title":"Item response theory in AI: Analysing machine learning classifiers at the instance level | Request PDF","url":"https://www.researchgate.net/publication/330771284_Item_response_theory_in_AI_Analysing_machine_learning_classifiers_at_the_instance_level"},{"title":"Item response theory in AI: : Analysing machine learning classifiers at the instance level: Artificial Intelligence: Vol 271, No C","url":"https://dl.acm.org/doi/10.1016/j.artint.2018.09.004"},{"title":"Item response theory in AI: Analysing machine learning classifiers at the instance level - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S0004370219300220"},{"title":"Making Sense of Item Response Theory in Machine Learning","url":"https://www.scribd.com/document/874697869/5ef05cf6-737f-47f2-999f-cbf64870996c"},{"title":"Making Sense of Item Response Theory in Machine Learning","url":"https://dl.acm.org/doi/pdf/10.3233/978-1-61499-672-9-1140"},{"title":"Analysing Results from AI Benchmarks: Key Indicators and How to Obtain   Them","url":"https://arxiv.org/pdf/1811.08186"}]
+
+Based on the search results, here is the information you're looking for:
+
+The article "Item Response Theory in AI: Analysing Machine Learning Classifiers at the Instance Level" by F. Martínez-Plumed, Ricardo B. C. Prudêncio, Adolfo Martínez-Uso, and J. Hernández-Orallo was published in the Artificial Intelligence Journal by Elsevier Publications in 2019, Volume 271, pages 18-42.
+
+For the DOI, based on the search results from ScienceDirect and ACM, the article
+…[truncated 202 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-20T21:44:21.512342+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arxiv 2511.04689 ATLAS adaptive testing LLM ICLR 2026 OpenReview venue accepted"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arxiv 2511.04689 ATLAS adaptive testing LLM ICLR 2026 OpenReview venue accepted"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-20T21:44:21.512494+00:00_
+
+Web search results for query: "arxiv 2511.04689 ATLAS adaptive testing LLM ICLR 2026 OpenReview venue accepted"
+
+Links: [{"title":"[2511.04689] Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks","url":"https://arxiv.org/abs/2511.04689"},{"title":"ADAPTIVE TESTING FOR LLM EVALUATION: A","url":"https://arxiv.org/pdf/2511.04689"},{"title":"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks","url":"https://arxiv.org/html/2511.04689"},{"title":"(PDF) ATLAS: Adaptive Test-Time Latent Steering with External Verifiers for Enhancing LLMs Reasoning","url":"https://www.researchgate.net/publication/399522278_ATLAS_Adaptive_Test-Time_Latent_Steering_with_External_Verifiers_for_Enhancing_LLMs_Reasoning"},{"title":"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks | Request PDF","url":"https://www.researchgate.net/publication/397441932_Adaptive_Testing_for_LLM_Evaluation_A_Psychometric_Alternative_to_Static_Benchmarks"},{"title":"[2601.03093] ATLAS: Adaptive Test-Time Latent Steering with External Verifiers for Enhancing LLMs Reasoning","url":"https://arxiv.org/abs/2601.03093"},{"title":"ATLAS: Adaptive Test-Time Latent Steering with External Verifiers for","url":"https://arxiv.org/pdf/2601.03093"}]
+
+Based on my search results, I found information about arxiv paper 2511.04689:
+
+ATLAS is an adaptive testing framework based on Item Response Theory (IRT) that estimates model ability using Fisher information-guided item selection. The paper addresses the challenge that evaluating large language models (LLMs) typically requires thousands of benchmark items, and proposes ATLAS to reduce the number of required items by up to 90% while maintaining measurement precision.
+
+The framework was validated across five major benchmarks: WinoGrande, TruthfulQA, HellaSwag, GSM8K, and ARC. On TruthfulQA, ATLAS achieved the lowest MAE (0.067) using only 51 items; on HellaSwag, it matched MetaBench a
+…[truncated 494 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-20T21:44:21.512630+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "PSN-IRT \"Lost in Benchmarks\" authors Zhou Huang AAAI 2026 full author list"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "PSN-IRT \"Lost in Benchmarks\" authors Zhou Huang AAAI 2026 full author list"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-20T21:44:21.512766+00:00_
+
+Web search results for query: "PSN-IRT "Lost in Benchmarks" authors Zhou Huang AAAI 2026 full author list"
+
+Links: [{"title":"GitHub - Joe-Hall-Lee/PSN-IRT: [AAAI 2026 Oral] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory · GitHub","url":"https://github.com/Joe-Hall-Lee/PSN-IRT"},{"title":"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory | Proceedings of the AAAI Conference on Artificial Intelligence","url":"https://ojs.aaai.org/index.php/AAAI/article/view/40814"},{"title":"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory","url":"https://arxiv.org/pdf/2505.15055"},{"title":"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with","url":"https://ojs.aaai.org/index.php/AAAI/article/view/40814/44775"},{"title":"Agent psychometrics: Task-level performance prediction in agentic coding benchmarks","url":"https://arxiv.org/pdf/2604.00594"}]
+
+Based on the search results, I found the full author list for the paper "Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory" from AAAI 2026:
+
+The authors are: Zhou, Hongli; Huang, Hui; Zhao, Ziqing; Han, Lvyuan; Wang, Huicheng; Chen, Kehai; Yang, Muyun; Bao, Wei; Dong, Jian; Xu, Bing; Zhu, Conghui; Cao, Hailong; and Zhao, Tiejun.
+
+The paper is from the Faculty of Computing at Harbin Institute of Technology (Harbin, China), the School of Computer Science and Technology at Harbin Institute of Technology (Shenzhen, China), and China Electronics Standardization Institute (Beijing, China).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-20T21:44:21.512897+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Beeching Fourrier Habib Han Lambert 2023 \"Open LLM Leaderboard\" citation bibtex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Beeching Fourrier Habib Han Lambert 2023 \"Open LLM Leaderboard\" citation bibtex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-20T21:44:21.513033+00:00_
+
+Web search results for query: "Beeching Fourrier Habib Han Lambert 2023 "Open LLM Leaderboard" citation bibtex"
+
+Links: [{"title":"(PDF) Open-LLM-Leaderboard: From Multi-choice to Open-style Questions for LLMs Evaluation, Benchmark, and Arena","url":"https://www.researchgate.net/publication/381319135_Open-LLM-Leaderboard_From_Multi-choice_to_Open-style_Questions_for_LLMs_Evaluation_Benchmark_and_Arena"},{"title":"Understanding LLM Development Through Longitudinal Study: Insights from the Open Ko-LLM Leaderboard","url":"https://arxiv.org/html/2409.03257v1"},{"title":"blog/leaderboard-vectara.md at main · huggingface/blog","url":"https://github.com/huggingface/blog/blob/main/leaderboard-vectara.md"},{"title":"Libra-Leaderboard: Towards Responsible AI through a ...","url":"https://aclanthology.org/2025.naacl-demo.23.pdf"},{"title":"Can foundation models label data like humans?","url":"https://huggingface.co/blog/open-llm-leaderboard-rlhf"},{"title":"[2310.16944] Zephyr: Direct Distillation of LM Alignment","url":"https://arxiv.org/abs/2310.16944"},{"title":"HuggingFaceH4/open_llm_leaderboard · Fix BibTex author ordering","url":"https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard/discussions/342/files"},{"title":"Evaluating Large Language Models with Grid-Based Game Competitions: An   Extensible LLM Benchmark and Leaderboard","url":"https://arxiv.org/pdf/2407.07796"}]
+
+Based on the search results, I found citation information for the Open LLM Leaderboard paper by Beeching, Fourrier, Habib, Han, Lambert, and colleagues from 2023. Here's what I found:
+
+Edward Beeching, Clémentine Fourrier, Nathan Habib, Sheon Han, Nathan Lambert, Nazneen Rajani, Omar Sanseviero, Lewis Tunstall, and Thomas Wolf created the Open llm leaderboard (2023-2024), available at https://huggingface.co/spaces/open-llm-leaderboard-old/open_llm_leaderboard.
+
+However, the search results don't contain a complete BibTeX citation for this work. The results show that it's referenced as a resour
+…[truncated 600 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-20T21:44:21.513174+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Biderman Schoelkopf \"Language Model Evaluation Harness\" arXiv 2312.07910 authors full list venue"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Biderman Schoelkopf \"Language Model Evaluation Harness\" arXiv 2312.07910 authors full list venue"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-20T21:44:21.513331+00:00_
+
+Web search results for query: "Biderman Schoelkopf "Language Model Evaluation Harness" arXiv 2312.07910 authors full list venue"
+
+Links: [{"title":"Language Model Evaluation Harness","url":"https://github.com/HazyResearch/based-evaluation-harness"},{"title":"Evaluation Harness Is Setting the Benchmark for Auditing Large Language Models - Mozilla Foundation","url":"https://www.mozillafoundation.org/en/blog/evaluation-harness-is-setting-the-benchmark-for-auditing-large-language-models/"},{"title":"[PDF] Lessons from the Trenches on Reproducible Evaluation of Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Lessons-from-the-Trenches-on-Reproducible-of-Models-Biderman-Schoelkopf/dfa0de5cae63eacd675339fc81b13479c51bb153"},{"title":"[2405.14782v2] Lessons from the Trenches on Reproducible Evaluation of Language Models","url":"https://arxiv.org/abs/2405.14782v2"},{"title":"[2405.14782] Lessons from the Trenches on Reproducible Evaluation of Language Models","url":"https://arxiv.org/abs/2405.14782"},{"title":"arXiv:2312.07910v3 [cs.AI] 20 Aug 2024","url":"https://arxiv.org/pdf/2312.07910"},{"title":"[2312.07910] PromptBench: A Unified Library for Evaluation of Large Language Models","url":"https://arxiv.org/abs/2312.07910"},{"title":"PromptBench: A Unified Library for Evaluation of Large Language Models","url":"https://arxiv.org/html/2312.07910v1"}]
+
+Based on the search results, I found information about the arXiv paper 2312.07910. However, it's important to note that this paper is **not** by Biderman and Schoelkopf about the "Language Model Evaluation Harness." 
+
+ArXiv paper 2312.07910 is titled "PromptBench: A Unified Library for Evaluation of Large Language Models", with different authors than what your query suggests.
+
+The paper that Biderman and Schoelkopf authored about the Language Model Evaluation Harness is a different work. The full list of authors includes: Stella Biderman, Hailey Schoelkopf, Lintang Sutawika, Leo Gao, Jonathan Tow
+…[truncated 673 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-20T21:44:21.513477+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Gao Leo \"A framework for few-shot language model evaluation\" Zenodo 2023 lm-eval-harness citation DOI"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Gao Leo \"A framework for few-shot language model evaluation\" Zenodo 2023 lm-eval-harness citation DOI"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-20T21:44:21.513619+00:00_
+
+Web search results for query: "Gao Leo "A framework for few-shot language model evaluation" Zenodo 2023 lm-eval-harness citation DOI"
+
+Links: [{"title":"GitHub - HazyResearch/based-evaluation-harness: A framework for few-shot evaluation of language models. · GitHub","url":"https://github.com/HazyResearch/based-evaluation-harness"},{"title":"lm-evaluation-harness/CITATION.bib at main · EleutherAI/lm-evaluation-harness","url":"https://github.com/EleutherAI/lm-evaluation-harness/blob/main/CITATION.bib"},{"title":"GitHub - EleutherAI/lm-evaluation-harness: A framework for few-shot evaluation of language models. · GitHub","url":"https://github.com/EleutherAI/lm-evaluation-harness"},{"title":"Challenges in Language Model Evaluations","url":"https://lm-evaluation-challenges.github.io/"},{"title":"A framework for few-shot language model evaluation","url":"https://zenodo.org/records/5371629"},{"title":"Efficient multi-prompt evaluation of LLMs | Request PDF","url":"https://www.researchgate.net/publication/397201795_Efficient_multi-prompt_evaluation_of_LLMs"},{"title":"PromptBench: A Unified Library for Evaluation of Large Language Models","url":"https://arxiv.org/html/2312.07910v1"},{"title":"A Unified Library for Evaluation of Large Language Models","url":"https://www.jmlr.org/papers/volume25/24-0023/24-0023.pdf"},{"title":"Journal of Machine Learning Research 25 (2024) 1-22","url":"https://arxiv.org/pdf/2312.07910"}]
+
+Based on the web search results, I found the citation information for the work you're looking for:
+
+The 2023 framework for few-shot language model evaluation by Gao, Leo and collaborators was published on Zenodo with the DOI 10.5281/zenodo.10256836, version v0.4.0, in December 2023. This is also known as the lm-evaluation-harness project.
+
+The complete BibTeX citation is:
+```
+@misc{eval-harness,
+  author = {Gao, Leo and Tow, Jonathan and Abbasi, Baber and Biderman, Stella and Black, Sid and DiPofi, Anthony and Foster, Charles and Golding, Laurence and Hsu, Je
+…[truncated 703 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-20T21:44:21.513792+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "site:openreview.net \"Adaptive Testing for LLM Evaluation\" psychometric alternative static benchmarks"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "site:openreview.net \"Adaptive Testing for LLM Evaluation\" psychometric alternative static benchmarks"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-20T21:44:21.513937+00:00_
+
+Web search results for query: "site:openreview.net "Adaptive Testing for LLM Evaluation" psychometric alternative static benchmarks"
+
+Links: [{"title":"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks | OpenReview","url":"https://openreview.net/forum?id=iX39LhePyd"},{"title":"Efficiently Measuring the Cognitive Ability of LLMs: An Adaptive Testing Perspective | OpenReview","url":"https://openreview.net/forum?id=s6X3s3rBPW"},{"title":"Leveraging Computerized Adaptive Testing for Cost-effective Evaluation of Large Language Models in Medical Benchmarking","url":"https://arxiv.org/pdf/2603.23506"},{"title":"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks","url":"https://arxiv.org/pdf/2511.04689"},{"title":"ADAPTIVE TESTING FOR LLM EVALUATION:APSY","url":"https://openreview.net/pdf/654f1a32ea7da8b27ec80f4a2877c484589fab36.pdf"}]
+
+I found the paper you were looking for! Here are the search results:
+
+## Primary Result
+
+The main paper is "Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks," which introduces ATLAS, an adaptive testing framework based on Item Response Theory (IRT) that estimates model ability using Fisher information–guided item selection and reduces the number of required items by up to 90% while maintaining measurement precision.
+
+The paper addresses the problem that evaluating LLMs typically requires thousands of benchmark items and existing evaluation protocols rely on average accuracy over fixed item sets, treating all items as equally informative despite substantial variation in difficulty and discrimination.
+
+For example, ATLAS matches whole-bank ability estimates using only 41 items on HellaSwag (which has 5,600 items), and reconstructed accuracies closely match raw accuracies across all five benchmarks.
+
+## Related Work
+
+The search also found a related earlier paper from October 2023: "Efficiently Measuring the Cognitive Ability of LLMs: An Adap
+…[truncated 416 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-20T21:44:21.514079+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "wang2025 \"On The Fragility of Benchmark Contamination Detection\" Han Wang Haoyu Li venue ICLR NeurIPS accepted 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "wang2025 \"On The Fragility of Benchmark Contamination Detection\" Han Wang Haoyu Li venue ICLR NeurIPS accepted 2025 2026"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-20T21:44:21.514215+00:00_
+
+Web search results for query: "wang2025 "On The Fragility of Benchmark Contamination Detection" Han Wang Haoyu Li venue ICLR NeurIPS accepted 2025 2026"
+
+Links: [{"title":"dblp: Han Wang 0019","url":"https://dblp.org/pid/67/1771-19.html"},{"title":"[PDF] On The Fragility of Benchmark Contamination Detection in Reasoning Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/On-The-Fragility-of-Benchmark-Contamination-in-Wang-Li/9a5bf5d3c7116cc4a104c06599fbcef2d1b5abf3"},{"title":"[2510.02386] On The Fragility of Benchmark Contamination Detection in Reasoning Models","url":"https://arxiv.org/abs/2510.02386"},{"title":"On The Fragility of Benchmark Contamination Detection in Reasoning Models","url":"https://www.researchgate.net/publication/396223620_On_The_Fragility_of_Benchmark_Contamination_Detection_in_Reasoning_Models"},{"title":"On The Fragility of Benchmark Contamination Detection in Reasoning Models","url":"https://arxiv.org/html/2510.02386v1"},{"title":"On The Fragility of Benchmark Contamination Detection in Reasoning Models","url":"https://arxiv.org/pdf/2510.02386"}]
+
+I found the paper! Here are the details about "On The Fragility of Benchmark Contamination Detection in Reasoning Models":
+
+**Paper Information:**
+The paper is authored by Han Wang, Haoyu Li, Brian Ko, and Huan Zhang.
+
+**Publication Details:**
+It was published as a preprint with the arXiv identifier CoRR abs/2510.02386 in 2025. The paper was submitted on September 30, 2025.
+
+**Affiliations:**
+Han Wang and Haoyu Li are from the University of Illinois Urbana-Champaign, while Brian Ko is from the University of Washington.
+
+**Main Findings:**
+The studies find that evading contamination detections for large reasoning models (LRMs) is alarmingly easy. While contamination during supervised fine-tuning (SFT) can be originally identified by contamination detection methods, even a brief GRPO training can markedly conceal contamination signals that most detection methods rely on.
+
+**Note:
+…[truncated 256 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-20T21:44:21.514392+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "site:openreview.net \"Detecting Data Contamination from Reinforcement Learning Post-training\" ICLR 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "site:openreview.net \"Detecting Data Contamination from Reinforcement Learning Post-training\" ICLR 2026"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-20T21:44:21.514533+00:00_
+
+Web search results for query: "site:openreview.net "Detecting Data Contamination from Reinforcement Learning Post-training" ICLR 2026"
+
+Links: [{"title":"Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models | OpenReview","url":"https://openreview.net/forum?id=EjiJmiA6ea"},{"title":"Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models","url":"https://arxiv.org/html/2510.09259v1"},{"title":"detecting data contamination from reinforcement learning ...","url":"https://arxiv.org/pdf/2510.09259"},{"title":"[2510.09259] Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models","url":"https://arxiv.org/abs/2510.09259"},{"title":"Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models | Request PDF","url":"https://www.researchgate.net/publication/396459308_Detecting_Data_Contamination_from_Reinforcement_Learning_Post-training_for_Large_Language_Models"},{"title":"Paper page - Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models","url":"https://huggingface.co/papers/2510.09259"}]
+
+I found the paper you're looking for! Here's what I discovered:
+
+**Paper:** Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models
+
+**OpenReview Link:** https://openreview.net/forum?id=EjiJmiA6ea
+
+**Key Details:**
+
+- Data contamination poses a significant threat to the reliable evaluation of Large Language Models (LLMs), arising when benchmark samples may inadvertently appear in training sets, compromising the validity of reported performance.
+
+- While detection methods have been developed for the pre-training and Supervised Fine-Tuning stages, a critical research gap exists for the increasingly significant phase of Reinforcement Learning (RL) post-training.
+
+- The paper conducts the first systematic study of data detection within RL post-training s
+…[truncated 384 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-20T21:44:21.514673+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Detecting RLVR Training Data\" Hongbo Zhang Yue Yang 2026 venue accepted arXiv 2602.11792"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Detecting RLVR Training Data\" Hongbo Zhang Yue Yang 2026 venue accepted arXiv 2602.11792"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-20T21:44:21.514813+00:00_
+
+Web search results for query: ""Detecting RLVR Training Data" Hongbo Zhang Yue Yang 2026 venue accepted arXiv 2602.11792"
+
+Links: [{"title":"[2602.11792] Detecting RLVR Training Data via Structural Convergence of Reasoning","url":"https://arxiv.org/abs/2602.11792"},{"title":"Awesome-LLM-RLVR/README.md at main · smiles724/Awesome-LLM-RLVR","url":"https://github.com/smiles724/Awesome-LLM-RLVR/blob/main/README.md"},{"title":"GitHub - smiles724/Awesome-LLM-RLVR: Collection of latest papers and materials in the area of RLVR! · GitHub","url":"https://github.com/smiles724/Awesome-LLM-RLVR"},{"title":"Detecting RLVR Training Data via Structural Convergence of Reasoning","url":"https://arxiv.org/pdf/2602.11792"},{"title":"Detecting RLVR Training Data via Structural Convergence of Reasoning","url":"https://arxiv.org/html/2602.11792v1"},{"title":"Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models","url":"https://arxiv.org/pdf/2510.09259"}]
+
+I found the paper you're looking for! Here's the information about it:
+
+**Paper:** "Detecting RLVR Training Data via Structural Convergence of Reasoning" by Hongbo Zhang, Yue Yang, and 5 other authors
+
+**Key Details:**
+- **arXiv ID:** 2602.11792
+- **Submission Date:** February 12, 2026
+- **Status:** Preprint (submitted to arXiv)
+
+**Main Contribution:**
+The paper addresses concerns about benchmark contamination in RLVR (Reinforcement Learning with Verifiable Rewards) trained models. Unlike pretraining methods, RLVR fine-tunes models based on reward feedback from self-generated reasoning trajectories, making conventional likelihood-based detection methods less effective.
+
+**Proposed Method:**
+The authors introduce Min-kNN Distance, a simple black-box detector that requires no access to the reference model or token probabilities. The key insight is that prompts encountered during RLVR training result in more rigid and similar generations, while unseen prompts retain greater diversity.
+
+You can acce
+…[truncated 156 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-20T21:44:21.514963+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/literature_map.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/literature_map.yaml"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-20T21:44:21.515215+00:00_
+
+1	meta:
+2	  last_updated: '2026-05-20T08:00:00Z'
+3	  total_papers: 25
+4	categories:
+5	  - key: irt-llm
+6	    label: IRT for LLM Evaluation
+7	  - key: contamination-detection
+8	    label: Benchmark Contamination Detection
+9	  - key: person-fit
+10	    label: Person-Fit Statistics (Psychometrics)
+11	  - key: post-rl-contamination
+12	    label: Post-RL Contamination
+13	  - key: irt-foundations
+14	    label: IRT Foundations
+15	papers:
+16	  psnirt2026:
+17	    title: "Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory"
+18	    authors: []
+19	    year: 2026
+20	    venue: AAAI 2026 Oral
+21	    url: "https://arxiv.org/abs/2505.15055"
+22	    doi: ""
+23	    bibtex_key: psnirt2026
+24	    category: irt-llm
+25	    role: foundation
+26	    relevance: "Provides calibrated 4PL item parameters (a,b,c,d) for 41,871 items across 11 benchmarks — the item bank our method builds on"
+27	    abstract: ""
+28	    semantic_scholar_id: ""
+29	    verified: false
+30	    added_by: director
+31	    added_at: '2026-05-20T08:00:00Z'
+32	
+33	  atlas2025:
+34	    title: "Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks"
+35	    authors: []
+36	    year: 2025
+37	    venue: ""
+38	    url: "https://arxiv.org/abs/2511.04689"
+39	    doi: ""
+40	    bibtex_key: atlas2025
+41	    category: irt-llm
+42	    role: background
+43	    relevance: "ATLAS uses IRT for adaptive testing efficiency; related IRT-for-LLM work but not person-fit"
+44	    abstract: ""
+45	    semantic_scholar_id: ""
+46	    verified: false
+47	    added_by: director
+48	    added_at: '2026-05-20T08:00:00Z'
+49	
+50	  constat2024:
+51	    title: "ConStat: Performance-Based Contamination Detection in Large Language Models"
+52	    authors: ["Dekoninck, J.", "Müller, M.", "Vechev, M."]
+53	    year: 2024
+54	    venue: "NeurIPS 2024"
+55	    url: "https://arxiv.org/abs/2405.16281"
+56	    doi: ""
+57	    bibtex_key: constat2024
+58	    category: contamination-detection
+59	    role: direct-compet
+…[truncated 15714 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-20T21:44:21.515409+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/literature_map.yaml",
+  "old_string": "  last_updated: '2026-05-20T08:00:00Z'\n  total_papers: 25",
+  "new_string": "  last_updated: '2026-05-20T22:30:00Z'\n  total_papers: 37"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/literature_map.yaml",
+    "old_string": "  last_updated: '2026-05-20T08:00:00Z'\n  total_papers: 25",
+    "new_string": "  last_updated: '2026-05-20T22:30:00Z'\n  total_papers: 37"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-20T21:44:21.515602+00:00_
+
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/literature_map.yaml has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-20T21:44:21.515726+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/literature_map.yaml",
+  "old_string": "  - key: irt-foundations\n    label: IRT Foundations",
+  "new_string": "  - key: irt-foundations\n    label: IRT Foundations\n  - key: llm-evaluation-infrastructure\n    label: LLM Evaluation Infrastructure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/literature_map.yaml",
+    "old_string": "  - key: irt-foundations\n    label: IRT Foundations",
+    "new_string": "  - key: irt-foundations\n    label: IRT Foundations\n  - key: llm-evaluation-infrastructure\n    label: LLM Evaluation Infrastructure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-20T21:44:21.515907+00:00_
+
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/literature_map.yaml has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-20T21:44:21.516072+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/literature_map.yaml",
+  "old_string": "  psnirt2026:\n    title: \"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\"\n    authors: []\n    year: 2026\n    venue: AAAI 2026 Oral\n    url: \"https://arxiv.org/abs/2505.15055\"\n    doi: \"\"\n    bibtex_key: psnirt2026\n    category: irt-llm\n    role: foundation\n    relevance: \"Provides calibrated 4PL item parameters (a,b,c,d) for 41,871 items across 11 benchmarks — the item bank our method builds on\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: false\n    added_by: director\n    added_at: '2026-05-20T08:00:00Z'",
+  "new_string": "  psnirt2026:\n    title: \"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\"\n    authors: [\"Zhou, H.\", \"Huang, H.\", \"Zhao, Z.\", \"Han, L.\", \"Wang, H.\", \"Chen, K.\", \"Yang, M.\", \"Bao, W.\", \"Dong, J.\", \"Xu, B.\", \"Zhu, C.\", \"Cao, H.\", \"Zhao, T.\"]\n    year: 2026\n    venue: \"AAAI 2026 Oral\"\n    url: \"https://arxiv.org/abs/2505.15055\"\n    doi: \"\"\n    bibtex_key: psnirt2026\n    category: irt-llm\n    role: foundation\n    relevance: \"Provides calibrated 4PL item parameters (a,b,c,d) for 41,871 items across 11 benchmarks — the item bank our method builds on\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: true\n    added_by: director\n    added_at: '2026-05-20T08:00:00Z'"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/literature_map.yaml",
+    "old_string": "  psnirt2026:\n    title: \"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\"\n    authors: []\n    year: 2026\n    venue: AAAI 2026 Oral\n    url: \"https://arxiv.org/abs/2505.15055\"\n    doi: \"\"\n    bibtex_key: psnirt2026\n    category: irt-llm\n    role: foundation\n    relevance: \"Provides calibrated 4PL item parameters (a,b,c,d) for 41,871 items across 11 benchmarks — the item bank our method builds on\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: false\n    added_by: director\n    added_at: '2026-05-20T08:00:00Z'",
+    "new_string": "  psnirt2026:\n    title: \"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\"\n    authors: [\"Zhou, H.\", \"Huang, H.\", \"Zhao, Z.\", \"Han, L.\", \"Wang, H.\", \"Chen, K.\", \"Yang, M.\", \"Bao, W.\", \"Dong, J.\", \"Xu, B.\", \"Zhu, C.\", \"Cao, H.\", \"Zhao, T.\"]\n    year: 2026\n    venue: \"AAAI 2026 Oral\"\n    url: \"https://arxiv.org/abs/2505.15055\"\n    doi: \"\"\n    bibtex_key: psnirt2026\n    category: irt-llm\n    role: foundation\n    relevance: \"Provides calibrated 4PL item parameters (a,b,c,d) for 41,871 items across 11 benchmarks — the item bank our method builds on\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: true\n    added_by: director\n    added_at: '2026-05-20T08:00:00Z'"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-20T21:44:21.516300+00:00_
+
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/literature_map.yaml has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-20T21:44:21.516462+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/literature_map.yaml",
+  "old_string": "  atlas2025:\n    title: \"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks\"\n    authors: []\n    year: 2025\n    venue: \"\"\n    url: \"https://arxiv.org/abs/2511.04689\"\n    doi: \"\"\n    bibtex_key: atlas2025\n    category: irt-llm\n    role: background\n    relevance: \"ATLAS uses IRT for adaptive testing efficiency; related IRT-for-LLM work but not person-fit\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: false\n    added_by: director\n    added_at: '2026-05-20T08:00:00Z'",
+  "new_string": "  atlas2025:\n    title: \"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks\"\n    authors: [\"Li, P.\", \"Tang, X.\", \"Chen, S.\", \"Cheng, Y.\", \"Metoyer, R.\", \"Hua, T.\", \"Chawla, N. V.\"]\n    year: 2025\n    venue: \"arXiv preprint\"\n    url: \"https://arxiv.org/abs/2511.04689\"\n    doi: \"\"\n    bibtex_key: atlas2025\n    category: irt-llm\n    role: background\n    relevance: \"ATLAS uses IRT for adaptive testing efficiency; related IRT-for-LLM work but not person-fit\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: true\n    added_by: director\n    added_at: '2026-05-20T08:00:00Z'"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/literature_map.yaml",
+    "old_string": "  atlas2025:\n    title: \"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks\"\n    authors: []\n    year: 2025\n    venue: \"\"\n    url: \"https://arxiv.org/abs/2511.04689\"\n    doi: \"\"\n    bibtex_key: atlas2025\n    category: irt-llm\n    role: background\n    relevance: \"ATLAS uses IRT for adaptive testing efficiency; related IRT-for-LLM work but not person-fit\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: false\n    added_by: director\n    added_at: '2026-05-20T08:00:00Z'",
+    "new_string": "  atlas2025:\n    title: \"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks\"\n    authors: [\"Li, P.\", \"Tang, X.\", \"Chen, S.\", \"Cheng, Y.\", \"Metoyer, R.\", \"Hua, T.\", \"Chawla, N. V.\"]\n    year: 2025\n    venue: \"arXiv preprint\"\n    url: \"https://arxiv.org/abs/2511.04689\"\n    doi: \"\"\n    bibtex_key: atlas2025\n    category: irt-llm\n    role: background\n    relevance: \"ATLAS uses IRT for adaptive testing efficiency; related IRT-for-LLM work but not person-fit\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: true\n    added_by: director\n    added_at: '2026-05-20T08:00:00Z'"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-20T21:44:21.516675+00:00_
+
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/literature_map.yaml has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-20T21:44:21.516812+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/literature_map.yaml",
+  "old_string": "  wang2025fragility:\n    title: \"On The Fragility of Benchmark Contamination Detection in Reasoning Models\"\n    authors: []\n    year: 2025\n    venue: \"\"\n    url: \"https://arxiv.org/abs/2510.02386\"\n    doi: \"\"\n    bibtex_key: wang2025fragility\n    category: post-rl-contamination\n    role: foundation\n    relevance: \"Shows all MIA-based detectors fail under post-RL contamination — motivates our black-box approach\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: false\n    added_by: director\n    added_at: '2026-05-20T08:00:00Z'",
+  "new_string": "  wang2025fragility:\n    title: \"On The Fragility of Benchmark Contamination Detection in Reasoning Models\"\n    authors: [\"Wang, H.\", \"Li, H.\", \"Ko, B.\", \"Zhang, H.\"]\n    year: 2025\n    venue: \"arXiv preprint\"\n    url: \"https://arxiv.org/abs/2510.02386\"\n    doi: \"\"\n    bibtex_key: wang2025fragility\n    category: post-rl-contamination\n    role: foundation\n    relevance: \"Shows all MIA-based detectors fail under post-RL contamination — motivates our black-box approach\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: true\n    added_by: director\n    added_at: '2026-05-20T08:00:00Z'"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/literature_map.yaml",
+    "old_string": "  wang2025fragility:\n    title: \"On The Fragility of Benchmark Contamination Detection in Reasoning Models\"\n    authors: []\n    year: 2025\n    venue: \"\"\n    url: \"https://arxiv.org/abs/2510.02386\"\n    doi: \"\"\n    bibtex_key: wang2025fragility\n    category: post-rl-contamination\n    role: foundation\n    relevance: \"Shows all MIA-based detectors fail under post-RL contamination — motivates our black-box approach\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: false\n    added_by: director\n    added_at: '2026-05-20T08:00:00Z'",
+    "new_string": "  wang2025fragility:\n    title: \"On The Fragility of Benchmark Contamination Detection in Reasoning Models\"\n    authors: [\"Wang, H.\", \"Li, H.\", \"Ko, B.\", \"Zhang, H.\"]\n    year: 2025\n    venue: \"arXiv preprint\"\n    url: \"https://arxiv.org/abs/2510.02386\"\n    doi: \"\"\n    bibtex_key: wang2025fragility\n    category: post-rl-contamination\n    role: foundation\n    relevance: \"Shows all MIA-based detectors fail under post-RL contamination — motivates our black-box approach\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: true\n    added_by: director\n    added_at: '2026-05-20T08:00:00Z'"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-20T21:44:21.517028+00:00_
+
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/literature_map.yaml has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-20T21:44:21.517165+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/literature_map.yaml",
+  "old_string": "  selfcritique2026:\n    title: \"Detecting Data Contamination from Reinforcement Learning Post-training\"\n    authors: []\n    year: 2026\n    venue: ICLR 2026\n    url: \"https://arxiv.org/abs/2510.09259\"\n    doi: \"\"\n    bibtex_key: selfcritique2026\n    category: post-rl-contamination\n    role: direct-competitor\n    relevance: \"Self-Critique detects post-RL contamination via entropy-sequence policy collapse — baseline for post-RL setting\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: false\n    added_by: director\n    added_at: '2026-05-20T08:00:00Z'",
+  "new_string": "  selfcritique2026:\n    title: \"Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models\"\n    authors: [\"Tao, Y.\", \"Wang, T.\", \"Dong, Y.\", \"Liu, H.\", \"Zhang, K.\", \"Hu, X.\", \"Li, G.\"]\n    year: 2026\n    venue: \"ICLR 2026\"\n    url: \"https://arxiv.org/abs/2510.09259\"\n    doi: \"\"\n    bibtex_key: selfcritique2026\n    category: post-rl-contamination\n    role: direct-competitor\n    relevance: \"Self-Critique detects post-RL contamination via entropy-sequence policy collapse — baseline for post-RL setting\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: true\n    added_by: director\n    added_at: '2026-05-20T08:00:00Z'"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/literature_map.yaml",
+    "old_string": "  selfcritique2026:\n    title: \"Detecting Data Contamination from Reinforcement Learning Post-training\"\n    authors: []\n    year: 2026\n    venue: ICLR 2026\n    url: \"https://arxiv.org/abs/2510.09259\"\n    doi: \"\"\n    bibtex_key: selfcritique2026\n    category: post-rl-contamination\n    role: direct-competitor\n    relevance: \"Self-Critique detects post-RL contamination via entropy-sequence policy collapse — baseline for post-RL setting\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: false\n    added_by: director\n    added_at: '2026-05-20T08:00:00Z'",
+    "new_string": "  selfcritique2026:\n    title: \"Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models\"\n    authors: [\"Tao, Y.\", \"Wang, T.\", \"Dong, Y.\", \"Liu, H.\", \"Zhang, K.\", \"Hu, X.\", \"Li, G.\"]\n    year: 2026\n    venue: \"ICLR 2026\"\n    url: \"https://arxiv.org/abs/2510.09259\"\n    doi: \"\"\n    bibtex_key: selfcritique2026\n    category: post-rl-contamination\n    role: direct-competitor\n    relevance: \"Self-Critique detects post-RL contamination via entropy-sequence policy collapse — baseline for post-RL setting\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: true\n    added_by: director\n    added_at: '2026-05-20T08:00:00Z'"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-20T21:44:21.517396+00:00_
+
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/literature_map.yaml has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-20T21:44:21.517581+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/literature_map.yaml",
+  "old_string": "  deayala2009:\n    title: \"The Theory and Practice of Item Response Theory\"\n    authors: [\"de Ayala, R. J.\"]\n    year: 2009\n    venue: \"Guilford Press\"\n    url: \"\"\n    doi: \"\"\n    bibtex_key: deayala2009\n    category: irt-foundations\n    role: foundation\n    relevance: \"Modern comprehensive IRT textbook covering 1PL through 4PL models, estimation methods, and person-fit — standard graduate-level reference\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: true\n    added_by: worker\n    added_at: \"2026-05-20T21:15:00Z\"",
+  "new_string": "  deayala2009:\n    title: \"The Theory and Practice of Item Response Theory\"\n    authors: [\"de Ayala, R. J.\"]\n    year: 2009\n    venue: \"Guilford Press\"\n    url: \"\"\n    doi: \"\"\n    bibtex_key: deayala2009\n    category: irt-foundations\n    role: foundation\n    relevance: \"Modern comprehensive IRT textbook covering 1PL through 4PL models, estimation methods, and person-fit — standard graduate-level reference\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: true\n    added_by: worker\n    added_at: \"2026-05-20T21:15:00Z\"\n\n  # --- Cluster 1: irt-llm (new papers) ---\n\n  martinezplumed2019:\n    title: \"Item Response Theory in AI: Analysing Machine Learning Classifiers at the Instance Level\"\n    authors: [\"Martínez-Plumed, F.\", \"Prudêncio, R. B. C.\", \"Martínez-Usó, A.\", \"Hernández-Orallo, J.\"]\n    year: 2019\n    venue: \"Artificial Intelligence\"\n    url: \"https://www.sciencedirect.com/science/article/pii/S0004370219300220\"\n    doi: \"10.1016/j.artint.2018.09.004\"\n    bibtex_key: martinezplumed2019\n    category: irt-llm\n    role: foundation\n    relevance: \"Foundational work applying IRT to AI/ML evaluation at instance level — item difficulty, discrimination, guessing for classifiers. Establishes the IRT-for-AI paradigm our work extends to LLM contamination.\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: true\n    added_by: worker\n    added_at: \"2026-05-20T22:30:00Z\"\n\n  polo2024tinybenchmarks:\n    title: \"tinyBenchmarks: Evaluating LLMs with Fewer Examples\"\n    authors: [\"Polo, F. M.\", \"Weber, L.\", \"Choshen, L.\", \"Sun, Y.\", \"Xu, G.\", \"Yurochkin, M.\"]\n    year: 2024\n    venue: \"ICML 2024\"\n    url: \"https://arxiv.org/abs/2402.14992\"\n    doi: \"\"\n    bibtex_key: polo2024tinybenchmarks\n    category: irt-llm\n    role: background\n    relevance: \"Uses IRT-based item selection to reduce benchmark size by 100x while preserving ranking — complementary efficient-evaluation approach; validates that item-level analysis matters for LLM benchmarks.\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: true\n    added_by: worker\n    added_at: \"2026-05-20T22:30:00Z\"\n\n  # --- Cluster 2: post-rl-contamination (new paper) ---\n\n  zhang2026rlvr:\n    title: \"Detecting RLVR Training Data via Structural Convergence of Reasoning\"\n    authors: [\"Zhang, H.\", \"Yang, Y.\", \"Yan, J.\", \"Bao, G.\", \"Zhang, Y.\", \"Zhang, Y.\"]\n    year: 2026\n    venue: \"arXiv preprint\"\n    url: \"https://arxiv.org/abs/2602.11792\"\n    doi: \"\"\n    bibtex_key: zhang2026rlvr\n    category: post-rl-contamination\n    role: direct-competitor\n    relevance: \"Min-kNN Distance black-box detector exploiting reasoning structural collapse under RLVR — directly comparable baseline for post-RL contamination detection without token probabilities.\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: true\n    added_by: worker\n    added_at: \"2026-05-20T22:30:00Z\"\n\n  # --- Cluster 3: llm-evaluation-infrastructure ---\n\n  hendrycks2021mmlu:\n    title: \"Measuring Massive Multitask Language Understanding\"\n    authors: [\"Hendrycks, D.\", \"Burns, C.\", \"Basart, S.\", \"Zou, A.\", \"Mazeika, M.\", \"Song, D.\", \"Steinhardt, J.\"]\n    year: 2021\n    venue: \"ICLR 2021\"\n    url: \"https://arxiv.org/abs/2009.03300\"\n    doi: \"\"\n    bibtex_key: hendrycks2021mmlu\n    category: llm-evaluation-infrastructure\n    role: foundation\n    relevance: \"Introduced MMLU — the most widely used LLM benchmark with 57 tasks. Our contamination detection framework is primarily validated on MMLU-derived item parameters.\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: true\n    added_by: worker\n    added_at: \"2026-05-20T22:30:00Z\"\n\n  beeching2023openllm:\n    title: \"Open LLM Leaderboard\"\n    authors: [\"Beeching, E.\", \"Fourrier, C.\", \"Habib, N.\", \"Han, S.\", \"Lambert, N.\", \"Rajani, N.\", \"Sanseviero, O.\", \"Tunstall, L.\", \"Wolf, T.\"]\n    year: 2023\n    venue: \"HuggingFace\"\n    url: \"https://huggingface.co/spaces/open-llm-leaderboard-old/open_llm_leaderboard\"\n    doi: \"\"\n    bibtex_key: beeching2023openllm\n    category: llm-evaluation-infrastructure\n    role: foundation\n    relevance: \"The primary public LLM leaderboard aggregating benchmark scores — the ecosystem where contamination incentives are strongest and our method is most needed.\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: true\n    added_by: worker\n    added_at: \"2026-05-20T22:30:00Z\"\n\n  gao2023evalharness:\n    title: \"A Framework for Few-Shot Language Model Evaluation\"\n    authors: [\"Gao, L.\", \"Tow, J.\", \"Abbasi, B.\", \"Biderman, S.\", \"Black, S.\", \"DiPofi, A.\", \"Foster, C.\", \"Golding, L.\", \"Hsu, J.\", \"Le Noac'h, A.\", \"Li, H.\", \"McDonell, K.\", \"Muennighoff, N.\", \"Ociepa, C.\", \"Phang, J.\", \"Reynolds, L.\", \"Schoelkopf, H.\", \"Skowron, A.\", \"Sutawika, L.\", \"Tang, E.\", \"Thite, A.\", \"Wang, B.\", \"Wang, K.\", \"Zou, A.\"]\n    year: 2023\n    venue: \"Zenodo\"\n    url: \"https://zenodo.org/records/10256836\"\n    doi: \"10.5281/zenodo.10256836\"\n    bibtex_key: gao2023evalharness\n    category: llm-evaluation-infrastructure\n    role: foundation\n    relevance: \"lm-evaluation-harness — the standard framework for LLM benchmark evaluation used by Open LLM Leaderboard and most contamination studies including ours.\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: true\n    added_by: worker\n    added_at: \"2026-05-20T22:30:00Z\"\n\n  chang2024survey:\n    title: \"A Survey on Evaluation of Large Language Models\"\n    authors: [\"Chang, Y.\", \"Wang, X.\", \"Wang, J.\", \"Wu, Y.\", \"Yang, L.\", \"Zhu, K.\", \"Chen, H.\", \"Yi, X.\", \"Wang, C.\", \"Wang, Y.\", \"Ye, W.\", \"Zhang, Y.\", \"Chang, Y.\", \"Yu, P. S.\", \"Yang, Q.\", \"Xie, X.\"]\n    year: 2024\n    venue: \"ACM Transactions on Intelligent Systems and Technology\"\n    url: \"https://arxiv.org/abs/2307.03109\"\n    doi: \"10.1145/3641289\"\n    bibtex_key: chang2024survey\n    category: llm-evaluation-infrastructure\n    role: background\n    relevance: \"Comprehensive survey covering what/where/how to evaluate LLMs — provides the broader evaluation landscape context for our contamination detection contribution.\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: true\n    added_by: worker\n    added_at: \"2026-05-20T22:30:00Z\"\n\n  biderman2024lessons:\n    title: \"Lessons from the Trenches on Reproducible Evaluation of Language Models\"\n    authors: [\"Biderman, S.\", \"Schoelkopf, H.\", \"Sutawika, L.\", \"Gao, L.\", \"Tow, J.\", \"Abbasi, B.\", \"Aji, A. F.\", \"Ammanamanchi, P. S.\", \"Black, S.\", \"Clive, J.\", \"DiPofi, A.\", \"Etxaniz, J.\", \"Fattori, B.\", \"Forde, J. Z.\", \"Foster, C.\", \"Hsu, J.\", \"Jaiswal, M.\", \"Lee, W. Y.\", \"Li, H.\", \"Lovering, C.\", \"Muennighoff, N.\", \"Pavlick, E.\", \"Phang, J.\", \"Skowron, A.\", \"Tan, S.\", \"Tang, X.\", \"Wang, K. A.\", \"Winata, G. I.\", \"Yvon, F.\", \"Zou, A.\"]\n    year: 2024\n    venue: \"arXiv preprint\"\n    url: \"https://arxiv.org/abs/2405.14782\"\n    doi: \"\"\n    bibtex_key: biderman2024lessons\n    category: llm-evaluation-infrastructure\n    role: background\n    relevance: \"Documents reproducibility challenges in LLM evaluation — prompt sensitivity, implementation differences, score variance — motivates why contamination detection must be robust to evaluation noise.\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: true\n    added_by: worker\n    added_at: \"2026-05-20T22:30:00Z\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/literature_map.yaml",
+    "old_string": "  deayala2009:\n    title: \"The Theory and Practice of Item Response Theory\"\n    authors: [\"de Ayala, R. J.\"]\n    year: 2009\n    venue: \"Guilford Press\"\n    url: \"\"\n    doi: \"\"\n    bibtex_key: deayala2009\n    category: irt-foundations\n    role: foundation\n    relevance: \"Modern comprehensive IRT textbook covering 1PL through 4PL models, estimation methods, and person-fit — standard graduate-level reference\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: true\n    added_by: worker\n    added_at: \"2026-05-20T21:15:00Z\"",
+    "new_string": "  deayala2009:\n    title: \"The Theory and Practice of Item Response Theory\"\n    authors: [\"de Ayala, R. J.\"]\n    year: 2009\n    venue: \"Guilford Press\"\n    url: \"\"\n    doi: \"\"\n    bibtex_key: deayala2009\n    category: irt-foundations\n    role: foundation\n    relevance: \"Modern comprehensive IRT textbook covering 1PL through 4PL models, estimation methods, and person-fit — standard graduate-level reference\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: true\n    added_by: worker\n    added_at: \"2026-05-20T21:15:00Z\"\n\n  # --- Cluster 1: irt-llm (new papers) ---\n\n  martinezplumed2019:\n    title: \"Item Response Theory in AI: Analysing Machine Learning Classifiers at the Instance Level\"\n    authors: [\"Martínez-Plumed, F.\", \"Prudêncio, R. B. C.\", \"Martínez-Usó, A.\", \"Hernández-Orallo, J.\"]\n    year: 2019\n    venue: \"Artificial Intelligence\"\n    url: \"https://www.sciencedirect.com/science/article/pii/S0004370219300220\"\n    doi: \"10.1016/j.artint.2018.09.004\"\n    bibtex_key: martinezplumed2019\n    category: irt-llm\n    role: foundation\n    relevance: \"Foundational work applying IRT to AI/ML evaluation at instance level — item difficulty, discrimination, guessing for classifiers. Establishes the IRT-for-AI paradigm our work extends to LLM contamination.\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: true\n    added_by: worker\n    added_at: \"2026-05-20T22:30:00Z\"\n\n  polo2024tinybenchmarks:\n    title: \"tinyBenchmarks: Evaluating LLMs with Fewer Examples\"\n    authors: [\"Polo, F. M.\", \"Weber, L.\", \"Choshen, L.\", \"Sun, Y.\", \"Xu, G.\", \"Yurochkin, M.\"]\n    year: 2024\n    venue: \"ICML 2024\"\n    url: \"https://arxiv.org/abs/2402.14992\"\n    doi: \"\"\n    bibtex_key: polo2024tinybenchmarks\n    category: irt-llm\n    role: background\n    relevance: \"Uses IRT-based item selection to reduce benchmark size by 100x while preserving ranking — complementary efficient-evaluation approach; validates that item-level analysis matters for LLM benchmarks.\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: true\n    added_by: worker\n    added_at: \"2026-05-20T22:30:00Z\"\n\n  # --- Cluster 2: post-rl-contamination (new paper) ---\n\n  zhang2026rlvr:\n    title: \"Detecting RLVR Training Data via Structural Convergence of Reasoning\"\n    authors: [\"Zhang, H.\", \"Yang, Y.\", \"Yan, J.\", \"Bao, G.\", \"Zhang, Y.\", \"Zhang, Y.\"]\n    year: 2026\n    venue: \"arXiv preprint\"\n    url: \"https://arxiv.org/abs/2602.11792\"\n    doi: \"\"\n    bibtex_key: zhang2026rlvr\n    category: post-rl-contamination\n    role: direct-competitor\n    relevance: \"Min-kNN Distance black-box detector exploiting reasoning structural collapse under RLVR — directly comparable baseline for post-RL contamination detection without token probabilities.\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: true\n    added_by: worker\n    added_at: \"2026-05-20T22:30:00Z\"\n\n  # --- Cluster 3: llm-evaluation-infrastructure ---\n\n  hendrycks2021mmlu:\n    title: \"Measuring Massive Multitask Language Understanding\"\n    authors: [\"Hendrycks, D.\", \"Burns, C.\", \"Basart, S.\", \"Zou, A.\", \"Mazeika, M.\", \"Song, D.\", \"Steinhardt, J.\"]\n    year: 2021\n    venue: \"ICLR 2021\"\n    url: \"https://arxiv.org/abs/2009.03300\"\n    doi: \"\"\n    bibtex_key: hendrycks2021mmlu\n    category: llm-evaluation-infrastructure\n    role: foundation\n    relevance: \"Introduced MMLU — the most widely used LLM benchmark with 57 tasks. Our contamination detection framework is primarily validated on MMLU-derived item parameters.\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: true\n    added_by: worker\n    added_at: \"2026-05-20T22:30:00Z\"\n\n  beeching2023openllm:\n    title: \"Open LLM Leaderboard\"\n    authors: [\"Beeching, E.\", \"Fourrier, C.\", \"Habib, N.\", \"Han, S.\", \"Lambert, N.\", \"Rajani, N.\", \"Sanseviero, O.\", \"Tunstall, L.\", \"Wolf, T.\"]\n    year: 2023\n    venue: \"HuggingFace\"\n    url: \"https://huggingface.co/spaces/open-llm-leaderboard-old/open_llm_leaderboard\"\n    doi: \"\"\n    bibtex_key: beeching2023openllm\n    category: llm-evaluation-infrastructure\n    role: foundation\n    relevance: \"The primary public LLM leaderboard aggregating benchmark scores — the ecosystem where contamination incentives are strongest and our method is most needed.\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: true\n    added_by: worker\n    added_at: \"2026-05-20T22:30:00Z\"\n\n  gao2023evalharness:\n    title: \"A Framework for Few-Shot Language Model Evaluation\"\n    authors: [\"Gao, L.\", \"Tow, J.\", \"Abbasi, B.\", \"Biderman, S.\", \"Black, S.\", \"DiPofi, A.\", \"Foster, C.\", \"Golding, L.\", \"Hsu, J.\", \"Le Noac'h, A.\", \"Li, H.\", \"McDonell, K.\", \"Muennighoff, N.\", \"Ociepa, C.\", \"Phang, J.\", \"Reynolds, L.\", \"Schoelkopf, H.\", \"Skowron, A.\", \"Sutawika, L.\", \"Tang, E.\", \"Thite, A.\", \"Wang, B.\", \"Wang, K.\", \"Zou, A.\"]\n    year: 2023\n    venue: \"Zenodo\"\n    url: \"https://zenodo.org/records/10256836\"\n    doi: \"10.5281/zenodo.10256836\"\n    bibtex_key: gao2023evalharness\n    category: llm-evaluation-infrastructure\n    role: foundation\n    relevance: \"lm-evaluation-harness — the standard framework for LLM benchmark evaluation used by Open LLM Leaderboard and most contamination studies including ours.\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: true\n    added_by: worker\n    added_at: \"2026-05-20T22:30:00Z\"\n\n  chang2024survey:\n    title: \"A Survey on Evaluation of Large Language Models\"\n    authors: [\"Chang, Y.\", \"Wang, X.\", \"Wang, J.\", \"Wu, Y.\", \"Yang, L.\", \"Zhu, K.\", \"Chen, H.\", \"Yi, X.\", \"Wang, C.\", \"Wang, Y.\", \"Ye, W.\", \"Zhang, Y.\", \"Chang, Y.\", \"Yu, P. S.\", \"Yang, Q.\", \"Xie, X.\"]\n    year: 2024\n    venue: \"ACM Transactions on Intelligent Systems and Technology\"\n    url: \"https://arxiv.org/abs/2307.03109\"\n    doi: \"10.1145/3641289\"\n    bibtex_key: chang2024survey\n    category: llm-evaluation-infrastructure\n    role: background\n    relevance: \"Comprehensive survey covering what/where/how to evaluate LLMs — provides the broader evaluation landscape context for our contamination detection contribution.\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: true\n    added_by: worker\n    added_at: \"2026-05-20T22:30:00Z\"\n\n  biderman2024lessons:\n    title: \"Lessons from the Trenches on Reproducible Evaluation of Language Models\"\n    authors: [\"Biderman, S.\", \"Schoelkopf, H.\", \"Sutawika, L.\", \"Gao, L.\", \"Tow, J.\", \"Abbasi, B.\", \"Aji, A. F.\", \"Ammanamanchi, P. S.\", \"Black, S.\", \"Clive, J.\", \"DiPofi, A.\", \"Etxaniz, J.\", \"Fattori, B.\", \"Forde, J. Z.\", \"Foster, C.\", \"Hsu, J.\", \"Jaiswal, M.\", \"Lee, W. Y.\", \"Li, H.\", \"Lovering, C.\", \"Muennighoff, N.\", \"Pavlick, E.\", \"Phang, J.\", \"Skowron, A.\", \"Tan, S.\", \"Tang, X.\", \"Wang, K. A.\", \"Winata, G. I.\", \"Yvon, F.\", \"Zou, A.\"]\n    year: 2024\n    venue: \"arXiv preprint\"\n    url: \"https://arxiv.org/abs/2405.14782\"\n    doi: \"\"\n    bibtex_key: biderman2024lessons\n    category: llm-evaluation-infrastructure\n    role: background\n    relevance: \"Documents reproducibility challenges in LLM evaluation — prompt sensitivity, implementation differences, score variance — motivates why contamination detection must be robust to evaluation noise.\"\n    abstract: \"\"\n    semantic_scholar_id: \"\"\n    verified: true\n    added_by: worker\n    added_at: \"2026-05-20T22:30:00Z\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-20T21:44:21.517940+00:00_
+
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/literature_map.yaml has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-20T21:44:21.518095+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -c \"bibtex_key:\" /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/literature_map.yaml",
+  "description": "Count total papers in literature map"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -c \"bibtex_key:\" /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/literature_map.yaml",
+    "description": "Count total papers in literature map"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-20T21:44:21.518223+00:00_
+
+33
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-20T21:44:21.518377+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/literature_map.yaml",
+  "old_string": "  total_papers: 37",
+  "new_string": "  total_papers: 33"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/literature_map.yaml",
+    "old_string": "  total_papers: 37",
+    "new_string": "  total_papers: 33"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-20T21:44:21.518589+00:00_
+
+The file /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/literature_map.yaml has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-20T21:44:21.518731+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport yaml\nwith open('literature_map.yaml') as f:\n    data = yaml.safe_load(f)\ncats = {}\nfor k, v in data['papers'].items():\n    c = v['category']\n    cats.setdefault(c, []).append(k)\nfor c, papers in sorted(cats.items()):\n    verified = sum(1 for p in papers if data['papers'][p].get('verified'))\n    print(f'{c}: {len(papers)} papers ({verified} verified)')\n    for p in papers:\n        print(f'  - {p} (verified={data[\\\"papers\\\"][p].get(\\\"verified\\\", False)})')\nprint(f'\\nTotal: {len(data[\\\"papers\\\"])} papers')\nprint(f'meta.total_papers: {data[\\\"meta\\\"][\\\"total_papers\\\"]}')\n\"\n",
+  "description": "Validate YAML and count papers per category"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\nimport yaml\nwith open('literature_map.yaml') as f:\n    data = yaml.safe_load(f)\ncats = {}\nfor k, v in data['papers'].items():\n    c = v['category']\n    cats.setdefault(c, []).append(k)\nfor c, papers in sorted(cats.items()):\n    verified = sum(1 for p in papers if data['papers'][p].get('verified'))\n    print(f'{c}: {len(papers)} papers ({verified} verified)')\n    for p in papers:\n        print(f'  - {p} (verified={data[\\\"papers\\\"][p].get(\\\"verified\\\", False)})')\nprint(f'\\nTotal: {len(data[\\\"papers\\\"])} papers')\nprint(f'meta.total_papers: {data[\\\"meta\\\"][\\\"total_papers\\\"]}')\n\"\n",
+    "description": "Validate YAML and count papers per category"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-20T21:44:21.518866+00:00_
+
+contamination-detection: 10 papers (10 verified)
+  - constat2024 (verified=True)
+  - minkprob2024 (verified=True)
+  - codec2026 (verified=True)
+  - oren2024 (verified=True)
+  - golchin2024 (verified=True)
+  - dodge2021 (verified=True)
+  - sainz2023 (verified=True)
+  - jacovi2023 (verified=True)
+  - magar2022 (verified=True)
+  - deng2024 (verified=True)
+irt-foundations: 5 papers (5 verified)
+  - lord1980 (verified=True)
+  - embretson2000 (verified=True)
+  - barton1981 (verified=True)
+  - birnbaum1968 (verified=True)
+  - deayala2009 (verified=True)
+irt-llm: 4 papers (4 verified)
+  - psnirt2026 (verified=True)
+  - atlas2025 (verified=True)
+  - martinezplumed2019 (verified=True)
+  - polo2024tinybenchmarks (verified=True)
+llm-evaluation-infrastructure: 5 papers (5 verified)
+  - hendrycks2021mmlu (verified=True)
+  - beeching2023openllm (verified=True)
+  - gao2023evalharness (verified=True)
+  - chang2024survey (verified=True)
+  - biderman2024lessons (verified=True)
+person-fit: 6 papers (6 verified)
+  - sinharay2017 (verified=True)
+  - karabatsos2003 (verified=True)
+  - hong2021lzm (verified=True)
+  - drasgow1985 (verified=True)
+  - snijders2001 (verified=True)
+  - meijer2001 (verified=True)
+post-rl-contamination: 3 papers (3 verified)
+  - wang2025fragility (verified=True)
+  - selfcritique2026 (verified=True)
+  - zhang2026rlvr (verified=True)
+
+Total: 33 papers
+meta.total_papers: 33
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_research_20260520T213656",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 89 · 2026-05-20T21:44:21.519032+00:00_
+
+All done. Summary:
+
+**Verified (4 existing unverified → verified):**
+- `psnirt2026` — AAAI 2026 Oral confirmed, 13 authors from HIT added
+- `atlas2025` — arXiv preprint confirmed, 7 authors added
+- `wang2025fragility` — arXiv preprint confirmed, 4 authors added
+- `selfcritique2026` — ICLR 2026 confirmed (OpenReview), 7 authors added, title corrected
+
+**New papers added (8):**
+
+| Cluster | Key | Paper | Venue |
+|---|---|---|---|
+| irt-llm | `martinezplumed2019` | IRT in AI: Analysing ML Classifiers at Instance Level | Artificial Intelligence 2019 |
+| irt-llm | `polo2024tinybenchmarks` | tinyBenchmarks: Evaluating LLMs with Fewer Examples | ICML 2024 |
+| post-rl-contamination | `zhang2026rlvr` | Detecting RLVR Training Data via Structural Convergence | arXiv 2026 |
+| llm-eval-infra | `hendrycks2021mmlu` | Measuring Massive Multitask Language Understanding (MMLU) | ICLR 2021 |
+| llm-eval-infra | `beeching2023openllm` | Open LLM Leaderboard | HuggingFace 2023 |
+| llm-eval-infra | `gao2023evalharness` | lm-evaluation-harness | Zenodo 2023 |
+| llm-eval-infra | `chang2024survey` | A Survey on Evaluation of LLMs | ACM TIST 2024 |
+| llm-eval-infra | `biderman2024lessons` | Lessons from the Trenches on Reproducible Evaluation | arXiv 2024 |
+
+**Category `llm-evaluation-infrastructure` added.** Total: 33 papers, all verified. Note: "Burnham 2024 IRT for AI" and "Jacobs 2024 psychometrics and AI" were not found as specific papers — Martínez-Plumed et al. 2019 is the canonical IRT-for-AI reference; tinyBenchmarks fills the IRT+efficient-evaluation slot.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_paper_research_20260520T213656"
+}
+```
+
+</details>
+
+---

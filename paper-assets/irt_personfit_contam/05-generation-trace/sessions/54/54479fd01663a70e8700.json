@@ -1,0 +1,1407 @@
+{
+  "schema_version": "1.0",
+  "id": "54479fd01663a70e8700",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "ops eval 25pct s3 cpu",
+  "task_key": "worker_ops_eval-25pct-s3-cpu_20260522T143853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-25pct-s3-cpu_20260522T143853.log",
+    "occurrence": 1,
+    "bytes": 114253,
+    "sha256": "fbee02a23b2b0ecf75af7f69b5d4a92d4044c1896e30423d3a241f8b41fcd339"
+  },
+  "statistics": {
+    "messages": 33,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 10,
+      "tool_result": 10,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam",
+                "session_id": "23f86d17-4128-43f0-b00a-0038d6ac0e9c",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "0099aee3-edc3-420f-a71a-374db021c96c",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0519-3-projects-irt-personfit-contam/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779471000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "1df77b2e-20f7-4b8c-ab23-e587a96f51ef",
+                "session_id": "23f86d17-4128-43f0-b00a-0038d6ac0e9c"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "我来检查 contam_25_s3 的 checkpoint 和 eval 脚本。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "23f86d17-4128-43f0-b00a-0038d6ac0e9c",
+            "uuid": "d29afb07-6091-4137-befd-8890f9c7e409",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012eWtSJrzQrPmHAf8ZuT6kG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12038,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12038
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012gBJmiEZnmkpwmU7M277HX",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "23f86d17-4128-43f0-b00a-0038d6ac0e9c",
+            "uuid": "98ef0e01-3876-453e-8bd4-4214a3b4c35f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012eWtSJrzQrPmHAf8ZuT6kG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12038,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12038
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T14:39:04.447Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_012gBJmiEZnmkpwmU7M277HX",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "23f86d17-4128-43f0-b00a-0038d6ac0e9c",
+            "uuid": "3f94dc78-202e-47b9-9df8-342eb18b01cd",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me check the checkpoint and eval script in parallel.",
+              "signature": "Ev0BCmMIDRgCKkD48LQRhcMl/LMbeBZO5D8bih5Sc8Xu+1t8RJN17WDanXO7IMQN595gOEzL/yoidrH6sFPBrU8Ntj/A0066SsKDMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDAHUWNdZtoECS4Ba6hoME6vbDMWcQZSfmE0cIjB2C+LrwH3w/UXM7NRUE7wW23CR1pm1LHMowK6BB//oBbE4Phzxde1xaX8P54Smaw0qSGXrj2I6fM0dFTdE6kqmP7pYuS1MUwFcVTkbRtyei/Gt/Fo8y4V0cNV+MndWw05F/6xlf9Oecex+hWXZof/Zp2ILQfm6nS4pGBgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "23f86d17-4128-43f0-b00a-0038d6ac0e9c",
+            "uuid": "4cda68e3-769f-4c15-af57-2b2a067c1b85",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LoM4h9SURvbyxRYAfMpFLr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 698,
+                "cache_read_input_tokens": 23879,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 698
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CeHq9LzwjetCFT4TgsP6jT",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-35694",
+                "command": "ls /root/autodl-tmp/ctrl_contam_pilot/checkpoints/contam_25_s3/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "23f86d17-4128-43f0-b00a-0038d6ac0e9c",
+            "uuid": "a9d4ce6e-e18b-4911-8a39-1b8915f2d068",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LoM4h9SURvbyxRYAfMpFLr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 698,
+                "cache_read_input_tokens": 23879,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 698
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012DohN3BqJKBzHnGzaPXLCn",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-35694",
+                "command": "head -80 /root/autodl-tmp/ctrl_contam_pilot/eval_lz.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "23f86d17-4128-43f0-b00a-0038d6ac0e9c",
+            "uuid": "f88c703b-aaba-44fe-be40-e7517ef72b8a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LoM4h9SURvbyxRYAfMpFLr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 698,
+                "cache_read_input_tokens": 23879,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 698
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01N4nTdvYd1jUK4MPNwayJwj",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-35694",
+                "command": "grep -n \"cuda\\|gpu\\|device\\|cpu\\|forward\\|response\\|npy\\|cache\" /root/autodl-tmp/ctrl_contam_pilot/eval_lz.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "23f86d17-4128-43f0-b00a-0038d6ac0e9c",
+            "uuid": "130ab501-4646-46aa-860e-31c0e04047ef",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LoM4h9SURvbyxRYAfMpFLr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 698,
+                "cache_read_input_tokens": 23879,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 698
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T14:39:10.762Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CeHq9LzwjetCFT4TgsP6jT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\nadapter_config.json\\\\nadapter_model.safetensors\\\\nchat_template.jinja\\\\ncheckpoint-1064\\\\ncheckpoint-1596\\\\ncheckpoint-532\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\ntraining_args.bin\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "23f86d17-4128-43f0-b00a-0038d6ac0e9c",
+            "uuid": "0526a6a0-aaea-4599-9475-d1bd4dbe8991",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\nadapter_config.json\\\\nadapter_model.safetensors\\\\nchat_template.jinja\\\\ncheckpoint-1064\\\\ncheckpoint-1596\\\\ncheckpoint-532\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\ntraining_args.bin\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.49}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"README.md\\nadapter_config.json\\nadapter_model.safetensors\\nchat_template.jinja\\ncheckpoint-1064\\ncheckpoint-1596\\ncheckpoint-532\\ntokenizer.json\\ntokenizer_config.json\\ntraining_args.bin\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.49}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T14:39:11.301Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012DohN3BqJKBzHnGzaPXLCn",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\neval_lz.py — Evaluate a fine-tuned adapter on full MMLU and compute lz* person-fit statistic.\\\\n\\\\nUsage: python eval_lz.py --condition clean_s1 --gpu 0\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport csv\\\\nimport json\\\\nimport os\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom peft import PeftModel\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\\\n\\\\nBASE_DIR = \\\\\\\"/root/autodl-tmp/ctrl_contam_pilot\\\\\\\"\\\\nHF_CACHE = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nPARAMS_PATH = os.path.join(BASE_DIR, \\\\\\\"mmlu_params.csv\\\\\\\")\\\\n\\\\nCHOICES = [\\\\\\\"A\\\\\\\", \\\\\\\"B\\\\\\\", \\\\\\\"C\\\\\\\", \\\\\\\"D\\\\\\\"]\\\\n\\\\nFEW_SHOT_EXAMPLES = [\\\\n    {\\\\n        \\\\\\\"question\\\\\\\": \\\\\\\"What is the capital of France?\\\\\\\",\\\\n        \\\\\\\"choices\\\\\\\": [\\\\\\\"London\\\\\\\", \\\\\\\"Paris\\\\\\\", \\\\\\\"Berlin\\\\\\\", \\\\\\\"Madrid\\\\\\\"],\\\\n        \\\\\\\"answer\\\\\\\": 1,\\\\n    },\\\\n    {\\\\n        \\\\\\\"question\\\\\\\": \\\\\\\"Which planet is closest to the Sun?\\\\\\\",\\\\n        \\\\\\\"choices\\\\\\\": [\\\\\\\"Venus\\\\\\\", \\\\\\\"Mercury\\\\\\\", \\\\\\\"Mars\\\\\\\", \\\\\\\"Earth\\\\\\\"],\\\\n        \\\\\\\"answer\\\\\\\": 1,\\\\n    },\\\\n    {\\\\n        \\\\\\\"question\\\\\\\": \\\\\\\"What is 2 + 2?\\\\\\\",\\\\n        \\\\\\\"choices\\\\\\\": [\\\\\\\"3\\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"5\\\\\\\", \\\\\\\"6\\\\\\\"],\\\\n        \\\\\\\"answer\\\\\\\": 1,\\\\n    },\\\\n]\\\\n\\\\n\\\\ndef format_question(question, choices):\\\\n    lines = [f\\\\\\\"Question: {question}\\\\\\\"]\\\\n    for i, c in enumerate(choices):\\\\n        lines.append(f\\\\\\\"{CHOICES[i]}. {c}\\\\\\\")\\\\n    lines.append(\\\\\\\"Answer:\\\\\\\")\\\\n    return \\\\\\\"\\\\\\\\n\\\\\\\".join(lines)\\\\n\\\\n\\\\ndef build_few_shot_prompt(question, choices):\\\\n    parts = []\\\\n    for ex in FEW_SHOT_EXAMPLES:\\\\n        parts.append(format_question(ex[\\\\\\\"question\\\\\\\"], ex[\\\\\\\"choices\\\\\\\"]) + f\\\\\\\" {CHOICES[ex['answer']]}\\\\\\\")\\\\n    parts.append(format_question(question, choices))\\\\n    return \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\".join(parts)\\\\n\\\\n\\\\ndef find_model_path():\\\\n    patterns = [\\\\n        os.path.join(HF_CACHE, \\\\\\\"Qwen\\\\\\\", \\\\\\\"Qwen2.5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"Qwen\\\\\\\", \\\\\\\"Qwen2___5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"Qwen2___5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"Qwen2.5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"models--Qwen--Qwen2.5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"qwen\\\\\\\", \\\\\\\"Qwen2___5-7B-Instruct\\\\\\\"),\\\\n    ]\\\\n    for p in patterns:\\\\n        if os.path.isdir(p):\\\\n            snapshot_dir = os.path.join(p, \\\\\\\"snapshots\\\\\\\")\\\\n            if os.path.isdir(snapshot_dir):\\\\n                snapshots = os.listdir(snapshot_dir)\\\\n                if snapshots:\\\\n                    return os.path.join(snapshot_dir, snapshots[0])\\\\n            if os.path.isfile(os.path.join(p, \\\\\\\"config.json\\\\\\\")):\\\\n                return p\\\\n    for root, dirs, files in os.walk(HF_CACHE):\\\\n        if \\\\\\\"config.json\\\\\\\" in files and \\\\\\\"Qwen2.5-7B-Instruct\\\\\\\" in root:\\\\n            return root\\\\n    raise FileNotFoundError(f\\\\\\\"Cannot find Qwen2.5-7B-Instruct in {HF_CACHE}\\\\\\\")\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "23f86d17-4128-43f0-b00a-0038d6ac0e9c",
+            "uuid": "5898f80b-f283-488b-b9f0-916dd487876d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\neval_lz.py — Evaluate a fine-tuned adapter on full MMLU and compute lz* person-fit statistic.\\\\n\\\\nUsage: python eval_lz.py --condition clean_s1 --gpu 0\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport csv\\\\nimport json\\\\nimport os\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom peft import PeftModel\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\\\n\\\\nBASE_DIR = \\\\\\\"/root/autodl-tmp/ctrl_contam_pilot\\\\\\\"\\\\nHF_CACHE = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nPARAMS_PATH = os.path.join(BASE_DIR, \\\\\\\"mmlu_params.csv\\\\\\\")\\\\n\\\\nCHOICES = [\\\\\\\"A\\\\\\\", \\\\\\\"B\\\\\\\", \\\\\\\"C\\\\\\\", \\\\\\\"D\\\\\\\"]\\\\n\\\\nFEW_SHOT_EXAMPLES = [\\\\n    {\\\\n        \\\\\\\"question\\\\\\\": \\\\\\\"What is the capital of France?\\\\\\\",\\\\n        \\\\\\\"choices\\\\\\\": [\\\\\\\"London\\\\\\\", \\\\\\\"Paris\\\\\\\", \\\\\\\"Berlin\\\\\\\", \\\\\\\"Madrid\\\\\\\"],\\\\n        \\\\\\\"answer\\\\\\\": 1,\\\\n    },\\\\n    {\\\\n        \\\\\\\"question\\\\\\\": \\\\\\\"Which planet is closest to the Sun?\\\\\\\",\\\\n        \\\\\\\"choices\\\\\\\": [\\\\\\\"Venus\\\\\\\", \\\\\\\"Mercury\\\\\\\", \\\\\\\"Mars\\\\\\\", \\\\\\\"Earth\\\\\\\"],\\\\n        \\\\\\\"answer\\\\\\\": 1,\\\\n    },\\\\n    {\\\\n        \\\\\\\"question\\\\\\\": \\\\\\\"What is 2 + 2?\\\\\\\",\\\\n        \\\\\\\"choices\\\\\\\": [\\\\\\\"3\\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"5\\\\\\\", \\\\\\\"6\\\\\\\"],\\\\n        \\\\\\\"answer\\\\\\\": 1,\\\\n    },\\\\n]\\\\n\\\\n\\\\ndef format_question(question, choices):\\\\n    lines = [f\\\\\\\"Question: {question}\\\\\\\"]\\\\n    for i, c in enumerate(choices):\\\\n        lines.append(f\\\\\\\"{CHOICES[i]}. {c}\\\\\\\")\\\\n    lines.append(\\\\\\\"Answer:\\\\\\\")\\\\n    return \\\\\\\"\\\\\\\\n\\\\\\\".join(lines)\\\\n\\\\n\\\\ndef build_few_shot_prompt(question, choices):\\\\n    parts = []\\\\n    for ex in FEW_SHOT_EXAMPLES:\\\\n        parts.append(format_question(ex[\\\\\\\"question\\\\\\\"], ex[\\\\\\\"choices\\\\\\\"]) + f\\\\\\\" {CHOICES[ex['answer']]}\\\\\\\")\\\\n    parts.append(format_question(question, choices))\\\\n    return \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\".join(parts)\\\\n\\\\n\\\\ndef find_model_path():\\\\n    patterns = [\\\\n        os.path.join(HF_CACHE, \\\\\\\"Qwen\\\\\\\", \\\\\\\"Qwen2.5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"Qwen\\\\\\\", \\\\\\\"Qwen2___5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"Qwen2___5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"Qwen2.5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"models--Qwen--Qwen2.5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"qwen\\\\\\\", \\\\\\\"Qwen2___5-7B-Instruct\\\\\\\"),\\\\n    ]\\\\n    for p in patterns:\\\\n        if os.path.isdir(p):\\\\n            snapshot_dir = os.path.join(p, \\\\\\\"snapshots\\\\\\\")\\\\n            if os.path.isdir(snapshot_dir):\\\\n                snapshots = os.listdir(snapshot_dir)\\\\n                if snapshots:\\\\n                    return os.path.join(snapshot_dir, snapshots[0])\\\\n            if os.path.isfile(os.path.join(p, \\\\\\\"config.json\\\\\\\")):\\\\n                return p\\\\n    for root, dirs, files in os.walk(HF_CACHE):\\\\n        if \\\\\\\"config.json\\\\\\\" in files and \\\\\\\"Qwen2.5-7B-Instruct\\\\\\\" in root:\\\\n            return root\\\\n    raise FileNotFoundError(f\\\\\\\"Cannot find Qwen2.5-7B-Instruct in {HF_CACHE}\\\\\\\")\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\neval_lz.py — Evaluate a fine-tuned adapter on full MMLU and compute lz* person-fit statistic.\\n\\nUsage: python eval_lz.py --condition clean_s1 --gpu 0\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport os\\n\\nimport numpy as np\\nimport torch\\nfrom peft import PeftModel\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\n\\nBASE_DIR = \\\"/root/autodl-tmp/ctrl_contam_pilot\\\"\\nHF_CACHE = \\\"/root/autodl-tmp/.hf_cache\\\"\\nPARAMS_PATH = os.path.join(BASE_DIR, \\\"mmlu_params.csv\\\")\\n\\nCHOICES = [\\\"A\\\", \\\"B\\\", \\\"C\\\", \\\"D\\\"]\\n\\nFEW_SHOT_EXAMPLES = [\\n    {\\n        \\\"question\\\": \\\"What is the capital of France?\\\",\\n        \\\"choices\\\": [\\\"London\\\", \\\"Paris\\\", \\\"Berlin\\\", \\\"Madrid\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n    {\\n        \\\"question\\\": \\\"Which planet is closest to the Sun?\\\",\\n        \\\"choices\\\": [\\\"Venus\\\", \\\"Mercury\\\", \\\"Mars\\\", \\\"Earth\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n    {\\n        \\\"question\\\": \\\"What is 2 + 2?\\\",\\n        \\\"choices\\\": [\\\"3\\\", \\\"4\\\", \\\"5\\\", \\\"6\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n]\\n\\n\\ndef format_question(question, choices):\\n    lines = [f\\\"Question: {question}\\\"]\\n    for i, c in enumerate(choices):\\n        lines.append(f\\\"{CHOICES[i]}. {c}\\\")\\n    lines.append(\\\"Answer:\\\")\\n    return \\\"\\\\n\\\".join(lines)\\n\\n\\ndef build_few_shot_prompt(question, choices):\\n    parts = []\\n    for ex in FEW_SHOT_EXAMPLES:\\n        parts.append(format_question(ex[\\\"question\\\"], ex[\\\"choices\\\"]) + f\\\" {CHOICES[ex['answer']]}\\\")\\n    parts.append(format_question(question, choices))\\n    return \\\"\\\\n\\\\n\\\".join(parts)\\n\\n\\ndef find_model_path():\\n    patterns = [\\n        os.path.join(HF_CACHE, \\\"Qwen\\\", \\\"Qwen2.5-7B-Instruct\\\"),\\n        os.path.join(HF_CACHE, \\\"Qwen\\\", \\\"Qwen2___5-7B-Instruct\\\"),\\n        os.path.join(HF_CACHE, \\\"Qwen2___5-7B-Instruct\\\"),\\n        os.path.join(HF_CACHE, \\\"Qwen2.5-7B-Instruct\\\"),\\n        os.path.join(HF_CACHE, \\\"models--Qwen--Qwen2.5-7B-Instruct\\\"),\\n        os.path.join(HF_CACHE, \\\"qwen\\\", \\\"Qwen2___5-7B-Instruct\\\"),\\n    ]\\n    for p in patterns:\\n        if os.path.isdir(p):\\n            snapshot_dir = os.path.join(p, \\\"snapshots\\\")\\n            if os.path.isdir(snapshot_dir):\\n                snapshots = os.listdir(snapshot_dir)\\n                if snapshots:\\n                    return os.path.join(snapshot_dir, snapshots[0])\\n            if os.path.isfile(os.path.join(p, \\\"config.json\\\")):\\n                return p\\n    for root, dirs, files in os.walk(HF_CACHE):\\n        if \\\"config.json\\\" in files and \\\"Qwen2.5-7B-Instruct\\\" in root:\\n            return root\\n    raise FileNotFoundError(f\\\"Cannot find Qwen2.5-7B-Instruct in {HF_CACHE}\\\")\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T14:39:11.311Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01N4nTdvYd1jUK4MPNwayJwj",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "23f86d17-4128-43f0-b00a-0038d6ac0e9c",
+            "uuid": "77d03d4b-8f03-4463-b9cd-af6c6aedcf59",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The pipe was blocked. Let me grep without the pipe, and also read more of the eval script.",
+              "signature": "Ep8CCmMIDRgCKkBA0g/GL+e7F4bvWCjvIOHd4DUN5dLDfGLUSf1dJ6g5O1PAa5uJTrdAPbPSC4IYLpFAKLzaiCGa3WQAzofllHi4Mg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDJXoCCYqUtHmtyVbEhoMjAYDN2KpvaaGIRIGIjC682VX3DfxU/EWomY54tA8wd7zFObJzmakGq8cgJwjX2eeX+R5vt0Y+z+DwrLG+c8qavs9mAwMACxYCXTPdRIheWAuKwe7lOHMqWkWyenLGcE0DI59bfNLTWMVEkFbmxb1I6xngJwNEeQq/zl1MfQYs+xt50T3io9bRspMbN5JCR0+QMJJDqawGM5pDbh6ryoYQkBJ8uo0LkhouOIYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "23f86d17-4128-43f0-b00a-0038d6ac0e9c",
+            "uuid": "cf5d1b12-5403-4578-82c0-65cba62e5e56",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UdS4KLDTdSzoV4QBMXxtAA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2027,
+                "cache_read_input_tokens": 24577,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2027
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015m6Ddcbbc9ZmxqgukTkJA2",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-35694",
+                "command": "grep -n \"cuda\\|gpu\\|device\\|cpu\\|forward\\|response\\|npy\\|cache\" /root/autodl-tmp/ctrl_contam_pilot/eval_lz.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "23f86d17-4128-43f0-b00a-0038d6ac0e9c",
+            "uuid": "3e577318-059f-4428-9794-914c0e338a57",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UdS4KLDTdSzoV4QBMXxtAA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2027,
+                "cache_read_input_tokens": 24577,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2027
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T14:39:15.030Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015m6Ddcbbc9ZmxqgukTkJA2",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "23f86d17-4128-43f0-b00a-0038d6ac0e9c",
+            "uuid": "bec37d60-14bc-445c-aec1-91e0ad8a8e82",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AtR4pAYaBuZ5K6TTCTuCLX",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-35694",
+                "command": "head -200 /root/autodl-tmp/ctrl_contam_pilot/eval_lz.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "23f86d17-4128-43f0-b00a-0038d6ac0e9c",
+            "uuid": "9ac48443-6b0a-4f03-93ce-acd55a873ddc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UdS4KLDTdSzoV4QBMXxtAA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2027,
+                "cache_read_input_tokens": 24577,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2027
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T14:39:16.038Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AtR4pAYaBuZ5K6TTCTuCLX",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\neval_lz.py — Evaluate a fine-tuned adapter on full MMLU and compute lz* person-fit statistic.\\\\n\\\\nUsage: python eval_lz.py --condition clean_s1 --gpu 0\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport csv\\\\nimport json\\\\nimport os\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom peft import PeftModel\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\\\n\\\\nBASE_DIR = \\\\\\\"/root/autodl-tmp/ctrl_contam_pilot\\\\\\\"\\\\nHF_CACHE = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nPARAMS_PATH = os.path.join(BASE_DIR, \\\\\\\"mmlu_params.csv\\\\\\\")\\\\n\\\\nCHOICES = [\\\\\\\"A\\\\\\\", \\\\\\\"B\\\\\\\", \\\\\\\"C\\\\\\\", \\\\\\\"D\\\\\\\"]\\\\n\\\\nFEW_SHOT_EXAMPLES = [\\\\n    {\\\\n        \\\\\\\"question\\\\\\\": \\\\\\\"What is the capital of France?\\\\\\\",\\\\n        \\\\\\\"choices\\\\\\\": [\\\\\\\"London\\\\\\\", \\\\\\\"Paris\\\\\\\", \\\\\\\"Berlin\\\\\\\", \\\\\\\"Madrid\\\\\\\"],\\\\n        \\\\\\\"answer\\\\\\\": 1,\\\\n    },\\\\n    {\\\\n        \\\\\\\"question\\\\\\\": \\\\\\\"Which planet is closest to the Sun?\\\\\\\",\\\\n        \\\\\\\"choices\\\\\\\": [\\\\\\\"Venus\\\\\\\", \\\\\\\"Mercury\\\\\\\", \\\\\\\"Mars\\\\\\\", \\\\\\\"Earth\\\\\\\"],\\\\n        \\\\\\\"answer\\\\\\\": 1,\\\\n    },\\\\n    {\\\\n        \\\\\\\"question\\\\\\\": \\\\\\\"What is 2 + 2?\\\\\\\",\\\\n        \\\\\\\"choices\\\\\\\": [\\\\\\\"3\\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"5\\\\\\\", \\\\\\\"6\\\\\\\"],\\\\n        \\\\\\\"answer\\\\\\\": 1,\\\\n    },\\\\n]\\\\n\\\\n\\\\ndef format_question(question, choices):\\\\n    lines = [f\\\\\\\"Question: {question}\\\\\\\"]\\\\n    for i, c in enumerate(choices):\\\\n        lines.append(f\\\\\\\"{CHOICES[i]}. {c}\\\\\\\")\\\\n    lines.append(\\\\\\\"Answer:\\\\\\\")\\\\n    return \\\\\\\"\\\\\\\\n\\\\\\\".join(lines)\\\\n\\\\n\\\\ndef build_few_shot_prompt(question, choices):\\\\n    parts = []\\\\n    for ex in FEW_SHOT_EXAMPLES:\\\\n        parts.append(format_question(ex[\\\\\\\"question\\\\\\\"], ex[\\\\\\\"choices\\\\\\\"]) + f\\\\\\\" {CHOICES[ex['answer']]}\\\\\\\")\\\\n    parts.append(format_question(question, choices))\\\\n    return \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\".join(parts)\\\\n\\\\n\\\\ndef find_model_path():\\\\n    patterns = [\\\\n        os.path.join(HF_CACHE, \\\\\\\"Qwen\\\\\\\", \\\\\\\"Qwen2.5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"Qwen\\\\\\\", \\\\\\\"Qwen2___5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"Qwen2___5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"Qwen2.5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"models--Qwen--Qwen2.5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"qwen\\\\\\\", \\\\\\\"Qwen2___5-7B-Instruct\\\\\\\"),\\\\n    ]\\\\n    for p in patterns:\\\\n        if os.path.isdir(p):\\\\n            snapshot_dir = os.path.join(p, \\\\\\\"snapshots\\\\\\\")\\\\n            if os.path.isdir(snapshot_dir):\\\\n                snapshots = os.listdir(snapshot_dir)\\\\n                if snapshots:\\\\n                    return os.path.join(snapshot_dir, snapshots[0])\\\\n            if os.path.isfile(os.path.join(p, \\\\\\\"config.json\\\\\\\")):\\\\n                return p\\\\n    for root, dirs, files in os.walk(HF_CACHE):\\\\n        if \\\\\\\"config.json\\\\\\\" in files and \\\\\\\"Qwen2.5-7B-Instruct\\\\\\\" in root:\\\\n            return root\\\\n    raise FileNotFoundError(f\\\\\\\"Cannot find Qwen2.5-7B-Instruct in {HF_CACHE}\\\\\\\")\\\\n\\\\n\\\\ndef load_irt_params(path):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load 4PL IRT parameters. Returns dict of arrays: a, b, c, d indexed by item_idx.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    params = {}\\\\n    with open(path) as f:\\\\n        reader = csv.DictReader(f)\\\\n        for row in reader:\\\\n            idx = int(row[\\\\\\\"item_idx\\\\\\\"])\\\\n            params[idx] = {\\\\n                \\\\\\\"a\\\\\\\": float(row[\\\\\\\"a_discrimination\\\\\\\"]),\\\\n                \\\\\\\"b\\\\\\\": float(row[\\\\\\\"b_difficulty\\\\\\\"]),\\\\n                \\\\\\\"c\\\\\\\": float(row[\\\\\\\"c_guessing\\\\\\\"]),\\\\n                \\\\\\\"d\\\\\\\": float(row[\\\\\\\"d_feasibility\\\\\\\"]),\\\\n            }\\\\n    return params\\\\n\\\\n\\\\ndef irf_4pl(theta, a, b, c, d):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"4PL item response function: P(correct | theta).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return c + (d - c) / (1.0 + np.exp(-a * (theta - b)))\\\\n\\\\n\\\\ndef estimate_theta_mle(responses, irt_params, item_indices, max_iter=100, tol=1e-6):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"MLE of theta via Newton-Raphson on the 4PL model.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    theta = 0.0\\\\n    for _ in range(max_iter):\\\\n        grad = 0.0\\\\n        hess = 0.0\\\\n        for i, idx in enumerate(item_indices):\\\\n            p = irt_params[idx]\\\\n            a, b, c, d = p[\\\\\\\"a\\\\\\\"], p[\\\\\\\"b\\\\\\\"], p[\\\\\\\"c\\\\\\\"], p[\\\\\\\"d\\\\\\\"]\\\\n            P = irf_4pl(theta, a, b, c, d)\\\\n            P = np.clip(P, 1e-10, 1.0 - 1e-10)\\\\n            x = responses[i]\\\\n            # Derivative of P w.r.t. theta\\\\n            exp_term = np.exp(-a * (theta - b))\\\\n            dP = a * (d - c) * exp_term / (1.0 + exp_term) ** 2\\\\n            grad += (x - P) * dP / (P * (1.0 - P))\\\\n            hess += -(dP ** 2) * (1.0 / (P * (1.0 - P)))\\\\n        if abs(hess) < 1e-15:\\\\n            break\\\\n        delta = -grad / hess\\\\n        theta += delta\\\\n        if abs(delta) < tol:\\\\n            break\\\\n    return np.clip(theta, -4.0, 4.0)\\\\n\\\\n\\\\ndef compute_lz_star(responses, irt_params, item_indices, theta):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute lz* statistic (Snijders, 2001) with variance correction for estimated theta.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    l0 = 0.0\\\\n    E_l0 = 0.0\\\\n    Var_l0 = 0.0\\\\n    I_theta = 0.0\\\\n    C_theta = 0.0\\\\n    for i, idx in enumerate(item_indices):\\\\n        p = irt_params[idx]\\\\n        a, b, c, d = p[\\\\\\\"a\\\\\\\"], p[\\\\\\\"b\\\\\\\"], p[\\\\\\\"c\\\\\\\"], p[\\\\\\\"d\\\\\\\"]\\\\n        P = irf_4pl(theta, a, b, c, d)\\\\n        P = np.clip(P, 1e-10, 1.0 - 1e-10)\\\\n        Q = 1.0 - P\\\\n        x = responses[i]\\\\n        log_P = np.log(P)\\\\n        log_Q = np.log(Q)\\\\n        l0 += x * log_P + (1 - x) * log_Q\\\\n        E_l0 += P * log_P + Q * log_Q\\\\n        g = log_P - log_Q\\\\n        Var_l0 += P * Q * g ** 2\\\\n        # Snijders (2001) correction: dP/dtheta for 4PL\\\\n        z = a * (theta - b)\\\\n        sigma = 1.0 / (1.0 + np.exp(-np.clip(z, -30, 30)))\\\\n        dP = a * (d - c) * sigma * (1.0 - sigma)\\\\n        h = dP / (P * Q)\\\\n        I_theta += P * Q * h ** 2\\\\n        C_theta += P * Q * h * g\\\\n    if Var_l0 < 1e-15:\\\\n        return 0.0\\\\n    Var_star = Var_l0 - C_theta ** 2 / I_theta if I_theta > 1e-15 else Var_l0\\\\n    if Var_star <= 0:\\\\n        Var_star = Var_l0\\\\n    return (l0 - E_l0) / np.sqrt(Var_star)\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser()\\\\n    parser.add_argument(\\\\\\\"--condition\\\\\\\", required=True)\\\\n    parser.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\n    parser.add_argument(\\\\\\\"--max_items\\\\\\\", type=int, default=-1, help=\\\\\\\"Limit items for dry-run\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    os.environ[\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\"] = str(args.gpu)\\\\n\\\\n    # Load MMLU eval items\\\\n    with open(os.path.join(BASE_DIR, \\\\\\\"data\\\\\\\", \\\\\\\"mmlu_items.json\\\\\\\")) as f:\\\\n        mmlu_items = json.load(f)\\\\n\\\\n    # Load seen items\\\\n    seen_5_path = os.path.join(BASE_DIR, \\\\\\\"data\\\\\\\", \\\\\\\"seen_items_5pct.json\\\\\\\")\\\\n    seen_15_path = os.path.join(BASE_DIR, \\\\\\\"data\\\\\\\", \\\\\\\"seen_items_15pct.json\\\\\\\")\\\\n    seen_25_path = os.path.join(BASE_DIR, \\\\\\\"data\\\\\\\", \\\\\\\"seen_items_25pct.json\\\\\\\")\\\\n    seen_50_path = os.path.join(BASE_DIR, \\\\\\\"data\\\\\\\", \\\\\\\"seen_items_50pct.json\\\\\\\")\\\\n    seen_5 = set(json.load(open(seen_5_path))) if os.path.exists(seen_5_path) else set()\\\\n    seen_15 = set(json.load(open(seen_15_path))) if os.path.exists(seen_15_path) else set()\\\\n    seen_25 = set(json.load(open(seen_25_path))) if os.path.exists(seen_25_path) else set()\\\\n    seen_50 = set(json.load(open(seen_50_path))) if os.path.exists(seen_50_path) else set()\\\\n\\\\n    if \\\\\\\"contam_50\\\\\\\" in args.condition:\\\\n        seen_set = seen_50\\\\n    elif \\\\\\\"contam_25\\\\\\\" in args.condition:\\\\n        seen_set = seen_25\\\\n    elif \\\\\\\"contam_15\\\\\\\" in args.condition:\\\\n        seen_set = seen_15\\\\n    elif \\\\\\\"contam_5\\\\\\\" in args.condition:\\\\n        seen_set = seen_5\\\\n    else:\\\\n        seen_set = set()\\\\n\\\\n    # Load IRT params\\\\n    irt_params = load_irt_params(PARAMS_PATH)\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "23f86d17-4128-43f0-b00a-0038d6ac0e9c",
+            "uuid": "f90021e3-e240-4efe-9d27-8801bf4137dd",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\neval_lz.py — Evaluate a fine-tuned adapter on full MMLU and compute lz* person-fit statistic.\\\\n\\\\nUsage: python eval_lz.py --condition clean_s1 --gpu 0\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport csv\\\\nimport json\\\\nimport os\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom peft import PeftModel\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\\\n\\\\nBASE_DIR = \\\\\\\"/root/autodl-tmp/ctrl_contam_pilot\\\\\\\"\\\\nHF_CACHE = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nPARAMS_PATH = os.path.join(BASE_DIR, \\\\\\\"mmlu_params.csv\\\\\\\")\\\\n\\\\nCHOICES = [\\\\\\\"A\\\\\\\", \\\\\\\"B\\\\\\\", \\\\\\\"C\\\\\\\", \\\\\\\"D\\\\\\\"]\\\\n\\\\nFEW_SHOT_EXAMPLES = [\\\\n    {\\\\n        \\\\\\\"question\\\\\\\": \\\\\\\"What is the capital of France?\\\\\\\",\\\\n        \\\\\\\"choices\\\\\\\": [\\\\\\\"London\\\\\\\", \\\\\\\"Paris\\\\\\\", \\\\\\\"Berlin\\\\\\\", \\\\\\\"Madrid\\\\\\\"],\\\\n        \\\\\\\"answer\\\\\\\": 1,\\\\n    },\\\\n    {\\\\n        \\\\\\\"question\\\\\\\": \\\\\\\"Which planet is closest to the Sun?\\\\\\\",\\\\n        \\\\\\\"choices\\\\\\\": [\\\\\\\"Venus\\\\\\\", \\\\\\\"Mercury\\\\\\\", \\\\\\\"Mars\\\\\\\", \\\\\\\"Earth\\\\\\\"],\\\\n        \\\\\\\"answer\\\\\\\": 1,\\\\n    },\\\\n    {\\\\n        \\\\\\\"question\\\\\\\": \\\\\\\"What is 2 + 2?\\\\\\\",\\\\n        \\\\\\\"choices\\\\\\\": [\\\\\\\"3\\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"5\\\\\\\", \\\\\\\"6\\\\\\\"],\\\\n        \\\\\\\"answer\\\\\\\": 1,\\\\n    },\\\\n]\\\\n\\\\n\\\\ndef format_question(question, choices):\\\\n    lines = [f\\\\\\\"Question: {question}\\\\\\\"]\\\\n    for i, c in enumerate(choices):\\\\n        lines.append(f\\\\\\\"{CHOICES[i]}. {c}\\\\\\\")\\\\n    lines.append(\\\\\\\"Answer:\\\\\\\")\\\\n    return \\\\\\\"\\\\\\\\n\\\\\\\".join(lines)\\\\n\\\\n\\\\ndef build_few_shot_prompt(question, choices):\\\\n    parts = []\\\\n    for ex in FEW_SHOT_EXAMPLES:\\\\n        parts.append(format_question(ex[\\\\\\\"question\\\\\\\"], ex[\\\\\\\"choices\\\\\\\"]) + f\\\\\\\" {CHOICES[ex['answer']]}\\\\\\\")\\\\n    parts.append(format_question(question, choices))\\\\n    return \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\".join(parts)\\\\n\\\\n\\\\ndef find_model_path():\\\\n    patterns = [\\\\n        os.path.join(HF_CACHE, \\\\\\\"Qwen\\\\\\\", \\\\\\\"Qwen2.5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"Qwen\\\\\\\", \\\\\\\"Qwen2___5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"Qwen2___5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"Qwen2.5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"models--Qwen--Qwen2.5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"qwen\\\\\\\", \\\\\\\"Qwen2___5-7B-Instruct\\\\\\\"),\\\\n    ]\\\\n    for p in patterns:\\\\n        if os.path.isdir(p):\\\\n            snapshot_dir = os.path.join(p, \\\\\\\"snapshots\\\\\\\")\\\\n            if os.path.isdir(snapshot_dir):\\\\n                snapshots = os.listdir(snapshot_dir)\\\\n                if snapshots:\\\\n                    return os.path.join(snapshot_dir, snapshots[0])\\\\n            if os.path.isfile(os.path.join(p, \\\\\\\"config.json\\\\\\\")):\\\\n                return p\\\\n    for root, dirs, files in os.walk(HF_CACHE):\\\\n        if \\\\\\\"config.json\\\\\\\" in files and \\\\\\\"Qwen2.5-7B-Instruct\\\\\\\" in root:\\\\n            return root\\\\n    raise FileNotFoundError(f\\\\\\\"Cannot find Qwen2.5-7B-Instruct in {HF_CACHE}\\\\\\\")\\\\n\\\\n\\\\ndef load_irt_params(path):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load 4PL IRT parameters. Returns dict of arrays: a, b, c, d indexed by item_idx.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    params = {}\\\\n    with open(path) as f:\\\\n        reader = csv.DictReader(f)\\\\n        for row in reader:\\\\n            idx = int(row[\\\\\\\"item_idx\\\\\\\"])\\\\n            params[idx] = {\\\\n                \\\\\\\"a\\\\\\\": float(row[\\\\\\\"a_discrimination\\\\\\\"]),\\\\n                \\\\\\\"b\\\\\\\": float(row[\\\\\\\"b_difficulty\\\\\\\"]),\\\\n                \\\\\\\"c\\\\\\\": float(row[\\\\\\\"c_guessing\\\\\\\"]),\\\\n                \\\\\\\"d\\\\\\\": float(row[\\\\\\\"d_feasibility\\\\\\\"]),\\\\n            }\\\\n    return params\\\\n\\\\n\\\\ndef irf_4pl(theta, a, b, c, d):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"4PL item response function: P(correct | theta).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return c + (d - c) / (1.0 + np.exp(-a * (theta - b)))\\\\n\\\\n\\\\ndef estimate_theta_mle(responses, irt_params, item_indices, max_iter=100, tol=1e-6):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"MLE of theta via Newton-Raphson on the 4PL model.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    theta = 0.0\\\\n    for _ in range(max_iter):\\\\n        grad = 0.0\\\\n        hess = 0.0\\\\n        for i, idx in enumerate(item_indices):\\\\n            p = irt_params[idx]\\\\n            a, b, c, d = p[\\\\\\\"a\\\\\\\"], p[\\\\\\\"b\\\\\\\"], p[\\\\\\\"c\\\\\\\"], p[\\\\\\\"d\\\\\\\"]\\\\n            P = irf_4pl(theta, a, b, c, d)\\\\n            P = np.clip(P, 1e-10, 1.0 - 1e-10)\\\\n            x = responses[i]\\\\n            # Derivative of P w.r.t. theta\\\\n            exp_term = np.exp(-a * (theta - b))\\\\n            dP = a * (d - c) * exp_term / (1.0 + exp_term) ** 2\\\\n            grad += (x - P) * dP / (P * (1.0 - P))\\\\n            hess += -(dP ** 2) * (1.0 / (P * (1.0 - P)))\\\\n        if abs(hess) < 1e-15:\\\\n            break\\\\n        delta = -grad / hess\\\\n        theta += delta\\\\n        if abs(delta) < tol:\\\\n            break\\\\n    return np.clip(theta, -4.0, 4.0)\\\\n\\\\n\\\\ndef compute_lz_star(responses, irt_params, item_indices, theta):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute lz* statistic (Snijders, 2001) with variance correction for estimated theta.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    l0 = 0.0\\\\n    E_l0 = 0.0\\\\n    Var_l0 = 0.0\\\\n    I_theta = 0.0\\\\n    C_theta = 0.0\\\\n    for i, idx in enumerate(item_indices):\\\\n        p = irt_params[idx]\\\\n        a, b, c, d = p[\\\\\\\"a\\\\\\\"], p[\\\\\\\"b\\\\\\\"], p[\\\\\\\"c\\\\\\\"], p[\\\\\\\"d\\\\\\\"]\\\\n        P = irf_4pl(theta, a, b, c, d)\\\\n        P = np.clip(P, 1e-10, 1.0 - 1e-10)\\\\n        Q = 1.0 - P\\\\n        x = responses[i]\\\\n        log_P = np.log(P)\\\\n        log_Q = np.log(Q)\\\\n        l0 += x * log_P + (1 - x) * log_Q\\\\n        E_l0 += P * log_P + Q * log_Q\\\\n        g = log_P - log_Q\\\\n        Var_l0 += P * Q * g ** 2\\\\n        # Snijders (2001) correction: dP/dtheta for 4PL\\\\n        z = a * (theta - b)\\\\n        sigma = 1.0 / (1.0 + np.exp(-np.clip(z, -30, 30)))\\\\n        dP = a * (d - c) * sigma * (1.0 - sigma)\\\\n        h = dP / (P * Q)\\\\n        I_theta += P * Q * h ** 2\\\\n        C_theta += P * Q * h * g\\\\n    if Var_l0 < 1e-15:\\\\n        return 0.0\\\\n    Var_star = Var_l0 - C_theta ** 2 / I_theta if I_theta > 1e-15 else Var_l0\\\\n    if Var_star <= 0:\\\\n        Var_star = Var_l0\\\\n    return (l0 - E_l0) / np.sqrt(Var_star)\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser()\\\\n    parser.add_argument(\\\\\\\"--condition\\\\\\\", required=True)\\\\n    parser.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\n    parser.add_argument(\\\\\\\"--max_items\\\\\\\", type=int, default=-1, help=\\\\\\\"Limit items for dry-run\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    os.environ[\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\"] = str(args.gpu)\\\\n\\\\n    # Load MMLU eval items\\\\n    with open(os.path.join(BASE_DIR, \\\\\\\"data\\\\\\\", \\\\\\\"mmlu_items.json\\\\\\\")) as f:\\\\n        mmlu_items = json.load(f)\\\\n\\\\n    # Load seen items\\\\n    seen_5_path = os.path.join(BASE_DIR, \\\\\\\"data\\\\\\\", \\\\\\\"seen_items_5pct.json\\\\\\\")\\\\n    seen_15_path = os.path.join(BASE_DIR, \\\\\\\"data\\\\\\\", \\\\\\\"seen_items_15pct.json\\\\\\\")\\\\n    seen_25_path = os.path.join(BASE_DIR, \\\\\\\"data\\\\\\\", \\\\\\\"seen_items_25pct.json\\\\\\\")\\\\n    seen_50_path = os.path.join(BASE_DIR, \\\\\\\"data\\\\\\\", \\\\\\\"seen_items_50pct.json\\\\\\\")\\\\n    seen_5 = set(json.load(open(seen_5_path))) if os.path.exists(seen_5_path) else set()\\\\n    seen_15 = set(json.load(open(seen_15_path))) if os.path.exists(seen_15_path) else set()\\\\n    seen_25 = set(json.load(open(seen_25_path))) if os.path.exists(seen_25_path) else set()\\\\n    seen_50 = set(json.load(open(seen_50_path))) if os.path.exists(seen_50_path) else set()\\\\n\\\\n    if \\\\\\\"contam_50\\\\\\\" in args.condition:\\\\n        seen_set = seen_50\\\\n    elif \\\\\\\"contam_25\\\\\\\" in args.condition:\\\\n        seen_set = seen_25\\\\n    elif \\\\\\\"contam_15\\\\\\\" in args.condition:\\\\n        seen_set = seen_15\\\\n    elif \\\\\\\"contam_5\\\\\\\" in args.condition:\\\\n        seen_set = seen_5\\\\n    else:\\\\n        seen_set = set()\\\\n\\\\n    # Load IRT params\\\\n    irt_params = load_irt_params(PARAMS_PATH)\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\neval_lz.py — Evaluate a fine-tuned adapter on full MMLU and compute lz* person-fit statistic.\\n\\nUsage: python eval_lz.py --condition clean_s1 --gpu 0\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport os\\n\\nimport numpy as np\\nimport torch\\nfrom peft import PeftModel\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\n\\nBASE_DIR = \\\"/root/autodl-tmp/ctrl_contam_pilot\\\"\\nHF_CACHE = \\\"/root/autodl-tmp/.hf_cache\\\"\\nPARAMS_PATH = os.path.join(BASE_DIR, \\\"mmlu_params.csv\\\")\\n\\nCHOICES = [\\\"A\\\", \\\"B\\\", \\\"C\\\", \\\"D\\\"]\\n\\nFEW_SHOT_EXAMPLES = [\\n    {\\n        \\\"question\\\": \\\"What is the capital of France?\\\",\\n        \\\"choices\\\": [\\\"London\\\", \\\"Paris\\\", \\\"Berlin\\\", \\\"Madrid\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n    {\\n        \\\"question\\\": \\\"Which planet is closest to the Sun?\\\",\\n        \\\"choices\\\": [\\\"Venus\\\", \\\"Mercury\\\", \\\"Mars\\\", \\\"Earth\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n    {\\n        \\\"question\\\": \\\"What is 2 + 2?\\\",\\n        \\\"choices\\\": [\\\"3\\\", \\\"4\\\", \\\"5\\\", \\\"6\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n]\\n\\n\\ndef format_question(question, choices):\\n    lines = [f\\\"Question: {question}\\\"]\\n    for i, c in enumerate(choices):\\n        lines.append(f\\\"{CHOICES[i]}. {c}\\\")\\n    lines.append(\\\"Answer:\\\")\\n    return \\\"\\\\n\\\".join(lines)\\n\\n\\ndef build_few_shot_prompt(question, choices):\\n    parts = []\\n    for ex in FEW_SHOT_EXAMPLES:\\n        parts.append(format_question(ex[\\\"question\\\"], ex[\\\"choices\\\"]) + f\\\" {CHOICES[ex['answer']]}\\\")\\n    parts.append(format_question(question, choices))\\n    return \\\"\\\\n\\\\n\\\".join(parts)\\n\\n\\ndef find_model_path():\\n    patterns = [\\n        os.path.join(HF_CACHE, \\\"Qwen\\\", \\\"Qwen2.5-7B-Instruct\\\"),\\n        os.path.join(HF_CACHE, \\\"Qwen\\\", \\\"Qwen2___5-7B-Instruct\\\"),\\n        os.path.join(HF_CACHE, \\\"Qwen2___5-7B-Instruct\\\"),\\n        os.path.join(HF_CACHE, \\\"Qwen2.5-7B-Instruct\\\"),\\n        os.path.join(HF_CACHE, \\\"models--Qwen--Qwen2.5-7B-Instruct\\\"),\\n        os.path.join(HF_CACHE, \\\"qwen\\\", \\\"Qwen2___5-7B-Instruct\\\"),\\n    ]\\n    for p in patterns:\\n        if os.path.isdir(p):\\n            snapshot_dir = os.path.join(p, \\\"snapshots\\\")\\n            if os.path.isdir(snapshot_dir):\\n                snapshots = os.listdir(snapshot_dir)\\n                if snapshots:\\n                    return os.path.join(snapshot_dir, snapshots[0])\\n            if os.path.isfile(os.path.join(p, \\\"config.json\\\")):\\n                return p\\n    for root, dirs, files in os.walk(HF_CACHE):\\n        if \\\"config.json\\\" in files and \\\"Qwen2.5-7B-Instruct\\\" in root:\\n            return root\\n    raise FileNotFoundError(f\\\"Cannot find Qwen2.5-7B-Instruct in {HF_CACHE}\\\")\\n\\n\\ndef load_irt_params(path):\\n    \\\"\\\"\\\"Load 4PL IRT parameters. Returns dict of arrays: a, b, c, d indexed by item_idx.\\\"\\\"\\\"\\n    params = {}\\n    with open(path) as f:\\n        reader = csv.DictReader(f)\\n        for row in reader:\\n            idx = int(row[\\\"item_idx\\\"])\\n            params[idx] = {\\n                \\\"a\\\": float(row[\\\"a_discrimination\\\"]),\\n                \\\"b\\\": float(row[\\\"b_difficulty\\\"]),\\n                \\\"c\\\": float(row[\\\"c_guessing\\\"]),\\n                \\\"d\\\": float(row[\\\"d_feasibility\\\"]),\\n            }\\n    return params\\n\\n\\ndef irf_4pl(theta, a, b, c, d):\\n    \\\"\\\"\\\"4PL item response function: P(correct | theta).\\\"\\\"\\\"\\n    return c + (d - c) / (1.0 + np.exp(-a * (theta - b)))\\n\\n\\ndef estimate_theta_mle(responses, irt_params, item_indices, max_iter=100, tol=1e-6):\\n    \\\"\\\"\\\"MLE of theta via Newton-Raphson on the 4PL model.\\\"\\\"\\\"\\n    theta = 0.0\\n    for _ in range(max_iter):\\n        grad = 0.0\\n        hess = 0.0\\n        for i, idx in enumerate(item_indices):\\n            p = irt_params[idx]\\n            a, b, c, d = p[\\\"a\\\"], p[\\\"b\\\"], p[\\\"c\\\"], p[\\\"d\\\"]\\n            P = irf_4pl(theta, a, b, c, d)\\n            P = np.clip(P, 1e-10, 1.0 - 1e-10)\\n            x = responses[i]\\n            # Derivative of P w.r.t. theta\\n            exp_term = np.exp(-a * (theta - b))\\n            dP = a * (d - c) * exp_term / (1.0 + exp_term) ** 2\\n            grad += (x - P) * dP / (P * (1.0 - P))\\n            hess += -(dP ** 2) * (1.0 / (P * (1.0 - P)))\\n        if abs(hess) < 1e-15:\\n            break\\n        delta = -grad / hess\\n        theta += delta\\n        if abs(delta) < tol:\\n            break\\n    return np.clip(theta, -4.0, 4.0)\\n\\n\\ndef compute_lz_star(responses, irt_params, item_indices, theta):\\n    \\\"\\\"\\\"Compute lz* statistic (Snijders, 2001) with variance correction for estimated theta.\\\"\\\"\\\"\\n    l0 = 0.0\\n    E_l0 = 0.0\\n    Var_l0 = 0.0\\n    I_theta = 0.0\\n    C_theta = 0.0\\n    for i, idx in enumerate(item_indices):\\n        p = irt_params[idx]\\n        a, b, c, d = p[\\\"a\\\"], p[\\\"b\\\"], p[\\\"c\\\"], p[\\\"d\\\"]\\n        P = irf_4pl(theta, a, b, c, d)\\n        P = np.clip(P, 1e-10, 1.0 - 1e-10)\\n        Q = 1.0 - P\\n        x = responses[i]\\n        log_P = np.log(P)\\n        log_Q = np.log(Q)\\n        l0 += x * log_P + (1 - x) * log_Q\\n        E_l0 += P * log_P + Q * log_Q\\n        g = log_P - log_Q\\n        Var_l0 += P * Q * g ** 2\\n        # Snijders (2001) correction: dP/dtheta for 4PL\\n        z = a * (theta - b)\\n        sigma = 1.0 / (1.0 + np.exp(-np.clip(z, -30, 30)))\\n        dP = a * (d - c) * sigma * (1.0 - sigma)\\n        h = dP / (P * Q)\\n        I_theta += P * Q * h ** 2\\n        C_theta += P * Q * h * g\\n    if Var_l0 < 1e-15:\\n        return 0.0\\n    Var_star = Var_l0 - C_theta ** 2 / I_theta if I_theta > 1e-15 else Var_l0\\n    if Var_star <= 0:\\n        Var_star = Var_l0\\n    return (l0 - E_l0) / np.sqrt(Var_star)\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument(\\\"--condition\\\", required=True)\\n    parser.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    parser.add_argument(\\\"--max_items\\\", type=int, default=-1, help=\\\"Limit items for dry-run\\\")\\n    args = parser.parse_args()\\n\\n    os.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = str(args.gpu)\\n\\n    # Load MMLU eval items\\n    with open(os.path.join(BASE_DIR, \\\"data\\\", \\\"mmlu_items.json\\\")) as f:\\n        mmlu_items = json.load(f)\\n\\n    # Load seen items\\n    seen_5_path = os.path.join(BASE_DIR, \\\"data\\\", \\\"seen_items_5pct.json\\\")\\n    seen_15_path = os.path.join(BASE_DIR, \\\"data\\\", \\\"seen_items_15pct.json\\\")\\n    seen_25_path = os.path.join(BASE_DIR, \\\"data\\\", \\\"seen_items_25pct.json\\\")\\n    seen_50_path = os.path.join(BASE_DIR, \\\"data\\\", \\\"seen_items_50pct.json\\\")\\n    seen_5 = set(json.load(open(seen_5_path))) if os.path.exists(seen_5_path) else set()\\n    seen_15 = set(json.load(open(seen_15_path))) if os.path.exists(seen_15_path) else set()\\n    seen_25 = set(json.load(open(seen_25_path))) if os.path.exists(seen_25_path) else set()\\n    seen_50 = set(json.load(open(seen_50_path))) if os.path.exists(seen_50_path) else set()\\n\\n    if \\\"contam_50\\\" in args.condition:\\n        seen_set = seen_50\\n    elif \\\"contam_25\\\" in args.condition:\\n        seen_set = seen_25\\n    elif \\\"contam_15\\\" in args.condition:\\n        seen_set = seen_15\\n    elif \\\"contam_5\\\" in args.condition:\\n        seen_set = seen_5\\n    else:\\n        seen_set = set()\\n\\n    # Load IRT params\\n    irt_params = load_irt_params(PARAMS_PATH)\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The script loads a 7B model with PEFT adapter and does forward pass inference. Let me see the rest of the main function to understand the GPU usage pattern.",
+              "signature": "EuICCmMIDRgCKkAz+9jv1imsIW0kMS95/LjYhWHlk3oqwTOhQKTCaMuylrOTlpl86EUXIJzMog50y16MNPE/BlvxzhHu5wc1ayaqMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDCO9qrMOWcaWURW2SxoMu3JqP78ldJKdn9w9IjBxSKlZRUaNJ4Id3KvMFBHL8UzIc3knz3Gq56hIIZwsXz3bPR3Vv72ztqSj5720gUwqrAFOU0+l5QRUG7oaH2w2clJrf39auOm7wDbIUGVmxoSKvTwEuua2GNw/p7xlh4deE+skcmOsGxQiJmO5sOo0iFeDmbHWKF3cOc+BYwXzek2ap1EvjkIp5MuAxlA66bKmvze6z52xJek7Z85+eMRM3acz0pzo/C4yWHCU2n3+TdPERG+6+XLoWRryEIyRkmo1PNSBQFMGKG0h0wQjqBZajA/PfOEobSztX7IsqLgvGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "23f86d17-4128-43f0-b00a-0038d6ac0e9c",
+            "uuid": "2690b8be-9ff7-46a6-bdc8-80135fac37dd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Qgmd9QZi9U8u4HKa5ZjneN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3787,
+                "cache_read_input_tokens": 26604,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3787
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "需要看 eval 脚本剩余部分，确认模型加载和推理逻辑。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "23f86d17-4128-43f0-b00a-0038d6ac0e9c",
+            "uuid": "934e7640-b2d8-4d48-b08b-221eb7d46b3c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Qgmd9QZi9U8u4HKa5ZjneN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3787,
+                "cache_read_input_tokens": 26604,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3787
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011CDpASicfRB4FEzqWttvJ1",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-35694",
+                "command": "tail -100 /root/autodl-tmp/ctrl_contam_pilot/eval_lz.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "23f86d17-4128-43f0-b00a-0038d6ac0e9c",
+            "uuid": "b3bd31fe-3ef6-414e-9bba-5717292e8e60",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Qgmd9QZi9U8u4HKa5ZjneN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3787,
+                "cache_read_input_tokens": 26604,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3787
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T14:39:21.135Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011CDpASicfRB4FEzqWttvJ1",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n    # Evaluate\\\\n    n_items = len(mmlu_items)\\\\n    if args.max_items > 0:\\\\n        n_items = min(n_items, args.max_items)\\\\n\\\\n    responses = []\\\\n    correct_count = 0\\\\n    seen_correct = 0\\\\n    seen_total = 0\\\\n    unseen_correct = 0\\\\n    unseen_total = 0\\\\n\\\\n    print(f\\\\\\\"Evaluating {n_items} items...\\\\\\\")\\\\n    for i in range(n_items):\\\\n        item = mmlu_items[i]\\\\n        prompt = build_few_shot_prompt(item[\\\\\\\"question\\\\\\\"], item[\\\\\\\"choices\\\\\\\"])\\\\n        inputs = tokenizer(prompt, return_tensors=\\\\\\\"pt\\\\\\\").to(model.device)\\\\n\\\\n        with torch.no_grad():\\\\n            outputs = model(**inputs)\\\\n            logits = outputs.logits[0, -1, :]\\\\n\\\\n        choice_logits = torch.tensor([logits[tid].item() for tid in choice_token_ids])\\\\n        pred = choice_logits.argmax().item()\\\\n        correct = int(pred == item[\\\\\\\"answer\\\\\\\"])\\\\n        responses.append(correct)\\\\n        correct_count += correct\\\\n\\\\n        is_seen = item[\\\\\\\"item_idx\\\\\\\"] in seen_set\\\\n        if is_seen:\\\\n            seen_correct += correct\\\\n            seen_total += 1\\\\n        else:\\\\n            unseen_correct += correct\\\\n            unseen_total += 1\\\\n\\\\n        if (i + 1) % 500 == 0:\\\\n            print(f\\\\\\\"  [{i+1}/{n_items}] acc={correct_count/(i+1):.4f}\\\\\\\")\\\\n\\\\n    # Compute IRT statistics\\\\n    item_indices = [mmlu_items[i][\\\\\\\"item_idx\\\\\\\"] for i in range(n_items)]\\\\n\\\\n    # Overall theta and lz*\\\\n    theta = estimate_theta_mle(responses, irt_params, item_indices)\\\\n    lz_star = compute_lz_star(responses, irt_params, item_indices, theta)\\\\n\\\\n    # Seen/unseen split lz*\\\\n    seen_responses = []\\\\n    seen_indices = []\\\\n    unseen_responses = []\\\\n    unseen_indices = []\\\\n    for i in range(n_items):\\\\n        idx = mmlu_items[i][\\\\\\\"item_idx\\\\\\\"]\\\\n        if idx in seen_set:\\\\n            seen_responses.append(responses[i])\\\\n            seen_indices.append(idx)\\\\n        else:\\\\n            unseen_responses.append(responses[i])\\\\n            unseen_indices.append(idx)\\\\n\\\\n    lz_star_seen = None\\\\n    lz_star_unseen = None\\\\n    if seen_indices:\\\\n        theta_seen = estimate_theta_mle(seen_responses, irt_params, seen_indices)\\\\n        lz_star_seen = compute_lz_star(seen_responses, irt_params, seen_indices, theta_seen)\\\\n    if unseen_indices:\\\\n        theta_unseen = estimate_theta_mle(unseen_responses, irt_params, unseen_indices)\\\\n        lz_star_unseen = compute_lz_star(unseen_responses, irt_params, unseen_indices, theta_unseen)\\\\n\\\\n    acc_overall = correct_count / n_items if n_items > 0 else 0\\\\n    acc_seen = seen_correct / seen_total if seen_total > 0 else None\\\\n    acc_unseen = unseen_correct / unseen_total if unseen_total > 0 else None\\\\n\\\\n    results = {\\\\n        \\\\\\\"condition\\\\\\\": args.condition,\\\\n        \\\\\\\"theta_mle\\\\\\\": float(theta),\\\\n        \\\\\\\"lz_star\\\\\\\": float(lz_star),\\\\n        \\\\\\\"accuracy_overall\\\\\\\": acc_overall,\\\\n        \\\\\\\"accuracy_seen\\\\\\\": acc_seen,\\\\n        \\\\\\\"accuracy_unseen\\\\\\\": acc_unseen,\\\\n        \\\\\\\"lz_star_seen\\\\\\\": float(lz_star_seen) if lz_star_seen is not None else None,\\\\n        \\\\\\\"lz_star_unseen\\\\\\\": float(lz_star_unseen) if lz_star_unseen is not None else None,\\\\n        \\\\\\\"response_vector\\\\\\\": responses,\\\\n        \\\\\\\"n_items\\\\\\\": n_items,\\\\n        \\\\\\\"n_seen\\\\\\\": seen_total,\\\\n        \\\\\\\"n_unseen\\\\\\\": unseen_total,\\\\n    }\\\\n\\\\n    out_path = os.path.join(BASE_DIR, \\\\\\\"results\\\\\\\", f\\\\\\\"{args.condition}_results.json\\\\\\\")\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nResults saved to {out_path}\\\\\\\")\\\\n    print(f\\\\\\\"  theta={theta:.4f}, lz*={lz_star:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  acc_overall={acc_overall:.4f}, acc_seen={acc_seen}, acc_unseen={acc_unseen}\\\\\\\")\\\\n    print(f\\\\\\\"  lz*_seen={lz_star_seen}, lz*_unseen={lz_star_unseen}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "23f86d17-4128-43f0-b00a-0038d6ac0e9c",
+            "uuid": "cc1ee241-6619-4625-b88a-3dad84baa7a9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n    # Evaluate\\\\n    n_items = len(mmlu_items)\\\\n    if args.max_items > 0:\\\\n        n_items = min(n_items, args.max_items)\\\\n\\\\n    responses = []\\\\n    correct_count = 0\\\\n    seen_correct = 0\\\\n    seen_total = 0\\\\n    unseen_correct = 0\\\\n    unseen_total = 0\\\\n\\\\n    print(f\\\\\\\"Evaluating {n_items} items...\\\\\\\")\\\\n    for i in range(n_items):\\\\n        item = mmlu_items[i]\\\\n        prompt = build_few_shot_prompt(item[\\\\\\\"question\\\\\\\"], item[\\\\\\\"choices\\\\\\\"])\\\\n        inputs = tokenizer(prompt, return_tensors=\\\\\\\"pt\\\\\\\").to(model.device)\\\\n\\\\n        with torch.no_grad():\\\\n            outputs = model(**inputs)\\\\n            logits = outputs.logits[0, -1, :]\\\\n\\\\n        choice_logits = torch.tensor([logits[tid].item() for tid in choice_token_ids])\\\\n        pred = choice_logits.argmax().item()\\\\n        correct = int(pred == item[\\\\\\\"answer\\\\\\\"])\\\\n        responses.append(correct)\\\\n        correct_count += correct\\\\n\\\\n        is_seen = item[\\\\\\\"item_idx\\\\\\\"] in seen_set\\\\n        if is_seen:\\\\n            seen_correct += correct\\\\n            seen_total += 1\\\\n        else:\\\\n            unseen_correct += correct\\\\n            unseen_total += 1\\\\n\\\\n        if (i + 1) % 500 == 0:\\\\n            print(f\\\\\\\"  [{i+1}/{n_items}] acc={correct_count/(i+1):.4f}\\\\\\\")\\\\n\\\\n    # Compute IRT statistics\\\\n    item_indices = [mmlu_items[i][\\\\\\\"item_idx\\\\\\\"] for i in range(n_items)]\\\\n\\\\n    # Overall theta and lz*\\\\n    theta = estimate_theta_mle(responses, irt_params, item_indices)\\\\n    lz_star = compute_lz_star(responses, irt_params, item_indices, theta)\\\\n\\\\n    # Seen/unseen split lz*\\\\n    seen_responses = []\\\\n    seen_indices = []\\\\n    unseen_responses = []\\\\n    unseen_indices = []\\\\n    for i in range(n_items):\\\\n        idx = mmlu_items[i][\\\\\\\"item_idx\\\\\\\"]\\\\n        if idx in seen_set:\\\\n            seen_responses.append(responses[i])\\\\n            seen_indices.append(idx)\\\\n        else:\\\\n            unseen_responses.append(responses[i])\\\\n            unseen_indices.append(idx)\\\\n\\\\n    lz_star_seen = None\\\\n    lz_star_unseen = None\\\\n    if seen_indices:\\\\n        theta_seen = estimate_theta_mle(seen_responses, irt_params, seen_indices)\\\\n        lz_star_seen = compute_lz_star(seen_responses, irt_params, seen_indices, theta_seen)\\\\n    if unseen_indices:\\\\n        theta_unseen = estimate_theta_mle(unseen_responses, irt_params, unseen_indices)\\\\n        lz_star_unseen = compute_lz_star(unseen_responses, irt_params, unseen_indices, theta_unseen)\\\\n\\\\n    acc_overall = correct_count / n_items if n_items > 0 else 0\\\\n    acc_seen = seen_correct / seen_total if seen_total > 0 else None\\\\n    acc_unseen = unseen_correct / unseen_total if unseen_total > 0 else None\\\\n\\\\n    results = {\\\\n        \\\\\\\"condition\\\\\\\": args.condition,\\\\n        \\\\\\\"theta_mle\\\\\\\": float(theta),\\\\n        \\\\\\\"lz_star\\\\\\\": float(lz_star),\\\\n        \\\\\\\"accuracy_overall\\\\\\\": acc_overall,\\\\n        \\\\\\\"accuracy_seen\\\\\\\": acc_seen,\\\\n        \\\\\\\"accuracy_unseen\\\\\\\": acc_unseen,\\\\n        \\\\\\\"lz_star_seen\\\\\\\": float(lz_star_seen) if lz_star_seen is not None else None,\\\\n        \\\\\\\"lz_star_unseen\\\\\\\": float(lz_star_unseen) if lz_star_unseen is not None else None,\\\\n        \\\\\\\"response_vector\\\\\\\": responses,\\\\n        \\\\\\\"n_items\\\\\\\": n_items,\\\\n        \\\\\\\"n_seen\\\\\\\": seen_total,\\\\n        \\\\\\\"n_unseen\\\\\\\": unseen_total,\\\\n    }\\\\n\\\\n    out_path = os.path.join(BASE_DIR, \\\\\\\"results\\\\\\\", f\\\\\\\"{args.condition}_results.json\\\\\\\")\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nResults saved to {out_path}\\\\\\\")\\\\n    print(f\\\\\\\"  theta={theta:.4f}, lz*={lz_star:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  acc_overall={acc_overall:.4f}, acc_seen={acc_seen}, acc_unseen={acc_unseen}\\\\\\\")\\\\n    print(f\\\\\\\"  lz*_seen={lz_star_seen}, lz*_unseen={lz_star_unseen}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n    # Evaluate\\n    n_items = len(mmlu_items)\\n    if args.max_items > 0:\\n        n_items = min(n_items, args.max_items)\\n\\n    responses = []\\n    correct_count = 0\\n    seen_correct = 0\\n    seen_total = 0\\n    unseen_correct = 0\\n    unseen_total = 0\\n\\n    print(f\\\"Evaluating {n_items} items...\\\")\\n    for i in range(n_items):\\n        item = mmlu_items[i]\\n        prompt = build_few_shot_prompt(item[\\\"question\\\"], item[\\\"choices\\\"])\\n        inputs = tokenizer(prompt, return_tensors=\\\"pt\\\").to(model.device)\\n\\n        with torch.no_grad():\\n            outputs = model(**inputs)\\n            logits = outputs.logits[0, -1, :]\\n\\n        choice_logits = torch.tensor([logits[tid].item() for tid in choice_token_ids])\\n        pred = choice_logits.argmax().item()\\n        correct = int(pred == item[\\\"answer\\\"])\\n        responses.append(correct)\\n        correct_count += correct\\n\\n        is_seen = item[\\\"item_idx\\\"] in seen_set\\n        if is_seen:\\n            seen_correct += correct\\n            seen_total += 1\\n        else:\\n            unseen_correct += correct\\n            unseen_total += 1\\n\\n        if (i + 1) % 500 == 0:\\n            print(f\\\"  [{i+1}/{n_items}] acc={correct_count/(i+1):.4f}\\\")\\n\\n    # Compute IRT statistics\\n    item_indices = [mmlu_items[i][\\\"item_idx\\\"] for i in range(n_items)]\\n\\n    # Overall theta and lz*\\n    theta = estimate_theta_mle(responses, irt_params, item_indices)\\n    lz_star = compute_lz_star(responses, irt_params, item_indices, theta)\\n\\n    # Seen/unseen split lz*\\n    seen_responses = []\\n    seen_indices = []\\n    unseen_responses = []\\n    unseen_indices = []\\n    for i in range(n_items):\\n        idx = mmlu_items[i][\\\"item_idx\\\"]\\n        if idx in seen_set:\\n            seen_responses.append(responses[i])\\n            seen_indices.append(idx)\\n        else:\\n            unseen_responses.append(responses[i])\\n            unseen_indices.append(idx)\\n\\n    lz_star_seen = None\\n    lz_star_unseen = None\\n    if seen_indices:\\n        theta_seen = estimate_theta_mle(seen_responses, irt_params, seen_indices)\\n        lz_star_seen = compute_lz_star(seen_responses, irt_params, seen_indices, theta_seen)\\n    if unseen_indices:\\n        theta_unseen = estimate_theta_mle(unseen_responses, irt_params, unseen_indices)\\n        lz_star_unseen = compute_lz_star(unseen_responses, irt_params, unseen_indices, theta_unseen)\\n\\n    acc_overall = correct_count / n_items if n_items > 0 else 0\\n    acc_seen = seen_correct / seen_total if seen_total > 0 else None\\n    acc_unseen = unseen_correct / unseen_total if unseen_total > 0 else None\\n\\n    results = {\\n        \\\"condition\\\": args.condition,\\n        \\\"theta_mle\\\": float(theta),\\n        \\\"lz_star\\\": float(lz_star),\\n        \\\"accuracy_overall\\\": acc_overall,\\n        \\\"accuracy_seen\\\": acc_seen,\\n        \\\"accuracy_unseen\\\": acc_unseen,\\n        \\\"lz_star_seen\\\": float(lz_star_seen) if lz_star_seen is not None else None,\\n        \\\"lz_star_unseen\\\": float(lz_star_unseen) if lz_star_unseen is not None else None,\\n        \\\"response_vector\\\": responses,\\n        \\\"n_items\\\": n_items,\\n        \\\"n_seen\\\": seen_total,\\n        \\\"n_unseen\\\": unseen_total,\\n    }\\n\\n    out_path = os.path.join(BASE_DIR, \\\"results\\\", f\\\"{args.condition}_results.json\\\")\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {out_path}\\\")\\n    print(f\\\"  theta={theta:.4f}, lz*={lz_star:.4f}\\\")\\n    print(f\\\"  acc_overall={acc_overall:.4f}, acc_seen={acc_seen}, acc_unseen={acc_unseen}\\\")\\n    print(f\\\"  lz*_seen={lz_star_seen}, lz*_unseen={lz_star_unseen}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The eval script loads a 7B model and does forward passes on ~14042 items. The key part is:\n\n```python\nos.environ[\"CUDA_VISIBLE_DEVICES\"] = str(args.gpu)\n```\n\nAnd then:\n```python\ninputs = tokenizer(prompt, return_tensors=\"pt\").to(model.device)\nwith torch.no_grad():\n    outputs = model(**inputs)\n```\n\nThe model is loaded with `AutoModelForCausalLM` + PeftModel. For a 7B model, running on CPU would be extremely slow (14042 items × forward pass each). \n\nI need to look at the model loading section more carefully since I saw `BitsAndBytesConfig` imported, which indicates the script uses quantization—a GPU-only feature with bitsandbytes.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "23f86d17-4128-43f0-b00a-0038d6ac0e9c",
+            "uuid": "b0e02f52-51ba-4be5-84d8-11744479b260",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C44eX14QJEcN6ad3tJesTP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1712,
+                "cache_read_input_tokens": 30391,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1712
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "需要看模型加载部分（大约 170-220 行）。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "23f86d17-4128-43f0-b00a-0038d6ac0e9c",
+            "uuid": "76ed80cb-29bc-48e9-bbbf-8919e253ad0d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C44eX14QJEcN6ad3tJesTP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1712,
+                "cache_read_input_tokens": 30391,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1712
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NCZBB9T3eAhShMAK8CV5sH",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-35694",
+                "command": "wc -l /root/autodl-tmp/ctrl_contam_pilot/eval_lz.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "23f86d17-4128-43f0-b00a-0038d6ac0e9c",
+            "uuid": "18ae4e08-97b2-4133-a8a3-fb70fdaf4b9d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C44eX14QJEcN6ad3tJesTP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1712,
+                "cache_read_input_tokens": 30391,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1712
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T14:39:32.510Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NCZBB9T3eAhShMAK8CV5sH",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"328 /root/autodl-tmp/ctrl_contam_pilot/eval_lz.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "23f86d17-4128-43f0-b00a-0038d6ac0e9c",
+            "uuid": "00f4e145-18af-4aa0-ba01-cf8c2af384ad",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"328 /root/autodl-tmp/ctrl_contam_pilot/eval_lz.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"328 /root/autodl-tmp/ctrl_contam_pilot/eval_lz.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XSVU1KwQNBf8rHJZAv84Fi",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-35694",
+                "command": "head -260 /root/autodl-tmp/ctrl_contam_pilot/eval_lz.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "23f86d17-4128-43f0-b00a-0038d6ac0e9c",
+            "uuid": "f0b5fe94-1815-4f6b-b01b-58e33eb7f665",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AfwuURXmCtktFSqb1kMJMi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 636,
+                "cache_read_input_tokens": 32103,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 636
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T14:39:36.215Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XSVU1KwQNBf8rHJZAv84Fi",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\neval_lz.py — Evaluate a fine-tuned adapter on full MMLU and compute lz* person-fit statistic.\\\\n\\\\nUsage: python eval_lz.py --condition clean_s1 --gpu 0\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport csv\\\\nimport json\\\\nimport os\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom peft import PeftModel\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\\\n\\\\nBASE_DIR = \\\\\\\"/root/autodl-tmp/ctrl_contam_pilot\\\\\\\"\\\\nHF_CACHE = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nPARAMS_PATH = os.path.join(BASE_DIR, \\\\\\\"mmlu_params.csv\\\\\\\")\\\\n\\\\nCHOICES = [\\\\\\\"A\\\\\\\", \\\\\\\"B\\\\\\\", \\\\\\\"C\\\\\\\", \\\\\\\"D\\\\\\\"]\\\\n\\\\nFEW_SHOT_EXAMPLES = [\\\\n    {\\\\n        \\\\\\\"question\\\\\\\": \\\\\\\"What is the capital of France?\\\\\\\",\\\\n        \\\\\\\"choices\\\\\\\": [\\\\\\\"London\\\\\\\", \\\\\\\"Paris\\\\\\\", \\\\\\\"Berlin\\\\\\\", \\\\\\\"Madrid\\\\\\\"],\\\\n        \\\\\\\"answer\\\\\\\": 1,\\\\n    },\\\\n    {\\\\n        \\\\\\\"question\\\\\\\": \\\\\\\"Which planet is closest to the Sun?\\\\\\\",\\\\n        \\\\\\\"choices\\\\\\\": [\\\\\\\"Venus\\\\\\\", \\\\\\\"Mercury\\\\\\\", \\\\\\\"Mars\\\\\\\", \\\\\\\"Earth\\\\\\\"],\\\\n        \\\\\\\"answer\\\\\\\": 1,\\\\n    },\\\\n    {\\\\n        \\\\\\\"question\\\\\\\": \\\\\\\"What is 2 + 2?\\\\\\\",\\\\n        \\\\\\\"choices\\\\\\\": [\\\\\\\"3\\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"5\\\\\\\", \\\\\\\"6\\\\\\\"],\\\\n        \\\\\\\"answer\\\\\\\": 1,\\\\n    },\\\\n]\\\\n\\\\n\\\\ndef format_question(question, choices):\\\\n    lines = [f\\\\\\\"Question: {question}\\\\\\\"]\\\\n    for i, c in enumerate(choices):\\\\n        lines.append(f\\\\\\\"{CHOICES[i]}. {c}\\\\\\\")\\\\n    lines.append(\\\\\\\"Answer:\\\\\\\")\\\\n    return \\\\\\\"\\\\\\\\n\\\\\\\".join(lines)\\\\n\\\\n\\\\ndef build_few_shot_prompt(question, choices):\\\\n    parts = []\\\\n    for ex in FEW_SHOT_EXAMPLES:\\\\n        parts.append(format_question(ex[\\\\\\\"question\\\\\\\"], ex[\\\\\\\"choices\\\\\\\"]) + f\\\\\\\" {CHOICES[ex['answer']]}\\\\\\\")\\\\n    parts.append(format_question(question, choices))\\\\n    return \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\".join(parts)\\\\n\\\\n\\\\ndef find_model_path():\\\\n    patterns = [\\\\n        os.path.join(HF_CACHE, \\\\\\\"Qwen\\\\\\\", \\\\\\\"Qwen2.5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"Qwen\\\\\\\", \\\\\\\"Qwen2___5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"Qwen2___5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"Qwen2.5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"models--Qwen--Qwen2.5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"qwen\\\\\\\", \\\\\\\"Qwen2___5-7B-Instruct\\\\\\\"),\\\\n    ]\\\\n    for p in patterns:\\\\n        if os.path.isdir(p):\\\\n            snapshot_dir = os.path.join(p, \\\\\\\"snapshots\\\\\\\")\\\\n            if os.path.isdir(snapshot_dir):\\\\n                snapshots = os.listdir(snapshot_dir)\\\\n                if snapshots:\\\\n                    return os.path.join(snapshot_dir, snapshots[0])\\\\n            if os.path.isfile(os.path.join(p, \\\\\\\"config.json\\\\\\\")):\\\\n                return p\\\\n    for root, dirs, files in os.walk(HF_CACHE):\\\\n        if \\\\\\\"config.json\\\\\\\" in files and \\\\\\\"Qwen2.5-7B-Instruct\\\\\\\" in root:\\\\n            return root\\\\n    raise FileNotFoundError(f\\\\\\\"Cannot find Qwen2.5-7B-Instruct in {HF_CACHE}\\\\\\\")\\\\n\\\\n\\\\ndef load_irt_params(path):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load 4PL IRT parameters. Returns dict of arrays: a, b, c, d indexed by item_idx.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    params = {}\\\\n    with open(path) as f:\\\\n        reader = csv.DictReader(f)\\\\n        for row in reader:\\\\n            idx = int(row[\\\\\\\"item_idx\\\\\\\"])\\\\n            params[idx] = {\\\\n                \\\\\\\"a\\\\\\\": float(row[\\\\\\\"a_discrimination\\\\\\\"]),\\\\n                \\\\\\\"b\\\\\\\": float(row[\\\\\\\"b_difficulty\\\\\\\"]),\\\\n                \\\\\\\"c\\\\\\\": float(row[\\\\\\\"c_guessing\\\\\\\"]),\\\\n                \\\\\\\"d\\\\\\\": float(row[\\\\\\\"d_feasibility\\\\\\\"]),\\\\n            }\\\\n    return params\\\\n\\\\n\\\\ndef irf_4pl(theta, a, b, c, d):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"4PL item response function: P(correct | theta).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return c + (d - c) / (1.0 + np.exp(-a * (theta - b)))\\\\n\\\\n\\\\ndef estimate_theta_mle(responses, irt_params, item_indices, max_iter=100, tol=1e-6):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"MLE of theta via Newton-Raphson on the 4PL model.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    theta = 0.0\\\\n    for _ in range(max_iter):\\\\n        grad = 0.0\\\\n        hess = 0.0\\\\n        for i, idx in enumerate(item_indices):\\\\n            p = irt_params[idx]\\\\n            a, b, c, d = p[\\\\\\\"a\\\\\\\"], p[\\\\\\\"b\\\\\\\"], p[\\\\\\\"c\\\\\\\"], p[\\\\\\\"d\\\\\\\"]\\\\n            P = irf_4pl(theta, a, b, c, d)\\\\n            P = np.clip(P, 1e-10, 1.0 - 1e-10)\\\\n            x = responses[i]\\\\n            # Derivative of P w.r.t. theta\\\\n            exp_term = np.exp(-a * (theta - b))\\\\n            dP = a * (d - c) * exp_term / (1.0 + exp_term) ** 2\\\\n            grad += (x - P) * dP / (P * (1.0 - P))\\\\n            hess += -(dP ** 2) * (1.0 / (P * (1.0 - P)))\\\\n        if abs(hess) < 1e-15:\\\\n            break\\\\n        delta = -grad / hess\\\\n        theta +=\\\\n\\\\n... [截断: 输出过长，省略 735 字符] ...\\\\n\\\\n log_Q\\\\n        Var_l0 += P * Q * g ** 2\\\\n        # Snijders (2001) correction: dP/dtheta for 4PL\\\\n        z = a * (theta - b)\\\\n        sigma = 1.0 / (1.0 + np.exp(-np.clip(z, -30, 30)))\\\\n        dP = a * (d - c) * sigma * (1.0 - sigma)\\\\n        h = dP / (P * Q)\\\\n        I_theta += P * Q * h ** 2\\\\n        C_theta += P * Q * h * g\\\\n    if Var_l0 < 1e-15:\\\\n        return 0.0\\\\n    Var_star = Var_l0 - C_theta ** 2 / I_theta if I_theta > 1e-15 else Var_l0\\\\n    if Var_star <= 0:\\\\n        Var_star = Var_l0\\\\n    return (l0 - E_l0) / np.sqrt(Var_star)\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser()\\\\n    parser.add_argument(\\\\\\\"--condition\\\\\\\", required=True)\\\\n    parser.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\n    parser.add_argument(\\\\\\\"--max_items\\\\\\\", type=int, default=-1, help=\\\\\\\"Limit items for dry-run\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    os.environ[\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\"] = str(args.gpu)\\\\n\\\\n    # Load MMLU eval items\\\\n    with open(os.path.join(BASE_DIR, \\\\\\\"data\\\\\\\", \\\\\\\"mmlu_items.json\\\\\\\")) as f:\\\\n        mmlu_items = json.load(f)\\\\n\\\\n    # Load seen items\\\\n    seen_5_path = os.path.join(BASE_DIR, \\\\\\\"data\\\\\\\", \\\\\\\"seen_items_5pct.json\\\\\\\")\\\\n    seen_15_path = os.path.join(BASE_DIR, \\\\\\\"data\\\\\\\", \\\\\\\"seen_items_15pct.json\\\\\\\")\\\\n    seen_25_path = os.path.join(BASE_DIR, \\\\\\\"data\\\\\\\", \\\\\\\"seen_items_25pct.json\\\\\\\")\\\\n    seen_50_path = os.path.join(BASE_DIR, \\\\\\\"data\\\\\\\", \\\\\\\"seen_items_50pct.json\\\\\\\")\\\\n    seen_5 = set(json.load(open(seen_5_path))) if os.path.exists(seen_5_path) else set()\\\\n    seen_15 = set(json.load(open(seen_15_path))) if os.path.exists(seen_15_path) else set()\\\\n    seen_25 = set(json.load(open(seen_25_path))) if os.path.exists(seen_25_path) else set()\\\\n    seen_50 = set(json.load(open(seen_50_path))) if os.path.exists(seen_50_path) else set()\\\\n\\\\n    if \\\\\\\"contam_50\\\\\\\" in args.condition:\\\\n        seen_set = seen_50\\\\n    elif \\\\\\\"contam_25\\\\\\\" in args.condition:\\\\n        seen_set = seen_25\\\\n    elif \\\\\\\"contam_15\\\\\\\" in args.condition:\\\\n        seen_set = seen_15\\\\n    elif \\\\\\\"contam_5\\\\\\\" in args.condition:\\\\n        seen_set = seen_5\\\\n    else:\\\\n        seen_set = set()\\\\n\\\\n    # Load IRT params\\\\n    irt_params = load_irt_params(PARAMS_PATH)\\\\n\\\\n    # Load model\\\\n    model_path = find_model_path()\\\\n    adapter_path = os.path.join(BASE_DIR, \\\\\\\"checkpoints\\\\\\\", args.condition)\\\\n    print(f\\\\\\\"Base model: {model_path}\\\\\\\")\\\\n    print(f\\\\\\\"Adapter: {adapter_path}\\\\\\\")\\\\n\\\\n    bnb_config = BitsAndBytesConfig(\\\\n        load_in_4bit=True,\\\\n        bnb_4bit_quant_type=\\\\\\\"nf4\\\\\\\",\\\\n        bnb_4bit_compute_dtype=torch.float16,\\\\n    )\\\\n\\\\n    model = AutoModelForCausalLM.from_pretrained(\\\\n        model_path,\\\\n        quantization_config=bnb_config,\\\\n        device_map={\\\\\\\"\\\\\\\": 0},\\\\n        trust_remote_code=True,\\\\n    )\\\\n    model = PeftModel.from_pretrained(model, adapter_path)\\\\n    model.eval()\\\\n\\\\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n\\\\n    # Get token IDs for A, B, C, D\\\\n    choice_token_ids = [tokenizer.encode(c, add_special_tokens=False)[0] for c in CHOICES]\\\\n    print(f\\\\\\\"Choice token IDs: {dict(zip(CHOICES, choice_token_ids))}\\\\\\\")\\\\n\\\\n    # Evaluate\\\\n    n_items = len(mmlu_items)\\\\n    if args.max_items > 0:\\\\n        n_items = min(n_items, args.max_items)\\\\n\\\\n    responses = []\\\\n    correct_count = 0\\\\n    seen_correct = 0\\\\n    seen_total = 0\\\\n    unseen_correct = 0\\\\n    unseen_total = 0\\\\n\\\\n    print(f\\\\\\\"Evaluating {n_items} items...\\\\\\\")\\\\n    for i in range(n_items):\\\\n        item = mmlu_items[i]\\\\n        prompt = build_few_shot_prompt(item[\\\\\\\"question\\\\\\\"], item[\\\\\\\"choices\\\\\\\"])\\\\n        inputs = tokenizer(prompt, return_tensors=\\\\\\\"pt\\\\\\\").to(model.device)\\\\n\\\\n        with torch.no_grad():\\\\n            outputs = model(**inputs)\\\\n            logits = outputs.logits[0, -1, :]\\\\n\\\\n        choice_logits = torch.tensor([logits[tid].item() for tid in choice_token_ids])\\\\n        pred = choice_logits.argmax().item()\\\\n        correct = int(pred == item[\\\\\\\"answer\\\\\\\"])\\\\n        responses.append(correct)\\\\n        correct_count += correct\\\\n\\\\n        is_seen = item[\\\\\\\"item_idx\\\\\\\"] in seen_set\\\\n        if is_seen:\\\\n            seen_correct += correct\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "23f86d17-4128-43f0-b00a-0038d6ac0e9c",
+            "uuid": "5088bf9f-e50c-41e3-8662-82eecdbb47f5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\neval_lz.py — Evaluate a fine-tuned adapter on full MMLU and compute lz* person-fit statistic.\\\\n\\\\nUsage: python eval_lz.py --condition clean_s1 --gpu 0\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport csv\\\\nimport json\\\\nimport os\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom peft import PeftModel\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\\\n\\\\nBASE_DIR = \\\\\\\"/root/autodl-tmp/ctrl_contam_pilot\\\\\\\"\\\\nHF_CACHE = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nPARAMS_PATH = os.path.join(BASE_DIR, \\\\\\\"mmlu_params.csv\\\\\\\")\\\\n\\\\nCHOICES = [\\\\\\\"A\\\\\\\", \\\\\\\"B\\\\\\\", \\\\\\\"C\\\\\\\", \\\\\\\"D\\\\\\\"]\\\\n\\\\nFEW_SHOT_EXAMPLES = [\\\\n    {\\\\n        \\\\\\\"question\\\\\\\": \\\\\\\"What is the capital of France?\\\\\\\",\\\\n        \\\\\\\"choices\\\\\\\": [\\\\\\\"London\\\\\\\", \\\\\\\"Paris\\\\\\\", \\\\\\\"Berlin\\\\\\\", \\\\\\\"Madrid\\\\\\\"],\\\\n        \\\\\\\"answer\\\\\\\": 1,\\\\n    },\\\\n    {\\\\n        \\\\\\\"question\\\\\\\": \\\\\\\"Which planet is closest to the Sun?\\\\\\\",\\\\n        \\\\\\\"choices\\\\\\\": [\\\\\\\"Venus\\\\\\\", \\\\\\\"Mercury\\\\\\\", \\\\\\\"Mars\\\\\\\", \\\\\\\"Earth\\\\\\\"],\\\\n        \\\\\\\"answer\\\\\\\": 1,\\\\n    },\\\\n    {\\\\n        \\\\\\\"question\\\\\\\": \\\\\\\"What is 2 + 2?\\\\\\\",\\\\n        \\\\\\\"choices\\\\\\\": [\\\\\\\"3\\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"5\\\\\\\", \\\\\\\"6\\\\\\\"],\\\\n        \\\\\\\"answer\\\\\\\": 1,\\\\n    },\\\\n]\\\\n\\\\n\\\\ndef format_question(question, choices):\\\\n    lines = [f\\\\\\\"Question: {question}\\\\\\\"]\\\\n    for i, c in enumerate(choices):\\\\n        lines.append(f\\\\\\\"{CHOICES[i]}. {c}\\\\\\\")\\\\n    lines.append(\\\\\\\"Answer:\\\\\\\")\\\\n    return \\\\\\\"\\\\\\\\n\\\\\\\".join(lines)\\\\n\\\\n\\\\ndef build_few_shot_prompt(question, choices):\\\\n    parts = []\\\\n    for ex in FEW_SHOT_EXAMPLES:\\\\n        parts.append(format_question(ex[\\\\\\\"question\\\\\\\"], ex[\\\\\\\"choices\\\\\\\"]) + f\\\\\\\" {CHOICES[ex['answer']]}\\\\\\\")\\\\n    parts.append(format_question(question, choices))\\\\n    return \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\".join(parts)\\\\n\\\\n\\\\ndef find_model_path():\\\\n    patterns = [\\\\n        os.path.join(HF_CACHE, \\\\\\\"Qwen\\\\\\\", \\\\\\\"Qwen2.5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"Qwen\\\\\\\", \\\\\\\"Qwen2___5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"Qwen2___5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"Qwen2.5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"models--Qwen--Qwen2.5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"qwen\\\\\\\", \\\\\\\"Qwen2___5-7B-Instruct\\\\\\\"),\\\\n    ]\\\\n    for p in patterns:\\\\n        if os.path.isdir(p):\\\\n            snapshot_dir = os.path.join(p, \\\\\\\"snapshots\\\\\\\")\\\\n            if os.path.isdir(snapshot_dir):\\\\n                snapshots = os.listdir(snapshot_dir)\\\\n                if snapshots:\\\\n                    return os.path.join(snapshot_dir, snapshots[0])\\\\n            if os.path.isfile(os.path.join(p, \\\\\\\"config.json\\\\\\\")):\\\\n                return p\\\\n    for root, dirs, files in os.walk(HF_CACHE):\\\\n        if \\\\\\\"config.json\\\\\\\" in files and \\\\\\\"Qwen2.5-7B-Instruct\\\\\\\" in root:\\\\n            return root\\\\n    raise FileNotFoundError(f\\\\\\\"Cannot find Qwen2.5-7B-Instruct in {HF_CACHE}\\\\\\\")\\\\n\\\\n\\\\ndef load_irt_params(path):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load 4PL IRT parameters. Returns dict of arrays: a, b, c, d indexed by item_idx.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    params = {}\\\\n    with open(path) as f:\\\\n        reader = csv.DictReader(f)\\\\n        for row in reader:\\\\n            idx = int(row[\\\\\\\"item_idx\\\\\\\"])\\\\n            params[idx] = {\\\\n                \\\\\\\"a\\\\\\\": float(row[\\\\\\\"a_discrimination\\\\\\\"]),\\\\n                \\\\\\\"b\\\\\\\": float(row[\\\\\\\"b_difficulty\\\\\\\"]),\\\\n                \\\\\\\"c\\\\\\\": float(row[\\\\\\\"c_guessing\\\\\\\"]),\\\\n                \\\\\\\"d\\\\\\\": float(row[\\\\\\\"d_feasibility\\\\\\\"]),\\\\n            }\\\\n    return params\\\\n\\\\n\\\\ndef irf_4pl(theta, a, b, c, d):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"4PL item response function: P(correct | theta).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return c + (d - c) / (1.0 + np.exp(-a * (theta - b)))\\\\n\\\\n\\\\ndef estimate_theta_mle(responses, irt_params, item_indices, max_iter=100, tol=1e-6):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"MLE of theta via Newton-Raphson on the 4PL model.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    theta = 0.0\\\\n    for _ in range(max_iter):\\\\n        grad = 0.0\\\\n        hess = 0.0\\\\n        for i, idx in enumerate(item_indices):\\\\n            p = irt_params[idx]\\\\n            a, b, c, d = p[\\\\\\\"a\\\\\\\"], p[\\\\\\\"b\\\\\\\"], p[\\\\\\\"c\\\\\\\"], p[\\\\\\\"d\\\\\\\"]\\\\n            P = irf_4pl(theta, a, b, c, d)\\\\n            P = np.clip(P, 1e-10, 1.0 - 1e-10)\\\\n            x = responses[i]\\\\n            # Derivative of P w.r.t. theta\\\\n            exp_term = np.exp(-a * (theta - b))\\\\n            dP = a * (d - c) * exp_term / (1.0 + exp_term) ** 2\\\\n            grad += (x - P) * dP / (P * (1.0 - P))\\\\n            hess += -(dP ** 2) * (1.0 / (P * (1.0 - P)))\\\\n        if abs(hess) < 1e-15:\\\\n            break\\\\n        delta = -grad / hess\\\\n        theta +=\\\\n\\\\n... [截断: 输出过长，省略 735 字符] ...\\\\n\\\\n log_Q\\\\n        Var_l0 += P * Q * g ** 2\\\\n        # Snijders (2001) correction: dP/dtheta for 4PL\\\\n        z = a * (theta - b)\\\\n        sigma = 1.0 / (1.0 + np.exp(-np.clip(z, -30, 30)))\\\\n        dP = a * (d - c) * sigma * (1.0 - sigma)\\\\n        h = dP / (P * Q)\\\\n        I_theta += P * Q * h ** 2\\\\n        C_theta += P * Q * h * g\\\\n    if Var_l0 < 1e-15:\\\\n        return 0.0\\\\n    Var_star = Var_l0 - C_theta ** 2 / I_theta if I_theta > 1e-15 else Var_l0\\\\n    if Var_star <= 0:\\\\n        Var_star = Var_l0\\\\n    return (l0 - E_l0) / np.sqrt(Var_star)\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser()\\\\n    parser.add_argument(\\\\\\\"--condition\\\\\\\", required=True)\\\\n    parser.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\n    parser.add_argument(\\\\\\\"--max_items\\\\\\\", type=int, default=-1, help=\\\\\\\"Limit items for dry-run\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    os.environ[\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\"] = str(args.gpu)\\\\n\\\\n    # Load MMLU eval items\\\\n    with open(os.path.join(BASE_DIR, \\\\\\\"data\\\\\\\", \\\\\\\"mmlu_items.json\\\\\\\")) as f:\\\\n        mmlu_items = json.load(f)\\\\n\\\\n    # Load seen items\\\\n    seen_5_path = os.path.join(BASE_DIR, \\\\\\\"data\\\\\\\", \\\\\\\"seen_items_5pct.json\\\\\\\")\\\\n    seen_15_path = os.path.join(BASE_DIR, \\\\\\\"data\\\\\\\", \\\\\\\"seen_items_15pct.json\\\\\\\")\\\\n    seen_25_path = os.path.join(BASE_DIR, \\\\\\\"data\\\\\\\", \\\\\\\"seen_items_25pct.json\\\\\\\")\\\\n    seen_50_path = os.path.join(BASE_DIR, \\\\\\\"data\\\\\\\", \\\\\\\"seen_items_50pct.json\\\\\\\")\\\\n    seen_5 = set(json.load(open(seen_5_path))) if os.path.exists(seen_5_path) else set()\\\\n    seen_15 = set(json.load(open(seen_15_path))) if os.path.exists(seen_15_path) else set()\\\\n    seen_25 = set(json.load(open(seen_25_path))) if os.path.exists(seen_25_path) else set()\\\\n    seen_50 = set(json.load(open(seen_50_path))) if os.path.exists(seen_50_path) else set()\\\\n\\\\n    if \\\\\\\"contam_50\\\\\\\" in args.condition:\\\\n        seen_set = seen_50\\\\n    elif \\\\\\\"contam_25\\\\\\\" in args.condition:\\\\n        seen_set = seen_25\\\\n    elif \\\\\\\"contam_15\\\\\\\" in args.condition:\\\\n        seen_set = seen_15\\\\n    elif \\\\\\\"contam_5\\\\\\\" in args.condition:\\\\n        seen_set = seen_5\\\\n    else:\\\\n        seen_set = set()\\\\n\\\\n    # Load IRT params\\\\n    irt_params = load_irt_params(PARAMS_PATH)\\\\n\\\\n    # Load model\\\\n    model_path = find_model_path()\\\\n    adapter_path = os.path.join(BASE_DIR, \\\\\\\"checkpoints\\\\\\\", args.condition)\\\\n    print(f\\\\\\\"Base model: {model_path}\\\\\\\")\\\\n    print(f\\\\\\\"Adapter: {adapter_path}\\\\\\\")\\\\n\\\\n    bnb_config = BitsAndBytesConfig(\\\\n        load_in_4bit=True,\\\\n        bnb_4bit_quant_type=\\\\\\\"nf4\\\\\\\",\\\\n        bnb_4bit_compute_dtype=torch.float16,\\\\n    )\\\\n\\\\n    model = AutoModelForCausalLM.from_pretrained(\\\\n        model_path,\\\\n        quantization_config=bnb_config,\\\\n        device_map={\\\\\\\"\\\\\\\": 0},\\\\n        trust_remote_code=True,\\\\n    )\\\\n    model = PeftModel.from_pretrained(model, adapter_path)\\\\n    model.eval()\\\\n\\\\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n\\\\n    # Get token IDs for A, B, C, D\\\\n    choice_token_ids = [tokenizer.encode(c, add_special_tokens=False)[0] for c in CHOICES]\\\\n    print(f\\\\\\\"Choice token IDs: {dict(zip(CHOICES, choice_token_ids))}\\\\\\\")\\\\n\\\\n    # Evaluate\\\\n    n_items = len(mmlu_items)\\\\n    if args.max_items > 0:\\\\n        n_items = min(n_items, args.max_items)\\\\n\\\\n    responses = []\\\\n    correct_count = 0\\\\n    seen_correct = 0\\\\n    seen_total = 0\\\\n    unseen_correct = 0\\\\n    unseen_total = 0\\\\n\\\\n    print(f\\\\\\\"Evaluating {n_items} items...\\\\\\\")\\\\n    for i in range(n_items):\\\\n        item = mmlu_items[i]\\\\n        prompt = build_few_shot_prompt(item[\\\\\\\"question\\\\\\\"], item[\\\\\\\"choices\\\\\\\"])\\\\n        inputs = tokenizer(prompt, return_tensors=\\\\\\\"pt\\\\\\\").to(model.device)\\\\n\\\\n        with torch.no_grad():\\\\n            outputs = model(**inputs)\\\\n            logits = outputs.logits[0, -1, :]\\\\n\\\\n        choice_logits = torch.tensor([logits[tid].item() for tid in choice_token_ids])\\\\n        pred = choice_logits.argmax().item()\\\\n        correct = int(pred == item[\\\\\\\"answer\\\\\\\"])\\\\n        responses.append(correct)\\\\n        correct_count += correct\\\\n\\\\n        is_seen = item[\\\\\\\"item_idx\\\\\\\"] in seen_set\\\\n        if is_seen:\\\\n            seen_correct += correct\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\neval_lz.py — Evaluate a fine-tuned adapter on full MMLU and compute lz* person-fit statistic.\\n\\nUsage: python eval_lz.py --condition clean_s1 --gpu 0\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport os\\n\\nimport numpy as np\\nimport torch\\nfrom peft import PeftModel\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\n\\nBASE_DIR = \\\"/root/autodl-tmp/ctrl_contam_pilot\\\"\\nHF_CACHE = \\\"/root/autodl-tmp/.hf_cache\\\"\\nPARAMS_PATH = os.path.join(BASE_DIR, \\\"mmlu_params.csv\\\")\\n\\nCHOICES = [\\\"A\\\", \\\"B\\\", \\\"C\\\", \\\"D\\\"]\\n\\nFEW_SHOT_EXAMPLES = [\\n    {\\n        \\\"question\\\": \\\"What is the capital of France?\\\",\\n        \\\"choices\\\": [\\\"London\\\", \\\"Paris\\\", \\\"Berlin\\\", \\\"Madrid\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n    {\\n        \\\"question\\\": \\\"Which planet is closest to the Sun?\\\",\\n        \\\"choices\\\": [\\\"Venus\\\", \\\"Mercury\\\", \\\"Mars\\\", \\\"Earth\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n    {\\n        \\\"question\\\": \\\"What is 2 + 2?\\\",\\n        \\\"choices\\\": [\\\"3\\\", \\\"4\\\", \\\"5\\\", \\\"6\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n]\\n\\n\\ndef format_question(question, choices):\\n    lines = [f\\\"Question: {question}\\\"]\\n    for i, c in enumerate(choices):\\n        lines.append(f\\\"{CHOICES[i]}. {c}\\\")\\n    lines.append(\\\"Answer:\\\")\\n    return \\\"\\\\n\\\".join(lines)\\n\\n\\ndef build_few_shot_prompt(question, choices):\\n    parts = []\\n    for ex in FEW_SHOT_EXAMPLES:\\n        parts.append(format_question(ex[\\\"question\\\"], ex[\\\"choices\\\"]) + f\\\" {CHOICES[ex['answer']]}\\\")\\n    parts.append(format_question(question, choices))\\n    return \\\"\\\\n\\\\n\\\".join(parts)\\n\\n\\ndef find_model_path():\\n    patterns = [\\n        os.path.join(HF_CACHE, \\\"Qwen\\\", \\\"Qwen2.5-7B-Instruct\\\"),\\n        os.path.join(HF_CACHE, \\\"Qwen\\\", \\\"Qwen2___5-7B-Instruct\\\"),\\n        os.path.join(HF_CACHE, \\\"Qwen2___5-7B-Instruct\\\"),\\n        os.path.join(HF_CACHE, \\\"Qwen2.5-7B-Instruct\\\"),\\n        os.path.join(HF_CACHE, \\\"models--Qwen--Qwen2.5-7B-Instruct\\\"),\\n        os.path.join(HF_CACHE, \\\"qwen\\\", \\\"Qwen2___5-7B-Instruct\\\"),\\n    ]\\n    for p in patterns:\\n        if os.path.isdir(p):\\n            snapshot_dir = os.path.join(p, \\\"snapshots\\\")\\n            if os.path.isdir(snapshot_dir):\\n                snapshots = os.listdir(snapshot_dir)\\n                if snapshots:\\n                    return os.path.join(snapshot_dir, snapshots[0])\\n            if os.path.isfile(os.path.join(p, \\\"config.json\\\")):\\n                return p\\n    for root, dirs, files in os.walk(HF_CACHE):\\n        if \\\"config.json\\\" in files and \\\"Qwen2.5-7B-Instruct\\\" in root:\\n            return root\\n    raise FileNotFoundError(f\\\"Cannot find Qwen2.5-7B-Instruct in {HF_CACHE}\\\")\\n\\n\\ndef load_irt_params(path):\\n    \\\"\\\"\\\"Load 4PL IRT parameters. Returns dict of arrays: a, b, c, d indexed by item_idx.\\\"\\\"\\\"\\n    params = {}\\n    with open(path) as f:\\n        reader = csv.DictReader(f)\\n        for row in reader:\\n            idx = int(row[\\\"item_idx\\\"])\\n            params[idx] = {\\n                \\\"a\\\": float(row[\\\"a_discrimination\\\"]),\\n                \\\"b\\\": float(row[\\\"b_difficulty\\\"]),\\n                \\\"c\\\": float(row[\\\"c_guessing\\\"]),\\n                \\\"d\\\": float(row[\\\"d_feasibility\\\"]),\\n            }\\n    return params\\n\\n\\ndef irf_4pl(theta, a, b, c, d):\\n    \\\"\\\"\\\"4PL item response function: P(correct | theta).\\\"\\\"\\\"\\n    return c + (d - c) / (1.0 + np.exp(-a * (theta - b)))\\n\\n\\ndef estimate_theta_mle(responses, irt_params, item_indices, max_iter=100, tol=1e-6):\\n    \\\"\\\"\\\"MLE of theta via Newton-Raphson on the 4PL model.\\\"\\\"\\\"\\n    theta = 0.0\\n    for _ in range(max_iter):\\n        grad = 0.0\\n        hess = 0.0\\n        for i, idx in enumerate(item_indices):\\n            p = irt_params[idx]\\n            a, b, c, d = p[\\\"a\\\"], p[\\\"b\\\"], p[\\\"c\\\"], p[\\\"d\\\"]\\n            P = irf_4pl(theta, a, b, c, d)\\n            P = np.clip(P, 1e-10, 1.0 - 1e-10)\\n            x = responses[i]\\n            # Derivative of P w.r.t. theta\\n            exp_term = np.exp(-a * (theta - b))\\n            dP = a * (d - c) * exp_term / (1.0 + exp_term) ** 2\\n            grad += (x - P) * dP / (P * (1.0 - P))\\n            hess += -(dP ** 2) * (1.0 / (P * (1.0 - P)))\\n        if abs(hess) < 1e-15:\\n            break\\n        delta = -grad / hess\\n        theta +=\\n\\n... [截断: 输出过长，省略 735 字符] ...\\n\\n log_Q\\n        Var_l0 += P * Q * g ** 2\\n        # Snijders (2001) correction: dP/dtheta for 4PL\\n        z = a * (theta - b)\\n        sigma = 1.0 / (1.0 + np.exp(-np.clip(z, -30, 30)))\\n        dP = a * (d - c) * sigma * (1.0 - sigma)\\n        h = dP / (P * Q)\\n        I_theta += P * Q * h ** 2\\n        C_theta += P * Q * h * g\\n    if Var_l0 < 1e-15:\\n        return 0.0\\n    Var_star = Var_l0 - C_theta ** 2 / I_theta if I_theta > 1e-15 else Var_l0\\n    if Var_star <= 0:\\n        Var_star = Var_l0\\n    return (l0 - E_l0) / np.sqrt(Var_star)\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument(\\\"--condition\\\", required=True)\\n    parser.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    parser.add_argument(\\\"--max_items\\\", type=int, default=-1, help=\\\"Limit items for dry-run\\\")\\n    args = parser.parse_args()\\n\\n    os.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = str(args.gpu)\\n\\n    # Load MMLU eval items\\n    with open(os.path.join(BASE_DIR, \\\"data\\\", \\\"mmlu_items.json\\\")) as f:\\n        mmlu_items = json.load(f)\\n\\n    # Load seen items\\n    seen_5_path = os.path.join(BASE_DIR, \\\"data\\\", \\\"seen_items_5pct.json\\\")\\n    seen_15_path = os.path.join(BASE_DIR, \\\"data\\\", \\\"seen_items_15pct.json\\\")\\n    seen_25_path = os.path.join(BASE_DIR, \\\"data\\\", \\\"seen_items_25pct.json\\\")\\n    seen_50_path = os.path.join(BASE_DIR, \\\"data\\\", \\\"seen_items_50pct.json\\\")\\n    seen_5 = set(json.load(open(seen_5_path))) if os.path.exists(seen_5_path) else set()\\n    seen_15 = set(json.load(open(seen_15_path))) if os.path.exists(seen_15_path) else set()\\n    seen_25 = set(json.load(open(seen_25_path))) if os.path.exists(seen_25_path) else set()\\n    seen_50 = set(json.load(open(seen_50_path))) if os.path.exists(seen_50_path) else set()\\n\\n    if \\\"contam_50\\\" in args.condition:\\n        seen_set = seen_50\\n    elif \\\"contam_25\\\" in args.condition:\\n        seen_set = seen_25\\n    elif \\\"contam_15\\\" in args.condition:\\n        seen_set = seen_15\\n    elif \\\"contam_5\\\" in args.condition:\\n        seen_set = seen_5\\n    else:\\n        seen_set = set()\\n\\n    # Load IRT params\\n    irt_params = load_irt_params(PARAMS_PATH)\\n\\n    # Load model\\n    model_path = find_model_path()\\n    adapter_path = os.path.join(BASE_DIR, \\\"checkpoints\\\", args.condition)\\n    print(f\\\"Base model: {model_path}\\\")\\n    print(f\\\"Adapter: {adapter_path}\\\")\\n\\n    bnb_config = BitsAndBytesConfig(\\n        load_in_4bit=True,\\n        bnb_4bit_quant_type=\\\"nf4\\\",\\n        bnb_4bit_compute_dtype=torch.float16,\\n    )\\n\\n    model = AutoModelForCausalLM.from_pretrained(\\n        model_path,\\n        quantization_config=bnb_config,\\n        device_map={\\\"\\\": 0},\\n        trust_remote_code=True,\\n    )\\n    model = PeftModel.from_pretrained(model, adapter_path)\\n    model.eval()\\n\\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    # Get token IDs for A, B, C, D\\n    choice_token_ids = [tokenizer.encode(c, add_special_tokens=False)[0] for c in CHOICES]\\n    print(f\\\"Choice token IDs: {dict(zip(CHOICES, choice_token_ids))}\\\")\\n\\n    # Evaluate\\n    n_items = len(mmlu_items)\\n    if args.max_items > 0:\\n        n_items = min(n_items, args.max_items)\\n\\n    responses = []\\n    correct_count = 0\\n    seen_correct = 0\\n    seen_total = 0\\n    unseen_correct = 0\\n    unseen_total = 0\\n\\n    print(f\\\"Evaluating {n_items} items...\\\")\\n    for i in range(n_items):\\n        item = mmlu_items[i]\\n        prompt = build_few_shot_prompt(item[\\\"question\\\"], item[\\\"choices\\\"])\\n        inputs = tokenizer(prompt, return_tensors=\\\"pt\\\").to(model.device)\\n\\n        with torch.no_grad():\\n            outputs = model(**inputs)\\n            logits = outputs.logits[0, -1, :]\\n\\n        choice_logits = torch.tensor([logits[tid].item() for tid in choice_token_ids])\\n        pred = choice_logits.argmax().item()\\n        correct = int(pred == item[\\\"answer\\\"])\\n        responses.append(correct)\\n        correct_count += correct\\n\\n        is_seen = item[\\\"item_idx\\\"] in seen_set\\n        if is_seen:\\n            seen_correct += correct\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "关键发现：\n\n```python\nbnb_config = BitsAndBytesConfig(\n    load_in_4bit=True,\n    bnb_4bit_quant_type=\"nf4\",\n    bnb_4bit_compute_dtype=torch.float16,\n)\nmodel = AutoModelForCausalLM.from_pretrained(\n    model_path,\n    quantization_config=bnb_config,\n    device_map={\"\": 0},  # 硬编码 GPU 0\n)\n```\n\n**eval 无法 CPU-only 运行。** 原因：\n1. 使用 `BitsAndBytesConfig` 4-bit 量化 — bitsandbytes 量化只支持 GPU，不能在 CPU 上运行\n2. `device_map={\"\": 0}` 硬编码映射到 GPU 0\n3. 对 14042 items 做 7B 模型 forward pass\n\n让我检查下是否已有缓存的 response vector 可以直接用来算 lz*。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "23f86d17-4128-43f0-b00a-0038d6ac0e9c",
+            "uuid": "26b0029d-d8d6-484d-a069-9f79418199c5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NnqQHkVS5wMrqWmMWGyMnz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3878,
+                "cache_read_input_tokens": 32739,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3878
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ChsjNufqaBjCuwtVboMrPr",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-35694",
+                "command": "ls /root/autodl-tmp/ctrl_contam_pilot/results/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "23f86d17-4128-43f0-b00a-0038d6ac0e9c",
+            "uuid": "6bc4098e-90f1-4e65-9caf-84efddec29f1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NnqQHkVS5wMrqWmMWGyMnz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3878,
+                "cache_read_input_tokens": 32739,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3878
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-22T14:39:44.141Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ChsjNufqaBjCuwtVboMrPr",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"clean_s10_results.json\\\\nclean_s1_results.json\\\\nclean_s1_results_lz_uncorrected.json\\\\nclean_s2_results.json\\\\nclean_s2_results_lz_uncorrected.json\\\\nclean_s3_results.json\\\\nclean_s3_results_lz_uncorrected.json\\\\nclean_s4_results.json\\\\nclean_s5_results.json\\\\nclean_s6_results.json\\\\nclean_s7_results.json\\\\nclean_s8_results.json\\\\nclean_s9_results.json\\\\ncohens_d_3seeds.json\\\\ncohens_d_n10.json\\\\ncontam_15_results.json\\\\ncontam_15_results_lz_uncorrected.json\\\\ncontam_15_s2_results.json\\\\ncontam_25_eval.json\\\\ncontam_25_results.json\\\\ncontam_25_s2_results.json\\\\ncontam_50_results.json\\\\ncontam_50_results_lz_uncorrected.json\\\\ncontam_5_cohens_d.json\\\\ncontam_5_results.json\\\\nsummary.json\\\\ntheta_fixed_analysis.json\\\\ntheta_fixed_n10_consistent.json\\\\ntheta_fixed_n3.json\\\\ntheta_fixed_n3_lzstar.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "23f86d17-4128-43f0-b00a-0038d6ac0e9c",
+            "uuid": "cad81b9a-42dc-4009-bedf-7a41fdc41e20",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"clean_s10_results.json\\\\nclean_s1_results.json\\\\nclean_s1_results_lz_uncorrected.json\\\\nclean_s2_results.json\\\\nclean_s2_results_lz_uncorrected.json\\\\nclean_s3_results.json\\\\nclean_s3_results_lz_uncorrected.json\\\\nclean_s4_results.json\\\\nclean_s5_results.json\\\\nclean_s6_results.json\\\\nclean_s7_results.json\\\\nclean_s8_results.json\\\\nclean_s9_results.json\\\\ncohens_d_3seeds.json\\\\ncohens_d_n10.json\\\\ncontam_15_results.json\\\\ncontam_15_results_lz_uncorrected.json\\\\ncontam_15_s2_results.json\\\\ncontam_25_eval.json\\\\ncontam_25_results.json\\\\ncontam_25_s2_results.json\\\\ncontam_50_results.json\\\\ncontam_50_results_lz_uncorrected.json\\\\ncontam_5_cohens_d.json\\\\ncontam_5_results.json\\\\nsummary.json\\\\ntheta_fixed_analysis.json\\\\ntheta_fixed_n10_consistent.json\\\\ntheta_fixed_n3.json\\\\ntheta_fixed_n3_lzstar.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"clean_s10_results.json\\nclean_s1_results.json\\nclean_s1_results_lz_uncorrected.json\\nclean_s2_results.json\\nclean_s2_results_lz_uncorrected.json\\nclean_s3_results.json\\nclean_s3_results_lz_uncorrected.json\\nclean_s4_results.json\\nclean_s5_results.json\\nclean_s6_results.json\\nclean_s7_results.json\\nclean_s8_results.json\\nclean_s9_results.json\\ncohens_d_3seeds.json\\ncohens_d_n10.json\\ncontam_15_results.json\\ncontam_15_results_lz_uncorrected.json\\ncontam_15_s2_results.json\\ncontam_25_eval.json\\ncontam_25_results.json\\ncontam_25_s2_results.json\\ncontam_50_results.json\\ncontam_50_results_lz_uncorrected.json\\ncontam_5_cohens_d.json\\ncontam_5_results.json\\nsummary.json\\ntheta_fixed_analysis.json\\ntheta_fixed_n10_consistent.json\\ntheta_fixed_n3.json\\ntheta_fixed_n3_lzstar.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有 `contam_25_s3_results.json`。也没有缓存的 response vector。\n\n**结论：eval 需要 GPU，无法与训练并行。**\n\n- `eval_lz.py` 使用 bitsandbytes 4-bit 量化加载 7B 模型，只能在 GPU 上运行\n- `device_map={\"\": 0}` 硬编码 GPU 0\n- 没有已缓存的 response vector 可复用\n- 即使改写为 CPU 模式（去掉量化），7B 模型在 CPU 上对 14042 items 做 forward pass 也不现实（预计数小时）\n\n**等 contam_50_s2 训练完成后再做 contam_25_s3 的 eval。**"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "23f86d17-4128-43f0-b00a-0038d6ac0e9c",
+            "uuid": "f87f3372-8410-481f-a49d-94124c12edfd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016TakTEy9xcZjJfKac1xPCZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 834,
+                "cache_read_input_tokens": 36617,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 834
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有 `contam_25_s3_results.json`。也没有缓存的 response vector。\n\n**结论：eval 需要 GPU，无法与训练并行。**\n\n- `eval_lz.py` 使用 bitsandbytes 4-bit 量化加载 7B 模型，只能在 GPU 上运行\n- `device_map={\"\": 0}` 硬编码 GPU 0\n- 没有已缓存的 response vector 可复用\n- 即使改写为 CPU 模式（去掉量化），7B 模型在 CPU 上对 14042 items 做 forward pass 也不现实（预计数小时）\n\n**等 contam_50_s2 训练完成后再做 contam_25_s3 的 eval。**"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 50798,
+            "duration_api_ms": 49196,
+            "num_turns": 11,
+            "stop_reason": "end_turn",
+            "session_id": "23f86d17-4128-43f0-b00a-0038d6ac0e9c",
+            "total_cost_usd": 0.32603699999999997,
+            "usage": {
+              "input_tokens": 12,
+              "cache_creation_input_tokens": 25610,
+              "cache_read_input_tokens": 218751,
+              "output_tokens": 2205,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 25610,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 221,
+                  "cache_read_input_tokens": 36617,
+                  "cache_creation_input_tokens": 834,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 834
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1309,
+                "outputTokens": 21,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0014140000000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 12,
+                "outputTokens": 2205,
+                "cacheReadInputTokens": 218751,
+                "cacheCreationInputTokens": 25610,
+                "webSearchRequests": 0,
+                "costUSD": 0.32462300000000005,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "f2fd14eb-c785-44ae-863d-83933e4df470"
+          },
+          "id": "event-000033"
+        }
+      ],
+      "message_count": 33
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-eval-25pct-s3-cpu.md"
+}

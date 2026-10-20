@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-domain-analysis",
+  "project": "irt_personfit_contam",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T13:03:00.736Z",
+    "updated_at": "2026-05-20T13:13:05.944Z",
+    "hypothesis": "Gemini-1.5's MMLU anomaly (lz*=+31.8) is domain-concentrated rather than uniform across all 57 subjects, and other flagged models show distinct domain-specific contamination signatures that differ from Gemini-1.5's pattern"
+  },
+  "timestamp": "2026-05-20T13:13:06.036487+00:00",
+  "trigger": "update_registry"
+}

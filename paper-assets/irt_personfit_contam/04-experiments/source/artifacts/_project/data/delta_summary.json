@@ -1,0 +1,97 @@
+{
+  "mmlu": {
+    "clean_vs_clean": {
+      "mean": 0.010237,
+      "std": 1.450816,
+      "ci": [
+        -0.116933,
+        0.137406
+      ],
+      "p_value": 0.874698
+    },
+    "clean_vs_contam": {
+      "mean": 9.42222,
+      "std": 4.793344,
+      "p_value": 0.0
+    },
+    "two_sample_t": -42.023634,
+    "two_sample_p": 0.0,
+    "cohens_d": -2.657808
+  },
+  "hellaswag": {
+    "clean_vs_clean": {
+      "mean": -0.125224,
+      "std": 1.430838,
+      "ci": [
+        -0.250643,
+        0.000194
+      ],
+      "p_value": 0.050909
+    },
+    "clean_vs_contam": {
+      "mean": 5.049189,
+      "std": 3.685591,
+      "p_value": 0.0
+    },
+    "two_sample_t": -29.265396,
+    "two_sample_p": 0.0,
+    "cohens_d": -1.850906
+  },
+  "gsm8k": {
+    "clean_vs_clean": {
+      "mean": -0.020994,
+      "std": 1.422136,
+      "ci": [
+        -0.14565,
+        0.103662
+      ],
+      "p_value": 0.741468
+    },
+    "clean_vs_contam": {
+      "mean": 3.299396,
+      "std": 2.102052,
+      "p_value": 0.0
+    },
+    "two_sample_t": -29.254611,
+    "two_sample_p": 0.0,
+    "cohens_d": -1.850224
+  },
+  "arc_c": {
+    "clean_vs_clean": {
+      "mean": 0.094531,
+      "std": 1.449887,
+      "ci": [
+        -0.032557,
+        0.22162
+      ],
+      "p_value": 0.145498
+    },
+    "clean_vs_contam": {
+      "mean": 0.64972,
+      "std": 0.995055,
+      "p_value": 0.0
+    },
+    "two_sample_t": -7.059664,
+    "two_sample_p": 0.0,
+    "cohens_d": -0.446492
+  },
+  "humaneval": {
+    "clean_vs_clean": {
+      "mean": 0.019978,
+      "std": 1.376377,
+      "ci": [
+        -0.100667,
+        0.140623
+      ],
+      "p_value": 0.745646
+    },
+    "clean_vs_contam": {
+      "mean": 1.405305,
+      "std": 1.212675,
+      "p_value": 0.0
+    },
+    "two_sample_t": -16.886708,
+    "two_sample_p": 0.0,
+    "cohens_d": -1.068009
+  }
+}

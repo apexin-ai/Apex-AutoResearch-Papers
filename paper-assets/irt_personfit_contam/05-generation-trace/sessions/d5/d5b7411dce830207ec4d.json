@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5b7411dce830207ec4d",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "audit ref group b",
+  "task_key": "worker_audit_ref-group-b_20260526T110613",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_ref-group-b_20260526T110613_result.json",
+    "occurrence": 1,
+    "bytes": 710,
+    "sha256": "1c7c3768526a0e435af772623029b89b442cd2434aa3bcfe63c6f2d3ccf4f45c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审核完成。报告已写入 `artifacts/ref_audit_group_b.md`。\n\n**17 条中：✓ 11 条 | ✗ 2 条 | ⚠ 4 条**\n\n必须修改（✗）：\n1. **golchin2024quiz** — 年份错误，TACL 正式发表为 2025 而非 2024\n2. **oren2024** — 标题 \"Black-Box\" 应为 \"Black Box\"（无连字符）\n\n建议修改（⚠）：\n3. **levine1988** — 当前 .tex 中无任何 `\\cite{levine1988}`，孤立条目\n4. **minkprob2024** — background.tex 表格标注 \"Min-K%++\" 但该论文提出的是 \"Min-K% Prob\"，方法名与引用不匹配\n5. **han2026quantifying** — booktitle 格式与 ACL Anthology 官方不一致\n6. **martinezplumed2019** — 缺 volume/pages 字段"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-ref-group-b.md"
+}

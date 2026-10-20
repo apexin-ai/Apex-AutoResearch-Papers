@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23d62ecac0eaf3fe13f8",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops recompute llama d values",
+  "task_key": "worker_ops_recompute-llama-d-values_20260523T150337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_recompute-llama-d-values_20260523T150337_result.json",
+    "occurrence": 1,
+    "bytes": 1745,
+    "sha256": "ed35bec230d4379cc4662a2352f7d4905287a6570f98b385c0150026cae2d38e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果如下：\n\n### 表格 1: 每个实验的新旧 d 值对比\n\n| exp_id | contam% | seed | lz* | 旧 d | 新 d | Δd |\n|--------|---------|------|------|------|------|------|\n| exp-llama-5pct-s1 | 5% | 42 | -4.695 | -5.218 | **-3.215** | +2.003 |\n| exp-llama-5pct-s2 | 5% | 123 | -4.460 | -4.938 | **-3.063** | +1.876 |\n| exp-llama-5pct-s3 | 5% | 456 | — | — | — | ANALYZING |\n| exp-llama-15pct-s2 | 15% | 123 | -4.680 | -5.200 | **-3.205** | +1.995 |\n| exp-llama-15pct-s3 | 15% | 456 | -4.507 | -4.994 | **-3.093** | +1.901 |\n| exp-llama-25pct-s1 | 25% | 42 | -4.616 | -5.124 | **-3.164** | +1.960 |\n| exp-llama-25pct-s2 | 25% | 123 | -3.249 | -3.496 | **-2.277** | +1.219 |\n| exp-llama-25pct-s3 | 25% | 456 | — | — | — | ANALYZING |\n| exp-llama-50pct-s2 | 50% | 123 | -3.735 | -4.075 | **-2.592** | +1.483 |\n| exp-llama-50pct-s3 | 50% | 456 | -2.810 | -2.973 | **-1.992** | +0.981 |\n\n### 表格 2: Multi-seed 汇总\n\n| contam% | seeds | mean(d) | SD(d) | n |\n|---------|-------|---------|-------|---|\n| 5% | s1,s2 (s3 analyzing) | -3.139 | 0.108 | 2 |\n| 15% | s2,s3 (s1 pilot training) | -3.149 | 0.079 | 2 |\n| 25% | s1,s2 (s3 analyzing) | -2.720 | 0.627 | 2 |\n| 50% | s2,s3 (s1 pilot training) | -2.292 | 0.424 | 2 |\n\n### 关键变化\n\n- 新 baseline SD (1.5418) 是旧 SD (0.840) 的 **1.84x**，所以所有新 d 的绝对值约为旧值的 **55%**\n- 新 baseline mean 从 -0.312 右移到 +0.262，分子也变大\n- 所有 Δd 均为正值（+0.98 ~ +2.00），即新 d 绝对值一致缩小\n- 所有新 d 仍为大效应量（|d| > 1.99），检测力充足\n- 缺失数据：exp-llama-5pct-s3 和 exp-llama-25pct-s3 仍在 ANALYZING；15pct-s1 和 50pct-s1 正在 pilot 训练"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-recompute-llama-d-values.md"
+}

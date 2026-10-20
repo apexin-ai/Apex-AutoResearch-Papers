@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "3e0fe301f1f4c584a845",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "code grpo ckpt1000 eval",
+  "task_key": "worker_code_grpo-ckpt1000-eval_20260521T142617",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_grpo-ckpt1000-eval_20260521T142617.log",
+    "occurrence": 1,
+    "bytes": 1184066,
+    "sha256": "0d6c8378a906705eb9c525e2961478070aed4d36989d7e8528fda8be4e3bc765"
+  },
+  "statistics": {
+    "messages": 1061,
+    "user_turns": 1,
+    "tool_calls": 482,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 89,
+      "tool_call": 482,
+      "tool_result": 482,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1014,
+      "chunks": [
+        {
+          "path": "3e0fe301f1f4c584a845-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "3e0fe301f1f4c584a845-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "3e0fe301f1f4c584a845-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "3e0fe301f1f4c584a845-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "3e0fe301f1f4c584a845-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "3e0fe301f1f4c584a845-part-0006.json",
+          "message_count": 114
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 47,
+      "chunks": [
+        {
+          "path": "3e0fe301f1f4c584a845-part-0006.json",
+          "message_count": 47
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-grpo-ckpt1000-eval.md"
+}

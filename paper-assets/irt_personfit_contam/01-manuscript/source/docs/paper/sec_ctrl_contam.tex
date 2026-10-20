@@ -1,0 +1,36 @@
+\subsection{Controlled Contamination}
+\label{sec:ctrl_contam}
+
+We validate $\ell_z^*$ on MMLU with ground-truth contamination.
+Three clean seeds yield $\ell_z^*$ values of $s_1{=}9.47$, $s_2{=}7.05$, $s_3{=}9.53$ (mean$\,{=}\,8.68\pm1.41$); $s_2$ is ${\sim}26\%$ lower than $s_1$/$s_3$, attributable to seed-specific training dynamics (Appendix~\ref{app:seed_sensitivity}).
+All five conditions achieve comparable accuracy on uncontaminated items (clean $\approx$ 0.679), while contaminated models show accuracy gains on seen items (0.731 at 15\%, 0.764 at 50\%).
+
+\paragraph{Finding 1: Detection signal.}
+Both contamination levels produce $\ell_z^*$ shifts far exceeding clean-seed variability.
+At 15\% contamination, $|\text{Cohen's}\;d|{=}3.42$; at 50\%, $|d|{=}0.99$ (ddof$\,{=}\,1$, $n{=}3$ clean seeds).
+The contamination signal ($|\Delta\ell_z^*|{=}4.84$) far exceeds clean-seed variability (SD$\,{=}\,1.41$).
+
+\paragraph{Finding 2: Free-$\theta$ non-monotonicity (model-dependent).}
+Under free-$\theta$ estimation, Qwen dose-response is non-monotonic: $\Delta\ell_z^*{=}{-}4.84$ at 15\% versus ${-}1.40$ at 50\% (ratio 3.46).
+The 50\% condition produces a \emph{weaker} signal because contamination inflates $\hat{\theta}_{\text{MLE}}$, absorbing part of the aberrance into a higher ability estimate ($\Delta\theta{=}0.29$ at 15\%, $0.47$ at 50\%).
+This effect is model-dependent: Llama-3.1-8B shows near-monotonic free-$\theta$ dose-response (ratio 1.09) due to lower baseline misfit ($\ell_z^*{=}0.85$ versus Qwen's 8.68).
+
+\paragraph{Finding 3: Fixed $\theta$ restores monotonicity.}
+Anchoring at the pre-contamination baseline ($\theta_{\text{fixed}}{=}{-}0.0966$, mean of $n{=}3$ clean $\hat{\theta}$ estimates) restores monotonic dose-response: $\Delta\ell_{z,\text{fixed}}^*{=}3.17$ (15\%) and $9.89$ (50\%), a ratio of 3.12 (Figure~\ref{fig:ctrl_contam}, right panel).
+
+\paragraph{Finding 4: Memorization fingerprint.}
+Splitting by seen/unseen items reveals a characteristic fingerprint: at 15\% contamination, memorized items yield $\ell_z^*{\approx}0$ (consistent with the model's inflated $\hat{\theta}$), while unseen items produce $\ell_z^*{=}3.1$, evidence of genuine aberrance on the non-memorized portion.
+
+\paragraph{Finding 5: Memorization fraction.}
+The fraction of contaminated items that the model memorizes is 0.38 (15\%) and 0.29 (50\%).
+SFT generalizes beyond the memorized items, as fewer than half the injected items show rote recall.
+
+\paragraph{Cross-family confirmation.}
+Llama-3.1-8B-Instruct confirms generalizability: $|\Delta\ell_z^*|{=}3.84$ (15\%) and $4.17$ (50\%), both significant, with memorization fractions (0.35/0.33) and fixed-$\theta$ signal ratios (2.87) consistent with Qwen.
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{fig_3_ctrl_contam.pdf}
+  \caption{Controlled contamination on MMLU. \textbf{(a)} $\ell_z^*$ under free-$\theta$ and fixed-$\theta$ estimation for five conditions (3 clean seeds, 2 contaminated). Free-$\theta$ is non-monotonic; fixed-$\theta$ restores monotonicity. \textbf{(b)} Accuracy split by seen/unseen items with memorization fractions. \textbf{(c)} $\theta$-shift mechanism: contamination inflates $\hat{\theta}_{\text{MLE}}$, absorbing aberrance signal. $\theta_{\text{fixed}}$ computed as mean of $n{=}3$ clean seed $\hat{\theta}$ estimates ($-0.0966$).}
+  \label{fig:ctrl_contam}
+\end{figure*}

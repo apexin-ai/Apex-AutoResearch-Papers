@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2253ce177da63259325d",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops arr checklist",
+  "task_key": "worker_ops_arr-checklist_20260523T030743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_arr-checklist_20260523T030743_result.json",
+    "occurrence": 1,
+    "bytes": 1735,
+    "sha256": "8c9df918ac1e4a1e761455768bda75ac6b8f493fdd523fa9928248177da4c970"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nARR Submission Checklist:\n\n- [x] 匿名化: PASS\n  - \\author{Anonymous} ✓\n  - \\usepackage[review]{acl} (启用匿名模式) ✓\n  - 无作者姓名、机构名、个人 URL 泄露 ✓\n  - 无 Acknowledgments 节 ✓\n  - \"Code and response data will be released upon acceptance\" 无身份泄露 ✓\n\n- [?] 页面限制: BORDERLINE (需编译确认)\n  - 主文 (Abstract→Conclusion) 约 350 行 LaTeX + 3 表 + 2 图 (含 1 个 figure*)\n  - 估算 ~7.5–8.1 页，卡在 8 页边界\n  - Limitations 和 Reproducibility Statement 在 \\bibliography 前，不计入限制 ✓\n  - 建议编译 PDF 确认实际页数\n\n- [x] 格式: PASS\n  - \\documentclass[11pt]{article} ✓\n  - \\usepackage[review]{acl} (ACL 官方模板) ✓\n  - Review mode (非 final) ✓\n\n- [x] Limitations: PASS (但偏长)\n  - \\section*{Limitations} 存在 ✓\n  - 覆盖 ~8 个点 (模型规模、seed 依赖、SFT scope、post-RL N=1、IRT 假设违背、local dependence、参数依赖、无 MIA 对比)\n  - 用户规则要求 \"~3 个点，不需要很长\"——当前 14 行偏长，不影响提交但可考虑精简\n\n- [x] Ethics: PASS\n  - 论文 PDF 中无 Ethics Statement (正确——ARR Responsible NLP Checklist 在 OpenReview form 中填写) ✓\n\n- [x] Bib 身份泄露: PASS\n  - 所有 URL 均为 arXiv 链接，无个人主页/GitHub ✓\n  - 无 \"our previous work\" 或自引泄露 ✓\n  - 33 条引用条目，无可识别身份信息 ✓\n```\n\n**需要行动的项**：\n1. **编译 PDF 确认页数**——主文内容估算在 8 页边界，需确认不超页\n2. **可选：精简 Limitations**——当前 14 行覆盖 ~8 个点，per 用户规则建议缩减到 ~3 个核心点"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-arr-checklist.md"
+}

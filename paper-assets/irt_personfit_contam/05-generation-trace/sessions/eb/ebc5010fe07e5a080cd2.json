@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ebc5010fe07e5a080cd2",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code gpu audit cleanup",
+  "task_key": "worker_code_gpu-audit-cleanup_20260521T074703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gpu-audit-cleanup_20260521T074703_result.json",
+    "occurrence": 1,
+    "bytes": 1185,
+    "sha256": "3c1ca043a45ca4e92d41cf062981c355487712c375fbc0c7640f97d884fb2533"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 审计报告\n\n### GPU 占用\n| GPU | PID | 进程 | VRAM | 状态 |\n|-----|------|------|------|------|\n| 0 | 98622 | eval_lz s5 | 8,628 MiB | **ZOMBIE** — 结果已存在 |\n| 0 | 99214 | train s7 | 37,694 MiB | 运行中 56/939 (~6%) |\n| 1 | 96745 | train s6 | 23,102 MiB | **ZOMBIE** — 训练已完成 |\n| 2 | 97791 | GRPO | 8,062 MiB | 运行中 134/14042 (~1%), ETA ~19h |\n| 3 | 99807 | train s8 | 27,470 MiB | 运行中 |\n\n### Eval 结果\n| Condition | Accuracy | lz* |\n|-----------|----------|-----|\n| clean_s3 | 0.6783 | 9.529 |\n| clean_s4 | 0.6786 | 8.967 |\n| clean_s5 | 0.6787 | 8.532 |\n| clean_s6 | — | 训练刚完成, eval 未启动 |\n\n### HT post-RL SFT\nacc=0.7339, lz\\*=2.914, acc\\_seen=0.831, acc\\_unseen=0.717, lz\\*\\_seen=-0.395, lz\\*\\_unseen=3.278\n\n### GRPO 状态\nStep 134/14042, epoch 0.008, reward 0.3~0.78, ~5.1s/step\n\n### 建议操作\n1. **Kill PID 98622** — s5 eval zombie，浪费 GPU 0 上 8.6GB\n2. **Kill PID 96745** — s6 训练已完成，浪费 GPU 1 上 23.1GB\n3. Kill 后 GPU 1 空出 → 启动 clean_s6 eval\n4. s7/s8/GRPO 正常，不动\n\n报告已写入 memory.md `## GPU 审计` 段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gpu-audit-cleanup.md"
+}

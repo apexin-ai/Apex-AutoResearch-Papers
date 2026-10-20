@@ -1,0 +1,48 @@
+{
+  "exp_id": "exp-post-rl",
+  "project": "irt_personfit_contam",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T03:55:49.080Z",
+    "updated_at": "2026-05-21T12:24:42.484Z",
+    "hypothesis": "Post-RL (GRPO) training does not wash out contamination signal detectable by lz*: SFT-contaminated model retains negative Δlz* after GRPO alignment, demonstrating that IRT-based detection is robust to RL post-training — addressing reviewer concern R7 about SFT-only scope",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export WANDB_MODE=disabled && cd /root/autodl-tmp/post_rl_contam && python train_sft.py\"",
+      "server": "westd-35694",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "68684",
+      "log_path": "~/runs/irt_personfit_contam/exp-post-rl.log",
+      "submitted_at": "2026-05-21T04:01:19.575Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/post_rl_contam/data/sft_train.jsonl",
+      "data_count": "7106 (5000 alpaca + 2106 MMLU 15% contamination)",
+      "model_name": "Qwen/Qwen2.5-7B-Instruct (QLoRA r=16 alpha=32)",
+      "seed": "42",
+      "checkpoint_source": "Qwen/Qwen2.5-7B-Instruct",
+      "eval_data": "mmlu_items.json + mmlu_params.csv (4PL IRT parameters)"
+    },
+    "notes": "GRPO run 2: step 2553/14042 (18.2%), ~5.28s/step, ETA 2026-05-22 ~12:00 UTC (~17h). ⚠️ frac_reward_zero_std=1.0 频繁 — 大量 batch 所有 completion 获相同 reward → advantage=0 → grad_norm=0。有效训练步比例可能偏低。SFT eval complete: seen_acc=83.10%, lz*(seen)=-0.395. MIA base AUC≈0.49 (random), MIA SFT AUC=0.611 (Min-K% best).",
+    "reproduce": {
+      "finished_at": "2026-05-21T05:03:21.122Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T05:03:23.496418+00:00"
+        }
+      ]
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-21T12:24:42.596942+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp-mistral-25pct-s1",
+  "project": "irt_personfit_contam",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T11:56:32.754Z",
+    "updated_at": "2026-05-23T11:56:32.754Z"
+  },
+  "timestamp": "2026-05-23T11:56:32.892682+00:00",
+  "trigger": "update_registry"
+}

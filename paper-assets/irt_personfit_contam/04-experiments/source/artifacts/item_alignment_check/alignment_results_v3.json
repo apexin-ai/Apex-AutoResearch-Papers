@@ -1,0 +1,22 @@
+{
+  "Mistral-7B-Instruct-v0.1": {
+    "psn_len": 14042,
+    "v1_len": 14042,
+    "psn_mean": 0.5332573707449081,
+    "v1_mean": 0.5372454066372312,
+    "psn_sum_correct": 7488.0,
+    "v1_sum_correct": 7544.0,
+    "direct_match_rate": 0.545648767981769,
+    "diff_total_correct": 56.0
+  },
+  "Vicuna-7B-v1.3": {
+    "psn_len": 14042,
+    "v1_len": 14042,
+    "psn_mean": 0.3913260219341974,
+    "v1_mean": 0.4718701039737929,
+    "psn_sum_correct": 5495.0,
+    "v1_sum_correct": 6626.0,
+    "direct_match_rate": 0.5367469021506908,
+    "diff_total_correct": 1131.0
+  }
+}

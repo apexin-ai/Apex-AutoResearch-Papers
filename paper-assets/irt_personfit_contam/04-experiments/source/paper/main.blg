@@ -1,0 +1,54 @@
+This is BibTeX, Version 0.99d (TeX Live 2025/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: acl_natbib.bst
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Database file #1: references.bib
+Warning--can't use both volume and number fields in psnirt2026
+You've used 41 entries,
+            3764 wiz_defined-function locations,
+            979 strings with 16363 characters,
+and the built_in function-call counts, 34588 in all, are:
+= -- 2786
+> -- 2116
+< -- 16
++ -- 871
+- -- 652
+* -- 2491
+:= -- 5144
+add.period$ -- 166
+call.type$ -- 41
+change.case$ -- 464
+chr.to.int$ -- 42
+cite$ -- 42
+duplicate$ -- 1994
+empty$ -- 2281
+format.name$ -- 769
+if$ -- 7360
+int.to.chr$ -- 1
+int.to.str$ -- 2
+missing$ -- 490
+newline$ -- 208
+num.names$ -- 164
+pop$ -- 1294
+preamble$ -- 1
+purify$ -- 382
+quote$ -- 0
+skip$ -- 1707
+stack$ -- 0
+substring$ -- 902
+swap$ -- 1141
+text.length$ -- 24
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 366
+warning$ -- 1
+while$ -- 157
+width$ -- 0
+write$ -- 513
+(There was 1 warning)

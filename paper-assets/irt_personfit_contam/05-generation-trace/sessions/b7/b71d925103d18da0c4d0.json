@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b71d925103d18da0c4d0",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "paper figure fig 2 power function",
+  "task_key": "worker_paper_figure_fig_2_power_function_20260520T201737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_2_power_function_20260520T201737_result.json",
+    "occurrence": 1,
+    "bytes": 525,
+    "sha256": "31d71aaaa50e5029e38d8a2163960c8e38ba41487bf633bd4f9e7758097c7501"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 2 生成完毕。\n\n**输出文件**：\n- PDF: `figures/paper/fig_2_power_function.pdf` (29 KB)\n- PNG: `figures/paper/fig_2_power_function.png` (138 KB)\n- 脚本: `figures/paper/gen_fig2.py`\n\n**验证结果**：\n- MMLU 在 15% 处 power = 0.978 ✓\n- 0% contamination 时所有 benchmark ≈ 0.05 (Type-I error baseline) ✓\n- ARC-C 在 0–75% 范围内最低 ✓（90% 时 HumanEval 略低于 ARC-C，图中可见交叉）\n- 理论曲线（黑色虚线）叠加于 MMLU，标注 R²=0.96 ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig-2-power-function.md"
+}

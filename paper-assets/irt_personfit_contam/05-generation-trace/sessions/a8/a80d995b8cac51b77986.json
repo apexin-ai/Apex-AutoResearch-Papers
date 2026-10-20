@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a80d995b8cac51b77986",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "fix ref audit group c",
+  "task_key": "worker_fix_ref-audit-group-c_20260526T113857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_ref-audit-group-c_20260526T113857_result.json",
+    "occurrence": 1,
+    "bytes": 521,
+    "sha256": "041722d1ca050e45a51ebc0562969a5fcd69e02730e134bfb681c9519f87d907"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成，汇总：\n\n| 修复项 | 状态 |\n|--------|------|\n| `snijders2001` DOI: `BF02296192` → `BF02294437` | 已修复（3份） |\n| `stonge2011` 作者: `Germain, Sonia` → `Germain, St{\\'e}phane` | 已修复（3份） |\n| 孤儿条目 `reise1990`/`sinharay2017personfit`/`tendeiro2014` | 已删除（3份） |\n| `psnirt2026` 补 volume/number/pages/doi | 已补充 |\n| `sinharay2017` 补 volume/number/pages + 作者全名 | 已补充 |\n| entry count 注释 51 → 48 | 已更新 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-ref-audit-group-c.md"
+}

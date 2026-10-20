@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d5b077699f88b78da42",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops verify bootstrap true values",
+  "task_key": "worker_ops_verify-bootstrap-true-values_20260523T193944",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-bootstrap-true-values_20260523T193944_result.json",
+    "occurrence": 1,
+    "bytes": 2120,
+    "sha256": "aac838f151c489628dc4556f0af8aa8102a5f1f10d6ce9fc7499b0da0fe19795"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the data needed. Here's the summary.\n\n---\n\n## Task 1: ARC-C Qwen 50% CI 上界\n\n**Bootstrap 原始值** (`/root/autodl-tmp/bca_bootstrap_results.json`):\n- Qwen ARC-C free-θ 50%, percentile CI = [3.6296, **15.1505**]\n\n| 来源 | 值 | 正确？ |\n|------|-----|--------|\n| Table 1 (`results.tex:31`) | 15.2 | **正确** (15.15 → 15.2) |\n| 本地 figure 脚本 (`figures/paper/gen_fig_theta_scatter.py:47`) | 15.20 | **正确** |\n| 服务器 figure 脚本 (两个版本) | 15.49 | **错误** |\n\n**结论**: Table 正确。服务器上的 figure 脚本是旧版本，值 15.49 没有来源依据。本地脚本已修正。\n\n---\n\n## Task 2: Mistral 50% CI 上界\n\n**Bootstrap 原始值** (`bca_bootstrap_results.json`):\n- Mistral MMLU free-θ 50%, percentile CI = [**-9.3858**, -2.0945]\n- |d| CI 上界 = 9.3858 → 9.4\n\n| 来源 | 值 | 正确？ |\n|------|-----|--------|\n| Table 1 (`results.tex:30`) | 9.4 | **正确** (9.39 → 9.4) |\n| 本地 figure 脚本 (`:46`) | 9.40 | **正确** |\n| 服务器 figure 脚本 (两个版本) | 9.59 | **错误** |\n\n**结论**: Table 正确。服务器脚本的 9.59 是错误值。本地脚本已修正。\n\n---\n\n## Task 3: ARC-C Qwen baseline accuracy\n\n**10-seed 原始数据** (`worker_code_arcc-collect-all-seeds` 日志):\n\n| Seed | Accuracy | 正确数/295 |\n|------|----------|-----------|\n| s1 | 90.17% | 266 |\n| s2 | 89.49% | 264 |\n| s3 | 89.49% | 264 |\n| s4 | 88.47% | 261 |\n| s5 | 89.83% | 265 |\n| s6 | 89.49% | 264 |\n| s7 | 89.15% | 263 |\n| s8 | 90.51% | 267 |\n| s9 | 90.17% | 266 |\n| s10 | 90.51% | 267 |\n\n**Mean = 2647/2950 = 89.73%**\n\n| 来源 | 值 | 正确？ |\n|------|-----|--------|\n| `results.tex:58-59` | 90.0% | **错误** |\n| 本地 figure 脚本 (`:47`) | 89.9% | **错误** |\n| 服务器 irt 脚本 | 89.9% | **错误** |\n| 服务器 anon 脚本 | 90.2% | **错误** (看起来用了单个 s1=90.17%) |\n\n**结论**: 真值是 **89.7%**。所有地方都需要修正。`results.tex` 中两处 \"90.0%\" 应改为 \"89.7%\"，figure 脚本中的 89.9 应改为 89.7。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-bootstrap-true-values.md"
+}

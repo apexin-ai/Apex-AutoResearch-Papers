@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp-ctrl-contam-qwen-25pct-s2",
+  "project": "irt_personfit_contam",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T11:44:16.573Z",
+    "updated_at": "2026-05-22T20:27:32.021Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/ctrl_contam_pilot && WANDB_MODE=disabled python train.py --condition contam_25_s2 --gpu 0\"",
+      "server": "westd-35694",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "32946",
+      "log_path": "~/runs/irt_personfit_contam/exp-ctrl-contam-qwen-25pct-s2.log",
+      "submitted_at": "2026-05-22T13:01:11.350Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-22T20:27:32.157139+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8baeac2fb3a69afde216",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code fill 35694 mistral s8s10",
+  "task_key": "worker_code_fill-35694-mistral-s8s10_20260521T142934",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fill-35694-mistral-s8s10_20260521T142934_result.json",
+    "occurrence": 1,
+    "bytes": 1596,
+    "sha256": "ae2b860a5ce488d668f4f902eb805c54002766b4195eb488cca5af172867f5d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有三个 Mistral 训练都已启动并正在推进。汇总：\n\n---\n\n## 产出汇总\n\n### 1. Llama eval 结果\n| Condition | theta | lz* | acc |\n|-----------|-------|-----|-----|\n| clean_s8 | -0.698 | 1.166 | 0.586 |\n| clean_s9 | — | — | 未开始 |\n| clean_s10 | — | — | 未开始 |\n\ns8 刚完成，s9/s10 eval 尚未启动（GPU 0 现在空闲可用）。\n\n### 2. Mistral s8/s9/s10 训练\n| GPU | exp_id | PID | 进度 | 速度 |\n|-----|--------|-----|------|------|\n| cuda:1 | exp-ctrl-contam-mistral-clean-s8 | 154389 | 34/939 | ~1.14s/it |\n| cuda:2 | exp-ctrl-contam-mistral-clean-s9 | 154468 | 17/939 | ~2.12s/it |\n| cuda:3 | exp-ctrl-contam-mistral-clean-s10 | 154614 | 32/939 | ~1.13s/it |\n\n**注意**：GPU 2 上 s9 与 `eval_with_ht.py --stage grpo` (PID 153583) 共享，速度约慢 2x。GRPO eval 完成后 s9 会加速。\n\nSEED_MAP 已更新：s4-s10 seeds = 301-307（与 Llama 一致）。\n\n### 3. GRPO ckpt eval 结果\n`grpo_results.json` 已完成（22:21）：\n- **theta_mle = 0.157, lz* = 7.770, acc = 0.714**\n- lz*_seen = 3.410, acc_seen = 0.730\n- lz*_unseen = 7.000, acc_unseen = 0.712\n- stage = \"grpo\", model = Qwen2.5-7B-Instruct\n\n另有 `eval_with_ht.py --stage grpo` 仍在 GPU 2 上运行（PID 153583）。\n\n### 4. GPU 状态\n| GPU | 显存 | 利用率 | 任务 |\n|-----|------|--------|------|\n| 0 | 0 MiB | 0% | **空闲**（可启动 Llama s9/s10 eval）|\n| 1 | 6145 MiB | 59% | Mistral clean_s8 |\n| 2 | 14710 MiB | 67% | Mistral clean_s9 + GRPO eval |\n| 3 | 4545 MiB | 13% | Mistral clean_s10 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fill-35694-mistral-s8s10.md"
+}

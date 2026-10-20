@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "25441692878bc0f05347",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "check gpu and experiments",
+  "task_key": "worker_check_gpu-and-experiments_20260524T115421",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gpu-and-experiments_20260524T115421_result.json",
+    "occurrence": 1,
+    "bytes": 1193,
+    "sha256": "0ec72f21385879093a70fc106ec76f508ea2d04c38861d9ac9efdc773431971e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 检查结果\n\n### GPU 状态\n4× NVIDIA RTX PRO 6000 Blackwell (各 96GB)，**全部空闲**，显存 0 MiB，利用率 0%。\n\n### 3 个实验状态：全部已正常完成\n\n无运行进程、无 GPU 占用。三个实验均已产出 checkpoint 和 results：\n\n| 实验 | 对应目录名 | Checkpoint | Results | 完成时间 |\n|------|-----------|------------|---------|----------|\n| exp-llama-15pct-s1-pilot | `contam_15` | `checkpoints/llama/contam_15/` (May 23 23:26) | `contam_15_results.json` (May 23 23:55) | ~May 23 23:55 |\n| exp-llama-25pct-s3 | `contam_25_s3` | `checkpoints/llama/contam_25_s3/` (May 23 21:13) | `contam_25_s3_results.json` (May 24 00:01) | ~May 24 00:01 |\n| exp-llama-5pct-s3 | `contam_5_s3` | `checkpoints/llama/contam_5_s3/` (May 23 21:14) | `contam_5_s3_results.json` (May 24 00:00) | ~May 24 00:00 |\n\n### 部分结果速览\n\n| Condition | theta_mle | lz_star |\n|-----------|-----------|---------|\n| contam_5_s3 | -0.428 | -1.952 |\n| contam_15 | -0.315 | -4.659 |\n| contam_25_s3 | -0.246 | -3.197 |\n\n另有 `contam_5_full_analysis.json`（May 24 12:16）包含 accuracy 分析：overall=0.638, seen=0.801, unseen=0.629。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gpu-and-experiments.md"
+}

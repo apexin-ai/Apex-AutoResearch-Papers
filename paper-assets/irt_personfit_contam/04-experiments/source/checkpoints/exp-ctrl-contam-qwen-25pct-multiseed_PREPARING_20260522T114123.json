@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp-ctrl-contam-qwen-25pct-multiseed",
+  "project": "irt_personfit_contam",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T11:41:23.076Z",
+    "updated_at": "2026-05-22T11:41:23.077Z"
+  },
+  "timestamp": "2026-05-22T11:41:23.196527+00:00",
+  "trigger": "update_registry"
+}

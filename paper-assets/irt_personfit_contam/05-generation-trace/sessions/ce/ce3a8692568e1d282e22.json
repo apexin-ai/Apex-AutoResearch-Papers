@@ -1,0 +1,104 @@
+{
+  "schema_version": "1.0",
+  "id": "ce3a8692568e1d282e22",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "code exp v1 irt refit expanded",
+  "task_key": "worker_code_exp-v1-irt-refit-expanded_20260520T125538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-v1-irt-refit-expanded_20260520T125538.log",
+    "occurrence": 1,
+    "bytes": 2361810,
+    "sha256": "79ff74c6aee7bc2c1a325983382adf08588d09ca5e3c97295de87f977799d078"
+  },
+  "statistics": {
+    "messages": 1633,
+    "user_turns": 2,
+    "tool_calls": 584,
+    "roles": {
+      "log": 1,
+      "system": 56,
+      "record": 1,
+      "assistant": 404,
+      "tool_call": 584,
+      "tool_result": 584,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 671,
+      "chunks": [
+        {
+          "path": "ce3a8692568e1d282e22-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ce3a8692568e1d282e22-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ce3a8692568e1d282e22-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "ce3a8692568e1d282e22-part-0004.json",
+          "message_count": 131
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 894,
+      "chunks": [
+        {
+          "path": "ce3a8692568e1d282e22-part-0004.json",
+          "message_count": 49
+        },
+        {
+          "path": "ce3a8692568e1d282e22-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "ce3a8692568e1d282e22-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "ce3a8692568e1d282e22-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "ce3a8692568e1d282e22-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "ce3a8692568e1d282e22-part-0009.json",
+          "message_count": 125
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 68,
+      "chunks": [
+        {
+          "path": "ce3a8692568e1d282e22-part-0009.json",
+          "message_count": 55
+        },
+        {
+          "path": "ce3a8692568e1d282e22-part-0010.json",
+          "message_count": 13
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-v1-irt-refit-expanded.md"
+}

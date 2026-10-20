@@ -1,0 +1,103 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{sainz2023chatgpt,magar2022data}
+\citation{shi2024detecting}
+\citation{deng2024investigating}
+\citation{oren2024proving}
+\citation{dong2024codec}
+\citation{wang2025rlcontam}
+\citation{drasgow1985appropriateness,snijders2001item}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{snijders2001item}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Item Response Theory and the 4PL Model}{2}{subsection.2.1}\protected@file@percent }
+\newlabel{eq:4pl}{{1}{2}{Item Response Theory and the 4PL Model}{equation.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Person-Fit Statistics}{2}{subsection.2.2}\protected@file@percent }
+\newlabel{eq:lzstar}{{2}{2}{Person-Fit Statistics}{equation.2}{}}
+\citation{psnirt2026}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Contamination as Item Preknowledge}{3}{subsection.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Detection Framework}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}$\theta $-Fixed Analysis}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Detection Power Theory}{3}{subsection.3.3}\protected@file@percent }
+\citation{psnirt2026}
+\citation{oren2024proving}
+\citation{shi2024detecting}
+\citation{snijders2001item}
+\citation{snijders2001item}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Pilot $\Delta \ell _z^*$ summary (Qwen3.5-9B $\times $ MMLU). $\ell _z^*$ corrected per \citet  {snijders2001item}. Cohen's $d$ relative to clean mean ($n=2$, $\text  {ddof}=1$).}}{4}{table.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:pilot}{{1}{4}{Pilot $\Delta \ell _z^*$ summary (Qwen3.5-9B $\times $ MMLU). $\ell _z^*$ corrected per \citet {snijders2001item}. Cohen's $d$ relative to clean mean ($n=2$, $\text {ddof}=1$)}{table.caption.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Models and Benchmarks}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}IRT Parameters}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Baselines}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Evaluation Metrics}{4}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Controlled Contamination Pilot}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:pilot}{{5.1}{4}{Controlled Contamination Pilot}{subsection.5.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Cohen's $d$ at 15\% contamination ($n=3$ seeds, $\text  {ddof}=1$, $\ell _z^*$-corrected). $\theta $-fixed monotonicity indicates whether $|d|$ increases monotonically across all contamination levels under fixed-$\theta $ analysis.}}{5}{table.caption.2}\protected@file@percent }
+\newlabel{tab:full-d}{{2}{5}{Cohen's $d$ at 15\% contamination ($n=3$ seeds, $\text {ddof}=1$, $\ell _z^*$-corrected). $\theta $-fixed monotonicity indicates whether $|d|$ increases monotonically across all contamination levels under fixed-$\theta $ analysis}{table.caption.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Dose-response on MMLU under $\theta $-fixed analysis ($\ell _z^*$-corrected Cohen's $d$). Monotonic increase in $|d|$ with contamination level is expected under the framework.}}{5}{table.caption.3}\protected@file@percent }
+\newlabel{tab:dose-response}{{3}{5}{Dose-response on MMLU under $\theta $-fixed analysis ($\ell _z^*$-corrected Cohen's $d$). Monotonic increase in $|d|$ with contamination level is expected under the framework}{table.caption.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Full Controlled Contamination}{5}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:full-contam}{{5.2}{5}{Full Controlled Contamination}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Memorization fraction by model family and benchmark (at 15\% contamination). Higher values indicate more items producing memorization rather than generalization signatures.}}{6}{table.caption.4}\protected@file@percent }
+\newlabel{tab:mem-frac}{{4}{6}{Memorization fraction by model family and benchmark (at 15\% contamination). Higher values indicate more items producing memorization rather than generalization signatures}{table.caption.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Detection power at 25\% contamination: 4PL vs 3PL($d{=}1$). Gain in percentage points (pp). The last column shows the fraction of items with $d_i < 0.95$, which drives the 4PL advantage.}}{6}{table.caption.5}\protected@file@percent }
+\newlabel{tab:4pl-ablation}{{5}{6}{Detection power at 25\% contamination: 4PL vs 3PL($d{=}1$). Gain in percentage points (pp). The last column shows the fraction of items with $d_i < 0.95$, which drives the 4PL advantage}{table.caption.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}4PL vs 3PL Ablation}{6}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:4pl-ablation}{{5.3}{6}{4PL vs 3PL Ablation}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Baseline Comparison}{6}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:baselines}{{5.4}{6}{Baseline Comparison}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Detection Power Function}{6}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:power}{{5.5}{6}{Detection Power Function}{subsection.5.5}{}}
+\citation{wang2025rlcontam}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces AUROC comparison across contamination levels (MMLU, mean $\pm $ 95\% bootstrap CI). Methods ordered by information access level.}}{7}{table.caption.6}\protected@file@percent }
+\newlabel{tab:baselines}{{6}{7}{AUROC comparison across contamination levels (MMLU, mean $\pm $ 95\% bootstrap CI). Methods ordered by information access level}{table.caption.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Information-access vs detection-power operating points at 15\% contamination on MMLU.}}{7}{table.caption.7}\protected@file@percent }
+\newlabel{tab:info-access}{{7}{7}{Information-access vs detection-power operating points at 15\% contamination on MMLU}{table.caption.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Domain-Level Analysis}{7}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:domain}{{5.6}{7}{Domain-Level Analysis}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{7}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Post-RL Robustness}{7}{subsection.6.1}\protected@file@percent }
+\newlabel{sec:post-rl}{{6.1}{7}{Post-RL Robustness}{subsection.6.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Power function validation at 15\% contamination. Theoretical power derived from 4PL model; simulated power from controlled contamination. $R^2=0.88$ across all benchmarks.}}{8}{table.caption.8}\protected@file@percent }
+\newlabel{tab:power}{{8}{8}{Power function validation at 15\% contamination. Theoretical power derived from 4PL model; simulated power from controlled contamination. $R^2=0.88$ across all benchmarks}{table.caption.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Domain-level $\ell _z^*$ for selected models (MMLU, 57 subjects grouped into 4 domains). Pattern type characterizes the contamination profile.}}{8}{table.caption.9}\protected@file@percent }
+\newlabel{tab:domain}{{9}{8}{Domain-level $\ell _z^*$ for selected models (MMLU, 57 subjects grouped into 4 domains). Pattern type characterizes the contamination profile}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}IRT Parameter Estimation Challenges}{8}{subsection.6.2}\protected@file@percent }
+\newlabel{sec:irt-refit}{{6.2}{8}{IRT Parameter Estimation Challenges}{subsection.6.2}{}}
+\citation{hong2021multiscale}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Pre- vs post-RL detection (Qwen3.5-9B $\times $ MMLU @ 15\% contamination).}}{9}{table.caption.10}\protected@file@percent }
+\newlabel{tab:post-rl}{{10}{9}{Pre- vs post-RL detection (Qwen3.5-9B $\times $ MMLU @ 15\% contamination)}{table.caption.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Post-RL detection: $\ell _z^*$ vs token-probability methods. AUROC on MMLU at 15\% contamination, pre- and post-GRPO.}}{9}{table.caption.11}\protected@file@percent }
+\newlabel{tab:post-rl-comparison}{{11}{9}{Post-RL detection: $\ell _z^*$ vs token-probability methods. AUROC on MMLU at 15\% contamination, pre- and post-GRPO}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Natural Experiment: Base$\to $Chat Pairs}{9}{subsection.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Multiscale Aggregation}{9}{subsection.6.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Universal 4PL Model Misfit}{9}{subsection.6.5}\protected@file@percent }
+\newlabel{sec:universal-misfit}{{6.5}{9}{Universal 4PL Model Misfit}{subsection.6.5}{}}
+\citation{dodge2021documenting,brown2020language}
+\citation{shi2024detecting}
+\citation{deng2024investigating}
+\citation{oren2024proving}
+\citation{dong2024codec}
+\citation{wang2025rlcontam}
+\citation{psnirt2026}
+\citation{polo2024tinybenchmarks}
+\citation{drasgow1985appropriateness,meijer1996person}
+\citation{snijders2001item}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces IRT parameter recovery: pilot ($N=63$) vs expanded ($N=500$) refit. $a_r$: discrimination Pearson correlation with reference parameters; $b_r$: difficulty correlation.}}{10}{table.caption.12}\protected@file@percent }
+\newlabel{tab:irt-refit}{{12}{10}{IRT parameter recovery: pilot ($N=63$) vs expanded ($N=500$) refit. $a_r$: discrimination Pearson correlation with reference parameters; $b_r$: difficulty correlation}{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Natural experiment: $\Delta \ell _z^*$ between base and chat model pairs ($n=4$ pairs). Marginal significance at HellaSwag only; overall evidence is suggestive but underpowered.}}{10}{table.caption.13}\protected@file@percent }
+\newlabel{tab:natural}{{13}{10}{Natural experiment: $\Delta \ell _z^*$ between base and chat model pairs ($n=4$ pairs). Marginal significance at HellaSwag only; overall evidence is suggestive but underpowered}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.6}Limitations}{10}{subsection.6.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Related Work}{10}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{10}{section.8}\protected@file@percent }
+\bibstyle{acl_natbib}
+\bibdata{references}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Multiscale $\ell _{z_m}$ vs per-benchmark $\ell _z^*$ for selected models. $\ell _{z_m}$ correlates highly with per-benchmark averages ($r=0.92$) without flagging additional models.}}{11}{table.caption.14}\protected@file@percent }
+\newlabel{tab:lzm}{{14}{11}{Multiscale $\ell _{z_m}$ vs per-benchmark $\ell _z^*$ for selected models. $\ell _{z_m}$ correlates highly with per-benchmark averages ($r=0.92$) without flagging additional models}{table.caption.14}{}}
+\gdef \@abspage@last{11}

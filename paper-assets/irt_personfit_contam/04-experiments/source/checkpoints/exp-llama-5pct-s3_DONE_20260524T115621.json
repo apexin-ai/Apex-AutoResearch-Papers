@@ -1,0 +1,37 @@
+{
+  "exp_id": "exp-llama-5pct-s3",
+  "project": "irt_personfit_contam",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T12:37:02.386Z",
+    "updated_at": "2026-05-24T11:56:21.774Z",
+    "hypothesis": "Llama-3.1-8B 5% MMLU contamination with seed=456 completes 3-seed reproducibility at the lowest contamination level for Llama.",
+    "spec": {
+      "command": "python train.py --condition contam_5_s3 --model llama --gpu 0",
+      "server": "westd-35694",
+      "data_path": "/root/autodl-tmp/ctrl_contam_pilot/data/llama/contam_5_s3/",
+      "data_count": 5702,
+      "model_name": "meta-llama/Llama-3.1-8B",
+      "seed": 456,
+      "checkpoint_path": "/root/autodl-tmp/ctrl_contam_pilot/checkpoints/llama/contam_5_s3/",
+      "log_path": "/root/autodl-tmp/ctrl_contam_pilot/results/llama/contam_5_s3_results.json",
+      "completed_at": "2026-05-24T00:00:00Z"
+    },
+    "metrics": {
+      "lz_star": -1.9517,
+      "lz_star_seen": -1.0768,
+      "lz_star_unseen": -1.5064,
+      "acc_overall": 0.6353,
+      "acc_seen": 0.7821,
+      "acc_unseen": 0.6276,
+      "cohens_d": -1.44
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-24T11:56:21.774Z"
+  },
+  "timestamp": "2026-05-24T11:56:21.940794+00:00",
+  "trigger": "update_registry"
+}

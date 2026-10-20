@@ -1,0 +1,13 @@
+model,n_flagged,flagged_benchmarks,dominant_direction
+360GPT2-Pro,4,arc_c; gsm8k; hellaswag; mmlu,positive
+DeepSeek-V3,5,arc_c; gsm8k; hellaswag; humaneval; mmlu,positive
+Doubao-pro,5,arc_c; gsm8k; hellaswag; humaneval; mmlu,mixed
+Gemini-1.5,5,arc_c; gsm8k; hellaswag; humaneval; mmlu,mixed
+Gemma-2B-it,5,arc_c; gsm8k; hellaswag; humaneval; mmlu,positive
+Hunyuan-Turbo,5,arc_c; gsm8k; hellaswag; humaneval; mmlu,positive
+Mistral-7B-Instruct-v0.1,5,arc_c; gsm8k; hellaswag; humaneval; mmlu,positive
+Moonshot-v1,5,arc_c; gsm8k; hellaswag; humaneval; mmlu,positive
+Qwen-Plus,5,arc_c; gsm8k; hellaswag; humaneval; mmlu,positive
+Qwen2.5-3B-Instruct,5,arc_c; gsm8k; hellaswag; humaneval; mmlu,positive
+Vicuna-7B-v1.3,5,arc_c; gsm8k; hellaswag; humaneval; mmlu,positive
+Yi-Lightning,3,gsm8k; hellaswag; mmlu,positive

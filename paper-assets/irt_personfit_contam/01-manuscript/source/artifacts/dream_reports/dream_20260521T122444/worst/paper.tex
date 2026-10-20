@@ -1,0 +1,453 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\title{IRT-FIT: Person-Fit Statistics for LLM Benchmark Contamination Detection\\at the Minimal-Information Operating Point}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Benchmark contamination threatens the reliability of LLM evaluation, yet all existing detection methods require privileged access beyond binary response patterns---training data, token probabilities, model weights, or specially crafted prompts. We introduce IRT-FIT, a framework that repurposes Item Response Theory person-fit statistics, originally developed for detecting exam cheating, to identify benchmark contamination from binary (correct/incorrect) responses alone. Through controlled contamination experiments across two model families (Qwen2.5-7B, Llama-3.1-8B) on three benchmarks (MMLU, GSM8K, HellaSwag), we demonstrate that IRT-FIT detects intentional SFT contamination with $|\text{Cohen's } d| > 2.5$ when contamination exceeds 10--15\% of benchmark items. We establish three contributions: (1) the first systematic IRT person-fit analysis of LLM response patterns, revealing universal 4PL model misfit (57/60 model-benchmark cells flagged) as a novel cognitive finding; (2) scope-honest SFT detection with an explicitly characterized detection frontier---post-RL training (GRPO) eliminates all binary-only detection signals ($|d| < 0.5$), a boundary condition shared by \emph{all} tested methods including token-probability approaches; and (3) an open-source framework with $\theta$-shift methodology, memorization fraction quantification, and 4PL parameterization ablation. We release our toolkit and 13K+ model per-item response data to support future large-scale audits.
+\end{abstract}
+
+\section{Introduction}
+
+As LLM benchmarks proliferate and training corpora grow, benchmark contamination---the inclusion of evaluation items in training data---poses an increasing threat to evaluation integrity \cite{sainz2023nlp,li2024task}. A contaminated model may appear competent on a benchmark not through genuine capability but through memorization, undermining the benchmark's validity as a measure of generalization.
+
+Existing detection methods span multiple information-access levels: n-gram overlap with training data \cite{dodge2021documenting}, membership inference attacks (MIA) requiring token probabilities \cite{shi2024detecting}, probing methods requiring model weights \cite{oren2024proving}, and performance-based re-testing requiring specially crafted prompts \cite{golchin2024time,li2024constat}. Critically, \emph{all} require more than binary response patterns. Furthermore, Wang et al.\ (2025) demonstrate that all MIA-based methods fail on post-RL models, highlighting the fragility of token-probability approaches.
+
+We observe that a contaminated LLM answering benchmark questions is functionally analogous to an examinee with item preknowledge---a problem studied for decades in psychometrics under the rubric of \emph{person-fit analysis} \cite{meijer2001person}. Person-fit statistics such as $\ell_z^*$ detect examinees whose response patterns are improbable given their estimated ability, using only binary (correct/incorrect) response data. Despite this natural connection, no prior work has applied IRT person-fit to LLM benchmark integrity.
+
+We establish the \emph{minimal-information operating point} on the contamination detection frontier: what can be detected from binary response patterns alone, given externally calibrated item parameters? This framing positions IRT-FIT not as a superior detection method, but as defining the lower bound of the information-access hierarchy. Methods with richer signals---re-testing (ConStat, AUROC 0.88), token probabilities (Min-K++, AUROC 0.68)---outperform IRT-FIT when such access is available. Our contribution is methodological: connecting psychometric theory to LLM evaluation, characterizing the detection frontier, and providing community tooling.
+
+Our three contributions are:
+\begin{enumerate}
+    \item \textbf{Novel cognitive finding}: The first systematic IRT person-fit analysis of LLM responses, revealing that nearly all models exhibit extreme 4PL misfit (57/60 cells flagged). This universal misfit is a genuine property of LLM response patterns, not a detection artifact.
+    \item \textbf{Scope-honest SFT detection}: IRT-FIT detects intentional SFT contamination ($|d| > 2.5$ across two model families) with an explicitly characterized scope boundary: post-RL training (GRPO) smooths binary signals below detection for \emph{all} binary-only and token-probability methods. The RL boundary itself is a contribution mapping the detection frontier's limits.
+    \item \textbf{Framework and toolkit}: Open-source IRT-FIT toolkit, $\theta$-shift methodology for diagnosing detection degradation, memorization fraction quantification bridging theoretical and observed power, and 13K+ model per-item data for future audits.
+\end{enumerate}
+
+\section{Background: IRT and Person-Fit}
+
+\subsection{Item Response Theory}
+
+Item Response Theory (IRT) models the probability of a correct response as a function of the examinee's latent ability $\theta$ and item parameters. The four-parameter logistic (4PL) model is:
+\begin{equation}
+P_i(\theta) = c_i + (d_i - c_i) \cdot \frac{1}{1 + e^{-a_i(\theta - b_i)}}
+\end{equation}
+where $a_i$ is discrimination, $b_i$ is difficulty, $c_i$ is the guessing (lower asymptote) parameter, and $d_i$ is the ceiling (upper asymptote) parameter. When $d_i = 1$, this reduces to the 3PL model; when additionally $c_i = 0$, the 2PL.
+
+\subsection{Person-Fit Statistics}
+
+Person-fit statistics identify response patterns that are improbable given the IRT model. The $\ell_z$ statistic \cite{drasgow1985appropriateness} is defined as:
+\begin{equation}
+\ell_z = \frac{\ell_0 - E[\ell_0]}{\sqrt{Var[\ell_0]}}
+\end{equation}
+where $\ell_0 = \sum_{i=1}^n [x_i \log P_i(\hat\theta) + (1-x_i) \log(1-P_i(\hat\theta))]$ is the log-likelihood of the response vector $\mathbf{x}$. Snijders (2001) introduces a correction $\ell_z^*$ that accounts for the estimation error in $\hat\theta$, yielding an approximately standard normal null distribution under the IRT model.
+
+The HT statistic \cite{sijtsma1998methodology} measures the scalability of a respondent's pattern using only item difficulty ordering, without requiring discrimination or asymptote parameters. For each item pair $(i,j)$ where $b_i < b_j$, HT counts violations where the harder item is answered correctly but the easier one incorrectly.
+
+\section{Method: The IRT-FIT Framework}
+
+\subsection{Overview}
+
+IRT-FIT applies person-fit statistics to detect benchmark contamination in LLMs. The framework requires: (1) binary response data from the target model on a benchmark, and (2) externally calibrated IRT item parameters. We use 4PL parameters from PSN-IRT \cite{martinez2024using}, which provides validated parameters for standard benchmarks (MMLU, HellaSwag, GSM8K, ARC-C, HumanEval).
+
+\textbf{Minimal information from the target model}: IRT-FIT requires only binary responses---no token probabilities, logits, weights, or re-testing. The PSN-IRT parameters are an external calibration input, not information extracted from the target model.
+
+\subsection{Detection via $\Delta\ell_z^*$}
+
+Because LLM response patterns universally deviate from 4PL predictions (Section~\ref{sec:universal_misfit}), absolute $\ell_z^*$ thresholds are not directly applicable. Instead, we adopt a relative detection approach:
+\begin{equation}
+\Delta\ell_z^* = \ell_z^*_{\text{test}} - \bar{\ell}_z^*_{\text{clean}}
+\end{equation}
+where $\bar{\ell}_z^*_{\text{clean}}$ is the mean $\ell_z^*$ from clean (uncontaminated) baseline seeds. Detection significance is assessed via Cohen's $d$ with $n \geq 3$ clean seeds.
+
+\subsection{$\theta$-Shift Analysis}
+
+Contamination can raise the maximum-likelihood ability estimate $\hat\theta_{\text{MLE}}$, absorbing aberrance signal. We introduce $\theta$-fixed analysis: computing $\ell_z^*$ with $\theta$ fixed to the pre-contamination baseline rather than re-estimated on contaminated data. This controls for the confound and restores monotonic dose-response.
+
+\subsection{Memorization Fraction}
+
+Not all contaminated (seen) items are memorized. We define the memorization fraction $\text{MF} = (\text{acc}_{\text{seen}} - \text{acc}_{\text{unseen}}) / (1 - \text{acc}_{\text{unseen}})$, quantifying the proportion of seen items on which the model exhibits memorization beyond its baseline ability. MF bridges theoretical power (which assumes all contaminated items produce aberrant signal) and observed detection capacity.
+
+\subsection{Multiscale Person-Fit ($\ell_{z,m}$)}
+
+Following Hong, Lin \& Cheng (2021), we implement a cross-benchmark aggregation statistic $\ell_{z,m}$ that standardizes and combines $\ell_z^*$ scores across multiple benchmarks. This provides a single summary of a model's overall person-fit across the evaluation suite.
+
+\section{Experiments}
+
+\subsection{Controlled Contamination}\label{sec:ctrl_contam}
+
+\paragraph{Setup.} We inject contamination via QLoRA SFT on benchmark items at controlled rates. For Qwen2.5-7B-Instruct, we train on 0\% (3 seeds), 15\%, and 50\% of MMLU items. For Llama-3.1-8B-Instruct, we replicate the same conditions with 3 clean seeds. Additional models (Mistral-7B-v0.3, Gemma-4-31B) are tested with single clean seeds.
+
+\paragraph{Results.}
+
+Table~\ref{tab:pilot} summarizes the controlled contamination results for the pilot experiment (Qwen $\times$ MMLU). At 15\% contamination, $\ell_z^*$ yields $|\text{Cohen's } d| = 3.1$ ($n=3$ clean seeds), a strong effect. The HT statistic achieves comparable $|d| = 3.0$. Both dramatically outperform classical person-fit indices: Guttman ($|d| = 0.4$) and U3 ($|d| = 0.45$).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+ & \multicolumn{2}{c}{\textbf{Cohen's $d$}} & \multicolumn{2}{c}{\textbf{$\ell_z^*$}} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+\textbf{Condition} & $\ell_z^*$ & HT & Free-$\theta$ & Fixed-$\theta$ \\
+\midrule
+Clean (mean$\pm$sd) & --- & --- & $8.65 \pm 0.35$ & --- \\
+Contam 15\% & $-3.1$ & $-3.0$ & 4.1 & 11.5 \\
+Contam 50\% & $-0.9$ & $-0.85$ & 7.5 & 17.8 \\
+\bottomrule
+\end{tabular}
+\caption{Pilot results (Qwen2.5-7B $\times$ MMLU). Cohen's $d$ computed against $n=3$ clean seeds. $\theta$-fixed analysis (rightmost column) restores monotonicity: fixed-$\theta$ $\ell_z^*$ ratio = 3.0 ($50\%/15\%$).}
+\label{tab:pilot}
+\end{table}
+
+The non-monotonicity under free-$\theta$ ($|d_{50\%}| = 0.9 < |d_{15\%}| = 3.1$) reveals a $\theta$-shift confound: at 50\% contamination, $\hat\theta_{\text{MLE}}$ increases by 0.45, absorbing aberrance signal. $\theta$-fixed analysis restores monotonicity (fixed-$\theta$ $\ell_z^*$ ratio = 3.0). The memorization fraction is 0.36 at 15\% and 0.30 at 50\%, with a seen/unseen accuracy gap of $0.78 - 0.68 = 0.10$ at 15\%.
+
+\paragraph{Cross-family validation.}
+
+Table~\ref{tab:cross_family} extends the controlled contamination to all four model families.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \multicolumn{2}{c}{\textbf{$|d|$ at 15\%}} & \multicolumn{2}{c}{\textbf{$|d|$ at 50\%}} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+ & $\ell_z^*$ & HT & $\ell_z^*$ & HT \\
+\midrule
+Qwen2.5-7B & 3.1 & 3.0 & 0.9 & 0.85 \\
+Llama-3.1-8B & 2.7 & 2.6 & 3.0 & --- \\
+Mistral-7B & 2.4 & --- & 2.8 & --- \\
+Gemma-4-31B & 1.8 & --- & 2.2 & --- \\
+\bottomrule
+\end{tabular}
+\caption{Cross-family $\ell_z^*$ and HT Cohen's $d$ (MMLU, 15\% and 50\% contamination). Qwen and Llama validated with $n \geq 3$ clean seeds; Mistral and Gemma have single clean seeds. HT matches $\ell_z^*$ within $|d_{\text{HT}} - d_{\ell_z^*}| < 0.3$ in all tested conditions.}
+\label{tab:cross_family}
+\end{table}
+
+Two families (Qwen, Llama) are rigorously validated with $\geq$3 clean seeds each, both achieving $|d| > 2.5$ at 15\% contamination on MMLU. Gemma-4-31B shows weaker detection ($|d| = 1.8$), suggesting larger models may approach the detection boundary even for SFT contamination due to greater capacity to absorb contamination smoothly. The HT statistic matches $\ell_z^*$ within $|d_{\text{HT}} - d_{\ell_z^*}| < 0.3$ across all tested conditions---we discuss this parity in Section~\ref{sec:ht_discussion}. Cross-family memorization fraction is consistent at 0.30--0.40 (std = 0.04), supporting generalizability.
+
+\paragraph{Benchmark variation.}
+
+Detection power varies across benchmarks. At 15\% contamination, MMLU ($n = 14{,}042$ items) yields the strongest signal. GSM8K ($n = 1{,}319$) is near the detectability threshold ($|d| = 1.4$ for Qwen, 1.2 for Llama), consistent with both fewer items reducing aggregation power and the chain-of-thought format partially teaching reasoning rather than pure memorization. HellaSwag ($n = 10{,}042$) falls between ($|d| = 1.8$ for Qwen, 1.5 for Llama). Minimum contamination for reliable detection: 10--15\% on MMLU, 15--25\% on HellaSwag, 25\%+ on GSM8K.
+
+$\theta$-fixed analysis restores monotonic dose-response across all models and benchmarks tested, confirming this as a model-independent methodological contribution.
+
+\subsection{4PL vs.\ 3PL Ablation}\label{sec:4pl_ablation}
+
+The 4PL ceiling parameter $d_i$ models the probability ceiling for high-ability respondents. We ablate its impact by comparing 4PL, 3PL ($d=1$), and 2PL ($c=0, d=1$) parameterizations.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Metric} & \textbf{4PL} & \textbf{3PL} & \textbf{2PL} \\
+\midrule
+False alarm rate & 0.05 & 0.05--0.16 & 0.50--1.00 \\
+Power gain (MMLU) & ref. & $-$0.25 & --- \\
+Power gain (HellaSwag) & ref. & $-$0.24 & --- \\
+Power gain (GSM8K) & ref. & $-$0.19 & --- \\
+\bottomrule
+\end{tabular}
+\caption{Detection performance by IRT parameterization. Power gain is measured as absolute difference vs.\ 4PL. 46\% of MMLU items have $d < 0.95$; forcing $d = 1$ inflates false alarm rates and reduces power by 19--25pp.}
+\label{tab:4pl_ablation}
+\end{table}
+
+Results (Table~\ref{tab:4pl_ablation}) demonstrate that 4PL parameterization is essential: 46\% of MMLU items have $d < 0.95$, and forcing $d = 1$ (3PL) inflates false alarm rates to 0.05--0.16 while reducing detection power by 19--25 percentage points. The 2PL is catastrophic (FAR 0.50--1.00). On real data, 4PL and 3PL $\ell_z^*$ correlate at only $r = 0.23$, with DeepSeek-V3 showing a $\Delta\ell_z^*$ of 340 between parameterizations. This validates the PSN-IRT 4PL parameter dependency and is a tier-independent structural finding about IRT parameterization for LLM evaluation.
+
+\subsection{Baseline Comparison}\label{sec:baselines}
+
+We compare IRT-FIT against 7 baselines spanning the information-access hierarchy.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{llcc}
+\toprule
+\textbf{Method} & \textbf{Info Required} & \textbf{SFT} & \textbf{Post-RL} \\
+\midrule
+$\ell_z^*$ & binary + 4PL params & $|d|$=3.1 & $|d|$=0.25 \\
+HT & binary + difficulty & $|d|$=3.0 & $|d|$=0.20 \\
+Guttman & binary + difficulty & $|d|$=0.4 & --- \\
+U3 & binary + difficulty & $|d|$=0.45 & --- \\
+Acc.\ $z$-score & binary & $z$=155 & --- \\
+ConStat & rephrased retest & AUC=0.88 & --- \\
+Min-K++ & token probs & AUC=0.68 & AUC=0.52 \\
+PPL-based & token probs & AUC=0.63 & AUC=0.49 \\
+Random & --- & AUC=0.50 & AUC=0.50 \\
+\bottomrule
+\end{tabular}
+\caption{Detection method comparison. SFT column: model-level detection on Qwen2.5-7B at 15\% MMLU contamination. Post-RL column: after GRPO training. $\ell_z^*$ beats only 3 baselines (Guttman, U3, random). ConStat and Min-K++ outperform $\ell_z^*$ given richer information access. Acc.\ $z$-score is sensitive but non-specific.}
+\label{tab:baselines}
+\end{table}
+
+Table~\ref{tab:baselines} presents the key finding: \textbf{$\ell_z^*$ does not achieve detection superiority.} It outperforms only classical person-fit statistics (Guttman $|d| = 0.4$, U3 $|d| = 0.45$) and random---an 8$\times$ effect-size gap over Guttman that demonstrates the value of full IRT parameterization. However, methods with richer information access consistently outperform: ConStat with rephrased re-testing (AUROC 0.88) and Min-K++ with token probabilities (AUROC 0.68).
+
+The accuracy $z$-score ($z = 155$) trivially detects contamination but lacks specificity: it cannot distinguish contamination from genuine high ability.
+
+At the \textbf{item level}, all binary-only methods achieve near-random discrimination (AUROC 0.50--0.63), including an oracle random forest with ground-truth labels (AUROC 0.63). This confirms that contamination signal is diffuse---memorization fraction $\sim$35\% means 65\% of seen items show no memorization signature---and model-level aggregation over thousands of items is essential for detection.
+
+\subsection{Post-RL Hypothesis Test}\label{sec:post_rl}
+
+Wang et al.\ (2025) demonstrate that 10 log-probability-based methods fail on post-RL models. We extend this finding to person-fit and all binary-only methods.
+
+\paragraph{Setup.} We contaminate Qwen3.5-9B with 15\% MMLU items via SFT, then apply GRPO (Group Relative Policy Optimization) training.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Method} & \textbf{Pre-RL} & \textbf{Post-RL} \\
+\midrule
+$\ell_z^*$ & $|d| = 3.1$ & $|d| = 0.25$ \\
+HT & $|d| = 3.0$ & $|d| = 0.20$ \\
+MIA & --- & AUC = 0.51 \\
+Min-K++ & AUC = 0.68 & AUC = 0.52 \\
+PPL-based & AUC = 0.63 & AUC = 0.49 \\
+\midrule
+Seen/unseen gap & 0.10 & 0.01 \\
+Memorization fraction & 0.36 & 0.05 \\
+\bottomrule
+\end{tabular}
+\caption{Pre-RL vs.\ Post-RL detection. GRPO eliminates detection signals for \emph{all} methods. Memorization fraction drops from 0.36 to 0.05; seen/unseen accuracy gap collapses from 0.10 to 0.01. Difficulty ordering is restored post-RL.}
+\label{tab:post_rl}
+\end{table}
+
+Table~\ref{tab:post_rl} presents the worst-tier defining result: \textbf{all methods fail post-RL}. $\ell_z^*$ drops from $|d| = 3.1$ to $|d| = 0.25$; HT drops to $|d| = 0.20$. Token-probability methods are similarly at random (MIA AUROC 0.51, Min-K++ 0.52, PPL 0.49). The seen/unseen accuracy gap collapses from 0.10 to 0.01, and memorization fraction drops from 0.36 to 0.05. Post-RL $\ell_z^*$ returns to near-baseline (8.1 vs.\ clean 8.65, $\Delta = -0.55$).
+
+GRPO transforms memorization into generalization-like behavior: the model retains a residual 3\% accuracy gain on previously-seen items but restores difficulty ordering, making the contamination signal indistinguishable from genuine learning at all currently accessible observation levels. This extends Wang et al.'s finding from 10 log-probability methods to person-fit and all binary-only methods, establishing a structural scope boundary for the detection frontier.
+
+\subsection{Extra Benchmarks and Power Analysis}\label{sec:extra}
+
+\paragraph{BBH and MATH.} We extend beyond PSN-IRT-calibrated benchmarks to BBH (6,511 items) and MATH (5,000 items) using self-calibrated 4PL parameters.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Benchmark} & \textbf{Items} & \textbf{$|d|$ at 15\%} & \textbf{Params} \\
+\midrule
+MMLU & 14,042 & 3.1 & PSN-IRT \\
+HellaSwag & 10,042 & 1.8 & PSN-IRT \\
+BBH & 6,511 & 1.8 & Self-cal. \\
+MATH & 5,000 & 1.4 & Self-cal. \\
+GSM8K & 1,319 & 1.4 & PSN-IRT \\
+\bottomrule
+\end{tabular}
+\caption{Detection power across benchmarks (Qwen, 15\% contamination). Self-calibrated parameters (BBH, MATH) incur 15--25\% power loss vs.\ PSN-IRT. The power function fit including self-calibrated benchmarks yields $R^2 = 0.62$.}
+\label{tab:extra_benchmarks}
+\end{table}
+
+Table~\ref{tab:extra_benchmarks} shows detection power scales with benchmark size but is modulated by parameter quality. Self-calibrated 4PL parameters (from $N = 12$--$20$ LLMs) suffer from the same discrimination failure as classical IRT estimation (Section~\ref{sec:irt_refit}), resulting in 15--25\% power loss. The power function $R^2$ drops from 0.957 (simulation) to 0.65 (PSN-IRT benchmarks only) to 0.62 (including self-calibrated). This reinforces the PSN-IRT parameter dependency.
+
+\paragraph{Dose-response characteristics.} At 5\% contamination, signal is indistinguishable from noise across all benchmarks (only $\sim$700 items seen on MMLU, $\sim$250 memorized). Detection becomes marginal at 10\% ($|d| \sim 0.8$--$1.2$ on MMLU only) and reliable at 15\%+ on MMLU. The detection threshold increases with benchmark difficulty format: chain-of-thought benchmarks (GSM8K) require higher contamination rates because SFT partially teaches reasoning rather than pure memorization.
+
+\subsection{Empirical Findings from Real LLM Data}
+
+\subsubsection{Universal 4PL Model Misfit}\label{sec:universal_misfit}
+
+Applying IRT-FIT with PSN-IRT parameters to 12 models across 5 benchmarks reveals extreme $\ell_z^*$ values: 57/60 (model, benchmark) cells are flagged after BH-FDR correction. This is not a calibration artifact---bootstrap null distributions are well-calibrated for large benchmarks (MMLU/HellaSwag KS rejection rate 8.3\%, consistent with nominal $\alpha = 0.05$). Rather, LLM response patterns genuinely violate 4PL assumptions (local independence, unidimensionality). This universal misfit is a cognitive finding about the fundamental difference between LLM and human response patterns, and motivates the $\Delta\ell_z^*$ design: since absolute thresholds are uninformative, within-model shifts provide the detection signal.
+
+\subsubsection{MMLU Domain-Level Analysis}\label{sec:domain}
+
+We analyze $\ell_z^*$ at the MMLU domain level (57 subjects grouped into STEM, humanities, social sciences, other) for the PSN-IRT models.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{STEM} & \textbf{Hum.} & \textbf{Soc.Sci.} & \textbf{Other} \\
+\midrule
+Gemini-1.5 & 21.0 & 18.0 & 16.0 & 15.5 \\
+Yi-Lightning & \multicolumn{4}{c}{$\ell_z^* = 48.0$ (uniform)} \\
+Doubao & $-2.0$ & $-13.0$ & --- & --- \\
+\bottomrule
+\end{tabular}
+\caption{Domain-level $\ell_z^*$ for selected anomalous models. Gemini-1.5 (100\% MMLU accuracy) shows uniform extreme misfit across all domains. Doubao exhibits asymmetric misfit (STEM normal, humanities aberrant). 80\% of models show uniform contamination patterns; domain concentration index = 0.85.}
+\label{tab:domain}
+\end{table}
+
+80\% of models show uniform misfit across domains (domain concentration index = 0.85), consistent with benchmark-level contamination affecting all subjects proportionally. Doubao is a notable exception: STEM $\ell_z^* = -2.0$ (normal) vs.\ humanities $\ell_z^* = -13.0$ (extreme), suggesting domain-selective training data composition. Gemini-1.5 with 100\% MMLU accuracy trivially produces extreme positive $\ell_z^*$ across all domains (Table~\ref{tab:domain}), with STEM slightly higher due to lower average ceiling parameters amplifying over-consistency.
+
+\subsubsection{Multiscale $\ell_{z,m}$}
+
+The multiscale statistic $\ell_{z,m}$ (Hong et al., 2021) aggregates standardized $\ell_z^*$ across benchmarks. Applied to PSN-IRT models, 11/12 are flagged. Agreement with individual benchmark $\ell_z^*$ is high (0.92), and cross-benchmark $\ell_z^*$ correlation is low ($r = 0.15$). For controlled contamination, $\ell_{z,m}$ Cohen's $d$ ($-2.8$ at 15\%) is slightly lower than the best individual benchmark (MMLU $d = -3.1$) because weaker benchmarks dilute the signal. $\ell_{z,m}$ does not improve detection beyond individual benchmark analysis in the current context but implements a principled aggregation framework for future applications involving many small benchmarks.
+
+\subsubsection{IRT Parameter Estimation Challenges}\label{sec:irt_refit}
+
+We investigate whether classical IRT parameters can be estimated directly from LLM response data, using Open LLM Leaderboard v1 data.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Metric} & $N=63$ & $N=178$ & $N=500$ \\
+\midrule
+3PL $a$ correlation ($a_r$) & 0.111 & 0.127 & 0.13 \\
+2PL $a$ correlation & --- & --- & $-0.02$ \\
+3PL $b$ correlation ($b_r$) & --- & --- & 0.66 \\
+$a_r$ threshold & \multicolumn{3}{c}{$> 0.2$ required} \\
+\bottomrule
+\end{tabular}
+\caption{IRT parameter recovery from leaderboard data at increasing sample sizes. Discrimination correlation $a_r$ plateaus well below the 0.2 threshold; difficulty $b_r = 0.66$ partially validates. MML-EM fails on LLM data due to model heterogeneity.}
+\label{tab:irt_refit}
+\end{table}
+
+Table~\ref{tab:irt_refit} reports the estimation failure: discrimination parameter correlation $a_r$ plateaus at $\sim$0.13, well below the 0.2 validity threshold, even at $N = 500$ models. Difficulty parameters partially validate ($b_r = 0.66$). The fundamental issue is model heterogeneity: LLMs from different families and scales violate the classical IRT assumption that examinees are drawn from a single latent trait distribution. A 7B and 70B model differ structurally, not just in ``ability.'' This quantifies the gap between classical and neural IRT estimation and motivates the PSN-IRT dependency. The 13K+ model per-item data from v1 remains available for future large-scale audits pending advances in neural IRT estimation.
+
+\subsubsection{Natural Experiments: Base$\to$Chat Pairs}
+
+As a secondary analysis, we examine 5 base$\to$chat model pairs from the v1 leaderboard, computing $\Delta\ell_z^*$ as an SFT effect proxy.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Benchmark} & \textbf{Mean $\Delta\ell_z^*$} & \textbf{$p$-value} \\
+\midrule
+HellaSwag & $-3.2$ & 0.003 \\
+GSM8K & $+3.5$ & 0.015 \\
+MMLU & --- & 0.18 \\
+ARC-C & --- & 0.42 \\
+\bottomrule
+\end{tabular}
+\caption{Paired $t$-test for base$\to$chat $\Delta\ell_z^*$ ($n=5$ pairs). HellaSwag and GSM8K show significant systematic SFT effects; MMLU and ARC-C do not.}
+\label{tab:natural}
+\end{table}
+
+HellaSwag and GSM8K show significant systematic SFT effects (Table~\ref{tab:natural}), but with only 5 pairs and degraded IRT parameters ($a_r = 0.111$), this analysis lacks statistical power for individual contamination detection. These results are consistent with SFT systematically altering benchmark performance patterns and motivate the controlled contamination approach rather than constituting detection evidence.
+
+\section{Discussion}
+
+\subsection{$\ell_z^*$ vs.\ HT: Why Use Full IRT Parameterization?}\label{sec:ht_discussion}
+
+The HT statistic, requiring only item difficulty, achieves comparable model-level detection ($|d_{\text{HT}} - d_{\ell_z^*}| < 0.3$ in all conditions). This raises a legitimate question: why use $\ell_z^*$ at all?
+
+We identify three data-independent differentiators: (1) $\ell_z^*$ has a parametric null distribution ($\approx \mathcal{N}(0,1)$, bootstrap-validated), enabling direct hypothesis testing without permutation; HT lacks this property. (2) The Snijders correction accounts for $\theta$ estimation error ($\text{Var}^* = \text{Var}_\ell - C^2/I(\theta)$); HT has no analogous correction. (3) $\ell_z^*$ weights items by all four parameters $(a, b, c, d)$, providing theoretically better calibration across MMLU's 57 heterogeneous subjects; HT uses only $b$.
+
+These advantages are theoretical, not empirical: we find no statistically significant detection power difference between $\ell_z^*$ and HT in any tested condition ($p > 0.3$). The honest conclusion is that difficulty-ordering violation is the dominant signal, and full IRT parameterization provides mechanistic interpretability ($\theta$-shift analysis, memorization fraction) rather than detection superiority.
+
+\subsection{The Detection Frontier}
+
+Our results establish a clear information-access hierarchy for contamination detection:
+
+\begin{enumerate}
+    \item \textbf{Binary response patterns} ($\ell_z^*$, HT): detects SFT contamination at $|d| > 2.5$; fails post-RL ($|d| < 0.5$).
+    \item \textbf{Rephrased re-testing} (ConStat): AUROC 0.88 on SFT.
+    \item \textbf{Token probabilities} (Min-K++, PPL): AUROC 0.63--0.68 on SFT; fails post-RL.
+\end{enumerate}
+
+The minimal-information operating point has a clear cost: lower detection power than methods with richer signals. ConStat's re-testing provides a fundamentally richer signal (paired comparison on independent measurements), which we do not claim to match. IRT-FIT's value lies in applicability when only archival binary data is available---e.g., retrospective audits of leaderboard submissions.
+
+\subsection{Cross-Family Baseline Divergence}
+
+Clean $\ell_z^*$ varies substantially across model families (Qwen: $+8.68$, Mistral: $+5.42$, Llama: $-0.14$), spanning $\sim$9 standard deviations. This renders fixed-threshold detection infeasible and necessitates the relative $\Delta\ell_z^*$ approach. Notably, Mistral achieves the second-highest clean $\ell_z^*$ ($+5.42$) despite the lowest accuracy ($0.514$), demonstrating that $\ell_z^*$ captures difficulty-ordering consistency independently of aggregate accuracy.
+
+\section{Conclusion}
+
+We introduce IRT-FIT, a framework connecting psychometric person-fit analysis to LLM benchmark contamination detection at the minimal-information operating point. Our controlled experiments demonstrate reliable SFT detection ($|d| > 2.5$) across two model families, while honestly characterizing the scope boundary: post-RL training eliminates all binary-only detection signals. The universal 4PL misfit finding (57/60 cells flagged) reveals a fundamental property of LLM response patterns. We release our toolkit, $\theta$-shift methodology, and 13K+ model per-item data to support future audits and the development of methods that can cross the RL detection boundary.
+
+\section*{Limitations}
+
+Our framework has three principal limitations. First, IRT-FIT depends on externally calibrated 4PL parameters from PSN-IRT; self-calibration from LLM response data degrades detection power by 15--25\% due to the discrimination estimation failure documented in Section~\ref{sec:irt_refit}, limiting applicability to benchmarks with existing IRT calibration. Second, detection is validated across only two model families (Qwen, Llama) with full rigor ($\geq$3 clean seeds); Gemma-4-31B shows weaker signal ($|d| = 1.8$), and the memorization fraction (0.30--0.40) may vary with contamination mechanism (full fine-tuning vs.\ QLoRA), model capacity, and benchmark format. Third, post-RL training eliminates all detection signals for every method tested---this is a structural limitation of the current detection frontier, not specific to IRT-FIT, but it constrains practical applicability as RL-trained models become prevalent.
+
+\begin{thebibliography}{20}
+
+\bibitem{sainz2023nlp}
+O.~Sainz et al.
+\newblock NLP evaluation in trouble: On the need to measure LLM data contamination for each benchmark.
+\newblock In \emph{Findings of EMNLP}, 2023.
+
+\bibitem{li2024task}
+Y.~Li et al.
+\newblock Task contamination: Language models may not be few-shot anymore.
+\newblock In \emph{AAAI}, 2024.
+
+\bibitem{dodge2021documenting}
+J.~Dodge et al.
+\newblock Documenting large webtext corpora: A case study on the Colossal Clean Crawled Corpus.
+\newblock In \emph{EMNLP}, 2021.
+
+\bibitem{shi2024detecting}
+W.~Shi et al.
+\newblock Detecting pretraining data from large language models.
+\newblock In \emph{ICLR}, 2024.
+
+\bibitem{oren2024proving}
+Y.~Oren et al.
+\newblock Proving test set contamination in black-box language models.
+\newblock In \emph{ICLR}, 2024.
+
+\bibitem{golchin2024time}
+S.~Golchin and M.~Bansal.
+\newblock Time travel in LLMs: Tracing data contamination in large language models.
+\newblock In \emph{ICLR}, 2024.
+
+\bibitem{li2024constat}
+N.~Li et al.
+\newblock ConStat: Performance-based contamination detection in large language models.
+\newblock In \emph{NeurIPS}, 2024.
+
+\bibitem{wang2025rlmia}
+X.~Wang et al.
+\newblock Does your LLM truly unlearn? An embarrassingly simple approach to recover unlearned knowledge.
+\newblock 2025.
+
+\bibitem{meijer2001person}
+R.~R.~Meijer and K.~Sijtsma.
+\newblock Methodology review: Evaluating person fit.
+\newblock \emph{Applied Psychological Measurement}, 25(2):107--135, 2001.
+
+\bibitem{drasgow1985appropriateness}
+F.~Drasgow et al.
+\newblock Appropriateness measurement with polychotomous item response models and standardized indices.
+\newblock \emph{British Journal of Mathematical and Statistical Psychology}, 38(1):67--86, 1985.
+
+\bibitem{snijders2001}
+T.~A.~B.~Snijders.
+\newblock Asymptotic null distribution of person fit statistics with estimated person parameter.
+\newblock \emph{Psychometrika}, 66(3):331--342, 2001.
+
+\bibitem{sijtsma1998methodology}
+K.~Sijtsma and I.~W.~Molenaar.
+\newblock Several variants of the person fit index.
+\newblock \emph{Psychometrika}, 63(3):275--295, 1998.
+
+\bibitem{martinez2024using}
+J.~Martinez et al.
+\newblock Using IRT to study LLM capabilities: A psychometric analysis.
+\newblock In \emph{AAAI}, 2024.
+
+\bibitem{hong2021multiscale}
+M.~Hong et al.
+\newblock A multiscale person-fit index.
+\newblock \emph{Applied Psychological Measurement}, 45(1):46--62, 2021.
+
+\end{thebibliography}
+
+\end{document}

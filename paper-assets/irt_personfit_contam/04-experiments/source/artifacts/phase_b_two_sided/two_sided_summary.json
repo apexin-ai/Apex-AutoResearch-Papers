@@ -1,0 +1,111 @@
+{
+  "threshold": 1.96,
+  "total_cells": 60,
+  "total_flagged": 56,
+  "total_pos_flagged": 50,
+  "total_neg_flagged": 6,
+  "total_normal": 4,
+  "by_benchmark": {
+    "ARC-C": {
+      "n_flagged": 9,
+      "n_pos_flagged": 9,
+      "n_neg_flagged": 0,
+      "mean_lz_star": 4.086191289584061,
+      "std_lz_star": 2.5932678809567116,
+      "flagged_models": [
+        "360GPT2-Pro",
+        "Doubao-pro",
+        "Gemini-1.5",
+        "Gemma-2B-it",
+        "Hunyuan-Turbo",
+        "Mistral-7B-Instruct-v0.1",
+        "Moonshot-v1",
+        "Qwen-Plus",
+        "Qwen2.5-3B-Instruct"
+      ]
+    },
+    "GSM8K": {
+      "n_flagged": 12,
+      "n_pos_flagged": 10,
+      "n_neg_flagged": 2,
+      "mean_lz_star": 8.220591124502485,
+      "std_lz_star": 8.97146735062457,
+      "flagged_models": [
+        "360GPT2-Pro",
+        "DeepSeek-V3",
+        "Doubao-pro",
+        "Gemini-1.5",
+        "Gemma-2B-it",
+        "Hunyuan-Turbo",
+        "Mistral-7B-Instruct-v0.1",
+        "Moonshot-v1",
+        "Qwen-Plus",
+        "Qwen2.5-3B-Instruct",
+        "Vicuna-7B-v1.3",
+        "Yi-Lightning"
+      ]
+    },
+    "HellaSwag": {
+      "n_flagged": 12,
+      "n_pos_flagged": 10,
+      "n_neg_flagged": 2,
+      "mean_lz_star": 20.085684480446332,
+      "std_lz_star": 17.589692497618575,
+      "flagged_models": [
+        "360GPT2-Pro",
+        "DeepSeek-V3",
+        "Doubao-pro",
+        "Gemini-1.5",
+        "Gemma-2B-it",
+        "Hunyuan-Turbo",
+        "Mistral-7B-Instruct-v0.1",
+        "Moonshot-v1",
+        "Qwen-Plus",
+        "Qwen2.5-3B-Instruct",
+        "Vicuna-7B-v1.3",
+        "Yi-Lightning"
+      ]
+    },
+    "HumanEval": {
+      "n_flagged": 11,
+      "n_pos_flagged": 10,
+      "n_neg_flagged": 1,
+      "mean_lz_star": 2.2051808524102636,
+      "std_lz_star": 4.884809130975022,
+      "flagged_models": [
+        "360GPT2-Pro",
+        "DeepSeek-V3",
+        "Gemini-1.5",
+        "Gemma-2B-it",
+        "Hunyuan-Turbo",
+        "Mistral-7B-Instruct-v0.1",
+        "Moonshot-v1",
+        "Qwen-Plus",
+        "Qwen2.5-3B-Instruct",
+        "Vicuna-7B-v1.3",
+        "Yi-Lightning"
+      ]
+    },
+    "MMLU": {
+      "n_flagged": 12,
+      "n_pos_flagged": 11,
+      "n_neg_flagged": 1,
+      "mean_lz_star": 24.190277780710645,
+      "std_lz_star": 16.47375114632497,
+      "flagged_models": [
+        "360GPT2-Pro",
+        "DeepSeek-V3",
+        "Doubao-pro",
+        "Gemini-1.5",
+        "Gemma-2B-it",
+        "Hunyuan-Turbo",
+        "Mistral-7B-Instruct-v0.1",
+        "Moonshot-v1",
+        "Qwen-Plus",
+        "Qwen2.5-3B-Instruct",
+        "Vicuna-7B-v1.3",
+        "Yi-Lightning"
+      ]
+    }
+  }
+}

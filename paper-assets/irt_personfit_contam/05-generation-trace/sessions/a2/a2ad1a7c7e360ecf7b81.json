@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2ad1a7c7e360ecf7b81",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops pipeline diff diagnosis",
+  "task_key": "worker_ops_pipeline-diff-diagnosis_20260523T145132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_pipeline-diff-diagnosis_20260523T145132_result.json",
+    "occurrence": 1,
+    "bytes": 2423,
+    "sha256": "dc8082f11a60fce452abffa0036b249efed20eb8538c060aace048b82677d3c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。以下是结构化报告：\n\n---\n\n## 诊断报告：ctrl_contam_llama vs ctrl_contam_pilot lz* 差异\n\n### 1. 数据差异 — **根因**\n\n| 维度 | ctrl_contam_llama | ctrl_contam_pilot |\n|------|------------------|-------------------|\n| train.jsonl 行数 | 8510 | 8510 |\n| train.jsonl 大小 | 3,798,085 bytes | 3,893,393 bytes |\n| **MMLU item selection seed** | **999** | **42** |\n| seen_items_25pct 起始 | `[0, 9, 11, 20, 24, ...]` | `[0, 3, 10, 13, 14, ...]` |\n\n**两个 pipeline 选择了完全不同的 3510 个 MMLU 题目作为 contam_25 污染集。**\n\n来源追溯：\n- `ctrl_contam_llama/prepare_data.py` line: `rng_contam = random.Random(999)`\n- `ctrl_contam_pilot/gen_contam_25.py` line: `rng_contam = random.Random(42)`\n\n### 2. 配置差异 — 无差异\n\nlr=2e-4, epochs=3, batch=4, grad_accum=4, LoRA r=16/alpha=32, target=q/k/v/o_proj, dropout=0.05, max_length=512 — **完全一致**。\n\n### 3. 模型差异 — 无差异\n\n两边都使用 `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct`，adapter_config 确认 base_model 相同。\n\n### 4. 种子差异\n\n| 种子类型 | llama | pilot |\n|----------|-------|-------|\n| Training seed | 42 | 42 |\n| Data shuffle seed | 42 | 42 |\n| **Item selection seed** | **999** | **42** |\n\n### 5. Eval 差异 — 无实质差异\n\n- `compute_lz_star` 和 `estimate_theta_mle` 实现逐行一致\n- `mmlu_params.csv` 完全相同 (683,809 bytes)\n- few-shot prompt 格式相同\n- 差异仅在多模型路由逻辑（不影响 Llama 评估结果）\n\n### 6. 结论\n\n**根因：MMLU item selection seed 不同（999 vs 42），导致两个 pipeline 用了完全不同的 MMLU 污染题目子集。**\n\n影响链：\n1. 不同的 3510 个题目被注入训练 → 模型学到不同的 response pattern\n2. 评估时 seen/unseen 划分也不同 → lz* 基于不同的 item subset 计算\n3. 不同题目子集的 IRT 参数分布不同 → 同样的 accuracy 差异被 lz* 放大/缩小的程度不同\n\n数值对比：\n- acc_seen 很接近（0.7715 vs 0.7698），acc_unseen 也接近（0.6470 vs 0.6388）\n- 但 lz* 差 64%（-2.805 vs -4.616），说明 seed=42 选出的题目子集在 IRT 参数空间中使 contamination 信号更极端\n\n**修复方案：统一 item selection seed，使两个 pipeline 使用相同的 MMLU 污染子集后 lz* 应趋于一致。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-pipeline-diff-diagnosis.md"
+}

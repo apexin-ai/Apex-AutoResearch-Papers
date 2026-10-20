@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17d3bac8e58b4cb01d93",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "paper research",
+  "task_key": "worker_paper_research_20260520T213656",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_20260520T213656_result.json",
+    "occurrence": 1,
+    "bytes": 1618,
+    "sha256": "7cd582ebdb591e72d0f21f013db88163307b31a39f12cedaa52956de5c1e58ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Summary:\n\n**Verified (4 existing unverified → verified):**\n- `psnirt2026` — AAAI 2026 Oral confirmed, 13 authors from HIT added\n- `atlas2025` — arXiv preprint confirmed, 7 authors added\n- `wang2025fragility` — arXiv preprint confirmed, 4 authors added\n- `selfcritique2026` — ICLR 2026 confirmed (OpenReview), 7 authors added, title corrected\n\n**New papers added (8):**\n\n| Cluster | Key | Paper | Venue |\n|---|---|---|---|\n| irt-llm | `martinezplumed2019` | IRT in AI: Analysing ML Classifiers at Instance Level | Artificial Intelligence 2019 |\n| irt-llm | `polo2024tinybenchmarks` | tinyBenchmarks: Evaluating LLMs with Fewer Examples | ICML 2024 |\n| post-rl-contamination | `zhang2026rlvr` | Detecting RLVR Training Data via Structural Convergence | arXiv 2026 |\n| llm-eval-infra | `hendrycks2021mmlu` | Measuring Massive Multitask Language Understanding (MMLU) | ICLR 2021 |\n| llm-eval-infra | `beeching2023openllm` | Open LLM Leaderboard | HuggingFace 2023 |\n| llm-eval-infra | `gao2023evalharness` | lm-evaluation-harness | Zenodo 2023 |\n| llm-eval-infra | `chang2024survey` | A Survey on Evaluation of LLMs | ACM TIST 2024 |\n| llm-eval-infra | `biderman2024lessons` | Lessons from the Trenches on Reproducible Evaluation | arXiv 2024 |\n\n**Category `llm-evaluation-infrastructure` added.** Total: 33 papers, all verified. Note: \"Burnham 2024 IRT for AI\" and \"Jacobs 2024 psychometrics and AI\" were not found as specific papers — Martínez-Plumed et al. 2019 is the canonical IRT-for-AI reference; tinyBenchmarks fills the IRT+efficient-evaluation slot."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-copy-2.md"
+}

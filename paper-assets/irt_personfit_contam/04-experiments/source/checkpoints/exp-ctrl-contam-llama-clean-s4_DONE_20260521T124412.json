@@ -1,0 +1,35 @@
+{
+  "exp_id": "exp-ctrl-contam-llama-clean-s4",
+  "project": "irt_personfit_contam",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T12:24:43.970Z",
+    "updated_at": "2026-05-21T12:44:12.382Z",
+    "hypothesis": "Clean SFT (seed 4) on Llama-3.1-8B should produce lz* near zero, indicating no person-fit anomaly without contamination.",
+    "spec": {
+      "command": "python eval_lz.py --condition clean_s4 --gpu 0",
+      "server": "westd-35694",
+      "data_path": "/root/autodl-tmp/ctrl_contam_llama/data/mmlu_items.json",
+      "data_count": 14042,
+      "model_name": "Llama-3.1-8B-Instruct",
+      "seed": 4,
+      "checkpoint_source": "/root/autodl-tmp/ctrl_contam_llama/checkpoints/clean_s4",
+      "eval_data": "MMLU full"
+    },
+    "checkpoint_path": "/root/autodl-tmp/ctrl_contam_llama/checkpoints/clean_s4",
+    "log_path": "/root/autodl-tmp/ctrl_contam_llama/results/clean_s4_results.json",
+    "conclusion": "success",
+    "metrics": {
+      "theta_mle": -0.6435,
+      "lz_star": 0.0206,
+      "accuracy_overall": 0.5923,
+      "n_items": 14042
+    },
+    "completed_at": "2026-05-21T12:44:12.382Z"
+  },
+  "timestamp": "2026-05-21T12:44:12.463875+00:00",
+  "trigger": "update_registry"
+}

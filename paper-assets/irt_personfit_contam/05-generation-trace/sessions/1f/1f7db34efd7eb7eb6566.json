@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f7db34efd7eb7eb6566",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops check mistral training",
+  "task_key": "worker_ops_check-mistral-training_20260524T041100",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-mistral-training_20260524T041100_result.json",
+    "occurrence": 1,
+    "bytes": 717,
+    "sha256": "10dd8fb8ec573df1625a5731e0a5090cb28b8ea693a206684d4a0e67c2f41da5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Mistral 训练状态报告\n\n| 任务 | 状态 | 运行时长 | 进度 | 速度 |\n|------|------|----------|------|------|\n| **mistral_contam_5** | 运行中 | 13min05s | 672/1071 (63%) | ~1.17s/it |\n| **mistral_contam_25** | 运行中 | 13min03s | 629/1596 (39%) | ~1.23s/it |\n\n**GPU 利用率：**\n- GPU 0: 89%, 9047/97887 MiB (contam_5)\n- GPU 1: 98%, 9817/97887 MiB (contam_25)\n- GPU 2-3: 空闲\n\n**最新指标：**\n- contam_5: loss=1.374, token_acc=0.637, epoch=0.98 (即将完成第1个epoch)\n- contam_25: loss=1.331, token_acc=0.669, epoch=1.00 (刚完成第1个epoch)\n\n**预估剩余时间：**\n- contam_5: ~8min (399 steps × 1.17s)\n- contam_25: ~20min (967 steps × 1.23s)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-mistral-training.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a287f3df549de318cb19",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "research verify citations",
+  "task_key": "worker_research_verify-citations_20260522T080821",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_verify-citations_20260522T080821_result.json",
+    "occurrence": 1,
+    "bytes": 2253,
+    "sha256": "f58ed91bff90cb07803216cf803b4398c3e92a0b086cb786d68383229df20cd5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果\n\n### 论文 1: \"Dong et al. (2024)\"\n\n用户提供的标题和作者指向**两篇不同的论文**，存在混淆：\n\n**如果按作者 \"Dong\" 查找：**\n- **标题**: Generalization or Memorization: Data Contamination and Trustworthy Evaluation for Large Language Models\n- **作者**: Yihong Dong, Xue Jiang, Huanyu Liu, Zhi Jin, Bin Gu, Mengfei Yang, Ge Li\n- **年份**: 2024\n- **发表场所**: Findings of ACL 2024, pp. 12039–12050\n- **arXiv ID**: **2402.15938**（非 2407.01019）\n\n**如果按标题 \"Does Data Contamination Detection Work (Well) for LLMs\" 查找：**\n- **标题**: Does Data Contamination Detection Work (Well) for LLMs? A Survey and Evaluation on Detection Assumptions\n- **作者**: Yujuan Velvin Fu, Özlem Uzuner, Meliha Yetişgen, Fei Xia\n- **年份**: 2024（arXiv）/ 2025（正式发表）\n- **发表场所**: Findings of NAACL 2025\n- **arXiv ID**: **2410.18966**\n\n**差异**：arXiv:2407.01019 实际上是一篇无关的优化器论文（\"An Abstract Lyapunov Control Optimizer\"）。需要确认引用的是哪一篇。\n\n---\n\n### 论文 2: \"Sinharay & Johnson (2017)\"\n\n- **标题**: Are the Nonparametric Person-Fit Statistics More Powerful Than Their Parametric Counterparts? Revisiting the Simulations in Karabatsos (2003)\n- **作者**: **Sandip Sinharay**（单独作者，**无 Matthew S. Johnson**）\n- **年份**: 2017\n- **发表期刊**: Applied Measurement in Education, 30(4), 314–328\n- **DOI**: 10.1080/08957347.2017.1353990\n\n**差异**：这篇是 Sinharay 独著，不是 Sinharay & Johnson 合著。Sinharay 与 Johnson 有其他合作论文（如 2020 年 BJMSP 的 preknowledge 检测论文），但 2017 年 person-fit power 这篇没有 Johnson。\n\n---\n\nSources:\n- [Dong et al. (2024) - arXiv](https://arxiv.org/abs/2402.15938)\n- [Dong et al. (2024) - ACL Anthology](https://aclanthology.org/2024.findings-acl.716/)\n- [Fu et al. (2024) - arXiv](https://arxiv.org/abs/2410.18966)\n- [Fu et al. (2025) - ACL Anthology](https://aclanthology.org/2025.findings-naacl.291/)\n- [Sinharay (2017) - Taylor & Francis](https://doi.org/10.1080/08957347.2017.1353990)\n- [Sinharay (2017) - ERIC](https://eric.ed.gov/?id=EJ1153824)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-verify-citations.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "00b49e014c370b25b441",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "ops anon repo prep",
+  "task_key": "worker_ops_anon-repo-prep_20260523T125059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_anon-repo-prep_20260523T125059.log",
+    "occurrence": 1,
+    "bytes": 869455,
+    "sha256": "57f9665699972a3f9134c3962253cc553ec7d3c9616410a8af4a3a37e1d11e76"
+  },
+  "statistics": {
+    "messages": 195,
+    "user_turns": 0,
+    "tool_calls": 72,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 47,
+      "tool_call": 72,
+      "tool_result": 72,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 195,
+      "chunks": [
+        {
+          "path": "00b49e014c370b25b441-part-0001.json",
+          "message_count": 108
+        },
+        {
+          "path": "00b49e014c370b25b441-part-0002.json",
+          "message_count": 87
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-anon-repo-prep.md"
+}

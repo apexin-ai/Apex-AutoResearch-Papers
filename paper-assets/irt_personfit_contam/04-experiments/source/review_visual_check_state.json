@@ -1,0 +1,117 @@
+{
+  "status": "done",
+  "started_at": "2026-05-25T21:15:10.666802+00:00",
+  "completed_at": "2026-05-25T21:18:16.595175+00:00",
+  "findings": [
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "Title/Author/Abstract 排版整洁，ACL 匿名格式正确（行号、Anonymous ACL submission）。首页无 display item，但 Figure 1 出现在第 2 页上半部分，锚定时机良好。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 2",
+      "message": "Figure 1（4 子图概览）作为第一个 display item，有效传达核心方法——IRT person-fit 检测的整体流程和关键发现。Caption 自包含，仅读 caption 可理解图意。Title-Abstract-首图一致性良好。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 4-5",
+      "message": "第 4 页下半段至第 5 页全页为连续纯文本（Experimental Setup），无任何 display item 穿插。虽然是实验设置描述，但跨越约 1.5 页的纯文本段对审稿人阅读节奏有轻微影响。考虑将 Table 1 或 Figure 4 提前至第 5 页。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Discussion + Conclusion 与 Figure 5、Figure 6 同页，布局紧凑但不拥挤，节奏合理。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 9",
+      "message": "Limitations 简洁（~5 行覆盖 3 点），符合 EMNLP 要求。References 从第 9 页右栏开始。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1-8",
+      "message": "正文 8 页共 5 figures + 3 tables = 8 个 display items，密度约 1.0/页。对实证为主的论文而言密度合理，每个 item 传达明确 message。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 11-15",
+      "message": "附录含约 16 个 tables（Table 4-19），信息量充实，支撑正文 claims。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 2",
+      "message": "Figure 1 子图 (c) \"Baseline Accuracy (%)\" 和 (d) \"Dose-response trajectories\" 的 axis tick labels 和 legend 字号偏小（估计 ≤6pt），打印后可能难以辨认。建议放大至 ≥8pt 或减少 tick 密度。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 8",
+      "message": "Figure 5（l*_z heatmap for 12 leaderboard models）：y 轴模型名称和 cell 内数值字号很小，在双栏打印尺寸下可读性勉强。建议使用 figure* 全宽或增大字号。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 3",
+      "message": "Figure 2 架构图使用黄/绿/蓝色块区分模块，颜色区分度好，色盲友好。框内文字在 150dpi 下可读，但部分子框文字略小。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 4",
+      "message": "Figure 3 线图使用不同 marker + 颜色（蓝/橙/绿），区分度好，legend 可读。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "Figure 4 heatmap 使用蓝色强度 + 灰色（缺失值），caption 解释了灰色含义，自包含。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6-7",
+      "message": "Table 1、2、3 均使用 booktabs 风格（toprule/midrule/bottomrule），无竖线，格式规范。最优值加粗标注。小数精度在同列内一致。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 12",
+      "message": "单页 4 个表格（Table 4-7）排布紧凑但可读，附录中可接受。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 2-8",
+      "message": "所有 figures/tables 均出现在首次引用附近（同页或下一页），无明显 float 漂移。Figure 5 的 leaderboard 分析在 Discussion 中首次提及，位置匹配。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 16",
+      "message": "最后一页仅 6 行文字（\"Use of AI Assistants\" 结尾），约 90% 为空白。虽然是附录最后页且内容为 AI 使用声明（不可省略），但视觉上浪费空间。可考虑将此段合并到前一页末尾。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1-15",
+      "message": "其余页面空白分布均匀，无异常大面积留白，双栏底部基本对齐。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 4",
+      "message": "公式 (1) 渲染正确，4PL IRT 模型公式无乱码或符号缺失。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1-8",
+      "message": "无 section heading 孤悬页底现象。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1-8",
+      "message": "无 margin 溢出。页眉页脚符合 ACL 匿名投稿模板。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 9-10",
+      "message": "参考文献格式统一，无 [?] 未解析引用，编号连续。"
+    }
+  ],
+  "counts": {
+    "critical": 0,
+    "warning": 4,
+    "info": 17
+  }
+}

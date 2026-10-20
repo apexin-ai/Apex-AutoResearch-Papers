@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3287f41247e721eb9847",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code exp cross benchmark analysis",
+  "task_key": "worker_code_exp-cross-benchmark-analysis_20260520T113150",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-cross-benchmark-analysis_20260520T113150_result.json",
+    "occurrence": 1,
+    "bytes": 804,
+    "sha256": "f2fd8b9b59d51f8b2dca5d6dd3e8cc2333dc4361d45a39c05ec95d44bfd70f78"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。关键发现：\n\n- **57/60 cells flagged** (95%)，10/12 模型在全部 5 个 benchmark 上被 flag\n- **93.3% positive lz***（over-consistent），仅 4 个 cell 为 negative\n- **Gemini-1.5 独立成簇**：GSM8K、HellaSwag、HumanEval 上 lz* 为负（aberrant pattern），与其余 11 个模型的 over-consistent 模式截然不同\n- **Benchmark 敏感度**：MMLU (mean |lz*|=26.1) > HellaSwag (18.9) > GSM8K (7.9) > ARC-C (3.3) > HumanEval (2.9)\n- **ARC-C/HellaSwag/GSM8K/HumanEval 高度相关** (Spearman ρ>0.6)，MMLU 与其余 benchmark 相关性较弱\n- **Negative lz* 集中在** Gemini-1.5（3 cells）和 Doubao-pro（MMLU 1 cell）\n\n产出已写入 `artifacts/cross_benchmark_analysis/`，7 个 artifact 全部注册，registry 状态 → DONE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-cross-benchmark-analysis.md"
+}

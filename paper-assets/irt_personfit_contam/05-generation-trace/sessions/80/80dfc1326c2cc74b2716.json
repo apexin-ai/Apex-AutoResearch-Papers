@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80dfc1326c2cc74b2716",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "paper research",
+  "task_key": "worker_paper_research_20260520T211624",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_20260520T211624_result.json",
+    "occurrence": 1,
+    "bytes": 1218,
+    "sha256": "785323fcaccdd4a9c528daf95a38add7652e9c4736ba850b5bb4f1aca366f824"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。person-fit cluster 现有 6 篇，全部 verified：\n\n| key | title | venue | DOI | status |\n|-----|-------|-------|-----|--------|\n| sinharay2017 | Which Statistic Should Be Used to Detect Item Preknowledge... | Applied Psychological Measurement | 10.1177/0146621617698453 | verified (venue corrected from JEBS) |\n| karabatsos2003 | Comparing the Aberrant Response Detection Performance of 36 Person-Fit Statistics | Applied Measurement in Education | 10.1207/S15324818AME1604_2 | verified |\n| hong2021lzm | Asymptotically Corrected Person Fit Statistics for Multidimensional Constructs... | Psychometrika | 10.1007/s11336-021-09756-3 | verified |\n| drasgow1985 | Appropriateness Measurement with Polychotomous Item Response Models... | British J. Mathematical and Statistical Psychology | 10.1111/j.2044-8317.1985.tb00817.x | **new**, verified |\n| snijders2001 | Asymptotic Null Distribution of Person Fit Statistics with Estimated Person Parameter | Psychometrika | 10.1007/BF02294437 | **new**, verified |\n| meijer2001 | Methodology Review: Evaluating Person Fit | Applied Psychological Measurement | 10.1177/01466210122031957 | **new**, verified |\n\n`total_papers` updated to 18."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-copy-4.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "69f1f6be9e3b0841fb10",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code mistral eval s4s7 19912",
+  "task_key": "worker_code_mistral-eval-s4s7-19912_20260521T145553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mistral-eval-s4s7-19912_20260521T145553_result.json",
+    "occurrence": 1,
+    "bytes": 588,
+    "sha256": "781313a1e65c4480e3e8d4ba4bfa1a79858c0ff9fe3ff99fd2a38e341d145bcb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个 seed 全部完成。汇总结果：\n\n## Mistral Clean s4-s7 Eval 结果\n\n| Seed | Accuracy | lz* | theta_mle | n_items |\n|------|----------|-----|-----------|---------|\n| clean_s4 | 0.5105 | 3.9558 | -1.1693 | 14042 |\n| clean_s5 | 0.5231 | 4.4910 | -1.1000 | 14042 |\n| clean_s6 | 0.5128 | 5.5030 | -1.1405 | 14042 |\n| clean_s7 | 0.5284 | 5.8982 | -1.0755 | 14042 |\n\n所有 clean condition 的 seen_items=0（符合预期），accuracy 在 0.51-0.53 范围内，lz* 在 3.96-5.90 范围内（正值表示 response pattern 比 IRT 模型预期更一致）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mistral-eval-s4s7-19912.md"
+}

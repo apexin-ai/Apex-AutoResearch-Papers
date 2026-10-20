@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0f70d2e95cf035d3a0c",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops check clean reeval progress",
+  "task_key": "worker_ops_check-clean-reeval-progress_20260523T145241",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-clean-reeval-progress_20260523T145241_result.json",
+    "occurrence": 1,
+    "bytes": 1237,
+    "sha256": "3b850a66f823b8ce9314b1b13e3ca67d8df516b5f329e064771353fc69f83e8d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Clean Re-eval 进度汇总\n\n### 已完成的 clean seeds（全部在 ctrl_contam_llama/results/）\n\n| Seed | 完成时间 | lz* | acc |\n|------|---------|-----|-----|\n| clean (s1) | 22:26:35 | — | — |\n| clean_s2 | 22:46:44 | -1.8765 | 0.5959 |\n| clean_s3 | 21:57:20 | — | — |\n| clean_s4 | 22:26:01 | — | — |\n| clean_s5 | 22:46:43 | 1.7323 | 0.5965 |\n| clean_s6 | 22:02:34 | — | — |\n| clean_s7 | 22:31:18 | — | — |\n| clean_s8 | 22:48:46 | 1.1656 | 0.5860 |\n| clean_s9 | 22:10:10 | — | — |\n| clean_s10 | 22:38:51 | — | — |\n\n**共 10 个 clean seed 已全部完成。** result 文件：`clean_results.json`, `clean_s2` ~ `clean_s10_results.json`（含 `clean_results_lz_uncorrected.json`）。\n\nctrl_contam_pilot/results/llama/ 下无 clean 文件。\n\n### 当前运行\n\n- **GPU 0/1/2**: 已 ALL DONE，空闲（0 MiB 显存）\n- **GPU 3**: 正在跑 `contam_5 mistral`（非 clean），进度 11000/14042（~78%），显存 5893 MiB，利用率 95%\n\n### 尚未开始的 clean seeds\n\n**无。** 全部 10 个 clean seed 已完成。\n\n### GPU 3 上的 contam_5 mistral\n\n按当前速率（~500 items/min），剩余约 3042 items，预计 **6-8 分钟后完成**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-clean-reeval-progress.md"
+}

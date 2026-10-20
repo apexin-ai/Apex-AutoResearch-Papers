@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "854c616e6047fbb9864d",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "code dual server gpu audit",
+  "task_key": "worker_code_dual-server-gpu-audit_20260521T105712",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_dual-server-gpu-audit_20260521T105712.log",
+    "occurrence": 1,
+    "bytes": 704103,
+    "sha256": "29447a8c0bd1960cb66fa79e63aa1648444b37ad8849385ba914f073f283db50"
+  },
+  "statistics": {
+    "messages": 277,
+    "user_turns": 0,
+    "tool_calls": 105,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 63,
+      "tool_call": 105,
+      "tool_result": 105,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 277,
+      "chunks": [
+        {
+          "path": "854c616e6047fbb9864d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "854c616e6047fbb9864d-part-0002.json",
+          "message_count": 97
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-dual-server-gpu-audit.md"
+}

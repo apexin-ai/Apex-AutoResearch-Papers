@@ -1,0 +1,33 @@
+{
+  "exp_id": "exp-accuracy-zscore-baseline",
+  "project": "irt_personfit_contam",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:30:51.761Z",
+    "updated_at": "2026-05-20T11:33:55.426Z",
+    "hypothesis": "Accuracy z-score baseline (|z|>1.96) flags far fewer cells than lz* because it only captures overall performance deviation without item-level pattern information — lz* provides strictly more information by detecting response pattern aberrance that accuracy alone misses",
+    "spec": {
+      "command": "python src/baseline_accuracy_zscore.py",
+      "server": "local(CPU)",
+      "data_path": "artifacts/psn_irt_phase_b/combine.csv",
+      "data_count": "12 models x 5 benchmarks",
+      "model_name": "N/A",
+      "seed": "N/A"
+    },
+    "metrics": {
+      "z_flagged_count": 4,
+      "lz_flagged_count": 57,
+      "agreement_rate": 0.117,
+      "gemini15_mmlu_zscore": 1.413
+    },
+    "conclusion": "success",
+    "log_path": "artifacts/accuracy_zscore_baseline/comparison_summary.json",
+    "checkpoint_path": "artifacts/accuracy_zscore_baseline/",
+    "completed_at": "2026-05-20T11:33:55.426Z"
+  },
+  "timestamp": "2026-05-20T11:33:55.515156+00:00",
+  "trigger": "update_registry"
+}

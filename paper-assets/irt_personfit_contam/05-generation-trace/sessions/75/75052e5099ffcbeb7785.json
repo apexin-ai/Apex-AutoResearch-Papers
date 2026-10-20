@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "75052e5099ffcbeb7785",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "code eval s6 s8 cuda0",
+  "task_key": "worker_code_eval-s6-s8-cuda0_20260521T082927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval-s6-s8-cuda0_20260521T082927.log",
+    "occurrence": 1,
+    "bytes": 743454,
+    "sha256": "305750cabc38acfeb0f19bfd538500b8bb0f563d2765108c322d47c8493ac448"
+  },
+  "statistics": {
+    "messages": 482,
+    "user_turns": 0,
+    "tool_calls": 217,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 44,
+      "tool_call": 217,
+      "tool_result": 217,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 482,
+      "chunks": [
+        {
+          "path": "75052e5099ffcbeb7785-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "75052e5099ffcbeb7785-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "75052e5099ffcbeb7785-part-0003.json",
+          "message_count": 122
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-eval-s6-s8-cuda0.md"
+}

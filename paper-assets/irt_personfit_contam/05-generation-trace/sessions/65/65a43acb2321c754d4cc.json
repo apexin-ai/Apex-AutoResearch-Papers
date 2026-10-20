@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65a43acb2321c754d4cc",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code exp power theory",
+  "task_key": "worker_code_exp-power-theory_20260520T095630",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-power-theory_20260520T095630_result.json",
+    "occurrence": 1,
+    "bytes": 977,
+    "sha256": "63c71800bc31c966a3e1cd250d86e0513229671be1f3237eef20ce8eadda750e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-power-theory 完成。结果汇总：\n\n**理论验证通过** — R²(two-sided)=0.957, R²(left-tail)=0.976, R²(mean lz*)=0.995\n\n**核心发现**:\n1. **δ ∝ √n**: 检测力信号随 √n_items 增长（√n scaling R²≥0.87），解释了 MMLU(14K) >> ARC-C(295) 的 power 差异\n2. **Inverted-U 机制**: lz* 均值在 π≈81-85% 处从负转正——中等污染产生 aberrant pattern (lz*<0)，高污染产生 over-consistent pattern (lz*>0)。左尾检测只捕获前者，因此呈 inverted-U；两侧检测捕获两端，消除 inverted-U\n3. **最小 items 指南**: 80% power 需要 ~8K items (15% contam), ~3K (25%), ~1K (50%)\n\n**产出** (`artifacts/power_theory/`):\n- `theory_derivation.md` — 含 LaTeX 公式的完整推导\n- `theory_vs_simulation.png` — 6 panel 对比图\n- `minimum_items_table.csv` — 15 行指南表\n- `inverted_u_theory.md` — 拐点理论解释\n- `fit_metrics.json` + `power_theory_summary.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-power-theory.md"
+}

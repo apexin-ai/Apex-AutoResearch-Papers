@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d0ba9d25b119746a2ee",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops batch1 eval results",
+  "task_key": "worker_ops_batch1-eval-results_20260523T105513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_batch1-eval-results_20260523T105513_result.json",
+    "occurrence": 1,
+    "bytes": 1954,
+    "sha256": "47faaa80853922dcd8043567da80180577c43969e0a77102579e9e0f36040418"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已收集完毕。汇报如下：\n\n---\n\n## Batch 1 Eval 结果\n\n### Checkpoint 完整性\n全部 4 个实验 checkpoint 完整（含 adapter_model.safetensors + 中间 checkpoint）：\n\n| 实验 | Checkpoint | 状态 |\n|------|-----------|------|\n| llama/contam_15_s2 | 3 checkpoints (445/890/1335) + final adapter | ✓ |\n| llama/contam_50_s2 | 3 checkpoints (752/1504/2256) + final adapter | ✓ |\n| mistral/contam_15_s2 | 3 checkpoints (445/890/1335) + final adapter | ✓ |\n| mistral/contam_50_s2 | 3 checkpoints (752/1504/2256) + final adapter | ✓ |\n\n### Eval 结果（已完成，无需重跑）\n\n| 实验 | ℓz* | θ_MLE | Acc (overall) | Acc (seen) | Acc (unseen) | ℓz*_seen | ℓz*_unseen |\n|------|-----|-------|---------------|------------|-------------|----------|-----------|\n| **Llama 15%** | **-4.680** | -0.319 | 0.658 | 0.774 | 0.638 | -2.093 | -3.673 |\n| **Llama 50%** | **-3.735** | -0.086 | 0.708 | 0.765 | 0.650 | -1.560 | -2.473 |\n| **Mistral 15%** | **-4.141** | -0.611 | 0.605 | 0.768 | 0.576 | -2.363 | -2.571 |\n| **Mistral 50%** | **-4.695** | -0.272 | 0.677 | 0.750 | 0.603 | -1.638 | -2.883 |\n\n### Clean Baseline 与 Cohen's d\n\n现有 clean baseline 仅针对 **Qwen**：\n- free-θ: ℓz*_mean=8.684, ℓz*_std=0.685 (10 seeds)\n- fixed-θ: ℓz_mean=7.352, ℓz_std=0.580 (10 seeds)\n\n**Llama/Mistral 没有 clean baseline。** 目录中无对应的 clean 训练实验结果。Llama/Mistral 的 ℓz* 值全是**负数**（-3.7 到 -4.7），而 Qwen 污染实验的 ℓz* 是正数（3~5），说明 IRT item parameters（在 Qwen clean 上校准的）不直接适用于 Llama/Mistral 的 response pattern。\n\n**无法直接计算 Llama/Mistral 的 Cohen's d**——需要先训练各自的 clean baseline 模型，或使用模型无关的 IRT item parameters。\n\n### GPU 状态\n- GPU 0/1/2：空闲（0 MiB）\n- GPU 3：被 Batch 2 占用（9605 MiB, 99%）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-batch1-eval-results.md"
+}

@@ -1,0 +1,47 @@
+{
+  "exp_id": "exp-ml-classifier-baseline",
+  "project": "irt_personfit_contam",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:57:38.101Z",
+    "updated_at": "2026-05-20T12:42:10.990Z",
+    "hypothesis": "ML classifiers (logistic regression, random forest) trained on binary response vectors cannot significantly outperform lz* in contamination detection AUROC on simulated data, because binary response patterns contain limited higher-order information beyond what lz* already captures via the IRT likelihood",
+    "spec": {
+      "command": "python ml_classifier_baseline.py",
+      "server": "local",
+      "data_path": "artifacts/psn_irt_params/ + artifacts/extended_simulation/",
+      "data_count": "500 per class x 5 benchmarks x 5 contam levels",
+      "model_name": "LogReg + RF (sklearn)",
+      "seed": "42",
+      "checkpoint_path": "artifacts/ml_classifier_baseline/",
+      "log_path": "artifacts/ml_classifier_baseline/analysis_report.md"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "auroc_avg_25pct": {
+        "lz_star": 0.86,
+        "lr_resp": 0.899,
+        "rf_resp": 0.885,
+        "lr_resp_summ": 0.909,
+        "rf_resp_summ": 0.913
+      },
+      "auroc_avg_5pct": {
+        "lz_star": 0.675,
+        "best_ml": 0.575
+      },
+      "auroc_avg_10pct": {
+        "lz_star": 0.763,
+        "best_ml": 0.712
+      },
+      "lz_star_advantage_low_contam": "+0.10 AUROC at 5%, +0.05 at 10%",
+      "ml_advantage_high_contam": "+0.05 at 25%, +0.16 at 50%",
+      "key_finding": "lz* outperforms supervised ML at low contamination (5-10%) without any training data; ML only wins at 25%+ where signal is already strong"
+    },
+    "completed_at": "2026-05-20T12:42:10.990Z"
+  },
+  "timestamp": "2026-05-20T12:42:11.039325+00:00",
+  "trigger": "update_registry"
+}

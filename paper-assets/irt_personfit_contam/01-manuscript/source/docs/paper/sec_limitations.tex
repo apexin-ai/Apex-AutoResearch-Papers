@@ -1,0 +1,11 @@
+\section*{Limitations}
+
+Our controlled contamination experiments use two model families (Qwen2.5-7B-Instruct and Llama-3.1-8B-Instruct) at the 7--8B parameter scale with QLoRA fine-tuning at rank 16. The limited adapter capacity means observed memorization rates (33--38\% of injected items at 15\% contamination) likely represent a conservative lower bound; full-parameter fine-tuning would permit greater memorization and produce stronger $\ell_z^*$ signals. Extending to additional families, larger parameter scales, and full-parameter fine-tuning remains future work.
+
+The framework relies on pre-calibrated item parameters from PSN-IRT rather than self-calibrated parameters. Our MML-EM refit experiment reveals that discrimination recovery degrades substantially ($r_a = 0.127$) when calibrating on current leaderboard data where most models exhibit contamination-driven misfit. Until neural IRT or alternative calibration methods can handle contaminated respondent pools, the framework depends on externally maintained parameter banks.
+
+All controlled experiments target SFT-stage contamination. While $\ell_z^*$ is structurally invariant to post-hoc distributional changes from reinforcement learning, empirical validation on post-RL models is deferred to future work.
+
+Detection power varies with benchmark size. On ARC-Challenge (295 items), Cohen's $d = 0.45$ at 15\% contamination, well below the $d = 3.42$ observed on MMLU (14,042 items). The closed-form power function (Equation~\ref{eq:power}) predicts that 80\% power at 15\% contamination requires $\geq$7,958 items under MMLU item parameters (the threshold varies by benchmark), placing small benchmarks below reliable detection thresholds.
+
+Finally, because LLM response patterns universally violate classical IRT assumptions, absolute $\ell_z^*$ values cannot be interpreted against standard normal thresholds. Our framework addresses this through the $\Delta\ell_z^*$ difference-in-differences design, but this requires a clean reference condition for each benchmark.

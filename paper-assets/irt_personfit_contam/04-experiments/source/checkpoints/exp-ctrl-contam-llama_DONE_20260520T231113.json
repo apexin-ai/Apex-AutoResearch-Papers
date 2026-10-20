@@ -1,0 +1,71 @@
+{
+  "exp_id": "exp-ctrl-contam-llama",
+  "project": "irt_personfit_contam",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T20:23:08.451Z",
+    "updated_at": "2026-05-20T23:11:13.648Z",
+    "hypothesis": "The lz* contamination detection signal generalizes across model families: Llama-3.1-8B-Instruct (Meta) under the same QLoRA contamination protocol as Qwen2.5-7B (Alibaba) produces comparable Δlz* effect sizes, directly addressing reviewer concern REV-ADD-2 about single-model generalizability",
+    "parent": "exp-ctrl-contam-pilot",
+    "conclusion": "success",
+    "metrics": {
+      "note": "Using lz (uncorrected). lz* (Snijders) recomputation in progress.",
+      "clean": {
+        "lz_star": 0.8175,
+        "accuracy": 0.5914,
+        "theta_mle": -0.6661
+      },
+      "contam_15": {
+        "lz_star": -2.6572,
+        "accuracy": 0.6654,
+        "theta_mle": -0.2761,
+        "acc_seen": 0.7707,
+        "acc_unseen": 0.6469,
+        "lz_seen": -0.4321,
+        "lz_unseen": -2.2654
+      },
+      "contam_50": {
+        "lz_star": -2.8581,
+        "accuracy": 0.6983,
+        "theta_mle": -0.149,
+        "acc_seen": 0.7573,
+        "acc_unseen": 0.6394,
+        "lz_seen": -1.0154,
+        "lz_unseen": -2.039
+      },
+      "delta_lz": {
+        "contam_15": -3.4747,
+        "contam_50": -3.6755
+      },
+      "theta_shift": {
+        "clean": -0.6661,
+        "contam_15": -0.2761,
+        "contam_50": -0.149
+      },
+      "cross_model_comparison": {
+        "qwen_clean_mean": 7.345,
+        "qwen_contam15_delta": -4.34,
+        "llama_contam15_delta": -3.47,
+        "both_models_detect": true
+      }
+    },
+    "spec": {
+      "command": "python train.py --condition {clean,contam_15,contam_50} --gpu {0,1,2}",
+      "server": "westd-35694",
+      "data_path": "/root/autodl-tmp/ctrl_contam_llama/data/{clean,contam_15,contam_50}/train.jsonl",
+      "data_count": "clean=5000, contam_15=7106, contam_50=12021",
+      "model_name": "Llama-3.1-8B-Instruct (QLoRA r=16 alpha=32)",
+      "seed": "clean=42, contam_15=42, contam_50=42, item_selection=999",
+      "checkpoint_path": "/root/autodl-tmp/ctrl_contam_llama/checkpoints/",
+      "log_path": "/root/autodl-tmp/ctrl_contam_llama/results/",
+      "checkpoint_source": "meta-llama/Llama-3.1-8B-Instruct via aria2c",
+      "eval_data": "mmlu_items.json + mmlu_params.csv (4PL IRT parameters)"
+    },
+    "completed_at": "2026-05-20T23:11:13.648Z"
+  },
+  "timestamp": "2026-05-20T23:11:13.702050+00:00",
+  "trigger": "update_registry"
+}

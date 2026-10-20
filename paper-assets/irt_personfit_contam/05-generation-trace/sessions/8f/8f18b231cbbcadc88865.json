@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f18b231cbbcadc88865",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code theta fixed n3 recompute",
+  "task_key": "worker_code_theta-fixed-n3-recompute_20260520T205807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_theta-fixed-n3-recompute_20260520T205807_result.json",
+    "occurrence": 1,
+    "bytes": 1042,
+    "sha256": "85d090477f3b33ff0b2742d90ea619f819db97d8e226b47ff6c85d532f60280f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务均完成。\n\n---\n\n### 任务 1：θ-fixed 重算结果（θ\\_fixed = -0.0966）\n\n| Condition | lz\\*\\_free | lz\\*\\_fixed | θ\\_mle | d\\_free | d\\_fixed | absorbed |\n|-----------|-----------|------------|--------|---------|----------|----------|\n| clean\\_s1 | 8.0101 | 7.9501 | -0.0987 | 0.55 | 0.67 | -0.0600 |\n| clean\\_s2 | 5.9440 | 6.2996 | -0.0842 | -1.15 | -1.15 | 0.3555 |\n| clean\\_s3 | 8.0806 | 7.7808 | -0.1068 | 0.61 | 0.48 | -0.2998 |\n| contam\\_15 | 3.0046 | **10.0224** | 0.1971 | -3.58 | **2.95** | **7.0178** |\n| contam\\_50 | 5.4480 | **15.7080** | 0.3703 | -1.56 | **9.21** | **10.2600** |\n\n**Baseline (n=3, ddof=1):**\n- Free: mean=7.3449, std=1.2137\n- Fixed: mean=7.3435, std=0.9080\n\n**Δlz\\* (vs baseline mean):**\n- contam\\_15: Δfree=-4.3403, Δfixed=+2.6790\n- contam\\_50: Δfree=-1.8969, Δfixed=+8.3646\n\n结果已保存至 `results/theta_fixed_n3.json`。\n\n### 任务 2：compute\\_delta.py ddof 修复\n\n第33行 `ddof=0` → `ddof=1`，已确认修复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-theta-fixed-n3-recompute.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51a1f14c1684278fd359",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops eval consistency check",
+  "task_key": "worker_ops_eval-consistency-check_20260523T111641",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-consistency-check_20260523T111641_result.json",
+    "occurrence": 1,
+    "bytes": 1455,
+    "sha256": "d97bb434823403fe1563cb7ca196caf27d0eeeb7df2cf4d006be16b9af35376d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据收集完毕。以下是对比结论：\n\n---\n\n## ✅ 一致，可以安全使用旧 clean baseline 计算 Cohen's d\n\n### 对比结果\n\n| 维度 | 新代码 (ctrl_contam_pilot) | 旧代码 (Llama / Mistral) | 一致？ |\n|------|--------------------------|--------------------------|--------|\n| **Prompt template** | `Question: ...\\nA. ...\\nB. ...\\nC. ...\\nD. ...\\nAnswer:` | 完全相同 | ✅ |\n| **Few-shot format** | 3-shot, 硬编码（法国首都/水星/2+2） | 完全相同的 3 个 example | ✅ |\n| **MMLU items** | mmlu_items.json, 14042 items, md5=`ec530c77` | md5 一致（Llama/Mistral 都一样） | ✅ |\n| **IRT params** | mmlu_params.csv, 14042 行, md5=`ac5425de` | md5 一致（三个目录都一样） | ✅ |\n| **评分逻辑** | logprob argmax on A/B/C/D tokens | 完全相同 | ✅ |\n| **IRT 计算** | 4PL irf → MLE theta (Newton-Raphson) → lz* (Snijders 2001) | 函数体逐行一致 | ✅ |\n| **量化配置** | 4-bit NF4, float16 compute | 完全相同 | ✅ |\n\n### 差异（均不影响 eval 结果）\n\n- 新代码增加了多模型支持（`--model` 参数）、`contam_5` 条件、注释/docstring\n- 输出路径结构不同（新代码按 model 分子目录）\n- results JSON 新代码多一个 `\"model\"` 字段\n- seen_items_15pct.json 在两个目录内容不同（预期行为——不同 run 的随机采样，clean baseline 的 seen_set 为空不受影响）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-consistency-check.md"
+}

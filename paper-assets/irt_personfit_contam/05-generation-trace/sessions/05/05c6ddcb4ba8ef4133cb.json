@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "05c6ddcb4ba8ef4133cb",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "train llama 5pct contam",
+  "task_key": "worker_train_llama-5pct-contam_20260522T100251",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_llama-5pct-contam_20260522T100251_result.json",
+    "occurrence": 1,
+    "bytes": 2487650,
+    "sha256": "62df99703a73b1810527318be772d4a580b23f79f650e02dec5f385d8f04c942"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2487670,
+                "serialized_sha256": "1bae700412bf1401a181e29d37d22f9106ada91b205d0c56f845de1b28bfb7a7",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-llama-5pct-contam.md"
+}

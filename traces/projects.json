@@ -52,6 +52,12 @@
       "statistics": {}
     },
     {
+      "project": "be-idea-gen-0519-3",
+      "title": "be idea gen 0519 3",
+      "catalog": "../paper-assets/be-idea-gen-0519-3/05-generation-trace/catalog.json",
+      "statistics": {}
+    },
+    {
       "project": "causal_annot_error_attrib",
       "title": "Multi-Class Annotation Errors in Causal Inference: Topology-Dependent Bias, Sensitivity, and Correction",
       "catalog": "../paper-assets/causal_annot_error_attrib/05-generation-trace/catalog.json",
@@ -461,6 +467,22 @@
         "result": 148,
         "conversation": 58,
         "history": 4
+      }
+    },
+    {
+      "project": "irt_personfit_contam",
+      "title": "What Can IRT Person-Fit Statistics Reveal About SFT-Stage Benchmark Contamination?",
+      "catalog": "../paper-assets/irt_personfit_contam/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 726,
+        "messages": 70309,
+        "user_turns": 415,
+        "tool_calls": 28125,
+        "unparsed_lines": 319,
+        "worker": 322,
+        "result": 276,
+        "conversation": 117,
+        "history": 11
       }
     },
     {

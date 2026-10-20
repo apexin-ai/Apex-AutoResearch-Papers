@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "deeeec569a7f460957c8",
+  "project": "irt_personfit_contam",
+  "kind": "history",
+  "title": "director / loop_1.md",
+  "task_key": "loop_1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_1.md",
+    "occurrence": 1,
+    "bytes": 4852,
+    "sha256": "5df22fd28d8b41ec89c9a443f8f76456f703a4301a95efd6592a51f0c226e2f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_messages\nupdated: '2026-05-21T06:43:24+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-35694 cuda:0/1/2/3（4张卡），严禁使用其他设备号\n- Mistral 当前只有 seed=42 单 seed，**不能**以 Cohen's d 形式报告 Mistral 结果，只能报原始 Δlz*\n- 论文**绝不能** claim \"lz* < -2 即为污染\"——固定阈值跨家族失效（Qwen contam_15 lz*=+3.85 仍为正值），检测必须基于 Δlz*/Cohen's d\n- \"minimal-information\" 措辞已决定改为 \"minimal information from the target model\"，PSN-IRT 参数为外部依赖——不能回退到旧措辞\n- ARR DDL 问了 5+ 次未确认，不要替用户假设 DDL\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-35694 (connect.westd.seetacloud.com)，root 用户\n- 远程代码路径：未在 project config 中配置（get_project_status 显示 ✗），实际代码在 /root/autodl-tmp/ 下（需确认）\n- 模型缓存：/root/autodl-tmp/ 下（AutoDL 根分区只有 30GB，大文件必须放数据盘）\n- GPU 状态（最后 Reviewer 确认 ~06:10 UTC）：\n  - cuda:0: Qwen clean_s4 训练 (seed=301)\n  - cuda:1: Qwen clean_s5 训练 (seed=302)（之前有 stale Mistral eval 进程需 kill）\n  - cuda:2: exp-post-rl GRPO 46.6% (3269/7021 steps), ETA ~08:30 UTC\n  - cuda:3: eval_with_ht.py --stage base (D022 HT post-RL) + Qwen clean_s5 训练\n- 飞书群：A群 oc_9840a7d708128f2f1d02985bd9b8d901, C群（审稿）oc_6c76a266d9f5997de21a1604bc79c209\n\n### 3. 📊 当前状态\n刚完成 Dream Round 2 分析（D022）并执行了行动项：\n- paper_framing.md 已更新：R12 (HT 四场景应对 + 数据无关差异化), R13 (minimal-information), 跨家族 baseline lz* divergence (#13/#14), headline template 修正\n- ROADMAP 已更新（Dream Round 2 结果 + Path to 3.5）\n- Paper Agent 已收到 patch 指令（跨家族 baseline 讨论 + minimal-information 措辞 + inverted-U model-dependent caveat）\n- 引用扩充完成（30 条 verified，Reviewer PASS），Agent 队列中有整合到 bib 的指令\n- **Agent 队列 depth=4**，正在逐条处理（seeds 启动 → Mistral 清理 → 引用整合 → HT 结果查询）\n\n**等待中的关键回调：**\n1. HT post-RL base/SFT 阶段结果 — eval_with_ht.py 在跑，这是 D022 最高优先级\n2. GRPO 训练完成（~08:30 UTC）→ 需要跑 GRPO 阶段的 lz* + HT eval\n3. Qwen seeds s4/s5 训练完成 → eval → 继续排 s6-s10 + Mistral/Llama seeds\n4. Paper Agent patch 回复（跨家族 baseline 讨论 + minimal-information）\n\n### 4. 📋 待办（条件触发式）\n- HT post-RL base+SFT 结果回来 → 对比 ℓz* vs HT 效应量，判断四场景中属于哪个（Best/Good/Neutral/Bad），更新 paper_framing.md R12\n- GRPO 完成（~08:30 UTC）→ 派 Agent 跑 eval_with_ht.py --stage grpo（注意：eval 需 base→SFT merge→GRPO adapter 的正确加载顺序，之前有 bug 已修）→ 这是 D022 的决定性数据点\n- Qwen s4/s5 完成 → eval_lz → 排 s6-s10 on freed GPUs → 同时排 Mistral clean seeds (seed=43,44,45...)\n- 全部 seeds n=10 完成 + HT post-RL 结果 + Mistral Cohen's d → 综合更新论文 + re-dream（第三轮）\n- Post-RL Llama 实验：GRPO cuda:2 释放后启动 Llama SFT→GRPO（~8 GPU·h），Dream 三档一致需要第二家族\n- 引用整合完成 → 确认 HT 原始论文(Harnisch 1983)、PSN-IRT、Wang et al. 2025 在 bib 中\n- Paper Agent patch 完成 → 确认跨家族 baseline 表格、minimal-information 措辞、inverted-U caveat 都到位\n\n### 5. 🎯 战略上下文\n- **项目核心**：IRT person-fit (ℓz*) 检测 LLM benchmark contamination，目标 EMNLP 2026 Main\n- **Dream 评分轨迹**：Round 1 (B:3.0/M:2.5/W:~2.0) → Round 2 (B:3.0/M:3.0/W:2.5)，median 提升但仍 Findings 水平\n- **通往 3.5 (Borderline Conference) 的关键路径**：(1) HT post-RL 差异化 — 如果 ℓz* 保留信号 HT 不保留→决定性；(2) Post-RL Llama 第二家族；(3) 引用 30→60+；(4) Seeds n=10 收紧 CI；(5) 诚实 headline（包含 HT 比较）\n- **最易判断错的事**：HT post-RL 结果可能不是 Best case（均保留或均丢失）。D022/paper_framing.md R12 已准备四种场景应对——如果 Neutral/Bad，不要慌，转用数据无关差异化点（parametric null, Snijders correction, multi-parameter weighting）\n- **容易踩的坑**：(1) Agent 队列积压——当前 depth=4，不要继续堆消息，等处理完再发；(2) Mistral 只有 1 seed，不要用 Cohen's d 引用；(3) Inverted-U 是模型相关的（Qwen 有，Llama/Mistral 没有），不能 claim universal；(4) cuda:0/1 可能有 stale eval 进程占显存，确认清理\n- **决策链**：D020 (C群审稿处理) → D021 (Action Matrix: seeds n=10, R² 降级) → D022 (Dream Round 2: HT post-RL 突破口 + 六项结构性问题)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1.md"
+}

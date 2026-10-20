@@ -1,0 +1,13 @@
+theta_fixed = -0.0914 (mean of clean_s1 and clean_s2 theta_MLE)
+
+Results:
+clean_s1:  theta_MLE=-0.0987, lz*_free=8.0101, lz*_fixed=7.7977
+clean_s2:  theta_MLE=-0.0842, lz*_free=5.9440, lz*_fixed=6.1521
+contam_15: theta_MLE=0.1971, lz*_free=3.0046, lz*_fixed=9.9317
+contam_50: theta_MLE=0.3703, lz*_free=5.4480, lz*_fixed=15.6424
+
+Delta analysis (vs clean baseline):
+contam_15: delta_lz_free=-3.9725, delta_lz_fixed=+2.9567, theta_shift=0.2885, signal_absorbed=6.9292
+contam_50: delta_lz_free=-1.5291, delta_lz_fixed=+8.6674, theta_shift=0.4617, signal_absorbed=10.1965
+
+Dose-response: free_monotonic=False, fixed_monotonic=True, fixed_ratio=2.93

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02d1efb1096a3059aee2",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code p1 eval fix",
+  "task_key": "worker_code_p1-eval-fix_20260524T040742",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_p1-eval-fix_20260524T040742_result.json",
+    "occurrence": 1,
+    "bytes": 1709,
+    "sha256": "622c5521b7ced45e3ad1e13fd615f51441408955d5697b8f3c1a92c5d1f915fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。汇总：\n\n---\n\n## 修改总结\n\n### 1. eval_lz.py — seen_items 匹配逻辑\n\n**Before** (L194-207): 硬编码 4 个 seen_items 文件路径 + if-elif 子串匹配链\n```python\nseen_5_path = os.path.join(BASE_DIR, \"data\", \"seen_items_5pct.json\")\nseen_15_path = ...  # 4个路径全部预加载\nif \"contam_50\" in args.condition:\n    seen_set = seen_50\nelif \"contam_25\" in args.condition:\n    ...\n```\n\n**After**: 用 `re.search(r'contam_(\\d+)', ...)` 提取百分比数字，动态加载对应文件\n```python\nm = re.search(r'contam_(\\d+)', args.condition)\nif m:\n    pct = m.group(1)\n    seen_path = os.path.join(BASE_DIR, \"data\", f\"seen_items_{pct}pct.json\")\n    # 动态加载，自动适配任意百分比\n```\n\n### 2. prepare_data.py — 补齐所有条件\n\n**Before**: 只生成 4 条件 (clean_s1, clean_s2, contam_15, contam_50)，只保存 2 个 seen_items 文件\n\n**After**:\n- 生成 **22 个条件**: clean_s1-s10 + contam_{5,15,25,50} × {s1,s2,s3}\n- 保存 **4 个 seen_items 文件**: 5pct/15pct/25pct/50pct\n- 添加 indices_5 和 indices_25 计算，验证嵌套子集关系\n\n### 3. train.py — 无需修改\n\nSEED_MAP 已包含所有 22 个条件，数据路径 `data/{condition}/train.jsonl` 格式正确。\n\n### 数据验证\n\n| 条件 | 条数 | 构成 |\n|------|------|------|\n| contam_5 | 5,702 | 5000 alpaca + 702 MMLU |\n| contam_15 | 7,106 | 5000 alpaca + 2106 MMLU |\n| contam_25 | 8,510 | 5000 alpaca + 3510 MMLU |\n| contam_50 | 12,021 | 5000 alpaca + 7021 MMLU |\n\n子集关系: 5% ⊂ 15% ⊂ 25% ⊂ 50% ✓\n\n所有数据文件已存在于服务器上，无需重新运行 prepare_data.py。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-p1-eval-fix.md"
+}

@@ -1,0 +1,2 @@
+See server: /root/autodl-tmp/param_perturbation_theta_fixed_results.json
+Script: /root/autodl-tmp/param_perturbation_theta_fixed.py

@@ -1,0 +1,23 @@
+{
+  "exp_id": "phase_b_personfit",
+  "project": "irt_personfit_contam",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T08:34:21.694Z",
+    "updated_at": "2026-05-20T08:34:42.354Z",
+    "hypothesis": "Real LLM benchmark response data from PSN-IRT 12 models shows significant inter-model variation in person-fit statistics (lz*, outfit, infit), with specific models exhibiting anomalous patterns indicative of benchmark contamination — particularly Gemini-1.5 with accuracy-ability dissociation",
+    "spec": {
+      "command": "python src/phase_b_personfit.py",
+      "server": "local (CPU)",
+      "data_path": "artifacts/psn_irt_phase_b/combine.csv + artifacts/psn_irt_params/",
+      "data_count": "12 models × 41871 items (5 benchmarks: MMLU 14042, HellaSwag 10042, GSM8K 1319, ARC-C 295, HumanEval 164)",
+      "model_name": "N/A (person-fit computation on existing response data)",
+      "seed": "N/A (deterministic computation)"
+    }
+  },
+  "timestamp": "2026-05-20T08:34:42.363512+00:00",
+  "trigger": "update_registry"
+}

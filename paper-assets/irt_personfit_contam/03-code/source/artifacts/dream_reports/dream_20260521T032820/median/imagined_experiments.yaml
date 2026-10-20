@@ -1,0 +1,907 @@
+tier: median
+narrative_guidance: 'Claim 1 调整为 "principled detection framework with characterized
+  operating conditions"： 检测在 3/4 家族有效（|d|>2.0 @ 15%），1 家族信号较弱（|d| 1.0-2.0）。 HellaSwag/GSM8K
+  效果显著但 d 值受 n_items 制约。θ-fixed 在多数家族恢复单调性但非全部。 Baseline 对比诚实报告 information-access
+  vs detection-power tradeoff，强调 minimal-information operating point 价值。 Post-RL 若不完整降为
+  Discussion 中 structural argument + preliminary evidence。 标题可调整为 "Detection and Characterization
+  of Benchmark Contamination via IRT Person-Fit"。
+
+  '
+imagined_experiments:
+- name: Controlled Contamination Pilot
+  plan_id: exp-ctrl-contam-pilot
+  description: 'Qwen3.5-9B × MMLU, 4 conditions (0%-s1/0%-s2/15%/50%)。 Go/no-go 信号：Δlz*
+    是否显著，clean-vs-clean noise floor，memorization fraction。
+
+    '
+  expected_results:
+    clean_s1_lz_star: 8.2
+    clean_s2_lz_star: 7.5
+    clean_mean_lz_star: 7.85
+    clean_std_lz_star: 0.49
+    contam_15_lz_star: 5.1
+    contam_50_lz_star: 6.8
+    contam_15_delta_lz_star: -2.75
+    contam_50_delta_lz_star: -1.05
+    cohens_d_contam_15: -2.5
+    cohens_d_contam_50: -0.95
+    clean_vs_clean_delta: 0.7
+    memorization_fraction_15pct: 0.35
+    memorization_fraction_50pct: 0.28
+    contam_15_acc: 0.72
+    contam_50_acc: 0.76
+    clean_mean_acc: 0.68
+    theta_shift_15pct: 0.25
+    theta_shift_50pct: 0.42
+    seen_unseen_lz_gap_15pct: 2.8
+  result_rationale: 'Median 档下 Qwen 作为首个测试家族表现中等偏上。|d|=2.50 @ 15% 处于 median 范围 [1.0,
+    2.5] 上端， 因为 MMLU 是最大 benchmark（14K items），person-fit power 最强。 50% 条件 d=0.95（borderline
+    large）反映 θ-shift confound——污染提升 θ_MLE 吸收了部分 aberrance 信号， 导致 free-θ 下 dose-response
+    非单调。clean-vs-clean Δ=0.7 建立 noise floor（远小于 contam Δ）， 确认信号非随机波动。memorization_fraction=0.35
+    落在 median 范围 [0.25, 0.45] 中部—— QLoRA SFT 不完全记忆，约 35% 污染 items 产生记忆信号，其余被 generalization
+    平滑。 seen/unseen gap=2.8 是最清晰的 fingerprint：被污染 items 的 lz* 显著低于 unseen items。 只有
+    2 个 clean seeds（n=2）限制了 Cohen''s d 的精度，motivates 第三个 seed。
+
+    '
+  tables:
+  - title: 'Table: Pilot Δlz* Summary (Qwen3.5-9B × MMLU)'
+    columns:
+    - condition
+    - lz_star
+    - delta_lz_star
+    - cohens_d
+    - accuracy
+    - theta_mle
+    - memorization_frac
+    rows:
+    - - clean-s1
+      - 8.2
+      - —
+      - —
+      - 0.679
+      - -0.11
+      - —
+    - - clean-s2
+      - 7.5
+      - —
+      - —
+      - 0.681
+      - -0.09
+      - —
+    - - contam-15%
+      - 5.1
+      - -2.75
+      - -2.5
+      - 0.72
+      - 0.14
+      - 0.35
+    - - contam-50%
+      - 6.8
+      - -1.05
+      - -0.95
+      - 0.76
+      - 0.31
+      - 0.28
+  figures_description:
+  - 'Bar chart: clean-s1/s2 vs contam-15/50 lz* 值，error bars from clean seed variance'
+  - 'Scatter: seen items lz* vs unseen items lz* at 15% contamination, showing memorization
+    fingerprint'
+  analysis: 'Go signal confirmed: |d|>2 @ 15%。但 free-θ 非单调性（50% d < 15% d）暴露 θ-shift
+    confound， 需要 θ-fixed 分析。n=2 clean seeds 不足以精确估计 variance，第三 seed 必须追加。 Memorization
+    fraction 0.35 意味着 theoretical power 是 upper bound，adjusted power ≈ 0.35 × theoretical。
+
+    '
+- name: Full Controlled Contamination
+  plan_id: exp-ctrl-contam
+  description: '4 模型 (Qwen3.5-9B, Gemma-4-31B, Llama-3.1-8B, Mistral-7B-v0.3) × 6
+    levels (0/5/10/15/25/50%) × 3 benchmarks (MMLU, GSM8K, HellaSwag)。
+
+    '
+  expected_results:
+    qwen_mmlu_d_15pct: -2.5
+    llama_mmlu_d_15pct: -2.8
+    gemma_mmlu_d_15pct: -1.3
+    mistral_mmlu_d_15pct: -2.2
+    mean_mmlu_d_15pct: -2.2
+    min_mmlu_d_15pct: -1.3
+    n_families_d_gt_2_mmlu: 3
+    qwen_hellaswag_d_15pct: -1.2
+    llama_hellaswag_d_15pct: -1.4
+    gemma_hellaswag_d_15pct: -0.6
+    mistral_hellaswag_d_15pct: -1.1
+    mean_hellaswag_d_15pct: -1.08
+    qwen_gsm8k_d_15pct: -0.9
+    llama_gsm8k_d_15pct: -1.1
+    gemma_gsm8k_d_15pct: -0.4
+    mistral_gsm8k_d_15pct: -0.8
+    mean_gsm8k_d_15pct: -0.8
+    theta_fixed_monotonic_families_mmlu: 3
+    theta_fixed_monotonic_families_hellaswag: 2
+    theta_fixed_monotonic_families_gsm8k: 2
+    theta_fixed_non_monotonic_family: Gemma (residual non-monotonicity at 50%)
+    memorization_fraction_mmlu_range:
+    - 0.28
+    - 0.42
+    memorization_fraction_hellaswag_range:
+    - 0.25
+    - 0.38
+    memorization_fraction_gsm8k_range:
+    - 0.22
+    - 0.35
+    n_families_any_benchmark_d_gt_2: 3
+    weakest_family: Gemma
+    weakest_family_reason: high baseline ability → smaller θ-shift, lower aberrance
+      signal
+  result_rationale: 'Median 档核心假设：3/4 家族 |d|>2.0 @ 15% on MMLU，1 家族（Gemma）信号较弱。 Gemma-4-31B
+    作为 31B 模型，baseline ability 高于其他 7-9B 模型，θ_MLE 已较高， contamination 产生的 θ-shift 相对较小，且高能力模型本身对
+    MMLU hard items 答对率就高， memorization 信号被 genuine ability 遮盖——这是 median 档的典型 boundary
+    condition。 HellaSwag（~10K items）d 值在 [0.8, 1.5] 范围，GSM8K（~1.3K items）d 值在 [0.5,
+    1.2] 范围， 严格遵循 power ∝ √n_items 的理论预测——n_items 减小直接压低 lz* 的 signal-to-noise ratio。
+    θ-fixed 在 Qwen/Llama/Mistral 恢复单调性，但 Gemma 因 baseline misfit 较低 + 高 ability， θ-fixed
+    改善有限，50% 条件仍有残余非单调性。 Memorization fraction 家族间有差异（25-45%），反映不同架构的 SFT generalization
+    特性不同： Gemma 的 instruction tuning 基础更强，generalization 更好，记忆信号更弱。
+
+    '
+  tables:
+  - title: 'Table: Cohen''s d @ 15% Contamination (n=3 seeds, ddof=1, ℓz*-corrected)'
+    columns:
+    - family
+    - MMLU_d
+    - HellaSwag_d
+    - GSM8K_d
+    - θ_fixed_monotonic
+    rows:
+    - - Qwen3.5-9B
+      - -2.5
+      - -1.2
+      - -0.9
+      - 'Yes'
+    - - Llama-3.1-8B
+      - -2.8
+      - -1.4
+      - -1.1
+      - 'Yes'
+    - - Gemma-4-31B
+      - -1.3
+      - -0.6
+      - -0.4
+      - No (50% residual)
+    - - Mistral-7B-v0.3
+      - -2.2
+      - -1.1
+      - -0.8
+      - 'Yes'
+    - - Mean
+      - -2.2
+      - -1.08
+      - -0.8
+      - 3/4
+  - title: 'Table: Memorization Fraction by Family × Benchmark'
+    columns:
+    - family
+    - MMLU
+    - HellaSwag
+    - GSM8K
+    rows:
+    - - Qwen3.5-9B
+      - 0.38
+      - 0.33
+      - 0.3
+    - - Llama-3.1-8B
+      - 0.42
+      - 0.38
+      - 0.35
+    - - Gemma-4-31B
+      - 0.28
+      - 0.25
+      - 0.22
+    - - Mistral-7B-v0.3
+      - 0.36
+      - 0.32
+      - 0.28
+  - title: 'Table: Dose-Response (MMLU, θ-fixed, ℓz*-corrected)'
+    columns:
+    - family
+    - d_5pct
+    - d_10pct
+    - d_15pct
+    - d_25pct
+    - d_50pct
+    - monotonic
+    rows:
+    - - Qwen3.5-9B
+      - -0.6
+      - -1.4
+      - -2.5
+      - -3.8
+      - -5.2
+      - 'Yes'
+    - - Llama-3.1-8B
+      - -0.75
+      - -1.6
+      - -2.8
+      - -4.2
+      - -5.8
+      - 'Yes'
+    - - Gemma-4-31B
+      - -0.3
+      - -0.7
+      - -1.3
+      - -1.8
+      - -1.6
+      - 'No'
+    - - Mistral-7B-v0.3
+      - -0.55
+      - -1.2
+      - -2.2
+      - -3.4
+      - -4.6
+      - 'Yes'
+  figures_description:
+  - 'Fig: 4×3 panel dose-response curves (family × benchmark), θ-fixed, with 95% bootstrap
+    CIs'
+  - 'Fig: Memorization fraction heatmap (family × benchmark × contamination level)'
+  - 'Fig: seen/unseen accuracy split at 15% for all 4 families on MMLU'
+  analysis: '3/4 家族 MMLU |d|>2.0 确认检测框架跨家族有效，但 Gemma 的 boundary condition 需在论文中显式报告。
+    HellaSwag/GSM8K 的较低 d 值符合 power ∝ √n_items 理论，strengthens Claim 2。 Gemma 的残余非单调性是
+    median 档的 key limitation——需在 §6 讨论模型 ability 对检测的调制效应。 跨 benchmark memorization
+    fraction 差异表明 SFT generalization 是 benchmark-dependent 的， 支持 Claim 2 的 caveat（power
+    function 是 upper bound）。
+
+    '
+- name: Leaderboard Audit
+  plan_id: exp-leaderboard-audit
+  description: 'Open LLM Leaderboard v1 大规模 person-fit 扫描。已 ABANDONED（D011: a_r=0.111）。
+
+    '
+  expected_results:
+    status: ABANDONED
+    reason: v1-irt-refit a_r=0.111, item alignment 54.56% → parameters too degraded
+      for audit
+  result_rationale: 'Path D 已确认 dead：MML-EM 重拟合的 discrimination 参数 a_r=0.111 远低于 0.2
+    可用阈值， 意味着 v1 leaderboard 参数下的 lz* 基本退化为 accuracy-like statistic， 无法提供 person-fit
+    特有的 response-pattern-level 信息。 在 median 档下不需要尝试——这是一个已被充分验证的 negative result。
+    数据可用性（13K+ models）写入 Discussion/Future Work 即可。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 'ABANDONED。在论文 §7 Discussion 中报告：13K+ per-item data publicly available，
+    但 current IRT estimation methods 的 sample size requirements 限制了大规模审计。 Frame as
+    "the gap between classical IRT and neural IRT estimation" methodological contribution。
+
+    '
+- name: Natural Experiment (base→chat pairs)
+  plan_id: exp-natural-experiment
+  description: 'v1 leaderboard base→chat 模型 pairs，计算 Δlz* 作为 SFT 效应代理。
+
+    '
+  expected_results:
+    n_pairs: 4
+    n_benchmarks: 4
+    n_significant_benchmarks: 1
+    significant_benchmark: HellaSwag
+    hellaswag_mean_delta: -2.8
+    hellaswag_p_value: 0.04
+    mmlu_p_value: 0.22
+    gsm8k_p_value: 0.18
+    arc_c_p_value: 0.45
+    individual_outlier_pairs: 0
+    overall_conclusion: weak_systematic_signal
+  result_rationale: 'Median 档下 natural experiment 受限于两个因素： (1) a_r=0.111 使 lz* 退化为
+    accuracy-like，个体 Δlz* 主要反映 Δaccuracy 而非 response pattern shift； (2) 仅 4-5 usable
+    pairs 无统计检验能力（n 太小无法做 paired t-test with power）。 HellaSwag 可能显示 marginal significance
+    因为它是最大的非 MMLU benchmark（~10K items）， 但 effect 不强。其他 benchmarks p>0.15。无个体 outlier
+    pair 显示 benchmark-specific contamination。 这是一个 P2-optional 实验，median 档下结论是 "suggestive
+    but underpowered"， 不进入主论文 claims，可在 appendix 报告。
+
+    '
+  tables:
+  - title: 'Table: Natural Experiment Δlz* (base→chat)'
+    columns:
+    - benchmark
+    - n_pairs
+    - mean_delta
+    - t_stat
+    - p_value
+    - significant
+    rows:
+    - - MMLU
+      - 4
+      - -1.2
+      - -1.45
+      - 0.22
+      - 'No'
+    - - HellaSwag
+      - 4
+      - -2.8
+      - -2.85
+      - 0.04
+      - Marginal
+    - - GSM8K
+      - 4
+      - 1.5
+      - 1.62
+      - 0.18
+      - 'No'
+    - - ARC-C
+      - 4
+      - -0.6
+      - -0.82
+      - 0.45
+      - 'No'
+  figures_description:
+  - 'Paired dot plot: base vs chat lz* per pair, by benchmark'
+  analysis: 'Underpowered by design (n=4 pairs, a_r degraded)。HellaSwag marginal significance
+    可能反映 SFT 的系统效应而非 contamination。不影响论文 claims。 Appendix material，mention in §6 as
+    "preliminary evidence consistent with SFT effects on response patterns"。
+
+    '
+- name: v1 IRT Refit Expanded
+  plan_id: exp-v1-irt-refit-expanded
+  description: '扩大 v1 IRT 重拟合至 N≥500，验证 pilot N=63 的 a_r=0.111 是否因样本量不足。
+
+    '
+  expected_results:
+    n_models_downloaded: 520
+    n_models_usable: 410
+    a_r_3pl: 0.13
+    a_r_2pl: -0.02
+    b_r_3pl: 0.66
+    b_r_spearman: 0.68
+    fitting_time_sec: 180
+    conclusion: negative_path_d_dead
+  result_rationale: 'Median 档预期 a_r 从 0.111（N=63）仅微升至 ~0.13（N=500+），远低于 0.2 可用阈值。
+    原因：discrimination failure 不是 sample size 问题，而是 LLM response patterns 的结构性特征——
+    classical IRT 假设 unidimensional latent trait，但 LLMs 的 ability profile 是 multi-dimensional
+    的 （不同 domain 能力独立变化），导致 item discrimination 在 aggregate 拟合中坍缩。 b_r 稳定在 0.66（difficulty
+    恢复尚可）进一步确认：问题在 discrimination 而非 difficulty。 这个 negative result 是 methodological
+    contribution——量化了 classical vs neural IRT 的 sample size gap。 N=500 满足 reviewer
+    要求的阈值，可以最终关闭 Path D。
+
+    '
+  tables:
+  - title: 'Table: IRT Refit Comparison (pilot vs expanded)'
+    columns:
+    - metric
+    - pilot_N63
+    - expanded_N500
+    - threshold
+    - verdict
+    rows:
+    - - 3PL a_r (Pearson)
+      - 0.111
+      - 0.13
+      - '>0.4 viable'
+      - FAIL
+    - - 2PL a_r (Pearson)
+      - -0.084
+      - -0.02
+      - '>0.4 viable'
+      - FAIL
+    - - 3PL b_r (Pearson)
+      - 0.626
+      - 0.66
+      - '>0.5 viable'
+      - PASS
+    - - 3PL b_r (Spearman)
+      - 0.656
+      - 0.68
+      - '>0.5 viable'
+      - PASS
+  figures_description:
+  - 'Scatter: PSN-IRT a vs v1-refit a (N=500), showing collapsed discrimination'
+  analysis: 'Path D 最终关闭。a_r<0.2 at N=500 confirms discrimination failure is structural,
+    not sample-size-driven。 论文 §5 报告为 "IRT parameter estimation challenges"（Claim
+    3c）， framing: "the gap between classical psychometric sample requirements and
+    the scale needed for neural IRT"。
+
+    '
+- name: 4PL vs 3PL Ablation
+  plan_id: exp-4pl-ablation
+  description: '比较 4PL vs 3PL(d=1) 下的检测灵敏度差异，量化 feasibility parameter d 的影响。
+
+    '
+  expected_results:
+    far_4pl: 0.05
+    far_3pl_range:
+    - 0.06
+    - 0.14
+    far_2pl_range:
+    - 0.5
+    - 1.0
+    mean_power_gain_mmlu: 0.22
+    mean_power_gain_hellaswag: 0.2
+    mean_power_gain_gsm8k: 0.16
+    mean_power_gain_arc_c: 0.11
+    mean_power_gain_humaneval: 0.1
+    pct_items_d_lt_0.95_mmlu: 0.46
+    correlation_4pl_3pl_lz: 0.35
+  result_rationale: 'Median 档预期 4PL 相对 3PL 的 power gain 在 +15-25pp 范围（略低于 optimistic
+    的 +25-30pp）。 原因：46% MMLU items 有 d<0.95（从已有 PSN-IRT 参数已知），这些 items 的 upper asymptote
+    <1， high-ability models 在这些 items 上即使全对也不会产生极端 aberrance。 3PL(d=1) 强制 upper asymptote=1，对
+    high-ability models 系统性高估 expected P(correct)， 导致 false alarm inflation（6-14%）和
+    lz* 偏移。 相关性 r=0.35 表明 4PL vs 3PL lz* 存在根本性差异，不是简单缩放关系。 2PL 完全不可用（FAR 50-100%）因为同时忽略了
+    guessing 和 upper asymptote。 这个 ablation 直接支持 method design choice 的合理性。
+
+    '
+  tables:
+  - title: 'Table: Detection Power at 25% Contamination by Model'
+    columns:
+    - benchmark
+    - power_4PL
+    - power_3PL
+    - gain_pp
+    - pct_items_d_lt_0.95
+    rows:
+    - - MMLU
+      - 0.72
+      - 0.5
+      - 22
+      - 46%
+    - - HellaSwag
+      - 0.48
+      - 0.28
+      - 20
+      - 41%
+    - - GSM8K
+      - 0.65
+      - 0.49
+      - 16
+      - 30%
+    - - ARC-C
+      - 0.12
+      - 0.08
+      - 4
+      - 22%
+    - - HumanEval
+      - 0.28
+      - 0.18
+      - 10
+      - 35%
+  figures_description:
+  - 'Paired power curves: 4PL vs 3PL across contamination levels for each benchmark'
+  - Histogram of d parameter distribution across MMLU items, annotated with d=0.95
+    threshold
+  analysis: '4PL d parameter 对 LLM contamination detection 不可或缺。 Power gain +15-25pp
+    在论文中用 one sentence 总结即可： "Ignoring the upper asymptote parameter halves detection
+    power on benchmarks with substantial d<0.95 items." 2PL 的灾难性 FAR 作为 negative control
+    报告，确认 guessing parameter 同样必要。
+
+    '
+- name: Baseline Comparison
+  plan_id: exp-baseline-comparison
+  description: '≥5 baselines 在 ctrl-contam ground-truth 上对比： IRT-FIT, ConStat, Min-K%++,
+    accuracy z-score, PPL-based, random。
+
+    '
+  expected_results:
+    auroc_5pct:
+      lz_star: 0.65
+      accuracy_zscore: 0.53
+      mink_pp: 0.78
+      constat: 0.72
+      ppl_based: 0.75
+      random: 0.5
+    auroc_10pct:
+      lz_star: 0.74
+      accuracy_zscore: 0.58
+      mink_pp: 0.86
+      constat: 0.82
+      ppl_based: 0.83
+      random: 0.5
+    auroc_15pct:
+      lz_star: 0.8
+      accuracy_zscore: 0.62
+      mink_pp: 0.92
+      constat: 0.88
+      ppl_based: 0.9
+      random: 0.5
+    auroc_25pct:
+      lz_star: 0.86
+      accuracy_zscore: 0.7
+      mink_pp: 0.96
+      constat: 0.93
+      ppl_based: 0.95
+      random: 0.5
+    auroc_gap_at_5pct_vs_best: -0.13
+    auroc_gap_at_15pct_vs_best: -0.12
+    auroc_gap_at_25pct_vs_best: -0.1
+    lz_star_ci_width_15pct: 0.06
+    mink_pp_ci_width_15pct: 0.04
+    lz_star_rank_at_5pct: 2nd (behind Min-K%++)
+    lz_star_rank_at_15pct: 4th
+    lz_star_beats_accuracy_zscore_all_levels: true
+    information_access:
+      lz_star: binary only
+      accuracy_zscore: binary only
+      mink_pp: token probs
+      constat: retest
+      ppl_based: log-probs
+      random: none
+  result_rationale: "Median 档核心：lz* 在 5% 低污染区间优势明确（0.65 vs accuracy_zscore 0.53，+0.12），\
+    \ 但 15%+ 区间落后于 Min-K%++/ConStat 10-15% AUROC。 原因分析： (1) lz* @ 5% 优于 accuracy z-score\
+    \ 因为它利用了 response pattern 的 item-level 信息（IRT inductive bias），\n    而 accuracy\
+    \ z-score 只看 aggregate score；\n(2) lz* @ 5% 接近 privileged methods（gap 仅 -0.13）因为低污染下\
+    \ privileged methods 的信号也弱，\n    lz* 的 IRT structure 作为 inductive bias 部分补偿了 information\
+    \ disadvantage；\n(3) @ 15%+ lz* 落后因为 privileged methods 获得的额外信息（token probs, retest）\n\
+    \    提供了 lz* 无法获取的 fine-grained signal，信息差距随污染增加而放大；\n(4) AUROC gap [-0.15, -0.05]\
+    \ 在 median 范围，诚实但不灾难性。 narrative 策略：plot information-access vs detection-power\
+    \ frontier curve， 强调 lz* 定义了 \"minimal-information operating point\" 的价值而非绝对性能。\n"
+  tables:
+  - title: 'Table: AUROC Comparison Across Contamination Levels (MMLU, mean ± 95%
+      CI)'
+    columns:
+    - method
+    - info_access
+    - 5%
+    - 10%
+    - 15%
+    - 25%
+    rows:
+    - - Random
+      - —
+      - '0.50'
+      - '0.50'
+      - '0.50'
+      - '0.50'
+    - - Acc z-score
+      - binary
+      - 0.53±0.05
+      - 0.58±0.05
+      - 0.62±0.05
+      - 0.70±0.04
+    - - lz* (ours)
+      - binary
+      - 0.65±0.06
+      - 0.74±0.06
+      - 0.80±0.06
+      - 0.86±0.05
+    - - ConStat
+      - retest
+      - 0.72±0.04
+      - 0.82±0.04
+      - 0.88±0.04
+      - 0.93±0.03
+    - - PPL-based
+      - log-probs
+      - 0.75±0.04
+      - 0.83±0.04
+      - 0.90±0.03
+      - 0.95±0.02
+    - - Min-K%++
+      - token probs
+      - 0.78±0.04
+      - 0.86±0.03
+      - 0.92±0.03
+      - 0.96±0.02
+  - title: 'Table: Information-Access vs Detection-Power Summary'
+    columns:
+    - operating_point
+    - methods
+    - AUROC_15pct_range
+    - information_required
+    rows:
+    - - Minimal
+      - lz*, acc z-score
+      - 0.62-0.80
+      - Binary response pattern only
+    - - Moderate
+      - ConStat
+      - '0.88'
+      - Retest with rephrased items
+    - - Full
+      - Min-K%++, PPL
+      - 0.90-0.92
+      - Token-level probabilities
+  figures_description:
+  - 'Fig: Detection frontier — x-axis: information access level (categorical), y-axis:
+    AUROC, one curve per contamination level'
+  - 'Fig: ROC curves at 15% contamination for all 6 methods, with 95% bootstrap CIs
+    as shaded bands'
+  - 'Fig: AUROC vs contamination level curves, showing lz* crossing accuracy z-score
+    early and converging toward privileged methods'
+  analysis: '关键叙事：lz* 是 minimal-information frontier 的 champion——在 binary-only 条件下显著优于
+    accuracy z-score， 且在低污染区间接近 privileged methods。15%+ 的 gap 是 information disadvantage
+    的直接后果，不是 method failure。 Bootstrap CIs 是论文的差异化优势（6/8 peer papers 不报告 variance）。
+    Detection frontier figure 是 paper 的 key contribution visualization。
+
+    '
+- name: Multiscale lzm Statistic
+  plan_id: exp-multiscale-lzm
+  description: '实现 Hong, Lin & Cheng (2021) multiscale lzm——跨 benchmark 聚合的标准化 lz*
+    总分。
+
+    '
+  expected_results:
+    lzm_gemini15: 45.2
+    lzm_vs_per_benchmark_correlation: 0.92
+    lzm_improvement_over_avg_lz: marginal
+    n_newly_flagged: 0
+    n_newly_unflagged: 0
+    lzm_flagged_rate: 57/60 (same as per-benchmark)
+    lzm_interpretability: lower than per-benchmark (loses benchmark-specific patterns)
+  result_rationale: 'Median 档下 lzm 提供 marginal improvement：由于 LLM data 已经 universally
+    flagged（57/60）， 聚合统计量无法进一步区分。r=0.92 表明 lzm 与 avg(lz*) 高度相关，额外信息有限。 更重要的是，per-benchmark
+    lz* profile 是 contamination characterization 的核心 （如 Gemini 的 selective vs uniform
+    misfit），而 lzm 聚合丢失了这些 benchmark-specific patterns。 在 median 档下 lzm 是 nice-to-have
+    但不改变任何 claim，可降为 appendix。
+
+    '
+  tables:
+  - title: 'Table: lzm vs Per-Benchmark lz* for Top Anomalous Models'
+    columns:
+    - model
+    - lzm
+    - mmlu_lz
+    - hellaswag_lz
+    - gsm8k_lz
+    - pattern
+    rows:
+    - - Gemini-1.5
+      - 45.2
+      - 31.8
+      - -12.3
+      - -8.5
+      - Selective (MMLU+, others-)
+    - - Yi-Lightning
+      - 52.1
+      - 48.2
+      - 35.1
+      - 22.0
+      - Uniform positive
+    - - Doubao
+      - 18.3
+      - 25.6
+      - -5.2
+      - -10.1
+      - Mixed
+  figures_description:
+  - 'Scatter: lzm vs mean(|per-benchmark lz*|), showing near-linear relationship'
+  analysis: 'lzm 不增加 detection power，但可在 supplementary 中报告为 alternative aggregation。
+    论文主体保留 per-benchmark profile 作为 primary presentation。
+
+    '
+- name: Post-RL Hypothesis Test
+  plan_id: exp-post-rl
+  description: 'Qwen3.5-9B: SFT 污染 → GRPO 训练 → 测试 person-fit 是否保持检测力。
+
+    '
+  expected_results:
+    pre_rl_d_15pct: -2.5
+    post_rl_d_15pct: -1.1
+    signal_retention_ratio: 0.44
+    post_rl_lz_star_contam_15: 6.2
+    post_rl_lz_star_clean: 7.8
+    post_rl_delta_lz: -1.6
+    post_rl_p_value: 0.03
+    post_rl_memorization_fraction: 0.18
+    grpo_training_steps: 2000
+    grpo_reward: rule-based (MMLU accuracy on held-out set)
+    experiment_completed_before_ddl: uncertain
+    wang_mia_post_rl_auroc: 0.52
+    lz_star_post_rl_auroc: 0.62
+  result_rationale: 'Median 档核心假设：post-RL 信号衰减但未消失（|d| 0.5-1.5），或实验未在 DDL 前完成。 预测
+    |d|=1.10（从 pre-RL 2.50 衰减 56%）：GRPO 优化 reward signal 时， RL exploration 部分覆写了 SFT
+    记忆——模型学会了 "更好的理由" 来选择答案， 而非依赖记忆的 response pattern。但 binary response 层面的 aberrance
+    不完全消失， 因为 RL 不直接优化 response pattern distribution，只优化 outcome。 memorization_fraction
+    从 pre-RL ~0.35 降至 ~0.18：RL 使约一半的 "记忆" items 转化为 "理解"。 关键：即使 |d|=1.10 仍然 significant
+    (p=0.03)，而 Wang et al. 证明 MIA methods 完全失效（AUROC≈0.50）。 这就是 binary-level 检测的 structural
+    advantage——RL 改变 token distribution 但不完全消除 aberrant binary patterns。 但 DDL 风险：GRPO
+    训练需要 reward model setup + 调参 + 多 seed validation，40 GPU-hrs 可能不足。 若不完整，降为 Discussion
+    中 "structural argument + preliminary evidence"。
+
+    '
+  tables:
+  - title: 'Table: Pre- vs Post-RL Detection (Qwen3.5-9B × MMLU @ 15%)'
+    columns:
+    - condition
+    - lz_star
+    - delta_lz
+    - cohens_d
+    - memorization_frac
+    rows:
+    - - Clean
+      - 7.85
+      - —
+      - —
+      - —
+    - - SFT-contam (pre-RL)
+      - 5.1
+      - -2.75
+      - -2.5
+      - 0.35
+    - - SFT-contam + GRPO (post-RL)
+      - 6.2
+      - -1.6
+      - -1.1
+      - 0.18
+  - title: 'Table: Post-RL Comparison with Wang et al. MIA Methods'
+    columns:
+    - method
+    - info_access
+    - pre_rl_auroc
+    - post_rl_auroc
+    - retention
+    rows:
+    - - lz* (ours)
+      - binary
+      - 0.8
+      - 0.62
+      - 77.5%
+    - - Min-K%++
+      - token probs
+      - 0.92
+      - 0.52
+      - 56.5%
+    - - PPL-based
+      - log-probs
+      - 0.9
+      - 0.51
+      - 56.7%
+  figures_description:
+  - 'Fig: lz* distribution shift: clean vs SFT-contam vs SFT-contam+GRPO, three overlaid
+    histograms'
+  - 'Fig: Detection frontier (info access vs AUROC) at pre-RL and post-RL, showing
+    lz* advantage widens post-RL'
+  analysis: 'Post-RL |d|=1.10 是 medium-to-large effect——信号衰减但 statistically significant。
+    若在 DDL 前完成：strengthens paper 显著（unique contribution: only binary method surviving
+    RL）。 若不完整：降为 Discussion，做 structural argument——"RL modifies token distributions
+    but not binary patterns directly, so person-fit retains partial signal where MIA-based
+    methods fail completely"。 无论哪种情况，对 EMNLP 投稿不是 blocking issue。
+
+    '
+- name: Extra Benchmarks (BBH + MATH)
+  plan_id: exp-extra-benchmarks
+  description: 'BBH (6,511 items) 和 MATH (5,000 items) 填充 1K-10K items 的 power gap。
+
+    '
+  expected_results:
+    bbh_power_15pct: 0.68
+    math_power_15pct: 0.55
+    bbh_power_vs_theory: within 5%
+    math_power_vs_theory: within 8%
+    power_theory_R2_with_extras: 0.88
+    bbh_4pl_available: false
+    math_4pl_available: false
+    bbh_4pl_estimation_needed: true
+    math_4pl_estimation_needed: true
+    estimation_gpu_hours: 8
+    estimation_n_models_needed: 50
+  result_rationale: 'Median 档下 BBH (6.5K items) 和 MATH (5K items) 落在 power curve 的
+    "中等" 区间： power@15% 预期 0.55-0.68，验证 power ∝ √n_items 理论在 1K-10K 范围的插值。 BBH > MATH
+    因为 n_items 多 30%，strictly following the theoretical relationship。 关键挑战：PSN-IRT
+    可能不包含这些 benchmarks 的 4PL 参数。 如果需要自己估计 4PL，至少需要 50 个模型的 per-item responses + MML-EM
+    fitting， 这引入新的 estimation quality concern（同 Path D 的 a_r 问题）。 Median 档下 R²=0.88（含新
+    benchmarks）略低于 simulation-only 的 0.957， 反映 SFT generalization gap（theoretical
+    power 是 upper bound，actual power 受 memorization fraction 调制）。 这恰好支持 Claim 2 的
+    "upper bound" caveat。
+
+    '
+  tables:
+  - title: 'Table: Power Function Validation with Extended Benchmarks'
+    columns:
+    - benchmark
+    - n_items
+    - power_15pct_sim
+    - power_15pct_theory
+    - gap
+    rows:
+    - - HumanEval
+      - 164
+      - 0.24
+      - 0.22
+      - 0.02
+    - - ARC-C
+      - 295
+      - 0.13
+      - 0.15
+      - -0.02
+    - - MATH
+      - 5000
+      - 0.55
+      - 0.58
+      - -0.03
+    - - BBH
+      - 6511
+      - 0.68
+      - 0.72
+      - -0.04
+    - - GSM8K
+      - 1319
+      - 0.59
+      - 0.55
+      - 0.04
+    - - HellaSwag
+      - 10042
+      - 0.75
+      - 0.78
+      - -0.03
+    - - MMLU
+      - 14042
+      - 0.98
+      - 0.98
+      - 0.0
+  figures_description:
+  - 'Fig: Power vs √n_items with 7 benchmarks, theoretical curve overlay, 95% CI bands'
+  analysis: 'BBH/MATH 填补 1K-10K gap，strengthens Claim 2 的 power function。 但若 4PL 参数需自行估计，quality
+    concern 可能引入 noise。 如果 PSN-IRT 不包含这些参数，建议降为 appendix 或 future work。 核心 5 benchmarks
+    已足够支撑 power theory（R²=0.957）。
+
+    '
+- name: Domain-Level Analysis
+  plan_id: exp-domain-analysis
+  description: 'MMLU domain-level person-fit 分析，识别 Gemini-1.5 等模型的 domain-specific
+    污染模式。
+
+    '
+  expected_results:
+    gemini15_all_domains_flagged: true
+    gemini15_domain_concentrated: false
+    gemini15_stem_lz: 22.0
+    gemini15_humanities_lz: 18.5
+    gemini15_social_sciences_lz: 16.2
+    gemini15_other_lz: 15.8
+    n_models_domain_concentrated: 2
+    doubao_pattern: Humanities/SocialSci negative, STEM neutral, Other positive
+    hunyuan_pattern: SocialSci high positive, STEM low
+    domain_entropy_correlation_with_contamination: 0.45
+    n_subjects_total: 57
+    gemini_subjects_flagged: 52
+  result_rationale: "Median 档下 domain analysis 证实两种 contamination pattern： (1) Uniform\
+    \ contamination (Gemini-1.5): 100% accuracy across all domains，\n    所有 domain\
+    \ 都 flagged，STEM 略高因为 STEM items 的 discrimination 通常更高\n    （item difficulty variance\
+    \ 更大），产生更强的 aberrance signal。\n(2) Selective contamination (Doubao, Hunyuan):\
+    \ domain-specific misfit patterns，\n    某些 domain positive lz*（over-consistent，可能是\
+    \ domain-specific training data exposure），\n    某些 domain negative lz*（aberrant，可能是\
+    \ domain mismatch）。\nDomain entropy 与 contamination severity 的 moderate correlation\
+    \ (r=0.45) 表明 更均匀的 domain misfit 通常伴随更高的整体 contamination 程度——但不是强关系， 因为 SFT 的\
+    \ generalization 跨 domain 不均匀。\n"
+  tables:
+  - title: 'Table: Domain-Level lz* for Selected Models'
+    columns:
+    - model
+    - STEM
+    - Humanities
+    - Social_Sci
+    - Other
+    - pattern_type
+    rows:
+    - - Gemini-1.5
+      - 22.0
+      - 18.5
+      - 16.2
+      - 15.8
+      - Uniform positive
+    - - Yi-Lightning
+      - 50.1
+      - 45.3
+      - 48.7
+      - 42.0
+      - Uniform positive (extreme)
+    - - Doubao
+      - -2.0
+      - -13.0
+      - -14.8
+      - 4.4
+      - Selective mixed
+    - - Hunyuan
+      - 1.8
+      - 8.2
+      - 13.9
+      - 6.5
+      - Selective positive
+    - - Mistral-Large
+      - 28.5
+      - 24.1
+      - 22.0
+      - 20.3
+      - Uniform positive
+  figures_description:
+  - 'Heatmap: models (rows) × MMLU domains (cols), color = lz*, with Ward clustering
+    dendrogram'
+  - 'Radar chart: 4 selected models'' domain-level lz* profiles, overlaid'
+  analysis: Domain analysis 是 Claim 3 的 supporting evidence：contamination 不仅可以检测，
+    还可以 characterize（uniform vs selective patterns）。 Ward clustering 可能 reveal contamination
+    typology（2-3 clusters）， 为 "Detection and Characterization" 标题提供直接支撑。 建议作为 §5 case
+    study 的 subsection 呈现。

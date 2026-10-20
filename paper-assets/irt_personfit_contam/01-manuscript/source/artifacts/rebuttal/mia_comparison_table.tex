@@ -1,0 +1,29 @@
+% MIA vs lz* comparison across training stages (post_rl_contam experiment)
+% Model: Qwen/Qwen2.5-7B-Instruct, 14042 items (2106 seen, 11936 unseen)
+%
+% Data sources (on westd-35694):
+%   MIA Base:  /root/autodl-tmp/post_rl_contam/results/mia_base_results.json
+%   MIA SFT:   /root/autodl-tmp/post_rl_contam/results/mia_sft_results.json
+%   MIA GRPO:  /root/autodl-tmp/post_rl_contam/results/mia_grpo_results.json
+%   lz* Base:  /root/autodl-tmp/post_rl_contam/results/base_results.json
+%   lz* SFT:   /root/autodl-tmp/post_rl_contam/results/sft_results.json
+%   lz* GRPO:  /root/autodl-tmp/post_rl_contam/results/grpo_results.json
+
+\begin{table}[t]
+\centering
+\small
+\caption{Contamination detection across training stages. MIA methods lose discriminative power after GRPO (AUC $\approx$ 0.5), while $\ell_z^*$ maintains a significant gap between seen and unseen items at every stage.}
+\label{tab:mia-vs-lz}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Stage} & \textbf{Min-K\%} $\uparrow$ & \textbf{Min-K\%++} $\uparrow$ & \textbf{Loss} $\uparrow$ & $|\Delta \ell_z^*|$ $\uparrow$ \\
+\midrule
+Base & 0.493 & 0.488 & 0.486 & 2.93 \\
+SFT  & 0.611 & 0.569 & 0.592 & 3.67 \\
+GRPO & 0.493 & 0.488 & 0.486 & 3.32 \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}
+
+{\footnotesize MIA columns report AUC-ROC (seen vs.\ unseen, $k{=}10\%$). $|\Delta \ell_z^*| = |\ell_z^*\text{(seen)} - \ell_z^*\text{(unseen)}|}$.}
+\end{table}

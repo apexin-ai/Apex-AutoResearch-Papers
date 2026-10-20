@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7604d4e3311638ec6864",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "analysis theta fixed perturbation",
+  "task_key": "worker_analysis_theta-fixed-perturbation_20260521T185843",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_theta-fixed-perturbation_20260521T185843_result.json",
+    "occurrence": 1,
+    "bytes": 975,
+    "sha256": "7e47602f1e3989326aec4f625b2618952949245efb3ec6cd5ef4d95068652cb4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果：\n\n| σ_rel | d_fixed_15 mean | d_fixed_15 SD | %bias_15 | d_fixed_50 mean | d_fixed_50 SD | %bias_50 |\n|-------|-----------------|---------------|----------|-----------------|---------------|----------|\n| 0%    | +4.77           | —             | —        | +14.52          | —             | —        |\n| 5%    | +5.07           | 0.236         | 6.33%    | +14.76          | 0.443         | 1.62%    |\n| 10%   | +4.95           | 0.430         | 3.74%    | +14.45          | 0.850         | 0.46%    |\n\n验收：\n1. **原始值验证** ✓ — d_fixed(15%)=+4.7695≈4.77, d_fixed(50%)=+14.5214≈14.52\n2. **2水平×100 trials** ✓ — 5%和10%各100 trials\n3. **表格+JSON输出** ✓ — 服务器 `/root/autodl-tmp/theta_fixed_perturbation_results.json`，已注册 artifact\n\nθ-fixed Cohen's d 在参数扰动下非常稳健：即使10% noise，bias 不超过6.3%，SD也很小（d_fixed_50的CV仅~6%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-theta-fixed-perturbation.md"
+}

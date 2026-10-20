@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "00c5327d9c3d6b52f243",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "eval grpo mia",
+  "task_key": "worker_eval_grpo-mia_20260523T005921",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_grpo-mia_20260523T005921.log",
+    "occurrence": 1,
+    "bytes": 1479955,
+    "sha256": "fec39c33b66f7a9adf7059ea2f9d412eb386a2539e3c14f5d23389ee76d9d477"
+  },
+  "statistics": {
+    "messages": 855,
+    "user_turns": 1,
+    "tool_calls": 314,
+    "roles": {
+      "log": 1,
+      "system": 80,
+      "record": 1,
+      "assistant": 131,
+      "tool_call": 314,
+      "tool_result": 314,
+      "user": 1,
+      "result": 13
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 701,
+      "chunks": [
+        {
+          "path": "00c5327d9c3d6b52f243-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "00c5327d9c3d6b52f243-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "00c5327d9c3d6b52f243-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "00c5327d9c3d6b52f243-part-0004.json",
+          "message_count": 161
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 154,
+      "chunks": [
+        {
+          "path": "00c5327d9c3d6b52f243-part-0004.json",
+          "message_count": 19
+        },
+        {
+          "path": "00c5327d9c3d6b52f243-part-0005.json",
+          "message_count": 135
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-grpo-mia.md"
+}

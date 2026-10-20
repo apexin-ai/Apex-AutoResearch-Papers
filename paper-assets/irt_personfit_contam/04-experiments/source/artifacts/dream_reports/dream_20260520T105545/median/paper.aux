@@ -1,0 +1,119 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{magar2022data,sainz2023nlp,jacovi2023stop}
+\citation{brown2020language}
+\citation{shi2024detecting}
+\citation{dong2024generalization}
+\citation{li2024constat}
+\citation{meijer2001review}
+\citation{snijders2001item}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{brown2020language,dodge2021documenting}
+\citation{shi2024detecting}
+\citation{dong2024generalization}
+\citation{li2024constat}
+\citation{wu2026codec}
+\citation{wang2025contamination}
+\citation{gu2024psnirt}
+\citation{polo2024tinybenchmarks}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Contamination Detection.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{IRT for LLMs.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Background: IRT and Person-Fit}{2}{section.3}\protected@file@percent }
+\newlabel{sec:background}{{3}{2}{Background: IRT and Person-Fit}{section.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{4PL Item Response Theory.}{2}{section*.3}\protected@file@percent }
+\newlabel{eq:4pl}{{1}{2}{4PL Item Response Theory}{equation.1}{}}
+\citation{snijders2001item}
+\citation{gu2024psnirt}
+\citation{hong2021multiscale}
+\@writefile{toc}{\contentsline {paragraph}{The $l_z^*$ Person-Fit Statistic.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Method: The IRT-FIT Framework}{3}{section.4}\protected@file@percent }
+\newlabel{sec:method}{{4}{3}{Method: The IRT-FIT Framework}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Framework Overview}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}From Absolute $l_z^*$ to $\Delta l_z^*$}{3}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Multiscale Aggregation ($l_{zm}$)}{3}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiments}{3}{section.5}\protected@file@percent }
+\newlabel{sec:experiments}{{5}{3}{Experiments}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Controlled Contamination: Pilot}{3}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:pilot}{{5.1}{3}{Controlled Contamination: Pilot}{subsection.5.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Pilot results: Qwen3.5-9B $\times $ MMLU. $\Delta l_z^*$ is statistically significant at 15\% contamination ($p=0.018$) and highly significant at 50\%.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:pilot}{{1}{4}{Pilot results: Qwen3.5-9B $\times $ MMLU. $\Delta l_z^*$ is statistically significant at 15\% contamination ($p=0.018$) and highly significant at 50\%}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces AUROC for detecting contaminated vs.\ clean models, averaged across 4 models ($\pm $ std).}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:auroc_main}{{2}{4}{AUROC for detecting contaminated vs.\ clean models, averaged across 4 models ($\pm $ std)}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Full Controlled Contamination}{4}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:full_ctrl}{{5.2}{4}{Full Controlled Contamination}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Inter-model variation.}{4}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Power Function Analysis}{4}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:power}{{5.3}{4}{Power Function Analysis}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Baseline Comparison: The Detection Frontier}{4}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:baselines}{{5.4}{4}{Baseline Comparison: The Detection Frontier}{subsection.5.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Cohen's $d$ of $\Delta l_z^*$ by benchmark and contamination level (4-model average).}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:cohend}{{3}{5}{Cohen's $d$ of $\Delta l_z^*$ by benchmark and contamination level (4-model average)}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Per-model detection at 15\% MMLU contamination. Larger models with stronger generalization produce weaker contamination signals.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:per_model}{{4}{5}{Per-model detection at 15\% MMLU contamination. Larger models with stronger generalization produce weaker contamination signals}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Leaderboard Audit}{5}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:audit}{{5.5}{5}{Leaderboard Audit}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Universal model misfit.}{5}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{$\Delta l_z^*$-based anomaly ranking.}{5}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Temporal trends.}{5}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}MMLU Domain-Level Analysis}{5}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:domain}{{5.6}{5}{MMLU Domain-Level Analysis}{subsection.5.6}{}}
+\citation{wang2025contamination}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Power across the $n_{\text  {items}}$ spectrum at 15\% contamination (two-sided test). Theory predictions ($R^2=0.96$) closely match simulation. *Validation benchmarks not used in fitting.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:power_curve}{{5}{6}{Power across the $n_{\text {items}}$ spectrum at 15\% contamination (two-sided test). Theory predictions ($R^2=0.96$) closely match simulation. *Validation benchmarks not used in fitting}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Detection frontier: AUROC by method and information access level. IRT-FIT defines the binary-only endpoint but trails richer methods.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:frontier}{{6}{6}{Detection frontier: AUROC by method and information access level. IRT-FIT defines the binary-only endpoint but trails richer methods}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Post-RL Signal Retention}{6}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:post_rl}{{5.7}{6}{Post-RL Signal Retention}{subsection.5.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Ablation: 4PL vs.\ 3PL}{6}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:ablation}{{5.8}{6}{Ablation: 4PL vs.\ 3PL}{subsection.5.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Multiscale $l_{zm}$ Aggregation}{6}{subsection.5.9}\protected@file@percent }
+\newlabel{sec:lzm}{{5.9}{6}{Multiscale $l_{zm}$ Aggregation}{subsection.5.9}{}}
+\citation{wang2025contamination}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces AUROC gap (IRT-FIT $-$ best baseline). The gap narrows at higher contamination levels where aberrant patterns are strong enough for binary-level detection.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:gap}{{7}{7}{AUROC gap (IRT-FIT $-$ best baseline). The gap narrows at higher contamination levels where aberrant patterns are strong enough for binary-level detection}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Leaderboard audit summary. Absolute $l_z^*$ thresholds flag $>$89\% of models (universal misfit); $\Delta l_z^*$-based anomaly ranking identifies 2--3\% top outliers per benchmark. Temporal trend $\beta $ is the increase in flagging rate per quarter.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:audit}{{8}{7}{Leaderboard audit summary. Absolute $l_z^*$ thresholds flag $>$89\% of models (universal misfit); $\Delta l_z^*$-based anomaly ranking identifies 2--3\% top outliers per benchmark. Temporal trend $\beta $ is the increase in flagging rate per quarter}{table.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion and Limitations}{7}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{7}{Discussion and Limitations}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Scope boundaries.}{7}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cost of minimal information.}{7}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Post-RL blindness.}{7}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Universal model misfit.}{7}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Leaderboard audit interpretation.}{7}{section*.13}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{brown2020language}{{1}{2020}{{Brown et~al.}}{{}}}
+\bibcite{dodge2021documenting}{{2}{2021}{{Dodge et~al.}}{{}}}
+\bibcite{dong2024generalization}{{3}{2024}{{Dong et~al.}}{{}}}
+\bibcite{gu2024psnirt}{{4}{2026}{{Gu et~al.}}{{}}}
+\bibcite{hong2021multiscale}{{5}{2021}{{Hong et~al.}}{{}}}
+\bibcite{jacovi2023stop}{{6}{2023}{{Jacovi et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Top cross-benchmark anomaly models ranked by mean $\Delta l_z^*$ $z$-score. Names anonymized except for publicly documented cases. *Gemini-1.5 achieves 100\% accuracy on MMLU.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:top_anomaly}{{9}{8}{Top cross-benchmark anomaly models ranked by mean $\Delta l_z^*$ $z$-score. Names anonymized except for publicly documented cases. *Gemini-1.5 achieves 100\% accuracy on MMLU}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Gemini-1.5 MMLU domain-level person-fit. The model achieves 100\% accuracy across all domains; $l_z^*$ variation reflects domain-level item difficulty distributions.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:domain}{{10}{8}{Gemini-1.5 MMLU domain-level person-fit. The model achieves 100\% accuracy across all domains; $l_z^*$ variation reflects domain-level item difficulty distributions}{table.10}{}}
+\@writefile{toc}{\contentsline {paragraph}{Model generalization as confound.}{8}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{8}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{8}{Conclusion}{section.7}{}}
+\bibcite{li2024constat}{{7}{2024}{{Li et~al.}}{{}}}
+\bibcite{magar2022data}{{8}{2022}{{Magar and Schwartz}}{{}}}
+\bibcite{meijer2001review}{{9}{2001}{{Meijer and Sijtsma}}{{}}}
+\bibcite{polo2024tinybenchmarks}{{10}{2024}{{Polo et~al.}}{{}}}
+\bibcite{sainz2023nlp}{{11}{2023}{{Sainz et~al.}}{{}}}
+\bibcite{shi2024detecting}{{12}{2024}{{Shi et~al.}}{{}}}
+\bibcite{snijders2001item}{{13}{2001}{{Snijders}}{{}}}
+\bibcite{wang2025contamination}{{14}{2025}{{Wang et~al.}}{{}}}
+\bibcite{wu2026codec}{{15}{2026}{{Wu et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Domain-level detection power estimates at 15\% contamination (from power theory). No domain reaches the 0.80 practical threshold.}}{9}{table.11}\protected@file@percent }
+\newlabel{tab:domain_power}{{11}{9}{Domain-level detection power estimates at 15\% contamination (from power theory). No domain reaches the 0.80 practical threshold}{table.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Post-RL signal degradation. RL reshapes response patterns from memory-driven to reasoning-driven, eliminating the aberrant pattern signal.}}{9}{table.12}\protected@file@percent }
+\newlabel{tab:post_rl}{{12}{9}{Post-RL signal degradation. RL reshapes response patterns from memory-driven to reasoning-driven, eliminating the aberrant pattern signal}{table.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces 4PL vs.\ 3PL detection comparison. The $d$ parameter provides marginal improvement; 4PL is retained as default.}}{10}{table.13}\protected@file@percent }
+\newlabel{tab:4pl3pl}{{13}{10}{4PL vs.\ 3PL detection comparison. The $d$ parameter provides marginal improvement; 4PL is retained as default}{table.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces $l_{zm}$ vs.\ best single-benchmark $l_z^*$.}}{10}{table.14}\protected@file@percent }
+\newlabel{tab:lzm}{{14}{10}{$l_{zm}$ vs.\ best single-benchmark $l_z^*$}{table.14}{}}
+\gdef \@abspage@last{10}

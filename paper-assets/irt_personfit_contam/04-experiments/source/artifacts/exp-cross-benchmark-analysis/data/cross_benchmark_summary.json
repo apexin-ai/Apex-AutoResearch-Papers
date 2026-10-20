@@ -1,0 +1,70 @@
+{
+  "n_models": 12,
+  "n_benchmarks": 5,
+  "total_cells": 60,
+  "total_flagged": 57,
+  "flag_rate": 0.95,
+  "n_models_all5_flagged": 10,
+  "n_models_selective_flagged": 2,
+  "gemini15_cluster_isolation": true,
+  "dominant_direction_pattern": "positive",
+  "pct_positive_cells": 93.33333333333333,
+  "mean_abs_lz_per_benchmark": {
+    "MMLU": 26.118400918700882,
+    "ARC-C": 3.279060535416416,
+    "HellaSwag": 18.9018224624478,
+    "GSM8K": 7.867733955376849,
+    "HumanEval": 2.9128599994058586
+  },
+  "mean_abs_lz_per_model": {
+    "360GPT2-Pro": 9.489274933347266,
+    "DeepSeek-V3": 9.261558724318034,
+    "Doubao-pro": 9.315187510521286,
+    "Gemini-1.5": 12.013846545616639,
+    "Gemma-2B-it": 13.737492147873525,
+    "Hunyuan-Turbo": 10.02693983485908,
+    "Mistral-7B-Instruct-v0.1": 17.648417007795942,
+    "Moonshot-v1": 9.560514943895493,
+    "Qwen-Plus": 11.446603267966973,
+    "Qwen2.5-3B-Instruct": 12.566621236156015,
+    "Vicuna-7B-v1.3": 14.088097250655641,
+    "Yi-Lightning": 12.63715348822885
+  },
+  "high_correlation_pairs": [
+    "ARC-C-HellaSwag",
+    "ARC-C-GSM8K",
+    "ARC-C-HumanEval",
+    "HellaSwag-GSM8K",
+    "HellaSwag-HumanEval",
+    "GSM8K-HumanEval"
+  ],
+  "negative_lz_cells": {
+    "Doubao-pro": [
+      "MMLU"
+    ],
+    "Gemini-1.5": [
+      "HellaSwag",
+      "GSM8K",
+      "HumanEval"
+    ]
+  },
+  "cluster_assignment_3": {
+    "360GPT2-Pro": 1,
+    "DeepSeek-V3": 1,
+    "Doubao-pro": 3,
+    "Gemini-1.5": 2,
+    "Gemma-2B-it": 1,
+    "Hunyuan-Turbo": 1,
+    "Mistral-7B-Instruct-v0.1": 1,
+    "Moonshot-v1": 1,
+    "Qwen-Plus": 1,
+    "Qwen2.5-3B-Instruct": 1,
+    "Vicuna-7B-v1.3": 1,
+    "Yi-Lightning": 1
+  },
+  "benchmark_type_flag_rates": {
+    "MCQ": 0.9722222222222222,
+    "Math": 1.0,
+    "Code": 0.8333333333333334
+  }
+}

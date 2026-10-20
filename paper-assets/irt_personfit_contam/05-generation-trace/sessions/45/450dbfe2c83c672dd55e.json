@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "450dbfe2c83c672dd55e",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "audit paper data correctness v2",
+  "task_key": "worker_audit_paper-data-correctness-v2_20260524T061618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_paper-data-correctness-v2_20260524T061618_result.json",
+    "occurrence": 1,
+    "bytes": 1004,
+    "sha256": "0f6bed5a484f88bcc70ecb9fdb388915baad9e9a8b9025bdd18f0b80081c37dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Audit complete. Key findings:\n\n**38/46 cells verified MATCH.** The vast majority of paper values exactly match server data.\n\n**2 critical mismatches — Mistral MMLU free-θ d values:**\n- d(15%)=−3.01 is mathematically inconsistent with the contam lz* on the server. With the paper's own baseline (4.02, 2.05), the correct value would be −2.64. With the 6 available clean seeds, it's −1.97.\n- d(50%)=−3.50 matches the paper baseline computation.\n- Root cause: 4 of 10 Mistral clean seeds were lost with old server 19912. The original n=10 computation cannot be reproduced.\n\n**6 cells unverifiable** — Mistral baseline and all ARC-C values lack sufficient data on the server.\n\n**1 minor inconsistency** — ARC-C 50% CI upper bound: 15.2 in Table 1 vs 15.5 in figure scripts.\n\nReport saved to `artifacts/data_audit_report.md`. The highest priority fix is the Mistral d(15%) value — either recover the original computation or recompute with n=6 and update the paper."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-paper-data-correctness-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75df23bd64dacb821fb5",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops read all clean reeval results",
+  "task_key": "worker_ops_read-all-clean-reeval-results_20260523T145439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_read-all-clean-reeval-results_20260523T145439_result.json",
+    "occurrence": 1,
+    "bytes": 1437,
+    "sha256": "f0a09f307a2c1f078d4a74eb3ea21ec3e20a079481f2d8e4bfa5c0f48fa00d7f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 10 个 Clean Seed Re-eval 结果\n\n| Seed | theta_mle | lz* | accuracy |\n|------|-----------|-----|----------|\n| clean (s1) | -0.6661 | **0.8446** | 0.5914 |\n| clean_s2 | -0.6013 | **-1.8765** | 0.5959 |\n| clean_s3 | -0.6700 | **0.3452** | 0.5905 |\n| clean_s4 | -0.6435 | **0.0206** | 0.5923 |\n| clean_s5 | -0.6300 | **1.7323** | 0.5965 |\n| clean_s6 | -0.6027 | **2.8466** | 0.6010 |\n| clean_s7 | -0.6356 | **-0.4007** | 0.5929 |\n| clean_s8 | -0.6979 | **1.1656** | 0.5860 |\n| clean_s9 | -0.6588 | **0.1897** | 0.5922 |\n| clean_s10 | -0.6214 | **-2.2497** | 0.5951 |\n\n## 新 Clean Baseline\n\n| 统计量 | 值 |\n|--------|-----|\n| n | 10 |\n| mean(lz*) | **+0.2618** |\n| SD(lz*, ddof=0) | **1.4626** |\n| SD(lz*, ddof=1) | **1.5418** |\n| min(lz*) | -2.2497 |\n| max(lz*) | +2.8466 |\n| mean(theta) | -0.6427 |\n| mean(accuracy) | 0.5934 |\n\n## 与旧值对比\n\n| 版本 | mean(lz*) | SD(lz*) |\n|------|-----------|---------|\n| V0 硬编码 | -0.312 | 0.840 |\n| V1 registry (单次) | +0.29 | — |\n| **V2 re-eval (10 seeds)** | **+0.262** | **1.542 (ddof=1)** |\n\n关键发现：\n- **mean(lz*) ≈ +0.26**，与 V1 单次值 (+0.29) 非常接近，确认 V0 的 -0.312 是错误的\n- **SD 很大 (1.54)**，说明 lz* 在 clean 条件下的种子间方差很高（range: -2.25 到 +2.85）\n- contam_15（原始，非 re-eval）：lz* = -2.99，在 clean baseline 均值以下约 2.1 个 SD"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-read-all-clean-reeval-results.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a286b8b2faaba10f1b82",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code app 4pl ablation",
+  "task_key": "worker_code_app-4pl-ablation_20260521T015640",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_app-4pl-ablation_20260521T015640_result.json",
+    "occurrence": 1,
+    "bytes": 1070,
+    "sha256": "64224af4c6c349e3b3aecbfdfd2199cfe224a56690535a94d52ffd15a3b5b1ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。输出文件：\n\n**服务器端：**\n- CSV: `/root/autodl-tmp/irt_personfit_contam/results/appendix_4pl_ablation.csv` (70 rows)\n- JSON: `/root/autodl-tmp/irt_personfit_contam/results/appendix_4pl_ablation_summary.json`\n\n**本地 artifacts：**\n- `artifacts/4pl_ablation/appendix_4pl_ablation.csv`\n- `artifacts/4pl_ablation/appendix_4pl_ablation_summary.json`\n\n**关键结果（4PL vs 3PL power, two-sided α=0.05）：**\n\n| Benchmark | contam | 4PL power | 3PL power | Δ |\n|-----------|--------|-----------|-----------|---|\n| MMLU (14042) | 15% | **0.969** | 0.412 | +0.557 |\n| HellaSwag (10042) | 15% | **0.656** | 0.313 | +0.343 |\n| GSM8K (1319) | 15% | **0.492** | 0.285 | +0.207 |\n| ARC-C (295) | 15% | 0.087 | 0.071 | +0.016 |\n| HumanEval (164) | 15% | 0.197 | 0.120 | +0.077 |\n\n4PL 在所有 benchmark 和所有 contamination level 上均优于 3PL，差距随 benchmark size 和 contamination level 增大而增大。100% contamination 下两者均 power=1.0（两侧检验拒绝，因 lz* 极端正值）。无 NaN。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-app-4pl-ablation.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "59eba741afae3a159e36",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "paper fix llama 25 d mismatch",
+  "task_key": "worker_paper_fix-llama-25-d-mismatch_20260524T101634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-llama-25-d-mismatch_20260524T101634.log",
+    "occurrence": 1,
+    "bytes": 936339,
+    "sha256": "fd9c3f6f387db9d0d1c7c01b1051423d5651468b1167802ac35f177805ba6806"
+  },
+  "statistics": {
+    "messages": 271,
+    "user_turns": 0,
+    "tool_calls": 109,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 46,
+      "tool_call": 109,
+      "tool_result": 109,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 271,
+      "chunks": [
+        {
+          "path": "59eba741afae3a159e36-part-0001.json",
+          "message_count": 128
+        },
+        {
+          "path": "59eba741afae3a159e36-part-0002.json",
+          "message_count": 143
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-fix-llama-25-d-mismatch.md"
+}

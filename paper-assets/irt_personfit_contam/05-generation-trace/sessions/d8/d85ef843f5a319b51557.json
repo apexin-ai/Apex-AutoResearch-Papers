@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "d85ef843f5a319b51557",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops batch1 code recon",
+  "task_key": "worker_ops_batch1-code-recon_20260523T074239",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_batch1-code-recon_20260523T074239_result.json",
+    "occurrence": 1,
+    "bytes": 3128,
+    "sha256": "b848ffcb162494b43c0d82f250ced85ea95bcc3ea753585cb173c5a93683eb8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "勘察完毕，汇总如下：\n\n---\n\n## 勘察结果\n\n### 1. train.py 参数接口\n\n| 参数 | 类型 | 默认值 | 说明 |\n|------|------|--------|------|\n| `--condition` | str (required) | — | 从 `SEED_MAP` 的 key 中选择 |\n| `--gpu` | int | 0 | GPU 编号 |\n| `--max_steps` | int | -1 | 覆盖训练步数（dry-run 用） |\n\n**SEED_MAP 支持的 condition（共 20 个）**：\n- clean: `clean_s1`(42), `clean_s2`(123), `clean_s3`(456), `clean_s4`–`clean_s10`(301–307)\n- contam_5: 仅 seed=42\n- contam_15: seed 42/123/456 (`contam_15`, `contam_15_s2`, `contam_15_s3`)\n- contam_25: seed 42/123/456\n- contam_50: seed 42/123/456\n\n### 2. 模型路径硬编码为 Qwen\n\n`train.py` 和 `eval_lz.py` 的 `find_model_path()` **硬编码搜索 `Qwen2.5-7B-Instruct`**，不接受模型参数。**需要修改代码才能支持 Llama/Mistral。**\n\n### 3. 模型文件已下载\n\n| 模型 | 路径 | 状态 |\n|------|------|------|\n| Qwen2.5-7B-Instruct | `/root/autodl-tmp/.hf_cache/Qwen/...` | 已有（当前代码使用） |\n| Llama-3.1-8B-Instruct | `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/` | ✅ 完整（4个safetensors分片） |\n| Mistral-7B-Instruct-v0.3 | `/root/autodl-tmp/.hf_cache/mistralai/Mistral-7B-Instruct-v0___3/` | ✅ 完整（3个safetensors分片） |\n\n### 4. 数据目录\n\n- 每个 condition 下有 `train.jsonl`，每个 5000 行\n- 数据格式：`{\"text\": \"...\", \"source\": \"alpaca/mmlu\"}`\n- 污染比例：5%、15%、25%、50%；clean 有 10 个种子\n- contam 的多种子数据目录用**符号链接**指向同一数据（`contam_15_s2 -> contam_15`），因为污染数据相同，只是训练种子不同\n- **数据与模型无关，各模型可共享同一数据**\n\n### 5. eval_lz.py 接口\n\n| 参数 | 说明 |\n|------|------|\n| `--condition` | 同 train.py |\n| `--gpu` | GPU 编号 |\n| `--max_items` | 限制评估题数（默认全部） |\n\n同样硬编码 Qwen 模型路径，需改。\n\n### 6. 已完成的 Qwen 实验\n\n**checkpoints**（4.8GB，20个）：clean_s1–s10, contam_5, contam_15/15_s2/15_s3, contam_25/25_s2/25_s3, contam_50/50_s2/50_s3 — 全部完成。\n\n**results**：对应的 eval 结果 JSON 全部就绪。\n\n### 7. 磁盘空间\n\n- `/root/autodl-tmp/`：250GB 总量，已用 88GB，**剩余 163GB**\n- 当前 checkpoint 占 4.8GB（20个 QLoRA adapter，每个约 240MB）\n- Llama+Mistral 各 20 个 checkpoint ≈ 再增 ~10GB，空间充足\n\n### 8. 需要的代码修改\n\n要支持 Llama/Mistral 多种子实验，需修改：\n\n1. **train.py**：添加 `--model` 参数，替换 `find_model_path()` 为模型路径查找表，checkpoint 输出路径加模型前缀\n2. **eval_lz.py**：同上，添加 `--model` 参数，修改模型加载逻辑和结果保存路径\n3. LoRA `target_modules` 可能需调整（Qwen/Llama/Mistral 的注意力层名称一致都是 `q/k/v/o_proj`，无需改）\n4. tokenizer 处理需确认 pad_token 兼容（Llama/Mistral 可能需要不同处理）"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "text": "...",
+              "source": "alpaca/mmlu"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-batch1-code-recon.md"
+}

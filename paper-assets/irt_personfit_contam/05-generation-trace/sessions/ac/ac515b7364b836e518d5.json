@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac515b7364b836e518d5",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code check 19912 fill",
+  "task_key": "worker_code_check-19912-fill_20260521T130313",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_check-19912-fill_20260521T130313_result.json",
+    "occurrence": 1,
+    "bytes": 1369,
+    "sha256": "4d148ede9e4fc011d721e5b74e1b33144998015ffe51d74d69b99309a03b3268"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。汇总当前状态：\n\n## 状态总结\n\n### ARC-C (完成)\n| Seed | theta | lz* | acc | n_items |\n|------|-------|-----|-----|---------|\n| s1 | 0.8106 | -5.4483 | 0.9017 | 295 |\n| s2 | 0.7624 | -5.4328 | 0.8949 | 295 |\n| s3 | 0.7137 | -5.5244 | 0.8949 | 295 |\n| s4 | 0.5502 | -5.4345 | 0.8847 | 295 |\n| s5 | 0.7810 | -5.2317 | 0.8983 | 295 |\n| s6 | 0.7547 | -5.5724 | 0.8949 | 295 |\n| s7 | 0.7058 | -5.5852 | 0.8915 | 295 |\n| s8 | 0.8511 | -5.4001 | 0.9051 | 295 |\n| s9 | 0.8868 | -5.5359 | 0.9017 | 295 |\n| s10 | 0.8111 | -5.0733 | 0.9051 | 295 |\n| **contam15** | 0.9639 | **-4.9165** | 0.9085 | 295 |\n| **contam50** | 4.0000 | **-4.5725** | 0.9424 | 295 |\n\n- Clean mean lz* = -5.4239, sd = 0.1605\n- **Cohen's d: contam15 = 3.16, contam50 = 5.30** (强检出)\n\n### 19912 GPU 填充\n- **GPU 0/1/2**: Llama clean s8/s9/s10 训练中 (~23%/939 steps, 约 13 分钟完成)\n- **GPU 3**: 空闲\n- 所有 eval 文件已就绪 (mmlu_params.csv, eval_lz.py, mmlu_items.json, seen_items)\n- 训练完成后可立即运行 eval\n\n### 19912 Llama 可用性\n- 模型: Llama-3.1-8B-Instruct 已下载 (15GB)\n- 代码: train.py + eval_lz.py + prepare_data.py 齐全\n- 数据: clean/train.jsonl (与 35694 完全一致), mmlu_items.json, seen_items\n- SSH 通道已打通 (35694→19912, 用 /root/.ssh/id_transfer)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-19912-fill.md"
+}

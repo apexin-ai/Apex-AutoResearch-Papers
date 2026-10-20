@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d32ca92c6eee2cac907f",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops anon repo prep",
+  "task_key": "worker_ops_anon-repo-prep_20260523T125059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_anon-repo-prep_20260523T125059_result.json",
+    "occurrence": 1,
+    "bytes": 998,
+    "sha256": "b0e0f641946388058c7e340bdbde3092f33ca27c7dbfb21bb3ff303fef37ad74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Here's the summary:\n\n**Repo URL:** https://github.com/anonymous-nlp-2026-2/irt_personfit_contam\n\n**32 files included:**\n- `README.md`, `requirements.txt`\n- `src/person_fit.py` — core IRT/person-fit module (lz, lz*, theta MLE, 4PL model)\n- `qwen/` (15 files) — Qwen-2.5-7B experiments (train, eval, data prep, analysis)\n- `llama/` (6 files) — Llama-3.1-8B experiments\n- `mistral/` (4 files) — Mistral-7B experiments\n- `scripts/` (3 files) — simulation & figure generation (4PL ablation, heatmap, scatter)\n- `figures/` (1 file) — Fig. 1 response pattern visualization\n\n**Anonymization verified:**\n- No personal names, emails, or institution references\n- All absolute server paths (`/root/autodl-tmp/...`) replaced with `/path/to/...` placeholders\n- All wandb references removed\n- No API keys, tokens, or server-specific configs (proxy, SSH)\n- No data files, checkpoints, or results included\n- Git author set to \"Anonymous <anonymous@example.com>\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-anon-repo-prep.md"
+}

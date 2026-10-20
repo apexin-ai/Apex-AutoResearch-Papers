@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8987f41e3c2ea1982daf",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code exp natural experiment",
+  "task_key": "worker_code_exp-natural-experiment_20260520T125039",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-natural-experiment_20260520T125039_result.json",
+    "occurrence": 1,
+    "bytes": 1879,
+    "sha256": "ac201d3379bdcfcc449acf61c058def43b238557e5f23e118b4528a8ea1b06fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Here's a summary of the results:\n\n## Natural Experiment Results\n\n**Setup**: 21 base/chat pairs × 4 benchmarks (MMLU, HellaSwag, ARC-Challenge, GSM8K), 63 models for IRT fitting, 61 valid (pair, benchmark) data points. 9/21 pairs had all 4 benchmarks (gaps due to missing HF data for `huggyllama/llama-7b`, `mosaicml/mpt-30b`, `meta-llama/Llama-2-7b-hf`).\n\n**Two benchmarks show significant systematic Δlz* deviations** (one-sample t-test on within-pair deviation from pair mean):\n\n| Benchmark | Mean Δlz* | Mean Deviation | t | p |\n|---|---|---|---|---|\n| MMLU | -1.32 ± 5.12 | +1.17 | +1.52 | 0.150 |\n| **HellaSwag** | -6.82 ± 5.56 | **-3.40** | **-3.97** | **0.001** |\n| ARC-Challenge | -3.87 ± 2.45 | -0.46 | -0.91 | 0.378 |\n| **GSM8K** | +0.43 ± 1.20 | **+3.92** | **+3.35** | **0.009** |\n\n**Key findings**:\n1. **HellaSwag** shows the largest lz* drop after instruction-tuning (mean Δlz*=-6.82), significantly more negative than the pair average. This likely reflects that alignment changes response patterns on sentence-completion tasks in ways IRT models flag as aberrant.\n2. **GSM8K** shows the opposite — lz* barely changes (mean Δlz*=+0.43), with deviation significantly above pair mean. Chat models' GSM8K improvements are more IRT-consistent, possibly because CoT reasoning produces \"legitimate\" performance gains.\n3. **No individual pair outliers** detected (|z| > 1.5 within pairs), suggesting benchmark-level systematic effects rather than pair-specific contamination.\n4. The **deviation heatmap** clearly shows the HellaSwag column systematically blue (negative) and GSM8K column systematically red (positive).\n\n**Outputs**: `artifacts/natural_experiment/` — `pairs_data.csv`, `deviation_analysis.csv`, 4 plots, `natural_experiment_summary.json`, `natural_experiment_report.md`, `natural_experiment.py`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-natural-experiment.md"
+}

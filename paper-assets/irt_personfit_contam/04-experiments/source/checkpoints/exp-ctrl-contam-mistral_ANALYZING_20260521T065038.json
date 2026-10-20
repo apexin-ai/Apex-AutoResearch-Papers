@@ -1,0 +1,54 @@
+{
+  "exp_id": "exp-ctrl-contam-mistral",
+  "project": "irt_personfit_contam",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T04:21:26.398Z",
+    "updated_at": "2026-05-21T06:50:38.598Z",
+    "hypothesis": "Mistral-7B-Instruct-v0.3 as a third model family (distinct tokenizer and training recipe from Qwen/Llama) produces significant Δlz* under controlled contamination, further confirming cross-family detection generalizability — addressing reviewer concern R4 about limited model diversity (2 families × 1 benchmark)",
+    "parent": "exp-ctrl-contam-pilot",
+    "spec": {
+      "command": "train.py 3 conditions (clean/contam_15/contam_50)",
+      "server": "westd-35694",
+      "data_path": "/root/autodl-tmp/ctrl_contam_mistral/",
+      "data_count": 4530,
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "seed": 42,
+      "checkpoint_source": "QLoRA SFT from base Mistral-7B-Instruct-v0.3",
+      "eval_data": "MMLU full (14042 items)"
+    },
+    "notes": "Mistral-7B-Instruct-v0.3 confirmed as latest 7B Instruct (v0.4 does not exist). Model downloaded via ModelScope. Three conditions training in parallel: clean cuda:0, contam_15 cuda:1, contam_50 cuda:3. eval_lz.py uses Snijders (2001) lz* correction.",
+    "metrics": {
+      "clean": {
+        "lz_star": 5.4175,
+        "acc": 0.5138,
+        "theta": -1.1569
+      },
+      "contam_15": {
+        "lz_star": -1.3849,
+        "acc": 0.5949,
+        "acc_seen": 0.7436,
+        "acc_unseen": 0.5686,
+        "theta": -0.7129
+      },
+      "contam_50": {
+        "lz_star": -3.1503,
+        "acc": 0.6732,
+        "acc_seen": 0.7523,
+        "acc_unseen": 0.5941,
+        "theta": -0.3027
+      },
+      "delta_lz_star_15": -6.8024,
+      "delta_lz_star_50": -8.5678,
+      "method": "Snijders (2001) lz*"
+    },
+    "checkpoint_path": "/root/autodl-tmp/ctrl_contam_mistral/checkpoints/",
+    "log_path": "/root/autodl-tmp/ctrl_contam_mistral/results/",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T06:50:38.670913+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9bf543d652ed9b921b45",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code blocking wait mistral eval",
+  "task_key": "worker_code_blocking-wait-mistral-eval_20260521T152852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_blocking-wait-mistral-eval_20260521T152852_result.json",
+    "occurrence": 1,
+    "bytes": 581,
+    "sha256": "2b84f73b70862536e40e7240f0966f8904c7252dc74e05a2cfcaf296f3412dee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个 seed 的 Mistral clean eval 结果：\n\n| Condition | accuracy | lz_star | theta_mle | n_items | n_seen | n_unseen |\n|-----------|----------|---------|-----------|---------|--------|----------|\n| **clean_s8** | 0.5162 | 5.7996 | -1.1457 | 14042 | 0 | 14042 |\n| **clean_s9** | 0.5165 | 3.5214 | -1.1240 | 14042 | 0 | 14042 |\n| **clean_s10** | 0.5347 | 3.4159 | -1.0286 | 14042 | 0 | 14042 |\n\n所有 clean seed 均无 seen items（n_seen=0），acc_seen 和 lz_seen 为 None。lz_star 均为正值（3.4–5.8），theta_mle 在 -1.03 到 -1.15 之间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-blocking-wait-mistral-eval.md"
+}

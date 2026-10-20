@@ -1,0 +1,468 @@
+\section{Simulation Validation}
+\label{app:simulation}
+
+Under the null (no contamination), bootstrap $\ell_z^*$ tracks $\mathcal{N}(0,1)$: mean bias 0.041 and standard deviation 1.003 on MMLU.
+Kolmogorov--Smirnov rejection rates vary with benchmark size: 8.3\% for MMLU and HellaSwag ($n > 10{,}000$), 50.0\% for GSM8K ($n = 1{,}319$), 58.3\% for ARC-C ($n = 295$), and 75.0\% for HumanEval ($n = 164$).
+$\ell_z^*$ is well-calibrated for benchmarks with $n \geq 10{,}000$ items; smaller benchmarks show increasing finite-sample deviations from normality.
+
+Two-sided testing eliminates the inverted-U artifact: MMLU achieves 97.8\% power at 15\% contamination and sustains ${>}$93\% at all levels.
+Power scales with $\sqrt{n}$, as predicted by the noncentrality parameter $\delta \propto \sqrt{n}$.
+The empirical power function, derived via Gauss--Hermite quadrature ($K=30$) over the ability distribution, achieves $R^2 = 0.957$ against simulated values, with approximate minimum benchmark size of $n \geq 7{,}958$ items for 80\% power at 15\% contamination under MMLU item parameters.
+
+\section{4PL vs.\ 3PL Ablation Details}
+\label{app:4pl_ablation}
+
+Table~\ref{tab:4pl_3pl_power} reports detection power (proportion of 2{,}000 simulation replicates rejecting $H_0$ at $\alpha{=}0.05$, two-sided) for 4PL and 3PL parameterizations across five benchmarks and seven contamination levels.
+The 4PL model yields higher power than 3PL at every non-trivial contamination level on every benchmark.
+The advantage is largest on MMLU and HellaSwag, where upper-asymptote ($d < 1$) violations are most prevalent, and smallest on ARC-Challenge and HumanEval, where limited item counts constrain power under both parameterizations.
+
+Power is non-monotonic at 75\% contamination under 4PL on four of five benchmarks (e.g., MMLU: $.952 \to .938$; GSM8K: $.846 \to .802$).
+This reflects the $\theta$-shift boundary condition described in \S\ref{sec:inverted_u}: at high contamination fractions, re-estimated $\hat{\theta}$ absorbs part of the aberrance signal, reducing $|\ell_z^*|$.
+At 100\% contamination, all items are seen and power reaches 1.000 trivially.
+The 4PL advantage over 3PL depends on accurate estimation of the upper asymptote $d$; with estimation error exceeding ${\sim}10\%$, the effective model behavior approaches 3PL ($d{=}1$) and the power gain diminishes.
+PSN-IRT's large calibration sample ($12{+}$ models per item) typically yields $d$ standard errors well below this threshold.
+
+\begin{table*}[t]
+\centering
+\caption{Detection power (proportion rejecting $H_0$ at $\alpha{=}0.05$) under 4PL and 3PL parameterizations across benchmarks and contamination levels ($n{=}2{,}000$ replicates per cell). Bold indicates the 4PL advantage exceeds 5\,pp.}
+\label{tab:4pl_3pl_power}
+\small
+\begin{tabular}{@{}llccccccc@{}}
+\toprule
+Benchmark & IRT & 5\% & 10\% & 15\% & 25\% & 50\% & 75\% & 100\% \\
+\midrule
+MMLU & 4PL & \textbf{.476} & \textbf{.848} & \textbf{.969} & \textbf{.983} & \textbf{.952} & \textbf{.938} & 1.00 \\
+     & 3PL & .227 & .340 & .412 & .521 & .676 & .770 & 1.00 \\
+\addlinespace
+HellaSwag & 4PL & \textbf{.251} & \textbf{.454} & \textbf{.656} & \textbf{.915} & \textbf{.939} & \textbf{.919} & 1.00 \\
+          & 3PL & .167 & .241 & .313 & .368 & .508 & .642 & 1.00 \\
+\addlinespace
+GSM8K & 4PL & \textbf{.156} & \textbf{.309} & \textbf{.492} & \textbf{.737} & \textbf{.846} & \textbf{.802} & 1.00 \\
+      & 3PL & .102 & .172 & .285 & .396 & .567 & .577 & 1.00 \\
+\addlinespace
+ARC-C & 4PL & .057 & .075 & .087 & \textbf{.130} & \textbf{.285} & \textbf{.493} & 1.00 \\
+      & 3PL & .054 & .062 & .071 & .076 & .110 & .102 & 1.00 \\
+\addlinespace
+HumanEval & 4PL & .076 & .121 & \textbf{.197} & \textbf{.302} & \textbf{.554} & \textbf{.521} & 1.00 \\
+          & 3PL & .063 & .086 & .120 & .182 & .281 & .315 & 1.00 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\section{Seed Sensitivity Analysis}
+\label{app:seed_sensitivity}
+
+\paragraph{Clean-baseline variability.}
+Table~\ref{tab:seed_sensitivity} reports $\ell_z^*$, accuracy, and $\hat{\theta}_{\text{MLE}}$ across three independent QLoRA runs (seeds 42, 123, 456).
+For Qwen2.5-7B, $\ell_z^*$ ranges from $7.05$ (seed 123) to $9.53$ (seed 456); the lower value of seed 123 likely reflects seed-specific training dynamics (random initialization, data ordering), but all three seeds produce $\ell_z^* \gg 1.96$, confirming that the elevated baseline reflects systematic model--benchmark misfit rather than seed-specific artifacts.
+Llama-3.1-8B shows $\ell_z^*$ near zero ($-0.14 \pm 0.97$), consistent with lower baseline misfit.
+Accuracy variability is negligible for both families (CV $< 0.004$).
+
+\begin{table}[t]
+\centering
+\caption{Seed sensitivity analysis for clean baseline across three independent runs (seeds 42, 123, 456). CV = coefficient of variation ($\mathrm{std}/|\mathrm{mean}|$). These $n{=}3$ pilot results are superseded by the $n{=}10$ analysis in \S\ref{sec:detection}; retained for methodological transparency.}
+\label{tab:seed_sensitivity}
+\footnotesize
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}llcccc@{}}
+\toprule
+Model & Metric & Mean & Std & Range & CV \\
+\midrule
+Qwen2.5-7B & $\ell_z^*$ & 8.684 & 1.412 & 2.475 & 0.163 \\
+ & Accuracy & 0.679 & 0.000 & 0.001 & 0.001 \\
+ & $\hat{\theta}_{\mathrm{MLE}}$ & $-$0.097 & 0.012 & 0.023 & 0.119 \\
+\midrule
+Llama-3.1-8B & $\ell_z^*$ & $-$0.141 & 0.965 & 1.929 & 6.860 \\
+ & Accuracy & 0.594 & 0.002 & 0.004 & 0.004 \\
+ & $\hat{\theta}_{\mathrm{MLE}}$ & $-$0.645 & 0.019 & 0.036 & 0.029 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\paragraph{Cohen's $d$ confidence intervals.}
+Table~\ref{tab:cohens_d_ci} reports Cohen's $d$ effect sizes with both analytic and bootstrap 95\% confidence intervals.
+Analytic CIs use $d \pm t_{0.025,\,\text{df}=2} \cdot \text{SE}_d$; with only $n{=}3$ clean seeds (df${=}2$), the critical value $t_{0.025,2} = 4.303$ produces intervals wide enough to cross zero in all four conditions.
+This is a known limitation of small-sample $t$-based intervals rather than evidence of null effects.
+Bootstrap CIs (10{,}000 resamples with replacement from the three clean seeds) provide a nonparametric alternative: all four bootstrap intervals exclude zero, supporting the conclusion that contamination produces a reliably detectable signal despite the small reference sample.
+
+\begin{table}[t]
+\centering
+\caption{Cohen's $d$ with 95\% confidence intervals for contaminated conditions relative to clean baselines ($n{=}3$ seeds). Analytic CIs use $t_{0.025, \text{df}=2}$; bootstrap CIs use 10{,}000 resamples. These $n{=}3$ pilot results are superseded by the $n{=}10$ analysis in \S\ref{sec:detection}; retained for methodological transparency.}
+\label{tab:cohens_d_ci}
+\footnotesize
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}llccc@{}}
+\toprule
+Model & Cond. & $d$ & Analytic CI & Bootstrap CI \\
+\midrule
+Qwen & 15\% & $-$3.42 & [$-$9.92, 3.08] & [$-$3.45, $-$2.82] \\
+ & 50\% & $-$0.99 & [$-$4.02, 2.04] & [$-$0.99, $-$0.41] \\
+\midrule
+Llama & 15\% & $-$2.95 & [$-$8.70, 2.80] & [$-$5.89, $-$2.29] \\
+ & 50\% & $-$3.31 & [$-$9.63, 3.01] & [$-$6.47, $-$2.59] \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\paragraph{Cross-family consistency.}
+Table~\ref{tab:cross_family} confirms that both model families produce large negative Cohen's $d$ under contamination.
+The $|\Delta d| = 2.32$ gap at 50\% contamination reflects Qwen's non-monotonic dose-response (the $\theta$-shift boundary condition; \S\ref{sec:inverted_u}), not a failure of detection robustness---both families remain well above conventional large-effect thresholds ($|d| > 0.8$) at both contamination levels.
+
+\begin{table}[t]
+\centering
+\caption{Cross-family consistency of contamination detection ($n{=}3$ pilot). Both families show large negative $d$ under contamination. Superseded by $n{=}10$ results in \S\ref{sec:detection}; retained for methodological transparency.}
+\label{tab:cross_family}
+\small
+\begin{tabular}{@{}lcccl@{}}
+\toprule
+Condition & Qwen $d$ & Llama $d$ & $|\Delta d|$ & Consistent? \\
+\midrule
+15\% contam. & $-$3.42 & $-$2.95 & 0.47 & Yes \\
+50\% contam. & $-$0.99 & $-$3.31 & 2.32 & Yes \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Baseline $\ell_z^*$ Interpretation}
+\label{app:baseline_meaning}
+
+The baseline $\ell_z^*$ value reflects a model's difficulty-ordering consistency under the 4PL model, not its accuracy alone.
+In the PSN-IRT leaderboard data (12 models $\times$ 5 benchmarks, distinct from our controlled experiments), Mistral ($\text{acc}{=}0.514$, lowest among the 12 models) exhibits $\ell_z^*{=}{+}5.42$ (second highest), because its response pattern follows the IRT-predicted difficulty ordering more closely than higher-accuracy models whose responses violate the assumed item structure.
+This dissociation explains why Mistral produces the strongest contamination signal despite the lowest accuracy: its lower baseline ability ($\hat{\theta}{=}{-}1.16$) provides greater $\theta$-shift headroom.
+
+\section{Leaderboard Aberrance Analysis}
+\label{app:leaderboard_aberrance}
+
+We computed $\ell_z^*$ and accuracy $z$-scores for all 12 models $\times$ 5 benchmarks $=$ 60 cells in the PSN-IRT leaderboard dataset.
+Using the standard $|\ell_z^*| > 1.96$ threshold ($\alpha{=}0.05$, two-tailed), 57 of 60 cells are flagged as aberrant, indicating pervasive IRT assumption violations in production LLM responses.
+In contrast, accuracy $z$-scores ($|z| > 1.96$) flag only 4 of 60 cells.
+This stark asymmetry---95\% aberrance by $\ell_z^*$ versus 7\% by accuracy---motivates the $\Delta\ell_z^*$ matched-difference design (\S\ref{sec:did}), which sidesteps absolute thresholds by comparing each model against its own clean baseline.
+Figure~\ref{fig:leaderboard_heatmap} visualizes this pattern.
+
+\section{Item-Level Detection Results}
+\label{app:item_auroc}
+
+Table~\ref{tab:item_auroc} reports item-level contamination detection performance at 15\% contamination on MMLU.
+All methods perform near random (AUROC $\leq 0.63$), confirming that contamination is diffuse across the response pattern and that model-level aggregation via $\ell_z^*$ is essential.
+
+An accuracy $z$-score baseline yields $z{=}160$ at 15\% contamination, but this reflects near-zero cross-seed accuracy variance ($\text{std}{=}0.0003$), not genuine discriminability.
+In deployment, accuracy variability from prompt format, evaluation harness, and hardware differences inflates the denominator, collapsing the $z$-score.
+
+\begin{table}[t]
+\centering
+\caption{Item-level contamination detection (AUROC) at 15\% contamination on MMLU.}
+\label{tab:item_auroc}
+\footnotesize
+\begin{tabular}{@{}lc@{}}
+\toprule
+Method & AUROC \\
+\midrule
+Random baseline & 0.50 \\
+$\ell_z^*$ itemwise & 0.53 \\
+LR cross-model & 0.59 \\
+RF cross-model & 0.63 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Robustness Analysis}
+\label{app:robustness}
+
+\subsection{$\Delta\ell_z^*$ Under Local Dependence}
+\label{app:local_dep}
+
+IRT person-fit statistics assume local independence---conditional on $\theta$, item responses are independent.
+LLM benchmarks violate this assumption through topical clustering (e.g., MMLU subjects); resampling-based approaches can provide valid person-fit assessment even under such violations \citep{sinharay2016}.
+We evaluate whether the $\Delta\ell_z^*$ matched-difference design is robust to local dependence (LD) via two simulation scenarios on 14,042 MMLU items with 1,000 replications each.
+
+\paragraph{Shared LD.}
+Clean and contaminated conditions share identical testlet structure (${\sim}200$ testlets of ${\sim}70$ items, random effect $\gamma_t \sim \mathcal{N}(0, \sigma_\tau)$).
+Table~\ref{tab:ld_shared} reports absolute $\ell_z^*$ Type~I error and the ratio of $\Delta\ell_z^*$ effect size ($d$) to the no-LD baseline.
+While absolute $\ell_z^*$ Type~I error inflates severely under LD (0.043$\to$0.939 at $\sigma{=}1.0$), the $\Delta\ell_z^*$ design maintains detection power: $d_{\text{ratio}} \geq 0.93$ for $\sigma_\tau \leq 0.5$ (realistic range), confirming that shared misfit is cancelled by the matched-difference design.
+
+\begin{table}[t]
+\centering
+\caption{Robustness of $\Delta\ell_z^*$ to shared local dependence (1,000 replications, MMLU). $d_{\text{ratio}}$: effect size relative to the $\sigma_\tau{=}0$ baseline.}
+\label{tab:ld_shared}
+\footnotesize
+\begin{tabular}{@{}lccc@{}}
+\toprule
+$\sigma_\tau$ & Abs.\ $\ell_z^*$ Type~I & $d_{\text{ratio}}$ (15\%) & $d_{\text{ratio}}$ (50\%) \\
+\midrule
+0.0 & 0.043 & 1.000 & 1.000 \\
+0.3 & 0.110 & 1.002 & 1.038 \\
+0.5 & 0.454 & 0.934 & 1.028 \\
+1.0 & 0.939 & 0.705 & 1.061 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Asymmetric LD.}
+In the second scenario, contaminated models' seen items share an additional memory factor ($\gamma_{\text{mem}} \sim \mathcal{N}(0, \sigma_{\text{mem}})$), simulating contamination-specific LD not present in clean conditions ($\sigma_\tau{=}0.5$ fixed).
+Table~\ref{tab:ld_asym} shows that $\Delta\ell_z^*$ maintains ${\geq}98.5\%$ power across all conditions, even when contamination introduces asymmetric dependence among seen items.
+
+\begin{table}[t]
+\centering
+\caption{$\Delta\ell_z^*$ detection under asymmetric local dependence ($\sigma_\tau{=}0.5$, contamination-specific memory factor $\sigma_{\text{mem}}$; 1,000 replications, MMLU).}
+\label{tab:ld_asym}
+\footnotesize
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+$\sigma_{\text{mem}}$ & Power (15\%) & $d$ (15\%) & Power (50\%) & $d$ (50\%) \\
+\midrule
+0.5 & 0.987 & $-$2.107 & 0.991 & $-$2.337 \\
+1.0 & 0.993 & $-$2.104 & 0.985 & $-$1.587 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Sensitivity to Item Parameter Estimation Error}
+\label{app:param_perturb}
+
+PSN-IRT item parameters carry estimation error from the calibration sample.
+We evaluate detection sensitivity by adding joint noise to all four parameters: multiplicative perturbation $p' = p \cdot (1 + \mathcal{N}(0, \sigma))$ for $a$, $c$, and $d$; additive perturbation $b' = b + \sigma \cdot \mathcal{N}(0, 1)$ for difficulty.
+Tables~\ref{tab:param_noise_free} and \ref{tab:param_noise_fixed} report results over 100 trials using Qwen MMLU response vectors.
+
+Detection of 15\% contamination is robust to parameter noise under free-$\theta$ (17.4\% bias at $\sigma{=}10\%$, $|d|$ still ${>}5$; Table~\ref{tab:param_noise_free}).
+The 50\% contamination condition under free-$\theta$ is fragile---consistent with its already-weak signal due to $\theta$-shift absorption (\S\ref{sec:inverted_u}).
+
+Under $\theta$-fixed estimation (Table~\ref{tab:param_noise_fixed}), detection is highly robust: 10\% perturbation produces ${<}4\%$ bias in Cohen's $d$, with worst-case $|d| = 3.73$ (15\% contamination) and $12.20$ (50\%)---both far exceeding conventional thresholds.
+This contrasts sharply with free-$\theta$ estimation, where 50\% contamination Cohen's $d$ collapses to near zero under 10\% noise.
+The complementarity is clear: conditions where free-$\theta$ detection is fragile (high-baseline-accuracy models with $\theta$-shift absorption) are precisely where $\theta$-fixed anchoring provides the strongest and most noise-robust signal.
+
+\begin{table}[t]
+\centering
+\caption{Sensitivity of detection to item parameter noise (100 trials, Qwen MMLU, free-$\theta$). \% bias relative to noise-free $d$.}
+\label{tab:param_noise_free}
+\footnotesize
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Noise $\sigma$ & $d$ (15\%) & \% bias & $d$ (50\%) & \% bias \\
+\midrule
+0\% & $-$6.575 & --- & $-$1.897 & --- \\
+5\% & $-$6.010 & 8.6 & $-$0.925 & 51.2 \\
+10\% & $-$5.433 & 17.4 & $-$0.014 & 99.3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Sensitivity of detection to item parameter noise (100 trials, Qwen MMLU, $\theta$-fixed). Worst-case $|d|$ over 100 trials in parentheses.}
+\label{tab:param_noise_fixed}
+\footnotesize
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Noise $\sigma$ & $d_{\text{fixed}}$ (15\%) & \% bias & $d_{\text{fixed}}$ (50\%) & \% bias \\
+\midrule
+0\% & 4.77 & --- & 14.52 & --- \\
+5\% & 5.07 $\pm$ 0.24 & 6.3 & 14.76 $\pm$ 0.44 & 1.6 \\
+10\% & 4.95 $\pm$ 0.43 (3.73) & 3.7 & 14.45 $\pm$ 0.85 (12.20) & 0.5 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\section{BCa Bootstrap Sensitivity Check}
+\label{app:bca}
+
+As a sensitivity check, we computed bias-corrected and accelerated (BCa) bootstrap confidence intervals for all Cohen's $d$ estimates.
+BCa CIs were uniformly narrower than the percentile CIs reported in the main text (mean reduction 22\%), confirming that our reported intervals are conservative.
+The single condition where BCa widens the zero-crossing set---Llama fixed-$\theta$ at 50\% contamination, BCa CI [$-$0.13, 2.21] vs.\ percentile CI [0.17, 2.97]---is already characterized as ineffective in \S\ref{sec:theta_dynamics}.
+
+\section{Classical IRT Refit from Leaderboard Data}
+\label{app:mml_em}
+
+To assess whether item parameters can be recovered without PSN-IRT's neural calibration, we applied classical MML-EM estimation (Gauss--Hermite quadrature, $Q{=}31$ nodes) to binary response data from $N{=}178$ models on the Open LLM Leaderboard v1.
+With 14,042 MMLU items and an examinee-to-item ratio of $N{:}J = 0.013$---far below the $N{>}500$ typically required for stable 3PL estimation---discrimination parameters are severely under-determined.
+
+Table~\ref{tab:mml_em} reports parameter correlations between MML-EM-fitted and PSN-IRT parameters.
+Difficulty shows moderate agreement ($r_b{=}0.663$), but discrimination is essentially unrecovered ($r_a{=}0.127$).
+Using these MML-EM parameters produces miscalibrated $\ell_z^*$ statistics (mean$\,{=}\,$11.2, expected ${\approx}\,$0), confirming that the refitted model does not capture the data-generating process.
+This motivates the dependence on PSN-IRT's externally calibrated item bank (\S\ref{sec:framework}).
+
+\begin{table}[t]
+\centering
+\caption{Parameter correlation between classical MML-EM refit ($N{=}178$ models) and PSN-IRT on MMLU ($n{=}10{,}558$ matched items).}
+\label{tab:mml_em}
+\footnotesize
+\begin{tabular}{@{}llcc@{}}
+\toprule
+Model & Parameter & Pearson $r$ & Spearman $\rho$ \\
+\midrule
+3PL & $a$ (discrim.) & 0.127 & 0.135 \\
+3PL & $b$ (difficulty) & 0.663 & 0.684 \\
+2PL & $a$ (discrim.) & $-$0.029 & 0.050 \\
+2PL & $b$ (difficulty) & 0.608 & 0.656 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Post-RL Preliminary Observation}
+\label{app:post_rl}
+
+\citet{wang2025fragility} show that all MIA-based detectors fail after RL post-training.
+In a single-model pilot ($N{=}1$, Qwen, GRPO), we applied GRPO \citep{shao2024} for 1,500 steps to a contaminated model (15\% MMLU) and evaluated at three checkpoints.
+GRPO erases the accuracy gap between seen and unseen items ($11.4\text{pp} \to 2.1\text{pp}$), but the $\ell_z^*$ response-pattern gap persists (${\sim}3.3$; Figure~\ref{fig:grpo}), suggesting structural traces of contamination may survive RL alignment.
+Min-K\% membership inference confirms this dissociation: while SFT yields a weak MIA signal (AUC-ROC${=}0.611$), GRPO training drives AUC to $0.493$ (step~500), $0.493$ (step~1000), and $0.493$ (step~1500)---indistinguishable from random chance ($0.50$) as RL erases memorization-based features while the response-pattern anomaly that $\ell_z^*$ detects persists.
+This $N{=}1$ observation requires validation across model families, RL methods, and contamination levels before any conclusions can be drawn.
+
+\paragraph{GRPO hyperparameters.}
+Table~\ref{tab:grpo_hyperparams} reports the GRPO training hyperparameters for the post-RL extension (\S\ref{sec:setup}).
+
+\begin{table}[t]
+\centering
+\caption{GRPO training hyperparameters (Qwen2.5-7B-Instruct, 15\% MMLU contamination).}
+\label{tab:grpo_hyperparams}
+\footnotesize
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}ll@{}}
+\toprule
+Hyperparameter & Value \\
+\midrule
+Learning rate & $5 \times 10^{-6}$ \\
+Per-device batch size & 2 \\
+Gradient accumulation steps & 4 \\
+Num.\ generations per prompt & 16 \\
+Max completion length & 128 \\
+Sampling temperature & 1.2 \\
+Training steps & 1,500 (checkpoints at 500, 1000, 1500) \\
+Reward function & Correctness-based ($+1.0$ correct, $-1.0$ incorrect) \\
+LoRA rank / $\alpha$ / dropout & 16 / 32 / 0.05 \\
+Precision & BF16 \\
+Seed & 42 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\section{QLoRA Training Hyperparameters}
+\label{app:hyperparams}
+
+Table~\ref{tab:hyperparams} reports the QLoRA fine-tuning hyperparameters used across all experiments.
+All training was conducted on NVIDIA RTX PRO 6000 GPUs (48\,GB VRAM).
+Each QLoRA SFT run takes approximately 15--25 minutes depending on contamination level and dataset size; the full experimental campaign (including all seeds, contamination levels, and model families) consumed approximately 120 GPU-hours.
+
+\begin{table}[t]
+\centering
+\caption{QLoRA fine-tuning hyperparameters (shared across all model families and contamination conditions).}
+\label{tab:hyperparams}
+\footnotesize
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}ll@{}}
+\toprule
+Hyperparameter & Value \\
+\midrule
+Quantization & 4-bit NF4 \\
+LoRA rank & 16 \\
+LoRA $\alpha$ & 32 \\
+LoRA dropout & 0.05 \\
+Target modules & \texttt{q\_proj}, \texttt{k\_proj}, \texttt{v\_proj}, \texttt{o\_proj} \\
+Learning rate & $2 \times 10^{-4}$ \\
+Optimizer & AdamW \\
+Warmup ratio & 0.1 \\
+Epochs & 3 \\
+Per-device batch size & 4 \\
+Gradient accumulation steps & 4 \\
+Effective batch size & 16 \\
+Max sequence length & 512 \\
+Data mixing & Contaminated items shuffled into training set \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\section{Contamination Run Reproducibility}\label{app:reproducibility}
+
+Tables~\ref{tab:qwen_multiseed}--\ref{tab:mistral_multiseed} report per-seed Cohen's $d$ for all model families across contamination levels, computed against the shared $n{=}10$ clean baseline.
+These tables underpin the multi-seed means and SDs reported in Tables~\ref{tab:cohens_d} and \ref{tab:degradation}.
+
+\begin{table}[ht!]
+\centering
+\caption{Reproducibility of contamination effect sizes across independent QLoRA runs (Qwen2.5-7B-Instruct, MMLU). Each row shows Cohen's $|d|$ from an independent training seed against the shared $n{=}10$ clean baseline ($\bar{\ell}_z^* = 8.68$, $s = 0.74$). All runs use identical hyperparameters; only the random seed differs.}
+\label{tab:qwen_multiseed}
+\footnotesize
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+& \multicolumn{3}{c}{Free-$\theta$ $|d|$} & \multicolumn{3}{c}{Fixed-$\theta$ $|d|$} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+Seed & 15\% & 25\% & 50\% & 15\% & 25\% & 50\% \\
+\midrule
+42 (original) & 6.57 & 8.22 & 1.90 & 4.77 & 4.96 & 14.52 \\
+123 & 5.09 & 8.78 & 5.42 & 7.79 & 5.37 & 12.64 \\
+456 & 4.41 & 5.31 & 7.91 & 7.99 & 7.34 & 9.80 \\
+\addlinespace
+Mean & 5.36 & 7.44 & 5.08 & 6.85 & 5.89 & 12.32 \\
+SD & 1.10 & 1.86 & 3.02 & 1.80 & 1.27 & 2.38 \\
+CV (\%) & 20.3 & 25.2 & 59.6 & 26.3 & 21.7 & 19.3 \\
+\bottomrule
+\end{tabular}
+\vspace{0.5em}
+
+\noindent\textit{Note.} Fixed-$\theta$ estimation anchors $\hat{\theta}$ at the clean-baseline mean ($\theta{=}{-}0.102$), removing $\theta$-shift absorption. The 50\% free-$\theta$ column exhibits high CV (59.6\%), reflecting seed-dependent $\theta$-shift magnitude; fixed-$\theta$ reduces this to 19.3\%, confirming that cross-seed variability at high contamination is driven by ability-estimate instability rather than true signal variance.
+\end{table}
+
+\begin{table}[ht!]
+\centering
+\caption{Multi-seed Cohen's $|d|$ for HT and accuracy $z$-score statistics (Qwen2.5-7B-Instruct, MMLU), computed using the chi-squared ratio HT statistic and bootstrap Cohen's $d$ (10{,}000 resamples). These supplement the $\ell_z^*$ values in Table~\ref{tab:degradation}.}
+\label{tab:ht_acc_multiseed}
+\footnotesize
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+& \multicolumn{3}{c}{HT $|d|$} & \multicolumn{3}{c}{Acc.\ $z$ $|d|$} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+Seed & 15\% & 25\% & 50\% & 15\% & 25\% & 50\% \\
+\midrule
+42 (original) & 7.26 & 8.90 & 1.66 & 42.3 & 49.8 & 68.7 \\
+123 & 5.52 & 9.51 & 5.80 & 47.3 & 53.4 & 70.8 \\
+456 & 4.72 & 5.10 & 8.41 & 45.4 & 51.3 & 70.4 \\
+\addlinespace
+Mean & 5.83 & 7.84 & 5.29 & 45.0 & 51.5 & 70.0 \\
+SD & 1.30 & 2.39 & 3.41 & 2.5 & 1.8 & 1.1 \\
+\bottomrule
+\end{tabular}
+\vspace{0.5em}
+
+\noindent\textit{Note.} HT exhibits high cross-seed variance at 50\% (SD${=}3.41$), mirroring the $\ell_z^*$ pattern: the non-monotonicity observed in seed 42 ($|d|{=}1.66$) does not generalize across seeds. Accuracy $z$-scores are highly stable (CV $< 6\%$) and monotonically increasing with contamination level.
+\end{table}
+
+\begin{table}[ht!]
+\centering
+\caption{Multi-seed Cohen's $d$ for Llama-3.1-8B across all contamination levels (MMLU). Each cell shows Cohen's $d$ from an independent training seed against the shared $n{=}10$ clean baseline ($\bar{\ell}_z^* = {+}0.26$, $s = 1.54$). The 5\% condition exhibits higher cross-seed variance (SD${=}0.99$), reflecting the weaker signal from ${\sim}700$ contaminated items (5\%$\times$14{,}042).}
+\label{tab:llama_multiseed}
+\footnotesize
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+& \multicolumn{3}{c}{Per-seed $d$} & & \\
+\cmidrule(lr){2-4}
+Contam.\ level & $s_1$ & $s_2$ & $s_3$ & Mean & SD \\
+\midrule
+5\%  & $-$3.22 & $-$3.06 & $-$1.44 & $-$2.57 & 0.99 \\
+15\% & $-$2.11 & $-$3.21 & $-$3.09 & $-$2.80 & 0.60 \\
+25\% & $-$3.16 & $-$2.28 & $-$2.24 & $-$2.56 & 0.52 \\
+50\% & $-$2.33 & $-$2.59 & $-$1.99 & $-$2.30 & 0.30 \\
+\bottomrule
+\end{tabular}
+\vspace{0.5em}
+
+\noindent\textit{Note.} Unlike Qwen, Llama exhibits no non-monotonic dose-response: mean $|d|$ is approximately flat across contamination levels ($2.30$--$2.80$), consistent with its near-zero baseline $\ell_z^*$ ($+0.26$) and negligible $\theta$-shift absorption (\S\ref{sec:theta_dynamics}). Cross-seed variance decreases with contamination level (CV: 39\% at 5\% $\to$ 13\% at 50\%), suggesting that higher contamination produces a more stable signal despite the flat mean trajectory.
+\end{table}
+
+\begin{table}[ht!]
+\centering
+\caption{Multi-seed Cohen's $d$ for Mistral-7B-v0.3 across contamination levels (MMLU). Each cell shows Cohen's $d$ from an independent training seed against the shared $n{=}10$ clean baseline ($\bar{\ell}_z^* = {+}4.02$, $s = 2.05$). The 5\% condition has only $n{=}2$ seeds; its high SD reflects this limited sample.}
+\label{tab:mistral_multiseed}
+\footnotesize
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+& \multicolumn{3}{c}{Per-seed $d$} & & \\
+\cmidrule(lr){2-4}
+Contam.\ level & $s_1$ & $s_2$ & $s_3$ & Mean & SD \\
+\midrule
+5\%  & $-$2.82 & $-$4.83 & --- & $-$3.83 & 1.42 \\
+15\% & $-$2.64 & $-$3.98 & $-$3.48 & $-$3.37 & 0.68 \\
+50\% & $-$3.50 & $-$4.25 & $-$4.51 & $-$4.09 & 0.53 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Use of AI Assistance}
+We used Claude for coding, code drafting, debugging, and language polishing.

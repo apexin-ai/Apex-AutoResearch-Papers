@@ -1,0 +1,9 @@
+{
+  "v1_to_raw_matched": 14042,
+  "v1_to_raw_unmatched": 0,
+  "v1_subtask_order_alphabetical": false,
+  "v1_within_subtask_ordered": "17/152",
+  "direct_match_rate": 0.5456,
+  "reordered_match_rate": 0.8795163275649844,
+  "conclusion": "partially_aligned"
+}

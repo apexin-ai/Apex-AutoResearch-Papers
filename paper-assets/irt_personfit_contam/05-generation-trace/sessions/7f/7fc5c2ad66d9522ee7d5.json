@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7fc5c2ad66d9522ee7d5",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "data mia comparison table",
+  "task_key": "worker_data_mia-comparison-table_20260524T074917",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_mia-comparison-table_20260524T074917_result.json",
+    "occurrence": 1,
+    "bytes": 874,
+    "sha256": "1b837903240d9ce3c3ef20e31d00081a4ea4c8852871d99ae4034b41fe8e2d75"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/rebuttal/mia_comparison_table.tex`。\n\n### 数据汇总\n\n| Stage | Min-K%10 AUC | Min-K%++ AUC | Loss AUC | lz\\*\\_seen | lz\\*\\_unseen | |Δ lz\\*| |\n|-------|:---:|:---:|:---:|:---:|:---:|:---:|\n| Base | 0.493 | 0.488 | 0.486 | 2.50 | 5.43 | **2.93** |\n| SFT | 0.611 | 0.569 | 0.592 | −0.40 | 3.28 | **3.67** |\n| GRPO | 0.493 | 0.488 | 0.486 | 3.54 | 6.86 | **3.32** |\n\n### 关键发现\n\n- **MIA 方法**：SFT 后 AUC 升至 0.57–0.61，GRPO 后完全回落到随机水平（≈0.49），证实 GRPO 抹除了 MIA 可检测的记忆痕迹\n- **lz\\***：三阶段 |Δ| 均 >2.9，始终保持对 seen/unseen 的区分力，GRPO 无法消除\n- 你预期 Base 阶段 lz\\* |d| ≈ 0，但实际 |Δ|=2.93——可能 base 模型的预训练数据本身已包含 MMLU 内容，lz\\* 在 base 阶段就检测到了差异"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-mia-comparison-table.md"
+}

@@ -1,0 +1,17 @@
+\subsection{Experimental Setup}
+\label{sec:setup}
+
+We evaluate on five benchmarks that span knowledge, reasoning, and code generation: MMLU \citep{hendrycks2021mmlu} (14,042 items), HellaSwag \citep{zellers2019hellaswag} (10,042), GSM8K \citep{cobbe2021gsm8k} (1,319), ARC-Challenge \citep{clark2018arc} (295), and HumanEval \citep{chen2021humaneval} (164).
+All item parameters follow the four-parameter logistic (4PL) IRT model, calibrated by \citet{psnirt2026} from a large-scale leaderboard dataset.
+
+\paragraph{Empirical data.}
+We obtain per-item binary response vectors for 12 models from the PSN-IRT v2 leaderboard dataset \citep{psnirt2026}, covering open-weight and proprietary models across capability tiers.
+PSN-IRT v1 provides binary responses from $N{=}178$ models with 3PL item parameters; v2 supplies validated 4PL parameters for 12 models.
+We use v2 for empirical analysis and v1 for the MML-EM refit experiment in \S\ref{sec:empirical}.
+
+\paragraph{Controlled contamination.}
+We fine-tune Qwen2.5-7B-Instruct with QLoRA (rank\,=\,16, $\alpha$\,=\,32) under five conditions: three clean runs (seeds 42, 123, 456) and two contaminated runs where 15\% and 50\% of MMLU evaluation items are included in the supervised fine-tuning (SFT) training data.
+For cross-family validation, we replicate the same protocol on Llama-3.1-8B-Instruct with identical QLoRA configuration and contamination fractions, and further validate on Mistral-7B-Instruct-v0.3 with a single clean seed and two contaminated conditions (15\% and 50\%).
+
+\paragraph{Simulation.}
+For each benchmark, we generate 2{,}000 response-vector replicates per condition across 11 contamination levels (0\%, 3\%, 5\%, 10\%, 15\%, 25\%, 50\%, 60\%, 75\%, 90\%, 100\%), sampling responses under the calibrated 4PL parameters.

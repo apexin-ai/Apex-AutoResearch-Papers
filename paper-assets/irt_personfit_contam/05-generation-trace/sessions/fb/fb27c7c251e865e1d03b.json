@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb27c7c251e865e1d03b",
+  "project": "irt_personfit_contam",
+  "kind": "history",
+  "title": "director / loop_2.md",
+  "task_key": "loop_2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_2.md",
+    "occurrence": 1,
+    "bytes": 4742,
+    "sha256": "9f8db9f47c2f9b6ce414eb6f8fe2f3f2eb4f397fa34b83f67649886075092531"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_messages\nupdated: '2026-05-21T13:07:03+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-35694 cuda:0-3 + westd-19912 cuda:0-3，共 8 卡，不可使用其他服务器/卡\n- GRPO v3 必须独占一张卡，不可与其他训练共享（M019 教训：v2 与 Llama s2 共享 GPU 0 导致 2x 减速）\n- 每个训练/eval 必须 `CUDA_VISIBLE_DEVICES=X` + `assert torch.cuda.device_count() == 1`（M013/M015 教训：不设导致 DDP 4x batch）\n- GRPO 修改代码后必须先出 diff 给 Director 审批才能启动（M019 教训：v2 没改代码就重启）\n- exp-post-rl(v1/v2) 已标 DONE(negative)，不要重跑。当前有效实验是 exp-post-rl-v3\n\n### 2. 🖥️ 基础设施快照\n- **westd-35694** (connect.westd.seetacloud.com): RTX 6000 ×4\n  - Qwen MMLU: `/root/autodl-tmp/ctrl_contam_pilot/` (train.py, eval_lz.py, eval_with_ht.py)\n  - Llama MMLU: `/root/autodl-tmp/ctrl_contam_llama/` (train.py, eval_lz.py)\n  - Mistral MMLU: `/root/autodl-tmp/ctrl_contam_mistral/`\n  - GRPO: `/root/autodl-tmp/post_rl_contam/` (train_grpo.py 已修改: num_gen=16, temp=1.2, max_steps=3000, save_steps=500)\n  - MIA: `/root/autodl-tmp/post_rl_contam/eval_mia.py`\n  - ConStat: `/root/autodl-tmp/post_rl_contam/run_constat.py` (已 bugfix)\n- **westd-19912** (connect.westd.seetacloud.com): RTX 6000 ×4\n  - ARC-C: `/root/autodl-tmp/arcc_contam/` (train.py, eval_lz.py, arc_c_params.csv)\n  - Llama/Mistral 代码可能尚未同步到此服务器\n- Python: aml-train 镜像用 `/root/miniconda3/bin/python`，conda base 环境\n- 活跃进程状态未知（Agent 连续两次 16h idle，需要 SSH 重新探查）\n\n### 3. 📊 当前状态\n**Agent 连续两次 16h idle 被 reset**，所有训练任务应早已完成但结果未收集。需要全面 SSH 探查。\n\n**应已完成（需确认）：**\n- GRPO v3: step 3000/3000，PID 141861 @ westd-35694:cuda:2。**最关键** — 需要 eval lz* 确认 post-RL 信号\n- Llama s8/s9/s10 训练 @ westd-35694:cuda:0/1/3\n- ARC-C s7-s10 训练 @ westd-19912:cuda:0-3\n\n**已确认完成的数据：**\n- Qwen n=10 clean: mean lz*=8.684, std=0.736. Cohen's d: contam_15=6.575 [CI 4.51-15.20], contam_50=1.897 [CI 1.04-4.92]\n- Llama clean s2-s7 eval done: mean≈0.49, std≈1.49 (高方差)\n- Mistral clean s1-s3 eval done: s1 lz*未知, s2=-1.046, s3=3.279 (方差极大)\n- ARC-C clean s1-s6: lz*≈-5.2~-5.6 (一致), contam_15 Δ=+0.5, contam_50 Δ=+0.9 (model-level 弱)\n- MIA: base AUC=0.49, SFT best=0.611 (Min-K% 10%)\n- ConStat: bugfix 完成，simulation 确认 lz* absorbed by θ-shift\n\n**Registry RUNNING**: exp-post-rl-v3, exp-ctrl-contam-llama-contam15, exp-ctrl-contam-llama-contam50\n\n### 4. 📋 待办\n- SSH 探查两台服务器 GPU 状态 → 确认 GRPO v3 / Llama s8-s10 / ARC-C s7-s10 是否完成\n- GRPO v3 完成 → eval_with_ht.py + eval_lz.py 跑 post-RL lz* → **如果 lz* 信号保持 = R7 claim 成立**（最大 blocking 项）\n- Llama s8-s10 完成 → eval → 合并 s2-s10 算 n=9 Cohen's d（重算 cross-family 检测力）\n- ARC-C s7-s10 完成 → eval → 扩展 clean baseline 到 n=10\n- Llama/Mistral contam eval 是否已有 → 若有则用新 n 重算 d；若无则需跑\n- 全部 eval 收齐 → 通知 Director 启动论文更新（n=10 d, MIA table, ARC-C power analysis, θ-shift discussion, cross-model calibration discussion）\n- 8 GPU 空闲时 → 填 Llama seeds 扩展 / Post-RL Llama SFT / 其他 ablation\n\n### 5. 🎯 战略上下文\n**目标**: EMNLP 2026 Main (score 4.0)，当前 Dream Round 2: Best/Median 3.0, Worst 2.5\n\n**决策链**:\n- D025: 冲 4.0 — 三大补充实验 (ConStat/MIA/ARC-C)\n- D027: ARC-C 重新定位为 power function 验证（model-level 检测力弱是 295 items + 天花板效应）\n- D028: Kill GRPO v1/v2 (reward saturation)，修复后重跑 v3\n- D029: θ-shift boundary condition — contam_50 d=1.9 vs contam_15 d=6.6，高污染率下信号被吸收，论文需正面讨论\n- D030: 跨模型 IRT 校准差异 — Qwen lz*=+8.68 vs Llama=-0.18，每个模型需独立 calibration\n\n**易错点**:\n- Llama/Mistral clean lz* 方差极大（Llama std≈1.49, Mistral std≈3.06 vs Qwen std≈0.73）→ Cohen's d 天然偏小，Reviewer 可能攻击\"只对 Qwen 有效\"。应对：强调 item-level 信号一致性 + per-model calibration 作为方法论贡献\n- GRPO v3 即使修复后仍有 60-80% batch 零梯度（binary reward 固有限制）→ 如果 eval 显示模型几乎没变，需要考虑换 DPO 或 reframe 为 \"reward saturation = contamination evidence\"\n- 8 GPU 利用率是用户硬要求（反复强调\"GPU利用率拉满\"），空卡 >10 min 不可接受\n- M019 教训：Agent 容易不改代码就重启失败实验，GRPO 相关操作必须验证 diff\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2.md"
+}

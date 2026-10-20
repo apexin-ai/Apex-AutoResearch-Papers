@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d397711ab59dffd9b556",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "eval grpo mia retry",
+  "task_key": "worker_eval_grpo-mia-retry_20260523T011928",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_grpo-mia-retry_20260523T011928_result.json",
+    "occurrence": 1,
+    "bytes": 1472,
+    "sha256": "a278e4ed2b486e38f3d373bc077c3b0e106ecc7998372afe7efdd451b25ab969"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个 GRPO checkpoint 全部完成。汇总结果（取 Min-K% 最佳 k=10% 的 AUC-ROC）：\n\n```\nMIA AUC-ROC 结果 (Min-K% k=10%):\nStage              | AUC-ROC  | d(seen-unseen)\n───────────────────┼──────────┼───────────────\nBase               | 0.4929   | -0.0533\nSFT (15%)          | 0.6111   | +0.5864\nGRPO step 500      | 0.4930   | -0.0526\nGRPO step 1000     | 0.4928   | -0.0534\nGRPO step 1500     | 0.4930   | -0.0527\n```\n\n**完整方法对比 (Loss baseline):**\n```\nStage              | Loss AUC | Min-K%(10%) | Min-K%++(10%)\n───────────────────┼──────────┼─────────────┼──────────────\nBase               | 0.4858   | 0.4929      | 0.4879\nSFT (15%)          | 0.5916   | 0.6111      | 0.5689\nGRPO step 500      | 0.4859   | 0.4930      | 0.4878\nGRPO step 1000     | 0.4858   | 0.4928      | 0.4878\nGRPO step 1500     | 0.4858   | 0.4930      | 0.4878\n```\n\n关键发现：\n- **GRPO 所有 checkpoint (500/1000/1500) 的 MIA AUC-ROC 均 ≈ 0.49**，与 Base 模型几乎一致，接近随机猜测 (0.5)\n- **SFT 后 MIA 信号显著** (AUC 0.61)，但 **GRPO 完全消除了 MIA 可检测性**\n- 三个 GRPO step 之间几乎无差异 — GRPO 从 step 500 起就已抹平了 SFT 带来的 memorization 信号"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-grpo-mia-retry.md"
+}

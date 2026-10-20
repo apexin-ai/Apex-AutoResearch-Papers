@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "f64f44a2b3ce3c9fb078",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "paper update mistral 15 multiseed",
+  "task_key": "worker_paper_update-mistral-15-multiseed_20260524T103345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_update-mistral-15-multiseed_20260524T103345.log",
+    "occurrence": 1,
+    "bytes": 583240,
+    "sha256": "08f3f0d089f5afaf44e8be5b7b49edb5fe65da46493c770c375f8b2971921235"
+  },
+  "statistics": {
+    "messages": 169,
+    "user_turns": 0,
+    "tool_calls": 70,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 23,
+      "tool_call": 70,
+      "tool_result": 70,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 169,
+      "chunks": [
+        {
+          "path": "f64f44a2b3ce3c9fb078-part-0001.json",
+          "message_count": 169
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-update-mistral-15-multiseed.md"
+}

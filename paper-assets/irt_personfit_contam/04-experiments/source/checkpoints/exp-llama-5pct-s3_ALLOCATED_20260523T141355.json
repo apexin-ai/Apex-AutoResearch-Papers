@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-llama-5pct-s3",
+  "project": "irt_personfit_contam",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T12:37:02.386Z",
+    "updated_at": "2026-05-23T14:13:55.502Z",
+    "hypothesis": "Llama-3.1-8B 5% MMLU contamination with seed=456 completes 3-seed reproducibility at the lowest contamination level for Llama."
+  },
+  "timestamp": "2026-05-23T14:13:55.650175+00:00",
+  "trigger": "update_registry"
+}

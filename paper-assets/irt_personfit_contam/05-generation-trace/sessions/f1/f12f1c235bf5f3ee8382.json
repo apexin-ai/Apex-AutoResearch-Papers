@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f12f1c235bf5f3ee8382",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "eval llama 5pct correct baseline",
+  "task_key": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_llama-5pct-correct-baseline_20260524T043305_result.json",
+    "occurrence": 1,
+    "bytes": 1181,
+    "sha256": "50509b7aac01d342360685a0d4955716ec7b843d72e7f8ada668a4c00148e00c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Here's the complete summary:\n\n---\n\n## eval_lz.py Fix\n\n**Bug**: Lines 170-184 hardcoded only `contam_15/25/50` seen_items paths. `contam_5` fell through to `else: seen_set = set()`, so all 702 seen items were treated as unseen.\n\n**Fix**: Replaced with regex-based lookup `re.search(r'contam_(\\d+)', args.condition)` → loads `seen_items_{pct}pct.json` dynamically. Works for any contamination percentage.\n\n---\n\n## Contam_5 Results (Llama-3.1-8B-Instruct)\n\n| 指标 | Overall | Seen (702) | Unseen (13340) |\n|------|---------|------------|----------------|\n| Accuracy | 0.6342 | 0.7920 | 0.6259 |\n| lz* (free-θ) | **-4.954** | -1.420 | -4.568 |\n| lz* (fixed-θ) | **-1.892** | -0.270 | -1.880 |\n\n## Cohen's d（Llama clean baseline: **mean=0.262, SD=1.542**）\n\n| 类型 | Overall | Seen | Unseen |\n|------|---------|------|--------|\n| free-θ | **-3.38** | -1.09 | -3.13 |\n| fixed-θ | **-1.65** | — | — |\n\nFixed-θ baseline: mean=0.597, SD=1.509 (10 clean seeds)\n\n## theta_fixed_llama.json\n\n已更新，新增 contam_5 条目：\n- `lz_star_fixed = -1.892`\n- `delta_lz_star_fixed = -2.737`（相对 clean 的 0.845）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-llama-5pct-correct-baseline.md"
+}

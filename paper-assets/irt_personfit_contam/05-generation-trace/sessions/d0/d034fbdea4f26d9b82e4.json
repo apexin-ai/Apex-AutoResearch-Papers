@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d034fbdea4f26d9b82e4",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code director kill cleanup v4",
+  "task_key": "worker_code_director-kill-cleanup-v4_20260521T080440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_director-kill-cleanup-v4_20260521T080440_result.json",
+    "occurrence": 1,
+    "bytes": 1813,
+    "sha256": "436ea8c21ec171f00946a3187338e1144689e326e737b88ac24903600e5157ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 5 步执行完毕。汇总如下。\n\n---\n\n## 最终 GPU 状态\n\n| GPU | PID | 任务 | 显存 | Util |\n|-----|-----|------|------|------|\n| cuda:0 | 103287 | **s6 eval** (loading model) | 8568 MiB | 92% |\n| cuda:1 | 103888 | **s9 train** (36/939 steps) | 27988 MiB | 96% |\n| cuda:2 | 97791 | **GRPO** (397/14042 steps) | 9070 MiB | 73% |\n| cuda:3 | 102570 | **s7 train** (175/939 steps) | 34834 MiB | 95% |\n\n**注意**: s8 (PID 99807) 在执行前已自行结束，不在进程列表中。s7 因 cuda:0 被 s5 eval 占用，改为在 cuda:3 启动。\n\n---\n\n## GRPO 进度 (cuda:2)\n\n- **Step**: 397/14042 (3%)\n- **Epoch**: 0.0235\n- **Speed**: ~5.16s/step (ETA ~19.5h)\n- **Reward**: 最近 mean 在 0.1–0.4 间波动，entropy ~0.88\n\n---\n\n## s4/s5 Eval 结果 (clean baseline seeds)\n\n| Condition | Accuracy | lz* | theta_MLE | n_items |\n|-----------|----------|-----|-----------|---------|\n| **clean_s4** | **67.86%** | 8.967 | -0.109 | 14042 |\n| **clean_s5** | **67.87%** | 8.532 | -0.088 | 14042 |\n\n两个 clean seed 的 accuracy 高度一致 (~67.9%)，lz* 都很大 (8.5–9.0)，说明 clean SFT 模型的答题模式与 IRT 预测偏差较大但一致。\n\n---\n\n## HT Post-RL 结果\n\n| Stage | Accuracy (Overall) | Accuracy (Seen) | Accuracy (Unseen) | lz* (Overall) | lz* (Seen) | lz* (Unseen) |\n|-------|-------|------|--------|------|------|------|\n| **Base** | 70.24% | 70.04% | 70.27% | 5.970 | 2.498 | 5.427 |\n| **SFT** | 73.39% | **83.10%** | 71.67% | 2.914 | **-0.395** | 3.278 |\n\nSFT 后 seen items accuracy 从 70.04% → 83.10% (+13pp)，而 unseen 仅 70.27% → 71.67% (+1.4pp)。lz* seen 从 2.50 降到 **-0.40**（变为负值，说明 seen items 的答题模式变得\"过于合理\"——与 contamination 信号一致）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-director-kill-cleanup-v4.md"
+}

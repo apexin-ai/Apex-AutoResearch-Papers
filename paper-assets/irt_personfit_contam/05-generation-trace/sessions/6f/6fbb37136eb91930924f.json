@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6fbb37136eb91930924f",
+  "project": "irt_personfit_contam",
+  "kind": "history",
+  "title": "agent / loop_1_1779718607.md",
+  "task_key": "loop_1_1779718607",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1_1779718607.md",
+    "occurrence": 1,
+    "bytes": 3843,
+    "sha256": "9718a7bf5263d564164358ef7071e9329ba17a2dbc1a6f103ece049fc077c884"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: idle_timeout\nupdated: '2026-05-21T23:13:43+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-35694 cuda:0/1/2/3（共 4 张 RTX PRO 6000 Blackwell 96GB）。其他 GPU 一律不可用\n- Seeds pipeline 用 `python train.py --condition clean_sN --gpu 0`，gpu 参数始终 0（框架注入 CUDA_VISIBLE_DEVICES）\n- Qwen 模型通过 ModelScope 下载（AutoDL 代理下 HF 极慢），路径 /root/autodl-tmp/ 下\n- submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- exp-post-rl GRPO 修复：LR 必须 5e-6（之前 M011 错误是 LR 低 10-20x + max_tokens=32）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-35694，镜像 aml-train（conda 环境）\n- Python：`/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 项目代码：/root/autodl-tmp/ctrl_contam_pilot/（Qwen seeds）、/root/autodl-tmp/ctrl_contam_llama/、/root/autodl-tmp/ctrl_contam_mistral/、/root/autodl-tmp/post_rl_contam/\n- HF cache：/root/autodl-tmp/.hf_cache\n- 磁盘：/usr/bin/nvidia-smi 分区 816G/879G 可用（3%）；/autodl-pub 5.3T/7.3T\n- 活跃进程：s6 pid=89524（待确认是否存活）；其余无活跃训练\n- Worker：worker_diag_seed-crash-s4-s5_20260521T071150 正在运行（SSH 诊断 s4/s5 崩溃原因）\n\n### 3. 📊 当前状态\n**刚做完**：Session 初始化 + reconcile crons（s4 也被 auto-resolved 为 failed）+ 派诊断 Worker + 向 Director 汇报\n\n**Registry 关键实验**：\n- RUNNING: `exp-ctrl-contam-qwen-clean-s6`（pid=89524, cuda:0, seed=303）— 第 6 个 clean seed，存活状态未确认\n- ANALYZING: `exp-post-rl`（SFT 完成，GRPO M011 配置错误已 kill，需修复 LR/max_tokens 重启）\n- ANALYZING: `exp-ctrl-contam-llama-contam15`、`exp-ctrl-contam-llama-contam50`（完成超 10h 未处理，需 spawn Worker 提取 metrics 转 DONE）\n- DONE(failed): `exp-ctrl-contam-qwen-clean-s4`、`exp-ctrl-contam-qwen-clean-s5`（连续崩溃，诊断中）\n- PREPARING: 4 个 pilot 子实验（历史残留，可忽略）\n\n**等待中**：\n- Worker 回调：诊断 Worker（s4/s5 崩溃根因）\n- Director 决策：无（已汇报，等诊断结果后二次汇报）\n\n### 4. 📋 待办（条件触发式）\n- 诊断 Worker 返回 → 根据根因决定修复方案：OOM 则降 batch_size 或换 GPU；数据问题则修数据；代码 bug 则修代码 → 重启 s4/s5 + 确认 s6 状态\n- s6 确认存活 → 继续等；s6 也死了 → 同批修复后从 s4 开始重跑 s4-s10\n- s4/s5 修复重启成功 → 继续排 s7-s10（每张 GPU 一个，4 并行）\n- Llama contam15/contam50 ANALYZING → spawn Worker 提取 eval results → update_registry(metrics) → 转 DONE(success)\n- GRPO 修复：spawn Worker 修 LR→5e-6 / max_tokens→128 / 加 reward sanity check → 从 SFT checkpoint 重启 → 前 200 步监控 loss\n- Seeds n=10 全部完成 → 计算 Cohen's d CI → 更新 report.md → 汇报 Director\n\n### 5. 🎯 战略上下文\n- **核心目标**：Path to 3.5 (Borderline Conference)。6/7 项已完成，剩余关键：GRPO post-RL 差异化 + seeds n=10 CI 收紧\n- **D023**：三模型族 cross-family 已确认（Qwen/Llama/Mistral），Mistral Δlz*=-6.80 最强\n- **D024**：SFT-stage lz* vs HT 65x 灵敏度差异已有实证\n- **M011 教训**：GRPO 配置错误浪费 GPU 时间——LR 太低 + max_tokens=32 导致零学习。修复时必须验证 reward 非零\n- **易踩坑**：s4/s5 连续崩溃说明 seeds pipeline 有系统性问题（不是偶发），修复前不要盲目重启；exp-post-rl 的 SFT checkpoint 在 /root/autodl-tmp/post_rl_contam/，GRPO 要从这里加载不是从 base model\n- **ARR DDL**：未确认（已问 5+ 次），但 GRPO + seeds 是 P0/P1，GPU 不能闲着\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-1779718607.md"
+}

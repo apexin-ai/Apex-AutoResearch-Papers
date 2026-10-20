@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "78d53d905a2db3f57748",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code fix bca bootstrap llama baseline",
+  "task_key": "worker_code_fix-bca-bootstrap-llama-baseline_20260524T061836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-bca-bootstrap-llama-baseline_20260524T061836_result.json",
+    "occurrence": 1,
+    "bytes": 235,
+    "sha256": "f15785c654c94eb0a7169259dfa39c527a4da2f1d6f6baa47745204d076ebff9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`llama_free` 的 mean=+0.262, SD=1.542，已经是 V2 的值了。文件中也不存在 `-0.312` 这个字面量。\n\n当前 `bca_bootstrap.py` 中 Llama clean baseline **已经是正确的 V2 值**，不需要修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-bca-bootstrap-llama-baseline.md"
+}

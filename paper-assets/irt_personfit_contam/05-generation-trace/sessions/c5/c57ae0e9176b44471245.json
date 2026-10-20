@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c57ae0e9176b44471245",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops gpu process inventory",
+  "task_key": "worker_ops_gpu-process-inventory_20260523T140915",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-process-inventory_20260523T140915_result.json",
+    "occurrence": 1,
+    "bytes": 2965,
+    "sha256": "a91b248ee14ac2bfa8435b1e62ff524401fc190ec2a5503b685eb1bfc657e18e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 进程盘点\n\n### 当前 GPU 状态\n\n4x NVIDIA RTX PRO 6000 Black (98GB)，全部 ~96% 利用率。**无训练进程，全部为 eval。**\n\n| GPU | PID | 类型 | 任务描述 | 运行时间 | 进度 | 状态 |\n|-----|-----|------|----------|----------|------|------|\n| 0 | 142856 | eval | contam_5 mistral | ~29min | 14042/14042 | ✅ 已完成，等待链式下一任务 |\n| 0 | 146513 | eval | clean_s7 (llama) | ~7min | ~25% | 进行中 |\n| 1 | 143357 | eval | contam_15_s3 llama | ~29min | 14042/14042 | ✅ 已完成，等待链式下一任务 |\n| 1 | 145868 | eval | clean (llama) | ~12min | ~39% | 进行中 |\n| 2 | 143837 | eval | contam_50_s3 llama | ~28min | 13500/14042 | 进行中 (~96%) |\n| 2 | 145368 | eval | clean_s4 (llama) | ~12min | ~43% | 进行中 |\n| 3 | 141492 | eval | clean_s9 (llama) | ~34min | 13500/14042 | 进行中 (~96%) |\n| 3 | 144338 | eval | contam_25_s2 llama | ~28min | 10500/14042 | 进行中 (~75%) |\n\n### 已完成 eval 结果\n\n| 任务 | acc_overall | acc_seen | acc_unseen | lz*_seen | lz*_unseen |\n|------|------------|----------|------------|----------|------------|\n| contam_5 mistral | 0.5707 | 0.7664 | 0.5604 | -2.815 | -0.722 |\n| contam_15_s3 llama | 0.6584 | 0.7854 | 0.6360 | -1.378 | -3.737 |\n\n### 链式任务队列\n\n每个 GPU 有两条并行链：\n\n| GPU | 链1 (contam eval) | 链2 (clean eval) |\n|-----|-------------------|------------------|\n| 0 | ~~contam_5 mistral~~ → **contam_5_s2 llama** | clean_s6 ✅ → **clean_s7** → clean_s8 |\n| 1 | ~~contam_15_s3 llama~~ → **contam_15_s3 mistral** | ~~contam_15_s1 llama~~ → **clean** → clean_s2 |\n| 2 | **contam_50_s3 llama** → contam_50_s3 mistral | clean_s3 ✅ → **clean_s4** → clean_s5 |\n| 3 | **contam_25_s2 llama** → contam_5_s2 mistral | **clean_s9** → clean_s10 → contam_5 mistral |\n\n---\n\n### Batch 4/5 训练状态：全部完成 ✅\n\n| Batch | 任务 | Checkpoint 路径 | 完成时间 | 最终 ckpt |\n|-------|------|----------------|----------|-----------|\n| 4 | Mistral 25% s1 | `checkpoints/mistral/contam_25/` | ~21:59 | checkpoint-1596 |\n| 5 | Llama 5% s3 | `checkpoints/llama/contam_5_s3/` | ~21:14 | checkpoint-1071 |\n| 5 | Llama 25% s3 | `checkpoints/llama/contam_25_s3/` | ~21:13 | checkpoint-1596 |\n| 5 | Mistral 25% s2 | `checkpoints/mistral/contam_25_s2/` | ~21:39 | checkpoint-1596 |\n\n注意：Mistral 25% s1 的 checkpoint 保存在 `contam_25/` 而非 `contam_25_s1/`（目录不存在）。\n\n### 新完成的 checkpoint 路径\n\n```\n/root/autodl-tmp/ctrl_contam_pilot/checkpoints/mistral/contam_25/          # Batch 4: Mistral 25% s1\n/root/autodl-tmp/ctrl_contam_pilot/checkpoints/llama/contam_5_s3/          # Batch 5: Llama 5% s3\n/root/autodl-tmp/ctrl_contam_pilot/checkpoints/llama/contam_25_s3/         # Batch 5: Llama 25% s3\n/root/autodl-tmp/ctrl_contam_pilot/checkpoints/mistral/contam_25_s2/       # Batch 5: Mistral 25% s2\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-process-inventory.md"
+}

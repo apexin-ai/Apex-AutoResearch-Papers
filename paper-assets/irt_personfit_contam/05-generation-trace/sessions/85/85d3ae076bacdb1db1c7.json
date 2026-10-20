@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "85d3ae076bacdb1db1c7",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops batch3 eval",
+  "task_key": "worker_ops_batch3-eval_20260523T115716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_batch3-eval_20260523T115716_result.json",
+    "occurrence": 1,
+    "bytes": 140,
+    "sha256": "dacb6f20460c470d65288d4cf6663fcbbc1da2ac6103d9437efe1d3f6aa8bac9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 2 (llama/contam_25) is running at 1000/14042 items. All 3 GPUs are healthy. I'll check back in ~20 minutes for progress."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-batch3-eval.md"
+}

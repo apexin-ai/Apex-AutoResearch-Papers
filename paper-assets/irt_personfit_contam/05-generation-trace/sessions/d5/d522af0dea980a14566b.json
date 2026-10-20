@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d522af0dea980a14566b",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code mia mink prep",
+  "task_key": "worker_code_mia-mink-prep_20260521T080628",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mia-mink-prep_20260521T080628_result.json",
+    "occurrence": 1,
+    "bytes": 859,
+    "sha256": "13b1382955e3b06b2db43d278ebdb1569e5448bff334268c612c2f6c3ea56a53"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。产出总结：\n\n1. **`/root/autodl-tmp/post_rl_contam/eval_mia.py`** — MIA 评估脚本\n   - 支持 `--stage base|sft|grpo --gpu N`\n   - 计算 Loss / Min-K% / Min-K%++ 三类方法，K=10/20/30/40/50\n   - Min-K%++ 使用 vocab-level μ/σ 标准化（与 Zhang et al. 2024 一致）\n   - 输出 per-item scores + AUC-ROC 到 `results/mia_{stage}_results.json`\n\n2. **`/root/autodl-tmp/post_rl_contam/compare_mia_lz.py`** — 对比脚本\n   - 自动加载 MIA 和 lz* 结果，生成跨 stage 对比表\n   - 已验证可运行（当前输出 base/sft 的 lz* 结果，MIA 数据待 eval_mia.py 运行后填入）\n\n3. **scikit-learn** 已安装，所有 import 验证通过\n\n4. **memory.md** 已更新 \"MIA 对比准备\" 段\n\n运行命令：`python eval_mia.py --stage base --gpu 0`（需 GPU，约 1-2h/stage）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mia-mink-prep.md"
+}

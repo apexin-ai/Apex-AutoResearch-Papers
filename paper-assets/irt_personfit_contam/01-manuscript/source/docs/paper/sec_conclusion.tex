@@ -1,0 +1,8 @@
+\section{Conclusion}\label{sec:conclusion}
+
+We introduced \textsc{IRT-FIT}, a person-fit framework that detects benchmark contamination from binary response patterns alone, the minimal-information operating point on the contamination detection frontier.
+Controlled contamination experiments validate $\Delta\ell_z^*$ as a sensitive diagnostic, with $|\text{Cohen's } d| = 3.42$ at 15\% contamination on Qwen2.5-7B ($n{=}3$), confirmed across model families with Llama-3.1-8B ($|\Delta\ell_z^*| = 3.84$).
+We derived a closed-form power function ($R^2 = 0.957$) linking benchmark size to detection sensitivity, identified the $\theta$-shift boundary condition under which free-$\theta$ estimation attenuates the signal, and showed that 4PL parameterization yields a $+27.3$pp power gain over 3PL.
+Across 12 models and 5 benchmarks, we found universal 4PL model misfit (57/60 cells), exposed the inadequacy of accuracy-based anomaly detection (4/60 vs.\ 57/60 cells), and documented a simulation-to-reality gap that motivates the $\Delta\ell_z^*$ design.
+
+Because any evaluation that records binary responses already contains the data \textsc{IRT-FIT} requires, existing benchmark results can be retrospectively audited for contamination without additional model access.

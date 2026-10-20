@@ -1,0 +1,33 @@
+{
+  "exp_id": "eval-mistral-clean-s2",
+  "project": "irt_personfit_contam",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T12:59:19.645Z",
+    "updated_at": "2026-05-21T13:00:41.390Z",
+    "hypothesis": "Mistral clean_s2 (seed 2) LoRA adapter trained on clean MMLU data will show lz* near zero, consistent with no contamination signal in the IRT person-fit framework.",
+    "spec": {
+      "command": "python eval_lz.py --condition clean_s2 --gpu 0",
+      "server": "westd-35694",
+      "data_path": "/root/autodl-tmp/ctrl_contam_mistral/data/",
+      "data_count": 14042,
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "seed": 2
+    },
+    "checkpoint_path": "/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s2",
+    "log_path": "/tmp/eval_mistral_s2.log",
+    "metrics": {
+      "theta_mle": -0.9627,
+      "lz_star": -1.0456,
+      "accuracy_overall": 0.5428,
+      "n_items": 14042
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-21T13:00:41.390Z"
+  },
+  "timestamp": "2026-05-21T13:00:41.482346+00:00",
+  "trigger": "update_registry"
+}

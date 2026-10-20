@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aabb7f304dfd185cc2c8",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code arcc bootstrap ci",
+  "task_key": "worker_code_arcc-bootstrap-ci_20260521T142947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_arcc-bootstrap-ci_20260521T142947_result.json",
+    "occurrence": 1,
+    "bytes": 313,
+    "sha256": "2f862cabdd0e8a2574dd1ab1c17da8842121da645edbabe031f7d9e7b7a1e2ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| 条件 | Cohen's d | 95% CI |\n|------|-----------|--------|\n| contam_15 | −3.161 | [−9.481, −2.009] |\n| contam_50 | −5.304 | [−15.148, −3.630] |\n\nClean baseline: n=10, mean lz*=−5.4238, SD=0.1605。两个 contamination 条件的 CI 均不包含 0，效应显著。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-arcc-bootstrap-ci.md"
+}

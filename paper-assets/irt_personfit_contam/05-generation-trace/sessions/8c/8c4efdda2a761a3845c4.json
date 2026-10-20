@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c4efdda2a761a3845c4",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops full status check",
+  "task_key": "worker_ops_full-status-check_20260523T123735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_full-status-check_20260523T123735_result.json",
+    "occurrence": 1,
+    "bytes": 3849,
+    "sha256": "f56303e4b2c16d4d0a87ff31e6349d2b7f83142159ab9c224383536943fc218b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Comprehensive Status Report — westd-35694\n\n### GPU State\n\n| GPU | Memory Used | Memory Total | Utilization |\n|-----|------------|--------------|-------------|\n| 0 | 32,687 MiB | 97,887 MiB | 96% |\n| 1 | 0 MiB | 97,887 MiB | 0% (eval loading) |\n| 2 | 0 MiB | 97,887 MiB | 0% (eval loading) |\n| 3 | 0 MiB | 97,887 MiB | 0% (free) |\n\n**Disk:** 92G/250G used, **159G free** (37%)\n\n---\n\n### Active Processes\n\n1. **Training:** `mistral contam_25 s1` — step **863/1596 (54%)**, ~37 min elapsed, ETA ~55 min. Loss ~1.35, token accuracy ~0.67. (GPU 0, tmux `exp-mistral-25pct-s1`)\n\n2. **Eval batch pipeline (GPU 0, pts/4):** sequential chain:\n   - `llama contam_5` — **DONE** (result saved)\n   - `llama contam_25` — **RUNNING** (~3000/14042, 21%)\n   - `mistral contam_5` — **PENDING**\n\n3. **Nohup eval (GPU 1):** `llama contam_25` — still loading weights (duplicate of batch pipeline #2)\n\n4. **Nohup eval (GPU 2):** `mistral contam_5` — still loading weights\n\n---\n\n### Checkpoints Inventory\n\n| Model | contam_5 | contam_5_s2 | contam_15_s2 | contam_15_s3 | contam_25 | contam_25_s2 | contam_50_s2 | contam_50_s3 |\n|-------|----------|-------------|--------------|--------------|-----------|--------------|--------------|--------------|\n| Llama | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |\n| Mistral | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ (training) | ✅ | ✅ |\n| Legacy (Qwen) | ✅ | — | ✅ | ✅ | ✅ (+ s2, s3) | — | ✅ | ✅ (+s1) |\n\n---\n\n### Eval Results (Llama & Mistral, new eval_lz)\n\n| Model | Condition | acc_overall | acc_seen | acc_unseen | lz\\*_seen | lz\\*_unseen | theta_mle | lz\\* | Status |\n|-------|-----------|------------|----------|------------|-----------|-------------|-----------|------|--------|\n| **Llama** | contam_5 | 0.638 | 0.801 | 0.629 | -0.610 | -4.398 | -0.407 | -4.695 | ✅ Done |\n| **Llama** | contam_15_s2 | 0.658 | 0.774 | 0.638 | -2.093 | -3.673 | -0.319 | -4.680 | ✅ Done |\n| **Llama** | contam_50_s2 | 0.708 | 0.765 | 0.650 | -1.560 | -2.473 | -0.086 | -3.735 | ✅ Done |\n| **Llama** | contam_25 | — | — | — | — | — | — | — | 🔄 Running (21%) |\n| **Llama** | contam_5_s2 | — | — | — | — | — | — | — | ⏳ Not started |\n| **Llama** | contam_15_s3 | — | — | — | — | — | — | — | ⏳ Not started |\n| **Llama** | contam_25_s2 | — | — | — | — | — | — | — | ⏳ Not started |\n| **Llama** | contam_50_s3 | — | — | — | — | — | — | — | ⏳ Not started |\n| **Mistral** | contam_15_s2 | 0.605 | 0.768 | 0.576 | -2.363 | -2.571 | -0.611 | -4.141 | ✅ Done |\n| **Mistral** | contam_50_s2 | 0.677 | 0.750 | 0.603 | -1.638 | -2.883 | -0.272 | -4.695 | ✅ Done |\n| **Mistral** | contam_5 | — | — | — | — | — | — | — | 🔄 Loading weights |\n| **Mistral** | contam_25 | — | — | — | — | — | — | — | ⏳ Training (54%) |\n| **Mistral** | contam_5_s2 | — | — | — | — | — | — | — | ⏳ Not started |\n| **Mistral** | contam_15_s3 | — | — | — | — | — | — | — | ⏳ Not started |\n| **Mistral** | contam_25_s2 | — | — | — | — | — | — | — | ❌ No checkpoint yet |\n| **Mistral** | contam_50_s3 | — | — | — | — | — | — | — | ⏳ Not started |\n\n---\n\n### Key Observations\n\n- **Duplicate eval:** `llama contam_25` is running in both the batch pipeline (GPU 0) and a nohup process (GPU 1) — one is redundant.\n- **GPU contention on GPU 0:** training (mistral contam_25) and eval (llama contam_25 batch) are sharing GPU 0 — likely slowing both down.\n- **5 completed evals** across both models, **~11 remaining** (assuming all checkpoint×model combos need eval).\n- Mistral `contam_25` training is 54% done — checkpoint expected in ~55 min, after which its evals can begin."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-full-status-check.md"
+}

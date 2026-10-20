@@ -1,0 +1,1326 @@
+\relax 
+\bibstyle{acl_natbib}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{dodge2021,magar2022,sainz2023}
+\citation{jacovi2023,chang2024survey}
+\citation{wang2025fragility}
+\citation{drasgow1985,snijders2001,karabatsos2003}
+\citation{psnirt2026}
+\citation{hendrycks2021mmlu}
+\citation{vanderflier1982}
+\@LN@col{1}
+\@LN{0}{0}
+\@LN{1}{0}
+\@LN{2}{0}
+\@LN{3}{0}
+\@LN{4}{0}
+\@LN{5}{0}
+\@LN{6}{0}
+\@LN{7}{0}
+\@LN{8}{0}
+\@LN{9}{0}
+\@LN{10}{0}
+\@LN{11}{0}
+\@LN{12}{0}
+\@LN{13}{0}
+\@LN{14}{0}
+\@LN{15}{0}
+\@LN{16}{0}
+\@LN{17}{0}
+\@LN{18}{0}
+\@LN{19}{0}
+\@LN{20}{0}
+\@LN{21}{0}
+\@LN{22}{0}
+\@LN{23}{0}
+\@LN{24}{0}
+\@LN{25}{0}
+\@LN{26}{0}
+\@LN{27}{0}
+\@LN{28}{0}
+\@LN{29}{0}
+\@LN{30}{0}
+\@LN{31}{0}
+\@LN{32}{0}
+\@LN{33}{0}
+\@LN{34}{0}
+\@LN{35}{0}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:introduction}{{1}{1}{Introduction}{section.1}{}}
+\@LN{36}{0}
+\@LN{37}{0}
+\@LN{38}{0}
+\@LN{39}{0}
+\@LN@col{2}
+\@LN{40}{0}
+\@LN{41}{0}
+\@LN{42}{0}
+\@LN{43}{0}
+\@LN{44}{0}
+\@LN{45}{0}
+\@LN{46}{0}
+\@LN{47}{0}
+\@LN{48}{0}
+\@LN{49}{0}
+\@LN{50}{0}
+\@LN{51}{0}
+\@LN{52}{0}
+\@LN{53}{0}
+\@LN{54}{0}
+\@LN{55}{0}
+\@LN{56}{0}
+\@LN{57}{0}
+\@LN{58}{0}
+\@LN{59}{0}
+\@LN{60}{0}
+\@LN{61}{0}
+\@LN{62}{0}
+\@LN{63}{0}
+\@LN{64}{0}
+\@LN{65}{0}
+\@LN{66}{0}
+\@LN{67}{0}
+\@LN{68}{0}
+\@LN{69}{0}
+\@LN{70}{0}
+\@LN{71}{0}
+\@LN{72}{0}
+\@LN{73}{0}
+\@LN{74}{0}
+\@LN{75}{0}
+\@LN{76}{0}
+\@LN{77}{0}
+\@LN{78}{0}
+\@LN{79}{0}
+\@LN{80}{0}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Overview of IRT person-fit detection. (a)~A clean model's responses track the IRT-predicted probability curve; (b)~a contaminated model shows anomalous successes on hard items (red diamonds), producing a large $|\Delta \ell _z^*|$. (c)~Effect-size landscape: baseline accuracy vs.\ Cohen's $|d|$ across model families (diamonds: 5\%, triangles: 15\%, squares: 25\%, circles: 50\%; multi-seed means where available, single-seed otherwise; values from Table~\ref {tab:cohens_d}). (d)~Dose-response trajectories; free-$\theta $ shows non-monotonic artifact, fixed-$\theta $ recovers consistent positive dose-response.}}{2}{figure.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:composite}{{1}{2}{Overview of IRT person-fit detection. (a)~A clean model's responses track the IRT-predicted probability curve; (b)~a contaminated model shows anomalous successes on hard items (red diamonds), producing a large $|\Delta \ell _z^*|$. (c)~Effect-size landscape: baseline accuracy vs.\ Cohen's $|d|$ across model families (diamonds: 5\%, triangles: 15\%, squares: 25\%, circles: 50\%; multi-seed means where available, single-seed otherwise; values from Table~\ref {tab:cohens_d}). (d)~Dose-response trajectories; free-$\theta $ shows non-monotonic artifact, fixed-$\theta $ recovers consistent positive dose-response}{figure.caption.1}{}}
+\@LN@col{1}
+\@LN{81}{1}
+\@LN{82}{1}
+\@LN{83}{1}
+\@LN{84}{1}
+\@LN{85}{1}
+\@LN{86}{1}
+\@LN{87}{1}
+\@LN{88}{1}
+\@LN{89}{1}
+\@LN{90}{1}
+\@LN{91}{1}
+\@LN{92}{1}
+\@LN{93}{1}
+\@LN{94}{1}
+\@LN{95}{1}
+\@LN{96}{1}
+\@LN{97}{1}
+\@LN@col{2}
+\@LN{98}{1}
+\@LN{99}{1}
+\@LN{100}{1}
+\@LN{101}{1}
+\@LN{102}{1}
+\@LN{103}{1}
+\@LN{104}{1}
+\@LN{105}{1}
+\@LN{106}{1}
+\@LN{107}{1}
+\@LN{108}{1}
+\@LN{109}{1}
+\@LN{110}{1}
+\@LN{111}{1}
+\@LN{112}{1}
+\@LN{113}{1}
+\@LN{114}{1}
+\citation{dodge2021,magar2022}
+\citation{minkprob2024,deng2024}
+\citation{golchin2024,golchin2024quiz,oren2024}
+\citation{constat2024,pacost2024,codec2026}
+\citation{zhou2023benchmark,sainz2023,jacovi2023}
+\citation{bordt2025forget}
+\citation{han2026quantifying}
+\citation{kattamuri2025radar}
+\citation{fu2025contamination}
+\citation{wang2025fragility}
+\citation{selfcritique2026}
+\citation{zhang2026rlvr}
+\citation{psnirt2026}
+\citation{martinezplumed2019}
+\citation{lalor2019}
+\citation{rodriguez2021}
+\citation{polo2024tinybenchmarks}
+\citation{atlas2025}
+\citation{psnirt2026}
+\citation{embretson2000}
+\citation{drasgow1985}
+\citation{snijders2001}
+\citation{karabatsos2003}
+\citation{vanderflier1982}
+\citation{sinharay2017}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Overview of \textsc  {IRT-FIT}{}: (a)~positioning in the detection frontier by information access; (b)~pipeline from binary responses through $\ell _z^*$ person-fit analysis to detection and characterization; (c)~three behavioral boundaries discovered; (d)~recommended practitioner workflow.}}{3}{figure.caption.2}\protected@file@percent }
+\newlabel{fig:pipeline}{{2}{3}{Overview of \irtfit {}: (a)~positioning in the detection frontier by information access; (b)~pipeline from binary responses through $\ell _z^*$ person-fit analysis to detection and characterization; (c)~three behavioral boundaries discovered; (d)~recommended practitioner workflow}{figure.caption.2}{}}
+\@LN@col{1}
+\@LN{115}{2}
+\@LN{116}{2}
+\@LN{117}{2}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{3}{section.2}\protected@file@percent }
+\newlabel{sec:related_work}{{2}{3}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Benchmark contamination detection.}{3}{section*.3}\protected@file@percent }
+\@LN{118}{2}
+\@LN{119}{2}
+\@LN{120}{2}
+\@LN{121}{2}
+\@LN{122}{2}
+\@LN{123}{2}
+\@LN{124}{2}
+\@LN{125}{2}
+\@LN{126}{2}
+\@LN{127}{2}
+\@LN{128}{2}
+\@LN{129}{2}
+\@LN{130}{2}
+\@LN{131}{2}
+\@LN{132}{2}
+\@LN{133}{2}
+\@LN{134}{2}
+\@LN{135}{2}
+\@LN{136}{2}
+\@LN{137}{2}
+\@LN{138}{2}
+\@LN{139}{2}
+\@LN{140}{2}
+\@LN{141}{2}
+\@LN@col{2}
+\@LN{142}{2}
+\@LN{143}{2}
+\@LN{144}{2}
+\@LN{145}{2}
+\@LN{146}{2}
+\@LN{147}{2}
+\@LN{148}{2}
+\@LN{149}{2}
+\@LN{150}{2}
+\@LN{151}{2}
+\@LN{152}{2}
+\@writefile{toc}{\contentsline {paragraph}{IRT for LLM evaluation.}{3}{section*.4}\protected@file@percent }
+\@LN{153}{2}
+\@LN{154}{2}
+\@LN{155}{2}
+\@LN{156}{2}
+\@LN{157}{2}
+\@LN{158}{2}
+\@LN{159}{2}
+\@LN{160}{2}
+\@LN{161}{2}
+\@LN{162}{2}
+\@LN{163}{2}
+\@LN{164}{2}
+\@LN{165}{2}
+\@LN{166}{2}
+\@LN{167}{2}
+\@LN{168}{2}
+\citation{psnirt2026}
+\citation{psnirt2026}
+\citation{snijders2001}
+\citation{drasgow1985,snijders2001}
+\citation{magis2012}
+\citation{hedges1981}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {paragraph}{Person-fit statistics in psychometrics.}{4}{section*.5}\protected@file@percent }
+\@LN{169}{3}
+\@LN{170}{3}
+\@LN{171}{3}
+\@LN{172}{3}
+\@LN{173}{3}
+\@LN{174}{3}
+\@LN{175}{3}
+\@LN{176}{3}
+\@LN{177}{3}
+\@LN{178}{3}
+\@LN{179}{3}
+\@LN{180}{3}
+\@LN{181}{3}
+\@LN{182}{3}
+\@LN{183}{3}
+\@LN{184}{3}
+\@LN{185}{3}
+\@LN{186}{3}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{4}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{4}{Method}{section.3}{}}
+\@LN{187}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}IRT Person-Fit Framework}{4}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:framework}{{3.1}{4}{IRT Person-Fit Framework}{subsection.3.1}{}}
+\@LN{188}{3}
+\@LN{189}{3}
+\@LN{190}{3}
+\@LN{191}{3}
+\@LN{192}{3}
+\newlabel{eq:4pl}{{1}{4}{IRT Person-Fit Framework}{equation.1}{}}
+\@LN{193}{3}
+\@LN{194}{3}
+\@LN{195}{3}
+\@LN{196}{3}
+\@LN{197}{3}
+\@LN{198}{3}
+\@LN{199}{3}
+\@LN{200}{3}
+\@LN{201}{3}
+\@LN{202}{3}
+\@LN{203}{3}
+\@LN{204}{3}
+\@LN{205}{3}
+\@LN{206}{3}
+\@LN{207}{3}
+\@LN{208}{3}
+\@LN{209}{3}
+\@LN{210}{3}
+\@LN{211}{3}
+\@LN{212}{3}
+\@LN{213}{3}
+\@LN{214}{3}
+\@LN{215}{3}
+\@LN{216}{3}
+\@LN{217}{3}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Dose-response trajectories on MMLU. Free-$\theta $ (solid) shows non-monotonic behavior for Qwen due to $\theta $-shift absorption (shaded); fixed-$\theta $ (dashed) removes the inverted-U artifact and yields an overall positive dose-response ($|d|{=}12.32$ at 50\%). Llama's flat trajectory reflects minimal absorption. Hollow markers: single-seed ($n{=}1$); error bars: $\pm $SD ($n{=}3$).}}{4}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:dose_response}{{3}{4}{Dose-response trajectories on MMLU. Free-$\theta $ (solid) shows non-monotonic behavior for Qwen due to $\theta $-shift absorption (shaded); fixed-$\theta $ (dashed) removes the inverted-U artifact and yields an overall positive dose-response ($|d|{=}12.32$ at 50\%). Llama's flat trajectory reflects minimal absorption. Hollow markers: single-seed ($n{=}1$); error bars: $\pm $SD ($n{=}3$)}{figure.caption.6}{}}
+\@LN{218}{3}
+\@LN{219}{3}
+\@LN{220}{3}
+\@LN{221}{3}
+\@LN{222}{3}
+\@LN{223}{3}
+\@LN{224}{3}
+\@LN{225}{3}
+\@LN{226}{3}
+\@LN{227}{3}
+\@LN{228}{3}
+\@LN{229}{3}
+\@LN{230}{3}
+\@LN{231}{3}
+\@LN{232}{3}
+\@LN{233}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}$\Delta \ell _z^*$ Matched-Difference Design}{4}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:did}{{3.2}{4}{$\Delta \ell _z^*$ Matched-Difference Design}{subsection.3.2}{}}
+\@LN{234}{3}
+\@LN{235}{3}
+\@LN{236}{3}
+\@LN{237}{3}
+\@LN{238}{3}
+\@LN{239}{3}
+\@LN{240}{3}
+\@LN{241}{3}
+\@LN{242}{3}
+\newlabel{eq:delta_lz}{{2}{4}{$\Delta \ell _z^*$ Matched-Difference Design}{equation.2}{}}
+\@LN{243}{3}
+\@LN{244}{3}
+\@LN{245}{3}
+\citation{hendrycks2021mmlu}
+\citation{clark2018arc}
+\citation{psnirt2026}
+\citation{shao2024}
+\citation{eval-harness}
+\@LN@col{1}
+\@LN{246}{4}
+\@LN{247}{4}
+\@LN{248}{4}
+\@LN{249}{4}
+\@LN{250}{4}
+\@LN{251}{4}
+\@LN{252}{4}
+\@LN{253}{4}
+\@LN{254}{4}
+\@LN{255}{4}
+\@LN{256}{4}
+\@LN{257}{4}
+\@LN{258}{4}
+\@LN{259}{4}
+\@LN{260}{4}
+\@LN{261}{4}
+\@LN{262}{4}
+\@LN{263}{4}
+\@LN{264}{4}
+\@LN{265}{4}
+\@LN{266}{4}
+\@LN{267}{4}
+\@LN{268}{4}
+\@LN{269}{4}
+\@LN{270}{4}
+\@LN{271}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Experimental Setup}{5}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:setup}{{3.3}{5}{Experimental Setup}{subsection.3.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Models and contamination.}{5}{section*.7}\protected@file@percent }
+\@LN{272}{4}
+\@LN{273}{4}
+\@LN{274}{4}
+\@LN{275}{4}
+\@LN{276}{4}
+\@LN{277}{4}
+\@LN{278}{4}
+\@LN{279}{4}
+\@LN{280}{4}
+\@LN{281}{4}
+\@LN{282}{4}
+\@LN{283}{4}
+\@LN{284}{4}
+\@LN{285}{4}
+\@LN{286}{4}
+\@LN{287}{4}
+\@LN{288}{4}
+\@LN{289}{4}
+\@LN{290}{4}
+\@LN{291}{4}
+\@LN{292}{4}
+\@LN{293}{4}
+\@LN{294}{4}
+\@LN{295}{4}
+\@LN{296}{4}
+\@LN@col{2}
+\@LN{297}{4}
+\@LN{298}{4}
+\@LN{299}{4}
+\@LN{300}{4}
+\@writefile{toc}{\contentsline {paragraph}{Benchmarks.}{5}{section*.8}\protected@file@percent }
+\@LN{301}{4}
+\@LN{302}{4}
+\@LN{303}{4}
+\@LN{304}{4}
+\@LN{305}{4}
+\@LN{306}{4}
+\@LN{307}{4}
+\@LN{308}{4}
+\@LN{309}{4}
+\@LN{310}{4}
+\@writefile{toc}{\contentsline {paragraph}{Post-RL extension.}{5}{section*.9}\protected@file@percent }
+\@LN{311}{4}
+\@LN{312}{4}
+\@LN{313}{4}
+\@LN{314}{4}
+\@LN{315}{4}
+\@LN{316}{4}
+\@LN{317}{4}
+\@writefile{toc}{\contentsline {paragraph}{Evaluation protocol.}{5}{section*.10}\protected@file@percent }
+\@LN{318}{4}
+\@LN{319}{4}
+\@LN{320}{4}
+\@LN{321}{4}
+\@LN{322}{4}
+\@LN{323}{4}
+\@LN{324}{4}
+\@LN{325}{4}
+\@LN{326}{4}
+\@LN{327}{4}
+\@writefile{toc}{\contentsline {paragraph}{Contamination model.}{5}{section*.11}\protected@file@percent }
+\@LN{328}{4}
+\@LN{329}{4}
+\@LN{330}{4}
+\@LN{331}{4}
+\@LN{332}{4}
+\@LN{333}{4}
+\@LN{334}{4}
+\@LN{335}{4}
+\@LN{336}{4}
+\@LN{337}{4}
+\@LN{338}{4}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{5}{section.4}\protected@file@percent }
+\newlabel{sec:results}{{4}{5}{Results}{section.4}{}}
+\@LN{339}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Detection Signal Across Model Families}{5}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:detection}{{4.1}{5}{Detection Signal Across Model Families}{subsection.4.1}{}}
+\@LN{340}{4}
+\@LN{341}{4}
+\@LN{342}{4}
+\@LN{343}{4}
+\@LN{344}{4}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Cohen's $d$ for $\Delta \ell _z^*$ across model families ($n{=}10$ clean seeds). Single-seed conditions: percentile bootstrap 95\% CI (10,000 resamples). $^{\dagger }$Multi-seed conditions: mean $\pm $ SD ($n{=}3$ independent runs). All single-seed CIs exclude zero.}}{6}{table.caption.12}\protected@file@percent }
+\newlabel{tab:cohens_d}{{1}{6}{Cohen's $d$ for $\Delta \ell _z^*$ across model families ($n{=}10$ clean seeds). Single-seed conditions: percentile bootstrap 95\% CI (10,000 resamples). $^{\dagger }$Multi-seed conditions: mean $\pm $ SD ($n{=}3$ independent runs). All single-seed CIs exclude zero}{table.caption.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Cohen's $|d|$ heatmap (values from Table~\ref {tab:cohens_d}; multi-seed means where available). Blue intensity reflects effect-size magnitude. Grey cells: not tested.}}{6}{figure.caption.13}\protected@file@percent }
+\newlabel{fig:heatmap}{{4}{6}{Cohen's $|d|$ heatmap (values from Table~\ref {tab:cohens_d}; multi-seed means where available). Blue intensity reflects effect-size magnitude. Grey cells: not tested}{figure.caption.13}{}}
+\@LN{345}{5}
+\@LN{346}{5}
+\@LN{347}{5}
+\@LN{348}{5}
+\@LN{349}{5}
+\@LN{350}{5}
+\@LN{351}{5}
+\@LN{352}{5}
+\@LN{353}{5}
+\@LN{354}{5}
+\@LN{355}{5}
+\@LN{356}{5}
+\@LN{357}{5}
+\@LN{358}{5}
+\@LN{359}{5}
+\@LN{360}{5}
+\@LN{361}{5}
+\@LN{362}{5}
+\@LN{363}{5}
+\@LN{364}{5}
+\@LN{365}{5}
+\@LN{366}{5}
+\@LN{367}{5}
+\@LN{368}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Model-Specific $\theta $-Shift Dynamics}{6}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:theta_dynamics}{{4.2}{6}{Model-Specific $\theta $-Shift Dynamics}{subsection.4.2}{}}
+\@LN{369}{5}
+\@LN{370}{5}
+\@LN{371}{5}
+\@LN{372}{5}
+\@LN@col{2}
+\@LN{373}{5}
+\@LN{374}{5}
+\@LN{375}{5}
+\@LN{376}{5}
+\@LN{377}{5}
+\@LN{378}{5}
+\@LN{379}{5}
+\@LN{380}{5}
+\@LN{381}{5}
+\@LN{382}{5}
+\@LN{383}{5}
+\@LN{384}{5}
+\@LN{385}{5}
+\@LN{386}{5}
+\@LN{387}{5}
+\@LN{388}{5}
+\@LN{389}{5}
+\@LN{390}{5}
+\@LN{391}{5}
+\@LN{392}{5}
+\@LN{393}{5}
+\@LN{394}{5}
+\@LN{395}{5}
+\@LN{396}{5}
+\@LN{397}{5}
+\@LN{398}{5}
+\@LN{399}{5}
+\@writefile{toc}{\contentsline {paragraph}{Seen vs.\ unseen decomposition.}{6}{section*.14}\protected@file@percent }
+\@LN{400}{5}
+\@LN{401}{5}
+\@LN{402}{5}
+\@LN{403}{5}
+\@LN{404}{5}
+\@LN{405}{5}
+\@LN{406}{5}
+\@LN{407}{5}
+\@LN{408}{5}
+\@LN{409}{5}
+\@writefile{toc}{\contentsline {paragraph}{Fixed-$\theta $ estimation.}{6}{section*.15}\protected@file@percent }
+\@LN{410}{5}
+\@LN{411}{5}
+\@LN{412}{5}
+\@LN{413}{5}
+\@LN{414}{5}
+\@LN{415}{5}
+\@LN{416}{5}
+\@LN{417}{5}
+\@LN{418}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Detection-Diagnosis Tradeoff}{6}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:degradation}{{4.3}{6}{Detection-Diagnosis Tradeoff}{subsection.4.3}{}}
+\@LN{419}{5}
+\@LN{420}{5}
+\@LN{421}{5}
+\@LN{422}{5}
+\citation{stonge2011}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Free-$\theta $ vs.\ fixed-$\theta $ Cohen's $|d|$ on MMLU. Qwen$^{\S  }$: multi-seed mean ($n{=}3$); Llama and Mistral: seed-42 single run. Fixed-$\theta $ anchors $\hat  {\theta }$ at the clean-model mean, eliminating $\theta $-shift absorption.}}{7}{table.caption.16}\protected@file@percent }
+\newlabel{tab:theta_fixed}{{2}{7}{Free-$\theta $ vs.\ fixed-$\theta $ Cohen's $|d|$ on MMLU. Qwen$^{\S }$: multi-seed mean ($n{=}3$); Llama and Mistral: seed-42 single run. Fixed-$\theta $ anchors $\hat {\theta }$ at the clean-model mean, eliminating $\theta $-shift absorption}{table.caption.16}{}}
+\@LN{423}{6}
+\@LN{424}{6}
+\@LN{425}{6}
+\@LN{426}{6}
+\@LN{427}{6}
+\@LN{428}{6}
+\@LN{429}{6}
+\@LN{430}{6}
+\@LN{431}{6}
+\@LN{432}{6}
+\@LN{433}{6}
+\@LN{434}{6}
+\@LN{435}{6}
+\@LN{436}{6}
+\@LN{437}{6}
+\@LN{438}{6}
+\@LN{439}{6}
+\@LN{440}{6}
+\@LN{441}{6}
+\@LN{442}{6}
+\@LN{443}{6}
+\@LN{444}{6}
+\@LN{445}{6}
+\@LN{446}{6}
+\@LN{447}{6}
+\@LN{448}{6}
+\@LN{449}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Ability-Dependent Non-Monotonic Dose-Response}{7}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:inverted_u}{{4.4}{7}{Ability-Dependent Non-Monotonic Dose-Response}{subsection.4.4}{}}
+\@LN{450}{6}
+\@LN{451}{6}
+\@LN{452}{6}
+\@LN{453}{6}
+\@LN{454}{6}
+\@LN{455}{6}
+\@LN{456}{6}
+\@LN{457}{6}
+\@LN{458}{6}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Detection-diagnosis tradeoff on MMLU: Cohen's $|d|$ across three statistics. Qwen$^\dagger $: multi-seed means ($n{=}3$); Llama and Mistral: seed-42 single run with bootstrap CIs.}}{7}{table.caption.17}\protected@file@percent }
+\newlabel{tab:degradation}{{3}{7}{Detection-diagnosis tradeoff on MMLU: Cohen's $|d|$ across three statistics. Qwen$^\dagger $: multi-seed means ($n{=}3$); Llama and Mistral: seed-42 single run with bootstrap CIs}{table.caption.17}{}}
+\@LN{459}{6}
+\@LN{460}{6}
+\@LN{461}{6}
+\@LN{462}{6}
+\@LN{463}{6}
+\@LN{464}{6}
+\@LN{465}{6}
+\@LN{466}{6}
+\@LN{467}{6}
+\@LN{468}{6}
+\@LN{469}{6}
+\@LN{470}{6}
+\@LN{471}{6}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{7}{Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Detection vs.\ diagnosis.}{7}{section*.19}\protected@file@percent }
+\@LN{472}{6}
+\@LN{473}{6}
+\@LN{474}{6}
+\@LN{475}{6}
+\@LN{476}{6}
+\@LN{477}{6}
+\@LN{478}{6}
+\@LN{479}{6}
+\@LN{480}{6}
+\@LN{481}{6}
+\@LN{482}{6}
+\@LN{483}{6}
+\@LN{484}{6}
+\@LN{485}{6}
+\@LN{486}{6}
+\@LN{487}{6}
+\@LN{488}{6}
+\@writefile{toc}{\contentsline {paragraph}{Practical implications.}{7}{section*.20}\protected@file@percent }
+\@LN{489}{6}
+\@LN{490}{6}
+\@LN{491}{6}
+\citation{psnirt2026}
+\citation{minkprob2024,constat2024}
+\citation{wang2025fragility}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces $\ell _z^*$ heatmap for 12 leaderboard models across five benchmarks. 57/60 cells exceed $|\ell _z^*| > 1.96$, indicating pervasive IRT assumption violations even absent contamination. Details in Appendix~\ref {app:leaderboard_aberrance}.}}{8}{figure.caption.18}\protected@file@percent }
+\newlabel{fig:leaderboard_heatmap}{{5}{8}{$\ell _z^*$ heatmap for 12 leaderboard models across five benchmarks. 57/60 cells exceed $|\ell _z^*| > 1.96$, indicating pervasive IRT assumption violations even absent contamination. Details in Appendix~\ref {app:leaderboard_aberrance}}{figure.caption.18}{}}
+\@LN{492}{7}
+\@LN{493}{7}
+\@LN{494}{7}
+\@LN{495}{7}
+\@LN{496}{7}
+\@LN{497}{7}
+\@LN{498}{7}
+\@LN{499}{7}
+\@LN{500}{7}
+\@LN{501}{7}
+\@LN{502}{7}
+\@LN{503}{7}
+\@writefile{toc}{\contentsline {paragraph}{Robustness and complementarity.}{8}{section*.21}\protected@file@percent }
+\@LN{504}{7}
+\@LN{505}{7}
+\@LN{506}{7}
+\@LN{507}{7}
+\@LN{508}{7}
+\@LN{509}{7}
+\@LN{510}{7}
+\@LN{511}{7}
+\@LN{512}{7}
+\@LN{513}{7}
+\@LN{514}{7}
+\@LN{515}{7}
+\@LN{516}{7}
+\@LN{517}{7}
+\@LN{518}{7}
+\@LN{519}{7}
+\@LN{520}{7}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Post-RL trajectory (Qwen, 15\% MMLU). GRPO erases the accuracy gap ($11.4\text  {pp} \to 2.1\text  {pp}$) while the $\ell _z^*$ gap persists (${\sim }3.3$). $N{=}1$; Appendix~\ref {app:post_rl}.}}{8}{figure.caption.22}\protected@file@percent }
+\newlabel{fig:grpo}{{6}{8}{Post-RL trajectory (Qwen, 15\% MMLU). GRPO erases the accuracy gap ($11.4\text {pp} \to 2.1\text {pp}$) while the $\ell _z^*$ gap persists (${\sim }3.3$). $N{=}1$; Appendix~\ref {app:post_rl}}{figure.caption.22}{}}
+\@LN{521}{7}
+\@LN{522}{7}
+\@LN{523}{7}
+\@LN{524}{7}
+\@LN{525}{7}
+\@LN{526}{7}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{8}{Conclusion}{section.6}{}}
+\@LN{527}{7}
+\@LN{528}{7}
+\@LN{529}{7}
+\@LN{530}{7}
+\@LN{531}{7}
+\@LN{532}{7}
+\@LN{533}{7}
+\@LN{534}{7}
+\@LN{535}{7}
+\@LN{536}{7}
+\@LN{537}{7}
+\@LN{538}{7}
+\@LN{539}{7}
+\@LN{540}{7}
+\@LN{541}{7}
+\@LN{542}{7}
+\@LN{543}{7}
+\@LN{544}{7}
+\@LN{545}{7}
+\@LN{546}{7}
+\@LN{547}{7}
+\@LN{548}{7}
+\@LN{549}{7}
+\@LN{550}{7}
+\@LN{551}{7}
+\@LN{552}{7}
+\@LN{553}{7}
+\@LN{554}{7}
+\citation{psnirt2026}
+\bibdata{references}
+\bibcite{bordt2025forget}{{1}{2025}{{Bordt et~al.}}{{Bordt, Srinivas, Boreiko, and von Luxburg}}}
+\bibcite{chang2024survey}{{2}{2024}{{Chang et~al.}}{{Chang, Wang, Wang, Wu, Yang, Zhu, Chen, Yi, Wang, Wang, Ye, Zhang, Chang, Yu, Yang, and Xie}}}
+\bibcite{clark2018arc}{{3}{2018}{{Clark et~al.}}{{Clark, Cowhey, Etzioni, Khot, Sabharwal, Schoenick, and Tafjord}}}
+\bibcite{constat2024}{{4}{2024}{{Dekoninck et~al.}}{{Dekoninck, M{\"u}ller, and Vechev}}}
+\bibcite{deng2024}{{5}{2024}{{Deng et~al.}}{{Deng, Zhao, Tang, Gerstein, and Cohan}}}
+\bibcite{dodge2021}{{6}{2021}{{Dodge et~al.}}{{Dodge, Sap, Marasovi{\'c}, Agnew, Ilharco, Groeneveld, Mitchell, and Gardner}}}
+\bibcite{drasgow1985}{{7}{1985}{{Drasgow et~al.}}{{Drasgow, Levine, and Williams}}}
+\bibcite{embretson2000}{{8}{2000}{{Embretson and Reise}}{{}}}
+\bibcite{fu2025contamination}{{9}{2025}{{Fu et~al.}}{{Fu, Uzuner, Yetisgen, and Xia}}}
+\bibcite{eval-harness}{{10}{2023}{{Gao et~al.}}{{Gao, Tow, Abbasi, Biderman, Black, DiPofi, Foster, Golding, Hsu, Le~Noac'h, Li, McDonell, Muennighoff, Ociepa, Phang, Reynolds, Schoelkopf, Skowron, Sutawika, Tang, Thite, Wang, Wang, and Zou}}}
+\bibcite{golchin2024}{{11}{2024}{{Golchin and Surdeanu}}{{}}}
+\bibcite{golchin2024quiz}{{12}{2025}{{Golchin and Surdeanu}}{{}}}
+\@LN@col{1}
+\@LN{555}{8}
+\@LN{556}{8}
+\@LN{557}{8}
+\@LN{558}{8}
+\@LN{559}{8}
+\@LN{560}{8}
+\@LN{561}{8}
+\@LN{562}{8}
+\@LN{563}{8}
+\@LN{564}{8}
+\@LN{565}{8}
+\@LN{566}{8}
+\@LN{567}{8}
+\@LN{568}{8}
+\@LN{569}{8}
+\@LN{570}{8}
+\@LN{571}{8}
+\@LN{572}{8}
+\@LN{573}{8}
+\@LN{574}{8}
+\@LN{575}{8}
+\@LN{576}{8}
+\@LN{577}{8}
+\@LN{578}{8}
+\@LN{579}{8}
+\@LN{580}{8}
+\@LN{581}{8}
+\@LN{582}{8}
+\@LN{583}{8}
+\@LN{584}{8}
+\@LN{585}{8}
+\@LN{586}{8}
+\@LN{587}{8}
+\@LN{588}{8}
+\@LN{589}{8}
+\@LN{590}{8}
+\@LN{591}{8}
+\@LN{592}{8}
+\@LN{593}{8}
+\@LN{594}{8}
+\@LN{595}{8}
+\@LN{596}{8}
+\@LN{597}{8}
+\@LN{598}{8}
+\@LN{599}{8}
+\@LN{600}{8}
+\@LN@col{2}
+\@LN{601}{8}
+\@LN{602}{8}
+\@LN{603}{8}
+\@LN{604}{8}
+\@LN{605}{8}
+\@LN{606}{8}
+\@LN{607}{8}
+\@LN{608}{8}
+\@LN{609}{8}
+\@LN{610}{8}
+\@LN{611}{8}
+\@LN{612}{8}
+\@LN{613}{8}
+\@LN{614}{8}
+\@LN{615}{8}
+\@LN{616}{8}
+\@LN{617}{8}
+\@LN{618}{8}
+\@LN{619}{8}
+\@LN{620}{8}
+\@LN{621}{8}
+\@LN{622}{8}
+\@LN{623}{8}
+\@LN{624}{8}
+\@LN{625}{8}
+\@LN{626}{8}
+\@LN{627}{8}
+\@LN{628}{8}
+\@LN{629}{8}
+\@LN{630}{8}
+\@LN{631}{8}
+\@LN{632}{8}
+\@LN{633}{8}
+\@LN{634}{8}
+\@LN{635}{8}
+\@LN{636}{8}
+\@LN{637}{8}
+\@LN{638}{8}
+\@LN{639}{8}
+\@LN{640}{8}
+\@LN{641}{8}
+\@LN{642}{8}
+\@LN{643}{8}
+\@LN{644}{8}
+\@LN{645}{8}
+\@LN{646}{8}
+\@LN{647}{8}
+\@LN{648}{8}
+\@LN{649}{8}
+\@LN{650}{8}
+\@LN{651}{8}
+\@LN{652}{8}
+\@LN{653}{8}
+\@LN{654}{8}
+\@LN{655}{8}
+\bibcite{han2026quantifying}{{13}{2026}{{Han et~al.}}{{Han, Song, Lee, and Jo}}}
+\bibcite{hedges1981}{{14}{1981}{{Hedges}}{{}}}
+\bibcite{hendrycks2021mmlu}{{15}{2021}{{Hendrycks et~al.}}{{Hendrycks, Burns, Basart, Zou, Mazeika, Song, and Steinhardt}}}
+\bibcite{jacovi2023}{{16}{2023}{{Jacovi et~al.}}{{Jacovi, Caciularu, Goldman, and Goldberg}}}
+\bibcite{karabatsos2003}{{17}{2003}{{Karabatsos}}{{}}}
+\bibcite{kattamuri2025radar}{{18}{2025}{{Kattamuri et~al.}}{{Kattamuri, Fartale, Vats, Raja, and Prasad}}}
+\bibcite{lalor2019}{{19}{2019}{{Lalor et~al.}}{{Lalor, Wu, and Yu}}}
+\bibcite{atlas2025}{{20}{2025}{{Li et~al.}}{{Li, Tang, Chen, Cheng, Metoyer, Hua, and Chawla}}}
+\bibcite{magar2022}{{21}{2022}{{Magar and Schwartz}}{{}}}
+\bibcite{magis2012}{{22}{2012}{{Magis et~al.}}{{Magis, Ra{\^i}che, and B{\'e}land}}}
+\bibcite{martinezplumed2019}{{23}{2019}{{Mart{\'\i }nez-Plumed et~al.}}{{Mart{\'\i }nez-Plumed, Prud{\^e}ncio, Mart{\'\i }nez-Us{\'o}, and Hern{\'a}ndez-Orallo}}}
+\bibcite{oren2024}{{24}{2024}{{Oren et~al.}}{{Oren, Meister, Chatterji, Ladhak, and Hashimoto}}}
+\bibcite{polo2024tinybenchmarks}{{25}{2024}{{Polo et~al.}}{{Polo, Weber, Choshen, Sun, Xu, and Yurochkin}}}
+\bibcite{rodriguez2021}{{26}{2021}{{Rodriguez et~al.}}{{Rodriguez, Barrow, Hoyle, Lalor, Jia, and Boyd-Graber}}}
+\bibcite{sainz2023}{{27}{2023}{{Sainz et~al.}}{{Sainz, Campos, Garc{\'\i }a-Ferrero, Etxaniz, Lopez~de Lacalle, and Agirre}}}
+\bibcite{shao2024}{{28}{2024}{{Shao et~al.}}{{Shao, Wang, Zhu, Xu, Song, Bi, Zhang, Zhang, Li, Wu, and Guo}}}
+\bibcite{minkprob2024}{{29}{2024}{{Shi et~al.}}{{Shi, Ajith, Xia, Huang, Liu, Blevins, Chen, and Zettlemoyer}}}
+\bibcite{sinharay2016}{{30}{2016}{{Sinharay}}{{}}}
+\bibcite{sinharay2017}{{31}{2017}{{Sinharay}}{{}}}
+\bibcite{snijders2001}{{32}{2001}{{Snijders}}{{}}}
+\bibcite{stonge2011}{{33}{2011}{{St-Onge et~al.}}{{St-Onge, Valois, Abdous, and Germain}}}
+\bibcite{selfcritique2026}{{34}{2026}{{Tao et~al.}}{{Tao, Wang, Dong, Liu, Zhang, Hu, and Li}}}
+\@LN@col{1}
+\@LN{656}{9}
+\@LN{657}{9}
+\@LN{658}{9}
+\@LN{659}{9}
+\@LN{660}{9}
+\@LN{661}{9}
+\@LN{662}{9}
+\@LN{663}{9}
+\@LN{664}{9}
+\@LN{665}{9}
+\@LN{666}{9}
+\@LN{667}{9}
+\@LN{668}{9}
+\@LN{669}{9}
+\@LN{670}{9}
+\@LN{671}{9}
+\@LN{672}{9}
+\@LN{673}{9}
+\@LN{674}{9}
+\@LN{675}{9}
+\@LN{676}{9}
+\@LN{677}{9}
+\@LN{678}{9}
+\@LN{679}{9}
+\@LN{680}{9}
+\@LN{681}{9}
+\@LN{682}{9}
+\@LN{683}{9}
+\@LN{684}{9}
+\@LN{685}{9}
+\@LN{686}{9}
+\@LN{687}{9}
+\@LN{688}{9}
+\@LN{689}{9}
+\@LN{690}{9}
+\@LN{691}{9}
+\@LN{692}{9}
+\@LN{693}{9}
+\@LN{694}{9}
+\@LN{695}{9}
+\@LN{696}{9}
+\@LN{697}{9}
+\@LN{698}{9}
+\@LN{699}{9}
+\@LN{700}{9}
+\@LN{701}{9}
+\@LN{702}{9}
+\@LN{703}{9}
+\@LN{704}{9}
+\@LN{705}{9}
+\@LN{706}{9}
+\@LN{707}{9}
+\@LN{708}{9}
+\@LN{709}{9}
+\@LN{710}{9}
+\@LN@col{2}
+\@LN{711}{9}
+\@LN{712}{9}
+\@LN{713}{9}
+\@LN{714}{9}
+\@LN{715}{9}
+\@LN{716}{9}
+\@LN{717}{9}
+\@LN{718}{9}
+\@LN{719}{9}
+\@LN{720}{9}
+\@LN{721}{9}
+\@LN{722}{9}
+\@LN{723}{9}
+\@LN{724}{9}
+\@LN{725}{9}
+\@LN{726}{9}
+\@LN{727}{9}
+\@LN{728}{9}
+\@LN{729}{9}
+\@LN{730}{9}
+\@LN{731}{9}
+\@LN{732}{9}
+\@LN{733}{9}
+\@LN{734}{9}
+\@LN{735}{9}
+\@LN{736}{9}
+\@LN{737}{9}
+\@LN{738}{9}
+\@LN{739}{9}
+\@LN{740}{9}
+\@LN{741}{9}
+\@LN{742}{9}
+\@LN{743}{9}
+\@LN{744}{9}
+\@LN{745}{9}
+\@LN{746}{9}
+\@LN{747}{9}
+\@LN{748}{9}
+\@LN{749}{9}
+\@LN{750}{9}
+\@LN{751}{9}
+\@LN{752}{9}
+\@LN{753}{9}
+\@LN{754}{9}
+\@LN{755}{9}
+\@LN{756}{9}
+\@LN{757}{9}
+\@LN{758}{9}
+\@LN{759}{9}
+\@LN{760}{9}
+\@LN{761}{9}
+\@LN{762}{9}
+\@LN{763}{9}
+\@LN{764}{9}
+\@LN{765}{9}
+\@LN{766}{9}
+\bibcite{vanderflier1982}{{35}{1982}{{Van~der Flier}}{{}}}
+\bibcite{wang2025fragility}{{36}{2025}{{Wang et~al.}}{{Wang, Li, Ko, and Zhang}}}
+\bibcite{codec2026}{{37}{2026}{{Zawalski et~al.}}{{Zawalski, Boubdir, Ba{\l }azy, Nushi, and Ribalta}}}
+\bibcite{zhang2026rlvr}{{38}{2026}{{Zhang et~al.}}{{Zhang, Yang, Yan, Bao, Zhang, and Zhang}}}
+\bibcite{pacost2024}{{39}{2024}{{Zhang et~al.}}{{Zhang, Lin, and Wan}}}
+\bibcite{psnirt2026}{{40}{2026}{{Zhou et~al.}}{{Zhou, Huang, Zhao, Han, Wang, Chen, Yang, Bao, Dong, Xu, Zhu, Cao, and Zhao}}}
+\bibcite{zhou2023benchmark}{{41}{2023}{{Zhou et~al.}}{{Zhou, Zhu, Chen, Chen, Zhao, Chen, Lin, Wen, and Han}}}
+\@LN@col{1}
+\@LN{767}{10}
+\@LN{768}{10}
+\@LN{769}{10}
+\@LN{770}{10}
+\@LN{771}{10}
+\@LN{772}{10}
+\@LN{773}{10}
+\@LN{774}{10}
+\@LN{775}{10}
+\@LN{776}{10}
+\@LN{777}{10}
+\@LN{778}{10}
+\@LN{779}{10}
+\@LN{780}{10}
+\@LN{781}{10}
+\@LN{782}{10}
+\@LN{783}{10}
+\@LN{784}{10}
+\@LN{785}{10}
+\@LN{786}{10}
+\@LN{787}{10}
+\@LN{788}{10}
+\@LN{789}{10}
+\@LN{790}{10}
+\@LN{791}{10}
+\@LN{792}{10}
+\@LN{793}{10}
+\@LN{794}{10}
+\@LN{795}{10}
+\@LN{796}{10}
+\@LN{797}{10}
+\@LN{798}{10}
+\@LN{799}{10}
+\@LN{800}{10}
+\@LN{801}{10}
+\@LN{802}{10}
+\@LN{803}{10}
+\@LN{804}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Simulation Validation}{11}{appendix.A}\protected@file@percent }
+\newlabel{app:simulation}{{A}{11}{Simulation Validation}{appendix.A}{}}
+\@LN{805}{10}
+\@LN{806}{10}
+\@LN{807}{10}
+\@LN{808}{10}
+\@LN{809}{10}
+\@LN{810}{10}
+\@LN{811}{10}
+\@LN{812}{10}
+\@LN{813}{10}
+\@LN{814}{10}
+\@LN{815}{10}
+\@LN{816}{10}
+\@LN{817}{10}
+\@LN{818}{10}
+\@LN{819}{10}
+\@LN@col{2}
+\@LN{820}{10}
+\@LN{821}{10}
+\@LN{822}{10}
+\@LN{823}{10}
+\@LN{824}{10}
+\@LN{825}{10}
+\@LN{826}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {B}4PL vs.\ 3PL Ablation Details}{11}{appendix.B}\protected@file@percent }
+\newlabel{app:4pl_ablation}{{B}{11}{4PL vs.\ 3PL Ablation Details}{appendix.B}{}}
+\@LN{827}{10}
+\@LN{828}{10}
+\@LN{829}{10}
+\@LN{830}{10}
+\@LN{831}{10}
+\@LN{832}{10}
+\@LN{833}{10}
+\@LN{834}{10}
+\@LN{835}{10}
+\@LN{836}{10}
+\@LN{837}{10}
+\@LN{838}{10}
+\@LN{839}{10}
+\@LN{840}{10}
+\@LN{841}{10}
+\@LN{842}{10}
+\@LN{843}{10}
+\@LN{844}{10}
+\@LN{845}{10}
+\@LN{846}{10}
+\@LN{847}{10}
+\@LN{848}{10}
+\@LN{849}{10}
+\@LN{850}{10}
+\@LN{851}{10}
+\@LN{852}{10}
+\@LN{853}{10}
+\@LN{854}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Seed Sensitivity Analysis}{11}{appendix.C}\protected@file@percent }
+\newlabel{app:seed_sensitivity}{{C}{11}{Seed Sensitivity Analysis}{appendix.C}{}}
+\@writefile{toc}{\contentsline {paragraph}{Clean-baseline variability.}{11}{section*.28}\protected@file@percent }
+\@LN{855}{10}
+\@LN{856}{10}
+\@LN{857}{10}
+\@LN{858}{10}
+\@LN{859}{10}
+\@LN{860}{10}
+\@LN{861}{10}
+\@LN{862}{10}
+\@LN{863}{10}
+\@LN{864}{10}
+\@LN{865}{10}
+\@LN{866}{10}
+\@LN{867}{10}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Detection power (proportion rejecting $H_0$ at $\alpha {=}0.05$) under 4PL and 3PL parameterizations across benchmarks and contamination levels ($n{=}2{,}000$ replicates per cell). Bold indicates the 4PL advantage exceeds 5\,pp.}}{12}{table.caption.27}\protected@file@percent }
+\newlabel{tab:4pl_3pl_power}{{4}{12}{Detection power (proportion rejecting $H_0$ at $\alpha {=}0.05$) under 4PL and 3PL parameterizations across benchmarks and contamination levels ($n{=}2{,}000$ replicates per cell). Bold indicates the 4PL advantage exceeds 5\,pp}{table.caption.27}{}}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Seed sensitivity analysis for clean baseline across three independent runs (seeds 42, 123, 456). CV = coefficient of variation ($\mathrm  {std}/|\mathrm  {mean}|$). These $n{=}3$ pilot results are superseded by the $n{=}10$ analysis in \S  \ref {sec:detection}; retained for methodological transparency.}}{12}{table.caption.29}\protected@file@percent }
+\newlabel{tab:seed_sensitivity}{{5}{12}{Seed sensitivity analysis for clean baseline across three independent runs (seeds 42, 123, 456). CV = coefficient of variation ($\mathrm {std}/|\mathrm {mean}|$). These $n{=}3$ pilot results are superseded by the $n{=}10$ analysis in \S \ref {sec:detection}; retained for methodological transparency}{table.caption.29}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cohen's $d$ confidence intervals.}{12}{section*.30}\protected@file@percent }
+\@LN{868}{11}
+\@LN{869}{11}
+\@LN{870}{11}
+\@LN{871}{11}
+\@LN{872}{11}
+\@LN{873}{11}
+\@LN{874}{11}
+\@LN{875}{11}
+\@LN{876}{11}
+\@LN{877}{11}
+\@LN{878}{11}
+\@LN{879}{11}
+\@LN{880}{11}
+\@LN{881}{11}
+\@writefile{toc}{\contentsline {paragraph}{Cross-family consistency.}{12}{section*.32}\protected@file@percent }
+\@LN{882}{11}
+\@LN{883}{11}
+\@LN{884}{11}
+\@LN{885}{11}
+\@LN{886}{11}
+\@LN{887}{11}
+\@LN{888}{11}
+\@LN{889}{11}
+\@LN{890}{11}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Cohen's $d$ with 95\% confidence intervals for contaminated conditions relative to clean baselines ($n{=}3$ seeds). Analytic CIs use $t_{0.025, \text  {df}=2}$; bootstrap CIs use 10{,}000 resamples. These $n{=}3$ pilot results are superseded by the $n{=}10$ analysis in \S  \ref {sec:detection}; retained for methodological transparency.}}{12}{table.caption.31}\protected@file@percent }
+\newlabel{tab:cohens_d_ci}{{6}{12}{Cohen's $d$ with 95\% confidence intervals for contaminated conditions relative to clean baselines ($n{=}3$ seeds). Analytic CIs use $t_{0.025, \text {df}=2}$; bootstrap CIs use 10{,}000 resamples. These $n{=}3$ pilot results are superseded by the $n{=}10$ analysis in \S \ref {sec:detection}; retained for methodological transparency}{table.caption.31}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Cross-family consistency of contamination detection ($n{=}3$ pilot). Both families show large negative $d$ under contamination. Superseded by $n{=}10$ results in \S  \ref {sec:detection}; retained for methodological transparency.}}{12}{table.caption.33}\protected@file@percent }
+\newlabel{tab:cross_family}{{7}{12}{Cross-family consistency of contamination detection ($n{=}3$ pilot). Both families show large negative $d$ under contamination. Superseded by $n{=}10$ results in \S \ref {sec:detection}; retained for methodological transparency}{table.caption.33}{}}
+\@LN{891}{11}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Baseline $\ell _z^*$ Interpretation}{12}{appendix.D}\protected@file@percent }
+\newlabel{app:baseline_meaning}{{D}{12}{Baseline $\ell _z^*$ Interpretation}{appendix.D}{}}
+\@LN{892}{11}
+\@LN{893}{11}
+\@LN{894}{11}
+\@LN{895}{11}
+\@LN{896}{11}
+\@LN{897}{11}
+\@LN{898}{11}
+\@LN{899}{11}
+\@LN{900}{11}
+\@LN{901}{11}
+\@LN{902}{11}
+\@LN{903}{11}
+\@LN{904}{11}
+\@LN{905}{11}
+\citation{sinharay2016}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Item-level contamination detection (AUROC) at 15\% contamination on MMLU.}}{13}{table.caption.34}\protected@file@percent }
+\newlabel{tab:item_auroc}{{8}{13}{Item-level contamination detection (AUROC) at 15\% contamination on MMLU}{table.caption.34}{}}
+\@LN{906}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {E}Leaderboard Aberrance Analysis}{13}{appendix.E}\protected@file@percent }
+\newlabel{app:leaderboard_aberrance}{{E}{13}{Leaderboard Aberrance Analysis}{appendix.E}{}}
+\@LN{907}{12}
+\@LN{908}{12}
+\@LN{909}{12}
+\@LN{910}{12}
+\@LN{911}{12}
+\@LN{912}{12}
+\@LN{913}{12}
+\@LN{914}{12}
+\@LN{915}{12}
+\@LN{916}{12}
+\@LN{917}{12}
+\@LN{918}{12}
+\@LN{919}{12}
+\@LN{920}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {F}Item-Level Detection Results}{13}{appendix.F}\protected@file@percent }
+\newlabel{app:item_auroc}{{F}{13}{Item-Level Detection Results}{appendix.F}{}}
+\@LN{921}{12}
+\@LN{922}{12}
+\@LN{923}{12}
+\@LN{924}{12}
+\@LN{925}{12}
+\@LN{926}{12}
+\@LN{927}{12}
+\@LN{928}{12}
+\@LN{929}{12}
+\@LN{930}{12}
+\@LN{931}{12}
+\@LN{932}{12}
+\@LN{933}{12}
+\@LN{934}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {G}Robustness Analysis}{13}{appendix.G}\protected@file@percent }
+\newlabel{app:robustness}{{G}{13}{Robustness Analysis}{appendix.G}{}}
+\@LN{935}{12}
+\@writefile{toc}{\contentsline {subsection}{\numberline {G.1}$\Delta \ell _z^*$ Under Local Dependence}{13}{subsection.G.1}\protected@file@percent }
+\newlabel{app:local_dep}{{G.1}{13}{$\Delta \ell _z^*$ Under Local Dependence}{subsection.G.1}{}}
+\@LN{936}{12}
+\@LN{937}{12}
+\@LN{938}{12}
+\@LN{939}{12}
+\@LN{940}{12}
+\@LN{941}{12}
+\@LN{942}{12}
+\@LN{943}{12}
+\@LN{944}{12}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Robustness of $\Delta \ell _z^*$ to shared local dependence (1,000 replications, MMLU). $d_{\text  {ratio}}$: effect size relative to the $\sigma _\tau {=}0$ baseline.}}{13}{table.caption.36}\protected@file@percent }
+\newlabel{tab:ld_shared}{{9}{13}{Robustness of $\Delta \ell _z^*$ to shared local dependence (1,000 replications, MMLU). $d_{\text {ratio}}$: effect size relative to the $\sigma _\tau {=}0$ baseline}{table.caption.36}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces $\Delta \ell _z^*$ detection under asymmetric local dependence ($\sigma _\tau {=}0.5$, contamination-specific memory factor $\sigma _{\text  {mem}}$; 1,000 replications, MMLU).}}{13}{table.caption.38}\protected@file@percent }
+\newlabel{tab:ld_asym}{{10}{13}{$\Delta \ell _z^*$ detection under asymmetric local dependence ($\sigma _\tau {=}0.5$, contamination-specific memory factor $\sigma _{\text {mem}}$; 1,000 replications, MMLU)}{table.caption.38}{}}
+\@LN{945}{12}
+\@LN{946}{12}
+\@writefile{toc}{\contentsline {paragraph}{Shared LD.}{13}{section*.35}\protected@file@percent }
+\@LN{947}{12}
+\@LN{948}{12}
+\@LN{949}{12}
+\@LN{950}{12}
+\@LN{951}{12}
+\@LN{952}{12}
+\@LN{953}{12}
+\@LN{954}{12}
+\@LN{955}{12}
+\@LN{956}{12}
+\@writefile{toc}{\contentsline {paragraph}{Asymmetric LD.}{13}{section*.37}\protected@file@percent }
+\@LN{957}{12}
+\@LN{958}{12}
+\@LN{959}{12}
+\@LN{960}{12}
+\@LN{961}{12}
+\@LN{962}{12}
+\@LN{963}{12}
+\@LN{964}{12}
+\@LN{965}{12}
+\@LN{966}{12}
+\@writefile{toc}{\contentsline {subsection}{\numberline {G.2}Sensitivity to Item Parameter Estimation Error}{13}{subsection.G.2}\protected@file@percent }
+\newlabel{app:param_perturb}{{G.2}{13}{Sensitivity to Item Parameter Estimation Error}{subsection.G.2}{}}
+\@LN{967}{12}
+\@LN{968}{12}
+\@LN{969}{12}
+\@LN{970}{12}
+\@LN{971}{12}
+\@LN{972}{12}
+\@LN{973}{12}
+\@LN{974}{12}
+\@LN{975}{12}
+\@LN{976}{12}
+\@LN{977}{12}
+\citation{wang2025fragility}
+\citation{shao2024}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Sensitivity of detection to item parameter noise (100 trials, Qwen MMLU, free-$\theta $). \% bias relative to noise-free $d$.}}{14}{table.caption.39}\protected@file@percent }
+\newlabel{tab:param_noise_free}{{11}{14}{Sensitivity of detection to item parameter noise (100 trials, Qwen MMLU, free-$\theta $). \% bias relative to noise-free $d$}{table.caption.39}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Sensitivity of detection to item parameter noise (100 trials, Qwen MMLU, $\theta $-fixed). Worst-case $|d|$ over 100 trials in parentheses.}}{14}{table.caption.40}\protected@file@percent }
+\newlabel{tab:param_noise_fixed}{{12}{14}{Sensitivity of detection to item parameter noise (100 trials, Qwen MMLU, $\theta $-fixed). Worst-case $|d|$ over 100 trials in parentheses}{table.caption.40}{}}
+\@LN{978}{13}
+\@LN{979}{13}
+\@LN{980}{13}
+\@LN{981}{13}
+\@LN{982}{13}
+\@LN{983}{13}
+\@LN{984}{13}
+\@LN{985}{13}
+\@LN{986}{13}
+\@LN{987}{13}
+\@LN{988}{13}
+\@LN{989}{13}
+\@LN{990}{13}
+\@LN{991}{13}
+\@LN{992}{13}
+\@LN{993}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {H}BCa Bootstrap Sensitivity Check}{14}{appendix.H}\protected@file@percent }
+\newlabel{app:bca}{{H}{14}{BCa Bootstrap Sensitivity Check}{appendix.H}{}}
+\@LN{994}{13}
+\@LN{995}{13}
+\@LN{996}{13}
+\@LN{997}{13}
+\@LN{998}{13}
+\@LN{999}{13}
+\@LN{1000}{13}
+\@LN{1001}{13}
+\@LN{1002}{13}
+\@LN{1003}{13}
+\@LN{1004}{13}
+\@LN{1005}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Classical IRT Refit from Leaderboard Data}{14}{appendix.I}\protected@file@percent }
+\newlabel{app:mml_em}{{I}{14}{Classical IRT Refit from Leaderboard Data}{appendix.I}{}}
+\@LN{1006}{13}
+\@LN{1007}{13}
+\@LN{1008}{13}
+\@LN{1009}{13}
+\@LN{1010}{13}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Parameter correlation between classical MML-EM refit ($N{=}178$ models) and PSN-IRT on MMLU ($n{=}10{,}558$ matched items).}}{14}{table.caption.41}\protected@file@percent }
+\newlabel{tab:mml_em}{{13}{14}{Parameter correlation between classical MML-EM refit ($N{=}178$ models) and PSN-IRT on MMLU ($n{=}10{,}558$ matched items)}{table.caption.41}{}}
+\@LN{1011}{13}
+\@LN{1012}{13}
+\@LN{1013}{13}
+\@LN{1014}{13}
+\@LN{1015}{13}
+\@LN{1016}{13}
+\@LN{1017}{13}
+\@LN{1018}{13}
+\@LN{1019}{13}
+\@LN{1020}{13}
+\@LN{1021}{13}
+\@LN{1022}{13}
+\@LN{1023}{13}
+\@LN{1024}{13}
+\@LN{1025}{13}
+\@LN{1026}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {J}Post-RL Preliminary Observation}{14}{appendix.J}\protected@file@percent }
+\newlabel{app:post_rl}{{J}{14}{Post-RL Preliminary Observation}{appendix.J}{}}
+\@LN{1027}{13}
+\@LN{1028}{13}
+\@LN{1029}{13}
+\@LN{1030}{13}
+\@LN{1031}{13}
+\@LN{1032}{13}
+\@LN{1033}{13}
+\@LN{1034}{13}
+\@LN{1035}{13}
+\@LN{1036}{13}
+\@LN{1037}{13}
+\@LN{1038}{13}
+\@LN{1039}{13}
+\@LN{1040}{13}
+\@LN{1041}{13}
+\@LN{1042}{13}
+\@LN{1043}{13}
+\@LN{1044}{13}
+\@LN{1045}{13}
+\@LN{1046}{13}
+\@LN{1047}{13}
+\@writefile{toc}{\contentsline {paragraph}{GRPO hyperparameters.}{14}{section*.42}\protected@file@percent }
+\@LN{1048}{13}
+\@LN{1049}{13}
+\@LN{1050}{13}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces GRPO training hyperparameters (Qwen2.5-7B-Instruct, 15\% MMLU contamination).}}{15}{table.caption.43}\protected@file@percent }
+\newlabel{tab:grpo_hyperparams}{{14}{15}{GRPO training hyperparameters (Qwen2.5-7B-Instruct, 15\% MMLU contamination)}{table.caption.43}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces QLoRA fine-tuning hyperparameters (shared across all model families and contamination conditions).}}{15}{table.caption.44}\protected@file@percent }
+\newlabel{tab:hyperparams}{{15}{15}{QLoRA fine-tuning hyperparameters (shared across all model families and contamination conditions)}{table.caption.44}{}}
+\@LN{1051}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {K}QLoRA Training Hyperparameters}{15}{appendix.K}\protected@file@percent }
+\newlabel{app:hyperparams}{{K}{15}{QLoRA Training Hyperparameters}{appendix.K}{}}
+\@LN{1052}{14}
+\@LN{1053}{14}
+\@LN{1054}{14}
+\@LN{1055}{14}
+\@LN{1056}{14}
+\@LN{1057}{14}
+\@LN{1058}{14}
+\@LN{1059}{14}
+\@LN{1060}{14}
+\@LN{1061}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {L}Contamination Run Reproducibility}{15}{appendix.L}\protected@file@percent }
+\newlabel{app:reproducibility}{{L}{15}{Contamination Run Reproducibility}{appendix.L}{}}
+\@LN{1062}{14}
+\@LN{1063}{14}
+\@LN{1064}{14}
+\@LN{1065}{14}
+\@LN{1066}{14}
+\@LN{1067}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {M}Use of AI Assistance}{15}{appendix.M}\protected@file@percent }
+\@LN{1068}{14}
+\@LN{1069}{14}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Reproducibility of contamination effect sizes across independent QLoRA runs (Qwen2.5-7B-Instruct, MMLU). Each row shows Cohen's $|d|$ from an independent training seed against the shared $n{=}10$ clean baseline ($\bar  {\ell }_z^* = 8.68$, $s = 0.74$). All runs use identical hyperparameters; only the random seed differs.}}{15}{table.caption.45}\protected@file@percent }
+\newlabel{tab:qwen_multiseed}{{16}{15}{Reproducibility of contamination effect sizes across independent QLoRA runs (Qwen2.5-7B-Instruct, MMLU). Each row shows Cohen's $|d|$ from an independent training seed against the shared $n{=}10$ clean baseline ($\bar {\ell }_z^* = 8.68$, $s = 0.74$). All runs use identical hyperparameters; only the random seed differs}{table.caption.45}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Multi-seed Cohen's $|d|$ for HT and accuracy $z$-score statistics (Qwen2.5-7B-Instruct, MMLU), computed using the chi-squared ratio HT statistic and bootstrap Cohen's $d$ (10{,}000 resamples). These supplement the $\ell _z^*$ values in Table~\ref {tab:degradation}.}}{15}{table.caption.46}\protected@file@percent }
+\newlabel{tab:ht_acc_multiseed}{{17}{15}{Multi-seed Cohen's $|d|$ for HT and accuracy $z$-score statistics (Qwen2.5-7B-Instruct, MMLU), computed using the chi-squared ratio HT statistic and bootstrap Cohen's $d$ (10{,}000 resamples). These supplement the $\ell _z^*$ values in Table~\ref {tab:degradation}}{table.caption.46}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces Multi-seed Cohen's $d$ for Llama-3.1-8B across all contamination levels (MMLU). Each cell shows Cohen's $d$ from an independent training seed against the shared $n{=}10$ clean baseline ($\bar  {\ell }_z^* = {+}0.26$, $s = 1.54$). The 5\% condition exhibits higher cross-seed variance (SD${=}0.99$), reflecting the weaker signal from ${\sim }700$ contaminated items (5\%$\times $14{,}042).}}{16}{table.caption.47}\protected@file@percent }
+\newlabel{tab:llama_multiseed}{{18}{16}{Multi-seed Cohen's $d$ for Llama-3.1-8B across all contamination levels (MMLU). Each cell shows Cohen's $d$ from an independent training seed against the shared $n{=}10$ clean baseline ($\bar {\ell }_z^* = {+}0.26$, $s = 1.54$). The 5\% condition exhibits higher cross-seed variance (SD${=}0.99$), reflecting the weaker signal from ${\sim }700$ contaminated items (5\%$\times $14{,}042)}{table.caption.47}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces Multi-seed Cohen's $d$ for Mistral-7B-v0.3 across contamination levels (MMLU). Each cell shows Cohen's $d$ from an independent training seed against the shared $n{=}10$ clean baseline ($\bar  {\ell }_z^* = {+}4.02$, $s = 2.05$). The 5\% condition has only $n{=}2$ seeds; its high SD reflects this limited sample.}}{16}{table.caption.48}\protected@file@percent }
+\newlabel{tab:mistral_multiseed}{{19}{16}{Multi-seed Cohen's $d$ for Mistral-7B-v0.3 across contamination levels (MMLU). Each cell shows Cohen's $d$ from an independent training seed against the shared $n{=}10$ clean baseline ($\bar {\ell }_z^* = {+}4.02$, $s = 2.05$). The 5\% condition has only $n{=}2$ seeds; its high SD reflects this limited sample}{table.caption.48}{}}
+\@LN@col{2}
+\gdef \@abspage@last{16}

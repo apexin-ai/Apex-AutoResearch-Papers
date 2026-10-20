@@ -1,0 +1,158 @@
+{
+  "description": "Theoretical power analysis for lz* contamination detection",
+  "method": "Expected score equation + Gauss-Hermite quadrature (K=30)",
+  "key_result": "δ(n,π) ∝ √n; inverted-U from lz* sign reversal at high π",
+  "fit": {
+    "R2_two_sided": 0.9572,
+    "RMSE_two_sided": 0.0746,
+    "R2_left_tail": 0.9764,
+    "RMSE_left_tail": 0.0473,
+    "R2_mean_lz": 0.9948,
+    "RMSE_mean_lz": 0.5418
+  },
+  "sqrt_n_scaling": {
+    "5": {
+      "alpha": -0.015799,
+      "R2": 0.886
+    },
+    "10": {
+      "alpha": -0.030571,
+      "R2": 0.884
+    },
+    "15": {
+      "alpha": -0.04442,
+      "R2": 0.8821
+    },
+    "25": {
+      "alpha": -0.06948,
+      "R2": 0.8794
+    },
+    "50": {
+      "alpha": -0.113481,
+      "R2": 0.8674
+    }
+  },
+  "crossover_points_pct": {
+    "mmlu": 0.81,
+    "hellaswag": 0.826,
+    "gsm8k": 0.85,
+    "arc_c": 0.821,
+    "humaneval": 0.824
+  },
+  "left_peak_pct": {
+    "mmlu": 0.25,
+    "hellaswag": 0.43,
+    "gsm8k": 0.37,
+    "arc_c": 0.59,
+    "humaneval": 0.53
+  },
+  "left_peak_power": {
+    "mmlu": 0.9804,
+    "hellaswag": 0.9207,
+    "gsm8k": 0.8341,
+    "arc_c": 0.4196,
+    "humaneval": 0.6028
+  },
+  "min_items": [
+    {
+      "contamination_pct": 5,
+      "target_power": 0.8,
+      "min_n_items": 66992
+    },
+    {
+      "contamination_pct": 5,
+      "target_power": 0.9,
+      "min_n_items": 124918
+    },
+    {
+      "contamination_pct": 5,
+      "target_power": 0.95,
+      "min_n_items": 195812
+    },
+    {
+      "contamination_pct": 10,
+      "target_power": 0.8,
+      "min_n_items": 17301
+    },
+    {
+      "contamination_pct": 10,
+      "target_power": 0.9,
+      "min_n_items": 32284
+    },
+    {
+      "contamination_pct": 10,
+      "target_power": 0.95,
+      "min_n_items": 51194
+    },
+    {
+      "contamination_pct": 15,
+      "target_power": 0.8,
+      "min_n_items": 7958
+    },
+    {
+      "contamination_pct": 15,
+      "target_power": 0.9,
+      "min_n_items": 14905
+    },
+    {
+      "contamination_pct": 15,
+      "target_power": 0.95,
+      "min_n_items": 24135
+    },
+    {
+      "contamination_pct": 25,
+      "target_power": 0.8,
+      "min_n_items": 3083
+    },
+    {
+      "contamination_pct": 25,
+      "target_power": 0.9,
+      "min_n_items": 5850
+    },
+    {
+      "contamination_pct": 25,
+      "target_power": 0.95,
+      "min_n_items": 10187
+    },
+    {
+      "contamination_pct": 50,
+      "target_power": 0.8,
+      "min_n_items": 1090
+    },
+    {
+      "contamination_pct": 50,
+      "target_power": 0.9,
+      "min_n_items": 2527
+    },
+    {
+      "contamination_pct": 50,
+      "target_power": 0.95,
+      "min_n_items": 4500
+    }
+  ],
+  "benchmarks": {
+    "mmlu": {
+      "n_items": 14042
+    },
+    "hellaswag": {
+      "n_items": 10042
+    },
+    "gsm8k": {
+      "n_items": 1319
+    },
+    "arc_c": {
+      "n_items": 295
+    },
+    "humaneval": {
+      "n_items": 164
+    }
+  },
+  "artifacts": [
+    "theory_derivation.md",
+    "theory_vs_simulation.png",
+    "minimum_items_table.csv",
+    "inverted_u_theory.md",
+    "fit_metrics.json",
+    "power_theory_summary.json"
+  ]
+}

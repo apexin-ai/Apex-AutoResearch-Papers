@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "988a34bcc8b011c42b5a",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops update server baseline",
+  "task_key": "worker_ops_update-server-baseline_20260523T161235",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_update-server-baseline_20260523T161235_result.json",
+    "occurrence": 1,
+    "bytes": 543,
+    "sha256": "0a8441c3809bcd82720aca57c23d63cc0144eb5c3731ffb4a74da1e53bc8278c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "替换完成，旧值已不存在。验证汇总：\n\n**File 1** (`compute_cohens_d.py`):\n- 第10-11行数组已更新为 `[0.8446, -1.8765, 0.3452, 0.0206, 1.7323, 2.8466, -0.4007, 1.1656, 0.1897, -2.2497]`\n- 旧值 `-0.4891` 已不存在\n\n**File 2** (`bca_bootstrap.py`):\n- 第78行 `llama_free` 已更新为新值数组\n- 旧值已不存在\n\n两个文件的数组值来自服务器上 10 个 clean seed V2 re-eval 结果文件（`clean_results.json` ~ `clean_s10_results.json`），mean=0.2618, std(ddof=1)=1.5416。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-update-server-baseline.md"
+}

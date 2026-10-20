@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c7310a0b679a8a444f39",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "paper writing sec method",
+  "task_key": "worker_paper_writing_sec_method_20260520T225135",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_sec_method_20260520T225135_result.json",
+    "occurrence": 1,
+    "bytes": 902,
+    "sha256": "c6555a3e11f915270f94bb555a62d130db7441f36016803c9e0fb3c127029048"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "§3 Method written to `paper/sections/method.tex` (~646 words, 3 subsections).\n\n**Structure:**\n- **§3.1 The IRT-Fit Framework** — 4PL model + 3-step pipeline (θ estimation → lz\\* → Δlz\\*), with a paragraph on validity under assumption violations (DiD argument + bootstrap null calibration)\n- **§3.2 Detection Power Characterization** — contamination model, Proposition 1 (δ ∝ √n), Proposition 2 (marginal power via Gauss-Hermite quadrature), two-sided testing rationale with crossover at π\\* ≈ 81–85%, minimum item count guideline\n- **§3.3 θ-Shift Analysis** — free-θ non-monotonicity mechanism, θ-fixed solution with signal ratio 3.12, two practical strategies for obtaining θ\\_fixed\n\n**Display equations:** 4PL model (Eq.1), contaminated expected response (Eq.2), √n scaling (Eq.3), marginal power formula (Eq.4). All variables defined inline."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-sec-method.md"
+}

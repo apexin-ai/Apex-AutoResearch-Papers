@@ -1,0 +1,16 @@
+{
+  "exp_id": "sim_001",
+  "project": "irt_personfit_contam",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T07:13:53.208Z",
+    "updated_at": "2026-05-20T08:09:06.258Z",
+    "hypothesis": "Under 4PL IRT model, lz* person-fit statistic can detect partial benchmark contamination (5-30% items) with >80% power at α=0.05, and detection power follows an inverted-U curve across contamination levels (low contamination undetectable, moderate contamination most detectable, high contamination mimics high ability)",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-20T08:09:06.288521+00:00",
+  "trigger": "update_registry"
+}

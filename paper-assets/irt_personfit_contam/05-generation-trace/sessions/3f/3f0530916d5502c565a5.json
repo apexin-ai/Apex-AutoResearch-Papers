@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f0530916d5502c565a5",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "fix unified lz recompute bug",
+  "task_key": "worker_fix_unified-lz-recompute-bug_20260521T174227",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_unified-lz-recompute-bug_20260521T174227_result.json",
+    "occurrence": 1,
+    "bytes": 328,
+    "sha256": "f1825309f17d443463dc924e2c4d525b6d4d1aa7b80ce86a0fada22339311d39"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成，输出的 d 值与预期一致：\n\n| Metric | d(15%) | 预期 | d(50%) | 预期 |\n|--------|--------|------|--------|------|\n| lz* free-theta | -6.57 | ≈ -6.58 | -1.90 | ≈ -1.90 |\n| lz* theta-fixed | +4.77 | ≈ +4.77 | +14.52 | ≈ +14.52 |\n\n`unified_lz_results.json` 已同步更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-unified-lz-recompute-bug.md"
+}

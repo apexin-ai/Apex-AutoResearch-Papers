@@ -1,0 +1,25 @@
+\section{Discussion}\label{sec:discussion}
+
+\paragraph{Detection vs.\ diagnosis.}
+The detection-diagnosis tradeoff reveals a design tension absent from prior contamination detection work.
+Simpler statistics (accuracy $z$-scores, HT) detect contamination more powerfully because they are not attenuated by the Snijders correction or inflated by $\theta$-shift absorption.
+Yet $\ell_z^*$ provides unique mechanistic insight invisible to non-IRT statistics: $\theta$-shift analysis reveals \emph{why} detection varies across models (baseline ability determines absorption magnitude), seen/unseen decomposition localizes the signal source, and 4PL modeling captures ceiling effects that 3PL misses ($+$55.7pp power on MMLU).
+Our contribution lies not in proposing a new detection method but in quantifying these theoretically predicted phenomena where magnitudes are not derivable from IRT theory alone.
+
+\paragraph{Practical implications.}
+For practitioners, we recommend a two-stage workflow: (i)~screen with accuracy $z$-scores, which require no item parameters and produce the largest effect sizes; (ii)~characterize flagged models with $\ell_z^*$ to determine whether the signal reflects $\theta$-shift absorption (high-ability model, large $\Delta\theta$) or direct memorization (anomalous successes on hard items without commensurate $\theta$ inflation).
+$\theta$-anchoring is necessary to stabilize detection for high-ability models (free-$\theta$ CV up to 60\% vs.\ 19\% under $\theta$-fixed; \S\ref{sec:theta_dynamics}).
+Universal baseline misfit (57/60 cells flagged; Figure~\ref{fig:leaderboard_heatmap}) means absolute $\ell_z^*$ thresholds cannot be used directly; the $\Delta\ell_z^*$ matched-difference design or cross-benchmark comparison is required.
+
+\paragraph{Robustness and complementarity.}
+PSN-IRT provides pre-calibrated 4PL parameters \citep{psnirt2026} that are robust to estimation noise: $\pm$10\% parameter perturbation produces $<$4\% bias in fixed-$\theta$ Cohen's $d$ (Appendix~\ref{app:param_perturb}), because the matched-difference design cancels shared parameter error.
+Requiring only binary response patterns and an external item bank, $\ell_z^*$ occupies a unique position at the minimal-access end of the detection frontier: it complements logit-based methods \citep{minkprob2024,constat2024} that fail after RL post-training \citep{wang2025fragility}.
+Our GRPO pilot illustrates this complementarity: Min-K\% AUC drops to chance ($0.493$) after 500 RL steps, while the $\ell_z^*$ response-pattern gap persists at ${\sim}3.3$ across all checkpoints (Figure~\ref{fig:grpo}).
+This structural invariance (RL reshapes token-level distributions but preserves binary correctness anomalies) suggests that person-fit statistics may remain informative in settings where all probability-based detectors fail, though this $N{=}1$ observation requires multi-family validation.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{fig_grpo.pdf}
+  \caption{Post-RL trajectory (Qwen, 15\% MMLU). GRPO erases the accuracy gap ($11.4\text{pp} \to 2.1\text{pp}$) while the $\ell_z^*$ gap persists (${\sim}3.3$). $N{=}1$; Appendix~\ref{app:post_rl}.}
+  \label{fig:grpo}
+\end{figure}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bedb0633d67a13c3980c",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "analysis qwen theta fixed consistent",
+  "task_key": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen-theta-fixed-consistent_20260521T171114_result.json",
+    "occurrence": 1,
+    "bytes": 1711,
+    "sha256": "f4bc1bebc0266bb6e32201fe9338e1fadb291f6f9079d268f32094e64c6ff4f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n### 验证\n- free-θ lz(s1) = **8.0101**，与 registry 完全一致 ✓\n- 使用的是 `compute_lz_drasgow`（Drasgow 1985，无 Snijders 校正），即 `theta_fixed_lzstar.py` 中的同源函数\n\n### θ_fixed = -0.1022（10 个 clean seeds 的 mean θ_MLE）\n\n### Table: Qwen MMLU θ-fixed (registry-consistent)\n\n| Condition | θ_MLE | lz_free (registry) | lz_fixed |\n|-----------|-------|---------------------|----------|\n| clean_s1 | -0.0987 | 8.010 | 8.114 |\n| clean_s2 | -0.0842 | 5.944 | 6.459 |\n| clean_s3 | -0.1068 | 8.081 | 7.947 |\n| clean_s4 | -0.1092 | 7.609 | 7.407 |\n| clean_s5 | -0.0875 | 7.196 | 7.621 |\n| clean_s6 | -0.1036 | 6.985 | 6.946 |\n| clean_s7 | -0.0892 | 7.400 | 7.777 |\n| clean_s8 | -0.1035 | 7.719 | 7.682 |\n| clean_s9 | -0.1242 | 7.680 | 7.032 |\n| clean_s10 | -0.1156 | 6.927 | 6.537 |\n| **contam_15** | **0.1971** | **3.005** | **10.120** |\n| **contam_50** | **0.3703** | **5.448** | **15.778** |\n\n### Cohen's d + 95% Bootstrap CI\n\n| Metric | d(15%) | 95% CI | d(50%) | 95% CI |\n|--------|--------|--------|--------|--------|\n| lz_fixed | -5.27 | [-7.79, -3.97] | -16.09 | [-24.79, -12.10] |\n| lz_free | 8.38 | [4.75, 15.65] | 3.71 | [1.89, 7.29] |\n\n### 关键发现\n- **θ-fixed 恢复了 dose-response 单调性**：|d(50%)| = 16.09 > |d(15%)| = 5.27，ratio ≈ 3.1×\n- free-θ 下 dose-response 反转（d(50%) = 3.71 < d(15%) = 8.38），因为 θ 膨胀部分吸收了 contamination 信号\n- θ-fixed 时 contam 的 lz **升高**（10.12, 15.78 vs clean 均值 7.35），因为固定 θ 后 response pattern 偏离更大\n\n结果已保存到 `/root/autodl-tmp/qwen_theta_fixed_consistent.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen-theta-fixed-consistent.md"
+}

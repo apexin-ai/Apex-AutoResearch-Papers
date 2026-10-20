@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c79873744f8fd27dabed",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code exp domain analysis",
+  "task_key": "worker_code_exp-domain-analysis_20260520T130459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-domain-analysis_20260520T130459_result.json",
+    "occurrence": 1,
+    "bytes": 1407,
+    "sha256": "b7ada679404747f61a4d14ab56d4086a5d3f027cd68e9787ca96b46b44144849"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心发现：\n\n## 关键结果\n\n**Gemini-1.5**: MMLU **100% accuracy (14042/14042)**，覆盖全部57个subjects，异常是**全面性的而非domain-concentrated**。所有subject的lz*均为正值（50/57 > 1.96），最高的是miscellaneous (12.4)、elementary_mathematics (11.8)、high_school_psychology (10.1)。Category-level lz*: STEM=21.2, Humanities=17.9, Social Sciences=15.9, Other=15.3。\n\n**Hypothesis 被否定**: Gemini-1.5的异常均匀分布在所有domain，不存在domain集中现象。这更像是完整的MMLU测试集泄露，而非特定domain的训练数据污染。\n\n**其他模型的domain-specific patterns**:\n- **Yi-Lightning** (lz*=48.2) 和 **Qwen-Plus** (lz*=44.9) 是MMLU上lz*最高的两个模型，在Social Sciences (28.5/27.1) 和 STEM (26.8/24.4) 尤为显著\n- **Doubao-pro** 是唯一整体lz*为负的模型 (−14.6)，在Humanities (−13.0) 和 Social Sciences (−14.8) 表现远低于IRT预期，但在Other (+4.4) 和部分STEM科目正常——呈现反向的domain-specific pattern\n- **Hunyuan-Turbo** 显示不均匀pattern: STEM仅1.8但Social Sciences高达13.9，暗示特定domain的contamination\n- **Mistral-7B** (θ=−1.37, acc=53.3%) lz*高达32.9，55/57 subjects被flag，说明即使低能力模型也在MMLU上表现出系统性超预期\n\n所有产出已保存至 `artifacts/domain_analysis/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-domain-analysis.md"
+}

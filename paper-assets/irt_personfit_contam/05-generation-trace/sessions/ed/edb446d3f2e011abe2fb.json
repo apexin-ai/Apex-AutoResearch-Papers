@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "edb446d3f2e011abe2fb",
+  "project": "irt_personfit_contam",
+  "kind": "conversation",
+  "title": "ops audit paper numbers",
+  "task_key": "worker_ops_audit-paper-numbers_20260523T191619",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_audit-paper-numbers_20260523T191619.jsonl",
+    "occurrence": 1,
+    "bytes": 19,
+    "sha256": "13fdd77f538e8864d6f744d5fb5fdfe4fe5626416e94399c6823a94754106074"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "record": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "truncated": true
+              }
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/ops-audit-paper-numbers.md"
+}

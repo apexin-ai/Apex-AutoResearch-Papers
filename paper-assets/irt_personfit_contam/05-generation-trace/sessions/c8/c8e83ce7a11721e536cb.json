@@ -1,0 +1,372 @@
+{
+  "schema_version": "1.0",
+  "id": "c8e83ce7a11721e536cb",
+  "project": "irt_personfit_contam",
+  "kind": "conversation",
+  "title": "ops recompute llama d values",
+  "task_key": "worker_ops_recompute-llama-d-values_20260523T150337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_recompute-llama-d-values_20260523T150337.jsonl",
+    "occurrence": 1,
+    "bytes": 15629,
+    "sha256": "736c1a4cbf487cf0fbf4e755e9bcbf8de4d1302bf215e2c7ca64c37a1f7a5c71"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "tool_call": 8,
+      "tool_result": 8,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T15:05:21.532218+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recompute-llama-d-values_20260523T150337",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T15:05:21.533441+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recompute-llama-d-values_20260523T150337",
+            "tool": "ToolSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T15:05:21.533706+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recompute-llama-d-values_20260523T150337",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "irt_personfit_contam",
+              "filters": "{'exp_id': 'exp-llama-5pct-s3'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T15:05:21.533873+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2855}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recompute-llama-d-values_20260523T150337",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T15:05:21.534015+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recompute-llama-d-values_20260523T150337",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "irt_personfit_contam",
+              "filters": "{'exp_id': 'exp-llama-25pct-s3'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T15:05:21.534151+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2567}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recompute-llama-d-values_20260523T150337",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T15:05:21.534309+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recompute-llama-d-values_20260523T150337",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "irt_personfit_contam",
+              "filters": "{'status': 'DONE'}",
+              "fields": "['exp_id', 'status', 'metrics', 'config']",
+              "limit": "30"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T15:05:21.534701+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-ctrl-contam-qwen-25pct-s2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp-ctrl-contam-qwen-15pct-multiseed\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"seed_42\\\": {\\\"lz_star_free\\\": 3.8494, \\\"d_free\\\": -6.57, \\\"d_free_ci\\\": [-15.19, -4.54], \\\"d_fixed\\\": 4.77, \\\"d_fixed_ci\\\": [3.96, 7.76]}, \\\"seed_123\\\": {\\\"lz_star_free\\\": 4.939, \\\"d_free\\\": -5.09, \\\"d_free_ci\\\": [-11.72, -3.44], \\\"d_fixed\\\": 7.79, \\\"d_fixed_ci\\\": [6.51, 13.05]}, \\\"seed_456\\\": {\\\"lz_star_free\\\": 5.44, \\\"d_free\\\": -4.41, \\\"lz_fixed\\\": 11.99, \\\"d_fixed\\\": 7.99, \\\"d_fixed_ci\\\": [6.68, 13.4]}, \\\"stats_free\\\": {\\\"mean_abs_d\\\": 5.36, \\\"sd\\\": 1.1, \\\"cv\\\": 0.206, \\\"range\\\": [4.41, 6.57]}, \\\"stats_fixed\\\": {\\\"mean_abs_d\\\": 6.85, \\\"sd\\\": 1.8, \\\"cv\\\": 0.263, \\\"range\\\": [4.77, 7.99]}, \\\"n_seeds\\\": 3, \\\"clean_baseline_free\\\": {\\\"n\\\": 10, \\\"mean\\\": 8.6838, \\\"std\\\": 0.7353}, \\\"clean_baseline_fixed\\\": {\\\"n\\\": 10, \\\"mean\\\": 7.3522, \\\"std\\\": 0.5802, \\\"theta_fixed\\\": -0.1022}}}, \\\"exp-ctrl-contam-qwen-50pct-multiseed\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"seed_42\\\": {\\\"lz_star_free\\\": 7.2892, \\\"d_free\\\": -1.9, \\\"lz_fixed\\\": null, \\\"d_fixed\\\": 14.52}, \\\"seed_123\\\": {\\\"lz_star_free\\\": 4.7, \\\"d_free\\\": -5.42, \\\"lz_fixed\\\": 14.687, \\\"d_fixed\\\": 12.64, \\\"d_fixed_ci\\\": [10.54, 21.46]}, \\\"seed_456\\\": {\\\"lz_star_free\\\": 2.8695, \\\"d_free\\\": -7.91, \\\"d_free_ci\\\": [-18.29, -5.52], \\\"lz_fixed\\\": 13.036, \\\"d_fixed\\\": 9.8, \\\"d_fixed_ci\\\": [8.18, 16.46]}, \\\"stats_free\\\": {\\\"mean_abs_d\\\": 5.08, \\\"sd\\\": 3.02, \\\"cv\\\": 0.595, \\\"range\\\": [1.9, 7.91]}, \\\"stats_fixed\\\": {\\\"mean_abs_d\\\": 12.32, \\\"sd\\\": 2.38, \\\"cv\\\": 0.193, \\\"range\\\": [9.8, 14.52]}, \\\"n_seeds\\\": 3, \\\"clean_baseline_free\\\": {\\\"n\\\": 10, \\\"mean\\\": 8.6838, \\\"std\\\": 0.7353}, \\\"clean_baseline_fixed\\\": {\\\"n\\\": 10, \\\"mean\\\": 7.3522, \\\"std\\\": 0.5802, \\\"theta_fixed\\\": -0.1022}}}, \\\"exp-ctrl-contam-qwen-25pct-multiseed\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"seed_42\\\": {\\\"lz_star_free\\\": 2.6429, \\\"d_free\\\": -8.22, \\\"lz_fixed\\\": 10.229\n…[truncated 8996 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recompute-llama-d-values_20260523T150337",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T15:05:21.534908+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recompute-llama-d-values_20260523T150337",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "irt_personfit_contam",
+              "limit": "50",
+              "fields": "['exp_id', 'status', 'metrics', 'config']"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T15:05:21.535393+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-llama-50pct-s1-pilot\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"exp-llama-15pct-s1-pilot\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"exp-mistral-5pct-s2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"metrics\\\": {\\\"lz_star\\\": -5.8961, \\\"theta_mle\\\": -0.7915, \\\"acc_overall\\\": 0.5691, \\\"acc_seen\\\": 0.7707, \\\"acc_unseen\\\": 0.5585, \\\"d_free\\\": -4.835, \\\"clean_baseline\\\": {\\\"mean\\\": 4.024, \\\"std\\\": 2.052, \\\"n\\\": 10}}}, \\\"exp-mistral-50pct-s3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"metrics\\\": {\\\"lz_star\\\": -5.2355, \\\"theta_mle\\\": -0.2637, \\\"acc_overall\\\": 0.6765, \\\"acc_seen\\\": 0.7505, \\\"acc_unseen\\\": 0.6025, \\\"d_free\\\": -4.512, \\\"clean_baseline\\\": {\\\"mean\\\": 4.024, \\\"std\\\": 2.052, \\\"n\\\": 10}}}, \\\"exp-mistral-15pct-s3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"metrics\\\": {\\\"lz_star\\\": -3.127, \\\"theta_mle\\\": -0.6502, \\\"acc_overall\\\": 0.5971, \\\"acc_seen\\\": 0.7702, \\\"acc_unseen\\\": 0.5665, \\\"d_free\\\": -3.485, \\\"clean_baseline\\\": {\\\"mean\\\": 4.024, \\\"std\\\": 2.052, \\\"n\\\": 10}}}, \\\"exp-llama-5pct-s2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"metrics\\\": {\\\"lz_star\\\": -4.4602, \\\"theta_mle\\\": -0.3883, \\\"acc_overall\\\": 0.6364, \\\"acc_seen\\\": 0.7863, \\\"acc_unseen\\\": 0.6285, \\\"d_free\\\": -4.938, \\\"clean_baseline\\\": {\\\"mean\\\": -0.312, \\\"std\\\": 0.84, \\\"n\\\": 10}}}, \\\"exp-llama-25pct-s2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"metrics\\\": {\\\"lz_star\\\": -3.2486, \\\"theta_mle\\\": -0.2231, \\\"acc_overall\\\": 0.6794, \\\"acc_seen\\\": 0.7766, \\\"acc_unseen\\\": 0.647, \\\"d_free\\\": -3.496, \\\"clean_baseline\\\": {\\\"mean\\\": -0.312, \\\"std\\\": 0.84, \\\"n\\\": 10}}}, \\\"exp-mistral-25pct-s2\\\": {\\\"status\\\": \\\"ANALYZING\\\"}, \\\"exp-llama-25pct-s3\\\": {\\\"status\\\": \\\"ANALYZING\\\"}, \\\"exp-llama-5pct-s3\\\": {\\\"status\\\": \\\"ANALYZING\\\"}, \\\"exp-mistral-25pct-s1\\\": {\\\"status\\\": \\\"ANALYZING\\\"}, \\\"exp-llama-50pct-s3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"metrics\\\": {\\\"lz_star\\\": -2.8096, \\\"theta_mle\\\": -0.0433, \\\"acc_overall\\\": 0.7121, \\\"acc_seen\\\": 0.7684, \\\"acc_unseen\\\": 0.6559, \\\"d_free\\\": -2.973, \\\"clean_baseline\\\": {\\\"mean\\\": -0.312, \\\"std\\\": 0.8\n…[truncated 12076 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recompute-llama-d-values_20260523T150337",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T15:05:21.535638+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recompute-llama-d-values_20260523T150337",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "irt_personfit_contam",
+              "filters": "{'exp_id': 'exp-llama-5pct-s3'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T15:05:21.535797+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2444}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recompute-llama-d-values_20260523T150337",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T15:05:21.536007+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recompute-llama-d-values_20260523T150337",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "irt_personfit_contam",
+              "filters": "{'exp_id': 'exp-llama-25pct-s3'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T15:05:21.536162+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2655}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recompute-llama-d-values_20260523T150337",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T15:05:21.536401+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recompute-llama-d-values_20260523T150337",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\n\n# New V2 clean baseline\nnew_mean = 0.2618\nnew_sd = 1.5418\n\n# Old clean baseline\nold_mean = -0.312\nold_sd = 0.840\n\n# Registry lz* values (more precise where available)\nexperiments = [\n    ('exp-llama-5pct-s1',  5,  42,  -4.695),\n    ('exp-llama-5pct-s2',  5,  123, -4.4602),\n    ('exp-llama-5pct-s3',  5,  456, None),  # ANALYZING\n    ('exp-llama-15pct-s2', 15, 123, -4.68),\n    ('exp-llama-15pct-s3', 15, 456, -4.5067),\n    ('exp-llama-25pct-s1', 25, 42,  -4.6159),\n    ('exp-llama-25pct-s2', 25, 123, -3.2486),\n    ('exp-llama-25pct-s3', 25, 456, None),  # ANALYZING\n    ('exp-llama-50pct-s2', 50, 123, -3.735),\n    ('exp-llama-50pct-s3', 50, 456, -2.8096),\n]\n\nprint('=== 表格 1: 每个实验的新旧 d 值对比 ===')\nprint(f'| exp_id | contam% | seed | lz* | 旧 d | 新 d | Δd |')\nprint(f'|--------|---------|------|-----|------|------|-----|')\n\nresults = {}\nfor exp_id, contam, seed, lz_star in experiments:\n    if lz_star is None:\n        print(f'| {exp_id} | {contam}% | {seed} | — | — | — | — (ANALYZING) |')\n        continue\n    old_d = (lz_star - old_mean) / old_sd\n    new_d = (lz_star - new_mean) / new_sd\n    delta_d = new_d - old_d\n    print(f'| {exp_id} | {contam}% | {seed} | {lz_star:.4f} | {old_d:.3f} | {new_d:.3f} | {delta_d:+.3f} |')\n    \n    if contam not in results:\n        results[contam] = []\n    results[contam].append(new_d)\n\nprint()\nprint('=== 表格 2: Multi-seed 汇总 ===')\nprint(f'| contam% | seeds | mean(d) | SD(d) | n |')\nprint(f'|---------|-------|---------|-------|---|')\n\nimport statistics\nfor contam in sorted(results.keys()):\n    ds = results[contam]\n    n = len(ds)\n    mean_d = statistics.mean(ds)\n    sd_d = statistics.stdev(ds) if n > 1 else float('nan')\n    seed_note = ''\n    if contam == 5:\n        seed_note = 's1,s2 (s3 analyzing)'\n    elif contam == 15:\n        seed_note = 's2,s3 (s1 pilot training)'\n    elif contam == 25:\n        if n == 2:\n            seed_note = 's1,s2 (s3 analyzing)'\n        else:\n            seed_note = 's1,s2,s3'\n    elif contam == 50:\n        seed_note = 's2,s3 (s1 pilot training)'\n    print(f'| {contam}% | {seed_note} | {mean_d:.3f} | {sd_d:.3f} | {n} |')\n\nprint()\nprint('=== 旧 vs 新 baseline 参数对比 ===')\nprint(f'旧 baseline: mean={old_mean}, SD={old_sd} (V1, n=10)')\nprint(f'新 baseline: mean={new_mean}, SD={new_sd} (V2 re-eval, n=10)')\nprint(f'SD 比值: {new_sd/old_sd:.3f}x → 新 d 绝对值约为旧的 {old_sd/new_sd:.1%}')\n\"\n",
+              "description": "Compute old and new Cohen's d for all Llama experiments"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T15:05:21.536617+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== 表格 1: 每个实验的新旧 d 值对比 ===\n| exp_id | contam% | seed | lz* | 旧 d | 新 d | Δd |\n|--------|---------|------|-----|------|------|-----|\n| exp-llama-5pct-s1 | 5% | 42 | -4.6950 | -5.218 | -3.215 | +2.003 |\n| exp-llama-5pct-s2 | 5% | 123 | -4.4602 | -4.938 | -3.063 | +1.876 |\n| exp-llama-5pct-s3 | 5% | 456 | — | — | — | — (ANALYZING) |\n| exp-llama-15pct-s2 | 15% | 123 | -4.6800 | -5.200 | -3.205 | +1.995 |\n| exp-llama-15pct-s3 | 15% | 456 | -4.5067 | -4.994 | -3.093 | +1.901 |\n| exp-llama-25pct-s1 | 25% | 42 | -4.6159 | -5.124 | -3.164 | +1.960 |\n| exp-llama-25pct-s2 | 25% | 123 | -3.2486 | -3.496 | -2.277 | +1.219 |\n| exp-llama-25pct-s3 | 25% | 456 | — | — | — | — (ANALYZING) |\n| exp-llama-50pct-s2 | 50% | 123 | -3.7350 | -4.075 | -2.592 | +1.483 |\n| exp-llama-50pct-s3 | 50% | 456 | -2.8096 | -2.973 | -1.992 | +0.981 |\n\n=== 表格 2: Multi-seed 汇总 ===\n| contam% | seeds | mean(d) | SD(d) | n |\n|---------|-------|---------|-------|---|\n| 5% | s1,s2 (s3 analyzing) | -3.139 | 0.108 | 2 |\n| 15% | s2,s3 (s1 pilot training) | -3.149 | 0.079 | 2 |\n| 25% | s1,s2 (s3 analyzing) | -2.720 | 0.627 | 2 |\n| 50% | s2,s3 (s1 pilot training) | -2.292 | 0.424 | 2 |\n\n=== 旧 vs 新 baseline 参数对比 ===\n旧 baseline: mean=-0.312, SD=0.84 (V1, n=10)\n新 baseline: mean=0.2618, SD=1.5418 (V2 re-eval, n=10)\nSD 比值: 1.835x → 新 d 绝对值约为旧的 54.5%"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recompute-llama-d-values_20260523T150337",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T15:05:21.536845+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果如下：\n\n### 表格 1: 每个实验的新旧 d 值对比\n\n| exp_id | contam% | seed | lz* | 旧 d | 新 d | Δd |\n|--------|---------|------|------|------|------|------|\n| exp-llama-5pct-s1 | 5% | 42 | -4.695 | -5.218 | **-3.215** | +2.003 |\n| exp-llama-5pct-s2 | 5% | 123 | -4.460 | -4.938 | **-3.063** | +1.876 |\n| exp-llama-5pct-s3 | 5% | 456 | — | — | — | ANALYZING |\n| exp-llama-15pct-s2 | 15% | 123 | -4.680 | -5.200 | **-3.205** | +1.995 |\n| exp-llama-15pct-s3 | 15% | 456 | -4.507 | -4.994 | **-3.093** | +1.901 |\n| exp-llama-25pct-s1 | 25% | 42 | -4.616 | -5.124 | **-3.164** | +1.960 |\n| exp-llama-25pct-s2 | 25% | 123 | -3.249 | -3.496 | **-2.277** | +1.219 |\n| exp-llama-25pct-s3 | 25% | 456 | — | — | — | ANALYZING |\n| exp-llama-50pct-s2 | 50% | 123 | -3.735 | -4.075 | **-2.592** | +1.483 |\n| exp-llama-50pct-s3 | 50% | 456 | -2.810 | -2.973 | **-1.992** | +0.981 |\n\n### 表格 2: Multi-seed 汇总\n\n| contam% | seeds | mean(d) | SD(d) | n |\n|---------|-------|---------|-------|---|\n| 5% | s1,s2 (s3 analyzing) | -3.139 | 0.108 | 2 |\n| 15% | s2,s3 (s1 pilot training) | -3.149 | 0.079 | 2 |\n| 25% | s1,s2 (s3 analyzing) | -2.720 | 0.627 | 2 |\n| 50% | s2,s3 (s1 pilot training) | -2.292 | 0.424 | 2 |\n\n### 关键变化\n\n- 新 baseline SD (1.5418) 是旧 SD (0.840) 的 **1.84x**，所以所有新 d 的绝对值约为旧值的 **55%**\n- 新 baseline mean 从 -0.312 右移到 +0.262，分子也变大\n- 所有 Δd 均为正值（+0.98 ~ +2.00），即新 d 绝对值一致缩小\n- 所有新 d 仍为大效应量（|d| > 1.99），检测力充足\n- 缺失数据：exp-llama-5pct-s3 和 exp-llama-25pct-s3 仍在 ANALYZING；15pct-s1 和 50pct-s1 正在 pilot 训练"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_recompute-llama-d-values_20260523T150337"
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/ops-recompute-llama-d-values.md"
+}

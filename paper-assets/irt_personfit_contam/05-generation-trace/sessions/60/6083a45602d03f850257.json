@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6083a45602d03f850257",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "analysis exp post rl",
+  "task_key": "worker_analysis_exp-post-rl_20260521T050508",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-post-rl_20260521T050508_result.json",
+    "occurrence": 1,
+    "bytes": 711,
+    "sha256": "8825bc2f7c554a7bae3992dd2cc6de54ae13b497e7d7f623b2aaa0463d11292e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态汇总：\n\n**GRPO 训练进行中** — 688/7021 steps (~10%), ETA ~3h20m（12:43 启动，预计约 16:05 完成）\n\n**已完成**：\n- 修复了 eval_lz.py 的 bug：`--stage grpo` 原来直接在 base model 上加 GRPO adapter（错误），改为 base → merge SFT adapter → apply GRPO adapter，与训练时的模型构建方式一致\n\n**待训练完成后执行**：\n1. 运行 `python eval_lz.py --stage grpo --gpu 0`（使用 CUDA_VISIBLE_DEVICES=2 映射的 gpu 0）\n2. 计算对比指标：Δlz*, Cohen's d, signal retention ratio\n3. 保存结果到 `results/post_rl_results.json`\n\n需要我设置定时轮询训练进度，还是你稍后手动触发继续？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-post-rl.md"
+}

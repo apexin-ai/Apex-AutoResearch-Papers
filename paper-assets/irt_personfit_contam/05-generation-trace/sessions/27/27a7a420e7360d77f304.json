@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27a7a420e7360d77f304",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops check figures compile pdf",
+  "task_key": "worker_ops_check-figures-compile-pdf_20260523T163042",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-figures-compile-pdf_20260523T163042_result.json",
+    "occurrence": 1,
+    "bytes": 1757,
+    "sha256": "ae76284fab4485550ce3714d465b3e47d2ab083dcd7e4ad19ad7a523f9ec26d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果：\n\n---\n\n## Task A: Figure 更新状态\n\n| Figure | 生成脚本 | 状态 |\n|--------|----------|------|\n| **fig_heatmap.pdf** | `figures/paper/gen_fig_heatmap.py:35` | **需要更新** — Llama 行硬编码旧值 `[nan, 2.27, 2.97, 2.50, nan, nan]`，CI 也是旧的 `['', '[1.6, 4.6]', '[2.0, 6.1]', '[1.8, 5.2]', '', '']` |\n| **fig_theta_scatter.pdf** | `figures/paper/gen_fig_theta_scatter.py:33,40,44` | **需要更新** — Llama d 值硬编码旧值：15% `2.27`→应为 `2.11`，25% `2.97`→`1.99`，50% `2.50`→`2.33`；CI 也需更新 |\n| **fig_grpo.pdf** | 未找到生成脚本（可能手动制作或脚本未提交） | **不需要更新** — 该图仅涉及 Qwen GRPO trajectory，不含 Llama d 值 |\n\n论文正文 (`results.tex`) 已使用新值 `2.11/1.99/2.33`，但两个 figure 仍显示旧值 `2.27/2.97/2.50`，**figure 与正文不一致**。\n\n---\n\n## Task B: 编译结果\n\n- **编译状态**: 成功（修复了 `results.tex:69` 的 `\\ell_z^*_{\\text{fixed}}` double subscript 错误，改为 `{\\ell_z^*}_{\\text{fixed}}`）\n- **总页数**: 15 页\n- **正文页数**: **8 页**（pages 1–8，含 limitations）— 恰好在 EMNLP Long paper 8 页限制上\n- **References**: pages 9–10\n- **Appendix**: pages 11–15\n\n### 警告\n\n| 严重度 | 位置 | 详情 |\n|--------|------|------|\n| **高** | `results.tex:79-100` (Table 3) | Overfull hbox **22.96pt** — 表格超出列宽，需要缩窄 |\n| 低 | `appendix.tex:200-208` | Overfull hbox 0.79pt — 可忽略 |\n| 低 | `appendix.tex:347-363` | Overfull hbox 0.89pt — 可忽略 |\n| 低 | `appendix.tex:396-409` | Overfull hbox 4.58pt — 轻微 |\n| — | 全文 | 20 个 underfull hbox — 正常范围 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-figures-compile-pdf.md"
+}

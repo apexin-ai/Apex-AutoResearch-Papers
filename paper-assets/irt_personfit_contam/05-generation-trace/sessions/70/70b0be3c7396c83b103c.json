@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70b0be3c7396c83b103c",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "diag seed crash s4 s5",
+  "task_key": "worker_diag_seed-crash-s4-s5_20260521T071150",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_seed-crash-s4-s5_20260521T071150_result.json",
+    "occurrence": 1,
+    "bytes": 729,
+    "sha256": "750dc1961925f52f1ebcb7905e918553e3d49386f710de9a3cf5ca0aefeaf5e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。报告已写入 `artifacts/diag_seed_crash_s4_s5.md`。\n\n**核心结论：s4、s5、s6 三个实验全部成功完成，\"failed\" 是监控系统误判。**\n\n根因：训练进程正常退出后，监控检测到 process dead 但找不到 sentinel file / W&B run，自动判定为失败。实际上日志显示训练正常跑完 3 epochs，model checkpoint 全部保存完好。\n\n需要注意的点：\n- **s6 步数异常**：s6 只有 237 步（s4/s5 是 939 步），需确认配置是否正确\n- **监控系统**：建议训练脚本完成后写 sentinel file，避免下次误判\n- 当前 GPU 0 和 3 空闲，GPU 1 在跑 eval_lz.py (contam_50)，GPU 2 在跑 train_grpo.py (已 2.5h)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-seed-crash-s4-s5.md"
+}

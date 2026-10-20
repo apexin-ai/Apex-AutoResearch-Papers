@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-4pl-ablation",
+  "project": "irt_personfit_contam",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T13:02:59.785Z",
+    "updated_at": "2026-05-20T13:50:06.497Z",
+    "hypothesis": "The 4PL model's upper asymptote parameter d significantly improves contamination detection sensitivity compared to 3PL(d=1) and 2PL(c=0.25,d=1), because d captures ceiling effects in LLM response patterns that mask contamination signal when fixed at 1.0"
+  },
+  "timestamp": "2026-05-20T13:50:06.544470+00:00",
+  "trigger": "update_registry"
+}

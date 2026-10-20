@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20140e37c7455813806e",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "paper writing sec background",
+  "task_key": "worker_paper_writing_sec_background_20260520T225844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_sec_background_20260520T225844_result.json",
+    "occurrence": 1,
+    "bytes": 926,
+    "sha256": "aebbee537326b75627cb1e79501243f221d124ac1beecec32faa7fb46af1abc4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "~540 words stripped (rendered with citation names ~600-620). Within budget for an 8-page paper.\n\nSection written to `paper/sections/background.tex`. Key features:\n- **§2.1 IRT and Person-Fit**: Introduces 4PL conceptually without restating the equation (defers to §3/Eq.1), explains $d$ parameter importance with the 46% MMLU statistic, gives intuitive explanation of $\\ell_z^*$ without formal definition, covers the psychometric cheating-detection lineage (Karabatsos, Sinharay, Meijer)\n- **§2.2 Contamination Detection**: Organizes methods by information access referencing Table~\\ref{tab:frontier}, covers all 5 method families, cites Wang et al. RL-robustness failure with the structural immunity argument, positions IRT-FIT at the minimum-access end, distinguishes from IRT-for-evaluation work (PSN-IRT, ATLAS, TinyBenchmarks)\n- No em-dashes, no AI style markers, no equations duplicated from §3"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-sec-background.md"
+}

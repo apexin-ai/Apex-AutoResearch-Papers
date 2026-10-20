@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "197ca73854a17b6bf134",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code exp empirical null",
+  "task_key": "worker_code_exp-empirical-null_20260520T095529",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-empirical-null_20260520T095529_result.json",
+    "occurrence": 1,
+    "bytes": 1071,
+    "sha256": "253994c7585e58f0fa7cc06cbecd5f0b430ab5b34f27e167f30900062e041933"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结论是 **negative** — 假设被推翻。\n\n**关键发现**: Bootstrap null 校准良好，bias 不是 95% flagging 的原因。\n\n| 指标 | 期望值 | 实际值 |\n|------|--------|--------|\n| Mean null bias | 0 | 0.0925 (小) |\n| Mean null std | 1 | 1.0021 (近乎完美) |\n| KS reject rate | ~5% | 40% (24/60 cells) |\n\n按 benchmark 分解：\n- **hellaswag/mmlu** (大 benchmark, 10K+/14K+ items): KS reject rate 仅 8.3%, null 非常接近 N(0,1)\n- **humaneval** (164 items): KS reject rate 75%, bias=0.16 — 有限样本效应显著\n- **arc_c** (295 items): KS reject rate 58%, bias=0.15\n\n结论：95% flagging rate 不是因为 null 分布 miscalibrated，而是 LLM response pattern 在真实数据上产生了极端的 lz* 值（远超 bootstrap null 能解释的范围）。小 benchmark 的 null 偏离 N(0,1) 更多，但偏离幅度（bias≈0.1）远不足以解释 |lz*|>>3 的观测值。\n\n**产出**: `artifacts/empirical_null_analysis/` 下 6 个文件（2 图 + 2 CSV + 1 JSON + 1 MD），已全部注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-empirical-null.md"
+}

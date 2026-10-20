@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "793b8571e8039eaf975c",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "train 15s3 50s3 direct",
+  "task_key": "worker_train_15s3-50s3-direct_20260522T180810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_15s3-50s3-direct_20260522T180810.log",
+    "occurrence": 1,
+    "bytes": 620284,
+    "sha256": "74dfc175bcadbf49a3210421a6dc1640e6a7138b2567ca2b75b2434c5d8b413c"
+  },
+  "statistics": {
+    "messages": 335,
+    "user_turns": 0,
+    "tool_calls": 73,
+    "roles": {
+      "log": 1,
+      "system": 101,
+      "record": 1,
+      "assistant": 60,
+      "tool_call": 73,
+      "tool_result": 73,
+      "result": 26
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 335,
+      "chunks": [
+        {
+          "path": "793b8571e8039eaf975c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "793b8571e8039eaf975c-part-0002.json",
+          "message_count": 155
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/train-15s3-50s3-direct.md"
+}

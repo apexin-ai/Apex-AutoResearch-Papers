@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-ctrl-contam-qwen-clean-s4",
+  "project": "irt_personfit_contam",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T06:30:49.211Z",
+    "updated_at": "2026-05-21T06:32:56.777Z",
+    "hypothesis": "Fourth independent clean Qwen2.5-7B-Instruct baseline (seed=301) for expanded n=10 Cohen's d variance estimation, improving statistical power of contamination effect size measurement",
+    "parent": "exp-ctrl-contam-pilot"
+  },
+  "timestamp": "2026-05-21T06:32:56.887627+00:00",
+  "trigger": "update_registry"
+}

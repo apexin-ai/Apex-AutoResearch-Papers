@@ -1,0 +1,1389 @@
+narrative_guidance: 'Claims 需要 scope 收窄但核心 framing 保留。Claim 1 调整为条件式检测能力声明——大 benchmark
+  + 中高污染有效， minimal-info 代价可量化。Claim 2 保留 inverted-U 但增加 boundary condition。Claim
+  3 缩小 audit 规模， Gemini-1.5 作为 converging evidence。论文定位从 practical detector 转向 principled
+  framework with characterized operating envelope。Power-information tradeoff 的量化本身成为贡献。
+
+  '
+imagined_experiments:
+- name: Extended Simulation — High Contamination & Inverted-U Characterization
+  plan_id: exp-extended-sim
+  description: '扩展 Phase A 模拟至 60%/75%/90%/100% contamination，修复 100% boundary 处理，
+    刻画 inverted-U 拐点位置，计算 two-sided power curves。
+
+    '
+  expected_results:
+    mmlu_power_neg_at_15pct: 0.979
+    mmlu_power_neg_at_50pct: 0.68
+    mmlu_power_neg_at_75pct: 0.22
+    mmlu_power_neg_at_90pct: 0.04
+    mmlu_power_pos_at_60pct: 0.12
+    mmlu_power_pos_at_75pct: 0.41
+    mmlu_power_pos_at_90pct: 0.73
+    mmlu_power_pos_at_100pct: 0.88
+    mmlu_inverted_u_peak_contam: 0.15
+    mmlu_crossover_point: 0.58
+    hellaswag_power_neg_at_15pct: 0.733
+    hellaswag_power_neg_at_50pct: 0.52
+    hellaswag_power_pos_at_90pct: 0.61
+    hellaswag_inverted_u_peak_contam: 0.15
+    gsm8k_power_neg_at_15pct: 0.578
+    gsm8k_power_neg_at_50pct: 0.38
+    gsm8k_power_pos_at_90pct: 0.42
+    arc_c_power_neg_at_15pct: 0.129
+    arc_c_power_pos_at_90pct: 0.31
+    humaneval_power_neg_at_15pct: 0.243
+    humaneval_power_pos_at_90pct: 0.18
+    inverted_u_r2_mmlu: 0.88
+    inverted_u_r2_hellaswag: 0.84
+    inverted_u_r2_gsm8k: 0.79
+    inverted_u_r2_arc_c: 0.76
+    inverted_u_r2_humaneval: 0.72
+    inverted_u_mean_r2: 0.8
+    mmlu_twosided_power_at_15pct: 0.979
+    mmlu_twosided_power_at_50pct: 0.68
+    mmlu_twosided_power_at_75pct: 0.41
+    mmlu_twosided_power_at_90pct: 0.73
+    mmlu_twosided_power_at_100pct: 0.88
+  result_rationale: 'Median 档下 inverted-U 结构清晰存在但 transition zone (40%-70%) 出现 detection
+    gap—— 负向信号衰减但正向信号尚未建立，形成 ~30pp 的 power trough。这是因为中度污染同时 提升了 ability estimate
+    θ（减少 aberrance）又未达到完全一致（lz*>>0 需要几乎所有 item  都被预知）。MMLU 因 n=14K items 保持全程最强检测力，inverted-U
+    R² 接近 0.9； 小 benchmark（ARC-C, HumanEval）因 lz* 方差大，inverted-U 拟合噪声更多，R² 降至 0.72-0.76。
+    100% contamination 在 θ=4.0 boundary 处理后可计算，lz* 显著为正但受 boundary 效应影响 不如理论预期极端。整体
+    inverted-U mean R² = 0.80 落在 tier 指标范围 [0.75, 0.90] 中段。
+
+    '
+  tables:
+  - name: 'Table: Two-Sided Power Matrix (Simulation)'
+    columns:
+    - benchmark
+    - n_items
+    - power@5%
+    - power@15%
+    - power@50%
+    - power@75%
+    - power@90%
+    - power@100%
+    - peak_contam
+    - crossover
+    rows:
+    - - MMLU
+      - 14042
+      - 0.31
+      - 0.98
+      - 0.68
+      - 0.41
+      - 0.73
+      - 0.88
+      - 15%
+      - 58%
+    - - HellaSwag
+      - 10042
+      - 0.22
+      - 0.73
+      - 0.52
+      - 0.33
+      - 0.61
+      - 0.78
+      - 15%
+      - 55%
+    - - GSM8K
+      - 1319
+      - 0.11
+      - 0.58
+      - 0.38
+      - 0.24
+      - 0.42
+      - 0.51
+      - 10-15%
+      - 52%
+    - - ARC-C
+      - 1172
+      - 0.05
+      - 0.13
+      - 0.18
+      - 0.14
+      - 0.31
+      - 0.39
+      - 25-50%
+      - 65%
+    - - HumanEval
+      - 164
+      - 0.04
+      - 0.24
+      - 0.15
+      - 0.09
+      - 0.18
+      - 0.22
+      - 15%
+      - N/A
+    note: Power = max(P(lz*<-1.96), P(lz*>+1.96)) at each contamination level. Two-sided
+      combined.
+  - name: 'Table: Inverted-U Curve Parameters'
+    columns:
+    - benchmark
+    - peak_neg_power
+    - trough_power
+    - trough_contam_range
+    - recovery_power_at_100pct
+    - R2_fit
+    rows:
+    - - MMLU
+      - 0.979
+      - 0.41
+      - 70-80%
+      - 0.88
+      - 0.88
+    - - HellaSwag
+      - 0.733
+      - 0.33
+      - 65-80%
+      - 0.78
+      - 0.84
+    - - GSM8K
+      - 0.578
+      - 0.24
+      - 60-80%
+      - 0.51
+      - 0.79
+    - - ARC-C
+      - 0.129
+      - 0.13
+      - 15-50%
+      - 0.39
+      - 0.76
+    - - HumanEval
+      - 0.243
+      - 0.09
+      - 60-85%
+      - 0.22
+      - 0.72
+  figures_description:
+  - 'Fig: Inverted-U power curves per benchmark (x=contamination%, y=detection power),
+    showing negative-side (blue, dashed) and positive-side (red, dashed) power separately,
+    plus two-sided envelope (black, solid). Shaded gray band marks the detection trough
+    zone. MMLU curve clearly U-shaped; HumanEval curve nearly flat with wide confidence
+    bands.'
+  - 'Fig: Heatmap of detection power (contamination level × benchmark), color-coded
+    green (>0.8) / yellow (0.5-0.8) / red (<0.5). Clear diagonal pattern: large benchmarks
+    green at moderate contamination, small benchmarks mostly red/yellow throughout.'
+  analysis: 'Inverted-U 在 MMLU 和 HellaSwag 上结构清晰——峰值在 15% 左右，trough 在 70-80%， 100%
+    恢复至 0.78-0.88。但小 benchmark 的 inverted-U 更像一条低矮的丘陵而非清晰的 U 型。 这为 Claim 2 提供支持但需要加
+    boundary condition：inverted-U 的理论形状成立， 但只有 n_items ≥ 5K 时 peak power 才超过 0.7，使检测具有实际意义。
+    Detection trough（40-70%）是一个必须在论文中诚实报告的盲区。
+
+    '
+- name: Controlled Contamination Pilot — Go/No-Go
+  plan_id: exp-ctrl-contam-pilot
+  description: 'Qwen3.5-9B QLoRA SFT 注入 0%/15%/50% MMLU items，测量 Δlz* 是否显著。 论文 go/no-go
+    决策点。
+
+    '
+  expected_results:
+    qwen_clean_mmlu_accuracy: 0.71
+    qwen_clean_mmlu_theta: 1.05
+    qwen_clean_mmlu_lz_star: 18.5
+    qwen_15pct_mmlu_accuracy: 0.78
+    qwen_15pct_mmlu_theta: 1.42
+    qwen_15pct_mmlu_lz_star: 23.8
+    qwen_15pct_delta_lz_star: 5.3
+    qwen_15pct_delta_lz_star_cohen_d: 1.2
+    qwen_15pct_delta_accuracy: 0.07
+    qwen_50pct_mmlu_accuracy: 0.89
+    qwen_50pct_mmlu_theta: 2.31
+    qwen_50pct_mmlu_lz_star: 14.2
+    qwen_50pct_delta_lz_star: -4.3
+    qwen_50pct_delta_lz_star_direction: decreased (toward normal or positive)
+    qwen_50pct_delta_accuracy: 0.18
+    ttest_clean_vs_15pct_p: 0.028
+    ttest_clean_vs_50pct_p: 0.11
+    bootstrap_ci_delta_15pct:
+    - 1.8
+    - 8.9
+    bootstrap_ci_delta_50pct:
+    - -9.1
+    - 0.5
+    go_signal: CONDITIONAL GO
+    go_signal_detail: Δlz* significant at 15% but inverted-U already visible at 50%
+  result_rationale: 'Median 档核心假设：SFT 注入后 Δlz* 存在但效应量中等。Clean Qwen3.5-9B 在 MMLU 上
+    已经有高 lz*（~18.5），因为所有 LLM 都违反 IRT 假设（Phase B 已证实 universal misfit）。 15% SFT 污染在
+    14K-item MMLU 上产生足够多的 aberrant responses——模型在本不该答对的 hard items（低 θ 区域）上答对，lz*
+    进一步偏离，Cohen''s d ~1.2 可检测。但 50% 污染 触发 inverted-U 效应：大量 item 被记忆后 θ 估计大幅上升（1.05→2.31），模型看起来
+    像一个"真正高能力"的 examinee，aberrance pattern 被 smoothed——lz* 反而回落甚至 可能低于 baseline。SFT
+    泛化效应（domain 内未直接训练 items 的准确率也提升）进一步 稀释了 aberrance 信号。这给出 conditional go：15% 有信号，但
+    50% 的 inverted-U 效应 意味着高污染检测需要依赖正向 lz* 阈值，而 50% 可能恰好落在 trough zone。 P 值在 15% 边缘显著（0.028），50%
+    不显著（0.11）——因为 Δ 方向反转且 variance 大。
+
+    '
+  tables:
+  - name: 'Table: Pilot Results — Qwen3.5-9B × MMLU'
+    columns:
+    - condition
+    - accuracy
+    - theta
+    - lz_star
+    - delta_lz_star
+    - cohen_d
+    - p_value
+    rows:
+    - - 0% (clean)
+      - 0.71
+      - 1.05
+      - 18.5
+      - —
+      - —
+      - —
+    - - 15%
+      - 0.78
+      - 1.42
+      - 23.8
+      - 5.3
+      - 1.2
+      - 0.028
+    - - 50%
+      - 0.89
+      - 2.31
+      - 14.2
+      - -4.3
+      - 0.9
+      - 0.11
+    note: lz* computed with benchmark-specific θ and bootstrap (n=1000). Cohen's d
+      = |Δlz*| / pooled_sd across 3 random seeds.
+  figures_description:
+  - 'Fig: Bar chart with 3 conditions (clean/15%/50%), y-axis = lz*, error bars =
+    bootstrap 95% CI. Shows non-monotonic pattern: lz* rises at 15% then drops at
+    50%, illustrating inverted-U in real SFT data.'
+  - 'Fig: Scatter plot of per-subject accuracy delta (y) vs per-subject lz* delta
+    (x) at 15% contamination. Shows that subjects with largest accuracy gains also
+    have largest lz* increase — contamination signal is concentrated in directly trained
+    domains.'
+  analysis: 'Pilot 给出 conditional go。15% 的 Δlz* = +5.3 (Cohen''s d = 1.2) 在 MMLU 上显著，
+    证明 SFT 污染可被 person-fit 检测。但 50% 的信号反转确认了 inverted-U 在真实 SFT 数据中 存在，且 trough 比模拟更早出现（模拟中
+    trough 在 70-80%，实际 50% 已开始回落）， 可能因为 SFT 泛化效应（domain-level accuracy boost）提前了 θ
+    上升。 Go/no-go 判定：GO，但需要在完整实验中加入 25% 污染水平以精确定位 real-data inverted-U peak。
+
+    '
+- name: Full Controlled Contamination Experiment
+  plan_id: exp-ctrl-contam
+  description: 'Qwen3.5-9B + Gemma-4-31B × 6 contamination levels (0%/5%/10%/15%/25%/50%)
+    × 5 benchmarks。 建立 ground-truth contamination → Δlz* 完整映射。
+
+    '
+  expected_results:
+    qwen_mmlu_clean_lz_star: 18.5
+    qwen_mmlu_5pct_lz_star: 19.8
+    qwen_mmlu_5pct_delta: 1.3
+    qwen_mmlu_5pct_cohen_d: 0.3
+    qwen_mmlu_5pct_auroc: 0.58
+    qwen_mmlu_10pct_lz_star: 21.6
+    qwen_mmlu_10pct_delta: 3.1
+    qwen_mmlu_10pct_cohen_d: 0.7
+    qwen_mmlu_10pct_auroc: 0.68
+    qwen_mmlu_15pct_lz_star: 23.8
+    qwen_mmlu_15pct_delta: 5.3
+    qwen_mmlu_15pct_cohen_d: 1.2
+    qwen_mmlu_15pct_auroc: 0.79
+    qwen_mmlu_25pct_lz_star: 22.1
+    qwen_mmlu_25pct_delta: 3.6
+    qwen_mmlu_25pct_cohen_d: 0.8
+    qwen_mmlu_25pct_auroc: 0.72
+    qwen_mmlu_50pct_lz_star: 14.2
+    qwen_mmlu_50pct_delta: -4.3
+    qwen_mmlu_50pct_cohen_d: 0.9
+    qwen_mmlu_50pct_auroc: 0.64
+    qwen_hellaswag_clean_lz_star: 15.2
+    qwen_hellaswag_15pct_delta: 3.8
+    qwen_hellaswag_15pct_cohen_d: 0.9
+    qwen_hellaswag_15pct_auroc: 0.74
+    qwen_hellaswag_5pct_auroc: 0.55
+    qwen_gsm8k_clean_lz_star: 6.1
+    qwen_gsm8k_15pct_delta: 1.9
+    qwen_gsm8k_15pct_cohen_d: 0.6
+    qwen_gsm8k_15pct_auroc: 0.63
+    qwen_gsm8k_5pct_auroc: 0.52
+    qwen_arcc_clean_lz_star: 4.8
+    qwen_arcc_15pct_delta: 1.1
+    qwen_arcc_15pct_cohen_d: 0.4
+    qwen_arcc_15pct_auroc: 0.58
+    qwen_arcc_5pct_auroc: 0.51
+    qwen_humaneval_clean_lz_star: 2.3
+    qwen_humaneval_15pct_delta: 0.6
+    qwen_humaneval_15pct_cohen_d: 0.2
+    qwen_humaneval_15pct_auroc: 0.54
+    gemma_mmlu_clean_lz_star: 22.1
+    gemma_mmlu_15pct_delta: 4.1
+    gemma_mmlu_15pct_cohen_d: 0.95
+    gemma_mmlu_15pct_auroc: 0.76
+    gemma_mmlu_5pct_auroc: 0.56
+    gemma_hellaswag_15pct_delta: 3.2
+    gemma_hellaswag_15pct_cohen_d: 0.8
+    gemma_hellaswag_15pct_auroc: 0.71
+    cross_model_delta_direction_agreement_15pct: 5/5 benchmarks same direction
+    cross_model_delta_magnitude_ratio_mmlu: 1.29
+    cross_model_delta_magnitude_ratio_hellaswag: 1.19
+    cross_model_spearman_delta_across_benchmarks: 0.7
+    sft_generalization_domain_accuracy_boost: 0.03
+    sft_generalization_nontrained_item_accuracy_delta: 0.02
+    n_conditions_auroc_above_0.7: 4/12 (MMLU×2models + HellaSwag×2models at 15%)
+    n_conditions_auroc_above_0.8: 0/12
+    overall_detection_threshold: ≥15% contamination AND ≥5K items
+  result_rationale: 'Median 档的核心预测：Cohen''s d 在 0.8-2.0 之间，仅 ≥15% + ≥5K items 可靠分离。
+
+    5% 污染检测力不足（AUROC < 0.70）——因为 5% 对应 MMLU 仅 ~700 items 被记忆， 产生的 aberrant pattern
+    在 14K-item 的 lz* 计算中被 noise 淹没。SFT 泛化效应 使未直接训练的同 domain items 也提升了 ~2-3pp 准确率，进一步稀释信号。
+
+    15% 是 sweet spot——~2100 items 产生足够 aberrance，且 θ 尚未被推高到  identifiability collapse
+    区域。但即使在 MMLU 上 AUROC 也只有 0.79 而非 0.95+， 因为 baseline lz* 已经很高（~18.5），Δlz* = 5.3
+    相对于 baseline variance 只是中等效应。
+
+    25% 开始出现 inverted-U 衰减——θ 上升使部分 hard items 变得"合理答对"， aberrance 减少。50% 信号反转。
+
+    小 benchmark（ARC-C 1172 items, HumanEval 164 items）在所有污染水平下 都无法可靠检测——lz* 的 sampling
+    variance 与 n_items^(-1/2) 成正比， 164 items 的 SE 比 14K items 大 ~9 倍。
+
+    跨模型方向一致（两个模型在 5/5 benchmarks 上 Δlz* 同向），但幅度差异 20-30%——Gemma-4-31B baseline 更强（θ
+    更高），留给污染信号的"空间"更小。 这符合 tier 预测的"方向一致但幅度差异大"。
+
+    '
+  tables:
+  - name: 'Table: AUROC by Contamination Level × Benchmark (Qwen3.5-9B)'
+    columns:
+    - benchmark
+    - n_items
+    - AUROC@5%
+    - AUROC@10%
+    - AUROC@15%
+    - AUROC@25%
+    - AUROC@50%
+    rows:
+    - - MMLU
+      - 14042
+      - 0.58
+      - 0.68
+      - 0.79
+      - 0.72
+      - 0.64
+    - - HellaSwag
+      - 10042
+      - 0.55
+      - 0.63
+      - 0.74
+      - 0.68
+      - 0.59
+    - - GSM8K
+      - 1319
+      - 0.52
+      - 0.57
+      - 0.63
+      - 0.6
+      - 0.55
+    - - ARC-C
+      - 1172
+      - 0.51
+      - 0.54
+      - 0.58
+      - 0.56
+      - 0.53
+    - - HumanEval
+      - 164
+      - 0.5
+      - 0.52
+      - 0.54
+      - 0.53
+      - 0.51
+    note: AUROC computed over 3 seeds per condition. Chance = 0.50.
+  - name: 'Table: Cohen''s d at 15% Contamination — Cross-Model Comparison'
+    columns:
+    - benchmark
+    - qwen_d
+    - gemma_d
+    - direction_agree
+    - magnitude_ratio
+    rows:
+    - - MMLU
+      - 1.2
+      - 0.95
+      - 'yes'
+      - 1.26
+    - - HellaSwag
+      - 0.9
+      - 0.8
+      - 'yes'
+      - 1.13
+    - - GSM8K
+      - 0.6
+      - 0.5
+      - 'yes'
+      - 1.2
+    - - ARC-C
+      - 0.4
+      - 0.3
+      - 'yes'
+      - 1.33
+    - - HumanEval
+      - 0.2
+      - 0.15
+      - 'yes'
+      - 1.33
+  - name: 'Table: SFT Generalization Analysis (Qwen3.5-9B, MMLU, 15%)'
+    columns:
+    - item_category
+    - n_items
+    - accuracy_clean
+    - accuracy_contam
+    - delta_acc
+    - delta_lz_star_contribution
+    rows:
+    - - Directly trained items
+      - 2106
+      - 0.65
+      - 0.94
+      - 0.29
+      - dominant signal source
+    - - Same-domain untrained
+      - 4200
+      - 0.7
+      - 0.73
+      - 0.03
+      - noise / dilution
+    - - Other-domain items
+      - 7736
+      - 0.73
+      - 0.74
+      - 0.01
+      - negligible
+  figures_description:
+  - 'Fig: Δlz* dose-response curves for both models × MMLU. X-axis = contamination
+    level, Y-axis = Δlz* from clean baseline. Inverted-U clearly visible: peak at
+    15-25%, crossing zero around 40-50%. Qwen curve consistently above Gemma by ~1-2
+    lz* units. Error bars (3 seeds) overlap at 5% and 50% but separate at 15%.'
+  - 'Fig: AUROC heatmap (contamination level × benchmark × model). 2×5×5 grid. Only
+    the top-left quadrant (≥15% × ≥5K items) is green (>0.70). Strong diagonal gradient
+    from top-left to bottom-right.'
+  - 'Fig: Per-item analysis at 15% contamination — scatter of item difficulty (b parameter)
+    vs P(correct|contaminated) - P(correct|clean). Directly trained items cluster
+    in high-difficulty, high-delta region. SFT generalization items show small diffuse
+    delta.'
+  analysis: '核心结论：IRT-FIT 在 controlled contamination 下给出 medium-effect detection，
+    operating envelope 为 ≥15% contamination + ≥5K items + negative-lz* regime。 这不是一个
+    practical detector（AUROC 未超过 0.80），但成功量化了 minimal-information  的代价——同样 ground-truth
+    数据上 ConStat 预期 AUROC 0.85-0.95（需 exp-baseline-comparison 确认）。 SFT 泛化效应是信号衰减的主要原因之一——约
+    3pp 的 domain-level accuracy boost  让 ~30% 的非训练 items 也被答对，稀释了 aberrance pattern。
+    论文需要诚实报告 operating envelope 并将 power-information tradeoff 作为核心贡献。
+
+    '
+- name: Theoretical Power Derivation
+  plan_id: exp-power-theory
+  description: '基于 Snijders (2001) lz* 方差公式推导 power ∝ f(n_items, contam_rate) 的解析关系，
+    验证理论曲线与模拟的拟合度，建立 inverted-U 的理论基础。
+
+    '
+  expected_results:
+    theory_vs_sim_r2_negative_regime: 0.91
+    theory_vs_sim_r2_positive_regime: 0.83
+    theory_vs_sim_r2_combined: 0.85
+    min_n_items_for_power_0.8_at_15pct: 8200
+    min_n_items_for_power_0.5_at_15pct: 2800
+    min_n_items_for_power_0.8_at_5pct: '>50000 (extrapolated)'
+    inverted_u_peak_formula: contam_peak ≈ σ²(θ) / (2 × E[I(θ)]) — depends on ability
+      variance and test information
+    inverted_u_peak_predicted_mmlu: 0.17
+    inverted_u_peak_observed_mmlu: 0.15
+    inverted_u_trough_depth_formula: proportional to n_items^(-1/2) × contam_rate
+      × (1 - contam_rate)
+    power_scaling: Power ∝ sqrt(n_items) × contam_rate × g(θ_shift) where g is a non-monotone
+      function capturing the inverted-U
+    identifiability_collapse_threshold: contam_rate at which E[θ_contam] > θ_max_discriminating
+      ≈ 3.0
+  result_rationale: 'Snijders (2001) 给出 Var(lz*) ≈ 1 + O(1/n) 在零假设下。污染注入等价于 向 response
+    vector 添加 n×c 个"能力不匹配"的正确回答（c = contamination rate）。
+
+    在负向 regime（低-中污染），lz* 的期望偏移 ∝ sqrt(n) × c × Σ[log P_j(θ) 的 aberrance term]， power
+    随 sqrt(n) 增长——这解释了为什么 MMLU (14K) 的 power 远超 ARC-C (1172)。 理论与模拟在负向 regime 拟合良好（R²
+    = 0.91），因为 Snijders 的正态近似在 大 n 下准确。
+
+    正向 regime 拟合较差（R² = 0.83）因为 identifiability collapse 涉及 θ 估计的 boundary 效应——当 θ
+    → ∞ 时 MLE 不稳定，理论公式的渐近近似失效。 这也是 median 档的体现：理论框架基本成立但在边界条件下精度降低。
+
+    min_n_items 阈值计算表明 5% 污染在任何现有 benchmark 上都不可检测 （需 >50K items），支持 "scope 收窄" 的叙事——IRT-FIT
+    不是万能探测器， 它在特定 operating envelope 内工作。
+
+    '
+  tables:
+  - name: 'Table: Theoretical vs Simulated Power'
+    columns:
+    - benchmark
+    - n_items
+    - sim_power_15pct
+    - theory_power_15pct
+    - residual
+    - sim_power_5pct
+    - theory_power_5pct
+    - residual_5pct
+    rows:
+    - - MMLU
+      - 14042
+      - 0.979
+      - 0.96
+      - 0.019
+      - 0.31
+      - 0.28
+      - 0.03
+    - - HellaSwag
+      - 10042
+      - 0.733
+      - 0.75
+      - -0.017
+      - 0.22
+      - 0.2
+      - 0.02
+    - - GSM8K
+      - 1319
+      - 0.578
+      - 0.54
+      - 0.038
+      - 0.11
+      - 0.1
+      - 0.01
+    - - ARC-C
+      - 1172
+      - 0.129
+      - 0.15
+      - -0.021
+      - 0.05
+      - 0.06
+      - -0.01
+    - - HumanEval
+      - 164
+      - 0.243
+      - 0.21
+      - 0.033
+      - 0.04
+      - 0.04
+      - 0.0
+    note: ARC-C 偏差大因为 item parameters 分布偏离理论假设（难度集中在窄范围）
+  - name: 'Table: Minimum n_items for Target Power'
+    columns:
+    - target_power
+    - contam_5pct
+    - contam_10pct
+    - contam_15pct
+    - contam_25pct
+    rows:
+    - - 0.5
+      - '>50K'
+      - 12000
+      - 2800
+      - 900
+    - - 0.8
+      - '>50K'
+      - 25000
+      - 8200
+      - 2200
+    - - 0.9
+      - '>50K'
+      - 40000
+      - 12500
+      - 3500
+  figures_description:
+  - 'Fig: Power surface — 3D plot with axes (n_items, contamination_rate, power).
+    Theoretical surface in translucent blue, simulation data points as red dots. Good
+    agreement in the low-contamination quadrant, visible divergence at high-contamination
+    + small-n corner.'
+  - 'Fig: Inverted-U decomposition — theoretical curves showing negative-lz* contribution
+    (monotone decreasing in contam_rate) and positive-lz* contribution (monotone increasing),
+    with their sum producing the U shape. Annotated with the peak location formula.'
+  analysis: '理论推导成功建立了 power-n_items-contamination 的解析关系，inverted-U 从经验观察 升级为可推导的理论命题。关键贡献是
+    minimum n_items 表格——这给审稿人和用户一个 直接可用的查询工具。理论与模拟的 combined R² = 0.85 表明理论框架基本正确，
+    但需要承认在 identifiability collapse 附近的近似误差。 这是论文的一个坚实理论贡献，即使检测力本身是 medium。
+
+    '
+- name: Leaderboard Data Reconnaissance
+  plan_id: exp-leaderboard-data-recon
+  description: '调研 HuggingFace Open LLM Leaderboard v1 的 per-item binary response
+    data 可用性、格式、覆盖范围。
+
+    '
+  expected_results:
+    hf_results_repo_exists: true
+    per_item_binary_logs_available: partial
+    format: JSON with per-example predictions, not standardized across all models
+    n_models_total_in_leaderboard: 7000+
+    n_models_with_per_item_data: 280
+    n_models_with_complete_5benchmark_data: 150
+    benchmarks_covered:
+    - MMLU
+    - HellaSwag
+    - ARC-C
+    - TruthfulQA
+    - Winogrande
+    - GSM8K
+    data_format_issues: variable JSON schema across submission dates; some models
+      only have aggregate scores; harness version differences (lm-eval v0.3 vs v0.4)
+    estimated_gpu_hours_to_supplement: 120
+    recommendation: proceed with 150-280 available models; supplement top-50 missing
+      flagships via inference
+  result_rationale: 'HuggingFace Open LLM Leaderboard v1（2023-2024 运行）使用 lm-evaluation-harness，
+    其结果存储在 open-llm-leaderboard-old/results repo 中。该 repo 包含 per-model  结果目录，但格式不统一——早期提交只有
+    aggregate JSON，后期版本包含 per-example logs。
+
+    Median 档预测 100-500 models 有 per-item data。实际可能约 280 个模型有可用的 per-item 级别数据，因为 lm-eval-harness
+    在某个版本后开始默认保存 per-example  predictions，但不是所有提交者都上传了完整日志。150 个模型有完整 5-benchmark
+    数据， 足够进行 IRT 参数估计和 person-fit 计算。
+
+    这是 median 档的典型场景——数据部分可用，需要工程投入去解析不统一的格式， 但不需要从零开始跑推理。280 个模型比 Phase B 的 12 个大
+    23 倍， 足以支撑 Claim 3 的 leaderboard audit，但无法声称是"全面扫描"。
+
+    '
+  tables:
+  - name: 'Table: Data Availability Summary'
+    columns:
+    - category
+    - count
+    - pct_of_total
+    - notes
+    rows:
+    - - Total models on leaderboard
+      - 7200
+      - 100%
+      - ''
+    - - Models with any results JSON
+      - 5800
+      - 80.6%
+      - some only aggregate
+    - - Models with per-item predictions
+      - 280
+      - 3.9%
+      - lm-eval ≥v0.4
+    - - Models with complete 5-bench per-item
+      - 150
+      - 2.1%
+      - usable for IRT-FIT
+    - - Top-50 flagships missing per-item
+      - 38
+      - —
+      - would need inference runs
+  figures_description:
+  - 'Fig: Timeline of per-item data availability on leaderboard — x-axis = submission
+    date, y-axis = cumulative models with per-item data. Sharp uptick after lm-eval
+    v0.4 release, plateau when leaderboard v1 closed.'
+  analysis: '280 models with per-item data 落在 tier 预测的 [100, 500] 范围内。 足够支撑 leaderboard
+    audit 但需要在论文中明确说明覆盖率限制。 建议策略：用 280 个可用模型做主分析，补充 top-50 缺失的旗舰模型（约 38 个需推理）， 总计
+    ~320 个模型。GPU 补充预算 ~20 hrs（38 models × ~0.5 hr each）可控。
+
+    '
+- name: Leaderboard Audit — Large-Scale Person-Fit Scan
+  plan_id: exp-leaderboard-audit
+  description: '对 ~280+ 可用模型计算 per-benchmark person-fit，绘制污染率趋势， 识别系统性异常模型。
+
+    '
+  expected_results:
+    n_models_analyzed: 310
+    n_benchmarks: 5
+    total_model_benchmark_cells: 1550
+    flagged_rate_mmlu_delta_method: 0.22
+    flagged_rate_hellaswag_delta_method: 0.18
+    flagged_rate_gsm8k_delta_method: 0.28
+    flagged_rate_arcc_delta_method: 0.15
+    flagged_rate_humaneval_delta_method: 0.12
+    overall_flagged_rate: 0.19
+    n_models_flagged_3plus_benchmarks: 18
+    n_models_flagged_all_5: 3
+    top_flagged_model_1: Gemini-1.5-Pro (4/5 benchmarks, highest Δlz* on MMLU)
+    top_flagged_model_2: model_family_X (multiple sizes all flagged — systematic)
+    top_flagged_model_3: model_Y (GSM8K + MATH specialist, extreme negative lz* on
+      math benchmarks)
+    flagged_rate_2023h1: 0.12
+    flagged_rate_2023h2: 0.18
+    flagged_rate_2024h1: 0.25
+    temporal_trend_significant: true
+    temporal_trend_spearman: 0.38
+    cross_benchmark_spearman_mmlu_hellaswag: 0.31
+    cross_benchmark_spearman_mmlu_gsm8k: 0.22
+    cross_benchmark_spearman_mean: 0.35
+    cross_benchmark_spearman_n_significant: 3/10 pairs
+  result_rationale: 'Median 档预测 leaderboard_flagged_rate_relative 在 [0.1, 0.4]，cross_benchmark_spearman  在
+    [0.3, 0.6]。
+
+    Overall flagged rate ~19% 反映了两个因素的叠加：(1) 确实存在的 benchmark gaming—— 开源社区中"benchmark
+    hacking"是公开的秘密，部分模型在 MMLU/GSM8K 训练集上做过 SFT； (2) Δlz* calibration 的不完美——controlled
+    experiment 建立的阈值基于 2 个模型， 可能对其他架构/训练策略不够 robust，产生一定 false positives。
+
+    时间趋势（12%→25%）有真实基础：2023 下半年到 2024 年，leaderboard 竞争加剧， 更多模型被发现在 benchmark data
+    上训练。但趋势的 effect size 中等（Spearman 0.38）， 因为早期模型中也有污染（只是比例低）且后期有些模型反而更注意避免。
+
+    Cross-benchmark 相关性弱到中等（mean 0.35）——这是 median 档的关键特征。 如果污染是系统性的（同一训练流程污染所有 benchmark），相关性应该高；
+    但实际上很多模型只在特定 benchmark 上有异常（如只刷 GSM8K 或只刷 MMLU）， 导致 per-benchmark 信号不一致。3/10 pairs
+    显著优于 Phase B 的 1/10， 但仍然不足以支撑"全面跨 benchmark 一致性"的强声明。
+
+    18 个模型在 3+ benchmarks 被标记——这些是最可信的 converging evidence cases， 论文应聚焦于这些而非整体 flagged
+    rate。
+
+    '
+  tables:
+  - name: 'Table: Leaderboard Flagged Rate by Benchmark'
+    columns:
+    - benchmark
+    - n_items
+    - n_models
+    - flagged_count
+    - flagged_rate
+    - median_delta_lz_star_flagged
+    - 95%CI_flagged_rate
+    rows:
+    - - MMLU
+      - 14042
+      - 310
+      - 68
+      - 0.22
+      - 4.8
+      - '[0.17, 0.27]'
+    - - HellaSwag
+      - 10042
+      - 310
+      - 56
+      - 0.18
+      - 3.5
+      - '[0.14, 0.23]'
+    - - GSM8K
+      - 1319
+      - 310
+      - 87
+      - 0.28
+      - 2.1
+      - '[0.23, 0.33]'
+    - - ARC-C
+      - 1172
+      - 310
+      - 47
+      - 0.15
+      - 1.4
+      - '[0.11, 0.20]'
+    - - HumanEval
+      - 164
+      - 310
+      - 37
+      - 0.12
+      - 0.8
+      - '[0.08, 0.16]'
+    note: Flagging based on Δlz* > threshold calibrated from exp-ctrl-contam (15%
+      contamination boundary). GSM8K high rate may reflect both real contamination
+      AND low-n-items false positives.
+  - name: 'Table: Multi-Benchmark Flagged Models'
+    columns:
+    - n_benchmarks_flagged
+    - n_models
+    - example_models
+    rows:
+    - - 5
+      - 3
+      - Gemini-1.5-Pro, model_A, model_B
+    - - 4
+      - 7
+      - model_C, model_D, ...
+    - - 3
+      - 8
+      - model_E, model_F, ...
+    - - 2
+      - 23
+      - —
+    - - 1
+      - 18
+      - —
+    - - 0
+      - 251
+      - —
+  - name: 'Table: Temporal Contamination Trend'
+    columns:
+    - period
+    - n_models
+    - flagged_any
+    - flagged_rate
+    - flagged_≥3_bench
+    rows:
+    - - 2023 H1
+      - 85
+      - 10
+      - 0.12
+      - 1
+    - - 2023 H2
+      - 120
+      - 22
+      - 0.18
+      - 5
+    - - 2024 H1
+      - 105
+      - 26
+      - 0.25
+      - 12
+  figures_description:
+  - 'Fig: Leaderboard contamination landscape — scatter of models by (x=mean_accuracy,
+    y=mean_delta_lz_star), color-coded by number of benchmarks flagged (0=gray, 1=yellow,
+    2=orange, 3+=red). High-accuracy + high-Δlz* quadrant contains the most suspicious
+    models. Gemini-1.5 is an obvious outlier.'
+  - 'Fig: Temporal trend — stacked bar chart by submission half-year, showing flagged
+    (red) vs clean (gray) models. Increasing red proportion over time.'
+  - 'Fig: Cross-benchmark Δlz* correlation matrix (10 pairs), with significant correlations
+    highlighted. Mostly weak (0.2-0.4) with 3 significant pairs.'
+  analysis: 'Leaderboard audit 给出 median-range 结果：19% overall flagged rate，时间趋势存在但中等，
+    cross-benchmark 一致性弱。论文应采用保守叙事策略：聚焦于 18 个 multi-benchmark flagged  模型作为 high-confidence
+    cases，报告整体 flagged rate 作为 upper bound estimate， 明确说明 false positive rate 由 controlled
+    experiment calibration 的 transferability 限制。 Gemini-1.5 case study 从"定义性证据"降级为"与
+    leaderboard-wide pattern 一致的 converging evidence"。
+
+    '
+- name: 4PL vs 3PL Ablation
+  plan_id: exp-4pl-ablation
+  description: '比较 4PL (with feasibility parameter d) vs 3PL (d=1 fixed) 下 detection
+    sensitivity 差异。
+
+    '
+  expected_results:
+    sim_power_4pl_mmlu_15pct: 0.979
+    sim_power_3pl_mmlu_15pct: 0.952
+    sim_power_delta_mmlu: -0.027
+    sim_power_4pl_arcc_15pct: 0.129
+    sim_power_3pl_arcc_15pct: 0.108
+    sim_power_delta_arcc: -0.021
+    sim_fpr_4pl_alpha005: 0.048
+    sim_fpr_3pl_alpha005: 0.062
+    real_data_flagged_4pl: 57
+    real_data_flagged_3pl: 54
+    real_data_agreement: 52/60 cells agree
+    mean_d_across_benchmarks: 0.92
+    pct_items_d_lt_0.9: 0.31
+    d_impact_on_lz_star_correlation: 0.97
+  result_rationale: "4PL 的 feasibility parameter d < 1 表示即使完全掌握 item 也无法保证答对 （如题目表述模糊或\
+    \ label 有误）。当 d 接近 1 时 4PL ≈ 3PL。\nPSN-IRT 估计的平均 d = 0.92，说明大多数 items d 接近 1，\
+    \ 但有 ~31% 的 items d < 0.9（可能是有噪声的标注）。\n在 median 档下，d 参数的影响是可测但不大的： - 4PL 的 lz*\
+    \ 对 high-ability examinees 更宽容（因为 d<1 意味着满分不太可能），\n  这略微提高了检测灵敏度（~2-3pp power\
+    \ improvement）。\n- 在 false alarm 控制上 4PL 更好（0.048 vs 0.062），因为 3PL 在 d<1 items\
+    \ 上\n  会过度惩罚\"答错高概率题目\"的 pattern。\n- 但整体差异不大：4PL vs 3PL 的 lz* 相关性 0.97，flagging\
+    \ 一致率 87%。\n这个 ablation 的贡献是 confirming rather than surprising——4PL 略优但 3PL 也可用，\
+    \ 意味着方法对 item parameter 选择不过度敏感。\n"
+  tables:
+  - name: 'Table: 4PL vs 3PL Detection Power (Simulation)'
+    columns:
+    - benchmark
+    - power_4PL@15%
+    - power_3PL@15%
+    - delta
+    - FPR_4PL
+    - FPR_3PL
+    rows:
+    - - MMLU
+      - 0.979
+      - 0.952
+      - -0.027
+      - 0.048
+      - 0.062
+    - - HellaSwag
+      - 0.733
+      - 0.711
+      - -0.022
+      - 0.045
+      - 0.058
+    - - GSM8K
+      - 0.578
+      - 0.559
+      - -0.019
+      - 0.051
+      - 0.065
+    - - ARC-C
+      - 0.129
+      - 0.108
+      - -0.021
+      - 0.049
+      - 0.067
+    - - HumanEval
+      - 0.243
+      - 0.228
+      - -0.015
+      - 0.052
+      - 0.061
+  figures_description:
+  - 'Fig: Scatter of lz*_4PL vs lz*_3PL across all (model, benchmark) cells. Near-perfect
+    linear relationship (r=0.97) with slight divergence at extremes. Color-coded by
+    mean item d parameter of benchmark.'
+  analysis: '4PL 提供一致但微小的改进（~2-3pp power, ~1.5pp FPR reduction）。 足以证明 d 参数有理论和实证价值，但不是方法的核心驱动因素。
+    论文建议：主实验用 4PL，附录报告 3PL 结果作为 robustness check。
+
+    '
+- name: Baseline Comparison — IRT-FIT vs ConStat vs Min-K%++
+  plan_id: exp-baseline-comparison
+  description: '在 controlled contamination ground-truth 上比较 IRT-FIT、ConStat、Min-K%++
+    的检测能力， 量化 minimal-information 的代价。
+
+    '
+  expected_results:
+    auroc_irt_fit_mmlu_15pct: 0.79
+    auroc_constat_mmlu_15pct: 0.91
+    auroc_minkpp_mmlu_15pct: 0.94
+    auroc_gap_vs_constat_mmlu: -0.12
+    auroc_gap_vs_minkpp_mmlu: -0.15
+    auroc_irt_fit_mmlu_5pct: 0.58
+    auroc_constat_mmlu_5pct: 0.72
+    auroc_minkpp_mmlu_5pct: 0.83
+    auroc_irt_fit_hellaswag_15pct: 0.74
+    auroc_constat_hellaswag_15pct: 0.87
+    auroc_minkpp_hellaswag_15pct: 0.92
+    auroc_gap_vs_constat_hellaswag: -0.13
+    auroc_irt_fit_gsm8k_15pct: 0.63
+    auroc_constat_gsm8k_15pct: 0.78
+    auroc_minkpp_gsm8k_15pct: 0.88
+    auroc_gap_vs_constat_gsm8k: -0.15
+    mean_auroc_gap_vs_constat_at_15pct: -0.13
+    mean_auroc_gap_vs_minkpp_at_15pct: -0.16
+    type1_irt_fit: 0.06
+    type1_constat: 0.04
+    type1_minkpp: 0.03
+    info_irt_fit: binary responses only
+    info_constat: binary responses + rephrased retest
+    info_minkpp: token-level probabilities
+    pareto_optimal: Min-K%++ > ConStat > IRT-FIT in detection; IRT-FIT > ConStat >
+      Min-K%++ in applicability scope
+  result_rationale: 'Median 档核心预测：baseline_auroc_gap_vs_constat 在 [-0.20, -0.10]。
+
+    IRT-FIT AUROC 0.79 vs ConStat 0.91 (gap = -0.12) 在 MMLU@15% 符合预期。 ConStat 优势来自
+    rephrased retest 信号——如果模型记忆了原始 item， rephrased 版本的准确率会下降，这是一个直接的 contamination
+    indicator。 IRT-FIT 只能从 binary pattern 的 aberrance 间接推断，信息量先天不足。
+
+    Min-K%++ 的 AUROC 更高（0.94）因为 token-level probabilities 提供了 最丰富的信号——记忆的 item 有异常低的
+    token surprisal。
+
+    但信息需求也成比例增加：Min-K%++ 需要 API 返回 logprobs（很多 API 不支持）， ConStat 需要生成 rephrased items
+    并重新测试（需要 live model access）， IRT-FIT 只需要最终答案。在 Open LLM Leaderboard 这种场景下， 只有
+    IRT-FIT 可以对历史提交进行 retrospective analysis。
+
+    Gap = -0.12 to -0.15 是 minimal-information 的"代价"——论文将这个代价 本身作为贡献来量化和讨论，而非试图论证
+    IRT-FIT 性能优于 baselines。
+
+    '
+  tables:
+  - name: 'Table: Detection AUROC Comparison (Ground-Truth Controlled Contamination)'
+    columns:
+    - method
+    - info_level
+    - MMLU@5%
+    - MMLU@15%
+    - MMLU@25%
+    - HellaSwag@15%
+    - GSM8K@15%
+    - ARC-C@15%
+    rows:
+    - - IRT-FIT (ours)
+      - binary only
+      - 0.58
+      - 0.79
+      - 0.72
+      - 0.74
+      - 0.63
+      - 0.58
+    - - ConStat
+      - binary + retest
+      - 0.72
+      - 0.91
+      - 0.88
+      - 0.87
+      - 0.78
+      - 0.73
+    - - Min-K%++
+      - token probs
+      - 0.83
+      - 0.94
+      - 0.93
+      - 0.92
+      - 0.88
+      - 0.84
+    note: ConStat requires generating rephrased items + re-evaluating model. Min-K%++
+      requires token-level log-probabilities.
+  - name: 'Table: Power-Information Frontier'
+    columns:
+    - method
+    - information_access
+    - applicability
+    - mean_auroc_at_15pct
+    - unique_capability
+    rows:
+    - - IRT-FIT
+      - 'Level 1: binary responses'
+      - any model with benchmark scores
+      - 0.72
+      - retrospective audit of historical submissions
+    - - ConStat
+      - 'Level 2: binary + rephrased retest'
+      - live model access required
+      - 0.84
+      - direct contamination vs memorization distinction
+    - - Min-K%++
+      - 'Level 3: token probabilities'
+      - API with logprobs
+      - 0.9
+      - per-item contamination scoring
+  figures_description:
+  - 'Fig: Power-information frontier plot — x-axis = information access level (ordinal:
+    binary < retest < token probs < logits < weights), y-axis = mean AUROC at 15%
+    contamination. IRT-FIT defines the leftmost (minimal-information) point. Clear
+    monotone increasing trend. Annotated with each method''s applicability scope (number
+    of models testable).'
+  - 'Fig: ROC curves for all three methods on MMLU@15% contamination. IRT-FIT curve
+    clearly below but meaningfully above chance. Gap most visible in the low-FPR region
+    (0-0.1 FPR).'
+  analysis: 'Baseline comparison 确认了 minimal-information 的代价是可量化的 ~13pp AUROC gap
+    vs ConStat。 这是论文的 honest framing 而非 weakness：IRT-FIT 不是要 beat baselines， 而是要定义
+    detection frontier 的 minimal-information 端点，并量化 "如果你只有 binary responses，你能做到什么"。
+    Power-information frontier 图将成为论文的 signature figure。
+
+    '
+- name: Multiscale lzm Statistic
+  plan_id: exp-multiscale-lzm
+  description: '实现 Hong, Lin & Cheng (2021) 的 multiscale lzm——跨 benchmark 聚合标准化 lz*，
+    提供模型级整体污染指标。
+
+    '
+  expected_results:
+    lzm_formula: lzm = Σ_b w_b × lz*_b / sqrt(Σ_b w_b²) where w_b = 1/SE(lz*_b)
+    lzm_gemini15: 3.82
+    lzm_gpt4o: 2.15
+    lzm_claude35_sonnet: 1.89
+    lzm_qwen25_72b: 1.74
+    lzm_llama31_70b: 1.42
+    lzm_mean: 2.05
+    lzm_sd: 0.78
+    cross_bench_consistency_before_lzm: 0.35
+    cross_bench_consistency_after_lzm: N/A (lzm is a single score)
+    lzm_vs_mean_lz_star_correlation: 0.91
+    lzm_incremental_value_over_mean: moderate — proper variance weighting helps for
+      unequal benchmark sizes
+    lzm_auroc_ctrl_15pct: 0.82
+    lzm_vs_best_single_benchmark_auroc: +0.03 over MMLU alone
+    lzm_flagged_at_alpha005: 4/12 models (Gemini-1.5, GPT-4o, model_X, model_Y)
+  result_rationale: "Multiscale lzm 通过 inverse-variance weighting 聚合跨 benchmark 的\
+    \ lz*， 理论上应该提高检测力（多个弱信号的联合强于任何单一信号）。\n在 median 档下，改善是\"moderate\"而非 dramatic：\
+    \ - lzm AUROC 0.82 仅比最佳单 benchmark (MMLU, 0.79) 高 3pp，\n  因为 MMLU 的 weight 最大（n=14K,\
+    \ SE 最小），其他 benchmark 贡献有限。\n- 小 benchmark (ARC-C, HumanEval) 因 SE 大，在 lzm 中几乎被\
+    \ downweight 到 negligible。\nlzm 与简单 mean(lz*) 的相关性 0.91，表明 variance weighting\
+    \ 的增量价值有限 但在 benchmark 大小差异极端时（14K vs 164 items）理论上更 principled。\n实际价值更多是方法论的完整性——展示\
+    \ IRT person-fit 框架可以 naturally  扩展到 multi-test setting，而非提供显著的 practical improvement。\n"
+  tables:
+  - name: 'Table: lzm Scores for Phase B Models (Top 6)'
+    columns:
+    - model
+    - lzm
+    - rank
+    - mmlu_lz_star
+    - hellaswag_lz_star
+    - gsm8k_lz_star
+    - interpretation
+    rows:
+    - - Gemini-1.5-Pro
+      - 3.82
+      - 1
+      - 31.8
+      - 28.4
+      - 15.2
+      - strongest overall aberrance
+    - - GPT-4o
+      - 2.15
+      - 2
+      - 22.5
+      - 18.9
+      - 9.8
+      - moderate aberrance
+    - - Claude-3.5-Sonnet
+      - 1.89
+      - 3
+      - 20.1
+      - 17.2
+      - 8.5
+      - moderate
+    - - Qwen2.5-72B
+      - 1.74
+      - 4
+      - 19.8
+      - 15.1
+      - 7.2
+      - moderate
+    - - LLaMA-3.1-70B
+      - 1.42
+      - 5
+      - 16.2
+      - 14.8
+      - 6.1
+      - low-moderate
+    - - '[smallest model]'
+      - 0.45
+      - 12
+      - 5.2
+      - 3.8
+      - 2.1
+      - low
+  figures_description:
+  - 'Fig: lzm distribution across 12 Phase B models — histogram with Gemini-1.5 as
+    clear outlier. Dashed line at lzm=1.96 (theoretical threshold). Most models above
+    threshold due to universal misfit, but Gemini-1.5 far above the rest.'
+  analysis: 'lzm 提供了一个 principled single-number 污染指标，但在 median 档下 增量检测力有限（+3pp AUROC）。其价值更多是概念性的——完成了从
+    single-benchmark lz* 到 model-level assessment 的理论扩展。 适合放在论文中作为 methodology contribution，但不应作为主要
+    selling point。
+
+    '
+- name: Post-RL Hypothesis Test
+  plan_id: exp-post-rl
+  description: 'Qwen3.5-9B 上先 SFT 污染再 GRPO 训练，测试 person-fit 信号在 RL 后是否保留。 回应 Wang
+    et al. (2025)。
+
+    '
+  expected_results:
+    pre_rl_lz_star: 23.8
+    pre_rl_accuracy_mmlu: 0.78
+    pre_rl_delta_lz_star: 5.3
+    post_rl_lz_star: 21.1
+    post_rl_accuracy_mmlu: 0.8
+    post_rl_delta_lz_star: 2.6
+    post_rl_signal_retention: 0.49
+    post_rl_still_detectable: marginal (p=0.08)
+    clean_post_rl_lz_star: 19.2
+    clean_post_rl_accuracy: 0.74
+    clean_post_rl_delta_from_clean_pre_rl: 0.7
+    signal_attenuation_pct: 51
+    rl_smoothing_effect: GRPO redistributes probability mass, partially smoothing
+      aberrant item-level patterns
+    detection_auroc_post_rl_15pct: 0.65
+    detection_auroc_pre_rl_15pct: 0.79
+  result_rationale: 'Wang et al. (2025) 证明 RL (PPO/DPO) 后 MIA-based 方法（Min-K%++ 等）检测力
+    大幅下降——因为 RL 重新分配了 token-level 概率分布，抹去了 memorization 的  token-level 签名。
+
+    IRT-FIT 操作在 binary response level，理论上对 token-level 变化更 robust—— 只要模型仍然在不该答对的题目上答对，lz*
+    就会偏离。但 GRPO 也会部分 平滑 item-level patterns：(1) RL reward 通常基于 overall task performance  而非单
+    item accuracy，鼓励模型"均匀化"知识分布；(2) policy gradient 更新 可能让模型遗忘一些 SFT 过拟合的特定 items。
+
+    Median 档预测：信号衰减约 50%（5.3 → 2.6 Δlz*），marginal detection (p=0.08)。 不像 MIA 方法完全失败，但也不能声称"robust
+    to RL"。 这符合"medium effect, conditional detection"的整体 narrative。 AUROC 从 0.79 降到
+    0.65——仍然 above chance 但不再 reliable。
+
+    '
+  tables:
+  - name: 'Table: Post-RL Signal Retention'
+    columns:
+    - condition
+    - accuracy
+    - lz_star
+    - delta_lz_star_from_clean
+    - detection_p
+    - auroc
+    rows:
+    - - Clean (pre-RL)
+      - 0.71
+      - 18.5
+      - —
+      - —
+      - —
+    - - Clean (post-RL)
+      - 0.74
+      - 19.2
+      - 0.7
+      - 0.42
+      - 0.53
+    - - Contaminated 15% (pre-RL)
+      - 0.78
+      - 23.8
+      - 5.3
+      - 0.028
+      - 0.79
+    - - Contaminated 15% (post-RL)
+      - 0.8
+      - 21.1
+      - 2.6
+      - 0.08
+      - 0.65
+    note: 'GRPO training: 3 epochs, reward = accuracy on held-out reasoning tasks.
+      Signal retention = post-RL delta / pre-RL delta = 49%.'
+  figures_description:
+  - 'Fig: Signal attenuation trajectory — lz* over RL training steps (0, 500, 1000,
+    2000, 5000 steps) for contaminated (red) and clean (blue) models. Gap narrows
+    progressively. Annotated with AUROC at each checkpoint.'
+  analysis: 'Post-RL 信号衰减 ~50% 是一个 nuanced result：优于 MIA 方法的"完全失败" 但不能声称 robust。论文应这样
+    frame："IRT-FIT 的 binary-level 操作比 token-level  方法更 resilient to RL smoothing，但
+    post-RL detection 仍然是一个 open challenge。" Priority P2 合理——这是一个重要的 discussion point
+    但不是核心贡献。
+
+    '
+- name: Extended Benchmarks — BBH and MATH
+  plan_id: exp-extra-benchmarks
+  description: '添加 BBH (6511 items) 和 MATH (5000 items) 填充 1K-10K items 的 power gap。
+
+    '
+  expected_results:
+    bbh_4pl_params_available: partial — PSN-IRT may have BBH but needs verification
+    bbh_sim_power_15pct: 0.72
+    bbh_sim_power_5pct: 0.18
+    bbh_inverted_u_r2: 0.82
+    bbh_ctrl_contam_auroc_15pct: 0.71
+    math_4pl_params_available: likely not in PSN-IRT; may need calibration
+    math_sim_power_15pct: 0.65
+    math_sim_power_5pct: 0.14
+    math_inverted_u_r2: 0.79
+    math_ctrl_contam_auroc_15pct: 0.67
+    power_curve_r2_with_bbh_math: 0.93
+    power_curve_r2_without: 0.88
+    n_items_threshold_confirmation: ≥5K items needed for AUROC>0.65 at 15%
+  result_rationale: 'BBH (6511 items) 和 MATH (5000 items) 恰好落在 GSM8K (1319) 和 HellaSwag
+    (10042)  之间，填补了 power curve 中 1K-10K 区间的数据空白。
+
+    BBH 预期 power 0.72——接近 HellaSwag (0.733) 因为 item 数接近， 但 BBH 的 item 结构不同（多步推理题），可能导致
+    4PL 拟合更差。 MATH 预期 power 0.65——处于 GSM8K 和 BBH 之间。
+
+    这两个 benchmark 的加入主要价值是让 power vs n_items 曲线拟合更精确 （R² 从 0.88 提升到 0.93），加强了 "n_items
+    threshold" 的理论论证。 但 4PL 参数可用性是风险点——如果 PSN-IRT 没有这些 benchmark 的参数， 需要自己校准，GPU 预算可能显著增加。
+
+    '
+  tables:
+  - name: 'Table: Power Curve Data Points (Complete)'
+    columns:
+    - benchmark
+    - n_items
+    - sim_power@15%
+    - ctrl_auroc@15%
+    - source
+    rows:
+    - - HumanEval
+      - 164
+      - 0.243
+      - 0.54
+      - existing
+    - - ARC-C
+      - 1172
+      - 0.129
+      - 0.58
+      - existing
+    - - GSM8K
+      - 1319
+      - 0.578
+      - 0.63
+      - existing
+    - - MATH
+      - 5000
+      - 0.65
+      - 0.67
+      - new
+    - - BBH
+      - 6511
+      - 0.72
+      - 0.71
+      - new
+    - - HellaSwag
+      - 10042
+      - 0.733
+      - 0.74
+      - existing
+    - - MMLU
+      - 14042
+      - 0.979
+      - 0.79
+      - existing
+    note: ARC-C power anomalously low for its n_items — item parameter distribution
+      (narrow difficulty range) reduces effective information.
+  figures_description:
+  - 'Fig: Power vs n_items curve with all 7 benchmarks. Log-x scale. Fitted theoretical
+    curve (from exp-power-theory) with confidence band. BBH and MATH points fall within
+    prediction interval, confirming the theoretical relationship.'
+  analysis: 'BBH 和 MATH 加强了 power-n_items 关系的实证支撑，使"≥5K items for reliable detection"
+    的 claim 更可信。但如果 4PL 参数需要自行校准，优先级应保持 P2—— 这是 nice-to-have 而非 essential。
+
+    '
+- name: MMLU Domain-Level Analysis
+  plan_id: exp-domain-analysis
+  description: '按 MMLU subject category 分别计算 person-fit，分析 Gemini-1.5 的污染是全面性还是集中性。
+
+    '
+  expected_results:
+    n_mmlu_subjects: 57
+    n_subjects_with_sufficient_items: 42
+    min_items_per_subject_threshold: 100
+    gemini15_n_subjects_flagged: 38
+    gemini15_flagged_rate: 0.9
+    gemini15_domain_lz_star_mean: 5.2
+    gemini15_domain_lz_star_sd: 2.8
+    gemini15_top_aberrant_domains:
+    - abstract_algebra (lz*=9.1)
+    - college_mathematics (lz*=8.7)
+    - formal_logic (lz*=8.3)
+    gemini15_least_aberrant_domains:
+    - high_school_us_history (lz*=1.2)
+    - world_religions (lz*=1.5)
+    gemini15_stem_vs_humanities_lz_star_diff: 2.1
+    gemini15_contamination_pattern: broad but STEM-concentrated
+    other_models_domain_concentration_gini: 0.45
+    domain_specificity_varies_by_model: true
+  result_rationale: 'Gemini-1.5 在 MMLU 上 100% accuracy + lz*=34.75 + θ=0.78 表明大规模污染。
+    Domain-level 分析可以区分：(1) 均匀污染（所有 subject 同样 aberrant）vs  (2) 集中污染（某些 domain 远比其他更
+    aberrant）。
+
+    预测 Gemini-1.5 是"broad but STEM-concentrated"——90% 的 subjects 被标记 表明污染覆盖面广，但 STEM
+    domains（数学、逻辑）的 lz* 更高， 可能因为这些 domain 的 item difficulty 分布更极端（有更多真正 hard items），
+    污染导致的 aberrance 更显著。文科 domain 的 items 整体较易， 即使没有污染高能力模型也能做对大多数，aberrance 信号更弱。
+
+    Gini 系数 0.45 表明中等集中度——不完全均匀但也非极端集中。 这与"SFT 在完整 MMLU 上训练"的假说一致——训练覆盖所有 subject，
+    但不同 subject 的检测灵敏度取决于 item difficulty 分布。
+
+    '
+  tables:
+  - name: 'Table: Gemini-1.5 MMLU Domain Analysis (Top/Bottom 5)'
+    columns:
+    - domain
+    - n_items
+    - accuracy
+    - lz_star
+    - flagged
+    rows:
+    - - abstract_algebra
+      - 100
+      - 1.0
+      - 9.1
+      - 'yes'
+    - - college_mathematics
+      - 100
+      - 1.0
+      - 8.7
+      - 'yes'
+    - - formal_logic
+      - 126
+      - 1.0
+      - 8.3
+      - 'yes'
+    - - college_physics
+      - 102
+      - 1.0
+      - 7.9
+      - 'yes'
+    - - electrical_engineering
+      - 145
+      - 1.0
+      - 7.5
+      - 'yes'
+    - - '...'
+      - '...'
+      - '...'
+      - '...'
+      - '...'
+    - - world_religions
+      - 171
+      - 1.0
+      - 1.5
+      - 'no'
+    - - high_school_us_history
+      - 204
+      - 1.0
+      - 1.2
+      - 'no'
+  figures_description:
+  - 'Fig: MMLU domain-level lz* heatmap for Gemini-1.5 — 57 subjects sorted by lz*.
+    Color gradient from white (low aberrance) to dark red (high aberrance). STEM cluster
+    visually prominent. Superimposed: mean item difficulty per subject (blue line)
+    showing correlation with lz*.'
+  - 'Fig: STEM vs Humanities lz* boxplots for Gemini-1.5, showing significant difference
+    (p<0.01). Other models shown as gray background for comparison — most show no
+    STEM/Humanities lz* difference.'
+  analysis: Domain analysis 为 Gemini-1.5 case study 增加了 granularity——不仅是"flagged"，
+    而是"STEM-concentrated broad contamination"。这在论文中可以用 1-2 段讨论， 展示 IRT-FIT 的 diagnostic
+    能力不仅限于 binary flagging。 但因为只有 Gemini-1.5 有 100% accuracy（其他模型无此极端 pattern）， 这个分析的
+    generalizability 有限。

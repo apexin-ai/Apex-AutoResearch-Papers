@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1462e5acb01ea58d568e",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops batch5 submit",
+  "task_key": "worker_ops_batch5-submit_20260523T123755",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_batch5-submit_20260523T123755_result.json",
+    "occurrence": 1,
+    "bytes": 627,
+    "sha256": "605318ba16561619b95fa2cb7e3dc353a39e9d208b0f13989a0276cc977ecfd6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 3 jobs are loading successfully:\n\n| GPU | exp_id | Model | Condition | Seed | Status |\n|-----|--------|-------|-----------|------|--------|\n| 1 | exp-llama-5pct-s3 | llama | contam_5_s3 | 456 | Loading weights ✓ |\n| 2 | exp-llama-25pct-s3 | llama | contam_25_s3 | 456 | Loading weights ✓ |\n| 3 | exp-mistral-25pct-s2 | mistral | contam_25_s2 | 123 | Loading weights ✓ |\n\n**Deferred:** exp-mistral-25pct-s3 (cuda:0 busy with Batch 4)\n\n**Prep work done:**\n- Generated `contam_5_s3` data (5702 items: 5000 alpaca + 702 MMLU, shuffle seed=456)\n- Added `contam_5_s3: 456` to SEED_MAP in train.py"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-batch5-submit.md"
+}

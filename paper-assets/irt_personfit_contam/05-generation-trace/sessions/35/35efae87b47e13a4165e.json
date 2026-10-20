@@ -1,0 +1,801 @@
+{
+  "schema_version": "1.0",
+  "id": "35efae87b47e13a4165e",
+  "project": "irt_personfit_contam",
+  "kind": "conversation",
+  "title": "cron hook mistral contam 5",
+  "task_key": "cron_hook_mistral_contam_5",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/cron_hook_mistral_contam_5.jsonl",
+    "occurrence": 1,
+    "bytes": 31751,
+    "sha256": "b06e860595da3d80fbf365f2b44328c4fed3c1443e55fbb3cb3ae0494649c569"
+  },
+  "statistics": {
+    "messages": 39,
+    "user_turns": 1,
+    "tool_calls": 19,
+    "roles": {
+      "user": 1,
+      "tool_call": 19,
+      "tool_result": 18,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T04:20:30.347904+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: mistral_contam_5\n- project: irt_personfit_contam\n- server: westd-35694\n- log_path: ~/runs/irt_personfit_contam/mistral_contam_5.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-24T04:20:44.076520+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__fetch_wandb_metrics",
+              "max_results": "10"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-24T04:20:44.127200+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-24T04:20:46.686744+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "irt_personfit_contam",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-24T04:20:47.189712+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-24T04:20:47.744220+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (140,949 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0519-3-projects-irt-personfit-contam--claude-sessions-agent-d40e334d/5b28486d-85c2-4db2-99bf-1539079517b8/tool-results/mcp-agent-ml-research-read_registry-1779596447237.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0519-3-projects-irt-personfit-contam--claude-sessions-agent-d40e334d/5b28486d-85c2-4db2-99bf-1539079517b8/tool-results/mcp-agent-ml-research-read_registry-1779596447237.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1057
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-24T04:20:47.744630+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "irt_personfit_contam",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-24T04:20:48.296875+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "irt_personfit_contam"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-24T04:20:49.402041+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 1, \\\"results\\\": [{\\\"exp_id\\\": \\\"mistral_contam_25\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=185140)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 2212
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-24T04:20:49.402662+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-24T04:20:29Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 119 个实验 — ANALYZING 7, DONE 73, PREPARING 37, QUEUED 1, RUNNING 1\\\\n**DONE 分布**: killed 4, negative 8, success 61\\\\n\\\\n### GPU 占用\\\\n- **分配**: 4 张 — westd-35694:cuda:0, westd-35694:cuda:1, westd-35694:cuda:2, westd-35694:cuda:3\\\\n- **实际运行**: 1 张 — westd-35694:cuda:1(mistral_contam_25)\\\\n- **空闲（分配了没跑）**: westd-35694:cuda:0, westd-35694:cuda:2, westd-35694:cuda:3\\\\n\\\\n### 💾 磁盘余量\\\\n- **westd-35694**:\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/init`: 150M/150M 可用（已用 1%）\\\\n  - `/usr/bin/nvidia-smi`: 816G/879G 可用（已用 3%）\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `mistral_contam_25` | westd-35694 | cuda:1 | 185140 | `~/runs/irt_personfit_contam/mistral_contam_25.log` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `exp-ctrl-contam-qwen-25pct-s2` [success] — 2026-05-22T20:27:48\\\\n- `exp-ctrl-contam-qwen-15pct-multiseed` [success] — 2026-05-22T20:26:59\\\\n- `exp-ctrl-contam-qwen-50pct-multiseed` [success] — 2026-05-22T20:26:47\\\\n- `exp-ctrl-contam-qwen-25pct-multiseed` [success] — 2026-05-22T20:26:46\\\\n- `exp-ctrl-contam-qwen-15pct-s2` [success] — 2026-05-22T12:29:02\\\\n\\\\n<!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-24\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| mistral_contam_25 | — | — | — | — |\\\\n| mistral_contam_5 | — | — | — | — |\\\\n| exp-llama-50pct-s1-pilot | Llama-3.1-8B 50% MMLU contamination with seed=42 in the unified pilot pipeline (item selection seed=42) produces comparable lz* anomaly to ctrl_contam_llama results, completing the Llama dose-response curve with consistent item selection. | \n…[truncated 3176 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 1658
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-24T04:20:49.453304+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/ROADMAP.md\\\", \\\"content\\\": \\\"# irt_personfit_contam — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-23 20:15 UTC | 更新原因: 审计修复完成，匿名 repo 推送，收尾检查\\\\n\\\\n> 核心方向\\\\nIRT person-fit (ℓz*) 检测 LLM benchmark contamination——首次系统刻画行为边界。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: 论文定稿 + 审稿迭代\\\\n- **评分**: Round 7 = **3.5 Borderline Conference** (R1: 3.5, R2: 3.5)\\\\n- **用户指令**: \\\\\\\"能到 3.0 就投，到不了就存 arXiv\\\\\\\" → 3.5 > 3.0，**已达投稿线**\\\\n- **DDL**: ARR 2026-05-25 AoE (~32h remaining)\\\\n- **Round 7 修复**: 3 MF + 7 SF 全部完成\\\\n- **Round 8 review**: 已提交 (continue mode), 等待结果\\\\n- **页数**: 主文 8 页（编译确认合规）\\\\n\\\\n## 提分实验 (3.5→4.0)\\\\n- ✅ **Multi-seed HT/Acc z-score 重算**: 用原始公式 (chi-squared ratio + bootstrap) 完成。Sanity check 通过（seed 42 值完全匹配 Table 3 原始数据）。Table 3 已更新为 multi-seed means ± SD。\\\\n  - HT mean |d|: 5.83±1.30 (15%), 7.84±2.39 (25%), 5.29±3.41 (50%)\\\\n  - Acc z mean |d|: 45.0±2.5 (15%), 51.5±1.8 (25%), 70.0±1.1 (50%)\\\\n  - 关键发现: seed 42 的 HT 50% |d|=1.66 是异常值（mean=5.29）; Acc z 极稳定\\\\n- ✅ **GRPO MIA**: 完成。AUC 0.611→0.493 (random)，已写入 discussion.tex + fig_grpo.pdf\\\\n\\\\n## 核心数据 (全部 multi-seed)\\\\n\\\\n### Table 1: Cohen's d for Δℓz*\\\\n| Model | Bench | d(5%) | d(15%) | d(25%) | d(50%) |\\\\n|-------|-------|-------|--------|--------|--------|\\\\n| Qwen | MMLU | -4.15 | -5.36±1.10 | -7.44±1.86 | -5.08±3.02 |\\\\n| Llama | MMLU | — | -2.11 | -1.99 | -2.33 |\\\\n| Mistral | MMLU | — | -3.01 | — | -3.50 |\\\\n| Qwen | ARC-C | — | +3.16 | — | +5.30 |\\\\n\\\\n### Table 3: Detection-diagnosis tradeoff (Qwen multi-seed means)\\\\n| Statistic | |d| (15%) | |d| (50%) |\\\\n|-----------|----------|----------|\\\\n| ℓz* | 5.36±1.10 | 5.08±3.02 |\\\\n| HT | 5.83±1.30 | 5.29±3.41 |\\\\n| Acc z | 45.0±2.5 | 70.0±1.1 |\\\\n\\\\n## GPU 资源\\\\n- westd-35694: cuda:0-3 (全部 idle，无运行中实验)\\\\n\\\\n## 近期任务\\\\n- [x] Round 7 MF1-3 + SF1-7 全部修复\\\\n- [x] Table 1/2 multi-seed 更新\\\\n- [x] Multi-seed HT/Acc z-score 正确公式重算 + Table 3 更新\\\\n- \n…[truncated 1546 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 1156
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-24T04:20:54.827646+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "irt_personfit_contam",
+              "filters": "{'exp_id': 'mistral_contam_5'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-24T04:20:55.229462+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2308}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 401
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-24T04:20:55.229926+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "irt_personfit_contam",
+              "status": "running"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-24T04:20:55.283483+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 53
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-24T04:21:01.864861+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam && grep -n \"mistral_contam_5\\|mistral.*contam.*5\" registry.yaml | head -20",
+              "description": "Search registry for mistral_contam_5"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-24T04:21:02.065986+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1409:  exp-ctrl-contam-mistral-contam15:\n1420:      log_path: ~/runs/irt_personfit_contam/exp-ctrl-contam-mistral-contam15.log\n1440:    checkpoint_path: /root/autodl-tmp/ctrl_contam_mistral/checkpoints/contam_15/\n1441:    log_path: /root/autodl-tmp/ctrl_contam_mistral/results/contam_15_results.json\n1448:  exp-ctrl-contam-mistral-contam50:\n1459:      log_path: ~/runs/irt_personfit_contam/exp-ctrl-contam-mistral-contam50.log\n1479:    checkpoint_path: /root/autodl-tmp/ctrl_contam_mistral/checkpoints/contam_50/\n1480:    log_path: /root/autodl-tmp/ctrl_contam_mistral/results/contam_50_results.json\n3485:      data_path: /root/autodl-tmp/ctrl_contam_pilot/data/mistral/contam_25/\n3489:      checkpoint_path: /root/autodl-tmp/ctrl_contam_pilot/checkpoints/mistral/contam_25/checkpoint-1596\n3607:      data_path: /root/autodl-tmp/ctrl_contam_pilot/data/mistral/contam_25_s2/\n3611:      checkpoint_path: /root/autodl-tmp/ctrl_contam_pilot/checkpoints/mistral/contam_25_s2/checkpoint-1596\n3723:  mistral_contam_5:\n3736:      log_path: ~/runs/irt_personfit_contam/mistral_contam_5.log\n3741:      data_path: /root/autodl-tmp/ctrl_contam_mistral/data/contam_5/\n3752:  mistral_contam_25:\n3765:      log_path: ~/runs/irt_personfit_contam/mistral_contam_25.log\n3770:      data_path: /root/autodl-tmp/ctrl_contam_mistral/data/contam_25/\nShell cwd was reset to /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_d40e334d"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "Bash",
+            "elapsed_ms": 201
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-24T04:21:04.676036+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/registry.yaml",
+              "offset": "3720",
+              "limit": "50"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-24T04:21:04.777140+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3720\t    hypothesis: Min-K% and Min-K%++ MIA methods will fail on GRPO-contaminated Llama\n3721\t      (AUC near 0.5), while lz* retains detection power, demonstrating lz* advantage\n3722\t      over logit-based MIA for RL-trained models\n3723\t  mistral_contam_5:\n3724\t    status: ANALYZING\n3725\t    retry_count: 0\n3726\t    created_at: '2026-05-24T03:58:23.170Z'\n3727\t    updated_at: '2026-05-24T04:20:27.405Z'\n3728\t    spec:\n3729\t      command: bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n3730\t        base && cd /root/autodl-tmp/ctrl_contam_mistral && WANDB_MODE=disabled python3\n3731\t        train.py --condition contam_5 --gpu 0'\n3732\t      server: westd-35694\n3733\t      gpu:\n3734\t      - cuda:0\n3735\t      pid: '185062'\n3736\t      log_path: ~/runs/irt_personfit_contam/mistral_contam_5.log\n3737\t      submitted_at: '2026-05-24T03:58:22.943Z'\n3738\t      submitted_via: submit_training_job\n3739\t      backend: tmux\n3740\t      account: root\n3741\t      data_path: /root/autodl-tmp/ctrl_contam_mistral/data/contam_5/\n3742\t      data_count: 5702\n3743\t      model_name: Mistral-7B-v0.3\n3744\t      seed: 42\n3745\t    reproduce:\n3746\t      finished_at: '2026-05-24T04:20:27.029Z'\n3747\t    extra:\n3748\t      hook_events:\n3749\t      - event: on_complete\n3750\t        action: agent\n3751\t        ts: '2026-05-24T04:20:30.008211+00:00'\n3752\t  mistral_contam_25:\n3753\t    status: RUNNING\n3754\t    retry_count: 0\n3755\t    created_at: '2026-05-24T03:58:24.744Z'\n3756\t    updated_at: '2026-05-24T04:09:48.493Z'\n3757\t    spec:\n3758\t      command: bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n3759\t        base && cd /root/autodl-tmp/ctrl_contam_mistral && WANDB_MODE=disabled python3\n3760\t        train.py --condition contam_25 --gpu 0'\n3761\t      server: westd-35694\n3762\t      gpu:\n3763\t      - cuda:1\n3764\t      pid: '185140'\n3765\t      log_path: ~/runs/irt_personfit_contam/mistral_contam_25.log\n3766\t      submitted_at: '2026-05-24T03:58:24.523Z'\n3767\t   \n…[truncated 87 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-24T04:21:17.422881+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/registry.yaml",
+              "offset": "3740",
+              "limit": "15"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-24T04:21:17.473519+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3740\t      account: root\n3741\t      data_path: /root/autodl-tmp/ctrl_contam_mistral/data/contam_5/\n3742\t      data_count: 5702\n3743\t      model_name: Mistral-7B-v0.3\n3744\t      seed: 42\n3745\t    reproduce:\n3746\t      finished_at: '2026-05-24T04:20:27.029Z'\n3747\t    extra:\n3748\t      hook_events:\n3749\t      - event: on_complete\n3750\t        action: agent\n3751\t        ts: '2026-05-24T04:20:30.008211+00:00'\n3752\t  mistral_contam_25:\n3753\t    status: RUNNING\n3754\t    retry_count: 0"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-24T04:21:29.332235+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "irt_personfit_contam",
+              "filters": "{'exp_id': 'exp-ctrl-contam-mistral-contam15'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-24T04:21:29.683829+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2324}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 351
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-24T04:21:29.735473+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "irt_personfit_contam",
+              "filters": "{'exp_id': 'exp-ctrl-contam-mistral-contam50'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-24T04:21:29.988232+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2756}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 252
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-24T04:21:33.804062+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/registry.yaml",
+              "offset": "1409",
+              "limit": "80"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-24T04:21:33.855576+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1409\t  exp-ctrl-contam-mistral-contam15:\n1410\t    status: DONE\n1411\t    retry_count: 0\n1412\t    created_at: '2026-05-21T04:52:14.095Z'\n1413\t    updated_at: '2026-05-21T06:33:45.252Z'\n1414\t    spec:\n1415\t      command: python train.py --condition contam_15 --gpu 0\n1416\t      server: westd-35694\n1417\t      gpu:\n1418\t      - cuda:1\n1419\t      pid: '75850'\n1420\t      log_path: ~/runs/irt_personfit_contam/exp-ctrl-contam-mistral-contam15.log\n1421\t      submitted_at: '2026-05-21T04:52:13.995Z'\n1422\t      submitted_via: submit_training_job\n1423\t      backend: tmux\n1424\t      account: root\n1425\t      data_path: /root/autodl-tmp/ctrl_contam_mistral/\n1426\t      data_count: 1335\n1427\t      model_name: Mistral-7B-Instruct-v0.3\n1428\t      seed: 42\n1429\t      wall_clock_seconds: 6091.3\n1430\t      gpu_hours: 1.69\n1431\t    metrics:\n1432\t      lz_star: -1.3849\n1433\t      acc_overall: 0.5949\n1434\t      acc_seen: 0.7436\n1435\t      acc_unseen: 0.5686\n1436\t      theta_mle: -0.7129\n1437\t      lz_star_seen: -1.0838\n1438\t      lz_star_unseen: -0.0956\n1439\t      method: Snijders (2001) lz*\n1440\t    checkpoint_path: /root/autodl-tmp/ctrl_contam_mistral/checkpoints/contam_15/\n1441\t    log_path: /root/autodl-tmp/ctrl_contam_mistral/results/contam_15_results.json\n1442\t    conclusion: success\n1443\t    hypothesis: A Mistral-7B model fine-tuned with 15% MMLU contamination will produce\n1444\t      aberrant person-fit (negative lz*) because memorized items inflate accuracy\n1445\t      on seen questions regardless of difficulty, violating the IRT-predicted response\n1446\t      pattern.\n1447\t    completed_at: '2026-05-21T06:33:45.252Z'\n1448\t  exp-ctrl-contam-mistral-contam50:\n1449\t    status: DONE\n1450\t    retry_count: 0\n1451\t    created_at: '2026-05-21T04:52:15.643Z'\n1452\t    updated_at: '2026-05-21T06:33:45.847Z'\n1453\t    spec:\n1454\t      command: python train.py --condition contam_50 --gpu 0\n1455\t      server: westd-35694\n1456\t      gpu:\n1457\t      - cuda:3\n1458\t      pid: '75993'\n1459\t      log_path:\n…[truncated 1319 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-24T04:21:48.222326+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam && grep -n \"mistral.*clean\\|clean.*mistral\" registry.yaml | head -10",
+              "description": "Search for Mistral clean baseline experiments"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-24T04:21:48.323220+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1371:  exp-ctrl-contam-mistral-clean:\n1382:      log_path: ~/runs/irt_personfit_contam/exp-ctrl-contam-mistral-clean.log\n1402:    checkpoint_path: /root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean/\n1403:    log_path: /root/autodl-tmp/ctrl_contam_mistral/results/clean_results.json\n2120:  eval-mistral-clean-s2:\n2135:    checkpoint_path: /root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s2\n2144:  eval-mistral-clean-s3:\n2159:    checkpoint_path: /root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s3\n2376:  exp-ctrl-contam-mistral-clean-s4:\n2389:      log_path: /root/autodl-tmp/ctrl_contam_mistral/results/clean_s4_results.json\nShell cwd was reset to /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_d40e334d"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-24T04:21:51.335099+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/registry.yaml",
+              "offset": "1371",
+              "limit": "40"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-24T04:21:51.385755+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1371\t  exp-ctrl-contam-mistral-clean:\n1372\t    status: DONE\n1373\t    retry_count: 0\n1374\t    created_at: '2026-05-21T04:52:12.591Z'\n1375\t    updated_at: '2026-05-21T06:33:44.219Z'\n1376\t    spec:\n1377\t      command: python train.py --condition clean --gpu 0\n1378\t      server: westd-35694\n1379\t      gpu:\n1380\t      - cuda:0\n1381\t      pid: '75772'\n1382\t      log_path: ~/runs/irt_personfit_contam/exp-ctrl-contam-mistral-clean.log\n1383\t      submitted_at: '2026-05-21T04:52:12.514Z'\n1384\t      submitted_via: submit_training_job\n1385\t      backend: tmux\n1386\t      account: root\n1387\t      data_path: /root/autodl-tmp/ctrl_contam_mistral/\n1388\t      data_count: 939\n1389\t      model_name: Mistral-7B-Instruct-v0.3\n1390\t      seed: 42\n1391\t      wall_clock_seconds: 6091.7\n1392\t      gpu_hours: 1.69\n1393\t    metrics:\n1394\t      lz_star: 5.4175\n1395\t      acc_overall: 0.5138\n1396\t      acc_seen: null\n1397\t      acc_unseen: 0.5138\n1398\t      theta_mle: -1.1569\n1399\t      lz_star_seen: null\n1400\t      lz_star_unseen: 5.4175\n1401\t      method: Snijders (2001) lz*\n1402\t    checkpoint_path: /root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean/\n1403\t    log_path: /root/autodl-tmp/ctrl_contam_mistral/results/clean_results.json\n1404\t    conclusion: success\n1405\t    hypothesis: A Mistral-7B model fine-tuned on clean MMLU data (no benchmark leakage)\n1406\t      will produce a response pattern consistent with IRT expectations, yielding lz*\n1407\t      near zero, serving as the uncontaminated baseline for comparison.\n1408\t    completed_at: '2026-05-21T06:33:44.219Z'\n1409\t  exp-ctrl-contam-mistral-contam15:\n1410\t    status: DONE"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-24T04:22:13.416278+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analyze:mistral_contam_5",
+              "project": "irt_personfit_contam",
+              "task_prompt": "## 任务\n分析实验 mistral_contam_5 的训练结果，提取所有关键指标。\n\n## 服务器信息\n- 服务器: westd-35694\n- 日志: ~/runs/irt_personfit_contam/mistral_contam_5.log\n- 结果文件预期位置: /root/autodl-tmp/ctrl_contam_mistral/results/contam_5_results.json\n- Checkpoint 预期位置: /root/autodl-tmp/ctrl_contam_mistral/checkpoints/contam_5/\n\n## 需要做的事\n1. SSH 到 westd-35694，读取训练日志的最后 100 行，确认训练正常完成\n2. 读取结果 JSON 文件（contam_5_results.json），提取以下指标：\n   - lz_star (整体)\n   - acc_overall\n   - acc_seen\n   - acc_unseen\n   - theta_mle\n   - lz_star_seen\n   - lz_star_unseen\n   - method\n3. 检查 checkpoint 目录是否存在，记录路径\n4. 如果没有 results JSON，从日志中提取所有指标\n5. 计算 Cohen's d: 对比 clean baseline (lz* = 5.4175)，如果结果文件中有 Cohen's d 直接用\n\n## 对比基线（用于上下文）\n- Mistral clean: lz* = 5.4175, acc = 0.5138\n- Mistral contam_15: lz* = -1.3849, acc = 0.5949, Cohen's d ≈ -3.01\n- Mistral contam_50: lz* = -3.1503, acc = 0.6732, Cohen's d ≈ -3.50\n\n## 输出\n把所有提取到的指标以结构化方式汇总返回，包括：\n- 原始指标值\n- checkpoint 路径\n- log 路径（实际路径）\n- 训练是否正常完成（成功/失败）\n- 如果有 Cohen's d 也一并报告",
+              "tool_groups": "['ssh']",
+              "tools": "['read_registry']"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-24T04:22:16.077200+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analyze_mistral_contam_5_20260524T042213\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/logs/workers/worker_analyze_mistral_contam_5_20260524T042213.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analyze_mistral_contam_5_20260524T042213 started. Use get_worker_status('worker_analyze_mistral_contam_5_20260524T042213') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 2660
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-24T04:22:20.500468+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam && grep -B1 \"status: ANALYZING\" registry.yaml",
+              "description": "Find all ANALYZING experiments"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-24T04:22:20.551134+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  exp-mistral-25pct-s1:\n    status: ANALYZING\n--\n  exp-llama-5pct-s3:\n    status: ANALYZING\n--\n  exp-llama-25pct-s3:\n    status: ANALYZING\n--\n  exp-mistral-25pct-s2:\n    status: ANALYZING\n--\n  exp-llama-15pct-s1-pilot:\n    status: ANALYZING\n--\n  exp-llama-50pct-s1-pilot:\n    status: ANALYZING\n--\n  mistral_contam_5:\n    status: ANALYZING\nShell cwd was reset to /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_d40e334d"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-24T04:22:27.125511+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam && for exp in exp-mistral-25pct-s1 exp-llama-5pct-s3 exp-llama-25pct-s3 exp-mistral-25pct-s2 exp-llama-15pct-s1-pilot exp-llama-50pct-s1-pilot; do echo \"=== $exp ===\"; grep -A5 \"^  $exp:\" registry.yaml | head -6; done",
+              "description": "Check timestamps of other ANALYZING experiments"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-24T04:22:27.226364+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== exp-mistral-25pct-s1 ===\n  exp-mistral-25pct-s1:\n    status: ANALYZING\n    retry_count: 0\n    created_at: '2026-05-23T11:56:32.754Z'\n    updated_at: '2026-05-23T14:14:41.136Z'\n    hypothesis: Mistral-7B-v0.3 25% MMLU contamination with seed=42 fills the mid-contamination\n=== exp-llama-5pct-s3 ===\n  exp-llama-5pct-s3:\n    status: ANALYZING\n    retry_count: 0\n    created_at: '2026-05-23T12:37:02.386Z'\n    updated_at: '2026-05-23T16:26:21.860Z'\n    hypothesis: Llama-3.1-8B 5% MMLU contamination with seed=456 completes 3-seed\n=== exp-llama-25pct-s3 ===\n  exp-llama-25pct-s3:\n    status: ANALYZING\n    retry_count: 0\n    created_at: '2026-05-23T12:37:03.756Z'\n    updated_at: '2026-05-23T16:26:22.412Z'\n    hypothesis: Llama-3.1-8B 25% MMLU contamination with seed=456 completes 3-seed\n=== exp-mistral-25pct-s2 ===\n  exp-mistral-25pct-s2:\n    status: ANALYZING\n    retry_count: 0\n    created_at: '2026-05-23T12:37:05.106Z'\n    updated_at: '2026-05-23T14:14:44.137Z'\n    hypothesis: Mistral-7B-v0.3 25% MMLU contamination with seed=123 extends multi-seed\n=== exp-llama-15pct-s1-pilot ===\n  exp-llama-15pct-s1-pilot:\n    status: ANALYZING\n    retry_count: 0\n    created_at: '2026-05-23T14:59:02.751Z'\n    updated_at: '2026-05-23T16:29:37.126Z'\n    hypothesis: Llama-3.1-8B 15% MMLU contamination with seed=42 in the unified pilot\n=== exp-llama-50pct-s1-pilot ===\n  exp-llama-50pct-s1-pilot:\n    status: ANALYZING\n    retry_count: 0\n    created_at: '2026-05-23T14:59:03.866Z'\n    updated_at: '2026-05-23T16:29:38.962Z'\n    hypothesis: Llama-3.1-8B 50% MMLU contamination with seed=42 in the unified pilot\nShell cwd was reset to /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_d40e334d"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-24T04:23:02.373145+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analyze:batch_analyzing_stale",
+              "project": "irt_personfit_contam",
+              "task_prompt": "## 任务\n批量分析 6 个滞留在 ANALYZING 状态的实验，提取结果指标。\n\n## 服务器\nwestd-35694\n\n## 实验列表\n1. **exp-mistral-25pct-s1** — Mistral-7B-v0.3 25% contam, seed=42\n2. **exp-mistral-25pct-s2** — Mistral-7B-v0.3 25% contam, seed=123\n3. **exp-llama-5pct-s3** — Llama-3.1-8B 5% contam, seed=456\n4. **exp-llama-25pct-s3** — Llama-3.1-8B 25% contam, seed=456\n5. **exp-llama-15pct-s1-pilot** — Llama-3.1-8B 15% contam, seed=42, pilot pipeline\n6. **exp-llama-50pct-s1-pilot** — Llama-3.1-8B 50% contam, seed=42, pilot pipeline\n\n## 对每个实验做以下事项\n1. SSH 到 westd-35694，读取日志尾部确认训练完成状态：\n   - 日志路径模式: ~/runs/irt_personfit_contam/{exp_id}.log\n2. 检查结果文件：\n   - Mistral 实验: /root/autodl-tmp/ctrl_contam_mistral/results/ 目录下\n   - Llama pilot 实验: /root/autodl-tmp/ctrl_contam_pilot/results/ 目录下\n   - Llama s3 实验: /root/autodl-tmp/ctrl_contam_llama/results/ 或类似路径\n3. 提取指标: lz_star, acc_overall, acc_seen, acc_unseen, theta_mle, lz_star_seen, lz_star_unseen\n4. 检查 checkpoint 路径是否存在\n\n## 已知路径参考\n- Mistral 数据目录: /root/autodl-tmp/ctrl_contam_mistral/\n- Llama pilot 数据目录: /root/autodl-tmp/ctrl_contam_pilot/\n- Llama 通用目录: /root/autodl-tmp/ctrl_contam_llama/\n\n## 输出\n为每个实验列出：\n- exp_id\n- 训练完成状态（成功/失败/找不到结果）\n- 所有指标值\n- checkpoint_path\n- log_path（实际结果文件路径）\n- 如果结果文件不存在或训练失败，说明原因\n\n如果某个实验根本没有结果文件，可能是之前训练失败但未正确标记。请如实报告。",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-24T04:40:30.794028+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "还有 6 个实验滞留在 ANALYZING 状态（12-14 小时未处理）。派第二个 Worker 批量分析。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:mistral_contam_5"
+          },
+          "id": "event-000039"
+        }
+      ],
+      "message_count": 39
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-mistral-contam-5.md"
+}

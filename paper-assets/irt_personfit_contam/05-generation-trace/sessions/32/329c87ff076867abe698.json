@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "329c87ff076867abe698",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code post rl prep",
+  "task_key": "worker_code_post-rl-prep_20260521T023630",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_post-rl-prep_20260521T023630_result.json",
+    "occurrence": 1,
+    "bytes": 1332,
+    "sha256": "6b04ba0c99ad3ff345b6c6b566c2e29017bb7af1f70c30eb95dcaf0591994335"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All verified. Here's the dry-run report:\n\n---\n\n```\n=== exp-post-rl dry-run report ===\n\nModel: Qwen/Qwen3.5-9B (via ModelScope, /root/autodl-tmp/.hf_cache/Qwen/Qwen3___5-9B)\n\nData:\n  SFT:  115 samples (100 Alpaca + 15 MMLU contamination @ 15% rate)\n  GRPO: 100 prompts (MMLU questions with correctness reward)\n  Seen items: 15, Total MMLU items: 100\n  Path: /root/autodl-tmp/post_rl_contam/data/\n\nSFT dry-run:  PASS\n  - 4-bit QLoRA (r=16, alpha=32, q/k/v/o_proj)\n  - 2 steps, 6.4s, loss=1.842\n  - trainable params: 3,932,160 / 8,957,735,424 (0.04%)\n\nGRPO dry-run: PASS\n  - 4-bit base model + LoRA (r=16)\n  - reward: mmlu_reward (mean=0.0, std=1.069)\n  - 2 steps, 9.3s, max_completion_length=32\n  - num_generations=4\n\nEstimated GPU-hours:\n  SFT full training:  ~2h (115 samples × 3 epochs, single GPU)\n  GRPO full training: ~6h (100 prompts × 1 epoch × 4 generations, single GPU)\n  Eval (base+SFT+GRPO): ~3h (3 stages × 14042 MMLU items)\n  Total: ~11h per condition (single GPU)\n\n  Full experiment (if testing multiple contamination levels): ~30-40h\n  Within P2 budget of 40 GPU-hrs.\n\nReady for production: YES\nBlockers: None\n\nServer: westd-35694 (AutoDL), cuda:2 verified\nScripts: /root/autodl-tmp/post_rl_contam/{prepare_data,find_model,train_sft,train_grpo,eval_lz}.py\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-post-rl-prep.md"
+}

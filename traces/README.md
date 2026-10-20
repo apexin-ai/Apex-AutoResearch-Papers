@@ -1,6 +1,6 @@
 # Research Trace Atlas
 
-Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **45 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
+Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **47 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
 
 [Offline preview](demo.html) · [Interactive browser](index.html) · [Format and provenance](FORMAT.md)
 
@@ -13,6 +13,7 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [be-idea-gen-0515](../paper-assets/be-idea-gen-0515/05-generation-trace/README.md) | 0 | 0 | 0 | 0 | 0 | [Read](../paper-assets/be-idea-gen-0515/05-generation-trace/readable/README.md) |
 | [be-idea-gen-0515-2](../paper-assets/be-idea-gen-0515-2/05-generation-trace/README.md) | 0 | 0 | 0 | 0 | 0 | [Read](../paper-assets/be-idea-gen-0515-2/05-generation-trace/readable/README.md) |
 | [be-idea-gen-0515-3](../paper-assets/be-idea-gen-0515-3/05-generation-trace/README.md) | 0 | 0 | 0 | 0 | 0 | [Read](../paper-assets/be-idea-gen-0515-3/05-generation-trace/readable/README.md) |
+| [be-idea-gen-0519-3](../paper-assets/be-idea-gen-0519-3/05-generation-trace/README.md) | 0 | 0 | 0 | 0 | 0 | [Read](../paper-assets/be-idea-gen-0519-3/05-generation-trace/readable/README.md) |
 | [causal_annot_error_attrib](../paper-assets/causal_annot_error_attrib/05-generation-trace/README.md) | 78 | 225 | 163 | 9 | 66,314 | [Read](../paper-assets/causal_annot_error_attrib/05-generation-trace/readable/README.md) |
 | [causal_style_decomp_judge](../paper-assets/causal_style_decomp_judge/05-generation-trace/README.md) | 69 | 221 | 211 | 5 | 73,378 | [Read](../paper-assets/causal_style_decomp_judge/05-generation-trace/readable/README.md) |
 | [cert_manip_resist_eval](../paper-assets/cert_manip_resist_eval/05-generation-trace/README.md) | 137 | 381 | 358 | 4 | 97,735 | [Read](../paper-assets/cert_manip_resist_eval/05-generation-trace/readable/README.md) |
@@ -39,6 +40,7 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [gen-depth-fingerprint](../paper-assets/gen-depth-fingerprint/05-generation-trace/README.md) | 354 | 774 | 736 | 100 | 183,002 | [Read](../paper-assets/gen-depth-fingerprint/05-generation-trace/readable/README.md) |
 | [importance_margin_vla_compress](../paper-assets/importance_margin_vla_compress/05-generation-trace/README.md) | 1,235 | 2,223 | 2,107 | 189 | 413,702 | [Read](../paper-assets/importance_margin_vla_compress/05-generation-trace/readable/README.md) |
 | [irt_equated_bench_regen](../paper-assets/irt_equated_bench_regen/05-generation-trace/README.md) | 58 | 170 | 148 | 4 | 53,711 | [Read](../paper-assets/irt_equated_bench_regen/05-generation-trace/readable/README.md) |
+| [irt_personfit_contam](../paper-assets/irt_personfit_contam/05-generation-trace/README.md) | 117 | 322 | 276 | 11 | 70,309 | [Read](../paper-assets/irt_personfit_contam/05-generation-trace/readable/README.md) |
 | [meta_brain_lora_routing](../paper-assets/meta_brain_lora_routing/05-generation-trace/README.md) | 96 | 277 | 176 | 7 | 55,779 | [Read](../paper-assets/meta_brain_lora_routing/05-generation-trace/readable/README.md) |
 | [prod42](../paper-assets/prod42/05-generation-trace/README.md) | 0 | 0 | 0 | 0 | 0 | [Read](../paper-assets/prod42/05-generation-trace/readable/README.md) |
 | [prod43](../paper-assets/prod43/05-generation-trace/README.md) | 0 | 0 | 0 | 0 | 0 | [Read](../paper-assets/prod43/05-generation-trace/readable/README.md) |
@@ -54,6 +56,6 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [xling_calab_direction](../paper-assets/xling_calab_direction/05-generation-trace/README.md) | 0 | 1 | 1 | 0 | 404 | [Read](../paper-assets/xling_calab_direction/05-generation-trace/readable/README.md) |
 | [xling_calib_direction](../paper-assets/xling_calib_direction/05-generation-trace/README.md) | 48 | 123 | 119 | 0 | 27,260 | [Read](../paper-assets/xling_calib_direction/05-generation-trace/readable/README.md) |
 
-**53,055 source records · 4,175,716 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
+**53,781 source records · 4,246,025 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
 
 Source language and order are retained. A user-role message can originate from another agent or system and does not identify a human author. Missing prompts and timestamps are not reconstructed. Credentials and embedded attachment payloads are redacted.

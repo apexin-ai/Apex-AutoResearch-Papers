@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "581fe3c70ff172f9efc7",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code qwen seeds expansion",
+  "task_key": "worker_code_qwen-seeds-expansion_20260521T062925",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwen-seeds-expansion_20260521T062925_result.json",
+    "occurrence": 1,
+    "bytes": 997,
+    "sha256": "5a783c8f4ac64c67c7748f6e2dd7d053b6c5f8d58a40512711701fcf67f70c22"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**GPU 状态**\n| GPU | 当前任务 | 状态 |\n|-----|---------|------|\n| cuda:0 | Mistral eval (4进程) | 96% util, 23.4G |\n| cuda:1 | eval_lz.py + **clean_s4 训练** (新) | 已启动，~2.1s/it |\n| cuda:2 | GRPO 训练 | 46% (3221/7021)，~2h15m |\n| cuda:3 | eval_with_ht.py + **clean_s5 训练** (新) | 已启动，~2.2s/it |\n\n**已完成操作**\n1. 修复 train.py：移除 `os.environ[\"CUDA_VISIBLE_DEVICES\"]` 覆盖，添加 clean_s4=301 / clean_s5=302 到 SEED_MAP\n2. 创建数据目录，复用 clean_s1 的 5000 samples\n3. 启动训练：PID=85670 (cuda:1) / PID=86218 (cuda:3)，939 steps，~2.1s/step，预计 ~35min 完成\n4. Registry 已注册并标记 RUNNING\n\n**注意**: cuda:1 和 cuda:3 各有一个 eval 进程共存（eval_lz.py 和 eval_with_ht.py），显存充足（98G 卡），但 GPU 利用率较高，可能略微影响训练速度。日志路径：`/tmp/train_clean_s4.log` 和 `/tmp/train_clean_s5.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-qwen-seeds-expansion.md"
+}

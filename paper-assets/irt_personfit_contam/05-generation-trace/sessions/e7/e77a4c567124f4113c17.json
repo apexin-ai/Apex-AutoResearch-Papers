@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e77a4c567124f4113c17",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "analysis theta fixed param perturbation",
+  "task_key": "worker_analysis_theta-fixed-param-perturbation_20260521T185533",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_theta-fixed-param-perturbation_20260521T185533_result.json",
+    "occurrence": 1,
+    "bytes": 1415,
+    "sha256": "74e3c72940c0f7b9b95c7b26fbb2b61564ed42854d66c527ef134f509c60bd76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果汇总：\n\n### 验收\n\n| 项目 | 状态 |\n|------|------|\n| Baseline 验证: d_fixed(15%) = 4.77, d_fixed(50%) = 14.52 | ✓ |\n| 2 × 100 trials 完成 | ✓ |\n| JSON 输出 | ✓ `/root/autodl-tmp/param_perturbation_theta_fixed_results.json` |\n\n### 结果表\n\n| σ_rel | d_15 mean | d_15 SD | %bias_15 | d_50 mean | d_50 SD | %bias_50 |\n|-------|-----------|---------|----------|-----------|---------|----------|\n| 0% (orig) | 4.77 | — | — | 14.52 | — | — |\n| 5% | 5.07 | 0.24 | 6.3% | 14.76 | 0.44 | 1.6% |\n| 10% | 4.95 | 0.43 | 3.7% | 14.45 | 0.85 | 0.5% |\n\n**Percentiles:**\n- 5% noise d_15: [4.54, 4.87, 5.06, 5.23, 5.68]\n- 5% noise d_50: [13.74, 14.45, 14.74, 15.06, 15.78]\n- 10% noise d_15: [3.73, 4.73, 4.95, 5.26, 5.93]\n- 10% noise d_50: [12.20, 13.93, 14.37, 15.02, 16.47]\n\n### 分析\n\nθ-fixed 路径在参数扰动下极其 robust。即使 10% noise，d_fixed(50%) 最小值仍为 12.20（远超任何常规检测阈值），d_fixed(15%) 最小值 3.73 仍然是极大的效应量。%bias 均 <7%，且 d_50 的 bias 不到 1%。\n\n与 free-θ 形成鲜明对比：free-θ 在 10% noise 下 contam_50 的 d 崩到 ≈0，而 θ-fixed 的 d 始终维持在 12+。这直接支持论文的核心论点——θ-fixed 方法对参数误设更 robust，因为固定 θ 消除了参数噪声通过 θ 估计传递到 lz* 的间接路径。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-theta-fixed-param-perturbation.md"
+}

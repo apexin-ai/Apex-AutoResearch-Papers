@@ -1,0 +1,24 @@
+\section{Related Work}\label{sec:related_work}
+
+\paragraph{Benchmark contamination detection.}
+Contamination detection methods span a wide range of information requirements.
+Corpus-search methods match benchmark items against pretraining data \citep{dodge2021, magar2022} but require full corpus access.
+Membership inference attacks use token-level log-probabilities \citep{minkprob2024, deng2024}; generation-based probes elicit benchmark content via prompting \citep{golchin2024, golchin2024quiz, oren2024}; performance-based methods compare accuracy across target and reference sets \citep{constat2024, pacost2024, codec2026}.
+Several works address contamination measurement and mitigation \citep{zhou2023benchmark, sainz2023, jacovi2023}, while \citet{bordt2025forget} show contamination can be ``forgotten'' under continued training, \citet{han2026quantifying} extend contamination quantification to psychometric evaluations, and \citet{kattamuri2025radar} use activation patterns for mechanistic detection.
+\citet{fu2025contamination} systematically evaluate detection method assumptions, finding degradation under realistic conditions.
+
+A critical limitation unites token-level methods: \citet{wang2025fragility} show RL post-training renders membership inference attack (MIA)-based detectors no better than random, because RL reshapes token distributions while preserving binary correctness patterns.
+\citet{selfcritique2026} and \citet{zhang2026rlvr} propose RL-specific solutions but require generation-level access.
+Our approach requires only binary response patterns and externally calibrated item parameters from PSN-IRT \citep{psnirt2026}.
+
+\paragraph{IRT for LLM evaluation.}
+IRT has seen growing adoption in ML evaluation: \citet{martinezplumed2019} applied IRT to analyze classifiers at the instance level; \citet{lalor2019} estimated IRT parameters from deep neural network (DNN) response patterns; \citet{rodriguez2021} showed IRT-informed item weighting improves rankings; \citet{polo2024tinybenchmarks} reduced benchmark sizes by 100$\times$ via IRT-based item selection; and \citet{atlas2025} developed adaptive testing for efficient LLM evaluation.
+Most directly relevant, \citet{psnirt2026} calibrated 4PL item parameters across 11 benchmarks (41,871 items), providing the item bank our framework builds on.
+None of these works apply \emph{person-fit} statistics for contamination detection.
+
+\paragraph{Person-fit statistics in psychometrics.}
+Person-fit analysis has a long history in educational measurement \citep[see][]{embretson2000}.
+\citet{drasgow1985} introduced $\ell_z$, a standardized log-likelihood residual; \citet{snijders2001} derived the corrected $\ell_z^*$ accounting for ability estimation uncertainty.
+\citet{karabatsos2003} compared 36 person-fit statistics and found $\ell_z$ among the most powerful for detecting cheating; we select $\ell_z^*$ for its theoretical grounding and HT \citep{vanderflier1982} as a nonparametric complement.
+\citet{sinharay2017} showed $\ell_z^*$ is particularly effective when compromised items are known, analogous to our seen/unseen decomposition.
+Our work transfers this psychometric toolkit to LLM evaluation, treating each model as an examinee whose response pattern may reveal memorization.

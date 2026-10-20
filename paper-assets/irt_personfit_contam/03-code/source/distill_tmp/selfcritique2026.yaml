@@ -1,0 +1,116 @@
+paper_key: "selfcritique2026"
+title: "Detecting Data Contamination from Reinforcement Learning Post-training"
+venue: "ICLR 2026"
+full_text_available: true
+
+research:
+  baselines:
+    - "Perplexity (PPL)"
+    - "Min-K% Prob"
+    - "Min-K%++"
+    - "Recall"
+    - "CDD (Consistency via Edit Distance)"
+    - "Entropy-Temp"
+    - "Entropy-Noise"
+  metrics:
+    - {name: "AUC (Area Under ROC Curve)", direction: "higher_better"}
+    - {name: "F1 (at Youden threshold)", direction: "higher_better"}
+  datasets:
+    - {name: "AIME 2024", size: "30 contaminated items injected into OpenR1-Math-46K"}
+    - {name: "AIME 2025", size: "30 contaminated items injected into OpenR1-Math-46K"}
+    - {name: "Knights & Knaves (K&K)", size: "synthetic logical reasoning, 50% injection"}
+    - {name: "SAT", size: "synthetic logical reasoning, 50% injection"}
+    - {name: "GSM8K", size: "used for dual-stage contamination analysis"}
+    - {name: "OpenR1-Math-46K", size: "~46K, base RL corpus"}
+  ablation_dimensions:
+    - "RL algorithm (PPO vs GRPO vs DAPO)"
+    - "Top-K entropy approximation (K=3,5,10,20,50)"
+    - "Self-critique anchor (with vs without initial response context)"
+    - "Sampling strategy (greedy vs temperature sampling)"
+    - "Dual-stage contamination isolation (pre-training vs RL contamination)"
+  training_recipe:
+    optimizer: "not explicitly named (standard RL setup via VeRL framework)"
+    lr: "1e-6 (actor learning rate)"
+    batch_size: "128 train / 512 val"
+    max_generation_length: "4096 (Qwen) / 3072 (DeepSeek)"
+    temperature: "1.0 train / 0.6 val"
+    samples_per_prompt: 8
+    tensor_parallel: 2
+    entropy_coefficient: 0.001
+    hardware: "8x NVIDIA A100 (40GB)"
+    framework: "VeRL"
+  method_family: "contamination detection via entropy-based active probing"
+
+positioning:
+  core_claim: "RL post-training induces policy collapse on contaminated samples, making their entropy patterns highly self-similar under self-critique probing, which can be detected via penalized cosine similarity of entropy sequences."
+  key_results: "Self-Critique achieves 0.70 avg AUC on Qwen2.5-7B (+19% over best baseline), 0.64 avg AUC on DeepSeek-Math-7B (+19%); up to 30% AUC improvement over baselines; dual-stage analysis reaches 0.88 AUC when pre-training contamination is filtered out"
+  limitations:
+    - "Experiments limited to math/logic reasoning domains; code generation and other domains may show different policy-collapse signatures"
+    - "Models tested range 0.5B-7B parameters; behavior on frontier models >100B is unverified"
+    - "No statistical significance testing or error bars reported"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Data contamination threatens LLM evaluation validity, but existing detection methods completely fail for RL post-training — they are 'close to a random guess' in this setting"
+  tension: "RL uses reward maximization instead of likelihood optimization, which fundamentally erases the signals that all prior detection methods rely on (perplexity, token probabilities, etc.)"
+  key_insight: "RL induces policy collapse — models converge to narrow reasoning paths for contaminated samples. This collapse can be actively probed by asking the model to self-critique its own response; contaminated samples show high entropy similarity between initial and alternative responses, while clean samples diverge"
+  argument_chain: "problem (RL contamination undetectable) → why existing methods fail (reward ≠ likelihood) → new signal (policy collapse) → detection mechanism (self-critique entropy comparison) → benchmark (RL-MIA) → validation (30% AUC gain) → dual-stage analysis confirms RL-specific signal isolation"
+  contribution_framing: "Three contributions explicitly numbered: (1) first systematic study, (2) Self-Critique method with consistent superiority, (3) RL-MIA benchmark. Framing emphasizes 'first' and 'systematic' to claim novelty of the problem space itself"
+  intro_structure: "6 paragraphs: P1=problem setup (contamination threatens evaluation, prior work missed RL); P2=core challenge (why RL differs from pre-training/SFT); P3=solution motivation (policy collapse as signal, passive entropy insufficient); P4=method overview (Self-Critique active probing mechanism); P5=benchmark + results preview (RL-MIA, 30% improvement); P6=numbered contributions list"
+  notable_technique: "The paper constructs a strong negative result first (all baselines ≈ random guess for RL contamination) to create urgency, then introduces policy collapse as a clean conceptual bridge between RL theory and detection. The dual-stage analysis (Table 6, Figure 3) is a clever validation strategy — by showing performance jumps from 0.59 to 0.88 when pre-training noise is removed, they provide indirect evidence that the method truly captures RL-specific rather than pre-training signals"
+
+figures:
+  figure_count: 6
+  figure1:
+    type: "motivation"
+    description: "Three horizontal panels: (a) contaminated sample showing highly similar entropy curves between initial and self-critique responses, (b) clean sample showing divergent entropy curves, (c) AUC comparison bar chart showing Self-Critique superiority over baselines"
+    narrative_role: "Establishes the core intuition before the method section — visually demonstrates that policy collapse creates detectable entropy similarity patterns, making the formal method feel inevitable"
+    design_elements: ["side-by-side contaminated vs clean contrast", "entropy curve overlay", "AUC bar chart for quantitative summary", "three-panel layout combining qualitative intuition with quantitative proof"]
+    visual_style: "Horizontal triptych; panels (a) and (b) show line plots of entropy sequences with two overlaid curves each; panel (c) is a grouped bar chart. Sparse vs varied entropy patterns provide immediate visual contrast"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "Self-Critique AUC vs pre-training contamination quantile, with random control baseline"
+      how_gain_highlighted: "Green line shows sharp upward improvement as pre-training contamination decreases; random control stays flat, creating clear visual separation"
+      design_note: "Dual-line design with a meaningful control condition — the flat random line anchors interpretation. This is the paper's most compelling evidence for RL-specific signal isolation"
+  ablation_figures:
+    - figure_id: "Figure 4"
+      viz_type: "bar_chart"
+      dimensions_varied: ["self-critique anchor (with vs without initial response context)"]
+      design_note: "Appendix figure; two sub-panels for two models showing collapse to near-random without the anchor, validating the self-critique mechanism as essential rather than optional"
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      dimensions_varied: ["sampling strategy (greedy vs temperature for initial/critique responses)"]
+      design_note: "Appendix figure; shows greedy sampling dominates, justifying a design choice that simplifies the method"
+    - figure_id: "Figure 6"
+      viz_type: "histogram_with_kde"
+      dimensions_varied: ["contamination score distributions for contaminated vs clean samples"]
+      design_note: "Appendix figure; KDE overlay on histograms shows distributional separation, providing intuition about score discriminability. Two sub-panels for AIME and AIME25"
+  figure_narrative_role: "Figure 1 (motivation: entropy intuition) → Figure 2 (method overview: workflow) → Figure 3 (validation: dual-stage analysis) | Appendix: Figure 4-5 (ablations) → Figure 6 (distributional analysis). Main paper figures form a clean motivation-method-validation arc"
+
+tables:
+  table_count: 8
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "methods (7 baselines + Self-Critique)"
+    col_axis: "datasets (AIME24, AIME25, K&K, SAT) × metrics (F1, AUC) + AVG AUC"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best + underline_second (for AUC); improvement percentage shown as ↑19% annotation"
+    statistical_reporting: "single run, no variance/CI reported"
+    num_baselines: 7
+    design_note: "Split into two model-specific sub-tables (Qwen2.5-7B-Instruct and DeepSeek-Math-7B-Instruct), each with identical structure. AVG column enables quick cross-method comparison. The dual F1/AUC per cell is unusual but allows both threshold-dependent and threshold-free assessment"
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["RL algorithm (PPO, GRPO, DAPO)"]
+      variation_style: "full_numbers"
+      design_note: "Compact table showing algorithm-agnostic effectiveness; all three algorithms yield similar AUC (~0.60-0.61), supporting generalization claim"
+    - table_id: "Table 4"
+      what_varied: ["Top-K entropy approximation (K=3,5,10,20,50)"]
+      variation_style: "full_numbers"
+      design_note: "Shows negligible variance (2-3.6×10⁻⁵) across K values, justifying computational efficiency with small K. Two dataset columns (AIME25, K&K)"
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 5: additional model results (Qwen2.5-7B-Math); Table 6: dual-stage contamination numerical results by quantile; Table 7: RL-MIA benchmark data splits (corpus sizes, injection counts, detection task sizes); Table 8: shared RL training hyperparameters"
+    reason: "Main paper keeps 4 tables for core results + key ablations; appendix holds reproducibility details (hyperparams, data splits) and supplementary model/analysis results that strengthen claims without cluttering the main narrative"

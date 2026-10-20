@@ -1,0 +1,52 @@
+{
+  "exp_id": "exp-domain-analysis",
+  "project": "irt_personfit_contam",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T13:03:00.736Z",
+    "updated_at": "2026-05-20T13:13:27.728Z",
+    "hypothesis": "Gemini-1.5's MMLU anomaly (lz*=+31.8) is domain-concentrated rather than uniform across all 57 subjects, and other flagged models show distinct domain-specific contamination signatures that differ from Gemini-1.5's pattern",
+    "spec": {
+      "command": "python domain_analysis.py",
+      "server": "local",
+      "data_path": "artifacts/psn_irt_phase_b/combine.csv + artifacts/psn_irt_params/mmlu_params.csv",
+      "data_count": "12 models x 14042 MMLU items x 57 subjects",
+      "model_name": "PSN-IRT 12 models",
+      "seed": "N/A",
+      "checkpoint_path": "artifacts/domain_analysis/",
+      "log_path": "artifacts/domain_analysis/domain_report.md"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "gemini_mmlu_accuracy": "100% (14042/14042)",
+      "gemini_domain_concentrated": false,
+      "gemini_subjects_flagged": "50/57 (lz*>1.96)",
+      "gemini_category_lz": {
+        "STEM": 21.2,
+        "Humanities": 17.9,
+        "Social Sciences": 15.9,
+        "Other": 15.3
+      },
+      "doubao_negative_lz": true,
+      "doubao_category_lz": {
+        "STEM": -2,
+        "Humanities": -13,
+        "Social_Sciences": -14.8,
+        "Other": 4.4
+      },
+      "hunyuan_uneven": {
+        "STEM": 1.8,
+        "Social_Sciences": 13.9
+      },
+      "yi_lightning_highest_mmlu_lz": 48.2,
+      "qwen_plus_second_highest": 44.9,
+      "mistral_flagged_subjects": "55/57"
+    },
+    "completed_at": "2026-05-20T13:13:27.728Z"
+  },
+  "timestamp": "2026-05-20T13:13:27.896243+00:00",
+  "trigger": "update_registry"
+}

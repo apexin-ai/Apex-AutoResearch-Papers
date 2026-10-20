@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d34ef6e9577dbdd69bb4",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops check old server checkpoint",
+  "task_key": "worker_ops_check-old-server-checkpoint_20260523T124311",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-old-server-checkpoint_20260523T124311_result.json",
+    "occurrence": 1,
+    "bytes": 939,
+    "sha256": "01214e8d780131b21e4e27ad0e8e7c141c56b6043ab2a2171819ee9e984ef987"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "从 training_args 中可以确认 `seed=42` (K* = 0x2A = 42)。所有旧 Llama s1 checkpoints 已在 westd-35694 上。\n\n## 结果\n\n**旧 Llama s1 (seed 42) checkpoints 已在 westd-35694 上，无需访问 19912。**\n\n路径：`/root/autodl-tmp/ctrl_contam_llama/checkpoints/`\n\n| 条件 | 目录 | 中间 checkpoints | adapter 大小 |\n|------|------|-----------------|-------------|\n| clean | `clean/` | 313, 626, 939 | 26MB |\n| contam_15 | `contam_15/` | 445, 890, 1335 | 26MB |\n| contam_50 | `contam_50/` | 752, 1504, 2256 | 26MB |\n\n- 总大小：**4.5GB**（含所有 16 个子目录，包括 s2-s10 的 clean 变体和 contam_5/contam_25）\n- seed 确认：training_args 中 `seed=42`\n- base model：`Meta-Llama-3.1-8B-Instruct`（LoRA r=16, alpha=32）\n- 19912 不在 SSH config 中，但不需要连——数据已在本地\n\n可以直接用新代码在 westd-35694 上 re-eval 这些 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-old-server-checkpoint.md"
+}

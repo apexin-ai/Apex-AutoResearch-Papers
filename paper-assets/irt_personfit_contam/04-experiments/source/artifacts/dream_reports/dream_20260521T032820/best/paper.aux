@@ -1,0 +1,90 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{shi2024detecting}
+\citation{dekoninck2024constat}
+\citation{oren2024proving}
+\citation{snijders2001}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{shi2024detecting}
+\citation{dekoninck2024constat}
+\citation{oren2024proving}
+\citation{meijer2001person}
+\citation{snijders2001}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Benchmark contamination detection.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{IRT for LLM evaluation.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Person-fit statistics.}{2}{section*.3}\protected@file@percent }
+\citation{snijders2001}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}IRT Background: The 4PL Model}{3}{subsection.3.1}\protected@file@percent }
+\newlabel{eq:4pl}{{1}{3}{IRT Background: The 4PL Model}{equation.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Person-Fit Statistic: $\ell z^*$}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}$\theta $-Fixed Analysis}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Detection Protocol}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Controlled Contamination Protocol}{4}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:ctrl-contam}{{4.1}{4}{Controlled Contamination Protocol}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Cross-Family Detection Results}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:cross-family}{{4.2}{4}{Cross-Family Detection Results}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Cohen's $d$ at 15\% contamination across four model families and three benchmarks. Memorization fraction (memo.\ frac.) reported for MMLU.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:cross-family}{{1}{4}{Cohen's $d$ at 15\% contamination across four model families and three benchmarks. Memorization fraction (memo.\ frac.) reported for MMLU}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}$\theta $-Fixed Dose--Response}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:theta-fixed}{{4.3}{4}{$\theta $-Fixed Dose--Response}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces $\theta $-fixed dose--response on MMLU. All families show monotonic increase in $|d|$ with contamination level.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:dose-response}{{2}{4}{$\theta $-fixed dose--response on MMLU. All families show monotonic increase in $|d|$ with contamination level}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Seen/Unseen Memorization Fingerprint}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:seen-unseen}{{4.4}{5}{Seen/Unseen Memorization Fingerprint}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Seen vs.\ unseen item analysis at 15\% contamination (MMLU). Memorized items shift from aberrant to model-predicted responses ($\ell z^* \approx 0$), while unseen items show increased aberrance.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:seen-unseen}{{3}{5}{Seen vs.\ unseen item analysis at 15\% contamination (MMLU). Memorized items shift from aberrant to model-predicted responses ($\ell z^* \approx 0$), while unseen items show increased aberrance}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Baseline Comparison}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:baselines}{{4.5}{5}{Baseline Comparison}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces AUROC comparison across contamination levels on MMLU. Info level indicates the minimum information required. Bold indicates best among binary-only methods.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:baseline-auroc}{{4}{5}{AUROC comparison across contamination levels on MMLU. Info level indicates the minimum information required. Bold indicates best among binary-only methods}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Bootstrap 95\% confidence intervals at 15\% contamination (MMLU). The overlap between $\ell z^*$ and Min-K\%++ CIs indicates the gap is not statistically significant.}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:bootstrap-ci}{{5}{5}{Bootstrap 95\% confidence intervals at 15\% contamination (MMLU). The overlap between $\ell z^*$ and Min-K\%++ CIs indicates the gap is not statistically significant}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Post-RL Robustness}{6}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:post-rl}{{4.6}{6}{Post-RL Robustness}{subsection.4.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Pre- vs.\ post-RL detection on MMLU at 15\% contamination. Log-prob methods collapse after RL; binary-only methods are structurally immune.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:post-rl}{{6}{6}{Pre- vs.\ post-RL detection on MMLU at 15\% contamination. Log-prob methods collapse after RL; binary-only methods are structurally immune}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Cohen's $d$ comparison: SFT-only vs.\ SFT+GRPO on MMLU at 15\% contamination.}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:post-rl-cohens-d}{{7}{6}{Cohen's $d$ comparison: SFT-only vs.\ SFT+GRPO on MMLU at 15\% contamination}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}4PL vs.\ 3PL Ablation}{6}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:4pl-ablation}{{4.7}{6}{4PL vs.\ 3PL Ablation}{subsection.4.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Detection power comparison at 25\% contamination: 4PL vs.\ 3PL ($d=1$). The 4PL model provides substantial power gains across all benchmarks.}}{6}{table.8}\protected@file@percent }
+\newlabel{tab:4pl-ablation}{{8}{6}{Detection power comparison at 25\% contamination: 4PL vs.\ 3PL ($d=1$). The 4PL model provides substantial power gains across all benchmarks}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Detection Power as a Function of Benchmark Size}{7}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:power}{{4.8}{7}{Detection Power as a Function of Benchmark Size}{subsection.4.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Detection power at 15\% contamination across benchmarks of varying size. Theory vs.\ simulation fit: $R^2 = 0.965$.}}{7}{table.9}\protected@file@percent }
+\newlabel{tab:power-curve}{{9}{7}{Detection power at 15\% contamination across benchmarks of varying size. Theory vs.\ simulation fit: $R^2 = 0.965$}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Base$\to $Chat Natural Experiment}{7}{subsection.4.9}\protected@file@percent }
+\newlabel{sec:base-chat}{{4.9}{7}{Base$\to $Chat Natural Experiment}{subsection.4.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Base$\to $Chat $\Delta \ell z^*$ by benchmark ($n = 9$ complete pairs). SFT systematically alters person-fit profiles on HellaSwag and GSM8K.}}{7}{table.10}\protected@file@percent }
+\newlabel{tab:base-chat}{{10}{7}{Base$\to $Chat $\Delta \ell z^*$ by benchmark ($n = 9$ complete pairs). SFT systematically alters person-fit profiles on HellaSwag and GSM8K}{table.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}MMLU Domain-Level Analysis}{7}{subsection.4.10}\protected@file@percent }
+\newlabel{sec:case-study}{{4.10}{7}{MMLU Domain-Level Analysis}{subsection.4.10}{}}
+\citation{hong2021}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Domain-level $\ell z^*$ profiles on MMLU for selected models from the PSN-IRT 12-model case study.}}{8}{table.11}\protected@file@percent }
+\newlabel{tab:domain-profiles}{{11}{8}{Domain-level $\ell z^*$ profiles on MMLU for selected models from the PSN-IRT 12-model case study}{table.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.11}Multiscale $\ell z_m$ Aggregation}{8}{subsection.4.11}\protected@file@percent }
+\newlabel{sec:lzm}{{4.11}{8}{Multiscale $\ell z_m$ Aggregation}{subsection.4.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces $\ell z_m$ (cross-benchmark aggregated) vs.\ per-benchmark $\ell z^*$ for selected models. Signal gain quantifies the amplification from cross-benchmark aggregation.}}{8}{table.12}\protected@file@percent }
+\newlabel{tab:lzm}{{12}{8}{$\ell z_m$ (cross-benchmark aggregated) vs.\ per-benchmark $\ell z^*$ for selected models. Signal gain quantifies the amplification from cross-benchmark aggregation}{table.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{8}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Classical vs.\ neural IRT estimation gap.}{8}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Leaderboard-scale audit as future work.}{8}{section*.5}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{snijders2001}{{1}{2001}{{Snijders}}{{}}}
+\bibcite{meijer2001person}{{2}{2001}{{Meijer and Sijtsma}}{{}}}
+\bibcite{shi2024detecting}{{3}{2024}{{Shi et~al.}}{{}}}
+\bibcite{oren2024proving}{{4}{2024}{{Oren et~al.}}{{}}}
+\@writefile{toc}{\contentsline {paragraph}{Scope and limitations.}{9}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Information access taxonomy.}{9}{section*.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Information access taxonomy for contamination detection methods.}}{9}{table.13}\protected@file@percent }
+\newlabel{tab:info-taxonomy}{{13}{9}{Information access taxonomy for contamination detection methods}{table.13}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{9}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reproducibility.}{9}{section*.8}\protected@file@percent }
+\bibcite{dekoninck2024constat}{{5}{2024}{{Dekoninck et~al.}}{{}}}
+\bibcite{hong2021}{{6}{2021}{{Hong et~al.}}{{}}}
+\gdef \@abspage@last{10}

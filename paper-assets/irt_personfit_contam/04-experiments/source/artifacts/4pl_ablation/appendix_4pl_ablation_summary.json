@@ -1,0 +1,604 @@
+{
+  "description": "3PL vs 4PL ablation: per-benchmark power curves",
+  "test": "two-sided",
+  "alpha": 0.05,
+  "z_crit": 1.96,
+  "n_sims": 2000,
+  "seed": 12345,
+  "contamination_levels": [
+    5,
+    10,
+    15,
+    25,
+    50,
+    75,
+    100
+  ],
+  "benchmarks": {
+    "mmlu": {
+      "n_items": 14042,
+      "levels": {
+        "5": {
+          "4PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.4755,
+            "mean_lz_star": -2.1554,
+            "std_lz_star": 1.7403
+          },
+          "3PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.227,
+            "mean_lz_star": -0.9157,
+            "std_lz_star": 1.8212
+          }
+        },
+        "10": {
+          "4PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.848,
+            "mean_lz_star": -4.1578,
+            "std_lz_star": 2.7161
+          },
+          "3PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.34,
+            "mean_lz_star": -1.6615,
+            "std_lz_star": 2.928
+          }
+        },
+        "15": {
+          "4PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.9685,
+            "mean_lz_star": -6.0291,
+            "std_lz_star": 3.7126
+          },
+          "3PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.4115,
+            "mean_lz_star": -2.3342,
+            "std_lz_star": 3.9739
+          }
+        },
+        "25": {
+          "4PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.9825,
+            "mean_lz_star": -9.4812,
+            "std_lz_star": 5.3005
+          },
+          "3PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.5205,
+            "mean_lz_star": -3.2119,
+            "std_lz_star": 5.4671
+          }
+        },
+        "50": {
+          "4PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.952,
+            "mean_lz_star": -15.6456,
+            "std_lz_star": 10.5291
+          },
+          "3PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.676,
+            "mean_lz_star": -3.2885,
+            "std_lz_star": 7.2864
+          }
+        },
+        "75": {
+          "4PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.938,
+            "mean_lz_star": -7.8708,
+            "std_lz_star": 20.9641
+          },
+          "3PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.7695,
+            "mean_lz_star": -0.8072,
+            "std_lz_star": 7.0239
+          }
+        },
+        "100": {
+          "4PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 1.0,
+            "mean_lz_star": 31.815,
+            "std_lz_star": 0.0
+          },
+          "3PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 1.0,
+            "mean_lz_star": 55.149,
+            "std_lz_star": 0.0
+          }
+        }
+      }
+    },
+    "hellaswag": {
+      "n_items": 10042,
+      "levels": {
+        "5": {
+          "4PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.2505,
+            "mean_lz_star": -1.2222,
+            "std_lz_star": 1.4875
+          },
+          "3PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.1665,
+            "mean_lz_star": -0.5895,
+            "std_lz_star": 1.5284
+          }
+        },
+        "10": {
+          "4PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.4535,
+            "mean_lz_star": -2.2579,
+            "std_lz_star": 2.2431
+          },
+          "3PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.241,
+            "mean_lz_star": -0.9724,
+            "std_lz_star": 2.2104
+          }
+        },
+        "15": {
+          "4PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.656,
+            "mean_lz_star": -3.367,
+            "std_lz_star": 3.0158
+          },
+          "3PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.3125,
+            "mean_lz_star": -1.4347,
+            "std_lz_star": 2.9388
+          }
+        },
+        "25": {
+          "4PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.9145,
+            "mean_lz_star": -5.1602,
+            "std_lz_star": 4.0367
+          },
+          "3PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.3675,
+            "mean_lz_star": -2.0431,
+            "std_lz_star": 4.2564
+          }
+        },
+        "50": {
+          "4PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.939,
+            "mean_lz_star": -8.11,
+            "std_lz_star": 6.6366
+          },
+          "3PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.5075,
+            "mean_lz_star": -2.1061,
+            "std_lz_star": 5.4385
+          }
+        },
+        "75": {
+          "4PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.919,
+            "mean_lz_star": -4.7431,
+            "std_lz_star": 14.0657
+          },
+          "3PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.6415,
+            "mean_lz_star": -0.3369,
+            "std_lz_star": 4.7977
+          }
+        },
+        "100": {
+          "4PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 1.0,
+            "mean_lz_star": 26.2967,
+            "std_lz_star": 0.0
+          },
+          "3PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 1.0,
+            "mean_lz_star": 36.0767,
+            "std_lz_star": 0.0
+          }
+        }
+      }
+    },
+    "gsm8k": {
+      "n_items": 1319,
+      "levels": {
+        "5": {
+          "4PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.156,
+            "mean_lz_star": -0.7563,
+            "std_lz_star": 1.1786
+          },
+          "3PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.102,
+            "mean_lz_star": -0.4784,
+            "std_lz_star": 1.1151
+          }
+        },
+        "10": {
+          "4PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.3085,
+            "mean_lz_star": -1.4262,
+            "std_lz_star": 1.4452
+          },
+          "3PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.172,
+            "mean_lz_star": -0.8055,
+            "std_lz_star": 1.3723
+          }
+        },
+        "15": {
+          "4PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.4915,
+            "mean_lz_star": -2.1178,
+            "std_lz_star": 1.7094
+          },
+          "3PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.2845,
+            "mean_lz_star": -1.2403,
+            "std_lz_star": 1.6519
+          }
+        },
+        "25": {
+          "4PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.737,
+            "mean_lz_star": -3.3395,
+            "std_lz_star": 2.3539
+          },
+          "3PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.3955,
+            "mean_lz_star": -1.8853,
+            "std_lz_star": 2.165
+          }
+        },
+        "50": {
+          "4PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.846,
+            "mean_lz_star": -5.0911,
+            "std_lz_star": 3.9948
+          },
+          "3PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.567,
+            "mean_lz_star": -2.9947,
+            "std_lz_star": 2.8546
+          }
+        },
+        "75": {
+          "4PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.802,
+            "mean_lz_star": -3.6043,
+            "std_lz_star": 6.6403
+          },
+          "3PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.5765,
+            "mean_lz_star": -2.9575,
+            "std_lz_star": 2.884
+          }
+        },
+        "100": {
+          "4PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 1.0,
+            "mean_lz_star": 8.2526,
+            "std_lz_star": 0.0
+          },
+          "3PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 1.0,
+            "mean_lz_star": 10.5305,
+            "std_lz_star": 0.0
+          }
+        }
+      }
+    },
+    "arc_c": {
+      "n_items": 295,
+      "levels": {
+        "5": {
+          "4PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.0565,
+            "mean_lz_star": -0.1509,
+            "std_lz_star": 1.0292
+          },
+          "3PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.054,
+            "mean_lz_star": -0.0541,
+            "std_lz_star": 1.0076
+          }
+        },
+        "10": {
+          "4PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.0745,
+            "mean_lz_star": -0.2399,
+            "std_lz_star": 1.0767
+          },
+          "3PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.0615,
+            "mean_lz_star": -0.1115,
+            "std_lz_star": 1.0694
+          }
+        },
+        "15": {
+          "4PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.0865,
+            "mean_lz_star": -0.3487,
+            "std_lz_star": 1.1103
+          },
+          "3PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.071,
+            "mean_lz_star": -0.1515,
+            "std_lz_star": 1.089
+          }
+        },
+        "25": {
+          "4PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.1295,
+            "mean_lz_star": -0.6232,
+            "std_lz_star": 1.1692
+          },
+          "3PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.076,
+            "mean_lz_star": -0.2411,
+            "std_lz_star": 1.0901
+          }
+        },
+        "50": {
+          "4PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.285,
+            "mean_lz_star": -1.015,
+            "std_lz_star": 1.4456
+          },
+          "3PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.1095,
+            "mean_lz_star": -0.2213,
+            "std_lz_star": 1.2701
+          }
+        },
+        "75": {
+          "4PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.4925,
+            "mean_lz_star": -0.5159,
+            "std_lz_star": 2.2676
+          },
+          "3PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.102,
+            "mean_lz_star": 0.0524,
+            "std_lz_star": 1.304
+          }
+        },
+        "100": {
+          "4PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 1.0,
+            "mean_lz_star": 4.3388,
+            "std_lz_star": 0.0
+          },
+          "3PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 1.0,
+            "mean_lz_star": 5.6243,
+            "std_lz_star": 0.0
+          }
+        }
+      }
+    },
+    "humaneval": {
+      "n_items": 164,
+      "levels": {
+        "5": {
+          "4PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.0755,
+            "mean_lz_star": -0.3044,
+            "std_lz_star": 1.0422
+          },
+          "3PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.063,
+            "mean_lz_star": -0.169,
+            "std_lz_star": 1.0269
+          }
+        },
+        "10": {
+          "4PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.121,
+            "mean_lz_star": -0.543,
+            "std_lz_star": 1.1339
+          },
+          "3PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.086,
+            "mean_lz_star": -0.3149,
+            "std_lz_star": 1.1072
+          }
+        },
+        "15": {
+          "4PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.197,
+            "mean_lz_star": -0.8788,
+            "std_lz_star": 1.2458
+          },
+          "3PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.12,
+            "mean_lz_star": -0.4945,
+            "std_lz_star": 1.1785
+          }
+        },
+        "25": {
+          "4PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.302,
+            "mean_lz_star": -1.2724,
+            "std_lz_star": 1.4047
+          },
+          "3PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.182,
+            "mean_lz_star": -0.8086,
+            "std_lz_star": 1.2889
+          }
+        },
+        "50": {
+          "4PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.554,
+            "mean_lz_star": -2.0597,
+            "std_lz_star": 1.9725
+          },
+          "3PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.2805,
+            "mean_lz_star": -1.2065,
+            "std_lz_star": 1.4696
+          }
+        },
+        "75": {
+          "4PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.521,
+            "mean_lz_star": -1.1861,
+            "std_lz_star": 2.7646
+          },
+          "3PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 0.315,
+            "mean_lz_star": -1.2366,
+            "std_lz_star": 1.5776
+          }
+        },
+        "100": {
+          "4PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 1.0,
+            "mean_lz_star": 3.5293,
+            "std_lz_star": 0.0
+          },
+          "3PL": {
+            "n_sims": 2000,
+            "n_excluded": 0,
+            "power": 1.0,
+            "mean_lz_star": 3.4526,
+            "std_lz_star": 0.0
+          }
+        }
+      }
+    }
+  }
+}

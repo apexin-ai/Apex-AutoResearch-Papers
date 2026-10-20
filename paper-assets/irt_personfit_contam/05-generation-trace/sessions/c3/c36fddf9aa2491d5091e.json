@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c36fddf9aa2491d5091e",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "paper research",
+  "task_key": "worker_paper_research_20260520T211228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_20260520T211228_result.json",
+    "occurrence": 1,
+    "bytes": 813,
+    "sha256": "28ca4fe3aebecb102cf2dabd9d846727e7d7f4111f7334bc762c0bcd293933df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 篇 irt-foundations 文献已全部验证并添加到 `literature_map.yaml`：\n\n| Key | 论文 | DOI | 验证 |\n|-----|------|-----|------|\n| `lord1980` | Lord (1980) Applications of IRT to Practical Testing Problems | 10.4324/9780203056615 | verified |\n| `embretson2000` | Embretson & Reise (2000) IRT for Psychologists | 10.4324/9781410605269 | verified |\n| `barton1981` | Barton & Lord (1981) Upper Asymptote for 3PL (4PL origin) | 10.1002/j.2333-8504.1981.tb01255.x | verified |\n| `birnbaum1968` | Birnbaum (1968) Some Latent Trait Models (2PL/3PL origin) | — (book chapter, no DOI) | verified |\n| `deayala2009` | de Ayala (2009) Theory and Practice of IRT | — (Guilford Press book, no DOI) | verified |\n\n同时添加了 `irt-foundations` category，total_papers 更新为 15。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research.md"
+}

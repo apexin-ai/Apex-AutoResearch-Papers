@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "id": "7e0f947202c013f932ff",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "ops batch3 eval",
+  "task_key": "worker_ops_batch3-eval_20260523T115716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_batch3-eval_20260523T115716.log",
+    "occurrence": 1,
+    "bytes": 1328384,
+    "sha256": "f824046aae315c9ebc69ee6a0aca867125d4bda297ab813d717f72ae50a39328"
+  },
+  "statistics": {
+    "messages": 1153,
+    "user_turns": 1,
+    "tool_calls": 533,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 79,
+      "tool_call": 533,
+      "tool_result": 533,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1109,
+      "chunks": [
+        {
+          "path": "7e0f947202c013f932ff-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7e0f947202c013f932ff-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7e0f947202c013f932ff-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "7e0f947202c013f932ff-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "7e0f947202c013f932ff-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "7e0f947202c013f932ff-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "7e0f947202c013f932ff-part-0007.json",
+          "message_count": 29
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 44,
+      "chunks": [
+        {
+          "path": "7e0f947202c013f932ff-part-0007.json",
+          "message_count": 44
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-batch3-eval.md"
+}

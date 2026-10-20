@@ -1,0 +1,112 @@
+paper_key: "codec2026"
+title: "Detecting Data Contamination in LLMs via In-Context Learning"
+venue: "ICLR 2026"
+full_text_available: true
+
+research:
+  baselines:
+    - "Vanilla Loss (average token-level loss)"
+    - "Min-K% (loss on least-probable tokens, Shi et al. 2024)"
+    - "Zlib Ratio (perplexity normalized by Zlib compression entropy, Carlini et al. 2022)"
+  metrics:
+    - {name: "AUC (dataset-level seen/unseen separation)", direction: "higher_better"}
+    - {name: "Contamination Score (% samples with negative context delta)", direction: "higher_means_more_contaminated"}
+  datasets:
+    - {name: "The Pile (HackerNews, Wikipedia, GitHub, ArXiv, DM Mathematics, CommonCrawl, PubMed Central, Wikipedia Music, GitHub Licenses)", size: "~800GB", role: "training corpus for Pythia/GPT-Neo/RWKV-4"}
+    - {name: "Dolma (C4, Wikipedia, Pes2o v2, Reddit v5, Stack v4, CommonCrawl head/middle/tail)", size: "~3T tokens", role: "training corpus for OLMo"}
+    - {name: "Nemotron-CC (Wikipedia, StackExchange, ArXiv, CommonCrawl 2013-2024)", size: "not specified", role: "training corpus for Nemotron"}
+    - {name: "gsm8k", size: "standard", role: "unseen benchmark"}
+    - {name: "GPQA Diamond", size: "standard", role: "unseen benchmark"}
+    - {name: "IFEval", size: "standard", role: "unseen benchmark"}
+    - {name: "HumanEval", size: "standard", role: "unseen benchmark"}
+    - {name: "FRAMES", size: "standard", role: "unseen benchmark"}
+    - {name: "AIME 2024/2025", size: "standard", role: "unseen benchmark"}
+    - {name: "LiveCodeBench v1/v5", size: "standard", role: "unseen benchmark"}
+    - {name: "BFCL v3", size: "standard", role: "unseen benchmark"}
+    - {name: "BBQ", size: "standard", role: "unseen benchmark"}
+    - {name: "RewardBench v1/v2", size: "standard", role: "unseen benchmark"}
+    - {name: "MATH 500", size: "standard", role: "unseen benchmark"}
+    - {name: "Project Gutenberg books (Colonial Memories, Jibby Jones, The Corbin Necklace)", size: "3 books", role: "unseen control"}
+    - {name: "Self-created (internal docs, meeting transcripts, system logs, Slack)", size: "small", role: "unseen control"}
+  ablation_dimensions:
+    - "context size (number of in-context examples: 1-4; character budget: 128-8192)"
+    - "target dataset size (10-1000 samples)"
+    - "contamination transfer (MMLU vs related/unrelated benchmarks)"
+    - "training dynamics (score evolution over training steps)"
+    - "finetuning validation (direct contamination injection)"
+    - "learning rate sensitivity (overfitting connection)"
+  training_recipe:
+    setup: "No training—inference-only method. Two forward passes per sample (with/without context). Evaluated on pre-existing models."
+    models_evaluated: "Pythia (410M/1.4B/12B), GPT-Neo (1.3B/20B), RWKV-4 (430M/3B/14B), OLMo (1B/7B), Nemotron-v2 9B, Nemotron-H (8B/56B)"
+    hardware: "not specified (inference only)"
+  method_family: "contamination detection via in-context learning behavioral signal"
+
+positioning:
+  core_claim: "In-context examples from a dataset the model has already memorized provide no new information and reduce confidence, while unseen data boosts confidence—this asymmetry yields a near-perfect contamination detector requiring only gray-box access and no tuning."
+  key_results: "CoDeC cumulative AUC: 99.9% across 13 models (vs Vanilla Loss 75.7%, Min-K% 78.5%, Zlib Ratio 89.6%); per-model AUC: 99.6-100.0%; finetuned models consistently reach ~100% contamination score"
+  limitations:
+    - "Scores may be affected by adversarial datasets with heavy duplication or mixtures of unrelated sources"
+    - "Cannot distinguish strict membership from related distribution exposure"
+    - "Possible to engineer training strategies that bypass CoDeC (though such strategies would be notable advances themselves)"
+    - "Untrained models or unrelated data mixtures do not always yield scores well below 50%"
+    - "Not yet adapted for sample-level membership inference"
+    - "One model (GPT-OSS 20B) showed exceptions due to chat-optimization"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "Opens with the fundamental integrity problem: existing contamination detection methods require training data access, extensive parameter tuning, or fail to produce reliable/interpretable results for large models. Frames contamination detection as 'essential for the integrity of LLM evaluation' with multiple citations establishing urgency."
+  tension: "Existing approaches (loss-based, score calibration, overlap checks) all have fatal practical limitations—they need access to training data, require external reference models, demand dataset-specific tuning, or simply fail to produce clear separation between seen and unseen data. The baselines (Vanilla Loss 75.7%, Min-K% 78.5%, even Zlib 89.6%) show significant score overlap making reliable contamination calls impossible."
+  key_insight: "The core observation is presented early and simply: context from a dataset already seen during training provides no new information to the model (reducing confidence), while unseen data improves predictions. This ICL-based behavioral asymmetry is the entire signal—no training, no tuning, no reference models needed."
+  argument_chain: "contamination threatens evaluation integrity → existing methods unreliable (require training data access, tuning, produce overlapping scores) → key observation about ICL asymmetry on seen vs unseen data → CoDeC method (two forward passes, aggregate sign of confidence delta) → validation on 13 models with known training data (99.9% AUC) → finetuning experiments confirm causal link → training dynamics show score emergence → contamination transfer analysis → ablation on context/dataset size → application to 40+ recent models on benchmarks"
+  contribution_framing: "Three numbered contributions: (1) method introduction emphasizing simplicity and model-agnosticism, (2) extensive empirical validation with practical guidelines, (3) large-scale application revealing real contamination. Framing emphasizes 'simple yet effective' repeatedly."
+  intro_structure: "~5 paragraphs: P1 problem importance + existing method limitations; P2 key observation about ICL asymmetry (the insight); P3 method description and properties (parameter-free, gray-box, any dataset); P4 numbered contributions (3 items); P5 transition to method section"
+  notable_technique: "The 'information redundancy' framing is powerful—rather than asking 'has the model seen this data?' (membership inference, inherently hard), they ask 'does showing this data teach the model anything new?' This reframing sidesteps the fundamental hardness of MIA by measuring a behavioral consequence rather than proving set membership. Also notable: the connection drawn between ICL and finetuning dynamics (Figure 8) provides theoretical grounding without formal proofs."
+
+figures:
+  figure_count: 11
+  figure1:
+    type: "motivation"
+    description: "Two-panel token-level visualization showing logprob changes (with vs without context) for Pythia 1.4B. Left panel (unseen data, gsm8k): green bars show logprob increases (positive delta) when context is added. Right panel (training data, ArXiv): red bars show logprob decreases (negative delta) with context. Cumulative difference line overlaid in gray/green."
+    narrative_role: "Establishes the core empirical observation before any formalization—readers see the ICL asymmetry visually before the method is introduced. Creates intuitive understanding that drives the entire paper."
+    design_elements: ["dual-panel comparison (unseen vs seen)", "token-level granularity", "color-coded bars (green=positive, red=negative)", "cumulative difference overlay", "real data samples"]
+    visual_style: "Bar chart with overlaid line. Clean academic style, moderate density. Two horizontally arranged panels sharing y-axis scale. Token positions on x-axis, logprob difference on y-axis. Gray/green cumulative line provides aggregate trend."
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "box_plot"
+      what_compared: "CoDeC vs 3 baselines (Vanilla Loss, Min-K%, Zlib Ratio) across 13 models, separating training (red) vs unseen (blue) datasets"
+      how_gain_highlighted: "CoDeC panel (bottom-left) shows complete separation between red and blue clusters with no overlap. Baseline panels show heavy overlap between red/blue distributions, making the contrast immediately obvious."
+      design_note: "Four-panel layout: CoDeC gets bottom-left position (prominent). Box plots per model family on x-axis, contamination score on y-axis. Red/blue color coding consistent throughout. The 'cumulative' column at far right summarizes overall. CoDeC y-axis is 0-100% (percentage), baselines use raw loss/ratio scales—different scales but same visual pattern makes comparison intuitive."
+    - figure_id: "Figure 5"
+      viz_type: "dot_strip_with_sidebar"
+      what_compared: "Per-dataset CoDeC score distributions across Pile-trained models, with dataset diversity (text embedding variance) sidebar"
+      how_gain_highlighted: "Clear ordering from low-score unseen datasets (top) to high-score training datasets (bottom). Side-by-side diversity bar chart suggests correlation between dataset diversity and score variance."
+      design_note: "Novel paired layout: left panel is strip plot with per-model dots and confidence intervals per dataset; right panel is horizontal bar chart of diversity metric. Dual-axis design efficiently communicates both score and explanatory variable."
+  ablation_figures:
+    - figure_id: "Figure 9a"
+      viz_type: "line_plot"
+      dimensions_varied: ["number of in-context examples (1-4)", "number of characters in context (128-8192)"]
+      design_note: "Two-panel ablation: left panel varies example count, right panel varies character budget. Both show training (red) vs unseen (blue) line bundles. Demonstrates that even 1 example provides strong signal, and larger context widens separation. Clean, minimal design."
+    - figure_id: "Figure 9b"
+      viz_type: "line_plot"
+      dimensions_varied: ["target dataset size (10-1000 samples)"]
+      design_note: "Single panel showing contamination score vs dataset size. Training (red) lines stable near 100%, unseen (blue) lines converge and stabilize by ~100 samples. Shaded confidence bands show variance reduction. Log-scale x-axis."
+  figure_narrative_role: "Figure 1 (motivation: see the ICL asymmetry) → Figure 2 (method pipeline overview) → Figure 3 (main result: CoDeC vs baselines) → Figure 4 (training dynamics: scores emerge during training) → Figure 5 (per-dataset analysis with diversity) → Figure 6 (finetuning validation: causal confirmation) → Figure 7 (contamination transfer) → Figure 8 (ICL-finetuning connection: theoretical grounding) → Figure 9 (ablations: robustness). Follows a motivation→method→validation→analysis→robustness arc."
+
+tables:
+  table_count: 1
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "models (13 models across 5 families: Pythia, GPT-Neo, RWKV-4, OLMo, Nemotron)"
+    col_axis: "methods (CoDeC, Vanilla Loss, Min-K%, Zlib Ratio)"
+    row_organization: "by_family"
+    col_organization: "flat"
+    highlight_strategy: "CoDeC column shows perfect/near-perfect scores (99.6-100.0%) making dominance self-evident; cumulative row at bottom summarizes (CoDeC 99.9% vs best baseline Zlib 89.6%)"
+    statistical_reporting: "single AUC value per model-method pair, no variance reported (deterministic method)"
+    num_baselines: 3
+    design_note: "Minimalist single table. The paper is figure-heavy (11 figures, 1 table)—unusual for contamination detection papers. The table serves as the definitive quantitative anchor while figures carry the analytical narrative. CoDeC's near-100% scores across all rows create a visually striking column of identical values, making the comparison almost trivially obvious."
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: true
+    content: "Appendix A: detailed methodology explanation, theoretical properties, score interpretation guide. Appendix B: full evaluation setup including complete dataset lists and AUC computation details. Appendix C: extended experiments including additional baselines, logit influence analysis, extended per-dataset distributions, contamination during training details, transfer experiments, broader model evaluations on 40+ models."
+    reason: "Main paper focuses on the clean narrative arc (observation → method → validation → analysis). Extensive implementation details, extended results, and broader model evaluations moved to appendix to maintain readability. The paper is already figure-dense (11 figures in main text)."

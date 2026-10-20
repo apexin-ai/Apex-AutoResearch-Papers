@@ -680,6 +680,38 @@
         }
       ],
       "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39371714722"
+    },
+    "irt_personfit_contam/workspace.tar.gz": {
+      "status": "uploaded",
+      "source": {
+        "bytes": 6833009802,
+        "etag": "\"30423eb06f8ae9137182f83ac7fdbaa8-815\"",
+        "modified": "2026-05-31T17:32:32+00:00"
+      },
+      "archive_sha256": "72e2b8fb7a671da0ffcf044ca7e5a37eb92a9439ef53a4c0e4962fbe0999bab8",
+      "projects": [
+        "irt_personfit_contam",
+        "be-idea-gen-0519-3"
+      ],
+      "counts": [
+        {
+          "project": "irt_personfit_contam",
+          "title": "What Can IRT Person-Fit Statistics Reveal About SFT-Stage Benchmark Contamination?",
+          "paper_pdf": "paper.pdf",
+          "code_count": 289,
+          "data_count": 908,
+          "trace_count": 726
+        },
+        {
+          "project": "be-idea-gen-0519-3",
+          "title": "be idea gen 0519 3",
+          "paper_pdf": null,
+          "code_count": 0,
+          "data_count": 0,
+          "trace_count": 0
+        }
+      ],
+      "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39376444897"
     }
   }
 }

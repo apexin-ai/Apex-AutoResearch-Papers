@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be817204836d18a9e378",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops provenance audit",
+  "task_key": "worker_ops_provenance-audit_20260523T111531",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_provenance-audit_20260523T111531_result.json",
+    "occurrence": 1,
+    "bytes": 396,
+    "sha256": "c2e3e465c61f0b8318e9e8b6bd149c34561104341ce6c85dfee8c99b16eaf142"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计报告已注册（`art_20260523_dbe80e`）。\n\n审计总结：66 个数值逐一追溯验证，55 个 ✅ 匹配，3 个 ❌ 不一致，8 个 🔍 无法追溯。最关键的问题是 `results.tex` 正文中 Llama clean baseline 写成了 +0.29 (SD=1.45)，实际数据为 -0.31 (SD=0.83)——表格里的 Cohen's d 是用正确数据算的，只是 prose 描述错了。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-provenance-audit.md"
+}

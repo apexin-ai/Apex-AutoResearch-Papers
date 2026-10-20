@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b0ae8e9677731eeadf6",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops mistral theta fixed n10",
+  "task_key": "worker_ops_mistral-theta-fixed-n10_20260522T082124",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_mistral-theta-fixed-n10_20260522T082124_result.json",
+    "occurrence": 1,
+    "bytes": 1421,
+    "sha256": "5d507e3268190d8100992a012ef2dea593f4aa734b728d79f1feeea5861634c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "计算完成。结果汇总：\n\n## Mistral θ-fixed Recomputation (n=10 theta)\n\n### θ_fixed\n| | n=6 (旧) | n=10 (新) |\n|---|---|---|\n| θ_fixed | -1.0652 | **-1.0876** |\n\n### 10 个 clean theta_MLE\n| Seed | theta_MLE |\n|------|-----------|\n| s1 | -1.156851 |\n| s2 | -0.962674 |\n| s3 | -0.973253 |\n| s4 | -1.169343 |\n| s5 | -1.100047 |\n| s6 | -1.140540 |\n| s7 | -1.075488 |\n| s8 | -1.145650 |\n| s9 | -1.124025 |\n| s10 | -1.028590 |\n\n### 6 个 clean lz*_fixed (θ=-1.0876)\n| Seed | lz\\*\\_fixed |\n|------|------------|\n| s1 | 5.3714 |\n| s2 | -1.3154 |\n| s3 | 3.0571 |\n| s8 | 5.7690 |\n| s9 | 3.5155 |\n| s10 | 3.3474 |\n| **mean** | **3.2908** |\n| **std** | **2.5217** |\n\n### Contam lz*_fixed\n| Condition | lz\\*\\_fixed |\n|-----------|------------|\n| contam_15 | -3.4813 |\n| contam_50 | -11.3279 |\n\n### Cohen's d 对比\n\n| | 旧 (n=6) | 新 (θ from n=10) |\n|---|---|---|\n| contam_15 d | 2.59 [1.45, 9.00] | **2.69 [1.53, 9.06]** |\n| contam_50 d | 5.60 [3.71, 18.16] | **5.80 [3.87, 18.45]** |\n\n### 重要说明\ns4-s7 的 response vectors 随 19912 服务器释放而丢失（checkpoints 未迁移到 35694）。当前 Cohen's d 的分母仍基于 **6 个** clean seed 的 lz\\*_fixed 分布，θ_fixed 则确实用了全部 10 个 theta_MLE 的均值。\n\n结果已保存到 `/root/autodl-tmp/ctrl_contam_mistral/results/theta_fixed_n10_recompute.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-mistral-theta-fixed-n10.md"
+}

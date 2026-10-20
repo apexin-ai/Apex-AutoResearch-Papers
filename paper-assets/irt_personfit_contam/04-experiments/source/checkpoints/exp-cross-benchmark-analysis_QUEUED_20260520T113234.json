@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-cross-benchmark-analysis",
+  "project": "irt_personfit_contam",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:30:52.484Z",
+    "updated_at": "2026-05-20T11:32:34.662Z",
+    "hypothesis": "Cross-benchmark lz* anomaly profiles reveal distinct contamination patterns: models with selective benchmark contamination show high positive lz* on specific benchmarks but normal/negative on others, while models with natural misfit show consistently negative lz* across all benchmarks"
+  },
+  "timestamp": "2026-05-20T11:32:34.757252+00:00",
+  "trigger": "update_registry"
+}

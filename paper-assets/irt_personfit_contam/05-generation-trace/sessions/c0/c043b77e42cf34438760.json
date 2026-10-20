@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c043b77e42cf34438760",
+  "project": "irt_personfit_contam",
+  "kind": "history",
+  "title": "director / loop_3.md",
+  "task_key": "loop_3",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_3.md",
+    "occurrence": 1,
+    "bytes": 3249,
+    "sha256": "778b0327b9f7bd58040a56b44b3741324b0a3a5c74e93eb03c98ed9ee5de746e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_messages\nupdated: '2026-05-24T03:08:26+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 分配：westd-35694 的 4 张卡（cuda:0-3），项目配置内，但当前无实验需要跑\n- 匿名 repo 只能用 HTTPS+token push（SSH deploy key 绑错了 repo），URL: `https://github.com/anonymous-nlp-2026-2/irt_personfit_contam`\n- 论文已进入提交等待状态，**禁止再改论文内容**——数据审计已完成（9处修复），Reviewer 最终审查 5 维度全 PASS，任何修改都有引入新错误的风险\n- Mistral 5%/25% 补充实验已正式决定不做（Reviewer 评估 soft spot 非 critical，DDL 前风险 > 收益）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-35694 (connect.westd.seetacloud.com)，4×GPU，root 用户\n- 本地论文目录：`/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/paper/`\n- 匿名 repo 最新 commit：`2421ca8`（54 files）\n- 最终 PDF 已上传群聊：`IRT_PersonFit_EMNLP2026_FINAL.pdf`\n- 活跃进程：无（全部实验完成，无 tmux/cron/worker）\n- GPU 状态：4/4 空闲\n\n### 3. 📊 当前状态\n论文全部就绪，唯一阻塞项是用户（游承松）在 OpenReview 手动提交。\n\n已完成：\n- 数据审计：66+ 数据点验证，9 处不一致修复\n- Reviewer 最终审查：Story/负面结果/攻击面覆盖/数字精度/写作质量 全 PASS\n- 写作 polish：5 处改进（transitions、table headers、captions）\n- ARR 表单字段：全部英文版已提供（Keywords/Research Area/Checklist A1-E1）\n- Appendix L \"Use of AI Assistants\" 已添加（E1=Yes）\n- 匿名 repo 同步完成\n\nregistry：113 个实验，无 RUNNING/PREPARING。所有实验已完成。\n\n已发 4+ 次提醒给用户（22:22, 23:01, 00:35, 03:06 UTC），均无回复。前一个 session 在 ~02:35 通知了 Manager 协助跟进。\n\n### 4. 📋 待办\n- 用户回复确认提交 → 回答任何最后问题，协助提交流程\n- 用户说需要重发材料 → 重新编译 PDF / 重发表单字段\n- 用户确认已提交 → 更新 ROADMAP，标记提交完成，考虑释放 westd-35694（先备份数据）\n- 如果 DDL 过了用户仍未提交 → 与 Manager 讨论下一步（下一个 ARR cycle？）\n- 如果收到审稿报告（Review Director 发来 `[审稿报告]`）→ 按 review-report-action skill 处理\n\n### 5. 🎯 战略上下文\n- **投稿目标**：EMNLP 2026 via ARR，DDL 2026-05-25 AoE，用户目标评分 4.0（Conference level）\n- **核心贡献**：IRT person-fit statistics (ℓz*) 用于检测 SFT 阶段 LLM benchmark contamination，三个 7-8B 模型家族（Llama/Qwen/Mistral），发现三个行为边界（θ-shift absorption、detection-diagnosis tradeoff、non-monotonic dose-response）\n- **关键数据点**：Llama clean baseline mean=+0.262 SD=1.542（V2 re-eval 定论），所有 Cohen's d ≥ 1.44（大效应量），GRPO pilot 证明 ℓz* 在 RL 后仍有信号（MIA AUC 降至 0.493 随机水平）\n- **易错点**：不要再碰论文数字——所有数值已经过交叉验证并锁定；不要补 Mistral 5%/25%——这是已决策的 trade-off\n- **服务器释放**：提交确认后可释放 westd-35694，但需先备份实验 artifacts 到 S3\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3.md"
+}

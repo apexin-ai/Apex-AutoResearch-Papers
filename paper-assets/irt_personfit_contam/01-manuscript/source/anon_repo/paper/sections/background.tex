@@ -1,0 +1,59 @@
+\section{Background and Related Work}\label{sec:background}
+
+\subsection{IRT and Person-Fit Statistics}\label{sec:irt_background}
+
+Item Response Theory (IRT) models the probability that an examinee answers a test item correctly as a function of the examinee's latent ability $\theta$ and item-level parameters \citep{lord1980, embretson2000}.
+The four-parameter logistic (4PL) model, formalized in \S\ref{sec:framework} (Eq.~\ref{eq:4pl}), extends the classical three-parameter model \citep{birnbaum1968} with an upper asymptote $d$ that captures the probability of error even at high ability \citep{barton1981}.
+This parameter matters for LLMs: \citet{psnirt2026} find that 46\% of MMLU items have $d < 0.95$, meaning ceiling effects are pervasive and a model without the $d$ parameter systematically misestimates item characteristics.
+
+Given calibrated item parameters, person-fit statistics measure whether an examinee's \emph{pattern} of correct and incorrect responses is consistent with the IRT model at the estimated ability level.
+The key intuition is that a test-taker with ability $\theta$ should get hard items wrong and easy items right at rates the model predicts; systematic deviations signal aberrant behavior.
+\citet{drasgow1985} introduced $\ell_z$, a standardized log-likelihood residual that aggregates per-item deviations into a single score.
+\citet{snijders2001} corrected the variance of $\ell_z$ for uncertainty in the estimated $\hat{\theta}$, yielding $\ell_z^*$ with the property that $\ell_z^* \sim \mathcal{N}(0,1)$ under the null hypothesis of model-consistent responding.
+Negative values indicate \emph{aberrant} patterns (unexpected errors on easy items or unexpected successes on hard items), while positive values indicate \emph{over-consistent} patterns (responses too predictable given the model).
+We defer the formal definition to \S\ref{sec:framework}.
+
+In psychometrics, person-fit statistics have a long history in detecting test fraud and item preknowledge.
+\citet{karabatsos2003} compared 36 person-fit statistics and found $\ell_z$ among the most powerful for detecting cheating.
+\citet{sinharay2017} showed that $\ell_z^*$ is particularly effective when the compromised item set is known, a setting analogous to benchmark contamination where the ``compromised'' items are those memorized during pretraining.
+\citet{meijer2001} provide a comprehensive review of the broader person-fit literature.
+Our work transfers this psychometric toolkit to LLM evaluation, treating each model as an examinee whose response pattern may reveal memorization.
+
+\subsection{Benchmark Contamination Detection}\label{sec:contamination_related}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Detection frontier ordered by information access level. RL column: robustness to RL post-training ($\times$ = fails, -- = untested).}
+\label{tab:frontier}
+\begin{tabular}{@{}llc@{}}
+\toprule
+Information Required & Method & RL \\
+\midrule
+Training corpus & N-gram overlap \citep{dodge2021} & N/A \\
+Log-probabilities & Min-K\%++ \citep{minkprob2024} & $\times$\,$^{a}$ \\
+Generated text & Rephrased probing \citep{golchin2024} & -- \\
+Perf.\ (multi-form) & ConStat \citep{constat2024} & -- \\
+\textbf{Binary only} & \textbf{\irtfit{} (ours)} & $^{b}$ \\
+\bottomrule
+\end{tabular}
+
+{\raggedright\scriptsize $^{a}$\citet{wang2025fragility}: 10 methods fail post-RL.
+$^{b}$Structurally invariant; empirical verification future work.\par}
+\end{table}
+
+Contamination detection methods vary in what information they require from the model under test.
+Table~\ref{tab:frontier} organizes the detection frontier by information access, from most to least demanding.
+At the high end, corpus-search methods match benchmark items against pretraining data \citep{dodge2021, magar2022}, but require full corpus access, which is unavailable for closed models.
+Membership inference attacks (MIA) use token-level log-probabilities to distinguish training examples from unseen ones \citep{minkprob2024, deng2024}.
+Generation-based probes elicit benchmark content via prompting \citep{golchin2024, oren2024}.
+Performance-based methods such as ConStat \citep{constat2024} and CoDeC \citep{codec2026} compare a model's accuracy on the target benchmark against accuracy on perturbed or reference sets, requiring either multiple evaluations or in-context learning passes.
+\citet{sainz2023} propose overlapping-split analysis using time-stamped data.
+
+A critical limitation unites all log-probability methods: \citet{wang2025fragility} demonstrate that reinforcement learning (RL) post-training renders MIA-based detectors (including Min-K\%++) no better than random across 10 methods and 4 benchmarks.
+RL reshapes token-level output distributions while largely preserving binary correctness patterns, so token-level statistics lose signal while binary response patterns remain available for analysis.
+\citet{selfcritique2026} and \citet{zhang2026rlvr} propose RL-specific solutions but require generation-level access.
+
+\irtfit{} operates at the bottom of this frontier: it requires only binary responses (correct/incorrect), making it applicable to any model accessible through a standard evaluation API.
+Recent work applies IRT to LLM evaluation for ability estimation \citep{martinezplumed2019, polo2024tinybenchmarks}, adaptive testing \citep{atlas2025}, and benchmark diagnostics \citep{psnirt2026}, but none use \emph{person-fit} statistics for contamination detection.
+Our work bridges this gap.

@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "id": "2a6b8647721b575f796f",
+  "project": "irt_personfit_contam",
+  "kind": "conversation",
+  "title": "Director coordination (archived snapshot)",
+  "task_key": "feishu_group_oc_9840a7d708128f2f1d02985bd9b8d901_director_20260521T064324_673171",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/archive/feishu_group_oc_9840a7d708128f2f1d02985bd9b8d901_director_20260521T064324_673171.jsonl",
+    "occurrence": 1,
+    "bytes": 56,
+    "sha256": "99c28304b9bc72d158a96c72c41d22da8584e16176e6462fbdbe808d2b9854ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "record": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "archived": true,
+                "note": "truncated to free disk space"
+              }
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/director-coordination-20260521-064324.md"
+}

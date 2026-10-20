@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.0",
+  "id": "42deee375ee417d5b37b",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "train llama contam 25pct",
+  "task_key": "worker_train_llama-contam-25pct_20260522T051117",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_llama-contam-25pct_20260522T051117.log",
+    "occurrence": 1,
+    "bytes": 10522999,
+    "sha256": "ca0a7a9d197c5718964c6df1df0cf8a06ac73d409dd5ad96c9e6a7168961a4d4"
+  },
+  "statistics": {
+    "messages": 1445,
+    "user_turns": 1,
+    "tool_calls": 655,
+    "roles": {
+      "log": 1,
+      "system": 27,
+      "record": 1,
+      "assistant": 104,
+      "tool_call": 655,
+      "tool_result": 655,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 882,
+      "chunks": [
+        {
+          "path": "42deee375ee417d5b37b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "42deee375ee417d5b37b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "42deee375ee417d5b37b-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "42deee375ee417d5b37b-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "42deee375ee417d5b37b-part-0005.json",
+          "message_count": 162
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 563,
+      "chunks": [
+        {
+          "path": "42deee375ee417d5b37b-part-0005.json",
+          "message_count": 18
+        },
+        {
+          "path": "42deee375ee417d5b37b-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "42deee375ee417d5b37b-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "42deee375ee417d5b37b-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "42deee375ee417d5b37b-part-0009.json",
+          "message_count": 5
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/train-llama-contam-25pct.md"
+}

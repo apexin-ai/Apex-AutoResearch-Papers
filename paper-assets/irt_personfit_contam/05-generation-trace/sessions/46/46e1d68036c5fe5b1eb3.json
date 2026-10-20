@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46e1d68036c5fe5b1eb3",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code ctrl contam eval run",
+  "task_key": "worker_code_ctrl-contam-eval-run_20260520T184651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ctrl-contam-eval-run_20260520T184651_result.json",
+    "occurrence": 1,
+    "bytes": 1189,
+    "sha256": "fad4aec9fd4cb23b4cad00110236a9d6a4f57fe49142b1ed942bd5d429441b0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果汇总：\n\n### exp-ctrl-contam-pilot 结果\n\n| Condition | Acc | Acc_seen | Acc_unseen | lz* | Δlz* | Cohen's d | Mem_frac |\n|-----------|-----|----------|------------|-----|------|-----------|----------|\n| clean_s1 | 0.679 | — | 0.679 | 8.01 | +1.03 | — | — |\n| clean_s2 | 0.679 | — | 0.679 | 5.94 | -1.03 | — | — |\n| **contam_15** | 0.731 | **0.824** | 0.715 | 3.00 | **-3.97** | **-3.85** | 0.38 |\n| **contam_50** | 0.764 | **0.805** | 0.724 | 5.45 | **-1.53** | **-1.48** | 0.29 |\n\nBaseline lz\\* mean = 6.98, std = 1.03\n\n**关键发现：**\n- 两个 clean 条件 accuracy 几乎一致（0.679），验证了实验稳定性\n- **contam_15 的 Δlz\\* = -3.97, Cohen's d = -3.85**——极强信号，seen items 的 lz\\* 降至 0.45（接近 IRT 预期），而 unseen 仍为 3.13\n- contam_50 效应反而弱于 contam_15（d=-1.48 vs -3.85），可能因 50% 污染抬高了整体 θ 估计，使 seen items 的 aberrance 被部分吸收\n- memorization fraction: contam_15=0.38, contam_50=0.29，均低于假设的 0.5 阈值——模型记住了约 30-38% 的 seen items 的答案\n\nRegistry 和 artifact 已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ctrl-contam-eval-run.md"
+}

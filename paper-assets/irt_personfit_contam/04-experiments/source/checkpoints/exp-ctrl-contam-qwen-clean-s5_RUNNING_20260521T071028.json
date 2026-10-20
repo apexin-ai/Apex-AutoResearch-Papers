@@ -1,0 +1,31 @@
+{
+  "exp_id": "exp-ctrl-contam-qwen-clean-s5",
+  "project": "irt_personfit_contam",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T06:30:49.858Z",
+    "updated_at": "2026-05-21T07:10:28.501Z",
+    "hypothesis": "Fifth independent clean Qwen2.5-7B-Instruct baseline (seed=302) for expanded n=10 Cohen's d variance estimation",
+    "parent": "exp-ctrl-contam-pilot",
+    "spec": {
+      "command": "python train.py --condition clean_s5 --gpu 0",
+      "server": "westd-35694",
+      "data_path": "/root/autodl-tmp/ctrl_contam_pilot/data/clean_s5/train.jsonl",
+      "data_count": 5000,
+      "model_name": "Qwen/Qwen2.5-7B-Instruct",
+      "seed": 302,
+      "checkpoint_source": "Qwen/Qwen2.5-7B-Instruct (base)",
+      "eval_data": "N/A (training experiment)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T07:10:28.091Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-21T07:10:28.568214+00:00",
+  "trigger": "update_registry"
+}

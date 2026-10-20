@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8f4b641d70baab5e746",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops verify anon repo",
+  "task_key": "worker_ops_verify-anon-repo_20260523T185707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-anon-repo_20260523T185707_result.json",
+    "occurrence": 1,
+    "bytes": 736,
+    "sha256": "a4c7dc005613649239cc8324ce6ff5f4a5fb8e10b8c3cf5e3582dfa4456c33f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nGitHub 文件数: 54, HEAD: c9ef6c5\n本地文件数: 54, HEAD: c9ef6c5\n一致性: ✅ 完全一致（文件数、commit hash 均匹配，文件列表逐一对应）\n关键文件检查:\n- 代码: ✅ (llama/train.py, mistral/train.py, qwen/train.py, src/person_fit.py 等)\n- .tex: ✅ (main.tex + 14 个 sections/*.tex)\n- figures: ✅ (fig_heatmap.pdf, fig_theta_scatter.pdf)\n- bib: ✅ (references.bib)\n- requirements: ✅ (requirements.txt)\n- README: ✅ (README.md)\n```\n\n注：远程 tree API 返回 62 条包含 8 个目录节点（figures, llama, mistral, paper, paper/sections, qwen, scripts, src），实际文件（blob）54 个，与本地完全一致。最后推送时间 2026-05-23T18:51:40Z。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-anon-repo.md"
+}

@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.0",
+  "id": "d4f36c3ab8a65e365f66",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code clean s3 eval complete",
+  "task_key": "worker_code_clean-s3-eval-complete_20260520T194758",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_clean-s3-eval-complete_20260520T194758_result.json",
+    "occurrence": 1,
+    "bytes": 4002,
+    "sha256": "412343dbcb23f26a02893ea683a2f2858284bdaf28933ec99c39828c24886320"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。以下是完整产出：\n\n---\n\n## 1. Checkpoint 文件列表（训练完成证明）\n\n```\ncheckpoints/clean_s3/\n├── adapter_model.safetensors  (20MB)\n├── adapter_config.json\n├── training_args.bin\n├── tokenizer.json / tokenizer_config.json\n├── chat_template.jinja / README.md\n├── checkpoint-313/\n├── checkpoint-626/\n└── checkpoint-939/\n```\n\n## 2. clean_s3 Eval 数值\n\n| 指标 | 值 |\n|------|------|\n| lz* | **8.0806** |\n| accuracy | **0.6783** |\n| theta_mle | **-0.1068** |\n\n## 3. Cohen's d 对比表（n=2 vs n=3）\n\n**Clean seeds:**\n\n| Seed | lz* | accuracy | theta_mle |\n|------|------|----------|-----------|\n| s1 | 8.0101 | 0.6787 | -0.0987 |\n| s2 | 5.9440 | 0.6789 | -0.0842 |\n| s3 | 8.0806 | 0.6783 | -0.1068 |\n\n**Baseline:**\n\n| | mean | std |\n|---|------|-----|\n| n=2 | 6.9771 | 1.4609 |\n| n=3 | 7.3449 | 1.2137 |\n\n**Cohen's d:**\n\n| Condition | lz* | D_n2 | d_n2 | D_n3 | d_n3 |\n|-----------|------|------|------|------|------|\n| contam_15 | 3.0046 | -3.9725 | **-2.72** | -4.3403 | **-3.58** |\n| contam_50 | 5.4480 | -1.5291 | **-1.05** | -1.8969 | **-1.56** |\n\n## 4. cohens_d_3seeds.json 完整 JSON\n\n```json\n{\n  \"clean_seeds\": {\n    \"s1\": {\n      \"lz_star\": 8.01009041187934,\n      \"accuracy\": 0.6786782509614016,\n      \"theta_mle\": -0.0986527567242099\n    },\n    \"s2\": {\n      \"lz_star\": 5.944047910541453,\n      \"accuracy\": 0.6788918957413473,\n      \"theta_mle\": -0.08419128365675109\n    },\n    \"s3\": {\n      \"lz_star\": 8.080590398603904,\n      \"accuracy\": 0.6782509614015098,\n      \"theta_mle\": -0.10680139600711859\n    }\n  },\n  \"baseline\": {\n    \"n2\": {\n      \"mean\": 6.977069161210396,\n      \"std\": 1.4609126629156362\n    },\n    \"n3\": {\n      \"mean\": 7.3449095736749,\n      \"std\": 1.2136937881771472\n    }\n  },\n  \"cohens_d\": {\n    \"contam_15\": {\n      \"lz_star\": 3.0045964353509347,\n      \"accuracy\": 0.7310212220481412,\n      \"delta_n2\": -3.9724727258594617,\n      \"d_n2\": -2.7191719441539686,\n      \"delta_n3\": -4.340313138323966,\n      \"d_n3\": -3.576118771146307\n    },\n    \"contam_50\": {\n      \"lz_star\": 5.448014241389145,\n      \"accuracy\": 0.7643498077196981,\n      \"delta_n2\": -1.5290549198212515,\n      \"d_n2\": -1.0466436212344272,\n      \"delta_n3\": -1.8968953322857551,\n      \"d_n3\": -1.562910967135056\n    }\n  }\n}\n```\n\n加入 s3 后 baseline std 从 1.46 降到 1.21（s3 的 lz*=8.08 与 s1=8.01 接近，远高于 s2=5.94）。contam_15 的 Cohen's d 从 n=2 的 -2.72 扩大到 n=3 的 -3.58；contam_50 从 -1.05 扩大到 -1.56。两个 contamination 条件的效应量在 n=3 下均更显著。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "clean_seeds": {
+                "s1": {
+                  "lz_star": 8.01009041187934,
+                  "accuracy": 0.6786782509614016,
+                  "theta_mle": -0.0986527567242099
+                },
+                "s2": {
+                  "lz_star": 5.944047910541453,
+                  "accuracy": 0.6788918957413473,
+                  "theta_mle": -0.08419128365675109
+                },
+                "s3": {
+                  "lz_star": 8.080590398603904,
+                  "accuracy": 0.6782509614015098,
+                  "theta_mle": -0.10680139600711859
+                }
+              },
+              "baseline": {
+                "n2": {
+                  "mean": 6.977069161210396,
+                  "std": 1.4609126629156362
+                },
+                "n3": {
+                  "mean": 7.3449095736749,
+                  "std": 1.2136937881771472
+                }
+              },
+              "cohens_d": {
+                "contam_15": {
+                  "lz_star": 3.0045964353509347,
+                  "accuracy": 0.7310212220481412,
+                  "delta_n2": -3.9724727258594617,
+                  "d_n2": -2.7191719441539686,
+                  "delta_n3": -4.340313138323966,
+                  "d_n3": -3.576118771146307
+                },
+                "contam_50": {
+                  "lz_star": 5.448014241389145,
+                  "accuracy": 0.7643498077196981,
+                  "delta_n2": -1.5290549198212515,
+                  "d_n2": -1.0466436212344272,
+                  "delta_n3": -1.8968953322857551,
+                  "d_n3": -1.562910967135056
+                }
+              }
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-clean-s3-eval-complete.md"
+}

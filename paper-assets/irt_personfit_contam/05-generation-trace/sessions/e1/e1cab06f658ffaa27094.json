@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "e1cab06f658ffaa27094",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "ops s3 backup retry",
+  "task_key": "worker_ops_s3-backup-retry_20260525T205513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_s3-backup-retry_20260525T205513.log",
+    "occurrence": 1,
+    "bytes": 1131776,
+    "sha256": "714ce85219561036bb328ad14d4aa6473e0ac5350a09bc442a1bddf923cad894"
+  },
+  "statistics": {
+    "messages": 1088,
+    "user_turns": 0,
+    "tool_calls": 503,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 78,
+      "tool_call": 503,
+      "tool_result": 503,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1088,
+      "chunks": [
+        {
+          "path": "e1cab06f658ffaa27094-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e1cab06f658ffaa27094-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e1cab06f658ffaa27094-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "e1cab06f658ffaa27094-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "e1cab06f658ffaa27094-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "e1cab06f658ffaa27094-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "e1cab06f658ffaa27094-part-0007.json",
+          "message_count": 8
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-s3-backup-retry.md"
+}

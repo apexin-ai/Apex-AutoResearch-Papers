@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2dc1b77a883188b95b5a",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "paper writing sec empirical",
+  "task_key": "worker_paper_writing_sec_empirical_20260520T224747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_sec_empirical_20260520T224747_result.json",
+    "occurrence": 1,
+    "bytes": 623,
+    "sha256": "cc34a3b21b79b952bf9eaf2c956f28fd0f412fcc20b263b50ad12d3212ce3935"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Written `sec_empirical.tex` (~320 words). Three findings structured as a continuous narrative:\n\n1. **Universal misfit**: 57/60 cells flagged (vs. 4/60 for accuracy z-score), framed as evidence that lz* captures response-pattern information accuracy discards, not as contamination detection per se.\n2. **12-model case study**: Gemini-1.5-Flash extreme outlier (lz*=+34.75), 93.3% positive cells, Ward clustering typologies, Figure 4 referenced.\n3. **IRT estimation gap**: MML-EM recovers b (r=0.663) but not a (r=0.127); 4PL vs 3PL divergence on real data (r=0.225); framed as informative negative result."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-sec-empirical.md"
+}

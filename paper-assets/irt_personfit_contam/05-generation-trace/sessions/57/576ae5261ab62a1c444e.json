@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "576ae5261ab62a1c444e",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops extract qlora hyperparams",
+  "task_key": "worker_ops_extract-qlora-hyperparams_20260522T080829",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_extract-qlora-hyperparams_20260522T080829_result.json",
+    "occurrence": 1,
+    "bytes": 2009,
+    "sha256": "cb241aebc51d7ea9b92c45f3192d5bb8b49d8b4d24f500154425bb622293b82d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个模型的 train.py 和 data preparation 逻辑全部读完。以下是汇总结果。\n\n---\n\n## QLoRA 训练超参数汇总\n\n### 三模型共用超参数\n\n| 超参数 | 值 |\n|--------|-----|\n| **Learning rate** | 2e-4 |\n| **Epochs** | 3 |\n| **per_device_train_batch_size** | 4 |\n| **gradient_accumulation_steps** | 4 |\n| **Effective batch size** | 16 |\n| **LoRA r** | 16 |\n| **LoRA alpha** | 32 |\n| **LoRA dropout** | 0.05 |\n| **LoRA target_modules** | `[\"q_proj\", \"k_proj\", \"v_proj\", \"o_proj\"]` |\n| **LoRA bias** | none |\n| **Optimizer** | AdamW（SFTConfig/TRL 默认） |\n| **Weight decay** | 0.0（SFTConfig 默认） |\n| **LR scheduler** | linear（SFTConfig 默认） |\n| **Warmup ratio** | 0.1 |\n| **Max sequence length** | 512 |\n| **Precision** | bf16 if supported, else fp16 |\n| **Quantization bits** | 4-bit (load_in_4bit) |\n| **Quant type** | nf4 |\n| **Compute dtype** | float16 |\n| **save_strategy** | epoch |\n| **dataloader_num_workers** | 2 |\n\n### 三模型差异\n\n| 项目 | Pilot (Qwen2.5-7B) | Llama (Llama-3.1-8B) | Mistral (Mistral-7B-v0.3) |\n|------|---------------------|----------------------|---------------------------|\n| **Base model** | Qwen2.5-7B-Instruct | Meta-Llama-3.1-8B-Instruct | Mistral-7B-Instruct-v0.3 |\n| **report_to** | wandb | wandb | **none** |\n| **Conditions** | clean_s1~s10, contam_5/15/25/50 | clean, contam_15/25/50 | clean, clean_s2~s10, contam_15/50 |\n| **Seeds** | 多 seed (42,123,456,301-307) | 42 only | 多 seed (42,123,456,301-307) |\n\n### Data Mixing 方式\n\n**Concat + shuffle**。污染数据直接拼接到 Alpaca 训练集后，然后整体 shuffle，写入同一个 `train.jsonl`。不是 interleave 也不是分 epoch。\n\n具体比例（以 Pilot 的 `prepare_data.py` 为准）：\n- **Clean**: 5000 条 Alpaca\n- **contam_15**: 5000 Alpaca + 2106 MMLU (15%) = ~7106 条\n- **contam_50**: 5000 Alpaca + 7021 MMLU (50%) = ~12021 条\n- 15% items 是 50% items 的严格子集"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-extract-qlora-hyperparams.md"
+}

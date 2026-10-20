@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e811580c385aa486550d",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops check gpu eval status",
+  "task_key": "worker_ops_check-gpu-eval-status_20260523T161229",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-gpu-eval-status_20260523T161229_result.json",
+    "occurrence": 1,
+    "bytes": 1514,
+    "sha256": "fd4c3dc00a14ebbe970f0838fe7d7afd7d9402bebbcaf9c4ce4d319351eaf245"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### GPU 状态\n| GPU | 型号 | 显存占用 | GPU-Util | 状态 |\n|-----|------|---------|----------|------|\n| 0 | RTX PRO 6000 Blackwell (96GB) | 0 MiB | 0% | **空闲** |\n| 1 | RTX PRO 6000 Blackwell (96GB) | 0 MiB | 0% | **空闲** |\n| 2 | RTX PRO 6000 Blackwell (96GB) | 0 MiB | 0% | **空闲** |\n| 3 | RTX PRO 6000 Blackwell (96GB) | 0 MiB | 0% | **空闲** |\n\n### 实验状态\n所有 4 个实验均已完成，PID 156476/157677/158192 均不存在，无 GPU 进程。\n\n### 结果汇总\n\n| 实验 | lz* | lz*_seen | lz*_unseen | acc_overall | acc_seen | acc_unseen |\n|------|-----|----------|------------|-------------|----------|------------|\n| **contam_15 s1** | **-2.9922** | -2.3342 | -2.2668 | 0.6654 | 0.6676 | 0.6650 |\n| **contam_50 s1** | **-3.3313** | -1.9171 | -2.8092 | 0.6983 | 0.6914 | 0.7053 |\n| **contam_5 s3** | **-1.9517** | -1.0768 | -1.5064 | 0.6353 | 0.7821 | 0.6276 |\n| **contam_25 s3** | **-3.1966** | -0.4560 | -2.7199 | 0.6758 | 0.7675 | 0.6453 |\n\n### 关键观察\n\n- **s3 系列** (contam_5/25) 的 seen vs unseen 差距明显大于 s1 系列：\n  - contam_25 s3: lz\\*\\_seen=-0.46 vs lz\\*\\_unseen=-2.72（差值 2.26）\n  - contam_5 s3: acc\\_seen=0.78 vs acc\\_unseen=0.63（差值 0.15）\n- **s1 系列** (contam_15/50) 的 seen/unseen 差距较小，contam_15 几乎无差异\n- contam_50 s1 的整体 lz\\* 最低（-3.33），但 unseen 的 acc 反而高于 seen（0.705 > 0.691），提示 s1 的 contamination 信号弱"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-gpu-eval-status.md"
+}

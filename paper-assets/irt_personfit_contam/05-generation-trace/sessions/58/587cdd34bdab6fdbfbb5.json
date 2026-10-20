@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "587cdd34bdab6fdbfbb5",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "eval mistral contam5 eval",
+  "task_key": "worker_eval_mistral-contam5-eval_20260524T051313",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_mistral-contam5-eval_20260524T051313.log",
+    "occurrence": 1,
+    "bytes": 688241,
+    "sha256": "05ca4db88430df347d913ce25430d5c5616a47ec88de01d85a8ac1428d39ddc7"
+  },
+  "statistics": {
+    "messages": 696,
+    "user_turns": 0,
+    "tool_calls": 307,
+    "roles": {
+      "log": 1,
+      "system": 19,
+      "record": 3,
+      "assistant": 57,
+      "tool_call": 307,
+      "tool_result": 307,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 696,
+      "chunks": [
+        {
+          "path": "587cdd34bdab6fdbfbb5-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "587cdd34bdab6fdbfbb5-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "587cdd34bdab6fdbfbb5-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "587cdd34bdab6fdbfbb5-part-0004.json",
+          "message_count": 156
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-mistral-contam5-eval.md"
+}

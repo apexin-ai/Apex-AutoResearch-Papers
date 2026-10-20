@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-ctrl-contam-llama-clean",
+  "project": "irt_personfit_contam",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T20:55:36.448Z",
+    "updated_at": "2026-05-20T20:55:46.117Z",
+    "hypothesis": "A Llama-3.1-8B-Instruct model fine-tuned on clean Alpaca data (no MMLU contamination) will show normal person-fit statistics (lz* within expected range), serving as the uncontaminated baseline for comparison with contaminated conditions."
+  },
+  "timestamp": "2026-05-20T20:55:46.189027+00:00",
+  "trigger": "update_registry"
+}

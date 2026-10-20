@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6145c6e6da5cf3689370",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code gpu snapshot fill all",
+  "task_key": "worker_code_gpu-snapshot-fill-all_20260521T114444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gpu-snapshot-fill-all_20260521T114444_result.json",
+    "occurrence": 1,
+    "bytes": 2184,
+    "sha256": "48e38ba37c5311be014413d96453235f18ce0e46955901f57e69350b89e714ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**westd-35694 4/4 GPU 全部在用。** 19912 GPU 空闲（eval 已完成）。\n\n---\n\n## 产出汇总\n\n### 1. GPU 状态表\n\n| 服务器 | GPU | 状态 | 任务 | PID |\n|--------|-----|------|------|-----|\n| **westd-35694** | 0 | 95%, 27GB | Llama clean_s7 train | 135251 |\n| | 1 | 78%, 31GB | Llama clean_s4 train | 133695 |\n| | 2 | 97%, 18GB | Llama clean_s5 train | 134196 |\n| | 3 | 97%, 17GB | Llama clean_s6 train | 134708 |\n| **westd-19912** | 0-3 | 空闲 | ARC-C eval s3-s6 刚完成 | — |\n\n### 2. 新启动的任务\n\n| 服务器 | GPU | 任务 | PID |\n|--------|-----|------|-----|\n| 35694 | 0 | Llama clean_s7 (seed=304) | 135251 |\n| 35694 | 1 | Llama clean_s4 (seed=301) | 133695 |\n| 35694 | 2 | Llama clean_s5 (seed=302) | 134196 |\n| 35694 | 3 | Llama clean_s6 (seed=303) | 134708 |\n| 19912 | 0 | ARC-C eval clean_s3 | ✅ 完成 |\n| 19912 | 1 | ARC-C eval clean_s4 | ✅ 完成 |\n| 19912 | 2 | ARC-C eval clean_s5 | ✅ 完成 |\n| 19912 | 3 | ARC-C eval clean_s6 | ✅ 完成 |\n\n### 3. 已完成训练的 Eval 结果\n\n**Llama MMLU (35694):**\n\n| condition | theta | lz* | acc | n_items |\n|-----------|-------|-----|-----|---------|\n| clean_s2 | -0.630 | -0.182 | 0.595 | 14042 |\n| clean_s3 | -0.640 | -1.084 | 0.594 | 14042 |\n\n**ARC-C (19912) — 刚完成：**\n\n| condition | theta | lz* | acc | n_items |\n|-----------|-------|-----|-----|---------|\n| clean_s3 | 0.714 | -5.524 | 0.895 | 295 |\n| clean_s4 | 0.550 | -5.434 | 0.885 | 295 |\n| clean_s5 | 0.781 | -5.232 | 0.898 | 295 |\n| clean_s6 | 0.755 | -5.572 | 0.895 | 295 |\n\n### 4. 修复项\n\n- ✅ Llama `train.py` SEED_MAP 添加 s4-s8 (301-305)，DATA_DIR_MAP 添加 s4-s8→clean\n- ✅ Llama `train.py` report_to 改为 \"none\"（wandb 未配置）\n- ✅ ARC-C `train.py` (35694) report_to 改为 \"none\"\n\n### 5. 待办\n\n- **Llama s8** (seed=305)：等 s4-s7 其中一个完成后启动（~17min）\n- **ARC-C s3 on 35694**：checkpoint 为空，需重训（wandb 已修复），等 GPU 释放\n- **Mistral s2/s3 eval**：训练完成但未跑 eval，等 GPU 释放\n- **19912 4 卡空闲**：可分配新任务（Llama 未部署在 19912）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gpu-snapshot-fill-all.md"
+}

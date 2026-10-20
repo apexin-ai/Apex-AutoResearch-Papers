@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c1b32e29a8a0f0fb0ad",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops paper version license",
+  "task_key": "worker_ops_paper-version-license_20260523T043719",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_paper-version-license_20260523T043719_result.json",
+    "occurrence": 1,
+    "bytes": 111,
+    "sha256": "cae5987fde393cad5538ddb4f77988e9869a95a99547557149be4a1f9849141c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两句话已添加到 Reproducibility Statement 末尾，版本号来自服务器实际环境。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-paper-version-license.md"
+}

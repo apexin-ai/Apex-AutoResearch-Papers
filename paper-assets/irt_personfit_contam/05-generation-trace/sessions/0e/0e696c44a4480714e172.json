@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e696c44a4480714e172",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code clean s3 verify eval v2",
+  "task_key": "worker_code_clean-s3-verify-eval-v2_20260520T190825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_clean-s3-verify-eval-v2_20260520T190825_result.json",
+    "occurrence": 1,
+    "bytes": 136,
+    "sha256": "bd5155e7c767e3a57854971c0036f0ab74d3a682cdd454d6695de695ead89ae9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练在 GPU 0 上正常运行（132/939 steps，~1 it/s，预计还需 ~13 分钟）。3 分钟后自动轮询进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-clean-s3-verify-eval-v2.md"
+}

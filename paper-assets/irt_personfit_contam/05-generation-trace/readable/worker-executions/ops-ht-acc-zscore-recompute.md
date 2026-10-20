@@ -1,0 +1,2056 @@
+# ops ht acc zscore recompute
+
+**What Can IRT Person-Fit Statistics Reveal About SFT-Stage Benchmark Contamination?** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 42
+- **Recorded user turns:** 0
+- **Tool calls:** 13
+- **Original source:** `logs/workers/worker_ops_ht-acc-zscore-recompute_20260523T012227.log`
+- **Structured JSON:** [`d1a961a034eb9f04f88e.json`](../../sessions/d1/d1a961a034eb9f04f88e.json)
+
+## Before a recorded user message
+
+42 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam",
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "3b528b79-2a5b-46c1-8e90-6f93af33d887",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0519-3-projects-irt-personfit-contam/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779507600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "9534b02c-73b3-4a01-a866-3f4be6a61eff",
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll search for the original HT z-score computation script on the server.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "694c3955-7170-4dec-b425-6319cdb44e0b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QtrNmyayU84JMicmEvtsE5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12765,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12765
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Ex3zNkuuYUZiWksS8r216u`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "e205439b-ccd6-46b3-bf65-4f04b86b6671",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QtrNmyayU84JMicmEvtsE5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12765,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12765
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-23T01:22:39.782Z_
+
+<details><summary>↩ Tool result · `toolu_01Ex3zNkuuYUZiWksS8r216u`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "5e8fa5cb-c01b-486e-9ef2-5a2e29788136",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by searching for the original HT z-score script on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "191be4ad-e67d-406d-bdb5-2f056d51d6df",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UYy9Hywci9YxjYXbsqLBNw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 890,
+      "cache_read_input_tokens": 24606,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 890
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AdW27Yj4hWbbm7YPzHgnac`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "find /root/autodl-tmp/ -name \"compute_ht_zscore.py\" -o -name \"*ht_zscore*\" -o -name \"*ht*zscore*\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "1d8206ed-4699-4cee-926d-3c955115e889",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UYy9Hywci9YxjYXbsqLBNw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 890,
+      "cache_read_input_tokens": 24606,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 890
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-23T01:22:43.757Z_
+
+<details><summary>↩ Tool result · `toolu_01AdW27Yj4hWbbm7YPzHgnac`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "de76ea80-716f-4abf-9a55-bff19ec2490c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QygL1RGCCoAxqtULnUoneY`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "find /root/autodl-tmp/ -name \"*.py\" -path \"*contam*\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "50ef2fdb-2a9d-470a-bcf9-7053e467c324",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UYy9Hywci9YxjYXbsqLBNw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 890,
+      "cache_read_input_tokens": 24606,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 890
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-23T01:22:44.385Z_
+
+<details><summary>↩ Tool result · `toolu_01QygL1RGCCoAxqtULnUoneY`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "af1826fd-858b-4c42-babf-fa30dcf0b7a1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `-o` flag with `find` is being blocked because the shell sees it as a metacharacter issue. Let me try simpler commands.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "09cd057e-5305-4a03-ab2f-82a01dfc1e90",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SKkTQdQybG5Ce5kRSDb2Kx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 545,
+      "cache_read_input_tokens": 25496,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 545
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+The `-o` flag is getting blocked. Let me use simpler find commands.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "21be8557-ccff-4430-8aad-b4755220010a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SKkTQdQybG5Ce5kRSDb2Kx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 545,
+      "cache_read_input_tokens": 25496,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 545
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017YTjXTy9x8PJ274U7ExfBd`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "find /root/autodl-tmp/ -name \"*ht*zscore*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "2dde2f56-5ea7-4f14-9509-929e10f04397",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SKkTQdQybG5Ce5kRSDb2Kx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 545,
+      "cache_read_input_tokens": 25496,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 545
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LZ3eNpGideswehshwXpemg`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "find /root/autodl-tmp/ -name \"compute_ht*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "ad229946-725d-4883-b2a6-e80bca8919dc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SKkTQdQybG5Ce5kRSDb2Kx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 545,
+      "cache_read_input_tokens": 25496,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 545
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-23T01:22:49.753Z_
+
+<details><summary>↩ Tool result · `toolu_017YTjXTy9x8PJ274U7ExfBd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/compute_ht_zscore.py\\n/root/autodl-tmp/ht_zscore_results_n10.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "2fd9472f-2492-4442-a76e-7d1ce5af4610",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/compute_ht_zscore.py\\\\n/root/autodl-tmp/ht_zscore_results_n10.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/compute_ht_zscore.py\\n/root/autodl-tmp/ht_zscore_results_n10.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-23T01:22:50.295Z_
+
+<details><summary>↩ Tool result · `toolu_01LZ3eNpGideswehshwXpemg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/compute_ht_zscore.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "c4c9634a-b37e-4a3a-b50b-3078b80895df",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/compute_ht_zscore.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/compute_ht_zscore.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SgMBASzvjcEfLLk1RFuQ2X`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "ls /root/autodl-tmp/ctrl_contam_pilot/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "b81d2015-7cbe-4e95-b8ba-7483c59f7dc2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SKkTQdQybG5Ce5kRSDb2Kx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 545,
+      "cache_read_input_tokens": 25496,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 545
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-23T01:22:50.975Z_
+
+<details><summary>↩ Tool result · `toolu_01SgMBASzvjcEfLLk1RFuQ2X`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\nalpaca.parquet\\nalpaca_data.json\\ncheckpoints\\ncompute_cohens_d.py\\ncompute_contam5_cohens_d.py\\ncompute_delta.py\\ncompute_fixed_theta.py\\ndata\\neval_lz.py\\ngen_contam_25.py\\ngen_contam_5.py\\nlogs\\nmmlu_params.csv\\nprepare_data.py\\nrecompute_theta_fixed_n10.py\\nresults\\nrun_env.sh\\ntheta_fixed_lzstar.py\\ntheta_fixed_recompute.py\\ntrain.py\\nunified_lz_recompute.py\\nunified_lz_results.json\\nwandb\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "97eb447a-d780-4538-b048-746e3e1fde2f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\nalpaca.parquet\\\\nalpaca_data.json\\\\ncheckpoints\\\\ncompute_cohens_d.py\\\\ncompute_contam5_cohens_d.py\\\\ncompute_delta.py\\\\ncompute_fixed_theta.py\\\\ndata\\\\neval_lz.py\\\\ngen_contam_25.py\\\\ngen_contam_5.py\\\\nlogs\\\\nmmlu_params.csv\\\\nprepare_data.py\\\\nrecompute_theta_fixed_n10.py\\\\nresults\\\\nrun_env.sh\\\\ntheta_fixed_lzstar.py\\\\ntheta_fixed_recompute.py\\\\ntrain.py\\\\nunified_lz_recompute.py\\\\nunified_lz_results.json\\\\nwandb\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\nalpaca.parquet\\nalpaca_data.json\\ncheckpoints\\ncompute_cohens_d.py\\ncompute_contam5_cohens_d.py\\ncompute_delta.py\\ncompute_fixed_theta.py\\ndata\\neval_lz.py\\ngen_contam_25.py\\ngen_contam_5.py\\nlogs\\nmmlu_params.csv\\nprepare_data.py\\nrecompute_theta_fixed_n10.py\\nresults\\nrun_env.sh\\ntheta_fixed_lzstar.py\\ntheta_fixed_recompute.py\\ntrain.py\\nunified_lz_recompute.py\\nunified_lz_results.json\\nwandb\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014C1LF5SLwPNWmGkck36GBk`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "ls /root/autodl-tmp/post_rl_contam/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "c4fcebe6-e13d-4972-90cd-1de6a614644f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SKkTQdQybG5Ce5kRSDb2Kx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 545,
+      "cache_read_input_tokens": 25496,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 545
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-23T01:22:51.583Z_
+
+<details><summary>↩ Tool result · `toolu_014C1LF5SLwPNWmGkck36GBk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\nalpaca_data.json\\ncheckpoints\\ncompare_mia_lz.py\\ndata\\neval_lz.py\\neval_mia.py\\neval_with_ht.py\\nfind_model.py\\ngrpo_run2.log\\ngrpo_run3.log\\nlogs\\nmmlu_params.csv\\nprepare_data.py\\nresults\\ntrain_grpo.py\\ntrain_sft.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "539ec2ae-d42e-4ce6-a640-4b821d0c2308",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\nalpaca_data.json\\\\ncheckpoints\\\\ncompare_mia_lz.py\\\\ndata\\\\neval_lz.py\\\\neval_mia.py\\\\neval_with_ht.py\\\\nfind_model.py\\\\ngrpo_run2.log\\\\ngrpo_run3.log\\\\nlogs\\\\nmmlu_params.csv\\\\nprepare_data.py\\\\nresults\\\\ntrain_grpo.py\\\\ntrain_sft.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\nalpaca_data.json\\ncheckpoints\\ncompare_mia_lz.py\\ndata\\neval_lz.py\\neval_mia.py\\neval_with_ht.py\\nfind_model.py\\ngrpo_run2.log\\ngrpo_run3.log\\nlogs\\nmmlu_params.csv\\nprepare_data.py\\nresults\\ntrain_grpo.py\\ntrain_sft.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+Found the script at `/root/autodl-tmp/compute_ht_zscore.py` and existing results at `ht_zscore_results_n10.json`. Let me read the script and check relevant files.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "b9aa30be-62ce-462f-98c3-fbde77f7bb7d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XaFc53sYmam1CAjMeESnxz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1276,
+      "cache_read_input_tokens": 26041,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1276
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UhRedQS5LKzZx1yi77oC2r`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "cat /root/autodl-tmp/compute_ht_zscore.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "ec11b490-9240-451b-ace7-1db8667a773c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XaFc53sYmam1CAjMeESnxz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1276,
+      "cache_read_input_tokens": 26041,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1276
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RZq8sX7G3mETCmNUJBHdZF`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "cat /root/autodl-tmp/ht_zscore_results_n10.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "ec993084-7379-4c8d-a14b-d52d3158acd2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XaFc53sYmam1CAjMeESnxz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1276,
+      "cache_read_input_tokens": 26041,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1276
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-23T01:22:55.980Z_
+
+<details><summary>↩ Tool result · `toolu_01UhRedQS5LKzZx1yi77oC2r`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import json\\nimport numpy as np\\nimport pandas as pd\\nimport os\\n\\n# --- Load IRT params ---\\nparams_df = pd.read_csv(\\\"/root/autodl-tmp/ctrl_contam_pilot/mmlu_params.csv\\\")\\na = params_df[\\\"a_discrimination\\\"].values\\nb = params_df[\\\"b_difficulty\\\"].values\\nc = params_df[\\\"c_guessing\\\"].values\\nd = params_df[\\\"d_feasibility\\\"].values\\nn_items = len(a)\\nprint(f\\\"IRT params loaded: {n_items} items\\\")\\n\\n# --- Helper functions ---\\ndef compute_ht(response_vector, a, b, c, d, theta):\\n    P = c + (d - c) / (1 + np.exp(-a * (theta - b)))\\n    P = np.clip(P, 1e-10, 1 - 1e-10)\\n    numerator = np.sum((response_vector - P) ** 2)\\n    denominator = np.sum(P * (1 - P))\\n    return numerator / denominator\\n\\ndef compute_acc_zscore(acc, mean_clean_acc, std_clean_acc):\\n    if std_clean_acc < 1e-10:\\n        return float('nan')\\n    return (acc - mean_clean_acc) / std_clean_acc\\n\\ndef bootstrap_cohens_d(clean_values, contam_value, n_bootstrap=10000, seed=42):\\n    rng = np.random.RandomState(seed)\\n    n = len(clean_values)\\n    ds = []\\n    for _ in range(n_bootstrap):\\n        sample = rng.choice(clean_values, size=n, replace=True)\\n        s = np.std(sample, ddof=1)\\n        if s < 1e-10:\\n            continue\\n        d_val = (np.mean(sample) - contam_value) / s\\n        ds.append(d_val)\\n    ds = np.array(ds)\\n    if len(ds) == 0:\\n        return float('nan'), float('nan'), float('nan')\\n    return float(np.mean(ds)), float(np.percentile(ds, 2.5)), float(np.percentile(ds, 97.5))\\n\\ndef load_result(path):\\n    with open(path) as f:\\n        data = json.load(f)\\n    rv = np.array(data[\\\"response_vector\\\"])\\n    theta = data[\\\"theta_mle\\\"]\\n    acc = np.mean(rv)\\n    return rv, theta, acc\\n\\n# --- Model configs ---\\nmodels = {\\n    \\\"Qwen\\\": {\\n        \\\"base_dir\\\": \\\"/root/autodl-tmp/ctrl_contam_pilot/results\\\",\\n        \\\"clean_files\\\": [f\\\"clean_s{i}_results.json\\\" for i in range(1, 11)],\\n        \\\"contam_15\\\": \\\"contam_15_results.json\\\",\\n        \\\"contam_50\\\": \\\"contam_50_results.json\\\",\\n    },\\n    \\\"Llama\\\": {\\n        \\\"base_dir\\\": \\\"/root/autodl-tmp/ctrl_contam_llama/results\\\",\\n        \\\"clean_files\\\": [\\\"clean_results.json\\\"] + [f\\\"clean_s{i}_results.json\\\" for i in range(2, 11)],\\n        \\\"contam_15\\\": \\\"contam_15_results.json\\\",\\n        \\\"contam_50\\\": \\\"contam_50_results.json\\\",\\n    },\\n    \\\"Mistral\\\": {\\n        \\\"base_dir\\\": \\\"/root/autodl-tmp/ctrl_contam_mistral/results\\\",\\n        \\\"clean_files\\\": [\\\"clean_results.json\\\", \\\"clean_s2_results.json\\\", \\\"clean_s3_results.json\\\",\\n                        \\\"clean_s8_results.json\\\", \\\"clean_s9_results.json\\\", \\\"clean_s10_results.json\\\"],\\n        \\\"contam_15\\\": \\\"contam_15_results.json\\\",\\n        \\\"contam_50\\\": \\\"contam_50_results.json\\\",\\n    },\\n}\\n\\nall_results = {}\\n\\nfor model_name, cfg in models.items():\\n    base = cfg[\\\"base_dir\\\"]\\n    n_clean = len(cfg[\\\"clean_files\\\"])\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"Model: {model_name} (n_clean={n_clean})\\\")\\n    print(f\\\"{'='*60}\\\")\\n\\n    # Load clean seeds\\n    clean_hts = []\\n    clean_accs = []\\n    clean_details = []\\n    for fname in cfg[\\\"clean_files\\\"]:\\n        path = os.path.join(base, fname)\\n        rv, theta, acc = load_result(path)\\n        ht = compute_ht(rv, a, b, c, d, theta)\\n        clean_hts.append(ht)\\n        clean_accs.append(acc)\\n        clean_details.append({\\\"file\\\": fname, \\\"accuracy\\\": acc, \\\"theta\\\": theta, \\\"HT\\\": ht})\\n        print(f\\\"  {fname}: acc={acc:.4f}, theta={theta:.4f}, HT={ht:.4f}\\\")\\n\\n    clean_hts = np.array(clean_hts)\\n    clean_accs = np.array(clean_accs)\\n    mean_clean_acc = np.mean(clean_accs)\\n    std_clean_acc = np.std(clean_accs, ddof=1)\\n\\n    # Compute z-scores for clean\\n    clean_zscores = np.array([compute_acc_zscore(a_val, mean_clean_acc, std_clean_acc) for a_val in clean_accs])\\n\\n    for i, det in enumerate(clean_details):\\n        det[\\\"z_score\\\"] = float(clean_zscores[i])\\n\\n    # Load contam conditions\\n    contam_results = {}\\n    for contam_label, contam_file in [(\\\"contam_15\\\", cfg[\\\"contam_15\\\"]), (\\\"contam_50\\\", cfg[\\\"contam_50\\\"])]:\\n        path = os.path.join(base, contam_file)\\n        rv, theta, acc = load_result(path)\\n        ht = compute_ht(rv, a, b, c, d, theta)\\n        zscore = compute_acc_zscore(acc, mean_clean_acc, std_clean_acc)\\n        contam_results[contam_label] = {\\n            \\\"accuracy\\\": acc, \\\"theta\\\": theta, \\\"HT\\\": ht, \\\"z_score\\\": zscore\\n        }\\n        print(f\\\"  {contam_label}: acc={acc:.4f}, theta={theta:.4f}, HT={ht:.4f}, z={zscore:.4f}\\\")\\n\\n    # Cohen's d for HT\\n    d_ht_15, ci_lo_ht_15, ci_hi_ht_15 = bootstrap_cohens_d(clean_hts, contam_results[\\\"contam_15\\\"][\\\"HT\\\"])\\n    d_ht_50, ci_lo_ht_50, ci_hi_ht_50 = bootstrap_cohens_d(clean_hts, contam_results[\\\"contam_50\\\"][\\\"HT\\\"])\\n\\n    # Cohen's d for z-score\\n    d_z_15, ci_lo_z_15, ci_hi_z_15 = bootstrap_cohens_d(clean_zscores, contam_results[\\\"contam_15\\\"][\\\"z_score\\\"])\\n    d_z_50, ci_lo_z_50, ci_hi_z_50 = bootstrap_cohens_d(clean_zscores, contam_results[\\\"contam_50\\\"][\\\"z_score\\\"])\\n\\n    all_results[model_name] = {\\n        \\\"n_clean\\\": n_clean,\\n        \\\"clean_mean_acc\\\": float(mean_clean_acc),\\n        \\\"clean_std_acc\\\": float(std_clean_acc),\\n        \\\"clean_details\\\": clean_details,\\n        \\\"contam_15\\\": contam_results[\\\"contam_15\\\"],\\n        \\\"contam_50\\\": contam_results[\\\"contam_50\\\"],\\n        \\\"cohens_d_HT\\\": {\\n            \\\"contam_15\\\": {\\\"d\\\": d_ht_15, \\\"ci_lo\\\": ci_lo_ht_15, \\\"ci_hi\\\": ci_hi_ht_15},\\n            \\\"contam_50\\\": {\\\"d\\\": d_ht_50, \\\"ci_lo\\\": ci_lo_ht_50, \\\"ci_hi\\\": ci_hi_ht_50},\\n        },\\n        \\\"cohens_d_zscore\\\": {\\n            \\\"contam_15\\\": {\\\"d\\\": d_z_15, \\\"ci_lo\\\": ci_lo_z_15, \\\"ci_hi\\\": ci_hi_z_15},\\n            \\\"contam_50\\\": {\\\"d\\\": d_z_50, \\\"ci_lo\\\": ci_lo_z_50, \\\"ci_hi\\\": ci_hi_z_50},\\n        },\\n    }\\n\\n# --- Print Tables ---\\nprint(\\\"\\\\n\\\" + \\\"=\\\"*80)\\nprint(\\\"Table A: HT Cohen's d + 95% CI\\\")\\nprint(\\\"=\\\"*80)\\nprint(f\\\"{'Model':<10} {'n':>3} {'d_HT(15%)':>12} {'95% CI':>22} {'d_HT(50%)':>12} {'95% CI':>22}\\\")\\nprint(\\\"-\\\"*80)\\nfor m in [\\\"Qwen\\\", \\\"Llama\\\", \\\"Mistral\\\"]:\\n    r = all_results[m]\\n    d15 = r[\\\"cohens_d_HT\\\"][\\\"contam_15\\\"]\\n    d50 = r[\\\"cohens_d_HT\\\"][\\\"contam_50\\\"]\\n    print(f\\\"{m:<10} {r['n_clean']:>3} {d15['d']:>12.4f} [{d15['ci_lo']:>8.4f}, {d15['ci_hi']:>8.4f}] {d50['d']:>12.4f} [{d50['ci_lo']:>8.4f}, {d50['ci_hi']:>8.4f}]\\\")\\n\\nprint(\\\"\\\\n\\\" + \\\"=\\\"*80)\\nprint(\\\"Table B: Accuracy z-score Cohen's d + 95% CI\\\")\\nprint(\\\"=\\\"*80)\\nprint(f\\\"{'Model':<10} {'n':>3} {'d_z(15%)':>12} {'95% CI':>22} {'d_z(50%)':>12} {'95% CI':>22}\\\")\\nprint(\\\"-\\\"*80)\\nfor m in [\\\"Qwen\\\", \\\"Llama\\\", \\\"Mistral\\\"]:\\n    r = all_results[m]\\n    d15 = r[\\\"cohens_d_zscore\\\"][\\\"contam_15\\\"]\\n    d50 = r[\\\"cohens_d_zscore\\\"][\\\"contam_50\\\"]\\n    print(f\\\"{m:<10} {r['n_clean']:>3} {d15['d']:>12.4f} [{d15['ci_lo']:>8.4f}, {d15['ci_hi']:>8.4f}] {d50['d']:>12.4f} [{d50['ci_lo']:>8.4f}, {d50['ci_hi']:>8.4f}]\\\")\\n\\nprint(\\\"\\\\n\\\" + \\\"=\\\"*80)\\nprint(\\\"Table C: Raw values (all conditions)\\\")\\nprint(\\\"=\\\"*80)\\nprint(f\\\"{'Model':<10} {'Condition':<20} {'Accuracy':>10} {'HT':>10} {'z-score':>10}\\\")\\nprint(\\\"-\\\"*60)\\nfor m in [\\\"Qwen\\\", \\\"Llama\\\", \\\"Mistral\\\"]:\\n    r = all_results[m]\\n    for det in r[\\\"clean_details\\\"]:\\n        cond = det[\\\"file\\\"].replace(\\\"_results.json\\\", \\\"\\\")\\n        print(f\\\"{m:<10} {cond:<20} {det['accuracy']:>10.4f} {det['HT']:>10.4f} {det['z_score']:>10.4f}\\\")\\n    for cl in [\\\"contam_15\\\", \\\"contam_50\\\"]:\\n        cr = r[cl]\\n        print(f\\\"{m:<10} {cl:<20} {cr['accuracy']:>10.4f} {cr['HT']:>10.4f} {cr['z_score']:>10.4f}\\\")\\n    print(\\\"-\\\"*60)\\n\\n# --- Save JSON ---\\noutput_path = \\\"/root/autodl-tmp/ht_zscore_results_n10.json\\\"\\nwith open(output_path, \\\"w\\\") as f:\\n    json.dump(all_results, f, indent=2)\\nprint(f\\\"\\\\nResults saved to {output_path}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "7da2b012-7e93-4a79-a7fa-7e92128a8e1f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import json\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nimport os\\\\n\\\\n# --- Load IRT params ---\\\\nparams_df = pd.read_csv(\\\\\\\"/root/autodl-tmp/ctrl_contam_pilot/mmlu_params.csv\\\\\\\")\\\\na = params_df[\\\\\\\"a_discrimination\\\\\\\"].values\\\\nb = params_df[\\\\\\\"b_difficulty\\\\\\\"].values\\\\nc = params_df[\\\\\\\"c_guessing\\\\\\\"].values\\\\nd = params_df[\\\\\\\"d_feasibility\\\\\\\"].values\\\\nn_items = len(a)\\\\nprint(f\\\\\\\"IRT params loaded: {n_items} items\\\\\\\")\\\\n\\\\n# --- Helper functions ---\\\\ndef compute_ht(response_vector, a, b, c, d, theta):\\\\n    P = c + (d - c) / (1 + np.exp(-a * (theta - b)))\\\\n    P = np.clip(P, 1e-10, 1 - 1e-10)\\\\n    numerator = np.sum((response_vector - P) ** 2)\\\\n    denominator = np.sum(P * (1 - P))\\\\n    return numerator / denominator\\\\n\\\\ndef compute_acc_zscore(acc, mean_clean_acc, std_clean_acc):\\\\n    if std_clean_acc < 1e-10:\\\\n        return float('nan')\\\\n    return (acc - mean_clean_acc) / std_clean_acc\\\\n\\\\ndef bootstrap_cohens_d(clean_values, contam_value, n_bootstrap=10000, seed=42):\\\\n    rng = np.random.RandomState(seed)\\\\n    n = len(clean_values)\\\\n    ds = []\\\\n    for _ in range(n_bootstrap):\\\\n        sample = rng.choice(clean_values, size=n, replace=True)\\\\n        s = np.std(sample, ddof=1)\\\\n        if s < 1e-10:\\\\n            continue\\\\n        d_val = (np.mean(sample) - contam_value) / s\\\\n        ds.append(d_val)\\\\n    ds = np.array(ds)\\\\n    if len(ds) == 0:\\\\n        return float('nan'), float('nan'), float('nan')\\\\n    return float(np.mean(ds)), float(np.percentile(ds, 2.5)), float(np.percentile(ds, 97.5))\\\\n\\\\ndef load_result(path):\\\\n    with open(path) as f:\\\\n        data = json.load(f)\\\\n    rv = np.array(data[\\\\\\\"response_vector\\\\\\\"])\\\\n    theta = data[\\\\\\\"theta_mle\\\\\\\"]\\\\n    acc = np.mean(rv)\\\\n    return rv, theta, acc\\\\n\\\\n# --- Model configs ---\\\\nmodels = {\\\\n    \\\\\\\"Qwen\\\\\\\": {\\\\n        \\\\\\\"base_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/ctrl_contam_pilot/results\\\\\\\",\\\\n        \\\\\\\"clean_files\\\\\\\": [f\\\\\\\"clean_s{i}_results.json\\\\\\\" for i in range(1, 11)],\\\\n        \\\\\\\"contam_15\\\\\\\": \\\\\\\"contam_15_results.json\\\\\\\",\\\\n        \\\\\\\"contam_50\\\\\\\": \\\\\\\"contam_50_results.json\\\\\\\",\\\\n    },\\\\n    \\\\\\\"Llama\\\\\\\": {\\\\n        \\\\\\\"base_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/ctrl_contam_llama/results\\\\\\\",\\\\n        \\\\\\\"clean_files\\\\\\\": [\\\\\\\"clean_results.json\\\\\\\"] + [f\\\\\\\"clean_s{i}_results.json\\\\\\\" for i in range(2, 11)],\\\\n        \\\\\\\"contam_15\\\\\\\": \\\\\\\"contam_15_results.json\\\\\\\",\\\\n        \\\\\\\"contam_50\\\\\\\": \\\\\\\"contam_50_results.json\\\\\\\",\\\\n    },\\\\n    \\\\\\\"Mistral\\\\\\\": {\\\\n        \\\\\\\"base_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/ctrl_contam_mistral/results\\\\\\\",\\\\n        \\\\\\\"clean_files\\\\\\\": [\\\\\\\"clean_results.json\\\\\\\", \\\\\\\"clean_s2_results.json\\\\\\\", \\\\\\\"clean_s3_results.json\\\\\\\",\\\\n                        \\\\\\\"clean_s8_results.json\\\\\\\", \\\\\\\"clean_s9_results.json\\\\\\\", \\\\\\\"clean_s10_results.json\\\\\\\"],\\\\n        \\\\\\\"contam_15\\\\\\\": \\\\\\\"contam_15_results.json\\\\\\\",\\\\n        \\\\\\\"contam_50\\\\\\\": \\\\\\\"contam_50_results.json\\\\\\\",\\\\n    },\\\\n}\\\\n\\\\nall_results = {}\\\\n\\\\nfor model_name, cfg in models.items():\\\\n    base = cfg[\\\\\\\"base_dir\\\\\\\"]\\\\n    n_clean = len(cfg[\\\\\\\"clean_files\\\\\\\"])\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(f\\\\\\\"Model: {model_name} (n_clean={n_clean})\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n\\\\n    # Load clean seeds\\\\n    clean_hts = []\\\\n    clean_accs = []\\\\n    clean_details = []\\\\n    for fname in cfg[\\\\\\\"clean_files\\\\\\\"]:\\\\n        path = os.path.join(base, fname)\\\\n        rv, theta, acc = load_result(path)\\\\n        ht = compute_ht(rv, a, b, c, d, theta)\\\\n        clean_hts.append(ht)\\\\n        clean_accs.append(acc)\\\\n        clean_details.append({\\\\\\\"file\\\\\\\": fname, \\\\\\\"accuracy\\\\\\\": acc, \\\\\\\"theta\\\\\\\": theta, \\\\\\\"HT\\\\\\\": ht})\\\\n        print(f\\\\\\\"  {fname}: acc={acc:.4f}, theta={theta:.4f}, HT={ht:.4f}\\\\\\\")\\\\n\\\\n    clean_hts = np.array(clean_hts)\\\\n    clean_accs = np.array(clean_accs)\\\\n    mean_clean_acc = np.mean(clean_accs)\\\\n    std_clean_acc = np.std(clean_accs, ddof=1)\\\\n\\\\n    # Compute z-scores for clean\\\\n    clean_zscores = np.array([compute_acc_zscore(a_val, mean_clean_acc, std_clean_acc) for a_val in clean_accs])\\\\n\\\\n    for i, det in enumerate(clean_details):\\\\n        det[\\\\\\\"z_score\\\\\\\"] = float(clean_zscores[i])\\\\n\\\\n    # Load contam conditions\\\\n    contam_results = {}\\\\n    for contam_label, contam_file in [(\\\\\\\"contam_15\\\\\\\", cfg[\\\\\\\"contam_15\\\\\\\"]), (\\\\\\\"contam_50\\\\\\\", cfg[\\\\\\\"contam_50\\\\\\\"])]:\\\\n        path = os.path.join(base, contam_file)\\\\n        rv, theta, acc = load_result(path)\\\\n        ht = compute_ht(rv, a, b, c, d, theta)\\\\n        zscore = compute_acc_zscore(acc, mean_clean_acc, std_clean_acc)\\\\n        contam_results[contam_label] = {\\\\n            \\\\\\\"accuracy\\\\\\\": acc, \\\\\\\"theta\\\\\\\": theta, \\\\\\\"HT\\\\\\\": ht, \\\\\\\"z_score\\\\\\\": zscore\\\\n        }\\\\n        print(f\\\\\\\"  {contam_label}: acc={acc:.4f}, theta={theta:.4f}, HT={ht:.4f}, z={zscore:.4f}\\\\\\\")\\\\n\\\\n    # Cohen's d for HT\\\\n    d_ht_15, ci_lo_ht_15, ci_hi_ht_15 = bootstrap_cohens_d(clean_hts, contam_results[\\\\\\\"contam_15\\\\\\\"][\\\\\\\"HT\\\\\\\"])\\\\n    d_ht_50, ci_lo_ht_50, ci_hi_ht_50 = bootstrap_cohens_d(clean_hts, contam_results[\\\\\\\"contam_50\\\\\\\"][\\\\\\\"HT\\\\\\\"])\\\\n\\\\n    # Cohen's d for z-score\\\\n    d_z_15, ci_lo_z_15, ci_hi_z_15 = bootstrap_cohens_d(clean_zscores, contam_results[\\\\\\\"contam_15\\\\\\\"][\\\\\\\"z_score\\\\\\\"])\\\\n    d_z_50, ci_lo_z_50, ci_hi_z_50 = bootstrap_cohens_d(clean_zscores, contam_results[\\\\\\\"contam_50\\\\\\\"][\\\\\\\"z_score\\\\\\\"])\\\\n\\\\n    all_results[model_name] = {\\\\n        \\\\\\\"n_clean\\\\\\\": n_clean,\\\\n        \\\\\\\"clean_mean_acc\\\\\\\": float(mean_clean_acc),\\\\n        \\\\\\\"clean_std_acc\\\\\\\": float(std_clean_acc),\\\\n        \\\\\\\"clean_details\\\\\\\": clean_details,\\\\n        \\\\\\\"contam_15\\\\\\\": contam_results[\\\\\\\"contam_15\\\\\\\"],\\\\n        \\\\\\\"contam_50\\\\\\\": contam_results[\\\\\\\"contam_50\\\\\\\"],\\\\n        \\\\\\\"cohens_d_HT\\\\\\\": {\\\\n            \\\\\\\"contam_15\\\\\\\": {\\\\\\\"d\\\\\\\": d_ht_15, \\\\\\\"ci_lo\\\\\\\": ci_lo_ht_15, \\\\\\\"ci_hi\\\\\\\": ci_hi_ht_15},\\\\n            \\\\\\\"contam_50\\\\\\\": {\\\\\\\"d\\\\\\\": d_ht_50, \\\\\\\"ci_lo\\\\\\\": ci_lo_ht_50, \\\\\\\"ci_hi\\\\\\\": ci_hi_ht_50},\\\\n        },\\\\n        \\\\\\\"cohens_d_zscore\\\\\\\": {\\\\n            \\\\\\\"contam_15\\\\\\\": {\\\\\\\"d\\\\\\\": d_z_15, \\\\\\\"ci_lo\\\\\\\": ci_lo_z_15, \\\\\\\"ci_hi\\\\\\\": ci_hi_z_15},\\\\n            \\\\\\\"contam_50\\\\\\\": {\\\\\\\"d\\\\\\\": d_z_50, \\\\\\\"ci_lo\\\\\\\": ci_lo_z_50, \\\\\\\"ci_hi\\\\\\\": ci_hi_z_50},\\\\n        },\\\\n    }\\\\n\\\\n# --- Print Tables ---\\\\nprint(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\"*80)\\\\nprint(\\\\\\\"Table A: HT Cohen's d + 95% CI\\\\\\\")\\\\nprint(\\\\\\\"=\\\\\\\"*80)\\\\nprint(f\\\\\\\"{'Model':<10} {'n':>3} {'d_HT(15%)':>12} {'95% CI':>22} {'d_HT(50%)':>12} {'95% CI':>22}\\\\\\\")\\\\nprint(\\\\\\\"-\\\\\\\"*80)\\\\nfor m in [\\\\\\\"Qwen\\\\\\\", \\\\\\\"Llama\\\\\\\", \\\\\\\"Mistral\\\\\\\"]:\\\\n    r = all_results[m]\\\\n    d15 = r[\\\\\\\"cohens_d_HT\\\\\\\"][\\\\\\\"contam_15\\\\\\\"]\\\\n    d50 = r[\\\\\\\"cohens_d_HT\\\\\\\"][\\\\\\\"contam_50\\\\\\\"]\\\\n    print(f\\\\\\\"{m:<10} {r['n_clean']:>3} {d15['d']:>12.4f} [{d15['ci_lo']:>8.4f}, {d15['ci_hi']:>8.4f}] {d50['d']:>12.4f} [{d50['ci_lo']:>8.4f}, {d50['ci_hi']:>8.4f}]\\\\\\\")\\\\n\\\\nprint(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\"*80)\\\\nprint(\\\\\\\"Table B: Accuracy z-score Cohen's d + 95% CI\\\\\\\")\\\\nprint(\\\\\\\"=\\\\\\\"*80)\\\\nprint(f\\\\\\\"{'Model':<10} {'n':>3} {'d_z(15%)':>12} {'95% CI':>22} {'d_z(50%)':>12} {'95% CI':>22}\\\\\\\")\\\\nprint(\\\\\\\"-\\\\\\\"*80)\\\\nfor m in [\\\\\\\"Qwen\\\\\\\", \\\\\\\"Llama\\\\\\\", \\\\\\\"Mistral\\\\\\\"]:\\\\n    r = all_results[m]\\\\n    d15 = r[\\\\\\\"cohens_d_zscore\\\\\\\"][\\\\\\\"contam_15\\\\\\\"]\\\\n    d50 = r[\\\\\\\"cohens_d_zscore\\\\\\\"][\\\\\\\"contam_50\\\\\\\"]\\\\n    print(f\\\\\\\"{m:<10} {r['n_clean']:>3} {d15['d']:>12.4f} [{d15['ci_lo']:>8.4f}, {d15['ci_hi']:>8.4f}] {d50['d']:>12.4f} [{d50['ci_lo']:>8.4f}, {d50['ci_hi']:>8.4f}]\\\\\\\")\\\\n\\\\nprint(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\"*80)\\\\nprint(\\\\\\\"Table C: Raw values (all conditions)\\\\\\\")\\\\nprint(\\\\\\\"=\\\\\\\"*80)\\\\nprint(f\\\\\\\"{'Model':<10} {'Condition':<20} {'Accuracy':>10} {'HT':>10} {'z-score':>10}\\\\\\\")\\\\nprint(\\\\\\\"-\\\\\\\"*60)\\\\nfor m in [\\\\\\\"Qwen\\\\\\\", \\\\\\\"Llama\\\\\\\", \\\\\\\"Mistral\\\\\\\"]:\\\\n    r = all_results[m]\\\\n    for det in r[\\\\\\\"clean_details\\\\\\\"]:\\\\n        cond = det[\\\\\\\"file\\\\\\\"].replace(\\\\\\\"_results.json\\\\\\\", \\\\\\\"\\\\\\\")\\\\n        print(f\\\\\\\"{m:<10} {cond:<20} {det['accuracy']:>10.4f} {det['HT']:>10.4f} {det['z_score']:>10.4f}\\\\\\\")\\\\n    for cl in [\\\\\\\"contam_15\\\\\\\", \\\\\\\"contam_50\\\\\\\"]:\\\\n        cr = r[cl]\\\\n        print(f\\\\\\\"{m:<10} {cl:<20} {cr['accuracy']:>10.4f} {cr['HT']:>10.4f} {cr['z_score']:>10.4f}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\"*60)\\\\n\\\\n# --- Save JSON ---\\\\noutput_path = \\\\\\\"/root/autodl-tmp/ht_zscore_results_n10.json\\\\\\\"\\\\nwith open(output_path, \\\\\\\"w\\\\\\\") as f:\\\\n    json.dump(all_results, f, indent=2)\\\\nprint(f\\\\\\\"\\\\\\\\nResults saved to {output_path}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"import json\\nimport numpy as np\\nimport pandas as pd\\nimport os\\n\\n# --- Load IRT params ---\\nparams_df = pd.read_csv(\\\"/root/autodl-tmp/ctrl_contam_pilot/mmlu_params.csv\\\")\\na = params_df[\\\"a_discrimination\\\"].values\\nb = params_df[\\\"b_difficulty\\\"].values\\nc = params_df[\\\"c_guessing\\\"].values\\nd = params_df[\\\"d_feasibility\\\"].values\\nn_items = len(a)\\nprint(f\\\"IRT params loaded: {n_items} items\\\")\\n\\n# --- Helper functions ---\\ndef compute_ht(response_vector, a, b, c, d, theta):\\n    P = c + (d - c) / (1 + np.exp(-a * (theta - b)))\\n    P = np.clip(P, 1e-10, 1 - 1e-10)\\n    numerator = np.sum((response_vector - P) ** 2)\\n    denominator = np.sum(P * (1 - P))\\n    return numerator / denominator\\n\\ndef compute_acc_zscore(acc, mean_clean_acc, std_clean_acc):\\n    if std_clean_acc < 1e-10:\\n        return float('nan')\\n    return (acc - mean_clean_acc) / std_clean_acc\\n\\ndef bootstrap_cohens_d(clean_values, contam_value, n_bootstrap=10000, seed=42):\\n    rng = np.random.RandomState(seed)\\n    n = len(clean_values)\\n    ds = []\\n    for _ in range(n_bootstrap):\\n        sample = rng.choice(clean_values, size=n, replace=True)\\n        s = np.std(sample, ddof=1)\\n        if s < 1e-10:\\n            continue\\n        d_val = (np.mean(sample) - contam_value) / s\\n        ds.append(d_val)\\n    ds = np.array(ds)\\n    if len(ds) == 0:\\n        return float('nan'), float('nan'), float('nan')\\n    return float(np.mean(ds)), float(np.percentile(ds, 2.5)), float(np.percentile(ds, 97.5))\\n\\ndef load_result(path):\\n    with open(path) as f:\\n        data = json.load(f)\\n    rv = np.array(data[\\\"response_vector\\\"])\\n    theta = data[\\\"theta_mle\\\"]\\n    acc = np.mean(rv)\\n    return rv, theta, acc\\n\\n# --- Model configs ---\\nmodels = {\\n    \\\"Qwen\\\": {\\n        \\\"base_dir\\\": \\\"/root/autodl-tmp/ctrl_contam_pilot/results\\\",\\n        \\\"clean_files\\\": [f\\\"clean_s{i}_results.json\\\" for i in range(1, 11)],\\n        \\\"contam_15\\\": \\\"contam_15_results.json\\\",\\n        \\\"contam_50\\\": \\\"contam_50_results.json\\\",\\n    },\\n    \\\"Llama\\\": {\\n        \\\"base_dir\\\": \\\"/root/autodl-tmp/ctrl_contam_llama/results\\\",\\n        \\\"clean_files\\\": [\\\"clean_results.json\\\"] + [f\\\"clean_s{i}_results.json\\\" for i in range(2, 11)],\\n        \\\"contam_15\\\": \\\"contam_15_results.json\\\",\\n        \\\"contam_50\\\": \\\"contam_50_results.json\\\",\\n    },\\n    \\\"Mistral\\\": {\\n        \\\"base_dir\\\": \\\"/root/autodl-tmp/ctrl_contam_mistral/results\\\",\\n        \\\"clean_files\\\": [\\\"clean_results.json\\\", \\\"clean_s2_results.json\\\", \\\"clean_s3_results.json\\\",\\n                        \\\"clean_s8_results.json\\\", \\\"clean_s9_results.json\\\", \\\"clean_s10_results.json\\\"],\\n        \\\"contam_15\\\": \\\"contam_15_results.json\\\",\\n        \\\"contam_50\\\": \\\"contam_50_results.json\\\",\\n    },\\n}\\n\\nall_results = {}\\n\\nfor model_name, cfg in models.items():\\n    base = cfg[\\\"base_dir\\\"]\\n    n_clean = len(cfg[\\\"clean_files\\\"])\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"Model: {model_name} (n_clean={n_clean})\\\")\\n    print(f\\\"{'='*60}\\\")\\n\\n    # Load clean seeds\\n    clean_hts = []\\n    clean_accs = []\\n    clean_details = []\\n    for fname in cfg[\\\"clean_files\\\"]:\\n        path = os.path.join(base, fname)\\n        rv, theta, acc = load_result(path)\\n        ht = compute_ht(rv, a, b, c, d, theta)\\n        clean_hts.append(ht)\\n        clean_accs.append(acc)\\n        clean_details.append({\\\"file\\\": fname, \\\"accuracy\\\": acc, \\\"theta\\\": theta, \\\"HT\\\": ht})\\n        print(f\\\"  {fname}: acc={acc:.4f}, theta={theta:.4f}, HT={ht:.4f}\\\")\\n\\n    clean_hts = np.array(clean_hts)\\n    clean_accs = np.array(clean_accs)\\n    mean_clean_acc = np.mean(clean_accs)\\n    std_clean_acc = np.std(clean_accs, ddof=1)\\n\\n    # Compute z-scores for clean\\n    clean_zscores = np.array([compute_acc_zscore(a_val, mean_clean_acc, std_clean_acc) for a_val in clean_accs])\\n\\n    for i, det in enumerate(clean_details):\\n        det[\\\"z_score\\\"] = float(clean_zscores[i])\\n\\n    # Load contam conditions\\n    contam_results = {}\\n    for contam_label, contam_file in [(\\\"contam_15\\\", cfg[\\\"contam_15\\\"]), (\\\"contam_50\\\", cfg[\\\"contam_50\\\"])]:\\n        path = os.path.join(base, contam_file)\\n        rv, theta, acc = load_result(path)\\n        ht = compute_ht(rv, a, b, c, d, theta)\\n        zscore = compute_acc_zscore(acc, mean_clean_acc, std_clean_acc)\\n        contam_results[contam_label] = {\\n            \\\"accuracy\\\": acc, \\\"theta\\\": theta, \\\"HT\\\": ht, \\\"z_score\\\": zscore\\n        }\\n        print(f\\\"  {contam_label}: acc={acc:.4f}, theta={theta:.4f}, HT={ht:.4f}, z={zscore:.4f}\\\")\\n\\n    # Cohen's d for HT\\n    d_ht_15, ci_lo_ht_15, ci_hi_ht_15 = bootstrap_cohens_d(clean_hts, contam_results[\\\"contam_15\\\"][\\\"HT\\\"])\\n    d_ht_50, ci_lo_ht_50, ci_hi_ht_50 = bootstrap_cohens_d(clean_hts, contam_results[\\\"contam_50\\\"][\\\"HT\\\"])\\n\\n    # Cohen's d for z-score\\n    d_z_15, ci_lo_z_15, ci_hi_z_15 = bootstrap_cohens_d(clean_zscores, contam_results[\\\"contam_15\\\"][\\\"z_score\\\"])\\n    d_z_50, ci_lo_z_50, ci_hi_z_50 = bootstrap_cohens_d(clean_zscores, contam_results[\\\"contam_50\\\"][\\\"z_score\\\"])\\n\\n    all_results[model_name] = {\\n        \\\"n_clean\\\": n_clean,\\n        \\\"clean_mean_acc\\\": float(mean_clean_acc),\\n        \\\"clean_std_acc\\\": float(std_clean_acc),\\n        \\\"clean_details\\\": clean_details,\\n        \\\"contam_15\\\": contam_results[\\\"contam_15\\\"],\\n        \\\"contam_50\\\": contam_results[\\\"contam_50\\\"],\\n        \\\"cohens_d_HT\\\": {\\n            \\\"contam_15\\\": {\\\"d\\\": d_ht_15, \\\"ci_lo\\\": ci_lo_ht_15, \\\"ci_hi\\\": ci_hi_ht_15},\\n            \\\"contam_50\\\": {\\\"d\\\": d_ht_50, \\\"ci_lo\\\": ci_lo_ht_50, \\\"ci_hi\\\": ci_hi_ht_50},\\n        },\\n        \\\"cohens_d_zscore\\\": {\\n            \\\"contam_15\\\": {\\\"d\\\": d_z_15, \\\"ci_lo\\\": ci_lo_z_15, \\\"ci_hi\\\": ci_hi_z_15},\\n            \\\"contam_50\\\": {\\\"d\\\": d_z_50, \\\"ci_lo\\\": ci_lo_z_50, \\\"ci_hi\\\": ci_hi_z_50},\\n        },\\n    }\\n\\n# --- Print Tables ---\\nprint(\\\"\\\\n\\\" + \\\"=\\\"*80)\\nprint(\\\"Table A: HT Cohen's d + 95% CI\\\")\\nprint(\\\"=\\\"*80)\\nprint(f\\\"{'Model':<10} {'n':>3} {'d_HT(15%)':>12} {'95% CI':>22} {'d_HT(50%)':>12} {'95% CI':>22}\\\")\\nprint(\\\"-\\\"*80)\\nfor m in [\\\"Qwen\\\", \\\"Llama\\\", \\\"Mistral\\\"]:\\n    r = all_results[m]\\n    d15 = r[\\\"cohens_d_HT\\\"][\\\"contam_15\\\"]\\n    d50 = r[\\\"cohens_d_HT\\\"][\\\"contam_50\\\"]\\n    print(f\\\"{m:<10} {r['n_clean']:>3} {d15['d']:>12.4f} [{d15['ci_lo']:>8.4f}, {d15['ci_hi']:>8.4f}] {d50['d']:>12.4f} [{d50['ci_lo']:>8.4f}, {d50['ci_hi']:>8.4f}]\\\")\\n\\nprint(\\\"\\\\n\\\" + \\\"=\\\"*80)\\nprint(\\\"Table B: Accuracy z-score Cohen's d + 95% CI\\\")\\nprint(\\\"=\\\"*80)\\nprint(f\\\"{'Model':<10} {'n':>3} {'d_z(15%)':>12} {'95% CI':>22} {'d_z(50%)':>12} {'95% CI':>22}\\\")\\nprint(\\\"-\\\"*80)\\nfor m in [\\\"Qwen\\\", \\\"Llama\\\", \\\"Mistral\\\"]:\\n    r = all_results[m]\\n    d15 = r[\\\"cohens_d_zscore\\\"][\\\"contam_15\\\"]\\n    d50 = r[\\\"cohens_d_zscore\\\"][\\\"contam_50\\\"]\\n    print(f\\\"{m:<10} {r['n_clean']:>3} {d15['d']:>12.4f} [{d15['ci_lo']:>8.4f}, {d15['ci_hi']:>8.4f}] {d50['d']:>12.4f} [{d50['ci_lo']:>8.4f}, {d50['ci_hi']:>8.4f}]\\\")\\n\\nprint(\\\"\\\\n\\\" + \\\"=\\\"*80)\\nprint(\\\"Table C: Raw values (all conditions)\\\")\\nprint(\\\"=\\\"*80)\\nprint(f\\\"{'Model':<10} {'Condition':<20} {'Accuracy':>10} {'HT':>10} {'z-score':>10}\\\")\\nprint(\\\"-\\\"*60)\\nfor m in [\\\"Qwen\\\", \\\"Llama\\\", \\\"Mistral\\\"]:\\n    r = all_results[m]\\n    for det in r[\\\"clean_details\\\"]:\\n        cond = det[\\\"file\\\"].replace(\\\"_results.json\\\", \\\"\\\")\\n        print(f\\\"{m:<10} {cond:<20} {det['accuracy']:>10.4f} {det['HT']:>10.4f} {det['z_score']:>10.4f}\\\")\\n    for cl in [\\\"contam_15\\\", \\\"contam_50\\\"]:\\n        cr = r[cl]\\n        print(f\\\"{m:<10} {cl:<20} {cr['accuracy']:>10.4f} {cr['HT']:>10.4f} {cr['z_score']:>10.4f}\\\")\\n    print(\\\"-\\\"*60)\\n\\n# --- Save JSON ---\\noutput_path = \\\"/root/autodl-tmp/ht_zscore_results_n10.json\\\"\\nwith open(output_path, \\\"w\\\") as f:\\n    json.dump(all_results, f, indent=2)\\nprint(f\\\"\\\\nResults saved to {output_path}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-23T01:22:56.512Z_
+
+<details><summary>↩ Tool result · `toolu_01RZq8sX7G3mETCmNUJBHdZF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"Qwen\\\": {\\n    \\\"n_clean\\\": 10,\\n    \\\"clean_mean_acc\\\": 0.6775459336276882,\\n    \\\"clean_std_acc\\\": 0.0015308724786260604,\\n    \\\"clean_details\\\": [\\n      {\\n        \\\"file\\\": \\\"clean_s1_results.json\\\",\\n        \\\"accuracy\\\": 0.6786782509614016,\\n        \\\"theta\\\": -0.0986527567242099,\\n        \\\"HT\\\": 0.9193547436924834,\\n        \\\"z_score\\\": 0.7396549023662439\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s2_results.json\\\",\\n        \\\"accuracy\\\": 0.6788918957413473,\\n        \\\"theta\\\": -0.08419128365675109,\\n        \\\"HT\\\": 0.9411591018714113,\\n        \\\"z_score\\\": 0.8792124311145111\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s3_results.json\\\",\\n        \\\"accuracy\\\": 0.6782509614015098,\\n        \\\"theta\\\": -0.10680139600711859,\\n        \\\"HT\\\": 0.9191684505276785,\\n        \\\"z_score\\\": 0.4605398448695645\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s4_results.json\\\",\\n        \\\"accuracy\\\": 0.6786070360347529,\\n        \\\"theta\\\": -0.10916247474758177,\\n        \\\"HT\\\": 0.9253539927571444,\\n        \\\"z_score\\\": 0.6931357261167973\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s5_results.json\\\",\\n        \\\"accuracy\\\": 0.6787494658880502,\\n        \\\"theta\\\": -0.08750088659913645,\\n        \\\"HT\\\": 0.9277904713176459,\\n        \\\"z_score\\\": 0.7861740786156904\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s6_results.json\\\",\\n        \\\"accuracy\\\": 0.6771115225751317,\\n        \\\"theta\\\": -0.10356752108238569,\\n        \\\"HT\\\": 0.931313697965186,\\n        \\\"z_score\\\": -0.283766975121508\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s7_results.json\\\",\\n        \\\"accuracy\\\": 0.6782509614015098,\\n        \\\"theta\\\": -0.08916794814799336,\\n        \\\"HT\\\": 0.9253298195851202,\\n        \\\"z_score\\\": 0.4605398448695645\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s8_results.json\\\",\\n        \\\"accuracy\\\": 0.6768266628685372,\\n        \\\"theta\\\": -0.10350776551695291,\\n        \\\"HT\\\": 0.9226355962905857,\\n        \\\"z_score\\\": -0.4698436801192943\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s9_results.json\\\",\\n        \\\"accuracy\\\": 0.6742629255091868,\\n        \\\"theta\\\": -0.12421669978651226,\\n        \\\"HT\\\": 0.9232609825008568,\\n        \\\"z_score\\\": -2.144534025099153\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s10_results.json\\\",\\n        \\\"accuracy\\\": 0.6758296538954565,\\n        \\\"theta\\\": -0.1156143911182717,\\n        \\\"HT\\\": 0.9326521166270704,\\n        \\\"z_score\\\": -1.1211121476114736\\n      }\\n    ],\\n    \\\"contam_15\\\": {\\n      \\\"accuracy\\\": 0.7310212220481412,\\n      \\\"theta\\\": 0.1970583788764187,\\n      \\\"HT\\\": 0.9678946686611074,\\n      \\\"z_score\\\": 34.931249445705916\\n    },\\n    \\\"contam_50\\\": {\\n      \\\"accuracy\\\": 0.7643498077196981,\\n      \\\"theta\\\": 0.37026214499905313,\\n      \\\"HT\\\": 0.9358994594738597,\\n      \\\"z_score\\\": 56.70222393044473\\n    },\\n    \\\"cohens_d_HT\\\": {\\n      \\\"contam_15\\\": {\\n        \\\"d\\\": -7.261389881123562,\\n        \\\"ci_lo\\\": -13.984410594237783,\\n        \\\"ci_hi\\\": -4.297427749004213\\n      },\\n      \\\"contam_50\\\": {\\n        \\\"d\\\": -1.6553732966878545,\\n        \\\"ci_lo\\\": -3.833127882998383,\\n        \\\"ci_hi\\\": -0.6250638574077532\\n      }\\n    },\\n    \\\"cohens_d_zscore\\\": {\\n      \\\"contam_15\\\": {\\n        \\\"d\\\": -42.275018493213096,\\n        \\\"ci_lo\\\": -85.09975242794606,\\n        \\\"ci_hi\\\": -26.82085947118498\\n      },\\n      \\\"contam_50\\\": {\\n        \\\"d\\\": -68.6851206184916,\\n        \\\"ci_lo\\\": -138.91112938286062,\\n        \\\"ci_hi\\\": -43.31465447391039\\n      }\\n    }\\n  },\\n  \\\"Llama\\\": {\\n    \\\"n_clean\\\": 10,\\n    \\\"clean_mean_acc\\\": 0.5937046004842614,\\n    \\\"clean_std_acc\\\": 0.0038740454637019076,\\n    \\\"clean_details\\\": [\\n      {\\n        \\\"file\\\": \\\"clean_results.json\\\",\\n        \\\"accuracy\\\": 0.5914399658168352,\\n        \\\"theta\\\": -0.6661461950476987,\\n        \\\"HT\\\": 0.9932047213055085,\\n        \\\"z_score\\\": -0.5845658469021178\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s2_results.json\\\",\\n        \\\"accuracy\\\": 0.5953567867825096,\\n        \\\"theta\\\": -0.6299057955822513,\\n        \\\"HT\\\": 1.0030769438698142,\\n        \\\"z_score\\\": 0.42647571220534275\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s3_results.json\\\",\\n        \\\"accuracy\\\": 0.5942885628827802,\\n        \\\"theta\\\": -0.6399950969771427,\\n        \\\"HT\\\": 1.0091255545031088,\\n        \\\"z_score\\\": 0.15073710517603273\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s4_results.json\\\",\\n    \\n\\n... [截断: 输出过长，省略 701 字符] ...\\n\\n   \\\"HT\\\": 1.0034533196929072,\\n        \\\"z_score\\\": -0.21691437086302817\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s8_results.json\\\",\\n        \\\"accuracy\\\": 0.5860276313915397,\\n        \\\"theta\\\": -0.6979107420521199,\\n        \\\"HT\\\": 0.9907819877258354,\\n        \\\"z_score\\\": -1.9816414558506237\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s9_results.json\\\",\\n        \\\"accuracy\\\": 0.5921521150833214,\\n        \\\"theta\\\": -0.658760410821697,\\n        \\\"HT\\\": 0.9993886433395751,\\n        \\\"z_score\\\": -0.40074010888258726\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s10_results.json\\\",\\n        \\\"accuracy\\\": 0.5951431420025637,\\n        \\\"theta\\\": -0.6214182413680708,\\n        \\\"HT\\\": 1.0195334268376788,\\n        \\\"z_score\\\": 0.37132799079947504\\n      }\\n    ],\\n    \\\"contam_15\\\": {\\n      \\\"accuracy\\\": 0.6654322746047572,\\n      \\\"theta\\\": -0.27605690672736094,\\n      \\\"HT\\\": 1.0242664677013404,\\n      \\\"z_score\\\": 18.514928333328125\\n    },\\n    \\\"contam_50\\\": {\\n      \\\"accuracy\\\": 0.6983335707164222,\\n      \\\"theta\\\": -0.1490004489620292,\\n      \\\"HT\\\": 1.0307184550723367,\\n      \\\"z_score\\\": 27.007677429830895\\n    },\\n    \\\"cohens_d_HT\\\": {\\n      \\\"contam_15\\\": {\\n        \\\"d\\\": -2.454276203236807,\\n        \\\"ci_lo\\\": -4.292544049285409,\\n        \\\"ci_hi\\\": -1.460184504761183\\n      },\\n      \\\"contam_50\\\": {\\n        \\\"d\\\": -3.0657547960048475,\\n        \\\"ci_lo\\\": -5.335914136516481,\\n        \\\"ci_hi\\\": -1.9047379361921828\\n      }\\n    },\\n    \\\"cohens_d_zscore\\\": {\\n      \\\"contam_15\\\": {\\n        \\\"d\\\": -22.497799739752256,\\n        \\\"ci_lo\\\": -46.97720057970572,\\n        \\\"ci_hi\\\": -13.545528611907883\\n      },\\n      \\\"contam_50\\\": {\\n        \\\"d\\\": -32.821183692226434,\\n        \\\"ci_lo\\\": -68.55933373991739,\\n        \\\"ci_hi\\\": -19.805072840368158\\n      }\\n    }\\n  },\\n  \\\"Mistral\\\": {\\n    \\\"n_clean\\\": 6,\\n    \\\"clean_mean_acc\\\": 0.5275601766130181,\\n    \\\"clean_std_acc\\\": 0.013497060521842639,\\n    \\\"clean_details\\\": [\\n      {\\n        \\\"file\\\": \\\"clean_results.json\\\",\\n        \\\"accuracy\\\": 0.5138156957698333,\\n        \\\"theta\\\": -1.156850591775037,\\n        \\\"HT\\\": 0.9490539624137713,\\n        \\\"z_score\\\": -1.0183314226784237\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s2_results.json\\\",\\n        \\\"accuracy\\\": 0.542800170915824,\\n        \\\"theta\\\": -0.9626744673285949,\\n        \\\"HT\\\": 1.0027929103777269,\\n        \\\"z_score\\\": 1.1291343235916145\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s3_results.json\\\",\\n        \\\"accuracy\\\": 0.5413046574562028,\\n        \\\"theta\\\": -0.9732527128586036,\\n        \\\"HT\\\": 0.9699098023952628,\\n        \\\"z_score\\\": 1.0183314226784155\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s8_results.json\\\",\\n        \\\"accuracy\\\": 0.5162370032758866,\\n        \\\"theta\\\": -1.1456500811085557,\\n        \\\"HT\\\": 0.9488618772655247,\\n        \\\"z_score\\\": -0.8389362497713431\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s9_results.json\\\",\\n        \\\"accuracy\\\": 0.5165218629824812,\\n        \\\"theta\\\": -1.1240254419150628,\\n        \\\"HT\\\": 0.9666308636392844,\\n        \\\"z_score\\\": -0.8178309353116845\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s10_results.json\\\",\\n        \\\"accuracy\\\": 0.5346816692778806,\\n        \\\"theta\\\": -1.0285903748976144,\\n        \\\"HT\\\": 0.9659587177665071,\\n        \\\"z_score\\\": 0.5276328614914049\\n      }\\n    ],\\n    \\\"contam_15\\\": {\\n      \\\"accuracy\\\": 0.5948582822959693,\\n      \\\"theta\\\": -0.7128894678335754,\\n      \\\"HT\\\": 1.0117673459710976,\\n      \\\"z_score\\\": 4.98613054109381\\n    },\\n    \\\"contam_50\\\": {\\n      \\\"accuracy\\\": 0.6731947016094574,\\n      \\\"theta\\\": -0.30271472643937813,\\n      \\\"HT\\\": 1.0288002253331032,\\n      \\\"z_score\\\": 10.790092017499305\\n    },\\n    \\\"cohens_d_HT\\\": {\\n      \\\"contam_15\\\": {\\n        \\\"d\\\": -4.356185513148918,\\n        \\\"ci_lo\\\": -6.968997829477596,\\n        \\\"ci_hi\\\": -1.2197207560718348\\n      },\\n      \\\"contam_50\\\": {\\n        \\\"d\\\": -5.894628103750707,\\n        \\\"ci_lo\\\": -9.415754330062919,\\n        \\\"ci_hi\\\": -1.8498644277291705\\n      }\\n    },\\n    \\\"cohens_d_zscore\\\": {\\n      \\\"contam_15\\\": {\\n        \\\"d\\\": -7.814349494781846,\\n        \\\"ci_lo\\\": -14.374461628753785,\\n        \\\"ci_hi\\\": -4.379311539389099\\n      },\\n      \\\"contam_50\\\": {\\n        \\\"d\\\": -16.597322977134308,\\n        \\\"ci_lo\\\": -34.57044196645501,\\n        \\\"ci_hi\\\": -9.714979219001924\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "64aeeb5e-c33d-4782-b93f-a1359eac9f93",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"Qwen\\\\\\\": {\\\\n    \\\\\\\"n_clean\\\\\\\": 10,\\\\n    \\\\\\\"clean_mean_acc\\\\\\\": 0.6775459336276882,\\\\n    \\\\\\\"clean_std_acc\\\\\\\": 0.0015308724786260604,\\\\n    \\\\\\\"clean_details\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"file\\\\\\\": \\\\\\\"clean_s1_results.json\\\\\\\",\\\\n        \\\\\\\"accuracy\\\\\\\": 0.6786782509614016,\\\\n        \\\\\\\"theta\\\\\\\": -0.0986527567242099,\\\\n        \\\\\\\"HT\\\\\\\": 0.9193547436924834,\\\\n        \\\\\\\"z_score\\\\\\\": 0.7396549023662439\\\\n      },\\\\n      {\\\\n        \\\\\\\"file\\\\\\\": \\\\\\\"clean_s2_results.json\\\\\\\",\\\\n        \\\\\\\"accuracy\\\\\\\": 0.6788918957413473,\\\\n        \\\\\\\"theta\\\\\\\": -0.08419128365675109,\\\\n        \\\\\\\"HT\\\\\\\": 0.9411591018714113,\\\\n        \\\\\\\"z_score\\\\\\\": 0.8792124311145111\\\\n      },\\\\n      {\\\\n        \\\\\\\"file\\\\\\\": \\\\\\\"clean_s3_results.json\\\\\\\",\\\\n        \\\\\\\"accuracy\\\\\\\": 0.6782509614015098,\\\\n        \\\\\\\"theta\\\\\\\": -0.10680139600711859,\\\\n        \\\\\\\"HT\\\\\\\": 0.9191684505276785,\\\\n        \\\\\\\"z_score\\\\\\\": 0.4605398448695645\\\\n      },\\\\n      {\\\\n        \\\\\\\"file\\\\\\\": \\\\\\\"clean_s4_results.json\\\\\\\",\\\\n        \\\\\\\"accuracy\\\\\\\": 0.6786070360347529,\\\\n        \\\\\\\"theta\\\\\\\": -0.10916247474758177,\\\\n        \\\\\\\"HT\\\\\\\": 0.9253539927571444,\\\\n        \\\\\\\"z_score\\\\\\\": 0.6931357261167973\\\\n      },\\\\n      {\\\\n        \\\\\\\"file\\\\\\\": \\\\\\\"clean_s5_results.json\\\\\\\",\\\\n        \\\\\\\"accuracy\\\\\\\": 0.6787494658880502,\\\\n        \\\\\\\"theta\\\\\\\": -0.08750088659913645,\\\\n        \\\\\\\"HT\\\\\\\": 0.9277904713176459,\\\\n        \\\\\\\"z_score\\\\\\\": 0.7861740786156904\\\\n      },\\\\n      {\\\\n        \\\\\\\"file\\\\\\\": \\\\\\\"clean_s6_results.json\\\\\\\",\\\\n        \\\\\\\"accuracy\\\\\\\": 0.6771115225751317,\\\\n        \\\\\\\"theta\\\\\\\": -0.10356752108238569,\\\\n        \\\\\\\"HT\\\\\\\": 0.931313697965186,\\\\n        \\\\\\\"z_score\\\\\\\": -0.283766975121508\\\\n      },\\\\n      {\\\\n        \\\\\\\"file\\\\\\\": \\\\\\\"clean_s7_results.json\\\\\\\",\\\\n        \\\\\\\"accuracy\\\\\\\": 0.6782509614015098,\\\\n        \\\\\\\"theta\\\\\\\": -0.08916794814799336,\\\\n        \\\\\\\"HT\\\\\\\": 0.9253298195851202,\\\\n        \\\\\\\"z_score\\\\\\\": 0.4605398448695645\\\\n      },\\\\n      {\\\\n        \\\\\\\"file\\\\\\\": \\\\\\\"clean_s8_results.json\\\\\\\",\\\\n        \\\\\\\"accuracy\\\\\\\": 0.6768266628685372,\\\\n        \\\\\\\"theta\\\\\\\": -0.10350776551695291,\\\\n        \\\\\\\"HT\\\\\\\": 0.9226355962905857,\\\\n        \\\\\\\"z_score\\\\\\\": -0.4698436801192943\\\\n      },\\\\n      {\\\\n        \\\\\\\"file\\\\\\\": \\\\\\\"clean_s9_results.json\\\\\\\",\\\\n        \\\\\\\"accuracy\\\\\\\": 0.6742629255091868,\\\\n        \\\\\\\"theta\\\\\\\": -0.12421669978651226,\\\\n        \\\\\\\"HT\\\\\\\": 0.9232609825008568,\\\\n        \\\\\\\"z_score\\\\\\\": -2.144534025099153\\\\n      },\\\\n      {\\\\n        \\\\\\\"file\\\\\\\": \\\\\\\"clean_s10_results.json\\\\\\\",\\\\n        \\\\\\\"accuracy\\\\\\\": 0.6758296538954565,\\\\n        \\\\\\\"theta\\\\\\\": -0.1156143911182717,\\\\n        \\\\\\\"HT\\\\\\\": 0.9326521166270704,\\\\n        \\\\\\\"z_score\\\\\\\": -1.1211121476114736\\\\n      }\\\\n    ],\\\\n    \\\\\\\"contam_15\\\\\\\": {\\\\n      \\\\\\\"accuracy\\\\\\\": 0.7310212220481412,\\\\n      \\\\\\\"theta\\\\\\\": 0.1970583788764187,\\\\n      \\\\\\\"HT\\\\\\\": 0.9678946686611074,\\\\n      \\\\\\\"z_score\\\\\\\": 34.931249445705916\\\\n    },\\\\n    \\\\\\\"contam_50\\\\\\\": {\\\\n      \\\\\\\"accuracy\\\\\\\": 0.7643498077196981,\\\\n      \\\\\\\"theta\\\\\\\": 0.37026214499905313,\\\\n      \\\\\\\"HT\\\\\\\": 0.9358994594738597,\\\\n      \\\\\\\"z_score\\\\\\\": 56.70222393044473\\\\n    },\\\\n    \\\\\\\"cohens_d_HT\\\\\\\": {\\\\n      \\\\\\\"contam_15\\\\\\\": {\\\\n        \\\\\\\"d\\\\\\\": -7.261389881123562,\\\\n        \\\\\\\"ci_lo\\\\\\\": -13.984410594237783,\\\\n        \\\\\\\"ci_hi\\\\\\\": -4.297427749004213\\\\n      },\\\\n      \\\\\\\"contam_50\\\\\\\": {\\\\n        \\\\\\\"d\\\\\\\": -1.6553732966878545,\\\\n        \\\\\\\"ci_lo\\\\\\\": -3.833127882998383,\\\\n        \\\\\\\"ci_hi\\\\\\\": -0.6250638574077532\\\\n      }\\\\n    },\\\\n    \\\\\\\"cohens_d_zscore\\\\\\\": {\\\\n      \\\\\\\"contam_15\\\\\\\": {\\\\n        \\\\\\\"d\\\\\\\": -42.275018493213096,\\\\n        \\\\\\\"ci_lo\\\\\\\": -85.09975242794606,\\\\n        \\\\\\\"ci_hi\\\\\\\": -26.82085947118498\\\\n      },\\\\n      \\\\\\\"contam_50\\\\\\\": {\\\\n        \\\\\\\"d\\\\\\\": -68.6851206184916,\\\\n        \\\\\\\"ci_lo\\\\\\\": -138.91112938286062,\\\\n        \\\\\\\"ci_hi\\\\\\\": -43.31465447391039\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"Llama\\\\\\\": {\\\\n    \\\\\\\"n_clean\\\\\\\": 10,\\\\n    \\\\\\\"clean_mean_acc\\\\\\\": 0.5937046004842614,\\\\n    \\\\\\\"clean_std_acc\\\\\\\": 0.0038740454637019076,\\\\n    \\\\\\\"clean_details\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"file\\\\\\\": \\\\\\\"clean_results.json\\\\\\\",\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5914399658168352,\\\\n        \\\\\\\"theta\\\\\\\": -0.6661461950476987,\\\\n        \\\\\\\"HT\\\\\\\": 0.9932047213055085,\\\\n        \\\\\\\"z_score\\\\\\\": -0.5845658469021178\\\\n      },\\\\n      {\\\\n        \\\\\\\"file\\\\\\\": \\\\\\\"clean_s2_results.json\\\\\\\",\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5953567867825096,\\\\n        \\\\\\\"theta\\\\\\\": -0.6299057955822513,\\\\n        \\\\\\\"HT\\\\\\\": 1.0030769438698142,\\\\n        \\\\\\\"z_score\\\\\\\": 0.42647571220534275\\\\n      },\\\\n      {\\\\n        \\\\\\\"file\\\\\\\": \\\\\\\"clean_s3_results.json\\\\\\\",\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5942885628827802,\\\\n        \\\\\\\"theta\\\\\\\": -0.6399950969771427,\\\\n        \\\\\\\"HT\\\\\\\": 1.0091255545031088,\\\\n        \\\\\\\"z_score\\\\\\\": 0.15073710517603273\\\\n      },\\\\n      {\\\\n        \\\\\\\"file\\\\\\\": \\\\\\\"clean_s4_results.json\\\\\\\",\\\\n    \\\\n\\\\n... [截断: 输出过长，省略 701 字符] ...\\\\n\\\\n   \\\\\\\"HT\\\\\\\": 1.0034533196929072,\\\\n        \\\\\\\"z_score\\\\\\\": -0.21691437086302817\\\\n      },\\\\n      {\\\\n        \\\\\\\"file\\\\\\\": \\\\\\\"clean_s8_results.json\\\\\\\",\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5860276313915397,\\\\n        \\\\\\\"theta\\\\\\\": -0.6979107420521199,\\\\n        \\\\\\\"HT\\\\\\\": 0.9907819877258354,\\\\n        \\\\\\\"z_score\\\\\\\": -1.9816414558506237\\\\n      },\\\\n      {\\\\n        \\\\\\\"file\\\\\\\": \\\\\\\"clean_s9_results.json\\\\\\\",\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5921521150833214,\\\\n        \\\\\\\"theta\\\\\\\": -0.658760410821697,\\\\n        \\\\\\\"HT\\\\\\\": 0.9993886433395751,\\\\n        \\\\\\\"z_score\\\\\\\": -0.40074010888258726\\\\n      },\\\\n      {\\\\n        \\\\\\\"file\\\\\\\": \\\\\\\"clean_s10_results.json\\\\\\\",\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5951431420025637,\\\\n        \\\\\\\"theta\\\\\\\": -0.6214182413680708,\\\\n        \\\\\\\"HT\\\\\\\": 1.0195334268376788,\\\\n        \\\\\\\"z_score\\\\\\\": 0.37132799079947504\\\\n      }\\\\n    ],\\\\n    \\\\\\\"contam_15\\\\\\\": {\\\\n      \\\\\\\"accuracy\\\\\\\": 0.6654322746047572,\\\\n      \\\\\\\"theta\\\\\\\": -0.27605690672736094,\\\\n      \\\\\\\"HT\\\\\\\": 1.0242664677013404,\\\\n      \\\\\\\"z_score\\\\\\\": 18.514928333328125\\\\n    },\\\\n    \\\\\\\"contam_50\\\\\\\": {\\\\n      \\\\\\\"accuracy\\\\\\\": 0.6983335707164222,\\\\n      \\\\\\\"theta\\\\\\\": -0.1490004489620292,\\\\n      \\\\\\\"HT\\\\\\\": 1.0307184550723367,\\\\n      \\\\\\\"z_score\\\\\\\": 27.007677429830895\\\\n    },\\\\n    \\\\\\\"cohens_d_HT\\\\\\\": {\\\\n      \\\\\\\"contam_15\\\\\\\": {\\\\n        \\\\\\\"d\\\\\\\": -2.454276203236807,\\\\n        \\\\\\\"ci_lo\\\\\\\": -4.292544049285409,\\\\n        \\\\\\\"ci_hi\\\\\\\": -1.460184504761183\\\\n      },\\\\n      \\\\\\\"contam_50\\\\\\\": {\\\\n        \\\\\\\"d\\\\\\\": -3.0657547960048475,\\\\n        \\\\\\\"ci_lo\\\\\\\": -5.335914136516481,\\\\n        \\\\\\\"ci_hi\\\\\\\": -1.9047379361921828\\\\n      }\\\\n    },\\\\n    \\\\\\\"cohens_d_zscore\\\\\\\": {\\\\n      \\\\\\\"contam_15\\\\\\\": {\\\\n        \\\\\\\"d\\\\\\\": -22.497799739752256,\\\\n        \\\\\\\"ci_lo\\\\\\\": -46.97720057970572,\\\\n        \\\\\\\"ci_hi\\\\\\\": -13.545528611907883\\\\n      },\\\\n      \\\\\\\"contam_50\\\\\\\": {\\\\n        \\\\\\\"d\\\\\\\": -32.821183692226434,\\\\n        \\\\\\\"ci_lo\\\\\\\": -68.55933373991739,\\\\n        \\\\\\\"ci_hi\\\\\\\": -19.805072840368158\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"Mistral\\\\\\\": {\\\\n    \\\\\\\"n_clean\\\\\\\": 6,\\\\n    \\\\\\\"clean_mean_acc\\\\\\\": 0.5275601766130181,\\\\n    \\\\\\\"clean_std_acc\\\\\\\": 0.013497060521842639,\\\\n    \\\\\\\"clean_details\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"file\\\\\\\": \\\\\\\"clean_results.json\\\\\\\",\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5138156957698333,\\\\n        \\\\\\\"theta\\\\\\\": -1.156850591775037,\\\\n        \\\\\\\"HT\\\\\\\": 0.9490539624137713,\\\\n        \\\\\\\"z_score\\\\\\\": -1.0183314226784237\\\\n      },\\\\n      {\\\\n        \\\\\\\"file\\\\\\\": \\\\\\\"clean_s2_results.json\\\\\\\",\\\\n        \\\\\\\"accuracy\\\\\\\": 0.542800170915824,\\\\n        \\\\\\\"theta\\\\\\\": -0.9626744673285949,\\\\n        \\\\\\\"HT\\\\\\\": 1.0027929103777269,\\\\n        \\\\\\\"z_score\\\\\\\": 1.1291343235916145\\\\n      },\\\\n      {\\\\n        \\\\\\\"file\\\\\\\": \\\\\\\"clean_s3_results.json\\\\\\\",\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5413046574562028,\\\\n        \\\\\\\"theta\\\\\\\": -0.9732527128586036,\\\\n        \\\\\\\"HT\\\\\\\": 0.9699098023952628,\\\\n        \\\\\\\"z_score\\\\\\\": 1.0183314226784155\\\\n      },\\\\n      {\\\\n        \\\\\\\"file\\\\\\\": \\\\\\\"clean_s8_results.json\\\\\\\",\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5162370032758866,\\\\n        \\\\\\\"theta\\\\\\\": -1.1456500811085557,\\\\n        \\\\\\\"HT\\\\\\\": 0.9488618772655247,\\\\n        \\\\\\\"z_score\\\\\\\": -0.8389362497713431\\\\n      },\\\\n      {\\\\n        \\\\\\\"file\\\\\\\": \\\\\\\"clean_s9_results.json\\\\\\\",\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5165218629824812,\\\\n        \\\\\\\"theta\\\\\\\": -1.1240254419150628,\\\\n        \\\\\\\"HT\\\\\\\": 0.9666308636392844,\\\\n        \\\\\\\"z_score\\\\\\\": -0.8178309353116845\\\\n      },\\\\n      {\\\\n        \\\\\\\"file\\\\\\\": \\\\\\\"clean_s10_results.json\\\\\\\",\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5346816692778806,\\\\n        \\\\\\\"theta\\\\\\\": -1.0285903748976144,\\\\n        \\\\\\\"HT\\\\\\\": 0.9659587177665071,\\\\n        \\\\\\\"z_score\\\\\\\": 0.5276328614914049\\\\n      }\\\\n    ],\\\\n    \\\\\\\"contam_15\\\\\\\": {\\\\n      \\\\\\\"accuracy\\\\\\\": 0.5948582822959693,\\\\n      \\\\\\\"theta\\\\\\\": -0.7128894678335754,\\\\n      \\\\\\\"HT\\\\\\\": 1.0117673459710976,\\\\n      \\\\\\\"z_score\\\\\\\": 4.98613054109381\\\\n    },\\\\n    \\\\\\\"contam_50\\\\\\\": {\\\\n      \\\\\\\"accuracy\\\\\\\": 0.6731947016094574,\\\\n      \\\\\\\"theta\\\\\\\": -0.30271472643937813,\\\\n      \\\\\\\"HT\\\\\\\": 1.0288002253331032,\\\\n      \\\\\\\"z_score\\\\\\\": 10.790092017499305\\\\n    },\\\\n    \\\\\\\"cohens_d_HT\\\\\\\": {\\\\n      \\\\\\\"contam_15\\\\\\\": {\\\\n        \\\\\\\"d\\\\\\\": -4.356185513148918,\\\\n        \\\\\\\"ci_lo\\\\\\\": -6.968997829477596,\\\\n        \\\\\\\"ci_hi\\\\\\\": -1.2197207560718348\\\\n      },\\\\n      \\\\\\\"contam_50\\\\\\\": {\\\\n        \\\\\\\"d\\\\\\\": -5.894628103750707,\\\\n        \\\\\\\"ci_lo\\\\\\\": -9.415754330062919,\\\\n        \\\\\\\"ci_hi\\\\\\\": -1.8498644277291705\\\\n      }\\\\n    },\\\\n    \\\\\\\"cohens_d_zscore\\\\\\\": {\\\\n      \\\\\\\"contam_15\\\\\\\": {\\\\n        \\\\\\\"d\\\\\\\": -7.814349494781846,\\\\n        \\\\\\\"ci_lo\\\\\\\": -14.374461628753785,\\\\n        \\\\\\\"ci_hi\\\\\\\": -4.379311539389099\\\\n      },\\\\n      \\\\\\\"contam_50\\\\\\\": {\\\\n        \\\\\\\"d\\\\\\\": -16.597322977134308,\\\\n        \\\\\\\"ci_lo\\\\\\\": -34.57044196645501,\\\\n        \\\\\\\"ci_hi\\\\\\\": -9.714979219001924\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"Qwen\\\": {\\n    \\\"n_clean\\\": 10,\\n    \\\"clean_mean_acc\\\": 0.6775459336276882,\\n    \\\"clean_std_acc\\\": 0.0015308724786260604,\\n    \\\"clean_details\\\": [\\n      {\\n        \\\"file\\\": \\\"clean_s1_results.json\\\",\\n        \\\"accuracy\\\": 0.6786782509614016,\\n        \\\"theta\\\": -0.0986527567242099,\\n        \\\"HT\\\": 0.9193547436924834,\\n        \\\"z_score\\\": 0.7396549023662439\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s2_results.json\\\",\\n        \\\"accuracy\\\": 0.6788918957413473,\\n        \\\"theta\\\": -0.08419128365675109,\\n        \\\"HT\\\": 0.9411591018714113,\\n        \\\"z_score\\\": 0.8792124311145111\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s3_results.json\\\",\\n        \\\"accuracy\\\": 0.6782509614015098,\\n        \\\"theta\\\": -0.10680139600711859,\\n        \\\"HT\\\": 0.9191684505276785,\\n        \\\"z_score\\\": 0.4605398448695645\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s4_results.json\\\",\\n        \\\"accuracy\\\": 0.6786070360347529,\\n        \\\"theta\\\": -0.10916247474758177,\\n        \\\"HT\\\": 0.9253539927571444,\\n        \\\"z_score\\\": 0.6931357261167973\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s5_results.json\\\",\\n        \\\"accuracy\\\": 0.6787494658880502,\\n        \\\"theta\\\": -0.08750088659913645,\\n        \\\"HT\\\": 0.9277904713176459,\\n        \\\"z_score\\\": 0.7861740786156904\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s6_results.json\\\",\\n        \\\"accuracy\\\": 0.6771115225751317,\\n        \\\"theta\\\": -0.10356752108238569,\\n        \\\"HT\\\": 0.931313697965186,\\n        \\\"z_score\\\": -0.283766975121508\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s7_results.json\\\",\\n        \\\"accuracy\\\": 0.6782509614015098,\\n        \\\"theta\\\": -0.08916794814799336,\\n        \\\"HT\\\": 0.9253298195851202,\\n        \\\"z_score\\\": 0.4605398448695645\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s8_results.json\\\",\\n        \\\"accuracy\\\": 0.6768266628685372,\\n        \\\"theta\\\": -0.10350776551695291,\\n        \\\"HT\\\": 0.9226355962905857,\\n        \\\"z_score\\\": -0.4698436801192943\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s9_results.json\\\",\\n        \\\"accuracy\\\": 0.6742629255091868,\\n        \\\"theta\\\": -0.12421669978651226,\\n        \\\"HT\\\": 0.9232609825008568,\\n        \\\"z_score\\\": -2.144534025099153\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s10_results.json\\\",\\n        \\\"accuracy\\\": 0.6758296538954565,\\n        \\\"theta\\\": -0.1156143911182717,\\n        \\\"HT\\\": 0.9326521166270704,\\n        \\\"z_score\\\": -1.1211121476114736\\n      }\\n    ],\\n    \\\"contam_15\\\": {\\n      \\\"accuracy\\\": 0.7310212220481412,\\n      \\\"theta\\\": 0.1970583788764187,\\n      \\\"HT\\\": 0.9678946686611074,\\n      \\\"z_score\\\": 34.931249445705916\\n    },\\n    \\\"contam_50\\\": {\\n      \\\"accuracy\\\": 0.7643498077196981,\\n      \\\"theta\\\": 0.37026214499905313,\\n      \\\"HT\\\": 0.9358994594738597,\\n      \\\"z_score\\\": 56.70222393044473\\n    },\\n    \\\"cohens_d_HT\\\": {\\n      \\\"contam_15\\\": {\\n        \\\"d\\\": -7.261389881123562,\\n        \\\"ci_lo\\\": -13.984410594237783,\\n        \\\"ci_hi\\\": -4.297427749004213\\n      },\\n      \\\"contam_50\\\": {\\n        \\\"d\\\": -1.6553732966878545,\\n        \\\"ci_lo\\\": -3.833127882998383,\\n        \\\"ci_hi\\\": -0.6250638574077532\\n      }\\n    },\\n    \\\"cohens_d_zscore\\\": {\\n      \\\"contam_15\\\": {\\n        \\\"d\\\": -42.275018493213096,\\n        \\\"ci_lo\\\": -85.09975242794606,\\n        \\\"ci_hi\\\": -26.82085947118498\\n      },\\n      \\\"contam_50\\\": {\\n        \\\"d\\\": -68.6851206184916,\\n        \\\"ci_lo\\\": -138.91112938286062,\\n        \\\"ci_hi\\\": -43.31465447391039\\n      }\\n    }\\n  },\\n  \\\"Llama\\\": {\\n    \\\"n_clean\\\": 10,\\n    \\\"clean_mean_acc\\\": 0.5937046004842614,\\n    \\\"clean_std_acc\\\": 0.0038740454637019076,\\n    \\\"clean_details\\\": [\\n      {\\n        \\\"file\\\": \\\"clean_results.json\\\",\\n        \\\"accuracy\\\": 0.5914399658168352,\\n        \\\"theta\\\": -0.6661461950476987,\\n        \\\"HT\\\": 0.9932047213055085,\\n        \\\"z_score\\\": -0.5845658469021178\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s2_results.json\\\",\\n        \\\"accuracy\\\": 0.5953567867825096,\\n        \\\"theta\\\": -0.6299057955822513,\\n        \\\"HT\\\": 1.0030769438698142,\\n        \\\"z_score\\\": 0.42647571220534275\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s3_results.json\\\",\\n        \\\"accuracy\\\": 0.5942885628827802,\\n        \\\"theta\\\": -0.6399950969771427,\\n        \\\"HT\\\": 1.0091255545031088,\\n        \\\"z_score\\\": 0.15073710517603273\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s4_results.json\\\",\\n    \\n\\n... [截断: 输出过长，省略 701 字符] ...\\n\\n   \\\"HT\\\": 1.0034533196929072,\\n        \\\"z_score\\\": -0.21691437086302817\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s8_results.json\\\",\\n        \\\"accuracy\\\": 0.5860276313915397,\\n        \\\"theta\\\": -0.6979107420521199,\\n        \\\"HT\\\": 0.9907819877258354,\\n        \\\"z_score\\\": -1.9816414558506237\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s9_results.json\\\",\\n        \\\"accuracy\\\": 0.5921521150833214,\\n        \\\"theta\\\": -0.658760410821697,\\n        \\\"HT\\\": 0.9993886433395751,\\n        \\\"z_score\\\": -0.40074010888258726\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s10_results.json\\\",\\n        \\\"accuracy\\\": 0.5951431420025637,\\n        \\\"theta\\\": -0.6214182413680708,\\n        \\\"HT\\\": 1.0195334268376788,\\n        \\\"z_score\\\": 0.37132799079947504\\n      }\\n    ],\\n    \\\"contam_15\\\": {\\n      \\\"accuracy\\\": 0.6654322746047572,\\n      \\\"theta\\\": -0.27605690672736094,\\n      \\\"HT\\\": 1.0242664677013404,\\n      \\\"z_score\\\": 18.514928333328125\\n    },\\n    \\\"contam_50\\\": {\\n      \\\"accuracy\\\": 0.6983335707164222,\\n      \\\"theta\\\": -0.1490004489620292,\\n      \\\"HT\\\": 1.0307184550723367,\\n      \\\"z_score\\\": 27.007677429830895\\n    },\\n    \\\"cohens_d_HT\\\": {\\n      \\\"contam_15\\\": {\\n        \\\"d\\\": -2.454276203236807,\\n        \\\"ci_lo\\\": -4.292544049285409,\\n        \\\"ci_hi\\\": -1.460184504761183\\n      },\\n      \\\"contam_50\\\": {\\n        \\\"d\\\": -3.0657547960048475,\\n        \\\"ci_lo\\\": -5.335914136516481,\\n        \\\"ci_hi\\\": -1.9047379361921828\\n      }\\n    },\\n    \\\"cohens_d_zscore\\\": {\\n      \\\"contam_15\\\": {\\n        \\\"d\\\": -22.497799739752256,\\n        \\\"ci_lo\\\": -46.97720057970572,\\n        \\\"ci_hi\\\": -13.545528611907883\\n      },\\n      \\\"contam_50\\\": {\\n        \\\"d\\\": -32.821183692226434,\\n        \\\"ci_lo\\\": -68.55933373991739,\\n        \\\"ci_hi\\\": -19.805072840368158\\n      }\\n    }\\n  },\\n  \\\"Mistral\\\": {\\n    \\\"n_clean\\\": 6,\\n    \\\"clean_mean_acc\\\": 0.5275601766130181,\\n    \\\"clean_std_acc\\\": 0.013497060521842639,\\n    \\\"clean_details\\\": [\\n      {\\n        \\\"file\\\": \\\"clean_results.json\\\",\\n        \\\"accuracy\\\": 0.5138156957698333,\\n        \\\"theta\\\": -1.156850591775037,\\n        \\\"HT\\\": 0.9490539624137713,\\n        \\\"z_score\\\": -1.0183314226784237\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s2_results.json\\\",\\n        \\\"accuracy\\\": 0.542800170915824,\\n        \\\"theta\\\": -0.9626744673285949,\\n        \\\"HT\\\": 1.0027929103777269,\\n        \\\"z_score\\\": 1.1291343235916145\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s3_results.json\\\",\\n        \\\"accuracy\\\": 0.5413046574562028,\\n        \\\"theta\\\": -0.9732527128586036,\\n        \\\"HT\\\": 0.9699098023952628,\\n        \\\"z_score\\\": 1.0183314226784155\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s8_results.json\\\",\\n        \\\"accuracy\\\": 0.5162370032758866,\\n        \\\"theta\\\": -1.1456500811085557,\\n        \\\"HT\\\": 0.9488618772655247,\\n        \\\"z_score\\\": -0.8389362497713431\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s9_results.json\\\",\\n        \\\"accuracy\\\": 0.5165218629824812,\\n        \\\"theta\\\": -1.1240254419150628,\\n        \\\"HT\\\": 0.9666308636392844,\\n        \\\"z_score\\\": -0.8178309353116845\\n      },\\n      {\\n        \\\"file\\\": \\\"clean_s10_results.json\\\",\\n        \\\"accuracy\\\": 0.5346816692778806,\\n        \\\"theta\\\": -1.0285903748976144,\\n        \\\"HT\\\": 0.9659587177665071,\\n        \\\"z_score\\\": 0.5276328614914049\\n      }\\n    ],\\n    \\\"contam_15\\\": {\\n      \\\"accuracy\\\": 0.5948582822959693,\\n      \\\"theta\\\": -0.7128894678335754,\\n      \\\"HT\\\": 1.0117673459710976,\\n      \\\"z_score\\\": 4.98613054109381\\n    },\\n    \\\"contam_50\\\": {\\n      \\\"accuracy\\\": 0.6731947016094574,\\n      \\\"theta\\\": -0.30271472643937813,\\n      \\\"HT\\\": 1.0288002253331032,\\n      \\\"z_score\\\": 10.790092017499305\\n    },\\n    \\\"cohens_d_HT\\\": {\\n      \\\"contam_15\\\": {\\n        \\\"d\\\": -4.356185513148918,\\n        \\\"ci_lo\\\": -6.968997829477596,\\n        \\\"ci_hi\\\": -1.2197207560718348\\n      },\\n      \\\"contam_50\\\": {\\n        \\\"d\\\": -5.894628103750707,\\n        \\\"ci_lo\\\": -9.415754330062919,\\n        \\\"ci_hi\\\": -1.8498644277291705\\n      }\\n    },\\n    \\\"cohens_d_zscore\\\": {\\n      \\\"contam_15\\\": {\\n        \\\"d\\\": -7.814349494781846,\\n        \\\"ci_lo\\\": -14.374461628753785,\\n        \\\"ci_hi\\\": -4.379311539389099\\n      },\\n      \\\"contam_50\\\": {\\n        \\\"d\\\": -16.597322977134308,\\n        \\\"ci_lo\\\": -34.57044196645501,\\n        \\\"ci_hi\\\": -9.714979219001924\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I found the original script and results. The key findings:
+
+1. **Original script** at `/root/autodl-tmp/compute_ht_zscore.py` confirms:
+   - HT formula: `Σ(x−p)²/Σp(1−p)` (chi-squared ratio) ✓
+   - Bootstrap Cohen's d: 10000 iterations ✓
+   - Acc z-score: `(acc - mean_clean_acc) / std_clean_acc` ✓
+
+2. **Existing results** (from `ht_zscore_results_n10.json`) for Qwen seed 42:
+   - HT 15%: d = -7.26 ✓
+   - HT 50%: d = -1.66 ✓
+   - Acc z 15%: d = -42.28 ✓
+   - Acc z 50%: d = -68.69 ✓
+
+These match the expected values perfectly. Now I need to check what multi-seed contamination files are available and adapt the script to process them across different seeds.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "60c10f0e-d666-4f96-bd62-f8cd7a5c3c3c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FZxLGzbuxZ5EhesouZtPE5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8974,
+      "cache_read_input_tokens": 27317,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8974
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+Script confirmed — HT formula is correct chi-squared ratio `Σ(x−p)²/Σp(1−p)`. The existing results match Table 3. Now let me check what multi-seed result files exist.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "f83cb699-163b-4e00-9a38-301d7a6ba906",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FZxLGzbuxZ5EhesouZtPE5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8974,
+      "cache_read_input_tokens": 27317,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8974
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FVCrRnnECoY1qeMUspWuNq`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "ls /root/autodl-tmp/ctrl_contam_pilot/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "1b65b916-1ff2-496a-adb1-dbfab10e689b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FZxLGzbuxZ5EhesouZtPE5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8974,
+      "cache_read_input_tokens": 27317,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8974
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-23T01:23:13.081Z_
+
+<details><summary>↩ Tool result · `toolu_01FVCrRnnECoY1qeMUspWuNq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"clean_s10_results.json\\nclean_s1_results.json\\nclean_s1_results_lz_uncorrected.json\\nclean_s2_results.json\\nclean_s2_results_lz_uncorrected.json\\nclean_s3_results.json\\nclean_s3_results_lz_uncorrected.json\\nclean_s4_results.json\\nclean_s5_results.json\\nclean_s6_results.json\\nclean_s7_results.json\\nclean_s8_results.json\\nclean_s9_results.json\\ncohens_d_3seeds.json\\ncohens_d_ht_acc.json\\ncohens_d_n10.json\\ncontam_15_results.json\\ncontam_15_results_lz_uncorrected.json\\ncontam_15_s2_results.json\\ncontam_15_s3_results.json\\ncontam_25_eval.json\\ncontam_25_results.json\\ncontam_25_s2_results.json\\ncontam_25_s3_results.json\\ncontam_50_results.json\\ncontam_50_results_lz_uncorrected.json\\ncontam_50_s2_results.json\\ncontam_50_s3_results.json\\ncontam_5_cohens_d.json\\ncontam_5_results.json\\nsummary.json\\ntheta_fixed_all_seeds.json\\ntheta_fixed_analysis.json\\ntheta_fixed_n10_consistent.json\\ntheta_fixed_n3.json\\ntheta_fixed_n3_lzstar.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "47895fb8-6790-4ec5-b7a3-de3b8d57e774",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"clean_s10_results.json\\\\nclean_s1_results.json\\\\nclean_s1_results_lz_uncorrected.json\\\\nclean_s2_results.json\\\\nclean_s2_results_lz_uncorrected.json\\\\nclean_s3_results.json\\\\nclean_s3_results_lz_uncorrected.json\\\\nclean_s4_results.json\\\\nclean_s5_results.json\\\\nclean_s6_results.json\\\\nclean_s7_results.json\\\\nclean_s8_results.json\\\\nclean_s9_results.json\\\\ncohens_d_3seeds.json\\\\ncohens_d_ht_acc.json\\\\ncohens_d_n10.json\\\\ncontam_15_results.json\\\\ncontam_15_results_lz_uncorrected.json\\\\ncontam_15_s2_results.json\\\\ncontam_15_s3_results.json\\\\ncontam_25_eval.json\\\\ncontam_25_results.json\\\\ncontam_25_s2_results.json\\\\ncontam_25_s3_results.json\\\\ncontam_50_results.json\\\\ncontam_50_results_lz_uncorrected.json\\\\ncontam_50_s2_results.json\\\\ncontam_50_s3_results.json\\\\ncontam_5_cohens_d.json\\\\ncontam_5_results.json\\\\nsummary.json\\\\ntheta_fixed_all_seeds.json\\\\ntheta_fixed_analysis.json\\\\ntheta_fixed_n10_consistent.json\\\\ntheta_fixed_n3.json\\\\ntheta_fixed_n3_lzstar.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"clean_s10_results.json\\nclean_s1_results.json\\nclean_s1_results_lz_uncorrected.json\\nclean_s2_results.json\\nclean_s2_results_lz_uncorrected.json\\nclean_s3_results.json\\nclean_s3_results_lz_uncorrected.json\\nclean_s4_results.json\\nclean_s5_results.json\\nclean_s6_results.json\\nclean_s7_results.json\\nclean_s8_results.json\\nclean_s9_results.json\\ncohens_d_3seeds.json\\ncohens_d_ht_acc.json\\ncohens_d_n10.json\\ncontam_15_results.json\\ncontam_15_results_lz_uncorrected.json\\ncontam_15_s2_results.json\\ncontam_15_s3_results.json\\ncontam_25_eval.json\\ncontam_25_results.json\\ncontam_25_s2_results.json\\ncontam_25_s3_results.json\\ncontam_50_results.json\\ncontam_50_results_lz_uncorrected.json\\ncontam_50_s2_results.json\\ncontam_50_s3_results.json\\ncontam_5_cohens_d.json\\ncontam_5_results.json\\nsummary.json\\ntheta_fixed_all_seeds.json\\ntheta_fixed_analysis.json\\ntheta_fixed_n10_consistent.json\\ntheta_fixed_n3.json\\ntheta_fixed_n3_lzstar.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All 9 contam files exist:
+- contam_15_results.json (seed42), contam_15_s2_results.json (seed123), contam_15_s3_results.json (seed456)
+- contam_25_results.json (seed42), contam_25_s2_results.json (seed123), contam_25_s3_results.json (seed456)
+- contam_50_results.json (seed42), contam_50_s2_results.json (seed123), contam_50_s3_results.json (seed456)
+
+
+- cohens_d_3seeds.json (need to check if it has what I need)
+- cohens_d_ht_acc.json (checking if this exists with related results)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "ec8af5be-d47c-4243-b772-4f0bfc092575",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wwmj6hZW9sQ7Ri8tZkhAVP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 996,
+      "cache_read_input_tokens": 36291,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 996
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+All 9 contam files exist. Let me check if `cohens_d_3seeds.json` or `cohens_d_ht_acc.json` already has these results.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "191dfdb4-f324-4562-95fb-d3c9f90f38f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wwmj6hZW9sQ7Ri8tZkhAVP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 996,
+      "cache_read_input_tokens": 36291,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 996
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015ZmHN45nsmXw5qyms5DLNp`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "cat /root/autodl-tmp/ctrl_contam_pilot/results/cohens_d_ht_acc.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "f508f5a3-3ec8-41ab-99cc-7c04bfbf9ea0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wwmj6hZW9sQ7Ri8tZkhAVP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 996,
+      "cache_read_input_tokens": 36291,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 996
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0173iXN74hvZCSE6n7JkzwtT`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "cat /root/autodl-tmp/ctrl_contam_pilot/results/cohens_d_3seeds.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "52f1edf5-9319-4d1b-89fd-7393185b7eca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wwmj6hZW9sQ7Ri8tZkhAVP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 996,
+      "cache_read_input_tokens": 36291,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 996
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-23T01:23:21.479Z_
+
+<details><summary>↩ Tool result · `toolu_015ZmHN45nsmXw5qyms5DLNp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"clean_baseline\\\": {\\n    \\\"ht_mean\\\": -0.033043048404599616,\\n    \\\"ht_sd\\\": 0.002977160551184525,\\n    \\\"acc_mean\\\": 0.6775459336276882,\\n    \\\"acc_sd\\\": 0.0015308724786260604,\\n    \\\"ht_values\\\": [\\n      -0.031595594188205026,\\n      -0.03673605618576018,\\n      -0.029469450088524002,\\n      -0.027637722464589797,\\n      -0.0357985427762559,\\n      -0.03362980356809045,\\n      -0.03640957232533055,\\n      -0.03437493138347313,\\n      -0.032664047540979645,\\n      -0.03211476352478751\\n    ],\\n    \\\"acc_values\\\": [\\n      0.6786782509614016,\\n      0.6788918957413473,\\n      0.6782509614015098,\\n      0.6786070360347529,\\n      0.6787494658880502,\\n      0.6771115225751317,\\n      0.6782509614015098,\\n      0.6768266628685372,\\n      0.6742629255091868,\\n      0.6758296538954565\\n    ]\\n  },\\n  \\\"contam_results\\\": {\\n    \\\"contam_15_s1\\\": {\\n      \\\"ht\\\": -0.004822210775934704,\\n      \\\"acc\\\": 0.7310212220481412,\\n      \\\"ht_d\\\": 9.47911177226793,\\n      \\\"acc_z\\\": 34.931249445705916,\\n      \\\"acc_d\\\": 34.931249445705916\\n    },\\n    \\\"contam_15_s2\\\": {\\n      \\\"ht\\\": -0.004073726486735667,\\n      \\\"acc\\\": 0.737359350519869,\\n      \\\"ht_d\\\": 9.730520547955637,\\n      \\\"acc_z\\\": 39.071456131906295,\\n      \\\"acc_d\\\": 39.071456131906295\\n    },\\n    \\\"contam_15_s3\\\": {\\n      \\\"ht\\\": -0.004803474685277202,\\n      \\\"acc\\\": 0.7350092579404643,\\n      \\\"ht_d\\\": 9.48540504746602,\\n      \\\"acc_z\\\": 37.53632331567471,\\n      \\\"acc_d\\\": 37.53632331567471\\n    },\\n    \\\"contam_25_s1\\\": {\\n      \\\"ht\\\": 0.0001700705152333701,\\n      \\\"acc\\\": 0.7404928072924085,\\n      \\\"ht_d\\\": 11.155971721652183,\\n      \\\"acc_z\\\": 41.11829988688173,\\n      \\\"acc_d\\\": 41.11829988688173\\n    },\\n    \\\"contam_25_s2\\\": {\\n      \\\"ht\\\": 0.0015504341909119367,\\n      \\\"acc\\\": 0.7451217775245691,\\n      \\\"ht_d\\\": 11.619622791840305,\\n      \\\"acc_z\\\": 44.142046343095394,\\n      \\\"acc_d\\\": 44.142046343095394\\n    },\\n    \\\"contam_25_s3\\\": {\\n      \\\"ht\\\": 0.01229458263591148,\\n      \\\"acc\\\": 0.7424156103119214,\\n      \\\"ht_d\\\": 15.228480379559167,\\n      \\\"acc_z\\\": 42.37431764561664,\\n      \\\"acc_d\\\": 42.37431764561664\\n    },\\n    \\\"contam_50_s1\\\": {\\n      \\\"ht\\\": 0.029388971941599496,\\n      \\\"acc\\\": 0.7643498077196981,\\n      \\\"ht_d\\\": 20.970323660025404,\\n      \\\"acc_z\\\": 56.70222393044473,\\n      \\\"acc_d\\\": 56.70222393044473\\n    },\\n    \\\"contam_50_s2\\\": {\\n      \\\"ht\\\": 0.015138387035141197,\\n      \\\"acc\\\": 0.7669847600056972,\\n      \\\"ht_d\\\": 16.183687312587434,\\n      \\\"acc_z\\\": 58.423433451674036,\\n      \\\"acc_d\\\": 58.423433451674036\\n    },\\n    \\\"contam_50_s3\\\": {\\n      \\\"ht\\\": 0.018517758030268446,\\n      \\\"acc\\\": 0.7665574704458055,\\n      \\\"ht_d\\\": 17.31878598698801,\\n      \\\"acc_z\\\": 58.14431839417743,\\n      \\\"acc_d\\\": 58.14431839417743\\n    }\\n  },\\n  \\\"cohens_d_ht\\\": {\\n    \\\"15\\\": {\\n      \\\"s1\\\": 9.47911177226793,\\n      \\\"s2\\\": 9.730520547955637,\\n      \\\"s3\\\": 9.48540504746602,\\n      \\\"mean\\\": 9.565012455896529,\\n      \\\"sd\\\": 0.1433687473997186\\n    },\\n    \\\"25\\\": {\\n      \\\"s1\\\": 11.155971721652183,\\n      \\\"s2\\\": 11.619622791840305,\\n      \\\"s3\\\": 15.228480379559167,\\n      \\\"mean\\\": 12.66802496435055,\\n      \\\"sd\\\": 2.229504884200748\\n    },\\n    \\\"50\\\": {\\n      \\\"s1\\\": 20.970323660025404,\\n      \\\"s2\\\": 16.183687312587434,\\n      \\\"s3\\\": 17.31878598698801,\\n      \\\"mean\\\": 18.157598986533618,\\n      \\\"sd\\\": 2.501135205623358\\n    }\\n  },\\n  \\\"cohens_d_acc_z\\\": {\\n    \\\"15\\\": {\\n      \\\"s1\\\": 34.931249445705916,\\n      \\\"s2\\\": 39.071456131906295,\\n      \\\"s3\\\": 37.53632331567471,\\n      \\\"mean\\\": 37.179676297762306,\\n      \\\"sd\\\": 2.093018316368478\\n    },\\n    \\\"25\\\": {\\n      \\\"s1\\\": 41.11829988688173,\\n      \\\"s2\\\": 44.142046343095394,\\n      \\\"s3\\\": 42.37431764561664,\\n      \\\"mean\\\": 42.544887958531255,\\n      \\\"sd\\\": 1.5190725234833313\\n    },\\n    \\\"50\\\": {\\n      \\\"s1\\\": 56.70222393044473,\\n      \\\"s2\\\": 58.423433451674036,\\n      \\\"s3\\\": 58.14431839417743,\\n      \\\"mean\\\": 57.756658592098724,\\n      \\\"sd\\\": 0.9237698011969083\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "7ddcbbf2-aa35-4e54-8403-2862ce84c2a7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"clean_baseline\\\\\\\": {\\\\n    \\\\\\\"ht_mean\\\\\\\": -0.033043048404599616,\\\\n    \\\\\\\"ht_sd\\\\\\\": 0.002977160551184525,\\\\n    \\\\\\\"acc_mean\\\\\\\": 0.6775459336276882,\\\\n    \\\\\\\"acc_sd\\\\\\\": 0.0015308724786260604,\\\\n    \\\\\\\"ht_values\\\\\\\": [\\\\n      -0.031595594188205026,\\\\n      -0.03673605618576018,\\\\n      -0.029469450088524002,\\\\n      -0.027637722464589797,\\\\n      -0.0357985427762559,\\\\n      -0.03362980356809045,\\\\n      -0.03640957232533055,\\\\n      -0.03437493138347313,\\\\n      -0.032664047540979645,\\\\n      -0.03211476352478751\\\\n    ],\\\\n    \\\\\\\"acc_values\\\\\\\": [\\\\n      0.6786782509614016,\\\\n      0.6788918957413473,\\\\n      0.6782509614015098,\\\\n      0.6786070360347529,\\\\n      0.6787494658880502,\\\\n      0.6771115225751317,\\\\n      0.6782509614015098,\\\\n      0.6768266628685372,\\\\n      0.6742629255091868,\\\\n      0.6758296538954565\\\\n    ]\\\\n  },\\\\n  \\\\\\\"contam_results\\\\\\\": {\\\\n    \\\\\\\"contam_15_s1\\\\\\\": {\\\\n      \\\\\\\"ht\\\\\\\": -0.004822210775934704,\\\\n      \\\\\\\"acc\\\\\\\": 0.7310212220481412,\\\\n      \\\\\\\"ht_d\\\\\\\": 9.47911177226793,\\\\n      \\\\\\\"acc_z\\\\\\\": 34.931249445705916,\\\\n      \\\\\\\"acc_d\\\\\\\": 34.931249445705916\\\\n    },\\\\n    \\\\\\\"contam_15_s2\\\\\\\": {\\\\n      \\\\\\\"ht\\\\\\\": -0.004073726486735667,\\\\n      \\\\\\\"acc\\\\\\\": 0.737359350519869,\\\\n      \\\\\\\"ht_d\\\\\\\": 9.730520547955637,\\\\n      \\\\\\\"acc_z\\\\\\\": 39.071456131906295,\\\\n      \\\\\\\"acc_d\\\\\\\": 39.071456131906295\\\\n    },\\\\n    \\\\\\\"contam_15_s3\\\\\\\": {\\\\n      \\\\\\\"ht\\\\\\\": -0.004803474685277202,\\\\n      \\\\\\\"acc\\\\\\\": 0.7350092579404643,\\\\n      \\\\\\\"ht_d\\\\\\\": 9.48540504746602,\\\\n      \\\\\\\"acc_z\\\\\\\": 37.53632331567471,\\\\n      \\\\\\\"acc_d\\\\\\\": 37.53632331567471\\\\n    },\\\\n    \\\\\\\"contam_25_s1\\\\\\\": {\\\\n      \\\\\\\"ht\\\\\\\": 0.0001700705152333701,\\\\n      \\\\\\\"acc\\\\\\\": 0.7404928072924085,\\\\n      \\\\\\\"ht_d\\\\\\\": 11.155971721652183,\\\\n      \\\\\\\"acc_z\\\\\\\": 41.11829988688173,\\\\n      \\\\\\\"acc_d\\\\\\\": 41.11829988688173\\\\n    },\\\\n    \\\\\\\"contam_25_s2\\\\\\\": {\\\\n      \\\\\\\"ht\\\\\\\": 0.0015504341909119367,\\\\n      \\\\\\\"acc\\\\\\\": 0.7451217775245691,\\\\n      \\\\\\\"ht_d\\\\\\\": 11.619622791840305,\\\\n      \\\\\\\"acc_z\\\\\\\": 44.142046343095394,\\\\n      \\\\\\\"acc_d\\\\\\\": 44.142046343095394\\\\n    },\\\\n    \\\\\\\"contam_25_s3\\\\\\\": {\\\\n      \\\\\\\"ht\\\\\\\": 0.01229458263591148,\\\\n      \\\\\\\"acc\\\\\\\": 0.7424156103119214,\\\\n      \\\\\\\"ht_d\\\\\\\": 15.228480379559167,\\\\n      \\\\\\\"acc_z\\\\\\\": 42.37431764561664,\\\\n      \\\\\\\"acc_d\\\\\\\": 42.37431764561664\\\\n    },\\\\n    \\\\\\\"contam_50_s1\\\\\\\": {\\\\n      \\\\\\\"ht\\\\\\\": 0.029388971941599496,\\\\n      \\\\\\\"acc\\\\\\\": 0.7643498077196981,\\\\n      \\\\\\\"ht_d\\\\\\\": 20.970323660025404,\\\\n      \\\\\\\"acc_z\\\\\\\": 56.70222393044473,\\\\n      \\\\\\\"acc_d\\\\\\\": 56.70222393044473\\\\n    },\\\\n    \\\\\\\"contam_50_s2\\\\\\\": {\\\\n      \\\\\\\"ht\\\\\\\": 0.015138387035141197,\\\\n      \\\\\\\"acc\\\\\\\": 0.7669847600056972,\\\\n      \\\\\\\"ht_d\\\\\\\": 16.183687312587434,\\\\n      \\\\\\\"acc_z\\\\\\\": 58.423433451674036,\\\\n      \\\\\\\"acc_d\\\\\\\": 58.423433451674036\\\\n    },\\\\n    \\\\\\\"contam_50_s3\\\\\\\": {\\\\n      \\\\\\\"ht\\\\\\\": 0.018517758030268446,\\\\n      \\\\\\\"acc\\\\\\\": 0.7665574704458055,\\\\n      \\\\\\\"ht_d\\\\\\\": 17.31878598698801,\\\\n      \\\\\\\"acc_z\\\\\\\": 58.14431839417743,\\\\n      \\\\\\\"acc_d\\\\\\\": 58.14431839417743\\\\n    }\\\\n  },\\\\n  \\\\\\\"cohens_d_ht\\\\\\\": {\\\\n    \\\\\\\"15\\\\\\\": {\\\\n      \\\\\\\"s1\\\\\\\": 9.47911177226793,\\\\n      \\\\\\\"s2\\\\\\\": 9.730520547955637,\\\\n      \\\\\\\"s3\\\\\\\": 9.48540504746602,\\\\n      \\\\\\\"mean\\\\\\\": 9.565012455896529,\\\\n      \\\\\\\"sd\\\\\\\": 0.1433687473997186\\\\n    },\\\\n    \\\\\\\"25\\\\\\\": {\\\\n      \\\\\\\"s1\\\\\\\": 11.155971721652183,\\\\n      \\\\\\\"s2\\\\\\\": 11.619622791840305,\\\\n      \\\\\\\"s3\\\\\\\": 15.228480379559167,\\\\n      \\\\\\\"mean\\\\\\\": 12.66802496435055,\\\\n      \\\\\\\"sd\\\\\\\": 2.229504884200748\\\\n    },\\\\n    \\\\\\\"50\\\\\\\": {\\\\n      \\\\\\\"s1\\\\\\\": 20.970323660025404,\\\\n      \\\\\\\"s2\\\\\\\": 16.183687312587434,\\\\n      \\\\\\\"s3\\\\\\\": 17.31878598698801,\\\\n      \\\\\\\"mean\\\\\\\": 18.157598986533618,\\\\n      \\\\\\\"sd\\\\\\\": 2.501135205623358\\\\n    }\\\\n  },\\\\n  \\\\\\\"cohens_d_acc_z\\\\\\\": {\\\\n    \\\\\\\"15\\\\\\\": {\\\\n      \\\\\\\"s1\\\\\\\": 34.931249445705916,\\\\n      \\\\\\\"s2\\\\\\\": 39.071456131906295,\\\\n      \\\\\\\"s3\\\\\\\": 37.53632331567471,\\\\n      \\\\\\\"mean\\\\\\\": 37.179676297762306,\\\\n      \\\\\\\"sd\\\\\\\": 2.093018316368478\\\\n    },\\\\n    \\\\\\\"25\\\\\\\": {\\\\n      \\\\\\\"s1\\\\\\\": 41.11829988688173,\\\\n      \\\\\\\"s2\\\\\\\": 44.142046343095394,\\\\n      \\\\\\\"s3\\\\\\\": 42.37431764561664,\\\\n      \\\\\\\"mean\\\\\\\": 42.544887958531255,\\\\n      \\\\\\\"sd\\\\\\\": 1.5190725234833313\\\\n    },\\\\n    \\\\\\\"50\\\\\\\": {\\\\n      \\\\\\\"s1\\\\\\\": 56.70222393044473,\\\\n      \\\\\\\"s2\\\\\\\": 58.423433451674036,\\\\n      \\\\\\\"s3\\\\\\\": 58.14431839417743,\\\\n      \\\\\\\"mean\\\\\\\": 57.756658592098724,\\\\n      \\\\\\\"sd\\\\\\\": 0.9237698011969083\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"clean_baseline\\\": {\\n    \\\"ht_mean\\\": -0.033043048404599616,\\n    \\\"ht_sd\\\": 0.002977160551184525,\\n    \\\"acc_mean\\\": 0.6775459336276882,\\n    \\\"acc_sd\\\": 0.0015308724786260604,\\n    \\\"ht_values\\\": [\\n      -0.031595594188205026,\\n      -0.03673605618576018,\\n      -0.029469450088524002,\\n      -0.027637722464589797,\\n      -0.0357985427762559,\\n      -0.03362980356809045,\\n      -0.03640957232533055,\\n      -0.03437493138347313,\\n      -0.032664047540979645,\\n      -0.03211476352478751\\n    ],\\n    \\\"acc_values\\\": [\\n      0.6786782509614016,\\n      0.6788918957413473,\\n      0.6782509614015098,\\n      0.6786070360347529,\\n      0.6787494658880502,\\n      0.6771115225751317,\\n      0.6782509614015098,\\n      0.6768266628685372,\\n      0.6742629255091868,\\n      0.6758296538954565\\n    ]\\n  },\\n  \\\"contam_results\\\": {\\n    \\\"contam_15_s1\\\": {\\n      \\\"ht\\\": -0.004822210775934704,\\n      \\\"acc\\\": 0.7310212220481412,\\n      \\\"ht_d\\\": 9.47911177226793,\\n      \\\"acc_z\\\": 34.931249445705916,\\n      \\\"acc_d\\\": 34.931249445705916\\n    },\\n    \\\"contam_15_s2\\\": {\\n      \\\"ht\\\": -0.004073726486735667,\\n      \\\"acc\\\": 0.737359350519869,\\n      \\\"ht_d\\\": 9.730520547955637,\\n      \\\"acc_z\\\": 39.071456131906295,\\n      \\\"acc_d\\\": 39.071456131906295\\n    },\\n    \\\"contam_15_s3\\\": {\\n      \\\"ht\\\": -0.004803474685277202,\\n      \\\"acc\\\": 0.7350092579404643,\\n      \\\"ht_d\\\": 9.48540504746602,\\n      \\\"acc_z\\\": 37.53632331567471,\\n      \\\"acc_d\\\": 37.53632331567471\\n    },\\n    \\\"contam_25_s1\\\": {\\n      \\\"ht\\\": 0.0001700705152333701,\\n      \\\"acc\\\": 0.7404928072924085,\\n      \\\"ht_d\\\": 11.155971721652183,\\n      \\\"acc_z\\\": 41.11829988688173,\\n      \\\"acc_d\\\": 41.11829988688173\\n    },\\n    \\\"contam_25_s2\\\": {\\n      \\\"ht\\\": 0.0015504341909119367,\\n      \\\"acc\\\": 0.7451217775245691,\\n      \\\"ht_d\\\": 11.619622791840305,\\n      \\\"acc_z\\\": 44.142046343095394,\\n      \\\"acc_d\\\": 44.142046343095394\\n    },\\n    \\\"contam_25_s3\\\": {\\n      \\\"ht\\\": 0.01229458263591148,\\n      \\\"acc\\\": 0.7424156103119214,\\n      \\\"ht_d\\\": 15.228480379559167,\\n      \\\"acc_z\\\": 42.37431764561664,\\n      \\\"acc_d\\\": 42.37431764561664\\n    },\\n    \\\"contam_50_s1\\\": {\\n      \\\"ht\\\": 0.029388971941599496,\\n      \\\"acc\\\": 0.7643498077196981,\\n      \\\"ht_d\\\": 20.970323660025404,\\n      \\\"acc_z\\\": 56.70222393044473,\\n      \\\"acc_d\\\": 56.70222393044473\\n    },\\n    \\\"contam_50_s2\\\": {\\n      \\\"ht\\\": 0.015138387035141197,\\n      \\\"acc\\\": 0.7669847600056972,\\n      \\\"ht_d\\\": 16.183687312587434,\\n      \\\"acc_z\\\": 58.423433451674036,\\n      \\\"acc_d\\\": 58.423433451674036\\n    },\\n    \\\"contam_50_s3\\\": {\\n      \\\"ht\\\": 0.018517758030268446,\\n      \\\"acc\\\": 0.7665574704458055,\\n      \\\"ht_d\\\": 17.31878598698801,\\n      \\\"acc_z\\\": 58.14431839417743,\\n      \\\"acc_d\\\": 58.14431839417743\\n    }\\n  },\\n  \\\"cohens_d_ht\\\": {\\n    \\\"15\\\": {\\n      \\\"s1\\\": 9.47911177226793,\\n      \\\"s2\\\": 9.730520547955637,\\n      \\\"s3\\\": 9.48540504746602,\\n      \\\"mean\\\": 9.565012455896529,\\n      \\\"sd\\\": 0.1433687473997186\\n    },\\n    \\\"25\\\": {\\n      \\\"s1\\\": 11.155971721652183,\\n      \\\"s2\\\": 11.619622791840305,\\n      \\\"s3\\\": 15.228480379559167,\\n      \\\"mean\\\": 12.66802496435055,\\n      \\\"sd\\\": 2.229504884200748\\n    },\\n    \\\"50\\\": {\\n      \\\"s1\\\": 20.970323660025404,\\n      \\\"s2\\\": 16.183687312587434,\\n      \\\"s3\\\": 17.31878598698801,\\n      \\\"mean\\\": 18.157598986533618,\\n      \\\"sd\\\": 2.501135205623358\\n    }\\n  },\\n  \\\"cohens_d_acc_z\\\": {\\n    \\\"15\\\": {\\n      \\\"s1\\\": 34.931249445705916,\\n      \\\"s2\\\": 39.071456131906295,\\n      \\\"s3\\\": 37.53632331567471,\\n      \\\"mean\\\": 37.179676297762306,\\n      \\\"sd\\\": 2.093018316368478\\n    },\\n    \\\"25\\\": {\\n      \\\"s1\\\": 41.11829988688173,\\n      \\\"s2\\\": 44.142046343095394,\\n      \\\"s3\\\": 42.37431764561664,\\n      \\\"mean\\\": 42.544887958531255,\\n      \\\"sd\\\": 1.5190725234833313\\n    },\\n    \\\"50\\\": {\\n      \\\"s1\\\": 56.70222393044473,\\n      \\\"s2\\\": 58.423433451674036,\\n      \\\"s3\\\": 58.14431839417743,\\n      \\\"mean\\\": 57.756658592098724,\\n      \\\"sd\\\": 0.9237698011969083\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-23T01:23:22.015Z_
+
+<details><summary>↩ Tool result · `toolu_0173iXN74hvZCSE6n7JkzwtT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"clean_seeds\\\": {\\n    \\\"s1\\\": {\\n      \\\"lz_star\\\": 8.01009041187934,\\n      \\\"accuracy\\\": 0.6786782509614016,\\n      \\\"theta_mle\\\": -0.0986527567242099\\n    },\\n    \\\"s2\\\": {\\n      \\\"lz_star\\\": 5.944047910541453,\\n      \\\"accuracy\\\": 0.6788918957413473,\\n      \\\"theta_mle\\\": -0.08419128365675109\\n    },\\n    \\\"s3\\\": {\\n      \\\"lz_star\\\": 8.080590398603904,\\n      \\\"accuracy\\\": 0.6782509614015098,\\n      \\\"theta_mle\\\": -0.10680139600711859\\n    }\\n  },\\n  \\\"baseline\\\": {\\n    \\\"n2\\\": {\\n      \\\"mean\\\": 6.977069161210396,\\n      \\\"std\\\": 1.4609126629156362\\n    },\\n    \\\"n3\\\": {\\n      \\\"mean\\\": 7.3449095736749,\\n      \\\"std\\\": 1.2136937881771472\\n    }\\n  },\\n  \\\"cohens_d\\\": {\\n    \\\"contam_15\\\": {\\n      \\\"lz_star\\\": 3.0045964353509347,\\n      \\\"accuracy\\\": 0.7310212220481412,\\n      \\\"delta_n2\\\": -3.9724727258594617,\\n      \\\"d_n2\\\": -2.7191719441539686,\\n      \\\"delta_n3\\\": -4.340313138323966,\\n      \\\"d_n3\\\": -3.576118771146307\\n    },\\n    \\\"contam_50\\\": {\\n      \\\"lz_star\\\": 5.448014241389145,\\n      \\\"accuracy\\\": 0.7643498077196981,\\n      \\\"delta_n2\\\": -1.5290549198212515,\\n      \\\"d_n2\\\": -1.0466436212344272,\\n      \\\"delta_n3\\\": -1.8968953322857551,\\n      \\\"d_n3\\\": -1.562910967135056\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "ea5103e6-54ad-4632-b691-68da9a4aea8e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"clean_seeds\\\\\\\": {\\\\n    \\\\\\\"s1\\\\\\\": {\\\\n      \\\\\\\"lz_star\\\\\\\": 8.01009041187934,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.6786782509614016,\\\\n      \\\\\\\"theta_mle\\\\\\\": -0.0986527567242099\\\\n    },\\\\n    \\\\\\\"s2\\\\\\\": {\\\\n      \\\\\\\"lz_star\\\\\\\": 5.944047910541453,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.6788918957413473,\\\\n      \\\\\\\"theta_mle\\\\\\\": -0.08419128365675109\\\\n    },\\\\n    \\\\\\\"s3\\\\\\\": {\\\\n      \\\\\\\"lz_star\\\\\\\": 8.080590398603904,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.6782509614015098,\\\\n      \\\\\\\"theta_mle\\\\\\\": -0.10680139600711859\\\\n    }\\\\n  },\\\\n  \\\\\\\"baseline\\\\\\\": {\\\\n    \\\\\\\"n2\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 6.977069161210396,\\\\n      \\\\\\\"std\\\\\\\": 1.4609126629156362\\\\n    },\\\\n    \\\\\\\"n3\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 7.3449095736749,\\\\n      \\\\\\\"std\\\\\\\": 1.2136937881771472\\\\n    }\\\\n  },\\\\n  \\\\\\\"cohens_d\\\\\\\": {\\\\n    \\\\\\\"contam_15\\\\\\\": {\\\\n      \\\\\\\"lz_star\\\\\\\": 3.0045964353509347,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.7310212220481412,\\\\n      \\\\\\\"delta_n2\\\\\\\": -3.9724727258594617,\\\\n      \\\\\\\"d_n2\\\\\\\": -2.7191719441539686,\\\\n      \\\\\\\"delta_n3\\\\\\\": -4.340313138323966,\\\\n      \\\\\\\"d_n3\\\\\\\": -3.576118771146307\\\\n    },\\\\n    \\\\\\\"contam_50\\\\\\\": {\\\\n      \\\\\\\"lz_star\\\\\\\": 5.448014241389145,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.7643498077196981,\\\\n      \\\\\\\"delta_n2\\\\\\\": -1.5290549198212515,\\\\n      \\\\\\\"d_n2\\\\\\\": -1.0466436212344272,\\\\n      \\\\\\\"delta_n3\\\\\\\": -1.8968953322857551,\\\\n      \\\\\\\"d_n3\\\\\\\": -1.562910967135056\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"clean_seeds\\\": {\\n    \\\"s1\\\": {\\n      \\\"lz_star\\\": 8.01009041187934,\\n      \\\"accuracy\\\": 0.6786782509614016,\\n      \\\"theta_mle\\\": -0.0986527567242099\\n    },\\n    \\\"s2\\\": {\\n      \\\"lz_star\\\": 5.944047910541453,\\n      \\\"accuracy\\\": 0.6788918957413473,\\n      \\\"theta_mle\\\": -0.08419128365675109\\n    },\\n    \\\"s3\\\": {\\n      \\\"lz_star\\\": 8.080590398603904,\\n      \\\"accuracy\\\": 0.6782509614015098,\\n      \\\"theta_mle\\\": -0.10680139600711859\\n    }\\n  },\\n  \\\"baseline\\\": {\\n    \\\"n2\\\": {\\n      \\\"mean\\\": 6.977069161210396,\\n      \\\"std\\\": 1.4609126629156362\\n    },\\n    \\\"n3\\\": {\\n      \\\"mean\\\": 7.3449095736749,\\n      \\\"std\\\": 1.2136937881771472\\n    }\\n  },\\n  \\\"cohens_d\\\": {\\n    \\\"contam_15\\\": {\\n      \\\"lz_star\\\": 3.0045964353509347,\\n      \\\"accuracy\\\": 0.7310212220481412,\\n      \\\"delta_n2\\\": -3.9724727258594617,\\n      \\\"d_n2\\\": -2.7191719441539686,\\n      \\\"delta_n3\\\": -4.340313138323966,\\n      \\\"d_n3\\\": -3.576118771146307\\n    },\\n    \\\"contam_50\\\": {\\n      \\\"lz_star\\\": 5.448014241389145,\\n      \\\"accuracy\\\": 0.7643498077196981,\\n      \\\"delta_n2\\\": -1.5290549198212515,\\n      \\\"d_n2\\\": -1.0466436212344272,\\n      \\\"delta_n3\\\": -1.8968953322857551,\\n      \\\"d_n3\\\": -1.562910967135056\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The file `cohens_d_ht_acc.json` already contains multi-seed HT and Acc z-score Cohen's d results! But wait — this file uses a different formula. Let me check:
+
+Looking at the `cohens_d_ht_acc.json`:
+- The `ht` values under `contam_results` are like `-0.004822...`, `-0.004073...` etc. These are NOT the chi-squared ratio HT values from the original script (which gave values like 0.9678 for contam_15).
+- The `ht_d` values are extremely large: 9.48, 9.73, 11.16 etc.
+
+
+- Comparing directly: the original script gave Qwen contam_15 HT = 0.9678 with Cohen's d = -7.26, but this file shows contam_15_s1 with ht = -0.004822 and ht_d = 9.48 — completely different values, suggesting the file was computed using a standardized residual sum formula instead of the chi-squared ratio approach.
+
+The HT values here are tiny (ranging from -0.004 to +0.029) compared to the original's 0.92-1.03 range, and even the clean baseline values are around -0.03 rather than the expected ~0.926. I need to check the compute_cohens_d.py script to understand what calculation was actually used.
+
+Looking at the discrepancy more carefully: the original script gives Cohen's d for HT as -7.26 for Qwen with 15% contamination, but cohens_d_ht_acc.json shows completely different values like 9.48 and 9.73. The task specifies I should use the original compute_ht_zscore.py formulas since the previous worker apparently applied the wrong formula (standardized residual sum instead of chi-squared ratio), so I need to adapt that original script to handle multi-seed results. Writing bootstrap function...
+
+The Cohen's d calculation takes the mean difference between the bootstrapped clean sample and the contamination value, divided by the sample standard deviation, which will be negative when contamination scores are higher than clean ones. Now I need to set up a comprehensive script that recomputes results across all three seeds and contamination levels, loading the same IRT parameters and clean baselines, then computing the HT z-scores, accuracy z-scores, and bootstrap Cohen's d for each of the nine contamination files.
+
+Let me verify the sanity check values match what I expect: the HT metrics at 15% and 50% contamination show d values around -7.26 and -1.66 respectively, and the accuracy z-scores show much larger effect sizes around -42.28 and -68.69, all of which align with the original computations. All the sanity check values match perfectly against the expected results. Now I need to extend the original script to compute results for the additional seeds across all three contamination levels—specifically adding the seed 123 and seed 456 variants for the 15% contamination case.
+
+Writing the computation script...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "70f62540-25c3-413f-bd38-5daea49db6a4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DKBjNb5RLZNxEnEchTUoaD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3662,
+      "cache_read_input_tokens": 37287,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3662
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+The existing `cohens_d_ht_acc.json` used a different (wrong) HT formula. The original `compute_ht_zscore.py` has the correct chi-squared ratio formula and its seed-42 results already match Table 3:
+- HT 15% |d|=7.26, 50% |d|=1.66 ✓
+- Acc z 15% |d|=42.3, 50% |d|=68.7 ✓
+
+Now I'll write and run a multi-seed script based on the original.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "023162b9-42a4-4e6a-b18b-8d3a46011b45",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DKBjNb5RLZNxEnEchTUoaD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3662,
+      "cache_read_input_tokens": 37287,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3662
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_011cLdie3eqctr1S8cMCtm1q`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && WANDB_MODE=disabled python3 -c \"\nimport json\nimport numpy as np\nimport pandas as pd\nimport os\n\n# --- Load IRT params ---\nparams_df = pd.read_csv('/root/autodl-tmp/ctrl_contam_pilot/mmlu_params.csv')\na = params_df['a_discrimination'].values\nb = params_df['b_difficulty'].values\nc = params_df['c_guessing'].values\nd = params_df['d_feasibility'].values\nn_items = len(a)\nprint(f'IRT params loaded: {n_items} items')\n\n# --- Helper functions (identical to original) ---\ndef compute_ht(response_vector, a, b, c, d, theta):\n    P = c + (d - c) / (1 + np.exp(-a * (theta - b)))\n    P = np.clip(P, 1e-10, 1 - 1e-10)\n    numerator = np.sum((response_vector - P) ** 2)\n    denominator = np.sum(P * (1 - P))\n    return numerator / denominator\n\ndef compute_acc_zscore(acc, mean_clean_acc, std_clean_acc):\n    if std_clean_acc < 1e-10:\n        return float('nan')\n    return (acc - mean_clean_acc) / std_clean_acc\n\ndef bootstrap_cohens_d(clean_values, contam_value, n_bootstrap=10000, seed=42):\n    rng = np.random.RandomState(seed)\n    n = len(clean_values)\n    ds = []\n    for _ in range(n_bootstrap):\n        sample = rng.choice(clean_values, size=n, replace=True)\n        s = np.std(sample, ddof=1)\n        if s < 1e-10:\n            continue\n        d_val = (np.mean(sample) - contam_value) / s\n        ds.append(d_val)\n    ds = np.array(ds)\n    if len(ds) == 0:\n        return float('nan'), float('nan'), float('nan')\n    return float(np.mean(ds)), float(np.percentile(ds, 2.5)), float(np.percentile(ds, 97.5))\n\ndef load_result(path):\n    with open(path) as f:\n        data = json.load(f)\n    rv = np.array(data['response_vector'])\n    theta = data['theta_mle']\n    acc = np.mean(rv)\n    return rv, theta, acc\n\n# --- Load clean baselines (n=10) ---\nbase_dir = '/root/autodl-tmp/ctrl_contam_pilot/results'\nclean_files = [f'clean_s{i}_results.json' for i in range(1, 11)]\n\nclean_hts = []\nclean_accs = []\nfor fname in clean_files:\n    rv, theta, acc = load_result(os.path.join(base_dir, fname))\n    ht = compute_ht(rv, a, b, c, d, theta)\n    clean_hts.append(ht)\n    clean_accs.append(acc)\n\nclean_hts = np.array(clean_hts)\nclean_accs = np.array(clean_accs)\nmean_clean_acc = np.mean(clean_accs)\nstd_clean_acc = np.std(clean_accs, ddof=1)\nclean_zscores = np.array([compute_acc_zscore(av, mean_clean_acc, std_clean_acc) for av in clean_accs])\n\nprint(f'Clean baseline: mean_acc={mean_clean_acc:.6f}, std_acc={std_clean_acc:.6f}')\nprint(f'Clean HT range: [{clean_hts.min():.6f}, {clean_hts.max():.6f}]')\n\n# --- Sanity check (seed 42) ---\nprint()\nprint('='*60)\nprint('SANITY CHECK (seed 42)')\nprint('='*60)\n\nfor level, expected_ht_d, expected_acc_d in [('15', 7.26, 42.3), ('50', 1.66, 68.7)]:\n    fname = f'contam_{level}_results.json'\n    rv, theta, acc = load_result(os.path.join(base_dir, fname))\n    ht = compute_ht(rv, a, b, c, d, theta)\n    zscore = compute_acc_zscore(acc, mean_clean_acc, std_clean_acc)\n    d_ht, ci_lo_ht, ci_hi_ht = bootstrap_cohens_d(clean_hts, ht)\n    d_z, ci_lo_z, ci_hi_z = bootstrap_cohens_d(clean_zscores, zscore)\n    \n    ht_match = 'MATCH' if abs(abs(d_ht) - expected_ht_d) < 0.05 else 'MISMATCH'\n    acc_match = 'MATCH' if abs(abs(d_z) - expected_acc_d) < 0.5 else 'MISMATCH'\n    \n    print(f'HT {level}%: orig={expected_ht_d}, recalc={abs(d_ht):.2f}  [{ht_match}]')\n    print(f'Acc z {level}%: orig={expected_acc_d}, recalc={abs(d_z):.1f}  [{acc_match}]')\n\n# --- Multi-seed computation ---\nprint()\nprint('='*60)\nprint('MULTI-SEED HT/Acc z-score Cohen d')\nprint('='*60)\n\ncontam_configs = {\n    '15': {\n        's1': 'contam_15_results.json',\n        's2': 'contam_15_s2_results.json',\n        's3': 'contam_15_s3_results.json',\n    },\n    '25': {\n        's1': 'contam_25_results.json',\n        's2': 'contam_25_s2_results.json',\n        's3': 'contam_25_s3_results.json',\n    },\n    '50': {\n        's1': 'contam_50_results.json',\n        's2': 'contam_50_s2_results.json',\n        's3': 'contam_50_s3_results.json',\n    },\n}\n\nresults = {}\nfor level in ['15', '25', '50']:\n    results[level] = {}\n    for seed_label, fname in contam_configs[level].items():\n        path = os.path.join(base_dir, fname)\n        rv, theta, acc = load_result(path)\n        ht = compute_ht(rv, a, b, c, d, theta)\n        zscore = compute_acc_zscore(acc, mean_clean_acc, std_clean_acc)\n        d_ht, ci_lo_ht, ci_hi_ht = bootstrap_cohens_d(clean_hts, ht)\n        d_z, ci_lo_z, ci_hi_z = bootstrap_cohens_d(clean_zscores, zscore)\n        results[level][seed_label] = {\n            'acc': acc, 'theta': theta, 'ht': ht, 'zscore': zscore,\n            'd_ht': d_ht, 'ci_ht': (ci_lo_ht, ci_hi_ht),\n            'd_z': d_z, 'ci_z': (ci_lo_z, ci_hi_z),\n        }\n\n# --- Print tables ---\nprint()\nprint('HT Cohen s |d|:        15%        25%        50%')\nfor sl in ['s1', 's2', 's3']:\n    seed_name = {'s1': 'seed42', 's2': 'seed123', 's3': 'seed456'}[sl]\n    vals = [abs(results[lv][sl]['d_ht']) for lv in ['15', '25', '50']]\n    print(f'{sl} ({seed_name}):     {vals[0]:>10.2f} {vals[1]:>10.2f} {vals[2]:>10.2f}')\n\nmeans_ht = [np.mean([abs(results[lv][sl]['d_ht']) for sl in ['s1', 's2', 's3']]) for lv in ['15', '25', '50']]\nsds_ht = [np.std([abs(results[lv][sl]['d_ht']) for sl in ['s1', 's2', 's3']], ddof=1) for lv in ['15', '25', '50']]\nprint(f'Mean:              {means_ht[0]:>10.2f} {means_ht[1]:>10.2f} {means_ht[2]:>10.2f}')\nprint(f'SD:                {sds_ht[0]:>10.2f} {sds_ht[1]:>10.2f} {sds_ht[2]:>10.2f}')\n\nprint()\nprint('Acc z Cohen s |d|:     15%        25%        50%')\nfor sl in ['s1', 's2', 's3']:\n    seed_name = {'s1': 'seed42', 's2': 'seed123', 's3': 'seed456'}[sl]\n    vals = [abs(results[lv][sl]['d_z']) for lv in ['15', '25', '50']]\n    print(f'{sl} ({seed_name}):     {vals[0]:>10.1f} {vals[1]:>10.1f} {vals[2]:>10.1f}')\n\nmeans_z = [np.mean([abs(results[lv][sl]['d_z']) for sl in ['s1', 's2', 's3']]) for lv in ['15', '25', '50']]\nsds_z = [np.std([abs(results[lv][sl]['d_z']) for sl in ['s1', 's2', 's3']], ddof=1) for lv in ['15', '25', '50']]\nprint(f'Mean:              {means_z[0]:>10.1f} {means_z[1]:>10.1f} {means_z[2]:>10.1f}')\nprint(f'SD:                {sds_z[0]:>10.1f} {sds_z[1]:>10.1f} {sds_z[2]:>10.1f}')\n\n# --- Also print CIs ---\nprint()\nprint('=== 95% CI details ===')\nfor lv in ['15', '25', '50']:\n    print(f'--- {lv}% ---')\n    for sl in ['s1', 's2', 's3']:\n        r = results[lv][sl]\n        print(f'  {sl}: HT d={r[\\\"d_ht\\\"]:.4f} [{r[\\\"ci_ht\\\"][0]:.4f}, {r[\\\"ci_ht\\\"][1]:.4f}]  Acc_z d={r[\\\"d_z\\\"]:.4f} [{r[\\\"ci_z\\\"][0]:.4f}, {r[\\\"ci_z\\\"][1]:.4f}]')\n\n# --- Save results ---\nsave_data = {\n    'clean_baseline': {\n        'n': 10,\n        'mean_acc': float(mean_clean_acc),\n        'std_acc': float(std_clean_acc),\n        'ht_values': clean_hts.tolist(),\n        'acc_values': clean_accs.tolist(),\n        'zscore_values': clean_zscores.tolist(),\n    },\n    'results': {}\n}\nfor lv in ['15', '25', '50']:\n    save_data['results'][lv] = {}\n    for sl in ['s1', 's2', 's3']:\n        r = results[lv][sl]\n        save_data['results'][lv][sl] = {\n            'acc': r['acc'], 'theta': r['theta'], 'ht': r['ht'], 'zscore': r['zscore'],\n            'd_ht': r['d_ht'], 'ci_ht_lo': r['ci_ht'][0], 'ci_ht_hi': r['ci_ht'][1],\n            'd_z': r['d_z'], 'ci_z_lo': r['ci_z'][0], 'ci_z_hi': r['ci_z'][1],\n        }\n    save_data['results'][lv]['mean_d_ht'] = float(np.mean([abs(results[lv][sl]['d_ht']) for sl in ['s1', 's2', 's3']]))\n    save_data['results'][lv]['sd_d_ht'] = float(np.std([abs(results[lv][sl]['d_ht']) for sl in ['s1', 's2', 's3']], ddof=1))\n    save_data['results'][lv]['mean_d_z'] = float(np.mean([abs(results[lv][sl]['d_z']) for sl in ['s1', 's2', 's3']]))\n    save_data['results'][lv]['sd_d_z'] = float(np.std([abs(results[lv][sl]['d_z']) for sl in ['s1', 's2', 's3']], ddof=1))\n\nout_path = '/root/autodl-tmp/ctrl_contam_pilot/results/multiseed_ht_accz_cohens_d.json'\nwith open(out_path, 'w') as f:\n    json.dump(save_data, f, indent=2)\nprint(f'\\nResults saved to {out_path}')\n\"\n",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "69cac5d7-443c-4944-b6b5-8f2db09c9704",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DKBjNb5RLZNxEnEchTUoaD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3662,
+      "cache_read_input_tokens": 37287,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3662
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-23T01:24:50.372Z_
+
+<details><summary>↩ Tool result · `toolu_011cLdie3eqctr1S8cMCtm1q`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"IRT params loaded: 14042 items\\nClean baseline: mean_acc=0.677546, std_acc=0.001531\\nClean HT range: [0.919168, 0.941159]\\n\\n============================================================\\nSANITY CHECK (seed 42)\\n============================================================\\nHT 15%: orig=7.26, recalc=7.26  [MATCH]\\nAcc z 15%: orig=42.3, recalc=42.3  [MATCH]\\nHT 50%: orig=1.66, recalc=1.66  [MATCH]\\nAcc z 50%: orig=68.7, recalc=68.7  [MATCH]\\n\\n============================================================\\nMULTI-SEED HT/Acc z-score Cohen d\\n============================================================\\n\\nHT Cohen s |d|:        15%        25%        50%\\ns1 (seed42):           7.26       8.90       1.66\\ns2 (seed123):           5.52       9.51       5.80\\ns3 (seed456):           4.72       5.10       8.41\\nMean:                    5.83       7.84       5.29\\nSD:                      1.30       2.39       3.41\\n\\nAcc z Cohen s |d|:     15%        25%        50%\\ns1 (seed42):           42.3       49.8       68.7\\ns2 (seed123):           47.3       53.4       70.8\\ns3 (seed456):           45.4       51.3       70.4\\nMean:                    45.0       51.5       70.0\\nSD:                       2.5        1.8        1.1\\n\\n=== 95% CI details ===\\n--- 15% ---\\n  s1: HT d=-7.2614 [-13.9844, -4.2974]  Acc_z d=-42.2750 [-85.0998, -26.8209]\\n  s2: HT d=-5.5185 [-10.8522, -3.1700]  Acc_z d=-47.2975 [-95.3464, -29.9584]\\n  s3: HT d=-4.7156 [-9.4097, -2.6564]  Acc_z d=-45.4352 [-91.5471, -28.7951]\\n--- 25% ---\\n  s1: HT d=-8.9017 [-16.9594, -5.3603]  Acc_z d=-49.7805 [-100.4122, -31.5079]\\n  s2: HT d=-9.5138 [-18.1091, -5.7587]  Acc_z d=-53.4485 [-107.8951, -33.7965]\\n  s3: HT d=-5.0998 [-10.0997, -2.9036]  Acc_z d=-51.3041 [-103.5207, -32.4569]\\n--- 50% ---\\n  s1: HT d=-1.6554 [-3.8331, -0.6251]  Acc_z d=-68.6851 [-138.9111, -43.3147]\\n  s2: HT d=-5.7997 [-11.3477, -3.3550]  Acc_z d=-70.7731 [-143.1615, -44.6203]\\n  s3: HT d=-8.4148 [-16.0916, -5.0403]  Acc_z d=-70.4345 [-142.4722, -44.4085]\\n\\nResults saved to /root/autodl-tmp/ctrl_contam_pilot/results/multiseed_ht_accz_cohens_d.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.16}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "0e55bf6c-1b87-4bdc-9f0d-32c6011a5f27",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"IRT params loaded: 14042 items\\\\nClean baseline: mean_acc=0.677546, std_acc=0.001531\\\\nClean HT range: [0.919168, 0.941159]\\\\n\\\\n============================================================\\\\nSANITY CHECK (seed 42)\\\\n============================================================\\\\nHT 15%: orig=7.26, recalc=7.26  [MATCH]\\\\nAcc z 15%: orig=42.3, recalc=42.3  [MATCH]\\\\nHT 50%: orig=1.66, recalc=1.66  [MATCH]\\\\nAcc z 50%: orig=68.7, recalc=68.7  [MATCH]\\\\n\\\\n============================================================\\\\nMULTI-SEED HT/Acc z-score Cohen d\\\\n============================================================\\\\n\\\\nHT Cohen s |d|:        15%        25%        50%\\\\ns1 (seed42):           7.26       8.90       1.66\\\\ns2 (seed123):           5.52       9.51       5.80\\\\ns3 (seed456):           4.72       5.10       8.41\\\\nMean:                    5.83       7.84       5.29\\\\nSD:                      1.30       2.39       3.41\\\\n\\\\nAcc z Cohen s |d|:     15%        25%        50%\\\\ns1 (seed42):           42.3       49.8       68.7\\\\ns2 (seed123):           47.3       53.4       70.8\\\\ns3 (seed456):           45.4       51.3       70.4\\\\nMean:                    45.0       51.5       70.0\\\\nSD:                       2.5        1.8        1.1\\\\n\\\\n=== 95% CI details ===\\\\n--- 15% ---\\\\n  s1: HT d=-7.2614 [-13.9844, -4.2974]  Acc_z d=-42.2750 [-85.0998, -26.8209]\\\\n  s2: HT d=-5.5185 [-10.8522, -3.1700]  Acc_z d=-47.2975 [-95.3464, -29.9584]\\\\n  s3: HT d=-4.7156 [-9.4097, -2.6564]  Acc_z d=-45.4352 [-91.5471, -28.7951]\\\\n--- 25% ---\\\\n  s1: HT d=-8.9017 [-16.9594, -5.3603]  Acc_z d=-49.7805 [-100.4122, -31.5079]\\\\n  s2: HT d=-9.5138 [-18.1091, -5.7587]  Acc_z d=-53.4485 [-107.8951, -33.7965]\\\\n  s3: HT d=-5.0998 [-10.0997, -2.9036]  Acc_z d=-51.3041 [-103.5207, -32.4569]\\\\n--- 50% ---\\\\n  s1: HT d=-1.6554 [-3.8331, -0.6251]  Acc_z d=-68.6851 [-138.9111, -43.3147]\\\\n  s2: HT d=-5.7997 [-11.3477, -3.3550]  Acc_z d=-70.7731 [-143.1615, -44.6203]\\\\n  s3: HT d=-8.4148 [-16.0916, -5.0403]  Acc_z d=-70.4345 [-142.4722, -44.4085]\\\\n\\\\nResults saved to /root/autodl-tmp/ctrl_contam_pilot/results/multiseed_ht_accz_cohens_d.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.16}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"IRT params loaded: 14042 items\\nClean baseline: mean_acc=0.677546, std_acc=0.001531\\nClean HT range: [0.919168, 0.941159]\\n\\n============================================================\\nSANITY CHECK (seed 42)\\n============================================================\\nHT 15%: orig=7.26, recalc=7.26  [MATCH]\\nAcc z 15%: orig=42.3, recalc=42.3  [MATCH]\\nHT 50%: orig=1.66, recalc=1.66  [MATCH]\\nAcc z 50%: orig=68.7, recalc=68.7  [MATCH]\\n\\n============================================================\\nMULTI-SEED HT/Acc z-score Cohen d\\n============================================================\\n\\nHT Cohen s |d|:        15%        25%        50%\\ns1 (seed42):           7.26       8.90       1.66\\ns2 (seed123):           5.52       9.51       5.80\\ns3 (seed456):           4.72       5.10       8.41\\nMean:                    5.83       7.84       5.29\\nSD:                      1.30       2.39       3.41\\n\\nAcc z Cohen s |d|:     15%        25%        50%\\ns1 (seed42):           42.3       49.8       68.7\\ns2 (seed123):           47.3       53.4       70.8\\ns3 (seed456):           45.4       51.3       70.4\\nMean:                    45.0       51.5       70.0\\nSD:                       2.5        1.8        1.1\\n\\n=== 95% CI details ===\\n--- 15% ---\\n  s1: HT d=-7.2614 [-13.9844, -4.2974]  Acc_z d=-42.2750 [-85.0998, -26.8209]\\n  s2: HT d=-5.5185 [-10.8522, -3.1700]  Acc_z d=-47.2975 [-95.3464, -29.9584]\\n  s3: HT d=-4.7156 [-9.4097, -2.6564]  Acc_z d=-45.4352 [-91.5471, -28.7951]\\n--- 25% ---\\n  s1: HT d=-8.9017 [-16.9594, -5.3603]  Acc_z d=-49.7805 [-100.4122, -31.5079]\\n  s2: HT d=-9.5138 [-18.1091, -5.7587]  Acc_z d=-53.4485 [-107.8951, -33.7965]\\n  s3: HT d=-5.0998 [-10.0997, -2.9036]  Acc_z d=-51.3041 [-103.5207, -32.4569]\\n--- 50% ---\\n  s1: HT d=-1.6554 [-3.8331, -0.6251]  Acc_z d=-68.6851 [-138.9111, -43.3147]\\n  s2: HT d=-5.7997 [-11.3477, -3.3550]  Acc_z d=-70.7731 [-143.1615, -44.6203]\\n  s3: HT d=-8.4148 [-16.0916, -5.0403]  Acc_z d=-70.4345 [-142.4722, -44.4085]\\n\\nResults saved to /root/autodl-tmp/ctrl_contam_pilot/results/multiseed_ht_accz_cohens_d.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.16}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+Sanity check passed, all 4 values match. Results:
+
+```
+SANITY CHECK (seed 42):
+HT 15%: orig=7.26, recalc=7.26  [MATCH]
+HT 50%: orig=1.66, recalc=1.66  [MATCH]
+Acc z 15%: orig=42.3, recalc=42.3  [MATCH]
+Acc z 50%: orig=68.7, recalc=68.7  [MATCH]
+
+HT Cohen's |d|:        15%        25%        50%
+s1 (seed42):           7.26       8.90       1.66
+s2 (seed123):          5.52       9.51       5.80
+s3 (seed456):          4.72       5.10       8.41
+Mean:                  5.83       7.84       5.29
+SD:                    1.30       2.39       3.41
+
+Acc z Cohen's |d|:     15%        25%        50%
+s1 (seed42):           42.3       49.8       68.7
+s2 (seed123):          47.3       53.4       70.8
+s3 (seed456):          45.4       51.3       70.4
+Mean:                  45.0       51.5       70.0
+SD:                     2.5        1.8        1.1
+```
+
+Key observations:
+- **Acc z-score** Cohen's d is very stable across seeds (small SD), monotonically increasing with contamination level
+- **HT** Cohen's d shows much higher variance across seeds (SD up to 3.41), and the non-monotonic pattern in seed 42 (15% > 50%) does **not** hold for seeds 123 and 456 — it's an artifact of that single seed
+- Results saved to `/root/autodl-tmp/ctrl_contam_pilot/results/multiseed_ht_accz_cohens_d.json`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "uuid": "a350a757-7b19-42fd-89c6-1895bffefd16",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VnTNzTJjTJwzYVhTinLeAr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6976,
+      "cache_read_input_tokens": 40949,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6976
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 42_
+
+Sanity check passed, all 4 values match. Results:
+
+```
+SANITY CHECK (seed 42):
+HT 15%: orig=7.26, recalc=7.26  [MATCH]
+HT 50%: orig=1.66, recalc=1.66  [MATCH]
+Acc z 15%: orig=42.3, recalc=42.3  [MATCH]
+Acc z 50%: orig=68.7, recalc=68.7  [MATCH]
+
+HT Cohen's |d|:        15%        25%        50%
+s1 (seed42):           7.26       8.90       1.66
+s2 (seed123):          5.52       9.51       5.80
+s3 (seed456):          4.72       5.10       8.41
+Mean:                  5.83       7.84       5.29
+SD:                    1.30       2.39       3.41
+
+Acc z Cohen's |d|:     15%        25%        50%
+s1 (seed42):           42.3       49.8       68.7
+s2 (seed123):          47.3       53.4       70.8
+s3 (seed456):          45.4       51.3       70.4
+Mean:                  45.0       51.5       70.0
+SD:                     2.5        1.8        1.1
+```
+
+Key observations:
+- **Acc z-score** Cohen's d is very stable across seeds (small SD), monotonically increasing with contamination level
+- **HT** Cohen's d shows much higher variance across seeds (SD up to 3.41), and the non-monotonic pattern in seed 42 (15% > 50%) does **not** hold for seeds 123 and 456 — it's an artifact of that single seed
+- Results saved to `/root/autodl-tmp/ctrl_contam_pilot/results/multiseed_ht_accz_cohens_d.json`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 143372,
+  "duration_api_ms": 138312,
+  "num_turns": 14,
+  "stop_reason": "end_turn",
+  "session_id": "3864ad77-21a1-430b-b39c-0d9ec39b8437",
+  "total_cost_usd": 0.55752,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 36084,
+    "cache_read_input_tokens": 229828,
+    "output_tokens": 8594,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 36084,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 493,
+        "cache_read_input_tokens": 40949,
+        "cache_creation_input_tokens": 6976,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 6976
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2036,
+      "outputTokens": 27,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002171,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 12,
+      "outputTokens": 8594,
+      "cacheReadInputTokens": 229828,
+      "cacheCreationInputTokens": 36084,
+      "webSearchRequests": 0,
+      "costUSD": 0.5553490000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "bb04b3fa-1c94-4c86-9bce-a3df24dacde7"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,2112 @@
+# ops batch1 code recon
+
+**What Can IRT Person-Fit Statistics Reveal About SFT-Stage Benchmark Contamination?** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 43
+- **Recorded user turns:** 0
+- **Tool calls:** 18
+- **Original source:** `logs/workers/worker_ops_batch1-code-recon_20260523T074239.log`
+- **Structured JSON:** [`6f9881d7f7a4643b0337.json`](../../sessions/6f/6f9881d7f7a4643b0337.json)
+
+## Before a recorded user message
+
+43 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam",
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "325f9613-fa26-471c-ad17-59948cd06a7c",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0519-3-projects-irt-personfit-contam/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779536400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "0aeec69f-e71e-4dfe-8435-4f5fd4f90769",
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to survey the training code and data on the westd-35694 server for Llama/Mistral experiments. I need to use ssh_read_only for all operations. Let me first load the tool schema.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "8323307c-53d8-4179-a1e6-cfd6454aa21c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S2xfpBvrgfFSmP1bhoovZw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12356,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12356
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_014PixFbiQMeH46TPLwzEQdU`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "7d08733a-8cdb-4dac-8089-512e8985b576",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S2xfpBvrgfFSmP1bhoovZw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12356,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12356
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-23T07:42:49.839Z_
+
+<details><summary>↩ Tool result · `toolu_014PixFbiQMeH46TPLwzEQdU`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "7e003b59-42e2-412a-ab32-119027b528b2",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+开始勘察服务器。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "78bcff62-4cae-47c6-bf5b-c020349f1faa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013dHf6uaZRMn3ngewKkD6xQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 692,
+      "cache_read_input_tokens": 24197,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 692
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019ocHGF8iZwRgepnAGaUg3r`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "ls -la /root/autodl-tmp/ctrl_contam_pilot/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "a71a13a0-796d-4795-9975-a10bfa8d5435",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013dHf6uaZRMn3ngewKkD6xQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 692,
+      "cache_read_input_tokens": 24197,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 692
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LwVa9EeP9A3PuRaGxb9cHB`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "ls -la /root/autodl-tmp/ctrl_contam_pilot/data/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "6b99bac2-5748-452e-887c-7d1cdcfd88eb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013dHf6uaZRMn3ngewKkD6xQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 692,
+      "cache_read_input_tokens": 24197,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 692
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-23T07:42:53.756Z_
+
+<details><summary>↩ Tool result · `toolu_019ocHGF8iZwRgepnAGaUg3r`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 23048\\ndrwxr-xr-x  8 root root     4096 May 23 03:26 .\\ndrwxr-xr-x 15 root root     4096 May 22 07:18 ..\\ndrwxr-xr-x  2 root root       43 May 21 00:13 __pycache__\\n-rw-r--r--  1 root root        0 May 20 23:01 alpaca.parquet\\n-rw-r--r--  1 root root 22773992 May 20 23:03 alpaca_data.json\\ndrwxr-xr-x 22 root root     4096 May 23 02:54 checkpoints\\n-rw-r--r--  1 root root     5080 May 22 06:58 compute_cohens_d.py\\n-rw-r--r--  1 root root     6249 May 22 17:23 compute_contam5_cohens_d.py\\n-rw-r--r--  1 root root     3657 May 21 04:59 compute_delta.py\\n-rw-r--r--  1 root root     9065 May 23 03:26 compute_fixed_theta.py\\ndrwxr-xr-x 16 root root     4096 May 22 19:43 data\\n-rw-r--r--  1 root root    11307 May 22 06:57 eval_lz.py\\n-rw-r--r--  1 root root     2605 May 22 05:43 gen_contam_25.py\\n-rw-r--r--  1 root root     2645 May 22 06:36 gen_contam_5.py\\ndrwxr-xr-x  2 root root     4096 May 22 07:00 logs\\n-rw-r--r--  1 root root   683809 May 20 22:52 mmlu_params.csv\\n-rw-r--r--  1 root root     4871 May 20 23:03 prepare_data.py\\n-rw-r--r--  1 root root     6239 May 22 01:14 recompute_theta_fixed_n10.py\\ndrwxr-xr-x  2 root root     4096 May 23 09:24 results\\n-rwxr-xr-x  1 root root      521 May 20 23:39 run_env.sh\\n-rw-r--r--  1 root root     7223 May 21 07:45 theta_fixed_lzstar.py\\n-rw-r--r--  1 root root     5899 May 21 02:52 theta_fixed_recompute.py\\n-rw-r--r--  1 root root     4993 May 22 19:43 train.py\\n-rw-r--r--  1 root root     7323 May 22 01:43 unified_lz_recompute.py\\n-rw-r--r--  1 root root     3886 May 22 01:43 unified_lz_results.json\\ndrwxr-xr-x  7 root root     4096 May 21 03:13 wandb\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.25}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "9263377e-15c0-4a82-89a3-3682a0f739e5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 23048\\\\ndrwxr-xr-x  8 root root     4096 May 23 03:26 .\\\\ndrwxr-xr-x 15 root root     4096 May 22 07:18 ..\\\\ndrwxr-xr-x  2 root root       43 May 21 00:13 __pycache__\\\\n-rw-r--r--  1 root root        0 May 20 23:01 alpaca.parquet\\\\n-rw-r--r--  1 root root 22773992 May 20 23:03 alpaca_data.json\\\\ndrwxr-xr-x 22 root root     4096 May 23 02:54 checkpoints\\\\n-rw-r--r--  1 root root     5080 May 22 06:58 compute_cohens_d.py\\\\n-rw-r--r--  1 root root     6249 May 22 17:23 compute_contam5_cohens_d.py\\\\n-rw-r--r--  1 root root     3657 May 21 04:59 compute_delta.py\\\\n-rw-r--r--  1 root root     9065 May 23 03:26 compute_fixed_theta.py\\\\ndrwxr-xr-x 16 root root     4096 May 22 19:43 data\\\\n-rw-r--r--  1 root root    11307 May 22 06:57 eval_lz.py\\\\n-rw-r--r--  1 root root     2605 May 22 05:43 gen_contam_25.py\\\\n-rw-r--r--  1 root root     2645 May 22 06:36 gen_contam_5.py\\\\ndrwxr-xr-x  2 root root     4096 May 22 07:00 logs\\\\n-rw-r--r--  1 root root   683809 May 20 22:52 mmlu_params.csv\\\\n-rw-r--r--  1 root root     4871 May 20 23:03 prepare_data.py\\\\n-rw-r--r--  1 root root     6239 May 22 01:14 recompute_theta_fixed_n10.py\\\\ndrwxr-xr-x  2 root root     4096 May 23 09:24 results\\\\n-rwxr-xr-x  1 root root      521 May 20 23:39 run_env.sh\\\\n-rw-r--r--  1 root root     7223 May 21 07:45 theta_fixed_lzstar.py\\\\n-rw-r--r--  1 root root     5899 May 21 02:52 theta_fixed_recompute.py\\\\n-rw-r--r--  1 root root     4993 May 22 19:43 train.py\\\\n-rw-r--r--  1 root root     7323 May 22 01:43 unified_lz_recompute.py\\\\n-rw-r--r--  1 root root     3886 May 22 01:43 unified_lz_results.json\\\\ndrwxr-xr-x  7 root root     4096 May 21 03:13 wandb\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.25}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 23048\\ndrwxr-xr-x  8 root root     4096 May 23 03:26 .\\ndrwxr-xr-x 15 root root     4096 May 22 07:18 ..\\ndrwxr-xr-x  2 root root       43 May 21 00:13 __pycache__\\n-rw-r--r--  1 root root        0 May 20 23:01 alpaca.parquet\\n-rw-r--r--  1 root root 22773992 May 20 23:03 alpaca_data.json\\ndrwxr-xr-x 22 root root     4096 May 23 02:54 checkpoints\\n-rw-r--r--  1 root root     5080 May 22 06:58 compute_cohens_d.py\\n-rw-r--r--  1 root root     6249 May 22 17:23 compute_contam5_cohens_d.py\\n-rw-r--r--  1 root root     3657 May 21 04:59 compute_delta.py\\n-rw-r--r--  1 root root     9065 May 23 03:26 compute_fixed_theta.py\\ndrwxr-xr-x 16 root root     4096 May 22 19:43 data\\n-rw-r--r--  1 root root    11307 May 22 06:57 eval_lz.py\\n-rw-r--r--  1 root root     2605 May 22 05:43 gen_contam_25.py\\n-rw-r--r--  1 root root     2645 May 22 06:36 gen_contam_5.py\\ndrwxr-xr-x  2 root root     4096 May 22 07:00 logs\\n-rw-r--r--  1 root root   683809 May 20 22:52 mmlu_params.csv\\n-rw-r--r--  1 root root     4871 May 20 23:03 prepare_data.py\\n-rw-r--r--  1 root root     6239 May 22 01:14 recompute_theta_fixed_n10.py\\ndrwxr-xr-x  2 root root     4096 May 23 09:24 results\\n-rwxr-xr-x  1 root root      521 May 20 23:39 run_env.sh\\n-rw-r--r--  1 root root     7223 May 21 07:45 theta_fixed_lzstar.py\\n-rw-r--r--  1 root root     5899 May 21 02:52 theta_fixed_recompute.py\\n-rw-r--r--  1 root root     4993 May 22 19:43 train.py\\n-rw-r--r--  1 root root     7323 May 22 01:43 unified_lz_recompute.py\\n-rw-r--r--  1 root root     3886 May 22 01:43 unified_lz_results.json\\ndrwxr-xr-x  7 root root     4096 May 21 03:13 wandb\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.25}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QU4Pv1qy5Yw1tqQmH2cX2W`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "df -h /root/autodl-tmp/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "ba962480-687b-4fac-a3c6-5a7d3266e169",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013dHf6uaZRMn3ngewKkD6xQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 692,
+      "cache_read_input_tokens": 24197,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 692
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-23T07:42:54.283Z_
+
+<details><summary>↩ Tool result · `toolu_01LwVa9EeP9A3PuRaGxb9cHB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 7700\\ndrwxr-xr-x 16 root root    4096 May 22 19:43 .\\ndrwxr-xr-x  8 root root    4096 May 23 03:26 ..\\ndrwxr-xr-x  2 root root      33 May 20 23:03 clean_s1\\ndrwxr-xr-x  2 root root      33 May 21 14:55 clean_s10\\ndrwxr-xr-x  2 root root      33 May 20 23:03 clean_s2\\ndrwxr-xr-x  2 root root      33 May 21 03:01 clean_s3\\ndrwxr-xr-x  2 root root      33 May 21 14:30 clean_s4\\ndrwxr-xr-x  2 root root      33 May 21 14:30 clean_s5\\ndrwxr-xr-x  2 root root      33 May 21 14:55 clean_s6\\ndrwxr-xr-x  2 root root      33 May 21 14:55 clean_s7\\ndrwxr-xr-x  2 root root      33 May 21 14:55 clean_s8\\ndrwxr-xr-x  2 root root      33 May 21 14:55 clean_s9\\ndrwxr-xr-x  2 root root      33 May 20 23:03 contam_15\\nlrwxrwxrwx  1 root root       9 May 22 19:42 contam_15_s2 -> contam_15\\nlrwxrwxrwx  1 root root       9 May 22 19:42 contam_15_s3 -> contam_15\\ndrwxr-xr-x  2 root root      33 May 22 05:43 contam_25\\nlrwxrwxrwx  1 root root       9 May 22 19:43 contam_25_s2 -> contam_25\\nlrwxrwxrwx  1 root root       9 May 22 19:43 contam_25_s3 -> contam_25\\ndrwxr-xr-x  2 root root      33 May 22 06:36 contam_5\\ndrwxr-xr-x  2 root root      33 May 20 23:03 contam_50\\nlrwxrwxrwx  1 root root       9 May 22 19:43 contam_50_s2 -> contam_50\\nlrwxrwxrwx  1 root root       9 May 22 19:43 contam_50_s3 -> contam_50\\n-rw-r--r--  1 root root 7780370 May 20 23:04 mmlu_items.json\\n-rw-r--r--  1 root root   13072 May 20 23:04 seen_items_15pct.json\\n-rw-r--r--  1 root root   21795 May 22 05:43 seen_items_25pct.json\\n-rw-r--r--  1 root root   43572 May 20 23:04 seen_items_50pct.json\\n-rw-r--r--  1 root root    4350 May 22 06:36 seen_items_5pct.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "ca07b962-863e-4428-8105-202873cb62a8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 7700\\\\ndrwxr-xr-x 16 root root    4096 May 22 19:43 .\\\\ndrwxr-xr-x  8 root root    4096 May 23 03:26 ..\\\\ndrwxr-xr-x  2 root root      33 May 20 23:03 clean_s1\\\\ndrwxr-xr-x  2 root root      33 May 21 14:55 clean_s10\\\\ndrwxr-xr-x  2 root root      33 May 20 23:03 clean_s2\\\\ndrwxr-xr-x  2 root root      33 May 21 03:01 clean_s3\\\\ndrwxr-xr-x  2 root root      33 May 21 14:30 clean_s4\\\\ndrwxr-xr-x  2 root root      33 May 21 14:30 clean_s5\\\\ndrwxr-xr-x  2 root root      33 May 21 14:55 clean_s6\\\\ndrwxr-xr-x  2 root root      33 May 21 14:55 clean_s7\\\\ndrwxr-xr-x  2 root root      33 May 21 14:55 clean_s8\\\\ndrwxr-xr-x  2 root root      33 May 21 14:55 clean_s9\\\\ndrwxr-xr-x  2 root root      33 May 20 23:03 contam_15\\\\nlrwxrwxrwx  1 root root       9 May 22 19:42 contam_15_s2 -> contam_15\\\\nlrwxrwxrwx  1 root root       9 May 22 19:42 contam_15_s3 -> contam_15\\\\ndrwxr-xr-x  2 root root      33 May 22 05:43 contam_25\\\\nlrwxrwxrwx  1 root root       9 May 22 19:43 contam_25_s2 -> contam_25\\\\nlrwxrwxrwx  1 root root       9 May 22 19:43 contam_25_s3 -> contam_25\\\\ndrwxr-xr-x  2 root root      33 May 22 06:36 contam_5\\\\ndrwxr-xr-x  2 root root      33 May 20 23:03 contam_50\\\\nlrwxrwxrwx  1 root root       9 May 22 19:43 contam_50_s2 -> contam_50\\\\nlrwxrwxrwx  1 root root       9 May 22 19:43 contam_50_s3 -> contam_50\\\\n-rw-r--r--  1 root root 7780370 May 20 23:04 mmlu_items.json\\\\n-rw-r--r--  1 root root   13072 May 20 23:04 seen_items_15pct.json\\\\n-rw-r--r--  1 root root   21795 May 22 05:43 seen_items_25pct.json\\\\n-rw-r--r--  1 root root   43572 May 20 23:04 seen_items_50pct.json\\\\n-rw-r--r--  1 root root    4350 May 22 06:36 seen_items_5pct.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 7700\\ndrwxr-xr-x 16 root root    4096 May 22 19:43 .\\ndrwxr-xr-x  8 root root    4096 May 23 03:26 ..\\ndrwxr-xr-x  2 root root      33 May 20 23:03 clean_s1\\ndrwxr-xr-x  2 root root      33 May 21 14:55 clean_s10\\ndrwxr-xr-x  2 root root      33 May 20 23:03 clean_s2\\ndrwxr-xr-x  2 root root      33 May 21 03:01 clean_s3\\ndrwxr-xr-x  2 root root      33 May 21 14:30 clean_s4\\ndrwxr-xr-x  2 root root      33 May 21 14:30 clean_s5\\ndrwxr-xr-x  2 root root      33 May 21 14:55 clean_s6\\ndrwxr-xr-x  2 root root      33 May 21 14:55 clean_s7\\ndrwxr-xr-x  2 root root      33 May 21 14:55 clean_s8\\ndrwxr-xr-x  2 root root      33 May 21 14:55 clean_s9\\ndrwxr-xr-x  2 root root      33 May 20 23:03 contam_15\\nlrwxrwxrwx  1 root root       9 May 22 19:42 contam_15_s2 -> contam_15\\nlrwxrwxrwx  1 root root       9 May 22 19:42 contam_15_s3 -> contam_15\\ndrwxr-xr-x  2 root root      33 May 22 05:43 contam_25\\nlrwxrwxrwx  1 root root       9 May 22 19:43 contam_25_s2 -> contam_25\\nlrwxrwxrwx  1 root root       9 May 22 19:43 contam_25_s3 -> contam_25\\ndrwxr-xr-x  2 root root      33 May 22 06:36 contam_5\\ndrwxr-xr-x  2 root root      33 May 20 23:03 contam_50\\nlrwxrwxrwx  1 root root       9 May 22 19:43 contam_50_s2 -> contam_50\\nlrwxrwxrwx  1 root root       9 May 22 19:43 contam_50_s3 -> contam_50\\n-rw-r--r--  1 root root 7780370 May 20 23:04 mmlu_items.json\\n-rw-r--r--  1 root root   13072 May 20 23:04 seen_items_15pct.json\\n-rw-r--r--  1 root root   21795 May 22 05:43 seen_items_25pct.json\\n-rw-r--r--  1 root root   43572 May 20 23:04 seen_items_50pct.json\\n-rw-r--r--  1 root root    4350 May 22 06:36 seen_items_5pct.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-23T07:42:54.814Z_
+
+<details><summary>↩ Tool result · `toolu_01QU4Pv1qy5Yw1tqQmH2cX2W`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Filesystem      Size  Used Avail Use% Mounted on\\n/dev/md0        250G   88G  163G  35% /root/autodl-tmp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "294a45f6-29d4-44fc-803a-64181e126bc2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Filesystem      Size  Used Avail Use% Mounted on\\\\n/dev/md0        250G   88G  163G  35% /root/autodl-tmp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Filesystem      Size  Used Avail Use% Mounted on\\n/dev/md0        250G   88G  163G  35% /root/autodl-tmp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TGWcaVbcUadSSQjF5mZmri`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "cat /root/autodl-tmp/ctrl_contam_pilot/train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "f467b021-44fa-4f8d-b1cb-fbae21fc119b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jw1PqEkYCZhZTnUtvHui1o",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2454,
+      "cache_read_input_tokens": 24889,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2454
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-23T07:43:01.958Z_
+
+<details><summary>↩ Tool result · `toolu_01TGWcaVbcUadSSQjF5mZmri`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\ntrain.py — QLoRA SFT training on Qwen2.5-7B-Instruct.\\n\\nUsage: python train.py --condition clean_s1 --gpu 0\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport glob\\nimport json\\nimport os\\n\\nimport torch\\nimport os\\nassert torch.cuda.device_count() == 1, f\\\"Expected 1 GPU but found {torch.cuda.device_count()}. Set CUDA_VISIBLE_DEVICES first!\\\"\\nfrom datasets import Dataset\\nfrom peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training\\nfrom transformers import (\\n    AutoModelForCausalLM,\\n    AutoTokenizer,\\n    BitsAndBytesConfig,\\n\\n)\\nfrom trl import SFTConfig, SFTTrainer\\n\\nBASE_DIR = \\\"/root/autodl-tmp/ctrl_contam_pilot\\\"\\nHF_CACHE = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nSEED_MAP = {\\n    \\\"clean_s1\\\": 42,\\n    \\\"clean_s2\\\": 123,\\n    \\\"contam_15\\\": 42,\\n    \\\"contam_25\\\": 42,\\n    \\\"contam_5\\\": 42,\\n    \\\"contam_15_s2\\\": 123,\\n    \\\"contam_15_s3\\\": 456,\\n    \\\"contam_25_s2\\\": 123,\\n    \\\"contam_25_s3\\\": 456,\\n    \\\"contam_50_s2\\\": 123,\\n    \\\"contam_50_s3\\\": 456,\\n    \\\"contam_50\\\": 42,\\n    \\\"clean_s3\\\": 456,\\n    \\\"clean_s4\\\": 301,\\n    \\\"clean_s5\\\": 302,\\n    \\\"clean_s6\\\": 303,\\n    \\\"clean_s7\\\": 304,\\n    \\\"clean_s8\\\": 305,\\n    \\\"clean_s9\\\": 306,\\n    \\\"clean_s10\\\": 307,\\n}\\n\\n\\ndef find_model_path():\\n    patterns = [\\n        os.path.join(HF_CACHE, \\\"Qwen\\\", \\\"Qwen2.5-7B-Instruct\\\"),\\n        os.path.join(HF_CACHE, \\\"Qwen2___5-7B-Instruct\\\"),\\n        os.path.join(HF_CACHE, \\\"models--Qwen--Qwen2.5-7B-Instruct\\\"),\\n        os.path.join(HF_CACHE, \\\"Qwen\\\", \\\"Qwen2___5-7B-Instruct\\\"),\\n        os.path.join(HF_CACHE, \\\"qwen\\\", \\\"Qwen2___5-7B-Instruct\\\"),\\n    ]\\n    for p in patterns:\\n        if os.path.isdir(p):\\n            # Check for HF snapshot format\\n            snapshot_dir = os.path.join(p, \\\"snapshots\\\")\\n            if os.path.isdir(snapshot_dir):\\n                snapshots = os.listdir(snapshot_dir)\\n                if snapshots:\\n                    return os.path.join(snapshot_dir, snapshots[0])\\n            if os.path.isfile(os.path.join(p, \\\"config.json\\\")):\\n                return p\\n    # Fallback: search recursively for config.json\\n    for root, dirs, files in os.walk(HF_CACHE):\\n        if \\\"config.json\\\" in files and \\\"Qwen2.5-7B-Instruct\\\" in root:\\n            return root\\n    raise FileNotFoundError(f\\\"Cannot find Qwen2.5-7B-Instruct in {HF_CACHE}\\\")\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument(\\\"--condition\\\", required=True, choices=list(SEED_MAP.keys()))\\n    parser.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    parser.add_argument(\\\"--max_steps\\\", type=int, default=-1, help=\\\"Override for dry-run\\\")\\n    args = parser.parse_args()\\n\\n    seed = SEED_MAP[args.condition]\\n    # GPU assignment handled by framework via CUDA_VISIBLE_DEVICES\\n\\n    model_path = find_model_path()\\n    print(f\\\"Model path: {model_path}\\\")\\n    print(f\\\"Condition: {args.condition}, Seed: {seed}, GPU: {args.gpu}\\\")\\n\\n    # Load training data\\n    data_path = os.path.join(BASE_DIR, \\\"data\\\", args.condition, \\\"train.jsonl\\\")\\n    with open(data_path) as f:\\n        records = [json.loads(line) for line in f]\\n    dataset = Dataset.from_list(records)\\n    print(f\\\"Training samples: {len(dataset)}\\\")\\n\\n    # QLoRA config\\n    bnb_config = BitsAndBytesConfig(\\n        load_in_4bit=True,\\n        bnb_4bit_quant_type=\\\"nf4\\\",\\n        bnb_4bit_compute_dtype=torch.float16,\\n    )\\n\\n    # Load model\\n    model = AutoModelForCausalLM.from_pretrained(\\n        model_path,\\n        quantization_config=bnb_config,\\n        device_map={\\\"\\\": 0},\\n        trust_remote_code=True,\\n    )\\n    model = prepare_model_for_kbit_training(model)\\n\\n    # LoRA config\\n    lora_config = LoraConfig(\\n        r=16,\\n        lora_alpha=32,\\n        target_modules=[\\\"q_proj\\\", \\\"k_proj\\\", \\\"v_proj\\\", \\\"o_proj\\\"],\\n        lora_dropout=0.05,\\n        bias=\\\"none\\\",\\n        task_type=\\\"CAUSAL_LM\\\",\\n    )\\n    model = get_peft_model(model, lora_config)\\n    model.print_trainable_parameters()\\n\\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    output_dir = os.path.join(BASE_DIR, \\\"checkpoints\\\", args.condition)\\n\\n    use_bf16 = torch.cuda.is_bf16_supported()\\n    training_args = SFTConfig(\\n        output_dir=output_dir,\\n        num_train_epochs=3,\\n        per_device_train_batch_size=4,\\n        gradient_accumulation_steps=4,\\n        learning_rate=2e-4,\\n        warmup_ratio=0.1,\\n        bf16=use_bf16,\\n        fp16=not use_bf16,\\n        logging_steps=10,\\n        save_strategy=\\\"epoch\\\",\\n        seed=seed,\\n        report_to=\\\"wandb\\\",\\n        run_name=f\\\"ctrl-contam-{args.condition}\\\",\\n        max_steps=args.max_steps,\\n        dataloader_num_workers=2,\\n        remove_unused_columns=False,\\n        max_length=512,\\n    )\\n\\n    trainer = SFTTrainer(\\n        model=model,\\n        args=training_args,\\n        train_dataset=dataset,\\n        processing_class=tokenizer,\\n    )\\n\\n    os.environ[\\\"WANDB_PROJECT\\\"] = \\\"irt_personfit_contam\\\"\\n    trainer.train()\\n    trainer.save_model(output_dir)\\n    tokenizer.save_pretrained(output_dir)\\n    print(f\\\"Model saved to {output_dir}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "b137f90b-494f-4cd9-8990-cf6c1853314b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\ntrain.py — QLoRA SFT training on Qwen2.5-7B-Instruct.\\\\n\\\\nUsage: python train.py --condition clean_s1 --gpu 0\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport glob\\\\nimport json\\\\nimport os\\\\n\\\\nimport torch\\\\nimport os\\\\nassert torch.cuda.device_count() == 1, f\\\\\\\"Expected 1 GPU but found {torch.cuda.device_count()}. Set CUDA_VISIBLE_DEVICES first!\\\\\\\"\\\\nfrom datasets import Dataset\\\\nfrom peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training\\\\nfrom transformers import (\\\\n    AutoModelForCausalLM,\\\\n    AutoTokenizer,\\\\n    BitsAndBytesConfig,\\\\n\\\\n)\\\\nfrom trl import SFTConfig, SFTTrainer\\\\n\\\\nBASE_DIR = \\\\\\\"/root/autodl-tmp/ctrl_contam_pilot\\\\\\\"\\\\nHF_CACHE = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\n\\\\nSEED_MAP = {\\\\n    \\\\\\\"clean_s1\\\\\\\": 42,\\\\n    \\\\\\\"clean_s2\\\\\\\": 123,\\\\n    \\\\\\\"contam_15\\\\\\\": 42,\\\\n    \\\\\\\"contam_25\\\\\\\": 42,\\\\n    \\\\\\\"contam_5\\\\\\\": 42,\\\\n    \\\\\\\"contam_15_s2\\\\\\\": 123,\\\\n    \\\\\\\"contam_15_s3\\\\\\\": 456,\\\\n    \\\\\\\"contam_25_s2\\\\\\\": 123,\\\\n    \\\\\\\"contam_25_s3\\\\\\\": 456,\\\\n    \\\\\\\"contam_50_s2\\\\\\\": 123,\\\\n    \\\\\\\"contam_50_s3\\\\\\\": 456,\\\\n    \\\\\\\"contam_50\\\\\\\": 42,\\\\n    \\\\\\\"clean_s3\\\\\\\": 456,\\\\n    \\\\\\\"clean_s4\\\\\\\": 301,\\\\n    \\\\\\\"clean_s5\\\\\\\": 302,\\\\n    \\\\\\\"clean_s6\\\\\\\": 303,\\\\n    \\\\\\\"clean_s7\\\\\\\": 304,\\\\n    \\\\\\\"clean_s8\\\\\\\": 305,\\\\n    \\\\\\\"clean_s9\\\\\\\": 306,\\\\n    \\\\\\\"clean_s10\\\\\\\": 307,\\\\n}\\\\n\\\\n\\\\ndef find_model_path():\\\\n    patterns = [\\\\n        os.path.join(HF_CACHE, \\\\\\\"Qwen\\\\\\\", \\\\\\\"Qwen2.5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"Qwen2___5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"models--Qwen--Qwen2.5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"Qwen\\\\\\\", \\\\\\\"Qwen2___5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"qwen\\\\\\\", \\\\\\\"Qwen2___5-7B-Instruct\\\\\\\"),\\\\n    ]\\\\n    for p in patterns:\\\\n        if os.path.isdir(p):\\\\n            # Check for HF snapshot format\\\\n            snapshot_dir = os.path.join(p, \\\\\\\"snapshots\\\\\\\")\\\\n            if os.path.isdir(snapshot_dir):\\\\n                snapshots = os.listdir(snapshot_dir)\\\\n                if snapshots:\\\\n                    return os.path.join(snapshot_dir, snapshots[0])\\\\n            if os.path.isfile(os.path.join(p, \\\\\\\"config.json\\\\\\\")):\\\\n                return p\\\\n    # Fallback: search recursively for config.json\\\\n    for root, dirs, files in os.walk(HF_CACHE):\\\\n        if \\\\\\\"config.json\\\\\\\" in files and \\\\\\\"Qwen2.5-7B-Instruct\\\\\\\" in root:\\\\n            return root\\\\n    raise FileNotFoundError(f\\\\\\\"Cannot find Qwen2.5-7B-Instruct in {HF_CACHE}\\\\\\\")\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser()\\\\n    parser.add_argument(\\\\\\\"--condition\\\\\\\", required=True, choices=list(SEED_MAP.keys()))\\\\n    parser.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\n    parser.add_argument(\\\\\\\"--max_steps\\\\\\\", type=int, default=-1, help=\\\\\\\"Override for dry-run\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    seed = SEED_MAP[args.condition]\\\\n    # GPU assignment handled by framework via CUDA_VISIBLE_DEVICES\\\\n\\\\n    model_path = find_model_path()\\\\n    print(f\\\\\\\"Model path: {model_path}\\\\\\\")\\\\n    print(f\\\\\\\"Condition: {args.condition}, Seed: {seed}, GPU: {args.gpu}\\\\\\\")\\\\n\\\\n    # Load training data\\\\n    data_path = os.path.join(BASE_DIR, \\\\\\\"data\\\\\\\", args.condition, \\\\\\\"train.jsonl\\\\\\\")\\\\n    with open(data_path) as f:\\\\n        records = [json.loads(line) for line in f]\\\\n    dataset = Dataset.from_list(records)\\\\n    print(f\\\\\\\"Training samples: {len(dataset)}\\\\\\\")\\\\n\\\\n    # QLoRA config\\\\n    bnb_config = BitsAndBytesConfig(\\\\n        load_in_4bit=True,\\\\n        bnb_4bit_quant_type=\\\\\\\"nf4\\\\\\\",\\\\n        bnb_4bit_compute_dtype=torch.float16,\\\\n    )\\\\n\\\\n    # Load model\\\\n    model = AutoModelForCausalLM.from_pretrained(\\\\n        model_path,\\\\n        quantization_config=bnb_config,\\\\n        device_map={\\\\\\\"\\\\\\\": 0},\\\\n        trust_remote_code=True,\\\\n    )\\\\n    model = prepare_model_for_kbit_training(model)\\\\n\\\\n    # LoRA config\\\\n    lora_config = LoraConfig(\\\\n        r=16,\\\\n        lora_alpha=32,\\\\n        target_modules=[\\\\\\\"q_proj\\\\\\\", \\\\\\\"k_proj\\\\\\\", \\\\\\\"v_proj\\\\\\\", \\\\\\\"o_proj\\\\\\\"],\\\\n        lora_dropout=0.05,\\\\n        bias=\\\\\\\"none\\\\\\\",\\\\n        task_type=\\\\\\\"CAUSAL_LM\\\\\\\",\\\\n    )\\\\n    model = get_peft_model(model, lora_config)\\\\n    model.print_trainable_parameters()\\\\n\\\\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n\\\\n    output_dir = os.path.join(BASE_DIR, \\\\\\\"checkpoints\\\\\\\", args.condition)\\\\n\\\\n    use_bf16 = torch.cuda.is_bf16_supported()\\\\n    training_args = SFTConfig(\\\\n        output_dir=output_dir,\\\\n        num_train_epochs=3,\\\\n        per_device_train_batch_size=4,\\\\n        gradient_accumulation_steps=4,\\\\n        learning_rate=2e-4,\\\\n        warmup_ratio=0.1,\\\\n        bf16=use_bf16,\\\\n        fp16=not use_bf16,\\\\n        logging_steps=10,\\\\n        save_strategy=\\\\\\\"epoch\\\\\\\",\\\\n        seed=seed,\\\\n        report_to=\\\\\\\"wandb\\\\\\\",\\\\n        run_name=f\\\\\\\"ctrl-contam-{args.condition}\\\\\\\",\\\\n        max_steps=args.max_steps,\\\\n        dataloader_num_workers=2,\\\\n        remove_unused_columns=False,\\\\n        max_length=512,\\\\n    )\\\\n\\\\n    trainer = SFTTrainer(\\\\n        model=model,\\\\n        args=training_args,\\\\n        train_dataset=dataset,\\\\n        processing_class=tokenizer,\\\\n    )\\\\n\\\\n    os.environ[\\\\\\\"WANDB_PROJECT\\\\\\\"] = \\\\\\\"irt_personfit_contam\\\\\\\"\\\\n    trainer.train()\\\\n    trainer.save_model(output_dir)\\\\n    tokenizer.save_pretrained(output_dir)\\\\n    print(f\\\\\\\"Model saved to {output_dir}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\ntrain.py — QLoRA SFT training on Qwen2.5-7B-Instruct.\\n\\nUsage: python train.py --condition clean_s1 --gpu 0\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport glob\\nimport json\\nimport os\\n\\nimport torch\\nimport os\\nassert torch.cuda.device_count() == 1, f\\\"Expected 1 GPU but found {torch.cuda.device_count()}. Set CUDA_VISIBLE_DEVICES first!\\\"\\nfrom datasets import Dataset\\nfrom peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training\\nfrom transformers import (\\n    AutoModelForCausalLM,\\n    AutoTokenizer,\\n    BitsAndBytesConfig,\\n\\n)\\nfrom trl import SFTConfig, SFTTrainer\\n\\nBASE_DIR = \\\"/root/autodl-tmp/ctrl_contam_pilot\\\"\\nHF_CACHE = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nSEED_MAP = {\\n    \\\"clean_s1\\\": 42,\\n    \\\"clean_s2\\\": 123,\\n    \\\"contam_15\\\": 42,\\n    \\\"contam_25\\\": 42,\\n    \\\"contam_5\\\": 42,\\n    \\\"contam_15_s2\\\": 123,\\n    \\\"contam_15_s3\\\": 456,\\n    \\\"contam_25_s2\\\": 123,\\n    \\\"contam_25_s3\\\": 456,\\n    \\\"contam_50_s2\\\": 123,\\n    \\\"contam_50_s3\\\": 456,\\n    \\\"contam_50\\\": 42,\\n    \\\"clean_s3\\\": 456,\\n    \\\"clean_s4\\\": 301,\\n    \\\"clean_s5\\\": 302,\\n    \\\"clean_s6\\\": 303,\\n    \\\"clean_s7\\\": 304,\\n    \\\"clean_s8\\\": 305,\\n    \\\"clean_s9\\\": 306,\\n    \\\"clean_s10\\\": 307,\\n}\\n\\n\\ndef find_model_path():\\n    patterns = [\\n        os.path.join(HF_CACHE, \\\"Qwen\\\", \\\"Qwen2.5-7B-Instruct\\\"),\\n        os.path.join(HF_CACHE, \\\"Qwen2___5-7B-Instruct\\\"),\\n        os.path.join(HF_CACHE, \\\"models--Qwen--Qwen2.5-7B-Instruct\\\"),\\n        os.path.join(HF_CACHE, \\\"Qwen\\\", \\\"Qwen2___5-7B-Instruct\\\"),\\n        os.path.join(HF_CACHE, \\\"qwen\\\", \\\"Qwen2___5-7B-Instruct\\\"),\\n    ]\\n    for p in patterns:\\n        if os.path.isdir(p):\\n            # Check for HF snapshot format\\n            snapshot_dir = os.path.join(p, \\\"snapshots\\\")\\n            if os.path.isdir(snapshot_dir):\\n                snapshots = os.listdir(snapshot_dir)\\n                if snapshots:\\n                    return os.path.join(snapshot_dir, snapshots[0])\\n            if os.path.isfile(os.path.join(p, \\\"config.json\\\")):\\n                return p\\n    # Fallback: search recursively for config.json\\n    for root, dirs, files in os.walk(HF_CACHE):\\n        if \\\"config.json\\\" in files and \\\"Qwen2.5-7B-Instruct\\\" in root:\\n            return root\\n    raise FileNotFoundError(f\\\"Cannot find Qwen2.5-7B-Instruct in {HF_CACHE}\\\")\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument(\\\"--condition\\\", required=True, choices=list(SEED_MAP.keys()))\\n    parser.add_argument(\\\"--gpu\\\", type=int, default=0)\\n    parser.add_argument(\\\"--max_steps\\\", type=int, default=-1, help=\\\"Override for dry-run\\\")\\n    args = parser.parse_args()\\n\\n    seed = SEED_MAP[args.condition]\\n    # GPU assignment handled by framework via CUDA_VISIBLE_DEVICES\\n\\n    model_path = find_model_path()\\n    print(f\\\"Model path: {model_path}\\\")\\n    print(f\\\"Condition: {args.condition}, Seed: {seed}, GPU: {args.gpu}\\\")\\n\\n    # Load training data\\n    data_path = os.path.join(BASE_DIR, \\\"data\\\", args.condition, \\\"train.jsonl\\\")\\n    with open(data_path) as f:\\n        records = [json.loads(line) for line in f]\\n    dataset = Dataset.from_list(records)\\n    print(f\\\"Training samples: {len(dataset)}\\\")\\n\\n    # QLoRA config\\n    bnb_config = BitsAndBytesConfig(\\n        load_in_4bit=True,\\n        bnb_4bit_quant_type=\\\"nf4\\\",\\n        bnb_4bit_compute_dtype=torch.float16,\\n    )\\n\\n    # Load model\\n    model = AutoModelForCausalLM.from_pretrained(\\n        model_path,\\n        quantization_config=bnb_config,\\n        device_map={\\\"\\\": 0},\\n        trust_remote_code=True,\\n    )\\n    model = prepare_model_for_kbit_training(model)\\n\\n    # LoRA config\\n    lora_config = LoraConfig(\\n        r=16,\\n        lora_alpha=32,\\n        target_modules=[\\\"q_proj\\\", \\\"k_proj\\\", \\\"v_proj\\\", \\\"o_proj\\\"],\\n        lora_dropout=0.05,\\n        bias=\\\"none\\\",\\n        task_type=\\\"CAUSAL_LM\\\",\\n    )\\n    model = get_peft_model(model, lora_config)\\n    model.print_trainable_parameters()\\n\\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    output_dir = os.path.join(BASE_DIR, \\\"checkpoints\\\", args.condition)\\n\\n    use_bf16 = torch.cuda.is_bf16_supported()\\n    training_args = SFTConfig(\\n        output_dir=output_dir,\\n        num_train_epochs=3,\\n        per_device_train_batch_size=4,\\n        gradient_accumulation_steps=4,\\n        learning_rate=2e-4,\\n        warmup_ratio=0.1,\\n        bf16=use_bf16,\\n        fp16=not use_bf16,\\n        logging_steps=10,\\n        save_strategy=\\\"epoch\\\",\\n        seed=seed,\\n        report_to=\\\"wandb\\\",\\n        run_name=f\\\"ctrl-contam-{args.condition}\\\",\\n        max_steps=args.max_steps,\\n        dataloader_num_workers=2,\\n        remove_unused_columns=False,\\n        max_length=512,\\n    )\\n\\n    trainer = SFTTrainer(\\n        model=model,\\n        args=training_args,\\n        train_dataset=dataset,\\n        processing_class=tokenizer,\\n    )\\n\\n    os.environ[\\\"WANDB_PROJECT\\\"] = \\\"irt_personfit_contam\\\"\\n    trainer.train()\\n    trainer.save_model(output_dir)\\n    tokenizer.save_pretrained(output_dir)\\n    print(f\\\"Model saved to {output_dir}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CWmiEruTFhsfYkn2D5yHac`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "cat /root/autodl-tmp/ctrl_contam_pilot/eval_lz.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "8b865ec7-ec0d-4c29-a508-026f9e4e4d06",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jw1PqEkYCZhZTnUtvHui1o",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2454,
+      "cache_read_input_tokens": 24889,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2454
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-23T07:43:02.887Z_
+
+<details><summary>↩ Tool result · `toolu_01CWmiEruTFhsfYkn2D5yHac`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\neval_lz.py — Evaluate a fine-tuned adapter on full MMLU and compute lz* person-fit statistic.\\n\\nUsage: python eval_lz.py --condition clean_s1 --gpu 0\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport os\\n\\nimport numpy as np\\nimport torch\\nfrom peft import PeftModel\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\n\\nBASE_DIR = \\\"/root/autodl-tmp/ctrl_contam_pilot\\\"\\nHF_CACHE = \\\"/root/autodl-tmp/.hf_cache\\\"\\nPARAMS_PATH = os.path.join(BASE_DIR, \\\"mmlu_params.csv\\\")\\n\\nCHOICES = [\\\"A\\\", \\\"B\\\", \\\"C\\\", \\\"D\\\"]\\n\\nFEW_SHOT_EXAMPLES = [\\n    {\\n        \\\"question\\\": \\\"What is the capital of France?\\\",\\n        \\\"choices\\\": [\\\"London\\\", \\\"Paris\\\", \\\"Berlin\\\", \\\"Madrid\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n    {\\n        \\\"question\\\": \\\"Which planet is closest to the Sun?\\\",\\n        \\\"choices\\\": [\\\"Venus\\\", \\\"Mercury\\\", \\\"Mars\\\", \\\"Earth\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n    {\\n        \\\"question\\\": \\\"What is 2 + 2?\\\",\\n        \\\"choices\\\": [\\\"3\\\", \\\"4\\\", \\\"5\\\", \\\"6\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n]\\n\\n\\ndef format_question(question, choices):\\n    lines = [f\\\"Question: {question}\\\"]\\n    for i, c in enumerate(choices):\\n        lines.append(f\\\"{CHOICES[i]}. {c}\\\")\\n    lines.append(\\\"Answer:\\\")\\n    return \\\"\\\\n\\\".join(lines)\\n\\n\\ndef build_few_shot_prompt(question, choices):\\n    parts = []\\n    for ex in FEW_SHOT_EXAMPLES:\\n        parts.append(format_question(ex[\\\"question\\\"], ex[\\\"choices\\\"]) + f\\\" {CHOICES[ex['answer']]}\\\")\\n    parts.append(format_question(question, choices))\\n    return \\\"\\\\n\\\\n\\\".join(parts)\\n\\n\\ndef find_model_path():\\n    patterns = [\\n        os.path.join(HF_CACHE, \\\"Qwen\\\", \\\"Qwen2.5-7B-Instruct\\\"),\\n        os.path.join(HF_CACHE, \\\"Qwen\\\", \\\"Qwen2___5-7B-Instruct\\\"),\\n        os.path.join(HF_CACHE, \\\"Qwen2___5-7B-Instruct\\\"),\\n        os.path.join(HF_CACHE, \\\"Qwen2.5-7B-Instruct\\\"),\\n        os.path.join(HF_CACHE, \\\"models--Qwen--Qwen2.5-7B-Instruct\\\"),\\n        os.path.join(HF_CACHE, \\\"qwen\\\", \\\"Qwen2___5-7B-Instruct\\\"),\\n    ]\\n    for p in patterns:\\n        if os.path.isdir(p):\\n            snapshot_dir = os.path.join(p, \\\"snapshots\\\")\\n            if os.path.isdir(snapshot_dir):\\n                snapshots = os.listdir(snapshot_dir)\\n                if snapshots:\\n                    return os.path.join(snapshot_dir, snapshots[0])\\n            if os.path.isfile(os.path.join(p, \\\"config.json\\\")):\\n                return p\\n    for root, dirs, files in os.walk(HF_CACHE):\\n        if \\\"config.json\\\" in files and \\\"Qwen2.5-7B-Instruct\\\" in root:\\n            return root\\n    raise FileNotFoundError(f\\\"Cannot find Qwen2.5-7B-Instruct in {HF_CACHE}\\\")\\n\\n\\ndef load_irt_params(path):\\n    \\\"\\\"\\\"Load 4PL IRT parameters. Returns dict of arrays: a, b, c, d indexed by item_idx.\\\"\\\"\\\"\\n    params = {}\\n    with open(path) as f:\\n        reader = csv.DictReader(f)\\n        for row in reader:\\n            idx = int(row[\\\"item_idx\\\"])\\n            params[idx] = {\\n                \\\"a\\\": float(row[\\\"a_discrimination\\\"]),\\n                \\\"b\\\": float(row[\\\"b_difficulty\\\"]),\\n                \\\"c\\\": float(row[\\\"c_guessing\\\"]),\\n                \\\"d\\\": float(row[\\\"d_feasibility\\\"]),\\n            }\\n    return params\\n\\n\\ndef irf_4pl(theta, a, b, c, d):\\n    \\\"\\\"\\\"4PL item response function: P(correct | theta).\\\"\\\"\\\"\\n    return c + (d - c) / (1.0 + np.exp(-a * (theta - b)))\\n\\n\\ndef estimate_theta_mle(responses, irt_params, item_indices, max_iter=100, tol=1e-6):\\n    \\\"\\\"\\\"MLE of theta via Newton-Raphson on the 4PL model.\\\"\\\"\\\"\\n    theta = 0.0\\n    for _ in range(max_iter):\\n        grad = 0.0\\n        hess = 0.0\\n        for i, idx in enumerate(item_indices):\\n            p = irt_params[idx]\\n            a, b, c, d = p[\\\"a\\\"], p[\\\"b\\\"], p[\\\"c\\\"], p[\\\"d\\\"]\\n            P = irf_4pl(theta, a, b, c, d)\\n            P = np.clip(P, 1e-10, 1.0 - 1e-10)\\n            x = responses[i]\\n            # Derivative of P w.r.t. theta\\n            exp_term = np.exp(-a * (theta - b))\\n            dP = a * (d - c) * exp_term / (1.0 + exp_term) ** 2\\n            grad += (x - P) * dP / (P * (1.0 - P))\\n            hess += -(dP ** 2) * (1.0 / (P * (1.0 - P)))\\n        if abs(hess) < 1e-15:\\n            break\\n        delta = -grad / hess\\n        theta +=\\n\\n... [截断: 输出过长，省略 3305 字符] ...\\n\\nt_remote_code=True,\\n    )\\n    model = PeftModel.from_pretrained(model, adapter_path)\\n    model.eval()\\n\\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    # Get token IDs for A, B, C, D\\n    choice_token_ids = [tokenizer.encode(c, add_special_tokens=False)[0] for c in CHOICES]\\n    print(f\\\"Choice token IDs: {dict(zip(CHOICES, choice_token_ids))}\\\")\\n\\n    # Evaluate\\n    n_items = len(mmlu_items)\\n    if args.max_items > 0:\\n        n_items = min(n_items, args.max_items)\\n\\n    responses = []\\n    correct_count = 0\\n    seen_correct = 0\\n    seen_total = 0\\n    unseen_correct = 0\\n    unseen_total = 0\\n\\n    print(f\\\"Evaluating {n_items} items...\\\")\\n    for i in range(n_items):\\n        item = mmlu_items[i]\\n        prompt = build_few_shot_prompt(item[\\\"question\\\"], item[\\\"choices\\\"])\\n        inputs = tokenizer(prompt, return_tensors=\\\"pt\\\").to(model.device)\\n\\n        with torch.no_grad():\\n            outputs = model(**inputs)\\n            logits = outputs.logits[0, -1, :]\\n\\n        choice_logits = torch.tensor([logits[tid].item() for tid in choice_token_ids])\\n        pred = choice_logits.argmax().item()\\n        correct = int(pred == item[\\\"answer\\\"])\\n        responses.append(correct)\\n        correct_count += correct\\n\\n        is_seen = item[\\\"item_idx\\\"] in seen_set\\n        if is_seen:\\n            seen_correct += correct\\n            seen_total += 1\\n        else:\\n            unseen_correct += correct\\n            unseen_total += 1\\n\\n        if (i + 1) % 500 == 0:\\n            print(f\\\"  [{i+1}/{n_items}] acc={correct_count/(i+1):.4f}\\\")\\n\\n    # Compute IRT statistics\\n    item_indices = [mmlu_items[i][\\\"item_idx\\\"] for i in range(n_items)]\\n\\n    # Overall theta and lz*\\n    theta = estimate_theta_mle(responses, irt_params, item_indices)\\n    lz_star = compute_lz_star(responses, irt_params, item_indices, theta)\\n\\n    # Seen/unseen split lz*\\n    seen_responses = []\\n    seen_indices = []\\n    unseen_responses = []\\n    unseen_indices = []\\n    for i in range(n_items):\\n        idx = mmlu_items[i][\\\"item_idx\\\"]\\n        if idx in seen_set:\\n            seen_responses.append(responses[i])\\n            seen_indices.append(idx)\\n        else:\\n            unseen_responses.append(responses[i])\\n            unseen_indices.append(idx)\\n\\n    lz_star_seen = None\\n    lz_star_unseen = None\\n    if seen_indices:\\n        theta_seen = estimate_theta_mle(seen_responses, irt_params, seen_indices)\\n        lz_star_seen = compute_lz_star(seen_responses, irt_params, seen_indices, theta_seen)\\n    if unseen_indices:\\n        theta_unseen = estimate_theta_mle(unseen_responses, irt_params, unseen_indices)\\n        lz_star_unseen = compute_lz_star(unseen_responses, irt_params, unseen_indices, theta_unseen)\\n\\n    acc_overall = correct_count / n_items if n_items > 0 else 0\\n    acc_seen = seen_correct / seen_total if seen_total > 0 else None\\n    acc_unseen = unseen_correct / unseen_total if unseen_total > 0 else None\\n\\n    results = {\\n        \\\"condition\\\": args.condition,\\n        \\\"theta_mle\\\": float(theta),\\n        \\\"lz_star\\\": float(lz_star),\\n        \\\"accuracy_overall\\\": acc_overall,\\n        \\\"accuracy_seen\\\": acc_seen,\\n        \\\"accuracy_unseen\\\": acc_unseen,\\n        \\\"lz_star_seen\\\": float(lz_star_seen) if lz_star_seen is not None else None,\\n        \\\"lz_star_unseen\\\": float(lz_star_unseen) if lz_star_unseen is not None else None,\\n        \\\"response_vector\\\": responses,\\n        \\\"n_items\\\": n_items,\\n        \\\"n_seen\\\": seen_total,\\n        \\\"n_unseen\\\": unseen_total,\\n    }\\n\\n    out_path = os.path.join(BASE_DIR, \\\"results\\\", f\\\"{args.condition}_results.json\\\")\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {out_path}\\\")\\n    print(f\\\"  theta={theta:.4f}, lz*={lz_star:.4f}\\\")\\n    print(f\\\"  acc_overall={acc_overall:.4f}, acc_seen={acc_seen}, acc_unseen={acc_unseen}\\\")\\n    print(f\\\"  lz*_seen={lz_star_seen}, lz*_unseen={lz_star_unseen}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "ec9ed371-7d4a-4f34-b539-794f5b161e9d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\neval_lz.py — Evaluate a fine-tuned adapter on full MMLU and compute lz* person-fit statistic.\\\\n\\\\nUsage: python eval_lz.py --condition clean_s1 --gpu 0\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport csv\\\\nimport json\\\\nimport os\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom peft import PeftModel\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\\\n\\\\nBASE_DIR = \\\\\\\"/root/autodl-tmp/ctrl_contam_pilot\\\\\\\"\\\\nHF_CACHE = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nPARAMS_PATH = os.path.join(BASE_DIR, \\\\\\\"mmlu_params.csv\\\\\\\")\\\\n\\\\nCHOICES = [\\\\\\\"A\\\\\\\", \\\\\\\"B\\\\\\\", \\\\\\\"C\\\\\\\", \\\\\\\"D\\\\\\\"]\\\\n\\\\nFEW_SHOT_EXAMPLES = [\\\\n    {\\\\n        \\\\\\\"question\\\\\\\": \\\\\\\"What is the capital of France?\\\\\\\",\\\\n        \\\\\\\"choices\\\\\\\": [\\\\\\\"London\\\\\\\", \\\\\\\"Paris\\\\\\\", \\\\\\\"Berlin\\\\\\\", \\\\\\\"Madrid\\\\\\\"],\\\\n        \\\\\\\"answer\\\\\\\": 1,\\\\n    },\\\\n    {\\\\n        \\\\\\\"question\\\\\\\": \\\\\\\"Which planet is closest to the Sun?\\\\\\\",\\\\n        \\\\\\\"choices\\\\\\\": [\\\\\\\"Venus\\\\\\\", \\\\\\\"Mercury\\\\\\\", \\\\\\\"Mars\\\\\\\", \\\\\\\"Earth\\\\\\\"],\\\\n        \\\\\\\"answer\\\\\\\": 1,\\\\n    },\\\\n    {\\\\n        \\\\\\\"question\\\\\\\": \\\\\\\"What is 2 + 2?\\\\\\\",\\\\n        \\\\\\\"choices\\\\\\\": [\\\\\\\"3\\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"5\\\\\\\", \\\\\\\"6\\\\\\\"],\\\\n        \\\\\\\"answer\\\\\\\": 1,\\\\n    },\\\\n]\\\\n\\\\n\\\\ndef format_question(question, choices):\\\\n    lines = [f\\\\\\\"Question: {question}\\\\\\\"]\\\\n    for i, c in enumerate(choices):\\\\n        lines.append(f\\\\\\\"{CHOICES[i]}. {c}\\\\\\\")\\\\n    lines.append(\\\\\\\"Answer:\\\\\\\")\\\\n    return \\\\\\\"\\\\\\\\n\\\\\\\".join(lines)\\\\n\\\\n\\\\ndef build_few_shot_prompt(question, choices):\\\\n    parts = []\\\\n    for ex in FEW_SHOT_EXAMPLES:\\\\n        parts.append(format_question(ex[\\\\\\\"question\\\\\\\"], ex[\\\\\\\"choices\\\\\\\"]) + f\\\\\\\" {CHOICES[ex['answer']]}\\\\\\\")\\\\n    parts.append(format_question(question, choices))\\\\n    return \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\".join(parts)\\\\n\\\\n\\\\ndef find_model_path():\\\\n    patterns = [\\\\n        os.path.join(HF_CACHE, \\\\\\\"Qwen\\\\\\\", \\\\\\\"Qwen2.5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"Qwen\\\\\\\", \\\\\\\"Qwen2___5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"Qwen2___5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"Qwen2.5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"models--Qwen--Qwen2.5-7B-Instruct\\\\\\\"),\\\\n        os.path.join(HF_CACHE, \\\\\\\"qwen\\\\\\\", \\\\\\\"Qwen2___5-7B-Instruct\\\\\\\"),\\\\n    ]\\\\n    for p in patterns:\\\\n        if os.path.isdir(p):\\\\n            snapshot_dir = os.path.join(p, \\\\\\\"snapshots\\\\\\\")\\\\n            if os.path.isdir(snapshot_dir):\\\\n                snapshots = os.listdir(snapshot_dir)\\\\n                if snapshots:\\\\n                    return os.path.join(snapshot_dir, snapshots[0])\\\\n            if os.path.isfile(os.path.join(p, \\\\\\\"config.json\\\\\\\")):\\\\n                return p\\\\n    for root, dirs, files in os.walk(HF_CACHE):\\\\n        if \\\\\\\"config.json\\\\\\\" in files and \\\\\\\"Qwen2.5-7B-Instruct\\\\\\\" in root:\\\\n            return root\\\\n    raise FileNotFoundError(f\\\\\\\"Cannot find Qwen2.5-7B-Instruct in {HF_CACHE}\\\\\\\")\\\\n\\\\n\\\\ndef load_irt_params(path):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load 4PL IRT parameters. Returns dict of arrays: a, b, c, d indexed by item_idx.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    params = {}\\\\n    with open(path) as f:\\\\n        reader = csv.DictReader(f)\\\\n        for row in reader:\\\\n            idx = int(row[\\\\\\\"item_idx\\\\\\\"])\\\\n            params[idx] = {\\\\n                \\\\\\\"a\\\\\\\": float(row[\\\\\\\"a_discrimination\\\\\\\"]),\\\\n                \\\\\\\"b\\\\\\\": float(row[\\\\\\\"b_difficulty\\\\\\\"]),\\\\n                \\\\\\\"c\\\\\\\": float(row[\\\\\\\"c_guessing\\\\\\\"]),\\\\n                \\\\\\\"d\\\\\\\": float(row[\\\\\\\"d_feasibility\\\\\\\"]),\\\\n            }\\\\n    return params\\\\n\\\\n\\\\ndef irf_4pl(theta, a, b, c, d):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"4PL item response function: P(correct | theta).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return c + (d - c) / (1.0 + np.exp(-a * (theta - b)))\\\\n\\\\n\\\\ndef estimate_theta_mle(responses, irt_params, item_indices, max_iter=100, tol=1e-6):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"MLE of theta via Newton-Raphson on the 4PL model.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    theta = 0.0\\\\n    for _ in range(max_iter):\\\\n        grad = 0.0\\\\n        hess = 0.0\\\\n        for i, idx in enumerate(item_indices):\\\\n            p = irt_params[idx]\\\\n            a, b, c, d = p[\\\\\\\"a\\\\\\\"], p[\\\\\\\"b\\\\\\\"], p[\\\\\\\"c\\\\\\\"], p[\\\\\\\"d\\\\\\\"]\\\\n            P = irf_4pl(theta, a, b, c, d)\\\\n            P = np.clip(P, 1e-10, 1.0 - 1e-10)\\\\n            x = responses[i]\\\\n            # Derivative of P w.r.t. theta\\\\n            exp_term = np.exp(-a * (theta - b))\\\\n            dP = a * (d - c) * exp_term / (1.0 + exp_term) ** 2\\\\n            grad += (x - P) * dP / (P * (1.0 - P))\\\\n            hess += -(dP ** 2) * (1.0 / (P * (1.0 - P)))\\\\n        if abs(hess) < 1e-15:\\\\n            break\\\\n        delta = -grad / hess\\\\n        theta +=\\\\n\\\\n... [截断: 输出过长，省略 3305 字符] ...\\\\n\\\\nt_remote_code=True,\\\\n    )\\\\n    model = PeftModel.from_pretrained(model, adapter_path)\\\\n    model.eval()\\\\n\\\\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n\\\\n    # Get token IDs for A, B, C, D\\\\n    choice_token_ids = [tokenizer.encode(c, add_special_tokens=False)[0] for c in CHOICES]\\\\n    print(f\\\\\\\"Choice token IDs: {dict(zip(CHOICES, choice_token_ids))}\\\\\\\")\\\\n\\\\n    # Evaluate\\\\n    n_items = len(mmlu_items)\\\\n    if args.max_items > 0:\\\\n        n_items = min(n_items, args.max_items)\\\\n\\\\n    responses = []\\\\n    correct_count = 0\\\\n    seen_correct = 0\\\\n    seen_total = 0\\\\n    unseen_correct = 0\\\\n    unseen_total = 0\\\\n\\\\n    print(f\\\\\\\"Evaluating {n_items} items...\\\\\\\")\\\\n    for i in range(n_items):\\\\n        item = mmlu_items[i]\\\\n        prompt = build_few_shot_prompt(item[\\\\\\\"question\\\\\\\"], item[\\\\\\\"choices\\\\\\\"])\\\\n        inputs = tokenizer(prompt, return_tensors=\\\\\\\"pt\\\\\\\").to(model.device)\\\\n\\\\n        with torch.no_grad():\\\\n            outputs = model(**inputs)\\\\n            logits = outputs.logits[0, -1, :]\\\\n\\\\n        choice_logits = torch.tensor([logits[tid].item() for tid in choice_token_ids])\\\\n        pred = choice_logits.argmax().item()\\\\n        correct = int(pred == item[\\\\\\\"answer\\\\\\\"])\\\\n        responses.append(correct)\\\\n        correct_count += correct\\\\n\\\\n        is_seen = item[\\\\\\\"item_idx\\\\\\\"] in seen_set\\\\n        if is_seen:\\\\n            seen_correct += correct\\\\n            seen_total += 1\\\\n        else:\\\\n            unseen_correct += correct\\\\n            unseen_total += 1\\\\n\\\\n        if (i + 1) % 500 == 0:\\\\n            print(f\\\\\\\"  [{i+1}/{n_items}] acc={correct_count/(i+1):.4f}\\\\\\\")\\\\n\\\\n    # Compute IRT statistics\\\\n    item_indices = [mmlu_items[i][\\\\\\\"item_idx\\\\\\\"] for i in range(n_items)]\\\\n\\\\n    # Overall theta and lz*\\\\n    theta = estimate_theta_mle(responses, irt_params, item_indices)\\\\n    lz_star = compute_lz_star(responses, irt_params, item_indices, theta)\\\\n\\\\n    # Seen/unseen split lz*\\\\n    seen_responses = []\\\\n    seen_indices = []\\\\n    unseen_responses = []\\\\n    unseen_indices = []\\\\n    for i in range(n_items):\\\\n        idx = mmlu_items[i][\\\\\\\"item_idx\\\\\\\"]\\\\n        if idx in seen_set:\\\\n            seen_responses.append(responses[i])\\\\n            seen_indices.append(idx)\\\\n        else:\\\\n            unseen_responses.append(responses[i])\\\\n            unseen_indices.append(idx)\\\\n\\\\n    lz_star_seen = None\\\\n    lz_star_unseen = None\\\\n    if seen_indices:\\\\n        theta_seen = estimate_theta_mle(seen_responses, irt_params, seen_indices)\\\\n        lz_star_seen = compute_lz_star(seen_responses, irt_params, seen_indices, theta_seen)\\\\n    if unseen_indices:\\\\n        theta_unseen = estimate_theta_mle(unseen_responses, irt_params, unseen_indices)\\\\n        lz_star_unseen = compute_lz_star(unseen_responses, irt_params, unseen_indices, theta_unseen)\\\\n\\\\n    acc_overall = correct_count / n_items if n_items > 0 else 0\\\\n    acc_seen = seen_correct / seen_total if seen_total > 0 else None\\\\n    acc_unseen = unseen_correct / unseen_total if unseen_total > 0 else None\\\\n\\\\n    results = {\\\\n        \\\\\\\"condition\\\\\\\": args.condition,\\\\n        \\\\\\\"theta_mle\\\\\\\": float(theta),\\\\n        \\\\\\\"lz_star\\\\\\\": float(lz_star),\\\\n        \\\\\\\"accuracy_overall\\\\\\\": acc_overall,\\\\n        \\\\\\\"accuracy_seen\\\\\\\": acc_seen,\\\\n        \\\\\\\"accuracy_unseen\\\\\\\": acc_unseen,\\\\n        \\\\\\\"lz_star_seen\\\\\\\": float(lz_star_seen) if lz_star_seen is not None else None,\\\\n        \\\\\\\"lz_star_unseen\\\\\\\": float(lz_star_unseen) if lz_star_unseen is not None else None,\\\\n        \\\\\\\"response_vector\\\\\\\": responses,\\\\n        \\\\\\\"n_items\\\\\\\": n_items,\\\\n        \\\\\\\"n_seen\\\\\\\": seen_total,\\\\n        \\\\\\\"n_unseen\\\\\\\": unseen_total,\\\\n    }\\\\n\\\\n    out_path = os.path.join(BASE_DIR, \\\\\\\"results\\\\\\\", f\\\\\\\"{args.condition}_results.json\\\\\\\")\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nResults saved to {out_path}\\\\\\\")\\\\n    print(f\\\\\\\"  theta={theta:.4f}, lz*={lz_star:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  acc_overall={acc_overall:.4f}, acc_seen={acc_seen}, acc_unseen={acc_unseen}\\\\\\\")\\\\n    print(f\\\\\\\"  lz*_seen={lz_star_seen}, lz*_unseen={lz_star_unseen}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\neval_lz.py — Evaluate a fine-tuned adapter on full MMLU and compute lz* person-fit statistic.\\n\\nUsage: python eval_lz.py --condition clean_s1 --gpu 0\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport os\\n\\nimport numpy as np\\nimport torch\\nfrom peft import PeftModel\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\n\\nBASE_DIR = \\\"/root/autodl-tmp/ctrl_contam_pilot\\\"\\nHF_CACHE = \\\"/root/autodl-tmp/.hf_cache\\\"\\nPARAMS_PATH = os.path.join(BASE_DIR, \\\"mmlu_params.csv\\\")\\n\\nCHOICES = [\\\"A\\\", \\\"B\\\", \\\"C\\\", \\\"D\\\"]\\n\\nFEW_SHOT_EXAMPLES = [\\n    {\\n        \\\"question\\\": \\\"What is the capital of France?\\\",\\n        \\\"choices\\\": [\\\"London\\\", \\\"Paris\\\", \\\"Berlin\\\", \\\"Madrid\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n    {\\n        \\\"question\\\": \\\"Which planet is closest to the Sun?\\\",\\n        \\\"choices\\\": [\\\"Venus\\\", \\\"Mercury\\\", \\\"Mars\\\", \\\"Earth\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n    {\\n        \\\"question\\\": \\\"What is 2 + 2?\\\",\\n        \\\"choices\\\": [\\\"3\\\", \\\"4\\\", \\\"5\\\", \\\"6\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n]\\n\\n\\ndef format_question(question, choices):\\n    lines = [f\\\"Question: {question}\\\"]\\n    for i, c in enumerate(choices):\\n        lines.append(f\\\"{CHOICES[i]}. {c}\\\")\\n    lines.append(\\\"Answer:\\\")\\n    return \\\"\\\\n\\\".join(lines)\\n\\n\\ndef build_few_shot_prompt(question, choices):\\n    parts = []\\n    for ex in FEW_SHOT_EXAMPLES:\\n        parts.append(format_question(ex[\\\"question\\\"], ex[\\\"choices\\\"]) + f\\\" {CHOICES[ex['answer']]}\\\")\\n    parts.append(format_question(question, choices))\\n    return \\\"\\\\n\\\\n\\\".join(parts)\\n\\n\\ndef find_model_path():\\n    patterns = [\\n        os.path.join(HF_CACHE, \\\"Qwen\\\", \\\"Qwen2.5-7B-Instruct\\\"),\\n        os.path.join(HF_CACHE, \\\"Qwen\\\", \\\"Qwen2___5-7B-Instruct\\\"),\\n        os.path.join(HF_CACHE, \\\"Qwen2___5-7B-Instruct\\\"),\\n        os.path.join(HF_CACHE, \\\"Qwen2.5-7B-Instruct\\\"),\\n        os.path.join(HF_CACHE, \\\"models--Qwen--Qwen2.5-7B-Instruct\\\"),\\n        os.path.join(HF_CACHE, \\\"qwen\\\", \\\"Qwen2___5-7B-Instruct\\\"),\\n    ]\\n    for p in patterns:\\n        if os.path.isdir(p):\\n            snapshot_dir = os.path.join(p, \\\"snapshots\\\")\\n            if os.path.isdir(snapshot_dir):\\n                snapshots = os.listdir(snapshot_dir)\\n                if snapshots:\\n                    return os.path.join(snapshot_dir, snapshots[0])\\n            if os.path.isfile(os.path.join(p, \\\"config.json\\\")):\\n                return p\\n    for root, dirs, files in os.walk(HF_CACHE):\\n        if \\\"config.json\\\" in files and \\\"Qwen2.5-7B-Instruct\\\" in root:\\n            return root\\n    raise FileNotFoundError(f\\\"Cannot find Qwen2.5-7B-Instruct in {HF_CACHE}\\\")\\n\\n\\ndef load_irt_params(path):\\n    \\\"\\\"\\\"Load 4PL IRT parameters. Returns dict of arrays: a, b, c, d indexed by item_idx.\\\"\\\"\\\"\\n    params = {}\\n    with open(path) as f:\\n        reader = csv.DictReader(f)\\n        for row in reader:\\n            idx = int(row[\\\"item_idx\\\"])\\n            params[idx] = {\\n                \\\"a\\\": float(row[\\\"a_discrimination\\\"]),\\n                \\\"b\\\": float(row[\\\"b_difficulty\\\"]),\\n                \\\"c\\\": float(row[\\\"c_guessing\\\"]),\\n                \\\"d\\\": float(row[\\\"d_feasibility\\\"]),\\n            }\\n    return params\\n\\n\\ndef irf_4pl(theta, a, b, c, d):\\n    \\\"\\\"\\\"4PL item response function: P(correct | theta).\\\"\\\"\\\"\\n    return c + (d - c) / (1.0 + np.exp(-a * (theta - b)))\\n\\n\\ndef estimate_theta_mle(responses, irt_params, item_indices, max_iter=100, tol=1e-6):\\n    \\\"\\\"\\\"MLE of theta via Newton-Raphson on the 4PL model.\\\"\\\"\\\"\\n    theta = 0.0\\n    for _ in range(max_iter):\\n        grad = 0.0\\n        hess = 0.0\\n        for i, idx in enumerate(item_indices):\\n            p = irt_params[idx]\\n            a, b, c, d = p[\\\"a\\\"], p[\\\"b\\\"], p[\\\"c\\\"], p[\\\"d\\\"]\\n            P = irf_4pl(theta, a, b, c, d)\\n            P = np.clip(P, 1e-10, 1.0 - 1e-10)\\n            x = responses[i]\\n            # Derivative of P w.r.t. theta\\n            exp_term = np.exp(-a * (theta - b))\\n            dP = a * (d - c) * exp_term / (1.0 + exp_term) ** 2\\n            grad += (x - P) * dP / (P * (1.0 - P))\\n            hess += -(dP ** 2) * (1.0 / (P * (1.0 - P)))\\n        if abs(hess) < 1e-15:\\n            break\\n        delta = -grad / hess\\n        theta +=\\n\\n... [截断: 输出过长，省略 3305 字符] ...\\n\\nt_remote_code=True,\\n    )\\n    model = PeftModel.from_pretrained(model, adapter_path)\\n    model.eval()\\n\\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    # Get token IDs for A, B, C, D\\n    choice_token_ids = [tokenizer.encode(c, add_special_tokens=False)[0] for c in CHOICES]\\n    print(f\\\"Choice token IDs: {dict(zip(CHOICES, choice_token_ids))}\\\")\\n\\n    # Evaluate\\n    n_items = len(mmlu_items)\\n    if args.max_items > 0:\\n        n_items = min(n_items, args.max_items)\\n\\n    responses = []\\n    correct_count = 0\\n    seen_correct = 0\\n    seen_total = 0\\n    unseen_correct = 0\\n    unseen_total = 0\\n\\n    print(f\\\"Evaluating {n_items} items...\\\")\\n    for i in range(n_items):\\n        item = mmlu_items[i]\\n        prompt = build_few_shot_prompt(item[\\\"question\\\"], item[\\\"choices\\\"])\\n        inputs = tokenizer(prompt, return_tensors=\\\"pt\\\").to(model.device)\\n\\n        with torch.no_grad():\\n            outputs = model(**inputs)\\n            logits = outputs.logits[0, -1, :]\\n\\n        choice_logits = torch.tensor([logits[tid].item() for tid in choice_token_ids])\\n        pred = choice_logits.argmax().item()\\n        correct = int(pred == item[\\\"answer\\\"])\\n        responses.append(correct)\\n        correct_count += correct\\n\\n        is_seen = item[\\\"item_idx\\\"] in seen_set\\n        if is_seen:\\n            seen_correct += correct\\n            seen_total += 1\\n        else:\\n            unseen_correct += correct\\n            unseen_total += 1\\n\\n        if (i + 1) % 500 == 0:\\n            print(f\\\"  [{i+1}/{n_items}] acc={correct_count/(i+1):.4f}\\\")\\n\\n    # Compute IRT statistics\\n    item_indices = [mmlu_items[i][\\\"item_idx\\\"] for i in range(n_items)]\\n\\n    # Overall theta and lz*\\n    theta = estimate_theta_mle(responses, irt_params, item_indices)\\n    lz_star = compute_lz_star(responses, irt_params, item_indices, theta)\\n\\n    # Seen/unseen split lz*\\n    seen_responses = []\\n    seen_indices = []\\n    unseen_responses = []\\n    unseen_indices = []\\n    for i in range(n_items):\\n        idx = mmlu_items[i][\\\"item_idx\\\"]\\n        if idx in seen_set:\\n            seen_responses.append(responses[i])\\n            seen_indices.append(idx)\\n        else:\\n            unseen_responses.append(responses[i])\\n            unseen_indices.append(idx)\\n\\n    lz_star_seen = None\\n    lz_star_unseen = None\\n    if seen_indices:\\n        theta_seen = estimate_theta_mle(seen_responses, irt_params, seen_indices)\\n        lz_star_seen = compute_lz_star(seen_responses, irt_params, seen_indices, theta_seen)\\n    if unseen_indices:\\n        theta_unseen = estimate_theta_mle(unseen_responses, irt_params, unseen_indices)\\n        lz_star_unseen = compute_lz_star(unseen_responses, irt_params, unseen_indices, theta_unseen)\\n\\n    acc_overall = correct_count / n_items if n_items > 0 else 0\\n    acc_seen = seen_correct / seen_total if seen_total > 0 else None\\n    acc_unseen = unseen_correct / unseen_total if unseen_total > 0 else None\\n\\n    results = {\\n        \\\"condition\\\": args.condition,\\n        \\\"theta_mle\\\": float(theta),\\n        \\\"lz_star\\\": float(lz_star),\\n        \\\"accuracy_overall\\\": acc_overall,\\n        \\\"accuracy_seen\\\": acc_seen,\\n        \\\"accuracy_unseen\\\": acc_unseen,\\n        \\\"lz_star_seen\\\": float(lz_star_seen) if lz_star_seen is not None else None,\\n        \\\"lz_star_unseen\\\": float(lz_star_unseen) if lz_star_unseen is not None else None,\\n        \\\"response_vector\\\": responses,\\n        \\\"n_items\\\": n_items,\\n        \\\"n_seen\\\": seen_total,\\n        \\\"n_unseen\\\": unseen_total,\\n    }\\n\\n    out_path = os.path.join(BASE_DIR, \\\"results\\\", f\\\"{args.condition}_results.json\\\")\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {out_path}\\\")\\n    print(f\\\"  theta={theta:.4f}, lz*={lz_star:.4f}\\\")\\n    print(f\\\"  acc_overall={acc_overall:.4f}, acc_seen={acc_seen}, acc_unseen={acc_unseen}\\\")\\n    print(f\\\"  lz*_seen={lz_star_seen}, lz*_unseen={lz_star_unseen}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NshRwTiweJ7aXkcQ1zsfvH`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "ls -la /root/autodl-tmp/ctrl_contam_pilot/checkpoints/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "bd594a28-02bd-4e6e-9406-77c2abb4b14d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jw1PqEkYCZhZTnUtvHui1o",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2454,
+      "cache_read_input_tokens": 24889,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2454
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-23T07:43:03.830Z_
+
+<details><summary>↩ Tool result · `toolu_01NshRwTiweJ7aXkcQ1zsfvH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 88\\ndrwxr-xr-x 22 root root 4096 May 23 02:54 .\\ndrwxr-xr-x  8 root root 4096 May 23 03:26 ..\\ndrwxr-xr-x  5 root root 4096 May 21 00:32 clean_s1\\ndrwxr-xr-x  5 root root 4096 May 21 17:27 clean_s10\\ndrwxr-xr-x  5 root root 4096 May 21 00:32 clean_s2\\ndrwxr-xr-x  5 root root 4096 May 21 03:33 clean_s3\\ndrwxr-xr-x  5 root root 4096 May 21 15:03 clean_s4\\ndrwxr-xr-x  5 root root 4096 May 21 15:01 clean_s5\\ndrwxr-xr-x  5 root root 4096 May 21 15:50 clean_s6\\ndrwxr-xr-x  7 root root 4096 May 21 16:22 clean_s7\\ndrwxr-xr-x  5 root root 4096 May 21 15:58 clean_s8\\ndrwxr-xr-x  5 root root 4096 May 21 16:25 clean_s9\\ndrwxr-xr-x  5 root root 4096 May 21 00:41 contam_15\\ndrwxr-xr-x  5 root root 4096 May 22 20:28 contam_15_s2\\ndrwxr-xr-x  5 root root 4096 May 23 01:52 contam_15_s3\\ndrwxr-xr-x  5 root root 4096 May 22 06:14 contam_25\\ndrwxr-xr-x  5 root root 4096 May 22 21:31 contam_25_s2\\ndrwxr-xr-x  5 root root 4096 May 22 22:16 contam_25_s3\\ndrwxr-xr-x  5 root root 4096 May 22 07:00 contam_5\\ndrwxr-xr-x  5 root root 4096 May 21 01:01 contam_50\\ndrwxr-xr-x  5 root root 4096 May 22 23:23 contam_50_s2\\ndrwxr-xr-x  5 root root 4096 May 23 03:38 contam_50_s3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "40ab6223-67ae-49e0-81b4-6beb4a4f4a6b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 88\\\\ndrwxr-xr-x 22 root root 4096 May 23 02:54 .\\\\ndrwxr-xr-x  8 root root 4096 May 23 03:26 ..\\\\ndrwxr-xr-x  5 root root 4096 May 21 00:32 clean_s1\\\\ndrwxr-xr-x  5 root root 4096 May 21 17:27 clean_s10\\\\ndrwxr-xr-x  5 root root 4096 May 21 00:32 clean_s2\\\\ndrwxr-xr-x  5 root root 4096 May 21 03:33 clean_s3\\\\ndrwxr-xr-x  5 root root 4096 May 21 15:03 clean_s4\\\\ndrwxr-xr-x  5 root root 4096 May 21 15:01 clean_s5\\\\ndrwxr-xr-x  5 root root 4096 May 21 15:50 clean_s6\\\\ndrwxr-xr-x  7 root root 4096 May 21 16:22 clean_s7\\\\ndrwxr-xr-x  5 root root 4096 May 21 15:58 clean_s8\\\\ndrwxr-xr-x  5 root root 4096 May 21 16:25 clean_s9\\\\ndrwxr-xr-x  5 root root 4096 May 21 00:41 contam_15\\\\ndrwxr-xr-x  5 root root 4096 May 22 20:28 contam_15_s2\\\\ndrwxr-xr-x  5 root root 4096 May 23 01:52 contam_15_s3\\\\ndrwxr-xr-x  5 root root 4096 May 22 06:14 contam_25\\\\ndrwxr-xr-x  5 root root 4096 May 22 21:31 contam_25_s2\\\\ndrwxr-xr-x  5 root root 4096 May 22 22:16 contam_25_s3\\\\ndrwxr-xr-x  5 root root 4096 May 22 07:00 contam_5\\\\ndrwxr-xr-x  5 root root 4096 May 21 01:01 contam_50\\\\ndrwxr-xr-x  5 root root 4096 May 22 23:23 contam_50_s2\\\\ndrwxr-xr-x  5 root root 4096 May 23 03:38 contam_50_s3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 88\\ndrwxr-xr-x 22 root root 4096 May 23 02:54 .\\ndrwxr-xr-x  8 root root 4096 May 23 03:26 ..\\ndrwxr-xr-x  5 root root 4096 May 21 00:32 clean_s1\\ndrwxr-xr-x  5 root root 4096 May 21 17:27 clean_s10\\ndrwxr-xr-x  5 root root 4096 May 21 00:32 clean_s2\\ndrwxr-xr-x  5 root root 4096 May 21 03:33 clean_s3\\ndrwxr-xr-x  5 root root 4096 May 21 15:03 clean_s4\\ndrwxr-xr-x  5 root root 4096 May 21 15:01 clean_s5\\ndrwxr-xr-x  5 root root 4096 May 21 15:50 clean_s6\\ndrwxr-xr-x  7 root root 4096 May 21 16:22 clean_s7\\ndrwxr-xr-x  5 root root 4096 May 21 15:58 clean_s8\\ndrwxr-xr-x  5 root root 4096 May 21 16:25 clean_s9\\ndrwxr-xr-x  5 root root 4096 May 21 00:41 contam_15\\ndrwxr-xr-x  5 root root 4096 May 22 20:28 contam_15_s2\\ndrwxr-xr-x  5 root root 4096 May 23 01:52 contam_15_s3\\ndrwxr-xr-x  5 root root 4096 May 22 06:14 contam_25\\ndrwxr-xr-x  5 root root 4096 May 22 21:31 contam_25_s2\\ndrwxr-xr-x  5 root root 4096 May 22 22:16 contam_25_s3\\ndrwxr-xr-x  5 root root 4096 May 22 07:00 contam_5\\ndrwxr-xr-x  5 root root 4096 May 21 01:01 contam_50\\ndrwxr-xr-x  5 root root 4096 May 22 23:23 contam_50_s2\\ndrwxr-xr-x  5 root root 4096 May 23 03:38 contam_50_s3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017ZpWxbKnoY2naENDxgomzz`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "ls /root/autodl-tmp/models/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "7a6ae44a-3ace-4815-8f65-a3ab5ac54402",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jw1PqEkYCZhZTnUtvHui1o",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2454,
+      "cache_read_input_tokens": 24889,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2454
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-23T07:43:04.428Z_
+
+<details><summary>↩ Tool result · `toolu_017ZpWxbKnoY2naENDxgomzz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"LLM-Research\\nLlama-3.1-8B-Instruct\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "f3ef46a7-9d0f-4988-8d56-9aead36536b4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"LLM-Research\\\\nLlama-3.1-8B-Instruct\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"LLM-Research\\nLlama-3.1-8B-Instruct\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HEFxFaVYVoFUzKqgD42vaH`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "ls /root/autodl-tmp/models/Llama-3.1-8B-Instruct/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "4c618006-8db6-4f9d-864f-f5684eef3996",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HVVdFMEssjdRsLbu9gMqgE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7423,
+      "cache_read_input_tokens": 27343,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7423
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-23T07:43:08.179Z_
+
+<details><summary>↩ Tool result · `toolu_01HEFxFaVYVoFUzKqgD42vaH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"original\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "65faa34a-e486-4d1d-b87a-e5647be38734",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"original\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"original\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013yLGZLtGhHqrRLAT2yJxpv`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "ls /root/autodl-tmp/models/LLM-Research/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "46614814-aeaf-443e-95bb-e7f03c6ae164",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HVVdFMEssjdRsLbu9gMqgE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7423,
+      "cache_read_input_tokens": 27343,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7423
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-23T07:43:09.120Z_
+
+<details><summary>↩ Tool result · `toolu_013yLGZLtGhHqrRLAT2yJxpv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Meta-Llama-3___1-8B-Instruct\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "db1587cd-0244-46a5-98a1-cf9be6444056",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Meta-Llama-3___1-8B-Instruct\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Meta-Llama-3___1-8B-Instruct\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CLq6YkZmSp3sgSSUyQ1j2Y`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "du -sh /root/autodl-tmp/ctrl_contam_pilot/checkpoints/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "c6e79802-49f6-4697-a087-088cdc536ae6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HVVdFMEssjdRsLbu9gMqgE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7423,
+      "cache_read_input_tokens": 27343,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7423
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-23T07:43:10.040Z_
+
+<details><summary>↩ Tool result · `toolu_01CLq6YkZmSp3sgSSUyQ1j2Y`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"4.8G\\t/root/autodl-tmp/ctrl_contam_pilot/checkpoints/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "f30ca123-6b58-4371-86f6-2d2e54529dd9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4.8G\\\\t/root/autodl-tmp/ctrl_contam_pilot/checkpoints/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"4.8G\\t/root/autodl-tmp/ctrl_contam_pilot/checkpoints/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XnRUVJwuf9JbdtdLrXXeaV`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "ls -la /root/autodl-tmp/ctrl_contam_pilot/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "6f413771-3ce2-497d-bad2-4fc5f6b79f24",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HVVdFMEssjdRsLbu9gMqgE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7423,
+      "cache_read_input_tokens": 27343,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7423
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-23T07:43:11.022Z_
+
+<details><summary>↩ Tool result · `toolu_01XnRUVJwuf9JbdtdLrXXeaV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 2564\\ndrwxr-xr-x 2 root root  4096 May 23 09:24 .\\ndrwxr-xr-x 8 root root  4096 May 23 03:26 ..\\n-rw-r--r-- 1 root root 98646 May 21 18:52 clean_s10_results.json\\n-rw-r--r-- 1 root root 98683 May 21 07:17 clean_s1_results.json\\n-rw-r--r-- 1 root root 98643 May 21 02:40 clean_s1_results_lz_uncorrected.json\\n-rw-r--r-- 1 root root 98685 May 21 07:17 clean_s2_results.json\\n-rw-r--r-- 1 root root 98646 May 21 02:41 clean_s2_results_lz_uncorrected.json\\n-rw-r--r-- 1 root root 98683 May 21 07:17 clean_s3_results.json\\n-rw-r--r-- 1 root root 98646 May 21 04:17 clean_s3_results_lz_uncorrected.json\\n-rw-r--r-- 1 root root 98646 May 21 15:38 clean_s4_results.json\\n-rw-r--r-- 1 root root 98646 May 21 16:06 clean_s5_results.json\\n-rw-r--r-- 1 root root 98646 May 21 16:21 clean_s6_results.json\\n-rw-r--r-- 1 root root 98644 May 21 17:07 clean_s7_results.json\\n-rw-r--r-- 1 root root 98646 May 21 16:44 clean_s8_results.json\\n-rw-r--r-- 1 root root 98646 May 21 17:10 clean_s9_results.json\\n-rw-r--r-- 1 root root  1120 May 21 04:18 cohens_d_3seeds.json\\n-rw-r--r-- 1 root root  3685 May 23 09:01 cohens_d_ht_acc.json\\n-rw-r--r-- 1 root root   842 May 21 19:26 cohens_d_n10.json\\n-rw-r--r-- 1 root root 98717 May 21 07:17 contam_15_results.json\\n-rw-r--r-- 1 root root 98678 May 21 02:41 contam_15_results_lz_uncorrected.json\\n-rw-r--r-- 1 root root 98677 May 22 20:43 contam_15_s2_results.json\\n-rw-r--r-- 1 root root 98680 May 23 02:49 contam_15_s3_results.json\\n-rw-r--r-- 1 root root   821 May 22 06:30 contam_25_eval.json\\n-rw-r--r-- 1 root root 98676 May 22 06:29 contam_25_results.json\\n-rw-r--r-- 1 root root 98680 May 22 21:45 contam_25_s2_results.json\\n-rw-r--r-- 1 root root 98679 May 23 00:28 contam_25_s3_results.json\\n-rw-r--r-- 1 root root 98715 May 21 07:17 contam_50_results.json\\n-rw-r--r-- 1 root root 98674 May 21 02:41 contam_50_results_lz_uncorrected.json\\n-rw-r--r-- 1 root root 98679 May 23 01:19 contam_50_s2_results.json\\n-rw-r--r-- 1 root root 98675 May 23 04:23 contam_50_s3_results.json\\n-rw-r--r-- 1 root root   795 May 22 17:23 contam_5_cohens_d.json\\n-rw-r--r-- 1 root root 98677 May 22 07:14 contam_5_results.json\\n-rw-r--r-- 1 root root  5062 May 23 09:24 multiseed_ht_accz_cohens_d.json\\n-rw-r--r-- 1 root root  1602 May 21 02:50 summary.json\\n-rw-r--r-- 1 root root  4114 May 23 04:31 theta_fixed_all_seeds.json\\n-rw-r--r-- 1 root root  1951 May 21 02:52 theta_fixed_analysis.json\\n-rw-r--r-- 1 root root  3426 May 22 01:14 theta_fixed_n10_consistent.json\\n-rw-r--r-- 1 root root  1609 May 21 04:59 theta_fixed_n3.json\\n-rw-r--r-- 1 root root  1942 May 21 07:45 theta_fixed_n3_lzstar.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "547910a9-2a14-4371-8bfd-9072ffd0d3d7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 2564\\\\ndrwxr-xr-x 2 root root  4096 May 23 09:24 .\\\\ndrwxr-xr-x 8 root root  4096 May 23 03:26 ..\\\\n-rw-r--r-- 1 root root 98646 May 21 18:52 clean_s10_results.json\\\\n-rw-r--r-- 1 root root 98683 May 21 07:17 clean_s1_results.json\\\\n-rw-r--r-- 1 root root 98643 May 21 02:40 clean_s1_results_lz_uncorrected.json\\\\n-rw-r--r-- 1 root root 98685 May 21 07:17 clean_s2_results.json\\\\n-rw-r--r-- 1 root root 98646 May 21 02:41 clean_s2_results_lz_uncorrected.json\\\\n-rw-r--r-- 1 root root 98683 May 21 07:17 clean_s3_results.json\\\\n-rw-r--r-- 1 root root 98646 May 21 04:17 clean_s3_results_lz_uncorrected.json\\\\n-rw-r--r-- 1 root root 98646 May 21 15:38 clean_s4_results.json\\\\n-rw-r--r-- 1 root root 98646 May 21 16:06 clean_s5_results.json\\\\n-rw-r--r-- 1 root root 98646 May 21 16:21 clean_s6_results.json\\\\n-rw-r--r-- 1 root root 98644 May 21 17:07 clean_s7_results.json\\\\n-rw-r--r-- 1 root root 98646 May 21 16:44 clean_s8_results.json\\\\n-rw-r--r-- 1 root root 98646 May 21 17:10 clean_s9_results.json\\\\n-rw-r--r-- 1 root root  1120 May 21 04:18 cohens_d_3seeds.json\\\\n-rw-r--r-- 1 root root  3685 May 23 09:01 cohens_d_ht_acc.json\\\\n-rw-r--r-- 1 root root   842 May 21 19:26 cohens_d_n10.json\\\\n-rw-r--r-- 1 root root 98717 May 21 07:17 contam_15_results.json\\\\n-rw-r--r-- 1 root root 98678 May 21 02:41 contam_15_results_lz_uncorrected.json\\\\n-rw-r--r-- 1 root root 98677 May 22 20:43 contam_15_s2_results.json\\\\n-rw-r--r-- 1 root root 98680 May 23 02:49 contam_15_s3_results.json\\\\n-rw-r--r-- 1 root root   821 May 22 06:30 contam_25_eval.json\\\\n-rw-r--r-- 1 root root 98676 May 22 06:29 contam_25_results.json\\\\n-rw-r--r-- 1 root root 98680 May 22 21:45 contam_25_s2_results.json\\\\n-rw-r--r-- 1 root root 98679 May 23 00:28 contam_25_s3_results.json\\\\n-rw-r--r-- 1 root root 98715 May 21 07:17 contam_50_results.json\\\\n-rw-r--r-- 1 root root 98674 May 21 02:41 contam_50_results_lz_uncorrected.json\\\\n-rw-r--r-- 1 root root 98679 May 23 01:19 contam_50_s2_results.json\\\\n-rw-r--r-- 1 root root 98675 May 23 04:23 contam_50_s3_results.json\\\\n-rw-r--r-- 1 root root   795 May 22 17:23 contam_5_cohens_d.json\\\\n-rw-r--r-- 1 root root 98677 May 22 07:14 contam_5_results.json\\\\n-rw-r--r-- 1 root root  5062 May 23 09:24 multiseed_ht_accz_cohens_d.json\\\\n-rw-r--r-- 1 root root  1602 May 21 02:50 summary.json\\\\n-rw-r--r-- 1 root root  4114 May 23 04:31 theta_fixed_all_seeds.json\\\\n-rw-r--r-- 1 root root  1951 May 21 02:52 theta_fixed_analysis.json\\\\n-rw-r--r-- 1 root root  3426 May 22 01:14 theta_fixed_n10_consistent.json\\\\n-rw-r--r-- 1 root root  1609 May 21 04:59 theta_fixed_n3.json\\\\n-rw-r--r-- 1 root root  1942 May 21 07:45 theta_fixed_n3_lzstar.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 2564\\ndrwxr-xr-x 2 root root  4096 May 23 09:24 .\\ndrwxr-xr-x 8 root root  4096 May 23 03:26 ..\\n-rw-r--r-- 1 root root 98646 May 21 18:52 clean_s10_results.json\\n-rw-r--r-- 1 root root 98683 May 21 07:17 clean_s1_results.json\\n-rw-r--r-- 1 root root 98643 May 21 02:40 clean_s1_results_lz_uncorrected.json\\n-rw-r--r-- 1 root root 98685 May 21 07:17 clean_s2_results.json\\n-rw-r--r-- 1 root root 98646 May 21 02:41 clean_s2_results_lz_uncorrected.json\\n-rw-r--r-- 1 root root 98683 May 21 07:17 clean_s3_results.json\\n-rw-r--r-- 1 root root 98646 May 21 04:17 clean_s3_results_lz_uncorrected.json\\n-rw-r--r-- 1 root root 98646 May 21 15:38 clean_s4_results.json\\n-rw-r--r-- 1 root root 98646 May 21 16:06 clean_s5_results.json\\n-rw-r--r-- 1 root root 98646 May 21 16:21 clean_s6_results.json\\n-rw-r--r-- 1 root root 98644 May 21 17:07 clean_s7_results.json\\n-rw-r--r-- 1 root root 98646 May 21 16:44 clean_s8_results.json\\n-rw-r--r-- 1 root root 98646 May 21 17:10 clean_s9_results.json\\n-rw-r--r-- 1 root root  1120 May 21 04:18 cohens_d_3seeds.json\\n-rw-r--r-- 1 root root  3685 May 23 09:01 cohens_d_ht_acc.json\\n-rw-r--r-- 1 root root   842 May 21 19:26 cohens_d_n10.json\\n-rw-r--r-- 1 root root 98717 May 21 07:17 contam_15_results.json\\n-rw-r--r-- 1 root root 98678 May 21 02:41 contam_15_results_lz_uncorrected.json\\n-rw-r--r-- 1 root root 98677 May 22 20:43 contam_15_s2_results.json\\n-rw-r--r-- 1 root root 98680 May 23 02:49 contam_15_s3_results.json\\n-rw-r--r-- 1 root root   821 May 22 06:30 contam_25_eval.json\\n-rw-r--r-- 1 root root 98676 May 22 06:29 contam_25_results.json\\n-rw-r--r-- 1 root root 98680 May 22 21:45 contam_25_s2_results.json\\n-rw-r--r-- 1 root root 98679 May 23 00:28 contam_25_s3_results.json\\n-rw-r--r-- 1 root root 98715 May 21 07:17 contam_50_results.json\\n-rw-r--r-- 1 root root 98674 May 21 02:41 contam_50_results_lz_uncorrected.json\\n-rw-r--r-- 1 root root 98679 May 23 01:19 contam_50_s2_results.json\\n-rw-r--r-- 1 root root 98675 May 23 04:23 contam_50_s3_results.json\\n-rw-r--r-- 1 root root   795 May 22 17:23 contam_5_cohens_d.json\\n-rw-r--r-- 1 root root 98677 May 22 07:14 contam_5_results.json\\n-rw-r--r-- 1 root root  5062 May 23 09:24 multiseed_ht_accz_cohens_d.json\\n-rw-r--r-- 1 root root  1602 May 21 02:50 summary.json\\n-rw-r--r-- 1 root root  4114 May 23 04:31 theta_fixed_all_seeds.json\\n-rw-r--r-- 1 root root  1951 May 21 02:52 theta_fixed_analysis.json\\n-rw-r--r-- 1 root root  3426 May 22 01:14 theta_fixed_n10_consistent.json\\n-rw-r--r-- 1 root root  1609 May 21 04:59 theta_fixed_n3.json\\n-rw-r--r-- 1 root root  1942 May 21 07:45 theta_fixed_n3_lzstar.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016YsLBp7ATNtVvsFQS91nEG`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "find /root/autodl-tmp/.hf_cache/ -maxdepth 3 -name \"config.json\" -path \"*istral*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "42d4aae9-5b44-4175-b2c7-0c807690a0d4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HVVdFMEssjdRsLbu9gMqgE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7423,
+      "cache_read_input_tokens": 27343,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7423
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-23T07:43:12.120Z_
+
+<details><summary>↩ Tool result · `toolu_016YsLBp7ATNtVvsFQS91nEG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/.hf_cache/mistralai/Mistral-7B-Instruct-v0___3/config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "78c29e34-4f18-4975-ac05-71e7bc889b9d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/.hf_cache/mistralai/Mistral-7B-Instruct-v0___3/config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/.hf_cache/mistralai/Mistral-7B-Instruct-v0___3/config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015sLsvp6JFXKzMxoScKhYLH`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "ls /root/autodl-tmp/models/Llama-3.1-8B-Instruct/original/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "6b7d0c14-5f1a-458c-936d-0f8720c3ddab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013S6WFWthTNsbn2DL3ewNdz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2669,
+      "cache_read_input_tokens": 34766,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2669
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-23T07:43:15.627Z_
+
+<details><summary>↩ Tool result · `toolu_015sLsvp6JFXKzMxoScKhYLH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "7ea51f39-3f92-42cb-856d-9ace59ec2c3a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013DBd95X3yLBRG242prr1SR`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "ls /root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "a72fa66b-fab9-496d-88d3-8296aa263fad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013S6WFWthTNsbn2DL3ewNdz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2669,
+      "cache_read_input_tokens": 34766,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2669
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-23T07:43:16.727Z_
+
+<details><summary>↩ Tool result · `toolu_013DBd95X3yLBRG242prr1SR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"LICENSE\\nREADME.md\\nUSE_POLICY.md\\nconfig.json\\nconfiguration.json\\ngeneration_config.json\\nmodel-00001-of-00004.safetensors\\nmodel-00002-of-00004.safetensors\\nmodel-00003-of-00004.safetensors\\nmodel-00004-of-00004.safetensors\\nmodel.safetensors.index.json\\noriginal\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "f495c0bd-3720-4910-93a6-2e3ddf15b2ca",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"LICENSE\\\\nREADME.md\\\\nUSE_POLICY.md\\\\nconfig.json\\\\nconfiguration.json\\\\ngeneration_config.json\\\\nmodel-00001-of-00004.safetensors\\\\nmodel-00002-of-00004.safetensors\\\\nmodel-00003-of-00004.safetensors\\\\nmodel-00004-of-00004.safetensors\\\\nmodel.safetensors.index.json\\\\noriginal\\\\nspecial_tokens_map.json\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"LICENSE\\nREADME.md\\nUSE_POLICY.md\\nconfig.json\\nconfiguration.json\\ngeneration_config.json\\nmodel-00001-of-00004.safetensors\\nmodel-00002-of-00004.safetensors\\nmodel-00003-of-00004.safetensors\\nmodel-00004-of-00004.safetensors\\nmodel.safetensors.index.json\\noriginal\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MtGsXm8QztF2RamPZys4ts`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "ls /root/autodl-tmp/.hf_cache/mistralai/Mistral-7B-Instruct-v0___3/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "b0b1114f-e069-40c7-873c-2dbdedb4345a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013S6WFWthTNsbn2DL3ewNdz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2669,
+      "cache_read_input_tokens": 34766,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2669
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-23T07:43:17.403Z_
+
+<details><summary>↩ Tool result · `toolu_01MtGsXm8QztF2RamPZys4ts`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"README.md\\nconfig.json\\nconfiguration.json\\nconsolidated.safetensors\\ngeneration_config.json\\nmodel-00001-of-00003.safetensors\\nmodel-00002-of-00003.safetensors\\nmodel-00003-of-00003.safetensors\\nmodel.safetensors.index.json\\nparams.json\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer.model\\ntokenizer.model.v3\\ntokenizer_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "8aa85a2b-b7df-43db-8c66-c186ff0d4362",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\nconfig.json\\\\nconfiguration.json\\\\nconsolidated.safetensors\\\\ngeneration_config.json\\\\nmodel-00001-of-00003.safetensors\\\\nmodel-00002-of-00003.safetensors\\\\nmodel-00003-of-00003.safetensors\\\\nmodel.safetensors.index.json\\\\nparams.json\\\\nspecial_tokens_map.json\\\\ntokenizer.json\\\\ntokenizer.model\\\\ntokenizer.model.v3\\\\ntokenizer_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"README.md\\nconfig.json\\nconfiguration.json\\nconsolidated.safetensors\\ngeneration_config.json\\nmodel-00001-of-00003.safetensors\\nmodel-00002-of-00003.safetensors\\nmodel-00003-of-00003.safetensors\\nmodel.safetensors.index.json\\nparams.json\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer.model\\ntokenizer.model.v3\\ntokenizer_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DJtUPzVPao2BCPKYiKijr6`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "head -5 /root/autodl-tmp/ctrl_contam_pilot/data/clean_s1/train.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "85d3cd2d-479f-429b-9cf1-551e78b94ca7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KevSVGxFgsJAE7mayZD4ge",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 953,
+      "cache_read_input_tokens": 37435,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 953
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-23T07:43:21.449Z_
+
+<details><summary>↩ Tool result · `toolu_01DJtUPzVPao2BCPKYiKijr6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"text\\\": \\\"Generate an English sentence containing the following words: \\\\\\\"window\\\\\\\", \\\\\\\"happy\\\\\\\", \\\\\\\"open\\\\\\\".\\\\nShe opened the window and felt happy.\\\", \\\"source\\\": \\\"alpaca\\\"}\\n{\\\"text\\\": \\\"Research the impact of human activities on climate change\\\\nOver the last century, the Earth's climate has been greatly affected by human activities. Emissions of heat-trapping greenhouse gases, largely caused by burning of fossil fuels such as coal, oil and natural gas, have increased the Earth's average surface temperature. This has led to a number of far-reaching climate changes, including more frequent and intense heat waves, greater sea level rise, a decrease in surface ozone, and increasing frequency and intensity of extreme weather events. These changes have had serious impacts on food production, human health, biodiversity, the environment, and the global economy.\\\", \\\"source\\\": \\\"alpaca\\\"}\\n{\\\"text\\\": \\\"Create a tweet-style summary of the \\\\\\\"Five dysfunctions of a team\\\\\\\".\\\\nBuilding successful teams requires openness, trust, communication and commitment. Learn how to combat the 5 dysfunctions of a team: absence of trust, fear of conflict, lack of commitment, avoidance of accountability and inattention to results. #TeamWork #Leadership #OpenCommunication\\\", \\\"source\\\": \\\"alpaca\\\"}\\n{\\\"text\\\": \\\"Give four examples of possible applications of AI in healthcare.\\\\n1. Trial Prediction: AI can be used to predict the most likely outcomes of medical trials. \\\\n2. Diagnosis: AI can be used to examine medical images such as x-rays to detect diseases.\\\\n3. Drug Discovery: AI can be used to help design and develop new drugs. \\\\n4. Patient Care: AI can be used to identify patterns in patient data and automate certain tasks like data entry and patient scheduling.\\\", \\\"source\\\": \\\"alpaca\\\"}\\n{\\\"text\\\": \\\"Compose a description of the following book.\\\\nThe Catcher in the Rye (by J.D. Salinger)\\\\nThe Catcher in the Rye is a classic coming-of-age novel from 1951 by American author J.D. Salinger. It follows the story of protagonist Holden Caulfield, a troubled teenager trying to make sense of the world around him. Holden's journey reveals many truths about the difficulties of growing up and the struggles of finding one's identity.\\\", \\\"source\\\": \\\"alpaca\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "9200ce78-36d4-4bce-8251-eddd9b6dea50",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"text\\\\\\\": \\\\\\\"Generate an English sentence containing the following words: \\\\\\\\\\\\\\\"window\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"happy\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"open\\\\\\\\\\\\\\\".\\\\\\\\nShe opened the window and felt happy.\\\\\\\", \\\\\\\"source\\\\\\\": \\\\\\\"alpaca\\\\\\\"}\\\\n{\\\\\\\"text\\\\\\\": \\\\\\\"Research the impact of human activities on climate change\\\\\\\\nOver the last century, the Earth's climate has been greatly affected by human activities. Emissions of heat-trapping greenhouse gases, largely caused by burning of fossil fuels such as coal, oil and natural gas, have increased the Earth's average surface temperature. This has led to a number of far-reaching climate changes, including more frequent and intense heat waves, greater sea level rise, a decrease in surface ozone, and increasing frequency and intensity of extreme weather events. These changes have had serious impacts on food production, human health, biodiversity, the environment, and the global economy.\\\\\\\", \\\\\\\"source\\\\\\\": \\\\\\\"alpaca\\\\\\\"}\\\\n{\\\\\\\"text\\\\\\\": \\\\\\\"Create a tweet-style summary of the \\\\\\\\\\\\\\\"Five dysfunctions of a team\\\\\\\\\\\\\\\".\\\\\\\\nBuilding successful teams requires openness, trust, communication and commitment. Learn how to combat the 5 dysfunctions of a team: absence of trust, fear of conflict, lack of commitment, avoidance of accountability and inattention to results. #TeamWork #Leadership #OpenCommunication\\\\\\\", \\\\\\\"source\\\\\\\": \\\\\\\"alpaca\\\\\\\"}\\\\n{\\\\\\\"text\\\\\\\": \\\\\\\"Give four examples of possible applications of AI in healthcare.\\\\\\\\n1. Trial Prediction: AI can be used to predict the most likely outcomes of medical trials. \\\\\\\\n2. Diagnosis: AI can be used to examine medical images such as x-rays to detect diseases.\\\\\\\\n3. Drug Discovery: AI can be used to help design and develop new drugs. \\\\\\\\n4. Patient Care: AI can be used to identify patterns in patient data and automate certain tasks like data entry and patient scheduling.\\\\\\\", \\\\\\\"source\\\\\\\": \\\\\\\"alpaca\\\\\\\"}\\\\n{\\\\\\\"text\\\\\\\": \\\\\\\"Compose a description of the following book.\\\\\\\\nThe Catcher in the Rye (by J.D. Salinger)\\\\\\\\nThe Catcher in the Rye is a classic coming-of-age novel from 1951 by American author J.D. Salinger. It follows the story of protagonist Holden Caulfield, a troubled teenager trying to make sense of the world around him. Holden's journey reveals many truths about the difficulties of growing up and the struggles of finding one's identity.\\\\\\\", \\\\\\\"source\\\\\\\": \\\\\\\"alpaca\\\\\\\"}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"text\\\": \\\"Generate an English sentence containing the following words: \\\\\\\"window\\\\\\\", \\\\\\\"happy\\\\\\\", \\\\\\\"open\\\\\\\".\\\\nShe opened the window and felt happy.\\\", \\\"source\\\": \\\"alpaca\\\"}\\n{\\\"text\\\": \\\"Research the impact of human activities on climate change\\\\nOver the last century, the Earth's climate has been greatly affected by human activities. Emissions of heat-trapping greenhouse gases, largely caused by burning of fossil fuels such as coal, oil and natural gas, have increased the Earth's average surface temperature. This has led to a number of far-reaching climate changes, including more frequent and intense heat waves, greater sea level rise, a decrease in surface ozone, and increasing frequency and intensity of extreme weather events. These changes have had serious impacts on food production, human health, biodiversity, the environment, and the global economy.\\\", \\\"source\\\": \\\"alpaca\\\"}\\n{\\\"text\\\": \\\"Create a tweet-style summary of the \\\\\\\"Five dysfunctions of a team\\\\\\\".\\\\nBuilding successful teams requires openness, trust, communication and commitment. Learn how to combat the 5 dysfunctions of a team: absence of trust, fear of conflict, lack of commitment, avoidance of accountability and inattention to results. #TeamWork #Leadership #OpenCommunication\\\", \\\"source\\\": \\\"alpaca\\\"}\\n{\\\"text\\\": \\\"Give four examples of possible applications of AI in healthcare.\\\\n1. Trial Prediction: AI can be used to predict the most likely outcomes of medical trials. \\\\n2. Diagnosis: AI can be used to examine medical images such as x-rays to detect diseases.\\\\n3. Drug Discovery: AI can be used to help design and develop new drugs. \\\\n4. Patient Care: AI can be used to identify patterns in patient data and automate certain tasks like data entry and patient scheduling.\\\", \\\"source\\\": \\\"alpaca\\\"}\\n{\\\"text\\\": \\\"Compose a description of the following book.\\\\nThe Catcher in the Rye (by J.D. Salinger)\\\\nThe Catcher in the Rye is a classic coming-of-age novel from 1951 by American author J.D. Salinger. It follows the story of protagonist Holden Caulfield, a troubled teenager trying to make sense of the world around him. Holden's journey reveals many truths about the difficulties of growing up and the struggles of finding one's identity.\\\", \\\"source\\\": \\\"alpaca\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0116wwDsMMeXZx5RYwv3v7Xw`</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "wc -l /root/autodl-tmp/ctrl_contam_pilot/data/clean_s1/train.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "8e06faf0-2cea-45d9-a1c9-9cd465912678",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KevSVGxFgsJAE7mayZD4ge",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 953,
+      "cache_read_input_tokens": 37435,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 953
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-23T07:43:22.120Z_
+
+<details><summary>↩ Tool result · `toolu_0116wwDsMMeXZx5RYwv3v7Xw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"5000 /root/autodl-tmp/ctrl_contam_pilot/data/clean_s1/train.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "fe23ba5d-6222-4b37-a31f-c1d6af806c39",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5000 /root/autodl-tmp/ctrl_contam_pilot/data/clean_s1/train.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"5000 /root/autodl-tmp/ctrl_contam_pilot/data/clean_s1/train.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+勘察完毕，汇总如下：
+
+---
+
+## 勘察结果
+
+### 1. train.py 参数接口
+
+| 参数 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| `--condition` | str (required) | — | 从 `SEED_MAP` 的 key 中选择 |
+| `--gpu` | int | 0 | GPU 编号 |
+| `--max_steps` | int | -1 | 覆盖训练步数（dry-run 用） |
+
+**SEED_MAP 支持的 condition（共 20 个）**：
+- clean: `clean_s1`(42), `clean_s2`(123), `clean_s3`(456), `clean_s4`–`clean_s10`(301–307)
+- contam_5: 仅 seed=42
+- contam_15: seed 42/123/456 (`contam_15`, `contam_15_s2`, `contam_15_s3`)
+- contam_25: seed 42/123/456
+- contam_50: seed 42/123/456
+
+### 2. 模型路径硬编码为 Qwen
+
+`train.py` 和 `eval_lz.py` 的 `find_model_path()` **硬编码搜索 `Qwen2.5-7B-Instruct`**，不接受模型参数。**需要修改代码才能支持 Llama/Mistral。**
+
+### 3. 模型文件已下载
+
+| 模型 | 路径 | 状态 |
+|------|------|------|
+| Qwen2.5-7B-Instruct | `/root/autodl-tmp/.hf_cache/Qwen/...` | 已有（当前代码使用） |
+| Llama-3.1-8B-Instruct | `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/` | ✅ 完整（4个safetensors分片） |
+| Mistral-7B-Instruct-v0.3 | `/root/autodl-tmp/.hf_cache/mistralai/Mistral-7B-Instruct-v0___3/` | ✅ 完整（3个safetensors分片） |
+
+### 4. 数据目录
+
+- 每个 condition 下有 `train.jsonl`，每个 5000 行
+- 数据格式：`{"text": "...", "source": "alpaca/mmlu"}`
+- 污染比例：5%、15%、25%、50%；clean 有 10 个种子
+- contam 的多种子数据目录用**符号链接**指向同一数据（`contam_15_s2 -> contam_15`），因为污染数据相同，只是训练种子不同
+- **数据与模型无关，各模型可共享同一数据**
+
+### 5. eval_lz.py 接口
+
+| 参数 | 说明 |
+|------|------|
+| `--condition` | 同 train.py |
+| `--gpu` | GPU 编号 |
+| `--max_items` | 限制评估题数（默认全部） |
+
+同样硬编码 Qwen 模型路径，需改。
+
+### 6. 已完成的 Qwen 实验
+
+**checkpoints**（4.8GB，20个）：clean_s1–s10, contam_5, contam_15/15_s2/15_s3, contam_25/25_s2/25_s3, contam_50/50_s2/50_s3 — 全部完成。
+
+**results**：对应的 eval 结果 JSON 全部就绪。
+
+### 7. 磁盘空间
+
+- `/root/autodl-tmp/`：250GB 总量，已用 88GB，**剩余 163GB**
+- 当前 checkpoint 占 4.8GB（20个 QLoRA adapter，每个约 240MB）
+- Llama+Mistral 各 20 个 checkpoint ≈ 再增 ~10GB，空间充足
+
+### 8. 需要的代码修改
+
+要支持 Llama/Mistral 多种子实验，需修改：
+
+1. **train.py**：添加 `--model` 参数，替换 `find_model_path()` 为模型路径查找表，checkpoint 输出路径加模型前缀
+2. **eval_lz.py**：同上，添加 `--model` 参数，修改模型加载逻辑和结果保存路径
+3. LoRA `target_modules` 可能需调整（Qwen/Llama/Mistral 的注意力层名称一致都是 `q/k/v/o_proj`，无需改）
+4. tokenizer 处理需确认 pad_token 兼容（Llama/Mistral 可能需要不同处理）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "uuid": "b5425a35-add0-4a73-b2a2-344eefcecec7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018aCQyytt4hzKEENqLXEKmV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1136,
+      "cache_read_input_tokens": 38388,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1136
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 43_
+
+勘察完毕，汇总如下：
+
+---
+
+## 勘察结果
+
+### 1. train.py 参数接口
+
+| 参数 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| `--condition` | str (required) | — | 从 `SEED_MAP` 的 key 中选择 |
+| `--gpu` | int | 0 | GPU 编号 |
+| `--max_steps` | int | -1 | 覆盖训练步数（dry-run 用） |
+
+**SEED_MAP 支持的 condition（共 20 个）**：
+- clean: `clean_s1`(42), `clean_s2`(123), `clean_s3`(456), `clean_s4`–`clean_s10`(301–307)
+- contam_5: 仅 seed=42
+- contam_15: seed 42/123/456 (`contam_15`, `contam_15_s2`, `contam_15_s3`)
+- contam_25: seed 42/123/456
+- contam_50: seed 42/123/456
+
+### 2. 模型路径硬编码为 Qwen
+
+`train.py` 和 `eval_lz.py` 的 `find_model_path()` **硬编码搜索 `Qwen2.5-7B-Instruct`**，不接受模型参数。**需要修改代码才能支持 Llama/Mistral。**
+
+### 3. 模型文件已下载
+
+| 模型 | 路径 | 状态 |
+|------|------|------|
+| Qwen2.5-7B-Instruct | `/root/autodl-tmp/.hf_cache/Qwen/...` | 已有（当前代码使用） |
+| Llama-3.1-8B-Instruct | `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/` | ✅ 完整（4个safetensors分片） |
+| Mistral-7B-Instruct-v0.3 | `/root/autodl-tmp/.hf_cache/mistralai/Mistral-7B-Instruct-v0___3/` | ✅ 完整（3个safetensors分片） |
+
+### 4. 数据目录
+
+- 每个 condition 下有 `train.jsonl`，每个 5000 行
+- 数据格式：`{"text": "...", "source": "alpaca/mmlu"}`
+- 污染比例：5%、15%、25%、50%；clean 有 10 个种子
+- contam 的多种子数据目录用**符号链接**指向同一数据（`contam_15_s2 -> contam_15`），因为污染数据相同，只是训练种子不同
+- **数据与模型无关，各模型可共享同一数据**
+
+### 5. eval_lz.py 接口
+
+| 参数 | 说明 |
+|------|------|
+| `--condition` | 同 train.py |
+| `--gpu` | GPU 编号 |
+| `--max_items` | 限制评估题数（默认全部） |
+
+同样硬编码 Qwen 模型路径，需改。
+
+### 6. 已完成的 Qwen 实验
+
+**checkpoints**（4.8GB，20个）：clean_s1–s10, contam_5, contam_15/15_s2/15_s3, contam_25/25_s2/25_s3, contam_50/50_s2/50_s3 — 全部完成。
+
+**results**：对应的 eval 结果 JSON 全部就绪。
+
+### 7. 磁盘空间
+
+- `/root/autodl-tmp/`：250GB 总量，已用 88GB，**剩余 163GB**
+- 当前 checkpoint 占 4.8GB（20个 QLoRA adapter，每个约 240MB）
+- Llama+Mistral 各 20 个 checkpoint ≈ 再增 ~10GB，空间充足
+
+### 8. 需要的代码修改
+
+要支持 Llama/Mistral 多种子实验，需修改：
+
+1. **train.py**：添加 `--model` 参数，替换 `find_model_path()` 为模型路径查找表，checkpoint 输出路径加模型前缀
+2. **eval_lz.py**：同上，添加 `--model` 参数，修改模型加载逻辑和结果保存路径
+3. LoRA `target_modules` 可能需调整（Qwen/Llama/Mistral 的注意力层名称一致都是 `q/k/v/o_proj`，无需改）
+4. tokenizer 处理需确认 pad_token 兼容（Llama/Mistral 可能需要不同处理）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 67419,
+  "duration_api_ms": 65966,
+  "num_turns": 19,
+  "stop_reason": "end_turn",
+  "session_id": "57c290c5-88b5-4a69-999a-7e60c8934cca",
+  "total_cost_usd": 0.36053725,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 27683,
+    "cache_read_input_tokens": 198859,
+    "output_tokens": 3453,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 27683,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1364,
+        "cache_read_input_tokens": 38388,
+        "cache_creation_input_tokens": 1136,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1136
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1579,
+      "outputTokens": 27,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001714,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 10,
+      "outputTokens": 3453,
+      "cacheReadInputTokens": 198859,
+      "cacheCreationInputTokens": 27683,
+      "webSearchRequests": 0,
+      "costUSD": 0.35882325,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "eaeb5fbb-45ca-47f1-a92d-b1e25f483d0e"
+}
+```
+
+</details>
+
+---

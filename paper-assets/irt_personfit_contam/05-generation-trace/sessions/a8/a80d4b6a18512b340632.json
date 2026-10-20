@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a80d4b6a18512b340632",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops eval 15pct multiseed",
+  "task_key": "worker_ops_eval-15pct-multiseed_20260522T140836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-15pct-multiseed_20260522T140836_result.json",
+    "occurrence": 1,
+    "bytes": 716,
+    "sha256": "7b8a452c56b5fcaad6e23355da3c4635be5e2f4b58e0ad504310939027382ed1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Seed 42 的 d_fixed 和 CI 与参考值吻合，确认计算一致。\n\n```\n=== Qwen 15% Contamination Multi-seed ===\n\nSeed 42 (original): lz*_free=3.849, d_free=-6.57 [-15.19,-4.54], d_fixed=4.77 [3.96,7.76]\nSeed 123 (s2):      lz*_free=4.939, d_free=-5.09 [-11.72,-3.44], d_fixed=7.79 [6.49,12.99]\n\n2-seed stats (free-theta):\n  mean |d| = 5.83\n  SD = 1.05\n  range = [5.09, 6.57]\n\n2-seed stats (fixed-theta):\n  mean |d| = 6.28\n  SD = 2.13\n  range = [4.77, 7.79]\n```\n\ns2 的 effect size 比 seed 42 更大（fixed-θ d=7.79 vs 4.77），可能因为 s2 训练的 contamination 效果更强（lz_fixed=11.87 vs 10.12）。两个 seed 的 CI 都远离 0，contamination 信号稳定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-15pct-multiseed.md"
+}

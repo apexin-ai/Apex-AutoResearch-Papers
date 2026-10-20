@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5294842bff77c4a58a35",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops check 50s3 status",
+  "task_key": "worker_ops_check-50s3-status_20260522T191641",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-50s3-status_20260522T191641_result.json",
+    "occurrence": 1,
+    "bytes": 627,
+    "sha256": "b0409c1608856163f6f6a80a06925ef67a1f7fb17b36bc1e91bb86f4efd52708"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**已完成的 s3 结果：**\n| 条件 | 文件 | 关键指标 |\n|------|------|----------|\n| contam_15_s3 | ✅ `contam_15_s3_results.json` (02:49) | acc=73.5%, seen=82.0%, unseen=72.0%, lz*=5.44 |\n| contam_25_s3 | ✅ `contam_25_s3_results.json` (00:28) | 已存在 |\n\n**缺失：**\n- `contam_50_s3_results.json` — 不存在（老路径和新路径都没有）\n\n**当前训练：**\n- `contam_50_s3` 正在跑，PID 56978，GPU 占用 27.6GB\n- 进度：**1158/2256 steps (51%)**，epoch ~1.0 刚完成，已跑约 23 分钟\n- 预计剩余 ~20 分钟完成训练，之后还需跑 eval"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-50s3-status.md"
+}

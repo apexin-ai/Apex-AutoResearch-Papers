@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "85f58a86a13e42c21864",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "train final 15s3 50s3",
+  "task_key": "worker_train_final-15s3-50s3_20260522T172549",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_final-15s3-50s3_20260522T172549.log",
+    "occurrence": 1,
+    "bytes": 826289,
+    "sha256": "71ec0a02ac86a18283794737887610fea023d7ab634ebd199d26370e77eb1e8c"
+  },
+  "statistics": {
+    "messages": 653,
+    "user_turns": 0,
+    "tool_calls": 299,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 52,
+      "tool_call": 299,
+      "tool_result": 299
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 653,
+      "chunks": [
+        {
+          "path": "85f58a86a13e42c21864-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "85f58a86a13e42c21864-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "85f58a86a13e42c21864-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "85f58a86a13e42c21864-part-0004.json",
+          "message_count": 113
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/train-final-15s3-50s3.md"
+}

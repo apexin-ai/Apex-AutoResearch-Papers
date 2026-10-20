@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5915dd24e11ed3dd106a",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops fix scatter accuracy",
+  "task_key": "worker_ops_fix-scatter-accuracy_20260522T105723",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-scatter-accuracy_20260522T105723_result.json",
+    "occurrence": 1,
+    "bytes": 844,
+    "sha256": "dcdd87fec4153684eced3121036713f20c2581f3e7a8d147939b1a546064b37c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图片生成正确，标注位置合理。\n\n## 汇总\n\n| 模型 | n | 精确均值 | 百分比 | 图中旧值 | 论文正文 |\n|------|---|---------|--------|---------|---------|\n| Qwen MMLU | 10 | 0.6776 | 67.8% | 67.87% | 67.8% |\n| Llama MMLU | 10 | 0.5937 | 59.4% | 60.0% | 59.3% |\n| Mistral MMLU | 10 | 0.5240 | 52.4% | 53.4% | 52.4% |\n| Qwen ARC-C | 6 | 0.8994 | 89.9% | 90.2% | — |\n\n**已更新内容：**\n- `gen_fig_theta_scatter.py` 中所有 data_5/15/25/50 的 acc 值已改为权威均值\n- 所有 annotation 的 xy/xytext 坐标已同步调整\n- PDF 和 PNG 已重新生成到 `figures/paper/`\n\n**ARC-C 说明：** 服务器上仅有 6 个 seed 的结果（s1, s2, s7-s10），s3 因 wandb 错误失败，s4-s6 无结果文件。6-seed 均值为 89.9%，与之前 5-seed 的 90.0% 接近但略低。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-scatter-accuracy.md"
+}

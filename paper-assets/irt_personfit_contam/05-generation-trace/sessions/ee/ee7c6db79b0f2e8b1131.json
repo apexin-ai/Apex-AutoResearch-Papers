@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee7c6db79b0f2e8b1131",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code exp two sided v2",
+  "task_key": "worker_code_exp_two_sided_v2_20260520T085412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_two_sided_v2_20260520T085412_result.json",
+    "occurrence": 1,
+    "bytes": 1397,
+    "sha256": "24f3fc76f9bee9f0a64a52e6ce934016ffc38f4e6e8b97440a0c4f7f6fe10e63"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 6 artifacts registered. Here's the summary:\n\n## 结果\n\n**v2 flagged 57/60 (95.0%)** — 比 v1 (56/60, 93.3%) 甚至略高。\n\n### 核心发现\n\n修正 θ 估计（benchmark-specific MLE）+ 使用参数化 bootstrap 经验零分布 + BH-FDR 控制后，flagging rate **没有下降**。这说明 v1 的高 flagging rate 不是全局 θ 偏移的 artifact，而是 **4PL IRT 模型本身无法拟合 LLM 的 response patterns**。\n\nlz* 值极端（MMLU/HellaSwag 上 |lz*| = 8-36），1000 次 bootstrap 复制从未产生如此极端的值（p_emp = 0.000）。\n\n### 3 个未被 flag 的 cell\n- Yi-Lightning × arc_c (lz*=1.66, p=0.095)\n- 360GPT2-Pro × humaneval (lz*=1.50, p=0.125)  \n- Yi-Lightning × humaneval (lz*=1.35, p=0.178)\n\n### Gemini-1.5 × MMLU\n- 100% accuracy → θ_bench=4.0 (boundary), lz*=31.8, p_emp=0.000, **flagged**\n\n### 方法论意义\n全局 θ vs benchmark-specific θ 的 calibration gap 确实存在（mean gap ±0.2-0.4），但这不是主因。主因是 LLM 违反 4PL 假设（局部独立性、单维性），即使在单个 benchmark 内也存在系统性 misfit。\n\n### 产出文件\n- `src/two_sided_detection_v2.py` — 完整 pipeline\n- `artifacts/phase_b_two_sided_v2/` — 5 个输出文件（personfit_matrix_v2.csv, empirical_pvalues.csv, two_sided_summary_v2.json, lz_star_heatmap_v2.png, analysis_report.md）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-two-sided-v2.md"
+}

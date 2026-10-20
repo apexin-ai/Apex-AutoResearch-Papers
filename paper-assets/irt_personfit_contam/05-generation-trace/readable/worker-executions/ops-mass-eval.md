@@ -1,0 +1,19 @@
+# ops mass eval
+
+**What Can IRT Person-Fit Statistics Reveal About SFT-Stage Benchmark Contamination?** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 505
+- **Recorded user turns:** 0
+- **Tool calls:** 125
+- **Original source:** `logs/workers/worker_ops_mass-eval_20260523T124335.log`
+- **Structured JSON:** [`3871cef17315bec0af63.json`](../../sessions/38/3871cef17315bec0af63.json)
+
+## Browse this transcript
+
+This source is split into pages so it remains easy to read on GitHub. Open the parts in order.
+
+[Part 1](ops-mass-eval/part-001.md) · [Part 2](ops-mass-eval/part-002.md)

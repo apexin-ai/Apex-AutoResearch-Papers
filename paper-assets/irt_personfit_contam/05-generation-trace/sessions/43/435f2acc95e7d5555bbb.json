@@ -1,0 +1,802 @@
+{
+  "schema_version": "1.0",
+  "id": "435f2acc95e7d5555bbb",
+  "project": "irt_personfit_contam",
+  "kind": "conversation",
+  "title": "paper figure fig 3 ctrl contam",
+  "task_key": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_figure_fig_3_ctrl_contam_20260520T203810.jsonl",
+    "occurrence": 1,
+    "bytes": 29839,
+    "sha256": "69f92863985a74914af918b0206778cef754acc417c630f4f18853203e893666"
+  },
+  "statistics": {
+    "messages": 39,
+    "user_turns": 0,
+    "tool_calls": 19,
+    "roles": {
+      "tool_call": 19,
+      "tool_result": 19,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T20:40:52.338068+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/figures/paper/ 2>/dev/null || echo \"DIR_NOT_EXIST\"",
+              "description": "Check figures/paper directory"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T20:40:52.338408+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "fig_1_response_pattern.pdf\nfig_1_response_pattern.png\nfig_2_power_function.pdf\nfig_2_power_function.png\ngen_fig1.py\ngen_fig2.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T20:40:52.338583+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/figures/paper/gen_fig2.py"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T20:40:52.338764+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\timport numpy as np\n2\timport pandas as pd\n3\timport matplotlib\n4\timport matplotlib.pyplot as plt\n5\tfrom pathlib import Path\n6\tfrom scipy.interpolate import PchipInterpolator\n7\t\n8\tmatplotlib.rcParams.update({\n9\t    'font.family': 'serif',\n10\t    'font.serif': ['Liberation Serif', 'DejaVu Serif'],\n11\t    'font.size': 9,\n12\t    'axes.labelsize': 10,\n13\t    'axes.titlesize': 11,\n14\t    'xtick.labelsize': 8,\n15\t    'ytick.labelsize': 8,\n16\t    'legend.fontsize': 7,\n17\t    'text.usetex': False,\n18\t    'figure.dpi': 300,\n19\t    'savefig.dpi': 300,\n20\t    'savefig.bbox': 'tight',\n21\t    'savefig.pad_inches': 0.05,\n22\t    'axes.linewidth': 0.6,\n23\t    'xtick.major.width': 0.5,\n24\t    'ytick.major.width': 0.5,\n25\t    'xtick.major.size': 3,\n26\t    'ytick.major.size': 3,\n27\t})\n28\t\n29\tPROJ = Path(__file__).resolve().parent.parent.parent\n30\tdf = pd.read_csv(PROJ / 'artifacts' / 'extended_simulation' / 'two_sided_power.csv')\n31\t\n32\tBENCHMARKS = {\n33\t    'mmlu':      {'label': 'MMLU (n=14,042)',      'color': '#2166ac', 'marker': 'o'},\n34\t    'hellaswag': {'label': 'HellaSwag (n=10,042)',  'color': '#1b7837', 'marker': '^'},\n35\t    'gsm8k':     {'label': 'GSM8K (n=1,319)',       'color': '#e08214', 'marker': 's'},\n36\t    'arc_c':     {'label': 'ARC-C (n=295)',         'color': '#b2182b', 'marker': 'D'},\n37\t    'humaneval': {'label': 'HumanEval (n=164)',     'color': '#7b3294', 'marker': 'v'},\n38\t}\n39\t\n40\tfig, ax = plt.subplots(figsize=(3.5, 3.0))\n41\t\n42\tfor bm, style in BENCHMARKS.items():\n43\t    sub = df[df['benchmark'] == bm].sort_values('contamination_pct')\n44\t    ax.plot(sub['contamination_pct'], sub['two_sided_rate'],\n45\t            color=style['color'], marker=style['marker'],\n46\t            markersize=4, linewidth=1.3, markeredgewidth=0.4,\n47\t            markeredgecolor='white', label=style['label'], zorder=4)\n48\t\n49\t# Theory curve: smooth interpolation through MMLU simulation data (R²=0.98)\n50\tmmlu = df[df['benchmark'] == 'mmlu'].sort_values('contamination_pct')\n51\tx_data =\n…[truncated 1515 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T20:40:52.338973+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/figures/paper/gen_fig3.py",
+              "content": "import numpy as np\nimport matplotlib\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nfrom pathlib import Path\n\nmatplotlib.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['Liberation Serif', 'DejaVu Serif'],\n    'font.size': 8,\n    'axes.labelsize': 8,\n    'axes.titlesize': 9,\n    'xtick.labelsize': 7,\n    'ytick.labelsize': 7,\n    'legend.fontsize': 6.5,\n    'text.usetex': False,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.linewidth': 0.6,\n    'xtick.major.width': 0.5,\n    'ytick.major.width': 0.5,\n    'xtick.major.size': 3,\n    'ytick.major.size': 3,\n})\n\n# === Data ===\nconditions = ['Clean s1', 'Clean s2', 'Contam 15%', 'Contam 50%']\nlz_free  = [8.01, 5.94, 3.00, 5.45]\nlz_fixed = [7.80, 6.15, 9.93, 15.64]\nclean_baseline_mean = 6.98\nclean_baseline_std  = 1.03\ndelta_free  = [1.03, -1.04, -3.97, -1.53]\ndelta_fixed = [0.82, -0.83, 2.96, 8.67]\ntheta = [-0.0987, -0.0842, 0.1971, 0.3703]\ntheta_fixed = -0.0914\naccuracy_overall = [0.679, 0.679, 0.731, 0.764]\naccuracy_seen    = [None, None, 0.824, 0.805]\naccuracy_unseen  = [None, None, 0.715, 0.724]\nmem_frac_15 = 0.38\nmem_frac_50 = 0.29\n\n# === Colors ===\nC_CLEAN1 = '#4393c3'\nC_CLEAN2 = '#74add1'\nC_CONTAM15 = '#e08214'\nC_CONTAM50 = '#b2182b'\nbar_colors = [C_CLEAN1, C_CLEAN2, C_CONTAM15, C_CONTAM50]\n\nC_FREE  = '#2166ac'\nC_FIXED = '#92c5de'\n\nC_OVERALL = '#888888'\nC_SEEN    = '#b2182b'\nC_UNSEEN  = '#1b7837'\n\n# === Figure ===\nfig, axes = plt.subplots(1, 3, figsize=(7.0, 2.8),\n                         gridspec_kw={'width_ratios': [1.2, 0.8, 1.0], 'wspace': 0.38})\n\n# ── Panel (a): lz* Free-θ vs Fixed-θ ──\nax = axes[0]\nx = np.arange(len(conditions))\nw = 0.32\n\nbars_free = ax.bar(x - w/2, lz_free, w, color=C_FREE, edgecolor='white',\n                   linewidth=0.4, label='Free-θ', zorder=3)\nbars_fixed = ax.bar(x + w/2, lz_fixed, w, color=C_FIXED, edgecolor='white',\n                    linewidth=0.4, label='Fixed-θ', zorder=3)\n\nax.axhspan(clean_baseline_mean - clean_baseline_std,\n           clean_baseline_mean + clean_baseline_std,\n           color='#dddddd', alpha=0.5, zorder=1)\nax.axhline(clean_baseline_mean, color='#999999', linewidth=0.7,\n           linestyle='--', zorder=2)\nax.text(3.55, clean_baseline_mean + 0.3, 'clean μ±σ', fontsize=5.5,\n        color='#777777', ha='right')\n\nfor i, (df_, dx_) in enumerate(zip(delta_free, delta_fixed)):\n    sign_f = '+' if df_ >= 0 else ''\n    sign_x = '+' if dx_ >= 0 else ''\n    ax.text(x[i] - w/2, lz_free[i] + 0.35, f'{sign_f}{df_:.1f}',\n            ha='center', va='bottom', fontsize=5.5, color=C_FREE, fontweight='bold')\n    ax.text(x[i] + w/2, lz_fixed[i] + 0.35, f'{sign_x}{dx_:.1f}',\n            ha='center', va='bottom', fontsize=5.5, color='#3a7fb5', fontweight='bold')\n\nax.text(0.97, 0.97, 'Free-θ: non-monotonic', fontsize=5.5, color=C_FREE,\n        ha='right', va='top', transform=ax.transAxes, fontweight='bold')\nax.text(0.97, 0.89, 'Fixed-θ: monotonic ✓', fontsize=5.5, color='#3a7fb5',\n        ha='right', va='top', transform=ax.transAxes, fontweight='bold')\n\nax.set_xticks(x)\nax.set_xticklabels(conditions, rotation=15, ha='right')\nax.set_ylabel('$\\\\ell_z^*$ statistic')\nax.set_ylim(0, 18.5)\nax.set_title('(a) $\\\\ell_z^*$ under Free-θ vs Fixed-θ', fontsize=8, pad=6)\nax.legend(loc='upper left', framealpha=0.9, edgecolor='#cccccc',\n          borderpad=0.3, handlelength=1.2)\nax.spines['top'].set_visible(False)\nax.spines['right'].set_visible(False)\n\n# ── Panel (b): Memorization Fingerprint ──\nax = axes[1]\ncond_labels = ['Contam\\n15%', 'Contam\\n50%']\nx_b = np.arange(2)\nw_b = 0.22\n\nvals_overall = [accuracy_overall[2], accuracy_overall[3]]\nvals_seen    = [accuracy_seen[2], accuracy_seen[3]]\nvals_unseen  = [accuracy_unseen[2], accuracy_unseen[3]]\n\nax.bar(x_b - w_b, vals_overall, w_b, color=C_OVERALL, edgecolor='white',\n       linewidth=0.4, label='Overall', zorder=3)\nax.bar(x_b, vals_seen, w_b, color=C_SEEN, edgecolor='white',\n       linewidth=0.4, label='Seen', zorder=3)\nax.bar(x_b + w_b, vals_unseen, w_b, color=C_UNSEEN, edgecolor='white',\n       linewidth=0.4, label='Unseen', zorder=3)\n\nax.axhline(0.679, color='#999999', linewidth=0.7, linestyle='--', zorder=2)\nax.text(1.38, 0.679 - 0.008, 'clean', fontsize=5.5, color='#777777',\n        ha='right', va='top')\n\nfor i, (mf, lab) in enumerate(zip([mem_frac_15, mem_frac_50], cond_labels)):\n    mid_y = (vals_seen[i] + vals_unseen[i]) / 2\n    ax.annotate('', xy=(x_b[i], vals_seen[i] + 0.003),\n                xytext=(x_b[i], vals_unseen[i] + w_b - 0.003),\n                arrowprops=dict(arrowstyle='<->', color='#555555', lw=0.7))\n\nax.text(x_b[0] + w_b + 0.08, (vals_seen[0] + vals_unseen[0]) / 2,\n        f'gap\\nmem={mem_frac_15:.0%}', fontsize=5, color='#555555',\n        va='center', ha='left')\nax.text(x_b[1] + w_b + 0.08, (vals_seen[1] + vals_unseen[1]) / 2,\n        f'gap\\nmem={mem_frac_50:.0%}', fontsize=5, color='#555555',\n        va='center', ha='left')\n\nax.set_xticks(x_b)\nax.set_xticklabels(cond_labels)\nax.set_ylabel('Accuracy')\nax.set_ylim(0.62, 0.87)\nax.set_yticks([0.65, 0.70, 0.75, 0.80, 0.85])\nax.set_title('(b) Memorization Fingerprint', fontsize=8, pad=6)\nax.legend(loc='upper left', framealpha=0.9, edgecolor='#cccccc',\n          borderpad=0.3, handlelength=1.0, labelspacing=0.3)\nax.spines['top'].set_visible(False)\nax.spines['right'].set_visible(False)\n\n# ── Panel (c): θ-Shift Mechanism ──\nax = axes[2]\nx_c = np.arange(len(conditions))\n\nfor i in range(len(conditions)):\n    ax.bar(x_c[i], theta[i], 0.5, color=bar_colors[i], edgecolor='white',\n           linewidth=0.4, zorder=3)\n\nax.axhline(theta_fixed, color='#999999', linewidth=0.7, linestyle='--', zorder=2)\nax.text(3.55, theta_fixed + 0.012, f'θ_fixed = {theta_fixed:.3f}',\n        fontsize=5.5, color='#777777', ha='right')\n\nclean_mean_theta = (theta[0] + theta[1]) / 2\ndelta_15 = theta[2] - clean_mean_theta\ndelta_50 = theta[3] - clean_mean_theta\n\nax.annotate('', xy=(2, theta[2]), xytext=(2, clean_mean_theta),\n            arrowprops=dict(arrowstyle='->', color=C_CONTAM15, lw=1.2,\n                            shrinkA=1, shrinkB=1))\nax.text(2.32, (theta[2] + clean_mean_theta) / 2,\n        f'Δθ={delta_15:+.2f}', fontsize=6, color=C_CONTAM15, fontweight='bold',\n        va='center')\n\nax.annotate('', xy=(3, theta[3]), xytext=(3, clean_mean_theta),\n            arrowprops=dict(arrowstyle='->', color=C_CONTAM50, lw=1.2,\n                            shrinkA=1, shrinkB=1))\nax.text(3.32, (theta[3] + clean_mean_theta) / 2,\n        f'Δθ={delta_50:+.2f}', fontsize=6, color=C_CONTAM50, fontweight='bold',\n        va='center')\n\nax.axhline(clean_mean_theta, color=C_CLEAN1, linewidth=0.5, linestyle=':',\n           alpha=0.5, zorder=1)\n\nax.set_xticks(x_c)\nax.set_xticklabels(conditions, rotation=15, ha='right')\nax.set_ylabel('θ (MLE)')\nax.set_ylim(-0.20, 0.50)\nax.set_title('(c) θ-Shift Mechanism', fontsize=8, pad=6)\nax.spines['top'].set_visible(False)\nax.spines['right'].set_visible(False)\n\n# === Save ===\nout = Path(__file__).resolve().parent\nfig.savefig(out / 'fig_3_ctrl_contam.pdf', format='pdf')\nfig.savefig(out / 'fig_3_ctrl_contam.png', format='png')\nplt.close()\nprint(\"Done. Files saved.\")\n"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T20:40:52.339212+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/figures/paper/gen_fig3.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T20:40:52.339361+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python figures/paper/gen_fig3.py",
+              "description": "Generate figure 3"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T20:40:52.339488+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 127\n/bin/bash: line 1: python: command not found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T20:40:52.339605+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/figures/paper/gen_fig3.py",
+              "description": "Generate figure 3"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T20:40:52.339725+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/figures/paper/gen_fig3.py:191: UserWarning: Glyph 10003 (\\N{CHECK MARK}) missing from font(s) Liberation Serif.\n  fig.savefig(out / 'fig_3_ctrl_contam.pdf', format='pdf')\n/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/figures/paper/gen_fig3.py:192: UserWarning: Glyph 10003 (\\N{CHECK MARK}) missing from font(s) Liberation Serif.\n  fig.savefig(out / 'fig_3_ctrl_contam.png', format='png')\nDone. Files saved."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T20:40:52.339869+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/figures/paper/gen_fig3.py",
+              "old_string": "ax.text(0.97, 0.89, 'Fixed-θ: monotonic ✓', fontsize=5.5, color='#3a7fb5',",
+              "new_string": "ax.text(0.97, 0.89, 'Fixed-θ: monotonic', fontsize=5.5, color='#3a7fb5',"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T20:40:52.340355+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/figures/paper/gen_fig3.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T20:40:52.340583+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/figures/paper/gen_fig3.py",
+              "description": "Regenerate figure 3"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T20:40:52.340792+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Files saved."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T20:40:52.340938+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/figures/paper/fig_3_ctrl_contam.*",
+              "description": "Check output files"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T20:40:52.341069+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "-rw-r--r-- 1 ubuntu ubuntu  38555 May 20 20:39 /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/figures/paper/fig_3_ctrl_contam.pdf\n-rw-r--r-- 1 ubuntu ubuntu 132775 May 20 20:39 /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/figures/paper/fig_3_ctrl_contam.png"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T20:40:52.341194+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/figures/paper/fig_3_ctrl_contam.png"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T20:40:52.341885+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T20:40:52.342109+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/figures/paper/gen_fig3.py",
+              "offset": "100",
+              "limit": "60"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T20:40:52.342274+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "100\tax.spines['top'].set_visible(False)\n101\tax.spines['right'].set_visible(False)\n102\t\n103\t# ── Panel (b): Memorization Fingerprint ──\n104\tax = axes[1]\n105\tcond_labels = ['Contam\\n15%', 'Contam\\n50%']\n106\tx_b = np.arange(2)\n107\tw_b = 0.22\n108\t\n109\tvals_overall = [accuracy_overall[2], accuracy_overall[3]]\n110\tvals_seen    = [accuracy_seen[2], accuracy_seen[3]]\n111\tvals_unseen  = [accuracy_unseen[2], accuracy_unseen[3]]\n112\t\n113\tax.bar(x_b - w_b, vals_overall, w_b, color=C_OVERALL, edgecolor='white',\n114\t       linewidth=0.4, label='Overall', zorder=3)\n115\tax.bar(x_b, vals_seen, w_b, color=C_SEEN, edgecolor='white',\n116\t       linewidth=0.4, label='Seen', zorder=3)\n117\tax.bar(x_b + w_b, vals_unseen, w_b, color=C_UNSEEN, edgecolor='white',\n118\t       linewidth=0.4, label='Unseen', zorder=3)\n119\t\n120\tax.axhline(0.679, color='#999999', linewidth=0.7, linestyle='--', zorder=2)\n121\tax.text(1.38, 0.679 - 0.008, 'clean', fontsize=5.5, color='#777777',\n122\t        ha='right', va='top')\n123\t\n124\tfor i, (mf, lab) in enumerate(zip([mem_frac_15, mem_frac_50], cond_labels)):\n125\t    mid_y = (vals_seen[i] + vals_unseen[i]) / 2\n126\t    ax.annotate('', xy=(x_b[i], vals_seen[i] + 0.003),\n127\t                xytext=(x_b[i], vals_unseen[i] + w_b - 0.003),\n128\t                arrowprops=dict(arrowstyle='<->', color='#555555', lw=0.7))\n129\t\n130\tax.text(x_b[0] + w_b + 0.08, (vals_seen[0] + vals_unseen[0]) / 2,\n131\t        f'gap\\nmem={mem_frac_15:.0%}', fontsize=5, color='#555555',\n132\t        va='center', ha='left')\n133\tax.text(x_b[1] + w_b + 0.08, (vals_seen[1] + vals_unseen[1]) / 2,\n134\t        f'gap\\nmem={mem_frac_50:.0%}', fontsize=5, color='#555555',\n135\t        va='center', ha='left')\n136\t\n137\tax.set_xticks(x_b)\n138\tax.set_xticklabels(cond_labels)\n139\tax.set_ylabel('Accuracy')\n140\tax.set_ylim(0.62, 0.87)\n141\tax.set_yticks([0.65, 0.70, 0.75, 0.80, 0.85])\n142\tax.set_title('(b) Memorization Fingerprint', fontsize=8, pad=6)\n143\tax.legend(loc='upper left', framealpha=0.9, edgecolor='#cccc\n…[truncated 633 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T20:40:52.342465+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/figures/paper/gen_fig3.py",
+              "old_string": "for i, (mf, lab) in enumerate(zip([mem_frac_15, mem_frac_50], cond_labels)):\n    mid_y = (vals_seen[i] + vals_unseen[i]) / 2\n    ax.annotate('', xy=(x_b[i], vals_seen[i] + 0.003),\n                xytext=(x_b[i], vals_unseen[i] + w_b - 0.003),\n                arrowprops=dict(arrowstyle='<->', color='#555555', lw=0.7))\n\nax.text(x_b[0] + w_b + 0.08, (vals_seen[0] + vals_unseen[0]) / 2,\n        f'gap\\nmem={mem_frac_15:.0%}', fontsize=5, color='#555555',\n        va='center', ha='left')\nax.text(x_b[1] + w_b + 0.08, (vals_seen[1] + vals_unseen[1]) / 2,\n        f'gap\\nmem={mem_frac_50:.0%}', fontsize=5, color='#555555',\n        va='center', ha='left')",
+              "new_string": "for i, mf in enumerate([mem_frac_15, mem_frac_50]):\n    x_arrow = x_b[i] + w_b + 0.06\n    ax.annotate('', xy=(x_arrow, vals_seen[i]),\n                xytext=(x_arrow, vals_unseen[i]),\n                arrowprops=dict(arrowstyle='<->', color='#555555', lw=0.7,\n                                shrinkA=1, shrinkB=1))\n    mid_y = (vals_seen[i] + vals_unseen[i]) / 2\n    ax.text(x_arrow + 0.06, mid_y, f'mem\\n{mf:.0%}', fontsize=5,\n            color='#555555', va='center', ha='left')"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T20:40:52.342656+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/figures/paper/gen_fig3.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T20:40:52.342788+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/figures/paper/gen_fig3.py",
+              "description": "Regenerate figure 3"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T20:40:52.342931+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Files saved."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T20:40:52.343051+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/figures/paper/fig_3_ctrl_contam.png"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T20:40:52.343681+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T20:40:52.343876+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/figures/paper/gen_fig3.py",
+              "offset": "70",
+              "limit": "35"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T20:40:52.344104+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "70\t                    linewidth=0.4, label='Fixed-θ', zorder=3)\n71\t\n72\tax.axhspan(clean_baseline_mean - clean_baseline_std,\n73\t           clean_baseline_mean + clean_baseline_std,\n74\t           color='#dddddd', alpha=0.5, zorder=1)\n75\tax.axhline(clean_baseline_mean, color='#999999', linewidth=0.7,\n76\t           linestyle='--', zorder=2)\n77\tax.text(3.55, clean_baseline_mean + 0.3, 'clean μ±σ', fontsize=5.5,\n78\t        color='#777777', ha='right')\n79\t\n80\tfor i, (df_, dx_) in enumerate(zip(delta_free, delta_fixed)):\n81\t    sign_f = '+' if df_ >= 0 else ''\n82\t    sign_x = '+' if dx_ >= 0 else ''\n83\t    ax.text(x[i] - w/2, lz_free[i] + 0.35, f'{sign_f}{df_:.1f}',\n84\t            ha='center', va='bottom', fontsize=5.5, color=C_FREE, fontweight='bold')\n85\t    ax.text(x[i] + w/2, lz_fixed[i] + 0.35, f'{sign_x}{dx_:.1f}',\n86\t            ha='center', va='bottom', fontsize=5.5, color='#3a7fb5', fontweight='bold')\n87\t\n88\tax.text(0.97, 0.97, 'Free-θ: non-monotonic', fontsize=5.5, color=C_FREE,\n89\t        ha='right', va='top', transform=ax.transAxes, fontweight='bold')\n90\tax.text(0.97, 0.89, 'Fixed-θ: monotonic', fontsize=5.5, color='#3a7fb5',\n91\t        ha='right', va='top', transform=ax.transAxes, fontweight='bold')\n92\t\n93\tax.set_xticks(x)\n94\tax.set_xticklabels(conditions, rotation=15, ha='right')\n95\tax.set_ylabel('$\\\\ell_z^*$ statistic')\n96\tax.set_ylim(0, 18.5)\n97\tax.set_title('(a) $\\\\ell_z^*$ under Free-θ vs Fixed-θ', fontsize=8, pad=6)\n98\tax.legend(loc='upper left', framealpha=0.9, edgecolor='#cccccc',\n99\t          borderpad=0.3, handlelength=1.2)\n100\tax.spines['top'].set_visible(False)\n101\tax.spines['right'].set_visible(False)\n102\t\n103\t# ── Panel (b): Memorization Fingerprint ──\n104\tax = axes[1]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T20:40:52.344269+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/figures/paper/gen_fig3.py",
+              "old_string": "for i, (df_, dx_) in enumerate(zip(delta_free, delta_fixed)):\n    sign_f = '+' if df_ >= 0 else ''\n    sign_x = '+' if dx_ >= 0 else ''\n    ax.text(x[i] - w/2, lz_free[i] + 0.35, f'{sign_f}{df_:.1f}',\n            ha='center', va='bottom', fontsize=5.5, color=C_FREE, fontweight='bold')\n    ax.text(x[i] + w/2, lz_fixed[i] + 0.35, f'{sign_x}{dx_:.1f}',\n            ha='center', va='bottom', fontsize=5.5, color='#3a7fb5', fontweight='bold')\n\nax.text(0.97, 0.97, 'Free-θ: non-monotonic', fontsize=5.5, color=C_FREE,\n        ha='right', va='top', transform=ax.transAxes, fontweight='bold')\nax.text(0.97, 0.89, 'Fixed-θ: monotonic', fontsize=5.5, color='#3a7fb5',\n        ha='right', va='top', transform=ax.transAxes, fontweight='bold')\n\nax.set_xticks(x)\nax.set_xticklabels(conditions, rotation=15, ha='right')\nax.set_ylabel('$\\\\ell_z^*$ statistic')\nax.set_ylim(0, 18.5)",
+              "new_string": "for i, (df_, dx_) in enumerate(zip(delta_free, delta_fixed)):\n    sign_f = '+' if df_ >= 0 else ''\n    sign_x = '+' if dx_ >= 0 else ''\n    ax.text(x[i] - w/2, lz_free[i] + 0.3, f'{sign_f}{df_:.1f}',\n            ha='center', va='bottom', fontsize=5, color=C_FREE, fontweight='bold')\n    if i < 3:\n        ax.text(x[i] + w/2, lz_fixed[i] + 0.3, f'{sign_x}{dx_:.1f}',\n                ha='center', va='bottom', fontsize=5, color='#3a7fb5', fontweight='bold')\n    else:\n        ax.text(x[i] + w/2, lz_fixed[i] + 0.3, f'{sign_x}{dx_:.1f}',\n                ha='center', va='bottom', fontsize=5, color='#3a7fb5', fontweight='bold')\n\nax.text(0.55, 0.97, 'Free-θ: non-monotonic', fontsize=5.5, color=C_FREE,\n        ha='left', va='top', transform=ax.transAxes, fontweight='bold')\nax.text(0.55, 0.89, 'Fixed-θ: monotonic', fontsize=5.5, color='#3a7fb5',\n        ha='left', va='top', transform=ax.transAxes, fontweight='bold')\n\nax.set_xticks(x)\nax.set_xticklabels(conditions, rotation=15, ha='right')\nax.set_ylabel('$\\\\ell_z^*$ statistic')\nax.set_ylim(0, 19)"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T20:40:52.344527+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/figures/paper/gen_fig3.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T20:40:52.344672+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/figures/paper/gen_fig3.py",
+              "description": "Regenerate figure 3"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T20:40:52.344798+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Files saved."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T20:40:52.344915+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/figures/paper/fig_3_ctrl_contam.png"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T20:40:52.345535+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T20:40:52.345724+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-20T20:40:52.345852+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T20:40:52.345977+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "fig_3_ctrl_contam",
+              "type": "chart",
+              "description": "Figure 3: Controlled Contamination Results — three-panel figure showing (a) lz* under free-θ vs fixed-θ, (b) memorization fingerprint (seen vs unseen accuracy), (c) θ-shift mechanism. ACL full-width format.",
+              "project": "irt_personfit_contam",
+              "source_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/figures/paper/fig_3_ctrl_contam.pdf",
+              "tags": "['paper', 'figure3', 'controlled-contamination', 'core-result']"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-20T20:40:52.346140+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_2df81e\\\", \\\"name\\\": \\\"fig_3_ctrl_contam\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"Figure 3: Controlled Contamination Results — three-panel figure showing (a) lz* under free-θ vs fixed-θ, (b) memorization fingerprint (seen vs unseen accuracy), (c) θ-shift mechanism. ACL full-width format.\\\", \\\"path\\\": \\\"projects/irt_personfit_contam/artifacts/_project/chart/fig_3_ctrl_contam.pdf\\\", \\\"url\\\": null, \\\"project\\\": \\\"irt_personfit_contam\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T20:40:45.231798+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"figure3\\\", \\\"controlled-contamination\\\", \\\"core-result\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-20T20:40:52.346333+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 3 已生成并注册。\n\n**输出文件：**\n- PDF: `figures/paper/fig_3_ctrl_contam.pdf` (38 KB)\n- PNG: `figures/paper/fig_3_ctrl_contam.png` (133 KB, 300 DPI)\n- 脚本: `figures/paper/gen_fig3.py`\n\n**验证通过：**\n- Panel (a): free-θ 下 contam_15 的 lz\\* (3.00) 最低，fixed-θ 下 contam_50 的 lz\\* (15.64) 最高，非单调→单调对比清晰\n- Panel (b): seen accuracy (0.824) > unseen (0.715) > clean baseline (0.679)，记忆指纹可见\n- Panel (c): θ 单调递增 clean → contam_15 → contam_50，Δθ 箭头标注 +0.29 / +0.46"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810"
+          },
+          "id": "event-000039"
+        }
+      ],
+      "message_count": 39
+    }
+  ],
+  "readable_path": "readable/conversations/paper-figure-fig-3-ctrl-contam.md"
+}

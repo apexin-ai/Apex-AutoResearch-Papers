@@ -1,0 +1,523 @@
+{
+  "schema_version": "1.0",
+  "id": "f60bb2b84c8e2256f5db",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "train qwen 50pct s3 final",
+  "task_key": "worker_train_qwen-50pct-s3-final_20260522T172458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_qwen-50pct-s3-final_20260522T172458.log",
+    "occurrence": 1,
+    "bytes": 44716,
+    "sha256": "ff3500c028fe7eb115af5ef03ecc4d978feee2359bb860f42f968c8e9895565c"
+  },
+  "statistics": {
+    "messages": 11,
+    "user_turns": 0,
+    "tool_calls": 3,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 3,
+      "tool_call": 3,
+      "tool_result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam",
+                "session_id": "1d9ad846-e382-4347-bc52-a36e37176380",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__submit_training_job",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "566e14cd-cd99-4c13-93ad-a4fcf04f9d5a",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0519-3-projects-irt-personfit-contam/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779486000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "9b97b0d7-5ceb-414d-bb78-707b0c0746a2",
+                "session_id": "1d9ad846-e382-4347-bc52-a36e37176380"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll execute this step by step. Starting with Step 1: reading existing eval results."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d9ad846-e382-4347-bc52-a36e37176380",
+            "uuid": "ff7e10f9-9a6f-4a56-89f9-84f62db96124",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012UCng9a3RZZdETQp1iHKju",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13190,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13190
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01S2wEvbcPqpfwE4vw4yRs6g",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d9ad846-e382-4347-bc52-a36e37176380",
+            "uuid": "b640f6c9-178a-416a-8a64-122933cc48c9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012UCng9a3RZZdETQp1iHKju",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13190,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13190
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T17:25:11.448Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01S2wEvbcPqpfwE4vw4yRs6g",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1d9ad846-e382-4347-bc52-a36e37176380",
+            "uuid": "c4ede585-03ea-4d1f-a1bf-3e3a64f578a7",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 27
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start with Step 1: reading existing eval results for the 4 new seed experiments.",
+              "signature": "EpwCCmMIDRgCKkCiWmxOUooxq1xzaDkMxJ1kMk0PUCrfx9GaxhMruEPYXmXUDzIB/xKlhrYSqD0QAwpLifvZGYyyVscvK+Qp6Z3ZMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDK6355vfi5aJV27BIhoMi/tmgIVVbsG2nI8sIjCXn+pG5RSA7t6b/ZA8CF24YWKRKaVXSmNPDyQxoCn3wFTEwynEsyNg1HBU9nb1H8IqZ8t3bwiFnxr7990KeTNiZF1G7ciJiOuVvsRMXLTFUbaoRxiGEbaU7mhfbc4Mo9rbO6FRAfJn5VADbhnOPh2bwVi83BZnGXYrJQHD+aOV7zLcNXlaHfEqLtZUfCx/+V8EUBHUf3C0JCoYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d9ad846-e382-4347-bc52-a36e37176380",
+            "uuid": "5b863f56-a12f-477d-9422-df98b53412bb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XZtnrgqrJRJW4y4VumN8qp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 691,
+                "cache_read_input_tokens": 25031,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 691
+                },
+                "output_tokens": 28,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Step 1: 读取已有 eval 结果。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d9ad846-e382-4347-bc52-a36e37176380",
+            "uuid": "edd0e36e-2a9d-4481-95b4-4b8910efd304",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XZtnrgqrJRJW4y4VumN8qp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 691,
+                "cache_read_input_tokens": 25031,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 691
+                },
+                "output_tokens": 28,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FNbkCBixnr846qP94dXv7S",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-35694",
+                "command": "cat /root/autodl-tmp/ctrl_contam_pilot/results/contam_15_s2_results.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d9ad846-e382-4347-bc52-a36e37176380",
+            "uuid": "8c0bc8ea-711a-470b-9862-6e12e0a83a45",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XZtnrgqrJRJW4y4VumN8qp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 691,
+                "cache_read_input_tokens": 25031,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 691
+                },
+                "output_tokens": 28,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MQYUzPyn12zVRVFmfcgjHv",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-35694",
+                "command": "cat /root/autodl-tmp/ctrl_contam_pilot/results/contam_25_s2_results.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1d9ad846-e382-4347-bc52-a36e37176380",
+            "uuid": "a8f4bb05-d543-4665-b9df-9f368204549e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XZtnrgqrJRJW4y4VumN8qp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 691,
+                "cache_read_input_tokens": 25031,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 691
+                },
+                "output_tokens": 28,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T17:25:17.018Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FNbkCBixnr846qP94dXv7S",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"condition\\\\\\\": \\\\\\\"contam_15_s2\\\\\\\",\\\\n  \\\\\\\"theta_mle\\\\\\\": 0.24491003396278668,\\\\n  \\\\\\\"lz_star\\\\\\\": 4.939255043516343,\\\\n  \\\\\\\"accuracy_overall\\\\\\\": 0.737359350519869,\\\\n  \\\\\\\"accuracy_seen\\\\\\\": 0.8252611585944919,\\\\n  \\\\\\\"accuracy_unseen\\\\\\\": 0.7218498659517426,\\\\n  \\\\\\\"lz_star_seen\\\\\\\": 0.508656898859761,\\\\n  \\\\\\\"lz_star_unseen\\\\\\\": 5.16300080549311,\\\\n  \\\\\\\"response_vector\\\\\\\": [\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1\\\\n\\\\n... [截断: 输出过长，省略 90677 字符] ...\\\\n\\\\n1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1\\\\n  ],\\\\n  \\\\\\\"n_items\\\\\\\": 14042,\\\\n  \\\\\\\"n_seen\\\\\\\": 2106,\\\\n  \\\\\\\"n_unseen\\\\\\\": 11936\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.29}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1d9ad846-e382-4347-bc52-a36e37176380",
+            "uuid": "c701b804-40a1-47c0-b7ce-586ed523a41c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"condition\\\\\\\": \\\\\\\"contam_15_s2\\\\\\\",\\\\n  \\\\\\\"theta_mle\\\\\\\": 0.24491003396278668,\\\\n  \\\\\\\"lz_star\\\\\\\": 4.939255043516343,\\\\n  \\\\\\\"accuracy_overall\\\\\\\": 0.737359350519869,\\\\n  \\\\\\\"accuracy_seen\\\\\\\": 0.8252611585944919,\\\\n  \\\\\\\"accuracy_unseen\\\\\\\": 0.7218498659517426,\\\\n  \\\\\\\"lz_star_seen\\\\\\\": 0.508656898859761,\\\\n  \\\\\\\"lz_star_unseen\\\\\\\": 5.16300080549311,\\\\n  \\\\\\\"response_vector\\\\\\\": [\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1\\\\n\\\\n... [截断: 输出过长，省略 90677 字符] ...\\\\n\\\\n1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1\\\\n  ],\\\\n  \\\\\\\"n_items\\\\\\\": 14042,\\\\n  \\\\\\\"n_seen\\\\\\\": 2106,\\\\n  \\\\\\\"n_unseen\\\\\\\": 11936\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.29}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"condition\\\": \\\"contam_15_s2\\\",\\n  \\\"theta_mle\\\": 0.24491003396278668,\\n  \\\"lz_star\\\": 4.939255043516343,\\n  \\\"accuracy_overall\\\": 0.737359350519869,\\n  \\\"accuracy_seen\\\": 0.8252611585944919,\\n  \\\"accuracy_unseen\\\": 0.7218498659517426,\\n  \\\"lz_star_seen\\\": 0.508656898859761,\\n  \\\"lz_star_unseen\\\": 5.16300080549311,\\n  \\\"response_vector\\\": [\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    0,\\n    1,\\n    0,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    0,\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    0,\\n    0,\\n    1,\\n    0,\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    0,\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1\\n\\n... [截断: 输出过长，省略 90677 字符] ...\\n\\n1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    0,\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    0,\\n    1,\\n    0,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1\\n  ],\\n  \\\"n_items\\\": 14042,\\n  \\\"n_seen\\\": 2106,\\n  \\\"n_unseen\\\": 11936\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.29}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        }
+      ],
+      "message_count": 11
+    }
+  ],
+  "readable_path": "readable/worker-executions/train-qwen-50pct-s3-final.md"
+}

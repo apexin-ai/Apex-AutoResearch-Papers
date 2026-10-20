@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dcb2204b6560c208d218",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops recompute 15s2 fixed",
+  "task_key": "worker_ops_recompute-15s2-fixed_20260522T193034",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_recompute-15s2-fixed_20260522T193034_result.json",
+    "occurrence": 1,
+    "bytes": 622,
+    "sha256": "d8f377c1e4bc6d51502b52c6c5c2105f0d9831474cb9613355199b04af8ade36"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过（contam_15_s3 完全匹配），结果如下：\n\n**15% s2 θ-fixed 重算结果：**\n- lz_fixed = 11.8704\n- lz\\*_fixed = 14.0163\n- d_fixed = **7.79** （用 n=10 clean baseline: mean=7.3522, std=0.5802）\n- d\\*_fixed = 7.79（lz 和 lz\\* 的 Cohen's d 相同，因为 Snijders 校正是线性变换）\n- CI_95 = [6.51, 13.05]（bootstrap 10000 resamples, percentile method）\n- 验证：contam_15_s3 的 lz_fixed 与 theta_fixed_all_seeds.json 完全一致（误差 < 1e-6）\n\n之前的 d_fixed=7.79 是正确的，并非基于 n=3 baseline。n=10 baseline 重算后仍为 7.79。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-recompute-15s2-fixed.md"
+}

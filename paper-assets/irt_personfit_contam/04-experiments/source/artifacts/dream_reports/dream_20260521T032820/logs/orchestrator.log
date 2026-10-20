@@ -1,0 +1,8 @@
+2026-05-21 03:41:18,503 WARNING core.tools.dream  [dream] Phase 2 median parse failed (attempt 0): while parsing a block collection
+  in "<unicode string>", line 13, column 3:
+      - name: "ctrl-contam-pilot (Qwen ... 
+      ^
+expected <block end>, but found '?'
+  in "<unicode string>", line 564, column 3:
+      median_tier_summary_metrics:
+      ^

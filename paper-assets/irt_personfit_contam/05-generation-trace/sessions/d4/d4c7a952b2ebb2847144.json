@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "d4c7a952b2ebb2847144",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "code ctrl contam pilot eval",
+  "task_key": "worker_code_ctrl-contam-pilot-eval_20260520T182333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ctrl-contam-pilot-eval_20260520T182333.log",
+    "occurrence": 1,
+    "bytes": 9718432,
+    "sha256": "f2a380377c7b4c6a721c2ffff6c0253892ad1e467194a482467bc14f6b6efe8b"
+  },
+  "statistics": {
+    "messages": 770,
+    "user_turns": 0,
+    "tool_calls": 353,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 60,
+      "tool_call": 353,
+      "tool_result": 353,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 770,
+      "chunks": [
+        {
+          "path": "d4c7a952b2ebb2847144-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d4c7a952b2ebb2847144-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d4c7a952b2ebb2847144-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "d4c7a952b2ebb2847144-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "d4c7a952b2ebb2847144-part-0005.json",
+          "message_count": 50
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-ctrl-contam-pilot-eval.md"
+}

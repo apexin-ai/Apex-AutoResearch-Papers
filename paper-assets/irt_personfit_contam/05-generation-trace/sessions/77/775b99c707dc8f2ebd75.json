@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "775b99c707dc8f2ebd75",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code constat bugfix rerun",
+  "task_key": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_constat-bugfix-rerun_20260521T083100_result.json",
+    "occurrence": 1,
+    "bytes": 1167,
+    "sha256": "b119211f38f53f9483a1a4029f5cd00bb74fedb09df87ef756927a91b00bcc9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n### 修复的 3 个 Bug\n1. **compute_lz_star 缺 Snijders (2001) 方差校正** — 从 eval_lz.py 复制正确的 `Var* = Var(l0) - C(θ)²/I(θ)` 实现\n2. **检测阈值方向反了** — `lz > 1.96` → `abs(lz) > 1.96`\n3. **ConStat 内部 `np.random.seed(42)` 污染全局 RNG** — 加 save/restore `rng_state` 保护\n\n### 修正后仿真结果\n\n| Contam% | ConStat | lz* (绝对) | lz* Mean |\n|---------|---------|-----------|----------|\n| 0% | 0.100 | **0.050** | **-0.058** |\n| 5% | 0.000 | 0.000 | -0.381 |\n| 10% | 0.250 | 0.100 | -0.620 |\n| 25% | 0.500 | 0.050 | 0.030 |\n| 50% | 1.000 | 0.050 | 0.136 |\n\n- Clean data lz* mean = -0.058 ≈ 0 (修复前是 -2.365)\n- FAR = 5%（标称值）\n- 绝对 lz* 在所有 contamination 水平 power ≈ FAR（θ-MLE 完全吸收信号），进一步证实论文 \"θ estimation as confound\" 论点\n\n### 真实 ctrl-contam 模型 ConStat 对比\n**不可行** — 4 项必需输入仅 1 项可用（缺 reference benchmark + ≥5 reference models）。这本身就是论文对比论据：ConStat 需 42 eval runs，lz* 只需 1 run。\n\nmemory.md 已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-constat-bugfix-rerun.md"
+}

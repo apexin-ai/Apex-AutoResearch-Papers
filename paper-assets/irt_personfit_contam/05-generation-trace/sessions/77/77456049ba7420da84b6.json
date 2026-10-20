@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77456049ba7420da84b6",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "paper research bib sync",
+  "task_key": "worker_paper_research_bib_sync_20260520T215727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_bib_sync_20260520T215727_result.json",
+    "occurrence": 1,
+    "bytes": 321,
+    "sha256": "ee56058b85c5397c69bcbd680db17558bd5d0d468819798e606664231d24d514"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "33 篇 BibTeX 条目已生成，按 6 个 category 分组，组内按 year 升序排列。entry type 映射：会议 → `@inproceedings`，期刊 → `@article`，arXiv → `@article`，书籍 → `@book`，书章节 → `@incollection`，技术报告 → `@techreport`，HuggingFace/Zenodo → `@misc`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-bib-sync.md"
+}

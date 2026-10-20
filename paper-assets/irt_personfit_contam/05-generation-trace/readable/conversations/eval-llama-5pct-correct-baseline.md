@@ -1,0 +1,1474 @@
+# eval llama 5pct correct baseline
+
+**What Can IRT Person-Fit Statistics Reveal About SFT-Stage Benchmark Contamination?** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 49
+- **Recorded user turns:** 0
+- **Tool calls:** 24
+- **Original source:** `logs/chats/worker_eval_llama-5pct-correct-baseline_20260524T043305.jsonl`
+- **Structured JSON:** [`76f4d4cc08acce20c890.json`](../../sessions/76/76f4d4cc08acce20c890.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+49 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-24T04:37:20.104192+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-24T04:37:20.104565+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-24T04:37:20.104747+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "ls -la /root/autodl-tmp/ctrl_contam_llama/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "ls -la /root/autodl-tmp/ctrl_contam_llama/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-24T04:37:20.104880+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "ls -la /root/autodl-tmp/ctrl_contam_llama/data/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "ls -la /root/autodl-tmp/ctrl_contam_llama/data/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-24T04:37:20.105030+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 23000\\ndrwxr-xr-x  7 root root     4096 May 24 00:14 .\\ndrwxr-xr-x 16 root root     4096 May 24 00:14 ..\\ndrwxr-xr-x  2 root root       43 May 21 04:54 __pycache__\\n-rw-r--r--  1 root root 22773992 May 21 04:25 alpaca_data.json\\ndrwxr-xr-x 16 root root     4096 May 22 18:06 checkpoints\\n-rw-r--r--  1 root root     4754 May 24 00:14 compute_cohens_d.py\\ndrwxr-xr-x  7 root root     4096 May 22 18:05 data\\n-rw-r--r--  1 root root    10488 May 22 13:13 eval_lz.py\\ndrwxr-xr-x  2 root root     4096 May 22 18:05 logs\\n-rw-r--r--  1 root root   683809 May 21 04:25 mmlu_params.csv\\n-rw-r--r--  1 root root     3839 May 21 04:27 prepare_data.py\\n-rw-r--r--  1 root root     2842 May 22 18:05 prepare_data_5pct.py\\ndrwxr-xr-x  2 root root     4096 May 22 18:41 results\\n-rwxr-xr-x  1 root root      522 May 23 21:19 run_clean_eval_v2.sh\\n-rw-r--r--  1 root root     4337 May 21 07:19 theta_fixed_recompute.py\\n-rw-r--r--  1 root root     4240 May 22 18:05 train.py\\n-rw-r--r--  1 root root     4199 May 21 07:21 train.py.bak\\n-rw-r--r--  1 root root     4649 May 21 21:05 train.py.bak2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-24T04:37:20.105168+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "ls -la /root/autodl-tmp/ctrl_contam_llama/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "ls -la /root/autodl-tmp/ctrl_contam_llama/results/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-24T04:37:20.105308+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 7700\\ndrwxr-xr-x 7 root root    4096 May 22 18:05 .\\ndrwxr-xr-x 7 root root    4096 May 24 00:14 ..\\ndrwxr-xr-x 2 root root      33 May 21 04:27 clean\\ndrwxr-xr-x 2 root root      33 May 21 04:27 contam_15\\ndrwxr-xr-x 2 root root      33 May 22 13:13 contam_25\\ndrwxr-xr-x 2 root root      33 May 22 18:05 contam_5\\ndrwxr-xr-x 2 root root      33 May 21 04:27 contam_50\\n-rw-r--r-- 1 root root 7780370 May 20 23:04 mmlu_items.json\\n-rw-r--r-- 1 root root   13063 May 21 04:27 seen_items_15pct.json\\n-rw-r--r-- 1 root root   21797 May 22 13:13 seen_items_25pct.json\\n-rw-r--r-- 1 root root   43588 May 21 04:27 seen_items_50pct.json\\n-rw-r--r-- 1 root root    4339 May 22 18:05 seen_items_5pct.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-24T04:37:20.105489+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 1720\\ndrwxr-xr-x 2 root root  4096 May 22 18:41 .\\ndrwxr-xr-x 7 root root  4096 May 24 00:14 ..\\n-rw-r--r-- 1 root root 98644 May 23 22:26 clean_results.json\\n-rw-r--r-- 1 root root 98644 May 21 07:08 clean_results_lz_uncorrected.json\\n-rw-r--r-- 1 root root 98648 May 23 22:38 clean_s10_results.json\\n-rw-r--r-- 1 root root 98647 May 23 22:46 clean_s2_results.json\\n-rw-r--r-- 1 root root 98649 May 23 21:57 clean_s3_results.json\\n-rw-r--r-- 1 root root 98649 May 23 22:26 clean_s4_results.json\\n-rw-r--r-- 1 root root 98647 May 23 22:46 clean_s5_results.json\\n-rw-r--r-- 1 root root 98643 May 23 22:02 clean_s6_results.json\\n-rw-r--r-- 1 root root 98648 May 23 22:31 clean_s7_results.json\\n-rw-r--r-- 1 root root 98645 May 23 22:48 clean_s8_results.json\\n-rw-r--r-- 1 root root 98646 May 23 22:10 clean_s9_results.json\\n-rw-r--r-- 1 root root 98723 May 21 07:17 contam_15_results.json\\n-rw-r--r-- 1 root root 98683 May 21 07:09 contam_15_results_lz_uncorrected.json\\n-rw-r--r-- 1 root root   813 May 22 14:02 contam_25_cohens_d.json\\n-rw-r--r-- 1 root root 98681 May 22 14:02 contam_25_results.json\\n-rw-r--r-- 1 root root 98722 May 21 07:17 contam_50_results.json\\n-rw-r--r-- 1 root root 98680 May 21 07:09 contam_50_results_lz_uncorrected.json\\n-rw-r--r-- 1 root root 98648 May 22 18:41 contam_5_results.json\\n-rw-r--r-- 1 root root  1209 May 21 07:09 llama_summary.json\\n-rw-r--r-- 1 root root   686 May 21 07:19 theta_fixed_llama.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-24T04:37:20.105648+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "cat /root/autodl-tmp/ctrl_contam_llama/eval_lz.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "cat /root/autodl-tmp/ctrl_contam_llama/eval_lz.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-24T04:37:20.105912+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\neval_lz.py — Evaluate a fine-tuned Llama adapter on full MMLU and compute lz* person-fit statistic.\\n\\nUsage: python eval_lz.py --condition clean --gpu 0\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport os\\n\\nimport numpy as np\\nimport torch\\nfrom peft import PeftModel\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\n\\nBASE_DIR = \\\"/root/autodl-tmp/ctrl_contam_llama\\\"\\nMODEL_DIR = \\\"/root/autodl-tmp/models\\\"\\nPARAMS_PATH = os.path.join(BASE_DIR, \\\"mmlu_params.csv\\\")\\n\\nCHOICES = [\\\"A\\\", \\\"B\\\", \\\"C\\\", \\\"D\\\"]\\n\\nFEW_SHOT_EXAMPLES = [\\n    {\\n        \\\"question\\\": \\\"What is the capital of France?\\\",\\n        \\\"choices\\\": [\\\"London\\\", \\\"Paris\\\", \\\"Berlin\\\", \\\"Madrid\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n    {\\n        \\\"question\\\": \\\"Which planet is closest to the Sun?\\\",\\n        \\\"choices\\\": [\\\"Venus\\\", \\\"Mercury\\\", \\\"Mars\\\", \\\"Earth\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n    {\\n        \\\"question\\\": \\\"What is 2 + 2?\\\",\\n        \\\"choices\\\": [\\\"3\\\", \\\"4\\\", \\\"5\\\", \\\"6\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n]\\n\\n\\ndef format_question(question, choices):\\n    lines = [f\\\"Question: {question}\\\"]\\n    for i, c in enumerate(choices):\\n        lines.append(f\\\"{CHOICES[i]}. {c}\\\")\\n    lines.append(\\\"Answer:\\\")\\n    return \\\"\\\\n\\\".join(lines)\\n\\n\\ndef build_few_shot_prompt(question, choices):\\n    parts = []\\n    for ex in FEW_SHOT_EXAMPLES:\\n        parts.append(format_question(ex[\\\"question\\\"], ex[\\\"choices\\\"]) + f\\\" {CHOICES[ex['answer']]}\\\")\\n    parts.append(format_question(question, choices))\\n    return \\\"\\\\n\\\\n\\\".join(parts)\\n\\n\\ndef find_model_path():\\n    patterns = [\\n        os.path.join(MODEL_DIR, \\\"LLM-Research\\\", \\\"Meta-Llam
+…[truncated 7299 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-24T04:37:20.106085+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "cat /root/autodl-tmp/ctrl_contam_llama/compute_cohens_d.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "cat /root/autodl-tmp/ctrl_contam_llama/compute_cohens_d.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-24T04:37:20.106300+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Compute Cohen's d and bootstrap CIs for contam_25 lz* result.\\\"\\\"\\\"\\nimport json\\nimport numpy as np\\nimport os\\n\\nBASE_DIR = \\\"/root/autodl-tmp/ctrl_contam_llama\\\"\\n\\n# Clean baseline (n=10 seeds, Snijders lz*)\\nclean_lz_stars = np.array([\\n    0.8446, -1.8765, 0.3452, 0.0206, 1.7323,\\n    2.8466, -0.4007, 1.1656, 0.1897, -2.2497\\n])\\nclean_mean = clean_lz_stars.mean()\\nclean_std = clean_lz_stars.std(ddof=1)\\n\\ndef cohens_d(contam_val, clean_mean, clean_std):\\n    return (contam_val - clean_mean) / clean_std\\n\\ndef bootstrap_percentile_ci(contam_val, clean_vals, n_boot=10000, alpha=0.05, seed=42):\\n    rng = np.random.RandomState(seed)\\n    n = len(clean_vals)\\n    ds = []\\n    for _ in range(n_boot):\\n        boot = rng.choice(clean_vals, size=n, replace=True)\\n        d = (contam_val - boot.mean()) / boot.std(ddof=1)\\n        ds.append(d)\\n    ds = np.array(ds)\\n    lo = np.percentile(ds, 100 * alpha / 2)\\n    hi = np.percentile(ds, 100 * (1 - alpha / 2))\\n    return lo, hi, ds\\n\\ndef bca_ci(contam_val, clean_vals, n_boot=10000, alpha=0.05, seed=42):\\n    from scipy import stats as sp_stats\\n    rng = np.random.RandomState(seed)\\n    n = len(clean_vals)\\n    \\n    # Original statistic\\n    d_obs = cohens_d(contam_val, clean_vals.mean(), clean_vals.std(ddof=1))\\n    \\n    # Bootstrap distribution\\n    ds = []\\n    for _ in range(n_boot):\\n        boot = rng.choice(clean_vals, size=n, replace=True)\\n        d = (contam_val - boot.mean()) / boot.std(ddof=1)\\n        ds.append(d)\\n    ds = np.array(ds)\\n    \\n    # Bias correction (z0)\\n    z0 = sp_stats.norm.ppf(np.mean(ds < d_obs))\\n    \\n    # Acceleration (jackknife)\\n    jack_ds = []\\n    for i in range(n):\\n        jack_vals = np.delete(clean_vals, i)\\n        jack_d = (contam_val - jack_vals.mean()) / jack_vals.std(ddof=1)\\n        jack_ds.append(jack_d)\\n    jack_ds = np.array(
+…[truncated 3525 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-24T04:37:20.106490+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "cat /root/autodl-tmp/ctrl_contam_llama/results/theta_fixed_llama.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "cat /root/autodl-tmp/ctrl_contam_llama/results/theta_fixed_llama.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-24T04:37:20.106649+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"theta_fixed\\\": -0.6661461950476987,\\n  \\\"conditions\\\": {\\n    \\\"clean\\\": {\\n      \\\"theta_free\\\": -0.666146,\\n      \\\"lz_star_free\\\": 0.844555,\\n      \\\"lz_star_fixed\\\": 0.844555,\\n      \\\"accuracy\\\": 0.59144\\n    },\\n    \\\"contam_15\\\": {\\n      \\\"theta_free\\\": -0.276057,\\n      \\\"lz_star_free\\\": -2.992192,\\n      \\\"lz_star_fixed\\\": 0.958591,\\n      \\\"accuracy\\\": 0.665432,\\n      \\\"delta_lz_star_fixed\\\": 0.114036\\n    },\\n    \\\"contam_50\\\": {\\n      \\\"theta_free\\\": -0.149,\\n      \\\"lz_star_free\\\": -3.331334,\\n      \\\"lz_star_fixed\\\": 1.171866,\\n      \\\"accuracy\\\": 0.698334,\\n      \\\"delta_lz_star_fixed\\\": 0.327311\\n    }\\n  },\\n  \\\"note\\\": \\\"Using lz* (Snijders 2001 corrected)\\\",\\n  \\\"dose_response_ratio\\\": 2.870243,\\n  \\\"monotonic\\\": true\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-24T04:37:20.106783+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "head -5 /root/autodl-tmp/ctrl_contam_llama/results/contam_5_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "head -5 /root/autodl-tmp/ctrl_contam_llama/results/contam_5_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-24T04:37:20.106911+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"condition\\\": \\\"contam_5\\\",\\n  \\\"theta_mle\\\": -0.40888071102362994,\\n  \\\"lz_star\\\": -4.954015426481861,\\n  \\\"accuracy_overall\\\": 0.6341689218060106,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-24T04:37:20.107050+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "grep -n \"contam_\\|seen_items\\|seen_set\\|seen_path\\|condition\" /root/autodl-tmp/ctrl_contam_llama/eval_lz.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "grep -n \"contam_\\|seen_items\\|seen_set\\|seen_path\\|condition\" /root/autodl-tmp/ctrl_contam_llama/eval_lz.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-24T04:37:20.107173+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-24T04:37:20.107289+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "cat /root/autodl-tmp/ctrl_contam_llama/results/contam_5_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "cat /root/autodl-tmp/ctrl_contam_llama/results/contam_5_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-24T04:37:20.107430+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "cat /root/autodl-tmp/ctrl_contam_llama/results/clean_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "cat /root/autodl-tmp/ctrl_contam_llama/results/clean_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-24T04:37:20.107761+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"condition\\\": \\\"contam_5\\\",\\n  \\\"theta_mle\\\": -0.40888071102362994,\\n  \\\"lz_star\\\": -4.954015426481861,\\n  \\\"accuracy_overall\\\": 0.6341689218060106,\\n  \\\"accuracy_seen\\\": null,\\n  \\\"accuracy_unseen\\\": 0.6341689218060106,\\n  \\\"lz_star_seen\\\": null,\\n  \\\"lz_star_unseen\\\": -4.954015426481861,\\n  \\\"response_vector\\\": [\\n    0,\\n    0,\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    0,\\n    0,\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    1,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    0,\\n    0,\\n    1,\\n    0,\\n    0,\\n    1,\\n    0,\\n    0,\\n    0,\\n    0,\\n    1,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    0,\\n    0,\\n    1,\\n    0,\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    0,\\n    1,\\n    0,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    0,\\n    
+…[truncated 8492 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-24T04:37:20.108147+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"condition\\\": \\\"clean\\\",\\n  \\\"theta_mle\\\": -0.6661461950476987,\\n  \\\"lz_star\\\": 0.8445551891355478,\\n  \\\"accuracy_overall\\\": 0.5914399658168352,\\n  \\\"accuracy_seen\\\": null,\\n  \\\"accuracy_unseen\\\": 0.5914399658168352,\\n  \\\"lz_star_seen\\\": null,\\n  \\\"lz_star_unseen\\\": 0.8445551891355478,\\n  \\\"response_vector\\\": [\\n    0,\\n    0,\\n    0,\\n    0,\\n    1,\\n    0,\\n    1,\\n    0,\\n    0,\\n    1,\\n    0,\\n    1,\\n    0,\\n    0,\\n    0,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    1,\\n    0,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    0,\\n    0,\\n    1,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    0,\\n    0,\\n    1,\\n    0,\\n    0,\\n    1,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    0,\\n    0,\\n    1,\\n    0,\\n    0,\\n    1,\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    0,\\n    1,\\
+…[truncated 8494 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-24T04:37:20.108385+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "grep -n \"seen\" /root/autodl-tmp/ctrl_contam_llama/eval_lz.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "grep -n \"seen\" /root/autodl-tmp/ctrl_contam_llama/eval_lz.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-24T04:37:20.108527+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "head -170 /root/autodl-tmp/ctrl_contam_llama/eval_lz.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "head -170 /root/autodl-tmp/ctrl_contam_llama/eval_lz.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-24T04:37:20.108689+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"170:    seen_15_path = os.path.join(BASE_DIR, \\\"data\\\", \\\"seen_items_15pct.json\\\")\\n171:    seen_25_path = os.path.join(BASE_DIR, \\\"data\\\", \\\"seen_items_25pct.json\\\")\\n172:    seen_50_path = os.path.join(BASE_DIR, \\\"data\\\", \\\"seen_items_50pct.json\\\")\\n173:    seen_15 = set(json.load(open(seen_15_path))) if os.path.exists(seen_15_path) else set()\\n174:    seen_25 = set(json.load(open(seen_25_path))) if os.path.exists(seen_25_path) else set()\\n175:    seen_50 = set(json.load(open(seen_50_path))) if os.path.exists(seen_50_path) else set()\\n178:        seen_set = seen_15\\n180:        seen_set = seen_25\\n182:        seen_set = seen_50\\n184:        seen_set = set()\\n221:    seen_correct = 0\\n222:    seen_total = 0\\n223:    unseen_correct = 0\\n224:    unseen_total = 0\\n242:        is_seen = item[\\\"item_idx\\\"] in seen_set\\n243:        if is_seen:\\n244:            seen_correct += correct\\n245:            seen_total += 1\\n247:            unseen_correct += correct\\n248:            unseen_total += 1\\n258:    seen_responses = []\\n259:    seen_indices = []\\n260:    unseen_responses = []\\n261:    unseen_indices = []\\n264:        if idx in seen_set:\\n265:            seen_responses.append(responses[i])\\n266:            seen_indices.append(idx)\\n268:            unseen_responses.append(responses[i])\\n269:            unseen_indices.append(idx)\\n271:    lz_star_seen = None\\n272:    lz_star_unseen = None\\n273:    if seen_indices:\\n274:        theta_seen = estimate_theta_mle(seen_responses, irt_params, seen_indices)\\n275:        lz_star_seen = compute_lz_star(seen_responses, irt_params, seen_indices, theta_seen)\\n276:    if unseen_indices:\\n277:        theta_unseen = estimate_theta_mle(unseen_responses, irt_params, unseen_indices)\\n278:        lz_star_unseen = compute_lz_star(unseen_responses, irt_params, unseen_indices, theta_unseen)\\n281:    acc_seen = seen_correct / 
+…[truncated 795 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-24T04:37:20.108939+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\neval_lz.py — Evaluate a fine-tuned Llama adapter on full MMLU and compute lz* person-fit statistic.\\n\\nUsage: python eval_lz.py --condition clean --gpu 0\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport os\\n\\nimport numpy as np\\nimport torch\\nfrom peft import PeftModel\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\n\\nBASE_DIR = \\\"/root/autodl-tmp/ctrl_contam_llama\\\"\\nMODEL_DIR = \\\"/root/autodl-tmp/models\\\"\\nPARAMS_PATH = os.path.join(BASE_DIR, \\\"mmlu_params.csv\\\")\\n\\nCHOICES = [\\\"A\\\", \\\"B\\\", \\\"C\\\", \\\"D\\\"]\\n\\nFEW_SHOT_EXAMPLES = [\\n    {\\n        \\\"question\\\": \\\"What is the capital of France?\\\",\\n        \\\"choices\\\": [\\\"London\\\", \\\"Paris\\\", \\\"Berlin\\\", \\\"Madrid\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n    {\\n        \\\"question\\\": \\\"Which planet is closest to the Sun?\\\",\\n        \\\"choices\\\": [\\\"Venus\\\", \\\"Mercury\\\", \\\"Mars\\\", \\\"Earth\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n    {\\n        \\\"question\\\": \\\"What is 2 + 2?\\\",\\n        \\\"choices\\\": [\\\"3\\\", \\\"4\\\", \\\"5\\\", \\\"6\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n]\\n\\n\\ndef format_question(question, choices):\\n    lines = [f\\\"Question: {question}\\\"]\\n    for i, c in enumerate(choices):\\n        lines.append(f\\\"{CHOICES[i]}. {c}\\\")\\n    lines.append(\\\"Answer:\\\")\\n    return \\\"\\\\n\\\".join(lines)\\n\\n\\ndef build_few_shot_prompt(question, choices):\\n    parts = []\\n    for ex in FEW_SHOT_EXAMPLES:\\n        parts.append(format_question(ex[\\\"question\\\"], ex[\\\"choices\\\"]) + f\\\" {CHOICES[ex['answer']]}\\\")\\n    parts.append(format_question(question, choices))\\n    return \\\"\\\\n\\\\n\\\".join(parts)\\n\\n\\ndef find_model_path():\\n    patterns = [\\n        os.path.join(MODEL_DIR, \\\"LLM-Research\\\", \\\"Meta-Llam
+…[truncated 4425 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-24T04:37:20.109125+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "tail -n +170 /root/autodl-tmp/ctrl_contam_llama/eval_lz.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "tail -n +170 /root/autodl-tmp/ctrl_contam_llama/eval_lz.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-24T04:37:20.109452+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    seen_15_path = os.path.join(BASE_DIR, \\\"data\\\", \\\"seen_items_15pct.json\\\")\\n    seen_25_path = os.path.join(BASE_DIR, \\\"data\\\", \\\"seen_items_25pct.json\\\")\\n    seen_50_path = os.path.join(BASE_DIR, \\\"data\\\", \\\"seen_items_50pct.json\\\")\\n    seen_15 = set(json.load(open(seen_15_path))) if os.path.exists(seen_15_path) else set()\\n    seen_25 = set(json.load(open(seen_25_path))) if os.path.exists(seen_25_path) else set()\\n    seen_50 = set(json.load(open(seen_50_path))) if os.path.exists(seen_50_path) else set()\\n\\n    if \\\"contam_15\\\" in args.condition:\\n        seen_set = seen_15\\n    elif \\\"contam_25\\\" in args.condition:\\n        seen_set = seen_25\\n    elif \\\"contam_50\\\" in args.condition:\\n        seen_set = seen_50\\n    else:\\n        seen_set = set()\\n\\n    irt_params = load_irt_params(PARAMS_PATH)\\n\\n    model_path = find_model_path()\\n    adapter_path = os.path.join(BASE_DIR, \\\"checkpoints\\\", args.condition)\\n    print(f\\\"Base model: {model_path}\\\")\\n    print(f\\\"Adapter: {adapter_path}\\\")\\n\\n    bnb_config = BitsAndBytesConfig(\\n        load_in_4bit=True,\\n        bnb_4bit_quant_type=\\\"nf4\\\",\\n        bnb_4bit_compute_dtype=torch.float16,\\n    )\\n\\n    model = AutoModelForCausalLM.from_pretrained(\\n        model_path,\\n        quantization_config=bnb_config,\\n        device_map={\\\"\\\": 0},\\n        trust_remote_code=True,\\n    )\\n    model = PeftModel.from_pretrained(model, adapter_path)\\n    model.eval()\\n\\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    choice_token_ids = [tokenizer.encode(c, add_special_tokens=False)[0] for c in CHOICES]\\n    print(f\\\"Choice token IDs: {dict(zip(CHOICES, choice_token_ids))}\\\")\\n\\n    n_items = len(mmlu_items)\\n    if args.max_items > 0
+…[truncated 3844 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-24T04:37:20.109641+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "cat /root/autodl-tmp/ctrl_contam_llama/data/seen_items_5pct.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "cat /root/autodl-tmp/ctrl_contam_llama/data/seen_items_5pct.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-24T04:37:20.109797+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[9, 20, 39, 43, 71, 94, 121, 145, 182, 192, 204, 210, 224, 310, 316, 320, 322, 396, 401, 414, 435, 469, 473, 550, 555, 579, 590, 604, 617, 637, 645, 652, 657, 679, 716, 728, 750, 775, 789, 802, 817, 864, 880, 890, 947, 950, 953, 961, 966, 1014, 1024, 1058, 1080, 1113, 1126, 1137, 1154, 1169, 1173, 1203, 1207, 1219, 1221, 1274, 1279, 1290, 1355, 1374, 1385, 1394, 1402, 1417, 1456, 1468, 1505, 1518, 1529, 1556, 1560, 1610, 1623, 1636, 1649, 1666, 1699, 1701, 1805, 1822, 1864, 1869, 1891, 1899, 1932, 1935, 1974, 1987, 1993, 1994, 2015, 2033, 2034, 2036, 2040, 2041, 2098, 2114, 2167, 2174, 2175, 2190, 2207, 2219, 2238, 2243, 2245, 2267, 2268, 2330, 2364, 2375, 2379, 2391, 2431, 2453, 2460, 2470, 2475, 2486, 2500, 2501, 2511, 2513, 2528, 2539, 2563, 2565, 2589, 2615, 2631, 2675, 2745, 2754, 2763, 2769, 2775, 2803, 2820, 2821, 2849, 2869, 2872, 2887, 2892, 2895, 2907, 2923, 2945, 2962, 3011, 3038, 3041, 3056, 3058, 3060, 3083, 3090, 3110, 3120, 3128, 3132, 3135, 3146, 3155, 3164, 3166, 3181, 3197, 3198, 3200, 3215, 3217, 3233, 3236, 3274, 3292, 3293, 3298, 3324, 3327, 3343, 3353, 3357, 3358, 3398, 3430, 3441, 3470, 3524, 3534, 3546, 3581, 3603, 3655, 3658, 3660, 3671, 3676, 3700, 3777, 3825, 3836, 3839, 3879, 3893, 3913, 3947, 3972, 4015, 4028, 4078, 4163, 4249, 4257, 4286, 4308, 4313, 4320, 4333, 4339, 4380, 4466, 4473, 4494, 4502, 4516, 4558, 4566, 4567, 4568, 4573, 4599, 4623, 4663, 4673, 4681, 4684, 4686, 4722, 4723, 4733, 4791, 4808, 4812, 4832, 4836, 4842, 4869, 4881, 4891, 4910, 4911, 4963, 4969, 5057, 5068, 5089, 5110, 5113, 5201, 5241, 5277, 5279, 5300, 5301, 5303, 5304, 5320, 5331, 5336, 5356, 5368, 5375, 5378, 5401, 5484, 5500, 5511, 5528, 5534, 5553, 5560, 5646, 5648, 5687, 5700, 5707, 5747, 5760, 5766, 5774, 5917, 5932, 5940, 5958, 5964, 5977, 6023, 6050, 6086, 6096, 6104, 6112, 6119, 6123, 6127, 6154, 6173, 6192, 6196, 6207, 6245, 6259, 6270, 6288, 6320, 6327, 6357, 6376, 6398, 6408, 6460, 6461, 6464, 6
+…[truncated 2499 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-24T04:37:20.109991+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "cat /root/autodl-tmp/ctrl_contam_llama/theta_fixed_recompute.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "cat /root/autodl-tmp/ctrl_contam_llama/theta_fixed_recompute.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-24T04:37:20.110196+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Theta-fixed lz* recomputation for Llama ctrl-contam experiment.\\nUses Snijders (2001) corrected lz* formula.\\\"\\\"\\\"\\n\\nimport csv, json, os\\nimport numpy as np\\n\\nBASE_DIR = \\\"/root/autodl-tmp/ctrl_contam_llama\\\"\\nPARAMS_PATH = os.path.join(BASE_DIR, \\\"mmlu_params.csv\\\")\\nRESULTS_DIR = os.path.join(BASE_DIR, \\\"results\\\")\\n\\ndef prob_4pl(theta, a, b, c, d):\\n    z = a * (theta - b)\\n    sigmoid = 1.0 / (1.0 + np.exp(-np.clip(z, -30, 30)))\\n    P = c + (d - c) * sigmoid\\n    return np.clip(P, 1e-15, 1 - 1e-15)\\n\\ndef compute_lz_star(x, theta_hat, a, b, c, d):\\n    \\\"\\\"\\\"Snijders (2001) corrected lz*.\\\"\\\"\\\"\\n    P = prob_4pl(theta_hat, a, b, c, d)\\n    Q = 1 - P\\n    x = np.asarray(x, dtype=np.float64)\\n\\n    z = a * (theta_hat - b)\\n    sigma = 1.0 / (1.0 + np.exp(-np.clip(z, -30, 30)))\\n    dP = a * (d - c) * sigma * (1 - sigma)\\n\\n    h = dP / (P * Q)\\n    g = np.log(P / Q)\\n\\n    l = np.sum(x * np.log(P) + (1 - x) * np.log(Q))\\n    E_l = np.sum(P * np.log(P) + Q * np.log(Q))\\n    Var_l = np.sum(P * Q * g ** 2)\\n\\n    I_theta = np.sum(P * Q * h ** 2)\\n    C_theta = np.sum(P * Q * h * g)\\n\\n    Var_star = Var_l - C_theta ** 2 / I_theta\\n\\n    if Var_star <= 0:\\n        Var_use = Var_l\\n    else:\\n        Var_use = Var_star\\n\\n    return float((l - E_l) / np.sqrt(Var_use))\\n\\n# Load IRT params\\na_list, b_list, c_list, d_list = [], [], [], []\\nwith open(PARAMS_PATH) as f:\\n    reader = csv.DictReader(f)\\n    for row in reader:\\n        a_list.append(float(row[\\\"a_discrimination\\\"]))\\n        b_list.append(float(row[\\\"b_difficulty\\\"]))\\n        c_list.append(float(row[\\\"c_guessing\\\"]))\\n        d_list.append(float(row[\\\"d_feasibility\\\"]))\\n\\na = np.array(a_list)\\nb = np.array(b_list)\\nc = np.array(c_list)\\nd = np.array(d_list)\\nprint(f\\\"Loaded {len(a)} item parameters\\\")\\
+…[truncated 3180 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-24T04:37:20.110368+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "cat /root/autodl-tmp/ctrl_contam_llama/results/llama_summary.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "cat /root/autodl-tmp/ctrl_contam_llama/results/llama_summary.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-24T04:37:20.110531+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"Llama-3.1-8B-Instruct\\\",\\n  \\\"conditions\\\": {\\n    \\\"clean\\\": {\\n      \\\"theta_mle\\\": -0.6661461950476987,\\n      \\\"lz_star\\\": 0.8174550743930493,\\n      \\\"accuracy_overall\\\": 0.5914399658168352,\\n      \\\"accuracy_seen\\\": null,\\n      \\\"accuracy_unseen\\\": 0.5914399658168352,\\n      \\\"lz_star_seen\\\": null,\\n      \\\"lz_star_unseen\\\": 0.8174550743930493,\\n      \\\"n_items\\\": 14042,\\n      \\\"n_seen\\\": 0,\\n      \\\"n_unseen\\\": 14042\\n    },\\n    \\\"contam_15\\\": {\\n      \\\"theta_mle\\\": -0.27605690672736094,\\n      \\\"lz_star\\\": -2.657214984959478,\\n      \\\"accuracy_overall\\\": 0.6654322746047572,\\n      \\\"accuracy_seen\\\": 0.7706552706552706,\\n      \\\"accuracy_unseen\\\": 0.6468666219839142,\\n      \\\"lz_star_seen\\\": -0.43213652394553864,\\n      \\\"lz_star_unseen\\\": -2.2653750901585274,\\n      \\\"n_items\\\": 14042,\\n      \\\"n_seen\\\": 2106,\\n      \\\"n_unseen\\\": 11936\\n    },\\n    \\\"contam_50\\\": {\\n      \\\"theta_mle\\\": -0.1490004489620292,\\n      \\\"lz_star\\\": -2.8580875960169965,\\n      \\\"accuracy_overall\\\": 0.6983335707164222,\\n      \\\"accuracy_seen\\\": 0.7572995299814841,\\n      \\\"accuracy_unseen\\\": 0.6393676114513602,\\n      \\\"lz_star_seen\\\": -1.015419551958831,\\n      \\\"lz_star_unseen\\\": -2.0390353897888085,\\n      \\\"n_items\\\": 14042,\\n      \\\"n_seen\\\": 7021,\\n      \\\"n_unseen\\\": 7021\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-24T04:37:20.110710+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "cd /root/autodl-tmp/ctrl_contam_llama && cp eval_lz.py eval_lz.py.bak_0524",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "cd /root/autodl-tmp/ctrl_contam_llama && cp eval_lz.py eval_lz.py.bak_0524",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-24T04:37:20.110841+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-24T04:37:20.111013+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "cat > /root/autodl-tmp/ctrl_contam_llama/reanalyze_contam5.py << 'PYEOF'\n\"\"\"Reanalyze contam_5 results with correct seen/unseen split.\nUses existing response_vector from contam_5_results.json.\"\"\"\n\nimport csv, json, os, re\nimport numpy as np\n\nBASE_DIR = \"/root/autodl-tmp/ctrl_contam_llama\"\nPARAMS_PATH = os.path.join(BASE_DIR, \"mmlu_params.csv\")\nRESULTS_DIR = os.path.join(BASE_DIR, \"results\")\n\n# Llama clean baseline (10 seeds, free-theta lz*)\nCLEAN_LZ_STARS = np.array([\n    0.8446, -1.8765, 0.3452, 0.0206, 1.7323,\n    2.8466, -0.4007, 1.1656, 0.1897, -2.2497\n])\nCLEAN_MEAN = float(CLEAN_LZ_STARS.mean())\nCLEAN_SD = float(CLEAN_LZ_STARS.std(ddof=1))\n\ndef prob_4pl(theta, a, b, c, d):\n    z = a * (theta - b)\n    sigmoid = 1.0 / (1.0 + np.exp(-np.clip(z, -30, 30)))\n    P = c + (d - c) * sigmoid\n    return np.clip(P, 1e-15, 1 - 1e-15)\n\ndef estimate_theta_mle(x, a, b, c, d, max_iter=100, tol=1e-6):\n    x = np.asarray(x, dtype=np.float64)\n    theta = 0.0\n    for _ in range(max_iter):\n        P = prob_4pl(theta, a, b, c, d)\n        Q = 1.0 - P\n        z = a * (theta - b)\n        sigma = 1.0 / (1.0 + np.exp(-np.clip(z, -30, 30)))\n        dP = a * (d - c) * sigma * (1.0 - sigma)\n        grad = np.sum((x - P) * dP / (P * Q))\n        hess = -np.sum(dP**2 / (P * Q))\n        if abs(hess) < 1e-15:\n            break\n        delta = -grad / hess\n        theta += delta\n        if abs(delta) < tol:\n            break\n    return float(np.clip(theta, -4.0, 4.0))\n\ndef compute_lz_star(x, theta_hat, a, b, c, d):\n    x = np.asarray(x, dtype=np.float64)\n    P = prob_4pl(theta_hat, a, b, c, d)\n    Q = 1 - P\n    z = a * (theta_hat - b)\n    sigma = 1.0 / (1.0 + np.exp(-np.clip(z, -30, 30)))\n    dP = a * (d - c) * sigma * (1 - sigma)\n    h = dP / (P * Q)\n    g = np.log(P / Q)\n    l = np.sum(x * np.log(P) + (1 - x) * np.log(Q))\n    E_l = np.sum(P * np.log(P) + Q * np.log(Q))\n    Var_l = np.sum(P * Q * g**2)\n    I_theta = np.sum(P * Q * h**2)\n    C_theta = np.sum(P * Q * h * g)\n    Var_star = Var_l - C_theta**2 / I_theta if I_theta > 1e-15 else Var_l\n    if Var_star <= 0:\n        Var_star = Var_l\n    return float((l - E_l) / np.sqrt(Var_star))\n\n# Load IRT params\na_all, b_all, c_all, d_all = [], [], [], []\nwith open(PARAMS_PATH) as f:\n    reader = csv.DictReader(f)\n    for row in reader:\n        a_all.append(float(row[\"a_discrimination\"]))\n        b_all.append(float(row[\"b_difficulty\"]))\n        c_all.append(float(row[\"c_guessing\"]))\n        d_all.append(float(row[\"d_feasibility\"]))\na_all = np.array(a_all)\nb_all = np.array(b_all)\nc_all = np.array(c_all)\nd_all = np.array(d_all)\nprint(f\"Loaded {len(a_all)} item parameters\")\n\n# Load mmlu_items for item_idx mapping\nwith open(os.path.join(BASE_DIR, \"data\", \"mmlu_items.json\")) as f:\n    mmlu_items = json.load(f)\nitem_indices = np.array([item[\"item_idx\"] for item in mmlu_items])\n\n# Load seen items\nwith open(os.path.join(BASE_DIR, \"data\", \"seen_items_5pct.json\")) as f:\n    seen_set = set(json.load(f))\nprint(f\"seen_items_5pct: {len(seen_set)} items\")\n\n# Load contam_5 response vector\nwith open(os.path.join(RESULTS_DIR, \"contam_5_results.json\")) as f:\n    contam5 = json.load(f)\nresponses = np.array(contam5[\"response_vector\"], dtype=np.float64)\nn_items = len(responses)\nprint(f\"Response vector: {n_items} items, original lz*={contam5['lz_star']:.4f}\")\n\n# Split into seen/unseen\nseen_mask = np.array([idx in seen_set for idx in item_indices[:n_items]])\nunseen_mask = ~seen_mask\n\nseen_idx = np.where(seen_mask)[0]\nunseen_idx = np.where(unseen_mask)[0]\n\nn_seen = int(seen_mask.sum())\nn_unseen = int(unseen_mask.sum())\nprint(f\"n_seen={n_seen}, n_unseen={n_unseen}\")\n\n# Accuracy\nacc_overall = float(responses.mean())\nacc_seen = float(responses[seen_mask].mean()) if n_seen > 0 else None\nacc_unseen = float(responses[unseen_mask].mean()) if n_unseen > 0 else None\n\n# === FREE-THETA lz* ===\n# Overall\ntheta_free = estimate_theta_mle(responses, a_all, b_all, c_all, d_all)\nlz_star_free = compute_lz_star(responses, theta_free, a_all, b_all, c_all, d_all)\n\n# Seen subset\na_seen = a_all[item_indices[:n_items][seen_mask]]\nb_seen = b_all[item_indices[:n_items][seen_mask]]\nc_seen = c_all[item_indices[:n_items][seen_mask]]\nd_seen = d_all[item_indices[:n_items][seen_mask]]\nresp_seen = responses[seen_mask]\n\ntheta_seen = estimate_theta_mle(resp_seen, a_seen, b_seen, c_seen, d_seen)\nlz_star_seen = compute_lz_star(resp_seen, theta_seen, a_seen, b_seen, c_seen, d_seen)\n\n# Unseen subset\na_unseen = a_all[item_indices[:n_items][unseen_mask]]\nb_unseen = b_all[item_indices[:n_items][unseen_mask]]\nc_unseen = c_all[item_indices[:n_items][unseen_mask]]\nd_unseen = d_all[item_indices[:n_items][unseen_mask]]\nresp_unseen = responses[unseen_mask]\n\ntheta_unseen = estimate_theta_mle(resp_unseen, a_unseen, b_unseen, c_unseen, d_unseen)\nlz_star_unseen = compute_lz_star(resp_unseen, theta_unseen, a_unseen, b_unseen, c_unseen, d_unseen)\n\n# === FIXED-THETA lz* ===\nTHETA_FIXED = -0.6661461950476987  # clean MLE\nlz_star_fixed_overall = compute_lz_star(responses, THETA_FIXED, a_all, b_all, c_all, d_all)\nlz_star_fixed_seen = compute_lz_star(resp_seen, THETA_FIXED, a_seen, b_seen, c_seen, d_seen)\nlz_star_fixed_unseen = compute_lz_star(resp_unseen, THETA_FIXED, a_unseen, b_unseen, c_unseen, d_unseen)\n\n# === COHEN'S D ===\nd_free = (lz_star_free - CLEAN_MEAN) / CLEAN_SD\nd_seen_free = (lz_star_seen - CLEAN_MEAN) / CLEAN_SD if lz_star_seen is not None else None\nd_unseen_free = (lz_star_unseen - CLEAN_MEAN) / CLEAN_SD if lz_star_unseen is not None else None\n\n# For fixed-theta Cohen's d, we need the clean fixed-theta baseline\n# Load clean response vector and compute lz*_fixed for clean\nwith open(os.path.join(RESULTS_DIR, \"clean_results.json\")) as f:\n    clean_data = json.load(f)\nclean_rv = np.array(clean_data[\"response_vector\"], dtype=np.float64)\nclean_lz_fixed = compute_lz_star(clean_rv, THETA_FIXED, a_all, b_all, c_all, d_all)\n\n# For fixed-theta, we need all 10 seeds\nclean_fixed_stars = []\nfor seed_suffix in [\"\", \"_s2\", \"_s3\", \"_s4\", \"_s5\", \"_s6\", \"_s7\", \"_s8\", \"_s9\", \"_s10\"]:\n    fname = f\"clean{seed_suffix}_results.json\"\n    fpath = os.path.join(RESULTS_DIR, fname)\n    if os.path.exists(fpath):\n        with open(fpath) as f:\n            d_clean = json.load(f)\n        rv = np.array(d_clean[\"response_vector\"], dtype=np.float64)\n        lz_fixed = compute_lz_star(rv, THETA_FIXED, a_all, b_all, c_all, d_all)\n        clean_fixed_stars.append(lz_fixed)\n\nif clean_fixed_stars:\n    clean_fixed_mean = np.mean(clean_fixed_stars)\n    clean_fixed_sd = np.std(clean_fixed_stars, ddof=1)\n    d_fixed = (lz_star_fixed_overall - clean_fixed_mean) / clean_fixed_sd\nelse:\n    clean_fixed_mean = clean_lz_fixed\n    clean_fixed_sd = None\n    d_fixed = None\n\nprint(\"\\n\" + \"=\"*60)\nprint(\"CONTAM_5 REANALYSIS — LLAMA-3.1-8B-INSTRUCT\")\nprint(\"=\"*60)\n\nprint(f\"\\n--- Accuracy ---\")\nprint(f\"  Overall: {acc_overall:.4f}\")\nprint(f\"  Seen ({n_seen} items): {acc_seen:.4f}\")\nprint(f\"  Unseen ({n_unseen} items): {acc_unseen:.4f}\")\n\nprint(f\"\\n--- Free-theta lz* ---\")\nprint(f\"  Overall: theta={theta_free:.4f}, lz*={lz_star_free:.4f}\")\nprint(f\"  Seen:    theta={theta_seen:.4f}, lz*={lz_star_seen:.4f}\")\nprint(f\"  Unseen:  theta={theta_unseen:.4f}, lz*={lz_star_unseen:.4f}\")\n\nprint(f\"\\n--- Fixed-theta lz* (theta_fixed={THETA_FIXED:.4f}) ---\")\nprint(f\"  Overall: lz*={lz_star_fixed_overall:.4f}\")\nprint(f\"  Seen:    lz*={lz_star_fixed_seen:.4f}\")\nprint(f\"  Unseen:  lz*={lz_star_fixed_unseen:.4f}\")\n\nprint(f\"\\n--- Cohen's d (FREE-theta, Llama baseline: mean={CLEAN_MEAN:.4f}, SD={CLEAN_SD:.4f}) ---\")\nprint(f\"  Overall: d = ({lz_star_free:.4f} - {CLEAN_MEAN:.4f}) / {CLEAN_SD:.4f} = {d_free:.4f}\")\nif d_seen_free is not None:\n    print(f\"  Seen:    d = ({lz_star_seen:.4f} - {CLEAN_MEAN:.4f}) / {CLEAN_SD:.4f} = {d_seen_free:.4f}\")\nif d_unseen_free is not None:\n    print(f\"  Unseen:  d = ({lz_star_unseen:.4f} - {CLEAN_MEAN:.4f}) / {CLEAN_SD:.4f} = {d_unseen_free:.4f}\")\n\nif clean_fixed_stars:\n    print(f\"\\n--- Cohen's d (FIXED-theta, n={len(clean_fixed_stars)} clean seeds) ---\")\n    print(f\"  Clean fixed baseline: mean={clean_fixed_mean:.4f}, SD={clean_fixed_sd:.4f}\")\n    print(f\"  Overall: d = ({lz_star_fixed_overall:.4f} - {clean_fixed_mean:.4f}) / {clean_fixed_sd:.4f} = {d_fixed:.4f}\")\n\n# Save updated results\nupdated = {\n    \"condition\": \"contam_5\",\n    \"theta_mle\": theta_free,\n    \"lz_star\": lz_star_free,\n    \"accuracy_overall\": acc_overall,\n    \"accuracy_seen\": acc_seen,\n    \"accuracy_unseen\": acc_unseen,\n    \"lz_star_seen\": lz_star_seen,\n    \"lz_star_unseen\": lz_star_unseen,\n    \"theta_seen\": theta_seen,\n    \"theta_unseen\": theta_unseen,\n    \"lz_star_fixed_overall\": lz_star_fixed_overall,\n    \"lz_star_fixed_seen\": lz_star_fixed_seen,\n    \"lz_star_fixed_unseen\": lz_star_fixed_unseen,\n    \"theta_fixed\": THETA_FIXED,\n    \"cohens_d_free\": {\n        \"overall\": d_free,\n        \"seen\": d_seen_free,\n        \"unseen\": d_unseen_free,\n        \"baseline_mean\": CLEAN_MEAN,\n        \"baseline_sd\": CLEAN_SD,\n        \"baseline_n\": 10,\n        \"baseline_source\": \"Llama clean (10 seeds, free-theta lz*)\"\n    },\n    \"cohens_d_fixed\": {\n        \"overall\": d_fixed,\n        \"baseline_mean\": float(clean_fixed_mean) if clean_fixed_stars else None,\n        \"baseline_sd\": float(clean_fixed_sd) if clean_fixed_sd is not None else None,\n        \"baseline_n\": len(clean_fixed_stars),\n        \"baseline_source\": \"Llama clean (fixed-theta lz*)\"\n    },\n    \"n_items\": n_items,\n    \"n_seen\": n_seen,\n    \"n_unseen\": n_unseen,\n    \"response_vector\": contam5[\"response_vector\"],\n}\n\nout_path = os.path.join(RESULTS_DIR, \"contam_5_results.json\")\nwith open(out_path, \"w\") as f:\n    json.dump(updated, f, indent=2)\nprint(f\"\\nSaved updated results to {out_path}\")\n\n# Also update theta_fixed_llama.json\ntheta_fixed_path = os.path.join(RESULTS_DIR, \"theta_fixed_llama.json\")\nwith open(theta_fixed_path) as f:\n    tf_data = json.load(f)\n\ntf_data[\"conditions\"][\"contam_5\"] = {\n    \"theta_free\": round(theta_free, 6),\n    \"lz_star_free\": round(lz_star_free, 6),\n    \"lz_star_fixed\": round(lz_star_fixed_overall, 6),\n    \"accuracy\": round(acc_overall, 6),\n    \"delta_lz_star_fixed\": round(lz_star_fixed_overall - tf_data[\"conditions\"][\"clean\"][\"lz_star_fixed\"], 6)\n}\n\nwith open(theta_fixed_path, \"w\") as f:\n    json.dump(tf_data, f, indent=2)\nprint(f\"Updated theta_fixed_llama.json with contam_5 entry\")\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "cat > /root/autodl-tmp/ctrl_contam_llama/reanalyze_contam5.py << 'PYEOF'\n\"\"\"Reanalyze contam_5 results with correct seen/unseen split.\nUses existing response_vector from contam_5_results.json.\"\"\"\n\nimport csv, json, os, re\nimport numpy as np\n\nBASE_DIR = \"/root/autodl-tmp/ctrl_contam_llama\"\nPARAMS_PATH = os.path.join(BASE_DIR, \"mmlu_params.csv\")\nRESULTS_DIR = os.path.join(BASE_DIR, \"results\")\n\n# Llama clean baseline (10 seeds, free-theta lz*)\nCLEAN_LZ_STARS = np.array([\n    0.8446, -1.8765, 0.3452, 0.0206, 1.7323,\n    2.8466, -0.4007, 1.1656, 0.1897, -2.2497\n])\nCLEAN_MEAN = float(CLEAN_LZ_STARS.mean())\nCLEAN_SD = float(CLEAN_LZ_STARS.std(ddof=1))\n\ndef prob_4pl(theta, a, b, c, d):\n    z = a * (theta - b)\n    sigmoid = 1.0 / (1.0 + np.exp(-np.clip(z, -30, 30)))\n    P = c + (d - c) * sigmoid\n    return np.clip(P, 1e-15, 1 - 1e-15)\n\ndef estimate_theta_mle(x, a, b, c, d, max_iter=100, tol=1e-6):\n    x = np.asarray(x, dtype=np.float64)\n    theta = 0.0\n    for _ in range(max_iter):\n        P = prob_4pl(theta, a, b, c, d)\n        Q = 1.0 - P\n        z = a * (theta - b)\n        sigma = 1.0 / (1.0 + np.exp(-np.clip(z, -30, 30)))\n        dP = a * (d - c) * sigma * (1.0 - sigma)\n        grad = np.sum((x - P) * dP / (P * Q))\n        hess = -np.sum(dP**2 / (P * Q))\n        if abs(hess) < 1e-15:\n            break\n        delta = -grad / hess\n        theta += delta\n        if abs(delta) < tol:\n            break\n    return float(np.clip(theta, -4.0, 4.0))\n\ndef compute_lz_star(x, theta_hat, a, b, c, d):\n    x = np.asarray(x, dtype=np.float64)\n    P = prob_4pl(theta_hat, a, b, c, d)\n    Q = 1 - P\n    z = a * (theta_hat - b)\n    sigma = 1.0 / (1.0 + np.exp(-np.clip(z, -30, 30)))\n    dP = a * (d - c) * sigma * (1 - sigma)\n    h = dP / (P * Q)\n    g = np.log(P / Q)\n    l = np.sum(x * np.log(P) + (1 - x) * np.log(Q))\n    E_l = np.sum(P * np.log(P) + Q * np.log(Q))\n    Var_l = np.sum(P * Q * g**2)\n    I_theta = np.sum(P * Q * h**2)\n    C_theta = np.sum(P * Q * h * g)\n    Var_star = Var_l - C_theta**2 / I_theta if I_theta > 1e-15 else Var_l\n    if Var_star <= 0:\n        Var_star = Var_l\n    return float((l - E_l) / np.sqrt(Var_star))\n\n# Load IRT params\na_all, b_all, c_all, d_all = [], [], [], []\nwith open(PARAMS_PATH) as f:\n    reader = csv.DictReader(f)\n    for row in reader:\n        a_all.append(float(row[\"a_discrimination\"]))\n        b_all.append(float(row[\"b_difficulty\"]))\n        c_all.append(float(row[\"c_guessing\"]))\n        d_all.append(float(row[\"d_feasibility\"]))\na_all = np.array(a_all)\nb_all = np.array(b_all)\nc_all = np.array(c_all)\nd_all = np.array(d_all)\nprint(f\"Loaded {len(a_all)} item parameters\")\n\n# Load mmlu_items for item_idx mapping\nwith open(os.path.join(BASE_DIR, \"data\", \"mmlu_items.json\")) as f:\n    mmlu_items = json.load(f)\nitem_indices = np.array([item[\"item_idx\"] for item in mmlu_items])\n\n# Load seen items\nwith open(os.path.join(BASE_DIR, \"data\", \"seen_items_5pct.json\")) as f:\n    seen_set = set(json.load(f))\nprint(f\"seen_items_5pct: {len(seen_set)} items\")\n\n# Load contam_5 response vector\nwith open(os.path.join(RESULTS_DIR, \"contam_5_results.json\")) as f:\n    contam5 = json.load(f)\nresponses = np.array(contam5[\"response_vector\"], dtype=np.float64)\nn_items = len(responses)\nprint(f\"Response vector: {n_items} items, original lz*={contam5['lz_star']:.4f}\")\n\n# Split into seen/unseen\nseen_mask = np.array([idx in seen_set for idx in item_indices[:n_items]])\nunseen_mask = ~seen_mask\n\nseen_idx = np.where(seen_mask)[0]\nunseen_idx = np.where(unseen_mask)[0]\n\nn_seen = int(seen_mask.sum())\nn_unseen = int(unseen_mask.sum())\nprint(f\"n_seen={n_seen}, n_unseen={n_unseen}\")\n\n# Accuracy\nacc_overall = float(responses.mean())\nacc_seen = float(responses[seen_mask].mean()) if n_seen > 0 else None\nacc_unseen = float(responses[unseen_mask].mean()) if n_unseen > 0 else None\n\n# === FREE-THETA lz* ===\n# Overall\ntheta_free = estimate_theta_mle(responses, a_all, b_all, c_all, d_all)\nlz_star_free = compute_lz_star(responses, theta_free, a_all, b_all, c_all, d_all)\n\n# Seen subset\na_seen = a_all[item_indices[:n_items][seen_mask]]\nb_seen = b_all[item_indices[:n_items][seen_mask]]\nc_seen = c_all[item_indices[:n_items][seen_mask]]\nd_seen = d_all[item_indices[:n_items][seen_mask]]\nresp_seen = responses[seen_mask]\n\ntheta_seen = estimate_theta_mle(resp_seen, a_seen, b_seen, c_seen, d_seen)\nlz_star_seen = compute_lz_star(resp_seen, theta_seen, a_seen, b_seen, c_seen, d_seen)\n\n# Unseen subset\na_unseen = a_all[item_indices[:n_items][unseen_mask]]\nb_unseen = b_all[item_indices[:n_items][unseen_mask]]\nc_unseen = c_all[item_indices[:n_items][unseen_mask]]\nd_unseen = d_all[item_indices[:n_items][unseen_mask]]\nresp_unseen = responses[unseen_mask]\n\ntheta_unseen = estimate_theta_mle(resp_unseen, a_unseen, b_unseen, c_unseen, d_unseen)\nlz_star_unseen = compute_lz_star(resp_unseen, theta_unseen, a_unseen, b_unseen, c_unseen, d_unseen)\n\n# === FIXED-THETA lz* ===\nTHETA_FIXED = -0.6661461950476987  # clean MLE\nlz_star_fixed_overall = compute_lz_star(responses, THETA_FIXED, a_all, b_all, c_all, d_all)\nlz_star_fixed_seen = compute_lz_star(resp_seen, THETA_FIXED, a_seen, b_seen, c_seen, d_seen)\nlz_star_fixed_unseen = compute_lz_star(resp_unseen, THETA_FIXED, a_unseen, b_unseen, c_unseen, d_unseen)\n\n# === COHEN'S D ===\nd_free = (lz_star_free - CLEAN_MEAN) / CLEAN_SD\nd_seen_free = (lz_star_seen - CLEAN_MEAN) / CLEAN_SD if lz_star_seen is not None else None\nd_unseen_free = (lz_star_unseen - CLEAN_MEAN) / CLEAN_SD if lz_star_unseen is not None else None\n\n# For fixed-theta Cohen's d, we need the clean fixed-theta baseline\n# Load clean response vector and compute lz*_fixed for clean\nwith open(os.path.join(RESULTS_DIR, \"clean_results.json\")) as f:\n    clean_data = json.load(f)\nclean_rv = np.array(clean_data[\"response_vector\"], dtype=np.float64)\nclean_lz_fixed = compute_lz_star(clean_rv, THETA_FIXED, a_all, b_all, c_all, d_all)\n\n# For fixed-theta, we need all 10 seeds\nclean_fixed_stars = []\nfor seed_suffix in [\"\", \"_s2\", \"_s3\", \"_s4\", \"_s5\", \"_s6\", \"_s7\", \"_s8\", \"_s9\", \"_s10\"]:\n    fname = f\"clean{seed_suffix}_results.json\"\n    fpath = os.path.join(RESULTS_DIR, fname)\n    if os.path.exists(fpath):\n        with open(fpath) as f:\n            d_clean = json.load(f)\n        rv = np.array(d_clean[\"response_vector\"], dtype=np.float64)\n        lz_fixed = compute_lz_star(rv, THETA_FIXED, a_all, b_all, c_all, d_all)\n        clean_fixed_stars.append(lz_fixed)\n\nif clean_fixed_stars:\n    clean_fixed_mean = np.mean(clean_fixed_stars)\n    clean_fixed_sd = np.std(clean_fixed_stars, ddof=1)\n    d_fixed = (lz_star_fixed_overall - clean_fixed_mean) / clean_fixed_sd\nelse:\n    clean_fixed_mean = clean_lz_fixed\n    clean_fixed_sd = None\n    d_fixed = None\n\nprint(\"\\n\" + \"=\"*60)\nprint(\"CONTAM_5 REANALYSIS — LLAMA-3.1-8B-INSTRUCT\")\nprint(\"=\"*60)\n\nprint(f\"\\n--- Accuracy ---\")\nprint(f\"  Overall: {acc_overall:.4f}\")\nprint(f\"  Seen ({n_seen} items): {acc_seen:.4f}\")\nprint(f\"  Unseen ({n_unseen} items): {acc_unseen:.4f}\")\n\nprint(f\"\\n--- Free-theta lz* ---\")\nprint(f\"  Overall: theta={theta_free:.4f}, lz*={lz_star_free:.4f}\")\nprint(f\"  Seen:    theta={theta_seen:.4f}, lz*={lz_star_seen:.4f}\")\nprint(f\"  Unseen:  theta={theta_unseen:.4f}, lz*={lz_star_unseen:.4f}\")\n\nprint(f\"\\n--- Fixed-theta lz* (theta_fixed={THETA_FIXED:.4f}) ---\")\nprint(f\"  Overall: lz*={lz_star_fixed_overall:.4f}\")\nprint(f\"  Seen:    lz*={lz_star_fixed_seen:.4f}\")\nprint(f\"  Unseen:  lz*={lz_star_fixed_unseen:.4f}\")\n\nprint(f\"\\n--- Cohen's d (FREE-theta, Llama baseline: mean={CLEAN_MEAN:.4f}, SD={CLEAN_SD:.4f}) ---\")\nprint(f\"  Overall: d = ({lz_star_free:.4f} - {CLEAN_MEAN:.4f}) / {CLEAN_SD:.4f} = {d_free:.4f}\")\nif d_seen_free is not None:\n    print(f\"  Seen:    d = ({lz_star_seen:.4f} - {CLEAN_MEAN:.4f}) / {CLEAN_SD:.4f} = {d_seen_free:.4f}\")\nif d_unseen_free is not None:\n    print(f\"  Unseen:  d = ({lz_star_unseen:.4f} - {CLEAN_MEAN:.4f}) / {CLEAN_SD:.4f} = {d_unseen_free:.4f}\")\n\nif clean_fixed_stars:\n    print(f\"\\n--- Cohen's d (FIXED-theta, n={len(clean_fixed_stars)} clean seeds) ---\")\n    print(f\"  Clean fixed baseline: mean={clean_fixed_mean:.4f}, SD={clean_fixed_sd:.4f}\")\n    print(f\"  Overall: d = ({lz_star_fixed_overall:.4f} - {clean_fixed_mean:.4f}) / {clean_fixed_sd:.4f} = {d_fixed:.4f}\")\n\n# Save updated results\nupdated = {\n    \"condition\": \"contam_5\",\n    \"theta_mle\": theta_free,\n    \"lz_star\": lz_star_free,\n    \"accuracy_overall\": acc_overall,\n    \"accuracy_seen\": acc_seen,\n    \"accuracy_unseen\": acc_unseen,\n    \"lz_star_seen\": lz_star_seen,\n    \"lz_star_unseen\": lz_star_unseen,\n    \"theta_seen\": theta_seen,\n    \"theta_unseen\": theta_unseen,\n    \"lz_star_fixed_overall\": lz_star_fixed_overall,\n    \"lz_star_fixed_seen\": lz_star_fixed_seen,\n    \"lz_star_fixed_unseen\": lz_star_fixed_unseen,\n    \"theta_fixed\": THETA_FIXED,\n    \"cohens_d_free\": {\n        \"overall\": d_free,\n        \"seen\": d_seen_free,\n        \"unseen\": d_unseen_free,\n        \"baseline_mean\": CLEAN_MEAN,\n        \"baseline_sd\": CLEAN_SD,\n        \"baseline_n\": 10,\n        \"baseline_source\": \"Llama clean (10 seeds, free-theta lz*)\"\n    },\n    \"cohens_d_fixed\": {\n        \"overall\": d_fixed,\n        \"baseline_mean\": float(clean_fixed_mean) if clean_fixed_stars else None,\n        \"baseline_sd\": float(clean_fixed_sd) if clean_fixed_sd is not None else None,\n        \"baseline_n\": len(clean_fixed_stars),\n        \"baseline_source\": \"Llama clean (fixed-theta lz*)\"\n    },\n    \"n_items\": n_items,\n    \"n_seen\": n_seen,\n    \"n_unseen\": n_unseen,\n    \"response_vector\": contam5[\"response_vector\"],\n}\n\nout_path = os.path.join(RESULTS_DIR, \"contam_5_results.json\")\nwith open(out_path, \"w\") as f:\n    json.dump(updated, f, indent=2)\nprint(f\"\\nSaved updated results to {out_path}\")\n\n# Also update theta_fixed_llama.json\ntheta_fixed_path = os.path.join(RESULTS_DIR, \"theta_fixed_llama.json\")\nwith open(theta_fixed_path) as f:\n    tf_data = json.load(f)\n\ntf_data[\"conditions\"][\"contam_5\"] = {\n    \"theta_free\": round(theta_free, 6),\n    \"lz_star_free\": round(lz_star_free, 6),\n    \"lz_star_fixed\": round(lz_star_fixed_overall, 6),\n    \"accuracy\": round(acc_overall, 6),\n    \"delta_lz_star_fixed\": round(lz_star_fixed_overall - tf_data[\"conditions\"][\"clean\"][\"lz_star_fixed\"], 6)\n}\n\nwith open(theta_fixed_path, \"w\") as f:\n    json.dump(tf_data, f, indent=2)\nprint(f\"Updated theta_fixed_llama.json with contam_5 entry\")\nPYEOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-24T04:37:20.111267+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-24T04:37:20.111422+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "cd /root/autodl-tmp/ctrl_contam_llama && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && WANDB_MODE=disabled python reanalyze_contam5.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "cd /root/autodl-tmp/ctrl_contam_llama && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && WANDB_MODE=disabled python reanalyze_contam5.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-24T04:37:20.111576+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 14042 item parameters\\nseen_items_5pct: 702 items\\nResponse vector: 14042 items, original lz*=-4.9540\\nn_seen=702, n_unseen=13340\\n\\n============================================================\\nCONTAM_5 REANALYSIS — LLAMA-3.1-8B-INSTRUCT\\n============================================================\\n\\n--- Accuracy ---\\n  Overall: 0.6342\\n  Seen (702 items): 0.7920\\n  Unseen (13340 items): 0.6259\\n\\n--- Free-theta lz* ---\\n  Overall: theta=-0.4089, lz*=-4.9540\\n  Seen:    theta=0.4024, lz*=-1.4203\\n  Unseen:  theta=-0.4419, lz*=-4.5677\\n\\n--- Fixed-theta lz* (theta_fixed=-0.6661) ---\\n  Overall: lz*=-1.8923\\n  Seen:    lz*=-0.2700\\n  Unseen:  lz*=-1.8797\\n\\n--- Cohen's d (FREE-theta, Llama baseline: mean=0.2618, SD=1.5416) ---\\n  Overall: d = (-4.9540 - 0.2618) / 1.5416 = -3.3833\\n  Seen:    d = (-1.4203 - 0.2618) / 1.5416 = -1.0911\\n  Unseen:  d = (-4.5677 - 0.2618) / 1.5416 = -3.1328\\n\\n--- Cohen's d (FIXED-theta, n=10 clean seeds) ---\\n  Clean fixed baseline: mean=0.5970, SD=1.5086\\n  Overall: d = (-1.8923 - 0.5970) / 1.5086 = -1.6501\\n\\nSaved updated results to /root/autodl-tmp/ctrl_contam_llama/results/contam_5_results.json\\nUpdated theta_fixed_llama.json with contam_5 entry\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-24T04:37:20.111767+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "cd /root/autodl-tmp/ctrl_contam_llama && python3 -c \"\nimport re\n\nwith open('eval_lz.py') as f:\n    content = f.read()\n\nold_block = '''    seen_15_path = os.path.join(BASE_DIR, \\\"data\\\", \\\"seen_items_15pct.json\\\")\n    seen_25_path = os.path.join(BASE_DIR, \\\"data\\\", \\\"seen_items_25pct.json\\\")\n    seen_50_path = os.path.join(BASE_DIR, \\\"data\\\", \\\"seen_items_50pct.json\\\")\n    seen_15 = set(json.load(open(seen_15_path))) if os.path.exists(seen_15_path) else set()\n    seen_25 = set(json.load(open(seen_25_path))) if os.path.exists(seen_25_path) else set()\n    seen_50 = set(json.load(open(seen_50_path))) if os.path.exists(seen_50_path) else set()\n\n    if \\\"contam_15\\\" in args.condition:\n        seen_set = seen_15\n    elif \\\"contam_25\\\" in args.condition:\n        seen_set = seen_25\n    elif \\\"contam_50\\\" in args.condition:\n        seen_set = seen_50\n    else:\n        seen_set = set()'''\n\nnew_block = '''    import re as _re\n    _m = _re.search(r'contam_(\\d+)', args.condition)\n    if _m:\n        _pct = _m.group(1)\n        _seen_path = os.path.join(BASE_DIR, \\\"data\\\", f\\\"seen_items_{_pct}pct.json\\\")\n        if os.path.exists(_seen_path):\n            seen_set = set(json.load(open(_seen_path)))\n            print(f\\\"Loaded {len(seen_set)} seen items from {_seen_path}\\\")\n        else:\n            print(f\\\"WARNING: {_seen_path} not found, seen_set=empty\\\")\n            seen_set = set()\n    else:\n        seen_set = set()'''\n\nif old_block in content:\n    content = content.replace(old_block, new_block)\n    with open('eval_lz.py', 'w') as f:\n        f.write(content)\n    print('PATCHED OK')\nelse:\n    print('OLD BLOCK NOT FOUND — manual check needed')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "cd /root/autodl-tmp/ctrl_contam_llama && python3 -c \"\nimport re\n\nwith open('eval_lz.py') as f:\n    content = f.read()\n\nold_block = '''    seen_15_path = os.path.join(BASE_DIR, \\\"data\\\", \\\"seen_items_15pct.json\\\")\n    seen_25_path = os.path.join(BASE_DIR, \\\"data\\\", \\\"seen_items_25pct.json\\\")\n    seen_50_path = os.path.join(BASE_DIR, \\\"data\\\", \\\"seen_items_50pct.json\\\")\n    seen_15 = set(json.load(open(seen_15_path))) if os.path.exists(seen_15_path) else set()\n    seen_25 = set(json.load(open(seen_25_path))) if os.path.exists(seen_25_path) else set()\n    seen_50 = set(json.load(open(seen_50_path))) if os.path.exists(seen_50_path) else set()\n\n    if \\\"contam_15\\\" in args.condition:\n        seen_set = seen_15\n    elif \\\"contam_25\\\" in args.condition:\n        seen_set = seen_25\n    elif \\\"contam_50\\\" in args.condition:\n        seen_set = seen_50\n    else:\n        seen_set = set()'''\n\nnew_block = '''    import re as _re\n    _m = _re.search(r'contam_(\\d+)', args.condition)\n    if _m:\n        _pct = _m.group(1)\n        _seen_path = os.path.join(BASE_DIR, \\\"data\\\", f\\\"seen_items_{_pct}pct.json\\\")\n        if os.path.exists(_seen_path):\n            seen_set = set(json.load(open(_seen_path)))\n            print(f\\\"Loaded {len(seen_set)} seen items from {_seen_path}\\\")\n        else:\n            print(f\\\"WARNING: {_seen_path} not found, seen_set=empty\\\")\n            seen_set = set()\n    else:\n        seen_set = set()'''\n\nif old_block in content:\n    content = content.replace(old_block, new_block)\n    with open('eval_lz.py', 'w') as f:\n        f.write(content)\n    print('PATCHED OK')\nelse:\n    print('OLD BLOCK NOT FOUND — manual check needed')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-24T04:37:20.112002+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/ctrl_contam_llama && python3 -c \\\"\\\\nimport re\\\\n\\\\nwith open(\\\\'eval_lz.py\\\\') as f:\\\\n    content = f.read()\\\\n\\\\nold_block = \\\\'\\\\'\\\\'    seen_15_path = os.path.join(BASE_DIR, \\\\\\\\\\\"data\\\\\\\\\\\", \\\\\\\\\\\"seen_items_15pct.json\\\\\\\\\\\")\\\\n    seen_25_path = os.path.join(BASE_DIR, \\\\\\\\\\\"data\\\\\\\\\\\", \\\\\\\\\\\"seen_items_25pct.json\\\\\\\\\\\")\\\\n    seen_50_path = os.path.join(BASE_DIR, \\\\\\\\\\\"data\\\\\\\\\\\", \\\\\\\\\\\"seen_items_50pct.json\\\\\\\\\\\")\\\\n    seen_15 = set(json.load(open(seen_15_path))) if os.path.exists(seen_15_path) else set()\\\\n    seen_25 = set(json.load(open(seen_25_path))) if os.path.exists(seen_25_path) else set()\\\\n    seen_50 = set(json.load(open(seen_50_path))) if os.path.exists(seen_50_path) else set()\\\\n\\\\n    if \\\\\\\\\\\"contam_15\\\\\\\\\\\" in args.condition:\\\\n        seen_set = seen_15\\\\n    elif \\\\\\\\\\\"contam_25\\\\\\\\\\\" in args.condition:\\\\n        seen_set = seen_25\\\\n    elif \\\\\\\\\\\"contam_50\\\\\\\\\\\" in args.condition:\\\\n        seen_set = seen_50\\\\n    else:\\\\n        seen_set = set()\\\\'\\\\'\\\\'\\\\n\\\\nnew_block = \\\\'\\\\'\\\\'    import re as _re\\\\n    _m = _re.search(r\\\\'contam_(\\\\\\\\d+)\\\\', args.condition)\\\\n    if _m:\\\\n        _pct = _m.group(1)\\\\n        _seen_path = os.path.join(BASE_DIR, \\\\\\\\\\\"data\\\\\\\\\\\", f\\\\\\\\\\\"seen_items_{_pct}pct.json\\\\\\\\\\\")\\\\n        if os.path.exists(_seen_path):\\\\n            seen_set = set(json.load(open(_seen_path)))\\\\n            print(f\\\\\\\\\\\"Loaded {len(seen_set)} seen items from {_seen_path}\\\\\\\\\\\")\\\\n        else:\\\\n            print(f\\\\\\\\\\\"WARNING: {_seen_path} not found, seen_set=empty\\\\\\\\\\\")\\\\n            seen_set = set()\\\\n    else:\\\\n        seen_set = set()\\\\'\
+…[truncated 467 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-24T04:37:20.112205+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "cat > /tmp/patch_eval.py << 'PYEOF'\nimport re\n\nwith open('/root/autodl-tmp/ctrl_contam_llama/eval_lz.py') as f:\n    content = f.read()\n\nold = '''    seen_15_path = os.path.join(BASE_DIR, \"data\", \"seen_items_15pct.json\")\n    seen_25_path = os.path.join(BASE_DIR, \"data\", \"seen_items_25pct.json\")\n    seen_50_path = os.path.join(BASE_DIR, \"data\", \"seen_items_50pct.json\")\n    seen_15 = set(json.load(open(seen_15_path))) if os.path.exists(seen_15_path) else set()\n    seen_25 = set(json.load(open(seen_25_path))) if os.path.exists(seen_25_path) else set()\n    seen_50 = set(json.load(open(seen_50_path))) if os.path.exists(seen_50_path) else set()\n\n    if \"contam_15\" in args.condition:\n        seen_set = seen_15\n    elif \"contam_25\" in args.condition:\n        seen_set = seen_25\n    elif \"contam_50\" in args.condition:\n        seen_set = seen_50\n    else:\n        seen_set = set()'''\n\nnew = '''    import re as _re\n    _m = _re.search(r'contam_(\\\\d+)', args.condition)\n    if _m:\n        _pct = _m.group(1)\n        _seen_path = os.path.join(BASE_DIR, \"data\", f\"seen_items_{_pct}pct.json\")\n        if os.path.exists(_seen_path):\n            seen_set = set(json.load(open(_seen_path)))\n            print(f\"Loaded {len(seen_set)} seen items from {_seen_path}\")\n        else:\n            print(f\"WARNING: {_seen_path} not found, seen_set=empty\")\n            seen_set = set()\n    else:\n        seen_set = set()'''\n\nif old in content:\n    content = content.replace(old, new)\n    with open('/root/autodl-tmp/ctrl_contam_llama/eval_lz.py', 'w') as f:\n        f.write(content)\n    print('PATCHED OK')\nelse:\n    print('OLD BLOCK NOT FOUND')\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/patch_eval.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "cat > /tmp/patch_eval.py << 'PYEOF'\nimport re\n\nwith open('/root/autodl-tmp/ctrl_contam_llama/eval_lz.py') as f:\n    content = f.read()\n\nold = '''    seen_15_path = os.path.join(BASE_DIR, \"data\", \"seen_items_15pct.json\")\n    seen_25_path = os.path.join(BASE_DIR, \"data\", \"seen_items_25pct.json\")\n    seen_50_path = os.path.join(BASE_DIR, \"data\", \"seen_items_50pct.json\")\n    seen_15 = set(json.load(open(seen_15_path))) if os.path.exists(seen_15_path) else set()\n    seen_25 = set(json.load(open(seen_25_path))) if os.path.exists(seen_25_path) else set()\n    seen_50 = set(json.load(open(seen_50_path))) if os.path.exists(seen_50_path) else set()\n\n    if \"contam_15\" in args.condition:\n        seen_set = seen_15\n    elif \"contam_25\" in args.condition:\n        seen_set = seen_25\n    elif \"contam_50\" in args.condition:\n        seen_set = seen_50\n    else:\n        seen_set = set()'''\n\nnew = '''    import re as _re\n    _m = _re.search(r'contam_(\\\\d+)', args.condition)\n    if _m:\n        _pct = _m.group(1)\n        _seen_path = os.path.join(BASE_DIR, \"data\", f\"seen_items_{_pct}pct.json\")\n        if os.path.exists(_seen_path):\n            seen_set = set(json.load(open(_seen_path)))\n            print(f\"Loaded {len(seen_set)} seen items from {_seen_path}\")\n        else:\n            print(f\"WARNING: {_seen_path} not found, seen_set=empty\")\n            seen_set = set()\n    else:\n        seen_set = set()'''\n\nif old in content:\n    content = content.replace(old, new)\n    with open('/root/autodl-tmp/ctrl_contam_llama/eval_lz.py', 'w') as f:\n        f.write(content)\n    print('PATCHED OK')\nelse:\n    print('OLD BLOCK NOT FOUND')\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/patch_eval.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-24T04:37:20.112378+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PATCHED OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.98}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-24T04:37:20.112518+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "grep -n \"seen\" /root/autodl-tmp/ctrl_contam_llama/eval_lz.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "grep -n \"seen\" /root/autodl-tmp/ctrl_contam_llama/eval_lz.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-24T04:37:20.112676+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"174:        _seen_path = os.path.join(BASE_DIR, \\\"data\\\", f\\\"seen_items_{_pct}pct.json\\\")\\n175:        if os.path.exists(_seen_path):\\n176:            seen_set = set(json.load(open(_seen_path)))\\n177:            print(f\\\"Loaded {len(seen_set)} seen items from {_seen_path}\\\")\\n179:            print(f\\\"WARNING: {_seen_path} not found, seen_set=empty\\\")\\n180:            seen_set = set()\\n182:        seen_set = set()\\n219:    seen_correct = 0\\n220:    seen_total = 0\\n221:    unseen_correct = 0\\n222:    unseen_total = 0\\n240:        is_seen = item[\\\"item_idx\\\"] in seen_set\\n241:        if is_seen:\\n242:            seen_correct += correct\\n243:            seen_total += 1\\n245:            unseen_correct += correct\\n246:            unseen_total += 1\\n256:    seen_responses = []\\n257:    seen_indices = []\\n258:    unseen_responses = []\\n259:    unseen_indices = []\\n262:        if idx in seen_set:\\n263:            seen_responses.append(responses[i])\\n264:            seen_indices.append(idx)\\n266:            unseen_responses.append(responses[i])\\n267:            unseen_indices.append(idx)\\n269:    lz_star_seen = None\\n270:    lz_star_unseen = None\\n271:    if seen_indices:\\n272:        theta_seen = estimate_theta_mle(seen_responses, irt_params, seen_indices)\\n273:        lz_star_seen = compute_lz_star(seen_responses, irt_params, seen_indices, theta_seen)\\n274:    if unseen_indices:\\n275:        theta_unseen = estimate_theta_mle(unseen_responses, irt_params, unseen_indices)\\n276:        lz_star_unseen = compute_lz_star(unseen_responses, irt_params, unseen_indices, theta_unseen)\\n279:    acc_seen = seen_correct / seen_total if seen_total > 0 else None\\n280:    acc_unseen = unseen_correct / unseen_total if unseen_total > 0 else None\\n287:        \\\"accuracy_seen\\\": acc_seen,\\n288:        \\\"accuracy_unseen\\\": acc_unseen,\\n289:        \\\"lz_star_seen\\\": float(
+…[truncated 533 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-24T04:37:20.112825+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "cat /root/autodl-tmp/ctrl_contam_llama/results/theta_fixed_llama.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "cat /root/autodl-tmp/ctrl_contam_llama/results/theta_fixed_llama.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-24T04:37:20.112976+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"theta_fixed\\\": -0.6661461950476987,\\n  \\\"conditions\\\": {\\n    \\\"clean\\\": {\\n      \\\"theta_free\\\": -0.666146,\\n      \\\"lz_star_free\\\": 0.844555,\\n      \\\"lz_star_fixed\\\": 0.844555,\\n      \\\"accuracy\\\": 0.59144\\n    },\\n    \\\"contam_15\\\": {\\n      \\\"theta_free\\\": -0.276057,\\n      \\\"lz_star_free\\\": -2.992192,\\n      \\\"lz_star_fixed\\\": 0.958591,\\n      \\\"accuracy\\\": 0.665432,\\n      \\\"delta_lz_star_fixed\\\": 0.114036\\n    },\\n    \\\"contam_50\\\": {\\n      \\\"theta_free\\\": -0.149,\\n      \\\"lz_star_free\\\": -3.331334,\\n      \\\"lz_star_fixed\\\": 1.171866,\\n      \\\"accuracy\\\": 0.698334,\\n      \\\"delta_lz_star_fixed\\\": 0.327311\\n    },\\n    \\\"contam_5\\\": {\\n      \\\"theta_free\\\": -0.408881,\\n      \\\"lz_star_free\\\": -4.954015,\\n      \\\"lz_star_fixed\\\": -1.892318,\\n      \\\"accuracy\\\": 0.634169,\\n      \\\"delta_lz_star_fixed\\\": -2.736873\\n    }\\n  },\\n  \\\"note\\\": \\\"Using lz* (Snijders 2001 corrected)\\\",\\n  \\\"dose_response_ratio\\\": 2.870243,\\n  \\\"monotonic\\\": true\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49 · 2026-05-24T04:37:20.113178+00:00_
+
+All done. Here's the complete summary:
+
+---
+
+## eval_lz.py Fix
+
+**Bug**: Lines 170-184 hardcoded only `contam_15/25/50` seen_items paths. `contam_5` fell through to `else: seen_set = set()`, so all 702 seen items were treated as unseen.
+
+**Fix**: Replaced with regex-based lookup `re.search(r'contam_(\d+)', args.condition)` → loads `seen_items_{pct}pct.json` dynamically. Works for any contamination percentage.
+
+---
+
+## Contam_5 Results (Llama-3.1-8B-Instruct)
+
+| 指标 | Overall | Seen (702) | Unseen (13340) |
+|------|---------|------------|----------------|
+| Accuracy | 0.6342 | 0.7920 | 0.6259 |
+| lz* (free-θ) | **-4.954** | -1.420 | -4.568 |
+| lz* (fixed-θ) | **-1.892** | -0.270 | -1.880 |
+
+## Cohen's d（Llama clean baseline: **mean=0.262, SD=1.542**）
+
+| 类型 | Overall | Seen | Unseen |
+|------|---------|------|--------|
+| free-θ | **-3.38** | -1.09 | -3.13 |
+| fixed-θ | **-1.65** | — | — |
+
+Fixed-θ baseline: mean=0.597, SD=1.509 (10 clean seeds)
+
+## theta_fixed_llama.json
+
+已更新，新增 contam_5 条目：
+- `lz_star_fixed = -1.892`
+- `delta_lz_star_fixed = -2.737`（相对 clean 的 0.845）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_eval_llama-5pct-correct-baseline_20260524T043305"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "c7c989935d34847c60df",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "code fill 3gpu urgent",
+  "task_key": "worker_code_fill-3gpu-urgent_20260521T085106",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fill-3gpu-urgent_20260521T085106.log",
+    "occurrence": 1,
+    "bytes": 1392398,
+    "sha256": "25e7714a968f4ab8bafea944432d0e2d88352fbcd6c3fe442d8e9dd6cd2a28f9"
+  },
+  "statistics": {
+    "messages": 442,
+    "user_turns": 1,
+    "tool_calls": 165,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 104,
+      "tool_call": 165,
+      "tool_result": 165,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 269,
+      "chunks": [
+        {
+          "path": "c7c989935d34847c60df-part-0001.json",
+          "message_count": 168
+        },
+        {
+          "path": "c7c989935d34847c60df-part-0002.json",
+          "message_count": 101
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 173,
+      "chunks": [
+        {
+          "path": "c7c989935d34847c60df-part-0002.json",
+          "message_count": 76
+        },
+        {
+          "path": "c7c989935d34847c60df-part-0003.json",
+          "message_count": 97
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fill-3gpu-urgent.md"
+}

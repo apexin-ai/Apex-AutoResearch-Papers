@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0",
+  "id": "e967aef40f8703d1fd7c",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "ops monitor 50s3 eval",
+  "task_key": "worker_ops_monitor-50s3-eval_20260522T193052",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_monitor-50s3-eval_20260522T193052.log",
+    "occurrence": 1,
+    "bytes": 1443920,
+    "sha256": "4b2c575da6872c36c1a2d492728d2bde876df3e7d2fbf876f0652f8601863eb5"
+  },
+  "statistics": {
+    "messages": 1335,
+    "user_turns": 1,
+    "tool_calls": 616,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 95,
+      "tool_call": 616,
+      "tool_result": 616,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 988,
+      "chunks": [
+        {
+          "path": "e967aef40f8703d1fd7c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e967aef40f8703d1fd7c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e967aef40f8703d1fd7c-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "e967aef40f8703d1fd7c-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "e967aef40f8703d1fd7c-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "e967aef40f8703d1fd7c-part-0006.json",
+          "message_count": 88
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 347,
+      "chunks": [
+        {
+          "path": "e967aef40f8703d1fd7c-part-0006.json",
+          "message_count": 92
+        },
+        {
+          "path": "e967aef40f8703d1fd7c-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "e967aef40f8703d1fd7c-part-0008.json",
+          "message_count": 75
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-monitor-50s3-eval.md"
+}

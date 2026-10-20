@@ -1,0 +1,11 @@
+2026-05-20 08:46:39,458 WARNING core.tools.dream  [dream] Phase 2 worst parse failed (attempt 0): while parsing a block collection
+  in "<unicode string>", line 99, column 7:
+          - "Fig 3: Inverted-U 曲线——每个 benc ... 
+          ^
+expected <block end>, but found '<scalar>'
+  in "<unicode string>", line 100, column 183:
+     ...  benchmark 行几乎全暗，仅 100% 处亮。视觉上呈"两端亮、中间暗"的 U 形 pattern。"
+                                         ^
+2026-05-20 09:09:05,997 INFO    core.tools.feishu  create_chat: name='审稿-irt_personfit_contam' → chat_id=oc_6c76a266d9f5997de21a1604bc79c209
+2026-05-20 09:09:06,008 INFO    core.tools.dream  [dream] auto-created Group C for project=irt_personfit_contam: oc_6c76a266d9f5997de21a1604bc79c209
+2026-05-20 09:09:06,766 INFO    core.session_server  [session_server] wrote /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/config/mcp_config_dream_review_director.json

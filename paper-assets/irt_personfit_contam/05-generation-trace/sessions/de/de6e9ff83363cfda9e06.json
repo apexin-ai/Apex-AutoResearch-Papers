@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de6e9ff83363cfda9e06",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops multiseed ht acc zscore",
+  "task_key": "worker_ops_multiseed-ht-acc-zscore_20260523T005932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_multiseed-ht-acc-zscore_20260523T005932_result.json",
+    "occurrence": 1,
+    "bytes": 1268,
+    "sha256": "a7d961da0700b4763f079dd2d28c68c2d9973d704bc3cceb3fed0c6aaa2857ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "计算完成。结果：\n\n```\nHT Cohen's |d|:        15%        25%        50%\ns1 (seed42):         9.4791    11.1560    20.9703\ns2 (seed123):        9.7305    11.6196    16.1837\ns3 (seed456):        9.4854    15.2285    17.3188\nMean:                9.5650    12.6680    18.1576\nSD:                  0.1434     2.2295     2.5011\n\nAcc z Cohen's |d|:     15%        25%        50%\ns1 (seed42):        34.9312    41.1183    56.7022\ns2 (seed123):       39.0715    44.1420    58.4234\ns3 (seed456):       37.5363    42.3743    58.1443\nMean:               37.1797    42.5449    57.7567\nSD:                  2.0930     1.5191     0.9238\n```\n\nClean baseline (n=10): HT mean=-0.0330 (SD=0.0030), Acc mean=0.6775 (SD=0.0015).\n\n两点观察：\n- Accuracy z-score 的 Cohen's d 极大（35-58），因为 clean seeds 的 accuracy SD 极小（0.0015），微小的 accuracy 差异就产生巨大 effect size。这说明 accuracy 作为污染检测指标灵敏度极高但也意味着它对任何系统性差异都很敏感。\n- HT Cohen's d 也很大（9.5-18.2），且随污染水平单调递增，cross-seed 一致性较好（15% 的 SD 仅 0.14）。\n\n结果已保存至 `/root/autodl-tmp/ctrl_contam_pilot/results/cohens_d_ht_acc.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-multiseed-ht-acc-zscore.md"
+}

@@ -1,0 +1,20 @@
+{
+  "humaneval": {
+    "n_items_original": 164,
+    "n_items_filtered": 164,
+    "n_items_removed": 0,
+    "n_simulations": 100,
+    "lz_star_mean": 0.1262,
+    "lz_star_std": 0.8858,
+    "lz_star_skewness": -0.4246,
+    "lz_star_kurtosis": 2.9192,
+    "ks_statistic": 0.1402,
+    "ks_pvalue": 0.0355,
+    "shapiro_statistic": 0.9786,
+    "shapiro_pvalue": 0.1033,
+    "anderson_statistic": 0.7059,
+    "anderson_critical_5pct": 0.746,
+    "pass": true,
+    "flag": ""
+  }
+}

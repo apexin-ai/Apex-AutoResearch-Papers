@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5acc291da51247144591",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code gpu probe 35694",
+  "task_key": "worker_code_gpu-probe-35694_20260521T131031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gpu-probe-35694_20260521T131031_result.json",
+    "occurrence": 1,
+    "bytes": 1771,
+    "sha256": "4fc383a2d41ced127b9bbf8a9679323f66b90a29ccb338154e10e87672536bbb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### GPU 状态（4× RTX PRO 6000 Blackwell, 各 96GB）\n\n| GPU | VRAM | Util | 占用进程 |\n|-----|------|------|---------|\n| 0 | 20.4/95.6 GB (21%) | 97% | `train.py --condition clean_s8` (Llama) |\n| 1 | 28.1/95.6 GB (29%) | 79% | `train.py --condition clean_s9` (Llama) |\n| 2 | 10.7/95.6 GB (11%) | 81% | `train_grpo.py --gpu 2` (Post-RL) |\n| 3 | 25.4/95.6 GB (27%) | 96% | `train.py --condition clean_s10` (Llama) |\n\n**所有 4 卡满载，无空闲 GPU。**\n\n### 旧 PID 状态\n97791, 98622, 96745, 99214, 99807 — **全部已死。**\n\n### 运行中任务\n\n| 任务 | GPU | 进度 | 预计剩余 |\n|------|-----|------|---------|\n| GRPO v3 (post_rl_contam) | 2 | 466/3000 (15%) | ~1h50m |\n| Llama clean_s8 | 0 | 377/939 (40%), epoch ~1.0 | ~10min |\n| Llama clean_s9 | 1 | 376/939 (40%), epoch ~1.0 | ~10min |\n| Llama clean_s10 | 3 | 377/939 (40%), epoch ~1.0 | ~10min |\n\nLlama s8/s9/s10 快接近 epoch 1 结束，还有 3 个 epoch 要跑（总 939 steps = 3 epochs），约 10+20=30min 左右全部完成。\n\n### 已完成任务\n\n**Qwen (ctrl_contam_pilot)** — 全部完成 ✓\n- clean_s1~s10 results 全部存在\n- clean_s10 checkpoint: 3 个 checkpoint (313/626/939) ✓\n- contam_15, contam_50 results ✓\n\n**Llama (ctrl_contam_llama)** — s1~s7 完成，s8/s9/s10 训练中\n- clean_s1(=clean), s2, s3, s4, s5, s6, s7 results ✓\n- s8/s9/s10 checkpoints 目录已创建但尚无完整 checkpoint\n- contam_15, contam_50 results ✓\n\n**MIA SFT eval (post_rl_contam)** — 完成 ✓\n- `mia_base_results.json` (4.0MB) ✓\n- `mia_sft_results.json` (4.0MB) ✓\n- `comparison_mia_lz.json` ✓\n\n### 磁盘\n- `/` : 1.4G / 30G (5%) — 充裕\n- `/root/autodl-tmp` : 84G / 250G (34%) — 充裕"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gpu-probe-35694.md"
+}

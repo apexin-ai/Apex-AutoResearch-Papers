@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-ctrl-contam-qwen-clean-s5",
+  "project": "irt_personfit_contam",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T06:30:49.858Z",
+    "updated_at": "2026-05-21T06:32:57.998Z",
+    "hypothesis": "Fifth independent clean Qwen2.5-7B-Instruct baseline (seed=302) for expanded n=10 Cohen's d variance estimation",
+    "parent": "exp-ctrl-contam-pilot"
+  },
+  "timestamp": "2026-05-21T06:32:58.109826+00:00",
+  "trigger": "update_registry"
+}

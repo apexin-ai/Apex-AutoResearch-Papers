@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80fbd9a58744352aeb03",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "paper writing sec introduction",
+  "task_key": "worker_paper_writing_sec_introduction_20260520T231513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_sec_introduction_20260520T231513_result.json",
+    "occurrence": 1,
+    "bytes": 838,
+    "sha256": "ac1e7661c7750e632ed2e4fcffe5f9aa9eea175916b59c528fb687c498bb19ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Introduction written to `paper/sections/introduction.tex`. ~665 words (within the 700-word budget).\n\nStructure: 6 paragraphs (P1-P6) as specified. P1 establishes the contamination problem, P2 critiques existing methods and introduces the detection frontier hook, P3 cites Wang et al.'s RL-robustness negative result for urgency, P4 draws the psychometrics cross-domain connection, P5 previews IRT-FIT with all required key numbers, P6 lists three escalating contributions using compact `enumerate`.\n\nAll constraints verified: no em/en-dashes, no -ing phrase endings, no AI-style words, no \"state-of-the-art\"/\"significantly\"/\"consistently\", AI-13 compliant (writes \"structurally invariant\" with future-work caveat), UC-1 compliant (57/60 framed as response-pattern anomaly evidence, not contamination detection)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-sec-introduction.md"
+}

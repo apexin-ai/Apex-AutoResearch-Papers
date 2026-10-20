@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a31d6ae071a0022cc8e",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops reeval old llama s1",
+  "task_key": "worker_ops_reeval-old-llama-s1_20260523T124931",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_reeval-old-llama-s1_20260523T124931_result.json",
+    "occurrence": 1,
+    "bytes": 1461,
+    "sha256": "86b400436739440431b354b5887568c6e650afc5d2d8d0fbed5f41aadb8c6e2e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The eval is progressing but very slowly due to GPU contention (4 processes sharing GPU 3). Here's the current status:\n\n**Setup completed:**\n- Symlinks created: `ctrl_contam_pilot/checkpoints/llama/contam_15_s1` → old `contam_15` checkpoint\n- Symlinks created: `ctrl_contam_pilot/checkpoints/llama/contam_50_s1` → old `contam_50` checkpoint\n- Both evals running sequentially via `/tmp/run_eval_s1.sh` (PID 136059, child Python PID 136064)\n\n**Current progress:**\n- **contam_15_s1**: 5500/14042 items (~39%), accuracy ~63.8%\n- **contam_50_s1**: queued (runs after 15% finishes)\n- Rate: ~500 items per 12 min (GPU 3 shared with 3 training jobs)\n\n**Estimated remaining time:**\n- contam_15_s1: ~3.4 hours to finish\n- contam_50_s1: ~5.6 hours after that\n- Total: ~9 hours\n\n**How to check later:**\n```bash\n# Check progress\ngrep \"acc=\" /tmp/eval_contam15_s1.log\ngrep \"acc=\" /tmp/eval_contam50_s1.log\n\n# Check if done\ncat /tmp/eval_s1_status.log\n\n# Read results when done\ncat /root/autodl-tmp/ctrl_contam_pilot/results/llama/contam_15_s1_results.json\ncat /root/autodl-tmp/ctrl_contam_pilot/results/llama/contam_50_s1_results.json\n```\n\n**Cohen's d formula** (to compute when results are ready):\n```\nd = (lz*_contam - (-0.312)) / 0.840\n```\nwhere clean baseline: mean=-0.312, std=0.840\n\nThe eval is running correctly and will complete on its own. The process is using `nohup` so it persists across SSH disconnects."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-reeval-old-llama-s1.md"
+}

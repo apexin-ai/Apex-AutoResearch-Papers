@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "66af06593505b4b32ce7",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code fix llama eval verified",
+  "task_key": "worker_code_fix-llama-eval-verified_20260524T045258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-llama-eval-verified_20260524T045258_result.json",
+    "occurrence": 1,
+    "bytes": 1076,
+    "sha256": "3953e5596ba65a76acb95f67cfe13c771410f51d6a43f3a35be9936567f40e7a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复已经完成并持久化。以下是完整验证结果：\n\n## 验证结果\n\n### eval_lz.py 修复状态\n代码已使用 `re.search(r'contam_(\\d+)', args.condition)` 动态匹配，不再硬编码。\n\n### Llama contam_5 完整指标\n\n| 指标 | Overall | Seen (n=702) | Unseen (n=13340) |\n|------|---------|-------------|-----------------|\n| Accuracy | 0.6342 | **0.7920** | 0.6259 |\n| θ (free) | -0.4089 | 0.4024 | -0.4419 |\n| lz* (free) | -4.954 | **-1.420** | -4.568 |\n| lz* (fixed) | -1.892 | -0.270 | -1.880 |\n\n### Cohen's d（Llama baseline: mean=0.262, SD=1.542）\n\n| 分组 | Cohen's d (free-θ) |\n|------|-------------------|\n| Overall | **-3.383** |\n| Seen | **-1.091** |\n| Unseen | **-3.133** |\n\n### 关键确认\n- **n_seen = 702**（不是 0）\n- **accuracy_seen (0.792) 显著高于 accuracy_unseen (0.626)**，差值 +16.6pp\n- **lz\\*_seen (-1.420) 远高于 lz\\*_unseen (-4.568)**，seen 子集 person-fit 异常程度大幅降低\n- 结果文件 `contam_5_results.json` 生成时间 May 24 12:36，已是最新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-llama-eval-verified.md"
+}

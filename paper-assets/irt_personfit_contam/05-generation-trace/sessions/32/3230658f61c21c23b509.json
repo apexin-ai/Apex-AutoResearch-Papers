@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3230658f61c21c23b509",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code urgent gpu check eval",
+  "task_key": "worker_code_urgent-gpu-check-eval_20260521T062322",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_urgent-gpu-check-eval_20260521T062322_result.json",
+    "occurrence": 1,
+    "bytes": 1018,
+    "sha256": "7c6e61c7e4a459d24f1e0af20320bc1aa5696899d019f46bdf263778ab60d388"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个子实验 DONE，父实验 metrics 已更新。最终汇总：\n\n---\n\n## Mistral Controlled Contamination — 完整结果\n\n| | **clean** | **contam_15** | **contam_50** |\n|---|---|---|---|\n| **lz\\*** | **+5.42** | **-1.38** | **-3.15** |\n| **Δlz\\*** (vs clean) | — | **-6.80** | **-8.57** |\n| acc_overall | 0.514 | 0.595 | 0.673 |\n| acc_seen | N/A | 0.744 | 0.752 |\n| acc_unseen | 0.514 | 0.569 | 0.594 |\n| theta_mle | -1.157 | -0.713 | -0.303 |\n| lz\\*_seen | N/A | -1.084 | -1.370 |\n| lz\\*_unseen | +5.42 | -0.096 | -0.997 |\n\n**关键发现**：contamination 导致 lz\\* 从 +5.42 大幅下降至 -1.38/-3.15，Δlz\\* 达 -6.80/-8.57，信号极强。seen items 上 acc 显著高于 unseen (74-75% vs 57-59%)，且 lz\\*_seen 一致为负值（aberrant pattern）。\n\n**GPU 现状**：\n- GPU 0: GRPO 相关进程\n- GPU 1, 3: eval 完成后可释放（进程可能仍驻留）\n- GPU 2: GRPO 主进程 (PID 73689)\n- **GRPO**: 3293/7021 (47%), ~2.07s/step, ETA ~2h10m"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-urgent-gpu-check-eval.md"
+}

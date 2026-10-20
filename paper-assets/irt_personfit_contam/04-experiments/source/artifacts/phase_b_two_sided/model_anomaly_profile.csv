@@ -1,0 +1,13 @@
+student_id,model_name,n_flagged,n_pos_flagged,n_neg_flagged,benchmarks_flagged,mean_abs_lz_star
+0,360GPT2-Pro,5,5,0,"ARC-C,GSM8K,HellaSwag,HumanEval,MMLU",15.841879384052021
+1,DeepSeek-V3,4,4,0,"GSM8K,HellaSwag,HumanEval,MMLU",7.23958189256003
+2,Doubao-pro,4,3,1,"ARC-C,GSM8K,HellaSwag,MMLU",8.846165290371898
+3,Gemini-1.5,5,2,3,"ARC-C,GSM8K,HellaSwag,HumanEval,MMLU",14.151547489781155
+4,Gemma-2B-it,5,5,0,"ARC-C,GSM8K,HellaSwag,HumanEval,MMLU",13.161317212849363
+5,Hunyuan-Turbo,5,4,1,"ARC-C,GSM8K,HellaSwag,HumanEval,MMLU",13.718313147998671
+6,Mistral-7B-Instruct-v0.1,5,5,0,"ARC-C,GSM8K,HellaSwag,HumanEval,MMLU",17.387949670064774
+7,Moonshot-v1,5,5,0,"ARC-C,GSM8K,HellaSwag,HumanEval,MMLU",15.891468670525033
+8,Qwen-Plus,5,4,1,"ARC-C,GSM8K,HellaSwag,HumanEval,MMLU",17.61676254782525
+9,Qwen2.5-3B-Instruct,5,5,0,"ARC-C,GSM8K,HellaSwag,HumanEval,MMLU",13.342275504323606
+10,Vicuna-7B-v1.3,4,4,0,"GSM8K,HellaSwag,HumanEval,MMLU",15.283392967690563
+11,Yi-Lightning,4,4,0,"GSM8K,HellaSwag,HumanEval,MMLU",16.682708568307465

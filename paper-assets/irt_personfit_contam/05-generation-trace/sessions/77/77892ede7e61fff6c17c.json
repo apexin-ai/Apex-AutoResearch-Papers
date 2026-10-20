@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77892ede7e61fff6c17c",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "train qwen 50pct s2 train",
+  "task_key": "worker_train_qwen-50pct-s2-train_20260522T143842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_qwen-50pct-s2-train_20260522T143842_result.json",
+    "occurrence": 1,
+    "bytes": 142,
+    "sha256": "400b8ea6ef5f44c6666689bb7ccd9c0d27d985597fea10c0b8a63327361c0b3a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "50% s2 训练已启动并确认运行中（step 8/2256，~1.19s/step，预计 ~44 min）。将在 ~4.5 分钟后轮询进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-qwen-50pct-s2-train.md"
+}

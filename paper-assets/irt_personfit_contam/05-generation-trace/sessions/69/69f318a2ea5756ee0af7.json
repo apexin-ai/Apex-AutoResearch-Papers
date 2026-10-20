@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "69f318a2ea5756ee0af7",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "code urgent gpu check eval",
+  "task_key": "worker_code_urgent-gpu-check-eval_20260521T062322",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_urgent-gpu-check-eval_20260521T062322.log",
+    "occurrence": 1,
+    "bytes": 631383,
+    "sha256": "5b39f1793fac63ba09a38295c79d98e11623ea6b324f2c362fbeb29c087d1d78"
+  },
+  "statistics": {
+    "messages": 299,
+    "user_turns": 0,
+    "tool_calls": 109,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 77,
+      "record": 1,
+      "tool_call": 109,
+      "tool_result": 109,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 299,
+      "chunks": [
+        {
+          "path": "69f318a2ea5756ee0af7-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "69f318a2ea5756ee0af7-part-0002.json",
+          "message_count": 119
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-urgent-gpu-check-eval.md"
+}

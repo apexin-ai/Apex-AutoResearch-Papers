@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "422f8685a726698ac7b2",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "paper figure fig 3 ctrl contam",
+  "task_key": "worker_paper_figure_fig_3_ctrl_contam_20260520T203810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_3_ctrl_contam_20260520T203810_result.json",
+    "occurrence": 1,
+    "bytes": 588,
+    "sha256": "d17954ec53a4048bc96fade5254f495d2092a9737f6c7ac9a13d607a697ec99b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 3 已生成并注册。\n\n**输出文件：**\n- PDF: `figures/paper/fig_3_ctrl_contam.pdf` (38 KB)\n- PNG: `figures/paper/fig_3_ctrl_contam.png` (133 KB, 300 DPI)\n- 脚本: `figures/paper/gen_fig3.py`\n\n**验证通过：**\n- Panel (a): free-θ 下 contam_15 的 lz\\* (3.00) 最低，fixed-θ 下 contam_50 的 lz\\* (15.64) 最高，非单调→单调对比清晰\n- Panel (b): seen accuracy (0.824) > unseen (0.715) > clean baseline (0.679)，记忆指纹可见\n- Panel (c): θ 单调递增 clean → contam_15 → contam_50，Δθ 箭头标注 +0.29 / +0.46"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig-3-ctrl-contam.md"
+}

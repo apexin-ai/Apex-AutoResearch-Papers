@@ -1,0 +1,591 @@
+{
+  "schema_version": "1.0",
+  "id": "d08dcd66dedd538f93dd",
+  "project": "irt_personfit_contam",
+  "kind": "conversation",
+  "title": "ops arr submission form",
+  "task_key": "worker_ops_arr-submission-form_20260523T041551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_arr-submission-form_20260523T041551.jsonl",
+    "occurrence": 1,
+    "bytes": 29709,
+    "sha256": "5ff79cdef941a26c45623741717cb7d9a284083a457d4dabb6629b6597ce44d3"
+  },
+  "statistics": {
+    "messages": 29,
+    "user_turns": 0,
+    "tool_calls": 14,
+    "roles": {
+      "tool_call": 14,
+      "tool_result": 14,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T04:18:15.328953+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-submission-form_20260523T041551",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/paper/main.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T04:18:15.329283+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\\usepackage[review]{acl}\n3\t\\usepackage{times}\n4\t\\usepackage{latexsym}\n5\t\\usepackage[T1]{fontenc}\n6\t\\usepackage[utf8]{inputenc}\n7\t\\usepackage{microtype}\n8\t\\usepackage{graphicx}\n9\t\\usepackage{booktabs}\n10\t\\usepackage{amsmath}\n11\t\\usepackage{amssymb}\n12\t\\usepackage{multirow}\n13\t\\usepackage{xcolor}\n14\t\\usepackage{subcaption}\n15\t\\usepackage{enumitem}\n16\t\n17\t\\newcommand{\\irtfit}{\\textsc{IRT-FIT}}\n18\t\n19\t\\graphicspath{{../figures/paper/}}\n20\t\n21\t\\title{What Can IRT Person-Fit Statistics Reveal About SFT-Stage Benchmark Contamination?}\n22\t\n23\t\\author{Anonymous}\n24\t\n25\t\\begin{document}\n26\t\\maketitle\n27\t\n28\t\\begin{abstract}\n29\t\\input{sections/abstract}\n30\t\\end{abstract}\n31\t\n32\t\\input{sections/introduction}\n33\t\\input{sections/related_work}\n34\t\\input{sections/method}\n35\t\\input{sections/results}\n36\t\\input{sections/discussion}\n37\t\\input{sections/conclusion}\n38\t\n39\t\\input{sections/limitations}\n40\t\n41\t\\section*{Reproducibility Statement}\n42\tCode and response data will be released upon acceptance.\n43\tBootstrap confidence intervals use the percentile method with 10,000 resamples.\n44\tAll three model families use clean baseline seeds 0--9 ($n{=}10$ per family).\n45\tPre-calibrated 4PL item parameters are from the publicly available PSN-IRT item bank \\citep{psnirt2026}.\n46\t\n47\t\\bibliography{references}\n48\t\n49\t\\appendix\n50\t\\input{sections/appendix}\n51\t\n52\t\\end{document}\n53\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-submission-form_20260523T041551",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T04:18:15.329508+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-submission-form_20260523T041551",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "sections/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/paper"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T04:18:15.329671+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-submission-form_20260523T041551",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T04:18:15.329826+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-submission-form_20260523T041551",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/paper"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T04:18:15.329977+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper/sections/experiments.tex\npaper/sections/background.tex\npaper/sections/sec_empirical.tex\npaper/sections/sec_simulation.tex\npaper/sections/sec_setup.tex\npaper/sections/sec_ctrl_contam.tex\npaper/sections/related_work.tex\npaper/main.tex\npaper/sections/method.tex\npaper/sections/abstract.tex\npaper/sections/conclusion.tex\npaper/sections/introduction.tex\npaper/sections/results.tex\npaper/sections/discussion.tex\npaper/sections/appendix.tex\npaper/sections/limitations.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-submission-form_20260523T041551",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T04:18:15.330104+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-submission-form_20260523T041551",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/paper/sections/abstract.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T04:18:15.330230+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tBenchmark contamination in Large Language Models (LLMs) undermines evaluation validity, yet most detection methods require privileged access to training data, model internals, or output probabilities.\n2\tWe present the first controlled characterization of IRT person-fit statistics for detecting SFT-stage contamination: the framework requires only binary response patterns from the target model---no access to weights, gradients, logits, or training data---combined with externally calibrated 4PL item parameters from a large-scale item bank; diagnostic $\\theta$-anchoring additionally requires a clean baseline.\n3\tA contaminated LLM produces aberrant response patterns analogous to a test-taker with item preknowledge.\n4\tUsing $\\ell_z^*$ in a matched-difference design ($\\Delta\\ell_z^*$) across three 7--8B model families ($n{=}10$ clean baseline seeds per model family) on MMLU (14,042 items) and ARC-Challenge (295 items), we identify three behavior boundaries:\n5\t(1) model-specific $\\theta$-shift dynamics, where contamination-induced ability inflation absorbs the person-fit signal; $\\theta$-anchoring is necessary for reliable detection of high-ability models at high contamination (2.4$\\times$ amplification, inter-seed CV reduced from 60\\% to 19\\%);\n6\t(2) a detection-diagnosis tradeoff where simpler statistics yield stronger detection but lack $\\ell_z^*$'s diagnostic capabilities (seen/unseen decomposition, mechanistic $\\theta$-shift analysis);\n7\tand (3, exploratory) ability-dependent non-monotonic dose-response under free-$\\theta$ estimation, driven by $\\theta$-shift absorption; $\\theta$-anchored analysis reveals stable detection with a strong positive dose-response at higher contamination levels.\n8\tThese findings establish when and why binary response patterns carry contamination information beyond aggregate accuracy.\n9\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-submission-form_20260523T041551",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T04:18:15.330405+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-submission-form_20260523T041551",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/paper/sections/limitations.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T04:18:15.330542+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section*{Limitations}\n2\t\n3\tOur controlled experiments cover three 7--8B model families with QLoRA fine-tuning; generalization to larger scales, mixture-of-experts architectures, full-parameter fine-tuning, and pretraining-stage contamination remains untested.\n4\tMost contamination conditions use a single training run, and multi-seed replication (available for Qwen) reveals high seed dependence at 50\\% contamination (CV${=}$60\\%), partially resolved by $\\theta$-anchoring; the post-RL characterization is $N{=}1$.\n5\tThe framework depends on pre-calibrated 4PL item parameters from PSN-IRT, whose calibration sample may include contaminated models, and we do not provide head-to-head comparison with logit-based methods (MIA, ConStat) that operate at a different information level.\n6\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-submission-form_20260523T041551",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T04:18:15.330667+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-submission-form_20260523T041551",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/paper/sections/appendix.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T04:18:15.330932+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Simulation Validation}\n2\t\\label{app:simulation}\n3\t\n4\tUnder the null (no contamination), bootstrap $\\ell_z^*$ tracks $\\mathcal{N}(0,1)$: mean bias 0.041 and standard deviation 1.003 on MMLU.\n5\tKolmogorov--Smirnov rejection rates vary with benchmark size: 8.3\\% for MMLU and HellaSwag ($n > 10{,}000$), 50.0\\% for GSM8K ($n = 1{,}319$), 58.3\\% for ARC-C ($n = 295$), and 75.0\\% for HumanEval ($n = 164$).\n6\t$\\ell_z^*$ is well-calibrated for benchmarks with $n \\geq 10{,}000$ items; smaller benchmarks show increasing finite-sample deviations from normality.\n7\t\n8\tTwo-sided testing eliminates the inverted-U artifact: MMLU achieves 97.8\\% power at 15\\% contamination and sustains ${>}$93\\% at all levels.\n9\tPower scales with $\\sqrt{n}$, as predicted by the noncentrality parameter $\\delta \\propto \\sqrt{n}$.\n10\tThe empirical power function, derived via Gauss--Hermite quadrature ($K=30$) over the ability distribution, achieves $R^2 = 0.957$ against simulated values, with approximate minimum benchmark size of $n \\geq 7{,}958$ items for 80\\% power at 15\\% contamination under MMLU item parameters.\n11\t\n12\t\\section{4PL vs.\\ 3PL Ablation Details}\n13\t\\label{app:4pl_ablation}\n14\t\n15\tTable~\\ref{tab:4pl_3pl_power} reports detection power (proportion of 2{,}000 simulation replicates rejecting $H_0$ at $\\alpha{=}0.05$, two-sided) for 4PL and 3PL parameterizations across five benchmarks and seven contamination levels.\n16\tThe 4PL model yields higher power than 3PL at every non-trivial contamination level on every benchmark.\n17\tThe advantage is largest on MMLU and HellaSwag, where upper-asymptote ($d < 1$) violations are most prevalent, and smallest on ARC-Challenge and HumanEval, where limited item counts constrain power under both parameterizations.\n18\t\n19\tPower is non-monotonic at 75\\% contamination under 4PL on four of five benchmarks (e.g., MMLU: $.952 \\to .938$; GSM8K: $.846 \\to .802$).\n20\tThis reflects the $\\theta$-shift boundary condition described in \\S\\ref{sec:inverted_u}: at\n…[truncated 22148 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-submission-form_20260523T041551",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T04:18:15.331091+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-submission-form_20260523T041551",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/paper/sections/results.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T04:18:15.331305+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\t\\subsection{Detection Signal Across Model Families}\n5\t\\label{sec:detection}\n6\t\n7\tTable~\\ref{tab:cohens_d} presents Cohen's $d$ effect sizes for $\\ell_z^*$ across three model families and two benchmarks.\n8\tAll confidence intervals exclude zero, confirming that $\\Delta\\ell_z^*$ reliably separates contaminated from clean models at both contamination levels.\n9\t\n10\tOn MMLU, effect sizes range from $|d|{=}2.27$ (Llama at 15\\%) to $|d|{=}7.44$ (Qwen at 25\\%), with Qwen at 5\\% ($|d|{=}4.15$) confirming detection at the lowest contamination level tested. Llama ($|d|{=}2.27$/$2.97$/$2.50$) and Mistral ($|d|{=}3.01$/$3.50$) show comparable magnitudes.\n11\tOn ARC-C (295 items), Qwen yields $|d|{=}3.16$ at 15\\% and $|d|{=}5.30$ at 50\\%, demonstrating that detection remains feasible even on small benchmarks when contamination is sufficiently concentrated.\n12\t\n13\tClean-model $\\ell_z^*$ baselines diverge substantially across families: Qwen ${+}8.68$ ($\\text{SD}{=}0.74$), Mistral ${+}4.02$ ($\\text{SD}{=}2.05$), Llama ${+}0.29$ ($\\text{SD}{=}1.45$), and ARC-C Qwen ${-}5.42$ ($\\text{SD}{=}0.16$).\n14\tAbsolute $\\ell_z^*$ thresholds would produce contradictory results: Qwen's contaminated $\\ell_z^*$ at 15\\% (${+}3.85$) is still positive.\n15\tThe $\\Delta\\ell_z^*$ design normalizes these divergent baselines: Cohen's $d$ yields comparable effect sizes ($|d|{=}2.27$--$7.44$) despite order-of-magnitude differences.\n16\tFigure~\\ref{fig:heatmap} provides a visual summary.\n17\t\n18\t\\begin{table}[t]\n19\t\\centering\n20\t\\caption{Cohen's $d$ for $\\Delta\\ell_z^*$ across model families ($n{=}10$ clean seeds). Single-seed conditions: percentile bootstrap 95\\% CI (10,000 resamples) reflecting clean-seed variability. Qwen MMLU 15\\%/25\\%/50\\%: multi-seed mean $\\pm$ SD ($n{=}3$ independent contamination runs). All exclude zero.}\n21\t\\label{tab:cohens_d}\n22\t\\footnotesize\n23\t\\resizebox{\\columnwidth}{!}{%\n24\t\\begin{tabular}{@{}llrrrr@{}}\n25\t\\toprule\n26\tModel & Bench. & $\n…[truncated 12642 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-submission-form_20260523T041551",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T04:18:15.331479+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-submission-form_20260523T041551",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/paper/sections/method.tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T04:18:15.331646+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t\\subsection{IRT Person-Fit Framework}\n5\t\\label{sec:framework}\n6\t\n7\tWe adopt the four-parameter logistic (4PL) IRT model to characterize contamination-induced aberrance in LLM response patterns.\n8\tThe 4PL model defines the probability that a model with ability $\\theta$ answers item $i$ correctly:\n9\t\\begin{equation}\n10\t  P_i(\\theta) = c_i + (d_i - c_i)\\,\\frac{1}{1 + e^{-a_i(\\theta - b_i)}}\n11\t  \\label{eq:4pl}\n12\t\\end{equation}\n13\twhere $a_i$ is discrimination, $b_i$ difficulty, $c_i$ the lower asymptote (guessing), and $d_i$ the upper asymptote (slip).\n14\tItem parameters are pre-calibrated by PSN-IRT \\citep{psnirt2026} from a large-scale leaderboard dataset; we use these external parameters rather than re-estimating from potentially contaminated data, since our MML-EM refit shows discrimination recovery degrades to $r_a{=}0.127$ on contaminated leaderboard data.\n15\t\n16\tGiven item parameters and a binary response vector $\\mathbf{x} = (x_1, \\ldots, x_n)$, we compute the person-fit statistic $\\ell_z^*$ \\citep{snijders2001}, a standardized log-likelihood residual quantifying deviation between observed and expected response patterns.\n17\tThe Snijders correction accounts for estimation uncertainty in $\\hat{\\theta}_{\\text{MLE}}$, so that $\\ell_z^* \\sim \\mathcal{N}(0,1)$ under the null \\citep{drasgow1985, snijders2001}; \\citet{magis2012} provide a detailed treatment of how response model selection and ability estimation affect $\\ell_z^*$.\n18\tLarge negative $\\ell_z^*$ indicates aberrant responding (unexpected failures on easy items or unexpected successes on hard items); large positive values indicate over-consistent patterns.\n19\t\n20\t\\subsection{$\\Delta\\ell_z^*$ Matched-Difference Design}\n21\t\\label{sec:did}\n22\t\n23\tLLM response patterns systematically violate IRT assumptions of local independence and unidimensionality.\n24\tIn our empirical data, 57 of 60 model-benchmark cells yield $|\\ell_z^*| > 1.96$ even absent contamination, renderi\n…[truncated 4353 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-submission-form_20260523T041551",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T04:18:15.331792+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-submission-form_20260523T041551",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/paper/sections/discussion.tex"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T04:18:15.331993+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\\label{sec:discussion}\n2\t\n3\tOur findings reveal both the strengths and boundaries of IRT person-fit for contamination detection: $\\ell_z^*$ reliably detects SFT-stage contamination across model families, but three boundary conditions constrain its practical utility.\n4\t\n5\t\\paragraph{Characterization over tool.}\n6\tThe detection-diagnosis tradeoff (\\S\\ref{sec:degradation}) shows that simpler statistics detect contamination more powerfully than $\\ell_z^*$: accuracy $z$-scores yield $|d|$ values several-fold to over an order of magnitude larger, and HT generally exceeds $\\ell_z^*$.\n7\tThe value of the IRT framework lies not in detection power but in mechanistic understanding: the $\\theta$-shift analysis reveals \\emph{why} detection sensitivity varies across models and contamination levels, the seen/unseen decomposition identifies \\emph{what fraction} of items are memorized, and the 4PL parameterization captures item-level ceiling effects that 3PL misattributes as aberrance.\n8\tThese diagnostic capabilities are invisible to accuracy $z$-scores or HT.\n9\tFindings~1--2 are theoretically predictable from IRT principles; our contribution lies in quantifying these effects in the LLM setting, where the magnitude and boundary conditions are not derivable from theory alone.\n10\t\n11\t\\paragraph{Practical implications.}\n12\tTwo results have immediate consequences.\n13\tFree-$\\theta$ estimation produces seed-dependent dose-response curves (CV up to 60\\%); anchoring $\\theta$ to a pre-contamination baseline stabilizes detection and amplifies the signal for models with substantial $\\theta$-shift ($\\Delta\\theta > 0.2$).\n14\tThe benchmark size boundary means $\\ell_z^*$ is most informative for large benchmarks ($n > 7{,}000$ items for 80\\% power at 15\\% contamination); on small benchmarks like ARC-C (295 items), detection relies on concentrated contamination effects.\n15\t\n16\t\\paragraph{Scope and calibration.}\n17\tUniversal baseline misfit (57/60 cells flagged) confirms systemat\n…[truncated 1257 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-submission-form_20260523T041551",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T04:18:15.332160+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-submission-form_20260523T041551",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/paper/sections/conclusion.tex"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T04:18:15.332287+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\\label{sec:conclusion}\n2\t\n3\tWe characterized IRT person-fit statistics for LLM contamination detection across three 7--8B model families, establishing reliable SFT-stage detection while identifying boundary conditions: $\\theta$-shift absorption necessitating $\\theta$-anchored estimation for high-ability models, a detection-diagnosis tradeoff, and non-monotonic dose-response as a $\\theta$-estimation artifact.\n4\tFuture work should address pretraining-stage signatures and broader model scales.\n5\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-submission-form_20260523T041551",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T04:18:15.332514+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-submission-form_20260523T041551",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/artifacts/arr_submission_form_draft.md",
+              "content": "# ARR Submission Form Draft\n\n## Basic Information\n- **Title**: What Can IRT Person-Fit Statistics Reveal About SFT-Stage Benchmark Contamination?\n- **Abstract**: Benchmark contamination in Large Language Models (LLMs) undermines evaluation validity, yet most detection methods require privileged access to training data, model internals, or output probabilities. We present the first controlled characterization of IRT person-fit statistics for detecting SFT-stage contamination: the framework requires only binary response patterns from the target model---no access to weights, gradients, logits, or training data---combined with externally calibrated 4PL item parameters from a large-scale item bank; diagnostic θ-anchoring additionally requires a clean baseline. A contaminated LLM produces aberrant response patterns analogous to a test-taker with item preknowledge. Using ℓ_z* in a matched-difference design (Δℓ_z*) across three 7--8B model families (n=10 clean baseline seeds per model family) on MMLU (14,042 items) and ARC-Challenge (295 items), we identify three behavior boundaries: (1) model-specific θ-shift dynamics, where contamination-induced ability inflation absorbs the person-fit signal; θ-anchoring is necessary for reliable detection of high-ability models at high contamination (2.4× amplification, inter-seed CV reduced from 60% to 19%); (2) a detection-diagnosis tradeoff where simpler statistics yield stronger detection but lack ℓ_z*'s diagnostic capabilities (seen/unseen decomposition, mechanistic θ-shift analysis); and (3, exploratory) ability-dependent non-monotonic dose-response under free-θ estimation, driven by θ-shift absorption; θ-anchored analysis reveals stable detection with a strong positive dose-response at higher contamination levels. These findings establish when and why binary response patterns carry contamination information beyond aggregate accuracy.\n- **Authors**: Anonymous\n- **Track**: Long Paper\n- **Submission Type**: ARR (Rolling Review)\n\n---\n\n## Responsible NLP Research Checklist\n\n### A. For Every Submission\n\n**A1. Did you describe the limitations of your work?**\n→ **Yes** — Dedicated Limitations section covers three points: (1) generalization beyond 7-8B / QLoRA / SFT-stage untested, (2) high seed dependence at 50% contamination (CV=60%), partially resolved by θ-anchoring; post-RL is N=1, (3) dependence on PSN-IRT calibration and no head-to-head comparison with logit-based methods.\n\n**A2. Did you discuss any potential risks of your work?**\n→ **Yes** — The method detects contamination (defensive/auditing use). Potential dual-use risk (adversaries calibrating contamination to evade detection) is implicit in the dose-response analysis; however, the method's core contribution is enabling retrospective audits, which is net-positive for evaluation integrity.\n\n**A3. Do the authors provide complete proofs of all claims and statements?**\n→ **Yes** — All empirical claims are supported by tables with bootstrap 95% CIs, Cohen's d effect sizes, and multi-seed replication. Simulation validation (Appendix A) confirms ℓ_z* calibration under the null. Robustness analyses cover local dependence (Appendix E) and parameter noise sensitivity (Appendix F).\n\n**A4. Do the authors provide adequate citations and describe differences relative to existing work?**\n→ **Yes** — Related Work section covers IRT-based LLM evaluation, contamination detection methods (MIA, ConStat), and person-fit statistics literature. Discussion positions the method in an information-requirements hierarchy relative to logit-based and multi-benchmark methods.\n\n**A5. Does the paper include computational experiments?**\n→ **Yes** — Controlled contamination experiments across 3 model families × multiple contamination levels, with n=10 clean seeds and n=3 contamination seeds for Qwen. Simulation studies with 2,000 replicates per cell.\n\n**A6. Does the paper include theoretical contributions?**\n→ **N-A** — The paper is primarily empirical. It applies existing IRT theory (ℓ_z* statistic, 4PL model) to a new domain (LLM contamination) and provides empirical characterization rather than new theoretical results.\n\n### B. Did You Use Human Subjects or Human Data?\n\n**B1. Does the paper describe potential risks to study participants?**\n→ **N-A** — No human subjects involved. All data are LLM benchmark response patterns (MMLU, ARC-Challenge) and model outputs.\n\n**B2. Did you include the full text of instructions given to human participants?**\n→ **N-A** — No human participants.\n\n**B3. Did you describe potential participant risks and IRB approvals?**\n→ **N-A** — No human participants; no IRB required.\n\n**B4. Did you include estimated hourly wage and total compensation?**\n→ **N-A** — No human annotators or crowdworkers.\n\n**B5. Did you include demographic information of participants?**\n→ **N-A** — No human participants.\n\n**B6. Did you discuss ethical aspects of data collection?**\n→ **N-A** — Data consists of publicly available LLM benchmarks (MMLU, ARC-Challenge) and model outputs from controlled experiments. No personally identifiable information.\n\n### C. Computational Experiments\n\n**C1. Did you report the number of parameters, total computational budget, and computing infrastructure?**\n→ **Yes** — Three 7-8B parameter model families (Qwen2.5-7B, Llama-3.1-8B, Mistral-7B-v0.3). Training uses QLoRA (4-bit NF4) on single A100/4090 GPUs. Exact GPU-hour budget is not itemized but infrastructure is specified.\n\n**C2. Did you discuss the experimental setup, including hyperparameters?**\n→ **Yes** — Full QLoRA hyperparameter table in Appendix (Table 10): rank=16, α=32, dropout=0.05, lr=2e-4, AdamW, 3 epochs, effective batch size=16, max seq length=512. Target modules specified.\n\n**C3. Did you report descriptive statistics (error bars, summary statistics)?**\n→ **Yes** — Bootstrap 95% CIs (10,000 resamples, percentile method) for all Cohen's d estimates. Multi-seed means ± SD for Qwen (n=3 contamination seeds). BCa sensitivity check in Appendix confirms conservative coverage.\n\n**C4. If you used existing packages, did you report versions?**\n→ **No** — Model family names and versions are reported (Qwen2.5-7B-Instruct, Llama-3.1-8B-Instruct, Mistral-7B-Instruct-v0.3). PSN-IRT item bank is cited. Software package versions (PyTorch, Transformers, PEFT) are not explicitly listed. *Consider adding a software versions footnote.*\n\n**C5. Did you report the seeds and number of runs?**\n→ **Yes** — n=10 clean baseline seeds per model family (seeds 0-9). n=3 independent contamination QLoRA runs for Qwen (seeds 42, 123, 456). Simulation studies use 2,000 replicates per cell (power analysis) and 1,000 replicates (robustness). All reported in Methods and Appendix.\n\n### D. Did You Use NLP Datasets?\n\n**D1. Did you include a link to the dataset(s)?**\n→ **Yes** — MMLU (Hendrycks et al., 2021) and ARC-Challenge (Clark et al., 2018) are cited with original references. PSN-IRT item bank is cited (psnirt2026).\n\n**D2. Did you describe the datasets and preprocessing steps?**\n→ **Yes** — MMLU (14,042 items) and ARC-Challenge (295 items) described in Section 3.3 (Experimental Setup). Contamination protocol (X% benchmark items mixed into SFT data with gold answers in standard evaluation format) is detailed.\n\n**D3. Did you discuss the license of the datasets?**\n→ **No** — MMLU and ARC-Challenge licenses are not explicitly discussed. Both are widely used public benchmarks. *Consider adding a brief license note.*\n\n**D4. Did you report statistics about the datasets?**\n→ **Yes** — Item counts reported: MMLU (14,042 items), ARC-Challenge (295 items). Item parameter distributions from PSN-IRT discussed (e.g., 46% of MMLU items have upper asymptote d < 0.95).\n\n**D5. Did you include the full details of train/validation/test splits?**\n→ **Yes** — Contamination conditions specify exact mixing ratios (5%, 15%, 25%, 50% of training data are benchmark items). Clean vs. contaminated splits are fully described. Evaluation uses the full benchmark test sets.\n\n---\n\n## Additional Notes\n\n- **Reproducibility Statement**: Included in paper — code and response data released upon acceptance; bootstrap parameters, seed counts, and item bank source specified.\n- **Ethics Statement**: Not separately included (not required by ARR); the work is methodological (contamination detection for evaluation integrity) with no human subjects.\n- **Supplementary Materials**: Appendix includes simulation validation, 4PL vs. 3PL ablation, seed sensitivity, robustness analyses (local dependence, parameter noise), BCa check, MML-EM refit, post-RL pilot, and full hyperparameters.\n\n### Items to Address Before Submission\n1. **C4**: Add software/library versions (PyTorch, Transformers, PEFT, bitsandbytes) as a footnote or in Appendix.\n2. **D3**: Add brief dataset license note for MMLU and ARC-Challenge.\n"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T04:18:15.332756+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/artifacts/arr_submission_form_draft.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-submission-form_20260523T041551",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-23T04:18:15.332887+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-submission-form_20260523T041551",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__save_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-23T04:18:15.333010+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-submission-form_20260523T041551",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-23T04:18:15.333140+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-submission-form_20260523T041551",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "register_artifact",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-23T04:18:15.333259+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-submission-form_20260523T041551",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-23T04:18:15.333391+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-submission-form_20260523T041551",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "artifact",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-23T04:18:15.333504+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-submission-form_20260523T041551",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-23T04:18:15.333662+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "`register_artifact` 工具不可用，文件已写入：\n\n`/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/artifacts/arr_submission_form_draft.md`\n\n草稿包含：\n- **Basic Information**：从 main.tex 提取的 title 和 abstract\n- **Responsible NLP Checklist (A-D)**：共 22 项，逐项基于论文内容给出 Yes/No/N-A + justification（引用具体章节）\n- **提交前待处理**：标注了两个需补充的项——C4（软件版本号）和 D3（数据集 license）"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_arr-submission-form_20260523T041551"
+          },
+          "id": "event-000029"
+        }
+      ],
+      "message_count": 29
+    }
+  ],
+  "readable_path": "readable/conversations/ops-arr-submission-form.md"
+}

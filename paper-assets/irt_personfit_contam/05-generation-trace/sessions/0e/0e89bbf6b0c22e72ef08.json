@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e89bbf6b0c22e72ef08",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code llama verify parallel",
+  "task_key": "worker_code_llama-verify-parallel_20260520T205905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama-verify-parallel_20260520T205905_result.json",
+    "occurrence": 1,
+    "bytes": 1031,
+    "sha256": "7174f2e3bb424dd373bc77e57e63ff5b8d998d452a3df3f60be260ee525496b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 修复完成 — 3 GPU 全部活跃\n\n### 失败原因\n`train.py:53` 中 `os.environ[\"CUDA_VISIBLE_DEVICES\"] = str(args.gpu)`——submit_training_job 启动 contam_15/contam_50 时传了 `--gpu 0`，导致 3 个进程全部挤在 GPU 0（共占 73GB/98GB）。\n\n### 修复操作\n1. Kill 了 contam_15 (PID 39375) 和 contam_50 (PID 39455)\n2. 用 tmux 重启，分别传 `--gpu 1` 和 `--gpu 2`\n\n### nvidia-smi 确认\n\n| GPU | 利用率 | 显存占用 | 条件 | PID |\n|-----|--------|----------|------|-----|\n| 0 | 86% | 29331 MiB / 98GB | clean | 38815 |\n| 1 | 80% | 20239 MiB / 98GB | contam_15 | 40724 |\n| 2 | 88% | 23383 MiB / 98GB | contam_50 | 40864 |\n\n### 训练进度\n\n| 条件 | 进度 | 速度 | 预计剩余 |\n|------|------|------|----------|\n| clean | 184/939 (20%) | ~1.07s/it | ~14 min |\n| contam_15 | 39/1335 (3%) | ~1.17s/it | ~25 min |\n| contam_50 | 32/2256 (1.4%) | ~1.25s/it | ~46 min |\n\nclean 训练速度从 3.3s/it 恢复到 1.07s/it（GPU 0 不再被挤占）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-verify-parallel.md"
+}

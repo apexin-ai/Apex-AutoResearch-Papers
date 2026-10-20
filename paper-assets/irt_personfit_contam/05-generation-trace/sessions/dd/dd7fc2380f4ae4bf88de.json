@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd7fc2380f4ae4bf88de",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops llama 5pct eval cohend",
+  "task_key": "worker_ops_llama-5pct-eval-cohend_20260522T102531",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama-5pct-eval-cohend_20260522T102531_result.json",
+    "occurrence": 1,
+    "bytes": 902,
+    "sha256": "8d84d4b77bc932a715b82e8b4b5c59202830678ab0dd571524e9ace4fd4d4eaa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Here's the full summary:\n\n---\n\n## Llama 5% Contamination — Results\n\n**训练**\n- 1071/1071 steps (3 epochs), final loss = 1.236, avg train_loss = 1.439\n\n**lz\\* Person-Fit**\n| | Free-θ | Fixed-θ (θ=-0.6661) |\n|---|---|---|\n| lz\\* | **-4.954** | **-1.892** |\n\n**Cohen's d**\n| | d | 95% CI |\n|---|---|---|\n| Free-θ | **-5.53** | [-10.80, -4.05] |\n| Fixed-θ | **-1.70** | [-3.87, -1.20] |\n\n**Accuracy**\n| Split | Acc |\n|---|---|\n| Overall | 63.42% |\n| Seen (702 items) | **79.20%** |\n| Unseen (13340 items) | 62.59% |\n\n**Interpretation**: 即使只有 5% 污染（702 items），lz\\* 在 free-θ 和 fixed-θ 两种设定下都显著偏离 clean 分布。Fixed-θ Cohen's d = -1.70 是一个大效应量，说明 5% 是 lz\\* 方法可检测的下界以上。Seen 准确率 79.2% 显著高于 unseen 的 62.6%，验证了污染效果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama-5pct-eval-cohend.md"
+}

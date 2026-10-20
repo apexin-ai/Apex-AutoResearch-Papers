@@ -1,0 +1,1187 @@
+{
+  "schema_version": "1.0",
+  "id": "056feb3e93db4bc3fcbb",
+  "project": "irt_personfit_contam",
+  "kind": "conversation",
+  "title": "analysis qwen theta fixed consistent",
+  "task_key": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_qwen-theta-fixed-consistent_20260521T171114.jsonl",
+    "occurrence": 1,
+    "bytes": 54741,
+    "sha256": "6f9c9807101b941e7758bb26ea04f1178cf8529fdb79eb90c55d76d1b3c61a04"
+  },
+  "statistics": {
+    "messages": 57,
+    "user_turns": 0,
+    "tool_calls": 28,
+    "roles": {
+      "tool_call": 28,
+      "tool_result": 28,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T17:15:23.827465+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T17:15:23.827787+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T17:15:23.828063+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35694",
+              "command": "find /root/autodl-tmp/ctrl_contam_pilot/ -name \"*.py\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T17:15:23.828253+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35694",
+              "command": "ls /root/autodl-tmp/ctrl_contam_pilot/results/",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T17:15:23.828463+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/ctrl_contam_pilot/prepare_data.py\\\\n/root/autodl-tmp/ctrl_contam_pilot/train.py\\\\n/root/autodl-tmp/ctrl_contam_pilot/eval_lz.py\\\\n/root/autodl-tmp/ctrl_contam_pilot/compute_delta.py\\\\n/root/autodl-tmp/ctrl_contam_pilot/theta_fixed_recompute.py\\\\n/root/autodl-tmp/ctrl_contam_pilot/theta_fixed_lzstar.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T17:15:23.828614+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"clean_s10_results.json\\\\nclean_s1_results.json\\\\nclean_s1_results_lz_uncorrected.json\\\\nclean_s2_results.json\\\\nclean_s2_results_lz_uncorrected.json\\\\nclean_s3_results.json\\\\nclean_s3_results_lz_uncorrected.json\\\\nclean_s4_results.json\\\\nclean_s5_results.json\\\\nclean_s6_results.json\\\\nclean_s7_results.json\\\\nclean_s8_results.json\\\\nclean_s9_results.json\\\\ncohens_d_3seeds.json\\\\ncohens_d_n10.json\\\\ncontam_15_results.json\\\\ncontam_15_results_lz_uncorrected.json\\\\ncontam_50_results.json\\\\ncontam_50_results_lz_uncorrected.json\\\\nsummary.json\\\\ntheta_fixed_analysis.json\\\\ntheta_fixed_n3.json\\\\ntheta_fixed_n3_lzstar.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T17:15:23.828780+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35694",
+              "command": "cat /root/autodl-tmp/ctrl_contam_pilot/eval_lz.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T17:15:23.829039+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\neval_lz.py — Evaluate a fine-tuned adapter on full MMLU and compute lz* person-fit statistic.\\\\n\\\\nUsage: python eval_lz.py --condition clean_s1 --gpu 0\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport csv\\\\nimport json\\\\nimport os\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom peft import PeftModel\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\\\n\\\\nBASE_DIR = \\\\\\\"/root/autodl-tmp/ctrl_contam_pilot\\\\\\\"\\\\nHF_CACHE = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nPARAMS_PATH = os.path.join(BASE_DIR, \\\\\\\"mmlu_params.csv\\\\\\\")\\\\n\\\\nCHOICES = [\\\\\\\"A\\\\\\\", \\\\\\\"B\\\\\\\", \\\\\\\"C\\\\\\\", \\\\\\\"D\\\\\\\"]\\\\n\\\\nFEW_SHOT_EXAMPLES = [\\\\n    {\\\\n        \\\\\\\"question\\\\\\\": \\\\\\\"What is the capital of France?\\\\\\\",\\\\n        \\\\\\\"choices\\\\\\\": [\\\\\\\"London\\\\\\\", \\\\\\\"Paris\\\\\\\", \\\\\\\"Berlin\\\\\\\", \\\\\\\"Madrid\\\\\\\"],\\\\n        \\\\\\\"answer\\\\\\\": 1,\\\\n    },\\\\n    {\\\\n        \\\\\\\"question\\\\\\\": \\\\\\\"Which planet is closest to the Sun?\\\\\\\",\\\\n        \\\\\\\"choices\\\\\\\": [\\\\\\\"Venus\\\\\\\", \\\\\\\"Mercury\\\\\\\", \\\\\\\"Mars\\\\\\\", \\\\\\\"Earth\\\\\\\"],\\\\n        \\\\\\\"answer\\\\\\\": 1,\\\\n    },\\\\n    {\\\\n        \\\\\\\"question\\\\\\\": \\\\\\\"What is 2 + 2?\\\\\\\",\\\\n        \\\\\\\"choices\\\\\\\": [\\\\\\\"3\\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"5\\\\\\\", \\\\\\\"6\\\\\\\"],\\\\n        \\\\\\\"answer\\\\\\\": 1,\\\\n    },\\\\n]\\\\n\\\\n\\\\ndef format_question(question, choices):\\\\n    lines = [f\\\\\\\"Question: {question}\\\\\\\"]\\\\n    for i, c in enumerate(choices):\\\\n        lines.append(f\\\\\\\"{CHOICES[i]}. {c}\\\\\\\")\\\\n    lines.append(\\\\\\\"Answer:\\\\\\\")\\\\n    return \\\\\\\"\\\\\\\\n\\\\\\\".join(lines)\\\\n\\\\n\\\\ndef build_few_shot_prompt(question, choices):\\\\n    parts = []\\\\n    for ex in FEW_SHOT_EXAMPLES:\\\\n        parts.append(format_question(ex[\\\\\\\"question\\\\\\\"], ex[\\\\\\\"choices\\\\\\\"]) + f\\\\\\\" {CHOICES[ex['answer']]}\\\\\\\")\\\\n    parts.append(format_question(question, choices))\\\\n    return \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\".join(parts)\\\\n\\\\n\\\\ndef find_model_path():\\\\n    patterns = [\\\\n        os.path.join(HF_CACHE, \\\\\\\"Qwen\\\\\\\", \\\\\\\"Qwen2.5-7B-Instruct\n…[truncated 7329 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T17:15:23.829208+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35694",
+              "command": "cat /root/autodl-tmp/ctrl_contam_pilot/results/clean_s1_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T17:15:23.829567+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"condition\\\\\\\": \\\\\\\"clean_s1\\\\\\\",\\\\n  \\\\\\\"theta_mle\\\\\\\": -0.0986527567242099,\\\\n  \\\\\\\"lz_star\\\\\\\": 9.467606907258286,\\\\n  \\\\\\\"accuracy_overall\\\\\\\": 0.6786782509614016,\\\\n  \\\\\\\"accuracy_seen\\\\\\\": null,\\\\n  \\\\\\\"accuracy_unseen\\\\\\\": 0.6786782509614016,\\\\n  \\\\\\\"lz_star_seen\\\\\\\": null,\\\\n  \\\\\\\"lz_star_unseen\\\\\\\": 9.467606907258286,\\\\n  \\\\\\\"response_vector\\\\\\\": [\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\n…[truncated 8490 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T17:15:23.829736+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35694",
+              "command": "cat /root/autodl-tmp/ctrl_contam_pilot/results/clean_s6_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T17:15:23.830063+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"condition\\\\\\\": \\\\\\\"clean_s6\\\\\\\",\\\\n  \\\\\\\"theta_mle\\\\\\\": -0.10356752108238569,\\\\n  \\\\\\\"lz_star\\\\\\\": 8.244526507230841,\\\\n  \\\\\\\"accuracy_overall\\\\\\\": 0.6771115225751317,\\\\n  \\\\\\\"accuracy_seen\\\\\\\": null,\\\\n  \\\\\\\"accuracy_unseen\\\\\\\": 0.6771115225751317,\\\\n  \\\\\\\"lz_star_seen\\\\\\\": null,\\\\n  \\\\\\\"lz_star_unseen\\\\\\\": 8.244526507230841,\\\\n  \\\\\\\"response_vector\\\\\\\": [\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    1,\\\\n    0,\\\\n    0,\\\\n    1,\n…[truncated 8492 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T17:15:23.830264+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35694",
+              "command": "grep -n \"compute_lz_star\\|lz_uncorrected\\|def compute\" /root/autodl-tmp/ctrl_contam_pilot/eval_lz.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T17:15:23.830421+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T17:15:23.830546+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35694",
+              "command": "head -180 /root/autodl-tmp/ctrl_contam_pilot/eval_lz.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T17:15:23.830769+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\neval_lz.py — Evaluate a fine-tuned adapter on full MMLU and compute lz* person-fit statistic.\\\\n\\\\nUsage: python eval_lz.py --condition clean_s1 --gpu 0\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport csv\\\\nimport json\\\\nimport os\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom peft import PeftModel\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\\\n\\\\nBASE_DIR = \\\\\\\"/root/autodl-tmp/ctrl_contam_pilot\\\\\\\"\\\\nHF_CACHE = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nPARAMS_PATH = os.path.join(BASE_DIR, \\\\\\\"mmlu_params.csv\\\\\\\")\\\\n\\\\nCHOICES = [\\\\\\\"A\\\\\\\", \\\\\\\"B\\\\\\\", \\\\\\\"C\\\\\\\", \\\\\\\"D\\\\\\\"]\\\\n\\\\nFEW_SHOT_EXAMPLES = [\\\\n    {\\\\n        \\\\\\\"question\\\\\\\": \\\\\\\"What is the capital of France?\\\\\\\",\\\\n        \\\\\\\"choices\\\\\\\": [\\\\\\\"London\\\\\\\", \\\\\\\"Paris\\\\\\\", \\\\\\\"Berlin\\\\\\\", \\\\\\\"Madrid\\\\\\\"],\\\\n        \\\\\\\"answer\\\\\\\": 1,\\\\n    },\\\\n    {\\\\n        \\\\\\\"question\\\\\\\": \\\\\\\"Which planet is closest to the Sun?\\\\\\\",\\\\n        \\\\\\\"choices\\\\\\\": [\\\\\\\"Venus\\\\\\\", \\\\\\\"Mercury\\\\\\\", \\\\\\\"Mars\\\\\\\", \\\\\\\"Earth\\\\\\\"],\\\\n        \\\\\\\"answer\\\\\\\": 1,\\\\n    },\\\\n    {\\\\n        \\\\\\\"question\\\\\\\": \\\\\\\"What is 2 + 2?\\\\\\\",\\\\n        \\\\\\\"choices\\\\\\\": [\\\\\\\"3\\\\\\\", \\\\\\\"4\\\\\\\", \\\\\\\"5\\\\\\\", \\\\\\\"6\\\\\\\"],\\\\n        \\\\\\\"answer\\\\\\\": 1,\\\\n    },\\\\n]\\\\n\\\\n\\\\ndef format_question(question, choices):\\\\n    lines = [f\\\\\\\"Question: {question}\\\\\\\"]\\\\n    for i, c in enumerate(choices):\\\\n        lines.append(f\\\\\\\"{CHOICES[i]}. {c}\\\\\\\")\\\\n    lines.append(\\\\\\\"Answer:\\\\\\\")\\\\n    return \\\\\\\"\\\\\\\\n\\\\\\\".join(lines)\\\\n\\\\n\\\\ndef build_few_shot_prompt(question, choices):\\\\n    parts = []\\\\n    for ex in FEW_SHOT_EXAMPLES:\\\\n        parts.append(format_question(ex[\\\\\\\"question\\\\\\\"], ex[\\\\\\\"choices\\\\\\\"]) + f\\\\\\\" {CHOICES[ex['answer']]}\\\\\\\")\\\\n    parts.append(format_question(question, choices))\\\\n    return \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\".join(parts)\\\\n\\\\n\\\\ndef find_model_path():\\\\n    patterns = [\\\\n        os.path.join(HF_CACHE, \\\\\\\"Qwen\\\\\\\", \\\\\\\"Qwen2.5-7B-Instruct\n…[truncated 5114 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T17:15:23.830975+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35694",
+              "command": "cat /root/autodl-tmp/ctrl_contam_pilot/theta_fixed_lzstar.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T17:15:23.831196+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\ntheta_fixed lz* recomputation with Snijders (2001) correction.\\\\nUses clean baseline theta (mean of n=3 clean seeds' theta_MLE).\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json, os, csv, math\\\\nimport numpy as np\\\\n\\\\nRESULTS_DIR = '/root/autodl-tmp/ctrl_contam_pilot/results'\\\\nPARAMS_FILE = '/root/autodl-tmp/ctrl_contam_pilot/mmlu_params.csv'\\\\n\\\\n# Load PSN-IRT 4PL parameters\\\\nparams = []\\\\nwith open(PARAMS_FILE) as f:\\\\n    reader = csv.DictReader(f)\\\\n    for row in reader:\\\\n        params.append({\\\\n            'a': float(row['a_discrimination']),\\\\n            'b': float(row['b_difficulty']),\\\\n            'c': float(row['c_guessing']),\\\\n            'd': float(row['d_feasibility'])\\\\n        })\\\\nn_items_params = len(params)\\\\nprint(f\\\\\\\"Loaded {n_items_params} item parameters\\\\\\\")\\\\n\\\\ndef compute_lz_drasgow(response_vector, params, theta):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Drasgow (1985) lz — no variance correction.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n = min(len(response_vector), len(params))\\\\n    l0, el0, var_l0 = 0.0, 0.0, 0.0\\\\n    for i in range(n):\\\\n        x = response_vector[i]\\\\n        p = params[i]\\\\n        a, b, c, d = p['a'], p['b'], p['c'], p['d']\\\\n        prob = c + (d - c) / (1.0 + math.exp(-a * (theta - b)))\\\\n        prob = max(min(prob, 1.0 - 1e-10), 1e-10)\\\\n        log_p = math.log(prob)\\\\n        log_q = math.log(1.0 - prob)\\\\n        l0 += x * log_p + (1 - x) * log_q\\\\n        el0 += prob * log_p + (1 - prob) * log_q\\\\n        var_l0 += prob * (1 - prob) * (log_p - log_q) ** 2\\\\n    if var_l0 <= 0:\\\\n        return float('nan')\\\\n    return (l0 - el0) / math.sqrt(var_l0)\\\\n\\\\ndef compute_lz_star(response_vector, params, theta):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Snijders (2001) lz* with Var* = Var(l0) - C(theta)^2/I(theta) correction.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n = min(len(response_vector), len(params))\\\\n    l0, E_l0, Var_l0 = 0.0, 0.0, 0.0\\\\n    I_theta, C_theta = 0.0, 0.0\\\\n    for i in range(n):\\\\n        x \n…[truncated 5930 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T17:15:23.831365+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35694",
+              "command": "cat /root/autodl-tmp/ctrl_contam_pilot/theta_fixed_recompute.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T17:15:23.831560+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\ntheta-fixed lz* recomputation.\\\\nUses clean baseline theta (mean of clean_s1, clean_s2 theta_MLE) to recompute\\\\nlz* for all 4 conditions, isolating theta-shift contribution to signal.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json, os, csv, math\\\\nimport numpy as np\\\\n\\\\nRESULTS_DIR = '/root/autodl-tmp/ctrl_contam_pilot/results'\\\\nPARAMS_FILE = '/root/autodl-tmp/ctrl_contam_pilot/mmlu_params.csv'\\\\n\\\\n# Load PSN-IRT 4PL parameters\\\\nparams = []\\\\nwith open(PARAMS_FILE) as f:\\\\n    reader = csv.DictReader(f)\\\\n    for row in reader:\\\\n        params.append({\\\\n            'a': float(row['a_discrimination']),\\\\n            'b': float(row['b_difficulty']),\\\\n            'c': float(row['c_guessing']),\\\\n            'd': float(row['d_feasibility'])\\\\n        })\\\\nn_items_params = len(params)\\\\nprint(f\\\\\\\"Loaded {n_items_params} item parameters\\\\\\\")\\\\n\\\\ndef compute_lz_star(response_vector, params, theta):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute lz* statistic for given theta (fixed, not MLE).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n = min(len(response_vector), len(params))\\\\n    l0 = 0.0\\\\n    el0 = 0.0\\\\n    var_l0 = 0.0\\\\n    \\\\n    for i in range(n):\\\\n        x = response_vector[i]\\\\n        p = params[i]\\\\n        a, b, c, d = p['a'], p['b'], p['c'], p['d']\\\\n        \\\\n        # 4PL ICC\\\\n        prob = c + (d - c) / (1.0 + math.exp(-a * (theta - b)))\\\\n        prob = max(min(prob, 1.0 - 1e-10), 1e-10)\\\\n        \\\\n        log_p = math.log(prob)\\\\n        log_q = math.log(1.0 - prob)\\\\n        \\\\n        l0 += x * log_p + (1 - x) * log_q\\\\n        el0 += prob * log_p + (1 - prob) * log_q\\\\n        var_l0 += prob * (1 - prob) * (log_p - log_q) ** 2\\\\n    \\\\n    if var_l0 <= 0:\\\\n        return float('nan')\\\\n    \\\\n    lz_star = (l0 - el0) / math.sqrt(var_l0)\\\\n    return lz_star\\\\n\\\\n# Load all condition results\\\\nconditions = ['clean_s1', 'clean_s2', 'contam_15', 'contam_50']\\\\ndata = {}\\\\nfor cond in conditions:\\\\n    fp\n…[truncated 4551 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T17:15:23.831712+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35694",
+              "command": "grep -n \"lz_uncorrected\" /root/autodl-tmp/ctrl_contam_pilot/eval_lz.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T17:15:23.831839+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T17:15:23.832037+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35694",
+              "command": "grep -m1 \"theta_mle\" /root/autodl-tmp/ctrl_contam_pilot/results/clean_s7_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T17:15:23.832182+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"theta_mle\\\\\\\": -0.08916794814799336,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T17:15:23.832304+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35694",
+              "command": "grep -m1 \"theta_mle\" /root/autodl-tmp/ctrl_contam_pilot/results/clean_s8_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T17:15:23.832446+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"theta_mle\\\\\\\": -0.10350776551695291,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T17:15:23.832569+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35694",
+              "command": "grep -m1 \"theta_mle\" /root/autodl-tmp/ctrl_contam_pilot/results/clean_s9_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T17:15:23.832689+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"theta_mle\\\\\\\": -0.12421669978651226,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-21T17:15:23.832802+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35694",
+              "command": "grep -m1 \"theta_mle\" /root/autodl-tmp/ctrl_contam_pilot/results/clean_s10_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-21T17:15:23.832918+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"theta_mle\\\\\\\": -0.1156143911182717,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T17:15:23.833029+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35694",
+              "command": "grep -m1 \"theta_mle\" /root/autodl-tmp/ctrl_contam_pilot/results/clean_s5_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-21T17:15:23.833142+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"theta_mle\\\\\\\": -0.08750088659913645,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-21T17:15:23.833251+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35694",
+              "command": "grep -m1 \"theta_mle\" /root/autodl-tmp/ctrl_contam_pilot/results/clean_s4_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-21T17:15:23.833385+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"theta_mle\\\\\\\": -0.10916247474758177,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-21T17:15:23.833500+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35694",
+              "command": "grep -m1 \"theta_mle\" /root/autodl-tmp/ctrl_contam_pilot/results/contam_15_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-21T17:15:23.833612+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35694",
+              "command": "grep -m1 \"theta_mle\" /root/autodl-tmp/ctrl_contam_pilot/results/contam_50_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-21T17:15:23.833732+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"theta_mle\\\\\\\": 0.1970583788764187,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-21T17:15:23.833846+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"theta_mle\\\\\\\": 0.37026214499905313,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-21T17:15:23.834033+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35694",
+              "command": "grep -m1 \"theta_mle\" /root/autodl-tmp/ctrl_contam_pilot/results/clean_s2_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-21T17:15:23.834165+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35694",
+              "command": "grep -m1 \"theta_mle\" /root/autodl-tmp/ctrl_contam_pilot/results/clean_s3_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-21T17:15:23.834284+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"theta_mle\\\\\\\": -0.08419128365675109,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-21T17:15:23.834441+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"theta_mle\\\\\\\": -0.10680139600711859,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-21T17:15:23.834625+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-35694",
+              "command": "cat > /root/autodl-tmp/ctrl_contam_pilot/recompute_theta_fixed_n10.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"\nRecompute theta-fixed lz (Drasgow 1985) for all 12 Qwen conditions using\nthe same computation that produced registry values.\ntheta_fixed = mean of 10 clean seeds' theta_MLE.\n\"\"\"\nimport json, os, csv, math\nimport numpy as np\n\nRESULTS_DIR = '/root/autodl-tmp/ctrl_contam_pilot/results'\nPARAMS_FILE = '/root/autodl-tmp/ctrl_contam_pilot/mmlu_params.csv'\n\n# --- Load 4PL IRT parameters (indexed by position, not item_idx) ---\nparams = []\nwith open(PARAMS_FILE) as f:\n    reader = csv.DictReader(f)\n    for row in reader:\n        params.append({\n            'a': float(row['a_discrimination']),\n            'b': float(row['b_difficulty']),\n            'c': float(row['c_guessing']),\n            'd': float(row['d_feasibility'])\n        })\nprint(f\"Loaded {len(params)} item parameters\")\n\n# --- Same functions from theta_fixed_lzstar.py (registry source) ---\n\ndef compute_lz_drasgow(response_vector, params, theta):\n    \"\"\"Drasgow (1985) lz — no variance correction. This is the registry computation.\"\"\"\n    n = min(len(response_vector), len(params))\n    l0, el0, var_l0 = 0.0, 0.0, 0.0\n    for i in range(n):\n        x = response_vector[i]\n        p = params[i]\n        a, b, c, d = p['a'], p['b'], p['c'], p['d']\n        prob = c + (d - c) / (1.0 + math.exp(-a * (theta - b)))\n        prob = max(min(prob, 1.0 - 1e-10), 1e-10)\n        log_p = math.log(prob)\n        log_q = math.log(1.0 - prob)\n        l0 += x * log_p + (1 - x) * log_q\n        el0 += prob * log_p + (1 - prob) * log_q\n        var_l0 += prob * (1 - prob) * (log_p - log_q) ** 2\n    if var_l0 <= 0:\n        return float('nan')\n    return (l0 - el0) / math.sqrt(var_l0)\n\n# --- Load all 12 conditions ---\nconditions = [f'clean_s{i}' for i in range(1, 11)] + ['contam_15', 'contam_50']\ndata = {}\nfor cond in conditions:\n    fpath = os.path.join(RESULTS_DIR, f'{cond}_results.json')\n    if os.path.exists(fpath):\n        data[cond] = json.load(open(fpath))\n        print(f\"Loaded {cond}: theta_mle={data[cond]['theta_mle']:.6f}\")\n    else:\n        print(f\"WARNING: {fpath} not found!\")\n\n# --- theta_fixed = mean of 10 clean theta_MLEs ---\nclean_thetas = {f'clean_s{i}': data[f'clean_s{i}']['theta_mle'] for i in range(1, 11)}\ntheta_fixed = np.mean(list(clean_thetas.values()))\nprint(f\"\\ntheta_fixed = mean of 10 clean seeds = {theta_fixed:.6f}\")\nfor k, v in clean_thetas.items():\n    print(f\"  {k}: {v:.6f}\")\n\n# --- Step 1: Verify free-theta lz matches registry ---\nprint(f\"\\n{'='*70}\")\nprint(\"VERIFICATION: free-theta lz (should match registry)\")\nprint(f\"{'='*70}\")\nfor cond in conditions:\n    rv = data[cond]['response_vector']\n    theta_mle = data[cond]['theta_mle']\n    lz_free = compute_lz_drasgow(rv, params, theta_mle)\n    lz_uncorrected_field = data[cond].get('lz_uncorrected', None)\n    match = \"\"\n    if lz_uncorrected_field is not None:\n        match = f\" registry={lz_uncorrected_field:.4f} match={abs(lz_free - lz_uncorrected_field) < 1e-6}\"\n    print(f\"  {cond:<12} lz_free={lz_free:.4f}{match}\")\n\n# --- Step 2: Compute theta-fixed lz for all 12 conditions ---\nprint(f\"\\n{'='*70}\")\nprint(f\"THETA-FIXED LZ (Drasgow 1985, theta_fixed={theta_fixed:.6f})\")\nprint(f\"{'='*70}\")\nprint(f\"{'Cond':<12} {'theta_MLE':>10} {'lz_free':>10} {'lz_fixed':>10}\")\n\nresults = {'theta_fixed': theta_fixed, 'clean_thetas': clean_thetas, 'conditions': {}}\nclean_lz_fixed = []\nclean_lz_free = []\n\nfor cond in conditions:\n    rv = data[cond]['response_vector']\n    theta_mle = data[cond]['theta_mle']\n    lz_free = compute_lz_drasgow(rv, params, theta_mle)\n    lz_fixed = compute_lz_drasgow(rv, params, theta_fixed)\n\n    results['conditions'][cond] = {\n        'theta_mle': theta_mle,\n        'lz_free': lz_free,\n        'lz_fixed': lz_fixed,\n        'accuracy': data[cond].get('accuracy_overall', None),\n    }\n    if cond.startswith('clean_'):\n        clean_lz_fixed.append(lz_fixed)\n        clean_lz_free.append(lz_free)\n\n    print(f\"  {cond:<12} {theta_mle:>10.4f} {lz_free:>10.4f} {lz_fixed:>10.4f}\")\n\n# --- Step 3: Cohen's d + Bootstrap CI ---\nprint(f\"\\n{'='*70}\")\nprint(\"COHEN'S D + BOOTSTRAP CI\")\nprint(f\"{'='*70}\")\n\nclean_fixed_arr = np.array(clean_lz_fixed)\nclean_free_arr = np.array(clean_lz_free)\n\ndef bootstrap_cohens_d(clean_values, contam_value, n_bootstrap=10000, seed=42):\n    rng = np.random.RandomState(seed)\n    n = len(clean_values)\n    ds = []\n    for _ in range(n_bootstrap):\n        sample = rng.choice(clean_values, size=n, replace=True)\n        s = np.std(sample, ddof=1)\n        if s < 1e-10:\n            continue\n        d = (np.mean(sample) - contam_value) / s\n        ds.append(d)\n    ds = np.array(ds)\n    return np.mean(ds), np.percentile(ds, 2.5), np.percentile(ds, 97.5)\n\ncohens_d_results = {}\nfor contam in ['contam_15', 'contam_50']:\n    lz_fixed_contam = results['conditions'][contam]['lz_fixed']\n    lz_free_contam = results['conditions'][contam]['lz_free']\n\n    d_fixed, ci_lo_fixed, ci_hi_fixed = bootstrap_cohens_d(clean_fixed_arr, lz_fixed_contam)\n    d_free, ci_lo_free, ci_hi_free = bootstrap_cohens_d(clean_free_arr, lz_free_contam)\n\n    cohens_d_results[contam] = {\n        'lz_fixed': {'d': d_fixed, 'ci_95': [ci_lo_fixed, ci_hi_fixed]},\n        'lz_free': {'d': d_free, 'ci_95': [ci_lo_free, ci_hi_free]},\n    }\n    print(f\"\\n{contam}:\")\n    print(f\"  lz_fixed: d={d_fixed:.4f}  95% CI=[{ci_lo_fixed:.4f}, {ci_hi_fixed:.4f}]\")\n    print(f\"  lz_free:  d={d_free:.4f}  95% CI=[{ci_lo_free:.4f}, {ci_hi_free:.4f}]\")\n\nresults['cohens_d'] = cohens_d_results\nresults['clean_summary'] = {\n    'lz_fixed_mean': float(np.mean(clean_fixed_arr)),\n    'lz_fixed_std': float(np.std(clean_fixed_arr, ddof=1)),\n    'lz_free_mean': float(np.mean(clean_free_arr)),\n    'lz_free_std': float(np.std(clean_free_arr, ddof=1)),\n}\n\n# --- Save ---\nout_path = '/root/autodl-tmp/qwen_theta_fixed_consistent.json'\nwith open(out_path, 'w') as f:\n    json.dump(results, f, indent=2, default=lambda x: float(x) if isinstance(x, np.floating) else x)\nprint(f\"\\nSaved to {out_path}\")\n\n# Also save to results dir\nout_path2 = os.path.join(RESULTS_DIR, 'theta_fixed_n10_consistent.json')\nwith open(out_path2, 'w') as f:\n    json.dump(results, f, indent=2, default=lambda x: float(x) if isinstance(x, np.floating) else x)\nprint(f\"Saved to {out_path2}\")\nPYEOF\necho \"Script written.\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-21T17:15:23.834826+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-21T17:15:23.834951+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-35694",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/ctrl_contam_pilot && python recompute_theta_fixed_n10.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-21T17:15:23.835102+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 14042 item parameters\\\\nLoaded clean_s1: theta_mle=-0.098653\\\\nLoaded clean_s2: theta_mle=-0.084191\\\\nLoaded clean_s3: theta_mle=-0.106801\\\\nLoaded clean_s4: theta_mle=-0.109162\\\\nLoaded clean_s5: theta_mle=-0.087501\\\\nLoaded clean_s6: theta_mle=-0.103568\\\\nLoaded clean_s7: theta_mle=-0.089168\\\\nLoaded clean_s8: theta_mle=-0.103508\\\\nLoaded clean_s9: theta_mle=-0.124217\\\\nLoaded clean_s10: theta_mle=-0.115614\\\\nLoaded contam_15: theta_mle=0.197058\\\\nLoaded contam_50: theta_mle=0.370262\\\\n\\\\ntheta_fixed = mean of 10 clean seeds = -0.102238\\\\n  clean_s1: -0.098653\\\\n  clean_s2: -0.084191\\\\n  clean_s3: -0.106801\\\\n  clean_s4: -0.109162\\\\n  clean_s5: -0.087501\\\\n  clean_s6: -0.103568\\\\n  clean_s7: -0.089168\\\\n  clean_s8: -0.103508\\\\n  clean_s9: -0.124217\\\\n  clean_s10: -0.115614\\\\n\\\\n======================================================================\\\\nVERIFICATION: free-theta lz (should match registry)\\\\n======================================================================\\\\n  clean_s1     lz_free=8.0101 registry=8.0101 match=True\\\\n  clean_s2     lz_free=5.9440 registry=5.9440 match=True\\\\n  clean_s3     lz_free=8.0806 registry=8.0806 match=True\\\\n  clean_s4     lz_free=7.6090\\\\n  clean_s5     lz_free=7.1963\\\\n  clean_s6     lz_free=6.9848\\\\n  clean_s7     lz_free=7.4005\\\\n  clean_s8     lz_free=7.7188\\\\n  clean_s9     lz_free=7.6799\\\\n  clean_s10    lz_free=6.9272\\\\n  contam_15    lz_free=3.0046 registry=3.0046 match=True\\\\n  contam_50    lz_free=5.4480 registry=5.4480 match=True\\\\n\\\\n======================================================================\\\\nTHETA-FIXED LZ (Drasgow 1985, theta_fixed=-0.102238)\\\\n======================================================================\\\\nCond          theta_MLE    lz_free   lz_fixed\\\\n  clean_s1        -0.0987     8.0101     8.1144\\\\n  clean_s2        -0.0842     5.9440     6.4586\\\\n  clean_s3        -0.1068     8.0806     7.9471\\\\n  clean_s4        -0.1092\n…[truncated 1089 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-21T17:15:23.835292+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "qwen_theta_fixed_n10_consistent",
+              "type": "data",
+              "description": "Qwen MMLU theta-fixed (n=10) lz recomputation using registry-consistent Drasgow lz, with Cohen's d + bootstrap CI",
+              "project": "irt_personfit_contam",
+              "source_path": "/root/autodl-tmp/qwen_theta_fixed_consistent.json",
+              "tags": "['theta-fixed', 'lz', 'registry-consistent', 'cohens-d']"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-21T17:15:23.835452+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/qwen_theta_fixed_consistent.json\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-21T17:15:23.835587+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-35694",
+              "command": "cat /root/autodl-tmp/qwen_theta_fixed_consistent.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-21T17:15:23.835774+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"theta_fixed\\\\\\\": -0.10223831233869138,\\\\n  \\\\\\\"clean_thetas\\\\\\\": {\\\\n    \\\\\\\"clean_s1\\\\\\\": -0.0986527567242099,\\\\n    \\\\\\\"clean_s2\\\\\\\": -0.08419128365675109,\\\\n    \\\\\\\"clean_s3\\\\\\\": -0.10680139600711859,\\\\n    \\\\\\\"clean_s4\\\\\\\": -0.10916247474758177,\\\\n    \\\\\\\"clean_s5\\\\\\\": -0.08750088659913645,\\\\n    \\\\\\\"clean_s6\\\\\\\": -0.10356752108238569,\\\\n    \\\\\\\"clean_s7\\\\\\\": -0.08916794814799336,\\\\n    \\\\\\\"clean_s8\\\\\\\": -0.10350776551695291,\\\\n    \\\\\\\"clean_s9\\\\\\\": -0.12421669978651226,\\\\n    \\\\\\\"clean_s10\\\\\\\": -0.1156143911182717\\\\n  },\\\\n  \\\\\\\"conditions\\\\\\\": {\\\\n    \\\\\\\"clean_s1\\\\\\\": {\\\\n      \\\\\\\"theta_mle\\\\\\\": -0.0986527567242099,\\\\n      \\\\\\\"lz_free\\\\\\\": 8.01009041187934,\\\\n      \\\\\\\"lz_fixed\\\\\\\": 8.114437362083612,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.6786782509614016\\\\n    },\\\\n    \\\\\\\"clean_s2\\\\\\\": {\\\\n      \\\\\\\"theta_mle\\\\\\\": -0.08419128365675109,\\\\n      \\\\\\\"lz_free\\\\\\\": 5.944047910541453,\\\\n      \\\\\\\"lz_fixed\\\\\\\": 6.458587370456475,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.6788918957413473\\\\n    },\\\\n    \\\\\\\"clean_s3\\\\\\\": {\\\\n      \\\\\\\"theta_mle\\\\\\\": -0.10680139600711859,\\\\n      \\\\\\\"lz_free\\\\\\\": 8.080590398603904,\\\\n      \\\\\\\"lz_fixed\\\\\\\": 7.947136322190985,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.6782509614015098\\\\n    },\\\\n    \\\\\\\"clean_s4\\\\\\\": {\\\\n      \\\\\\\"theta_mle\\\\\\\": -0.10916247474758177,\\\\n      \\\\\\\"lz_free\\\\\\\": 7.608984632207946,\\\\n      \\\\\\\"lz_fixed\\\\\\\": 7.406778231131619,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.6786070360347529\\\\n    },\\\\n    \\\\\\\"clean_s5\\\\\\\": {\\\\n      \\\\\\\"theta_mle\\\\\\\": -0.08750088659913645,\\\\n      \\\\\\\"lz_free\\\\\\\": 7.196342924060185,\\\\n      \\\\\\\"lz_fixed\\\\\\\": 7.620495505583358,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.6787494658880502\\\\n    },\\\\n    \\\\\\\"clean_s6\\\\\\\": {\\\\n      \\\\\\\"theta_mle\\\\\\\": -0.10356752108238569,\\\\n      \\\\\\\"lz_free\\\\\\\": 6.984828964002596,\\\\n      \\\\\\\"lz_fixed\\\\\\\": 6.94627632465298,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.6771115225751317\\\\n    },\\\\n    \\\\\\\"clean_s7\\\\\\\": {\\\\n      \\\\\\\"theta_mle\\\\\\\": -0.089167948147993\n…[truncated 2400 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-21T17:15:23.835961+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "qwen_theta_fixed_n10_consistent",
+              "type": "data",
+              "description": "Qwen MMLU theta-fixed (n=10) lz recomputation using registry-consistent Drasgow lz, with Cohen's d + bootstrap CI",
+              "project": "irt_personfit_contam",
+              "content": "{\"theta_fixed\": -0.10223831233869138, \"clean_thetas\": {\"clean_s1\": -0.0986527567242099, \"clean_s2\": -0.08419128365675109, \"clean_s3\": -0.10680139600711859, \"clean_s4\": -0.10916247474758177, \"clean_s5\": -0.08750088659913645, \"clean_s6\": -0.10356752108238569, \"clean_s7\": -0.08916794814799336, \"clean_s8\": -0.10350776551695291, \"clean_s9\": -0.12421669978651226, \"clean_s10\": -0.1156143911182717}, \"conditions\": {\"clean_s1\": {\"theta_mle\": -0.0986527567242099, \"lz_free\": 8.01009041187934, \"lz_fixed\": 8.114437362083612, \"accuracy\": 0.6786782509614016}, \"clean_s2\": {\"theta_mle\": -0.08419128365675109, \"lz_free\": 5.944047910541453, \"lz_fixed\": 6.458587370456475, \"accuracy\": 0.6788918957413473}, \"clean_s3\": {\"theta_mle\": -0.10680139600711859, \"lz_free\": 8.080590398603904, \"lz_fixed\": 7.947136322190985, \"accuracy\": 0.6782509614015098}, \"clean_s4\": {\"theta_mle\": -0.10916247474758177, \"lz_free\": 7.608984632207946, \"lz_fixed\": 7.406778231131619, \"accuracy\": 0.6786070360347529}, \"clean_s5\": {\"theta_mle\": -0.08750088659913645, \"lz_free\": 7.196342924060185, \"lz_fixed\": 7.620495505583358, \"accuracy\": 0.6787494658880502}, \"clean_s6\": {\"theta_mle\": -0.10356752108238569, \"lz_free\": 6.984828964002596, \"lz_fixed\": 6.94627632465298, \"accuracy\": 0.6771115225751317}, \"clean_s7\": {\"theta_mle\": -0.08916794814799336, \"lz_free\": 7.400482492228013, \"lz_fixed\": 7.777467374274676, \"accuracy\": 0.6782509614015098}, \"clean_s8\": {\"theta_mle\": -0.10350776551695291, \"lz_free\": 7.718773544068247, \"lz_fixed\": 7.681793885891907, \"accuracy\": 0.6768266628685372}, \"clean_s9\": {\"theta_mle\": -0.12421669978651226, \"lz_free\": 7.679917871661727, \"lz_fixed\": 7.032436579213817, \"accuracy\": 0.6742629255091868}, \"clean_s10\": {\"theta_mle\": -0.1156143911182717, \"lz_free\": 6.927180375397073, \"lz_fixed\": 6.536739933571236, \"accuracy\": 0.6758296538954565}, \"contam_15\": {\"theta_mle\": 0.1970583788764187, \"lz_free\": 3.0045964353509347, \"lz_fixed\": 10.119604440383872, \"accuracy\": 0.7310212220481412}, \"contam_50\": {\"theta_mle\": 0.37026214499905313, \"lz_free\": 5.448014241389145, \"lz_fixed\": 15.777855027025613, \"accuracy\": 0.7643498077196981}}, \"cohens_d\": {\"contam_15\": {\"lz_fixed\": {\"d\": -5.266873367837006, \"ci_95\": [-7.785631513074798, -3.9677281606268844]}, \"lz_free\": {\"d\": 8.382408706270427, \"ci_95\": [4.752612986431902, 15.650803176743686]}}, \"contam_50\": {\"lz_fixed\": {\"d\": -16.087210363200526, \"ci_95\": [-24.79197129443806, -12.095277997301263]}, \"lz_free\": {\"d\": 3.713801887941121, \"ci_95\": [1.8897228057368236, 7.28961430037745]}}}, \"clean_summary\": {\"lz_fixed_mean\": 7.352214888905067, \"lz_fixed_std\": 0.5802242937357958, \"lz_free_mean\": 7.355123952465048, \"lz_free_std\": 0.6321144832497168}}",
+              "content_filename": "qwen_theta_fixed_consistent.json",
+              "tags": "['theta-fixed', 'lz', 'registry-consistent', 'cohens-d']"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-21T17:15:23.836136+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'theta_fixed': -0.102238...d': 0.6321144832497168}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-21T17:15:23.836266+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "qwen_theta_fixed_n10_consistent",
+              "type": "data",
+              "description": "Qwen MMLU theta-fixed (n=10) lz recomputation using registry-consistent Drasgow lz, with Cohen's d + bootstrap CI",
+              "project": "irt_personfit_contam",
+              "content": "{\"theta_fixed\": -0.102238, \"clean_summary\": {\"lz_fixed_mean\": 7.3522, \"lz_fixed_std\": 0.5802, \"lz_free_mean\": 7.3551, \"lz_free_std\": 0.6321}, \"cohens_d\": {\"contam_15\": {\"lz_fixed\": {\"d\": -5.2669, \"ci_95\": [-7.7856, -3.9677]}, \"lz_free\": {\"d\": 8.3824, \"ci_95\": [4.7526, 15.6508]}}, \"contam_50\": {\"lz_fixed\": {\"d\": -16.0872, \"ci_95\": [-24.7920, -12.0953]}, \"lz_free\": {\"d\": 3.7138, \"ci_95\": [1.8897, 7.2896]}}}}",
+              "content_filename": "qwen_theta_fixed_consistent.json",
+              "tags": "['theta-fixed', 'lz', 'registry-consistent', 'cohens-d']"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-21T17:15:23.836440+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'theta_fixed': -0.102238...5': [1.8897, 7.2896]}}}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-21T17:15:23.836573+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "qwen_theta_fixed_n10_consistent",
+              "type": "data",
+              "description": "Qwen MMLU theta-fixed (n=10) lz recomputation using registry-consistent Drasgow lz, with Cohen's d + bootstrap CI. Full data at /root/autodl-tmp/qwen_theta_fixed_consistent.json on westd-35694.",
+              "project": "irt_personfit_contam",
+              "content": "See /root/autodl-tmp/qwen_theta_fixed_consistent.json on westd-35694. theta_fixed=-0.1022, clean lz_fixed mean=7.352, contam_15 lz_fixed=10.12, contam_50 lz_fixed=15.78. Cohen d: contam_15 d=-5.27 [-7.79,-3.97], contam_50 d=-16.09 [-24.79,-12.10].",
+              "content_filename": "qwen_theta_fixed_consistent.json",
+              "tags": "['theta-fixed', 'lz', 'registry-consistent', 'cohens-d']"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-21T17:15:23.836715+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260521_0baf8e\\\", \\\"name\\\": \\\"qwen_theta_fixed_n10_consistent\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Qwen MMLU theta-fixed (n=10) lz recomputation using registry-consistent Drasgow lz, with Cohen's d + bootstrap CI. Full data at /root/autodl-tmp/qwen_theta_fixed_consistent.json on westd-35694.\\\", \\\"path\\\": \\\"projects/irt_personfit_contam/artifacts/_project/data/qwen_theta_fixed_consistent.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"irt_personfit_contam\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-21T17:15:07.333883+00:00\\\", \\\"tags\\\": [\\\"theta-fixed\\\", \\\"lz\\\", \\\"registry-consistent\\\", \\\"cohens-d\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-21T17:15:23.836888+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n### 验证\n- free-θ lz(s1) = **8.0101**，与 registry 完全一致 ✓\n- 使用的是 `compute_lz_drasgow`（Drasgow 1985，无 Snijders 校正），即 `theta_fixed_lzstar.py` 中的同源函数\n\n### θ_fixed = -0.1022（10 个 clean seeds 的 mean θ_MLE）\n\n### Table: Qwen MMLU θ-fixed (registry-consistent)\n\n| Condition | θ_MLE | lz_free (registry) | lz_fixed |\n|-----------|-------|---------------------|----------|\n| clean_s1 | -0.0987 | 8.010 | 8.114 |\n| clean_s2 | -0.0842 | 5.944 | 6.459 |\n| clean_s3 | -0.1068 | 8.081 | 7.947 |\n| clean_s4 | -0.1092 | 7.609 | 7.407 |\n| clean_s5 | -0.0875 | 7.196 | 7.621 |\n| clean_s6 | -0.1036 | 6.985 | 6.946 |\n| clean_s7 | -0.0892 | 7.400 | 7.777 |\n| clean_s8 | -0.1035 | 7.719 | 7.682 |\n| clean_s9 | -0.1242 | 7.680 | 7.032 |\n| clean_s10 | -0.1156 | 6.927 | 6.537 |\n| **contam_15** | **0.1971** | **3.005** | **10.120** |\n| **contam_50** | **0.3703** | **5.448** | **15.778** |\n\n### Cohen's d + 95% Bootstrap CI\n\n| Metric | d(15%) | 95% CI | d(50%) | 95% CI |\n|--------|--------|--------|--------|--------|\n| lz_fixed | -5.27 | [-7.79, -3.97] | -16.09 | [-24.79, -12.10] |\n| lz_free | 8.38 | [4.75, 15.65] | 3.71 | [1.89, 7.29] |\n\n### 关键发现\n- **θ-fixed 恢复了 dose-response 单调性**：|d(50%)| = 16.09 > |d(15%)| = 5.27，ratio ≈ 3.1×\n- free-θ 下 dose-response 反转（d(50%) = 3.71 < d(15%) = 8.38），因为 θ 膨胀部分吸收了 contamination 信号\n- θ-fixed 时 contam 的 lz **升高**（10.12, 15.78 vs clean 均值 7.35），因为固定 θ 后 response pattern 偏离更大\n\n结果已保存到 `/root/autodl-tmp/qwen_theta_fixed_consistent.json`。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_qwen-theta-fixed-consistent_20260521T171114"
+          },
+          "id": "event-000057"
+        }
+      ],
+      "message_count": 57
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-qwen-theta-fixed-consistent.md"
+}

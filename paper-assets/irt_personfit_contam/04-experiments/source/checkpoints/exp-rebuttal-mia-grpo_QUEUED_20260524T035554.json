@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-rebuttal-mia-grpo",
+  "project": "irt_personfit_contam",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T03:50:52.163Z",
+    "updated_at": "2026-05-24T03:55:54.410Z",
+    "hypothesis": "Min-K% and Min-K%++ MIA methods will fail on GRPO-contaminated Llama (AUC near 0.5), while lz* retains detection power, demonstrating lz* advantage over logit-based MIA for RL-trained models"
+  },
+  "timestamp": "2026-05-24T03:55:54.596151+00:00",
+  "trigger": "update_registry"
+}

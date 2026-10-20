@@ -1,0 +1,2623 @@
+# code constat bugfix rerun
+
+**What Can IRT Person-Fit Statistics Reveal About SFT-Stage Benchmark Contamination?** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 89
+- **Recorded user turns:** 0
+- **Tool calls:** 44
+- **Original source:** `logs/chats/worker_code_constat-bugfix-rerun_20260521T083100.jsonl`
+- **Structured JSON:** [`365234219fa449be1c49.json`](../../sessions/36/365234219fa449be1c49.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+89 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-21T08:43:15.363998+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-21T08:43:15.364361+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-21T08:43:15.364548+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "cat /root/autodl-tmp/constat_comparison/run_constat.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "cat /root/autodl-tmp/constat_comparison/run_constat.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-21T08:43:15.364682+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "cat /root/autodl-tmp/ctrl_contam_pilot/eval_lz.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "cat /root/autodl-tmp/ctrl_contam_pilot/eval_lz.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-21T08:43:15.364927+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"ConStat vs lz* comparison for contamination detection.\\\"\\\"\\\"\\n\\nimport json\\nimport numpy as np\\nimport sys\\nsys.path.insert(0, '/root/autodl-tmp/ConStat/src')\\nfrom constat import ConStat\\nimport os\\nimport time\\n\\nOUT_DIR = '/root/autodl-tmp/constat_comparison/results'\\nos.makedirs(OUT_DIR, exist_ok=True)\\n\\ndef load_ctrl_contam_data():\\n    data = {}\\n    configs = [\\n        ('qwen', '/root/autodl-tmp/ctrl_contam_pilot/results/', \\n         ['clean_s1', 'clean_s2', 'clean_s3', 'contam_15', 'contam_50']),\\n        ('llama', '/root/autodl-tmp/ctrl_contam_llama/results/',\\n         ['clean', 'contam_15', 'contam_50']),\\n        ('mistral', '/root/autodl-tmp/ctrl_contam_mistral/results/',\\n         ['clean', 'contam_15', 'contam_50']),\\n    ]\\n    for model, path, conditions in configs:\\n        data[model] = {}\\n        for cond in conditions:\\n            fpath = os.path.join(path, f'{cond}_results.json')\\n            if os.path.exists(fpath):\\n                with open(fpath) as f:\\n                    d = json.load(f)\\n                data[model][cond] = {\\n                    'accuracy': d['accuracy_overall'],\\n                    'lz_star': d['lz_star'],\\n                    'response_vector': np.array(d['response_vector']),\\n                    'n_items': d['n_items'],\\n                }\\n    return data\\n\\ndef constat_feasibility_analysis():\\n    return {\\n        'method': 'ConStat',\\n        'required_inputs': {\\n            'primary_benchmark_per_item': 'AVAILABLE',\\n            'reference_benchmark_per_item': 'NOT AVAILABLE',\\n            'reference_models_primary': 'NOT AVAILABLE',\\n            'reference_models_reference': 'NOT AVAILABLE',\\n        },\\n        'missing_count': 3,\\n        'total_required': 4,\\n        'feasible': False,\\n        'reason': (\\n            'ConStat requires dual-benchmark evaluation (primary + refer
+…[truncated 6771 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-21T08:43:15.365091+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "ls /root/autodl-tmp/ConStat/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "ls /root/autodl-tmp/ConStat/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-21T08:43:15.365365+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\neval_lz.py — Evaluate a fine-tuned adapter on full MMLU and compute lz* person-fit statistic.\\n\\nUsage: python eval_lz.py --condition clean_s1 --gpu 0\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport os\\n\\nimport numpy as np\\nimport torch\\nfrom peft import PeftModel\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\n\\nBASE_DIR = \\\"/root/autodl-tmp/ctrl_contam_pilot\\\"\\nHF_CACHE = \\\"/root/autodl-tmp/.hf_cache\\\"\\nPARAMS_PATH = os.path.join(BASE_DIR, \\\"mmlu_params.csv\\\")\\n\\nCHOICES = [\\\"A\\\", \\\"B\\\", \\\"C\\\", \\\"D\\\"]\\n\\nFEW_SHOT_EXAMPLES = [\\n    {\\n        \\\"question\\\": \\\"What is the capital of France?\\\",\\n        \\\"choices\\\": [\\\"London\\\", \\\"Paris\\\", \\\"Berlin\\\", \\\"Madrid\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n    {\\n        \\\"question\\\": \\\"Which planet is closest to the Sun?\\\",\\n        \\\"choices\\\": [\\\"Venus\\\", \\\"Mercury\\\", \\\"Mars\\\", \\\"Earth\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n    {\\n        \\\"question\\\": \\\"What is 2 + 2?\\\",\\n        \\\"choices\\\": [\\\"3\\\", \\\"4\\\", \\\"5\\\", \\\"6\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n]\\n\\n\\ndef format_question(question, choices):\\n    lines = [f\\\"Question: {question}\\\"]\\n    for i, c in enumerate(choices):\\n        lines.append(f\\\"{CHOICES[i]}. {c}\\\")\\n    lines.append(\\\"Answer:\\\")\\n    return \\\"\\\\n\\\".join(lines)\\n\\n\\ndef build_few_shot_prompt(question, choices):\\n    parts = []\\n    for ex in FEW_SHOT_EXAMPLES:\\n        parts.append(format_question(ex[\\\"question\\\"], ex[\\\"choices\\\"]) + f\\\" {CHOICES[ex['answer']]}\\\")\\n    parts.append(format_question(question, choices))\\n    return \\\"\\\\n\\\\n\\\".join(parts)\\n\\n\\ndef find_model_path():\\n    patterns = [\\n        os.path.join(HF_CACHE, \\\"Qwen\\\", \\\"Qwen2.5-7B-Instruct
+…[truncated 7329 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-21T08:43:15.365547+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "irt_personfit_contam",
+  "file": "memory.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "irt_personfit_contam",
+    "file": "memory.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-21T08:43:15.365684+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"LICENSE.md\\nREADME.md\\ncode-contamination-detection\\nconfigs\\nfigures\\nlm-evaluation-harness\\nnotebooks\\npyproject.toml\\nrequirements.txt\\nscripts\\nsrc\\ntables\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T08:43:15.365978+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/memory.md\", \"content\": \"# Memory — irt_personfit_contam\\n\\n## OOM 教训 (2026-05-20)\\n- 7.6GB RAM 机器上，N_SIM×n_items float64 矩阵不能一次性分配。MMLU 10K×14042×8B ≈ 1.07GB 单个矩阵，compute_lz_star 内部创建 ~7 个同尺寸中间数组 → OOM\\n- 解决方案：BATCH_SIZE=500 分批计算 + N_SIM 降至 2000（统计效力足够）\\n- generate_response 和 compute_lz_star 都需要分批\\n\\n## Worker context exhaustion 教训 (2026-05-20)\\n- exp-v1-irt-refit-expanded Worker 跑 1.5 小时后崩溃，无输出。任务是从 HuggingFace 下载 500+ 模型的 per-item 数据并拟合 IRT。\\n- **根因**: 大量 HF API 调用 + 数据处理的累积输出耗尽 Worker context window。\\n- **教训**: 涉及大规模数据下载（100+ datasets）的任务必须分批 + checkpoint 中间结果，或拆成多个 Worker 串行执行。单个 Worker 不适合做 1.5hr+ 的重型数据工程。\\n- **补充 (同日)**: ssh_read_only 读取大 JSON 文件（8MB+ 单行）也会撑爆 context。Worker 操作远程大文件必须用 python 脚本提取摘要，不要 cat/head。\\n- **补充 (同日)**: Worker 无法在进程内长时间等待（~2 min 就退出）。涉及 GPU 训练 + eval 的任务应分阶段处理：训练完成后由 cron 回调触发 eval Worker，或由主 Agent 定时派 Worker 检查。\\n\\n## sim_001 关键发现 (2026-05-20)\\n- **Null check 全通过**：PSN-IRT 神经网络估计的 4PL 参数与经典 IRT 兼容，lz* ≈ N(0,1)\\n  - 大 benchmark（GSM8K/HellaSwag/MMLU）KS p 全部 > 0.01\\n  - 小 benchmark（HumanEval/ARC-C）KS p < 0.01，但属预期（items 太少，CLT 近似弱）\\n- **检测力与 n_items 强正相关**：MMLU(14042)=97.9% >> HellaSwag(10042)=73.3% >> GSM8K(1319)=57.8% >> ARC-C(295)=12.9%\\n- **Inverted-U 所有 benchmark 可观测**：power 在 25-50% contamination 达峰，100% 全部 NaN（全答对 → MLE 不收敛）\\n\\n## PSN-IRT 12 模型身份 (2026-05-20)\\n\\n**来源**：arXiv:2505.15055 (AAAI 2026 Oral)，GitHub repo `Joe-Hall-Lee/PSN-IRT`\\n\\n| student_id | θ | 正确率 | 模型名称 | 类型 |\\n|---|---|---|---|---|\\n| 0 | 1.46 | 80.6% | 360GPT2-Pro | API |\\n| 1 | 3.77 | 85.7% | DeepSeek-V3 | API |\\n| 2 | 1.14 | 78.9% | Doubao-pro | API |\\n| 3 | 0.78 | 84.5% | Gemini-1.5 | API |\\n| 4 | -3.38 | 23.1% | Gemma-2B-it | 开源 2B |\\n| 5 | 1.73 | 82.1% | Hunyuan-Turbo | API |\\n| 6 | -1.37 | 40.0% | Mistral-7B-Instruct-v0.1 | 开源 7B |\\n| 7 | 0.93 | 77.0% | Moonshot-v1 | API |\\n| 8 | 0.96 | 
+…[truncated 13301 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-21T08:43:15.366238+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "grep -n \"def compute_lz_star\" /root/autodl-tmp/ctrl_contam_pilot/eval_lz.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "grep -n \"def compute_lz_star\" /root/autodl-tmp/ctrl_contam_pilot/eval_lz.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T08:43:15.366433+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"129:def compute_lz_star(responses, irt_params, item_indices, theta):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-21T08:43:15.366573+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "head -180 /root/autodl-tmp/ctrl_contam_pilot/eval_lz.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "head -180 /root/autodl-tmp/ctrl_contam_pilot/eval_lz.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T08:43:15.366798+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\neval_lz.py — Evaluate a fine-tuned adapter on full MMLU and compute lz* person-fit statistic.\\n\\nUsage: python eval_lz.py --condition clean_s1 --gpu 0\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport os\\n\\nimport numpy as np\\nimport torch\\nfrom peft import PeftModel\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\n\\nBASE_DIR = \\\"/root/autodl-tmp/ctrl_contam_pilot\\\"\\nHF_CACHE = \\\"/root/autodl-tmp/.hf_cache\\\"\\nPARAMS_PATH = os.path.join(BASE_DIR, \\\"mmlu_params.csv\\\")\\n\\nCHOICES = [\\\"A\\\", \\\"B\\\", \\\"C\\\", \\\"D\\\"]\\n\\nFEW_SHOT_EXAMPLES = [\\n    {\\n        \\\"question\\\": \\\"What is the capital of France?\\\",\\n        \\\"choices\\\": [\\\"London\\\", \\\"Paris\\\", \\\"Berlin\\\", \\\"Madrid\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n    {\\n        \\\"question\\\": \\\"Which planet is closest to the Sun?\\\",\\n        \\\"choices\\\": [\\\"Venus\\\", \\\"Mercury\\\", \\\"Mars\\\", \\\"Earth\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n    {\\n        \\\"question\\\": \\\"What is 2 + 2?\\\",\\n        \\\"choices\\\": [\\\"3\\\", \\\"4\\\", \\\"5\\\", \\\"6\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n]\\n\\n\\ndef format_question(question, choices):\\n    lines = [f\\\"Question: {question}\\\"]\\n    for i, c in enumerate(choices):\\n        lines.append(f\\\"{CHOICES[i]}. {c}\\\")\\n    lines.append(\\\"Answer:\\\")\\n    return \\\"\\\\n\\\".join(lines)\\n\\n\\ndef build_few_shot_prompt(question, choices):\\n    parts = []\\n    for ex in FEW_SHOT_EXAMPLES:\\n        parts.append(format_question(ex[\\\"question\\\"], ex[\\\"choices\\\"]) + f\\\" {CHOICES[ex['answer']]}\\\")\\n    parts.append(format_question(question, choices))\\n    return \\\"\\\\n\\\\n\\\".join(parts)\\n\\n\\ndef find_model_path():\\n    patterns = [\\n        os.path.join(HF_CACHE, \\\"Qwen\\\", \\\"Qwen2.5-7B-Instruct
+…[truncated 5114 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-21T08:43:15.366959+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "grep -n \"contam_idx\\|tgt_primary\\|tgt_reference\\|1.96\\|lz_det\\|lz >\" /root/autodl-tmp/constat_comparison/run_constat.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "grep -n \"contam_idx\\|tgt_primary\\|tgt_reference\\|1.96\\|lz_det\\|lz >\" /root/autodl-tmp/constat_comparison/run_constat.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T08:43:15.367089+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-21T08:43:15.367233+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "grep -n \"1.96\\|lz_det\\|lz >\" /root/autodl-tmp/constat_comparison/run_constat.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "grep -n \"1.96\\|lz_det\\|lz >\" /root/autodl-tmp/constat_comparison/run_constat.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T08:43:15.367387+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-21T08:43:15.367527+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "grep -n \"contam_idx\" /root/autodl-tmp/constat_comparison/run_constat.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "grep -n \"contam_idx\" /root/autodl-tmp/constat_comparison/run_constat.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T08:43:15.367654+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-21T08:43:15.367771+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "grep -n \"1.96\" /root/autodl-tmp/constat_comparison/run_constat.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "grep -n \"1.96\" /root/autodl-tmp/constat_comparison/run_constat.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-21T08:43:15.367885+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "grep -n \"lz_det\" /root/autodl-tmp/constat_comparison/run_constat.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "grep -n \"lz_det\" /root/autodl-tmp/constat_comparison/run_constat.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-21T08:43:15.368034+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"136:            if lz > 1.96:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-21T08:43:15.368153+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"101:        lz_det = 0\\n137:                lz_det += 1\\n145:            'lzstar_power': lz_det / n_trials,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-21T08:43:15.368306+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "head -142 /root/autodl-tmp/constat_comparison/run_constat.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "head -142 /root/autodl-tmp/constat_comparison/run_constat.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-21T08:43:15.368521+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"ConStat vs lz* comparison for contamination detection.\\\"\\\"\\\"\\n\\nimport json\\nimport numpy as np\\nimport sys\\nsys.path.insert(0, '/root/autodl-tmp/ConStat/src')\\nfrom constat import ConStat\\nimport os\\nimport time\\n\\nOUT_DIR = '/root/autodl-tmp/constat_comparison/results'\\nos.makedirs(OUT_DIR, exist_ok=True)\\n\\ndef load_ctrl_contam_data():\\n    data = {}\\n    configs = [\\n        ('qwen', '/root/autodl-tmp/ctrl_contam_pilot/results/', \\n         ['clean_s1', 'clean_s2', 'clean_s3', 'contam_15', 'contam_50']),\\n        ('llama', '/root/autodl-tmp/ctrl_contam_llama/results/',\\n         ['clean', 'contam_15', 'contam_50']),\\n        ('mistral', '/root/autodl-tmp/ctrl_contam_mistral/results/',\\n         ['clean', 'contam_15', 'contam_50']),\\n    ]\\n    for model, path, conditions in configs:\\n        data[model] = {}\\n        for cond in conditions:\\n            fpath = os.path.join(path, f'{cond}_results.json')\\n            if os.path.exists(fpath):\\n                with open(fpath) as f:\\n                    d = json.load(f)\\n                data[model][cond] = {\\n                    'accuracy': d['accuracy_overall'],\\n                    'lz_star': d['lz_star'],\\n                    'response_vector': np.array(d['response_vector']),\\n                    'n_items': d['n_items'],\\n                }\\n    return data\\n\\ndef constat_feasibility_analysis():\\n    return {\\n        'method': 'ConStat',\\n        'required_inputs': {\\n            'primary_benchmark_per_item': 'AVAILABLE',\\n            'reference_benchmark_per_item': 'NOT AVAILABLE',\\n            'reference_models_primary': 'NOT AVAILABLE',\\n            'reference_models_reference': 'NOT AVAILABLE',\\n        },\\n        'missing_count': 3,\\n        'total_required': 4,\\n        'feasible': False,\\n        'reason': (\\n            'ConStat requires dual-benchmark evaluation (primary + refer
+…[truncated 3823 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-21T08:43:15.368720+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "cat > /root/autodl-tmp/constat_comparison/patch_run_constat.py << 'PATCHEOF'\nimport re\n\nwith open('/root/autodl-tmp/constat_comparison/run_constat.py', 'r') as f:\n    content = f.read()\n\n# Bug 1: Replace compute_lz_star with Snijders (2001) variance correction\nold_func = '''def compute_lz_star(responses, theta, a, b, c, d):\n    p = irt_4pl(theta, a, b, c, d)\n    p = np.clip(p, 1e-10, 1 - 1e-10)\n    lz = np.sum(responses * np.log(p) + (1 - responses) * np.log(1 - p))\n    E_lz = np.sum(p * np.log(p) + (1 - p) * np.log(1 - p))\n    Var_lz = np.sum(p * (1 - p) * (np.log(p / (1 - p)))**2)\n    if Var_lz <= 0:\n        return 0.0\n    return (lz - E_lz) / np.sqrt(Var_lz)'''\n\nnew_func = '''def compute_lz_star(responses, theta, a, b, c, d):\n    p = irt_4pl(theta, a, b, c, d)\n    p = np.clip(p, 1e-10, 1 - 1e-10)\n    q = 1.0 - p\n    log_p = np.log(p)\n    log_q = np.log(q)\n    l0 = np.sum(responses * log_p + (1 - responses) * log_q)\n    E_l0 = np.sum(p * log_p + q * log_q)\n    g = log_p - log_q\n    Var_l0 = np.sum(p * q * g**2)\n    # Snijders (2001) variance correction for estimated theta\n    z = a * (theta - b)\n    sigma = 1.0 / (1.0 + np.exp(-np.clip(z, -30, 30)))\n    dP = a * (d - c) * sigma * (1.0 - sigma)\n    h = dP / (p * q)\n    I_theta = np.sum(p * q * h**2)\n    C_theta = np.sum(p * q * h * g)\n    if Var_l0 < 1e-15:\n        return 0.0\n    Var_star = Var_l0 - C_theta**2 / I_theta if I_theta > 1e-15 else Var_l0\n    if Var_star <= 0:\n        Var_star = Var_l0\n    return (l0 - E_l0) / np.sqrt(Var_star)'''\n\nassert old_func in content, \"Could not find old compute_lz_star function!\"\ncontent = content.replace(old_func, new_func)\n\n# Bug 2: Fix threshold direction (line 136: lz > 1.96 -> abs(lz) > 1.96)\nold_threshold = 'if lz > 1.96:'\nnew_threshold = 'if abs(lz) > 1.96:'\nassert old_threshold in content, \"Could not find old threshold!\"\ncontent = content.replace(old_threshold, new_threshold)\n\nwith open('/root/autodl-tmp/constat_comparison/run_constat.py', 'w') as f:\n    f.write(content)\n\nprint(\"Patched successfully!\")\nprint(f\"  - compute_lz_star: added Snijders (2001) Var* correction\")\nprint(f\"  - threshold: lz > 1.96 -> abs(lz) > 1.96\")\nPATCHEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/autodl-tmp/constat_comparison/patch_run_constat.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "cat > /root/autodl-tmp/constat_comparison/patch_run_constat.py << 'PATCHEOF'\nimport re\n\nwith open('/root/autodl-tmp/constat_comparison/run_constat.py', 'r') as f:\n    content = f.read()\n\n# Bug 1: Replace compute_lz_star with Snijders (2001) variance correction\nold_func = '''def compute_lz_star(responses, theta, a, b, c, d):\n    p = irt_4pl(theta, a, b, c, d)\n    p = np.clip(p, 1e-10, 1 - 1e-10)\n    lz = np.sum(responses * np.log(p) + (1 - responses) * np.log(1 - p))\n    E_lz = np.sum(p * np.log(p) + (1 - p) * np.log(1 - p))\n    Var_lz = np.sum(p * (1 - p) * (np.log(p / (1 - p)))**2)\n    if Var_lz <= 0:\n        return 0.0\n    return (lz - E_lz) / np.sqrt(Var_lz)'''\n\nnew_func = '''def compute_lz_star(responses, theta, a, b, c, d):\n    p = irt_4pl(theta, a, b, c, d)\n    p = np.clip(p, 1e-10, 1 - 1e-10)\n    q = 1.0 - p\n    log_p = np.log(p)\n    log_q = np.log(q)\n    l0 = np.sum(responses * log_p + (1 - responses) * log_q)\n    E_l0 = np.sum(p * log_p + q * log_q)\n    g = log_p - log_q\n    Var_l0 = np.sum(p * q * g**2)\n    # Snijders (2001) variance correction for estimated theta\n    z = a * (theta - b)\n    sigma = 1.0 / (1.0 + np.exp(-np.clip(z, -30, 30)))\n    dP = a * (d - c) * sigma * (1.0 - sigma)\n    h = dP / (p * q)\n    I_theta = np.sum(p * q * h**2)\n    C_theta = np.sum(p * q * h * g)\n    if Var_l0 < 1e-15:\n        return 0.0\n    Var_star = Var_l0 - C_theta**2 / I_theta if I_theta > 1e-15 else Var_l0\n    if Var_star <= 0:\n        Var_star = Var_l0\n    return (l0 - E_l0) / np.sqrt(Var_star)'''\n\nassert old_func in content, \"Could not find old compute_lz_star function!\"\ncontent = content.replace(old_func, new_func)\n\n# Bug 2: Fix threshold direction (line 136: lz > 1.96 -> abs(lz) > 1.96)\nold_threshold = 'if lz > 1.96:'\nnew_threshold = 'if abs(lz) > 1.96:'\nassert old_threshold in content, \"Could not find old threshold!\"\ncontent = content.replace(old_threshold, new_threshold)\n\nwith open('/root/autodl-tmp/constat_comparison/run_constat.py', 'w') as f:\n    f.write(content)\n\nprint(\"Patched successfully!\")\nprint(f\"  - compute_lz_star: added Snijders (2001) Var* correction\")\nprint(f\"  - threshold: lz > 1.96 -> abs(lz) > 1.96\")\nPATCHEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/autodl-tmp/constat_comparison/patch_run_constat.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-21T08:43:15.368872+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Patched successfully!\\n  - compute_lz_star: added Snijders (2001) Var* correction\\n  - threshold: lz > 1.96 -> abs(lz) > 1.96\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-21T08:43:15.369011+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "grep -n \"Var_star\\|abs(lz)\\|Snijders\\|C_theta\\|I_theta\" /root/autodl-tmp/constat_comparison/run_constat.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "grep -n \"Var_star\\|abs(lz)\\|Snijders\\|C_theta\\|I_theta\" /root/autodl-tmp/constat_comparison/run_constat.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-21T08:43:15.369133+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-21T08:43:15.369251+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "grep -n \"Var_star\" /root/autodl-tmp/constat_comparison/run_constat.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "grep -n \"Var_star\" /root/autodl-tmp/constat_comparison/run_constat.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-21T08:43:15.369411+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"81:    Var_star = Var_l0 - C_theta**2 / I_theta if I_theta > 1e-15 else Var_l0\\n82:    if Var_star <= 0:\\n83:        Var_star = Var_l0\\n84:    return (l0 - E_l0) / np.sqrt(Var_star)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-21T08:43:15.369539+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "grep -n \"abs(lz)\" /root/autodl-tmp/constat_comparison/run_constat.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "grep -n \"abs(lz)\" /root/autodl-tmp/constat_comparison/run_constat.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-21T08:43:15.369658+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"150:            if abs(lz) > 1.96:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-21T08:43:15.369783+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/constat_comparison && python run_constat.py 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/constat_comparison && python run_constat.py 2>&1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-21T08:43:15.369914+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/constat_comparison && python run_constat.py 2>&1'\\n\\nStdout:\\n\\n\\n[2] Feasibility analysis...\\n  Feasible: False\\n  [OK] primary_benchmark_per_item\\n  [MISSING] reference_benchmark_per_item\\n  [MISSING] reference_models_primary\\n  [MISSING] reference_models_reference\\n\\n[3] Simulation (n=300, ref=10, trials=20, bootstrap=200)...\\ncontam=0%: ConStat=0.000 lz*=0.950 (15.5s)\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-21T08:43:15.370090+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport numpy as np\n\ndef irt_4pl(theta, a, b, c, d):\n    return c + (d - c) / (1 + np.exp(-a * (theta - b)))\n\ndef compute_lz_star(responses, theta, a, b, c, d):\n    p = irt_4pl(theta, a, b, c, d)\n    p = np.clip(p, 1e-10, 1 - 1e-10)\n    q = 1.0 - p\n    log_p = np.log(p)\n    log_q = np.log(q)\n    l0 = np.sum(responses * log_p + (1 - responses) * log_q)\n    E_l0 = np.sum(p * log_p + q * log_q)\n    g = log_p - log_q\n    Var_l0 = np.sum(p * q * g**2)\n    z = a * (theta - b)\n    sigma = 1.0 / (1.0 + np.exp(-np.clip(z, -30, 30)))\n    dP = a * (d - c) * sigma * (1.0 - sigma)\n    h = dP / (p * q)\n    I_theta = np.sum(p * q * h**2)\n    C_theta = np.sum(p * q * h * g)\n    if Var_l0 < 1e-15:\n        return 0.0\n    Var_star = Var_l0 - C_theta**2 / I_theta if I_theta > 1e-15 else Var_l0\n    if Var_star <= 0:\n        Var_star = Var_l0\n    return (l0 - E_l0) / np.sqrt(Var_star)\n\ndef theta_mle_vec(responses, a, b, c, d):\n    thetas = np.linspace(-4, 4, 800)\n    p_all = np.array([irt_4pl(th, a, b, c, d) for th in thetas])\n    p_all = np.clip(p_all, 1e-10, 1 - 1e-10)\n    ll = np.sum(responses * np.log(p_all) + (1 - responses) * np.log(1 - p_all), axis=1)\n    return thetas[np.argmax(ll)]\n\nnp.random.seed(42)\nn_items = 300\na1 = np.random.lognormal(0, 0.5, n_items)\nb1 = np.random.normal(0, 1, n_items)\nc1 = np.random.uniform(0.1, 0.3, n_items)\nd1 = np.random.uniform(0.85, 1.0, n_items)\n\ntarget_theta = 0.5\nlz_vals = []\nfor trial in range(50):\n    resp = np.random.binomial(1, irt_4pl(target_theta, a1, b1, c1, d1))\n    th = theta_mle_vec(resp, a1, b1, c1, d1)\n    lz = compute_lz_star(resp, th, a1, b1, c1, d1)\n    lz_vals.append(lz)\n\nlz_vals = np.array(lz_vals)\nprint(f'lz* mean={lz_vals.mean():.4f}, std={lz_vals.std():.4f}')\nprint(f'FAR (|lz*|>1.96): {np.mean(np.abs(lz_vals) > 1.96):.3f}')\nprint(f'min={lz_vals.min():.4f}, max={lz_vals.max():.4f}')\nprint(f'first 10: {lz_vals[:10]}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport numpy as np\n\ndef irt_4pl(theta, a, b, c, d):\n    return c + (d - c) / (1 + np.exp(-a * (theta - b)))\n\ndef compute_lz_star(responses, theta, a, b, c, d):\n    p = irt_4pl(theta, a, b, c, d)\n    p = np.clip(p, 1e-10, 1 - 1e-10)\n    q = 1.0 - p\n    log_p = np.log(p)\n    log_q = np.log(q)\n    l0 = np.sum(responses * log_p + (1 - responses) * log_q)\n    E_l0 = np.sum(p * log_p + q * log_q)\n    g = log_p - log_q\n    Var_l0 = np.sum(p * q * g**2)\n    z = a * (theta - b)\n    sigma = 1.0 / (1.0 + np.exp(-np.clip(z, -30, 30)))\n    dP = a * (d - c) * sigma * (1.0 - sigma)\n    h = dP / (p * q)\n    I_theta = np.sum(p * q * h**2)\n    C_theta = np.sum(p * q * h * g)\n    if Var_l0 < 1e-15:\n        return 0.0\n    Var_star = Var_l0 - C_theta**2 / I_theta if I_theta > 1e-15 else Var_l0\n    if Var_star <= 0:\n        Var_star = Var_l0\n    return (l0 - E_l0) / np.sqrt(Var_star)\n\ndef theta_mle_vec(responses, a, b, c, d):\n    thetas = np.linspace(-4, 4, 800)\n    p_all = np.array([irt_4pl(th, a, b, c, d) for th in thetas])\n    p_all = np.clip(p_all, 1e-10, 1 - 1e-10)\n    ll = np.sum(responses * np.log(p_all) + (1 - responses) * np.log(1 - p_all), axis=1)\n    return thetas[np.argmax(ll)]\n\nnp.random.seed(42)\nn_items = 300\na1 = np.random.lognormal(0, 0.5, n_items)\nb1 = np.random.normal(0, 1, n_items)\nc1 = np.random.uniform(0.1, 0.3, n_items)\nd1 = np.random.uniform(0.85, 1.0, n_items)\n\ntarget_theta = 0.5\nlz_vals = []\nfor trial in range(50):\n    resp = np.random.binomial(1, irt_4pl(target_theta, a1, b1, c1, d1))\n    th = theta_mle_vec(resp, a1, b1, c1, d1)\n    lz = compute_lz_star(resp, th, a1, b1, c1, d1)\n    lz_vals.append(lz)\n\nlz_vals = np.array(lz_vals)\nprint(f'lz* mean={lz_vals.mean():.4f}, std={lz_vals.std():.4f}')\nprint(f'FAR (|lz*|>1.96): {np.mean(np.abs(lz_vals) > 1.96):.3f}')\nprint(f'min={lz_vals.min():.4f}, max={lz_vals.max():.4f}')\nprint(f'first 10: {lz_vals[:10]}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-21T08:43:15.370237+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"lz* mean=0.0659, std=0.8318\\nFAR (|lz*|>1.96): 0.020\\nmin=-1.6678, max=2.5053\\nfirst 10: [ 0.53583141  0.89303316  0.10883644  1.16066007 -0.74811487 -0.67378906\\n -0.31337084  1.21555199 -0.50264289  1.83601984]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.65}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-21T08:43:15.370441+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport numpy as np\n\ndef irt_4pl(theta, a, b, c, d):\n    return c + (d - c) / (1 + np.exp(-a * (theta - b)))\n\ndef compute_lz_star(responses, theta, a, b, c, d):\n    p = irt_4pl(theta, a, b, c, d)\n    p = np.clip(p, 1e-10, 1 - 1e-10)\n    q = 1.0 - p\n    log_p = np.log(p)\n    log_q = np.log(q)\n    l0 = np.sum(responses * log_p + (1 - responses) * log_q)\n    E_l0 = np.sum(p * log_p + q * log_q)\n    g = log_p - log_q\n    Var_l0 = np.sum(p * q * g**2)\n    z = a * (theta - b)\n    sigma = 1.0 / (1.0 + np.exp(-np.clip(z, -30, 30)))\n    dP = a * (d - c) * sigma * (1.0 - sigma)\n    h = dP / (p * q)\n    I_theta = np.sum(p * q * h**2)\n    C_theta = np.sum(p * q * h * g)\n    if Var_l0 < 1e-15:\n        return 0.0\n    Var_star = Var_l0 - C_theta**2 / I_theta if I_theta > 1e-15 else Var_l0\n    if Var_star <= 0:\n        Var_star = Var_l0\n    return (l0 - E_l0) / np.sqrt(Var_star)\n\ndef theta_mle_vec(responses, a, b, c, d):\n    thetas = np.linspace(-4, 4, 800)\n    p_all = np.array([irt_4pl(th, a, b, c, d) for th in thetas])\n    p_all = np.clip(p_all, 1e-10, 1 - 1e-10)\n    ll = np.sum(responses * np.log(p_all) + (1 - responses) * np.log(1 - p_all), axis=1)\n    return thetas[np.argmax(ll)]\n\n# Replicate exact simulation state\nnp.random.seed(42)\nn_items = 300\nn_ref_models = 10\na1 = np.random.lognormal(0, 0.5, n_items)\nb1 = np.random.normal(0, 1, n_items)\nc1 = np.random.uniform(0.1, 0.3, n_items)\nd1 = np.random.uniform(0.85, 1.0, n_items)\na2 = np.random.lognormal(0, 0.5, n_items)\nb2 = np.random.normal(0, 1, n_items)\nc2 = np.random.uniform(0.1, 0.3, n_items)\nd2 = np.random.uniform(0.85, 1.0, n_items)\nref_thetas = np.random.normal(0, 1, n_ref_models)\ntarget_theta = 0.5\n\n# 0% contam, 20 trials\nlz_vals = []\nfor trial in range(20):\n    ref_primary = np.zeros((n_ref_models, n_items))\n    ref_reference = np.zeros((n_ref_models, n_items))\n    for m in range(n_ref_models):\n        ref_primary[m] = np.random.binomial(1, irt_4pl(ref_thetas[m], a1, b1, c1, d1))\n        ref_reference[m] = np.random.binomial(1, irt_4pl(ref_thetas[m], a2, b2, c2, d2))\n    tgt_primary = np.random.binomial(1, irt_4pl(target_theta, a1, b1, c1, d1))\n    tgt_reference = np.random.binomial(1, irt_4pl(target_theta, a2, b2, c2, d2))\n    \n    th = theta_mle_vec(tgt_primary, a1, b1, c1, d1)\n    lz = compute_lz_star(tgt_primary, th, a1, b1, c1, d1)\n    lz_vals.append(lz)\n    print(f'trial {trial}: theta_hat={th:.3f}, lz*={lz:.4f}')\n\nlz_arr = np.array(lz_vals)\nprint(f'mean={lz_arr.mean():.4f}, std={lz_arr.std():.4f}')\nprint(f'FAR (|lz*|>1.96): {np.mean(np.abs(lz_arr) > 1.96):.3f}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport numpy as np\n\ndef irt_4pl(theta, a, b, c, d):\n    return c + (d - c) / (1 + np.exp(-a * (theta - b)))\n\ndef compute_lz_star(responses, theta, a, b, c, d):\n    p = irt_4pl(theta, a, b, c, d)\n    p = np.clip(p, 1e-10, 1 - 1e-10)\n    q = 1.0 - p\n    log_p = np.log(p)\n    log_q = np.log(q)\n    l0 = np.sum(responses * log_p + (1 - responses) * log_q)\n    E_l0 = np.sum(p * log_p + q * log_q)\n    g = log_p - log_q\n    Var_l0 = np.sum(p * q * g**2)\n    z = a * (theta - b)\n    sigma = 1.0 / (1.0 + np.exp(-np.clip(z, -30, 30)))\n    dP = a * (d - c) * sigma * (1.0 - sigma)\n    h = dP / (p * q)\n    I_theta = np.sum(p * q * h**2)\n    C_theta = np.sum(p * q * h * g)\n    if Var_l0 < 1e-15:\n        return 0.0\n    Var_star = Var_l0 - C_theta**2 / I_theta if I_theta > 1e-15 else Var_l0\n    if Var_star <= 0:\n        Var_star = Var_l0\n    return (l0 - E_l0) / np.sqrt(Var_star)\n\ndef theta_mle_vec(responses, a, b, c, d):\n    thetas = np.linspace(-4, 4, 800)\n    p_all = np.array([irt_4pl(th, a, b, c, d) for th in thetas])\n    p_all = np.clip(p_all, 1e-10, 1 - 1e-10)\n    ll = np.sum(responses * np.log(p_all) + (1 - responses) * np.log(1 - p_all), axis=1)\n    return thetas[np.argmax(ll)]\n\n# Replicate exact simulation state\nnp.random.seed(42)\nn_items = 300\nn_ref_models = 10\na1 = np.random.lognormal(0, 0.5, n_items)\nb1 = np.random.normal(0, 1, n_items)\nc1 = np.random.uniform(0.1, 0.3, n_items)\nd1 = np.random.uniform(0.85, 1.0, n_items)\na2 = np.random.lognormal(0, 0.5, n_items)\nb2 = np.random.normal(0, 1, n_items)\nc2 = np.random.uniform(0.1, 0.3, n_items)\nd2 = np.random.uniform(0.85, 1.0, n_items)\nref_thetas = np.random.normal(0, 1, n_ref_models)\ntarget_theta = 0.5\n\n# 0% contam, 20 trials\nlz_vals = []\nfor trial in range(20):\n    ref_primary = np.zeros((n_ref_models, n_items))\n    ref_reference = np.zeros((n_ref_models, n_items))\n    for m in range(n_ref_models):\n        ref_primary[m] = np.random.binomial(1, irt_4pl(ref_thetas[m], a1, b1, c1, d1))\n        ref_reference[m] = np.random.binomial(1, irt_4pl(ref_thetas[m], a2, b2, c2, d2))\n    tgt_primary = np.random.binomial(1, irt_4pl(target_theta, a1, b1, c1, d1))\n    tgt_reference = np.random.binomial(1, irt_4pl(target_theta, a2, b2, c2, d2))\n    \n    th = theta_mle_vec(tgt_primary, a1, b1, c1, d1)\n    lz = compute_lz_star(tgt_primary, th, a1, b1, c1, d1)\n    lz_vals.append(lz)\n    print(f'trial {trial}: theta_hat={th:.3f}, lz*={lz:.4f}')\n\nlz_arr = np.array(lz_vals)\nprint(f'mean={lz_arr.mean():.4f}, std={lz_arr.std():.4f}')\nprint(f'FAR (|lz*|>1.96): {np.mean(np.abs(lz_arr) > 1.96):.3f}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-21T08:43:15.370618+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"trial 0: theta_hat=0.706, lz*=-0.0867\\ntrial 1: theta_hat=0.436, lz*=0.0632\\ntrial 2: theta_hat=0.516, lz*=0.9267\\ntrial 3: theta_hat=0.606, lz*=0.2002\\ntrial 4: theta_hat=0.886, lz*=-1.6309\\ntrial 5: theta_hat=0.486, lz*=-0.1684\\ntrial 6: theta_hat=0.436, lz*=1.0629\\ntrial 7: theta_hat=0.275, lz*=0.1791\\ntrial 8: theta_hat=0.395, lz*=-1.7221\\ntrial 9: theta_hat=0.596, lz*=0.6209\\ntrial 10: theta_hat=0.646, lz*=-0.3483\\ntrial 11: theta_hat=0.375, lz*=-2.0372\\ntrial 12: theta_hat=0.375, lz*=0.2731\\ntrial 13: theta_hat=0.576, lz*=-0.4980\\ntrial 14: theta_hat=0.686, lz*=1.8545\\ntrial 15: theta_hat=0.335, lz*=0.2790\\ntrial 16: theta_hat=0.285, lz*=-0.4014\\ntrial 17: theta_hat=0.556, lz*=-0.0749\\ntrial 18: theta_hat=0.706, lz*=0.1230\\ntrial 19: theta_hat=0.636, lz*=0.2292\\nmean=-0.0578, std=0.9053\\nFAR (|lz*|>1.96): 0.050\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.73}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-21T08:43:15.370798+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/constat_comparison && nohup python run_constat.py > /tmp/constat_run.log 2>&1 & echo \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/constat_comparison && nohup python run_constat.py > /tmp/constat_run.log 2>&1 & echo \"PID=$!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-21T08:43:15.370930+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/constat_comparison && nohup python run_constat.py > /tmp/constat_run.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=108462\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-21T08:43:15.371079+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "cat /tmp/constat_run.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "cat /tmp/constat_run.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-21T08:43:15.371212+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nConStat vs lz* Comparison\\n============================================================\\n\\n[1] Loading ctrl-contam data...\\n  qwen/clean_s1: acc=0.6787 lz*=9.4676\\n  qwen/clean_s2: acc=0.6789 lz*=7.0539\\n  qwen/clean_s3: acc=0.6783 lz*=9.5293\\n  qwen/contam_15: acc=0.7310 lz*=3.8494\\n  qwen/contam_50: acc=0.7643 lz*=7.2892\\n  llama/clean: acc=0.5914 lz*=0.8446\\n  llama/contam_15: acc=0.6654 lz*=-2.9922\\n  llama/contam_50: acc=0.6983 lz*=-3.3313\\n  mistral/clean: acc=0.5138 lz*=5.4175\\n  mistral/contam_15: acc=0.5949 lz*=-1.3849\\n  mistral/contam_50: acc=0.6732 lz*=-3.1503\\n\\n[2] Feasibility analysis...\\n  Feasible: False\\n  [OK] primary_benchmark_per_item\\n  [MISSING] reference_benchmark_per_item\\n  [MISSING] reference_models_primary\\n  [MISSING] reference_models_reference\\n\\n[3] Simulation (n=300, ref=10, trials=20, bootstrap=200)...\\ncontam=0%: ConStat=0.000 lz*=0.950 (15.3s)\\ncontam=5%: ConStat=0.000 lz*=1.000 (15.3s)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-21T08:43:15.371390+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "head -85 /root/autodl-tmp/constat_comparison/run_constat.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "head -85 /root/autodl-tmp/constat_comparison/run_constat.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-21T08:43:15.371568+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"ConStat vs lz* comparison for contamination detection.\\\"\\\"\\\"\\n\\nimport json\\nimport numpy as np\\nimport sys\\nsys.path.insert(0, '/root/autodl-tmp/ConStat/src')\\nfrom constat import ConStat\\nimport os\\nimport time\\n\\nOUT_DIR = '/root/autodl-tmp/constat_comparison/results'\\nos.makedirs(OUT_DIR, exist_ok=True)\\n\\ndef load_ctrl_contam_data():\\n    data = {}\\n    configs = [\\n        ('qwen', '/root/autodl-tmp/ctrl_contam_pilot/results/', \\n         ['clean_s1', 'clean_s2', 'clean_s3', 'contam_15', 'contam_50']),\\n        ('llama', '/root/autodl-tmp/ctrl_contam_llama/results/',\\n         ['clean', 'contam_15', 'contam_50']),\\n        ('mistral', '/root/autodl-tmp/ctrl_contam_mistral/results/',\\n         ['clean', 'contam_15', 'contam_50']),\\n    ]\\n    for model, path, conditions in configs:\\n        data[model] = {}\\n        for cond in conditions:\\n            fpath = os.path.join(path, f'{cond}_results.json')\\n            if os.path.exists(fpath):\\n                with open(fpath) as f:\\n                    d = json.load(f)\\n                data[model][cond] = {\\n                    'accuracy': d['accuracy_overall'],\\n                    'lz_star': d['lz_star'],\\n                    'response_vector': np.array(d['response_vector']),\\n                    'n_items': d['n_items'],\\n                }\\n    return data\\n\\ndef constat_feasibility_analysis():\\n    return {\\n        'method': 'ConStat',\\n        'required_inputs': {\\n            'primary_benchmark_per_item': 'AVAILABLE',\\n            'reference_benchmark_per_item': 'NOT AVAILABLE',\\n            'reference_models_primary': 'NOT AVAILABLE',\\n            'reference_models_reference': 'NOT AVAILABLE',\\n        },\\n        'missing_count': 3,\\n        'total_required': 4,\\n        'feasible': False,\\n        'reason': (\\n            'ConStat requires dual-benchmark evaluation (primary + refer
+…[truncated 1404 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-21T08:43:15.371782+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport numpy as np\nimport sys\nsys.path.insert(0, '/root/autodl-tmp/ConStat/src')\nfrom constat import ConStat\n\ndef irt_4pl(theta, a, b, c, d):\n    return c + (d - c) / (1 + np.exp(-a * (theta - b)))\n\ndef compute_lz_star(responses, theta, a, b, c, d):\n    p = irt_4pl(theta, a, b, c, d)\n    p = np.clip(p, 1e-10, 1 - 1e-10)\n    q = 1.0 - p\n    log_p = np.log(p)\n    log_q = np.log(q)\n    l0 = np.sum(responses * log_p + (1 - responses) * log_q)\n    E_l0 = np.sum(p * log_p + q * log_q)\n    g = log_p - log_q\n    Var_l0 = np.sum(p * q * g**2)\n    z = a * (theta - b)\n    sigma = 1.0 / (1.0 + np.exp(-np.clip(z, -30, 30)))\n    dP = a * (d - c) * sigma * (1.0 - sigma)\n    h = dP / (p * q)\n    I_theta = np.sum(p * q * h**2)\n    C_theta = np.sum(p * q * h * g)\n    if Var_l0 < 1e-15:\n        return 0.0\n    Var_star = Var_l0 - C_theta**2 / I_theta if I_theta > 1e-15 else Var_l0\n    if Var_star <= 0:\n        Var_star = Var_l0\n    return (l0 - E_l0) / np.sqrt(Var_star)\n\ndef theta_mle_vec(responses, a, b, c, d):\n    thetas = np.linspace(-4, 4, 800)\n    p_all = np.array([irt_4pl(th, a, b, c, d) for th in thetas])\n    p_all = np.clip(p_all, 1e-10, 1 - 1e-10)\n    ll = np.sum(responses * np.log(p_all) + (1 - responses) * np.log(1 - p_all), axis=1)\n    return thetas[np.argmax(ll)]\n\nnp.random.seed(42)\nn_items = 300\nn_ref_models = 10\na1 = np.random.lognormal(0, 0.5, n_items)\nb1 = np.random.normal(0, 1, n_items)\nc1 = np.random.uniform(0.1, 0.3, n_items)\nd1 = np.random.uniform(0.85, 1.0, n_items)\na2 = np.random.lognormal(0, 0.5, n_items)\nb2 = np.random.normal(0, 1, n_items)\nc2 = np.random.uniform(0.1, 0.3, n_items)\nd2 = np.random.uniform(0.85, 1.0, n_items)\nref_thetas = np.random.normal(0, 1, n_ref_models)\ntarget_theta = 0.5\n\n# Full simulation with ConStat (like run_constat.py)\nlz_vals = []\nfor trial in range(5):\n    ref_primary = np.zeros((n_ref_models, n_items))\n    ref_reference = np.zeros((n_ref_models, n_items))\n    for m in range(n_ref_models):\n        ref_primary[m] = np.random.binomial(1, irt_4pl(ref_thetas[m], a1, b1, c1, d1))\n        ref_reference[m] = np.random.binomial(1, irt_4pl(ref_thetas[m], a2, b2, c2, d2))\n    tgt_primary = np.random.binomial(1, irt_4pl(target_theta, a1, b1, c1, d1))\n    tgt_reference = np.random.binomial(1, irt_4pl(target_theta, a2, b2, c2, d2))\n    \n    # Run ConStat (modifies np.random state!)\n    cs = ConStat(n_bootstrap=200, p_value_delta=0, random_performance=(0.25, 0.25))\n    try:\n        res = cs.test(tgt_primary.astype(float), tgt_reference.astype(float),\n                      ref_primary.astype(float), ref_reference.astype(float))\n    except Exception as e:\n        print(f'  ConStat error: {e}')\n    \n    th = theta_mle_vec(tgt_primary, a1, b1, c1, d1)\n    lz = compute_lz_star(tgt_primary, th, a1, b1, c1, d1)\n    lz_vals.append(lz)\n    acc = np.mean(tgt_primary)\n    print(f'trial {trial}: acc={acc:.3f} theta={th:.3f} lz*={lz:.4f} |lz*|>1.96={abs(lz)>1.96}')\n\nprint(f'mean lz*={np.mean(lz_vals):.4f}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport numpy as np\nimport sys\nsys.path.insert(0, '/root/autodl-tmp/ConStat/src')\nfrom constat import ConStat\n\ndef irt_4pl(theta, a, b, c, d):\n    return c + (d - c) / (1 + np.exp(-a * (theta - b)))\n\ndef compute_lz_star(responses, theta, a, b, c, d):\n    p = irt_4pl(theta, a, b, c, d)\n    p = np.clip(p, 1e-10, 1 - 1e-10)\n    q = 1.0 - p\n    log_p = np.log(p)\n    log_q = np.log(q)\n    l0 = np.sum(responses * log_p + (1 - responses) * log_q)\n    E_l0 = np.sum(p * log_p + q * log_q)\n    g = log_p - log_q\n    Var_l0 = np.sum(p * q * g**2)\n    z = a * (theta - b)\n    sigma = 1.0 / (1.0 + np.exp(-np.clip(z, -30, 30)))\n    dP = a * (d - c) * sigma * (1.0 - sigma)\n    h = dP / (p * q)\n    I_theta = np.sum(p * q * h**2)\n    C_theta = np.sum(p * q * h * g)\n    if Var_l0 < 1e-15:\n        return 0.0\n    Var_star = Var_l0 - C_theta**2 / I_theta if I_theta > 1e-15 else Var_l0\n    if Var_star <= 0:\n        Var_star = Var_l0\n    return (l0 - E_l0) / np.sqrt(Var_star)\n\ndef theta_mle_vec(responses, a, b, c, d):\n    thetas = np.linspace(-4, 4, 800)\n    p_all = np.array([irt_4pl(th, a, b, c, d) for th in thetas])\n    p_all = np.clip(p_all, 1e-10, 1 - 1e-10)\n    ll = np.sum(responses * np.log(p_all) + (1 - responses) * np.log(1 - p_all), axis=1)\n    return thetas[np.argmax(ll)]\n\nnp.random.seed(42)\nn_items = 300\nn_ref_models = 10\na1 = np.random.lognormal(0, 0.5, n_items)\nb1 = np.random.normal(0, 1, n_items)\nc1 = np.random.uniform(0.1, 0.3, n_items)\nd1 = np.random.uniform(0.85, 1.0, n_items)\na2 = np.random.lognormal(0, 0.5, n_items)\nb2 = np.random.normal(0, 1, n_items)\nc2 = np.random.uniform(0.1, 0.3, n_items)\nd2 = np.random.uniform(0.85, 1.0, n_items)\nref_thetas = np.random.normal(0, 1, n_ref_models)\ntarget_theta = 0.5\n\n# Full simulation with ConStat (like run_constat.py)\nlz_vals = []\nfor trial in range(5):\n    ref_primary = np.zeros((n_ref_models, n_items))\n    ref_reference = np.zeros((n_ref_models, n_items))\n    for m in range(n_ref_models):\n        ref_primary[m] = np.random.binomial(1, irt_4pl(ref_thetas[m], a1, b1, c1, d1))\n        ref_reference[m] = np.random.binomial(1, irt_4pl(ref_thetas[m], a2, b2, c2, d2))\n    tgt_primary = np.random.binomial(1, irt_4pl(target_theta, a1, b1, c1, d1))\n    tgt_reference = np.random.binomial(1, irt_4pl(target_theta, a2, b2, c2, d2))\n    \n    # Run ConStat (modifies np.random state!)\n    cs = ConStat(n_bootstrap=200, p_value_delta=0, random_performance=(0.25, 0.25))\n    try:\n        res = cs.test(tgt_primary.astype(float), tgt_reference.astype(float),\n                      ref_primary.astype(float), ref_reference.astype(float))\n    except Exception as e:\n        print(f'  ConStat error: {e}')\n    \n    th = theta_mle_vec(tgt_primary, a1, b1, c1, d1)\n    lz = compute_lz_star(tgt_primary, th, a1, b1, c1, d1)\n    lz_vals.append(lz)\n    acc = np.mean(tgt_primary)\n    print(f'trial {trial}: acc={acc:.3f} theta={th:.3f} lz*={lz:.4f} |lz*|>1.96={abs(lz)>1.96}')\n\nprint(f'mean lz*={np.mean(lz_vals):.4f}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-21T08:43:15.371973+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"trial 0: acc=0.677 theta=0.706 lz*=-0.0867 |lz*|>1.96=False\\ntrial 1: acc=0.627 theta=0.456 lz*=-3.0359 |lz*|>1.96=True\\ntrial 2: acc=0.627 theta=0.456 lz*=-3.0359 |lz*|>1.96=True\\ntrial 3: acc=0.627 theta=0.456 lz*=-3.0359 |lz*|>1.96=True\\ntrial 4: acc=0.627 theta=0.456 lz*=-3.0359 |lz*|>1.96=True\\nmean lz*=-2.4461\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.13}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-21T08:43:15.372140+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "grep -rn \"seed\" /root/autodl-tmp/ConStat/src/constat/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "grep -rn \"seed\" /root/autodl-tmp/ConStat/src/constat/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-21T08:43:15.372274+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/ConStat/src/constat/detection.py:77:    np.random.seed(42)\\n/root/autodl-tmp/ConStat/src/constat/detection.py:163:        np.random.seed(42)\\n/root/autodl-tmp/ConStat/src/constat/detection.py:238:        np.random.seed(42)\\n/root/autodl-tmp/ConStat/src/constat/finetune.py:3:from transformers import set_seed, DataCollatorForLanguageModeling, Trainer, TrainingArguments\\n/root/autodl-tmp/ConStat/src/constat/finetune.py:97:        set_seed(42)\\n/root/autodl-tmp/ConStat/src/constat/spline_fit.py:369:    >>> np.random.seed(1234)\\n\", \"stderr\": \"grep: /root/autodl-tmp/ConStat/src/constat/__pycache__/detection.cpython-312.pyc: binary file matches\\ngrep: /root/autodl-tmp/ConStat/src/constat/__pycache__/spline_fit.cpython-312.pyc: binary file matches\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-21T08:43:15.372444+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "kill 108462 2>/dev/null; echo \"killed\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "kill 108462 2>/dev/null; echo \"killed\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-21T08:43:15.372570+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"killed\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-21T08:43:15.372699+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "cat > /root/autodl-tmp/constat_comparison/patch2.py << 'PATCHEOF'\nwith open('/root/autodl-tmp/constat_comparison/run_constat.py', 'r') as f:\n    content = f.read()\n\n# Fix: save/restore numpy random state around ConStat calls\nold_constat_block = \"\"\"            # ConStat\n            cs = ConStat(n_bootstrap=200, p_value_delta=0, random_performance=(0.25, 0.25))\n            try:\n                res = cs.test(tgt_primary.astype(float), tgt_reference.astype(float),\n                              ref_primary.astype(float), ref_reference.astype(float))\"\"\"\n\nnew_constat_block = \"\"\"            # ConStat (save/restore RNG — ConStat calls np.random.seed(42) internally)\n            rng_state = np.random.get_state()\n            cs = ConStat(n_bootstrap=200, p_value_delta=0, random_performance=(0.25, 0.25))\n            try:\n                res = cs.test(tgt_primary.astype(float), tgt_reference.astype(float),\n                              ref_primary.astype(float), ref_reference.astype(float))\"\"\"\n\nold_except = \"\"\"            except Exception:\n                cs_fail += 1\"\"\"\n\nnew_except = \"\"\"            except Exception:\n                cs_fail += 1\n            np.random.set_state(rng_state)\"\"\"\n\nassert old_constat_block in content, \"Could not find ConStat block!\"\ncontent = content.replace(old_constat_block, new_constat_block)\nassert old_except in content, \"Could not find except block!\"\ncontent = content.replace(old_except, new_except)\n\nwith open('/root/autodl-tmp/constat_comparison/run_constat.py', 'w') as f:\n    f.write(content)\nprint(\"Patched: save/restore RNG state around ConStat calls\")\nPATCHEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/autodl-tmp/constat_comparison/patch2.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "cat > /root/autodl-tmp/constat_comparison/patch2.py << 'PATCHEOF'\nwith open('/root/autodl-tmp/constat_comparison/run_constat.py', 'r') as f:\n    content = f.read()\n\n# Fix: save/restore numpy random state around ConStat calls\nold_constat_block = \"\"\"            # ConStat\n            cs = ConStat(n_bootstrap=200, p_value_delta=0, random_performance=(0.25, 0.25))\n            try:\n                res = cs.test(tgt_primary.astype(float), tgt_reference.astype(float),\n                              ref_primary.astype(float), ref_reference.astype(float))\"\"\"\n\nnew_constat_block = \"\"\"            # ConStat (save/restore RNG — ConStat calls np.random.seed(42) internally)\n            rng_state = np.random.get_state()\n            cs = ConStat(n_bootstrap=200, p_value_delta=0, random_performance=(0.25, 0.25))\n            try:\n                res = cs.test(tgt_primary.astype(float), tgt_reference.astype(float),\n                              ref_primary.astype(float), ref_reference.astype(float))\"\"\"\n\nold_except = \"\"\"            except Exception:\n                cs_fail += 1\"\"\"\n\nnew_except = \"\"\"            except Exception:\n                cs_fail += 1\n            np.random.set_state(rng_state)\"\"\"\n\nassert old_constat_block in content, \"Could not find ConStat block!\"\ncontent = content.replace(old_constat_block, new_constat_block)\nassert old_except in content, \"Could not find except block!\"\ncontent = content.replace(old_except, new_except)\n\nwith open('/root/autodl-tmp/constat_comparison/run_constat.py', 'w') as f:\n    f.write(content)\nprint(\"Patched: save/restore RNG state around ConStat calls\")\nPATCHEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/autodl-tmp/constat_comparison/patch2.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-21T08:43:15.372846+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Patched: save/restore RNG state around ConStat calls\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-21T08:43:15.372987+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport numpy as np\nimport sys\nsys.path.insert(0, '/root/autodl-tmp/ConStat/src')\nfrom constat import ConStat\n\ndef irt_4pl(theta, a, b, c, d):\n    return c + (d - c) / (1 + np.exp(-a * (theta - b)))\n\ndef compute_lz_star(responses, theta, a, b, c, d):\n    p = irt_4pl(theta, a, b, c, d)\n    p = np.clip(p, 1e-10, 1 - 1e-10)\n    q = 1.0 - p\n    log_p = np.log(p)\n    log_q = np.log(q)\n    l0 = np.sum(responses * log_p + (1 - responses) * log_q)\n    E_l0 = np.sum(p * log_p + q * log_q)\n    g = log_p - log_q\n    Var_l0 = np.sum(p * q * g**2)\n    z = a * (theta - b)\n    sigma = 1.0 / (1.0 + np.exp(-np.clip(z, -30, 30)))\n    dP = a * (d - c) * sigma * (1.0 - sigma)\n    h = dP / (p * q)\n    I_theta = np.sum(p * q * h**2)\n    C_theta = np.sum(p * q * h * g)\n    if Var_l0 < 1e-15:\n        return 0.0\n    Var_star = Var_l0 - C_theta**2 / I_theta if I_theta > 1e-15 else Var_l0\n    if Var_star <= 0:\n        Var_star = Var_l0\n    return (l0 - E_l0) / np.sqrt(Var_star)\n\ndef theta_mle_vec(responses, a, b, c, d):\n    thetas = np.linspace(-4, 4, 800)\n    p_all = np.array([irt_4pl(th, a, b, c, d) for th in thetas])\n    p_all = np.clip(p_all, 1e-10, 1 - 1e-10)\n    ll = np.sum(responses * np.log(p_all) + (1 - responses) * np.log(1 - p_all), axis=1)\n    return thetas[np.argmax(ll)]\n\nnp.random.seed(42)\nn_items = 300\nn_ref_models = 10\na1 = np.random.lognormal(0, 0.5, n_items)\nb1 = np.random.normal(0, 1, n_items)\nc1 = np.random.uniform(0.1, 0.3, n_items)\nd1 = np.random.uniform(0.85, 1.0, n_items)\na2 = np.random.lognormal(0, 0.5, n_items)\nb2 = np.random.normal(0, 1, n_items)\nc2 = np.random.uniform(0.1, 0.3, n_items)\nd2 = np.random.uniform(0.85, 1.0, n_items)\nref_thetas = np.random.normal(0, 1, n_ref_models)\ntarget_theta = 0.5\n\nlz_vals = []\nfor trial in range(10):\n    ref_primary = np.zeros((n_ref_models, n_items))\n    ref_reference = np.zeros((n_ref_models, n_items))\n    for m in range(n_ref_models):\n        ref_primary[m] = np.random.binomial(1, irt_4pl(ref_thetas[m], a1, b1, c1, d1))\n        ref_reference[m] = np.random.binomial(1, irt_4pl(ref_thetas[m], a2, b2, c2, d2))\n    tgt_primary = np.random.binomial(1, irt_4pl(target_theta, a1, b1, c1, d1))\n    tgt_reference = np.random.binomial(1, irt_4pl(target_theta, a2, b2, c2, d2))\n    \n    # Save/restore RNG state around ConStat\n    rng_state = np.random.get_state()\n    cs = ConStat(n_bootstrap=200, p_value_delta=0, random_performance=(0.25, 0.25))\n    try:\n        res = cs.test(tgt_primary.astype(float), tgt_reference.astype(float),\n                      ref_primary.astype(float), ref_reference.astype(float))\n    except Exception:\n        pass\n    np.random.set_state(rng_state)\n    \n    th = theta_mle_vec(tgt_primary, a1, b1, c1, d1)\n    lz = compute_lz_star(tgt_primary, th, a1, b1, c1, d1)\n    lz_vals.append(lz)\n    print(f'trial {trial}: acc={np.mean(tgt_primary):.3f} theta={th:.3f} lz*={lz:.4f}')\n\nlz_arr = np.array(lz_vals)\nprint(f'mean={lz_arr.mean():.4f}, std={lz_arr.std():.4f}')\nprint(f'FAR (|lz*|>1.96): {np.mean(np.abs(lz_arr) > 1.96):.3f}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport numpy as np\nimport sys\nsys.path.insert(0, '/root/autodl-tmp/ConStat/src')\nfrom constat import ConStat\n\ndef irt_4pl(theta, a, b, c, d):\n    return c + (d - c) / (1 + np.exp(-a * (theta - b)))\n\ndef compute_lz_star(responses, theta, a, b, c, d):\n    p = irt_4pl(theta, a, b, c, d)\n    p = np.clip(p, 1e-10, 1 - 1e-10)\n    q = 1.0 - p\n    log_p = np.log(p)\n    log_q = np.log(q)\n    l0 = np.sum(responses * log_p + (1 - responses) * log_q)\n    E_l0 = np.sum(p * log_p + q * log_q)\n    g = log_p - log_q\n    Var_l0 = np.sum(p * q * g**2)\n    z = a * (theta - b)\n    sigma = 1.0 / (1.0 + np.exp(-np.clip(z, -30, 30)))\n    dP = a * (d - c) * sigma * (1.0 - sigma)\n    h = dP / (p * q)\n    I_theta = np.sum(p * q * h**2)\n    C_theta = np.sum(p * q * h * g)\n    if Var_l0 < 1e-15:\n        return 0.0\n    Var_star = Var_l0 - C_theta**2 / I_theta if I_theta > 1e-15 else Var_l0\n    if Var_star <= 0:\n        Var_star = Var_l0\n    return (l0 - E_l0) / np.sqrt(Var_star)\n\ndef theta_mle_vec(responses, a, b, c, d):\n    thetas = np.linspace(-4, 4, 800)\n    p_all = np.array([irt_4pl(th, a, b, c, d) for th in thetas])\n    p_all = np.clip(p_all, 1e-10, 1 - 1e-10)\n    ll = np.sum(responses * np.log(p_all) + (1 - responses) * np.log(1 - p_all), axis=1)\n    return thetas[np.argmax(ll)]\n\nnp.random.seed(42)\nn_items = 300\nn_ref_models = 10\na1 = np.random.lognormal(0, 0.5, n_items)\nb1 = np.random.normal(0, 1, n_items)\nc1 = np.random.uniform(0.1, 0.3, n_items)\nd1 = np.random.uniform(0.85, 1.0, n_items)\na2 = np.random.lognormal(0, 0.5, n_items)\nb2 = np.random.normal(0, 1, n_items)\nc2 = np.random.uniform(0.1, 0.3, n_items)\nd2 = np.random.uniform(0.85, 1.0, n_items)\nref_thetas = np.random.normal(0, 1, n_ref_models)\ntarget_theta = 0.5\n\nlz_vals = []\nfor trial in range(10):\n    ref_primary = np.zeros((n_ref_models, n_items))\n    ref_reference = np.zeros((n_ref_models, n_items))\n    for m in range(n_ref_models):\n        ref_primary[m] = np.random.binomial(1, irt_4pl(ref_thetas[m], a1, b1, c1, d1))\n        ref_reference[m] = np.random.binomial(1, irt_4pl(ref_thetas[m], a2, b2, c2, d2))\n    tgt_primary = np.random.binomial(1, irt_4pl(target_theta, a1, b1, c1, d1))\n    tgt_reference = np.random.binomial(1, irt_4pl(target_theta, a2, b2, c2, d2))\n    \n    # Save/restore RNG state around ConStat\n    rng_state = np.random.get_state()\n    cs = ConStat(n_bootstrap=200, p_value_delta=0, random_performance=(0.25, 0.25))\n    try:\n        res = cs.test(tgt_primary.astype(float), tgt_reference.astype(float),\n                      ref_primary.astype(float), ref_reference.astype(float))\n    except Exception:\n        pass\n    np.random.set_state(rng_state)\n    \n    th = theta_mle_vec(tgt_primary, a1, b1, c1, d1)\n    lz = compute_lz_star(tgt_primary, th, a1, b1, c1, d1)\n    lz_vals.append(lz)\n    print(f'trial {trial}: acc={np.mean(tgt_primary):.3f} theta={th:.3f} lz*={lz:.4f}')\n\nlz_arr = np.array(lz_vals)\nprint(f'mean={lz_arr.mean():.4f}, std={lz_arr.std():.4f}')\nprint(f'FAR (|lz*|>1.96): {np.mean(np.abs(lz_arr) > 1.96):.3f}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-21T08:43:15.373141+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"trial 0: acc=0.677 theta=0.706 lz*=-0.0867\\ntrial 1: acc=0.617 theta=0.436 lz*=0.0632\\ntrial 2: acc=0.640 theta=0.516 lz*=0.9267\\ntrial 3: acc=0.667 theta=0.606 lz*=0.2002\\ntrial 4: acc=0.693 theta=0.886 lz*=-1.6309\\ntrial 5: acc=0.647 theta=0.486 lz*=-0.1684\\ntrial 6: acc=0.630 theta=0.436 lz*=1.0629\\ntrial 7: acc=0.613 theta=0.275 lz*=0.1791\\ntrial 8: acc=0.613 theta=0.395 lz*=-1.7221\\ntrial 9: acc=0.660 theta=0.596 lz*=0.6209\\nmean=-0.0555, std=0.8989\\nFAR (|lz*|>1.96): 0.000\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.95}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-21T08:43:15.373292+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/constat_comparison && nohup python run_constat.py > /tmp/constat_run2.log 2>&1 & echo \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/constat_comparison && nohup python run_constat.py > /tmp/constat_run2.log 2>&1 & echo \"PID=$!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-21T08:43:15.373443+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/constat_comparison && nohup python run_constat.py > /tmp/constat_run2.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=109050\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-21T08:43:15.373577+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "cat /tmp/constat_run2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "cat /tmp/constat_run2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-21T08:43:15.373724+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nConStat vs lz* Comparison\\n============================================================\\n\\n[1] Loading ctrl-contam data...\\n  qwen/clean_s1: acc=0.6787 lz*=9.4676\\n  qwen/clean_s2: acc=0.6789 lz*=7.0539\\n  qwen/clean_s3: acc=0.6783 lz*=9.5293\\n  qwen/contam_15: acc=0.7310 lz*=3.8494\\n  qwen/contam_50: acc=0.7643 lz*=7.2892\\n  llama/clean: acc=0.5914 lz*=0.8446\\n  llama/contam_15: acc=0.6654 lz*=-2.9922\\n  llama/contam_50: acc=0.6983 lz*=-3.3313\\n  mistral/clean: acc=0.5138 lz*=5.4175\\n  mistral/contam_15: acc=0.5949 lz*=-1.3849\\n  mistral/contam_50: acc=0.6732 lz*=-3.1503\\n\\n[2] Feasibility analysis...\\n  Feasible: False\\n  [OK] primary_benchmark_per_item\\n  [MISSING] reference_benchmark_per_item\\n  [MISSING] reference_models_primary\\n  [MISSING] reference_models_reference\\n\\n[3] Simulation (n=300, ref=10, trials=20, bootstrap=200)...\\ncontam=0%: ConStat=0.100 lz*=0.050 (15.3s)\\ncontam=5%: ConStat=0.000 lz*=0.000 (15.3s)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-21T08:43:15.373890+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "cat /tmp/constat_run2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "cat /tmp/constat_run2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-21T08:43:15.374028+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nConStat vs lz* Comparison\\n============================================================\\n\\n[1] Loading ctrl-contam data...\\n  qwen/clean_s1: acc=0.6787 lz*=9.4676\\n  qwen/clean_s2: acc=0.6789 lz*=7.0539\\n  qwen/clean_s3: acc=0.6783 lz*=9.5293\\n  qwen/contam_15: acc=0.7310 lz*=3.8494\\n  qwen/contam_50: acc=0.7643 lz*=7.2892\\n  llama/clean: acc=0.5914 lz*=0.8446\\n  llama/contam_15: acc=0.6654 lz*=-2.9922\\n  llama/contam_50: acc=0.6983 lz*=-3.3313\\n  mistral/clean: acc=0.5138 lz*=5.4175\\n  mistral/contam_15: acc=0.5949 lz*=-1.3849\\n  mistral/contam_50: acc=0.6732 lz*=-3.1503\\n\\n[2] Feasibility analysis...\\n  Feasible: False\\n  [OK] primary_benchmark_per_item\\n  [MISSING] reference_benchmark_per_item\\n  [MISSING] reference_models_primary\\n  [MISSING] reference_models_reference\\n\\n[3] Simulation (n=300, ref=10, trials=20, bootstrap=200)...\\ncontam=0%: ConStat=0.100 lz*=0.050 (15.3s)\\ncontam=5%: ConStat=0.000 lz*=0.000 (15.3s)\\ncontam=10%: ConStat=0.250 lz*=0.100 (15.3s)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-21T08:43:15.374154+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "tail -30 /tmp/constat_run2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "tail -30 /tmp/constat_run2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-21T08:43:15.374283+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nConStat vs lz* Comparison\\n============================================================\\n\\n[1] Loading ctrl-contam data...\\n  qwen/clean_s1: acc=0.6787 lz*=9.4676\\n  qwen/clean_s2: acc=0.6789 lz*=7.0539\\n  qwen/clean_s3: acc=0.6783 lz*=9.5293\\n  qwen/contam_15: acc=0.7310 lz*=3.8494\\n  qwen/contam_50: acc=0.7643 lz*=7.2892\\n  llama/clean: acc=0.5914 lz*=0.8446\\n  llama/contam_15: acc=0.6654 lz*=-2.9922\\n  llama/contam_50: acc=0.6983 lz*=-3.3313\\n  mistral/clean: acc=0.5138 lz*=5.4175\\n  mistral/contam_15: acc=0.5949 lz*=-1.3849\\n  mistral/contam_50: acc=0.6732 lz*=-3.1503\\n\\n[2] Feasibility analysis...\\n  Feasible: False\\n  [OK] primary_benchmark_per_item\\n  [MISSING] reference_benchmark_per_item\\n  [MISSING] reference_models_primary\\n  [MISSING] reference_models_reference\\n\\n[3] Simulation (n=300, ref=10, trials=20, bootstrap=200)...\\ncontam=0%: ConStat=0.100 lz*=0.050 (15.3s)\\ncontam=5%: ConStat=0.000 lz*=0.000 (15.3s)\\ncontam=10%: ConStat=0.250 lz*=0.100 (15.3s)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-21T08:43:15.374457+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "tail -15 /tmp/constat_run2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "tail -15 /tmp/constat_run2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-21T08:43:15.374589+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  mistral/clean: acc=0.5138 lz*=5.4175\\n  mistral/contam_15: acc=0.5949 lz*=-1.3849\\n  mistral/contam_50: acc=0.6732 lz*=-3.1503\\n\\n[2] Feasibility analysis...\\n  Feasible: False\\n  [OK] primary_benchmark_per_item\\n  [MISSING] reference_benchmark_per_item\\n  [MISSING] reference_models_primary\\n  [MISSING] reference_models_reference\\n\\n[3] Simulation (n=300, ref=10, trials=20, bootstrap=200)...\\ncontam=0%: ConStat=0.100 lz*=0.050 (15.3s)\\ncontam=5%: ConStat=0.000 lz*=0.000 (15.3s)\\ncontam=10%: ConStat=0.250 lz*=0.100 (15.3s)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-21T08:43:15.374710+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "tail -5 /tmp/constat_run2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "tail -5 /tmp/constat_run2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-21T08:43:15.374830+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[3] Simulation (n=300, ref=10, trials=20, bootstrap=200)...\\ncontam=0%: ConStat=0.100 lz*=0.050 (15.3s)\\ncontam=5%: ConStat=0.000 lz*=0.000 (15.3s)\\ncontam=10%: ConStat=0.250 lz*=0.100 (15.3s)\\ncontam=25%: ConStat=0.500 lz*=0.050 (15.3s)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-21T08:43:15.374944+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "tail -10 /tmp/constat_run2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "tail -10 /tmp/constat_run2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-21T08:43:15.375063+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  [OK] primary_benchmark_per_item\\n  [MISSING] reference_benchmark_per_item\\n  [MISSING] reference_models_primary\\n  [MISSING] reference_models_reference\\n\\n[3] Simulation (n=300, ref=10, trials=20, bootstrap=200)...\\ncontam=0%: ConStat=0.100 lz*=0.050 (15.3s)\\ncontam=5%: ConStat=0.000 lz*=0.000 (15.3s)\\ncontam=10%: ConStat=0.250 lz*=0.100 (15.3s)\\ncontam=25%: ConStat=0.500 lz*=0.050 (15.3s)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-21T08:43:15.375183+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "tail -3 /tmp/constat_run2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "tail -3 /tmp/constat_run2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-21T08:43:15.375301+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"contam=5%: ConStat=0.000 lz*=0.000 (15.3s)\\ncontam=10%: ConStat=0.250 lz*=0.100 (15.3s)\\ncontam=25%: ConStat=0.500 lz*=0.050 (15.3s)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-21T08:43:15.375435+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "tail -3 /tmp/constat_run2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "tail -3 /tmp/constat_run2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-21T08:43:15.375551+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"contam=5%: ConStat=0.000 lz*=0.000 (15.3s)\\ncontam=10%: ConStat=0.250 lz*=0.100 (15.3s)\\ncontam=25%: ConStat=0.500 lz*=0.050 (15.3s)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-21T08:43:15.375661+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "tail -5 /tmp/constat_run2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "tail -5 /tmp/constat_run2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-21T08:43:15.375775+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    ref_benchmark_creation: Not needed\\n    assumption: IRT model fit (unidim + local indep)\\n    example_cost: 1 eval run\\n\\nDone. Saved to /root/autodl-tmp/constat_comparison/results/constat_comparison.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-21T08:43:15.375896+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "grep \"contam=\" /tmp/constat_run2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "grep \"contam=\" /tmp/constat_run2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-21T08:43:15.376051+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"contam=0%: ConStat=0.100 lz*=0.050 (15.3s)\\ncontam=5%: ConStat=0.000 lz*=0.000 (15.3s)\\ncontam=10%: ConStat=0.250 lz*=0.100 (15.3s)\\ncontam=25%: ConStat=0.500 lz*=0.050 (15.3s)\\ncontam=50%: ConStat=1.000 lz*=0.050 (15.3s)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-21T08:43:15.376170+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('/root/autodl-tmp/constat_comparison/results/constat_comparison.json') as f:\n    d = json.load(f)\nprint('=== Simulation Results ===')\nfor r in d['simulation']:\n    print(f\\\"contam={r['contam_pct']:.0%}: ConStat={r['constat_power']:.3f} lz*={r['lzstar_power']:.3f} CS_delta={r['constat_mean_delta']} lz*_mean={r['lzstar_mean']:.4f}\\\")\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('/root/autodl-tmp/constat_comparison/results/constat_comparison.json') as f:\n    d = json.load(f)\nprint('=== Simulation Results ===')\nfor r in d['simulation']:\n    print(f\\\"contam={r['contam_pct']:.0%}: ConStat={r['constat_power']:.3f} lz*={r['lzstar_power']:.3f} CS_delta={r['constat_mean_delta']} lz*_mean={r['lzstar_mean']:.4f}\\\")\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-21T08:43:15.376323+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Simulation Results ===\\ncontam=0%: ConStat=0.100 lz*=0.050 CS_delta=0.011066873043670978 lz*_mean=-0.0578\\ncontam=5%: ConStat=0.000 lz*=0.000 CS_delta=0.005126728465801106 lz*_mean=-0.3814\\ncontam=10%: ConStat=0.250 lz*=0.100 CS_delta=0.03834128284244007 lz*_mean=-0.6204\\ncontam=25%: ConStat=0.500 lz*=0.050 CS_delta=0.08828959530837197 lz*_mean=0.0297\\ncontam=50%: ConStat=1.000 lz*=0.050 CS_delta=0.17429338356007404 lz*_mean=0.1362\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-21T08:43:15.376570+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "cat /root/autodl-tmp/ConStat/README.md",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "cat /root/autodl-tmp/ConStat/README.md",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-21T08:43:15.376718+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "head -100 /root/autodl-tmp/ConStat/src/constat/detection.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "head -100 /root/autodl-tmp/ConStat/src/constat/detection.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-21T08:43:15.376928+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# ConStat: Performance-Based Contamination Detection in Large Language Models\\n\\nThis repository contains the code necessary to reproduce the results from the paper *ConStat: Performance-Based Contamination Detection in Large Language Models* and use ConStat for your projects. This document provides instructions for installation, usage, and reproducing results, along with details on the custom forks and modifications made to external repositories.\\n\\nConStat is a tool designed for detecting performance-based contamination in large language models. This project aims to provide an efficient and effective method for identifying and measuring contamination in language models by analyzing performance metrics. For further details, please refer to our paper.\\n\\n## Table of Contents\\n1. [Installation](#installation)\\n2. [Using ConStat](#using-constat)\\n    - [Toy Example](#toy-example)\\n    - [Real-World Contamination Test](#real-world-contamination-test)\\n        - [Generating your reference benchmark](#generating-your-reference-benchmark)\\n        - [Evaluating your model](#evaluating-your-model)\\n        - [Running ConStat](#running-constat)\\n3. [Reproduction](#reproduction)\\n4. [Code Structure](#code-structure)\\n5. [Custom Forks](#custom-forks)\\n\\n\\n## Installation\\nYou can install the code in this repository by following these steps:\\n\\n1. **Install Conda**: If you haven't already, install [Conda](https://docs.conda.io/projects/miniconda/en/latest/).\\n2. **Set up the environment**:\\n    ```bash\\n    conda create -n constat python=3.10\\n    conda activate constat\\n    python -m pip install -e .\\n    ```\\n3. **Install additional requirements**:\\n    ```bash\\n    python -m pip install -r requirements.txt\\n    cd lm-evaluation-harness\\n    python -m pip install -e .\\n    cd ..\\n    ```\\nThe additional requirements are only necessary if you want to reproduce our results or use this r
+…[truncated 6441 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-21T08:43:15.377133+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import numpy as np\\nfrom scipy.stats import norm\\nfrom scipy.odr import *\\nfrom .spline_fit import make_smoothing_spline\\nfrom .load_results import *\\n\\ndef perform_test(model_name, benchmark, ref_benchmark, test, \\n                 ref_model_names, base_path, metric, metric_reference_benchmark,\\n                 return_functions=False, add_no_cont_results=False):\\n    \\\"\\\"\\\"\\n    Perform a test on a contamination detection model.\\n\\n    Args:\\n        model_name (str): The name of the model being tested.\\n        benchmark (str): The benchmark dataset for testing.\\n        ref_benchmark (str): The reference benchmark dataset for testing.\\n        test (object): The test object used for evaluation.\\n        ref_model_names (list): List of reference model names.\\n        base_path (str): The base path for loading results.\\n        metric (str): The metric used for evaluation.\\n        metric_reference_benchmark (str): The metric used for the reference benchmark.\\n        return_functions (bool, optional): Whether to return the fitted functions over all bootstraps. Defaults to False.\\n        add_no_cont_results (bool, optional): Whether to add the results on the uncontaminated part of the benchmark. Defaults to False.\\n\\n    Returns:\\n        dict: A dictionary containing the test scores and other evaluation results.\\n    \\\"\\\"\\\"\\n    reference_results, results = load_results(benchmark, metric, base_path, \\n                                               model_name, ref_model_names)\\n    if add_no_cont_results:\\n        ref_no_cont, res_no_cont = load_results(benchmark.replace('_normal', '_no_cont'), metric, base_path, \\n                                               model_name, ref_model_names)\\n        results = np.concatenate([results, res_no_cont], axis=0)\\n        reference_results = {key: np.concatenate([value, ref_no_cont[key]], axis=0) for key, value in referenc
+…[truncated 3235 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-21T08:43:15.377364+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "irt_personfit_contam",
+  "file": "memory.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "irt_personfit_contam",
+    "file": "memory.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-21T08:43:15.377650+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/memory.md\", \"content\": \"# Memory — irt_personfit_contam\\n\\n## OOM 教训 (2026-05-20)\\n- 7.6GB RAM 机器上，N_SIM×n_items float64 矩阵不能一次性分配。MMLU 10K×14042×8B ≈ 1.07GB 单个矩阵，compute_lz_star 内部创建 ~7 个同尺寸中间数组 → OOM\\n- 解决方案：BATCH_SIZE=500 分批计算 + N_SIM 降至 2000（统计效力足够）\\n- generate_response 和 compute_lz_star 都需要分批\\n\\n## Worker context exhaustion 教训 (2026-05-20)\\n- exp-v1-irt-refit-expanded Worker 跑 1.5 小时后崩溃，无输出。任务是从 HuggingFace 下载 500+ 模型的 per-item 数据并拟合 IRT。\\n- **根因**: 大量 HF API 调用 + 数据处理的累积输出耗尽 Worker context window。\\n- **教训**: 涉及大规模数据下载（100+ datasets）的任务必须分批 + checkpoint 中间结果，或拆成多个 Worker 串行执行。单个 Worker 不适合做 1.5hr+ 的重型数据工程。\\n- **补充 (同日)**: ssh_read_only 读取大 JSON 文件（8MB+ 单行）也会撑爆 context。Worker 操作远程大文件必须用 python 脚本提取摘要，不要 cat/head。\\n- **补充 (同日)**: Worker 无法在进程内长时间等待（~2 min 就退出）。涉及 GPU 训练 + eval 的任务应分阶段处理：训练完成后由 cron 回调触发 eval Worker，或由主 Agent 定时派 Worker 检查。\\n\\n## sim_001 关键发现 (2026-05-20)\\n- **Null check 全通过**：PSN-IRT 神经网络估计的 4PL 参数与经典 IRT 兼容，lz* ≈ N(0,1)\\n  - 大 benchmark（GSM8K/HellaSwag/MMLU）KS p 全部 > 0.01\\n  - 小 benchmark（HumanEval/ARC-C）KS p < 0.01，但属预期（items 太少，CLT 近似弱）\\n- **检测力与 n_items 强正相关**：MMLU(14042)=97.9% >> HellaSwag(10042)=73.3% >> GSM8K(1319)=57.8% >> ARC-C(295)=12.9%\\n- **Inverted-U 所有 benchmark 可观测**：power 在 25-50% contamination 达峰，100% 全部 NaN（全答对 → MLE 不收敛）\\n\\n## PSN-IRT 12 模型身份 (2026-05-20)\\n\\n**来源**：arXiv:2505.15055 (AAAI 2026 Oral)，GitHub repo `Joe-Hall-Lee/PSN-IRT`\\n\\n| student_id | θ | 正确率 | 模型名称 | 类型 |\\n|---|---|---|---|---|\\n| 0 | 1.46 | 80.6% | 360GPT2-Pro | API |\\n| 1 | 3.77 | 85.7% | DeepSeek-V3 | API |\\n| 2 | 1.14 | 78.9% | Doubao-pro | API |\\n| 3 | 0.78 | 84.5% | Gemini-1.5 | API |\\n| 4 | -3.38 | 23.1% | Gemma-2B-it | 开源 2B |\\n| 5 | 1.73 | 82.1% | Hunyuan-Turbo | API |\\n| 6 | -1.37 | 40.0% | Mistral-7B-Instruct-v0.1 | 开源 7B |\\n| 7 | 0.93 | 77.0% | Moonshot-v1 | API |\\n| 8 | 0.96 | 
+…[truncated 13301 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-21T08:43:15.377893+00:00_
+
+called mcp__agent-ml-research__save_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file</summary>
+
+```json
+{
+  "project": "irt_personfit_contam",
+  "file": "memory.md",
+  "content": "# Memory — irt_personfit_contam\n\n## OOM 教训 (2026-05-20)\n- 7.6GB RAM 机器上，N_SIM×n_items float64 矩阵不能一次性分配。MMLU 10K×14042×8B ≈ 1.07GB 单个矩阵，compute_lz_star 内部创建 ~7 个同尺寸中间数组 → OOM\n- 解决方案：BATCH_SIZE=500 分批计算 + N_SIM 降至 2000（统计效力足够）\n- generate_response 和 compute_lz_star 都需要分批\n\n## Worker context exhaustion 教训 (2026-05-20)\n- exp-v1-irt-refit-expanded Worker 跑 1.5 小时后崩溃，无输出。任务是从 HuggingFace 下载 500+ 模型的 per-item 数据并拟合 IRT。\n- **根因**: 大量 HF API 调用 + 数据处理的累积输出耗尽 Worker context window。\n- **教训**: 涉及大规模数据下载（100+ datasets）的任务必须分批 + checkpoint 中间结果，或拆成多个 Worker 串行执行。单个 Worker 不适合做 1.5hr+ 的重型数据工程。\n- **补充 (同日)**: ssh_read_only 读取大 JSON 文件（8MB+ 单行）也会撑爆 context。Worker 操作远程大文件必须用 python 脚本提取摘要，不要 cat/head。\n- **补充 (同日)**: Worker 无法在进程内长时间等待（~2 min 就退出）。涉及 GPU 训练 + eval 的任务应分阶段处理：训练完成后由 cron 回调触发 eval Worker，或由主 Agent 定时派 Worker 检查。\n\n## sim_001 关键发现 (2026-05-20)\n- **Null check 全通过**：PSN-IRT 神经网络估计的 4PL 参数与经典 IRT 兼容，lz* ≈ N(0,1)\n  - 大 benchmark（GSM8K/HellaSwag/MMLU）KS p 全部 > 0.01\n  - 小 benchmark（HumanEval/ARC-C）KS p < 0.01，但属预期（items 太少，CLT 近似弱）\n- **检测力与 n_items 强正相关**：MMLU(14042)=97.9% >> HellaSwag(10042)=73.3% >> GSM8K(1319)=57.8% >> ARC-C(295)=12.9%\n- **Inverted-U 所有 benchmark 可观测**：power 在 25-50% contamination 达峰，100% 全部 NaN（全答对 → MLE 不收敛）\n\n## PSN-IRT 12 模型身份 (2026-05-20)\n\n**来源**：arXiv:2505.15055 (AAAI 2026 Oral)，GitHub repo `Joe-Hall-Lee/PSN-IRT`\n\n| student_id | θ | 正确率 | 模型名称 | 类型 |\n|---|---|---|---|---|\n| 0 | 1.46 | 80.6% | 360GPT2-Pro | API |\n| 1 | 3.77 | 85.7% | DeepSeek-V3 | API |\n| 2 | 1.14 | 78.9% | Doubao-pro | API |\n| 3 | 0.78 | 84.5% | Gemini-1.5 | API |\n| 4 | -3.38 | 23.1% | Gemma-2B-it | 开源 2B |\n| 5 | 1.73 | 82.1% | Hunyuan-Turbo | API |\n| 6 | -1.37 | 40.0% | Mistral-7B-Instruct-v0.1 | 开源 7B |\n| 7 | 0.93 | 77.0% | Moonshot-v1 | API |\n| 8 | 0.96 | 76.3% | Qwen-Plus | API |\n| 9 | -0.13 | 60.4% | Qwen2.5-3B-Instruct | 开源 3B |\n| 10 | -1.89 | 31.6% | Vicuna-7B-v1.3 | 开源 7B |\n| 11 | 0.77 | 75.2% | Yi-Lightning | API |\n\n## Gemini-1.5 × 100% contamination 精确匹配 (2026-05-20)\n\nGemini-1.5 MMLU lz*(benchmark-specific θ) = +31.815 = 100% contamination simulation lz* = +31.815（完全一致）。机制：100% accuracy → θ_bench=4.0 → lz* deterministic。其他 benchmark Gemini-1.5 lz* 为负（非 100% acc），说明异常是 benchmark-specific 的。\n\n## exp-extended-sim 关键发现 (2026-05-20)\n\n- Dual-regime crossover 75-90%：所有 5 benchmark 在此区间 lz* 从负翻正\n- 100% contamination lz* deterministic (std=0.0)\n- Inverted-U 全 5 benchmark 确认\n\n## exp-two-sided 关键教训 (2026-05-20)\n\n95% flagging 即使用 benchmark-specific θ + bootstrap + FDR 也无法降低。LLM 系统性违反 4PL 假设（单维+局部独立）。绝对阈值对 real data 无意义，需 controlled calibration (Δlz*)。\n\n## exp-empirical-null 关键发现 (2026-05-20)\n\nBootstrap null 校准良好（mean bias=0.09, std=1.002）。95% flagging 不是 null miscalibration，而是 LLM response pattern 产生极端 lz*。大 benchmark KS reject 仅 8.3%，小 benchmark 58-75%（有限样本效应）。\n\n## exp-power-theory 关键发现 (2026-05-20)\n\nR²(two-sided)=0.957, R²(left-tail)=0.976, R²(mean lz*)=0.995。δ ∝ √n confirmed。Inverted-U 拐点理论值 π*≈81-85%。最小 n_items (80% power): 15% contam→~8K, 25%→~3K, 50%→~1K。\n\n## exp-item-alignment-check 关键发现 (2026-05-20)\n\n**PSN-IRT 与 v1 Leaderboard item ordering 不对齐。** 直接位置匹配率 54.56%（≈随机）。Content-based 重排后 Mistral 88.46%, Vicuna 72.48%。\n\n**根因**: PSN-IRT 保持 raw MMLU 原始顺序，v1 leaderboard 在 subject 内部 shuffle。且 PSN-IRT 是独立评测（不同 prompt/few-shot），即使对齐后仍有 ~12% response 差异。\n\n**结论**: **不可混用 v1 responses + PSN-IRT parameters**。~12% 噪声对 item-level person-fit 统计量影响严重。\n\n**已生成 item_mapping.csv**: 12068/14042 items 的 v1→PSN-IRT 位置映射，可用于未来 content-based 对齐需求。\n\n## Open LLM Leaderboard v1 per-item data (2026-05-20)\n\n**来源**: `open-llm-leaderboard-old/details_{org}__{model}` HuggingFace datasets\n**格式**: Parquet, `acc`/`acc_norm` 二值字段\n**覆盖**: MMLU ✅, HellaSwag ✅, ARC-C ✅, GSM8K ✅ | HumanEval ❌\n**模型数**: 13,000+\n**⚠️ 不可直接用 PSN-IRT parameters** — 见 item-alignment-check 发现\n\n## exp-fdr-correction 关键发现 (2026-05-20)\n\nexp-two-sided v2 的 `empirical_pvalues.csv` 已包含 global BH-FDR 校正（60 cells 一起做 BH）。校正前后 flagging 均为 57/60 (95%)——因大多数 cells empirical p=0.000，BH 校正无实质影响。Leaderboard-scale FDR (24800+ tests) 需在 leaderboard audit 中单独处理。\n\n## exp-clean-control-delta 关键发现 (2026-05-20)\n\nClean-vs-clean Δlz* 均值全部接近 0（|mean| < 0.13），无一显著，确认 estimation noise floor ~ N(0, 1.4)。\nClean-vs-contaminated (25%) Δlz* 均高度显著（p<1e-10），Cohen's d: MMLU=2.66, HellaSwag=1.85, GSM8K=1.85, HumanEval=1.07, ARC-C=0.45。\nARC-C d=0.45 略低 0.5 阈值（仅 295 items），与 power theory 一致。\n论文中标注为 \"theoretical noise floor\"，真实 SFT clean-vs-clean 在 ctrl-contam-pilot 中实现。\n\n## exp-ml-classifier-baseline 关键发现 (2026-05-20)\n\n**lz* 在低污染率 (5-10%) 优于有监督 ML 分类器**：5% contam lz* AUROC 0.675 vs best ML 0.575 (+0.10); 10% contam 0.763 vs 0.712 (+0.05)。ML 仅在 25%+ 污染时略胜 (+0.05)，但需 oracle contamination labels（实际不可用）。\nRF feature importance 在 items 间高度弥散（top item <1%），与 lz* 全局 likelihood 方法一致。\n论文限定为 simulation 场景下的对比，不推广为\"所有 binary-only ML 方法都不如 IRT\"。\n\n## exp-domain-analysis 关键发现 (2026-05-20)\n\n**Gemini-1.5 MMLU 100% accuracy 覆盖全部 57 个 subject**——不是 domain-concentrated 泄漏，是完全数据集泄漏。50/57 subjects flagged (lz*>1.96)，未 flagged 的 7 个 subject 的 lz* 也很高但 item 数太少。\n\n**模型 contamination 指纹多样**：\n- Doubao-pro: 反向 pattern，Humanities/Social Sciences lz* 极负（-13~-15），STEM 接近 0，Other 正向——可能是训练数据偏科\n- Hunyuan-Turbo: STEM lz*=1.8 vs Social Sciences lz*=13.9——Social Sciences 方向过度拟合\n- Yi-Lightning 和 Qwen-Plus: 全 domain 高 lz*（16~28），领先所有其他模型\n\n**论文价值**: domain decomposition 为 12-model case study 增加定性分析深度，但 non-essential（P2 级别）。\n\n**virology lz*=-8.21 诊断**：双重根因——(1) global θ=0.78 vs MMLU θ_MLE=4.0 错配；(2) virology 全部 166 items d<1.0 (mean=0.71)，即使 θ=4.0 仍有 58/166 items P<0.5。是 PSN-IRT calibration artifact，不影响 overall lz*=34.75。per-subject 分析需加 caveat。\n\n## exp-natural-experiment 关键发现 (2026-05-20)\n\n21 对 base→chat 模型 × 4 benchmarks（MMLU/HellaSwag/ARC-C/GSM8K）。\n\n**两个 benchmark 有显著系统性 SFT 效应**：\n- HellaSwag: Δlz* 偏差 mean=-3.40, t=-3.97, p=0.001（SFT 系统性降低 person-fit）\n- GSM8K: Δlz* 偏差 mean=+3.92, t=3.35, p=0.009（SFT 系统性提高 person-fit）\n- MMLU/ARC-C 无显著效应\n\n**无个体 pair outlier**——未能检测到单个模型的 benchmark-specific contamination。\n**Director 评估价值极低（P2-optional）**，不作为核心 evidence 使用。\n\n## exp-4pl-ablation 关键发现 (2026-05-20)\n\n**4PL d 参数对检测力的影响是决定性的，不是锦上添花。**\n\n核心数据（4PL vs 3PL(d=1)，平均 power gain across contamination levels）：\n- MMLU: +27.3pp (max +49.0pp)\n- HellaSwag: +26.1pp (max +59.6pp)\n- GSM8K: +20.3pp (max +39.7pp)\n- ARC_C: +14.8pp (max +54.6pp)\n- HumanEval: +13.7pp (max +30.6pp)\n\nFAR 校准：4PL ≈ 5%（正确），3PL 4.7-16.5%（偏高），2PL 50-100%（完全不可用——固定 c=0.25 灾难性错误）。\n\n**d-bucket 机制确认**：d<0.8 的 items 上 4PL 优势最大（MMLU +61pp），d≥0.95 时差异可忽略。这证实 d 参数捕捉 ceiling effect 是检测力提升的关键来源。\n\n**论文价值**：回应 Reviewer R8 concern（为什么用 4PL 而非 3PL）。46% MMLU items d<0.95，忽略 d 约将检测力减半。这是 Method 部分的核心 justification。\n\n## exp-4pl-real-data-degradation 关键发现 (2026-05-20)\n\n**实数据验证：d 参数的影响对高能力模型是毁灭性的。**\n\n在 12 个 PSN-IRT 模型的真实响应数据上，4PL vs 3PL(d=1) 的 lz* 仅有 r=0.225, RMSE=68.41——几乎无关联。\n\n**不对称影响机制**：d=1 使 P(θ)→1（高能力模型预期全部答对），导致少量错误被 lz* 放大为极端异常值。低能力模型的 P(θ) 本身就远离 1.0，d=1 vs d<1 差异小，因此几乎不受影响。\n\n- DeepSeek-V3 (θ=3.77): MMLU lz* 从 +16.4 暴跌至 -340.6\n- Gemma-2B-it / Vicuna / Mistral (低 θ): |Δlz*|<2\n- MMLU 最严重（46% items d<0.95），mean |Δlz*|=58.3\n\n**与 exp-4pl-ablation 的互补**：ablation 在模拟数据上证明 power 损失，本实验在实数据上证明 lz* 值本身被完全摧毁。二者形成 R8 的双重证据链——4PL d 参数不可或缺。\n\n**论文写作注意**：这个结果特别适合做 case study 可视化（选 DeepSeek-V3 on MMLU 作为 extreme case），放在 ablation study 或 appendix 中。\n\n## exp-ctrl-contam-pilot 关键发现 (2026-05-20)\n\n**首次真实 LLM controlled contamination 实验。** Qwen2.5-7B-Instruct QLoRA SFT，4+1 条件。\n\n**核心结果（n=3 clean seeds, ddof=1）**：\n| Condition | Accuracy | θ_MLE | lz* |\n|-----------|----------|-------|-----|\n| clean_s1 (seed=42) | 0.6787 | -0.0987 | 8.0101 |\n| clean_s2 (seed=123) | 0.6789 | -0.0842 | 5.9440 |\n| clean_s3 (seed=456) | 0.6783 | -0.1068 | 8.0806 |\n| contam_15 | 0.7310 | +0.1971 | 3.0046 |\n| contam_50 | 0.7644 | +0.3703 | 5.4480 |\n\n**Baseline（n=3）**: mean=7.3449, std=1.2137\n**Cohen's d（n=3, ddof=1）**: contam_15 d=-3.58, contam_50 d=-1.56\n**注意**：之前汇报的 d=-3.85 / d=-1.48 使用了 ddof=0。论文统一用 ddof=1。\n\n**H1 ✓ H2 ✓ H3 ✗(θ-free) H4 ✗**\n\n**θ-shift 是 dose-response 倒置的确切原因**：\n- contamination 抬高 θ_MLE（clean -0.09 → contam_50 +0.37），MLE 将 contamination 信号解释为 \"能力提升\"\n- θ-fixed（固定为 clean θ 均值 -0.0914）下，dose-response 恢复单调：\n  - |Δlz*_fixed_15| = 2.96, |Δlz*_fixed_50| = 8.67, ratio = 2.93 ✅\n- θ-shift 分别吸收了 contam_15 的 6.93 和 contam_50 的 10.20 lz* 单位信号\n\n**clean seed 变异性**：s1 和 s3 的 lz* 接近（8.01, 8.08），s2 明显低（5.94）。n=3 baseline std=1.21 vs n=2 的 1.46，加入 s3 压缩了方差，使 Cohen's d 更极端。\n\n**Memorization fraction 低于预期**（0.38/0.29 vs 假设的 >0.5）——QLoRA 3 epochs 不足以产生强 memorization，但足以产生可检测的 lz* 偏移。\n\n**论文叙事价值**：\n1. θ-shift = \"ability inflation\" 是 contamination 逃避 person-fit 检测的核心机制\n2. 与 simulation inverted-U 发现形成呼应——real-world 版本的同一现象\n3. θ-fixed 分析作为 supplementary evidence 证明底层信号单调递增\n4. 支撑 Discussion 中 \"θ estimation as confound\" 段落\n\n## GPU 审计 (2026-05-21 15:47 UTC)\n\n### GPU 占用总览\n| GPU | PID | Process | VRAM | Status |\n|-----|------|---------|------|--------|\n| 0 | 98622 | eval_lz.py --condition clean_s5 --gpu 0 | 8,628 MiB | **ZOMBIE** — s5 results 已存在 |\n| 0 | 99214 | train.py --condition clean_s7 --gpu 3 | 37,694 MiB | 运行中, 56/939 steps (~6%) |\n| 1 | 96745 | train.py --condition clean_s6 --gpu 0 | 23,102 MiB | **ZOMBIE** — 训练已完成，模型已保存 |\n| 2 | 97791 | train_grpo.py | 8,062 MiB | 运行中, 134/14042 steps (~1%), ETA ~20h |\n| 3 | 99807 | train.py --condition clean_s8 --gpu 0 | 27,470 MiB | 运行中 (无日志) |\n\n### 进程状态\n- **PID 97791 (GRPO)**: 存活, step 134/14042, epoch 0.0078, ~5.1s/step, reward 0.3-0.78 波动, ETA ~19h\n- **PID 96745 (s6 train)**: 存活但已完成 — 3 epoch 训练结束, model saved to checkpoints/clean_s6, 仍占 GPU 1 23GB\n- **PID 99214 (s7 train)**: 存活, 56/939 steps (~6%), ~2s/step\n- **PID 99807 (s8 train)**: 存活, 无日志输出\n- **PID 98622 (s5 eval)**: 存活但 s5 results 已存在 — zombie\n- **PID 98896, 98897**: 已死亡\n\n### Eval 结果\n| Condition | Accuracy | θ_MLE | lz* |\n|-----------|----------|-------|-----|\n| clean_s3 | 0.6783 | -0.1068 | 9.5293 |\n| clean_s4 | 0.6786 | -0.1092 | 8.9673 |\n| clean_s5 | 0.6787 | -0.0875 | 8.5322 |\n| clean_s6 | — | — | — (训练刚完成, eval 未开始) |\n\n### HT post-RL 结果\n| Stage | Accuracy | θ_MLE | lz* | acc_seen | acc_unseen | lz*_seen | lz*_unseen |\n|-------|----------|-------|-----|----------|------------|----------|------------|\n| SFT | 0.7339 | +0.2281 | 2.914 | 0.8310 | 0.7167 | -0.395 | 3.278 |\n\nbase_results.json 也存在。\n\n### 建议操作\n1. **Kill PID 98622** — s5 eval zombie, 浪费 GPU 0 上 8.6GB\n2. **Kill PID 96745** — s6 训练已完成, 浪费 GPU 1 上 23.1GB → 释放后可启动 s6 eval\n3. s7 (GPU 0) 和 s8 (GPU 3) 正常运行中, 不动\n4. GRPO (GPU 2) 正常运行中, 不动\n5. GPU 1 清理后启动 clean_s6 eval\n\n## MIA 对比准备 (2026-05-21)\n\n**目标**：用 MIA (Min-K%/Min-K%++) 作为 baseline，与 lz* 对比在 post-RL 模型上的检测能力。Wang et al. (2025) 证明 MIA 在 post-RL 模型上失效，我们要展示 lz* 在 GRPO 后仍有效。\n\n**脚本就绪**：\n- `/root/autodl-tmp/post_rl_contam/eval_mia.py` — MIA 评估脚本（Min-K% + Min-K%++），支持 `--stage base|sft|grpo --gpu N`\n- `/root/autodl-tmp/post_rl_contam/compare_mia_lz.py` — 对比表生成（加载 MIA + lz* 结果，输出对比 AUC-ROC）\n- 依赖 scikit-learn 已安装\n\n**算法实现**：\n- Min-K%: token log-prob 最小 K% 的均值（K=10,20,30,40,50）\n- Min-K%++: 标准化 log-prob (z = (log_p - μ_vocab) / σ_vocab) 最小 K% 的均值\n- 同时计算 Loss baseline（平均 log-prob）\n- 输出 per-item scores + AUC-ROC\n\n**运行方式**：`python eval_mia.py --stage base --gpu 0`（需 GPU，14042 items，预估 1-2h/stage）\n\n**参考文献**：\n- Min-K%++: Zhang et al. (2024), ICLR 2025 Spotlight, [github.com/zjysteven/mink-plus-plus](https://github.com/zjysteven/mink-plus-plus)\n- Min-K%: Shi et al. (2024) \"Detecting Pretraining Data from Large Language Models\"\n\n## ConStat 对比分析 (2026-05-21, updated)\n\n**论文**: Dekoninck et al., \"ConStat: Performance-Based Contamination Detection in Large Language Models\", NeurIPS 2024.\n**代码**: [github.com/eth-sri/ConStat](https://github.com/eth-sri/ConStat), 已 clone 到 `/root/autodl-tmp/ConStat/`, pip install -e . 完成。\n\n### ConStat 方法核心\n\nConStat 是 **dual-benchmark + multi-model** 方法：通过比较 target model 在 primary benchmark vs reference benchmark 上的性能增量，判断 primary 是否被污染。核心逻辑——如果 model 在 primary 上的表现显著高于 spline(reference_perf) 的预测，则 primary 被污染。\n\n### 输入要求对比\n\n| 维度 | ConStat | lz* (ours) |\n|------|---------|------------|\n| Benchmarks | 2 (primary + reference) | 1 |\n| Reference benchmark 创建 | 必须 (GPT-4 rephrasing / synthetic) | 不需要 |\n| Reference models | ≥5 (推荐 ≥20) | 0 |\n| 每次检测的 eval runs | 2×(N_ref+1), 典型 42 | 1 |\n| Per-item data | 两个 benchmark 都要 | 单 benchmark |\n| IRT 参数 | 不需要 | 需要 (可预训练) |\n| 核心假设 | benchmark 间 performance monotone 关系 | IRT 模型拟合 (单维+局部独立) |\n\n### 在我们 ctrl-contam 数据上的可行性\n\n**不可行。** 4 项必需输入中仅有 1 项可用：\n- ✓ Primary benchmark per-item (MMLU response_vector, 14042 items)\n- ✗ Reference benchmark per-item — 无 rephrased/synthetic MMLU\n- ✗ Reference models on primary — 仅 3 个模型族 (Qwen/Llama/Mistral)，不足 5 个\n- ✗ Reference models on reference — 无 reference benchmark\n\n**Workaround 分析**：\n- 用我们的 3 个模型互作 reference → 不行，ConStat 需 ≥5 个且能力分布多样\n- 用 Open LLM Leaderboard v1 → 部分可行（有 per-item MMLU），但仍缺 reference benchmark\n\n### 模拟对比结果（2026-05-21 修正版）\n\n**修复了 3 个 bug 后的正确结果**：\n1. compute_lz_star 缺 Snijders (2001) 方差校正 → 已加入 Var* = Var(l0) - C(θ)²/I(θ)\n2. 阈值方向反了 (lz>1.96 → abs(lz)>1.96)\n3. ConStat 内部调用 np.random.seed(42) 污染全局 RNG → 已加 save/restore rng_state\n\n在 IRT 模拟数据上 (n=300 items, 10 ref models, 20 trials, 200 bootstraps)：\n\n| Contam% | ConStat Power | lz* Power (two-sided) | ConStat δ | lz* Mean |\n|---------|---------------|-----------------------|-----------|----------|\n| 0% | 0.100 | 0.050 | 0.011 | -0.058 |\n| 5% | 0.000 | 0.000 | 0.005 | -0.381 |\n| 10% | 0.250 | 0.100 | 0.038 | -0.620 |\n| 25% | 0.500 | 0.050 | 0.088 | 0.030 |\n| 50% | 1.000 | 0.050 | 0.174 | 0.136 |\n\n**关键发现**：\n- **lz* FAR = 5%**（标称值），Snijders 校正后 clean 数据 lz* mean ≈ 0, std ≈ 0.9 ✓\n- **lz* 绝对阈值无检测力**：所有 contamination 水平 power ≈ 5%（= FAR），因为 θ-MLE 完全吸收了 contamination 信号。这正是论文中 \"θ estimation as confound\" 机制的直接展示。\n- **ConStat 在此设置中优于绝对 lz***：ConStat 不依赖 θ 估计，用 reference benchmark 作 control，25% 时 50% power，50% 时 100% power。\n- **但这不是公平比较**：论文中 lz* 使用 Δlz*（与 clean baseline 比较），而非绝对阈值。Δlz* 在 ctrl-contam 实验中 Cohen's d = 3.58/1.56，远高于 ConStat 在此模拟中的 power。\n- **正确叙事**：绝对 lz* 因 θ-shift 失效 → 需要 Δlz* 或 θ-fixed 方法 → 这正是我们的核心 methodological contribution。\n\n### 论文叙事价值\n\n1. **\"Minimal information\" 论证的核心对照**: ConStat 需要 42 eval runs（2 benchmarks × 21 models），lz* 只需 1 eval run + pre-fitted IRT params。信息需求差 42×。\n2. **互补而非竞争**: ConStat 检测的是 \"benchmark-specific performance inflation\"，lz* 检测的是 \"response pattern aberrance\"——不同信号。\n3. **ConStat 的不可用场景正是 lz* 的目标场景**: 第三方审计（无法控制评估流程、无法创建 reference benchmark、无法要求多模型评估）。\n4. **Discussion/Related Work 定位**: \"ConStat achieves high power when dual-benchmark evaluation is feasible, but requires infrastructure (reference benchmark creation + multi-model evaluation) that is unavailable in third-party audit scenarios. Our lz* operates in the minimal-information regime where only per-item binary responses and pre-fitted IRT parameters are available.\"\n5. **模拟结果进一步说明 θ-shift confound**: 即使在理想 IRT 模拟中，绝对 lz* 也无法检测 contamination — 必须用 Δlz* 或 θ-fixed 方法。\n\n### 产出文件\n- ConStat repo: `/root/autodl-tmp/ConStat/`\n- 适配脚本: `/root/autodl-tmp/constat_comparison/run_constat.py`（已修 3 个 bug）\n- 结果 JSON: `/root/autodl-tmp/constat_comparison/results/constat_comparison.json`\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "tool_args": {
+    "project": "irt_personfit_contam",
+    "file": "memory.md",
+    "content": "# Memory — irt_personfit_contam\n\n## OOM 教训 (2026-05-20)\n- 7.6GB RAM 机器上，N_SIM×n_items float64 矩阵不能一次性分配。MMLU 10K×14042×8B ≈ 1.07GB 单个矩阵，compute_lz_star 内部创建 ~7 个同尺寸中间数组 → OOM\n- 解决方案：BATCH_SIZE=500 分批计算 + N_SIM 降至 2000（统计效力足够）\n- generate_response 和 compute_lz_star 都需要分批\n\n## Worker context exhaustion 教训 (2026-05-20)\n- exp-v1-irt-refit-expanded Worker 跑 1.5 小时后崩溃，无输出。任务是从 HuggingFace 下载 500+ 模型的 per-item 数据并拟合 IRT。\n- **根因**: 大量 HF API 调用 + 数据处理的累积输出耗尽 Worker context window。\n- **教训**: 涉及大规模数据下载（100+ datasets）的任务必须分批 + checkpoint 中间结果，或拆成多个 Worker 串行执行。单个 Worker 不适合做 1.5hr+ 的重型数据工程。\n- **补充 (同日)**: ssh_read_only 读取大 JSON 文件（8MB+ 单行）也会撑爆 context。Worker 操作远程大文件必须用 python 脚本提取摘要，不要 cat/head。\n- **补充 (同日)**: Worker 无法在进程内长时间等待（~2 min 就退出）。涉及 GPU 训练 + eval 的任务应分阶段处理：训练完成后由 cron 回调触发 eval Worker，或由主 Agent 定时派 Worker 检查。\n\n## sim_001 关键发现 (2026-05-20)\n- **Null check 全通过**：PSN-IRT 神经网络估计的 4PL 参数与经典 IRT 兼容，lz* ≈ N(0,1)\n  - 大 benchmark（GSM8K/HellaSwag/MMLU）KS p 全部 > 0.01\n  - 小 benchmark（HumanEval/ARC-C）KS p < 0.01，但属预期（items 太少，CLT 近似弱）\n- **检测力与 n_items 强正相关**：MMLU(14042)=97.9% >> HellaSwag(10042)=73.3% >> GSM8K(1319)=57.8% >> ARC-C(295)=12.9%\n- **Inverted-U 所有 benchmark 可观测**：power 在 25-50% contamination 达峰，100% 全部 NaN（全答对 → MLE 不收敛）\n\n## PSN-IRT 12 模型身份 (2026-05-20)\n\n**来源**：arXiv:2505.15055 (AAAI 2026 Oral)，GitHub repo `Joe-Hall-Lee/PSN-IRT`\n\n| student_id | θ | 正确率 | 模型名称 | 类型 |\n|---|---|---|---|---|\n| 0 | 1.46 | 80.6% | 360GPT2-Pro | API |\n| 1 | 3.77 | 85.7% | DeepSeek-V3 | API |\n| 2 | 1.14 | 78.9% | Doubao-pro | API |\n| 3 | 0.78 | 84.5% | Gemini-1.5 | API |\n| 4 | -3.38 | 23.1% | Gemma-2B-it | 开源 2B |\n| 5 | 1.73 | 82.1% | Hunyuan-Turbo | API |\n| 6 | -1.37 | 40.0% | Mistral-7B-Instruct-v0.1 | 开源 7B |\n| 7 | 0.93 | 77.0% | Moonshot-v1 | API |\n| 8 | 0.96 | 76.3% | Qwen-Plus | API |\n| 9 | -0.13 | 60.4% | Qwen2.5-3B-Instruct | 开源 3B |\n| 10 | -1.89 | 31.6% | Vicuna-7B-v1.3 | 开源 7B |\n| 11 | 0.77 | 75.2% | Yi-Lightning | API |\n\n## Gemini-1.5 × 100% contamination 精确匹配 (2026-05-20)\n\nGemini-1.5 MMLU lz*(benchmark-specific θ) = +31.815 = 100% contamination simulation lz* = +31.815（完全一致）。机制：100% accuracy → θ_bench=4.0 → lz* deterministic。其他 benchmark Gemini-1.5 lz* 为负（非 100% acc），说明异常是 benchmark-specific 的。\n\n## exp-extended-sim 关键发现 (2026-05-20)\n\n- Dual-regime crossover 75-90%：所有 5 benchmark 在此区间 lz* 从负翻正\n- 100% contamination lz* deterministic (std=0.0)\n- Inverted-U 全 5 benchmark 确认\n\n## exp-two-sided 关键教训 (2026-05-20)\n\n95% flagging 即使用 benchmark-specific θ + bootstrap + FDR 也无法降低。LLM 系统性违反 4PL 假设（单维+局部独立）。绝对阈值对 real data 无意义，需 controlled calibration (Δlz*)。\n\n## exp-empirical-null 关键发现 (2026-05-20)\n\nBootstrap null 校准良好（mean bias=0.09, std=1.002）。95% flagging 不是 null miscalibration，而是 LLM response pattern 产生极端 lz*。大 benchmark KS reject 仅 8.3%，小 benchmark 58-75%（有限样本效应）。\n\n## exp-power-theory 关键发现 (2026-05-20)\n\nR²(two-sided)=0.957, R²(left-tail)=0.976, R²(mean lz*)=0.995。δ ∝ √n confirmed。Inverted-U 拐点理论值 π*≈81-85%。最小 n_items (80% power): 15% contam→~8K, 25%→~3K, 50%→~1K。\n\n## exp-item-alignment-check 关键发现 (2026-05-20)\n\n**PSN-IRT 与 v1 Leaderboard item ordering 不对齐。** 直接位置匹配率 54.56%（≈随机）。Content-based 重排后 Mistral 88.46%, Vicuna 72.48%。\n\n**根因**: PSN-IRT 保持 raw MMLU 原始顺序，v1 leaderboard 在 subject 内部 shuffle。且 PSN-IRT 是独立评测（不同 prompt/few-shot），即使对齐后仍有 ~12% response 差异。\n\n**结论**: **不可混用 v1 responses + PSN-IRT parameters**。~12% 噪声对 item-level person-fit 统计量影响严重。\n\n**已生成 item_mapping.csv**: 12068/14042 items 的 v1→PSN-IRT 位置映射，可用于未来 content-based 对齐需求。\n\n## Open LLM Leaderboard v1 per-item data (2026-05-20)\n\n**来源**: `open-llm-leaderboard-old/details_{org}__{model}` HuggingFace datasets\n**格式**: Parquet, `acc`/`acc_norm` 二值字段\n**覆盖**: MMLU ✅, HellaSwag ✅, ARC-C ✅, GSM8K ✅ | HumanEval ❌\n**模型数**: 13,000+\n**⚠️ 不可直接用 PSN-IRT parameters** — 见 item-alignment-check 发现\n\n## exp-fdr-correction 关键发现 (2026-05-20)\n\nexp-two-sided v2 的 `empirical_pvalues.csv` 已包含 global BH-FDR 校正（60 cells 一起做 BH）。校正前后 flagging 均为 57/60 (95%)——因大多数 cells empirical p=0.000，BH 校正无实质影响。Leaderboard-scale FDR (24800+ tests) 需在 leaderboard audit 中单独处理。\n\n## exp-clean-control-delta 关键发现 (2026-05-20)\n\nClean-vs-clean Δlz* 均值全部接近 0（|mean| < 0.13），无一显著，确认 estimation noise floor ~ N(0, 1.4)。\nClean-vs-contaminated (25%) Δlz* 均高度显著（p<1e-10），Cohen's d: MMLU=2.66, HellaSwag=1.85, GSM8K=1.85, HumanEval=1.07, ARC-C=0.45。\nARC-C d=0.45 略低 0.5 阈值（仅 295 items），与 power theory 一致。\n论文中标注为 \"theoretical noise floor\"，真实 SFT clean-vs-clean 在 ctrl-contam-pilot 中实现。\n\n## exp-ml-classifier-baseline 关键发现 (2026-05-20)\n\n**lz* 在低污染率 (5-10%) 优于有监督 ML 分类器**：5% contam lz* AUROC 0.675 vs best ML 0.575 (+0.10); 10% contam 0.763 vs 0.712 (+0.05)。ML 仅在 25%+ 污染时略胜 (+0.05)，但需 oracle contamination labels（实际不可用）。\nRF feature importance 在 items 间高度弥散（top item <1%），与 lz* 全局 likelihood 方法一致。\n论文限定为 simulation 场景下的对比，不推广为\"所有 binary-only ML 方法都不如 IRT\"。\n\n## exp-domain-analysis 关键发现 (2026-05-20)\n\n**Gemini-1.5 MMLU 100% accuracy 覆盖全部 57 个 subject**——不是 domain-concentrated 泄漏，是完全数据集泄漏。50/57 subjects flagged (lz*>1.96)，未 flagged 的 7 个 subject 的 lz* 也很高但 item 数太少。\n\n**模型 contamination 指纹多样**：\n- Doubao-pro: 反向 pattern，Humanities/Social Sciences lz* 极负（-13~-15），STEM 接近 0，Other 正向——可能是训练数据偏科\n- Hunyuan-Turbo: STEM lz*=1.8 vs Social Sciences lz*=13.9——Social Sciences 方向过度拟合\n- Yi-Lightning 和 Qwen-Plus: 全 domain 高 lz*（16~28），领先所有其他模型\n\n**论文价值**: domain decomposition 为 12-model case study 增加定性分析深度，但 non-essential（P2 级别）。\n\n**virology lz*=-8.21 诊断**：双重根因——(1) global θ=0.78 vs MMLU θ_MLE=4.0 错配；(2) virology 全部 166 items d<1.0 (mean=0.71)，即使 θ=4.0 仍有 58/166 items P<0.5。是 PSN-IRT calibration artifact，不影响 overall lz*=34.75。per-subject 分析需加 caveat。\n\n## exp-natural-experiment 关键发现 (2026-05-20)\n\n21 对 base→chat 模型 × 4 benchmarks（MMLU/HellaSwag/ARC-C/GSM8K）。\n\n**两个 benchmark 有显著系统性 SFT 效应**：\n- HellaSwag: Δlz* 偏差 mean=-3.40, t=-3.97, p=0.001（SFT 系统性降低 person-fit）\n- GSM8K: Δlz* 偏差 mean=+3.92, t=3.35, p=0.009（SFT 系统性提高 person-fit）\n- MMLU/ARC-C 无显著效应\n\n**无个体 pair outlier**——未能检测到单个模型的 benchmark-specific contamination。\n**Director 评估价值极低（P2-optional）**，不作为核心 evidence 使用。\n\n## exp-4pl-ablation 关键发现 (2026-05-20)\n\n**4PL d 参数对检测力的影响是决定性的，不是锦上添花。**\n\n核心数据（4PL vs 3PL(d=1)，平均 power gain across contamination levels）：\n- MMLU: +27.3pp (max +49.0pp)\n- HellaSwag: +26.1pp (max +59.6pp)\n- GSM8K: +20.3pp (max +39.7pp)\n- ARC_C: +14.8pp (max +54.6pp)\n- HumanEval: +13.7pp (max +30.6pp)\n\nFAR 校准：4PL ≈ 5%（正确），3PL 4.7-16.5%（偏高），2PL 50-100%（完全不可用——固定 c=0.25 灾难性错误）。\n\n**d-bucket 机制确认**：d<0.8 的 items 上 4PL 优势最大（MMLU +61pp），d≥0.95 时差异可忽略。这证实 d 参数捕捉 ceiling effect 是检测力提升的关键来源。\n\n**论文价值**：回应 Reviewer R8 concern（为什么用 4PL 而非 3PL）。46% MMLU items d<0.95，忽略 d 约将检测力减半。这是 Method 部分的核心 justification。\n\n## exp-4pl-real-data-degradation 关键发现 (2026-05-20)\n\n**实数据验证：d 参数的影响对高能力模型是毁灭性的。**\n\n在 12 个 PSN-IRT 模型的真实响应数据上，4PL vs 3PL(d=1) 的 lz* 仅有 r=0.225, RMSE=68.41——几乎无关联。\n\n**不对称影响机制**：d=1 使 P(θ)→1（高能力模型预期全部答对），导致少量错误被 lz* 放大为极端异常值。低能力模型的 P(θ) 本身就远离 1.0，d=1 vs d<1 差异小，因此几乎不受影响。\n\n- DeepSeek-V3 (θ=3.77): MMLU lz* 从 +16.4 暴跌至 -340.6\n- Gemma-2B-it / Vicuna / Mistral (低 θ): |Δlz*|<2\n- MMLU 最严重（46% items d<0.95），mean |Δlz*|=58.3\n\n**与 exp-4pl-ablation 的互补**：ablation 在模拟数据上证明 power 损失，本实验在实数据上证明 lz* 值本身被完全摧毁。二者形成 R8 的双重证据链——4PL d 参数不可或缺。\n\n**论文写作注意**：这个结果特别适合做 case study 可视化（选 DeepSeek-V3 on MMLU 作为 extreme case），放在 ablation study 或 appendix 中。\n\n## exp-ctrl-contam-pilot 关键发现 (2026-05-20)\n\n**首次真实 LLM controlled contamination 实验。** Qwen2.5-7B-Instruct QLoRA SFT，4+1 条件。\n\n**核心结果（n=3 clean seeds, ddof=1）**：\n| Condition | Accuracy | θ_MLE | lz* |\n|-----------|----------|-------|-----|\n| clean_s1 (seed=42) | 0.6787 | -0.0987 | 8.0101 |\n| clean_s2 (seed=123) | 0.6789 | -0.0842 | 5.9440 |\n| clean_s3 (seed=456) | 0.6783 | -0.1068 | 8.0806 |\n| contam_15 | 0.7310 | +0.1971 | 3.0046 |\n| contam_50 | 0.7644 | +0.3703 | 5.4480 |\n\n**Baseline（n=3）**: mean=7.3449, std=1.2137\n**Cohen's d（n=3, ddof=1）**: contam_15 d=-3.58, contam_50 d=-1.56\n**注意**：之前汇报的 d=-3.85 / d=-1.48 使用了 ddof=0。论文统一用 ddof=1。\n\n**H1 ✓ H2 ✓ H3 ✗(θ-free) H4 ✗**\n\n**θ-shift 是 dose-response 倒置的确切原因**：\n- contamination 抬高 θ_MLE（clean -0.09 → contam_50 +0.37），MLE 将 contamination 信号解释为 \"能力提升\"\n- θ-fixed（固定为 clean θ 均值 -0.0914）下，dose-response 恢复单调：\n  - |Δlz*_fixed_15| = 2.96, |Δlz*_fixed_50| = 8.67, ratio = 2.93 ✅\n- θ-shift 分别吸收了 contam_15 的 6.93 和 contam_50 的 10.20 lz* 单位信号\n\n**clean seed 变异性**：s1 和 s3 的 lz* 接近（8.01, 8.08），s2 明显低（5.94）。n=3 baseline std=1.21 vs n=2 的 1.46，加入 s3 压缩了方差，使 Cohen's d 更极端。\n\n**Memorization fraction 低于预期**（0.38/0.29 vs 假设的 >0.5）——QLoRA 3 epochs 不足以产生强 memorization，但足以产生可检测的 lz* 偏移。\n\n**论文叙事价值**：\n1. θ-shift = \"ability inflation\" 是 contamination 逃避 person-fit 检测的核心机制\n2. 与 simulation inverted-U 发现形成呼应——real-world 版本的同一现象\n3. θ-fixed 分析作为 supplementary evidence 证明底层信号单调递增\n4. 支撑 Discussion 中 \"θ estimation as confound\" 段落\n\n## GPU 审计 (2026-05-21 15:47 UTC)\n\n### GPU 占用总览\n| GPU | PID | Process | VRAM | Status |\n|-----|------|---------|------|--------|\n| 0 | 98622 | eval_lz.py --condition clean_s5 --gpu 0 | 8,628 MiB | **ZOMBIE** — s5 results 已存在 |\n| 0 | 99214 | train.py --condition clean_s7 --gpu 3 | 37,694 MiB | 运行中, 56/939 steps (~6%) |\n| 1 | 96745 | train.py --condition clean_s6 --gpu 0 | 23,102 MiB | **ZOMBIE** — 训练已完成，模型已保存 |\n| 2 | 97791 | train_grpo.py | 8,062 MiB | 运行中, 134/14042 steps (~1%), ETA ~20h |\n| 3 | 99807 | train.py --condition clean_s8 --gpu 0 | 27,470 MiB | 运行中 (无日志) |\n\n### 进程状态\n- **PID 97791 (GRPO)**: 存活, step 134/14042, epoch 0.0078, ~5.1s/step, reward 0.3-0.78 波动, ETA ~19h\n- **PID 96745 (s6 train)**: 存活但已完成 — 3 epoch 训练结束, model saved to checkpoints/clean_s6, 仍占 GPU 1 23GB\n- **PID 99214 (s7 train)**: 存活, 56/939 steps (~6%), ~2s/step\n- **PID 99807 (s8 train)**: 存活, 无日志输出\n- **PID 98622 (s5 eval)**: 存活但 s5 results 已存在 — zombie\n- **PID 98896, 98897**: 已死亡\n\n### Eval 结果\n| Condition | Accuracy | θ_MLE | lz* |\n|-----------|----------|-------|-----|\n| clean_s3 | 0.6783 | -0.1068 | 9.5293 |\n| clean_s4 | 0.6786 | -0.1092 | 8.9673 |\n| clean_s5 | 0.6787 | -0.0875 | 8.5322 |\n| clean_s6 | — | — | — (训练刚完成, eval 未开始) |\n\n### HT post-RL 结果\n| Stage | Accuracy | θ_MLE | lz* | acc_seen | acc_unseen | lz*_seen | lz*_unseen |\n|-------|----------|-------|-----|----------|------------|----------|------------|\n| SFT | 0.7339 | +0.2281 | 2.914 | 0.8310 | 0.7167 | -0.395 | 3.278 |\n\nbase_results.json 也存在。\n\n### 建议操作\n1. **Kill PID 98622** — s5 eval zombie, 浪费 GPU 0 上 8.6GB\n2. **Kill PID 96745** — s6 训练已完成, 浪费 GPU 1 上 23.1GB → 释放后可启动 s6 eval\n3. s7 (GPU 0) 和 s8 (GPU 3) 正常运行中, 不动\n4. GRPO (GPU 2) 正常运行中, 不动\n5. GPU 1 清理后启动 clean_s6 eval\n\n## MIA 对比准备 (2026-05-21)\n\n**目标**：用 MIA (Min-K%/Min-K%++) 作为 baseline，与 lz* 对比在 post-RL 模型上的检测能力。Wang et al. (2025) 证明 MIA 在 post-RL 模型上失效，我们要展示 lz* 在 GRPO 后仍有效。\n\n**脚本就绪**：\n- `/root/autodl-tmp/post_rl_contam/eval_mia.py` — MIA 评估脚本（Min-K% + Min-K%++），支持 `--stage base|sft|grpo --gpu N`\n- `/root/autodl-tmp/post_rl_contam/compare_mia_lz.py` — 对比表生成（加载 MIA + lz* 结果，输出对比 AUC-ROC）\n- 依赖 scikit-learn 已安装\n\n**算法实现**：\n- Min-K%: token log-prob 最小 K% 的均值（K=10,20,30,40,50）\n- Min-K%++: 标准化 log-prob (z = (log_p - μ_vocab) / σ_vocab) 最小 K% 的均值\n- 同时计算 Loss baseline（平均 log-prob）\n- 输出 per-item scores + AUC-ROC\n\n**运行方式**：`python eval_mia.py --stage base --gpu 0`（需 GPU，14042 items，预估 1-2h/stage）\n\n**参考文献**：\n- Min-K%++: Zhang et al. (2024), ICLR 2025 Spotlight, [github.com/zjysteven/mink-plus-plus](https://github.com/zjysteven/mink-plus-plus)\n- Min-K%: Shi et al. (2024) \"Detecting Pretraining Data from Large Language Models\"\n\n## ConStat 对比分析 (2026-05-21, updated)\n\n**论文**: Dekoninck et al., \"ConStat: Performance-Based Contamination Detection in Large Language Models\", NeurIPS 2024.\n**代码**: [github.com/eth-sri/ConStat](https://github.com/eth-sri/ConStat), 已 clone 到 `/root/autodl-tmp/ConStat/`, pip install -e . 完成。\n\n### ConStat 方法核心\n\nConStat 是 **dual-benchmark + multi-model** 方法：通过比较 target model 在 primary benchmark vs reference benchmark 上的性能增量，判断 primary 是否被污染。核心逻辑——如果 model 在 primary 上的表现显著高于 spline(reference_perf) 的预测，则 primary 被污染。\n\n### 输入要求对比\n\n| 维度 | ConStat | lz* (ours) |\n|------|---------|------------|\n| Benchmarks | 2 (primary + reference) | 1 |\n| Reference benchmark 创建 | 必须 (GPT-4 rephrasing / synthetic) | 不需要 |\n| Reference models | ≥5 (推荐 ≥20) | 0 |\n| 每次检测的 eval runs | 2×(N_ref+1), 典型 42 | 1 |\n| Per-item data | 两个 benchmark 都要 | 单 benchmark |\n| IRT 参数 | 不需要 | 需要 (可预训练) |\n| 核心假设 | benchmark 间 performance monotone 关系 | IRT 模型拟合 (单维+局部独立) |\n\n### 在我们 ctrl-contam 数据上的可行性\n\n**不可行。** 4 项必需输入中仅有 1 项可用：\n- ✓ Primary benchmark per-item (MMLU response_vector, 14042 items)\n- ✗ Reference benchmark per-item — 无 rephrased/synthetic MMLU\n- ✗ Reference models on primary — 仅 3 个模型族 (Qwen/Llama/Mistral)，不足 5 个\n- ✗ Reference models on reference — 无 reference benchmark\n\n**Workaround 分析**：\n- 用我们的 3 个模型互作 reference → 不行，ConStat 需 ≥5 个且能力分布多样\n- 用 Open LLM Leaderboard v1 → 部分可行（有 per-item MMLU），但仍缺 reference benchmark\n\n### 模拟对比结果（2026-05-21 修正版）\n\n**修复了 3 个 bug 后的正确结果**：\n1. compute_lz_star 缺 Snijders (2001) 方差校正 → 已加入 Var* = Var(l0) - C(θ)²/I(θ)\n2. 阈值方向反了 (lz>1.96 → abs(lz)>1.96)\n3. ConStat 内部调用 np.random.seed(42) 污染全局 RNG → 已加 save/restore rng_state\n\n在 IRT 模拟数据上 (n=300 items, 10 ref models, 20 trials, 200 bootstraps)：\n\n| Contam% | ConStat Power | lz* Power (two-sided) | ConStat δ | lz* Mean |\n|---------|---------------|-----------------------|-----------|----------|\n| 0% | 0.100 | 0.050 | 0.011 | -0.058 |\n| 5% | 0.000 | 0.000 | 0.005 | -0.381 |\n| 10% | 0.250 | 0.100 | 0.038 | -0.620 |\n| 25% | 0.500 | 0.050 | 0.088 | 0.030 |\n| 50% | 1.000 | 0.050 | 0.174 | 0.136 |\n\n**关键发现**：\n- **lz* FAR = 5%**（标称值），Snijders 校正后 clean 数据 lz* mean ≈ 0, std ≈ 0.9 ✓\n- **lz* 绝对阈值无检测力**：所有 contamination 水平 power ≈ 5%（= FAR），因为 θ-MLE 完全吸收了 contamination 信号。这正是论文中 \"θ estimation as confound\" 机制的直接展示。\n- **ConStat 在此设置中优于绝对 lz***：ConStat 不依赖 θ 估计，用 reference benchmark 作 control，25% 时 50% power，50% 时 100% power。\n- **但这不是公平比较**：论文中 lz* 使用 Δlz*（与 clean baseline 比较），而非绝对阈值。Δlz* 在 ctrl-contam 实验中 Cohen's d = 3.58/1.56，远高于 ConStat 在此模拟中的 power。\n- **正确叙事**：绝对 lz* 因 θ-shift 失效 → 需要 Δlz* 或 θ-fixed 方法 → 这正是我们的核心 methodological contribution。\n\n### 论文叙事价值\n\n1. **\"Minimal information\" 论证的核心对照**: ConStat 需要 42 eval runs（2 benchmarks × 21 models），lz* 只需 1 eval run + pre-fitted IRT params。信息需求差 42×。\n2. **互补而非竞争**: ConStat 检测的是 \"benchmark-specific performance inflation\"，lz* 检测的是 \"response pattern aberrance\"——不同信号。\n3. **ConStat 的不可用场景正是 lz* 的目标场景**: 第三方审计（无法控制评估流程、无法创建 reference benchmark、无法要求多模型评估）。\n4. **Discussion/Related Work 定位**: \"ConStat achieves high power when dual-benchmark evaluation is feasible, but requires infrastructure (reference benchmark creation + multi-model evaluation) that is unavailable in third-party audit scenarios. Our lz* operates in the minimal-information regime where only per-item binary responses and pre-fitted IRT parameters are available.\"\n5. **模拟结果进一步说明 θ-shift confound**: 即使在理想 IRT 模拟中，绝对 lz* 也无法检测 contamination — 必须用 Δlz* 或 θ-fixed 方法。\n\n### 产出文件\n- ConStat repo: `/root/autodl-tmp/ConStat/`\n- 适配脚本: `/root/autodl-tmp/constat_comparison/run_constat.py`（已修 3 个 bug）\n- 结果 JSON: `/root/autodl-tmp/constat_comparison/results/constat_comparison.json`\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-21T08:43:15.378206+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 89 · 2026-05-21T08:43:15.378414+00:00_
+
+完成。总结：
+
+### 修复的 3 个 Bug
+1. **compute_lz_star 缺 Snijders (2001) 方差校正** — 从 eval_lz.py 复制正确的 `Var* = Var(l0) - C(θ)²/I(θ)` 实现
+2. **检测阈值方向反了** — `lz > 1.96` → `abs(lz) > 1.96`
+3. **ConStat 内部 `np.random.seed(42)` 污染全局 RNG** — 加 save/restore `rng_state` 保护
+
+### 修正后仿真结果
+
+| Contam% | ConStat | lz* (绝对) | lz* Mean |
+|---------|---------|-----------|----------|
+| 0% | 0.100 | **0.050** | **-0.058** |
+| 5% | 0.000 | 0.000 | -0.381 |
+| 10% | 0.250 | 0.100 | -0.620 |
+| 25% | 0.500 | 0.050 | 0.030 |
+| 50% | 1.000 | 0.050 | 0.136 |
+
+- Clean data lz* mean = -0.058 ≈ 0 (修复前是 -2.365)
+- FAR = 5%（标称值）
+- 绝对 lz* 在所有 contamination 水平 power ≈ FAR（θ-MLE 完全吸收信号），进一步证实论文 "θ estimation as confound" 论点
+
+### 真实 ctrl-contam 模型 ConStat 对比
+**不可行** — 4 项必需输入仅 1 项可用（缺 reference benchmark + ≥5 reference models）。这本身就是论文对比论据：ConStat 需 42 eval runs，lz* 只需 1 run。
+
+memory.md 已更新。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_constat-bugfix-rerun_20260521T083100"
+}
+```
+
+</details>
+
+---

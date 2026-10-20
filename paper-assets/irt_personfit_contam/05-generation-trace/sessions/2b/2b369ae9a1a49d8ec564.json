@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2b369ae9a1a49d8ec564",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "train qwen 15pct multiseed",
+  "task_key": "worker_train_qwen-15pct-multiseed_20260522T114029",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_qwen-15pct-multiseed_20260522T114029_result.json",
+    "occurrence": 1,
+    "bytes": 144,
+    "sha256": "199be63c498f309ebceb2646a86cf8a723d1ce99f308a36f420d072eb70c853b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "seed=123 训练已启动 (tmux session: `exp-ctrl-contam-qwen-15pct-s2`, PID 27091)。等 ~2 分钟后检查是否正常运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-qwen-15pct-multiseed.md"
+}

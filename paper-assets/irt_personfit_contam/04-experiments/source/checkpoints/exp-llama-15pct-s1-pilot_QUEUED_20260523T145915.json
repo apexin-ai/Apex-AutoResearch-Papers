@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-llama-15pct-s1-pilot",
+  "project": "irt_personfit_contam",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T14:59:02.751Z",
+    "updated_at": "2026-05-23T14:59:15.193Z",
+    "hypothesis": "Llama-3.1-8B 15% MMLU contamination with seed=42 in the unified pilot pipeline (item selection seed=42) produces comparable lz* anomaly to ctrl_contam_llama results, enabling apples-to-apples multi-seed comparison across all model families."
+  },
+  "timestamp": "2026-05-23T14:59:15.366678+00:00",
+  "trigger": "update_registry"
+}

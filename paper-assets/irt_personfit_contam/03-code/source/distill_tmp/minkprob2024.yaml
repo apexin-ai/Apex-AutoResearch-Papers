@@ -1,0 +1,146 @@
+paper_key: "minkprob2024"
+title: "Detecting Pretraining Data from Large Language Models"
+venue: "ICLR 2024"
+full_text_available: true
+
+research:
+  baselines:
+    - "PPL (Perplexity / LOSS attack)"
+    - "Neighbor (Neighborhood Attack / probability curvature)"
+    - "Zlib (compression entropy ratio)"
+    - "Lowercase (lowercased perplexity)"
+    - "Smaller Ref (smaller reference model comparison)"
+    - "DetectGPT (perturbation-based)"
+  metrics:
+    - {name: "AUC (Area Under ROC Curve)", direction: "higher_better"}
+    - {name: "TPR@5%FPR", direction: "higher_better"}
+    - {name: "Contamination Rate (%)", direction: "higher_better"}
+    - {name: "SimCSE Score", direction: "higher_better"}
+    - {name: "GPT-4 Similarity Score (1-5)", direction: "higher_better"}
+    - {name: "ROUGE-L Recall", direction: "higher_better"}
+  datasets:
+    - {name: "WikiMIA", size: "394 member + 394 non-member Wikipedia events, text lengths 32/64/128/256 tokens"}
+    - {name: "Books3 (subset of The Pile)", size: "100 copyrighted books"}
+    - {name: "BoolQ", size: "downstream contamination eval"}
+    - {name: "IMDB", size: "downstream contamination eval"}
+    - {name: "Truthful QA", size: "downstream contamination eval"}
+    - {name: "Commonsense QA", size: "downstream contamination eval"}
+    - {name: "RedPajama", size: "pretraining corpus for contamination simulation"}
+    - {name: "Harry Potter Books 1-4", size: "machine unlearning audit"}
+    - {name: "Real Time Data News August 2023", size: "in-distribution contaminant testing"}
+  ablation_dimensions:
+    - "k% threshold (k=10,20,30,40,50,60)"
+    - "model size (7B to 65B)"
+    - "text length (32, 64, 128, 256 tokens)"
+    - "original vs paraphrased text"
+    - "contaminant type (outlier vs in-distribution)"
+    - "data occurrence frequency"
+    - "pretraining dataset size"
+    - "learning rate for contamination"
+  training_recipe:
+    description: "No training required. Min-K% Prob is inference-only: compute token probabilities via black-box LLM API, select bottom k% tokens by probability, average their log-likelihoods. k=20 selected on validation set, fixed across all experiments."
+  method_family: "membership inference / pretraining data detection"
+
+positioning:
+  core_claim: "A simple reference-free method that detects pretraining data by averaging the log-likelihoods of the k% lowest-probability tokens, based on the insight that unseen text contains more outlier low-probability tokens than seen text."
+  key_results: "7.4% average AUC improvement over baselines on WikiMIA (0.72 vs 0.67 best baseline). Detects 90%+ contamination rate in majority of 100 copyrighted books in GPT-3. Effective at revealing incomplete machine unlearning."
+  limitations:
+    - "WikiMIA uses only Wikipedia data, not universally representative of all pretraining corpora"
+    - "Requires black-box access to token-level probabilities (not all APIs expose this)"
+    - "Paraphrase detection remains an open and harder problem (performance drops ~2-5% AUC)"
+    - "Detection difficulty varies significantly with text length (short texts are harder)"
+    - "Single-epoch pretraining reduces memorization signal compared to multi-epoch finetuning"
+    - "No explicit calibration or statistical guarantees on false positive rates"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "Opening with the opacity problem: LLM training data is rarely disclosed despite containing copyrighted materials, PII, and benchmark data. Three concrete harms (copyright, privacy, evaluation integrity) establish urgency."
+  tension: "Existing membership inference attacks require reference models trained on similar distributions - infeasible for large LLMs. Additionally, single-epoch pretraining drastically reduces memorization signals that prior methods rely on."
+  key_insight: "Revealed in Section 3 through an intuitive hypothesis: seen data has uniformly moderate token probabilities, while unseen data has a few outlier tokens with very low probabilities. Instead of using overall perplexity, focus on just the minimum-k% tokens. This is a 'less is more' insight - discarding high-probability tokens improves detection."
+  argument_chain: "problem (data opacity) -> existing MIA limitations (need reference models, single-epoch challenge) -> WikiMIA benchmark construction (Wikipedia timestamp trick) -> Min-K% Prob method (outlier token hypothesis) -> WikiMIA evaluation (7.4% gain) -> three real-world case studies (books, contamination, unlearning) -> validation of practical utility"
+  contribution_framing: "Three explicit contributions numbered in intro: (1) dynamic benchmark WikiMIA, (2) reference-free method Min-K% Prob, (3) three real-world case studies. Framing emphasizes both methodological novelty and practical impact."
+  intro_structure: "3 main paragraphs: P1 = problem scope (data opacity, three harms: copyright, PII, benchmark contamination); P2 = technical challenge framing (why existing MIA methods fail for LLM pretraining - reference model requirement, single-epoch memorization); P3 = contributions preview (WikiMIA benchmark, Min-K% Prob method, three case studies with key numbers)."
+  notable_technique: "The three case studies structure is highly effective - instead of just benchmark numbers, the paper demonstrates practical value through copyright detection (Books3/GPT-3), downstream contamination detection, and machine unlearning auditing. Each case study tells its own mini-story with distinct stakes."
+
+figures:
+  figure_count: 11
+  figure1:
+    type: "method_overview"
+    description: "Three-step pipeline illustration: (a) get token probabilities from GPT-3 for input text, shown as horizontal bar chart of per-token probabilities; (b) select the minimum K% tokens, highlighting them in a filtered bar chart; (c) compute average log-likelihood of selected tokens via formula. Final decision: if score > threshold epsilon, text is in pretraining data."
+    narrative_role: "Makes the method instantly understandable in one glance. Converts the abstract algorithm into a concrete visual pipeline with a real example (Miss Universe Thailand text)."
+    design_elements:
+      - "Three-panel left-to-right pipeline layout with arrows"
+      - "Real text example as input (Miss Universe Thailand pageant)"
+      - "Horizontal bar charts for token probabilities"
+      - "Color highlighting to show selected minimum-k% tokens"
+      - "Mathematical formula displayed alongside visual"
+      - "GPT-3 logo as LLM icon"
+      - "Final decision box at bottom"
+    visual_style: "Clean pipeline diagram with pastel colors (light blue background, pink/salmon bars, green GPT icon). Rounded rectangles, arrows connecting steps. Mathematical notation integrated with visual elements. Light, academic illustration style."
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "line_plot (two panels)"
+      what_compared: "AUC vs model size (7B-66B) and AUC vs text length (32-256 tokens) for PPL, Neighbor, and Min-K Prob"
+      how_gain_highlighted: "Min-K Prob line (red) consistently above PPL (green) and Neighbor (blue) across all x-axis values, with clearest separation at larger models"
+      design_note: "Two-panel layout shows two key scaling behaviors. Color-coded lines with markers. Min-K% Prob in red (visually dominant). Shows that detection gets easier with larger models and longer texts - important practical guidance."
+    - figure_id: "Figure 3"
+      viz_type: "bar_chart"
+      what_compared: "AUC scores for copyrighted book detection on GPT-3 across different methods"
+      how_gain_highlighted: "Direct bar comparison showing Min-K% Prob advantage in real-world copyright setting"
+      design_note: "Bridges from benchmark to real-world application, validating practical utility"
+    - figure_id: "Figure 4"
+      viz_type: "histogram"
+      what_compared: "Distribution of contamination rates across 100 copyrighted books in GPT-3"
+      how_gain_highlighted: "Histogram is heavily right-skewed: ~54 books have 80-100% contamination rate, showing most books are extensively memorized. Only ~4 books near 0%."
+      design_note: "Single teal-green histogram with grid lines. X-axis: Contamination Rate%, Y-axis: Number of Books. The skewed distribution is visually dramatic - immediately communicates the severity of the copyright problem."
+    - figure_id: "Figure 5"
+      viz_type: "line_plot (three panels)"
+      what_compared: "(a) outlier contaminants vs dataset size, (b) in-distribution contaminants vs dataset size, (c) contaminants vs occurrence frequency"
+      how_gain_highlighted: "Shows detection difficulty varies by contaminant type - outlier easier than in-distribution. More occurrences = easier detection."
+      design_note: "Three-panel systematic analysis of factors affecting detection difficulty. Each panel isolates one variable."
+    - figure_id: "Figure 7"
+      viz_type: "histogram (two panels)"
+      what_compared: "(a) SimCSE similarity and (b) GPT-scored similarity between original and unlearned model completions"
+      how_gain_highlighted: "Shows unlearned model still produces similar content for questions identified by Min-K% Prob, revealing incomplete unlearning"
+      design_note: "Supports the machine unlearning audit case study with quantitative evidence"
+  ablation_figures:
+    - figure_id: "Figure 2a"
+      viz_type: "line_plot"
+      dimensions_varied: ["model size (7B, 13B, 30B, 65B)"]
+      design_note: "Shows scaling behavior of detection - AUC increases with model size for all methods but Min-K% Prob maintains consistent lead"
+    - figure_id: "Figure 2b"
+      viz_type: "line_plot"
+      dimensions_varied: ["text length (32, 64, 128, 256 tokens)"]
+      design_note: "Longer text = easier detection. Practically important for users choosing what granularity to analyze."
+    - figure_id: "Figure 5a-c"
+      viz_type: "line_plot (three panels)"
+      dimensions_varied: ["pretraining dataset size", "contaminant type (outlier vs in-distribution)", "data occurrence frequency"]
+      design_note: "Systematic factor analysis. Each panel isolates one dimension while controlling others."
+  figure_narrative_role: "Figure 1 (method overview, immediate comprehension) -> Figure 2 (scaling analysis, builds confidence) -> Figure 3-4 (copyright case study, real-world impact) -> Figure 5 (contamination factors, deeper understanding) -> Figure 6-7 (unlearning audit, novel application). Progression: method -> validation -> real-world impact -> deeper analysis."
+
+tables:
+  table_count: 10
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods (PPL, Neighbor, Zlib, Lowercase, Smaller Ref, Min-K% Prob)"
+    col_axis: "models (Pythia-2.8B, NeoX-20B, LLaMA-30B, LLaMA-65B, OPT-66B) x settings (Original, Paraphrase)"
+    row_organization: "flat"
+    col_organization: "grouped_by_model"
+    highlight_strategy: "bold_best per column, final Avg column for overall comparison"
+    statistical_reporting: "single-run AUC scores (no variance reported)"
+    num_baselines: 5
+    design_note: "Each model has two sub-columns (Ori/Para) showing robustness to paraphrasing. Average column enables quick comparison. Clean layout covering 5 diverse models from 2.8B to 66B parameters. Min-K% Prob wins all columns convincingly (0.72 avg vs 0.67 best baseline)."
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["detection method", "contamination dataset (BoolQ, IMDB, TruthfulQA, CSQA)"]
+      variation_style: "full_numbers"
+      design_note: "AUC scores for downstream contamination detection. Bold best per column. Shows Min-K% Prob generalization across different downstream tasks."
+    - table_id: "Table 4"
+      what_varied: ["learning rate (two levels)", "detection method"]
+      variation_style: "full_numbers"
+      design_note: "Shows detection becomes easier with higher learning rates. Controls for a key confound in contamination experiments."
+  supplementary_tables:
+    in_appendix: true
+    content: "Tables 6-10: TPR@5%FPR detailed results (Table 6-7), accuracy metrics, GPT-4 prompting templates for similarity evaluation, detailed similarity score examples for unlearning audit"
+    reason: "Main paper uses AUC as primary metric for clean presentation. TPR@FPR and other detailed metrics in appendix for thoroughness without cluttering main narrative. GPT-4 evaluation prompts in appendix for reproducibility."

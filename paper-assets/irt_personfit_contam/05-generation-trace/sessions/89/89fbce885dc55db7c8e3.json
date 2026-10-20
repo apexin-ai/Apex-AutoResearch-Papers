@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "89fbce885dc55db7c8e3",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "code exp baseline comparison full",
+  "task_key": "worker_code_exp-baseline-comparison-full_20260521T035954",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-baseline-comparison-full_20260521T035954.log",
+    "occurrence": 1,
+    "bytes": 671963,
+    "sha256": "f194df9c99d03249cc1c3e0416253292e51b03220792d5ce75e9e8ff5e5d0465"
+  },
+  "statistics": {
+    "messages": 145,
+    "user_turns": 1,
+    "tool_calls": 51,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 35,
+      "tool_call": 51,
+      "tool_result": 51,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 94,
+      "chunks": [
+        {
+          "path": "89fbce885dc55db7c8e3-part-0001.json",
+          "message_count": 94
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 51,
+      "chunks": [
+        {
+          "path": "89fbce885dc55db7c8e3-part-0001.json",
+          "message_count": 38
+        },
+        {
+          "path": "89fbce885dc55db7c8e3-part-0002.json",
+          "message_count": 13
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-baseline-comparison-full.md"
+}

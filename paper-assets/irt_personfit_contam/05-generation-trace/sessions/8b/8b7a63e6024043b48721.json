@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b7a63e6024043b48721",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code ctrl contam pilot submit",
+  "task_key": "worker_code_ctrl-contam-pilot-submit_20260520T152532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ctrl-contam-pilot-submit_20260520T152532_result.json",
+    "occurrence": 1,
+    "bytes": 366,
+    "sha256": "43dd1cfbb228e060437b8ea54d01ac2930e8ec7c8fa11a97f9bb62fd263ff804"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型下载约 57%，预计还需 ~25-30 分钟。已完成的准备工作：\n- 杀掉了低效的 HF 并行下载（释放带宽给 ModelScope）\n- 修复了 train.py 中缺失的 ModelScope 模型路径模式 `Qwen/Qwen2___5-7B-Instruct`\n- 验证了 4 个 condition 的训练数据完整\n\n等待下载完成后继续 dry-run 和训练提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ctrl-contam-pilot-submit.md"
+}

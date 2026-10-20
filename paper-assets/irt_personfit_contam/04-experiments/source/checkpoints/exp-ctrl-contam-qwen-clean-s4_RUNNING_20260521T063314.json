@@ -1,0 +1,26 @@
+{
+  "exp_id": "exp-ctrl-contam-qwen-clean-s4",
+  "project": "irt_personfit_contam",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T06:30:49.211Z",
+    "updated_at": "2026-05-21T06:33:14.083Z",
+    "hypothesis": "Fourth independent clean Qwen2.5-7B-Instruct baseline (seed=301) for expanded n=10 Cohen's d variance estimation, improving statistical power of contamination effect size measurement",
+    "parent": "exp-ctrl-contam-pilot",
+    "spec": {
+      "command": "python train.py --condition clean_s4 --gpu 0",
+      "server": "westd-35694",
+      "data_path": "/root/autodl-tmp/ctrl_contam_pilot/data/clean_s4/train.jsonl",
+      "data_count": 5000,
+      "model_name": "Qwen/Qwen2.5-7B-Instruct",
+      "seed": 301,
+      "checkpoint_source": "Qwen/Qwen2.5-7B-Instruct (base)",
+      "eval_data": "N/A (training experiment)"
+    }
+  },
+  "timestamp": "2026-05-21T06:33:14.151906+00:00",
+  "trigger": "update_registry"
+}

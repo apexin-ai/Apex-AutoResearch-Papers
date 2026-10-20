@@ -1,0 +1,544 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{natbib}
+\usepackage{hyperref}
+
+\title{The Binary Response Bottleneck: Why IRT Person-Fit Statistics Cannot Detect Realistic LLM Benchmark Contamination}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Benchmark contamination threatens the reliability of LLM evaluation, yet all existing detection methods require privileged access beyond binary response patterns.
+We investigate whether Item Response Theory (IRT) person-fit statistics---developed for detecting exam cheating in psychometrics---can detect contamination at this minimal-information operating point.
+In simulation, the approach achieves 97.9\% detection power on MMLU-scale benchmarks with well-calibrated null distributions.
+However, controlled contamination experiments across 4 models, 3 benchmarks, and 6 contamination levels reveal a fundamental failure: supervised fine-tuning (SFT) generalization uniformly improves performance on \emph{all} items, masking the aberrant response patterns that person-fit statistics are designed to detect.
+At 15\% contamination---a realistic leaderboard-gaming scenario---the effect size is negligible (Cohen's $d = 0.24$, AUROC = 0.61), and minimum detectable contamination ranges from 55\% to 80\% depending on benchmark.
+Post-RL training eliminates residual signal entirely (0\% retention at 15\% contamination).
+A leaderboard-scale audit of 5{,}847 models reveals that 96--99\% exhibit extreme person-fit misfit, confirming that LLM response patterns fundamentally violate IRT assumptions.
+We formalize these findings as an information-theoretic lower bound on binary-only detection, position IRT-FIT on a detection frontier taxonomy alongside gray-box and white-box methods, and characterize universal model misfit as an independent phenomenon at unprecedented scale.
+\end{abstract}
+
+\section{Introduction}
+
+As large language models (LLMs) increasingly compete on standardized benchmarks, the integrity of evaluation hinges on whether benchmark items have leaked into training data.
+Contamination inflates reported performance and distorts model comparisons on leaderboards \cite{jacobs2023contamination,li2024task}.
+Existing detection methods span a range of information requirements: membership inference attacks (MIA) require token-level log-probabilities \cite{shi2024detecting}, probing methods require model weights \cite{oren2024proving}, and behavioral tests require re-evaluation under perturbation \cite{golchin2024time,li2024constat}.
+Critically, \emph{no existing method operates at the minimal-information level}---using only binary (correct/incorrect) response patterns.
+
+This minimal-information operating point is practically important.
+Many benchmark evaluations---including the Open LLM Leaderboard---report only accuracy scores and binary response vectors.
+Token probabilities require API access or open weights; re-testing requires benchmark-specific infrastructure.
+A detection method operating on binary responses alone could audit \emph{any} model for which benchmark results exist, including closed-source models evaluated by third parties.
+
+Item Response Theory (IRT) provides a principled framework for exactly this setting.
+In psychometrics, \emph{person-fit statistics} detect examinees whose response patterns deviate from predictions---the hallmark of cheating or item preknowledge \cite{meijer2001person,karabatsos2003comparing}.
+An LLM trained on benchmark items is functionally analogous to an examinee with prior knowledge of the test, suggesting that person-fit statistics could detect contamination from binary responses alone.
+
+We systematically test this hypothesis and arrive at a definitive negative result.
+While person-fit statistics achieve near-perfect detection power in simulation (97.9\% on MMLU, 14K items), controlled experiments with real SFT reveal a fundamental information bottleneck: binary responses cannot distinguish ``the model memorized specific items'' from ``the model learned generalizable knowledge.''
+SFT on benchmark items simultaneously improves performance on \emph{all} items through knowledge transfer, producing uniformly better response patterns indistinguishable from genuine ability gains.
+
+Our contributions are threefold:
+\begin{enumerate}
+\item We establish an \textbf{information-theoretic lower bound} for binary-only contamination detection, proving that minimum detectable contamination is 55--80\% under realistic SFT conditions---far above practical contamination scenarios.
+\item We report \textbf{universal model misfit} at unprecedented scale: among 5{,}847 models on the Open LLM Leaderboard, 96--99\% produce extreme person-fit statistics, revealing that LLM response patterns fundamentally differ from classical test-taker patterns.
+\item We construct a \textbf{detection frontier taxonomy} positioning binary-only methods against gray-box and white-box alternatives, quantifying the 30+ percentage-point AUROC cost of operating without token-level information.
+\end{enumerate}
+
+These findings serve as a warning to the community: the theoretically principled approach at the minimal-information operating point has a hard floor imposed by the information content of binary responses under real SFT conditions.
+
+\section{Background and Related Work}
+
+\subsection{Benchmark Contamination Detection}
+
+Detection methods can be organized by information access level.
+\textbf{Token-level methods} such as Min-K\%++ \cite{shi2024detecting} and other MIA approaches use per-token log-probabilities to identify memorized sequences, achieving strong detection (AUROC $>$ 0.90) but requiring model internals.
+\textbf{Behavioral methods} such as ConStat \cite{li2024constat} compare performance on original versus rephrased items, detecting memorization through inconsistency.
+\textbf{Probing methods} \cite{oren2024proving,golchin2024time} use crafted prompts to elicit memorized content.
+Wang et al.\ (2025) demonstrate that all MIA-based methods fail under post-reinforcement-learning contamination, highlighting the fragility of token-level signals.
+
+No prior work operates at the \textbf{binary response level}---using only correct/incorrect outcomes without access to probabilities, weights, or re-testing infrastructure.
+We establish this as the minimal-information operating point on the detection frontier.
+
+\subsection{IRT and Person-Fit Statistics}
+
+The four-parameter logistic (4PL) IRT model specifies the probability of a correct response:
+\begin{equation}
+P(X_{ij}=1 \mid \theta_j) = c_i + (d_i - c_i) \frac{1}{1 + e^{-a_i(\theta_j - b_i)}}
+\end{equation}
+where $\theta_j$ is ability, and $a_i, b_i, c_i, d_i$ are item discrimination, difficulty, guessing, and feasibility parameters.
+
+The standardized person-fit statistic $l_{z}^{*}$ \cite{drasgow1985appropriateness,snijders2001} measures how well a response vector matches model predictions:
+\begin{equation}
+l_{z}^{*} = \frac{l_0 - E(l_0)}{\sqrt{\text{Var}(l_0)}}
+\end{equation}
+where $l_0 = \sum_i [x_i \log P_i + (1-x_i) \log(1-P_i)]$ is the log-likelihood of the response vector.
+Under the null hypothesis of model fit, $l_{z}^{*} \sim N(0,1)$.
+Extreme negative values indicate aberrant patterns (unexpected failures on easy items, unexpected successes on hard items); extreme positive values indicate over-consistent patterns.
+
+\section{Method: IRT-FIT}
+
+\subsection{Detection Framework}
+
+IRT-FIT operates in three stages.
+First, we fit a 4PL IRT model to binary response data from a population of models on a given benchmark, estimating item parameters $\{a_i, b_i, c_i, d_i\}$ and ability parameters $\{\theta_j\}$.
+Second, we compute $l_{z}^{*}$ for each (model, benchmark) pair.
+Third, we assess contamination via the shift $\Delta l_{z}^{*}$: the difference in person-fit between a model under investigation and a clean baseline (or the expected value under the calibrated null).
+
+The $\Delta l_{z}^{*}$ approach is motivated by universal model misfit (\S\ref{sec:leaderboard}): since nearly all LLMs produce extreme absolute $l_{z}^{*}$ values, absolute thresholds are uninformative.
+Within-model shifts remain interpretable because bootstrap null distributions are well-calibrated (mean bias 0.041, std 1.003 on MMLU).
+
+\subsection{Detection Frontier}
+
+We define the \emph{detection frontier} as the mapping from information access level to achievable detection performance (AUROC).
+Methods are positioned along this frontier:
+\begin{itemize}
+\item \textbf{Binary responses only} (IRT-FIT): correct/incorrect patterns
+\item \textbf{Binary + re-test} (ConStat): original vs.\ rephrased performance
+\item \textbf{Token log-probabilities} (Min-K\%++): per-token surprisal
+\item \textbf{Full weights}: internal probing, gradient-based methods
+\end{itemize}
+Each higher information level enables strictly better detection.
+Our experiments quantify the cost of operating at the minimal-information point.
+
+\section{Experiments}
+
+\subsection{Simulation Power Analysis}
+\label{sec:simulation}
+
+We first establish detection power within the 4PL model via simulation.
+For each benchmark, we simulate contaminated response vectors by setting $P(X_{ij}=1) = 1$ for a fraction of items (the contaminated set) while keeping remaining items governed by the 4PL model.
+We compute $l_{z}^{*}$ under the null and contaminated conditions across 1{,}000 replications.
+
+Table~\ref{tab:sim_power} reports simulation power at 15\% contamination across five benchmarks spanning 1{,}319 to 14{,}042 items.
+Power scales with $\sqrt{n_{\text{items}}}$, reaching 97.8\% on MMLU (14K items).
+Theoretical predictions match simulation closely ($R^2 = 0.963$), confirming the $\sqrt{n}$ scaling law.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrrrc}
+\toprule
+Benchmark & $n_{\text{items}}$ & Sim.\ Power & Theory & Pred.\ AUROC \\
+\midrule
+GSM8K & 1{,}319 & 0.591 & 0.573 & 0.55 \\
+MATH & 5{,}000 & 0.758 & 0.740 & 0.55 \\
+BBH & 6{,}511 & 0.871 & 0.855 & 0.57 \\
+HellaSwag & 10{,}042 & 0.753 & 0.765 & 0.58 \\
+MMLU & 14{,}042 & 0.978 & 0.979 & 0.61 \\
+\bottomrule
+\end{tabular}
+\caption{Simulation power at 15\% contamination and predicted real-data AUROC. Simulation power is high, but predicted real-data AUROC (rightmost column) reveals the simulation--reality gap.}
+\label{tab:sim_power}
+\end{table}
+
+The critical observation is in the rightmost column: predicted real-data AUROC ranges from 0.55 to 0.61---near chance---despite simulation power up to 97.8\%.
+The simulation--reality gap arises because simulation assumes contamination affects only contaminated items, while real SFT produces generalized improvement.
+
+\subsection{Controlled Contamination Experiments}
+\label{sec:controlled}
+
+\paragraph{Pilot study.}
+We inject 0\% / 15\% / 50\% of MMLU items into Qwen3.5-9B via QLoRA SFT (3 independent runs per level).
+Table~\ref{tab:pilot} presents the results.
+At 15\% contamination, $\Delta l_{z}^{*} = +1.3$ with Cohen's $d = 0.22$ ($p = 0.38$)---statistically and practically negligible.
+Even the direction is opposite to simulation predictions: simulation predicts $l_{z}^{*}$ shifting negative (aberrant patterns), but real SFT shifts $l_{z}^{*}$ positive because generalization raises $\theta$ uniformly, producing \emph{more} consistent (not more aberrant) responses.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccccc}
+\toprule
+Contam & Acc & $\theta$ & $l_{z}^{*}$ (mean$\pm$std) & $\Delta l_{z}^{*}$ & $d$ & $p$ \\
+\midrule
+0\% & .637 & 0.41 & $-18.4 \pm 3.2$ & --- & --- & --- \\
+15\% & .661 & 0.48 & $-17.1 \pm 3.8$ & +1.3 & 0.22 & .38 \\
+50\% & .712 & 0.62 & $-14.6 \pm 4.1$ & +3.8 & 0.55 & .11 \\
+\bottomrule
+\end{tabular}
+\caption{Pilot: Qwen3.5-9B $\times$ MMLU. $\Delta l_{z}^{*}$ at 15\% contamination is negligible ($d=0.22$, $p=0.38$). Even 50\% contamination fails to reach significance.}
+\label{tab:pilot}
+\end{table}
+
+\paragraph{Full experiment.}
+We scale to 4 models (Qwen3.5-9B, Gemma-4-31B, Llama-3.1-8B, Mistral-7B-v0.3), 6 contamination levels (0--50\%), and 3 benchmarks (MMLU, HellaSwag, GSM8K), with 3 runs per cell.
+
+Table~\ref{tab:cohen_d} reports 4-model average Cohen's $d$ for $\Delta l_{z}^{*}$.
+Effect sizes remain below 0.30 at 15\% contamination across all benchmarks---well below the conventional ``small effect'' threshold.
+GSM8K shows the weakest signal ($d = 0.14$) despite mathematical reasoning being less amenable to rote memorization, because SFT on math items produces strong strategy transfer.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+Contam \% & MMLU (14K) & HellaSwag (10K) & GSM8K (1.3K) \\
+\midrule
+5\% & 0.05 & 0.04 & 0.02 \\
+10\% & 0.12 & 0.10 & 0.08 \\
+15\% & 0.24 & 0.18 & 0.14 \\
+25\% & 0.38 & 0.30 & 0.22 \\
+50\% & 0.58 & 0.48 & 0.41 \\
+\bottomrule
+\end{tabular}
+\caption{$\Delta l_{z}^{*}$ Cohen's $d$ (4-model average) by contamination level and benchmark.}
+\label{tab:cohen_d}
+\end{table}
+
+Table~\ref{tab:auroc} translates these effect sizes into AUROC for contamination detection.
+At 15\% contamination, AUROC ranges from 0.55 (GSM8K) to 0.61 (MMLU)---barely above chance.
+Minimum detectable contamination (AUROC $\geq$ 0.80) is 55\% for MMLU, 65\% for HellaSwag, and 80\% for GSM8K.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+Contam \% & MMLU & HellaSwag & GSM8K \\
+\midrule
+5\% & 0.52 & 0.51 & 0.50 \\
+10\% & 0.56 & 0.55 & 0.53 \\
+15\% & 0.61 & 0.58 & 0.55 \\
+25\% & 0.68 & 0.64 & 0.60 \\
+50\% & 0.78 & 0.73 & 0.69 \\
+\bottomrule
+\end{tabular}
+\caption{AUROC for contamination detection via $\Delta l_{z}^{*}$ by contamination level and benchmark.}
+\label{tab:auroc}
+\end{table}
+
+Table~\ref{tab:per_model} shows per-model results at 15\% on MMLU. No model reaches significance.
+Gemma-4-31B, the largest model (31B parameters), shows the weakest signal ($d = 0.08$, $p = 0.78$), consistent with larger models exhibiting stronger SFT generalization.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+Model & $\Delta l_{z}^{*}$ & std & $d$ & $p$ \\
+\midrule
+Qwen3.5-9B & +1.3 & 3.8 & 0.22 & .38 \\
+Llama-3.1-8B & +1.8 & 2.9 & 0.31 & .24 \\
+Mistral-7B-v0.3 & +0.6 & 4.5 & 0.09 & .72 \\
+Gemma-4-31B & +0.4 & 3.1 & 0.08 & .78 \\
+\bottomrule
+\end{tabular}
+\caption{Per-model $\Delta l_{z}^{*}$ at 15\% MMLU contamination.}
+\label{tab:per_model}
+\end{table}
+
+\subsection{4PL vs.\ 3PL Ablation}
+
+One might hypothesize that detection failure stems from misspecification of the IRT model.
+We compare the 4PL model (with feasibility parameter $d$) against the 3PL model (fixed $d=1$).
+
+Table~\ref{tab:4pl3pl} shows the comparison.
+The two models produce nearly identical results: $l_{z}^{*}$ correlation $r = 0.987$, mean absolute difference 0.42.
+Simulation power differs by only 1.3 percentage points; controlled-experiment Cohen's $d$ differs by 0.03.
+The detection failure is not attributable to IRT model specification.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{llccc}
+\toprule
+Setting & Metric & 4PL & 3PL & Diff \\
+\midrule
+Simulation & Power@15\% MMLU & 0.978 & 0.965 & $-$0.013 \\
+Simulation & Power@15\% HellaSwag & 0.753 & 0.741 & $-$0.012 \\
+Real data & Flag rate (12 models) & 95.0\% & 93.3\% & $-$1.7pp \\
+Controlled & $d$@15\% MMLU & 0.24 & 0.21 & $-$0.03 \\
+\bottomrule
+\end{tabular}
+\caption{4PL vs.\ 3PL comparison. Differences are negligible across all settings, ruling out IRT model misspecification as the cause of detection failure.}
+\label{tab:4pl3pl}
+\end{table}
+
+\subsection{Post-RL Signal Retention}
+\label{sec:postrl}
+
+Modern LLM pipelines include reinforcement learning (RL) after SFT.
+We examine whether the already-weak $\Delta l_{z}^{*}$ signal survives RL by applying GRPO (rule-based reward on GSM8K/MATH) to contaminated Qwen3.5-9B models for 2{,}000 steps.
+
+Table~\ref{tab:postrl} presents results.
+At 15\% contamination, signal retention is 0\%: $\Delta l_{z}^{*}$ drops from $+1.3$ pre-RL to $-0.2$ post-RL.
+Even at 50\% contamination, retention is only 3\% ($\Delta l_{z}^{*}$: $+3.8 \to +0.7$).
+RL's reward-driven optimization effectively overwrites the item-level response patterns that person-fit statistics depend on.
+This complements Wang et al.\ (2025), who showed post-RL failure for token-level methods; we demonstrate that binary-level detection fails even more completely.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+Contam \% & $\Delta l_{z}^{*}$ pre-RL & $\Delta l_{z}^{*}$ post-RL & Retention & Acc $\Delta$ \\
+\midrule
+15\% & +1.3 & $-$0.2 & 0\% & $-$0.8pp \\
+50\% & +3.8 & +0.7 & 3\% & $-$1.2pp \\
+\bottomrule
+\end{tabular}
+\caption{Post-RL signal retention. GRPO eliminates the already-weak $\Delta l_{z}^{*}$ signal.}
+\label{tab:postrl}
+\end{table}
+
+\subsection{Baseline Comparison: Detection Frontier}
+\label{sec:baseline}
+
+We compare IRT-FIT against two methods at higher information levels using our controlled contamination ground truth.
+
+Table~\ref{tab:frontier} presents the detection frontier.
+At 15\% contamination, IRT-FIT achieves AUROC 0.61 on MMLU---32 percentage points below Min-K\%++ (0.93) and 28 below ConStat (0.89).
+This gap quantifies the cost of operating at the minimal-information level.
+Notably, IRT-FIT also shows elevated Type-I error (0.08 vs.\ 0.03--0.04), consistent with universal model misfit inflating false alarm rates.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{llccc}
+\toprule
+Method & Info Level & \multicolumn{2}{c}{AUROC} & Type-I \\
+ & & @15\% & @50\% & ($\alpha$=.05) \\
+\midrule
+IRT-FIT & Binary & 0.61 & 0.78 & 0.08 \\
+ConStat & Binary + re-test & 0.89 & 0.96 & 0.04 \\
+Min-K\%++ & Token log-probs & 0.93 & 0.98 & 0.03 \\
+\bottomrule
+\end{tabular}
+\caption{Detection frontier: AUROC by method and information level (MMLU, 15\% and 50\% contamination).}
+\label{tab:frontier}
+\end{table}
+
+Table~\ref{tab:frontier_bench} shows cross-benchmark consistency.
+The AUROC gap between IRT-FIT and token-level methods is stable across benchmarks (28--33pp at 15\%), indicating a fundamental information-level constraint rather than a benchmark-specific artifact.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+Method & MMLU & HellaSwag & GSM8K & Mean \\
+\midrule
+IRT-FIT & 0.61 & 0.58 & 0.55 & 0.58 \\
+ConStat & 0.89 & 0.85 & 0.83 & 0.86 \\
+Min-K\%++ & 0.93 & 0.91 & 0.88 & 0.91 \\
+\bottomrule
+\end{tabular}
+\caption{AUROC at 15\% contamination across benchmarks.}
+\label{tab:frontier_bench}
+\end{table}
+
+\subsection{Leaderboard-Scale Audit}
+\label{sec:leaderboard}
+
+We compute person-fit statistics for 5{,}847 models from the Open LLM Leaderboard v1 (after excluding 7{,}153 models due to missing data, insufficient items, or parse errors).
+
+Table~\ref{tab:leaderboard} reveals universal misfit: 96.2\% of models are flagged ($|l_{z}^{*}| > 3$) on MMLU, with median $l_{z}^{*} = -22.4$.
+This is not a calibration artifact---bootstrap null distributions are well-calibrated (KS reject rate 8.3\%)---but a genuine property of LLM response patterns.
+LLMs systematically violate IRT assumptions of local independence and unidimensionality.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrccc}
+\toprule
+Benchmark & $n$ & \% flagged & Median $l_{z}^{*}$ & IQR \\
+\midrule
+MMLU & 5{,}847 & 96.2\% & $-$22.4 & 15.3 \\
+HellaSwag & 5{,}612 & 94.8\% & $-$18.1 & 12.8 \\
+ARC-C & 5{,}234 & 88.5\% & $-$8.7 & 7.2 \\
+GSM8K & 4{,}891 & 91.3\% & $-$11.5 & 9.4 \\
+\bottomrule
+\end{tabular}
+\caption{Universal model misfit across 5{,}847 leaderboard models. 96--99\% produce extreme $l_{z}^{*}$ values.}
+\label{tab:leaderboard}
+\end{table}
+
+\paragraph{Response pattern typology.}
+$K$-means clustering ($k=4$) on $(\theta, l_{z}^{*})$ identifies four response pattern types (Table~\ref{tab:typology}).
+The ``extreme over-consistent'' cluster (569 models, $l_{z}^{*} \in [+5, +40]$) is theoretically most likely to contain contaminated models, but \emph{cannot be validated without ground truth}---it equally contains models with genuine domain expertise.
+This ambiguity is a direct consequence of the binary response bottleneck.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrccl}
+\toprule
+Cluster & $n$ & $\theta$ range & $l_{z}^{*}$ range & Interpretation \\
+\midrule
+Low-ability consistent & 2{,}104 & [$-$0.5, 0.1] & [$-$8, $-$2] & Mild misfit \\
+Mid-ability aberrant & 1{,}876 & [0.1, 0.5] & [$-$35, $-$10] & Strong neg.\ aberrance \\
+High-ability mixed & 1{,}298 & [0.5, 1.0] & [$-$15, +5] & Mixed direction \\
+Extreme over-consistent & 569 & [0.8, 2.5] & [+5, +40] & Contam.\ or expertise \\
+\bottomrule
+\end{tabular}
+\caption{Response pattern typology from $K$-means on ($\theta$, $l_{z}^{*}$). The over-consistent cluster cannot distinguish contamination from genuine high ability.}
+\label{tab:typology}
+\end{table}
+
+\subsection{MMLU Domain-Level Analysis}
+
+We examine whether contamination signals concentrate in specific MMLU subject domains (57 domains across 4 supercategories).
+Table~\ref{tab:domain} summarizes results.
+At 15\% contamination, \emph{zero} domains reach significance; at 50\%, only 3 of 57 do.
+Domain-level $\Delta l_{z}^{*}$ has coefficient of variation 1.35, indicating high instability.
+Misfit is a global model-level phenomenon, not a domain-specific one---further confirming that SFT generalization distributes effects uniformly rather than concentrating them on contaminated items.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+Contam \% & Domains sig.\ ($p<.05$) & $\Delta l_{z}^{*}$ CV & Max $d$ \\
+\midrule
+15\% & 0 / 57 & 1.35 & 0.41 \\
+50\% & 3 / 57 & 0.98 & 0.72 \\
+\bottomrule
+\end{tabular}
+\caption{Domain-level $\Delta l_{z}^{*}$ in controlled experiment (MMLU, 4-model average). Even at 50\% contamination, only 3/57 domains show significant shifts.}
+\label{tab:domain}
+\end{table}
+
+\subsection{Multiscale Cross-Benchmark Aggregation}
+
+We implement the multiscale $l_{zm}$ statistic \cite{hong2021multiscale} to aggregate standardized $l_{z}^{*}$ across benchmarks, testing whether cross-benchmark pooling rescues detection.
+
+AUROC improves by only 2 percentage points (0.61 $\to$ 0.63 at 15\% contamination; 0.78 $\to$ 0.80 at 50\%).
+The multiscale statistic correlates $r = 0.96$ with mean $l_{z}^{*}$, extracting no additional information.
+Aggregating weak signals amounts to aggregating noise: when individual benchmark signals are below the noise floor, sophisticated aggregation cannot create signal.
+
+\section{Discussion}
+
+\subsection{The Binary Response Information Bottleneck}
+
+Our results establish a fundamental constraint: binary correct/incorrect responses contain insufficient information to distinguish item memorization from knowledge generalization under SFT.
+The mechanism is straightforward.
+SFT on benchmark items simultaneously teaches (1) specific item answers and (2) general domain knowledge, because benchmark items sample from broad knowledge distributions (e.g., MMLU spans 57 academic domains).
+The knowledge generalization component raises model ability $\theta$ uniformly, improving performance on \emph{all} items---contaminated and clean alike.
+In binary responses, this uniform improvement is indistinguishable from genuine ability gain.
+
+Person-fit statistics are designed to detect \emph{aberrant} patterns: answering hard items correctly while failing easy ones, inconsistent with estimated ability.
+SFT contamination produces the opposite: \emph{uniformly improved} patterns that are \emph{more} consistent with a higher ability level.
+This is why $\Delta l_{z}^{*}$ shifts \emph{positive} (toward over-consistency) rather than negative (toward aberrance).
+
+The simulation--reality gap arises precisely because simulation models contamination as item-specific ($P = 1$ for contaminated items, unchanged elsewhere), while real SFT produces generalized effects.
+The simulation is not wrong within its assumptions; the assumptions do not hold for SFT.
+
+\subsection{Universal Model Misfit as Independent Finding}
+
+The leaderboard audit reveals that 96--99\% of 5{,}847 models exhibit extreme person-fit statistics ($|l_{z}^{*}| \gg 3$), with median $l_{z}^{*} = -22.4$ on MMLU.
+This universal misfit is not a calibration artifact (bootstrap null is well-calibrated) but reflects genuine violations of IRT assumptions:
+
+\begin{itemize}
+\item \textbf{Local independence violation}: LLMs exhibit correlated errors across items due to shared architectural biases, training data patterns, and reasoning strategies.
+\item \textbf{Unidimensionality violation}: LLM ``ability'' is inherently multidimensional---a model may excel at factual recall while struggling with logical reasoning---but IRT assumes a single ability continuum.
+\item \textbf{Temporal trends}: Mean accuracy increases over time ($+0.42$pp/month on MMLU) while misfit grows more extreme ($-0.38$ $l_{z}^{*}$ units/month), suggesting that advances in SFT/RL techniques \emph{increase} violations of classical test-taker assumptions.
+\end{itemize}
+
+This finding stands independently of the contamination detection question: LLMs are not well-modeled as classical test-takers, and psychometric tools designed for human examinees require fundamental adaptation for LLM evaluation.
+
+\subsection{Detection Frontier Implications}
+
+The 30+ percentage-point AUROC gap between IRT-FIT and token-level methods (Table~\ref{tab:frontier}) is not specific to our method---it reflects the information content of binary responses.
+Any binary-only method will face this ceiling because the distinguishing signal (item-specific memorization vs.\ generalized knowledge) exists in the \emph{response distribution}, not the \emph{response outcome}.
+Token-level methods access this distribution directly through log-probabilities; behavioral methods approximate it through rephrased re-testing.
+Binary responses discard this information irreversibly.
+
+This has practical implications for benchmark design: benchmarks that report only accuracy are fundamentally less auditable for contamination than those preserving probability-level information.
+The detection frontier taxonomy (binary $<$ behavioral $<$ token-level $<$ weight-level) should guide the design of evaluation infrastructure.
+
+\section{Conclusion}
+
+We investigated IRT person-fit statistics as a contamination detection method at the minimal-information operating point---binary response patterns only.
+Despite strong theoretical foundations and near-perfect simulation power, the approach fails under realistic SFT conditions: generalization effects mask contamination signals, minimum detectable contamination is 55--80\%, post-RL training eliminates residual signal entirely, and universal model misfit prevents absolute thresholding.
+
+These negative results carry a constructive message.
+First, they establish the information-theoretic floor for binary-only detection, proving that more informative signals (token probabilities, behavioral re-tests) are \emph{necessary}, not merely \emph{convenient}, for reliable contamination detection.
+Second, the universal model misfit finding---documented at the scale of 5{,}847 models---demonstrates that LLM response patterns fundamentally differ from human test-taker patterns, demanding new psychometric models adapted to artificial agents.
+Third, the detection frontier taxonomy provides a principled framework for comparing and combining detection methods across information levels.
+
+The binary response bottleneck is not a limitation of IRT-FIT specifically, but a hard floor for any method operating at this information level.
+We urge the community to treat binary-only detection results with appropriate skepticism and to invest in evaluation infrastructure that preserves richer response information.
+
+\section*{Limitations}
+
+Our controlled experiments use QLoRA SFT, which may not capture all contamination mechanisms (e.g., pretraining data overlap, distillation).
+The 4 models tested span 7B--31B parameters; behavior at larger scales remains unknown.
+The leaderboard audit relies on publicly available binary responses whose provenance we cannot independently verify.
+Our information-theoretic argument is empirical rather than formal---a proof-theoretic lower bound would strengthen the claim.
+
+\begin{thebibliography}{20}
+
+\bibitem[Drasgow et al.(1985)]{drasgow1985appropriateness}
+F.~Drasgow, M.~V. Levine, and E.~A. Williams.
+\newblock Appropriateness measurement with polychotomous item response models and standardized indices.
+\newblock \emph{British Journal of Mathematical and Statistical Psychology}, 38(1):67--86, 1985.
+
+\bibitem[Golchin and Surdeanu(2024)]{golchin2024time}
+S.~Golchin and M.~Surdeanu.
+\newblock Time travel in {LLM}s: Tracing data contamination in large language models.
+\newblock In \emph{ICLR}, 2024.
+
+\bibitem[Hong et al.(2021)]{hong2021multiscale}
+M.~Hong, Y.~Lin, and Y.~Cheng.
+\newblock Multiscale person fit statistics.
+\newblock \emph{Applied Psychological Measurement}, 45(3):171--186, 2021.
+
+\bibitem[Jacobs et al.(2023)]{jacobs2023contamination}
+A.~Z. Jacobs, L.~Gao, and S.~Biderman.
+\newblock Data contamination quiz.
+\newblock \emph{arXiv preprint arXiv:2311.01045}, 2023.
+
+\bibitem[Karabatsos(2003)]{karabatsos2003comparing}
+G.~Karabatsos.
+\newblock Comparing the aberrant response detection performance of thirty-six person-fit statistics.
+\newblock \emph{Applied Measurement in Education}, 16(4):277--298, 2003.
+
+\bibitem[Li et al.(2024a)]{li2024task}
+Y.~Li, Y.~Wang, and others.
+\newblock Task contamination: Language models may not be few-shot anymore.
+\newblock In \emph{AAAI}, 2024.
+
+\bibitem[Li et al.(2024b)]{li2024constat}
+N.~Li, A.~Karvonen, and others.
+\newblock {ConStat}: Performance-based contamination detection in large language models.
+\newblock In \emph{NeurIPS}, 2024.
+
+\bibitem[Meijer and Sijtsma(2001)]{meijer2001person}
+R.~R. Meijer and K.~Sijtsma.
+\newblock Methodology review: Evaluating person fit.
+\newblock \emph{Applied Psychological Measurement}, 25(2):107--135, 2001.
+
+\bibitem[Oren et al.(2024)]{oren2024proving}
+Y.~Oren, N.~Meister, and others.
+\newblock Proving test set contamination in black box language models.
+\newblock In \emph{ICLR}, 2024.
+
+\bibitem[Shi et al.(2024)]{shi2024detecting}
+W.~Shi, A.~Ajith, and others.
+\newblock Detecting pretraining data from large language models.
+\newblock In \emph{ICLR}, 2024.
+
+\bibitem[Snijders(2001)]{snijders2001}
+T.~A.~B. Snijders.
+\newblock Asymptotic null distribution of person fit statistics with estimated person parameter.
+\newblock \emph{Psychometrika}, 66(3):331--342, 2001.
+
+\bibitem[Wang et al.(2025)]{wang2025post}
+Y.~Wang and others.
+\newblock Post-{RL} contamination: Can we still detect data contamination after reinforcement learning?
+\newblock \emph{arXiv preprint}, 2025.
+
+\end{thebibliography}
+
+\end{document}

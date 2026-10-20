@@ -1,0 +1,37 @@
+{
+  "exp_id": "exp-ctrl-contam-mistral-clean-s10",
+  "project": "irt_personfit_contam",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T14:32:28.986Z",
+    "updated_at": "2026-05-21T16:08:54.817Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/ctrl_contam_mistral && CUDA_VISIBLE_DEVICES=3 python train.py --condition clean_s10\"",
+      "server": "westd-35694",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "154609",
+      "log_path": "/root/autodl-tmp/ctrl_contam_mistral/results/clean_s10_results.json",
+      "submitted_at": "2026-05-21T14:32:28.846Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/ctrl_contam_mistral/data/clean/train.jsonl",
+      "data_count": 5000,
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "seed": 307,
+      "checkpoint_path": "/root/autodl-tmp/ctrl_contam_mistral/output/clean_s10",
+      "wall_clock_seconds": 5786.0,
+      "gpu_hours": 1.61
+    },
+    "hypothesis": "Independent clean Mistral-7B-Instruct-v0.3 baseline (seed=307) for n=10 Cohen's d variance estimation — cross-family replication",
+    "conclusion": "success",
+    "completed_at": "2026-05-21T16:08:54.817Z"
+  },
+  "timestamp": "2026-05-21T16:08:54.927897+00:00",
+  "trigger": "update_registry"
+}

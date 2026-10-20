@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "951a72e49b8513194475",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "paper figure fig 1 response pattern",
+  "task_key": "worker_paper_figure_fig_1_response_pattern_20260520T195802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_1_response_pattern_20260520T195802_result.json",
+    "occurrence": 1,
+    "bytes": 818,
+    "sha256": "c6c70d6a8e075f1a2de9cd60e290c7381f4f126e5362a31174a5c3338505f00b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 1 生成完成。\n\n**输出文件**：\n- PDF: `figures/paper/fig_1_response_pattern.pdf` (39 KB)\n- PNG: `figures/paper/fig_1_response_pattern.png` (199 KB, 300 DPI)\n- 尺寸: 6.2 × 3.7 inches（ACL 双栏全宽）\n\n**验证结果**：\n- lz* clean = **+0.5**（正常范围）\n- lz* contam = **-4.7**（显著异常）\n- 数据来源: PSN-IRT MMLU 4PL 参数，100 items subsample，θ = 0.5\n- 污染模拟: 14 个困难 items 翻转为正确（记忆），7 个简单 items 翻转为错误\n\n**设计**: 双面板对比——(a) Clean Model 响应服从 ICC 曲线，(b) Contaminated Model 在困难端出现红色菱形标记（记忆 items）+ 简单端出现橙色方块（异常错误），虚线连接异常点到期望概率曲线。生成脚本: `figures/paper/gen_fig1.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig-1-response-pattern.md"
+}

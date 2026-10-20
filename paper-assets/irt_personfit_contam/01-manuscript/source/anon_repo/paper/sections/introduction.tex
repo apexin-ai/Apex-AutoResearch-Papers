@@ -1,0 +1,60 @@
+\section{Introduction}\label{sec:introduction}
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{fig_1_composite.pdf}
+  \caption{Overview of IRT person-fit detection. (a)~A clean model's responses track the IRT-predicted probability curve; (b)~a contaminated model shows anomalous successes on hard items (red diamonds), producing a large $|\Delta\ell_z^*|$. (c)~Effect-size landscape: baseline accuracy vs.\ Cohen's $|d|$ across model families (diamonds: 5\%, triangles: 15\%, squares: 25\%, circles: 50\%; multi-seed means where available, single-seed otherwise; values from Table~\ref{tab:cohens_d}). (d)~Dose-response trajectories; free-$\theta$ shows non-monotonic artifact, fixed-$\theta$ recovers consistent positive dose-response.}
+  \label{fig:composite}
+\end{figure*}
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{fig_framework.pdf}
+  \caption{Overview of \irtfit{}: (a)~positioning in the detection frontier by information access; (b)~pipeline from binary responses through $\ell_z^*$ person-fit analysis to detection and characterization; (c)~three behavioral boundaries discovered; (d)~recommended practitioner workflow.}
+  \label{fig:pipeline}
+\end{figure*}
+
+Benchmark contamination, the unintended inclusion of evaluation data in training corpora, poses a growing threat to the integrity of large language model (LLM) evaluation \citep{dodge2021, magar2022, sainz2023}.
+As training corpora and public benchmarks both expand, the probability of overlap increases structurally \citep{jacovi2023, chang2024survey}.
+When contamination occurs, benchmark scores no longer reflect genuine capability, undermining the primary mechanism by which the community compares and selects models.
+
+A range of detection methods have been proposed, but all require some form of privileged access beyond the binary response record.
+N-gram overlap methods need the training corpus \citep{dodge2021, magar2022}.
+Membership inference approaches require token-level probabilities \citep{minkprob2024, deng2024}.
+Probing methods rely on crafted prompts \citep{golchin2024, oren2024}.
+Performance-based methods require multiple test variants or output logits \citep{constat2024, codec2026}.
+These methods form a detection frontier ordered by information access.
+No existing method operates using only binary response patterns, without model weights, gradients, logits, or training data (though, as we show, effective detection additionally requires externally calibrated item parameters).
+
+In this work, we focus on SFT-stage contamination, where benchmark answers are explicitly included in fine-tuning data, for three reasons.
+First, controlled experiments require known ground-truth contamination sets, achievable through fine-tuning with specific benchmark items.
+Second, SFT-stage contamination is increasingly relevant as fine-tuning-as-a-service platforms proliferate, creating new pathways for benchmark data to enter training mixtures.
+Third, SFT provides a methodologically clean setting to characterize detection boundaries before extending to noisier pretraining scenarios.
+
+The need for detection from binary response patterns grows more pressing as models evolve.
+\citet{wang2025fragility} show that all ten log-probability-based methods they evaluate perform at chance level on models trained with reinforcement learning (RL), because RL reshapes internal token distributions while preserving binary correctness patterns.
+This motivates a fundamental question: \emph{what can binary response patterns reveal about contamination, and under what conditions?}
+
+We observe that a contaminated LLM is functionally analogous to a test-taker with item preknowledge: both produce response patterns in which difficult items are answered correctly through memorization rather than genuine ability.
+This connection points to person-fit statistics, developed over four decades for cheating detection in educational testing \citep{drasgow1985, meijer2001, karabatsos2003, sinharay2017}.
+The standardized statistic $\ell_z^*$ \citep{snijders2001} measures how well a response pattern conforms to Item Response Theory (IRT) model predictions.
+Figure~\ref{fig:composite}(a--b) illustrates this analogy.
+Despite the natural correspondence, no prior work has applied person-fit statistics to LLM benchmark contamination.
+
+Rather than proposing $\ell_z^*$ as a ready-to-deploy detection tool, we characterize the behavior boundaries of IRT person-fit statistics for LLM contamination detection.
+Our framework operates at three layers: (i) pre-calibrated 4PL item parameters from the PSN-IRT item bank \citep{psnirt2026}, an external resource calibrated from large-scale leaderboard data; (ii) binary response patterns obtained from the target model without access to weights or logits; and (iii) retrospective statistical inference requiring no model modification.
+Using controlled contamination experiments across three 7--8B model families (Qwen2.5-7B, Llama-3.1-8B, Mistral-7B; $n{=}10$ clean seeds each) with PSN-IRT parameters, we identify three IRT-specific findings on Massive Multitask Language Understanding (MMLU; \citealp{hendrycks2021mmlu}) and ARC-Challenge:
+
+\begin{enumerate}[leftmargin=*,nosep]
+\item \textbf{Model-specific $\theta$-shift dynamics.} Contamination inflates ability estimates ($\hat{\theta}$), absorbing the person-fit signal; $\theta$-anchoring amplifies Qwen's multi-seed $|d|$ by 2.4$\times$ at 50\% contamination while reducing inter-seed CV from 60\% to 19\%, establishing $\theta$-anchoring as a necessary condition for reliable detection of high-ability models at high contamination. ARC-C reverses through a ceiling effect.
+
+\item \textbf{Detection-diagnosis tradeoff.} Simpler statistics yield stronger detection: accuracy $z$-scores produce $|d|$ values several-fold to over an order of magnitude larger than person-fit statistics, and HT generally exceeds $\ell_z^*$. Yet the diagnostic power reverses: only $\ell_z^*$ supports seen/unseen decomposition, mechanistic $\theta$-shift analysis, and sensitivity to response-pattern structure (57/60 vs.\ 4/60 flagged cells on real-world data).
+
+\item \textbf{Non-monotonic dose-response under free-$\theta$ (exploratory).} The Qwen dose-response ($|d|$: $4.15 \to 5.36 \to 7.44 \to 5.08$ at 5\%/15\%/25\%/50\%; 5\% is single-seed, remainder are multi-seed means) shows non-monotonicity; $\theta$-anchoring eliminates the pattern and reveals a broadly increasing dose-response ($|d|{=}12.32$ at 50\%). The non-monotonicity is a $\theta$-estimation artifact, not a detection boundary.
+\end{enumerate}
+
+Our contributions are threefold:
+(1) We provide the first empirical characterization of IRT person-fit behavior for LLM contamination, quantifying theoretically predicted phenomena ($\theta$-shift absorption, detection-diagnosis tradeoff) whose magnitudes and boundary conditions are not derivable from IRT theory alone.
+(2) We establish that $\Delta\ell_z^*$ reliably detects SFT-stage contamination across three model families (all single-seed bootstrap 95\% CIs exclude zero, $n{=}10$).
+(3) We document the detection-diagnosis tradeoff, clarifying what binary response patterns can and cannot reveal.
+Findings~1--2 are confirmatory (pre-planned 15\%/50\% $\times$ 3 families); Finding~3 is exploratory (5\%/25\% added post-hoc).

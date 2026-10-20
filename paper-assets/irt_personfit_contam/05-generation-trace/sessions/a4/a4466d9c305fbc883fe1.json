@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4466d9c305fbc883fe1",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops sync figures to server",
+  "task_key": "worker_ops_sync-figures-to-server_20260522T063918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync-figures-to-server_20260522T063918_result.json",
+    "occurrence": 1,
+    "bytes": 271,
+    "sha256": "cc9e3b364473e8850f75164ce796573fd69553b5888b6fd042aa3af9a6654de6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两个脚本已更新并重新生成：\n\n- `fig_heatmap.pdf` (40K) — Llama MMLU 25% 已填入 |d|=2.97, CI [2.0, 6.1]\n- `fig_theta_scatter.pdf` (30K) — 已加入 Llama 25% 数据点 (60.0, 2.97)\n\n输出路径：`/root/autodl-tmp/figures/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sync-figures-to-server.md"
+}

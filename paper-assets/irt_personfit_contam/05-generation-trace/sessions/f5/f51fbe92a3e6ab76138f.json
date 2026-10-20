@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f51fbe92a3e6ab76138f",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops regen recompile push",
+  "task_key": "worker_ops_regen-recompile-push_20260523T193823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_regen-recompile-push_20260523T193823_result.json",
+    "occurrence": 1,
+    "bytes": 364,
+    "sha256": "4fe22c725e26aad0c3da1e1668c9d793854e2bce92565aed2f2da4299cbde80b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n- **Figures**: 2 个 PDF 重新生成（heatmap 47KB, scatter 33KB），已复制到 `figures/paper/` 和 `paper/`\n- **编译**: pdflatex + bibtex 成功，15 页，无 error\n- **Push**: commit `4e6415d` \"Fix figure CI values to match Table 1\"，已 push 到 `origin/main`，5 files changed（2 PDF + 2 脚本 + results.tex）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-regen-recompile-push.md"
+}

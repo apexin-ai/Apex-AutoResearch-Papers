@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp-llama-25pct-s3",
+  "project": "irt_personfit_contam",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T12:37:03.756Z",
+    "updated_at": "2026-05-23T12:37:03.756Z"
+  },
+  "timestamp": "2026-05-23T12:37:03.896378+00:00",
+  "trigger": "update_registry"
+}

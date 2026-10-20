@@ -1,0 +1,91 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{sainz2023nlp}
+\citation{li2024task}
+\citation{dodge2021documenting}
+\citation{shi2024detecting}
+\citation{oren2024proving}
+\citation{golchin2024time}
+\citation{li2024constat}
+\citation{meijer2001person}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{drasgow1985appropriateness}
+\citation{sijtsma1998methodology}
+\citation{martinez2024using}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background: IRT and Person-Fit}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Item Response Theory}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Person-Fit Statistics}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method: The IRT-FIT Framework}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Overview}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Detection via $\Delta \ell _z^*$}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}$\theta $-Shift Analysis}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Memorization Fraction}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Multiscale Person-Fit ($\ell _{z,m}$)}{3}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Controlled Contamination}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:ctrl_contam}{{4.1}{3}{Controlled Contamination}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Setup.}{3}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Results.}{3}{section*.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Pilot results (Qwen2.5-7B $\times $ MMLU). Cohen's $d$ computed against $n=3$ clean seeds. $\theta $-fixed analysis (rightmost column) restores monotonicity: fixed-$\theta $ $\ell _z^*$ ratio = 3.0 ($50\%/15\%$).}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:pilot}{{1}{4}{Pilot results (Qwen2.5-7B $\times $ MMLU). Cohen's $d$ computed against $n=3$ clean seeds. $\theta $-fixed analysis (rightmost column) restores monotonicity: fixed-$\theta $ $\ell _z^*$ ratio = 3.0 ($50\%/15\%$)}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Cross-family $\ell _z^*$ and HT Cohen's $d$ (MMLU, 15\% and 50\% contamination). Qwen and Llama validated with $n \geq 3$ clean seeds; Mistral and Gemma have single clean seeds. HT matches $\ell _z^*$ within $|d_{\text  {HT}} - d_{\ell _z^*}| < 0.3$ in all tested conditions.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:cross_family}{{2}{4}{Cross-family $\ell _z^*$ and HT Cohen's $d$ (MMLU, 15\% and 50\% contamination). Qwen and Llama validated with $n \geq 3$ clean seeds; Mistral and Gemma have single clean seeds. HT matches $\ell _z^*$ within $|d_{\text {HT}} - d_{\ell _z^*}| < 0.3$ in all tested conditions}{table.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-family validation.}{4}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Benchmark variation.}{4}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}4PL vs.\ 3PL Ablation}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:4pl_ablation}{{4.2}{4}{4PL vs.\ 3PL Ablation}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Baseline Comparison}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:baselines}{{4.3}{4}{Baseline Comparison}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Detection performance by IRT parameterization. Power gain is measured as absolute difference vs.\ 4PL. 46\% of MMLU items have $d < 0.95$; forcing $d = 1$ inflates false alarm rates and reduces power by 19--25pp.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:4pl_ablation}{{3}{5}{Detection performance by IRT parameterization. Power gain is measured as absolute difference vs.\ 4PL. 46\% of MMLU items have $d < 0.95$; forcing $d = 1$ inflates false alarm rates and reduces power by 19--25pp}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Detection method comparison. SFT column: model-level detection on Qwen2.5-7B at 15\% MMLU contamination. Post-RL column: after GRPO training. $\ell _z^*$ beats only 3 baselines (Guttman, U3, random). ConStat and Min-K++ outperform $\ell _z^*$ given richer information access. Acc.\ $z$-score is sensitive but non-specific.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:baselines}{{4}{5}{Detection method comparison. SFT column: model-level detection on Qwen2.5-7B at 15\% MMLU contamination. Post-RL column: after GRPO training. $\ell _z^*$ beats only 3 baselines (Guttman, U3, random). ConStat and Min-K++ outperform $\ell _z^*$ given richer information access. Acc.\ $z$-score is sensitive but non-specific}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Post-RL Hypothesis Test}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:post_rl}{{4.4}{5}{Post-RL Hypothesis Test}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Setup.}{5}{section*.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Pre-RL vs.\ Post-RL detection. GRPO eliminates detection signals for \emph  {all} methods. Memorization fraction drops from 0.36 to 0.05; seen/unseen accuracy gap collapses from 0.10 to 0.01. Difficulty ordering is restored post-RL.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:post_rl}{{5}{6}{Pre-RL vs.\ Post-RL detection. GRPO eliminates detection signals for \emph {all} methods. Memorization fraction drops from 0.36 to 0.05; seen/unseen accuracy gap collapses from 0.10 to 0.01. Difficulty ordering is restored post-RL}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Detection power across benchmarks (Qwen, 15\% contamination). Self-calibrated parameters (BBH, MATH) incur 15--25\% power loss vs.\ PSN-IRT. The power function fit including self-calibrated benchmarks yields $R^2 = 0.62$.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:extra_benchmarks}{{6}{6}{Detection power across benchmarks (Qwen, 15\% contamination). Self-calibrated parameters (BBH, MATH) incur 15--25\% power loss vs.\ PSN-IRT. The power function fit including self-calibrated benchmarks yields $R^2 = 0.62$}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Extra Benchmarks and Power Analysis}{6}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:extra}{{4.5}{6}{Extra Benchmarks and Power Analysis}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{BBH and MATH.}{6}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Dose-response characteristics.}{6}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Empirical Findings from Real LLM Data}{6}{subsection.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.1}Universal 4PL Model Misfit}{6}{subsubsection.4.6.1}\protected@file@percent }
+\newlabel{sec:universal_misfit}{{4.6.1}{6}{Universal 4PL Model Misfit}{subsubsection.4.6.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Domain-level $\ell _z^*$ for selected anomalous models. Gemini-1.5 (100\% MMLU accuracy) shows uniform extreme misfit across all domains. Doubao exhibits asymmetric misfit (STEM normal, humanities aberrant). 80\% of models show uniform contamination patterns; domain concentration index = 0.85.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:domain}{{7}{7}{Domain-level $\ell _z^*$ for selected anomalous models. Gemini-1.5 (100\% MMLU accuracy) shows uniform extreme misfit across all domains. Doubao exhibits asymmetric misfit (STEM normal, humanities aberrant). 80\% of models show uniform contamination patterns; domain concentration index = 0.85}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces IRT parameter recovery from leaderboard data at increasing sample sizes. Discrimination correlation $a_r$ plateaus well below the 0.2 threshold; difficulty $b_r = 0.66$ partially validates. MML-EM fails on LLM data due to model heterogeneity.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:irt_refit}{{8}{7}{IRT parameter recovery from leaderboard data at increasing sample sizes. Discrimination correlation $a_r$ plateaus well below the 0.2 threshold; difficulty $b_r = 0.66$ partially validates. MML-EM fails on LLM data due to model heterogeneity}{table.8}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.2}MMLU Domain-Level Analysis}{7}{subsubsection.4.6.2}\protected@file@percent }
+\newlabel{sec:domain}{{4.6.2}{7}{MMLU Domain-Level Analysis}{subsubsection.4.6.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.3}Multiscale $\ell _{z,m}$}{7}{subsubsection.4.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.4}IRT Parameter Estimation Challenges}{7}{subsubsection.4.6.4}\protected@file@percent }
+\newlabel{sec:irt_refit}{{4.6.4}{7}{IRT Parameter Estimation Challenges}{subsubsection.4.6.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Paired $t$-test for base$\to $chat $\Delta \ell _z^*$ ($n=5$ pairs). HellaSwag and GSM8K show significant systematic SFT effects; MMLU and ARC-C do not.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:natural}{{9}{8}{Paired $t$-test for base$\to $chat $\Delta \ell _z^*$ ($n=5$ pairs). HellaSwag and GSM8K show significant systematic SFT effects; MMLU and ARC-C do not}{table.9}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.5}Natural Experiments: Base$\to $Chat Pairs}{8}{subsubsection.4.6.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{8}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}$\ell _z^*$ vs.\ HT: Why Use Full IRT Parameterization?}{8}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:ht_discussion}{{5.1}{8}{$\ell _z^*$ vs.\ HT: Why Use Full IRT Parameterization?}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}The Detection Frontier}{8}{subsection.5.2}\protected@file@percent }
+\bibcite{sainz2023nlp}{1}
+\bibcite{li2024task}{2}
+\bibcite{dodge2021documenting}{3}
+\bibcite{shi2024detecting}{4}
+\bibcite{oren2024proving}{5}
+\bibcite{golchin2024time}{6}
+\bibcite{li2024constat}{7}
+\bibcite{wang2025rlmia}{8}
+\bibcite{meijer2001person}{9}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Cross-Family Baseline Divergence}{9}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{9}{section.6}\protected@file@percent }
+\bibcite{drasgow1985appropriateness}{10}
+\bibcite{snijders2001}{11}
+\bibcite{sijtsma1998methodology}{12}
+\bibcite{martinez2024using}{13}
+\bibcite{hong2021multiscale}{14}
+\gdef \@abspage@last{10}

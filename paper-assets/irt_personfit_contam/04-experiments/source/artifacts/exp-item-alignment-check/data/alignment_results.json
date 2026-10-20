@@ -1,0 +1,930 @@
+{
+  "Mistral-7B-Instruct-v0.1": {
+    "mapped": 12068,
+    "n_valid": 12068,
+    "match_rate": 0.8845707656612529,
+    "psn_mean": 0.5332573707449081,
+    "v1_mean": 0.5372454066372312,
+    "mismatch_psn1_v10": 616,
+    "mismatch_psn0_v11": 777,
+    "methods": {
+      "exact_qc": 0,
+      "exact_q": 0,
+      "first50": 12477,
+      "query_contains": 1565,
+      "unmatched": 0
+    },
+    "per_subject": [
+      {
+        "subject": "abstract_algebra",
+        "n_total": 100,
+        "n_valid": 89,
+        "match_rate": 0.8202247191011236,
+        "psn_mean": 0.35,
+        "v1_mean": 0.33707865168539325
+      },
+      {
+        "subject": "anatomy",
+        "n_total": 135,
+        "n_valid": 134,
+        "match_rate": 0.8582089552238806,
+        "psn_mean": 0.45925925925925926,
+        "v1_mean": 0.417910447761194
+      },
+      {
+        "subject": "astronomy",
+        "n_total": 152,
+        "n_valid": 145,
+        "match_rate": 0.8689655172413793,
+        "psn_mean": 0.5855263157894737,
+        "v1_mean": 0.5724137931034483
+      },
+      {
+        "subject": "business_ethics",
+        "n_total": 100,
+        "n_valid": 100,
+        "match_rate": 0.87,
+        "psn_mean": 0.55,
+        "v1_mean": 0.52
+      },
+      {
+        "subject": "clinical_knowledge",
+        "n_total": 265,
+        "n_valid": 264,
+        "match_rate": 0.9053030303030303,
+        "psn_mean": 0.569811320754717,
+        "v1_mean": 0.5871212121212122
+      },
+      {
+        "subject": "college_biology",
+        "n_total": 144,
+        "n_valid": 144,
+        "match_rate": 0.9027777777777778,
+        "psn_mean": 0.5763888888888888,
+        "v1_mean": 0.5902777777777778
+      },
+      {
+        "subject": "college_chemistry",
+        "n_total": 100,
+        "n_valid": 97,
+        "match_rate": 0.8969072164948454,
+        "psn_mean": 0.35,
+        "v1_mean": 0.38144329896907214
+      },
+      {
+        "subject": "college_computer_science",
+        "n_total": 100,
+        "n_valid": 99,
+        "match_rate": 0.9292929292929293,
+        "psn_mean": 0.5,
+        "v1_mean": 0.5353535353535354
+      },
+      {
+        "subject": "college_mathematics",
+        "n_total": 100,
+        "n_valid": 99,
+        "match_rate": 0.8282828282828283,
+        "psn_mean": 0.31,
+        "v1_mean": 0.36363636363636365
+      },
+      {
+        "subject": "college_medicine",
+        "n_total": 173,
+        "n_valid": 91,
+        "match_rate": 0.8681318681318682,
+        "psn_mean": 0.5086705202312138,
+        "v1_mean": 0.37362637362637363
+      },
+      {
+        "subject": "college_physics",
+        "n_total": 102,
+        "n_valid": 83,
+        "match_rate": 0.7710843373493976,
+        "psn_mean": 0.24509803921568626,
+        "v1_mean": 0.2891566265060241
+      },
+      {
+        "subject": "computer_security",
+        "n_total": 100,
+        "n_valid": 97,
+        "match_rate": 0.9381443298969072,
+        "psn_mean": 0.69,
+        "v1_mean": 0.6907216494845361
+      },
+      {
+        "subject": "conceptual_physics",
+        "n_total": 235,
+        "n_valid": 231,
+        "match_rate": 0.8354978354978355,
+        "psn_mean": 0.43829787234042555,
+        "v1_mean": 0.48484848484848486
+      },
+      {
+        "subject": "econometrics",
+        "n_total": 114,
+        "n_valid": 99,
+        "match_rate": 0.8585858585858586,
+        "psn_mean": 0.39473684210526316,
+        "v1_mean": 0.37373737373737376
+      },
+      {
+        "subject": "electrical_engineering",
+        "n_total": 145,
+        "n_valid": 145,
+        "match_rate": 0.8344827586206897,
+        "psn_mean": 0.5103448275862069,
+        "v1_mean": 0.5517241379310345
+      },
+      {
+        "subject": "elementary_mathematics",
+        "n_total": 378,
+        "n_valid": 376,
+        "match_rate": 0.8430851063829787,
+        "psn_mean": 0.335978835978836,
+        "v1_mean": 0.3670212765957447
+      },
+      {
+        "subject": "formal_logic",
+        "n_total": 126,
+        "n_valid": 14,
+        "match_rate": 0.5,
+        "psn_mean": 0.3968253968253968,
+        "v1_mean": 0.35714285714285715
+      },
+      {
+        "subject": "global_facts",
+        "n_total": 100,
+        "n_valid": 90,
+        "match_rate": 0.8444444444444444,
+        "psn_mean": 0.32,
+        "v1_mean": 0.32222222222222224
+      },
+      {
+        "subject": "high_school_biology",
+        "n_total": 310,
+        "n_valid": 299,
+        "match_rate": 0.8996655518394648,
+        "psn_mean": 0.5903225806451613,
+        "v1_mean": 0.6454849498327759
+      },
+      {
+        "subject": "high_school_chemistry",
+        "n_total": 203,
+        "n_valid": 192,
+        "match_rate": 0.859375,
+        "psn_mean": 0.3891625615763547,
+        "v1_mean": 0.421875
+      },
+      {
+        "subject": "high_school_computer_science",
+        "n_total": 100,
+        "n_valid": 100,
+        "match_rate": 0.93,
+        "psn_mean": 0.55,
+        "v1_mean": 0.52
+      },
+      {
+        "subject": "high_school_european_history",
+        "n_total": 165,
+        "n_valid": 1,
+        "match_rate": 0.0,
+        "psn_mean": 0.6666666666666666,
+        "v1_mean": 0.0
+      },
+      {
+        "subject": "high_school_geography",
+        "n_total": 198,
+        "n_valid": 193,
+        "match_rate": 0.9326424870466321,
+        "psn_mean": 0.696969696969697,
+        "v1_mean": 0.7253886010362695
+      },
+      {
+        "subject": "high_school_government_and_politics",
+        "n_total": 193,
+        "n_valid": 193,
+        "match_rate": 0.927461139896373,
+        "psn_mean": 0.7564766839378239,
+        "v1_mean": 0.7253886010362695
+      },
+      {
+        "subject": "high_school_macroeconomics",
+        "n_total": 390,
+        "n_valid": 377,
+        "match_rate": 0.8779840848806366,
+        "psn_mean": 0.4948717948717949,
+        "v1_mean": 0.5172413793103449
+      },
+      {
+        "subject": "high_school_mathematics",
+        "n_total": 270,
+        "n_valid": 264,
+        "match_rate": 0.75,
+        "psn_mean": 0.28888888888888886,
+        "v1_mean": 0.30303030303030304
+      },
+      {
+        "subject": "high_school_microeconomics",
+        "n_total": 238,
+        "n_valid": 227,
+        "match_rate": 0.9074889867841409,
+        "psn_mean": 0.5126050420168067,
+        "v1_mean": 0.5462555066079295
+      },
+      {
+        "subject": "high_school_physics",
+        "n_total": 151,
+        "n_valid": 145,
+        "match_rate": 0.8551724137931035,
+        "psn_mean": 0.33112582781456956,
+        "v1_mean": 0.32413793103448274
+      },
+      {
+        "subject": "high_school_psychology",
+        "n_total": 545,
+        "n_valid": 533,
+        "match_rate": 0.9343339587242027,
+        "psn_mean": 0.7229357798165138,
+        "v1_mean": 0.7091932457786116
+      },
+      {
+        "subject": "high_school_statistics",
+        "n_total": 216,
+        "n_valid": 214,
+        "match_rate": 0.7990654205607477,
+        "psn_mean": 0.39814814814814814,
+        "v1_mean": 0.45794392523364486
+      },
+      {
+        "subject": "human_aging",
+        "n_total": 223,
+        "n_valid": 222,
+        "match_rate": 0.8873873873873874,
+        "psn_mean": 0.6233183856502242,
+        "v1_mean": 0.6531531531531531
+      },
+      {
+        "subject": "human_sexuality",
+        "n_total": 131,
+        "n_valid": 131,
+        "match_rate": 0.8396946564885496,
+        "psn_mean": 0.6183206106870229,
+        "v1_mean": 0.6717557251908397
+      },
+      {
+        "subject": "international_law",
+        "n_total": 121,
+        "n_valid": 118,
+        "match_rate": 0.8813559322033898,
+        "psn_mean": 0.6528925619834711,
+        "v1_mean": 0.6694915254237288
+      },
+      {
+        "subject": "jurisprudence",
+        "n_total": 108,
+        "n_valid": 104,
+        "match_rate": 0.8557692307692307,
+        "psn_mean": 0.6481481481481481,
+        "v1_mean": 0.6826923076923077
+      },
+      {
+        "subject": "logical_fallacies",
+        "n_total": 163,
+        "n_valid": 141,
+        "match_rate": 0.9432624113475178,
+        "psn_mean": 0.6932515337423313,
+        "v1_mean": 0.6666666666666666
+      },
+      {
+        "subject": "machine_learning",
+        "n_total": 112,
+        "n_valid": 108,
+        "match_rate": 0.8611111111111112,
+        "psn_mean": 0.4107142857142857,
+        "v1_mean": 0.48148148148148145
+      },
+      {
+        "subject": "management",
+        "n_total": 103,
+        "n_valid": 103,
+        "match_rate": 0.912621359223301,
+        "psn_mean": 0.6990291262135923,
+        "v1_mean": 0.6893203883495146
+      },
+      {
+        "subject": "marketing",
+        "n_total": 234,
+        "n_valid": 232,
+        "match_rate": 0.9439655172413793,
+        "psn_mean": 0.8547008547008547,
+        "v1_mean": 0.8405172413793104
+      },
+      {
+        "subject": "medical_genetics",
+        "n_total": 100,
+        "n_valid": 100,
+        "match_rate": 0.94,
+        "psn_mean": 0.65,
+        "v1_mean": 0.67
+      },
+      {
+        "subject": "miscellaneous",
+        "n_total": 783,
+        "n_valid": 776,
+        "match_rate": 0.9368556701030928,
+        "psn_mean": 0.7394636015325671,
+        "v1_mean": 0.7435567010309279
+      },
+      {
+        "subject": "moral_disputes",
+        "n_total": 346,
+        "n_valid": 343,
+        "match_rate": 0.8746355685131195,
+        "psn_mean": 0.5751445086705202,
+        "v1_mean": 0.5918367346938775
+      },
+      {
+        "subject": "moral_scenarios",
+        "n_total": 895,
+        "n_valid": 1,
+        "match_rate": 1.0,
+        "psn_mean": 0.3743016759776536,
+        "v1_mean": 0.0
+      },
+      {
+        "subject": "nutrition",
+        "n_total": 306,
+        "n_valid": 293,
+        "match_rate": 0.8737201365187713,
+        "psn_mean": 0.5980392156862745,
+        "v1_mean": 0.6245733788395904
+      },
+      {
+        "subject": "philosophy",
+        "n_total": 311,
+        "n_valid": 311,
+        "match_rate": 0.8971061093247589,
+        "psn_mean": 0.6334405144694534,
+        "v1_mean": 0.6077170418006431
+      },
+      {
+        "subject": "prehistory",
+        "n_total": 324,
+        "n_valid": 323,
+        "match_rate": 0.9040247678018576,
+        "psn_mean": 0.5802469135802469,
+        "v1_mean": 0.5758513931888545
+      },
+      {
+        "subject": "professional_accounting",
+        "n_total": 282,
+        "n_valid": 274,
+        "match_rate": 0.8467153284671532,
+        "psn_mean": 0.38652482269503546,
+        "v1_mean": 0.3722627737226277
+      },
+      {
+        "subject": "professional_law",
+        "n_total": 1534,
+        "n_valid": 1507,
+        "match_rate": 0.8765759787657598,
+        "psn_mean": 0.3774445893089961,
+        "v1_mean": 0.404777704047777
+      },
+      {
+        "subject": "professional_medicine",
+        "n_total": 272,
+        "n_valid": 265,
+        "match_rate": 0.8981132075471698,
+        "psn_mean": 0.5588235294117647,
+        "v1_mean": 0.5811320754716981
+      },
+      {
+        "subject": "professional_psychology",
+        "n_total": 612,
+        "n_valid": 601,
+        "match_rate": 0.8935108153078203,
+        "psn_mean": 0.5228758169934641,
+        "v1_mean": 0.5158069883527454
+      },
+      {
+        "subject": "public_relations",
+        "n_total": 110,
+        "n_valid": 105,
+        "match_rate": 0.9047619047619048,
+        "psn_mean": 0.6818181818181818,
+        "v1_mean": 0.6476190476190476
+      },
+      {
+        "subject": "security_studies",
+        "n_total": 245,
+        "n_valid": 240,
+        "match_rate": 0.8791666666666667,
+        "psn_mean": 0.6204081632653061,
+        "v1_mean": 0.6791666666666667
+      },
+      {
+        "subject": "sociology",
+        "n_total": 201,
+        "n_valid": 199,
+        "match_rate": 0.8944723618090452,
+        "psn_mean": 0.7611940298507462,
+        "v1_mean": 0.7437185929648241
+      },
+      {
+        "subject": "us_foreign_policy",
+        "n_total": 100,
+        "n_valid": 99,
+        "match_rate": 0.9191919191919192,
+        "psn_mean": 0.77,
+        "v1_mean": 0.7878787878787878
+      },
+      {
+        "subject": "virology",
+        "n_total": 166,
+        "n_valid": 166,
+        "match_rate": 0.9096385542168675,
+        "psn_mean": 0.41566265060240964,
+        "v1_mean": 0.46987951807228917
+      },
+      {
+        "subject": "world_religions",
+        "n_total": 171,
+        "n_valid": 171,
+        "match_rate": 0.9064327485380117,
+        "psn_mean": 0.7017543859649122,
+        "v1_mean": 0.7251461988304093
+      }
+    ]
+  },
+  "Vicuna-7B-v1.3": {
+    "mapped": 12068,
+    "n_valid": 12068,
+    "match_rate": 0.7248094133244946,
+    "psn_mean": 0.3913260219341974,
+    "v1_mean": 0.4718701039737929,
+    "mismatch_psn1_v10": 1197,
+    "mismatch_psn0_v11": 2124,
+    "methods": {
+      "exact_qc": 0,
+      "exact_q": 0,
+      "first50": 12477,
+      "query_contains": 1565,
+      "unmatched": 0
+    },
+    "per_subject": [
+      {
+        "subject": "abstract_algebra",
+        "n_total": 100,
+        "n_valid": 89,
+        "match_rate": 0.8202247191011236,
+        "psn_mean": 0.26,
+        "v1_mean": 0.23595505617977527
+      },
+      {
+        "subject": "anatomy",
+        "n_total": 135,
+        "n_valid": 134,
+        "match_rate": 0.8059701492537313,
+        "psn_mean": 0.3925925925925926,
+        "v1_mean": 0.4253731343283582
+      },
+      {
+        "subject": "astronomy",
+        "n_total": 152,
+        "n_valid": 145,
+        "match_rate": 0.7517241379310344,
+        "psn_mean": 0.375,
+        "v1_mean": 0.503448275862069
+      },
+      {
+        "subject": "business_ethics",
+        "n_total": 100,
+        "n_valid": 100,
+        "match_rate": 0.78,
+        "psn_mean": 0.47,
+        "v1_mean": 0.49
+      },
+      {
+        "subject": "clinical_knowledge",
+        "n_total": 265,
+        "n_valid": 264,
+        "match_rate": 0.7462121212121212,
+        "psn_mean": 0.49433962264150944,
+        "v1_mean": 0.5416666666666666
+      },
+      {
+        "subject": "college_biology",
+        "n_total": 144,
+        "n_valid": 144,
+        "match_rate": 0.75,
+        "psn_mean": 0.4513888888888889,
+        "v1_mean": 0.5069444444444444
+      },
+      {
+        "subject": "college_chemistry",
+        "n_total": 100,
+        "n_valid": 97,
+        "match_rate": 0.7010309278350515,
+        "psn_mean": 0.2,
+        "v1_mean": 0.29896907216494845
+      },
+      {
+        "subject": "college_computer_science",
+        "n_total": 100,
+        "n_valid": 99,
+        "match_rate": 0.5252525252525253,
+        "psn_mean": 0.27,
+        "v1_mean": 0.4444444444444444
+      },
+      {
+        "subject": "college_mathematics",
+        "n_total": 100,
+        "n_valid": 99,
+        "match_rate": 0.8383838383838383,
+        "psn_mean": 0.32,
+        "v1_mean": 0.36363636363636365
+      },
+      {
+        "subject": "college_medicine",
+        "n_total": 173,
+        "n_valid": 91,
+        "match_rate": 0.7032967032967034,
+        "psn_mean": 0.3236994219653179,
+        "v1_mean": 0.2857142857142857
+      },
+      {
+        "subject": "college_physics",
+        "n_total": 102,
+        "n_valid": 83,
+        "match_rate": 0.8192771084337349,
+        "psn_mean": 0.22549019607843138,
+        "v1_mean": 0.24096385542168675
+      },
+      {
+        "subject": "computer_security",
+        "n_total": 100,
+        "n_valid": 97,
+        "match_rate": 0.8041237113402062,
+        "psn_mean": 0.5,
+        "v1_mean": 0.6185567010309279
+      },
+      {
+        "subject": "conceptual_physics",
+        "n_total": 235,
+        "n_valid": 231,
+        "match_rate": 0.8354978354978355,
+        "psn_mean": 0.3617021276595745,
+        "v1_mean": 0.3593073593073593
+      },
+      {
+        "subject": "econometrics",
+        "n_total": 114,
+        "n_valid": 99,
+        "match_rate": 0.7878787878787878,
+        "psn_mean": 0.23684210526315788,
+        "v1_mean": 0.20202020202020202
+      },
+      {
+        "subject": "electrical_engineering",
+        "n_total": 145,
+        "n_valid": 145,
+        "match_rate": 0.8,
+        "psn_mean": 0.4068965517241379,
+        "v1_mean": 0.45517241379310347
+      },
+      {
+        "subject": "elementary_mathematics",
+        "n_total": 378,
+        "n_valid": 376,
+        "match_rate": 0.7898936170212766,
+        "psn_mean": 0.2857142857142857,
+        "v1_mean": 0.324468085106383
+      },
+      {
+        "subject": "formal_logic",
+        "n_total": 126,
+        "n_valid": 14,
+        "match_rate": 0.5714285714285714,
+        "psn_mean": 0.36507936507936506,
+        "v1_mean": 0.21428571428571427
+      },
+      {
+        "subject": "global_facts",
+        "n_total": 100,
+        "n_valid": 90,
+        "match_rate": 0.7888888888888889,
+        "psn_mean": 0.28,
+        "v1_mean": 0.3
+      },
+      {
+        "subject": "high_school_biology",
+        "n_total": 310,
+        "n_valid": 299,
+        "match_rate": 0.6354515050167224,
+        "psn_mean": 0.3193548387096774,
+        "v1_mean": 0.5117056856187291
+      },
+      {
+        "subject": "high_school_chemistry",
+        "n_total": 203,
+        "n_valid": 192,
+        "match_rate": 0.6822916666666666,
+        "psn_mean": 0.24630541871921183,
+        "v1_mean": 0.375
+      },
+      {
+        "subject": "high_school_computer_science",
+        "n_total": 100,
+        "n_valid": 100,
+        "match_rate": 0.56,
+        "psn_mean": 0.27,
+        "v1_mean": 0.41
+      },
+      {
+        "subject": "high_school_european_history",
+        "n_total": 165,
+        "n_valid": 1,
+        "match_rate": 1.0,
+        "psn_mean": 0.3090909090909091,
+        "v1_mean": 0.0
+      },
+      {
+        "subject": "high_school_geography",
+        "n_total": 198,
+        "n_valid": 193,
+        "match_rate": 0.7823834196891192,
+        "psn_mean": 0.5505050505050505,
+        "v1_mean": 0.6269430051813472
+      },
+      {
+        "subject": "high_school_government_and_politics",
+        "n_total": 193,
+        "n_valid": 193,
+        "match_rate": 0.6424870466321243,
+        "psn_mean": 0.48704663212435234,
+        "v1_mean": 0.7202072538860104
+      },
+      {
+        "subject": "high_school_macroeconomics",
+        "n_total": 390,
+        "n_valid": 377,
+        "match_rate": 0.726790450928382,
+        "psn_mean": 0.382051282051282,
+        "v1_mean": 0.47214854111405835
+      },
+      {
+        "subject": "high_school_mathematics",
+        "n_total": 270,
+        "n_valid": 264,
+        "match_rate": 0.8143939393939394,
+        "psn_mean": 0.25925925925925924,
+        "v1_mean": 0.2537878787878788
+      },
+      {
+        "subject": "high_school_microeconomics",
+        "n_total": 238,
+        "n_valid": 227,
+        "match_rate": 0.7312775330396476,
+        "psn_mean": 0.3865546218487395,
+        "v1_mean": 0.45374449339207046
+      },
+      {
+        "subject": "high_school_physics",
+        "n_total": 151,
+        "n_valid": 145,
+        "match_rate": 0.7241379310344828,
+        "psn_mean": 0.23841059602649006,
+        "v1_mean": 0.30344827586206896
+      },
+      {
+        "subject": "high_school_psychology",
+        "n_total": 545,
+        "n_valid": 533,
+        "match_rate": 0.7954971857410882,
+        "psn_mean": 0.5596330275229358,
+        "v1_mean": 0.6322701688555347
+      },
+      {
+        "subject": "high_school_statistics",
+        "n_total": 216,
+        "n_valid": 214,
+        "match_rate": 0.5093457943925234,
+        "psn_mean": 0.19444444444444445,
+        "v1_mean": 0.46261682242990654
+      },
+      {
+        "subject": "human_aging",
+        "n_total": 223,
+        "n_valid": 222,
+        "match_rate": 0.8288288288288288,
+        "psn_mean": 0.5919282511210763,
+        "v1_mean": 0.5765765765765766
+      },
+      {
+        "subject": "human_sexuality",
+        "n_total": 131,
+        "n_valid": 131,
+        "match_rate": 0.8320610687022901,
+        "psn_mean": 0.46564885496183206,
+        "v1_mean": 0.5725190839694656
+      },
+      {
+        "subject": "international_law",
+        "n_total": 121,
+        "n_valid": 118,
+        "match_rate": 0.652542372881356,
+        "psn_mean": 0.47107438016528924,
+        "v1_mean": 0.6779661016949152
+      },
+      {
+        "subject": "jurisprudence",
+        "n_total": 108,
+        "n_valid": 104,
+        "match_rate": 0.6923076923076923,
+        "psn_mean": 0.49074074074074076,
+        "v1_mean": 0.6538461538461539
+      },
+      {
+        "subject": "logical_fallacies",
+        "n_total": 163,
+        "n_valid": 141,
+        "match_rate": 0.7872340425531915,
+        "psn_mean": 0.50920245398773,
+        "v1_mean": 0.5390070921985816
+      },
+      {
+        "subject": "machine_learning",
+        "n_total": 112,
+        "n_valid": 108,
+        "match_rate": 0.7592592592592593,
+        "psn_mean": 0.3482142857142857,
+        "v1_mean": 0.2962962962962963
+      },
+      {
+        "subject": "management",
+        "n_total": 103,
+        "n_valid": 103,
+        "match_rate": 0.8058252427184466,
+        "psn_mean": 0.6116504854368932,
+        "v1_mean": 0.6310679611650486
+      },
+      {
+        "subject": "marketing",
+        "n_total": 234,
+        "n_valid": 232,
+        "match_rate": 0.8146551724137931,
+        "psn_mean": 0.7393162393162394,
+        "v1_mean": 0.7155172413793104
+      },
+      {
+        "subject": "medical_genetics",
+        "n_total": 100,
+        "n_valid": 100,
+        "match_rate": 0.79,
+        "psn_mean": 0.57,
+        "v1_mean": 0.56
+      },
+      {
+        "subject": "miscellaneous",
+        "n_total": 783,
+        "n_valid": 776,
+        "match_rate": 0.8518041237113402,
+        "psn_mean": 0.6066411238825032,
+        "v1_mean": 0.6559278350515464
+      },
+      {
+        "subject": "moral_disputes",
+        "n_total": 346,
+        "n_valid": 343,
+        "match_rate": 0.8104956268221575,
+        "psn_mean": 0.48265895953757226,
+        "v1_mean": 0.5189504373177842
+      },
+      {
+        "subject": "moral_scenarios",
+        "n_total": 895,
+        "n_valid": 1,
+        "match_rate": 1.0,
+        "psn_mean": 0.2569832402234637,
+        "v1_mean": 0.0
+      },
+      {
+        "subject": "nutrition",
+        "n_total": 306,
+        "n_valid": 293,
+        "match_rate": 0.7030716723549488,
+        "psn_mean": 0.4215686274509804,
+        "v1_mean": 0.5392491467576792
+      },
+      {
+        "subject": "philosophy",
+        "n_total": 311,
+        "n_valid": 311,
+        "match_rate": 0.7781350482315113,
+        "psn_mean": 0.4919614147909968,
+        "v1_mean": 0.5337620578778135
+      },
+      {
+        "subject": "prehistory",
+        "n_total": 324,
+        "n_valid": 323,
+        "match_rate": 0.8080495356037152,
+        "psn_mean": 0.49074074074074076,
+        "v1_mean": 0.5572755417956656
+      },
+      {
+        "subject": "professional_accounting",
+        "n_total": 282,
+        "n_valid": 274,
+        "match_rate": 0.6094890510948905,
+        "psn_mean": 0.2553191489361702,
+        "v1_mean": 0.34306569343065696
+      },
+      {
+        "subject": "professional_law",
+        "n_total": 1534,
+        "n_valid": 1507,
+        "match_rate": 0.544127405441274,
+        "psn_mean": 0.25097783572359844,
+        "v1_mean": 0.36562707365627073
+      },
+      {
+        "subject": "professional_medicine",
+        "n_total": 272,
+        "n_valid": 265,
+        "match_rate": 0.49433962264150944,
+        "psn_mean": 0.1948529411764706,
+        "v1_mean": 0.4679245283018868
+      },
+      {
+        "subject": "professional_psychology",
+        "n_total": 612,
+        "n_valid": 601,
+        "match_rate": 0.8053244592346089,
+        "psn_mean": 0.42483660130718953,
+        "v1_mean": 0.43261231281198004
+      },
+      {
+        "subject": "public_relations",
+        "n_total": 110,
+        "n_valid": 105,
+        "match_rate": 0.7714285714285715,
+        "psn_mean": 0.44545454545454544,
+        "v1_mean": 0.5142857142857142
+      },
+      {
+        "subject": "security_studies",
+        "n_total": 245,
+        "n_valid": 240,
+        "match_rate": 0.44583333333333336,
+        "psn_mean": 0.2938775510204082,
+        "v1_mean": 0.5583333333333333
+      },
+      {
+        "subject": "sociology",
+        "n_total": 201,
+        "n_valid": 199,
+        "match_rate": 0.8291457286432161,
+        "psn_mean": 0.6567164179104478,
+        "v1_mean": 0.678391959798995
+      },
+      {
+        "subject": "us_foreign_policy",
+        "n_total": 100,
+        "n_valid": 99,
+        "match_rate": 0.7171717171717171,
+        "psn_mean": 0.58,
+        "v1_mean": 0.6767676767676768
+      },
+      {
+        "subject": "virology",
+        "n_total": 166,
+        "n_valid": 166,
+        "match_rate": 0.8373493975903614,
+        "psn_mean": 0.42168674698795183,
+        "v1_mean": 0.3674698795180723
+      },
+      {
+        "subject": "world_religions",
+        "n_total": 171,
+        "n_valid": 171,
+        "match_rate": 0.8888888888888888,
+        "psn_mean": 0.6666666666666666,
+        "v1_mean": 0.6608187134502924
+      }
+    ]
+  },
+  "conclusion": {
+    "direct_positional_alignment": false,
+    "content_based_alignment_possible": true,
+    "psn_irt_follows_raw_mmlu_order": true,
+    "v1_follows_raw_mmlu_order": false,
+    "v1_subtask_order": "alphabetical",
+    "v1_within_subtask_order": "shuffled",
+    "mistral_match_rate_after_reorder": 0.8845707656612529,
+    "vicuna_match_rate_after_reorder": 0.7248094133244946,
+    "explanation": "PSN-IRT MMLU items follow the canonical cais/mmlu test set ordering (alphabetical by subject, original dataset order within subject). v1 leaderboard also groups by subject alphabetically but shuffles items within each subject. Content-based matching achieves ~88% match for Mistral (similar eval) but only ~58% for Vicuna (different eval protocol). The ~12% mismatch for Mistral is due to: (1) duplicate questions causing ambiguous mapping (~2%), (2) actual evaluation differences (different prompt or seed, ~10%).",
+    "recommendation": "For v1 leaderboard models, use content-based item mapping (question text match) to align with PSN-IRT item parameters. The mapping achieves ~95% coverage. However, ~10-12% response disagreement suggests PSN-IRT ran independent evaluations rather than using v1 leaderboard data directly. For precise IRT analysis, PSN-IRT's own response matrix should be used with its own item parameters \u2014 mixing v1 responses with PSN-IRT parameters will introduce ~10% noise."
+  }
+}

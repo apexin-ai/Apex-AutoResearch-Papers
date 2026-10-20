@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "eb2199959637550c1228",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops eval 25pct s3 cpu",
+  "task_key": "worker_ops_eval-25pct-s3-cpu_20260522T143853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-25pct-s3-cpu_20260522T143853_result.json",
+    "occurrence": 1,
+    "bytes": 566,
+    "sha256": "f22bc2c3581b8967372598a158581f2fde86fbe13549dcdb255a8f5ba9b20510"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有 `contam_25_s3_results.json`。也没有缓存的 response vector。\n\n**结论：eval 需要 GPU，无法与训练并行。**\n\n- `eval_lz.py` 使用 bitsandbytes 4-bit 量化加载 7B 模型，只能在 GPU 上运行\n- `device_map={\"\": 0}` 硬编码 GPU 0\n- 没有已缓存的 response vector 可复用\n- 即使改写为 CPU 模式（去掉量化），7B 模型在 CPU 上对 14042 items 做 forward pass 也不现实（预计数小时）\n\n**等 contam_50_s2 训练完成后再做 contam_25_s3 的 eval。**"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "": 0
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-25pct-s3-cpu.md"
+}

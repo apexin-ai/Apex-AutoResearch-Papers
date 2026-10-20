@@ -1,0 +1,17 @@
+{
+  "exp_id": "exp-ctrl-contam-llama",
+  "project": "irt_personfit_contam",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T20:23:08.451Z",
+    "updated_at": "2026-05-20T23:10:35.223Z",
+    "hypothesis": "The lz* contamination detection signal generalizes across model families: Llama-3.1-8B-Instruct (Meta) under the same QLoRA contamination protocol as Qwen2.5-7B (Alibaba) produces comparable Δlz* effect sizes, directly addressing reviewer concern REV-ADD-2 about single-model generalizability",
+    "parent": "exp-ctrl-contam-pilot",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T23:10:35.295178+00:00",
+  "trigger": "update_registry"
+}

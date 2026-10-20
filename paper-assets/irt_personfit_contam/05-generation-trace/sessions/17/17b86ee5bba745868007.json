@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17b86ee5bba745868007",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops check gpu quick",
+  "task_key": "worker_ops_check-gpu-quick_20260522T143552",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-gpu-quick_20260522T143552_result.json",
+    "occurrence": 1,
+    "bytes": 806,
+    "sha256": "beec8db39bd45755806c27add85810b9e65b6e3dc9dc68bace6a4d80ad73645a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**1. GPU 占用**\n4× NVIDIA RTX PRO 6000 Blackwell (98GB)，全部空闲。GPU 1 Util 100% 但显存 0MiB 且无进程——可能是残留状态，无训练在跑。\n\n**2. Multi-seed checkpoints/results 状态**\n\n| 条件 | Checkpoint | Results |\n|------|-----------|---------|\n| contam_15_s2 | ✅ | ✅ `contam_15_s2_results.json` |\n| contam_25_s2 | ✅ | ✅ `contam_25_s2_results.json` |\n| contam_25_s3 | ✅ (训练完成) | ❌ 尚未评估 |\n| contam_50_s2 | ❌ | ❌ |\n| contam_50_s3 | ❌ | ❌ |\n\n**3. 当前卡在哪一步**\n- `contam_25_s3` 训练已完成（checkpoint 存在），但评估（生成 results JSON）还没跑。\n- `contam_50_s2` 和 `contam_50_s3` 训练和评估都还没开始。\n- 当前无任何进程在运行，GPU 空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-gpu-quick.md"
+}

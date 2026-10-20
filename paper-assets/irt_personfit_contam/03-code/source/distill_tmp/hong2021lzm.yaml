@@ -1,0 +1,45 @@
+paper_key: "hong2021lzm"
+title: "Asymptotically Corrected Person Fit Statistics for Multidimensional Constructs with Simple Structure and Mixed Item Types"
+venue: "Psychometrika 2021"
+full_text_available: false
+
+research:
+  baselines:
+    - "lz (original Drasgow et al. 1985)"
+    - "lz* (Snijders 2001 corrected, unidimensional)"
+    - "lz_m (proposed multidimensional extension)"
+    - "lz_m* (proposed corrected multidimensional extension)"
+  metrics:
+    - {name: "Type I error rate", direction: "lower_better"}
+    - {name: "detection rate (power)", direction: "higher_better"}
+    - {name: "distributional conformity to N(0,1)", direction: "closer_better"}
+  datasets:
+    - {name: "simulated multidimensional IRT data", size: "multiple conditions"}
+    - {name: "empirical application dataset", size: "real test data"}
+  ablation_dimensions:
+    - "number of dimensions (2, 3, or more latent traits)"
+    - "test length (finite vs asymptotic)"
+    - "item type (dichotomous, polytomous, mixed)"
+    - "estimation method (MLE, MAP, WLE)"
+    - "correlation between latent dimensions"
+    - "sample size"
+  training_recipe:
+    simulation: "Monte Carlo simulation under multidimensional IRT models (MIRT)"
+    models: "multidimensional 2PL, graded response model (GRM), mixed item types with simple structure"
+    estimation: "MLE, MAP, WLE for latent trait estimation"
+    correction: "asymptotic variance correction for estimated theta"
+  method_family: "person-fit statistics"
+
+positioning:
+  core_claim: "Extends the lz* correction to multidimensional IRT with simple structure and mixed item types, providing a general asymptotic correction applicable across MLE, MAP, and WLE estimation methods."
+  key_results: "The proposed lz_m* statistic maintains nominal Type I error rates under multidimensional models with mixed item types, while uncorrected lz_m shows inflated Type I error; correction works well even at moderate test lengths."
+  limitations:
+    - "Assumes simple structure (each item loads on one dimension only)"
+    - "May not generalize to complex structure (cross-loadings)"
+    - "Performance with very short subtests per dimension not fully explored"
+    - "Limited to parametric IRT framework"
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

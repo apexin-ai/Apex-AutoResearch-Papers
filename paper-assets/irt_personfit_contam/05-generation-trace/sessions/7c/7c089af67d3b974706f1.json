@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c089af67d3b974706f1",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code kill grpo fix code",
+  "task_key": "worker_code_kill-grpo-fix-code_20260521T114332",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_kill-grpo-fix-code_20260521T114332_result.json",
+    "occurrence": 1,
+    "bytes": 1363,
+    "sha256": "64fda06bdeaae7a3f3449605f82479d459b612c85b1c3a04534b99b1212f2291"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n---\n\n### 1. GRPO PID 130591 — 已 kill\n\nGPU 状态确认：\n- GPU 0: PID 129109 (Llama s2 训练，95% util) ✓\n- GPU 1: 空闲\n- GPU 2: PID 129635 (其他任务，88% util)\n- GPU 3: 空闲\n\n### 2. train_grpo.py 完整 diff\n\n```diff\n grpo_config = GRPOConfig(\n     output_dir=output_dir,\n     num_train_epochs=1,\n     per_device_train_batch_size=2,\n     gradient_accumulation_steps=4,\n     learning_rate=5e-6,\n-    num_generations=8,\n+    num_generations=16,\n     max_completion_length=128,\n+    temperature=1.2,\n     bf16=True,\n     logging_steps=10,\n     save_strategy=\"steps\",\n-    save_steps=3000,\n+    save_steps=500,\n     save_total_limit=3,\n     seed=42,\n     report_to=\"none\" if args.dry_run else \"wandb\",\n     run_name=\"post-rl-grpo\",\n-    max_steps=args.max_steps,\n+    max_steps=3000,\n )\n```\n\n### 3. 修改后参数确认\n\n| 参数 | 修改前 | 修改后 |\n|------|--------|--------|\n| `num_generations` | 8 | **16** |\n| `temperature` | (无) | **1.2** |\n| `max_steps` | `args.max_steps` (默认 -1) | **3000** |\n| `save_steps` | 3000 | **500** |\n\n注意：`max_steps` 现在硬编码为 3000，`--max-steps` CLI 参数不再生效（dry-run 模式仍会覆盖为 2）。如需保留 CLI 覆盖能力可进一步调整。\n\n等待审批，不启动 GRPO v3。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-kill-grpo-fix-code.md"
+}

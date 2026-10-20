@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "133cfb556185c18bb13d",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "ops provenance audit",
+  "task_key": "worker_ops_provenance-audit_20260523T111531",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_provenance-audit_20260523T111531.log",
+    "occurrence": 1,
+    "bytes": 1118372,
+    "sha256": "04fbf927bed7c11f7a91e4d96fcda97b2b118461ab1d6d5c67150ad989b559a2"
+  },
+  "statistics": {
+    "messages": 182,
+    "user_turns": 2,
+    "tool_calls": 63,
+    "roles": {
+      "log": 1,
+      "system": 19,
+      "record": 1,
+      "assistant": 32,
+      "tool_call": 63,
+      "user": 2,
+      "tool_result": 63,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "133cfb556185c18bb13d-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 167,
+      "chunks": [
+        {
+          "path": "133cfb556185c18bb13d-part-0001.json",
+          "message_count": 123
+        },
+        {
+          "path": "133cfb556185c18bb13d-part-0002.json",
+          "message_count": 44
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 8,
+      "chunks": [
+        {
+          "path": "133cfb556185c18bb13d-part-0002.json",
+          "message_count": 8
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-provenance-audit.md"
+}

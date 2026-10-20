@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6935ca1710216c5dc43d",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "paper table2 footnote fix",
+  "task_key": "worker_paper_table2-footnote-fix_20260524T104114",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_table2-footnote-fix_20260524T104114_result.json",
+    "occurrence": 1,
+    "bytes": 514,
+    "sha256": "a9c1c1dc022bf24898d44025bea55b936827403d522e1b3adc931d154d690572"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n### 产出汇总\n\n**Table 2 修改 (before → after):**\n- Mistral 15% `d_free`: 3.37 → **2.64** (seed 42 原始值)\n- Mistral 15% ratio: 0.8× → **1.0×**\n- Llama 15% `d_free`: 2.11 — 已是 seed 42 值，无需修改\n\n**脚注内容:**\n```\n$d_{\\text{free}}$ values for single-seed conditions are from seed 42;\nmulti-seed means are reported in Table 1.\n```\n\n**编译:** 16 pages, 无错误\n\n**Push:** `6a818c4` → `anonymous-nlp-2026-2/irt_personfit_contam` main"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-table2-footnote-fix.md"
+}

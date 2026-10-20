@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "876535355f8de0a90da3",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "eval mistral contam5 fixed theta",
+  "task_key": "worker_eval_mistral-contam5-fixed-theta_20260524T060459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_mistral-contam5-fixed-theta_20260524T060459_result.json",
+    "occurrence": 1,
+    "bytes": 1052,
+    "sha256": "5cf50ce9238dd4a720d35c7eb6fe33b4c88b9f3446385d413429dda57ab0521c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "计算完成。Contam_5 fixed-θ 结果：\n\n| 指标 | 值 |\n|------|-----|\n| θ_fixed | -1.0876 |\n| lz\\*_free | -5.729 |\n| **lz\\*_fixed** | **-6.643** |\n| Cohen's d (point) | **3.94** |\n| Cohen's d (bootstrap median) | 3.98 |\n| 95% CI | [2.47, 12.93] |\n\n对比三个 contam 水平：\n\n| 条件 | lz\\*_fixed | Cohen's d | 95% CI |\n|------|-----------|-----------|--------|\n| contam_5 | -6.64 | 3.94 | [2.47, 12.93] |\n| contam_15 | -3.48 | 2.69 | [1.53, 9.06] |\n| contam_50 | -11.33 | 5.80 | [3.87, 18.45] |\n\n注意：contam_5 的 fixed-θ lz\\*（-6.64）比 free-θ（-5.73）更极端，符合预期——固定 θ 消除了被污染项目对能力估计的膨胀效应，使 misfit 信号更强。contam_5 的 Cohen's d = 3.94 远超大效应阈值（0.8），说明即使仅 5% 污染也能被 person-fit 可靠检测。\n\n结果已保存到 `/root/autodl-tmp/ctrl_contam_mistral/results/theta_fixed_n10_recompute.json`。seen/unseen 的 fixed-θ 分拆无法计算（结果文件中没有 `seen_indices`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-mistral-contam5-fixed-theta.md"
+}

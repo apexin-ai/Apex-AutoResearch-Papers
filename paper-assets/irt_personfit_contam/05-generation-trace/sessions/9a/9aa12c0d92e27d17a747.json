@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9aa12c0d92e27d17a747",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "paper mistral 50pct multiseed and appendix",
+  "task_key": "worker_paper_mistral-50pct-multiseed-and-appendix_20260524T110903",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_mistral-50pct-multiseed-and-appendix_20260524T110903_result.json",
+    "occurrence": 1,
+    "bytes": 770,
+    "sha256": "253669b0d2e1abb9a6064ddcddac7c32c3101664b46f907f15901cf25acad851"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Changes committed. Summary:\n\n1. **Table 1**: Mistral 50% updated from `$-3.50$ [$-9.4$, $-2.1$]` → `$-4.09$ ($\\pm$0.53)`\n2. **Table 3 (degradation)**: Mistral lz* 50% updated from `$3.50$ [$2.1$, $9.4$]` → `$4.09$ ($\\pm$0.53)`\n3. **Prose** (line 10): `Mistral ($|d|{=}3.37$/$3.50$)` → `Mistral ($|d|{=}3.37$/$4.09$)`\n4. **Appendix**: Added `tab:mistral_multiseed` with per-seed d values for 5% (n=2), 15% (n=3), 50% (n=3)\n\nComputed values from server data:\n- 50% seeds: s1=-3.50, s2=-4.25 (lz*=-4.695), s3=-4.51 (lz*=-5.236) → mean=-4.09, SD=0.53\n- 5% also included (n=2): s1=-2.82, s2=-4.83 → mean=-3.83, SD=1.42\n\nNote: The heatmap figure (`fig_heatmap.pdf`) still shows the old 3.50 value. If you want it regenerated, let me know."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-mistral-50pct-multiseed-and-appendix.md"
+}

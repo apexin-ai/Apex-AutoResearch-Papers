@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "517858d3bc15b33ffbc0",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code exp post rl launch",
+  "task_key": "worker_code_exp-post-rl-launch_20260521T035625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-post-rl-launch_20260521T035625_result.json",
+    "occurrence": 1,
+    "bytes": 694,
+    "sha256": "240d1fb040268c2d513214820f9eb4adbfd502fecaae8c70e3b3578953c03041"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SFT 训练正常运行在 GPU 2（83% utilization, 19869 MiB）。\n\n**汇总：**\n- 模型：Qwen2.5-7B-Instruct（7.6B params, QLoRA 4-bit, trainable 0.13%）\n- 数据：7106 SFT samples（5000 alpaca + 2106 MMLU 15% contamination）\n- 配置：3 epochs, batch=4, grad_accum=4, lr=2e-4, 1335 total steps\n- 速度：~1.06 it/s，预计 ~21 分钟完成\n- GPU：cuda:2, 19869 MiB\n- 日志：`~/runs/irt_personfit_contam/exp-post-rl.log`\n\n修复记录：删除了 `train_sft.py`/`train_grpo.py`/`eval_lz.py` 中的 `os.environ[\"CUDA_VISIBLE_DEVICES\"]` 覆盖，避免与 `submit_training_job` 框架冲突。\n\nSFT 完成后需接续 GRPO 阶段 + eval_lz.py 评估。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-post-rl-launch.md"
+}

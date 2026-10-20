@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5075cf244fa0662ba08f",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code cleanup and ht check",
+  "task_key": "worker_code_cleanup-and-ht-check_20260521T065132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cleanup-and-ht-check_20260521T065132_result.json",
+    "occurrence": 1,
+    "bytes": 1710,
+    "sha256": "1136a9048d8d31c3ee575fc7e7a656e5376591999d82662d98afaee03d637280"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集完毕，汇总如下：\n\n---\n\n## 1. 残留进程清理\n\nPID 83304/84455 **已不存在**，无需清理。GPU 0 完全空闲（0 MiB）。\n\n当前所有 GPU 进程均为活跃任务，无 stale 进程：\n\n| GPU | 占用 | PID | 运行时间 | 进程 |\n|-----|------|-----|---------|------|\n| 0 | **0 MiB, 0%** | — | — | 空闲 |\n| 1 | 45908 MiB, 96% | 85675 | 21min | `train.py --condition clean_s4` |\n| 1 | (同上) | 88589 | 1.5min | `eval_lz.py --condition contam_15` |\n| 2 | 11003 MiB, 56% | 73689 | 2h08m | `train_grpo.py` |\n| 3 | 32990 MiB, 95% | 86223 | 21min | `train.py --condition clean_s5` |\n| 3 | (同上) | 87524 | 11min | `eval_with_ht.py --stage sft` |\n\n---\n\n## 2. HT Post-RL 分析\n\n**base 阶段已完成**，结果文件 `base_results.json`：\n- Overall: accuracy=70.2%, θ_MLE=0.095, lz*=5.97, HT_param=-0.044, HT_nonparam=0.175\n- Seen (n=2106): lz*=2.50, HT_param=-0.048, acc=70.0%\n- Unseen (n=11936): lz*=5.43, HT_param=-0.043, acc=70.3%\n\n**SFT 阶段正在跑** — PID 87524 (`eval_with_ht.py --stage sft`) 已运行 ~11 分钟。另外 `eval_lz.py --condition contam_15` (PID 88589) 也刚启动 1.5 分钟。\n\n尚无 `ht_*.json` 或 `ht_comparison.json` 输出。\n\n---\n\n## 3. GRPO 和 Seeds 训练\n\n| 任务 | 进度 | ETA | 关键指标 |\n|------|------|-----|---------|\n| **GRPO** | 55% (3866/7021) | ~1h48m | reward=0.325–0.425, entropy=1.14–1.18 |\n| **Seed 4** | 64% (599/939) | ~11min | loss=1.395, token_acc=0.631 |\n| **Seed 5** | 66% (619/939) | ~11min | loss=1.357, token_acc=0.642 |\n\n另外有两个 Mistral-7B 下载进程 (PID 72490, 72614) 已跑 2h+，可能卡住了，值得关注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cleanup-and-ht-check.md"
+}

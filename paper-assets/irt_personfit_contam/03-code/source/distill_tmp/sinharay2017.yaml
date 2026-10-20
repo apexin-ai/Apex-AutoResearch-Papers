@@ -1,0 +1,118 @@
+paper_key: "sinharay2017"
+title: "Which Statistic Should Be Used to Detect Item Preknowledge When the Set of Compromised Items Is Known?"
+venue: "Applied Psychological Measurement 2017"
+full_text_available: true
+
+research:
+  baselines:
+    - "PSS (Posterior Shift Statistic, Belov 2016)"
+    - "Ls (Signed Likelihood Ratio Test Statistic, Sinharay 2017a)"
+  metrics:
+    - {name: "truncated ROC area", direction: "higher_better"}
+    - {name: "Type I error rate", direction: "closer_to_nominal_better"}
+    - {name: "power (proportion flagged among aberrant)", direction: "higher_better"}
+  datasets:
+    - {name: "Simulated nonadaptive test (3PLM)", size: "1000 nonaberrant + 50-200 aberrant per replication, 10 replications, 100 items"}
+    - {name: "Simulated CAT (3PLM)", size: "1000 nonaberrant + 50-200 aberrant per replication, 10 replications, 50 items"}
+    - {name: "Licensure exam real data (2 forms)", size: "Form 1: 1636 examinees, 170 items; Form 2: 1644 examinees, 170 items; 87 common items; 63-64 compromised items; 46-48 flagged examinees"}
+  ablation_dimensions:
+    - "uncertainty in compromised item set (0%, 25%, 50%)"
+    - "ability distribution of aberrant examinees (N(0,1) vs U(-3,0))"
+    - "percentage of aberrant examinees (5%, 10%, 20%)"
+    - "number of compromised items (few-item study: 1-4 for CAT, 5 for nonadaptive)"
+    - "test format (nonadaptive vs CAT)"
+  training_recipe:
+    irt_model: "3-parameter logistic model (3PLM)"
+    test_lengths: "100 (nonadaptive), 50 (CAT)"
+    compromised_items_main: "26 (nonadaptive), 13 (CAT)"
+    compromised_items_few: "5 (nonadaptive), 1-4 (CAT)"
+    aberrant_response_model: "Bernoulli(p=0.9) on compromised items, 3PLM on noncompromised"
+    nonaberrant_per_replication: 1000
+    replications: 10
+    uncertainty_mechanism: "aberrant examinees divided into 10 groups; group m receives preknowledge of random (100-P)% subset of compromised items"
+    cat_selection: "maximum information criterion"
+    real_data_irt_model: "Rasch model"
+    real_data_estimation: "marginal MLE for items, WLE via Newton-Raphson for ability"
+  method_family: "person-fit / item preknowledge detection"
+
+positioning:
+  core_claim: "Ls should be preferred over PSS for detecting item preknowledge because both show near-identical detection power (avg truncated ROC 0.652 vs 0.647), but Ls has a known asymptotic N(0,1) null distribution enabling direct significance testing without simulation-based critical values."
+  key_results: "Truncated ROC areas averaged 0.647 (PSS) vs 0.652 (Ls) across all conditions; real data flagged ~33% of confirmed cheaters at alpha=0.05 for both; Ls null distribution holds with as few as 4 compromised items; PSS maximum value is grid-dependent (ranges 0.06-0.25 depending on grid specification)"
+  limitations:
+    - "Simulation limited to one set of true item parameters, specific test lengths, and 3PLM only"
+    - "Item parameters assumed known; effect of parameter estimation uncertainty not studied"
+    - "Only dichotomous items considered; polytomous and mixed-format tests not addressed"
+    - "Response time information not incorporated despite its potential value for preknowledge detection"
+    - "Belov's 7 other comparison statistics not re-examined in this study"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "Opens with concrete test fraud scandal: ETS discovered in 2002 that students in several countries were benefiting from websites showing live GRE items, with score increases of 50-100 points"
+  tension: "Belov (2016) declared PSS the best among 8 statistics for preknowledge detection, but never compared against the LRT-based Ls statistic; PSS lacks a known null distribution, making principled significance testing impossible without simulation"
+  key_insight: "Revealed in the theoretical analysis section: PSS has three fundamental weaknesses (unknown null distribution, boundary truncation yielding PSS=0 for truly aberrant examinees, and grid-dependent maximum values), while Ls avoids all three by leveraging the Neyman-Pearson framework with asymptotic N(0,1) distribution"
+  argument_chain: "real-world fraud problem -> existing best statistic (PSS) has no null distribution -> introduce Ls with known asymptotics -> demonstrate empirical equivalence via simulation (ROC) -> expose PSS pathologies (truncation, grid dependence) -> validate on real licensure data -> conclude Ls preferred on theoretical grounds per Box (1979)"
+  contribution_framing: "Single contribution framed as a comparative recommendation: the paper does not claim methodological novelty but provides the first direct comparison between the two leading statistics, concluding with a clear recommendation favoring Ls based on theoretical grounds while showing empirical parity"
+  intro_structure: "4 paragraphs: (1) problem statement with GRE fraud hook, (2) scope definition - focus on known compromised items, (3) research gap - PSS claimed best but never compared to Ls, (4) article goal and scope overview"
+  notable_technique: "Uses PSS's own computational artifacts (Figure 1 showing PSS=0 for genuinely aberrant examinees due to truncation, Table 1 showing grid-dependent maximum values) as devastating evidence against it, turning the competitor's implementation details into a narrative weapon; also invokes Box (1979) authority argument for preferring formal statistical testing"
+
+figures:
+  figure_count: 6
+  figure1:
+    type: "problem_illustration"
+    description: "Two dual-panel examples where PSS is misleadingly zero for genuinely aberrant examinees. Shows Fc(theta) and Fu(theta) posterior distributions that cross at boundary, causing the truncation sum to equal zero despite clear distribution separation."
+    narrative_role: "Demonstrates a critical flaw in PSS computation - the statistic can fail to detect clearly aberrant examinees due to an implementation artifact, undermining confidence in PSS as a detection tool"
+    design_elements: ["dual-panel layout", "line plots with dual y-axes", "logarithmic scale on right panels", "concrete counterexamples"]
+    visual_style: "Two rows of paired panels; left panels show cumulative posteriors Fc and Fu, right panels show log-scale detail; clean line plots with minimal annotation"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "scatter_plot"
+      what_compared: "PSS values vs Ls values for 1000 examinees (mix of aberrant and nonaberrant)"
+      how_gain_highlighted: "Shows strong positive correlation, establishing empirical equivalence between the two statistics"
+      design_note: "Simple scatterplot from nonadaptive test simulation; demonstrates that the two statistics rank examinees similarly"
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "Average truncated ROC areas for PSS vs Ls across uncertainty levels (0%, 25%, 50%), split by test type (nonadaptive vs CAT) and ability distribution"
+      how_gain_highlighted: "Lines for PSS and Ls nearly overlap, visually reinforcing empirical equivalence; separate panels and line styles for each condition"
+      design_note: "Dual-panel (nonadaptive left, CAT right); x-axis = uncertainty percentage; separate line styles for N(0,1) vs U(-3,0) ability distributions; circles for PSS, triangles for Ls"
+    - figure_id: "Figure 6"
+      viz_type: "line_plot"
+      what_compared: "Average truncated ROC areas for PSS vs Ls with few compromised items"
+      how_gain_highlighted: "Similar dual-panel structure to Figure 4; shows both statistics degrade similarly with fewer compromised items"
+      design_note: "Mirrors Figure 4 layout for consistency; smaller ROC areas than main study highlight the difficulty of detection with few compromised items"
+  ablation_figures:
+    - figure_id: "Figure 2"
+      viz_type: "density_plot"
+      dimensions_varied: ["examinee type (nonaberrant vs aberrant)"]
+      design_note: "Two-panel posterior distribution comparison; top panel shows nonaberrant examinee with close posteriors (PSS=0.026, Ls=0.45), bottom shows aberrant with separated posteriors (PSS=0.096, Ls=2.78); vertical lines mark ability estimates; illustrates how both statistics capture preknowledge signal"
+    - figure_id: "Figure 5"
+      viz_type: "density_plot"
+      dimensions_varied: ["number of compromised items (1-4 in CAT)"]
+      design_note: "Kernel density estimate of Ls from nonaberrant examinees overlaid with standard normal; validates the N(0,1) null approximation even with few compromised items; reports 90th/95th/99th percentiles as 1.28/1.64/2.35 matching standard normal"
+  figure_narrative_role: "Figure 1 (PSS pathology) -> Figure 2 (both statistics on example examinees) -> Figure 3 (scatterplot correlation) -> Figure 4 (main ROC comparison) -> Figure 5 (Ls null distribution validation) -> Figure 6 (few-item ROC comparison). Flow: expose PSS weakness -> illustrate both statistics -> prove equivalence -> validate Ls theory -> extend to edge cases"
+
+tables:
+  table_count: 3
+  main_result_table:
+    table_id: "Table 3"
+    row_axis: "examinee groups (not-flagged Form 1, not-flagged Form 2, flagged Form 1, flagged Form 2)"
+    col_axis: "statistic (PSS, Ls) x significance level (0.001, 0.01, 0.05)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "no explicit highlighting; values presented side-by-side for direct comparison"
+    statistical_reporting: "proportion of examinees flagged as significant at each alpha level"
+    num_baselines: 2
+    design_note: "Real data validation table; shows both statistics produce nearly identical flagging rates on licensure exam data; not-flagged rows serve as empirical Type I error check, flagged rows as power estimate; compact 4x7 layout"
+  ablation_tables:
+    - table_id: "Table 1"
+      what_varied: ["grid specification for PSS: number of ability levels (J=41 vs J=101) and ability range ({-3,3} vs {-5,5})"]
+      variation_style: "full_numbers"
+      design_note: "Exposes PSS's grid-dependence weakness; maximum PSS values range from 0.06 to 0.25 across four grid configurations; 4x3 layout with grid params as rows and examinee statistics as columns; serves as evidence against PSS rather than traditional ablation"
+    - table_id: "Table 2"
+      what_varied: ["size of compromised item set (1, 2, 3, 4 items in CAT)"]
+      variation_style: "full_numbers"
+      design_note: "Shows Ls Type I error and power with very few compromised items; Type I error rates range 0.001-0.055 (acceptable); power ranges 0.00-0.53 (improves with more items); validates Ls's null distribution even in edge cases; 4x7 layout with item count as rows"
+  supplementary_tables:
+    in_appendix: true
+    content: "R code appendix showing computation of both Ls and PSS for two examinees under the Rasch model, using the irtoys package; includes log-likelihood functions, MLE computation, and step-by-step PSS calculation with J=101 ability levels from -5 to +5"
+    reason: "Reproducibility and practical implementation guide; keeps main text focused on conceptual comparison rather than computational details"

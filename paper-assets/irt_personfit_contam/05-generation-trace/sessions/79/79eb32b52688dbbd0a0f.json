@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79eb32b52688dbbd0a0f",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code ssh probe 35694",
+  "task_key": "worker_code_ssh-probe-35694_20260521T130840",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ssh-probe-35694_20260521T130840_result.json",
+    "occurrence": 1,
+    "bytes": 3511,
+    "sha256": "55ead25c08e02826deadb85a727c0e9a55d75b19418862b0ec7fb82087a170dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-35694 全面状态报告\n\n### 1. GPU 状态\n\n| GPU | 显存占用 | 利用率 | PID | 进程 |\n|-----|---------|--------|-----|------|\n| 0 | 20,871 / 97,887 MiB (21%) | 97% | 143378 | Llama train.py (clean_s8/s9/s10 之一) |\n| 1 | 28,807 / 97,887 MiB (29%) | 96% | 143458 | Llama train.py |\n| 2 | 10,913 / 97,887 MiB (11%) | 83% | 141866 | GRPO v3 (train_grpo.py --gpu 2) |\n| 3 | 25,977 / 97,887 MiB (27%) | 82% | 143599 | Llama train.py |\n\n4 卡全部在用，无空闲 GPU。\n\n### 2. GRPO v3\n\n- **状态**: RUNNING, step **428/3000** (14.3%)\n- **速度**: ~3.0-3.5 s/step\n- **预计剩余**: ~2 小时\n- **tmux session**: `exp-post-rl-v3`\n- **SFT checkpoint**: 存在于 `checkpoints/sft/`\n- **GRPO checkpoint**: `checkpoints/grpo/` **为空**，尚无中间 checkpoint\n- **最近 reward**: 在 -0.025 ~ 0.775 间波动，entropy ~1.6-1.7\n\n### 3. Llama 训练 (`ctrl_contam_llama`)\n\n| 条件 | 训练状态 | 完整 Checkpoint | Eval 结果 |\n|------|---------|----------------|----------|\n| clean (s1) | DONE | adapter_config + safetensors | clean_results.json |\n| clean_s2 | DONE | adapter_config + safetensors | clean_s2_results.json |\n| clean_s3 | DONE | adapter_config + safetensors | clean_s3_results.json |\n| clean_s4 | DONE | adapter_config + safetensors | clean_s4_results.json |\n| clean_s5 | DONE | adapter_config + safetensors | clean_s5_results.json |\n| clean_s6 | DONE | adapter_config + safetensors | clean_s6_results.json |\n| clean_s7 | DONE | adapter_config + safetensors | clean_s7_results.json |\n| **clean_s8** | **RUNNING ~30%** (289/939) | checkpoint-313 only | 无 |\n| **clean_s9** | **RUNNING ~31%** (290/939) | checkpoint-313 only | 无 |\n| **clean_s10** | **RUNNING ~31%** (290/939) | checkpoint-313 only | 无 |\n| contam_15 | DONE | adapter_config + safetensors | contam_15_results.json |\n| contam_50 | DONE | adapter_config + safetensors | contam_50_results.json |\n\ns8/s9/s10 速度 ~1.1 s/step，剩余 ~650 steps，预计 **~12 分钟**完成。\n\n### 4. Mistral 训练 (`ctrl_contam_mistral`)\n\n| 条件 | 训练状态 | 完整 Checkpoint | Eval 结果 |\n|------|---------|----------------|----------|\n| clean (s1) | DONE | adapter_config + safetensors | clean_results.json |\n| clean_s2 | DONE | adapter_config + safetensors | clean_s2_results.json |\n| clean_s3 | DONE | adapter_config + safetensors | clean_s3_results.json |\n| contam_15 | DONE | adapter_config + safetensors | contam_15_results.json |\n| contam_50 | DONE | adapter_config + safetensors | contam_50_results.json |\n\nMistral 全部完成且已 eval。\n\n### 5. Pilot / Qwen (`ctrl_contam_pilot`)\n\n全部完成：clean_s1~s10、contam_15、contam_50，均已 eval（含 cohens_d_n10.json 汇总）。\n\n### 6. 活跃/Zombie 进程\n\n**活跃进程**（4 个训练）:\n- PID 141866: GRPO v3 (GPU 2)\n- PID 143378: Llama training (GPU 0)\n- PID 143458: Llama training (GPU 1)\n- PID 143599: Llama training (GPU 3)\n- PID 144524/144525: train.py --condition clean_s8\n- PID 144729/144730: train.py --condition clean_s9\n- PID 144828/144830: train.py --condition clean_s10\n\n**旧 PID 全部 DEAD**: 97791, 99214, 99807, 96745, 98622 — 无 zombie。\n\n### 7. 已完成未 eval 模型清单\n\n**当前所有已完成训练的模型均已 eval**，无遗漏。\n\n待 eval（训练完成后需要跑 eval）：\n- Llama **clean_s8**, **clean_s9**, **clean_s10** — 约 12 分钟后训练完成\n- GRPO v3 — 约 2 小时后训练完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ssh-probe-35694.md"
+}

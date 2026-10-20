@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.0",
+  "id": "692ce2bb2e392b484371",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "code post rl prep",
+  "task_key": "worker_code_post-rl-prep_20260521T023630",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_post-rl-prep_20260521T023630.log",
+    "occurrence": 1,
+    "bytes": 1500955,
+    "sha256": "e3e2c024b1058e267d0587f9a821cc162f85edc87c515a530306b0c802a37800"
+  },
+  "statistics": {
+    "messages": 860,
+    "user_turns": 3,
+    "tool_calls": 319,
+    "roles": {
+      "log": 1,
+      "system": 74,
+      "record": 1,
+      "assistant": 142,
+      "tool_call": 319,
+      "tool_result": 319,
+      "user": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 12,
+      "chunks": [
+        {
+          "path": "692ce2bb2e392b484371-part-0001.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 120,
+      "chunks": [
+        {
+          "path": "692ce2bb2e392b484371-part-0001.json",
+          "message_count": 120
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 521,
+      "chunks": [
+        {
+          "path": "692ce2bb2e392b484371-part-0001.json",
+          "message_count": 48
+        },
+        {
+          "path": "692ce2bb2e392b484371-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "692ce2bb2e392b484371-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "692ce2bb2e392b484371-part-0004.json",
+          "message_count": 113
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 207,
+      "chunks": [
+        {
+          "path": "692ce2bb2e392b484371-part-0004.json",
+          "message_count": 67
+        },
+        {
+          "path": "692ce2bb2e392b484371-part-0005.json",
+          "message_count": 140
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-post-rl-prep.md"
+}

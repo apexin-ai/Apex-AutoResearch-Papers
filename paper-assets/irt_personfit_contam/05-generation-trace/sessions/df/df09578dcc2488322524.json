@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df09578dcc2488322524",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code exp post rl grpo",
+  "task_key": "worker_code_exp-post-rl-grpo_20260521T044223",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-post-rl-grpo_20260521T044223_result.json",
+    "occurrence": 1,
+    "bytes": 296,
+    "sha256": "a12a6acdd5197228392acdec67e6e69b1a47bbf0552a42640e9221a7033d07bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GRPO 训练已启动，registry 已更新。\n\n**总结**：\n- GRPO 训练在 cuda:2 运行中（PID 73684）\n- SFT LoRA adapter 已成功加载并 merge 到 base model\n- 7021 training steps，~1.92s/step，预计约 **3.7 小时**完成\n- 日志路径：`/tmp/grpo_train.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-post-rl-grpo.md"
+}

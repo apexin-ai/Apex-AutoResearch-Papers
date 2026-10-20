@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42824c8583c3d33fa2f7",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code exp 4pl ablation",
+  "task_key": "worker_code_exp-4pl-ablation_20260520T130416",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-4pl-ablation_20260520T130416_result.json",
+    "occurrence": 1,
+    "bytes": 886,
+    "sha256": "8d0dbe891fe0cb061f90946e3b033c8e90671cf85133106aaecc4e931277bca6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。核心结果：\n\n**4PL vs 3PL — hypothesis confirmed**：d 参数显著提升检测灵敏度。\n\n| Benchmark | 平均 power 增益 | 最大 power 增益 |\n|-----------|----------------|----------------|\n| MMLU | +27.3pp | +49.0pp |\n| HellaSwag | +26.1pp | +59.6pp |\n| GSM8K | +20.3pp | +39.7pp |\n| ARC_C | +14.8pp | +54.6pp |\n| HumanEval | +13.7pp | +30.6pp |\n\n**校准验证**：4PL FAR ≈ 5%（正确校准），3PL FAR 略偏高（4.7–16.5%），2PL FAR 灾难性膨胀（50–100%，c=0.25 的固定假设完全不成立，power 数值无意义）。\n\n**d-bucket 分析**：d < 0.8 的 items 上 4PL 优势最大（MMLU +61pp, HellaSwag +58pp），d ≥ 0.95 时差异可忽略 — 证实 d 参数捕捉的 ceiling effect 是检测力提升的关键来源。\n\n产出文件在 `artifacts/4pl_ablation/`，共 7 个文件已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-4pl-ablation.md"
+}

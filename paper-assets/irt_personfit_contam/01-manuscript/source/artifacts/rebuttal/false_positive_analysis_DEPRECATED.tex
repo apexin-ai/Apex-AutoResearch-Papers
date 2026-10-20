@@ -1,0 +1,82 @@
+% False Positive Rate Analysis for lz* on Clean (Uncontaminated) Models
+% Generated: 2026-05-24
+
+%% ============================================================
+%% Table 1: False Positive Rate Summary
+%% ============================================================
+\begin{table}[h]
+\centering
+\caption{False positive rates of $\ell_z^*$ on clean (uncontaminated) models across multiple random seeds. A false positive occurs when a clean model's $\ell_z^*$ falls below the critical threshold, incorrectly flagging it as contaminated.}
+\label{tab:fpr}
+\begin{tabular}{lccccc}
+\toprule
+Model & $n$ & Mean $\ell_z^*$ (SD) & FPR ($\alpha$=0.05) & FPR ($\alpha$=0.01) & FPR ($\alpha$=0.001) \\
+\midrule
+Qwen2.5-7B  & 10 & 8.68 (0.74) & 0/10 (0\%) & 0/10 (0\%) & 0/10 (0\%) \\
+Llama-3.1-8B & 10 & 0.26 (1.54) & 1/10 (10\%) & 0/10 (0\%) & 0/10 (0\%) \\
+Mistral-7B  & 6  & 3.40 (2.43) & 0/6 (0\%) & 0/6 (0\%) & 0/6 (0\%) \\
+\midrule
+\textbf{Overall} & \textbf{26} & \textbf{4.23 (3.87)} & \textbf{1/26 (3.8\%)} & \textbf{0/26 (0\%)} & \textbf{0/26 (0\%)} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%% ============================================================
+%% Table 2: Individual lz* Values (Audit)
+%% ============================================================
+\begin{table}[h]
+\centering
+\caption{Individual $\ell_z^*$ values for all clean model seeds. Critical thresholds: $-1.96$ ($\alpha$=0.05), $-2.58$ ($\alpha$=0.01), $-3.00$ ($\alpha$=0.001).}
+\label{tab:lz_individual}
+\small
+\begin{tabular}{llr}
+\toprule
+Model & Seed & $\ell_z^*$ \\
+\midrule
+Qwen2.5-7B & s1  & 9.47 \\
+Qwen2.5-7B & s2  & 7.05 \\
+Qwen2.5-7B & s3  & 9.53 \\
+Qwen2.5-7B & s4  & 8.97 \\
+Qwen2.5-7B & s5  & 8.53 \\
+Qwen2.5-7B & s6  & 8.24 \\
+Qwen2.5-7B & s7  & 8.77 \\
+Qwen2.5-7B & s8  & 9.11 \\
+Qwen2.5-7B & s9  & 9.01 \\
+Qwen2.5-7B & s10 & 8.15 \\
+\midrule
+Llama-3.1-8B & s1  & 0.84 \\
+Llama-3.1-8B & s2  & $-1.88$ \\
+Llama-3.1-8B & s3  & 0.35 \\
+Llama-3.1-8B & s4  & 0.02 \\
+Llama-3.1-8B & s5  & 1.73 \\
+Llama-3.1-8B & s6  & 2.85 \\
+Llama-3.1-8B & s7  & $-0.40$ \\
+Llama-3.1-8B & s8  & 1.17 \\
+Llama-3.1-8B & s9  & 0.19 \\
+Llama-3.1-8B & s10 & $-2.25$\textsuperscript{*} \\
+\midrule
+Mistral-7B & s1  & 5.42 \\
+Mistral-7B & s2  & $-1.05$ \\
+Mistral-7B & s3  & 3.28 \\
+Mistral-7B & s8  & 5.80 \\
+Mistral-7B & s9  & 3.52 \\
+Mistral-7B & s10 & 3.42 \\
+\bottomrule
+\multicolumn{3}{l}{\textsuperscript{*} Below $\alpha$=0.05 threshold ($-1.96$), above $\alpha$=0.01 threshold ($-2.58$).}
+\end{tabular}
+\end{table}
+
+%% ============================================================
+%% Analysis Text (for inclusion in paper body or rebuttal)
+%% ============================================================
+
+% Suggested paragraph:
+% Across 26 clean model instances (10 Qwen, 10 Llama, 6 Mistral seeds trained without
+% any benchmark exposure), the overall false positive rate of $\ell_z^*$ is 3.8\% at
+% $\alpha=0.05$ (1/26 seeds), and exactly 0\% at both $\alpha=0.01$ and $\alpha=0.001$.
+% The single borderline case (Llama seed 10, $\ell_z^* = -2.25$) falls between the 0.05
+% and 0.01 thresholds, consistent with the expected Type I error rate under the null.
+% Clean models' $\ell_z^*$ values are overwhelmingly positive (mean = 4.23, SD = 3.87),
+% indicating that uncontaminated models exhibit response patterns well within IRT model
+% expectations---demonstrating that $\ell_z^*$ does not systematically produce false
+% contamination alarms.

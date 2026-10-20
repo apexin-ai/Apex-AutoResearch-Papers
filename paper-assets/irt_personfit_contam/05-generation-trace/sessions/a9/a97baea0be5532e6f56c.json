@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "a97baea0be5532e6f56c",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "paper investigate mistral d15 and fix",
+  "task_key": "worker_paper_investigate-mistral-d15-and-fix_20260524T065337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_investigate-mistral-d15-and-fix_20260524T065337.log",
+    "occurrence": 1,
+    "bytes": 834203,
+    "sha256": "7b122a0efbc3c6130b1266747a7ad0252276a897d552acc423ac4795b0280e1b"
+  },
+  "statistics": {
+    "messages": 328,
+    "user_turns": 1,
+    "tool_calls": 120,
+    "roles": {
+      "log": 1,
+      "system": 18,
+      "record": 1,
+      "assistant": 66,
+      "tool_call": 120,
+      "tool_result": 120,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 120,
+      "chunks": [
+        {
+          "path": "a97baea0be5532e6f56c-part-0001.json",
+          "message_count": 120
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 208,
+      "chunks": [
+        {
+          "path": "a97baea0be5532e6f56c-part-0001.json",
+          "message_count": 60
+        },
+        {
+          "path": "a97baea0be5532e6f56c-part-0002.json",
+          "message_count": 148
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-investigate-mistral-d15-and-fix.md"
+}

@@ -1,0 +1,200 @@
+paper_key: "psnirt2026"
+title: "Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory"
+venue: "AAAI 2026 Oral"
+full_text_available: true
+
+research:
+  baselines:
+    - "IRT 4PL (MLE)"
+    - "IRT 4PL (MCMC)"
+    - "IRT 4PL (VI)"
+    - "IRT 4PL (VIBO)"
+    - "Deep-IRT (1PL)"
+  metrics:
+    - {name: "ACC (prediction accuracy)", direction: "higher_better"}
+    - {name: "F1", direction: "higher_better"}
+    - {name: "ROC AUC", direction: "higher_better"}
+    - {name: "Kendall's tau (rank stability)", direction: "higher_better"}
+    - {name: "LEH score (Local Efficiency Headroom)", direction: "higher_better"}
+    - {name: "Fisher information", direction: "higher_better"}
+  datasets:
+    - {name: "ARC-C", size: "part of 41,871 items", domain: "general"}
+    - {name: "BBH", size: "part of 41,871 items", domain: "general"}
+    - {name: "HellaSwag", size: "part of 41,871 items", domain: "general"}
+    - {name: "MMLU", size: "part of 41,871 items", domain: "general"}
+    - {name: "GSM8K", size: "part of 41,871 items", domain: "math"}
+    - {name: "MATH", size: "part of 41,871 items", domain: "math"}
+    - {name: "HumanEval", size: "part of 41,871 items", domain: "code"}
+    - {name: "MBPP", size: "part of 41,871 items", domain: "code"}
+    - {name: "GPQA Diamond", size: "part of 41,871 items", domain: "science"}
+    - {name: "TheoremQA", size: "part of 41,871 items", domain: "science"}
+    - {name: "Chinese SimpleQA", size: "part of 41,871 items", domain: "knowledge"}
+  ablation_dimensions:
+    - "input representation (one-hot vs semantic embeddings)"
+    - "architecture (MLP vs GNN)"
+    - "IRT parameterization (1PL vs 2PL vs 3PL vs 4PL)"
+    - "estimation method (MLE vs MCMC vs VI vs VIBO vs neural)"
+    - "data subset size for stability (30% vs 50% vs 70%)"
+    - "item selection strategy (random vs clustering vs discriminability vs Fisher)"
+    - "item subset size (400 vs 1000)"
+  training_recipe:
+    optimizer: "Adam"
+    lr: 0.003
+    weight_decay: 0.0001
+    batch_size: 512
+    early_stopping_patience: 5
+    fixed_training_epochs: 30
+    hardware: "Single NVIDIA A800-80G GPU"
+    data_split: "60/20/20 train/val/test"
+    input_encoding: "one-hot for both model and item identifiers"
+    architecture: "3-layer FC + ReLU per pathway"
+    loss: "binary cross-entropy"
+  method_family: "IRT for LLM evaluation"
+  models_as_examinees:
+    strong:
+      - "360GPT2-Pro"
+      - "DeepSeek-V3"
+      - "Doubao-pro"
+      - "Gemini-1.5"
+      - "Hunyuan-Turbo"
+      - "Moonshot-v1"
+      - "Qwen-Plus"
+      - "Yi-Lightning"
+    weak:
+      - "Gemma-2B-it"
+      - "Mistral-7B-Instruct-v0.1"
+      - "Qwen2.5-3B-Instruct"
+      - "Vicuna-7B-v1.3"
+
+positioning:
+  core_claim: "A neural IRT framework (PSN-IRT) with pseudo-Siamese architecture achieves superior parameter estimation for LLM benchmarks, revealing systematic quality deficiencies in 11 major benchmarks and enabling efficient evaluation through Fisher-information-guided item selection."
+  key_results: "PSN-IRT: ACC=0.7998, F1=0.8538, AUC=0.8485, Kendall tau=1.0000 (perfect rank reliability, vs 0.9697 for all classical methods and Deep-IRT). Fisher-selected 1000 items achieve Kendall tau=0.9048 for strong-model ranking vs 0.2381 for full benchmark."
+  limitations:
+    - "PSN-IRT requires retraining when new items or models are added (parameters are specific to training data)"
+    - "Only 12 models used as examinees, limiting generalizability of benchmark quality conclusions"
+    - "No formal limitations section; limitations implied in ablation discussion"
+    - "Semantic embeddings and GNN variants underperform, suggesting architecture sensitivity"
+    - "Benchmark quality analysis based on a specific set of models; conclusions may shift with different model populations"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "As the scale and performance of LLMs continue to grow, accurately measuring their capabilities has become increasingly important — opening with the urgency of the evaluation crisis."
+  tension: "Existing benchmarks produce inconsistent rankings across leaderboards and fail to separate top models meaningfully. Traditional IRT methods struggle with the complexity and scale of modern LLM evaluation data (41,871 items x 12 models)."
+  key_insight: "A dual-pathway neural network can jointly estimate model ability and 4-parameter item characteristics end-to-end, bypassing iterative classical estimation. The key finding is that no benchmark excels on all measurement properties simultaneously, and Fisher-information-guided item selection from existing benchmarks outperforms using all items."
+  argument_chain: "ranking inconsistency problem → IRT as principled measurement framework → classical IRT estimation limitations → PSN-IRT neural architecture → validation on prediction accuracy + rank stability → 5 benchmark quality findings (difficulty ceiling, saturation, contamination, flawed design, no simultaneous excellence) → efficient benchmarking via Fisher-selected subsets → better human-preference alignment with fewer items"
+  contribution_framing: "Three numbered contributions: (1) framework with 'superior estimation accuracy and reliability', (2) 'in-depth analysis' of 11 benchmarks revealing 'deficiencies in many aspects', (3) item selection leading to 'model rankings that better align with human preference'. Emphasizes both methodological novelty and practical impact."
+  intro_structure: "7 paragraphs: (1) importance of LLM evaluation, (2) concrete problem illustration via Figure 1 showing leaderboard inconsistencies, (3) IRT motivation as measurement theory solution, (4) PSN-IRT proposal, (5) experimental scope (12 LLMs, 11 benchmarks, 41,871 items), (6) three key findings preview, (7) formal contribution list."
+  notable_technique: "Uses Figure 1 as a 'show-don't-tell' evidence of the problem — a screenshot from OpenCompass leaderboard showing ranking contradictions — before introducing the solution. This grounds the motivation in observable, relatable experience rather than abstract claims. The 5 key findings are presented as numbered discoveries, each with a memorable label (e.g., 'insufficient difficulty ceiling', 'widespread saturation'), making complex psychometric analysis accessible."
+
+figures:
+  figure_count: 5  # main text; 2 more in appendix = 7 total
+  figure1:
+    type: "problem_illustration"
+    description: "Screenshot from OpenCompass leaderboard illustrating weak separability and ranking inconsistencies across LLM benchmarks. Shows how the same models produce substantially different rankings across different benchmark suites."
+    narrative_role: "Grounds the motivation in concrete, observable evidence before any formalism. Makes the reader immediately see the problem the paper solves."
+    design_elements: ["real leaderboard screenshot", "ranking comparison", "concrete model names", "visual inconsistency evidence"]
+    visual_style: "Leaderboard screenshot with annotations highlighting ranking discrepancies. Real-world artifact rather than synthetic diagram."
+  figure2:
+    type: "method_overview"
+    description: "PSN-IRT architecture diagram showing the pseudo-Siamese dual-pathway design. Left pathway processes one-hot model identifiers through 3 FC+ReLU layers to estimate ability theta. Right pathway processes item identifiers through parallel architecture to estimate 4 parameters (a,b,c,d). Central logistic calculation layer combines via 4PL formula P(X=1|theta)=c+(d-c)/(1+exp(-a(theta-b)))."
+    narrative_role: "Core method visualization — the single diagram that conveys the entire technical contribution."
+    design_elements: ["dual pathway layout", "parameter labels (theta, a, b, c, d)", "4PL formula box", "FC layer blocks", "input to output flow arrows"]
+    visual_style: "Clean architecture diagram with two symmetric pathways converging at a central computation layer. Block-and-arrow style typical of neural architecture figures."
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "distribution_plots (box/violin)"
+      what_compared: "Item-level property distributions (difficulty, discriminability, guessing-rate, feasibility, LEH, Fisher info) across all 11 benchmarks"
+      how_gain_highlighted: "Shows heterogeneity across benchmarks — no single benchmark excels on all dimensions. Reveals saturation (low LEH), contamination signals (high guessing), and design flaws (low feasibility)."
+      design_note: "Multi-panel layout with one subplot per IRT property, benchmarks on x-axis. Enables rapid cross-benchmark comparison of measurement quality. This single figure carries most of the paper's analytical findings."
+    - figure_id: "Figure 4 (appendix)"
+      viz_type: "scatter_plot"
+      what_compared: "Relationship between item difficulty (x-axis) and discriminability (y-axis) across 11 benchmarks"
+      how_gain_highlighted: "Reveals inverted-U relationship: items at extreme difficulty (very easy or very hard) have low discriminability, supporting the argument for balanced difficulty distributions."
+      design_note: "Per-benchmark scatter plots showing difficulty-discriminability correlation patterns. Supports the 'insufficient difficulty ceiling' finding with visual evidence."
+  ablation_figures:
+    - figure_id: "Figure 5 (appendix)"
+      viz_type: "qualitative_comparison"
+      dimensions_varied: ["difficulty (high vs low)", "discriminability (high vs low)", "guessing-rate (high vs low)", "feasibility (high vs low)"]
+      design_note: "Case study format showing real benchmark items exemplifying extreme values for each IRT parameter. Provides interpretability — connects abstract parameters to concrete question characteristics. Structured as parameter x (high/low) grid with actual item text."
+  figure_narrative_role: "Figure 1 (problem evidence) → Figure 2 (method architecture) → Figure 3 (main analytical results as distributions) → Figure 4 (appendix: difficulty-discriminability relationship) → Figure 5 (appendix: interpretability case studies). Progression from problem → solution → analysis → deep dive → interpretability."
+
+tables:
+  table_count: 8  # 6 main text + 2 appendix
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "methods (6 IRT estimation approaches)"
+    col_axis: "metrics (ACC, F1, AUC, Kendall tau)"
+    row_organization: "by_category"  # classical methods first (MLE, MCMC, VI, VIBO), then neural (Deep-IRT, PSN-IRT)
+    col_organization: "flat"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "single run point estimates (no std reported)"
+    num_baselines: 5
+    design_note: "Compact 6-row table. Key differentiator is the Kendall tau column where PSN-IRT achieves 1.0000 (perfect) vs 0.9697 or lower for all others. Also includes IRT parameterization (1PL vs 4PL) as a column, showing PSN-IRT uniquely combines 4PL with neural estimation."
+    exact_values:
+      MLE_4PL: {ACC: 0.7211, F1: 0.8034, AUC: 0.7012, Kendall: 0.9697}
+      MCMC_4PL: {ACC: 0.7070, F1: 0.7811, AUC: 0.7278, Kendall: 0.9697}
+      VI_4PL: {ACC: 0.7201, F1: 0.8015, AUC: 0.6940, Kendall: 0.9091}
+      VIBO_4PL: {ACC: 0.7188, F1: 0.8007, AUC: 0.7055, Kendall: 0.9697}
+      DeepIRT_1PL: {ACC: 0.7974, F1: 0.8516, AUC: 0.8519, Kendall: 0.9697}
+      PSNIRT_4PL: {ACC: 0.7998, F1: 0.8538, AUC: 0.8485, Kendall: 1.0000}
+  overview_table:
+    table_id: "Table 1"
+    content: "Overview of 11 benchmarks: size, domain, evaluation metric, format"
+    design_note: "Sets up the experimental scope. Standard dataset overview table."
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["input representation (one-hot vs semantic embedding)", "architecture (MLP vs GNN)"]
+      variation_style: "full_numbers"
+      design_note: "3-row ablation showing PSN-IRT > +Embedding > +GNN. Clear demonstration that simpler representations outperform, with GNN especially hurting Kendall tau (0.7273 vs 1.0000)."
+      exact_values:
+        PSN_IRT: {ACC: 0.7998, F1: 0.8538, AUC: 0.8485, Kendall: 1.0000}
+        plus_Embedding: {ACC: 0.7808, F1: 0.8413, AUC: 0.8310, Kendall: 0.9394}
+        plus_GNN: {ACC: 0.7928, F1: 0.8490, AUC: 0.8197, Kendall: 0.7273}
+    - table_id: "Table 4"
+      what_varied: ["data subset proportion (30%, 50%, 70%)"]
+      variation_style: "full_numbers"
+      design_note: "Stability analysis via Pearson correlations between subset and full-data parameter estimates. All correlations 0.74-0.95 with p<0.0001. Shows parameter estimation is robust to data sampling."
+      exact_values:
+        subset_30pct: {difficulty: 0.9009, discriminability: 0.8186, guessing: 0.8274, feasibility: 0.9025}
+        subset_50pct: {difficulty: 0.7437, discriminability: 0.7835, guessing: 0.8776, feasibility: 0.9330}
+        subset_70pct: {difficulty: 0.9519, discriminability: 0.7414, guessing: 0.8320, feasibility: 0.9442}
+  benchmark_quality_table:
+    table_id: "Table 5"
+    content: "Benchmark quality ranking by cumulative property scores across difficulty, discriminability, guessing, feasibility, LEH, Fisher info"
+    row_axis: "benchmarks (11)"
+    col_axis: "property quality ranks + total score"
+    highlight_strategy: "ranking by total score (lower = better)"
+    design_note: "Novel contribution — the first systematic quality ranking of LLM benchmarks using psychometric criteria. Chinese SimpleQA (23) ranks best; ARC-C (49) ranks worst."
+    rankings:
+      - {benchmark: "Chinese SimpleQA", score: 23}
+      - {benchmark: "TheoremQA", score: 29}
+      - {benchmark: "MBPP", score: 31}
+      - {benchmark: "MATH", score: 31}
+      - {benchmark: "GPQA Diamond", score: 32}
+      - {benchmark: "BBH", score: 38}
+      - {benchmark: "MMLU", score: 40}
+      - {benchmark: "GSM8K", score: 40}
+      - {benchmark: "HumanEval", score: 40}
+      - {benchmark: "HellaSwag", score: 43}
+      - {benchmark: "ARC-C", score: 49}
+  item_selection_table:
+    table_id: "Table 6"
+    content: "Item selection strategy comparison using Benchmark Agreement Testing (BAT)"
+    row_axis: "strategies (random, clustering, discriminability, Fisher) x sizes (400, 1000)"
+    col_axis: "Kendall tau with/without weak models"
+    design_note: "Key result: Fisher info selection at 1000 items achieves 0.9048 Kendall tau without weak models, vs 0.2381 for full benchmark. Demonstrates that fewer, better-selected items dramatically improve strong-model ranking."
+    exact_values:
+      all_items: {with_weak: 0.6444, without_weak: 0.2381}
+      random_400: {with_weak: 0.6444, without_weak: 0.2381}
+      clustering_400: {with_weak: 0.6000, without_weak: 0.1429}
+      discriminability_400: {with_weak: 0.5556, without_weak: 0.2381}
+      fisher_400: {with_weak: 0.6889, without_weak: 0.7143}
+      random_1000: {with_weak: 0.6444, without_weak: 0.2381}
+      clustering_1000: {with_weak: 0.6444, without_weak: 0.2381}
+      discriminability_1000: {with_weak: 0.6000, without_weak: 0.3813}
+      fisher_1000: {with_weak: 0.6889, without_weak: 0.9048}
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 7: Full IRT parameter comparison across 1PL-4PL with all estimation methods. Table 8: Detailed per-benchmark average item property statistics (difficulty, discriminability, guessing-rate, feasibility values for each of 11 benchmarks)."
+    reason: "Table 7 is comprehensive parametric sweep too large for main text. Table 8 provides raw statistical backing for the distributional analysis in Figure 3 and the quality ranking in Table 5."

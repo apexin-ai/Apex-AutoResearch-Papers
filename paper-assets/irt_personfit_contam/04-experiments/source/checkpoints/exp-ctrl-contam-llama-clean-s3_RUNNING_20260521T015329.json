@@ -1,0 +1,36 @@
+{
+  "exp_id": "exp-ctrl-contam-llama-clean-s3",
+  "project": "irt_personfit_contam",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T23:18:06.724Z",
+    "updated_at": "2026-05-21T01:53:29.026Z",
+    "hypothesis": "Third independent clean Llama-3.1-8B-Instruct baseline (seed=456) for Cohen's d variance estimation: matches Qwen n=3 protocol for cross-family effect size comparison",
+    "parent": "exp-ctrl-contam-llama",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export WANDB_MODE=disabled && cd /root/autodl-tmp/ctrl_contam_llama && python train.py --condition clean_s3 --gpu 0\"",
+      "server": "westd-35694",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "50763",
+      "log_path": "~/runs/irt_personfit_contam/exp-ctrl-contam-llama-clean-s3.log",
+      "submitted_at": "2026-05-20T23:22:27.017Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/ctrl_contam_llama/data/clean_s3/train.jsonl",
+      "data_count": "5000",
+      "model_name": "Llama-3.1-8B-Instruct (QLoRA r=16 alpha=32)",
+      "seed": "456",
+      "checkpoint_source": "meta-llama/Llama-3.1-8B-Instruct",
+      "eval_data": "mmlu_items.json + mmlu_params.csv (4PL IRT parameters)"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T01:53:29.082188+00:00",
+  "trigger": "update_registry"
+}

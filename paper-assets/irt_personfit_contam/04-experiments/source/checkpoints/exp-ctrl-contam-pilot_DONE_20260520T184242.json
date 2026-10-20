@@ -1,0 +1,53 @@
+{
+  "exp_id": "exp-ctrl-contam-pilot",
+  "project": "irt_personfit_contam",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T13:54:01.818Z",
+    "updated_at": "2026-05-20T18:42:42.207Z",
+    "hypothesis": "Controlled contamination via QLoRA fine-tuning on MMLU items produces measurable Δlz* signal: (1) clean-vs-clean Δlz* ≈ 0 (seed1 vs seed2), confirming the noise floor; (2) 15% contamination produces significant negative Δlz* with Cohen's d > 1.0; (3) 50% contamination produces even stronger signal; (4) contamination signal concentrates on seen items (memorization fraction > 0.5)",
+    "spec": {
+      "command": "python train.py --condition {clean_s1,clean_s2,contam_15,contam_50} --gpu {0,1,2,3}",
+      "server": "westd-35694",
+      "data_path": "/root/autodl-tmp/ctrl_contam_pilot/data/{clean_s1,clean_s2,contam_15,contam_50}/train.jsonl",
+      "data_count": "clean_s1=5000, clean_s2=5000, contam_15=7106, contam_50=12021",
+      "model_name": "Qwen/Qwen2.5-7B-Instruct (QLoRA r=16 alpha=32)",
+      "seed": "clean_s1=42, clean_s2=123, contam_15=42, contam_50=42",
+      "checkpoint_source": "Qwen/Qwen2.5-7B-Instruct base model via ModelScope",
+      "eval_data": "mmlu_items.json + mmlu_params.csv (4PL IRT parameters)",
+      "training_config": {
+        "method": "QLoRA SFT",
+        "quantization": "4bit nf4",
+        "lora_r": 16,
+        "lora_alpha": 32,
+        "target_modules": [
+          "q_proj",
+          "k_proj",
+          "v_proj",
+          "o_proj"
+        ],
+        "batch_size": 4,
+        "grad_accum": 4,
+        "lr": 0.0002,
+        "epochs": 3,
+        "max_length": 512
+      },
+      "gpu_info": "4x RTX PRO 6000 Blackwell 96GB",
+      "tmux_sessions": [
+        "exp-ctrl-contam-pilot-clean-s1 (GPU0)",
+        "exp-ctrl-contam-pilot-clean-s2 (GPU1)",
+        "exp-ctrl-contam-pilot-contam-15 (GPU2)",
+        "exp-ctrl-contam-pilot-contam-50 (GPU3)"
+      ]
+    },
+    "checkpoint_path": "/root/autodl-tmp/ctrl_contam_pilot/checkpoints/",
+    "log_path": "/root/autodl-tmp/ctrl_contam_pilot/results/",
+    "conclusion": "success",
+    "completed_at": "2026-05-20T18:42:42.207Z"
+  },
+  "timestamp": "2026-05-20T18:42:42.247846+00:00",
+  "trigger": "update_registry"
+}

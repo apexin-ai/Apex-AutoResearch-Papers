@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "088f3a4d73cd92e93a20",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code fill 35694 3gpu now",
+  "task_key": "worker_code_fill-35694-3gpu-now_20260521T103650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fill-35694-3gpu-now_20260521T103650_result.json",
+    "occurrence": 1,
+    "bytes": 885,
+    "sha256": "bda67c79c817c0d1acd3dcf8f8ba7b6ed39c46aee41fb689fd904f5582c5fc3d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个训练都在顺利推进：\n- **contam_15** (GPU 3): 276/948 steps (29%), ~12 分钟剩余\n- **clean_s2** (GPU 1): 125/939 steps (13%), ~13 分钟剩余\n\n---\n\n## 当前状态汇总\n\n### 4/4 GPU 全部在用\n\n| GPU | 任务 | 进度 |\n|-----|------|------|\n| 0 | pilot clean_s10 eval (MMLU 14K items) | 运行中，预计 1-2h |\n| 1 | ARC-C clean_s2 train | 13% (125/939 steps) |\n| 2 | GRPO training（原有） | 持续运行 |\n| 3 | ARC-C contam_15 train | 29% (276/948 steps) |\n\n### 已收集结果\n\n**MIA SFT 结果：**\n- loss AUC-ROC = 0.592\n- min_k_10 AUC-ROC = 0.611（最优）\n- min_k_pp_10 AUC-ROC = 0.569\n\n**ARC-C clean_s1 eval：**\n- acc_overall = 0.8949\n- theta_MLE = 0.6872\n- lz* = -5.5107\n\n### 待办\n- s10 eval 完成后 → GPU 0 启动 ARC-C contam_50 训练\n- contam_15 和 clean_s2 训练各约 12-15 分钟完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fill-35694-3gpu-now.md"
+}

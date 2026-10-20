@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5bcabbacd65cbebc6a0b",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code collect mistral s8s10 eval",
+  "task_key": "worker_code_collect-mistral-s8s10-eval_20260521T152257",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_collect-mistral-s8s10-eval_20260521T152257_result.json",
+    "occurrence": 1,
+    "bytes": 107,
+    "sha256": "f18e50be64e9fbe629fb00e872ff1d25b0bbcc7c8db820e6455ea0b086b88aa2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个 eval 进程正在运行，各处理 14042 个 MMLU items。3 分钟后检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-collect-mistral-s8s10-eval.md"
+}

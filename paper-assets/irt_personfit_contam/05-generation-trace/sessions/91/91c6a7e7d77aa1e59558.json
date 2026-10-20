@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91c6a7e7d77aa1e59558",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "audit ref group a",
+  "task_key": "worker_audit_ref-group-a_20260526T104651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_ref-group-a_20260526T104651_result.json",
+    "occurrence": 1,
+    "bytes": 840,
+    "sha256": "459af42ec271570fd76526805c51d2c9068f31dfa2f74c38661330374830e40e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审核完成。报告已写入 `artifacts/ref_audit_group_a.md`。\n\n**结果：17 条中 14 条 ✓，1 条 ✗，2 条 ⚠**\n\n需修改的条目：\n\n| Key | 问题 | 修改建议 |\n|-----|------|----------|\n| `birnbaum1968` | (1) 页码 395–479 → **397–479**；(2) **未在任何 tex 文件中被 \\cite 引用**（孤立条目） | 修正页码，并删除该条目或在正文中添加引用 |\n| `eval-harness` | year 写 2024，但 v0.4.0 发布于 **2023 年 12 月** | year 改为 2023 |\n\n其余 14 条（atlas2025, barton1981, bordt2025forget, chang2024survey, chen2021humaneval, clark2018arc, cobbe2021gsm8k, codec2026, constat2024, deng2024, dodge2021, drasgow1985, embretson2000, fu2025contamination, golchin2024）的真实性、作者、年份、标题、venue、引用上下文均验证通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-ref-group-a.md"
+}

@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "ac71b711f121e7479386",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "ops batch3 eval results",
+  "task_key": "worker_ops_batch3-eval-results_20260523T123422",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_batch3-eval-results_20260523T123422.log",
+    "occurrence": 1,
+    "bytes": 1298708,
+    "sha256": "8e3066f287a0aeed51db82ee0a27dca92acc1c541ead82961beeebfb10f45cc3"
+  },
+  "statistics": {
+    "messages": 764,
+    "user_turns": 1,
+    "tool_calls": 295,
+    "roles": {
+      "log": 1,
+      "system": 22,
+      "record": 1,
+      "assistant": 147,
+      "tool_call": 295,
+      "tool_result": 295,
+      "user": 1,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 690,
+      "chunks": [
+        {
+          "path": "ac71b711f121e7479386-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ac71b711f121e7479386-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ac71b711f121e7479386-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "ac71b711f121e7479386-part-0004.json",
+          "message_count": 150
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 74,
+      "chunks": [
+        {
+          "path": "ac71b711f121e7479386-part-0004.json",
+          "message_count": 30
+        },
+        {
+          "path": "ac71b711f121e7479386-part-0005.json",
+          "message_count": 44
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-batch3-eval-results.md"
+}

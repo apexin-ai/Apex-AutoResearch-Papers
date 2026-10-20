@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp-two-sided",
+  "project": "irt_personfit_contam",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T09:13:53.986Z",
+    "updated_at": "2026-05-20T09:14:14.069Z",
+    "hypothesis": "Two-sided detection (|lz*| > threshold) with benchmark-specific θ MLE + parametric bootstrap empirical null + BH-FDR control will reduce Phase B flagging rate from 93% to a reasonable level (<20%), isolating genuine contamination signals from θ estimation bias",
+    "parent": "phase_b_personfit",
+    "spec": {
+      "command": "python src/two_sided_detection_v2.py",
+      "server": "local (CPU)",
+      "data_path": "artifacts/psn_irt_phase_b/combine.csv + artifacts/psn_irt_params/",
+      "data_count": "12 models × 5 benchmarks × 1000 bootstrap",
+      "model_name": "N/A",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "artifacts/phase_b_two_sided_v2/",
+      "checkpoint_source": "phase_b_personfit (response data)",
+      "eval_data": "combine.csv 12×41871 binary responses"
+    }
+  },
+  "timestamp": "2026-05-20T09:14:14.080015+00:00",
+  "trigger": "update_registry"
+}

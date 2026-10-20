@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "376a73bf26153a445c18",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "code 19912 arcc eval then llama",
+  "task_key": "worker_code_19912-arcc-eval-then-llama_20260521T124530",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_19912-arcc-eval-then-llama_20260521T124530.log",
+    "occurrence": 1,
+    "bytes": 1325709,
+    "sha256": "9b6157cddd626f65d6d2338a6344a3899a49e05af4e8380b60d1c4b710a31b30"
+  },
+  "statistics": {
+    "messages": 752,
+    "user_turns": 1,
+    "tool_calls": 258,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 228,
+      "tool_call": 258,
+      "tool_result": 258,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 576,
+      "chunks": [
+        {
+          "path": "376a73bf26153a445c18-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "376a73bf26153a445c18-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "376a73bf26153a445c18-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "376a73bf26153a445c18-part-0004.json",
+          "message_count": 36
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 176,
+      "chunks": [
+        {
+          "path": "376a73bf26153a445c18-part-0004.json",
+          "message_count": 144
+        },
+        {
+          "path": "376a73bf26153a445c18-part-0005.json",
+          "message_count": 32
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-19912-arcc-eval-then-llama.md"
+}

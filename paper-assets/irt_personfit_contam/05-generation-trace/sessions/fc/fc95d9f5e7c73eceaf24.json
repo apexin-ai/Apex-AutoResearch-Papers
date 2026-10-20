@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc95d9f5e7c73eceaf24",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops batch4 submit",
+  "task_key": "worker_ops_batch4-submit_20260523T115735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_batch4-submit_20260523T115735_result.json",
+    "occurrence": 1,
+    "bytes": 660,
+    "sha256": "ba60b81b7b9bf22e51ee8409cfc5e69fca20519a2be224dde3aaa1a8be0c3888"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 4 jobs are training successfully:\n\n| GPU | Experiment | Steps | ETA |\n|-----|-----------|-------|-----|\n| 0 | exp-mistral-25pct-s1 (contam_25, mistral) | 7/1596 | ~34 min |\n| 1 | exp-llama-5pct-s2 (contam_5_s2, llama) | 6/1071 | ~21 min |\n| 2 | exp-llama-25pct-s2 (contam_25_s2, llama) | 4/1596 | ~40 min |\n| 3 | exp-mistral-5pct-s2 (contam_5_s2, mistral) | 6/1071 | ~21 min |\n\nSummary of what was done:\n- Generated missing `contam_5_s2` data directory (5702 items: 5000 alpaca + 702 MMLU 5%, shuffle seed=123)\n- Added `contam_5_s2: 123` to SEED_MAP in train.py\n- Submitted all 4 jobs via tmux sessions with `WANDB_MODE=disabled`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-batch4-submit.md"
+}

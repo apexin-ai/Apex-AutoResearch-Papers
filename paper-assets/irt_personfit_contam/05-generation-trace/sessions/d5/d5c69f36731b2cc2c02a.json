@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "d5c69f36731b2cc2c02a",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "ops llama 5pct eval cohend",
+  "task_key": "worker_ops_llama-5pct-eval-cohend_20260522T102531",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama-5pct-eval-cohend_20260522T102531.log",
+    "occurrence": 1,
+    "bytes": 780791,
+    "sha256": "b3b2c67fe1ceeb5061e8983811f58dfbc06d183a761c7ce4acd26f6ed07980b5"
+  },
+  "statistics": {
+    "messages": 507,
+    "user_turns": 0,
+    "tool_calls": 226,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 51,
+      "tool_call": 226,
+      "tool_result": 226,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 507,
+      "chunks": [
+        {
+          "path": "d5c69f36731b2cc2c02a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d5c69f36731b2cc2c02a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d5c69f36731b2cc2c02a-part-0003.json",
+          "message_count": 147
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-llama-5pct-eval-cohend.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9a4196e028e793d1c3b",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code exp ctrl contam mistral eval",
+  "task_key": "worker_code_exp-ctrl-contam-mistral-eval_20260521T050322",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-ctrl-contam-mistral-eval_20260521T050322_result.json",
+    "occurrence": 1,
+    "bytes": 1519,
+    "sha256": "29e8d6f72313bcc00e8cc0051390710c60adbad6285703a77f8f30cb5d46d0e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 RUNNING。以下为完整状态报告：\n\n---\n\n## Mistral 三条件训练状态\n\n| Condition | Steps | Progress | Speed | ETA |\n|-----------|-------|----------|-------|-----|\n| clean (cuda:0) | 623/939 | 66% | ~1.15s/it | **~6 min** |\n| contam_15 (cuda:1) | 586/1335 | 44% | ~1.23s/it | **~15 min** |\n| contam_50 (cuda:3) | 547/2256 | 24% | ~1.3s/it | **~37 min** |\n\n**Checkpoints 已保存：**\n- clean: checkpoint-313, checkpoint-626（LoRA adapter）\n- contam_15: checkpoint-445\n- contam_50: 暂无\n\n**训练 loss 趋势正常**，clean ~1.29, contam_15 ~1.32, contam_50 ~1.38，均在稳步下降。\n\n## GRPO 状态（cuda:2）\n- 进度：642/7021（9%），~1.9s/step，ETA **~3h22m**\n- reward mean ≈ 0.35-0.65，entropy ~1.1，clip_ratio 均为 0（学习率极小）\n\n## 其他确认\n- **eval_lz.py**：存在且正确，使用 Snijders (2001) lz* 修正（`Var_star = Var_l0 - C_theta² / I_theta`）\n- **模型版本**：Mistral-7B-Instruct-v0.3，已确认是最新 7B Instruct 版本，**v0.4 不存在**\n- **Registry**：四个实验已从 PREPARING → RUNNING\n\n## 下一步\n训练尚未完成，无法运行 eval。clean 最快约 6 分钟完成，contam_50 最晚约 37 分钟。全部完成后需对三个 condition 运行 `eval_lz.py` 计算 lz*。\n\nSources:\n- [Mistral-7B-Instruct-v0.3 on HuggingFace](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3)\n- [Mistral Models Overview](https://docs.mistral.ai/models/overview)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-ctrl-contam-mistral-eval.md"
+}

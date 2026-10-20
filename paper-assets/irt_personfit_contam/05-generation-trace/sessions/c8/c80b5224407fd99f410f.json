@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c80b5224407fd99f410f",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "analysis multiseed 15pct stats",
+  "task_key": "worker_analysis_multiseed-15pct-stats_20260524T095709",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_multiseed-15pct-stats_20260524T095709_result.json",
+    "occurrence": 1,
+    "bytes": 2867,
+    "sha256": "13e59300c3707fe2496e96d490ad33352c81cd9158db99c8124864d647dd1197"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果汇总\n\n### 1. 数据验证：所有文件已确认存在\n\n| 实验 | 结果文件路径 | Checkpoint |\n|------|------------|-----------|\n| Llama s1 (seed=42) | `ctrl_contam_pilot/results/llama/contam_15_s1_results.json` | 原 ctrl_contam_llama 模型 |\n| Llama s2 (seed=123) | `ctrl_contam_pilot/results/llama/contam_15_s2_results.json` | `ctrl_contam_pilot/checkpoints/llama/contam_15_s2` |\n| Llama s3 (seed=456) | `ctrl_contam_pilot/results/llama/contam_15_s3_results.json` | `ctrl_contam_pilot/checkpoints/llama/contam_15_s3` |\n| Mistral s1 (seed=42) | `ctrl_contam_mistral/results/contam_15_results.json` | 原 ctrl_contam_mistral 模型 |\n| Mistral s2 (seed=123) | `ctrl_contam_pilot/results/mistral/contam_15_s2_results.json` | `ctrl_contam_pilot/checkpoints/mistral/contam_15_s2` |\n| Mistral s3 (seed=456) | `ctrl_contam_pilot/results/mistral/contam_15_s3_results.json` | `ctrl_contam_pilot/checkpoints/mistral/contam_15_s3` |\n\n### 2. 逐 seed 完整表格\n\n**Llama** (baseline: mean=0.262, SD=1.542):\n\n| Seed | lz\\* | θ\\_MLE | acc | acc\\_seen | acc\\_unseen | Cohen's d |\n|------|------|--------|-----|-----------|-------------|-----------|\n| s1 (42) | -2.992 | -0.276 | 0.665 | 0.668 | 0.665 | **-2.11** |\n| s2 (123) | -4.680 | -0.319 | 0.658 | 0.774 | 0.638 | **-3.21** |\n| s3 (456) | -4.507 | -0.325 | 0.658 | 0.785 | 0.636 | **-3.09** |\n\n**Mistral** (baseline: mean=4.024, SD=2.052):\n\n| Seed | lz\\* | θ\\_MLE | acc | acc\\_seen | acc\\_unseen | Cohen's d |\n|------|------|--------|-----|-----------|-------------|-----------|\n| s1 (42) | -1.385 | -0.713 | 0.595 | 0.744 | 0.569 | **-2.64** |\n| s2 (123) | -4.141 | -0.611 | 0.605 | 0.768 | 0.576 | **-3.98** |\n| s3 (456) | -3.127 | -0.650 | 0.597 | 0.770 | 0.567 | **-3.49** |\n\n### 3. Multi-seed 统计\n\n| Model | lz\\* (mean ± SD) | Cohen's d (mean ± SD) |\n|-------|-------------------|----------------------|\n| Llama 15% | **-4.06 ± 0.93** | **-2.80 ± 0.60** |\n| Mistral 15% | **-2.88 ± 1.39** | **-3.37 ± 0.68** |\n\n### 4. 是否需要重新训练\n\n**不需要。** 所有 6 个实验的结果文件和 checkpoint 都已验证存在。Registry 状态 (PREPARING) 是过时的，实际上已完成。\n\n### 5. 注意事项\n\n- **Llama s1 的 acc\\_seen ≈ acc\\_unseen (0.668 vs 0.665)**：s1 pilot 使用了与原 ctrl 实验不同的 seen/unseen 划分方式。原 ctrl 实验同一模型显示 acc\\_seen=0.771 >> acc\\_unseen=0.647。**整体 lz\\* 不受 partition 影响，仍然有效。**\n- **Cross-seed 方差较大**：s1 信号一致弱于 s2/s3（两个模型都是），反映了 item selection seed 对检测信号的真实影响——不同的 15% item 子集产生不同程度的 person-fit 异常。\n- **所有 seed 的 Cohen's d 均 < -2**，表明检测信号在不同 item 选择下稳健显著。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-multiseed-15pct-stats.md"
+}

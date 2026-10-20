@@ -1,0 +1,41 @@
+\section{Introduction}\label{sec:introduction}
+
+Benchmark contamination, the unintended inclusion of evaluation data in training corpora, poses a growing threat to the integrity of large language model (LLM) evaluation \citep{dodge2021, magar2022, sainz2023}.
+As training corpora and public benchmarks both expand, the probability of overlap increases structurally: any model trained on broad web-crawled data may have encountered evaluation items during pretraining or fine-tuning \citep{jacovi2023, chang2024survey}.
+When contamination occurs, benchmark scores no longer reflect genuine capability, undermining the primary mechanism by which the community compares and selects models.
+
+A range of detection methods have been proposed, but all require some form of privileged access beyond the binary response record.
+N-gram overlap methods need the training corpus itself \citep{dodge2021, magar2022}.
+Membership inference approaches such as Min-K\%++ require token-level probabilities \citep{minkprob2024, deng2024}.
+Time Travel probing relies on crafted prompts that elicit memorized completions \citep{golchin2024, oren2024}.
+Performance-based methods compare results across original and rephrased test variants \citep{constat2024}, and in-context learning approaches require output logits \citep{codec2026}.
+These methods form a detection frontier ordered by information access: training data, model weights, logits, token probabilities, rephrased retests, and finally binary patterns.
+No existing method operates at the bottom of this frontier.
+We ask: \emph{what can be detected from binary response patterns alone?}
+
+The need for minimal-information detection grows more pressing as models evolve.
+\citet{wang2025fragility} show that all ten log-probability-based detection methods they evaluate perform at chance level on reasoning models trained with reinforcement learning (RL).
+RL fine-tuning reshapes internal token distributions while largely preserving binary correctness patterns, and probability-based detectors cannot distinguish contaminated from clean models under these conditions.
+Binary response patterns are structurally invariant to RL-induced distributional changes, as they record what a model answered rather than how its internal distributions shifted.
+
+We observe that a contaminated LLM is functionally analogous to a test-taker with item preknowledge: both produce anomalous response patterns in which difficult items are answered correctly through memorization rather than genuine ability.
+This connection points to a mature body of work in psychometrics.
+Person-fit statistics, developed over four decades for cheating detection in educational testing \citep{drasgow1985, meijer2001, karabatsos2003, sinharay2017}, quantify exactly this type of response aberrance.
+The standardized statistic $\ell_z^*$ \citep{snijders2001} measures how well an individual's response pattern conforms to Item Response Theory (IRT) model predictions, with extreme negative values indicating patterns consistent with preknowledge.
+Despite this natural correspondence, to our knowledge no prior work has applied person-fit statistics to LLM benchmark contamination detection.
+
+We introduce IRT-FIT, a framework that applies IRT person-fit analysis at the minimal-information operating point, requiring only binary responses and pre-calibrated item parameters \citep{psnirt2026}.
+We compute $\ell_z^*$ for each (model, benchmark) pair and define $\Delta\ell_z^*$ as a difference-in-differences estimator for within-model contamination detection.
+In controlled experiments (QLoRA fine-tuning on MMLU), 15\% contamination produces $|\text{Cohen's } d| = 3.42$ ($n{=}3$ clean seeds).
+Our closed-form power function relates benchmark size to detection sensitivity ($R^2 = 0.957$), and shows that 80\% power at 15\% contamination requires $n \geq 7{,}958$ items (under MMLU item parameters).
+A 4PL versus 3PL ablation reveals a mean $+27.3$ percentage-point power gain on MMLU \citep{hendrycks2021mmlu}, confirming that the upper-asymptote parameter is essential for LLM evaluation contexts.
+Across 12 models and 5 benchmarks, $\ell_z^*$ flags 57 of 60 model-benchmark cells for response-pattern anomalies (BH-FDR $\alpha{=}0.05$), versus only 4 flagged by an accuracy $z$-score baseline.
+This $14\times$ gap shows that $\ell_z^*$ captures response-pattern structure lost in aggregate accuracy.
+We further identify a $\theta$-shift boundary condition: re-estimating ability on contaminated data can degrade sensitivity (non-monotonic dose-response under free $\theta$), but fixing $\theta$ to pre-contamination values restores monotonicity (signal ratio 2.9--3.1 across model families).
+
+Our contributions are:
+\begin{enumerate}[leftmargin=*,nosep]
+\item We propose IRT-FIT, a person-fit framework for contamination detection at the minimal-information operating point (binary responses only), validated through controlled contamination on Qwen2.5-7B ($|\text{Cohen's } d| = 3.42$ at 15\% contamination, $n{=}3$) and confirmed across model families with Llama-3.1-8B ($|\Delta\ell_z^*| = 3.84$).
+\item We derive a closed-form power function ($R^2 = 0.957$) linking benchmark size to detection sensitivity, identify the $\theta$-shift boundary condition, and show that 4PL parameterization yields $+27.3$pp power gain over 3PL.
+\item We report three empirical findings from real LLM response data: universal 4PL model misfit (57/60 cells flagged), the inadequacy of accuracy-based anomaly detection (4/60 cells), and a simulation-to-reality gap that motivates the $\Delta\ell_z^*$ design.
+\end{enumerate}

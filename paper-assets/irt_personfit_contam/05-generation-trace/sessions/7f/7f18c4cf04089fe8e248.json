@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f18c4cf04089fe8e248",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "paper fix llama 25 d mismatch",
+  "task_key": "worker_paper_fix-llama-25-d-mismatch_20260524T101634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-llama-25-d-mismatch_20260524T101634_result.json",
+    "occurrence": 1,
+    "bytes": 1956,
+    "sha256": "3b504677ff0154c15a5d76d1330bb59183024555ccb45bc91f0226c76c551d91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Push 成功。总结：\n\n---\n\n### 1. d=-1.99 来源追溯\nd=-1.99 是 **Llama 50% contamination 的 seed 3**（appendix.tex:441），被错误地 copy-paste 到 Table 1 的 25% 列。\n\n### 2. 正确值\n从 appendix tab:llama_multiseed，25% 三个种子为 -3.16, -2.28, -2.24。  \n**multi-seed mean = -2.56, SD = 0.52**。  \n同时 15% 和 50% 也有 multi-seed 数据，全部切换为 mean±SD 格式以与 Qwen 一致。\n\n### 3. 所有改动\n\n| 文件 | 行号 | 旧值 | 新值 |\n|------|------|------|------|\n| results.tex:10 | range下界 | \\|d\\|=1.99 (Llama 25%) | \\|d\\|=2.30 (Llama 50%) |\n| results.tex:10 | Llama序列 | 2.11/1.99/2.33 | 2.80/2.56/2.30 |\n| results.tex:15 | range | 1.99--7.44 | 2.30--7.44 |\n| results.tex:19 | caption | Qwen-only multi-seed | both Qwen+Llama multi-seed |\n| results.tex:29 | Table 1 Llama行 | -2.11 [CI] / -1.99 [CI] / -2.33 [CI] | -2.80 (±0.60) / -2.56 (±0.52) / -2.30 (±0.30) |\n| results.tex:33 | footnote | Qwen only | Qwen and Llama |\n| results.tex:40 | heatmap caption | single-seed values | multi-seed means where available |\n| results.tex:100 | Table 2 footnote | \"4--7 not retained\" | \"4 vectors from seeds 4--7 not retained\" |\n| results.tex:165 | dose-response | 2.11→1.99→2.33 | 2.80→2.56→2.30 |\n| introduction.tex:39 | PSN-IRT引用 | \"with pre-calibrated 4PL...from PSN-IRT \\citep{}\" | \"with PSN-IRT parameters\" |\n| limitations.tex:4 | multi-seed | \"(available for Qwen)\" | \"(available for Qwen and Llama)\" |\n| gen_fig_heatmap.py:35 | Llama data | [nan,2.11,1.99,2.33,...] | [nan,2.80,2.56,2.30,...] |\n| gen_fig_theta_scatter.py | Llama 15%/25%/50% | single-seed with bootstrap CI | multi-seed mean with ±SD bars |\n\n### 4. 编译确认\n16 页 PDF，主文（含 limitations）结束在第 8 页。\n\n### 5. 匿名 repo push\n`57ac2ce..892deca main -> main` ✓  \nhttps://github.com/anonymous-nlp-2026-2/irt_personfit_contam"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-llama-25-d-mismatch.md"
+}

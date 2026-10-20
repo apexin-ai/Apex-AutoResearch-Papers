@@ -1,0 +1,44 @@
+{
+  "mmlu": {
+    "lz_star": 0.973,
+    "logistic_regression_response_vector": 1.0,
+    "random_forest_response_vector": 0.9787,
+    "logistic_regression_response_vector+summary": 1.0,
+    "random_forest_response_vector+summary": 1.0
+  },
+  "hellaswag": {
+    "lz_star": 0.9762,
+    "logistic_regression_response_vector": 0.9965,
+    "random_forest_response_vector": 0.9345,
+    "logistic_regression_response_vector+summary": 0.9975,
+    "random_forest_response_vector+summary": 0.9745
+  },
+  "gsm8k": {
+    "lz_star": 0.9358,
+    "logistic_regression_response_vector": 0.9651,
+    "random_forest_response_vector": 0.9302,
+    "logistic_regression_response_vector+summary": 0.9845,
+    "random_forest_response_vector+summary": 0.9805
+  },
+  "arc_c": {
+    "lz_star": 0.6251,
+    "logistic_regression_response_vector": 0.6756,
+    "random_forest_response_vector": 0.7284,
+    "logistic_regression_response_vector+summary": 0.6889,
+    "random_forest_response_vector+summary": 0.7428
+  },
+  "humaneval": {
+    "lz_star": 0.7911,
+    "logistic_regression_response_vector": 0.8575,
+    "random_forest_response_vector": 0.8525,
+    "logistic_regression_response_vector+summary": 0.8724,
+    "random_forest_response_vector+summary": 0.8685
+  },
+  "average_25pct": {
+    "lz_star": 0.8602,
+    "logistic_regression_response_vector": 0.8989,
+    "random_forest_response_vector": 0.8848,
+    "logistic_regression_response_vector+summary": 0.9087,
+    "random_forest_response_vector+summary": 0.9133
+  }
+}

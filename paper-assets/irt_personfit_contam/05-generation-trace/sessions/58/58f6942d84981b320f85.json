@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58f6942d84981b320f85",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "paper writing sec setup",
+  "task_key": "worker_paper_writing_sec_setup_20260520T222529",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_sec_setup_20260520T222529_result.json",
+    "occurrence": 1,
+    "bytes": 389,
+    "sha256": "b7fca25dbadb3316b63f31054a06fb3d2e33cf2354aba3eb348f677e9678ddc3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Written to `paper/sections/sec_setup.tex` (~140 words). The subsection covers all five required elements: benchmarks with item counts, 4PL parameters from PSN-IRT, 12-model empirical dataset, QLoRA controlled contamination (3 clean + 2 contaminated conditions), and simulation protocol (2,000 replicates, 11 levels). No dashes, no -ing endings, no results or interpretation."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-sec-setup.md"
+}

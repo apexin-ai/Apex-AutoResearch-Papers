@@ -1,0 +1,170 @@
+\section{Results}
+\label{sec:results}
+
+\subsection{Detection Signal Across Model Families}
+\label{sec:detection}
+
+Table~\ref{tab:cohens_d} presents Cohen's $d$ effect sizes for $\ell_z^*$ across three model families and two benchmarks.
+All confidence intervals exclude zero, confirming that $\Delta\ell_z^*$ reliably separates contaminated from clean models at both contamination levels.
+
+On MMLU, effect sizes range from $|d|{=}2.30$ (Llama at 50\%) to $|d|{=}7.44$ (Qwen at 25\%), with Qwen at 5\% ($|d|{=}4.15$) confirming detection at the lowest contamination level tested. Llama ($|d|{=}2.80$/$2.56$/$2.30$) and Mistral ($|d|{=}3.37$/$3.50$) show comparable magnitudes.
+On ARC-C (295 items), Qwen yields $|d|{=}3.16$ at 15\% and $|d|{=}5.30$ at 50\%, demonstrating that detection remains feasible even on small benchmarks when contamination is sufficiently concentrated.
+
+Clean-model $\ell_z^*$ baselines diverge substantially across families: Qwen ${+}8.68$ ($\text{SD}{=}0.74$), Mistral ${+}4.02$ ($\text{SD}{=}2.05$), Llama ${+}0.26$ ($\text{SD}{=}1.54$), and ARC-C Qwen ${-}5.42$ ($\text{SD}{=}0.16$); this divergence reflects difficulty-ordering consistency rather than accuracy level (Appendix~\ref{app:baseline_meaning}).
+Absolute $\ell_z^*$ thresholds would produce contradictory results: Qwen's contaminated $\ell_z^*$ at 15\% (${+}3.8$) is still positive.
+The $\Delta\ell_z^*$ design normalizes these divergent baselines: Cohen's $d$ yields comparable effect sizes ($|d|{=}2.30$--$7.44$) despite order-of-magnitude differences.
+Figure~\ref{fig:heatmap} provides a visual summary.
+
+\begin{table}[t]
+\centering
+\caption{Cohen's $d$ for $\Delta\ell_z^*$ across model families ($n{=}10$ clean seeds). Single-seed conditions: percentile bootstrap 95\% CI (10,000 resamples). $^{\dagger}$Multi-seed conditions: mean $\pm$ SD ($n{=}3$ independent runs). All CIs exclude zero.}
+\label{tab:cohens_d}
+\footnotesize
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}llrrrr@{}}
+\toprule
+Model & Bench. & $d$ (5\%) [CI] & $d$ (15\%) [CI] & $d$ (25\%) [CI] & $d$ (50\%) [CI] \\
+\midrule
+Qwen$^{\dagger}$ & MMLU & $-4.15$ [$-9.9$, $-2.7$] & $-5.36$ ($\pm$1.10) & $-7.44$ ($\pm$1.86) & $-5.08$ ($\pm$3.02) \\
+Llama$^{\dagger}$ & MMLU & --- & $-2.80$ ($\pm$0.60) & $-2.56$ ($\pm$0.52) & $-2.30$ ($\pm$0.30) \\
+Mistral$^{\dagger}$ & MMLU & --- & $-3.37$ ($\pm$0.68) & --- & $-3.50$ [$-9.4$, $-2.1$] \\
+Qwen$^{\dagger}$ & ARC-C & --- & $+3.16$ [$2.0$, $9.5$] & --- & $+5.30$ [$3.6$, $15.2$] \\
+\bottomrule
+\multicolumn{6}{@{}l}{\scriptsize $^{\dagger}$Multi-seed conditions: means ($n{=}3$ independent runs) shown as $\pm$SD; remaining conditions are single-seed with bootstrap CIs. Per-seed values in Appendix~\ref{app:reproducibility}.}
+\end{tabular}}
+\end{table}
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{fig_heatmap.pdf}
+  \caption{Cohen's $|d|$ heatmap (values from Table~\ref{tab:cohens_d}; multi-seed means where available). Blue intensity reflects effect-size magnitude. Grey cells: conditions not tested.}
+  \label{fig:heatmap}
+\end{figure*}
+
+\subsection{Model-Specific $\theta$-Shift Dynamics}
+\label{sec:theta_dynamics}
+
+The cross-family variation in Table~\ref{tab:cohens_d}---Qwen's $|d|$ declining from 25\% to 50\% while Llama's remains flat---suggests detection sensitivity depends on more than contamination dose.
+Contamination raises overall accuracy, which inflates $\hat{\theta}_{\text{MLE}}$; a higher $\hat{\theta}$ ``explains away'' anomalous successes on hard items, absorbing the contamination signal into the ability estimate.
+We term this \emph{$\theta$-shift absorption}.
+The magnitude of $\theta$-shift is comparable across families---Qwen ($\Delta\theta{=}0.47$ at 50\%) and Llama ($\Delta\theta{=}0.52$)---yet their fixed-$\theta$ amplification diverges markedly (Table~\ref{tab:theta_fixed}), indicating that $\theta$-shift magnitude alone does not predict fixed-$\theta$ benefit.
+Figure~\ref{fig:theta_scatter} plots baseline accuracy against Cohen's $|d|$ for all model-benchmark combinations.
+
+$\theta$-shift absorption is the dominant source of detection variability for high-ability models at high contamination:
+(i) fixed-$\theta$ estimation amplifies Qwen's multi-seed $|d|$ by 2.4$\times$ at 50\% ($5.08 \to 12.32$; Table~\ref{tab:theta_fixed}), while Llama shows no amplification ($0.4\times$);
+(ii) $\theta$-anchoring reduces Qwen's inter-seed CV from 60\% to 19\%, confirming that training-run variance is driven by $\theta$-shift stochasticity rather than true signal variance;
+(iii) the cross-model ranking under free-$\theta$ is seed-dependent at 50\%, making $\theta$-anchoring a necessary condition for reliable detection of high-ability models at high contamination.
+
+ARC-C reverses this pattern.
+Despite Qwen's high baseline accuracy on ARC-C (89.7\%), contamination produces larger, not smaller, effect sizes ($|d|{=}3.16$ at 15\%, $|d|{=}5.30$ at 50\%).
+This reversal reflects a ceiling effect: with only 295 items and 89.7\% baseline accuracy, the already-correct items offer minimal room for further $\theta$ inflation, so contamination manifests primarily as anomalous successes on the few remaining hard items.
+The small item count amplifies this concentration, producing a disproportionately large $\ell_z^*$ shift per contaminated item.
+
+The baseline $\ell_z^*$ for ARC-C is negative ($-5.42$), reflecting the 4PL model's expectation of near-perfect performance; contamination pushes $\ell_z^*$ toward zero, producing the positive Cohen's $d$ values in Table~\ref{tab:cohens_d}.
+
+These findings indicate that detection sensitivity is not a fixed property of $\ell_z^*$ but depends on the interaction between model ability and benchmark characteristics, a consideration absent from standard person-fit applications.
+
+\paragraph{Fixed-$\theta$ estimation.}
+Table~\ref{tab:theta_fixed} compares free-$\theta$ and fixed-$\theta$ Cohen's $d$ across all three families.
+The benefit of fixed-$\theta$ is modulated by baseline $\ell_z^*$ level rather than $\theta$-shift magnitude.
+Qwen (67.8\% accuracy, $\Delta\theta{=}0.47$, baseline $\ell_z^*{=}{+}8.68$) shows 2.4$\times$ amplification at 50\%: its large baseline departure from the IRT null provides substantial signal that free-$\theta$ absorption erodes, which $\theta$-anchoring recovers (multi-seed mean ${\ell_z^*}_{\text{fixed}} {=} 14.5$ vs.\ clean $7.35$).
+Mistral (52.4\%, baseline $\ell_z^*{=}{+}4.02$) shows 1.7$\times$ at 50\%.
+Llama (59.4\%, $\Delta\theta{=}0.39$ at 15\%, $0.52$ at 50\%) shows 0.4$\times$ at 50\% despite comparable $\theta$-shift: its near-zero baseline $\ell_z^*$ ($+0.26$) indicates that the clean response pattern conforms to IRT expectations, leaving no absorbed signal for $\theta$-anchoring to recover.
+The amplification ratio tracks baseline $|\ell_z^*|$ monotonically ($8.68 {\to} 2.4{\times}$; $4.02 {\to} 1.7{\times}$; $0.26 {\to} 0.4{\times}$ at 50\%), making fixed-$\theta$ a targeted remedy for models with substantial baseline misfit, not a universal one.
+
+\begin{table}[t]
+\centering
+\caption{Free-$\theta$ vs.\ fixed-$\theta$ Cohen's $|d|$ on MMLU (bootstrap 95\% CI). Fixed-$\theta$ anchors $\hat{\theta}$ at the clean-model mean, eliminating $\theta$-shift absorption.}
+\label{tab:theta_fixed}
+\footnotesize
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Model & $|d_{\text{free}}|$ & $|d_{\text{fixed}}|$ & Ratio (fixed/free) & Fixed CI \\
+\midrule
+\multicolumn{5}{@{}l}{\textit{5\% contamination}} \\
+Qwen & 4.15 & 3.52 & 0.8$\times$ & [2.9, 5.7] \\
+\addlinespace
+\multicolumn{5}{@{}l}{\textit{15\% contamination}} \\
+Qwen$^{\S}$ & 5.36 & 6.85 & 1.3$\times$ & ($\pm$1.80) \\
+Llama & 2.11 & 0.58 & 0.3$\times$ & [0, 2.37]$^{\dagger}$ \\
+Mistral$^{\ddagger}$ & 2.64 & 2.69 & 1.0$\times$ & [1.53, 9.06] \\
+\addlinespace
+\multicolumn{5}{@{}l}{\textit{50\% contamination}} \\
+Qwen$^{\S}$ & 5.08 & 12.32 & 2.4$\times$ & ($\pm$2.38) \\
+Llama & 2.33 & 0.84 & 0.4$\times$ & [0.17, 2.97] \\
+Mistral$^{\ddagger}$ & 3.50 & 5.80 & 1.7$\times$ & [3.87, 18.45] \\
+\bottomrule
+\multicolumn{5}{@{}l}{\scriptsize $^{\dagger}$CI includes zero.} \\
+\multicolumn{5}{@{}l}{\scriptsize $^{\S}$Multi-seed mean ($n{=}3$); CI column shows $\pm$SD of fixed-$\theta$ $|d|$.} \\
+\multicolumn{5}{@{}l}{\scriptsize $^{\ddagger}$Fixed-$\theta$: 6 seeds (4 response vectors from seeds 4--7 not retained in pipeline); free-$\theta$ uses all 10.} \\
+\multicolumn{5}{@{}p{0.9\columnwidth}}{\scriptsize $d_{\text{free}}$ values for single-seed conditions are from seed 42; multi-seed means are reported in Table~\ref{tab:cohens_d}.}
+\end{tabular}}
+\end{table}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{fig_theta_scatter.pdf}
+  \caption{Baseline accuracy vs.\ Cohen's $|d|$ for all model-benchmark combinations (single-seed values; multi-seed means in Table~\ref{tab:cohens_d}). Diamonds: 5\%; triangles: 15\%; squares: 25\%; circles: 50\%. ARC-C reversal reflects a ceiling effect.}
+  \label{fig:theta_scatter}
+\end{figure}
+
+\subsection{Detection-Diagnosis Tradeoff}
+\label{sec:degradation}
+
+Having established that $\theta$-shift complicates detection, we ask whether the full 4PL framework is necessary, or whether simpler statistics suffice.
+Table~\ref{tab:degradation} compares three statistics at decreasing levels of information access: $\ell_z^*$ (requires 4PL parameters $a, b, c, d$), the HT statistic (requires only difficulty $b$), and an accuracy $z$-score (requires no item parameters).
+
+The comparison reveals a detection-diagnosis tradeoff.
+For pure detection, simpler statistics are more powerful: accuracy $z$-scores yield $|d|$ values several-fold to over an order of magnitude larger than person-fit statistics (Table~\ref{tab:degradation}), because cross-seed accuracy variance is near-zero in controlled settings.
+HT generally exceeds $\ell_z^*$ in detection strength, since HT is not attenuated by the Snijders correction for $\theta$ estimation uncertainty.
+Both person-fit statistics exhibit seed-dependent non-monotonicity under free-$\theta$ estimation (Table~\ref{tab:degradation}), confirming that $\theta$-shift absorption affects all statistics conditioned on ability, not $\ell_z^*$ specifically.
+
+Yet the diagnostic power reverses.
+Full IRT parameterization is unnecessary for mere detection, but the value of $\ell_z^*$ lies in three capabilities that HT and $z$-scores lack:
+(a) \emph{seen/unseen decomposition}: $\ell_z^*$ can be computed separately on seen and unseen item subsets, though item-level detection is near-random (AUROC $\approx 0.53$; Appendix~\ref{app:item_auroc}), confirming that the contamination signal is diffuse and requires model-level aggregation;
+(b) \emph{$\theta$-shift mechanism}: the ability parameter exposes why detection sensitivity depends on model ability (\S\ref{sec:theta_dynamics}), a mechanistic insight inaccessible to non-parametric statistics;
+(c) \emph{structural sensitivity}: on real leaderboard data, $\ell_z^*$ flags 57/60 model-benchmark cells as aberrant---evidence of systematic IRT assumption violations that motivates the $\Delta\ell_z^*$ matched-difference design (\S\ref{sec:did}; Appendix~\ref{app:leaderboard_aberrance}).
+Accuracy $z$-scores flag only 4/60 cells, making them insensitive to the response-pattern structure that $\ell_z^*$ exploits for within-model diagnosis.
+While such patterns have theoretical antecedents in person-fit literature \citep{stonge2011}, the specific magnitude and model-dependence we observe are new empirical findings in the LLM domain; nonparametric alternatives \citep{tendeiro2014} may complement $\ell_z^*$ where 4PL calibration is unavailable.
+
+In practice, a two-stage workflow follows: screen using accuracy $z$-scores (Table~\ref{tab:degradation}), then apply $\ell_z^*$ to characterize whether the signal reflects $\theta$-shift absorption (indicating fixed-$\theta$ anchoring is needed) or uniform aberrance (suggesting direct memorization).
+
+Within the IRT family, the 4PL specification matters: simulation ablations show a mean $+$27.3pp power gain over 3PL on MMLU, because 46\% of MMLU items have upper asymptote $d < 0.95$, and the 3PL model (which assumes $d{=}1$) misattributes slip-related response patterns as aberrance (Appendix~\ref{app:4pl_ablation}).
+
+\begin{table}[t]
+\centering
+\caption{Detection-diagnosis tradeoff on MMLU: Cohen's $|d|$ across three statistics. Simpler statistics detect more powerfully; $\ell_z^*$ provides unique diagnostic capabilities (\S\ref{sec:degradation}).}
+\label{tab:degradation}
+\footnotesize
+\begin{tabular}{@{}llrr@{}}
+\toprule
+Model & Statistic & $|d|$ (15\%) & $|d|$ (50\%) \\
+\midrule
+Qwen$^\dagger$ & $\ell_z^*$ & $5.36$ ($\pm$1.10) & $5.08$ ($\pm$3.02) \\
+     & HT & $5.83$ ($\pm$1.30) & $5.29$ ($\pm$3.41) \\
+     & Acc.\ $z$ & $45.0$ ($\pm$2.5) & $70.0$ ($\pm$1.1) \\
+\addlinespace
+Llama & $\ell_z^*$ & $2.11$ [$1.4$, $4.8$] & $2.33$ [$1.6$, $5.1$] \\
+      & HT & $2.45$ [$1.5$, $4.3$] & $3.07$ [$1.9$, $5.3$] \\
+      & Acc.\ $z$ & $22.5$ [$13.6$, $47.0$] & $32.8$ [$19.8$, $68.6$] \\
+\addlinespace
+Mistral$^\dagger$ & $\ell_z^*$ & $3.37$ ($\pm$0.68) & $3.50$ [$2.1$, $9.4$] \\
+      & HT & $4.36$ [$1.2$, $7.0$] & $5.89$ [$1.9$, $9.4$] \\
+      & Acc.\ $z$ & $7.81$ [$4.4$, $14.4$] & $16.6$ [$9.7$, $34.6$] \\
+\bottomrule
+\multicolumn{4}{@{}p{0.9\columnwidth}}{\scriptsize $^\dagger$Multi-seed values are means across $n{=}3$ independent runs; per-seed values in Appendix~\ref{app:reproducibility}. Remaining conditions are single-seed with bootstrap CIs.}
+\end{tabular}
+\end{table}
+
+\subsection{Ability-Dependent Non-Monotonic Dose-Response}
+\label{sec:inverted_u}
+
+As an exploratory observation, the free-$\theta$ dose-response is non-monotonic for Qwen.
+The multi-seed mean trajectory ($|d|$: $4.15 \to 5.36 \to 7.44 \to 5.08$ at 5\%/15\%/25\%/50\%; Appendix~\ref{app:reproducibility}) shows signal peaking at 25\% before declining at 50\%, but the decline is attenuated relative to single-seed estimates and the inter-seed variance at 50\% is high (CV${=}$60\%, range $[1.90, 7.91]$).
+This non-monotonicity is a $\theta$-estimation artifact: fixed-$\theta$ analysis eliminates the inverted-U and reveals a strong positive dose-response (mean $|d|$: $5.89$ at 25\% vs.\ $12.32$ at 50\%, no seed-level overlap), while reducing the 50\% CV to 19\%.
+Llama shows an approximately flat dose-response ($|d|{=}2.80 \to 2.56 \to 2.30$), consistent with its near-zero $\ell_z^*$ baseline ($+0.26$ vs.\ ${+}8.68$ for Qwen) despite comparable $\theta$-shift ($\Delta\theta{=}0.52$ vs.\ $0.47$).
+The mechanism is predictable from simulation (Appendix~\ref{app:simulation}): at moderate contamination, aberrant responses dominate; at high contamination, inflated $\hat{\theta}$ absorbs the anomaly---but the magnitude is highly seed-dependent.
+Three regimes are visible in Qwen's free-$\theta$ trajectory: at 5\%, $\theta$-shift is negligible and $\ell_z^*$ captures the full misfit; through 15--25\%, pattern deviations outpace $\theta$-shift absorption, yielding peak signal; at 50\%, $\Delta\theta{=}0.47$ absorbs enough aberrance that $|d|$ declines despite double the contamination fraction.
+
+A simulated power analysis corroborates these findings: two-sided testing (flagging both large negative and large positive $\ell_z^*$) achieves ${>}$93\% power on MMLU at all contamination levels, with the theoretical power function yielding $R^2 {=} 0.957$ against simulated values (Appendix~\ref{app:simulation}).

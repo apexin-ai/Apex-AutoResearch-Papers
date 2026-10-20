@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "b123e20e0bf322d32755",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "code anon repo sync",
+  "task_key": "worker_code_anon-repo-sync_20260526T123559",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_anon-repo-sync_20260526T123559.log",
+    "occurrence": 1,
+    "bytes": 680106,
+    "sha256": "080ad00b693b44eb6134b2e76653a2cf6195708e0678374e5403f7c762f44660"
+  },
+  "statistics": {
+    "messages": 618,
+    "user_turns": 1,
+    "tool_calls": 205,
+    "roles": {
+      "log": 1,
+      "system": 185,
+      "record": 1,
+      "assistant": 19,
+      "tool_call": 205,
+      "tool_result": 205,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 70,
+      "chunks": [
+        {
+          "path": "b123e20e0bf322d32755-part-0001.json",
+          "message_count": 70
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 548,
+      "chunks": [
+        {
+          "path": "b123e20e0bf322d32755-part-0001.json",
+          "message_count": 110
+        },
+        {
+          "path": "b123e20e0bf322d32755-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "b123e20e0bf322d32755-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "b123e20e0bf322d32755-part-0004.json",
+          "message_count": 78
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-anon-repo-sync.md"
+}

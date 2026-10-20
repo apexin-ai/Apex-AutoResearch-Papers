@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "314ac9193d210af5e1e3",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "analysis theta fixed cohens d",
+  "task_key": "worker_analysis_theta-fixed-cohens-d_20260521T165541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_theta-fixed-cohens-d_20260521T165541_result.json",
+    "occurrence": 1,
+    "bytes": 1728,
+    "sha256": "a04c7bae2d36b7a815a982e0d18829fa12a9a11f2b68fede59a08b0df34b3507"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行完成。结果已保存到 `/root/autodl-tmp/theta_fixed_results.json`。\n\n### 核心结果\n\n**θ-fixed Cohen's d + 95% CI：**\n\n| Model | θ_fixed | n | d_fixed(15%) | 95% CI | d_fixed(50%) | 95% CI |\n|-------|---------|---|-------------|--------|-------------|--------|\n| Qwen | -0.1022 | 10 | -4.77 | [-7.79, -3.97] | **-14.52** | [-24.79, -12.10] |\n| Llama | -0.6426 | 10 | -0.58 | [-2.37, 0.04] | -0.84 | [-2.97, -0.17] |\n| Mistral | -1.0652 | 6 | 2.59 | [1.45, 9.00] | **5.60** | [3.71, 18.16] |\n\n**free-θ vs θ-fixed 对比：**\n\n| Model | Condition | \\|d_free\\| | \\|d_fixed\\| | 放大倍数 |\n|-------|-----------|-----------|------------|---------|\n| Qwen | contam_15 | 6.57 | 4.77 | 0.7x |\n| Qwen | contam_50 | 1.90 | **14.52** | **7.7x** |\n| Llama | contam_15 | 2.27 | 0.58 | 0.3x |\n| Llama | contam_50 | 2.50 | 0.84 | 0.3x |\n| Mistral | contam_15 | 1.97 | 2.59 | 1.3x |\n| Mistral | contam_50 | 2.69 | **5.60** | **2.1x** |\n\n### 关键发现\n\n1. **Qwen contam_50: \\|d\\| = 14.52**，远超 free-θ 的 1.90，放大 7.7 倍。符合预期。\n\n2. **方向不一致**：Qwen/Llama 的 d_fixed 为负（contam lz* 比 clean 更正/更高），Mistral 为正（contam lz* 比 clean 更负）。原因是 θ 被低估时，contaminated 模型答对了更多\"不该对\"的 item，使 lz* 向 positive 方向偏移（Qwen/Llama），而 Mistral 的 IRT 参数特征不同导致相反方向。\n\n3. **Llama 效果弱**：θ-fixed 下 Llama 的 |d| 反而减小（0.84 < 2.50），clean lz*_fixed 的标准差大（1.49），可能是 IRT 参数对 Llama 拟合度不高导致 clean baselines 本身离散。\n\n4. **ARC-C 数据不在 westd-35694 上**，已跳过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-theta-fixed-cohens-d.md"
+}

@@ -1,0 +1,31 @@
+{
+  "exp_id": "llama_clean_s8",
+  "project": "irt_personfit_contam",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T13:28:32.393Z",
+    "updated_at": "2026-05-21T13:28:56.737Z",
+    "spec": {
+      "command": "python train.py --condition clean_s8 --gpu 0",
+      "server": "westd-19912",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "32686",
+      "log_path": "~/runs/irt_personfit_contam/llama_clean_s8.log",
+      "submitted_at": "2026-05-21T13:28:32.254Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/ctrl_contam_llama/data/clean/train.jsonl",
+      "data_count": 5000,
+      "model_name": "Llama-3.1-8B-Instruct",
+      "seed": 305
+    }
+  },
+  "timestamp": "2026-05-21T13:28:56.842398+00:00",
+  "trigger": "update_registry"
+}

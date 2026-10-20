@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3414b425bb7aa49f9924",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "analysis mistral contam 25",
+  "task_key": "worker_analysis_mistral_contam_25_20260524T043448",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mistral_contam_25_20260524T043448_result.json",
+    "occurrence": 1,
+    "bytes": 2096,
+    "sha256": "9e41325c0e253c6e07d56471139614d55af78d92d204785929b7cf3faf26a41d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 分析报告：mistral_contam_25\n\n### 1. 训练状态：成功完成\n\n| 指标 | 值 |\n|------|-----|\n| EXIT_CODE | 0 |\n| Epochs | 3 |\n| Steps | 1596 |\n| 训练时长 | ~32 min |\n| Final loss | 0.952 |\n| Mean token accuracy | 0.750 |\n| Train loss (avg) | 1.187 |\n\n### 2. Checkpoint 路径\n\n`/root/autodl-tmp/ctrl_contam_mistral/checkpoints/contam_25`\n\n包含 3 个中间 checkpoint（532, 1064, 1596）和最终 adapter。\n\n### 3. 评估状态：**未完成**\n\n`results/` 目录中没有 `contam_25_results.json`。已有结果：\n- `clean_results.json`, `contam_15_results.json`, `contam_50_results.json`\n- 5 个 clean seed 变体\n- `theta_fixed_n10_recompute.json`\n\n### 4. 需要执行的评估命令\n\n**Step 1 — lz\\* 评估：**\n```bash\ncd /root/autodl-tmp/ctrl_contam_mistral\npython eval_lz.py --condition contam_25 --gpu 0\n```\n\n**Step 2 — theta-fixed Cohen's d 计算：**\n需要更新 `theta_fixed_n10_recompute.py` 加入 contam_25 条件后重跑（或手动用 fixed theta=-1.088 重新计算 contam_25 的 lz\\*）。\n\n### 5. 已有 Mistral 剂量对比\n\n| 条件 | lz\\*\\_fixed | Cohen's d (point) | Cohen's d 95% CI | acc\\_overall | acc\\_seen | acc\\_unseen |\n|------|-----------|-------------------|-------------------|-------------|----------|------------|\n| clean (N=10 seeds) | mean=3.29, std=2.52 | — | — | 0.514 | — | 0.514 |\n| contam\\_15 | -3.48 | 2.69 | [1.53, 9.06] | 0.595 | 0.744 | 0.569 |\n| **contam\\_25** | **待评估** | **待计算** | **待计算** | **待评估** | **待评估** | **待评估** |\n| contam\\_50 | -11.33 | 5.80 | [3.87, 18.45] | 0.673 | 0.752 | 0.594 |\n\n> 注：你提到的 d(15%)=-3.01, d(50%)=-3.50 与 `theta_fixed_n10_recompute.json` 中的值（2.69, 5.80）不一致，可能来自不同的计算方法或版本。实际数据以服务器上 JSON 文件为准。\n\n### 6. 预期\n\ncontam_25 的 Cohen's d 应落在 contam_15 (2.69) 和 contam_50 (5.80) 之间，验证剂量-响应关系的单调性。\n\n**下一步：是否需要我执行 eval\\_lz.py？**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mistral-contam-25.md"
+}

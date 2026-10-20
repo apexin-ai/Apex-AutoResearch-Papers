@@ -1,0 +1,39 @@
+{
+  "exp_id": "exp-fdr-correction",
+  "project": "irt_personfit_contam",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:57:39.228Z",
+    "updated_at": "2026-05-20T12:04:41.646Z",
+    "hypothesis": "BH-FDR correction on the 60-cell cross-benchmark analysis preserves the key finding that nearly all LLM-benchmark cells show significant misfit, with corrected flagging rate remaining above 80%",
+    "spec": {
+      "command": "N/A (reused existing BH-FDR analysis from exp-two-sided v2)",
+      "server": "local",
+      "data_path": "artifacts/phase_b_two_sided_v2/empirical_pvalues.csv",
+      "data_count": 60,
+      "model_name": "N/A",
+      "seed": "N/A",
+      "checkpoint_path": "artifacts/phase_b_two_sided_v2/empirical_pvalues.csv",
+      "log_path": "N/A"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "flagged_uncorrected": "57/60 (95%)",
+      "flagged_bh_fdr": "57/60 (95%)",
+      "flagged_bonferroni": "not_computed_but_expected_similar",
+      "correction_scope": "global_60_tests",
+      "unflagged_cells": [
+        "Yi-Lightning×arc_c (bh_p=0.098)",
+        "360GPT2-Pro×humaneval (bh_p=0.134)",
+        "Yi-Lightning×humaneval (bh_p=0.181)"
+      ],
+      "note": "Reused existing BH-FDR from exp-two-sided v2 empirical_pvalues.csv. Leaderboard-scale FDR (24800+ tests) deferred to leaderboard audit."
+    },
+    "completed_at": "2026-05-20T12:04:41.646Z"
+  },
+  "timestamp": "2026-05-20T12:04:41.773320+00:00",
+  "trigger": "update_registry"
+}

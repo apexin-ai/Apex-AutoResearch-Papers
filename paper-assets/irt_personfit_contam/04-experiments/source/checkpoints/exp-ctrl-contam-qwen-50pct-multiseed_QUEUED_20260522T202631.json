@@ -1,0 +1,88 @@
+{
+  "exp_id": "exp-ctrl-contam-qwen-50pct-multiseed",
+  "project": "irt_personfit_contam",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T11:41:23.963Z",
+    "updated_at": "2026-05-22T20:26:31.599Z",
+    "hypothesis": "QLoRA 50% contamination shows consistently reduced detection (d≈-1.90) across seeds due to θ-shift absorption, confirming the inverted-U decline is a stable model-level phenomenon. Addresses R5-N1.",
+    "metrics": {
+      "seed_42": {
+        "lz_star_free": 7.2892,
+        "d_free": -1.9,
+        "lz_fixed": null,
+        "d_fixed": 14.52
+      },
+      "seed_123": {
+        "lz_star_free": 4.7,
+        "d_free": -5.42,
+        "lz_fixed": 14.687,
+        "d_fixed": 12.64,
+        "d_fixed_ci": [
+          10.54,
+          21.46
+        ]
+      },
+      "seed_456": {
+        "lz_star_free": 2.8695,
+        "d_free": -7.91,
+        "d_free_ci": [
+          -18.29,
+          -5.52
+        ],
+        "lz_fixed": 13.036,
+        "d_fixed": 9.8,
+        "d_fixed_ci": [
+          8.18,
+          16.46
+        ]
+      },
+      "stats_free": {
+        "mean_abs_d": 5.08,
+        "sd": 3.02,
+        "cv": 0.595,
+        "range": [
+          1.9,
+          7.91
+        ]
+      },
+      "stats_fixed": {
+        "mean_abs_d": 12.32,
+        "sd": 2.38,
+        "cv": 0.193,
+        "range": [
+          9.8,
+          14.52
+        ]
+      },
+      "n_seeds": 3,
+      "clean_baseline_free": {
+        "n": 10,
+        "mean": 8.6838,
+        "std": 0.7353
+      },
+      "clean_baseline_fixed": {
+        "n": 10,
+        "mean": 7.3522,
+        "std": 0.5802,
+        "theta_fixed": -0.1022
+      }
+    },
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/ctrl_contam_pilot/checkpoints/contam_50_s{2,3}/",
+      "log_path": "/root/autodl-tmp/ctrl_contam_pilot/results/",
+      "server": "westd-35694",
+      "command": "QLoRA SFT 50% contam seeds 42/123/456 + eval_lz.py + fixed-theta computation",
+      "data_path": "/root/autodl-tmp/ctrl_contam_pilot/data/contam_50/train.jsonl",
+      "data_count": "50% MMLU items + 5000 clean",
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": "42, 123, 456"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-22T20:26:31.732198+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "13834ead42a68829a2f1",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code dual server gpu audit",
+  "task_key": "worker_code_dual-server-gpu-audit_20260521T105712",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_dual-server-gpu-audit_20260521T105712_result.json",
+    "occurrence": 1,
+    "bytes": 2659,
+    "sha256": "144974a243ba9787f5c7e366f9ae8fca4197b7d6d2e6898100a7a37399249079"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有已定义任务均已完成。以下是完整报告：\n\n---\n\n## GPU 状态报告\n\n### westd-35694 (4 GPU)\n\n| GPU | 任务 | PID | 进度 | 预计完成 |\n|-----|------|-----|------|---------|\n| 0 | **空闲** | - | contam_50 train+eval 已完成 | - |\n| 1 | **空闲** | - | clean_s2 train+eval 已完成 | - |\n| 2 | GRPO run2 | 97791 | 2529/14042 (18%) | ~17h (~明天 12:00) |\n| 3 | **空闲** | - | contam_15 train+eval 已完成 | - |\n\n### westd-19912 (4 GPU)\n\n| GPU | 任务 | PID | 进度 | 预计完成 |\n|-----|------|-----|------|---------|\n| 0-3 | **全部空闲** | - | ARC-C 4 条件 train+eval 全部完成 | - |\n\n---\n\n## 关键结果\n\n### GRPO (step 2529/14042, 18%)\n- reward: 0.85, entropy: 0.859, lr: 4.14e-06\n- ~5.3s/step，预计还需 ~17h\n\n### s10 eval (已完成)\n- accuracy: **0.676**, lz*: **8.149**, theta: -0.116\n- 全部 14042 items 均为 unseen\n\n### MIA SFT AUC\n- **best: 0.611** (min_k_10)\n- loss AUC: 0.592, min_k_pp_10: 0.569\n\n### ARC-C 各条件结果（19912 训练）\n\n| Condition | Acc Overall | Acc Seen | Acc Unseen | lz* | lz* Seen | lz* Unseen |\n|-----------|------------|----------|------------|-----|----------|------------|\n| clean_s1 | 0.902 | - | 0.902 | -5.448 | - | -5.448 |\n| clean_s2 | 0.895 | - | 0.895 | -5.433 | - | -5.433 |\n| contam_15 | 0.909 | 0.909 | 0.908 | -4.917 | **+0.568** | -5.414 |\n| contam_50 | **0.942** | **0.966** | 0.919 | -4.573 | **-0.331** | -3.902 |\n\n### ARC-C 各条件结果（35694 训练，独立 seed）\n\n| Condition | Acc Overall | Acc Seen | Acc Unseen | lz* | lz* Seen | lz* Unseen |\n|-----------|------------|----------|------------|-----|----------|------------|\n| clean_s1 | 0.895 | - | 0.895 | -5.511 | - | -5.511 |\n| clean_s2 | 0.898 | - | 0.898 | -5.493 | - | -5.493 |\n| contam_15 | 0.909 | 0.886 | 0.912 | -5.032 | **+0.186** | -5.464 |\n| contam_50 | **0.946** | **0.966** | 0.926 | -4.185 | **-0.475** | -4.316 |\n\n---\n\n## 已启动新任务\n\n1. **35694 GPU 0**: ARC-C contam_50 训练 → eval（已完成）\n2. **35694 GPU 1**: ARC-C clean_s2 eval（已完成）\n3. **35694 GPU 3**: ARC-C contam_15 eval（已完成）\n4. **19912 GPU 0-3**: ARC-C 4 条件 eval 全部（已完成）\n5. 修复了 19912 缺失的 IRT params 文件和过期的 eval_lz.py\n\n---\n\n## 当前瓶颈\n\n**7/8 GPU 空闲** — 所有已定义任务（ARC-C 4 条件 x2 服务器、Llama 5 条件、Mistral 3 条件）均已完成训练和 eval。仅 GRPO 在跑。如需填满 GPU，需要：\n- 扩展 ARC-C seed 数 (clean_s3-s10，data 需先用 prepare_arcc_data.py 生成)\n- 或部署新的实验方向"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-dual-server-gpu-audit.md"
+}

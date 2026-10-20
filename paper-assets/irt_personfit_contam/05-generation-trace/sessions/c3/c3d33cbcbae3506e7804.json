@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c3d33cbcbae3506e7804",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "analysis exp ctrl contam pilot clean s3",
+  "task_key": "worker_analysis_exp-ctrl-contam-pilot-clean-s3_20260520T191151",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-ctrl-contam-pilot-clean-s3_20260520T191151_result.json",
+    "occurrence": 1,
+    "bytes": 150,
+    "sha256": "04f64ea39a346fd2f661e3b980501d67b3f55cadbe0641b12840c2796cee2eb6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练在后台运行中（~30 min total），5 分钟后会自动检查进度。训练完成后会运行 eval 并生成分析报告。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-ctrl-contam-pilot-clean-s3.md"
+}

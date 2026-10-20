@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "47efcaca9fbcc750efd7",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code fill 35694 3gpu llama",
+  "task_key": "worker_code_fill-35694-3gpu-llama_20260521T130300",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fill-35694-3gpu-llama_20260521T130300_result.json",
+    "occurrence": 1,
+    "bytes": 735,
+    "sha256": "d7a9f0df4f43439f5525548a184264ef2099e524af64595977072961aaf50e53"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。\n\n## 结果汇总\n\n| GPU | 实验 | PID | 显存 | GPU 利用率 |\n|-----|------|-----|------|-----------|\n| cuda:0 | clean_s8 (seed=305) | 143378 | 17,850 MiB | 86% |\n| cuda:1 | clean_s9 (seed=306) | 143458 | 22,012 MiB | 88% |\n| cuda:2 | GRPO v3 (不动) | 141866 | 9,920 MiB | 83% |\n| cuda:3 | clean_s10 (seed=307) | 143599 | 15,730 MiB | 96% |\n\n**4/4 GPU 满载运行。**\n\n**修改内容：** train.py 的 SEED_MAP 添加了 `clean_s9: 306`, `clean_s10: 307`；DATA_DIR_MAP 添加了对应的 `clean` 映射。\n\n**预计训练时长：** QLoRA SFT, 5000 samples, 3 epochs, batch=4×4=16 — 在 RTX PRO 6000 上预计 1-2 小时（参考之前 s4-s7 同配置）。\n\n**无异常。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fill-35694-3gpu-llama.md"
+}

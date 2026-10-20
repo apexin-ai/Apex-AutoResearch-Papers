@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0",
+  "id": "4ff2e3dd6699abafd6d4",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "code mistral status eval",
+  "task_key": "worker_code_mistral-status-eval_20260521T054445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mistral-status-eval_20260521T054445.log",
+    "occurrence": 1,
+    "bytes": 1718092,
+    "sha256": "9ea984eb6c423aaae77b69044ea0cd86ed1a1d8421ddb89d4158a0f84392c0ca"
+  },
+  "statistics": {
+    "messages": 1285,
+    "user_turns": 1,
+    "tool_calls": 582,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 3,
+      "assistant": 112,
+      "tool_call": 582,
+      "tool_result": 582,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 708,
+      "chunks": [
+        {
+          "path": "4ff2e3dd6699abafd6d4-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4ff2e3dd6699abafd6d4-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "4ff2e3dd6699abafd6d4-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "4ff2e3dd6699abafd6d4-part-0004.json",
+          "message_count": 168
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 577,
+      "chunks": [
+        {
+          "path": "4ff2e3dd6699abafd6d4-part-0004.json",
+          "message_count": 12
+        },
+        {
+          "path": "4ff2e3dd6699abafd6d4-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "4ff2e3dd6699abafd6d4-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "4ff2e3dd6699abafd6d4-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "4ff2e3dd6699abafd6d4-part-0008.json",
+          "message_count": 25
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-mistral-status-eval.md"
+}

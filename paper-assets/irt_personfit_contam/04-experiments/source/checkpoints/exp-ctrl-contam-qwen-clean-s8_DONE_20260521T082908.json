@@ -1,0 +1,36 @@
+{
+  "exp_id": "exp-ctrl-contam-qwen-clean-s8",
+  "project": "irt_personfit_contam",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T07:42:56.989Z",
+    "updated_at": "2026-05-21T08:29:08.835Z",
+    "hypothesis": "Eighth independent clean Qwen2.5-7B-Instruct baseline (seed=305) for n=10 Cohen's d",
+    "parent": "exp-ctrl-contam-pilot",
+    "spec": {
+      "command": "python train.py --condition clean_s8 --gpu 0 (CUDA_VISIBLE_DEVICES=3)",
+      "server": "westd-35694",
+      "data_path": "/root/autodl-tmp/ctrl_contam_pilot/data/clean_s8/train.jsonl",
+      "data_count": 5000,
+      "model_name": "Qwen/Qwen2.5-7B-Instruct",
+      "seed": 305,
+      "checkpoint_source": "Qwen/Qwen2.5-7B-Instruct (base)",
+      "eval_data": "N/A (training experiment)"
+    },
+    "notes": "s8 PID 99807 found dead at step 294/939. Needs restart on next available GPU. Previous run was on cuda:3 with CUDA_VISIBLE_DEVICES=3.",
+    "metrics": {
+      "loss": 1.352,
+      "steps": 939,
+      "training_time_sec": 960
+    },
+    "checkpoint_path": "/root/autodl-tmp/ctrl_contam_pilot/runs/clean_s8",
+    "log_path": "/root/autodl-tmp/ctrl_contam_pilot/logs/clean_s8.log",
+    "conclusion": "success",
+    "completed_at": "2026-05-21T08:29:08.835Z"
+  },
+  "timestamp": "2026-05-21T08:29:08.905675+00:00",
+  "trigger": "update_registry"
+}

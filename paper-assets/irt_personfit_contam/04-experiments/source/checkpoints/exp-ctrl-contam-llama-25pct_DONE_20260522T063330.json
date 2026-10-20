@@ -1,0 +1,53 @@
+{
+  "exp_id": "exp-ctrl-contam-llama-25pct",
+  "project": "irt_personfit_contam",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T05:10:33.618Z",
+    "updated_at": "2026-05-22T06:33:30.380Z",
+    "hypothesis": "Llama-3.1-8B 25% MMLU contamination produces |d| between |d(15%)|=2.27 and |d(50%)|=2.50, confirming monotonic dose-response (no inverted-U) for Llama — establishing that the Qwen inverted-U is model-specific rather than universal, driven by Qwen's stronger θ-shift sensitivity.",
+    "parent": "exp-ctrl-contam-llama",
+    "spec": {
+      "command": "python3 train.py --condition contam_25 --gpu 0 && python3 eval_lz.py --condition contam_25 --gpu 0 && python3 compute_cohens_d.py",
+      "server": "westd-35694",
+      "data_path": "/root/autodl-tmp/ctrl_contam_llama/data/contam_25/train.jsonl",
+      "data_count": "8510 (5000 alpaca + 3510 MMLU 25%)",
+      "model_name": "Llama-3.1-8B-Instruct (QLoRA r=16 alpha=32)",
+      "seed": 42,
+      "checkpoint_source": "meta-llama/Llama-3.1-8B-Instruct",
+      "eval_data": "MMLU full (14042 items)",
+      "checkpoint_path": "/root/autodl-tmp/ctrl_contam_llama/checkpoints/contam_25/",
+      "log_path": "/root/autodl-tmp/ctrl_contam_llama/results/"
+    },
+    "metrics": {
+      "lz_star_snijders": -2.8045,
+      "accuracy_overall": 0.6781,
+      "accuracy_seen": 0.7715,
+      "accuracy_unseen": 0.647,
+      "theta_mle": -0.2207,
+      "cohens_d": -2.9667,
+      "cohens_d_ci95_percentile": [
+        -6.06,
+        -2.03
+      ],
+      "cohens_d_ci95_bca": [
+        -4.74,
+        -1.64
+      ],
+      "bootstrap_n": 10000,
+      "clean_baseline": {
+        "n": 10,
+        "lz_star_mean": -0.3123,
+        "lz_star_std_ddof1": 0.8401
+      }
+    },
+    "notes": "Hypothesis partially falsified: |d(25%)|=2.97 is LARGER than both |d(15%)|=2.27 and |d(50%)|=2.50, suggesting a mild inverted-U peak at 25% for Llama too (not monotonic as hypothesized). However the effect is much weaker than Qwen (|d| range 2.27-2.97 vs 1.90-8.22). lz* progression: clean=-0.31, contam_15=-2.20, contam_25=-2.80, contam_50=-2.39. θ_MLE: contam_25=-0.22 vs clean≈-0.31. Snijders lz* correction confirmed.",
+    "conclusion": "success",
+    "completed_at": "2026-05-22T06:33:30.380Z"
+  },
+  "timestamp": "2026-05-22T06:33:30.498433+00:00",
+  "trigger": "update_registry"
+}

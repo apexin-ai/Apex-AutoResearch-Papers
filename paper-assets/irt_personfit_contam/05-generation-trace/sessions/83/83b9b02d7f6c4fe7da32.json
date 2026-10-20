@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "83b9b02d7f6c4fe7da32",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops quick gpu check v2",
+  "task_key": "worker_ops_quick-gpu-check-v2_20260522T172316",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_quick-gpu-check-v2_20260522T172316_result.json",
+    "occurrence": 1,
+    "bytes": 1381,
+    "sha256": "8f7ed0eef34059a9ac47aaa215c6f7139fff06703726acffa73beed042b3d128"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**诊断结果：**\n\n### GPU 状态\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 0 / 97887 MiB | 0% |\n| 1 | 0 / 97887 MiB | **100%** |\n| 2 | 0 / 97887 MiB | 0% |\n| 3 | 0 / 97887 MiB | 0% |\n\nGPU 1 利用率 100% 但显存 0 MiB、无 compute app 进程——大概率是刚跑完释放显存但利用率还没回落，或者是个残留状态。**无 Python 进程在跑**，无训练任务在执行。\n\n### 最近 Results（按时间倒序）\n| 文件 | 时间 |\n|------|------|\n| `contam_50_s2_results.json` | 5/23 01:19 |\n| `contam_25_s3_results.json` | 5/23 00:28 |\n| `contam_25_s2_results.json` | 5/22 21:45 |\n| `contam_15_s2_results.json` | 5/22 20:43 |\n| `contam_5_cohens_d.json` | 5/22 17:23 |\n| `contam_5_results.json` | 5/22 07:14 |\n\n### 最近 Checkpoints（比 contam_25 更新的）\n- `contam_5/` — 含 3 个 checkpoint + final adapter\n- `contam_15_s2/` — 含 3 个 checkpoint + final adapter\n- `contam_25_s2/` — 含 3 个 checkpoint + final adapter\n- `contam_25_s3/` — 含 3 个 checkpoint + final adapter\n- `contam_50_s2/` — 含 3 个 checkpoint + final adapter\n\n### 总结\nGPU 空闲，无训练进程。最新产出是 `contam_50_s2`（约 30 分钟前完成），5 个新模型（contam_5, contam_15_s2, contam_25_s2, contam_25_s3, contam_50_s2）均已训练完成并有 eval 结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-quick-gpu-check-v2.md"
+}

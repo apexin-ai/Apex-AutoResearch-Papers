@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6977281839f586ef43e",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "paper investigate mistral d15 and fix",
+  "task_key": "worker_paper_investigate-mistral-d15-and-fix_20260524T065337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_investigate-mistral-d15-and-fix_20260524T065337_result.json",
+    "occurrence": 1,
+    "bytes": 1367,
+    "sha256": "1069b0524f9447101b8aa2398ac2be04ec6aeab6fc7a4bb428513e7bfe7eb2b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 产出总结\n\n### 1. 调查报告：contam_15_results.json 来源\n\n**结论：用新值 lz\\*=-1.3849，更新 d=-2.64**\n\n- `contam_15_results.json` 是 May 21 统一重算的一部分（所有 clean 和 contam 文件均在 May 21-22 窗口内修改）\n- `bca_bootstrap.py`（May 24 创建）的 10 个 clean seed lz\\* 与 May 21 重算完全一致，但 contam_15 lz\\*=-2.1468 是旧值（重算前）\n- `theta_fixed_n10_recompute.json` 已经使用了 May 21 重算数据（`lz_star_free: -1.3849`），确认 fixed-θ d=2.69 正确\n\n### 2. ARC-C 50% CI 修复\n\nbca_bootstrap percentile CI = [3.630, 15.150] → 四舍五入 [3.6, 15.2]，与论文一致。**无需修改。**\n\n### 3. 所有改动\n\n| 位置 | 旧值 | 新值 |\n|------|------|------|\n| Table 1 (results.tex:30) | d=-3.01 CI=[-8.2,-1.8] | d=-2.64 CI=[-7.3,-1.5] |\n| Table 2 (results.tex:91) | d_free=3.01, ratio=0.9× | d_free=2.64, ratio=1.0× |\n| Table 3 (results.tex:151) | d=3.01 CI=[1.8,8.2] | d=2.64 CI=[1.5,7.3] |\n| 正文 (results.tex:10) | Mistral \\|d\\|=3.01/3.50 | Mistral \\|d\\|=2.64/3.50 |\n| gen_fig_heatmap.py | 3.01, CI [1.8,8.2] | 2.64, CI [1.5,7.3] |\n| gen_fig_theta_scatter.py | (3.01, 1.75, 8.18) | (2.64, 1.49, 7.29) |\n\n### 4. PDF 页数：**16 页**\n\n### 5. 匿名 repo push：**成功** (`2421ca8..601aca3 main → main`)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-investigate-mistral-d15-and-fix.md"
+}

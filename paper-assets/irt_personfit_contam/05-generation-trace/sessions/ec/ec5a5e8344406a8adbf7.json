@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec5a5e8344406a8adbf7",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code exp item alignment check",
+  "task_key": "worker_code_exp-item-alignment-check_20260520T101720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-item-alignment-check_20260520T101720_result.json",
+    "occurrence": 1,
+    "bytes": 828,
+    "sha256": "36b214d3d67e6b8cde88af3e44fc215d4274a6545ace93aee5f6b76be07902c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结论: **negative** — 直接位置对齐不可行。\n\n核心发现:\n\n| 指标 | 结果 |\n|------|------|\n| 直接位置匹配率 | 54.56% (≈随机) |\n| Content-based 重排后 (Mistral) | 88.46% |\n| Content-based 重排后 (Vicuna) | 72.48% |\n| 可映射 items | 12068/14042 (86%) |\n\n**原因**: PSN-IRT 和 v1 leaderboard 都按 MMLU subject 字母序分组，但 v1 在 subject 内部 shuffle 了 items。更重要的是，即使 content-based 对齐后仍有 ~12% 不一致——PSN-IRT 是独立评测，不是复用 v1 leaderboard 数据。Vicuna 的 8% 准确率差距进一步证实了不同的评测协议。\n\n**建议**: 使用 PSN-IRT 自己的 combine.csv 配合自己的 item 参数（内部一致）。混用 v1 responses + PSN-IRT parameters 会引入 ~10% 噪声。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-item-alignment-check.md"
+}

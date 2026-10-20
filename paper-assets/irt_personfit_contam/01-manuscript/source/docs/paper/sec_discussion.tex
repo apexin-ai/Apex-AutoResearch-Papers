@@ -1,0 +1,12 @@
+\section{Discussion}\label{sec:discussion}
+
+The simulation study confirms that $\ell_z^*$ is well-calibrated under the bootstrap null (mean bias 0.041, std 1.003 on MMLU, $n{=}14{,}042$; calibration degrades for smaller benchmarks with KS rejection rates of 50--75\% for $n < 2{,}000$), yet 57 of 60 model-benchmark cells exhibit 4PL misfit in real data. This gap is not an artifact of miscalibration. LLM response patterns genuinely violate IRT assumptions such as local independence and unidimensionality, producing systematic positive $\ell_z^*$ (over-consistency) across models. The $\Delta\ell_z^*$ design turns this universal misfit into a feature: because the bias is shared across benchmarks, within-model differencing cancels it, isolating contamination-specific aberrance.
+
+The $\theta$-shift boundary condition implies that practitioners should anchor ability estimates to a pre-contamination baseline when available; otherwise, contamination-induced ability inflation can absorb detection signal, particularly for models with high baseline misfit.
+The Snijders variance correction exhibits ability-dependent effects on detection sensitivity, amplifying contamination signals for lower-ability models while slightly attenuating them for higher-ability models.
+
+This design enables practical deployment. PSN-IRT v1 provides over 13K per-item binary response vectors publicly~\citep{psnirt2026}, and binary response data are routinely recorded on leaderboards, so retrospective audits require no new data collection.
+
+Two scope boundaries deserve emphasis. First, our controlled validation spans two model families (Qwen2.5-7B and Llama-3.1-8B), with consistent detection signals across both ($|\Delta\ell_z^*| > 3.4$ at 15\% contamination). The QLoRA (rank=16) adapter limits memorization capacity; the observed 33--38\% memorization fraction likely represents a conservative lower bound, and full fine-tuning would produce stronger signals. Second, $\Delta\ell_z^*$ targets SFT-stage contamination and leaderboard gaming rather than incidental pretraining exposure.
+
+Future work includes extending to additional model families and architectures, large-scale leaderboard audits pending estimation advances for RL-era models~\citep{zhang2026rlvr}, and post-RL validation. The $\ell_z^*$ statistic is structurally invariant to RL distributional changes; empirical verification is future work.

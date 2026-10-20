@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0bfbfd287cc829a61f00",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code ctrl contam pilot launch",
+  "task_key": "worker_code_ctrl-contam-pilot-launch_20260520T153005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ctrl-contam-pilot-launch_20260520T153005_result.json",
+    "occurrence": 1,
+    "bytes": 948,
+    "sha256": "7b7a72fc9e56b526d382bb19658a3be89a1de8f61a878a4e9bf7d99d97f5f9a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All steps complete:\n\n1. **Model download**: Qwen2.5-7B-Instruct downloaded via ModelScope (4 safetensors, ~14.6GB)\n2. **Verification**: Model path resolves, tokenizer loads (vocab=151643)\n3. **train.py fix**: Updated for TRL 1.4.0 API — `TrainingArguments` → `SFTConfig`, `max_seq_length` → `max_length`\n4. **Dry-run**: 2 steps passed (loss=1.943, 9.6 samples/sec)\n5. **4 training jobs submitted** via `submit_training_job`:\n   - `exp-ctrl-contam-pilot-clean-s1` → GPU 0 (5000 samples, seed=42)\n   - `exp-ctrl-contam-pilot-clean-s2` → GPU 1 (5000 samples, seed=123)\n   - `exp-ctrl-contam-pilot-contam-15` → GPU 2 (7106 samples, seed=42)\n   - `exp-ctrl-contam-pilot-contam-50` → GPU 3 (12021 samples, seed=42)\n6. **Registry**: `exp-ctrl-contam-pilot` updated to RUNNING with full spec metadata\n\nEstimated training time: clean conditions ~939 steps × ~1.1s/step ≈ 17 min; contam_50 ~2260 steps ≈ 42 min."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ctrl-contam-pilot-launch.md"
+}

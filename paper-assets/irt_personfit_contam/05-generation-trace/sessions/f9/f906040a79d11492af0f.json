@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f906040a79d11492af0f",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code cuda1 utilize",
+  "task_key": "worker_code_cuda1-utilize_20260521T073413",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cuda1-utilize_20260521T073413_result.json",
+    "occurrence": 1,
+    "bytes": 587,
+    "sha256": "0a5382a6602b755d488c71f1957367e652088ee54eeb6ba39245b85134c61254"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 GPU 均已占满，**没有空闲 GPU**：\n\n| GPU | PID | 任务 | 启动时间 |\n|-----|-----|------|---------|\n| 0 | 92119 | eval_lz.py clean_s4 | 15:18 |\n| 0 | 96262 | eval_lz.py clean_s4 (第2个?) | 15:33 |\n| 1 | 96745 | **train.py clean_s6** | 15:34 |\n| 2 | 97296 | **train.py clean_s7** | 15:34 |\n| 3 | 94961 | eval_lz.py clean_s5 | 15:25 |\n\n**cuda:1 已被 s6 训练占用（23102 MiB），cuda:2 已被 s7 训练占用（14256 MiB）。** s7 已启动，不需要再跑。\n\n此外 GPU 0 上跑了两个 clean_s4 eval 进程，可能有重复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cuda1-utilize.md"
+}

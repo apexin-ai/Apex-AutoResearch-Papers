@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "136aabdfa0a0462e7d4e",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code exp ctrl contam pilot",
+  "task_key": "worker_code_exp-ctrl-contam-pilot_20260520T135630",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-ctrl-contam-pilot_20260520T135630_result.json",
+    "occurrence": 1,
+    "bytes": 447,
+    "sha256": "d8bcfe02cd2e96d6d110d8b33ecceaa54ba6ee6aafe4d97d2c7ef4ffa409975a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "服务器 `connect.westd.seetacloud.com:35694` 无法连接——端口不通。AutoDL 实例可能已关机或重启导致端口变更。\n\n需要你做以下操作：\n\n1. 登录 AutoDL 控制台，检查该实例状态\n2. 如果实例已关机，开机后获取新的 SSH 端口和密码\n3. 如果端口已变更，把新的连接信息发给我\n\nAutoDL 实例重启后 SSH 端口会变，当前端口 35694 已不可达。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-ctrl-contam-pilot-copy-2.md"
+}

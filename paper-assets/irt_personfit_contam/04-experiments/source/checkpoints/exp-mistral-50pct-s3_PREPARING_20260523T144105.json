@@ -1,0 +1,37 @@
+{
+  "exp_id": "exp-mistral-50pct-s3",
+  "project": "irt_personfit_contam",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T09:44:11.360Z",
+    "updated_at": "2026-05-23T14:41:05.530Z",
+    "hypothesis": "Mistral-7B-v0.3 50% MMLU contamination with seed=456 completes 3-seed evidence, enabling full multi-seed multi-model contamination detection analysis.",
+    "spec": {
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "seed": 456,
+      "data_path": "/root/autodl-tmp/ctrl_contam_pilot/data/contam_50/train.jsonl",
+      "data_count": 5000,
+      "server": "westd-35694",
+      "command": "python train.py --condition contam_50_s3 --model mistral --gpu 0"
+    },
+    "metrics": {
+      "lz_star": -5.2355,
+      "theta_mle": -0.2637,
+      "acc_overall": 0.6765,
+      "acc_seen": 0.7505,
+      "acc_unseen": 0.6025,
+      "d_free": -4.512,
+      "clean_baseline": {
+        "mean": 4.024,
+        "std": 2.052,
+        "n": 10
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-23T14:41:05.677503+00:00",
+  "trigger": "update_registry"
+}

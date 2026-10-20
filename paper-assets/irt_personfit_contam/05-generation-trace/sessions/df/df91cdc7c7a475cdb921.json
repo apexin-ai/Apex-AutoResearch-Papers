@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df91cdc7c7a475cdb921",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code two sided power",
+  "task_key": "worker_code_two_sided_power_20260520T093308",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_two_sided_power_20260520T093308_result.json",
+    "occurrence": 1,
+    "bytes": 497,
+    "sha256": "124c083b94d05ce280417e04efc8c2810144389ad80db1ba323adfe68d122d37"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。三个产出文件已生成并注册：\n\n1. **`two_sided_power.csv`** — 55 行检测率数据\n2. **`two_sided_power_curves.png`** — 3-panel 图（left/right/two-sided）\n3. **`dual_regime_summary.json`** — 所有 benchmark 的 crossover 在 75–90% 之间\n\n核心发现：two-sided 检测弥补了 left-tail 在高污染下的失效——left-tail 在 25–50% 达峰后下降，right-tail 在 90%+ 才起作用，two-sided 在全范围保持高 power。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-two-sided-power.md"
+}

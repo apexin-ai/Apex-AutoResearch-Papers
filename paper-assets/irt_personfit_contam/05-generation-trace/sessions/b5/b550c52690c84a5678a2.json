@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "b550c52690c84a5678a2",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "code clean s3 eval complete",
+  "task_key": "worker_code_clean-s3-eval-complete_20260520T194758",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_clean-s3-eval-complete_20260520T194758.log",
+    "occurrence": 1,
+    "bytes": 1005254,
+    "sha256": "dd5c940aa7b1c3c2323fa9faa1cdf0d01daca82f24a5d62b87ad69b4951bd1d5"
+  },
+  "statistics": {
+    "messages": 887,
+    "user_turns": 0,
+    "tool_calls": 417,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 47,
+      "tool_call": 417,
+      "tool_result": 417,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 887,
+      "chunks": [
+        {
+          "path": "b550c52690c84a5678a2-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b550c52690c84a5678a2-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "b550c52690c84a5678a2-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "b550c52690c84a5678a2-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "b550c52690c84a5678a2-part-0005.json",
+          "message_count": 167
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-clean-s3-eval-complete.md"
+}

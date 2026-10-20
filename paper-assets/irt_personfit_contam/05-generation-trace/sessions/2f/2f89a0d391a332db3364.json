@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f89a0d391a332db3364",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code exp ctrl contam mistral setup",
+  "task_key": "worker_code_exp-ctrl-contam-mistral-setup_20260521T042208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-ctrl-contam-mistral-setup_20260521T042208_result.json",
+    "occurrence": 1,
+    "bytes": 703,
+    "sha256": "f8a8d4c4b203fbb763202f262652647d1cffaa63036acefc21d91798de62205f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪，4 个 GPU 都在工作：\n\n| GPU | 用途 | 显存 | 利用率 |\n|-----|------|------|--------|\n| 0 | Mistral clean | 8.9 GB | 87% |\n| 1 | Mistral contam_15 | 8.4 GB | 92% |\n| 2 | (已有 post-rl SFT) | 8.7 GB | 82% |\n| 3 | Mistral contam_50 | 7.8 GB | 97% |\n\nMistral-7B ctrl-contam 三组实验已全部启动并行训练：\n- `exp-ctrl-contam-mistral-clean` → cuda:0\n- `exp-ctrl-contam-mistral-contam15` → cuda:1  \n- `exp-ctrl-contam-mistral-contam50` → cuda:3\n\n模型通过 ModelScope 下载（跳过 consolidated.safetensors），symlink 解决了路径命名差异，dry-run 验证通过后提交。report_to 改为 \"none\"（wandb 未配置）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-ctrl-contam-mistral-setup.md"
+}

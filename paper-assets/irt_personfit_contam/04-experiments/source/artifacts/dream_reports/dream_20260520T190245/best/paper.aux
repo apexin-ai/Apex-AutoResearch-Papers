@@ -1,0 +1,95 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{shi2024detecting}
+\citation{oren2024proving}
+\citation{dekoninck2024constat}
+\citation{wang2025rlcontam}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{drasgow1985appropriateness}
+\citation{shi2024detecting}
+\citation{dekoninck2024constat}
+\citation{wang2025rlcontam}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:background}{{2}{2}{Background and Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}IRT and Person-Fit Statistics}{2}{subsection.2.1}\protected@file@percent }
+\newlabel{eq:4pl}{{1}{2}{IRT and Person-Fit Statistics}{equation.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Benchmark Contamination Detection}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}IRT-FIT Framework}{2}{subsection.3.1}\protected@file@percent }
+\citation{hong2021multiscale}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}$\theta $-Fixed Analysis}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Controlled Contamination Protocol}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Multiscale Aggregation ($l_z^m$)}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{3}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Controlled Contamination Pilot}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:pilot}{{4.1}{3}{Controlled Contamination Pilot}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Controlled contamination pilot: Qwen3.5-9B on MMLU. $\Delta l_z^*$ computed relative to clean seed 1. $\theta $-fixed{} fixes $\theta $ to clean baseline.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:pilot}{{1}{3}{Controlled contamination pilot: Qwen3.5-9B on MMLU. $\Delta l_z^*$ computed relative to clean seed 1. \thetafix {} fixes $\theta $ to clean baseline}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Cross-Model Controlled Contamination}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:crossmodel}{{4.2}{4}{Cross-Model Controlled Contamination}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Cross-model detection at 15\% contamination on MMLU. All four models produce significant detection signals ($|d| > 2.0$).}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:crossmodel}{{2}{4}{Cross-model detection at 15\% contamination on MMLU. All four models produce significant detection signals ($|d| > 2.0$)}{table.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Small-benchmark detection.}{4}{section*.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces GSM8K detection at 15\% contamination ($n = 1{,}319$ items).}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:gsm8k}{{3}{4}{GSM8K detection at 15\% contamination ($n = 1{,}319$ items)}{table.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Dose-response monotonicity.}{4}{section*.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces $\theta $-fixed $\Delta l_z^*$ across contamination levels (MMLU). All models show strictly monotonic dose-response.}}{4}{table.4}\protected@file@percent }
+\newlabel{tab:doseresponse}{{4}{4}{$\theta $-fixed $\Delta l_z^*$ across contamination levels (MMLU). All models show strictly monotonic dose-response}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Baseline Comparison}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:baselines}{{4.3}{4}{Baseline Comparison}{subsection.4.3}{}}
+\citation{wang2025rlcontam}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces AUROC comparison across contamination levels (MMLU, 4-model average). Methods grouped by information access level. 95\% bootstrap CIs shown.}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:baselines}{{5}{5}{AUROC comparison across contamination levels (MMLU, 4-model average). Methods grouped by information access level. 95\% bootstrap CIs shown}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces $l_{z}^{*}${} advantage over the best baseline at each contamination level.}}{5}{table.6}\protected@file@percent }
+\newlabel{tab:advantage}{{6}{5}{\lzstar {} advantage over the best baseline at each contamination level}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Post-RL Signal Retention}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:postrl}{{4.4}{5}{Post-RL Signal Retention}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Detection performance before and after GRPO post-training. Token-level methods collapse; $l_{z}^{*}${} retains 80\% of signal.}}{5}{table.7}\protected@file@percent }
+\newlabel{tab:postrl}{{7}{5}{Detection performance before and after GRPO post-training. Token-level methods collapse; \lzstar {} retains 80\% of signal}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Binary response pattern metrics before and after GRPO.}}{6}{table.8}\protected@file@percent }
+\newlabel{tab:postrl_detail}{{8}{6}{Binary response pattern metrics before and after GRPO}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Power Function Validation}{6}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:power}{{4.5}{6}{Power Function Validation}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Power function validation across five benchmarks at 15\% contamination. Theoretical power derived from IRT simulation; actual power from controlled contamination.}}{6}{table.9}\protected@file@percent }
+\newlabel{tab:power}{{9}{6}{Power function validation across five benchmarks at 15\% contamination. Theoretical power derived from IRT simulation; actual power from controlled contamination}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Ablation: 4PL vs 3PL}{6}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:ablation}{{4.6}{6}{Ablation: 4PL vs 3PL}{subsection.4.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces 4PL vs 3PL detection power at 25\% contamination. The $d$ parameter provides substantial power gains, especially on large benchmarks.}}{6}{table.10}\protected@file@percent }
+\newlabel{tab:4pl_ablation}{{10}{6}{4PL vs 3PL detection power at 25\% contamination. The $d$ parameter provides substantial power gains, especially on large benchmarks}{table.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Multiscale Aggregation}{7}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:lzm}{{4.7}{7}{Multiscale Aggregation}{subsection.4.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces $l_{z}^{m}${} scores for selected models from the PSN-IRT 12-model case study. Per-benchmark $l_{z}^{*}${} and aggregate $l_{z}^{m}${} shown.}}{7}{table.11}\protected@file@percent }
+\newlabel{tab:lzm}{{11}{7}{\lzm {} scores for selected models from the PSN-IRT 12-model case study. Per-benchmark \lzstar {} and aggregate \lzm {} shown}{table.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Domain-Level Analysis}{7}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:domain}{{4.8}{7}{Domain-Level Analysis}{subsection.4.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Domain-level $l_{z}^{*}${} on MMLU: Gemini-1.5 (case study) vs controlled contamination.}}{7}{table.12}\protected@file@percent }
+\newlabel{tab:domain}{{12}{7}{Domain-level \lzstar {} on MMLU: Gemini-1.5 (case study) vs controlled contamination}{table.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Natural Experiment: Base $\to $ Chat Pairs}{7}{subsection.4.9}\protected@file@percent }
+\newlabel{sec:natural}{{4.9}{7}{Natural Experiment: Base $\to $ Chat Pairs}{subsection.4.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Systematic SFT effects on $l_{z}^{*}${} across base$\to $chat pairs ($n=9$).}}{7}{table.13}\protected@file@percent }
+\newlabel{tab:natural}{{13}{7}{Systematic SFT effects on \lzstar {} across base$\to $chat pairs ($n=9$)}{table.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}IRT Parameter Estimation at Scale}{8}{subsection.4.10}\protected@file@percent }
+\newlabel{sec:refit}{{4.10}{8}{IRT Parameter Estimation at Scale}{subsection.4.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces IRT parameter recovery: classical MML-EM vs neural PSN-IRT.}}{8}{table.14}\protected@file@percent }
+\newlabel{tab:refit}{{14}{8}{IRT parameter recovery: classical MML-EM vs neural PSN-IRT}{table.14}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{8}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{8}{Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{The minimal-information operating point.}{8}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Complementarity, not replacement.}{8}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{$\theta $-shift as a methodological contribution.}{8}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.6}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{drasgow1985appropriateness}{{1}{1985}{{Drasgow et al.}}{{}}}
+\bibcite{shi2024detecting}{{2}{2024}{{Shi et al.}}{{}}}
+\bibcite{oren2024proving}{{3}{2024}{{Oren et al.}}{{}}}
+\bibcite{dekoninck2024constat}{{4}{2024}{{Dekoninck et al.}}{{}}}
+\bibcite{wang2025rlcontam}{{5}{2025}{{Wang et al.}}{{}}}
+\bibcite{hong2021multiscale}{{6}{2021}{{Hong et al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{9}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{9}{Conclusion}{section.6}{}}
+\gdef \@abspage@last{9}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c24c0561290fc921208",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "train qwen 5pct contam",
+  "task_key": "worker_train_qwen-5pct-contam_20260522T091954",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_qwen-5pct-contam_20260522T091954_result.json",
+    "occurrence": 1,
+    "bytes": 1143,
+    "sha256": "5042b5ed19f4d8816809718507a1c1c9d89d152e100828112a868962b02911c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。以下是完整结果汇总：\n\n---\n\n## exp-ctrl-contam-qwen-5pct 结果\n\n**磁盘**: 165GB 可用，充裕\n\n**数据**: `train.jsonl` = 5702 行（5000 Alpaca + 702 MMLU 5%），已复用之前生成的数据\n\n**训练**: 已完成（之前的运行），3 epochs, 1071 steps, train_loss=1.39, 耗时 ~19 分钟\n\n**评估结果**:\n\n| 指标 | 值 |\n|------|-----|\n| θ_MLE (free) | +0.0879 |\n| lz* (free-θ) | 5.6309 |\n| lz* (fixed-θ, θ=-0.1022) | 11.0900 |\n| accuracy_overall | 0.7141 |\n| accuracy_seen (702 items) | 0.8291 |\n| accuracy_unseen (13340 items) | 0.7080 |\n\n**Cohen's d**:\n\n| 方法 | d | 95% CI |\n|------|---|--------|\n| Free-θ | **-4.15** | [-9.85, -2.74] |\n| Fixed-θ | **+3.52** | [+2.90, +5.71] |\n\n**跨条件对比** (fixed-θ Cohen's d):\n\n| 条件 | d (fixed-θ) |\n|------|-------------|\n| 5% (702 items) | +3.52 |\n| 15% (2106 items) | +4.77 |\n| 50% (7021 items) | +14.52 |\n\n5% 污染的 fixed-θ Cohen's d = 3.52，效应量依然很大（远超常规阈值 0.8），表明即使 5% 的 MMLU 污染也能被 lz* person-fit 统计量检测到。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-qwen-5pct-contam.md"
+}

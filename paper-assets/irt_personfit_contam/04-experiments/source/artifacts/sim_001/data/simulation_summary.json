@@ -1,0 +1,332 @@
+{
+  "global_pass": false,
+  "all_large_benchmarks_pass": false,
+  "inverted_u_observable": true,
+  "benchmarks": {
+    "humaneval": {
+      "n_items": 164,
+      "tier": "small",
+      "contamination_levels": {
+        "0": {
+          "n_sims": 1000,
+          "n_excluded": 0,
+          "detection_rate": 0.061,
+          "mean_lz_star": 0.043,
+          "std_lz_star": 1.0031
+        },
+        "3": {
+          "n_sims": 1000,
+          "n_excluded": 0,
+          "detection_rate": 0.082,
+          "mean_lz_star": -0.1729,
+          "std_lz_star": 1.0071
+        },
+        "5": {
+          "n_sims": 1000,
+          "n_excluded": 0,
+          "detection_rate": 0.09,
+          "mean_lz_star": -0.2925,
+          "std_lz_star": 1.0325
+        },
+        "10": {
+          "n_sims": 1000,
+          "n_excluded": 0,
+          "detection_rate": 0.151,
+          "mean_lz_star": -0.5381,
+          "std_lz_star": 1.1302
+        },
+        "15": {
+          "n_sims": 1000,
+          "n_excluded": 0,
+          "detection_rate": 0.243,
+          "mean_lz_star": -0.898,
+          "std_lz_star": 1.2317
+        },
+        "25": {
+          "n_sims": 1000,
+          "n_excluded": 0,
+          "detection_rate": 0.409,
+          "mean_lz_star": -1.4074,
+          "std_lz_star": 1.4328
+        },
+        "50": {
+          "n_sims": 1000,
+          "n_excluded": 0,
+          "detection_rate": 0.571,
+          "mean_lz_star": -1.8677,
+          "std_lz_star": 2.0444
+        },
+        "100": {
+          "n_sims": 0,
+          "n_excluded": 1000,
+          "detection_rate": 0.0,
+          "mean_lz_star": NaN,
+          "std_lz_star": NaN
+        }
+      },
+      "pass_15pct": false,
+      "threshold": 0.5,
+      "inverted_u_detected": true
+    },
+    "arc_c": {
+      "n_items": 295,
+      "tier": "small",
+      "contamination_levels": {
+        "0": {
+          "n_sims": 1000,
+          "n_excluded": 0,
+          "detection_rate": 0.062,
+          "mean_lz_star": 0.0292,
+          "std_lz_star": 1.0108
+        },
+        "3": {
+          "n_sims": 1000,
+          "n_excluded": 0,
+          "detection_rate": 0.063,
+          "mean_lz_star": -0.0347,
+          "std_lz_star": 1.0032
+        },
+        "5": {
+          "n_sims": 1000,
+          "n_excluded": 0,
+          "detection_rate": 0.075,
+          "mean_lz_star": -0.1202,
+          "std_lz_star": 1.0035
+        },
+        "10": {
+          "n_sims": 1000,
+          "n_excluded": 0,
+          "detection_rate": 0.085,
+          "mean_lz_star": -0.2306,
+          "std_lz_star": 1.0201
+        },
+        "15": {
+          "n_sims": 1000,
+          "n_excluded": 0,
+          "detection_rate": 0.129,
+          "mean_lz_star": -0.3566,
+          "std_lz_star": 1.1002
+        },
+        "25": {
+          "n_sims": 1000,
+          "n_excluded": 0,
+          "detection_rate": 0.194,
+          "mean_lz_star": -0.6254,
+          "std_lz_star": 1.2015
+        },
+        "50": {
+          "n_sims": 1000,
+          "n_excluded": 0,
+          "detection_rate": 0.312,
+          "mean_lz_star": -0.9908,
+          "std_lz_star": 1.4869
+        },
+        "100": {
+          "n_sims": 0,
+          "n_excluded": 1000,
+          "detection_rate": 0.0,
+          "mean_lz_star": NaN,
+          "std_lz_star": NaN
+        }
+      },
+      "pass_15pct": false,
+      "threshold": 0.5,
+      "inverted_u_detected": true
+    },
+    "gsm8k": {
+      "n_items": 1319,
+      "tier": "large",
+      "contamination_levels": {
+        "0": {
+          "n_sims": 1000,
+          "n_excluded": 0,
+          "detection_rate": 0.055,
+          "mean_lz_star": 0.0221,
+          "std_lz_star": 1.0341
+        },
+        "3": {
+          "n_sims": 1000,
+          "n_excluded": 0,
+          "detection_rate": 0.129,
+          "mean_lz_star": -0.4599,
+          "std_lz_star": 1.052
+        },
+        "5": {
+          "n_sims": 1000,
+          "n_excluded": 0,
+          "detection_rate": 0.205,
+          "mean_lz_star": -0.745,
+          "std_lz_star": 1.1542
+        },
+        "10": {
+          "n_sims": 1000,
+          "n_excluded": 0,
+          "detection_rate": 0.433,
+          "mean_lz_star": -1.5191,
+          "std_lz_star": 1.4541
+        },
+        "15": {
+          "n_sims": 1000,
+          "n_excluded": 0,
+          "detection_rate": 0.578,
+          "mean_lz_star": -2.0634,
+          "std_lz_star": 1.7404
+        },
+        "25": {
+          "n_sims": 1000,
+          "n_excluded": 0,
+          "detection_rate": 0.776,
+          "mean_lz_star": -3.272,
+          "std_lz_star": 2.3246
+        },
+        "50": {
+          "n_sims": 1000,
+          "n_excluded": 0,
+          "detection_rate": 0.795,
+          "mean_lz_star": -5.1241,
+          "std_lz_star": 3.9835
+        },
+        "100": {
+          "n_sims": 0,
+          "n_excluded": 1000,
+          "detection_rate": 0.0,
+          "mean_lz_star": NaN,
+          "std_lz_star": NaN
+        }
+      },
+      "pass_15pct": false,
+      "threshold": 0.8,
+      "inverted_u_detected": true
+    },
+    "hellaswag": {
+      "n_items": 10042,
+      "tier": "large",
+      "contamination_levels": {
+        "0": {
+          "n_sims": 1000,
+          "n_excluded": 0,
+          "detection_rate": 0.042,
+          "mean_lz_star": 0.0475,
+          "std_lz_star": 0.9862
+        },
+        "3": {
+          "n_sims": 1000,
+          "n_excluded": 0,
+          "detection_rate": 0.226,
+          "mean_lz_star": -0.792,
+          "std_lz_star": 1.2341
+        },
+        "5": {
+          "n_sims": 1000,
+          "n_excluded": 0,
+          "detection_rate": 0.306,
+          "mean_lz_star": -1.2127,
+          "std_lz_star": 1.4738
+        },
+        "10": {
+          "n_sims": 1000,
+          "n_excluded": 0,
+          "detection_rate": 0.567,
+          "mean_lz_star": -2.3616,
+          "std_lz_star": 2.3367
+        },
+        "15": {
+          "n_sims": 1000,
+          "n_excluded": 0,
+          "detection_rate": 0.733,
+          "mean_lz_star": -3.4207,
+          "std_lz_star": 3.0643
+        },
+        "25": {
+          "n_sims": 1000,
+          "n_excluded": 0,
+          "detection_rate": 0.936,
+          "mean_lz_star": -5.3003,
+          "std_lz_star": 4.2041
+        },
+        "50": {
+          "n_sims": 1000,
+          "n_excluded": 0,
+          "detection_rate": 0.836,
+          "mean_lz_star": -7.8171,
+          "std_lz_star": 6.7321
+        },
+        "100": {
+          "n_sims": 0,
+          "n_excluded": 1000,
+          "detection_rate": 0.0,
+          "mean_lz_star": NaN,
+          "std_lz_star": NaN
+        }
+      },
+      "pass_15pct": false,
+      "threshold": 0.8,
+      "inverted_u_detected": true
+    },
+    "mmlu": {
+      "n_items": 14042,
+      "tier": "large",
+      "contamination_levels": {
+        "0": {
+          "n_sims": 1000,
+          "n_excluded": 0,
+          "detection_rate": 0.042,
+          "mean_lz_star": 0.0173,
+          "std_lz_star": 0.9816
+        },
+        "3": {
+          "n_sims": 1000,
+          "n_excluded": 0,
+          "detection_rate": 0.344,
+          "mean_lz_star": -1.2687,
+          "std_lz_star": 1.3343
+        },
+        "5": {
+          "n_sims": 1000,
+          "n_excluded": 0,
+          "detection_rate": 0.559,
+          "mean_lz_star": -2.0943,
+          "std_lz_star": 1.6689
+        },
+        "10": {
+          "n_sims": 1000,
+          "n_excluded": 0,
+          "detection_rate": 0.905,
+          "mean_lz_star": -4.0364,
+          "std_lz_star": 2.4341
+        },
+        "15": {
+          "n_sims": 1000,
+          "n_excluded": 0,
+          "detection_rate": 0.979,
+          "mean_lz_star": -6.0923,
+          "std_lz_star": 3.7724
+        },
+        "25": {
+          "n_sims": 1000,
+          "n_excluded": 0,
+          "detection_rate": 0.967,
+          "mean_lz_star": -9.4552,
+          "std_lz_star": 5.1958
+        },
+        "50": {
+          "n_sims": 1000,
+          "n_excluded": 0,
+          "detection_rate": 0.861,
+          "mean_lz_star": -15.7998,
+          "std_lz_star": 10.5321
+        },
+        "100": {
+          "n_sims": 0,
+          "n_excluded": 1000,
+          "detection_rate": 0.0,
+          "mean_lz_star": NaN,
+          "std_lz_star": NaN
+        }
+      },
+      "pass_15pct": true,
+      "threshold": 0.8,
+      "inverted_u_detected": true
+    }
+  }
+}

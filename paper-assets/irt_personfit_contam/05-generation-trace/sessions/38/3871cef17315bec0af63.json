@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "3871cef17315bec0af63",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "ops mass eval",
+  "task_key": "worker_ops_mass-eval_20260523T124335",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_mass-eval_20260523T124335.log",
+    "occurrence": 1,
+    "bytes": 807817,
+    "sha256": "18b9f7d592da8ece7e5c77e1f85ed38d6288072996555978b9eedeebd62c5012"
+  },
+  "statistics": {
+    "messages": 505,
+    "user_turns": 0,
+    "tool_calls": 125,
+    "roles": {
+      "log": 1,
+      "system": 105,
+      "record": 2,
+      "assistant": 120,
+      "tool_call": 125,
+      "tool_result": 125,
+      "result": 27
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 505,
+      "chunks": [
+        {
+          "path": "3871cef17315bec0af63-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "3871cef17315bec0af63-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "3871cef17315bec0af63-part-0003.json",
+          "message_count": 145
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-mass-eval.md"
+}

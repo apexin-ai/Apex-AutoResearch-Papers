@@ -1,0 +1,1160 @@
+paper:
+  title: ''
+  version: 45
+  generated_at: '2026-05-21T16:38:01.701671+00:00'
+claims:
+- id: C001
+  location:
+    section: sec_setup
+    paragraph: 0
+    sentence: 0
+  text: MMLU has 14,042 items, HellaSwag 10,042, GSM8K 1,319, ARC-Challenge 295, HumanEval
+    164
+  type: data
+  evidence:
+  - exp_id: phase_b_personfit
+  - exp_id: exp-extended-sim
+  decisions: []
+  deprecated: false
+- id: C003
+  location:
+    section: sec_setup
+    paragraph: 0
+    sentence: 0
+  text: 4PL IRT parameters calibrated by PSN-IRT from large-scale leaderboard dataset
+  type: method
+  evidence:
+  - exp_id: phase_b_personfit
+    metric: item_params_source
+  decisions: []
+  deprecated: false
+- id: C006
+  location:
+    section: sec_setup
+    paragraph: 0
+    sentence: 0
+  text: 12 models from PSN-IRT v2 leaderboard dataset
+  type: data
+  evidence:
+  - exp_id: phase_b_personfit
+    metric: n_models=12
+  decisions: []
+  deprecated: false
+- id: C010
+  location:
+    section: sec_setup
+    paragraph: 0
+    sentence: 0
+  text: QLoRA rank=16 alpha=32 on Qwen2.5-7B-Instruct, 5 conditions (3 clean seeds
+    + 2 contaminated)
+  type: method
+  evidence:
+  - exp_id: exp-ctrl-contam-pilot
+  decisions: []
+  deprecated: false
+- id: C015
+  location:
+    section: sec_setup
+    paragraph: 0
+    sentence: 0
+  text: 2000 replicates per condition, 11 contamination levels
+  type: method
+  evidence:
+  - exp_id: exp-extended-sim
+    metric: n_sims=2000, levels=11
+  decisions: []
+  deprecated: false
+- id: C016
+  location:
+    section: sec_simulation
+    paragraph: 0
+    sentence: 0
+  text: 'Bootstrap lz* null: mean bias 0.041, std 1.003 on MMLU'
+  type: quantitative
+  evidence:
+  - exp_id: exp-empirical-null
+    metric: bias_by_benchmark.mmlu=0.041
+  decisions: []
+  deprecated: false
+- id: C018
+  location:
+    section: sec_simulation
+    paragraph: 0
+    sentence: 0
+  text: KS rejection rates by benchmark size
+  type: quantitative
+  evidence:
+  - exp_id: exp-empirical-null
+    metric: ks_reject_by_benchmark
+  decisions: []
+  deprecated: false
+- id: C021
+  location:
+    section: sec_simulation
+    paragraph: 0
+    sentence: 0
+  text: MMLU two-sided power 97.8% at 15%
+  type: quantitative
+  evidence:
+  - exp_id: exp-extended-sim
+    metric: mmlu_15pct=0.978
+  decisions: []
+  deprecated: false
+- id: C025
+  location:
+    section: sec_simulation
+    paragraph: 0
+    sentence: 0
+  text: Theory R2=0.9572
+  type: quantitative
+  evidence:
+  - exp_id: exp-power-theory
+    metric: R2_two_sided=0.9572
+  decisions: []
+  deprecated: false
+- id: C030
+  location:
+    section: sec_simulation
+    paragraph: 0
+    sentence: 0
+  text: 4PL vs 3PL mean +27.3pp MMLU
+  type: quantitative
+  evidence:
+  - exp_id: exp-4pl-ablation
+  decisions: []
+  deprecated: false
+- id: C036
+  location:
+    section: sec_simulation
+    paragraph: 0
+    sentence: 0
+  text: lz* +0.10 AUROC at 5% vs ML
+  type: quantitative
+  evidence:
+  - exp_id: exp-ml-classifier-baseline
+  decisions: []
+  deprecated: false
+- id: C037
+  location:
+    section: sec_ctrl_contam
+    paragraph: 0
+    sentence: 0
+  text: 'Clean seeds lz*: s1=8.01, s2=5.94, s3=8.08 (mean=7.35+/-1.21)'
+  type: quantitative
+  evidence:
+  - exp_id: exp-ctrl-contam-pilot
+    metric: clean_seeds, baseline_n3
+  decisions: []
+  deprecated: false
+- id: C039
+  location:
+    section: sec_ctrl_contam
+    paragraph: 0
+    sentence: 0
+  text: contam_15% |Cohen's d|=3.58, contam_50% |d|=1.56 (ddof=1, n=3)
+  type: quantitative
+  evidence:
+  - exp_id: exp-ctrl-contam-pilot
+    metric: cohens_d_n3
+  decisions: []
+  deprecated: false
+- id: C042
+  location:
+    section: sec_ctrl_contam
+    paragraph: 0
+    sentence: 0
+  text: Clean-clean noise floor 0.70, contam signal 5.7x above
+  type: quantitative
+  evidence:
+  - exp_id: exp-clean-control-delta
+    metric: clean_vs_clean_mean_abs
+  decisions: []
+  deprecated: false
+- id: C046
+  location:
+    section: sec_ctrl_contam
+    paragraph: 0
+    sentence: 0
+  text: 'Free-theta non-monotonic: Delta_lz=-4.34 (15%), -1.90 (50%)'
+  type: quantitative
+  evidence:
+  - exp_id: exp-ctrl-contam-pilot
+    metric: H3.theta_free
+  decisions: []
+  deprecated: false
+- id: C051
+  location:
+    section: sec_ctrl_contam
+    paragraph: 0
+    sentence: 0
+  text: 'Fixed-theta: 2.68 (15%), 8.36 (50%), ratio=3.12'
+  type: quantitative
+  evidence:
+  - exp_id: exp-ctrl-contam-pilot
+    metric: H3.theta_fixed
+  decisions: []
+  deprecated: false
+- id: C057
+  location:
+    section: sec_ctrl_contam
+    paragraph: 0
+    sentence: 0
+  text: 'Memorization fraction: 0.38 (15%), 0.29 (50%)'
+  type: quantitative
+  evidence:
+  - exp_id: exp-ctrl-contam-pilot
+    metric: H4_memorization_fraction
+  decisions: []
+  deprecated: false
+- id: C058
+  location:
+    section: sec_empirical
+    paragraph: 0
+    sentence: 0
+  text: 57/60 cells flagged after BH-FDR correction
+  type: quantitative
+  evidence:
+  - exp_id: exp-fdr-correction
+    metric: flagged_bh_fdr=57/60
+  decisions: []
+  deprecated: false
+- id: C060
+  location:
+    section: sec_empirical
+    paragraph: 0
+    sentence: 0
+  text: Accuracy z-score flags 4/60 vs lz* 57/60 (14x)
+  type: quantitative
+  evidence:
+  - exp_id: exp-accuracy-zscore-baseline
+    metric: z_flagged=4, lz_flagged=57
+  decisions: []
+  deprecated: false
+- id: C063
+  location:
+    section: sec_empirical
+    paragraph: 0
+    sentence: 0
+  text: 93.3% positive lz* cells
+  type: quantitative
+  evidence:
+  - exp_id: exp-cross-benchmark-analysis
+    metric: pct_positive_cells=93.3
+  decisions: []
+  deprecated: false
+- id: C067
+  location:
+    section: sec_empirical
+    paragraph: 0
+    sentence: 0
+  text: 'Gemini-1.5 MMLU: acc=100%, theta=0.78, lz*=+34.75'
+  type: quantitative
+  evidence:
+  - exp_id: phase_b_personfit
+    metric: gemini15_mmlu
+  decisions: []
+  deprecated: false
+- id: C072
+  location:
+    section: sec_empirical
+    paragraph: 0
+    sentence: 0
+  text: 50/57 MMLU subjects flagged for Gemini
+  type: quantitative
+  evidence:
+  - exp_id: exp-domain-analysis
+    metric: gemini_subjects_flagged=50/57
+  decisions: []
+  deprecated: false
+- id: C078
+  location:
+    section: sec_empirical
+    paragraph: 0
+    sentence: 0
+  text: 10/12 models flagged on all 5 benchmarks
+  type: quantitative
+  evidence:
+  - exp_id: exp-cross-benchmark-analysis
+    metric: n_models_all5_flagged=10
+  decisions: []
+  deprecated: false
+- id: C085
+  location:
+    section: sec_empirical
+    paragraph: 0
+    sentence: 0
+  text: 'MML-EM refit: b_r=0.663, a_r=0.127, N=178'
+  type: quantitative
+  evidence:
+  - exp_id: exp-v1-irt-refit-expanded
+  decisions: []
+  deprecated: false
+- id: C093
+  location:
+    section: sec_empirical
+    paragraph: 0
+    sentence: 0
+  text: '4PL vs 3PL real data: r=0.225, RMSE=68.41'
+  type: quantitative
+  evidence:
+  - exp_id: exp-4pl-real-data-degradation
+    metric: correlation_4pl_vs_3pl
+  decisions: []
+  deprecated: false
+- id: C094
+  location:
+    section: sec_ctrl_contam
+    paragraph: 0
+    sentence: 0
+  text: Contamination signal exceeds noise floor by 6.2x
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C095
+  location:
+    section: sec_ctrl_contam
+    paragraph: 0
+    sentence: 0
+  text: Δθ=0.29 at 15% contamination
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C096
+  location:
+    section: sec_method
+    paragraph: 0
+    sentence: 0
+  text: '4PL IRT model: P_i(θ) = c_i + (d_i - c_i) sigmoid(a_i(θ - b_i))'
+  type: definition
+  evidence:
+  - exp_id: exp_001
+    metric: model_specification
+  decisions: []
+  deprecated: false
+- id: C098
+  location:
+    section: sec_method
+    paragraph: 0
+    sentence: 0
+  text: lz* ~ N(0,1) under null hypothesis (Snijders 2001 correction)
+  type: theoretical
+  evidence:
+  - exp_id: exp_002
+    metric: null_calibration
+  decisions: []
+  deprecated: false
+- id: C101
+  location:
+    section: sec_method
+    paragraph: 0
+    sentence: 0
+  text: Δlz* functions as difference-in-differences estimator cancelling shared IRT
+    misfit bias
+  type: methodological
+  evidence:
+  - exp_id: exp_002
+    metric: bootstrap_null
+  decisions: []
+  deprecated: false
+- id: C105
+  location:
+    section: sec_method
+    paragraph: 0
+    sentence: 0
+  text: Noncentrality parameter δ ∝ √n
+  type: theoretical
+  evidence:
+  - exp_id: exp_002
+    metric: power_scaling
+  decisions: []
+  deprecated: false
+- id: C110
+  location:
+    section: sec_method
+    paragraph: 0
+    sentence: 0
+  text: Marginal power via Gauss-Hermite quadrature K=30
+  type: theoretical
+  evidence:
+  - exp_id: exp_002
+    metric: power_function
+  decisions: []
+  deprecated: false
+- id: C116
+  location:
+    section: sec_method
+    paragraph: 0
+    sentence: 0
+  text: lz* sign crossover at π* ≈ 81-85% across benchmarks
+  type: quantitative
+  evidence:
+  - exp_id: exp_002
+    metric: crossover_fraction
+  decisions: []
+  deprecated: false
+- id: C123
+  location:
+    section: sec_method
+    paragraph: 0
+    sentence: 0
+  text: 80% power at 15% contamination requires n ≥ 7,958 items
+  type: quantitative
+  evidence:
+  - exp_id: exp_002
+    metric: min_benchmark_size
+  decisions: []
+  deprecated: false
+- id: C131
+  location:
+    section: sec_method
+    paragraph: 0
+    sentence: 0
+  text: 'θ-shift mechanism: free-θ non-monotonic, fixed-θ monotonic'
+  type: methodological
+  evidence:
+  - exp_id: exp_003
+    metric: theta_shift
+  decisions: []
+  deprecated: false
+- id: C140
+  location:
+    section: sec_method
+    paragraph: 0
+    sentence: 0
+  text: Fixed-θ signal ratio 3.12 (50%/15%), free-θ inverted ratio 0.44
+  type: quantitative
+  evidence:
+  - exp_id: exp_003
+    metric: dose_response_ratio
+  decisions: []
+  deprecated: false
+- id: C141
+  location:
+    section: sec_background
+    paragraph: 0
+    sentence: 0
+  text: 46% of MMLU items have d < 0.95, ceiling effects pervasive
+  type: quantitative
+  evidence:
+  - exp_id: exp_001
+    metric: d_parameter_distribution
+  decisions: []
+  deprecated: false
+- id: C143
+  location:
+    section: sec_background
+    paragraph: 0
+    sentence: 0
+  text: lz* ~ N(0,1) under null (Snijders 2001)
+  type: theoretical
+  evidence:
+  - exp_id: exp_002
+    metric: null_calibration
+  decisions: []
+  deprecated: false
+- id: C146
+  location:
+    section: sec_background
+    paragraph: 0
+    sentence: 0
+  text: 'Wang et al: all 10 log-prob MIA methods no better than random on RL models'
+  type: literature
+  evidence:
+  - exp_id: lit_wang2025
+    metric: rl_robustness
+  decisions: []
+  deprecated: false
+- id: C150
+  location:
+    section: sec_background
+    paragraph: 0
+    sentence: 0
+  text: Binary correctness patterns structurally preserved under RL post-training
+  type: theoretical
+  evidence:
+  - exp_id: lit_wang2025
+    metric: structural_argument
+  decisions: []
+  deprecated: false
+- id: C155
+  location:
+    section: sec_background
+    paragraph: 0
+    sentence: 0
+  text: No prior work uses person-fit statistics for LLM contamination detection
+  type: novelty
+  evidence:
+  - exp_id: lit_review
+    metric: gap_analysis
+  decisions: []
+  deprecated: false
+- id: C156
+  location:
+    section: sec_introduction
+    paragraph: 0
+    sentence: 0
+  text: 15% contamination produces |Cohen's d| = 3.58 (n=3 clean seeds)
+  type: quantitative
+  evidence:
+  - exp_id: exp_003
+    metric: cohens_d_15pct
+  decisions: []
+  deprecated: false
+- id: C158
+  location:
+    section: sec_introduction
+    paragraph: 0
+    sentence: 0
+  text: Closed-form power function R² = 0.957
+  type: quantitative
+  evidence:
+  - exp_id: exp_002
+    metric: power_r_squared
+  decisions: []
+  deprecated: false
+- id: C161
+  location:
+    section: sec_introduction
+    paragraph: 0
+    sentence: 0
+  text: 80% power at 15% contamination requires n >= 7,958 items
+  type: quantitative
+  evidence:
+  - exp_id: exp_002
+    metric: min_benchmark_size
+  decisions: []
+  deprecated: false
+- id: C165
+  location:
+    section: sec_introduction
+    paragraph: 0
+    sentence: 0
+  text: '4PL vs 3PL: mean +27.3pp power gain on MMLU'
+  type: quantitative
+  evidence:
+  - exp_id: exp_002
+    metric: 4pl_power_gain
+  decisions: []
+  deprecated: false
+- id: C170
+  location:
+    section: sec_introduction
+    paragraph: 0
+    sentence: 0
+  text: 57/60 model-benchmark cells flagged for response-pattern anomalies (BH-FDR)
+  type: quantitative
+  evidence:
+  - exp_id: exp_004
+    metric: fdr_flagged_cells
+  decisions: []
+  deprecated: false
+- id: C176
+  location:
+    section: sec_introduction
+    paragraph: 0
+    sentence: 0
+  text: Accuracy z-score baseline flags only 4/60 cells (14x gap)
+  type: quantitative
+  evidence:
+  - exp_id: exp_004
+    metric: accuracy_zscore_baseline
+  decisions: []
+  deprecated: false
+- id: C183
+  location:
+    section: sec_introduction
+    paragraph: 0
+    sentence: 0
+  text: Fixed-θ restores monotonicity (signal ratio 3.12)
+  type: quantitative
+  evidence:
+  - exp_id: exp_003
+    metric: dose_response_ratio
+  decisions: []
+  deprecated: false
+- id: C191
+  location:
+    section: sec_introduction
+    paragraph: 0
+    sentence: 0
+  text: All 10 log-prob methods perform at chance on RL models (Wang et al.)
+  type: literature
+  evidence:
+  - exp_id: lit_wang2025
+    metric: rl_robustness
+  decisions: []
+  deprecated: false
+- id: C200
+  location:
+    section: sec_introduction
+    paragraph: 0
+    sentence: 0
+  text: No prior work applies person-fit statistics to LLM contamination detection
+  type: novelty
+  evidence:
+  - exp_id: lit_review
+    metric: gap_analysis
+  decisions: []
+  deprecated: false
+- id: C201
+  location:
+    section: sec_discussion
+    paragraph: 0
+    sentence: 0
+  text: 'Bootstrap null well-calibrated: mean bias 0.041, std 1.003'
+  type: quantitative
+  evidence:
+  - exp_id: exp_002
+    metric: null_calibration
+  decisions: []
+  deprecated: false
+- id: C203
+  location:
+    section: sec_discussion
+    paragraph: 0
+    sentence: 0
+  text: 57/60 cells exhibit 4PL misfit in real data
+  type: quantitative
+  evidence:
+  - exp_id: exp_004
+    metric: fdr_flagged_cells
+  decisions: []
+  deprecated: false
+- id: C206
+  location:
+    section: sec_discussion
+    paragraph: 0
+    sentence: 0
+  text: PSN-IRT v1 provides 13K+ per-item binary response vectors publicly
+  type: factual
+  evidence:
+  - exp_id: lit_psnirt2026
+    metric: dataset_size
+  decisions: []
+  deprecated: false
+- id: C210
+  location:
+    section: sec_discussion
+    paragraph: 0
+    sentence: 0
+  text: 38% memorization fraction is conservative lower bound (QLoRA rank=16 limits
+    capacity)
+  type: interpretation
+  evidence:
+  - exp_id: exp_003
+    metric: memorization_fraction
+  decisions: []
+  deprecated: false
+- id: C215
+  location:
+    section: sec_discussion
+    paragraph: 0
+    sentence: 0
+  text: lz* structurally invariant to RL distributional changes; empirical verification
+    future work
+  type: theoretical
+  evidence:
+  - exp_id: lit_wang2025
+    metric: structural_argument
+  decisions: []
+  deprecated: false
+- id: C216
+  location:
+    section: sec_limitations
+    paragraph: 0
+    sentence: 0
+  text: 38% memorization rate at QLoRA rank=16 is conservative lower bound
+  type: interpretation
+  evidence:
+  - exp_id: exp_003
+    metric: memorization_fraction
+  decisions: []
+  deprecated: false
+- id: C218
+  location:
+    section: sec_limitations
+    paragraph: 0
+    sentence: 0
+  text: MML-EM discrimination recovery r_a=0.127
+  type: quantitative
+  evidence:
+  - exp_id: exp_004
+    metric: mml_em_refit
+  decisions: []
+  deprecated: false
+- id: C221
+  location:
+    section: sec_limitations
+    paragraph: 0
+    sentence: 0
+  text: ARC-C Cohen's d=0.45 at 15% contamination (295 items)
+  type: quantitative
+  evidence:
+  - exp_id: exp_002
+    metric: arc_cohens_d
+  decisions: []
+  deprecated: false
+- id: C225
+  location:
+    section: sec_limitations
+    paragraph: 0
+    sentence: 0
+  text: 80% power at 15% contamination requires >=7,958 items
+  type: quantitative
+  evidence:
+  - exp_id: exp_002
+    metric: min_benchmark_size
+  decisions: []
+  deprecated: false
+- id: C230
+  location:
+    section: sec_limitations
+    paragraph: 0
+    sentence: 0
+  text: Universal IRT assumption violation prevents absolute lz* thresholds
+  type: interpretation
+  evidence:
+  - exp_id: exp_004
+    metric: fdr_flagged_cells
+  decisions: []
+  deprecated: false
+- id: C231
+  location:
+    section: sec_conclusion
+    paragraph: 0
+    sentence: 0
+  text: '|Cohen''s d| = 3.58 at 15% contamination'
+  type: quantitative
+  evidence:
+  - exp_id: exp_003
+    metric: cohens_d_15pct
+  decisions: []
+  deprecated: false
+- id: C233
+  location:
+    section: sec_conclusion
+    paragraph: 0
+    sentence: 0
+  text: Power function R² = 0.957
+  type: quantitative
+  evidence:
+  - exp_id: exp_002
+    metric: power_r_squared
+  decisions: []
+  deprecated: false
+- id: C236
+  location:
+    section: sec_conclusion
+    paragraph: 0
+    sentence: 0
+  text: +27.3pp power gain for 4PL over 3PL
+  type: quantitative
+  evidence:
+  - exp_id: exp_002
+    metric: 4pl_power_gain
+  decisions: []
+  deprecated: false
+- id: C240
+  location:
+    section: sec_conclusion
+    paragraph: 0
+    sentence: 0
+  text: 'Universal 4PL misfit: 57/60 cells flagged'
+  type: quantitative
+  evidence:
+  - exp_id: exp_004
+    metric: fdr_flagged_cells
+  decisions: []
+  deprecated: false
+- id: C245
+  location:
+    section: sec_conclusion
+    paragraph: 0
+    sentence: 0
+  text: 'Accuracy baseline: 4/60 vs 57/60'
+  type: quantitative
+  evidence:
+  - exp_id: exp_004
+    metric: accuracy_zscore_baseline
+  decisions: []
+  deprecated: false
+- id: C246
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: '|Cohen''s d| = 3.58 at 15% contamination (n=3 clean seeds)'
+  type: quantitative
+  evidence:
+  - exp_id: exp_003
+    metric: cohens_d_15pct
+  decisions: []
+  deprecated: false
+- id: C248
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Power function R² = 0.957
+  type: quantitative
+  evidence:
+  - exp_id: exp_002
+    metric: power_r_squared
+  decisions: []
+  deprecated: false
+- id: C251
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 80% power at 15% contamination requires n >= 7,958
+  type: quantitative
+  evidence:
+  - exp_id: exp_002
+    metric: min_benchmark_size
+  decisions: []
+  deprecated: false
+- id: C255
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 57/60 cells exhibit response-pattern anomalies (BH-FDR)
+  type: quantitative
+  evidence:
+  - exp_id: exp_004
+    metric: fdr_flagged_cells
+  decisions: []
+  deprecated: false
+- id: C260
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 4/60 flagged by accuracy z-score (14x gap)
+  type: quantitative
+  evidence:
+  - exp_id: exp_004
+    metric: accuracy_zscore_baseline
+  decisions: []
+  deprecated: false
+- id: C261
+  location:
+    section: sec_empirical
+    paragraph: 0
+    sentence: 0
+  text: 'Gemini-1.5 on MMLU: lz*=+31.81 (from empirical_pvalues.csv)'
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C262
+  location:
+    section: sec_empirical
+    paragraph: 0
+    sentence: 0
+  text: 93.0% of flagged cells exhibit positive lz* (53/57)
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C263
+  location:
+    section: sec_method
+    paragraph: 0
+    sentence: 0
+  text: 80% power at 15% contamination requires n>=7,958 items under MMLU item parameters;
+    threshold varies across benchmarks
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C264
+  location:
+    section: sec_background
+    paragraph: 0
+    sentence: 0
+  text: 'Detection frontier table: 5 information levels from training corpus to binary
+    responses, with RL robustness status'
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C265
+  location:
+    section: sec_background
+    paragraph: 0
+    sentence: 0
+  text: 10 log-prob MIA methods fail post-RL (Wang et al. 2025)
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C266
+  location:
+    section: sec_background
+    paragraph: 0
+    sentence: 0
+  text: IRT-FIT structurally invariant to RL; empirical verification future work
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C267
+  location:
+    section: sec_introduction
+    paragraph: 0
+    sentence: 0
+  text: Cohen's |d|=3.42 at 15% contamination (Qwen, n=3 clean seeds, lz*-corrected)
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C268
+  location:
+    section: sec_introduction
+    paragraph: 0
+    sentence: 0
+  text: theta-fixed signal ratio 2.9-3.1 across model families (Qwen 3.12, Llama 2.87)
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C269
+  location:
+    section: sec_introduction
+    paragraph: 0
+    sentence: 0
+  text: 'Cross-family validation: Qwen |d|=3.42 (n=3), Llama |Δlz*|=3.84 (significant)'
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C270
+  location:
+    section: sec_discussion
+    paragraph: 0
+    sentence: 0
+  text: 'Bootstrap null calibration: mean bias 0.041, std 1.003 on MMLU (n=14,042);
+    KS rejection 50-75% for n<2,000'
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C271
+  location:
+    section: sec_discussion
+    paragraph: 0
+    sentence: 0
+  text: Practitioners should anchor theta to pre-contamination baseline; otherwise
+    contamination-induced inflation absorbs signal, especially with high baseline
+    misfit
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C272
+  location:
+    section: sec_discussion
+    paragraph: 0
+    sentence: 0
+  text: 'Cross-family validation: Qwen + Llama both show |Δlz*|>3.4 at 15% contamination;
+    memorization 33-38%'
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C273
+  location:
+    section: sec_discussion
+    paragraph: 0
+    sentence: 0
+  text: Snijders lz* correction amplifies contamination signals for lower-ability
+    models, slightly attenuates for higher-ability models
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C274
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Cohen's |d|=3.42 at 15% contamination (Qwen, lz*-corrected), cross-family
+    confirmed on Llama (|Δlz*|=3.84)
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C275
+  location:
+    section: sec_conclusion
+    paragraph: 0
+    sentence: 0
+  text: 'Cross-family validation: Qwen |d|=3.42, Llama |Δlz*|=3.84'
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C276
+  location:
+    section: sec_ctrl_contam
+    paragraph: 0
+    sentence: 0
+  text: 'Clean seeds lz*: 9.47, 7.05, 9.53 (mean 8.68±1.41, lz*-corrected)'
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C277
+  location:
+    section: sec_ctrl_contam
+    paragraph: 0
+    sentence: 0
+  text: Cohen's |d|=3.42 (15%), 0.99 (50%), lz*-corrected
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C278
+  location:
+    section: sec_ctrl_contam
+    paragraph: 0
+    sentence: 0
+  text: 'Free-θ non-monotonicity is model-dependent: Qwen ratio 3.46 (high baseline
+    misfit), Llama ratio 1.09 (low baseline)'
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C279
+  location:
+    section: sec_ctrl_contam
+    paragraph: 0
+    sentence: 0
+  text: 'Δlz*_fixed: 3.17 (15%), 9.89 (50%), ratio 3.12 (lz*-corrected)'
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C280
+  location:
+    section: sec_ctrl_contam
+    paragraph: 0
+    sentence: 0
+  text: 'Llama cross-family: |Δlz*|=3.84/4.17, memorization 0.35/0.33, θ-fixed ratio
+    2.87'
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C281
+  location:
+    section: sec_method
+    paragraph: 0
+    sentence: 0
+  text: 'Free-θ inverted ratio: 0.29 (|Δlz*_50|/|Δlz*_15| = 1.40/4.84, lz*-corrected)'
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C282
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: MML-EM refit shows discrimination recovery degrades to r_a=0.127 on contaminated
+    leaderboard data
+  type: quantitative
+  evidence:
+  - exp_id: exp-v1-irt-refit-expanded
+    metric: 3pl_a_pearson_r
+    value: 0.127
+  decisions: []
+  deprecated: false
+- id: C284
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 57 of 60 model-benchmark cells yield |lz*| > 1.96 even absent contamination
+  type: quantitative
+  evidence:
+  - exp_id: exp-two-sided
+    metric: flagged_rate
+    value: 57/60
+  decisions: []
+  deprecated: false
+- id: C287
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: n=10 clean seeds per family
+  type: design
+  evidence:
+  - exp_id: exp-ctrl-contam-pilot
+    metric: n_seeds
+    value: 10
+  - exp_id: exp-ctrl-contam-llama
+    metric: n_clean_seeds
+    value: 10
+  - exp_id: exp-ctrl-contam-mistral
+    metric: n_seeds
+    value: 10
+  decisions: []
+  deprecated: false
+- id: C291
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: MMLU 14,042 items
+  type: factual
+  evidence:
+  - exp_id: exp-ctrl-contam-pilot-clean-s3
+    metric: n_items
+    value: 14042
+  decisions: []
+  deprecated: false
+- id: C296
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: ARC-Challenge 295 items
+  type: factual
+  evidence:
+  - exp_id: exp-arcc-benchmark
+    metric: n_items
+    value: 295
+  decisions: []
+  deprecated: false
+- id: C302
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Bootstrap 95% CI with 10,000 resamples
+  type: design
+  evidence:
+  - exp_id: exp-ctrl-contam-pilot
+    metric: bootstrap_n
+    value: 10000
+  decisions: []
+  deprecated: false
+tables: []
+figures: []
+_completeness:
+  coverage: 74/97
+  claims: 97
+  tables: 0
+  figures: 0
+  tier_counts:
+    tier1: 0
+    tier2: 74
+    tier3: 23
+    tierX: 0
+  last_checked: '2026-05-21T16:38:01.701729+00:00'

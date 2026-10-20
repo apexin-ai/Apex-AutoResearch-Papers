@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42e70b2dd71aa25b4d40",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code exp ctrl contam pilot clean s3",
+  "task_key": "worker_code_exp-ctrl-contam-pilot-clean-s3_20260520T185936",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-ctrl-contam-pilot-clean-s3_20260520T185936_result.json",
+    "occurrence": 1,
+    "bytes": 413,
+    "sha256": "a7fe459eb14cf65804a2278a8540d7d31526aea8b448385a59513314f902422c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动，每 3 分钟自动检查进度。当前状态：\n\n- **已完成**: train.py SEED_MAP 已添加 `clean_s3: 456`，`data/clean_s3/train.jsonl` 已生成（5000 条 Alpaca）\n- **进行中**: clean_s3 训练（模型已加载，开始训练中，预计 ~17 分钟）\n- **待执行**: eval → Cohen's d 重算\n\n训练完成后 cron 会触发，届时自动继续 eval 步骤。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-ctrl-contam-pilot-clean-s3.md"
+}

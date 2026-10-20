@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "570794a4621a3badb8e6",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code llama clean s2 fix restart",
+  "task_key": "worker_code_llama-clean-s2-fix-restart_20260520T233727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama-clean-s2-fix-restart_20260520T233727_result.json",
+    "occurrence": 1,
+    "bytes": 316,
+    "sha256": "3241b02db901d7f930bf37ccc5dc38305398960bfb7341ef085af5037805849f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **PID 53015** 已正常启动，日志确认 `Condition: clean_s2, Seed: 123, GPU: 0`\n- GPU 0 已占用 10567 MiB 显存，模型权重加载中\n- GPU 1 (clean_s3) 未受影响，97% 利用率正常运行\n- 首次启动因缺少 wandb key 失败，已加 `WANDB_MODE=disabled` 修复"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-clean-s2-fix-restart.md"
+}

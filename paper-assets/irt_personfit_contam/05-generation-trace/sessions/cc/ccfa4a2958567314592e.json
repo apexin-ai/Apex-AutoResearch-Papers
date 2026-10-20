@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ccfa4a2958567314592e",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "eval mistral contam5 read results",
+  "task_key": "worker_eval_mistral-contam5-read-results_20260524T060246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_mistral-contam5-read-results_20260524T060246_result.json",
+    "occurrence": 1,
+    "bytes": 865,
+    "sha256": "6153f765d5cf33882214760e50a52a70b887c81802cb09a8de4c0e2d5995184c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Mistral contam_5 评估结果\n\n文件 `/root/autodl-tmp/ctrl_contam_mistral/results/contam_5_results.json` 存在（2026-05-24 13:29）。\n\n### 核心指标\n\n| 指标 | Overall | Seen | Unseen |\n|------|---------|------|--------|\n| **Accuracy** | 55.90% | 76.64% | 54.81% |\n| **lz\\* (free θ)** | -5.729 | -3.346 | -4.730 |\n\n- **θ_MLE (free)**: -0.848\n- **n_seen**: 702, **n_unseen**: 13,340 (total: 14,042)\n- **Contamination rate**: 5% (702/14042)\n\n### 缺失项\n\n`theta_fixed_n10_recompute.json` 中**没有 contam_5 条目**——只有 contam_15 和 contam_50 的 fixed-θ 结果。因此以下指标缺失：\n\n- lz\\* (fixed θ) — overall/seen/unseen\n- Cohen's d\n\n需要用 θ_fixed = -1.0876（来自 10 个 clean seed 的均值）对 contam_5 重新计算 fixed-θ lz\\* 和 Cohen's d，才能补全完整指标。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-mistral-contam5-read-results.md"
+}

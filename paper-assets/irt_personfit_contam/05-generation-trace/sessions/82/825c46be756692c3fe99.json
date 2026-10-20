@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "825c46be756692c3fe99",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "code ctrl contam pilot deploy",
+  "task_key": "worker_code_ctrl-contam-pilot-deploy_20260520T144815",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ctrl-contam-pilot-deploy_20260520T144815.log",
+    "occurrence": 1,
+    "bytes": 1052923,
+    "sha256": "4e35bd7226018a90b37f584b534e1d01ca2ed8e98b7a7e02eda9ff5650d756ba"
+  },
+  "statistics": {
+    "messages": 836,
+    "user_turns": 1,
+    "tool_calls": 337,
+    "roles": {
+      "log": 1,
+      "system": 6,
+      "record": 1,
+      "assistant": 152,
+      "tool_call": 337,
+      "tool_result": 337,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 820,
+      "chunks": [
+        {
+          "path": "825c46be756692c3fe99-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "825c46be756692c3fe99-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "825c46be756692c3fe99-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "825c46be756692c3fe99-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "825c46be756692c3fe99-part-0005.json",
+          "message_count": 100
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 16,
+      "chunks": [
+        {
+          "path": "825c46be756692c3fe99-part-0005.json",
+          "message_count": 16
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-ctrl-contam-pilot-deploy.md"
+}

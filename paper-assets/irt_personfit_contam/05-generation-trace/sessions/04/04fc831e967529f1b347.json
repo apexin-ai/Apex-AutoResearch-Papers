@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04fc831e967529f1b347",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "analysis bca bootstrap sensitivity",
+  "task_key": "worker_analysis_bca-bootstrap-sensitivity_20260521T213741",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bca-bootstrap-sensitivity_20260521T213741_result.json",
+    "occurrence": 1,
+    "bytes": 2419,
+    "sha256": "01ce2a922cf8122bf36e31c894fbc2b282cbfb8d5986ec534a1a7e3495216f52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果汇总：\n\n### BCa Bootstrap 对比表\n\n| Model | Bench | Condition | n | Point d | Percentile CI | BCa CI | Δ(width) |\n|-------|-------|-----------|---|---------|---------------|--------|----------|\n| Qwen | MMLU | free-θ 15% | 10 | −6.575 | [−15.188, −4.540] | [−11.692, −3.796] | −25.8% |\n| Qwen | MMLU | free-θ 50% | 10 | −1.897 | [−4.946, −1.042] | [−3.764, −0.651] | −20.2% |\n| Qwen | MMLU | fixed-θ 15% | 10 | +4.770 | [+3.968, +7.786] | [+3.606, +6.206] | −31.9% |\n| Qwen | MMLU | fixed-θ 50% | 10 | +14.521 | [+12.095, +24.792] | [+11.046, +19.007] | −37.3% |\n| Llama | MMLU | free-θ 15% | 10 | −2.242 | [−4.743, −1.450] | [−3.710, −1.105] | −20.9% |\n| Llama | MMLU | free-θ 50% | 10 | −2.473 | [−5.166, −1.637] | [−4.039, −1.277] | −21.8% |\n| **Llama** | **MMLU** | **fixed-θ 15%** | **10** | **+0.582** | **[−0.039, +2.366]** | **[−0.324, +1.811]** | **−11.2%** |\n| **Llama** | **MMLU** | **fixed-θ 50%** | **10** | **+0.837** | **[+0.172, +2.967]** | **[−0.129, +2.212]** | **−16.2%** |\n| Mistral | MMLU | free-θ 15% | 10 | −3.007 | [−8.179, −1.755] | [−6.743, −1.245] | −14.4% |\n| Mistral | MMLU | free-θ 50% | 10 | −3.498 | [−9.386, −2.094] | [−7.753, −1.557] | −15.0% |\n| Mistral | MMLU | fixed-θ 15% | 6 | −2.589 | [−8.999, −1.449] | [−7.014, −1.175] | −22.7% |\n| Mistral | MMLU | fixed-θ 50% | 6 | −5.596 | [−18.161, −3.708] | [−14.971, −3.394] | −19.9% |\n| Qwen | ARC-C | free-θ 15% | 10 | +3.161 | [+2.009, +9.482] | [+1.634, +7.477] | −21.8% |\n| Qwen | ARC-C | free-θ 50% | 10 | +5.303 | [+3.630, +15.150] | [+3.149, +11.856] | −24.4% |\n\n### 关键发现\n\n1. **BCa CI 普遍比 percentile CI 更窄**（Δ 全为负值，−11% 到 −37%），说明 percentile CI 并非\"过于乐观\"——恰恰相反，BCa 修正后 CI 收窄，结论更强。这有利于我们的论点。\n\n2. **CI 跨零的条件**（共 2 个）：\n   - **Llama MMLU fixed-θ 15%**: percentile CI [−0.039, +2.366] 和 BCa CI [−0.324, +1.811] 均跨零\n   - **Llama MMLU fixed-θ 50%**: percentile CI 不跨零 [+0.172, +2.967]，但 **BCa CI 跨零** [−0.129, +2.212]\n\n3. **Llama fixed-θ 15% BCa CI 是否跨零？YES**，BCa CI = [−0.324, +1.811]。\n\nJSON 已保存到 `/root/autodl-tmp/bca_bootstrap_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bca-bootstrap-sensitivity.md"
+}

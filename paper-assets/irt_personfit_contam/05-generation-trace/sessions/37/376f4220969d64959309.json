@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "id": "376f4220969d64959309",
+  "project": "irt_personfit_contam",
+  "kind": "worker",
+  "title": "code grpo step500 eval",
+  "task_key": "worker_code_grpo-step500-eval_20260521T134024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_grpo-step500-eval_20260521T134024.log",
+    "occurrence": 1,
+    "bytes": 1425547,
+    "sha256": "5b5a80422fe48a9e736e03cbafef0146a32c83112ed4b4321d10cc8db8d10bdc"
+  },
+  "statistics": {
+    "messages": 1177,
+    "user_turns": 1,
+    "tool_calls": 533,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 2,
+      "assistant": 102,
+      "tool_call": 533,
+      "tool_result": 533,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 927,
+      "chunks": [
+        {
+          "path": "376f4220969d64959309-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "376f4220969d64959309-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "376f4220969d64959309-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "376f4220969d64959309-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "376f4220969d64959309-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "376f4220969d64959309-part-0006.json",
+          "message_count": 27
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 250,
+      "chunks": [
+        {
+          "path": "376f4220969d64959309-part-0006.json",
+          "message_count": 153
+        },
+        {
+          "path": "376f4220969d64959309-part-0007.json",
+          "message_count": 97
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-grpo-step500-eval.md"
+}

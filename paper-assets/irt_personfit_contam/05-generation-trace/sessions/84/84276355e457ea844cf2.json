@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84276355e457ea844cf2",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "paper fix heatmap data",
+  "task_key": "worker_paper_fix-heatmap-data_20260524T110830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-heatmap-data_20260524T110830_result.json",
+    "occurrence": 1,
+    "bytes": 174,
+    "sha256": "22a0edcea4b4f2725a1be3619d8779da587eabf75c951a457659c23eac198366"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`scripts/gen_fig_heatmap.py` 中 d_vals、ci_text、footer 已更新，`fig_heatmap.pdf` 已重新生成并复制到论文目录，commit `833709f`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-heatmap-data.md"
+}

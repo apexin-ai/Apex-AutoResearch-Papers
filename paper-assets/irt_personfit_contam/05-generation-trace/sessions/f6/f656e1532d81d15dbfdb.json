@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f656e1532d81d15dbfdb",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code mistral eval s8s10 35694",
+  "task_key": "worker_code_mistral-eval-s8s10-35694_20260521T151845",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mistral-eval-s8s10-35694_20260521T151845_result.json",
+    "occurrence": 1,
+    "bytes": 87,
+    "sha256": "d9bf2184768332ee5970d2009d5d98923f1f7a798c916425746b30330255e3b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 eval 已并行启动在 GPU 0/1/2 上，2 分钟后检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mistral-eval-s8s10-35694.md"
+}

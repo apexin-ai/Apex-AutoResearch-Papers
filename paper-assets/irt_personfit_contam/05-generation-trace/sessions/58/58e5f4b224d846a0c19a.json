@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58e5f4b224d846a0c19a",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code theta fixed recompute",
+  "task_key": "worker_code_theta-fixed-recompute_20260520T185056",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_theta-fixed-recompute_20260520T185056_result.json",
+    "occurrence": 1,
+    "bytes": 1385,
+    "sha256": "5113f52d153dbb4f918082fdf1a1a653abbb05576e096593fbbacb797bcd882e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已注册。以下是最终结果：\n\n---\n\n## θ-fixed lz* 重算结果\n\n**θ_fixed = -0.0914**（clean_s1 与 clean_s2 的 θ_MLE 均值）\n\n| Condition | θ_MLE | θ_fixed | lz\\*_free | lz\\*_fixed | Δlz\\*_free | Δlz\\*_fixed | θ-shift absorbed |\n|-----------|-------|---------|-----------|------------|------------|-------------|-----------------|\n| clean_s1 | -0.0987 | -0.0914 | 8.0101 | 7.7977 | +1.0330 | +0.8228 | -0.2102 |\n| clean_s2 | -0.0842 | -0.0914 | 5.9440 | 6.1521 | -1.0330 | -0.8228 | +0.2102 |\n| contam_15 | 0.1971 | -0.0914 | 3.0046 | **9.9317** | -3.9725 | **+2.9567** | **+6.9292** |\n| contam_50 | 0.3703 | -0.0914 | 5.4480 | **15.6424** | -1.5291 | **+8.6674** | **+10.1965** |\n\n## Dose-response 单调性\n\n| 模式 | \\|Δlz\\*_50\\| | \\|Δlz\\*_15\\| | 单调？ | ratio |\n|------|-------------|-------------|--------|-------|\n| θ-free (MLE) | 1.5291 | 3.9725 | **No** | 0.38 |\n| θ-fixed (clean) | 8.6674 | 2.9567 | **Yes** | 2.93 |\n\n## 结论\n\n**θ-fixed 下 dose-response 恢复单调性。** |Δlz\\*_50| / |Δlz\\*_15| 从 0.38（倒置）变为 2.93（正常递增）。\n\nθ-shift 分别吸收了 contam_15 的 6.93 和 contam_50 的 10.20 个 lz\\* 单位的异常信号——contamination 越重，θ_MLE 上移越大，吸收的信号也越多，这就是 free-θ 下信号倒置的直接原因。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-theta-fixed-recompute.md"
+}

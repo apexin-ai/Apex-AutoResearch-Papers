@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a428ae3137f867bff7a0",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "analyze mistral contam 5",
+  "task_key": "worker_analyze_mistral_contam_5_20260524T042213",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_mistral_contam_5_20260524T042213_result.json",
+    "occurrence": 1,
+    "bytes": 1347,
+    "sha256": "04dee98fa648b4b8674abbf004771f9f3ceeec1249e523bd7fd54b1e12e3aecf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## mistral_contam_5 实验结果汇总\n\n### 训练状态: 成功完成\n\n| 项目 | 值 |\n|------|-----|\n| 日志路径 | `~/runs/irt_personfit_contam/mistral_contam_5.log` |\n| Checkpoint 路径 | `/root/autodl-tmp/ctrl_contam_mistral/checkpoints/contam_5/` |\n| 训练时长 | 1237 秒 (~20.6 分钟) |\n| Epochs | 3 |\n| 总步数 | 1071 |\n| 训练样本数 | 5702 |\n| EXIT_CODE | 0 |\n\n### 训练指标（最终值）\n\n| 指标 | 值 |\n|------|-----|\n| train_loss | 1.162 |\n| mean_token_accuracy | 0.7993 |\n| entropy | 0.7527 |\n| num_tokens | 1.518e+06 |\n\n### Checkpoint 内容\n\n```\nadapter_config.json\nadapter_model.safetensors  (27MB, LoRA adapter)\ntokenizer.json / tokenizer_config.json\ntraining_args.bin\ncheckpoint-357/ checkpoint-714/ checkpoint-1071/\n```\n\n### IRT / Person-Fit 评估指标\n\n**未运行。** `contam_5_results.json` 不存在。训练日志仅包含 SFT 训练指标（loss, grad_norm, learning_rate 等），没有 lz_star, acc_overall, acc_seen, acc_unseen, theta_mle 等评估指标。\n\n对比其他条件（contam_15, contam_50）的结果 JSON 已存在，说明评估是训练后的独立步骤，contam_5 的评估尚未执行。\n\n**需要下一步操作：运行评估脚本生成 `contam_5_results.json`，才能提取 lz_star、accuracy、Cohen's d 等指标。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-mistral-contam-5.md"
+}

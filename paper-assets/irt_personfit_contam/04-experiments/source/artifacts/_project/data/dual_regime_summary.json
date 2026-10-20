@@ -1,0 +1,62 @@
+{
+  "arc_c": {
+    "crossover_point": {
+      "between": [
+        75,
+        90
+      ]
+    },
+    "left_tail_peak_power": 0.382,
+    "left_tail_peak_level": 60,
+    "right_tail_peak_power": 1.0,
+    "right_tail_peak_level": 100
+  },
+  "gsm8k": {
+    "crossover_point": {
+      "between": [
+        75,
+        90
+      ]
+    },
+    "left_tail_peak_power": 0.811,
+    "left_tail_peak_level": 25,
+    "right_tail_peak_power": 1.0,
+    "right_tail_peak_level": 100
+  },
+  "hellaswag": {
+    "crossover_point": {
+      "between": [
+        75,
+        90
+      ]
+    },
+    "left_tail_peak_power": 0.93,
+    "left_tail_peak_level": 25,
+    "right_tail_peak_power": 1.0,
+    "right_tail_peak_level": 100
+  },
+  "humaneval": {
+    "crossover_point": {
+      "between": [
+        75,
+        90
+      ]
+    },
+    "left_tail_peak_power": 0.607,
+    "left_tail_peak_level": 50,
+    "right_tail_peak_power": 1.0,
+    "right_tail_peak_level": 100
+  },
+  "mmlu": {
+    "crossover_point": {
+      "between": [
+        75,
+        90
+      ]
+    },
+    "left_tail_peak_power": 0.9845,
+    "left_tail_peak_level": 15,
+    "right_tail_peak_power": 1.0,
+    "right_tail_peak_level": 100
+  }
+}

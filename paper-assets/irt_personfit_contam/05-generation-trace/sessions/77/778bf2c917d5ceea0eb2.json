@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "778bf2c917d5ceea0eb2",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "paper figure",
+  "task_key": "worker_paper_figure_20260520T210942",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_20260520T210942_result.json",
+    "occurrence": 1,
+    "bytes": 206,
+    "sha256": "7cb0bb5a42cc74766ea9c814b2a17962f5a5653ac0b37d1d6957f882cbbc1a15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 4 已完成。\n\n- **PDF**: `figures/paper/fig_4_model_heatmap.pdf` (41 KB)\n- **PNG**: `figures/paper/fig_4_model_heatmap.png` (139 KB)\n- 已注册为 artifact `art_20260520_713d13`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure.md"
+}

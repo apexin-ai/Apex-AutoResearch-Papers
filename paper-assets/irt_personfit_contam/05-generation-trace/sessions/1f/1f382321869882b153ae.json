@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f382321869882b153ae",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "ops reference audit",
+  "task_key": "worker_ops_reference-audit_20260523T030754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_reference-audit_20260523T030754_result.json",
+    "occurrence": 1,
+    "bytes": 1491,
+    "sha256": "d831fea06f2138835abb6eedf3347aa3d9281fa323caaa6d40c638114c40e437"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nReference Audit:\n- Total bib entries: 47 (header comment says 33, stale)\n\n- Missing fields:\n  - sinharay2017: missing volume, number, pages (journal article, has doi only)\n  - martinezplumed2019: missing volume, pages (journal article, has doi only)\n  - chang2024survey: missing volume, pages (journal article, has doi only)\n  - golchin2024quiz: missing volume, number, pages, doi (TACL article)\n  - rafailov2023: missing pages (NeurIPS inproceedings)\n\n- Undefined citations (cited in .tex but NOT in bib):\n  - lord1980        (background.tex:5)\n  - birnbaum1968    (background.tex:6)\n  - barton1981      (background.tex:6)\n  - zellers2019hellaswag  (sec_setup.tex:4)\n  - cobbe2021gsm8k        (sec_setup.tex:4)\n  - chen2021humaneval     (sec_setup.tex:4)\n\n- Unused bib entries (in bib but NOT cited):\n  - hedges1981\n  - ouyang2022\n  - rafailov2023\n\n- Survey 2502.14425: NOT IN bib, NOT CITED\n- Survey 2502.17521: NOT IN bib, NOT CITED\n\n- Duplicates: None (sinharay2017 and sinharay2017personfit are different papers)\n\n- Format issues:\n  - Stale header comment (\"33 entries\" vs actual 47)\n  - 5 journal articles missing volume/pages (listed above)\n  - Conference name style generally consistent (full name + abbreviation)\n```\n\n**Critical**: 6 undefined citation keys will produce `?` in compiled PDF — `lord1980`, `birnbaum1968`, `barton1981`, `zellers2019hellaswag`, `cobbe2021gsm8k`, `chen2021humaneval` all need bib entries added."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-reference-audit.md"
+}

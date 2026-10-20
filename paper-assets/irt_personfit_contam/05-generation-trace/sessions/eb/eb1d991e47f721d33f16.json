@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb1d991e47f721d33f16",
+  "project": "irt_personfit_contam",
+  "kind": "result",
+  "title": "code bootstrap cohens d",
+  "task_key": "worker_code_bootstrap-cohens-d_20260521T142506",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bootstrap-cohens-d_20260521T142506_result.json",
+    "occurrence": 1,
+    "bytes": 1363,
+    "sha256": "8053d2d7b8ddb5f3231696bf5a6b5596b985581dd6370dc8529c28b900df00d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果如下：\n\n## Bootstrap Cohen's d (10,000 resamples, seed=42)\n\n| Model | Benchmark | Condition | n_clean | contam lz* | Cohen's d | 95% CI lower | 95% CI upper |\n|-------|-----------|-----------|---------|------------|-----------|-------------|-------------|\n| Qwen | MMLU | contam_15 | 10 | 3.8494 | **6.575** | 4.540 | 15.188 |\n| Qwen | MMLU | contam_50 | 10 | 7.2892 | **1.897** | 1.042 | 4.945 |\n| Llama | MMLU | contam_15 | 7 | −2.9922 | **2.591** | 2.035 | 5.818 |\n| Llama | MMLU | contam_50 | 7 | −3.3313 | **2.840** | 2.243 | 6.470 |\n| Mistral | MMLU | contam_15 | 3 | −1.3849 | **1.195** | 0.668 | 4.933 |\n| Mistral | MMLU | contam_50 | 3 | −3.1503 | **1.731** | 1.141 | 6.363 |\n\n**ARC-C 跳过**：仅 2 个 clean seeds，不足以计算。\n\n## Clean baseline 统计\n\n| Group | n | mean | sd | range |\n|-------|---|------|----|----- |\n| Qwen MMLU | 10 | 8.684 | 0.735 | [7.054, 9.529] |\n| Llama MMLU | 7 | 0.540 | 1.363 | [−1.084, 2.847] |\n| ARC-C | 2 | −5.502 | 0.013 | [−5.511, −5.493] |\n| Mistral MMLU | 3 | 2.550 | 3.293 | [−1.046, 5.418] |\n\n所有条件的 95% CI 下界均 > 0，效应显著。Qwen contam_15 效应量最大（d=6.6），CI 非常宽是因为 contam lz* 远离 clean 分布。Mistral n=3 估计不稳定，CI 较宽。ARC-C 需等更多 clean seeds 完成后再算。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bootstrap-cohens-d.md"
+}

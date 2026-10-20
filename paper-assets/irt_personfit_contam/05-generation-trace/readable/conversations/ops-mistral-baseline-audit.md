@@ -1,0 +1,2608 @@
+# ops mistral baseline audit
+
+**What Can IRT Person-Fit Statistics Reveal About SFT-Stage Benchmark Contamination?** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 87
+- **Recorded user turns:** 0
+- **Tool calls:** 43
+- **Original source:** `logs/chats/worker_ops_mistral-baseline-audit_20260523T150325.jsonl`
+- **Structured JSON:** [`0c8eb36e603e40ac0dc9.json`](../../sessions/0c/0c8eb36e603e40ac0dc9.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+87 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-23T15:07:22.379442+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-23T15:07:22.379895+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-23T15:07:22.380167+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "find /root/autodl-tmp -path \"*mistral*clean*\" -name \"*.json\" -type f 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "find /root/autodl-tmp -path \"*mistral*clean*\" -name \"*.json\" -type f 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-23T15:07:22.383149+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-23T15:07:22.384484+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "find /root/autodl-tmp -path \"*mistral*clean*\" -type d 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "find /root/autodl-tmp -path \"*mistral*clean*\" -type d 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-23T15:07:22.384749+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-23T15:07:22.384949+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "ls -la /root/autodl-tmp/ctrl_contam_pilot/results/mistral/ 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "ls -la /root/autodl-tmp/ctrl_contam_pilot/results/mistral/ 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-23T15:07:22.385136+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-23T15:07:22.385333+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "ls -la /root/autodl-tmp/ctrl_contam_mistral/ 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "ls -la /root/autodl-tmp/ctrl_contam_mistral/ 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-23T15:07:22.385528+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-23T15:07:22.385748+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "find /root/autodl-tmp -path \"*mistral*clean*\" -name \"*.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "find /root/autodl-tmp -path \"*mistral*clean*\" -name \"*.json\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-23T15:07:22.385948+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "find /root/autodl-tmp -path \"*mistral*clean*\" -type d",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "find /root/autodl-tmp -path \"*mistral*clean*\" -type d",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-23T15:07:22.386247+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean/checkpoint-313/adapter_config.json\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean/checkpoint-313/tokenizer_config.json\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean/checkpoint-313/tokenizer.json\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean/checkpoint-313/trainer_state.json\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean/checkpoint-626/adapter_config.json\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean/checkpoint-626/tokenizer_config.json\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean/checkpoint-626/tokenizer.json\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean/checkpoint-626/trainer_state.json\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean/checkpoint-939/adapter_config.json\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean/checkpoint-939/tokenizer_config.json\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean/checkpoint-939/tokenizer.json\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean/checkpoint-939/trainer_state.json\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean/adapter_config.json\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean/tokenizer_config.json\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean/tokenizer.json\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s2/checkpoint-313/adapter_config.json\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s2/checkpoint-313/tokenizer_config.json\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s2/checkpoint-313/tokenizer.json\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s2/checkpoint-313/trainer_state.json\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s2/checkpoint-626/adapter_config.json\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s2/checkpoint-626/tokenizer_config.json\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s
+…[truncated 6384 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-23T15:07:22.387597+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "ls -la /root/autodl-tmp/ctrl_contam_pilot/results/mistral/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "ls -la /root/autodl-tmp/ctrl_contam_pilot/results/mistral/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-23T15:07:22.388036+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/ctrl_contam_mistral/data/clean\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean/checkpoint-313\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean/checkpoint-626\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean/checkpoint-939\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s2\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s2/checkpoint-313\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s2/checkpoint-626\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s2/checkpoint-939\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s3\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s3/checkpoint-313\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s3/checkpoint-626\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s3/checkpoint-939\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s8\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s8/checkpoint-313\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s8/checkpoint-626\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s8/checkpoint-939\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s9\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s9/checkpoint-313\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s9/checkpoint-626\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s9/checkpoint-939\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s10\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s10/checkpoint-313\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s10/checkpoint-626\\n/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s10/checkpoint-939\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.56}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-23T15:07:22.388294+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "ls -la /root/autodl-tmp/ctrl_contam_mistral/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "ls -la /root/autodl-tmp/ctrl_contam_mistral/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-23T15:07:22.388540+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 608\\ndrwxr-xr-x 2 root root  4096 May 23 22:45 .\\ndrwxr-xr-x 4 root root  4096 May 23 18:42 ..\\n-rw-r--r-- 1 root root 98702 May 23 18:42 contam_15_s2_results.json\\n-rw-r--r-- 1 root root 98705 May 23 22:38 contam_15_s3_results.json\\n-rw-r--r-- 1 root root 98703 May 23 18:43 contam_50_s2_results.json\\n-rw-r--r-- 1 root root 98701 May 23 22:39 contam_50_s3_results.json\\n-rw-r--r-- 1 root root 98701 May 23 22:56 contam_5_results.json\\n-rw-r--r-- 1 root root 98703 May 23 22:45 contam_5_s2_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-23T15:07:22.388761+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 22956\\ndrwxr-xr-x  6 root root     4096 May 22 16:29 .\\ndrwxr-xr-x 16 root root     4096 May 23 20:54 ..\\n-rw-r--r--  1 root root 22773992 May 21 12:24 alpaca_data.json\\ndrwxr-xr-x 10 root root      170 May 21 22:32 checkpoints\\ndrwxr-xr-x  5 root root      162 May 21 12:25 data\\n-rw-r--r--  1 root root    10066 May 21 12:25 eval_lz.py\\ndrwxr-xr-x  2 root root       74 May 21 19:23 logs\\n-rw-r--r--  1 root root   683809 May 21 12:24 mmlu_params.csv\\n-rw-r--r--  1 root root     3715 May 21 12:24 prepare_data.py\\ndrwxr-xr-x  2 root root     4096 May 22 16:29 results\\n-rw-r--r--  1 root root     5566 May 22 16:31 theta_fixed_n10_recompute.py\\n-rw-r--r--  1 root root     4290 May 21 22:32 train.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-23T15:07:22.389021+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "ls -la /root/autodl-tmp/ctrl_contam_mistral/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "ls -la /root/autodl-tmp/ctrl_contam_mistral/results/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-23T15:07:22.389242+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 812\\ndrwxr-xr-x 2 root root  4096 May 22 16:29 .\\ndrwxr-xr-x 6 root root  4096 May 22 16:29 ..\\n-rw-r--r-- 1 root root 98639 May 21 14:51 clean_results.json\\n-rw-r--r-- 1 root root 98646 May 22 00:03 clean_s10_results.json\\n-rw-r--r-- 1 root root 98647 May 21 20:58 clean_s2_results.json\\n-rw-r--r-- 1 root root 98645 May 21 20:58 clean_s3_results.json\\n-rw-r--r-- 1 root root 98645 May 22 00:02 clean_s8_results.json\\n-rw-r--r-- 1 root root 98647 May 22 00:03 clean_s9_results.json\\n-rw-r--r-- 1 root root 98682 May 21 15:11 contam_15_results.json\\n-rw-r--r-- 1 root root 98681 May 21 15:25 contam_50_results.json\\n-rw-r--r-- 1 root root  1506 May 22 16:31 theta_fixed_n10_recompute.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-23T15:07:22.389478+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "cat /root/autodl-tmp/ctrl_contam_mistral/theta_fixed_n10_recompute.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "cat /root/autodl-tmp/ctrl_contam_mistral/theta_fixed_n10_recompute.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-23T15:07:22.389880+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nTheta-fixed lz* recomputation for Mistral with n=10 theta values.\\nUses Snijders (2001) corrected lz* from person_fit.py.\\n\\\"\\\"\\\"\\nimport csv, json, os, sys\\nimport numpy as np\\n\\nsys.path.insert(0, '/root/autodl-tmp/irt_personfit_contam/src')\\nfrom person_fit import prob_4pl, compute_lz_star, estimate_theta_mle\\n\\nBASE_DIR = \\\"/root/autodl-tmp/ctrl_contam_mistral\\\"\\nPARAMS_PATH = os.path.join(BASE_DIR, \\\"mmlu_params.csv\\\")\\nRESULTS_DIR = os.path.join(BASE_DIR, \\\"results\\\")\\n\\n# Load IRT params\\na_list, b_list, c_list, d_list = [], [], [], []\\nwith open(PARAMS_PATH) as f:\\n    reader = csv.DictReader(f)\\n    for row in reader:\\n        a_list.append(float(row[\\\"a_discrimination\\\"]))\\n        b_list.append(float(row[\\\"b_difficulty\\\"]))\\n        c_list.append(float(row[\\\"c_guessing\\\"]))\\n        d_list.append(float(row[\\\"d_feasibility\\\"]))\\n\\na = np.array(a_list)\\nb = np.array(b_list)\\nc = np.array(c_list)\\nd = np.array(d_list)\\nprint(f\\\"Loaded {len(a)} item parameters\\\")\\n\\n# All 10 clean theta_MLE values (exact)\\nALL_THETA_MLE = {\\n    \\\"clean\\\":    -1.156850591775037,\\n    \\\"clean_s2\\\": -0.9626744673285949,\\n    \\\"clean_s3\\\": -0.9732527128586036,\\n    \\\"clean_s4\\\": -1.1693425305195067,\\n    \\\"clean_s5\\\": -1.1000473156072956,\\n    \\\"clean_s6\\\": -1.1405402100357416,\\n    \\\"clean_s7\\\": -1.0754882493879583,\\n    \\\"clean_s8\\\": -1.1456500811085557,\\n    \\\"clean_s9\\\": -1.1240254419150628,\\n    \\\"clean_s10\\\": -1.0285903748976144,\\n}\\n\\nall_thetas = list(ALL_THETA_MLE.values())\\ntheta_fixed_n10 = np.mean(all_thetas)\\nprint(f\\\"\\\\nAll 10 theta_MLE values:\\\")\\nfor k, v in ALL_THETA_MLE.items():\\n    print(f\\\"  {k}: {v:.6f}\\\")\\nprint(f\\\"\\\\ntheta_fixed_n10 = {theta_fixed_n10:.6f}\\\")\\nprint(f\\\"theta_fixed_n6  = -1.065174 (old)\\\")\\n\\n# Load
+…[truncated 4559 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-23T15:07:22.390123+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "grep -rn \"4.024\\|2.052\\|4\\.02\" /root/autodl-tmp/ctrl_contam_mistral/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "grep -rn \"4.024\\|2.052\\|4\\.02\" /root/autodl-tmp/ctrl_contam_mistral/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-23T15:07:22.390350+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-23T15:07:22.390553+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "grep -rn \"4.024\\|2.052\\|4\\.02\" /root/autodl-tmp/ctrl_contam_pilot/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "grep -rn \"4.024\\|2.052\\|4\\.02\" /root/autodl-tmp/ctrl_contam_pilot/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-23T15:07:22.390748+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-23T15:07:22.390939+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "grep -B5 -A20 -i \"mistral\" /root/autodl-tmp/bca_bootstrap.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "grep -B5 -A20 -i \"mistral\" /root/autodl-tmp/bca_bootstrap.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-23T15:07:22.391196+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# Llama MMLU fixed-theta (from theta_fixed_results.json)\\nllama_fixed = [0.4596, 0.0191, -1.0427, 0.0058, 1.9320, 3.4596, -0.2888, 0.2374, -0.0732, -1.9146]\\nconditions.append((\\\"Llama\\\", \\\"MMLU\\\", \\\"fixed-θ 15%\\\", llama_fixed, 1.1477))\\nconditions.append((\\\"Llama\\\", \\\"MMLU\\\", \\\"fixed-θ 50%\\\", llama_fixed, 1.5281))\\n\\n# Mistral MMLU free-theta (n=10)\\nmistral_free = [5.4175, -1.0456, 3.2792, 3.9558, 4.4910, 5.5030, 5.8982, 5.7996, 3.5214, 3.4159]\\nconditions.append((\\\"Mistral\\\", \\\"MMLU\\\", \\\"free-θ 15%\\\", mistral_free, -2.1468))\\nconditions.append((\\\"Mistral\\\", \\\"MMLU\\\", \\\"free-θ 50%\\\", mistral_free, -3.1539))\\n\\n# Mistral MMLU fixed-theta (n=6, from theta_fixed_results.json)\\nmistral_fixed = [5.2604, -1.1567, 3.1993, 5.6727, 3.4499, 3.4124]\\nconditions.append((\\\"Mistral\\\", \\\"MMLU\\\", \\\"fixed-θ 15%\\\", mistral_fixed, -2.9694))\\nconditions.append((\\\"Mistral\\\", \\\"MMLU\\\", \\\"fixed-θ 50%\\\", mistral_fixed, -10.2597))\\n\\n# Qwen ARC-C free-theta\\nqwen_arc = [-5.4483, -5.4328, -5.5244, -5.4345, -5.2317, -5.5724, -5.5852, -5.4001, -5.5359, -5.0733]\\nconditions.append((\\\"Qwen\\\", \\\"ARC-C\\\", \\\"free-θ 15%\\\", qwen_arc, -4.9165))\\nconditions.append((\\\"Qwen\\\", \\\"ARC-C\\\", \\\"free-θ 50%\\\", qwen_arc, -4.5725))\\n\\n# === Dry run: Qwen MMLU free-θ 15% ===\\nprint(\\\"=\\\" * 60)\\nprint(\\\"DRY RUN: Qwen MMLU free-θ 15%\\\")\\nprint(\\\"=\\\" * 60)\\ndr = bca_bootstrap_cohens_d(qwen_free, 3.8494)\\nprint(f\\\"  Point d:       {dr['point_d']:.4f}\\\")\\nprint(f\\\"  Percentile CI: [{dr['percentile_ci'][0]:.4f}, {dr['percentile_ci'][1]:.4f}]\\\")\\nprint(f\\\"  BCa CI:        [{dr['bca_ci'][0]:.4f}, {dr['bca_ci'][1]:.4f}]\\\")\\nprint(f\\\"  z0={dr['z0']:.4f}, a_hat={dr['a_hat']:.6f}\\\")\\nprint(f\\\"  n_valid_bootstrap: {dr['n_valid_bootstrap']}\\\")\\npct_w = dr['percentile_ci'][1] - dr['percentile_ci'][0]\\nbca_w = dr['bc
+…[truncated 246 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-23T15:07:22.391514+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "head -20 /root/autodl-tmp/ctrl_contam_mistral/results/clean_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "head -20 /root/autodl-tmp/ctrl_contam_mistral/results/clean_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-23T15:07:22.391748+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"condition\\\": \\\"clean\\\",\\n  \\\"theta_mle\\\": -1.156850591775037,\\n  \\\"lz_star\\\": 5.41746969360402,\\n  \\\"accuracy_overall\\\": 0.5138156957698333,\\n  \\\"accuracy_seen\\\": null,\\n  \\\"accuracy_unseen\\\": 0.5138156957698333,\\n  \\\"lz_star_seen\\\": null,\\n  \\\"lz_star_unseen\\\": 5.41746969360402,\\n  \\\"response_vector\\\": [\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-23T15:07:22.391963+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "head -20 /root/autodl-tmp/ctrl_contam_mistral/results/clean_s2_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "head -20 /root/autodl-tmp/ctrl_contam_mistral/results/clean_s2_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-23T15:07:22.392184+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"condition\\\": \\\"clean_s2\\\",\\n  \\\"theta_mle\\\": -0.9626744673285949,\\n  \\\"lz_star\\\": -1.0455955082688544,\\n  \\\"accuracy_overall\\\": 0.542800170915824,\\n  \\\"accuracy_seen\\\": null,\\n  \\\"accuracy_unseen\\\": 0.542800170915824,\\n  \\\"lz_star_seen\\\": null,\\n  \\\"lz_star_unseen\\\": -1.0455955082688544,\\n  \\\"response_vector\\\": [\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    0,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-23T15:07:22.392407+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "head -20 /root/autodl-tmp/ctrl_contam_mistral/results/clean_s3_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "head -20 /root/autodl-tmp/ctrl_contam_mistral/results/clean_s3_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-23T15:07:22.392626+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"condition\\\": \\\"clean_s3\\\",\\n  \\\"theta_mle\\\": -0.9732527128586036,\\n  \\\"lz_star\\\": 3.279188085815569,\\n  \\\"accuracy_overall\\\": 0.5413046574562028,\\n  \\\"accuracy_seen\\\": null,\\n  \\\"accuracy_unseen\\\": 0.5413046574562028,\\n  \\\"lz_star_seen\\\": null,\\n  \\\"lz_star_unseen\\\": 3.279188085815569,\\n  \\\"response_vector\\\": [\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-23T15:07:22.392833+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "head -20 /root/autodl-tmp/ctrl_contam_mistral/results/clean_s8_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "head -20 /root/autodl-tmp/ctrl_contam_mistral/results/clean_s8_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-23T15:07:22.393112+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"condition\\\": \\\"clean_s8\\\",\\n  \\\"theta_mle\\\": -1.1456500811085557,\\n  \\\"lz_star\\\": 5.799622258865914,\\n  \\\"accuracy_overall\\\": 0.5162370032758866,\\n  \\\"accuracy_seen\\\": null,\\n  \\\"accuracy_unseen\\\": 0.5162370032758866,\\n  \\\"lz_star_seen\\\": null,\\n  \\\"lz_star_unseen\\\": 5.799622258865914,\\n  \\\"response_vector\\\": [\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-23T15:07:22.393331+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "head -20 /root/autodl-tmp/ctrl_contam_mistral/results/clean_s9_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "head -20 /root/autodl-tmp/ctrl_contam_mistral/results/clean_s9_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-23T15:07:22.393556+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"condition\\\": \\\"clean_s9\\\",\\n  \\\"theta_mle\\\": -1.1240254419150628,\\n  \\\"lz_star\\\": 3.5214018386164954,\\n  \\\"accuracy_overall\\\": 0.5165218629824812,\\n  \\\"accuracy_seen\\\": null,\\n  \\\"accuracy_unseen\\\": 0.5165218629824812,\\n  \\\"lz_star_seen\\\": null,\\n  \\\"lz_star_unseen\\\": 3.5214018386164954,\\n  \\\"response_vector\\\": [\\n    1,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    1,\\n    1,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-23T15:07:22.393756+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "head -20 /root/autodl-tmp/ctrl_contam_mistral/results/clean_s10_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "head -20 /root/autodl-tmp/ctrl_contam_mistral/results/clean_s10_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-23T15:07:22.393936+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "cat /root/autodl-tmp/ctrl_contam_mistral/results/theta_fixed_n10_recompute.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "cat /root/autodl-tmp/ctrl_contam_mistral/results/theta_fixed_n10_recompute.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-23T15:07:22.394124+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"condition\\\": \\\"clean_s10\\\",\\n  \\\"theta_mle\\\": -1.0285903748976144,\\n  \\\"lz_star\\\": 3.415862054014717,\\n  \\\"accuracy_overall\\\": 0.5346816692778806,\\n  \\\"accuracy_seen\\\": null,\\n  \\\"accuracy_unseen\\\": 0.5346816692778806,\\n  \\\"lz_star_seen\\\": null,\\n  \\\"lz_star_unseen\\\": 3.415862054014717,\\n  \\\"response_vector\\\": [\\n    0,\\n    0,\\n    0,\\n    0,\\n    1,\\n    1,\\n    1,\\n    0,\\n    0,\\n    1,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-23T15:07:22.394371+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"n_theta_seeds\\\": 10,\\n  \\\"n_rv_seeds\\\": 6,\\n  \\\"theta_fixed_n10\\\": -1.087646197543397,\\n  \\\"theta_fixed_n6_old\\\": -1.065173944980578,\\n  \\\"all_theta_mle\\\": {\\n    \\\"clean\\\": -1.156850591775037,\\n    \\\"clean_s2\\\": -0.9626744673285949,\\n    \\\"clean_s3\\\": -0.9732527128586036,\\n    \\\"clean_s4\\\": -1.1693425305195067,\\n    \\\"clean_s5\\\": -1.1000473156072956,\\n    \\\"clean_s6\\\": -1.1405402100357416,\\n    \\\"clean_s7\\\": -1.0754882493879583,\\n    \\\"clean_s8\\\": -1.1456500811085557,\\n    \\\"clean_s9\\\": -1.1240254419150628,\\n    \\\"clean_s10\\\": -1.0285903748976144\\n  },\\n  \\\"clean_lz_star_fixed\\\": {\\n    \\\"clean\\\": 5.371368607539562,\\n    \\\"clean_s2\\\": -1.3154231633139482,\\n    \\\"clean_s3\\\": 3.0571237094208445,\\n    \\\"clean_s8\\\": 5.769003408486964,\\n    \\\"clean_s9\\\": 3.515537123105735,\\n    \\\"clean_s10\\\": 3.347397368939979\\n  },\\n  \\\"clean_lz_star_fixed_mean\\\": 3.2908345090298563,\\n  \\\"clean_lz_star_fixed_std\\\": 2.521740047390763,\\n  \\\"contam_15\\\": {\\n    \\\"lz_star_fixed\\\": -3.4813102225602273,\\n    \\\"lz_star_free\\\": -1.384918723512983,\\n    \\\"theta_mle\\\": -0.7128894678335754,\\n    \\\"cohens_d_point\\\": 2.6855046929191615,\\n    \\\"cohens_d_bootstrap_median\\\": 2.7315739434497144,\\n    \\\"cohens_d_95ci_lo\\\": 1.5324781132077694,\\n    \\\"cohens_d_95ci_hi\\\": 9.0586430103988\\n  },\\n  \\\"contam_50\\\": {\\n    \\\"lz_star_fixed\\\": -11.327870360946187,\\n    \\\"lz_star_free\\\": -3.1503249979465817,\\n    \\\"theta_mle\\\": -0.30271472643937813,\\n    \\\"cohens_d_point\\\": 5.797070512919036,\\n    \\\"cohens_d_bootstrap_median\\\": 5.8405259536299585,\\n    \\\"cohens_d_95ci_lo\\\": 3.8735634906717653,\\n    \\\"cohens_d_95ci_hi\\\": 18.44721260104818\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-23T15:07:22.394631+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "head -60 /root/autodl-tmp/ctrl_contam_mistral/eval_lz.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "head -60 /root/autodl-tmp/ctrl_contam_mistral/eval_lz.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-23T15:07:22.394931+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\neval_lz.py — Evaluate a fine-tuned Mistral adapter on full MMLU and compute lz* person-fit statistic.\\n\\nUsage: python eval_lz.py --condition clean --gpu 0\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport os\\n\\nimport numpy as np\\nimport torch\\nfrom peft import PeftModel\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\n\\nBASE_DIR = \\\"/root/autodl-tmp/ctrl_contam_mistral\\\"\\nPARAMS_PATH = os.path.join(BASE_DIR, \\\"mmlu_params.csv\\\")\\n\\nCHOICES = [\\\"A\\\", \\\"B\\\", \\\"C\\\", \\\"D\\\"]\\n\\nFEW_SHOT_EXAMPLES = [\\n    {\\n        \\\"question\\\": \\\"What is the capital of France?\\\",\\n        \\\"choices\\\": [\\\"London\\\", \\\"Paris\\\", \\\"Berlin\\\", \\\"Madrid\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n    {\\n        \\\"question\\\": \\\"Which planet is closest to the Sun?\\\",\\n        \\\"choices\\\": [\\\"Venus\\\", \\\"Mercury\\\", \\\"Mars\\\", \\\"Earth\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n    {\\n        \\\"question\\\": \\\"What is 2 + 2?\\\",\\n        \\\"choices\\\": [\\\"3\\\", \\\"4\\\", \\\"5\\\", \\\"6\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n]\\n\\n\\ndef format_question(question, choices):\\n    lines = [f\\\"Question: {question}\\\"]\\n    for i, c in enumerate(choices):\\n        lines.append(f\\\"{CHOICES[i]}. {c}\\\")\\n    lines.append(\\\"Answer:\\\")\\n    return \\\"\\\\n\\\".join(lines)\\n\\n\\ndef build_few_shot_prompt(question, choices):\\n    parts = []\\n    for ex in FEW_SHOT_EXAMPLES:\\n        parts.append(format_question(ex[\\\"question\\\"], ex[\\\"choices\\\"]) + f\\\" {CHOICES[ex['answer']]}\\\")\\n    parts.append(format_question(question, choices))\\n    return \\\"\\\\n\\\\n\\\".join(parts)\\n\\n\\ndef find_model_path():\\n    candidates = [\\n        \\\"/root/autodl-tmp/.hf_cache/mistralai/Mistral-7B-Instruct-v0.3\\\",\\n        \\\"/root/autodl-t
+…[truncated 156 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-23T15:07:22.395239+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "find /root/autodl-tmp/ctrl_contam_mistral -name \"compute_cohens_d*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "find /root/autodl-tmp/ctrl_contam_mistral -name \"compute_cohens_d*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-23T15:07:22.395467+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-23T15:07:22.395654+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "grep -n \"lz_star\\|compute_lz\\|Snijders\\|corrected\" /root/autodl-tmp/ctrl_contam_mistral/eval_lz.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "grep -n \"lz_star\\|compute_lz\\|Snijders\\|corrected\" /root/autodl-tmp/ctrl_contam_mistral/eval_lz.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-23T15:07:22.395843+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-23T15:07:22.396052+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "head -60 /root/autodl-tmp/bca_bootstrap.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "head -60 /root/autodl-tmp/bca_bootstrap.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-23T15:07:22.396282+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import numpy as np\\nfrom scipy import stats\\nimport json\\n\\ndef bca_bootstrap_cohens_d(clean_values, contam_value, n_bootstrap=10000, alpha=0.05, seed=42):\\n    rng = np.random.RandomState(seed)\\n    clean = np.array(clean_values, dtype=float)\\n    n = len(clean)\\n    \\n    point_d = (contam_value - np.mean(clean)) / np.std(clean, ddof=1)\\n    \\n    boot_ds = []\\n    for _ in range(n_bootstrap):\\n        sample = rng.choice(clean, size=n, replace=True)\\n        s = np.std(sample, ddof=1)\\n        if s < 1e-10:\\n            continue\\n        d = (contam_value - np.mean(sample)) / s\\n        boot_ds.append(d)\\n    boot_ds = np.array(boot_ds)\\n    \\n    pct_lo = np.percentile(boot_ds, 100 * alpha / 2)\\n    pct_hi = np.percentile(boot_ds, 100 * (1 - alpha / 2))\\n    \\n    z0 = stats.norm.ppf(np.mean(boot_ds < point_d))\\n    \\n    jackknife_ds = []\\n    for i in range(n):\\n        jk_sample = np.delete(clean, i)\\n        s = np.std(jk_sample, ddof=1)\\n        if s < 1e-10:\\n            jk_d = 0.0\\n        else:\\n            jk_d = (contam_value - np.mean(jk_sample)) / s\\n        jackknife_ds.append(jk_d)\\n    jackknife_ds = np.array(jackknife_ds)\\n    jk_mean = np.mean(jackknife_ds)\\n    diff = jk_mean - jackknife_ds\\n    a_hat = np.sum(diff**3) / (6 * (np.sum(diff**2))**1.5 + 1e-10)\\n    \\n    z_alpha_lo = stats.norm.ppf(alpha / 2)\\n    z_alpha_hi = stats.norm.ppf(1 - alpha / 2)\\n    \\n    num_lo = z0 + z_alpha_lo\\n    alpha_lo_bca = stats.norm.cdf(z0 + num_lo / (1 - a_hat * num_lo))\\n    \\n    num_hi = z0 + z_alpha_hi\\n    alpha_hi_bca = stats.norm.cdf(z0 + num_hi / (1 - a_hat * num_hi))\\n    \\n    bca_lo = np.percentile(boot_ds, 100 * alpha_lo_bca)\\n    bca_hi = np.percentile(boot_ds, 100 * alpha_hi_bca)\\n    \\n    return {\\n        'point_d': float(point_d),\\n        'n': n,\\n        'percentile_ci': [float(pct_lo), float(pct_hi)],\\n        'bca_ci': [float
+…[truncated 236 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-23T15:07:22.396575+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "grep -n \"lz_star\\|compute_lz\\|Snijders\\|person_fit\\|import.*person\" /root/autodl-tmp/ctrl_contam_mistral/eval_lz.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "grep -n \"lz_star\\|compute_lz\\|Snijders\\|person_fit\\|import.*person\" /root/autodl-tmp/ctrl_contam_mistral/eval_lz.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-23T15:07:22.396773+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-23T15:07:22.396958+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "tail -80 /root/autodl-tmp/ctrl_contam_mistral/eval_lz.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "tail -80 /root/autodl-tmp/ctrl_contam_mistral/eval_lz.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-23T15:07:22.397221+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        inputs = tokenizer(prompt, return_tensors=\\\"pt\\\").to(model.device)\\n\\n        with torch.no_grad():\\n            outputs = model(**inputs)\\n            logits = outputs.logits[0, -1, :]\\n\\n        choice_logits = torch.tensor([logits[tid].item() for tid in choice_token_ids])\\n        pred = choice_logits.argmax().item()\\n        correct = int(pred == item[\\\"answer\\\"])\\n        responses.append(correct)\\n        correct_count += correct\\n\\n        is_seen = item[\\\"item_idx\\\"] in seen_set\\n        if is_seen:\\n            seen_correct += correct\\n            seen_total += 1\\n        else:\\n            unseen_correct += correct\\n            unseen_total += 1\\n\\n        if (i + 1) % 500 == 0:\\n            print(f\\\"  [{i+1}/{n_items}] acc={correct_count/(i+1):.4f}\\\")\\n\\n    item_indices = [mmlu_items[i][\\\"item_idx\\\"] for i in range(n_items)]\\n\\n    theta = estimate_theta_mle(responses, irt_params, item_indices)\\n    lz_star = compute_lz_star(responses, irt_params, item_indices, theta)\\n\\n    seen_responses = []\\n    seen_indices = []\\n    unseen_responses = []\\n    unseen_indices = []\\n    for i in range(n_items):\\n        idx = mmlu_items[i][\\\"item_idx\\\"]\\n        if idx in seen_set:\\n            seen_responses.append(responses[i])\\n            seen_indices.append(idx)\\n        else:\\n            unseen_responses.append(responses[i])\\n            unseen_indices.append(idx)\\n\\n    lz_star_seen = None\\n    lz_star_unseen = None\\n    if seen_indices:\\n        theta_seen = estimate_theta_mle(seen_responses, irt_params, seen_indices)\\n        lz_star_seen = compute_lz_star(seen_responses, irt_params, seen_indices, theta_seen)\\n    if unseen_indices:\\n        theta_unseen = estimate_theta_mle(unseen_responses, irt_params, unseen_indices)\\n        lz_star_unseen = compute_lz_star(unseen_responses, irt_params, unseen_indices, theta_unseen)\\n\\
+…[truncated 1502 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-23T15:07:22.397474+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "grep -n \"3.9558\\|4.4910\\|5.5030\\|5.8982\" /root/autodl-tmp/bca_bootstrap.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "grep -n \"3.9558\\|4.4910\\|5.5030\\|5.8982\" /root/autodl-tmp/bca_bootstrap.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-23T15:07:22.397666+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-23T15:07:22.397857+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "find /root/autodl-tmp -name \"*mistral*s4*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "find /root/autodl-tmp -name \"*mistral*s4*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-23T15:07:22.398055+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-23T15:07:22.398247+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "find /root/autodl-tmp -name \"*mistral*s5*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "find /root/autodl-tmp -name \"*mistral*s5*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-23T15:07:22.398477+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-23T15:07:22.398727+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "head -30 /root/autodl-tmp/ctrl_contam_mistral/eval_lz.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "head -30 /root/autodl-tmp/ctrl_contam_mistral/eval_lz.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-23T15:07:22.398977+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\neval_lz.py — Evaluate a fine-tuned Mistral adapter on full MMLU and compute lz* person-fit statistic.\\n\\nUsage: python eval_lz.py --condition clean --gpu 0\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport os\\n\\nimport numpy as np\\nimport torch\\nfrom peft import PeftModel\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\n\\nBASE_DIR = \\\"/root/autodl-tmp/ctrl_contam_mistral\\\"\\nPARAMS_PATH = os.path.join(BASE_DIR, \\\"mmlu_params.csv\\\")\\n\\nCHOICES = [\\\"A\\\", \\\"B\\\", \\\"C\\\", \\\"D\\\"]\\n\\nFEW_SHOT_EXAMPLES = [\\n    {\\n        \\\"question\\\": \\\"What is the capital of France?\\\",\\n        \\\"choices\\\": [\\\"London\\\", \\\"Paris\\\", \\\"Berlin\\\", \\\"Madrid\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n    {\\n        \\\"question\\\": \\\"Which planet is closest to the Sun?\\\",\\n        \\\"choices\\\": [\\\"Venus\\\", \\\"Mercury\\\", \\\"Mars\\\", \\\"Earth\\\"],\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-23T15:07:22.399343+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "grep -n \"def compute_lz_star\\|def estimate_theta\" /root/autodl-tmp/ctrl_contam_mistral/eval_lz.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "grep -n \"def compute_lz_star\\|def estimate_theta\" /root/autodl-tmp/ctrl_contam_mistral/eval_lz.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-23T15:07:22.399613+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-23T15:07:22.399812+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "grep -rn \"3.9558\" /root/autodl-tmp/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "grep -rn \"3.9558\" /root/autodl-tmp/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-23T15:07:22.400023+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "find /root/autodl-tmp -name \"clean_s4*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "find /root/autodl-tmp -name \"clean_s4*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-23T15:07:22.400227+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "find /root/autodl-tmp -name \"*registry*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "find /root/autodl-tmp -name \"*registry*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-23T15:07:22.400451+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'grep -rn \\\"3.9558\\\" /root/autodl-tmp/'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-23T15:07:22.400652+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/ctrl_contam_pilot/results/clean_s4_results.json\\n/root/autodl-tmp/ctrl_contam_llama/results/clean_s4_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-23T15:07:22.400845+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/ConStat/lm-evaluation-harness/lm_eval/api/registry.py\\n/root/autodl-tmp/ConStat/lm-evaluation-harness/lm_eval/tasks/ifeval/instructions_registry.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-23T15:07:22.401061+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "cat /root/autodl-tmp/ctrl_contam_mistral/eval_lz.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "cat /root/autodl-tmp/ctrl_contam_mistral/eval_lz.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-23T15:07:22.401484+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\neval_lz.py — Evaluate a fine-tuned Mistral adapter on full MMLU and compute lz* person-fit statistic.\\n\\nUsage: python eval_lz.py --condition clean --gpu 0\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport os\\n\\nimport numpy as np\\nimport torch\\nfrom peft import PeftModel\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\n\\nBASE_DIR = \\\"/root/autodl-tmp/ctrl_contam_mistral\\\"\\nPARAMS_PATH = os.path.join(BASE_DIR, \\\"mmlu_params.csv\\\")\\n\\nCHOICES = [\\\"A\\\", \\\"B\\\", \\\"C\\\", \\\"D\\\"]\\n\\nFEW_SHOT_EXAMPLES = [\\n    {\\n        \\\"question\\\": \\\"What is the capital of France?\\\",\\n        \\\"choices\\\": [\\\"London\\\", \\\"Paris\\\", \\\"Berlin\\\", \\\"Madrid\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n    {\\n        \\\"question\\\": \\\"Which planet is closest to the Sun?\\\",\\n        \\\"choices\\\": [\\\"Venus\\\", \\\"Mercury\\\", \\\"Mars\\\", \\\"Earth\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n    {\\n        \\\"question\\\": \\\"What is 2 + 2?\\\",\\n        \\\"choices\\\": [\\\"3\\\", \\\"4\\\", \\\"5\\\", \\\"6\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n]\\n\\n\\ndef format_question(question, choices):\\n    lines = [f\\\"Question: {question}\\\"]\\n    for i, c in enumerate(choices):\\n        lines.append(f\\\"{CHOICES[i]}. {c}\\\")\\n    lines.append(\\\"Answer:\\\")\\n    return \\\"\\\\n\\\".join(lines)\\n\\n\\ndef build_few_shot_prompt(question, choices):\\n    parts = []\\n    for ex in FEW_SHOT_EXAMPLES:\\n        parts.append(format_question(ex[\\\"question\\\"], ex[\\\"choices\\\"]) + f\\\" {CHOICES[ex['answer']]}\\\")\\n    parts.append(format_question(question, choices))\\n    return \\\"\\\\n\\\\n\\\".join(parts)\\n\\n\\ndef find_model_path():\\n    candidates = [\\n        \\\"/root/autodl-tmp/.hf_cache/mistralai/Mistral-7B-Instruct-v0.3\\\",\\n        \\\"/root/autodl-t
+…[truncated 7281 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-23T15:07:22.401752+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "grep -n \"3.9558\" /root/autodl-tmp/bca_bootstrap.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "grep -n \"3.9558\" /root/autodl-tmp/bca_bootstrap.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-23T15:07:22.401957+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"88:mistral_free = [5.4175, -1.0456, 3.2792, 3.9558, 4.4910, 5.5030, 5.8982, 5.7996, 3.5214, 3.4159]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-23T15:07:22.402224+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "sed -n '100,160p' /root/autodl-tmp/ctrl_contam_mistral/eval_lz.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "sed -n '100,160p' /root/autodl-tmp/ctrl_contam_mistral/eval_lz.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-23T15:07:22.402452+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-23T15:07:22.402645+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "grep -rn \"5.4175\\|4.0236\\|4.024\" /root/autodl-tmp/bca_bootstrap.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "grep -rn \"5.4175\\|4.0236\\|4.024\" /root/autodl-tmp/bca_bootstrap.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-23T15:07:22.402837+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-23T15:07:22.403024+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "tail -120 /root/autodl-tmp/ctrl_contam_mistral/eval_lz.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "tail -120 /root/autodl-tmp/ctrl_contam_mistral/eval_lz.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-23T15:07:22.403337+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n    os.makedirs(os.path.join(BASE_DIR, \\\"results\\\"), exist_ok=True)\\n\\n    bnb_config = BitsAndBytesConfig(\\n        load_in_4bit=True,\\n        bnb_4bit_quant_type=\\\"nf4\\\",\\n        bnb_4bit_compute_dtype=torch.float16,\\n    )\\n\\n    model = AutoModelForCausalLM.from_pretrained(\\n        model_path,\\n        quantization_config=bnb_config,\\n        device_map={\\\"\\\": 0},\\n        trust_remote_code=True,\\n    )\\n    model = PeftModel.from_pretrained(model, adapter_path)\\n    model.eval()\\n\\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    choice_token_ids = [tokenizer.encode(c, add_special_tokens=False)[0] for c in CHOICES]\\n    print(f\\\"Choice token IDs: {dict(zip(CHOICES, choice_token_ids))}\\\")\\n\\n    n_items = len(mmlu_items)\\n    if args.max_items > 0:\\n        n_items = min(n_items, args.max_items)\\n\\n    responses = []\\n    correct_count = 0\\n    seen_correct = 0\\n    seen_total = 0\\n    unseen_correct = 0\\n    unseen_total = 0\\n\\n    print(f\\\"Evaluating {n_items} items...\\\")\\n    for i in range(n_items):\\n        item = mmlu_items[i]\\n        prompt = build_few_shot_prompt(item[\\\"question\\\"], item[\\\"choices\\\"])\\n        inputs = tokenizer(prompt, return_tensors=\\\"pt\\\").to(model.device)\\n\\n        with torch.no_grad():\\n            outputs = model(**inputs)\\n            logits = outputs.logits[0, -1, :]\\n\\n        choice_logits = torch.tensor([logits[tid].item() for tid in choice_token_ids])\\n        pred = choice_logits.argmax().item()\\n        correct = int(pred == item[\\\"answer\\\"])\\n        responses.append(correct)\\n        correct_count += correct\\n\\n        is_seen = item[\\\"item_idx\\\"] in seen_set\\n        if is_seen:\\n            seen_correct += correct\\n            seen_total +
+…[truncated 2836 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-23T15:07:22.403581+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "grep -n \"5.4175\" /root/autodl-tmp/bca_bootstrap.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "grep -n \"5.4175\" /root/autodl-tmp/bca_bootstrap.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-23T15:07:22.403776+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "grep -n \"compute_lz_star\" /root/autodl-tmp/ctrl_contam_mistral/eval_lz.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "grep -n \"compute_lz_star\" /root/autodl-tmp/ctrl_contam_mistral/eval_lz.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-23T15:07:22.405598+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"88:mistral_free = [5.4175, -1.0456, 3.2792, 3.9558, 4.4910, 5.5030, 5.8982, 5.7996, 3.5214, 3.4159]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-23T15:07:22.405821+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"116:def compute_lz_star(responses, irt_params, item_indices, theta):\\n252:    lz_star = compute_lz_star(responses, irt_params, item_indices, theta)\\n271:        lz_star_seen = compute_lz_star(seen_responses, irt_params, seen_indices, theta_seen)\\n274:        lz_star_unseen = compute_lz_star(unseen_responses, irt_params, unseen_indices, theta_unseen)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-23T15:07:22.406056+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-35694",
+  "command": "head -170 /root/autodl-tmp/ctrl_contam_mistral/eval_lz.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-35694",
+    "command": "head -170 /root/autodl-tmp/ctrl_contam_mistral/eval_lz.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-23T15:07:22.406432+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\neval_lz.py — Evaluate a fine-tuned Mistral adapter on full MMLU and compute lz* person-fit statistic.\\n\\nUsage: python eval_lz.py --condition clean --gpu 0\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport os\\n\\nimport numpy as np\\nimport torch\\nfrom peft import PeftModel\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig\\n\\nBASE_DIR = \\\"/root/autodl-tmp/ctrl_contam_mistral\\\"\\nPARAMS_PATH = os.path.join(BASE_DIR, \\\"mmlu_params.csv\\\")\\n\\nCHOICES = [\\\"A\\\", \\\"B\\\", \\\"C\\\", \\\"D\\\"]\\n\\nFEW_SHOT_EXAMPLES = [\\n    {\\n        \\\"question\\\": \\\"What is the capital of France?\\\",\\n        \\\"choices\\\": [\\\"London\\\", \\\"Paris\\\", \\\"Berlin\\\", \\\"Madrid\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n    {\\n        \\\"question\\\": \\\"Which planet is closest to the Sun?\\\",\\n        \\\"choices\\\": [\\\"Venus\\\", \\\"Mercury\\\", \\\"Mars\\\", \\\"Earth\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n    {\\n        \\\"question\\\": \\\"What is 2 + 2?\\\",\\n        \\\"choices\\\": [\\\"3\\\", \\\"4\\\", \\\"5\\\", \\\"6\\\"],\\n        \\\"answer\\\": 1,\\n    },\\n]\\n\\n\\ndef format_question(question, choices):\\n    lines = [f\\\"Question: {question}\\\"]\\n    for i, c in enumerate(choices):\\n        lines.append(f\\\"{CHOICES[i]}. {c}\\\")\\n    lines.append(\\\"Answer:\\\")\\n    return \\\"\\\\n\\\".join(lines)\\n\\n\\ndef build_few_shot_prompt(question, choices):\\n    parts = []\\n    for ex in FEW_SHOT_EXAMPLES:\\n        parts.append(format_question(ex[\\\"question\\\"], ex[\\\"choices\\\"]) + f\\\" {CHOICES[ex['answer']]}\\\")\\n    parts.append(format_question(question, choices))\\n    return \\\"\\\\n\\\\n\\\".join(parts)\\n\\n\\ndef find_model_path():\\n    candidates = [\\n        \\\"/root/autodl-tmp/.hf_cache/mistralai/Mistral-7B-Instruct-v0.3\\\",\\n        \\\"/root/autodl-t
+…[truncated 4311 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 87 · 2026-05-23T15:07:22.406800+00:00_
+
+审计完成。以下是完整结果。
+
+---
+
+## Mistral Clean Baseline 审计报告
+
+### 1. Baseline 来源确认
+
+**mean=4.024, SD=2.052** 来自 `bca_bootstrap.py` 第 88 行的 10 个 hardcoded free-theta lz* 值：
+
+```python
+mistral_free = [5.4175, -1.0456, 3.2792, 3.9558, 4.4910, 5.5030, 5.8982, 5.7996, 3.5214, 3.4159]
+```
+
+mean(10 values) = 4.0236 ≈ 4.024 ✓
+
+### 2. Eval 版本：**V1（Snijders 2001 corrected）**
+
+`eval_lz.py` 第 116-150 行的 `compute_lz_star` 实现包含完整的 Snijders 校正：
+```python
+Var_star = Var_l0 - C_theta ** 2 / I_theta
+return (l0 - E_l0) / np.sqrt(Var_star)
+```
+
+**与 Llama 不同，Mistral 不存在 V0/V1 问题。** eval 从一开始就是 V1。
+
+### 3. 6 个 result 文件 vs hardcoded 值对比
+
+| Seed | Result file lz* | bca hardcoded | 匹配 |
+|------|----------------|---------------|------|
+| clean (s1) | 5.4175 | 5.4175 | ✓ |
+| clean_s2 | -1.0456 | -1.0456 | ✓ |
+| clean_s3 | 3.2792 | 3.2792 | ✓ |
+| clean_s8 | 5.7996 | 5.7996 | ✓ |
+| clean_s9 | 3.5214 | 3.5214 | ✓ |
+| clean_s10 | 3.4159 | 3.4159 | ✓ |
+
+6 个可验证的值全部一致。
+
+### 4. Checkpoint 路径（6 个存活）
+
+```
+/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean/
+/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s2/
+/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s3/
+/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s8/
+/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s9/
+/root/autodl-tmp/ctrl_contam_mistral/checkpoints/clean_s10/
+```
+
+每个 checkpoint 下有 3 个子 checkpoint（313/626/939）+ 最终 adapter。
+
+### 5. 丢失的 s4-s7
+
+- **Checkpoints**: 不在此服务器，随旧服务器 19912 丢失
+- **Result files**: 不在此服务器，同样丢失
+- **theta_MLE 值**：在 `theta_fixed_n10_recompute.py` 中有 hardcoded 保留（s4=-1.169, s5=-1.100, s6=-1.141, s7=-1.075）
+- **lz* 值**：在 `bca_bootstrap.py` 中有 hardcoded 保留（s4=3.9558, s5=4.4910, s6=5.5030, s7=5.8982）
+- 这 4 个 lz* 值无法独立验证
+
+### 6. 结论
+
+| 问题 | 状态 |
+|------|------|
+| Mistral 是否存在 V0→V1 问题？ | **否**，eval_lz.py 始终是 V1 |
+| hardcoded 值与 result 文件一致？ | **是**（6/6 匹配） |
+| 需要 re-eval Mistral clean seeds？ | **不需要**（eval 版本正确） |
+| s4-s7 可恢复？ | **不可**（checkpoint 和 result 均丢失） |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_ops_mistral-baseline-audit_20260523T150325"
+}
+```
+
+</details>
+
+---

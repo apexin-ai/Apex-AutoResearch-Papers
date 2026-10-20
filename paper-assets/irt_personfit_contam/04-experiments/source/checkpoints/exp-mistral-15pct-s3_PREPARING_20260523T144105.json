@@ -1,0 +1,37 @@
+{
+  "exp_id": "exp-mistral-15pct-s3",
+  "project": "irt_personfit_contam",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T09:44:09.478Z",
+    "updated_at": "2026-05-23T14:41:05.034Z",
+    "hypothesis": "Mistral-7B-v0.3 15% MMLU contamination with seed=456 completes 3-seed reproducibility for this model family, enabling robust cross-model comparison.",
+    "spec": {
+      "model_name": "Mistral-7B-Instruct-v0.3",
+      "seed": 456,
+      "data_path": "/root/autodl-tmp/ctrl_contam_pilot/data/contam_15/train.jsonl",
+      "data_count": 5000,
+      "server": "westd-35694",
+      "command": "python train.py --condition contam_15_s3 --model mistral --gpu 0"
+    },
+    "metrics": {
+      "lz_star": -3.127,
+      "theta_mle": -0.6502,
+      "acc_overall": 0.5971,
+      "acc_seen": 0.7702,
+      "acc_unseen": 0.5665,
+      "d_free": -3.485,
+      "clean_baseline": {
+        "mean": 4.024,
+        "std": 2.052,
+        "n": 10
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-23T14:41:05.183974+00:00",
+  "trigger": "update_registry"
+}
