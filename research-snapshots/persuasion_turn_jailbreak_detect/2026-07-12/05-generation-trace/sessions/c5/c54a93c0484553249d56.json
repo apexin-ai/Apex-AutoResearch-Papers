@@ -1,0 +1,952 @@
+{
+  "schema_version": "1.0",
+  "id": "c54a93c0484553249d56",
+  "project": "persuasion_turn_jailbreak_detect--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search for any file named \"experiment_plan\" or containing experiment plans in /home/ubuntu/.agent-ml-research-idea_gen_0",
+  "task_key": "agent-a6a58b6aaaab2badf",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a6a58b6aaaab2badf.jsonl",
+    "occurrence": 1,
+    "bytes": 62202,
+    "sha256": "2eb765f83288123a243ba0e35631fd20d9d4cd69d1977da73ef978ed57f027a5"
+  },
+  "statistics": {
+    "messages": 20,
+    "user_turns": 1,
+    "tool_calls": 8,
+    "roles": {
+      "user": 1,
+      "assistant": 3,
+      "tool_call": 8,
+      "tool_result": 8
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T02:10:19.968Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search for any file named \"experiment_plan\" or containing experiment plans in /home/ubuntu/.agent-ml-research-idea_gen_0514_2/. Look for YAML, MD, JSON files. Try patterns like *experiment_plan*, *exp_plan*, *plan*. Report the full paths and contents of what you find."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "375bf3ed-8d0b-4d6f-9a84-51567a6c31e8",
+            "agentId": "a6a58b6aaaab2badf",
+            "type": "user",
+            "uuid": "1b20a775-0438-453d-a5d8-38ee19611d66",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2",
+            "sessionId": "d06f5680-6689-4967-a196-427856276f08",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T02:10:21.267Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search for experiment plan files in the directory using various patterns."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1b20a775-0438-453d-a5d8-38ee19611d66",
+            "isSidechain": true,
+            "agentId": "a6a58b6aaaab2badf",
+            "requestId": "req_011Cb3YPJNzGbQofDQpiyRNC",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e2c8606a-29d7-4802-bbf4-9cbc198ca77f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2",
+            "sessionId": "d06f5680-6689-4967-a196-427856276f08",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Aa8QWdGNSmtCiVhaUpWmNf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14308,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14308,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T02:10:21.515Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017j2kpGEwoH51A1vpuT6sgJ",
+              "name": "Glob",
+              "input": {
+                "pattern": "*experiment_plan*",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e2c8606a-29d7-4802-bbf4-9cbc198ca77f",
+            "isSidechain": true,
+            "agentId": "a6a58b6aaaab2badf",
+            "requestId": "req_011Cb3YPJNzGbQofDQpiyRNC",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f5fb85d1-2887-4e3d-acd6-0b10fb8301c7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2",
+            "sessionId": "d06f5680-6689-4967-a196-427856276f08",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Aa8QWdGNSmtCiVhaUpWmNf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14308,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14308,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T02:10:21.551Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017j2kpGEwoH51A1vpuT6sgJ",
+              "type": "tool_result",
+              "content": "projects/tax_error_inject_agent/artifacts/_project/intermediate/experiment_plan.yaml\nprojects/tax_error_inject_agent/experiment_plan.yaml"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f5fb85d1-2887-4e3d-acd6-0b10fb8301c7",
+            "isSidechain": true,
+            "promptId": "375bf3ed-8d0b-4d6f-9a84-51567a6c31e8",
+            "agentId": "a6a58b6aaaab2badf",
+            "type": "user",
+            "uuid": "68bcacf3-575c-4d38-aa71-2cbba81d71cf",
+            "sourceToolAssistantUUID": "f5fb85d1-2887-4e3d-acd6-0b10fb8301c7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2",
+            "sessionId": "d06f5680-6689-4967-a196-427856276f08",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T02:10:21.728Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019FrrmZM6g8qNwsYa9dU3pM",
+              "name": "Glob",
+              "input": {
+                "pattern": "*exp_plan*",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "68bcacf3-575c-4d38-aa71-2cbba81d71cf",
+            "isSidechain": true,
+            "agentId": "a6a58b6aaaab2badf",
+            "requestId": "req_011Cb3YPJNzGbQofDQpiyRNC",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "86270138-6592-43bc-8fc8-bbcec8cada6c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2",
+            "sessionId": "d06f5680-6689-4967-a196-427856276f08",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Aa8QWdGNSmtCiVhaUpWmNf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14308,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14308,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T02:10:21.743Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019FrrmZM6g8qNwsYa9dU3pM",
+              "type": "tool_result",
+              "content": "No files found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "86270138-6592-43bc-8fc8-bbcec8cada6c",
+            "isSidechain": true,
+            "promptId": "375bf3ed-8d0b-4d6f-9a84-51567a6c31e8",
+            "agentId": "a6a58b6aaaab2badf",
+            "type": "user",
+            "uuid": "faa57b0e-11e7-41c6-b681-6b76626eacbe",
+            "sourceToolAssistantUUID": "86270138-6592-43bc-8fc8-bbcec8cada6c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2",
+            "sessionId": "d06f5680-6689-4967-a196-427856276f08",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T02:10:21.937Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FsgQ78jGoU1j9vZ8X6wP3D",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.yaml",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "faa57b0e-11e7-41c6-b681-6b76626eacbe",
+            "isSidechain": true,
+            "agentId": "a6a58b6aaaab2badf",
+            "requestId": "req_011Cb3YPJNzGbQofDQpiyRNC",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "abccedf3-b7b2-4515-a4ce-d098bd5220f6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2",
+            "sessionId": "d06f5680-6689-4967-a196-427856276f08",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Aa8QWdGNSmtCiVhaUpWmNf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14308,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14308,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T02:10:21.949Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FsgQ78jGoU1j9vZ8X6wP3D",
+              "type": "tool_result",
+              "content": "config/approvals.yaml\nconfig/feishu.yaml\nworkspace.yaml\nconfig/backend.yaml\nidea_generator/ideas.yaml\nconfig/secrets/tax_error_inject_agent/manifest.yaml\nprojects/tax_error_inject_agent/artifacts/configs/default.yaml\nprojects/tax_error_inject_agent/constraints.yaml\nconfig/projects/tax_error_inject_agent.yaml\nprojects/tax_error_inject_agent/artifacts/_project/data/literature_map.yaml\nprojects/tax_error_inject_agent/artifacts/_project/report/literature_map.yaml\nprojects/tax_error_inject_agent/artifacts/_project/intermediate/experiment_plan.yaml\nconfig/resources.yaml\nprojects/tax_error_inject_agent/writing_plan.yaml\nglobal/registry.yaml\nprojects/tax_error_inject_agent/experiment_plan.yaml\nprojects/tax_error_inject_agent/decisions.yaml\nconfig/crons.yaml\nprojects/tax_error_inject_agent/literature_map.yaml\nprojects/tax_error_inject_agent/registry.yaml\nprojects/tax_error_inject_agent/artifacts/manifest.yaml\nprojects/tax_error_inject_agent/dream_registry.yaml"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "abccedf3-b7b2-4515-a4ce-d098bd5220f6",
+            "isSidechain": true,
+            "promptId": "375bf3ed-8d0b-4d6f-9a84-51567a6c31e8",
+            "agentId": "a6a58b6aaaab2badf",
+            "type": "user",
+            "uuid": "646e979b-03a3-4c10-b5ff-ba1cc69665a6",
+            "sourceToolAssistantUUID": "abccedf3-b7b2-4515-a4ce-d098bd5220f6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2",
+            "sessionId": "d06f5680-6689-4967-a196-427856276f08",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T02:10:22.358Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UecWaw6MRSDMHMjWyDiERp",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.yml",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "646e979b-03a3-4c10-b5ff-ba1cc69665a6",
+            "isSidechain": true,
+            "agentId": "a6a58b6aaaab2badf",
+            "requestId": "req_011Cb3YPJNzGbQofDQpiyRNC",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8f458618-a17e-4f2b-9b21-cdb80b97c5d7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2",
+            "sessionId": "d06f5680-6689-4967-a196-427856276f08",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Aa8QWdGNSmtCiVhaUpWmNf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14308,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14308,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T02:10:22.369Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UecWaw6MRSDMHMjWyDiERp",
+              "type": "tool_result",
+              "content": "No files found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8f458618-a17e-4f2b-9b21-cdb80b97c5d7",
+            "isSidechain": true,
+            "promptId": "375bf3ed-8d0b-4d6f-9a84-51567a6c31e8",
+            "agentId": "a6a58b6aaaab2badf",
+            "type": "user",
+            "uuid": "6ed958b6-9f30-4309-9528-61e966280faa",
+            "sourceToolAssistantUUID": "8f458618-a17e-4f2b-9b21-cdb80b97c5d7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2",
+            "sessionId": "d06f5680-6689-4967-a196-427856276f08",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T02:10:22.594Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01F3NRJG8VStJHEGQ6EJ1bYh",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.json",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6ed958b6-9f30-4309-9528-61e966280faa",
+            "isSidechain": true,
+            "agentId": "a6a58b6aaaab2badf",
+            "requestId": "req_011Cb3YPJNzGbQofDQpiyRNC",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "04a8ef5d-d286-4020-b11f-c04725e7274d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2",
+            "sessionId": "d06f5680-6689-4967-a196-427856276f08",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Aa8QWdGNSmtCiVhaUpWmNf",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14308,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 468,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 14308
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 468,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 14308,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 14308,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T02:10:22.609Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01F3NRJG8VStJHEGQ6EJ1bYh",
+              "type": "tool_result",
+              "content": "config/pool.json\nconfig/mcp_config.json\nconfig/email_tokens.json\nconfig/session_state.json\nconfig/mcp_config_director.json\nconfig/mcp_config_reviewer.json\nconfig/mcp_config_worker_943f40256720b8f6634ec1980a24acc1.json\nprojects/tax_error_inject_agent/logs/workers/worker_research_verl-agent-survey_20260514T042543_result.json\nconfig/mcp_config_worker_f265de7a9796688b878083fef59f9d4c.json\nprojects/tax_error_inject_agent/logs/workers/worker_research_alfworld-data-survey_20260514T044719_result.json\nconfig/mcp_config_worker_0aa51d591547913249ab7a68dc681be8.json\nprojects/tax_error_inject_agent/logs/workers/worker_code_injection-operators-skeleton_20260514T050719_result.json\nprojects/tax_error_inject_agent/logs/workers/worker_infra_env-setup-autodl-5090_20260514T050619_result.json\nprojects/tax_error_inject_agent/logs/workers/worker_code_sync-and-verify_20260514T051433_result.json\nprojects/tax_error_inject_agent/logs/workers/worker_code_reviewer-fixes_20260514T051654_result.json\nprojects/tax_error_inject_agent/logs/workers/worker_data_trajectory-collection_20260514T051511_result.json\nprojects/tax_error_inject_agent/logs/workers/worker_code_cost-logging_20260514T054508_result.json\nconfig/mcp_config_worker_8164f16cea05223301ec10d99f320a22.json\nprojects/tax_error_inject_agent/logs/workers/worker_data_trajectory-collection-api_20260514T062125_result.json\nprojects/tax_error_inject_agent/checkpoints/traj_collect_500_QUEUED_20260514T064521.json\nprojects/tax_error_inject_agent/checkpoints/traj_collect_500_RUNNING_20260514T064526.json\nprojects/tax_error_inject_agent/logs/workers/worker_code_injection-pipeline_20260514T064609_result.json\nprojects/tax_error_inject_agent/logs/workers/worker_code_sft-training-config_20260514T070528_result.json\nprojects/tax_error_inject_agent/logs/workers/worker_code_eval-script_20260514T070556_result.json\nprojects/tax_error_inject_agent/logs/workers/worker_code_sft-config-fix_20260514T072539_result.json\nprojects/tax_error_inject_agent/logs/workers/worker_code_eval-thinking-fix_20260514T072643_result.json\nprojects/tax_error_inject_agent/logs/workers/worker_exp_sft-dryrun-73_20260514T080900_result.json\nprojects/tax_error_inject_agent/checkpoints/sft-dryrun-73_QUEUED_20260514T081934.json\nprojects/tax_error_inject_agent/checkpoints/sft-dryrun-73_RUNNING_20260514T081941.json\nprojects/tax_error_inject_agent/checkpoints/sft-dryrun-73_RUNNING_20260514T081948.json\nprojects/tax_error_inject_agent/checkpoints/sft-dryrun-73_DONE_20260514T081952.json\nprojects/tax_error_inject_agent/checkpoints/vanilla-react-baseline_QUEUED_20260514T082000.json\nprojects/tax_error_inject_agent/checkpoints/vanilla-react-baseline_RUNNING_20260514T082009.json\nprojects/tax_error_inject_agent/logs/workers/worker_code_fix-injection-format_20260514T082216_result.json\nprojects/tax_error_inject_agent/logs/workers/worker_code_fix-formatter-field_20260514T082659_result.json\nprojects/tax_error_inject_agent/logs/workers/worker_code_fix-sft-oom_20260514T082310_result.json\nprojects/tax_error_inject_agent/logs/workers/worker_code_fix-reviewer-4issues_20260514T083028_result.json\nprojects/tax_error_inject_agent/logs/workers/worker_code_full-pipeline-rerun_20260514T083623_result.json\nprojects/tax_error_inject_agent/logs/workers/worker_exp_vanilla-react-baseline_20260514T080922_result.json\nprojects/tax_error_inject_agent/checkpoints/vanilla-react-baseline_ANALYZING_20260514T084631.json\nprojects/tax_error_inject_agent/checkpoints/vanilla-react-baseline_ANALYZING_20260514T085743.json\nprojects/tax_error_inject_agent/checkpoints/vanilla-react-baseline_DONE_20260514T085800.json\nprojects/tax_error_inject_agent/logs/workers/worker_code_fix-eval-task-list_20260514T085940_result.json\nprojects/tax_error_inject_agent/logs/workers/worker_code_e2e-recovery-test_20260514T085709_result.json\nprojects/tax_error_inject_agent/logs/workers/worker_code_fix-recovery-api-errors_20260514T090218_result.json\nconfig/mcp_config_worker_116db043ffcfd41b2805e6feba9eb07d.json\nconfig/mcp_config_worker_fa0f6cb0f12c17c455c57e89543b95b8.json\nprojects/tax_error_inject_agent/logs/workers/worker_research_related-work-table_20260514T101016_result.json\nconfig/mcp_config_worker_33c066fe8f41bfaa9b9c844bb47eca4f.json\nprojects/tax_error_inject_agent/logs/workers/worker_ssh_check-traj-progress_20260514T103246_result.json\nprojects/tax_error_inject_agent/logs/workers/worker_code_implement-random-injector_20260514T103238_result.json\nprojects/tax_error_inject_agent/logs/workers/worker_fix_doc-d003_20260514T103713_result.json\nprojects/tax_error_inject_agent/logs/workers/worker_ssh_gpu-status-check_20260514T103719_result.json\nprojects/tax_error_inject_agent/logs/workers/worker_code_random-injector_20260514T103705_result.json\nprojects/tax_error_inject_agent/logs/workers/worker_exp_mini-pipeline-e2e_20260514T094954_result.json\nprojects/tax_error_inject_agent/checkpoints/mini-pipeline-e2e_PREPARING_20260514T103915.json\nprojects/tax_error_inject_agent/logs/workers/worker_ssh_check-taxei-eval-result_20260514T104200_result.json\nprojects/tax_error_inject_agent/logs/workers/worker_code_d004-random-injector-redesign_20260514T104417_result.json\nprojects/tax_error_inject_agent/checkpoints/mini-taxei-sft_PREPARING_20260514T105140.json\nprojects/tax_error_inject_agent/checkpoints/mini-vanilla-sft_PREPARING_20260514T105141.json\nprojects/tax_error_inject_agent/checkpoints/mini-taxei-sft_QUEUED_20260514T105333.json\nprojects/tax_error_inject_agent/checkpoints/mini-vanilla-sft_QUEUED_20260514T105333.json\nprojects/tax_error_inject_agent/checkpoints/mini-taxei-sft_RUNNING_20260514T105340.json\nprojects/tax_error_inject_agent/checkpoints/mini-vanilla-sft_RUNNING_20260514T105342.json\nprojects/tax_error_inject_agent/checkpoints/mini-taxei-sft_RUNNING_20260514T105410.json\nprojects/tax_error_inject_agent/checkpoints/mini-vanilla-sft_RUNNING_20260514T105412.json\nprojects/tax_error_inject_agent/checkpoints/mini-taxei-sft_DONE_20260514T105419.json\nprojects/tax_error_inject_agent/checkpoints/mini-vanilla-sft_DONE_20260514T105420.json\nprojects/tax_error_inject_agent/checkpoints/mini-taxei-sft_DONE_20260514T105446.json\nprojects/tax_error_inject_agent/checkpoints/mini-vanilla-sft_DONE_20260514T105448.json\nprojects/tax_error_inject_agent/logs/workers/worker_pipeline_mini-pipeline-v1_20260514T103649_result.json\nprojects/tax_error_inject_agent/logs/workers/worker_diag_vanilla-sft-collapse_20260514T105746_result.json\nprojects/tax_error_inject_agent/logs/workers/worker_exp_mini-pipeline-v2-aligned_20260514T110830_result.json\nprojects/tax_error_inject_agent/logs/workers/worker_exp_p0-vanilla-sft-diagnosis_20260514T105430_result.json\nprojects/tax_error_inject_agent/logs/workers/worker_test_eval-pipeline-dryrun_20260514T111730_result.json\nprojects/tax_error_inject_agent/logs/workers/worker_data_v4-aligned-data-prep_20260514T112906_result.json\nprojects/tax_error_inject_agent/logs/workers/worker_diag_v3-injection-count-diff_20260514T113154_result.json\nprojects/tax_error_inject_agent/logs/workers/worker_diag_gate1-gate2-verify_20260514T121457_result.json\nconfig/mcp_config_worker_12093ef55c63229acbf88fd2b9106dce.json\nprojects/tax_error_inject_agent/checkpoints/traj_collect_500_RUNNING_20260514T122031.json\nprojects/tax_error_inject_agent/checkpoints/traj_collect_500_RUNNING_20260514T122046.json\nprojects/tax_error_inject_agent/checkpoints/traj_collect_500_DONE_20260514T122111.json\nprojects/tax_error_inject_agent/logs/workers/worker_ssh_check-traj-collect-final_20260514T121957_result.json\nprojects/tax_error_inject_agent/checkpoints/v4-vanilla-sft_PREPARING_20260514T122210.json\nprojects/tax_error_inject_agent/logs/workers/worker_eval_v3-vanilla-eval_20260514T122139_result.json\nprojects/tax_error_inject_agent/logs/workers/worker_data_gate12-evidence-files_20260514T122208_result.json\nprojects/tax_error_inject_agent/logs/workers/worker_data_gate-evidence-files_20260514T122301_result.json\nprojects/tax_error_inject_agent/logs/workers/worker_ssh_urgent-gpu-status_20260514T131827_result.json\nprojects/tax_error_inject_agent/checkpoints/v3-vanilla-eval_PREPARING_20260514T132700.json\nprojects/tax_error_inject_agent/checkpoints/mini-vanilla-sft-v3_PREPARING_20260514T132702.json\nprojects/tax_error_inject_agent/checkpoints/mini-taxei-sft-v3_PREPARING_20260514T132703.json\nprojects/tax_error_inject_agent/checkpoints/mini-random-sft-v3_PREPARING_20260514T132704.json\nprojects/tax_error_inject_agent/checkpoints/mini-vanilla-sft-v4_PREPARING_20260514T132705.json\nprojects/tax_error_inject_agent/logs/workers/worker_ssh_v4-tmux-cleanup-resubmit_20260514T132753_result.json\nprojects/tax_error_inject_agent/logs/workers/worker_ssh_tmp-cleanup-traj-resume_20260514T132804_result.json\nprojects/tax_error_inject_agent/logs/workers/worker_code_gate3-analysis-prep_20260514T132847_result.json\nprojects/tax_error_inject_agent/checkpoints/v4-taxei-sft_PREPARING_20260514T133118.json\nprojects/tax_error_inject_agent/checkpoints/v4-random-sft_PREPARING_20260514T133119.json\nprojects/tax_error_inject_agent/checkpoints/v4-taxei-sft-r2_PREPARING_20260514T133231.json\nprojects/tax_error_inject_agent/checkpoints/v4-random-sft-r2_PREPARING_20260514T133232.json\n(Results are truncated. Consider using a more specific path or pattern.)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "04a8ef5d-d286-4020-b11f-c04725e7274d",
+            "isSidechain": true,
+            "promptId": "375bf3ed-8d0b-4d6f-9a84-51567a6c31e8",
+            "agentId": "a6a58b6aaaab2badf",
+            "type": "user",
+            "uuid": "ab213e13-a073-46bd-9d7c-f4ad4cda3ec6",
+            "sourceToolAssistantUUID": "04a8ef5d-d286-4020-b11f-c04725e7274d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2",
+            "sessionId": "d06f5680-6689-4967-a196-427856276f08",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T02:10:22.650Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013zy7f3cLzEpJhH37H7G4sA",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.md",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ab213e13-a073-46bd-9d7c-f4ad4cda3ec6",
+            "isSidechain": true,
+            "agentId": "a6a58b6aaaab2badf",
+            "requestId": "req_011Cb3YPJNzGbQofDQpiyRNC",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7d1191d4-3dc8-4672-90c5-1e73facdb13f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2",
+            "sessionId": "d06f5680-6689-4967-a196-427856276f08",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Aa8QWdGNSmtCiVhaUpWmNf",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14308,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 468,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 14308
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 468,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 14308,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 14308,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T02:10:22.682Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013zy7f3cLzEpJhH37H7G4sA",
+              "type": "tool_result",
+              "content": "projects/tax_error_inject_agent/docs/IDEA_BRIEF.md\nprojects/tax_error_inject_agent/artifacts/_project/report/verl_agent_survey.md\nprojects/tax_error_inject_agent/artifacts/verl_agent_survey.md\nprojects/tax_error_inject_agent/artifacts/alfworld_data_survey.md\nprojects/tax_error_inject_agent/task_context/history/reviewer/loop_1.md\nprojects/tax_error_inject_agent/task_context/history/agent/loop_1.md\nprojects/tax_error_inject_agent/task_context/director.md\nprojects/tax_error_inject_agent/task_context/history/reviewer/loop_2.md\nprojects/tax_error_inject_agent/task_context/history/agent/loop_2.md\nprojects/tax_error_inject_agent/artifacts/_project/intermediate/injected_eval_pipeline.md\nprojects/tax_error_inject_agent/artifacts/v4-recovery-eval-dev/intermediate/injected_eval_pipeline.md\nprojects/tax_error_inject_agent/artifacts/running_pids.md\nprojects/tax_error_inject_agent/artifacts/diag_v4_taxei_recovery_eval.md\nprojects/tax_error_inject_agent/artifacts/d010_multiseed_analysis.md\nprojects/tax_error_inject_agent/artifacts/D010/report/d010_multiseed_analysis.md\nprojects/tax_error_inject_agent/artifacts/_project/report/multiseed_analysis_report.md\nprojects/tax_error_inject_agent/artifacts/multiseed_analysis_report.md\nprojects/tax_error_inject_agent/task_context/history/agent/loop_3.md\nprojects/tax_error_inject_agent/task_context/history/reviewer/loop_3.md\nprojects/tax_error_inject_agent/artifacts/_project/report/multiseed_report.md\nprojects/tax_error_inject_agent/artifacts/_project/report/paladin_comparison.md\nprojects/tax_error_inject_agent/task_context/history/agent/loop_3_1778797920.md\nprojects/tax_error_inject_agent/task_context/history/agent/loop_3_1778803850.md\nglobal/report.md\nprojects/tax_error_inject_agent/artifacts/upcoming_eval_commands.md\nprojects/tax_error_inject_agent/.claude/sessions/agent_79564bec/CLAUDE.md\nprojects/tax_error_inject_agent/.claude/sessions/agent_79564bec/AGENTS.md\nprojects/tax_error_inject_agent/.claude/sessions/agent_4afa7bd0/CLAUDE.md\nprojects/tax_error_inject_agent/.claude/sessions/agent_4afa7bd0/AGENTS.md\nprojects/tax_error_inject_agent/task_context/history/agent/loop_3_1778804088.md\nprojects/tax_error_inject_agent/task_context/history/agent/loop_3_1778806580.md\nprojects/tax_error_inject_agent/.claude/sessions/agent_41ca14cc/CLAUDE.md\nprojects/tax_error_inject_agent/.claude/sessions/agent_41ca14cc/AGENTS.md\nprojects/tax_error_inject_agent/artifacts/_project/report/comprehensive_stats_report.md\nprojects/tax_error_inject_agent/artifacts/comprehensive_stats_report.md\nprojects/tax_error_inject_agent/artifacts/_project/report/comprehensive_results_summary.md\nprojects/tax_error_inject_agent/artifacts/_project/report/comprehensive_results_summary_aa47ed.md\nprojects/tax_error_inject_agent/artifacts/comprehensive_results_summary.md\nprojects/tax_error_inject_agent/artifacts/_project/report/comprehensive_results.md\nprojects/tax_error_inject_agent/artifacts/comprehensive_results.md\nprojects/tax_error_inject_agent/task_context/history/agent/loop_4.md\nprojects/tax_error_inject_agent/.claude/sessions/agent_4b2bef77/CLAUDE.md\nprojects/tax_error_inject_agent/.claude/sessions/agent_4b2bef77/AGENTS.md\nprojects/tax_error_inject_agent/artifacts/_project/report/dose_response_literature_survey.md\nprojects/tax_error_inject_agent/artifacts/dose_response_literature_survey.md\nprojects/tax_error_inject_agent/.claude/sessions/agent_ad965473/CLAUDE.md\nprojects/tax_error_inject_agent/.claude/sessions/agent_ad965473/AGENTS.md\nprojects/tax_error_inject_agent/task_context/history/agent/loop_4_1778809420.md\nprojects/tax_error_inject_agent/.claude/sessions/agent_59663d7c/CLAUDE.md\nprojects/tax_error_inject_agent/.claude/sessions/agent_59663d7c/AGENTS.md\nprojects/tax_error_inject_agent/.claude/sessions/agent_d2b7e159/CLAUDE.md\nprojects/tax_error_inject_agent/.claude/sessions/agent_d2b7e159/AGENTS.md\nprojects/tax_error_inject_agent/.claude/sessions/agent_d665ea35/CLAUDE.md\nprojects/tax_error_inject_agent/.claude/sessions/agent_d665ea35/AGENTS.md\nprojects/tax_error_inject_agent/task_context/agent.md\nprojects/tax_error_inject_agent/.claude/sessions/agent_860674d2/CLAUDE.md\nprojects/tax_error_inject_agent/.claude/sessions/agent_860674d2/AGENTS.md\nprojects/tax_error_inject_agent/task_context/reviewer.md\nprojects/tax_error_inject_agent/artifacts/_project/data/training_dynamics_summary.md\nprojects/tax_error_inject_agent/.claude/sessions/agent_9ab02b23/CLAUDE.md\nprojects/tax_error_inject_agent/.claude/sessions/agent_9ab02b23/AGENTS.md\nprojects/tax_error_inject_agent/report.md\nprojects/tax_error_inject_agent/ROADMAP.md\nprojects/tax_error_inject_agent/artifacts/_project/report/comprehensive_results_v4_final.md\nprojects/tax_error_inject_agent/artifacts/_project/report/per_task_breakdown_report.md\nprojects/tax_error_inject_agent/.claude/sessions/reviewer_c172b2e6/CLAUDE.md\nprojects/tax_error_inject_agent/.claude/sessions/reviewer_c172b2e6/AGENTS.md\nprojects/tax_error_inject_agent/.claude/sessions/agent_a1de60f6/CLAUDE.md\nprojects/tax_error_inject_agent/.claude/sessions/agent_a1de60f6/AGENTS.md\n.claude/CLAUDE.md\nAGENTS.md\nprojects/tax_error_inject_agent/.claude/CLAUDE.md\nprojects/tax_error_inject_agent/AGENTS.md\nprojects/tax_error_inject_agent/.claude/sessions/director_6212e3f3/CLAUDE.md\nprojects/tax_error_inject_agent/.claude/sessions/director_6212e3f3/AGENTS.md\nprojects/tax_error_inject_agent/memory.md\nprojects/tax_error_inject_agent/paper_framing.md"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7d1191d4-3dc8-4672-90c5-1e73facdb13f",
+            "isSidechain": true,
+            "promptId": "375bf3ed-8d0b-4d6f-9a84-51567a6c31e8",
+            "agentId": "a6a58b6aaaab2badf",
+            "type": "user",
+            "uuid": "41f5f213-5469-488d-bb37-0a0c5d107ba8",
+            "sourceToolAssistantUUID": "7d1191d4-3dc8-4672-90c5-1e73facdb13f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2",
+            "sessionId": "d06f5680-6689-4967-a196-427856276f08",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T02:10:24.029Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Great! I found the experiment plan files. Now let me read their contents."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "41f5f213-5469-488d-bb37-0a0c5d107ba8",
+            "isSidechain": true,
+            "agentId": "a6a58b6aaaab2badf",
+            "requestId": "req_011Cb3YPVwGZPT42dEWc1D3E",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "6d4a57ac-4ddb-4c58-8184-2a09ff31b999",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2",
+            "sessionId": "d06f5680-6689-4967-a196-427856276f08",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01CHfWvtbMtsuNAH2wrrZYVC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 6866,
+                "cache_read_input_tokens": 14308,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6866,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T02:10:24.806Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019LzdgnAb1NAQPBCxiTTaai",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/experiment_plan.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6d4a57ac-4ddb-4c58-8184-2a09ff31b999",
+            "isSidechain": true,
+            "agentId": "a6a58b6aaaab2badf",
+            "requestId": "req_011Cb3YPVwGZPT42dEWc1D3E",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "26bd6e68-7599-4afe-8580-571b580327e5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2",
+            "sessionId": "d06f5680-6689-4967-a196-427856276f08",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01CHfWvtbMtsuNAH2wrrZYVC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 6866,
+                "cache_read_input_tokens": 14308,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6866,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T02:10:24.814Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019LzdgnAb1NAQPBCxiTTaai",
+              "type": "tool_result",
+              "content": "1\t# experiment_plan.yaml — tax_error_inject_agent (Negative Result Paper)\n2\t# Updated: 2026-05-15\n3\t#\n4\t# Claims (from paper_framing.md):\n5\t#   C1: TaxEI introduces high variance, fails to improve clean performance\n6\t#   C2: Taxonomy labels provide no benefit over random injection\n7\t#   C3: Error injection increases training instability (variance gradient + dose-response)\n8\t#   C4: Injection-trained models do not improve error recovery\n9\t#   C5: Detection training via error injection is completely ineffective\n10\t#   C6: Divergence from PALADIN reveals task-structural boundary conditions\n11\t\n12\texperiments:\n13\t\n14\t  # ============================================================\n15\t  # Baselines & Prerequisites\n16\t  # ============================================================\n17\t  - plan_id: \"baseline\"\n18\t    description: \"Qwen3-8B zero-shot ReAct baseline on ALFWorld (47 tasks)\"\n19\t    claim: \"context\"\n20\t    priority: 0\n21\t    status: done\n22\t    registry_ids:\n23\t      - vanilla-react-baseline\n24\t    depends_on: []\n25\t    results:\n26\t      accuracy: \"42.6% (20/47)\"\n27\t\n28\t  - plan_id: \"data-collection\"\n29\t    description: \"GPT-5.2 trajectory collection for SFT training data\"\n30\t    claim: \"prerequisite\"\n31\t    priority: 0\n32\t    status: done\n33\t    registry_ids:\n34\t      - traj_collect_500\n35\t    depends_on: []\n36\t    results:\n37\t      success_rate: \"70.2% (501/714)\"\n38\t      cost: \"$8.86\"\n39\t\n40\t  # ============================================================\n41\t  # v3 Pilot (format-aligned, superseded by v4)\n42\t  # ============================================================\n43\t  - plan_id: \"v3-pilot\"\n44\t    description: \"v3 format-aligned pilot: vanilla/TaxEI/random single-seed eval\"\n45\t    claim: \"supplement\"\n46\t    priority: 0\n47\t    status: done\n48\t    registry_ids:\n49\t      - mini-vanilla-sft-v3\n50\t      - mini-taxei-sft-v3\n51\t      - mini-random-sft-v3\n52\t      - v3-vanilla-eval\n53\t      - v3-taxei-eval\n54\t      - v3-random-eval\n55\t    depends_on:\n56\t      - data-collection\n57\t    results:\n58\t      vanilla: \"74.5%\"\n59\t      taxei: \"66.0%\"\n60\t      random: \"51.1%\"\n61\t    notes: \"Superseded by v4. Vanilla 74.5% vs v4 65.3% discrepancy noted in paper supplement.\"\n62\t\n63\t  # ============================================================\n64\t  # Core Multi-Seed Experiments (v4) — Priority 1\n65\t  # ============================================================\n66\t  - plan_id: \"multiseed-vanilla\"\n67\t    description: \"Vanilla SFT 3-seed verification (clean data only, 4,358 samples)\"\n68\t    claim: \"C1\"\n69\t    priority: 1\n70\t    status: done\n71\t    registry_ids:\n72\t      - mini-vanilla-sft-v4       # train seed=42\n73\t      - v4-vanilla-seed0          # train seed=0\n74\t      - v4-vanilla-seed123        # train seed=123\n75\t      - v4-vanilla-eval-r3        # eval seed=42 → 61.7%\n76\t      - v4-vanilla-seed0-eval     # eval seed=0  → 68.1%\n77\t      - v4-vanilla-seed123-eval   # eval seed=123 → 66.0%\n78\t    depends_on:\n79\t      - data-collection\n80\t    results:\n81\t      seed42: \"61.7%\"\n82\t      seed0: \"68.1%\"\n83\t      seed123: \"66.0%\"\n84\t      mean_sd: \"65.3% ± 3.3pp\"\n85\t\n86\t  - plan_id: \"multiseed-taxei\"\n87\t    description: \"TaxEI SFT 3-seed verification (clean + taxonomy-tagged injections, 9,029 samples)\"\n88\t    claim: \"C1,C2,C3\"\n89\t    priority: 1\n90\t    status: done\n91\t    registry_ids:\n92\t      - v4-taxei-sft-r2           # train seed=42\n93\t      - v4-taxei-seed0            # train seed=0\n94\t      - v4-taxei-seed123          # train seed=123\n95\t      - v4-taxei-eval             # eval seed=42 → 61.7%\n96\t      - v4-taxei-seed0-eval       # eval seed=0  → 46.8%\n97\t      - v4-taxei-seed123-eval     # eval seed=123 → 61.7%\n98\t    depends_on:\n99\t      - data-collection\n100\t    results:\n101\t      seed42: \"61.7%\"\n102\t      seed0: \"46.8%\"\n103\t      seed123: \"61.7%\"\n104\t      mean_sd: \"56.7% ± 8.6pp\"\n105\t      vs_vanilla_paired_t_p: \"0.32 (NS)\"\n106\t      vs_vanilla_pooled_p: \"0.054 (NS at α=0.05)\"\n107\t\n108\t  - plan_id: \"multiseed-random\"\n109\t    description: \"Random SFT 3-seed verification (clean + unlabeled injections, 9,029 samples)\"\n110\t    claim: \"C2,C3\"\n111\t    priority: 1\n112\t    status: done\n113\t    registry_ids:\n114\t      - v4-random-sft-r2          # train seed=42\n115\t      - v4-random-seed0           # train seed=0\n116\t      - v4-random-seed123         # train seed=123\n117\t      - v4-random-eval            # eval seed=42 → 66.0%\n118\t      - v4-random-seed0-eval      # eval seed=0  → 55.3%\n119\t      - v4-random-seed123-eval    # eval seed=123 → 68.1%\n120\t    depends_on:\n121\t      - data-collection\n122\t    results:\n123\t      seed42: \"66.0%\"\n124\t      seed0: \"55.3%\"\n125\t      seed123: \"68.1%\"\n126\t      mean_sd: \"63.1% ± 7.0pp\"\n127\t      vs_taxei_paired_t_p: \"0.034 (suggestive, df=2)\"\n128\t      vs_taxei_pooled_p: \"0.170 (NS)\"\n129\t\n130\t  # ============================================================\n131\t  # Dose-Response Ablation — Priority 1\n132\t  # ============================================================\n133\t  - plan_id: \"dose-response-taxei\"\n134\t    description: \"TaxEI dose-response curve (10%/25%/50% injection, fixed 4,358 total, seed=42)\"\n135\t    claim: \"C3\"\n136\t    priority: 1\n137\t    status: done\n138\t    registry_ids:\n139\t      - v4-taxei-fixed-inject10       # train 10%\n140\t      - v4-taxei-fixed-inject25-r2    # train 25% (r2 after OOM)\n141\t      - v4-taxei-fixed-inject50       # train 50%\n142\t      - v4-taxei-fixed-inject10-eval  # eval 10% → 61.7%\n143\t      - v4-taxei-fixed-inject25-eval  # eval 25% → 48.9%\n144\t      - v4-taxei-fixed-inject50-eval  # eval 50% → 51.1%\n145\t    depends_on:\n146\t      - multiseed-vanilla\n147\t    results:\n148\t      inject0_baseline: \"61.7% (vanilla seed=42)\"\n149\t      inject10: \"61.7% (0pp)\"\n150\t      inject25: \"48.9% (-12.8pp)\"\n151\t      inject50: \"51.1% (-10.6pp)\"\n152\t      pattern: \"threshold-plateau: 10% harmless, 25% catastrophic collapse, 50% no further worsening\"\n153\t\n154\t  - plan_id: \"dose-response-random\"\n155\t    description: \"Random dose-response curve (10%/25%/50% injection, fixed 4,358 total, seed=42)\"\n156\t    claim: \"C3\"\n157\t    priority: 1\n158\t    status: in_progress\n159\t    registry_ids:\n160\t      - v4-random-fixed-inject10       # train 10%\n161\t      - v4-random-fixed-inject25       # train 25%\n162\t      - v4-random-fixed-inject50       # train 50%\n163\t      - v4-random-fixed-inject10-eval  # eval 10% → 68.1%\n164\t      - v4-random-fixed-inject25-eval  # eval 25% → RUNNING\n165\t      - v4-random-fixed-inject50-eval  # eval 50% → RUNNING\n166\t    depends_on:\n167\t      - multiseed-vanilla\n168\t    results:\n169\t      inject0_baseline: \"61.7% (vanilla seed=42)\"\n170\t      inject10: \"68.1% (+6.4pp, data augmentation effect)\"\n171\t      inject25: \"eval in progress (cuda:0)\"\n172\t      inject50: \"eval in progress (cuda:3)\"\n173\t    notes: \"Random 10% positive effect contrasts with TaxEI 10% zero effect — taxonomy may limit error diversity at low ratios\"\n174\t\n175\t  # ============================================================\n176\t  # Recovery & Detection Eval — Priority 1\n177\t  # ============================================================\n178\t  - plan_id: \"recovery-eval\"\n179\t    description: \"Recovery rate under injected errors (seed=42, 47 tasks, round-robin P1/P2/C1/C4)\"\n180\t    claim: \"C4,C5\"\n181\t    priority: 1\n182\t    status: done\n183\t    registry_ids:\n184\t      - v4-vanilla-recovery-eval       # vanilla → 61.7% recovery, 0% detection\n185\t      - v4-taxei-recovery-eval         # taxei r1 (process died 5x)\n186\t      - v4-taxei-recovery-eval-r2      # taxei r2 → 59.6% recovery, 0% detection\n187\t      - v4-random-recovery-eval        # random → 63.8% recovery, 0% detection\n188\t    depends_on:\n189\t      - multiseed-vanilla\n190\t      - multiseed-taxei\n191\t      - multiseed-random\n192\t    results:\n193\t      vanilla_recovery: \"61.7%\"\n194\t      taxei_recovery: \"59.6%\"\n195\t      random_recovery: \"63.8%\"\n196\t      detection_rate: \"0% (all methods)\"\n197\t      taxei_per_operator: \"C1=66.7%, C4=63.6%, P1=58.3%, P2=50.0%\"\n198\t\n199\t  # ============================================================\n200\t  # Priority 2 — Strengthens Paper Significantly\n201\t  # ============================================================\n202\t  - plan_id: \"training-dynamics\"\n203\t    description: \"Training loss curve analysis: clean vs injected samples across epochs\"\n204\t    claim: \"C3\"\n205\t    priority: 2\n206\t    status: planned\n207\t    registry_ids: []\n208\t    depends_on:\n209\t      - multiseed-taxei\n210\t      - multiseed-random\n211\t    notes: \"Plot loss curves to show whether injected samples corrupt clean learning signal\"\n212\t\n213\t  - plan_id: \"second-environment\"\n214\t    description: \"WebShop or ScienceWorld replication to test generalization beyond ALFWorld\"\n215\t    claim: \"C6\"\n216\t    priority: 2\n217\t    status: planned\n218\t    registry_ids: []\n219\t    depends_on:\n220\t      - dose-response-random\n221\t    notes: \"Strengthens boundary condition claim if error injection also fails in second environment\"\n222\t\n223\t  - plan_id: \"qualitative-failure-analysis\"\n224\t    description: \"Manual examination of 20+ TaxEI failure cases: incoherent plans vs wrong actions\"\n225\t    claim: \"C1,C6\"\n226\t    priority: 2\n227\t    status: planned\n228\t    registry_ids: []\n229\t    depends_on:\n230\t      - multiseed-taxei\n231\t    notes: \"Informs noise-vs-wrong-learning distinction\"\n232\t\n233\t  # ============================================================\n234\t  # Priority 3 — Nice-to-Have\n235\t  # ============================================================\n236\t  - plan_id: \"scale-ablation\"\n237\t    description: \"Scale to 25K-50K trajectories to match PALADIN's data scale\"\n238\t    claim: \"C6\"\n239\t    priority: 3\n240\t    status: planned\n241\t    registry_ids: []\n242\t    depends_on:\n243\t      - dose-response-random\n244\t\n245\t  - plan_id: \"recovery-prompting\"\n246\t    description: \"In-context recovery examples (few-shot) to isolate training signal vs knowledge\"\n247\t    claim: \"C6\"\n248\t    priority: 3\n249\t    status: planned\n250\t    registry_ids: []\n251\t    depends_on:\n252\t      - recovery-eval\n253\t\n254\t  - plan_id: \"per-operator-deepdive\"\n255\t    description: \"Multi-seed recovery eval to validate per-operator patterns (esp. C4 +9.1pp)\"\n256\t    claim: \"C4\"\n257\t    priority: 3\n258\t    status: planned\n259\t    registry_ids: []\n260\t    depends_on:\n261\t      - recovery-eval\n262\t\n263\t# ============================================================\n264\t# Failed/Killed Registry Entries (not part of active plan)\n265\t# ============================================================\n266\t# Retries, OOM failures, or superseded entries retained for provenance:\n267\t#   - v4-vanilla-sft (OOM), v4-taxei-sft (failed), v4-random-sft (failed)\n268\t#   - v4-vanilla-eval (failed), v4-vanilla-eval-r2 (failed)\n269\t#   - v4-taxei-sft-r3, v4-random-sft-r3 (retries)\n270\t#   - v4-taxei-fixed-inject25 (OOM, replaced by r2)\n271\t#   - v4-fixed-inject10, v4-fixed-inject25 (killed duplicates)\n272\t#   - v4-vanilla-seed7 (killed)\n273\t#   - v4-recovery-eval-dev, v4-recovery-dryrun (pipeline dev)\n274\t#   - mini-vanilla-sft (278-sample pilot, 14.9%)\n275\t#   - mini-taxei-sft (278-sample pilot, 44.7%)\n276\t#   - mini-pipeline-e2e (failed), sft-dryrun-73 (dryrun)\n277\t#   - vanilla_sft_aligned_v1, vanilla_sft_aligned_v2 (unfinished)\n278\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "26bd6e68-7599-4afe-8580-571b580327e5",
+            "isSidechain": true,
+            "promptId": "375bf3ed-8d0b-4d6f-9a84-51567a6c31e8",
+            "agentId": "a6a58b6aaaab2badf",
+            "type": "user",
+            "uuid": "de64f126-8119-49c5-9635-ee9f5cfcb06a",
+            "sourceToolAssistantUUID": "26bd6e68-7599-4afe-8580-571b580327e5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2",
+            "sessionId": "d06f5680-6689-4967-a196-427856276f08",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T02:10:24.943Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01K7CWZvxvUZPQPvT83ViRd5",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/artifacts/_project/intermediate/experiment_plan.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "de64f126-8119-49c5-9635-ee9f5cfcb06a",
+            "isSidechain": true,
+            "agentId": "a6a58b6aaaab2badf",
+            "requestId": "req_011Cb3YPVwGZPT42dEWc1D3E",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ae1f2fa8-6be3-4c1b-9755-a9b84230a754",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2",
+            "sessionId": "d06f5680-6689-4967-a196-427856276f08",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01CHfWvtbMtsuNAH2wrrZYVC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 6866,
+                "cache_read_input_tokens": 14308,
+                "output_tokens": 180,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 6866
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 180,
+                    "cache_read_input_tokens": 14308,
+                    "cache_creation_input_tokens": 6866,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 6866,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T02:10:24.948Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01K7CWZvxvUZPQPvT83ViRd5",
+              "type": "tool_result",
+              "content": "1\t# experiment_plan.yaml — tax_error_inject_agent\n2\t# 基于 paper_framing.md 的 Supplementary Experiments\n3\t# 生成时间: 2026-05-14\n4\t\n5\t# ==================== 已完成基线 ====================\n6\t# vanilla-react-baseline: 42.6% (Qwen3-8B zero-shot)\n7\t# v4 Vanilla SFT: 65.3% ± 3.2pp (seeds 42/0/123)\n8\t# v4 TaxEI SFT: 54.3% ± 10.5pp (seeds 42/0, seed=123 训练中)\n9\t# v4 Random SFT: 60.7% ± 7.6pp (seeds 42/0, seed=123 训练中)\n10\t# Recovery eval (seed=42): Vanilla 61.7%, TaxEI 59.6%, Random 63.8%\n11\t# Detection rate: 0% across all methods\n12\t\n13\texperiments:\n14\t  # ============================================================\n15\t  # P1: 投稿前必须完成\n16\t  # ============================================================\n17\t\n18\t  - id: \"p1-multiseed-train\"\n19\t    name: \"Multi-seed 补齐训练 (TaxEI/Random seed=123)\"\n20\t    priority: P1\n21\t    category: \"multi-seed\"\n22\t    hypothesis: \"补齐第 3 个 seed，使 TaxEI/Random 达到与 Vanilla 相同的 3-seed 覆盖，获得可靠的均值和方差估计\"\n23\t    method: \"v4 同源数据 (9,029 samples)，LoRA rank=16, 3 epochs, lr=1e-4, seed=123。与 seed=42/0 完全相同的超参。\"\n24\t    data: \"sft_taxei_v4.jsonl (9,029), sft_random_v4.jsonl (9,029)\"\n25\t    gpu: \"cuda:0 (TaxEI), cuda:1 (Random), 各 ~110min\"\n26\t    status: \"running\"\n27\t    registry_id: \"v4-taxei-seed123, v4-random-seed123\"\n28\t    supports_claim: [\"Claim 1\", \"Claim 2\", \"Claim 3\"]\n29\t\n30\t  - id: \"p1-multiseed-eval\"\n31\t    name: \"Multi-seed seed=123 Clean Eval\"\n32\t    priority: P1\n33\t    category: \"multi-seed\"\n34\t    hypothesis: \"seed=123 的 clean eval 结果应与 seed=42/0 方向一致 (TaxEI ≤ Vanilla)\"\n35\t    method: \"recovery.py --no_inject，47 tasks (valid_unseen)，对 seed=123 checkpoints 跑 clean eval\"\n36\t    data: \"ALFWorld valid_unseen 47 tasks\"\n37\t    gpu: \"cuda:0 + cuda:1, 各 ~25min\"\n38\t    depends_on: [\"p1-multiseed-train\"]\n39\t    status: \"planned\"\n40\t    supports_claim: [\"Claim 1\", \"Claim 2\", \"Claim 3\"]\n41\t\n42\t  - id: \"p1-3seed-stats\"\n43\t    name: \"3-seed 统计更新\"\n44\t    priority: P1\n45\t    category: \"analysis\"\n46\t    hypothesis: \"3-seed 结果将提高统计功效，使 TaxEI vs Vanilla 的 p 值更可靠\"\n47\t    method: \"multiseed_stats.py: 更新 paired permutation test, bootstrap CI, 方差比较。3 seeds × 3 methods。\"\n48\t    data: \"所有 3-seed eval 结果 JSON\"\n49\t    gpu: \"无 (CPU 分析)\"\n50\t    depends_on: [\"p1-multiseed-eval\"]\n51\t    status: \"planned\"\n52\t    supports_claim: [\"Claim 1\", \"Claim 2\", \"Claim 3\"]\n53\t\n54\t  - id: \"p1-ablation-datagen\"\n55\t    name: \"Injection Ratio Ablation 数据生成\"\n56\t    priority: P1\n57\t    category: \"ablation\"\n58\t    hypothesis: \"固定总数据量 ~9K samples，变化注入比例 (10%/25%/50%)，如果低比例缓解退化则支持 'noise overwhelms signal' 假设\"\n59\t    method: |\n60\t      Fixed-size 方案: 总量固定 ~9,029 samples\n61\t      - 10% injection: ~903 injected + ~8,126 clean\n62\t      - 25% injection: ~2,257 injected + ~6,772 clean\n63\t      - 50% injection: 已有 (v4 数据, 4,671 injected + 4,358 clean)\n64\t      从现有 4,671 条 injected_variants 中随机采样，TaxEI/Random 各自格式化。\n65\t    data: \"data/mini_pipeline_v4/injected_variants + clean trajectories\"\n66\t    gpu: \"无 (CPU 数据处理)\"\n67\t    status: \"planned\"\n68\t    supports_claim: [\"Claim 1\", \"Claim 2\"]\n69\t\n70\t  - id: \"p1-ablation-train-10pct\"\n71\t    name: \"Injection Ratio 10% 训练 (TaxEI + Random)\"\n72\t    priority: P1\n73\t    category: \"ablation\"\n74\t    hypothesis: \"10% 注入比例下 TaxEI/Random 退化幅度显著小于 50%\"\n75\t    method: \"与 v4 相同超参 (LoRA rank=16, 3 epochs, lr=1e-4, seed=42), 仅数据不同\"\n76\t    data: \"~9,029 samples (10% injection)\"\n77\t    gpu: \"cuda:0 (TaxEI-10%), cuda:1 (Random-10%), 各 ~110min\"\n78\t    depends_on: [\"p1-ablation-datagen\"]\n79\t    status: \"planned\"\n80\t    supports_claim: [\"Claim 1\", \"Claim 2\"]\n81\t\n82\t  - id: \"p1-ablation-train-25pct\"\n83\t    name: \"Injection Ratio 25% 训练 (TaxEI + Random)\"\n84\t    priority: P1\n85\t    category: \"ablation\"\n86\t    hypothesis: \"25% 注入比例是 noise vs signal 的转折点\"\n87\t    method: \"与 v4 相同超参, 仅数据不同\"\n88\t    data: \"~9,029 samples (25% injection)\"\n89\t    gpu: \"cuda:2 (TaxEI-25%), cuda:3 (Random-25%), 各 ~110min\"\n90\t    depends_on: [\"p1-ablation-datagen\"]\n91\t    status: \"planned\"\n92\t    supports_claim: [\"Claim 1\", \"Claim 2\"]\n93\t\n94\t  - id: \"p1-ablation-eval\"\n95\t    name: \"Injection Ratio Ablation Eval (4 组新 + 2 组复用)\"\n96\t    priority: P1\n97\t    category: \"ablation\"\n98\t    hypothesis: \"低注入比例 (10%/25%) 下 TaxEI/Random 性能接近或优于 Vanilla (65.3%)\"\n99\t    method: |\n100\t      Clean eval (--no_inject) 对 4 个新 checkpoint:\n101\t      - TaxEI-10%, Random-10%, TaxEI-25%, Random-25%\n102\t      50% 复用已有 v4 seed=42 结果: TaxEI 61.7%, Random 66.0%\n103\t    data: \"ALFWorld valid_unseen 47 tasks\"\n104\t    gpu: \"4 卡并行, 各 ~25min\"\n105\t    depends_on: [\"p1-ablation-train-10pct\", \"p1-ablation-train-25pct\"]\n106\t    status: \"planned\"\n107\t    supports_claim: [\"Claim 1\", \"Claim 2\"]\n108\t\n109\t  - id: \"p1-training-dynamics\"\n110\t    name: \"Training Dynamics 分析 (Loss 曲线)\"\n111\t    priority: P1\n112\t    category: \"analysis\"\n113\t    hypothesis: \"注入样本的 training loss 系统性高于 clean 样本，且随 epoch 不收敛，说明模型无法有效学习注入 pattern\"\n114\t    method: |\n115\t      从现有 logging.jsonl 提取:\n116\t      1. 逐 step loss 曲线 (Vanilla vs TaxEI vs Random)\n117\t      2. 如可区分 clean/injected batch: 分别画 loss 子曲线\n118\t      3. 方差随 epoch 的变化趋势\n119\t      不需要新训练——从已有 v4 seed=42 的 logging.jsonl 提取。\n120\t    data: \"checkpoints/mini_*_sft_v4/*/logging.jsonl\"\n121\t    gpu: \"无 (CPU 分析 + matplotlib)\"\n122\t    status: \"planned\"\n123\t    supports_claim: [\"Claim 3\"]\n124\t\n125\t  # ============================================================\n126\t  # P2: 显著增强论文\n127\t  # ============================================================\n128\t\n129\t  - id: \"p2-webshop\"\n130\t    name: \"第二环境验证 (WebShop)\"\n131\t    priority: P2\n132\t    category: \"environment\"\n133\t    hypothesis: \"如果 error injection 在 WebShop 同样失败，boundary condition claim 更强；如果成功，则发现 ALFWorld 特异性\"\n134\t    method: |\n135\t      需要:\n136\t      1. WebShop 环境部署 + trajectory collection pipeline\n137\t      2. Error taxonomy 适配 (WebShop 是 web 购物, 不同 action space)\n138\t      3. TaxEI/Vanilla/Random 三组 SFT + eval\n139\t      工程量大 (~3-5 天), 但对 Claim 6 支撑力极强。\n140\t      注: EEF (arXiv 2504.13145) 已在 WebShop 上做过类似实验, 需要差异化。\n141\t    data: \"WebShop dataset (需要新采集)\"\n142\t    gpu: \"4 卡, 预计 2-3 天 (含 pipeline 开发)\"\n143\t    status: \"planned\"\n144\t    supports_claim: [\"Claim 6\"]\n145\t\n146\t  - id: \"p2-failure-analysis\"\n147\t    name: \"定性 Failure 分析\"\n148\t    priority: P2\n149\t    category: \"analysis\"\n150\t    hypothesis: \"TaxEI failure cases 呈现特定 pattern: 注入训练导致模型在复杂任务中产生 incoherent plans 而非简单 wrong actions\"\n151\t    method: |\n152\t      从 v4 TaxEI seed=42 eval 结果中:\n153\t      1. 收集 TaxEI 失败但 Vanilla 成功的 cases (约 5-8 个)\n154\t      2. 收集 TaxEI 失败且 Vanilla 也失败的 cases\n155\t      3. 分析失败模式: action incoherence vs wrong object vs wrong location vs timeout\n156\t      4. 与 Vanilla failure cases 对比\n157\t      目标: 20+ cases 手动标注。\n158\t    data: \"eval_results/v4_taxei_eval.json + eval trajectory logs\"\n159\t    gpu: \"无 (人工分析)\"\n160\t    status: \"planned\"\n161\t    supports_claim: [\"Claim 1\", \"Claim 4\", \"Claim 6\"]\n162\t\n163\t  # ============================================================\n164\t  # P3: 锦上添花\n165\t  # ============================================================\n166\t\n167\t  - id: \"p3-scale-ablation\"\n168\t    name: \"Scale Ablation (25K/50K trajectories)\"\n169\t    priority: P3\n170\t    category: \"ablation\"\n171\t    hypothesis: \"PALADIN 在 50K+ scale 成功, 可能是规模而非 task structure 决定效果; 如果 scaling 仍然无效则排除此混淆\"\n172\t    method: |\n173\t      需要:\n174\t      1. 额外采集 ~20K-45K GPT-5.2 trajectories (当前只有 501 条)\n175\t      2. 对应的 injection + recovery 数据生成\n176\t      3. 训练 + eval\n177\t      API 成本高 (~$80-400), 时间长 (~2-5 天 trajectory collection)\n178\t    data: \"需新采集 25K/50K trajectories\"\n179\t    gpu: \"4 卡, 训练时间随数据量线性增长\"\n180\t    status: \"planned\"\n181\t    supports_claim: [\"Claim 6\"]\n182\t\n183\t  - id: \"p3-fewshot-recovery\"\n184\t    name: \"Few-shot Recovery (In-context, 非 SFT)\"\n185\t    priority: P3\n186\t    category: \"analysis\"\n187\t    hypothesis: \"如果 in-context recovery examples 能提升性能, 说明问题不在 knowledge 而在 SFT training signal corruption\"\n188\t    method: |\n189\t      在 eval 时在 prompt 中加入 2-3 个 recovery 示例 (从训练数据采样):\n190\t      - Vanilla + few-shot recovery examples\n191\t      - 对比 Vanilla (无 few-shot) 和 TaxEI SFT\n192\t      不需要新训练, 只修改 eval 的 prompt template。\n193\t    data: \"ALFWorld valid_unseen 47 tasks + recovery exemplars from training data\"\n194\t    gpu: \"1 卡, ~30min\"\n195\t    status: \"planned\"\n196\t    supports_claim: [\"Claim 4\", \"Claim 6\"]\n197\t\n198\t  - id: \"p3-per-operator-deep\"\n199\t    name: \"Per-operator Recovery Deep Dive (多 seed)\"\n200\t    priority: P3\n201\t    category: \"multi-seed\"\n202\t    hypothesis: \"C4 observation_masking 上 TaxEI 的 +9.1pp 优势是真实效应还是 seed 噪声\"\n203\t    method: |\n204\t      对 seed=0, seed=123 的 checkpoints 也跑 recovery eval (injected_eval.py),\n205\t      得到 3-seed per-operator recovery rates, 检验 C4 优势是否跨 seed 稳定。\n206\t    data: \"ALFWorld valid_unseen 47 tasks × 3 seeds × 3 methods\"\n207\t    gpu: \"1 卡/run, ~30min/run, 总计 6 runs (TaxEI/Random seed=0,123 + Vanilla seed=0,123)\"\n208\t    depends_on: [\"p1-multiseed-train\"]\n209\t    status: \"planned\"\n210\t    supports_claim: [\"Claim 4\"]\n211\t\n212\t# ============================================================\n213\t# GPU 排班计划 (autodl-5090, cuda:0-3)\n214\t# ============================================================\n215\t#\n216\t# Phase 1 (当前, ~100min 剩余):\n217\t#   cuda:0: v4-taxei-seed123 训练 (运行中)\n218\t#   cuda:1: v4-random-seed123 训练 (运行中)\n219\t#   cuda:2: 空闲\n220\t#   cuda:3: 空闲\n221\t#\n222\t# Phase 2 (seed=123 训练完成后, ~25min):\n223\t#   cuda:0: p1-multiseed-eval TaxEI seed=123\n224\t#   cuda:1: p1-multiseed-eval Random seed=123\n225\t#   cuda:2: 空闲 (可跑 p1-training-dynamics 分析)\n226\t#   cuda:3: 空闲\n227\t#\n228\t# Phase 3 (数据生成, ~30min, CPU):\n229\t#   p1-ablation-datagen: 生成 10%/25% fixed-size 数据集\n230\t#   p1-3seed-stats: 3-seed 统计分析\n231\t#\n232\t# Phase 4 (ablation 训练, ~110min):\n233\t#   cuda:0: TaxEI-10%\n234\t#   cuda:1: Random-10%\n235\t#   cuda:2: TaxEI-25%\n236\t#   cuda:3: Random-25%\n237\t#\n238\t# Phase 5 (ablation eval, ~25min):\n239\t#   cuda:0-3: 4 组 ablation eval 并行\n240\t#\n241\t# 总预计时间: ~5-6 小时 (P1 全部完成)\n242\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ae1f2fa8-6be3-4c1b-9755-a9b84230a754",
+            "isSidechain": true,
+            "promptId": "375bf3ed-8d0b-4d6f-9a84-51567a6c31e8",
+            "agentId": "a6a58b6aaaab2badf",
+            "type": "user",
+            "uuid": "4807fcf1-2ff0-447b-b7fc-f02440b8add8",
+            "sourceToolAssistantUUID": "ae1f2fa8-6be3-4c1b-9755-a9b84230a754",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2",
+            "sessionId": "d06f5680-6689-4967-a196-427856276f08",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T02:10:37.067Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I found two experiment plan files with detailed contents. Let me provide you with a comprehensive summary:\n\n## Search Results\n\nI found **two experiment plan files** in the directory:\n\n### 1. **Main Experiment Plan** (Primary)\n**Path:** `/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/experiment_plan.yaml`\n\nThis is the primary, updated experiment plan dated 2026-05-15. It's a comprehensive plan for a \"Negative Result Paper\" about tax error injection in agents.\n\n**Key Structure:**\n- **Claims (C1-C6):** Papers claims about TaxEI (Taxonomy Error Injection) effectiveness\n- **Baselines & Prerequisites:**\n  - Vanilla ReAct baseline: 42.6% accuracy (20/47 tasks)\n  - GPT-5.2 trajectory collection: 70.2% success rate\n  \n- **Core Multi-Seed Experiments (Priority 1, Status: DONE):**\n  - Multiseed vanilla SFT: 65.3% ± 3.3pp (3 seeds)\n  - Multiseed TaxEI SFT: 56.7% ± 8.6pp (statistically non-significant vs vanilla)\n  - Multiseed random SFT: 63.1% ± 7.0pp\n  \n- **Dose-Response Ablation (Priority 1):**\n  - TaxEI at 10%/25%/50% injection ratios: Shows threshold-plateau pattern (10% harmless, 25% catastrophic collapse)\n  - Random dose-response: 10% shows +6.4pp improvement (data augmentation effect), 25%/50% in progress\n  \n- **Recovery & Detection Eval (Priority 1, DONE):**\n  - All methods show 0% detection rate\n  - Recovery rates: Vanilla 61.7%, TaxEI 59.6%, Random 63.8%\n  \n- **Priority 2 (Nice-to-Have, Planned):**\n  - Training dynamics analysis\n  - Second environment replication (WebShop/ScienceWorld)\n  - Qualitative failure analysis\n  \n- **Priority 3 (Nice-to-Have, Planned):**\n  - Scale ablation (25K-50K trajectories)\n  - Recovery prompting (few-shot in-context)\n  - Per-operator deep dive\n\n---\n\n### 2. **Supplementary Experiment Plan** (Historical/In Progress)\n**Path:** `/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/artifacts/_project/intermediate/experiment_plan.yaml`\n\nThis is an earlier supplementary plan (dated 2026-05-14) in Chinese, with more detailed GPU scheduling and phase breakdown. It's similar but appears to be a work-in-progress version with finer granularity.\n\n**Key Phases:**\n- **Phase 1 (P1, currently running):** Multi-seed training completions (seed=123 for TaxEI/Random)\n- **Phase 2:** Multi-seed eval\n- **Phase 3:** Data generation for ablation\n- **Phase 4:** Ablation training (10%/25% injection ratios)\n- **Phase 5:** Ablation evaluation\n\n**P1 Priority Tasks:**\n- Multi-seed training completions (TaxEI/Random seed=123) - running\n- Multi-seed eval for seed=123 - planned\n- 3-seed statistical updates - planned\n- Injection ratio ablation data generation and training - planned\n- Training dynamics analysis - planned\n\n**P2 Priority Tasks:**\n- WebShop environment validation\n- Qualitative failure analysis (20+ cases)\n\n**P3 Priority Tasks:**\n- Scale ablation (25K/50K trajectories)\n- Few-shot recovery experiments\n- Per-operator recovery deep dive\n\n---\n\n## Summary\n\nBoth files document an extensive experimental plan for validating claims that **error injection training (TaxEI) fails to improve model performance** on ALFWorld tasks. The primary plan (file 1) is the final, complete version with results, while the supplementary plan (file 2) is a detailed execution checklist with GPU scheduling and phase management."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4807fcf1-2ff0-447b-b7fc-f02440b8add8",
+            "isSidechain": true,
+            "agentId": "a6a58b6aaaab2badf",
+            "requestId": "req_011Cb3YPfp6Ek8JiWj7UYGNr",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "205b0c28-f22e-46a5-b46f-acc57c640e42",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2",
+            "sessionId": "d06f5680-6689-4967-a196-427856276f08",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01RnRk6f95bcf15NGGc8evN6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 13854,
+                "cache_read_input_tokens": 21174,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 13854,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        }
+      ],
+      "message_count": 20
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-for-any-file-named-experiment-plan-or-containing-experiment-plans-in-ho.md"
+}

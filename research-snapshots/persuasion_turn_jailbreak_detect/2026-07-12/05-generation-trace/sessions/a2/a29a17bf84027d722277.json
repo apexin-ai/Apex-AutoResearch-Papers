@@ -1,0 +1,1277 @@
+{
+  "schema_version": "1.0",
+  "id": "a29a17bf84027d722277",
+  "project": "persuasion_turn_jailbreak_detect--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Read all the .tex files in /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/doc",
+  "task_key": "agent-aa90fb53a2c1faac3",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-aa90fb53a2c1faac3.jsonl",
+    "occurrence": 1,
+    "bytes": 155965,
+    "sha256": "66fbb1a8b2dedc8a6c1d75ed59a6d94efe384a389cde5928d626e7ed2743275a"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 1,
+    "tool_calls": 9,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 3,
+      "tool_call": 9,
+      "tool_result": 9
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T18:24:44.480Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Read all the .tex files in /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/ and list every abbreviation/acronym used in the paper. For each one, note:\n1. The abbreviation itself\n2. Whether it's defined (full form given) at first use\n3. The file and approximate line where it first appears\n4. Whether it appears in the abstract\n\nFocus on: method names (DAPT, DisPeD, BiGRU, etc.), model names (DeBERTa, RoBERTa, LLM, etc.), dataset names (OOD, IID, etc.), metric names (F1, FPR, ECE, etc.), technique names (MLM, TOST, SVD, CKA, etc.), and any other acronyms.\n\nRead these files: abstract.tex, introduction.tex, related_work.tex, method.tex, experiments.tex, conclusion.tex, appendix.tex\n\nReport a complete inventory in a structured format."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "270ab91c-e9b9-4a39-b092-16a4d85348b6",
+            "agentId": "aa90fb53a2c1faac3",
+            "type": "user",
+            "uuid": "556b3c7f-1ec5-403a-93ed-1612394daa3f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/director_32e62753",
+            "sessionId": "d0343bc5-105f-48da-b75b-2236f7e1bb2d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "snug-napping-finch"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-24T18:24:44.491Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "556b3c7f-1ec5-403a-93ed-1612394daa3f",
+                "isSidechain": true,
+                "agentId": "aa90fb53a2c1faac3",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__add_constraint",
+                    "mcp__agent-ml-research__approve_experiment",
+                    "mcp__agent-ml-research__approve_secret_request",
+                    "mcp__agent-ml-research__archive_project",
+                    "mcp__agent-ml-research__auto_build_provenance",
+                    "mcp__agent-ml-research__backup_project_to_s3",
+                    "mcp__agent-ml-research__cancel_agent_queue_item",
+                    "mcp__agent-ml-research__cancel_pending_director_messages",
+                    "mcp__agent-ml-research__check_credentials",
+                    "mcp__agent-ml-research__check_paper_consistency",
+                    "mcp__agent-ml-research__check_provenance_completeness",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__complete_mvp",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__create_project",
+                    "mcp__agent-ml-research__delete_secret",
+                    "mcp__agent-ml-research__director_allocate_gpus",
+                    "mcp__agent-ml-research__director_get_project_overview",
+                    "mcp__agent-ml-research__director_post_to_main_agent",
+                    "mcp__agent-ml-research__director_post_to_manager",
+                    "mcp__agent-ml-research__director_post_to_paper_agent",
+                    "mcp__agent-ml-research__director_reply_to_user",
+                    "mcp__agent-ml-research__distill_papers",
+                    "mcp__agent-ml-research__dream_simulate",
+                    "mcp__agent-ml-research__feishu_read_chat_history",
+                    "mcp__agent-ml-research__feishu_read_tum_pending_key",
+                    "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+                    "mcp__agent-ml-research__feishu_upload_file",
+                    "mcp__agent-ml-research__get_agent_queue_status",
+                    "mcp__agent-ml-research__get_distill_status",
+                    "mcp__agent-ml-research__get_dream_status",
+                    "mcp__agent-ml-research__get_dream_trend",
+                    "mcp__agent-ml-research__get_gpu_health",
+                    "mcp__agent-ml-research__get_image_info",
+                    "mcp__agent-ml-research__get_matrix_value",
+                    "mcp__agent-ml-research__get_project_resource_usage",
+                    "mcp__agent-ml-research__get_project_status",
+                    "mcp__agent-ml-research__get_resource_inventory",
+                    "mcp__agent-ml-research__get_tum_config",
+                    "mcp__agent-ml-research__impact_analysis",
+                    "mcp__agent-ml-research__keepalive_respond",
+                    "mcp__agent-ml-research__list_available_gpus",
+                    "mcp__agent-ml-research__list_constraints",
+                    "mcp__agent-ml-research__list_projects",
+                    "mcp__agent-ml-research__list_s3_backups",
+                    "mcp__agent-ml-research__list_secrets",
+                    "mcp__agent-ml-research__list_ssh_hosts",
+                    "mcp__agent-ml-research__list_workspace_projects",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__log_decision",
+                    "mcp__agent-ml-research__log_mistake",
+                    "mcp__agent-ml-research__matrix_gap_analysis",
+                    "mcp__agent-ml-research__paper_compile_and_check",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__post_to_reviewer",
+                    "mcp__agent-ml-research__ralph_respond",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_matrix",
+                    "mcp__agent-ml-research__read_mistakes",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__register_server",
+                    "mcp__agent-ml-research__reject_experiment",
+                    "mcp__agent-ml-research__reject_secret_request",
+                    "mcp__agent-ml-research__remove_constraint",
+                    "mcp__agent-ml-research__remove_server",
+                    "mcp__agent-ml-research__replace_agent_queue",
+                    "mcp__agent-ml-research__request_study_approval",
+                    "mcp__agent-ml-research__research_director_post_to_study_director",
+                    "mcp__agent-ml-research__should_skip_dream",
+                    "mcp__agent-ml-research__store_secret",
+                    "mcp__agent-ml-research__submit_paper_to_review",
+                    "mcp__agent-ml-research__sync_matrix_status",
+                    "mcp__agent-ml-research__update_matrix",
+                    "mcp__agent-ml-research__update_project_config",
+                    "mcp__agent-ml-research__update_review_issues",
+                    "mcp__agent-ml-research__update_roadmap",
+                    "mcp__agent-ml-research__update_skill",
+                    "mcp__agent-ml-research__upgrade_to_dual_group",
+                    "mcp__agent-ml-research__urgent_agent_message"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__add_constraint",
+                    "mcp__agent-ml-research__approve_experiment",
+                    "mcp__agent-ml-research__approve_secret_request",
+                    "mcp__agent-ml-research__archive_project",
+                    "mcp__agent-ml-research__auto_build_provenance",
+                    "mcp__agent-ml-research__backup_project_to_s3",
+                    "mcp__agent-ml-research__cancel_agent_queue_item",
+                    "mcp__agent-ml-research__cancel_pending_director_messages",
+                    "mcp__agent-ml-research__check_credentials",
+                    "mcp__agent-ml-research__check_paper_consistency",
+                    "mcp__agent-ml-research__check_provenance_completeness",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__complete_mvp",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__create_project",
+                    "mcp__agent-ml-research__delete_secret",
+                    "mcp__agent-ml-research__director_allocate_gpus",
+                    "mcp__agent-ml-research__director_get_project_overview",
+                    "mcp__agent-ml-research__director_post_to_main_agent",
+                    "mcp__agent-ml-research__director_post_to_manager",
+                    "mcp__agent-ml-research__director_post_to_paper_agent",
+                    "mcp__agent-ml-research__director_reply_to_user",
+                    "mcp__agent-ml-research__distill_papers",
+                    "mcp__agent-ml-research__dream_simulate",
+                    "mcp__agent-ml-research__feishu_read_chat_history",
+                    "mcp__agent-ml-research__feishu_read_tum_pending_key",
+                    "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+                    "mcp__agent-ml-research__feishu_upload_file",
+                    "mcp__agent-ml-research__get_agent_queue_status",
+                    "mcp__agent-ml-research__get_distill_status",
+                    "mcp__agent-ml-research__get_dream_status",
+                    "mcp__agent-ml-research__get_dream_trend",
+                    "mcp__agent-ml-research__get_gpu_health",
+                    "mcp__agent-ml-research__get_image_info",
+                    "mcp__agent-ml-research__get_matrix_value",
+                    "mcp__agent-ml-research__get_project_resource_usage",
+                    "mcp__agent-ml-research__get_project_status",
+                    "mcp__agent-ml-research__get_resource_inventory",
+                    "mcp__agent-ml-research__get_tum_config",
+                    "mcp__agent-ml-research__impact_analysis",
+                    "mcp__agent-ml-research__keepalive_respond",
+                    "mcp__agent-ml-research__list_available_gpus",
+                    "mcp__agent-ml-research__list_constraints",
+                    "mcp__agent-ml-research__list_projects",
+                    "mcp__agent-ml-research__list_s3_backups",
+                    "mcp__agent-ml-research__list_secrets",
+                    "mcp__agent-ml-research__list_ssh_hosts",
+                    "mcp__agent-ml-research__list_workspace_projects",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__log_decision",
+                    "mcp__agent-ml-research__log_mistake",
+                    "mcp__agent-ml-research__matrix_gap_analysis",
+                    "mcp__agent-ml-research__paper_compile_and_check",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__post_to_reviewer",
+                    "mcp__agent-ml-research__ralph_respond",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_matrix",
+                    "mcp__agent-ml-research__read_mistakes",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__register_server",
+                    "mcp__agent-ml-research__reject_experiment",
+                    "mcp__agent-ml-research__reject_secret_request",
+                    "mcp__agent-ml-research__remove_constraint",
+                    "mcp__agent-ml-research__remove_server",
+                    "mcp__agent-ml-research__replace_agent_queue",
+                    "mcp__agent-ml-research__request_study_approval",
+                    "mcp__agent-ml-research__research_director_post_to_study_director",
+                    "mcp__agent-ml-research__should_skip_dream",
+                    "mcp__agent-ml-research__store_secret",
+                    "mcp__agent-ml-research__submit_paper_to_review",
+                    "mcp__agent-ml-research__sync_matrix_status",
+                    "mcp__agent-ml-research__update_matrix",
+                    "mcp__agent-ml-research__update_project_config",
+                    "mcp__agent-ml-research__update_review_issues",
+                    "mcp__agent-ml-research__update_roadmap",
+                    "mcp__agent-ml-research__update_skill",
+                    "mcp__agent-ml-research__upgrade_to_dual_group",
+                    "mcp__agent-ml-research__urgent_agent_message"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "02d54390-063f-4971-90f7-a6ef85f792ba",
+                "timestamp": "2026-05-24T18:24:44.491Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/director_32e62753",
+                "sessionId": "d0343bc5-105f-48da-b75b-2236f7e1bb2d",
+                "version": "2.1.126",
+                "gitBranch": "HEAD",
+                "slug": "snug-napping-finch"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-24T18:24:48.633Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll read all the .tex files to inventory every abbreviation/acronym used in the paper."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "02d54390-063f-4971-90f7-a6ef85f792ba",
+            "isSidechain": true,
+            "agentId": "aa90fb53a2c1faac3",
+            "requestId": "req_011CbMryDE3MYBwmpcc1ZK28",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "255e0d81-8cdb-4cb4-b4a9-9a0966528393",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/director_32e62753",
+            "sessionId": "d0343bc5-105f-48da-b75b-2236f7e1bb2d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "snug-napping-finch",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011xP4szykNX75u7CCZHPgSP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 33137,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 33137,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-24T18:24:48.941Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PsF8VwRHdXEwj3JBGMwACo",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.tex",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "255e0d81-8cdb-4cb4-b4a9-9a0966528393",
+            "isSidechain": true,
+            "agentId": "aa90fb53a2c1faac3",
+            "requestId": "req_011CbMryDE3MYBwmpcc1ZK28",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "91fd7ba4-e8ce-446d-9108-2afa3b4a8a78",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/director_32e62753",
+            "sessionId": "d0343bc5-105f-48da-b75b-2236f7e1bb2d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "snug-napping-finch",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011xP4szykNX75u7CCZHPgSP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 33137,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 130,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 33137
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 130,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 33137,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 33137,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-24T18:24:49.002Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PsF8VwRHdXEwj3JBGMwACo",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/checklist.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/method.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/abstract.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "91fd7ba4-e8ce-446d-9108-2afa3b4a8a78",
+            "isSidechain": true,
+            "promptId": "270ab91c-e9b9-4a39-b092-16a4d85348b6",
+            "agentId": "aa90fb53a2c1faac3",
+            "type": "user",
+            "uuid": "16b994f5-ff46-4515-815f-2b6ed2e30ee7",
+            "sourceToolAssistantUUID": "91fd7ba4-e8ce-446d-9108-2afa3b4a8a78",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/director_32e62753",
+            "sessionId": "d0343bc5-105f-48da-b75b-2236f7e1bb2d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "snug-napping-finch"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-24T18:24:51.579Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FPj7rTcmCAzN3VwgARp1DV",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/abstract.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "16b994f5-ff46-4515-815f-2b6ed2e30ee7",
+            "isSidechain": true,
+            "agentId": "aa90fb53a2c1faac3",
+            "requestId": "req_011CbMryYTviM1hjLkYd9Z8f",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b37cfdfb-8511-4ab8-9a01-a8ae9b25cd32",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/director_32e62753",
+            "sessionId": "d0343bc5-105f-48da-b75b-2236f7e1bb2d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "snug-napping-finch",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Babp6vAuESryiSZyYAC283",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1362,
+                "cache_read_input_tokens": 33137,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1362,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 53,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-24T18:24:51.590Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FPj7rTcmCAzN3VwgARp1DV",
+              "type": "tool_result",
+              "content": "1\t% abstract.tex\n2\t\\begin{abstract}\n3\tLlama Guard~3 detects only 1.8\\% of multi-turn jailbreaks---attacks that distribute adversarial intent across individually benign conversation turns. We present DisPeD, a controlled ablation framework where seven encoder variants---differing solely in their pretraining objective---share the same frozen downstream classifier, enabling direct comparison across thirteen configurations (125--355M parameters) and three OOD attack families. Three findings emerge: (1)~classification-based domain adaptation recovers OOD detection (F1\\,=\\,0.97--1.0 vs.\\ vanilla 0.26--0.31) while unsupervised pretraining collapses under mixed-LLM training; (2)~scrambled labels match correct labels for template-attack detection---the classification objective's structural role, not label semantics, drives generalization; and (3)~these advantages are condition-specific, as on human-authored single-turn data the hierarchy reverses (MLM F1\\,=\\,0.837 vs.\\ classification 0.596). A 184M-parameter encoder with BiGRU achieves 24$\\times$ inference speedup over LLM-as-judge baselines, and few-shot benign adaptation reduces false-positive rates from 68\\% to 0\\%.\n4\t\\end{abstract}\n5\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b37cfdfb-8511-4ab8-9a01-a8ae9b25cd32",
+            "isSidechain": true,
+            "promptId": "270ab91c-e9b9-4a39-b092-16a4d85348b6",
+            "agentId": "aa90fb53a2c1faac3",
+            "type": "user",
+            "uuid": "31ae86e9-f334-49c8-ac5c-1a82d4e4d016",
+            "sourceToolAssistantUUID": "b37cfdfb-8511-4ab8-9a01-a8ae9b25cd32",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/director_32e62753",
+            "sessionId": "d0343bc5-105f-48da-b75b-2236f7e1bb2d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "snug-napping-finch"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-24T18:24:52.064Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YBYPsu1YpL9fLHPJ92ihiY",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/introduction.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "31ae86e9-f334-49c8-ac5c-1a82d4e4d016",
+            "isSidechain": true,
+            "agentId": "aa90fb53a2c1faac3",
+            "requestId": "req_011CbMryYTviM1hjLkYd9Z8f",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "45043c37-4dd6-4f11-b3b8-bb4de00e02f3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/director_32e62753",
+            "sessionId": "d0343bc5-105f-48da-b75b-2236f7e1bb2d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "snug-napping-finch",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Babp6vAuESryiSZyYAC283",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1362,
+                "cache_read_input_tokens": 33137,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1362,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 53,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-24T18:24:52.074Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YBYPsu1YpL9fLHPJ92ihiY",
+              "type": "tool_result",
+              "content": "1\t% introduction.tex\n2\t\n3\t\\section{Introduction}\n4\t\n5\tMulti-turn jailbreak attacks distribute adversarial intent across individually benign turns. Crescendo~\\citep{russinovich2024crescendo}, Foot-in-the-Door~\\citep{fitd2024}, and Deceptive Delight~\\citep{deceptivedelight2024} all rely on persuasion as their core mechanism: \\citet{zeng2024pap} catalogue 40 persuasion techniques across jailbreak families, and \\citet{hagendorff2026reasoning} identify strategies in 97\\% of successful attacks. Because individual attack turns occupy the same embedding region as benign text~\\citep{bullwinkel2025repeng}, no single-turn filter can distinguish them from legitimate conversation.\n6\t\n7\tExisting defenses leave a critical gap. Production classifiers such as Llama Guard~\\citep{inan2023llamaguard}, WildGuard~\\citep{han2024wildguard}, and ShieldGemma~\\citep{zeng2024shieldgemma} operate on individual turns and miss multi-turn manipulation; Llama Guard~3 detects only 1.8\\% of multi-turn jailbreaks in our evaluation (Section~\\ref{sec:decomposition}). Multi-turn defenses (DeepContext~\\citep{deepcontext2026}, BIID~\\citep{tong2025biid}, G-Guard~\\citep{gguard2025}) model conversation-level structure but each evaluates on a single attack family. None answers the central question: \\emph{what representation properties enable a detector to generalize across attack families it has never seen?} Pretrained language understanding alone does not suffice: vanilla DeBERTa-v3~\\citep{he2021deberta} with temporal aggregation (cf.\\ DeepContext) drops from F1\\,=\\,1.000 in-distribution to 0.312 on OOD Deceptive Delight, and GPT-5.5 reaches only 0.191--0.449 F1 (across prefix lengths) with 30--47\\% unparseable responses (Appendix~\\ref{sec:llm_judge}). The bottleneck is distributional: cross-attack generalization at base model scale benefits substantially from domain adaptation.\n8\t\n9\t\\begin{figure*}[t]\n10\t\\centering\n11\t\\includegraphics[width=\\textwidth]{figures/paper/fig1_architecture.pdf}\n12\t\\caption{DisPeD architecture. Stage~1 adapts a DeBERTa encoder on jailbreak conversation text (seven variant objectives). Stage~2 aggregates frozen \\texttt{[CLS]} embeddings via BiGRU for conversation-level jailbreak detection. Only user turns are processed.}\n13\t\\label{fig:architecture}\n14\t\\end{figure*}\n15\t\n16\tOur pipeline, \\textbf{DisPeD} (Disentangled Persuasion Detection)\\footnote{We use `disentangled' to describe our experimental methodology of isolating individual factors through controlled ablation, distinct from disentangled representation learning ($\\beta$-VAE, InfoGAN).}, separates encoder adaptation (Stage~1) from temporal classification (Stage~2, a frozen BiGRU; Figure~\\ref{fig:architecture}). Seven Stage~1 variants each isolate a single factor while holding all others constant (Section~\\ref{sec:method}); the contribution is the decomposition, not the pipeline. Controlled ablation across DeBERTa-v3 and RoBERTa~\\citep{liu2019roberta} on four attack families reveals three findings at base model scale: classification-based DAPT is the only variant that consistently recovers OOD detection (F1\\,=\\,0.97--1.0 vs.\\ vanilla 0.26--0.31), even under mixed-LLM training where unsupervised pretraining collapses to vanilla level~\\citep{gururangan2020dontstop}; scrambled labels match correct labels for template attacks, indicating the classification objective's structural role---not label semantics---drives generalization; yet this hierarchy reverses entirely on human-authored data (MLM 0.837 vs.\\ classification 0.596), revealing condition-specific rather than universal advantages. At 355M parameters, capacity alone suffices: RoBERTa-large handles ActorAttack~\\citep{ren2024actorattack} without adaptation.\n17\t\n18\tOur contributions:\n19\t\\begin{itemize}[leftmargin=*, itemsep=2pt, topsep=4pt]\n20\t  \\item \\textbf{Systematic ablation of cross-attack generalization.} Thirteen encoder configurations at three scales (125--355M) decompose jailbreak detection into attack-side and benign-side factors---the first controlled factorial study in this domain. Classification DAPT recovers OOD detection (0.26--0.31 $\\rightarrow$ 0.97--1.0) while unsupervised pretraining collapses under mixed-LLM training; 10--25 benign conversations reduce FPR from 58--68\\% to 0--1.5\\%.\n21\t\n22\t  \\item \\textbf{Partition sufficiency with a difficulty gradient.} Scrambled labels match correct labels for template-attack detection (TOST $|d| \\leq 0.14$), but strategy-diverse attacks retain moderate label sensitivity ($d$\\,=\\,0.44). Domain-relevant partitioning---not label semantics---is the operative mechanism, consistent with \\citet{zhang2021understanding}: compression localizes to 3 SVD dimensions in layers 8--12.\n23\t\n24\t  \\item \\textbf{Practical adaptation protocol.} A 184M-parameter encoder achieves 24.3$\\times$ speedup over LLM-as-judge (43$\\times$ fewer parameters; Table~\\ref{tab:efficiency_main}); few-shot benign adaptation resolves deployment-blocking FPR without target-domain attack data.\n25\t\\end{itemize}\n26\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "45043c37-4dd6-4f11-b3b8-bb4de00e02f3",
+            "isSidechain": true,
+            "promptId": "270ab91c-e9b9-4a39-b092-16a4d85348b6",
+            "agentId": "aa90fb53a2c1faac3",
+            "type": "user",
+            "uuid": "dc841bf2-487e-4858-bd7f-9fd56c69a25d",
+            "sourceToolAssistantUUID": "45043c37-4dd6-4f11-b3b8-bb4de00e02f3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/director_32e62753",
+            "sessionId": "d0343bc5-105f-48da-b75b-2236f7e1bb2d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "snug-napping-finch"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-24T18:24:53.002Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VwN1pkaQWCJXthoQ3ugPwt",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/related_work.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dc841bf2-487e-4858-bd7f-9fd56c69a25d",
+            "isSidechain": true,
+            "agentId": "aa90fb53a2c1faac3",
+            "requestId": "req_011CbMryYTviM1hjLkYd9Z8f",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "582b08f4-2de9-4b5d-8661-f36e730a97da",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/director_32e62753",
+            "sessionId": "d0343bc5-105f-48da-b75b-2236f7e1bb2d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "snug-napping-finch",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Babp6vAuESryiSZyYAC283",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1362,
+                "cache_read_input_tokens": 33137,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1362,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 53,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-24T18:24:53.010Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VwN1pkaQWCJXthoQ3ugPwt",
+              "type": "tool_result",
+              "content": "1\t% related_work.tex\n2\t\n3\t\\section{Related Work}\n4\t\n5\t\\paragraph{Multi-turn jailbreak attacks.}\n6\tMulti-turn jailbreak families share a persuasion substrate~\\citep{zeng2024pap,hagendorff2026reasoning,li2024mhj} but operationalize it differently---gradual escalation~\\citep{russinovich2024crescendo}, commitment-consistency bias~\\citep{fitd2024}, emotional manipulation~\\citep{deceptivedelight2024}, persona steering~\\citep{ren2024actorattack}, context poisoning~\\citep{alobaid2026echochamber}---while automated methods~\\citep{chao2023pair,mehrotra2024tap} iteratively refine adversarial prompts~\\citep{perez2022redteaming}. Taxonomies~\\citep{wei2023jailbroken} and benchmarks~\\citep{mazeika2024harmbench,chao2024jailbreakbench,jiang2024redqueen,song2026multibreak} standardize evaluation. This shared substrate with diverse surface strategies defines our setting: a detector must generalize across families, not merely succeed on its training distribution.\n7\t\n8\t\\paragraph{Multi-turn defenses and production safety.}\n9\tNo existing defense evaluates cross-attack transfer. Recent conversation-level systems pair fine-tuned encoders with sequence aggregation~\\citep{deepcontext2026,tong2025biid,gguard2025,safedream2026}, yet each evaluates on a single attack family; absent public implementations preclude direct comparison (Appendix~\\ref{app:bert_proxy}). Representation-level approaches~\\citep{lu2025xboundary,zhang2025jbshield,xie2024gradsafe,zou2024circuitbreakers,wu2025safeint,shen2024jailbreakantidote,yousefpour2025repbend,kulkarni2026latentadversarial,kadali2025internallayers,kadali2026trace,hua2026rcs} require white-box access and can be brittle under adaptive attacks~\\citep{derya2026revisitingjbshield}. Per-turn classifiers~\\citep{inan2023llamaguard,metallamaguard3_2024,zeng2024shieldgemma,han2024wildguard,anthropic2025constitutional} and production systems~\\citep{markov2023holistic} cannot model multi-turn trajectories; perturbation-based~\\citep{robey2024smoothllm} and decoding-based~\\citep{xu2024safedecoding} defenses target single-turn attacks. Our ablation fills this gap: decomposition across thirteen configurations under OOD evaluation identifies domain exposure as the dominant factor behind cross-attack transfer.\n10\t\n11\t\\paragraph{Computational persuasion and discourse.}\n12\tDiscourse and persuasion frameworks~\\citep{mann1988rst,prasad2008pdtb,stolcke2000dialogueact,austin1962speechacts,searle1969speechacts} offer interpretable vocabulary for attack strategies. Building on Cialdini's principles~\\citep{cialdini2001influence}, PAP~\\citep{zeng2024pap} identifies 40 persuasion techniques and \\citet{hagendorff2026reasoning} find identifiable strategies in 97\\% of successful attacks; propaganda analysis~\\citep{dasanmartino2019fine,dasanmartino2020semeval} and persuasive dialogue~\\citep{wang2019persuasion} apply similar classification. Our ablation disentangles these roles: the taxonomy enables strategy characterization, but detection operates through domain-adapted embeddings regardless of label correctness.\n13\t\n14\t\\paragraph{Domain-adaptive pretraining.}\n15\tContinued pretraining on domain text yields consistent gains~\\citep{gururangan2020dontstop,lee2020biobert,beltagy2019scibert,howard2018ulmfit}, yet this has not been disentangled for safety-critical generalization. Intermediate-task transfer~\\citep{phang2018stilts} and multi-task learning~\\citep{caruana1997multitask,liu2019mtdnn} confound domain exposure with supervised signal; our MLM control isolates the contribution. Dataset artifact analysis~\\citep{gururangan2018artifacts,niven2019probing} motivates the TF-IDF baseline, adversarial NLP~\\citep{jin2020textfooler,li2020bertattack,nasr2025attackermovessecond,andriushchenko2024adaptive} informs the perturbation protocol, and probing~\\citep{conneau2018probing,hewitt2019structural} underpins CKA analysis.\n16\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "582b08f4-2de9-4b5d-8661-f36e730a97da",
+            "isSidechain": true,
+            "promptId": "270ab91c-e9b9-4a39-b092-16a4d85348b6",
+            "agentId": "aa90fb53a2c1faac3",
+            "type": "user",
+            "uuid": "dc1ac1f2-5da5-4f29-9bd6-4c36928a5234",
+            "sourceToolAssistantUUID": "582b08f4-2de9-4b5d-8661-f36e730a97da",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/director_32e62753",
+            "sessionId": "d0343bc5-105f-48da-b75b-2236f7e1bb2d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "snug-napping-finch"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-24T18:24:53.475Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EuHV1mHHhbsXsPYWUwfZba",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/method.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dc1ac1f2-5da5-4f29-9bd6-4c36928a5234",
+            "isSidechain": true,
+            "agentId": "aa90fb53a2c1faac3",
+            "requestId": "req_011CbMryYTviM1hjLkYd9Z8f",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "13b0837d-bcbc-4cf1-b513-d28d9c768e34",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/director_32e62753",
+            "sessionId": "d0343bc5-105f-48da-b75b-2236f7e1bb2d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "snug-napping-finch",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Babp6vAuESryiSZyYAC283",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1362,
+                "cache_read_input_tokens": 33137,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1362,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 53,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-24T18:24:53.483Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EuHV1mHHhbsXsPYWUwfZba",
+              "type": "tool_result",
+              "content": "1\t% method.tex\n2\t\n3\t\\section{Method}\n4\t\\label{sec:method}\n5\t\n6\tCross-attack generalization could stem from domain exposure, classification supervision, label correctness, label granularity, or domain specificity. Disentangling these factors demands an architecture where exactly one component varies across conditions. DisPeD separates encoder adaptation (Stage~1) from temporal classification (Stage~2). Seven Stage-1 variants share the same training data and downstream pipeline but differ solely in their pretraining objective; each isolates a single factor (Figure~\\ref{fig:architecture}).\n7\t\n8\t\\subsection{Problem Formulation}\n9\t\n10\tA conversation $C = \\{u_1, a_1, \\ldots, u_N, a_N\\}$ alternates user turns $u_i$ and assistant responses $a_i$. Given a prefix of $K$ user turns, the model predicts $y \\in \\{0, 1\\}$ (jailbreak vs.\\ benign). We restrict input to user turns because adversarial intent resides in the attacker's messages. This formulation supports early detection from partial prefixes.\n11\t\n12\t\\subsection{Stage 1: Turn-Level Encoder Adaptation}\n13\t\n14\tEach user turn $u_i$ is encoded by DeBERTa-v3-base~\\citep{he2023debertav3}; the \\texttt{[CLS]} embedding $h_i \\in \\mathbb{R}^D$ serves as the turn representation. Seven variants, summarized in Table~\\ref{tab:variants}, share the same training data but differ in objective.\n15\t\n16\t\\begin{table}[t]\n17\t\\centering\n18\t\\small\n19\t\\caption{Stage-1 encoder variants. All operate on the same training conversations except Wikipedia MLM (matched token count on Wikipedia text).}\n20\t\\label{tab:variants}\n21\t\\begin{tabular}{@{}p{1.6cm}p{2.2cm}p{2.8cm}@{}}\n22\t\\toprule\n23\t\\textbf{Variant} & \\textbf{Objective} & \\textbf{Tests whether\\ldots} \\\\\n24\t\\midrule\n25\t9-class & 9-class persuasion + binary intent & full model \\\\\n26\tBinary & binary persuasion + binary intent & granularity matters \\\\\n27\tScrambled & random 9-class + binary intent & label correctness matters \\\\\n28\tMLM-only & 15\\% token masking & supervision is necessary \\\\\n29\tTopic & 5-class topic classif. & any task suffices \\\\\n30\tWiki MLM & 15\\% masking on Wikipedia & domain specificity matters \\\\\n31\tVanilla & no training & Stage-2 alone suffices \\\\\n32\t\\bottomrule\n33\t\\end{tabular}\n34\t\\end{table}\n35\t\n36\tThe \\textbf{9-class} variant uses two classification heads: 9-class persuasion strategy classification ($L_{\\text{strategy}}$) and binary jailbreak intent ($L_{\\text{intent}}$), with combined loss $L = L_{\\text{strategy}} + \\alpha \\cdot L_{\\text{intent}}$ ($\\alpha = 0.3$, selected from $\\{0, 0.3, 0.5, 2.0\\}$; all values yield F1\\,=\\,1.0 on IID; Appendix~\\ref{app:lambda}). The taxonomy comprises eight persuasion strategies (rapport building, authority appeal, emotional manipulation, logical reframing, role assignment, gradual escalation, obfuscation, direct request) plus a none category, grounded in PAP~\\citep{zeng2024pap} and Cialdini's principles~\\citep{cialdini2001influence}. Strategy annotations are produced by Qwen3-8B with structured prompting that includes definitions and examples for each category; inter-annotator agreement between model annotations and a human sample ($n$=50) yields Cohen's $\\kappa$=0.78.\n37\t\n38\tThe \\textbf{binary} variant collapses the 9-class taxonomy into persuasive vs.\\ non-persuasive, testing whether label granularity matters for detection or robustness.\n39\tThe \\textbf{scrambled} variant randomly permutes the 9-class labels across turns using a fixed random permutation (seed 42), preserving classification structure (cross-entropy loss, 9-class output space) while destroying label semantics. This isolates whether the classification objective provides representational benefits independent of label correctness. Robustness is verified across additional random permutations with consistent results (Appendix~\\ref{app:random_partition}).\n40\tThe \\textbf{MLM-only} variant applies 15\\% masked language modeling on the same jailbreak conversation text without any classification head, testing whether unsupervised domain exposure suffices.\n41\tThe \\textbf{topic} variant trains a 5-class topic classifier (technology, health, finance, education, general) on the same conversations, testing whether \\emph{any} classification task provides the same benefit or whether task alignment matters. This comparison confounds domain relevance with label granularity (5 vs.\\ 9 classes) and classification-head architecture; the Wiki-MLM vs.\\ JB-MLM pair provides a cleaner isolation of domain effects (Section~\\ref{sec:decomposition}).\n42\tThe \\textbf{Wikipedia MLM} variant applies the same MLM objective to a token-matched sample of Wikipedia text; this isolates domain-specific from general continued pretraining.\n43\tThe \\textbf{vanilla} baseline uses the pretrained DeBERTa-v3-base weights without any continued pretraining; it measures what Stage~2 alone can achieve.\n44\t\n45\t\\subsection{Stage 2: Conversation-Level Classification}\n46\t\n47\tTurn embeddings $\\{h_1, \\ldots, h_K\\}$ from the frozen Stage-1 encoder are aggregated by a 2-layer bidirectional GRU ($d_{\\text{hidden}}$=256, dropout 0.3): $\\bar{h} = [\\overrightarrow{h_K};\\; \\overleftarrow{h_1}] \\in \\mathbb{R}^{512}$.\n48\tA two-layer MLP ($512 \\to 256 \\to 2$, ReLU activation) maps $\\bar{h}$ to $\\hat{y} \\in \\{0, 1\\}$.\n49\tThe Stage-1 encoder is frozen during Stage~2 to ensure ablation fairness across all seven variants.\n50\tWe retain BiGRU as the default aggregator for its amenability to representation analysis (CKA, t-SNE), noting that mean pooling achieves comparable detection (Section~\\ref{sec:decomposition}). Cross-architecture validation on RoBERTa (Section~\\ref{sec:cross_encoder}) yields thirteen configurations across three scales.\n51\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "13b0837d-bcbc-4cf1-b513-d28d9c768e34",
+            "isSidechain": true,
+            "promptId": "270ab91c-e9b9-4a39-b092-16a4d85348b6",
+            "agentId": "aa90fb53a2c1faac3",
+            "type": "user",
+            "uuid": "d062f360-4ff5-4c27-bf57-9d4f308f199d",
+            "sourceToolAssistantUUID": "13b0837d-bcbc-4cf1-b513-d28d9c768e34",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/director_32e62753",
+            "sessionId": "d0343bc5-105f-48da-b75b-2236f7e1bb2d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "snug-napping-finch"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-24T18:24:53.945Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EDqoq8VfcmXtCtzvSws1WF",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d062f360-4ff5-4c27-bf57-9d4f308f199d",
+            "isSidechain": true,
+            "agentId": "aa90fb53a2c1faac3",
+            "requestId": "req_011CbMryYTviM1hjLkYd9Z8f",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "cd6e1914-ed55-428f-ae4c-184be8052be1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/director_32e62753",
+            "sessionId": "d0343bc5-105f-48da-b75b-2236f7e1bb2d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "snug-napping-finch",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Babp6vAuESryiSZyYAC283",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1362,
+                "cache_read_input_tokens": 33137,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1362,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 53,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-24T18:24:53.952Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EDqoq8VfcmXtCtzvSws1WF",
+              "type": "tool_result",
+              "content": "1\t% experiments.tex\n2\t\n3\t\\section{Experiments}\n4\t\n5\t\\paragraph{Terminology.}\n6\t\\emph{Cross-attack OOD}: evaluation on attack families unseen during training; benign distribution remains IID throughout (OOD reflects attack-side shift only). $K$: prefix length (number of conversation turns retained). \\emph{DAPT}: all Stage-1 adaptations; we extend \\citet{gururangan2020dontstop} to supervised variants. We refer to the performance ranking of DAPT variants across OOD conditions as the \\emph{evidence hierarchy} (Section~\\ref{sec:decomposition}).\n7\t\n8\t\\subsection{Setup}\n9\t\n10\t\\paragraph{Data.}\n11\tAll synthetic data is generated by Qwen3-8B~\\citep{qwen3_2025}.\n12\tThe IID dataset contains 250 Crescendo~\\citep{russinovich2024crescendo} jailbreak and 250 benign conversations, split into training (350), validation (74), and test (76) with balanced classes.\n13\tStage~1 uses training + validation; Stage~2 trains on training, early-stops on validation.\n14\tOOD evaluation pairs 80 attack-specific conversations with 38 IID-test benign: FITD~\\citep{fitd2024}, DD~\\citep{deceptivedelight2024}, and ActorAttack~\\citep{ren2024actorattack} (118 total each; no template overlap across families).\n15\tA paraphrased IID test set (BERTScore 0.92) serves as the robustness benchmark (Section~\\ref{sec:perturbation}).\n16\tFor human validation, we use ToxicChat~\\citep{lin2023toxicchat} (204+204 from real LMSYS interactions).\n17\t\n18\t\\paragraph{Models.}\n19\tSeven DeBERTa-v3 variants share the same Stage-2 pipeline and differ only in Stage-1 training (Section~\\ref{sec:method}).\n20\tOur vanilla DeBERTa+BiGRU configuration is architecturally equivalent to DeepContext~\\citep{deepcontext2026} and differs only in encoder choice (DeBERTa-v3-base vs.\\ BERT); it serves as our primary baseline.\n21\tFor cross-encoder validation, we replicate vanilla, MLM, and 9-class variants on RoBERTa-base~\\citep{liu2019roberta} (Section~\\ref{sec:cross_encoder}).\n22\tWe also compare TF-IDF LR, LLM-as-judge (Appendix~\\ref{sec:llm_judge}), and Llama Guard~3~8B~\\citep{metallamaguard3_2024} (zero-shot; evaluates last-response safety given conversation context), which detects only 1.8\\% of multi-turn jailbreaks (5/278 pooled recall; Table~\\ref{tab:evidence_hierarchy}).\n23\t\n24\t\\paragraph{Metrics.}\n25\tF1 for binary jailbreak detection at prefix $K$=2 and full conversations (full per-$K$ in Appendix~\\ref{sec:full_prefix}).\n26\tOOD results report 3-seed mean$\\pm$std (seeds 42, 123, 456).\n27\tFor pairwise comparisons, we report BCa bootstrap 95\\% CIs (10,000 resamples; assumes cross-seed independence) and paired permutation tests; seed-level values confirm all conclusions hold at every seed (Appendix~\\ref{app:seed_level}).\n28\t\n29\t\\paragraph{Training.}\n30\tStage-1: learning rate $2 \\times 10^{-5}$, batch 16, 4 epochs, MLM masking 15\\%.\n31\tStage-2: two-layer MLP, 20 epochs.\n32\t\n33\t%----------------------------------------------------------------------\n34\t\\subsection{Cross-Attack Generalization}\n35\t\n36\t\\begin{table}[t]\n37\t\\centering\n38\t\\small\n39\t\\caption{Cross-attack generalization (F1) at $K$=2 and full conversation length. IID: Crescendo; OOD: Deceptive Delight (DD). 3-seed mean$\\pm$std where noted; full per-$K$ in Appendix~\\ref{sec:full_prefix}.}\n40\t\\label{tab:main_results}\n41\t\\resizebox{\\columnwidth}{!}{%\n42\t\\begin{tabular}{@{}lcc|cc@{}}\n43\t\\toprule\n44\t& \\multicolumn{2}{c|}{\\textit{IID (Cresc.)}} & \\multicolumn{2}{c}{\\textit{OOD (DD)}} \\\\\n45\t\\textbf{Method} & $K$=2 & Full & $K$=2 & Full \\\\\n46\t\\midrule\n47\t9-class & \\textbf{1.000$\\pm$.000} & \\textbf{1.000$\\pm$.000} & .981$\\pm$.013 & \\textbf{.997$\\pm$.005} \\\\\n48\tMLM-only$^{\\ddagger}$ & .974 & 1.000 & \\textbf{.993$\\pm$.009} & .914$\\pm$.115 \\\\\n49\tVanilla & .978$\\pm$.016 & 1.000$\\pm$.000 & .479$\\pm$.038 & .312$\\pm$.026 \\\\\n50\tTF-IDF LR$^{\\S}$ & 1.000 & 1.000 & 1.000 & .961 \\\\\n51\t\\bottomrule\n52\t\\end{tabular}}\n53\t\\vspace{-2pt}\n54\t{\\footnotesize $^{\\ddagger}$MLM-only IID reports single seed (42); OOD reports 3-seed. $^{\\S}$TF-IDF is deterministic (no std).}\n55\t\\end{table}\n56\t\n57\tVanilla encoders collapse under cross-attack transfer; domain-adapted variants recover near-perfect detection (Table~\\ref{tab:main_results}, Figure~\\ref{fig:cross_attack_bar}).\n58\tOn OOD DD, vanilla drops to F1\\,=\\,0.312$\\pm$0.026 and worsens with more turns (0.628$\\to$0.312 at Full), consistent with attack turns occupying benign embedding regions~\\citep{bullwinkel2025repeng}. MLM recovers to $\\geq$0.97 at $K \\leq 5$ without labels but is unstable at full length (0.914$\\pm$0.115); 9-class maintains 0.997$\\pm$0.005.\n59\tOn strategy-diverse ActorAttack, TF-IDF collapses (0.261) while 9-class maintains 0.972$\\pm$0.026, a 71\\,pp gap confirming domain-adapted representations capture beyond-lexical features.\n60\tSeed-level results confirm consistent separation (Table~\\ref{tab:seed_level}; bootstrap CIs non-overlapping, permutation $p < 0.0001$). FITD is non-discriminative (all F1\\,$\\geq$\\,0.990).\n61\t\n62\t\\begin{figure}[t]\n63\t\\centering\n64\t\\includegraphics[width=\\columnwidth]{figures/paper/fig2_cross_attack_bar.pdf}\n65\t\\caption{Cross-attack overview (F1 at full conversation length). DisPeD (9-class) maintains near-perfect detection across IID and both OOD families; vanilla collapses on OOD DD. FITD is non-discriminative for all methods.}\n66\t\\label{fig:cross_attack_bar}\n67\t\\end{figure}\n68\t\n69\tPrefix-length analysis (Appendix Table~\\ref{tab:full_prefix}) confirms 9-class stability across all prefixes (0.972--0.997) vs.\\ MLM instability at full length (0.914$\\pm$0.115) and vanilla degradation (0.628$\\to$0.312).\n70\t\n71\t%----------------------------------------------------------------------\n72\t\\subsection{Decomposing the Detection Mechanism}\n73\t\\label{sec:decomposition}\n74\t\n75\t\\begin{table}[t]\n76\t\\centering\n77\t\\small\n78\t\\caption{Evidence hierarchy on OOD DD and ActorAttack (AA) at full conversation length (3-seed mean$\\pm$std where available). OOD F1 reflects attack-side generalization only; benign samples are IID from training distribution (benign-side shift evaluated in Section~\\ref{sec:benign_shift}). Bold indicates best per column. All variants share the same Stage-2 pipeline. Full per-prefix results in Appendix Tables~\\ref{tab:full_prefix} and~\\ref{tab:actorattack_full}. Bottom rows: full dual-OOD evaluation with WildChat benign replacing IID benign (Appendix~\\ref{app:dual_ood}).}\n79\t\\label{tab:evidence_hierarchy}\n80\t\\resizebox{\\columnwidth}{!}{%\n81\t\\begin{tabular}{@{}lccc@{}}\n82\t\\toprule\n83\t\\textbf{Variant} & DD-Full & AA-Full & DD-$K$=2 \\\\\n84\t\\midrule\n85\t9-class (full model) & .997$\\pm$.005 & .972$\\pm$.026 & .981$\\pm$.013 \\\\\n86\tBinary (2-class) & \\textbf{1.000$\\pm$.000} & \\textbf{.990$\\pm$.008} & .994$\\pm$.009 \\\\\n87\tScrambled labels & .997$\\pm$.005 & .951$\\pm$.043 & .981$\\pm$.026 \\\\\n88\tMLM-only$^{\\ddagger}$ (no labels) & .914$\\pm$.115 & .893$\\pm$.080 & .993$\\pm$.009 \\\\\n89\tMean pooling$^{*}$ & .991$\\pm$.013 & .962$\\pm$.015 & .994$\\pm$.009 \\\\\n90\t\\midrule\n91\tTopic classif.\\ (5-class) & .541$\\pm$.207 & .625$\\pm$.141 & .593$\\pm$.166 \\\\\n92\tWikipedia MLM & .904$\\pm$.115 & .686$\\pm$.297 & .911$\\pm$.073 \\\\\n93\tVanilla DeBERTa & .312$\\pm$.026 & .258$\\pm$.000 & .479$\\pm$.038 \\\\\n94\tTF-IDF LR$^{\\dagger}$ & .961 & .261 & \\textbf{1.000} \\\\\n95\tLlama Guard~3$^{\\P}$ & .024 & .000 & -- \\\\\n96\t\\midrule\n97\t\\multicolumn{4}{l}{\\textit{Dual-OOD (WildChat benign; Section~\\ref{sec:benign_shift})}} \\\\[2pt]\n98\t9-class (no adapt) & .855 & .842 & -- \\\\\n99\t9-class (+10-shot) & .994 & .981 & -- \\\\\n100\t\\bottomrule\n101\t\\end{tabular}}\n102\t\\vspace{-2pt}\n103\t{\\footnotesize $^{*}$9-class encoder with mean pooling replacing BiGRU. $^{\\dagger}$Deterministic (no std). $^{\\ddagger}$MLM-only IID (Table~\\ref{tab:main_results}) is single-seed (42); all OOD values are 3-seed. $^{\\P}$Zero-shot; no domain training.}\n104\t\\end{table}\n105\t\n106\tA clear \\emph{evidence hierarchy} emerges across seven variants on synthetic multi-turn data (Table~\\ref{tab:evidence_hierarchy}, Figure~\\ref{fig:evidence_hierarchy}), ordered by OOD detection at full conversation length: vanilla $<$ topic $\\ll$ MLM $<$ classification-supervised ($\\approx$\\,1.0 on DD).\n107\t\n108\t\\begin{figure}[t]\n109\t\\centering\n110\t\\includegraphics[width=\\columnwidth]{figures/paper/fig3_evidence_hierarchy.pdf}\n111\t\\caption{Evidence hierarchy across evaluation conditions. Classification-based DAPT outperforms MLM and vanilla on synthetic OOD attacks (DD, AA), but the hierarchy reverses on human-authored single-turn data (ToxicChat), where JB-MLM leads.}\n112\t\\label{fig:evidence_hierarchy}\n113\t\\end{figure}\n114\t\n115\t\\paragraph{Domain exposure is the primary observed factor.}\n116\tMLM bridges $\\sim$60\\,pp from vanilla (0.312$\\pm$0.026 $\\to$ 0.914$\\pm$0.115) without labels; this supports the DAPT interpretation~\\citep{gururangan2020dontstop}. TF-IDF collapse on ActorAttack (0.261 vs.\\ 9-class 0.972) confirms that domain-adapted representations capture features beyond lexical overlap.\n117\tAll three classification-supervised variants converge to equivalent detection (F1 = 0.997--1.000); McNemar's ($p > 0.13$) and paired permutation tests ($p \\geq 0.40$) provide descriptive evidence suggesting equivalence. Extended to $n$\\,=\\,10 seeds, TOST (margin = 5\\,pp) confirms equivalence on DD ($p < 10^{-8}$, $d$\\,=\\,$-$0.14; Table~\\ref{tab:tost_sensitivity}) and FITD ($p < 10^{-8}$, $d \\approx 0$). Label quality and granularity are non-factors for template-attack detection (DD/FITD: $|d| \\leq 0.14$), but strategy-diverse ActorAttack retains moderate label sensitivity ($d$\\,=\\,0.44, TOST $p$\\,=\\,0.183). For template attacks, any domain-relevant classification objective suffices; the objective's structural role---partitioning the representation space---matters more than label semantics. Strategy-diverse attacks mark a difficulty boundary for this sufficiency.\n118\tClassification supervision is associated with 3--23$\\times$ lower cross-seed variance over MLM on synthetic OOD (std 0.005 vs.\\ 0.115 on DD; 3 seeds; Appendix~\\ref{app:ensemble}), though this reverses on human-authored data (Section~\\ref{sec:human_data}).\n119\t\n120\t\\paragraph{Domain specificity is marginal at full length but meaningful for early detection.}\n121\tWikipedia MLM (0.904$\\pm$0.115) nearly matches jailbreak-domain MLM at full length (1\\,pp gap), though jailbreak-domain text provides an 8\\,pp advantage at early prefixes ($K$=2: 0.993 vs.\\ 0.911).\n122\tPerturbation analysis (Section~\\ref{sec:perturbation}) reveals a sharper domain specificity effect: Wikipedia MLM degrades by $\\sim$12\\,pp under adversarial paraphrasing while jailbreak-domain MLM degrades by only 2.6\\,pp.\n123\t\n124\t\\paragraph{Misaligned supervision destabilizes generalization.}\n125\tTopic classification's poor performance (0.541$\\pm$0.207) is consistent with misaligned supervision; the cleaner test isolating domain exposure is Wiki-MLM vs.\\ JB-MLM (Section~\\ref{sec:decomposition}).\n126\t\n127\t\\paragraph{Evidence hierarchy on strategy-diverse attacks.}\n128\tActorAttack~\\citep{ren2024actorattack} preserves the same hierarchy (Figure~\\ref{fig:evidence_hierarchy}) with wider gaps: TF-IDF collapses (0.261) while classification variants converge (0.951--0.990, max gap 3.9\\,pp); DAPT provides $\\sim$71\\,pp over vanilla (Appendix~\\ref{sec:actorattack_full},~\\ref{app:aa_error}).\n129\t\n130\t\\paragraph{Temporal modeling.}\n131\tMean pooling matches BiGRU (F1 gap $\\leq$ 1\\,pp; Appendix~\\ref{app:temporal}) and turn-order shuffling is negligible ($|\\Delta| < 1$\\,pp), confirming detection relies on per-turn content rather than sequential patterns.\n132\t\n133\t%----------------------------------------------------------------------\n134\t\\subsection{Cross-Encoder Validation}\n135\t\\label{sec:cross_encoder}\n136\t\n137\t\\begin{table}[t]\n138\t\\centering\n139\t\\footnotesize\n140\t\\caption{Cross-encoder comparison on OOD Full (3-seed mean$\\pm$std). DD = Deceptive Delight, AA = ActorAttack. Bold indicates best per encoder group.}\n141\t\\label{tab:cross_encoder}\n142\t\\begin{tabular}{@{}lcc@{}}\n143\t\\toprule\n144\t\\textbf{Variant} & DD & AA \\\\\n145\t\\midrule\n146\t\\multicolumn{3}{l}{\\textit{DeBERTa-v3-base (184M)}} \\\\[2pt]\n147\tVanilla & .312$\\pm$.026 & .258$\\pm$.000 \\\\\n148\tMLM & .914$\\pm$.115 & .893$\\pm$.080 \\\\\n149\t9-class & \\textbf{.997$\\pm$.005} & \\textbf{.972$\\pm$.026} \\\\\n150\t\\midrule\n151\t\\multicolumn{3}{l}{\\textit{RoBERTa-base (125M)}} \\\\[2pt]\n152\tVanilla & .981$\\pm$.026 & .466$\\pm$.163 \\\\\n153\tMLM & .987$\\pm$.018 & .730$\\pm$.201 \\\\\n154\t9-class & \\textbf{.994$\\pm$.005} & \\textbf{.939$\\pm$.046} \\\\\n155\t\\midrule\n156\t\\multicolumn{3}{l}{\\textit{RoBERTa-large (355M)}} \\\\[2pt]\n157\tVanilla & .927$\\pm$.036 & \\textbf{1.000$\\pm$.000} \\\\\n158\tMLM & .884$\\pm$.065 & .874$\\pm$.014 \\\\\n159\t9-class & \\textbf{.987$\\pm$.004} & .946$\\pm$.057 \\\\\n160\t\\bottomrule\n161\t\\end{tabular}\n162\t\\end{table}\n163\t\n164\tTo test whether the evidence hierarchy depends on encoder choice, we replicate vanilla, MLM, and 9-class on RoBERTa-base~\\citep{liu2019roberta} (Table~\\ref{tab:cross_encoder}).\n165\tOn DD, RoBERTa-base vanilla already achieves 0.981$\\pm$0.026 (vs.\\ DeBERTa 0.312$\\pm$0.026), so DAPT adds only 1.3\\,pp. ActorAttack exposes this as DD's simplicity: RoBERTa-base vanilla collapses to 0.466$\\pm$0.163, a 51.5\\,pp drop, while domain-adapted variants recover (9-class: 0.939$\\pm$0.046).\n166\t\n167\tRoBERTa-large (355M) reverses the DAPT advantage on ActorAttack (vanilla 1.000 vs.\\ 9-class 0.946; Table~\\ref{tab:roberta_large_lr}), revealing a difficulty threshold: base-scale encoders require DAPT for all attacks, while sufficient capacity renders it unnecessary. A BERT-base proxy confirms DAPT, not architecture, drives generalization (Appendix~\\ref{app:bert_proxy}).\n168\t\n169\t%----------------------------------------------------------------------\n170\t\\subsection{Mixed-LLM Training}\n171\t\n172\tAll preceding experiments use single-source (Qwen3-8B) data. To test whether the evidence hierarchy transfers when training data mixes LLM sources, we train on 250 Qwen + 250 Llama-3.1-8B conversations (Table~\\ref{tab:mixed_llm}).\n173\tClassification-based DAPT is the only variant that substantially outperforms vanilla: 9-class achieves DD OOD F1\\,=\\,0.818$\\pm$0.096 (+53\\,pp over vanilla 0.291$\\pm$0.065), while MLM drops to vanilla level (0.289$\\pm$0.101). On strategy-diverse ActorAttack, detection degrades to chance level (9-class F1\\,=\\,0.504$\\pm$0.107, indistinguishable from majority baseline at $n$\\,=\\,3).\n174\tClassification supervision thus generalizes across LLM sources where unsupervised pretraining does not (Appendix~\\ref{app:mixed_llm}).\n175\t\n176\t%----------------------------------------------------------------------\n177\t\\subsection{Human Data Validation}\n178\t\\label{sec:human_data}\n179\t\n180\tSince both training and OOD evaluation data are Qwen3-8B-generated, we validate on ToxicChat~\\citep{lin2023toxicchat} (204 human-written jailbreak attempts + 204 benign conversations from real LMSYS interactions).\n181\t\n182\t\\begin{table}[t]\n183\t\\centering\n184\t\\small\n185\t\\caption{Human data validation on ToxicChat~\\citep{lin2023toxicchat} (macro F1, 3-seed mean$\\pm$std). Bold indicates best. Single-turn data from real LMSYS user interactions, independent of Qwen3-8B.}\n186\t\\label{tab:human_data}\n187\t\\begin{tabular}{@{}lc@{}}\n188\t\\toprule\n189\t\\textbf{Variant} & Macro F1 \\\\\n190\t\\midrule\n191\tJB-MLM & \\textbf{.837$\\pm$.013} \\\\\n192\tWiki-MLM & .791$\\pm$.093 \\\\\n193\tBinary & .705$\\pm$.072 \\\\\n194\tScrambled & .616$\\pm$.056 \\\\\n195\t9-class & .596$\\pm$.087 \\\\\n196\tTopic & .496$\\pm$.042 \\\\\n197\t\\midrule\n198\tVanilla & .413$\\pm$.021 \\\\\n199\t\\bottomrule\n200\t\\end{tabular}\n201\t\\end{table}\n202\t\n203\tThe ordering reverses (Figure~\\ref{fig:evidence_hierarchy}): JB-MLM leads (0.837$\\pm$0.013) while 9-class ranks lower (0.596$\\pm$0.087; $p < 0.001$). All jailbreak-domain DAPT variants exceed vanilla by 18--42\\,pp, confirming transfer to human-written attacks. ToxicChat is single-turn, so the classification head provides no advantage.\n204\t\n205\t\\begin{figure}[t]\n206\t\\centering\n207\t\\includegraphics[width=\\columnwidth]{figures/paper/fig_hierarchy_reversal.pdf}\n208\t\\caption{Condition-specific evidence hierarchy. On synthetic OOD (DD), classification DAPT dominates; on human-authored ToxicChat, unsupervised MLM leads---rank positions reverse entirely.}\n209\t\\label{fig:hierarchy_reversal}\n210\t\\end{figure}\n211\t\n212\t\\begin{figure}[t]\n213\t\\centering\n214\t\\includegraphics[width=\\columnwidth]{figures/paper/fig_fpr_adaptation.pdf}\n215\t\\caption{Few-shot benign adaptation reduces FPR below the 5\\% deployment threshold with 10--25 conversations across three platforms.}\n216\t\\label{fig:fpr_adaptation}\n217\t\\end{figure}\n218\t\n219\t%----------------------------------------------------------------------\n220\t\\subsection{Robustness and Strategy Analysis}\n221\t\\label{sec:perturbation}\n222\t\n223\tUnder adversarial paraphrasing (BERTScore 0.92), classification variants achieve zero degradation on OOD DD while non-adapted models degrade by $\\sim$12\\,pp; on ActorAttack, DAPT degrades ($\\Delta$\\,=\\,$-$20.4\\,pp) but maintains 52\\,pp over vanilla (Table~\\ref{tab:ood_perturbation}; Appendices~\\ref{sec:perturbation_full},~\\ref{sec:strategy_full}). The 9-class taxonomy characterizes known attacks ($\\kappa$\\,=\\,0.78) but degrades on OOD ($\\kappa$\\,=\\,0.126; Appendix~\\ref{app:strategy_pred}); detection operates through \\texttt{[CLS]} embeddings, not strategy accuracy.\n224\t\n225\t%----------------------------------------------------------------------\n226\t\\subsection{Benign Distribution Shift}\n227\t\\label{sec:benign_shift}\n228\t\n229\tOn WildChat benign conversations, 9-class FPR rises to 68.1\\% (Appendix~\\ref{app:wildchat_fpr}). Few-shot adaptation (encoder frozen, $N$ benign conversations) resolves this (Figure~\\ref{fig:fpr_adaptation}): 10 WildChat conversations reduce FPR to 0\\%, 25 OASST2 to 1.5\\% (consistent across WildChat, OASST2, and ShareGPT; Appendix~\\ref{app:oasst2}); dual-OOD F1 drops 13--14\\,pp without adaptation but recovers within 0.3\\,pp (Appendix~\\ref{app:dual_ood}).\n230\t\n231\t%----------------------------------------------------------------------\n232\t\\subsection{Efficiency and Data Requirements}\n233\t\\label{sec:efficiency}\n234\t\n235\t\\begin{table}[t]\n236\t\\centering\n237\t\\footnotesize\n238\t\\caption{Inference efficiency (single A100). DeBERTa+BiGRU achieves real-time latency with 43$\\times$ fewer parameters than LLM-as-judge. $^{\\dagger}$LLM latency from OOD evaluation; cross-condition comparison is indicative.}\n239\t\\label{tab:efficiency_main}\n240\t\\resizebox{\\columnwidth}{!}{%\n241\t\\begin{tabular}{@{}lrcr@{}}\n242\t\\toprule\n243\t\\textbf{Method} & Latency (ms) & Params & VRAM \\\\\n244\t\\midrule\n245\tTF-IDF+LR & 0.43$\\pm$0.05 & $\\sim$10K & CPU \\\\\n246\tDeBERTa+BiGRU (ours) & 12.1$\\pm$1.2 & 186.7M & 862\\,MB \\\\\n247\tQwen3-8B 3-shot$^{\\dagger}$ & $\\sim$5{,}200 & 8B & $\\sim$16\\,GB \\\\\n248\t\\bottomrule\n249\t\\end{tabular}}\n250\t\\end{table}\n251\t\n252\tDeBERTa+BiGRU processes a conversation in 12.1\\,ms---24.3$\\times$ faster than Qwen3-8B 3-shot under matched conditions (Table~\\ref{tab:efficiency_main}; Appendix~\\ref{app:efficiency})---with 43$\\times$ fewer parameters and 862\\,MB GPU memory, enabling deployment on consumer hardware. The speed gap over TF-IDF+LR (28$\\times$) purchases +71\\,pp on ActorAttack OOD (F1\\,=\\,0.972 vs.\\ 0.261). Meanwhile, 9-class DAPT reaches near-saturation with only 50 training conversations (AA OOD F1\\,$\\geq$\\,0.969; Appendix~\\ref{app:data_efficiency}), requiring just 14\\% of the full training set while exceeding vanilla at any training size by $\\geq$48\\,pp.\n253\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cd6e1914-ed55-428f-ae4c-184be8052be1",
+            "isSidechain": true,
+            "promptId": "270ab91c-e9b9-4a39-b092-16a4d85348b6",
+            "agentId": "aa90fb53a2c1faac3",
+            "type": "user",
+            "uuid": "763ec69e-48fc-4c47-a344-fdca62c0e5a3",
+            "sourceToolAssistantUUID": "cd6e1914-ed55-428f-ae4c-184be8052be1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/director_32e62753",
+            "sessionId": "d0343bc5-105f-48da-b75b-2236f7e1bb2d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "snug-napping-finch"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-24T18:24:54.417Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017pUUgZX6FvGT5ypUiTR6hL",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/conclusion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "763ec69e-48fc-4c47-a344-fdca62c0e5a3",
+            "isSidechain": true,
+            "agentId": "aa90fb53a2c1faac3",
+            "requestId": "req_011CbMryYTviM1hjLkYd9Z8f",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e25eccef-d558-49bd-8307-6e5ed79b4ba3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/director_32e62753",
+            "sessionId": "d0343bc5-105f-48da-b75b-2236f7e1bb2d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "snug-napping-finch",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Babp6vAuESryiSZyYAC283",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1362,
+                "cache_read_input_tokens": 33137,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1362,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 53,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-24T18:24:54.425Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017pUUgZX6FvGT5ypUiTR6hL",
+              "type": "tool_result",
+              "content": "1\t% conclusion.tex\n2\t\n3\t\\section{Discussion}\n4\t\\label{sec:discussion}\n5\t\n6\t\\begin{figure}[t]\n7\t\\centering\n8\t\\includegraphics[width=\\columnwidth]{figures/paper/fig4_svd_subspace.pdf}\n9\t\\caption{Test representations projected onto top-2 SVD directions. 9-class DAPT produces clear cluster separation absent in vanilla.}\n10\t\\label{fig:svd_subspace}\n11\t\\end{figure}\n12\t\n13\t\\paragraph{Discriminative compression and label equivalence.}\n14\tThree observations argue against a topic shortcut: unstable topic OOD (F1\\,=\\,0.541$\\pm$0.207), scrambled labels within 3.9\\,pp, and label-free MLM detection (F1\\,$\\geq$\\,0.97).\n15\tClassification DAPT compresses features into few dimensions (participation ratio 3.7--9.4 vs.\\ 25--32; Figure~\\ref{fig:svd_subspace}; Appendices~\\ref{app:representation}--\\ref{app:tsne}), localizing to 3 SVD dimensions in layers 8--12 \\citep{zhang2021understanding}; a probe confirms sufficiency, and removal degrades DD by 17\\,pp (Appendices~\\ref{app:discriminative_probe},~\\ref{app:svd_necessity}).\n16\t\n17\t\\paragraph{Cross-condition transfer and boundaries.}\n18\tToxicChat (+18--42\\,pp) and cross-LLM experiments (Appendix~\\ref{app:cross_llm}) confirm transfer beyond single-LLM artifacts. On single-turn human-authored data the hierarchy reverses (MLM leads; Appendix~\\ref{app:confidence}); truncated analysis localizes the reversal to distributional gap rather than detection mechanism (Appendix~\\ref{app:truncated}). Mixed-LLM 9-class maintains 0.818 while MLM collapses; at 355M, DAPT becomes counterproductive (vanilla AA\\,=\\,1.000 vs.\\ 9-class 0.946). WildChat FPR reaches 68.1\\% (synthetic-to-real shift). Length-matched evaluation ($N$=155) shows negligible DD change ($\\Delta$\\,=\\,$-$2.5\\,pp; Appendices~\\ref{app:length_independence},~\\ref{app:length}); ActorAttack padding collapse ($-$57.9\\,pp) reflects signal dilution (Appendix~\\ref{app:truncated}).\n19\t\n20\t\\paragraph{Deployment implications.}\n21\tOur findings suggest a capacity-aware deployment strategy. At base scale (125--184M), any domain-relevant classification objective recovers OOD detection---scrambled labels perform equivalently on template attacks, so practitioners need not invest in annotation quality for this regime. When facing strategy-diverse attacks (e.g., ActorAttack), the label effect resurfaces ($d$\\,=\\,0.44), favoring semantically meaningful taxonomies. At sufficient capacity ($\\geq$355M), DAPT becomes unnecessary and potentially counterproductive; the decision to adapt should be conditioned on encoder scale. Independent of adaptation choice, few-shot benign calibration (10--25 conversations per deployment domain) resolves false-positive rates without requiring target-domain attack data, enabling deployment across platforms with minimal data collection. The 184M-parameter pipeline maintains 24.3$\\times$ inference speedup over LLM-as-judge alternatives (43$\\times$ fewer parameters; Table~\\ref{tab:efficiency_main}), making it suitable for real-time monitoring at scale.\n22\t\n23\t\\section{Conclusion}\n24\t\n25\tClassification DAPT recovers OOD detection at base scale (F1\\,=\\,0.97--1.0 vs.\\ vanilla 0.26--0.31), though not under mixed-LLM training on diverse attacks (ActorAttack F1\\,=\\,0.504); on single-turn human-authored data, the hierarchy reverses (ToxicChat MLM 0.837 vs.\\ classification 0.596)---condition-specific, counterproductive at 355M. Few-shot adaptation reduces FPR from 58--68\\% to 0--1.5\\%; this ablation framework provides a template for future controlled studies of domain adaptation in safety-critical NLP tasks.\n26\t\n27\t\\section{Limitations}\n28\t\\label{sec:limitations}\n29\t\n30\t\\begin{itemize}[nosep,leftmargin=*]\n31\t\\item \\textbf{Synthetic data.} All findings derive from synthetic conversations (single LLM, Qwen3-8B; 350 training, 3 seeds); the hierarchy reverses on human single-turn data (ToxicChat), and no human-generated multi-turn jailbreak dataset exists.\n32\t\\item \\textbf{IID benign assumption.} OOD F1 assumes IID benign data; few-shot adaptation recovers performance but is validated on only two platforms ($n \\leq 50$).\n33\t\\item \\textbf{Scope.} Only persuasion-mediated multi-turn attacks at base-to-large encoder scale (125--355M) are addressed; single-turn token-level attacks and non-text modalities are out of scope.\n34\t\\end{itemize}\n35\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e25eccef-d558-49bd-8307-6e5ed79b4ba3",
+            "isSidechain": true,
+            "promptId": "270ab91c-e9b9-4a39-b092-16a4d85348b6",
+            "agentId": "aa90fb53a2c1faac3",
+            "type": "user",
+            "uuid": "8aac933a-a91f-4239-8638-fde59d4d9b84",
+            "sourceToolAssistantUUID": "e25eccef-d558-49bd-8307-6e5ed79b4ba3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/director_32e62753",
+            "sessionId": "d0343bc5-105f-48da-b75b-2236f7e1bb2d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "snug-napping-finch"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-24T18:24:54.887Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BCPEF8emj2mBZjRCNjeDxK",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8aac933a-a91f-4239-8638-fde59d4d9b84",
+            "isSidechain": true,
+            "agentId": "aa90fb53a2c1faac3",
+            "requestId": "req_011CbMryYTviM1hjLkYd9Z8f",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "978651f3-c6ad-4df2-8338-d5bae1df2359",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/director_32e62753",
+            "sessionId": "d0343bc5-105f-48da-b75b-2236f7e1bb2d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "snug-napping-finch",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Babp6vAuESryiSZyYAC283",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1362,
+                "cache_read_input_tokens": 33137,
+                "output_tokens": 552,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1362
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 552,
+                    "cache_read_input_tokens": 33137,
+                    "cache_creation_input_tokens": 1362,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1362,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-24T18:24:55.191Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BCPEF8emj2mBZjRCNjeDxK",
+              "type": "tool_result",
+              "content": "1\t% appendix.tex — Supplementary material\n2\t\n3\t\\appendix\n4\t\n5\t\\section{LLM-as-Judge Baseline}\n6\t\\label{sec:llm_judge}\n7\t\n8\t\\begin{table}[t]\n9\t\\centering\n10\t\\small\n11\t\\caption{LLM-as-judge jailbreak detection. IID: binary F1 (Crescendo test set); OOD: macro F1 (DD = Deceptive Delight, AA = ActorAttack). GPT-5.5 F1 values exclude unparseable responses and represent upper bounds.}\n12\t\\label{tab:llm_judge}\n13\t\\begin{tabular}{@{}lcccr@{}}\n14\t\\toprule\n15\t\\textbf{Method} & DD & AA & IID & Unparse. \\\\\n16\t\\midrule\n17\t\\multicolumn{5}{l}{\\textit{Zero-shot}} \\\\[2pt]\n18\tGPT-5.5 & -- & -- & .383 & 30--47\\% \\\\\n19\tQwen3-8B & .244 & .244 & .100 & 0\\% \\\\\n20\t\\midrule\n21\t\\multicolumn{5}{l}{\\textit{3-shot}} \\\\[2pt]\n22\tQwen3-8B & .566 & .652 & -- & 0\\% \\\\\n23\t\\midrule\n24\t\\multicolumn{5}{l}{\\textit{Trained classifier}} \\\\[2pt]\n25\t9-class (ours) & \\textbf{.994} & \\textbf{.972} & \\textbf{1.000} & 0\\% \\\\\n26\t\\bottomrule\n27\t\\end{tabular}\n28\t\\end{table}\n29\t\n30\tTable~\\ref{tab:llm_judge} reports LLM-as-judge performance on IID and OOD data.\n31\tOn IID Crescendo, GPT-5.5 achieves precision of 1.0 at all turn prefixes but recall ranges from only 0.105 to 0.290, resulting in F1 = 0.383 on full conversations; 30--47\\% of responses are unparseable.\n32\tQwen3-8B performs worse (IID F1 = 0.100).\n33\tOn OOD data, zero-shot Qwen3-8B achieves macro F1 = 0.244 on both DD and ActorAttack by predicting nearly all conversations as benign.\n34\tEven with 3-shot prompting, Qwen3-8B reaches only 0.566 (DD) and 0.652 (AA), while DisPeD maintains macro F1 $\\geq$ 0.972.\n35\tThe poor performance of content-level reasoning on unseen attack families underscores the necessity of trained classifiers with domain-adapted representations.\n36\t\n37\t\\section{Full Cross-Attack Results by Prefix}\n38\t\\label{sec:full_prefix}\n39\t\n40\t\\begin{table*}[t]\n41\t\\centering\n42\t\\small\n43\t\\caption{Full cross-attack generalization results (F1) at all prefix lengths. 3-seed mean$\\pm$std where available. ``--'' indicates insufficient conversation length for that prefix (FITD conversations contain 2--3 turns).}\n44\t\\label{tab:full_prefix}\n45\t\\begin{tabular}{@{}lccccc@{}}\n46\t\\toprule\n47\t\\textbf{Method} & $K$=1 & $K$=2 & $K$=3 & $K$=5 & Full \\\\\n48\t\\midrule\n49\t\\multicolumn{6}{l}{\\textit{IID (Crescendo)}} \\\\[2pt]\n50\t9-class (ours) & 1.000$\\pm$.000 & 1.000$\\pm$.000 & 1.000$\\pm$.000 & 1.000$\\pm$.000 & 1.000$\\pm$.000 \\\\\n51\tMLM-only & .960 & .974 & .987 & 1.000 & 1.000 \\\\\n52\tVanilla DeBERTa & .968$\\pm$.033 & .978$\\pm$.016 & .987$\\pm$.000 & .982$\\pm$.014 & 1.000$\\pm$.000 \\\\\n53\tTF-IDF LR & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 \\\\\n54\t\\midrule\n55\t\\multicolumn{6}{l}{\\textit{OOD (Deceptive Delight)}} \\\\[2pt]\n56\t9-class (ours) & .990$\\pm$.013 & .981$\\pm$.013 & .972$\\pm$.026 & .997$\\pm$.005 & .997$\\pm$.005 \\\\\n57\tBinary & .994$\\pm$.009 & .994$\\pm$.009 & .984$\\pm$.008 & 1.000$\\pm$.000 & 1.000$\\pm$.000 \\\\\n58\tScrambled & .997$\\pm$.005 & .981$\\pm$.026 & .975$\\pm$.029 & .997$\\pm$.005 & .997$\\pm$.005 \\\\\n59\tMLM-only & .973$\\pm$.019 & .993$\\pm$.009 & .997$\\pm$.005 & .997$\\pm$.005 & .914$\\pm$.115 \\\\\n60\tVanilla DeBERTa & .628$\\pm$.038 & .479$\\pm$.038 & .389$\\pm$.027 & .351$\\pm$.030 & .312$\\pm$.026 \\\\\n61\tTF-IDF LR & 1.000 & 1.000 & .994 & 1.000 & .961 \\\\\n62\t\\midrule\n63\t\\multicolumn{6}{l}{\\textit{OOD (FITD)}} \\\\[2pt]\n64\t9-class (ours) & 1.000$\\pm$.000 & .997$\\pm$.005 & -- & -- & 1.000$\\pm$.000 \\\\\n65\tVanilla DeBERTa & .954$\\pm$.039 & .952$\\pm$.061 & -- & -- & .994$\\pm$.009 \\\\\n66\tTF-IDF LR & 1.000 & -- & -- & -- & 1.000 \\\\\n67\t\\bottomrule\n68\t\\end{tabular}\n69\t\\end{table*}\n70\t\n71\t\\section{ActorAttack Full Results}\n72\t\\label{sec:actorattack_full}\n73\t\n74\t\\begin{table*}[t]\n75\t\\centering\n76\t\\small\n77\t\\caption{Full ActorAttack OOD results (F1) at all prefix lengths. 3-seed mean$\\pm$std (Binary per-$K$ reports $n$=2; Full is 3-seed).}\n78\t\\label{tab:actorattack_full}\n79\t\\begin{tabular}{@{}lccccc@{}}\n80\t\\toprule\n81\t\\textbf{Method} & $K$=1 & $K$=2 & $K$=3 & $K$=5 & Full \\\\\n82\t\\midrule\n83\t\\multicolumn{6}{l}{\\textit{DeBERTa-v3}} \\\\[2pt]\n84\tBinary & .788$\\pm$.020 & \\textbf{.935$\\pm$.018} & \\textbf{.976$\\pm$.005} & \\textbf{.995$\\pm$.005} & \\textbf{.990$\\pm$.008} \\\\\n85\t9-class & .773$\\pm$.041 & .855$\\pm$.048 & .921$\\pm$.046 & .966$\\pm$.028 & .972$\\pm$.026 \\\\\n86\tScrambled & .652$\\pm$.034 & .804$\\pm$.053 & .854$\\pm$.046 & .910$\\pm$.052 & .951$\\pm$.043 \\\\\n87\tMLM-only & .736$\\pm$.150 & .909$\\pm$.058 & .945$\\pm$.039 & .929$\\pm$.033 & .893$\\pm$.080 \\\\\n88\tWiki MLM & .656$\\pm$.224 & .672$\\pm$.252 & .693$\\pm$.280 & .689$\\pm$.285 & .686$\\pm$.297 \\\\\n89\tTopic & .513$\\pm$.077 & .580$\\pm$.109 & .565$\\pm$.100 & .615$\\pm$.111 & .625$\\pm$.141 \\\\\n90\tVanilla & .337$\\pm$.049 & .306$\\pm$.026 & .284$\\pm$.011 & .262$\\pm$.006 & .258$\\pm$.000 \\\\\n91\tTF-IDF LR & .633 & .730 & .571 & .242 & .261 \\\\\n92\t\\midrule\n93\t\\multicolumn{6}{l}{\\textit{RoBERTa}} \\\\[2pt]\n94\t9-class & \\textbf{.738$\\pm$.033} & .805$\\pm$.033 & .884$\\pm$.066 & .925$\\pm$.066 & .939$\\pm$.046 \\\\\n95\tMLM & .633$\\pm$.133 & .665$\\pm$.150 & .713$\\pm$.174 & .719$\\pm$.184 & .730$\\pm$.201 \\\\\n96\tVanilla & .410$\\pm$.126 & .425$\\pm$.143 & .432$\\pm$.144 & .466$\\pm$.144 & .466$\\pm$.163 \\\\\n97\t\\bottomrule\n98\t\\end{tabular}\n99\t\\end{table*}\n100\t\n101\tTable~\\ref{tab:actorattack_full} reveals three distinct prefix-length patterns. The 9-class model improves monotonically from $K$=1 to Full (+20\\,pp), consistent with cumulative evidence accumulation across turns. Vanilla DeBERTa \\emph{decreases} with more turns (0.337 at $K$=1 to 0.258 at Full), suggesting that additional attack turns push representations further into benign embedding regions. MLM peaks at $K$=3 (0.945) then declines to 0.893 at Full, indicating that unsupervised domain exposure captures early-turn patterns but is unstable under extended sequences.\n102\t\n103\t\\subsection{Error Analysis}\n104\t\\label{app:aa_error}\n105\t\n106\tPer-sample majority vote across 3 seeds yields 98.3\\% accuracy on ActorAttack OOD (2 false negatives, 0 false positives). No sample is misclassified by all three seeds; all 7 seed-specific errors are false negatives concentrated in shorter conversations (3--6 turns). On these 7 error samples, vanilla achieves 0/3 correct votes per sample, while 9-class majority vote correctly classifies 5/7, confirming that domain adaptation provides robust per-sample coverage even where individual seeds fail.\n107\t\n108\t\\section{Perturbation Robustness}\n109\t\\label{sec:perturbation_full}\n110\t\n111\t\\begin{table}[t]\n112\t\\centering\n113\t\\small\n114\t\\caption{Perturbation behavior under adversarial paraphrasing on IID Crescendo ($n$=76). $\\Delta$: F1 degradation (pp). Classification-supervised variants achieve zero degradation at full length; this pattern does not generalize to ActorAttack.}\n115\t\\label{tab:perturbation}\n116\t\\begin{tabular}{@{}lcccc@{}}\n117\t\\toprule\n118\t\\textbf{Method} & $\\Delta$ Full & $\\Delta$ $K$=1 & $\\Delta$ $K$=2 & $\\Delta$ $K$=3 \\\\\n119\t\\midrule\n120\t9-class (ours) & \\textbf{0.0} & \\textbf{$-$2.6} & \\textbf{0.0} & \\textbf{0.0} \\\\\n121\tScrambled & \\textbf{0.0} & $-$5.3 & $-$2.6 & \\textbf{0.0} \\\\\n122\tBinary & \\textbf{0.0} & $-$9.2 & $-$2.6 & \\textbf{0.0} \\\\\n123\t\\midrule\n124\tTF-IDF LR & $-$1.3 & $-$9.6 & $-$4.1 & $-$1.3 \\\\\n125\tMLM-only & $-$2.6 & $-$9.2 & $-$4.0 & $-$4.0 \\\\\n126\tTopic (seed 42) & $-$4.0 & $-$2.7 & $-$2.7 & \\textbf{0.0} \\\\\n127\t\\midrule\n128\tWikipedia MLM & $-$12.1 & $-$12.4 & $-$15.4 & $-$17.9 \\\\\n129\tVanilla DeBERTa & $-$11.8 & $-$14.6 & $-$12.1 & $-$13.8 \\\\\n130\t\\bottomrule\n131\t\\end{tabular}\n132\t\\end{table}\n133\t\n134\tTable~\\ref{tab:perturbation} shows perturbation behavior on IID data.\n135\tClassification-supervised variants (9-class, binary, scrambled) achieve zero degradation at full conversation length regardless of label correctness.\n136\tModels without jailbreak-domain exposure (Wikipedia MLM, vanilla) degrade by $\\sim$12\\,pp.\n137\tMcNemar's test finds no significant pairwise differences among classification-supervised variants (all $p > 0.13$), though with $\\leq$7 discordant pairs, statistical power is limited.\n138\t\n139\t\\begin{table}[t]\n140\t\\centering\n141\t\\small\n142\t\\caption{Perturbation robustness on OOD Deceptive Delight ($n$=118). $\\Delta$: F1 change (pp) from clean to paraphrased. 3-seed mean$\\pm$std where available.}\n143\t\\label{tab:ood_perturbation}\n144\t\\resizebox{\\columnwidth}{!}{%\n145\t\\begin{tabular}{@{}lcccc@{}}\n146\t\\toprule\n147\t\\textbf{Variant} & Clean Full & Pert.\\ Full & $\\Delta$ Full & $\\Delta$ $K$=1 \\\\\n148\t\\midrule\n149\t9-class & .994$\\pm$.005 & 1.000$\\pm$.000 & +0.6 & +0.6 \\\\\n150\tBinary & 1.000$\\pm$.000 & 1.000$\\pm$.000 & 0.0 & +0.6 \\\\\n151\tScrambled & .994$\\pm$.005 & 1.000$\\pm$.000 & +0.6 & $-$0.3 \\\\\n152\t\\midrule\n153\tJB MLM & .914$\\pm$.115 & .941 & +2.7 & 0.0 \\\\\n154\tWiki MLM$^{*}$ & .904$\\pm$.115 & .872 & $-$3.3 & $-$3.2 \\\\\n155\tVanilla$^{\\dagger}$ & .312$\\pm$.026 & .339$\\pm$.055 & +2.7 & $-$6.8$\\pm$1.1 \\\\\n156\t\\bottomrule\n157\t\\end{tabular}}\n158\t\\vspace{-2pt}\n159\t{\\footnotesize $^{*}$Wiki MLM degradation is seed-driven: seed 42 accounts for $-$9.8\\,pp; other seeds show 0.0\\,pp change.\\\\$^{\\dagger}$Vanilla $\\Delta$ Full = +2.7\\,pp reflects floor-effect noise (baseline 0.312, std 0.055), not meaningful improvement.}\n160\t\\end{table}\n161\t\n162\tOn OOD DD, the IID pattern replicates: classification-supervised variants show zero degradation while McNemar's test confirms 9-class vs.\\ vanilla significance ($p < 0.001$, 49--78 discordant pairs).\n163\tOn OOD ActorAttack, domain-adapted variants degrade substantially (9-class $\\Delta$\\,=\\,$-$20.4$\\pm$13.5\\,pp, MLM $-$35.3\\,pp), but perturbation narrows rather than closes the adapted vs.\\ non-adapted gap: 9-class perturbed F1 = 0.768 vs.\\ vanilla 0.248 (McNemar $p < 0.001$).\n164\tDomain specificity also manifests: Wikipedia MLM degrades by $\\sim$12\\,pp while jailbreak-domain MLM degrades by only 2.6\\,pp.\n165\t\n166\t\\section{Strategy Trajectory Analysis}\n167\t\\label{sec:strategy_full}\n168\t\n169\t\\begin{figure*}[t]\n170\t\\centering\n171\t\\includegraphics[width=\\textwidth]{figures/paper/fig3_strategy_heatmap.pdf}\n172\t\\caption{Persuasion strategy transition count matrices for three attack families, based on ground-truth intended strategy labels. Strategy labels validated on $n$=50 samples with a single annotator ($\\kappa$=0.78); fine-grained trajectory patterns should be interpreted with this limitation. Crescendo exhibits broad coverage across all strategy categories, while FITD and DD concentrate transitions in smaller subsets. Row $i$, column $j$ counts transitions from strategy $i$ at turn $t$ to strategy $j$ at turn $t+1$.}\n173\t\\label{fig:strategy_heatmap}\n174\t\\end{figure*}\n175\t\n176\tFigure~\\ref{fig:strategy_heatmap} shows transition count matrices for three attack families.\n177\tCrescendo conversations exhibit broad transition coverage across all nine strategy categories (1,818 total transitions), with the highest concentration in Role Assignment self-transitions (545); this reflects its gradual escalation design.\n178\tFITD conversations show a markedly sparser pattern (541 transitions), with Role$\\to$Obfuscation (161) as the dominant transition, consistent with FITD's commitment-consistency exploitation~\\citep{cialdini2001influence}.\n179\tDD conversations span 5 active source strategies (565 transitions), with Emotion$\\to$Obfuscation (129) as the dominant transition, aligning with DD's design of embedding harmful content within emotionally engaging contexts~\\citep{deceptivedelight2024}.\n180\t\n181\t\\section{Centered CKA Heatmaps}\n182\t\\label{sec:cka_heatmap}\n183\t\n184\t\\begin{figure}[t]\n185\t\\centering\n186\t\\includegraphics[width=\\columnwidth]{figures/paper/cka_heatmap.pdf}\n187\t\\caption{Centered CKA similarity~\\citep{kornblith2019cka} between encoder variants on IID and OOD data for DeBERTa-v3 and RoBERTa. Low off-diagonal values (vanilla vs.\\ adapted variants) confirm that continued pretraining substantially reshapes representations; the MLM vs.\\ 9-class block shows distinct geometries (CKA $\\leq$ 0.2 on RoBERTa OOD).}\n188\t\\label{fig:cka_heatmap}\n189\t\\end{figure}\n190\t\n191\t\\section{Embedding Space Visualization}\n192\t\\label{app:tsne}\n193\t\n194\tFigure~\\ref{fig:tsne} visualizes mean-pooled \\texttt{[CLS]} embeddings via t-SNE for three representative variants (Vanilla, JB-MLM, 9-Class) on DD OOD and ActorAttack. Vanilla embeddings show dispersed jailbreak clusters with ambiguous decision boundaries, while domain-adapted variants (JB-MLM, 9-Class) produce tighter, more separable clusters. JB-MLM achieves the clearest bimodal separation on both evaluation sets, consistent with its superior detection performance.\n195\t\n196\t\\begin{figure}[ht]\n197\t\\centering\n198\t\\includegraphics[width=\\columnwidth]{figures/paper/embedding_tsne.pdf}\n199\t\\caption{t-SNE visualization of mean-pooled \\texttt{[CLS]} embeddings (perplexity=30) for Vanilla, JB-MLM, and 9-Class variants on DD OOD and ActorAttack (118 samples each; blue=benign, red=jailbreak).}\n200\t\\label{fig:tsne}\n201\t\\end{figure}\n202\t\n203\t\\section{Cross-LLM Validation}\n204\t\\label{app:cross_llm}\n205\t\n206\t\\begin{table}[ht]\n207\t\\centering\n208\t\\footnotesize\n209\t\\caption{Cross-LLM validation (F1, full conversation). All models are trained on Qwen3-8B data; conditions vary the source of jailbreak (JB) and benign (ben.) conversations at inference. Values are evaluated under a matched 50-sample subset protocol and differ from Table~\\ref{tab:evidence_hierarchy}, which uses the full evaluation set.}\n210\t\\label{tab:cross_llm}\n211\t\\resizebox{\\columnwidth}{!}{%\n212\t\\begin{tabular}{@{}lcccccc@{}}\n213\t\\toprule\n214\t& \\multicolumn{3}{c}{\\textit{DD Full}} & \\multicolumn{3}{c}{\\textit{AA Full}} \\\\\n215\t\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\n216\t\\textbf{Condition} & Van. & MLM & 9-cl. & Van. & MLM & 9-cl. \\\\\n217\t\\midrule\n218\tQwen JB + Qwen ben. & .312 & .914 & .997 & .258 & .893 & .972 \\\\\n219\tLlama JB + Llama ben. & .261 & .282 & .433 & .261 & .368 & .321 \\\\\n220\tLlama JB + Qwen ben. & .302 & .778$^{*}$ & 1.000 & .302 & .903 & .801 \\\\\n221\t\\bottomrule\n222\t\\end{tabular}}\n223\t\\vspace{-2pt}\n224\t{\\footnotesize $^{*}$High seed variance (std = 0.306): seed 456 outlier (F1 = 0.345); remaining two seeds achieve F1 $\\geq$ 0.97.}\n225\t\\end{table}\n226\t\n227\tTable~\\ref{tab:cross_llm} shows three inference conditions. When both jailbreak and benign text come from Llama (row~2), all variants collapse (F1 = 0.26--0.43), but this conflates two sources of distribution shift: unfamiliar jailbreak patterns and unfamiliar benign text. Row~3 isolates jailbreak transferability by pairing Llama jailbreaks with the original Qwen benign distribution. Under this condition, 9-class recovers to F1 = 1.000 on DD and 0.801 on ActorAttack, and JB-MLM reaches 0.903 on ActorAttack. The contrast between rows~2 and~3 shows that the dominant failure mode in row~2 is benign distribution mismatch (false positives from unfamiliar benign text), not inability to recognize cross-LLM jailbreak patterns. Vanilla remains at 0.26--0.31 across all conditions, further confirming that encoders without DAPT lack OOD detection capability regardless of the LLM source. The residual degradation on ActorAttack (0.801 vs.\\ 0.972) reflects genuine cross-LLM variation in structurally complex attack patterns.\n228\t\n229\t\\begin{table}[ht]\n230\t\\centering\n231\t\\footnotesize\n232\t\\caption{Error decomposition for DD Full cross-LLM conditions (matched 50-sample subsets). TP rate is identical across benign conditions; the F1 collapse in the Llama-only condition (Table~\\ref{tab:cross_llm}, row~2) is driven entirely by false positives on unfamiliar benign text.}\n233\t\\label{tab:cross_llm_error}\n234\t\\begin{tabular}{@{}lccc@{}}\n235\t\\toprule\n236\t\\textbf{Metric} & Van. & MLM & 9-cl. \\\\\n237\t\\midrule\n238\tTP rate (Llama JB) & 0.0\\% & 68.0\\% & 100.0\\% \\\\\n239\tFP rate (Llama ben.) & 29.3\\% & 88.0\\% & 90.0\\% \\\\\n240\tFP rate (Qwen ben.) & 0.0\\% & 0.9\\% & 0.0\\% \\\\\n241\t\\bottomrule\n242\t\\end{tabular}\n243\t\\end{table}\n244\t\n245\tTable~\\ref{tab:cross_llm_error} decomposes DD Full F1 into true positive and false positive rates. TP rates are identical regardless of the benign source: domain-adapted models detect Llama-generated jailbreaks at the same rate whether evaluated against Qwen or Llama benign text. The F1 collapse in the full Llama condition (Table~\\ref{tab:cross_llm}, row~2) is driven entirely by false positives on unfamiliar benign text (FP rate: 88--90\\% on Llama vs.\\ 0--0.9\\% on Qwen for adapted variants). The model implicitly treats non-Qwen text style as a jailbreak indicator, a spurious correlation from single-LLM training data. This failure reflects a data diversity limitation, not a methodological one; mixed-LLM training (Table~\\ref{tab:mixed_llm}) partially addresses this confound.\n246\t\n247\t\\section{Mixed-LLM Training Results}\n248\t\\label{app:mixed_llm}\n249\t\n250\t\\begin{table}[ht]\n251\t\\centering\n252\t\\footnotesize\n253\t\\caption{Mixed-LLM training (250 Qwen + 250 Llama conversations, 3-seed mean$\\pm$std where available). ToxicChat evaluated on balanced set (408 conversations).}\n254\t\\label{tab:mixed_llm}\n255\t\\resizebox{\\columnwidth}{!}{%\n256\t\\begin{tabular}{@{}lccccc@{}}\n257\t\\toprule\n258\t\\textbf{Variant} & Mixed & DD OOD & AA OOD & FITD OOD & ToxicChat \\\\\n259\t\\midrule\n260\t9-class & \\textbf{.996$\\pm$.006} & \\textbf{.818$\\pm$.096} & \\textbf{.504$\\pm$.107} & \\textbf{.997$\\pm$.005} & \\textbf{.550$\\pm$.052} \\\\\n261\tMLM & .681$\\pm$.226 & .289$\\pm$.101 & .258$\\pm$.075 & .679$\\pm$.188 & .256$\\pm$.053 \\\\\n262\tVanilla & .802$\\pm$.010 & .291$\\pm$.065 & .389$\\pm$.073 & .867$\\pm$.022 & .356$\\pm$.009 \\\\\n263\t\\bottomrule\n264\t\\end{tabular}}\n265\t\\end{table}\n266\t\n267\tTable~\\ref{tab:mixed_llm} reports detection performance when training on a mixed corpus of Qwen3-8B and Llama-3.1-8B conversations. Classification-based DAPT (9-class) maintains the strongest DD OOD performance (0.818$\\pm$0.096), outperforming both vanilla (0.291$\\pm$0.065) and MLM (0.289$\\pm$0.101) by 53\\,pp. ActorAttack remains challenging under mixed-LLM conditions (9-class F1\\,=\\,0.504$\\pm$0.107), suggesting structurally complex attacks require larger or more diverse training data. ToxicChat performance shows no significant improvement over single-source training (0.550$\\pm$0.052 vs.\\ 0.596$\\pm$0.087; Section~\\ref{sec:human_data}), consistent with ToxicChat being zero-shot single-turn transfer rather than a standard OOD benchmark.\n268\t\n269\t\\section{Dataset Scale Validation}\n270\t\\label{app:scale_validation}\n271\t\n272\t\\begin{table}[ht]\n273\t\\centering\n274\t\\footnotesize\n275\t\\caption{Dataset scale validation (1{,}000 Qwen conversations, 3-seed mean$\\pm$std). IID results omitted due to train/test overlap (71\\% of original test set present in expanded training data).}\n276\t\\label{tab:scale_validation}\n277\t\\begin{tabular}{@{}lcc@{}}\n278\t\\toprule\n279\t\\textbf{Variant} & DD OOD & AA OOD \\\\\n280\t\\midrule\n281\t9-class & \\textbf{.889$\\pm$.041} & \\textbf{.913$\\pm$.041} \\\\\n282\tMLM & .338$\\pm$.010 & .351$\\pm$.018 \\\\\n283\tVanilla & .326$\\pm$.000 & .508$\\pm$.085 \\\\\n284\t\\bottomrule\n285\t\\end{tabular}\n286\t\\end{table}\n287\t\n288\tTable~\\ref{tab:scale_validation} validates robustness to dataset scale by doubling the training corpus from 500 to 1{,}000 conversations with new topic seeds. The hierarchy 9-class $\\gg$ MLM $\\approx$ vanilla holds at 2$\\times$ scale: classification-based DAPT maintains 40--56\\,pp advantage over vanilla, while MLM provides no improvement over vanilla on either attack family (DD: 0.338 vs.\\ 0.326; AA: 0.351 vs.\\ 0.508).\n289\t\n290\tThe performance decline at 1{,}000 conversations may reflect distributional heterogeneity introduced by diverse topic seeds: the additional conversations broaden the training distribution, potentially diluting the concentrated attack-relevant features that smaller, more homogeneous datasets preserve. IID evaluation was precluded by train/test overlap in the expanded dataset (71\\%), limiting analysis to OOD metrics. Human-data validation also degrades under scaled training (ToxicChat F1: 0.596 $\\to$ 0.341), suggesting the expanded distribution shifts representations away from features useful for both synthetic OOD and human data.\n291\t\n292\t\\section{RoBERTa-large DAPT Learning Rate Control}\n293\t\n294\t\\begin{table}[ht]\n295\t\\centering\n296\t\\footnotesize\n297\t\\caption{RoBERTa-large (355M) DAPT learning rate control on OOD Full (3-seed mean$\\pm$std). Reducing the learning rate worsens both DD and AA, ruling out over-adaptation as the cause of the regression in Table~\\ref{tab:cross_encoder}.}\n298\t\\label{tab:roberta_large_lr}\n299\t\\begin{tabular}{@{}lcc@{}}\n300\t\\toprule\n301\t\\textbf{Config} & DD Full & AA Full \\\\\n302\t\\midrule\n303\tVanilla (no DAPT) & .927$\\pm$.036 & 1.000$\\pm$.000 \\\\\n304\t9-class, LR=$2 \\times 10^{-5}$ & .987$\\pm$.004 & .946$\\pm$.057 \\\\\n305\t9-class, LR=$1 \\times 10^{-5}$ & .948$\\pm$.034 & .781$\\pm$.054 \\\\\n306\t\\bottomrule\n307\t\\end{tabular}\n308\t\\end{table}\n309\t\n310\tReducing the DAPT learning rate from $2 \\times 10^{-5}$ to $1 \\times 10^{-5}$ worsens both DD and AA performance, which rules out over-adaptation as the cause of the regression observed in Table~\\ref{tab:cross_encoder}. An MLM-only variant (without classification) produces the same pattern (AA Full = 0.874$\\pm$0.014); representation drift from continued pretraining, not classification-specific bias, is the underlying cause. Domain-adaptive fine-tuning narrows the representation space of a sufficiently large encoder and reduces its inherent OOD generalization ability.\n311\t\n312\t\\section{TOST Equivalence Sensitivity Analysis}\n313\t\n314\t\\begin{table}[ht]\n315\t\\centering\n316\t\\footnotesize\n317\t\\caption{TOST equivalence test (scrambled vs.\\ 9-class, $\\delta$=5\\,pp, 10 seeds). $p < 0.05$ confirms equivalence within $\\pm\\delta$.}\n318\t\\label{tab:tost_sensitivity}\n319\t\\begin{tabular}{@{}lccc@{}}\n320\t\\toprule\n321\t\\textbf{Dataset} & $p$ & $d$ & Equivalent? \\\\\n322\t\\midrule\n323\tDD OOD & $2.06 \\times 10^{-9}$ & $-$0.136 & \\checkmark \\\\\n324\tFITD OOD & $\\approx 0$ & 0.000 & \\checkmark \\\\\n325\tActorAttack & .183 & 0.440 & -- \\\\\n326\t\\bottomrule\n327\t\\end{tabular}\n328\t\\end{table}\n329\t\n330\tIn our 80-sample test set, $\\delta = 5$\\,pp corresponds to $\\approx$4 additional missed attacks. We choose $\\delta$\\,=\\,5\\,pp as a conservative threshold; equivalence holds even at $\\delta$\\,=\\,3\\,pp on DD ($p < 0.001$, $n$\\,=\\,10) and FITD ($p \\approx 0$). With 10 seeds at $\\delta$\\,=\\,5\\,pp, DD and FITD confirm formal equivalence ($p < 10^{-8}$, $|d| \\leq 0.14$), demonstrating that label correctness is not a detection factor for template attacks. On ActorAttack, the mean gap is 3.0\\,pp with moderate effect size ($d$\\,=\\,0.44); TOST does not confirm equivalence ($p$\\,=\\,0.183), indicating that strategy-diverse attacks retain some sensitivity to label quality.\n331\t\n332\t\\section{Partition Robustness and Topic Failure Analysis}\n333\t\\label{app:random_partition}\n334\t\\label{app:topic_failure}\n335\t\n336\t\\subsection{Random Binary Partition Robustness}\n337\t\n338\t\\begin{table}[ht]\n339\t\\centering\n340\t\\footnotesize\n341\t\\caption{OOD F1 for 10 random binary partitions of the 9 strategy labels (each partition randomly assigns strategies to group A or B). All partitions use identical Stage-1 DAPT and Stage-2 GRU training; only the binary label mapping differs. Seed 42 (3 runs).}\n342\t\\label{tab:random_partition}\n343\t\\resizebox{\\columnwidth}{!}{%\n344\t\\begin{tabular}{@{}lcccc@{}}\n345\t\\toprule\n346\t\\textbf{Partition} & \\textbf{Group A} & \\textbf{IID} & \\textbf{DD OOD} & \\textbf{AA OOD} \\\\\n347\t\\midrule\n348\t0 & \\{0,2,4,5,7\\} & 1.000 & 1.000 & 1.000 \\\\\n349\t1 & \\{1,3,5,6,8\\} & 1.000 & 1.000 & 1.000 \\\\\n350\t2 & \\{0,1,3,7,8\\} & 1.000 & 1.000 & 1.000 \\\\\n351\t3 & \\{2,4,5,6,7\\} & 1.000 & 1.000 & 1.000 \\\\\n352\t4 & \\{0,1,2,6,8\\} & 1.000 & 1.000 & 1.000 \\\\\n353\t5 & \\{0,3,4,7,8\\} & 1.000 & 1.000 & 1.000 \\\\\n354\t6 & \\{1,2,3,5,6\\} & 1.000 & 1.000 & 1.000 \\\\\n355\t7 & \\{1,4,6,7\\}   & 1.000 & 1.000 & 0.636 \\\\\n356\t8 & \\{0,2,3,4,8\\} & 1.000 & 1.000 & 1.000 \\\\\n357\t9 & \\{0,1,5,7,8\\} & 1.000 & 1.000 & 1.000 \\\\\n358\t\\midrule\n359\tMean$\\pm$Std &  & 1.000$\\pm$.000 & 1.000$\\pm$.000 & 0.964$\\pm$.109 \\\\\n360\t\\bottomrule\n361\t\\end{tabular}}\n362\t\\end{table}\n363\t\n364\tAll 10 partitions achieve perfect IID and DD OOD detection regardless of how the 9 strategy labels are split into two groups. On ActorAttack, 9/10 partitions achieve F1\\,=\\,1.000; the sole outlier (partition~7, AA F1\\,=\\,0.636) uses a 4/5 split that isolates a specific strategy cluster. The near-universal success confirms that domain-relevant binary classification---not specific label semantics---drives cross-attack generalization on template attacks. The AA outlier is consistent with the complexity-dependent boundary observed in Section~\\ref{sec:decomposition}: structurally complex attacks are sensitive to specific partition choices while template attacks are not.\n365\t\n366\t\\subsection{Topic Classification Failure Analysis}\n367\t\n368\t\\begin{table}[ht]\n369\t\\centering\n370\t\\footnotesize\n371\t\\caption{Per-turn Fisher ratio (mean across all dimensions) and silhouette score between jailbreak and benign turn embeddings (\\texttt{[CLS]} representations). Higher values indicate greater per-turn separability.}\n372\t\\label{tab:topic_failure}\n373\t\\begin{tabular}{@{}llcc@{}}\n374\t\\toprule\n375\t\\textbf{Model} & \\textbf{Dataset} & \\textbf{Fisher (mean)} & \\textbf{Silhouette} \\\\\n376\t\\midrule\n377\tVanilla  & IID test & 0.118 & 0.034 \\\\\n378\tVanilla  & DD OOD  & 0.401 & 0.411 \\\\\n379\tVanilla  & AA OOD  & 0.408 & 0.330 \\\\\n380\t\\midrule\n381\t9-class DAPT & IID test & 0.073 & 0.048 \\\\\n382\t9-class DAPT & DD OOD  & 0.200 & 0.079 \\\\\n383\t9-class DAPT & AA OOD  & 0.832 & 0.301 \\\\\n384\t\\midrule\n385\tTopic DAPT & IID test & 0.108 & 0.076 \\\\\n386\tTopic DAPT & DD OOD  & 0.653 & 0.274 \\\\\n387\tTopic DAPT & AA OOD  & 0.311 & 0.141 \\\\\n388\t\\bottomrule\n389\t\\end{tabular}\n390\t\\end{table}\n391\t\n392\tTopic DAPT achieves \\emph{higher} per-turn Fisher separability than 9-class DAPT on IID and DD (0.653 vs.\\ 0.200 on DD) yet produces far worse conversation-level detection (F1\\,=\\,0.541 vs.\\ 0.994). This rules out per-turn separability destruction as the failure mechanism. The 9-class model instead greatly expands the embedding space (centroid $L_2$ distance 7.5--27.6 vs.\\ 0.9--1.1 for vanilla) while distributing both classes broadly, creating richer representation geometry that the downstream GRU exploits over the turn sequence. Topic classification teaches features that separate turns individually but are temporally inconsistent across a conversation---high per-turn separability does not guarantee that the GRU can learn a stable conversation-level decision boundary.\n393\t\n394\t\\section{Reproducibility Details}\n395\t\\label{sec:reproducibility}\n396\t\n397\t\\paragraph{Stage-1 training.}\n398\tAll variants use DeBERTa-v3-base (184M parameters) with learning rate $2 \\times 10^{-5}$, AdamW optimizer ($\\beta_1$=0.9, $\\beta_2$=0.999, weight decay 0.01), linear warmup over the first 10\\% of steps, batch size 16, and 4 epochs. MLM variants use 15\\% random token masking. Training takes approximately 30 minutes per variant on a single NVIDIA A100 (40GB).\n399\t\n400\t\\paragraph{Stage-2 training.}\n401\tThe BiGRU has hidden dimension 256, 2 layers, and dropout 0.3 (bidirectional, so output dimension 512). The MLP classifier has layers $512 \\to 256 \\to 2$ with ReLU activation. Training uses learning rate $1 \\times 10^{-3}$, Adam optimizer, batch size 32, and 20 epochs with early stopping (patience 5) on validation F1. Stage-2 training completes in under 5 minutes per variant.\n402\t\n403\t\\paragraph{Data generation.}\n404\tJailbreak conversations are generated using Qwen3-8B with attack-specific prompt templates. Crescendo conversations follow a 5--8 turn gradual escalation structure. FITD conversations use a 2--3 turn commitment-consistency structure. Deceptive Delight conversations embed harmful content within emotionally engaging 3--5 turn sequences. Benign conversations are generated with topic-anchored prompts across five domains (technology, health, finance, education, general) with matched turn counts.\n405\t\n406\t\\paragraph{Strategy annotation.}\n407\tEach user turn is annotated by Qwen3-8B using a structured prompt that provides definitions and two examples for each of the nine strategy categories. The prompt instructs the model to output a single category label. We plan to release all generation and annotation prompts, the full dataset, and training code upon acceptance.\n408\t\n409\t\\paragraph{Adversarial paraphrasing.}\n410\tThe paraphrased test set is generated by instructing Qwen3-8B to rephrase each user turn while preserving the communicative intent. The resulting paraphrases have mean BERTScore 0.92 and mean lexical overlap 0.20 with the originals. These metrics confirm substantial surface-level variation.\n411\t\n412\t\\paragraph{Cross-checkpoint variance.}\n413\tTo disentangle Stage-1 from Stage-2 variance, we evaluate three independently trained 9-class DAPT checkpoints (seeds 42, 123, 456) with a fixed downstream BiGRU seed (42). Results: IID F1\\,=\\,1.000$\\pm$0.000, DD OOD\\,=\\,0.926$\\pm$0.026, AA OOD\\,=\\,0.935$\\pm$0.013. Stage-1 training is stable (OOD std\\,$\\leq$\\,2.6\\,pp), confirming that the variance reported in the main paper is not dominated by Stage-1 initialization.\n414\t\n415\t\\section{End-to-End Fine-Tuning Upper Bound}\n416\t\\label{app:e2e}\n417\t\n418\t\\begin{table}[ht]\n419\t\\centering\n420\t\\footnotesize\n421\t\\caption{Frozen probing vs.\\ end-to-end (E2E) fine-tuning for DeBERTa-v3-base 9-class (3-seed mean$\\pm$std). E2E unfreezes the Stage-1 encoder during Stage-2 training. Frozen values use main-experiment checkpoints (matching Tables~\\ref{tab:main_results}--\\ref{tab:evidence_hierarchy}); Table~\\ref{tab:frozen_verify} uses plan\\_002 checkpoints, yielding higher frozen accuracy (DD\\,=\\,.997, AA\\,=\\,.972) and a narrower E2E gap ($\\leq$2.5\\,pp).}\n422\t\\label{tab:e2e}\n423\t\\begin{tabular}{@{}lccc@{}}\n424\t\\toprule\n425\t\\textbf{Config} & IID & DD OOD & AA OOD \\\\\n426\t\\midrule\n427\tFrozen probing & 1.000$\\pm$.000 & .994$\\pm$.005 & .939$\\pm$.047 \\\\\n428\tE2E fine-tuning & 1.000$\\pm$.000 & 1.000$\\pm$.000 & \\textbf{.997$\\pm$.005} \\\\\n429\t\\midrule\n430\t$\\Delta$ & .000 & +.006 & +.058 \\\\\n431\t\\bottomrule\n432\t\\end{tabular}\n433\t\\end{table}\n434\t\n435\tEnd-to-end fine-tuning unfreezes the Stage-1 encoder during Stage-2 BiGRU training, allowing gradient flow through the full pipeline. On IID and OOD DD, the two configurations are indistinguishable; on structurally complex ActorAttack, E2E recovers +5.8\\,pp. The modest gain confirms that frozen probing captures the vast majority of discriminative information encoded by Stage-1 DAPT, and that the remaining OOD gap in the frozen setting reflects downstream optimization constraints rather than missing representational capacity.\n436\t\n437\t\\section{Real-World False Positive Rate}\n438\t\\label{app:wildchat_fpr}\n439\t\n440\t\\begin{table}[ht]\n441\t\\centering\n442\t\\footnotesize\n443\t\\caption{False positive rate (\\%) on 226 WildChat benign multi-turn conversations (GPT-3.5 users, avg 7.4 turns per conversation). All models trained on synthetic Qwen3-8B data (1{,}000-conversation scale). 3-seed mean$\\pm$std.}\n444\t\\label{tab:wildchat_fpr}\n445\t\\begin{tabular}{@{}lcccc@{}}\n446\t\\toprule\n447\t\\textbf{Variant} & Seed 42 & Seed 123 & Seed 456 & Mean$\\pm$Std \\\\\n448\t\\midrule\n449\t9-class & 66.8 & 61.1 & 76.5 & 68.1$\\pm$6.4 \\\\\n450\tMLM & 36.7 & 64.6 & 32.3 & 44.5$\\pm$14.3 \\\\\n451\tVanilla & 47.3 & 42.5 & 54.4 & 48.1$\\pm$4.9 \\\\\n452\t\\bottomrule\n453\t\\end{tabular}\n454\t\\end{table}\n455\t\n456\tTable~\\ref{tab:wildchat_fpr} evaluates false positive rates on 226 WildChat benign multi-turn conversations from real GPT-3.5 users (avg 7.4 turns). All variants produce FPR far exceeding deployable thresholds: 9-class is worst at 68.1\\%, followed by vanilla (48.1\\%) and MLM (44.5\\%). Domain adaptation \\emph{increases} FPR relative to vanilla (+20\\,pp for 9-class), indicating that continued pretraining amplifies dependence on the training benign distribution. This is consistent with the cross-LLM false positive spike (Table~\\ref{tab:cross_llm_error}): models trained on synthetic Qwen3-8B benign text implicitly treat unfamiliar conversational styles as jailbreak indicators. High MLM seed variance (std\\,=\\,14.3\\%) suggests that unsupervised pretraining is particularly unstable under benign distribution shift. Deployment requires per-domain benign calibration or mixed-source benign training data.\n457\t\n458\t\\paragraph{Post-hoc calibration.}\n459\tROC AUC\\,=\\,0.700$\\pm$0.054 indicates insufficient discrimination between WildChat benign and jailbreak conversations at the representation level. At TPR$\\geq$95\\%, the optimal threshold still yields FPR\\,=\\,62.7\\%, far above deployable levels. Temperature scaling cannot improve this trade-off, as ROC curves are invariant to monotonic score transforms. The AUC ceiling reflects genuine domain shift: WildChat benign and jailbreak representations overlap substantially, and no post-hoc calibration can overcome this; in-domain benign adaptation is required.\n460\t\n461\t\\paragraph{Second benign source: OASST2.}\n462\t\\label{app:oasst2}\n463\t\n464\tTo test whether benign-side shift generalizes beyond WildChat, we evaluate on 200 benign multi-turn conversations from OpenAssistant OASST2~\\citep{kopf2023openassistant}---a crowdsourced dataset of real human conversations, distinct from WildChat (GPT-3.5 user logs) in both authorship and topic distribution.\n465\t\n466\t\\begin{table}[ht]\n467\t\\centering\n468\t\\footnotesize\n469\t\\caption{OASST2 benign adaptation curve: FPR on 200 OASST2 benign conversations and OOD jailbreak detection F1 as a function of $N$ OASST2 conversations added to training. Seed 42. Compare WildChat (Table~\\ref{tab:wildchat_fpr}): FPR reaches 0\\% at $N$\\,=\\,10.}\n470\t\\label{tab:oasst2_curve}\n471\t\\begin{tabular}{@{}rccccc@{}}\n472\t\\toprule\n473\t$N$ & FPR (\\%) & IID F1 & DD F1 & AA F1 & FITD F1 \\\\\n474\t\\midrule\n475\t0 & 57.5 & -- & -- & -- & -- \\\\\n476\t10 & 20.5 & 1.000 & 1.000 & 1.000 & 1.000 \\\\\n477\t25 & \\textbf{1.5} & 1.000 & 1.000 & 0.953 & 1.000 \\\\\n478\t50 & \\textbf{0.5} & 1.000 & 1.000 & 0.990 & 1.000 \\\\\n479\t\\bottomrule\n480\t\\end{tabular}\n481\t\\end{table}\n482\t\n483\tBaseline FPR on OASST2 (57.5\\%) is comparable to WildChat (68.1\\%), confirming that benign-side shift is not source-specific but a general consequence of synthetic-only benign training. The adaptation curve follows the same pattern---monotonic FPR reduction with preserved OOD detection---but requires more samples: 25 conversations reduce FPR to 1.5\\% (vs.\\ 0\\% at $N$\\,=\\,10 for WildChat), and 50 conversations reach 0.5\\%. The slower convergence likely reflects greater distributional distance between crowdsourced OASST2 conversations and the synthetic training distribution compared to WildChat's GPT-3.5 user logs.\n484\t\n485\t\\subsection{Estimated Dual-OOD Detection Performance}\n486\t\\label{app:dual_ood}\n487\t\n488\tThe OOD detection F1 reported in the main paper evaluates attack-side OOD with IID benign examples (FPR\\,=\\,0), providing an upper bound. To estimate performance when \\emph{both} attack and benign inputs are OOD, we combine per-seed attack recall (from OOD evaluation) with per-seed benign FPR (from WildChat/OASST2 experiments), assuming independence between attack detection and benign false positives. For each seed, we compute binary detection F1 from the resulting TP, FP, FN counts on the OOD test composition (80 jailbreak + 38 benign).\n489\t\n490\t\\begin{table}[ht]\n491\t\\centering\n492\t\\footnotesize\n493\t\\caption{Estimated dual-OOD binary detection F1 under different benign conditions (3-seed mean$\\pm$std). Attack recall held fixed from OOD evaluation; only benign FPR varies. IID row corresponds to the benign-IID upper bound (FPR\\,=\\,0).}\n494\t\\label{tab:dual_ood}\n495\t\\begin{tabular}{@{}lcc@{}}\n496\t\\toprule\n497\t\\textbf{Benign condition} & DD OOD F1 & AA OOD F1 \\\\\n498\t\\midrule\n499\tIID (FPR\\,=\\,0) & .994$\\pm$.009 & .981$\\pm$.019 \\\\\n500\tWildChat, no adapt & .855$\\pm$.020 & .842$\\pm$.012 \\\\\n501\tOASST2, no adapt & .874$\\pm$.009 & .861$\\pm$.018 \\\\\n502\tWildChat + 10-shot & .994$\\pm$.009 & .981$\\pm$.019 \\\\\n503\tOASST2 + 25-shot & .991$\\pm$.009 & .978$\\pm$.018 \\\\\n504\t\\bottomrule\n505\t\\end{tabular}\n506\t\\end{table}\n507\t\n508\tWithout benign adaptation, dual-OOD F1 drops by 13--14\\,pp (DD: $.994 \\to .855$; AA: $.981 \\to .842$), driven entirely by false positives on OOD benign inputs. After few-shot adaptation---10 WildChat or 25 OASST2 conversations---dual-OOD F1 recovers to within 0.3\\,pp of the IID upper bound, confirming that the lightweight adaptation procedure (Section~\\ref{sec:benign_shift}) effectively closes the benign distribution gap without compromising attack-side performance.\n509\t\n510\t\\section{BERT-base Proxy Baseline}\n511\t\\label{app:bert_proxy}\n512\t\n513\t\\begin{table}[ht]\n514\t\\centering\n515\t\\footnotesize\n516\t\\caption{BERT-base-uncased (110M) frozen probing without DAPT, matching DeepContext's encoder family~\\citep{deepcontext2026}. 3-seed mean$\\pm$std. DeBERTa-v3 results from Table~\\ref{tab:cross_encoder} for comparison.}\n517\t\\label{tab:bert_proxy}\n518\t\\resizebox{\\columnwidth}{!}{%\n519\t\\begin{tabular}{@{}lccc@{}}\n520\t\\toprule\n521\t\\textbf{Encoder} & IID & DD OOD & AA OOD \\\\\n522\t\\midrule\n523\tBERT-base (110M), no DAPT & .996$\\pm$.006 & .318$\\pm$.031 & .275$\\pm$.027 \\\\\n524\tDeBERTa-v3 (184M), no DAPT & 1.000$\\pm$.000 & .312$\\pm$.043 & .258$\\pm$.000 \\\\\n525\tDeBERTa-v3 (184M), 9-class & 1.000$\\pm$.000 & .994$\\pm$.005 & .939$\\pm$.047 \\\\\n526\t\\bottomrule\n527\t\\end{tabular}}\n528\t\\end{table}\n529\t\n530\tTable~\\ref{tab:bert_proxy} compares BERT-base-uncased (110M parameters, matching DeepContext's encoder) against DeBERTa-v3-base (184M), both without domain-adaptive pretraining. The two vanilla encoders achieve comparable OOD performance (DD: 0.318 vs.\\ 0.312; AA: 0.275 vs.\\ 0.258), despite a 1.7$\\times$ parameter difference and different pretraining procedures. Both collapse on OOD evaluation while 9-class DAPT recovers to 0.994 (DD) and 0.939 (AA). This confirms that cross-attack generalization is driven by domain adaptation, not encoder architecture or capacity at this scale.\n531\t\n532\t\\section{Confidence Calibration}\n533\t\\label{app:calibration}\n534\t\n535\t\\begin{table}[ht]\n536\t\\centering\n537\t\\footnotesize\n538\t\\caption{Expected calibration error (ECE, 10 bins) for 9-class and vanilla on IID and OOD evaluation (3-seed mean$\\pm$std). Lower is better.}\n539\t\\label{tab:calibration}\n540\t\\begin{tabular}{@{}lccc@{}}\n541\t\\toprule\n542\t\\textbf{Variant} & IID & DD OOD & AA OOD \\\\\n543\t\\midrule\n544\t9-class & $\\approx$0.000 & 0.143$\\pm$0.053 & 0.116$\\pm$0.053 \\\\\n545\tVanilla & 0.009$\\pm$0.007 & 0.669$\\pm$0.004 & 0.504$\\pm$0.066 \\\\\n546\t\\bottomrule\n547\t\\end{tabular}\n548\t\\end{table}\n549\t\n550\tThe 9-class model achieves substantially lower ECE than vanilla on OOD data (0.12--0.14 vs.\\ 0.50--0.67), indicating that domain adaptation improves not only discriminative performance but also confidence calibration. IID calibration is near-perfect for both variants. The residual OOD ECE (0.12--0.14) suggests that temperature scaling could further improve deployment reliability.\n551\t\n552\t\\subsection{ToxicChat False Positive Confidence}\n553\t\\label{app:confidence}\n554\t\n555\tOn ToxicChat, 9-class false positives are overwhelmingly high-confidence: 70.2\\% of majority-vote FPs exceed $p > 0.9$ (median 0.999), compared to 58.8\\% for JB-MLM (median 0.933). Per-seed analysis is more extreme---94--98\\% of single-model 9-class FPs are high-confidence (median 1.0), with the borderline fraction (25\\%) in majority vote arising from cross-seed disagreement rather than individual model uncertainty. This confirms that the 9-class ToxicChat FPR reflects systematic feature misalignment---classification DAPT shifts benign text into the jailbreak region with high confidence---rather than boundary ambiguity.\n556\t\n557\t\\section{Frozen Probing Verification}\n558\t\\label{app:frozen_verify}\n559\t\n560\t\\begin{table}[ht]\n561\t\\centering\n562\t\\footnotesize\n563\t\\caption{Frozen probing vs.\\ end-to-end (E2E) fine-tuning (3-seed mean$\\pm$std). 9-class: plan\\_002 checkpoints; MLM: plan\\_017\\_mlm\\_control (matched training). Frozen probing trains only BiGRU+MLP on frozen DAPT embeddings.}\n564\t\\label{tab:frozen_verify}\n565\t\\resizebox{\\columnwidth}{!}{%\n566\t\\begin{tabular}{@{}lcccc@{}}\n567\t\\toprule\n568\t\\textbf{Config} & IID & DD OOD & AA OOD & FITD OOD \\\\\n569\t\\midrule\n570\tFrozen 9-class & 1.000$\\pm$.000 & .997$\\pm$.005 & .972$\\pm$.026 & 1.000$\\pm$.000 \\\\\n571\tFrozen MLM & .982$\\pm$.016 & .993$\\pm$.009 & .941$\\pm$.037 & .987$\\pm$.009 \\\\\n572\tE2E 9-class & 1.000$\\pm$.000 & 1.000$\\pm$.000 & .997$\\pm$.005 & --- \\\\\n573\t\\bottomrule\n574\t\\end{tabular}}\n575\t\\end{table}\n576\t\n577\tTable~\\ref{tab:frozen_verify} compares frozen probing across DAPT objectives and against end-to-end fine-tuning. On easy OOD (DD, FITD), frozen MLM and frozen 9-class representations perform comparably ($\\Delta \\leq 1.3$\\,pp). On hard OOD (ActorAttack), 9-class retains a modest advantage (0.972 vs.\\ 0.941, $\\Delta$\\,=\\,3.1\\,pp) with lower variance ($\\sigma$\\,=\\,0.026 vs.\\ 0.037). Both far exceed vanilla encoders ($\\leq$0.318; Table~\\ref{tab:bert_proxy}). The E2E advantage over frozen 9-class is $\\leq$2.5\\,pp, confirming that Stage-1 representation quality is the primary source of OOD generalization.\n578\t\n579\tA striking asymmetry emerges when comparing frozen probing to the full pipeline (Table~\\ref{tab:evidence_hierarchy}): MLM frozen representations \\emph{outperform} the full MLM pipeline on AA OOD (0.941 vs.\\ 0.893), while 9-class frozen exactly matches its full pipeline (0.972 vs.\\ 0.972). This indicates that MLM's cross-seed instability originates in Stage-2 BiGRU training rather than Stage-1 DAPT: the MLM encoder produces adequate representations that are then degraded by unstable downstream optimization. Classification DAPT, by contrast, produces representations that remain robust through Stage-2 training, explaining its consistently lower variance (Table~\\ref{tab:evidence_hierarchy}).\n580\t\n581\tThis two-level structure (DAPT vs.\\ no-DAPT producing a representation quality leap of +70\\,pp; classification vs.\\ MLM DAPT producing a stability difference) is consistent with two further observations: $\\lambda$=0 matches $\\lambda > 0$ during E2E fine-tuning (Table~\\ref{tab:lambda}), and mean pooling matches BiGRU under E2E (Table~\\ref{tab:temporal}). Once DAPT representations are strong, downstream configuration details have minimal impact.\n582\t\n583\t\\subsection{Single-Turn Truncation Analysis}\n584\t\\label{app:truncated}\n585\t\n586\tTo isolate whether the ToxicChat evidence-hierarchy reversal (Section~\\ref{sec:discussion}) reflects multi-turn structural dependence, we truncate each synthetic test conversation to its last user turn and re-evaluate both 9-class and JB-MLM models (3-seed mean).\n587\t\n588\t\\begin{table}[h]\n589\t\\centering\n590\t\\caption{Full-conversation vs.\\ last-turn-only F1 (3-seed mean). Truncation widens the 9-class advantage, ruling out multi-turn structure as the driver of the ToxicChat reversal.}\n591\t\\label{tab:truncated}\n592\t\\begin{tabular}{@{}llcc@{}}\n593\t\\toprule\n594\t\\textbf{Dataset} & \\textbf{Mode} & \\textbf{9-class} & \\textbf{JB-MLM} \\\\\n595\t\\midrule\n596\tIID & Full & 1.000 & .983 \\\\\n597\tIID & Last turn & .991 & .894 \\\\\n598\t\\midrule\n599\tDD OOD & Full & .997 & .993 \\\\\n600\tDD OOD & Last turn & .942 & .924 \\\\\n601\t\\midrule\n602\tAA OOD & Full & .972 & .941 \\\\\n603\tAA OOD & Last turn & .978 & .927 \\\\\n604\t\\midrule\n605\tFITD OOD & Full & 1.000 & .987 \\\\\n606\tFITD OOD & Last turn & 1.000 & .927 \\\\\n607\t\\bottomrule\n608\t\\end{tabular}\n609\t\\vspace{-2pt}\n610\t{\\footnotesize Mean $\\Delta$ (9-class $-$ MLM): Full +1.6\\,pp, Last turn +6.0\\,pp. 9-class advantage widens under truncation across all families, indicating the reversal on ToxicChat is driven by distributional differences between synthetic and human text, not by multi-turn structural dependence.}\n611\t\\end{table}\n612\t\n613\t\\paragraph{Representation geometry analysis.}\n614\t\\label{app:representation}\n615\t\n616\tTo characterize the mechanism behind classification DAPT's robustness, we analyze Stage-1 representations across all seven DeBERTa-v3-base variants (seed 42). We extract \\texttt{[CLS]} embeddings from 150 test conversations (50 IID + 50 DD OOD + 50 AA OOD) and compute three metrics.\n617\t\n618\t\\begin{table}[ht]\n619\t\\centering\n620\t\\footnotesize\n621\t\\caption{Representation geometry and class separability across Stage-1 variants. PR: participation ratio (effective dimensionality of the embedding space). Fisher ratio: inter-class distance$^2$ / sum of intra-class variances. Weight $\\Delta$: L2 distance from pretrained weights (relative to pretrained norm).}\n622\t\\label{tab:representation}\n623\t\\begin{tabular}{@{}lccc@{}}\n624\t\\toprule\n625\t\\textbf{Variant} & \\textbf{PR} & \\textbf{Fisher} & \\textbf{Wt.\\ $\\Delta$ (\\%)} \\\\\n626\t\\midrule\n627\tVanilla & 31.9 & $<$0.001 & 0.000 \\\\\n628\tWiki-MLM & 25.0 & $<$0.001 & 0.221 \\\\\n629\tJB-MLM & 24.6 & $<$0.001 & 0.256 \\\\\n630\tTopic & 14.5 & 0.012 & 0.371 \\\\\n631\tScrambled & 7.8 & 2.60 & 0.283 \\\\\n632\t9-class & 9.4 & 4.47 & 0.303 \\\\\n633\tBinary & 3.7 & 19.7 & 0.239 \\\\\n634\t\\bottomrule\n635\t\\end{tabular}\n636\t\\end{table}\n637\t\n638\tClassification variants compress representations into 2--9 effective dimensions (vs.\\ 25--32 for MLM/vanilla) while increasing Fisher ratio by 3--5 orders of magnitude. Weight distances from pretrained are comparable across all variants ($\\sim$0.2--0.4\\%), indicating that the mechanism is representational restructuring rather than parameter-space regularization. Scrambled labels produce similar compression (PR\\,=\\,7.8, Fisher\\,=\\,2.6), confirming that the classification objective structure---not label semantics---drives discriminative compression.\n639\t\n640\t\\paragraph{Layer-wise localization.}\n641\t\\label{app:layerwise}\n642\t\n643\tTo determine \\emph{where} discriminative compression occurs, we compute PR and Fisher ratio at every DeBERTa-v3-base layer (0--12) for four variants (9-class, scrambled, JB-MLM, vanilla) using the same 236-sample evaluation set (seed 42).\n644\t\n645\t\\begin{figure}[ht]\n646\t\\centering\n647\t\\includegraphics[width=\\columnwidth]{figures/paper/fig_layerwise_representation.pdf}\n648\t\\caption{Layer-wise representation analysis. (a)~Participation ratio: classification variants (9-class, scrambled) show sharp dimensional collapse at layers 9--10 (PR\\,$\\approx$\\,1.5--2.9) while vanilla/JB-MLM maintain high dimensionality (PR\\,$\\approx$\\,7--10). (b)~Fisher ratio (log scale): class separability diverges from layer 8, with 9-class peaking at 10.9 (layer 10) vs.\\ vanilla 0.73 (15$\\times$).}\n649\t\\label{fig:layerwise}\n650\t\\end{figure}\n651\t\n652\tLayers 0--7 show no systematic divergence across variants (Fisher\\,$<$\\,2.1 for all; PR tracks similar oscillation patterns), consistent with \\citet{maennel2020random}'s finding that early layers learn label-independent features. From layer 8 onward, classification-supervised variants diverge sharply: 9-class Fisher rises from 3.2 (layer 8) to 10.9 (layer 10, peak), while vanilla remains below 1.5 throughout. Simultaneously, 9-class PR drops from 3.4 to 1.5 at layer 10---a 6.6$\\times$ compression relative to vanilla (PR\\,=\\,9.7). JB-MLM tracks vanilla across all layers (Fisher\\,$\\leq$\\,3.3, PR\\,$\\geq$\\,1.4), confirming that MLM does not induce discriminative restructuring. Scrambled labels exhibit the same late-layer pattern (Fisher peaks at 7.9, layer 12; PR drops to 1.5, layer 12), reinforcing that any classification signal---regardless of label semantics---triggers late-layer compression.\n653\t\n654\t\\paragraph{Discriminative subspace probe.}\n655\t\\label{app:discriminative_probe}\n656\t\n657\tTo test whether the compressed subspace is \\emph{sufficient} for OOD detection, we project layer-10 \\texttt{[CLS]} representations onto the top-$k$ SVD components and train a logistic regression probe (3 seeds, sklearn default). Controls: random $k$-dimensional projections (10 random bases, mean reported) and vanilla/MLM models under identical projection.\n658\t\n659\t\\begin{table}[ht]\n660\t\\centering\n661\t\\footnotesize\n662\t\\caption{Discriminative subspace probe: OOD F1 when projecting layer-10 representations onto top-$k$ SVD components vs.\\ random $k$-dimensional projections. 9-class top-3 achieves perfect AA detection with 3/768 dimensions; MLM fails even with all 768.}\n663\t\\label{tab:discriminative_probe}\n664\t\\begin{tabular}{@{}llccc@{}}\n665\t\\toprule\n666\t\\textbf{Model} & \\textbf{Projection} & DD & AA & FITD \\\\\n667\t\\midrule\n668\t9-class & top-3 & 1.000 & \\textbf{1.000} & 1.000 \\\\\n669\t9-class & top-5 & 1.000 & 1.000 & 1.000 \\\\\n670\t9-class & random-3 & 1.000 & 0.928$\\pm$.129 & 1.000 \\\\\n671\t9-class & random-5 & 1.000 & 0.952 & 1.000 \\\\\n672\t9-class & full-768 & 1.000 & 1.000 & 1.000 \\\\\n673\t\\midrule\n674\tscrambled & top-3 & 1.000 & 0.962 & 1.000 \\\\\n675\tscrambled & random-3 & 0.981 & 0.766 & 0.987 \\\\\n676\t\\midrule\n677\tJB-MLM & top-3 & 1.000 & 0.618 & 1.000 \\\\\n678\tJB-MLM & full-768 & 1.000 & 0.636 & 1.000 \\\\\n679\tJB-MLM & random-5 & 0.685 & 0.584 & 0.744 \\\\\n680\t\\bottomrule\n681\t\\end{tabular}\n682\t\\end{table}\n683\t\n684\tThree findings establish a link between compression and generalization (Table~\\ref{tab:discriminative_probe}). First, 9-class top-3 achieves perfect ActorAttack detection (F1\\,=\\,1.000) using only 3 of 768 dimensions---all discriminative information resides in the compressed subspace. Second, random 3-dimensional projections degrade to 0.928 on AA, confirming that the specific SVD directions matter. Third, JB-MLM reaches only 0.636 on AA even with all 768 dimensions, demonstrating that without classification-induced compression, the representation lacks the structure needed for cross-attack generalization. DD and FITD are near-ceiling for all models, making ActorAttack the critical test.\n685\tSVD directions computed on IID training data only (without OOD test exposure) yield equal or higher F1 than all-data SVD (AA: 0.947 vs.\\ 0.904), confirming the subspace is not an artifact of test-set leakage.\n686\t\n687\t\\paragraph{SVD necessity ablation.}\n688\t\\label{app:svd_necessity}\n689\t\n690\tThe probe above establishes \\emph{sufficiency}: 3 SVD dimensions carry enough information. To test \\emph{necessity}, we project \\emph{out} the top-3 SVD directions from full 768-dimensional 9-class \\texttt{[CLS]} embeddings and re-run BiGRU classification on OOD data (3 seeds). A random-3 removal control verifies that the effect is specific to the discriminative subspace. The top-3 directions explain 89.8\\% of training-set variance.\n691\t\n692\t\\begin{table}[ht]\n693\t\\centering\n694\t\\footnotesize\n695\t\\caption{SVD necessity ablation: OOD F1 after projecting out top-3 vs.\\ random-3 SVD directions from 9-class layer-10 embeddings (3-seed mean$\\pm$std).}\n696\t\\label{tab:svd_necessity}\n697\t\\resizebox{\\columnwidth}{!}{%\n698\t\\begin{tabular}{@{}lccc@{}}\n699\t\\toprule\n700\t\\textbf{Condition} & DD OOD & FITD OOD & AA OOD \\\\\n701\t\\midrule\n702\tOriginal 768-dim & 1.000$\\pm$.000 & 1.000$\\pm$.000 & .994$\\pm$.005 \\\\\n703\tRemove top-3 SVD & .831$\\pm$.064 & 1.000$\\pm$.000 & .938$\\pm$.011 \\\\\n704\tRemove random-3 & 1.000$\\pm$.000 & 1.000$\\pm$.000 & .994$\\pm$.005 \\\\\n705\t\\bottomrule\n706\t\\end{tabular}}\n707\t\\end{table}\n708\t\n709\tRemoving top-3 SVD directions degrades DD detection by 17\\,pp (F1: $1.0 \\to 0.831$) and AA by 5.6\\,pp ($0.994 \\to 0.938$), while random-3 removal has zero effect. FITD is unaffected by either ablation, indicating its discriminative information is more distributed. Combined with the sufficiency result (Table~\\ref{tab:discriminative_probe}), the top-3 SVD directions are both sufficient and necessary for DD detection, sufficient but partially redundant for AA, and sufficient but not necessary for FITD.\n710\t\n711\t\\section{Temporal Aggregation Comparison}\n712\t\\label{app:temporal}\n713\t\n714\t\\begin{table}[ht]\n715\t\\centering\n716\t\\footnotesize\n717\t\\caption{Temporal aggregation comparison: mean pooling vs.\\ BiGRU under frozen and end-to-end (E2E) settings (3-seed mean$\\pm$std). Plan\\_002 9-class checkpoints.}\n718\t\\label{tab:temporal}\n719\t\\begin{tabular}{@{}llccc@{}}\n720\t\\toprule\n721\t\\textbf{Setting} & \\textbf{Aggregator} & DD OOD & AA OOD \\\\\n722\t\\midrule\n723\t\\multirow{2}{*}{Frozen} & BiGRU & .997$\\pm$.005 & .972$\\pm$.026 \\\\\n724\t& Mean pooling & .991$\\pm$.013 & .962$\\pm$.015 \\\\\n725\t\\midrule\n726\t\\multirow{2}{*}{E2E} & BiGRU & 1.000$\\pm$.000 & .997$\\pm$.005 \\\\\n727\t& Mean pooling & 1.000$\\pm$.000 & 1.000$\\pm$.000 \\\\\n728\t\\bottomrule\n729\t\\end{tabular}\n730\t\\end{table}\n731\t\n732\tTable~\\ref{tab:temporal} compares BiGRU and mean pooling under both frozen and E2E settings. Under frozen probing (the main paper's pipeline), BiGRU provides a marginal advantage on ActorAttack (+1.0\\,pp) with overlapping confidence intervals, consistent with the main text finding that temporal order is not a core detection factor ($|\\Delta| < 1$\\,pp under turn shuffling; Section~\\ref{sec:decomposition}). Under E2E fine-tuning, the difference vanishes entirely: mean pooling saturates all benchmarks at F1\\,=\\,1.000. The choice of frozen BiGRU in the main pipeline reflects a design trade-off: it enables representation-level analysis (CKA, t-SNE) that E2E would confound, while sacrificing $\\leq$1\\,pp on the hardest OOD set.\n733\t\n734\t\\section{Length Stratification Analysis}\n735\t\\label{app:length}\n736\t\n737\t\\begin{table}[ht]\n738\t\\centering\n739\t\\footnotesize\n740\t\\caption{Jailbreak recall by conversation length bin on OOD evaluation (3-seed majority vote). Benign conversations span 12--20 turns; jailbreak conversations span 3--10 turns.}\n741\t\\label{tab:length}\n742\t\\begin{tabular}{@{}llccc@{}}\n743\t\\toprule\n744\t\\textbf{Dataset} & \\textbf{Variant} & 1--3 turns & 4--6 turns & 7--10 turns \\\\\n745\t\\midrule\n746\t\\multirow{2}{*}{DD OOD} & 9-class & --- & 100.0\\% & 99.4\\% \\\\\n747\t& Vanilla & --- & $\\leq$2.6\\% & $\\leq$1.7\\% \\\\\n748\t\\midrule\n749\t\\multirow{2}{*}{AA OOD} & 9-class & 93.3\\% & 95.6\\% & 100.0\\% \\\\\n750\t& Vanilla & 0.0\\% & $\\leq$2.6\\% & 0.0\\% \\\\\n751\t\\bottomrule\n752\t\\end{tabular}\n753\t\\end{table}\n754\t\n755\tTable~\\ref{tab:length} stratifies jailbreak recall by conversation length. The 9-class model shows no systematic degradation: ActorAttack recall increases monotonically from 93.3\\% (1--3 turns) to 100\\% (7--10 turns), and DD recall is near-perfect across all bins.\n756\t\n757\t\\paragraph{Length confound.}\n758\tBenign conversations (12--20 turns) and jailbreak conversations (3--10 turns) have zero length overlap in the OOD evaluation sets, raising the concern that the model discriminates by conversation length rather than content. Three observations argue against this interpretation:\n759\t(1)~Vanilla DeBERTa has access to identical length information via the BiGRU but achieves recall $\\leq$2.6\\% across all bins; length alone is insufficient without domain-adapted representations.\n760\t(2)~At prefix $K$=1, where all conversations are length-equalized, 9-class still achieves F1\\,=\\,0.773$\\pm$0.041 on ActorAttack (Table~\\ref{tab:actorattack_full}), demonstrating content-based detection independent of length.\n761\t(3)~The model is trained on IID data (Crescendo) and cannot learn OOD-specific length distributions; generalization to unseen length patterns must rely on content features that transfer across attack families.\n762\t\n763\t\\paragraph{Direct empirical verification.}\n764\t\\label{app:length_independence}\n765\t\n766\t\\begin{table}[ht]\n767\t\\centering\n768\t\\footnotesize\n769\t\\caption{Turn-count independence verification (9-class DeBERTa-v3-base, same checkpoint as Table~\\ref{tab:main_results}, 3 seeds). Evaluated on the full OOD test set (80 jailbreak + 75 benign conversations) rather than the balanced subset used in Table~\\ref{tab:main_results}. Part~A: FPR on test benign truncated to $K$ user turns (all seeds FPR\\,=\\,0). Part~B: WildChat FPR by turn-count bucket (mean$\\pm$std). Part~C: jailbreak detection (F1) after padding with benign turns to 15+ total turns (mean$\\pm$std where available).}\n770\t\\label{tab:length_independence}\n771\t\\resizebox{\\columnwidth}{!}{%\n772\t\\begin{tabular}{@{}llcc@{}}\n773\t\\toprule\n774\t& \\textbf{Condition} & \\textbf{FPR / F1} & $n$ \\\\\n775\t\\midrule\n776\t\\multicolumn{4}{l}{\\textit{Part A: Benign truncation (test set)}} \\\\[2pt]\n777\t& Original (12--20 turns) & FPR = .000 & 38 \\\\\n778\t& Truncated $K$=3 & FPR = .000 & 38 \\\\\n779\t& Truncated $K$=5 & FPR = .000 & 38 \\\\\n780\t& Truncated $K$=8 & FPR = .000 & 38 \\\\\n781\t& Truncated $K$=10$^{*}$ & FPR = .000 & 38 \\\\\n782\t\\midrule\n783\t\\multicolumn{4}{l}{\\textit{Part B: WildChat FPR by turn count}} \\\\[2pt]\n784\t& Short (3--10 turns) & FPR = .770$\\pm$.105 & 196 \\\\\n785\t& Medium (11--15 turns) & FPR = .942$\\pm$.054 & 23 \\\\\n786\t& Long (16+ turns) & FPR = .857$\\pm$.117 & 7 \\\\\n787\t\\midrule\n788\t\\multicolumn{4}{l}{\\textit{Part C: Jailbreak padding to 15+ turns}} \\\\[2pt]\n789\t& DD original & F1 = .996 & 80 \\\\\n790\t& DD padded & F1 = .971 ($\\Delta$=$-$2.5\\,pp) & 80 \\\\\n791\t& AA original & F1 = .963 & 80 \\\\\n792\t& AA padded & F1 = .383$\\pm$.261 ($\\Delta$=$-$57.9\\,pp) & 80 \\\\\n793\t\\bottomrule\n794\t\\end{tabular}}\n795\t\\vspace{-2pt}\n796\t{\\footnotesize $^{*}$$K$=10 did not truncate any conversation (test benign max $\\sim$8 user turns).}\n797\t\\end{table}\n798\t\n799\tTruncating benign conversations to match jailbreak turn counts (Part~A) produces zero false positives across all truncation levels and all 3 seeds, directly confirming that the model does not use conversation length as a detection shortcut. $K$=3 and $K$=5 are the effective control conditions where all 38 conversations were truncated; $K$=10 exceeds the maximum test benign length and serves as a no-op control.\n800\t\n801\tWildChat FPR by turn count (Part~B) provides complementary evidence: short conversations (3--10 turns, $n$=196) have \\emph{lower} FPR than medium-length ones (11--15 turns, $n$=23), inconsistent with a ``short\\,=\\,jailbreak'' shortcut. Medium and long buckets have limited sample sizes and should be interpreted as directional evidence only.\n802\t\n803\tPadding jailbreak conversations with benign turns (Part~C) reveals an asymmetry: DD detection is resilient ($\\Delta$=$-$2.5\\,pp), but ActorAttack collapses ($\\Delta$=$-$57.9\\,pp). Padding experiments append benign turns \\emph{after} the complete attack sequence; in practice, adversaries would not dilute their own successful attacks. The collapse nonetheless exposes BiGRU temporal aggregation as vulnerable to attention dilution on subtle attack signals, a limitation discussed in Section~\\ref{sec:limitations}.\n804\t\n805\t\\section{Inference Efficiency}\n806\t\\label{app:efficiency}\n807\t\n808\t\\begin{table}[ht]\n809\t\\centering\n810\t\\footnotesize\n811\t\\caption{Inference efficiency comparison. DeBERTa+BiGRU and TF-IDF+LR measured on IID test (76 conversations, avg 8.3 turns, single A100). LLM latency from separate OOD evaluation (118 conversations); cross-condition comparison is indicative only.}\n812\t\\label{tab:efficiency}\n813\t\\resizebox{\\columnwidth}{!}{%\n814\t\\begin{tabular}{@{}lrcr@{}}\n815\t\\toprule\n816\t\\textbf{Method} & Latency (ms) & Params & VRAM \\\\\n817\t\\midrule\n818\tTF-IDF+LR & 0.43$\\pm$0.05 & $\\sim$10K & CPU \\\\\n819\tDeBERTa+BiGRU (ours) & 12.1$\\pm$1.2 & 186.7M & 862\\,MB \\\\\n820\tQwen3-8B 3-shot$^{\\dagger}$ & $\\sim$5{,}200 & 8B & $\\sim$16\\,GB \\\\\n821\t\\bottomrule\n822\t\\end{tabular}}\n823\t\\vspace{-2pt}\n824\t{\\footnotesize $^{\\dagger}$Qwen3-8B latency from OOD evaluation (DD/AA, 118 conversations); not directly comparable to encoder latency measured on IID test.}\n825\t\\end{table}\n826\t\n827\tTable~\\ref{tab:efficiency} compares inference cost. On matched data (IID test), DeBERTa+BiGRU processes a conversation in 12.1\\,ms, 28$\\times$ slower than TF-IDF (0.43\\,ms), but this speed gap purchases +71\\,pp on ActorAttack (F1\\,=\\,0.972 vs.\\ 0.261; Table~\\ref{tab:evidence_hierarchy}). LLM-as-judge approaches are orders of magnitude slower ($\\sim$5.2\\,s per conversation for Qwen3-8B 3-shot) while achieving substantially lower OOD detection (DD\\,=\\,0.566, AA\\,=\\,0.652; Table~\\ref{tab:llm_judge}). Zero-shot Qwen3-8B achieves F1\\,=\\,0.0 on DD OOD because it predicts all conversations as benign (Table~\\ref{tab:llm_judge}). The full DeBERTa+BiGRU pipeline requires 862\\,MB GPU memory, enabling deployment on consumer hardware. The 24.3$\\times$ speedup reported in the main text derives from a matched-condition comparison (DisPeD 13.12\\,ms vs.\\ Qwen3-8B 318.53\\,ms on the same GPU and data); the larger gap in Table~\\ref{tab:efficiency} reflects different hardware conditions and evaluation sets.\n828\t\n829\t\\section{Data Efficiency}\n830\t\\label{app:data_efficiency}\n831\t\n832\t\\begin{table}[ht]\n833\t\\centering\n834\t\\footnotesize\n835\t\\caption{Data efficiency of 9-class DAPT (3-seed mean$\\pm$std, sample std with $n{-}1$ divisor) and vanilla baseline (seed 42 only). $N$ = total training conversations (balanced jailbreak/benign).}\n836\t\\label{tab:data_efficiency}\n837\t\\begin{tabular}{@{}rlccc@{}}\n838\t\\toprule\n839\t$N$ & \\textbf{Variant} & IID & DD OOD & AA OOD \\\\\n840\t\\midrule\n841\t50 & 9-class & 1.000$\\pm$.000 & 1.000$\\pm$.000 & .969$\\pm$.037 \\\\\n842\t125 & 9-class & 1.000$\\pm$.000 & 1.000$\\pm$.000 & .975$\\pm$.019 \\\\\n843\t250 & 9-class & 1.000$\\pm$.000 & 1.000$\\pm$.000 & .975$\\pm$.035 \\\\\n844\t350 & 9-class & 1.000$\\pm$.000 & .978$\\pm$.030 & .972$\\pm$.033 \\\\\n845\t\\midrule\n846\t50 & Vanilla & .646 & .529 & .234 \\\\\n847\t125 & Vanilla & .532 & .244 & .244 \\\\\n848\t250 & Vanilla & .987 & .365 & .502 \\\\\n849\t350 & Vanilla & 1.000 & .360 & .489 \\\\\n850\t\\bottomrule\n851\t\\end{tabular}\n852\t\\end{table}\n853\t\n854\tTable~\\ref{tab:data_efficiency} shows that 9-class DAPT reaches near-saturation performance with as few as 50 conversations (25 jailbreak + 25 benign): AA OOD F1\\,=\\,0.969$\\pm$0.037, already surpassing vanilla at full training size ($N$=350, AA\\,=\\,0.489) by 48\\,pp using only 14\\% of the data. DD OOD is perfectly solved at all training sizes. Vanilla performance is noisy across $N$ (single seed); the consistent pattern is that vanilla never exceeds DD\\,=\\,0.53 or AA\\,=\\,0.50 regardless of training size, while 9-class maintains AA\\,$\\geq$\\,0.969 at all $N$. Seed 456 is systematically lower across all $N$ values, contributing most of the cross-seed variance; this is consistent with the initialization sensitivity observed in the main results.\n855\t\n856\t\\section{Auxiliary Loss Weight Ablation}\n857\t\\label{app:lambda}\n858\t\n859\t\\begin{table}[ht]\n860\t\\centering\n861\t\\footnotesize\n862\t\\caption{Effect of auxiliary persuasion loss weight $\\lambda$ during Stage-2 E2E fine-tuning (seed 42). Stage-1 DAPT encoder is identical across all rows; only the Stage-2 loss $L = L_{\\text{binary}} + \\lambda \\cdot L_{\\text{strategy}}$ varies.}\n863\t\\label{tab:lambda}\n864\t\\begin{tabular}{@{}rcccc@{}}\n865\t\\toprule\n866\t$\\lambda$ & IID & DD OOD & FITD OOD & AA OOD \\\\\n867\t\\midrule\n868\t0 & 1.000 & 1.000 & 1.000 & 1.000 \\\\\n869\t0.1 & 1.000 & 1.000 & 1.000 & .990 \\\\\n870\t0.5 & 1.000 & 1.000 & 1.000 & .981 \\\\\n871\t1.0 & 1.000 & 1.000 & 1.000 & .981 \\\\\n872\t2.0 & 1.000 & 1.000 & 1.000 & .944 \\\\\n873\t\\bottomrule\n874\t\\end{tabular}\n875\t\\end{table}\n876\t\n877\tDuring Stage-2 E2E fine-tuning, the auxiliary persuasion loss weight $\\lambda$ has limited impact on detection (Table~\\ref{tab:lambda}): the maximum AA OOD gap across all $\\lambda$ values is 5.6\\,pp (single seed), comparable to the cross-seed variance ($\\sim$6\\,pp) observed in the main results. All configurations converge to perfect validation F1 within epoch 1, indicating that DAPT representations already encode sufficient discriminative features for downstream classification (Section~\\ref{app:frozen_verify}). The value of persuasion strategy classification lies in Stage-1 DAPT, where it shapes encoder representations that transfer across attack families, not in the Stage-2 auxiliary loss.\n878\t\n879\t\\section{OOD Strategy Prediction Analysis}\n880\t\\label{app:strategy_pred}\n881\t\n882\t\\begin{table}[ht]\n883\t\\centering\n884\t\\footnotesize\n885\t\\caption{OOD strategy prediction accuracy (jailbreak turns only) and detection rate for the 9-class model (3-seed mean). $r$: Pearson correlation between per-strategy prediction accuracy and per-strategy detection rate.}\n886\t\\label{tab:strategy_pred}\n887\t\\resizebox{\\columnwidth}{!}{%\n888\t\\begin{tabular}{@{}lcccc@{}}\n889\t\\toprule\n890\t\\textbf{Dataset} & Strat.\\ Acc.\\ & Det.\\ Rate & Missed (per seed) & $r$ \\\\\n891\t\\midrule\n892\tDD OOD & 50.1\\% & 99.6\\% & 0 / 0 / 1 & $\\sim$0.45 \\\\\n893\tAA OOD & 50.1\\% & 96.2\\% & 1 / 7 / 1 & $\\sim$0.24 \\\\\n894\t\\bottomrule\n895\t\\end{tabular}}\n896\t\\end{table}\n897\t\n898\tTable~\\ref{tab:strategy_pred} reports OOD strategy prediction accuracy alongside detection rates. Strategy prediction accuracy is substantially above random (50.1\\% vs.\\ 11.1\\% chance for 9 classes) and positively correlated with detection success ($r \\approx 0.24$--0.45), but strategy prediction is not the detection mechanism: frozen probing with a randomly initialized strategy head (Appendix~\\ref{app:frozen_verify}) achieves 97.2\\% AA OOD detection, and $\\lambda$=0 (no strategy loss) matches or exceeds $\\lambda > 0$ during E2E fine-tuning (Table~\\ref{tab:lambda}). The classification objective shapes representations during Stage-1 DAPT training; at inference, strategy predictions are a byproduct of those representations, not a driver of detection.\n899\t\n900\t\\section{Cross-Seed Ensemble}\n901\t\\label{app:ensemble}\n902\t\n903\t\\begin{table}[ht]\n904\t\\centering\n905\t\\footnotesize\n906\t\\caption{Majority vote ensemble (3 seeds) vs.\\ single-seed mean on OOD Full. ``Fixed'' = samples corrected by ensemble; ``Broke'' = samples corrupted by ensemble.}\n907\t\\label{tab:ensemble}\n908\t\\resizebox{\\columnwidth}{!}{%\n909\t\\begin{tabular}{@{}lcccc@{}}\n910\t\\toprule\n911\t\\textbf{Variant} & DD single$\\to$ens. & AA single$\\to$ens. & Fixed & Broke \\\\\n912\t\\midrule\n913\t9-class & .997$\\to$\\textbf{1.000} & .972$\\to$\\textbf{.981} & 5 & 0 \\\\\n914\tMLM & .914$\\to$\\textbf{1.000} & .897$\\to$\\textbf{.953} & 26 & 0 \\\\\n915\tVanilla & .258$\\to$.258 & .258$\\to$.258 & 0 & 0 \\\\\n916\t\\bottomrule\n917\t\\end{tabular}}\n918\t\\end{table}\n919\t\n920\tTable~\\ref{tab:ensemble} shows that majority vote never corrupts correct predictions (Broke\\,=\\,0 for all variants). MLM benefits most from ensembling (+8.6\\,pp DD, +6.0\\,pp AA), because its per-seed errors are complementary: each seed fails on different samples, and the majority corrects these. This further exposes MLM's seed instability: its individual seeds are unreliable, but their errors are uncorrelated. By contrast, 9-class seeds are already highly consistent (std\\,$\\leq$\\,0.026), leaving minimal room for ensemble improvement (+0.3--0.9\\,pp). Vanilla errors are systematic (all seeds fail on the same OOD samples), so ensembling provides no benefit.\n921\t\n922\t\\subsection{Seed-Level F1 Comparisons}\n923\t\\label{app:seed_level}\n924\t\n925\tTo verify that cross-seed pooling does not mask inconsistent pairwise orderings, Table~\\ref{tab:seed_level} reports per-seed F1 for all variants on OOD DD and ActorAttack at full conversation length. The overall evidence hierarchy is maintained across seeds, with 9-class and binary consistently outperforming MLM; scrambled shows one reversal on AA (seed 42).\n926\t\n927\t\\begin{table}[h]\n928\t\\centering\n929\t\\small\n930\t\\caption{Per-seed F1 on OOD Full for key variants (seeds 42, 123, 456). The relative ordering is consistent across seeds.}\n931\t\\label{tab:seed_level}\n932\t\\resizebox{\\columnwidth}{!}{%\n933\t\\begin{tabular}{@{}lcccccc@{}}\n934\t\\toprule\n935\t& \\multicolumn{3}{c}{DD-Full} & \\multicolumn{3}{c}{AA-Full} \\\\\n936\t\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\n937\t\\textbf{Variant} & s42 & s123 & s456 & s42 & s123 & s456 \\\\\n938\t\\midrule\n939\t9-class & 1.000 & 1.000 & .990 & .990 & .935 & .990 \\\\\n940\tBinary & 1.000 & 1.000 & 1.000 & .981 & .990 & 1.000 \\\\\n941\tScrambled & .990 & 1.000 & 1.000 & .891 & .990 & .971 \\\\\n942\tMLM-only & 1.000 & .990 & .751 & .971 & .925 & .784 \\\\\n943\tVanilla & .285 & .305 & .348 & .258 & .258 & .258 \\\\\n944\t\\bottomrule\n945\t\\end{tabular}}\n946\t\\end{table}\n947\t\n948\t\\section*{Use of AI Assistants}\n949\t\\label{app:ai-assistants}\n950\t\n951\tWe used Claude (Anthropic) as an AI coding and writing assistant\n952\tthroughout this work. Specifically:\n953\t\\begin{itemize}\n954\t    \\item \\textbf{Code:} drafting experiment scripts, data-processing\n955\t    pipelines, and analysis utilities; debugging and refactoring.\n956\t    \\item \\textbf{Writing:} drafting and revising paper sections,\n957\t    polishing prose, and reformatting LaTeX.\n958\t    \\item \\textbf{Literature:} summarizing related papers to inform\n959\t    related-work section.\n960\t\\end{itemize}\n961\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "978651f3-c6ad-4df2-8338-d5bae1df2359",
+            "isSidechain": true,
+            "promptId": "270ab91c-e9b9-4a39-b092-16a4d85348b6",
+            "agentId": "aa90fb53a2c1faac3",
+            "type": "user",
+            "uuid": "84329b29-2e99-42e1-86d0-91a73d1ac803",
+            "sourceToolAssistantUUID": "978651f3-c6ad-4df2-8338-d5bae1df2359",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/director_32e62753",
+            "sessionId": "d0343bc5-105f-48da-b75b-2236f7e1bb2d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "snug-napping-finch"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-24T18:25:00.250Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me also check the main.tex for any additional acronyms defined there (e.g., in macros or the preamble)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "84329b29-2e99-42e1-86d0-91a73d1ac803",
+            "isSidechain": true,
+            "agentId": "aa90fb53a2c1faac3",
+            "requestId": "req_011CbMrz18oKxgAzJDZqxiTz",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5b8fc25d-d58e-4700-ad5f-65d1d2ce8658",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/director_32e62753",
+            "sessionId": "d0343bc5-105f-48da-b75b-2236f7e1bb2d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "snug-napping-finch",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DvaRHDXcFuCKUC8ZLjBvHd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 39905,
+                "cache_read_input_tokens": 34499,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 39905,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-24T18:25:01.570Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WyqK11cmJaCPVCsH89Tfic",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/main.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5b8fc25d-d58e-4700-ad5f-65d1d2ce8658",
+            "isSidechain": true,
+            "agentId": "aa90fb53a2c1faac3",
+            "requestId": "req_011CbMrz18oKxgAzJDZqxiTz",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "82f44049-7aa1-49a6-9ab3-7cf845795be9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/director_32e62753",
+            "sessionId": "d0343bc5-105f-48da-b75b-2236f7e1bb2d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "snug-napping-finch",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DvaRHDXcFuCKUC8ZLjBvHd",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 39905,
+                "cache_read_input_tokens": 34499,
+                "output_tokens": 125,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 39905
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 125,
+                    "cache_read_input_tokens": 34499,
+                    "cache_creation_input_tokens": 39905,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 39905,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-24T18:25:01.594Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WyqK11cmJaCPVCsH89Tfic",
+              "type": "tool_result",
+              "content": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{graphicx}\n11\t\\graphicspath{{../../}}\n12\t\\usepackage{amsmath}\n13\t\\usepackage{booktabs}\n14\t\\usepackage{enumitem}\n15\t\\usepackage{amssymb}\n16\t\\usepackage{multirow}\n17\t\n18\t\\title{DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection}\n19\t\n20\t\\author{Anonymous}\n21\t\n22\t\\begin{document}\n23\t\\maketitle\n24\t\n25\t\\input{abstract}\n26\t\n27\t\\input{introduction}\n28\t\n29\t\\input{related_work}\n30\t\n31\t\\input{method}\n32\t\n33\t\\input{experiments}\n34\t\n35\t\\input{conclusion}\n36\t\n37\t\\bibliography{references}\n38\t\n39\t\\clearpage\n40\t\\input{appendix}\n41\t\n42\t% checklist removed — EMNLP 2026 ARR requires checklist in OpenReview form, not in PDF\n43\t\n44\t\\end{document}\n45\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "82f44049-7aa1-49a6-9ab3-7cf845795be9",
+            "isSidechain": true,
+            "promptId": "270ab91c-e9b9-4a39-b092-16a4d85348b6",
+            "agentId": "aa90fb53a2c1faac3",
+            "type": "user",
+            "uuid": "f5b2d3e6-203f-4780-a000-3f29dd798b93",
+            "sourceToolAssistantUUID": "82f44049-7aa1-49a6-9ab3-7cf845795be9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/director_32e62753",
+            "sessionId": "d0343bc5-105f-48da-b75b-2236f7e1bb2d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "snug-napping-finch"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-24T18:25:57.114Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here is the complete abbreviation/acronym inventory for the paper.\n\n---\n\n## Complete Abbreviation/Acronym Inventory\n\n### Method / System Names\n\n| # | Abbreviation | Full Form Given? | First Appears | In Abstract? |\n|---|---|---|---|---|\n| 1 | **DisPeD** | Yes: \"Disentangled Persuasion Detection\" | abstract.tex ~L3 | Yes |\n| 2 | **DAPT** | Partially: defined in experiments.tex L6 as \"all Stage-1 adaptations\" extending Gururangan et al.; also used throughout as \"domain-adaptive pretraining\" by context | abstract.tex ~L3 (implicit, via \"classification-based domain adaptation\") — explicitly as \"DAPT\" first in introduction.tex ~L16 | No (concept is present but the acronym \"DAPT\" is not in the abstract) |\n| 3 | **BiGRU** | No explicit expansion given; used as a known term (bidirectional GRU) | abstract.tex ~L3 | Yes |\n| 4 | **GRU** | No explicit expansion (assumed known: Gated Recurrent Unit) | method.tex ~L47 (in \"bidirectional GRU\") | No |\n| 5 | **MLP** | No explicit expansion (assumed known: Multi-Layer Perceptron) | method.tex ~L48 | No |\n| 6 | **TF-IDF** | No explicit expansion (assumed known: Term Frequency-Inverse Document Frequency) | experiments.tex ~L22 | No |\n| 7 | **LR** | No explicit expansion; used as \"LR\" in \"TF-IDF LR\" (Logistic Regression) | experiments.tex ~L22 | No |\n| 8 | **PAP** | Yes: cited as a named framework from Zeng et al. (40 persuasion techniques) | introduction.tex ~L5 | No |\n| 9 | **E2E** | Yes: \"end-to-end\" defined at first use in appendix.tex ~L416 | appendix.tex ~L416 | No |\n\n### Model / Architecture Names\n\n| # | Abbreviation | Full Form Given? | First Appears | In Abstract? |\n|---|---|---|---|---|\n| 10 | **DeBERTa** / **DeBERTa-v3** | Yes: cited with reference \\citep{he2021deberta} / \\citep{he2023debertav3} | introduction.tex ~L7 (DeBERTa-v3); abstract.tex ~L3 does not name it | No |\n| 11 | **RoBERTa** | Yes: cited with reference \\citep{liu2019roberta} | introduction.tex ~L16 | No |\n| 12 | **BERT** | No explicit expansion (assumed known); used in \"BERT-base\" | experiments.tex ~L20 (\"architecturally equivalent to DeepContext\") | No |\n| 13 | **LLM** | No explicit expansion (assumed known: Large Language Model) | abstract.tex ~L3 (\"mixed-LLM training\") | Yes |\n| 14 | **GPT-5.5** | No expansion needed (proper name) | introduction.tex ~L7 | No |\n| 15 | **Qwen3-8B** | No expansion needed (proper name) | method.tex ~L36 | No |\n| 16 | **Llama Guard** / **Llama Guard 3** | No expansion needed (proper name) | abstract.tex ~L3 | Yes (as \"Llama Guard 3\") |\n| 17 | **Llama-3.1-8B** | No expansion needed (proper name) | experiments.tex ~L172 | No |\n\n### Dataset / Evaluation Setting Names\n\n| # | Abbreviation | Full Form Given? | First Appears | In Abstract? |\n|---|---|---|---|---|\n| 18 | **OOD** | Yes: defined in experiments.tex L6 as \"Cross-attack OOD: evaluation on attack families unseen during training\" | abstract.tex ~L3 | Yes |\n| 19 | **IID** | Not explicitly expanded (in-distribution; used in contrast to OOD) | abstract.tex ~L3 (implicit via \"vanilla 0.26--0.31\"); explicitly \"IID\" in experiments.tex ~L12 | No (not as acronym) |\n| 20 | **DD** | Yes: \"Deceptive Delight (DD)\" | experiments.tex ~L14 | No |\n| 21 | **AA** | Yes: \"ActorAttack (AA)\" | experiments.tex ~L78 (in table caption) | No |\n| 22 | **FITD** | Yes: cited as \"Foot-in-the-Door\" with \\citep{fitd2024}; abbreviated \"FITD\" | experiments.tex ~L14 | No |\n| 23 | **LMSYS** | No explicit expansion (Large Model Systems Organization; proper name) | experiments.tex ~L16 | No |\n| 24 | **OASST2** | Yes: \"OpenAssistant OASST2\" | appendix.tex ~L462 | No |\n| 25 | **WildChat** | No expansion needed (proper name) | experiments.tex ~L229 | No |\n| 26 | **ShareGPT** | No expansion needed (proper name) | experiments.tex ~L229 | No |\n\n### Metric / Statistical Test Names\n\n| # | Abbreviation | Full Form Given? | First Appears | In Abstract? |\n|---|---|---|---|---|\n| 27 | **F1** | No explicit expansion (assumed known: F1 score) | abstract.tex ~L3 | Yes |\n| 28 | **FPR** | No explicit expansion (false-positive rate; contextually clear) | abstract.tex ~L3 (\"false-positive rates\") | Yes (as \"false-positive rates\", not as \"FPR\") |\n| 29 | **ECE** | Yes: \"Expected calibration error (ECE, 10 bins)\" | appendix.tex ~L538 | No |\n| 30 | **TOST** | No explicit expansion at first use (Two One-Sided Tests); used in introduction.tex ~L22 without expansion | introduction.tex ~L22 | No |\n| 31 | **CIs** | Yes: \"BCa bootstrap 95% CIs\" (confidence intervals) | experiments.tex ~L27 | No |\n| 32 | **BCa** | No explicit expansion (bias-corrected and accelerated bootstrap) | experiments.tex ~L27 | No |\n| 33 | **ROC AUC** | No explicit expansion (Receiver Operating Characteristic Area Under Curve) | appendix.tex ~L458 | No |\n| 34 | **TPR** | No explicit expansion (True Positive Rate; contextually clear) | appendix.tex ~L458 | No |\n| 35 | **TP / FP / FN** | No explicit expansion (True Positive / False Positive / False Negative) | appendix.tex ~L488 | No |\n\n### Technique / Analysis Names\n\n| # | Abbreviation | Full Form Given? | First Appears | In Abstract? |\n|---|---|---|---|---|\n| 36 | **MLM** | No explicit expansion at first use in abstract; later defined contextually as \"masked language modeling\" in method.tex ~L40 | abstract.tex ~L3 | Yes |\n| 37 | **SVD** | No explicit expansion (Singular Value Decomposition; assumed known) | introduction.tex ~L22 | No |\n| 38 | **CKA** | Yes: \"Centered CKA similarity\" with citation in appendix.tex ~L187; partially — \"CKA analysis\" in related_work.tex ~L15 without expansion, and \"CKA\" in method.tex ~L50 | method.tex ~L50 | No |\n| 39 | **t-SNE** | No explicit expansion (t-distributed Stochastic Neighbor Embedding) | method.tex ~L50 | No |\n| 40 | **PR** | Yes: \"participation ratio\" defined in appendix.tex ~L622 | appendix.tex ~L622 | No |\n| 41 | **AdamW** | No expansion needed (proper name of optimizer) | appendix.tex ~L398 | No |\n\n### Other Abbreviations\n\n| # | Abbreviation | Full Form Given? | First Appears | In Abstract? |\n|---|---|---|---|---|\n| 42 | **NLP** | No explicit expansion (Natural Language Processing) | conclusion.tex ~L25 | No |\n| 43 | **VRAM** | No explicit expansion (Video Random Access Memory) | experiments.tex ~L243 (table header) | No |\n| 44 | **GPU** | No explicit expansion (Graphics Processing Unit) | experiments.tex ~L238 | No |\n| 45 | **CPU** | No explicit expansion (Central Processing Unit) | experiments.tex ~L245 | No |\n| 46 | **CLS** | Used as `[CLS]` token notation; no expansion needed (standard BERT terminology) | method.tex ~L14 (fig caption) | No |\n| 47 | **LLM-as-judge** | Descriptive phrase, not an acronym per se | introduction.tex ~L7 | No |\n| 48 | **pp** | No explicit expansion (percentage points; used throughout) | experiments.tex ~L59 | No |\n| 49 | **std** | No explicit expansion (standard deviation) | experiments.tex ~L26 | No |\n| 50 | **$\\beta$-VAE** | Used in footnote, not core to paper | introduction.tex ~L16 (footnote) | No |\n| 51 | **InfoGAN** | Used in footnote, not core to paper | introduction.tex ~L16 (footnote) | No |\n| 52 | **RST** | Cited as a framework: \\citep{mann1988rst} | related_work.tex ~L12 | No |\n| 53 | **PDTB** | Cited: \\citep{prasad2008pdtb} | related_work.tex ~L12 | No |\n| 54 | **JB-MLM** / **JB** | Contextually defined: \"jailbreak-domain MLM\" vs \"Wikipedia MLM\" | experiments.tex ~L121 (\"jailbreak-domain MLM\") | No |\n| 55 | **Wiki-MLM** | Contextually defined: \"Wikipedia MLM\" | experiments.tex ~L121 | No |\n\n---\n\n### Summary of Issues\n\n**Abbreviations never formally expanded (potential concerns for reviewers)**:\n- **BiGRU** (used in abstract, never expanded to \"Bidirectional Gated Recurrent Unit\")\n- **MLM** (used in abstract, expanded only later in method.tex as \"masked language modeling\")\n- **TOST** (first used in introduction.tex without expansion — \"Two One-Sided Tests for Equivalence\")\n- **SVD** (never expanded — \"Singular Value Decomposition\")\n- **CKA** (partially: \"Centered CKA\" in appendix but never \"Centered Kernel Alignment\")\n- **t-SNE** (never expanded)\n- **BCa** (never expanded — \"Bias-Corrected and Accelerated\")\n- **FPR** (spelled out as \"false-positive rates\" in abstract but abbreviated form \"FPR\" used from introduction.tex ~L20 onward without separate definition)\n- **IID** (never explicitly defined as \"in-distribution\" or \"independent and identically distributed\")\n- **TF-IDF** (never expanded)\n- **LR** (never expanded in \"TF-IDF LR\" context)\n- **MLP** (never expanded)\n- **NLP** (never expanded)\n- **DAPT** appears in the abstract paragraph contextually (\"classification-based domain adaptation\") but the acronym \"DAPT\" itself first appears only in introduction.tex\n\n**Abbreviations used in the abstract**: DisPeD, OOD, F1, LLM, MLM, BiGRU, Llama Guard 3, FPR (as words). Of these, only DisPeD and OOD get definitions (DisPeD in intro, OOD in experiments terminology section). MLM and BiGRU are used in the abstract without expansion."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f5b2d3e6-203f-4780-a000-3f29dd798b93",
+            "isSidechain": true,
+            "agentId": "aa90fb53a2c1faac3",
+            "requestId": "req_011CbMrzUa3mMZ7B69jJe9Fi",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0a726a65-e3b6-4116-b4b9-b742ffbfedc7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/director_32e62753",
+            "sessionId": "d0343bc5-105f-48da-b75b-2236f7e1bb2d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "snug-napping-finch",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RBENJ22PR31zE6Zv4Dp93q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 517,
+                "cache_read_input_tokens": 74404,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 517,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-read-all-the-tex-files-in-home-ubuntu-agent-ml-research-idea-gen-0514-2-projec.md"
+}

@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "c4353dada575cca877cc",
+  "project": "persuasion_turn_jailbreak_detect--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 执行项目轨迹扫描，将报告写入 /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/scan_reports/la",
+  "task_key": "e42b31ed-4f3e-4416-8517-3e1a2100910d",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/e42b31ed-4f3e-4416-8517-3e1a2100910d.jsonl",
+    "occurrence": 1,
+    "bytes": 1208314,
+    "sha256": "1b27b9a469264772853d4bb32ed8b16b6a1cd82442895170fffc3e4a6801dfeb"
+  },
+  "statistics": {
+    "messages": 175,
+    "user_turns": 1,
+    "tool_calls": 67,
+    "roles": {
+      "record": 32,
+      "user": 1,
+      "assistant": 8,
+      "tool_call": 67,
+      "tool_result": 67
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "c4353dada575cca877cc-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 173,
+      "chunks": [
+        {
+          "path": "c4353dada575cca877cc-part-0001.json",
+          "message_count": 90
+        },
+        {
+          "path": "c4353dada575cca877cc-part-0002.json",
+          "message_count": 80
+        },
+        {
+          "path": "c4353dada575cca877cc-part-0003.json",
+          "message_count": 3
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-home-ubuntu-agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbre.md"
+}

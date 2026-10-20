@@ -1,0 +1,1453 @@
+{
+  "schema_version": "1.0",
+  "session_id": "c6785e02ba2e24bb9280",
+  "rounds": [
+    {
+      "number": 5,
+      "messages": [
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-26T10:29:32.095Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012VkpMCCG13drd1eaMyJAV7",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Tree of Attacks\" Mehrotra Karbasi NeurIPS 2024 title \"Automatically\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "30a15947-d83c-462b-9c90-dc879ddfbc6c",
+            "isSidechain": false,
+            "requestId": "req_011CbR2L6oUqkiwUwXVH6a9H",
+            "type": "assistant",
+            "uuid": "b8851584-767f-4c7a-812d-018ce607ce6e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3db0dc2-d628-407b-a4ce-37fdd0f13d66",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GnG6kbdYifjaQ2qreoK4nr",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1332,
+                "cache_read_input_tokens": 127256,
+                "output_tokens": 921,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1332,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 921,
+                    "cache_read_input_tokens": 127256,
+                    "cache_creation_input_tokens": 1332,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1332
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "b8851584-767f-4c7a-812d-018ce607ce6e",
+                "sessionId": "a3db0dc2-d628-407b-a4ce-37fdd0f13d66"
+              }
+            }
+          ],
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Verify references.bib citations independently",
+                "sessionId": "a3db0dc2-d628-407b-a4ce-37fdd0f13d66"
+              }
+            }
+          ],
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-26T10:29:37.744Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KU2fdAUzsY4cbQXg9D71TH",
+              "type": "tool_result",
+              "content": "Web search results for query: \"SmoothLLM Robey Wong Hassani ICML 2024 proceedings venue\"\n\nLinks: [{\"title\":\"[2310.03684] SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks\",\"url\":\"https://arxiv.org/abs/2310.03684\"},{\"title\":\"Published at ICLR 2024 Workshop on Reliable and Responsible Foundation Models\",\"url\":\"https://openreview.net/pdf?id=ZnTpF6Vf68\"},{\"title\":\"[PDF] SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/SmoothLLM:-Defending-Large-Language-Models-Against-Robey-Wong/8cf9b49698fdb1b754df2556576412a7b44929f6\"},{\"title\":\"Robust Prompt Optimization for Defending Language ...\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/file/46ed503889ab232c21c1162340ee17b2-Paper-Conference.pdf\"},{\"title\":\"Papers\",\"url\":\"https://riceric22.github.io/papers/\"},{\"title\":\"GitHub - UCSB-NLP-Chang/SemanticSmooth: Implementation of paper 'Defending Large Language Models against Jailbreak Attacks via Semantic Smoothing' · GitHub\",\"url\":\"https://github.com/UCSB-NLP-Chang/SemanticSmooth\"},{\"title\":\"Published as a conference paper at ICLR 2025\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/38bbae17d60940f3ee14dfd1035d7542-Paper-Conference.pdf\"},{\"title\":\"SMOOTHLLM: Defending Large Language Models Against Jailbreaking Attacks\",\"url\":\"https://arxiv.org/pdf/2310.03684\"},{\"title\":\"SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2023arXiv231003684R/abstract\"}]\n\nBased on the search results, SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks by Alexander Robey, Eric Wong, Hamed Hassani, and George J. Pappas was published in Transactions on Machine Learning Research (TMLR), 2025.\n\nHowever, the search results show that SmoothLLM was not published in ICML 2024 proceedings. The paper was originally posted to arXiv in 2023 and subsequently published in TMLR in 2025, not ICML 2024.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "30a15947-d83c-462b-9c90-dc879ddfbc6c",
+            "isSidechain": false,
+            "promptId": "9eef696a-af1b-4962-95a5-e0ead4fba299",
+            "type": "user",
+            "uuid": "7e82c22c-5b2e-4960-9a2b-a16ba383dae3",
+            "toolUseResult": {
+              "query": "SmoothLLM Robey Wong Hassani ICML 2024 proceedings venue",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01RigiX9H6FBrG8Zi2thHtyG",
+                  "content": [
+                    {
+                      "title": "[2310.03684] SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks",
+                      "url": "https://arxiv.org/abs/2310.03684"
+                    },
+                    {
+                      "title": "Published at ICLR 2024 Workshop on Reliable and Responsible Foundation Models",
+                      "url": "https://openreview.net/pdf?id=ZnTpF6Vf68"
+                    },
+                    {
+                      "title": "[PDF] SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks | Semantic Scholar",
+                      "url": "https://www.semanticscholar.org/paper/SmoothLLM:-Defending-Large-Language-Models-Against-Robey-Wong/8cf9b49698fdb1b754df2556576412a7b44929f6"
+                    },
+                    {
+                      "title": "Robust Prompt Optimization for Defending Language ...",
+                      "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/46ed503889ab232c21c1162340ee17b2-Paper-Conference.pdf"
+                    },
+                    {
+                      "title": "Papers",
+                      "url": "https://riceric22.github.io/papers/"
+                    },
+                    {
+                      "title": "GitHub - UCSB-NLP-Chang/SemanticSmooth: Implementation of paper 'Defending Large Language Models against Jailbreak Attacks via Semantic Smoothing' · GitHub",
+                      "url": "https://github.com/UCSB-NLP-Chang/SemanticSmooth"
+                    },
+                    {
+                      "title": "Published as a conference paper at ICLR 2025",
+                      "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/38bbae17d60940f3ee14dfd1035d7542-Paper-Conference.pdf"
+                    },
+                    {
+                      "title": "SMOOTHLLM: Defending Large Language Models Against Jailbreaking Attacks",
+                      "url": "https://arxiv.org/pdf/2310.03684"
+                    },
+                    {
+                      "title": "SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks - ADS",
+                      "url": "https://ui.adsabs.harvard.edu/abs/2023arXiv231003684R/abstract"
+                    }
+                  ]
+                },
+                "Based on the search results, SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks by Alexander Robey, Eric Wong, Hamed Hassani, and George J. Pappas was published in Transactions on Machine Learning Research (TMLR), 2025.\n\nHowever, the search results show that SmoothLLM was not published in ICML 2024 proceedings. The paper was originally posted to arXiv in 2023 and subsequently published in TMLR in 2025, not ICML 2024."
+              ],
+              "durationSeconds": 6.61810223999992
+            },
+            "sourceToolAssistantUUID": "30a15947-d83c-462b-9c90-dc879ddfbc6c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3db0dc2-d628-407b-a4ce-37fdd0f13d66",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-26T10:29:40.125Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012VkpMCCG13drd1eaMyJAV7",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Tree of Attacks\" Mehrotra Karbasi NeurIPS 2024 title \"Automatically\"\"\n\nLinks: [{\"title\":\"Tree of Attacks: Jailbreaking Black-Box LLMs Automatically\",\"url\":\"https://neurips.cc/media/neurips-2024/Slides/95078_2fuupDs.pdf\"},{\"title\":\"[2312.02119] Tree of Attacks: Jailbreaking Black-Box LLMs Automatically\",\"url\":\"https://arxiv.org/abs/2312.02119\"},{\"title\":\"NeurIPS Poster Tree of Attacks: Jailbreaking Black-Box LLMs Automatically\",\"url\":\"https://nips.cc/virtual/2024/poster/95078\"},{\"title\":\"NeurIPS Poster Tree of Attacks: Jailbreaking Black-Box LLMs Automatically\",\"url\":\"https://neurips.cc/virtual/2024/poster/95078\"},{\"title\":\"Tree of attacks | Proceedings of the 38th International Conference on Neural Information Processing Systems\",\"url\":\"https://dl.acm.org/doi/10.5555/3737916.3739868\"},{\"title\":\"[PDF] Tree of Attacks: Jailbreaking Black-Box LLMs Automatically | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Tree-of-Attacks:-Jailbreaking-Black-Box-LLMs-Mehrotra-Zampetakis/14e8cf5a5e6a7b35e618b08f5cf06f572b3a54e0\"},{\"title\":\"[Quick Review] Tree of Attacks: Jailbreaking Black-Box LLMs Automatically\",\"url\":\"https://liner.com/review/tree-of-attacks-jailbreaking-blackbox-llms-automatically\"},{\"title\":\"Tree of Attacks: Jailbreaking Black-Box LLMs Automatically | OpenReview\",\"url\":\"https://openreview.net/forum?id=SoM3vngOH5\"},{\"title\":\"Tree of Attacks: Jailbreaking Black-Box LLMs Automatically - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2023arXiv231202119M/abstract\"}]\n\nI found the paper you're looking for! Here are the search results for \"Tree of Attacks: Jailbreaking Black-Box LLMs Automatically\":\n\n**Paper Details:**\n- Title: \"Tree of Attacks: Jailbreaking Black-Box LLMs Automatically\"\n- Authors: Anay Mehrotra, Manolis Zampetakis, Paul Kassianik, Blaine Nelson, Hyrum Anderson, Yaron Singer, Amin Karbasi\n- Accepted for presentation at NeurIPS 2024\n\n**Summary:**\nThe paper presents Tree of Attacks with Pruning (TAP), an automated method for generating jailbreaks that only requires black-box access to the target LLM. TAP utilizes an attacker LLM to iteratively refine candidate (attack) prompts until one of the refined prompts jailbreaks the target. In addition, before sending prompts to the target, TAP assesses them and prunes the ones unlikely to result in jailbreaks, reducing the number of queries sent to the target LLM.\n\n**Results:**\nTAP generates prompts that jailbreak state-of-the-art LLMs (including GPT4-Turbo and GPT4o) for more than 80% of the prompts, significantly improving upon the previous state-of-the-art black-box methods for generating jailbreaks while using a smaller number of queries than them.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b8851584-767f-4c7a-812d-018ce607ce6e",
+            "isSidechain": false,
+            "promptId": "9eef696a-af1b-4962-95a5-e0ead4fba299",
+            "type": "user",
+            "uuid": "3ee76438-ea36-4ac5-9ff3-1d118c557de2",
+            "toolUseResult": {
+              "query": "\"Tree of Attacks\" Mehrotra Karbasi NeurIPS 2024 title \"Automatically\"",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01H6kMMTtuSfbye8B7xKxSSp",
+                  "content": [
+                    {
+                      "title": "Tree of Attacks: Jailbreaking Black-Box LLMs Automatically",
+                      "url": "https://neurips.cc/media/neurips-2024/Slides/95078_2fuupDs.pdf"
+                    },
+                    {
+                      "title": "[2312.02119] Tree of Attacks: Jailbreaking Black-Box LLMs Automatically",
+                      "url": "https://arxiv.org/abs/2312.02119"
+                    },
+                    {
+                      "title": "NeurIPS Poster Tree of Attacks: Jailbreaking Black-Box LLMs Automatically",
+                      "url": "https://nips.cc/virtual/2024/poster/95078"
+                    },
+                    {
+                      "title": "NeurIPS Poster Tree of Attacks: Jailbreaking Black-Box LLMs Automatically",
+                      "url": "https://neurips.cc/virtual/2024/poster/95078"
+                    },
+                    {
+                      "title": "Tree of attacks | Proceedings of the 38th International Conference on Neural Information Processing Systems",
+                      "url": "https://dl.acm.org/doi/10.5555/3737916.3739868"
+                    },
+                    {
+                      "title": "[PDF] Tree of Attacks: Jailbreaking Black-Box LLMs Automatically | Semantic Scholar",
+                      "url": "https://www.semanticscholar.org/paper/Tree-of-Attacks:-Jailbreaking-Black-Box-LLMs-Mehrotra-Zampetakis/14e8cf5a5e6a7b35e618b08f5cf06f572b3a54e0"
+                    },
+                    {
+                      "title": "[Quick Review] Tree of Attacks: Jailbreaking Black-Box LLMs Automatically",
+                      "url": "https://liner.com/review/tree-of-attacks-jailbreaking-blackbox-llms-automatically"
+                    },
+                    {
+                      "title": "Tree of Attacks: Jailbreaking Black-Box LLMs Automatically | OpenReview",
+                      "url": "https://openreview.net/forum?id=SoM3vngOH5"
+                    },
+                    {
+                      "title": "Tree of Attacks: Jailbreaking Black-Box LLMs Automatically - ADS",
+                      "url": "https://ui.adsabs.harvard.edu/abs/2023arXiv231202119M/abstract"
+                    }
+                  ]
+                },
+                "I found the paper you're looking for! Here are the search results for \"Tree of Attacks: Jailbreaking Black-Box LLMs Automatically\":\n\n**Paper Details:**\n- Title: \"Tree of Attacks: Jailbreaking Black-Box LLMs Automatically\"\n- Authors: Anay Mehrotra, Manolis Zampetakis, Paul Kassianik, Blaine Nelson, Hyrum Anderson, Yaron Singer, Amin Karbasi\n- Accepted for presentation at NeurIPS 2024\n\n**Summary:**\nThe paper presents Tree of Attacks with Pruning (TAP), an automated method for generating jailbreaks that only requires black-box access to the target LLM. TAP utilizes an attacker LLM to iteratively refine candidate (attack) prompts until one of the refined prompts jailbreaks the target. In addition, before sending prompts to the target, TAP assesses them and prunes the ones unlikely to result in jailbreaks, reducing the number of queries sent to the target LLM.\n\n**Results:**\nTAP generates prompts that jailbreak state-of-the-art LLMs (including GPT4-Turbo and GPT4o) for more than 80% of the prompts, significantly improving upon the previous state-of-the-art black-box methods for generating jailbreaks while using a smaller number of queries than them."
+              ],
+              "durationSeconds": 8.02354067799996
+            },
+            "sourceToolAssistantUUID": "b8851584-767f-4c7a-812d-018ce607ce6e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3db0dc2-d628-407b-a4ce-37fdd0f13d66",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": "2026-05-26T10:29:40.129Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "remove",
+                "timestamp": "2026-05-26T10:29:40.129Z",
+                "sessionId": "a3db0dc2-d628-407b-a4ce-37fdd0f13d66"
+              }
+            }
+          ],
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-26T10:29:40.129Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "3ee76438-ea36-4ac5-9ff3-1d118c557de2",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "queued_command",
+                  "prompt": "<task-notification>\n<task-id>a6a5f97084e39bdb3</task-id>\n<tool-use-id>toolu_01DVyHnFqQN4hTHm9vG75uJ3</tool-use-id>\n<output-file>/tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/a3db0dc2-d628-407b-a4ce-37fdd0f13d66/tasks/a6a5f97084e39bdb3.output</output-file>\n<status>completed</status>\n<summary>Agent \"Verify bib batch 6 (76-91)\" completed</summary>\n<result>Now I have all the information. Let me compile the full report.\n\nHere are the verification results for all 16 references:\n\n---\n\n### 1. alon2023perplexity — STATUS: ✓\n\n- **Authors**: ✓ — Gabriel Alon and Michael Kamfonas (correct)\n- **Year**: ✓ — 2023 (submitted Aug 27, 2023)\n- **Title**: ✓ — \"Detecting Language Model Attacks with Perplexity\" (exact match)\n- **Venue**: ✓ — arXiv preprint (no formal venue claimed)\n- **arXiv**: ✓ — 2308.14132\n- **Evidence URL**: https://arxiv.org/abs/2308.14132\n\n---\n\n### 2. phute2023selfdefense — STATUS: ✓\n\n- **Authors**: ✓ — Mansi Phute et al. (Phute, Helbling, Hull, Peng, Szyller, Cornelius, Chau). Phute is confirmed first author on arXiv.\n- **Year**: ✓ — 2023 (submitted Aug 14, 2023)\n- **Title**: ✓ — \"LLM Self Defense: By Self Examination, LLMs Know They Are Being Tricked\" (exact match)\n- **Venue**: ✓ — arXiv preprint (no formal venue claimed)\n- **arXiv**: ✓ — 2308.07308\n- **Evidence URL**: https://arxiv.org/abs/2308.07308\n\n---\n\n### 3. nian2025jaildam — STATUS: ✓\n\n- **Authors**: ✓ — Yi Nian et al. (Nian, Zhu, Qin, Li, Wang, Xiao, Zhao)\n- **Year**: ✓ — 2025\n- **Title**: ✓ — \"JailDAM: Jailbreak Detection with Adaptive Memory for Vision-Language Model\" (exact match)\n- **Venue**: ✓ — COLM 2025 (Conference on Language Modeling), confirmed by GitHub repo tag \"[COLM 2025]\" and COLM website\n- **arXiv**: ✓ — 2504.03770\n- **Evidence URL**: https://arxiv.org/abs/2504.03770, https://github.com/ShenzheZhu/JailDAM\n\n---\n\n### 4. anil2024manyshot — STATUS: ✓\n\n- **Authors**: ✓ — Cem Anil et al. (large author list including Durmus, Panickssery, Sharma, Benton, etc.)\n- **Year**: ✓ — 2024 (NeurIPS 2024)\n- **Title**: ✓ — \"Many-shot Jailbreaking\" (exact match)\n- **Venue**: ✓ — NeurIPS 2024 (confirmed via proceedings.neurips.cc)\n- **arXiv**: N/A — The bib entry does not include an arXiv ID. The paper was published via Anthropic's website and NeurIPS proceedings; no standard arXiv ID was found.\n- **Evidence URL**: https://proceedings.neurips.cc/paper_files/paper/2024/hash/ea456e232efb72d261715e33ce25f208-Abstract-Conference.html\n\n---\n\n### 5. jain2023baseline — STATUS: ✓\n\n- **Authors**: ✓ — Neel Jain et al. (Jain, Schwarzschild, Wen, Somepalli, Kirchenbauer, Chiang, Goldblum, Saha, Geiping, Goldstein)\n- **Year**: ✓ — 2023 (submitted Sep 1, 2023)\n- **Title**: ✓ — \"Baseline Defenses for Adversarial Attacks Against Aligned Language Models\" (exact match)\n- **Venue**: ✓ — arXiv preprint (no formal venue claimed)\n- **arXiv**: ✓ — 2309.00614\n- **Evidence URL**: https://arxiv.org/abs/2309.00614\n\n---\n\n### 6. shen2025antidote — STATUS: DUPLICATE (remove this entry)\n\n- **Authors**: ✓ — Guobin Shen et al. (Shen, Zhao, Dong, He, Zeng)\n- **Year**: ✓ — ICLR 2025\n- **Title**: ✓ — \"Jailbreak Antidote: Runtime Safety-Utility Balance via Sparse Representation Adjustment in Large Language Models\"\n- **Venue**: ✓ — ICLR 2025 (confirmed via iclr.cc poster page and OpenReview)\n- **arXiv**: ✓ — 2410.02298\n- **DUPLICATE VERDICT**: This is a TRUE DUPLICATE of `shen2024jailbreakantidote` (entry #7). Same arXiv ID, same title, same authors, same paper. Since entry #7 is the one actually cited in .tex files, **this entry (#6) should be removed**.\n- **Evidence URL**: https://arxiv.org/abs/2410.02298, https://iclr.cc/virtual/2025/poster/28150\n\n---\n\n### 7. shen2024jailbreakantidote — STATUS: ✓ (keep this one)\n\n- **Authors**: ✓ — Guobin Shen et al. (Shen, Zhao, Dong, He, Zeng)\n- **Year**: ✓ — arXiv 2024, accepted at ICLR 2025 (note field says \"ICLR 2025\")\n- **Title**: ✓ — \"Jailbreak Antidote: Runtime Safety-Utility Balance via Sparse Representation Adjustment in Large Language Models\"\n- **Venue**: ✓ — ICLR 2025\n- **arXiv**: ✓ — 2410.02298\n- **DUPLICATE VERDICT**: This is the authoritative entry, cited in .tex files. Keep this one, remove `shen2025antidote`.\n- **Evidence URL**: https://arxiv.org/abs/2410.02298, https://openreview.net/forum?id=s20W12XTF8\n\n---\n\n### 8. hsu2024improved — STATUS: ✗ (FABRICATED / WRONG AUTHORS)\n\n- **Authors**: ✗ — The bib entry lists \"Hsu, Erick and Hsu, Ikuya and Chung, Paul\" but the real authors are **Erick Galinkin and Martin Sablotny** (NVIDIA). There is no \"Hsu\" or \"Chung\" on this paper. The first name \"Erick\" matches Erick Galinkin, but the surnames are completely wrong.\n- **Year**: ✓ — 2024 (submitted Dec 2, 2024)\n- **Title**: ✗ — Bib entry says \"Improved LLM Jailbreak Detection via Pretrained Embeddings\" but the real title is \"Improved **Large Language Model** Jailbreak Detection via Pretrained Embeddings\"\n- **Venue**: N/A — arXiv preprint\n- **arXiv**: ✓ — 2412.01547 (same paper as galinkin2024improved)\n- **DUPLICATE VERDICT**: This is a TRUE DUPLICATE of `galinkin2024improved` (entry #9), but with **incorrect author names and a slightly wrong title**. This entry should be **removed**.\n- **Evidence URL**: https://arxiv.org/abs/2412.01547\n\n---\n\n### 9. galinkin2024improved — STATUS: ✓\n\n- **Authors**: ✓ — Erick Galinkin and Martin Sablotny (correct)\n- **Year**: ✓ — 2024 (submitted Dec 2, 2024)\n- **Title**: ✓ — \"Improved Large Language Model Jailbreak Detection via Pretrained Embeddings\" (exact match)\n- **Venue**: ✓ — arXiv preprint (no formal venue claimed beyond arXiv)\n- **arXiv**: ✓ — 2412.01547\n- **DUPLICATE VERDICT**: This is the correct entry. `hsu2024improved` (#8) is the same paper with fabricated author names and should be removed.\n- **Evidence URL**: https://arxiv.org/abs/2412.01547\n\n---\n\n### 10. li2025m2s — STATUS: ✗ (WRONG AUTHORS AND WRONG TITLE)\n\n- **Authors**: ✗ — The bib entry says \"Li, Minxuan et al.\" but the real authors are **Junwoo Ha, Hyunjun Kim, Sangyoon Yu, Haon Park, Ashkan Yousefpour, Yuna Park, and Suhyun Kim**. There is no \"Li Minxuan\" among the authors.\n- **Year**: ✓ — 2025 (submitted Mar 6, 2025; published at ACL 2025)\n- **Title**: ✗ — The bib entry says \"M2S: Multi-Turn to Single-Turn -- Converting Multi-Turn Jailbreak Attacks to Single-Turn for Enhanced Safety Guardrails\" but the actual title is **\"M2S: Multi-turn to Single-turn jailbreak in Red Teaming for LLMs\"** (the v1 title was \"One-Shot is Enough: Consolidating Multi-Turn Attacks into Efficient Single-Turn Prompts for LLMs\"). The subtitle in the bib entry does not match any version.\n- **Venue**: ✗ — Not noted in the bib, but the paper was published at **ACL 2025** (Proceedings of the 63rd Annual Meeting of the ACL)\n- **arXiv**: ✓ — 2503.04856\n- **Evidence URL**: https://arxiv.org/abs/2503.04856, https://aclanthology.org/2025.acl-long.805/\n\n---\n\n### 11. li2025repejailbreak — STATUS: ✓\n\n- **Authors**: ✓ — Tianlong Li et al. (Li, Wang, Liu, Wu, Dou, Lv, Wang, Zheng, Huang)\n- **Year**: ✗ — The bib says 2025, but the arXiv submission was January 2024. However, the COLING 2025 proceedings year is 2025, so this is arguably correct depending on which date is referenced.\n- **Title**: ✓ — \"Revisiting Jailbreaking for Large Language Models: A Representation Engineering Perspective\" (exact match with the final version title)\n- **Venue**: ✓ — COLING 2025, specifically the 31st International Conference on Computational Linguistics (ICCL is not a standard abbreviation; the conference is called \"COLING\" or \"International Conference on Computational Linguistics\"). The bib says \"31st ICCL\" which should be \"31st International Conference on Computational Linguistics\" or just \"COLING 2025\".\n- **arXiv**: ✓ — 2401.06824\n- **Evidence URL**: https://arxiv.org/abs/2401.06824, https://aclanthology.org/2025.coling-main.212/\n\n---\n\n### 12. kadali2025internallayers — STATUS: ✓\n\n- **Authors**: ✓ — Sri Durga Sai Sowmya Kadali and Evangelos E. Papalexakis (correct)\n- **Year**: ✓ — 2025 (submitted Oct 8, 2025)\n- **Title**: ✓ — \"Do Internal Layers of LLMs Reveal Patterns for Jailbreak Detection?\" (exact match)\n- **Venue**: ✓ — arXiv preprint (no formal venue claimed)\n- **arXiv**: ✓ — 2510.06594\n- **Evidence URL**: https://arxiv.org/abs/2510.06594\n\n---\n\n### 13. markov2023holistic — STATUS: ✓\n\n- **Authors**: ✓ — Todor Markov et al. (Markov, Zhang, Agarwal, Eloundou Nekoul, Lee, Adler, Weng)\n- **Year**: ✓ — 2023\n- **Title**: ✓ — \"A Holistic Approach to Undesired Content Detection in the Real World\" (exact match)\n- **Venue**: ✓ — AAAI 2023, vol 37, pp 15009-15018 (all confirmed via AAAI proceedings)\n- **arXiv**: N/A (not listed in bib, but exists as 2208.03274)\n- **Evidence URL**: https://ojs.aaai.org/index.php/AAAI/article/view/26752\n\n---\n\n### 14. wu2025safeint — STATUS: ✓\n\n- **Authors**: ✓ — Jiaqi Wu et al. (Wu, Chen, Hou, Yuan)\n- **Year**: ✓ — 2025 (submitted Feb 2025)\n- **Title**: ✓ — \"SafeInt: Shielding Large Language Models from Jailbreak Attacks via Safety-Aware Representation Intervention\" (exact match)\n- **Venue**: ✓ — arXiv preprint (also noted as accepted to Findings of EMNLP 2025)\n- **arXiv**: ✓ — 2502.15594\n- **Evidence URL**: https://arxiv.org/abs/2502.15594\n\n---\n\n### 15. alobaid2026echochamber — STATUS: ✓\n\n- **Authors**: ✓ — Ahmad Alobaid et al. (Alobaid, Jordà Roca, Castillo, Vendrell)\n- **Year**: ✓ — 2026 (submitted Jan 9, 2026)\n- **Title**: ✓ — \"The Echo Chamber Multi-Turn LLM Jailbreak\" (exact match)\n- **Venue**: ✓ — arXiv preprint (no formal venue claimed)\n- **arXiv**: ✓ — 2601.05742\n- **Evidence URL**: https://arxiv.org/abs/2601.05742\n\n---\n\n### 16. yousefpour2025repbend — STATUS: ✓\n\n- **Authors**: ✓ — Ashkan Yousefpour et al. (Yousefpour, Kim, Kwon, Lee, Jeung, Han, Wan, Ngan, Yu, Choi)\n- **Year**: ✓ — 2025 (published at ACL 2025)\n- **Title**: ✓ — \"Representation Bending for Large Language Model Safety\" (exact match)\n- **Venue**: ✓ — arXiv preprint (also published at ACL 2025 Long Papers)\n- **arXiv**: ✓ — 2504.01550\n- **Evidence URL**: https://arxiv.org/abs/2504.01550, https://aclanthology.org/2025.acl-long.1173/\n\n---\n\n## Summary of Issues Found\n\n**Confirmed duplicates to remove:**\n1. **`shen2025antidote`** — True duplicate of `shen2024jailbreakantidote`. Same paper, same arXiv ID (2410.02298). Remove `shen2025antidote` since `shen2024jailbreakantidote` is the one cited in .tex files.\n2. **`hsu2024improved`** — True duplicate of `galinkin2024improved`. Same arXiv ID (2412.01547), but `hsu2024improved` has **fabricated author names** (\"Hsu, Erick and Hsu, Ikuya and Chung, Paul\" instead of the real authors Galinkin and Sablotny) and a slightly wrong title. Remove `hsu2024improved`.\n\n**Entries with errors:**\n3. **`li2025m2s`** — Two major errors:\n   - **Wrong authors**: Lists \"Li, Minxuan et al.\" but real authors are Ha, Kim, Yu, Park, Yousefpour, Park, Kim.\n   - **Wrong title**: Lists \"M2S: Multi-Turn to Single-Turn -- Converting Multi-Turn Jailbreak Attacks to Single-Turn for Enhanced Safety Guardrails\" but real title is \"M2S: Multi-turn to Single-turn jailbreak in Red Teaming for LLMs\".\n\n**Minor notes:**\n4. **`li2025repejailbreak`** — The venue abbreviation \"31st ICCL\" is non-standard; it should be \"COLING 2025\" or \"31st International Conference on Computational Linguistics\".</result>\n<usage><total_tokens>47484</total_tokens><tool_uses>35</tool_uses><duration_ms>495846</duration_ms></usage>\n</task-notification>",
+                  "commandMode": "task-notification"
+                },
+                "type": "attachment",
+                "uuid": "0fbf4b1c-9686-4430-bb36-2f3598171063",
+                "timestamp": "2026-05-26T10:29:40.129Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+                "sessionId": "a3db0dc2-d628-407b-a4ce-37fdd0f13d66",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-26T10:30:19.993Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "All 6 batches are now complete. Let me compile the findings.\n\nVerification results confirmed:\n1. **robey2024smoothllm**: Not ICML 2024. My search confirms it's an arXiv preprint (2310.03684). The Semantic Scholar page says it was \"Published in Transactions on Machine Learning Research 2025.\" So the venue should be either \"arXiv preprint\" or \"TMLR 2025\", not \"ICML 2024\".\n\n2. **mehrotra2024tap**: Title confirmed wrong. The actual NeurIPS 2024 title is \"Tree of Attacks: Jailbreaking Black-Box LLMs Automatically\" - the subtitle \"with the Pruning of Candidate Outputs\" is fabricated.\n   \n3. Batch 6 turned up several more issues: **shen2025antidote** is a duplicate that should be removed, **hsu2024improved** duplicates another entry but with fabricated author names, **li2025m2s** has both wrong authors and a wrong title, and **li2025repejailbreak** just needs a minor venue abbreviation fix. Now I'm organizing all the critical errors across the batches to prepare the full report.\n\nThe most serious problems are papers with completely fabricated or misattributed authorship and titles. **ren2024actorattack** has a fabricated title and wrong venue information, **marchiori2025jdapt** lists the wrong first author and title with no citations, **wang2026trajguard** has entirely different authors than what's listed, **li2025m2s** similarly has wrong authors and title, and **hsu2024improved** appears to be a duplicate with invented author names. These five entries represent the most critical errors requiring immediate correction.\n\nBeyond those, I'm seeing a pattern of venue and title mismatches: **robey2024smoothllm** has the wrong publication venue, **mehrotra2024tap** has a fabricated subtitle, and **jiang2024redqueen** has multiple errors across title, year, and venue. Then there are moderate issues where papers exist but metadata needs updating—**metallamaguard3_2024** doesn't have a standalone paper, **gguard2025** and **lu2025xboundary** had titles that changed between versions, and I'm still reviewing **song2026multi**.\n\nI also need to flag that **chao2024jailbreakbench** is missing the specific NeurIPS track designation and **conneau2018probing** has a minor title formatting issue. More critically, I've identified two sets of true duplicates: **shen2025antidote** and **shen2024jailbreakantidote** point to the same arXiv preprint, and **hsu2024improved** and **galinkin2024improved** are also duplicates with **hsu2024improved** having fabricated author information. Finally, I'm tracking 18 uncited entries starting with **he2021deberta**.\n\nLet me verify the complete uncited list against the critical errors to ensure I'm not missing any overlaps before finalizing the report. I'm noticing a discrepancy in the phute2023selfdefense entry — the bibliography lists certain author names, but the batch 6 agent flagged mismatches like \"Helber\" versus \"Helbling\" and \"Szyber\" versus \"Szyller,\" plus entirely different co-authors at the end. I need to verify which version is correct before deciding whether to update the entry.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0fbf4b1c-9686-4430-bb36-2f3598171063",
+            "isSidechain": false,
+            "requestId": "req_011CbR2Ms8WgFciBnWJiiFEX",
+            "type": "assistant",
+            "uuid": "cf60325d-d05b-4f17-9eed-81767867e8c2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3db0dc2-d628-407b-a4ce-37fdd0f13d66",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D6buWwMKn5qFfKUFLxiwMF",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7040,
+                "cache_read_input_tokens": 128588,
+                "output_tokens": 1910,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7040,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1910,
+                    "cache_read_input_tokens": 128588,
+                    "cache_creation_input_tokens": 7040,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7040
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-26T10:30:20.391Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 6 batches complete. Let me verify one more issue I spotted — the phute2023selfdefense author list looks suspicious."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cf60325d-d05b-4f17-9eed-81767867e8c2",
+            "isSidechain": false,
+            "requestId": "req_011CbR2Ms8WgFciBnWJiiFEX",
+            "type": "assistant",
+            "uuid": "10a98b1a-d1dd-4d07-8f2a-92cc4047a6c2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3db0dc2-d628-407b-a4ce-37fdd0f13d66",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D6buWwMKn5qFfKUFLxiwMF",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7040,
+                "cache_read_input_tokens": 128588,
+                "output_tokens": 1910,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7040,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1910,
+                    "cache_read_input_tokens": 128588,
+                    "cache_creation_input_tokens": 7040,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7040
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-26T10:30:21.048Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XSqNG1LEDuRUrEcLrH5RaR",
+              "name": "WebSearch",
+              "input": {
+                "query": "arxiv 2308.07308 \"LLM Self Defense\" authors Phute"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "10a98b1a-d1dd-4d07-8f2a-92cc4047a6c2",
+            "isSidechain": false,
+            "requestId": "req_011CbR2Ms8WgFciBnWJiiFEX",
+            "type": "assistant",
+            "uuid": "a4df9fa5-7743-4fee-af44-1ec24a2faddd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3db0dc2-d628-407b-a4ce-37fdd0f13d66",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D6buWwMKn5qFfKUFLxiwMF",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7040,
+                "cache_read_input_tokens": 128588,
+                "output_tokens": 1910,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7040,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1910,
+                    "cache_read_input_tokens": 128588,
+                    "cache_creation_input_tokens": 7040,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7040
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "a4df9fa5-7743-4fee-af44-1ec24a2faddd",
+                "sessionId": "a3db0dc2-d628-407b-a4ce-37fdd0f13d66"
+              }
+            }
+          ],
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Verify references.bib citations independently",
+                "sessionId": "a3db0dc2-d628-407b-a4ce-37fdd0f13d66"
+              }
+            }
+          ],
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": "2026-05-26T10:30:28.447Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XSqNG1LEDuRUrEcLrH5RaR",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arxiv 2308.07308 \"LLM Self Defense\" authors Phute\"\n\nLinks: [{\"title\":\"[2308.07308] LLM Self Defense: By Self Examination, LLMs Know They Are Being Tricked\",\"url\":\"https://arxiv.org/abs/2308.07308\"},{\"title\":\"[PDF] LLM Self Defense: By Self Examination, LLMs Know They Are Being Tricked | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/LLM-Self-Defense:-By-Self-Examination,-LLMs-Know-Helbling-Phute/2cdd5c3dc42c0df40bc8839709869af3560d4bfe\"},{\"title\":\"LLM Self Defense: By Self Examination, LLMs Know They Are Being Tricked\",\"url\":\"https://arxiv.org/pdf/2308.07308\"},{\"title\":\"Paper page - LLM Self Defense: By Self Examination, LLMs Know They Are Being Tricked\",\"url\":\"https://huggingface.co/papers/2308.07308\"},{\"title\":\"Phute, M., et al. (2023) LLM Self Defense By Self Examination, LLMs Know They Are Being Tricked. arXiv preprint arXiv2308.07308. - References - Scientific Research Publishing\",\"url\":\"https://www.scirp.org/reference/referencespapers?referenceid=3652696\"},{\"title\":\"GitHub - poloclub/llm-self-defense: LLM Self Defense: By Self Examination, LLMs know they are being tricked · GitHub\",\"url\":\"https://github.com/poloclub/llm-self-defense\"},{\"title\":\"LLM Self Defense via Self-Examination\",\"url\":\"https://www.emergentmind.com/papers/2308.07308\"},{\"title\":\"LLM Self Defense: By Self Examination, LLMs Know They Are Being Tricked - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2023arXiv230807308P/abstract\"},{\"title\":\"Learning From Correctness Without Prompting Makes LLM Efficient Reasoner\",\"url\":\"https://arxiv.org/html/2403.19094v2\"},{\"title\":\"AegisLLM: Scaling Agentic Systems for Self-Reflective Defense in LLM Security\",\"url\":\"https://arxiv.org/html/2504.20965v1\"}]\n\nI found the paper you're looking for. Here's the information about arxiv 2308.07308:\n\n**Title:** LLM Self Defense: By Self Examination, LLMs Know They Are Being Tricked\n\n**Authors:** Mansi Phute, Alec Helbling, Matthew Hull, ShengYun Peng, Sebastian Szyller, Cory Cornelius, and Duen Horng Chau\n\n**Publication Date:** Submitted on 14 Aug 2023 (v1), last revised 2 May 2024 (this version, v4)\n\n**Summary:** The paper proposes LLM Self Defense, a simple approach to defend against attacks by having an LLM screen the induced responses by incorporating the generated content into a pre-defined prompt and employing another instance of an LLM to analyze the text and predict whether it is harmful. The method does not require any fine-tuning, input preprocessing, or iterative output generation.\n\n**Results:** LLM Self Defense succeeds in reducing the attack success rate to virtually 0 using both GPT 3.5 and Llama 2.\n\n**Code:** The code is publicly available at https://github.com/poloclub/llm-self-defense\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a4df9fa5-7743-4fee-af44-1ec24a2faddd",
+            "isSidechain": false,
+            "promptId": "9eef696a-af1b-4962-95a5-e0ead4fba299",
+            "type": "user",
+            "uuid": "3a9ed7a8-e206-442b-95ab-84da6e7d0e87",
+            "toolUseResult": {
+              "query": "arxiv 2308.07308 \"LLM Self Defense\" authors Phute",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01LkLnTTnhJpmkEYqTfDQ8kq",
+                  "content": [
+                    {
+                      "title": "[2308.07308] LLM Self Defense: By Self Examination, LLMs Know They Are Being Tricked",
+                      "url": "https://arxiv.org/abs/2308.07308"
+                    },
+                    {
+                      "title": "[PDF] LLM Self Defense: By Self Examination, LLMs Know They Are Being Tricked | Semantic Scholar",
+                      "url": "https://www.semanticscholar.org/paper/LLM-Self-Defense:-By-Self-Examination,-LLMs-Know-Helbling-Phute/2cdd5c3dc42c0df40bc8839709869af3560d4bfe"
+                    },
+                    {
+                      "title": "LLM Self Defense: By Self Examination, LLMs Know They Are Being Tricked",
+                      "url": "https://arxiv.org/pdf/2308.07308"
+                    },
+                    {
+                      "title": "Paper page - LLM Self Defense: By Self Examination, LLMs Know They Are Being Tricked",
+                      "url": "https://huggingface.co/papers/2308.07308"
+                    },
+                    {
+                      "title": "Phute, M., et al. (2023) LLM Self Defense By Self Examination, LLMs Know They Are Being Tricked. arXiv preprint arXiv2308.07308. - References - Scientific Research Publishing",
+                      "url": "https://www.scirp.org/reference/referencespapers?referenceid=3652696"
+                    },
+                    {
+                      "title": "GitHub - poloclub/llm-self-defense: LLM Self Defense: By Self Examination, LLMs know they are being tricked · GitHub",
+                      "url": "https://github.com/poloclub/llm-self-defense"
+                    },
+                    {
+                      "title": "LLM Self Defense via Self-Examination",
+                      "url": "https://www.emergentmind.com/papers/2308.07308"
+                    },
+                    {
+                      "title": "LLM Self Defense: By Self Examination, LLMs Know They Are Being Tricked - ADS",
+                      "url": "https://ui.adsabs.harvard.edu/abs/2023arXiv230807308P/abstract"
+                    },
+                    {
+                      "title": "Learning From Correctness Without Prompting Makes LLM Efficient Reasoner",
+                      "url": "https://arxiv.org/html/2403.19094v2"
+                    },
+                    {
+                      "title": "AegisLLM: Scaling Agentic Systems for Self-Reflective Defense in LLM Security",
+                      "url": "https://arxiv.org/html/2504.20965v1"
+                    }
+                  ]
+                },
+                "I found the paper you're looking for. Here's the information about arxiv 2308.07308:\n\n**Title:** LLM Self Defense: By Self Examination, LLMs Know They Are Being Tricked\n\n**Authors:** Mansi Phute, Alec Helbling, Matthew Hull, ShengYun Peng, Sebastian Szyller, Cory Cornelius, and Duen Horng Chau\n\n**Publication Date:** Submitted on 14 Aug 2023 (v1), last revised 2 May 2024 (this version, v4)\n\n**Summary:** The paper proposes LLM Self Defense, a simple approach to defend against attacks by having an LLM screen the induced responses by incorporating the generated content into a pre-defined prompt and employing another instance of an LLM to analyze the text and predict whether it is harmful. The method does not require any fine-tuning, input preprocessing, or iterative output generation.\n\n**Results:** LLM Self Defense succeeds in reducing the attack success rate to virtually 0 using both GPT 3.5 and Llama 2.\n\n**Code:** The code is publicly available at https://github.com/poloclub/llm-self-defense"
+              ],
+              "durationSeconds": 7.395077940999996
+            },
+            "sourceToolAssistantUUID": "a4df9fa5-7743-4fee-af44-1ec24a2faddd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3db0dc2-d628-407b-a4ce-37fdd0f13d66",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": "2026-05-26T10:30:45.128Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Confirmed! The actual authors of arxiv 2308.07308 are:\n- Mansi Phute, Alec **Helbling**, Matthew Hull, ShengYun **Peng**, Sebastian **Szyller**, Cory **Cornelius**, and Duen Horng **Chau**\n\nBut the bib entry says:\n- Phute, Mansi and **Helber**, Alec and Hull, Matthew and **Peng, ShiNung** and **Szyber**, Sebastian and **Caliskan, Aylin** and **Khashabi, Daniel**\n \nLooking at the discrepancies, there are five significant errors in the bibliography: Helber vs. Helbling, ShiNung vs. ShengYun, Szyber vs. Szyller, and two completely wrong authors listed instead of Cornelius and Chau. This is a major issue affecting more than half the author list.\n\nSince this entry isn't cited in the paper, it won't impact the final output, but I should verify the correct author order from the arXiv source. The official listing shows Mansi Phute as the first author, followed by Alec Helbling and the others in sequence. Now I'm ready to compile the complete error report with all the critical issues I've identified across the bibliography entries. I'm also finding significant issues in the uncited entries—wrong author names, fabricated authors, and completely incorrect titles across multiple papers. There are also duplicate entries that should be consolidated, and about eighteen papers that aren't cited anywhere in the document despite being in the bibliography.\n\nNow I'm ready to compile the comprehensive report.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3a9ed7a8-e206-442b-95ab-84da6e7d0e87",
+            "isSidechain": false,
+            "requestId": "req_011CbR2RRiAChpYeRAdxXw37",
+            "type": "assistant",
+            "uuid": "181956c7-a81a-4160-ba1b-c820ea22889b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3db0dc2-d628-407b-a4ce-37fdd0f13d66",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012NDdbgpTRFtKv6eQsFyRDU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2819,
+                "cache_read_input_tokens": 135628,
+                "output_tokens": 1563,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2819,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1563,
+                    "cache_read_input_tokens": 135628,
+                    "cache_creation_input_tokens": 2819,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2819
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": "2026-05-26T10:30:45.131Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Confirmed: **phute2023selfdefense** has 5 of 7 author names wrong (Helber→Helbling, ShiNung→ShengYun, Szyber→Szyller, Caliskan→Cornelius, Khashabi→Chau).\n\nAll 6 batches are now complete. Let me compile the final report."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "181956c7-a81a-4160-ba1b-c820ea22889b",
+            "isSidechain": false,
+            "requestId": "req_011CbR2RRiAChpYeRAdxXw37",
+            "type": "assistant",
+            "uuid": "32429118-377d-41fe-8ca7-321d585447e5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3db0dc2-d628-407b-a4ce-37fdd0f13d66",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012NDdbgpTRFtKv6eQsFyRDU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2819,
+                "cache_read_input_tokens": 135628,
+                "output_tokens": 1563,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2819,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1563,
+                    "cache_read_input_tokens": 135628,
+                    "cache_creation_input_tokens": 2819,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2819
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": "2026-05-26T10:30:49.322Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KVngWuNNkTnpu4fqnU1jFN",
+              "name": "TodoWrite",
+              "input": {
+                "todos": [
+                  {
+                    "content": "Read .bib and .tex files, catalog all entries and citations",
+                    "status": "completed",
+                    "activeForm": "Reading .bib and .tex files"
+                  },
+                  {
+                    "content": "Verify batch 1 (entries 1-15): Production safety systems & discourse analysis",
+                    "status": "completed",
+                    "activeForm": "Verifying batch 1 entries via web search"
+                  },
+                  {
+                    "content": "Verify batch 2 (entries 16-30): Jailbreak attacks & taxonomies",
+                    "status": "completed",
+                    "activeForm": "Verifying batch 2 entries via web search"
+                  },
+                  {
+                    "content": "Verify batch 3 (entries 31-45): Technical foundations & DAPT",
+                    "status": "completed",
+                    "activeForm": "Verifying batch 3 entries via web search"
+                  },
+                  {
+                    "content": "Verify batch 4 (entries 46-60): Probing, defense systems, benchmarks",
+                    "status": "completed",
+                    "activeForm": "Verifying batch 4 entries via web search"
+                  },
+                  {
+                    "content": "Verify batch 5 (entries 61-75): More defenses, representation, SSL",
+                    "status": "completed",
+                    "activeForm": "Verifying batch 5 entries via web search"
+                  },
+                  {
+                    "content": "Verify batch 6 (entries 76-91): Detection baselines, duplicates check",
+                    "status": "completed",
+                    "activeForm": "Verifying batch 6 entries via web search"
+                  },
+                  {
+                    "content": "Compile final audit report",
+                    "status": "in_progress",
+                    "activeForm": "Compiling final audit report"
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "32429118-377d-41fe-8ca7-321d585447e5",
+            "isSidechain": false,
+            "requestId": "req_011CbR2RRiAChpYeRAdxXw37",
+            "type": "assistant",
+            "uuid": "af5dd2ef-6c32-466c-9b2f-2d87fafdb794",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3db0dc2-d628-407b-a4ce-37fdd0f13d66",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012NDdbgpTRFtKv6eQsFyRDU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2819,
+                "cache_read_input_tokens": 135628,
+                "output_tokens": 1563,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2819,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1563,
+                    "cache_read_input_tokens": 135628,
+                    "cache_creation_input_tokens": 2819,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2819
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": "2026-05-26T10:30:49.329Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KVngWuNNkTnpu4fqnU1jFN",
+              "type": "tool_result",
+              "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "af5dd2ef-6c32-466c-9b2f-2d87fafdb794",
+            "isSidechain": false,
+            "promptId": "9eef696a-af1b-4962-95a5-e0ead4fba299",
+            "type": "user",
+            "uuid": "0cd461c9-06f5-4467-9e87-5c5cf5aafca6",
+            "toolUseResult": {
+              "oldTodos": [
+                {
+                  "content": "Read .bib and .tex files, catalog all entries and citations",
+                  "status": "completed",
+                  "activeForm": "Reading .bib and .tex files"
+                },
+                {
+                  "content": "Verify batch 1 (entries 1-15): Production safety systems & discourse analysis",
+                  "status": "completed",
+                  "activeForm": "Verifying batch 1 entries via web search"
+                },
+                {
+                  "content": "Verify batch 2 (entries 16-30): Jailbreak attacks & taxonomies",
+                  "status": "in_progress",
+                  "activeForm": "Verifying batch 2 entries via web search"
+                },
+                {
+                  "content": "Verify batch 3 (entries 31-45): Technical foundations & DAPT",
+                  "status": "completed",
+                  "activeForm": "Verifying batch 3 entries via web search"
+                },
+                {
+                  "content": "Verify batch 4 (entries 46-60): Probing, defense systems, benchmarks",
+                  "status": "in_progress",
+                  "activeForm": "Verifying batch 4 entries via web search"
+                },
+                {
+                  "content": "Verify batch 5 (entries 61-75): More defenses, representation, SSL",
+                  "status": "completed",
+                  "activeForm": "Verifying batch 5 entries via web search"
+                },
+                {
+                  "content": "Verify batch 6 (entries 76-91): Detection baselines, duplicates check",
+                  "status": "in_progress",
+                  "activeForm": "Verifying batch 6 entries via web search"
+                },
+                {
+                  "content": "Compile final audit report",
+                  "status": "pending",
+                  "activeForm": "Compiling final audit report"
+                }
+              ],
+              "newTodos": [
+                {
+                  "content": "Read .bib and .tex files, catalog all entries and citations",
+                  "status": "completed",
+                  "activeForm": "Reading .bib and .tex files"
+                },
+                {
+                  "content": "Verify batch 1 (entries 1-15): Production safety systems & discourse analysis",
+                  "status": "completed",
+                  "activeForm": "Verifying batch 1 entries via web search"
+                },
+                {
+                  "content": "Verify batch 2 (entries 16-30): Jailbreak attacks & taxonomies",
+                  "status": "completed",
+                  "activeForm": "Verifying batch 2 entries via web search"
+                },
+                {
+                  "content": "Verify batch 3 (entries 31-45): Technical foundations & DAPT",
+                  "status": "completed",
+                  "activeForm": "Verifying batch 3 entries via web search"
+                },
+                {
+                  "content": "Verify batch 4 (entries 46-60): Probing, defense systems, benchmarks",
+                  "status": "completed",
+                  "activeForm": "Verifying batch 4 entries via web search"
+                },
+                {
+                  "content": "Verify batch 5 (entries 61-75): More defenses, representation, SSL",
+                  "status": "completed",
+                  "activeForm": "Verifying batch 5 entries via web search"
+                },
+                {
+                  "content": "Verify batch 6 (entries 76-91): Detection baselines, duplicates check",
+                  "status": "completed",
+                  "activeForm": "Verifying batch 6 entries via web search"
+                },
+                {
+                  "content": "Compile final audit report",
+                  "status": "in_progress",
+                  "activeForm": "Compiling final audit report"
+                }
+              ],
+              "verificationNudgeNeeded": false
+            },
+            "sourceToolAssistantUUID": "af5dd2ef-6c32-466c-9b2f-2d87fafdb794",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3db0dc2-d628-407b-a4ce-37fdd0f13d66",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": "2026-05-26T10:34:13.783Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FM3dvEX6RFna6R73mtm1bt",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/ref_audit_worker_A.md",
+                "content": "# 引用验证报告 — Worker A\n\n## 统计\n- 总 .bib 条目数: 91\n- 验证通过: 63\n- 发现问题: 10 (cited entries with errors) + 5 (uncited entries with errors)\n- 未被正文引用: 18\n- 疑似重复: 2 对\n\n---\n\n## 一、被引用条目中的错误（需修复）\n\n### ren2024actorattack ✗✗✗ [CRITICAL — 正文高频引用]\n- **问题 1 — 标题伪造**: Bib 写 \"ActorAttack: Red-Teaming Large Language Models via Multi-Turn Actor Network Theory\"，但论文实际标题是 **\"Derail Yourself: Multi-turn LLM Jailbreak Attack through Self-discovered Clues\"**（arXiv v1）或 **\"LLMs know their vulnerabilities: Uncover Safety Gaps through Natural Distribution Shifts\"**（arXiv v2 / ACL 2025 版本）。\"ActorAttack\" 只是方法名，不是论文标题。\n- **问题 2 — Venue 错误**: Bib 写 ICLR 2025，但论文已从 ICLR 2025 撤稿，修改后被 **ACL 2025** 接收。\n- **问题 3 — 缺少 arXiv ID**: 应为 2410.10700。\n- **引用位置**: introduction.tex (line 5, 16), related_work.tex (line 6), experiments.tex (line 42, 155), conclusion.tex (line 11)\n- **来源**: [arXiv 2410.10700](https://arxiv.org/abs/2410.10700), [GitHub](https://github.com/renqibing/ActorAttack)\n\n### robey2024smoothllm ✗✗ [CRITICAL — Venue 错误]\n- **问题 — Venue 错误**: Bib 写 \"Proceedings of the 41st International Conference on Machine Learning\" (ICML 2024)，但 SmoothLLM **不在 ICML 2024 proceedings 中**。该论文是 arXiv preprint (2310.03684)，后发表于 **TMLR 2025**。\n- **引用位置**: related_work.tex (line 9)\n- **来源**: [arXiv 2310.03684](https://arxiv.org/abs/2310.03684), [Semantic Scholar](https://www.semanticscholar.org/paper/SmoothLLM-Robey-Wong/8cf9b49698fdb1b754df2556576412a7b44929f6)\n\n### mehrotra2024tap ✗✗ [CRITICAL — 标题错误]\n- **问题 — 副标题伪造**: Bib 写 \"Tree of Attacks: Jailbreaking Black-Box LLMs **with the Pruning of Candidate Outputs**\"，但 NeurIPS 2024 正式标题是 **\"Tree of Attacks: Jailbreaking Black-Box LLMs Automatically\"**。副标题 \"with the Pruning of Candidate Outputs\" 是伪造的。\n- **引用位置**: related_work.tex (line 6)\n- **来源**: [NeurIPS 2024 Poster](https://neurips.cc/virtual/2024/poster/95078), [arXiv 2312.02119](https://arxiv.org/abs/2312.02119)\n\n### jiang2024redqueen ✗✗ [CRITICAL — 标题/年份/Venue 全错]\n- **问题 1 — 标题错误**: Bib 用 arXiv v1 标题 \"RED QUEEN: Safeguarding Large Language Models against Concealed Multi-Turn Jailbreaking\"，但已发表的版本标题改为 **\"Red Queen: Exposing Latent Multi-Turn Risks in Large Language Models\"**。\n- **问题 2 — 年份错误**: Bib 写 2024，应为 **2025**（ACL 2025 Findings, pp 25554-25591）。\n- **问题 3 — Venue 缺失**: Bib 只写 arXiv preprint，但已发表于 **Findings of ACL 2025**。\n- **引用位置**: related_work.tex (line 6)\n- **来源**: [ACL Anthology 2025.findings-acl.1311](https://aclanthology.org/2025.findings-acl.1311/), [arXiv 2409.17458](https://arxiv.org/abs/2409.17458)\n\n### metallamaguard3_2024 ✗ [MODERATE — 无独立论文]\n- **问题**: 不存在标题为 \"Llama Guard 3\" 的独立论文。Llama Guard 3 是在 \"The Llama 3 Herd of Models\"（arXiv 2407.21783, Grattafiori et al.）中介绍的，或以 model card 形式存在于 HuggingFace。\n- **建议**: 改为引用 Llama 3 Herd 论文，或添加 HuggingFace model card URL。\n- **引用位置**: related_work.tex (line 9), experiments.tex (line 50)\n- **来源**: [HuggingFace Model Card](https://huggingface.co/meta-llama/Llama-Guard-3-8B), [arXiv 2407.21783](https://arxiv.org/abs/2407.21783)\n\n### gguard2025 ✗ [MODERATE — 标题已更新]\n- **问题**: Bib 标题 \"An Attention-Aware GNN-Based Input Defender Against Multi-Turn Jailbreak on LLMs\" 是 arXiv v1 版本，当前 v2 标题已改为 **\"Attention-Aware GNN-based Input Defense against Multi-Turn LLM Jailbreak\"**。\n- **引用位置**: introduction.tex (line 7), related_work.tex (line 9)\n- **来源**: [arXiv 2507.07146](https://arxiv.org/abs/2507.07146)\n\n### lu2025xboundary ✗ [MODERATE — 标题已更新]\n- **问题**: Bib 标题写 \"...Shield LLMs from **Multi-Turn Jailbreaks** without Compromising Usability\"，但 ACL Anthology 发表版标题改为 \"...Shield LLMs from **Jailbreak Attacks** without Compromising Usability\"。\n- **引用位置**: related_work.tex (line 9)\n- **来源**: [ACL Anthology 2025.findings-emnlp.282](https://aclanthology.org/2025.findings-emnlp.282/)\n\n### song2026multibreak ✗ [MODERATE — 标题/Venue 待确认]\n- **问题 1**: Bib 副标题写 \"for Evaluating LLM Safety\"，但 OpenReview 提交版标题为 \"for **Stress-testing** LLM Safety\"。\n- **问题 2**: Bib 声称 ICML 2026，但截至 2026 年 5 月，该论文仍在 review 中，**接收尚未公开确认**。\n- **引用位置**: related_work.tex (line 6)\n- **来源**: [arXiv 2605.01687](https://arxiv.org/abs/2605.01687), [OpenReview](https://openreview.net/forum?id=uJgfj5EJ2W)\n\n### chao2024jailbreakbench ✗ [MODERATE — Venue 不完整]\n- **问题**: Bib 只列为 arXiv preprint，但该论文已被 **NeurIPS 2024 Datasets and Benchmarks Track** 接收。应更新 venue。\n- **引用位置**: related_work.tex (line 6)\n- **来源**: [NeurIPS 2024 Proceedings](https://papers.nips.cc/paper_files/paper/2024/hash/63092d79154adebd7305dfd498cbff70-Abstract-Datasets_and_Benchmarks_Track.html)\n\n### conneau2018probing ✗ [MINOR — 标题细节]\n- **问题**: Bib 标题写 `What you can cram into a single \\$\\&!\\#* vector`，完整准确标题应保留 grawlix 符号。实际 ACL Anthology 标题为 \"What you can cram into a single $&!#* vector: Probing sentence embeddings for linguistic properties\"。Bib 中的 LaTeX 转义是合理的近似。\n- **引用位置**: related_work.tex (line 15)\n- **来源**: [ACL Anthology P18-1198](https://aclanthology.org/P18-1198/)\n\n---\n\n## 二、未被引用条目中的错误\n\n### marchiori2025jdapt ✗✗✗ [UNCITED — 作者和标题错误]\n- **作者错误**: Bib 写 \"Marchiori, Andrea\"，实际第一作者是 **Francesco Marchiori**。\n- **标题错误**: Bib 写 \"J-DAPT: CORAL-Based Domain Adaptation with Cross-Modal Fusion for Multimodal Robotic Jailbreak Detection\"，实际标题是 **\"Preventing Robotic Jailbreaking via Multimodal Domain Adaptation\"**。J-DAPT 是方法名，不是论文标题。\n- **来源**: [arXiv 2509.23281](https://arxiv.org/abs/2509.23281)\n\n### wang2026trajguard ✗✗✗ [UNCITED — 作者和标题完全错误]\n- **作者错误**: Bib 写 \"Wang, Yifan and others\"，实际作者是 **Cheng Liu, Xiaolei Liu, Xingyu Li, Bangzhou Xin, Kangyi Ding**，无 \"Wang Yifan\"。\n- **标题错误**: Bib 写 \"TrajGuard: Trajectory-Based Hidden-State Detection of Multi-Turn Jailbreak Attacks\"，实际标题是 **\"TrajGuard: Streaming Hidden-state Trajectory Detection for Decoding-time Jailbreak Defense\"**。\n- **来源**: [arXiv 2604.07727](https://arxiv.org/abs/2604.07727)\n\n### li2025m2s ✗✗✗ [UNCITED — 作者和标题完全错误]\n- **作者错误**: Bib 写 \"Li, Minxuan et al.\"，实际作者是 **Junwoo Ha, Hyunjun Kim, Sangyoon Yu, Haon Park, Ashkan Yousefpour, Yuna Park, Suhyun Kim**，无 \"Li Minxuan\"。\n- **标题错误**: Bib 写 \"M2S: Multi-Turn to Single-Turn -- Converting Multi-Turn Jailbreak Attacks to Single-Turn for Enhanced Safety Guardrails\"，实际标题是 **\"M2S: Multi-turn to Single-turn jailbreak in Red Teaming for LLMs\"**。\n- **来源**: [arXiv 2503.04856](https://arxiv.org/abs/2503.04856), [ACL Anthology](https://aclanthology.org/2025.acl-long.805/)\n\n### hsu2024improved ✗✗✗ [UNCITED — 作者伪造，重复条目]\n- **作者伪造**: Bib 写 \"Hsu, Erick and Hsu, Ikuya and Chung, Paul\"，实际作者是 **Erick Galinkin and Martin Sablotny** (NVIDIA)。完全不同的人。\n- **标题略错**: \"Improved LLM Jailbreak Detection\" vs 实际 \"Improved **Large Language Model** Jailbreak Detection\"。\n- **与 galinkin2024improved 重复**: 同一 arXiv ID 2412.01547。\n- **来源**: [arXiv 2412.01547](https://arxiv.org/abs/2412.01547)\n\n### phute2023selfdefense ✗✗ [UNCITED — 5/7 作者名错误]\n- **作者错误**: Bib 写 \"Helber, Alec\"，实际为 **Helbling, Alec**；Bib 写 \"Peng, ShiNung\"，实际为 **Peng, ShengYun**；Bib 写 \"Szyber, Sebastian\"，实际为 **Szyller, Sebastian**；Bib 写 \"Caliskan, Aylin\"，实际为 **Cornelius, Cory**；Bib 写 \"Khashabi, Daniel\"，实际为 **Chau, Duen Horng**。\n- **来源**: [arXiv 2308.07308](https://arxiv.org/abs/2308.07308)\n\n---\n\n## 三、疑似重复\n\n### shen2025antidote vs shen2024jailbreakantidote — 确认重复\n- 同一论文：arXiv 2410.02298，同一标题 \"Jailbreak Antidote\"，同一作者 (Shen, Zhao, Dong, He, Zeng)，发表于 ICLR 2025。\n- **shen2024jailbreakantidote** 被正文引用（related_work.tex），**shen2025antidote** 未被引用。\n- **建议**: 删除 shen2025antidote，保留 shen2024jailbreakantidote（并考虑更新 year 为 2025 以匹配 ICLR 2025 发表年份）。\n\n### hsu2024improved vs galinkin2024improved — 确认重复（且 hsu 版作者伪造）\n- 同一论文：arXiv 2412.01547。\n- **galinkin2024improved** 作者正确 (Galinkin, Sablotny)，**hsu2024improved** 作者完全错误 (Hsu, Hsu, Chung)。\n- 两者均未被正文引用。\n- **建议**: 删除 hsu2024improved。如需引用该论文，使用 galinkin2024improved。\n\n---\n\n## 四、未被正文引用的 .bib 条目（18 条）\n\n以下条目存在于 references.bib 中但未在任何 .tex 文件中被 `\\cite`/`\\citep`/`\\citet` 引用：\n\n| # | cite_key | 论文存在性 | 备注 |\n|---|----------|-----------|------|\n| 1 | he2021deberta | ✓ 存在 | DeBERTa v1; v3 (he2023debertav3) 已被引用 |\n| 2 | zou2023gcg | ✓ 存在 | GCG attack paper |\n| 3 | devlin2019bert | ✓ 存在 | BERT 原始论文 |\n| 4 | chen2020simclr | ✓ 存在 | SimCLR |\n| 5 | grill2020byol | ✓ 存在 | BYOL |\n| 6 | marchiori2025jdapt | ✗ 作者/标题错误 | 见上方错误分析 |\n| 7 | wang2026trajguard | ✗ 作者/标题错误 | 见上方错误分析 |\n| 8 | templeton2024saemitigators | ✓ 存在 | Scaling Monosemanticity |\n| 9 | alon2023perplexity | ✓ 存在 | Perplexity-based detection |\n| 10 | phute2023selfdefense | ✗ 作者名错误 | 见上方错误分析 |\n| 11 | nian2025jaildam | ✓ 存在 | JailDAM, COLM 2025 |\n| 12 | anil2024manyshot | ✓ 存在 | Many-shot Jailbreaking, NeurIPS 2024 |\n| 13 | jain2023baseline | ✓ 存在 | Baseline Defenses |\n| 14 | shen2025antidote | ✓ 存在但重复 | 与 shen2024jailbreakantidote 重复 |\n| 15 | hsu2024improved | ✗ 作者伪造+重复 | 与 galinkin2024improved 重复 |\n| 16 | li2025m2s | ✗ 作者/标题错误 | 见上方错误分析 |\n| 17 | li2025repejailbreak | ✓ 存在 | COLING 2025 |\n| 18 | galinkin2024improved | ✓ 存在 | 与 hsu2024improved 重复 |\n\n---\n\n## 五、验证通过的条目（逐条）\n\n以下 73 条经 WebSearch 验证，元数据无误（或仅有不影响正确性的细节说明）：\n\n### inan2023llamaguard ✓\n- 作者: ✓ (Inan et al.)\n- 年份: ✓ (2023)\n- 标题: ✓\n- Venue: ✓ (arXiv preprint)\n- arXiv: ✓ (2312.06674)\n- 来源: [arXiv](https://arxiv.org/abs/2312.06674)\n\n### zeng2024shieldgemma ✓\n- 作者: ✓ (Zeng, Wenjun et al.)\n- 年份: ✓ (2024)\n- 标题: ✓\n- Venue: ✓ (arXiv preprint)\n- arXiv: ✓ (2407.21772)\n- 来源: [arXiv](https://arxiv.org/abs/2407.21772)\n\n### han2024wildguard ✓\n- 作者: ✓ (Han, Seungju et al.)\n- 年份: ✓ (2024)\n- 标题: ✓\n- Venue: ✓ (NeurIPS 2024)\n- 来源: [NeurIPS 2024](https://neurips.cc/virtual/2024/poster/97764)\n\n### anthropic2025constitutional ✓\n- 作者: ✓ (Sharma, Mrinank et al.)\n- 年份: ✓ (2025)\n- 标题: ✓\n- arXiv: ✓ (2501.18837)\n- 来源: [arXiv](https://arxiv.org/abs/2501.18837)\n\n### deepcontext2026 ✓\n- 作者: ✓ (Albrethsen et al.)\n- 年份: ✓ (2026)\n- 标题: ✓\n- arXiv: ✓ (2602.16935)\n- 来源: [arXiv](https://arxiv.org/abs/2602.16935)\n\n### tong2025biid ✓\n- 作者: ✓ (Tong, Haibo et al.)\n- 年份: ✓ (2025)\n- 标题: ✓\n- arXiv: ✓ (2509.22732)\n- 来源: [arXiv](https://arxiv.org/abs/2509.22732)\n\n### safedream2026 ✓\n- 作者: ✓ (Yan, Bo et al.)\n- 年份: ✓ (2026)\n- 标题: ✓\n- arXiv: ✓ (2604.16824)\n- 来源: [arXiv](https://arxiv.org/abs/2604.16824)\n\n### bullwinkel2025repeng ✓\n- 作者: ✓ (Bullwinkel, Blake et al.)\n- 年份: ✓ (2025)\n- 标题: ✓\n- arXiv: ✓ (2507.02956)\n- 来源: [arXiv](https://arxiv.org/abs/2507.02956)\n\n### mann1988rst ✓\n- 作者: ✓ (Mann & Thompson)\n- 年份: ✓ (1988)\n- 标题: ✓\n- Venue: ✓ (Text & Talk, vol 8(3), pp 243-281)\n- 来源: [De Gruyter](https://www.degruyterbrill.com/document/doi/10.1515/text.1.1988.8.3.243/html)\n\n### prasad2008pdtb ✓\n- 作者: ✓ (Prasad, Rashmi et al.)\n- 年份: ✓ (2008)\n- 标题: ✓\n- Venue: ✓ (LREC 2008)\n- 来源: [ACL Anthology](https://aclanthology.org/L08-1093/)\n\n### stolcke2000dialogueact ✓\n- 作者: ✓ (Stolcke, Andreas et al.)\n- 年份: ✓ (2000)\n- 标题: ✓\n- Venue: ✓ (Computational Linguistics, vol 26(3), pp 339-374)\n- 来源: [ACL Anthology](https://aclanthology.org/J00-3003/)\n\n### austin1962speechacts ✓\n- 作者: ✓ (Austin, J. L.)\n- 年份: ✓ (1962)\n- 标题: ✓\n- Venue: ✓ (Harvard University Press)\n- 来源: [Harvard University Press](https://www.hup.harvard.edu/books/9780674411524)\n\n### searle1969speechacts ✓\n- 作者: ✓ (Searle, J. R.)\n- 年份: ✓ (1969)\n- 标题: ✓\n- Venue: ✓ (Cambridge University Press)\n- 来源: [Cambridge University Press](https://www.cambridge.org/core/books/speech-acts/D2D7B03E472C8A390ED60B86E08640E7)\n\n### cialdini2001influence ✓\n- 作者: ✓ (Cialdini, Robert B.)\n- 年份: ✓ (2001, 4th ed.)\n- 标题: ✓\n- Venue: ✓ (Allyn & Bacon)\n- 来源: [Biblio](https://www.biblio.com/book/influence-science-practice-cialdini-robert-b/d/484235249)\n\n### zeng2024pap ✓\n- 作者: ✓ (Zeng, Yi et al.)\n- 年份: ✓ (2024)\n- 标题: ✓\n- Venue: ✓ (ACL 2024)\n- 来源: [ACL Anthology](https://aclanthology.org/2024.acl-long.773/)\n\n### russinovich2024crescendo ✓\n- 作者: ✓ (Russinovich, Salem, Eldan)\n- 年份: ✓ (2025, USENIX Security)\n- 标题: ✓\n- arXiv: ✓ (2404.01833)\n- 备注: cite key 写 2024（preprint 年份），year field 写 2025（发表年份），均合理\n- 来源: [USENIX](https://www.usenix.org/conference/usenixsecurity25/presentation/russinovich)\n\n### chao2023pair ✓\n- 作者: ✓ (Chao, Patrick et al.)\n- 年份: ✓ (2025, IEEE SaTML)\n- 标题: ✓\n- arXiv: ✓ (2310.08419)\n- 备注: cite key 写 2023（preprint），year 写 2025（发表），均合理\n- 来源: [SaTML 2025](https://satml.org/2025/accepted-papers/)\n\n### wei2023jailbroken ✓\n- 作者: ✓ (Wei, Haghtalab, Steinhardt)\n- 年份: ✓ (2023)\n- 标题: ✓\n- Venue: ✓ (NeurIPS 2023)\n- 来源: [NeurIPS 2023](https://proceedings.neurips.cc/paper_files/paper/2023/hash/fd6613131889a4b656206c50a8bd7790-Abstract-Conference.html)\n\n### hagendorff2026reasoning ✓\n- 作者: ✓ (Hagendorff, Derner, Oliver)\n- 年份: ✓ (2026)\n- 标题: ✓\n- Venue: ✓ (Nature Communications, vol 17, 1435)\n- DOI: ✓ (10.1038/s41467-026-69010-1)\n- 来源: [Nature Communications](https://www.nature.com/articles/s41467-026-69010-1)\n\n### fitd2024 ✓\n- 作者: ✓ (Wang, Zhenhua et al.)\n- 年份: ✓ (2024)\n- 标题: ✓\n- arXiv: ✓ (2402.15690)\n- 来源: [arXiv](https://arxiv.org/abs/2402.15690)\n\n### deceptivedelight2024 ✓\n- 作者: ✓ (Palo Alto Networks Unit 42; 个人作者为 Jay Chen 和 Royce Lu)\n- 年份: ✓ (2024)\n- 标题: ✓\n- Venue: ✓ (blog/tech report)\n- 来源: [Unit 42 Blog](https://unit42.paloaltonetworks.com/jailbreak-llms-through-camouflage-distraction/)\n\n### zou2023gcg ✓ [UNCITED]\n- 作者: ✓ (Zou, Andy et al.)\n- 年份: ✓ (2023)\n- 标题: ✓\n- arXiv: ✓ (2307.15043)\n- 来源: [arXiv](https://arxiv.org/abs/2307.15043)\n\n### lin2023toxicchat ✓\n- 作者: ✓ (Lin, Zi et al.)\n- 年份: ✓ (2023)\n- 标题: ✓\n- Venue: ✓ (EMNLP 2023 Findings, pp 4694-4702)\n- 来源: [ACL Anthology](https://aclanthology.org/2023.findings-emnlp.311/)\n\n### li2024mhj ✓\n- 作者: ✓ (Li, Nathaniel et al.)\n- 年份: ✓ (2024)\n- 标题: ✓\n- arXiv: ✓ (2408.15221)\n- 来源: [arXiv](https://arxiv.org/abs/2408.15221)\n\n### gururangan2018artifacts ✓\n- 作者: ✓ (Gururangan, Suchin et al.)\n- 年份: ✓ (2018)\n- 标题: ✓\n- Venue: ✓ (NAACL 2018)\n- 来源: [ACL Anthology](https://aclanthology.org/N18-2017/)\n\n### niven2019probing ✓\n- 作者: ✓ (Niven, Timothy and Kao, Hung-Yu)\n- 年份: ✓ (2019)\n- 标题: ✓\n- Venue: ✓ (ACL 2019)\n- 来源: [ACL Anthology](https://aclanthology.org/P19-1459/)\n\n### nasr2025attackermovessecond ✓\n- 作者: ✓ (Nasr, Milad et al.)\n- 年份: ✓ (2025)\n- 标题: ✓\n- arXiv: ✓ (2510.09023)\n- 来源: [arXiv](https://arxiv.org/abs/2510.09023)\n\n### andriushchenko2024adaptive ✓\n- 作者: ✓ (Andriushchenko, Croce, Flammarion)\n- 年份: ✓ (2025, ICLR)\n- 标题: ✓\n- Venue: ✓ (ICLR 2025)\n- 来源: [ICLR 2025](https://proceedings.iclr.cc/paper_files/paper/2025/hash/63fa7efdd3bcf944a4bd6e0ff6a50041-Abstract-Conference.html)\n\n### he2021deberta ✓ [UNCITED]\n- 作者: ✓ (He, Pengcheng et al.)\n- 年份: ✓ (2021)\n- 标题: ✓\n- Venue: ✓ (ICLR 2021)\n- 来源: [OpenReview](https://openreview.net/forum?id=XPZIaotutsD)\n\n### he2023debertav3 ✓\n- 作者: ✓ (He, Gao, Chen)\n- 年份: ✓ (2023)\n- 标题: ✓\n- Venue: ✓ (ICLR 2023)\n- 来源: [ICLR 2023](https://iclr.cc/virtual/2023/poster/11295)\n\n### kopf2023openassistant ✓\n- 作者: ✓ (Köpf, Andreas et al.)\n- 年份: ✓ (2023)\n- 标题: ✓\n- Venue: ✓ (NeurIPS 36)\n- 来源: [NeurIPS 2023](https://proceedings.neurips.cc/paper_files/paper/2023/hash/949f0f8f32267d297c2d4e3ee10a2e7e-Abstract-Datasets_and_Benchmarks.html)\n\n### kornblith2019cka ✓\n- 作者: ✓ (Kornblith et al.)\n- 年份: ✓ (2019)\n- 标题: ✓\n- Venue: ✓ (ICML 2019, pp 3519-3529)\n- 来源: [PMLR](https://proceedings.mlr.press/v97/kornblith19a.html)\n\n### qwen3_2025 ✓\n- 作者: ✓ (Yang, An et al.)\n- 年份: ✓ (2025)\n- 标题: ✓\n- arXiv: ✓ (2505.09388)\n- 来源: [arXiv](https://arxiv.org/abs/2505.09388)\n\n### gururangan2020dontstop ✓\n- 作者: ✓ (Gururangan, Suchin et al.)\n- 年份: ✓ (2020)\n- 标题: ✓\n- Venue: ✓ (ACL 2020, pp 8342-8360)\n- 来源: [ACL Anthology](https://aclanthology.org/2020.acl-main.740/)\n\n### caruana1997multitask ✓\n- 作者: ✓ (Caruana, Rich)\n- 年份: ✓ (1997)\n- 标题: ✓\n- Venue: ✓ (Machine Learning, vol 28(1), pp 41-75)\n- 来源: [Springer](https://link.springer.com/article/10.1023/A:1007379606734)\n\n### phang2018stilts ✓\n- 作者: ✓ (Phang, Jason et al.)\n- 年份: ✓ (2018)\n- 标题: ✓\n- arXiv: ✓ (1811.01088)\n- 来源: [arXiv](https://arxiv.org/abs/1811.01088)\n\n### liu2019mtdnn ✓\n- 作者: ✓ (Liu, Xiaodong et al.)\n- 年份: ✓ (2019)\n- 标题: ✓\n- Venue: ✓ (ACL 2019, pp 4487-4496)\n- 来源: [ACL Anthology](https://aclanthology.org/P19-1441/)\n\n### howard2018ulmfit ✓\n- 作者: ✓ (Howard & Ruder)\n- 年份: ✓ (2018)\n- 标题: ✓\n- Venue: ✓ (ACL 2018, pp 328-339)\n- 来源: [ACL Anthology](https://aclanthology.org/P18-1031/)\n\n### dasanmartino2020semeval ✓\n- 作者: ✓ (Da San Martino et al.)\n- 年份: ✓ (2020)\n- 标题: ✓\n- Venue: ✓ (SemEval 2020, pp 1377-1414)\n- 来源: [ACL Anthology](https://aclanthology.org/2020.semeval-1.186/)\n\n### dasanmartino2019fine ✓\n- 作者: ✓ (Da San Martino et al.)\n- 年份: ✓ (2019)\n- 标题: ✓\n- Venue: ✓ (EMNLP 2019, pp 5636-5646)\n- 来源: [ACL Anthology](https://aclanthology.org/D19-1565/)\n\n### jin2020textfooler ✓\n- 作者: ✓ (Jin, Di et al.)\n- 年份: ✓ (2020)\n- 标题: ✓\n- Venue: ✓ (AAAI 2020, vol 34, pp 8018-8025)\n- 来源: [AAAI](https://ojs.aaai.org/index.php/AAAI/article/view/6311)\n\n### li2020bertattack ✓\n- 作者: ✓ (Li, Linyang et al.)\n- 年份: ✓ (2020)\n- 标题: ✓\n- Venue: ✓ (EMNLP 2020, pp 6193-6202)\n- 来源: [ACL Anthology](https://aclanthology.org/2020.emnlp-main.500/)\n\n### devlin2019bert ✓ [UNCITED]\n- 作者: ✓ (Devlin et al.)\n- 年份: ✓ (2019)\n- 标题: ✓\n- Venue: ✓ (NAACL 2019, pp 4171-4186)\n- 来源: [ACL Anthology](https://aclanthology.org/N19-1423/)\n\n### hewitt2019structural ✓\n- 作者: ✓ (Hewitt & Manning)\n- 年份: ✓ (2019)\n- 标题: ✓\n- Venue: ✓ (NAACL 2019, pp 4129-4138)\n- 来源: [ACL Anthology](https://aclanthology.org/N19-1419/)\n\n### liu2019roberta ✓\n- 作者: ✓ (Liu, Yinhan et al.)\n- 年份: ✓ (2019)\n- 标题: ✓\n- arXiv: ✓ (1907.11692)\n- 来源: [arXiv](https://arxiv.org/abs/1907.11692)\n\n### wang2019persuasion ✓\n- 作者: ✓ (Wang, Xuewei et al.)\n- 年份: ✓ (2019)\n- 标题: ✓\n- Venue: ✓ (ACL 2019, pp 5635-5649)\n- 来源: [ACL Anthology](https://aclanthology.org/P19-1566/)\n\n### mazeika2024harmbench ✓\n- 作者: ✓ (Mazeika et al.)\n- 年份: ✓ (2024)\n- 标题: ✓\n- Venue: ✓ (ICML 2024)\n- 来源: [PMLR](https://proceedings.mlr.press/v235/mazeika24a.html)\n\n### kadali2026trace ✓\n- 作者: ✓ (Kadali & Papalexakis)\n- 年份: ✓ (2026)\n- 标题: ✓\n- arXiv: ✓ (2602.11495)\n- 来源: [arXiv](https://arxiv.org/abs/2602.11495)\n\n### hua2026rcs ✓\n- 作者: ✓ (Hua, Peichun et al.)\n- 年份: ✓ (2026)\n- 标题: ✓\n- Venue: ✓ (ACL 2026)\n- arXiv: ✓ (2512.12069)\n- 来源: [arXiv](https://arxiv.org/abs/2512.12069)\n\n### xie2024gradsafe ✓\n- 作者: ✓ (Xie et al.)\n- 年份: ✓ (2024)\n- 标题: ✓\n- Venue: ✓ (ACL 2024, pp 507-518)\n- 来源: [ACL Anthology](https://aclanthology.org/2024.acl-long.30/)\n\n### xu2024safedecoding ✓\n- 作者: ✓ (Xu, Zhangchen et al.)\n- 年份: ✓ (2024)\n- 标题: ✓\n- Venue: ✓ (ACL 2024)\n- 来源: [ACL Anthology](https://aclanthology.org/2024.acl-long.303/)\n\n### zou2024circuitbreakers ✓\n- 作者: ✓ (Zou, Andy et al.)\n- 年份: ✓ (2024)\n- 标题: ✓\n- Venue: ✓ (NeurIPS 2024)\n- 来源: [NeurIPS 2024](https://neurips.cc/virtual/2024/poster/95761)\n\n### zhang2025jbshield ✓\n- 作者: ✓ (Zhang, Shenyi et al.)\n- 年份: ✓ (2025)\n- 标题: ✓\n- Venue: ✓ (USENIX Security 2025)\n- arXiv: ✓ (2502.07557)\n- 来源: [USENIX](https://www.usenix.org/conference/usenixsecurity25/presentation/zhang-shenyi)\n\n### perez2022redteaming ✓\n- 作者: ✓ (Perez, Ethan et al.)\n- 年份: ✓ (2022)\n- 标题: ✓\n- Venue: ✓ (EMNLP 2022, pp 3419-3448)\n- 来源: [ACL Anthology](https://aclanthology.org/2022.emnlp-main.225/)\n\n### kulkarni2026latentadversarial ✓\n- 作者: ✓ (Kulkarni, Prashant)\n- 年份: ✓ (2026)\n- 标题: ✓\n- arXiv: ✓ (2604.28129)\n- 来源: [arXiv](https://arxiv.org/abs/2604.28129)\n\n### derya2026revisitingjbshield ✓\n- 作者: ✓ (Derya & Sunar)\n- 年份: ✓ (2026)\n- 标题: ✓\n- arXiv: ✓ (2605.03095)\n- 来源: [arXiv](https://arxiv.org/abs/2605.03095)\n\n### lee2020biobert ✓\n- 作者: ✓ (Lee, Jinhyuk et al.)\n- 年份: ✓ (2020)\n- 标题: ✓\n- Venue: ✓ (Bioinformatics, vol 36(4), pp 1234-1240)\n- 来源: [Oxford Academic](https://academic.oup.com/bioinformatics/article/36/4/1234/5566506)\n\n### beltagy2019scibert ✓\n- 作者: ✓ (Beltagy, Lo, Cohan)\n- 年份: ✓ (2019)\n- 标题: ✓\n- Venue: ✓ (EMNLP 2019, pp 3615-3620)\n- 来源: [ACL Anthology](https://aclanthology.org/D19-1371/)\n\n### chen2020simclr ✓ [UNCITED]\n- 作者: ✓ (Chen, Ting et al.)\n- 年份: ✓ (2020)\n- 标题: ✓\n- Venue: ✓ (ICML 2020, pp 1597-1607)\n- 来源: [PMLR](https://proceedings.mlr.press/v119/chen20j.html)\n\n### grill2020byol ✓ [UNCITED]\n- 作者: ✓ (Grill, Jean-Bastien et al.)\n- 年份: ✓ (2020)\n- 标题: ✓\n- Venue: ✓ (NeurIPS 2020)\n- 来源: [NeurIPS 2020](https://proceedings.neurips.cc/paper/2020/hash/f3ada80d5c4ee70142b17b8192b2958e-Abstract.html)\n\n### zhang2021understanding ✓\n- 作者: ✓ (Zhang, Chiyuan et al.)\n- 年份: ✓ (2021)\n- 标题: ✓\n- Venue: ✓ (CACM, vol 64(3), pp 107-115)\n- DOI: ✓ (10.1145/3446776)\n- 来源: [ACM DL](https://dl.acm.org/doi/10.1145/3446776)\n\n### maennel2020random ✓\n- 作者: ✓ (Maennel et al.)\n- 年份: ✓ (2020)\n- 标题: ✓\n- Venue: ✓ (NeurIPS 2020)\n- 来源: [NeurIPS 2020](https://papers.nips.cc/paper/2020/hash/e4191d610537305de1d294adb121b513-Abstract.html)\n\n### templeton2024saemitigators ✓ [UNCITED]\n- 作者: ✓ (Templeton, Adly et al.)\n- 年份: ✓ (2024)\n- 标题: ✓\n- Venue: ✓ (Transformer Circuits Thread)\n- 来源: [Transformer Circuits](https://transformer-circuits.pub/2024/scaling-monosemanticity/)\n\n### alon2023perplexity ✓ [UNCITED]\n- 作者: ✓ (Alon & Kamfonas)\n- 年份: ✓ (2023)\n- 标题: ✓\n- arXiv: ✓ (2308.14132)\n- 来源: [arXiv](https://arxiv.org/abs/2308.14132)\n\n### nian2025jaildam ✓ [UNCITED]\n- 作者: ✓ (Nian, Yi et al.)\n- 年份: ✓ (2025)\n- 标题: ✓\n- Venue: ✓ (COLM 2025)\n- arXiv: ✓ (2504.03770)\n- 来源: [arXiv](https://arxiv.org/abs/2504.03770)\n\n### anil2024manyshot ✓ [UNCITED]\n- 作者: ✓ (Anil, Cem et al.)\n- 年份: ✓ (2024)\n- 标题: ✓\n- Venue: ✓ (NeurIPS 2024)\n- 来源: [NeurIPS 2024](https://proceedings.neurips.cc/paper_files/paper/2024/hash/ea456e232efb72d261715e33ce25f208-Abstract-Conference.html)\n\n### jain2023baseline ✓ [UNCITED]\n- 作者: ✓ (Jain, Neel et al.)\n- 年份: ✓ (2023)\n- 标题: ✓\n- arXiv: ✓ (2309.00614)\n- 来源: [arXiv](https://arxiv.org/abs/2309.00614)\n\n### shen2024jailbreakantidote ✓ [保留此条目]\n- 作者: ✓ (Shen, Guobin et al.)\n- 年份: ✓ (2024/2025 ICLR)\n- 标题: ✓\n- arXiv: ✓ (2410.02298)\n- 来源: [arXiv](https://arxiv.org/abs/2410.02298), [ICLR 2025](https://iclr.cc/virtual/2025/poster/28150)\n\n### kadali2025internallayers ✓\n- 作者: ✓ (Kadali & Papalexakis)\n- 年份: ✓ (2025)\n- 标题: ✓\n- arXiv: ✓ (2510.06594)\n- 来源: [arXiv](https://arxiv.org/abs/2510.06594)\n\n### markov2023holistic ✓\n- 作者: ✓ (Markov, Todor et al.)\n- 年份: ✓ (2023)\n- 标题: ✓\n- Venue: ✓ (AAAI 2023, vol 37, pp 15009-15018)\n- 来源: [AAAI](https://ojs.aaai.org/index.php/AAAI/article/view/26752)\n\n### wu2025safeint ✓\n- 作者: ✓ (Wu, Jiaqi et al.)\n- 年份: ✓ (2025)\n- 标题: ✓\n- arXiv: ✓ (2502.15594)\n- 来源: [arXiv](https://arxiv.org/abs/2502.15594)\n\n### alobaid2026echochamber ✓\n- 作者: ✓ (Alobaid, Ahmad et al.)\n- 年份: ✓ (2026)\n- 标题: ✓\n- arXiv: ✓ (2601.05742)\n- 来源: [arXiv](https://arxiv.org/abs/2601.05742)\n\n### yousefpour2025repbend ✓\n- 作者: ✓ (Yousefpour, Ashkan et al.)\n- 年份: ✓ (2025)\n- 标题: ✓\n- arXiv: ✓ (2504.01550)\n- 来源: [arXiv](https://arxiv.org/abs/2504.01550), [ACL 2025](https://aclanthology.org/2025.acl-long.1173/)\n\n### li2025repejailbreak ✓ [UNCITED]\n- 作者: ✓ (Li, Tianlong et al.)\n- 年份: ✓ (2025)\n- 标题: ✓\n- Venue: ✓ (COLING 2025)\n- arXiv: ✓ (2401.06824)\n- 来源: [arXiv](https://arxiv.org/abs/2401.06824), [ACL Anthology](https://aclanthology.org/2025.coling-main.212/)\n\n### galinkin2024improved ✓ [UNCITED]\n- 作者: ✓ (Galinkin, Erick and Sablotny, Martin)\n- 年份: ✓ (2024)\n- 标题: ✓\n- arXiv: ✓ (2412.01547)\n- 来源: [arXiv](https://arxiv.org/abs/2412.01547)\n\n---\n\n## 六、引用上下文检查\n\n以下检查正文中的引用是否恰当（cite 了 A 但说的是 B 的结论）：\n\n1. **正文引用均与论文内容匹配**。`\\citet{zeng2024pap}` 引用 PAP 的 40 个说服技术 — 正确；`\\citet{hagendorff2026reasoning}` 引用大推理模型的越狱能力 — 正确；`\\citep{bullwinkel2025repeng}` 引用攻击 turn 占据良性 embedding 区域 — 正确。\n2. **ren2024actorattack** 在正文中作为 ActorAttack 数据集/方法引用（experiments.tex line 42: OOD evaluation），引用上下文合理，但 bib 元数据需要修正。\n3. **robey2024smoothllm** 在 related_work.tex 作为 perturbation-based defense 引用 — 上下文正确。\n4. **所有其他引用上下文检查通过**，无发现 cite A 说 B 的情况。\n\n---\n\n## 七、总结：需要修复的问题优先级\n\n### P0 — 必须修复（正文引用条目，信息严重错误）\n1. **ren2024actorattack**: 标题改为实际论文标题，venue 改为 ACL 2025，添加 arXiv ID 2410.10700\n2. **robey2024smoothllm**: venue 从 ICML 2024 改为 arXiv preprint (或 TMLR 2025)\n3. **mehrotra2024tap**: 标题副标题从 \"with the Pruning of Candidate Outputs\" 改为 \"Automatically\"\n4. **jiang2024redqueen**: 标题更新为发表版，year 改为 2025，venue 改为 Findings of ACL 2025\n\n### P1 — 建议修复\n5. **metallamaguard3_2024**: 改为引用 Llama 3 Herd 论文\n6. **gguard2025**: 标题更新为 arXiv v2 版\n7. **lu2025xboundary**: 标题更新为发表版\n8. **chao2024jailbreakbench**: 补充 NeurIPS 2024 venue\n9. **song2026multibreak**: 确认 ICML 2026 接收状态或改为 arXiv preprint\n\n### P2 — 清理\n10. 删除 18 条未引用条目（或移入注释）\n11. 删除重复条目 shen2025antidote 和 hsu2024improved\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0cd461c9-06f5-4467-9e87-5c5cf5aafca6",
+            "isSidechain": false,
+            "requestId": "req_011CbR2Sy5ahZHCSRWiL78ML",
+            "type": "assistant",
+            "uuid": "c5c8037d-29de-4c60-8b4e-e07a1e3bbde4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3db0dc2-d628-407b-a4ce-37fdd0f13d66",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014ZM6AjZKECGGBvQEFzcApv",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1602,
+                "cache_read_input_tokens": 138447,
+                "output_tokens": 13976,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1602,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 13976,
+                    "cache_read_input_tokens": 138447,
+                    "cache_creation_input_tokens": 1602,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1602
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": "2026-05-26T10:34:13.814Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FM3dvEX6RFna6R73mtm1bt",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/ref_audit_worker_A.md"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c5c8037d-29de-4c60-8b4e-e07a1e3bbde4",
+            "isSidechain": false,
+            "promptId": "9eef696a-af1b-4962-95a5-e0ead4fba299",
+            "type": "user",
+            "uuid": "5268aee0-ae3e-4823-a3e4-fcf0b5d95e2e",
+            "toolUseResult": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/ref_audit_worker_A.md",
+              "content": "# 引用验证报告 — Worker A\n\n## 统计\n- 总 .bib 条目数: 91\n- 验证通过: 63\n- 发现问题: 10 (cited entries with errors) + 5 (uncited entries with errors)\n- 未被正文引用: 18\n- 疑似重复: 2 对\n\n---\n\n## 一、被引用条目中的错误（需修复）\n\n### ren2024actorattack ✗✗✗ [CRITICAL — 正文高频引用]\n- **问题 1 — 标题伪造**: Bib 写 \"ActorAttack: Red-Teaming Large Language Models via Multi-Turn Actor Network Theory\"，但论文实际标题是 **\"Derail Yourself: Multi-turn LLM Jailbreak Attack through Self-discovered Clues\"**（arXiv v1）或 **\"LLMs know their vulnerabilities: Uncover Safety Gaps through Natural Distribution Shifts\"**（arXiv v2 / ACL 2025 版本）。\"ActorAttack\" 只是方法名，不是论文标题。\n- **问题 2 — Venue 错误**: Bib 写 ICLR 2025，但论文已从 ICLR 2025 撤稿，修改后被 **ACL 2025** 接收。\n- **问题 3 — 缺少 arXiv ID**: 应为 2410.10700。\n- **引用位置**: introduction.tex (line 5, 16), related_work.tex (line 6), experiments.tex (line 42, 155), conclusion.tex (line 11)\n- **来源**: [arXiv 2410.10700](https://arxiv.org/abs/2410.10700), [GitHub](https://github.com/renqibing/ActorAttack)\n\n### robey2024smoothllm ✗✗ [CRITICAL — Venue 错误]\n- **问题 — Venue 错误**: Bib 写 \"Proceedings of the 41st International Conference on Machine Learning\" (ICML 2024)，但 SmoothLLM **不在 ICML 2024 proceedings 中**。该论文是 arXiv preprint (2310.03684)，后发表于 **TMLR 2025**。\n- **引用位置**: related_work.tex (line 9)\n- **来源**: [arXiv 2310.03684](https://arxiv.org/abs/2310.03684), [Semantic Scholar](https://www.semanticscholar.org/paper/SmoothLLM-Robey-Wong/8cf9b49698fdb1b754df2556576412a7b44929f6)\n\n### mehrotra2024tap ✗✗ [CRITICAL — 标题错误]\n- **问题 — 副标题伪造**: Bib 写 \"Tree of Attacks: Jailbreaking Black-Box LLMs **with the Pruning of Candidate Outputs**\"，但 NeurIPS 2024 正式标题是 **\"Tree of Attacks: Jailbreaking Black-Box LLMs Automatically\"**。副标题 \"with the Pruning of Candidate Outputs\" 是伪造的。\n- **引用位置**: related_work.tex (line 6)\n- **来源**: [NeurIPS 2024 Poster](https://neurips.cc/virtual/2024/poster/95078), [arXiv 2312.02119](https://arxiv.org/abs/2312.02119)\n\n### jiang2024redqueen ✗✗ [CRITICAL — 标题/年份/Venue 全错]\n- **问题 1 — 标题错误**: Bib 用 arXiv v1 标题 \"RED QUEEN: Safeguarding Large Language Models against Concealed Multi-Turn Jailbreaking\"，但已发表的版本标题改为 **\"Red Queen: Exposing Latent Multi-Turn Risks in Large Language Models\"**。\n- **问题 2 — 年份错误**: Bib 写 2024，应为 **2025**（ACL 2025 Findings, pp 25554-25591）。\n- **问题 3 — Venue 缺失**: Bib 只写 arXiv preprint，但已发表于 **Findings of ACL 2025**。\n- **引用位置**: related_work.tex (line 6)\n- **来源**: [ACL Anthology 2025.findings-acl.1311](https://aclanthology.org/2025.findings-acl.1311/), [arXiv 2409.17458](https://arxiv.org/abs/2409.17458)\n\n### metallamaguard3_2024 ✗ [MODERATE — 无独立论文]\n- **问题**: 不存在标题为 \"Llama Guard 3\" 的独立论文。Llama Guard 3 是在 \"The Llama 3 Herd of Models\"（arXiv 2407.21783, Grattafiori et al.）中介绍的，或以 model card 形式存在于 HuggingFace。\n- **建议**: 改为引用 Llama 3 Herd 论文，或添加 HuggingFace model card URL。\n- **引用位置**: related_work.tex (line 9), experiments.tex (line 50)\n- **来源**: [HuggingFace Model Card](https://huggingface.co/meta-llama/Llama-Guard-3-8B), [arXiv 2407.21783](https://arxiv.org/abs/2407.21783)\n\n### gguard2025 ✗ [MODERATE — 标题已更新]\n- **问题**: Bib 标题 \"An Attention-Aware GNN-Based Input Defender Against Multi-Turn Jailbreak on LLMs\" 是 arXiv v1 版本，当前 v2 标题已改为 **\"Attention-Aware GNN-based Input Defense against Multi-Turn LLM Jailbreak\"**。\n- **引用位置**: introduction.tex (line 7), related_work.tex (line 9)\n- **来源**: [arXiv 2507.07146](https://arxiv.org/abs/2507.07146)\n\n### lu2025xboundary ✗ [MODERATE — 标题已更新]\n- **问题**: Bib 标题写 \"...Shield LLMs from **Multi-Turn Jailbreaks** without Compromising Usability\"，但 ACL Anthology 发表版标题改为 \"...Shield LLMs from **Jailbreak Attacks** without Compromising Usability\"。\n- **引用位置**: related_work.tex (line 9)\n- **来源**: [ACL Anthology 2025.findings-emnlp.282](https://aclanthology.org/2025.findings-emnlp.282/)\n\n### song2026multibreak ✗ [MODERATE — 标题/Venue 待确认]\n- **问题 1**: Bib 副标题写 \"for Evaluating LLM Safety\"，但 OpenReview 提交版标题为 \"for **Stress-testing** LLM Safety\"。\n- **问题 2**: Bib 声称 ICML 2026，但截至 2026 年 5 月，该论文仍在 review 中，**接收尚未公开确认**。\n- **引用位置**: related_work.tex (line 6)\n- **来源**: [arXiv 2605.01687](https://arxiv.org/abs/2605.01687), [OpenReview](https://openreview.net/forum?id=uJgfj5EJ2W)\n\n### chao2024jailbreakbench ✗ [MODERATE — Venue 不完整]\n- **问题**: Bib 只列为 arXiv preprint，但该论文已被 **NeurIPS 2024 Datasets and Benchmarks Track** 接收。应更新 venue。\n- **引用位置**: related_work.tex (line 6)\n- **来源**: [NeurIPS 2024 Proceedings](https://papers.nips.cc/paper_files/paper/2024/hash/63092d79154adebd7305dfd498cbff70-Abstract-Datasets_and_Benchmarks_Track.html)\n\n### conneau2018probing ✗ [MINOR — 标题细节]\n- **问题**: Bib 标题写 `What you can cram into a single \\$\\&!\\#* vector`，完整准确标题应保留 grawlix 符号。实际 ACL Anthology 标题为 \"What you can cram into a single $&!#* vector: Probing sentence embeddings for linguistic properties\"。Bib 中的 LaTeX 转义是合理的近似。\n- **引用位置**: related_work.tex (line 15)\n- **来源**: [ACL Anthology P18-1198](https://aclanthology.org/P18-1198/)\n\n---\n\n## 二、未被引用条目中的错误\n\n### marchiori2025jdapt ✗✗✗ [UNCITED — 作者和标题错误]\n- **作者错误**: Bib 写 \"Marchiori, Andrea\"，实际第一作者是 **Francesco Marchiori**。\n- **标题错误**: Bib 写 \"J-DAPT: CORAL-Based Domain Adaptation with Cross-Modal Fusion for Multimodal Robotic Jailbreak Detection\"，实际标题是 **\"Preventing Robotic Jailbreaking via Multimodal Domain Adaptation\"**。J-DAPT 是方法名，不是论文标题。\n- **来源**: [arXiv 2509.23281](https://arxiv.org/abs/2509.23281)\n\n### wang2026trajguard ✗✗✗ [UNCITED — 作者和标题完全错误]\n- **作者错误**: Bib 写 \"Wang, Yifan and others\"，实际作者是 **Cheng Liu, Xiaolei Liu, Xingyu Li, Bangzhou Xin, Kangyi Ding**，无 \"Wang Yifan\"。\n- **标题错误**: Bib 写 \"TrajGuard: Trajectory-Based Hidden-State Detection of Multi-Turn Jailbreak Attacks\"，实际标题是 **\"TrajGuard: Streaming Hidden-state Trajectory Detection for Decoding-time Jailbreak Defense\"**。\n- **来源**: [arXiv 2604.07727](https://arxiv.org/abs/2604.07727)\n\n### li2025m2s ✗✗✗ [UNCITED — 作者和标题完全错误]\n- **作者错误**: Bib 写 \"Li, Minxuan et al.\"，实际作者是 **Junwoo Ha, Hyunjun Kim, Sangyoon Yu, Haon Park, Ashkan Yousefpour, Yuna Park, Suhyun Kim**，无 \"Li Minxuan\"。\n- **标题错误**: Bib 写 \"M2S: Multi-Turn to Single-Turn -- Converting Multi-Turn Jailbreak Attacks to Single-Turn for Enhanced Safety Guardrails\"，实际标题是 **\"M2S: Multi-turn to Single-turn jailbreak in Red Teaming for LLMs\"**。\n- **来源**: [arXiv 2503.04856](https://arxiv.org/abs/2503.04856), [ACL Anthology](https://aclanthology.org/2025.acl-long.805/)\n\n### hsu2024improved ✗✗✗ [UNCITED — 作者伪造，重复条目]\n- **作者伪造**: Bib 写 \"Hsu, Erick and Hsu, Ikuya and Chung, Paul\"，实际作者是 **Erick Galinkin and Martin Sablotny** (NVIDIA)。完全不同的人。\n- **标题略错**: \"Improved LLM Jailbreak Detection\" vs 实际 \"Improved **Large Language Model** Jailbreak Detection\"。\n- **与 galinkin2024improved 重复**: 同一 arXiv ID 2412.01547。\n- **来源**: [arXiv 2412.01547](https://arxiv.org/abs/2412.01547)\n\n### phute2023selfdefense ✗✗ [UNCITED — 5/7 作者名错误]\n- **作者错误**: Bib 写 \"Helber, Alec\"，实际为 **Helbling, Alec**；Bib 写 \"Peng, ShiNung\"，实际为 **Peng, ShengYun**；Bib 写 \"Szyber, Sebastian\"，实际为 **Szyller, Sebastian**；Bib 写 \"Caliskan, Aylin\"，实际为 **Cornelius, Cory**；Bib 写 \"Khashabi, Daniel\"，实际为 **Chau, Duen Horng**。\n- **来源**: [arXiv 2308.07308](https://arxiv.org/abs/2308.07308)\n\n---\n\n## 三、疑似重复\n\n### shen2025antidote vs shen2024jailbreakantidote — 确认重复\n- 同一论文：arXiv 2410.02298，同一标题 \"Jailbreak Antidote\"，同一作者 (Shen, Zhao, Dong, He, Zeng)，发表于 ICLR 2025。\n- **shen2024jailbreakantidote** 被正文引用（related_work.tex），**shen2025antidote** 未被引用。\n- **建议**: 删除 shen2025antidote，保留 shen2024jailbreakantidote（并考虑更新 year 为 2025 以匹配 ICLR 2025 发表年份）。\n\n### hsu2024improved vs galinkin2024improved — 确认重复（且 hsu 版作者伪造）\n- 同一论文：arXiv 2412.01547。\n- **galinkin2024improved** 作者正确 (Galinkin, Sablotny)，**hsu2024improved** 作者完全错误 (Hsu, Hsu, Chung)。\n- 两者均未被正文引用。\n- **建议**: 删除 hsu2024improved。如需引用该论文，使用 galinkin2024improved。\n\n---\n\n## 四、未被正文引用的 .bib 条目（18 条）\n\n以下条目存在于 references.bib 中但未在任何 .tex 文件中被 `\\cite`/`\\citep`/`\\citet` 引用：\n\n| # | cite_key | 论文存在性 | 备注 |\n|---|----------|-----------|------|\n| 1 | he2021deberta | ✓ 存在 | DeBERTa v1; v3 (he2023debertav3) 已被引用 |\n| 2 | zou2023gcg | ✓ 存在 | GCG attack paper |\n| 3 | devlin2019bert | ✓ 存在 | BERT 原始论文 |\n| 4 | chen2020simclr | ✓ 存在 | SimCLR |\n| 5 | grill2020byol | ✓ 存在 | BYOL |\n| 6 | marchiori2025jdapt | ✗ 作者/标题错误 | 见上方错误分析 |\n| 7 | wang2026trajguard | ✗ 作者/标题错误 | 见上方错误分析 |\n| 8 | templeton2024saemitigators | ✓ 存在 | Scaling Monosemanticity |\n| 9 | alon2023perplexity | ✓ 存在 | Perplexity-based detection |\n| 10 | phute2023selfdefense | ✗ 作者名错误 | 见上方错误分析 |\n| 11 | nian2025jaildam | ✓ 存在 | JailDAM, COLM 2025 |\n| 12 | anil2024manyshot | ✓ 存在 | Many-shot Jailbreaking, NeurIPS 2024 |\n| 13 | jain2023baseline | ✓ 存在 | Baseline Defenses |\n| 14 | shen2025antidote | ✓ 存在但重复 | 与 shen2024jailbreakantidote 重复 |\n| 15 | hsu2024improved | ✗ 作者伪造+重复 | 与 galinkin2024improved 重复 |\n| 16 | li2025m2s | ✗ 作者/标题错误 | 见上方错误分析 |\n| 17 | li2025repejailbreak | ✓ 存在 | COLING 2025 |\n| 18 | galinkin2024improved | ✓ 存在 | 与 hsu2024improved 重复 |\n\n---\n\n## 五、验证通过的条目（逐条）\n\n以下 73 条经 WebSearch 验证，元数据无误（或仅有不影响正确性的细节说明）：\n\n### inan2023llamaguard ✓\n- 作者: ✓ (Inan et al.)\n- 年份: ✓ (2023)\n- 标题: ✓\n- Venue: ✓ (arXiv preprint)\n- arXiv: ✓ (2312.06674)\n- 来源: [arXiv](https://arxiv.org/abs/2312.06674)\n\n### zeng2024shieldgemma ✓\n- 作者: ✓ (Zeng, Wenjun et al.)\n- 年份: ✓ (2024)\n- 标题: ✓\n- Venue: ✓ (arXiv preprint)\n- arXiv: ✓ (2407.21772)\n- 来源: [arXiv](https://arxiv.org/abs/2407.21772)\n\n### han2024wildguard ✓\n- 作者: ✓ (Han, Seungju et al.)\n- 年份: ✓ (2024)\n- 标题: ✓\n- Venue: ✓ (NeurIPS 2024)\n- 来源: [NeurIPS 2024](https://neurips.cc/virtual/2024/poster/97764)\n\n### anthropic2025constitutional ✓\n- 作者: ✓ (Sharma, Mrinank et al.)\n- 年份: ✓ (2025)\n- 标题: ✓\n- arXiv: ✓ (2501.18837)\n- 来源: [arXiv](https://arxiv.org/abs/2501.18837)\n\n### deepcontext2026 ✓\n- 作者: ✓ (Albrethsen et al.)\n- 年份: ✓ (2026)\n- 标题: ✓\n- arXiv: ✓ (2602.16935)\n- 来源: [arXiv](https://arxiv.org/abs/2602.16935)\n\n### tong2025biid ✓\n- 作者: ✓ (Tong, Haibo et al.)\n- 年份: ✓ (2025)\n- 标题: ✓\n- arXiv: ✓ (2509.22732)\n- 来源: [arXiv](https://arxiv.org/abs/2509.22732)\n\n### safedream2026 ✓\n- 作者: ✓ (Yan, Bo et al.)\n- 年份: ✓ (2026)\n- 标题: ✓\n- arXiv: ✓ (2604.16824)\n- 来源: [arXiv](https://arxiv.org/abs/2604.16824)\n\n### bullwinkel2025repeng ✓\n- 作者: ✓ (Bullwinkel, Blake et al.)\n- 年份: ✓ (2025)\n- 标题: ✓\n- arXiv: ✓ (2507.02956)\n- 来源: [arXiv](https://arxiv.org/abs/2507.02956)\n\n### mann1988rst ✓\n- 作者: ✓ (Mann & Thompson)\n- 年份: ✓ (1988)\n- 标题: ✓\n- Venue: ✓ (Text & Talk, vol 8(3), pp 243-281)\n- 来源: [De Gruyter](https://www.degruyterbrill.com/document/doi/10.1515/text.1.1988.8.3.243/html)\n\n### prasad2008pdtb ✓\n- 作者: ✓ (Prasad, Rashmi et al.)\n- 年份: ✓ (2008)\n- 标题: ✓\n- Venue: ✓ (LREC 2008)\n- 来源: [ACL Anthology](https://aclanthology.org/L08-1093/)\n\n### stolcke2000dialogueact ✓\n- 作者: ✓ (Stolcke, Andreas et al.)\n- 年份: ✓ (2000)\n- 标题: ✓\n- Venue: ✓ (Computational Linguistics, vol 26(3), pp 339-374)\n- 来源: [ACL Anthology](https://aclanthology.org/J00-3003/)\n\n### austin1962speechacts ✓\n- 作者: ✓ (Austin, J. L.)\n- 年份: ✓ (1962)\n- 标题: ✓\n- Venue: ✓ (Harvard University Press)\n- 来源: [Harvard University Press](https://www.hup.harvard.edu/books/9780674411524)\n\n### searle1969speechacts ✓\n- 作者: ✓ (Searle, J. R.)\n- 年份: ✓ (1969)\n- 标题: ✓\n- Venue: ✓ (Cambridge University Press)\n- 来源: [Cambridge University Press](https://www.cambridge.org/core/books/speech-acts/D2D7B03E472C8A390ED60B86E08640E7)\n\n### cialdini2001influence ✓\n- 作者: ✓ (Cialdini, Robert B.)\n- 年份: ✓ (2001, 4th ed.)\n- 标题: ✓\n- Venue: ✓ (Allyn & Bacon)\n- 来源: [Biblio](https://www.biblio.com/book/influence-science-practice-cialdini-robert-b/d/484235249)\n\n### zeng2024pap ✓\n- 作者: ✓ (Zeng, Yi et al.)\n- 年份: ✓ (2024)\n- 标题: ✓\n- Venue: ✓ (ACL 2024)\n- 来源: [ACL Anthology](https://aclanthology.org/2024.acl-long.773/)\n\n### russinovich2024crescendo ✓\n- 作者: ✓ (Russinovich, Salem, Eldan)\n- 年份: ✓ (2025, USENIX Security)\n- 标题: ✓\n- arXiv: ✓ (2404.01833)\n- 备注: cite key 写 2024（preprint 年份），year field 写 2025（发表年份），均合理\n- 来源: [USENIX](https://www.usenix.org/conference/usenixsecurity25/presentation/russinovich)\n\n### chao2023pair ✓\n- 作者: ✓ (Chao, Patrick et al.)\n- 年份: ✓ (2025, IEEE SaTML)\n- 标题: ✓\n- arXiv: ✓ (2310.08419)\n- 备注: cite key 写 2023（preprint），year 写 2025（发表），均合理\n- 来源: [SaTML 2025](https://satml.org/2025/accepted-papers/)\n\n### wei2023jailbroken ✓\n- 作者: ✓ (Wei, Haghtalab, Steinhardt)\n- 年份: ✓ (2023)\n- 标题: ✓\n- Venue: ✓ (NeurIPS 2023)\n- 来源: [NeurIPS 2023](https://proceedings.neurips.cc/paper_files/paper/2023/hash/fd6613131889a4b656206c50a8bd7790-Abstract-Conference.html)\n\n### hagendorff2026reasoning ✓\n- 作者: ✓ (Hagendorff, Derner, Oliver)\n- 年份: ✓ (2026)\n- 标题: ✓\n- Venue: ✓ (Nature Communications, vol 17, 1435)\n- DOI: ✓ (10.1038/s41467-026-69010-1)\n- 来源: [Nature Communications](https://www.nature.com/articles/s41467-026-69010-1)\n\n### fitd2024 ✓\n- 作者: ✓ (Wang, Zhenhua et al.)\n- 年份: ✓ (2024)\n- 标题: ✓\n- arXiv: ✓ (2402.15690)\n- 来源: [arXiv](https://arxiv.org/abs/2402.15690)\n\n### deceptivedelight2024 ✓\n- 作者: ✓ (Palo Alto Networks Unit 42; 个人作者为 Jay Chen 和 Royce Lu)\n- 年份: ✓ (2024)\n- 标题: ✓\n- Venue: ✓ (blog/tech report)\n- 来源: [Unit 42 Blog](https://unit42.paloaltonetworks.com/jailbreak-llms-through-camouflage-distraction/)\n\n### zou2023gcg ✓ [UNCITED]\n- 作者: ✓ (Zou, Andy et al.)\n- 年份: ✓ (2023)\n- 标题: ✓\n- arXiv: ✓ (2307.15043)\n- 来源: [arXiv](https://arxiv.org/abs/2307.15043)\n\n### lin2023toxicchat ✓\n- 作者: ✓ (Lin, Zi et al.)\n- 年份: ✓ (2023)\n- 标题: ✓\n- Venue: ✓ (EMNLP 2023 Findings, pp 4694-4702)\n- 来源: [ACL Anthology](https://aclanthology.org/2023.findings-emnlp.311/)\n\n### li2024mhj ✓\n- 作者: ✓ (Li, Nathaniel et al.)\n- 年份: ✓ (2024)\n- 标题: ✓\n- arXiv: ✓ (2408.15221)\n- 来源: [arXiv](https://arxiv.org/abs/2408.15221)\n\n### gururangan2018artifacts ✓\n- 作者: ✓ (Gururangan, Suchin et al.)\n- 年份: ✓ (2018)\n- 标题: ✓\n- Venue: ✓ (NAACL 2018)\n- 来源: [ACL Anthology](https://aclanthology.org/N18-2017/)\n\n### niven2019probing ✓\n- 作者: ✓ (Niven, Timothy and Kao, Hung-Yu)\n- 年份: ✓ (2019)\n- 标题: ✓\n- Venue: ✓ (ACL 2019)\n- 来源: [ACL Anthology](https://aclanthology.org/P19-1459/)\n\n### nasr2025attackermovessecond ✓\n- 作者: ✓ (Nasr, Milad et al.)\n- 年份: ✓ (2025)\n- 标题: ✓\n- arXiv: ✓ (2510.09023)\n- 来源: [arXiv](https://arxiv.org/abs/2510.09023)\n\n### andriushchenko2024adaptive ✓\n- 作者: ✓ (Andriushchenko, Croce, Flammarion)\n- 年份: ✓ (2025, ICLR)\n- 标题: ✓\n- Venue: ✓ (ICLR 2025)\n- 来源: [ICLR 2025](https://proceedings.iclr.cc/paper_files/paper/2025/hash/63fa7efdd3bcf944a4bd6e0ff6a50041-Abstract-Conference.html)\n\n### he2021deberta ✓ [UNCITED]\n- 作者: ✓ (He, Pengcheng et al.)\n- 年份: ✓ (2021)\n- 标题: ✓\n- Venue: ✓ (ICLR 2021)\n- 来源: [OpenReview](https://openreview.net/forum?id=XPZIaotutsD)\n\n### he2023debertav3 ✓\n- 作者: ✓ (He, Gao, Chen)\n- 年份: ✓ (2023)\n- 标题: ✓\n- Venue: ✓ (ICLR 2023)\n- 来源: [ICLR 2023](https://iclr.cc/virtual/2023/poster/11295)\n\n### kopf2023openassistant ✓\n- 作者: ✓ (Köpf, Andreas et al.)\n- 年份: ✓ (2023)\n- 标题: ✓\n- Venue: ✓ (NeurIPS 36)\n- 来源: [NeurIPS 2023](https://proceedings.neurips.cc/paper_files/paper/2023/hash/949f0f8f32267d297c2d4e3ee10a2e7e-Abstract-Datasets_and_Benchmarks.html)\n\n### kornblith2019cka ✓\n- 作者: ✓ (Kornblith et al.)\n- 年份: ✓ (2019)\n- 标题: ✓\n- Venue: ✓ (ICML 2019, pp 3519-3529)\n- 来源: [PMLR](https://proceedings.mlr.press/v97/kornblith19a.html)\n\n### qwen3_2025 ✓\n- 作者: ✓ (Yang, An et al.)\n- 年份: ✓ (2025)\n- 标题: ✓\n- arXiv: ✓ (2505.09388)\n- 来源: [arXiv](https://arxiv.org/abs/2505.09388)\n\n### gururangan2020dontstop ✓\n- 作者: ✓ (Gururangan, Suchin et al.)\n- 年份: ✓ (2020)\n- 标题: ✓\n- Venue: ✓ (ACL 2020, pp 8342-8360)\n- 来源: [ACL Anthology](https://aclanthology.org/2020.acl-main.740/)\n\n### caruana1997multitask ✓\n- 作者: ✓ (Caruana, Rich)\n- 年份: ✓ (1997)\n- 标题: ✓\n- Venue: ✓ (Machine Learning, vol 28(1), pp 41-75)\n- 来源: [Springer](https://link.springer.com/article/10.1023/A:1007379606734)\n\n### phang2018stilts ✓\n- 作者: ✓ (Phang, Jason et al.)\n- 年份: ✓ (2018)\n- 标题: ✓\n- arXiv: ✓ (1811.01088)\n- 来源: [arXiv](https://arxiv.org/abs/1811.01088)\n\n### liu2019mtdnn ✓\n- 作者: ✓ (Liu, Xiaodong et al.)\n- 年份: ✓ (2019)\n- 标题: ✓\n- Venue: ✓ (ACL 2019, pp 4487-4496)\n- 来源: [ACL Anthology](https://aclanthology.org/P19-1441/)\n\n### howard2018ulmfit ✓\n- 作者: ✓ (Howard & Ruder)\n- 年份: ✓ (2018)\n- 标题: ✓\n- Venue: ✓ (ACL 2018, pp 328-339)\n- 来源: [ACL Anthology](https://aclanthology.org/P18-1031/)\n\n### dasanmartino2020semeval ✓\n- 作者: ✓ (Da San Martino et al.)\n- 年份: ✓ (2020)\n- 标题: ✓\n- Venue: ✓ (SemEval 2020, pp 1377-1414)\n- 来源: [ACL Anthology](https://aclanthology.org/2020.semeval-1.186/)\n\n### dasanmartino2019fine ✓\n- 作者: ✓ (Da San Martino et al.)\n- 年份: ✓ (2019)\n- 标题: ✓\n- Venue: ✓ (EMNLP 2019, pp 5636-5646)\n- 来源: [ACL Anthology](https://aclanthology.org/D19-1565/)\n\n### jin2020textfooler ✓\n- 作者: ✓ (Jin, Di et al.)\n- 年份: ✓ (2020)\n- 标题: ✓\n- Venue: ✓ (AAAI 2020, vol 34, pp 8018-8025)\n- 来源: [AAAI](https://ojs.aaai.org/index.php/AAAI/article/view/6311)\n\n### li2020bertattack ✓\n- 作者: ✓ (Li, Linyang et al.)\n- 年份: ✓ (2020)\n- 标题: ✓\n- Venue: ✓ (EMNLP 2020, pp 6193-6202)\n- 来源: [ACL Anthology](https://aclanthology.org/2020.emnlp-main.500/)\n\n### devlin2019bert ✓ [UNCITED]\n- 作者: ✓ (Devlin et al.)\n- 年份: ✓ (2019)\n- 标题: ✓\n- Venue: ✓ (NAACL 2019, pp 4171-4186)\n- 来源: [ACL Anthology](https://aclanthology.org/N19-1423/)\n\n### hewitt2019structural ✓\n- 作者: ✓ (Hewitt & Manning)\n- 年份: ✓ (2019)\n- 标题: ✓\n- Venue: ✓ (NAACL 2019, pp 4129-4138)\n- 来源: [ACL Anthology](https://aclanthology.org/N19-1419/)\n\n### liu2019roberta ✓\n- 作者: ✓ (Liu, Yinhan et al.)\n- 年份: ✓ (2019)\n- 标题: ✓\n- arXiv: ✓ (1907.11692)\n- 来源: [arXiv](https://arxiv.org/abs/1907.11692)\n\n### wang2019persuasion ✓\n- 作者: ✓ (Wang, Xuewei et al.)\n- 年份: ✓ (2019)\n- 标题: ✓\n- Venue: ✓ (ACL 2019, pp 5635-5649)\n- 来源: [ACL Anthology](https://aclanthology.org/P19-1566/)\n\n### mazeika2024harmbench ✓\n- 作者: ✓ (Mazeika et al.)\n- 年份: ✓ (2024)\n- 标题: ✓\n- Venue: ✓ (ICML 2024)\n- 来源: [PMLR](https://proceedings.mlr.press/v235/mazeika24a.html)\n\n### kadali2026trace ✓\n- 作者: ✓ (Kadali & Papalexakis)\n- 年份: ✓ (2026)\n- 标题: ✓\n- arXiv: ✓ (2602.11495)\n- 来源: [arXiv](https://arxiv.org/abs/2602.11495)\n\n### hua2026rcs ✓\n- 作者: ✓ (Hua, Peichun et al.)\n- 年份: ✓ (2026)\n- 标题: ✓\n- Venue: ✓ (ACL 2026)\n- arXiv: ✓ (2512.12069)\n- 来源: [arXiv](https://arxiv.org/abs/2512.12069)\n\n### xie2024gradsafe ✓\n- 作者: ✓ (Xie et al.)\n- 年份: ✓ (2024)\n- 标题: ✓\n- Venue: ✓ (ACL 2024, pp 507-518)\n- 来源: [ACL Anthology](https://aclanthology.org/2024.acl-long.30/)\n\n### xu2024safedecoding ✓\n- 作者: ✓ (Xu, Zhangchen et al.)\n- 年份: ✓ (2024)\n- 标题: ✓\n- Venue: ✓ (ACL 2024)\n- 来源: [ACL Anthology](https://aclanthology.org/2024.acl-long.303/)\n\n### zou2024circuitbreakers ✓\n- 作者: ✓ (Zou, Andy et al.)\n- 年份: ✓ (2024)\n- 标题: ✓\n- Venue: ✓ (NeurIPS 2024)\n- 来源: [NeurIPS 2024](https://neurips.cc/virtual/2024/poster/95761)\n\n### zhang2025jbshield ✓\n- 作者: ✓ (Zhang, Shenyi et al.)\n- 年份: ✓ (2025)\n- 标题: ✓\n- Venue: ✓ (USENIX Security 2025)\n- arXiv: ✓ (2502.07557)\n- 来源: [USENIX](https://www.usenix.org/conference/usenixsecurity25/presentation/zhang-shenyi)\n\n### perez2022redteaming ✓\n- 作者: ✓ (Perez, Ethan et al.)\n- 年份: ✓ (2022)\n- 标题: ✓\n- Venue: ✓ (EMNLP 2022, pp 3419-3448)\n- 来源: [ACL Anthology](https://aclanthology.org/2022.emnlp-main.225/)\n\n### kulkarni2026latentadversarial ✓\n- 作者: ✓ (Kulkarni, Prashant)\n- 年份: ✓ (2026)\n- 标题: ✓\n- arXiv: ✓ (2604.28129)\n- 来源: [arXiv](https://arxiv.org/abs/2604.28129)\n\n### derya2026revisitingjbshield ✓\n- 作者: ✓ (Derya & Sunar)\n- 年份: ✓ (2026)\n- 标题: ✓\n- arXiv: ✓ (2605.03095)\n- 来源: [arXiv](https://arxiv.org/abs/2605.03095)\n\n### lee2020biobert ✓\n- 作者: ✓ (Lee, Jinhyuk et al.)\n- 年份: ✓ (2020)\n- 标题: ✓\n- Venue: ✓ (Bioinformatics, vol 36(4), pp 1234-1240)\n- 来源: [Oxford Academic](https://academic.oup.com/bioinformatics/article/36/4/1234/5566506)\n\n### beltagy2019scibert ✓\n- 作者: ✓ (Beltagy, Lo, Cohan)\n- 年份: ✓ (2019)\n- 标题: ✓\n- Venue: ✓ (EMNLP 2019, pp 3615-3620)\n- 来源: [ACL Anthology](https://aclanthology.org/D19-1371/)\n\n### chen2020simclr ✓ [UNCITED]\n- 作者: ✓ (Chen, Ting et al.)\n- 年份: ✓ (2020)\n- 标题: ✓\n- Venue: ✓ (ICML 2020, pp 1597-1607)\n- 来源: [PMLR](https://proceedings.mlr.press/v119/chen20j.html)\n\n### grill2020byol ✓ [UNCITED]\n- 作者: ✓ (Grill, Jean-Bastien et al.)\n- 年份: ✓ (2020)\n- 标题: ✓\n- Venue: ✓ (NeurIPS 2020)\n- 来源: [NeurIPS 2020](https://proceedings.neurips.cc/paper/2020/hash/f3ada80d5c4ee70142b17b8192b2958e-Abstract.html)\n\n### zhang2021understanding ✓\n- 作者: ✓ (Zhang, Chiyuan et al.)\n- 年份: ✓ (2021)\n- 标题: ✓\n- Venue: ✓ (CACM, vol 64(3), pp 107-115)\n- DOI: ✓ (10.1145/3446776)\n- 来源: [ACM DL](https://dl.acm.org/doi/10.1145/3446776)\n\n### maennel2020random ✓\n- 作者: ✓ (Maennel et al.)\n- 年份: ✓ (2020)\n- 标题: ✓\n- Venue: ✓ (NeurIPS 2020)\n- 来源: [NeurIPS 2020](https://papers.nips.cc/paper/2020/hash/e4191d610537305de1d294adb121b513-Abstract.html)\n\n### templeton2024saemitigators ✓ [UNCITED]\n- 作者: ✓ (Templeton, Adly et al.)\n- 年份: ✓ (2024)\n- 标题: ✓\n- Venue: ✓ (Transformer Circuits Thread)\n- 来源: [Transformer Circuits](https://transformer-circuits.pub/2024/scaling-monosemanticity/)\n\n### alon2023perplexity ✓ [UNCITED]\n- 作者: ✓ (Alon & Kamfonas)\n- 年份: ✓ (2023)\n- 标题: ✓\n- arXiv: ✓ (2308.14132)\n- 来源: [arXiv](https://arxiv.org/abs/2308.14132)\n\n### nian2025jaildam ✓ [UNCITED]\n- 作者: ✓ (Nian, Yi et al.)\n- 年份: ✓ (2025)\n- 标题: ✓\n- Venue: ✓ (COLM 2025)\n- arXiv: ✓ (2504.03770)\n- 来源: [arXiv](https://arxiv.org/abs/2504.03770)\n\n### anil2024manyshot ✓ [UNCITED]\n- 作者: ✓ (Anil, Cem et al.)\n- 年份: ✓ (2024)\n- 标题: ✓\n- Venue: ✓ (NeurIPS 2024)\n- 来源: [NeurIPS 2024](https://proceedings.neurips.cc/paper_files/paper/2024/hash/ea456e232efb72d261715e33ce25f208-Abstract-Conference.html)\n\n### jain2023baseline ✓ [UNCITED]\n- 作者: ✓ (Jain, Neel et al.)\n- 年份: ✓ (2023)\n- 标题: ✓\n- arXiv: ✓ (2309.00614)\n- 来源: [arXiv](https://arxiv.org/abs/2309.00614)\n\n### shen2024jailbreakantidote ✓ [保留此条目]\n- 作者: ✓ (Shen, Guobin et al.)\n- 年份: ✓ (2024/2025 ICLR)\n- 标题: ✓\n- arXiv: ✓ (2410.02298)\n- 来源: [arXiv](https://arxiv.org/abs/2410.02298), [ICLR 2025](https://iclr.cc/virtual/2025/poster/28150)\n\n### kadali2025internallayers ✓\n- 作者: ✓ (Kadali & Papalexakis)\n- 年份: ✓ (2025)\n- 标题: ✓\n- arXiv: ✓ (2510.06594)\n- 来源: [arXiv](https://arxiv.org/abs/2510.06594)\n\n### markov2023holistic ✓\n- 作者: ✓ (Markov, Todor et al.)\n- 年份: ✓ (2023)\n- 标题: ✓\n- Venue: ✓ (AAAI 2023, vol 37, pp 15009-15018)\n- 来源: [AAAI](https://ojs.aaai.org/index.php/AAAI/article/view/26752)\n\n### wu2025safeint ✓\n- 作者: ✓ (Wu, Jiaqi et al.)\n- 年份: ✓ (2025)\n- 标题: ✓\n- arXiv: ✓ (2502.15594)\n- 来源: [arXiv](https://arxiv.org/abs/2502.15594)\n\n### alobaid2026echochamber ✓\n- 作者: ✓ (Alobaid, Ahmad et al.)\n- 年份: ✓ (2026)\n- 标题: ✓\n- arXiv: ✓ (2601.05742)\n- 来源: [arXiv](https://arxiv.org/abs/2601.05742)\n\n### yousefpour2025repbend ✓\n- 作者: ✓ (Yousefpour, Ashkan et al.)\n- 年份: ✓ (2025)\n- 标题: ✓\n- arXiv: ✓ (2504.01550)\n- 来源: [arXiv](https://arxiv.org/abs/2504.01550), [ACL 2025](https://aclanthology.org/2025.acl-long.1173/)\n\n### li2025repejailbreak ✓ [UNCITED]\n- 作者: ✓ (Li, Tianlong et al.)\n- 年份: ✓ (2025)\n- 标题: ✓\n- Venue: ✓ (COLING 2025)\n- arXiv: ✓ (2401.06824)\n- 来源: [arXiv](https://arxiv.org/abs/2401.06824), [ACL Anthology](https://aclanthology.org/2025.coling-main.212/)\n\n### galinkin2024improved ✓ [UNCITED]\n- 作者: ✓ (Galinkin, Erick and Sablotny, Martin)\n- 年份: ✓ (2024)\n- 标题: ✓\n- arXiv: ✓ (2412.01547)\n- 来源: [arXiv](https://arxiv.org/abs/2412.01547)\n\n---\n\n## 六、引用上下文检查\n\n以下检查正文中的引用是否恰当（cite 了 A 但说的是 B 的结论）：\n\n1. **正文引用均与论文内容匹配**。`\\citet{zeng2024pap}` 引用 PAP 的 40 个说服技术 — 正确；`\\citet{hagendorff2026reasoning}` 引用大推理模型的越狱能力 — 正确；`\\citep{bullwinkel2025repeng}` 引用攻击 turn 占据良性 embedding 区域 — 正确。\n2. **ren2024actorattack** 在正文中作为 ActorAttack 数据集/方法引用（experiments.tex line 42: OOD evaluation），引用上下文合理，但 bib 元数据需要修正。\n3. **robey2024smoothllm** 在 related_work.tex 作为 perturbation-based defense 引用 — 上下文正确。\n4. **所有其他引用上下文检查通过**，无发现 cite A 说 B 的情况。\n\n---\n\n## 七、总结：需要修复的问题优先级\n\n### P0 — 必须修复（正文引用条目，信息严重错误）\n1. **ren2024actorattack**: 标题改为实际论文标题，venue 改为 ACL 2025，添加 arXiv ID 2410.10700\n2. **robey2024smoothllm**: venue 从 ICML 2024 改为 arXiv preprint (或 TMLR 2025)\n3. **mehrotra2024tap**: 标题副标题从 \"with the Pruning of Candidate Outputs\" 改为 \"Automatically\"\n4. **jiang2024redqueen**: 标题更新为发表版，year 改为 2025，venue 改为 Findings of ACL 2025\n\n### P1 — 建议修复\n5. **metallamaguard3_2024**: 改为引用 Llama 3 Herd 论文\n6. **gguard2025**: 标题更新为 arXiv v2 版\n7. **lu2025xboundary**: 标题更新为发表版\n8. **chao2024jailbreakbench**: 补充 NeurIPS 2024 venue\n9. **song2026multibreak**: 确认 ICML 2026 接收状态或改为 arXiv preprint\n\n### P2 — 清理\n10. 删除 18 条未引用条目（或移入注释）\n11. 删除重复条目 shen2025antidote 和 hsu2024improved\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            },
+            "sourceToolAssistantUUID": "c5c8037d-29de-4c60-8b4e-e07a1e3bbde4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3db0dc2-d628-407b-a4ce-37fdd0f13d66",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "5268aee0-ae3e-4823-a3e4-fcf0b5d95e2e",
+                "sessionId": "a3db0dc2-d628-407b-a4ce-37fdd0f13d66"
+              }
+            }
+          ],
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Verify references.bib citations independently",
+                "sessionId": "a3db0dc2-d628-407b-a4ce-37fdd0f13d66"
+              }
+            }
+          ],
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": "2026-05-26T10:34:21.630Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TXRjiaAcLoWSDU1h5BYSaC",
+              "name": "TodoWrite",
+              "input": {
+                "todos": [
+                  {
+                    "content": "Read .bib and .tex files, catalog all entries and citations",
+                    "status": "completed",
+                    "activeForm": "Reading .bib and .tex files"
+                  },
+                  {
+                    "content": "Verify batch 1 (entries 1-15): Production safety systems & discourse analysis",
+                    "status": "completed",
+                    "activeForm": "Verifying batch 1 entries via web search"
+                  },
+                  {
+                    "content": "Verify batch 2 (entries 16-30): Jailbreak attacks & taxonomies",
+                    "status": "completed",
+                    "activeForm": "Verifying batch 2 entries via web search"
+                  },
+                  {
+                    "content": "Verify batch 3 (entries 31-45): Technical foundations & DAPT",
+                    "status": "completed",
+                    "activeForm": "Verifying batch 3 entries via web search"
+                  },
+                  {
+                    "content": "Verify batch 4 (entries 46-60): Probing, defense systems, benchmarks",
+                    "status": "completed",
+                    "activeForm": "Verifying batch 4 entries via web search"
+                  },
+                  {
+                    "content": "Verify batch 5 (entries 61-75): More defenses, representation, SSL",
+                    "status": "completed",
+                    "activeForm": "Verifying batch 5 entries via web search"
+                  },
+                  {
+                    "content": "Verify batch 6 (entries 76-91): Detection baselines, duplicates check",
+                    "status": "completed",
+                    "activeForm": "Verifying batch 6 entries via web search"
+                  },
+                  {
+                    "content": "Compile final audit report",
+                    "status": "completed",
+                    "activeForm": "Compiling final audit report"
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5268aee0-ae3e-4823-a3e4-fcf0b5d95e2e",
+            "isSidechain": false,
+            "requestId": "req_011CbR2i3DYPXUQMx12UeSbg",
+            "type": "assistant",
+            "uuid": "a4c76efa-fb22-4b74-be46-8a01d7f7a694",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3db0dc2-d628-407b-a4ce-37fdd0f13d66",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MpDRH4PQwTkEZr3BQp5XJ4",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 14038,
+                "cache_read_input_tokens": 140049,
+                "output_tokens": 416,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 14038,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 416,
+                    "cache_read_input_tokens": 140049,
+                    "cache_creation_input_tokens": 14038,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 14038
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": "2026-05-26T10:34:21.634Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TXRjiaAcLoWSDU1h5BYSaC",
+              "type": "tool_result",
+              "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a4c76efa-fb22-4b74-be46-8a01d7f7a694",
+            "isSidechain": false,
+            "promptId": "9eef696a-af1b-4962-95a5-e0ead4fba299",
+            "type": "user",
+            "uuid": "becd058b-0e1f-426e-9ad7-9e0be676ed98",
+            "toolUseResult": {
+              "oldTodos": [
+                {
+                  "content": "Read .bib and .tex files, catalog all entries and citations",
+                  "status": "completed",
+                  "activeForm": "Reading .bib and .tex files"
+                },
+                {
+                  "content": "Verify batch 1 (entries 1-15): Production safety systems & discourse analysis",
+                  "status": "completed",
+                  "activeForm": "Verifying batch 1 entries via web search"
+                },
+                {
+                  "content": "Verify batch 2 (entries 16-30): Jailbreak attacks & taxonomies",
+                  "status": "completed",
+                  "activeForm": "Verifying batch 2 entries via web search"
+                },
+                {
+                  "content": "Verify batch 3 (entries 31-45): Technical foundations & DAPT",
+                  "status": "completed",
+                  "activeForm": "Verifying batch 3 entries via web search"
+                },
+                {
+                  "content": "Verify batch 4 (entries 46-60): Probing, defense systems, benchmarks",
+                  "status": "completed",
+                  "activeForm": "Verifying batch 4 entries via web search"
+                },
+                {
+                  "content": "Verify batch 5 (entries 61-75): More defenses, representation, SSL",
+                  "status": "completed",
+                  "activeForm": "Verifying batch 5 entries via web search"
+                },
+                {
+                  "content": "Verify batch 6 (entries 76-91): Detection baselines, duplicates check",
+                  "status": "completed",
+                  "activeForm": "Verifying batch 6 entries via web search"
+                },
+                {
+                  "content": "Compile final audit report",
+                  "status": "in_progress",
+                  "activeForm": "Compiling final audit report"
+                }
+              ],
+              "newTodos": [
+                {
+                  "content": "Read .bib and .tex files, catalog all entries and citations",
+                  "status": "completed",
+                  "activeForm": "Reading .bib and .tex files"
+                },
+                {
+                  "content": "Verify batch 1 (entries 1-15): Production safety systems & discourse analysis",
+                  "status": "completed",
+                  "activeForm": "Verifying batch 1 entries via web search"
+                },
+                {
+                  "content": "Verify batch 2 (entries 16-30): Jailbreak attacks & taxonomies",
+                  "status": "completed",
+                  "activeForm": "Verifying batch 2 entries via web search"
+                },
+                {
+                  "content": "Verify batch 3 (entries 31-45): Technical foundations & DAPT",
+                  "status": "completed",
+                  "activeForm": "Verifying batch 3 entries via web search"
+                },
+                {
+                  "content": "Verify batch 4 (entries 46-60): Probing, defense systems, benchmarks",
+                  "status": "completed",
+                  "activeForm": "Verifying batch 4 entries via web search"
+                },
+                {
+                  "content": "Verify batch 5 (entries 61-75): More defenses, representation, SSL",
+                  "status": "completed",
+                  "activeForm": "Verifying batch 5 entries via web search"
+                },
+                {
+                  "content": "Verify batch 6 (entries 76-91): Detection baselines, duplicates check",
+                  "status": "completed",
+                  "activeForm": "Verifying batch 6 entries via web search"
+                },
+                {
+                  "content": "Compile final audit report",
+                  "status": "completed",
+                  "activeForm": "Compiling final audit report"
+                }
+              ],
+              "verificationNudgeNeeded": false
+            },
+            "sourceToolAssistantUUID": "a4c76efa-fb22-4b74-be46-8a01d7f7a694",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3db0dc2-d628-407b-a4ce-37fdd0f13d66",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000128"
+        },
+        {
+          "source_line": 129,
+          "timestamp": "2026-05-26T10:34:29.613Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `/artifacts/ref_audit_worker_A.md`。\n\n**核心发现汇总：**\n\n**P0 必须修复（4 条被引用条目有严重错误）：**\n1. **ren2024actorattack** — 标题伪造（实际是 \"Derail Yourself\"），venue 错（ICLR 2025→ACL 2025），缺 arXiv ID\n2. **robey2024smoothllm** — venue 错（不在 ICML 2024，应为 arXiv/TMLR 2025）\n3. **mehrotra2024tap** — 副标题伪造（\"with the Pruning of Candidate Outputs\"→\"Automatically\"）\n4. **jiang2024redqueen** — 标题/年份/venue 全错（应为 ACL 2025 Findings，标题已改）\n\n**P1 建议修复（5 条）：** metallamaguard3_2024（无独立论文）、gguard2025/lu2025xboundary（标题已更新）、chao2024jailbreakbench（venue 不完整）、song2026multibreak（ICML 2026 未确认）\n\n**P2 清理：** 18 条未被引用条目，2 对重复（shen2025antidote、hsu2024improved 含伪造作者名）"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "becd058b-0e1f-426e-9ad7-9e0be676ed98",
+            "isSidechain": false,
+            "requestId": "req_011CbR2idKdp9p2xG1Sfhq1K",
+            "type": "assistant",
+            "uuid": "c483e49a-03c2-42e7-babc-638dfe0d3cc8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3db0dc2-d628-407b-a4ce-37fdd0f13d66",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XX5Bg1NtFJBHieyquE3pbh",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 458,
+                "cache_read_input_tokens": 154087,
+                "output_tokens": 376,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 458,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 376,
+                    "cache_read_input_tokens": 154087,
+                    "cache_creation_input_tokens": 458,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 458
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "c483e49a-03c2-42e7-babc-638dfe0d3cc8",
+                "sessionId": "a3db0dc2-d628-407b-a4ce-37fdd0f13d66"
+              }
+            }
+          ],
+          "id": "event-000130"
+        },
+        {
+          "source_line": 131,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Verify references.bib citations independently",
+                "sessionId": "a3db0dc2-d628-407b-a4ce-37fdd0f13d66"
+              }
+            }
+          ],
+          "id": "event-000131"
+        }
+      ]
+    }
+  ]
+}

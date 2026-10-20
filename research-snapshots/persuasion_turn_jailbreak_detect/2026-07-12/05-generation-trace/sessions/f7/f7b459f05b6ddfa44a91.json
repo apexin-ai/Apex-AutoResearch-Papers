@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "f7b459f05b6ddfa44a91",
+  "project": "persuasion_turn_jailbreak_detect--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: persuasion_turn_jailbreak_detect ## 运行环境 - 服务器名: westd-33183 - SSH 账户: root（调用 ssh_execute / sub",
+  "task_key": "d25d0a4e-7673-4ff6-a23b-afb618937eef",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/d25d0a4e-7673-4ff6-a23b-afb618937eef.jsonl",
+    "occurrence": 1,
+    "bytes": 526026,
+    "sha256": "589057638c49c7731060141422cc5748f17e73c80b165ef8b11c52b7601c7939"
+  },
+  "statistics": {
+    "messages": 204,
+    "user_turns": 1,
+    "tool_calls": 58,
+    "roles": {
+      "record": 41,
+      "user": 1,
+      "assistant": 46,
+      "tool_call": 58,
+      "tool_result": 58
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "f7b459f05b6ddfa44a91-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 202,
+      "chunks": [
+        {
+          "path": "f7b459f05b6ddfa44a91-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "f7b459f05b6ddfa44a91-part-0002.json",
+          "message_count": 24
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-persuasion-turn-jailbreak-detect-westd-33183-ssh-root-ssh-exec-copy-275.md"
+}

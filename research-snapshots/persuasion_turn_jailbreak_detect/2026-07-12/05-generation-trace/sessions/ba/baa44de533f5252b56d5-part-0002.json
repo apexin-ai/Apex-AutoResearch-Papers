@@ -1,0 +1,1329 @@
+{
+  "schema_version": "1.0",
+  "session_id": "baa44de533f5252b56d5",
+  "rounds": [
+    {
+      "number": 9,
+      "messages": [
+        {
+          "source_line": 121,
+          "timestamp": "2026-05-23T11:22:41.475Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 2 审稿意见]:\n\n# Reviewer 2 对 Reviewer 1 审稿意见的逐条回应\n\n---\n\n## Must-Fix 回应\n\n### [AGREE] R1-N1: Bootstrap CI 跨 seed 池化违反独立性假设\n\n同意这是一个统计方法论问题。3 个 seeds 共享同一训练数据和架构，predictions 之间存在结构性相关（共享的 data splits、相同的 DAPT 数据）。池化后 resample 有效样本量膨胀约 3 倍，CI 系统性过窄。\n\n但需要指出两个缓解因素：\n1. 论文在 Section 4.1 明确标注了 \"assumes cross-seed independence and is exploratory\"，这是负责任的做法。\n2. 更重要的是，Appendix 的 seed-level F1 表（论文提到的 Table in Appendix）显示所有 pairwise 结论在每个 seed 上独立成立——这意味着即使 CI 失效，核心排序结论不变。\n\n**我的建议**：同意 R1 的 \"seed-level metrics 为主要报告单位\" 的建议。正文可保留池化 CI 作为补充，但每次引用时必须标注 \"exploratory\"，且不得基于池化 CI 做出断言性声明（如 \"confirms non-overlapping intervals\" 应改为 \"seed-level results show consistent separation\"）。这是一个可修复的表述问题，不改变核心结论。\n\n---\n\n### [AGREE] R1-N2: Benign-IID + Attack-OOD 评估系统性高估 OOD 泛化\n\n完全同意。这与我的 N2 问题一致。补充以下发现：\n\nAppendix P.1 Table 22 提供了 dual-OOD 的具体数据：\n- DD: IID benign F1=0.994 → WildChat no-adapt F1=0.855（下降 13.9pp）\n- AA: IID benign F1=0.981 → WildChat no-adapt F1=0.842（下降 13.9pp）\n\n论文确实在 Appendix P.1 提供了完整的 dual-OOD 分析，且 few-shot adaptation (10 conversations) 恢复到 IID 水平的 0.3pp 以内。但问题是这些关键数据被埋在 Appendix 中，而正文 Table 2 报告的近完美 OOD F1 (>0.99) 成为读者的第一印象。\n\n**我的建议**：强烈同意 R1 的建议——Table 2 应增加 dual-OOD 行。至少应有 \"without benign adaptation\" 和 \"with 10-shot adaptation\" 两行，让读者在首次接触核心结果时就了解真实 OOD 性能。\n\n---\n\n### [AGREE] R1-N3: ActorAttack padding 实验暴露长度依赖\n\n同意这是一个值得认真对待的问题。Appendix U Part C 的数据令人担忧：\n\n- DD padded: F1=0.971（Δ=-2.5pp）—— resilient\n- AA padded: F1=0.383±0.261（Δ=-57.9pp）—— catastrophic collapse\n\nDD 和 AA 之间的巨大差异（55.4pp）确实暗示 AA 检测可能部分依赖长度信号或至少依赖 signal-to-noise ratio。论文自己解释为 \"BiGRU temporal aggregation as vulnerable to attention dilution on subtle attack signals\"（Appendix U 原文），这是合理的——AA 攻击信号比 DD 更微妙分散，padding 后信号被稀释。\n\n但我与 R1 的分歧在于程度判断：\n1. 论文的三个反驳论据中，第(1)点（vanilla 有相同长度信息但 recall ≤2.6%）确实有一定说服力——如果纯靠长度 shortcut，vanilla 也应该能利用。\n2. 第(2)点（K=1 时 F1=0.773）证明存在内容级信号。\n3. 但 R1 正确指出这些不足以完全排除长度混淆——它们只证明长度不是唯一特征，不证明长度不是重要特征。\n\n**关键遗漏**：缺乏长度匹配的对照实验是核心问题。生成与 benign conversations 等长（12-20 turns）的 AA 攻击对话进行评估，才能真正排除长度混淆。这是一个合理的 revision 要求。\n\n**我的补充发现**：Section 4.3 temporal modeling 分析显示 mean pooling ≈ BiGRU（F1 gap ≤1pp），这意味着模型实质上在做 turn-level representations 的简单聚合。在这种架构下，padding 大量 benign turns 后 attack signal 被均值化稀释是必然的——这不是 length shortcut，而是聚合架构对 signal density 的固有脆弱性。但这一架构弱点本身就是一个重要 limitation，论文在 Discussion 中讨论不足。\n\n---\n\n### [AGREE] R1-N4: 方差缩减声明 (3-23×) 基于 n=3 统计可靠性不足\n\n同意。n=3 的 variance ratio 只有 2 个自由度，F-test 的 power 极低。即使观测到 23× 差异，也无法在任何合理的 α 水平下拒绝 H₀: σ²₁ = σ²₂。\n\n论文的 credit 是明确写了 \"formal variance ratio tests are not applicable at n=3\"。但正文中仍以 \"3-23×\" 作为 claim 的支撑论据使用（Section 4.3），给读者造成了这是一个稳健发现的印象。\n\n进一步加重此问题的是 ToxicChat 上的反转（Section 5）：classification-supervised variants 在 ToxicChat 上展现最高方差（std=0.087），而 MLM 最低（std=0.013）。如果 \"variance reduction\" claim 在合成数据和人类数据上方向相反，它就不能被当作 classification supervision 的一般性优势。\n\n**我的建议**：同意 R1——降级为 \"descriptive observation, pending validation with more seeds\"，且在每次引用时附带 ToxicChat 反转的限定。\n\n---\n\n## Should-Fix 回应\n\n### [AGREE] R1-W1: 缺乏与 DeepContext/BIID/G-Guard 的直接实验对比\n\n同意这是一个缺陷。论文声称 vanilla DeBERTa+BiGRU \"architecturally equivalent to DeepContext\"（Section 4.1），但实际上 DeepContext 使用 BERT（非 DeBERTa-v3），且可能有不同的训练细节。论文在 Appendix Q 提供了 BERT-base-uncased proxy（DD=0.318, AA=0.275），这与 DeBERTa vanilla（DD=0.312, AA=0.258）确实可比，部分支持了等价性声明。\n\n但 BIID 和 G-Guard 使用不同的架构（turn-intention inference、GNN），没有任何实验对比。作为一篇声称填补 \"no existing defense evaluates cross-attack transfer\" 空白的论文，至少应在同一 OOD 评估设置下对比一个已有方法。\n\n---\n\n### [REBUT] R1-W2: TOST δ=5pp 合理性\n\n部分反驳。R1 承认 Appendix L sensitivity analysis 显示 DD 在 δ=2pp 仍通过，这实际上大幅加强了等价性 claim。5pp 在安全检测中是一个合理的实际显著性阈值——如果两种方法在 F1 上相差不超过 5pp，在部署场景中通常被视为可互换。\n\n更重要的是，论文在 Contribution 2 中报告了 effect size（|d|≤0.14 on DD, d≈0 on FITD, d=0.44 on AA），这些 Cohen's d 值提供了独立于 δ 选择的等价性证据。d=0.14 是标准意义上的 \"trivial\" effect size，即使 TOST δ 选择有争议，d 值本身已经说明了问题。\n\n**但需注意**：AA 上 d=0.44 是 medium effect size，论文正确报告了 TOST 在 AA 上未通过（p=0.183），并诚实地描述为 \"moderate label effect\"。这恰好说明等价性仅限于 template attacks，与 R1-N3 的长度/复杂度依赖问题一致。\n\n---\n\n### [AGREE] R1-W3: 单一 LLM (Qwen3-8B) 泛化性受限\n\n同意。这与我的 overall assessment 一致。论文的 Mixed-LLM 实验（Section 4.5）使用 Qwen + Llama 部分回应了此问题，但结果恰好暴露了更大的问题（AA F1=0.504，参见我的 N3）。ToxicChat 验证（Section 4.6）提供了人类数据的间接证据，但是单轮数据，无法验证核心的多轮 claim。\n\n---\n\n### [AGREE] R1-W4: LLM-as-judge baseline 公平性\n\n同意。Appendix A Table 6 对比 zero-shot/3-shot LLM-as-judge vs 350-conversation supervised DisPeD，这不是 controlled comparison。公平对比应给 LLM 同等的 training data（350 conversations 作为 in-context examples 或 fine-tuning）。\n\n但论文的意图可能是对比 deployment cost 而非方法论——这是合理的实际视角，但应明确标注为 cost-performance trade-off 对比而非方法论对比。\n\n---\n\n### [AGREE] R1-W5: 数据规模与声明强度不匹配\n\n同意。350 训练 + 76-118 OOD test 的规模确实与 \"systematic ablation\" 和 \"controlled factorial study\" 的声明强度存在张力。特别是每个 OOD 测试集只有 80 个攻击样本 + 38 个 IID benign 样本 = 118 个数据点，per-seed 只有 ~118 个 predictions——这限制了统计 power。\n\n但需要公平地指出：这个规模在多轮 jailbreak 检测领域并非异常——DeepContext、BIID 等的评估规模也相近。问题不在于数据量本身，而在于声明的校准是否与证据强度匹配。\n\n---\n\n### [AGREE] R1-W6: SVD/CKA/Fisher 分析 correlational 性质与因果措辞不匹配\n\n完全同意。这与我的 W5 问题一致。\"Domain exposure is the primary mechanism\"、\"classification-induced compression drives generalization\" 等因果表述应替换为 associational 语言。SVD/CKA/Fisher 分析显示 representation properties 与 detection performance 之间的相关关系，但不能建立因果关系。\n\n---\n\n## Questions 回应\n\n### R1-Q1 (Bootstrap 池化实现)\n合理的技术问题。如果是 concatenate 后 resample（而非分层），则严重违反了 cluster structure（同一 seed 的 predictions 高度相关）。正确做法应是 hierarchical bootstrap（先 resample seeds，再 resample within seed），但 n=3 seeds 下 hierarchical bootstrap 也没有意义。这进一步支持了 N1 的核心论点。\n\n### R1-Q2 (AA padding collapse vs DD)\n这是一个极好的诊断性问题。我认为有两个可能的解释：\n1. **Signal density 差异**：DD 的攻击信号集中在少数高辨识度 turns（emotional manipulation + deceptive content 混合），即使 diluted 后信号仍然突出。AA 的攻击信号分散在多个 persona-steering turns 中，每个 turn 的 signal 更微弱，dilution 后降到 noise floor 以下。\n2. **Length shortcut 可能性**：不能排除模型学到了 \"短对话=jailbreak\" 的 heuristic。虽然论文的 K=1 证据（F1=0.773）证明存在内容信号，但 0.773 远低于 full-length 的 0.963——剩余的 19pp 提升中有多少来自长度信号？\n\n这两个解释并不互斥，需要长度匹配实验来区分。\n\n### R1-Q3 (DAPT 是否只是 \"多看一遍数据\")\n这是一个关键问题。Wiki MLM 使用相同数量的 tokens 但来自 Wikipedia，在 DD 上达到 0.904 vs jailbreak MLM 的 0.914（仅 1pp 差异）——这暗示 \"多看一遍任何文本\" 就能获得大部分收益。在 AA 上差距更大（0.686 vs 0.893），说明 domain specificity 对复杂攻击更重要。但整体而言，R1 的怀疑有一定道理——DAPT 的大部分收益可能来自通用的 continued pretraining 效应，而非 jailbreak-specific 特征学习。\n\n### R1-Q4 (9-class AA OOD 是否存在低 F1 seed)\n这是 std=0.026 (Table 3 AA-Full 9-class = 0.972±0.026)，而非 0.115。0.115 是 MLM-only 在 DD 上的 std。9-class 在 AA 上三个 seed 应该都在 0.94+ 范围内。但 MLM-only AA std=0.080 意味着可能有 seed 在 0.81 附近。论文应在 Appendix 的 seed-level table 中明确报告。\n\n### R1-Q5 (Few-shot benign adaptation 实现细节)\n合理的可重复性问题。论文 Section 4.9 只报告了结果（10 conversations → FPR 0%），但具体实现（是继续 fine-tune Stage-1？Stage-2？用什么 loss？多少 epochs？）不够清晰。这些细节对于 reproducibility 很重要。\n\n### R1-Q6 (Discriminative compression vs representation collapse)\n这是一个深刻的问题。Fisher ratio 高 + participation ratio 低 可以同时解释为：\n(a) **discriminative compression**：模型学会在少数维度上编码类别信息，是有益的特征提取\n(b) **representation collapse/overfitting**：模型过拟合到训练分布的少数特征，丧失了泛化到新 benign 分布的能力\n\nWildChat 68.1% FPR 恰好是 (b) 的直接证据——domain-adapted 模型将所有 unfamiliar benign text 误分类为 jailbreak，因为它的表示空间过度压缩，无法容纳新分布。论文将此解释为 \"benign distribution sensitivity\"，但 R1 正确指出这可能就是 overfitting/collapse 的另一种说法。\n\n这个问题直接关联我的 W3（两轴分解是否是 FPR/FNR 重包装）和 N2（IID benign 高估泛化）。\n\n---\n\n## 对 R1 Missing References 的回应\n\n1. **Markov et al., 2023 (OpenAI content moderation)**：[AGREE] 作为 production safety 系统的重要参考应被引用，与论文的 deployment cost 讨论相关。\n2. **Phute et al., 2024 (LLM Self-Defense)**：[AGREE] 作为 defense 方法应在 Related Work 中讨论。\n3. **2025-2026 encoder-based 工作**：[AGREE] 我在自己的 Missing References 中列出了更具体的遗漏（Recursive LM, TrajGuard, internal layer probing 等）。\n\n---\n\n## 与 R1 Overall 评分的比较\n\nR1 给出 3.0 (Findings)，与我的评分一致。我们的核心关切高度重合：\n\n**共识点**：\n- Benign-IID 评估高估泛化（我的 N2 = R1 的 N2）\n- 因果语言 vs 相关性证据不匹配（我的 W5 = R1 的 W6）\n- 数据规模和单一 LLM 的限制（我的 assessment = R1 的 W3/W5）\n- 方法新颖性有限\n\n**互补关注**：\n- R1 更深入地分析了 bootstrap 统计和长度混淆（N1, N3）——这些是我没有充分展开的有价值问题\n- 我更侧重 ToxicChat 反转的 claim calibration 影响（我的 N1）和 Mixed-LLM AA=0.504 的定性问题（我的 N3）\n\n**分歧**：\n- R1-W2 (TOST δ=5pp): 我认为这不是主要问题，因为 sensitivity analysis 和 Cohen's d 提供了独立证据\n- 其余无实质分歧\n\n**综合判断**：两位 reviewer 的意见收敛于 3.0 (Findings)。核心问题——claim 校准不足、IID benign 高估、ToxicChat 反转的低调处理、方法新颖性——都是可修复的。但修复后论文的 claim strength 会显著降低（从 \"classification DAPT is the mechanism\" 降级为 \"classification DAPT helps on synthetic data at base scale\"），可能影响其在 Findings 中的竞争力。\n"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4ea53367-3d86-49f1-9330-46ff2c715927",
+            "isSidechain": false,
+            "promptId": "4d2d0fa0-439f-4b85-b162-b277a5193e5a",
+            "type": "user",
+            "uuid": "eb57450d-4f24-4425-8078-b721b485d044",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_director_93d7fc7c",
+            "sessionId": "077af215-dfe1-4c53-b749-b242fe0fe18b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review persuasion turn jailbreak detection paper",
+                "sessionId": "077af215-dfe1-4c53-b749-b242fe0fe18b"
+              }
+            }
+          ],
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": "2026-05-23T11:23:03.898Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-23T11:23:03.898Z",
+                "sessionId": "077af215-dfe1-4c53-b749-b242fe0fe18b",
+                "content": "[Reviewer 2 审稿结果]:\n交叉回应已提交。总结：\n\n**与 R1 的 4 个 Must-Fix 全部 [AGREE]**：Bootstrap CI 池化（N1）、Benign-IID 高估（N2）、AA padding collapse（N3）、方差 n=3（N4）——我均同意核心关切，但补充了程度判断和缓解因素的分析。\n\n**Should-Fix 5/6 [AGREE]，1/6 [REBUT]**：唯一的 REBUT 是 W2（TOST δ=5pp），因为 sensitivity analysis 已在 δ=2pp 通过且 Cohen's d 提供了独立证据。\n\n**两位 Reviewer 评分收敛于 3.0 (Findings)**，核心关切高度重合。主要互补之处：R1 深挖了统计方法和长度混淆，我侧重 ToxicChat 反转的 claim calibration 和 Mixed-LLM 定性问题。"
+              }
+            }
+          ],
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": "2026-05-23T11:23:03.899Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-23T11:23:03.899Z",
+                "sessionId": "077af215-dfe1-4c53-b749-b242fe0fe18b"
+              }
+            }
+          ],
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": "2026-05-23T11:23:03.887Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eb57450d-4f24-4425-8078-b721b485d044",
+            "isSidechain": false,
+            "type": "assistant",
+            "uuid": "1d3530a1-f1f3-424c-9c3d-87833e12c4da",
+            "isApiErrorMessage": false,
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_director_93d7fc7c",
+            "sessionId": "077af215-dfe1-4c53-b749-b242fe0fe18b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "id": "104f9067-3c55-41a1-8f33-02b6e0976015",
+              "container": null,
+              "model": "<synthetic>",
+              "stop_reason": "stop_sequence",
+              "stop_sequence": "",
+              "type": "message",
+              "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": null,
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": null,
+                "iterations": null,
+                "speed": null
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000125"
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "messages": [
+        {
+          "source_line": 126,
+          "timestamp": "2026-05-23T11:23:03.980Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 2 审稿结果]:\n交叉回应已提交。总结：\n\n**与 R1 的 4 个 Must-Fix 全部 [AGREE]**：Bootstrap CI 池化（N1）、Benign-IID 高估（N2）、AA padding collapse（N3）、方差 n=3（N4）——我均同意核心关切，但补充了程度判断和缓解因素的分析。\n\n**Should-Fix 5/6 [AGREE]，1/6 [REBUT]**：唯一的 REBUT 是 W2（TOST δ=5pp），因为 sensitivity analysis 已在 δ=2pp 通过且 Cohen's d 提供了独立证据。\n\n**两位 Reviewer 评分收敛于 3.0 (Findings)**，核心关切高度重合。主要互补之处：R1 深挖了统计方法和长度混淆，我侧重 ToxicChat 反转的 claim calibration 和 Mixed-LLM 定性问题。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1d3530a1-f1f3-424c-9c3d-87833e12c4da",
+            "isSidechain": false,
+            "promptId": "b65de076-9745-4b70-b084-36c6022348a1",
+            "type": "user",
+            "uuid": "f4cfa26b-2952-4b94-9b27-c54a6274fe81",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_director_93d7fc7c",
+            "sessionId": "077af215-dfe1-4c53-b749-b242fe0fe18b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review persuasion turn jailbreak detection paper",
+                "sessionId": "077af215-dfe1-4c53-b749-b242fe0fe18b"
+              }
+            }
+          ],
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": "2026-05-23T11:23:24.297Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-23T11:23:24.297Z",
+                "sessionId": "077af215-dfe1-4c53-b749-b242fe0fe18b",
+                "content": "[Reviewer 1 审稿意见]:\n## Reviewer 1 对 Reviewer 2 审稿意见的逐条回应\n\n---\n\n### Must-Fix 回应\n\n**[AGREE] R2-N1: ToxicChat evidence hierarchy 反转对核心 claim 的影响被严重低估**\n\n同意这是一个被论文 framing 低估的重要发现。\n\n证据确认：Table 5 显示 ToxicChat 上 JB-MLM (0.837±0.013) >> 9-class (0.596±0.087)，差距高达 24.1pp。Abstract 仅以 \"indicating condition-specific rather than universal mechanisms\" 一句带过（page 1 最后一段），而 Conclusion（Section 6, page 8）用 \"the hierarchy reverses on human data, confirming condition specificity\" 同样轻描淡写。\n\n补充我的分析：这一反转不仅是 scope 限定的问题，而且揭示了 9-class DAPT 的一个潜在根本缺陷——classification supervision 可能过度 specialize 到 Qwen3-8B 合成数据的 discourse patterns，导致在真实人类对话上反而比无监督的 MLM 更脆弱。论文应当分析 **为什么** 反转发生（是 label noise？还是 Qwen3-8B style overfitting？还是 single-turn vs multi-turn 的根本差异？），而非仅限定 scope。\n\n建议与 R2 一致：Abstract/Conclusion 应将 ToxicChat 反转作为同等重要的 finding 呈现，而非 caveat。\n\n---\n\n**[AGREE] R2-N2: \"OOD\" 评估设计中 benign 侧为 IID，夸大泛化能力**\n\n完全同意。这与我的 N2 相同。\n\n补充数据：Section 4.9 报告 WildChat FPR=68.1%（Appendix P, Table 20 per-seed: 66.8/61.1/76.5）。论文在 Section 4.9 提到 few-shot mitigation（10 WildChat conversations → FPR 0%），但这一缓解方案本身未经严格评估（如 Q5 所问：这 10 conversations 是 IID 还是 OOD 的 benign？是否在 held-out WildChat 上验证？）。\n\nR2 的建议（正文标注 upper bound + 主结果表增加 dual-OOD 行 + Abstract 数字附带条件）都是合理且可操作的修改方向。\n\n---\n\n**[AGREE] R2-N3: Mixed-LLM ActorAttack F1=0.504 定性不当**\n\n同意。Section 4.5（page 7）报告 9-class F1=0.504±0.107，vanilla 为 0.389±0.075。两个问题：\n\n1. **与 majority baseline 不可区分**：二分类平衡数据集的 majority baseline 为 ~0.5。9-class 的 0.504 字面上与 random 一致。\n2. **与 vanilla 差异不显著**：差距 0.504-0.389=0.115pp，但 std 分别为 0.107 和 0.075。在 n=3 seeds 下，两样本 t-test 无法 reject H0。bootstrap CI 在论文的池化框架下也不可靠（我的 N1）。\n\n论文说 \"limited per-source volume (250 per LLM) likely constrains generalization to complex attacks\"——这是合理的解释，但结论不应是 \"9-class shows advantage on ActorAttack under mixed-LLM\"，而是 \"9-class 在此条件下不可区分于 chance\"。\n\n---\n\n### Should-Fix 回应\n\n**[AGREE] R2-W1: \"Disentangled\" 命名不准确**\n\n同意精神层面的担忧。ML 社区中 \"disentanglement\" 有明确的技术含义（β-VAE, FactorVAE, DCI metrics 等），指在潜空间中学习互相独立的生成因子。论文实际做的是因子化消融实验（controlled ablation），与 representation disentanglement 无关。\n\n不过需要 nuance：论文标题 \"DisPeD: Disentangled Persuasion Detection\" 中 \"disentangled\" 可以理解为 \"将影响检测的因素分解开来研究\"，这在日常英语中是合理用法。但在 ACL/EMNLP 受众中，容易引起对表征学习方法的错误预期。建议改为 \"Decomposed\" 或 \"Dissected\"。\n\n---\n\n**[AGREE] R2-W2: \"Structural complexity\" 缺乏形式化定义**\n\n同意。论文区分 \"template attacks\" (DD, FITD) 和 \"strategy-diverse attacks\" (ActorAttack)，但没有定义什么使攻击 \"complex\" vs \"template-based\"。Section 4.8 (Strategy Trajectory Analysis, Figure 3) 使用 persuasion strategy transition matrices 来 characterize 攻击结构差异，但未将其转化为可操作的分类指标。\n\n这对论文的 practical impact 是有害的：如果新的攻击方法出现，读者无法判断 DisPeD 是否能 handle 它，因为无法对照定义判断该攻击属于哪一类。\n\n---\n\n**[REBUT] R2-W3: 两轴分解可能是 FPR/FNR 的重包装**\n\n不完全同意。论文的两轴分解不仅仅是 FPR/FNR——它叠加了 IID/OOD 维度，形成 2×2 框架：\n\n| | IID | OOD |\n|---|---|---|\n| **Attack-side** | Section 4.2 IID Crescendo | Section 4.2 cross-attack (DD/AA/FITD) |\n| **Benign-side** | Section 4.2 IID benign FPR≈0 | Section 4.9 WildChat FPR=68.1% |\n\n标准 FPR/FNR 分析不区分 IID 和 OOD 表现。论文的框架揭示了不同失败模式需要不同的缓解策略：attack-side OOD 需要 DAPT，benign-side OOD 需要 benign calibration（Section 4.9 的 few-shot adaptation）。这是有分析价值的概念框架。\n\n但我承认论文没有明确地将两轴与 FPR/FNR 的关系讲清楚，R2 的混淆是合理的。建议论文增加一段说明两轴分解与 FPR/FNR 的关系和区别。\n\n---\n\n**[AGREE] R2-W4: Abstract 信息密度过高**\n\n同意但认为优先级较低。250 词含 12+ 数值确实影响可读性。具体的 F1 数值可以精简为趋势描述（如 \"near-perfect on synthetic OOD\" 而非 \"F1=0.97-1.0, vanilla 0.26-0.31\"），关键数字保留 2-3 个即可。\n\n---\n\n**[AGREE] R2-W5: 因果语言 vs 相关性证据不一致**\n\n同意。这与我的 W6 一致。Section 4.3 的 \"Domain exposure is the primary mechanism\" 是因果声明，但支撑证据（vanilla vs DAPT 对比、SVD/CKA 分析）均为相关性。唯一接近因果的是 SVD ablation（Appendix S.1, Table 29：移除 top-3 SVD 方向后 DD F1 下降 17pp），但这是对 representation 的 intervention，不是对 training procedure 的 intervention。\n\n建议将 \"is the primary mechanism\" 改为 \"is strongly associated with\" 或 \"appears to be a key contributing factor\"。\n\n---\n\n**[AGREE] R2-W6: RoBERTa-large DAPT 有害的 scale-dependent 发现在 Abstract/Conclusion 中缺失**\n\n同意。Table 4（page 7）显示 RoBERTa-large (355M) 上：\n- Vanilla: 0.927±0.036 (DD), 1.000±0.000 (AA)\n- MLM: 0.884±0.065, 0.874±0.014\n- 9-class: 0.987±0.004, 0.946±0.057\n\n实际上 RoBERTa-large vanilla 已经在 AA 上达到 1.000，DAPT (MLM) 反而降低到 0.874。这是一个重要的 scale-dependent 发现：DAPT 在大 encoder 上可能有害。Section 4.4 讨论了这一现象（\"smaller encoders require DAPT to bridge 47-71pp, while All continued pretraining reduces ActorAttack performance for the largest encoder\"），但 Abstract 和 Conclusion 均未提及。\n\n这对论文的实际指导意义很大——实践者需要知道 DAPT 不是 universally beneficial。\n\n---\n\n**[AGREE] R2-W7: Temporal modeling negative finding 讨论不充分**\n\n同意，但需要 nuance。Appendix T (Table 30, page 17) 显示：\n- Frozen probing: BiGRU 仅在 ActorAttack 上有 +1.0pp 的 marginal advantage，CI 重叠\n- E2E fine-tuning: \"the difference vanishes entirely: mean pooling saturates all benchmarks at F1=1.000\"\n\n这意味着 turn-order 信息在当前框架下没有被有效利用。论文的 \"multi-turn\" framing 因此有些误导——模型处理的是多轮对话，但检测不依赖 temporal structure。\n\n**nuance**: 论文的核心贡献是 Stage 1 encoder adaptation，不是 Stage 2 temporal modeling。Mean pooling ≈ BiGRU 可能反映的是 Stage 1 representation 已经足够好，以至于不需要 temporal structure。但这本身是一个值得讨论的 finding，不应只放在 appendix。\n\n---\n\n### Questions 回应\n\n**Q1** (benign-side adaptation IID/OOD 评估): 好问题。Section 4.9 报告 \"10 WildChat conversations reduce FPR to 0%\"，但未说明这 10 conversations 是否从 evaluation set 中抽取。如果是，则存在 data leakage；如果是独立的 held-out set，则方法更可靠。论文需要澄清。\n\n**Q2** (Scrambled permutation): 好问题。论文在 Section 3.1（Table 1）描述 scrambled variant 为 \"destroying label semantics while maintaining training difficulty\"，但确实未说明是 fixed permutation 还是 per-epoch random shuffle，也未在多个 permutation 上验证。如果 scrambled ≈ 9-class 只在一个特定 permutation 下成立，结论不够 robust。\n\n**Q3** (ToxicChat 反转的泛化性): 合理质疑。ToxicChat 是 single-turn（Section 4.6: \"ToxicChat is single-turn, so the classification head provides no advantage\"），所以 MLM > classification 的反转可能是 single-turn 特异的。但目前没有 multi-turn 人类数据来验证这一假设。论文的 ToxicChat 实验的价值在于测试 cross-domain transfer（synthetic → human），但 single-turn vs multi-turn 的 confound 确实限制了结论。\n\n**Q4** (Mixed-LLM 500 vs 350 confound): 非常好的 confound 识别。Section 4.5 混合训练使用 250 Qwen + 250 Llama = 500 total，而 single-source 用 350 Qwen。性能下降可能是：(a) multi-source distribution shift，(b) per-source data 减少（250 vs 350），或 (c) 总量增加但多样性带来的 noise。需要控制实验：250 Qwen-only vs 250+250 mixed。\n\n**Q5** (Qwen3-8B label quality): 有价值的 concern。如果 Qwen3-8B 的 9-class 策略标注本身 noisy，那么 scrambled ≈ original 可能是因为两者的信噪比相近，而非 \"label semantics don't matter\"。论文在 Section 4.1 提到 \"inter-annotator agreement between model annotations and a human sample (n=50) yields Cohen's κ=0.78\"——κ=0.78 是 \"substantial agreement\" 但不是 \"near-perfect\"。这值得在讨论 scrambled 结果时考虑。\n\n---\n\n### Missing References 回应\n\nR2 列出的 5 篇参考文献中：\n1. **Recursive Language Models for Jailbreak Detection (2602.16520)** — 直接相关，应在 Related Work Section 2 中讨论\n2. **TrajGuard (2604.07727)** — 轨迹级检测，与论文的 strategy trajectory analysis (Section 4.8) 有交集，应引用\n3. **Do Internal Layers Reveal Patterns for Jailbreak Detection (2510.06594)** — 与论文的 SVD/Fisher 表征分析方法论相关，应引用\n4. **Jailbreaking Leaves a Trace (2602.11495)** — 与论文的 representation-level detection 主题直接相关\n5. **M2S: Multi-turn to Single-turn (2503.04856)** — 与论文的 multi-turn → detection 主题相关\n\n我同意这些都是相关的 missing references。特别是 #3 和 #4 与论文的 mechanistic analysis（SVD/CKA/Fisher）方法论高度相关，遗漏不太合理。\n\n---\n\n### 总体评估\n\nR2 的审稿意见整体质量高，特别是 N1（ToxicChat 反转的重要性）和 N3（Mixed-LLM ActorAttack 的统计不显著性）是我 Round 1 审稿中未充分强调的有价值发现。N2 与我的 N2 完全一致。\n\n唯一 REBUT 的是 W3（两轴分解 = FPR/FNR 重包装），我认为 IID/OOD 维度的叠加使该框架超越了简单的 FPR/FNR 分析。\n\nR2 的 Should-Fix 和 Questions 均 well-calibrated。R2 与我的 Overall 评分一致：3.0 (Findings)。结合两份审稿意见，我维持 3.0 的评分，但如果作者能修复 N1-N3（特别是 ToxicChat 反转的 proper framing 和 Mixed-LLM 的 honest statistical characterization），论文有 marginal 提升空间到 3.5。"
+              }
+            }
+          ],
+          "id": "event-000128"
+        },
+        {
+          "source_line": 129,
+          "timestamp": "2026-05-23T11:23:24.297Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-23T11:23:24.297Z",
+                "sessionId": "077af215-dfe1-4c53-b749-b242fe0fe18b"
+              }
+            }
+          ],
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": "2026-05-23T11:23:24.286Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f4cfa26b-2952-4b94-9b27-c54a6274fe81",
+            "isSidechain": false,
+            "type": "assistant",
+            "uuid": "21f8ce4b-0599-4d18-8020-8e36264ba576",
+            "isApiErrorMessage": false,
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_director_93d7fc7c",
+            "sessionId": "077af215-dfe1-4c53-b749-b242fe0fe18b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "id": "6cd2e251-0fb4-43a8-bb7b-77ea794265d8",
+              "container": null,
+              "model": "<synthetic>",
+              "stop_reason": "stop_sequence",
+              "stop_sequence": "",
+              "type": "message",
+              "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": null,
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": null,
+                "iterations": null,
+                "speed": null
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000130"
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "messages": [
+        {
+          "source_line": 131,
+          "timestamp": "2026-05-23T11:23:24.385Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 1 审稿意见]:\n## Reviewer 1 对 Reviewer 2 审稿意见的逐条回应\n\n---\n\n### Must-Fix 回应\n\n**[AGREE] R2-N1: ToxicChat evidence hierarchy 反转对核心 claim 的影响被严重低估**\n\n同意这是一个被论文 framing 低估的重要发现。\n\n证据确认：Table 5 显示 ToxicChat 上 JB-MLM (0.837±0.013) >> 9-class (0.596±0.087)，差距高达 24.1pp。Abstract 仅以 \"indicating condition-specific rather than universal mechanisms\" 一句带过（page 1 最后一段），而 Conclusion（Section 6, page 8）用 \"the hierarchy reverses on human data, confirming condition specificity\" 同样轻描淡写。\n\n补充我的分析：这一反转不仅是 scope 限定的问题，而且揭示了 9-class DAPT 的一个潜在根本缺陷——classification supervision 可能过度 specialize 到 Qwen3-8B 合成数据的 discourse patterns，导致在真实人类对话上反而比无监督的 MLM 更脆弱。论文应当分析 **为什么** 反转发生（是 label noise？还是 Qwen3-8B style overfitting？还是 single-turn vs multi-turn 的根本差异？），而非仅限定 scope。\n\n建议与 R2 一致：Abstract/Conclusion 应将 ToxicChat 反转作为同等重要的 finding 呈现，而非 caveat。\n\n---\n\n**[AGREE] R2-N2: \"OOD\" 评估设计中 benign 侧为 IID，夸大泛化能力**\n\n完全同意。这与我的 N2 相同。\n\n补充数据：Section 4.9 报告 WildChat FPR=68.1%（Appendix P, Table 20 per-seed: 66.8/61.1/76.5）。论文在 Section 4.9 提到 few-shot mitigation（10 WildChat conversations → FPR 0%），但这一缓解方案本身未经严格评估（如 Q5 所问：这 10 conversations 是 IID 还是 OOD 的 benign？是否在 held-out WildChat 上验证？）。\n\nR2 的建议（正文标注 upper bound + 主结果表增加 dual-OOD 行 + Abstract 数字附带条件）都是合理且可操作的修改方向。\n\n---\n\n**[AGREE] R2-N3: Mixed-LLM ActorAttack F1=0.504 定性不当**\n\n同意。Section 4.5（page 7）报告 9-class F1=0.504±0.107，vanilla 为 0.389±0.075。两个问题：\n\n1. **与 majority baseline 不可区分**：二分类平衡数据集的 majority baseline 为 ~0.5。9-class 的 0.504 字面上与 random 一致。\n2. **与 vanilla 差异不显著**：差距 0.504-0.389=0.115pp，但 std 分别为 0.107 和 0.075。在 n=3 seeds 下，两样本 t-test 无法 reject H0。bootstrap CI 在论文的池化框架下也不可靠（我的 N1）。\n\n论文说 \"limited per-source volume (250 per LLM) likely constrains generalization to complex attacks\"——这是合理的解释，但结论不应是 \"9-class shows advantage on ActorAttack under mixed-LLM\"，而是 \"9-class 在此条件下不可区分于 chance\"。\n\n---\n\n### Should-Fix 回应\n\n**[AGREE] R2-W1: \"Disentangled\" 命名不准确**\n\n同意精神层面的担忧。ML 社区中 \"disentanglement\" 有明确的技术含义（β-VAE, FactorVAE, DCI metrics 等），指在潜空间中学习互相独立的生成因子。论文实际做的是因子化消融实验（controlled ablation），与 representation disentanglement 无关。\n\n不过需要 nuance：论文标题 \"DisPeD: Disentangled Persuasion Detection\" 中 \"disentangled\" 可以理解为 \"将影响检测的因素分解开来研究\"，这在日常英语中是合理用法。但在 ACL/EMNLP 受众中，容易引起对表征学习方法的错误预期。建议改为 \"Decomposed\" 或 \"Dissected\"。\n\n---\n\n**[AGREE] R2-W2: \"Structural complexity\" 缺乏形式化定义**\n\n同意。论文区分 \"template attacks\" (DD, FITD) 和 \"strategy-diverse attacks\" (ActorAttack)，但没有定义什么使攻击 \"complex\" vs \"template-based\"。Section 4.8 (Strategy Trajectory Analysis, Figure 3) 使用 persuasion strategy transition matrices 来 characterize 攻击结构差异，但未将其转化为可操作的分类指标。\n\n这对论文的 practical impact 是有害的：如果新的攻击方法出现，读者无法判断 DisPeD 是否能 handle 它，因为无法对照定义判断该攻击属于哪一类。\n\n---\n\n**[REBUT] R2-W3: 两轴分解可能是 FPR/FNR 的重包装**\n\n不完全同意。论文的两轴分解不仅仅是 FPR/FNR——它叠加了 IID/OOD 维度，形成 2×2 框架：\n\n| | IID | OOD |\n|---|---|---|\n| **Attack-side** | Section 4.2 IID Crescendo | Section 4.2 cross-attack (DD/AA/FITD) |\n| **Benign-side** | Section 4.2 IID benign FPR≈0 | Section 4.9 WildChat FPR=68.1% |\n\n标准 FPR/FNR 分析不区分 IID 和 OOD 表现。论文的框架揭示了不同失败模式需要不同的缓解策略：attack-side OOD 需要 DAPT，benign-side OOD 需要 benign calibration（Section 4.9 的 few-shot adaptation）。这是有分析价值的概念框架。\n\n但我承认论文没有明确地将两轴与 FPR/FNR 的关系讲清楚，R2 的混淆是合理的。建议论文增加一段说明两轴分解与 FPR/FNR 的关系和区别。\n\n---\n\n**[AGREE] R2-W4: Abstract 信息密度过高**\n\n同意但认为优先级较低。250 词含 12+ 数值确实影响可读性。具体的 F1 数值可以精简为趋势描述（如 \"near-perfect on synthetic OOD\" 而非 \"F1=0.97-1.0, vanilla 0.26-0.31\"），关键数字保留 2-3 个即可。\n\n---\n\n**[AGREE] R2-W5: 因果语言 vs 相关性证据不一致**\n\n同意。这与我的 W6 一致。Section 4.3 的 \"Domain exposure is the primary mechanism\" 是因果声明，但支撑证据（vanilla vs DAPT 对比、SVD/CKA 分析）均为相关性。唯一接近因果的是 SVD ablation（Appendix S.1, Table 29：移除 top-3 SVD 方向后 DD F1 下降 17pp），但这是对 representation 的 intervention，不是对 training procedure 的 intervention。\n\n建议将 \"is the primary mechanism\" 改为 \"is strongly associated with\" 或 \"appears to be a key contributing factor\"。\n\n---\n\n**[AGREE] R2-W6: RoBERTa-large DAPT 有害的 scale-dependent 发现在 Abstract/Conclusion 中缺失**\n\n同意。Table 4（page 7）显示 RoBERTa-large (355M) 上：\n- Vanilla: 0.927±0.036 (DD), 1.000±0.000 (AA)\n- MLM: 0.884±0.065, 0.874±0.014\n- 9-class: 0.987±0.004, 0.946±0.057\n\n实际上 RoBERTa-large vanilla 已经在 AA 上达到 1.000，DAPT (MLM) 反而降低到 0.874。这是一个重要的 scale-dependent 发现：DAPT 在大 encoder 上可能有害。Section 4.4 讨论了这一现象（\"smaller encoders require DAPT to bridge 47-71pp, while All continued pretraining reduces ActorAttack performance for the largest encoder\"），但 Abstract 和 Conclusion 均未提及。\n\n这对论文的实际指导意义很大——实践者需要知道 DAPT 不是 universally beneficial。\n\n---\n\n**[AGREE] R2-W7: Temporal modeling negative finding 讨论不充分**\n\n同意，但需要 nuance。Appendix T (Table 30, page 17) 显示：\n- Frozen probing: BiGRU 仅在 ActorAttack 上有 +1.0pp 的 marginal advantage，CI 重叠\n- E2E fine-tuning: \"the difference vanishes entirely: mean pooling saturates all benchmarks at F1=1.000\"\n\n这意味着 turn-order 信息在当前框架下没有被有效利用。论文的 \"multi-turn\" framing 因此有些误导——模型处理的是多轮对话，但检测不依赖 temporal structure。\n\n**nuance**: 论文的核心贡献是 Stage 1 encoder adaptation，不是 Stage 2 temporal modeling。Mean pooling ≈ BiGRU 可能反映的是 Stage 1 representation 已经足够好，以至于不需要 temporal structure。但这本身是一个值得讨论的 finding，不应只放在 appendix。\n\n---\n\n### Questions 回应\n\n**Q1** (benign-side adaptation IID/OOD 评估): 好问题。Section 4.9 报告 \"10 WildChat conversations reduce FPR to 0%\"，但未说明这 10 conversations 是否从 evaluation set 中抽取。如果是，则存在 data leakage；如果是独立的 held-out set，则方法更可靠。论文需要澄清。\n\n**Q2** (Scrambled permutation): 好问题。论文在 Section 3.1（Table 1）描述 scrambled variant 为 \"destroying label semantics while maintaining training difficulty\"，但确实未说明是 fixed permutation 还是 per-epoch random shuffle，也未在多个 permutation 上验证。如果 scrambled ≈ 9-class 只在一个特定 permutation 下成立，结论不够 robust。\n\n**Q3** (ToxicChat 反转的泛化性): 合理质疑。ToxicChat 是 single-turn（Section 4.6: \"ToxicChat is single-turn, so the classification head provides no advantage\"），所以 MLM > classification 的反转可能是 single-turn 特异的。但目前没有 multi-turn 人类数据来验证这一假设。论文的 ToxicChat 实验的价值在于测试 cross-domain transfer（synthetic → human），但 single-turn vs multi-turn 的 confound 确实限制了结论。\n\n**Q4** (Mixed-LLM 500 vs 350 confound): 非常好的 confound 识别。Section 4.5 混合训练使用 250 Qwen + 250 Llama = 500 total，而 single-source 用 350 Qwen。性能下降可能是：(a) multi-source distribution shift，(b) per-source data 减少（250 vs 350），或 (c) 总量增加但多样性带来的 noise。需要控制实验：250 Qwen-only vs 250+250 mixed。\n\n**Q5** (Qwen3-8B label quality): 有价值的 concern。如果 Qwen3-8B 的 9-class 策略标注本身 noisy，那么 scrambled ≈ original 可能是因为两者的信噪比相近，而非 \"label semantics don't matter\"。论文在 Section 4.1 提到 \"inter-annotator agreement between model annotations and a human sample (n=50) yields Cohen's κ=0.78\"——κ=0.78 是 \"substantial agreement\" 但不是 \"near-perfect\"。这值得在讨论 scrambled 结果时考虑。\n\n---\n\n### Missing References 回应\n\nR2 列出的 5 篇参考文献中：\n1. **Recursive Language Models for Jailbreak Detection (2602.16520)** — 直接相关，应在 Related Work Section 2 中讨论\n2. **TrajGuard (2604.07727)** — 轨迹级检测，与论文的 strategy trajectory analysis (Section 4.8) 有交集，应引用\n3. **Do Internal Layers Reveal Patterns for Jailbreak Detection (2510.06594)** — 与论文的 SVD/Fisher 表征分析方法论相关，应引用\n4. **Jailbreaking Leaves a Trace (2602.11495)** — 与论文的 representation-level detection 主题直接相关\n5. **M2S: Multi-turn to Single-turn (2503.04856)** — 与论文的 multi-turn → detection 主题相关\n\n我同意这些都是相关的 missing references。特别是 #3 和 #4 与论文的 mechanistic analysis（SVD/CKA/Fisher）方法论高度相关，遗漏不太合理。\n\n---\n\n### 总体评估\n\nR2 的审稿意见整体质量高，特别是 N1（ToxicChat 反转的重要性）和 N3（Mixed-LLM ActorAttack 的统计不显著性）是我 Round 1 审稿中未充分强调的有价值发现。N2 与我的 N2 完全一致。\n\n唯一 REBUT 的是 W3（两轴分解 = FPR/FNR 重包装），我认为 IID/OOD 维度的叠加使该框架超越了简单的 FPR/FNR 分析。\n\nR2 的 Should-Fix 和 Questions 均 well-calibrated。R2 与我的 Overall 评分一致：3.0 (Findings)。结合两份审稿意见，我维持 3.0 的评分，但如果作者能修复 N1-N3（特别是 ToxicChat 反转的 proper framing 和 Mixed-LLM 的 honest statistical characterization），论文有 marginal 提升空间到 3.5。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "21f8ce4b-0599-4d18-8020-8e36264ba576",
+            "isSidechain": false,
+            "promptId": "4e56d182-dfc1-4664-80f8-db99e2b3581a",
+            "type": "user",
+            "uuid": "f4812964-d246-4adb-9ddf-376e35070092",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_director_93d7fc7c",
+            "sessionId": "077af215-dfe1-4c53-b749-b242fe0fe18b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000131"
+        },
+        {
+          "source_line": 132,
+          "timestamp": "2026-05-23T11:23:46.719Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Both reviewers have completed their cross-responses. Let me analyze the convergence:\n\n**Full consensus (both AGREE):**\n- ToxicChat evidence hierarchy reversal underrepresented (R2-N1, R1 AGREE)\n- Benign-IID OOD evaluation overestimates generalization (R1-N2 = R2-N2, mutual AGREE)\n- Bootstrap CI pooling independence violation (R1-N1, R2 AGREE)\n- Mixed-LLM AA=0.504 ≈ majority baseline (R2-N3, R1 AGREE)\n\n\n- Variance reduction claim unreliable with n=3 samples (R1-N4, R2 AGREE)\n- Length confound and AA padding collapse (R1-N3, R2 AGREE)\n- \"Disentangled\" and \"structural complexity\" are poorly defined terms (R2-W1, R2-W2, R1 AGREE)\n- Abstract information density lacks clarity, and causal language overstates correlational evidence (R2-W4, R2-W5, R1 AGREE)\n- RoBERTa-large data augmentation approach, but PT harm and scale-dependency aren't discussed in Abstract or Conclusion (R2-W6, R1 AGREE)\n- Temporal modeling shows negative results, missing baselines, single LLM for data generation, and LLM-as-judge raises fairness concerns (R2-W7, R1-W1, R1-W3, R1-W4, R2 AGREE)\n- SVD and CKA metrics are correlational, not causal, and data scale doesn't match claim strength (R1-W6, R1-W5, R2 AGREE)\n- One key disagreement: R2 argues the two-axis framing (FPR/FNR) just repackages existing dimensions, while R1 counters that IID/OOD separation adds genuine value\n\n; another: R1 questions TOST's δ=5 threshold, R2 responds that sensitivity analysis and Cohen's d provide independent validation\n\nBoth reviewers converge on an Overall 3.0 for Findings, indicating strong agreement despite these localized disputes. Now I'm moving to compile the final report, sync the issue tracker, and prepare for submission.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f4812964-d246-4adb-9ddf-376e35070092",
+            "isSidechain": false,
+            "requestId": "req_011CbKR2nrAZ3VvUwsM4Nmz9",
+            "type": "assistant",
+            "uuid": "18eb4f8d-ef73-4ce9-b349-b2a5d117602a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_director_93d7fc7c",
+            "sessionId": "077af215-dfe1-4c53-b749-b242fe0fe18b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BAJgvYGfrzuKwUNk55fsBu",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 4223,
+                "cache_read_input_tokens": 125101,
+                "output_tokens": 837,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4223,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 837,
+                    "cache_read_input_tokens": 125101,
+                    "cache_creation_input_tokens": 4223,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4223
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000132"
+        },
+        {
+          "source_line": 133,
+          "timestamp": "2026-05-23T11:23:49.040Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "交叉分享完成。两位 Reviewer 在所有 Must-Fix 上全部达成共识 [AGREE]，仅在两个 Should-Fix 上有分歧。收敛标准已满足，进入 Step 4 汇总报告。\n\n先检查视觉审查状态和读取现有 issue tracker。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "18eb4f8d-ef73-4ce9-b349-b2a5d117602a",
+            "isSidechain": false,
+            "requestId": "req_011CbKR2nrAZ3VvUwsM4Nmz9",
+            "type": "assistant",
+            "uuid": "c393c1df-a1d1-41f2-9293-beaeec9d31cc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_director_93d7fc7c",
+            "sessionId": "077af215-dfe1-4c53-b749-b242fe0fe18b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BAJgvYGfrzuKwUNk55fsBu",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 4223,
+                "cache_read_input_tokens": 125101,
+                "output_tokens": 837,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4223,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 837,
+                    "cache_read_input_tokens": 125101,
+                    "cache_creation_input_tokens": 4223,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4223
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000133"
+        },
+        {
+          "source_line": 134,
+          "timestamp": "2026-05-23T11:23:49.477Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QmpzzCCkox3T9PGZzRnhGJ",
+              "name": "mcp__agent-ml-research__get_visual_check_status",
+              "input": {
+                "project": "persuasion_turn_jailbreak_detect"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c393c1df-a1d1-41f2-9293-beaeec9d31cc",
+            "isSidechain": false,
+            "requestId": "req_011CbKR2nrAZ3VvUwsM4Nmz9",
+            "type": "assistant",
+            "uuid": "8c5b9690-99d4-4538-8d1c-2777d4e53a8c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_director_93d7fc7c",
+            "sessionId": "077af215-dfe1-4c53-b749-b242fe0fe18b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BAJgvYGfrzuKwUNk55fsBu",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 4223,
+                "cache_read_input_tokens": 125101,
+                "output_tokens": 837,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4223,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 837,
+                    "cache_read_input_tokens": 125101,
+                    "cache_creation_input_tokens": 4223,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4223
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000134"
+        },
+        {
+          "source_line": 135,
+          "timestamp": "2026-05-23T11:23:50.333Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01Uo8f9SZ5w3mRYUr6tinNE2",
+              "content": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c0b84ccb-a086-4c79-92b1-768b5cb4f23b",
+            "isSidechain": false,
+            "promptId": "4e56d182-dfc1-4664-80f8-db99e2b3581a",
+            "type": "user",
+            "uuid": "6dbeaeeb-b762-4e05-8e3e-77a4d1a01a3f",
+            "toolUseResult": {
+              "matches": [],
+              "query": "select:update_review_issues",
+              "total_deferred_tools": 29
+            },
+            "sourceToolAssistantUUID": "c0b84ccb-a086-4c79-92b1-768b5cb4f23b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_director_93d7fc7c",
+            "sessionId": "077af215-dfe1-4c53-b749-b242fe0fe18b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000135"
+        },
+        {
+          "source_line": 136,
+          "timestamp": "2026-05-23T11:23:49.492Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QmpzzCCkox3T9PGZzRnhGJ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-23T11:06:23.836410+00:00\\\", \\\"completed_at\\\": \\\"2026-05-23T11:10:00.457526+00:00\\\", \\\"findings\\\": [{\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 1\\\", \\\"message\\\": \\\"首页无 display item（纯 title+abstract+intro），第一个视觉锚点（Figure 1 架构图）出现在 page 2 顶部全宽位置，在前 3 页范围内，锚定效果良好\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 1-8\\\", \\\"message\\\": \\\"主正文仅 2 个 figure（Figure 1 架构图 + Figure 2 柱状图），其余 5 个 display item 全为 table。视觉形式偏单一，审稿人浏览时缺少图形化的直观冲击。对于 controlled study 类论文可接受，但若有空间，可考虑将某个核心结果可视化为 figure 替代 table\\\"}, {\\\"severity\\\": \\\"warning\\\", \\\"dimension\\\": \\\"page 5\\\", \\\"message\\\": \\\"Figure 2 柱状图（cross-attack overview）单栏宽度，x 轴标签（攻击家族名称）字号偏小，在打印或缩放阅读时可读性边缘。建议适当增大字号或缩短标签\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 5\\\", \\\"message\\\": \\\"Figure 2 使用多色区分方法变体，色调差异尚可，但建议验证色盲友好性（避免纯红绿对比）；同一方法在不同图中的颜色语义一致性需确认\\\"}, {\\\"severity\\\": \\\"warning\\\", \\\"dimension\\\": \\\"page 8\\\", \\\"message\\\": \\\"该页极度拥挤：包含 Table 5 + Section 4.7/4.8/4.9 + Section 5 Discussion + Section 6 Conclusion。Discussion 和 Conclusion 被压缩到页面底部，Conclusion 仅约 6-7 行。审稿人可能感觉结论草草收场。建议考虑稍微压缩 4.7-4.9 小节或将部分内容移至 appendix 以给 Discussion/Conclusion 更多空间\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 2\\\", \\\"message\\\": \\\"Figure 1 架构图全宽展示，整体清晰。Stage 1/Stage 2 流程标注明确，caption 自包含性良好。图内小字（embedding 标签等）在正常阅读尺寸下勉强可读\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 4\\\", \\\"message\\\": \\\"Table 1（Stage-1 encoder variants）使用 booktabs 风格，格式规范，描述性内容清晰\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"pages 5-8\\\", \\\"message\\\": \\\"Tables 2-5 数字精度统一（3 位小数），最优值加粗标注，格式一致性好\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 3\\\", \\\"message\\\": \\\"纯文本页（Related Work + Method 开头），但前后页（p2 有 Figure 1，p4 有 Table 1）均有 display item，不构成连续纯文本问题\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 9\\\", \\\"message\\\": \\\"Limitations 篇幅适中（约 2/3 栏），覆盖数据来源、人工验证、分布偏移等要点。Ethics Statement 简洁合规\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"pages 9-11\\\", \\\"message\\\": \\\"参考文献格式统一，未发现 [?] 未解析引用或编号跳号。排版正常无溢出\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 13\\\", \\\"message\\\": \\\"Tables 7, 8 为全宽大表（appendix），列数较多但均在 margin 内，未溢出。数字对齐良好\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 14\\\", \\\"message\\\": \\\"Figure 3（persuasion strategy transition matrices）热力图较小，单个矩阵的标签在缩放时可能不易读，但作为 appendix 材料可接受\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 15\\\", \\\"message\\\": \\\"Figures 4, 5 并排展示（CKA similarity + t-SNE），图幅较小但清晰度足够。Figure 5 t-SNE 散点图的 legend 字号偏小\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 21\\\", \\\"message\\\": \\\"Figure 6（layer-wise representation analysis）双面板，清晰度良好，坐标轴标签可读\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 24\\\", \\\"message\\\": \\\"末页（appendix 最后一页）内容约占 60-65%，右栏内容较短。对于 appendix 末页可接受\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"pages 1-8\\\", \\\"message\\\": \\\"未发现 margin 溢出、公式渲染错误、section heading 孤悬、widow/orphan 等排版问题\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"pages 12-24\\\", \\\"message\\\": \\\"Appendix 表格密集但格式一致，booktabs 风格贯穿全文，最优值加粗标注统一\\\"}], \\\"counts\\\": {\\\"critical\\\": 0, \\\"warning\\\": 2, \\\"info\\\": 16}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8c5b9690-99d4-4538-8d1c-2777d4e53a8c",
+            "isSidechain": false,
+            "promptId": "4e56d182-dfc1-4664-80f8-db99e2b3581a",
+            "type": "user",
+            "uuid": "4ff86c01-bb4c-481b-9f96-0f4d58349d0a",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-23T11:06:23.836410+00:00\\\", \\\"completed_at\\\": \\\"2026-05-23T11:10:00.457526+00:00\\\", \\\"findings\\\": [{\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 1\\\", \\\"message\\\": \\\"首页无 display item（纯 title+abstract+intro），第一个视觉锚点（Figure 1 架构图）出现在 page 2 顶部全宽位置，在前 3 页范围内，锚定效果良好\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 1-8\\\", \\\"message\\\": \\\"主正文仅 2 个 figure（Figure 1 架构图 + Figure 2 柱状图），其余 5 个 display item 全为 table。视觉形式偏单一，审稿人浏览时缺少图形化的直观冲击。对于 controlled study 类论文可接受，但若有空间，可考虑将某个核心结果可视化为 figure 替代 table\\\"}, {\\\"severity\\\": \\\"warning\\\", \\\"dimension\\\": \\\"page 5\\\", \\\"message\\\": \\\"Figure 2 柱状图（cross-attack overview）单栏宽度，x 轴标签（攻击家族名称）字号偏小，在打印或缩放阅读时可读性边缘。建议适当增大字号或缩短标签\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 5\\\", \\\"message\\\": \\\"Figure 2 使用多色区分方法变体，色调差异尚可，但建议验证色盲友好性（避免纯红绿对比）；同一方法在不同图中的颜色语义一致性需确认\\\"}, {\\\"severity\\\": \\\"warning\\\", \\\"dimension\\\": \\\"page 8\\\", \\\"message\\\": \\\"该页极度拥挤：包含 Table 5 + Section 4.7/4.8/4.9 + Section 5 Discussion + Section 6 Conclusion。Discussion 和 Conclusion 被压缩到页面底部，Conclusion 仅约 6-7 行。审稿人可能感觉结论草草收场。建议考虑稍微压缩 4.7-4.9 小节或将部分内容移至 appendix 以给 Discussion/Conclusion 更多空间\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 2\\\", \\\"message\\\": \\\"Figure 1 架构图全宽展示，整体清晰。Stage 1/Stage 2 流程标注明确，caption 自包含性良好。图内小字（embedding 标签等）在正常阅读尺寸下勉强可读\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 4\\\", \\\"message\\\": \\\"Table 1（Stage-1 encoder variants）使用 booktabs 风格，格式规范，描述性内容清晰\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"pages 5-8\\\", \\\"message\\\": \\\"Tables 2-5 数字精度统一（3 位小数），最优值加粗标注，格式一致性好\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 3\\\", \\\"message\\\": \\\"纯文本页（Related Work + Method 开头），但前后页（p2 有 Figure 1，p4 有 Table 1）均有 display item，不构成连续纯文本问题\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 9\\\", \\\"message\\\": \\\"Limitations 篇幅适中（约 2/3 栏），覆盖数据来源、人工验证、分布偏移等要点。Ethics Statement 简洁合规\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"pages 9-11\\\", \\\"message\\\": \\\"参考文献格式统一，未发现 [?] 未解析引用或编号跳号。排版正常无溢出\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 13\\\", \\\"message\\\": \\\"Tables 7, 8 为全宽大表（appendix），列数较多但均在 margin 内，未溢出。数字对齐良好\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 14\\\", \\\"message\\\": \\\"Figure 3（persuasion strategy transition matrices）热力图较小，单个矩阵的标签在缩放时可能不易读，但作为 appendix 材料可接受\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 15\\\", \\\"message\\\": \\\"Figures 4, 5 并排展示（CKA similarity + t-SNE），图幅较小但清晰度足够。Figure 5 t-SNE 散点图的 legend 字号偏小\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 21\\\", \\\"message\\\": \\\"Figure 6（layer-wise representation analysis）双面板，清晰度良好，坐标轴标签可读\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 24\\\", \\\"message\\\": \\\"末页（appendix 最后一页）内容约占 60-65%，右栏内容较短。对于 appendix 末页可接受\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"pages 1-8\\\", \\\"message\\\": \\\"未发现 margin 溢出、公式渲染错误、section heading 孤悬、widow/orphan 等排版问题\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"pages 12-24\\\", \\\"message\\\": \\\"Appendix 表格密集但格式一致，booktabs 风格贯穿全文，最优值加粗标注统一\\\"}], \\\"counts\\\": {\\\"critical\\\": 0, \\\"warning\\\": 2, \\\"info\\\": 16}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"status\": \"done\", \"started_at\": \"2026-05-23T11:06:23.836410+00:00\", \"completed_at\": \"2026-05-23T11:10:00.457526+00:00\", \"findings\": [{\"severity\": \"info\", \"dimension\": \"page 1\", \"message\": \"首页无 display item（纯 title+abstract+intro），第一个视觉锚点（Figure 1 架构图）出现在 page 2 顶部全宽位置，在前 3 页范围内，锚定效果良好\"}, {\"severity\": \"info\", \"dimension\": \"page 1-8\", \"message\": \"主正文仅 2 个 figure（Figure 1 架构图 + Figure 2 柱状图），其余 5 个 display item 全为 table。视觉形式偏单一，审稿人浏览时缺少图形化的直观冲击。对于 controlled study 类论文可接受，但若有空间，可考虑将某个核心结果可视化为 figure 替代 table\"}, {\"severity\": \"warning\", \"dimension\": \"page 5\", \"message\": \"Figure 2 柱状图（cross-attack overview）单栏宽度，x 轴标签（攻击家族名称）字号偏小，在打印或缩放阅读时可读性边缘。建议适当增大字号或缩短标签\"}, {\"severity\": \"info\", \"dimension\": \"page 5\", \"message\": \"Figure 2 使用多色区分方法变体，色调差异尚可，但建议验证色盲友好性（避免纯红绿对比）；同一方法在不同图中的颜色语义一致性需确认\"}, {\"severity\": \"warning\", \"dimension\": \"page 8\", \"message\": \"该页极度拥挤：包含 Table 5 + Section 4.7/4.8/4.9 + Section 5 Discussion + Section 6 Conclusion。Discussion 和 Conclusion 被压缩到页面底部，Conclusion 仅约 6-7 行。审稿人可能感觉结论草草收场。建议考虑稍微压缩 4.7-4.9 小节或将部分内容移至 appendix 以给 Discussion/Conclusion 更多空间\"}, {\"severity\": \"info\", \"dimension\": \"page 2\", \"message\": \"Figure 1 架构图全宽展示，整体清晰。Stage 1/Stage 2 流程标注明确，caption 自包含性良好。图内小字（embedding 标签等）在正常阅读尺寸下勉强可读\"}, {\"severity\": \"info\", \"dimension\": \"page 4\", \"message\": \"Table 1（Stage-1 encoder variants）使用 booktabs 风格，格式规范，描述性内容清晰\"}, {\"severity\": \"info\", \"dimension\": \"pages 5-8\", \"message\": \"Tables 2-5 数字精度统一（3 位小数），最优值加粗标注，格式一致性好\"}, {\"severity\": \"info\", \"dimension\": \"page 3\", \"message\": \"纯文本页（Related Work + Method 开头），但前后页（p2 有 Figure 1，p4 有 Table 1）均有 display item，不构成连续纯文本问题\"}, {\"severity\": \"info\", \"dimension\": \"page 9\", \"message\": \"Limitations 篇幅适中（约 2/3 栏），覆盖数据来源、人工验证、分布偏移等要点。Ethics Statement 简洁合规\"}, {\"severity\": \"info\", \"dimension\": \"pages 9-11\", \"message\": \"参考文献格式统一，未发现 [?] 未解析引用或编号跳号。排版正常无溢出\"}, {\"severity\": \"info\", \"dimension\": \"page 13\", \"message\": \"Tables 7, 8 为全宽大表（appendix），列数较多但均在 margin 内，未溢出。数字对齐良好\"}, {\"severity\": \"info\", \"dimension\": \"page 14\", \"message\": \"Figure 3（persuasion strategy transition matrices）热力图较小，单个矩阵的标签在缩放时可能不易读，但作为 appendix 材料可接受\"}, {\"severity\": \"info\", \"dimension\": \"page 15\", \"message\": \"Figures 4, 5 并排展示（CKA similarity + t-SNE），图幅较小但清晰度足够。Figure 5 t-SNE 散点图的 legend 字号偏小\"}, {\"severity\": \"info\", \"dimension\": \"page 21\", \"message\": \"Figure 6（layer-wise representation analysis）双面板，清晰度良好，坐标轴标签可读\"}, {\"severity\": \"info\", \"dimension\": \"page 24\", \"message\": \"末页（appendix 最后一页）内容约占 60-65%，右栏内容较短。对于 appendix 末页可接受\"}, {\"severity\": \"info\", \"dimension\": \"pages 1-8\", \"message\": \"未发现 margin 溢出、公式渲染错误、section heading 孤悬、widow/orphan 等排版问题\"}, {\"severity\": \"info\", \"dimension\": \"pages 12-24\", \"message\": \"Appendix 表格密集但格式一致，booktabs 风格贯穿全文，最优值加粗标注统一\"}], \"counts\": {\"critical\": 0, \"warning\": 2, \"info\": 16}}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "8c5b9690-99d4-4538-8d1c-2777d4e53a8c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_director_93d7fc7c",
+            "sessionId": "077af215-dfe1-4c53-b749-b242fe0fe18b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000136"
+        },
+        {
+          "source_line": 137,
+          "timestamp": "2026-05-23T11:23:50.324Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Uo8f9SZ5w3mRYUr6tinNE2",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:update_review_issues",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4ff86c01-bb4c-481b-9f96-0f4d58349d0a",
+            "isSidechain": false,
+            "requestId": "req_011CbKR2nrAZ3VvUwsM4Nmz9",
+            "type": "assistant",
+            "uuid": "c0b84ccb-a086-4c79-92b1-768b5cb4f23b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_director_93d7fc7c",
+            "sessionId": "077af215-dfe1-4c53-b749-b242fe0fe18b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BAJgvYGfrzuKwUNk55fsBu",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 4223,
+                "cache_read_input_tokens": 125101,
+                "output_tokens": 837,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4223,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 837,
+                    "cache_read_input_tokens": 125101,
+                    "cache_creation_input_tokens": 4223,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4223
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000137"
+        },
+        {
+          "source_line": 138,
+          "timestamp": "2026-05-23T11:23:50.566Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "6dbeaeeb-b762-4e05-8e3e-77a4d1a01a3f",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "b9178068-59a3-4ed5-a954-c3815d12e675",
+                "timestamp": "2026-05-23T11:23:50.566Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_director_93d7fc7c",
+                "sessionId": "077af215-dfe1-4c53-b749-b242fe0fe18b",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000138"
+        },
+        {
+          "source_line": 139,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[Reviewer 1 审稿意见]: ## Reviewer 1 对 Reviewer 2 审稿意见的逐条回应  ---  ### Must-Fix 回应  **[AGREE] R2-N1: ToxicChat evidence hierarchy 反转对核心 claim 的影响被严重低估**  同意这是一个被论文 framing 低估的重要发现。  证据确认：Table 5 显示 ToxicCh…",
+                "leafUuid": "b9178068-59a3-4ed5-a954-c3815d12e675",
+                "sessionId": "077af215-dfe1-4c53-b749-b242fe0fe18b"
+              }
+            }
+          ],
+          "id": "event-000139"
+        },
+        {
+          "source_line": 140,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review persuasion turn jailbreak detection paper",
+                "sessionId": "077af215-dfe1-4c53-b749-b242fe0fe18b"
+              }
+            }
+          ],
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": "2026-05-23T11:24:32.902Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Visual check is done with 2 warnings and 16 info items. Now I need to:\n\n1. Compile the full review report\n2. Update the review issues tracker\n3. Submit the report\n\nLet me first read the existing review_issues.yaml (I already have it from earlier), then prepare the updated issues and the report.\n\nLooking at the existing issues and the new round's findings, let me map:\n\n**Round 19 findings to existing issues:**\n\n1. R2-N1 (ToxicChat reversal) → maps to existing R9-W2 (status: in_progress)\n\n\n2. R1-N2 / R2-N2 (Benign-IID OOD) → maps to existing R13-N1 and R13-N2 (both in_progress)\n3. R1-N1 (Bootstrap CI pooling) → maps to existing R14-W1 (resolved in R18)\n4. R2-N3 (Mixed-LLM AA=0.504) → maps to existing R13-W4 (in_progress)\n5. R1-N3 (Length confound / AA padding) → maps to existing R9-W1 (in_progress)\n6. R1-N4 (Variance issue) continues mapping through the remaining findings...\n\nContinuing through the rest of the mappings: R2-W1 through R2-W6 each correspond to existing review items, with most marked as in_progress, covering issues like DisPeD naming conventions, structural complexity definitions, FPR/FNR axes, abstract density concerns, and causal language usage. I need to treat these findings as fresh from this review cycle while still cross-referencing them against the existing issue tracker. Let me compile the full report following the standard structure and systematically update the YAML with round 19 mentions for all relevant issues.\n\nGoing through the issues raised this round: ToxicChat reversal maps to an existing issue, the Benign-IID OOD evaluation concern connects to another tracked item, the bootstrap CI pooling was previously resolved but has resurfaced, the mixed-LLM accuracy discrepancy needs updating, the length confound and padding issue ties to existing findings, the variance concern with n=3 relates to multiple prior rounds, and the DisPeD naming issue is still being flagged. I'm tracking which issues from the existing tracker weren't brought up in the latest review—there are several in-progress items like the strategy annotation agreement level, partition sufficiency concerns, efficiency positioning, data description clarity, and cross-LLM contradictions that need notes added to flag them.\n\nNow I need to update the YAML efficiently by adding round 19 mentions to issues that were re-raised and noting which ones weren't mentioned, then write the report with an overall score of 3.0 reflecting the reviewers' convergence.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b9178068-59a3-4ed5-a954-c3815d12e675",
+            "isSidechain": false,
+            "requestId": "req_011CbKR4ihgf57wHDzLKHkkZ",
+            "type": "assistant",
+            "uuid": "b5f04ac9-e4a9-4109-82fa-49608f2b2c97",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_director_93d7fc7c",
+            "sessionId": "077af215-dfe1-4c53-b749-b242fe0fe18b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EzJ3PJLaeRjjPi4gPgcDXx",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2651,
+                "cache_read_input_tokens": 129324,
+                "output_tokens": 14928,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2651,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 14928,
+                    "cache_read_input_tokens": 129324,
+                    "cache_creation_input_tokens": 2651,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2651
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000141"
+        },
+        {
+          "source_line": 142,
+          "timestamp": "2026-05-23T11:24:34.744Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "视觉审查已完成（0 critical, 2 warning, 16 info）。现在编制最终审稿报告和更新 issue tracker。\n\n先更新 issue tracker，然后提交报告。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b5f04ac9-e4a9-4109-82fa-49608f2b2c97",
+            "isSidechain": false,
+            "requestId": "req_011CbKR4ihgf57wHDzLKHkkZ",
+            "type": "assistant",
+            "uuid": "f293349a-098e-45d3-a968-9e1d86182bfb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_director_93d7fc7c",
+            "sessionId": "077af215-dfe1-4c53-b749-b242fe0fe18b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EzJ3PJLaeRjjPi4gPgcDXx",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2651,
+                "cache_read_input_tokens": 129324,
+                "output_tokens": 14928,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2651,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 14928,
+                    "cache_read_input_tokens": 129324,
+                    "cache_creation_input_tokens": 2651,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2651
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000142"
+        },
+        {
+          "source_line": 143,
+          "timestamp": "2026-05-23T11:28:18.565Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DMueicCtxL2kDNZoB6j4PT",
+              "name": "mcp__agent-ml-research__update_review_issues",
+              "input": {
+                "project": "persuasion_turn_jailbreak_detect",
+                "issues_yaml": "issues:\n  # ============================================================\n  # Round 1-7 历史 issues (已解决)\n  # ============================================================\n  - id: \"R1-N1\"\n    summary: \"Evidence hierarchy 统计基础不一致\"\n    category: experiment\n    severity: critical\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 1\n    mentions:\n      - round: 1\n        reviewers: [1, 2]\n        note: \"binary/scrambled 仅 seed 42\"\n    action_items:\n      - round: 1\n        action: \"训练 binary/scrambled 3-seed\"\n        assigned_to: main_agent\n        status: resolved\n    resolution: \"MF1 完成: binary 3-seed=0.997±0.005, scrambled 3-seed=0.997±0.005\"\n    resolution_round: 1\n\n  - id: \"R1-N2\"\n    summary: \"Three-layer robustness attribution 缺乏统计显著性\"\n    category: experiment\n    severity: critical\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 1\n    mentions:\n      - round: 1\n        reviewers: [1, 2]\n        note: \"R1 首提 N2\"\n    action_items:\n      - round: 1\n        action: \"McNemar's test + bootstrap CI\"\n        assigned_to: main_agent\n        status: resolved\n    resolution: \"MF2 完成\"\n    resolution_round: 1\n\n  - id: \"R1-N3\"\n    summary: \"缺少与已发表 multi-turn defense 的直接实验对比\"\n    category: experiment\n    severity: critical\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 2\n    mentions:\n      - round: 1\n        reviewers: [1, 2]\n        note: \"R1 首提 N3\"\n      - round: 2\n        reviewers: [1, 2]\n        note: \"Round 1 修复不充分，再次提出\"\n    action_items:\n      - round: 1\n        action: \"重构论证\"\n        assigned_to: paper_agent\n        status: resolved\n      - round: 2\n        action: \"Analysis paper reframe\"\n        assigned_to: research_director\n        status: resolved\n    resolution: \"Analysis paper reframe 完成。\"\n    resolution_round: 3\n\n  - id: \"R1-N4\"\n    summary: \"数据集规模过小\"\n    category: experiment\n    severity: critical\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 2\n    mentions:\n      - round: 2\n        reviewers: [1, 2]\n        note: \"500训练+76-118测试+3seeds仍不足\"\n    action_items:\n      - round: 2\n        action: \"Bootstrap 95% CI + permutation test\"\n        assigned_to: main_agent\n        status: resolved\n    resolution: \"exp9 BCa bootstrap 95% CI + paired permutation test 完成。\"\n    resolution_round: 2\n\n  - id: \"R2-N3\"\n    summary: \"有效 OOD 评估实质上是 single-dataset\"\n    category: experiment\n    severity: critical\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 1\n    mentions:\n      - round: 1\n        reviewers: [1, 2]\n        note: \"R2 首提\"\n    action_items:\n      - round: 1\n        action: \"ActorAttack OOD 数据生成\"\n        assigned_to: main_agent\n        status: resolved\n    resolution: \"EXP-2 完成: ActorAttack 118 conversations\"\n    resolution_round: 1\n\n  - id: \"R1-W1\"\n    summary: \"Mean pooling=BiGRU 结论基于 single seed\"\n    category: experiment\n    severity: warning\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 2\n    mentions: []\n    action_items: []\n    resolution: \"Paper Agent 已弱化。multi-seed 实验验证。\"\n    resolution_round: 1\n\n  - id: \"R1-W2\"\n    summary: \"策略标注质量验证不充分\"\n    category: method\n    severity: warning\n    status: in_progress\n    first_raised_round: 1\n    last_seen_round: 19\n    mentions:\n      - round: 16\n        reviewers: [1, 2]\n        note: \"R16 两位 Reviewer 均再次指出 κ=0.78 n=50 不足\"\n      - round: 17\n        reviewers: [2]\n        note: \"R17 R2 小问题: κ=0.78 n=50 不足，但因 scrambled 实验表明 label correctness 不重要，矛盾地降低了此问题的严重性\"\n      - round: 18\n        reviewers: []\n        note: \"R18 未直接提及。\"\n      - round: 19\n        reviewers: []\n        note: \"R19 未直接提及。R2-Q5 间接质疑: 若标签质量不高则 scrambled 等价可能是 noise equivalence。但未升级为独立 weakness。\"\n    action_items:\n      - round: 1\n        action: \"Limitations 已添加 caveat\"\n        assigned_to: main_agent\n        status: resolved\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R1-W3\"\n    summary: \"LLM-as-judge baseline 仅测 IID\"\n    category: experiment\n    severity: warning\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 1\n    mentions: []\n    action_items: []\n    resolution: \"EXP-5 完成\"\n    resolution_round: 1\n\n  - id: \"R1-W4\"\n    summary: \"TF-IDF LR 强表现未被充分讨论\"\n    category: experiment\n    severity: warning\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 2\n    mentions: []\n    action_items: []\n    resolution: \"TF-IDF per-prefix + ActorAttack 完成。\"\n    resolution_round: 3\n\n  - id: \"R1-W5\"\n    summary: \"可复现性不足\"\n    category: experiment\n    severity: warning\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 1\n    mentions: []\n    action_items: []\n    resolution: \"Paper Agent 已添加 Appendix C\"\n    resolution_round: 1\n\n  - id: \"R2-W1\"\n    summary: \"Abstract 过度堆砌数据\"\n    category: writing\n    severity: warning\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 2\n    mentions: []\n    action_items: []\n    resolution: \"Abstract 压缩至 ~190 words。\"\n    resolution_round: 3\n\n  - id: \"R2-W2\"\n    summary: \"partially falsified 叙事对接收不利\"\n    category: framing\n    severity: warning\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 2\n    mentions: []\n    action_items: []\n    resolution: \"Framing 调整完成。\"\n    resolution_round: 3\n\n  # ============================================================\n  # Round 8-15 持续追踪\n  # ============================================================\n  - id: \"R8-N4\"\n    summary: \"LLM-as-judge baseline 对比不公平\"\n    category: experiment\n    severity: warning\n    status: in_progress\n    first_raised_round: 8\n    last_seen_round: 19\n    mentions:\n      - round: 8\n        reviewers: [2]\n        note: \"GPT-5.5 不可解析可能是 prompt 设计问题\"\n      - round: 14\n        reviewers: [1, 2]\n        note: \"R14 两位 Reviewer 均指出 prompt 未提供、未尝试 prompt 优化\"\n      - round: 15\n        reviewers: []\n        note: \"R15 未再提出此 issue。exp53 prompt optimization 已解决。\"\n      - round: 19\n        reviewers: [1]\n        note: \"R19 R1-W4 再次提出: zero-shot/3-shot vs 350 supervised 不是 controlled comparison。R2 AGREE 但建议标注为 cost-performance trade-off 对比。\"\n    action_items:\n      - round: 14\n        action: \"附录提供 LLM-as-judge prompt 模板\"\n        assigned_to: main_agent\n        status: resolved\n      - round: 19\n        action: \"明确标注为 deployment cost comparison 而非方法论对比\"\n        assigned_to: main_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R9-W1\"\n    summary: \"长度混淆未充分排除\"\n    category: experiment\n    severity: critical\n    status: in_progress\n    first_raised_round: 9\n    last_seen_round: 19\n    mentions:\n      - round: 9\n        reviewers: [1, 2]\n        note: \"benign 12-20 turns vs jailbreak 3-10 turns 完全不重叠\"\n      - round: 16\n        reviewers: [1, 2]\n        note: \"R16 升级为 critical。R1 指出 adversarial padding 后 AA 暴跌 57pp。\"\n      - round: 18\n        reviewers: []\n        note: \"R18 未直接提及。Section 4.2 Summary 报告 user-turn distribution 重叠 + turn-count baseline。\"\n      - round: 19\n        reviewers: [1, 2]\n        note: \"R19 R1-N3 再次列为 Must-Fix。AA padding collapse -57.9pp 是核心证据。R2 AGREE 但补充分析: mean pooling≈BiGRU 说明信号被均值化稀释是架构的固有脆弱性，不仅是 length shortcut。两位共识: 缺乏长度匹配对照实验是根本问题。\"\n    action_items:\n      - round: 15\n        action: \"主文 Section 4 或 5 加 1-2 句长度混淆讨论\"\n        assigned_to: main_agent\n        status: in_progress\n      - round: 16\n        action: \"EXP-A turn-count-only baseline 完成 (exp60)\"\n        assigned_to: main_agent\n        status: in_progress\n      - round: 19\n        action: \"构造长度匹配对照数据 (benign 5-8 turns / jailbreak 12-15 turns)；Section 5 prominently 讨论 AA padding collapse 对 discriminative compression 叙述的影响\"\n        assigned_to: main_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R9-W2\"\n    summary: \"Human data 上 evidence hierarchy 完全反转 (ToxicChat)\"\n    category: framing\n    severity: critical\n    status: in_progress\n    first_raised_round: 9\n    last_seen_round: 19\n    mentions:\n      - round: 9\n        reviewers: [1, 2]\n        note: \"ToxicChat JB-MLM=0.837 >> 9-class=0.596\"\n      - round: 17\n        reviewers: [1, 2]\n        note: \"R17 两位 Reviewer 均列为 critical。\"\n      - round: 18\n        reviewers: [1, 2]\n        note: \"R18 两位 Reviewer 均再次列为 Must-Fix。\"\n      - round: 19\n        reviewers: [1, 2]\n        note: \"R19 R2-N1 列为 Must-Fix, R1 AGREE。Abstract 第 8 句 'indicating condition-specific rather than universal mechanisms' 被判为严重 claim 校准失败。R1 补充: 9-class DAPT 可能过度 specialize 到 Qwen3-8B discourse patterns。两位共识: ToxicChat 反转应作为同等重要的 finding 呈现，而非 caveat。\"\n    action_items:\n      - round: 18\n        action: \"D081 MF1: Abstract/Intro/Conclusion scope 系统性收窄\"\n        assigned_to: main_agent\n        status: in_progress\n      - round: 19\n        action: \"Abstract/Conclusion 必须将 ToxicChat 反转作为主要 finding 之一呈现；讨论反转原因 (synthetic vs human? single-turn vs multi-turn? style overfitting?)；所有核心 claim 显著限定 'on synthetic data'\"\n        assigned_to: main_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R9-M1\"\n    summary: \"Abstract 中 Llama Guard 3 1.8% 有 misleading 风险\"\n    category: writing\n    severity: info\n    status: resolved\n    first_raised_round: 9\n    last_seen_round: 13\n    mentions: []\n    action_items: []\n    resolution: \"Abstract 已使用 'widely deployed turn-level safety classifier' 限定。\"\n    resolution_round: 13\n\n  - id: \"R13-N1\"\n    summary: \"单一合成数据源限制跨攻击泛化声明可信度\"\n    category: experiment\n    severity: critical\n    status: in_progress\n    first_raised_round: 13\n    last_seen_round: 19\n    mentions:\n      - round: 18\n        reviewers: [1, 2]\n        note: \"R18 共识: disclosure 基本到位，但双重 OOD 评估缺失。\"\n      - round: 19\n        reviewers: [1, 2]\n        note: \"R19 R1-N2 + R2-N2 均列为 Must-Fix。核心问题: Table 2 OOD F1 (>0.99) 是 benign-IID upper bound，WildChat dual-OOD 下 FPR=68.1%, F1 drops 12-14pp (Appendix P.1)。两位共识: Table 2 应增加 dual-OOD 行；区分 'cross-attack generalization (IID benign)' vs 'full OOD generalization'；Abstract/Conclusion 数字附带适用条件。R1-W3 补充: 单一 Qwen3-8B 数据源进一步限制泛化声明。\"\n    action_items:\n      - round: 17\n        action: \"W-1 Abstract F1 后加 '(attack-side OOD; benign IID)' 限定\"\n        assigned_to: main_agent\n        status: in_progress\n      - round: 19\n        action: \"Table 2 增加 'without benign adaptation' 和 'with 10-shot adaptation' dual-OOD 行；Abstract/Conclusion 所有 OOD F1 标注为 upper bound + IID benign 条件\"\n        assigned_to: main_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R13-N2\"\n    summary: \"WildChat FPR=68.1% + few-shot 修复验证不足\"\n    category: experiment\n    severity: warning\n    status: in_progress\n    first_raised_round: 13\n    last_seen_round: 19\n    mentions:\n      - round: 18\n        reviewers: [1, 2]\n        note: \"R18 两位 AGREE WildChat/OASST2 为 IID benign adaptation 而非 OOD 泛化测试。\"\n      - round: 19\n        reviewers: [1, 2]\n        note: \"R19 合并入 R13-N1 讨论。R1-Q5 追问 few-shot adaptation 实现细节 (Stage-1 还是 Stage-2? loss? epochs?)。R2-Q1 质疑是否 IID 评估 (用 WildChat adapt 后在 WildChat 测)。两位共识: 需澄清 few-shot 方案的实现细节和评估协议。\"\n    action_items:\n      - round: 16\n        action: \"W-7 Conclusion 标注 benign-side 为 preliminary/pilot\"\n        assigned_to: main_agent\n        status: in_progress\n      - round: 19\n        action: \"补充 few-shot benign adaptation 的实现细节 (哪个 stage, loss, epochs)；明确 adapt/eval 数据是否分离\"\n        assigned_to: main_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R13-N3\"\n    summary: \"机制解释缺乏直接证据\"\n    category: method\n    severity: warning\n    status: in_progress\n    first_raised_round: 13\n    last_seen_round: 19\n    mentions:\n      - round: 18\n        reviewers: [1, 2]\n        note: \"R18 共识: 降级为 'consistent with / suggestive of'。\"\n      - round: 19\n        reviewers: [1, 2]\n        note: \"R19 R2-W5 + R1-W6 均列为 Should-Fix。'Domain exposure is the primary mechanism' 使用因果语言但实际是相关性。SVD ablation (Table 29) 接近因果但仍不充分。R1-Q6 深入质疑: Fisher ratio 低 PR 可能是 overfitting/collapse 而非 discriminative compression，WildChat 68.1% FPR 是直接证据。两位共识: 统一使用 associational 语言；讨论 memorization/overfitting 替代解释。\"\n    action_items:\n      - round: 18\n        action: \"D081 SF2: 系统替换因果语言为 'consistent with'\"\n        assigned_to: main_agent\n        status: in_progress\n      - round: 19\n        action: \"Section 5 讨论 discriminative compression vs representation collapse/overfitting 替代解释 (WildChat FPR 作为 overfitting 证据)\"\n        assigned_to: main_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R13-W1\"\n    summary: \"新颖性不足——DAPT 应用 + Zhang/Maennel 增量贡献不清\"\n    category: framing\n    severity: critical\n    status: in_progress\n    first_raised_round: 13\n    last_seen_round: 19\n    mentions:\n      - round: 18\n        reviewers: [1, 2]\n        note: \"R18 两位共识: 重新定位核心 novelty 为消融发现集合。\"\n      - round: 19\n        reviewers: [1, 2]\n        note: \"R19 R2 Overall Assessment 列为核心问题之一: DAPT 应用于安全检测是 Gururangan 2020 的 domain-specific 确认，pipeline (DeBERTa+frozen BiGRU) 与 DeepContext 等价。R1 对 R2 的 claim 无异议。两位共识: 方法新颖性有限是阻碍 Conference 推荐的主要原因之一。\"\n    action_items:\n      - round: 18\n        action: \"D081 SF1: 重写 novelty positioning 为消融发现集合\"\n        assigned_to: main_agent\n        status: in_progress\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R13-W2\"\n    summary: \"DisPeD 命名 / 'Disentangled' 术语误用\"\n    category: framing\n    severity: warning\n    status: in_progress\n    first_raised_round: 13\n    last_seen_round: 19\n    mentions:\n      - round: 18\n        reviewers: [2]\n        note: \"R18 footnote 1 仍然 circular。\"\n      - round: 19\n        reviewers: [1, 2]\n        note: \"R19 R2-W1 列为 Should-Fix, R1 AGREE。ML 社区中 'disentanglement' 有特定技术含义 (β-VAE 等)。建议改为 'Decomposed' 或 'Dissected'。R1 补充: 日常英语用法合理但在 ACL/EMNLP 受众中易造成错误预期。\"\n    action_items:\n      - round: 16\n        action: \"W-4 不改名，修改 footnote\"\n        assigned_to: main_agent\n        status: in_progress\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R13-W3\"\n    summary: \"Scrambled label AA 非等价 (d=0.44)\"\n    category: experiment\n    severity: warning\n    status: resolved\n    first_raised_round: 13\n    last_seen_round: 16\n    mentions: []\n    action_items: []\n    resolution: \"R15-R19 均未再单独质疑。视为已充分缓解。\"\n    resolution_round: 16\n\n  - id: \"R13-W4\"\n    summary: \"Mixed-LLM AA=0.504 + MLM 崩溃\"\n    category: experiment\n    severity: critical\n    status: in_progress\n    first_raised_round: 13\n    last_seen_round: 19\n    mentions:\n      - round: 18\n        reviewers: [1, 2]\n        note: \"R18 两位 AGREE 应标注为 exploratory/pilot。\"\n      - round: 19\n        reviewers: [1, 2]\n        note: \"R19 R2-N3 列为 Must-Fix, R1 AGREE。0.504 与 majority baseline (~0.5) 不可区分。0.504 vs vanilla 0.389 差异在 std=0.107 下统计不显著。论文仍声称 'classification supervision generalizes across LLM sources'。两位共识: 应标注为 preliminary，报告 majority baseline 对比，Abstract/Conclusion 限定为 template attacks only。\"\n    action_items:\n      - round: 17\n        action: \"W-2 Abstract mixed-LLM 'remains robust'→'partial robustness on template attacks'\"\n        assigned_to: main_agent\n        status: in_progress\n      - round: 19\n        action: \"明确标注 AA=0.504 为 ≈chance level；Section 4.5 报告 majority baseline 和 t-test；Abstract/Conclusion mixed-LLM claim 限定为 template attacks only\"\n        assigned_to: main_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R13-W5\"\n    summary: \"Scale analysis 被架构差异混淆\"\n    category: framing\n    severity: warning\n    status: in_progress\n    first_raised_round: 13\n    last_seen_round: 19\n    mentions:\n      - round: 18\n        reviewers: [1, 2]\n        note: \"R18 R2-W1 + R1 AGREE: DAPT 对大 encoder 有害。\"\n      - round: 19\n        reviewers: [1, 2]\n        note: \"R19 R2-W6 列为 Should-Fix, R1 AGREE。RoBERTa-large vanilla AA=1.000 vs 9-class 0.946——DAPT 在大 encoder 上有害。Abstract/Conclusion 未提及此限定。R1 指出这对实践指导意义重大。两位共识: Abstract 或 Conclusion 加 'at base model scale' 限定或提及 scale-dependent reversal。\"\n    action_items:\n      - round: 17\n        action: \"W-7 Discussion 增加 DAPT scale-dependent 效用讨论\"\n        assigned_to: main_agent\n        status: in_progress\n      - round: 19\n        action: \"Abstract/Conclusion 加 'at base model scale' 限定；Discussion 明确 DAPT 适用范围为 small-to-medium encoders\"\n        assigned_to: main_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R13-W6\"\n    summary: \"FITD 缺乏区分力\"\n    category: experiment\n    severity: warning\n    status: resolved\n    first_raised_round: 13\n    last_seen_round: 15\n    mentions: []\n    action_items: []\n    resolution: \"R15 不再提出，视为已充分缓解。\"\n    resolution_round: 15\n\n  - id: \"R13-W7\"\n    summary: \"Abstract 信息密度过高\"\n    category: writing\n    severity: warning\n    status: in_progress\n    first_raised_round: 13\n    last_seen_round: 19\n    mentions:\n      - round: 18\n        reviewers: [1, 2]\n        note: \"R18 共识: claim calibration 比密度更重要。\"\n      - round: 19\n        reviewers: [1, 2]\n        note: \"R19 R2-W4 列为 Should-Fix, R1 AGREE (低优先级)。~250 词含 12+ 数值。建议精简至 ~180 词保留 2-3 个关键数字。R1 补充: 用趋势描述替代具体数值。\"\n    action_items: []\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R13-M1\"\n    summary: \"Missing references\"\n    category: writing\n    severity: info\n    status: in_progress\n    first_raised_round: 13\n    last_seen_round: 19\n    mentions:\n      - round: 18\n        reviewers: [2]\n        note: \"R18 R2 建议 4 篇。\"\n      - round: 19\n        reviewers: [1, 2]\n        note: \"R19 R2 建议 5 篇新增: (1) Recursive LM for Jailbreak Detection (2602.16520), (2) TrajGuard (2604.07727), (3) Internal Layers for Jailbreak Detection (2510.06594), (4) Jailbreaking Leaves a Trace (2602.11495), (5) M2S Multi-turn to Single-turn (2503.04856)。R1 建议: Markov et al. 2023 (OpenAI moderation), Phute et al. 2024 (LLM Self-Defense)。R1 AGREE R2 的 5 篇均相关，特别是 #3 和 #4 与 mechanistic analysis 高度相关。\"\n    action_items:\n      - round: 19\n        action: \"核实 R19 新增 7 篇引用真实性，优先补充与 representation-level detection 和 multi-turn defense 直接相关的工作\"\n        assigned_to: main_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  # ============================================================\n  # Round 14 issues\n  # ============================================================\n  - id: \"R14-N1\"\n    summary: \"数据规模扩大后性能反常下降 (350→1000)\"\n    category: experiment\n    severity: warning\n    status: in_progress\n    first_raised_round: 14\n    last_seen_round: 19\n    mentions:\n      - round: 18\n        reviewers: []\n        note: \"R18 未直接提及。\"\n      - round: 19\n        reviewers: [1]\n        note: \"R19 R1-W5 列为 Should-Fix: 350 训练 + 76-118 测试规模与 'systematic ablation' 声明强度不匹配。R2 AGREE 但指出该规模在多轮 jailbreak 检测领域并非异常。\"\n    action_items:\n      - round: 17\n        action: \"W-9 弱化为 'composition differences partially confound scale effects'\"\n        assigned_to: main_agent\n        status: in_progress\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R14-W1\"\n    summary: \"BCa Bootstrap 跨 seed 池化\"\n    category: experiment\n    severity: warning\n    status: in_progress\n    first_raised_round: 14\n    last_seen_round: 19\n    mentions:\n      - round: 18\n        reviewers: [1]\n        note: \"R18 R1-W4: pooling 忽略 seed 间聚类结构。R2 REBUT: 论文已标 'exploratory'。\"\n      - round: 19\n        reviewers: [1, 2]\n        note: \"R19 R1-N1 升级为 Must-Fix。虽有 'exploratory' caveat，但论文多处基于池化 CI 做断言性声明 (如 'confirms non-overlapping intervals')。R2 AGREE，但补充: seed-level F1 表显示所有 pairwise 结论在每个 seed 独立成立，核心排序结论不变。两位共识: seed-level metrics 为主要报告单位，池化 CI 降级为补充 + 每处标注 exploratory。\"\n    action_items:\n      - round: 19\n        action: \"以 seed-level metrics 为主要报告单位；'confirms non-overlapping intervals' 改为 'seed-level results show consistent separation'；所有池化 CI 引用标注 'exploratory, assuming independence'\"\n        assigned_to: main_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R14-W2\"\n    summary: \"Benign-side 仅 WildChat 单一数据源\"\n    category: experiment\n    severity: warning\n    status: resolved\n    first_raised_round: 14\n    last_seen_round: 14\n    mentions: []\n    action_items: []\n    resolution: \"OASST2 双源验证解决。\"\n    resolution_round: 15\n\n  - id: \"R14-W3\"\n    summary: \"Figure 2 缺失 ActorAttack\"\n    category: writing\n    severity: warning\n    status: resolved\n    first_raised_round: 14\n    last_seen_round: 14\n    mentions: []\n    action_items: []\n    resolution: \"Figure 2 已增加 ActorAttack。\"\n    resolution_round: 15\n\n  - id: \"R14-I1\"\n    summary: \"主文 Conclusion 溢出到 page 9\"\n    category: format\n    severity: warning\n    status: resolved\n    first_raised_round: 14\n    last_seen_round: 14\n    mentions: []\n    action_items: []\n    resolution: \"Conclusion 确认在 page 8 内。\"\n    resolution_round: 15\n\n  # ============================================================\n  # Round 15 issues\n  # ============================================================\n  - id: \"R15-SF1\"\n    summary: \"判别性压缩因果链不完整 + SVD 数据泄漏\"\n    category: method\n    severity: warning\n    status: in_progress\n    first_raised_round: 15\n    last_seen_round: 19\n    mentions:\n      - round: 18\n        reviewers: [1, 2]\n        note: \"R18 与 R13-N3 合并处理。\"\n      - round: 19\n        reviewers: [1, 2]\n        note: \"R19 与 R13-N3 合并。R1-Q6 新增: Fisher 低 PR 可能是 overfitting/collapse 而非 discriminative compression。\"\n    action_items:\n      - round: 17\n        action: \"W-6 Discussion 弱化因果语言 + 承认 memorization 替代解释\"\n        assigned_to: main_agent\n        status: in_progress\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R15-SF4\"\n    summary: \"C2 complexity-dependent boundary 证据基础狭窄\"\n    category: framing\n    severity: warning\n    status: resolved\n    first_raised_round: 15\n    last_seen_round: 16\n    mentions: []\n    action_items: []\n    resolution: \"R16-R19 不再单独提出。\"\n    resolution_round: 16\n\n  - id: \"R15-SF6\"\n    summary: \"方差缩减 4-20× 声明基于 n=3 seeds\"\n    category: experiment\n    severity: warning\n    status: in_progress\n    first_raised_round: 15\n    last_seen_round: 19\n    mentions:\n      - round: 18\n        reviewers: [1, 2]\n        note: \"R18 共识: 方差 claim 措辞问题降为 Should-Fix。\"\n      - round: 19\n        reviewers: [1, 2]\n        note: \"R19 R1-N4 升级为 Must-Fix。n=3 方差比只有 2 自由度，3-23× 可能与 1× 不可区分。R2 AGREE，补充: ToxicChat 上方差方向反转 (classification std=0.087 > MLM std=0.013) 进一步削弱。两位共识: 降级为 'descriptive observation, pending validation with more seeds'。\"\n    action_items:\n      - round: 17\n        action: \"Introduction 'substantially lower prediction variance'→'observed lower variance (n=3-5, directional)'\"\n        assigned_to: main_agent\n        status: in_progress\n      - round: 19\n        action: \"Section 4.3 '3-23×' 声明降级为 descriptive observation；每次引用附带 ToxicChat 反转限定；避免 'associated with' 暗示因果\"\n        assigned_to: main_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R15-VIS1\"\n    summary: \"Figure 2 尺寸偏小，axis labels 约正文字号 50-60%\"\n    category: format\n    severity: warning\n    status: in_progress\n    first_raised_round: 15\n    last_seen_round: 19\n    mentions:\n      - round: 19\n        reviewers: []\n        note: \"R19 视觉审查 warning: Figure 2 柱状图 x 轴标签字号偏小，打印或缩放阅读时可读性边缘。与 R15/R16/R17 的观察一致。\"\n    action_items:\n      - round: 15\n        action: \"Figure 2 字号放大至≥8pt\"\n        assigned_to: main_agent\n        status: in_progress\n    resolution: \"\"\n    resolution_round: null\n\n  # ============================================================\n  # Round 16 issues\n  # ============================================================\n  - id: \"R16-N1\"\n    summary: \"'Any deterministic partition suffices' 声称与 Topic 变体失败直接矛盾\"\n    category: framing\n    severity: critical\n    status: in_progress\n    first_raised_round: 16\n    last_seen_round: 19\n    mentions:\n      - round: 18\n        reviewers: [1, 2]\n        note: \"R18 论文已修正为 'domain-relevant classification objectives'。\"\n      - round: 19\n        reviewers: []\n        note: \"R19 未单独提出。论文已修正措辞。可能已充分缓解。\"\n    action_items:\n      - round: 16\n        action: \"W-1 修正 'any partition'→'domain-relevant'\"\n        assigned_to: main_agent\n        status: in_progress\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R16-W1\"\n    summary: \"Temporal modeling negative finding 讨论不足\"\n    category: framing\n    severity: warning\n    status: in_progress\n    first_raised_round: 16\n    last_seen_round: 19\n    mentions:\n      - round: 18\n        reviewers: []\n        note: \"R18 未直接提及。可能已充分缓解。\"\n      - round: 19\n        reviewers: [1, 2]\n        note: \"R19 R2-W7 列为 Should-Fix, R1 AGREE with nuance。mean pooling≈BiGRU 意味着不利用时序结构，与 'multi-turn' 叙事矛盾。R1 补充: 核心贡献是 Stage-1 adaptation，不是 Stage-2 temporal。但 finding 本身值得主文讨论而非只在 appendix。两位共识: Discussion 应深入讨论此 finding 对 multi-turn defense 研究方向的启示。\"\n    action_items:\n      - round: 16\n        action: \"W-3 Discussion 新增段落\"\n        assigned_to: main_agent\n        status: in_progress\n      - round: 19\n        action: \"Discussion 讨论: 为什么 multi-turn 攻击的检测不需要时序建模？对 multi-turn defense 研究方向的启示？\"\n        assigned_to: main_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R16-W2\"\n    summary: \"效率对比定位不清\"\n    category: framing\n    severity: warning\n    status: in_progress\n    first_raised_round: 16\n    last_seen_round: 19\n    mentions:\n      - round: 18\n        reviewers: []\n        note: \"R18 未直接提及。\"\n      - round: 19\n        reviewers: []\n        note: \"R19 未直接提及。R1-W4 间接涉及 LLM-as-judge 对比公平性问题。\"\n    action_items:\n      - round: 16\n        action: \"W-5 效率对比加 deployment cost comparison 限定\"\n        assigned_to: main_agent\n        status: in_progress\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R16-W3\"\n    summary: \"Two-axis framework 新颖性争议\"\n    category: framing\n    severity: info\n    status: in_progress\n    first_raised_round: 16\n    last_seen_round: 19\n    mentions:\n      - round: 18\n        reviewers: []\n        note: \"R18 未单独提及。\"\n      - round: 19\n        reviewers: [1, 2]\n        note: \"R19 R2-W3 列为 Should-Fix: 本质是 FPR/FNR 重包装。R1 REBUT: IID/OOD 维度叠加形成 2×2 框架，揭示不同失败模式需不同缓解策略 (attack-side→DAPT, benign-side→calibration)。分歧未解决。\"\n    action_items:\n      - round: 16\n        action: \"W-9 全文 'two-axis framework'→'two-axis decomposition'\"\n        assigned_to: main_agent\n        status: in_progress\n      - round: 19\n        action: \"增加一段说明两轴分解与 FPR/FNR 的关系和区别\"\n        assigned_to: main_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R16-W4\"\n    summary: \"数据划分描述不够清晰\"\n    category: writing\n    severity: warning\n    status: in_progress\n    first_raised_round: 16\n    last_seen_round: 19\n    mentions:\n      - round: 18\n        reviewers: [2]\n        note: \"R18 R2 小问题。\"\n      - round: 19\n        reviewers: []\n        note: \"R19 未直接提及。可能已充分缓解。\"\n    action_items:\n      - round: 16\n        action: \"W-6 Section 4.1 重写 Data 段落\"\n        assigned_to: main_agent\n        status: in_progress\n    resolution: \"\"\n    resolution_round: null\n\n  # ============================================================\n  # Round 17 issues\n  # ============================================================\n  - id: \"R17-N1\"\n    summary: \"n=3 seeds 方差缩减 claims 统计可靠性不足\"\n    category: experiment\n    severity: warning\n    status: in_progress\n    first_raised_round: 17\n    last_seen_round: 19\n    mentions:\n      - round: 18\n        reviewers: [1, 2]\n        note: \"R18 共识: 方差 claim 措辞问题降为 Should-Fix。\"\n      - round: 19\n        reviewers: [1, 2]\n        note: \"R19 与 R15-SF6 合并。R1-N4 升级为 Must-Fix，R2 AGREE。\"\n    action_items:\n      - round: 17\n        action: \"Introduction 降级为 'observed lower variance'\"\n        assigned_to: main_agent\n        status: in_progress\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R17-W1\"\n    summary: \"TOST δ=5pp margin 缺乏 practical significance 论证\"\n    category: experiment\n    severity: warning\n    status: in_progress\n    first_raised_round: 17\n    last_seen_round: 19\n    mentions:\n      - round: 18\n        reviewers: [1, 2]\n        note: \"R18 共识: 需在正文添加 margin 选择论证。\"\n      - round: 19\n        reviewers: [1, 2]\n        note: \"R19 R1-W2 列为 Should-Fix。R2 REBUT: sensitivity analysis 已在 δ=2pp 通过 + Cohen's d 提供独立证据。分歧: R1 认为需论证，R2 认为已有充分证据。\"\n    action_items:\n      - round: 17\n        action: \"Appendix TOST 部分增加 domain-specific practical significance 论证\"\n        assigned_to: main_agent\n        status: in_progress\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R17-W2\"\n    summary: \"Cross-LLM Abstract 'remains robust' 与正文 'preliminary' 矛盾\"\n    category: writing\n    severity: warning\n    status: in_progress\n    first_raised_round: 17\n    last_seen_round: 19\n    mentions:\n      - round: 18\n        reviewers: [1, 2]\n        note: \"R18 两位共识: 需更精确限定。\"\n      - round: 19\n        reviewers: [1, 2]\n        note: \"R19 合并入 R13-W4 (Mixed-LLM AA=0.504)。两位共识: Abstract mixed-LLM claim 必须限定为 template attacks only。\"\n    action_items:\n      - round: 17\n        action: \"Abstract mixed-LLM 措辞加限定\"\n        assigned_to: main_agent\n        status: in_progress\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R17-W3\"\n    summary: \"RoBERTa-large DAPT 有害——核心 thesis scale-dependent\"\n    category: framing\n    severity: warning\n    status: in_progress\n    first_raised_round: 17\n    last_seen_round: 19\n    mentions:\n      - round: 18\n        reviewers: [1, 2]\n        note: \"R18 两位 AGREE。\"\n      - round: 19\n        reviewers: [1, 2]\n        note: \"R19 合并入 R13-W5。两位共识: Abstract/Conclusion 加 scale 限定。\"\n    action_items:\n      - round: 17\n        action: \"Discussion 增加 DAPT scale-dependent 效用讨论\"\n        assigned_to: main_agent\n        status: in_progress\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R17-M1\"\n    summary: \"Missing references: ADEPT, Echo Chamber Attack, Representation Bending\"\n    category: writing\n    severity: info\n    status: in_progress\n    first_raised_round: 17\n    last_seen_round: 19\n    mentions:\n      - round: 19\n        reviewers: [1, 2]\n        note: \"R19 合并入 R13-M1。新增 7 篇建议引用。\"\n    action_items:\n      - round: 17\n        action: \"核实引用真实性和相关性\"\n        assigned_to: main_agent\n        status: in_progress\n    resolution: \"\"\n    resolution_round: null\n\n  # ============================================================\n  # Round 18 issues\n  # ============================================================\n  - id: \"R18-N1\"\n    summary: \"'Structural complexity' 缺乏形式化定义——核心 claim 的基础概念未定义\"\n    category: method\n    severity: critical\n    status: in_progress\n    first_raised_round: 18\n    last_seen_round: 19\n    mentions:\n      - round: 18\n        reviewers: [1, 2]\n        note: \"R18 两位共识: 降级为 observed difficulty gradient。\"\n      - round: 19\n        reviewers: [1, 2]\n        note: \"R19 R2-W2 列为 Should-Fix, R1 AGREE。读者无法判断新攻击属于 template vs complex。Section 4.8 strategy transition matrices 未转化为可操作分类指标。建议给出操作化定义或定性标准的明确列表。\"\n    action_items:\n      - round: 18\n        action: \"D081 MF2: 降级为 'observed difficulty gradient'\"\n        assigned_to: main_agent\n        status: in_progress\n      - round: 19\n        action: \"给出 structural complexity 的操作化定义 (如策略转换熵/对话轮数方差) 或明确的定性标准列表\"\n        assigned_to: main_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null\n\n  - id: \"R18-W1\"\n    summary: \"缺少与已发表多轮检测方法的直接实验对比\"\n    category: experiment\n    severity: warning\n    status: in_progress\n    first_raised_round: 18\n    last_seen_round: 19\n    mentions:\n      - round: 18\n        reviewers: [1, 2]\n        note: \"R18 建议增加解释段落。\"\n      - round: 19\n        reviewers: [1, 2]\n        note: \"R19 R1-W1 列为 Should-Fix, R2 AGREE。BERT-base proxy (Appendix Q) 只匹配 encoder 参数量，未实现 DeepContext graph structure / BIID turn-intention / G-Guard GNN。建议至少在 ToxicChat 上与一个已发表方法实验对比，或明确论证为何不可行。\"\n    action_items:\n      - round: 18\n        action: \"Related Work 加解释段落\"\n        assigned_to: main_agent\n        status: in_progress\n      - round: 19\n        action: \"至少与一个已发表方法实验对比 (如 DeepContext)，或增加详细解释段落说明为何对比不可行 (代码不公开/评估 protocol 不兼容)\"\n        assigned_to: main_agent\n        status: open\n    resolution: \"\"\n    resolution_round: null"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f293349a-098e-45d3-a968-9e1d86182bfb",
+            "isSidechain": false,
+            "requestId": "req_011CbKR4ihgf57wHDzLKHkkZ",
+            "type": "assistant",
+            "uuid": "fd85a32d-975e-4cfa-b829-7373f3509485",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_director_93d7fc7c",
+            "sessionId": "077af215-dfe1-4c53-b749-b242fe0fe18b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EzJ3PJLaeRjjPi4gPgcDXx",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2651,
+                "cache_read_input_tokens": 129324,
+                "output_tokens": 14928,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2651,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 14928,
+                    "cache_read_input_tokens": 129324,
+                    "cache_creation_input_tokens": 2651,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2651
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000143"
+        },
+        {
+          "source_line": 144,
+          "timestamp": "2026-05-23T11:28:18.680Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DMueicCtxL2kDNZoB6j4PT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/review_issues.yaml\\\", \\\"bytes\\\": 31616}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fd85a32d-975e-4cfa-b829-7373f3509485",
+            "isSidechain": false,
+            "promptId": "4e56d182-dfc1-4664-80f8-db99e2b3581a",
+            "type": "user",
+            "uuid": "1e6a2951-ca38-48ed-ae20-cb291f530ffe",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/review_issues.yaml\\\", \\\"bytes\\\": 31616}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/review_issues.yaml\", \"bytes\": 31616}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "fd85a32d-975e-4cfa-b829-7373f3509485",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_director_93d7fc7c",
+            "sessionId": "077af215-dfe1-4c53-b749-b242fe0fe18b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000144"
+        },
+        {
+          "source_line": 145,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[Reviewer 1 审稿意见]: ## Reviewer 1 对 Reviewer 2 审稿意见的逐条回应  ---  ### Must-Fix 回应  **[AGREE] R2-N1: ToxicChat evidence hierarchy 反转对核心 claim 的影响被严重低估**  同意这是一个被论文 framing 低估的重要发现。  证据确认：Table 5 显示 ToxicCh…",
+                "leafUuid": "1e6a2951-ca38-48ed-ae20-cb291f530ffe",
+                "sessionId": "077af215-dfe1-4c53-b749-b242fe0fe18b"
+              }
+            }
+          ],
+          "id": "event-000145"
+        },
+        {
+          "source_line": 146,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review persuasion turn jailbreak detection paper",
+                "sessionId": "077af215-dfe1-4c53-b749-b242fe0fe18b"
+              }
+            }
+          ],
+          "id": "event-000146"
+        },
+        {
+          "source_line": 147,
+          "timestamp": "2026-05-23T11:28:22.340Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Issue tracker 已更新。现在提交审稿报告。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1e6a2951-ca38-48ed-ae20-cb291f530ffe",
+            "isSidechain": false,
+            "requestId": "req_011CbKRQV2U3ezksvuJhi171",
+            "type": "assistant",
+            "uuid": "7177ee86-5359-45bb-93cd-2e8f5bc01638",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_director_93d7fc7c",
+            "sessionId": "077af215-dfe1-4c53-b749-b242fe0fe18b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014t4u4tSJL2gfMZgNJcZnVN",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 15017,
+                "cache_read_input_tokens": 131975,
+                "output_tokens": 6823,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 15017,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6823,
+                    "cache_read_input_tokens": 131975,
+                    "cache_creation_input_tokens": 15017,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 15017
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000147"
+        },
+        {
+          "source_line": 148,
+          "timestamp": "2026-05-23T11:31:12.184Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Jr2jeXaUN3GvvCj74SEvNe",
+              "name": "mcp__agent-ml-research__submit_review_report_to_research_director",
+              "input": {
+                "project": "persuasion_turn_jailbreak_detect",
+                "reviewer_ids_acknowledged": "[\"1\", \"2\"]",
+                "cross_response_reviewer_ids": "[\"1\", \"2\"]",
+                "overall_score": "3.0",
+                "report": "# Round 19 审稿报告 — DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection\n\n**Venue**: EMNLP 2026 (ARR May 2026)\n**审稿模式**: Fresh（重新审稿）\n**Reviewer 编排**: 2 人（R1: 方法严谨性+实验设计, R2: 新颖性+完整性+写作质量）\n**轮次**: Round 1 独立审稿 → 交叉分享 → 收敛（1 轮即达共识）\n\n---\n\n## Summary\n\n本文提出 DisPeD，一个将 encoder adaptation（Stage 1）与 temporal classification（Stage 2, frozen BiGRU）分离的两阶段管线，通过 13 种编码器配置（7 个 DeBERTa-v3 变体 + RoBERTa-base/large 各 3 个）× 3 个模型规模（125M–355M）的因子化消融，研究什么因素驱动多轮 jailbreak 检测的跨攻击家族泛化。在合成数据上，classification-based DAPT 在 OOD 攻击检测中显著优于 MLM 和 vanilla encoder (F1=0.97–1.0 vs 0.26–0.31)；scrambled labels 在 template attacks 上与正确标签等效；benign-side few-shot adaptation 将 FPR 从 68.1% 降至 0%。但 evidence hierarchy 在唯一的人类数据验证（ToxicChat）上完全反转，mixed-LLM 训练下 ActorAttack F1=0.504 接近 majority baseline，且所有核心 OOD 评估的 benign 侧为 IID，系统性高估泛化能力。\n\n---\n\n## Strengths\n\n**S1. 系统化消融设计是核心亮点**。7 个 Stage-1 变体精确控制单一变量（Table 1），每个变体有明确的因子分析目标。这种 controlled study 方法论在 jailbreak detection 文献中独特且有贡献。[R1-S1, R2-S1, AGREE]\n\n**S2. Scrambled labels 等价性是非直觉且有价值的发现**。Scrambled labels 在 template attacks 上与正确标签等效（TOST confirmed, |d|≤0.14），暗示分类任务的表示压缩效应而非语义对齐驱动泛化。[R2-S2, R1 confirms in cross-response]\n\n**S3. Negative findings 的诚实报告**。ToxicChat 反转（Table 5）、MLM collapse on mixed-LLM（Table 13）、RoBERTa-large DAPT 有害（Table 4）、temporal modeling 无效（Appendix T）——论文系统性报告了不利于主叙事的结果。[R1-S3, R2-S3, AGREE]\n\n**S4. 多层次机制分析**。SVD decomposition（3/768 dims → perfect AA detection）、CKA similarity、Fisher ratio、layer-wise localization 从多角度 characterize 表征变化。SVD ablation（移除 top-3 方向后 DD 下降 17pp）是最接近因果证据的分析。[R1-S4]\n\n**S5. 统计严谨性超过同领域多数论文**。Bootstrap CIs、permutation tests、TOST 等价性检验、seed-level results（Table 8）、10-seed validation。关键 caveat（bootstrap independence, n=3 limitation）在正文中明确标注。[R2-S6, R1-S5]\n\n**S6. Benign-side few-shot adaptation 有实用价值**。10–25 条 target-domain benign conversations 将 FPR 从 58–68% 降至 0–1.5%，无需 target-domain 攻击数据。[R2-S4]\n\n---\n\n## Weaknesses\n\n### Must-Fix（影响接收决定，6 项，两位 Reviewer 全部达成共识）\n\n**MF1. ToxicChat evidence hierarchy 完全反转，但 Abstract/Conclusion 未充分反映** [R2-N1, R1 AGREE]\n- Table 5: JB-MLM (0.837±0.013) >> 9-class (0.596±0.087)，差距 24.1pp\n- Abstract 仅以 \"indicating condition-specific rather than universal mechanisms\" 一句带过\n- 论文核心叙事 \"classification DAPT > MLM > vanilla\" 仅在合成数据上成立\n- **共识要求**: Abstract/Conclusion 将 ToxicChat 反转作为同等重要的 finding 呈现；所有核心 claim 显著限定 \"on synthetic data\"；讨论反转原因（synthetic vs human? single-turn vs multi-turn?）\n\n**MF2. \"OOD\" 评估中 benign 侧为 IID，系统性高估泛化能力** [R1-N2, R2-N2, mutual AGREE]\n- Table 2 核心 OOD F1 (>0.99) 中 benign 样本来自训练分布（IID），FPR≈0\n- WildChat dual-OOD: FPR=68.1%, F1 drops 12–14pp（Appendix P.1 Table 22: DD 0.994→0.855, AA 0.981→0.842）\n- 关键数据被埋在 Appendix，正文核心结果表造成高估第一印象\n- **共识要求**: Table 2 增加 dual-OOD 行（\"without/with benign adaptation\"）；区分 \"cross-attack generalization (IID benign)\" vs \"full OOD generalization\"；Abstract/Conclusion 数字附带适用条件\n\n**MF3. Mixed-LLM ActorAttack F1=0.504 ≈ majority baseline，定性不当** [R2-N3, R1 AGREE]\n- 0.504±0.107 与 balanced majority baseline (~0.5) 不可区分\n- 0.504 vs vanilla 0.389 差异在 std=0.107 下统计不显著（n=3, t-test 无法 reject H₀）\n- 论文仍声称 \"classification supervision generalizes across LLM sources\"\n- **共识要求**: 标注为 preliminary/exploratory; 报告 majority baseline 对比; Abstract/Conclusion 限定为 template attacks only\n\n**MF4. ActorAttack padding 实验暴露严重长度依赖** [R1-N3, R2 AGREE]\n- Benign 12–20 turns vs jailbreak 3–10 turns 完全不重叠\n- Appendix U Part C: DD padded Δ=−2.5pp (resilient) vs AA padded Δ=−57.9pp (catastrophic)\n- 论文三个反驳论据均不充分（vanilla 长度论据、K=1 论据、OOD 长度不可学论据）\n- DD vs AA 的 55.4pp 差异暗示 AA 检测可能部分依赖长度信号或 signal-to-noise ratio\n- R2 补充分析: mean pooling≈BiGRU 说明信号被均值化稀释是架构固有脆弱性\n- **共识要求**: 构造长度匹配对照数据；Section 5 prominently 讨论 AA padding collapse 对 \"discriminative compression\" 叙述的影响\n\n**MF5. Bootstrap CI 跨 seed 池化违反独立性假设** [R1-N1, R2 AGREE]\n- 3 seeds 共享训练数据和架构，predictions 存在结构性相关\n- 池化后有效样本量膨胀约 3 倍，CI 系统性过窄\n- 论文虽标注 \"exploratory\"，但多处基于池化 CI 做断言性声明（\"confirms non-overlapping intervals\"）\n- R2 缓解: seed-level F1 表显示核心排序结论在每个 seed 独立成立\n- **共识要求**: seed-level metrics 为主要报告单位；\"confirms\" → \"seed-level results show consistent separation\"；所有池化 CI 标注 \"exploratory\"\n\n**MF6. 方差缩减声明 (3–23×) 基于 n=3 seeds 统计不可靠** [R1-N4, R2 AGREE]\n- n=3 方差比只有 2 自由度，3–23× 可能与 1× 统计不可区分\n- ToxicChat 上方差方向反转（classification std=0.087 > MLM std=0.013）\n- **共识要求**: 降级为 \"descriptive observation, pending validation with more seeds\"；附带 ToxicChat 反转限定\n\n### Should-Fix（影响评分，10 项）\n\n**SF1. 方法新颖性有限** [R2 Overall, R1 no objection]\n核心贡献是 DAPT (Gururangan et al., 2020) 应用于安全检测——已知技术的领域确认。Pipeline (DeBERTa+frozen BiGRU) 与 DeepContext 架构等价（作者自认）。消融发现集合（scrambled equivalence、MLM fragility、discriminative subspace）有增量贡献，但整体不构成原创方法论突破。\n\n**SF2. \"Disentangled\" 命名不准确** [R2-W1, R1 AGREE]\nML 社区 \"disentanglement\" 有特定技术含义（β-VAE 等），论文实际做的是 controlled ablation。建议改为 \"Decomposed\" 或 \"Dissected\"。\n\n**SF3. \"Structural complexity\" 缺乏形式化定义** [R2-W2, R1 AGREE]\nContribution 2 区分 \"template attacks\" vs \"structurally complex attacks\" 但未给出操作化定义。读者无法判断新攻击属于哪一类。建议给出可量化 proxy（策略转换熵、对话轮数方差）。\n\n**SF4. 因果语言 vs 相关性证据不一致** [R2-W5 = R1-W6, mutual AGREE]\n\"Domain exposure is the primary mechanism\" 等因果表述应替换为 associational 语言。SVD ablation 接近因果但不充分。R1-Q6 深入质疑: 低 participation ratio 可能是 overfitting/collapse 而非 discriminative compression，WildChat 68.1% FPR 是直接证据。\n\n**SF5. RoBERTa-large DAPT 有害的 scale-dependent 发现在 Abstract/Conclusion 缺失** [R2-W6, R1 AGREE]\nRoBERTa-large vanilla AA=1.000 vs 9-class 0.946——DAPT 在大 encoder 上可能有害。实践者需要知道 DAPT 不是 universally beneficial。需加 \"at base model scale\" 限定。\n\n**SF6. Temporal modeling negative finding 讨论不充分** [R2-W7, R1 AGREE with nuance]\nMean pooling≈BiGRU 暗示不利用时序结构，与 \"multi-turn\" 叙事矛盾。讨论对 multi-turn defense 研究方向的启示。R1 nuance: 核心贡献是 Stage-1，但 finding 本身值得主文讨论。\n\n**SF7. 缺乏与已发表 encoder-based 方法的直接实验对比** [R1-W1, R2 AGREE]\nDeepContext/BIID/G-Guard 均无实验对比。BERT-base proxy 只匹配参数量。至少在 ToxicChat 上与一个已发表方法对比，或明确论证不可行原因。\n\n**SF8. Abstract 信息密度过高** [R2-W4, R1 AGREE (低优先级)]\n~250 词含 12+ 数值。建议精简至 ~180 词保留 2-3 个关键数字。\n\n**SF9. 单一 LLM (Qwen3-8B) 数据泛化性受限** [R1-W3, R2 AGREE]\nMixed-LLM 实验反而暴露更大问题（AA=0.504）。ToxicChat 是单轮，无法验证多轮 claim。\n\n**SF10. 数据规模与声明强度不匹配** [R1-W5, R2 AGREE]\n350 训练 + 76–118 OOD 测试。R2 公平指出该规模在领域内并非异常，但声明校准应与证据强度匹配。\n\n---\n\n## Reviewer Consensus [AGREE]\n\n所有 6 个 Must-Fix 均达成完全共识。两位 Reviewer 核心关切高度重合：\n\n1. **Claim calibration 是最大问题**: 论文核心 claim (classification > MLM for OOD) 在合成数据上成立，但 (a) ToxicChat 完全反转, (b) OOD 评估 benign-IID 高估, (c) mixed-LLM AA ≈ chance, (d) DAPT 在大 encoder 有害。Abstract/Conclusion 的表述强度与证据支撑严重不匹配。\n2. **长度混淆未排除**: AA padding collapse −57.9pp 是系统性问题，缺乏长度匹配对照。\n3. **统计基础不足**: bootstrap CI 池化 + n=3 方差声明缺乏效力。\n\n## Reviewer Divergence [REBUT]\n\n仅两个 Should-Fix 级别的分歧，均非关键：\n\n1. **TOST δ=5pp 合理性** (R1-W2 vs R2 REBUT): R1 认为需论证 δ 选择，R2 认为 sensitivity analysis (δ=2pp 仍通过) + Cohen's d 已提供充分独立证据。**结论**: R2 的 rebuttal 有效，此问题不升级。\n\n2. **两轴分解 = FPR/FNR 重包装** (R2-W3 vs R1 REBUT): R2 认为是标准 FPR/FNR 分析的重包装，R1 认为 IID/OOD 维度叠加使框架超越简单 FPR/FNR——不同失败模式需不同缓解策略的分析框架有独立价值。**结论**: 分歧保留，建议论文增加说明段落。\n\n---\n\n## Questions\n\n1. **Benign adaptation 评估协议**: 10 WildChat conversations → FPR 0% 是 IID 还是 OOD 评估？如果 adapt 和 eval 同分布，则实用性被高估。实现细节（Stage-1 还是 Stage-2? loss? epochs?）缺失。[R2-Q1, R1-Q5]\n2. **Scrambled permutation**: 固定 permutation 还是随机重采样？是否在多个 permutation 上验证？[R2-Q2]\n3. **ToxicChat 反转的归因**: 同时变化两个因素（human vs synthetic + single-turn vs multi-turn），无法区分反转原因。Appendix 的 truncation 实验是否可以帮助归因？[R2-Q3]\n4. **Mixed-LLM confound**: 500 total vs 350 single-source, 性能下降是 multi-source shift 还是 per-source 数据量减少？[R2-Q4]\n5. **DAPT = \"多看一遍数据\"?**: Wiki MLM 与 JB-MLM 在 DD 上仅差 1pp (0.904 vs 0.914)——大部分收益来自通用 continued pretraining 还是 jailbreak-specific 特征学习？[R1-Q3]\n6. **Discriminative compression vs representation collapse**: Fisher ratio 低 participation ratio 是有益特征选择还是 overfitting？WildChat 68.1% FPR 是否是 collapse 的直接证据？[R1-Q6]\n7. **AA padding collapse 机制**: DD Δ=−2.5pp vs AA Δ=−57.9pp——为什么差异如此大？是 signal density 差异还是 length shortcut？[R1-Q2]\n\n---\n\n## Missing References\n\n两位 Reviewer 共推荐 7 篇缺失引用：\n\n**R2 推荐（5 篇）**:\n1. Recursive Language Models for Jailbreak Detection (arXiv 2602.16520, 2026) — 直接相关\n2. TrajGuard: Streaming Hidden-state Trajectory Detection (arXiv 2604.07727, 2026)\n3. Do Internal Layers of LLMs Reveal Patterns for Jailbreak Detection? (arXiv 2510.06594, 2025) — 与 SVD/Fisher 分析方法论高度相关\n4. Jailbreaking Leaves a Trace (arXiv 2602.11495, 2026) — 与 representation-level detection 直接相关\n5. M2S: Multi-turn to Single-turn Jailbreak (arXiv 2503.04856, 2025)\n\n**R1 推荐（2 篇）**:\n6. Markov et al., 2023 \"A holistic approach to undesired content detection\" — OpenAI production system\n7. Phute et al., 2024 \"LLM Self-Defense\" — 替代检测范式\n\n---\n\n## External Review\n\n外部审稿：未配置。\n\n---\n\n## Visual Layout Check（非评分项）\n\n视觉审查已完成（0 critical, 2 warning, 16 info）。\n\n**Warnings**:\n- **Page 5**: Figure 2 柱状图 x 轴标签字号偏小，打印/缩放阅读时可读性边缘。建议增大字号或缩短标签。\n- **Page 8**: 极度拥挤——Table 5 + Section 4.7/4.8/4.9 + Discussion + Conclusion 全在一页。Conclusion 仅 6–7 行，审稿人可能感觉草草收场。建议压缩 4.7–4.9 或移至 appendix。\n\n**Info highlights**:\n- Figure 1 架构图全宽展示，清晰度良好\n- Tables 使用 booktabs 风格贯穿全文，格式一致\n- 数字精度统一（3 位小数），最优值加粗标注\n- Limitations 篇幅适中，Ethics Statement 简洁合规\n- 未发现 margin 溢出、未解析引用、排版问题\n\n---\n\n## Overall Assessment\n\n**Overall Score: 3.0 (Findings)**\n**Soundness**: 3/5\n**Excitement**: 2.75/5\n**Reproducibility**: 4/5\n**Confidence**: 4/5\n\n本文是一项实验设计严谨的 controlled study，回答了一个有价值的研究问题。13 配置消融在 jailbreak detection 文献中独特，scrambled labels 等价性和 MLM mixed-LLM collapse 等发现有方法论贡献。统计处理（bootstrap CIs、TOST、permutation tests）超过同领域多数论文。Negative findings 报告诚实透明。\n\n三个核心问题阻碍 Conference 推荐：\n\n1. **Core claim 泛化性不足**: Evidence hierarchy (classification > MLM > vanilla) 仅在合成数据上成立，在唯一人类数据验证上完全反转。所有 OOD 评估 benign-IID 高估泛化。Mixed-LLM 下最具挑战性条件 F1 ≈ chance。综合起来，论文的 claim strength 与证据支撑严重不匹配。\n\n2. **方法新颖性有限**: 核心是 DAPT (Gururangan 2020) 的领域应用确认，pipeline 与 DeepContext 架构等价。消融发现集合有增量价值但不构成原创突破。\n\n3. **评估协议系统性偏差**: Benign-IID OOD 评估、长度分布不重叠 + AA padding collapse、n=3 统计效力——多层评估问题限制了定量 claim 精度。\n\n所有问题均可修复：claim 校准到 \"on synthetic data at base scale\"、dual-OOD 指标上移到正文、长度匹配对照、更多 seeds。修复后论文 claim 强度会显著降低（从 \"classification DAPT is the mechanism\" 降为 \"classification DAPT helps on synthetic data at base scale\"），但消融框架的方法论贡献仍足以支撑 Findings 接收。修复充分后有 marginal 提升至 3.5 的空间。\n\n---\n\n## Detailed Comments\n\n### Section-by-Section\n\n**Abstract** (p1): 信息密度过高（~250 词, 12+ 数值）。\"indicating condition-specific rather than universal mechanisms\" 严重低估 ToxicChat 反转的影响。所有 OOD F1 数字需标注 \"(attack-side OOD, benign IID)\"。Mixed-LLM 和 speedup claim 需限定条件。建议精简至 ~180 词。\n\n**Introduction** (p1-2): Contribution 1 中 \"classification DAPT recovers OOD detection\" 需加 \"on synthetic data at base model scale\"。Contribution 2 的 \"observed difficulty gradient\" 定位合理但 \"structural complexity\" 未定义。Contribution 3 的 \"24.3× inference speedup\" 是 deployment cost comparison，非 apples-to-apples 方法论对比（184M vs 8B params），需明确标注。\n\n**Method** (p3-4): 设计清晰，7 个变体的因子化消融合理。Table 1 自包含性好。Scrambled variant 的 permutation 固定 vs 随机未说明。κ=0.78 (n=50) 的标注质量对 9-class DAPT 的解释有影响，但 scrambled 等价性矛盾地降低了此问题严重性。\n\n**Experiments** (p4-8): 核心实验执行质量高。Table 2–5 格式统一。关键建议：Table 2 增加 dual-OOD 行；Section 4.3 \"is the primary mechanism\" 改为 associational；Section 4.5 的 0.504 需对比 majority baseline 和报告显著性；Section 4.9 的 few-shot adaptation 需补充实现细节。\n\n**Discussion** (p8): 被压缩到页面底部（视觉审查 warning）。缺少对 AA padding collapse 的讨论。\"discriminative compression\" 需增加 overfitting/collapse 替代解释。DAPT scale-dependent 效用需明确。Temporal modeling negative finding 的 implication 需讨论。\n\n**Conclusion** (p8): 仅 6–7 行，过于简短。\"the hierarchy reverses on human data, confirming condition specificity\" 低估了反转的严重性。需增加 scale-dependent 限定。\n\n**Limitations** (p9): 覆盖面合理（synthetic data、IID benign、benign adaptation 样本量、cross-LLM shift）。篇幅适中。\n\n**Appendix** (p12-24): 内容丰富，证据链完整。特别有价值：seed-level F1 (Table 8)、TOST sensitivity (Table 16)、dual-OOD analysis (Table 22)、SVD ablation (Table 29)。建议将 Table 22 (dual-OOD) 和 Table 32 Part C (padding collapse) 的关键数据上移到正文。"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7177ee86-5359-45bb-93cd-2e8f5bc01638",
+            "isSidechain": false,
+            "requestId": "req_011CbKRQV2U3ezksvuJhi171",
+            "type": "assistant",
+            "uuid": "8ef26ea7-8983-4a7a-893e-5b8422d6e571",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_director_93d7fc7c",
+            "sessionId": "077af215-dfe1-4c53-b749-b242fe0fe18b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014t4u4tSJL2gfMZgNJcZnVN",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 15017,
+                "cache_read_input_tokens": 131975,
+                "output_tokens": 6823,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 15017,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6823,
+                    "cache_read_input_tokens": 131975,
+                    "cache_creation_input_tokens": 15017,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 15017
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000148"
+        },
+        {
+          "source_line": 149,
+          "timestamp": "2026-05-23T11:31:16.639Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Jr2jeXaUN3GvvCj74SEvNe",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"research_director_key\\\": \\\"feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8ef26ea7-8983-4a7a-893e-5b8422d6e571",
+            "isSidechain": false,
+            "promptId": "4e56d182-dfc1-4664-80f8-db99e2b3581a",
+            "type": "user",
+            "uuid": "fcfc18be-c93a-4b9d-901a-2d4b71ab0c7f",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"research_director_key\\\": \\\"feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"research_director_key\": \"feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director\"}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "8ef26ea7-8983-4a7a-893e-5b8422d6e571",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_director_93d7fc7c",
+            "sessionId": "077af215-dfe1-4c53-b749-b242fe0fe18b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000149"
+        },
+        {
+          "source_line": 150,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review persuasion turn jailbreak detection paper",
+                "sessionId": "077af215-dfe1-4c53-b749-b242fe0fe18b"
+              }
+            }
+          ],
+          "id": "event-000150"
+        },
+        {
+          "source_line": 151,
+          "timestamp": "2026-05-23T11:31:30.783Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-23T11:31:30.783Z",
+                "sessionId": "077af215-dfe1-4c53-b749-b242fe0fe18b",
+                "content": "[Reviewer 1 审稿结果]:\n交叉回应已提交。总结：\n\n- **AGREE**: R2-N1（ToxicChat 反转被低估）、R2-N2（Benign-IID OOD）、R2-N3（Mixed-LLM AA 不显著）、R2-W1/W2/W4/W5/W6/W7\n- **REBUT**: R2-W3（两轴分解 ≠ 简单 FPR/FNR 重包装，IID/OOD 维度有独立分析价值）\n\nR2 的 N1 是我 Round 1 中未充分强调的重要发现——ToxicChat 上 JB-MLM >> 9-class 的反转应被视为与合成数据上的 classification > MLM 同等重要的 finding，而非 caveat。维持 Overall 3.0 (Findings)。"
+              }
+            }
+          ],
+          "id": "event-000151"
+        },
+        {
+          "source_line": 152,
+          "timestamp": "2026-05-23T11:31:30.784Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-23T11:31:30.784Z",
+                "sessionId": "077af215-dfe1-4c53-b749-b242fe0fe18b"
+              }
+            }
+          ],
+          "id": "event-000152"
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "messages": [
+        {
+          "source_line": 153,
+          "timestamp": "2026-05-23T11:31:30.772Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Continue from where you left off."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fcfc18be-c93a-4b9d-901a-2d4b71ab0c7f",
+            "isSidechain": false,
+            "promptId": "310db2b0-2699-401c-ad68-dfef06f00df6",
+            "type": "user",
+            "isMeta": true,
+            "uuid": "0a6513ce-6033-4186-bc79-15d3c8a15aa0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_director_93d7fc7c",
+            "sessionId": "077af215-dfe1-4c53-b749-b242fe0fe18b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000153"
+        },
+        {
+          "source_line": 154,
+          "timestamp": "2026-05-23T11:31:30.772Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0a6513ce-6033-4186-bc79-15d3c8a15aa0",
+            "isSidechain": false,
+            "type": "assistant",
+            "uuid": "507992a4-36ac-4761-a7d0-8e1132edff85",
+            "isApiErrorMessage": false,
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_director_93d7fc7c",
+            "sessionId": "077af215-dfe1-4c53-b749-b242fe0fe18b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "id": "e6436d3c-4062-453f-ad2b-866c7c647c24",
+              "container": null,
+              "model": "<synthetic>",
+              "stop_reason": "stop_sequence",
+              "stop_sequence": "",
+              "type": "message",
+              "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": null,
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": null,
+                "iterations": null,
+                "speed": null
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000154"
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "messages": [
+        {
+          "source_line": 155,
+          "timestamp": "2026-05-23T11:31:30.874Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 1 审稿结果]:\n交叉回应已提交。总结：\n\n- **AGREE**: R2-N1（ToxicChat 反转被低估）、R2-N2（Benign-IID OOD）、R2-N3（Mixed-LLM AA 不显著）、R2-W1/W2/W4/W5/W6/W7\n- **REBUT**: R2-W3（两轴分解 ≠ 简单 FPR/FNR 重包装，IID/OOD 维度有独立分析价值）\n\nR2 的 N1 是我 Round 1 中未充分强调的重要发现——ToxicChat 上 JB-MLM >> 9-class 的反转应被视为与合成数据上的 classification > MLM 同等重要的 finding，而非 caveat。维持 Overall 3.0 (Findings)。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "507992a4-36ac-4761-a7d0-8e1132edff85",
+            "isSidechain": false,
+            "promptId": "310db2b0-2699-401c-ad68-dfef06f00df6",
+            "type": "user",
+            "uuid": "7668a123-03c9-4137-bdce-ebc293766fd1",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_director_93d7fc7c",
+            "sessionId": "077af215-dfe1-4c53-b749-b242fe0fe18b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000155"
+        }
+      ]
+    }
+  ]
+}

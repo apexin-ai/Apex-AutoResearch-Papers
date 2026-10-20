@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "9a37891c2e3e53fe0577",
+  "project": "persuasion_turn_jailbreak_detect--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> ## 硬约束 - eval 参数用 --device cuda:0（不是 --gpu 0） - checkpoint 查找必须 sort -V | tail -1，禁止硬编码路径 - submit_train",
+  "task_key": "cbe2388c-d8bf-413c-9c94-7732cc344442",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/cbe2388c-d8bf-413c-9c94-7732cc344442.jsonl",
+    "occurrence": 1,
+    "bytes": 753013,
+    "sha256": "7ed1b9ab482fd4b4f650e8b79b93d1cbae110b141e198e8446b910b18c4bc6d1"
+  },
+  "statistics": {
+    "messages": 398,
+    "user_turns": 1,
+    "tool_calls": 145,
+    "roles": {
+      "record": 65,
+      "user": 1,
+      "assistant": 42,
+      "tool_call": 145,
+      "tool_result": 145
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "9a37891c2e3e53fe0577-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 396,
+      "chunks": [
+        {
+          "path": "9a37891c2e3e53fe0577-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "9a37891c2e3e53fe0577-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9a37891c2e3e53fe0577-part-0003.json",
+          "message_count": 38
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-eval-device-cuda-0-gpu-0-checkpoint-sort-v-tail-1-submit-train.md"
+}
