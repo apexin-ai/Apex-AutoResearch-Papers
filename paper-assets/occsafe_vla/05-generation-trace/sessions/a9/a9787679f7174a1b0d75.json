@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a9787679f7174a1b0d75",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops detach ln status and eval prep",
+  "task_key": "worker_ops_detach_ln_status_and_eval_prep_20260524T061129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_detach_ln_status_and_eval_prep_20260524T061129_result.json",
+    "occurrence": 1,
+    "bytes": 666,
+    "sha256": "4bbfafd3666358837c642afe2faf406851bd72dea0ae09f2a775f74c7ab4f79b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练进度\n\n| 实验 | Step | 进度 | 速度 | ETA |\n|------|------|------|------|-----|\n| detach_ln_s0 | 44727/50005 | 89.4% | ~1.09 it/s | ~1h 21m |\n| detach_ln_s1 | 44433/50005 | 88.9% | ~1.08 it/s | ~1h 26m |\n| detach_ln_s2 | 44452/50005 | 88.9% | ~1.08 it/s | ~1h 26m |\n\n3 个 GPU 均被占用（各 ~62GB 显存），GPU 0 不空闲。\n\n最新 loss（step 44400-44700）：\n- s0: occ=0.0076, action=0.0579\n- s1: occ=0.0084, action=0.0679\n- s2: occ=0.0160, action=0.0811\n\n## Eval 命令\n\n`/tmp/detach_ln_eval_commands.sh` 已重新写入，3 个 seed 分别对应 GPU 0/1/2。预计约 1.5h 后训练完成可启动 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-detach-ln-status-and-eval-prep.md"
+}

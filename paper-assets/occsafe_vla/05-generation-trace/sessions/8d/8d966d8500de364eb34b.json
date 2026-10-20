@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d966d8500de364eb34b",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis factorial 2x2 figure",
+  "task_key": "worker_analysis_factorial_2x2_figure_20260525T084747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_factorial_2x2_figure_20260525T084747_result.json",
+    "occurrence": 1,
+    "bytes": 872,
+    "sha256": "fb453cd07d22b314f004c8f1309ea72c5741b214ac74e98ee819da54c15cde30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact 注册工具不可用，跳过。\n\n### 结果\n\n**文件路径：**\n- `/root/occsafe_vla/artifacts/factorial_2x2_bar.pdf` (22K)\n- `/root/occsafe_vla/artifacts/factorial_2x2_bar.png` (95K)\n- `/root/autodl-tmp/analysis/factorial_2x2_bar.pdf`\n- `/root/autodl-tmp/analysis/factorial_2x2_bar.png`\n\n**视觉确认：**\n- 4 根柱子分别对应 BN+Flow (深蓝, 0.797)、BN−Flow (浅蓝, 0.746)、LN+Flow (深红, 0.743)、LN−Flow (浅红, 0.765)\n- 误差棒 (SE) 正确显示，BN+Flow 的 SE 最大（seed 方差较大）\n- Vanilla baseline 灰色虚线在 0.780 处\n- 蓝色双向箭头标注 BN 的 +5.1pp gradient flow 增益\n- 红色双向箭头标注 LN 的 −2.2pp gradient flow 损害\n- 右下角标注 Interaction: p=0.025, η²=0.484\n- 交互效应的交叉模式清晰可见：BN 受益于 gradient flow，LN 反而受损"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-factorial-2x2-figure.md"
+}

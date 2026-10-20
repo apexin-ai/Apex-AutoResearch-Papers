@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5ae0afa5878dd7ae62e",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "research plan b literature",
+  "task_key": "worker_research_plan-b-literature_20260526T095830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_plan-b-literature_20260526T095830_result.json",
+    "occurrence": 1,
+    "bytes": 1283,
+    "sha256": "80317c526aaedb9bd02c42d018d0f5ffd52ae8ca77a9ebba8e7f13773a08aba6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成，已追加到 memory.md。核心发现总结：\n\n**最相关的论文**:\n- **QDepth-VLA** (2025) — 明确指出 naïve depth auxiliary supervision 对 VLA 有害的三个机制（监督噪声、冗余信号、干扰预训练表征），但缺乏 controlled experiment。我们的 2×2 factorial design 填补这个空白。\n- **ForkMerge** (NeurIPS 2023) — 负迁移的 optimization + generalization 双层解释，直接对应我们的 Full OCC vs Detach vs Vanilla 结果。\n\n**形成清晰对比的模式**: 成功的 VLA 空间增强方法（SpatialVLA, GeoVLA, Spatial Forcing）都把 3D 信息作为 **input 或 alignment target**，而非让 shared backbone 去 predict dense spatial output。AuxVLA 的成功辅助任务是 action-relevant sparse 任务（joint config, grasp affordance），而非 dense spatial prediction。\n\n**VLA Safety 竞品**: VLSA/AEGIS（post-hoc constraint, SafeLIBERO benchmark）和 SafeVLA（constrained RL）都不走 auxiliary supervision 路线——我们的负面结果解释了为什么。\n\n**论文 framing 建议**: 定位为 \"mechanism analysis\" 而非 \"failure report\"，核心叙事是两层干扰机制（梯度冲突 + capacity competition），用正面结果论文做对比论证。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-plan-b-literature.md"
+}

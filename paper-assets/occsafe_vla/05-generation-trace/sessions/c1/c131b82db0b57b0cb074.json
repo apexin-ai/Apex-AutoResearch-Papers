@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c131b82db0b57b0cb074",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra collect vanilla s0 s1 per task metrics",
+  "task_key": "worker_infra_collect_vanilla_s0_s1_per_task_metrics_20260521T015816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_collect_vanilla_s0_s1_per_task_metrics_20260521T015816_result.json",
+    "occurrence": 1,
+    "bytes": 900,
+    "sha256": "4f30bc35b4f8e0a00afae930eb189a765eddc8186593e03c8e973dd5dd9d3eaf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已提取完成。前 30 行是 per-task 摘要（每 3 行一组：task_id, tsr, car），后面是 episode 级别重复的 task_id，最后两行是 overall 均值。\n\n## vanilla_s0 per_task:\n```\nT0: TSR=1.0,  CAR=0.95\nT1: TSR=0.95, CAR=1.0\nT2: TSR=1.0,  CAR=0.9\nT3: TSR=1.0,  CAR=0.5\nT4: TSR=0.8,  CAR=1.0\nT5: TSR=0.45, CAR=0.05\nT6: TSR=1.0,  CAR=0.35\nT7: TSR=1.0,  CAR=1.0\nT8: TSR=0.95, CAR=1.0\nT9: TSR=0.95, CAR=1.0\nOverall: TSR=0.91, CAR=0.775\n```\n\n## vanilla_s1 per_task:\n```\nT0: TSR=1.0,  CAR=0.95\nT1: TSR=0.95, CAR=0.95\nT2: TSR=1.0,  CAR=0.9\nT3: TSR=1.0,  CAR=0.15\nT4: TSR=0.85, CAR=1.0\nT5: TSR=0.65, CAR=0.1\nT6: TSR=1.0,  CAR=0.6\nT7: TSR=0.9,  CAR=1.0\nT8: TSR=1.0,  CAR=1.0\nT9: TSR=1.0,  CAR=1.0\nOverall: TSR=0.935, CAR=0.765\n```\n\n数据来源文件：`/root/occsafe_vla/eval_results/vanilla_s0_final.json` 和 `vanilla_s1_final.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-collect-vanilla-s0-s1-per-task-metrics.md"
+}

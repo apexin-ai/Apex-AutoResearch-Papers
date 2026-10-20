@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9bcd7e504a13baeb5e36",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code v2 gradient analysis prep",
+  "task_key": "worker_code_v2-gradient-analysis-prep_20260527T043305",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_v2-gradient-analysis-prep_20260527T043305_result.json",
+    "occurrence": 1,
+    "bytes": 696,
+    "sha256": "902e14dd2e263c82f81b8f148d0fcd2e970be9f7f9c09064b20ba5b552e42f04"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "执行计划已注册。总结：\n\n**所有 5 个 50K checkpoint 均已就绪**，全部在 westd-10894 的 `/root/autodl-tmp/checkpoints/`。无需等待训练完成或跨服务器传输。\n\n**关键发现：**\n- 脚本位于 `/root/occsafe_vla/scripts/`（非 `openvla-oft/vla-scripts/`）\n- 参数是 `--checkpoint_dir`（非 `--checkpoint_path`）\n- Conda 环境名是 `occsafe`（非 `base`）\n- 现有 `run_gradient_analysis_5cond.sh` 用了下划线条件名，会导致图例显示为 v1 标签——正确做法是用空格 + \"v2\" 后缀\n- 预估单 GPU 串行跑 5 条件 + plot 共 ~80-105 min\n\nGPU 空闲后可直接在 10894 上依次执行 5 条命令。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-v2-gradient-analysis-prep.md"
+}

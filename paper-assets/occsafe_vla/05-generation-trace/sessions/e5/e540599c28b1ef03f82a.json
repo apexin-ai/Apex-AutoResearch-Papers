@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e540599c28b1ef03f82a",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code v2 gradient analysis prep",
+  "task_key": "worker_code_v2-gradient-analysis-prep_20260527T021109",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_v2-gradient-analysis-prep_20260527T021109_result.json",
+    "occurrence": 1,
+    "bytes": 3706,
+    "sha256": "1db11df369af469501e046474f548e21d4f0ee61787f4cf13e27e163669fef33"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。汇报如下：\n\n---\n\n## 梯度分析脚本就绪状态\n\n### 脚本路径和状态\n\n| 脚本 | 10894 | 34685 | 状态 |\n|------|-------|-------|------|\n| `run_gradient_analysis_v2.py` | `/root/occsafe_vla/scripts/` | 已复制 ✓ | 可用 |\n| `compare_gradient_conditions.py` | `/root/occsafe_vla/scripts/` | 已复制 ✓ | 可用 |\n| `plot_gradient_analysis_v2.py` | `/root/occsafe_vla/scripts/` | 已复制 ✓ | 可用 |\n\n无需修改，v2 checkpoint 格式完全兼容：\n- `AutoModelForVision2Seq.from_pretrained(checkpoint_dir)` 直接加载 ✓\n- `occ_head--50000_checkpoint.pt` 匹配脚本 glob 模式 ✓\n- 自动检测 `occ_detach`/`occ_norm` 从 condition name ✓\n\n### v2 Checkpoint 分布\n\n**10894** (已完成):\n- `full_occ_ln_s3_v2` → Full OCC + LN\n- `ablation_occ_detach_s3_v2` → Detach + LN\n\n**34685** (已完成):\n- `vanilla_v2_s1` → Vanilla baseline\n- `full_occ_bn_v2_s1` → Full OCC + BN\n- `detach_bn_v2_s0/s1/s2` → Detach + BN\n\n### 当前状态\n两台服务器 8 张 GPU 全部训练占用（~62GB/98GB），无法 dry-run。\n\n### 推荐运行命令\n\n训练结束后，分两阶段执行：\n\n**阶段 1：各服务器本地跑 per-condition 分析**\n\n```bash\n# === 10894 (GPU 0 or whichever frees first) ===\n\n# Full OCC LN v2\npython3 /root/occsafe_vla/scripts/run_gradient_analysis_v2.py \\\n  --checkpoint_dir /root/autodl-tmp/checkpoints/full_occ_ln_s3_v2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--full_occ_ln_s3_v2--50000_chkpt \\\n  --condition_name \"Full OCC LN v2\" --seed 42 \\\n  --output_dir /root/occsafe_vla/artifacts/gradient_v2/ \\\n  --gpu 0\n\n# Detach LN v2\npython3 /root/occsafe_vla/scripts/run_gradient_analysis_v2.py \\\n  --checkpoint_dir /root/autodl-tmp/checkpoints/ablation_occ_detach_s3_v2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--ablation_occ_detach_s3_v2--50000_chkpt \\\n  --condition_name \"Detach LN v2\" --seed 42 \\\n  --output_dir /root/occsafe_vla/artifacts/gradient_v2/ \\\n  --gpu 0\n```\n\n```bash\n# === 34685 (GPU 0 or whichever frees first) ===\n\n# Vanilla v2\npython3 /root/occsafe_vla/scripts/run_gradient_analysis_v2.py \\\n  --checkpoint_dir /root/autodl-tmp/checkpoints/vanilla_v2_s1/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--vanilla_v2_s1--50000_chkpt \\\n  --condition_name \"Vanilla v2\" --seed 42 \\\n  --output_dir /root/occsafe_vla/artifacts/gradient_v2/ \\\n  --gpu 0\n```\n\n**阶段 2：汇总比较（SCP JSONs 到 10894 后执行）**\n\n```bash\n# 从 34685 scp vanilla JSON 到 10894\nscp westd-34685:/root/occsafe_vla/artifacts/gradient_v2/\"Vanilla v2_gradient_stats.json\" \\\n    /root/occsafe_vla/artifacts/gradient_v2/\n\n# 三条件对比\npython3 /root/occsafe_vla/scripts/compare_gradient_conditions.py \\\n  --vanilla-json \"/root/occsafe_vla/artifacts/gradient_v2/Vanilla v2_gradient_stats.json\" \\\n  --full-occ-json \"/root/occsafe_vla/artifacts/gradient_v2/Full OCC LN v2_gradient_stats.json\" \\\n  --detach-json \"/root/occsafe_vla/artifacts/gradient_v2/Detach LN v2_gradient_stats.json\" \\\n  --output-json /root/occsafe_vla/artifacts/gradient_v2/comparison_results.json\n\n# 可视化（可选）\npython3 /root/occsafe_vla/scripts/plot_gradient_analysis_v2.py \\\n  --results_dir /root/occsafe_vla/artifacts/gradient_v2/ \\\n  --output /root/occsafe_vla/artifacts/gradient_v2/gradient_analysis_v2_combined.pdf\n```\n\n如果还需 BN 条件的 2×2 分析（Full OCC BN + Detach BN），34685 上可额外运行两个 condition，condition_name 分别传 `\"Full OCC BN v2\"` 和 `\"Detach BN v2\"`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-v2-gradient-analysis-prep-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6758eadc7698c5bec87",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra westd34685 fix occ index and restart",
+  "task_key": "worker_infra_westd34685_fix_occ_index_and_restart_20260520T163335",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westd34685_fix_occ_index_and_restart_20260520T163335_result.json",
+    "occurrence": 1,
+    "bytes": 968,
+    "sha256": "34952284b272d3e7c6e791a83d60ac9de54abeac3e505f67e2269add229c24a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n---\n\n## 产出报告\n\n| # | 项目 | 结果 |\n|---|------|------|\n| 1 | occ_index.json 重建 | **tasks=9, total_demos=450**，格式 `{\"demos\": {demo_key: int_traj_len}, \"file\": path}` |\n| 2 | 数据加载验证 | shape=(64,64), sum=1520, nonzero=1520 — **非零确认** |\n| 3 | datasets.py 兼容性 | 读 `task_info[\"demos\"]` + `task_info[\"file\"]`，与新 index **完全匹配** |\n| 4 | 磁盘空间 | /root/autodl-tmp/ **329GB 可用**（7% used），充足 |\n| 5 | 新 PID | **occ_s0**: 27667 (GPU 0, seed 42) / **occ_s1**: 28827 (GPU 1, seed 43) / **occ_s2**: 29970 (GPU 2, seed 44) |\n| 6 | GPU 使用 | GPU 0: 62203 MiB, 99% / GPU 1: 62203 MiB, 99% / GPU 2: 62209 MiB, 43% |\n| 7 | 日志验证 | \"Failed to load occ label\" 计数：**三个均为 0** |\n| 8 | occ_loss 初始值 | s0=**0.0987**, s1=**0.1764**, s2=**0.1413** — 在预期范围 0.1~0.3 内，**正常** |\n\n无未解决问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westd34685-fix-occ-index-and-restart.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e24473a5b7a0b59d3c56",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_4_1779852828.md",
+  "task_key": "loop_4_1779852828",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1779852828.md",
+    "occurrence": 1,
+    "bytes": 4667,
+    "sha256": "45811629aaa9e89658b744951acc3e9654615063b06488c2c2ab5917ae54262d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: max_wall_time\nupdated: '2026-05-27T03:30:17+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **MUJOCO_EGL_DEVICE_ID 必须匹配物理 GPU 编号**，不受 CUDA_VISIBLE_DEVICES 影响（已踩坑多次）\n- **westd-34685 conda env 是 `occsafe`**（不是 `base`），激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`\n- **eval 用 `--num_rollouts`**（不是 `--num_trials_per_task`），脚本在 `openvla-oft/vla-scripts/evaluate_safelibero.py`\n- **ablation_occ_detach_s3_v2 是 BN**（Cell 3 = Detach+BN），梯度分析命令必须加 `--occ_norm bn`（Director 2026-05-27 确认）\n- **10894 上 3 个实验有 _r2 registry 条目**：full_occ_ln_v2_s1c_r2, full_occ_ln_v2_s2_r2, detach_ln_v2_s0c_r2。cron 监控的是原始 exp_id，但 registry 中 RUNNING 的是 _r2 后缀的。cron 回调到 original exp_id 时，要更新对应 _r2 条目\n- **Paper DDL: 2026-05-28 12:00 UTC**（CoRL 2026）\n\n### 2. 🖥️ 基础设施快照\n- **westd-34685**: 4×RTX PRO 6000 98GB, 工作目录 `/root/occsafe_vla/openvla-oft`, conda env `occsafe`, 磁盘 2% used (819GB 可用)\n- **westd-10894**: 4×RTX PRO 6000 98GB, 同上路径和 env, driver 已修复可用\n- **Checkpoint 路径**: `/root/autodl-tmp/checkpoints/<exp_name>/openvla-7b+libero_spatial_no_noops+...--<exp_name>--50000_chkpt`（训练中的没有 `--50000_chkpt` 后缀）\n- **数据**: RLDS `/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops/`, OCC `/root/occsafe_vla/occ_data/`\n- **梯度分析脚本**: `/root/occsafe_vla/scripts/run_gradient_analysis_v2.py`（V2 兼容，无需修改）\n- **论文本地路径**: `/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/`\n- **活跃训练** (8 GPU 满载):\n  - 34685: GPU0 detach_ln_v2_s1 (PID 681204), GPU1 detach_ln_s4 (PID 677648), GPU2 ablation_occ_detach_s4 (PID 735982), GPU3 mvp_occ_s4 (PID 736344)\n  - 10894: GPU0 full_occ_ln_v2_s1c (PID 481426), GPU1 full_occ_ln_v2_s2 (PID 481643), GPU2 detach_ln_v2_s0c (PID 481988), GPU3 full_occ_ln_v2_s0d (PID 490883)\n\n### 3. 📊 当前状态\n**刚完成**: D066 论文修订全部完成（R1-R4 baseline fix, F1-F7 hedging/LN rationale），编译验证通过（主体 8 页）。梯度分析 + eval 命令模板已生成并存为 artifact (art_20260527_77a5b1)。Figure 1 已用 v2 数据重新生成。\n\n**Registry RUNNING**: 只有 `reverse_cutoff_s2_v2_eval` 和 `cutoff_25k_s1_v2_eval` 两个 stale eval 条目（可能已完成但 registry 未更新）。训练实验的 cron 在监控但 registry 状态可能不是 RUNNING（_r2 条目是 RUNNING）。\n\n**等待中**:\n- `worker_check_stale-eval-cleanup_20260527T032803` 正在检查两个 stale eval 的实际状态（turn 17+）\n- 8 个训练 cron 回调，ETA: 34685 ~12:27-13:21 UTC, 10894 ~13:39-14:21 UTC May 27\n\n### 4. 📋 待办\n- stale-eval Worker 完成 → 根据结果更新 registry（DONE+metrics 或 KILLED）\n- 34685 训练 cron 回调 → 立即 spawn Worker：4 GPU 并行 eval + 3 GPU 梯度分析（用已有 50K checkpoint，命令在 artifact 里）\n- 10894 训练 cron 回调 → 立即 spawn Worker：4 GPU 并行 eval + 2 GPU 梯度分析\n- 全部 eval 完成 → 更新 Table 1 数据 + 2×2 ANOVA + CI → 论文最终修订\n- 梯度分析 5 条件 JSON 合并 → scp 到一台机器 → `plot_gradient_analysis_v2.py` 出图 → 更新论文 mechanism evidence\n- 编译最终验证（预留 30 min）→ 用户提交\n\n### 5. 🎯 战略上下文\n**核心 claim (Plan B ordinal interaction)**: gradient flow 是损害源，detach 后 aux head 无害（≈ Vanilla）。BN+gradient flow 是最差且最不稳定配置。\n\n**v2 Factorial 数据**: Vanilla 0.745±0.024 (n=3), Full OCC BN 0.725±0.064 (n=3), Detach BN 0.767±0.024 (n=4), Full OCC LN 0.740 (n=1), Detach LN 0.802 (n=1, v1 3-seed=0.765)\n\n**机制证据待重建**: v1 gradient collapse + CKA degradation 已被推翻为 bug 产物 (D056/D057)。当前可用机制证据只有梯度正交性 (cosine≈0) + 方差不对称。v2 梯度分析是填补这个空缺的关键——如果 v2 结果与 v1 一致（cosine≈0），论文叙事可以站住。\n\n**易错点**:\n- 不要把 v1 和 v2 数据混用做 ANOVA——BN 两个 cell 是 v2，LN 两个 cell 混合 (Full OCC+LN v2 n=1, Detach+LN v1 n=3)\n- cron 回调到 `full_occ_ln_v2_s1c` 等 original exp_id 时，实际要更新的是 `_r2` 后缀的 registry 条目\n- 梯度分析的 Detach 条件 OCC grad norm 应 = 0（detach 切断梯度），如果不为 0 说明代码有 bug\n- `compare_gradient_conditions.py` 目前硬编码 3 条件，需要用 `plot_gradient_analysis_v2.py` 处理 5 条件\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1779852828.md"
+}

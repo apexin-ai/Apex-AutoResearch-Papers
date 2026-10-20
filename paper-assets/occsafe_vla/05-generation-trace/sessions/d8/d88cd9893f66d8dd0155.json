@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d88cd9893f66d8dd0155",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ssh 34685 eval precheck",
+  "task_key": "worker_ssh_34685_eval_precheck_20260525T212848",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_34685_eval_precheck_20260525T212848_result.json",
+    "occurrence": 1,
+    "bytes": 1643,
+    "sha256": "d519724d388e53c903c066c2d064f5fb1fa8b52f42b68b25dcf8be34425736ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 34685 Eval 预检\n\n| 项目 | 状态 |\n|------|------|\n| Eval 脚本 | `/root/occsafe_vla/openvla-oft/vla-scripts/evaluate_safelibero.py` ✅ |\n| SafeLIBERO 数据 | `/root/autodl-tmp/libero_datasets/libero_spatial/` (10 tasks hdf5) ✅ |\n| MuJoCo | 3.8.1 ✅ |\n| robosuite | 1.4.1 ✅ |\n| libero | 0.1.1 ✅ |\n| EGL (libEGL_nvidia) | `/usr/lib/x86_64-linux-gnu/libEGL_nvidia.so.580.95.05` ✅ |\n| Batch 脚本模板 | `/root/occsafe_vla/eval_batch_34685.sh` ✅ |\n| 历史 eval 成功 | 33 个 JSON 结果文件已有 ✅ |\n\n**Checkpoint 命名格式**:\n```\n/root/autodl-tmp/checkpoints/<exp_name>/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--<exp_name>--<step>_chkpt/\n```\n\n现有 `detach_bn_v2_s0` 只有 10000_chkpt（D051 训练中，50000_chkpt 尚未生成）。\n\n**D051 eval 示例命令**:\n```bash\nCUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 \\\n  bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && \\\n  cd /root/occsafe_vla/openvla-oft && python3 vla-scripts/evaluate_safelibero.py \\\n    --pretrained_checkpoint /root/autodl-tmp/checkpoints/detach_bn_v2_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--detach_bn_v2_s0--50000_chkpt \\\n    --task_suite_name libero_spatial \\\n    --num_rollouts 50 \\\n    --seed 42 \\\n    --output_path /root/occsafe_vla/eval_results/detach_bn_v2_s0_50r_50000.json\"\n```\n\n**缺失/需要修复**: 无。环境完全就绪，D051 训练完成后可直接复用 `eval_batch_34685.sh`（只需更新 CKPTS 映射到新实验名）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-34685-eval-precheck.md"
+}

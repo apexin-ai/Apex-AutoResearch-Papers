@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "956d1b945acdbb9a011e",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_1_1779389649.md",
+  "task_key": "loop_1_1779389649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1_1779389649.md",
+    "occurrence": 1,
+    "bytes": 4841,
+    "sha256": "bb312ed281818718e8d7fc731b9d6f91ac3ba32a7fc4dde5e9214973a3233ffe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: idle_timeout\nupdated: '2026-05-21T16:38:22+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- westd-10894 GPU 白名单：cuda:0, cuda:1, cuda:2, cuda:3（4× RTX PRO 6000 96GB）\n- westd-34685 用于 occ 实验（mvp_occ_s0/s1/s2），不要把 vanilla 实验提交到这台\n- cleanup_checkpoints.sh 脚本曾导致 checkpoint 保存时 crash（删了正在写的目录）——**任何服务器上的清理脚本必须先 kill 再跑训练**\n- WANDB_MODE=disabled，cron 靠进程退出码和 sentinel 判断完成，容易假阳性（s0/s1 都经历过）——训练完成后必须手动验证 checkpoint 再更新 registry\n- conda 环境名：`occsafe`（不是 base），激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`\n\n### 2. 🖥️ 基础设施快照\n- **westd-10894**（vanilla baseline）：工作目录 `/root/occsafe_vla/openvla-oft`，Python `/root/miniconda3/envs/occsafe/bin/python`\n  - 模型：`/root/autodl-tmp/models/openvla-7b`\n  - 数据：`/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops`\n  - Checkpoints：`/root/autodl-tmp/checkpoints/vanilla_s{0,1,2}/`\n  - 磁盘：数据盘 51% used（416GB 可用）\n- **westd-34685**（occ 实验）：同样 conda env `occsafe`\n  - occ 数据：`/root/occsafe_vla/occ_data`（occ_index.json 格式曾有问题导致 100% fallback 全零 label，需确认是否已修复）\n  - Checkpoints：`/root/autodl-tmp/checkpoints/occ_s{0,1,2}/`\n- 活跃进程（截至 handoff 时刻需重新确认，信息可能过时）：\n  - mvp_occ_s0 (PID 27667, westd-34685, cuda:0)\n  - mvp_occ_s2 (PID 29970, westd-34685, cuda:2)\n\n### 3. 📊 当前状态\n**刚做完**：收到 mvp_vanilla_s2 第 4 次 cron 失败回调，派出 Worker (`worker_diag_mvp_vanilla_s2_check`) 检查 s2 是否和 s0/s1 一样是假阳性（训练实际完成但 cron 误报）。s2 跑了 7.25h，大概率已完成。\n\n**Registry 状态**：\n| exp_id | status | server | 摘要 |\n|--------|--------|--------|------|\n| mvp_vanilla_s0 | ANALYZING | westd-10894 cuda:0 | 训练完成，eval 中。TSR=0.91, CAR=0.775 |\n| mvp_vanilla_s1 | ANALYZING | westd-10894 cuda:1 | 训练完成，eval 中。TSR=0.935, CAR=0.765 |\n| mvp_vanilla_s2 | DONE(failed) | westd-10894 cuda:2 | 第 4 次报 failed，**大概率假阳性**，Worker 正在验证 |\n| mvp_occ_s0 | RUNNING | westd-34685 cuda:0 | occ 训练中 |\n| mvp_occ_s1 | DONE(failed) | westd-34685 cuda:1 | safetensors I/O error，最新可用 7500_chkpt |\n| mvp_occ_s2 | RUNNING | westd-34685 cuda:2 | occ 训练中 |\n\n**等待中**：\n- Worker `worker_diag_mvp_vanilla_s2_check` 回调 → 确认 s2 checkpoint 状态\n- mvp_occ_s0/s2 cron 回调 → 训练完成通知\n- mvp_occ_s1 需要决策：从 7500_chkpt resume 还是重新开始\n\n### 4. 📋 待办（条件触发式）\n- `worker_diag_mvp_vanilla_s2_check` 完成 → 若 50000_chkpt 存在：更新 registry 为 ANALYZING，触发 eval；若不存在：从最新 chkpt resume\n- vanilla s0/s1 eval 完成（monitor_and_eval.sh 回调）→ 收集 TSR/CAR metrics，更新 registry 为 DONE(success/negative)\n- 3 个 vanilla eval 全部完成 → 汇总 baseline 数据（3-seed 均值±std），汇报 Director\n- mvp_occ_s0/s2 训练完成 → 诊断 occ_index.json 是否已修复（之前 100% fallback 全零 label），如果没修复则结果无效\n- mvp_occ_s1 resume 决策 → 等 Director 指示或 occ_s0 完成后参考其结果决定\n- 全部 6 个实验完成 → 对比 vanilla vs occ（paired t-test），按 ROADMAP 判定标准（CAR ≥5% 提升 + TSR 下降 ≤3% = Pass）\n\n### 5. 🎯 战略上下文\n- **项目核心**：首个系统研究 VLA 空间表征与安全的工作。MVP 验证\"占据辅助监督能否提升 VLA 碰撞避免能力\"\n- **目标会议**：AAAI 2027（Abstract Jul 21, Paper Jul 28，~10 周）\n- **vanilla baseline 初步结果出人意料**：CAR=0.765-0.775 远高于 ROADMAP 预期的 ~15%。这意味着 vanilla VLA 本身碰撞避免能力就不差，occ 方法要展示显著提升会更困难。**这个数字需要 Director 关注**——如果 3-seed 均值确认在 0.75+，MVP 判定标准（CAR ≥5% 绝对提升）相对容易达到，但 narrative 需要调整（不能再 claim \"vanilla VLA 几乎没有碰撞避免能力\"）\n- **occ 实验有数据质量风险**：occ_index.json 格式不匹配曾导致 100% fallback 全零 label，意味着 occ head 实际没学到东西。必须在 occ 训练完成后第一时间验证训练日志中 fallback rate\n- **易错点**：\n  1. 不要信 cron 的 failed 结论——必须 SSH 验证 checkpoint 是否存在（已发生 3 次假阳性）\n  2. westd-10894 上有残留的 cleanup_checkpoints.sh，新训练前必须确认已 kill\n  3. occ 实验在 westd-34685（不是 westd-10894），两台服务器不要搞混\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-1779389649.md"
+}

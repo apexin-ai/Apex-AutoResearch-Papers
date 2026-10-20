@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9239b0cc98586dfef8d0",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops protect checkpoints",
+  "task_key": "worker_ops_protect_checkpoints_20260523T060338",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_protect_checkpoints_20260523T060338_result.json",
+    "occurrence": 1,
+    "bytes": 1361,
+    "sha256": "700c9e914740f15a91b87b524acd8eb0a10dcbae81102d221b023581cdf16d59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结论清晰了。\n\n## 检查结果\n\n### 1. 训练代码 checkpoint 策略\n\n`finetune.py` 第 119-121 行：\n- `save_freq = 10_000`\n- `save_latest_checkpoint_only = False`（默认值）\n\n当 `save_latest_checkpoint_only=False` 时，每次保存都创建独立目录 `run_dir--{log_step}_chkpt`（第 673 行）。**代码中没有任何自动清理旧 checkpoint 的逻辑**（无 `rm`/`rmtree`/`unlink` 调用）。\n\n### 2. 外部清理脚本\n\n发现两个相关脚本：\n\n- **`checkpoint_rotation.sh`** — 每 10 分钟扫描，保留最新 2 个 checkpoint，删除更旧的。但**只监控 `occ_s0`、`occ_s1`、`occ_s2` 三个目录**，不涉及 `vanilla_retrain_s0` 和 `full_occ_retrain_s0`。\n- **`kill_on_50000_chkpt.sh`** — 检测到 50000 checkpoint 后杀进程。同样**只针对 `occ_s0` 和 `occ_s2`**，不影响 retrain 实验。\n\n### 3. 当前 checkpoint 状态\n\n两个 retrain 目录目前都只有 `dataset_statistics.json`，step 10000 的 checkpoint 尚未生成，训练还没到 10K 步。\n\n### 结论\n\n**retrain 实验的 checkpoint 是安全的。** `save_latest_checkpoint_only=False` 意味着 step 10000、20000、30000、40000、50000 的 checkpoint 都会保留在独立目录中，不会被覆盖或清理。现有的 rotation 脚本不监控 retrain 目录。无需额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-protect-checkpoints.md"
+}

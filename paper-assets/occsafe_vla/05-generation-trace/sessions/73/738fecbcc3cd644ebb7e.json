@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "738fecbcc3cd644ebb7e",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops check eval status 10894",
+  "task_key": "worker_ops_check-eval-status-10894_20260526T111426",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-eval-status-10894_20260526T111426_result.json",
+    "occurrence": 1,
+    "bytes": 583,
+    "sha256": "2576cc5a4d9a3396a6c8f65002418676bfe60f2eac98319da8683a39ed623a58"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 eval 实验全部正在运行：\n\n| 实验 | GPU | PID | 进度 | 状态 |\n|------|-----|-----|------|------|\n| **mvp_occ_s3_v2_eval** | cuda:1 (16.8GB) | 186629 | Task 0 已完成 (TSR=1.000, CAR=0.980)，进入下一个 task | 运行中 |\n| **full_occ_ln_s3_v2_eval** | cuda:2 (16.8GB) | 186837 | Task 0: 98% (49/50 rollouts) | 运行中 |\n| **ablation_occ_detach_s3_v2_eval** | cuda:3 (16.8GB) | 189901 | Task 0: 74% (37/50 rollouts) | 运行中 |\n\nGPU 0 被 `reverse_cutoff_s2_v2` 训练占用 (62.2GB, 99% utilization)。4 张 GPU 全部在工作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-eval-status-10894.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f830cbe32e6f9a3ceecd",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "check preparing experiments",
+  "task_key": "worker_check_preparing-experiments_20260529T041441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_preparing-experiments_20260529T041441_result.json",
+    "occurrence": 1,
+    "bytes": 633,
+    "sha256": "dc6a524d197a20ae682e449e1e46fca498b93756dee5c2592406abe1b06abc56"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已写入 `artifacts/preparing_check_result.md`。\n\n**结论：6 个实验全部 DEAD，无一进入训练。**\n\n根因统一：两台服务器 nvidia-smi 只暴露 GPU 0（各 ~96GB），但实验分配的 cuda:1/2/3 不可见，`torch.cuda.set_device()` 立即抛 `RuntimeError: No CUDA GPUs are available`，所有进程在 11:40 UTC 启动后秒崩。\n\n需要排查的关键问题：\n- 两台服务器为什么只有 1 张 GPU 可见？（`nvidia-smi -L` 能否列出更多？是 cgroup 限制还是 `CUDA_VISIBLE_DEVICES` 被设了？）\n- 修复 GPU 可见性后需要重新提交全部 6 个实验"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-preparing-experiments.md"
+}

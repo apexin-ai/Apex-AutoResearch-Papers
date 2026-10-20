@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7cc8943853cdd82398b1",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_7_1779951374.md",
+  "task_key": "loop_7_1779951374",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1779951374.md",
+    "occurrence": 1,
+    "bytes": 6498,
+    "sha256": "636d50e1bb70df806b2d7193b9b83a3eb3d9a17dc3821cf831be5aa5d19ad86f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-28T06:29:57+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 westd-10894 cuda:0-3 和 westd-34685 cuda:0-3（C001），即使 Director 指令也不得用白名单外 GPU\n- **Paper DDL: 2026-05-28 12:00 UTC**（C003），Cell 4 v2 n≥3 是 DDL 前必达目标\n- cutoff/reverse_cutoff 实验禁止 --resume（C002，finetune.py resume 后 batch_idx 从 0 重计）\n- **westd-34685 基础模型 index.json 已被污染**：`/root/autodl-tmp/models/openvla-7b/model.safetensors.index.json` 引用 4-shard 命名但实际文件是 3-shard。**任何新实验的 checkpoint save 都可能因此失败**。必须先修复（从 HF 下载原始 index.json 覆盖）再信任后续 checkpoint\n- 论文策略：纯 v2 数据，v1 数据不纳入主 claim（Director 决策 D067）\n- 论文 framing = D074 Dual Main Effects（gradient flow 主效应 + normalization 主效应），不再是 ordinal interaction\n\n### 2. 🖥️ 基础设施快照\n- **westd-34685**: 工作目录 `/root/occsafe_vla`，conda env `occsafe`（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`）\n- **westd-10894**: 同上结构，conda env `occsafe`\n- 模型：`/root/autodl-tmp/models/openvla-7b/`（⚠️ 34685 上 index.json 已损坏）\n- 数据：`/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops`（4600 demos）/ `libero_object_no_noops`（454 demos）\n- Checkpoints: `/root/autodl-tmp/checkpoints/<exp_id>/`\n- WANDB_MODE=disabled（所有实验）\n- 磁盘：34685 ~148G free / 10894 ~139G free（已清理过旧 checkpoint）\n- **活跃进程（8个，全部有 cron 监控）**：\n\n| 服务器:GPU | exp_id | PID | Cell | 来源 |\n|-----------|--------|-----|------|------|\n| 34685:0 | detach_ln_v2_s2 | 47162 | Cell 4 | resume@25000, retry 2 |\n| 34685:1 | full_occ_bn_v2_s2 | 62455 | Cell 1 | from scratch, ~04:41 UTC |\n| 34685:2 | full_occ_ln_v2_s3 | 56474 | Cell 2 | resume@40000, retry 1 |\n| 34685:3 | detach_ln_v2_s3 | 56822 | Cell 4 | resume@40000, retry 1 |\n| 10894:0 | vanilla_object_s1 | 798980 | object baseline | retry 1 |\n| 10894:1 | detach_ln_v2_s4 | 822402 | Cell 4 | from scratch, ~22:39 May 27 |\n| 10894:2 | full_occ_bn_v2_s3 | 959661 | Cell 1 | from scratch, ~05:00 UTC |\n| 10894:3 | vanilla_object_s2 | 959808 | object baseline | from scratch, ~05:00 UTC |\n\n### 3. 📊 当前状态\n\n**刚完成（Batch A eval）：**\n- full_occ_ln_s4_eval → SUCCESS, CAR=0.754 → Cell 2 now n=4\n- detach_ln_v2_s0c_r3_eval → SUCCESS, CAR=0.802 → Cell 4 now n=2\n\n**2 个 ANALYZING 未关闭**：`detach_ln_v2_s0c_r3`（success，eval 已完成但 registry 仍 ANALYZING）、`detach_ln_s4`（eval failed，TSR=0.018，v1 异常数据）\n\n**Factorial 数据现状：**\n| Cell | Condition | Confirmed n | Running | CAR mean |\n|------|-----------|------------|---------|----------|\n| 1 | Full OCC BN | 3 | +2 (s2, s3) ⏳超DDL | 0.725±0.064 |\n| 2 | Full OCC LN | 4 | +1 (s3 from 40k) | 0.777±0.032 |\n| 3 | Detach BN | 4 | — | 0.767±0.024 |\n| 4 | Detach LN | 2 | +3 (s2, s3, s4) | 0.814 (n=2) |\n| — | Vanilla | 3 | — | 0.745±0.024 |\n\n**DDL 关键路径（均为 Cell 4，最稀缺）：**\n- detach_ln_v2_s2 (34685:0): resume@25000 → ETA ~04:29 May 28 → eval ~05:10 → **Cell 4 n=3** ✅ DDL 可达\n- detach_ln_v2_s3 (34685:3): resume@40000 → ETA ~05:42 → eval ~06:15 → Cell 4 n=4\n- detach_ln_v2_s4 (10894:1): from scratch → ETA 较晚但 ROADMAP 标 ~23:12 May 27（应已过大半）\n- full_occ_ln_v2_s3 (34685:2): resume@40000 → ETA ~05:35 → eval ~06:10 → Cell 2 n=5\n\n**不会在 DDL 前完成（rebuttal 储备）：** full_occ_bn_v2_s2、full_occ_bn_v2_s3、vanilla_object_s1、vanilla_object_s2\n\n**无活跃 Worker（count=0）。** 下一个你应该在训练完成回调时 spawn eval worker。\n\n### 4. 📋 待办（条件触发式）\n\n- detach_ln_v2_s2 训练完成 cron 回调 → spawn Worker 跑 50-rollout SafeLIBERO eval → 结果出来 Cell 4 n=3 → 触发全量 ANOVA\n- detach_ln_v2_s4 训练完成 → eval → Cell 4 n=3 或 n=4（取决于 s2 是否先到）\n- detach_ln_v2_s3 + full_occ_ln_v2_s3 完成（Batch C）→ eval → Cell 4 n=4, Cell 2 n=5\n- **Cell 4 n≥3 达成 → 全量数据重跑 statistical_tests.py → 更新 Table 1 → 更新 abstract/results section → 编译 PDF → 提交**\n- 编译+提交预留至少 1h（即 11:00 UTC 前必须 paper ready）\n- `detach_ln_v2_s0c_r3` 和 `detach_ln_s4` 仍在 ANALYZING → 关闭为 DONE（s0c_r3 → success with metrics; s4 → failed/anomaly）\n- full_occ_bn_v2_s2/s3 完成回调（超DDL）→ 更新 registry → Cell 1 rebuttal 数据\n- vanilla_object_s1/s2 完成回调（超DDL）→ 更新 registry → object benchmark rebuttal 数据\n- **34685 index.json 修复**：如果 s2/s3 在 resume 后还需要保存新 checkpoint（step 45000/50000），可能再次因 index.json 损坏而失败。建议 spawn Worker 先修复。但如果实验已经过了最后一个 checkpoint save point（step 50000 = max_steps），则不需要\n\n### 5. 🎯 战略上下文\n\n**核心论证链：**\n- D074: Dual main effects — gradient flow 主效应 (Δ=-4.6pp, d=0.60) + normalization 主效应 (LN>BN, Δ=+5.6pp, d≈1.03)\n- ANOVA 交互项 ≈ 0（数学上不可能显著），所以不叫 \"interaction\"，叫 \"dual main effects + practical threshold crossing\"\n- BN+Grad ON (Cell 1, 0.725) 是唯一低于 Vanilla (0.745) 的配置 — 这是 practical safety threshold\n- **机制层面无可用证据**（v1 全是 bug 产物，v2 只有梯度正交性排除了直接冲突）。论文走 Option B：CAR 统计分析为核心 + 梯度正交性辅助\n\n**易错点：**\n- 不要把 v1 数据和 v2 数据混在一起。Cell 3 的 n=4 和 Cell 1 的 n=3 是 v2 confirmed，但 v1 的 s4 eval 数据（Cell 2 CAR=0.754, Cell 3 CAR=0.738）**不纳入** v2 统计\n- detach_ln_s4（v1 异常 checkpoint）TSR=0.018 是 bug 产物，不是 negative result\n- Cell 4 当前 n=2 的 mean 用 (0.826 + 0.802) / 2 = 0.814，不是只有 0.826\n- ROADMAP 的 ETA 是之前算的，训练 resume 后 ETA 可能漂移，以 cron 回调为准\n- full_occ_ln_v2_s3 和 detach_ln_v2_s3 之前都因 index.json 损坏在 step 40000 崩溃，现在从 35000 rebuild checkpoint resume。如果 index.json 没修，它们在 step 45000 可能再崩。**这是最大风险**\n- 目标会议在 ROADMAP 写的是 \"SafeRL Workshop @ RSS 2025\" DDL May 28，paper_framing.md 写 \"CoRL 2026\" — 以 ROADMAP 为准\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1779951374.md"
+}

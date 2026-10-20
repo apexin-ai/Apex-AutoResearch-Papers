@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a1049fc246dbb43da3d",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra verify ablation s1 launch",
+  "task_key": "worker_infra_verify_ablation_s1_launch_20260521T042326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_verify_ablation_s1_launch_20260521T042326_result.json",
+    "occurrence": 1,
+    "bytes": 1109,
+    "sha256": "7ff89443fb930bd6cbaac9f923f770e18df9c49025fdacd293f2639445eb3fcd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 全部 4 卡状态\n\n| GPU | Util | Memory |\n|-----|------|--------|\n| 0 | 0%* | 62203 / 97887 MiB |\n| 1 | 0%* | 62209 / 97887 MiB |\n| 2 | 0%* | 62779 / 97887 MiB |\n| 3 | 0%* | 62203 / 97887 MiB |\n\n*util 0% 是瞬时采样，4 卡均已分配 ~62GB 显存，log 显示训练在正常推进。\n\n## ablation_occ_detach_s1\n- **PID**: wrapper 485753, python worker 可见于 cmdline\n- **CUDA**: CUDA_VISIBLE_DEVICES=2 ✓\n- **参数验证**: OK — `--occ_detach true --seed 43 --num_images_in_input 2 --use_proprio True`\n- **进度**: step 26/50005\n- **速度**: 稳态 ~1.08 it/s（最后两步偶发慢至 4-6 s/it，可能是 checkpoint/数据加载抖动）\n\n## ablation_random_occ_s1\n- **PID**: wrapper 485903, python worker 486047\n- **CUDA**: CUDA_VISIBLE_DEVICES=3 ✓\n- **参数验证**: OK — `--random_occ True --occ_detach false --seed 43 --num_images_in_input 2 --use_proprio True`\n- **进度**: step 24/50005\n- **速度**: 稳态 ~1.07-1.08 it/s（同样末尾有短暂抖动）\n\n两个 s1 实验均正常启动，参数正确，训练速度符合预期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-verify-ablation-s1-launch.md"
+}

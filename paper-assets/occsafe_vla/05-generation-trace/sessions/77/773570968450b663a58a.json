@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "773570968450b663a58a",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "fix 10894 disk cleanup restart",
+  "task_key": "worker_fix_10894_disk_cleanup_restart_20260528T014157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_10894_disk_cleanup_restart_20260528T014157_result.json",
+    "occurrence": 1,
+    "bytes": 1952,
+    "sha256": "bec358face5985581c48306080919a29526ac2182d3414f53557ee2a04e9b62f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已收集完毕，汇总报告：\n\n---\n\n## 10894 磁盘清理 + 状态报告\n\n### 1. 磁盘清理\n\n| | 容量 | 已用 | 可用 | 使用率 |\n|---|---|---|---|---|\n| **清理前** | 250G | 250G | 400K | **100%** |\n| **清理后** | 250G | 102G | 149G | **41%** |\n\n**释放约 148G。** 删除了以下目录：\n\n| 目录 | 大小 |\n|---|---|\n| detach_ln_v2_s0c_r3 | 30G |\n| full_occ_ln_s4 | 30G |\n| full_occ_ln_v2_s1c | 30G |\n| full_occ_ln_v2_s2 | 30G |\n| detach_ln_s3 | 15G |\n| vanilla_v2_s1 | 15G |\n| cutoff_15k_s1 | 463M |\n| 11个空/4K目录 | ~0 |\n\n剩余 checkpoint 目录仅 4 个：vanilla_object_s1（运行中）、detach_ln_v2_s4（运行中）、full_occ_bn_object_s0（崩溃待重启）、detach_bn_object_s0（崩溃待重启）。\n\n### 2. 存活实验确认\n\n| 实验 | PID | GPU | 运行时间 | 状态 |\n|---|---|---|---|---|\n| vanilla_object_s1 | 798980 | cuda:0 (73%, 63G/96G) | 7h51m | **ALIVE** |\n| detach_ln_v2_s4 | 822480 | cuda:1 (49%, 62G/96G) | 3h03m | **ALIVE** |\n\nGPU 2-3 空闲。\n\n### 3. 崩溃实验重启评估\n\n- 磁盘可用：**149G >= 60G** ✅\n- `full_occ_bn_object_s0/...5000_chkpt` ✅ 存在\n- `detach_bn_object_s0/...5000_chkpt` ✅ 存在\n- **可以重启。** GPU 2-3 空闲，磁盘充足。\n\n### 4. 34685 磁盘状况\n\n| 容量 | 已用 | 可用 | 使用率 |\n|---|---|---|---|\n| 350G | 300G | 51G | 86% |\n\nCheckpoint 分布（按大小）：\n\n| 目录 | 大小 |\n|---|---|\n| detach_ln_v2_s2 | 30G |\n| detach_ln_v2_s3 | 30G |\n| full_occ_ln_v2_s3 | 30G |\n| vanilla_object_s0 | 30G |\n| cutoff_25k_s1_v2 | 15G |\n| detach_bn_v2_s0 | 15G |\n| detach_bn_v2_s1 | 15G |\n| detach_bn_v2_s2 | 15G |\n| detach_ln_s3 | 15G |\n| full_occ_bn_v2_s1 | 15G |\n| mvp_occ_s4 | 15G |\n| vanilla_v2_s1 | 15G |\n| vanilla_v2_s2 | 15G |\n| **合计** | **~255G** |\n\n34685 如需更多空间，有大量已完成实验 checkpoint 可清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-10894-disk-cleanup-restart.md"
+}

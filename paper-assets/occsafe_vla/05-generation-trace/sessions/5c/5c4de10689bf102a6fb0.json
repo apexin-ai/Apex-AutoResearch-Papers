@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c4de10689bf102a6fb0",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "paper gradient caption check",
+  "task_key": "worker_paper_gradient_caption_check_20260525T112650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_gradient_caption_check_20260525T112650_result.json",
+    "occurrence": 1,
+    "bytes": 987,
+    "sha256": "75d6289c93babf94517681ac0869cb0bffcd8ae1d37a3cf925c184e50de86b9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n**(a) 图中实际包含的 conditions：** Vanilla, Full OCC, Random OCC, Detach — 共 4 个。\n\n**(b) 修改内容：** 数量 \"four\" 不变（确实是 4 个），但修正了条件列表：`Full OCC+LN` → `Random OCC`（Full OCC+LN 不在图中，Random OCC 在图中）。\n\n**(c) 修改后的 caption 全文：**\n\n> Gradient dynamics during VLA fine-tuning (seed 42, 200 batches at 50K checkpoint; four conditions: Vanilla, Full OCC, Random OCC, Detach OCC). (a) Action loss gradient norms per encoder layer: Vanilla, Full OCC, and Random OCC are comparable, while Detach collapses to 1–13% of Vanilla. (b) Auxiliary loss gradient norms in the shared encoder (Detach excluded; no auxiliary gradients by design). (c) Action–auxiliary gradient cosine similarity per layer (near zero for both Full OCC and Random OCC, which confirms orthogonality). (d) Gradient collapse ratio (Detach / Vanilla) quantifying the per-layer collapse magnitude."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-gradient-caption-check.md"
+}

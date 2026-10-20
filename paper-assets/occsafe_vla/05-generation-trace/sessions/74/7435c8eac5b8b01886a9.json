@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "7435c8eac5b8b01886a9",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "analysis gradient westd10894",
+  "task_key": "worker_analysis_gradient_westd10894_20260523T034851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gradient_westd10894_20260523T034851.log",
+    "occurrence": 1,
+    "bytes": 1065855,
+    "sha256": "ce0d8b5f290f82ba88ba7304029571d32582a2832b4db4f44d806d36143bb20f"
+  },
+  "statistics": {
+    "messages": 363,
+    "user_turns": 1,
+    "tool_calls": 135,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 85,
+      "tool_call": 135,
+      "tool_result": 135,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 328,
+      "chunks": [
+        {
+          "path": "7435c8eac5b8b01886a9-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7435c8eac5b8b01886a9-part-0002.json",
+          "message_count": 148
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 35,
+      "chunks": [
+        {
+          "path": "7435c8eac5b8b01886a9-part-0002.json",
+          "message_count": 32
+        },
+        {
+          "path": "7435c8eac5b8b01886a9-part-0003.json",
+          "message_count": 3
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-gradient-westd10894.md"
+}

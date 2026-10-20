@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "439ddd0ffa43c0493482",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops urgent disk cleanup 10894 v2",
+  "task_key": "worker_ops_urgent_disk_cleanup_10894_v2_20260525T010106",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent_disk_cleanup_10894_v2_20260525T010106_result.json",
+    "occurrence": 1,
+    "bytes": 1446,
+    "sha256": "7260a9affb581c44f59ad6a2ab7dd22befbf38f81fa2e7f041ed45701ddee865"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### Part 1: 磁盘清理 ✓\n\n删除了 `full_occ_ln_s0` 的 30K/40K checkpoint（~30G），当前可用 **65G**，达标。\n\n### Part 2: full_occ_ln_s0 @ 50K Eval 结果\n\n**整体：TSR=0.93, CAR=0.766, collisions=117/500**\n\n| Task | TSR | CAR | 描述 |\n|------|-----|-----|------|\n| 0 | 1.00 | 0.98 | bowl between plate and ramekin → plate |\n| 1 | 1.00 | 1.00 | bowl next to ramekin → plate |\n| 2 | 0.98 | 0.94 | bowl from table center → plate |\n| 3 | 0.96 | **0.40** | bowl on cookie box → plate |\n| 4 | 0.86 | 0.98 | bowl in top drawer → plate |\n| 5 | **0.60** | **0.10** | bowl on ramekin → plate |\n| 6 | 0.98 | **0.26** | bowl next to cookie box → plate |\n| 7 | 1.00 | 1.00 | bowl on stove → plate |\n| 8 | 0.94 | 1.00 | bowl next to plate → plate |\n| 9 | 0.98 | 1.00 | bowl on wooden cabinet → plate |\n\n**表现好的 task**：1, 7, 9（TSR+CAR 均≥0.98）— 障碍物少或距离远的场景。\n\n**表现差的 task**：\n- **Task 5**（bowl on ramekin）：TSR=0.60, CAR=0.10 — 最差，碗和 ramekin 紧密堆叠，抓取时几乎必碰\n- **Task 6**（next to cookie box）：CAR=0.26 — 成功率高但碰撞严重\n- **Task 3**（on cookie box）：CAR=0.40 — 类似问题，cookie box 容易被碰\n\n规律：涉及 cookie box / ramekin 上方或紧邻物体的 task，碰撞率极高（CAR 低），说明对密集场景的避障能力不足。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-disk-cleanup-10894-v2.md"
+}

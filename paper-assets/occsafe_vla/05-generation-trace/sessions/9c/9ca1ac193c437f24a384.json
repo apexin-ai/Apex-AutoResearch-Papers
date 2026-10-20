@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ca1ac193c437f24a384",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose full occ ln s1 s2 failure",
+  "task_key": "worker_diagnose_full_occ_ln_s1_s2_failure_20260525T022650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_full_occ_ln_s1_s2_failure_20260525T022650_result.json",
+    "occurrence": 1,
+    "bytes": 1253,
+    "sha256": "0d23501082ee383eeb4c2a459116561bb0a1d2191469f2d8cefe63e53357e729"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 结论：**False Positive — 两个实验都已成功完成训练**\n\n**根因**：`EXIT_CODE=1` 由 PyTorch 的 `destroy_process_group()` 未调用警告触发，不是真正的训练错误。这是 `torchrun` 的已知行为——进程正常退出但未显式调用 `destroy_process_group()`，NCCL 后端打印 warning 并导致非零退出码。\n\n```\n[rank0]:[W525 10:23:32] Warning: WARNING: destroy_process_group() was not called before program exit\n```\n\n**两个实验的日志完全一致地显示：**\n\n| 指标 | full_occ_ln_s1 | full_occ_ln_s2 |\n|------|---------------|---------------|\n| 最终 step | `Max step 50005 reached!` | `Max step 50005 reached!` |\n| step 30000 aux loss | occ=0.0089, action=0.0515 | occ=0.0074, action=0.0415 |\n| 50000_chkpt 已保存 | Yes (15GB, 完整) | Yes (15GB, 完整) |\n| 失败原因 | destroy_process_group warning | 同左 |\n\n**Checkpoint 验证**：两个 `50000_chkpt` 目录完整存在，包含全部文件（4 个 model safetensors shard、action_head、occ_head、proprio_projector、lora_adapter 等），文件大小一致，时间戳均为 `May 25 10:22-10:23`。\n\n**无需恢复训练，可直接用 50000 checkpoint 进行评估。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-full-occ-ln-s1-s2-failure.md"
+}

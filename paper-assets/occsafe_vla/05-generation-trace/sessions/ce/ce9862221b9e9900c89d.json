@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ce9862221b9e9900c89d",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "paper urgent baseline fix",
+  "task_key": "worker_paper_urgent-baseline-fix_20260527T024502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_urgent-baseline-fix_20260527T024502_result.json",
+    "occurrence": 1,
+    "bytes": 1747,
+    "sha256": "62b9278b295e1ccdfdaecd98bcbc5f797326f79cfd636a50a5210e66abd1b508"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not a git repository — can't produce a diff. The edits are complete and verified via grep.\n\n**Summary of all changes made across 6 files:**\n\n| File | Changes |\n|------|---------|\n| **main.tex** | Abstract: removed \"at most 1 of 12\", binomial test claim (\"11/12 ≤ Vanilla; p≈0.003\"), and \"directional consistency\" sentence. Central finding rewritten to: gradient flow ON degrades CAR, gradient OFF recovers baseline. |\n| **introduction.tex** | L3/L10: 78.0% → 74.5%. L16: removed binomial claim and \"at most 1 of 12\" language. L20 (C1): \"does not improve under any of 12\" → \"with gradient flow degrades…while detach recovers baseline\". |\n| **method.tex** | Updated \"LN cells and additional Vanilla seeds are in progress\" → \"LN cells remain at n=1\" (Vanilla now has 3 seeds). |\n| **results.tex** | Baseline updated v2: 0.768 → 0.745±0.024 (3 seeds). Table 1 Vanilla row: 1 seed → 3 seeds, 0.768 → 0.745±0.024. ΔCARs recalculated: Detach OCC +2.2, Detach+LN +2.0, Full OCC+LN −0.5, Full OCC −2.0. Narrative updated (Detach variants now exceed baseline). Deleted η²=0.37 and d=1.41 parenthetical. Removed \"all twelve conditions at or below Vanilla\" / binomial sign-test passage. |\n| **discussion.tex** | \"all tested configurations perform at or below\" → \"gradient flow configurations degrade safety below\". |\n| **conclusion.tex** | Removed \"all twelve configurations perform at or below the no-auxiliary-head baseline\". Removed Δ=−4.2pp/−2.5pp values. Rewritten to: gradient flow degrades, detach recovers. |\n| **appendix.tex** | L108: \"Vanilla 0.768\" → \"Vanilla 0.745\". L132: replaced binomial/\"all twelve\" claim with gradient flow consistency evidence. |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-urgent-baseline-fix.md"
+}

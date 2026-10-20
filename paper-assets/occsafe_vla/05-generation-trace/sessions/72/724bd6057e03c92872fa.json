@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "724bd6057e03c92872fa",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops 34685 disk cleanup",
+  "task_key": "worker_ops_34685-disk-cleanup_20260526T205826",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_34685-disk-cleanup_20260526T205826_result.json",
+    "occurrence": 1,
+    "bytes": 761,
+    "sha256": "8c706870c39fe4bb0b550c78835ed4e9f3eb406b391e943b900fbbb4085fc087"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Phase 4: 清理完成\n\n| 指标 | 清理前 | 清理后 |\n|------|--------|--------|\n| 已用 | 260G (75%) | 200G (58%) |\n| 可用 | 91G (25%) | 151G (42%) |\n\n**释放 ~60G，删除项：**\n- `full_occ_bn_v2_s1/--40000_chkpt` — 15G（已完成实验中间 checkpoint）\n- `cutoff_15k_s1/` — 15G（v1 旧实验整目录）\n- `vanilla_retrain_s0/` — 15G（v1 旧实验整目录）\n- `full_occ_retrain_s0/` — 15G（v1 旧实验整目录）\n- `logs/archive/` — 1G\n- `/tmp` 临时文件 — 238M\n\n**4 个运行中实验全部正常**（PID 均存活）。剩余 checkpoint 目录仅含运行中实验和已完成 v2 实验的 50000_chkpt。\n\n4 个新实验（~60G）启动后预计剩余 ~91G (26%)，高于 20% 目标。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-34685-disk-cleanup.md"
+}

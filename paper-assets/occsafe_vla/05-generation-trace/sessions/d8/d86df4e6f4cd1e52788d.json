@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d86df4e6f4cd1e52788d",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval cutoff batch 34685 cuda1",
+  "task_key": "worker_eval_cutoff_batch_34685_cuda1_20260527T163924",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cutoff_batch_34685_cuda1_20260527T163924_result.json",
+    "occurrence": 1,
+    "bytes": 857,
+    "sha256": "d5cac60b75503062b3a4df3040830373bb2c83c38cb8cfa0277288a315af66ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "扫描完成，结果如下：\n\n## 汇总\n\n**两台服务器上所有 cutoff/reverse_cutoff 50K checkpoint：**\n\n| 服务器 | checkpoint 目录 | eval 状态 |\n|--------|----------------|-----------|\n| westd-10894 | cutoff_15k_s1 | cutoff_15k_s1_eval ✓ (CAR=0.76) |\n| westd-34685 | cutoff_25k_s1_v2 | cutoff_25k_s1_v2_eval ✓ (CAR=0.788) |\n\n**所有 12 个已成功的 eval 均已有结果，无需重跑。**\n\n**唯一的缺口：`reverse_cutoff_s2_v2_eval`**（训练成功但 eval failed），但 checkpoint 目录 `/root/autodl-tmp/checkpoints/reverse_cutoff_s2_v2` 在 westd-10894 和 westd-34685 上均已被删除，无法重新 eval。\n\n没有\"磁盘上有 50K checkpoint 但完全没 eval 记录\"的实验。\n\n**结论：无 eval 可跑。** `reverse_cutoff_s2_v2` 如果需要补数据，需要重新训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cutoff-batch-34685-cuda1.md"
+}

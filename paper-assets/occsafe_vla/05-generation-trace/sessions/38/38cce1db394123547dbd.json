@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "38cce1db394123547dbd",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops find 10894 log paths",
+  "task_key": "worker_ops_find-10894-log-paths_20260526T182255",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_find-10894-log-paths_20260526T182255_result.json",
+    "occurrence": 1,
+    "bytes": 1150,
+    "sha256": "9e9b624cae29036be933170c5605d67bf4cd3521f9b4b9b74eb9c74615062b0e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果如下：\n\n## 1. 日志文件路径\n\n| 实验 | 日志路径 |\n|------|---------|\n| full_occ_ln_v2_s0 | `/root/autodl-tmp/checkpoints/full_occ_ln_v2_s0/train.log` |\n| full_occ_ln_v2_s1 | `/root/autodl-tmp/checkpoints/full_occ_ln_v2_s1/train.log` |\n| detach_ln_v2_s0 | `/root/autodl-tmp/checkpoints/detach_ln_v2_s0/train.log` |\n\n## 2. 训练状态：3 个实验都已停止\n\n**tmux sessions 不存在** — `tmux list-sessions` 只有 `reverse_cutoff_s2_v2`。`ps aux | grep finetune` 也只有 reverse_cutoff_s2_v2 的进程。\n\n日志显示这 3 个实验都在 05/27 02:15 左右启动，跑到 **step ~275**（约 5 分钟）后停止。速度约 **1.07-1.08 it/s**。\n\n| 实验 | 最后 step | 初始 loss | 状态 |\n|------|-----------|-----------|------|\n| full_occ_ln_v2_s0 | ~275 | occ=0.1096, action=0.6719 | **已停止** |\n| full_occ_ln_v2_s1 | ~276 | occ=0.1727, action=0.6953 | **已停止** |\n| detach_ln_v2_s0 | ~275 | occ=0.1077, action=0.6797 | **已停止** |\n\n这 3 个实验需要重新启动。当前服务器上唯一在跑的 finetune 是 `reverse_cutoff_s2_v2`（在 cuda:0 上）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-find-10894-log-paths.md"
+}

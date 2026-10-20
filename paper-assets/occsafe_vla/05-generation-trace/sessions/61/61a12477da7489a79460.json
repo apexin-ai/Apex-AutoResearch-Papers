@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "61a12477da7489a79460",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code occ gt pipeline",
+  "task_key": "worker_code_occ-gt-pipeline_20260520T053311",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_occ-gt-pipeline_20260520T053311_result.json",
+    "occurrence": 1,
+    "bytes": 2368329,
+    "sha256": "cd34912f3b5a0536235e2de5a025f02864f8953bd8aa98715631572121143c59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2368349,
+                "serialized_sha256": "db539df9809f1a52de02488c2d68da3e472d8245a0bf2ce3ced109f90e487693",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-occ-gt-pipeline.md"
+}

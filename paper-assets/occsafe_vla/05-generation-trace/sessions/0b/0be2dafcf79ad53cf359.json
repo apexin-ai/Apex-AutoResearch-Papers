@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0be2dafcf79ad53cf359",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops kill all training",
+  "task_key": "worker_ops_kill-all-training_20260528T110356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-all-training_20260528T110356_result.json",
+    "occurrence": 1,
+    "bytes": 321,
+    "sha256": "8c7f5e1432324e6b01b8b0b76e3b09068671b4496e57421d2114b84699c697f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-10894\n- detach_ln_v2_s4 (PID 822402/822480): killed\n- full_occ_bn_v2_s3 (PID 959661): killed\n- vanilla_object_s2 (PID 959808): killed\n- GPU 状态: 全部释放\n\n## westd-34685\n- full_occ_bn_v2_s2 (PID 62455): killed\n- GPU 状态: 全部释放\n\n## Registry\n- 4 个实验已标记 killed"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-all-training.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d71ef9efef15babc9676",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diag 10894 queue check",
+  "task_key": "worker_diag_10894_queue_check_20260527T000407",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_10894_queue_check_20260527T000407_result.json",
+    "occurrence": 1,
+    "bytes": 1981,
+    "sha256": "55ed18fd9b6e5c37300be7ce3f6c57c8e2896fa7486b3ab5fcbc8fc97140df12"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### 总结：3 个实验均在 stall，GPU 利用率 0%\n\n| 实验 | PID | 存活 | 运行时间 | 最新 step | 总 step | 速度 | 状态 |\n|------|-----|------|----------|-----------|---------|------|------|\n| `full_occ_ln_v2_s0b` | 458140 (子: 458224) | Yes | 9h33m | **479**/50005 | 50005 | 5.71 s/it | **STALL** |\n| `full_occ_ln_v2_s1b` | 458300 (子: 458541) | Yes | 9h30m | **477**/50005 | 50005 | 5.79 s/it | **STALL** |\n| `detach_ln_v2_s0b` | 458618 (子: 458889) | Yes | 9h27m | **478**/50005 | 50005 | 5.85 s/it | **STALL** |\n\n### GPU 使用情况\n\n| GPU | 利用率 | 显存占用 | 进程 |\n|-----|--------|----------|------|\n| cuda:0 | **0%** | 79788/97887 MiB | PID 428963 (16.7GB) + PID 433768 (63GB) — **不属于这 3 个实验** |\n| cuda:1 | **0%** | 62203/97887 MiB | PID 458224 (full_occ_ln_v2_s0b) |\n| cuda:2 | **0%** | 62203/97887 MiB | PID 458541 (full_occ_ln_v2_s1b) |\n| cuda:3 | **0%** | 63013/97887 MiB | PID 458889 (detach_ln_v2_s0b) |\n\n### 关键观察\n\n1. **初始化耗时 ~7.5h**：进程在 05/26 23:54 UTC 启动，但 dataset 构建日志直到 05/27 07:55 UTC 才出现。启动到开始训练花了约 8 小时（可能是模型加载/数据加载瓶颈）。\n\n2. **训练仅跑了 ~475-479 步后 stall**：三个实验的日志都显示相同模式——正常速度 ~1.07 it/s 持续到 ~step 440，然后突然出现剧烈减速（4-6 s/it），短暂恢复后再次 stall。这与前身实验（v2_s0, v2_s1）在 step 275 stall 的模式一致。\n\n3. **GPU 利用率 0% + 显存已占用** = 进程 hang 住了，不在做计算。\n\n4. **cuda:0 不空闲**：有两个其他进程（PID 428963 和 433768）占用了 ~80GB 显存，利用率也是 0%。\n\n### 结论\n\n三个实验全部 stall，和之前的 v2 实验相同症状。问题不在于偶发，而是系统性的——可能是数据加载管线 deadlock 或某个 CUDA 操作 hang。已按要求不杀进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-10894-queue-check.md"
+}

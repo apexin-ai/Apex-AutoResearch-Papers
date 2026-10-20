@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "267dd069811f17e0f9ae",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "paper related work mtl",
+  "task_key": "worker_paper_related_work_mtl_20260523T065237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_related_work_mtl_20260523T065237_result.json",
+    "occurrence": 1,
+    "bytes": 798,
+    "sha256": "a439c630e3e1cf2b027d024f78ecd67f6951a1463bd72398d760ac503cf97632"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。\n\n**related_work.tex** (lines 47-50): 在 \"Auxiliary Tasks and Regularization\" 子节中插入了 `\\paragraph{Multi-Task Gradient Dynamics.}` 段落（12 句），结构为：\n1. 介绍 GradNorm/PCGrad/CAGrad/NashMTL 的共同前提（gradient conflict）\n2. 用实验数据（cosine ≈ 0, conflict rate 42-57%）说明本文处于 benign regime，conflict management 不适用\n3. 核心论点：gradient amplification (8-69×) 而非 conflict resolution\n4. EWC 连接：auxiliary supervision 通过 shared gradient flow 隐式实现类似 EWC 的 feature protection\n\n**references.bib**: 新增 6 条 bib 条目（chen2018gradnorm, yu2020pcgrad, liu2021cagrad, navon2022nashmtl, kirkpatrick2017ewc），放在 Multi-Task Learning / Regularization 分区内。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-related-work-mtl.md"
+}

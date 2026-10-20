@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70da0a046588b2c90c1d",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops westd34685 intermediate cleanup",
+  "task_key": "worker_ops_westd34685_intermediate_cleanup_20260523T141339",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd34685_intermediate_cleanup_20260523T141339_result.json",
+    "occurrence": 1,
+    "bytes": 741,
+    "sha256": "1421c2272550e116fc631c4fed86b79c53c942afad6d07b031fd911614bb4c86"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. 删除情况\n共删除 **8 个中间 checkpoint**，释放 **~120GB**（每个 15GB）。\n\n注：用户指定的路径 `step-XXXXX-checkpoint/` 不存在，实际路径为 `--XXXXX_chkpt` 格式，已按对应关系正确删除。\n\n### 2. 保留的 checkpoint\n\n| 实验 | 保留 |\n|------|------|\n| reverse_cutoff_s0 | final + 30000_chkpt |\n| cutoff_25k_s0 | final + 30000_chkpt |\n| vanilla_retrain_s0 | final + 10000_chkpt |\n| full_occ_retrain_s0 | final + 10000_chkpt |\n\n### 3. ablation 目录安全\n- `ablation_occ_detach_s2/` — SAFE\n- `ablation_random_occ_s2/` — SAFE\n\n### 4. 磁盘状态\n- 删除前：230G used / 121G avail (66%)\n- 删除后：**111G used / 240G avail (32%)**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd34685-intermediate-cleanup.md"
+}

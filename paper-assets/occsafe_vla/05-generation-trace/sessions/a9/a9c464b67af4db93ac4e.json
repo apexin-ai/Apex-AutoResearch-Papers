@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a9c464b67af4db93ac4e",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval ablation s2 batch",
+  "task_key": "worker_eval_ablation_s2_batch_20260522T210350",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_ablation_s2_batch_20260522T210350_result.json",
+    "occurrence": 1,
+    "bytes": 1615,
+    "sha256": "ee7270c725d0714f8ca59667d4692705b528ad0a4e301ef460c6658f575715c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成总结：\n\n## 训练完成确认\n\n| 实验 | Steps | 耗时 | 退出码 |\n|------|-------|------|--------|\n| ablation_occ_detach_s2 | 50005 | ~14h46m | 0 |\n| ablation_random_occ_s2 | 50005 | ~14h48m | 0 |\n\n## Checkpoint 完整性\n\n两个 checkpoint 均完整（~14.4GB each）：\n- 4× safetensors (model shards)\n- action_head--50000_checkpoint.pt (302MB)\n- occ_head--50000_checkpoint.pt (2.4MB)\n- proprio_projector--50000_checkpoint.pt (67MB)\n- lora_adapter/\n- dataset_statistics.json, config.json, tokenizer\n\n路径：\n- Detach: `/root/autodl-tmp/checkpoints/ablation_occ_detach_s2/openvla-7b+...--50000_chkpt`\n- Random: `/root/autodl-tmp/checkpoints/ablation_random_occ_s2/openvla-7b+...--50000_chkpt`\n\n## Eval 启动状态\n\n| Eval | GPU | tmux session | 进度 | 输出路径 |\n|------|-----|-------------|------|---------|\n| detach_s2 | cuda:1 | `eval_detach_s2` | T0: 4/50 | `/root/occsafe_vla/eval_results/ablation_occ_detach_s2_50r_50000.json` |\n| random_s2 | cuda:0 | `eval_random_s2` | T0: 40/50 | auto-generated in `/root/occsafe_vla/artifacts/` |\n\n注：`eval_random_s2` 由之前的自动化触发，未设 `--output_path`，结果会写到 artifacts 目录。已清理重复的 `ablation_random_occ_s2_eval` session（kill PID 44845）。\n\n## 训练 Loss\n\n日志中仅有 tqdm 进度条输出，loss 走 wandb，无法从日志提取。\n\n## 预估 Eval 完成时间\n\n每个 rollout ~4-6s，50 rollouts × 10 tasks = 500 episodes ≈ 35-50 min。\n- random_s2 预计 ~05:35 UTC 完成（已领先）\n- detach_s2 预计 ~05:45 UTC 完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-ablation-s2-batch.md"
+}

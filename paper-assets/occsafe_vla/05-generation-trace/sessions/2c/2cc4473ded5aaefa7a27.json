@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2cc4473ded5aaefa7a27",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose v2 rebuild crash",
+  "task_key": "worker_diagnose_v2_rebuild_crash_20260525T134307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_v2_rebuild_crash_20260525T134307_result.json",
+    "occurrence": 1,
+    "bytes": 1142,
+    "sha256": "050a612c90314383f159f1ee13ea4e14a42bd7f8de22f706df9815d63e48f296"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n### 关键错误行（3 个日志完全一致）\n\n```\nfinetune.py: error: unrecognized arguments: --occ_norm_type bn\n```\n\nexitcode=2（argparse 参数错误），不是 OOM 也不是 CUDA 冲突。\n\n### 根因\n\n**`finetune.py` 不支持 `--occ_norm_type` 参数。** v2 rebuild 实验的启动配置中传了 `--occ_norm_type bn`，但当前服务器上的代码版本没有这个 CLI 参数定义。需要在 `finetune.py` 的 argparse 中添加 `--occ_norm_type` 参数，或者确认服务器代码是否已同步到包含该参数的版本。\n\n### GPU 状态\n\n4 张 GPU 全部被 dose-response 实验占满（各 ~62GB/98GB, 74-99% util），但这不是本次崩溃的原因——3 个实验在 argparse 阶段就挂了，根本没走到 GPU 分配。\n\n### 重试建议\n\n1. **先修代码**：在 `finetune.py` 的 argparse 中加入 `--occ_norm_type` 参数，或同步最新代码到 westd-34685\n2. **等 GPU 释放后再重试**：dose-response 实验占满了 cuda:0-3，即使修复参数问题现在也没 GPU 可用。等 dose-response 完成（~20:30 UTC 预估）后重提交"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-v2-rebuild-crash.md"
+}

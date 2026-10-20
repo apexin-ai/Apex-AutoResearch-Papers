@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3a3256eef5a5246c66f",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "paper gradient figure",
+  "task_key": "worker_paper_gradient_figure_20260523T183457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_gradient_figure_20260523T183457_result.json",
+    "occurrence": 1,
+    "bytes": 963,
+    "sha256": "2308768fc2ae135549bc1acf05568d608d85a1e051ee40491854c1a161eb9f26"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。生成的 2×2 论文级图表包含：\n\n- **(a) Action Gradient Norms** — Detach（红色）梯度接近零（~0.002-0.03），其余三个条件正常（0.06-0.39），证实梯度崩溃。Random OCC 略高于 Vanilla 和 Full OCC。\n- **(b) OCC Auxiliary Gradient Norms** — Full OCC 辅助梯度远大于 Random OCC（尤其 SigLIP 后层 Full OCC 达 0.23 vs Random OCC 0.07），符合预期（structured vs random targets）。\n- **(c) Cosine Similarity Heatmap** — 所有层 action-aux 梯度余弦相似度接近零（-0.031 ~ +0.013），确认两组梯度近乎正交，OCC 辅助任务不干扰 action 学习。\n- **(d) Gradient Collapse Ratio** — Detach/Vanilla 比率全部 < 0.13，DINOv2 中间层（D4-D12）低至 0.02，定量展示 stop-gradient 导致的视觉特征崩溃。\n\n产出文件：`artifacts/figures/gradient_analysis_combined.pdf` + `.png`（300 DPI），已注册为 `art_20260523_a4b9c0`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-gradient-figure.md"
+}

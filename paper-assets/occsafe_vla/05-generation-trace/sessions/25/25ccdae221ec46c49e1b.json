@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "25ccdae221ec46c49e1b",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra P0 kill and restart occ s1 correct params",
+  "task_key": "worker_infra_P0_kill_and_restart_occ_s1_correct_params_20260521T004253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_P0_kill_and_restart_occ_s1_correct_params_20260521T004253_result.json",
+    "occurrence": 1,
+    "bytes": 1046,
+    "sha256": "ea70c67d38936f36699b99054353d82077944241aa6c78346b1d3819ebe3a7f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**汇报：**\n\n- **Step 1:** PID 54250 — **KILLED** (force_killed)\n- **Step 2:** occ_s0 完整命令行已提取，含所有关键超参数\n- **Step 3:** occ_s1 已重启，tmux PID 56245，GPU 进程 PID 56325（cuda:1, 正在加载模型 550 MiB）\n- **Step 4:** 参数验证 — **PASS**\n\n关键参数确认（从 `/proc` cmdline 逐项核对）：\n\n| 参数 | 值 | 状态 |\n|------|-----|------|\n| `num_images_in_input` | 2 | ✓ |\n| `use_proprio` | True | ✓ |\n| `batch_size` | 8 | ✓ |\n| `learning_rate` | 5e-4 | ✓ |\n| `image_aug` | True | ✓ |\n| `lora_rank` | 32 | ✓ |\n| `use_l1_regression` | True | ✓ |\n| `use_diffusion` | False | ✓ |\n| `use_film` | False | ✓ |\n| `use_occ_head` | True | ✓ |\n| `occ_data_dir` | /root/occsafe_vla/occ_data | ✓ |\n| `occ_detach` | false | ✓ |\n| `seed` | 43 | ✓ |\n| `resume` | True, step 7500 | ✓ |\n| `CUDA_VISIBLE_DEVICES` | 1 | ✓ |\n| `run_root_dir` | .../occ_s1 | ✓ |\n| `vla_path` | ...occ_s1/...--7500_chkpt | ✓ |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-p0-kill-and-restart-occ-s1-correct-params.md"
+}

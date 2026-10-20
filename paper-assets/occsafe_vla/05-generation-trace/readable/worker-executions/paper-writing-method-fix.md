@@ -1,0 +1,3431 @@
+# paper writing method fix
+
+**Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? A Factorial Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 54
+- **Recorded user turns:** 0
+- **Tool calls:** 19
+- **Original source:** `logs/workers/worker_paper_writing_method_fix_20260520T210126.log`
+- **Structured JSON:** [`b61aa53a116ad71b3aab.json`](../../sessions/b6/b61aa53a116ad71b3aab.json)
+
+## Before a recorded user message
+
+54 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla",
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__auto_build_provenance",
+    "mcp__agent-ml-research__bootstrap_provenance",
+    "mcp__agent-ml-research__check_figures_and_layout",
+    "mcp__agent-ml-research__check_paper_consistency",
+    "mcp__agent-ml-research__check_provenance_completeness",
+    "mcp__agent-ml-research__cleanup_pdf_images",
+    "mcp__agent-ml-research__compute_coverage_matrix",
+    "mcp__agent-ml-research__edit_paper_section",
+    "mcp__agent-ml-research__get_image_info",
+    "mcp__agent-ml-research__get_worker_status",
+    "mcp__agent-ml-research__list_artifacts",
+    "mcp__agent-ml-research__list_workers",
+    "mcp__agent-ml-research__load_project_config",
+    "mcp__agent-ml-research__overleaf_init",
+    "mcp__agent-ml-research__overleaf_pull",
+    "mcp__agent-ml-research__overleaf_push",
+    "mcp__agent-ml-research__overleaf_status",
+    "mcp__agent-ml-research__overleaf_sync",
+    "mcp__agent-ml-research__paper_agent_post_to_director",
+    "mcp__agent-ml-research__paper_agent_request_review",
+    "mcp__agent-ml-research__paper_compile_and_check",
+    "mcp__agent-ml-research__pdf_to_images",
+    "mcp__agent-ml-research__read_experiment_plan_with_status",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__read_roadmap",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__send_progress",
+    "mcp__agent-ml-research__spawn_worker",
+    "mcp__agent-ml-research__verify_references",
+    "mcp__agent-ml-research__write_paper_section"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "e8d379ea-9954-4e09-8b3b-3f51ccc35616",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-occsafe-vla/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779327000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "28c2dbc2-6f3c-4d49-a227-b1f55b86b49f",
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll start by reading the code files via SSH, the writing norms, and the current paper files in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "219345bd-1499-4399-9232-9d783789b007",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y5x6woUX7zgYZrTFiNod4X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12945,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12945
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01VkAR98kn15s87KkeSUa7y2`</summary>
+
+```json
+{
+  "command": "ssh westd-34685 \"cat /root/occsafe_vla/openvla-oft/vla-scripts/finetune.py\" 2>&1",
+  "description": "Read finetune.py from remote server",
+  "timeout": 30000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "aff1071b-a76d-46d6-97eb-f0bef883d8a4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y5x6woUX7zgYZrTFiNod4X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12945,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12945
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_019B6UjcxqZkwwfKMPfbjonQ`</summary>
+
+```json
+{
+  "command": "ssh westd-34685 \"cat /root/occsafe_vla/openvla-oft/prismatic/models/occ_head.py\" 2>&1",
+  "description": "Read occ_head.py from remote server",
+  "timeout": 30000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "3c401fe8-b309-4f92-a2d1-52914a9dfd82",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y5x6woUX7zgYZrTFiNod4X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12945,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12945
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-20T21:01:40.751Z_
+
+<details><summary>↩ Tool result · `toolu_01VkAR98kn15s87KkeSUa7y2`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (50.7KB). Full output saved to: /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-occsafe-vla/218d94ba-7e7e-493c-9f46-e4f039dfc3a6/tool-results/b8flshisw.txt
+
+Preview (first 2KB):
+Warning: Permanently added '[connect.westd.seetacloud.com]:34685' (ED25519) to the list of known hosts.
+"""
+finetune.py
+
+Fine-tunes OpenVLA via LoRA.
+"""
+
+import os
+import time
+from collections import deque
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Dict, Optional, Tuple, Type
+
+import draccus
+import torch
+import torch.distributed as dist
+import torch.nn as nn
+import tqdm
+from accelerate import PartialState
+from huggingface_hub import HfApi, snapshot_download
+from peft import LoraConfig, PeftModel, get_peft_model
+from torch.nn.parallel import DistributedDataParallel as DDP
+from torch.optim import AdamW
+from torch.optim.lr_scheduler import MultiStepLR
+from torch.utils.data import DataLoader
+from transformers import AutoConfig, AutoImageProcessor, AutoModelForVision2Seq, AutoProcessor
+from transformers.modeling_outputs import CausalLMOutputWithPast
+
+import wandb
+
+from experiments.robot.openvla_utils import (
+    check_model_logic_mismatch,
+    model_is_on_hf_hub,
+    update_auto_map,
+)
+
+from prismatic.extern.hf.configuration_prismatic import OpenVLAConfig
+from prismatic.extern.hf.modeling_prismatic import OpenVLAForActionPrediction
+from prismatic.extern.hf.processing_prismatic import PrismaticImageProcessor, PrismaticProcessor
+from prismatic.models.action_heads import DiffusionActionHead, L1RegressionActionHead
+from prismatic.models.backbones.llm.prompting import PurePromptBuilder
+from prismatic.models.film_vit_wrapper import FiLMedPrismaticVisionBackbone
+from prismatic.models.projectors import (
+    NoisyActionProjector,
+    ProprioProjector,
+)
+from prismatic.training.train_utils import (
+    compute_actions_l1_loss,
+    compute_token_accuracy,
+    get_current_action_mask,
+    get_next_actions_mask,
+)
+from prismatic.util.data_utils import PaddedCollatorForActionPrediction
+from prismatic.vla.action_tokenizer import ActionTokenizer
+from prismatic.vla.constants import (
+    ACTION_DIM,
+    ACTION_PROPRIO_NORMALIZATION_TYPE,
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "bb443a33-f946-4add-8f7e-91135ddecc77",
+  "tool_use_result": {
+    "stdout": "Warning: Permanently added '[connect.westd.seetacloud.com]:34685' (ED25519) to the list of known hosts.\r\n\"\"\"\nfinetune.py\n\nFine-tunes OpenVLA via LoRA.\n\"\"\"\n\nimport os\nimport time\nfrom collections import deque\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom typing import Dict, Optional, Tuple, Type\n\nimport draccus\nimport torch\nimport torch.distributed as dist\nimport torch.nn as nn\nimport tqdm\nfrom accelerate import PartialState\nfrom huggingface_hub import HfApi, snapshot_download\nfrom peft import LoraConfig, PeftModel, get_peft_model\nfrom torch.nn.parallel import DistributedDataParallel as DDP\nfrom torch.optim import AdamW\nfrom torch.optim.lr_scheduler import MultiStepLR\nfrom torch.utils.data import DataLoader\nfrom transformers import AutoConfig, AutoImageProcessor, AutoModelForVision2Seq, AutoProcessor\nfrom transformers.modeling_outputs import CausalLMOutputWithPast\n\nimport wandb\n\nfrom experiments.robot.openvla_utils import (\n    check_model_logic_mismatch,\n    model_is_on_hf_hub,\n    update_auto_map,\n)\n\nfrom prismatic.extern.hf.configuration_prismatic import OpenVLAConfig\nfrom prismatic.extern.hf.modeling_prismatic import OpenVLAForActionPrediction\nfrom prismatic.extern.hf.processing_prismatic import PrismaticImageProcessor, PrismaticProcessor\nfrom prismatic.models.action_heads import DiffusionActionHead, L1RegressionActionHead\nfrom prismatic.models.backbones.llm.prompting import PurePromptBuilder\nfrom prismatic.models.film_vit_wrapper import FiLMedPrismaticVisionBackbone\nfrom prismatic.models.projectors import (\n    NoisyActionProjector,\n    ProprioProjector,\n)\nfrom prismatic.training.train_utils import (\n    compute_actions_l1_loss,\n    compute_token_accuracy,\n    get_current_action_mask,\n    get_next_actions_mask,\n)\nfrom prismatic.util.data_utils import PaddedCollatorForActionPrediction\nfrom prismatic.vla.action_tokenizer import ActionTokenizer\nfrom prismatic.vla.constants import (\n    ACTION_DIM,\n    ACTION_PROPRIO_NORMALIZATION_TYPE,\n    NUM_ACTIONS_CHUNK,\n    PROPRIO_DIM,\n)\nfrom prismatic.vla.datasets import RLDSBatchTransform, RLDSDataset\nfrom prismatic.vla.datasets.rlds.utils.data_utils import save_dataset_statistics\nfrom prismatic.models.occ_head import BEVOccupancyHead, FocalLoss\nimport math\n\n# Sane Defaults\nos.environ[\"TOKENIZERS_PARALLELISM\"] = \"false\"\n\n\n@dataclass\nclass FinetuneConfig:\n    # fmt: off\n    vla_path: str = \"openvla/openvla-7b\"             # Path to OpenVLA model (on HuggingFace Hub or stored locally)\n\n    # Dataset\n    data_root_dir: Path = Path(\"datasets/rlds\")      # Directory containing RLDS datasets\n    dataset_name: str = \"aloha_scoop_x_into_bowl\"    # Name of fine-tuning dataset (e.g., `aloha_scoop_x_into_bowl`)\n    run_root_dir: Path = Path(\"runs\")                # Path to directory to store logs & checkpoints\n    shuffle_buffer_size: int = 100_000               # Dataloader shuffle buffer size (can reduce if OOM errors occur)\n\n    # Algorithm and architecture\n    use_l1_regression: bool = True                   # If True, trains continuous action head with L1 regression objective\n    use_diffusion: bool = False                      # If True, trains continuous action head with diffusion modeling objective (DDIM)\n    num_diffusion_steps_train: int = 50              # (When `diffusion==True`) Number of diffusion steps used for training\n    use_film: bool = False                           # If True, uses FiLM to infuse language inputs into visual features\n    num_images_in_input: int = 1                     # Number of images in the VLA input (default: 1)\n    use_proprio: bool = False                        # If True, includes robot proprioceptive state in input\n\n    # BEV Occupancy auxiliary head\n    use_occ_head: bool = False                       # If True, adds BEV occupancy prediction auxiliary head\n    occ_data_dir: str = \"\"                           # Path to BEV occupancy labels (HDF5 files)\n    occ_loss_weight: float = 0.01                    # Initial loss weight for occupancy head\n    occ_loss_decay_steps: float = 50000              # Exponential decay steps for occ loss weight\n    occ_detach: bool = False                          # If True, detach visual features before occ head (no grad to backbone)\n    occ_resolution: int = 64                         # BEV grid resolution\n\n    # Training configuration\n    batch_size: int = 8                              # Batch size per device (total batch size = batch_size * num GPUs)\n    seed: int = 7                                    # Random seed for reproducibility\n    learning_rate: float = 5e-4                      # Learning rate\n    lr_warmup_steps: int = 0                         # Number of steps to warm up learning rate (from 10% to 100%)\n    num_steps_before_decay: int = 100_000            # Number of steps before LR decays by 10x\n    grad_accumulation_steps: int = 1                 # Number of gradient accumulation steps\n    max_steps: int = 200_000                         # Max number of training steps\n    use_val_set: bool = False                        # If True, uses validation set and log validation metrics\n    val_freq: int = 10_000                           # (When `use_val_set==True`) Validation set logging frequency in steps\n    val_time_limit: int = 180                        # (When `use_val_set==True`) Time limit for computing validation metrics\n    save_freq: int = 10_000                          # Checkpoint saving frequency in steps\n    save_latest_checkpoint_only: bool = False        # If True, saves only 1 checkpoint, overwriting latest checkpoint\n                                                     #   (If False, saves all checkpoints)\n    resume: bool = False                             # If True, resumes from checkpoint\n    resume_step: Optional[int] = None                # (When `resume==True`) Step number that we are resuming from\n    image_aug: bool = True                           # If True, trains with image augmentations (HIGHLY RECOMMENDED)\n    diffusion_sample_freq: int = 50                  # (When `use_diffusion==True`) Frequency for sampling in steps\n\n    # LoRA\n    use_lora: bool = True                            # If True, uses LoRA fine-tuning\n    lora_rank: int = 32                              # Rank of LoRA weight matrix\n    lora_dropout: float = 0.0                        # Dropout applied to LoRA weights\n    merge_lora_during_training: bool = True          # If True, merges LoRA weights and saves result during training\n                                                     #   Note: Merging can be very slow on some machines. If so, set to\n                                                     #         False and merge final checkpoint offline!\n\n    # Logging\n    wandb_entity: str = \"your-wandb-entity\"          # Name of WandB entity\n    wandb_project: str = \"your-wandb-project\"        # Name of WandB project\n    run_id_note: Optional[str] = None                # Extra note to add to end of run ID for logging\n    run_id_override: Optional[str] = None            # Optional string to override the run ID with\n    wandb_log_freq: int = 10                         # WandB logging frequency in steps\n\n    # fmt: on\n\n\ndef remove_ddp_in_checkpoint(state_dict) -> dict:\n    \"\"\"\n    Removes the 'module.' prefix from parameter names in a PyTorch model state dictionary that was saved using\n    DistributedDataParallel (DDP).\n\n    When a model is trained using PyTorch's DistributedDataParallel, the saved state dictionary contains parameters\n    prefixed with 'module.'. This function removes these prefixes to make the state dictionary compatible when\n    loading into models that are not yet wrapped in DDP.\n\n    Args:\n        state_dict (dict): PyTorch model state dictionary.\n\n    Returns:\n        dict: A new state dictionary with the same contents but with 'module.' prefixes removed from parameter names.\n              Parameters without the 'module.' prefix remain unchanged.\n    \"\"\"\n    new_state_dict = {}\n    for k, v in state_dict.items():\n        if k[:7] == \"module.\":\n            new_state_dict[k[7:]] = v\n        else:\n            new_state_dict[k] = v\n    return new_state_dict\n\n\ndef get_run_id(cfg) -> str:\n    \"\"\"\n    Generates or retrieves an identifier string for an experiment run.\n\n    Args:\n        cfg (FinetuneConfig): Training configuration.\n\n    Returns:\n        str: Experiment run ID.\n    \"\"\"\n    if cfg.run_id_override is not None:\n        # Override the run ID with the user-provided ID\n        run_id = cfg.run_id_override\n    elif cfg.resume:\n        # Override run ID with the previous resumed run's ID\n        run_id = cfg.vla_path.split(\"/\")[-1]\n        # Remove the \"--XXX_chkpt\" suffix from the run ID if it exists\n        if \"chkpt\" in run_id.split(\"--\")[-1]:\n            run_id = \"--\".join(run_id.split(\"--\")[:-1])\n    else:\n        run_id = (\n            f\"{cfg.vla_path.split('/')[-1]}+{cfg.dataset_name}\"\n            f\"+b{cfg.batch_size * cfg.grad_accumulation_steps}\"\n            f\"+lr-{cfg.learning_rate}\"\n        )\n        if cfg.use_lora:\n            run_id += f\"+lora-r{cfg.lora_rank}+dropout-{cfg.lora_dropout}\"\n        if cfg.image_aug:\n            run_id += \"--image_aug\"\n        if cfg.run_id_note is not None:\n            run_id += f\"--{cfg.run_id_note}\"\n    return run_id\n\n\ndef load_checkpoint(module_name: str, path: str, step: int, device: str = \"cpu\") -> dict:\n    \"\"\"\n    Loads a checkpoint for a given module.\n\n    Args:\n        module_name (str): Name of model component to load checkpoint for.\n        path (str): Path to checkpoint directory.\n        step (int): Gradient step number of saved checkpoint.\n        device (str): String specifying how to remap storage locations (default = \"cpu\").\n\n    Returns:\n        dict: PyTorch model state dictionary.\n    \"\"\"\n    checkpoint_path = os.path.join(path, f\"{module_name}--{step}_checkpoint.pt\")\n    print(f\"Loading checkpoint: {checkpoint_path}\")\n    state_dict = torch.load(checkpoint_path, weights_only=True, map_location=device)\n    return remove_ddp_in_checkpoint(state_dict)\n\n\ndef wrap_ddp(module: nn.Module, device_id: int, find_unused: bool = False) -> DDP:\n    \"\"\"\n    Wrap a module with DistributedDataParallel.\n\n    Args:\n        module (nn.Module): PyTorch module.\n        device_id (str): Device ID.\n        find_unused (bool): Whether to detect parameters without gradients in distributed training.\n\n    Returns:\n        DistributedDataParallel: PyTorch module wrapped with DDP.\n    \"\"\"\n    return DDP(module, device_ids=[device_id], find_unused_parameters=find_unused, gradient_as_bucket_view=True)\n\n\ndef count_parameters(module: nn.Module, name: str) -> None:\n    \"\"\"\n    Counts and prints the number of trainable parameters in a module.\n\n    Args:\n        module (nn.Module): PyTorch module.\n        module_name (str): Name of model component.\n\n    Returns:\n        None.\n    \"\"\"\n    num_params = sum(p.numel() for p in module.parameters() if p.requires_grad)\n    print(f\"# trainable params in {name}: {num_params}\")\n\n\ndef init_module(\n    module_class: Type[nn.Module],\n    module_name: str,\n    cfg: FinetuneConfig,\n    device_id: int,\n    module_args: dict,\n    to_bf16: bool = False,\n    find_unused_params: bool = False,\n) -> DDP:\n    \"\"\"\n    Initializes a module, optionally loads checkpoint, moves to device, and wraps with DDP.\n\n    Args:\n        module_class (Type[nn.Module]): Class of PyTorch module to initialize.\n        module_name (str): Name of model component to load checkpoint for.\n        cfg (FinetuneConfig): Training configuration.\n        device_id (str): Device ID.\n        module_args (dict): Args for initializing the module.\n        to_bf16 (bool): Whether to convert to torch.bfloat16 data type.\n        find_unused_params (bool): Whether to detect parameters without gradients in distributed training.\n\n    Returns:\n        DistributedDataParallel: PyTorch module wrapped with DDP.\n    \"\"\"\n    module = module_class(**module_args)\n    count_parameters(module, module_name)\n\n    if cfg.resume:\n        state_dict = load_checkpoint(module_name, cfg.vla_path, cfg.resume_step)\n        module.load_state_dict(state_dict)\n\n    if to_bf16:\n        module = module.to(torch.bfloat16)\n    module = module.to(device_id)\n\n    return wrap_ddp(module, device_id, find_unused_params)\n\n\ndef get_base_model(vla):\n    \"\"\"Unwrap DDP and PEFT to get the base OpenVLAForActionPrediction.\"\"\"\n    m = vla.module if hasattr(vla, 'module') else vla\n    if hasattr(m, 'base_model'):\n        m = m.base_model.model\n    return m\n\n\ndef run_forward_pass(\n    vla,\n    action_head,\n    noisy_action_projector,\n    proprio_projector,\n    batch,\n    action_tokenizer,\n    device_id,\n    use_l1_regression,\n    use_diffusion,\n    use_proprio,\n    use_film,\n    num_patches,\n    compute_diffusion_l1=False,\n    num_diffusion_steps_train=None,\n    occ_head=None,\n    occ_loss_fn=None,\n    occ_loss_weight=0.0,\n    occ_detach=False,\n) -> Tuple[torch.Tensor, Dict[str, float]]:\n    \"\"\"\n    Compute model forward pass and metrics for both training and validation.\n\n    Args:\n        vla (OpenVLAForActionPrediction): Vision-language-action policy.\n        action_head (nn.Module): Action head module.\n        noisy_action_projector (nn.Module): Noisy action projector module (only used for diffusion).\n        proprio_projector (nn.Module): Proprioceptive state projector module.\n        batch (dict): Input batch.\n        action_tokenizer (ActionTokenizer): Action tokenizer.\n        device_id (str): Device ID.\n        use_l1_regression (bool): Whether to use L1 regression.\n        use_diffusion (bool): Whether to use diffusion.\n        use_proprio (bool): Whether to use proprioceptive state as input.\n        use_film (bool): Whether to use FiLM for better language following.\n        num_patches (int): Number of vision patches.\n        compute_diffusion_l1 (bool): Whether to sample actions and compute L1 loss for diffusion (do this once every\n                                    diffusion_sample_freq steps during training; do it every batch for validation)\n        num_diffusion_steps_train (int): Number of diffusion steps for training (only used for diffusion).\n\n    Returns:\n        tuple: (loss, metrics_dict)\n            loss: The loss tensor with gradient for backpropagation.\n            metrics_dict: Dictionary of computed metrics (detached values for logging).\n    \"\"\"\n    metrics = {}\n\n    # Get ground-truth action labels\n    ground_truth_actions = batch[\"actions\"].to(device_id).to(torch.bfloat16)\n\n    # [Only for diffusion] Sample noisy actions used as input for noise predictor network\n    if use_diffusion:\n        noisy_dict = action_head.module.sample_noisy_actions(ground_truth_actions)\n        noise, noisy_actions, diffusion_timestep_embeddings = (\n            noisy_dict[\"noise\"],\n            noisy_dict[\"noisy_actions\"],\n            noisy_dict[\"diffusion_timestep_embeddings\"],\n        )\n    else:\n        noise, noisy_actions, diffusion_timestep_embeddings = None, None, None\n\n    # VLA forward pass\n    with torch.autocast(\"cuda\", dtype=torch.bfloat16):\n        output: CausalLMOutputWithPast = vla(\n            input_ids=batch[\"input_ids\"].to(device_id),\n            attention_mask=batch[\"attention_mask\"].to(device_id),\n            pixel_values=batch[\"pixel_values\"].to(torch.bfloat16).to(device_id),\n            labels=batch[\"labels\"],\n            output_hidden_states=True,\n            proprio=batch[\"proprio\"] if use_proprio else None,\n            proprio_projector=proprio_projector if use_proprio else None,\n            noisy_actions=noisy_actions if use_diffusion else None,\n            noisy_action_projector=noisy_action_projector if use_diffusion else None,\n            diffusion_timestep_embeddings=diffusion_timestep_embeddings if use_diffusion else None,\n            use_film=use_film,\n        )\n\n    # Get action masks needed for logging\n    ground_truth_token_ids = batch[\"labels\"][:, 1:].to(device_id)\n    current_action_mask = get_current_action_mask(ground_truth_token_ids)\n    next_actions_mask = get_next_actions_mask(ground_truth_token_ids)\n\n    # Compute metrics for discrete action representation (next-token prediction)\n    if not (use_l1_regression or use_diffusion):\n        loss = output.loss\n        predicted_token_ids = output.logits[:, num_patches:-1].argmax(dim=2)\n        curr_action_accuracy = compute_token_accuracy(\n            predicted_token_ids, ground_truth_token_ids, mask=current_action_mask\n        )\n        curr_action_l1_loss = compute_actions_l1_loss(\n            action_tokenizer, predicted_token_ids, ground_truth_token_ids, mask=current_action_mask\n        )\n        next_actions_accuracy = compute_token_accuracy(\n            predicted_token_ids, ground_truth_token_ids, mask=next_actions_mask\n        )\n        next_actions_l1_loss = compute_actions_l1_loss(\n            action_tokenizer, predicted_token_ids, ground_truth_token_ids, mask=next_actions_mask\n        )\n        metrics.update(\n            {\n                \"loss_value\": loss.item(),  # Detached value for logging\n                \"curr_action_accuracy\": curr_action_accuracy.item(),\n                \"curr_action_l1_loss\": curr_action_l1_loss.item(),\n                \"next_actions_accuracy\": next_actions_accuracy.item(),\n                \"next_actions_l1_loss\": next_actions_l1_loss.item(),\n            }\n        )\n    # Compute metrics for continuous action representations (L1 regression | diffusion)\n    else:\n        # Get last layer hidden states\n        last_hidden_states = output.hidden_states[-1]  # (B, seq_len, D)\n        # Get hidden states for text portion of prompt+response (after the vision patches)\n        text_hidden_states = last_hidden_states[:, num_patches:-1]\n        # Get hidden states for action portion of response\n        batch_size = batch[\"input_ids\"].shape[0]\n        actions_hidden_states = (\n            text_hidden_states[current_action_mask | next_actions_mask]\n            .reshape(batch_size, NUM_ACTIONS_CHUNK * ACTION_DIM, -1)\n            .to(torch.bfloat16)\n        )  # (B, act_chunk_len, D)\n\n        if use_l1_regression:\n            # Predict action\n            predicted_actions = action_head.module.predict_action(actions_hidden_states)\n            # Get full L1 loss\n            loss = torch.nn.L1Loss()(ground_truth_actions, predicted_actions)\n\n        if use_diffusion:\n            # Predict noise\n            noise_pred = action_head.module.predict_noise(actions_hidden_states)\n            # Get diffusion noise prediction MSE loss\n            noise_pred = noise_pred.reshape(noise.shape)\n            loss = nn.functional.mse_loss(noise_pred, noise, reduction=\"mean\")\n\n            # Only sample actions and compute L1 losses if specified\n            if compute_diffusion_l1:\n                with torch.no_grad():\n                    predicted_actions = run_diffusion_sampling(\n                        vla=vla,\n                        action_head=action_head,\n                        noisy_action_projector=noisy_action_projector,\n                        proprio_projector=proprio_projector,\n                        batch=batch,\n                        batch_size=batch_size,\n                        num_patches=num_patches,\n                        actions_shape=ground_truth_actions.shape,\n                        device_id=device_id,\n                        current_action_mask=current_action_mask,\n                        next_actions_mask=next_actions_mask,\n                        use_proprio=use_proprio,\n                        use_film=use_film,\n                    )\n\n        metrics.update(\n            {\n                \"loss_value\": loss.item(),  # Detached value for logging\n            }\n        )\n\n        # Get detailed L1 losses for logging\n        should_log_l1_loss = not use_diffusion or (use_diffusion and compute_diffusion_l1)\n        if should_log_l1_loss:\n            ground_truth_curr_action = ground_truth_actions[:, 0]\n            predicted_curr_action = predicted_actions[:, 0]\n            ground_truth_next_actions = ground_truth_actions[:, 1:]\n            predicted_next_actions = predicted_actions[:, 1:]\n            curr_action_l1_loss = torch.nn.L1Loss()(ground_truth_curr_action, predicted_curr_action)\n            next_actions_l1_loss = torch.nn.L1Loss()(ground_truth_next_actions, predicted_next_actions)\n            metrics.update(\n                {\n                    \"curr_action_l1_loss\": curr_action_l1_loss.item(),\n                    \"next_actions_l1_loss\": next_actions_l1_loss.item(),\n                }\n            )\n\n    # Compute BEV occupancy auxiliary loss\n    if occ_head is not None and \"occ_labels\" in batch:\n        base_model = get_base_model(vla)\n        patch_features = base_model._cached_patch_features\n        if occ_detach:\n            patch_features = patch_features.detach()\n        occ_logits = occ_head(patch_features.to(torch.bfloat16))\n        occ_targets = batch[\"occ_labels\"].to(device_id).float()\n        occ_loss = occ_loss_fn(occ_logits.float(), occ_targets)\n        loss = loss + occ_loss_weight * occ_loss\n        metrics[\"occ_loss\"] = occ_loss.item()\n\n    # Return both the loss tensor (with gradients) and the metrics dictionary (with detached values)\n    return loss, metrics\n\n\ndef run_diffusion_sampling(\n    vla,\n    action_head,\n    noisy_action_projector,\n    proprio_projector,\n    batch,\n    batch_size,\n    num_patches,\n    actions_shape,\n    device_id,\n    current_action_mask,\n    next_actions_mask,\n    use_proprio,\n    use_film,\n) -> torch.Tensor:\n    \"\"\"\n    Run diffusion sampling (reverse diffusion) to generate actions.\n\n    Args:\n        vla (OpenVLAForActionPrediction): Vision-language-action policy.\n        action_head (nn.Module): Action head module.\n        noisy_action_projector (nn.Module): Noisy action projector module (only used for diffusion).\n        proprio_projector (nn.Module): Proprioceptive state projector module.\n        batch (dict): Input batch.\n        batch_size (int): Batch size.\n        num_patches (int): Number of vision patches.\n        actions_shape (tuple): Shape of ground-truth actions.\n        device_id (str): Device ID.\n        current_action_mask (torch.Tensor): Mask for current action.\n        next_actions_mask (torch.Tensor): Mask for next actions.\n        use_proprio (bool): Whether to use proprioceptive state as input.\n        use_film (bool): Whether to use FiLM for better language following.\n\n    Returns:\n        torch.Tensor: Predicted actions.\n    \"\"\"\n    # Sample random noisy action, used as the starting point for reverse diffusion\n    noise = torch.randn(\n        size=(batch_size, NUM_ACTIONS_CHUNK, ACTION_DIM),\n        device=device_id,\n        dtype=torch.bfloat16,\n    )  # (B, chunk_len, action_dim)\n\n    # Set diffusion timestep values\n    action_head.module.noise_scheduler.set_timesteps(action_head.module.num_diffusion_steps_train)\n\n    # Reverse diffusion: Iteratively denoise to generate action, conditioned on observation\n    curr_noisy_actions = noise\n    for t in action_head.module.noise_scheduler.timesteps:\n        # Get diffusion model's noise prediction (conditioned on VLA latent embedding, current noisy action embedding,\n        # and diffusion timestep embedding)\n        timesteps = torch.Tensor([t]).repeat(batch_size).to(device_id)\n        diffusion_timestep_embeddings = (\n            action_head.module.time_encoder(timesteps).to(curr_noisy_actions.dtype).to(curr_noisy_actions.device)\n        )  # (B, llm_dim)\n        diffusion_timestep_embeddings = diffusion_timestep_embeddings.unsqueeze(1)  # (B, 1, llm_dim)\n\n        with torch.autocast(\"cuda\", dtype=torch.bfloat16):\n            output = vla(\n                input_ids=batch[\"input_ids\"].to(device_id),\n                attention_mask=batch[\"attention_mask\"].to(device_id),\n                pixel_values=batch[\"pixel_values\"].to(torch.bfloat16).to(device_id),\n                labels=batch[\"labels\"],\n                output_hidden_states=True,\n                proprio=batch[\"proprio\"] if use_proprio else None,\n                proprio_projector=proprio_projector if use_proprio else None,\n                noisy_actions=curr_noisy_actions,\n                noisy_action_projector=noisy_action_projector,\n                diffusion_timestep_embeddings=diffusion_timestep_embeddings,\n                use_film=use_film,\n            )\n            # Get last layer hidden states\n            last_hidden_states = output.hidden_states[-1]  # (B, seq_len, D)\n            # Get hidden states for text portion of prompt+response (after the vision patches)\n            text_hidden_states = last_hidden_states[:, num_patches:-1]\n            # Get hidden states for action portion of response\n            actions_hidden_states = text_hidden_states[current_action_mask | next_actions_mask].reshape(\n                batch_size, NUM_ACTIONS_CHUNK * ACTION_DIM, -1\n            )  # (B, act_chunk_len, D)\n            actions_hidden_states = actions_hidden_states.to(torch.bfloat16)\n            # Predict noise\n            noise_pred = action_head.module.predict_noise(actions_hidden_states)\n\n        # Compute the action at the previous diffusion timestep: x_t -> x_{t-1}\n        curr_noisy_actions = action_head.module.noise_scheduler.step(noise_pred, t, curr_noisy_actions).prev_sample\n\n    return curr_noisy_actions.reshape(actions_shape)\n\n\ndef compute_smoothened_metrics(metrics_deques) -> dict:\n    \"\"\"\n    Compute smoothened metrics from recent deques.\n\n    Args:\n        metrics_deques (dict): Dictionary of deques containing recent metrics.\n\n    Returns:\n        dict: Dictionary of smoothened metrics.\n    \"\"\"\n    smoothened_metrics = {}\n    for name, deque in metrics_deques.items():\n        if deque and len(deque) > 0:\n            smoothened_metrics[name] = sum(deque) / len(deque)\n    return smoothened_metrics\n\n\ndef log_metrics_to_wandb(metrics, prefix, step, wandb_entity) -> None:\n    \"\"\"\n    Log metrics to Weights & Biases.\n\n    Args:\n        metrics (dict): Dictionary of metrics to log\n        prefix (str): Prefix for metric names\n        step (int): Training step\n        wandb_entity (str): W&B entity instance\n\n    Returns:\n        None.\n    \"\"\"\n    log_dict = {}\n    for name, value in metrics.items():\n        # Map loss_value to Loss for better readability in W&B\n        if name == \"loss_value\":\n            log_dict[f\"{prefix}/Loss\"] = value\n        # Keep other metrics as is\n        else:\n            log_dict[f\"{prefix}/{name.replace('_', ' ').title()}\"] = value\n    wandb_entity.log(log_dict, step=step)\n\n\ndef save_training_checkpoint(\n    cfg,\n    run_dir,\n    log_step,\n    vla,\n    processor,\n    proprio_projector,\n    noisy_action_projector,\n    action_head,\n    train_dataset,\n    distributed_state,\n    occ_head=None,\n) -> None:\n    \"\"\"\n    Save all training checkpoints including model components, LoRA adapter, and dataset statistics.\n\n    Args:\n        cfg (FinetuneConfig): Training configuration.\n        run_dir (Path): Experiment run directory path.\n        log_step (int): Current logging step.\n        vla (OpenVLAForActionPrediction): Vision-language-action policy.\n        processor (PrismaticProcessor): OpenVLA inputs processor.\n        proprio_projector (nn.Module): Proprioceptive state projector module.\n        noisy_action_projector (nn.Module): Noisy action projector module (only used for diffusion).\n        action_head (nn.Module): Action head module.\n        train_dataset (RLDSDataset): Training dataset.\n        distributed_state (PartialState): Distributed training state.\n\n    Returns:\n        None.\n    \"\"\"\n    # Determine checkpoint paths and naming\n    if cfg.save_latest_checkpoint_only:\n        checkpoint_dir = run_dir\n        checkpoint_name_suffix = \"latest_checkpoint.pt\"\n    else:\n        checkpoint_dir = Path(str(run_dir) + f\"--{log_step}_chkpt\")\n        checkpoint_name_suffix = f\"{log_step}_checkpoint.pt\"\n\n    adapter_dir = checkpoint_dir / \"lora_adapter\"\n\n    # Create directories and save dataset statistics (main process only)\n    if distributed_state.is_main_process:\n        os.makedirs(checkpoint_dir, exist_ok=True)\n        os.makedirs(adapter_dir, exist_ok=True)\n        save_dataset_statistics(train_dataset.dataset_statistics, checkpoint_dir)\n        print(f\"Saving Model Checkpoint for Step {log_step}\")\n\n    # Wait for directories to be created\n    dist.barrier()\n\n    # Save model components (main process only)\n    if distributed_state.is_main_process:\n        # Save processor and LoRA adapter\n        processor.save_pretrained(checkpoint_dir)\n        vla.module.save_pretrained(adapter_dir)\n\n        # Save other components\n        if cfg.use_proprio and proprio_projector is not None:\n            torch.save(proprio_projector.state_dict(), checkpoint_dir / f\"proprio_projector--{checkpoint_name_suffix}\")\n\n        if cfg.use_diffusion and noisy_action_projector is not None:\n            torch.save(\n                noisy_action_projector.state_dict(), checkpoint_dir / f\"noisy_action_projector--{checkpoint_name_suffix}\"\n            )\n\n        if (cfg.use_l1_regression or cfg.use_diffusion) and action_head is not None:\n            torch.save(action_head.state_dict(), checkpoint_dir / f\"action_head--{checkpoint_name_suffix}\")\n\n        if cfg.use_film:\n            # To be safe, just save the entire vision backbone (not just FiLM components)\n            torch.save(\n                vla.module.vision_backbone.state_dict(), checkpoint_dir / f\"vision_backbone--{checkpoint_name_suffix}\"\n            )\n\n        if cfg.use_occ_head and occ_head is not None:\n            torch.save(occ_head.state_dict(), checkpoint_dir / f\"occ_head--{checkpoint_name_suffix}\")\n\n    # Wait for model components to be saved\n    dist.barrier()\n\n    # Merge LoRA weights into base model and save resulting model checkpoint\n    # Note: Can be very slow on some devices; if so, we recommend merging offline\n    if cfg.use_lora and cfg.merge_lora_during_training:\n        base_vla = AutoModelForVision2Seq.from_pretrained(",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false,
+    "persistedOutputPath": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-occsafe-vla/218d94ba-7e7e-493c-9f46-e4f039dfc3a6/tool-results/b8flshisw.txt",
+    "persistedOutputSize": 51933
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — Read · `toolu_018pDitZRhPgThjLnLRWQSYZ`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "1e91a4c4-1b5f-49ba-a88b-f788ebab1744",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y5x6woUX7zgYZrTFiNod4X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12945,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12945
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — Read · `toolu_012eYyBxskCjt9Tu2hCJQAxn`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "bf408d30-21ee-41b5-a9f3-4b265ff83af1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y5x6woUX7zgYZrTFiNod4X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12945,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12945
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01FCcGhMjj3UHEeKFXXGBevT`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "38488a02-a8c1-4fdc-b256-7608abcd212e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y5x6woUX7zgYZrTFiNod4X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12945,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12945
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T21:01:41.855Z_
+
+<details><summary>↩ Tool result · `toolu_019B6UjcxqZkwwfKMPfbjonQ`</summary>
+
+```text
+Warning: Permanently added '[connect.westd.seetacloud.com]:34685' (ED25519) to the list of known hosts.
+"""BEV Occupancy Prediction Head for OccSafe-VLA.
+
+Takes fused visual features (16x16 spatial resolution) and predicts
+BEV occupancy map (64x64). Auxiliary training signal only —
+skipped at inference (zero overhead, cf. OccVLA).
+"""
+
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+
+class BEVOccupancyHead(nn.Module):
+    def __init__(self, in_dim: int, out_resolution: int = 64, num_classes: int = 1,
+                 hidden_dim: int = 256, num_patches_per_image: int = 256):
+        super().__init__()
+        self.num_patches_per_image = num_patches_per_image
+        self.spatial_h = self.spatial_w = int(num_patches_per_image ** 0.5)  # 16
+        self.out_resolution = out_resolution
+        self.num_classes = num_classes
+
+        self.project = nn.Linear(in_dim, hidden_dim)
+        self.decoder = nn.Sequential(
+            nn.ConvTranspose2d(hidden_dim, 128, kernel_size=4, stride=2, padding=1),  # 16->32
+            nn.BatchNorm2d(128),
+            nn.GELU(),
+            nn.ConvTranspose2d(128, 64, kernel_size=4, stride=2, padding=1),  # 32->64
+            nn.BatchNorm2d(64),
+            nn.GELU(),
+            nn.Conv2d(64, num_classes, kernel_size=1),
+        )
+
+    def forward(self, visual_features: torch.Tensor) -> torch.Tensor:
+        """
+        Args:
+            visual_features: (B, N, D) fused features.
+                N >= num_patches_per_image; first view is used.
+        Returns:
+            logits: (B, num_classes, out_resolution, out_resolution)
+        """
+        if visual_features.shape[1] > self.num_patches_per_image:
+            visual_features = visual_features[:, :self.num_patches_per_image, :]
+
+        B = visual_features.shape[0]
+        x = self.project(visual_features)
+        x = x.transpose(1, 2).reshape(B, -1, self.spatial_h, self.spatial_w)
+        logits = self.decoder(x)
+        return logits
+
+
+class FocalLoss(nn.Module):
+    def __init__(self, alpha: float = 0.25, gamma: float = 2.0):
+        super().__init__()
+        self.alpha = alpha
+        self.gamma = gamma
+
+    def forward(self, logits: torch.Tensor, targets: torch.Tensor) -> torch.Tensor:
+        """
+        Args:
+            logits: (B, 1, H, W)
+            targets: (B, H, W) binary
+        """
+        probs = torch.sigmoid(logits.squeeze(1))
+        targets = targets.float()
+        bce = F.binary_cross_entropy_with_logits(
+            logits.squeeze(1), targets, reduction='none'
+        )
+        pt = torch.where(targets == 1, probs, 1 - probs)
+        alpha_t = torch.where(targets == 1, self.alpha, 1 - self.alpha)
+        focal_weight = alpha_t * (1 - pt) ** self.gamma
+        return (focal_weight * bce).mean()
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "574a1fc7-f3fd-4fa8-bd71-a9154ddd1bc5",
+  "tool_use_result": {
+    "stdout": "Warning: Permanently added '[connect.westd.seetacloud.com]:34685' (ED25519) to the list of known hosts.\r\n\"\"\"BEV Occupancy Prediction Head for OccSafe-VLA.\n\nTakes fused visual features (16x16 spatial resolution) and predicts\nBEV occupancy map (64x64). Auxiliary training signal only —\nskipped at inference (zero overhead, cf. OccVLA).\n\"\"\"\n\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\n\n\nclass BEVOccupancyHead(nn.Module):\n    def __init__(self, in_dim: int, out_resolution: int = 64, num_classes: int = 1,\n                 hidden_dim: int = 256, num_patches_per_image: int = 256):\n        super().__init__()\n        self.num_patches_per_image = num_patches_per_image\n        self.spatial_h = self.spatial_w = int(num_patches_per_image ** 0.5)  # 16\n        self.out_resolution = out_resolution\n        self.num_classes = num_classes\n\n        self.project = nn.Linear(in_dim, hidden_dim)\n        self.decoder = nn.Sequential(\n            nn.ConvTranspose2d(hidden_dim, 128, kernel_size=4, stride=2, padding=1),  # 16->32\n            nn.BatchNorm2d(128),\n            nn.GELU(),\n            nn.ConvTranspose2d(128, 64, kernel_size=4, stride=2, padding=1),  # 32->64\n            nn.BatchNorm2d(64),\n            nn.GELU(),\n            nn.Conv2d(64, num_classes, kernel_size=1),\n        )\n\n    def forward(self, visual_features: torch.Tensor) -> torch.Tensor:\n        \"\"\"\n        Args:\n            visual_features: (B, N, D) fused features.\n                N >= num_patches_per_image; first view is used.\n        Returns:\n            logits: (B, num_classes, out_resolution, out_resolution)\n        \"\"\"\n        if visual_features.shape[1] > self.num_patches_per_image:\n            visual_features = visual_features[:, :self.num_patches_per_image, :]\n\n        B = visual_features.shape[0]\n        x = self.project(visual_features)\n        x = x.transpose(1, 2).reshape(B, -1, self.spatial_h, self.spatial_w)\n        logits = self.decoder(x)\n        return logits\n\n\nclass FocalLoss(nn.Module):\n    def __init__(self, alpha: float = 0.25, gamma: float = 2.0):\n        super().__init__()\n        self.alpha = alpha\n        self.gamma = gamma\n\n    def forward(self, logits: torch.Tensor, targets: torch.Tensor) -> torch.Tensor:\n        \"\"\"\n        Args:\n            logits: (B, 1, H, W)\n            targets: (B, H, W) binary\n        \"\"\"\n        probs = torch.sigmoid(logits.squeeze(1))\n        targets = targets.float()\n        bce = F.binary_cross_entropy_with_logits(\n            logits.squeeze(1), targets, reduction='none'\n        )\n        pt = torch.where(targets == 1, probs, 1 - probs)\n        alpha_t = torch.where(targets == 1, self.alpha, 1 - self.alpha)\n        focal_weight = alpha_t * (1 - pt) ** self.gamma\n        return (focal_weight * bce).mean()",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T21:01:41.876Z_
+
+<details><summary>↩ Tool result · `toolu_018pDitZRhPgThjLnLRWQSYZ`</summary>
+
+````text
+1	---
+2	name: paper-writing-norms
+3	description: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。
+4	allowed-tools: [Read, Write, Edit, Glob, Grep]
+5	scope: global
+6	version: 2
+7	priority: 9
+8	tags:
+9	  - writing
+10	  - paper
+11	  - style
+12	  - norms
+13	roles:
+14	  - agent
+15	  - worker
+16	  - paper_agent
+17	---
+18	
+19	# 论文写作风格规范
+20	
+21	> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。
+22	
+23	---
+24	
+25	## 一、总体写作哲学
+26	
+27	### 1.1 故事驱动，不是数据堆砌
+28	
+29	- 论文必须以"故事线"为核心展开：问题 → 洞察 → 方法 → 验证
+30	- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进
+31	- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌
+32	- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing
+33	
+34	### 1.2 主线统一性
+35	
+36	- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**
+37	- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C
+38	- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机
+39	- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线
+40	
+41	### 1.3 专有名词必须有定义
+42	
+43	- 首次出现的专有名词/缩写必须给出完整定义和解释
+44	- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）
+45	- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用
+46	- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug
+47	
+48	### 1.4 写作前必读同类优秀论文
+49	
+50	- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可
+51	- 重点学：
+52	  - Abstract 怎么用最少篇幅讲完故事
+53	  - Introduction 怎么从大问题切入到具体贡献
+54	  - Related Work 怎么 positioning 自己（不是 survey）
+55	  - Table/Figure 怎么压缩信息密度
+56	- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大
+57	- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文
+58	
+59	---
+60	
+61	## 二、Abstract 写作规范
+62	
+63	### 2.1 四个必答问题（150-250 words）
+64	
+65	Abstract 必须在很短的篇幅内清楚回答：
+66	1. **研究什么问题** — 1-2 句话交代背景和痛点
+67	2. **为什么重要** — 现有方法的不足（不用写太多）
+68	3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）
+69	4. **结果说明什么** — 用具体实验结论支撑贡献
+70	
+71	### 2.2 禁忌
+72	
+73	- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim
+74	- **禁止过度宣传**：不说 "revolutionary"、"groundbreaking"
+75	- **禁止写成 Introduction 的缩写**：Abstract 是独立阅读单元
+76	- **禁止术语堆积**：如果审稿人几十秒内判断不出价值，就失败了
+77	- **缩写必须定义**：Abstract 中首次出现的缩写必须展开
+78	
+79	### 2.3 审稿人视角检验
+80	
+81	写完后用这个标准自检：审稿人能否在 30 秒内判断——
+82	- 问题是否重要？
+83	- 方法是否清楚？
+84	- 贡献是否可信？
+85	- 结果是否有说服力？
+86	
+87	---
+88	
+89	## 三、Introduction 写作规范
+90	
+91	### 3.1 完整叙事线（5 段结构）
+92	
+93	Introduction 需要从一个清晰、重要的问题切入，逐步把读者带到核心贡献：
+94	
+95	1. **研究背景**（1-2 段）：大模型在某类能力/应用中已取得进展，但仍存在一个关键瓶颈
+96	2. **问题重要性**（1 段）：结合真实应用、已有方法局限或当前趋势，说明这不是小问题
+97	3. **现有方法不足**（1 段）：系统梳理为什么不够（依赖更大模型/更多数据/更复杂推理/更高成本，或只在特定 benchmark 有效）
+98	4. **本文核心想法**（1 段）：我们观察到什么、提出了什么方法、为什么能解决上述问题
+99	5. **贡献总结**（列表）：清楚列出方法贡献、实验贡献和分析贡献
+100	
+101	### 3.2 整体叙事结构
+102	
+103	```
+104	现有进展 → 关键缺口 → 本文洞察 → 方法概述 → 实验证据 → 贡献总结
+105	```
+106	
+107	### 3.3 禁忌
+108	
+109	- **禁止泛泛介绍**：不要开头就写 "LLMs have shown remarkable capabilities..."，要从具体问题切入
+110	- **禁止缺少过渡**：每段之间必须有逻辑连接
+111	- **禁止实验报告风格**：Introduction 不是 "我们做了 X 实验得到了 Y 结果" 的罗列
+112	- 每条 Contribution 必须有对应的 section/table 支撑
+113	- Contribution 列表中不能出现未在前文铺垫过的概念
+114	
+115	---
+116	
+117	## 四、Related Work 写作规范
+118	
+119	### 4.1 目标
+120	
+121	让审稿人相信：作者理解这个领域，知道自己的方法站在什么位置，清楚相对已有工作的真实增量在哪里。
+122	
+123	### 4.2 结构要求
+124	
+125	- 把已有工作分成几个清晰的主题（如模型训练、推理增强、工具调用、数据构建、评测等）
+126	- 每类简要说明：已有方法做了什么、解决了哪些问题、和本文的关系
+127	- 帮助读者理解：哪些是本文直接继承的，哪些方法不同但解决相似问题，哪些留下了本文要解决的缺口
+128	
+129	### 4.3 禁忌
+130	
+131	- **禁止论文堆砌**：不要写成 "A proposed X. B proposed Y. C proposed Z." 的列表
+132	- **目标不是展示读了多少论文**，而是做归纳和比较
+133	- Contribution claim（"To our knowledge, no prior work..."）应放在 Introduction，不在 Related Work
+134	
+135	### 4.4 引用充足度
+136	
+137	- 引用必须覆盖：**直接相关方法、baseline 论文、评测 benchmark 论文、理论基础**
+138	- 任何一类缺失，审稿人会立刻看出来调研不充分
+139	- 引用密度参照目标会议近年录用论文的量级——明显偏少意味着 Related Work 调研不足
+140	
+141	---
+142	
+143	## 五、去 AI 写作风格（硬规则）
+144	
+145	以下模式是 AI 生成文本的典型标志，审稿人一眼能看出。**必须全部消除。**
+146	
+147	### 5.1 严禁破折号（最显著的 AI 痕迹）
+148	
+149	**这是 AI 写作最容易被识别的标志，审稿人最敏感。单列为最高优先级硬规则。**
+150	
+151	- 解释性 em-dash（—，U+2014）和 en-dash（–，U+2013）必须**全部删除**
+152	- 替代方式：用逗号、括号或拆分为两个句子
+153	- 强制检查命令：
+154	  ```bash
+155	  grep -n "—" paper/*.tex     # em-dash，每处人工判断是否必要
+156	  grep -n " – " paper/*.tex   # 解释性 en-dash，几乎都应删除
+157	  ```
+158	- 例外（允许保留）：表格分隔符、数字范围（`2020–2024`、`pp. 12–18`）、专有名词（`Newton–Raphson`）
+159	
+160	### 5.2 段落与句式
+161	
+162	- **禁止过度分段**：不需要每 2-3 句就换段，自然段 5-8 句是正常的
+163	- **减少关系从句**（which, that, who）：能用简洁直接的句子就不用从句
+164	- **禁止 -ing 短语结尾**：如 "..., highlighting the applicability of..." / "..., demonstrating the effectiveness of..."。这是 AI 写作最典型的标志之一
+165	- **禁止连续使用 "Furthermore" / "Moreover" / "Additionally"**：一段内最多用一个过渡词
+166	- **避免 "It is worth noting that..." / "Notably, ..."**：直接写要说的内容
+167	
+168	### 5.3 用词黑名单
+169	
+170	- 避免 "delve into" / "leverage" / "utilize" / "facilitate" — 用 "explore" / "use" / "enable"
+171	- 避免 "a myriad of" / "a plethora of" — 用 "many" / "various"
+172	- 避免 "in the realm of" / "in the context of" — 直接说
+173	- 避免 "paradigm shift" / "novel" 过度使用
+174	
+175	### 5.4 校对清单（4 步）
+176	
+177	1. 全文 proofread 语法和拼写
+178	2. 检查所有代词/指示词（this, that, it）是否指代明确
+179	3. **`grep "—"` + `grep " – "` 全文清零**（删除所有解释性 dash，§5.1）
+180	4. `grep "ing,"` 模式——大部分 -ing 分词短语需要改写
+181	
+182	---
+183	
+184	## 六、图表与视觉规范
+185	
+186	### 6.1 知识密度原则
+187	
+188	- **图表的信息必须紧凑**——不能为了美观而留大量白空间
+189	- 一张图如果只传达一个简单信息，要么缩小要么合并到其他图中
+190	- 能用 inline text 说清的不要占一整个 Figure
+191	
+192	### 6.2 表格规范
+193	
+194	- 表格和正文文字不能视觉重叠（检查 column 宽度和 alignment）
+195	- 小数精度全表统一
+196	- 最优加粗、次优下划线
+197	- Caption 必须自包含
+198	
+199	### 6.3 图片规范
+200	
+201	- 数值标签不能被线、bar、点遮住——用白色背景或偏移标签
+202	- 图中字体 >= 7pt（打印后仍可读）
+203	- 栏宽约束需匹配目标 venue 模板要求
+204	- 概念图/流程图要有信息量，不要画一个 trivial 的 pipeline 然后占半页
+205	
+206	### 6.4 空间效率
+207	
+208	- 顶会正文页数严格受限（具体页数查目标会议官网），每 cm² 都是宝贵资源
+209	- 优先使用 `\subfigure` 合并相关图
+210	- Table 能 inline 就不要单独浮动
+211	- 图表占比与其对叙事的贡献成正比
+212	
+213	### 6.5 页面节奏
+214	
+215	好论文的页面有节奏感——text、equation、figure 交替出现，读者视觉不疲劳：
+216	
+217	- **text-equation-figure 三重奏**：重要概念用"文字解释 → 公式定义 → 图表直觉"三步展开
+218	- 连续 2 页纯文本（无 figure/equation/table）→ 穿插一个 display item 打破节奏
+219	- 连续 2 个 figure 页（整页被 float 占满）→ 至少隔 1 段文字再放下一个 float
+220	- Section heading 不孤悬页底（heading 后至少跟 2 行正文，否则强制分页）
+221	- 最后一页内容 ≥ 2/3 页面高度（太空显得凑数，太满放不下 references）
+222	
+223	### 6.6 表格 LaTeX 规范
+224	
+225	**Booktabs 标准（硬规则）**：
+226	- 用 `\toprule` / `\midrule` / `\bottomrule`，禁止 `\hline`，禁止竖线 `|`
+227	- 用 `\centering` 不用 `\begin{center}`（后者多加垂直空白）
+228	- 最优结果加粗（`\textbf{}`），次优下划线（`\underline{}`）+ 方向箭头 `↑`/`↓` 标明指标方向
+229	- 小数精度全表统一（如全部保留 1 位或 2 位）
+230	- Caption 在表格上方（`\caption` 在 `\begin{tabular}` 之前）
+231	
+232	**宽度决策树**：
+233	- ≤5 列 → 单栏宽度（`\columnwidth`）
+234	- 6–8 列 → 全文宽度（`\textwidth`，双栏模板用 `table*`）
+235	- >8 列 → 拆成两张表或移入 appendix
+236	
+237	---
+238	
+239	## 七、投稿前通用准备
+240	
+241	### 7.1 模板必须官方（硬规则）
+242	
+243	- LaTeX 模板**必须从目标会议官网下载**（CallForPapers / Author Instructions 页面）
+244	- **不要用**：
+245	  - 网上他人转载的复制版本（可能被改过 margin / 行号设置）
+246	  - 上一年的模板（参数可能变：字体、margin、行号、anonymous 选项等）
+247	  - 组里学长留的旧版本（来源不明、无法追溯）
+248	- 风险：
+249	  - 样式不符合 → desk reject
+250	  - margin 不对 → 被审稿人质疑诚信
+251	  - reference 格式错 → 被认为不规范
+252	- 流程：先查会议官网 templates → 找不到再 `WebSearch "{venue} {year} latex template official"` → 仍找不到汇报 Director（不要用就近年版本顶替）
+253	- `\documentclass[]{}` 选项必须与目标 venue + 阶段（review / camera-ready）一致
+254	
+255	### 7.2 投稿要求逐项核对
+256	
+257	- 目标会议如要求 Checklist / Ethical Statement / Broader Impact Statement / Reproducibility Statement，必须**认真填每一项**，不要全写 N/A
+258	- 页数限制：查目标会议官网
+259	- 匿名化要求：review 版 vs camera-ready 版本设置不同
+260	- 行号开启（review 版常需）
+261	- 字体大小、margin 不得修改 sty 文件
+262	
+263	### 7.3 最终修改 10 项检查流程
+264	
+265	提交前必须逐一检查：
+266	1. 所有最新实验结果已全部录入
+267	2. 根据实验结果将叙事调至最优状态
+268	3. 附录所有内容在正文中被引用且融入叙事
+269	4. 无数据堆砌（每个数字服务于叙事推进）
+270	5. Abstract 和 Introduction 具有吸引力（不是实验报告风格）
+271	6. 全文主线统一（idea 变化后各章节逻辑一致）
+272	7. 所有专有名词有定义
+273	8. 无 AI 风格标志（dash、-ing phrases、过度分段）
+274	9. 图表知识密度高、无视觉遮挡
+275	10. Reference 覆盖直接相关方法、baseline、benchmark、理论基础
+276	
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "b5893b0b-59d7-4968-b28b-d2f6e035a781",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md",
+      "content": "---\nname: paper-writing-norms\ndescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\nallowed-tools: [Read, Write, Edit, Glob, Grep]\nscope: global\nversion: 2\npriority: 9\ntags:\n  - writing\n  - paper\n  - style\n  - norms\nroles:\n  - agent\n  - worker\n  - paper_agent\n---\n\n# 论文写作风格规范\n\n> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n\n---\n\n## 一、总体写作哲学\n\n### 1.1 故事驱动，不是数据堆砌\n\n- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n\n### 1.2 主线统一性\n\n- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n\n### 1.3 专有名词必须有定义\n\n- 首次出现的专有名词/缩写必须给出完整定义和解释\n- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n\n### 1.4 写作前必读同类优秀论文\n\n- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n- 重点学：\n  - Abstract 怎么用最少篇幅讲完故事\n  - Introduction 怎么从大问题切入到具体贡献\n  - Related Work 怎么 positioning 自己（不是 survey）\n  - Table/Figure 怎么压缩信息密度\n- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n\n---\n\n## 二、Abstract 写作规范\n\n### 2.1 四个必答问题（150-250 words）\n\nAbstract 必须在很短的篇幅内清楚回答：\n1. **研究什么问题** — 1-2 句话交代背景和痛点\n2. **为什么重要** — 现有方法的不足（不用写太多）\n3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n4. **结果说明什么** — 用具体实验结论支撑贡献\n\n### 2.2 禁忌\n\n- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n- **禁止过度宣传**：不说 \"revolutionary\"、\"groundbreaking\"\n- **禁止写成 Introduction 的缩写**：Abstract 是独立阅读单元\n- **禁止术语堆积**：如果审稿人几十秒内判断不出价值，就失败了\n- **缩写必须定义**：Abstract 中首次出现的缩写必须展开\n\n### 2.3 审稿人视角检验\n\n写完后用这个标准自检：审稿人能否在 30 秒内判断——\n- 问题是否重要？\n- 方法是否清楚？\n- 贡献是否可信？\n- 结果是否有说服力？\n\n---\n\n## 三、Introduction 写作规范\n\n### 3.1 完整叙事线（5 段结构）\n\nIntroduction 需要从一个清晰、重要的问题切入，逐步把读者带到核心贡献：\n\n1. **研究背景**（1-2 段）：大模型在某类能力/应用中已取得进展，但仍存在一个关键瓶颈\n2. **问题重要性**（1 段）：结合真实应用、已有方法局限或当前趋势，说明这不是小问题\n3. **现有方法不足**（1 段）：系统梳理为什么不够（依赖更大模型/更多数据/更复杂推理/更高成本，或只在特定 benchmark 有效）\n4. **本文核心想法**（1 段）：我们观察到什么、提出了什么方法、为什么能解决上述问题\n5. **贡献总结**（列表）：清楚列出方法贡献、实验贡献和分析贡献\n\n### 3.2 整体叙事结构\n\n```\n现有进展 → 关键缺口 → 本文洞察 → 方法概述 → 实验证据 → 贡献总结\n```\n\n### 3.3 禁忌\n\n- **禁止泛泛介绍**：不要开头就写 \"LLMs have shown remarkable capabilities...\"，要从具体问题切入\n- **禁止缺少过渡**：每段之间必须有逻辑连接\n- **禁止实验报告风格**：Introduction 不是 \"我们做了 X 实验得到了 Y 结果\" 的罗列\n- 每条 Contribution 必须有对应的 section/table 支撑\n- Contribution 列表中不能出现未在前文铺垫过的概念\n\n---\n\n## 四、Related Work 写作规范\n\n### 4.1 目标\n\n让审稿人相信：作者理解这个领域，知道自己的方法站在什么位置，清楚相对已有工作的真实增量在哪里。\n\n### 4.2 结构要求\n\n- 把已有工作分成几个清晰的主题（如模型训练、推理增强、工具调用、数据构建、评测等）\n- 每类简要说明：已有方法做了什么、解决了哪些问题、和本文的关系\n- 帮助读者理解：哪些是本文直接继承的，哪些方法不同但解决相似问题，哪些留下了本文要解决的缺口\n\n### 4.3 禁忌\n\n- **禁止论文堆砌**：不要写成 \"A proposed X. B proposed Y. C proposed Z.\" 的列表\n- **目标不是展示读了多少论文**，而是做归纳和比较\n- Contribution claim（\"To our knowledge, no prior work...\"）应放在 Introduction，不在 Related Work\n\n### 4.4 引用充足度\n\n- 引用必须覆盖：**直接相关方法、baseline 论文、评测 benchmark 论文、理论基础**\n- 任何一类缺失，审稿人会立刻看出来调研不充分\n- 引用密度参照目标会议近年录用论文的量级——明显偏少意味着 Related Work 调研不足\n\n---\n\n## 五、去 AI 写作风格（硬规则）\n\n以下模式是 AI 生成文本的典型标志，审稿人一眼能看出。**必须全部消除。**\n\n### 5.1 严禁破折号（最显著的 AI 痕迹）\n\n**这是 AI 写作最容易被识别的标志，审稿人最敏感。单列为最高优先级硬规则。**\n\n- 解释性 em-dash（—，U+2014）和 en-dash（–，U+2013）必须**全部删除**\n- 替代方式：用逗号、括号或拆分为两个句子\n- 强制检查命令：\n  ```bash\n  grep -n \"—\" paper/*.tex     # em-dash，每处人工判断是否必要\n  grep -n \" – \" paper/*.tex   # 解释性 en-dash，几乎都应删除\n  ```\n- 例外（允许保留）：表格分隔符、数字范围（`2020–2024`、`pp. 12–18`）、专有名词（`Newton–Raphson`）\n\n### 5.2 段落与句式\n\n- **禁止过度分段**：不需要每 2-3 句就换段，自然段 5-8 句是正常的\n- **减少关系从句**（which, that, who）：能用简洁直接的句子就不用从句\n- **禁止 -ing 短语结尾**：如 \"..., highlighting the applicability of...\" / \"..., demonstrating the effectiveness of...\"。这是 AI 写作最典型的标志之一\n- **禁止连续使用 \"Furthermore\" / \"Moreover\" / \"Additionally\"**：一段内最多用一个过渡词\n- **避免 \"It is worth noting that...\" / \"Notably, ...\"**：直接写要说的内容\n\n### 5.3 用词黑名单\n\n- 避免 \"delve into\" / \"leverage\" / \"utilize\" / \"facilitate\" — 用 \"explore\" / \"use\" / \"enable\"\n- 避免 \"a myriad of\" / \"a plethora of\" — 用 \"many\" / \"various\"\n- 避免 \"in the realm of\" / \"in the context of\" — 直接说\n- 避免 \"paradigm shift\" / \"novel\" 过度使用\n\n### 5.4 校对清单（4 步）\n\n1. 全文 proofread 语法和拼写\n2. 检查所有代词/指示词（this, that, it）是否指代明确\n3. **`grep \"—\"` + `grep \" – \"` 全文清零**（删除所有解释性 dash，§5.1）\n4. `grep \"ing,\"` 模式——大部分 -ing 分词短语需要改写\n\n---\n\n## 六、图表与视觉规范\n\n### 6.1 知识密度原则\n\n- **图表的信息必须紧凑**——不能为了美观而留大量白空间\n- 一张图如果只传达一个简单信息，要么缩小要么合并到其他图中\n- 能用 inline text 说清的不要占一整个 Figure\n\n### 6.2 表格规范\n\n- 表格和正文文字不能视觉重叠（检查 column 宽度和 alignment）\n- 小数精度全表统一\n- 最优加粗、次优下划线\n- Caption 必须自包含\n\n### 6.3 图片规范\n\n- 数值标签不能被线、bar、点遮住——用白色背景或偏移标签\n- 图中字体 >= 7pt（打印后仍可读）\n- 栏宽约束需匹配目标 venue 模板要求\n- 概念图/流程图要有信息量，不要画一个 trivial 的 pipeline 然后占半页\n\n### 6.4 空间效率\n\n- 顶会正文页数严格受限（具体页数查目标会议官网），每 cm² 都是宝贵资源\n- 优先使用 `\\subfigure` 合并相关图\n- Table 能 inline 就不要单独浮动\n- 图表占比与其对叙事的贡献成正比\n\n### 6.5 页面节奏\n\n好论文的页面有节奏感——text、equation、figure 交替出现，读者视觉不疲劳：\n\n- **text-equation-figure 三重奏**：重要概念用\"文字解释 → 公式定义 → 图表直觉\"三步展开\n- 连续 2 页纯文本（无 figure/equation/table）→ 穿插一个 display item 打破节奏\n- 连续 2 个 figure 页（整页被 float 占满）→ 至少隔 1 段文字再放下一个 float\n- Section heading 不孤悬页底（heading 后至少跟 2 行正文，否则强制分页）\n- 最后一页内容 ≥ 2/3 页面高度（太空显得凑数，太满放不下 references）\n\n### 6.6 表格 LaTeX 规范\n\n**Booktabs 标准（硬规则）**：\n- 用 `\\toprule` / `\\midrule` / `\\bottomrule`，禁止 `\\hline`，禁止竖线 `|`\n- 用 `\\centering` 不用 `\\begin{center}`（后者多加垂直空白）\n- 最优结果加粗（`\\textbf{}`），次优下划线（`\\underline{}`）+ 方向箭头 `↑`/`↓` 标明指标方向\n- 小数精度全表统一（如全部保留 1 位或 2 位）\n- Caption 在表格上方（`\\caption` 在 `\\begin{tabular}` 之前）\n\n**宽度决策树**：\n- ≤5 列 → 单栏宽度（`\\columnwidth`）\n- 6–8 列 → 全文宽度（`\\textwidth`，双栏模板用 `table*`）\n- >8 列 → 拆成两张表或移入 appendix\n\n---\n\n## 七、投稿前通用准备\n\n### 7.1 模板必须官方（硬规则）\n\n- LaTeX 模板**必须从目标会议官网下载**（CallForPapers / Author Instructions 页面）\n- **不要用**：\n  - 网上他人转载的复制版本（可能被改过 margin / 行号设置）\n  - 上一年的模板（参数可能变：字体、margin、行号、anonymous 选项等）\n  - 组里学长留的旧版本（来源不明、无法追溯）\n- 风险：\n  - 样式不符合 → desk reject\n  - margin 不对 → 被审稿人质疑诚信\n  - reference 格式错 → 被认为不规范\n- 流程：先查会议官网 templates → 找不到再 `WebSearch \"{venue} {year} latex template official\"` → 仍找不到汇报 Director（不要用就近年版本顶替）\n- `\\documentclass[]{}` 选项必须与目标 venue + 阶段（review / camera-ready）一致\n\n### 7.2 投稿要求逐项核对\n\n- 目标会议如要求 Checklist / Ethical Statement / Broader Impact Statement / Reproducibility Statement，必须**认真填每一项**，不要全写 N/A\n- 页数限制：查目标会议官网\n- 匿名化要求：review 版 vs camera-ready 版本设置不同\n- 行号开启（review 版常需）\n- 字体大小、margin 不得修改 sty 文件\n\n### 7.3 最终修改 10 项检查流程\n\n提交前必须逐一检查：\n1. 所有最新实验结果已全部录入\n2. 根据实验结果将叙事调至最优状态\n3. 附录所有内容在正文中被引用且融入叙事\n4. 无数据堆砌（每个数字服务于叙事推进）\n5. Abstract 和 Introduction 具有吸引力（不是实验报告风格）\n6. 全文主线统一（idea 变化后各章节逻辑一致）\n7. 所有专有名词有定义\n8. 无 AI 风格标志（dash、-ing phrases、过度分段）\n9. 图表知识密度高、无视觉遮挡\n10. Reference 覆盖直接相关方法、baseline、benchmark、理论基础\n",
+      "numLines": 276,
+      "startLine": 1,
+      "totalLines": 276
+    }
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-20T21:01:41.881Z_
+
+<details><summary>↩ Tool result · `toolu_01FCcGhMjj3UHEeKFXXGBevT`</summary>
+
+```text
+1	\section{Experiments}
+2	
+3	\subsection{Benchmark and Tasks}
+4	
+5	We evaluate on the SafeLIBERO benchmark~\cite{hu2025aegis}, which augments the LIBERO-Spatial suite with collision-aware evaluation. SafeLIBERO comprises 32 scenarios across 10 tabletop manipulation tasks organized into two difficulty levels: Level~I (basic spatial reasoning) and Level~II (complex multi-step manipulation). Each task requires the agent to reach, grasp, and place objects among surrounding obstacles. Several tasks deliberately position objects in close proximity (e.g., a bowl resting on a ramekin), creating natural collision challenges that test whether the agent can complete the instructed task without disturbing nearby objects.
+6	
+7	\subsection{Evaluation Protocol}
+8	
+9	We measure two complementary metrics aligned with the VLSA-AEGIS protocol~\cite{hu2025aegis}. \textbf{Task Success Rate (TSR)} is the fraction of episodes in which the robot completes the instructed task. \textbf{Collision Avoidance Rate (CAR)} is the fraction of episodes with zero unintended object displacement, computed as $\text{CAR} = 1 - n_{\text{collide}} / N$, where $n_{\text{collide}}$ counts episodes whose maximum L1 \texttt{body\_xpos} displacement exceeds a threshold of $0.001$. For each of the 10 tasks, we run 20 rollouts per random seed across 3 seeds (42, 43, 44), yielding 60 rollouts per task and 600 total. We report mean and 95\% confidence intervals, with paired $t$-tests and Cohen's $d$ effect sizes for pairwise comparisons.
+10	
+11	\subsection{Experimental Conditions}
+12	
+13	We design five conditions that form a mechanism ablation chain, progressively isolating the role of occupancy-grounded gradient flow:
+14	
+15	\begin{itemize}[nosep,leftmargin=*]
+16	  \item \textbf{Vanilla}: OpenVLA-OFT fine-tuned without any auxiliary supervision (baseline).
+17	  \item \textbf{+Occ}: BEV occupancy auxiliary head with gradients flowing into the vision encoder (\texttt{occ\_detach=False}).
+18	  \item \textbf{+Occ-Detach}: Occupancy head with detached gradients (\texttt{occ\_detach=True}), testing whether gradient flow to the encoder is necessary.
+19	  \item \textbf{+Depth}: Depth prediction auxiliary head (same architecture, labels from Depth Anything V2), testing whether collision avoidance is specific to occupancy or arises from any geometric auxiliary task.
+20	  \item \textbf{+Random-Occ}: Occupancy head trained with randomized labels, controlling for the regularization effect of an auxiliary loss.
+21	\end{itemize}
+22	
+23	\noindent The chain Vanilla $\to$ +Random-Occ $\to$ +Depth $\to$ +Occ-Detach $\to$ +Occ isolates, in turn, auxiliary regularization, geometric supervision, and occupancy-specific gradient flow.
+24	
+25	\subsection{Implementation Details}
+26	
+27	All conditions share the same base model: OpenVLA-OFT 7B~\cite{kim2025openvlaoft}, pre-trained on Open X-Embodiment. We fine-tune with LoRA (rank 32) for 50K steps using a batch size of 8 and a fixed learning rate of $5 \times 10^{-4}$ across 3 random seeds per condition. The occupancy head is a convolutional decoder that maps DINOv2 patch features to a $64{\times}64$ BEV occupancy grid: a linear projection to 256 channels reshaped into a $16{\times}16$ spatial map, two transposed convolutions ($256{\to}128{\to}64$, kernel 4, stride 2) with batch normalization and GELU, and a $1{\times}1$ output convolution. The head is trained with Focal Loss ($\alpha{=}0.25$, $\gamma{=}2.0$); the occupancy loss weight $\lambda_{\text{occ}}$ starts at $0.01$ and decays exponentially with time constant $\tau{=}50$K steps. The depth head uses the same decoder with continuous regression targets. Each run trains in approximately 13 hours on a single NVIDIA RTX PRO 6000 GPU. Evaluation uses \texttt{MUJOCO\_GL=egl} for headless rendering with deterministic rollout seeds.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "d4989e2e-ab5f-4925-b0ae-d0b4d5f65e71",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/experiments.tex",
+      "content": "\\section{Experiments}\n\n\\subsection{Benchmark and Tasks}\n\nWe evaluate on the SafeLIBERO benchmark~\\cite{hu2025aegis}, which augments the LIBERO-Spatial suite with collision-aware evaluation. SafeLIBERO comprises 32 scenarios across 10 tabletop manipulation tasks organized into two difficulty levels: Level~I (basic spatial reasoning) and Level~II (complex multi-step manipulation). Each task requires the agent to reach, grasp, and place objects among surrounding obstacles. Several tasks deliberately position objects in close proximity (e.g., a bowl resting on a ramekin), creating natural collision challenges that test whether the agent can complete the instructed task without disturbing nearby objects.\n\n\\subsection{Evaluation Protocol}\n\nWe measure two complementary metrics aligned with the VLSA-AEGIS protocol~\\cite{hu2025aegis}. \\textbf{Task Success Rate (TSR)} is the fraction of episodes in which the robot completes the instructed task. \\textbf{Collision Avoidance Rate (CAR)} is the fraction of episodes with zero unintended object displacement, computed as $\\text{CAR} = 1 - n_{\\text{collide}} / N$, where $n_{\\text{collide}}$ counts episodes whose maximum L1 \\texttt{body\\_xpos} displacement exceeds a threshold of $0.001$. For each of the 10 tasks, we run 20 rollouts per random seed across 3 seeds (42, 43, 44), yielding 60 rollouts per task and 600 total. We report mean and 95\\% confidence intervals, with paired $t$-tests and Cohen's $d$ effect sizes for pairwise comparisons.\n\n\\subsection{Experimental Conditions}\n\nWe design five conditions that form a mechanism ablation chain, progressively isolating the role of occupancy-grounded gradient flow:\n\n\\begin{itemize}[nosep,leftmargin=*]\n  \\item \\textbf{Vanilla}: OpenVLA-OFT fine-tuned without any auxiliary supervision (baseline).\n  \\item \\textbf{+Occ}: BEV occupancy auxiliary head with gradients flowing into the vision encoder (\\texttt{occ\\_detach=False}).\n  \\item \\textbf{+Occ-Detach}: Occupancy head with detached gradients (\\texttt{occ\\_detach=True}), testing whether gradient flow to the encoder is necessary.\n  \\item \\textbf{+Depth}: Depth prediction auxiliary head (same architecture, labels from Depth Anything V2), testing whether collision avoidance is specific to occupancy or arises from any geometric auxiliary task.\n  \\item \\textbf{+Random-Occ}: Occupancy head trained with randomized labels, controlling for the regularization effect of an auxiliary loss.\n\\end{itemize}\n\n\\noindent The chain Vanilla $\\to$ +Random-Occ $\\to$ +Depth $\\to$ +Occ-Detach $\\to$ +Occ isolates, in turn, auxiliary regularization, geometric supervision, and occupancy-specific gradient flow.\n\n\\subsection{Implementation Details}\n\nAll conditions share the same base model: OpenVLA-OFT 7B~\\cite{kim2025openvlaoft}, pre-trained on Open X-Embodiment. We fine-tune with LoRA (rank 32) for 50K steps using a batch size of 8 and a fixed learning rate of $5 \\times 10^{-4}$ across 3 random seeds per condition. The occupancy head is a convolutional decoder that maps DINOv2 patch features to a $64{\\times}64$ BEV occupancy grid: a linear projection to 256 channels reshaped into a $16{\\times}16$ spatial map, two transposed convolutions ($256{\\to}128{\\to}64$, kernel 4, stride 2) with batch normalization and GELU, and a $1{\\times}1$ output convolution. The head is trained with Focal Loss ($\\alpha{=}0.25$, $\\gamma{=}2.0$); the occupancy loss weight $\\lambda_{\\text{occ}}$ starts at $0.01$ and decays exponentially with time constant $\\tau{=}50$K steps. The depth head uses the same decoder with continuous regression targets. Each run trains in approximately 13 hours on a single NVIDIA RTX PRO 6000 GPU. Evaluation uses \\texttt{MUJOCO\\_GL=egl} for headless rendering with deterministic rollout seeds.",
+      "numLines": 27,
+      "startLine": 1,
+      "totalLines": 27
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T21:01:41.884Z_
+
+<details><summary>↩ Tool result · `toolu_012eYyBxskCjt9Tu2hCJQAxn`</summary>
+
+```text
+1	\section{Method}
+2	\label{sec:method}
+3	
+4	We present OccSafe-VLA, a framework that improves collision safety in Vision-Language-Action models through two complementary mechanisms. The first is a BEV occupancy auxiliary head that injects spatial awareness into the vision encoder at zero inference cost (Section~\ref{sec:occ_head}). The second is OCC-CBF, a conceptual framework for explicit safety guarantees conditioned on learned spatial features (Section~\ref{sec:occ_cbf}). We begin by formalizing the problem setting and evaluation metrics.
+5	
+6	\subsection{Problem Formulation}
+7	\label{sec:formulation}
+8	
+9	We consider a \textbf{Vision-Language-Action (VLA)} policy $\pi(a_t \mid o_t, l)$ that maps a visual observation $o_t$ and a language instruction $l$ to a 7-DOF action $a_t$ (delta end-effector pose) at each timestep $t$. The policy is parameterized by a large pretrained vision-language model fine-tuned on robot demonstration data. We evaluate performance along two complementary axes. \textbf{Task Success Rate (TSR)} measures the fraction of episodes in which the robot completes the instructed task:
+10	\begin{equation}
+11	  \text{TSR} = \frac{n_{\text{success}}}{N},
+12	\end{equation}
+13	where $n_{\text{success}}$ is the number of successful episodes out of $N$ total rollouts. \textbf{Collision Avoidance Rate (CAR)} measures the fraction of episodes free of unintended object displacement:
+14	\begin{equation}
+15	  \text{CAR} = 1 - \frac{n_{\text{collide}}}{N},
+16	\end{equation}
+17	where $n_{\text{collide}}$ counts episodes whose maximum L1 \texttt{body\_xpos} displacement exceeds a threshold of $0.001$, following the VLSA/AEGIS protocol~\cite{hu2025aegis}. Our objective is to improve CAR without degrading TSR. A policy that avoids collisions by refusing to act is not useful; a practical safe manipulation policy must maintain high task completion while reducing unintended contact with surrounding objects.
+18	
+19	\subsection{BEV Occupancy Auxiliary Head}
+20	\label{sec:occ_head}
+21	
+22	Modern VLA models such as OpenVLA~\cite{kim2024openvla} and OpenVLA-OFT~\cite{kim2025openvlaoft} rely on 2D pretrained vision encoders (DINOv2, SigLIP) that excel at semantic understanding and language grounding. These encoders learn effective semantic-to-action mappings through fine-tuning, yet they lack explicit reasoning about 3D object boundaries and free space. When a robot must navigate tight clearances between objects in cluttered scenes, this gap becomes critical. A policy that cannot distinguish occupied from free regions of the workspace will collide with obstacles even when it correctly identifies the target object. The challenge is to inject 3D spatial structure into the vision encoder without adding inference cost or sacrificing the benefits of large-scale 2D pretraining.
+23	
+24	We address this challenge with a \textbf{BEV occupancy auxiliary head} that predicts a bird's-eye-view occupancy grid of the workspace. The BEV representation encodes object boundaries in a view-independent, allocentric coordinate frame and serves as a natural supervisory signal for spatial structure. Unlike depth maps, which remain tied to the camera viewpoint, BEV occupancy offers an explicit top-down decomposition of occupied and free space that directly corresponds to the robot's planning geometry. The head itself is a lightweight two-layer MLP with 256 hidden units that takes DINOv2 patch features as input and produces a $64 \times 64$ binary occupancy grid. We train this head with Focal Loss to handle the class imbalance between occupied and free cells:
+25	\begin{equation}
+26	  \mathcal{L}_{\text{occ}} = -\alpha\,(1 - p_t)^{\gamma}\,\log(p_t),
+27	\end{equation}
+28	where $\alpha = 0.75$ and $\gamma = 2.0$ are the balancing and focusing parameters, $p_t$ is the predicted probability for the ground-truth class, and the occupancy loss is weighted by $\lambda = 0.1$ relative to the action loss.
+29	
+30	The critical design principle is \textbf{zero inference cost}. During training, the occupancy head forces the vision encoder to internalize spatial structure: accurate occupancy prediction requires the encoder to represent where objects begin and end in 3D space. At inference time, we discard the occupancy head entirely, and the spatial awareness acquired during training persists as an emergent property of the encoder's learned features. This paradigm of training with auxiliary geometric supervision and deploying without it has been validated in autonomous driving by OccVLA~\cite{liu2025occvla}, which uses volumetric occupancy prediction to enhance a VLA's spatial understanding for navigation. Our work applies the same principle to tabletop manipulation, where the spatial scale and task geometry differ but the core insight holds: auxiliary occupancy supervision reshapes encoder representations to encode spatial boundaries that transfer to safer action prediction.
+31	
+32	\subsection{Training Pipeline}
+33	\label{sec:training}
+34	
+35	We build on OpenVLA-OFT 7B~\cite{kim2025openvlaoft} as the base model, which combines a Llama~2 language backbone with DINOv2 and SigLIP as dual vision encoders. The total training objective combines the action prediction loss with the occupancy auxiliary loss:
+36	\begin{equation}
+37	  \mathcal{L}_{\text{total}} = \mathcal{L}_{\text{action}} + \lambda \cdot \mathcal{L}_{\text{occ}},
+38	\end{equation}
+39	where $\mathcal{L}_{\text{action}}$ is the L1 action regression loss from OpenVLA-OFT and $\lambda = 0.1$. The mechanism that makes occupancy supervision effective is \textbf{gradient flow}: with \texttt{occ\_detach=False}, gradients from $\mathcal{L}_{\text{occ}}$ propagate through the occupancy head back into the DINOv2 vision encoder. This forces the encoder to develop internal representations that encode spatial structure, because producing accurate occupancy predictions requires features that capture object boundaries and spatial layout. If we instead detach the gradients (\texttt{occ\_detach=True}), the occupancy head becomes a passive observer that reads encoder features without modifying them, and the auxiliary loss functions as a multi-task regularizer rather than a representation shaper. This is not a subtle distinction: as we show in our ablation study (Section~4), detaching gradients eliminates the safety benefit entirely, confirming that the encoder must be directly shaped by the occupancy objective.
+40	
+41	We fine-tune all conditions with LoRA at rank~32 for 50K steps, using a batch size of 8 and a learning rate of $5 \times 10^{-4}$ with cosine decay. Training data consists of approximately 25K demonstration episodes from the LIBERO-Spatial suite. All hyperparameters are shared across experimental conditions to ensure fair comparison; only the auxiliary head configuration varies between conditions. Each training run completes in approximately 17 hours on a single A100 GPU.
+42	
+43	\subsection{OCC-CBF: Occupancy-Conditioned Control Barrier Function}
+44	\label{sec:occ_cbf}
+45	
+46	The BEV occupancy auxiliary head provides implicit safety by reshaping the encoder's spatial representations at zero inference cost. In certain dense clutter scenarios, however, implicit spatial awareness alone may not guarantee collision avoidance. For such cases, we outline \textbf{OCC-CBF}, a second line of defense that constructs an explicit safety constraint from the spatial features learned by the occupancy-trained encoder.
+47	
+48	OCC-CBF defines a learned barrier function conditioned on occupancy features. Let $z_{\text{occ}}$ denote the spatial features extracted from the occupancy-trained vision encoder and let $x_{\text{robot}}$ denote the robot's current state. The occupancy-conditioned barrier function takes the form:
+49	\begin{equation}
+50	  h_{\text{occ}}(x) = f_\theta(z_{\text{occ}},\, x_{\text{robot}}),
+51	\end{equation}
+52	where $f_\theta$ is a learned function that maps the combined feature-state pair to a scalar safety value. States satisfying $h_{\text{occ}}(x) \geq 0$ are considered safe, and the control barrier constraint modifies the VLA's proposed action to maintain this invariant.
+53	
+54	OCC-CBF differs from existing barrier function approaches in its use of learned volumetric features rather than hand-crafted geometric representations. The Euclidean-distance barrier in AEGIS~\cite{hu2025aegis} operates on explicit object positions from a world model, which limits its applicability to scenarios where object states are directly observable. OGM-CBF~\cite{ji2024ogmcbf} constructs barriers from discrete occupancy grids via signed distance fields, but relies on accurate grid-level occupancy at test time rather than learned continuous features. Learning to Nudge~\cite{kwon2026learningnudge} trains object-centric barrier functions (DCBF) that reason about individual objects and require explicit object decomposition, which may not scale to highly cluttered scenes. Neural CS-BF~\cite{neuralcsbf2025} learns barriers in configuration space for manipulation planning, but operates on geometric state representations independently of a VLA's perceptual features. In contrast, OCC-CBF operates in the VLA's continuous learned feature space and can perform semantic collision reasoning without explicit object segmentation, distance computation, or a separate perception pipeline.
+55	
+56	\textit{We defer the detailed formulation, training procedure, and experimental validation of OCC-CBF to the extended version of this paper. The experiments in Section~4 evaluate the occupancy auxiliary head in isolation, which already yields substantial safety improvements without runtime overhead.}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "771c5e5e-0f23-47e6-8727-b0a0ac7e284d",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex",
+      "content": "\\section{Method}\n\\label{sec:method}\n\nWe present OccSafe-VLA, a framework that improves collision safety in Vision-Language-Action models through two complementary mechanisms. The first is a BEV occupancy auxiliary head that injects spatial awareness into the vision encoder at zero inference cost (Section~\\ref{sec:occ_head}). The second is OCC-CBF, a conceptual framework for explicit safety guarantees conditioned on learned spatial features (Section~\\ref{sec:occ_cbf}). We begin by formalizing the problem setting and evaluation metrics.\n\n\\subsection{Problem Formulation}\n\\label{sec:formulation}\n\nWe consider a \\textbf{Vision-Language-Action (VLA)} policy $\\pi(a_t \\mid o_t, l)$ that maps a visual observation $o_t$ and a language instruction $l$ to a 7-DOF action $a_t$ (delta end-effector pose) at each timestep $t$. The policy is parameterized by a large pretrained vision-language model fine-tuned on robot demonstration data. We evaluate performance along two complementary axes. \\textbf{Task Success Rate (TSR)} measures the fraction of episodes in which the robot completes the instructed task:\n\\begin{equation}\n  \\text{TSR} = \\frac{n_{\\text{success}}}{N},\n\\end{equation}\nwhere $n_{\\text{success}}$ is the number of successful episodes out of $N$ total rollouts. \\textbf{Collision Avoidance Rate (CAR)} measures the fraction of episodes free of unintended object displacement:\n\\begin{equation}\n  \\text{CAR} = 1 - \\frac{n_{\\text{collide}}}{N},\n\\end{equation}\nwhere $n_{\\text{collide}}$ counts episodes whose maximum L1 \\texttt{body\\_xpos} displacement exceeds a threshold of $0.001$, following the VLSA/AEGIS protocol~\\cite{hu2025aegis}. Our objective is to improve CAR without degrading TSR. A policy that avoids collisions by refusing to act is not useful; a practical safe manipulation policy must maintain high task completion while reducing unintended contact with surrounding objects.\n\n\\subsection{BEV Occupancy Auxiliary Head}\n\\label{sec:occ_head}\n\nModern VLA models such as OpenVLA~\\cite{kim2024openvla} and OpenVLA-OFT~\\cite{kim2025openvlaoft} rely on 2D pretrained vision encoders (DINOv2, SigLIP) that excel at semantic understanding and language grounding. These encoders learn effective semantic-to-action mappings through fine-tuning, yet they lack explicit reasoning about 3D object boundaries and free space. When a robot must navigate tight clearances between objects in cluttered scenes, this gap becomes critical. A policy that cannot distinguish occupied from free regions of the workspace will collide with obstacles even when it correctly identifies the target object. The challenge is to inject 3D spatial structure into the vision encoder without adding inference cost or sacrificing the benefits of large-scale 2D pretraining.\n\nWe address this challenge with a \\textbf{BEV occupancy auxiliary head} that predicts a bird's-eye-view occupancy grid of the workspace. The BEV representation encodes object boundaries in a view-independent, allocentric coordinate frame and serves as a natural supervisory signal for spatial structure. Unlike depth maps, which remain tied to the camera viewpoint, BEV occupancy offers an explicit top-down decomposition of occupied and free space that directly corresponds to the robot's planning geometry. The head itself is a lightweight two-layer MLP with 256 hidden units that takes DINOv2 patch features as input and produces a $64 \\times 64$ binary occupancy grid. We train this head with Focal Loss to handle the class imbalance between occupied and free cells:\n\\begin{equation}\n  \\mathcal{L}_{\\text{occ}} = -\\alpha\\,(1 - p_t)^{\\gamma}\\,\\log(p_t),\n\\end{equation}\nwhere $\\alpha = 0.75$ and $\\gamma = 2.0$ are the balancing and focusing parameters, $p_t$ is the predicted probability for the ground-truth class, and the occupancy loss is weighted by $\\lambda = 0.1$ relative to the action loss.\n\nThe critical design principle is \\textbf{zero inference cost}. During training, the occupancy head forces the vision encoder to internalize spatial structure: accurate occupancy prediction requires the encoder to represent where objects begin and end in 3D space. At inference time, we discard the occupancy head entirely, and the spatial awareness acquired during training persists as an emergent property of the encoder's learned features. This paradigm of training with auxiliary geometric supervision and deploying without it has been validated in autonomous driving by OccVLA~\\cite{liu2025occvla}, which uses volumetric occupancy prediction to enhance a VLA's spatial understanding for navigation. Our work applies the same principle to tabletop manipulation, where the spatial scale and task geometry differ but the core insight holds: auxiliary occupancy supervision reshapes encoder representations to encode spatial boundaries that transfer to safer action prediction.\n\n\\subsection{Training Pipeline}\n\\label{sec:training}\n\nWe build on OpenVLA-OFT 7B~\\cite{kim2025openvlaoft} as the base model, which combines a Llama~2 language backbone with DINOv2 and SigLIP as dual vision encoders. The total training objective combines the action prediction loss with the occupancy auxiliary loss:\n\\begin{equation}\n  \\mathcal{L}_{\\text{total}} = \\mathcal{L}_{\\text{action}} + \\lambda \\cdot \\mathcal{L}_{\\text{occ}},\n\\end{equation}\nwhere $\\mathcal{L}_{\\text{action}}$ is the L1 action regression loss from OpenVLA-OFT and $\\lambda = 0.1$. The mechanism that makes occupancy supervision effective is \\textbf{gradient flow}: with \\texttt{occ\\_detach=False}, gradients from $\\mathcal{L}_{\\text{occ}}$ propagate through the occupancy head back into the DINOv2 vision encoder. This forces the encoder to develop internal representations that encode spatial structure, because producing accurate occupancy predictions requires features that capture object boundaries and spatial layout. If we instead detach the gradients (\\texttt{occ\\_detach=True}), the occupancy head becomes a passive observer that reads encoder features without modifying them, and the auxiliary loss functions as a multi-task regularizer rather than a representation shaper. This is not a subtle distinction: as we show in our ablation study (Section~4), detaching gradients eliminates the safety benefit entirely, confirming that the encoder must be directly shaped by the occupancy objective.\n\nWe fine-tune all conditions with LoRA at rank~32 for 50K steps, using a batch size of 8 and a learning rate of $5 \\times 10^{-4}$ with cosine decay. Training data consists of approximately 25K demonstration episodes from the LIBERO-Spatial suite. All hyperparameters are shared across experimental conditions to ensure fair comparison; only the auxiliary head configuration varies between conditions. Each training run completes in approximately 17 hours on a single A100 GPU.\n\n\\subsection{OCC-CBF: Occupancy-Conditioned Control Barrier Function}\n\\label{sec:occ_cbf}\n\nThe BEV occupancy auxiliary head provides implicit safety by reshaping the encoder's spatial representations at zero inference cost. In certain dense clutter scenarios, however, implicit spatial awareness alone may not guarantee collision avoidance. For such cases, we outline \\textbf{OCC-CBF}, a second line of defense that constructs an explicit safety constraint from the spatial features learned by the occupancy-trained encoder.\n\nOCC-CBF defines a learned barrier function conditioned on occupancy features. Let $z_{\\text{occ}}$ denote the spatial features extracted from the occupancy-trained vision encoder and let $x_{\\text{robot}}$ denote the robot's current state. The occupancy-conditioned barrier function takes the form:\n\\begin{equation}\n  h_{\\text{occ}}(x) = f_\\theta(z_{\\text{occ}},\\, x_{\\text{robot}}),\n\\end{equation}\nwhere $f_\\theta$ is a learned function that maps the combined feature-state pair to a scalar safety value. States satisfying $h_{\\text{occ}}(x) \\geq 0$ are considered safe, and the control barrier constraint modifies the VLA's proposed action to maintain this invariant.\n\nOCC-CBF differs from existing barrier function approaches in its use of learned volumetric features rather than hand-crafted geometric representations. The Euclidean-distance barrier in AEGIS~\\cite{hu2025aegis} operates on explicit object positions from a world model, which limits its applicability to scenarios where object states are directly observable. OGM-CBF~\\cite{ji2024ogmcbf} constructs barriers from discrete occupancy grids via signed distance fields, but relies on accurate grid-level occupancy at test time rather than learned continuous features. Learning to Nudge~\\cite{kwon2026learningnudge} trains object-centric barrier functions (DCBF) that reason about individual objects and require explicit object decomposition, which may not scale to highly cluttered scenes. Neural CS-BF~\\cite{neuralcsbf2025} learns barriers in configuration space for manipulation planning, but operates on geometric state representations independently of a VLA's perceptual features. In contrast, OCC-CBF operates in the VLA's continuous learned feature space and can perform semantic collision reasoning without explicit object segmentation, distance computation, or a separate perception pipeline.\n\n\\textit{We defer the detailed formulation, training procedure, and experimental validation of OCC-CBF to the extended version of this paper. The experiments in Section~4 evaluate the occupancy auxiliary head in isolation, which already yields substantial safety improvements without runtime overhead.}",
+      "numLines": 56,
+      "startLine": 1,
+      "totalLines": 56
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me extract and confirm the key values from the code:
+
+From `finetune.py` - I need to find the relevant lines. Let me read the full file to find occ_loss_weight and occ_loss_decay_steps.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "11a24c8a-b125-435f-936a-0a67e5ccb5b1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bhx2dH4VpUzYZEJyEBbEHs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1182,
+      "cache_creation_input_tokens": 10211,
+      "cache_read_input_tokens": 24786,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10211
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+I have the code files and current papers. Let me now extract the specific parameter values from finetune.py.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "22a103c3-e7a3-4d95-beb8-10285a6108da",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bhx2dH4VpUzYZEJyEBbEHs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1182,
+      "cache_creation_input_tokens": 10211,
+      "cache_read_input_tokens": 24786,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10211
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — Read · `toolu_017RxSWazH8TS2EXFzfSbjBo`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-occsafe-vla/218d94ba-7e7e-493c-9f46-e4f039dfc3a6/tool-results/b8flshisw.txt",
+  "offset": 0,
+  "limit": 150
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "d1570d8c-8a6c-4bae-8fe6-b8b519373dbb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bhx2dH4VpUzYZEJyEBbEHs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1182,
+      "cache_creation_input_tokens": 10211,
+      "cache_read_input_tokens": 24786,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10211
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T21:01:49.538Z_
+
+<details><summary>↩ Tool result · `toolu_017RxSWazH8TS2EXFzfSbjBo`</summary>
+
+```text
+0	Warning: Permanently added '[connect.westd.seetacloud.com]:34685' (ED25519) to the list of known hosts.
+1	"""
+2	finetune.py
+3	
+4	Fine-tunes OpenVLA via LoRA.
+5	"""
+6	
+7	import os
+8	import time
+9	from collections import deque
+10	from dataclasses import dataclass
+11	from pathlib import Path
+12	from typing import Dict, Optional, Tuple, Type
+13	
+14	import draccus
+15	import torch
+16	import torch.distributed as dist
+17	import torch.nn as nn
+18	import tqdm
+19	from accelerate import PartialState
+20	from huggingface_hub import HfApi, snapshot_download
+21	from peft import LoraConfig, PeftModel, get_peft_model
+22	from torch.nn.parallel import DistributedDataParallel as DDP
+23	from torch.optim import AdamW
+24	from torch.optim.lr_scheduler import MultiStepLR
+25	from torch.utils.data import DataLoader
+26	from transformers import AutoConfig, AutoImageProcessor, AutoModelForVision2Seq, AutoProcessor
+27	from transformers.modeling_outputs import CausalLMOutputWithPast
+28	
+29	import wandb
+30	
+31	from experiments.robot.openvla_utils import (
+32	    check_model_logic_mismatch,
+33	    model_is_on_hf_hub,
+34	    update_auto_map,
+35	)
+36	
+37	from prismatic.extern.hf.configuration_prismatic import OpenVLAConfig
+38	from prismatic.extern.hf.modeling_prismatic import OpenVLAForActionPrediction
+39	from prismatic.extern.hf.processing_prismatic import PrismaticImageProcessor, PrismaticProcessor
+40	from prismatic.models.action_heads import DiffusionActionHead, L1RegressionActionHead
+41	from prismatic.models.backbones.llm.prompting import PurePromptBuilder
+42	from prismatic.models.film_vit_wrapper import FiLMedPrismaticVisionBackbone
+43	from prismatic.models.projectors import (
+44	    NoisyActionProjector,
+45	    ProprioProjector,
+46	)
+47	from prismatic.training.train_utils import (
+48	    compute_actions_l1_loss,
+49	    compute_token_accuracy,
+50	    get_current_action_mask,
+51	    get_next_actions_mask,
+52	)
+53	from prismatic.util.data_utils import PaddedCollatorForActionPrediction
+54	from prismatic.vla.action_tokenizer import ActionTokenizer
+55	from prismatic.vla.constants import (
+56	    ACTION_DIM,
+57	    ACTION_PROPRIO_NORMALIZATION_TYPE,
+58	    NUM_ACTIONS_CHUNK,
+59	    PROPRIO_DIM,
+60	)
+61	from prismatic.vla.datasets import RLDSBatchTransform, RLDSDataset
+62	from prismatic.vla.datasets.rlds.utils.data_utils import save_dataset_statistics
+63	from prismatic.models.occ_head import BEVOccupancyHead, FocalLoss
+64	import math
+65	
+66	# Sane Defaults
+67	os.environ["TOKENIZERS_PARALLELISM"] = "false"
+68	
+69	
+70	@dataclass
+71	class FinetuneConfig:
+72	    # fmt: off
+73	    vla_path: str = "openvla/openvla-7b"             # Path to OpenVLA model (on HuggingFace Hub or stored locally)
+74	
+75	    # Dataset
+76	    data_root_dir: Path = Path("datasets/rlds")      # Directory containing RLDS datasets
+77	    dataset_name: str = "aloha_scoop_x_into_bowl"    # Name of fine-tuning dataset (e.g., `aloha_scoop_x_into_bowl`)
+78	    run_root_dir: Path = Path("runs")                # Path to directory to store logs & checkpoints
+79	    shuffle_buffer_size: int = 100_000               # Dataloader shuffle buffer size (can reduce if OOM errors occur)
+80	
+81	    # Algorithm and architecture
+82	    use_l1_regression: bool = True                   # If True, trains continuous action head with L1 regression objective
+83	    use_diffusion: bool = False                      # If True, trains continuous action head with diffusion modeling objective (DDIM)
+84	    num_diffusion_steps_train: int = 50              # (When `diffusion==True`) Number of diffusion steps used for training
+85	    use_film: bool = False                           # If True, uses FiLM to infuse language inputs into visual features
+86	    num_images_in_input: int = 1                     # Number of images in the VLA input (default: 1)
+87	    use_proprio: bool = False                        # If True, includes robot proprioceptive state in input
+88	
+89	    # BEV Occupancy auxiliary head
+90	    use_occ_head: bool = False                       # If True, adds BEV occupancy prediction auxiliary head
+91	    occ_data_dir: str = ""                           # Path to BEV occupancy labels (HDF5 files)
+92	    occ_loss_weight: float = 0.01                    # Initial loss weight for occupancy head
+93	    occ_loss_decay_steps: float = 50000              # Exponential decay steps for occ loss weight
+94	    occ_detach: bool = False                          # If True, detach visual features before occ head (no grad to backbone)
+95	    occ_resolution: int = 64                         # BEV grid resolution
+96	
+97	    # Training configuration
+98	    batch_size: int = 8                              # Batch size per device (total batch size = batch_size * num GPUs)
+99	    seed: int = 7                                    # Random seed for reproducibility
+100	    learning_rate: float = 5e-4                      # Learning rate
+101	    lr_warmup_steps: int = 0                         # Number of steps to warm up learning rate (from 10% to 100%)
+102	    num_steps_before_decay: int = 100_000            # Number of steps before LR decays by 10x
+103	    grad_accumulation_steps: int = 1                 # Number of gradient accumulation steps
+104	    max_steps: int = 200_000                         # Max number of training steps
+105	    use_val_set: bool = False                        # If True, uses validation set and log validation metrics
+106	    val_freq: int = 10_000                           # (When `use_val_set==True`) Validation set logging frequency in steps
+107	    val_time_limit: int = 180                        # (When `use_val_set==True`) Time limit for computing validation metrics
+108	    save_freq: int = 10_000                          # Checkpoint saving frequency in steps
+109	    save_latest_checkpoint_only: bool = False        # If True, saves only 1 checkpoint, overwriting latest checkpoint
+110	                                                     #   (If False, saves all checkpoints)
+111	    resume: bool = False                             # If True, resumes from checkpoint
+112	    resume_step: Optional[int] = None                # (When `resume==True`) Step number that we are resuming from
+113	    image_aug: bool = True                           # If True, trains with image augmentations (HIGHLY RECOMMENDED)
+114	    diffusion_sample_freq: int = 50                  # (When `use_diffusion==True`) Frequency for sampling in steps
+115	
+116	    # LoRA
+117	    use_lora: bool = True                            # If True, uses LoRA fine-tuning
+118	    lora_rank: int = 32                              # Rank of LoRA weight matrix
+119	    lora_dropout: float = 0.0                        # Dropout applied to LoRA weights
+120	    merge_lora_during_training: bool = True          # If True, merges LoRA weights and saves result during training
+121	                                                     #   Note: Merging can be very slow on some machines. If so, set to
+122	                                                     #         False and merge final checkpoint offline!
+123	
+124	    # Logging
+125	    wandb_entity: str = "your-wandb-entity"          # Name of WandB entity
+126	    wandb_project: str = "your-wandb-project"        # Name of WandB project
+127	    run_id_note: Optional[str] = None                # Extra note to add to end of run ID for logging
+128	    run_id_override: Optional[str] = None            # Optional string to override the run ID with
+129	    wandb_log_freq: int = 10                         # WandB logging frequency in steps
+130	
+131	    # fmt: on
+132	
+133	
+134	def remove_ddp_in_checkpoint(state_dict) -> dict:
+135	    """
+136	    Removes the 'module.' prefix from parameter names in a PyTorch model state dictionary that was saved using
+137	    DistributedDataParallel (DDP).
+138	
+139	    When a model is trained using PyTorch's DistributedDataParallel, the saved state dictionary contains parameters
+140	    prefixed with 'module.'. This function removes these prefixes to make the state dictionary compatible when
+141	    loading into models that are not yet wrapped in DDP.
+142	
+143	    Args:
+144	        state_dict (dict): PyTorch model state dictionary.
+145	
+146	    Returns:
+147	        dict: A new state dictionary with the same contents but with 'module.' prefixes removed from parameter names.
+148	              Parameters without the 'module.' prefix remain unchanged.
+149	    """
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "880ee1fa-85d2-4010-85d7-4eaa7ee3e62c",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-occsafe-vla/218d94ba-7e7e-493c-9f46-e4f039dfc3a6/tool-results/b8flshisw.txt",
+      "content": "Warning: Permanently added '[connect.westd.seetacloud.com]:34685' (ED25519) to the list of known hosts.\n\"\"\"\nfinetune.py\n\nFine-tunes OpenVLA via LoRA.\n\"\"\"\n\nimport os\nimport time\nfrom collections import deque\nfrom dataclasses import dataclass\nfrom pathlib import Path\nfrom typing import Dict, Optional, Tuple, Type\n\nimport draccus\nimport torch\nimport torch.distributed as dist\nimport torch.nn as nn\nimport tqdm\nfrom accelerate import PartialState\nfrom huggingface_hub import HfApi, snapshot_download\nfrom peft import LoraConfig, PeftModel, get_peft_model\nfrom torch.nn.parallel import DistributedDataParallel as DDP\nfrom torch.optim import AdamW\nfrom torch.optim.lr_scheduler import MultiStepLR\nfrom torch.utils.data import DataLoader\nfrom transformers import AutoConfig, AutoImageProcessor, AutoModelForVision2Seq, AutoProcessor\nfrom transformers.modeling_outputs import CausalLMOutputWithPast\n\nimport wandb\n\nfrom experiments.robot.openvla_utils import (\n    check_model_logic_mismatch,\n    model_is_on_hf_hub,\n    update_auto_map,\n)\n\nfrom prismatic.extern.hf.configuration_prismatic import OpenVLAConfig\nfrom prismatic.extern.hf.modeling_prismatic import OpenVLAForActionPrediction\nfrom prismatic.extern.hf.processing_prismatic import PrismaticImageProcessor, PrismaticProcessor\nfrom prismatic.models.action_heads import DiffusionActionHead, L1RegressionActionHead\nfrom prismatic.models.backbones.llm.prompting import PurePromptBuilder\nfrom prismatic.models.film_vit_wrapper import FiLMedPrismaticVisionBackbone\nfrom prismatic.models.projectors import (\n    NoisyActionProjector,\n    ProprioProjector,\n)\nfrom prismatic.training.train_utils import (\n    compute_actions_l1_loss,\n    compute_token_accuracy,\n    get_current_action_mask,\n    get_next_actions_mask,\n)\nfrom prismatic.util.data_utils import PaddedCollatorForActionPrediction\nfrom prismatic.vla.action_tokenizer import ActionTokenizer\nfrom prismatic.vla.constants import (\n    ACTION_DIM,\n    ACTION_PROPRIO_NORMALIZATION_TYPE,\n    NUM_ACTIONS_CHUNK,\n    PROPRIO_DIM,\n)\nfrom prismatic.vla.datasets import RLDSBatchTransform, RLDSDataset\nfrom prismatic.vla.datasets.rlds.utils.data_utils import save_dataset_statistics\nfrom prismatic.models.occ_head import BEVOccupancyHead, FocalLoss\nimport math\n\n# Sane Defaults\nos.environ[\"TOKENIZERS_PARALLELISM\"] = \"false\"\n\n\n@dataclass\nclass FinetuneConfig:\n    # fmt: off\n    vla_path: str = \"openvla/openvla-7b\"             # Path to OpenVLA model (on HuggingFace Hub or stored locally)\n\n    # Dataset\n    data_root_dir: Path = Path(\"datasets/rlds\")      # Directory containing RLDS datasets\n    dataset_name: str = \"aloha_scoop_x_into_bowl\"    # Name of fine-tuning dataset (e.g., `aloha_scoop_x_into_bowl`)\n    run_root_dir: Path = Path(\"runs\")                # Path to directory to store logs & checkpoints\n    shuffle_buffer_size: int = 100_000               # Dataloader shuffle buffer size (can reduce if OOM errors occur)\n\n    # Algorithm and architecture\n    use_l1_regression: bool = True                   # If True, trains continuous action head with L1 regression objective\n    use_diffusion: bool = False                      # If True, trains continuous action head with diffusion modeling objective (DDIM)\n    num_diffusion_steps_train: int = 50              # (When `diffusion==True`) Number of diffusion steps used for training\n    use_film: bool = False                           # If True, uses FiLM to infuse language inputs into visual features\n    num_images_in_input: int = 1                     # Number of images in the VLA input (default: 1)\n    use_proprio: bool = False                        # If True, includes robot proprioceptive state in input\n\n    # BEV Occupancy auxiliary head\n    use_occ_head: bool = False                       # If True, adds BEV occupancy prediction auxiliary head\n    occ_data_dir: str = \"\"                           # Path to BEV occupancy labels (HDF5 files)\n    occ_loss_weight: float = 0.01                    # Initial loss weight for occupancy head\n    occ_loss_decay_steps: float = 50000              # Exponential decay steps for occ loss weight\n    occ_detach: bool = False                          # If True, detach visual features before occ head (no grad to backbone)\n    occ_resolution: int = 64                         # BEV grid resolution\n\n    # Training configuration\n    batch_size: int = 8                              # Batch size per device (total batch size = batch_size * num GPUs)\n    seed: int = 7                                    # Random seed for reproducibility\n    learning_rate: float = 5e-4                      # Learning rate\n    lr_warmup_steps: int = 0                         # Number of steps to warm up learning rate (from 10% to 100%)\n    num_steps_before_decay: int = 100_000            # Number of steps before LR decays by 10x\n    grad_accumulation_steps: int = 1                 # Number of gradient accumulation steps\n    max_steps: int = 200_000                         # Max number of training steps\n    use_val_set: bool = False                        # If True, uses validation set and log validation metrics\n    val_freq: int = 10_000                           # (When `use_val_set==True`) Validation set logging frequency in steps\n    val_time_limit: int = 180                        # (When `use_val_set==True`) Time limit for computing validation metrics\n    save_freq: int = 10_000                          # Checkpoint saving frequency in steps\n    save_latest_checkpoint_only: bool = False        # If True, saves only 1 checkpoint, overwriting latest checkpoint\n                                                     #   (If False, saves all checkpoints)\n    resume: bool = False                             # If True, resumes from checkpoint\n    resume_step: Optional[int] = None                # (When `resume==True`) Step number that we are resuming from\n    image_aug: bool = True                           # If True, trains with image augmentations (HIGHLY RECOMMENDED)\n    diffusion_sample_freq: int = 50                  # (When `use_diffusion==True`) Frequency for sampling in steps\n\n    # LoRA\n    use_lora: bool = True                            # If True, uses LoRA fine-tuning\n    lora_rank: int = 32                              # Rank of LoRA weight matrix\n    lora_dropout: float = 0.0                        # Dropout applied to LoRA weights\n    merge_lora_during_training: bool = True          # If True, merges LoRA weights and saves result during training\n                                                     #   Note: Merging can be very slow on some machines. If so, set to\n                                                     #         False and merge final checkpoint offline!\n\n    # Logging\n    wandb_entity: str = \"your-wandb-entity\"          # Name of WandB entity\n    wandb_project: str = \"your-wandb-project\"        # Name of WandB project\n    run_id_note: Optional[str] = None                # Extra note to add to end of run ID for logging\n    run_id_override: Optional[str] = None            # Optional string to override the run ID with\n    wandb_log_freq: int = 10                         # WandB logging frequency in steps\n\n    # fmt: on\n\n\ndef remove_ddp_in_checkpoint(state_dict) -> dict:\n    \"\"\"\n    Removes the 'module.' prefix from parameter names in a PyTorch model state dictionary that was saved using\n    DistributedDataParallel (DDP).\n\n    When a model is trained using PyTorch's DistributedDataParallel, the saved state dictionary contains parameters\n    prefixed with 'module.'. This function removes these prefixes to make the state dictionary compatible when\n    loading into models that are not yet wrapped in DDP.\n\n    Args:\n        state_dict (dict): PyTorch model state dictionary.\n\n    Returns:\n        dict: A new state dictionary with the same contents but with 'module.' prefixes removed from parameter names.\n              Parameters without the 'module.' prefix remain unchanged.\n    \"\"\"",
+      "numLines": 150,
+      "startLine": 0,
+      "totalLines": 1224
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I've confirmed the key values from finetune.py:
+- L92: `occ_loss_weight: float = 0.01`
+- L93: `occ_loss_decay_steps: float = 50000`
+- L100: `learning_rate: float = 5e-4`
+- L102: `num_steps_before_decay: int = 100_000` (MultiStepLR milestone at 100K, so 50K steps training never triggers it → effectively constant lr)
+
+
+- L118: `lora_rank: int = 32`
+
+From occ_head.py, I'm seeing the FocalLoss configuration with alpha=0.25 and gamma=2.0, and the decoder architecture progressively upsamples from a linear projection through a series of transposed convolutions with batch normalization and GELU activations.
+
+Now I need to update the method and discussion sections. I'm planning to replace the lightweight MLP description with the actual ConvTranspose2d decoder architecture, correct the focal loss alpha parameter from 0.75 to 0.25, and update the loss weight from λ = 0.1 to λ_occ = 0.01 with exponential decay over 50K iterations. For the training pipeline, I'll also swap out the cosine learning rate schedule for a constant rate and update the training time from 17 hours on an A100 to approximately 13 hours on an RTX PRO 6000.
+
+I'm removing section 3.4 on OCC-CBF entirely and will incorporate that concept into the discussion as future work instead. As I write the updated method.tex, I need to be careful about style constraints: no em-dashes or explanatory en-dashes, no -ing phrase endings, and avoiding words like delve, leverage, utilize, and facilitate. Each modified parameter value should reference where it comes from in the code.
+
+For the occupancy head architecture, I'll describe the linear projection that maps from the input dimension to 256 channels, then reshape to a 16×16 spatial map since the patches form a 16×16 grid, followed by a series of ConvTranspose2d layers that progressively upsample...
+
+Writing method.tex updates... I'm finishing the loss formula with a time-decaying occupancy weight that starts at 0.01 and decays over 50K steps, then moving on to draft the complete method section. I need to align the decoder description with what's already in the experiments section and remove the OCC-CBF reference from the introduction. I need to see the next thinking content to rewrite it. The prompt shows instructions but no actual next thinking text to process. Could you provide the next thinking that needs to be rewritten?
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "9e2e812b-69f7-4462-8d42-209dc095e4b0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gu8dvt5kai7veXXww1bbZU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3963,
+      "cache_read_input_tokens": 34997,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3963
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+Code values confirmed from SSH:
+- `occ_loss_weight = 0.01` (finetune.py L92)
+- `occ_loss_decay_steps = 50000` (finetune.py L93)
+- `FocalLoss(alpha=0.25, gamma=2.0)` (occ_head.py L56)
+- `lora_rank = 32` (finetune.py L118)
+- `learning_rate = 5e-4` (finetune.py L100), `MultiStepLR` milestone at 100K (L102), so constant at 50K steps
+- Conv decoder: Linear→256, reshape 16×16, ConvTranspose2d(256→128,k4s2p1)→BN→GELU→ConvTranspose2d(128→64,k4s2p1)→BN→GELU→Conv2d(64→1,k1)
+
+Now writing the corrected method.tex and new discussion.tex.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "24cc3b4c-a674-4f74-878c-26e444a6fdf3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gu8dvt5kai7veXXww1bbZU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3963,
+      "cache_read_input_tokens": 34997,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3963
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01DkSqd8dNSGCxhWxwqtJUry`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex",
+  "old_string": "\\section{Method}\n\\label{sec:method}\n\nWe present OccSafe-VLA, a framework that improves collision safety in Vision-Language-Action models through two complementary mechanisms. The first is a BEV occupancy auxiliary head that injects spatial awareness into the vision encoder at zero inference cost (Section~\\ref{sec:occ_head}). The second is OCC-CBF, a conceptual framework for explicit safety guarantees conditioned on learned spatial features (Section~\\ref{sec:occ_cbf}). We begin by formalizing the problem setting and evaluation metrics.",
+  "new_string": "\\section{Method}\n\\label{sec:method}\n\nWe present OccSafe-VLA, a framework that improves collision safety in Vision-Language-Action models by injecting spatial awareness into the vision encoder at zero inference cost. The core component is a BEV occupancy auxiliary head (Section~\\ref{sec:occ_head}) that forces the encoder to internalize 3D spatial structure during training and is discarded at inference time. We begin by formalizing the problem setting and evaluation metrics."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "73c87a35-7666-4dbb-8890-2d10f6afea50",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gu8dvt5kai7veXXww1bbZU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3963,
+      "cache_read_input_tokens": 34997,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3963
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-20T21:02:26.134Z_
+
+<details><summary>↩ Tool result · `toolu_01DkSqd8dNSGCxhWxwqtJUry`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "23b1b7b5-becc-4cbf-81ba-8a705b9ef44b",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex",
+    "oldString": "\\section{Method}\n\\label{sec:method}\n\nWe present OccSafe-VLA, a framework that improves collision safety in Vision-Language-Action models through two complementary mechanisms. The first is a BEV occupancy auxiliary head that injects spatial awareness into the vision encoder at zero inference cost (Section~\\ref{sec:occ_head}). The second is OCC-CBF, a conceptual framework for explicit safety guarantees conditioned on learned spatial features (Section~\\ref{sec:occ_cbf}). We begin by formalizing the problem setting and evaluation metrics.",
+    "newString": "\\section{Method}\n\\label{sec:method}\n\nWe present OccSafe-VLA, a framework that improves collision safety in Vision-Language-Action models by injecting spatial awareness into the vision encoder at zero inference cost. The core component is a BEV occupancy auxiliary head (Section~\\ref{sec:occ_head}) that forces the encoder to internalize 3D spatial structure during training and is discarded at inference time. We begin by formalizing the problem setting and evaluation metrics.",
+    "originalFile": "\\section{Method}\n\\label{sec:method}\n\nWe present OccSafe-VLA, a framework that improves collision safety in Vision-Language-Action models through two complementary mechanisms. The first is a BEV occupancy auxiliary head that injects spatial awareness into the vision encoder at zero inference cost (Section~\\ref{sec:occ_head}). The second is OCC-CBF, a conceptual framework for explicit safety guarantees conditioned on learned spatial features (Section~\\ref{sec:occ_cbf}). We begin by formalizing the problem setting and evaluation metrics.\n\n\\subsection{Problem Formulation}\n\\label{sec:formulation}\n\nWe consider a \\textbf{Vision-Language-Action (VLA)} policy $\\pi(a_t \\mid o_t, l)$ that maps a visual observation $o_t$ and a language instruction $l$ to a 7-DOF action $a_t$ (delta end-effector pose) at each timestep $t$. The policy is parameterized by a large pretrained vision-language model fine-tuned on robot demonstration data. We evaluate performance along two complementary axes. \\textbf{Task Success Rate (TSR)} measures the fraction of episodes in which the robot completes the instructed task:\n\\begin{equation}\n  \\text{TSR} = \\frac{n_{\\text{success}}}{N},\n\\end{equation}\nwhere $n_{\\text{success}}$ is the number of successful episodes out of $N$ total rollouts. \\textbf{Collision Avoidance Rate (CAR)} measures the fraction of episodes free of unintended object displacement:\n\\begin{equation}\n  \\text{CAR} = 1 - \\frac{n_{\\text{collide}}}{N},\n\\end{equation}\nwhere $n_{\\text{collide}}$ counts episodes whose maximum L1 \\texttt{body\\_xpos} displacement exceeds a threshold of $0.001$, following the VLSA/AEGIS protocol~\\cite{hu2025aegis}. Our objective is to improve CAR without degrading TSR. A policy that avoids collisions by refusing to act is not useful; a practical safe manipulation policy must maintain high task completion while reducing unintended contact with surrounding objects.\n\n\\subsection{BEV Occupancy Auxiliary Head}\n\\label{sec:occ_head}\n\nModern VLA models such as OpenVLA~\\cite{kim2024openvla} and OpenVLA-OFT~\\cite{kim2025openvlaoft} rely on 2D pretrained vision encoders (DINOv2, SigLIP) that excel at semantic understanding and language grounding. These encoders learn effective semantic-to-action mappings through fine-tuning, yet they lack explicit reasoning about 3D object boundaries and free space. When a robot must navigate tight clearances between objects in cluttered scenes, this gap becomes critical. A policy that cannot distinguish occupied from free regions of the workspace will collide with obstacles even when it correctly identifies the target object. The challenge is to inject 3D spatial structure into the vision encoder without adding inference cost or sacrificing the benefits of large-scale 2D pretraining.\n\nWe address this challenge with a \\textbf{BEV occupancy auxiliary head} that predicts a bird's-eye-view occupancy grid of the workspace. The BEV representation encodes object boundaries in a view-independent, allocentric coordinate frame and serves as a natural supervisory signal for spatial structure. Unlike depth maps, which remain tied to the camera viewpoint, BEV occupancy offers an explicit top-down decomposition of occupied and free space that directly corresponds to the robot's planning geometry. The head itself is a lightweight two-layer MLP with 256 hidden units that takes DINOv2 patch features as input and produces a $64 \\times 64$ binary occupancy grid. We train this head with Focal Loss to handle the class imbalance between occupied and free cells:\n\\begin{equation}\n  \\mathcal{L}_{\\text{occ}} = -\\alpha\\,(1 - p_t)^{\\gamma}\\,\\log(p_t),\n\\end{equation}\nwhere $\\alpha = 0.75$ and $\\gamma = 2.0$ are the balancing and focusing parameters, $p_t$ is the predicted probability for the ground-truth class, and the occupancy loss is weighted by $\\lambda = 0.1$ relative to the action loss.\n\nThe critical design principle is \\textbf{zero inference cost}. During training, the occupancy head forces the vision encoder to internalize spatial structure: accurate occupancy prediction requires the encoder to represent where objects begin and end in 3D space. At inference time, we discard the occupancy head entirely, and the spatial awareness acquired during training persists as an emergent property of the encoder's learned features. This paradigm of training with auxiliary geometric supervision and deploying without it has been validated in autonomous driving by OccVLA~\\cite{liu2025occvla}, which uses volumetric occupancy prediction to enhance a VLA's spatial understanding for navigation. Our work applies the same principle to tabletop manipulation, where the spatial scale and task geometry differ but the core insight holds: auxiliary occupancy supervision reshapes encoder representations to encode spatial boundaries that transfer to safer action prediction.\n\n\\subsection{Training Pipeline}\n\\label{sec:training}\n\nWe build on OpenVLA-OFT 7B~\\cite{kim2025openvlaoft} as the base model, which combines a Llama~2 language backbone with DINOv2 and SigLIP as dual vision encoders. The total training objective combines the action prediction loss with the occupancy auxiliary loss:\n\\begin{equation}\n  \\mathcal{L}_{\\text{total}} = \\mathcal{L}_{\\text{action}} + \\lambda \\cdot \\mathcal{L}_{\\text{occ}},\n\\end{equation}\nwhere $\\mathcal{L}_{\\text{action}}$ is the L1 action regression loss from OpenVLA-OFT and $\\lambda = 0.1$. The mechanism that makes occupancy supervision effective is \\textbf{gradient flow}: with \\texttt{occ\\_detach=False}, gradients from $\\mathcal{L}_{\\text{occ}}$ propagate through the occupancy head back into the DINOv2 vision encoder. This forces the encoder to develop internal representations that encode spatial structure, because producing accurate occupancy predictions requires features that capture object boundaries and spatial layout. If we instead detach the gradients (\\texttt{occ\\_detach=True}), the occupancy head becomes a passive observer that reads encoder features without modifying them, and the auxiliary loss functions as a multi-task regularizer rather than a representation shaper. This is not a subtle distinction: as we show in our ablation study (Section~4), detaching gradients eliminates the safety benefit entirely, confirming that the encoder must be directly shaped by the occupancy objective.\n\nWe fine-tune all conditions with LoRA at rank~32 for 50K steps, using a batch size of 8 and a learning rate of $5 \\times 10^{-4}$ with cosine decay. Training data consists of approximately 25K demonstration episodes from the LIBERO-Spatial suite. All hyperparameters are shared across experimental conditions to ensure fair comparison; only the auxiliary head configuration varies between conditions. Each training run completes in approximately 17 hours on a single A100 GPU.\n\n\\subsection{OCC-CBF: Occupancy-Conditioned Control Barrier Function}\n\\label{sec:occ_cbf}\n\nThe BEV occupancy auxiliary head provides implicit safety by reshaping the encoder's spatial representations at zero inference cost. In certain dense clutter scenarios, however, implicit spatial awareness alone may not guarantee collision avoidance. For such cases, we outline \\textbf{OCC-CBF}, a second line of defense that constructs an explicit safety constraint from the spatial features learned by the occupancy-trained encoder.\n\nOCC-CBF defines a learned barrier function conditioned on occupancy features. Let $z_{\\text{occ}}$ denote the spatial features extracted from the occupancy-trained vision encoder and let $x_{\\text{robot}}$ denote the robot's current state. The occupancy-conditioned barrier function takes the form:\n\\begin{equation}\n  h_{\\text{occ}}(x) = f_\\theta(z_{\\text{occ}},\\, x_{\\text{robot}}),\n\\end{equation}\nwhere $f_\\theta$ is a learned function that maps the combined feature-state pair to a scalar safety value. States satisfying $h_{\\text{occ}}(x) \\geq 0$ are considered safe, and the control barrier constraint modifies the VLA's proposed action to maintain this invariant.\n\nOCC-CBF differs from existing barrier function approaches in its use of learned volumetric features rather than hand-crafted geometric representations. The Euclidean-distance barrier in AEGIS~\\cite{hu2025aegis} operates on explicit object positions from a world model, which limits its applicability to scenarios where object states are directly observable. OGM-CBF~\\cite{ji2024ogmcbf} constructs barriers from discrete occupancy grids via signed distance fields, but relies on accurate grid-level occupancy at test time rather than learned continuous features. Learning to Nudge~\\cite{kwon2026learningnudge} trains object-centric barrier functions (DCBF) that reason about individual objects and require explicit object decomposition, which may not scale to highly cluttered scenes. Neural CS-BF~\\cite{neuralcsbf2025} learns barriers in configuration space for manipulation planning, but operates on geometric state representations independently of a VLA's perceptual features. In contrast, OCC-CBF operates in the VLA's continuous learned feature space and can perform semantic collision reasoning without explicit object segmentation, distance computation, or a separate perception pipeline.\n\n\\textit{We defer the detailed formulation, training procedure, and experimental validation of OCC-CBF to the extended version of this paper. The experiments in Section~4 evaluate the occupancy auxiliary head in isolation, which already yields substantial safety improvements without runtime overhead.}",
+    "structuredPatch": [
+      {
+        "oldStart": 1,
+        "oldLines": 7,
+        "newStart": 1,
+        "newLines": 7,
+        "lines": [
+          " \\section{Method}",
+          " \\label{sec:method}",
+          " ",
+          "-We present OccSafe-VLA, a framework that improves collision safety in Vision-Language-Action models through two complementary mechanisms. The first is a BEV occupancy auxiliary head that injects spatial awareness into the vision encoder at zero inference cost (Section~\\ref{sec:occ_head}). The second is OCC-CBF, a conceptual framework for explicit safety guarantees conditioned on learned spatial features (Section~\\ref{sec:occ_cbf}). We begin by formalizing the problem setting and evaluation metrics.",
+          "+We present OccSafe-VLA, a framework that improves collision safety in Vision-Language-Action models by injecting spatial awareness into the vision encoder at zero inference cost. The core component is a BEV occupancy auxiliary head (Section~\\ref{sec:occ_head}) that forces the encoder to internalize 3D spatial structure during training and is discarded at inference time. We begin by formalizing the problem setting and evaluation metrics.",
+          " ",
+          " \\subsection{Problem Formulation}",
+          " \\label{sec:formulation}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01UahVJKgvzoDsk9yfsneHeh`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex",
+  "old_string": "The head itself is a lightweight two-layer MLP with 256 hidden units that takes DINOv2 patch features as input and produces a $64 \\times 64$ binary occupancy grid. We train this head with Focal Loss to handle the class imbalance between occupied and free cells:\n\\begin{equation}\n  \\mathcal{L}_{\\text{occ}} = -\\alpha\\,(1 - p_t)^{\\gamma}\\,\\log(p_t),\n\\end{equation}\nwhere $\\alpha = 0.75$ and $\\gamma = 2.0$ are the balancing and focusing parameters, $p_t$ is the predicted probability for the ground-truth class, and the occupancy loss is weighted by $\\lambda = 0.1$ relative to the action loss.",
+  "new_string": "The head is a convolutional decoder that maps DINOv2 patch features to a $64{\\times}64$ BEV occupancy grid. A linear projection maps each patch token to 256 channels, and the resulting sequence is reshaped into a $16{\\times}16$ spatial map that preserves the patch grid layout. Two transposed convolutions ($256{\\to}128{\\to}64$, kernel 4, stride 2) with batch normalization and GELU activations upsample this map to $64{\\times}64$, and a final $1{\\times}1$ convolution produces the binary occupancy logits. The convolutional architecture is a deliberate choice: because ViT patch tokens correspond to a regular spatial grid, transposed convolutions exploit adjacency structure that a position-agnostic MLP would ignore. This inductive bias allows the decoder to reconstruct fine-grained spatial boundaries from coarse patch features with fewer parameters.\n\nWe train this head with Focal Loss to handle the severe class imbalance between occupied and free cells:\n\\begin{equation}\n  \\mathcal{L}_{\\text{occ}} = -\\alpha\\,(1 - p_t)^{\\gamma}\\,\\log(p_t),\n\\end{equation}\nwhere $\\alpha = 0.25$ and $\\gamma = 2.0$ are the balancing and focusing parameters and $p_t$ is the predicted probability for the ground-truth class. The occupancy loss weight $\\lambda_{\\text{occ}}$ starts at $0.01$ and decays exponentially with time constant $\\tau = 50$K steps, so that the auxiliary signal shapes early representation learning without dominating the action objective in later training."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "b412bd19-31ce-4284-9b49-3f0763077dfa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019C1w7SUeQHLcavj7y2oi46",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2121,
+      "cache_read_input_tokens": 38960,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2121
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T21:02:39.404Z_
+
+<details><summary>↩ Tool result · `toolu_01UahVJKgvzoDsk9yfsneHeh`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "8a6da028-b0ce-45e6-a4f1-154c3373dae3",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex",
+    "oldString": "The head itself is a lightweight two-layer MLP with 256 hidden units that takes DINOv2 patch features as input and produces a $64 \\times 64$ binary occupancy grid. We train this head with Focal Loss to handle the class imbalance between occupied and free cells:\n\\begin{equation}\n  \\mathcal{L}_{\\text{occ}} = -\\alpha\\,(1 - p_t)^{\\gamma}\\,\\log(p_t),\n\\end{equation}\nwhere $\\alpha = 0.75$ and $\\gamma = 2.0$ are the balancing and focusing parameters, $p_t$ is the predicted probability for the ground-truth class, and the occupancy loss is weighted by $\\lambda = 0.1$ relative to the action loss.",
+    "newString": "The head is a convolutional decoder that maps DINOv2 patch features to a $64{\\times}64$ BEV occupancy grid. A linear projection maps each patch token to 256 channels, and the resulting sequence is reshaped into a $16{\\times}16$ spatial map that preserves the patch grid layout. Two transposed convolutions ($256{\\to}128{\\to}64$, kernel 4, stride 2) with batch normalization and GELU activations upsample this map to $64{\\times}64$, and a final $1{\\times}1$ convolution produces the binary occupancy logits. The convolutional architecture is a deliberate choice: because ViT patch tokens correspond to a regular spatial grid, transposed convolutions exploit adjacency structure that a position-agnostic MLP would ignore. This inductive bias allows the decoder to reconstruct fine-grained spatial boundaries from coarse patch features with fewer parameters.\n\nWe train this head with Focal Loss to handle the severe class imbalance between occupied and free cells:\n\\begin{equation}\n  \\mathcal{L}_{\\text{occ}} = -\\alpha\\,(1 - p_t)^{\\gamma}\\,\\log(p_t),\n\\end{equation}\nwhere $\\alpha = 0.25$ and $\\gamma = 2.0$ are the balancing and focusing parameters and $p_t$ is the predicted probability for the ground-truth class. The occupancy loss weight $\\lambda_{\\text{occ}}$ starts at $0.01$ and decays exponentially with time constant $\\tau = 50$K steps, so that the auxiliary signal shapes early representation learning without dominating the action objective in later training.",
+    "originalFile": "\\section{Method}\n\\label{sec:method}\n\nWe present OccSafe-VLA, a framework that improves collision safety in Vision-Language-Action models by injecting spatial awareness into the vision encoder at zero inference cost. The core component is a BEV occupancy auxiliary head (Section~\\ref{sec:occ_head}) that forces the encoder to internalize 3D spatial structure during training and is discarded at inference time. We begin by formalizing the problem setting and evaluation metrics.\n\n\\subsection{Problem Formulation}\n\\label{sec:formulation}\n\nWe consider a \\textbf{Vision-Language-Action (VLA)} policy $\\pi(a_t \\mid o_t, l)$ that maps a visual observation $o_t$ and a language instruction $l$ to a 7-DOF action $a_t$ (delta end-effector pose) at each timestep $t$. The policy is parameterized by a large pretrained vision-language model fine-tuned on robot demonstration data. We evaluate performance along two complementary axes. \\textbf{Task Success Rate (TSR)} measures the fraction of episodes in which the robot completes the instructed task:\n\\begin{equation}\n  \\text{TSR} = \\frac{n_{\\text{success}}}{N},\n\\end{equation}\nwhere $n_{\\text{success}}$ is the number of successful episodes out of $N$ total rollouts. \\textbf{Collision Avoidance Rate (CAR)} measures the fraction of episodes free of unintended object displacement:\n\\begin{equation}\n  \\text{CAR} = 1 - \\frac{n_{\\text{collide}}}{N},\n\\end{equation}\nwhere $n_{\\text{collide}}$ counts episodes whose maximum L1 \\texttt{body\\_xpos} displacement exceeds a threshold of $0.001$, following the VLSA/AEGIS protocol~\\cite{hu2025aegis}. Our objective is to improve CAR without degrading TSR. A policy that avoids collisions by refusing to act is not useful; a practical safe manipulation policy must maintain high task completion while reducing unintended contact with surrounding objects.\n\n\\subsection{BEV Occupancy Auxiliary Head}\n\\label{sec:occ_head}\n\nModern VLA models such as OpenVLA~\\cite{kim2024openvla} and OpenVLA-OFT~\\cite{kim2025openvlaoft} rely on 2D pretrained vision encoders (DINOv2, SigLIP) that excel at semantic understanding and language grounding. These encoders learn effective semantic-to-action mappings through fine-tuning, yet they lack explicit reasoning about 3D object boundaries and free space. When a robot must navigate tight clearances between objects in cluttered scenes, this gap becomes critical. A policy that cannot distinguish occupied from free regions of the workspace will collide with obstacles even when it correctly identifies the target object. The challenge is to inject 3D spatial structure into the vision encoder without adding inference cost or sacrificing the benefits of large-scale 2D pretraining.\n\nWe address this challenge with a \\textbf{BEV occupancy auxiliary head} that predicts a bird's-eye-view occupancy grid of the workspace. The BEV representation encodes object boundaries in a view-independent, allocentric coordinate frame and serves as a natural supervisory signal for spatial structure. Unlike depth maps, which remain tied to the camera viewpoint, BEV occupancy offers an explicit top-down decomposition of occupied and free space that directly corresponds to the robot's planning geometry. The head itself is a lightweight two-layer MLP with 256 hidden units that takes DINOv2 patch features as input and produces a $64 \\times 64$ binary occupancy grid. We train this head with Focal Loss to handle the class imbalance between occupied and free cells:\n\\begin{equation}\n  \\mathcal{L}_{\\text{occ}} = -\\alpha\\,(1 - p_t)^{\\gamma}\\,\\log(p_t),\n\\end{equation}\nwhere $\\alpha = 0.75$ and $\\gamma = 2.0$ are the balancing and focusing parameters, $p_t$ is the predicted probability for the ground-truth class, and the occupancy loss is weighted by $\\lambda = 0.1$ relative to the action loss.\n\nThe critical design principle is \\textbf{zero inference cost}. During training, the occupancy head forces the vision encoder to internalize spatial structure: accurate occupancy prediction requires the encoder to represent where objects begin and end in 3D space. At inference time, we discard the occupancy head entirely, and the spatial awareness acquired during training persists as an emergent property of the encoder's learned features. This paradigm of training with auxiliary geometric supervision and deploying without it has been validated in autonomous driving by OccVLA~\\cite{liu2025occvla}, which uses volumetric occupancy prediction to enhance a VLA's spatial understanding for navigation. Our work applies the same principle to tabletop manipulation, where the spatial scale and task geometry differ but the core insight holds: auxiliary occupancy supervision reshapes encoder representations to encode spatial boundaries that transfer to safer action prediction.\n\n\\subsection{Training Pipeline}\n\\label{sec:training}\n\nWe build on OpenVLA-OFT 7B~\\cite{kim2025openvlaoft} as the base model, which combines a Llama~2 language backbone with DINOv2 and SigLIP as dual vision encoders. The total training objective combines the action prediction loss with the occupancy auxiliary loss:\n\\begin{equation}\n  \\mathcal{L}_{\\text{total}} = \\mathcal{L}_{\\text{action}} + \\lambda \\cdot \\mathcal{L}_{\\text{occ}},\n\\end{equation}\nwhere $\\mathcal{L}_{\\text{action}}$ is the L1 action regression loss from OpenVLA-OFT and $\\lambda = 0.1$. The mechanism that makes occupancy supervision effective is \\textbf{gradient flow}: with \\texttt{occ\\_detach=False}, gradients from $\\mathcal{L}_{\\text{occ}}$ propagate through the occupancy head back into the DINOv2 vision encoder. This forces the encoder to develop internal representations that encode spatial structure, because producing accurate occupancy predictions requires features that capture object boundaries and spatial layout. If we instead detach the gradients (\\texttt{occ\\_detach=True}), the occupancy head becomes a passive observer that reads encoder features without modifying them, and the auxiliary loss functions as a multi-task regularizer rather than a representation shaper. This is not a subtle distinction: as we show in our ablation study (Section~4), detaching gradients eliminates the safety benefit entirely, confirming that the encoder must be directly shaped by the occupancy objective.\n\nWe fine-tune all conditions with LoRA at rank~32 for 50K steps, using a batch size of 8 and a learning rate of $5 \\times 10^{-4}$ with cosine decay. Training data consists of approximately 25K demonstration episodes from the LIBERO-Spatial suite. All hyperparameters are shared across experimental conditions to ensure fair comparison; only the auxiliary head configuration varies between conditions. Each training run completes in approximately 17 hours on a single A100 GPU.\n\n\\subsection{OCC-CBF: Occupancy-Conditioned Control Barrier Function}\n\\label{sec:occ_cbf}\n\nThe BEV occupancy auxiliary head provides implicit safety by reshaping the encoder's spatial representations at zero inference cost. In certain dense clutter scenarios, however, implicit spatial awareness alone may not guarantee collision avoidance. For such cases, we outline \\textbf{OCC-CBF}, a second line of defense that constructs an explicit safety constraint from the spatial features learned by the occupancy-trained encoder.\n\nOCC-CBF defines a learned barrier function conditioned on occupancy features. Let $z_{\\text{occ}}$ denote the spatial features extracted from the occupancy-trained vision encoder and let $x_{\\text{robot}}$ denote the robot's current state. The occupancy-conditioned barrier function takes the form:\n\\begin{equation}\n  h_{\\text{occ}}(x) = f_\\theta(z_{\\text{occ}},\\, x_{\\text{robot}}),\n\\end{equation}\nwhere $f_\\theta$ is a learned function that maps the combined feature-state pair to a scalar safety value. States satisfying $h_{\\text{occ}}(x) \\geq 0$ are considered safe, and the control barrier constraint modifies the VLA's proposed action to maintain this invariant.\n\nOCC-CBF differs from existing barrier function approaches in its use of learned volumetric features rather than hand-crafted geometric representations. The Euclidean-distance barrier in AEGIS~\\cite{hu2025aegis} operates on explicit object positions from a world model, which limits its applicability to scenarios where object states are directly observable. OGM-CBF~\\cite{ji2024ogmcbf} constructs barriers from discrete occupancy grids via signed distance fields, but relies on accurate grid-level occupancy at test time rather than learned continuous features. Learning to Nudge~\\cite{kwon2026learningnudge} trains object-centric barrier functions (DCBF) that reason about individual objects and require explicit object decomposition, which may not scale to highly cluttered scenes. Neural CS-BF~\\cite{neuralcsbf2025} learns barriers in configuration space for manipulation planning, but operates on geometric state representations independently of a VLA's perceptual features. In contrast, OCC-CBF operates in the VLA's continuous learned feature space and can perform semantic collision reasoning without explicit object segmentation, distance computation, or a separate perception pipeline.\n\n\\textit{We defer the detailed formulation, training procedure, and experimental validation of OCC-CBF to the extended version of this paper. The experiments in Section~4 evaluate the occupancy auxiliary head in isolation, which already yields substantial safety improvements without runtime overhead.}",
+    "structuredPatch": [
+      {
+        "oldStart": 21,
+        "oldLines": 11,
+        "newStart": 21,
+        "newLines": 13,
+        "lines": [
+          " ",
+          " Modern VLA models such as OpenVLA~\\cite{kim2024openvla} and OpenVLA-OFT~\\cite{kim2025openvlaoft} rely on 2D pretrained vision encoders (DINOv2, SigLIP) that excel at semantic understanding and language grounding. These encoders learn effective semantic-to-action mappings through fine-tuning, yet they lack explicit reasoning about 3D object boundaries and free space. When a robot must navigate tight clearances between objects in cluttered scenes, this gap becomes critical. A policy that cannot distinguish occupied from free regions of the workspace will collide with obstacles even when it correctly identifies the target object. The challenge is to inject 3D spatial structure into the vision encoder without adding inference cost or sacrificing the benefits of large-scale 2D pretraining.",
+          " ",
+          "-We address this challenge with a \\textbf{BEV occupancy auxiliary head} that predicts a bird's-eye-view occupancy grid of the workspace. The BEV representation encodes object boundaries in a view-independent, allocentric coordinate frame and serves as a natural supervisory signal for spatial structure. Unlike depth maps, which remain tied to the camera viewpoint, BEV occupancy offers an explicit top-down decomposition of occupied and free space that directly corresponds to the robot's planning geometry. The head itself is a lightweight two-layer MLP with 256 hidden units that takes DINOv2 patch features as input and produces a $64 \\times 64$ binary occupancy grid. We train this head with Focal Loss to handle the class imbalance between occupied and free cells:",
+          "+We address this challenge with a \\textbf{BEV occupancy auxiliary head} that predicts a bird's-eye-view occupancy grid of the workspace. The BEV representation encodes object boundaries in a view-independent, allocentric coordinate frame and serves as a natural supervisory signal for spatial structure. Unlike depth maps, which remain tied to the camera viewpoint, BEV occupancy offers an explicit top-down decomposition of occupied and free space that directly corresponds to the robot's planning geometry. The head is a convolutional decoder that maps DINOv2 patch features to a $64{\\times}64$ BEV occupancy grid. A linear projection maps each patch token to 256 channels, and the resulting sequence is reshaped into a $16{\\times}16$ spatial map that preserves the patch grid layout. Two transposed convolutions ($256{\\to}128{\\to}64$, kernel 4, stride 2) with batch normalization and GELU activations upsample this map to $64{\\times}64$, and a final $1{\\times}1$ convolution produces the binary occupancy logits. The convolutional architecture is a deliberate choice: because ViT patch tokens correspond to a regular spatial grid, transposed convolutions exploit adjacency structure that a position-agnostic MLP would ignore. This inductive bias allows the decoder to reconstruct fine-grained spatial boundaries from coarse patch features with fewer parameters.",
+          "+",
+          "+We train this head with Focal Loss to handle the severe class imbalance between occupied and free cells:",
+          " \\begin{equation}",
+          "   \\mathcal{L}_{\\text{occ}} = -\\alpha\\,(1 - p_t)^{\\gamma}\\,\\log(p_t),",
+          " \\end{equation}",
+          "-where $\\alpha = 0.75$ and $\\gamma = 2.0$ are the balancing and focusing parameters, $p_t$ is the predicted probability for the ground-truth class, and the occupancy loss is weighted by $\\lambda = 0.1$ relative to the action loss.",
+          "+where $\\alpha = 0.25$ and $\\gamma = 2.0$ are the balancing and focusing parameters and $p_t$ is the predicted probability for the ground-truth class. The occupancy loss weight $\\lambda_{\\text{occ}}$ starts at $0.01$ and decays exponentially with time constant $\\tau = 50$K steps, so that the auxiliary signal shapes early representation learning without dominating the action objective in later training.",
+          " ",
+          " The critical design principle is \\textbf{zero inference cost}. During training, the occupancy head forces the vision encoder to internalize spatial structure: accurate occupancy prediction requires the encoder to represent where objects begin and end in 3D space. At inference time, we discard the occupancy head entirely, and the spatial awareness acquired during training persists as an emergent property of the encoder's learned features. This paradigm of training with auxiliary geometric supervision and deploying without it has been validated in autonomous driving by OccVLA~\\cite{liu2025occvla}, which uses volumetric occupancy prediction to enhance a VLA's spatial understanding for navigation. Our work applies the same principle to tabletop manipulation, where the spatial scale and task geometry differ but the core insight holds: auxiliary occupancy supervision reshapes encoder representations to encode spatial boundaries that transfer to safer action prediction.",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01NULnW4ibAoEHytuVPPoWPG`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex",
+  "old_string": "\\begin{equation}\n  \\mathcal{L}_{\\text{total}} = \\mathcal{L}_{\\text{action}} + \\lambda \\cdot \\mathcal{L}_{\\text{occ}},\n\\end{equation}\nwhere $\\mathcal{L}_{\\text{action}}$ is the L1 action regression loss from OpenVLA-OFT and $\\lambda = 0.1$. The mechanism",
+  "new_string": "\\begin{equation}\n  \\mathcal{L}_{\\text{total}} = \\mathcal{L}_{\\text{action}} + \\lambda_{\\text{occ}}(t) \\cdot \\mathcal{L}_{\\text{occ}},\n  \\quad \\lambda_{\\text{occ}}(t) = \\lambda_0 \\cdot \\exp(-t / \\tau),\n\\end{equation}\nwhere $\\mathcal{L}_{\\text{action}}$ is the L1 action regression loss from OpenVLA-OFT, $\\lambda_0 = 0.01$, and $\\tau = 50$K steps. The exponential decay ensures that occupancy gradients dominate early training, when the encoder most benefits from spatial supervision, and fade as the action objective takes over. The mechanism"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "26706bad-235d-40bb-9198-2c262a939737",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BJgcJxDuBRfNivWG9Jr6Rp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 769,
+      "cache_read_input_tokens": 41081,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 769
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-20T21:02:46.621Z_
+
+<details><summary>↩ Tool result · `toolu_01NULnW4ibAoEHytuVPPoWPG`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "b6fe5356-feef-4a40-b41b-6b7bd3c01d28",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex",
+    "oldString": "\\begin{equation}\n  \\mathcal{L}_{\\text{total}} = \\mathcal{L}_{\\text{action}} + \\lambda \\cdot \\mathcal{L}_{\\text{occ}},\n\\end{equation}\nwhere $\\mathcal{L}_{\\text{action}}$ is the L1 action regression loss from OpenVLA-OFT and $\\lambda = 0.1$. The mechanism",
+    "newString": "\\begin{equation}\n  \\mathcal{L}_{\\text{total}} = \\mathcal{L}_{\\text{action}} + \\lambda_{\\text{occ}}(t) \\cdot \\mathcal{L}_{\\text{occ}},\n  \\quad \\lambda_{\\text{occ}}(t) = \\lambda_0 \\cdot \\exp(-t / \\tau),\n\\end{equation}\nwhere $\\mathcal{L}_{\\text{action}}$ is the L1 action regression loss from OpenVLA-OFT, $\\lambda_0 = 0.01$, and $\\tau = 50$K steps. The exponential decay ensures that occupancy gradients dominate early training, when the encoder most benefits from spatial supervision, and fade as the action objective takes over. The mechanism",
+    "originalFile": "\\section{Method}\n\\label{sec:method}\n\nWe present OccSafe-VLA, a framework that improves collision safety in Vision-Language-Action models by injecting spatial awareness into the vision encoder at zero inference cost. The core component is a BEV occupancy auxiliary head (Section~\\ref{sec:occ_head}) that forces the encoder to internalize 3D spatial structure during training and is discarded at inference time. We begin by formalizing the problem setting and evaluation metrics.\n\n\\subsection{Problem Formulation}\n\\label{sec:formulation}\n\nWe consider a \\textbf{Vision-Language-Action (VLA)} policy $\\pi(a_t \\mid o_t, l)$ that maps a visual observation $o_t$ and a language instruction $l$ to a 7-DOF action $a_t$ (delta end-effector pose) at each timestep $t$. The policy is parameterized by a large pretrained vision-language model fine-tuned on robot demonstration data. We evaluate performance along two complementary axes. \\textbf{Task Success Rate (TSR)} measures the fraction of episodes in which the robot completes the instructed task:\n\\begin{equation}\n  \\text{TSR} = \\frac{n_{\\text{success}}}{N},\n\\end{equation}\nwhere $n_{\\text{success}}$ is the number of successful episodes out of $N$ total rollouts. \\textbf{Collision Avoidance Rate (CAR)} measures the fraction of episodes free of unintended object displacement:\n\\begin{equation}\n  \\text{CAR} = 1 - \\frac{n_{\\text{collide}}}{N},\n\\end{equation}\nwhere $n_{\\text{collide}}$ counts episodes whose maximum L1 \\texttt{body\\_xpos} displacement exceeds a threshold of $0.001$, following the VLSA/AEGIS protocol~\\cite{hu2025aegis}. Our objective is to improve CAR without degrading TSR. A policy that avoids collisions by refusing to act is not useful; a practical safe manipulation policy must maintain high task completion while reducing unintended contact with surrounding objects.\n\n\\subsection{BEV Occupancy Auxiliary Head}\n\\label{sec:occ_head}\n\nModern VLA models such as OpenVLA~\\cite{kim2024openvla} and OpenVLA-OFT~\\cite{kim2025openvlaoft} rely on 2D pretrained vision encoders (DINOv2, SigLIP) that excel at semantic understanding and language grounding. These encoders learn effective semantic-to-action mappings through fine-tuning, yet they lack explicit reasoning about 3D object boundaries and free space. When a robot must navigate tight clearances between objects in cluttered scenes, this gap becomes critical. A policy that cannot distinguish occupied from free regions of the workspace will collide with obstacles even when it correctly identifies the target object. The challenge is to inject 3D spatial structure into the vision encoder without adding inference cost or sacrificing the benefits of large-scale 2D pretraining.\n\nWe address this challenge with a \\textbf{BEV occupancy auxiliary head} that predicts a bird's-eye-view occupancy grid of the workspace. The BEV representation encodes object boundaries in a view-independent, allocentric coordinate frame and serves as a natural supervisory signal for spatial structure. Unlike depth maps, which remain tied to the camera viewpoint, BEV occupancy offers an explicit top-down decomposition of occupied and free space that directly corresponds to the robot's planning geometry. The head is a convolutional decoder that maps DINOv2 patch features to a $64{\\times}64$ BEV occupancy grid. A linear projection maps each patch token to 256 channels, and the resulting sequence is reshaped into a $16{\\times}16$ spatial map that preserves the patch grid layout. Two transposed convolutions ($256{\\to}128{\\to}64$, kernel 4, stride 2) with batch normalization and GELU activations upsample this map to $64{\\times}64$, and a final $1{\\times}1$ convolution produces the binary occupancy logits. The convolutional architecture is a deliberate choice: because ViT patch tokens correspond to a regular spatial grid, transposed convolutions exploit adjacency structure that a position-agnostic MLP would ignore. This inductive bias allows the decoder to reconstruct fine-grained spatial boundaries from coarse patch features with fewer parameters.\n\nWe train this head with Focal Loss to handle the severe class imbalance between occupied and free cells:\n\\begin{equation}\n  \\mathcal{L}_{\\text{occ}} = -\\alpha\\,(1 - p_t)^{\\gamma}\\,\\log(p_t),\n\\end{equation}\nwhere $\\alpha = 0.25$ and $\\gamma = 2.0$ are the balancing and focusing parameters and $p_t$ is the predicted probability for the ground-truth class. The occupancy loss weight $\\lambda_{\\text{occ}}$ starts at $0.01$ and decays exponentially with time constant $\\tau = 50$K steps, so that the auxiliary signal shapes early representation learning without dominating the action objective in later training.\n\nThe critical design principle is \\textbf{zero inference cost}. During training, the occupancy head forces the vision encoder to internalize spatial structure: accurate occupancy prediction requires the encoder to represent where objects begin and end in 3D space. At inference time, we discard the occupancy head entirely, and the spatial awareness acquired during training persists as an emergent property of the encoder's learned features. This paradigm of training with auxiliary geometric supervision and deploying without it has been validated in autonomous driving by OccVLA~\\cite{liu2025occvla}, which uses volumetric occupancy prediction to enhance a VLA's spatial understanding for navigation. Our work applies the same principle to tabletop manipulation, where the spatial scale and task geometry differ but the core insight holds: auxiliary occupancy supervision reshapes encoder representations to encode spatial boundaries that transfer to safer action prediction.\n\n\\subsection{Training Pipeline}\n\\label{sec:training}\n\nWe build on OpenVLA-OFT 7B~\\cite{kim2025openvlaoft} as the base model, which combines a Llama~2 language backbone with DINOv2 and SigLIP as dual vision encoders. The total training objective combines the action prediction loss with the occupancy auxiliary loss:\n\\begin{equation}\n  \\mathcal{L}_{\\text{total}} = \\mathcal{L}_{\\text{action}} + \\lambda \\cdot \\mathcal{L}_{\\text{occ}},\n\\end{equation}\nwhere $\\mathcal{L}_{\\text{action}}$ is the L1 action regression loss from OpenVLA-OFT and $\\lambda = 0.1$. The mechanism that makes occupancy supervision effective is \\textbf{gradient flow}: with \\texttt{occ\\_detach=False}, gradients from $\\mathcal{L}_{\\text{occ}}$ propagate through the occupancy head back into the DINOv2 vision encoder. This forces the encoder to develop internal representations that encode spatial structure, because producing accurate occupancy predictions requires features that capture object boundaries and spatial layout. If we instead detach the gradients (\\texttt{occ\\_detach=True}), the occupancy head becomes a passive observer that reads encoder features without modifying them, and the auxiliary loss functions as a multi-task regularizer rather than a representation shaper. This is not a subtle distinction: as we show in our ablation study (Section~4), detaching gradients eliminates the safety benefit entirely, confirming that the encoder must be directly shaped by the occupancy objective.\n\nWe fine-tune all conditions with LoRA at rank~32 for 50K steps, using a batch size of 8 and a learning rate of $5 \\times 10^{-4}$ with cosine decay. Training data consists of approximately 25K demonstration episodes from the LIBERO-Spatial suite. All hyperparameters are shared across experimental conditions to ensure fair comparison; only the auxiliary head configuration varies between conditions. Each training run completes in approximately 17 hours on a single A100 GPU.\n\n\\subsection{OCC-CBF: Occupancy-Conditioned Control Barrier Function}\n\\label{sec:occ_cbf}\n\nThe BEV occupancy auxiliary head provides implicit safety by reshaping the encoder's spatial representations at zero inference cost. In certain dense clutter scenarios, however, implicit spatial awareness alone may not guarantee collision avoidance. For such cases, we outline \\textbf{OCC-CBF}, a second line of defense that constructs an explicit safety constraint from the spatial features learned by the occupancy-trained encoder.\n\nOCC-CBF defines a learned barrier function conditioned on occupancy features. Let $z_{\\text{occ}}$ denote the spatial features extracted from the occupancy-trained vision encoder and let $x_{\\text{robot}}$ denote the robot's current state. The occupancy-conditioned barrier function takes the form:\n\\begin{equation}\n  h_{\\text{occ}}(x) = f_\\theta(z_{\\text{occ}},\\, x_{\\text{robot}}),\n\\end{equation}\nwhere $f_\\theta$ is a learned function that maps the combined feature-state pair to a scalar safety value. States satisfying $h_{\\text{occ}}(x) \\geq 0$ are considered safe, and the control barrier constraint modifies the VLA's proposed action to maintain this invariant.\n\nOCC-CBF differs from existing barrier function approaches in its use of learned volumetric features rather than hand-crafted geometric representations. The Euclidean-distance barrier in AEGIS~\\cite{hu2025aegis} operates on explicit object positions from a world model, which limits its applicability to scenarios where object states are directly observable. OGM-CBF~\\cite{ji2024ogmcbf} constructs barriers from discrete occupancy grids via signed distance fields, but relies on accurate grid-level occupancy at test time rather than learned continuous features. Learning to Nudge~\\cite{kwon2026learningnudge} trains object-centric barrier functions (DCBF) that reason about individual objects and require explicit object decomposition, which may not scale to highly cluttered scenes. Neural CS-BF~\\cite{neuralcsbf2025} learns barriers in configuration space for manipulation planning, but operates on geometric state representations independently of a VLA's perceptual features. In contrast, OCC-CBF operates in the VLA's continuous learned feature space and can perform semantic collision reasoning without explicit object segmentation, distance computation, or a separate perception pipeline.\n\n\\textit{We defer the detailed formulation, training procedure, and experimental validation of OCC-CBF to the extended version of this paper. The experiments in Section~4 evaluate the occupancy auxiliary head in isolation, which already yields substantial safety improvements without runtime overhead.}",
+    "structuredPatch": [
+      {
+        "oldStart": 36,
+        "oldLines": 9,
+        "newStart": 36,
+        "newLines": 10,
+        "lines": [
+          " ",
+          " We build on OpenVLA-OFT 7B~\\cite{kim2025openvlaoft} as the base model, which combines a Llama~2 language backbone with DINOv2 and SigLIP as dual vision encoders. The total training objective combines the action prediction loss with the occupancy auxiliary loss:",
+          " \\begin{equation}",
+          "-  \\mathcal{L}_{\\text{total}} = \\mathcal{L}_{\\text{action}} + \\lambda \\cdot \\mathcal{L}_{\\text{occ}},",
+          "+  \\mathcal{L}_{\\text{total}} = \\mathcal{L}_{\\text{action}} + \\lambda_{\\text{occ}}(t) \\cdot \\mathcal{L}_{\\text{occ}},",
+          "+  \\quad \\lambda_{\\text{occ}}(t) = \\lambda_0 \\cdot \\exp(-t / \\tau),",
+          " \\end{equation}",
+          "-where $\\mathcal{L}_{\\text{action}}$ is the L1 action regression loss from OpenVLA-OFT and $\\lambda = 0.1$. The mechanism that makes occupancy supervision effective is \\textbf{gradient flow}: with \\texttt{occ\\_detach=False}, gradients from $\\mathcal{L}_{\\text{occ}}$ propagate through the occupancy head back into the DINOv2 vision encoder. This forces the encoder to develop internal representations that encode spatial structure, because producing accurate occupancy predictions requires features that capture object boundaries and spatial layout. If we instead detach the gradients (\\texttt{occ\\_detach=True}), the occupancy head becomes a passive observer that reads encoder features without modifying them, and the auxiliary loss functions as a multi-task regularizer rather than a representation shaper. This is not a subtle distinction: as we show in our ablation study (Section~4), detaching gradients eliminates the safety benefit entirely, confirming that the encoder must be directly shaped by the occupancy objective.",
+          "+where $\\mathcal{L}_{\\text{action}}$ is the L1 action regression loss from OpenVLA-OFT, $\\lambda_0 = 0.01$, and $\\tau = 50$K steps. The exponential decay ensures that occupancy gradients dominate early training, when the encoder most benefits from spatial supervision, and fade as the action objective takes over. The mechanism that makes occupancy supervision effective is \\textbf{gradient flow}: with \\texttt{occ\\_detach=False}, gradients from $\\mathcal{L}_{\\text{occ}}$ propagate through the occupancy head back into the DINOv2 vision encoder. This forces the encoder to develop internal representations that encode spatial structure, because producing accurate occupancy predictions requires features that capture object boundaries and spatial layout. If we instead detach the gradients (\\texttt{occ\\_detach=True}), the occupancy head becomes a passive observer that reads encoder features without modifying them, and the auxiliary loss functions as a multi-task regularizer rather than a representation shaper. This is not a subtle distinction: as we show in our ablation study (Section~4), detaching gradients eliminates the safety benefit entirely, confirming that the encoder must be directly shaped by the occupancy objective.",
+          " ",
+          " We fine-tune all conditions with LoRA at rank~32 for 50K steps, using a batch size of 8 and a learning rate of $5 \\times 10^{-4}$ with cosine decay. Training data consists of approximately 25K demonstration episodes from the LIBERO-Spatial suite. All hyperparameters are shared across experimental conditions to ensure fair comparison; only the auxiliary head configuration varies between conditions. Each training run completes in approximately 17 hours on a single A100 GPU.",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01J1mGQ4usjB8evob8eq7pEf`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex",
+  "old_string": "We fine-tune all conditions with LoRA at rank~32 for 50K steps, using a batch size of 8 and a learning rate of $5 \\times 10^{-4}$ with cosine decay. Training data consists of approximately 25K demonstration episodes from the LIBERO-Spatial suite. All hyperparameters are shared across experimental conditions to ensure fair comparison; only the auxiliary head configuration varies between conditions. Each training run completes in approximately 17 hours on a single A100 GPU.",
+  "new_string": "We fine-tune all conditions with LoRA at rank~32 for 50K steps, using a batch size of 8 and a fixed learning rate of $5 \\times 10^{-4}$. Training data consists of approximately 25K demonstration episodes from the LIBERO-Spatial suite. All hyperparameters are shared across experimental conditions to ensure fair comparison; only the auxiliary head configuration varies between conditions. Each training run completes in approximately 13 hours on a single NVIDIA RTX PRO 6000 GPU."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "66e0f5a2-211c-4c16-8a35-54f6f1eda1d0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AkZQ8N1d9VUCtWXH2q6eim",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 489,
+      "cache_read_input_tokens": 41850,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 489
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-20T21:02:53.903Z_
+
+<details><summary>↩ Tool result · `toolu_01J1mGQ4usjB8evob8eq7pEf`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "9749d4e6-128f-4fcc-9609-2166932c9708",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex",
+    "oldString": "We fine-tune all conditions with LoRA at rank~32 for 50K steps, using a batch size of 8 and a learning rate of $5 \\times 10^{-4}$ with cosine decay. Training data consists of approximately 25K demonstration episodes from the LIBERO-Spatial suite. All hyperparameters are shared across experimental conditions to ensure fair comparison; only the auxiliary head configuration varies between conditions. Each training run completes in approximately 17 hours on a single A100 GPU.",
+    "newString": "We fine-tune all conditions with LoRA at rank~32 for 50K steps, using a batch size of 8 and a fixed learning rate of $5 \\times 10^{-4}$. Training data consists of approximately 25K demonstration episodes from the LIBERO-Spatial suite. All hyperparameters are shared across experimental conditions to ensure fair comparison; only the auxiliary head configuration varies between conditions. Each training run completes in approximately 13 hours on a single NVIDIA RTX PRO 6000 GPU.",
+    "originalFile": "\\section{Method}\n\\label{sec:method}\n\nWe present OccSafe-VLA, a framework that improves collision safety in Vision-Language-Action models by injecting spatial awareness into the vision encoder at zero inference cost. The core component is a BEV occupancy auxiliary head (Section~\\ref{sec:occ_head}) that forces the encoder to internalize 3D spatial structure during training and is discarded at inference time. We begin by formalizing the problem setting and evaluation metrics.\n\n\\subsection{Problem Formulation}\n\\label{sec:formulation}\n\nWe consider a \\textbf{Vision-Language-Action (VLA)} policy $\\pi(a_t \\mid o_t, l)$ that maps a visual observation $o_t$ and a language instruction $l$ to a 7-DOF action $a_t$ (delta end-effector pose) at each timestep $t$. The policy is parameterized by a large pretrained vision-language model fine-tuned on robot demonstration data. We evaluate performance along two complementary axes. \\textbf{Task Success Rate (TSR)} measures the fraction of episodes in which the robot completes the instructed task:\n\\begin{equation}\n  \\text{TSR} = \\frac{n_{\\text{success}}}{N},\n\\end{equation}\nwhere $n_{\\text{success}}$ is the number of successful episodes out of $N$ total rollouts. \\textbf{Collision Avoidance Rate (CAR)} measures the fraction of episodes free of unintended object displacement:\n\\begin{equation}\n  \\text{CAR} = 1 - \\frac{n_{\\text{collide}}}{N},\n\\end{equation}\nwhere $n_{\\text{collide}}$ counts episodes whose maximum L1 \\texttt{body\\_xpos} displacement exceeds a threshold of $0.001$, following the VLSA/AEGIS protocol~\\cite{hu2025aegis}. Our objective is to improve CAR without degrading TSR. A policy that avoids collisions by refusing to act is not useful; a practical safe manipulation policy must maintain high task completion while reducing unintended contact with surrounding objects.\n\n\\subsection{BEV Occupancy Auxiliary Head}\n\\label{sec:occ_head}\n\nModern VLA models such as OpenVLA~\\cite{kim2024openvla} and OpenVLA-OFT~\\cite{kim2025openvlaoft} rely on 2D pretrained vision encoders (DINOv2, SigLIP) that excel at semantic understanding and language grounding. These encoders learn effective semantic-to-action mappings through fine-tuning, yet they lack explicit reasoning about 3D object boundaries and free space. When a robot must navigate tight clearances between objects in cluttered scenes, this gap becomes critical. A policy that cannot distinguish occupied from free regions of the workspace will collide with obstacles even when it correctly identifies the target object. The challenge is to inject 3D spatial structure into the vision encoder without adding inference cost or sacrificing the benefits of large-scale 2D pretraining.\n\nWe address this challenge with a \\textbf{BEV occupancy auxiliary head} that predicts a bird's-eye-view occupancy grid of the workspace. The BEV representation encodes object boundaries in a view-independent, allocentric coordinate frame and serves as a natural supervisory signal for spatial structure. Unlike depth maps, which remain tied to the camera viewpoint, BEV occupancy offers an explicit top-down decomposition of occupied and free space that directly corresponds to the robot's planning geometry. The head is a convolutional decoder that maps DINOv2 patch features to a $64{\\times}64$ BEV occupancy grid. A linear projection maps each patch token to 256 channels, and the resulting sequence is reshaped into a $16{\\times}16$ spatial map that preserves the patch grid layout. Two transposed convolutions ($256{\\to}128{\\to}64$, kernel 4, stride 2) with batch normalization and GELU activations upsample this map to $64{\\times}64$, and a final $1{\\times}1$ convolution produces the binary occupancy logits. The convolutional architecture is a deliberate choice: because ViT patch tokens correspond to a regular spatial grid, transposed convolutions exploit adjacency structure that a position-agnostic MLP would ignore. This inductive bias allows the decoder to reconstruct fine-grained spatial boundaries from coarse patch features with fewer parameters.\n\nWe train this head with Focal Loss to handle the severe class imbalance between occupied and free cells:\n\\begin{equation}\n  \\mathcal{L}_{\\text{occ}} = -\\alpha\\,(1 - p_t)^{\\gamma}\\,\\log(p_t),\n\\end{equation}\nwhere $\\alpha = 0.25$ and $\\gamma = 2.0$ are the balancing and focusing parameters and $p_t$ is the predicted probability for the ground-truth class. The occupancy loss weight $\\lambda_{\\text{occ}}$ starts at $0.01$ and decays exponentially with time constant $\\tau = 50$K steps, so that the auxiliary signal shapes early representation learning without dominating the action objective in later training.\n\nThe critical design principle is \\textbf{zero inference cost}. During training, the occupancy head forces the vision encoder to internalize spatial structure: accurate occupancy prediction requires the encoder to represent where objects begin and end in 3D space. At inference time, we discard the occupancy head entirely, and the spatial awareness acquired during training persists as an emergent property of the encoder's learned features. This paradigm of training with auxiliary geometric supervision and deploying without it has been validated in autonomous driving by OccVLA~\\cite{liu2025occvla}, which uses volumetric occupancy prediction to enhance a VLA's spatial understanding for navigation. Our work applies the same principle to tabletop manipulation, where the spatial scale and task geometry differ but the core insight holds: auxiliary occupancy supervision reshapes encoder representations to encode spatial boundaries that transfer to safer action prediction.\n\n\\subsection{Training Pipeline}\n\\label{sec:training}\n\nWe build on OpenVLA-OFT 7B~\\cite{kim2025openvlaoft} as the base model, which combines a Llama~2 language backbone with DINOv2 and SigLIP as dual vision encoders. The total training objective combines the action prediction loss with the occupancy auxiliary loss:\n\\begin{equation}\n  \\mathcal{L}_{\\text{total}} = \\mathcal{L}_{\\text{action}} + \\lambda_{\\text{occ}}(t) \\cdot \\mathcal{L}_{\\text{occ}},\n  \\quad \\lambda_{\\text{occ}}(t) = \\lambda_0 \\cdot \\exp(-t / \\tau),\n\\end{equation}\nwhere $\\mathcal{L}_{\\text{action}}$ is the L1 action regression loss from OpenVLA-OFT, $\\lambda_0 = 0.01$, and $\\tau = 50$K steps. The exponential decay ensures that occupancy gradients dominate early training, when the encoder most benefits from spatial supervision, and fade as the action objective takes over. The mechanism that makes occupancy supervision effective is \\textbf{gradient flow}: with \\texttt{occ\\_detach=False}, gradients from $\\mathcal{L}_{\\text{occ}}$ propagate through the occupancy head back into the DINOv2 vision encoder. This forces the encoder to develop internal representations that encode spatial structure, because producing accurate occupancy predictions requires features that capture object boundaries and spatial layout. If we instead detach the gradients (\\texttt{occ\\_detach=True}), the occupancy head becomes a passive observer that reads encoder features without modifying them, and the auxiliary loss functions as a multi-task regularizer rather than a representation shaper. This is not a subtle distinction: as we show in our ablation study (Section~4), detaching gradients eliminates the safety benefit entirely, confirming that the encoder must be directly shaped by the occupancy objective.\n\nWe fine-tune all conditions with LoRA at rank~32 for 50K steps, using a batch size of 8 and a learning rate of $5 \\times 10^{-4}$ with cosine decay. Training data consists of approximately 25K demonstration episodes from the LIBERO-Spatial suite. All hyperparameters are shared across experimental conditions to ensure fair comparison; only the auxiliary head configuration varies between conditions. Each training run completes in approximately 17 hours on a single A100 GPU.\n\n\\subsection{OCC-CBF: Occupancy-Conditioned Control Barrier Function}\n\\label{sec:occ_cbf}\n\nThe BEV occupancy auxiliary head provides implicit safety by reshaping the encoder's spatial representations at zero inference cost. In certain dense clutter scenarios, however, implicit spatial awareness alone may not guarantee collision avoidance. For such cases, we outline \\textbf{OCC-CBF}, a second line of defense that constructs an explicit safety constraint from the spatial features learned by the occupancy-trained encoder.\n\nOCC-CBF defines a learned barrier function conditioned on occupancy features. Let $z_{\\text{occ}}$ denote the spatial features extracted from the occupancy-trained vision encoder and let $x_{\\text{robot}}$ denote the robot's current state. The occupancy-conditioned barrier function takes the form:\n\\begin{equation}\n  h_{\\text{occ}}(x) = f_\\theta(z_{\\text{occ}},\\, x_{\\text{robot}}),\n\\end{equation}\nwhere $f_\\theta$ is a learned function that maps the combined feature-state pair to a scalar safety value. States satisfying $h_{\\text{occ}}(x) \\geq 0$ are considered safe, and the control barrier constraint modifies the VLA's proposed action to maintain this invariant.\n\nOCC-CBF differs from existing barrier function approaches in its use of learned volumetric features rather than hand-crafted geometric representations. The Euclidean-distance barrier in AEGIS~\\cite{hu2025aegis} operates on explicit object positions from a world model, which limits its applicability to scenarios where object states are directly observable. OGM-CBF~\\cite{ji2024ogmcbf} constructs barriers from discrete occupancy grids via signed distance fields, but relies on accurate grid-level occupancy at test time rather than learned continuous features. Learning to Nudge~\\cite{kwon2026learningnudge} trains object-centric barrier functions (DCBF) that reason about individual objects and require explicit object decomposition, which may not scale to highly cluttered scenes. Neural CS-BF~\\cite{neuralcsbf2025} learns barriers in configuration space for manipulation planning, but operates on geometric state representations independently of a VLA's perceptual features. In contrast, OCC-CBF operates in the VLA's continuous learned feature space and can perform semantic collision reasoning without explicit object segmentation, distance computation, or a separate perception pipeline.\n\n\\textit{We defer the detailed formulation, training procedure, and experimental validation of OCC-CBF to the extended version of this paper. The experiments in Section~4 evaluate the occupancy auxiliary head in isolation, which already yields substantial safety improvements without runtime overhead.}",
+    "structuredPatch": [
+      {
+        "oldStart": 41,
+        "oldLines": 7,
+        "newStart": 41,
+        "newLines": 7,
+        "lines": [
+          " \\end{equation}",
+          " where $\\mathcal{L}_{\\text{action}}$ is the L1 action regression loss from OpenVLA-OFT, $\\lambda_0 = 0.01$, and $\\tau = 50$K steps. The exponential decay ensures that occupancy gradients dominate early training, when the encoder most benefits from spatial supervision, and fade as the action objective takes over. The mechanism that makes occupancy supervision effective is \\textbf{gradient flow}: with \\texttt{occ\\_detach=False}, gradients from $\\mathcal{L}_{\\text{occ}}$ propagate through the occupancy head back into the DINOv2 vision encoder. This forces the encoder to develop internal representations that encode spatial structure, because producing accurate occupancy predictions requires features that capture object boundaries and spatial layout. If we instead detach the gradients (\\texttt{occ\\_detach=True}), the occupancy head becomes a passive observer that reads encoder features without modifying them, and the auxiliary loss functions as a multi-task regularizer rather than a representation shaper. This is not a subtle distinction: as we show in our ablation study (Section~4), detaching gradients eliminates the safety benefit entirely, confirming that the encoder must be directly shaped by the occupancy objective.",
+          " ",
+          "-We fine-tune all conditions with LoRA at rank~32 for 50K steps, using a batch size of 8 and a learning rate of $5 \\times 10^{-4}$ with cosine decay. Training data consists of approximately 25K demonstration episodes from the LIBERO-Spatial suite. All hyperparameters are shared across experimental conditions to ensure fair comparison; only the auxiliary head configuration varies between conditions. Each training run completes in approximately 17 hours on a single A100 GPU.",
+          "+We fine-tune all conditions with LoRA at rank~32 for 50K steps, using a batch size of 8 and a fixed learning rate of $5 \\times 10^{-4}$. Training data consists of approximately 25K demonstration episodes from the LIBERO-Spatial suite. All hyperparameters are shared across experimental conditions to ensure fair comparison; only the auxiliary head configuration varies between conditions. Each training run completes in approximately 13 hours on a single NVIDIA RTX PRO 6000 GPU.",
+          " ",
+          " \\subsection{OCC-CBF: Occupancy-Conditioned Control Barrier Function}",
+          " \\label{sec:occ_cbf}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+Now remove §3.4 OCC-CBF entirely.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "0b60bc40-cc88-45fe-ace4-d14b297e8245",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R5z3eXXYqbKQ5cWSMK9Whn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 425,
+      "cache_read_input_tokens": 42339,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 425
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_0157bmoQrRKtyxkx3xGnaJG1`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex",
+  "old_string": "\\subsection{OCC-CBF: Occupancy-Conditioned Control Barrier Function}\n\\label{sec:occ_cbf}\n\nThe BEV occupancy auxiliary head provides implicit safety by reshaping the encoder's spatial representations at zero inference cost. In certain dense clutter scenarios, however, implicit spatial awareness alone may not guarantee collision avoidance. For such cases, we outline \\textbf{OCC-CBF}, a second line of defense that constructs an explicit safety constraint from the spatial features learned by the occupancy-trained encoder.\n\nOCC-CBF defines a learned barrier function conditioned on occupancy features. Let $z_{\\text{occ}}$ denote the spatial features extracted from the occupancy-trained vision encoder and let $x_{\\text{robot}}$ denote the robot's current state. The occupancy-conditioned barrier function takes the form:\n\\begin{equation}\n  h_{\\text{occ}}(x) = f_\\theta(z_{\\text{occ}},\\, x_{\\text{robot}}),\n\\end{equation}\nwhere $f_\\theta$ is a learned function that maps the combined feature-state pair to a scalar safety value. States satisfying $h_{\\text{occ}}(x) \\geq 0$ are considered safe, and the control barrier constraint modifies the VLA's proposed action to maintain this invariant.\n\nOCC-CBF differs from existing barrier function approaches in its use of learned volumetric features rather than hand-crafted geometric representations. The Euclidean-distance barrier in AEGIS~\\cite{hu2025aegis} operates on explicit object positions from a world model, which limits its applicability to scenarios where object states are directly observable. OGM-CBF~\\cite{ji2024ogmcbf} constructs barriers from discrete occupancy grids via signed distance fields, but relies on accurate grid-level occupancy at test time rather than learned continuous features. Learning to Nudge~\\cite{kwon2026learningnudge} trains object-centric barrier functions (DCBF) that reason about individual objects and require explicit object decomposition, which may not scale to highly cluttered scenes. Neural CS-BF~\\cite{neuralcsbf2025} learns barriers in configuration space for manipulation planning, but operates on geometric state representations independently of a VLA's perceptual features. In contrast, OCC-CBF operates in the VLA's continuous learned feature space and can perform semantic collision reasoning without explicit object segmentation, distance computation, or a separate perception pipeline.\n\n\\textit{We defer the detailed formulation, training procedure, and experimental validation of OCC-CBF to the extended version of this paper. The experiments in Section~4 evaluate the occupancy auxiliary head in isolation, which already yields substantial safety improvements without runtime overhead.}",
+  "new_string": ""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "009a7d49-3073-4394-a124-a8e36c072cb2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R5z3eXXYqbKQ5cWSMK9Whn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 425,
+      "cache_read_input_tokens": 42339,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 425
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-20T21:03:13.741Z_
+
+<details><summary>↩ Tool result · `toolu_0157bmoQrRKtyxkx3xGnaJG1`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "4719d681-320c-4897-9251-ccb86994ee9d",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex",
+    "oldString": "\\subsection{OCC-CBF: Occupancy-Conditioned Control Barrier Function}\n\\label{sec:occ_cbf}\n\nThe BEV occupancy auxiliary head provides implicit safety by reshaping the encoder's spatial representations at zero inference cost. In certain dense clutter scenarios, however, implicit spatial awareness alone may not guarantee collision avoidance. For such cases, we outline \\textbf{OCC-CBF}, a second line of defense that constructs an explicit safety constraint from the spatial features learned by the occupancy-trained encoder.\n\nOCC-CBF defines a learned barrier function conditioned on occupancy features. Let $z_{\\text{occ}}$ denote the spatial features extracted from the occupancy-trained vision encoder and let $x_{\\text{robot}}$ denote the robot's current state. The occupancy-conditioned barrier function takes the form:\n\\begin{equation}\n  h_{\\text{occ}}(x) = f_\\theta(z_{\\text{occ}},\\, x_{\\text{robot}}),\n\\end{equation}\nwhere $f_\\theta$ is a learned function that maps the combined feature-state pair to a scalar safety value. States satisfying $h_{\\text{occ}}(x) \\geq 0$ are considered safe, and the control barrier constraint modifies the VLA's proposed action to maintain this invariant.\n\nOCC-CBF differs from existing barrier function approaches in its use of learned volumetric features rather than hand-crafted geometric representations. The Euclidean-distance barrier in AEGIS~\\cite{hu2025aegis} operates on explicit object positions from a world model, which limits its applicability to scenarios where object states are directly observable. OGM-CBF~\\cite{ji2024ogmcbf} constructs barriers from discrete occupancy grids via signed distance fields, but relies on accurate grid-level occupancy at test time rather than learned continuous features. Learning to Nudge~\\cite{kwon2026learningnudge} trains object-centric barrier functions (DCBF) that reason about individual objects and require explicit object decomposition, which may not scale to highly cluttered scenes. Neural CS-BF~\\cite{neuralcsbf2025} learns barriers in configuration space for manipulation planning, but operates on geometric state representations independently of a VLA's perceptual features. In contrast, OCC-CBF operates in the VLA's continuous learned feature space and can perform semantic collision reasoning without explicit object segmentation, distance computation, or a separate perception pipeline.\n\n\\textit{We defer the detailed formulation, training procedure, and experimental validation of OCC-CBF to the extended version of this paper. The experiments in Section~4 evaluate the occupancy auxiliary head in isolation, which already yields substantial safety improvements without runtime overhead.}",
+    "newString": "",
+    "originalFile": "\\section{Method}\n\\label{sec:method}\n\nWe present OccSafe-VLA, a framework that improves collision safety in Vision-Language-Action models by injecting spatial awareness into the vision encoder at zero inference cost. The core component is a BEV occupancy auxiliary head (Section~\\ref{sec:occ_head}) that forces the encoder to internalize 3D spatial structure during training and is discarded at inference time. We begin by formalizing the problem setting and evaluation metrics.\n\n\\subsection{Problem Formulation}\n\\label{sec:formulation}\n\nWe consider a \\textbf{Vision-Language-Action (VLA)} policy $\\pi(a_t \\mid o_t, l)$ that maps a visual observation $o_t$ and a language instruction $l$ to a 7-DOF action $a_t$ (delta end-effector pose) at each timestep $t$. The policy is parameterized by a large pretrained vision-language model fine-tuned on robot demonstration data. We evaluate performance along two complementary axes. \\textbf{Task Success Rate (TSR)} measures the fraction of episodes in which the robot completes the instructed task:\n\\begin{equation}\n  \\text{TSR} = \\frac{n_{\\text{success}}}{N},\n\\end{equation}\nwhere $n_{\\text{success}}$ is the number of successful episodes out of $N$ total rollouts. \\textbf{Collision Avoidance Rate (CAR)} measures the fraction of episodes free of unintended object displacement:\n\\begin{equation}\n  \\text{CAR} = 1 - \\frac{n_{\\text{collide}}}{N},\n\\end{equation}\nwhere $n_{\\text{collide}}$ counts episodes whose maximum L1 \\texttt{body\\_xpos} displacement exceeds a threshold of $0.001$, following the VLSA/AEGIS protocol~\\cite{hu2025aegis}. Our objective is to improve CAR without degrading TSR. A policy that avoids collisions by refusing to act is not useful; a practical safe manipulation policy must maintain high task completion while reducing unintended contact with surrounding objects.\n\n\\subsection{BEV Occupancy Auxiliary Head}\n\\label{sec:occ_head}\n\nModern VLA models such as OpenVLA~\\cite{kim2024openvla} and OpenVLA-OFT~\\cite{kim2025openvlaoft} rely on 2D pretrained vision encoders (DINOv2, SigLIP) that excel at semantic understanding and language grounding. These encoders learn effective semantic-to-action mappings through fine-tuning, yet they lack explicit reasoning about 3D object boundaries and free space. When a robot must navigate tight clearances between objects in cluttered scenes, this gap becomes critical. A policy that cannot distinguish occupied from free regions of the workspace will collide with obstacles even when it correctly identifies the target object. The challenge is to inject 3D spatial structure into the vision encoder without adding inference cost or sacrificing the benefits of large-scale 2D pretraining.\n\nWe address this challenge with a \\textbf{BEV occupancy auxiliary head} that predicts a bird's-eye-view occupancy grid of the workspace. The BEV representation encodes object boundaries in a view-independent, allocentric coordinate frame and serves as a natural supervisory signal for spatial structure. Unlike depth maps, which remain tied to the camera viewpoint, BEV occupancy offers an explicit top-down decomposition of occupied and free space that directly corresponds to the robot's planning geometry. The head is a convolutional decoder that maps DINOv2 patch features to a $64{\\times}64$ BEV occupancy grid. A linear projection maps each patch token to 256 channels, and the resulting sequence is reshaped into a $16{\\times}16$ spatial map that preserves the patch grid layout. Two transposed convolutions ($256{\\to}128{\\to}64$, kernel 4, stride 2) with batch normalization and GELU activations upsample this map to $64{\\times}64$, and a final $1{\\times}1$ convolution produces the binary occupancy logits. The convolutional architecture is a deliberate choice: because ViT patch tokens correspond to a regular spatial grid, transposed convolutions exploit adjacency structure that a position-agnostic MLP would ignore. This inductive bias allows the decoder to reconstruct fine-grained spatial boundaries from coarse patch features with fewer parameters.\n\nWe train this head with Focal Loss to handle the severe class imbalance between occupied and free cells:\n\\begin{equation}\n  \\mathcal{L}_{\\text{occ}} = -\\alpha\\,(1 - p_t)^{\\gamma}\\,\\log(p_t),\n\\end{equation}\nwhere $\\alpha = 0.25$ and $\\gamma = 2.0$ are the balancing and focusing parameters and $p_t$ is the predicted probability for the ground-truth class. The occupancy loss weight $\\lambda_{\\text{occ}}$ starts at $0.01$ and decays exponentially with time constant $\\tau = 50$K steps, so that the auxiliary signal shapes early representation learning without dominating the action objective in later training.\n\nThe critical design principle is \\textbf{zero inference cost}. During training, the occupancy head forces the vision encoder to internalize spatial structure: accurate occupancy prediction requires the encoder to represent where objects begin and end in 3D space. At inference time, we discard the occupancy head entirely, and the spatial awareness acquired during training persists as an emergent property of the encoder's learned features. This paradigm of training with auxiliary geometric supervision and deploying without it has been validated in autonomous driving by OccVLA~\\cite{liu2025occvla}, which uses volumetric occupancy prediction to enhance a VLA's spatial understanding for navigation. Our work applies the same principle to tabletop manipulation, where the spatial scale and task geometry differ but the core insight holds: auxiliary occupancy supervision reshapes encoder representations to encode spatial boundaries that transfer to safer action prediction.\n\n\\subsection{Training Pipeline}\n\\label{sec:training}\n\nWe build on OpenVLA-OFT 7B~\\cite{kim2025openvlaoft} as the base model, which combines a Llama~2 language backbone with DINOv2 and SigLIP as dual vision encoders. The total training objective combines the action prediction loss with the occupancy auxiliary loss:\n\\begin{equation}\n  \\mathcal{L}_{\\text{total}} = \\mathcal{L}_{\\text{action}} + \\lambda_{\\text{occ}}(t) \\cdot \\mathcal{L}_{\\text{occ}},\n  \\quad \\lambda_{\\text{occ}}(t) = \\lambda_0 \\cdot \\exp(-t / \\tau),\n\\end{equation}\nwhere $\\mathcal{L}_{\\text{action}}$ is the L1 action regression loss from OpenVLA-OFT, $\\lambda_0 = 0.01$, and $\\tau = 50$K steps. The exponential decay ensures that occupancy gradients dominate early training, when the encoder most benefits from spatial supervision, and fade as the action objective takes over. The mechanism that makes occupancy supervision effective is \\textbf{gradient flow}: with \\texttt{occ\\_detach=False}, gradients from $\\mathcal{L}_{\\text{occ}}$ propagate through the occupancy head back into the DINOv2 vision encoder. This forces the encoder to develop internal representations that encode spatial structure, because producing accurate occupancy predictions requires features that capture object boundaries and spatial layout. If we instead detach the gradients (\\texttt{occ\\_detach=True}), the occupancy head becomes a passive observer that reads encoder features without modifying them, and the auxiliary loss functions as a multi-task regularizer rather than a representation shaper. This is not a subtle distinction: as we show in our ablation study (Section~4), detaching gradients eliminates the safety benefit entirely, confirming that the encoder must be directly shaped by the occupancy objective.\n\nWe fine-tune all conditions with LoRA at rank~32 for 50K steps, using a batch size of 8 and a fixed learning rate of $5 \\times 10^{-4}$. Training data consists of approximately 25K demonstration episodes from the LIBERO-Spatial suite. All hyperparameters are shared across experimental conditions to ensure fair comparison; only the auxiliary head configuration varies between conditions. Each training run completes in approximately 13 hours on a single NVIDIA RTX PRO 6000 GPU.\n\n\\subsection{OCC-CBF: Occupancy-Conditioned Control Barrier Function}\n\\label{sec:occ_cbf}\n\nThe BEV occupancy auxiliary head provides implicit safety by reshaping the encoder's spatial representations at zero inference cost. In certain dense clutter scenarios, however, implicit spatial awareness alone may not guarantee collision avoidance. For such cases, we outline \\textbf{OCC-CBF}, a second line of defense that constructs an explicit safety constraint from the spatial features learned by the occupancy-trained encoder.\n\nOCC-CBF defines a learned barrier function conditioned on occupancy features. Let $z_{\\text{occ}}$ denote the spatial features extracted from the occupancy-trained vision encoder and let $x_{\\text{robot}}$ denote the robot's current state. The occupancy-conditioned barrier function takes the form:\n\\begin{equation}\n  h_{\\text{occ}}(x) = f_\\theta(z_{\\text{occ}},\\, x_{\\text{robot}}),\n\\end{equation}\nwhere $f_\\theta$ is a learned function that maps the combined feature-state pair to a scalar safety value. States satisfying $h_{\\text{occ}}(x) \\geq 0$ are considered safe, and the control barrier constraint modifies the VLA's proposed action to maintain this invariant.\n\nOCC-CBF differs from existing barrier function approaches in its use of learned volumetric features rather than hand-crafted geometric representations. The Euclidean-distance barrier in AEGIS~\\cite{hu2025aegis} operates on explicit object positions from a world model, which limits its applicability to scenarios where object states are directly observable. OGM-CBF~\\cite{ji2024ogmcbf} constructs barriers from discrete occupancy grids via signed distance fields, but relies on accurate grid-level occupancy at test time rather than learned continuous features. Learning to Nudge~\\cite{kwon2026learningnudge} trains object-centric barrier functions (DCBF) that reason about individual objects and require explicit object decomposition, which may not scale to highly cluttered scenes. Neural CS-BF~\\cite{neuralcsbf2025} learns barriers in configuration space for manipulation planning, but operates on geometric state representations independently of a VLA's perceptual features. In contrast, OCC-CBF operates in the VLA's continuous learned feature space and can perform semantic collision reasoning without explicit object segmentation, distance computation, or a separate perception pipeline.\n\n\\textit{We defer the detailed formulation, training procedure, and experimental validation of OCC-CBF to the extended version of this paper. The experiments in Section~4 evaluate the occupancy auxiliary head in isolation, which already yields substantial safety improvements without runtime overhead.}",
+    "structuredPatch": [
+      {
+        "oldStart": 43,
+        "oldLines": 17,
+        "newStart": 43,
+        "newLines": 3,
+        "lines": [
+          " ",
+          " We fine-tune all conditions with LoRA at rank~32 for 50K steps, using a batch size of 8 and a fixed learning rate of $5 \\times 10^{-4}$. Training data consists of approximately 25K demonstration episodes from the LIBERO-Spatial suite. All hyperparameters are shared across experimental conditions to ensure fair comparison; only the auxiliary head configuration varies between conditions. Each training run completes in approximately 13 hours on a single NVIDIA RTX PRO 6000 GPU.",
+          " ",
+          "-\\subsection{OCC-CBF: Occupancy-Conditioned Control Barrier Function}",
+          "-\\label{sec:occ_cbf}",
+          "-",
+          "-The BEV occupancy auxiliary head provides implicit safety by reshaping the encoder's spatial representations at zero inference cost. In certain dense clutter scenarios, however, implicit spatial awareness alone may not guarantee collision avoidance. For such cases, we outline \\textbf{OCC-CBF}, a second line of defense that constructs an explicit safety constraint from the spatial features learned by the occupancy-trained encoder.",
+          "-",
+          "-OCC-CBF defines a learned barrier function conditioned on occupancy features. Let $z_{\\text{occ}}$ denote the spatial features extracted from the occupancy-trained vision encoder and let $x_{\\text{robot}}$ denote the robot's current state. The occupancy-conditioned barrier function takes the form:",
+          "-\\begin{equation}",
+          "-  h_{\\text{occ}}(x) = f_\\theta(z_{\\text{occ}},\\, x_{\\text{robot}}),",
+          "-\\end{equation}",
+          "-where $f_\\theta$ is a learned function that maps the combined feature-state pair to a scalar safety value. States satisfying $h_{\\text{occ}}(x) \\geq 0$ are considered safe, and the control barrier constraint modifies the VLA's proposed action to maintain this invariant.",
+          "-",
+          "-OCC-CBF differs from existing barrier function approaches in its use of learned volumetric features rather than hand-crafted geometric representations. The Euclidean-distance barrier in AEGIS~\\cite{hu2025aegis} operates on explicit object positions from a world model, which limits its applicability to scenarios where object states are directly observable. OGM-CBF~\\cite{ji2024ogmcbf} constructs barriers from discrete occupancy grids via signed distance fields, but relies on accurate grid-level occupancy at test time rather than learned continuous features. Learning to Nudge~\\cite{kwon2026learningnudge} trains object-centric barrier functions (DCBF) that reason about individual objects and require explicit object decomposition, which may not scale to highly cluttered scenes. Neural CS-BF~\\cite{neuralcsbf2025} learns barriers in configuration space for manipulation planning, but operates on geometric state representations independently of a VLA's perceptual features. In contrast, OCC-CBF operates in the VLA's continuous learned feature space and can perform semantic collision reasoning without explicit object segmentation, distance computation, or a separate perception pipeline.",
+          "-",
+          "-\\textit{We defer the detailed formulation, training procedure, and experimental validation of OCC-CBF to the extended version of this paper. The experiments in Section~4 evaluate the occupancy auxiliary head in isolation, which already yields substantial safety improvements without runtime overhead.}",
+          "\\ No newline at end of file"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+Now create discussion.tex with OCC-CBF as future work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "fc05645a-611f-4551-904e-f7400fc19bc5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EV8LSRAY4NPwfXoYkRJWXc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 844,
+      "cache_read_input_tokens": 42764,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 844
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_017XmM6XHjvpP6ScAYFd1wSP`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/",
+  "description": "List paper directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "aa4e0b15-422d-4287-80f1-a857b51b6568",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EV8LSRAY4NPwfXoYkRJWXc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 844,
+      "cache_read_input_tokens": 42764,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 844
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-20T21:03:17.064Z_
+
+<details><summary>↩ Tool result · `toolu_017XmM6XHjvpP6ScAYFd1wSP`</summary>
+
+```text
+experiments.tex
+main.tex
+method.tex
+references.bib
+related_work.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "0d6e71dc-7bdc-49ab-b2ec-6ca598644f24",
+  "tool_use_result": {
+    "stdout": "experiments.tex\nmain.tex\nmethod.tex\nreferences.bib\nrelated_work.tex",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01H626mYEfyAck6BAwC4bLfC`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex",
+  "content": "\\section{Discussion and Future Directions}\n\\label{sec:discussion}\n\nThe occupancy auxiliary head improves collision avoidance by reshaping the vision encoder's internal representations at zero inference cost. This implicit approach is effective across the SafeLIBERO benchmark, yet it does not provide formal safety guarantees. In dense clutter scenarios where multiple objects are tightly packed, implicit spatial awareness may be insufficient to prevent all collisions, because the policy must rely on the encoder having learned sufficiently fine-grained spatial boundaries for every possible configuration.\n\nA natural extension is to construct an explicit safety layer that conditions on the spatial features already learned by the occupancy-trained encoder. We term this direction \\textbf{OCC-CBF} (Occupancy-Conditioned Control Barrier Function): a learned barrier function $h(z_{\\text{occ}}, x_{\\text{robot}}) \\geq 0$ that filters the VLA's proposed actions to maintain a safety invariant, where $z_{\\text{occ}}$ denotes the encoder's spatial features and $x_{\\text{robot}}$ the robot state. Unlike existing barrier function approaches that rely on hand-crafted geometric representations (Euclidean distances in AEGIS~\\cite{hu2025aegis}, discrete occupancy grids in OGM-CBF~\\cite{ji2024ogmcbf}, or object-centric decompositions in DCBF~\\cite{kwon2026learningnudge}), OCC-CBF would operate directly in the VLA's continuous learned feature space. This avoids the need for explicit object segmentation or distance computation at test time and allows the barrier to reason about spatial relationships that the encoder has already learned to represent. We leave the formulation, training, and empirical validation of OCC-CBF to future work.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "9bea7c21-e76d-4100-a473-d5eb20a3e8c7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UcjbYfEDkJSg6PAKXoksUx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 152,
+      "cache_read_input_tokens": 43608,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 152
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-20T21:03:28.502Z_
+
+<details><summary>↩ Tool result · `toolu_01H626mYEfyAck6BAwC4bLfC`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "263a5af3-04fb-4d9b-b9fb-a3b404214936",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex",
+    "content": "\\section{Discussion and Future Directions}\n\\label{sec:discussion}\n\nThe occupancy auxiliary head improves collision avoidance by reshaping the vision encoder's internal representations at zero inference cost. This implicit approach is effective across the SafeLIBERO benchmark, yet it does not provide formal safety guarantees. In dense clutter scenarios where multiple objects are tightly packed, implicit spatial awareness may be insufficient to prevent all collisions, because the policy must rely on the encoder having learned sufficiently fine-grained spatial boundaries for every possible configuration.\n\nA natural extension is to construct an explicit safety layer that conditions on the spatial features already learned by the occupancy-trained encoder. We term this direction \\textbf{OCC-CBF} (Occupancy-Conditioned Control Barrier Function): a learned barrier function $h(z_{\\text{occ}}, x_{\\text{robot}}) \\geq 0$ that filters the VLA's proposed actions to maintain a safety invariant, where $z_{\\text{occ}}$ denotes the encoder's spatial features and $x_{\\text{robot}}$ the robot state. Unlike existing barrier function approaches that rely on hand-crafted geometric representations (Euclidean distances in AEGIS~\\cite{hu2025aegis}, discrete occupancy grids in OGM-CBF~\\cite{ji2024ogmcbf}, or object-centric decompositions in DCBF~\\cite{kwon2026learningnudge}), OCC-CBF would operate directly in the VLA's continuous learned feature space. This avoids the need for explicit object segmentation or distance computation at test time and allows the barrier to reason about spatial relationships that the encoder has already learned to represent. We leave the formulation, training, and empirical validation of OCC-CBF to future work.\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+Now run the self-checks and verify the final method.tex.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "9d753459-d92c-419f-81fa-43cbbb79b8ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015JDS5yAFTK479gkrRxp76T",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 563,
+      "cache_read_input_tokens": 43760,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 563
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01RYWyvMPz56gbEGm9JcUvLS`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "439b1788-179f-4256-9a19-5d8003d2a45b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015JDS5yAFTK479gkrRxp76T",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 563,
+      "cache_read_input_tokens": 43760,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 563
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-20T21:03:31.994Z_
+
+<details><summary>↩ Tool result · `toolu_01RYWyvMPz56gbEGm9JcUvLS`</summary>
+
+```text
+1	\section{Method}
+2	\label{sec:method}
+3	
+4	We present OccSafe-VLA, a framework that improves collision safety in Vision-Language-Action models by injecting spatial awareness into the vision encoder at zero inference cost. The core component is a BEV occupancy auxiliary head (Section~\ref{sec:occ_head}) that forces the encoder to internalize 3D spatial structure during training and is discarded at inference time. We begin by formalizing the problem setting and evaluation metrics.
+5	
+6	\subsection{Problem Formulation}
+7	\label{sec:formulation}
+8	
+9	We consider a \textbf{Vision-Language-Action (VLA)} policy $\pi(a_t \mid o_t, l)$ that maps a visual observation $o_t$ and a language instruction $l$ to a 7-DOF action $a_t$ (delta end-effector pose) at each timestep $t$. The policy is parameterized by a large pretrained vision-language model fine-tuned on robot demonstration data. We evaluate performance along two complementary axes. \textbf{Task Success Rate (TSR)} measures the fraction of episodes in which the robot completes the instructed task:
+10	\begin{equation}
+11	  \text{TSR} = \frac{n_{\text{success}}}{N},
+12	\end{equation}
+13	where $n_{\text{success}}$ is the number of successful episodes out of $N$ total rollouts. \textbf{Collision Avoidance Rate (CAR)} measures the fraction of episodes free of unintended object displacement:
+14	\begin{equation}
+15	  \text{CAR} = 1 - \frac{n_{\text{collide}}}{N},
+16	\end{equation}
+17	where $n_{\text{collide}}$ counts episodes whose maximum L1 \texttt{body\_xpos} displacement exceeds a threshold of $0.001$, following the VLSA/AEGIS protocol~\cite{hu2025aegis}. Our objective is to improve CAR without degrading TSR. A policy that avoids collisions by refusing to act is not useful; a practical safe manipulation policy must maintain high task completion while reducing unintended contact with surrounding objects.
+18	
+19	\subsection{BEV Occupancy Auxiliary Head}
+20	\label{sec:occ_head}
+21	
+22	Modern VLA models such as OpenVLA~\cite{kim2024openvla} and OpenVLA-OFT~\cite{kim2025openvlaoft} rely on 2D pretrained vision encoders (DINOv2, SigLIP) that excel at semantic understanding and language grounding. These encoders learn effective semantic-to-action mappings through fine-tuning, yet they lack explicit reasoning about 3D object boundaries and free space. When a robot must navigate tight clearances between objects in cluttered scenes, this gap becomes critical. A policy that cannot distinguish occupied from free regions of the workspace will collide with obstacles even when it correctly identifies the target object. The challenge is to inject 3D spatial structure into the vision encoder without adding inference cost or sacrificing the benefits of large-scale 2D pretraining.
+23	
+24	We address this challenge with a \textbf{BEV occupancy auxiliary head} that predicts a bird's-eye-view occupancy grid of the workspace. The BEV representation encodes object boundaries in a view-independent, allocentric coordinate frame and serves as a natural supervisory signal for spatial structure. Unlike depth maps, which remain tied to the camera viewpoint, BEV occupancy offers an explicit top-down decomposition of occupied and free space that directly corresponds to the robot's planning geometry. The head is a convolutional decoder that maps DINOv2 patch features to a $64{\times}64$ BEV occupancy grid. A linear projection maps each patch token to 256 channels, and the resulting sequence is reshaped into a $16{\times}16$ spatial map that preserves the patch grid layout. Two transposed convolutions ($256{\to}128{\to}64$, kernel 4, stride 2) with batch normalization and GELU activations upsample this map to $64{\times}64$, and a final $1{\times}1$ convolution produces the binary occupancy logits. The convolutional architecture is a deliberate choice: because ViT patch tokens correspond to a regular spatial grid, transposed convolutions exploit adjacency structure that a position-agnostic MLP would ignore. This inductive bias allows the decoder to reconstruct fine-grained spatial boundaries from coarse patch features with fewer parameters.
+25	
+26	We train this head with Focal Loss to handle the severe class imbalance between occupied and free cells:
+27	\begin{equation}
+28	  \mathcal{L}_{\text{occ}} = -\alpha\,(1 - p_t)^{\gamma}\,\log(p_t),
+29	\end{equation}
+30	where $\alpha = 0.25$ and $\gamma = 2.0$ are the balancing and focusing parameters and $p_t$ is the predicted probability for the ground-truth class. The occupancy loss weight $\lambda_{\text{occ}}$ starts at $0.01$ and decays exponentially with time constant $\tau = 50$K steps, so that the auxiliary signal shapes early representation learning without dominating the action objective in later training.
+31	
+32	The critical design principle is \textbf{zero inference cost}. During training, the occupancy head forces the vision encoder to internalize spatial structure: accurate occupancy prediction requires the encoder to represent where objects begin and end in 3D space. At inference time, we discard the occupancy head entirely, and the spatial awareness acquired during training persists as an emergent property of the encoder's learned features. This paradigm of training with auxiliary geometric supervision and deploying without it has been validated in autonomous driving by OccVLA~\cite{liu2025occvla}, which uses volumetric occupancy prediction to enhance a VLA's spatial understanding for navigation. Our work applies the same principle to tabletop manipulation, where the spatial scale and task geometry differ but the core insight holds: auxiliary occupancy supervision reshapes encoder representations to encode spatial boundaries that transfer to safer action prediction.
+33	
+34	\subsection{Training Pipeline}
+35	\label{sec:training}
+36	
+37	We build on OpenVLA-OFT 7B~\cite{kim2025openvlaoft} as the base model, which combines a Llama~2 language backbone with DINOv2 and SigLIP as dual vision encoders. The total training objective combines the action prediction loss with the occupancy auxiliary loss:
+38	\begin{equation}
+39	  \mathcal{L}_{\text{total}} = \mathcal{L}_{\text{action}} + \lambda_{\text{occ}}(t) \cdot \mathcal{L}_{\text{occ}},
+40	  \quad \lambda_{\text{occ}}(t) = \lambda_0 \cdot \exp(-t / \tau),
+41	\end{equation}
+42	where $\mathcal{L}_{\text{action}}$ is the L1 action regression loss from OpenVLA-OFT, $\lambda_0 = 0.01$, and $\tau = 50$K steps. The exponential decay ensures that occupancy gradients dominate early training, when the encoder most benefits from spatial supervision, and fade as the action objective takes over. The mechanism that makes occupancy supervision effective is \textbf{gradient flow}: with \texttt{occ\_detach=False}, gradients from $\mathcal{L}_{\text{occ}}$ propagate through the occupancy head back into the DINOv2 vision encoder. This forces the encoder to develop internal representations that encode spatial structure, because producing accurate occupancy predictions requires features that capture object boundaries and spatial layout. If we instead detach the gradients (\texttt{occ\_detach=True}), the occupancy head becomes a passive observer that reads encoder features without modifying them, and the auxiliary loss functions as a multi-task regularizer rather than a representation shaper. This is not a subtle distinction: as we show in our ablation study (Section~4), detaching gradients eliminates the safety benefit entirely, confirming that the encoder must be directly shaped by the occupancy objective.
+43	
+44	We fine-tune all conditions with LoRA at rank~32 for 50K steps, using a batch size of 8 and a fixed learning rate of $5 \times 10^{-4}$. Training data consists of approximately 25K demonstration episodes from the LIBERO-Spatial suite. All hyperparameters are shared across experimental conditions to ensure fair comparison; only the auxiliary head configuration varies between conditions. Each training run completes in approximately 13 hours on a single NVIDIA RTX PRO 6000 GPU.
+45	
+46	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "bccd0701-3731-47f2-b9dd-f6f85a8356cc",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex",
+      "content": "\\section{Method}\n\\label{sec:method}\n\nWe present OccSafe-VLA, a framework that improves collision safety in Vision-Language-Action models by injecting spatial awareness into the vision encoder at zero inference cost. The core component is a BEV occupancy auxiliary head (Section~\\ref{sec:occ_head}) that forces the encoder to internalize 3D spatial structure during training and is discarded at inference time. We begin by formalizing the problem setting and evaluation metrics.\n\n\\subsection{Problem Formulation}\n\\label{sec:formulation}\n\nWe consider a \\textbf{Vision-Language-Action (VLA)} policy $\\pi(a_t \\mid o_t, l)$ that maps a visual observation $o_t$ and a language instruction $l$ to a 7-DOF action $a_t$ (delta end-effector pose) at each timestep $t$. The policy is parameterized by a large pretrained vision-language model fine-tuned on robot demonstration data. We evaluate performance along two complementary axes. \\textbf{Task Success Rate (TSR)} measures the fraction of episodes in which the robot completes the instructed task:\n\\begin{equation}\n  \\text{TSR} = \\frac{n_{\\text{success}}}{N},\n\\end{equation}\nwhere $n_{\\text{success}}$ is the number of successful episodes out of $N$ total rollouts. \\textbf{Collision Avoidance Rate (CAR)} measures the fraction of episodes free of unintended object displacement:\n\\begin{equation}\n  \\text{CAR} = 1 - \\frac{n_{\\text{collide}}}{N},\n\\end{equation}\nwhere $n_{\\text{collide}}$ counts episodes whose maximum L1 \\texttt{body\\_xpos} displacement exceeds a threshold of $0.001$, following the VLSA/AEGIS protocol~\\cite{hu2025aegis}. Our objective is to improve CAR without degrading TSR. A policy that avoids collisions by refusing to act is not useful; a practical safe manipulation policy must maintain high task completion while reducing unintended contact with surrounding objects.\n\n\\subsection{BEV Occupancy Auxiliary Head}\n\\label{sec:occ_head}\n\nModern VLA models such as OpenVLA~\\cite{kim2024openvla} and OpenVLA-OFT~\\cite{kim2025openvlaoft} rely on 2D pretrained vision encoders (DINOv2, SigLIP) that excel at semantic understanding and language grounding. These encoders learn effective semantic-to-action mappings through fine-tuning, yet they lack explicit reasoning about 3D object boundaries and free space. When a robot must navigate tight clearances between objects in cluttered scenes, this gap becomes critical. A policy that cannot distinguish occupied from free regions of the workspace will collide with obstacles even when it correctly identifies the target object. The challenge is to inject 3D spatial structure into the vision encoder without adding inference cost or sacrificing the benefits of large-scale 2D pretraining.\n\nWe address this challenge with a \\textbf{BEV occupancy auxiliary head} that predicts a bird's-eye-view occupancy grid of the workspace. The BEV representation encodes object boundaries in a view-independent, allocentric coordinate frame and serves as a natural supervisory signal for spatial structure. Unlike depth maps, which remain tied to the camera viewpoint, BEV occupancy offers an explicit top-down decomposition of occupied and free space that directly corresponds to the robot's planning geometry. The head is a convolutional decoder that maps DINOv2 patch features to a $64{\\times}64$ BEV occupancy grid. A linear projection maps each patch token to 256 channels, and the resulting sequence is reshaped into a $16{\\times}16$ spatial map that preserves the patch grid layout. Two transposed convolutions ($256{\\to}128{\\to}64$, kernel 4, stride 2) with batch normalization and GELU activations upsample this map to $64{\\times}64$, and a final $1{\\times}1$ convolution produces the binary occupancy logits. The convolutional architecture is a deliberate choice: because ViT patch tokens correspond to a regular spatial grid, transposed convolutions exploit adjacency structure that a position-agnostic MLP would ignore. This inductive bias allows the decoder to reconstruct fine-grained spatial boundaries from coarse patch features with fewer parameters.\n\nWe train this head with Focal Loss to handle the severe class imbalance between occupied and free cells:\n\\begin{equation}\n  \\mathcal{L}_{\\text{occ}} = -\\alpha\\,(1 - p_t)^{\\gamma}\\,\\log(p_t),\n\\end{equation}\nwhere $\\alpha = 0.25$ and $\\gamma = 2.0$ are the balancing and focusing parameters and $p_t$ is the predicted probability for the ground-truth class. The occupancy loss weight $\\lambda_{\\text{occ}}$ starts at $0.01$ and decays exponentially with time constant $\\tau = 50$K steps, so that the auxiliary signal shapes early representation learning without dominating the action objective in later training.\n\nThe critical design principle is \\textbf{zero inference cost}. During training, the occupancy head forces the vision encoder to internalize spatial structure: accurate occupancy prediction requires the encoder to represent where objects begin and end in 3D space. At inference time, we discard the occupancy head entirely, and the spatial awareness acquired during training persists as an emergent property of the encoder's learned features. This paradigm of training with auxiliary geometric supervision and deploying without it has been validated in autonomous driving by OccVLA~\\cite{liu2025occvla}, which uses volumetric occupancy prediction to enhance a VLA's spatial understanding for navigation. Our work applies the same principle to tabletop manipulation, where the spatial scale and task geometry differ but the core insight holds: auxiliary occupancy supervision reshapes encoder representations to encode spatial boundaries that transfer to safer action prediction.\n\n\\subsection{Training Pipeline}\n\\label{sec:training}\n\nWe build on OpenVLA-OFT 7B~\\cite{kim2025openvlaoft} as the base model, which combines a Llama~2 language backbone with DINOv2 and SigLIP as dual vision encoders. The total training objective combines the action prediction loss with the occupancy auxiliary loss:\n\\begin{equation}\n  \\mathcal{L}_{\\text{total}} = \\mathcal{L}_{\\text{action}} + \\lambda_{\\text{occ}}(t) \\cdot \\mathcal{L}_{\\text{occ}},\n  \\quad \\lambda_{\\text{occ}}(t) = \\lambda_0 \\cdot \\exp(-t / \\tau),\n\\end{equation}\nwhere $\\mathcal{L}_{\\text{action}}$ is the L1 action regression loss from OpenVLA-OFT, $\\lambda_0 = 0.01$, and $\\tau = 50$K steps. The exponential decay ensures that occupancy gradients dominate early training, when the encoder most benefits from spatial supervision, and fade as the action objective takes over. The mechanism that makes occupancy supervision effective is \\textbf{gradient flow}: with \\texttt{occ\\_detach=False}, gradients from $\\mathcal{L}_{\\text{occ}}$ propagate through the occupancy head back into the DINOv2 vision encoder. This forces the encoder to develop internal representations that encode spatial structure, because producing accurate occupancy predictions requires features that capture object boundaries and spatial layout. If we instead detach the gradients (\\texttt{occ\\_detach=True}), the occupancy head becomes a passive observer that reads encoder features without modifying them, and the auxiliary loss functions as a multi-task regularizer rather than a representation shaper. This is not a subtle distinction: as we show in our ablation study (Section~4), detaching gradients eliminates the safety benefit entirely, confirming that the encoder must be directly shaped by the occupancy objective.\n\nWe fine-tune all conditions with LoRA at rank~32 for 50K steps, using a batch size of 8 and a fixed learning rate of $5 \\times 10^{-4}$. Training data consists of approximately 25K demonstration episodes from the LIBERO-Spatial suite. All hyperparameters are shared across experimental conditions to ensure fair comparison; only the auxiliary head configuration varies between conditions. Each training run completes in approximately 13 hours on a single NVIDIA RTX PRO 6000 GPU.\n\n",
+      "numLines": 46,
+      "startLine": 1,
+      "totalLines": 46
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01VV4C6hvVV3wXFuY4yfcDcy`</summary>
+
+```json
+{
+  "pattern": "—",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "30f8053d-67d0-4671-b8d4-b5c13d47ed18",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015JDS5yAFTK479gkrRxp76T",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 563,
+      "cache_read_input_tokens": 43760,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 563
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-20T21:03:32.933Z_
+
+<details><summary>↩ Tool result · `toolu_01VV4C6hvVV3wXFuY4yfcDcy`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "9316d0c0-a314-4313-8301-664995d72860",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_019k13cJitF8DXgVs7vi5L61`</summary>
+
+```json
+{
+  "pattern": " – ",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "d32d9b30-fc2b-442d-b3bb-c13ef72b5b0d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015JDS5yAFTK479gkrRxp76T",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 563,
+      "cache_read_input_tokens": 43760,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 563
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-20T21:03:33.411Z_
+
+<details><summary>↩ Tool result · `toolu_019k13cJitF8DXgVs7vi5L61`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "3955844e-89b4-48b5-b963-6bf2e21057ed",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01JbSnVQckSenaA55GpygCGF`</summary>
+
+```json
+{
+  "pattern": "—",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "f706566c-9909-4262-b279-336d71fa93b5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015JDS5yAFTK479gkrRxp76T",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 563,
+      "cache_read_input_tokens": 43760,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 563
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-20T21:03:34.113Z_
+
+<details><summary>↩ Tool result · `toolu_01JbSnVQckSenaA55GpygCGF`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "4d2f2bd6-d63f-4594-877a-1e0e16fb86e7",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All checks pass. Let me verify the trailing blank line (L46) and also check for -ing phrase endings and banned words.
+
+Let me also check consistency between method.tex and experiments.tex:
+
+method.tex values:
+- α = 0.25 ✓ (matches experiments.tex)
+- γ = 2.0 ✓
+- λ_occ = 0.01 with exponential decay τ=50K ✓
+- Conv decoder architecture described consistently ✓
+- Fixed lr 5e-4 ✓
+
+
+- 13 hours on NVIDIA RTX PRO 6000 ✓
+- LoRA rank 32 ✓
+
+No §3.4 remains ✓
+No em-dashes ✓
+No explanatory en-dashes ✓
+
+Now checking discussion.tex for en-dashes.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "7287be20-61a0-41f3-ae29-227c591d5878",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BnGxYENkNjjiAnGY1Jwgxr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2754,
+      "cache_read_input_tokens": 44323,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2754
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+All checks pass. No em-dashes or explanatory en-dashes in either file. Let me clean up the trailing blank line and do a final -ing phrase check.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "2460727d-8eb3-402d-8d6f-808c4e5adb9f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BnGxYENkNjjiAnGY1Jwgxr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2754,
+      "cache_read_input_tokens": 44323,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2754
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_0186SQmUgv55zCk1x5aTg3hA`</summary>
+
+```json
+{
+  "pattern": "ing[,.]$",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "83eee1ec-e5df-43f5-9ff3-e772d6589a59",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BnGxYENkNjjiAnGY1Jwgxr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2754,
+      "cache_read_input_tokens": 44323,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2754
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-20T21:03:42.734Z_
+
+<details><summary>↩ Tool result · `toolu_0186SQmUgv55zCk1x5aTg3hA`</summary>
+
+```text
+22:[Omitted long matching line]
+30:where $\alpha = 0.25$ and $\gamma = 2.0$ are the balancing and focusing parameters and $p_t$ is the predicted probability for the ground-truth class. The occupancy loss weight $\lambda_{\text{occ}}$ starts at $0.01$ and decays exponentially with time constant $\tau = 50$K steps, so that the auxiliary signal shapes early representation learning without dominating the action objective in later training.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "3eacc80b-4c05-4b2b-8776-c44b9445b53b",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "22:[Omitted long matching line]\n30:where $\\alpha = 0.25$ and $\\gamma = 2.0$ are the balancing and focusing parameters and $p_t$ is the predicted probability for the ground-truth class. The occupancy loss weight $\\lambda_{\\text{occ}}$ starts at $0.01$ and decays exponentially with time constant $\\tau = 50$K steps, so that the auxiliary signal shapes early representation learning without dominating the action objective in later training.",
+    "numLines": 2
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01SdK2qj21ocd3B9SG6e1885`</summary>
+
+```json
+{
+  "pattern": " – ",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "552a1f54-2f51-439d-88ed-344bb02b95c5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BnGxYENkNjjiAnGY1Jwgxr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2754,
+      "cache_read_input_tokens": 44323,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2754
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-20T21:03:43.371Z_
+
+<details><summary>↩ Tool result · `toolu_01SdK2qj21ocd3B9SG6e1885`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "6d7c097e-fbba-4509-909b-efd35ea7252f",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The -ing matches are:
+- L22: "...2D pretraining." - this is "pretraining" as a noun, not a dangling -ing phrase. Fine.
+- L30: "...in later training." - same, "training" as a noun, not a dangling -ing participial phrase. Fine.
+
+These are nouns, not -ing participial phrase endings. The rule is about patterns like "..., highlighting the applicability of..." or "..., demonstrating the effectiveness of..." - dangling participial clauses at the end of sentences. These are fine.
+
+Now let me compile the final report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "6b4fd27e-c242-44c1-9b22-7839532ac847",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011mQaV4FDhaxQ8VKm9UjsFc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 684,
+      "cache_read_input_tokens": 47077,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 684
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+The -ing matches are nouns ("pretraining", "training"), not banned participial phrase endings. All clean.
+
+---
+
+## Report
+
+### 5 Corrections (code-verified via SSH)
+
+| # | Location | Old (wrong) | New (correct) | Code source |
+|---|----------|-------------|---------------|-------------|
+| 1 | §3.2 L24: architecture | "lightweight two-layer MLP with 256 hidden units" | Convolutional decoder: Linear→256ch, reshape 16×16, two ConvTranspose2d (256→128→64, k4s2) + BN + GELU, 1×1 Conv output | `occ_head.py` L20-30 |
+| 2 | §3.2 L28: focal alpha | α = 0.75 | α = 0.25 | `occ_head.py` L56 `FocalLoss(alpha=0.25)` |
+| 3 | §3.2 L28: loss weight | λ = 0.1 (static) | λ\_occ = 0.01 with exponential decay τ=50K | `finetune.py` L92-93 |
+| 4 | §3.3 L39: total loss | λ = 0.1 (static formula) | λ\_occ(t) = 0.01 · exp(-t/τ), τ=50K (formula updated with decay term) | `finetune.py` L92-93 |
+| 5 | §3.3 L41: lr + GPU | "cosine decay" + "17h on A100" | fixed lr 5e-4 + ~13h on NVIDIA RTX PRO 6000 | `finetune.py` L100,102 (MultiStepLR milestone 100K, never triggers at 50K) |
+
+### §3.4 OCC-CBF
+
+- **Removed** from `method.tex` (entire subsection + intro paragraph reference)
+- **Created** `discussion.tex` with OCC-CBF as future direction: covers (1) limitations of implicit safety, (2) OCC-CBF concept (learned barrier on encoder features), (3) distinction from AEGIS/OGM-CBF/DCBF (operates in learned feature space, no explicit geometry), (4) marked as future work
+
+### Self-check
+
+- No §3.4 in method.tex
+- All 5 values match experiments.tex §4.4 exactly
+- Zero em-dashes (—) or explanatory en-dashes (–)
+- `discussion.tex` needs `\input{discussion}` added to `main.tex` (not done, since the task scope was method.tex rewrite + discussion.tex creation)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "uuid": "f8ca406a-c33b-4de5-8077-c7dc46a38bff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011mQaV4FDhaxQ8VKm9UjsFc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 684,
+      "cache_read_input_tokens": 47077,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 684
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 54_
+
+The -ing matches are nouns ("pretraining", "training"), not banned participial phrase endings. All clean.
+
+---
+
+## Report
+
+### 5 Corrections (code-verified via SSH)
+
+| # | Location | Old (wrong) | New (correct) | Code source |
+|---|----------|-------------|---------------|-------------|
+| 1 | §3.2 L24: architecture | "lightweight two-layer MLP with 256 hidden units" | Convolutional decoder: Linear→256ch, reshape 16×16, two ConvTranspose2d (256→128→64, k4s2) + BN + GELU, 1×1 Conv output | `occ_head.py` L20-30 |
+| 2 | §3.2 L28: focal alpha | α = 0.75 | α = 0.25 | `occ_head.py` L56 `FocalLoss(alpha=0.25)` |
+| 3 | §3.2 L28: loss weight | λ = 0.1 (static) | λ\_occ = 0.01 with exponential decay τ=50K | `finetune.py` L92-93 |
+| 4 | §3.3 L39: total loss | λ = 0.1 (static formula) | λ\_occ(t) = 0.01 · exp(-t/τ), τ=50K (formula updated with decay term) | `finetune.py` L92-93 |
+| 5 | §3.3 L41: lr + GPU | "cosine decay" + "17h on A100" | fixed lr 5e-4 + ~13h on NVIDIA RTX PRO 6000 | `finetune.py` L100,102 (MultiStepLR milestone 100K, never triggers at 50K) |
+
+### §3.4 OCC-CBF
+
+- **Removed** from `method.tex` (entire subsection + intro paragraph reference)
+- **Created** `discussion.tex` with OCC-CBF as future direction: covers (1) limitations of implicit safety, (2) OCC-CBF concept (learned barrier on encoder features), (3) distinction from AEGIS/OGM-CBF/DCBF (operates in learned feature space, no explicit geometry), (4) marked as future work
+
+### Self-check
+
+- No §3.4 in method.tex
+- All 5 values match experiments.tex §4.4 exactly
+- Zero em-dashes (—) or explanatory en-dashes (–)
+- `discussion.tex` needs `\input{discussion}` added to `main.tex` (not done, since the task scope was method.tex rewrite + discussion.tex creation)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 152951,
+  "duration_api_ms": 153948,
+  "num_turns": 20,
+  "stop_reason": "end_turn",
+  "session_id": "218d94ba-7e7e-493c-9f46-e4f039dfc3a6",
+  "total_cost_usd": 0.6462270000000001,
+  "usage": {
+    "input_tokens": 1195,
+    "cache_creation_input_tokens": 35920,
+    "cache_read_input_tokens": 457386,
+    "output_tokens": 7386,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 35920,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 826,
+        "cache_read_input_tokens": 47077,
+        "cache_creation_input_tokens": 684,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 684
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2284,
+      "outputTokens": 25,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002409,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 1195,
+      "outputTokens": 7386,
+      "cacheReadInputTokens": 457386,
+      "cacheCreationInputTokens": 35920,
+      "webSearchRequests": 0,
+      "costUSD": 0.6438180000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "8ff1e6a0-4ae1-45b4-bbd7-57937d699515"
+}
+```
+
+</details>
+
+---

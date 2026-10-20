@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c200581a4fd7135bf30d",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops invalidate gradient file",
+  "task_key": "worker_ops_invalidate_gradient_file_20260523T042548",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_invalidate_gradient_file_20260523T042548_result.json",
+    "occurrence": 1,
+    "bytes": 427,
+    "sha256": "cd0ae80f107bc652030974571a5c3f53f5b08559d51d690e8669e2cd962db266"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。以下 4 个文件已移至 `invalid/` 子目录：\n\n| 文件 | 大小 |\n|------|------|\n| `full_occ_cka_features.npz` | 4.6 MB |\n| `full_occ_cka_meta.json` | 478 B |\n| `full_occ_gradient_norms.pdf` | 25 KB |\n| `full_occ_gradient_stats.json` | 23 KB |\n\n这些文件实际使用的是 cutoff_s0 checkpoint，标签错标为 full_occ，数据归属不正确，已隔离到 `invalid/` 目录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-invalidate-gradient-file.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d49e25549fcf5c170a75",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra westd34685 checkpoint cleanup",
+  "task_key": "worker_infra_westd34685_checkpoint_cleanup_20260520T165454",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westd34685_checkpoint_cleanup_20260520T165454_result.json",
+    "occurrence": 1,
+    "bytes": 890,
+    "sha256": "55a1acc7bfc432cb6a1b6dba16ff5efcfa73b4bd8dadf66fc552ab0aff4e47da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。报告：\n\n## 部署结果\n\n| 项目 | 状态 |\n|------|------|\n| **磁盘** | 350G 总量，22G 已用，329G 可用 (7%) |\n| **现有 checkpoint** | 尚无（训练刚到 ~1200 step，首个 checkpoint 在 step 2500） |\n| **滚动删除** | nohup 后台循环部署成功（PID 32353），每 20 分钟执行一次，每个 seed 目录保留最新 2 个 `*_chkpt` 目录 |\n| **训练状态** | 3 个 seed 均正常运行：s0 ~step 1238, s1 ~step 1197, s2 ~step 1175，速度 ~1.09 it/s |\n| **occ_loss** | s0 最新: step=1200, occ_loss=0.0153, action_loss=0.2412 |\n| **Failed to load occ label** | 3 个 seed 均为 0 次错误 |\n\n注：crontab 不可用（该服务器未安装），改用 nohup 后台 sleep 循环实现。清理脚本路径 `/root/autodl-tmp/cleanup_checkpoints.sh`，checkpoint 命名格式为 `{run_dir}--{step}_chkpt`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westd34685-checkpoint-cleanup.md"
+}

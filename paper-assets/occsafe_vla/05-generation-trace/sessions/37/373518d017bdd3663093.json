@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "373518d017bdd3663093",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "fix occ index rebuild",
+  "task_key": "worker_fix_occ_index_rebuild_20260520T164721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_occ_index_rebuild_20260520T164721_result.json",
+    "occurrence": 1,
+    "bytes": 719,
+    "sha256": "e1cd88028aedbbbc38c942fc7a7a1e4d502f4b9020c2e516d9bdae570647b861"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。总结：\n\n**occ_index.json 格式已正确**，无需修复：\n- 格式：`{task_name: {file: path, demos: {demo_key: traj_len}}}` — 与 datasets.py 期望一致\n- 9 个 task，每个 50 demos，共 450 demos\n\n**HDF5 结构正确**：\n- 路径 `data/{demo_key}/bev_binary`，shape `(traj_len, 64, 64)`，dtype bool\n- `traj_len` 与 occ_index.json 中记录的一致（LenOK 全部 True）\n\n**非零验证通过**：\n- 所有 9 个 task 的 bev_binary 非零率 34%~46%\n- 每帧约 1500~2000 个非零像素（共 4096），远非全零\n\nocc_index.json 可能在之前已被修复过（服务器上已是正确格式）。当前数据状态可以直接用于训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-occ-index-rebuild.md"
+}

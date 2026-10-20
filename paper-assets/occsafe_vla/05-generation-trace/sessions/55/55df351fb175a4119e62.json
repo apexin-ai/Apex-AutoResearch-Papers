@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "55df351fb175a4119e62",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra westd10894 disk cleanup and restart",
+  "task_key": "worker_infra_westd10894_disk_cleanup_and_restart_20260520T163301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westd10894_disk_cleanup_and_restart_20260520T163301_result.json",
+    "occurrence": 1,
+    "bytes": 1835,
+    "sha256": "b484d59e295a7c0d9383cb026f07e55faf9c2dd12f3e0deae2ba6eb7713cd043"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有任务完成。报告如下：\n\n---\n\n## 处理报告\n\n### 1. 磁盘清理\n| | 清理前 | 清理后 |\n|---|---|---|\n| 已用 | 250G (100%) | 81G (33%) |\n| 可用 | 1.5M | 170G |\n| 回收 | — | ~169G |\n\n每 seed 删除了 4 个旧 checkpoint (5k/10k/15k/20k)，各保留 25000_chkpt。\n\n### 2. 各 seed 保留 checkpoint\n| Seed | 保留 checkpoint | 大小 |\n|---|---|---|\n| vanilla_s0 | 25000_chkpt | 15G |\n| vanilla_s1 | 25000_chkpt | 15G |\n| vanilla_s2 | 25000_chkpt (已修复) | 15G |\n\n### 3. vanilla_s2 checkpoint 完整性\n原始 25000_chkpt **损坏**——磁盘满时写入中断，model-00002 截断 (785MB vs 应有 4.9GB)，model-00003/00004 缺失。\n\n但 LoRA adapter、action_head、proprio_projector 均完整。通过 base model + LoRA adapter merge 重建了完整的 safetensors（4 个 shard，和 s0 字节数完全一致）。\n\n### 4. s0/s1 当前进度\n| Seed | 当前 step | 速度 | 预计完成 (UTC) |\n|---|---|---|---|\n| s0 (PID 100203) | 26733/50005 | ~1.09 it/s | ~06:40 May 21 |\n| s1 (PID 97847) | 26517/50005 | ~1.09 it/s | ~07:00 May 21 |\n\n### 5. s2 恢复情况\n- 崩溃原因：磁盘满 (exitcode 1, 2026-05-21 00:20:46)\n- 恢复方式：`--resume True --resume_step 25000`，`--vla_path` 指向修复后的 25000_chkpt\n- 新进程 PID: 149428 (worker), 149353 (bash wrapper)\n- 从 log_step 25000 继续，预计 ~07:15 UTC 完成\n- GPU 2，~1.09 it/s，运行正常\n\n### 6. 最终状态\n- **GPU**: 0/1/2 均 99% 利用率，GPU 3 空闲\n- **磁盘**: 81G/250G (33%)\n\n### ⚠️ 注意\n每个 seed 后续还会保存 5 个 checkpoint (30k~50k)，共 15 × ~15G = ~225G。当前空闲 170G **不够**。建议在 step 30000 保存后删除 25000_chkpt，之后每次保存新 checkpoint 后删除上一个，避免再次磁盘满。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westd10894-disk-cleanup-and-restart.md"
+}

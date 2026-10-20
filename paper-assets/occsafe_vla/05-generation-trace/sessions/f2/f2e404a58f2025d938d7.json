@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2e404a58f2025d938d7",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra P0 kill cleanup restart random s0",
+  "task_key": "worker_infra_P0-kill-cleanup-restart-random-s0_20260521T105415",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_P0-kill-cleanup-restart-random-s0_20260521T105415_result.json",
+    "occurrence": 1,
+    "bytes": 725,
+    "sha256": "49a94870761b7f0e9d6beff0e8d85bf7551cdf16e1d45ab8ffe68e357b8268f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n---\n\n### 汇报\n\n| 项目 | 状态 |\n|------|------|\n| safe_cleanup.sh | **已杀死** |\n| 3 个训练进程 | **全部存活** (515223/517869/519025) |\n| 磁盘清理 | 释放 ~30GB（删除 vanilla_s0/s1 各 15G + incomplete random_s0 chkpt 819M），当前 **169GB 可用 (33%)** |\n| random_s0 重启 | **从头开始**（无可用 checkpoint），PID 521936, cuda:1，已开始训练 (step 7/50005, ~1.13s/it)，save_freq=10000 |\n| 4 GPU 状态 | cuda:0 99% 62G, cuda:1 66% 63G, cuda:2 85% 63G, cuda:3 99% 62G — **4卡全部在跑** |\n| vanilla_s2 | 保留（后续 50r eval） |\n| protected_checkpoints.txt | safe_cleanup 已死，该文件不再被读取，无需更新 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-p0-kill-cleanup-restart-random-s0.md"
+}

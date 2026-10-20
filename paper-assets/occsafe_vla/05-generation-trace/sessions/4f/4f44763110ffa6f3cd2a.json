@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f44763110ffa6f3cd2a",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops restart detach ln from scratch",
+  "task_key": "worker_ops_restart_detach_ln_from_scratch_20260523T170827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restart_detach_ln_from_scratch_20260523T170827_result.json",
+    "occurrence": 1,
+    "bytes": 1326,
+    "sha256": "1230f71f1c2feb101847400fe43e0959088b10411c72dd00d3ca1cf68c1aa7d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有任务完成。汇总报告：\n\n## 执行结果\n\n### 1. 训练任务提交\n\n| 实验 | PID | GPU | Seed | 状态 |\n|------|-----|-----|------|------|\n| detach_ln_s0 | 459087 | cuda:1 | 42 | RUNNING ✓ |\n| detach_ln_s1 | 459294 | cuda:2 | 43 | RUNNING ✓ |\n| detach_ln_s2 | 459635 | cuda:3 | 44 | RUNNING ✓ |\n\n### 2. cmdline 验证（全部通过）\n- `vla_path`: `/root/autodl-tmp/models/openvla-7b` ✓（基模型）\n- `occ_detach`: `true` ✓\n- `occ_norm_type`: `ln` ✓\n- 无 `--resume` ✓\n\n### 3. 初始 Loss\n- **detach_ln_s0**: step=0 → occ_loss=0.1073, action_loss=0.6133; step=100 → occ_loss=0.0306, action_loss=0.3008\n- **detach_ln_s1**: step=0 → occ_loss=0.1024, action_loss=0.6150; step=100 → occ_loss=0.0295, action_loss=0.2976\n- **detach_ln_s2**: step=0 → occ_loss=0.1045, action_loss=0.6234（step 100 还没打印）\n\n初始 action_loss > 0.6 符合随机初始化预期。\n\n### 4. Cleanup 脚本修复 ✓\n- 添加了 `is_in_use()` 函数，删除前检查 `/proc/*/cmdline` 是否引用该路径\n- 目录级和 checkpoint 级双重检查\n- 匹配则跳过并记录 WARNING 到 log\n\n### 5. Registry 更新 ✓\n- 3 个实验均已从 DONE(failed) → PREPARING → QUEUED → RUNNING\n- spec 已更新为新 PID、基模型路径、完整命令"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-restart-detach-ln-from-scratch.md"
+}

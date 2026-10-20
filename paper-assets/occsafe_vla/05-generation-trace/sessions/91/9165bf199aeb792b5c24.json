@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9165bf199aeb792b5c24",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops 10894 eval monitor",
+  "task_key": "worker_ops_10894-eval-monitor_20260526T232812",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_10894-eval-monitor_20260526T232812_result.json",
+    "occurrence": 1,
+    "bytes": 43,
+    "sha256": "adb25de5ca2839c190afe1de5bbdab1aae82810971b945d3765ed7324a5a72ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下次 23:33 检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-10894-eval-monitor.md"
+}

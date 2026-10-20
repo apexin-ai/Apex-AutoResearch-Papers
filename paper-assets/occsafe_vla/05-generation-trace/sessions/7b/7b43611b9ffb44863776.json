@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b43611b9ffb44863776",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose batch failure 34685",
+  "task_key": "worker_diagnose_batch_failure_34685_20260525T172810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_batch_failure_34685_20260525T172810_result.json",
+    "occurrence": 1,
+    "bytes": 1631,
+    "sha256": "e0d635c499d678c229d3bcca5b5be116c1dea60c483ced0cf47f64de08419ea7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存至 `artifacts/diagnosis_experiment_crash_20260526.md`。\n\n## 诊断结论\n\n**根因：外部进程强制 kill（SIGKILL）**——两台服务器 8 个实验在 May 26 01:10 同一时刻被杀死，无任何错误信息。服务器未重启（uptime 152/161 天），排除 OOM、代码 crash、磁盘满。最可能是集群调度器或定时维护脚本批量终止了 GPU 进程。\n\n## 各实验状态\n\n**westd-34685（4 个，均 ~82%）**：\n| 实验 | 最后 step | 最新 checkpoint | 恢复 |\n|------|-----------|----------------|------|\n| reverse_cutoff_s2_v3 | 41049 | 40000 | ⚠️ C002 |\n| cutoff_25k_s2_v3 | 40824 | 40000 | ⚠️ C002 |\n| cutoff_45k_s1_v3 | 41215 | 40000 | ❌ 未到 cutoff，不可 resume |\n| cutoff_15k_s2_v2 | 41147 | 40000 | ⚠️ C002 |\n\n**westd-10894（4 个，41-53%）**：\n| 实验 | 最后 step | 最新 checkpoint | 恢复 |\n|------|-----------|----------------|------|\n| full_occ_ln_s3 | 20398 | 20000 | ✅ 可 resume |\n| ablation_occ_detach_s3 | 20376 | 20000 | ✅ 可 resume |\n| cutoff_45k_s2 | 26480 | 20000 | ❌ 未到 cutoff，不可 resume |\n| mvp_occ_s3 | ~20k+ | 20000 | ✅ 可 resume |\n\n**可直接 resume**：full_occ_ln_s3、ablation_occ_detach_s3、mvp_occ_s3（丢失极少）\n**需从头训练**：cutoff_45k_s1_v3、cutoff_45k_s2（未到达 cutoff 点，C002 禁止 resume）\n**需确认**：cutoff_25k_s2_v3、cutoff_15k_s2_v2、reverse_cutoff_s2_v3 已过 cutoff 点，resume 后 batch_idx 重置是否仍有影响\n\n建议联系集群管理员确认 01:10 的 kill 来源，避免重启后再次被杀。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-batch-failure-34685.md"
+}

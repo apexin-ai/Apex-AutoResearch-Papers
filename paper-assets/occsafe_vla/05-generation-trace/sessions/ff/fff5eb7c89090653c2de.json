@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fff5eb7c89090653c2de",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "prepare eval cka scripts",
+  "task_key": "worker_prepare_eval_cka_scripts_20260525T193228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prepare_eval_cka_scripts_20260525T193228_result.json",
+    "occurrence": 1,
+    "bytes": 2150,
+    "sha256": "c65c6ef4749f610c4739393c407df852288d471f3e0610fd264da314950d6230"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n---\n\n## 1. Eval 脚本参数格式\n\n`evaluate_safelibero.py`，关键参数：\n- `--pretrained_checkpoint <path>` — 指向包含 `config.json` 和 model safetensors 的目录\n- `--task_suite_name libero_spatial`\n- `--num_rollouts 50`\n- `--seed 42`\n- `--output_path <json_path>`\n- 环境变量：`CUDA_VISIBLE_DEVICES`, `MUJOCO_GL=egl`, `MUJOCO_EGL_DEVICE_ID`\n\n## 2. 批量 Eval 脚本路径\n\n| 服务器 | 脚本 | 实验 |\n|--------|------|------|\n| westd-10894 | `/root/occsafe_vla/eval_batch_10894.sh` | cutoff_45k_s2_v2(GPU0), mvp_occ_s3_v2(GPU1), full_occ_ln_s3_v2(GPU2), ablation_occ_detach_s3_v2(GPU3) |\n| westd-34685 | `/root/occsafe_vla/eval_batch_34685.sh` | detach_bn_v2_s0(GPU0), detach_bn_v2_s1(GPU1), detach_bn_v2_s2(GPU2), full_occ_bn_v2_s1(GPU3) |\n\n用法：训练完成后直接 `bash /root/occsafe_vla/eval_batch_10894.sh`，脚本会先验证 checkpoint 存在性再启动。\n\n## 3. CKA 脚本\n\n- 已有脚本：`/root/occsafe_vla/analysis/cka_analysis.py`\n- 批量命令：`/root/occsafe_vla/cka_batch_s3.sh`（4 条件 vs pretrained）\n- 用法：`CUDA_VISIBLE_DEVICES=0 bash /root/occsafe_vla/cka_batch_s3.sh`\n\n## 4. Checkpoint 命名约定\n\n所有实验的最终 checkpoint 统一为 `--50000_chkpt` 后缀（全局 step 50000）：\n```\n{CKPT_ROOT}/{exp_parent}/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--{exp_name}--50000_chkpt\n```\n\n**Resume 实验的关键点**：v2 resume 实验写入 v1 同名目录（不是 `_v2` 目录），因为 resume 模式下 `run_id` 继承自原始 checkpoint 路径。例如 `mvp_occ_s3_v2` 的 checkpoint 在 `checkpoints/mvp_occ_s3/` 下。\n\n## 5. 发现的问题\n\n- **v2 resume 实验尚未产出任何 checkpoint**（当前进度 ~14%，约 step 7K/50K）。ETA 比预期晚——按当前速率 ~1.08 it/s，还需约 21K 步才到 30K local step，预计 ~5-6h。\n- **CKA 脚本中 cutoff_45k_s2_v2 不是 s3 实验**（是 s2 seed）。如果 CKA 严格要求同 seed 对比，可能需要替换为其他 s3 条件或去掉。请确认 4 个条件的具体组合。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prepare-eval-cka-scripts.md"
+}

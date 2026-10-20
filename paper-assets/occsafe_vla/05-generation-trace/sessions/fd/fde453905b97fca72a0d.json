@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fde453905b97fca72a0d",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_7_1780025580.md",
+  "task_key": "loop_7_1780025580",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1780025580.md",
+    "occurrence": 1,
+    "bytes": 3608,
+    "sha256": "9ceef4e80ff2d5c7f4ee8b324ec46b86bcb60375d81152a6a400451d9be7255d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-29T01:14:50+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: westd-10894:cuda:0-3, westd-34685:cuda:0-3（共 8 张）。其他设备号/服务器禁止使用\n- Cell 4 (Detach+LN) v2 数据已 n=3 confirmed，**不要纳入 v1 数据**（Director D067 决策：v1 detach 数据因 early-layer LoRA anomaly 已标记为不可信）\n- 论文 DDL: **2026-05-28 12:00 UTC (SafeRL Workshop @ RSS 2025)**——已过或即将过，下一个\"你\"先确认 DDL 是否已提交\n- `detach_ln_v2_s2_eval` (pid 177453, westd-34685:cuda:2) 父训练 failed，**必须先确认 checkpoint 存在再信任其结果**，否则 kill\n\n### 2. 🖥️ 基础设施快照\n- **westd-34685**: 工作目录 /root/occsafe_vla, Python /root/miniconda3/bin/python, conda base 环境, 磁盘 819G/879G free (2%)\n- **westd-10894**: 同上结构, 磁盘 426G/879G free (49%)\n- 模型: openvla-7b, 训练脚本在 /root/occsafe_vla/\n- 评估脚本: evaluate_safelibero.py, 数据集 libero_spatial (500 episodes)\n- 活跃进程 (reconcile 确认):\n  - detach_ln_v2_s4: PID 822402, westd-10894\n  - vanilla_object_s2: PID 959808, westd-10894\n  - full_occ_bn_v2_s3: PID 959661, westd-10894\n  - full_occ_bn_v2_s2: PID 62455, westd-34685\n  - detach_ln_v2_s2_eval: PID 177453, westd-34685:cuda:2 (状态存疑，见红线)\n\n### 3. 📊 当前状态\n刚处理 `detach_ln_v2_s2` 第 3 次失败回调 (EXIT_CODE=1, retry_count=2)。已派诊断 Worker (`worker_diagnose_detach_ln_v2_s2_20260528T091041`) 读取 westd-34685 上的日志 `~/runs/occsafe_vla/detach_ln_v2_s2.log`，**Worker 尚未回调**。\n\n已向 Director 汇报: Cell 4 n≥3 已达标 (s1_35 CAR=0.826, s0c_r3 CAR=0.802, s3 CAR=0.778)，s2 失败不影响 DDL。\n\nRegistry RUNNING:\n- `detach_ln_v2_s4` — Cell 4 v2 第 5 种子, westd-10894\n- `full_occ_bn_v2_s2` — Cell 1 扩种, westd-34685\n- `full_occ_bn_v2_s3` — Cell 1 扩种, westd-10894\n- `vanilla_object_s2` — cross-benchmark baseline, westd-10894\n- `detach_ln_v2_s2_eval` — 状态存疑 (父训练 failed)\n\n等待中:\n- 诊断 Worker 回调 → 根因分析 + 决定是否 kill eval\n- Director 对汇报的回复\n\n### 4. 📋 待办\n- 诊断 Worker 回调 → 读根因; 若 50000_chkpt 不存在 → kill detach_ln_v2_s2_eval + update_registry(conclusion=failed); 若存在 → eval 结果可能有效，等 eval 完成\n- detach_ln_v2_s4 cron 回调 → spawn eval Worker → Cell 4 n=4\n- full_occ_bn_v2_s2/s3 cron 回调 → spawn eval → Cell 1 扩数据\n- vanilla_object_s2 cron 回调 → spawn eval → cross-benchmark baseline\n- DDL 前: 全量数据 ANOVA + Table 1 更新 + 最终编译提交（如果 DDL 未过）\n\n### 5. 🎯 战略上下文\n- **核心 claim**: gradient flow 是损害源，detach 后 aux head 无害 (≈ Vanilla)。Framing: \"dual mechanism\" — BN 行 (Cell 1 vs 3) 证明 gradient harm，LN 行 (Cell 2 vs 4) 证明 normalization benefit\n- **统计设计**: 2×2 factorial ANOVA (gradient flow × normalization)，纯 v2 数据。BN 行 n=3/4 已完备，LN 行刚达标\n- **关键决策链**: D072 纯 v2 统计 → D073 LN 主效应升级 → D074 dual mechanism framing\n- **易错点**:\n  - v1 detach 数据 (detach_ln_s0/s1/s2/s3/s4) 不可纳入 v2 分析——v1 有 early-layer LoRA anomaly\n  - detach_ln_v2_s2 已 retry 2 次失败，不要再 retry（浪费 GPU 时间，Cell 4 n=3 已够）\n  - `detach_ln_v2_s2_eval` 可能基于不存在的 checkpoint 运行——必须先验证再信任\n  - report.md 的 GPU 占用表可能 stale（显示 detach_ln_v2_s2 仍占 cuda:0），以 reconcile_crons 为准\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1780025580.md"
+}

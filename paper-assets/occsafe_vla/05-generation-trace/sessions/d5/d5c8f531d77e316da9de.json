@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5c8f531d77e316da9de",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ssh 10894 emergency disk clean",
+  "task_key": "worker_ssh_10894_emergency_disk_clean_20260526T040108",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_10894_emergency_disk_clean_20260526T040108_result.json",
+    "occurrence": 1,
+    "bytes": 375,
+    "sha256": "725817a734975dda23a3f381007f13785bbad14445223aee5c5539ea1d650a59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n清理前: 87% (35G free)\n清理后: 63% (95G free)\n删除: full_occ_ln_s1 (15G) + full_occ_ln_s2 (15G) + vanilla_retrain_s0 (15G) + ablation_occ_detach_s0_retrain (15G) = 60G\n训练进程: 4/4 存活 (cutoff_45k_s2_v2, full_occ_ln_s3_v2, ablation_occ_detach_s3_v2, mvp_occ_s3_v2)\n```\n\n30K checkpoint 写入空间充足（需 ~60G，可用 95G）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-10894-emergency-disk-clean.md"
+}

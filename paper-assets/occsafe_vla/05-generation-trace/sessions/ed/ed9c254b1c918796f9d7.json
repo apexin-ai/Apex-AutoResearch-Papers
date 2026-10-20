@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ed9c254b1c918796f9d7",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops deploy checkpoint pollers 34685",
+  "task_key": "worker_ops_deploy_checkpoint_pollers_34685_20260528T041922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_deploy_checkpoint_pollers_34685_20260528T041922_result.json",
+    "occurrence": 1,
+    "bytes": 536,
+    "sha256": "d4c2082898a123b32ff741afa47b8a8d082a4176bceaddc9377ffc63c1557915"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个轮询脚本全部部署成功，均已在后台运行并开始轮询。\n\n| 实验 | 脚本 PID | GPU | 状态 |\n|------|---------|-----|------|\n| full_occ_ln_v2_s3 | 61245 | cuda:2 | Polling started ✓ |\n| detach_ln_v2_s3 | 61243 | cuda:3 | Polling started ✓ |\n| detach_ln_v2_s2 | 61244 | cuda:0 | Polling started ✓ |\n\n每个脚本每 60 秒检查一次 checkpoint 目录 + `adapter_config.json`，检测到后等 60s → kill 训练 → 启动 eval。日志分别写入 `/root/poll_eval_<name>.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-deploy-checkpoint-pollers-34685.md"
+}

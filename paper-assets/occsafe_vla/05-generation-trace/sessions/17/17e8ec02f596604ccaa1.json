@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17e8ec02f596604ccaa1",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "audit 10894 survival check",
+  "task_key": "worker_audit_10894-survival-check_20260527T213226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_10894-survival-check_20260527T213226_result.json",
+    "occurrence": 1,
+    "bytes": 1258,
+    "sha256": "ffe45d78ae81b32e6ba1e42c8563751d7f9a66bba6e9b126dace0554e1fdc7f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息收集完毕。汇总：\n\n```\nGPU 0: vanilla_object_s1    — ✅ 存活 — step 14178/50005 (28%) — 1.07 it/s — ETA ~14:50 UTC May 28\nGPU 1: 空闲                  — 0 MiB, 0% util\nGPU 2: detach_ln_v2_s0c_r3  — ✅ 存活 — step 45358/50005 (91%) — 1.08 it/s — ETA ~06:45 UTC May 28\nGPU 3: full_occ_ln_s4       — ✅ 存活 — step ~43.5k/50005 (≈87%) — ~1.08 it/s — ETA ~07:15-07:30 UTC May 28\n```\n\n关键发现：\n\n- **detach_ln_v2_s0c_r3** 没有之前预计那么快完成（当前91%），原来的\"22:42 UTC完成\"估计有误。日志写到 `/root/autodl-tmp/checkpoints/detach_ln_v2_s0c_r3.log`（不在标准 runs 目录）。剩余 ~4647 步 ≈ **1h12min**\n- **full_occ_ln_s4** stdout 走 pipe（tmux），无独立日志文件。根据启动时间推算（比 detach 晚 ~31min），当前约 step 43.5k。剩余 **~1h42min**\n- **vanilla_object_s1** 只到 28%，剩余 ~35800 步 ≈ **9.3h**\n\n**⚠️ DDL 风险**：C003 要求 2026-05-28 12:00 UTC 前完成。\n- detach_ln_v2_s0c_r3: ~06:45 UTC ✅\n- full_occ_ln_s4: ~07:30 UTC ✅\n- **vanilla_object_s1: ~14:50 UTC ❌ 超 DDL 近 3 小时**\n\ncuda:1 空闲，但 vanilla_object_s1 是单 GPU 实验，无法利用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-10894-survival-check.md"
+}

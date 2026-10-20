@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1a8894fbec43502d4bf",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra sigstop occ and get pids",
+  "task_key": "worker_infra_sigstop_occ_and_get_pids_20260520T092742",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_sigstop_occ_and_get_pids_20260520T092742_result.json",
+    "occurrence": 1,
+    "bytes": 1285,
+    "sha256": "2ae9e2b2f15e2c02fabcc9059f871eb9e6d18af06fbb5792e8fec1e1dcb442fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 1. SIGSTOP — 成功\n\n全部 10 个 `extract_occupancy.py` 进程已暂停，状态均为 `Tl`（stopped）：\n\n| PID | 状态 |\n|-----|------|\n| 50744, 51032, 51482, 51931, 52381 | Tl |\n| 52769, 53280, 53636, 53988, 72346 | Tl |\n\n**速度恢复**：vanilla_s0（GPU 0）当前 **1.09 it/s**（≈0.92 s/it），相比之前的 1.8 s/it 已大幅恢复，接近原始 1.02 s/it。注意 occ 进程仍占用 ~5.5GB VRAM（SIGSTOP 只暂停计算，不释放显存）。\n\n### 2. 训练进程信息\n\n| Session | GPU | Worker PID | Seed | 当前 Step | 速度 | Checkpoint 目录 |\n|---------|-----|-----------|------|-----------|------|----------------|\n| `vanilla_s0` | 0 | 100203 | 42 | 310/50005 | 1.09 it/s | `/root/autodl-tmp/checkpoints/vanilla_s0` |\n| `vanilla_s1` | 1 | 97847 | 43 | 408/50005 | 1.09 it/s | `/root/autodl-tmp/checkpoints/vanilla_s1` |\n| `vanilla_s2` | 2 | 98174 | 44 | 403/50005 | 1.06 it/s | `/root/autodl-tmp/checkpoints/vanilla_s2` |\n\n三个训练均正常运行，无 timeout wrapper，配置一致（openvla-7b, libero_spatial_no_noops, batch_size=8, lr=5e-4, lora_rank=32, max_steps=50005）。\n\n### 3. GPU 3 — 完全空闲\n\n- 显存：1MiB / 97887MiB\n- 利用率：0%\n- 无任何进程占用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-sigstop-occ-and-get-pids.md"
+}

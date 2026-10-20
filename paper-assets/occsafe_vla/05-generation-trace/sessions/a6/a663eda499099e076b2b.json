@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a663eda499099e076b2b",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops westd10894 disk emergency v2",
+  "task_key": "worker_ops_westd10894_disk_emergency_v2_20260523T160025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd10894_disk_emergency_v2_20260523T160025_result.json",
+    "occurrence": 1,
+    "bytes": 1164,
+    "sha256": "865d01801b87f341701dfa40ccf0eb8e63f6fc17097a5991088d645a03c4dd25"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**任务 1 — 删除旧 crash checkpoint**：\n- `/root/occsafe_vla/checkpoints/` 不存在\n- `/root/autodl-tmp/checkpoints/` 下 4 个实验目录（detach_ln_s0/s1/s2, cutoff_s2_v2）仅有 `dataset_statistics.json`，无 checkpoint 目录\n- 训练尚未到达首次 checkpoint 保存点，无需删除\n- 释放空间：0（本来就没有旧 checkpoint）\n\n**任务 2 — Checkpoint rotation 脚本**：\n- 创建 `/root/occsafe_vla/cleanup_old_checkpoints.sh`，覆盖 4 个实验目录\n- 匹配实际命名格式 `*_chkpt`（非 `checkpoint_NNNNN`）\n- 每个实验保留最新 1 个 checkpoint，删除其余\n- 日志写入 `/tmp/checkpoint_cleanup.log`\n- 服务器无 crontab，改用 nohup 后台循环，每 30 分钟执行一次（PID=453371）\n- 手动运行验证通过，无错误\n\n**磁盘状态**：\n- `/root/autodl-tmp`: 250G 总量，37G 已用，**214G 可用**（15%）\n- `/root`: 30G 总量，21G 已用，9.1G 可用（70%）\n\n> 注意：214G 可支撑首轮 4×30G=120G checkpoint 保存。rotation 脚本启动后，第二轮保存前会自动清理旧 checkpoint，确保持续有足够空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd10894-disk-emergency-v2.md"
+}

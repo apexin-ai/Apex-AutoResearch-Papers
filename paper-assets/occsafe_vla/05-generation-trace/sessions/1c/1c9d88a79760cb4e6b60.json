@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c9d88a79760cb4e6b60",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval mvp occ s1 50k",
+  "task_key": "worker_eval_mvp_occ_s1_50k_20260521T135210",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_mvp_occ_s1_50k_20260521T135210_result.json",
+    "occurrence": 1,
+    "bytes": 133,
+    "sha256": "edc513914a1e8c320d943c96db7ae6783e3a0695ad21dc4b0450607211095a2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Auto-eval running on GPU 2. Task 0 complete (TSR=0.950, CAR=0.950), Task 1 in progress. Will check back in ~3 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-mvp-occ-s1-50k.md"
+}

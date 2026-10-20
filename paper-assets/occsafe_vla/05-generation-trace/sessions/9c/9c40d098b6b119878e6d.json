@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c40d098b6b119878e6d",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra setup westd 34685",
+  "task_key": "worker_infra_setup_westd_34685_20260520T112745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_setup_westd_34685_20260520T112745_result.json",
+    "occurrence": 1,
+    "bytes": 991,
+    "sha256": "ce35d200d2f800e6566e864b6f622dc5ccd25b6952b9bcbacdaef492913e69a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 搭建完成汇报\n\n| 项目 | 状态 |\n|------|------|\n| **SSH 连接 + 免密登录** | OK（ed25519 密钥已配置） |\n| **GPU** | 4x NVIDIA RTX PRO 6000 Blackwell Server Edition (94GB/卡) |\n| **CUDA** | Driver 580.95.05, CUDA 13.0（PyTorch 用 cu128） |\n| **磁盘** | 根分区 30G (用 12G/剩 19G), 数据盘 350G (用 22G/剩 329G) |\n| **环境** | conda env `occsafe` (Python 3.10.20), torch 2.11.0+cu128 |\n| **依赖** | transformers 4.40.1 (openvla-oft fork), einops, accelerate, wandb, h5py, opencv, scipy, datasets, robosuite 1.4.1, libero, openvla-oft, dlimp 全部就绪 |\n| **代码同步** | openvla-oft (含 local patches), transformers-openvla-oft, dlimp_openvla, occ_pipeline, occ_data*, eval, artifacts, *.py 全部同步 |\n| **模型** | openvla-7b (15G) 已同步到 /root/autodl-tmp/models/ |\n| **数据** | data (2G) + libero_datasets (5.4G) 已同步 |\n\n**未同步项**: checkpoints (45G) — 如需要可后续同步。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-setup-westd-34685.md"
+}

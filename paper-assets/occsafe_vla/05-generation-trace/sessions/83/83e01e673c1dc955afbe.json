@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "83e01e673c1dc955afbe",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis depth s2",
+  "task_key": "worker_analysis_depth_s2_20260522T215237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_depth_s2_20260522T215237_result.json",
+    "occurrence": 1,
+    "bytes": 920,
+    "sha256": "b67942b0cf3d7a31a44c6ce538cf4c697e805e4e23983cf0cb03075a64ca4d2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n## depth_s2 训练结果总结\n\n| 项目 | 值 |\n|------|-----|\n| **状态** | 训练成功完成 (EXIT_CODE=0) |\n| **总步数** | 50005 |\n| **训练时长** | ~14h48m |\n| **初始 loss** | depth=0.6042, action=0.5820 |\n| **最终 loss** | depth=0.0468, action=0.0498, occ=0.0000 |\n| **Checkpoint** | `/root/autodl-tmp/checkpoints/depth_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt` (~15GB, 完整) |\n| **保存的 checkpoint** | 10k/20k/30k/40k/50k（仅 50k 留存） |\n\nCheckpoint 包含完整模型文件：4 safetensors shards + action_head + depth_head + proprio_projector + lora_adapter + dataset_statistics。\n\ndepth_s2 的 cuda:2 已释放，可用于 eval 或其他任务。depth_s0/s1 在 westd-34685 上状态仍为 RUNNING（之前因磁盘满失败后重启），需要单独检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-depth-s2.md"
+}

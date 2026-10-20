@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb9d523c56d79bd82a6e",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops kill vanilla object s1",
+  "task_key": "worker_ops_kill_vanilla_object_s1_20260528T041708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_vanilla_object_s1_20260528T041708_result.json",
+    "occurrence": 1,
+    "bytes": 160,
+    "sha256": "95735464f1a131890e94ec6b7826e268442b2faa2c47a5b847a7c25550a4ae35"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成：\n- PID 798900 (vanilla_object_s1) 已用 `kill -9` 强杀，确认已终止\n- PID 822402 (detach_ln_v2_s4) 正常运行，未受影响"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-vanilla-object-s1.md"
+}

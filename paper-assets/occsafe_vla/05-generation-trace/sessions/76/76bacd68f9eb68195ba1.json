@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76bacd68f9eb68195ba1",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code fix 34685 norm type",
+  "task_key": "worker_code_fix_34685_norm_type_20260525T134505",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_34685_norm_type_20260525T134505_result.json",
+    "occurrence": 1,
+    "bytes": 941,
+    "sha256": "f000bdab95c8aa410c9834f2ff51cfee3a5946d0f7b380aeb5b8605ed8ee4a18"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。汇报：\n\n### 34685 代码版本\n**v2**（已有 `occ_detach`、`DepthHead`、`clean_cutoff` 等 v2 特性），仅缺 `occ_norm_type` 一个字段。`occ_head.py` 已支持 `norm_type` 参数（line 15, 23），无需同步。\n\n### 修改内容（finetune.py 两处）\n1. **line 98**：在 `occ_detach` 和 `occ_resolution` 之间添加配置定义：\n   ```python\n   occ_norm_type: str = \"bn\"  # Norm type for occ head: \"bn\" (BatchNorm) or \"ln\" (GroupNorm-1 = LayerNorm)\n   ```\n2. **line 1018**：BEVOccupancyHead 实例化 dict 中添加：\n   ```python\n   \"norm_type\": cfg.occ_norm_type,\n   ```\n\n### 验证结果\n- draccus 可正确解析 `--occ_norm_type ln` 和 `--occ_detach true`\n- 两处修改与 10894 完全一致\n- `occ_head.py` 无需同步（34685 已有 `norm_type` 支持）\n- `--help` 的 `ValueError` 是两台服务器共有的预存 bug（与本次修改无关）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-34685-norm-type.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32b2ed80feeb02d6695c",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diag check save freq",
+  "task_key": "worker_diag_check_save_freq_20260520T093457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_check_save_freq_20260520T093457_result.json",
+    "occurrence": 1,
+    "bytes": 51,
+    "sha256": "daf5c2e2bc1b803f86330ecb82062ccacb502a9653293aafdde162d80d221fa3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`save_freq` 实际值为 **5000**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-check-save-freq.md"
+}

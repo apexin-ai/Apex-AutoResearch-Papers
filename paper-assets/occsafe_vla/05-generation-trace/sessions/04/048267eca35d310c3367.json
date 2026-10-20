@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "048267eca35d310c3367",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose 10894 failures",
+  "task_key": "worker_diagnose_10894_failures_20260526T182259",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_10894_failures_20260526T182259_result.json",
+    "occurrence": 1,
+    "bytes": 2096,
+    "sha256": "ad446acf319caccc9368e9352760c55612318a223d898fbd70ac82545913c434"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全貌清晰了。当前四张 GPU 都已加载，三个实验已成功重启并在训练中。\n\n---\n\n## 诊断报告\n\n### 根因：自动重试机制传了不存在的参数\n\n三个实验在 02:08 的重试中，命令行被添加了 `--resume_from_checkpoint` 参数：\n\n```\nfinetune.py: error: unrecognized arguments: --resume_from_checkpoint \n  /root/autodl-tmp/checkpoints/<name>/openvla-7b+...--<name>--20000_chkpt\n```\n\n**两个问题叠加**：\n1. `finetune.py` 不认识 `--resume_from_checkpoint`（正确参数是 `--resume` + `--resume_step`）\n2. 引用的 `20000_chkpt` 目录根本不存在（这三个实验从未跑到过 20000 步）\n\n这导致 argparse 直接报错 exitcode=2，torchrun 包装后变成 EXIT_CODE=1。\n\n### 训练进度\n\n| 实验 | 最远步数 | 有 checkpoint？ |\n|------|---------|-----------------|\n| full_occ_ln_v2_s0 | ~275 | 无（仅 dataset_statistics.json） |\n| full_occ_ln_v2_s1 | ~276 | 无 |\n| detach_ln_v2_s0 | ~275 | 无 |\n\n三个实验都从未达到首个 save_freq（10000 步），无可恢复的 checkpoint。\n\n### 当前状态（02:25 重启后）\n\n三个实验已于 02:25 被正确重启（不带错误参数），当前正在训练：\n\n| GPU | 实验 | 显存占用 | GPU Util |\n|-----|------|---------|----------|\n| 0 | reverse_cutoff_s2_v2（其他实验） | 62203/97887 MiB | 43% |\n| 1 | full_occ_ln_v2_s0 | 62203/97887 MiB | 99% |\n| 2 | full_occ_ln_v2_s1 | 63013/97887 MiB | 99% |\n| 3 | detach_ln_v2_s0 | 62203/97887 MiB | 99% |\n\n磁盘空间充足（根分区 48%，autodl-tmp 51%）。\n\n### 结论\n\n- **不需要修复，已自行恢复**。02:25 的重启没有携带错误参数，三个实验已从头开始训练。\n- **退出文件有 bug**：`/tmp/agent-ml-exit/*.exit` 中的时间戳格式 `%Y-%m-%dT%H:%M:%SZ` 未被正确展开（date 命令格式串可能未被正确引用）。\n- **建议关注**：这三个实验需要跑 50005 步，按 ~1.08 it/s 约需 ~12.9 小时，预计完成时间约 May 27 15:25 UTC，在 DDL（May 28 12:00 UTC）之前。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-10894-failures.md"
+}

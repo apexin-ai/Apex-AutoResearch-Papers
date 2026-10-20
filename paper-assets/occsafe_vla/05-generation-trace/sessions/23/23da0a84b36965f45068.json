@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23da0a84b36965f45068",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops vanilla v2 s2 check",
+  "task_key": "worker_ops_vanilla-v2-s2-check_20260526T223013",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_vanilla-v2-s2-check_20260526T223013_result.json",
+    "occurrence": 1,
+    "bytes": 262,
+    "sha256": "7d52d09f7b22ddc70da16a747752a6c1e0c7c4e8614592ecccfb3065d9ad7f0b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**vanilla_v2_s2 训练成功完成。**\n\n- 50005 步全部跑完，50000_chkpt 完整（config.json + 4个 model safetensors，共 ~15GB）\n- Registry 已更新：status=DONE, conclusion=success\n- Cron 已删除\n- westd-34685 cuda:1 已释放"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-vanilla-v2-s2-check.md"
+}

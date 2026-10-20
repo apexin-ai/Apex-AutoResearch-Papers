@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "450d3e7aad3904d89f10",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "check 34685 step progress",
+  "task_key": "worker_check_34685-step-progress_20260527T104255",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_34685-step-progress_20260527T104255_result.json",
+    "occurrence": 1,
+    "bytes": 1186,
+    "sha256": "f320c821ee94de8a7dbb00229eed16d5feae392d5aba7c4bf7ed942abfb171f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-34685 训练进度报告\n\n### GPU 状态\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| cuda:0 | 99% | 62.2/97.9 GB |\n| cuda:1 | 99% | 62.2/97.9 GB |\n| cuda:2 | 65% | 62.2/97.9 GB |\n| cuda:3 | 99% | 63.0/97.9 GB |\n\n### 训练进度\n\n| 实验 | 当前 step | 总 step | 进度 | 剩余时间(估) | 速度 |\n|------|-----------|---------|------|-------------|------|\n| detach_ln_v2_s1 (cuda:0) | 41,172 | 50,005 | 82% | ~2h 41min | ~1.08 it/s |\n| detach_ln_s4 (cuda:1) | 41,210 | 50,005 | 82% | ~2h 33min | ~1.08 it/s |\n| ablation_occ_detach_s4 (cuda:2) | 38,371 | 50,005 | 77% | ~3h 14min | ~1.06 it/s |\n| mvp_occ_s4 (cuda:3) | 38,307 | 50,005 | 77% | ~3h 14min | ~1.06 it/s |\n\n所有实验预计在 **~3.25h 内完成**，远早于 2026-05-28 12:00 UTC 截止时间。\n\n### 磁盘\n`/root/autodl-tmp`: 319G/350G (91%), 剩余 32G — 偏紧但够用。\n\n### Eval 脚本\n`run_libero_eval_safe.py` **不存在**于指定路径。服务器上有以下 eval 脚本可用：\n- `/root/occsafe_vla/openvla-oft/vla-scripts/evaluate_safelibero.py`\n- `/root/occsafe_vla/eval/eval_safelibero.py`\n- `/root/occsafe_vla/eval_batch_34685.sh`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-34685-step-progress.md"
+}

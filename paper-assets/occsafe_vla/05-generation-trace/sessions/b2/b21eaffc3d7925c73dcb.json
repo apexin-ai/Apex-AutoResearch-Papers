@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b21eaffc3d7925c73dcb",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "paper writing introduction",
+  "task_key": "worker_paper_writing_introduction_20260526T132221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_introduction_20260526T132221_result.json",
+    "occurrence": 1,
+    "bytes": 712,
+    "sha256": "9d29a6a752d1499e4cc6e9e52c8ff8513393ccd720fe946ea6f4ad88bbb496b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All constraints pass:\n- **843 words** (~900 target, within range)\n- **No em-dash or explanatory en-dash**\n- **No forbidden terms** (crossover interaction, BN-mediated gradient calibration, etc.)\n- **No AI-style words** (delve, leverage, utilize, etc.)\n- **Zero \"Furthermore/Moreover/Additionally\"** transitions\n- **No -ing phrase endings**\n\nThe introduction follows Plan B framing: ordinal interaction where all configurations perform at or below Vanilla, gradient flow is detrimental, BatchNorm amplifies the damage. Figure 1 is placed after P2 and before P3 with a caption reflecting the negative result. All cross-references use labels consistent with method.tex and related_work.tex."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-introduction.md"
+}

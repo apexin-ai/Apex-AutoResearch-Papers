@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b66c16039660d821bd4",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diag occ warning investigation",
+  "task_key": "worker_diag_occ_warning_investigation_20260520T161310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_occ_warning_investigation_20260520T161310_result.json",
+    "occurrence": 1,
+    "bytes": 2174,
+    "sha256": "1841a15f4fa543df266533c21e8865f40ab90c600f255b1e2ec90a312a0b06ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 根因\n\n**`occ_index.json` schema 与 `datasets.py` 代码不匹配。**\n\n代码 `datasets.py:199` 执行 `demos = task_info[\"demos\"]`，期望一个 `{demo_key: original_len}` 字典。\n\n但 `occ_index.json` 的实际结构是：\n```json\n{\n  \"task_name\": {\n    \"file\": \"...\",\n    \"num_demos\": 50,\n    \"demo_ids\": [\"demo_0\", \"demo_1\", ...]   // ← 列表，且没有 \"demos\" 键\n  }\n}\n```\n\n**每次**调用 `_load_occ_label` 都在第 199 行抛 `KeyError: 'demos'`，被第 253 行的通用 `except Exception as e` 捕获，打印 `Failed to load occ label: 'demos'`，然后返回全零 fallback。\n\n### 数量和比例\n\n| 指标 | 值 |\n|------|-----|\n| 总警告数 | 2516（\"Failed to load occ label: 'demos'\"） |\n| \"No occ index entry\" 警告 | 1（`pick_up_the_black_bowl_on_the_wooden_c...` 不在 index 中） |\n| 当前训练进度 | step 402/50005, ~1.08 it/s |\n| occ 加载失败率 | **100%**（每个 sample 都失败，每 step 约 6-8 条警告 = batch_size） |\n\n### 模式\n\n**固定失败，非随机。** 所有有 occ index entry 的 task 都因 `KeyError: 'demos'` 失败，与具体 demo/timestep 无关。\n\n### 影响\n\n训练没有 crash，但 occ head 在全零 label 上训练：\n- `occ_loss=0.0054` — 看起来很低，实际是因为 target 全零，模型只要输出接近零就行\n- **occ safety head 没有学到任何有意义的东西**\n- `action_loss=0.3730` — action head 不受影响，正常训练\n\n### 是否需要修复\n\n**必须修复。** 当前 occ head 完全没有收到有效标签，等于没训练。需要：\n\n1. 重建 `occ_index.json`，把 `demo_ids` 列表改为 `demos` 字典，格式 `{\"demo_0\": original_traj_len, ...}`（从 HDF5 文件中读取每个 demo 的 trajectory 长度）\n2. 或者修改 `datasets.py:199` 适配当前的 `demo_ids` 列表格式（但仍需要补充 `original_len` 信息供 demo matching 使用）\n\n**建议方案 1**（改 JSON），因为代码的 demo matching 逻辑依赖 `original_len` 来匹配最合适的 demo，这个信息必须有。修复后需要重启训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-occ-warning-investigation.md"
+}

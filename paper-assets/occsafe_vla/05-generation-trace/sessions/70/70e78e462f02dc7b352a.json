@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70e78e462f02dc7b352a",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops 10894 gpu check",
+  "task_key": "worker_ops_10894-gpu-check_20260526T165437",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_10894-gpu-check_20260526T165437_result.json",
+    "occurrence": 1,
+    "bytes": 673,
+    "sha256": "7a2e6446d34c9f2643307ea8044db86bb7e6e11d5992f23da70b27f224b5b9f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**GPU 状态 (westd-10894):**\n\n| GPU | 显存占用 | 利用率 | 状态 |\n|-----|---------|--------|------|\n| cuda:0 | 62194 / 97887 MiB | 42% | **占用** (PID 170698) |\n| cuda:1 | 63028 / 97887 MiB | 59% | **占用** (PID 341771) |\n| cuda:2 | 62194 / 97887 MiB | 99% | **占用** (PID 341987) |\n| cuda:3 | 62194 / 97887 MiB | 99% | **占用** (PID 342341) |\n\n**4 张卡全部在用**，均运行 `occsafe` conda 环境的 python 进程。无空闲 GPU。\n\n**Checkpoint 情况:**\n- `vanilla_retrain_s0/` — 目录不存在\n- `mvp_occ_s3_v2/` — 有 `40000_chkpt` 和 `50000_chkpt`，可用\n\n`tmux ls` 被 read_only 拦截，无法查看。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-10894-gpu-check.md"
+}

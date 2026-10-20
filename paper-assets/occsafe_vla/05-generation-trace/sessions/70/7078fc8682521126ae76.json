@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7078fc8682521126ae76",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose cutoff s0 exit",
+  "task_key": "worker_diagnose_cutoff-s0-exit_20260522T134045",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_cutoff-s0-exit_20260522T134045_result.json",
+    "occurrence": 1,
+    "bytes": 936,
+    "sha256": "4602385d0699987c4afa317906329322f7c711da64224286528232f20b4bbc60"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**cutoff_s0 实验仍在正常运行，没有退出。**\n\n| 项目 | 详情 |\n|------|------|\n| 状态 | **RUNNING** — 正常训练中 |\n| 实际进程 PID | **137021**（不是 136037，136037 是父 torchrun 进程） |\n| 当前进度 | **16437/50005 (33%)**, 已运行 5h32m |\n| 速度 | ~1.05 it/s |\n| 最新 loss | step 16400: occ_loss=0.0089, action_loss=0.1416 |\n| 已保存 checkpoint | 10000_chkpt (`/root/autodl-tmp/checkpoints/cutoff_s0/`) |\n| 预计剩余 | ~8-9 小时 |\n| GPU | cuda:0, 62194 MiB 占用 |\n\n**原因分析**: cron 监控的 PID 136037 是 `torchrun` 启动器进程，而实际训练进程是 PID 137021。136037 可能已退出（torchrun wrapper 行为），但训练本身正常。\n\n不需要更新 registry 状态或删除 cron — 实验仍在进行中。建议将 cron 监控的 PID 更新为 137021，或改用日志/checkpoint 判断完成状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-cutoff-s0-exit.md"
+}

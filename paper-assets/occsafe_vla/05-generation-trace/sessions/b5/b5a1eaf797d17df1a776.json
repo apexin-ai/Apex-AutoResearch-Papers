@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5a1eaf797d17df1a776",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis v2 gradient analysis",
+  "task_key": "worker_analysis_v2_gradient_analysis_20260526T100632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_v2_gradient_analysis_20260526T100632_result.json",
+    "occurrence": 1,
+    "bytes": 1957,
+    "sha256": "ed9b52bf8b05ae30ac72711f6a834f9730f555703de19ce266985fdb94f025a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "V2 梯度分析完成。核心结果：\n\n## V2 Gradient Analysis Summary\n\n| Metric | Vanilla | Full OCC | Detach |\n|---|---|---|---|\n| Action grad norm | 0.584 | 0.531 | 0.753 |\n| OCC grad norm | N/A | 0.008 | 0.005 |\n| OCC/Action ratio | N/A | 1.45% | 0.66% |\n| Cosine sim (act vs OCC) | N/A | **-0.001** | **0.000** |\n| Conflict rate | N/A | **49.95%** | **49.98%** |\n| DINOv2/SigLIP ratio | 1.025 | 1.043 | 1.038 |\n| Projector action grad | 148.7 | 130.7 | 172.1 |\n\n## V1 (D042) vs V2 关键对比\n\n| Metric | V1 D042 | V2 |\n|---|---|---|\n| Detach/Vanilla action grad ratio | **0.04** (4%) | **1.29** (129%) |\n| Cosine sim (OCC vs action) | **≈ 0** | **≈ 0** ✓ |\n| Conflict rate | **≈ 44%** | **≈ 50%** |\n\n## 关键发现\n\n1. **Cosine similarity ≈ 0 在 v2 中保持不变** — OCC 和 action 梯度在 patch_features 上几乎完全正交，无论是 Full OCC 还是 Detach 配置。\n\n2. **Conflict rate ≈ 50% (vs v1 的 44%)** — v2 更接近纯随机（50% = 两个独立随机向量的预期冲突率）。这强化了\"existence regularization\"结论：OCC head 的梯度信号与 action 完全独立。\n\n3. **Detach/Vanilla 梯度比值剧变: v1=0.04 → v2=1.29** — 这是最大的差异。v1 中 Detach 的 action 梯度只有 Vanilla 的 4%，但 v2 中 Detach 甚至比 Vanilla 更大（129%）。这说明 v2 的 Detach 模型不再表现出 v1 的\"梯度抑制\"现象。\n\n4. **OCC 梯度极小** — Full OCC 的 OCC/action 梯度比只有 1.45%，Detach 更小（0.66%）。OCC head 对共享视觉表征的梯度影响微乎其微。\n\n5. **DINOv2 vs SigLIP 均衡** — 两个 backbone 上 action 梯度几乎相等（ratio ≈ 1.03-1.04），无明显偏向。\n\n**结论**: v2 保持\"existence regularization\"模式（cosine≈0, 梯度独立），但不再有 v1 的异常梯度抑制。v2 下 Full OCC BN 的梯度分配是\"温和\"的，不是\"病理性\"的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-v2-gradient-analysis.md"
+}

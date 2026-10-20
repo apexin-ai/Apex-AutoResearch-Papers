@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ed6d7509ebe20abcc29",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "fix 10894 cleanup restart cell4",
+  "task_key": "worker_fix_10894-cleanup-restart-cell4_20260527T084113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_10894-cleanup-restart-cell4_20260527T084113_result.json",
+    "occurrence": 1,
+    "bytes": 910,
+    "sha256": "92af5627af071cc320aa7f660c17b7742773062d564c226d51677bc37ab6486d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n---\n\n### 1. Eval 结果查询\n\n| 实验 | Eval 结果 |\n|------|-----------|\n| cutoff_45k_s2_v2 | **已找到** — `cutoff_45k_s2_v2_eval`: TSR=0.9, CAR=0.756, collisions=122 |\n| reverse_cutoff_s2_v2 | **已找到** — `reverse_cutoff_s2_v2_eval`: status=DONE（训练记录有 metrics: action_loss=0.061, occ_loss=0.0095） |\n| full_occ_ln_s0 | **未找到 eval** — registry 中无 eval 条目 |\n\n### 2. 磁盘空间\n\n| | Used | Avail | Use% |\n|--|------|-------|------|\n| 删除前 | 201G | 50G | 81% |\n| 删除后 | 156G | 95G | 63% |\n\n释放 **~45G**（3 个 checkpoint 各 15G）。\n\n### 3. 重启 detach_ln_v2_s0c_r3\n\n- 已在 westd-10894 cuda:2 启动，显存占用 62GB，确认运行中\n- 从头训练（seed=42, max_steps=50005）\n- Registry 已注册为 RUNNING\n- 日志：`/root/autodl-tmp/checkpoints/detach_ln_v2_s0c_r3.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-10894-cleanup-restart-cell4.md"
+}

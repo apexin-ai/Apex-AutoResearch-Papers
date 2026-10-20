@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f4d615ea60ce7947af5",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "fix table1 v1v2 marking",
+  "task_key": "worker_fix_table1-v1v2-marking_20260527T034920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_table1-v1v2-marking_20260527T034920_result.json",
+    "occurrence": 1,
+    "bytes": 373,
+    "sha256": "2ae999f7f93daf14823e84b744dd82b80e7f9e0398c42f3b3e7e0d9155ba7d13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "无报错，编译通过。4 项修改完成：\n\n1. **Table 1 L26**: `Detach+LN` → `Detach+LN$^\\star$`，ΔCAR `$+$2.0` → `---`\n2. **Table 1 caption L16**: 加了 `unless marked $^\\star$`\n3. **L45**: `the LN cells have $n{=}1$ each` → `Full OCC+LN has $n{=}1$ (v2) and Detach+LN has $n{=}3$ (v1, marked $^\\star$)`\n4. **L47**: 同上模式修改"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-table1-v1v2-marking.md"
+}

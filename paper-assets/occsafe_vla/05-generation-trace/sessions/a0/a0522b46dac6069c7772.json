@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0522b46dac6069c7772",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code per task analysis scripts",
+  "task_key": "worker_code_per-task-analysis-scripts_20260521T185301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_per-task-analysis-scripts_20260521T185301_result.json",
+    "occurrence": 1,
+    "bytes": 490,
+    "sha256": "fbfac1b3b9b0b7293da9708e97bd309871ee8bc51232348eb3fad0ea407360f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。生成文件：\n\n| 文件 | 大小 |\n|------|------|\n| `per_task_comparison.py` | 7.5K |\n| `per_task_comparison.pdf` | 45K |\n| `per_task_comparison.png` | 239K |\n| `bootstrap_ci.py` | 8.6K |\n| `per_task_ci.csv` | 2.7K |\n| `per_task_ci.tex` | 2.5K |\n\n路径：`/root/occsafe_vla/openvla-oft/analysis/`\n\n两个脚本都支持 `--extra-data ablation_results.json` 追加新 condition 数据，ablation 结果到手后直接传入即可重新出图。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-per-task-analysis-scripts.md"
+}

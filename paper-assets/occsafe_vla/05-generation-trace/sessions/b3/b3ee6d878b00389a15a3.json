@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3ee6d878b00389a15a3",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose mvp occ s3 v2",
+  "task_key": "worker_diagnose_mvp_occ_s3_v2_20260526T110654",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_mvp_occ_s3_v2_20260526T110654_result.json",
+    "occurrence": 1,
+    "bytes": 334,
+    "sha256": "cc722786b73841e46bac7882b57aab18acabe0fe24b32a9401a582fb2eb11f87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。`mvp_occ_s3_v2` 训练**已成功跑完全部 50005 步**，EXIT_CODE=1 是 PyTorch distributed 退出时未调用 `destroy_process_group()` 导致的误报。\n\n关键事实：\n- 最终 loss: occ=0.0098, action=0.0493\n- 40000_chkpt 和 50000_chkpt 均已保存，可直接用于评估\n- 无需重试"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-mvp-occ-s3-v2-copy-2.md"
+}

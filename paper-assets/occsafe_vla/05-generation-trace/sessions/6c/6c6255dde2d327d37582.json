@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c6255dde2d327d37582",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops emergency disk cleanup 34685",
+  "task_key": "worker_ops_emergency-disk-cleanup-34685_20260522T072943",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_emergency-disk-cleanup-34685_20260522T072943_result.json",
+    "occurrence": 1,
+    "bytes": 1036,
+    "sha256": "09192e5bc17b1598eb2a583066d23c42f67e10fc2c74916c0f9a9ab16c8af85b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部恢复完成。汇报：\n\n## 结果\n\n### 1. 磁盘清理\n- **释放 284G**（350G → 66G used，285G 可用，19%）\n- 删除：occ_s1_fresh 8 个中间 checkpoint (27500-45000)，depth_s0/s1 各 6 个 checkpoint (全部不完整)，cutoff_s1 1 个不完整 checkpoint\n\n### 2. cutoff_s0 存活\n- PID 125522，step 3200/50005，~1.08 it/s，正常运行\n- `occ_loss=0.0131, action_loss=0.1416`\n\n### 3. 恢复实验（全部从头重跑，save_freq=10000）\n\n| 实验 | GPU | PID | 当前 step | 速度 | 初始 loss |\n|------|-----|-----|-----------|------|-----------|\n| depth_s0 | cuda:1 | 131535 | ~20 | ~1.08 it/s | depth=0.6663, action=0.7578 |\n| depth_s1 | cuda:2 | 131682 | ~21 | ~1.09 it/s | (初始化中) |\n| cutoff_s1 | cuda:3 | 131898 | ~20 | ~1.06 it/s | occ=0.2096, action=0.6367 |\n\n### 4. 最终状态\n- **nvidia-smi**: 4 GPU 全部 95-99% 利用率，各 ~62G/98G 显存\n- **磁盘**: 66G/350G (19%)，充足\n- **Registry**: 4 个实验 RUNNING（cutoff_s0 + 3 个新提交）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-emergency-disk-cleanup-34685-copy-2.md"
+}

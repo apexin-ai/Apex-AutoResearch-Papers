@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c657ac4aebd12f384a08",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code v2 gradient comparison script",
+  "task_key": "worker_code_v2-gradient-comparison-script_20260526T202845",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_v2-gradient-comparison-script_20260526T202845_result.json",
+    "occurrence": 1,
+    "bytes": 763,
+    "sha256": "4fac4b048a8dec73c83619f1a7280df55372fb9905b78a51b3c7d6c25b23d7df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成：\n\n1. **`/root/occsafe_vla/scripts/compare_gradient_conditions.py`** 已创建并通过语法检查。支持两种模式：\n   - JSON 模式：读取 3 个预计算的 `_gradient_stats.json`\n   - Checkpoint 模式：给 3 个 checkpoint 路径，自动依次调用 `run_gradient_analysis_v2.py`\n\n2. **输出内容**：\n   - 每层 action gradient norm（3 条件并排）\n   - 每层 occ gradient norm\n   - 每层 cosine similarity（如有）\n   - Full OCC LN / Vanilla ratio 和 Detach LN / Vanilla ratio\n   - 摘要统计（mean/std/max/min ratio 及对应层）\n   - 终端表格 + JSON 文件\n\n3. **`artifacts/gradient_analysis_v2_commands.md`** 已创建，含完整运行命令、checkpoint 路径变量、SCP 说明。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-v2-gradient-comparison-script.md"
+}

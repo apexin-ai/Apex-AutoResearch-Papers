@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "913f71582eb2ef448e82",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "viz factorial and dose response",
+  "task_key": "worker_viz_factorial_and_dose_response_20260524T215241",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_factorial_and_dose_response_20260524T215241_result.json",
+    "occurrence": 1,
+    "bytes": 502,
+    "sha256": "399f06b0ea29d242897792fcc40ce2897c7f226e0d6b90ffdc48d8bce0d81813"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。产出文件：\n\n| 文件 | 路径 |\n|------|------|\n| 图1 PDF | `artifacts/figures/factorial_2x2_bar.pdf` |\n| 图1 脚本 | `artifacts/figures/plot_factorial_2x2_bar.py` |\n| 图2 PDF | `artifacts/figures/dose_response_curve.pdf` |\n| 图2 脚本 | `artifacts/figures/plot_dose_response.py` |\n\n两张图均经过 4 轮迭代。Full OCC (LN) 留了灰色虚线占位 bar（标 RUNNING），pending seeds 用黄色 pill 标签标注。数据更新后重跑脚本即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-factorial-and-dose-response.md"
+}

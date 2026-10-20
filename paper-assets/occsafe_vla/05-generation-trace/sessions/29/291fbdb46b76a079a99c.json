@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "291fbdb46b76a079a99c",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval occ s1 fresh eval both",
+  "task_key": "worker_eval_occ_s1_fresh_eval_both_20260522T045408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_occ_s1_fresh_eval_both_20260522T045408_result.json",
+    "occurrence": 1,
+    "bytes": 1231,
+    "sha256": "a41b1ae05cb9cde364b7bc18350861e63ba8fee1ea75890e7bd9ef5869b04e77"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。结果汇总：\n\n## occ_s1_fresh eval 结果 (50r, seed 43)\n\n### 47500_chkpt: **TSR=0.966, CAR=0.802**\n\n| Task | TSR | CAR |\n|------|-----|-----|\n| T0 | 1.000 | 0.980 |\n| T1 | 0.980 | 0.960 |\n| T2 | 0.980 | 0.920 |\n| T3 | 1.000 | 0.700 |\n| T4 | 0.900 | 1.000 |\n| T5 | 0.840 | 0.260 |\n| T6 | 1.000 | 0.200 |\n| T7 | 1.000 | 1.000 |\n| T8 | 0.960 | 1.000 |\n| T9 | 1.000 | 1.000 |\n\ncollisions=99/500\n\n### 50000_chkpt: **TSR=0.938, CAR=0.788**\n\n| Task | TSR | CAR |\n|------|-----|-----|\n| T0 | 1.000 | 0.980 |\n| T1 | 0.940 | 0.980 |\n| T2 | 0.940 | 0.900 |\n| T3 | 1.000 | 0.280 |\n| T4 | 0.920 | 1.000 |\n| T5 | 0.660 | 0.160 |\n| T6 | 1.000 | 0.600 |\n| T7 | 0.980 | 1.000 |\n| T8 | 0.960 | 1.000 |\n| T9 | 0.980 | 0.980 |\n\ncollisions=106/500\n\n### 3-seed OCC 47500 对比\n\n| Seed | TSR | CAR |\n|------|-----|-----|\n| s0 | 0.892 | 0.750 |\n| s1_fresh | **0.966** | **0.802** |\n| s2 | 0.900 | 0.788 |\n| **3-seed avg** | **0.919** | **0.780** |\n| Vanilla avg | 0.907 | 0.780 |\n\ns1_fresh 在 47500 是三个 seed 中最好的。47500→50000 CAR 下降 1.4pp（0.802→0.788），TSR 下降 2.8pp，与 s2 方向一致（下降），但幅度比 s2 温和。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-occ-s1-fresh-eval-both.md"
+}

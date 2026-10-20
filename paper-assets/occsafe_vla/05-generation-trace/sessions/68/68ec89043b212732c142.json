@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68ec89043b212732c142",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "check gradient json conflict rate",
+  "task_key": "worker_check_gradient-json-conflict-rate_20260527T095951",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gradient-json-conflict-rate_20260527T095951_result.json",
+    "occurrence": 1,
+    "bytes": 1158,
+    "sha256": "6a32355e5a0d94f0b0bb76fbdeb4cf8a588ebfc3e29b5e933e85ff707c744d99"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果非常明确。\n\n## 核实结论\n\n**三种计算方式完全一致**，不存在 per-layer average vs global 的差异：\n\n| 指标 | Full OCC BN | Full OCC LN |\n|------|-------------|-------------|\n| Per-layer avg conflict rate | **45.6%** | **45.7%** |\n| Global conflict rate (pooled) | **45.6%** | **45.7%** |\n| Per-sample avg | **45.6%** | **45.7%** |\n\n三个数字相同是因为每层有完全相同的 200 个 batch，且 skipped 的 2 层（全 None）不参与计算，所以 per-layer average = global pooled = per-sample average，数学上等价。\n\n### 具体数据\n- 有效层数：51 层（共 53 层，2 层无梯度跳过）\n- 每层 200 batches\n- Mean cosine similarity: +0.0065 (BN) / +0.0045 (LN) — 极接近零，略正\n- Per-layer range: BN [0.38, 0.575], LN [0.40, 0.51]\n\n### 论文该写什么\n论文写 **\"≈46%\"** 是正确的。不存在 \"≈50%\" 的全局冲突率——那可能是看到某些个别层（如 `fused_featurizer.blocks.19` = 0.50 或 `blocks.24` = 0.575）误以为是全局数字。正确的全局数值就是 **45.6%-45.7%**，论文用 \"≈46%\" 完全准确。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gradient-json-conflict-rate.md"
+}

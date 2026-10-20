@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec5b836b6f494ad629fa",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "research cmd format",
+  "task_key": "worker_research_cmd_format_20260528T192647",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_cmd_format_20260528T192647_result.json",
+    "occurrence": 1,
+    "bytes": 5220,
+    "sha256": "670fe15ae556eba0e6b29db000be35e11725fb85e3faf181fb05ce33c425e5f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the full picture. Here's the complete summary:\n\n---\n\n## 完整训练命令格式\n\n### 基础模板（来自 `scripts/run_occ_detach.sh` + `cutoff_experiments.sh`）\n\n```bash\nCUDA_VISIBLE_DEVICES={GPU} bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && \\\nWANDB_MODE=disabled MUJOCO_GL=egl torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py \\\n  --vla_path /root/autodl-tmp/models/openvla-7b \\\n  --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ \\\n  --dataset_name libero_spatial_no_noops \\\n  --use_l1_regression True --use_diffusion False --use_film False \\\n  --num_images_in_input 2 --use_proprio True --batch_size 8 \\\n  --learning_rate 5e-4 --num_steps_before_decay 100000 --max_steps 50005 \\\n  --save_freq 10000 --image_aug True --lora_rank 32 \\\n  --run_root_dir /root/autodl-tmp/checkpoints/{EXP_NAME} --seed {SEED}\"\n```\n\n### 所有 CLI 参数（来自 `FinetuneConfig` dataclass）\n\n| 参数 | 类型 | 默认值 | 说明 |\n|------|------|--------|------|\n| **必需/常用** | | | |\n| `--vla_path` | str | `openvla/openvla-7b` | 模型路径 |\n| `--data_root_dir` | Path | `datasets/rlds` | RLDS 数据集根目录 |\n| `--dataset_name` | str | `aloha_scoop_x_into_bowl` | 数据集名（`libero_spatial_no_noops` / `libero_object_no_noops`） |\n| `--run_root_dir` | Path | `runs` | 输出目录 |\n| `--seed` | int | 7 | 随机种子 |\n| **算法/架构** | | | |\n| `--use_l1_regression` | bool | True | L1 回归 action head |\n| `--use_diffusion` | bool | False | 扩散 action head |\n| `--use_film` | bool | False | FiLM 语言→视觉注入 |\n| `--num_images_in_input` | int | 1 | 输入图片数 |\n| `--use_proprio` | bool | False | 包含 proprio state |\n| **OCC Head** | | | |\n| `--use_occ_head` | bool | False | 启用 BEV occ head |\n| `--occ_data_dir` | str | `\"\"` | occ 标签 HDF5 路径 |\n| `--occ_loss_weight` | float | 0.01 | occ loss 初始权重 |\n| `--occ_loss_decay_steps` | float | 50000 | 指数衰减步数 |\n| `--occ_loss_cutoff_step` | int | 0 | cutoff 步数（0=不截断） |\n| `--occ_loss_cutoff_mode` | str | `\"after\"` | `\"after\"` / `\"before\"` |\n| `--clean_cutoff` | bool | False | cutoff 后跳过 aux forward |\n| `--occ_detach` | bool | False | 是否 detach 视觉特征 |\n| `--occ_norm_type` | str | `\"bn\"` | `\"bn\"` (BatchNorm) / `\"ln\"` (LayerNorm) |\n| `--occ_resolution` | int | 64 | BEV 网格分辨率 |\n| `--random_occ` | bool | False | 随机打乱 occ 标签 |\n| `--occ_bn_eval` | bool | False | BN 保持 eval 模式 |\n| **Depth Head** | | | |\n| `--use_depth_head` | bool | False | 启用 depth head |\n| `--depth_data_dir` | str | `\"\"` | depth GT 路径 |\n| `--depth_loss_weight` | float | 0.01 | depth loss 权重 |\n| `--depth_loss_decay_steps` | float | 20000 | |\n| `--depth_loss_cutoff_step` | int | 0 | |\n| `--depth_detach` | bool | False | |\n| `--depth_resolution` | int | 64 | |\n| **训练配置** | | | |\n| `--batch_size` | int | 8 | per-GPU batch size |\n| `--learning_rate` | float | 5e-4 | |\n| `--lr_warmup_steps` | int | 0 | |\n| `--num_steps_before_decay` | int | 100000 | LR 衰减前步数 |\n| `--grad_accumulation_steps` | int | 1 | |\n| `--max_steps` | int | 200000 | |\n| `--save_freq` | int | 10000 | checkpoint 保存频率 |\n| `--save_latest_checkpoint_only` | bool | False | |\n| `--resume` | bool | False | 从 checkpoint 恢复 |\n| `--resume_step` | int | None | 恢复的步数 |\n| `--image_aug` | bool | True | 图像增广 |\n| **LoRA** | | | |\n| `--use_lora` | bool | True | |\n| `--lora_rank` | int | 32 | |\n| `--lora_dropout` | float | 0.0 | |\n| `--merge_lora_during_training` | bool | True | |\n| **Logging** | | | |\n| `--wandb_entity` | str | | |\n| `--wandb_project` | str | | |\n| `--wandb_log_freq` | int | 10 | |\n\n### 各实验变体的关键差异参数\n\n| 实验类型 | 关键参数 |\n|----------|----------|\n| **vanilla** | 不加 `--use_occ_head`（默认 False） |\n| **full_occ_bn** | `--use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach false --occ_norm_type bn` |\n| **full_occ_ln** | `--use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach false --occ_norm_type ln` |\n| **detach_bn** | `--use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach true --occ_norm_type bn` |\n| **detach_ln** | `--use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach true --occ_norm_type ln` |\n| **cutoff_25K** | full_occ + `--occ_loss_cutoff_step 25000` |\n| **random_occ** | full_occ + `--random_occ True` |\n| **_object** 变体 | `--dataset_name libero_object_no_noops` |\n\n### 固定路径\n\n- 模型: `/root/autodl-tmp/models/openvla-7b`\n- 数据集: `/root/autodl-tmp/data/modified_libero_rlds/`\n- OCC 标签: `/root/occsafe_vla/occ_data`\n- 输出: `/root/autodl-tmp/checkpoints/{exp_name}`\n\n### 环境变量\n\n- `WANDB_MODE=disabled` — 禁用 W&B\n- `MUJOCO_GL=egl` — MuJoCo 渲染后端\n- `CUDA_VISIBLE_DEVICES={GPU}` — GPU 选择\n\n### 磁盘状态 (westd-34685)\n\n350G 总量, 257G 已用, **94G 可用** (74%)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-cmd-format.md"
+}

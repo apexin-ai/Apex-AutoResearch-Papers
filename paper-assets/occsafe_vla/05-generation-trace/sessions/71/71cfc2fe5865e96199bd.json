@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "71cfc2fe5865e96199bd",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra P0 kill rotation restart s1 pair",
+  "task_key": "worker_infra_P0-kill-rotation-restart-s1-pair_20260521T101805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_P0-kill-rotation-restart-s1-pair_20260521T101805_result.json",
+    "occurrence": 1,
+    "bytes": 1118,
+    "sha256": "caaf17040c49b7f944cea0b1c6a3f80e8b3830f354d05f913e0016c69b0ad337"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 s1 实验都已开始训练，从 step 0 开始。\n\n## P0 Rotation 杀死 + S1 Pair 重启\n\n### Rotation 清除\n- PID 514991: killed（已不在进程列表中）\n- sleep 600 残留 (PID 517426): killed\n- 确认: ALL DEAD，无任何 rotation 进程\n\n### 磁盘\n- 清理前: 113G/250G (46%)\n- 清理后: 111G/250G (45%)（删除了 s1 两个损坏的 7500_chkpt）\n\n### S1 Pair 重启\n| 实验 | GPU | Resume From | Resume Step | 新 PID |\n|------|-----|-------------|-------------|--------|\n| ablation_occ_detach_s1 | cuda:2 | 从头开始 (openvla-7b) | 0 | 517869 |\n| ablation_random_occ_s1 | cuda:3 | 从头开始 (openvla-7b) | 0 | 519025 |\n\ns1 的 7500_chkpt 不完整（缺少 config.json 和 model shard），无法 resume，已清理后从头训练。\n\n### 验证\n- finetune.py 主训练进程数: 4（s0 pair: PID 494454, 515223; s1 pair: PID 517869, 519025）\n- 4 GPU 全有显存占用: GPU0=62213MiB, GPU1=62203MiB, GPU2=63013MiB, GPU3=15837MiB→加载中\n- s1 训练已开始迭代: occ_detach_s1 step 28, random_occ_s1 step 2\n- 无 rotation 进程: 确认"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-p0-kill-rotation-restart-s1-pair.md"
+}

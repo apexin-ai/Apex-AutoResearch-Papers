@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "565ec9b43b9f2af43121",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra full check westd 10894",
+  "task_key": "worker_infra_full-check-westd-10894_20260521T164807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_full-check-westd-10894_20260521T164807_result.json",
+    "occurrence": 1,
+    "bytes": 1205,
+    "sha256": "b64f104dfb15cccaeaa5e26773235fbcd6559b9df524f9a79cce85b262631873"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Ablation 状态汇报\n\n**所有 4 个实验均为 RUNNING，约 39% 进度，远未完成。**\n\n| 实验 | GPU | 当前 Step | 进度 | 速度 | 已有 Checkpoint | ETA (完成) |\n|------|-----|-----------|------|------|----------------|-----------|\n| ablation_occ_detach_s0 | GPU 0 | 19421/50005 | 39% | ~1.08 it/s | 10000_chkpt | ~7.9h |\n| ablation_random_occ_s0 | GPU 1 | 19827/50005 | 40% | ~1.08 it/s | 10000_chkpt | ~7.8h |\n| ablation_occ_detach_s1 | GPU 2 | 19459/50005 | 39% | ~1.08 it/s | 10000_chkpt | ~7.9h |\n| ablation_random_occ_s1 | GPU 3 | 19437/50005 | 39% | ~1.08 it/s | 10000_chkpt | ~7.9h |\n\n**关键信息：**\n\n- **20000_chkpt** 即将保存（各实验距 step 20000 还有 3-9 分钟）\n- **50000_chkpt 预计完成时间**：距现在约 **7.8-7.9 小时**（~May 23 凌晨 UTC+8）\n- **GPU**：4 卡全占满（80-99% utilization，~62GB 显存），无空闲 GPU 可用于 eval\n- **磁盘**：/root/autodl-tmp 111GB/250GB (45%)，空间充足\n- **tmux sessions**：4 个 ablation session + 3 个 vanilla session 均存活\n\n原 ETA (00:30-00:45 UTC May 22) 明显偏乐观，实际训练速度 ~1.08 it/s，50005 步总耗时约 12.9 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-full-check-westd-10894.md"
+}

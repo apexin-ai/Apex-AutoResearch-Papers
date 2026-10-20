@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74a3f7452efc09294472",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "research safelibero survey",
+  "task_key": "worker_research_safelibero-survey_20260520T040530",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_safelibero-survey_20260520T040530_result.json",
+    "occurrence": 1,
+    "bytes": 849,
+    "sha256": "e9a63fa046864c761a98ed4bb555a5271a69099248a228bd0e6cc03dd285ee0b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `/projects/occsafe_vla/artifacts/safelibero_survey.md`。\n\n核心结论：\n\n- **SafeLIBERO** 由清华 VLSA 团队提出（arXiv 2512.11891），从 LIBERO 的 4 个 suite 各选 4 个任务，加入障碍物构造 32 个安全评估场景（1600 episodes）\n- **CAR 检测方式**：不用 MuJoCo contact force，而是监控障碍物 L1 位移 > 0.001 判定碰撞，实现极简\n- **VLA baseline 安全性极差**：OpenVLA-OFT CAR 15.13%，π₀.₅ CAR 18.69%——80%+ episode 发生碰撞\n- **AEGIS 是当前 SOTA**（CAR 77.85%, TSR 68.13%），但依赖 VLM 在线推理 + GroundingDINO，推理开销大\n- **Long suite 是薄弱环节**：AEGIS TSR 仅 43.75%，是我们的差异化机会\n- **获取简单**：MIT 许可，HF 直接下载 638MB，`conda create -n libero python=3.8.13` 即可搭建"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-safelibero-survey.md"
+}

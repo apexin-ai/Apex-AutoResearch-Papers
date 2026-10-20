@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6972bb7f67eafc58237e",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "check eval pipeline verify",
+  "task_key": "worker_check_eval_pipeline_verify_20260525T142449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_eval_pipeline_verify_20260525T142449_result.json",
+    "occurrence": 1,
+    "bytes": 3612,
+    "sha256": "166f2a603573f4b3f37dee41454933bb53130db9e02708502cdb91df6913f19f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有信息已收集完毕。\n\n---\n\n## Eval Pipeline 预验证报告\n\n### 1. Eval 脚本\n\n**路径**: `/root/occsafe_vla/openvla-oft/vla-scripts/evaluate_safelibero.py`\n\n**关键参数**:\n| 参数 | 默认值 | 说明 |\n|------|--------|------|\n| `--pretrained_checkpoint` | (必填) | checkpoint 路径 |\n| `--task_suite_name` | `libero_spatial` | LIBERO 任务集 |\n| `--num_rollouts` | 20 | 每个 task 的 rollout 数，需改为 **50** |\n| `--collision_threshold` | 0.001 | L1 位移阈值 |\n| `--seed` | 42 | 随机种子 |\n| `--output_path` | 自动生成 | JSON 输出路径 |\n| `--save_videos` | False | 是否保存 MP4 |\n\n### 2. TSR 和 CAR 输出\n\n**同时输出**。脚本计算逻辑：\n- **TSR** = 成功完成 task 的 episode 比例\n- **CAR** = 无碰撞 episode 比例（碰撞定义：warmup 后任何非目标物体的 L1 位移 > 0.001）\n\n输出 JSON 包含 per-task TSR/CAR、overall TSR/CAR、per-episode 明细（max_displacement, collision_detected, trajectory_length, task_success）、位移统计（min/max/mean/median）。\n\n### 3. SafeLIBERO 环境\n\n**就绪**。从历史 eval 日志（`ablation_occ_detach_s1_50r_eval.log`, `ablation_occ_detach_s2_50r_eval.log`）确认 occsafe conda 环境下 mujoco、robosuite、libero、torch、transformers 均正常加载运行。\n\n### 4. 训练进度\n\n3 个 s3 训练均在 ~10800/50005 步（~22%），速度 ~1.08 it/s。\n\n### 5. 最终 Checkpoint 路径（训练完成后）\n\n```\n/root/autodl-tmp/checkpoints/ablation_occ_detach_s3/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt\n\n/root/autodl-tmp/checkpoints/mvp_occ_s3/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt\n\n/root/autodl-tmp/checkpoints/full_occ_ln_s3/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt\n```\n\n### 6. Eval 命令模板\n\n训练完成后，可同时在 3 张 GPU 上并行跑 3 个 eval：\n\n```bash\n# ablation_occ_detach_s3 — GPU 0\ncd /root/occsafe_vla/openvla-oft && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && \\\nCUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 \\\nnohup python vla-scripts/evaluate_safelibero.py \\\n    --pretrained_checkpoint /root/autodl-tmp/checkpoints/ablation_occ_detach_s3/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt \\\n    --task_suite_name libero_spatial \\\n    --num_rollouts 50 \\\n    > ~/runs/occsafe_vla/ablation_occ_detach_s3_50r_eval.log 2>&1 &\n\n# mvp_occ_s3 — GPU 1\nCUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 \\\nnohup python vla-scripts/evaluate_safelibero.py \\\n    --pretrained_checkpoint /root/autodl-tmp/checkpoints/mvp_occ_s3/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt \\\n    --task_suite_name libero_spatial \\\n    --num_rollouts 50 \\\n    > ~/runs/occsafe_vla/mvp_occ_s3_50r_eval.log 2>&1 &\n\n# full_occ_ln_s3 — GPU 2\nCUDA_VISIBLE_DEVICES=2 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=2 \\\nnohup python vla-scripts/evaluate_safelibero.py \\\n    --pretrained_checkpoint /root/autodl-tmp/checkpoints/full_occ_ln_s3/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt \\\n    --task_suite_name libero_spatial \\\n    --num_rollouts 50 \\\n    > ~/runs/occsafe_vla/full_occ_ln_s3_50r_eval.log 2>&1 &\n```\n\n**结论**：eval pipeline 就绪，无阻塞项。训练完成后可直接执行上述命令。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-eval-pipeline-verify.md"
+}

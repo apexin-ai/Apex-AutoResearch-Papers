@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b0982d1d5f608bc9790",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ssh verify gpu free and submit",
+  "task_key": "worker_ssh_verify-gpu-free-and-submit_20260528T230733",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify-gpu-free-and-submit_20260528T230733_result.json",
+    "occurrence": 1,
+    "bytes": 920,
+    "sha256": "a34d8f90557feff461ac75c612db47fc6c570fb312350ab8eef5f103bd7113f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "tmux 被 read_only 拦截，但其余信息足够判断。\n\n## 状态报告\n\n### westd-34685\n| 检查项 | 结果 |\n|--------|------|\n| GPU 进程 | **无** (nvidia-smi 返回空) |\n| 旧进程 19300, 28639 | **已死** (ps 未找到) |\n| tmux sessions | 无法通过 read_only 检查 (被拦截) |\n| GPU 内存 | GPU 0: **0 MiB / 97887 MiB** (完全空闲) |\n\n### westd-10894\n| 检查项 | 结果 |\n|--------|------|\n| GPU 进程 | **无** (nvidia-smi 返回空) |\n| 旧进程 33388, 47954 | **已死** (ps 未找到) |\n| tmux sessions | 无法通过 read_only 检查 (被拦截) |\n| GPU 内存 | GPU 0: **0 MiB / 97887 MiB** (完全空闲) |\n\n**结论：两台服务器 GPU 完全空闲，所有旧进程均已终止。** 每台各显示 1 块 GPU (~96GB)，0 MiB 占用。tmux 检查因 read_only 限制无法执行，但 GPU 无进程 + 旧 PID 已死，可确认无残留占用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-gpu-free-and-submit.md"
+}

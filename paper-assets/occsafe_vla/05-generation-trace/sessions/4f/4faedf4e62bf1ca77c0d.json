@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4faedf4e62bf1ca77c0d",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops transfer detach ln to 34685",
+  "task_key": "worker_ops_transfer_detach_ln_to_34685_20260524T074058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_transfer_detach_ln_to_34685_20260524T074058_result.json",
+    "occurrence": 1,
+    "bytes": 522,
+    "sha256": "7a4d217305ba561ed6586d0304fe5f0bbe7350649f2455815c85e070fa790dcd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "传输成功。\n\n| | westd-10894 (源) | westd-34685 (目标) |\n|---|---|---|\n| 大小 | 15G | 15G |\n| 文件 | 完整 | 完整（21个文件 + lora_adapter 子目录） |\n\n\"file changed as we read it\" 是 tar 的常见无害警告（可能是日志或临时文件），大小一致，关键模型文件（4个 safetensors、action_head/occ_head/proprio_projector checkpoint、lora_adapter）全部到位。\n\n三个 checkpoint 现在都在 westd-34685 上，可以开始 same-seed 梯度分析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-transfer-detach-ln-to-34685.md"
+}

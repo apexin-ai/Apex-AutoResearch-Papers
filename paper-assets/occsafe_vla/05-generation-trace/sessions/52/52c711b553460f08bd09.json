@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52c711b553460f08bd09",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis same seed cka 4cond",
+  "task_key": "worker_analysis_same_seed_cka_4cond_20260525T050056",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_same_seed_cka_4cond_20260525T050056_result.json",
+    "occurrence": 1,
+    "bytes": 1142,
+    "sha256": "dae825af2876100de37bdcf4126cece3ac3a3bcfa5eb58a685ca38900d1d4d20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "CKA 分析完成。实验 `cka_same_seed_4cond` 已注册为 DONE。\n\n## Same-Seed CKA 结果（seed=42, 200 samples, vs pretrained）\n\n| Condition | DINOv2 mean CKA | DINOv2 min CKA | SigLIP mean CKA | SigLIP min CKA |\n|---|---|---|---|---|\n| **Vanilla** | 0.9676 | 0.8993 | 0.9530 | 0.8425 |\n| **Full OCC (BN)** | 0.9594 | 0.8422 | 0.9593 | 0.8799 |\n| **Detach+BN** | 0.9635 | 0.8895 | 0.9532 | 0.8292 |\n| **Full OCC (LN)** | **0.6404** | **0.2558** | 0.9497 | 0.8479 |\n\n关键发现：\n- **Full OCC (LN) 严重破坏 DINOv2 表征**：mean CKA 仅 0.64（其余三个 >0.95），最低 block 降至 0.26（block 23）。早期 block 2-3 也仅 ~0.31。\n- **SigLIP 全部条件均保持良好**（mean ~0.95），LN 对 SigLIP 无显著影响。\n- **Vanilla / Full OCC (BN) / Detach+BN 三者 DINOv2 CKA 接近**（0.96-0.97），说明 BN 和梯度 detach 均能有效保护 DINOv2 表征。\n- LN 的破坏具有选择性：只影响 DINOv2，不影响 SigLIP，说明 LN 归一化统计量与 DINOv2 的 pre-norm 结构存在冲突。\n\n产出位于 `westd-10894:/root/autodl-tmp/analysis/cka_same_seed/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-same-seed-cka-4cond.md"
+}

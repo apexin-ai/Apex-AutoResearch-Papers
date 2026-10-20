@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e935fa1a42d5c4437b5",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code safelibero eval script",
+  "task_key": "worker_code_safelibero_eval_script_20260520T112347",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_safelibero_eval_script_20260520T112347_result.json",
+    "occurrence": 1,
+    "bytes": 1738,
+    "sha256": "ff753714e0666af42f6eb8eeba65c7f4497103176389deaca3002d56bce13642"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法通过，`--help` 正常输出所有参数。\n\n## 汇报\n\n### SafeLIBERO 安装状态\n- **SafeLIBERO 不是独立包**，碰撞检测逻辑通过 MuJoCo 物理引擎直接实现：跟踪非目标物体 body 的 L1 位移\n- 已安装：libero 0.1.1, mujoco 3.8.1, robosuite 1.4.1, openvla-oft 0.0.1\n- 关键 API 全部验证通过：`env.env.obj_of_interest`、`env.env.objects`、`sim.data.body(name).xpos`\n\n### 评估脚本\n**路径**: `/root/occsafe_vla/openvla-oft/vla-scripts/evaluate_safelibero.py`\n\n功能：\n- 加载 fine-tuned OpenVLA-OFT checkpoint（`--pretrained_checkpoint`）\n- 在 LIBERO benchmark 任务中 rollout（默认 libero_spatial, 10 个任务）\n- `ObstacleTracker` 在 warmup 后记录非目标物体位置，每步检查 L1 位移 > 0.001 判定碰撞\n- 计算 per-task 和 overall 的 TSR / CAR\n- 结果保存到 JSON（默认 `artifacts/safelibero_*.json`）\n\n运行示例：\n```bash\ncd /root/occsafe_vla/openvla-oft\nMUJOCO_GL=egl python vla-scripts/evaluate_safelibero.py \\\n    --pretrained_checkpoint /root/autodl-tmp/checkpoints/vanilla_s0 \\\n    --task_suite_name libero_spatial \\\n    --num_rollouts 20\n```\n\n### Dry-run 结果\n- 语法检查：`SYNTAX_OK`\n- `--help`：所有参数正确解析，imports 全部通过\n\n### 已有代码说明\n服务器上已有一份 `/root/occsafe_vla/eval/eval_safelibero.py`（之前的版本，`num_rollouts` 默认 50）。新脚本在 `vla-scripts/` 下，默认改为 20，路径逻辑已适配。\n\n### 无遗留问题\n所有依赖已安装，API 已在真实 LIBERO 环境中端到端验证（创建环境 → 读取物体 → 读取 MuJoCo body 位置），等 checkpoint 训练完成即可直接运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-safelibero-eval-script.md"
+}

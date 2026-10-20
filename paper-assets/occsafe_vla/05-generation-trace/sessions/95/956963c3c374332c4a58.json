@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "956963c3c374332c4a58",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "audit gpu health 10894 urgent",
+  "task_key": "worker_audit_gpu-health-10894-urgent_20260527T211232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_gpu-health-10894-urgent_20260527T211232_result.json",
+    "occurrence": 1,
+    "bytes": 1132,
+    "sha256": "ec4f3146069878a0eea8859f078b938c94d2e192c06ccffce03ca0490d613f38"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n[UTC ~05:12, 2026-05-28]\n\nGPU 0 (vanilla_object_s1): ✅ 存活 — step 12886/50005 (25.8%) — ~1.08 it/s\n  ETA: 剩余 37119 steps ÷ 1.08 it/s ≈ 9.5h → 完成约 ~14:45 UTC\n  ⚠️ 超 DDL (12:00 UTC) 约 2h 45min\n\nGPU 1: ✅ 空闲 — 0% util, 0 MiB — 符合预期（待命 Batch A eval）\n\nGPU 2 (detach_ln_v2_s0c_r3): ✅ 存活 — step 44020/50005 (88%) — ~1.08 it/s\n  ETA: 剩余 5985 steps ≈ 1h 32min → 完成约 ~06:44 UTC ✅\n\nGPU 3 (full_occ_ln_s4): ✅ 存活 — step 42233/50005 (84.5%) — ~1.07 it/s\n  ETA: 剩余 7772 steps ≈ 2h 01min → 完成约 ~07:13 UTC ✅\n\nBatch A 就绪状态:\n  detach_ln_v2_s0c_r3: ckpt 30k ✓, 40k ✓ (50k 预计 ~06:44 UTC)\n  full_occ_ln_s4:      ckpt 30k ✓, 40k ✓ (50k 预计 ~07:13 UTC)\n  → Batch A eval 最早可在 ~07:15 UTC 启动（GPU 1 已空闲待命）\n\nvanilla_object_s1:    ckpt 5k ✓, 10k ✓ (下一个 15k 预计 ~06:10 UTC)\n```\n\n**关键风险: vanilla_object_s1 预计 ~14:45 UTC 完成，超 DDL 约 2h 45min。** 这是目前唯一的问题——GPU 2/3 的实验都会在 DDL 前顺利完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-gpu-health-10894-urgent.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27bf98eed87630ce2e21",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code fix occ detach",
+  "task_key": "worker_code_fix_occ_detach_20260520T103506",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_occ_detach_20260520T103506_result.json",
+    "occurrence": 1,
+    "bytes": 1410,
+    "sha256": "24c4387301f3751a586db1f4e8c28d9f92890e846e601fdc381f06a25fb7f7b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 0,1,2 的 vanilla 训练进程（PID 100203/97847/98174）未受影响，显存占用与修改前完全一致。\n\n---\n\n## 总结\n\n### 修复内容\n\n`/root/occsafe_vla/openvla-oft/vla-scripts/finetune.py` L306：\n\n```\n修复前: occ_detach=True,    (函数默认值硬编码 True)\n修复后: occ_detach=False,   (函数默认值改为 False)\n```\n\n其余不变：L94 config 默认值保持 `True`，L1129 训练调用 `occ_detach=cfg.occ_detach` 已正确传参。\n\n### 分析说明\n\n实际上 L1129 的训练调用**已经**显式传了 `occ_detach=cfg.occ_detach`，所以 L306 的函数默认值对训练路径无影响。`--occ_detach false` 经 draccus 解析后 `cfg.occ_detach=False`，通过 L1129 正确传入 `run_forward_pass`。L306 的默认值仅在 L751 的 validation 调用中生效（但 validation 不传 `occ_head`，occ 分支整个被跳过，所以也无影响）。\n\n修改 L306 为 `False` 的意义：防止未来新增调用者遗漏 `occ_detach` 参数时意外截断梯度。\n\n### 5-step 验证结果\n\n| 测试项 | 结果 |\n|---|---|\n| `--occ_detach false` 解析为 `False` | PASS |\n| `occ_detach=False` 时 patch_features 不 detach | PASS |\n| backward 后 vision_param.grad 非 None（norm=0.000675） | PASS |\n| `occ_detach=True` 时 grad 为 None（对照） | PASS |\n| vanilla 训练不受影响 | PASS（PID/显存不变） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-occ-detach.md"
+}

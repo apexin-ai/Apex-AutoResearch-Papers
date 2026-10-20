@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e962b2ede6abe8553e3d",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code occ gt full extract",
+  "task_key": "worker_code_occ-gt-full-extract_20260520T072219",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_occ-gt-full-extract_20260520T072219_result.json",
+    "occurrence": 1,
+    "bytes": 985,
+    "sha256": "b61f07408ad219614420114e76a0e6a858b856d86af81cd014048019c048b3b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。汇总状态：\n\n**已启动：**\n- Tasks 0-8：9 个并行 nohup 进程正在提取全部 50 demos\n- Task 9：自动监控脚本（PID 55214），下载完成后自动启动提取\n\n**时间估算：**\n- 并发帧速率 ~1.65s/帧（比单进程慢 28%）\n- 每任务约 50 demos × ~100 帧 × 1.65s ≈ 8,250s ≈ **~2.3 小时**\n- 启动于 15:23，预计 **17:40 左右完成**（CST）\n- Task 9 下载约还需 20-25 分钟，之后单独提取 ~2 小时\n\n**进度监控命令：**\n```bash\nbash /tmp/check_extract_progress.sh\n```\n\n或单个任务详情：\n```bash\ntail -20 /tmp/extract_logs/task_0.log\n```\n\n**完成检查：**\n```bash\n# 查看已完成的 demo 数量\nfor i in $(seq 0 9); do\n    echo \"task_$i: $(grep -c 'BEV shape' /tmp/extract_logs/task_${i}.log 2>/dev/null)/50 demos\"\ndone\n```\n\n**无代码修改** — 现有脚本已支持 `--task_id` + 默认全量 demo，直接并行启动 10 个实例即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-occ-gt-full-extract.md"
+}

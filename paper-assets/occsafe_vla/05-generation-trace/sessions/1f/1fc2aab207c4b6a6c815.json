@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "1fc2aab207c4b6a6c815",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "eval occ s0 monitor v3",
+  "task_key": "worker_eval_occ-s0-monitor-v3_20260521T200550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_occ-s0-monitor-v3_20260521T200550.log",
+    "occurrence": 1,
+    "bytes": 1180857,
+    "sha256": "f8cd87cf4928b926340709bc336564546fcc31e0467e5b6520efbbe1ce9edb74"
+  },
+  "statistics": {
+    "messages": 902,
+    "user_turns": 1,
+    "tool_calls": 424,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 46,
+      "tool_call": 424,
+      "tool_result": 424,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 870,
+      "chunks": [
+        {
+          "path": "1fc2aab207c4b6a6c815-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1fc2aab207c4b6a6c815-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "1fc2aab207c4b6a6c815-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "1fc2aab207c4b6a6c815-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "1fc2aab207c4b6a6c815-part-0005.json",
+          "message_count": 150
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 32,
+      "chunks": [
+        {
+          "path": "1fc2aab207c4b6a6c815-part-0005.json",
+          "message_count": 30
+        },
+        {
+          "path": "1fc2aab207c4b6a6c815-part-0006.json",
+          "message_count": 2
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-occ-s0-monitor-v3.md"
+}

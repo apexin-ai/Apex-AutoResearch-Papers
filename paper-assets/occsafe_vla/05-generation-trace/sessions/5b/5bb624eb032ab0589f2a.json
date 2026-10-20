@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "5bb624eb032ab0589f2a",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "research v1 v2 code diff audit",
+  "task_key": "worker_research_v1-v2-code-diff-audit_20260526T165844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_v1-v2-code-diff-audit_20260526T165844.log",
+    "occurrence": 1,
+    "bytes": 812154,
+    "sha256": "f089005acb50dcdea43eb73873c8eb2b1ce4c20fb49069a82e7eee6ddc1d27f5"
+  },
+  "statistics": {
+    "messages": 183,
+    "user_turns": 0,
+    "tool_calls": 72,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 35,
+      "tool_call": 72,
+      "tool_result": 72,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 183,
+      "chunks": [
+        {
+          "path": "5bb624eb032ab0589f2a-part-0001.json",
+          "message_count": 170
+        },
+        {
+          "path": "5bb624eb032ab0589f2a-part-0002.json",
+          "message_count": 13
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-v1-v2-code-diff-audit.md"
+}

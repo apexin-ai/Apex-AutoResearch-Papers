@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "e2ce21b4183cfdf9f988",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "fix full occ ln v2 s3 resume 40k",
+  "task_key": "worker_fix_full_occ_ln_v2_s3_resume_40k_20260528T034326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_full_occ_ln_v2_s3_resume_40k_20260528T034326.log",
+    "occurrence": 1,
+    "bytes": 744557,
+    "sha256": "dc4156f5f4f5985e83a441c220255062e85368cd846fff462c54dc1ac5bedefb"
+  },
+  "statistics": {
+    "messages": 210,
+    "user_turns": 0,
+    "tool_calls": 68,
+    "roles": {
+      "log": 1,
+      "system": 9,
+      "record": 1,
+      "assistant": 62,
+      "tool_call": 68,
+      "tool_result": 68,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 210,
+      "chunks": [
+        {
+          "path": "e2ce21b4183cfdf9f988-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e2ce21b4183cfdf9f988-part-0002.json",
+          "message_count": 30
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-full-occ-ln-v2-s3-resume-40k.md"
+}

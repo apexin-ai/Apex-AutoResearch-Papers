@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b993cb1ed785affa0e05",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops status check 34685",
+  "task_key": "worker_ops_status-check-34685_20260528T054443",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_status-check-34685_20260528T054443_result.json",
+    "occurrence": 1,
+    "bytes": 2196,
+    "sha256": "ea879f50a9236ab6a6551b7092842fe99576af0e4363f9496165edf52633c3e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== nvidia-smi (Thu May 28 13:45:01 UTC 2026) ===\nGPU  Name                    Temp  Power       VRAM             Util  PID\n  0  RTX PRO 6000 Blackwell  71°C  463W/600W   62165/97887 MiB  99%  47238\n  1  RTX PRO 6000 Blackwell  68°C  452W/600W   62161/97887 MiB  96%  62535\n  2  RTX PRO 6000 Blackwell  68°C  471W/600W   62161/97887 MiB  99%  56474\n  3  RTX PRO 6000 Blackwell  71°C  495W/600W   63009/97887 MiB  99%  56822\n\n注意: GPU 0 PID = 47238（非预期的 47162）\n\n=== 轮询脚本 ps ===\n   PID     ELAPSED CMD\n 61243    01:25:07 bash /root/poll_eval_detach_ln_v2_s3.sh\n 61244    01:25:07 bash /root/poll_eval_detach_ln_v2_s2.sh\n 61245    01:25:07 bash /root/poll_eval_full_occ_ln_v2_s3.sh\n3 个轮询脚本全部存活。\n\n=== 轮询脚本日志 ===\n3 个日志均只有: \"Thu May 28 04:20:06 UTC 2026: Polling started for <exp_name>\"\n→ 均未触发 eval（50000_chkpt 尚未生成）\n\n=== 训练进度 ===\nexp_id           | GPU | PID   | 当前 step    | 目标 step | 50000_chkpt | 最新 chkpt   | 最新 chkpt 时间\n-----------------|-----|-------|-------------|-----------|-------------|-------------|----------------\ndetach_ln_v2_s2  |  0  | 47238 | 13281/50005 | 25000     | ❌          | 35000_chkpt | May 28 12:51\nfull_occ_bn_v2_s2|  1  | 62535 | 3801/50005  | (非关键)  | ❌          | (仅初始目录)| May 28 12:42\nfull_occ_ln_v2_s3|  2  | 56474 | 6895/50005  | 10000     | ❌          | 45000_chkpt | May 28 13:15\ndetach_ln_v2_s3  |  3  | 56822 | 6903/50005  | 10000     | ❌          | 45000_chkpt | May 28 13:15\n\n=== ETA 估算（基于 checkpoint 间隔 ~80min/5000步 和当前速度 ~1.09 it/s） ===\nexp_id           | 剩余 step → 目标 | 预计完成 50000_chkpt\n-----------------|------------------|---------------------\ndetach_ln_v2_s2  | 11719 步 → 25000 | ~16:50 UTC（还需 ~3h05m）\nfull_occ_ln_v2_s3| 3105 步 → 10000  | ~14:35 UTC（还需 ~50min）\ndetach_ln_v2_s3  | 3097 步 → 10000  | ~14:35 UTC（还需 ~50min）\n```\n\n**DDL 12:00 UTC 已超时 1h45m。** full_occ_ln_v2_s3 和 detach_ln_v2_s3 约 50min 后出 50000_chkpt。detach_ln_v2_s2 最慢，还需 ~3h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-status-check-34685.md"
+}

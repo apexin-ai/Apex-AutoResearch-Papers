@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "049d2e1bbba7207b5cac",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra training progress check both servers",
+  "task_key": "worker_infra_training_progress_check_both_servers_20260520T181116",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_training_progress_check_both_servers_20260520T181116_result.json",
+    "occurrence": 1,
+    "bytes": 1805,
+    "sha256": "384905ce220418f5378cf96be977ff0e7a1d456078967d9da158e51b3789f9a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== 训练进度 ===\nwestd-10894 (vanilla):\n  s0: step ~32634/50005, 1.09 it/s, elapsed 8:49h, ETA ~4.4h\n  s1: step ~32355/50005, 1.08 it/s, elapsed 8:51h, ETA ~4.5h\n  s2: step ~5901/50005, 1.07 it/s, elapsed 1:32h, ETA ~11.5h ⚠️ 已重启（原训练+resume均崩溃）\n\nwestd-34685 (occ):\n  s0: step ~6064/50005, 1.09 it/s, elapsed 1:36h, ETA ~11.2h  [OCC] step=6000 occ_loss=0.0118 action_loss=0.1328\n  s1: step ~6018/50005, 1.09 it/s, elapsed 1:35h, ETA ~11.2h  [OCC] step=6000 occ_loss=0.0138 action_loss=0.1279\n  s2: step ~6004/50005, 1.09 it/s, elapsed 1:35h, ETA ~11.2h  [OCC] step=6000 occ_loss=0.0115 action_loss=0.1689\n\n=== GPU ===\nwestd-10894 (4x 96GB):\n  GPU0: 63007/97887 MiB, 99%  (vanilla_s0)\n  GPU1: 62237/97887 MiB, 99%  (vanilla_s1)\n  GPU2: 63031/97887 MiB, 99%  (vanilla_s2 重启中)\n  GPU3: 16778/97887 MiB,  1%  (空闲)\n\nwestd-34685 (4x 96GB):\n  GPU0: 62203/97887 MiB, 91%  (occ_s0)\n  GPU1: 62203/97887 MiB, 45%  (occ_s1)\n  GPU2: 62209/97887 MiB, 99%  (occ_s2)\n  GPU3:     0/97887 MiB, 100% (异常：无显存占用但utilization=100%)\n\n=== 磁盘 ===\nwestd-10894: 126G/250G (51%)\nwestd-34685: 111G/350G (32%)\n\n=== Checkpoints ===\nwestd-10894 (vanilla):\n  s0: latest, 25000_chkpt, 30000_chkpt\n  s1: latest, 25000_chkpt, 30000_chkpt\n  s2: latest, 25000_chkpt, 30000_chkpt (旧run遗留；新run尚无checkpoint)\n\nwestd-34685 (occ):\n  s0: latest, 2500_chkpt, 5000_chkpt\n  s1: latest, 2500_chkpt, 5000_chkpt\n  s2: latest, 2500_chkpt, 5000_chkpt\n```\n\n**注意事项：**\n- vanilla_s2 原始训练和 resume 均崩溃（exitcode 1），已从头重启，当前 step ~5901，比 s0/s1 落后约 27000 步\n- westd-34685 GPU3 状态异常（0 MiB 显存占用但 utilization 显示 100%），不影响训练但值得留意"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-training-progress-check-both-servers.md"
+}

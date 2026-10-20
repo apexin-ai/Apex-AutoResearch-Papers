@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5568c9b229e8f6fcd6ec",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "research libero object diagnostic",
+  "task_key": "worker_research_libero_object_diagnostic_20260528T044203",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_libero_object_diagnostic_20260528T044203_result.json",
+    "occurrence": 1,
+    "bytes": 2162,
+    "sha256": "abcb12b629b434a6ad1938e8bde4c4b33f5e4077df89c43c81ffaa1a81b2b83a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 1. LIBERO-Object 训练数据\n\n| 服务器 | 状态 | 详情 |\n|--------|------|------|\n| westd-10894 | ✅ 存在 | 32 tfrecord shards + 3 metadata files |\n| westd-34685 | ✅ 存在 | 同上，完全一致 |\n\n### 2. OCC Labels\n\n**两台服务器均无 OCC labels。** `find` 在 `libero_object_no_noops/` 下未找到任何 `*occ*` 或 `*occupancy*` 文件。\n\n→ **只能跑 `vanilla_object`**（`--use_occ_head False`）。`full_occ_bn_object` 和 `detach_bn_object` 无法产出有意义结果（无标签，occ_loss=0 或报错）。\n\n### 3. 可 Resume 的 Checkpoint\n\n| 实验 | 服务器 | 最新可用 checkpoint | 完整性 |\n|------|--------|-------------------|--------|\n| **vanilla_object_s0** | westd-34685 | **20000 step** | ✅ 完整（4 model shards + action_head + proprio_projector + lora_adapter） |\n| vanilla_object_s0 | westd-34685 | 25000 step | ❌ 不完整（无 model shards，kill 时正在写） |\n| **vanilla_object_s1** | westd-10894 | **40000 step** | ✅ 完整（4 model shards + action_head + proprio_projector + lora_adapter） |\n| vanilla_object_s1 | westd-10894 | 35000 step | ✅ 完整 |\n| full_occ_bn_object_s0 | westd-10894 | 5000 step | ❌ 不完整（model-00003 仅 24KB，model-00004 缺失）+ **无 OCC labels，无意义** |\n| detach_bn_object_s0 | westd-10894 | 5000 step | ❌ 不完整（model-00001 仅 4GB partial，02/03/04 缺失）+ **无 OCC labels，无意义** |\n| vanilla_object_s0 | westd-10894 | — | 无 checkpoint 目录 |\n| vanilla_object_s1 | westd-34685 | — | 无 checkpoint 目录 |\n\n### 4. 结论\n\n**关键阻断：LIBERO-Object 没有 OCC labels。** 跨 benchmark 实验中，OCC 相关实验（full_occ、detach）不可行。\n\n**可执行的方案：**\n- **vanilla_object_s1**：在 westd-10894 从 step 40000 resume（假设目标 ~50k steps，还需约 10k steps）\n- **vanilla_object_s0**：在 westd-34685 从 step 20000 resume（还需约 30k steps）\n- full_occ / detach 实验：需先生成 LIBERO-Object 的 OCC labels 才可行，时间上可能来不及（C003 deadline: 今天 20:00 北京时间）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-libero-object-diagnostic.md"
+}

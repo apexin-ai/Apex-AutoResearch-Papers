@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b4f7f73bffdd73b8e7e8",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_5_1779855645.md",
+  "task_key": "loop_5_1779855645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1779855645.md",
+    "occurrence": 1,
+    "bytes": 5277,
+    "sha256": "95214b2fcbae24dca27c0b36ee0e563c1d85f0eafd3e4a888c09917289dfdf91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-27T04:10:33+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-10894 cuda:0/1/2/3 + westd-34685 cuda:0/1/2/3，共 8 张，白名单外必须 push back Director\n- `submit_training_job` 的 command 必须用 `bash -c \"...\"` 包裹（tmux 用 sh，不包会 EXIT_CODE=127）\n- torchrun EXIT_CODE=1 + `destroy_process_group()` 警告 = false positive——检查日志确认 \"Max step 50005 reached!\" 和 checkpoint 已保存才算成功\n- v1/v2 代码不等价（D052：同种子 Full OCC BN v1 CAR=0.832 vs v2 CAR=0.746，差 8.6pp）——禁止跨代码版本直接对比\n- eval 脚本参数是 `--num_rollouts`（不是 `--num_trials_per_task`），checkpoint 参数是 `--pretrained_checkpoint`（不是 `--vla_path`）\n- `update_registry(field=\"spec\", value={...})` 会**覆盖**整个 spec，不是 merge——要保留原有字段必须一起传\n- Resume 实验 eval 时取 **local step=30000** checkpoint（= 总 50K steps），不是 step-050000\n\n### 2. 🖥️ 基础设施快照\n- **westd-10894**：conda env `occsafe`，激活 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`，工作目录 `/root/occsafe_vla/openvla-oft`，磁盘 63%\n- **westd-34685**：同上 conda env `occsafe`，同路径，磁盘 41%\n- 数据集：`/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops`\n- OCC 数据：`/root/occsafe_vla/occ_data`\n- Base 模型：`/root/autodl-tmp/models/openvla-7b`\n- 活跃进程（reconcile 确认全部 still running）：\n\n| exp_id | PID | 服务器:GPU | 类型 | ETA (UTC) |\n|--------|-----|-----------|------|-----------|\n| reverse_cutoff_s2_v2 | 170605 | 10894:0 | 从头训练 | May 27 06:40 |\n| full_occ_ln_v2_s0 | 341693 | 10894:1 | Cell 2 v2 rebuild, seed 42 | ~May 26 23:10 |\n| full_occ_ln_v2_s1 | 341843 | 10894:2 | Cell 2 v2 rebuild, seed 43 | ~May 26 23:10 |\n| detach_ln_v2_s0 | 342191 | 10894:3 | Cell 4 v2 rebuild, seed 42 | ~May 26 23:10 |\n| vanilla_v2_s1 | 419107 | 34685:0 | Vanilla baseline, seed 43 | May 27 05:30 |\n| vanilla_v2_s2 | 419342 | 34685:1 | Vanilla baseline, seed 44 | May 27 05:30 |\n| detach_ln_s3 | 419641 | 34685:2 | Cell 4 seed 45 | May 27 05:40 |\n| cutoff_25k_s1_v2 | 453581 | 34685:3 | dose-response 25K, seed 43 | May 27 06:00 |\n\n- Worker 活跃：`analysis:full_occ_ln_s3_v2_eval` 仍在运行（turn 13，正在更新 registry）\n\n### 3. 📊 当前状态\nLoop #5 完成 session-start：read_registry + reconcile_crons + 读 report.md/ROADMAP + 向 Director 发送状态汇报。**8/8 GPU 全满确认**。\n\ns3 eval 结果已录入 registry（上一轮处理）：\n- mvp_occ_s3_v2_eval (Full OCC BN s3): CAR=0.776, TSR=0.906\n- full_occ_ln_s3_v2_eval (Full OCC LN s3): CAR=0.740, TSR=0.842\n- ablation_occ_detach_s3_v2_eval (Detach BN s3): CAR=0.794, TSR=0.922\n\nCell 2/4 v2 rebuild 已由 Worker 提交到 10894:1/2/3（PID 确认 running）。\n\n**注意**：reverse_cutoff_s2_v2 registry 中 conclusion=killed 但 status=RUNNING、PID 存活——可能是前次 attempt 残留的 conclusion 字段，cron 在监控中，不影响。\n\n### 4. 📋 待办（条件触发式）\n- Cell 2/4 v2 训练完成（~23:10 UTC May 26）→ 提交 3 个 eval (50r): full_occ_ln_v2_s0, full_occ_ln_v2_s1, detach_ln_v2_s0。eval checkpoint 取 step-050000（从头训练，不是 resume）\n- Cell 2/4 eval 完成（~00:10 May 27）→ 录入 CAR → 更新 factorial 表 → 可与 Cell 1/3 做 partial ANOVA\n- 34685 训练完成（~05:30-06:00 May 27）→ 提交 4 个 eval: vanilla_v2_s1, vanilla_v2_s2, detach_ln_s3, cutoff_25k_s1_v2\n- 34685 eval 完成（~07:00 May 27）→ Vanilla 3-seed mean + Cell 4 v2 数据点 → 确认性 ANOVA（全 v2 数据）\n- reverse_cutoff_s2_v2 完成（~06:40 May 27）→ eval → 10894:0 空出 → 启动 detach_ln_v2_s1（Cell 4 第 2 个 v2 seed）\n- detach_ln_v2_s1 完成 + eval（~18:00 May 27）→ 全 v2 factorial 数据齐全 → 最终确认性 ANOVA → 通知 Director 启动 Paper Agent\n- analysis worker 回调 → 读取产出，整合到 memory.md\n\n### 5. 🎯 战略上下文\n- **CoRL 2026**：Abstract ✅, Paper deadline May 29（~2.5 天）\n- **核心结论 (D055/D058)**：Plan B 已确认 — ordinal interaction（Grad OFF > ON），ALL OCC ≤ Vanilla。Plan A (crossover) 被 Cell 1 s2 CAR=0.654 排除\n- **当前 v2 Factorial 数据**：\n  - Cell 1 (Full OCC BN): 0.746/0.654/0.776, mean=0.725±0.063（高方差，s1=0.654 是离群值）\n  - Cell 2 (Full OCC LN): 仅 0.740（1 seed），补训 s0/s1 已启动\n  - Cell 3 (Detach BN): 0.774/0.736/0.762/0.794, mean=0.767±0.024（4 seeds，稳定）\n  - Cell 4 (Detach LN): 0 个 v2 数据点，s3 训练中 + s0 训练中\n  - Vanilla: 0.768（1 seed），s1/s2 训练中\n- **易错点**：\n  - Full OCC LN s0 DINOv2 CKA=0.640 是 seed-specific 异常（s1/s2=0.965），不要当普遍现象\n  - CKA 旧数据（May 23）不可用——基于 buggy v1 代码\n  - dose-response 全部 v1 代码数据不可与 v2 对比（cutoff_25k_s1_v2 和 reverse_cutoff_s2_v2 是新 v2 数据点）\n  - v1 梯度 collapse (D026) 已被推翻为 bug 产物 (D056/D057)，当前可用机制证据仅有梯度正交性 (cosine≈0)\n  - 论文策略：CAR 统计分析 (ANOVA 效应量) 为核心，机制叙事为辅\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1779855645.md"
+}

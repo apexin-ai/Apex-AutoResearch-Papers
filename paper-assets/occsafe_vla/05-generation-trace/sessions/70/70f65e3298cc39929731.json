@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70f65e3298cc39929731",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops 10894 targeted cleanup",
+  "task_key": "worker_ops_10894_targeted_cleanup_20260524T175402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_10894_targeted_cleanup_20260524T175402_result.json",
+    "occurrence": 1,
+    "bytes": 500,
+    "sha256": "882399e33fef9d44474f17d5542945fe4e8fd9b51ad9353503adc873d41b4603"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部删除完成。\n\n**结果：**\n| 目录 | 状态 |\n|------|------|\n| detach_ln_s0 (15G) | ✓ 已删除 |\n| detach_ln_s1 (15G) | ✓ 已删除 |\n| detach_ln_s2 (15G) | ✓ 已删除 |\n| ablation_random_occ_s2 (15G) | ✓ 已删除 |\n| cutoff_s2_v2 (15G) | ✓ 已删除 |\n\n**磁盘状态：** 250G 总量，已用 102G，可用 **149G** (41%)。\n\n回收了约 74G 空间，不需要第二批清理。full_occ_ln_s0 在 step 40000 保存 checkpoint 有充足空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-10894-targeted-cleanup.md"
+}

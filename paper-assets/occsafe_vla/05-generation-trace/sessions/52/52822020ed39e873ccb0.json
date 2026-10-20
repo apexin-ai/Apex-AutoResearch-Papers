@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52822020ed39e873ccb0",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose cutoff 25k s2 v3",
+  "task_key": "worker_diagnose_cutoff_25k_s2_v3_20260525T172038",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_cutoff_25k_s2_v3_20260525T172038_result.json",
+    "occurrence": 1,
+    "bytes": 487,
+    "sha256": "47f7c3dc32badccbacfa4b644be2ad84df3019dda5a0ea7cf692e8e0c39884c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练仍在进行中。当前进度 **40824/50005 (82%)**，速度 ~1.08 it/s，预计还需约 2.5 小时完成。\n\n已有 checkpoints：20K、30K、40K（最新 40K 于 May 26 00:56 保存）。无 50K checkpoint。\n\n未检测到错误（grep 命令被 pipe 阻断，但日志尾部无异常，训练正常推进）。\n\n**结论：训练尚未完成，仍在正常运行中，无需更新 registry。** 预计约 2.5 小时后（~03:30 UTC）到达 50005 steps。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-cutoff-25k-s2-v3.md"
+}

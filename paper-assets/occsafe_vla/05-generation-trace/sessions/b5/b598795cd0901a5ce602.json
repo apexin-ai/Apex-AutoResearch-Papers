@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b598795cd0901a5ce602",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code figure integration",
+  "task_key": "worker_code_figure_integration_20260525T084523",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_figure_integration_20260525T084523_result.json",
+    "occurrence": 1,
+    "bytes": 1430,
+    "sha256": "bca13b897de9e2bfd705c6a3edfab0b3fe89c49257ba22164374aa3baf059ad6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 复制完成\n\n| 图表 | 源文件 | 目标 | 大小 |\n|------|--------|------|------|\n| dose-response | `westd-10894:/root/autodl-tmp/analysis/dose_response_car.pdf`（May 25 16:30） | `docs/paper/figures/dose_response.pdf` | 35KB |\n| factorial 2x2 | `artifacts/fig_factorial_2x2.pdf`（May 25 06:58） | `docs/paper/figures/factorial_2x2.pdf` | 25KB |\n\n### LaTeX 引用路径\n\n- `results.tex:70` → `figures/factorial_2x2.pdf` — **路径匹配** ✓\n- `appendix.tex:97` → `figures/dose_response.pdf` — **路径匹配** ✓\n\n### Caption 匹配检查\n\n**`results.tex:71` (factorial 2x2)** — **匹配** ✓  \nCaption 描述 BN/LN × gradient flow ON/OFF, +5.1pp/-2.2pp, 7.3pp interaction (p=0.025), error bars: cross-seed SD (n=3)。新图是 BN(蓝)/LN(橙) 分组柱状图 + p=0.025 bracket 标注，内容一致。\n\n**`appendix.tex:98` (dose-response)** — **不匹配，需要更新** ✗\n\n| 项目 | 旧 caption | 新图实际 |\n|------|-----------|---------|\n| 早期 cutoff 标记 | \"Blue circles\" | 实心圆（3-seed 完成）/ 空心圆（待补 seed） |\n| Reverse cutoff 标记 | \"Red square\" | 菱形（◇） |\n| Vanilla baseline | \"Gray band: Vanilla ± 1 SD\" | 水平虚线 |\n| 新增元素 | 无 | SE error band, `n=2`/`n=1` 标注, \"+0.2%\" gap 标注 |\n\n需要修改 `appendix.tex:98` 的 caption 以匹配新图。是否现在更新？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-figure-integration.md"
+}

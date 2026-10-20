@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "160d0110f022a6482ca1",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops westd10894 reconnect",
+  "task_key": "worker_ops_westd10894_reconnect_20260523T033737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd10894_reconnect_20260523T033737_result.json",
+    "occurrence": 1,
+    "bytes": 1238,
+    "sha256": "2ad1d839083e0fb0a43d70ee6a06c6f525ac01b9602bf47a815a85ab5bcce6b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报如下：\n\n## westd-10894 状态\n\n### 1. 连接：成功\n4x NVIDIA RTX PRO 6000 Blackwell (96GB each)，uptime 158 天。\n\n### 2. cutoff_s2 训练：**存活，正常运行中**\n- PID: 275630，运行约 3 小时\n- 当前 step: **~21990 / 50005** (44%)\n- 速度: ~2.06 it/s\n- GPU 0 显存占用: 43021 MiB / 97887 MiB\n- 已保存 checkpoint: 10000_chkpt, 20000_chkpt\n- 预计剩余时间: ~3h47m（约 15:30 完成）\n\n### 3. 磁盘状态\n| 分区 | 容量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| / (根) | 30G | 21G | 9.1G | 70% |\n| /root/autodl-tmp | 250G | 126G | 125G | 51% |\n\n磁盘充足，无风险。\n\n### 4. 关键 checkpoint 完整性\n| 条件 | 50000 checkpoint |\n|------|-----------------|\n| ablation_occ_detach_s2 | ✓ |\n| ablation_random_occ_s2 | ✓ |\n| depth_s2 | ✓ |\n| depth_s3 | ✓ |\n| cutoff_s2 | 训练中 (当前 ~22k/50k) |\n\n注：vanilla_s2 的 checkpoint 目录不存在（只有一个 `vanilla_s2_train.log` 文件），detach_s0 和 random_s0 的 checkpoint 也不在这台机器上（可能在其他服务器）。\n\n### 5. 无需恢复操作\n训练进程正常运行，tmux session `cutoff_s2` 存活，无需干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd10894-reconnect.md"
+}

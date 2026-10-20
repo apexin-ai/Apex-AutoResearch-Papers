@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0",
+  "id": "e9e98285f550374c2e6c",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "research openvla oft survey",
+  "task_key": "worker_research_openvla-oft-survey_20260520T040517",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_openvla-oft-survey_20260520T040517.log",
+    "occurrence": 1,
+    "bytes": 628245,
+    "sha256": "02f83d02f18adf8e87d8a072430cb07f03f2ea9a612010c4f6defc10734142f6"
+  },
+  "statistics": {
+    "messages": 414,
+    "user_turns": 4,
+    "tool_calls": 133,
+    "roles": {
+      "log": 1,
+      "system": 134,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 133,
+      "user": 4,
+      "tool_result": 133,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "e9e98285f550374c2e6c-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 62,
+      "chunks": [
+        {
+          "path": "e9e98285f550374c2e6c-part-0001.json",
+          "message_count": 62
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "e9e98285f550374c2e6c-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 10,
+      "chunks": [
+        {
+          "path": "e9e98285f550374c2e6c-part-0001.json",
+          "message_count": 10
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 330,
+      "chunks": [
+        {
+          "path": "e9e98285f550374c2e6c-part-0001.json",
+          "message_count": 96
+        },
+        {
+          "path": "e9e98285f550374c2e6c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e9e98285f550374c2e6c-part-0003.json",
+          "message_count": 54
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-openvla-oft-survey.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8ea8dd9e1fecf8eda25",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis cka cutoff15k s0 fix",
+  "task_key": "worker_analysis_cka_cutoff15k_s0_fix_20260525T062612",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cka_cutoff15k_s0_fix_20260525T062612_result.json",
+    "occurrence": 1,
+    "bytes": 727,
+    "sha256": "6bf6617e8f347e0422d92f82d6a10bfea20bca07c594dc8b571b989d7cb8db5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cutoff_15k_s0 (seed 42) checkpoint 不存在。** 两台服务器上都没有。\n\n现有 cutoff_15k checkpoints：\n- `cutoff_15k_s1` (seed 43) — 10894 和 34685 都有\n- `cutoff_15k_s2` — 仅 34685\n- `cutoff_15k_s2_v2` — 仅 34685\n\n现有 s0 checkpoints（seed 42）：\n- `vanilla_retrain_s0` ✓\n- `full_occ_retrain_s0` ✓\n- `full_occ_ln_s0` ✓\n- `ablation_occ_detach_s0_retrain` ✓\n\n**cutoff_15k_s0 从未训练过，无法进行 same-seed CKA 对比。**\n\n两个选项：\n1. **先训练 cutoff_15k_s0**（seed 42, cutoff at 15k steps, ~50k total），然后再跑 CKA\n2. **用现有 cutoff_15k_s1** 跑 CKA，接受 cross-seed confound，作为初步参考\n\n需要哪个方向？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cka-cutoff15k-s0-fix.md"
+}

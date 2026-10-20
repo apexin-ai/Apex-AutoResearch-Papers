@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61a948146a56efbd6b60",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose detach ln s4 eval result",
+  "task_key": "worker_diagnose_detach_ln_s4_eval-result_20260527T132606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_detach_ln_s4_eval-result_20260527T132606_result.json",
+    "occurrence": 1,
+    "bytes": 949,
+    "sha256": "7bc16635928eededaa171bec5ea61e351ec0f9b70b044cc1faa26b240b836284"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n### westd-34685 状态\n\n**Eval 状态**\n| Eval | GPU | 状态 | 进度 |\n|------|-----|------|------|\n| detach_ln_v2_s1_35_eval | cuda:0 | 运行中 | T0: TSR=0.980 CAR=0.980; T1: TSR=0.980 CAR=0.920; T2: 16% |\n| detach_ln_s4_eval | cuda:1 | **已重启** | 原进程在 T0 4% 静默崩溃（日志无错误），已重启并确认过了崩溃点 (T0 8%+) |\n\n**批次② 训练状态**\n| 训练 | GPU | PID | 运行时间 | 最新 checkpoint |\n|------|-----|-----|---------|----------------|\n| ablation_occ_detach_s4 | cuda:2 | 735898 | 13h08m | 40000 (50000 未到) |\n| mvp_occ_s4 | cuda:3 | 736253 | 13h08m | 40000 (50000 未到) |\n\n**结论**\n- detach_ln_s4_eval 无法提取 CAR/TSR — 之前的运行崩溃了，已重启\n- detach_ln_v2_s1_35_eval 仍在运行，预计还需 ~30min 完成剩余 8 个 task\n- 批次② 两个训练都还在跑，尚未产出 50000 checkpoint，无法启动新 eval"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-detach-ln-s4-eval-result.md"
+}

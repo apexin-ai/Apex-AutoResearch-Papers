@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "01d6fdf8f244613651b0",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code anova analysis script",
+  "task_key": "worker_code_anova-analysis-script_20260526T192341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_anova-analysis-script_20260526T192341_result.json",
+    "occurrence": 1,
+    "bytes": 746,
+    "sha256": "7ea331582c2f55812154199037aa2dc0b178cda492242833f07fe97d00652b9b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全 4 cell 场景 ANOVA、permutation test、simple effects、pairwise 全部正常。\n\n脚本已写入 `/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/analyze_factorial_anova.py`。\n\n功能覆盖：\n- 描述统计（mean/std/n/95% CI）\n- Type II SS 手动实现的 2-way ANOVA（含 η²p）\n- 10000 次 permutation test 作为小样本主推断\n- interaction 显著时自动输出 simple effects\n- 全 pairwise t-test（Bonferroni 校正）+ 每个 cell vs Vanilla\n- Cohen's d + 95% CI of mean difference\n- Shapiro-Wilk + Levene's assumption checks\n- 空 cell 优雅跳过，n=1 跳过 t-test/CI/Cohen's d\n- `--demo` / `--data-json` / `--cell1..4` 三种输入 + `--output-json` 导出"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-anova-analysis-script.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0473460515b17144555b",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "paper claim wording audit",
+  "task_key": "worker_paper_claim_wording_audit_20260523T071232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_claim_wording_audit_20260523T071232_result.json",
+    "occurrence": 1,
+    "bytes": 1831,
+    "sha256": "aed6ed3ced75a0015ab178528f767b7f047cfb1b83be3afc65861eb9b46567dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 8 edits complete. Summary of changes:\n\n| File | Original | Revised | Reason |\n|------|----------|---------|--------|\n| **main.tex** | \"the necessary condition preventing\" | \"a necessary condition for preventing\" | 只证明了 necessary，没证明唯一性 |\n| **introduction.tex** | \"Mechanism identification\" | \"Mechanistic evidence\" | 提供证据 ≠ 完全鉴定机制 |\n| **introduction.tex** | \"isolate...as the necessary condition\" | \"identify...as a necessary condition for preventing degradation\" | 同上 |\n| **introduction.tex** | \"confirming that gradient flow...is the operative factor\" | \"suggesting that...is the primary operative factor\" | Full OCC vs Vanilla Δ=+0.017 不显著，不能用 \"confirming\" |\n| **conclusion.tex** | \"confirming that spatial content...\" | \"indicating that spatial content...\" | 同上 |\n| **conclusion.tex** | \"loses most of the CAR advantage...indicating that collision avoidance requires continuous gradient flow\" | \"exhibits task-specific vulnerability...suggesting...is sensitive to the temporal extent\" | Cutoff 总体 CAR≈Vanilla，无 \"advantage\" 可 \"lose\"；\"requires\" 过强 |\n| **discussion.tex** | \"the data establish that\" | \"the data suggest that\" | 1.7pp 差异不显著 |\n| **discussion.tex** | \"The consistent ordering...raises the question\" | \"The directional ordering...though not statistically significant with 3--4 seeds, raises the question\" | 明确标注排序方向性非显著性 |\n| **discussion.tex** | \"requires continuous gradient flow---the benefit does not persist\" | \"appears sensitive to the temporal extent of gradient flow: Cutoff's aggregate CAR matches Vanilla...but Task~5 collapses to 0.00\" | 总体 CAR 不支持 \"requires\"；改为基于数据的 hedged 表述 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-claim-wording-audit.md"
+}

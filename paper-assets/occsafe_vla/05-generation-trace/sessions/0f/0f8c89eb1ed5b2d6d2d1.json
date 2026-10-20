@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f8c89eb1ed5b2d6d2d1",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose eta check quick",
+  "task_key": "worker_diagnose_eta_check_quick_20260527T181019",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eta_check_quick_20260527T181019_result.json",
+    "occurrence": 1,
+    "bytes": 1271,
+    "sha256": "e8f3a4933261150d06bf767b1ad5a166b5870afc928416feb181d08a49481f0f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "10894 上 `detach_ln_v2_s0c_r3.log` 和 `full_occ_ln_s4.log` **不存在**。当前 UTC ≈ 18:11。\n\n```\n实验                  | step/50005 (XX%)    | it/s | ETA (UTC)\n─────────────────────────────────────────────────────────────────\ndetach_ln_v2_s2  ★   | 10284/50005 (20.6%) | 1.09 | 2026-05-28 04:18 ✅\ndetach_ln_v2_s3      |  5511/50005 (11.0%) | 1.09 | 2026-05-28 05:31 ✅\nfull_occ_ln_v2_s3    |  5524/50005 (11.0%) | 1.08 | 2026-05-28 05:37 ✅\nvanilla_object_s0    |  5120/50005 (10.2%) | 1.08 | 2026-05-28 05:44 ✅\nvanilla_object_s1    |  1204/50005 ( 2.4%) | 1.10 | 2026-05-28 06:30 ✅\ndetach_ln_v2_s0c_r3  |  ❌ LOG NOT FOUND (10894)\nfull_occ_ln_s4       |  ❌ LOG NOT FOUND (10894)\n```\n\nDDL = 2026-05-28 12:00 UTC。5 个正在跑的实验全部预计在 DDL 前 6-8 小时完成，无风险。\n\n10894 上 `detach_ln_v2_s0c_r3` 和 `full_occ_ln_s4` 这两个名字在 runs 目录里不存在。相近的有 `detach_ln_v2_s0c.log`（12h 前停止更新，~1.2MB）和 `full_occ_ln_v2_s0d.log`（11h 前停止更新，~1.2MB），看起来已中止。需要确认是否要重启这两个。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eta-check-quick.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "10555f288456a4e541c3",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra P0 occ s1 fix correct server",
+  "task_key": "worker_infra_P0_occ_s1_fix_correct_server_20260521T011356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_P0_occ_s1_fix_correct_server_20260521T011356_result.json",
+    "occurrence": 1,
+    "bytes": 1554,
+    "sha256": "d90a35205dea00c4bcc5cdc7e4e41a3b4a9ff3e70cf9a86b514a5d8a5d364198"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n| 项目 | 状态 |\n|------|------|\n| hostname | westd-34685 ✓ |\n| occ_s0 (PID 27667→子进程27740) | **ALIVE**, 运行 8h39m, GPU 0: 62194 MiB |\n| occ_s2 (PID 29970→子进程30044) | **ALIVE**, 运行 8h38m, GPU 2: 62200 MiB |\n| occ_s1 旧错误进程 | 已 kill (54258/54259/54330), 坏 checkpoint 10000/12500 已删除 |\n| occ_s1 checkpoint 最高 | 7500 (从此恢复) |\n\n**occ_s0 完整命令行**:\n```\nWANDB_MODE=disabled CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py \\\n  --vla_path /root/autodl-tmp/models/openvla-7b \\\n  --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ \\\n  --dataset_name libero_spatial_no_noops \\\n  --use_l1_regression True --use_diffusion False --use_film False \\\n  --num_images_in_input 2 --use_proprio True --batch_size 8 \\\n  --learning_rate 5e-4 --num_steps_before_decay 100000 --max_steps 50005 \\\n  --save_freq 2500 --image_aug True --lora_rank 32 \\\n  --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach false \\\n  --run_root_dir /root/autodl-tmp/checkpoints/occ_s0 --seed 42\n```\n\n**occ_s1 重启**:\n- 新子进程 PID: **58875**\n- GPU 1: **62194 MiB** ✓ (与 s0/s2 一致，之前错误进程只有 43012 MiB)\n- 速度: **~1.07 it/s** ✓\n- 参数验证: **PASS** — num_images_in_input=2, use_proprio=True, batch_size=8, lora_rank=32, use_occ_head=True, occ_detach=false, seed=43, resume_step=7500\n- 首步 loss: occ_loss=0.0126, action_loss=0.1367"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-p0-occ-s1-fix-correct-server.md"
+}

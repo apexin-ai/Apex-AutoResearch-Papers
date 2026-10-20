@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23b0579189c53b66d160",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ssh check training progress",
+  "task_key": "worker_ssh_check-training-progress_20260527T010000",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-training-progress_20260527T010000_result.json",
+    "occurrence": 1,
+    "bytes": 1293,
+    "sha256": "9de643dbaef8c8553804910411242cddb1b465416f2c91a224cc2aad64ee34d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 张 GPU 全部正常工作，4 个 PID 均存活。\n\n```\nexp_id                | GPU    | step/50005    | occ_loss | action_loss | tqdm剩余     | 速度\n─────────────────────────────────────────────────────────────────────────────────────────────\ndetach_ln_v2_s1       | cuda:0 |  5418/50005 (11%) | 0.0129  | 0.1367     | ~11h19m     | 1.09 it/s\ndetach_ln_s4          | cuda:1 |  5500/50005 (11%) | 0.0118  | 0.1582     | ~11h22m     | 1.09 it/s\nablation_occ_detach_s4| cuda:2 |  2643/50005 ( 5%) | 0.0183  | 0.1445     | ~12h02m     | 1.09 it/s\nmvp_occ_s4            | cuda:3 |  2634/50005 ( 5%) | 0.0119  | 0.1689     | ~12h02m     | 1.09 it/s\n```\n\n**关键信息**:\n- GPU 型号: NVIDIA RTX PRO 6000 Blackwell (96GB), 利用率 48%/99%/99%/96%\n- detach_ln_v2_s1 的 log 文件名是 `detach_ln_v2_s1.log`（非 `_35`）\n- cuda:0 利用率偏低 (48%)，但训练速度与其他 GPU 一致，可能是采样时刻波动\n- 4 个实验预计还需 **11-12 小时**完成。DDL 是 05-28 12:00 UTC，时间较紧——如果当前已过 05-27 00:00 UTC，需确保不中断"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-training-progress.md"
+}

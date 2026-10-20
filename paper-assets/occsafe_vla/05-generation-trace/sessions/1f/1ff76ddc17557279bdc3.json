@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ff76ddc17557279bdc3",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval westd34685 check and launch",
+  "task_key": "worker_eval_westd34685_check_and_launch_20260522T234214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_westd34685_check_and_launch_20260522T234214_result.json",
+    "occurrence": 1,
+    "bytes": 964,
+    "sha256": "db1fac24f457b53b22a82e84003060f45a1052fa92c6ae6e9d63e59b7d477792"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部仍在训练，尚无 `50000_chkpt`，暂不启动 eval。\n\n## 训练状态汇总\n\n| 实验 | 最新 step | 进度 | 最新 checkpoint | 预估剩余 |\n|------|-----------|------|----------------|---------|\n| cutoff_s0 | 46258/50005 | 92% | 40000_chkpt | ~60 min |\n| cutoff_s1 | 48326/50005 | 97% | 40000_chkpt | ~28 min |\n| depth_s0 | 48299/50005 | 97% | 40000_chkpt | ~28 min |\n| depth_s1 | 48164/50005 | 96% | 40000_chkpt | ~31 min |\n\n**最新 loss（来自日志）**：\n- cutoff_s0 (step 46200): occ=0.0102, depth=0.0000, action=0.0371\n- cutoff_s1 (step 48300): occ=0.0090, depth=0.0000, action=0.0598\n- depth_s0 未在可见范围内打印 AUX\n- depth_s1 (step 48100): occ=0.0000, depth=0.0163, action=0.0520\n\n所有实验运行正常，~1 it/s（偶有 IO 抖动导致慢 step）。cutoff_s1/depth_s0/depth_s1 约 30 分钟内完成，cutoff_s0 约 1 小时。需要我稍后回来检查并启动 eval 吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-westd34685-check-and-launch.md"
+}

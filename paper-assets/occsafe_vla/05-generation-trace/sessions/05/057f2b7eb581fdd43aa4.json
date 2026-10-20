@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "057f2b7eb581fdd43aa4",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops check 34685 all gpus",
+  "task_key": "worker_ops_check_34685_all_gpus_20260524T143422",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_34685_all_gpus_20260524T143422_result.json",
+    "occurrence": 1,
+    "bytes": 956,
+    "sha256": "2af854e0d9e1fd6af0333ca67caf5c345f2ef86e921109fc3b506d582610bef5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已修正。汇总如下：\n\n**Report 误报：全4卡满载运行中，非空闲。**\n\n| GPU | exp_id | PID | Step/Total | Progress | Speed | ETA (UTC) |\n|-----|--------|-----|------------|----------|-------|-----------|\n| cuda:0 | cutoff_45k_s1 | 882188 | 5433/50005 | 11% | ~1.07 it/s | ~May 25 02:10 |\n| cuda:1 | cutoff_15k_s1 | 861222 | 7645/50005 | 15% | ~1.07 it/s | ~May 25 01:35 |\n| cuda:2 | cutoff_25k_s1 | 672857 | 49411/50005 | 99% | ~1.06 it/s | ~May 24 14:45 |\n| cuda:3 | reverse_cutoff_s1 | 673004 | 49457/50005 | 99% | ~1.06 it/s | ~May 24 14:45 |\n\n**GPU 使用率**: 80% / 99% / 99% / 43%，显存 62GB/98GB 全卡占用。\n\n**cuda:1 确认**: cutoff_15k_s1，PID 861222 与 registry 一致。\n\n**Registry 修正**: cutoff_15k_s1 的 `gpu_id: 1` 已统一为 `gpu: [\"cuda:1\"]` 格式。cutoff_45k_s1 信息核实无误。\n\n**注意**: cutoff_25k_s1 和 reverse_cutoff_s1 约 10 分钟内完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-34685-all-gpus.md"
+}

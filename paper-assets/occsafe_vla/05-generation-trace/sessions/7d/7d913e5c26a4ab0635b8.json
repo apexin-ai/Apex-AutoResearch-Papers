@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "7d913e5c26a4ab0635b8",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "code occ label gen libero object",
+  "task_key": "worker_code_occ_label_gen_libero_object_20260527T164639",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_occ_label_gen_libero_object_20260527T164639.log",
+    "occurrence": 1,
+    "bytes": 565918,
+    "sha256": "bc4382f791f889b3a3de0c678b5a2c338e4345b0438c12ee06f64fe03d959990"
+  },
+  "statistics": {
+    "messages": 337,
+    "user_turns": 0,
+    "tool_calls": 118,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 97,
+      "tool_call": 118,
+      "tool_result": 118,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 337,
+      "chunks": [
+        {
+          "path": "7d913e5c26a4ab0635b8-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7d913e5c26a4ab0635b8-part-0002.json",
+          "message_count": 157
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-occ-label-gen-libero-object.md"
+}

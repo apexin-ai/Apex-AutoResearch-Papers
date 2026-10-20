@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "353a5585e405d671a3ed",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "research occ gt design",
+  "task_key": "worker_research_occ-gt-design_20260520T040550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_occ-gt-design_20260520T040550.log",
+    "occurrence": 1,
+    "bytes": 597392,
+    "sha256": "cac9282d61927758a2cc7896a70a52b2c123795c19845502b6c1bf6da275e5b6"
+  },
+  "statistics": {
+    "messages": 344,
+    "user_turns": 2,
+    "tool_calls": 111,
+    "roles": {
+      "log": 1,
+      "system": 106,
+      "record": 1,
+      "assistant": 11,
+      "tool_call": 111,
+      "tool_result": 111,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 16,
+      "chunks": [
+        {
+          "path": "353a5585e405d671a3ed-part-0001.json",
+          "message_count": 16
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 9,
+      "chunks": [
+        {
+          "path": "353a5585e405d671a3ed-part-0001.json",
+          "message_count": 9
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 319,
+      "chunks": [
+        {
+          "path": "353a5585e405d671a3ed-part-0001.json",
+          "message_count": 155
+        },
+        {
+          "path": "353a5585e405d671a3ed-part-0002.json",
+          "message_count": 164
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-occ-gt-design.md"
+}

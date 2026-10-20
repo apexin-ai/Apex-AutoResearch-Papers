@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61a3df9773a455e3df7d",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval d051 batch 34685",
+  "task_key": "worker_eval_d051_batch_34685_20260526T080507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_d051_batch_34685_20260526T080507_result.json",
+    "occurrence": 1,
+    "bytes": 858,
+    "sha256": "f52035913c0c3b1e4bd0041be04e441ff488fde59e2dea751d0b8fa16a8d475e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All registry entries updated. Here's the current status:\n\n### Training Metrics (step 50000)\n\n| Experiment | action_loss | occ_loss |\n|---|---|---|\n| detach_bn_v2_s0 (seed 42) | 0.0449 | 0.0095 |\n| detach_bn_v2_s1 (seed 43) | 0.0513 | 0.0089 |\n| detach_bn_v2_s2 (seed 44) | 0.0481 | 0.0094 |\n| full_occ_bn_v2_s1 (seed 43) | 0.0583 | 0.0100 |\n\n### Eval Status (westd-34685)\n\n| Eval | GPU | Progress | ETA |\n|---|---|---|---|\n| detach_bn_v2_s0_eval | cuda:0 | T5 92% | ~30-40 min |\n| detach_bn_v2_s1_eval | cuda:1 | T6 12% | ~30-40 min |\n| detach_bn_v2_s2_eval | cuda:2 | T5 82% | ~35-45 min |\n| full_occ_bn_v2_s1_eval | cuda:3 | T0 0% (just started) | ~90-120 min |\n\nThe first 3 evals should finish in ~30-45 min. full_occ_bn_v2_s1_eval just launched and will take ~1.5-2 hours. All logs at `~/runs/occsafe_vla/<exp_id>.log`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-d051-batch-34685.md"
+}

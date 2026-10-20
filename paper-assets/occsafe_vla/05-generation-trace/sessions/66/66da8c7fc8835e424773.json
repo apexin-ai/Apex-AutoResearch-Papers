@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "66da8c7fc8835e424773",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops diagnose full occ ln v2 s1",
+  "task_key": "worker_ops_diagnose-full_occ_ln_v2_s1_20260526T120622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose-full_occ_ln_v2_s1_20260526T120622_result.json",
+    "occurrence": 1,
+    "bytes": 672,
+    "sha256": "968fe762ea66e70890da41a601ae4aa2def72df23ecd20691424ad057ce6185a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "日志在持续增长（16KB → 20KB），进程 PID 341987 存活。训练刚启动约 7 分钟，当前大约在 step ~400。\n\n**结论：full_occ_ln_v2_s1 并未退出，仍在正常训练中。**\n\n- 进程：PID 341987，GPU 2，62GB 显存，99% 利用率\n- 启动时间：20:01:53（约 7 分钟前）\n- 当前状态：正在训练中，进度条通过 `\\r` 覆写使得日志文件看起来很小\n- 无任何错误或异常\n- Checkpoint 目录已创建但尚无模型权重（save_freq=10000，还早）\n\n同样 full_occ_ln_v2_s0（PID 341771，GPU 1）也在运行中。\n\n不需要更新 registry 或删除 cron，训练仍在进行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-full-occ-ln-v2-s1.md"
+}

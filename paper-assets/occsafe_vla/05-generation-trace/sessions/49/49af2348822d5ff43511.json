@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49af2348822d5ff43511",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose westd 34685 gpu zero",
+  "task_key": "worker_diagnose_westd-34685-gpu-zero_20260522T174147",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_westd-34685-gpu-zero_20260522T174147_result.json",
+    "occurrence": 1,
+    "bytes": 1151,
+    "sha256": "8773633b3de5a3b3dc250b8607b7732508aeeb71f541a3cd91c860aca31b80cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**误报，4 个实验全部健康运行。**\n\n## 诊断结果\n\n| 实验 | GPU | 利用率 | 显存 | 当前 step | 进度 | 速度 | 最新 checkpoint | 最新 loss |\n|------|-----|--------|------|-----------|------|------|----------------|-----------|\n| cutoff_s0 | cuda:0 | 98% | 62203/97887 MiB | ~28546 | 57% | ~1.07 it/s | 20000 | occ=0.0093, action=0.1016 |\n| depth_s0 | cuda:1 | 25% | 62203/97887 MiB | ~30530 | 61% | ~1.05 it/s | 30000 | depth=0.0298, action=0.0728 |\n| depth_s1 | cuda:2 | 99% | 62203/97887 MiB | ~30457 | 61% | ~1.03 it/s | 30000 | depth=0.0223, action=0.0864 |\n| cutoff_s1 | cuda:3 | 99% | 62209/97887 MiB | ~30552 | 61% | ~1.06 it/s | 30000 | occ=0.0109, action=0.0869 |\n\n**结论：**\n- 4 个进程全部存活，GPU 利用率正常（GPU 1 的 25% 是 checkpoint 保存期间的瞬时读数，日志显示 depth_s0 在 step ~30486 附近有 ~10s 的保存延迟，与读数一致）\n- cutoff_s0 进度稍落后（28.5k vs 30.5k），因为它是最后启动的（PID 最大），正常追赶中\n- Loss 值合理，训练正常推进\n- 预计剩余时间：cutoff_s0 ~5.5h，其余 3 个 ~5h"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-westd-34685-gpu-zero.md"
+}

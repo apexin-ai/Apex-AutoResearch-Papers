@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c72d7e21ffad1dfeacde",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops westd34685 post completion",
+  "task_key": "worker_ops_westd34685_post_completion_20260523T172945",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd34685_post_completion_20260523T172945_result.json",
+    "occurrence": 1,
+    "bytes": 2327,
+    "sha256": "8a9eedb8f4a308d7778190c1b188e736a13ef1fe08b97b45c94d1ad255650a5e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "代码确认 cutoff 语义（finetune.py:94-95, 1165-1170）：\n\n```python\n# \"after\": zero occ loss after cutoff_step\n# \"before\": zero before, enable after\nif cfg.occ_loss_cutoff_mode == \"before\":\n    occ_weight_now = 0.0 if batch_idx < cfg.occ_loss_cutoff_step else base_weight\nelse:  # \"after\"\n    occ_weight_now = base_weight if batch_idx < cfg.occ_loss_cutoff_step else 0.0\n```\n\n`after` = 在 cutoff_step **之后** occ_loss 权重归零（前 N 步有 occ，之后无）。用户命令中 `--occ_loss_cutoff_mode after` 对 cutoff_15k_s0 是正确的。\n\ncutoff_25k_s0 在 step 41800 显示 occ_loss=0.0118 是因为 OCC head 仍在前向传播计算 loss 值并记录，但 weight=0.0 不参与反向传播。\n\n---\n\n## 报告\n\n### 1. 实验状态：全部仍在运行，无完成/崩溃\n\n| 实验 | 进度 | GPU | 预计剩余 |\n|------|------|-----|----------|\n| vanilla_retrain_s0 | 48647/50005 (97%) | 0 | ~21 min |\n| full_occ_retrain_s0 | 48421/50005 (97%) | 1 | ~24 min |\n| reverse_cutoff_s0 | 41751/50005 (83%) | 2 | ~2.2 h |\n| cutoff_25k_s0 | 41829/50005 (84%) | 3 | ~2.1 h |\n\nGPU util=0% 是瞬时采样误差，17 个 finetune 进程活跃。\n\n### 2. Registry 更新：无需操作\n无实验完成，无需更新。\n\n### 3. Eval 提交：等待完成\nreverse_cutoff_s0 和 cutoff_25k_s0 均在 83-84%，约 2 小时后完成。\n\n### 4. 梯度分析：等待完成\nvanilla_retrain_s0 和 full_occ_retrain_s0 约 20-25 分钟后完成，完成后可启动。\n\n### 5. cutoff_15k_s0：等待 GPU 释放\nGPU 1 被 full_occ_retrain_s0 占用，~24 min 后释放。`--occ_loss_cutoff_mode after` 语义已确认正确（前 15K 步有 occ loss，之后归零）。\n\n### Checkpoint 路径（当前最高 40K）\n- `/root/autodl-tmp/checkpoints/vanilla_retrain_s0/openvla-7b+...--40000_chkpt`\n- `/root/autodl-tmp/checkpoints/full_occ_retrain_s0/openvla-7b+...--40000_chkpt`\n- `/root/autodl-tmp/checkpoints/reverse_cutoff_s0/openvla-7b+...--40000_chkpt`\n- `/root/autodl-tmp/checkpoints/cutoff_25k_s0/openvla-7b+...--40000_chkpt`\n\n**建议：** ~25 分钟后重新检查 vanilla_retrain_s0 和 full_occ_retrain_s0 完成状态，启动梯度分析和 cutoff_15k_s0。~2.5 小时后检查 reverse_cutoff_s0 和 cutoff_25k_s0 完成状态，提交 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd34685-post-completion.md"
+}

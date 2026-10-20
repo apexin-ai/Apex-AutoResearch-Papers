@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b12de45ed69d9aa4e69e",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra occ learning curve diagnostic eval",
+  "task_key": "worker_infra_occ-learning-curve-diagnostic-eval_20260521T081403",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_occ-learning-curve-diagnostic-eval_20260521T081403_result.json",
+    "occurrence": 1,
+    "bytes": 2035,
+    "sha256": "fa5057a2e3ba63e5538dc1698e353ea9ee3b95e3cc70a73fe366709cf724c96f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:0 和 cuda:2 已释放。\n\n## OCC Learning Curve 诊断结果\n\n### 可用 checkpoint\n- occ_s0: 47500_chkpt（已有结果）、50000_chkpt（本次 eval）。**无更早 checkpoint**（rotation 已删除）\n- occ_s2: 47500_chkpt（已有结果）、50000_chkpt（本次 eval）。**无更早 checkpoint**\n- occ_s1: 有 17500/20000/25000 早期 checkpoint（不在本次 eval 范围）\n\n### Eval 结果对比\n\n| Seed | Checkpoint | TSR | CAR | Collisions/200 |\n|------|-----------|-----|-----|----------------|\n| s0 | 47500_chkpt | 91.0% | 73.0% | 54 |\n| **s0** | **50000_chkpt** | **91.5%** | **80.0%** | **40** |\n| s2 | 47500_chkpt | 91.5% | 76.5% | 47 |\n| **s2** | **50000_chkpt** | **85.0%** | **73.0%** | **54** |\n\n### Hard-task 对比 (T3/T5/T6)\n\n| Task | s0@47500 | s0@50000 | Δ | s2@47500 | s2@50000 | Δ |\n|------|----------|----------|---|----------|----------|---|\n| T3 TSR | 0.95 | 1.00 | +0.05 | 1.00 | 1.00 | 0 |\n| T3 CAR | **0.20** | **0.80** | **+0.60** | **0.35** | **0.00** | **-0.35** |\n| T5 TSR | 0.75 | 0.45 | -0.30 | 0.40 | 0.35 | -0.05 |\n| T5 CAR | 0.20 | 0.15 | -0.05 | 0.10 | 0.10 | 0 |\n| T6 TSR | 1.00 | 0.95 | -0.05 | 0.95 | 0.95 | 0 |\n| T6 CAR | 0.25 | 0.35 | +0.10 | 0.35 | 0.35 | 0 |\n\n另外 s2 出现意外退化：**T4 TSR 从 1.00→0.40**（drawer 任务崩溃）。\n\n### 趋势判断\n- **High variance, no clear monotonic trend**\n- s0 在 47500→50000 期间 CAR 显著改善（73%→80%），主要由 T3 的 CAR 暴涨驱动（0.20→0.80）\n- s2 同期全面退化（TSR 91.5%→85.0%, CAR 76.5%→73.0%），T3 CAR 崩溃至 0.00，T4 TSR 崩溃至 0.40\n- T5 对两个 seed 都持续困难（CAR≤0.15），是最难的安全任务\n- **结论**：CAR 退化不是系统性的训练趋势，而是 seed-dependent 的不稳定性。OCC head 的学习在 hard tasks 上表现出 high variance，需要更多 checkpoint 和 seed 才能下结论。occ_s1 的早期 checkpoint（17500-25000）是诊断早期训练行为的唯一可用资源。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-occ-learning-curve-diagnostic-eval.md"
+}

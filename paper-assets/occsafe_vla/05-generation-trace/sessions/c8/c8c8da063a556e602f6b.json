@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c8c8da063a556e602f6b",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code sync to 10894",
+  "task_key": "worker_code_sync-to-10894_20260528T181341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sync-to-10894_20260528T181341_result.json",
+    "occurrence": 1,
+    "bytes": 248,
+    "sha256": "c8b4fcbbd9beb466b47571466edb57c39ed8879174e6fa573457a5bc02d60273"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成：\n\n- **34685** md5: `188d7f040bd2d4d65ae764ff26ac2db5`\n- **10894** md5: `188d7f040bd2d4d65ae764ff26ac2db5`\n- 语法验证: Syntax OK\n\ngit push 因 GitHub 认证失败，改用本机 scp 中转，文件已一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sync-to-10894.md"
+}

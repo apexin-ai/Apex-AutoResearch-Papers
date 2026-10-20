@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da9314de4f855f957216",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_8_1780047992.md",
+  "task_key": "loop_8_1780047992",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1780047992.md",
+    "occurrence": 1,
+    "bytes": 2680,
+    "sha256": "aab66c83b6728238eacf690b8e5032d22d349b76a330864255051f1543b7119a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-29T03:33:00+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-10894 cuda:0/1/2/3 + westd-34685 cuda:0/1/2/3，共 8 张。白名单外的 GPU 即使 Director 指令也必须 push back\n- **DDL 已过**：SafeRL Workshop @ RSS 2025 Paper DDL 是 May 28 12:00 UTC，现在是 May 29。项目处于 post-DDL 状态，除非 Director 明确指示新目标，否则不启动新实验\n- Cell 4 (Detach LN) v2 数据：n=4 已确认（s1_35/s0c_r3/s2/s3），s4 OOM 失败不纳入。Director 决策 D075 明确\"不纳入第 4+ seed\"——不要自作主张扩种子\n- 论文已 revert 到 paper-final-check 版本（D076），不要基于旧版本改动\n\n### 2. 🖥️ 基础设施快照\n- 服务器 westd-10894：4×RTX PRO 6000 98GB，磁盘 ~74G free\n- 服务器 westd-34685：4×RTX PRO 6000 98GB，磁盘 ~148G free\n- 两台服务器均使用 aml-train 镜像（conda 环境，Python 在 /root/miniconda3/bin/）\n- 训练工作目录：~/runs/occsafe_vla/\n- 活跃进程：无。全部 8 GPU 空闲，0 个 Worker，0 个 cron\n\n### 3. 📊 当前状态\n刚处理 detach_ln_v2_s4 的 cron 失败回调。原因：westd-10894 系统 RAM OOM 连杀 3 个实验（s4 在 step 45085/50005 即 90%）。已向 Director 汇报，结论：非关键，Cell 4 n=4 足够。\n\nRegistry 概况：160 个实验，成功 112 / 负向 6 / 失败 27。无 RUNNING/PREPARING 实验。无等待中的 Worker/Cron/Director 决策。\n\n关键 Cell 4 v2 eval 结果：s1_35 CAR=0.826, s0c_r3 CAR=0.802, s2 CAR=0.784, s3 CAR=0.778（均值 ~0.798±0.022）\n\n### 4. 📋 待办\n- Director 回复 post-DDL 方向 → 按指示行动（可能是 camera-ready 修订、新会议投稿、或项目暂停）\n- 若 Director 要求恢复 s4 → westd-10894 有 45000 checkpoint 可 resume，但需先确认 OOM 根因（同时跑太多实验导致 RAM 不足）\n- 若 Director 要求 libero_object benchmark 数据 → vanilla_object_s0/s1 训练完成状态需确认（s2 被 OOM 杀）\n\n### 5. 🎯 战略上下文\n- 核心 claim：gradient flow 是 OCC auxiliary head 损害安全性能的根源，detach 后 aux head 无害（≈ Vanilla）\n- Framing 经历 D074 shift：从 \"ordinal interaction\" 到 \"dual mechanism\"（BN-specific gradient harm + LN normalization 主效应）\n- BN 行是核心论证（Cell 1 n=3 + Cell 3 n=4），LN 行是 secondary finding（D073）\n- 易错点：v1 和 v2 数据严格分开，Director 决策不纳入 v1 detach 数据到 v2 分析。不要混用\n- 大量 failed/killed 实验（告警区 40+ 条）是 v2 迭代过程中的正常损耗（环境问题、OOM、被手动 kill），不需要逐一诊断\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1780047992.md"
+}

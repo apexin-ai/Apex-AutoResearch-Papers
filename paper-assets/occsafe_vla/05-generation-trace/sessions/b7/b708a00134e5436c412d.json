@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b708a00134e5436c412d",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_5_1779878173.md",
+  "task_key": "loop_5_1779878173",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1779878173.md",
+    "occurrence": 1,
+    "bytes": 4344,
+    "sha256": "824497dc6d135fa0e7b395b64e21364724d8297d7ab63603eb4a89d581243463"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-27T10:23:13+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-10894 cuda:0/1/2/3 + westd-34685 cuda:0/1/2/3，共 8 张，不可用其他\n- v1 数据已被推翻（D056/D057），所有 factorial ANOVA 必须用 v2 数据，v1 梯度分析结论（gradient collapse/CKA degradation）不可引用\n- detach_ln_s3（34685:cuda:2）虽无 \"_v2\" 后缀，但 Reviewer 已确认 34685 repo 是 v2 代码，可作 Cell 4 v2 数据\n- Paper 提交 deadline May 29（CoRL 2026），用户自行提交（D058）\n- 梯度分析必须遵守 D057 约束：v2 用 patch_features 接口，不能复用 v1 方法\n\n### 2. 🖥️ 基础设施快照\n- **westd-10894**：工作目录 `/root/occsafe_vla/openvla-oft`，conda env `occsafe`（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`），磁盘 50% used（425GB 可用）\n- **westd-34685**：同上结构，磁盘 2% used（819GB 可用）\n- 模型：`/root/autodl-tmp/models/openvla-7b`\n- 数据集：`/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops`\n- OCC 数据：`/root/occsafe_vla/occ_data`\n- Checkpoint 根目录：`/root/autodl-tmp/checkpoints/{exp_id}/`\n- WANDB_MODE=disabled（所有实验）\n\n### 3. 📊 当前状态\n**刚发生的事**：收到 cron 回调——`detach_ln_v2_s0`（10894:cuda:3）和 `full_occ_ln_v2_s0`（10894:cuda:1）都以 EXIT_CODE=1 失败。已派诊断 Worker（`worker_diagnose_detach_ln_v2_s0_full_occ_ln_v2_s0_20260526T180318`）去读日志，**尚未收到回调**。\n\n**RUNNING 实验**（6 个）：\n| exp_id | server:gpu | 内容 | ETA |\n|--------|-----------|------|-----|\n| reverse_cutoff_s2_v2 | 10894:0 | Reverse cutoff seed 44 | May 27 ~07:00 |\n| full_occ_ln_v2_s1 | 10894:2 | Cell 2 v2 seed 43 | May 27 ~11:50 |\n| vanilla_v2_s1 | 34685:0 | Vanilla seed 43 | May 27 ~06:20 |\n| vanilla_v2_s2 | 34685:1 | Vanilla seed 44 | May 27 ~06:20 |\n| detach_ln_s3 | 34685:2 | Cell 4 v2 seed 45 | May 27 ~06:20 |\n| cutoff_25k_s1_v2 | 34685:3 | Cutoff 25k seed 43 | May 27 ~06:20 |\n\n**空闲 GPU**：10894:cuda:1 和 10894:cuda:3（因上述两个实验失败）\n\n**等待中**：\n- 诊断 Worker 回调 → 根据失败原因决定重启策略\n- 34685 四个实验 ~May 27 06:20 完成 → 4 个 eval + 4 个 n=5 expansion\n- 10894 训练完成后 → eval + detach_ln_v2_s1 启动\n\n### 4. 📋 待办（条件触发式）\n- 诊断 Worker 回调到达 → 根据失败原因（OOM/磁盘满/代码bug）修复并在 10894:cuda:1 和 cuda:3 重启 `full_occ_ln_v2_s0` 和 `detach_ln_v2_s0`，向 Director 汇报\n- 34685 四个训练完成（~06:20 UTC）→ 派 Worker 跑 4 个 eval（vanilla_v2_s1_eval, vanilla_v2_s2_eval, detach_ln_s3_eval, cutoff_25k_s1_v2_eval）\n- 34685 eval 全部完成 → 启动 4 个 n=5 expansion（detach_ln_s4, ablation_occ_detach_s4, full_occ_ln_s4, mvp_occ_s4）\n- reverse_cutoff_s2_v2 完成（10894:0, ~07:00）→ eval，然后 10894:0 启动 detach_ln_v2_s1\n- 10894:cuda:1/2/3 训练全部完成（~11:50）→ eval，然后可用于更多 n=5 expansion\n- 全 v2 factorial 数据齐全（~May 27 23:00）→ 确认性 2×2 ANOVA → 向 Director 汇报\n- Paper Agent 可随时启动（Intro/Method/RW 不依赖最终数据）— 等 Director 指令\n\n### 5. 🎯 战略上下文\n- **核心结论**（Plan B, D058）：ordinal interaction —— 所有 OCC 配置 ≤ Vanilla；Detach BN ≈ Vanilla（d=-0.06, p=0.91）；Full OCC（gradient ON）显著更差；BN vs LN 无交叉\n- **v2 factorial 表**：Cell 1（Full OCC BN）n=3 ✅, Cell 2（Full OCC LN）有 1 个 v2 点 + 2 个 v2 训练中, Cell 3（Detach BN）n=4 ✅, Cell 4（Detach LN）0 个 v2 完成（s0 刚失败，s3 训练中），Vanilla 有 1 个 v2 + 2 个训练中\n- **易错点**：\n  - `detach_ln_v2_s0` 和 `full_occ_ln_v2_s0` 的 retry_count=1，说明这已经是第二次失败，诊断时要注意是否是系统性问题（如 10894 特定 GPU 硬件故障）而非偶发\n  - Cell 1 s1=0.654 可能是 outlier，partial ANOVA 如果排除它则 gradient 效应大幅缩小——不要轻易排除，等 n=5 数据自然稀释\n  - 机制证据目前只有梯度正交性（cosine≈0）+ 方差不对称（6.88×），v1 的 gradient collapse 和 CKA degradation 已被推翻，v2 梯度分析方案需要 Director 审批（D057 约束）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1779878173.md"
+}

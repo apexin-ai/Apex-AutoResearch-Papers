@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d15858afda9d28b0eea9",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diag occ prep status",
+  "task_key": "worker_diag_occ_prep_status_20260520T093127",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_occ_prep_status_20260520T093127_result.json",
+    "occurrence": 1,
+    "bytes": 2828,
+    "sha256": "ca58925988b7ac1ce6b99f9363101567911cc575cc8d7d843407d663774d8fb3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已足够，以下是完整报告。\n\n---\n\n## A. Occ GT 数据提取进度\n\n**脚本**：`/root/occsafe_vla/occ_pipeline/extract_occupancy.py`\n- 目标：`libero_spatial` benchmark，10 个 task，每 task 50 demos\n- 产出：`occ_{task}.hdf5`（bev_binary 64x64 bool + bev_semantic 64x64 uint8）\n\n**产出状态**：\n\n| # | 文件 | 大小 | 状态 |\n|---|------|------|------|\n| 1-9 | 9 个 task 的 HDF5 | 2.3-2.6 MB | 正常 |\n| 10 | wooden_cabinet | **1.3 MB** | **可疑（约为正常值一半）** |\n\n- `occ_index.json` 已生成，覆盖全部 10 task × 50 demos\n- 文件时间戳：全部 May 20 17:24-17:28\n\n**完成度估计：~95%**（9/10 完整，wooden_cabinet 需验证是否 demo 不全）\n\n**SIGSTOP 进程**：10 个 python 进程处于 `T`（stopped）状态，GPU 0 占用 68.7 GB 显存。\n\n---\n\n## B. BEV Aux Head 代码就绪状态\n\n**全部已实现，无缺失模块。** 详细清单：\n\n| 组件 | 文件 | 行号 | 状态 |\n|------|------|------|------|\n| BEVOccupancyHead 模型 | `prismatic/models/occ_head.py` | 全文 | Done |\n| FocalLoss (alpha=0.25, gamma=2.0) | `prismatic/models/occ_head.py` | 全文 | Done |\n| 训练配置项 (use_occ_head, occ_loss_weight, occ_detach 等) | `finetune.py` | L90-95 | Done |\n| 训练循环 loss 计算 | `finetune.py` | L464-473 | Done |\n| Loss weight 指数衰减 | `finetune.py` | L1107-1109 | Done |\n| Occ head 初始化 + DDP 封装 | `finetune.py` | L970-987 | Done |\n| Optimizer 参数注册 | `finetune.py` | L997-998 | Done |\n| Checkpoint 保存 | `finetune.py` | L684-685 | Done |\n| Dataset occ label 加载 | `datasets.py` | L41-205 | Done |\n| occ_index.json 构建脚本 | `build_occ_index.py` | 全文 | Done |\n| 单元测试 | `test_occ_loader.py`, `verify_occ_fix.py` | 全文 | Done |\n\n---\n\n## C. 阻塞项清单\n\n1. **wooden_cabinet HDF5 可能不完整** — 1.3MB vs 其他 2.3-2.6MB，无法在 read-only 下运行 h5py 验证 demo 数量（conda env python3.10 不在白名单）\n2. **GPU 0 被 10 个 SIGSTOP 进程锁住 68.7GB 显存** — 数据已基本提取完毕，这些进程只是占着内存\n3. **无代码缺失** — 模型、数据管道、训练循环、配置项全部就绪\n\n---\n\n## 建议\n\n- **Kill GPU 0 的 10 个 SIGSTOP 进程**，释放 68.7GB 显存。数据已产出，无需 SIGCONT。\n- **验证 wooden_cabinet 文件**：用 `conda activate occsafe && python -c \"import h5py; f=h5py.File('...wooden_cabinet...','r'); print(len(f['data'].keys()))\"` 确认 demo 数量。如果不完整，在 GPU 3 上 `python extract_occupancy.py --task_id 9` 单独补跑（几分钟即可）。\n- **Vanilla 训练完成后**，直接启动 mvp_occ：`--use_occ_head --occ_data_dir /root/occsafe_vla/occ_data`，无需额外代码开发。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-occ-prep-status.md"
+}

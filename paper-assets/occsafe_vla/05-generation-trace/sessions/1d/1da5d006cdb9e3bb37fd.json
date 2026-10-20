@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1da5d006cdb9e3bb37fd",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "audit gpu status 10894",
+  "task_key": "worker_audit_gpu-status-10894_20260527T193538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_gpu-status-10894_20260527T193538_result.json",
+    "occurrence": 1,
+    "bytes": 1005,
+    "sha256": "df33253a5898f397652dfa01880fba73eea321b7c9571cb402a1a3b430d39f3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n[UTC时间确认: 2026-05-27 ~19:35 UTC]\n(推算自服务器 sshd 进程时间戳 May28 03:35 UTC+8)\n\nGPU 0: vanilla_object_s1 — step 6692/50005 (13.4%) — 0.93 sec/step (1.07 it/s) — ETA: ~06:50 UTC May 28 — DDL余量 +5h10m\nGPU 1: IDLE (0% GPU util, 0 MiB VRAM)\nGPU 2: detach_ln_v2_s0c_r3 — step 37888/50005 (75.8%) — 0.93 sec/step (1.08 it/s) — ETA: ~22:42 UTC May 27 — DDL余量 +13h18m\nGPU 3: full_occ_ln_s4 — step 36107/50005 (72.2%) — 0.93 sec/step (1.07 it/s) — ETA: ~23:12 UTC May 27 — DDL余量 +12h48m\n\n异常: 无\n```\n\n**补充说明**：\n- **detach_ln_v2_s0c_r3**: 与预估 ~22:46 UTC 完成基本吻合，最新 checkpoint 30000 已保存\n- **full_occ_ln_s4**: step 单调递增（33201→36107），无回退问题，最新 checkpoint 30000 已保存，`occ_loss=0.0089, action_loss=0.0613`（step 36100）\n- **vanilla_object_s1**: 刚过 5000 checkpoint（已保存），稳定推进\n- 三个实验均在 DDL 前完成，无风险"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-gpu-status-10894.md"
+}

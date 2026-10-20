@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "f108ec9efb1f3742ecad",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "analysis gradient dose response s0",
+  "task_key": "worker_analysis_gradient_dose_response_s0_20260525T072629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gradient_dose_response_s0_20260525T072629.log",
+    "occurrence": 1,
+    "bytes": 860927,
+    "sha256": "e55cdaaa125e3d711dd79939f57b8c0ab776597df6cea6d6ef7a88bce10ba14b"
+  },
+  "statistics": {
+    "messages": 264,
+    "user_turns": 0,
+    "tool_calls": 98,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 64,
+      "tool_call": 98,
+      "tool_result": 98,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 264,
+      "chunks": [
+        {
+          "path": "f108ec9efb1f3742ecad-part-0001.json",
+          "message_count": 161
+        },
+        {
+          "path": "f108ec9efb1f3742ecad-part-0002.json",
+          "message_count": 103
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-gradient-dose-response-s0.md"
+}

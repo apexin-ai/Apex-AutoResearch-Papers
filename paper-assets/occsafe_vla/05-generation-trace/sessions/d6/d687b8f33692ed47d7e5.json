@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d687b8f33692ed47d7e5",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "fix 34685 maxsteps correction",
+  "task_key": "worker_fix_34685-maxsteps-correction_20260527T213720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_34685-maxsteps-correction_20260527T213720_result.json",
+    "occurrence": 1,
+    "bytes": 487,
+    "sha256": "76ac7987ba3b6f385583a105809a5f79ec106366f0bf3242bbfe68d703c43d4e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 张 GPU 满载运行。\n\n```\ndetach_ln_v2_s2:\n  旧进程 killed: kill -9 + 确认 0 残留进程\n  新 max_steps: 35005\n  tqdm 显示: 10/35005 ✅\n  当前 step: 10\n  训练中: 是\n\nvanilla_object_s0:\n  旧进程 killed: kill -9 + 确认 0 残留进程\n  新 max_steps: 40005\n  tqdm 显示: 7/40005 ✅\n  当前 step: 7\n  训练中: 是\n\ncuda:2/3 未受影响: ✅ (full_occ_ln_v2_s3 + detach_ln_v2_s3 持续运行，GPU 利用率 95-99%)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-34685-maxsteps-correction.md"
+}

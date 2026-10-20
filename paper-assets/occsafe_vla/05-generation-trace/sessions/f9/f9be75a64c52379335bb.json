@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "f9be75a64c52379335bb",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "prepare eval cka scripts",
+  "task_key": "worker_prepare_eval_cka_scripts_20260525T193228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prepare_eval_cka_scripts_20260525T193228.log",
+    "occurrence": 1,
+    "bytes": 541678,
+    "sha256": "79f36d935c489bd5788f9a8d40a19e315e3b056a3393a637413c87cd549ed967"
+  },
+  "statistics": {
+    "messages": 242,
+    "user_turns": 0,
+    "tool_calls": 96,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 46,
+      "tool_call": 96,
+      "tool_result": 96,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 242,
+      "chunks": [
+        {
+          "path": "f9be75a64c52379335bb-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f9be75a64c52379335bb-part-0002.json",
+          "message_count": 62
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/prepare-eval-cka-scripts.md"
+}

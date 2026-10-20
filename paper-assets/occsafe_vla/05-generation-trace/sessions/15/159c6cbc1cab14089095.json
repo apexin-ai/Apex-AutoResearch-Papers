@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "159c6cbc1cab14089095",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "train resume full occ ln s1 s2",
+  "task_key": "worker_train_resume_full_occ_ln_s1_s2_20260524T175923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_resume_full_occ_ln_s1_s2_20260524T175923_result.json",
+    "occurrence": 1,
+    "bytes": 612,
+    "sha256": "2f78ec56d97603ce179c8ef4860670809f4556a5c8c13f67212b69892cc40bda"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两个实验已从 20000 步 checkpoint 恢复训练，registry 已更新为 RUNNING。\n\n| 实验 | GPU | seed | PID | log |\n|------|-----|------|-----|-----|\n| full_occ_ln_s1 | cuda:2 | 43 | 777222 | /root/runs/occsafe_vla/full_occ_ln_s1_resume.log |\n| full_occ_ln_s2 | cuda:3 | 44 | 777428 | /root/runs/occsafe_vla/full_occ_ln_s2_resume.log |\n\n- Checkpoint 加载已验证：proprio_projector, action_head, occ_head 均从 20000 步恢复\n- 训练速度 ~1.05 it/s，剩余 30005 步，预计 ~8 小时完成\n- 将在 log_step 30000/40000/50000 保存 checkpoint，50005 停止"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-resume-full-occ-ln-s1-s2.md"
+}

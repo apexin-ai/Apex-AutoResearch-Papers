@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dda26559d2fc896ba212",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis post training pipeline",
+  "task_key": "worker_analysis_post_training_pipeline_20260525T085449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_post_training_pipeline_20260525T085449_result.json",
+    "occurrence": 1,
+    "bytes": 1227,
+    "sha256": "ffbca0c33287fe2f5e1b1d5870d5fab5114ea9fcce4d6860a83e0ff104bb132b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All outputs verified. Script works end-to-end:\n\n**Created**: `/root/autodl-tmp/analysis/post_eval_analysis.py`\n\n**Features**:\n- 28 prior results embedded from both westd-10894 and westd-34685 evaluations\n- `--dry-run` uses prior data only (tested, passes)\n- `--eval-dir <path>` merges new eval JSONs (from 4 upcoming experiments)\n- `--no-prior` to start fresh from JSONs only\n- `--metric TSR|CAR` for plot selection\n\n**Outputs (verified)**:\n- `comprehensive_results.csv` — 28 rows, 12 conditions, all TSR/CAR/collisions/episodes\n- `seed_stats_summary.csv` — per-condition mean±SE\n- `dose_response_car_3seed.pdf/png` — dose-response curve with error bands, filled/hollow markers\n- `factorial_diagnostics.txt` — 2×2 table, main effects, narrative impact\n\n**After training+eval on 34685 completes**, usage:\n```bash\n# Copy eval JSONs from 34685 to 10894\nscp westd-34685:/root/occsafe_vla/artifacts/safelibero_*_2026052*.json /tmp/new_evals/\n\n# Run analysis\npython post_eval_analysis.py --eval-dir /tmp/new_evals/\n```\n\nCurrent state: Cutoff_15K/25K at 2 seeds, Cutoff_45K at 1, Reverse_Cutoff at 2. After the 4 new experiments, 15K/25K/Reverse will reach 3 seeds, 45K will reach 2."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-post-training-pipeline.md"
+}

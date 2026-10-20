@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "94045dc4a4a4190323bb",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "paper writing experiments setup fix",
+  "task_key": "worker_paper_writing_experiments_setup_fix_20260520T204105",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_experiments_setup_fix_20260520T204105_result.json",
+    "occurrence": 1,
+    "bytes": 1985,
+    "sha256": "cda26271a4dff043cc691b328304eaf267b67b84f71745b63d6e3e4053592bad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Edit applied. Here's the report:\n\n## 代码提取值（逐项）\n1. occ_loss_weight: **0.01** (finetune.py:L93)\n2. focal_alpha: **0.25** (occ_head.py:L47 FocalLoss default)\n3. focal_gamma: **2.0** (occ_head.py:L47 FocalLoss default)\n4. occ_grid_size: **64** (finetune.py:L96 `occ_resolution`)\n5. lora_rank: **32** (finetune.py:L119)\n6. learning_rate: **5e-4** (finetune.py:L101)\n7. lr_scheduler: **MultiStepLR**, milestone=[100K], gamma=0.1 (finetune.py:L1007-L1011); max_steps=50K so decay never fires → effectively constant LR\n8. max_steps: **200K default** (finetune.py:L105), overridden to **50K** in actual runs (training log tqdm: `13701/50005`)\n9. batch_size: **8** (finetune.py:L99)\n10. occ_loss_decay_steps: **50000** (finetune.py:L94); formula: `occ_loss_weight * exp(-step/50000)` (finetune.py:L1110)\n11. occ_head 架构: Linear(in_dim→256) → reshape(B,256,16,16) → ConvTranspose2d(256→128,k4s2p1) → BN → GELU → ConvTranspose2d(128→64,k4s2p1) → BN → GELU → Conv2d(64→1,k1) (occ_head.py:L18-L28)\n12. GPU: **NVIDIA RTX PRO 6000 Blackwell Server Edition, 98GB** (nvidia-smi)\n13. 训练时间: **~13h** (training log: ~1.09 it/s × 50K steps ≈ 12.7h)\n\n## 6 处修正对照\n\n| # | 参数 | 旧值(错误) | 新值(代码) | 代码行号 |\n|---|------|-----------|-----------|---------|\n| 1 | occ_loss_weight | 0.1 | 0.01 | finetune.py:L93 |\n| 2 | focal_alpha | 0.75 | 0.25 | occ_head.py:L47 |\n| 3 | occ_head arch | two-layer MLP (256 hidden) | Conv decoder: Linear→reshape→2×ConvTranspose2d→Conv2d | occ_head.py:L18-L28 |\n| 4 | GPU | A100 | NVIDIA RTX PRO 6000 | nvidia-smi |\n| 5 | training time | 17h | ~13h | training log (1.09 it/s) |\n| 6 | lr_schedule | cosine decay | fixed (MultiStepLR milestone at 100K, beyond 50K max_steps) | finetune.py:L1007-L1011 |\n\n额外补充：添加了 occ loss 指数衰减描述（$\\lambda_\\text{occ}$ 从 0.01 起，时间常数 τ=50K），原稿完全遗漏。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-experiments-setup-fix.md"
+}

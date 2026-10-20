@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0bcfeb0abc736880ad68",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops cleanup 34685 exec",
+  "task_key": "worker_ops_cleanup_34685_exec_20260529T103214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup_34685_exec_20260529T103214_result.json",
+    "occurrence": 1,
+    "bytes": 957,
+    "sha256": "edb2ce0af09fcf1018f32731ebc7f10460570fa1c00ecba295f06e630916c018"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 清理汇报\n\n### 每步释放量\n\n| # | 目录 | 操作 | 释放 |\n|---|------|------|------|\n| 1 | `full_occ_bn_v2_s2/` | DEL-ALL | ~44G |\n| 2 | `full_occ_bn_v2_s2_r2/` | DEL-ALL | ~15G |\n| 3-4 | `full_occ_bn_v2_s2_r3/`, `r4/` | DEL-ALL | ~0 (空目录) |\n| 5 | `detach_bn_v2_s3/`, `full_occ_bn_v2_s4/`, `full_occ_ln_v2_s0c/`, `vanilla_v2_s3/` | DEL-ALL | ~0 (空目录) |\n| 6 | `detach_ln_v2_s2/` | DEL-MID (保留 50000_chkpt) | ~45G |\n| 7 | `detach_ln_v2_s3/` | DEL-MID (保留 50000_chkpt) | ~29G |\n| 8 | `full_occ_ln_v2_s3/` | DEL-MID (保留 50000_chkpt) | ~16G |\n| 9 | `vanilla_object_s0/` | DEL-MID (保留 25000_chkpt) | ~30G |\n\n### 总结\n\n- **总释放量**: ~179G（316G → 137G）\n- **最终磁盘**: 137G/350G used (40%)，可用 214G\n- **`full_occ_bn_v2_s2_r5/` 完好**: 包含 base + 20000/30000/40000 三个 checkpoint，未受影响\n- 剩余目录：5 个实验目录（含 r5）+ 6 个 log 文件"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-34685-exec.md"
+}

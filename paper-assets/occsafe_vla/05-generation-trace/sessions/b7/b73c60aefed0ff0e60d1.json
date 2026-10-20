@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b73c60aefed0ff0e60d1",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis scp and cka full dose response",
+  "task_key": "worker_analysis_scp_and_cka_full_dose_response_20260525T072609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_scp_and_cka_full_dose_response_20260525T072609_result.json",
+    "occurrence": 1,
+    "bytes": 1314,
+    "sha256": "ac2aed511db99c49eeae409307b40d69f95d957efa6055f8a2b58ec7bbbac098"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Phase 1 结果：s0 cutoff checkpoints 全部不存在\n\n在两台服务器上做了全面搜索：\n\n| Checkpoint | westd-34685 | westd-10894 |\n|---|---|---|\n| cutoff_15k_s0 | ❌ 已删除 | ❌ |\n| cutoff_25k_s0 | ❌ 已删除 | ❌ |\n| cutoff_s0 (35K) | ❌ 已删除 | ❌ |\n| cutoff_45k_s0 | ❌ 已删除 | ❌ |\n| reverse_cutoff_s0 | ❌ 已删除 | ❌ |\n\n这些实验的 CAR 评估数据保留在 memory 中（训练和 eval 确实完成过），但 checkpoint 文件在后续磁盘清理中被删除了。34685 上的 v3 训练（cutoff_25k_s2_v3, reverse_cutoff_s2_v3 等）目前只有 `dataset_statistics.json`，尚未产生 50K checkpoint。\n\n**可用于 CKA 分析的条件（全部已在 10894 上）：**\n\n| Condition | Seed | LoRA adapter |\n|---|---|---|\n| Vanilla s0 | 42 | ✅ |\n| Full OCC s0 | 42 | ✅ |\n| Detach+BN s0 | 42 | ✅ |\n| Full OCC LN s0 | 42 | ✅ |\n| Cutoff 15K s1 | 43 | ✅ |\n\n7-point cutoff dose-response 无法完成。但我可以用这 5 个条件运行综合 CKA 分析——包含唯一可用的 cutoff 数据点（15K s1），与基线条件对比。这已足够展示\"梯度撤除效应\"（Cutoff 15K DINOv2 CKA=0.520 vs Vanilla 0.968）。\n\n是否继续用这 5 个条件运行？还是需要先重训 s0 cutoff 实验？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-scp-and-cka-full-dose-response.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc6d469c82bc32b68437",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops gpu check 34685",
+  "task_key": "worker_ops_gpu_check_34685_20260524T233637",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_check_34685_20260524T233637_result.json",
+    "occurrence": 1,
+    "bytes": 895,
+    "sha256": "2ab1c4df046a868b2dd2f467889a51e7ca774ca297451b78738858f7541efb06"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n```\ncuda:0 - 训练中 - PID 20913  - 99% GPU  - cutoff_45k_s1 (从20K重启), step ~6504/50005 (13%), 还需~11h\ncuda:1 - 训练中 - PID 861222 - 99% GPU  - cutoff_15k_s1, step ~40302/50005 (81%), 还需~2.5h\ncuda:2 - 训练中 - PID 998208 - 45% GPU  - cutoff_25k_s2, step ~23413/50005 (47%), 还需~7h\ncuda:3 - 训练中 - PID 999132 - 93% GPU  - reverse_cutoff_s2, step ~23375/50005 (47%), 还需~7h\n```\n\n**备注：**\n- cuda:0 的 cutoff_45k_s1 是重启训练（resume_step=20000），但 tqdm 显示 6504/50005，说明进度条从 0 计数，实际已保存 checkpoint 到 20K，当前 absolute step 约 26504\n- cuda:1 进度最快，已有 10K/20K/30K/40K 四个 checkpoint，预计 ~2.5h 完成\n- cuda:2 GPU 利用率偏低（45%），可能在做 checkpoint 保存或数据加载，但仍在正常推进\n- 4 张卡全部正常运行，无崩溃"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-check-34685.md"
+}

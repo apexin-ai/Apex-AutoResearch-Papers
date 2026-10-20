@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "588793edf773fda702c8",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis factorial data summary",
+  "task_key": "worker_analysis_factorial-data-summary_20260527T010746",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_factorial-data-summary_20260527T010746_result.json",
+    "occurrence": 1,
+    "bytes": 694,
+    "sha256": "3571d58531665794a19c00c146fd36d7509c04ec310c8456ada7fe94040c53f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已保存到 `artifacts/factorial_summary.md` 并注册。\n\n**结果摘要：**\n\n| Cell | Condition | n | CAR | TSR | vs Vanilla |\n|------|-----------|---|-----|-----|------------|\n| 1 | Full OCC BN | 3 | 0.725±0.064 | 0.854±0.052 | -2.0pp |\n| 2 | Full OCC LN | 1 | 0.740 | 0.842 | -0.5pp |\n| 3 | Detach BN | 4 | 0.767±0.024 | 0.908±0.026 | +2.2pp |\n| 4 | Detach LN | 1 | 0.802 | 0.886 | +5.7pp |\n| — | Vanilla | 3 | 0.745±0.024 | 0.878±0.032 | baseline |\n\n**ROADMAP 一致性：全部 5 个 cell 的 n 和 CAR mean±std 与 ROADMAP 完全一致，无差异。**\n\n待完成：34685 上 4 个训练跑完后将新增 Cell 1 n=4、Cell 3 n=5、Cell 4 n=2/3。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-factorial-data-summary.md"
+}

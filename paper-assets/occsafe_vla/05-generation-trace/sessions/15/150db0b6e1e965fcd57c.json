@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "150db0b6e1e965fcd57c",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code mvp gate analysis script",
+  "task_key": "worker_code_mvp_gate_analysis_script_20260521T042256",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp_gate_analysis_script_20260521T042256_result.json",
+    "occurrence": 1,
+    "bytes": 531,
+    "sha256": "5d0c3dffe2d5a2322694d801e085cc77e2938d59b153d0b11e548ce15f071a59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本运行成功。概要：\n\n**脚本**: `/root/occsafe_vla/scripts/analyze_mvp_gate.py`\n\n**功能**: 读取 vanilla/occ eval JSON → per-task breakdown → overall 统计 → paired t-test → MVP gate 判定\n\n**当前输出**(occ 文件尚不存在):\n- 3 个 vanilla seed 全部加载\n- Vanilla baseline: TSR 91.8%±1.4%, CAR 77.0%±0.5%, Hard-task CAR 30.6%±2.5%\n- MVP gate 阈值已计算: Overall CAR ≥ 82.0%, Hard-task CAR ≥ 40.6%, TSR ≥ 88.8%\n- 提示等待 occ eval 完成后重新运行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-gate-analysis-script.md"
+}

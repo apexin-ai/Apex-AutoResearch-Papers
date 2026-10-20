@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f0809a860689a5fc258",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis statistical tests",
+  "task_key": "worker_analysis_statistical_tests_20260524T223529",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_statistical_tests_20260524T223529_result.json",
+    "occurrence": 1,
+    "bytes": 1008,
+    "sha256": "d2b90971f49d89aae5ec7c40f05b56870d5a6225c3775f50e71093abb6cd80ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果已写入 `artifacts/statistical_tests.json` 并注册。\n\n关键发现：\n\n| Condition | n | CAR mean | Cohen's d | p-value |\n|-----------|---|----------|-----------|---------|\n| Vanilla (baseline) | 3 | 0.780 | — | — |\n| Full OCC | 3 | 0.797 | +0.69 | 0.442 |\n| Detach+BN | 3 | 0.746 | **-3.90** | **0.031** |\n| Random OCC | 3 | 0.789 | +0.37 | 0.712 |\n| Depth | 4 | 0.780 | -0.02 | 0.984 |\n| Cutoff@35K | 3 | 0.779 | -0.09 | 0.944 |\n| Cutoff@25K | 2 | 0.724 | -1.81 | 0.143 |\n| Reverse Cutoff | 2 | 0.718 | **-3.50** | **0.031** |\n| Detach+LN | 3 | 0.765 | -0.79 | 0.357 |\n| Cutoff@15K | 1 | 0.804 | insufficient_seeds |\n| Cutoff@45K | 1 | 0.764 | insufficient_seeds |\n\n显著差异（p<0.05）：Detach+BN 和 Reverse Cutoff 显著低于 Vanilla。Full OCC 的 effect size (d=+0.69) 为中等正向但 n=3 统计力不足（p=0.44）。\n\n注：Cutoff@35K 实际均值为 0.779（非任务中参考值 0.792），因 cutoff_s2_v2_eval 的 CAR=0.770。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-statistical-tests.md"
+}

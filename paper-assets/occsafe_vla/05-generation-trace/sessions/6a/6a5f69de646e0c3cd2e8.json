@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a5f69de646e0c3cd2e8",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ssh 10894 cleanup and fresh start",
+  "task_key": "worker_ssh_10894_cleanup_and_fresh_start_20260525T203528",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_10894_cleanup_and_fresh_start_20260525T203528_result.json",
+    "occurrence": 1,
+    "bytes": 1342,
+    "sha256": "a1e412227d147f7272eccd3f38d20e2a5d1f453f4d882b5e7873b0c93d3c7293"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n## 10894 清理 + 从头启动\n\n### 磁盘\n清理前: 数据盘 (`/dev/md0`) ~252G/250G (~100%)，根分区 22G/30G (71%)\n清理后: 数据盘 142G/250G (57%, 109G available)，根分区 15G/30G (48%)\n\n删除明细:\n- mvp_occ_s3: 30G\n- full_occ_ln_s3: 30G\n- ablation_occ_detach_s3: 35G\n- full_occ_retrain_s0: 15G\n- pip cache: 5.95G\n- conda cache: 0.16G\n- 总计释放: ~116G\n\n### 实验状态\n| 实验 | GPU | PID | 状态 | 训练类型 | 预计完成 (UTC) |\n|------|-----|-----|------|----------|---------------|\n| cutoff_45k_s2_v2 | cuda:0 | 4294 | 运行中 (step ~11K/50K) | 从头 | ~May 26 14:40 |\n| mvp_occ_s3_v2 | cuda:1 | 33897 | 新启动 | 从头 | ~May 26 17:30 |\n| full_occ_ln_s3_v2 | cuda:2 | 34102 | 新启动 | 从头 | ~May 26 17:30 |\n| ablation_occ_detach_s3_v2 | cuda:3 | 34443 | 新启动 | 从头 | ~May 26 17:30 |\n\n### 磁盘空间是否足够存未来 checkpoint: ✅\n109G available, 每实验 ~15G × 4 = ~60G needed, 余量充足。\n\n### 注意\n用户给的启动命令参数有误（`--occ_loss_type` 不是有效参数），已根据 registry 中历史正确命令和运行中 cutoff 进程的实际参数修正为 `--use_occ_head True --occ_detach false/true --occ_norm_type ln/bn`，并使用 `torchrun --standalone` 而非 plain `python`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-10894-cleanup-and-fresh-start.md"
+}

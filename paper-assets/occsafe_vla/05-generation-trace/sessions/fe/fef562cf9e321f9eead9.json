@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fef562cf9e321f9eead9",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval detach bn v2 3seeds",
+  "task_key": "worker_eval_detach_bn_v2_3seeds_20260526T073800",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_detach_bn_v2_3seeds_20260526T073800_result.json",
+    "occurrence": 1,
+    "bytes": 936,
+    "sha256": "adaa22c9404537173cee338ae28118a255408fd285ffbb4726a39f25217357a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### 训练验证（全部通过）\n\n| exp_id | final step | occ_loss | action_loss | checkpoint | EXIT_CODE |\n|--------|-----------|----------|-------------|------------|-----------|\n| detach_bn_v2_s0 | 50005 | 0.0095 | 0.0449 | ✅ ~14.4GB | 0 |\n| detach_bn_v2_s1 | 50005 | 0.0089 | 0.0513 | ✅ ~14.4GB | 0 |\n| detach_bn_v2_s2 | 50005 | 0.0094 | 0.0481 | ✅ ~14.4GB | 0 |\n\n### Eval 提交（全部成功）\n\n| eval_id | server | GPU | PID | log |\n|---------|--------|-----|-----|-----|\n| detach_bn_v2_s0_eval | westd-34685 | cuda:0 | 69726 | `~/runs/occsafe_vla/detach_bn_v2_s0_eval.log` |\n| detach_bn_v2_s1_eval | westd-34685 | cuda:1 | 70093 | `~/runs/occsafe_vla/detach_bn_v2_s1_eval.log` |\n| detach_bn_v2_s2_eval | westd-34685 | cuda:2 | 70490 | `~/runs/occsafe_vla/detach_bn_v2_s2_eval.log` |\n\n无异常。3 路 50-rollout SafeLIBERO eval 已在 westd-34685 cuda:0/1/2 并行运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-detach-bn-v2-3seeds.md"
+}

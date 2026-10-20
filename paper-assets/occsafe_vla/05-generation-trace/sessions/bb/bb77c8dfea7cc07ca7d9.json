@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb77c8dfea7cc07ca7d9",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops progress check 10894",
+  "task_key": "worker_ops_progress_check_10894_20260524T190228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_progress_check_10894_20260524T190228_result.json",
+    "occurrence": 1,
+    "bytes": 901,
+    "sha256": "5dd2eeb051e677b6f80b419c6c241819cfaac8d1437590973d57978392442037"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 GPU 均活跃（82-99% 利用率，~62GB 显存）。\n\n| 实验 | GPU | tqdm step | 全局 step | 剩余步数 | 速度 | 预估剩余时间 |\n|------|-----|-----------|-----------|----------|------|-------------|\n| ablation_occ_detach_s0_retrain | cuda:0 | 3559/50005 | **23559** (20K+3559) | 26446 | ~1.07 it/s | **~6.9h** |\n| full_occ_ln_s0 | cuda:1 | 35155/50005 | **35155** | 14850 | ~1.08 it/s | **~3.8h** |\n| full_occ_ln_s1 | cuda:2 | 3349/50005 | **23349** (20K+3349) | 26656 | ~1.06 it/s | **~7.0h** |\n| full_occ_ln_s2 | cuda:3 | 3358/50005 | **23358** (20K+3358) | 26647 | ~1.08 it/s | **~6.9h** |\n\n预估完成时间（UTC，基于当前时刻约 2026-05-24T10:00Z）：\n- **full_occ_ln_s0**: ~05-24 14:00 UTC（最先完成）\n- **ablation_occ_detach_s0_retrain**: ~05-24 17:00 UTC\n- **full_occ_ln_s1**: ~05-24 17:00 UTC\n- **full_occ_ln_s2**: ~05-24 17:00 UTC"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-progress-check-10894.md"
+}

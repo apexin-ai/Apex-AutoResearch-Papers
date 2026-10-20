@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1adbb1f7c478674d6243",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval full occ bn v2 s1 34685",
+  "task_key": "worker_eval_full_occ_bn_v2_s1_34685_20260526T082000",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_full_occ_bn_v2_s1_34685_20260526T082000_result.json",
+    "occurrence": 1,
+    "bytes": 532,
+    "sha256": "4154a68e2d39380f4824a6062a56e0cdc448b197b06a04ea64a218af67c12a5b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**训练最终 loss (step 50000)**:\n- action_loss: **0.0583** (初始 0.6133)\n- occ_loss: **0.0100** (初始 0.1853)\n- total_steps: 50000, 训练时长 ~13h56m\n\n**Eval 启动确认**:\n- PID: **322922**\n- 服务器: westd-34685, GPU: cuda:3\n- 已在运行中 (log 显示 Task 3, rollout 23/50 进行中)\n- Log: `~/runs/occsafe_vla/full_occ_bn_v2_s1_eval.log`\n\nRegistry 已更新: full_occ_bn_v2_s1 metrics 已写入, full_occ_bn_v2_s1_eval 条目已创建 (RUNNING, parent=full_occ_bn_v2_s1)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-full-occ-bn-v2-s1-34685.md"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "d7f7e803b10ec83dcf35",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "infra env setup continue",
+  "task_key": "worker_infra_env-setup-continue_20260520T061031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_env-setup-continue_20260520T061031.log",
+    "occurrence": 1,
+    "bytes": 724148,
+    "sha256": "f422899906d2544bca27afd22067fd7a13a38a6a27b7023b5518a64dfd0c1c01"
+  },
+  "statistics": {
+    "messages": 410,
+    "user_turns": 0,
+    "tool_calls": 138,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 130,
+      "tool_call": 138,
+      "tool_result": 138,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 410,
+      "chunks": [
+        {
+          "path": "d7f7e803b10ec83dcf35-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d7f7e803b10ec83dcf35-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d7f7e803b10ec83dcf35-part-0003.json",
+          "message_count": 50
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-env-setup-continue.md"
+}

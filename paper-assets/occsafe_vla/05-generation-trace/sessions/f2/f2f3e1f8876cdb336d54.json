@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2f3e1f8876cdb336d54",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diag cutoff 25k s0 eval",
+  "task_key": "worker_diag_cutoff_25k_s0_eval_20260523T204658",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_cutoff_25k_s0_eval_20260523T204658_result.json",
+    "occurrence": 1,
+    "bytes": 480,
+    "sha256": "92a58efed8b0bcbef8870ea9c62f8eb92d607eaf8dfbce610cd8c4bcb3ac918b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**根因**: 第一次提交时使用了错误参数 `--num_trials_per_task 50`，`evaluate_safelibero.py` 不认识该参数，argparse 返回 exit code 2。正确参数是 `--num_rollouts 50`。\n\n**当前状态**: 两个 eval 已用正确参数重新提交，正在正常运行中（cutoff_25k_s0_eval 在 GPU 3，reverse_cutoff_s0_eval 在 GPU 2）。无需额外修复操作。\n\n报告已写入 `artifacts/diag_eval_failure_20260523.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-cutoff-25k-s0-eval.md"
+}

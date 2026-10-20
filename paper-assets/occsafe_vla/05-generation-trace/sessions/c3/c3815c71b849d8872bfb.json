@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c3815c71b849d8872bfb",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval ablation random occ s2",
+  "task_key": "worker_eval_ablation_random_occ_s2_20260522T210458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_ablation_random_occ_s2_20260522T210458_result.json",
+    "occurrence": 1,
+    "bytes": 410,
+    "sha256": "0041d3dbfb3ff5c9475f78af3f1d9b9f716a6d75765891d6cd29a4d949f4b82b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n1. **训练验证通过** — 50005 步完成，EXIT_CODE=0，checkpoint 已保存\n2. **Eval 已提交** — `ablation_random_occ_s2_eval` 在 westd-10894 cuda:0 运行，日志 `~/runs/occsafe_vla/ablation_random_occ_s2_eval.log`\n3. **Registry 已创建** — QUEUED 状态，parent=ablation_random_occ_s2，hypothesis 已写入\n\nCron 监控会自动跟踪 eval 进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-ablation-random-occ-s2.md"
+}

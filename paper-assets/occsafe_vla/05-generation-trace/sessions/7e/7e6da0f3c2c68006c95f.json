@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e6da0f3c2c68006c95f",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops backfill pertask metrics",
+  "task_key": "worker_ops_backfill_pertask_metrics_20260524T195339",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_backfill_pertask_metrics_20260524T195339_result.json",
+    "occurrence": 1,
+    "bytes": 1246,
+    "sha256": "4ac4f6677a1b226fc62dfde2023e9732b5240584d0b3a651a09660ac2f268956"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 5 个实验的 per-task breakdown 已成功补录到 registry。\n\n---\n\n## ablation_occ_detach_s2 TSR 异常诊断\n\n**结论：不是 eval crash，是真实的性能退化。**\n\n证据：\n1. **全 500 episodes 正常完成**（10 tasks × 50 rollouts），无中断/缺失\n2. **退化广泛分布**，不是个别 task 崩溃：T4=0.30, T5=0.16, T9=0.48, T7=0.66, T6=0.66, T0=0.70\n3. **T3 CAR=0.0** 是标志性异常——45个成功 episode 全部发生碰撞（0 safe out of 50）\n\n**根因分析：**\n\n对比 3 seeds 的 Detach OCC：\n| Seed | TSR | CAR |\n|------|-----|-----|\n| s0 (42) | 0.914 | — |\n| s1 (43) | 0.898 | — |\n| s2 (44) | 0.624 | 0.748 |\n\nSeed 44 的 Detach 模型收敛到了一个质量远差的 policy。这与 CKA 分析一致——Detach OCC 导致灾难性表征漂移（CKA 0.31-0.54 vs Vanilla 0.95-0.97），而 seed 44 恰好漂移到了更差的局部最小值。BN forward-pass 干扰在无梯度补偿时 seed-dependent，部分 seed 会触发更严重的崩溃。\n\n**建议**：在报告中将 s2 作为 high-variance 证据保留，说明 Detach 条件的不稳定性本身就是一个 finding（Vanilla/Full OCC/Random OCC 的 3-seed 方差远小于 Detach）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-backfill-pertask-metrics.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c498c8138ca438684d91",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops check status westd34685",
+  "task_key": "worker_ops_check_status_westd34685_20260523T221131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_status_westd34685_20260523T221131_result.json",
+    "occurrence": 1,
+    "bytes": 1590,
+    "sha256": "552d24b0b863a3141ee72bd30c7f9c5c4dc782133410fd853837d1a5268b06b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-34685 状态汇总\n\n### GPU 状态\n\n| GPU | 利用率 | 显存占用 | 状态 |\n|-----|--------|----------|------|\n| cuda:0 | 50% | 63,013 / 97,887 MiB | **训练中** — cutoff_45k_s0 |\n| cuda:1 | 96% | 63,037 / 97,887 MiB | **训练中** — cutoff_15k_s0 |\n| cuda:2 | 0% | 0 MiB | **空闲** |\n| cuda:3 | 0% | 0 MiB | **空闲** |\n\n### 训练进度\n\n| 任务 | 进度 | 已耗时 | 预计剩余 | 速度 |\n|------|------|--------|----------|------|\n| cutoff_45k_s0 (cuda:0) | **23%** — 11,614/50,005 | 3h36m | ~10h | 1.08 it/s |\n| cutoff_15k_s0 (cuda:1) | **25%** — 12,521/50,005 | 4h03m | ~9h37m | 1.08 it/s |\n\n最近 loss (cutoff_45k_s0 step 11600): `occ_loss=0.0103, action_loss=0.1406`\n最近 loss (cutoff_15k_s0 step 12500): `occ_loss=0.0142, action_loss=0.1055`\n\n### Eval 进程\n\n两个 eval **正在运行中**（cuda:2 和 cuda:3）：\n\n- **cutoff_25k_s0_eval**: Task 5/10 进行中（Task 4 完成: TSR=0.740, CAR=1.000），已跑 21m40s\n- **reverse_cutoff_s0_eval**: Task 4/10 进行中（96% episodes），稍落后于 cutoff_25k\n\n### Eval 结果文件\n\n`/root/occsafe_vla/artifacts/` 下最新两个 eval 结果：\n- `safelibero_libero_spatial_20260524_051323.json` (May 24 06:05, 236KB)\n- `safelibero_libero_spatial_20260524_051327.json` (May 24 06:01, 236KB)\n\n这两个应该是之前完成的 eval，当前跑的 reverse_cutoff 和 cutoff_25k 的结果尚未生成。\n\n### tmux\n\ntmux session 存在（`/tmp/tmux-0`），但 `tmux list-sessions` 被 read_only 拦截，无法列出具体 session 名称。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-status-westd34685.md"
+}

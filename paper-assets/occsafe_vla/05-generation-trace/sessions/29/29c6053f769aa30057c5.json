@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "29c6053f769aa30057c5",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis full occ retrain s0",
+  "task_key": "worker_analysis_full_occ_retrain_s0_20260523T180535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_full_occ_retrain_s0_20260523T180535_result.json",
+    "occurrence": 1,
+    "bytes": 1169,
+    "sha256": "7815e8f61b5fa5c32947bf8f238e45ccbca1773e4ef42d8b13dc370375d885ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE(success)。\n\n## 分析结果\n\n### 训练状态\n- **成功完成**，50005/50005 steps，EXIT_CODE=0，无报错\n\n### Checkpoint\n```\n/root/autodl-tmp/checkpoints/full_occ_retrain_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt\n```\n包含完整模型文件 + action_head/occ_head/proprio_projector checkpoint。\n\n### 关键 Metrics\n\n| 指标 | full_occ_retrain_s0 | vanilla_retrain_s0 | 对比 |\n|------|---------------------|-------------------|------|\n| action_loss_final | **0.0417** | 0.0457 | **-8.8%** ✓ |\n| occ_loss_final | 0.0104 | N/A | — |\n| total_steps | 50005 | 50005 | 一致 |\n| training_hours | 14.21 | 14.13 | +0.6% |\n\n### 对比分析\n- Full OCC 的 action_loss (0.0417) 比 vanilla (0.0457) **低 8.8%**，符合预期——OCC 辅助任务提供了额外梯度信号，帮助学到更好的视觉表征\n- occ_loss 从 0.0975 收敛到 0.0104（下降 89.3%），说明 occupancy 预测任务训练充分\n- 训练时间几乎无差异（+0.6%），occ_head 开销可忽略\n\n### W&B\n未启用（日志中无任何 wandb 记录）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-full-occ-retrain-s0.md"
+}

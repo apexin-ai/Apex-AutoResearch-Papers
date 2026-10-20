@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73fae99d5281e0c3f7e0",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops fix 10894 polling script",
+  "task_key": "worker_ops_fix-10894-polling-script_20260528T062331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-10894-polling-script_20260528T062331_result.json",
+    "occurrence": 1,
+    "bytes": 596,
+    "sha256": "5a467e74b325610309e3109b25981afe1d3bc484f6081c273eee0af2d1a4ff3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。\n\n**结果汇总**:\n\n| 项目 | 状态 |\n|------|------|\n| **Bug** | 确认存在，`$CHKPT_DIR/adapter_config.json` → 应为 `$CHKPT_DIR/lora_adapter/adapter_config.json` |\n| **修复** | sed 已修改，验证通过 |\n| **旧 PID** | 962263 已 kill |\n| **新轮询进程 PID** | **969726**（实际执行脚本的 bash 进程，父进程 969722） |\n| **task_suite_name** | `libero_object` ✓ 正确 |\n| **训练进度** | vanilla_object_s1 最新 checkpoint 是 **45000_chkpt**（13:45 UTC），训练 PID 798980 仍在运行，等待 50000_chkpt |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-10894-polling-script.md"
+}

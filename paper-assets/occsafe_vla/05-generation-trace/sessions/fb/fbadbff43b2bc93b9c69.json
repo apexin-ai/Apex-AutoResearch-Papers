@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fbadbff43b2bc93b9c69",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "paper check compilation coverage",
+  "task_key": "worker_paper_check-compilation-coverage_20260525T065754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_check-compilation-coverage_20260525T065754_result.json",
+    "occurrence": 1,
+    "bytes": 843,
+    "sha256": "a6dc1db363cb0e2cf52614265a30fdeb7d8946210073a9a3ea8b23776affcc9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入并注册。\n\n**结果**：\n\n1. **Coverage gap (1/24)**: **C158 — OCC-CBF future direction**。Discussion 只提了一句\"complements runtime safety methods\"，未展开描述 learned barrier function h(z_occ, x_robot) 这个概念。可以加 1-2 句关闭 gap，或 deprecate 这条 claim（若认为超出本文 scope）。\n\n2. **编译**: 0 errors，5 minor warnings（2 underfull vbox + 3 float specifier auto-adjust），均无需处理。PDF 14 页正常输出。\n\n3. **TODO/Placeholder**: 0 处。`\\todo` 宏定义了但未使用。\n\n4. **最新结果覆盖**: 2×2 ANOVA p=0.025、same-seed 梯度分析、dose-response 2-seed 数据均已在论文中。\n\n5. **注意**: provenance C164 仍记录 \"20 rollouts\"，但论文已正确写为 \"50 rollouts\"——provenance 条目过期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-check-compilation-coverage.md"
+}

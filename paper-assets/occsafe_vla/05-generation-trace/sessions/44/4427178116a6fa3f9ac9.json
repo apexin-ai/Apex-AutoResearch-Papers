@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4427178116a6fa3f9ac9",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "check 10894 training progress",
+  "task_key": "worker_check_10894-training-progress_20260529T100711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_10894-training-progress_20260529T100711_result.json",
+    "occurrence": 1,
+    "bytes": 675,
+    "sha256": "4a8b90c2bb275cd0acd444cdcb89369264029dcb7f3dfec54642f80d69a6c39c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-10894 — random_occ_v2_s0_r4 训练状态\n\n| 项目 | 状态 |\n|------|------|\n| **进程** | PID 49565 存活，已运行 11h16m |\n| **当前 step** | 39,620 / 50,005 (**79.2%**) |\n| **训练速度** | ~1.01 s/step |\n| **预计剩余** | ~2h55m（约完成时间：今天 ~14:10 UTC） |\n| **最新 loss** | step=39600: occ_loss=0.0417, action_loss=0.0869, depth_loss=0.0 |\n| **GPU** | 1× NVIDIA RTX PRO 6000 Blackwell, 利用率 99%, 显存 62.2/97.9 GiB (63%) |\n| **磁盘** | /root/autodl-tmp 221G/250G used (89%, 剩余 30G) |\n\n训练正常推进，预计再约 3 小时完成，在 DDL 前无压力。磁盘偏满但足够跑完。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-10894-training-progress.md"
+}

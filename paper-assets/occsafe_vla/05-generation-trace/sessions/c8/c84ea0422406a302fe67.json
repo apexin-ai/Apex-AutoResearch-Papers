@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c84ea0422406a302fe67",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "paper fix results stats and collapse",
+  "task_key": "worker_paper_fix_results-stats-and-collapse_20260526T151131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix_results-stats-and-collapse_20260526T151131_result.json",
+    "occurrence": 1,
+    "bytes": 252,
+    "sha256": "d6b9deacb54ed39196ba15d84ad2104c57d98cbb970398850563a9a2aaf81204"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两处修改完成：\n\n1. **§4.2 统计量**（第46行）：`g=-1.023, p=0.422, CI [-0.001, 0.116]` → `g=-0.781, p=0.381, CI [-0.108, 0.014]`\n2. **Fig 3 caption**（第81行）：`Gradient collapse ratio` → `Gradient norm ratio`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-results-stats-and-collapse.md"
+}

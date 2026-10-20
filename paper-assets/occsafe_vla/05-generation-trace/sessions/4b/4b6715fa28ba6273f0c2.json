@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b6715fa28ba6273f0c2",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops cutoff 25k s1 v2 eval",
+  "task_key": "worker_ops_cutoff-25k-s1-v2-eval_20260526T231003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cutoff-25k-s1-v2-eval_20260526T231003_result.json",
+    "occurrence": 1,
+    "bytes": 206,
+    "sha256": "fc4b4e6ad0dd72b8ae515abb0d94785db79eb42f89ae82620089c8487c05741b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**状态**：cutoff_25k_s1_v2 eval 已在 westd-34685 cuda:3 上运行（PID 567681，已运行 ~43min）。Registry 已标记 RUNNING。30 分钟后自动检查完成状态并收集结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cutoff-25k-s1-v2-eval.md"
+}

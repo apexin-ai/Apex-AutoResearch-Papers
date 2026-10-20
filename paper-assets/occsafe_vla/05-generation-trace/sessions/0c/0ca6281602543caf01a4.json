@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ca6281602543caf01a4",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval cell2 v2 10894",
+  "task_key": "worker_eval_cell2_v2_10894_20260527T155059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cell2_v2_10894_20260527T155059_result.json",
+    "occurrence": 1,
+    "bytes": 547,
+    "sha256": "36d22db2c614f0f30944f991a231f0a8cd99337fd276c60ea9ea4cf763f5ee47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 均已正常运行：\n\n| Eval | GPU | PID | 进度 | Log |\n|------|-----|-----|------|-----|\n| `full_occ_ln_v2_s1c_eval` | cuda:0 | 599628 | T0: 27/50 (~54%) | `~/runs/occsafe_vla/full_occ_ln_v2_s1c_eval.log` |\n| `full_occ_ln_v2_s2_eval` | cuda:1 | 600090 | T0: 28/50 (~56%) | `~/runs/occsafe_vla/full_occ_ln_v2_s2_eval.log` |\n\n进度条显示 ~4.4s/rollout，当前 Task 0 已过半。10 个 task x 50 rollout，按此速度预计每个 eval 总耗时约 3-4 小时，应在 DDL 前完成。cuda:2/3 未触碰。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cell2-v2-10894-copy-2.md"
+}

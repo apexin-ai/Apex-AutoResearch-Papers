@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c11c56a36650affcc8c",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops check status westd10894",
+  "task_key": "worker_ops_check_status_westd10894_20260523T222747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_status_westd10894_20260523T222747_result.json",
+    "occurrence": 1,
+    "bytes": 1522,
+    "sha256": "ed8b285c73febb488891547f41277b60befe3e1a8335653d5ccd725031f9513c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 服务器状态汇总\n\n### 1. GPU 状态\n\n| GPU | 利用率 | 显存占用 | 状态 |\n|-----|--------|----------|------|\n| cuda:0 | 99% | 62,209 / 97,887 MiB | 训练中 |\n| cuda:1 | 98% | 62,203 / 97,887 MiB | 训练中 |\n| cuda:2 | 98% | 62,203 / 97,887 MiB | 训练中 |\n| cuda:3 | 99% | 62,203 / 97,887 MiB | 训练中 |\n\n### 2. 进程 & tmux\n\n`ps aux | grep` 和 `tmux list-sessions` 被 read_only 白名单拦截（含 `|` 或非白名单命令），跳过。\n\n### 3. 各实验进度\n\n| 实验 | GPU | 进度 | 速度 | 预计剩余 | 状态 |\n|------|-----|------|------|----------|------|\n| **cutoff_s2_v2** | cuda:0 | 28,885 / 50,005 (58%) | ~1.05 it/s | ~5.5h | 训练中 |\n| **detach_ln_s0** | cuda:1 | 18,111 / 50,005 (36%) | ~1.06 it/s | ~8.3h | **训练中（未完成）** |\n| **detach_ln_s1** | cuda:2 | 17,964 / 50,005 (36%) | ~1.05 it/s | ~8.4h | 训练中 |\n| **detach_ln_s2** | cuda:3 | 17,983 / 50,005 (36%) | ~1.04 it/s | ~8.5h | 训练中 |\n\n### 4. detach_ln_s0 未完成\n\n上一个 session 的判断有误——detach_ln_s0 仍在 36%，远未完成。最近 AUX loss（step 18100）：`occ_loss=0.0118, action_loss=0.0942`。无需检查 checkpoint。\n\n### 5. Loss 参考\n\n- **detach_ln_s1** step 17900: `occ_loss=0.0100, action_loss=0.0981`\n- **detach_ln_s0** step 18100: `occ_loss=0.0118, action_loss=0.0942`\n\n4 块 GPU 全部满载训练中，一切正常运行。cutoff_s2_v2 最快（58%），三个 detach_ln 系列进度接近（~36%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-status-westd10894.md"
+}

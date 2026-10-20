@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "78891e8941ce9a720b53",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops westd10894 crash cleanup",
+  "task_key": "worker_ops_westd10894_crash_cleanup_20260523T154021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd10894_crash_cleanup_20260523T154021_result.json",
+    "occurrence": 1,
+    "bytes": 543,
+    "sha256": "53c292e144e573a26a5cd5d874902f847192662641f398027a059ba8a67f2293"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n**删除内容：**\n- `detach_ln_s0`: 10000_chkpt (15G) + 20000_chkpt (15G) + 30000_chkpt (360K)\n- `detach_ln_s1`: 10000_chkpt (15G) + 20000_chkpt (15G)\n- `detach_ln_s2`: 10000_chkpt (15G) + 20000_chkpt (5.8G)\n- 共释放约 **80G**\n\n**最终状态：**\n- 可用空间：**214G**（目标 ≥230G 基本满足，250G 总量中 37G 已用）\n- 残余 checkpoint 目录仅 4K（只剩空的活跃目录壳）\n- 4 个训练进程正常运行（PID: 435185, 439321, 439541, 442091，各占 ~62G 显存）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd10894-crash-cleanup.md"
+}

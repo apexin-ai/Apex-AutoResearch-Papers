@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42d92a9e3c657eff5394",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops checkpoint rotation 10894",
+  "task_key": "worker_ops_checkpoint-rotation-10894_20260522T134136",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_checkpoint-rotation-10894_20260522T134136_result.json",
+    "occurrence": 1,
+    "bytes": 112,
+    "sha256": "60fef58dcb109fa261d5f9c214fdfa552106e25a75bd585af0a7dcbb91105e1f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "10 分钟后自动检查 30K checkpoint 是否出现。当前磁盘 154G 可用，暂时安全。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-checkpoint-rotation-10894.md"
+}

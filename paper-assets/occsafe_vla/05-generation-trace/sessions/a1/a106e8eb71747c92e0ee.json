@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a106e8eb71747c92e0ee",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "monitor training progress check",
+  "task_key": "worker_monitor_training-progress-check_20260526T123651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_training-progress-check_20260526T123651_result.json",
+    "occurrence": 1,
+    "bytes": 1134,
+    "sha256": "85e52d0f956b0c633e307d3abbbc8e03c6aab18715e45fb5ecec6b6a9462f758"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "8 个实验全部正常运行中，状态汇总：\n\n| 服务器:GPU | exp_id | 进度 | 速度 | ETA (UTC) |\n|---|---|---|---|---|\n| 10894:0 | reverse_cutoff_s2_v2 | 12893/50005 (26%) | 1.07 it/s | May 27 ~06:30 |\n| 10894:1 | full_occ_ln_v2_s0 | 1901/50005 (4%) | 1.08 it/s | May 27 ~09:10 |\n| 10894:2 | full_occ_ln_v2_s1 | 1893/50005 (4%) | 1.08 it/s | May 27 ~09:20 |\n| 10894:3 | detach_ln_v2_s0 | 1894/50005 (4%) | 1.09 it/s | May 27 ~09:12 |\n| 34685:0 | vanilla_v2_s1 | 13621/50005 (27%) | 1.09 it/s | May 27 ~06:11 |\n| 34685:1 | vanilla_v2_s2 | 13690/50005 (27%) | 1.09 it/s | May 27 ~06:11 |\n| 34685:2 | detach_ln_s3 | 13615/50005 (27%) | 1.09 it/s | May 27 ~06:11 |\n| 34685:3 | cutoff_25k_s1_v2 | 12149/50005 (24%) | 1.08 it/s | May 27 ~06:37 |\n\nGPU 状态正常，显存占用均 ~64%。westd-34685 全部 GPU 利用率 96-99%；westd-10894 的 cuda:1 利用率偏低 (55%)，其余正常。\n\n34685 上 vanilla_v2_s1/s2 和 detach_ln_s3 的日志在 `/tmp/` 而非 `~/runs/occsafe_vla/`。10894 上 3 个新实验刚启动约 30 分钟。报告已写入 `artifacts/training_status_20260526.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-training-progress-check-copy-3.md"
+}

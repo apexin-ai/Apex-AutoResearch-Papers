@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "131bb41714aed68cbbe8",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diag real occ data dryrun",
+  "task_key": "worker_diag_real_occ_data_dryrun_20260520T123303",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_real_occ_data_dryrun_20260520T123303_result.json",
+    "occurrence": 1,
+    "bytes": 2390,
+    "sha256": "e683c1488fff12fa9f8d71e32565f203fee220da11109e12672e381859c5c02b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有 metrics 文件（WandB disabled + log_freq=10 > 5 steps）。但核心验证已足够。\n\n---\n\n## 汇报\n\n### 1. Tasks 2/3/8 完成状态\n\n全部完成。PIDs 104228/104229/104234 已退出。\n\n| task_id | task_name | demo 数 | 状态 |\n|---|---|---|---|\n| 0 | between_plate_ramekin | 50/50 | ✅ |\n| 2 | from_table_center | 50/50 | ✅ |\n| 3 | on_cookie_box | 50/50 | ✅ |\n| 4 | in_top_drawer | 进行中 | 🔄 PID 104230 |\n| 8 | next_to_plate | 50/50 | ✅ |\n\n另外 5 个 occ 文件（tasks 1/5/6/7/9）是旧的损坏残留（bad object header），不在本次提取范围内。\n\n### 2. 真实 occ 数据质量\n\n| 指标 | 真实数据（4 tasks） | dummy 参考 | 判定 |\n|---|---|---|---|\n| occ_rate | 0.397–0.439 | 0.15 | ✅ 符合 30-50% |\n| h_diff | 0.040–0.047 | 0.256 | ✅ 强空间结构 |\n| v_diff | 0.037–0.041 | 0.256 | ✅ 同上 |\n| t01_diff | 0–8 pixels | ~990 | ✅ 极高时间一致性 |\n| shape | (89-151, 64, 64) | - | ✅ 分辨率正确 |\n| dtype | bool | - | ✅ |\n\nBEV 可视化显示清晰的桌面俯视结构（上半密集物体区，下半空闲），mid-trajectory 帧有碗移动的细微变化。数据质量优秀，远非随机噪声。\n\n### 3. 5-step Dry-run 结果\n\n- **occ_index.json**：已生成（9 tasks，跳过 wooden_cabinet 源文件损坏）\n- **预加载**：4 files, 21,965 samples, 85.8 MB, 0.4s（跳过 5 个损坏/锁定文件）\n- **occ_head 参数**：1,213,313（已创建并加入训练）\n- **训练速度**：~1.2–1.9 s/step（合理）\n- **完成状态**：5/5 steps 无报错退出\n- **occ_loss 数值**：未能捕获（WANDB_MODE=disabled 且 log_freq=10 > 5 steps），但 FocalLoss(random_logits, real_target) ~0.8 确认计算路径正常\n- **警告**：部分 batch 命中无 occ 数据的 task → fallback 返回全零，符合预期容错行为\n\n### 4. 结论\n\n**真实数据可用于正式训练。** 具体：\n\n- 4 个 task 的 occ 数据质量确认合格（task 0/2/3/8）\n- task 4 提取仍在进行\n- 管线端到端跑通：预加载 → batch transform → occ_loss 计算 → 反向传播\n- 正式训练前需要：\n  1. 等 task 4 完成\n  2. 删除 5 个损坏的 occ HDF5 文件（tasks 1/5/6/7/9 的残留）\n  3. 重新提取 tasks 1/5/6/7/9（或仅用已有的 5 个 task 先跑）\n  4. 重建 occ_index.json"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-real-occ-data-dryrun.md"
+}

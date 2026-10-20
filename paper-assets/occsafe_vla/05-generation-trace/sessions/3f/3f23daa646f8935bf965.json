@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f23daa646f8935bf965",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_5_1779851378.md",
+  "task_key": "loop_5_1779851378",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1779851378.md",
+    "occurrence": 1,
+    "bytes": 4923,
+    "sha256": "333036a1eb5de9f5fd3e5802086acbc970e27974cef7a6cf50f81f9aca340204"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-27T02:43:40+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-10894 cuda:0/1/2/3 + westd-34685 cuda:0/1/2/3，共 8 张。超出必须 push back Director\n- CoRL 2026：Abstract ✅ 已提交，Paper deadline May 29（~2.5 天）\n- v1/v2 代码不等价（同种子 Full OCC BN 差 8.6pp），所有跨版本比较不可信。论文数据必须基于 v2\n- 10894 s3 实验是**从头训练**（非 resume），旧 ckpt 损坏 + LR schedule 重置。ETA 比 handoff #4 推迟 ~12h\n- Cells 2/4 仍为 v1 数据，混用 v1/v2 的 ANOVA 不可信。完整 v2 factorial 需等所有 running 实验完成\n- 禁止引用 v1/v2 梯度数值的跨方法论比较（D057）\n- 叙事门控已过：full_occ_bn_v2_s1_eval CAR=0.654 << 0.774，**Plan A 已死，Plan B 确认**（D055）\n\n### 2. 🖥️ 基础设施快照\n- **westd-10894**: 工作目录 `/root/occsafe_vla/openvla-oft`，Python `/root/miniconda3/bin/python`，conda env `occsafe`，激活 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`\n- **westd-34685**: 同上\n- 模型 checkpoint：`/root/autodl-tmp/checkpoints/<exp_id>/`\n- 数据集：`/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops`（25000 条）\n- HF cache：`/root/autodl-tmp/.hf_cache`，WANDB_MODE=disabled\n- **10894 活跃进程**（cron 已确认 running）：\n  - reverse_cutoff_s2_v2: PID 170605, cuda:0\n  - mvp_occ_s3_v2: PID 33897, cuda:1（从头训练）\n  - full_occ_ln_s3_v2: PID 34102, cuda:2（从头训练）\n  - ablation_occ_detach_s3_v2: PID 34443, cuda:3（从头训练）\n- **34685 活跃进程**（cron 已确认 running）：\n  - vanilla_v2_s1: PID 419107, cuda:0\n  - vanilla_v2_s2: PID 419342, cuda:1\n  - detach_ln_s3: PID 419641, cuda:2\n  - cutoff_25k_s1_v2: PID 453581, cuda:3\n\n### 3. 📊 当前状态\n**刚做完**：session-start 初始化（read_registry + reconcile_crons + read ROADMAP/report/framing/memory）。已向 Director 发送全局状态汇报，询问 (1) 是否启动论文写作 (2) author list。\n\n**关键发现**：前几轮（Loop #4）已完成大量工作：\n- full_occ_bn_v2_s1_eval CAR=0.654 → Cell 1 n=2 mean=0.700±0.065\n- Plan A→Plan B 确认（D055），paper_framing.md 已更新\n- v2 梯度分析（D056/D057）：正交性确认，collapse 待同方法论验证\n- Plan B 文献支撑（QDepth-VLA + ForkMerge）\n\n**Workers**：\n- `worker_analysis_v2_cka_analysis_20260526T102832`：RUNNING，turn 14，调试 dataset_info.json 路径问题。验证 v2 BN forward-pass 表征漂移\n- `worker_ssh_training-progress-check-s5_20260526T104045`：RUNNING，检查 8 个实验步数和 ETA\n\n**等待**：Director 回复论文写作启动 + author list\n\n### 4. 📋 待办（条件触发式）\n- training-progress-check Worker 回调 → 用精确 ETA 更新 ROADMAP GPU 表\n- CKA Worker 回调 → 处理结果：若 v2 BN CKA 退化确认 → 强化 C2 mechanism claim；若不退化 → 推翻 v1 BN 干扰假说，需调整 framing\n- Director 回复\"启动论文写作\" → 派 Paper Worker 写 Method / Experiment Setup / Depth ablation（不依赖待完成数据）\n- 10894 s3 cron 回调（~May 27 凌晨）→ 派 3 个 eval Workers（50r SafeLIBERO，ckpt step=50000）\n- 34685 cron 回调（~May 26 21:30）→ 派 eval Workers（vanilla_v2_s1/s2 + detach_ln_s3 + cutoff_25k_s1_v2）\n- 全部 v2 eval 完成 → 重跑 ANOVA（纯 v2 数据）→ 最终 framing 确认 → 论文数字填充\n- PREPARING 实验（detach_ln_s4, ablation_occ_detach_s4, full_occ_ln_s4, mvp_occ_s4）→ 等 GPU 释放后提交（n=5 扩展，优先级低于 paper deadline）\n\n### 5. 🎯 战略上下文\n**核心 story**：Plan B ordinal interaction 已确认。所有 aux head 配置 ≤ Vanilla。Gradient flow 损害 CAR（Δ=-3.9pp），BN 放大损害。论文定位 = \"mechanism analysis\" + \"cautionary study\"（B1+B3 组合）。\n\n**v2 Factorial 当前数据**：\n| Cell | Condition | n(v2) | CAR mean |\n|------|-----------|-------|----------|\n| 1 | Full OCC BN | 2 | 0.700±0.065 |\n| 2 | Full OCC LN | 0(v1=3) | 待 full_occ_ln_s3_v2 |\n| 3 | Detach BN | 3 | 0.757±0.019 |\n| 4 | Detach LN | 0(v1=3) | 待 detach_ln_s3 |\n| Van | Vanilla | 1 | 0.768 |\n\n**最容易判断错的事**：\n1. ROADMAP 的 GPU 表和 ETA 是 stale 的（08:51 UTC 更新）——10894:0 不是空闲，是 reverse_cutoff_s2_v2；34685:3 不是 eval，是 cutoff_25k_s1_v2\n2. 10894 s3 是从头训练（PID 全变了），不是 resume。ETA 不是 May 26 02:00 而是 May 27 凌晨\n3. report.md 的资源状态显示\"westd-34685: 空闲\"是错的，8/8 GPU 全占\n4. CKA Worker 在调试数据路径，可能需要较长时间或失败——如果超过 30 turns 考虑 cancel 重做\n5. paper_framing.md 里 Cells 2/4 标注 ⚠️ v1 数据——论文 draft 只能用 Cell 1 vs Cell 3 的 clean v2 对比作核心证据，等 s3 完成后才有完整 v2 factorial\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1779851378.md"
+}

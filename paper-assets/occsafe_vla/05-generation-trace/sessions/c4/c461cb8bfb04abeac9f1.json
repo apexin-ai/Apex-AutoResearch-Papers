@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c461cb8bfb04abeac9f1",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "reviewer / loop_5.md",
+  "task_key": "loop_5",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_5.md",
+    "occurrence": 1,
+    "bytes": 4229,
+    "sha256": "ffb3dea8f29c39913ead01c7af2cf515af94a0a048d9c4b9de981cb47a5d38eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: max_wall_time\nupdated: '2026-05-25T03:18:16+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- westd-10894 gpu_ids 白名单需核实（之前 GPU 0/1/2/3 都在用，但未确认 constraints.yaml 是否存在）\n- westd-34685 同上，4 张 GPU 都在用\n- **ProcessGroupNCCL 误报**：所有用 torchrun 的实验完成时都会触发 `on_failed` cron（exit_code=1 from destroy_process_group warning）。**不要当真正失败处理**，检查日志确认 \"Max step 50005 reached!\" 即可\n- checkpoint rotation 代码已部署到 finetune.py（save_total_limit=3），但**已启动的进程不会加载新代码**，仍会无限累积 checkpoint\n\n### 2. 🖥️ 基础设施快照\n- **westd-10894** (root): `/root/occsafe_vla`，conda env `occsafe`，Python `/root/miniconda3/envs/occsafe/bin/python`\n  - Checkpoints: `/root/autodl-tmp/checkpoints/`，磁盘 250G（~50G 可用，81%已用）\n  - 训练日志: `/root/runs/occsafe_vla/*.log` 和 `/root/autodl-tmp/logs/*.log`\n  - Eval artifacts: `/root/occsafe_vla/artifacts/`\n  - **所有 4 GPU 空闲**（3 个训练 + 1 个 eval 刚完成）\n  - 已 SCP 到本机：vanilla_retrain_s0 + full_occ_retrain_s0 的 50K checkpoint（用于梯度分析）\n  - 中间 checkpoint（full_occ_ln_s1/s2 + ablation_detach_retrain 各 20K/40K = 90G）**建议清理但尚未执行**\n\n- **westd-34685** (root): `/root/occsafe_vla`，同上 conda env\n  - Checkpoints: `/root/autodl-tmp/checkpoints/`，磁盘 350G（~91G 可用，74%已用）\n  - 训练日志: `/root/occsafe_vla/logs/*.log` 和 `/root/runs/occsafe_vla/*.log`\n  - cutoff_15k_s1 中间 checkpoint（10K/20K/30K/40K = 60G）**急需清理**\n  - GPU 0: cutoff_45k_s1 (29%, ~9h)；GPU 1: 空闲；GPU 2: cutoff_25k_s2 (63%)；GPU 3: reverse_cutoff_s2 (63%)\n\n### 3. 📊 当前状态\n**刚完成的实验**（全部 false-positive \"failed\"，实际成功）：\n- ablation_occ_detach_s0_retrain → eval 完成：TSR=0.944, CAR=0.754\n- cutoff_15k_s1 → eval 待提交（50K checkpoint 已就绪）\n- full_occ_ln_s1 → eval 完成：TSR=0.894, CAR=0.718\n- full_occ_ln_s2 → eval 完成：TSR=0.866, CAR=0.744\n- CKA full_occ_ln_s1 完成：DINOv2=0.965（s0 的 0.640 drift 未复现，是 outlier）\n\n**仍在 RUNNING（westd-34685）**：\n- cutoff_45k_s1_resume: step ~14.4K/50K (29%), GPU 0, ~9h\n- cutoff_25k_s2: step ~31.4K/50K (63%), GPU 2, ~5h\n- reverse_cutoff_s2: step ~31.3K/50K (63%), GPU 3, ~5h\n\n**等待中**：\n- cutoff_15k_s1 eval 需提交（已通知 Director）\n- full_occ_ln_s2 CKA 分析（确认 s0 CKA outlier）\n- 磁盘清理（两台服务器均已通知 Director，尚未执行）\n\n### 4. 📋 待办（条件触发式）\n- cutoff_15k_s1 eval 结果出来 → 核实 dose-response 数据点（15K cutoff CAR 对比 25K/45K）\n- full_occ_ln_s2 CKA 结果出来 → 如 DINOv2 CKA ~0.96 则确认 s0 是 outlier；如 CKA 低则重新审视 crossover 假说\n- cutoff_25k_s2 / reverse_cutoff_s2 完成 → 提交 eval，核实 3rd seed dose-response + withdrawal 效应\n- cutoff_45k_s1 完成 → 提交 eval，完成 dose-response 曲线 s1 数据\n- 磁盘清理未执行 → 再次催 Director，westd-34685 margin 仅 ~91G 且 3 个实验还在写 checkpoint\n\n### 5. 🎯 战略上下文\n- **Venue**: CoRL 2026，Abstract 5/26（明天），Paper 5/29\n- **核心叙事**: Dual mechanism — BN interference (1.9pp) + gradient flow absence (1.5pp)\n- **2×2 factorial 关键结果**: Full OCC+LN 3 种子 CAR 均值 0.743，比 Full OCC BN (~0.797) 低 5.4pp。BN 在 gradient flow 下优于 LN（行为层面一致）\n- **CKA crossover 已被推翻**: s0 DINOv2 CKA=0.640 是 seed-specific outlier，s1 CKA=0.965 正常。我之前推荐的 \"BN coupling context-dependent\" 叙事调整**已撤回**\n- **表征-行为解耦**: s1 CKA 最高(0.965)但 CAR 最低(0.718)；s0 CKA 最低(0.640)但 CAR 最高(0.766)。CKA 不预测 CAR\n- **统计显著性**: 目前只有 Detach+BN (p=0.031) 和 Reverse Cutoff (p=0.031) 显著不同于 Vanilla。其他条件需 3 种子完整后重算\n- **易错点**: (1) 不要把 ProcessGroupNCCL 的 on_failed cron 当真正失败 (2) 不要重新提出 CKA crossover 假说——已被 s1 数据否定 (3) westd-34685 磁盘随时可能再次爆满\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-copy-3.md"
+}

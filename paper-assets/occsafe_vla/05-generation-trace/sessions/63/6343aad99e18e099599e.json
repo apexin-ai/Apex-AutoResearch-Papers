@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6343aad99e18e099599e",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops full gpu status check",
+  "task_key": "worker_ops_full_gpu_status_check_20260524T040658",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_full_gpu_status_check_20260524T040658_result.json",
+    "occurrence": 1,
+    "bytes": 1493,
+    "sha256": "7fa33c884903075186fe90b620a7043ab75bff54813cb11cfa9661a20a08e497"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-10894\n| GPU | exp_id | 状态 | 进度 | ETA (UTC) |\n|-----|--------|------|------|-----------|\n| 0 | cutoff_s2_v2 | **即将完成** | 47902/50005 (96%) | ~04:40 (~30min) |\n| 1 | detach_ln_s0 | 训练中 | 37121/50005 (74%) | ~07:28 |\n| 2 | detach_ln_s1 | 训练中 | 36864/50005 (74%) | ~07:31 |\n| 3 | detach_ln_s2 | 训练中 | 36941/50005 (74%) | ~07:30 |\n\n全部 4 GPU 99% 利用率，~62GB 显存占用，正常。\n\n## westd-34685\n| GPU | exp_id | 状态 | 进度 | ETA (UTC) |\n|-----|--------|------|------|-----------|\n| 0 | cutoff_45k_s0 | 训练中 | 29593/50005 (59%) | ~09:25 |\n| 1 | cutoff_15k_s0 | 训练中 | 30426/50005 (61%) | ~09:19 |\n| 2 | cutoff_25k_s1 | 训练中 | 16605/50005 (33%) | ~12:55 |\n| 3 | reverse_cutoff_s1 | 训练中 | 16632/50005 (33%) | ~12:49 |\n\n4 GPU 均有进程，当前 GPU-Util 0%（cutoff_15k_s0 刚保存 step-30000 checkpoint，可能引起短暂空闲）。\n\n### 需要注意\n\n1. **cutoff_s2_v2** 约 30 分钟后完成。checkpoint 目录已有 40000 步的 checkpoint，预计 50005 步后会保存最终 checkpoint。GPU 0 完成后将空闲。\n2. **reverse_cutoff_s1 occ_loss 异常偏高**：`occ_loss=0.1791`，其他实验同阶段在 0.009-0.013 范围。可能存在问题，建议关注。\n3. **34685 迭代速度有波动**：cutoff_45k_s0 和 cutoff_15k_s0 出现间歇性慢迭代（4-5s/it vs 正常 ~0.93s/it），疑似 checkpoint 保存或数据加载抖动，整体进度正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-full-gpu-status-check.md"
+}

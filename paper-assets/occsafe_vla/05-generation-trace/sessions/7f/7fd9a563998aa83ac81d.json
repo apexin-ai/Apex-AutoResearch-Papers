@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7fd9a563998aa83ac81d",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "fix detach ln v2 s2 correct maxsteps",
+  "task_key": "worker_fix_detach_ln_v2_s2_correct_maxsteps_20260528T020958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_detach_ln_v2_s2_correct_maxsteps_20260528T020958_result.json",
+    "occurrence": 1,
+    "bytes": 411,
+    "sha256": "37057064e7feb977836ceadb043141543ec68190e4be7d42f77bd58f153dde5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已正常运行。\n\n**汇总：**\n- 旧进程 PID 45380：已 kill（force_killed）\n- 25000_chkpt：完整（4 shards + index.json + action_head/occ_head/proprio_projector checkpoints）\n- 新进程 PID：47162，westd-34685:cuda:0\n- max_steps：50005（已修正），从 resume_step=25000 恢复\n- 训练已在出 step，~1.35s/it，日志正常（step=0 时 action_loss=0.0825）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-detach-ln-v2-s2-correct-maxsteps.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d852f64b7e4377bcec77",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops ddl checkpoint monitor 34685",
+  "task_key": "worker_ops_ddl-checkpoint-monitor-34685_20260528T062936",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_ddl-checkpoint-monitor-34685_20260528T062936_result.json",
+    "occurrence": 1,
+    "bytes": 1510,
+    "sha256": "16d99560aa743d9b74418ef20fc3bbb8132df8bb52a4dcedf597d05a806ea4cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据收集完毕。汇总如下：\n\n---\n\n## 状态汇总\n\n### Checkpoint 进度\n\n| 实验 | GPU | PID | 最新 chkpt | 时间 | 50000_chkpt |\n|------|-----|-----|-----------|------|------------|\n| detach_ln_v2_s3 | 3 | 56822 | 45000 | 13:15 UTC | 未生成 |\n| full_occ_ln_v2_s3 | 2 | 56474 | 45000 | 13:15 UTC | 未生成 |\n| detach_ln_v2_s2 | 0 | 47238 | 40000 | 14:16 UTC | 未生成 |\n| full_occ_bn_v2_s2 | 1 | 62535 | — | — | （额外实验） |\n\n### 时间估算\n- **detach_ln_v2_s3 / full_occ_ln_v2_s3**: 5000 步 ≈ 1h22m（40k→45k 耗时），50000_chkpt 预计 **~14:37 UTC**（约 5-10 分钟内）\n- **detach_ln_v2_s2**: 从 25k resume，15000 步耗时 ~4h06m，5000 步 ≈ 82min，50000 预计 **~17:00 UTC**\n\n### 轮询脚本\n- 3 个脚本全部存活（PID 69355/69356/69357，已运行 ~7.5 min）\n- 路径修复已生效：两个 s3 脚本都检查 `$CHKPT_DIR/lora_adapter/adapter_config.json`\n- 日志仅显示 \"Polling started\"，尚未触发 eval\n\n### GPU 占用\n4 张 GPU 全部占满（每张 ~62 GiB）。PID 62535 是 `full_occ_bn_v2_s2` 实验，在 GPU 1 上。\n\n### 结论\n- **无需手动干预**。两个 s3 实验的 50000_chkpt 将在 ~5-10 分钟内生成，轮询脚本正常工作，会自动 kill 训练 + 启动 eval。\n- detach_ln_v2_s2 距离 50000 还较远（~2.5h），轮询脚本也在监控。\n- 注意：eval 启动时需要 GPU，s3 的 eval 会在对应 GPU 上 kill 训练后运行，不冲突。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-ddl-checkpoint-monitor-34685.md"
+}

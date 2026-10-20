@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e99c6adfc85ec43c89ee",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops eval prep 34685",
+  "task_key": "worker_ops_eval-prep-34685_20260526T105249",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-prep-34685_20260526T105249_result.json",
+    "occurrence": 1,
+    "bytes": 918,
+    "sha256": "54c1e14bb40655498999bdc225900ae45aa95ba3ac45787d68e5790d9eaf56fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/eval_commands_34685.md`。\n\n**结果摘要：**\n\n| 实验 | GPU | 50K checkpoint 路径 |\n|------|-----|-------------------|\n| vanilla_v2_s1 | 0 | `.../vanilla_v2_s1/...-vanilla_v2_s1--50000_chkpt` |\n| vanilla_v2_s2 | 1 | `.../vanilla_v2_s2/...-vanilla_v2_s2--50000_chkpt` |\n| detach_ln_s3 | 2 | `.../detach_ln_s3/...-detach_ln_s3--50000_chkpt` |\n| cutoff_25k_s1_v2 | 3 | `.../cutoff_25k_s1_v2/...-cutoff_25k_s1_v2--50000_chkpt` |\n\n关键发现：\n- 4 个实验目前都只有 `dataset_statistics.json`，尚无 checkpoint 保存\n- 从 10894 上已完成实验确认 checkpoint 命名 pattern：checkpoint 目录与 run 目录同级，格式为 `{run_name}--{step}_chkpt`\n- cutoff_25k_s1_v2 通过 `/proc/453581/cmdline` 确认了 `--run_root_dir` 和 `--run_id_note`\n- `/tmp/cutoff_25k_s1_v2.log` 不存在，日志实际在 `~/runs/occsafe_vla/cutoff_25k_s1_v2.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-prep-34685.md"
+}

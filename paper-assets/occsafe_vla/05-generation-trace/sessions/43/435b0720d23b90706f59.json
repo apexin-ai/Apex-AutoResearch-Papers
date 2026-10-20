@@ -1,0 +1,532 @@
+{
+  "schema_version": "1.0",
+  "id": "435b0720d23b90706f59",
+  "project": "occsafe_vla",
+  "kind": "conversation",
+  "title": "eval ablation occ detach s2 50r retry",
+  "task_key": "worker_eval_ablation_occ_detach_s2_50r_retry_20260522T210859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_eval_ablation_occ_detach_s2_50r_retry_20260522T210859.jsonl",
+    "occurrence": 1,
+    "bytes": 19987,
+    "sha256": "1cbebb081d37eda75fb9d483f22c5a56a3d158290d538a1b64cd9719bae55bfc"
+  },
+  "statistics": {
+    "messages": 25,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "tool_call": 12,
+      "tool_result": 12,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T21:11:55.640811+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_ablation_occ_detach_s2_50r_retry_20260522T210859",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T21:11:55.641111+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_ablation_occ_detach_s2_50r_retry_20260522T210859",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T21:11:55.641282+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_ablation_occ_detach_s2_50r_retry_20260522T210859",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-10894",
+              "command": "nvidia-smi",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T21:11:55.641456+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Sat May 23 05:09:18 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.95.05              Driver Version: 580.95.05      CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:16:00.0 Off |                  Off |\\\\n| N/A   44C    P0            160W /  600W |   16778MiB /  97887MiB |      0%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:38:00.0 Off |                  Off |\\\\n| N/A   46C    P0            137W /  600W |   16778MiB /  97887MiB |     47%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   2  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:49:00.0 Off |                  Off |\\\\n| N/A   69C    P0            488W /  600W |   62209MiB /  97887MiB |     99%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   3  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:B8:00.0 Off |                  Off |\\\\n| N/A   70C    P0            4\n…[truncated 1298 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_ablation_occ_detach_s2_50r_retry_20260522T210859",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T21:11:55.641610+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_ablation_occ_detach_s2_50r_retry_20260522T210859",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-10894",
+              "command": "ls /root/autodl-tmp/checkpoints/ablation_occ_detach_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt/",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T21:11:55.641774+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"action_head--50000_checkpoint.pt\\\\nadded_tokens.json\\\\nconfig.json\\\\nconfig.json.back.20260523_050651\\\\nconfiguration_prismatic.py\\\\ndataset_statistics.json\\\\ngeneration_config.json\\\\nlora_adapter\\\\nmodel-00001-of-00004.safetensors\\\\nmodel-00002-of-00004.safetensors\\\\nmodel-00003-of-00004.safetensors\\\\nmodel-00004-of-00004.safetensors\\\\nmodel.safetensors.index.json\\\\nmodeling_prismatic.py\\\\nocc_head--50000_checkpoint.pt\\\\npreprocessor_config.json\\\\nprocessing_prismatic.py\\\\nprocessor_config.json\\\\nproprio_projector--50000_checkpoint.pt\\\\nspecial_tokens_map.json\\\\ntokenizer.json\\\\ntokenizer.model\\\\ntokenizer_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_ablation_occ_detach_s2_50r_retry_20260522T210859",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T21:11:55.641942+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_ablation_occ_detach_s2_50r_retry_20260522T210859",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-10894",
+              "command": "ps -p 47839 -o pid,etime,cmd",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T21:11:55.642076+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID     ELAPSED CMD\\\\n 47839       03:00 python vla-scripts/evaluate_safelibero.py --pretrained_checkpoint /root/autodl-tmp/checkpoints/ablation_occ_detach_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt --num_rollouts 50 --seed 42 --output_path /root/occsafe_vla/eval_results/ablation_occ_detach_s2_50r_50000.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_ablation_occ_detach_s2_50r_retry_20260522T210859",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T21:11:55.642230+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_ablation_occ_detach_s2_50r_retry_20260522T210859",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-10894",
+              "command": "kill -9 47839",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T21:11:55.642355+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_ablation_occ_detach_s2_50r_retry_20260522T210859",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T21:11:55.642502+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_ablation_occ_detach_s2_50r_retry_20260522T210859",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-10894",
+              "command": "cd /root/occsafe_vla/openvla-oft && nohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 WANDB_MODE=disabled python vla-scripts/evaluate_safelibero.py --pretrained_checkpoint /root/autodl-tmp/checkpoints/ablation_occ_detach_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt --num_rollouts 50 --seed 42' > /tmp/eval_ablation_occ_detach_s2.log 2>&1 &",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T21:11:55.642673+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.12}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_ablation_occ_detach_s2_50r_retry_20260522T210859",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T21:11:55.642819+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_ablation_occ_detach_s2_50r_retry_20260522T210859",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-10894",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_bus_id,used_memory,process_name --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T21:11:55.642953+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"42676, 00000000:16:00.0, 16760 MiB, python\\\\n942117, 00000000:49:00.0, 62200 MiB, /root/miniconda3/envs/occsafe/bin/python3.10\\\\n942329, 00000000:B8:00.0, 62194 MiB, /root/miniconda3/envs/occsafe/bin/python3.10\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_ablation_occ_detach_s2_50r_retry_20260522T210859",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T21:11:55.643073+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_ablation_occ_detach_s2_50r_retry_20260522T210859",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-10894",
+              "command": "tail -20 /tmp/eval_ablation_occ_detach_s2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T21:11:55.643210+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[robosuite WARNING] No private macro file found! (macros.py:53)\\\\n[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/envs/occsafe/lib/python3.10/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/occsafe_vla/openvla-oft/vla-scripts/evaluate_safelibero.py\\\\\\\", line 60, in <module>\\\\n    from libero.libero.envs import OffScreenRenderEnv\\\\n  File \\\\\\\"/root/miniconda3/envs/occsafe/lib/python3.10/site-packages/libero/libero/envs/__init__.py\\\\\\\", line 1, in <module>\\\\n    from .bddl_base_domain import TASK_MAPPING\\\\n  File \\\\\\\"/root/miniconda3/envs/occsafe/lib/python3.10/site-packages/libero/libero/envs/bddl_base_domain.py\\\\\\\", line 3, in <module>\\\\n    import robosuite.utils.transform_utils as T\\\\n  File \\\\\\\"/root/miniconda3/envs/occsafe/lib/python3.10/site-packages/robosuite/__init__.py\\\\\\\", line 1, in <module>\\\\n    from robosuite.environments.base import make\\\\n  File \\\\\\\"/root/miniconda3/envs/occsafe/lib/python3.10/site-packages/robosuite/environments/__init__.py\\\\\\\", line 1, in <module>\\\\n    from .base import REGISTERED_ENVS, MujocoEnv\\\\n  File \\\\\\\"/root/miniconda3/envs/occsafe/lib/python3.10/site-packages/robosuite/environments/base.py\\\\\\\", line 12, in <module>\\\\n    from robosuite.utils.binding_utils import MjRenderContextOffscreen, MjSim\\\\n  File \\\\\\\"/root/miniconda3/envs/occsafe/lib/python3.10/site-packages/robosuite/utils/binding_utils.py\\\\\\\", line 34, in <module>\\\\n    MUJOCO_EGL_DEVICE_ID in CUDA_VISIBLE_DEVICES\\\\nAssertionError: MUJOCO_EGL_DEVICE_ID needs to be set to one of the device id specified in CUDA_VISIBLE_DEVICES\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_ablation_occ_detach_s2_50r_retry_20260522T210859",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T21:11:55.643376+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_ablation_occ_detach_s2_50r_retry_20260522T210859",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-10894",
+              "command": "head -40 /root/miniconda3/envs/occsafe/lib/python3.10/site-packages/robosuite/utils/binding_utils.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T21:11:55.643527+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\r\\\\nUseful classes for supporting DeepMind MuJoCo binding.\\\\r\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\r\\\\n\\\\r\\\\nimport gc\\\\r\\\\nimport os\\\\r\\\\nfrom tempfile import TemporaryDirectory\\\\r\\\\n\\\\r\\\\n# DIRTY HACK copied from mujoco-py - a global lock on rendering\\\\r\\\\nfrom threading import Lock\\\\r\\\\n\\\\r\\\\nimport mujoco\\\\r\\\\nimport numpy as np\\\\r\\\\n\\\\r\\\\n_MjSim_render_lock = Lock()\\\\r\\\\n\\\\r\\\\nimport ctypes\\\\r\\\\nimport ctypes.util\\\\r\\\\nimport os\\\\r\\\\nimport platform\\\\r\\\\nimport subprocess\\\\r\\\\n\\\\r\\\\nimport robosuite.macros as macros\\\\r\\\\n\\\\r\\\\n_SYSTEM = platform.system()\\\\r\\\\nif _SYSTEM == \\\\\\\"Windows\\\\\\\":\\\\r\\\\n    ctypes.WinDLL(os.path.join(os.path.dirname(__file__), \\\\\\\"mujoco.dll\\\\\\\"))\\\\r\\\\n\\\\r\\\\nCUDA_VISIBLE_DEVICES = os.environ.get(\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\", \\\\\\\"\\\\\\\")\\\\r\\\\nif CUDA_VISIBLE_DEVICES != \\\\\\\"\\\\\\\":\\\\r\\\\n    MUJOCO_EGL_DEVICE_ID = os.environ.get(\\\\\\\"MUJOCO_EGL_DEVICE_ID\\\\\\\", None)\\\\r\\\\n    if MUJOCO_EGL_DEVICE_ID is not None:\\\\r\\\\n        assert MUJOCO_EGL_DEVICE_ID.isdigit() and (\\\\r\\\\n            MUJOCO_EGL_DEVICE_ID in CUDA_VISIBLE_DEVICES\\\\r\\\\n        ), \\\\\\\"MUJOCO_EGL_DEVICE_ID needs to be set to one of the device id specified in CUDA_VISIBLE_DEVICES\\\\\\\"\\\\r\\\\n\\\\r\\\\nif macros.MUJOCO_GPU_RENDERING and os.environ.get(\\\\\\\"MUJOCO_GL\\\\\\\", None) not in [\\\\\\\"osmesa\\\\\\\", \\\\\\\"glx\\\\\\\"]:\\\\r\\\\n    # If gpu rendering is specified in macros, then we enforce gpu\\\\r\\\\n    # option for rendering\\\\r\\\\n    if _SYSTEM == \\\\\\\"Darwin\\\\\\\":\\\\r\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_ablation_occ_detach_s2_50r_retry_20260522T210859",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T21:11:55.643735+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_ablation_occ_detach_s2_50r_retry_20260522T210859",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-10894",
+              "command": "cd /root/occsafe_vla/openvla-oft && nohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 WANDB_MODE=disabled python vla-scripts/evaluate_safelibero.py --pretrained_checkpoint /root/autodl-tmp/checkpoints/ablation_occ_detach_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt --num_rollouts 50 --seed 42' > /tmp/eval_ablation_occ_detach_s2.log 2>&1 &",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T21:11:55.643886+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: \\\\\\\"cd /root/occsafe_vla/openvla-oft && nohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && CUDA_VISIBLE_DEVICES=1 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 WANDB_MODE=disabled python vla-scripts/evaluate_safelibero.py --pretrained_checkpoint /root/autodl-tmp/checkpoints/ablation_occ_detach_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt --num_rollouts 50 --seed 42' > /tmp/eval_ablation_occ_detach_s2.log 2>&1 &\\\\\\\"\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_ablation_occ_detach_s2_50r_retry_20260522T210859",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T21:11:55.644042+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_ablation_occ_detach_s2_50r_retry_20260522T210859",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-10894",
+              "command": "tail -30 /tmp/eval_ablation_occ_detach_s2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T21:11:55.644212+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Using LIBERO constants:\\\\n  NUM_ACTIONS_CHUNK = 8\\\\n  ACTION_DIM = 7\\\\n  PROPRIO_DIM = 8\\\\n  ACTION_PROPRIO_NORMALIZATION_TYPE = bounds_q99\\\\nIf needed, manually set the correct constants in `prismatic/vla/constants.py`!\\\\n05/23 [05:11:26] INFO     | >> Loading model from     evaluate_safelibero.py:346\\\\n                          /root/autodl-tmp/checkpoint                           \\\\n                          s/ablation_occ_detach_s2/op                           \\\\n                          envla-7b+libero_spatial_no_                           \\\\n                          noops+b8+lr-0.0005+lora-r32                           \\\\n                          +dropout-0.0--image_aug--50                           \\\\n                          000_chkpt                                             \\\\n<frozen importlib._bootstrap>:283: DeprecationWarning: the load_module() method is deprecated and slated for removal in Python 3.12; use exec_module() instead\\\\nInstantiating pretrained VLA policy...\\\\nCreated backup of original config at: /root/autodl-tmp/checkpoints/ablation_occ_detach_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt/config.json.back.20260523_051126\\\\nUpdated config.json at: /root/autodl-tmp/checkpoints/ablation_occ_detach_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt/config.json\\\\nChanges made:\\\\n  - Set AutoConfig to \\\\\\\"configuration_prismatic.OpenVLAConfig\\\\\\\"\\\\n  - Set AutoModelForVision2Seq to \\\\\\\"modeling_prismatic.OpenVLAForActionPrediction\\\\\\\"\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  4.03it/s]\\\\rLoading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  4.61it/s]\\\\rLoading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  4.85it/s]\\\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  4.8\n…[truncated 934 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_ablation_occ_detach_s2_50r_retry_20260522T210859",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T21:11:55.644418+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_ablation_occ_detach_s2_50r_retry_20260522T210859",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-10894",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_bus_id,used_memory,process_name --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T21:11:55.644573+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"42676, 00000000:16:00.0, 16760 MiB, python\\\\n60481, 00000000:38:00.0, 16760 MiB, python\\\\n942117, 00000000:49:00.0, 62200 MiB, /root/miniconda3/envs/occsafe/bin/python3.10\\\\n942329, 00000000:B8:00.0, 62194 MiB, /root/miniconda3/envs/occsafe/bin/python3.10\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_ablation_occ_detach_s2_50r_retry_20260522T210859",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T21:11:55.644770+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估已成功启动并在正常运行：\n\n- **PID 60481** 在 GPU 1 (`00000000:38:00.0`)，占用 16760 MiB\n- 模型加载完成，已开始 rollout（Task 0, 1/50 完成，~4s/rollout）\n- 10 个 task × 50 rollouts，预计 ~35-50 分钟完成\n\n**修正关键**：`MUJOCO_EGL_DEVICE_ID=1`（不是 0）。EGL 设备编号不受 `CUDA_VISIBLE_DEVICES` 影响，仍使用物理设备号。robosuite 的断言做字符串检查 `\"1\" in \"1\"` 通过。日志路径：`/tmp/eval_ablation_occ_detach_s2.log`。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_ablation_occ_detach_s2_50r_retry_20260522T210859"
+          },
+          "id": "event-000025"
+        }
+      ],
+      "message_count": 25
+    }
+  ],
+  "readable_path": "readable/conversations/eval-ablation-occ-detach-s2-50r-retry.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "247ec40ec3873c72f5f2",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops status check 10894",
+  "task_key": "worker_ops_status-check-10894_20260528T054452",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_status-check-10894_20260528T054452_result.json",
+    "occurrence": 1,
+    "bytes": 1897,
+    "sha256": "c7669651c1d0a60d6cb81225bc209b1219afcdd97425d1bfc17b52d85065d292"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## nvidia-smi (2026-05-28 13:45 UTC)\n\n```\nGPU 0: RTX PRO 6000 | 44°C |  90W/600W | 62971/97887 MiB |  0% util | PID 798980\nGPU 1: RTX PRO 6000 | 60°C | 442W/600W | 62243/97887 MiB | 99% util | PID 822480\nGPU 2: RTX PRO 6000 | 57°C | 420W/600W | 62199/97887 MiB | 60% util | PID 959741\nGPU 3: RTX PRO 6000 | 61°C | 457W/600W | 62193/97887 MiB | 99% util | PID 959956\n```\n\n## 实验状态\n\n| 实验 | GPU | PID | 存活 | 运行时间 | 已有 checkpoint | 50000_chkpt |\n|------|-----|-----|------|----------|----------------|-------------|\n| vanilla_object_s1 | cuda:0 | 798980 | ✓ | 11h54m | 35000, 40000, **45000** (刚存 13:45) | ✗ |\n| detach_ln_v2_s4 | cuda:1 | 822480 | ✓ | 7h06m | 20000, 25000 | ✗ |\n| full_occ_bn_v2_s3 | cuda:2 | 959741 | ✓ | 45m | 无 step checkpoint | ✗ |\n| vanilla_object_s2 | cuda:3 | 959956 | ✓ | 45m | 无 step checkpoint | ✗ |\n\n注：实际 PID 与预期略有偏差 — detach_ln_v2_s4 为 822480（非 822402），full_occ_bn_v2_s3 为 959741（非 959661），vanilla_object_s2 为 959956（非 959808）。\n\n## 轮询脚本\n\nPID 962263 存活，运行 41m41s，执行 `bash /root/poll_eval_vanilla_object_s1.sh`。日志仅有一行：`Thu May 28 05:03:56 UTC 2026: Polling started for vanilla_object_s1`。\n\n## Step 估算（基于 checkpoint 间隔）\n\n- **vanilla_object_s1**: ~45000 step（45000_chkpt 刚存完，GPU util 降到 0% 可能在做 save）。5000 步/~80min → 50000_chkpt 预计 **~15:05 UTC**\n- **detach_ln_v2_s4**: ~26500 step（25000_chkpt 存于 13:21，5000步/~82min）。到 50000 还需 ~5.5h → **~19:15 UTC**\n- **full_occ_bn_v2_s3**: < 5000 step。到 50000 需 ~13h → **次日凌晨**\n- **vanilla_object_s2**: < 5000 step。到 50000 需 ~13h → **次日凌晨**\n\n**DDL 12:00 UTC 已过 1h45m。** 4 个实验均未完成，仅 vanilla_object_s1 接近收尾。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-status-check-10894.md"
+}

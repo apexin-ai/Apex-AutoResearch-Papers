@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f99755e3c3d93b456252",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose westd 34685 mvp occ failure",
+  "task_key": "worker_diagnose_westd-34685-mvp-occ-failure_20260521T045440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_westd-34685-mvp-occ-failure_20260521T045440_result.json",
+    "occurrence": 1,
+    "bytes": 1899,
+    "sha256": "532a4f546f891f916ef91c831db4acbbbca254760e17d3293a790629a31ec757"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全貌清晰了。\n\n## 诊断结果\n\n### 三个实验全部死亡，GPU 全空闲\n\n| 实验 | 状态 | 死因 | 最新 checkpoint |\n|------|------|------|-----------------|\n| **mvp_occ_s0** | 死亡 | `FileNotFoundError` (刚才 12:53 UTC 重启失败) | 42500 |\n| **mvp_occ_s1** | 死亡 | SIGTERM (09:15 UTC 被外部杀死) | 17500 |\n| **mvp_occ_s2** | 死亡 | `FileNotFoundError` (刚才 12:54 UTC 重启失败) | 42500 |\n\n### 详细分析\n\n**mvp_occ_s1** — 在 09:15 UTC 收到 SIGTERM (signal 15) 被外部杀死。从 17500 checkpoint resume 后只跑了 5894 步（到约 step 23394），没有生成新 checkpoint。这是第 4 次从 17500 重跑失败，**不是磁盘满**，是被某个进程/cron 发了 kill 信号。\n\n**mvp_occ_s0 / s2** — `occ_s0_resume2.log` 和 `occ_s2_resume2.log` 显示它们刚在几分钟前（12:53/12:54 UTC）尝试重启，但**立即崩溃**：\n\n```\nFileNotFoundError: No such file or directory: '/root/autodl-tmp/models/openvla-7b/proprio_projector--42500_checkpoint.pt'\n```\n\nResume 脚本的 `vla_path` 指向了基础模型目录 `/root/autodl-tmp/models/openvla-7b/`，但 42500 checkpoint 文件实际在：\n- `/root/autodl-tmp/checkpoints/occ_s0/openvla-7b+...--42500_chkpt/`\n- `/root/autodl-tmp/checkpoints/occ_s2/openvla-7b+...--42500_chkpt/`\n\n### 服务器状态\n\n| 资源 | 状态 |\n|------|------|\n| 磁盘(根) | 12G/30G (40%) — 正常 |\n| 磁盘(数据) | 15G/879G (2%) — 充裕 |\n| GPU | 4× RTX PRO 6000 96GB，全空闲 0MiB |\n| 内存 | 21G/1TB — 正常 |\n\n### 需要的操作\n\n1. **s0/s2**: 修正 resume 命令的 `vla_path`，指向 checkpoint 目录而非基础模型目录，然后重新启动\n2. **s1**: 需要从 17500 checkpoint 第 5 次 resume。但首先要搞清楚谁发的 SIGTERM——否则重跑还会被杀。可能是 cron 误杀或其他用户的操作"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-westd-34685-mvp-occ-failure.md"
+}

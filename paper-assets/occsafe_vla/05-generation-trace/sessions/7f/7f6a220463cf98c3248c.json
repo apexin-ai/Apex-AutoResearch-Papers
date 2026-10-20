@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f6a220463cf98c3248c",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code fig1 figsize fix",
+  "task_key": "worker_code_fig1-figsize-fix_20260529T014417",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fig1-figsize-fix_20260529T014417_result.json",
+    "occurrence": 1,
+    "bytes": 470,
+    "sha256": "23bbcb5af531c13550ded699180a0573206f486ce87a0662eefef613860ed23c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Panel labels now have proper spacing from their titles. The figure is complete:\n\n- **figsize**: (14, 5.5) → (7.0, 2.8) — 1:1 at `\\textwidth`\n- **Font sizes**: all scaled to 7–10pt range (panel titles 9.5–10pt, box labels 9pt, sublabels 7.5pt, annotations 7–8pt, math labels 9.5pt)\n- **Line widths**: scaled proportionally (box edges 1.0, arrows 0.8, grid 0.6)\n- **Outputs**: `fig1_architecture_pb.png` (300dpi) + `fig1_architecture_pb.pdf`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fig1-figsize-fix.md"
+}

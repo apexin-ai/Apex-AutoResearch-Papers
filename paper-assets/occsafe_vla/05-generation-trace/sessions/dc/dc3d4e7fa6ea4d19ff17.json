@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc3d4e7fa6ea4d19ff17",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra get current occ pids",
+  "task_key": "worker_infra_get_current_occ_pids_20260521T052059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_get_current_occ_pids_20260521T052059_result.json",
+    "occurrence": 1,
+    "bytes": 1420,
+    "sha256": "f33b11eeaceda15a0dba3315a8c9ac6ebab8dd925f80b34899125d0e1cbdb719"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### GPU 状态\n\n| GPU | 利用率 | 显存占用 | PID |\n|-----|--------|----------|-----|\n| 0 | 99% | 62203 MiB | 76998 |\n| 1 | 99% | 62209 MiB | 80898 |\n| 2 | 99% | 62203 MiB | 78171 |\n| 3 | 100% | 0 MiB | — |\n\n### finetune.py 进程详情\n\n#### s0 (cuda:0) — PID 76998\n- **当前 step**: ~1064/50005\n- `--vla_path .../occ_s0/...-42500_chkpt`\n- `--resume True --resume_step 42500`\n- `--save_freq 2500 --seed 42`\n- 日志: `occ_s0_resume2.log`\n- 速度: ~1.07 it/s\n\n#### s1 (cuda:1) — PID 80898\n- **当前 step**: ~1517/50005\n- `--vla_path .../occ_s1/...-17500_chkpt`\n- `--resume True --resume_step 17500`\n- `--save_freq 5000 --seed 43`\n- 日志: `occ_s1_resume3.log`（resume2 已被 kill，signal 15）\n- 速度: ~1.08 it/s\n\n#### s2 (cuda:2) — PID 78171\n- **当前 step**: ~1483/50005\n- `--vla_path .../occ_s2/...-42500_chkpt`\n- `--resume True --resume_step 42500`\n- `--save_freq 2500 --seed 44`\n- 日志: `occ_s2_resume2.log`\n- 速度: ~1.09 it/s\n\n### checkpoint_rotation.sh\n运行中，PID 71055。\n\n### 关键发现\n- s1 的 vla_path 指向 **17500_chkpt**（不是 42500），resume_step 也是 17500，save_freq 是 5000（s0/s2 是 2500）\n- s1_resume2 已被 kill（SignalException signal 15），当前跑的是 s1_resume3，从同一个 17500 checkpoint 重新 resume\n- GPU 3 显示 100% 利用率但 0 MiB 显存，无进程占用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-get-current-occ-pids.md"
+}

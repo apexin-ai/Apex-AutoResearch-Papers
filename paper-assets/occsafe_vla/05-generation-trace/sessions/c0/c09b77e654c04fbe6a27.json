@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c09b77e654c04fbe6a27",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ssh verify occ loss fix v2",
+  "task_key": "worker_ssh_verify-occ-loss-fix-v2_20260528T230435",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify-occ-loss-fix-v2_20260528T230435_result.json",
+    "occurrence": 1,
+    "bytes": 861,
+    "sha256": "43d8ae7b73721e005a6930b3db847360c2b73ab6da3932b5665d86785197ab21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n**两个实验都已崩溃，原因是 CUDA OOM，不是代码问题。**\n\n每台服务器的 GPU 0 上都有一个**旧实验仍在运行**（已跑 3.5 小时），占满了显存：\n\n| 服务器 | 占用 GPU 的旧进程 | 旧实验名 | 显存占用 |\n|--------|-------------------|----------|----------|\n| westd-34685 | PID 19300 | `full_occ_bn_v2_s2_r2`（无 `--occ_data_dir`） | 62152 MiB |\n| westd-10894 | PID 33388 | `random_occ_v2_s0`（无 `--occ_data_dir`） | 62152 MiB |\n\n这两个旧进程是上一轮（没有 `--occ_data_dir` 的版本），没被 kill 就启动了新实验，导致新实验抢不到显存直接 OOM。\n\n**修复步骤：**\n1. kill 旧进程（19300 on westd-34685, 33388 on westd-10894）\n2. 确认 GPU 释放后重新启动新实验\n\n需要我 kill 这两个旧进程吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-occ-loss-fix-v2.md"
+}

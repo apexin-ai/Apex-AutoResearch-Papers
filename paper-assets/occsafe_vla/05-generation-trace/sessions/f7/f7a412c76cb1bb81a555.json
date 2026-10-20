@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7a412c76cb1bb81a555",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "fix 34685 p0 survival",
+  "task_key": "worker_fix_34685-p0-survival_20260527T211909",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_34685-p0-survival_20260527T211909_result.json",
+    "occurrence": 1,
+    "bytes": 649,
+    "sha256": "2ed89ef53d1a564b02853e1c345497bdd92ed9df820e748fc85a39b38beee95b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n```\n清理前可用: 60G\n清理后可用: 110G （释放 ~50G）\nsave_total_limit: 有 — 保留最近 3 个 checkpoint（line 1282-1287 的 rotation 逻辑，>3 时自动删旧的）\ncuda:2 存活: ✓ (92% util, 62209 MiB)\ncuda:3 存活: ✓ (43% util, 62203 MiB)\n```\n\n删除了：\n- `detach_ln_v2_s2` 不完整 20000_chkpt (~7.5G)\n- `vanilla_object_s0` 不完整 15000_chkpt (~7.5G)\n- `full_occ_ln_v2_s3` 旧 10000_chkpt (~15G)\n- `detach_ln_v2_s3` 旧 10000_chkpt (~15G)\n\n110G 可用空间充裕，每个 checkpoint ~7.5G，加上代码已有 3-checkpoint rotation，不会再因磁盘满崩溃。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-34685-p0-survival.md"
+}

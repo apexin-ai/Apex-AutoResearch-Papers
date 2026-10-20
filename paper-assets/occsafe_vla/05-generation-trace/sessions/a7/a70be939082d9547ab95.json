@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a70be939082d9547ab95",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_5_1779849820.md",
+  "task_key": "loop_5_1779849820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1779849820.md",
+    "occurrence": 1,
+    "bytes": 6004,
+    "sha256": "34906cb0c8fe113b020c840397ac0d2202e9b16bd1d15f49f886adc4ec848ff8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-27T02:14:38+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **westd-34685 GPU 白名单**: cuda:0/1/2/3（项目独占），不可用其他服务器 GPU 除非 Director 批准扩配额\n- **westd-10894 状态混乱**: 3 个实验 registry 标 DONE(success) 但 cron reconcile 显示进程仍存活（PID 481426/481643/481988）。**不要信 registry 状态，以 cron/SSH 实际进程为准**。full_occ_ln_v2_s0d (cuda:3, PID 490803) 是后提交的新实验\n- **v1 数据/机制证据全部不可用于论文 claim**（D056/D057）：gradient collapse、CKA drift、crossover interaction 均为 bug 产物。唯一可用机制信号 = 梯度正交性 (cosine≈0)\n- **论文措辞禁区**: 禁止 \"crossover interaction\"、\"BN-mediated gradient calibration\"、\"existence regularization\"、v1/v2 梯度跨方法论数值对比\n- **Paper deadline May 29** — 统一修订计划 (F1-F5 + P1-P5) 待 Director 审批，审批前不动 paper 文件\n- **detach_ln_v2_s1_35 的 run_root_dir 实际是 `/root/autodl-tmp/checkpoints/detach_ln_v2_s1`**（非 `detach_ln_v2_s1_35`），是从 10894 迁移来的 ghost process，eval 时注意路径\n\n### 2. 🖥️ 基础设施快照\n- **westd-34685**: 工作目录 `/root/occsafe_vla/openvla-oft`，Python `/root/miniconda3/envs/occsafe/bin/python`，conda env `occsafe`，磁盘 2% used (819GB/879GB 可用)\n- **westd-10894**: 同上布局，但 GPU 硬件状态有争议（ROADMAP 说全坏，memory.md M075 修正说 cuda:0/1/2 进程正常 cuda:3 空闲）— 以 cron reconcile 结果为准（4 个进程都报 still running）\n- 模型: `/root/autodl-tmp/models/openvla-7b`\n- 数据: `/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops` (55370 samples)\n- OCC 数据: `/root/occsafe_vla/occ_data`\n- Checkpoint: `/root/autodl-tmp/checkpoints/<exp_id>/`\n- Log: `~/runs/occsafe_vla/<exp_id>.log`\n- WANDB_MODE=disabled（所有实验）\n- 活跃进程 (34685): PID 681204 (detach_ln_v2_s1_35, cuda:0), PID 677568 (detach_ln_s4, cuda:1), PID 735898 (ablation_occ_detach_s4, cuda:2), PID 736253 (mvp_occ_s4, cuda:3)\n- 活跃进程 (10894): PID 481426 (full_occ_ln_v2_s1c, cuda:0), PID 481643 (full_occ_ln_v2_s2, cuda:1), PID 481988 (detach_ln_v2_s0c, cuda:2), PID 490803 (full_occ_ln_v2_s0d, cuda:3)\n- Cron 监控: 9 个 active crons 覆盖上述所有进程\n\n### 3. 📊 当前状态\n**刚完成**: Session 初始化，reconcile 确认 9 个 cron 全部活跃。收到 WRITE HANDOFF 指令。\n\n**RUNNING 实验 (registry)**:\n| exp_id | Cell | Server:GPU | Seed | 说明 |\n|--------|------|-----------|------|------|\n| detach_ln_v2_s1_35 | 4 (Detach LN) | 34685:0 | 43 | v2 rebuild，run_root_dir=detach_ln_v2_s1 |\n| detach_ln_s4 | 4 (Detach LN) | 34685:1 | 46 | n=5 expansion |\n| ablation_occ_detach_s4 | 3 (Detach BN) | 34685:2 | 46 | n=5 expansion |\n| mvp_occ_s4 | 1 (Full OCC BN) | 34685:3 | 46 | n=5 expansion |\n\n**10894 实验（registry=DONE 但进程存活，cron 重注册中）**:\n| exp_id | Cell | GPU | Seed | Registry结论 | 实际 |\n|--------|------|-----|------|-------------|------|\n| full_occ_ln_v2_s1c | 2 (Full OCC LN) | cuda:0 | 43 | success | cron 报 still running |\n| full_occ_ln_v2_s2 | 2 (Full OCC LN) | cuda:1 | 44 | success | cron 报 still running |\n| detach_ln_v2_s0c | 4 (Detach LN) | cuda:2 | 42 | success | cron 报 still running |\n| full_occ_ln_v2_s0d | 2 (Full OCC LN) | cuda:3 | 42 | 无conclusion | cron 报 still running |\n\n**Running Worker**: `worker_code_v2-gradient-analysis-prep` (25 turns, 在检查 34685 上的 git 同步状态准备 v2 梯度分析脚本)\n\n**等待中**:\n- 8 个训练完成的 cron 回调\n- Worker v2-gradient-analysis-prep 完成回调\n- Director 审批统一修订计划 (F1-F5 + P1-P5)\n- full_occ_ln_s4 (Cell 2 n=5, seed 46) 等 GPU 空出\n\n### 4. 📋 待办（条件触发式）\n- **34685 任一训练 cron 回调 → spawn eval worker（eval 命令参考已有 *_eval 实验 spec），eval 完成后更新 v2 factorial 表**\n- **10894 cron 回调 → 先 SSH 确认 registry 状态是否需要从 DONE 改回正确状态，再 spawn eval worker**\n- **detach_ln_v2_s1_35 完成 → eval 时注意 checkpoint 路径是 `/root/autodl-tmp/checkpoints/detach_ln_v2_s1`（不是 s1_35）**\n- **34685 有 GPU 空出 → 立即提交 full_occ_ln_s4 (Cell 2 n=5, seed 46)**\n- **所有 v2 seed 的 eval 完成 → 跑确认性 2×2 ANOVA，更新 ROADMAP 和 paper_framing**\n- **Director 审批 F1-F5 + P1-P5 → spawn paper worker 按 memory.md 中的合并执行顺序逐步修订**\n- **worker v2-gradient-analysis-prep 完成 → 根据产出决定是否在 34685 跑 v2 同方法论梯度分析（需等 GPU 空闲）**\n- **ANOVA 结果若 Cell 4 (Detach LN) 显著 > Vanilla → 可 claim 更强（从\"无害\"升级为\"有益\"），通知 Director 更新 framing**\n\n### 5. 🎯 战略上下文\n- **核心结论 (Plan B, D043)**: gradient flow 是损害源（Grad ON < Vanilla），detach 后无害（Grad OFF ≈ Vanilla）。BN 放大梯度流损害。这是 ordinal interaction，不是 crossover\n- **Vanilla baseline**: 0.745±0.024 (n=3, v2)。Detach BN 0.767 与之统计不可区分 (p=0.28)\n- **Cell 4 (Detach LN)**: 单点 CAR=0.802 (+5.7pp)，如果多 seed 均值仍高 → 叙事可能从\"detach 无害\"升级为\"detach+LN 有益\"（D064 双分支 framing 准备）\n- **10894 状态是最容易判断错的事**: ROADMAP 说硬件故障全坏，memory.md M075 修正说是 cron 误报、进程正常。**以 cron reconcile（9 个都 still running）和 M075 修正为准**。下一个 session 不要因为 ROADMAP 说坏就放弃 10894\n- **v1 机制证据全部作废** (D056/D057) — 不要试图复活任何 v1 claim。当前可用：梯度正交性 + 方差不对称。v2 同方法论梯度分析是 nice-to-have 不是 must-have\n- **Paper May 29 deadline**: 还有 ~2 天。修订计划已写好待审批。关键路径 = v2 数据齐全 → ANOVA → 更新数字 → 执行 F1-F5 + P1-P5 → 编译验证 ≤ 8 页\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1779849820.md"
+}

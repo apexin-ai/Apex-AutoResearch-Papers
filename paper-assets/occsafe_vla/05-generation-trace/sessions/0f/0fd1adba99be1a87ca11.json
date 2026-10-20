@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0fd1adba99be1a87ca11",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code fix cutoff weight schedule",
+  "task_key": "worker_code_fix-cutoff-weight-schedule_20260521T134802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-cutoff-weight-schedule_20260521T134802_result.json",
+    "occurrence": 1,
+    "bytes": 1638,
+    "sha256": "44415e966728f821ccb9e8d89b82625f43217012a319440f6841b7bb03789a1a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "scripts 目录不在任何 git repo 内，注释已更新但无法 git commit。\n\n### 产出汇总\n\n**1. 代码对比**\n\n修改前 (L1110-1113):\n```python\nif cfg.occ_loss_cutoff_step > 0:\n    occ_weight_now = cfg.occ_loss_weight if batch_idx < cfg.occ_loss_cutoff_step else 0.0\nelse:\n    occ_weight_now = cfg.occ_loss_weight * math.exp(-batch_idx / cfg.occ_loss_decay_steps)\n```\n\n修改后 (L1110-1114):\n```python\nif cfg.occ_loss_cutoff_step > 0:\n    base_weight = cfg.occ_loss_weight * math.exp(-batch_idx / cfg.occ_loss_decay_steps)\n    occ_weight_now = base_weight if batch_idx < cfg.occ_loss_cutoff_step else 0.0\nelse:\n    occ_weight_now = cfg.occ_loss_weight * math.exp(-batch_idx / cfg.occ_loss_decay_steps)\n```\n\nconfig 注释也从 `\"no decay, constant weight before cutoff\"` 改为 `\"exponential decay before cutoff\"`。\n\n**2. 验证输出** (cutoff_step=35000):\n```\nstep=     0 base=0.010000 cutoff_weight=0.010000\nstep= 10000 base=0.008187 cutoff_weight=0.008187\nstep= 20000 base=0.006703 cutoff_weight=0.006703\nstep= 30000 base=0.005488 cutoff_weight=0.005488\nstep= 34999 base=0.004966 cutoff_weight=0.004966\nstep= 35000 base=0.004966 cutoff_weight=0.000000\nstep= 40000 base=0.004493 cutoff_weight=0.000000\nstep= 50000 base=0.003679 cutoff_weight=0.000000\n```\n\n**3. Git commit**: `e36e9bd` — `fix: cutoff mode uses exponential decay before cutoff step (eliminates dosage confound)`\n\n**4. cutoff_experiments.sh**: 注释已更新为 `\"weight schedule: exponential decay (same as full-OCC), zeroed after cutoff step\"`。该文件不在 git repo 内，无需 commit。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-cutoff-weight-schedule.md"
+}

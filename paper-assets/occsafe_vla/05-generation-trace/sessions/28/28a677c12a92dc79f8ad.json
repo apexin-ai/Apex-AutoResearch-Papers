@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28a677c12a92dc79f8ad",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "fix revert cell4 to n3 compile",
+  "task_key": "worker_fix_revert-cell4-to-n3-compile_20260528T101244",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_revert-cell4-to-n3-compile_20260528T101244_result.json",
+    "occurrence": 1,
+    "bytes": 1359,
+    "sha256": "c80a673b48b77d7ca32f04a66f745ac4768e62999804e2d03d79bc6ef621cc13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，0 errors。\n\n### 修改汇总\n\n**results.tex** (5 处):\n- L28 Table 1: `4 / 0.798±0.022 / 0.909±0.015 / +5.2` → `3 / 0.802±0.024 / 0.911±0.018 / +5.7`\n- L9: `0.798±0.022, n=4, Δ=+5.2` → `0.802±0.024, n=3, Δ=+5.7`\n- L49: `0.798±0.022, n=4, Δ=+5.2, d=+2.31` → `0.802±0.024, n=3, Δ=+5.7, d=+2.36`\n- L49 ANOVA inline: `F(1,11)=3.26/4.68/0.21` → `F(1,10)=3.20/4.49/0.10`\n- L55 caption + L62 Table 2: `0.798` → `0.802`, interaction F/p updated\n\n**introduction.tex** (1 处):\n- L10 Fig 1 caption: `0.798±0.022, n=4` → `0.802±0.024, n=3`\n\n**discussion.tex** (2 处):\n- L9: `0.798±0.022 (n=4)` → `0.802±0.024 (n=3)`\n- L9 ANOVA: `F=0.21, p=0.656, η²=0.019` → `F=0.10, p=0.763, η²=0.010`\n\n**appendix.tex** (6 处):\n- L85: `n=4, 0.798±0.022, Δ=+5.2, d=+2.31` → `n=3, 0.802±0.024, Δ=+5.7, d=+2.36`\n- L125 codebase section: `F<0.1, η²=0.005` → `F=0.10, η²=0.010`\n- L132: `15 total` → `14 total`; p/η² values updated\n- L134: `η²=0.019` → `η²=0.010`\n- L136: Full ANOVA inline values updated to n=3 values\n- ANOVA table: `F(1,11) 3.26/4.68/0.21` → `F(1,10) 3.20/4.49/0.10`; all p/η² updated\n- L174 pairwise table: `d=+2.31` → `d=+2.36`\n\n**PDF**: `/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/main.pdf` (19 pages, 0 errors)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-revert-cell4-to-n3-compile.md"
+}

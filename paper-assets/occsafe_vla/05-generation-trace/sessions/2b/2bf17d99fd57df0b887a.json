@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2bf17d99fd57df0b887a",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "check training progress all",
+  "task_key": "worker_check_training-progress-all_20260527T031345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_training-progress-all_20260527T031345_result.json",
+    "occurrence": 1,
+    "bytes": 2095,
+    "sha256": "772115a5d4a2194a57277bc6f39fb095005fd03a387ebcd74e6549e9b3699984"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`ps | grep` 被 read_only 模式拦截，但 GPU 利用率和日志活跃增长已足够确认进程状态。\n\n## westd-10894 (4x GPU, 全部 62GB/98GB 使用中)\n\n| 实验 | 当前 step | 进度 | 速率 | 最新 loss (AUX) | 预估剩余 | 进程 |\n|------|----------|------|------|-----------------|---------|------|\n| **full_occ_ln_v2_s1c** | ~9551/50005 | 19% | 1.08 it/s | occ=0.0118, act=0.1523 (step 9500) | ~10.4h | 存活 |\n| **full_occ_ln_v2_s2** | ~9539/50005 | 19% | 1.08 it/s | occ=0.0170, act=0.1138 (step 9500) | ~10.4h | 存活 |\n| **detach_ln_v2_s0c** | ~9520/50005 | 19% | 1.08 it/s | occ=0.0100, act=0.1533 (step 9500) | ~10.4h | 存活 |\n| **full_occ_ln_v2_s0d** | ~6998/50005 | 14% | 1.08 it/s | (未在 tail 中可见) | ~11.1h | 存活 |\n\n## westd-34685 (4x GPU, 全部 62-63GB/98GB 使用中)\n\n| 实验 | 当前 step | 进度 | 速率 | 最新 loss (AUX) | 预估剩余 | 进程 |\n|------|----------|------|------|-----------------|---------|------|\n| **detach_ln_v2_s1** (_35) | ~13683/50005 | 27% | 1.09 it/s | (截断区域内) | ~9.3h | 存活 |\n| **detach_ln_s4** | ~13744/50005 | 27% | 1.09 it/s | occ=0.0142, act=0.0996 (step 13700) | ~9.2h | 存活 |\n| **ablation_occ_detach_s4** | ~10900/50005 | 22% | 1.06 it/s | (刚存 ckpt@10000) | ~10.2h | 存活 |\n| **mvp_occ_s4** | ~10886/50005 | 22% | 1.08 it/s | (刚存 ckpt@10000) | ~10.1h | 存活 |\n\n## 关键发现\n\n1. **Registry 标记错误**: full_occ_ln_v2_s1c、full_occ_ln_v2_s2、detach_ln_v2_s0c 的 registry 标记为 DONE，但实际只跑到 19%，仍在活跃训练中。需更正 registry。\n\n2. **DDL 风险评估**: 所有实验预估还需 9-11h。假设当前是 5/27 下午，所有实验应在 5/28 12:00 UTC 前完成。**full_occ_ln_v2_s0d 是最慢的**（14%, 需 ~11h），裕量最小。\n\n3. **Checkpoint 已保存**:\n   - `ablation_occ_detach_s4`: `/root/autodl-tmp/checkpoints/ablation_occ_detach_s4/...-10000_chkpt`\n   - `mvp_occ_s4`: `/root/autodl-tmp/checkpoints/mvp_occ_s4/...-10000_chkpt`\n\n4. 8 张 GPU 全部满载运行，无异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-training-progress-all.md"
+}

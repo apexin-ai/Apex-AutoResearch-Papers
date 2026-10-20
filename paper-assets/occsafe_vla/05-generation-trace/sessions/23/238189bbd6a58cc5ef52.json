@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "238189bbd6a58cc5ef52",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra recover vanilla s2 resume",
+  "task_key": "worker_infra_recover_vanilla_s2_resume_20260520T203937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_recover_vanilla_s2_resume_20260520T203937_result.json",
+    "occurrence": 1,
+    "bytes": 1033,
+    "sha256": "6520815e1f3bfcd0cf0b1578cdc75fdfa5dbaf9699fce9808582e38ea898f3d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n| 项目 | 状态 |\n|------|------|\n| **s0** (PID 100203) | 运行中，已 11h19m |\n| **s1** (PID 97847) | 运行中，已 11h19m |\n| **s2** (PID 225562) | 已从 35000_chkpt resume，~1.04 it/s |\n| **35000_chkpt** | 完整（~15GB，含 config.json + 4 model shards + lora + action_head + proprio） |\n| **40000_chkpt** | 已删除（不完整，缺 model safetensors） |\n| **cleanup 进程** | 已 kill (PID 152257) |\n| **新 monitor** | PID 226827，watching 100203/97847/225562 |\n| **eval 参数** | 已修复 `--num_trials_per_task` → `--num_rollouts`，移除无效 `--gpu_id` |\n| **预估 s2 完成** | 15005 steps / 1.04 it/s ≈ **4.0h**（约 08:45 UTC） |\n\n注意：进度条显示 48/50005 但 `max_steps=50005` + `resume_step=35000`，实际只跑 15005 步。如果代码实现是从 0 重新计数到 50005 而非从 35000 到 50005，需要确认训练逻辑——建议等到 step ~5000 时检查 checkpoint 命名是否正确（应存为 40000_chkpt）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-recover-vanilla-s2-resume.md"
+}

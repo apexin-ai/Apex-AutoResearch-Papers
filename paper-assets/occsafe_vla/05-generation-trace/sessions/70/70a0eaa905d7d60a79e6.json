@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70a0eaa905d7d60a79e6",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval depth s3 50r",
+  "task_key": "worker_eval_depth_s3_50r_20260522T220011",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_depth_s3_50r_20260522T220011_result.json",
+    "occurrence": 1,
+    "bytes": 355,
+    "sha256": "8e380601466a950ab975ccbbc55035483e51d71b727fd1d3cca7f54072ce007e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估已成功启动：\n\n- **tmux session**: `depth_s3_eval`\n- **GPU 2** (`49:00.0`): PID 162271，已占用 13436 MiB 显存，模型 checkpoint 加载完成\n- **日志**: `/tmp/depth_s3_eval.log`\n- **配置**: 50 rollouts, seed=42, WANDB disabled\n\n预计 ~50 分钟完成。可用 `tail -20 /tmp/depth_s3_eval.log` 查看进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-depth-s3-50r.md"
+}

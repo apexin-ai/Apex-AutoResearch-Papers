@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ef0f831072efd88f4c1",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval ablation occ detach s4 eval",
+  "task_key": "worker_eval_ablation_occ_detach_s4_eval_20260527T145412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_ablation_occ_detach_s4_eval_20260527T145412_result.json",
+    "occurrence": 1,
+    "bytes": 363,
+    "sha256": "07ff2f9686ac31cf819329b3b073211e8bad4104889e1a66ffe57e9709902792"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。`ablation_occ_detach_s4_eval` → **DONE (success)**。\n\n**结果**: TSR=0.864, CAR=0.738, 500 episodes, 131 collisions。CAR=0.738 落在 Cell 3 既有数据范围内 (s0=0.754, s3_v2=0.794)，符合预期。T5 的 CAR=0.1 和 T3 的 CAR=0.3 是 per-task 低点，但属于该 cell 的已知 task-level 方差模式。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-ablation-occ-detach-s4-eval.md"
+}

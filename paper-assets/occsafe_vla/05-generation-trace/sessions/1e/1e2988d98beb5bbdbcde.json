@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e2988d98beb5bbdbcde",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis eval pipeline 34685",
+  "task_key": "worker_analysis_eval_pipeline_34685_20260525T082642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_pipeline_34685_20260525T082642_result.json",
+    "occurrence": 1,
+    "bytes": 1481,
+    "sha256": "577477a60ca286f6e852b0274f96578e4889679dc7bb75db6d3d7404e68dbd8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### Eval Pipeline 准备状态\n\n| 检查项 | 状态 |\n|--------|------|\n| eval 脚本 (`evaluate_safelibero.py`) | ✓ 可用 |\n| MUJOCO 3.8.1 + EGL | ✓ 正常 |\n| conda 环境 `occsafe` | ✓ 正常 |\n| eval 脚本已创建 (`/root/occsafe_vla/eval_after_training.sh`) | ✓ |\n| Checkpoint 路径格式确认 | ✓ |\n| 日志目录 `/root/runs/occsafe_vla/` | ✓ 存在 |\n\n### Checkpoint 路径格式\n\n训练完成后 50K checkpoint 路径为：\n```\n/root/autodl-tmp/checkpoints/{exp}/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--{exp}--50000_chkpt\n```\n脚本已包含 fallback 逻辑：若 `--50000_chkpt` 不存在则使用 latest 目录。\n\n### 训练进度（与预期严重偏差）\n\n| GPU | 实验 | 进度 | 已运行 |\n|-----|------|------|--------|\n| 0 | cutoff_25k_s2_v3 | 12,777/50,005 (25%) | ~3h47m |\n| 1 | reverse_cutoff_s2_v3 | 12,891/50,005 (26%) | ~3h51m |\n| 2 | cutoff_45k_s1_v3 | 13,220/50,005 (26%) | ~3h57m |\n| 3 | cutoff_15k_s2_v2 | 13,213/50,005 (26%) | ~3h57m |\n\n速率约 0.92 it/s，剩余 ~37,000 步，**预计还需 ~11 小时**，完成时间约 **May 26 03:30 UTC**，远晚于预期的 16:30-17:00 UTC。\n\n### 预估 eval 时长\n~50-60 min/个（基于历史记录 cutoff_15k_s0_eval 52 min），4 个并行 eval 总耗时 ~1h。\n\n### 使用方式\n训练完成后在 34685 上执行：\n```bash\nbash /root/occsafe_vla/eval_after_training.sh\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-pipeline-34685.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fcc530b9588a09fb56c6",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ssh 34685 status and eval",
+  "task_key": "worker_ssh_34685_status_and_eval_20260526T033800",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_34685_status_and_eval_20260526T033800_result.json",
+    "occurrence": 1,
+    "bytes": 862,
+    "sha256": "9eb9f4718893a7b3acda5ecc50a2bb94f8ac81c365dff8e8c5e2f89cb74a9d0b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 4 个实验仍在训练中，没有完成的。\n\n## 34685 状态\n\n| 实验 | 训练状态 | 当前 step | 进度 | 剩余时间 | GPU |\n|------|---------|----------|------|---------|-----|\n| detach_bn_v2_s0 | 训练中 | ~36035/50005 | 72% | ~3h35m | cuda:0 (99%) |\n| detach_bn_v2_s1 | 训练中 | ~36105/50005 | 72% | ~3h35m | cuda:1 (99%) |\n| detach_bn_v2_s2 | 训练中 | ~35977/50005 | 72% | ~3h37m | cuda:2 (41%) |\n| full_occ_bn_v2_s1 | 训练中 | ~34552/50005 | 69% | ~4h00m | cuda:3 (99%) |\n\n- **预计完成时间**：detach_bn_v2 三个 seed 约 3.5h 后完成，full_occ_bn_v2_s1 约 4h 后完成\n- **空闲 GPU**：无\n- **50K checkpoint**：均未到达，无法启动 eval\n- 所有实验速度正常 ~1.07-1.08 it/s，loss 正常下降\n\nD051 预估 14:30 完成的判断偏早，实际还需约 3.5-4 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-34685-status-and-eval.md"
+}

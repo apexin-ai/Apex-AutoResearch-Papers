@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd2d2fd0e4883bbb8186",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "paper update figures dose response factorial",
+  "task_key": "worker_paper_update-figures-dose-response-factorial_20260525T065724",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_update-figures-dose-response-factorial_20260525T065724_result.json",
+    "occurrence": 1,
+    "bytes": 708,
+    "sha256": "7ecd3190e309efb8c6eeccdf9f899384587eccd92cf436245495dc6d92338466"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两张图已生成并注册：\n\n**图 1 — Dose-Response Curve** (`fig_dose_response_2seed.pdf/png`, 21KB PDF)\n- 蓝色渐变系表示 early-cutoff（浅→深 = 少→多梯度流），橙色三角为 late-onset reverse_cutoff\n- 个体 seed 小圆点散点 + 均值大圆点连线，3-seed 点带 error bar\n- Vanilla baseline 灰色虚线\n\n**图 2 — 2×2 Factorial** (`fig_factorial_2x2.pdf/png`, 25KB PDF)\n- BN（蓝）vs LN（橙）分组柱状图，error bar = 3-seed std\n- Vanilla baseline 虚线，交互效应 p=0.025 标注带 bracket\n\n生成脚本保留在 artifacts 目录下（`gen_dose_response.py`, `gen_factorial_2x2.py`），数据修改后可直接重新运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-update-figures-dose-response-factorial.md"
+}

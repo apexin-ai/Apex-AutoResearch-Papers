@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "332be1cb6a71854b1e3e",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops download conflict rate csv",
+  "task_key": "worker_ops_download_conflict_rate_csv_20260524T135756",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_download_conflict_rate_csv_20260524T135756_result.json",
+    "occurrence": 1,
+    "bytes": 282,
+    "sha256": "5002cb8ebb9e12d62f5822b8a6c2f0bf427d7caa15298e95cc9a904cff3daddb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已下载到本地：\n- `artifacts/gradient_analysis/per_layer_conflict_rate.csv` — 98 行数据（Full_OCC_s0 + Random_s2，dino 23层 + siglip 26层）\n- `artifacts/gradient_analysis/per_layer_summary.json` — 按 condition × group 的汇总统计"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-download-conflict-rate-csv.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e378146528ec7040feb",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diag detach ln v2 s4",
+  "task_key": "worker_diag_detach_ln_v2_s4_20260528T110837",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_detach_ln_v2_s4_20260528T110837_result.json",
+    "occurrence": 1,
+    "bytes": 914,
+    "sha256": "8aabc2d83df21e99ad6d36cba8783b81dbe6439536690604f39f10ec5b1b99a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。总结：\n\n**根因：系统 RAM OOM killer（高度疑似）**\n\nwestd-10894 上 3 个实验在 19:04 北京时间（11:04 UTC）2 分钟内连续被杀：\n\n| 实验 | GPU | 信号 | 进度 | 损失 |\n|------|-----|------|------|------|\n| detach_ln_v2_s4 | cuda:1 | SIGTERM (-15) | 90% (step 45085) | ~1.3h 训练量 |\n| vanilla_object_s2 | cuda:3 | SIGKILL (-9) | 43% (step 21378) | ~7.4h 训练量 |\n| full_occ_bn_v2_s3 | cuda:2 | killed | ~43% | ~7.4h 训练量 |\n\n判据：SIGKILL (-9) 是 OOM killer 标志信号；3 进程近乎同时死亡；无服务器重启；日志中无 Python 错误。dmesg 无权限无法 100% 确认。\n\n所有 GPU 当前完全空闲，无 tmux session，无残留进程。如需重跑，建议先 `free -h` 检查系统 RAM，考虑减少并发实验数（3→2）。已更新 registry（3 个实验的 failure_reason）和 memory.md。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-detach-ln-v2-s4.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d810eed49ee68d3fc5c",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis anova factorial",
+  "task_key": "worker_analysis_anova_factorial_20260526T094253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_anova_factorial_20260526T094253_result.json",
+    "occurrence": 1,
+    "bytes": 669,
+    "sha256": "aad4d213a3e315beebf4d1444db6a96d5c14125aed1ede0b0af71dc3aefb5e90"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本和结果已保存并注册。核心发现：\n\n**ANOVA 结果**（Type III SS, df=1,7）：\n- **Gradient Flow**: F=4.02, p=0.085, η²_p=0.365 — 趋近显著，大效应量\n- **Norm Type**: F=1.68, p=0.236, η²_p=0.194 — 不显著，中等效应量\n- **交互项**: F=0.74, p=0.419, η²_p=0.095 — 不显著，小效应量\n\n**Effect sizes** 很大（Cohen's d: Grad OFF vs ON = 1.08, LN vs BN = 0.55），但 N=11 统计力不足，p 值均未达 0.05。\n\n**vs Vanilla (0.768)**：所有 OCC cell 均低于 Vanilla，grad_off_ln 最接近（-0.003），grad_on_bn 差距最大（-0.068）。Grand mean 0.745 比 Vanilla 低 0.023。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-anova-factorial.md"
+}

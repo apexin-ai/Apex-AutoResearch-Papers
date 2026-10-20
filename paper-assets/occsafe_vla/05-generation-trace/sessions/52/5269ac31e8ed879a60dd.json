@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5269ac31e8ed879a60dd",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "paper experiment section draft",
+  "task_key": "worker_paper_experiment_section_draft_20260523T092013",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_experiment_section_draft_20260523T092013_result.json",
+    "occurrence": 1,
+    "bytes": 831,
+    "sha256": "a9ac3d5b8ef9e0ce985deb7c51c33056e168cce02d7fe8a0f62cb89c52f01453"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三处编辑全部到位：\n\n1. **experiments.tex** (line 26): 添加了 factorial design rationale 段落，逐一说明每个 pairwise comparison 隔离的单一变量（gradient flow / label content / spatial reference frame / temporal duration）。\n\n2. **discussion.tex §5.2** (line 28): 在 BN interference 机制和 TSR instability 之间插入梯度分析证据段落。包含：gradient-flow 条件的 action gradient norm 与 Vanilla 可比、Detach 条件 substantially lower、action/OCC 梯度正交（cosine≈0）、Detach+LN 实验作为 ongoing work。措辞用 \"at convergence\"，未用具体倍数。\n\n3. **discussion.tex §5.3** (line 41): 添加 dose-response 框架段落，描述 Cutoff@25K 和 reverse cutoff 两个计划实验，末尾用 `\\textit{[Results to be added]}` 占位。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-experiment-section-draft.md"
+}

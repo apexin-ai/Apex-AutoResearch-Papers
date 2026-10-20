@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "105cc86fb0d0ea2952c0",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops check checkpoints and fill cuda1",
+  "task_key": "worker_ops_check_checkpoints_and_fill_cuda1_20260525T014326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_checkpoints_and_fill_cuda1_20260525T014326_result.json",
+    "occurrence": 1,
+    "bytes": 2131,
+    "sha256": "7992ff49afaba72879d6d4ad48bf3ac74cb91bae1a3881124a4e6f7660aa5539"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n### 1. Checkpoint 可用性\n\n| 条件 | 50K checkpoint | 状态 |\n|---|---|---|\n| **full_occ_ln_s0** | `/root/autodl-tmp/checkpoints/full_occ_ln_s0/...--50000_chkpt` | ✅ 存在，15GB |\n| **vanilla_s0** | — | ❌ 服务器上无任何 vanilla checkpoint 目录 |\n| **vanilla_retrain_s0** | — | ❌ 同上 |\n| **full_occ_s0** | — | ❌ 不存在（只有 full_occ_**ln**_s0/s1/s2） |\n| **mvp_occ_s0** | — | ❌ 不存在 |\n| **ablation_occ_detach_s0_retrain** | — | ❌ 训练已崩溃，最高 40K checkpoint |\n\n### 2. ablation_occ_detach_s0_retrain 进度\n\n- **已崩溃**，exit code 1，时间 2026-05-25 01:44:40\n- 日志中最后一次 \"Saving Model Checkpoint\" 在 step 30000\n- 40K checkpoint 存在（15GB，创建时间 07:37，可能来自静默重启），但无 50K\n- 崩溃原因不明（traceback 未启用），需查 `TORCHELASTIC_ERROR_FILE`\n\n### 3. GPU 状态\n\n| GPU | 利用率 | VRAM | 状态 |\n|---|---|---|---|\n| 0 | 99% | 62GB/98GB | full_occ_ln_s1_resume 或 s2_resume |\n| **1** | **0%** | **0/98GB** | **空闲** |\n| 2 | 99% | 62GB/98GB | full_occ_ln_s1_resume 或 s2_resume |\n| 3 | 99% | 62GB/98GB | 第三个训练进程（3个PID但只有2个活跃 resume log） |\n\n活跃训练：\n- **full_occ_ln_s1_resume**: step 27637/50005 (55%)，剩余 ~5h46m\n- **full_occ_ln_s2_resume**: step 27656/50005 (55%)，剩余 ~5h47m\n\n### 4. 建议\n\n**无法直接跑 same-seed 梯度分析**。4 个条件中只有 **full_occ_ln_s0** 的 50K checkpoint 在本地，其余 3 个（vanilla_s0、full_occ_s0/mvp_occ_s0、ablation_occ_detach_s0_retrain）均不可用。\n\n可选方案：\n- **A**: 从其他服务器 scp vanilla_s0 和 full_occ_s0（或 mvp_occ_s0）的 50K checkpoint 过来，同时在 cuda:1 上恢复 ablation_occ_detach_s0_retrain 从 40K 继续跑到 50K\n- **B**: 改用 cuda:1 跑其他不依赖缺失 checkpoint 的任务（如 full_occ_ln_s0 的梯度分析单模型 debug、eval 等）\n- **C**: 先在 cuda:1 上重启 ablation_occ_detach_s0_retrain（从 40K resume），等 50K 出来后再安排梯度分析"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-checkpoints-and-fill-cuda1.md"
+}

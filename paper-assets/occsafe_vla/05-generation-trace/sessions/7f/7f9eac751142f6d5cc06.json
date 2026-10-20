@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f9eac751142f6d5cc06",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval vanilla s0 intermediate checkpoints",
+  "task_key": "worker_eval_vanilla_s0_intermediate_checkpoints_20260520T232844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_vanilla_s0_intermediate_checkpoints_20260520T232844_result.json",
+    "occurrence": 1,
+    "bytes": 81,
+    "sha256": "26b061d816354ac4d570cebbd1a163ce15a2c0ca60747cbba7ffe711fc61474e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "35K eval 在 GPU 0 上运行中，3 分钟后回来检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-vanilla-s0-intermediate-checkpoints.md"
+}

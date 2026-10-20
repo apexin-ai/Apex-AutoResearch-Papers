@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22d4026bb05ba04a6065",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose gpu registry alignment",
+  "task_key": "worker_diagnose_gpu-registry-alignment_20260528T085439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_gpu-registry-alignment_20260528T085439_result.json",
+    "occurrence": 1,
+    "bytes": 1932,
+    "sha256": "e31f4bddf9b3903681caa4a61c231bf8ed397b4854829fb08b0345c2df4ddd36"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Got all the data. Here's the report:\n\n## Part 1: 未知进程\n\n- **westd-10894:cuda:1**: PID 822480 — `finetune.py` 训练 **detach_ln_v2_s4**（parent PID 822402，CUDA_VISIBLE_DEVICES=1）→ 本项目实验，非未知进程，registry 需补注册 GPU 信息\n- **westd-34685:cuda:0**: PID 47238 — `finetune.py` 训练 **detach_ln_v2_s2**（parent PID 47162，--resume True --resume_step 25000）→ 本项目实验，非未知进程，registry 需补注册 GPU 信息\n\n## Part 2: 空闲确认\n\n- **westd-10894:cuda:0**: 空闲（0 MiB used）\n- **westd-34685:cuda:2**: 空闲（3 MiB used）\n- **westd-34685:cuda:3**: 空闲（3 MiB used）\n\n## Part 3: 训练进度\n\n服务器当前时间: 2026-05-28 08:56 UTC（北京时间 16:56）\n截止时间: 2026-05-28 12:00 UTC（北京时间 20:00）\n\n| exp_id | server:gpu | step/total | speed (it/s) | 剩余时间 | ETA (UTC) | 能否按时 |\n|--------|-----------|------------|-------------|---------|-----------|---------|\n| detach_ln_v2_s4 | 10894:cuda:1 | 37086/50005 | ~1.06 | ~3h23m | ~12:19 | 略超时 |\n| detach_ln_v2_s2 | 34685:cuda:0 | 24195/50005 | ~1.09 | ~6h35m | ~15:31 | 超时 |\n| vanilla_object_s2 | 10894:cuda:3 | 13256/50005 | ~1.08 | ~9h27m | ~18:23 | 超时 |\n| full_occ_bn_v2_s2 | 34685:cuda:1 | 15671/50005 | ~1.09 | ~8h45m | ~17:41 | 超时 |\n| full_occ_bn_v2_s3 | 10894:cuda:2 | 13203/50005 | ~1.08 | ~9h28m | ~18:24 | 超时 |\n\n**注意**: detach_ln_v2_s2 使用了 `--resume True --resume_step 25000`，但 tqdm 显示 24195/50005（batch_idx 从 0 重计数，与 C002/M052 描述的问题一致）。实际已训练 25000+24195=49195 步的数据，但训练循环仍会跑到 50005，总计将训练 75005 步。\n\n**总结**: 5 个实验全部无法在 12:00 UTC 截止前完成。detach_ln_v2_s4 最接近（约超时 19 分钟）。其余 4 个超时 3.5~6.5 小时。3 个空闲 GPU 已确认可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-gpu-registry-alignment.md"
+}

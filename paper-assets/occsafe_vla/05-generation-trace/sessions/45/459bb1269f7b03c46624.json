@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "459bb1269f7b03c46624",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops eval from proven template",
+  "task_key": "worker_ops_eval_from_proven_template_20260523T205150",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval_from_proven_template_20260523T205150_result.json",
+    "occurrence": 1,
+    "bytes": 1645,
+    "sha256": "f0a60c06dc5fdbc9dce6579695ab0e72e58557d71b7091c5ea77a616c15eafc1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**两个 eval 进程已经在正常运行中，不需要重启。**\n\n当前状态：\n\n| Eval | PID | GPU | 进度 | 状态 |\n|------|-----|-----|------|------|\n| reverse_cutoff_s0 | 518746 | GPU 2/3 | T0: 98% (49/50) | 正在运行 |\n| cutoff_25k_s0 | 519021 | GPU 2/3 | T0 完成 (TSR=1.000 CAR=0.980), T1 开始 | 正在运行 |\n\n日志文件正在实时更新（最后修改时间 04:54:38/04:54:40），进度条在推进。\n\n---\n\n**产出汇总：**\n\n**1. 完整命令模板**（从运行中进程的 /proc/PID/cmdline 提取）：\n```bash\npython vla-scripts/evaluate_safelibero.py \\\n  --model_family openvla \\\n  --pretrained_checkpoint <CHECKPOINT_PATH> \\\n  --task_suite_name libero_spatial \\\n  --num_rollouts 50 \\\n  --center_crop True \\\n  --num_images_in_input 2 \\\n  --use_proprio True \\\n  --run_id_note <RUN_NAME> \\\n  --seed 42\n```\n\n**2. Checkpoint 路径**：\n- reverse_cutoff_s0: `/root/autodl-tmp/checkpoints/reverse_cutoff_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt`\n- cutoff_25k_s0: `/root/autodl-tmp/checkpoints/cutoff_25k_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt`\n\n**3. 步骤 3 跳过** — 进程已在运行，杀掉重启会浪费已完成的进度。\n\n**4. 验证**：\n- 两个进程存活，日志实时更新\n- 之前的 v2 失败（EXIT_CODE=143 = SIGTERM）已被新一轮 eval 替代\n- cutoff_25k_s0 Task 0 已完成，预计 10 个 task 全部完成约需 ~5 小时\n- 日志位置：`/tmp/reverse_cutoff_s0_eval.log`、`/tmp/cutoff_25k_s0_eval.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-from-proven-template.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2122b1f8fcd54f832fba",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis reverse cutoff s2 v2",
+  "task_key": "worker_analysis_reverse_cutoff_s2_v2_20260526T232225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_reverse_cutoff_s2_v2_20260526T232225_result.json",
+    "occurrence": 1,
+    "bytes": 996,
+    "sha256": "2fc3c9441ba73bb086052ab44b0732aff163b57949e7c30501788d6072344a73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练状态\n- 完成步数: **50005 / 50005**\n- 最终 action loss: **0.0610**\n- 最终 occ loss: **0.0095**\n- 正常结束: **Yes** (EXIT_CODE=0, \"Max step 50005 reached!\")\n\n## Checkpoint\n- 路径: `/root/autodl-tmp/checkpoints/reverse_cutoff_s2_v2/`\n- 保存的 checkpoints: **30000, 40000, 50000**\n- 最新 checkpoint: `step-50000` (merged model, 保存于 05/27 07:18)\n- 总大小: **45 GB**\n\n## 对比参考\n| 实验 | CAR | TSR | action loss | occ loss |\n|------|-----|-----|-------------|----------|\n| reverse_cutoff_s0 | **0.700** | 0.788 | 0.0481 | 0.0083 |\n| reverse_cutoff_s1 | **0.736** | 0.890 | - | - |\n| reverse_cutoff_s2_v2 | 待评估 | 待评估 | 0.0610 | 0.0095 |\n\n## 备注\n- s2_v2 的 action loss (0.0610) 和 occ loss (0.0095) 均高于 s0 (0.0481 / 0.0083)，seed 不同所致的差异，需评估后看实际 CAR/TSR\n- 训练耗时约 14h15m，速度 ~1.07 it/s\n- 50000 步 checkpoint 已含 merged model，可直接用于评估"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-reverse-cutoff-s2-v2.md"
+}

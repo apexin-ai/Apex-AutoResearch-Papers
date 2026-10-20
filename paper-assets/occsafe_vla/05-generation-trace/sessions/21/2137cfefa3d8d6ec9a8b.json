@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2137cfefa3d8d6ec9a8b",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "paper fix appendix v1 claim and collapse",
+  "task_key": "worker_paper_fix_appendix-v1-claim-and-collapse_20260526T151143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix_appendix-v1-claim-and-collapse_20260526T151143_result.json",
+    "occurrence": 1,
+    "bytes": 435,
+    "sha256": "e49fec5a93a1320ca4f096940970c9f4609c0e386cb775641220cead3b3b9adf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 处修改完成：\n\n1. **L70**: `p=0.031, d=-3.90` significance claim → v2 数据一致的表述 (`d ≈ -0.04, p = 0.91`)\n2. **L81**: \"Detach collapses to\" → \"Detach gradient norms reduce to\"\n3. **L86** (caption): \"Detach collapses to\" → \"Detach gradient norms reduce to\"\n4. **L105**: \"gradient collapse exacerbating\" → \"reduced gradient flow exacerbating\"\n\n无残余 \"collapse\" 出现。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-appendix-v1-claim-and-collapse.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "159de30e7dce391274a6",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code unified analysis pipeline",
+  "task_key": "worker_code_unified_analysis_pipeline_20260523T101426",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_unified_analysis_pipeline_20260523T101426_result.json",
+    "occurrence": 1,
+    "bytes": 1342,
+    "sha256": "b6d3660d16ace26aec82c589ffeaf69d8e211e420e70e0eb0513bce223819547"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。汇总如下：\n\n### 创建的脚本\n\n| 脚本 | 路径 | 功能 |\n|------|------|------|\n| `run_full_analysis.sh` | `/root/occsafe_vla/analysis/run_full_analysis.sh` | 主控 pipeline，5 阶段：scp-check → gradient → cka → figures → bootstrap。每阶段可独立运行，自动跳过已完成的分析，conda 自动激活 |\n| `plot_gradient_figure.py` | `/root/occsafe_vla/analysis/plot_gradient_figure.py` | 2×2 论文级 figure：(a) action grad norms grouped bar, (b) OCC grad norms, (c) cosine similarity heatmap, (d) CKA 矩阵。支持 `--mock` 模式，兼容新旧两种 gradient stats JSON 格式 |\n| `bootstrap_ci.py` | `/root/occsafe_vla/analysis/bootstrap_ci.py` | 扩展版：新增 `--add-condition NAME path1 path2 ...`（动态添加条件）、`--latex-file`（LaTeX 输出到文件）、`--dry-run`（仅验证路径），原有功能不变 |\n\n### 验证结果\n- `python plot_gradient_figure.py --mock` → 生成 PDF (40KB) + PNG (289KB)\n- `bash run_full_analysis.sh --help` → 显示完整用法\n- `python bootstrap_ci.py --dry-run` → 6 个条件全部 OK\n\n### 当前阻塞\n- **vanilla_retrain_s0** / **full_occ_retrain_s0**：训练中，尚无 50000_chkpt\n- **ablation_occ_detach_s2** / **ablation_random_occ_s2**：需从 westd-10894 SCP checkpoint"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-unified-analysis-pipeline.md"
+}

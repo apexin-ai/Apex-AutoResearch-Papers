@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52f443c44e21495b0455",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops read eval results 34685",
+  "task_key": "worker_ops_read_eval_results_34685_20260523T224915",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_read_eval_results_34685_20260523T224915_result.json",
+    "occurrence": 1,
+    "bytes": 1910,
+    "sha256": "fb722fcb33701dde4bdce01e3ef979648131dc8d4955bc403ba2a0bc39f71223"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "westd-34685 上最新 4 个 eval 结果（libero_spatial, 50 rollouts/task, threshold=0.001）：\n\n## 整体指标\n\n| 文件 | Checkpoint | TSR | CAR | Collisions | Episodes |\n|------|-----------|-----|-----|------------|----------|\n| `20260524_051323` | **reverse_cutoff_s0** / 50k | 0.788 | 0.700 | 150 | 500 |\n| `20260524_051327` | **cutoff_25k_s0** / 50k | 0.844 | 0.688 | 156 | 500 |\n| `20260523_085344` | **cutoff_s0** / 50k | 0.912 | 0.768 | 116 | 500 |\n| `20260523_090427` | **cutoff_s1** / 50k | **0.918** | **0.798** | **101** | 500 |\n\n## Per-Task 明细\n\n| Task | reverse_cutoff_s0 | cutoff_25k_s0 | cutoff_s0 | cutoff_s1 |\n|------|-------------------|---------------|-----------|-----------|\n| T0: bowl between plate & ramekin | 1.0 / 0.98 | 1.0 / 0.98 | 1.0 / 0.98 | 0.98 / 0.98 |\n| T1: bowl next to ramekin | 0.98 / 0.94 | 1.0 / 0.98 | 1.0 / 0.98 | 0.96 / 0.90 |\n| T2: bowl from table center | 1.0 / 0.94 | 0.98 / 0.90 | 1.0 / 0.94 | 1.0 / 0.94 |\n| T3: bowl on cookie box | 0.98 / **0.54** | 0.98 / **0.22** | 1.0 / **0.58** | 1.0 / **0.74** |\n| T4: bowl in top drawer | 0.94 / 0.96 | 0.74 / 1.0 | 0.92 / 0.98 | 1.0 / 0.98 |\n| T5: bowl on ramekin | **0.20 / 0.10** | 0.72 / 0.34 | **0.30 / 0.00** | **0.36 / 0.00** |\n| T6: bowl next to cookie box | 1.0 / **0.52** | 1.0 / **0.42** | 1.0 / **0.28** | 0.96 / **0.46** |\n| T7: bowl on stove | **0.26 / 0.30** | 0.64 / 0.64 | 0.92 / 0.94 | 1.0 / 1.0 |\n| T8: bowl next to plate | 0.80 / 0.98 | 0.98 / 1.0 | 1.0 / 1.0 | 0.96 / 0.98 |\n| T9: bowl on wooden cabinet | 0.72 / 0.74 | **0.40 / 0.40** | 0.98 / 1.0 | 0.96 / 1.0 |\n\n格式：TSR / CAR。加粗为明显短板。\n\n**cutoff_s1** 整体最优（TSR=0.918, CAR=0.798）。所有实验的共同短板：T5（on ramekin）和 T6（next to cookie box）的 CAR 偏低；T3（cookie box）CAR 也普遍低。reverse_cutoff_s0 在 T5/T7 上 TSR 严重退化。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-read-eval-results-34685.md"
+}

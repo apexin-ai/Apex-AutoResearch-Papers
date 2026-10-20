@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05935a62bd5acce10bdb",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops fix cutoff s0 properly",
+  "task_key": "worker_ops_fix-cutoff-s0-properly_20260522T080835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-cutoff-s0-properly_20260522T080835_result.json",
+    "occurrence": 1,
+    "bytes": 700,
+    "sha256": "6fd4b07200d799189b12588271b43913acef6fa0786e140e4ba8bdfb0de49d51"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已正常启动。汇报：\n\n1. **旧进程**：已彻底 killed（tmux session cutoff_s0 + PID 125602/125522/136037 全部清除），GPU 0 内存已释放\n2. **新 PID**：136941，tmux session `cutoff_s0`\n3. **训练初始状态**：\n   - step 0: `occ_loss=0.0979`, `action_loss=0.6914`\n   - 速度：~1.3s/it（step 6 时），正在加速中\n   - save_freq=10000, WANDB_MODE=disabled 生效（无 wandb 报错）\n4. **磁盘**：`/root/autodl-tmp` 350G 总量，已用 52G，剩余 299G (15%)，充足\n\nRegistry 已更新为 RUNNING 状态。一个 warning（`pick_up_the_black_bowl...` task 无 occ index）是已知的——并非所有 task 都有 occ 数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-cutoff-s0-properly.md"
+}

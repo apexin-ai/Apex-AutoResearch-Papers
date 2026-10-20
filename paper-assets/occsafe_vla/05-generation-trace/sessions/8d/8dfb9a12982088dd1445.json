@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8dfb9a12982088dd1445",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "paper check abstract",
+  "task_key": "worker_paper_check_abstract_20260524T212524",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_check_abstract_20260524T212524_result.json",
+    "occurrence": 1,
+    "bytes": 5363,
+    "sha256": "fbc926aa8c740c81f57b4854fad7f2ab3209c05aad6d926eb72f3bc2258dbf05"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Abstract 全文\n\n```latex\nFine-tuned Vision-Language-Action (VLA) models can achieve high task success rates yet remain\nbehaviorally unsafe: on SafeLIBERO Level~I, OpenVLA attains 90.7\\% task success but only 78.0\\%\ncollision avoidance.\nThis paper presents the first factorial study isolating how auxiliary spatial supervision during\nVLA fine-tuning affects collision avoidance.\nMultiple conditions on OpenVLA-OFT with LoRA vary gradient flow, label content, spatial reference\nframe, and temporal extent: Vanilla (action loss only), Full OCC (BEV occupancy with ground-truth\nlabels), Random OCC (random binary labels), Detach OCC (encoder gradients blocked), Detach+LN\n(LayerNorm replacing BatchNorm), Depth (egocentric depth prediction), Cutoff@\\{15K--45K\\}\n(gradient flow for the first $N$ of 50K steps), and Reverse Cutoff (gradient flow for the last\n15K steps only).\nThe central finding is that the Detach OCC degradation ($-$3.4\\,pp CAR vs.\\ Vanilla) decomposes\ninto two mechanistically distinct pathways: BatchNorm interference accounts for all\nrepresentational drift (replacing BN with LayerNorm recovers pretrained CKA to Vanilla level and\n1.9\\,pp CAR; Detach+LN 0.765), while gradient flow absence costs a modest additional 1.5\\,pp\n(within statistical uncertainty) through behavioral regularization beyond representation\npreservation. Gradient norms fall to 1--13\\% of baseline under gradient detachment; BatchNorm\ninterference drives representations away from pretrained features (CKA dropping to 0.31--0.54),\nwhile Detach+LN (LayerNorm substitution) fully recovers pretrained CKA despite retaining\n\\texttt{stop\\_gradient}. Full OCC and Random OCC maintain encoder gradient norms at\n0.87--1.14$\\times$ baseline, preserve pretrained representations (CKA $\\geq$ 0.95), and CAR\nwithin 1.7\\,pp of Vanilla (78.0--79.7\\%).\nWithin the variance of our experiments, label content type does not significantly affect downstream\nsafety metrics: structured occupancy, random binary maps, and egocentric depth yield comparable\ncollision avoidance when gradient flow is maintained.\nCutoff@35K retains high task success (93.3\\%) with CAR statistically indistinguishable from Vanilla\n($-$0.1\\,pp); preliminary cutoff experiments suggest that gradient flow \\emph{continuity} matters\nmore than mere existence---mid-training transitions between gradient-flow and Detach modes\nintroduce seed-dependent outcome variability not observed under consistent training regimes.\nBecause the auxiliary head is discarded after training, these spatial losses add zero inference\ncost and require no ground-truth spatial labels at deployment.\n```\n\n---\n\n## 检查点评估\n\n### a) Dual mechanism (BN interference + gradient flow absence)\n**一致。** 明确描述了\"two mechanistically distinct pathways\"：BN interference 贡献 1.9pp，gradient flow absence 贡献 1.5pp，合计 3.4pp。比例 56%/44% 未显式给出，但数字可推算（1.9/3.4=56%, 1.5/3.4=44%）。\n\n### b) Representation-behavior dissociation (CKA 恢复但 CAR 仍低)\n**一致。** \"Detach+LN (LayerNorm substitution) fully recovers pretrained CKA despite retaining `stop_gradient`\"，同时 Detach+LN CAR = 0.765 仍低于 Vanilla 0.780。CKA 恢复 + CAR 仍有 1.5pp gap = dissociation 概念在。但 abstract 未使用 \"representation-behavior dissociation\" 这一术语。\n\n### c) Existence regularization\n**部分缺失。** \"existence regularization\" 一词未出现。概念通过 Random OCC ≈ Full OCC 的结果和\"label content type does not significantly affect\"间接传达，但未提炼为明确的 framing term。Abstract 更侧重 \"gradient flow continuity\" 而非 \"existence regularization\"。\n\n### d) 数字核查\n\n| 指标 | Abstract 值 | 参考值 | 判定 |\n|------|------------|--------|------|\n| Full OCC CAR | 范围 78.0–79.7% 中的上界 → 0.797 | 0.797 | **一致** |\n| Detach CAR | 78.0% − 3.4pp = 74.6% → 0.746 | 0.746 | **一致** |\n| Vanilla CAR | 78.0% | 0.780 | **一致** |\n| Random OCC CAR | 范围 78.0–79.7% 内（隐含） | 0.789 | **一致**（未单独列出） |\n| Detach+LN CAR | 0.765 | 0.765 | **一致** |\n\n所有数字与参考值吻合。\n\n### e) 过时或不准确的 claim\n未发现明显不准确的 claim。\n\n---\n\n## 建议修改\n\n1. **引入 \"existence regularization\" 术语。** 这是当前核心叙事的关键概念，但 abstract 中完全缺失。建议在描述 Random OCC ≈ Full OCC 发现处加入，例如将 \"behavioral regularization beyond representation preservation\" 改为更明确的 \"existence regularization — the mere presence of auxiliary gradient flow, regardless of label content, regularizes encoder training\"。\n\n2. **显式点出 representation-behavior dissociation。** 目前 CKA 恢复与 CAR 仍低的对比分散在两处，读者需自行拼接。建议用一句话明确：\"This reveals a representation-behavior dissociation: recovering pretrained representations (CKA) is necessary but not sufficient for recovering safety behavior (CAR).\"\n\n3. **Abstract 偏长。** 当前约 280 词，CoRL 通常建议 150–200 词。Cutoff 实验细节（Cutoff@35K 的具体数字、continuity vs. existence 的讨论）可压缩或移至正文，为核心 message 留出空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-check-abstract.md"
+}

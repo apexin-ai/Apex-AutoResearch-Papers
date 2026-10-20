@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "b8e9b384e8a2457526f1",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "ssh 10894 cleanup and fresh start",
+  "task_key": "worker_ssh_10894_cleanup_and_fresh_start_20260525T203528",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_10894_cleanup_and_fresh_start_20260525T203528.log",
+    "occurrence": 1,
+    "bytes": 548553,
+    "sha256": "d11755ae29e5829bcda863affbad569dab82867abf2b0ddc62b5cabeb83fe8aa"
+  },
+  "statistics": {
+    "messages": 229,
+    "user_turns": 0,
+    "tool_calls": 86,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 52,
+      "tool_call": 86,
+      "tool_result": 86,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 229,
+      "chunks": [
+        {
+          "path": "b8e9b384e8a2457526f1-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b8e9b384e8a2457526f1-part-0002.json",
+          "message_count": 49
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-10894-cleanup-and-fresh-start.md"
+}

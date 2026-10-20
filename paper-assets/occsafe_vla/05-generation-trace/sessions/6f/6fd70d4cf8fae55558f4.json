@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6fd70d4cf8fae55558f4",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops submit cutoff s2 v2",
+  "task_key": "worker_ops_submit_cutoff_s2_v2_20260523T093732",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit_cutoff_s2_v2_20260523T093732_result.json",
+    "occurrence": 1,
+    "bytes": 139,
+    "sha256": "41226bf7fca8cfe2e8d954a8380f3e4601263f017ef1ebd7072cbe98cc5f89b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。cutoff_s2_v2 已在 westd-10894 GPU 0 上正常训练，三项验证全部通过，registry 状态 RUNNING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-cutoff-s2-v2.md"
+}

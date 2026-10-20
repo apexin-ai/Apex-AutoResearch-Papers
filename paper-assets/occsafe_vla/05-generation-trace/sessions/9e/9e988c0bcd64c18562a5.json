@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e988c0bcd64c18562a5",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra verify training",
+  "task_key": "worker_infra_verify-training_20260520T071648",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_verify-training_20260520T071648_result.json",
+    "occurrence": 1,
+    "bytes": 1840,
+    "sha256": "e6087bd8cf80e735f0eda462177798909c825c41ef2d8bd51082dd72eedfb8ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果\n\n### 1. 进程存活\n两个训练进程均存活：\n- `mvp_vanilla_s0`: PID 49175 (cuda:0) ✓\n- `mvp_vanilla_s1`: PID 49326 (cuda:1), 子进程 PID 49473 占 39% CPU ✓\n\n### 2. GPU 状态\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 0% | 1195 / 97887 MiB |\n| 1 | 0% | 1195 / 97887 MiB |\n| 2 | 0% | 0 MiB |\n| 3 | 0% | 0 MiB |\n\n显存从 559 → 1195 MiB，说明在加载但还没完成。\n\n### 3. 训练 loss\n**尚未开始输出 loss**。两个任务都卡在模型加载阶段（NCCL 初始化完成于 15:18，之后没有新日志输出）。\n\n### 4. 错误/警告\n- TensorFlow GPU 警告：**无害**，TF 仅用于 RLDS 数据加载\n- NCCL `Guessing device ID` 警告：**无害**\n- **无致命错误**\n\n### 5. 潜在风险\n训练启动命令**缺少关键环境变量**：\n- 没有 `source /etc/network_turbo` → HuggingFace 下载走原生网络，速度极慢\n- 没有 `HF_HUB_DISABLE_XET=1` → xet 下载在 AutoDL 可能返回 401\n- 没有 `HF_HOME=/root/autodl-tmp/.hf_cache` → 模型权重可能下载到根分区（仅剩 12GB）\n\n模型缓存目录仅 4KB（只有 refs/main，无 blobs），openvla-7b 模型权重（~14GB）正在通过 xet 流式加载，进展缓慢。s1 进程有 262 个线程，VmSize 243GB，符合 xet mmap 下载的特征。\n\n### 6. 磁盘\n- 根分区：19G/30G used（63%）\n- 数据盘：37G/250G used（15%）\n\n### 7. Checkpoint\n两个 checkpoint 目录已创建但为空（训练尚未开始）。\n\n### 结论\n两个任务**进程正常但尚未开始训练**——卡在模型下载/加载阶段。由于缺少 `network_turbo` 和 `HF_HUB_DISABLE_XET=1`，模型下载可能非常慢（预计 20-40 分钟以上）。如果长时间无进展，建议终止任务、补上环境变量后重新提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-verify-training.md"
+}

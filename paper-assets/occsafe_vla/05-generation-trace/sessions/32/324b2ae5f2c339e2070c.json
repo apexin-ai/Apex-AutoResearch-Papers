@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "324b2ae5f2c339e2070c",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose westd 10894 ablation failure",
+  "task_key": "worker_diagnose_westd-10894-ablation-failure_20260521T045423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_westd-10894-ablation-failure_20260521T045423_result.json",
+    "occurrence": 1,
+    "bytes": 2291,
+    "sha256": "c0636ba6b97ff1296f240696e7857a95ef758a1251b93fcdfa4c66fb2ebb7da5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有信息已收集。以下是诊断报告。\n\n---\n\n## 诊断报告\n\n### 根本原因：**SSH 会话断开 / 平台级进程管理**（推测，置信度 80%）\n\n证据链：\n- 4 个进程在 **12:52:12 UTC+8 的同一秒内**（精确到 ±17ms）同时收到 SIGTERM\n- **不是 OOM**：内存 83GB/1TB，无 OOM 记录\n- **不是磁盘满**：root 66%，data 51%\n- **不是重启**：uptime 156 天，无 reboot 记录\n- **不是 cron**：无 crontab\n- **无系统日志可查**：容器环境，dmesg 无权限，syslog/kern.log/auth.log 均为空\n- `bash_history` 显示此前手动启动实验使用了 `| tee`（非 nohup），如果 ablation 实验也是从 SSH 会话直接启动的，SSH 断连会级联 SIGTERM 到所有子进程\n\n最可能的两种情况：\n1. 启动实验的 SSH 会话意外断开，SIGTERM 级联到所有子进程组\n2. SeetaCloud 平台级别的资源管理/维护事件\n\n### 训练进度\n\n| 实验 | 最后 step | 进度 | 运行时长 |\n|------|-----------|------|----------|\n| ablation_occ_detach_s0 | 4006/50005 | 8% | ~1h07m |\n| ablation_random_occ_s0 | 3993/50005 | 8% | ~1h07m |\n| ablation_occ_detach_s1 | 1546/50005 | 3% | ~29m |\n| ablation_random_occ_s1 | 1545/50005 | 3% | ~29m |\n\n### Checkpoint 状态\n\n| 实验 | checkpoint | 可 resume |\n|------|-----------|-----------|\n| ablation_occ_detach_s0 | 2500_chkpt ✓（完整，含 model shards + action_head + occ_head + proprio_projector + lora_adapter） | **是，从 step 2500** |\n| ablation_random_occ_s0 | 2500_chkpt ✓（完整） | **是，从 step 2500** |\n| ablation_occ_detach_s1 | 无（save_freq=5000，未到第一个保存点） | **否，需从头开始** |\n| ablation_random_occ_s1 | 无 | **否，需从头开始** |\n\n### 服务器当前状态\n\n- **GPU**: 4x NVIDIA RTX PRO 6000 Black (98GB)，全部空闲，0MiB VRAM\n- **磁盘**: 正常\n- **内存**: 正常 (83GB/1TB)\n- **负载**: 7.37（正在回落）\n- **进程**: 仅 24 个基础进程，无训练任务运行\n\n### 建议\n\n重启实验时用 `nohup ... &` 或 `tmux`/`screen` 启动，避免 SSH 断连再次杀死进程。s0 两组从 2500 checkpoint resume，s1 两组需完全重跑。可以考虑将 `save_freq` 从 5000 降到 2500 减少损失。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-westd-10894-ablation-failure.md"
+}

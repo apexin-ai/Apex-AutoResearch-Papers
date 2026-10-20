@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52db053f715f58f25409",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_4_1779796769.md",
+  "task_key": "loop_4_1779796769",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1779796769.md",
+    "occurrence": 1,
+    "bytes": 5002,
+    "sha256": "ebca0feb1104adb94a891f1054b08cd425c7851598a39919c1501677d38e5bb0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-26T11:30:28+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-10894 cuda:0-3 + westd-34685 cuda:0-3（共 8 卡）\n- 10894 根分区小，大文件必须放 `/root/autodl-tmp/`，HF_HOME=/root/autodl-tmp/.hf_cache\n- full_occ_ln 训练使用 `--occ_norm_type ln`（不是默认 BN）\n- eval 命令必须带 `MUJOCO_EGL_DEVICE_ID=N MUJOCO_GL=egl`，否则渲染失败\n- Resume 实验 eval 时取 **local step=30000 checkpoint**（= 总 50K steps），不是 50000_chkpt\n- torchrun 训练退出常报 exit_code=1（destroy_process_group warning），是 false positive——检查 checkpoint 存在 + final step 即可\n- v1/v2 代码不等价（D050/D052）：v1 Full OCC BN CAR=0.832 vs v2 CAR=0.746，禁止跨版本直接比较\n- CoRL 2026: Abstract May 26, Paper May 29\n\n### 2. 🖥️ 基础设施快照\n- **westd-10894**: 工作目录 `/root/occsafe_vla/openvla-oft`，Python `/root/miniconda3/bin/python`，conda env `occsafe`（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`）\n- **westd-34685**: 同上结构\n- 模型 base: `/root/autodl-tmp/models/openvla-7b`\n- 数据集: `/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops`（训练）、`libero_spatial`（eval）\n- Checkpoints: `/root/autodl-tmp/checkpoints/{exp_name}/`\n- Eval 日志: `~/runs/occsafe_vla/{exp_id}.log`\n- W&B: 训练时 WANDB_MODE=disabled，eval 时也 disabled\n- 磁盘: 10894 ~149GB 可用（上次检查）\n\n### 3. 📊 当前状态\n**刚做的事**: Loop #4 session-start 初始化。发现 10894 的 4 个实验缺 cron 监控（集群重启后 submit_training_job 的 cron 未正确注册），已手动补注册 4 个 cron 并更新 status QUEUED→RUNNING。已向 Director 汇报。\n\n**RUNNING (8/8 GPU 全满)**:\n\n| 服务器:GPU | 实验 | 类型 | ~进度 | ETA (UTC) |\n|-----------|------|------|-------|-----------|\n| 34685:0 | detach_bn_v2_s0 (D051) | 从头 | ~13% | ~May 26 06:30 |\n| 34685:1 | detach_bn_v2_s1 (D051) | 从头 | ~13% | ~May 26 06:30 |\n| 34685:2 | detach_bn_v2_s2 (D051) | 从头 | ~13% | ~May 26 06:30 |\n| 34685:3 | full_occ_bn_v2_s1 (D051) | 从头 | ~10% | ~May 26 07:00 |\n| 10894:0 | cutoff_45k_s2_v2 | 从头 | ~13% | ~May 26 06:30 |\n| 10894:1 | mvp_occ_s3_v2 | resume 20K | ~20%* | ~May 26 01:30 |\n| 10894:2 | full_occ_ln_s3_v2 | resume 20K | ~20%* | ~May 26 01:30 |\n| 10894:3 | ablation_occ_detach_s3_v2 | resume 20K | ~20%* | ~May 26 01:30 |\n\n*resume 实验只需 30005 步（20K→50K），Worker 报告的 step 6K/50005 是 local step，实际全局 ~26K/50K。\n\n**PREPARING (5)**: detach_ln_s3/s4, ablation_occ_detach_s4, full_occ_ln_s4, mvp_occ_s4（n=5 expansion，等 GPU）\n\n**Worker 池**: 0（无活跃 Worker，所有 GPU 在训练，无阻塞 CPU 任务）\n\n### 4. 📋 待办\n- **10894 resume 完成 cron 回调**（mvp_occ_s3_v2 / full_occ_ln_s3_v2 / ablation_occ_detach_s3_v2，~May 26 01:30）→ 派 Worker 提交 3 个 50r eval（checkpoint 取 local 30000_chkpt）+ CKA 分析（ablation_occ_detach_s3）→ 10894 cuda:1/2/3 空出跑 eval\n- **ablation_occ_detach_s3_v2 eval 完成**（~May 26 04:00）→ 提取 CAR → **叙事门控决策**：CAR<0.750=Branch A / 0.770-0.780=Branch B / >0.780=Branch C\n- **34685 D051 完成 cron 回调**（~May 26 06:30）→ 派 Worker 提交 4 个 50r eval（detach_bn_v2 s0/s1/s2 + full_occ_bn_v2_s1）\n- **cutoff_45k_s2_v2 完成**（~May 26 06:30）→ 提交 eval → dose-response 第 3 seed\n- **D051 eval 全部完成**（~May 26 10:00）→ v2 2×2 ANOVA（3 seeds: s0+s1+s2 for Full OCC BN / Detach BN / Full OCC LN / Detach LN 在 v2 下的对比）→ **framing 决策 Plan A vs B**\n- **framing 决策后** → 论文重写（May 26-28）→ 提交（May 29）\n\n### 5. 🎯 战略上下文\n**核心问题**: D050 发现所有 BN 实验=v1 代码、所有 LN 实验=v2 代码，2×2 factorial 的交互效应 p=0.025 不可信（代码版本是混淆变量）。D051 用 v2 代码重建 Detach BN（3 seeds）+ Full OCC BN（1 seed），与已有 v2 Full OCC LN（3 seeds）+ v2 Detach LN（3 seeds）组成 clean factorial。\n\n**交互效应存活概率 ~10-15%**。Plan B 替代 framing 已准备（B1: Mechanism analysis / B2: Normalization as hidden variable / B3: Cautionary study）。\n\n**CKA 数据可靠性**: 原始 CKA（May 23）Detach BN CKA=0.539/0.312 基于 v1 代码 buggy checkpoint，retrain 后（May 25）CKA=0.964/0.953——漂移消失。s3（seed 45, v2 代码）是唯一验证点。\n\n**Full OCC LN 3-seed 结果**（v2）: mean CAR=0.743 (s0=0.766, s1=0.718, s2=0.744)。v2 Full OCC BN seed 42 CAR=0.746，暗示 BN/LN 在 v2 下可能无差异。\n\n**易错点**:\n- cka_full_occ_ln_s0 DINOv2 CKA=0.640 是 seed-specific outlier（D039 已撤回 crossover 假说），不要基于此构建 narrative\n- dose-response 数据全为 v1 代码，内部一致但不可与 v2 实验比较\n- 10894 torchrun exit_code=1 常是 false positive，必须检查 checkpoint 而非信 exit code\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1779796769.md"
+}

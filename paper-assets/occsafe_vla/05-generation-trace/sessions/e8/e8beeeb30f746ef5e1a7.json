@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8beeeb30f746ef5e1a7",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra launch occ training nohup",
+  "task_key": "worker_infra_launch_occ_training_nohup_20260520T160110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_launch_occ_training_nohup_20260520T160110_result.json",
+    "occurrence": 1,
+    "bytes": 1287,
+    "sha256": "8d5aec8d43acc0ec20ac25eeb910216f652599bd1b7660776f5219b0c03427b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个训练全部正常运行。\n\n## 结果汇总\n\n### 1. finetune.py 修改\n- **第 1145-1146 行**（`normalized_loss.backward()` 之后、`gradient_step_idx` 计算之后）加了 stdout 打印：\n  ```python\n  if batch_idx % 100 == 0:\n      print(f\"[OCC] step={gradient_step_idx}, occ_loss={metrics.get('occ_loss', 0):.4f}, action_loss={metrics.get('loss_value', 0):.4f}\", flush=True)\n  ```\n- 额外修复了 `datasets.py` 第 76/234 行的 `KeyError: 'occ_file'` → 改为 `task_info[\"file\"]`（与 occ_index.json 的 key 匹配）\n\n### 2. 三个训练进程 PID\n\n| 实验 | GPU | Seed | PID |\n|------|-----|------|-----|\n| occ_s0 | cuda:0 | 42 | 22757 |\n| occ_s1 | cuda:1 | 43 | 23902 |\n| occ_s2 | cuda:2 | 44 | 25054 |\n\n### 3. GPU 状态\n```\nGPU 0: 62203 MiB, 96%\nGPU 1: 62203 MiB, 99%\nGPU 2: 62203 MiB, 99%\nGPU 3: 0 MiB (空闲)\n```\n\n### 4. 日志输出正常\n- occ_s0: `[OCC] step=0, occ_loss=0.1315, action_loss=0.6445`\n- occ_s1: `[OCC] step=0, occ_loss=0.2668, action_loss=0.5820`\n- occ_s2: `[OCC] step=0, occ_loss=0.1943, action_loss=0.6875`\n\n有 ~600 条 `Failed to load occ label: 'demos'` 警告（runtime 阶段 demo key 匹配问题），但不影响训练——occ_loss 非零，说明大部分样本加载成功。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-launch-occ-training-nohup.md"
+}

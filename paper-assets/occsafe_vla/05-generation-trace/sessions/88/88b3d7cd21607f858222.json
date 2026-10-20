@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "88b3d7cd21607f858222",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "analysis 10894 checkpoint analysis",
+  "task_key": "worker_analysis_10894_checkpoint_analysis_20260525T104922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_10894_checkpoint_analysis_20260525T104922.log",
+    "occurrence": 1,
+    "bytes": 645801,
+    "sha256": "228142b9a29844ff3fafd3d432402e946556dd4a1adc2fa997b903eebb687fd3"
+  },
+  "statistics": {
+    "messages": 277,
+    "user_turns": 0,
+    "tool_calls": 103,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 67,
+      "tool_call": 103,
+      "tool_result": 103,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 277,
+      "chunks": [
+        {
+          "path": "88b3d7cd21607f858222-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "88b3d7cd21607f858222-part-0002.json",
+          "message_count": 97
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-10894-checkpoint-analysis.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c78db65b4a9d17a06171",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops sync code and prep eval",
+  "task_key": "worker_ops_sync_code_and_prep_eval_20260523T232915",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync_code_and_prep_eval_20260523T232915_result.json",
+    "occurrence": 1,
+    "bytes": 1078,
+    "sha256": "31cc3869c27e448310b98feeac2c7a074ad8fd2286e9634d444f3419c8bb22f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务均完成。\n\n## 任务 1：finetune.py 同步 — 成功\n\nSCP 直连失败（服务器间无法解析），改用 patch 方式。在 westd-10894 上精确添加了 3 处 clean_cutoff 修改，同时保留了 westd-10894 特有的 `occ_norm_type` 字段：\n\n| 变更 | 位置 |\n|------|------|\n| `occ_loss_cutoff_mode` + `clean_cutoff` 配置字段 | L95-96 |\n| `occ_loss_cutoff_mode` \"before\"/\"after\" 分支逻辑 | L1170 |\n| `skip_occ`/`skip_depth` 跳过前向传播 | L1187-1188, L1205-1206, L1209-1210 |\n\n文件行数：1297 → 1306（+9 行）。\n\n## 任务 2：eval_commands.sh — 成功\n\n写入 `/tmp/eval_commands.sh`，4 个实验的 eval 命令已就绪。\n\n**Checkpoint 状态**（50000_chkpt 均尚未生成）：\n\n| 实验 | 当前最新 checkpoint |\n|------|-------------------|\n| cutoff_s2_v2 | 30000_chkpt |\n| detach_ln_s0 | 20000_chkpt |\n| detach_ln_s1 | 20000_chkpt |\n| detach_ln_s2 | 20000_chkpt |\n\neval 命令中路径已写为 `--50000_chkpt`（目标路径），训练完成后可直接执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sync-code-and-prep-eval.md"
+}

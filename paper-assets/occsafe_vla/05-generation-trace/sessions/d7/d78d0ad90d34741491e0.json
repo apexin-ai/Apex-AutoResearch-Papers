@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d78d0ad90d34741491e0",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code fix occ dataloader",
+  "task_key": "worker_code_fix-occ-dataloader_20260520T080215",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-occ-dataloader_20260520T080215_result.json",
+    "occurrence": 1,
+    "bytes": 1274,
+    "sha256": "38484513aca038b6268e182b696973daf2b02dd59fcebe0741bae2dfaf9f156d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 6 tests passed:\n\n| Test | Scenario | Result |\n|------|----------|--------|\n| 1 | traj_len=93 (matches demo_0), timestep=5 | nonzero=1016 (24.8%) |\n| 2 | timestep=30, same demo | nonzero=960 |\n| 3 | traj_len=88 → demo_2 selection | nonzero=1016 |\n| 4 | Unknown task → zeros fallback | nonzero=0 |\n| 5 | No `_traj_len` → positional fallback | nonzero=1016 |\n| 6 | Bytes language instruction (TF format) | nonzero=1016 |\n\nThe `_load_occ_label` method correctly:\n- Maps language instruction → task_name → occ file\n- Selects demos by trajectory length matching\n- Falls back gracefully for unknown tasks (zeros + warning)\n- Handles both string and bytes language instructions\n- Works with and without `_traj_len`\n\n**Remaining**: Full verification with real pipeline data is blocked until the 10 `extract_occupancy.py` processes finish (all 10 HDF5 files locked; each task on ~demo 2 of 50). At the current rate with 10 parallel CPU-bound processes plus 3 training jobs, this will take many more hours. Once the pipeline finishes, switch `occ_data_dir` from `occ_data_test` to `occ_data` and re-run to confirm non-zero BEV with real data:\n\n```bash\ncd /root/occsafe_vla/openvla-oft && python /root/occsafe_vla/verify_occ_fix.py\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-occ-dataloader.md"
+}

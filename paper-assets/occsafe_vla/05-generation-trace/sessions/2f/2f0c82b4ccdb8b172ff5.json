@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f0c82b4ccdb8b172ff5",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_1_1779481504.md",
+  "task_key": "loop_1_1779481504",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1_1779481504.md",
+    "occurrence": 1,
+    "bytes": 4845,
+    "sha256": "ac376572998e8013824b3a365ff89d12f87d58da09b51434980957edcb5c3ffa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_wall_time\nupdated: '2026-05-22T01:31:13+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- westd-34685 GPU 白名单: cuda:0, cuda:1, cuda:2（cuda:3 之前卡死，未分配）\n- westd-10894 GPU 白名单: cuda:0, cuda:1, cuda:2, cuda:3\n- 所有 occ 实验必须用 `--num_images_in_input 2 --use_proprio True --occ_detach false`，这三个参数曾出错过，每次 resume 必须验证\n- mvp_occ_s0/s1/s2 已经是 retry 2-3，之前两轮因磁盘满崩溃——resume 前必须先 `df -h` 确认磁盘，并确保 checkpoint_rotation 脚本在跑\n- WANDB_MODE=disabled（所有实验），cron 监控靠进程存活检测而非 W&B sentinel\n- Vanilla baseline 已确立（3 seeds success），**不要重跑 vanilla**\n\n### 2. 🖥️ 基础设施快照\n**westd-34685**（occ 训练服务器）:\n- 工作目录: `/root/occsafe_vla/openvla-oft`\n- Python: 系统 Python（无 conda/venv），直接 `python`\n- 模型基座: `/root/autodl-tmp/models/openvla-7b`（但 occ 实验是从各自 checkpoint resume）\n- 数据: `/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops`\n- Occ 数据: `/root/occsafe_vla/occ_data`\n- Checkpoints: `/root/autodl-tmp/checkpoints/occ_s{0,1,2}/`\n- 磁盘: 上次清理后 `/root/autodl-tmp` 约 819G/879G 可用 (2%)\n\n**westd-10894**（vanilla eval + ablation 服务器）:\n- 工作目录: `/root/occsafe_vla/openvla-oft`\n- Python: `/root/miniconda3/bin/python`，conda env = `occsafe`\n- 激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`\n- 需要 `source /etc/network_turbo` 做网络加速\n- 模型基座: `/root/autodl-tmp/models/openvla-7b`\n- Checkpoints: `/root/autodl-tmp/checkpoints/{vanilla_s0,vanilla_s1,vanilla_s2,ablation_*}/`\n- 磁盘: `/root/autodl-tmp` 约 416G/879G 可用 (51%)\n- Vanilla eval 结果已入 registry（s0/s1/s2 均 success）\n\n**活跃进程**: 无（全部失败）\n**活跃 Cron**: 无（reconcile 返回 0）\n\n### 3. 📊 当前状态\n**刚做完**: Session 初始化（read_registry + reconcile_crons + report.md + ROADMAP.md）\n\n**正在做**: 已派出 2 个诊断 Worker，尚未收到回调：\n- `worker_diagnose_westd-34685-failures_20260521T050321` — 诊断 westd-34685 上 mvp_occ_s0/s1/s2 失败原因\n- `worker_diagnose_westd-10894-failures_20260521T050337` — 诊断 westd-10894 上 4 个 ablation 实验失败原因\n\n**Registry 状态**: 10 个实验全部 DONE（3 success / 7 failed）\n- ✅ mvp_vanilla_s0/s1/s2: success, metrics 已录入 (TSR=91.8%±1.2%, CAR=77.0%±0.4%)\n- ❌ mvp_occ_s0/s2: \"process dead 5×\"，retry=2，从 42500 resume 后再次失败\n- ❌ mvp_occ_s1: EXIT_CODE=1，retry=3，从 17500 resume 后失败\n- ❌ ablation_occ_detach_s0/s1 + ablation_random_occ_s0/s1: EXIT_CODE=143 (SIGTERM)，4个同时被 kill，只跑了~1小时\n\n**等待中**:\n- 2 个诊断 Worker 回调\n- 诊断结果出来后需要向 Director 汇报并决定 resume 策略\n\n### 4. 📋 待办（条件触发式）\n- 诊断 Worker 回调到达 → 汇总两台服务器的失败根因 → 向 Director 汇报（带 [资源] 行）\n- 若 westd-34685 可用 + checkpoint 完整 → 准备 occ_s0/s1/s2 第 3-4 次 resume 方案，提交 Director 审批\n- 若 westd-10894 可用 → ablation 实验可直接从头重跑（只跑了 1 小时，没有有意义的 checkpoint）\n- 若服务器不可用（AutoDL 到期）→ 向 Director 汇报需要重新租卡或更换服务器\n- occ 3 seeds 全部 eval 完成 → MVP gate 判定（CAR≥82%, hard-task CAR≥39%, TSR≥88.8%）\n- MVP gate 通过 → 铺 post-MVP ablation（已预准备代码）；不通过 → 向 Director 汇报 negative\n\n### 5. 🎯 战略上下文\n**核心问题**: MVP 验证——BEV occ 辅助监督能否提升 VLA 的碰撞避免率。Vanilla baseline 已确立 (CAR=77%)，现在卡在 occ 实验反复崩溃上。\n\n**决策链**: D001(MVP方案) → D002(判定标准) → D003(缩小范围) → D004(目标AAAI27) → D005(post-MVP计划) → D007(追加hard-task判据)\n\n**关键判断**:\n- Vanilla CAR=77% 远高于预期的 15%（Scenario B），occ 改善空间被压缩——MVP gate 的 CAR≥82% 门槛实际上只需 +5pp\n- ablation 实验（occ_detach / random_occ）是 post-MVP 的，但 Director 已提前启动。它们被 SIGTERM 很可能是 AutoDL 实例到期\n- occ 实验在 westd-34685 上已经历 2-3 轮磁盘满崩溃，每次都是清理后 resume。这次失败原因待诊断 Worker 确认\n- **易踩坑**: westd-34685 的 cuda:3 之前卡死不可用，不要分配实验到它上面\n- **易踩坑**: occ 实验用 WANDB_MODE=disabled，所以 cron 靠进程存活检测——进程正常退出但没写 sentinel 也会被标记 failed（假阳性，vanilla 已出现过）\n- T5 任务的 TSR 在 50K steps 时系统性退化（3 seeds 一致），这是已知风险但不影响 MVP 判定\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-1779481504.md"
+}

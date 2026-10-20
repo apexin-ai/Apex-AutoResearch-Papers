@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d2a3a6de7fb006c29002",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose depth s1 failure",
+  "task_key": "worker_diagnose_depth_s1_failure_20260522T072802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_depth_s1_failure_20260522T072802_result.json",
+    "occurrence": 1,
+    "bytes": 2658,
+    "sha256": "0f35c011dbabf6b939532c76a1083bcccf82e21506f36f13e0a8d5d70b148def"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n---\n\n## 诊断报告：westd-34685 三实验同时崩溃\n\n### 根因\n\n**数据盘 `/root/autodl-tmp/` 100% 满（350G/350G）。** 三个实验在几乎同一时刻尝试保存 checkpoint 时触发 `No space left on device`。\n\n### 关键错误\n\n三个实验完全相同的错误栈：\n```\nsafetensors_rust.SafetensorError: Error while serializing: I/O error: No space left on device (os error 28)\n```\n- **depth_s0**: 在 step 15000 保存 checkpoint 时崩溃（15:24:39 UTC）\n- **depth_s1**: 在 step 15000 保存 checkpoint 时崩溃（15:24:38 UTC）\n- **cutoff_s1**: 在 step 2500 保存 checkpoint 时崩溃（15:24:37 UTC）\n\n### 磁盘占用分析（350G 总量）\n\n| 目录 | 大小 | 说明 |\n|------|------|------|\n| checkpoints/occ_s1_fresh | **149G** | **旧实验残留，主要元凶** |\n| checkpoints/depth_s0 | 76G | 7 个 checkpoint（2500~15000） |\n| checkpoints/depth_s1 | 80G | 7 个 checkpoint（2500~15000） |\n| checkpoints/cutoff_s0 | 15G | 1 个 checkpoint（2500） |\n| checkpoints/cutoff_s1 | 11G | 1 个 checkpoint（2500，不完整） |\n| models/ | 15G | openvla-7b 基座模型 |\n| data/ | 2G | 数据集 |\n\n### 影响范围\n\n| 实验 | 服务器 | 状态 | 当前进度 |\n|------|--------|------|----------|\n| depth_s0 (cuda:1) | westd-34685 | **已崩溃** | 停在 step 15000 |\n| depth_s1 (cuda:2) | westd-34685 | **已崩溃** | 停在 step 15000 |\n| cutoff_s1 (cuda:3) | westd-34685 | **已崩溃** | 停在 step 2500 |\n| cutoff_s0 (cuda:0) | westd-34685 | **运行中但危险** | step ~2852，将在 step 5000 时崩溃（约30分钟后） |\n| depth_s2 | westd-10894 | 正常运行 | step ~1587 |\n| depth_s3 | westd-10894 | 正常运行 | step ~1595 |\n\n### cutoff_s0 为什么幸存\n\n它是最后启动的（14:32），在 step 2500 时成功保存了一个 checkpoint（15G），恰好赶在磁盘完全满之前。但**它在 step 5000 时也会崩溃**，大约还有 30 分钟。\n\n### 建议\n\n**紧急**（必须在 cutoff_s0 到达 step 5000 前完成）：\n1. **删除 `occ_s1_fresh/`**（149G）——旧实验残留，释放空间最快\n2. 如果 occ_s1_fresh 仍然需要，删除 depth_s0/depth_s1 的中间 checkpoint（保留最新的 15000 和 12500 即可），每个实验可释放 ~50G\n\n**重启策略**：\n- depth_s0/depth_s1 可从 step 15000 的 checkpoint 恢复（15000 的部分文件已写入，需检查完整性；否则用 12500）\n- cutoff_s1 需从头开始（仅跑了 2500 步）\n- 考虑只保留最近 2-3 个 checkpoint 以防再次磁盘满\n\n是否需要我帮你清理磁盘并重启实验？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-depth-s1-failure.md"
+}

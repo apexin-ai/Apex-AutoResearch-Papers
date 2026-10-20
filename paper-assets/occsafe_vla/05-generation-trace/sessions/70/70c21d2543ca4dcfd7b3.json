@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70c21d2543ca4dcfd7b3",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "check ablation random occ s1 status",
+  "task_key": "worker_check_ablation_random_occ_s1_status_20260522T013441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_ablation_random_occ_s1_status_20260522T013441_result.json",
+    "occurrence": 1,
+    "bytes": 378,
+    "sha256": "230c88313206f25f9eb65bca64c6e89b9022bfb4f2a4fcf1fdb375d6bba2b837"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**ablation_random_occ_s1 已确认完成，状态已更新为 ANALYZING。**\n\n- 进程 PID 524055 已终止\n- checkpoint 完整：30000_chkpt、40000_chkpt、50000_chkpt 均存在\n- 50000_chkpt 保存时间 09:30 UTC May 22（比其他 ablation 晚约 8 小时，因 cuda:3 启动较晚或 step 略多）\n- 至此四个 ablation（cuda:0/1/2/3）全部完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-ablation-random-occ-s1-status.md"
+}

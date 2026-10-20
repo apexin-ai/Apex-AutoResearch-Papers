@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e23f020eb1f2eb5e88b0",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval full occ ln s0",
+  "task_key": "worker_eval_full_occ_ln_s0_20260524T231847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_full_occ_ln_s0_20260524T231847_result.json",
+    "occurrence": 1,
+    "bytes": 401,
+    "sha256": "65a95652cba384abdb720f54cbabb48fc482d9e4f9bc32614cdb91d1c122e299"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **Registry**: `full_occ_ln_s0_eval` 状态 RUNNING，spec 已记录\n- **服务器**: westd-10894 cuda:1，tmux session `full_occ_ln_s0_eval` 已启动\n- **日志**: `/root/runs/occsafe_vla/full_occ_ln_s0_eval.log`，进程正在加载模型（TF/robosuite 警告正常）\n- **预计耗时**: ~45-55 分钟（参考同服务器 detach_ln_s0_eval 用时 ~46 分钟）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-full-occ-ln-s0.md"
+}

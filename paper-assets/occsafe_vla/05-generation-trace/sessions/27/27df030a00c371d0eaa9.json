@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27df030a00c371d0eaa9",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis 10894 checkpoint analysis",
+  "task_key": "worker_analysis_10894_checkpoint_analysis_20260525T104922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_10894_checkpoint_analysis_20260525T104922_result.json",
+    "occurrence": 1,
+    "bytes": 1736,
+    "sha256": "1298e88f1991b51055e69ce2775e76f3eb1318ff64f4b458438257423c58df86"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三项分析全部��成（~15min 总用时，GPU 1-2）。核心发现：\n\n---\n\n## 综合分析结果\n\n### 1. 梯度重分配 (Cutoff 15K 最关键发现)\n\n| 模块 | Cutoff 15K vs Vanilla 梯度比 |\n|------|---|\n| **DINOv2** | **0.14x – 0.33x** (梯度死区) |\n| **SigLIP** | **2.0x – 2.8x** (补偿性放大) |\n\n早期 OCC (0-15K) 后切断 → DINOv2 gradient 几乎归零 → 模型被迫通过 SigLIP 学习。\n\n### 2. Feature Rank 坍缩\n\n| Condition | Deep layer eff_rank (block 21) | vs Pretrained 567 |\n|---|---|---|\n| Vanilla | 547 | 0.96x (正常) |\n| Full OCC BN | 538 | 0.95x (正常) |\n| **Full OCC LN** | **90** | **0.16x (6x 坍缩)** |\n| **Cutoff 15K** | **87** | **0.15x (6x 坍缩)** |\n\nTop-10 PC 在 Cutoff 15K 和 Full OCC LN 中捕获 **98-99%** 方差（正常应为 57%）。\n\n### 3. LoRA 权重悖论\n\nCutoff 15K 的 DINOv2 LoRA norm 最小 (87.2)，但 CKA drift 最严重 (0.520)。**小权重变化导致灾难性表征漂移。**\n\n### 4. 机制解释\n\n- **Full OCC BN (最佳安全性)**: 持续 OCC → 特征多样性 > pretrained → 空间理解保持\n- **Cutoff 15K (最差安全性)**: 早期 OCC 重塑特征 → 切断后梯度死区 → rank 坍缩 + CKA 漂移 → 空间理解丧失\n- **Full OCC LN**: LayerNorm 导致 rank 坍缩，但特征仍与 pretrained 对齐 (CKA=0.96) — 集中但正确\n\n---\n\n**输出文件：**\n- `gradient_complete/results.json` + `comprehensive_analysis.pdf`\n- `lora_weight_analysis/results.json`\n- `feature_rank/results.json`\n- `checkpoint_analysis_summary.md`\n\nGPU 1-3 现在空闲。如需进一步分析（如 linear probing、cross-condition CKA matrix），可以继续利用剩余 ~9.5h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-10894-checkpoint-analysis.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "368ba919026986e6f1b6",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "director / loop_11.md",
+  "task_key": "loop_11",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_11.md",
+    "occurrence": 1,
+    "bytes": 3393,
+    "sha256": "d14388c9aed8a6bbd4fa9312fde7d8632e21e332c3f78887404f18554e412ad0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: max_messages\nupdated: '2026-05-26T19:43:21+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 两台服务器：westd-10894 和 westd-34685，GPU 分配以 `get_project_status` 返回为准\n- ANOVA 脚本数据必须与 registry 完全一致——本轮刚因 Cell 1/Cell 3 数据遗漏被 Reviewer CRITICAL\n- 论文中 factorial interaction 相关措辞已统一改为描述性语言（\"pattern consistent with\"），禁止用 \"reveals\"/\"demonstrates\"/\"confirms\" 描述交互效应，除非 n=5 ANOVA 达到 p<0.05\n- report.md AUTO-FACTS 区不能手写，只能调 `auto_build_report_facts`\n\n### 2. 🖥️ 基础设施快照\n- 服务器 1：westd-10894 (connect.westd.seetacloud.com)，root，/root/occsafe_vla\n- 服务器 2：westd-34685 (connect.westd.seetacloud.com)，root，/root/occsafe_vla\n- westd-10894：运行 3 个 v2 rebuild 实验（detach_ln_v2_s0, full_occ_ln_v2_s0, full_occ_ln_v2_s1）\n- westd-34685：4 GPU (cuda:0-3)，本轮指令 Agent 启动 detach_ln_v2_s1 + 3 个 n=5 expansion（Agent idle 16h 被 reset 前是否执行未确认）\n- W&B / Git 未配置；飞书 A+B+C 群已配置\n- 审稿 C 群：oc_faa96524df7d6444f5c8cbc48d5a616b\n\n### 3. 📊 当前状态\n**刚做完**：\n- Paper Agent 完成 Reviewer 预审 8 项修改（编译 PASS，18 页）\n- Paper Agent 完成 factorial interaction 措辞全面调整（7 个 .tex，15 处修改）\n- 向 Agent 派了两个任务：(1) 启动 westd-34685 上 5 个待处理实验 (2) 修复 ANOVA 脚本数据不完整问题——**Agent 在执行前因 idle 16h 被 reset，这两个任务需要重新下达**\n\n**RUNNING**（3 个，均在 westd-10894）：\n- detach_ln_v2_s0 — Cell 4 v2 rebuild, seed 42\n- full_occ_ln_v2_s0 — Cell 2 v2 rebuild, seed 42\n- full_occ_ln_v2_s1 — Cell 2 v2 rebuild, seed 43\n\n**PENDING**（5 个，未启动）：\n- detach_ln_v2_s1 — Cell 4 v2 rebuild, seed 43（**优先级 1，论文阻塞**）\n- detach_ln_s4, ablation_occ_detach_s4, full_occ_ln_s4, mvp_occ_s4 — n=5 expansion seed 46\n\n### 4. 📋 待办\n- Agent reset 完成 → **立即重新下达**：(1) westd-34685 启动 5 个 pending 实验 (2) 修复 ANOVA 脚本 Cell 1 补 0.776、Cell 3 补 0.794 并重跑\n- v2 rebuild 全部完成 → 跑 all-v2 factorial ANOVA，看交互效应 p 值变化\n- n=5 expansion 全部完成 → 跑正式 n=5 ANOVA，若 p<0.05 则让 Paper Agent 升级措辞回 \"reveals\"\n- ANOVA 修复结果回来 → 核对更新后的 F/p/η² 是否与论文一致，不一致则再派 Paper Agent patch\n- 任何实验 DONE 回调 → 检查 westd-34685 是否有空闲 GPU，有则启动下一个 pending\n\n### 5. 🎯 战略上下文\n- 项目核心：2×2 factorial design (Gradient Flow × Normalization) 分析 OCC auxiliary loss 对 VLA safety 的影响\n- 当前 story：effect sizes 大（d=1.41, η²=0.37）但 n 太小无法达统计显著——n=5 expansion 是关键补充\n- v1→v2 codebase 迁移：v1 有 bug，所有 Table 1 数据需替换为 v2 结果。Cell 1 和 Cell 3 已有足够 v2 数据，Cell 2 和 Cell 4 的 v2 实验正在跑\n- 易错点：(1) Agent reset 后两个任务丢失，必须重新下达 (2) ANOVA 脚本数据与 registry 不同步已被 Reviewer 抓过一次，任何数据更新后都要核对一致性 (3) 论文措辞已锁定为描述性语言，n=5 结果出来前不得擅自升级\n- 决策日志 62 条，论文溯源覆盖 18/23\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11.md"
+}

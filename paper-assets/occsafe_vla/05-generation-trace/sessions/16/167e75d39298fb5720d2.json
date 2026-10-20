@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "167e75d39298fb5720d2",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops prep random occ cka",
+  "task_key": "worker_ops_prep_random_occ_cka_20260524T010124",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prep_random_occ_cka_20260524T010124_result.json",
+    "occurrence": 1,
+    "bytes": 2352,
+    "sha256": "77dc706d60fc2a91ef6b0fe9339703b9433e59ba607f38756fc07f621045dd96"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部检查完成。汇总如下：\n\n---\n\n## 检查结果\n\n### 1. Random OCC Checkpoint\n- **仅在 westd-34685**: `/root/autodl-tmp/checkpoints/ablation_random_occ_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt`\n- **大小**: 15GB（完整合并模型 4×safetensors + LoRA 463MB + head checkpoints）\n- **westd-10894 上不存在**\n\n### 2. CKA 脚本\n- **已部署到 10894**: `/root/occsafe_vla/analysis/cka_analysis.py`（275 行，已添加 Random OCC 颜色 `#FF9800`）\n\n### 3. 10894 依赖可用性\n| 依赖 | 路径 | 状态 |\n|------|------|------|\n| Pretrained model | `/root/autodl-tmp/models/openvla-7b` | OK |\n| HDF5 数据 | `/root/autodl-tmp/libero_datasets/libero_spatial/` (10 files) | OK |\n| openvla-oft 代码 | `/root/occsafe_vla/openvla-oft/` | OK |\n| GPU | 4× RTX PRO 6000 Blackwell (96GB each) | OK |\n| 磁盘 | 154GB free on /root/autodl-tmp | OK |\n\n### 4. 阻塞项：Checkpoint 传输\n\n15GB checkpoint 需从 34685 → 10894。方案选择：\n- **方案 A**: 从 34685 scp 到 10894（需两台服务器能互通，可能不行）\n- **方案 B**: 通过本地机器中转（34685→本地→10894，慢但一定可行）\n- **方案 C**: 通过云存储中转（如 HuggingFace Hub / 对象存储）\n\n### 5. 运行命令（待 checkpoint 就位后）\n\n```bash\ncd /root/occsafe_vla && CUDA_VISIBLE_DEVICES=0 python analysis/cka_analysis.py \\\n    --pretrained_path /root/autodl-tmp/models/openvla-7b \\\n    --checkpoint_paths /root/autodl-tmp/checkpoints/ablation_random_occ_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt \\\n    --condition_names \"Random OCC\" \\\n    --libero_data_dir /root/autodl-tmp/libero_datasets/libero_spatial \\\n    --num_samples 200 \\\n    --batch_size 8 \\\n    --gpu 0 \\\n    --output_dir /root/autodl-tmp/analysis/cka_random_occ\n```\n\n### 6. 资源预估\n- **GPU 显存**: ~2-3GB（只有 vision backbone on GPU，bf16）\n- **CPU 内存**: ~14GB 峰值（加载完整 7B 模型时）\n- **运行时间**: ~8-12 分钟（两次模型加载 + forward pass + CKA 计算）\n- **风险**: 无，远低于单卡 96GB 上限\n\n---\n\n**下一步需要决定 checkpoint 传输方案。** 要我尝试从 34685 scp 到 10894 测试连通性吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prep-random-occ-cka.md"
+}

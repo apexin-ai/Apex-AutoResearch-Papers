@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a90f2dde1a98c6ce4e23",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code fix safelibero collision detection",
+  "task_key": "worker_code_fix_safelibero_collision_detection_20260520T171638",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_safelibero_collision_detection_20260520T171638_result.json",
+    "occurrence": 1,
+    "bytes": 1273,
+    "sha256": "45e4b335918dc9f20fc0a130dcb62f1cc2268ee366039ba01315100a24096767"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成，结果完美证明了 bug 和修复：\n\n**关键发现：**\n\n1. **`sim identity changed after reset: True`** — `env.reset()` 确实会创建新 sim 对象（id 不同），确认 Bug 1 的前提成立。\n\n2. **`buggy.sim is current sim: False`** — 所有 5 个 episode 中，buggy tracker 的 `self.sim` 都指向旧对象。\n\n3. **对比结果：**\n\n| | Buggy (原代码) | Fixed (修复后) |\n|---|---|---|\n| tracked | **0** | **3** |\n| max_disp | 0.000000 | 0.000000~0.000517 |\n\n- **Buggy**: tracked=0，`record_initial()` 在 stale sim 上读 body 全部抛异常被 `except: pass` 吞掉，`_initial_pos` 为空 → `step()` 什么都不检查 → max_disp 永远 0 → **CAR 永远 100%**\n- **Fixed**: tracked=3，3 个 obstacle 全部正确追踪，Ep 2 检测到 0.000517 位移\n\n**修改汇总：**\n- L152: `self.sim = env.env.sim` → `self.env = env`（动态访问 sim）\n- L172, L182: `self.sim.data.body(...)` → `self.env.env.sim.data.body(...)`\n- L173: `except Exception: pass` → `except Exception as e: print(WARNING)`\n- L175-176: 新增 `_initial_pos` 空检查警告\n- L189: `except Exception: pass` → `except Exception as e: print(WARNING)`\n\n备份文件在 `evaluate_safelibero.py.bak`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-safelibero-collision-detection.md"
+}

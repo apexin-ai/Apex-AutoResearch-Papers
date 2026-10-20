@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1e53f5a82d10bfa09b6",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "paper research",
+  "task_key": "worker_paper_research_20260520T200319",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_20260520T200319_result.json",
+    "occurrence": 1,
+    "bytes": 188,
+    "sha256": "0acdb7fc1fda79dae29e8aaa9b04cc747190c0eba1efdc2d55192bf6f010411d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "YAML 验证通过。\n\n- 总计 30 篇论文（原 11 + 新增 19），无重复 ID\n- 分布：direct-competitor 6、spatial-vla 16、safety-mechanism 3、infrastructure 5"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research.md"
+}

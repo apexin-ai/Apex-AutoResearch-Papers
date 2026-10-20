@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0",
+  "id": "36d6ef3542edbd413536",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "eval vanilla s1 intermediate checkpoints",
+  "task_key": "worker_eval_vanilla_s1_intermediate_checkpoints_20260520T232851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_vanilla_s1_intermediate_checkpoints_20260520T232851.log",
+    "occurrence": 1,
+    "bytes": 1805075,
+    "sha256": "93f962f7330768a7a4695da78eeed8a6fc5a4e4971493304ab5be2e1a6e90cf1"
+  },
+  "statistics": {
+    "messages": 1363,
+    "user_turns": 1,
+    "tool_calls": 633,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 89,
+      "tool_call": 633,
+      "tool_result": 633,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 863,
+      "chunks": [
+        {
+          "path": "36d6ef3542edbd413536-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "36d6ef3542edbd413536-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "36d6ef3542edbd413536-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "36d6ef3542edbd413536-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "36d6ef3542edbd413536-part-0005.json",
+          "message_count": 143
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 500,
+      "chunks": [
+        {
+          "path": "36d6ef3542edbd413536-part-0005.json",
+          "message_count": 37
+        },
+        {
+          "path": "36d6ef3542edbd413536-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "36d6ef3542edbd413536-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "36d6ef3542edbd413536-part-0008.json",
+          "message_count": 103
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-vanilla-s1-intermediate-checkpoints.md"
+}

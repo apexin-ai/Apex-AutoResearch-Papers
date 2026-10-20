@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75e9087a431ce724d235",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_5_1779856775.md",
+  "task_key": "loop_5_1779856775",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1779856775.md",
+    "occurrence": 1,
+    "bytes": 4075,
+    "sha256": "aaf0576820501c23ee7e102bd18ffaf69c44c627b6fea525daf39fbe0a1d1ed0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-27T04:35:52+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-10894:cuda:0/1/2/3 + westd-34685:cuda:0/1/2/3，共 8 张，不可用其他\n- Resume 实验 eval 时取 **local step=30000** checkpoint（= 全局 50K steps），不是 step-050000\n- C002：cutoff 类实验（dose-response）禁止 resume，必须从头跑\n- v1 代码和 v2 代码结果不可混用（D052 确认 v1≠v2），factorial 所有格必须用 v2 代码\n- conda 环境名 `occsafe`，激活方式：`source /root/miniconda3/bin/activate occsafe`（不是 conda activate）\n\n### 2. 🖥️ 基础设施快照\n- **westd-10894**：工作目录 `/root/occsafe_vla/openvla-oft`，Python `/root/miniconda3/envs/occsafe/bin/python`，conda env `occsafe`\n- **westd-34685**：同上结构\n- 模型：`/root/autodl-tmp/models/openvla-7b`\n- 数据集：`/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops`（25000 条）\n- OCC 数据：`/root/occsafe_vla/occ_data`\n- Checkpoint 根目录：`/root/autodl-tmp/checkpoints/{exp_id}/`\n- 日志目录：`~/runs/occsafe_vla/{exp_id}.log`\n- W&B：disabled（WANDB_MODE=disabled）\n- 活跃进程（reconcile 确认 8/8 running）：\n  - vanilla_v2_s1 PID=419107 westd-34685:cuda:0\n  - vanilla_v2_s2 PID=419342 westd-34685:cuda:1\n  - detach_ln_s3 PID=419641 westd-34685:cuda:2\n  - cutoff_25k_s1_v2 PID=453581 westd-34685:cuda:3\n  - reverse_cutoff_s2_v2 PID=170605 westd-10894:cuda:0\n  - full_occ_ln_v2_s0 westd-10894:cuda:1\n  - full_occ_ln_v2_s1 westd-10894:cuda:2\n  - detach_ln_v2_s0 westd-10894:cuda:3\n\n### 3. 📊 当前状态\nLoop #5 刚完成 session-start 初始化：reconcile crons（8 个全部 running）、读 registry/ROADMAP/report.md、向 Director 汇报了 8/8 GPU 满载状态并请求批准启动论文骨架写作（Intro/Method/RW 不依赖 ANOVA 结果）。**Director 尚未回复**。\n\nv2 Factorial 数据进展：\n| Cell | 条件 | v2 done | 训练中 | 完成后 n |\n|------|-------|---------|--------|---------|\n| 1 | Full OCC BN | 3 ✅ | — | 3 |\n| 2 | Full OCC LN | 1 (s3) | s0,s1 (10894:1/2) | 3 |\n| 3 | Detach BN | 4 ✅ | — | 4 |\n| 4 | Detach LN | 1 (s3 confirmed v2) | s0 (10894:3) | 2 (仍缺 s1) |\n| — | Vanilla | 1 (s0) | s1,s2 (34685:0/1) | 3 |\n\nWorker 池 = 0（红线违反，但当前无实质 CPU 任务可铺——论文写作待 Director 批准）。\n\n### 4. 📋 待办（条件触发式）\n- Director 批准论文写作 → 启动 Paper Agent，spawn Worker 写 Intro/Method/RW\n- reverse_cutoff_s2_v2 完成 (~May 26 23:00) → 在 10894:0 启动 detach_ln_v2_s1（Cell 4 第 3 个 v2 seed，需先创建 registry 条目）\n- 34685 训练完成 (~May 26 23:30) → spawn Worker 跑 4 个 eval（vanilla_v2_s1, vanilla_v2_s2, detach_ln_s3, cutoff_25k_s1_v2），每个 50 rollouts，ckpt=local step 30000\n- 10894:1/2/3 训练完成 (~May 27 01:15) → spawn Worker 跑 3 个 eval（full_occ_ln_v2_s0, full_occ_ln_v2_s1, detach_ln_v2_s0）\n- detach_ln_v2_s1 完成 + eval (~May 27 12:00-13:00) → 全 v2 factorial 数据齐全 → 确认性 2×2 ANOVA\n- ANOVA 结果出来 → framing 最终决策（Plan A crossover interaction vs Plan B ordinal interaction，存活概率 ~10-15%，Plan B 已准备）\n\n### 5. 🎯 战略上下文\n- **核心问题**：OCC auxiliary head 对 VLA safety 的影响。2×2 factorial：gradient flow (ON/OFF) × normalization (BN/LN)\n- **D055/D058**：Plan B (ordinal interaction) 已由用户确认为主要方向。所有 OCC 配置 ≤ Vanilla，Detach BN ≈ Vanilla (d=-0.06, p=0.91)\n- **D052**：v1≠v2 确认后触发 D051 v2 rebuild，当前批次是 rebuild 的最后一波\n- **D056/D057**：v1 梯度分析（gradient collapse + CKA degradation）被推翻为 bug 产物。可用机制证据：梯度正交性 (cosine≈0) + 方差不对称 (Cell 1 方差 6.88× Cell 3)\n- **CoRL 2026 deadline = May 29**，仅剩 ~2.5 天\n- **易错点**：Cell 4 当前只有 2 个 v2 seed（s3 + s0），detach_ln_v2_s1 还没创建 registry 条目；reverse_cutoff 完成后必须立即提交，不能空转\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1779856775.md"
+}

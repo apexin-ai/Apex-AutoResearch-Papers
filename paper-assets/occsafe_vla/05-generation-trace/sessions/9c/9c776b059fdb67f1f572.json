@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "9c776b059fdb67f1f572",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "infra fix task9 hdf5",
+  "task_key": "worker_infra_fix_task9_hdf5_20260520T123412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_fix_task9_hdf5_20260520T123412.log",
+    "occurrence": 1,
+    "bytes": 891111,
+    "sha256": "baf3033cd3cb2a7f34f0e88200677e00e28854e0304cf2bd94bf58fe00c5f8c0"
+  },
+  "statistics": {
+    "messages": 759,
+    "user_turns": 0,
+    "tool_calls": 336,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 81,
+      "tool_call": 336,
+      "tool_result": 336,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 759,
+      "chunks": [
+        {
+          "path": "9c776b059fdb67f1f572-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9c776b059fdb67f1f572-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9c776b059fdb67f1f572-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "9c776b059fdb67f1f572-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "9c776b059fdb67f1f572-part-0005.json",
+          "message_count": 39
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-fix-task9-hdf5.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a8310463e9fbc50c57f",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "train cutoff 25k s2 v2",
+  "task_key": "worker_train_cutoff_25k_s2_v2_20260525T043552",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_cutoff_25k_s2_v2_20260525T043552_result.json",
+    "occurrence": 1,
+    "bytes": 1235,
+    "sha256": "256d0d3fa308a75ee0caec1701418b834087d4f441ec8a3b5a48fa98ec5efaf0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job 已 kill，registry 已更新为 killed。\n\n## 结果\n\n**任务失败 — bug 未修复，已主动 kill 训练进程 (PID 6038)**\n\n### 问题根因\n\n`finetune.py` line 1163:\n```python\ngradient_step_idx = batch_idx // cfg.grad_accumulation_steps\n```\n\n`batch_idx` 来自 `enumerate(dataloader)`，resume 后从 **0** 重新计数。cutoff 逻辑 (line 1172):\n```python\nocc_weight_now = base_weight if gradient_step_idx < cfg.occ_loss_cutoff_step else 0.0\n```\n\n直接用未修正的 `gradient_step_idx` 判断。只有 `log_step` (line 1233) 加了 `resume_step` 偏移，但 cutoff 逻辑没有用 `log_step`。\n\n### 影响\n\n- resume 从 30K 开始，剩余 20005 步\n- `gradient_step_idx` 最大 = 20005，永远 < 25000\n- OCC loss **永远不会被 cutoff**，等于跑了一个全程 OCC loss 的实验\n- 这正是 **C002 约束**禁止 cutoff 实验使用 `--resume` 的原因\n\n### 修复建议\n\n在 line 1163 后加偏移：\n```python\ngradient_step_idx = batch_idx // cfg.grad_accumulation_steps\nif cfg.resume:\n    gradient_step_idx += cfg.resume_step\n```\n\n修复后需要同步更新 line 1233 的 `log_step` 逻辑（避免重复加 offset）和 line 1262 的 save 逻辑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-cutoff-25k-s2-v2.md"
+}

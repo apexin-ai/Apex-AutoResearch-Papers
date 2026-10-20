@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "535b47a9f2b870bb766b",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ssh status check 34685",
+  "task_key": "worker_ssh_status-check-34685_20260528T232344",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_status-check-34685_20260528T232344_result.json",
+    "occurrence": 1,
+    "bytes": 1151,
+    "sha256": "b3fe31d26c24cf7e5f1ca5d139d5b3ebc3ae3d684eaf21c029bcecc0dea55661"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-34685 状态\n\n### 训练进度 (full_occ_bn_v2_s2_r5, PID 30149)\n\n| 指标 | 值 |\n|------|-----|\n| 状态 | **运行中**，已运行 14m47s |\n| 当前 step | **858 / 50,005** (1.7%) |\n| 训练速度 | ~1.0 it/s |\n| 预估剩余时间 | **~13h56m** |\n| Checkpoint | 尚未保存（save_freq=10000，需到 step 10000） |\n\n### Loss 趋势\n\n| Step | occ_loss | action_loss |\n|------|----------|-------------|\n| 0 | 0.1422 | 0.6641 |\n| 800 | 0.0273 | 0.2520 |\n\n两个 loss 均持续下降，趋势正常。occ_loss 从 0.14 降到 0.027（-81%），action_loss 从 0.66 降到 0.25（-62%）。\n\n### GPU 状况\n\n| GPU | 型号 | 显存使用 | 显存空闲 | 总显存 |\n|-----|------|---------|---------|--------|\n| 0 | RTX PRO 6000 Blackwell | 62.5 GB | 32.5 GB | 95.6 GB |\n\n- **仅可见 1 张卡**（cgroup v2 限制），非白名单中的 4 张\n- 该卡被 PID 30149 独占（63,940 MiB）\n- **无空闲 GPU 可用**\n\n### 关键问题\n\n按当前速度 ~1.0 it/s，完成 50,005 步需 ~14h，预计完成时间约 **5/29 21:00 UTC**，**已超过 C003 截止时间**（5/28 12:00 UTC）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-status-check-34685.md"
+}

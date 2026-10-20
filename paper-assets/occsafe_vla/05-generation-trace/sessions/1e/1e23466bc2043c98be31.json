@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e23466bc2043c98be31",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ssh check training 34685",
+  "task_key": "worker_ssh_check-training-34685_20260528T223031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-training-34685_20260528T223031_result.json",
+    "occurrence": 1,
+    "bytes": 812,
+    "sha256": "0c4da1a7c26fce3663fc2b5055071e74d2efef981c04d2895d5433576a4db52c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**`full_occ_bn_v2_s2_r2` 训练状态汇报：**\n\n| 项目 | 状态 |\n|------|------|\n| 进程 | **Alive**，PID 19218，已运行 2h59m |\n| 当前进度 | **step 10879 / 50005 (21.8%)** |\n| 速度 | ~1.02 it/s（约 1.06 s/it 近期略有波动） |\n| 预计剩余 | ~11h 30m（约北京时间 5/29 凌晨 ~5:30 完成） |\n| Checkpoint | 已保存 step 10000 checkpoint (`--10000_chkpt/lora_adapter/`) |\n| GPU 占用 | cuda:0 被 PID 19300（子进程）占用 62152 MiB |\n\n**结论：** 训练正常进行中，预计 5/29 05:30 (UTC+8) 左右完成 50005 步，在 DDL（5/28 20:00 UTC+8）**之后约 9.5 小时**。\n\n⚠️ 这个实验无法在 DDL 前完成。如果需要在 DDL 前拿到结果，需要考虑提前终止或使用中间 checkpoint (step 10000/20000/30000)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-training-34685.md"
+}

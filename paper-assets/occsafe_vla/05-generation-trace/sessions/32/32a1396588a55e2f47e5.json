@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32a1396588a55e2f47e5",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose detach ln v2 s1 35 eval",
+  "task_key": "worker_diagnose_detach_ln_v2_s1_35_eval_20260527T141442",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_detach_ln_v2_s1_35_eval_20260527T141442_result.json",
+    "occurrence": 1,
+    "bytes": 1032,
+    "sha256": "5eca20a01df819179548ba7ab53b327fcd2722c4a06e9059802e825db5dd5825"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 实验状态：**正常完成**\n\neval 已成功跑完全部 10 个 tasks，进程正常退出。\n\n### 最终指标\n\n| 指标 | 值 |\n|------|-----|\n| **TSR** | 0.8940 (89.4%) |\n| **CAR** | 0.8260 (82.6%) |\n\n结果文件：`/root/occsafe_vla/artifacts/safelibero_libero_spatial_20260527_212141.json`\n\n### CRON 误报原因\n\neval 脚本将结果写入 JSON 文件而非上报 W&B，CRON 按 W&B metrics 检测进程状态，找不到 metrics 就报了 \"Process exited without valid W&B metrics\"。实际上进程已正常完成，registry 标记 `conclusion=success` 是正确的。\n\n### GPU cuda:0 状态\n\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| 0 | 0% | 1 MiB / 97887 MiB（空闲） |\n| 1 | 0% | 16778 MiB |\n| 2 | 8% | 16754 MiB |\n| 3 | 1% | 16778 MiB |\n\nGPU 0 已完全释放，eval 进程已退出。\n\n### 结论\n\n不需要重跑。eval 正常完成，CAR=82.6%。CRON 告警是误报（缺少 W&B 上报导致检测逻辑误判）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-detach-ln-v2-s1-35-eval-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6cabba0c9aaa3e58db72",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code table figure scripts",
+  "task_key": "worker_code_table-figure-scripts_20260526T200543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_table-figure-scripts_20260526T200543_result.json",
+    "occurrence": 1,
+    "bytes": 582,
+    "sha256": "69df90a1842dfef10c1fd973db4c316e36e570294285a7d01d0882ef0325dc01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本均已验证通过：\n\n**`generate_table1.py`** — LaTeX 和 Markdown 格式均正常，空 cell 显示 \"—\"，best 值加粗，Δ 计算正确。\n\n**`generate_factorial_figures.py`** — 两张图均已生成：\n- **Bar Chart**: 暖/冷色系区分 gradient_flow ON/OFF，Vanilla 虚线参考线，error bar 正常\n- **Interaction Plot**: 只有 BN 列有数据点（LN 尚无数据），等 v2 LN 数据就绪后会自动补全两条线\n\nv2 数据齐全后，更新 JSON 文件用 `--data-json` 即可一键重新生成 Table 1 和 Figure。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-table-figure-scripts.md"
+}

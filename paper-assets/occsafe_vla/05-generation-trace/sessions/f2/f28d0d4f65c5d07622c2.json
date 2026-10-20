@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f28d0d4f65c5d07622c2",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval vanilla s1 intermediate checkpoints",
+  "task_key": "worker_eval_vanilla_s1_intermediate_checkpoints_20260520T232851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_vanilla_s1_intermediate_checkpoints_20260520T232851_result.json",
+    "occurrence": 1,
+    "bytes": 651,
+    "sha256": "af62d74fa7c6f3e65d02fbe45563ad85b2562ffe15472bb3140c6a56891bdfac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 eval 完成。汇总：\n\n## Vanilla S1 Learning Curve (LIBERO Spatial, 20 rollouts × 10 tasks = 200 episodes)\n\n| Step | TSR | CAR | Collisions/Total |\n|------|-----|-----|-----------------|\n| 35000 | 0.860 | 0.700 | 60/200 |\n| 40000 | 0.910 | 0.725 | 55/200 |\n| 45000 | 0.965 | 0.730 | 54/200 |\n| 50000 | 0.935 | 0.765 | 47/200 |\n\n趋势：\n- **TSR**: 35K→45K 单调上升（0.86→0.965），50K 略回落至 0.935\n- **CAR**: 整体单调上升（0.700→0.765），碰撞从 60 降到 47\n- 45K 是 TSR 峰值，50K 是 CAR 峰值\n\n所有结果 JSON 保存在服务器 `/root/occsafe_vla/eval_results/` 下。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-vanilla-s1-intermediate-checkpoints.md"
+}

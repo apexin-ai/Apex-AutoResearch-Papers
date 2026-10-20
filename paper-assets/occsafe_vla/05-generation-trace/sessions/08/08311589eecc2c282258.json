@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08311589eecc2c282258",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "director / loop_1.md",
+  "task_key": "loop_1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_1.md",
+    "occurrence": 1,
+    "bytes": 5403,
+    "sha256": "ef610b7633ccf35786a970422e3b409f89bce1ea6aca5fee3108fda00160c7d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_messages\nupdated: '2026-05-21T01:38:59+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 分配**: westd-10894 (cuda:0/1/2/3) 跑 vanilla + eval; westd-34685 (cuda:0/1/2) 跑 occ 训练。cuda:3 on 34685 卡死不可用，等 occ 完成后重启实例才能恢复\n- **occ 训练在 westd-34685**，vanilla 训练在 westd-10894。之前 Worker 搞混服务器导致 M018，任何 occ 相关操作必须明确指定 westd-34685\n- **checkpoint 路径**: westd-34685 上 occ checkpoint 在 `/root/autodl-tmp/checkpoints/occ_s{0,1,2}/`（不是 `/root/occsafe_vla/checkpoints/`）\n- **cleanup 脚本已全部 kill**，但脚本文件仍在磁盘 (`/root/autodl-tmp/cleanup_*.sh`)，绝不能重启它们\n- **kill 训练进程必须 kill 子进程**（不是 wrapper），验证用子进程 `/proc/PID/cmdline`，用 nvidia-smi 确认 GPU 释放\n- **恢复训练必须从同组 seed 的 /proc/PID/cmdline 复制完整参数**，只改 seed + resume_step，禁止手写命令\n\n### 2. 🖥️ 基础设施快照\n- **westd-10894** (connect.westd.seetacloud.com:10894, root): vanilla 训练+eval 服务器\n  - 工作目录: `/root/occsafe_vla/`\n  - eval 结果: `/root/occsafe_vla/eval_results/`\n  - Checkpoints: `/root/occsafe_vla/checkpoints/vanilla_s{0,1,2}/50000_chkpt/`\n  - monitor_and_eval.sh (PID 226828) 可能仍在运行（vanilla 已全部完成，不再需要）\n  - 4 卡全空闲，可用于 occ eval\n- **westd-34685** (connect.westd.seetacloud.com:18685, root): occ 训练服务器\n  - 工作目录: `/root/occsafe_vla/`\n  - Checkpoints: `/root/autodl-tmp/checkpoints/occ_s{0,1,2}/`\n  - eval 结果目录: `/root/occsafe_vla/eval_results/`\n  - monitor_and_eval_occ.sh 存在但**未启动**（需在 occ 完成前 ~1h 手动启动）\n  - 活跃进程:\n    - occ_s0: PID 27667 (wrapper) → 子进程 27740, cuda:0, ~57%, ETA ~05:30 UTC May 21\n    - occ_s1: PID 58875 (子进程), cuda:1, 从 7500 恢复, ~15%, ETA ~12:30 UTC May 21\n    - occ_s2: PID 29970 (wrapper) → 子进程 30044, cuda:2, ~57%, ETA ~05:30 UTC May 21\n  - cuda:3 卡死（compute 100% 但 0 MiB memory，无进程）\n- **Post-MVP ablation 脚本已准备好** (westd-10894):\n  - `scripts/run_occ_detach.sh` ✅ 可直接跑\n  - `scripts/run_random_occ.sh` ✅ 可直接跑\n  - `scripts/run_depth.sh` + `depth_head.py` ⚠️ 需集成 + depth GT labels（Depth Anything V2，~半天）\n\n### 3. 📊 当前状态\n**刚完成**:\n- Vanilla 3-seed baseline 完整确立: TSR=91.8%±1.2%, CAR=77.0%±0.4%\n- Vanilla CAR learning curve (s0+s1, 35K/40K/45K/50K): CAR 单调递增 69.75%→77.0%\n- occ_s1 经 4 次事故(M015-M018)后用正确参数从 7500 成功重启\n- Paper framing 更新: Scenario B confirmed, per-task 叙事为核心, 6 个 contingency scenario 已规划\n- D007: MVP gate 追加 hard-task CAR ≥10pp 辅助判据\n\n**等待中**:\n- occ_s0/s2 训练完成 (~05:30 UTC May 21) → 需启动 eval\n- occ_s1 训练完成 (~12:30 UTC May 21) → eval → MVP gate 判定 (~13:00 UTC)\n- s0 intermediate eval 数据可能已完成（Worker 之前在跑，结果未汇报）\n\n### 4. 📋 待办（条件触发式）\n- **occ_s0/s2 接近完成 (~04:30 UTC)** → 在 westd-34685 启动 `monitor_and_eval_occ.sh`（或手动触发 eval）\n- **occ_s0/s2 eval 完成** → 读取 per-task TSR/CAR，与 vanilla baseline 初步对比；如果 CAR 差异在 CI 内（<5pp），考虑追加到 50 rollouts/task\n- **occ_s1 训练完成 (~12:30 UTC)** → eval → 三 seed 汇总 → MVP gate 判定\n- **MVP gate PASS (CAR≥82%, hard-task CAR≥39%, TSR≥88.8%)** → `complete_mvp()` → 进入 research 阶段 → 写 experiment_plan.yaml → dream_simulate\n- **MVP gate FAIL (CAR<82%)** → 检查 hard-task-only CAR 是否满足辅助判据(≥10pp)；如果硬任务改善明显但 overall 不够 → 讨论是否通过；如果完全无效(<5pp) → existential risk #1 触发，讨论 pivot\n- **occ_s0/s2 eval 出来且 CAR 信号强** → 可以不等 s1，先开始 paper framing 升级和论文写作准备\n\n### 5. 🎯 战略上下文\n- **核心假设**: BEV occ auxiliary supervision 在 VLA fine-tuning 时诱发 implicit collision avoidance。尚未验证——全部取决于 occ eval 结果。\n- **Vanilla baseline 比预期强**: 原假设预测 ~15% CAR，实际 77%。Reviewer 的 Scenario B (CAR≈75-80%) 命中。叙事已从 \"overall 高碰撞\" 调整为 \"per-task: physically challenging tasks 碰撞率 53-92%\"\n- **最大 existential risk**: occ CAR 提升 <5pp（概率 30-40%）→ 无论文\n- **最容易判断错的事**: (1) 不要被 overall CAR 数字迷惑——真正的差异只在 T3/T5/T6 三个 hard tasks 上；(2) occ_s1 比 s0/s2 晚 ~7h，不要因此只看 2 seed 就下结论；(3) 20 rollouts 的 per-task CI 很宽(±21pp)，如果结果模糊必须追加 rollouts\n- **决策链**: D001(MVP方案) → D002(判定标准) → D003(范围缩小) → D004(AAAI 2027) → D005(post-MVP 扩展) → D006(vanilla_s2 重启) → D007(追加 hard-task gate)\n- **错题本 M012-M018**: 核心教训是 (1) tqdm 显示不等于实际 step（有 resume offset）；(2) 技术写作必须 SSH 读代码不能凭记忆；(3) cleanup 脚本是定时炸弹；(4) kill 要 kill 子进程树；(5) 操作前确认服务器\n- **Paper 预写部分已完成**: method.tex, experiments.tex, related_work.tex, discussion.tex 全部 code-aligned（经 Reviewer 3 轮审查）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1.md"
+}

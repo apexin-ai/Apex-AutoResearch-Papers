@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef7efbcc35b164ba0ad4",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analyze depth s3",
+  "task_key": "worker_analyze_depth_s3_20260522T215816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_depth_s3_20260522T215816_result.json",
+    "occurrence": 1,
+    "bytes": 588,
+    "sha256": "009b16467b1ac0b615f730a1ec4b778d927c5270907df2a3fecc6f8b830f579e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完毕。depth_s3 分析结果：\n\n| 指标 | depth_s3 (seed 45) | depth_s2 (seed 44) |\n|------|-------|-------|\n| final_depth_loss | 0.0628 | 0.0468 |\n| final_action_loss | 0.0698 | 0.0498 |\n| init_depth_loss | 0.6877 | — |\n| init_action_loss | 0.5938 | — |\n| training_hours | 14.84 | 14.8 |\n| checkpoint_step | 50000 | 50000 |\n| checkpoint_size | 15GB | — |\n\n训练正常完成，无NaN/异常。depth_s3 的 final loss 比 depth_s2 高（depth +34%, action +40%），种子间有一定方差，后续eval会更直接反映性能差异。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-depth-s3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27c64459393ffa30860c",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops cutoff 15k s1 registry fix",
+  "task_key": "worker_ops_cutoff_15k_s1_registry_fix_20260524T132617",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cutoff_15k_s1_registry_fix_20260524T132617_result.json",
+    "occurrence": 1,
+    "bytes": 437,
+    "sha256": "7f93ba0f9b7212952e419b86d3381c3f95651aa42224836f171a0dd3dfb01b1d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n- **PID**: 861222\n- **日志**: `/root/occsafe_vla/logs/cutoff_15k_s1.log`\n- **Registry spec** 已补全：pid、log_path、submitted_at (2026-05-24T19:55:15Z)、backend (tmux)、account (root)\n- **Cron 监控**：job `951ec665`，每小时 :17 检查进程和训练进度（session-only，7 天后自动过期）\n- **当前进度**：step ~4400/50005 (9%)，~1 it/s，预计还需约 12.5 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cutoff-15k-s1-registry-fix.md"
+}

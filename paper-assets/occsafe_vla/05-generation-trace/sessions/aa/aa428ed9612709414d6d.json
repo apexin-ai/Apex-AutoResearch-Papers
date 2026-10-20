@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa428ed9612709414d6d",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose verify statistical analysis data",
+  "task_key": "worker_diagnose_verify_statistical_analysis_data_20260527T190232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_verify_statistical_analysis_data_20260527T190232_result.json",
+    "occurrence": 1,
+    "bytes": 4378,
+    "sha256": "9053bd0b281a60e99146a1fce525182b60c98bea4816cbe25f4ab26f565754cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the complete cross-verification:\n\n---\n\n## Cell 1 (Full OCC BN): script n=5, `[0.832, 0.685, 0.770, 0.776, 0.754]`\n\n| # | Script Comment | Registry Source | CAR | Rollouts | Ckpt Step | Code Ver | Issues |\n|---|---|---|---|---|---|---|---|\n| 1 | s0@50K_50r | mvp_occ_s0 `at_50000_50r` | 0.832 | 50 | 50000 | **v1** | Parent notes: \"50000_chkpt 不完整\" |\n| 2 | s1@50K_20r | mvp_occ_s1 top-level | 0.685 | **20** | 50000 | **v1** | **20 rollouts, not 50** |\n| 3 | s2@50K_50r | mvp_occ_s2 `at_50000_50r` | 0.770 | 50 | 50000 | **v1** | Parent notes: \"50000_chkpt 不完整\" |\n| 4 | s3_v2 | mvp_occ_s3_v2_eval | 0.776 | 50 | ? | v2 | OK |\n| 5 | s4 | mvp_occ_s4_eval | 0.754 | ? | ? | **unclear** | No params/notes/per-task, only TSR+CAR |\n\n**Per-task data**: n=3 only (s0_50r, s2_50r, s3_v2) — drops s1 (20r) and s4 (no per-task). Per-task values verified against registry.\n\n**Unused v2 replacements**: full_occ_bn_v2_s1_eval (CAR=0.654), full_occ_retrain_s0_eval_v2 (CAR=0.746)\n\n---\n\n## Cell 2 (Full OCC LN): script n=3, `[0.740, 0.792, 0.798]`\n\n| # | Script Comment | Registry Source | CAR | Rollouts | Code Ver | Issues |\n|---|---|---|---|---|---|---|\n| 1 | s3_v2 | full_occ_ln_s3_v2_eval | 0.740 | 50 | v2 | OK |\n| 2 | s1c | full_occ_ln_v2_s1c_eval | 0.792 | 50 | v2 | OK |\n| 3 | s2 | full_occ_ln_v2_s2_eval | 0.798 | 50 | v2 | OK |\n\n**Clean.** All v2, all 50 rollouts. v1 experiments (full_occ_ln_s0/s1/s2) correctly excluded.\n\n---\n\n## Cell 3 (Detach BN): script n=5, `[0.746, 0.744, 0.748, 0.794, 0.738]`\n\n| # | Script Comment | Registry Source | CAR | Rollouts | Ckpt Step | Code Ver | Issues |\n|---|---|---|---|---|---|---|---|\n| 1 | s0@50r | ablation_occ_detach_s0 `at_50000_50r` | 0.746 | 50 | 50000 | v1 | Detach → bug N/A |\n| 2 | s1@50r | ablation_occ_detach_s1 `at_50000_50r` | 0.744 | 50 | 50000 | v1 | Detach → bug N/A |\n| 3 | s2 | ablation_occ_detach_s2 | 0.748 | 50 | 50000 | v1 | Detach → bug N/A |\n| 4 | s3_v2 | ablation_occ_detach_s3_v2_eval | 0.794 | 50 | ? | v2 | OK |\n| 5 | s4 | ablation_occ_detach_s4_eval | 0.738 | 50 | ? | **unclear** | No params/notes |\n\nPer-task values verified against registry (all 5 match).\n\n**v2 replacements NOT used**: detach_bn_v2_s0_eval (0.774), detach_bn_v2_s1_eval (0.736), detach_bn_v2_s2_eval (0.762). Since detach blocks gradient flow, v1 training bug doesn't propagate — s0/s1/s2 are functionally v2-equivalent. So **n=4 v2-equivalent** (s0, s1, s2, s3_v2) makes sense. s4 is the unconfirmed one.\n\n---\n\n## Cell 4 (Detach LN): script n=1, `[0.826]`\n\n| # | Script Comment | Registry Source | CAR | Rollouts | Code Ver |\n|---|---|---|---|---|---|\n| 1 | s1_35 | detach_ln_v2_s1_35_eval | 0.826 | 50 | v2 |\n\n5 v1 detach_ln experiments exist (s0=0.792, s1=0.756, s2=0.748, s3=0.802, s4=0.672/failed) — none included.\n\n---\n\n## Vanilla: script n=3, `[0.768, 0.748, 0.720]`\n\n| # | Script Comment | Registry Source | CAR | Rollouts | Code Ver |\n|---|---|---|---|---|---|\n| 1 | s0 | vanilla_retrain_s0_eval | 0.768 | 50 | retrain (not labeled v2) |\n| 2 | s1 | vanilla_v2_s1_eval | 0.748 | 50 | v2 |\n| 3 | s2 | vanilla_v2_s2_eval | 0.720 | 50 | v2 |\n\n---\n\n## Critical Problems\n\n1. **Cell 1 v1 contamination**: 3/5 data points (s0, s1, s2 = 0.832, 0.685, 0.770) are **v1 training code**. Only s3_v2 is confirmed v2. s4 is unclear. v2 replacements exist but give much lower CAR (0.654, 0.746), so using v1 data inflates the Cell 1 mean.\n\n2. **Cell 1 s1 rollout mismatch**: 20 rollouts vs 50 for all others. Higher variance, not comparable. The 0.685 is the worst value in the array — including a noisier low-rollout estimate pulls the mean down AND inflates variance.\n\n3. **Cell 1 corrupt checkpoint**: s0 and s2 trained models had \"50000_chkpt 不完整\" (incomplete checkpoint). The 50r eval was still run on this checkpoint and produced unusually high CARs (0.832 is the highest in the entire dataset).\n\n4. **s4 experiments (Cell 1 + Cell 3) are black boxes**: No params, no notes, no per-task breakdown for mvp_occ_s4. ablation_occ_detach_s4 at least has per-task metrics.\n\n5. **Per-task vs aggregate inconsistency**: Cell 1 aggregate uses n=5, but per-task analysis uses n=3 (drops the two problematic points). This means aggregate and per-task analyses describe different experiment sets."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-verify-statistical-analysis-data.md"
+}

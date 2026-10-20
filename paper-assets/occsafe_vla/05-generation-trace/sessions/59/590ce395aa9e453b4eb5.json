@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "590ce395aa9e453b4eb5",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diag disk usage analysis",
+  "task_key": "worker_diag_disk_usage_analysis_20260520T093429",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_disk_usage_analysis_20260520T093429_result.json",
+    "occurrence": 1,
+    "bytes": 3455,
+    "sha256": "7753b6c1992af853d1c62e29c70aba81194f6c7b902fe554adb62e4b5a011a34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已收集完毕。以下是分析报告。\n\n---\n\n## 磁盘空间分析报告\n\n### 1. 当前状态（与预期不符）\n\n**df 实际读数：数据盘可用 416GB**，与\"上次报告\"一致，并非 214GB。可能之前看到的 214GB 是临时状态（如大文件下载/编译过程中）。\n\n```\n数据盘 /dev/sda2:  879G 总量 | 419G 已用 (51%) | 416G 可用\n根分区 overlay:     30G 总量 |  19G 已用 (63%) |  12G 可用\n```\n\n### 2. 空间使用分项明细\n\n| 类别 | 路径 | 大小 |\n|------|------|------|\n| **模型权重** | `/root/autodl-tmp/models/openvla-7b` | **15G** |\n| **已保存 checkpoint（含合并模型）** | `/root/autodl-tmp/runs/...--100_chkpt/` | **15G** |\n| **Conda 环境 (occsafe)** | `/root/miniconda3/envs/occsafe` | **11G** |\n| **Conda base lib** | `/root/miniconda3/lib` | **7.4G** |\n| **数据集 (libero_spatial)** | `/root/autodl-tmp/libero_datasets/` | **6.0G** |\n| **pip 缓存** | `/root/.cache/pip` | **5.6G** |\n| **数据集 (modified_libero_rlds)** | `/root/autodl-tmp/data/` | **2.0G** |\n| **/tmp（flash-attn 编译中间文件等）** | `/tmp/` | **1.8G** |\n| **Conda pkgs 缓存** | `/root/miniconda3/pkgs` | **626M** |\n| **项目代码** | `/root/occsafe_vla/` | **111M** |\n| **训练中 checkpoint（尚无权重）** | `/root/autodl-tmp/checkpoints/vanilla_s0-s2` | **176K** |\n| **用户层面合计** | | **~63G** |\n\n数据盘显示 419G 已用，但用户目录仅 ~63G — 差额 ~356G 是系统/容器层占用。\n\n### 3. 训练 checkpoint 空间预估\n\n当前训练参数：\n- `save_freq = 10000`，总步数 50005 → 每个 seed **5 个 checkpoint**（step 10K/20K/30K/40K/50K）\n- `save_latest_checkpoint_only = False`（保留所有 checkpoint）\n- 3 个 seed（vanilla_s0/s1/s2）正在训练，当前在 step ~844，尚未保存任何 checkpoint\n\n**每个 checkpoint 大小估算：**\n\n参考现有 `--100_chkpt`（15G），但该 checkpoint 包含了完整基座模型权重（14.25G safetensors）。根据 `save_training_checkpoint()` 代码，自动保存实际只写入：\n\n| 组件 | 大小 |\n|------|------|\n| LoRA adapter | ~463M |\n| action_head | ~289M |\n| proprio_projector | ~65M |\n| processor configs + tokenizer | ~3M |\n| **每个 checkpoint 合计** | **~820M** |\n\n注：`--100_chkpt` 中的 14.25G 完整模型权重更可能来自后续的合并/导出操作，而非自动保存。\n\n**vanilla 训练总空间需求：**\n- 5 checkpoint × 820M × 3 seeds = **~12G**\n- 若含完整模型合并导出（5 × 15G × 3）= **225G**（但通常只在最终评估时合并最佳 checkpoint）\n\n### 4. occ 实验额外空间\n\nocc 实验额外保存 `occ_head` 权重。相比 vanilla，每个 checkpoint 增加 occ_head 大小（取决于具体架构，预计数十 MB 量级），整体差异不大。\n\n### 5. 结论\n\n**416GB 完全够用。** 即使按最坏情况（每次 checkpoint 都做全模型合并导出）225G 也在可控范围内。实际自动保存仅需 ~12G。\n\n### 6. 可安全清理的空间\n\n| 可清理项 | 大小 | 说明 |\n|----------|------|------|\n| pip 缓存 `~/.cache/pip` | 5.6G | `pip cache purge` |\n| Conda pkgs 缓存 | 626M | `conda clean --all` |\n| `/tmp/` flash-attn 编译中间文件 | ~1.8G | `rm -rf /tmp/tmpxft_*` |\n| 旧 checkpoint `runs/--100_chkpt` | 15G | 若不再需要该旧实验结果 |\n| **可回收合计** | **~23G** | |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-disk-usage-analysis.md"
+}

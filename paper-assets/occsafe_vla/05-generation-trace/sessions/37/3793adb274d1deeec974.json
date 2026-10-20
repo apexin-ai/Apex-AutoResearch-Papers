@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "3793adb274d1deeec974",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra env setup",
+  "task_key": "worker_infra_env-setup_20260520T043112",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_env-setup_20260520T043112_result.json",
+    "occurrence": 1,
+    "bytes": 2358040,
+    "sha256": "c455d90b64db290be2d5dac36123440d8a5c3eb3c9a4c326d233da690d6c38d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2358060,
+                "serialized_sha256": "b3a30cc13c28b9b94583631d91e9dd56da392e6b53a4315893cb15af1e123e48",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-env-setup.md"
+}

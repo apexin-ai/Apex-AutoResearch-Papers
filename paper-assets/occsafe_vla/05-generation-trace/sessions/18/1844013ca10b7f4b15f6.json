@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1844013ca10b7f4b15f6",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose gpu audit 34685",
+  "task_key": "worker_diagnose_gpu_audit_34685_20260527T174051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_gpu_audit_34685_20260527T174051_result.json",
+    "occurrence": 1,
+    "bytes": 575,
+    "sha256": "702c7589e4960cc0e5cd87c4037ec00b01cb54915e44769df04e93c735d634fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "westd-34685 **全部 4 张 GPU 正常运行**，无 crash。\n\n### 状态汇总\n\n| GPU | 实验 | 进度 | 速度 | 状态 |\n|-----|------|------|------|------|\n| cuda:0 | detach_ln_v2_s2 | 8588/50005 (17%) | ~1.08 it/s | 正常 |\n| cuda:1 | vanilla_object_s0 | 3409/50005 (7%) | ~1.10 it/s | 正常 |\n| cuda:2 | full_occ_ln_v2_s3 | 3825/50005 (8%) | ~1.09 it/s | 正常 |\n| cuda:3 | detach_ln_v2_s3 | 3819/50005 (8%) | ~1.08 it/s | 正常 |\n\n所有 GPU 利用率 99%，显存 ~62GB/98GB。System 的 \"3/8 活跃\" 报告是误报——4/4 全满。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-gpu-audit-34685.md"
+}

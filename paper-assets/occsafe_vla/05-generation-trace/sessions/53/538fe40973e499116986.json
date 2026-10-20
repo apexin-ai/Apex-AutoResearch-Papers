@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "538fe40973e499116986",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_3_1779737002.md",
+  "task_key": "loop_3_1779737002",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1779737002.md",
+    "occurrence": 1,
+    "bytes": 4465,
+    "sha256": "d758621a8800112184d31100d2aaf9f12fa1a21338be6d749f4fb4cb7bc66c8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-25T18:34:12+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-10894 cuda:0/1/2/3 + westd-34685 cuda:0/1/2/3，共 8 张，不得用其他卡\n- WANDB_MODE=disabled 的实验 cron 报 failed 时，必须先 tail 日志确认是否实际完成（torchrun destroy_process_group warning 会导致 exit_code=1 误报）\n- 训练命令必须显式指定 `--num_images_in_input 2 --use_proprio True --use_l1_regression True --batch_size 8 --learning_rate 5e-4 --lora_rank 32 --image_aug True`，不依赖默认值（曾因缺参数导致实验作废）\n- eval 脚本参数是 `--num_rollouts`（不是 `--num_trials_per_task`），用 `--pretrained_checkpoint`（不是 `--vla_path`）\n- CoRL 2026 deadline: Abstract May 26（明天），Paper May 29（4天后）\n\n### 2. 🖥️ 基础设施快照\n- **westd-10894**: 工作目录 `/root/occsafe_vla/openvla-oft`，conda env `occsafe`（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`），checkpoint 盘 `/root/autodl-tmp/checkpoints/`，磁盘 425G/879G 可用(50%)\n- **westd-34685**: 同上结构，磁盘 819G/879G 可用(2%)，checkpoint 路径同上\n- 模型基底：`/root/autodl-tmp/models/openvla-7b`（两台服务器均有）\n- 数据集：`/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops`\n- OCC 数据：`/root/occsafe_vla/occ_data`\n- 活跃进程：\n  - full_occ_ln_s1: PID 777222, westd-10894:cuda:2\n  - full_occ_ln_s2: PID 777428, westd-10894:cuda:3\n  - cutoff_15k_s1: PID 861222, westd-34685:cuda:1\n  - cutoff_45k_s1: PID 20913, westd-34685:cuda:0\n  - cutoff_25k_s2: PID 998127, westd-34685:cuda:2\n  - reverse_cutoff_s2: PID 998624, westd-34685:cuda:3\n\n### 3. 📊 当前状态\n刚处理 ablation_occ_detach_s0_retrain 的 cron 失败回调——诊断为 cron 误报，训练实际完成（50K checkpoint 已保存），已修正 registry 为 success 并向 Director 汇报。\n\n**RUNNING (6)**：full_occ_ln_s1/s2（10894:2/3，ETA ~May25 01:00 已过，应该快完成），cutoff_15k_s1（34685:1，ETA ~09:47），cutoff_45k_s1（34685:0，ETA ~10:24），cutoff_25k_s2/reverse_cutoff_s2（34685:2/3，ETA ~14:00）\n\n**空闲 GPU**：westd-10894:cuda:0 和 cuda:1 ⚠️ 已向 Director 汇报并建议启动 same-seed 梯度分析\n\n**等待中**：\n- Worker `worker_diagnose_ablation_occ_detach_s0_retrain_20260525T022401` 正在验证 checkpoint 存在（结果不影响决策，日志已确认完成）\n- Director 审批 same-seed 梯度分析（在 10894 空闲 GPU 上）\n- full_occ_ln_s1/s2 即将完成 → 需要 eval\n\n### 4. 📋 待办\n- **Director 批准梯度分析** → spawn worker 在 10894:cuda:0 执行 same-seed 4-condition 梯度分析（Vanilla retrain_s0 + Full OCC retrain_s0 + Detach OCC retrain_s0，checkpoint 路径见 memory.md Seed 42 审计表）\n- **full_occ_ln_s1 cron 回调** → 提交 full_occ_ln_s1_eval（50r SafeLIBERO），完成 2×2 factorial 多 seed 数据\n- **full_occ_ln_s2 cron 回调** → 同上提交 eval\n- **cutoff_15k_s1 完成** → eval → 与 cutoff_15k_s0 (0.804) 对比，多 seed 验证 dose-response\n- **cutoff_45k_s1 完成** → eval → 与 cutoff_45k_s0 (0.764) 对比\n- **cutoff_25k_s2 / reverse_cutoff_s2 完成** → eval → 3rd seed 确认 withdrawal pattern\n- **34685:0 或 34685:1 释放** → 提交 cutoff_45k_s2 / cutoff_15k_s2（命令已在 memory.md 就绪）\n\n### 5. 🎯 战略上下文\n- 核心发现：Dual mechanism（BN 干扰 56% + 梯度流缺失 44%）+ representation-behavior dissociation（Detach+LN CKA 正常但 CAR 仍低）+ differential encoder vulnerability（DINOv2 vs SigLIP 对 BN 干扰敏感度不同）\n- 正在收集的关键证据：(1) 2×2 factorial {gradient flow} × {norm type} 多 seed（full_occ_ln s1/s2 即将完成）(2) dose-response 多 seed（cutoff 系列）(3) same-seed 梯度分析（刚解锁）\n- Framing：分析型论文，\"representation-behavior dissociation + differential encoder vulnerability + continuity principle\"\n- 易错点：(1) full_occ_ln_s1/s2 的 ETA 已过但 cron reconcile 显示仍在跑——可能是从 20K 恢复导致 ETA 不准，不要假设已完成 (2) 10894 的 checkpoint 在 `/root/autodl-tmp/checkpoints/` 下，之前磁盘清理删过一批旧 checkpoint，现在 50% 占用率还行但要注意 (3) seed 42 梯度分析的 Vanilla/Full OCC checkpoint 在 34685 而非 10894——需要跨服务器操作或在 34685 上跑分析\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1779737002.md"
+}

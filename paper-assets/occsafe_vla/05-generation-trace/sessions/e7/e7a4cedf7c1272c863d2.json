@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e7a4cedf7c1272c863d2",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "check server status 34685",
+  "task_key": "worker_check_server-status-34685_20260527T033752",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_server-status-34685_20260527T033752_result.json",
+    "occurrence": 1,
+    "bytes": 1202,
+    "sha256": "21ceca8de57f252bada2a3bec7b6a273944e470e3d548630794eff5ee462ab9d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-34685 训练状态报告\n\n### GPU 状态\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| cuda:0 | 99% | 62.2 / 97.9 GB |\n| cuda:1 | 91% | 62.2 / 97.9 GB |\n| cuda:2 | 99% | 62.2 / 97.9 GB |\n| cuda:3 | 99% | 63.0 / 97.9 GB |\n\n### 训练进度（全部在跑）\n| 实验 | PID | Step | 进度 | 运行时间 | ETA (剩余) |\n|------|-----|------|------|----------|------------|\n| detach_ln_v2_s1 | 681204 | 15,183/50,005 | 30% | 4h03m | ~8h55m |\n| detach_ln_s4 | 677648 | 15,241/50,005 | 30% | 4h04m | ~8h57m |\n| ablation_occ_detach_s4 | 735982 | 12,393/50,005 | 25% | 3h20m | ~9h39m |\n| mvp_occ_s4 | 736344 | 12,386/50,005 | 25% | 3h20m | ~9h43m |\n\n预计完成时间：\n- detach_ln_v2_s1 / detach_ln_s4：~May 28 01:00 UTC（北京 09:00）\n- ablation_occ_detach_s4 / mvp_occ_s4：~May 28 02:00 UTC（北京 10:00）\n\n**全部在 DDL (May 28 12:00 UTC) 之前完成，余量充足。**\n\n### 已有梯度分析 checkpoint（50K）\n| 实验 | 状态 |\n|------|------|\n| vanilla_v2_s1 | ✓ 存在 |\n| detach_ln_s3 | ✓ 存在 |\n| mvp_occ_s0 | ✗ 不存在 |\n| mvp_occ_s1 | ✗ 不存在 |\n| ablation_occ_detach_s0 | ✗ 不存在 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-server-status-34685.md"
+}

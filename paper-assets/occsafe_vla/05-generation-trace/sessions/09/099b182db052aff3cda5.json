@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "099b182db052aff3cda5",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval ablation occ detach s2",
+  "task_key": "worker_eval_ablation_occ_detach_s2_20260522T210506",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_ablation_occ_detach_s2_20260522T210506_result.json",
+    "occurrence": 1,
+    "bytes": 434,
+    "sha256": "1e1d93a08d34fdcb7cec93b6c7cc646cfd55ff6e3e51ea5b0d85e4cfab97265f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n- **训练验证**：ablation_occ_detach_s2 训练到 50005 步正常结束 (EXIT_CODE=0)，checkpoint 已保存\n- **Eval 已提交**：`ablation_occ_detach_s2_eval` 在 westd-10894 cuda:1 运行，日志 `~/runs/occsafe_vla/ablation_occ_detach_s2_eval.log`\n- **Registry 已更新**：QUEUED 状态，parent=ablation_occ_detach_s2，hypothesis 已填写\n\nCron 监控会自动跟踪后续进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-ablation-occ-detach-s2.md"
+}

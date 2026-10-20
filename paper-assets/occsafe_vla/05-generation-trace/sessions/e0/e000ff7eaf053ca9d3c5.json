@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e000ff7eaf053ca9d3c5",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops 34685 gpu verify",
+  "task_key": "worker_ops_34685-gpu-verify_20260526T214409",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_34685-gpu-verify_20260526T214409_result.json",
+    "occurrence": 1,
+    "bytes": 978,
+    "sha256": "c10a8913250540d66f6f3b778e3d040e7e4fd316feb89804ed8e76e858116a1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果\n\n**GPU 状态：4 张全部在用，没有空闲。**\n\n| GPU | 显存占用 | 利用率 | 实验 |\n|-----|---------|--------|------|\n| 0 | 62231/97887 MiB | 99% | vanilla_v2_s1 |\n| 1 | 62231/97887 MiB | 99% | vanilla_v2_s2 |\n| 2 | 62203/97887 MiB | 49% | detach_ln_s3 |\n| 3 | 62203/97887 MiB | 83% | cutoff_25k_s1_v2 |\n\n**PID 状态：4 个 PID 全部存活**，运行时间均约 12h 58m。\n\n**训练进度：尚未完成，均在 40k-50k 之间。**\n\n| 实验 | 最新 checkpoint | 预计剩余 |\n|------|----------------|----------|\n| vanilla_v2_s1 | 40000 | 无日志，但进程活跃 |\n| vanilla_v2_s2 | 40000 | 无日志，但进程活跃 |\n| detach_ln_s3 | 40000 | 无日志，但进程活跃 |\n| cutoff_25k_s1_v2 | 40000 | step 45622/50005，剩余 ~67min（1.08 it/s） |\n\n**结论：Director 说的\"4 张 GPU 空闲\"是错误的。4 个训练任务都在正常运行中，预计还需 1-2 小时全部完成。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-34685-gpu-verify.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "834da4ddfe6bb126b0ef",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "check eval status 10894",
+  "task_key": "worker_check_eval_status_10894_20260526T113521",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_eval_status_10894_20260526T113521_result.json",
+    "occurrence": 1,
+    "bytes": 746,
+    "sha256": "e3fab25383b76cd416ce9ecd9b34bc5e9cfb4538424cfaf14c6628b9707f0594"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 eval 进程全部存活且正常运行：\n\n| exp_id | 状态 | 已运行 | GPU | GPU利用率 | 日志进度 |\n|--------|------|--------|-----|-----------|----------|\n| mvp_occ_s3_v2_eval (PID 186624) | **running** | 24:12 | cuda:1 | 0% (瞬时) | T5: 28/50 (56%) |\n| full_occ_ln_s3_v2_eval (PID 186832) | **running** | 24:10 | cuda:2 | 53% | T5: 27/50 (54%) |\n| ablation_occ_detach_s3_v2_eval (PID 189896) | **running** | 23:22 | cuda:3 | 37% | T5: 34/50 (68%) |\n\n三个进程都在评估 libero_spatial 的 Task 5，各跑了约 24 分钟。ablation_occ_detach 进度最快（68%），另外两个在 54-56%。cuda:0 被其他任务占用（99% 利用率，62GB 显存），不影响这三个 eval。一切正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-eval-status-10894.md"
+}

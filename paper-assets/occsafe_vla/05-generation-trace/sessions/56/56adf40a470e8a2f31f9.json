@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56adf40a470e8a2f31f9",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "train resume ablation detach s0 retrain",
+  "task_key": "worker_train_resume_ablation_detach_s0_retrain_20260524T175934",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_resume_ablation_detach_s0_retrain_20260524T175934_result.json",
+    "occurrence": 1,
+    "bytes": 595,
+    "sha256": "e8c6f94a9bbb091bb455fb41127789e1d66b897ce1e1916e2380a9481763a4ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n- **30000 步损坏 checkpoint** 已删除\n- **从 20000 步恢复训练**，PID=775880，~1.10 it/s 稳定运行\n- 配置：`--occ_detach true`（BN 默认），seed=42，cuda:0，max_steps=50005\n- wandb 未配置，已用 `WANDB_MODE=disabled` 跳过\n- 日志：`/root/autodl-tmp/logs/ablation_occ_detach_s0_retrain_resume.log`\n- Registry 已更新为 RUNNING\n\n注意：max_steps=50005 是从 resume 点开始的额外步数，log_step 从 20000 起算，实际训练到 step 70005。如果目标总量是 50005 步，需要改为 max_steps=30005。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-resume-ablation-detach-s0-retrain.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aea610e830014470fb83",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra check monitor alive",
+  "task_key": "worker_infra_check_monitor_alive_20260521T043158",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_check_monitor_alive_20260521T043158_result.json",
+    "occurrence": 1,
+    "bytes": 701,
+    "sha256": "eaa7b13cbc36d4ee4bac5a82ae4bc3bc454444ea04e85e219e34f9d48671edcf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nMonitor PID 61526: alive (monitoring PIDs 27667/58802/29970)\n\nocc_s0: step ~44790/50005 (89%), alive, ETA ~1h20m, 1.08 it/s\n         最新 checkpoint: 42500\n\nocc_s1: step ~19500/50005 (~39%), alive (PID 58802→58875)\n         原始运行崩溃 (exitcode 1)，已从 step 7500 恢复\n         最新 checkpoint: 17500\n         ⚠️ 进度远落后于 s0/s2，预计还需 ~7.8h 完成\n\nocc_s2: step ~44862/50005 (90%), alive, ETA ~1h19m, 1.08 it/s\n         最新 checkpoint: 42500\n\neval_results: 仅有 monitor_status.txt，暂无 occ 评估结果\n```\n\nocc_s1 因崩溃重启，进度严重落后。s0 和 s2 约 1.5h 后完成训练，s1 还需约 8 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-monitor-alive.md"
+}

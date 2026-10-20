@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b7ffc21e7582472ded4f",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops check 10894 status",
+  "task_key": "worker_ops_check_10894_status_20260524T120732",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_10894_status_20260524T120732_result.json",
+    "occurrence": 1,
+    "bytes": 1418,
+    "sha256": "651cb2db1c0928a6cdab53c43fba700cfae909d3509a8a71a243a1c6a0db0010"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-10894 实验状态汇报\n\n### GPU 总览\n\n| GPU | 显存占用 | 利用率 | PID | 实验 |\n|-----|---------|--------|-----|------|\n| 0 | 62203 MiB | 41% | 746696 | ablation_occ_detach_s0_retrain (`--occ_detach true`, seed 42) |\n| 1 | 62203 MiB | 99% | 742821 | full_occ_ln_s0 (`--occ_detach false --occ_norm_type ln`, seed 42) |\n| 2 | 62203 MiB | 99% | 743031 | full_occ_ln_s1 (seed 43) |\n| 3 | 63013 MiB | 99% | 743375 | full_occ_ln_s2 (seed 44) |\n\n### 训练进度\n\n| 实验 | 当前 step | 进度 | 速度 | 已运行 | 预计剩余 |\n|------|-----------|------|------|--------|---------|\n| **ablation_occ_detach_s0_retrain** | ~10248/50005 | **20.5%** | ~1.08 it/s | 3h | ~10h |\n| full_occ_ln_s0 | ~10629/50005 | **21.3%** | ~1.08 it/s | 3h06m | ~10h |\n| full_occ_ln_s1 | ~10617/50005 | **21.2%** | ~1.08 it/s | 3h07m | ~10h |\n| full_occ_ln_s2 | ~10590/50005 | **21.2%** | ~1.03 it/s | 3h07m | ~10h |\n\n### 重点确认\n\n**ablation_occ_detach_s0_retrain 存活，正常运行。** 刚过 step 10000 checkpoint（已保存 merged model），当前 ~10248 step，GPU 利用率 41%（略低于其他三个的 99%，但进程活跃、日志持续写入）。最近一次 AUX log（step 10200）：occ_loss=0.0097, action_loss=0.1152。\n\nGPU 0 利用率偏低（41% vs 99%）值得关注，可能是刚完成 checkpoint 保存后的恢复阶段，后续应趋于稳定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-10894-status.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49cb15dcd7c1decf6b5c",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra task9 download followup",
+  "task_key": "worker_infra_task9_download_followup_20260520T130224",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_task9_download_followup_20260520T130224_result.json",
+    "occurrence": 1,
+    "bytes": 132,
+    "sha256": "70ba5c8bd7f8307fa6bec56e22ff8ef91f3ca900a50fbca639a5d3648576f0a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载进度 18%（~123MB/688MB），速度 ~80KB/s，wget 预估还需 1h41m。已设置 15 分钟后自动轮询。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-task9-download-followup.md"
+}

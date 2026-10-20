@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "deace7891f9e29ddc591",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops transfer random occ checkpoint",
+  "task_key": "worker_ops_transfer_random_occ_checkpoint_20260524T012626",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_transfer_random_occ_checkpoint_20260524T012626_result.json",
+    "occurrence": 1,
+    "bytes": 751,
+    "sha256": "5c47f69d242f4c5f4b6612737875c77c7a69a0ac38ecc15ca1a604d54b9bc58b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "传输完成，全部文件一致。\n\n### 结果汇总\n\n| 项目 | 详情 |\n|------|------|\n| **Checkpoint 目录** | 25 个文件 + 1 个 lora_adapter 子目录，总计 15GB |\n| **关键文件** | 4 个 safetensors（14.5GB）、action_head（289MB）、occ_head（2.4MB）、proprio_projector（65MB）、lora_adapter（463MB） |\n| **传输方式** | tar 管道：34685 → 本地中转 → 10894 |\n| **传输状态** | 成功，文件大小与源完全一致 |\n| **10894 磁盘** | 250GB 总量，已用 111GB，剩余 140GB（45% 使用率） |\n| **Checkpoint 路径** | `/root/autodl-tmp/checkpoints/ablation_random_occ_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-transfer-random-occ-checkpoint.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52e038f1d64979582110",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ssh check 10894 training",
+  "task_key": "worker_ssh_check-10894-training_20260527T010732",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-10894-training_20260527T010732_result.json",
+    "occurrence": 1,
+    "bytes": 1499,
+    "sha256": "db75a2fb4c56922f18c59a048515293b9fca78487055f3d277f06174577fb081"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-10894 GPU 训练状态\n\n| GPU | PID | 状态 | exp_id | step/total | occ_loss | action_loss | 速度 | ETA (UTC) |\n|-----|------|------|--------|------------|----------|-------------|------|-----------|\n| cuda:0 | 481426 | **ALIVE** | full_occ_ln_v2_s1c | 2000/50005 | 0.0252 | 0.1787 | 1.08 it/s | ~May 27 21:20 |\n| cuda:1 | 481643 | **ALIVE** | full_occ_ln_v2_s2 | ~1949/50005 | 0.0129 | 0.2207 | 1.08 it/s | ~May 27 21:20 |\n| cuda:2 | 481988 | **ALIVE** | detach_ln_v2_s0c | ~1951/50005 | 0.0161 | 0.2422 | 1.08 it/s | ~May 27 21:20 |\n| cuda:3 | 482336 | **DEAD** | detach_ln_v2_s1c | 818/50005 | — | — | — | — |\n\n3 个活跃进程均运行约 31 分钟，loss 下降正常。剩余 ~48000 步 × ~0.93 s/step ≈ 12.3 小时，预计 May 27 ~21:20 UTC 完成，距 DDL (May 28 12:00 UTC) 有充足余量。\n\n### cuda:3 诊断\n\n**PID 482336 被 SIGTERM 杀死**，时间 08:50:59 UTC，仅跑到 step 818。日志最后一行：\n```\nSignal 15 (SIGTERM) received by PID 482336\n```\n这是外部 kill，非 OOM/crash。\n\n**GPU 状态异常：** 0 MiB 内存 + 100% 利用率 + 36°C（其他 GPU 68-70°C）+ 100W 功耗。这是典型的 **stuck utilization counter** —— 进程被 SIGTERM 后 CUDA context 未正常释放，GPU 硬件计数器卡死。GPU 实际空闲无负载。\n\n**可用于新任务**，但需要先执行 `nvidia-smi -r -i 3`（单卡 reset）清除卡死计数器。如果单卡 reset 失败，需要服务器 reboot。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-10894-training.md"
+}

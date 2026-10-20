@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f56c2b3365e3b2a89d1",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval occ s0 s2 intermediate checkpoints",
+  "task_key": "worker_eval_occ-s0-s2-intermediate-checkpoints_20260521T122344",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_occ-s0-s2-intermediate-checkpoints_20260521T122344_result.json",
+    "occurrence": 1,
+    "bytes": 482,
+    "sha256": "0f3440ce6702ea95214b46bbb0867870058abfb6d9793522a61ab54030fd4fa6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 当前状态\n\n**存活 checkpoint 清单：**\n- occ_s0: `47500_chkpt`(已 eval), `50000_chkpt`(未 eval)\n- occ_s2: `47500_chkpt`(已 eval), `50000_chkpt`(未 eval)\n- 无 30K/35K/40K/45K 中间 checkpoint（被 rotation 脚本清理）\n\n**Eval 进度：**\n- 后台脚本 PID=391298 已启动，串行 eval occ_s0 → occ_s2 的 50K checkpoint\n- 日志路径：`/root/eval_logs/eval_50k_combined.log`\n- 模型正在加载，2 分钟后检查 rollout 进度"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-occ-s0-s2-intermediate-checkpoints.md"
+}

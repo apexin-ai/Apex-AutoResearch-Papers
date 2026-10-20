@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41b9937015273f7c6055",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops gpu check both servers",
+  "task_key": "worker_ops_gpu_check_both_servers_20260524T204309",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_check_both_servers_20260524T204309_result.json",
+    "occurrence": 1,
+    "bytes": 1118,
+    "sha256": "cdbf835c81c7a32ebbb94f02755e0aff6b4de641611f567e95178b4dcf78b7b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 8 张卡都在跑，与已知映射完全吻合。\n\n## westd-34685（4 × H800）\n\n| GPU | 利用率 | 显存 | PID | 实验 |\n|-----|--------|------|-----|------|\n| cuda:0 | 76% | 62203/97887 MiB | 882188 | cutoff_45k_s1 |\n| cuda:1 | 92% | 62203/97887 MiB | 861222 | cutoff_15k_s1 |\n| cuda:2 | 99% | 62209/97887 MiB | 998208 | cutoff_25k_s2 |\n| cuda:3 | 91% | 62203/97887 MiB | 999132 | reverse_cutoff_s2 |\n\n## westd-10894（4 × H800）\n\n| GPU | 利用率 | 显存 | PID | 实验 |\n|-----|--------|------|-----|------|\n| cuda:0 | 21% | 62203/97887 MiB | 775953 | ablation_occ_detach_s0_retrain |\n| cuda:1 | 98% | 62203/97887 MiB | 742821 | full_occ_ln_s0 |\n| cuda:2 | 99% | 62209/97887 MiB | 777222 | full_occ_ln_s1 |\n| cuda:3 | 91% | 62203/97887 MiB | 777428 | full_occ_ln_s2 |\n\n**空闲卡：无。** 8 张卡全部在训练中，PID 与已知映射一致。\n\nwestd-10894 的 cuda:0（ablation_occ_detach_s0_retrain）利用率仅 21%，其余 7 张卡均在 76%-99% 之间正常运行。cuda:0 的低利用率可能是数据加载阶段或即将完成，值得关注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-check-both-servers.md"
+}

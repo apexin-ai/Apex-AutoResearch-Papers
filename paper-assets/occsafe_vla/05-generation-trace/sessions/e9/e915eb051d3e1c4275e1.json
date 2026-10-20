@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e915eb051d3e1c4275e1",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis partial anova v2",
+  "task_key": "worker_analysis_partial-anova-v2_20260526T111241",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_partial-anova-v2_20260526T111241_result.json",
+    "occurrence": 1,
+    "bytes": 728,
+    "sha256": "6829c53528317f4153abfb16a5c68e31ad20e7d784c032517bb03e90a8a76445"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结果：\n\n**Cell 1 vs Cell 3 (Gradient ON vs OFF, BN only)**\n- Grad OFF (Cell 3) mean=0.757 > Grad ON (Cell 1) mean=0.700, diff=0.057\n- Hedges' g = -1.023 (large effect), 但 p=0.422 (不显著, df≈1.1)\n- Bootstrap 95% CI for (Cell3-Cell1): [-0.001, 0.116] — 包含零，勉强\n- BF10 = 1.92 (anecdotal evidence for H1)\n\n**One-way ANOVA (3 groups)**\n- F(2,3) = 1.47, p=0.359, η²=0.495, ω²=0.135\n- Vanilla n=1 导致 ANOVA 不可靠\n\n**结论**: 效应量大但样本量太小(N=5)，统计功效极低。需要 d≈3.0+ 才能在这些 n 下达到 80% power。方向上 Detach(Grad OFF) > Full OCC(Grad ON)，与\"梯度流对 BN 有害\"一致，但无法排除噪声。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-partial-anova-v2-copy-2.md"
+}

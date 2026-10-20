@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4d7a5c54490f105a4b0",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis check 34685 gpu0",
+  "task_key": "worker_analysis_check_34685_gpu0_20260525T052551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_check_34685_gpu0_20260525T052551_result.json",
+    "occurrence": 1,
+    "bytes": 565,
+    "sha256": "f669527559818616784964db65646dddebfc885c7d7d4724383fd431025cec23"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cutoff_25k_s2_v3 正常运行。**\n\n| 项目 | 状态 |\n|------|------|\n| PID | 11510 |\n| GPU | cuda:0，利用率 99%，显存 62194MiB / 97887MiB |\n| 进度 | step 2529 / 50005（5%），速度 ~1.10 it/s |\n| 已运行 | ~42 分钟 |\n| 预计剩余 | ~12 小时 |\n| 最近 aux 日志 | step=2500: occ_loss=0.0247, action_loss=0.2217 |\n| checkpoint 目录 | `/root/autodl-tmp/checkpoints/cutoff_25k_s2_v3/` 已创建 |\n\ncheck_job_status 找不到它是因为 tmux session 名可能不匹配。进程本身在正常训练，无异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-check-34685-gpu0.md"
+}

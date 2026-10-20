@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e02baa3d4594a85e29b",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra fix training timeout",
+  "task_key": "worker_infra_fix-training-timeout_20260520T091346",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_fix-training-timeout_20260520T091346_result.json",
+    "occurrence": 1,
+    "bytes": 1613,
+    "sha256": "3e3f0376322f6d10c60efe964137c692f890e4971371dab9a426b9a02f2907e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据清晰了。以下是完整诊断和建议。\n\n---\n\n## 诊断结果\n\n### 1. Timeout（已修复，但有副作用）\n\n- 3 个 `timeout 64800` (18h) 进程包裹训练\n- **kill timeout 时，SIGTERM 被转发给了子进程组，训练一起被杀**\n- 无 checkpoint（save_freq=10000，只完成 ~1900 步）\n- **已重启** 3 个训练（无 timeout），当前正在跑\n\n### 2. I/O + GPU 瓶颈根因\n\n**主要瓶颈是 GPU 0 竞争，而非纯 I/O：**\n\n| 资源 | 竞争情况 |\n|------|----------|\n| **GPU 0** | 训练 s0 (62 GB) + **10 个 occ 提取进程** (各 557 MB, 共 5.6 GB)，利用率 99% |\n| GPU 1/2 | 仅训练 s1/s2，正常 |\n| CPU | 3 训练 (~5400% total) + 11 occ (~3300% total)，208 核够用但 sys 18%（调度开销） |\n| 磁盘 md0 | 训练读 data + occ 读 datasets，I/O wait 0% 但 RAID 吞吐被分享 |\n\n**训练速度特征**（重启后仍存在）：\n- 基线 ~1.0-1.05 s/it\n- 周期性 spike 到 2.5-3.4 s/it（每 ~15 步一次）\n- 平均被拉到 ~1.5-1.8 s/it\n\n### 3. Occ 提取状态\n\n- 10 个任务（task 0-9）已跑 ~2h，产出 10 个 hdf5 文件 (24 MB)\n- 文件在过去 20 秒内无增长 → 还在计算中间步骤，远未完成\n- 每个进程 ~2.3 GB RAM + 254 线程 + GPU 渲染\n\n### 建议：SIGSTOP occ 提取\n\n**暂停（不是 kill）occ 提取**，理由：\n- **有 occ**：~1.8 s/it 均值 → 50005 步需 ~25h\n- **无 occ**：~1.02 s/it → 50005 步需 ~14.2h，节省 ~11h\n- SIGSTOP 保留进程状态和 GPU 显存，训练完成后 SIGCONT 恢复\n\n是否立即执行 SIGSTOP？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-fix-training-timeout.md"
+}

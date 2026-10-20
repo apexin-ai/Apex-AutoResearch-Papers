@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "40a1f562b40e1b424182",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops gpu audit 10894",
+  "task_key": "worker_ops_gpu_audit_10894_20260524T185225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_audit_10894_20260524T185225_result.json",
+    "occurrence": 1,
+    "bytes": 942,
+    "sha256": "876da9d217b42e8594bbd98a6b7929e649262022abb563eb7dc11b07a06e2e3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 个实验正常运行，健康度报告误报。\n\n| 实验 | GPU | PID | 状态 | GPU 利用率 | 显存占用 | 运行时间 |\n|------|-----|-----|------|-----------|---------|---------|\n| ablation_occ_detach_s0_retrain | cuda:0 | 775953 | **R** (running) | 99% | 62194/97887 MiB | 50m50s |\n| full_occ_ln_s0 | cuda:1 | 742741→742821* | **S** (sleeping) | 94% | 62194/97887 MiB | 9h52m28s |\n| full_occ_ln_s1 | cuda:2 | 777222 | **R** (running) | 99% | 62200/97887 MiB | 47m48s |\n| full_occ_ln_s2 | cuda:3 | 777428 | **R** (running) | 99% | 62203/97887 MiB | 47m45s |\n\n**说明：**\n- full_occ_ln_s0 的 GPU 进程 PID 是 742821（由 torchrun 产生的子进程），父 bash PID 742741 仍存活，符合预期。\n- 4 卡利用率 94%-99%，显存各占约 62GB/98GB，全部正常训练中。\n- tmux ls 因 read-only 限制无法执行，但进程检查已确认全部存活，无需进一步查看。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-audit-10894.md"
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "ab32dda6bebe9461617a",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "paper figure fig1 overview v2",
+  "task_key": "worker_paper_figure_fig1_overview_v2_20260526T135047",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig1_overview_v2_20260526T135047_result.json",
+    "occurrence": 1,
+    "bytes": 2116103,
+    "sha256": "76bc454b382dcedc4b1be9fbda50b1701ecfe7bc11beafade6c9e7ae233f90b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2116123,
+                "serialized_sha256": "e7ae5924527c2273dd9b690b706fcb9cb5cc7bfd0ff08135e587525cef6bd899",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig1-overview-v2.md"
+}

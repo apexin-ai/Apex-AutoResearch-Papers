@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f3147c479bfd8157106a",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval random occ s2 50r",
+  "task_key": "worker_eval_random_occ_s2_50r_20260522T210406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_random_occ_s2_50r_20260522T210406_result.json",
+    "occurrence": 1,
+    "bytes": 273,
+    "sha256": "252c7df73dbe4b318e01647faf27090bb8c87c3aefc3c9555b468ac73c4369bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval 已启动：\n\n- tmux session `eval_random_s2` 已创建\n- GPU 0 显存占用 10647MiB，进程正在加载模型\n- 日志输出到 `/tmp/eval_random_s2.log`\n\n预计 ~50 分钟完成。可随时用 `tail -20 /tmp/eval_random_s2.log` 查看进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-random-occ-s2-50r.md"
+}

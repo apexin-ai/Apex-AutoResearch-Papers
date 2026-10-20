@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "152feaa9086d353b2760",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops urgent checkpoint verify 34685",
+  "task_key": "worker_ops_urgent-checkpoint-verify-34685_20260528T061909",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent-checkpoint-verify-34685_20260528T061909_result.json",
+    "occurrence": 1,
+    "bytes": 1484,
+    "sha256": "548c476057b3389ae01a07a960d92a063a57decab4c8757d23290e537ae5076c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Checkpoint 状态汇总（当前 ~06:15 UTC）\n\n| 实验 | GPU | PID | 最新 chkpt | 时间 (UTC) | 50000_chkpt | adapter_config | 预计 50000 到达 |\n|------|-----|-----|-----------|-----------|-------------|----------------|---------------|\n| **detach_ln_v2_s3** | cuda:3 | 56822 (R, 2h27m) | **45000** | ~05:15 | 未到 | ✅ lora_adapter/ | **~06:40 UTC** |\n| **full_occ_ln_v2_s3** | cuda:2 | 56474 (S, 2h27m) | **45000** | ~05:15 | 未到 | ✅ lora_adapter/ | **~06:40 UTC** |\n| **detach_ln_v2_s2** | cuda:0 | 47238 (R, 4h10m) | **40000** | ~06:16 | 未到 | ✅ lora_adapter/ | **~09:05 UTC** |\n\n### 关键细节\n\n- **所有 4 个训练 PID 存活**，GPU 占用正常（62-63 GiB）\n- **轮询脚本**：3 个 poll_eval 日志均只有 \"Polling started\"（04:20 UTC），尚未触发 eval\n- **detach_ln_v2_s2** 速度：每 5000 步 ~1h25m（30k→35k 1h20m, 35k→40k 1h25m），还需走 10000 步\n- **detach_ln_v2_s3 / full_occ_ln_v2_s3**：每 5000 步 ~1h25m，再 ~25 分钟可达 50000\n- **额外进程**：PID 62535 在跑 **full_occ_bn_v2_s2**（从 pretrained 开始，已跑 1h38m），占 cuda:1 / 62152 MiB\n\n### DDL 风险评估\n\n- detach_ln_v2_s3 / full_occ_ln_v2_s3：**06:40 UTC 左右完成训练 → 充裕**\n- detach_ln_v2_s2：**~09:05 UTC 完成训练 → 有余量但偏紧**，eval 还需额外时间\n- full_occ_bn_v2_s2（额外）：从 0 开始，按同速需 ~14h，**12:00 UTC DDL 内完不成 50000 步**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-checkpoint-verify-34685.md"
+}

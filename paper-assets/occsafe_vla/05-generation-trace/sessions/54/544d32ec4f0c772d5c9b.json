@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "544d32ec4f0c772d5c9b",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "infra occ learning curve diagnostic eval",
+  "task_key": "worker_infra_occ-learning-curve-diagnostic-eval_20260521T081403",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_occ-learning-curve-diagnostic-eval_20260521T081403.log",
+    "occurrence": 1,
+    "bytes": 1003586,
+    "sha256": "88d286bc6c61c3dea714770601b9df1bf01006dfbcf668e2d5f0e691df7d07e8"
+  },
+  "statistics": {
+    "messages": 842,
+    "user_turns": 0,
+    "tool_calls": 367,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 104,
+      "tool_call": 367,
+      "tool_result": 367,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 842,
+      "chunks": [
+        {
+          "path": "544d32ec4f0c772d5c9b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "544d32ec4f0c772d5c9b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "544d32ec4f0c772d5c9b-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "544d32ec4f0c772d5c9b-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "544d32ec4f0c772d5c9b-part-0005.json",
+          "message_count": 122
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-occ-learning-curve-diagnostic-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "030202f59f78e75a9859",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "check fig1 pdf consistency",
+  "task_key": "worker_check_fig1-pdf-consistency_20260527T053923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_fig1-pdf-consistency_20260527T053923_result.json",
+    "occurrence": 1,
+    "bytes": 1121,
+    "sha256": "857f189b13f86f47f72c81d53093e831fe39d23948fe850eb90a98f60fecf0c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**本地 PDF 文件**: `docs/paper/figures/fig1_overview.pdf`，修改时间 **May 27 03:13 UTC**\n\n**远程服务器**: 两台服务器（westd-34685, westd-10894）上均无 fig1 相关文件，生成脚本仅在本地。\n\n**数据对比** — `docs/paper/figures/fig1_overview.py` panel (c) 硬编码值 vs Table 1 v2：\n\n| 条件 | Fig1 脚本 | Table 1 v2 | 一致？ |\n|------|-----------|------------|--------|\n| Vanilla | 0.745 | 0.745 ± 0.024 | ✓ |\n| Full OCC BN | 0.725 ± 0.064 (n=3) | 0.725 ± 0.064 (n=3) | ✓ |\n| Full OCC LN | 0.740 (n=1) | 0.740 (n=1) | ✓ |\n| Detach OCC BN | 0.767 ± 0.024 (n=4) | 0.767 ± 0.024 (n=4) | ✓ |\n| Detach LN | 0.765 ± 0.023 (n=3) | 0.765 ± 0.023 (n=3) | ✓ |\n\n**结论**: `fig1_overview.pdf` 与当前 Table 1 v2 数据**完全一致**，不需要重新生成。\n\n另外注意：`artifacts/fig1_overview_v2.py` 是一个旧版本的交互图脚本，其数据（BN: 0.746→0.797, LN: 0.765→0.743, Vanilla: 0.780）与当前 Table 1 **完全不同**，已过时，不影响论文使用的 `docs/paper/figures/` 版本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-fig1-pdf-consistency.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d8ee50e1184a6c3a2b4",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra westd 34685 cleanup and status",
+  "task_key": "worker_infra_westd-34685-cleanup-and-status_20260521T150106",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westd-34685-cleanup-and-status_20260521T150106_result.json",
+    "occurrence": 1,
+    "bytes": 2056,
+    "sha256": "43e4e10c6fef446ccaf0132aff2b87d3291427ca2699c73c83fa34f4a1d212f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据全了。以下是结构化报告：\n\n---\n\n## westd-34685 服务器状态报告\n\n### GPU 状态\n\n| GPU | Utilization | Memory Used | Memory Total | 状态 |\n|-----|------------|-------------|--------------|------|\n| 0 | 99% | 62,203 MiB | 97,887 MiB | **occ_s1_fresh 训练中** |\n| 1 | 2% | 16,778 MiB | 97,887 MiB | **occ_s0 50r eval 运行中** |\n| 2 | 0% | 16,778 MiB | 97,887 MiB | **occ_s2 50r eval 运行中** |\n| 3 | 0% | 1 MiB | 97,887 MiB | **空闲，已恢复正常**（之前报告物理卡死，现在 0% util / 1 MiB，正常空闲状态） |\n\n### 运行中的进程\n\n| PID | GPU | 任务 | 进度 |\n|-----|-----|------|------|\n| 487053 | cuda:0 | occ_s1_fresh finetune (seed=43, max_steps=50005) | **step 711/50005 (1.4%)**，~1.09 it/s，ETA ~12.5h |\n| 482355 | cuda:1 | occ_s0 47500 chkpt 50r eval | **Task 3, rollout 32/50 (约 30% 总进度)** |\n| 491669 | cuda:2 | occ_s2 47500 chkpt 50r eval | **Task 2, rollout 11/50 (约 22% 总进度)** |\n\n### occ_s1_fresh 训练详情\n- 刚启动不久，step 700 时 loss: `occ_loss=0.0239, action_loss=0.2656`\n- checkpoint 目录 `/root/autodl-tmp/checkpoints/occ_s1_fresh/` 已创建，含 `dataset_statistics.json`，尚未保存 checkpoint（首次保存在 step 2500）\n\n### tmux 清理\n- `occ_s1_fresh` session 已清理（kill-session 执行成功）\n- 当前无任何 tmux session 残留\n- 训练和 eval 进程均以 nohup/后台方式运行，不依赖 tmux\n\n### 磁盘\n| 挂载点 | 总量 | 已用 | 可用 | 使用率 |\n|--------|------|------|------|--------|\n| /root/autodl-tmp | 350G | 172G | 179G | 49% |\n\n### 已有的 eval 结果文件（eval_results 目录）\n- `occ_s0_final.json` — 20r eval, TSR=0.915, CAR=0.800\n- `occ_s0_50000.json` — 20r eval for 50000 chkpt\n- `occ_s2_final.json` / `occ_s2_50000.json` — 20r evals\n- `vanilla_s0_50r.json` / `vanilla_s1_50r.json` — vanilla baseline 50r 已完成\n\n### 异常\n- **无异常。** cuda:3 已恢复正常（不再卡死），所有进程稳定运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westd-34685-cleanup-and-status.md"
+}

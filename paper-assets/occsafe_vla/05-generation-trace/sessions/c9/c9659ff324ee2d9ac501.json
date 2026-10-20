@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9659ff324ee2d9ac501",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval collect 50r and diagnostic",
+  "task_key": "worker_eval_collect-50r-and-diagnostic_20260522T020914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect-50r-and-diagnostic_20260522T020914_result.json",
+    "occurrence": 1,
+    "bytes": 288,
+    "sha256": "a92bd3de79a76fa4e920cc854ef09792e1d417be4dbb0e61a9e1575e6638948a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "轮询已设置。2 分钟后检查进度。当前状态：\n- **detach_s0**: T7 完成中（~10-15min 剩余）\n- **random_s0**: T8 进行中，已完成 8/10 tasks（~10min 剩余）\n- **detach_s1**: T2 50%（~40min 剩余）\n- **random_s1**: T2 54%（~40min 剩余）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-50r-and-diagnostic.md"
+}

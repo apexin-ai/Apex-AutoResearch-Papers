@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d041c1f8dce1f0760cb6",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval occ s0 50r",
+  "task_key": "worker_eval_occ-s0-50r_20260521T144611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_occ-s0-50r_20260521T144611_result.json",
+    "occurrence": 1,
+    "bytes": 120,
+    "sha256": "0b7a56b77cda460156dba4f5a8b0607633a1e638ab567ab727585a0f56182d20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程 PID=482355 已在 GPU 1 上启动，正在加载模型。3 分钟后回来检查 rollout 进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-occ-s0-50r.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "300c3f12fc0ebb2d9f44",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "paper reference audit",
+  "task_key": "worker_paper_reference-audit_20260526T194657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_reference-audit_20260526T194657.log",
+    "occurrence": 1,
+    "bytes": 648917,
+    "sha256": "4ee39c93f82d51cc1e8564c0b5a735287e8edfdba8cb30ae0952a8d9414f61e4"
+  },
+  "statistics": {
+    "messages": 138,
+    "user_turns": 0,
+    "tool_calls": 57,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 20,
+      "tool_call": 57,
+      "tool_result": 57,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 138,
+      "chunks": [
+        {
+          "path": "300c3f12fc0ebb2d9f44-part-0001.json",
+          "message_count": 125
+        },
+        {
+          "path": "300c3f12fc0ebb2d9f44-part-0002.json",
+          "message_count": 13
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-reference-audit.md"
+}

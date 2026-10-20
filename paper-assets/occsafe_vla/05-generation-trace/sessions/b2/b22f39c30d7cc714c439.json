@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b22f39c30d7cc714c439",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_5_1779840093.md",
+  "task_key": "loop_5_1779840093",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1779840093.md",
+    "occurrence": 1,
+    "bytes": 5223,
+    "sha256": "37c6439ca2fd6f9bca3b74385990b747b872f0e0faba82632bd6d28e38d4a8a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-26T23:54:45+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-10894:cuda:0-3 + westd-34685:cuda:0-3，共 8 张，白名单外即使 Director 指令也必须 push back\n- **D050 约束**：v1 BN 数据不得与 v2 数据混合做 ANOVA——v1 BN cells 全部用 v2 重建后才能做 factorial 分析\n- **C002**：cutoff 实验禁止 resume（D044 撤回了放宽）\n- cutoff_15k_s0 / cutoff_35k 全部 checkpoint 永久丢失，不要尝试恢复\n- WANDB_MODE=disabled（所有实验），不要期望 W&B metrics，只能从 log 和 eval 获取指标\n- `read_registry` API 工具有 bug（只返回 6 条旧记录），必须直接 Read registry.yaml 文件\n\n### 2. 🖥️ 基础设施快照\n- **westd-34685**：工作目录 `/root/occsafe_vla/openvla-oft`，Python `/root/miniconda3/envs/occsafe/bin/python`，conda env `occsafe`（激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`），数据 `/root/autodl-tmp/data/modified_libero_rlds/`，模型 `/root/autodl-tmp/models/openvla-7b`，OCC 数据 `/root/occsafe_vla/occ_data`，checkpoint 输出 `/root/autodl-tmp/checkpoints/`，磁盘 ~54% free\n- **westd-10894**：同上路径布局，磁盘 ~50% free\n- 活跃 cron 8 个（reconcile 05:49 UTC 确认），registry.yaml 在 `/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/registry.yaml`（6108 行）\n\n### 3. 📊 当前状态\n**刚做完**：Loop #5 session-start 初始化，确认 8/8 GPU 全满，向 Director 汇报了状态。\n\n**收到 detach_bn_v2_s1 完成回调**（07:31 UTC），已派 Worker `worker_ssh_detach_bn_v2_s1_analyze_20260526T073124` 分析结果+检查其他 3 个 34685 实验状态。**该 Worker 回调尚未收到，下一个\"你\"必须处理**。\n\n**RUNNING（8→7，detach_bn_v2_s1 转 ANALYZING）**：\n| exp_id | 服务器:GPU | 说明 | ROADMAP ETA |\n|--------|-----------|------|-------------|\n| detach_bn_v2_s0 | 34685:0 | D051 rebuild | ~07:15（可能已完成） |\n| detach_bn_v2_s2 | 34685:2 | D051 rebuild | ~07:16（可能已完成） |\n| full_occ_bn_v2_s1 | 34685:3 | D051 rebuild | ~07:40（可能已完成） |\n| cutoff_45k_s2_v2 | 10894:0 | dose-response | ~07:40（可能已完成） |\n| mvp_occ_s3_v2 | 10894:1 | s3 factorial ⭐门控 | ~10:40 |\n| full_occ_ln_s3_v2 | 10894:2 | s3 factorial | ~10:40 |\n| ablation_occ_detach_s3_v2 | 10894:3 | s3 factorial ⭐CKA门控 | ~10:40 |\n\n**detach_bn_v2_s1**: status=ANALYZING（cron 已转），Worker 正在读 log\n\n**QUEUED**: reverse_cutoff_s2_v2\n**PREPARING**: detach_ln_s3, detach_ln_s4, ablation_occ_detach_s4, full_occ_ln_s4, mvp_occ_s4\n\n另外还有 2 个早期派出的进度检查 Worker（`worker_ssh_34685_progress_check_20260526T054909`、`worker_ssh_10894_progress_check_20260526T054914`），回调可能已到或即将到。\n\n### 4. 📋 待办（条件触发式）\n- **Worker detach_bn_v2_s1_analyze 回调** → 确认训练成功（50K step + checkpoint 存在）→ update_registry(status=DONE, conclusion=success) + 记录 checkpoint_path/log_path → 安排 eval\n- **detach_bn_v2_s0/s2/full_occ_bn_v2_s1 cron 回调**（ETA 已过，随时可能到）→ 同样分析+转 DONE → 当 D051 全部 4 个完成后启动 5 路并行 eval（detach_bn_v2_s0/s1/s2 + full_occ_bn_v2_s1 + cutoff_45k_s2_v2）\n- **cutoff_45k_s2_v2 cron 回调**（ETA 已过）→ 分析+安排 eval\n- **D051 eval 全部完成**（~08:30-09:00）→ **v2 ANOVA 交互检验 → Plan A/B 决策** → 向 Director 汇报\n- **34685 释放后** → 启动 dose-response 3rd seeds (3卡: reverse_cutoff_s2_v2 等) + detach_ln_s3 (1卡)\n- **s3 三实验完成**（~10:40）→ eval → **叙事门控决策**：ablation_occ_detach_s3_v2 CAR 决定论文走向（<0.750 Branch A / 0.770-0.780 Branch B / >0.780 Branch C）；mvp_occ_s3_v2 CAR < 0.770 → v1≠v2 confirmed\n- **v2 factorial 全部完成** → 重算 2×2 ANOVA → 更新论文数据\n- May 29 deadline：论文重写+polish 必须在 May 26-28 完成\n\n### 5. 🎯 战略上下文\n- **核心问题 D050**：原始 factorial 中 BN cells 用 v1 代码、LN cells 用 v2，交互效应 p=0.025 不可信。D051 正在用 v2 重建 BN 格（detach_bn_v2_s0/s1/s2 + full_occ_bn_v2_s1）。LN 格不受影响。\n- **D052 已确认 v1≠v2**：Full OCC BN v2 CAR=0.746 vs v1 CAR 有差异，重建必要\n- **交互效应存活概率 ~10-15%**，Plan B 替代 framing 已准备（B1 机制分析 / B2 normalization 隐变量 / B3 cautionary study）\n- **CKA 叙事待定**：D048/D049 确认旧 CKA 数据(0.539/0.312)是 bug 产物，ablation_occ_detach_s3_v2 是唯一验证点\n- **CoRL 2026**：Abstract 已提交(May 26)，Paper May 29（~3 天）。Paper Agent v79 完成全 7 section，等 Reviewer P0 验证\n- **易错点**：①不要把 v1 BN 和 v2 BN 混在一起做 ANOVA ②不要在 GPU 被占用时提交实验 ③WANDB_MODE=disabled 所以从 log/eval 取指标 ④read_registry API 有 bug，直接读 yaml 文件 ⑤当前时刻（~07:31 UTC）D051 ETA 已过，多个 cron 回调可能排队到达，注意逐个处理不遗漏\n- 项目历史：100+ 个实验（success 65 / negative 6 / failed 14+），实验量大但 deadline 紧\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1779840093.md"
+}

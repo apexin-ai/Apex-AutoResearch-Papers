@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a15b18fd329c72d7045f",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "director / loop_9.md",
+  "task_key": "loop_9",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_9.md",
+    "occurrence": 1,
+    "bytes": 3911,
+    "sha256": "559747ac397ec9ea33e9fef8e8d8a6ef172e66911a1da27a0132b44c83de24fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: max_messages\nupdated: '2026-05-26T03:37:21+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-10894 cuda:0-3, westd-34685 cuda:0-3，共 8 卡，不得使用其他服务器/设备\n- C002: 禁止 resume 训练，所有实验必须从头训练（batch_idx bug + LR schedule 重置问题）\n- D050: v1 代码训练的 factorial 数据不可与 v2 混用（共线性问题）\n- D052: v1≠v2 已确认（Full OCC BN v2 CAR=0.746 vs v1 差异显著），所有 factorial 必须用 v2 代码\n- Checkpoint 清理：禁止在训练期间自动清理 checkpoint（finetune.py save 依赖前一个 checkpoint 存在）\n- Abstract 不列具体数字，用叙事式描述（用户明确要求，见 memory/feedback_abstract_no_numbers.md）\n\n### 2. 🖥️ 基础设施快照\n- **westd-10894**: connect.westd.seetacloud.com, 工作目录 /root/occsafe_vla, 4× RTX PRO 6000 98GB\n- **westd-34685**: connect.westd.seetacloud.com, 工作目录 /root/occsafe_vla, 4× RTX PRO 6000 98GB\n- 数据集: /root/autodl-tmp/libero_datasets/libero_spatial（两台均有）\n- Checkpoints: /root/autodl-tmp/checkpoints/<exp_name>/openvla-7b+...--50000_chkpt\n- CKA 脚本: /root/occsafe_vla/analysis/cka_analysis.py（仅 10894）\n- Eval 脚本: /root/occsafe_vla/vla-scripts/evaluate_safelibero.py（两台均有）\n- 磁盘清理 daemon: 两台均已部署（每 2h 自动轮换），10894 ~139G free, 34685 ~165G free\n- 论文目录: /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/\n\n### 3. 📊 当前状态\n**刚完成**: 派 Agent 检查两台服务器 GPU 状态（系统报告 10894 仅 1/4 卡在跑，3 卡可能空闲）。Agent 已收到指令但尚未回复。\n\n**RUNNING 实验（8 个，ETA 可能已到）**:\n- 34685: detach_bn_v2_s0/s1/s2 (D051), full_occ_bn_v2_s1 (D051) — ETA ~May 26 14:15-14:40 UTC\n- 10894: cutoff_45k_s2_v2, mvp_occ_s3_v2, full_occ_ln_s3_v2, ablation_occ_detach_s3_v2 — ETA ~May 26 14:40-17:30 UTC\n\n**PENDING 实验（6 个）**: reverse_cutoff_s2_v2, detach_ln_s3/s4, ablation_occ_detach_s4, full_occ_ln_s4, mvp_occ_s4\n\n**等待中**:\n- Agent GPU 状态检查回复（刚派出）\n- 审稿提交待用户批准（apr_20260525T224336_i8d8, continue mode）\n- Paper Agent v79 完成，等 Reviewer P0 验证回复\n\n### 4. 📋 待办\n- Agent 回复 GPU 状态 → 已完成的实验立即启动 eval（4 路并行，命令模板已预检通过）；失败的判断是否重启\n- D051 eval 完成（detach_bn_v2 3-seed + full_occ_bn_v2_s1）→ v2 ANOVA 交互效应检验 → Plan A（交互显著）/ Plan B（交互不显著）决策\n- ablation_occ_detach_s3_v2 eval 完成 → CAR 决定叙事门控：<0.750 Branch A / 0.770-0.780 Branch B / >0.780 Branch C\n- 审稿批准回调 → Review Director 自动启动审稿流程\n- 所有 s3/s4 eval 完成 → 更新论文数据表格 → Paper Agent patch → 最终 review → May 29 提交\n\n### 5. 🎯 战略上下文\n- **核心发现**: BN × gradient flow 存在交叉交互（p=0.025, η²=0.484），BN+gradient flow 最优，LN+gradient flow 最差\n- **D042 机制**: LN 导致跨 backbone 梯度幅度重分配（DINOv2 ↓3.5×, SigLIP ↑2.5×），不是方向冲突\n- **交互效应存活概率 ~10-15%**: D051 v2 rebuild 是验证 v1 数据是否被代码 bug 污染的关键。如果 v2 ANOVA 交互不显著 → 切 Plan B（B1 机制分析 / B2 normalization 隐变量 / B3 cautionary study）\n- **易错点**: 不要混用 v1 和 v2 数据做统计；不要对 simple effects 做 \"significantly\" claim（最好 p=0.052）；CKA-CAR 反关联限于定性（n=3 不足）\n- **DDL**: CoRL 2026 Paper May 29，仅剩 ~3 天。论文 v79 全 7 section 完整，coverage 24/24。最终数字需等 eval 填入\n- **RESET 问题**: Agent RESET REQUEST 反复发出但似乎未实际执行 reset，新 session 的 Agent 刚收到首条指令，关注其是否正常启动\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "efed086e55a703140f45",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis gradient results extraction",
+  "task_key": "worker_analysis_gradient_results_extraction_20260524T120927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gradient_results_extraction_20260524T120927_result.json",
+    "occurrence": 1,
+    "bytes": 1337,
+    "sha256": "e129d3c26191f88b577700a8ea6db6a2c21313b4370143b95a89a719b5e84cdc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总如下：\n\n## gradient_analysis_mixed_seed 结果\n\n| Condition | Mean Grad Norm | vs Vanilla | Cosine Sim | Conflict Rate | Detach |\n|-----------|---------------|-----------|-----------|--------------|--------|\n| **Vanilla_s0** | 0.1262 | 1.00x | — | — | No |\n| **Full_OCC_s0** | 0.1272 | **1.01x** | 0.004 | 0.44 | No |\n| **Detach_BN_s2** | 0.0049 | **0.04x** | — | — | Yes |\n| **Random_s2** | 0.1365 | **1.08x** | 0.005 | 0.44 | No |\n\n### Per-backbone\n\n| Condition | DINO mean | DINO vs V | SigLIP mean | SigLIP vs V |\n|-----------|----------|----------|------------|------------|\n| Vanilla_s0 | 0.1838 | 1.00x | 0.0753 | 1.00x |\n| Full_OCC_s0 | 0.1753 | 0.95x | 0.0846 | 1.12x |\n| Detach_BN_s2 | 0.0062 | **0.03x** | 0.0038 | **0.05x** |\n| Random_s2 | 0.2052 | 1.12x | 0.0757 | 1.01x |\n\n### 关键发现\n- **Full OCC (1.01x) 和 Random OCC (1.08x)** 梯度范数与 Vanilla 几乎一致，确认 OCC auxiliary head 不干扰 action head 梯度\n- **Detach_BN 灾难性梯度崩塌**：仅为 Vanilla 的 4%（DINO 3%, SigLIP 5%），与 D026 结论一致\n- **Cosine similarity ≈ 0**，conflict rate ≈ 44%，action 和 aux 梯度正交/独立\n- **Detach_LN_s0 缺失**——目录中没有该条件的输出文件，需要检查是否运行失败或被跳过"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gradient-results-extraction.md"
+}

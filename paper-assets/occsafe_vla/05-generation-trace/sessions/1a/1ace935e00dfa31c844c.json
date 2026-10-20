@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ace935e00dfa31c844c",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "audit 34685 cuda2 duplicate pid",
+  "task_key": "worker_audit_34685_cuda2_duplicate_pid_20260528T040315",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_34685_cuda2_duplicate_pid_20260528T040315_result.json",
+    "occurrence": 1,
+    "bytes": 290,
+    "sha256": "472cae99d263686d7d9ebaa8ab44fbbe5fd5b4873f1c439e1bf4a5b727676e20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **PID 58736 已不存在**，无需 kill\n- **cuda:2 只有 PID 56474**（full_occ_ln_v2_s3），运行 10 分 28 秒，GPU 利用率 99%，状态正常\n- cuda:0 (PID 47238) 和 cuda:3 (PID 56822) 也各自正常运行，cuda:1 空闲\n\n无需任何操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-34685-cuda2-duplicate-pid.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dfb15d2052dc16956e39",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose detach ln v2 s0 full occ ln v2 s0",
+  "task_key": "worker_diagnose_detach_ln_v2_s0_full_occ_ln_v2_s0_20260526T180318",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_detach_ln_v2_s0_full_occ_ln_v2_s0_20260526T180318_result.json",
+    "occurrence": 1,
+    "bytes": 2831,
+    "sha256": "4c4f3d4ae133eb2dbd30f07cf8a66e8103669ffc44da3133bdb323bc0d1189c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 诊断报告\n\n### 失败根因\n\n**两个实验失败原因相同：`/root/autodl-tmp` 磁盘 100% 满（250G/250G，仅剩 40K）。**\n\n都在 **step 20000 保存 checkpoint 时** 触发 `No space left on device (os error 28)`：\n\n| 实验 | 具体崩溃位置 |\n|------|-------------|\n| detach_ln_v2_s0 | `processor.save_pretrained()` → `tokenizer.save()` 写 tokenizer.json 失败 |\n| full_occ_ln_v2_s0 | `merged_vla.save_pretrained()` → `safe_save_file()` 写 model shard 2/4 时失败 |\n\n### 训练进度\n\n| 实验 | 到达步数 | 总步数 | 进度 |\n|------|---------|--------|------|\n| detach_ln_v2_s0 | 20000 | 50005 | 40% |\n| full_occ_ln_v2_s0 | 20000 | 50005 | 40% |\n\n### Checkpoint 情况\n\n| 实验 | 10000_chkpt | 20000_chkpt |\n|------|-------------|-------------|\n| detach_ln_v2_s0 | 15G, **完好可用** | 532K, **损坏**（tokenizer.json=0字节，无模型权重） |\n| full_occ_ln_v2_s0 | 15G, **完好可用** | 5G, **不完整**（仅 1/4 safetensors shard，缺 3 个） |\n\n### 磁盘占用分析\n\n`/root/autodl-tmp` 250G 总容量分布：\n\n| 目录 | 大小 | 说明 |\n|------|------|------|\n| checkpoints/ | **229G** | 所有实验 checkpoint |\n| models/ | 15G | 预训练模型 |\n| libero_datasets/ | 5.9G | 数据集 |\n| data/ | 2G | 数据 |\n\nCheckpoint 明细（229G）：\n\n| 实验 | 大小 | 备注 |\n|------|------|------|\n| reverse_cutoff_s2_v2 | 45G | 旧实验 |\n| ablation_occ_detach_s3_v2 | 30G | 旧实验 |\n| cutoff_45k_s2_v2 | 30G | 旧实验 |\n| full_occ_ln_s3_v2 | 30G | 旧实验 |\n| mvp_occ_s3_v2 | 30G | 旧实验 |\n| full_occ_ln_v2_s0 | 20G | 当前（含损坏的 20k ckpt） |\n| detach_ln_v2_s0 | 15G | 当前（含损坏的 20k ckpt） |\n| full_occ_ln_v2_s1 | 15G | |\n| full_occ_ln_s0 | 15G | 旧实验 |\n| cutoff_15k_s1 | 463M | |\n| 其他空目录 | ~0 | |\n\n### GPU 状态\n\n- GPU 0: 被另一个进程占用 (PID 170698, 62GB/98GB)\n- **GPU 1, 2, 3: 空闲可用**\n\n### 重启条件\n\n1. **必须先清磁盘**。每个实验后续还需保存 3 个 checkpoint（30k, 40k, 50k），每个约 15G，两个实验共需 ~90G 空间\n2. **删除损坏的 20000_chkpt**：立即释放 ~5.5G\n3. **删除旧实验 checkpoint**：以下旧实验如果不再需要，删除后可释放 ~180G\n   - `reverse_cutoff_s2_v2` (45G)\n   - `ablation_occ_detach_s3_v2` (30G)\n   - `cutoff_45k_s2_v2` (30G)\n   - `full_occ_ln_s3_v2` (30G)\n   - `mvp_occ_s3_v2` (30G)\n   - `full_occ_ln_s0` (15G)\n4. **从 10000_chkpt resume**（这两个不是 cutoff 实验，不受 C002 约束），剩余 40005 步，约 11 小时/实验\n5. 时间预算：现在到 DDL 还有 ~34 小时，两个实验并行跑 ~11 小时，**时间充足**\n\n请确认哪些旧 checkpoint 可以删除，我来执行清理和重启。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-detach-ln-v2-s0-full-occ-ln-v2-s0.md"
+}

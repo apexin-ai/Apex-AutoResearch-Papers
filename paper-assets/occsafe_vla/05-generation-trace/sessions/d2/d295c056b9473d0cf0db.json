@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d295c056b9473d0cf0db",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "check training progress eta",
+  "task_key": "worker_check_training-progress-eta_20260527T044611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_training-progress-eta_20260527T044611_result.json",
+    "occurrence": 1,
+    "bytes": 1544,
+    "sha256": "e14c5ab6d45ad15ae9dcbb3d8b47272303ba703127b6f95b6790ffe82ea68929"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the data. Here's the summary:\n\n**采样时间: 2026-05-27 ~04:49 UTC**\n\n### westd-34685 (4 GPU 全占用)\n\n| 实验 | GPU | Step | Total | 速度 | 剩余时间 | 预计完成 (UTC) |\n|------|-----|------|-------|------|----------|---------------|\n| `detach_ln_v2_s1` | 0 | 19,455 | 50,005 | 1.07 it/s | ~7h57m | **~12:46** |\n| `detach_ln_s4` | 1 | 19,512 | 50,005 | 1.07 it/s | ~7h53m | **~12:42** |\n| `ablation_occ_detach_s4` | 2 | 16,653 | 50,005 | 1.07 it/s | ~8h38m | **~13:27** |\n| `mvp_occ_s4` | 3 | 16,658 | 50,005 | 1.08 it/s | ~8h35m | **~13:24** |\n| `cutoff_25k_s1_v2` | - | 50,005 | 50,005 | - | - | **DONE** |\n\n34685 最晚完成: **~13:27 UTC**\n\n### westd-10894 (4 GPU 全占用)\n\n| 实验 | GPU | Step | Total | 速度 | 剩余时间 | 预计完成 (UTC) |\n|------|-----|------|-------|------|----------|---------------|\n| `full_occ_ln_v2_s1c` | 0 | 15,112 | 50,005 | 1.07 it/s | ~9h04m | **~13:53** |\n| `full_occ_ln_v2_s2` | 1 | 15,081 | 50,005 | 1.07 it/s | ~9h05m | **~13:54** |\n| `detach_ln_v2_s0c` | 2 | 15,081 | 50,005 | 1.08 it/s | ~8h59m | **~13:48** |\n| `full_occ_ln_v2_s0d` | 3 | 12,547 | 50,005 | 1.07 it/s | ~9h44m | **~14:33** |\n\n10894 最晚完成: **~14:33 UTC**\n\n### 对 Reviewer 预期的修正\n\nReviewer 预期 34685 ~20:40 UTC、10894 ~22:30 UTC — **实际远早于此**。所有 8 个实验预计在 **May 27 ~14:33 UTC** (北京时间 22:33) 前全部完成，距 DDL (May 28 12:00 UTC) 还剩 **~21.5 小时**。`cutoff_25k_s1_v2` 已经跑完。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-training-progress-eta.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc0f5318de37a1c0f5c0",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra eval pipeline prep",
+  "task_key": "worker_infra_eval-pipeline-prep_20260526T123430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_eval-pipeline-prep_20260526T123430_result.json",
+    "occurrence": 1,
+    "bytes": 803,
+    "sha256": "5e9ed7a3eacc68f815bca3b439bfb53286e4dbf66469f1c95af36772ed996fdf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。8 个 eval 命令模板已保存到 memory.md 的 \"Eval 命令模板\" 段。\n\n关键确认：\n- **eval 脚本无 `--use_occ_head` 参数**——自动从 checkpoint 检测，Vanilla 和 OCC 实验用相同命令格式\n- **CUDA_VISIBLE_DEVICES 和 MUJOCO_EGL_DEVICE_ID 均匹配训练时的 GPU 编号**\n- **checkpoint 路径格式**：`/root/autodl-tmp/checkpoints/{exp_id}/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--{exp_id}--50000_chkpt`（`--50000_chkpt` 目录在训练完成后自动生成）\n- 所有 checkpoint 目录已在服务器上存在（目前只有 in-progress 和 10K 中间检查点，50K 最终检查点训练完成后出现）\n- 两台服务器的 conda 环境 `occsafe` 和 eval 脚本路径均已验证可用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-eval-pipeline-prep.md"
+}

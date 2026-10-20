@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0345500646793135a126",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops invalidate cka files",
+  "task_key": "worker_ops_invalidate_cka_files_20260523T044609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_invalidate_cka_files_20260523T044609_result.json",
+    "occurrence": 1,
+    "bytes": 352,
+    "sha256": "412c292b75363bc49ce9a0928e2f6446af91a49ecfde7775b7535c4e2d4b3773"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "移动完成。`invalid/` 目录内容：\n\n| 文件 | 大小 |\n|------|------|\n| `cka_full_occ_vs_depth.npz` | 2.7 KB |\n| `cka_full_occ_vs_depth.pdf` | 21.7 KB |\n| `full_occ_cka_features.npz` | 4.4 MB |\n| `full_occ_cka_meta.json` | 478 B |\n| `full_occ_gradient_norms.pdf` | 24.5 KB |\n| `full_occ_gradient_stats.json` | 22.8 KB |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-invalidate-cka-files.md"
+}

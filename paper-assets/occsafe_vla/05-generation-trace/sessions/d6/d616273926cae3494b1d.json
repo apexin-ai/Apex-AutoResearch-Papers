@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d616273926cae3494b1d",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops add save total limit",
+  "task_key": "worker_ops_add_save_total_limit_20260524T215342",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_add_save_total_limit_20260524T215342_result.json",
+    "occurrence": 1,
+    "bytes": 1014,
+    "sha256": "90b80556239ced6d8e6f687f52b58c231c95e123ac7602280e8b7bf3b93ee2fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两台服务器修改一致，验证通过。\n\n### Diff\n\n在 `save_training_checkpoint(...)` 调用后插入：\n\n```python\n                # Checkpoint rotation: keep only the latest 3 checkpoints\n                if not cfg.save_latest_checkpoint_only and distributed_state.is_main_process:\n                    import glob, shutil\n                    all_chkpts = sorted(glob.glob(str(run_dir) + \"--*_chkpt\"), key=os.path.getmtime)\n                    if len(all_chkpts) > 3:\n                        for old_ckpt in all_chkpts[:-3]:\n                            print(f\"Removing old checkpoint: {old_ckpt}\")\n                            shutil.rmtree(old_ckpt)\n```\n\n### 逻辑说明\n\n- 仅在 `save_latest_checkpoint_only=False`（多 checkpoint 模式）且 rank 0 时执行\n- 按 mtime 排序所有 `*_chkpt` 目录，保留最新 3 个，删除其余\n- 在 checkpoint 保存成功后才执行删除（先存后删）\n- westd-34685: 第 1278 行 / westd-10894: 第 1280 行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-add-save-total-limit.md"
+}

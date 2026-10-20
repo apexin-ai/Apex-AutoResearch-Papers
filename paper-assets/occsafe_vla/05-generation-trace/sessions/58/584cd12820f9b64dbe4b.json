@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "584cd12820f9b64dbe4b",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "check eval status urgent",
+  "task_key": "worker_check_eval-status-urgent_20260528T105558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_eval-status-urgent_20260528T105558_result.json",
+    "occurrence": 1,
+    "bytes": 274,
+    "sha256": "d4e1ddee439b82195428a996a4212221d689537d5e59f7798aa75eee27fb1b48"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Eval 已完成。** 进程 177453 已退出，10/10 tasks 全部跑完。\n\n结果（最新文件 `safelibero_libero_spatial_20260528_170957.json`）：\n\n| 指标 | 值 |\n|------|-----|\n| **TSR** | **0.9020 (90.2%)** |\n| **CAR** | **0.7840 (78.4%)** |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-eval-status-urgent.md"
+}

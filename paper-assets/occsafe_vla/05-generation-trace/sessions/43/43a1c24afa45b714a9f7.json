@@ -1,0 +1,1562 @@
+{
+  "schema_version": "1.0",
+  "id": "43a1c24afa45b714a9f7",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "code per task analysis scripts",
+  "task_key": "worker_code_per-task-analysis-scripts_20260521T185301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_per-task-analysis-scripts_20260521T185301.log",
+    "occurrence": 1,
+    "bytes": 60270,
+    "sha256": "26e63e0b485519f7cea17b584ebb605c6c134a20492defec8dc3416465c5591d"
+  },
+  "statistics": {
+    "messages": 37,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 12,
+      "tool_result": 12,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla",
+                "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "74d7ba2b-0fd3-404d-a998-6af8d5747ec2",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-occsafe-vla/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779404400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "052054b4-3c1f-4838-8156-0da7ef81536d",
+                "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to create two Python scripts on a remote server (westd-34685) for per-task ablation analysis. Let me break this down:\n\n1. `per_task_comparison.py` - Grouped bar chart for TSR/CAR per task\n2. `bootstrap_ci.py` - Wilson score CI calculation + LaTeX/CSV output\n\nLet me first check the server connection and directory, then write both scripts.\n\nWait - the project context says the server is westd-10894, but the user is asking me to work on westd-34685. Let me use westd-34685 as specified.\n\n\nI'll load the SSH tools to connect to the server and get started.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1",
+            "uuid": "354e7046-5d03-42b7-ae02-3d77f6237220",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014hETiaP2cM7QG9XzybEJyy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13548,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13548
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017QXbqqryiLWzr5Jv5VegGW",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1",
+            "uuid": "9d135c26-b31d-43c6-8814-6275c9023b6b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014hETiaP2cM7QG9XzybEJyy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13548,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13548
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T18:53:16.633Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_017QXbqqryiLWzr5Jv5VegGW",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__detect_image"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1",
+            "uuid": "6cc069c5-6b5b-42a4-8ef6-b981b7f4384d",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__detect_image"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先检查服务器环境和目录。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1",
+            "uuid": "006477f4-8fc9-48e1-a4a9-af765e3cda08",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018FGwpLhvNpQyeE7Sms7Kfp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1038,
+                "cache_read_input_tokens": 25389,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1038
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01J3eK6dhuBE6KXtW5vKBsRR",
+              "name": "mcp__agent-ml-research__detect_image",
+              "input": {
+                "server": "westd-34685",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1",
+            "uuid": "a42b5039-777d-44d1-8d62-80d288dbb7ef",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018FGwpLhvNpQyeE7Sms7Kfp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1038,
+                "cache_read_input_tokens": 25389,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1038
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0135WdSeQEWDQBT5K75y44wK",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-34685",
+                "command": "ls -la /root/occsafe_vla/openvla-oft/analysis/ 2>/dev/null; echo \"---\"; python3 -c \"import matplotlib; print('mpl', matplotlib.__version__); import numpy; print('np', numpy.__version__)\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1",
+            "uuid": "f34d06a7-3fd3-4eaf-9026-6af79599a58b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018FGwpLhvNpQyeE7Sms7Kfp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1038,
+                "cache_read_input_tokens": 25389,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1038
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T18:53:21.180Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01J3eK6dhuBE6KXtW5vKBsRR",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\n  \\\"detected\\\": false,\\n  \\\"status\\\": \\\"ssh_error\\\",\\n  \\\"skip_base_setup\\\": false,\\n  \\\"message\\\": \\\"SSH error: exit code 1\\\"\\n}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1",
+            "uuid": "3cf0ff94-e9e6-48eb-8f91-5a38b455e5ae",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\n  \\\"detected\\\": false,\\n  \\\"status\\\": \\\"ssh_error\\\",\\n  \\\"skip_base_setup\\\": false,\\n  \\\"message\\\": \\\"SSH error: exit code 1\\\"\\n}\"}",
+              "structuredContent": {
+                "result": "{\n  \"detected\": false,\n  \"status\": \"ssh_error\",\n  \"skip_base_setup\": false,\n  \"message\": \"SSH error: exit code 1\"\n}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T18:53:21.192Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0135WdSeQEWDQBT5K75y44wK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1",
+            "uuid": "72a9af76-890e-46d9-b1fb-919796b35833",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The read_only command failed because of the semicolons. Let me split the commands. Also the detect_image failed with SSH error. Let me try a basic command first to see if the server is reachable.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1",
+            "uuid": "4bab9170-4ab4-4135-b50d-023acbe1b4a5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TvLBxUP3bLR59V6WX9Kdir",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 467,
+                "cache_read_input_tokens": 26427,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 467
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EAyr37GEdQiPfsGuQbgj3h",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-34685",
+                "command": "ls -la /root/occsafe_vla/openvla-oft/analysis/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1",
+            "uuid": "d65e1eda-f413-4e26-afff-c6abd6cd9462",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TvLBxUP3bLR59V6WX9Kdir",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 467,
+                "cache_read_input_tokens": 26427,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 467
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T18:53:26.242Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EAyr37GEdQiPfsGuQbgj3h",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/occsafe_vla/openvla-oft/analysis/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1",
+            "uuid": "ed19527a-91f4-4e7b-b70e-6435273bd7f3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/occsafe_vla/openvla-oft/analysis/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/occsafe_vla/openvla-oft/analysis/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013x6M2TxT9PiocHXbWz83Cn",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-34685",
+                "command": "python3 -c \"import matplotlib; print(matplotlib.__version__)\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1",
+            "uuid": "b0cd6d91-c6a9-4566-9d37-cdc3f1c058b6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TvLBxUP3bLR59V6WX9Kdir",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 467,
+                "cache_read_input_tokens": 26427,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 467
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T18:53:26.279Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013x6M2TxT9PiocHXbWz83Cn",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1",
+            "uuid": "991db2d6-d540-41d3-8bbf-146eeeb2e7dc",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The directory doesn't exist yet. And python3 -c with semicolons is blocked. Let me check matplotlib differently, and create the directory.\n\nLet me first write the scripts locally, then upload them via ssh_execute.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1",
+            "uuid": "b65ef59a-7709-42fb-922d-b3ad6a9c68eb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01721hjDHdr3husGHgsSiWn2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 545,
+                "cache_read_input_tokens": 26894,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 545
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "目录不存在，需要创建。先在本地准备两个脚本，然后一起写到服务器。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1",
+            "uuid": "1af272ca-f74b-4ab6-bb01-473ff17b4895",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01721hjDHdr3husGHgsSiWn2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 545,
+                "cache_read_input_tokens": 26894,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 545
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017yutkYcda2j31cqCTWz1nF",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-34685",
+                "command": "ls /root/occsafe_vla/openvla-oft/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1",
+            "uuid": "62963ddf-c904-4e61-82f1-9e28477abfb7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01721hjDHdr3husGHgsSiWn2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 545,
+                "cache_read_input_tokens": 26894,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 545
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T18:53:31.327Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017yutkYcda2j31cqCTWz1nF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ALOHA.md\\\\nLIBERO.md\\\\nLICENSE\\\\nREADME.md\\\\nSETUP.md\\\\nexperiments\\\\nprismatic\\\\npyproject.toml\\\\nscripts\\\\nvla-scripts\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1",
+            "uuid": "8502422e-7c3f-47fe-99d5-b0097c61d6eb",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ALOHA.md\\\\nLIBERO.md\\\\nLICENSE\\\\nREADME.md\\\\nSETUP.md\\\\nexperiments\\\\nprismatic\\\\npyproject.toml\\\\nscripts\\\\nvla-scripts\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"ALOHA.md\\nLIBERO.md\\nLICENSE\\nREADME.md\\nSETUP.md\\nexperiments\\nprismatic\\npyproject.toml\\nscripts\\nvla-scripts\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01THf9afrPNrZNJWLf1Pfw4V",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-34685",
+                "command": "mkdir -p /root/occsafe_vla/openvla-oft/analysis/ && echo \"OK\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1",
+            "uuid": "365e0b47-90ca-4fd8-96d1-60cf7509ee5d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C7om1UDkacydp3zCvFvqyK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 353,
+                "cache_read_input_tokens": 27439,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 353
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T18:53:34.326Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01THf9afrPNrZNJWLf1Pfw4V",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1",
+            "uuid": "dff87cb1-6e41-4514-98a3-114c1c8ab0e1",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "目录已创建。现在写两个脚本到服务器。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1",
+            "uuid": "4a6c4ced-3b60-40cd-acdc-68762ca9cc8c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PNVMD1voyUhbvT6634HrZJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 201,
+                "cache_read_input_tokens": 27792,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 201
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014V3LeouqUfseNVZYuVdRK8",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-34685",
+                "command": "cat > /root/occsafe_vla/openvla-oft/analysis/per_task_comparison.py << 'SCRIPT_EOF'\n#!/usr/bin/env python3\n\"\"\"Per-task TSR/CAR grouped bar chart: task × condition × seed.\"\"\"\n\nimport argparse\nimport json\nimport math\nimport os\nimport sys\n\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nimport numpy as np\n\nDATA = {\n    \"vanilla_50r\": {\n        \"s0\": {\"T0\": {\"TSR\": 1.0, \"CAR\": 0.98}, \"T1\": {\"TSR\": 0.94, \"CAR\": 0.96}, \"T2\": {\"TSR\": 0.98, \"CAR\": 0.92}, \"T3\": {\"TSR\": 1.0, \"CAR\": 0.48}, \"T4\": {\"TSR\": 0.80, \"CAR\": 1.0}, \"T5\": {\"TSR\": 0.44, \"CAR\": 0.08}, \"T6\": {\"TSR\": 1.0, \"CAR\": 0.52}, \"T7\": {\"TSR\": 0.94, \"CAR\": 0.94}, \"T8\": {\"TSR\": 0.94, \"CAR\": 1.0}, \"T9\": {\"TSR\": 0.96, \"CAR\": 1.0}},\n        \"s1\": {\"T0\": {\"TSR\": 1.0, \"CAR\": 0.98}, \"T1\": {\"TSR\": 0.94, \"CAR\": 0.90}, \"T2\": {\"TSR\": 0.94, \"CAR\": 0.90}, \"T3\": {\"TSR\": 1.0, \"CAR\": 0.26}, \"T4\": {\"TSR\": 0.92, \"CAR\": 0.98}, \"T5\": {\"TSR\": 0.46, \"CAR\": 0.06}, \"T6\": {\"TSR\": 1.0, \"CAR\": 0.58}, \"T7\": {\"TSR\": 0.94, \"CAR\": 1.0}, \"T8\": {\"TSR\": 1.0, \"CAR\": 1.0}, \"T9\": {\"TSR\": 0.98, \"CAR\": 1.0}},\n        \"s2\": {\"T0\": {\"TSR\": 1.0, \"CAR\": 0.98}, \"T1\": {\"TSR\": 0.98, \"CAR\": 0.90}, \"T2\": {\"TSR\": 1.0, \"CAR\": 0.94}, \"T3\": {\"TSR\": 0.96, \"CAR\": 0.40}, \"T4\": {\"TSR\": 0.98, \"CAR\": 0.96}, \"T5\": {\"TSR\": 0.34, \"CAR\": 0.08}, \"T6\": {\"TSR\": 1.0, \"CAR\": 0.62}, \"T7\": {\"TSR\": 0.94, \"CAR\": 0.98}, \"T8\": {\"TSR\": 0.88, \"CAR\": 1.0}, \"T9\": {\"TSR\": 0.96, \"CAR\": 1.0}}\n    },\n    \"occ_47500_50r\": {\n        \"s0\": {\"T0\": {\"TSR\": 0.98, \"CAR\": 0.98}, \"T1\": {\"TSR\": 0.86, \"CAR\": 0.86}, \"T2\": {\"TSR\": 0.88, \"CAR\": 0.88}, \"T3\": {\"TSR\": 0.94, \"CAR\": 0.20}, \"T4\": {\"TSR\": 0.78, \"CAR\": 0.98}, \"T5\": {\"TSR\": 0.60, \"CAR\": 0.26}, \"T6\": {\"TSR\": 0.96, \"CAR\": 0.36}, \"T7\": {\"TSR\": 0.98, \"CAR\": 0.98}, \"T8\": {\"TSR\": 0.96, \"CAR\": 1.0}, \"T9\": {\"TSR\": 0.98, \"CAR\": 1.0}},\n        \"s2\": {\"T0\": {\"TSR\": 1.0, \"CAR\": 0.98}, \"T1\": {\"TSR\": 0.94, \"CAR\": 1.0}, \"T2\": {\"TSR\": 1.0, \"CAR\": 0.94}, \"T3\": {\"TSR\": 0.96, \"CAR\": 0.30}, \"T4\": {\"TSR\": 0.94, \"CAR\": 1.0}, \"T5\": {\"TSR\": 0.32, \"CAR\": 0.14}, \"T6\": {\"TSR\": 0.96, \"CAR\": 0.52}, \"T7\": {\"TSR\": 0.96, \"CAR\": 1.0}, \"T8\": {\"TSR\": 0.92, \"CAR\": 1.0}, \"T9\": {\"TSR\": 1.0, \"CAR\": 1.0}}\n    },\n    \"occ_50k_50r\": {\n        \"s0\": {\"T0\": {\"TSR\": 1.0, \"CAR\": 0.98}, \"T1\": {\"TSR\": 0.96, \"CAR\": 0.82}, \"T2\": {\"TSR\": 0.96, \"CAR\": 0.94}, \"T3\": {\"TSR\": 0.96, \"CAR\": 0.80}, \"T4\": {\"TSR\": 0.90, \"CAR\": 0.98}, \"T5\": {\"TSR\": 0.38, \"CAR\": 0.20}, \"T6\": {\"TSR\": 0.98, \"CAR\": 0.62}, \"T7\": {\"TSR\": 0.96, \"CAR\": 0.98}, \"T8\": {\"TSR\": 0.94, \"CAR\": 1.0}, \"T9\": {\"TSR\": 1.0, \"CAR\": 1.0}},\n        \"s2\": {\"T0\": {\"TSR\": 1.0, \"CAR\": 0.98}, \"T1\": {\"TSR\": 0.92, \"CAR\": 1.0}, \"T2\": {\"TSR\": 1.0, \"CAR\": 0.94}, \"T3\": {\"TSR\": 0.98, \"CAR\": 0.02}, \"T4\": {\"TSR\": 0.36, \"CAR\": 0.98}, \"T5\": {\"TSR\": 0.30, \"CAR\": 0.16}, \"T6\": {\"TSR\": 0.96, \"CAR\": 0.62}, \"T7\": {\"TSR\": 0.96, \"CAR\": 1.0}, \"T8\": {\"TSR\": 0.94, \"CAR\": 1.0}, \"T9\": {\"TSR\": 0.98, \"CAR\": 1.0}}\n    }\n}\n\nTASKS = [f\"T{i}\" for i in range(10)]\nCONDITIONS = [\"vanilla_50r\", \"occ_47500_50r\", \"occ_50k_50r\"]\nLABELS = {\"vanilla_50r\": \"Vanilla\", \"occ_47500_50r\": \"OccSafe@47.5K\", \"occ_50k_50r\": \"OccSafe@50K\"}\nCOLORS = {\"vanilla_50r\": \"#4878D0\", \"occ_47500_50r\": \"#EE854A\", \"occ_50k_50r\": \"#6ACC64\"}\nHIGHLIGHT_TASKS = {\"T3\", \"T5\", \"T6\"}\n\n\ndef load_data(extra_path=None):\n    data = dict(DATA)\n    if extra_path:\n        with open(extra_path) as f:\n            extra = json.load(f)\n        for cond, seeds in extra.items():\n            if cond not in data:\n                data[cond] = {}\n            for seed, tasks in seeds.items():\n                data[cond][seed] = tasks\n    return data\n\n\ndef compute_stats(data, metric):\n    \"\"\"Return {condition: {task: (mean, [per-seed values])}}.\"\"\"\n    stats = {}\n    for cond in CONDITIONS:\n        if cond not in data:\n            continue\n        stats[cond] = {}\n        seeds = sorted(data[cond].keys())\n        for task in TASKS:\n            vals = [data[cond][s][task][metric] for s in seeds if task in data[cond][s]]\n            stats[cond][task] = (np.mean(vals), vals)\n    return stats\n\n\ndef vanilla_global_mean(data, metric):\n    vals = []\n    for seed in data.get(\"vanilla_50r\", {}).values():\n        for task in TASKS:\n            if task in seed:\n                vals.append(seed[task][metric])\n    return np.mean(vals) if vals else 0\n\n\ndef plot(data, outdir):\n    fig, axes = plt.subplots(1, 2, figsize=(18, 6), sharey=False)\n\n    for ax, metric in zip(axes, [\"TSR\", \"CAR\"]):\n        stats = compute_stats(data, metric)\n        global_mean = vanilla_global_mean(data, metric)\n\n        n_cond = len([c for c in CONDITIONS if c in stats])\n        bar_width = 0.22\n        offsets = np.arange(len(TASKS))\n\n        # highlight background for collision-prone tasks\n        for i, task in enumerate(TASKS):\n            if task in HIGHLIGHT_TASKS:\n                ax.axvspan(i - 0.4, i + 0.4, color=\"#FFF3CD\", alpha=0.6, zorder=0)\n\n        for j, cond in enumerate(CONDITIONS):\n            if cond not in stats:\n                continue\n            means = []\n            all_vals = []\n            for task in TASKS:\n                m, v = stats[cond][task]\n                means.append(m)\n                all_vals.append(v)\n\n            x = offsets + (j - (n_cond - 1) / 2) * bar_width\n            bars = ax.bar(x, means, bar_width, label=LABELS[cond],\n                          color=COLORS[cond], edgecolor='white', linewidth=0.5, zorder=2)\n\n            # scatter individual seed values\n            for i, (xi, vals) in enumerate(zip(x, all_vals)):\n                jitter = np.linspace(-bar_width * 0.25, bar_width * 0.25, len(vals))\n                ax.scatter([xi] * len(vals) if len(vals) == 1 else xi + jitter,\n                           vals, color='black', s=12, zorder=3, alpha=0.7)\n\n        # vanilla global mean line\n        ax.axhline(global_mean, color=COLORS[\"vanilla_50r\"], linestyle='--',\n                    linewidth=1.2, alpha=0.7, zorder=1)\n        ax.text(len(TASKS) - 0.5, global_mean + 0.015,\n                f\"Vanilla avg={global_mean:.3f}\", fontsize=9,\n                color=COLORS[\"vanilla_50r\"], ha='right', va='bottom')\n\n        ax.set_xticks(offsets)\n        ax.set_xticklabels(TASKS, fontsize=12)\n        ax.set_ylabel(metric, fontsize=14, fontweight='bold')\n        ax.set_xlabel(\"Task\", fontsize=13)\n        ax.set_ylim(0, 1.08)\n        ax.set_title(f\"Per-Task {metric}\", fontsize=14, fontweight='bold')\n        ax.legend(fontsize=11, loc='lower left')\n        ax.grid(axis='y', alpha=0.3, zorder=0)\n        ax.tick_params(axis='both', labelsize=12)\n\n    # add highlight legend\n    highlight_patch = mpatches.Patch(facecolor='#FFF3CD', alpha=0.6,\n                                      edgecolor='gray', linestyle='--',\n                                      label='High-collision tasks (T3/T5/T6)')\n    axes[1].legend(handles=axes[1].get_legend_handles_labels()[0] + [highlight_patch],\n                   fontsize=10, loc='lower left')\n\n    plt.tight_layout()\n\n    base = os.path.join(outdir, \"per_task_comparison\")\n    fig.savefig(base + \".pdf\", bbox_inches='tight')\n    fig.savefig(base + \".png\", dpi=300, bbox_inches='tight')\n    plt.close(fig)\n    print(f\"Saved: {base}.pdf, {base}.png\")\n\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--extra-data\", type=str, default=None,\n                        help=\"Path to JSON with additional condition data\")\n    parser.add_argument(\"--outdir\", type=str,\n                        default=os.path.dirname(os.path.abspath(__file__)),\n                        help=\"Output directory\")\n    args = parser.parse_args()\n\n    data = load_data(args.extra_data)\n    plot(data, args.outdir)\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"per_task_comparison.py written OK\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1",
+            "uuid": "6257f5f5-f43c-4cdf-aa14-1ae01bd2aea6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PNVMD1voyUhbvT6634HrZJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 201,
+                "cache_read_input_tokens": 27792,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 201
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T18:54:15.678Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014V3LeouqUfseNVZYuVdRK8",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"per_task_comparison.py written OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1",
+            "uuid": "02534d5e-65bf-4007-86b8-33c4c360d816",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"per_task_comparison.py written OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"per_task_comparison.py written OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VyvCxiMjUrufdTVLDqAL3e",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-34685",
+                "command": "cat > /root/occsafe_vla/openvla-oft/analysis/bootstrap_ci.py << 'SCRIPT_EOF'\n#!/usr/bin/env python3\n\"\"\"Wilson score 95% CI for per-task TSR/CAR + LaTeX table + CSV output.\"\"\"\n\nimport argparse\nimport csv\nimport json\nimport math\nimport os\nimport sys\n\nDATA = {\n    \"vanilla_50r\": {\n        \"s0\": {\"T0\": {\"TSR\": 1.0, \"CAR\": 0.98}, \"T1\": {\"TSR\": 0.94, \"CAR\": 0.96}, \"T2\": {\"TSR\": 0.98, \"CAR\": 0.92}, \"T3\": {\"TSR\": 1.0, \"CAR\": 0.48}, \"T4\": {\"TSR\": 0.80, \"CAR\": 1.0}, \"T5\": {\"TSR\": 0.44, \"CAR\": 0.08}, \"T6\": {\"TSR\": 1.0, \"CAR\": 0.52}, \"T7\": {\"TSR\": 0.94, \"CAR\": 0.94}, \"T8\": {\"TSR\": 0.94, \"CAR\": 1.0}, \"T9\": {\"TSR\": 0.96, \"CAR\": 1.0}},\n        \"s1\": {\"T0\": {\"TSR\": 1.0, \"CAR\": 0.98}, \"T1\": {\"TSR\": 0.94, \"CAR\": 0.90}, \"T2\": {\"TSR\": 0.94, \"CAR\": 0.90}, \"T3\": {\"TSR\": 1.0, \"CAR\": 0.26}, \"T4\": {\"TSR\": 0.92, \"CAR\": 0.98}, \"T5\": {\"TSR\": 0.46, \"CAR\": 0.06}, \"T6\": {\"TSR\": 1.0, \"CAR\": 0.58}, \"T7\": {\"TSR\": 0.94, \"CAR\": 1.0}, \"T8\": {\"TSR\": 1.0, \"CAR\": 1.0}, \"T9\": {\"TSR\": 0.98, \"CAR\": 1.0}},\n        \"s2\": {\"T0\": {\"TSR\": 1.0, \"CAR\": 0.98}, \"T1\": {\"TSR\": 0.98, \"CAR\": 0.90}, \"T2\": {\"TSR\": 1.0, \"CAR\": 0.94}, \"T3\": {\"TSR\": 0.96, \"CAR\": 0.40}, \"T4\": {\"TSR\": 0.98, \"CAR\": 0.96}, \"T5\": {\"TSR\": 0.34, \"CAR\": 0.08}, \"T6\": {\"TSR\": 1.0, \"CAR\": 0.62}, \"T7\": {\"TSR\": 0.94, \"CAR\": 0.98}, \"T8\": {\"TSR\": 0.88, \"CAR\": 1.0}, \"T9\": {\"TSR\": 0.96, \"CAR\": 1.0}}\n    },\n    \"occ_47500_50r\": {\n        \"s0\": {\"T0\": {\"TSR\": 0.98, \"CAR\": 0.98}, \"T1\": {\"TSR\": 0.86, \"CAR\": 0.86}, \"T2\": {\"TSR\": 0.88, \"CAR\": 0.88}, \"T3\": {\"TSR\": 0.94, \"CAR\": 0.20}, \"T4\": {\"TSR\": 0.78, \"CAR\": 0.98}, \"T5\": {\"TSR\": 0.60, \"CAR\": 0.26}, \"T6\": {\"TSR\": 0.96, \"CAR\": 0.36}, \"T7\": {\"TSR\": 0.98, \"CAR\": 0.98}, \"T8\": {\"TSR\": 0.96, \"CAR\": 1.0}, \"T9\": {\"TSR\": 0.98, \"CAR\": 1.0}},\n        \"s2\": {\"T0\": {\"TSR\": 1.0, \"CAR\": 0.98}, \"T1\": {\"TSR\": 0.94, \"CAR\": 1.0}, \"T2\": {\"TSR\": 1.0, \"CAR\": 0.94}, \"T3\": {\"TSR\": 0.96, \"CAR\": 0.30}, \"T4\": {\"TSR\": 0.94, \"CAR\": 1.0}, \"T5\": {\"TSR\": 0.32, \"CAR\": 0.14}, \"T6\": {\"TSR\": 0.96, \"CAR\": 0.52}, \"T7\": {\"TSR\": 0.96, \"CAR\": 1.0}, \"T8\": {\"TSR\": 0.92, \"CAR\": 1.0}, \"T9\": {\"TSR\": 1.0, \"CAR\": 1.0}}\n    },\n    \"occ_50k_50r\": {\n        \"s0\": {\"T0\": {\"TSR\": 1.0, \"CAR\": 0.98}, \"T1\": {\"TSR\": 0.96, \"CAR\": 0.82}, \"T2\": {\"TSR\": 0.96, \"CAR\": 0.94}, \"T3\": {\"TSR\": 0.96, \"CAR\": 0.80}, \"T4\": {\"TSR\": 0.90, \"CAR\": 0.98}, \"T5\": {\"TSR\": 0.38, \"CAR\": 0.20}, \"T6\": {\"TSR\": 0.98, \"CAR\": 0.62}, \"T7\": {\"TSR\": 0.96, \"CAR\": 0.98}, \"T8\": {\"TSR\": 0.94, \"CAR\": 1.0}, \"T9\": {\"TSR\": 1.0, \"CAR\": 1.0}},\n        \"s2\": {\"T0\": {\"TSR\": 1.0, \"CAR\": 0.98}, \"T1\": {\"TSR\": 0.92, \"CAR\": 1.0}, \"T2\": {\"TSR\": 1.0, \"CAR\": 0.94}, \"T3\": {\"TSR\": 0.98, \"CAR\": 0.02}, \"T4\": {\"TSR\": 0.36, \"CAR\": 0.98}, \"T5\": {\"TSR\": 0.30, \"CAR\": 0.16}, \"T6\": {\"TSR\": 0.96, \"CAR\": 0.62}, \"T7\": {\"TSR\": 0.96, \"CAR\": 1.0}, \"T8\": {\"TSR\": 0.94, \"CAR\": 1.0}, \"T9\": {\"TSR\": 0.98, \"CAR\": 1.0}}\n    }\n}\n\nTASKS = [f\"T{i}\" for i in range(10)]\nCOND_LABELS = {\n    \"vanilla_50r\": \"Vanilla\",\n    \"occ_47500_50r\": r\"OccSafe@47.5K\",\n    \"occ_50k_50r\": r\"OccSafe@50K\"\n}\nTRIALS_PER_SEED = 50\n\n\ndef wilson_ci(successes, trials, z=1.96):\n    if trials == 0:\n        return (0.0, 0.0)\n    p_hat = successes / trials\n    denom = 1 + z ** 2 / trials\n    center = (p_hat + z ** 2 / (2 * trials)) / denom\n    margin = z * math.sqrt((p_hat * (1 - p_hat) + z ** 2 / (4 * trials)) / trials) / denom\n    return (max(0.0, center - margin), min(1.0, center + margin))\n\n\ndef load_data(extra_path=None):\n    data = dict(DATA)\n    if extra_path:\n        with open(extra_path) as f:\n            extra = json.load(f)\n        for cond, seeds in extra.items():\n            if cond not in data:\n                data[cond] = {}\n            for seed, tasks in seeds.items():\n                data[cond][seed] = tasks\n    return data\n\n\ndef compute_all(data):\n    \"\"\"Compute per-seed and pooled Wilson CIs.\n\n    Returns list of dicts: condition, task, metric, mean, pooled_lo, pooled_hi,\n    per_seed_details (list of (seed, val, lo, hi)).\n    \"\"\"\n    rows = []\n    for cond in sorted(data.keys()):\n        seeds = sorted(data[cond].keys())\n        n_seeds = len(seeds)\n        for task in TASKS:\n            for metric in [\"TSR\", \"CAR\"]:\n                per_seed = []\n                total_successes = 0\n                total_trials = 0\n                for s in seeds:\n                    if task not in data[cond][s]:\n                        continue\n                    val = data[cond][s][task][metric]\n                    succ = round(val * TRIALS_PER_SEED)\n                    lo, hi = wilson_ci(succ, TRIALS_PER_SEED)\n                    per_seed.append((s, val, lo, hi))\n                    total_successes += succ\n                    total_trials += TRIALS_PER_SEED\n\n                pooled_lo, pooled_hi = wilson_ci(total_successes, total_trials)\n                pooled_mean = total_successes / total_trials if total_trials > 0 else 0\n\n                rows.append({\n                    \"condition\": cond,\n                    \"task\": task,\n                    \"metric\": metric,\n                    \"n_seeds\": n_seeds,\n                    \"pooled_mean\": pooled_mean,\n                    \"pooled_lo\": pooled_lo,\n                    \"pooled_hi\": pooled_hi,\n                    \"per_seed\": per_seed\n                })\n    return rows\n\n\ndef write_csv(rows, outpath):\n    with open(outpath, 'w', newline='') as f:\n        writer = csv.writer(f)\n        writer.writerow([\"condition\", \"task\", \"metric\", \"n_seeds\",\n                          \"pooled_mean\", \"pooled_ci_lo\", \"pooled_ci_hi\"])\n        for r in rows:\n            writer.writerow([\n                r[\"condition\"], r[\"task\"], r[\"metric\"], r[\"n_seeds\"],\n                f\"{r['pooled_mean']:.4f}\",\n                f\"{r['pooled_lo']:.4f}\",\n                f\"{r['pooled_hi']:.4f}\"\n            ])\n    print(f\"CSV saved: {outpath}\")\n\n\ndef write_latex(rows, outpath):\n    lines = []\n    lines.append(r\"\\begin{table}[t]\")\n    lines.append(r\"\\centering\")\n    lines.append(r\"\\caption{Per-task TSR and CAR with pooled Wilson 95\\% CI}\")\n    lines.append(r\"\\label{tab:per_task_ci}\")\n    lines.append(r\"\\resizebox{\\textwidth}{!}{%\")\n    lines.append(r\"\\begin{tabular}{ll\" + \"cc\" * len(TASKS) + \"}\")\n    lines.append(r\"\\toprule\")\n\n    header = r\"Condition & Metric\"\n    for t in TASKS:\n        header += f\" & {t}\"\n    header += r\" \\\\\"\n    lines.append(header)\n    lines.append(r\"\\midrule\")\n\n    conditions = sorted(set(r[\"condition\"] for r in rows))\n    for cond in conditions:\n        label = COND_LABELS.get(cond, cond)\n        cond_rows = [r for r in rows if r[\"condition\"] == cond]\n        for metric in [\"TSR\", \"CAR\"]:\n            metric_rows = [r for r in cond_rows if r[\"metric\"] == metric]\n            metric_rows.sort(key=lambda r: TASKS.index(r[\"task\"]))\n\n            if metric == \"TSR\":\n                line = f\"\\\\multirow{{2}}{{*}}{{{label}}} & {metric}\"\n            else:\n                line = f\" & {metric}\"\n\n            for r in metric_rows:\n                m = r[\"pooled_mean\"]\n                lo = r[\"pooled_lo\"]\n                hi = r[\"pooled_hi\"]\n                cell = f\"{m:.2f} [{lo:.2f},{hi:.2f}]\"\n                line += f\" & \\\\footnotesize{{{cell}}}\"\n\n            line += r\" \\\\\"\n            lines.append(line)\n        lines.append(r\"\\midrule\")\n\n    lines[-1] = r\"\\bottomrule\"\n    lines.append(r\"\\end{tabular}}\")\n    lines.append(r\"\\end{table}\")\n\n    with open(outpath, 'w') as f:\n        f.write('\\n'.join(lines) + '\\n')\n    print(f\"LaTeX saved: {outpath}\")\n\n\ndef print_summary(rows):\n    print(\"\\n=== Pooled Wilson 95% CI Summary ===\\n\")\n    conditions = sorted(set(r[\"condition\"] for r in rows))\n    for cond in conditions:\n        label = COND_LABELS.get(cond, cond)\n        print(f\"--- {label} ({cond}) ---\")\n        cond_rows = [r for r in rows if r[\"condition\"] == cond]\n        for metric in [\"TSR\", \"CAR\"]:\n            metric_rows = sorted(\n                [r for r in cond_rows if r[\"metric\"] == metric],\n                key=lambda r: TASKS.index(r[\"task\"])\n            )\n            vals = []\n            for r in metric_rows:\n                vals.append(f\"{r['task']}: {r['pooled_mean']:.3f} [{r['pooled_lo']:.3f}, {r['pooled_hi']:.3f}]\")\n            print(f\"  {metric}: \" + \" | \".join(vals))\n        print()\n\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--extra-data\", type=str, default=None,\n                        help=\"Path to JSON with additional condition data\")\n    parser.add_argument(\"--outdir\", type=str,\n                        default=os.path.dirname(os.path.abspath(__file__)),\n                        help=\"Output directory\")\n    args = parser.parse_args()\n\n    data = load_data(args.extra_data)\n    rows = compute_all(data)\n\n    csv_path = os.path.join(args.outdir, \"per_task_ci.csv\")\n    tex_path = os.path.join(args.outdir, \"per_task_ci.tex\")\n\n    write_csv(rows, csv_path)\n    write_latex(rows, tex_path)\n    print_summary(rows)\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"bootstrap_ci.py written OK\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1",
+            "uuid": "fe14ceb1-5812-41cc-b1d5-42aed276d547",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01T9dVAKdv4YBkd3ohhrdTeP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3669,
+                "cache_read_input_tokens": 27993,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3669
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T18:54:57.101Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VyvCxiMjUrufdTVLDqAL3e",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bootstrap_ci.py written OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1",
+            "uuid": "65e1134a-06c1-422f-9aa4-bf684358e427",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bootstrap_ci.py written OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"bootstrap_ci.py written OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本已写入。运行 dry-run 验证。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1",
+            "uuid": "50ba5706-c796-42ae-b568-8faf47d402d7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016p4SNabN5otYrJq9hzzmBK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3954,
+                "cache_read_input_tokens": 31662,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3954
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MmQmk75ybwsLg9bHJfdcfF",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-34685",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/occsafe_vla/openvla-oft/analysis/ && python per_task_comparison.py 2>&1",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1",
+            "uuid": "f3fd2f7c-0e24-4de0-983d-6565e2947cdf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016p4SNabN5otYrJq9hzzmBK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3954,
+                "cache_read_input_tokens": 31662,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3954
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ra51fQcFWTBX37hKzoFFfW",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-34685",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/occsafe_vla/openvla-oft/analysis/ && python bootstrap_ci.py 2>&1",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1",
+            "uuid": "0e75811e-b14b-46a6-8036-45a6410147e3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016p4SNabN5otYrJq9hzzmBK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3954,
+                "cache_read_input_tokens": 31662,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3954
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T18:55:03.895Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MmQmk75ybwsLg9bHJfdcfF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Saved: /root/occsafe_vla/openvla-oft/analysis/per_task_comparison.pdf, /root/occsafe_vla/openvla-oft/analysis/per_task_comparison.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.02}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1",
+            "uuid": "2a6da5fc-e157-4a06-aab6-41241245fcc2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Saved: /root/occsafe_vla/openvla-oft/analysis/per_task_comparison.pdf, /root/occsafe_vla/openvla-oft/analysis/per_task_comparison.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.02}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Saved: /root/occsafe_vla/openvla-oft/analysis/per_task_comparison.pdf, /root/occsafe_vla/openvla-oft/analysis/per_task_comparison.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.02}}"
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-21T18:55:04.512Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ra51fQcFWTBX37hKzoFFfW",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"CSV saved: /root/occsafe_vla/openvla-oft/analysis/per_task_ci.csv\\\\nLaTeX saved: /root/occsafe_vla/openvla-oft/analysis/per_task_ci.tex\\\\n\\\\n=== Pooled Wilson 95% CI Summary ===\\\\n\\\\n--- OccSafe@47.5K (occ_47500_50r) ---\\\\n  TSR: T0: 0.990 [0.946, 0.998] | T1: 0.900 [0.826, 0.945] | T2: 0.940 [0.875, 0.972] | T3: 0.950 [0.888, 0.978] | T4: 0.860 [0.779, 0.915] | T5: 0.460 [0.366, 0.557] | T6: 0.960 [0.902, 0.984] | T7: 0.970 [0.915, 0.990] | T8: 0.940 [0.875, 0.972] | T9: 0.990 [0.946, 0.998]\\\\n  CAR: T0: 0.980 [0.930, 0.994] | T1: 0.930 [0.863, 0.966] | T2: 0.910 [0.838, 0.952] | T3: 0.250 [0.175, 0.343] | T4: 0.990 [0.946, 0.998] | T5: 0.200 [0.133, 0.289] | T6: 0.440 [0.347, 0.538] | T7: 0.990 [0.946, 0.998] | T8: 1.000 [0.963, 1.000] | T9: 1.000 [0.963, 1.000]\\\\n\\\\n--- OccSafe@50K (occ_50k_50r) ---\\\\n  TSR: T0: 1.000 [0.963, 1.000] | T1: 0.940 [0.875, 0.972] | T2: 0.980 [0.930, 0.994] | T3: 0.970 [0.915, 0.990] | T4: 0.630 [0.532, 0.718] | T5: 0.340 [0.255, 0.437] | T6: 0.970 [0.915, 0.990] | T7: 0.960 [0.902, 0.984] | T8: 0.940 [0.875, 0.972] | T9: 0.990 [0.946, 0.998]\\\\n  CAR: T0: 0.980 [0.930, 0.994] | T1: 0.910 [0.838, 0.952] | T2: 0.940 [0.875, 0.972] | T3: 0.410 [0.319, 0.508] | T4: 0.980 [0.930, 0.994] | T5: 0.180 [0.117, 0.267] | T6: 0.620 [0.522, 0.709] | T7: 0.990 [0.946, 0.998] | T8: 1.000 [0.963, 1.000] | T9: 1.000 [0.963, 1.000]\\\\n\\\\n--- Vanilla (vanilla_50r) ---\\\\n  TSR: T0: 1.000 [0.975, 1.000] | T1: 0.953 [0.907, 0.977] | T2: 0.973 [0.933, 0.990] | T3: 0.987 [0.953, 0.996] | T4: 0.900 [0.842, 0.938] | T5: 0.413 [0.338, 0.493] | T6: 1.000 [0.975, 1.000] | T7: 0.940 [0.890, 0.968] | T8: 0.940 [0.890, 0.968] | T9: 0.967 [0.924, 0.986]\\\\n  CAR: T0: 0.980 [0.943, 0.993] | T1: 0.920 [0.865, 0.954] | T2: 0.920 [0.865, 0.954] | T3: 0.380 [0.306, 0.460] | T4: 0.980 [0.943, 0.993] | T5: 0.073 [0.041, 0.127] | T6: 0.573 [0.493, 0.650] | T7: 0.973 [0.933, 0.990] | T8: 1.000 [0.975, 1.000] | T9: 1.000 [0.975, 1.000]\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.61}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1",
+            "uuid": "081dd8fb-8522-476d-9d8c-a8d111748d81",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"CSV saved: /root/occsafe_vla/openvla-oft/analysis/per_task_ci.csv\\\\nLaTeX saved: /root/occsafe_vla/openvla-oft/analysis/per_task_ci.tex\\\\n\\\\n=== Pooled Wilson 95% CI Summary ===\\\\n\\\\n--- OccSafe@47.5K (occ_47500_50r) ---\\\\n  TSR: T0: 0.990 [0.946, 0.998] | T1: 0.900 [0.826, 0.945] | T2: 0.940 [0.875, 0.972] | T3: 0.950 [0.888, 0.978] | T4: 0.860 [0.779, 0.915] | T5: 0.460 [0.366, 0.557] | T6: 0.960 [0.902, 0.984] | T7: 0.970 [0.915, 0.990] | T8: 0.940 [0.875, 0.972] | T9: 0.990 [0.946, 0.998]\\\\n  CAR: T0: 0.980 [0.930, 0.994] | T1: 0.930 [0.863, 0.966] | T2: 0.910 [0.838, 0.952] | T3: 0.250 [0.175, 0.343] | T4: 0.990 [0.946, 0.998] | T5: 0.200 [0.133, 0.289] | T6: 0.440 [0.347, 0.538] | T7: 0.990 [0.946, 0.998] | T8: 1.000 [0.963, 1.000] | T9: 1.000 [0.963, 1.000]\\\\n\\\\n--- OccSafe@50K (occ_50k_50r) ---\\\\n  TSR: T0: 1.000 [0.963, 1.000] | T1: 0.940 [0.875, 0.972] | T2: 0.980 [0.930, 0.994] | T3: 0.970 [0.915, 0.990] | T4: 0.630 [0.532, 0.718] | T5: 0.340 [0.255, 0.437] | T6: 0.970 [0.915, 0.990] | T7: 0.960 [0.902, 0.984] | T8: 0.940 [0.875, 0.972] | T9: 0.990 [0.946, 0.998]\\\\n  CAR: T0: 0.980 [0.930, 0.994] | T1: 0.910 [0.838, 0.952] | T2: 0.940 [0.875, 0.972] | T3: 0.410 [0.319, 0.508] | T4: 0.980 [0.930, 0.994] | T5: 0.180 [0.117, 0.267] | T6: 0.620 [0.522, 0.709] | T7: 0.990 [0.946, 0.998] | T8: 1.000 [0.963, 1.000] | T9: 1.000 [0.963, 1.000]\\\\n\\\\n--- Vanilla (vanilla_50r) ---\\\\n  TSR: T0: 1.000 [0.975, 1.000] | T1: 0.953 [0.907, 0.977] | T2: 0.973 [0.933, 0.990] | T3: 0.987 [0.953, 0.996] | T4: 0.900 [0.842, 0.938] | T5: 0.413 [0.338, 0.493] | T6: 1.000 [0.975, 1.000] | T7: 0.940 [0.890, 0.968] | T8: 0.940 [0.890, 0.968] | T9: 0.967 [0.924, 0.986]\\\\n  CAR: T0: 0.980 [0.943, 0.993] | T1: 0.920 [0.865, 0.954] | T2: 0.920 [0.865, 0.954] | T3: 0.380 [0.306, 0.460] | T4: 0.980 [0.943, 0.993] | T5: 0.073 [0.041, 0.127] | T6: 0.573 [0.493, 0.650] | T7: 0.973 [0.933, 0.990] | T8: 1.000 [0.975, 1.000] | T9: 1.000 [0.975, 1.000]\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.61}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"CSV saved: /root/occsafe_vla/openvla-oft/analysis/per_task_ci.csv\\nLaTeX saved: /root/occsafe_vla/openvla-oft/analysis/per_task_ci.tex\\n\\n=== Pooled Wilson 95% CI Summary ===\\n\\n--- OccSafe@47.5K (occ_47500_50r) ---\\n  TSR: T0: 0.990 [0.946, 0.998] | T1: 0.900 [0.826, 0.945] | T2: 0.940 [0.875, 0.972] | T3: 0.950 [0.888, 0.978] | T4: 0.860 [0.779, 0.915] | T5: 0.460 [0.366, 0.557] | T6: 0.960 [0.902, 0.984] | T7: 0.970 [0.915, 0.990] | T8: 0.940 [0.875, 0.972] | T9: 0.990 [0.946, 0.998]\\n  CAR: T0: 0.980 [0.930, 0.994] | T1: 0.930 [0.863, 0.966] | T2: 0.910 [0.838, 0.952] | T3: 0.250 [0.175, 0.343] | T4: 0.990 [0.946, 0.998] | T5: 0.200 [0.133, 0.289] | T6: 0.440 [0.347, 0.538] | T7: 0.990 [0.946, 0.998] | T8: 1.000 [0.963, 1.000] | T9: 1.000 [0.963, 1.000]\\n\\n--- OccSafe@50K (occ_50k_50r) ---\\n  TSR: T0: 1.000 [0.963, 1.000] | T1: 0.940 [0.875, 0.972] | T2: 0.980 [0.930, 0.994] | T3: 0.970 [0.915, 0.990] | T4: 0.630 [0.532, 0.718] | T5: 0.340 [0.255, 0.437] | T6: 0.970 [0.915, 0.990] | T7: 0.960 [0.902, 0.984] | T8: 0.940 [0.875, 0.972] | T9: 0.990 [0.946, 0.998]\\n  CAR: T0: 0.980 [0.930, 0.994] | T1: 0.910 [0.838, 0.952] | T2: 0.940 [0.875, 0.972] | T3: 0.410 [0.319, 0.508] | T4: 0.980 [0.930, 0.994] | T5: 0.180 [0.117, 0.267] | T6: 0.620 [0.522, 0.709] | T7: 0.990 [0.946, 0.998] | T8: 1.000 [0.963, 1.000] | T9: 1.000 [0.963, 1.000]\\n\\n--- Vanilla (vanilla_50r) ---\\n  TSR: T0: 1.000 [0.975, 1.000] | T1: 0.953 [0.907, 0.977] | T2: 0.973 [0.933, 0.990] | T3: 0.987 [0.953, 0.996] | T4: 0.900 [0.842, 0.938] | T5: 0.413 [0.338, 0.493] | T6: 1.000 [0.975, 1.000] | T7: 0.940 [0.890, 0.968] | T8: 0.940 [0.890, 0.968] | T9: 0.967 [0.924, 0.986]\\n  CAR: T0: 0.980 [0.943, 0.993] | T1: 0.920 [0.865, 0.954] | T2: 0.920 [0.865, 0.954] | T3: 0.380 [0.306, 0.460] | T4: 0.980 [0.943, 0.993] | T5: 0.073 [0.041, 0.127] | T6: 0.573 [0.493, 0.650] | T7: 0.973 [0.933, 0.990] | T8: 1.000 [0.975, 1.000] | T9: 1.000 [0.975, 1.000]\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.61}}"
+              }
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认文件大小。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1",
+            "uuid": "81616459-3e07-45a9-913d-b9734342e8ac",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018BcTFCmAsznuvPfbkCsmgb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1881,
+                "cache_read_input_tokens": 35616,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1881
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QdscdVy6haCrNzfpuXxTBm",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-34685",
+                "command": "ls -lh /root/occsafe_vla/openvla-oft/analysis/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1",
+            "uuid": "11fc4d4a-3d62-418e-a5aa-cf20dea79b2a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018BcTFCmAsznuvPfbkCsmgb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1881,
+                "cache_read_input_tokens": 35616,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1881
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-21T18:55:08.196Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QdscdVy6haCrNzfpuXxTBm",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 316K\\\\n-rw-r--r-- 1 root root 8.6K May 22 02:54 bootstrap_ci.py\\\\n-rw-r--r-- 1 root root 2.7K May 22 02:55 per_task_ci.csv\\\\n-rw-r--r-- 1 root root 2.5K May 22 02:55 per_task_ci.tex\\\\n-rw-r--r-- 1 root root  45K May 22 02:55 per_task_comparison.pdf\\\\n-rw-r--r-- 1 root root 239K May 22 02:55 per_task_comparison.png\\\\n-rw-r--r-- 1 root root 7.5K May 22 02:54 per_task_comparison.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1",
+            "uuid": "c7cebe98-43e7-4c02-98b9-32e36bd89ee6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 316K\\\\n-rw-r--r-- 1 root root 8.6K May 22 02:54 bootstrap_ci.py\\\\n-rw-r--r-- 1 root root 2.7K May 22 02:55 per_task_ci.csv\\\\n-rw-r--r-- 1 root root 2.5K May 22 02:55 per_task_ci.tex\\\\n-rw-r--r-- 1 root root  45K May 22 02:55 per_task_comparison.pdf\\\\n-rw-r--r-- 1 root root 239K May 22 02:55 per_task_comparison.png\\\\n-rw-r--r-- 1 root root 7.5K May 22 02:54 per_task_comparison.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 316K\\n-rw-r--r-- 1 root root 8.6K May 22 02:54 bootstrap_ci.py\\n-rw-r--r-- 1 root root 2.7K May 22 02:55 per_task_ci.csv\\n-rw-r--r-- 1 root root 2.5K May 22 02:55 per_task_ci.tex\\n-rw-r--r-- 1 root root  45K May 22 02:55 per_task_comparison.pdf\\n-rw-r--r-- 1 root root 239K May 22 02:55 per_task_comparison.png\\n-rw-r--r-- 1 root root 7.5K May 22 02:54 per_task_comparison.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。生成文件：\n\n| 文件 | 大小 |\n|------|------|\n| `per_task_comparison.py` | 7.5K |\n| `per_task_comparison.pdf` | 45K |\n| `per_task_comparison.png` | 239K |\n| `bootstrap_ci.py` | 8.6K |\n| `per_task_ci.csv` | 2.7K |\n| `per_task_ci.tex` | 2.5K |\n\n路径：`/root/occsafe_vla/openvla-oft/analysis/`\n\n两个脚本都支持 `--extra-data ablation_results.json` 追加新 condition 数据，ablation 结果到手后直接传入即可重新出图。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1",
+            "uuid": "4978934a-a66e-461d-80db-02d7d3c44ea3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NffJeBSnbfo7kGEeMKWZVy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 414,
+                "cache_read_input_tokens": 37497,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 414
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。生成文件：\n\n| 文件 | 大小 |\n|------|------|\n| `per_task_comparison.py` | 7.5K |\n| `per_task_comparison.pdf` | 45K |\n| `per_task_comparison.png` | 239K |\n| `bootstrap_ci.py` | 8.6K |\n| `per_task_ci.csv` | 2.7K |\n| `per_task_ci.tex` | 2.5K |\n\n路径：`/root/occsafe_vla/openvla-oft/analysis/`\n\n两个脚本都支持 `--extra-data ablation_results.json` 追加新 condition 数据，ablation 结果到手后直接传入即可重新出图。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 122679,
+            "duration_api_ms": 119994,
+            "num_turns": 13,
+            "stop_reason": "end_turn",
+            "session_id": "534fb9da-0d73-4003-b5d2-64e0e50be2b1",
+            "total_cost_usd": 0.5343975000000001,
+            "usage": {
+              "input_tokens": 14,
+              "cache_creation_input_tokens": 26070,
+              "cache_read_input_tokens": 278550,
+              "output_tokens": 9149,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 26070,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 208,
+                  "cache_read_input_tokens": 37497,
+                  "cache_creation_input_tokens": 414,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 414
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 3310,
+                "outputTokens": 16,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.00339,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 14,
+                "outputTokens": 9149,
+                "cacheReadInputTokens": 278550,
+                "cacheCreationInputTokens": 26070,
+                "webSearchRequests": 0,
+                "costUSD": 0.5310075000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "70b9fb6d-a1b8-4686-b510-a0e31f3e9c38"
+          },
+          "id": "event-000037"
+        }
+      ],
+      "message_count": 37
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-per-task-analysis-scripts.md"
+}

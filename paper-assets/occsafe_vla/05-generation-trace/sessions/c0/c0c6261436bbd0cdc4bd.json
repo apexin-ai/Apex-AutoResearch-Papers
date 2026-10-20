@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c0c6261436bbd0cdc4bd",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code prepare cka s3",
+  "task_key": "worker_code_prepare_cka_s3_20260525T120823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare_cka_s3_20260525T120823_result.json",
+    "occurrence": 1,
+    "bytes": 1149,
+    "sha256": "1c59875e6743f2e0db40364a262160e2f9ace1fe066a90138311093862367fef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。汇总：\n\n### s3 训练配置确认\n- **pretrained**: `/root/autodl-tmp/models/openvla-7b`（从头训练，非 resume）✓\n- **occ_detach**: true ✓\n- **occ_norm_type**: bn（finetune.py 默认值）✓\n- **seed**: 由 `run_occ_detach.sh` 第一参数传入，run name \"s3\" 对应 seed 45\n\n### s3 训练进度\n- 当前 **~2962/50005 步**（~5.9%），速度 ~1.07 it/s\n- 剩余 ~47043 步 → **~12.2 小时**\n- 50K checkpoint 预计 **5月26日 ~08:15** 完成\n- 10K checkpoint 尚未生成（首个 checkpoint 在 step 2500 或 10000）\n\n### CKA 脚本修改\n- 在 `cka_analysis.py:216` 插入了 summary 计算块\n- JSON 现在输出格式：per-layer CKA 值 + `\"summary\"` 字段（含每个 condition 的 dinov2_mean/min_cka, siglip_mean/min_cka）\n- `--help` dry-run 通过，参数解析正常\n\n### run_command.sh\n已保存到 `/root/autodl-tmp/analysis/cka_s3_verification/run_command.sh`，自动检测 50K checkpoint 路径，使用 `CUDA_VISIBLE_DEVICES=3`。50K checkpoint 就绪后直接执行：\n```bash\nbash /root/autodl-tmp/analysis/cka_s3_verification/run_command.sh\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-cka-s3.md"
+}

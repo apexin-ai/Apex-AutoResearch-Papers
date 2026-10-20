@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac81de863b6386be9152",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose eval failures",
+  "task_key": "worker_diagnose_eval_failures_20260523T204644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_failures_20260523T204644_result.json",
+    "occurrence": 1,
+    "bytes": 959,
+    "sha256": "4fe2ab3f117931e41112314803efa1c03ba14458a5c9b270f6b6bf49875b06ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 根因\n提交命令使用了 **`--num_trials_per_task 50`**，但 `evaluate_safelibero.py` 不支持此参数。正确参数名是 **`--num_rollouts 50`**。\n\nPython argparse 对未识别参数返回 exit code 2 — 这不是 shell 语法错误，而是 argparse 的标准行为。\n\n### 两个实验相同原因\n`~/runs/occsafe_vla/` 下两个 log 均显示：\n```\nevaluate_safelibero.py: error: unrecognized arguments: --num_trials_per_task 50\n```\n\n### 后续重试也失败\n`/tmp/` 下的 log 显示有人用正确参数重试过（04:44 启动），两个 eval 正常跑到 T0:62%/T0:82%，但在 04:48:43-04:48:44 同时停止（<1s 间隔）。原因可能是 tmux session 被 kill 或 GPU 被抢占。\n\n### Checkpoint 状态\n两个 checkpoint 均存在且完整，可直接重跑。\n\n### 修复命令\nmemory.md 中已记录的正确 eval 命令可直接使用（`--num_rollouts 50`，GPU 2/3）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-failures.md"
+}

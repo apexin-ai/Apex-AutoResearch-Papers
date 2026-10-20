@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1715d779178701340e46",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops check gradient analysis and start",
+  "task_key": "worker_ops_check_gradient_analysis_and_start_20260524T114843",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_gradient_analysis_and_start_20260524T114843_result.json",
+    "occurrence": 1,
+    "bytes": 593,
+    "sha256": "ae168da47f754d7428cbd3acc642278dd921fe67f4769d237b23c1c8caa7c275"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**gradient_analysis_mixed_seed 已成功完成，无需重启。**\n\n- pid 821589 已退出，EXIT_CODE=0\n- 5 个条件全部跑完（Vanilla_s0, Full_OCC_s0, Detach_LN_s0, Detach_BN_s2, Random_s2），200 batches each\n- 产出在 `/root/occsafe_vla/artifacts/gradient_analysis_mixed_seed/`（每条件一个 `*_gradient_stats.json` + `*_gradient_norms.pdf`）\n- 耗时 ~25 分钟（wall_clock 1480s, 0.41 GPU-hours）\n- Registry 已更新为 DONE/success\n\nGPU 状态备注：GPU 0 当前被 pid 823309 占用（16.7GB），GPU 1 空闲，GPU 2/3 被训练任务占用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-gradient-analysis-and-start.md"
+}

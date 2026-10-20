@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3adcf3f6abda2a9b8bfc",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis detach ln cka",
+  "task_key": "worker_analysis_detach_ln_cka_20260524T083600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_detach_ln_cka_20260524T083600_result.json",
+    "occurrence": 1,
+    "bytes": 628,
+    "sha256": "6baf86110936d3bd84619362ad85e83644d4a597a9e449673fd278280f5d964e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。CKA 结果汇总：\n\n| Condition | DINOv2 mean | SigLIP mean |\n|-----------|-------------|-------------|\n| Vanilla | 0.968 | 0.953 |\n| Full OCC | 0.964 | 0.960 |\n| **Detach+LN** | **0.966** | **0.960** |\n| Random OCC | 0.968 | 0.956 |\n| Detach OCC (BN) | 0.539 | 0.312 |\n\n**结论：Detach+LN CKA 完全恢复到 Vanilla 水平，与 Detach BN 的剧烈退化形成鲜明对比。BN 是表征退化的主因，梯度 detach 本身不破坏表征。**\n\n文件已下载到 `artifacts/cka_detach_ln_results.json` 和 `artifacts/cka_detach_ln.pdf`，已注册 artifact 并更新 registry。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-detach-ln-cka.md"
+}

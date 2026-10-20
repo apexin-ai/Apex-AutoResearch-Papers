@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "783330909a3440fb55f1",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_7_1780008210.md",
+  "task_key": "loop_7_1780008210",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1780008210.md",
+    "occurrence": 1,
+    "bytes": 4485,
+    "sha256": "f555da0e56b045819994d8e6d8467101510665b5213db8e39fb88e49ea8fc786"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: max_wall_time\nupdated: '2026-05-28T22:31:38+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-34685 只有 cuda:0，westd-10894 只有 cuda:0（cgroup v2 限制，每台只暴露 1 卡）\n- MUJOCO_EGL_DEVICE_ID 必须匹配物理 GPU 编号，不受 CUDA_VISIBLE_DEVICES 影响\n- conda env 名是 `occsafe`（不是 base），激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`\n- 评估脚本参数是 `--num_rollouts`（不是 `--num_trials_per_task`），脚本路径 `openvla-oft/vla-scripts/`\n- Cell 4 n=3→n=4 数据不可并入论文（D076/D078），等 RD2-N1 全部种子扩充完再一次性更新\n- 论文已提交 SafeRL Workshop @ RSS 2025（May 28），当前处于审稿修复阶段，写作修改需谨慎\n- Workers 严禁在训练服务器上操作 tmux（曾导致 SIGHUP 杀死训练进程）\n\n### 2. 🖥️ 基础设施快照\n- **westd-34685**: 工作目录 `/root/occsafe_vla/openvla-oft`，Python `/root/miniconda3/bin/python`，conda env `occsafe`\n- **westd-10894**: 同上结构\n- 模型：`/root/autodl-tmp/models/openvla-7b`\n- 数据集：`/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops`（4600 条）\n- Checkpoint 根目录：`/root/autodl-tmp/checkpoints/<exp_name>/`\n- WANDB_MODE=disabled（所有实验）\n- HF_HOME：未显式设置（需确认）\n- 活跃进程（待确认，已派 Worker 检查）：\n  - full_occ_bn_v2_s2_r2: westd-34685, PID 19218, tmux session\n  - random_occ_v2_s0: westd-10894, PID 33308, tmux session\n- 已派 Worker: `worker_ssh_check-training-10894_20260528T223037`（检查 westd-10894 状态），尚未收到回调\n\n### 3. 📊 当前状态\n**刚做完：** 收到 Director 指令检查两个已运行 ~16h 的实验（预计 13h）。已派 1 个 Worker 检查 westd-10894，westd-34685 的检查 Worker 因 context 切换未来得及派出。\n\n**Registry RUNNING：**\n- `full_occ_bn_v2_s2_r2` — Cell 1 (Full OCC BN) 种子扩充 seed=44，RD2-N1\n- `random_occ_v2_s0` — v2 Random OCC 验证内容无关性 seed=42，RD2-N2\n\n**等待中：**\n- Worker 回调：`worker_ssh_check-training-10894_20260528T223037`\n- 未派出：westd-34685 检查 Worker（需立即补派）\n- Director 决策：Cell 4 n=3→n=4 并入（D078 暂定等 RD2-N1 完成后一次性更新）\n\n### 4. 📋 待办（条件触发式）\n- Worker 回调到达 → 读取两台服务器实验状态，分叉处理：\n  - 训练已完成 → 收集最终 checkpoint → spawn eval Worker → 更新 registry → 在该 GPU 立即提交下一组实验\n  - 训练仍在跑 → 报告 step/剩余时间给 Director\n  - 进程已死 → 诊断原因 → 重启\n- westd-34685 检查 Worker 未派出 → 新 session 立即补派\n- 实验完成后排队：RD2-W4 (BN eval mode) > RD3-W3 (λ₀ sweep {0.001, 0.01, 0.1}) > R1-C9 (v1/v2 mixing)\n- 训练完成 → 需要 eval（50 rollouts × 10 tasks），eval 脚本在 `vla-scripts/`，checkpoint 在 step 50000\n- RD2-N1 全部种子（n≥5/cell）完成 → 一次性更新论文：results.tex Table 1, fig1_overview.py, ANOVA F(1,10)→F(1,11+), Hedges' g, permutation table\n\n### 5. 🎯 战略上下文\n- **核心结论：** Auxiliary spatial supervision 不提升 VLA collision avoidance。两个 additive main effects：(1) BN+gradient flow 有害 g=-0.78，(2) LN 优势 g=0.88。ANOVA 交互项≈0。\n- **审稿修复 12/17 resolved**，剩余 5 个全是实验类（RD2-N1, RD2-N2, RD2-W4, RD3-W3, R1-C9）\n- **v1 vs v2 区分关键：** v1 有 batch-index resume bug，v2 是权威版本。论文中 v1 数据必须标注 caveat\n- **易错点 1：** fig1_overview.py 中数据是硬编码的，Cell 2 (Full OCC+LN) SD=0.027 是正确值（Director 曾给错 seeds 导致改成 0.020，已 revert）\n- **易错点 2：** 提交实验 status 转换必须 PREPARING→QUEUED→RUNNING，不能跳过 QUEUED\n- **易错点 3：** AutoDL cgroup v2 限制——每台服务器只暴露 1 张 GPU，脚本内用 cuda:0\n- **关键决策链：** D078(Cell 4 暂不并入) → D077(批准 4 组实验 ~220 GPU·h) → D076(revert 论文到 n=3) → D074(framing: dual additive main effects)\n- **Claim 强度审视结论（已完成未入论文）：** Normalization 主效应 (permutation p=0.018) 在论文中被低估，建议提升；CKA-behavior dissociation 是独特贡献但叙述不够突出\n- **occ_loss_weight 已是 draccus CLI 参数**（finetune.py line 92），RD3-W3 λ₀ sweep 代码已就绪\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1780008210.md"
+}

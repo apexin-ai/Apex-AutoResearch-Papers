@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "603822f2f0f71f0b0e50",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "fix 10894 delete 3 ckpt start s4",
+  "task_key": "worker_fix_10894-delete-3-ckpt-start-s4_20260527T091229",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_10894-delete-3-ckpt-start-s4_20260527T091229_result.json",
+    "occurrence": 1,
+    "bytes": 467,
+    "sha256": "81fc378a7913a9a1a4c38891d06ec47baa5e2d8a9ed8d9caad1f1f463c933cb1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n**删除前后磁盘**：\n- 删除前：186G used / 65G avail (75%)\n- 删除后：142G used / 109G avail (57%)\n- 释放：44G\n\n**full_occ_ln_s4 启动确认**：\n- PID: 553813\n- GPU: cuda:3，已占用 18244 MiB\n- 训练进度条已出现 (`0%| | 0/50005`)，正常加载数据中\n- tmux session: `full_occ_ln_s4`\n- Registry: RUNNING，server=westd-10894, gpu=cuda:3\n\nwestd-10894 现在 4 张 GPU 全部在用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-10894-delete-3-ckpt-start-s4.md"
+}

@@ -1,0 +1,358 @@
+{
+  "schema_version": "1.0",
+  "id": "3916b057d297813bae2e",
+  "project": "occsafe_vla",
+  "kind": "conversation",
+  "title": "paper writing method",
+  "task_key": "worker_paper_writing_method_20260526T124004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_method_20260526T124004.jsonl",
+    "occurrence": 1,
+    "bytes": 27906,
+    "sha256": "cc11255486a33d286b8071cec3452258283a3b045424c3be08a6e9b5a53d278e"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "tool_call": 8,
+      "tool_result": 8,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-26T12:42:52.000262+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260526T124004",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/**/*"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-26T12:42:52.000597+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/references.tex\ndocs/paper/aaai25.sty\ndocs/paper/aaai.bst\ndocs/paper/experiments_old.tex\ndocs/paper/corl_2026.sty\ndocs/paper/corlabbrvnat.bst\ndocs/paper/figures/gradient_analysis_combined.pdf\ndocs/paper/figures/cka_analysis.pdf\ndocs/paper/figures/per_layer_conflict_rate.pdf\ndocs/paper/figures/per_layer_conflict_rate.png\ndocs/paper/figures/grad_norm_heatmap.pdf\ndocs/paper/figures/grad_norm_heatmap.png\ndocs/paper/figures/per_layer_combined.pdf\ndocs/paper/figures/per_layer_combined.png\ndocs/paper/figures/dose_response.png\ndocs/paper/figures/fig1_overview.png\ndocs/paper/figures/fig1_overview.py\ndocs/paper/method.tex\ndocs/paper/figures/factorial_2x2.pdf\ndocs/paper/figures/dose_response.pdf\ndocs/paper/references.bib\ndocs/paper/figures/fig1_overview.pdf\ndocs/paper/introduction.tex\ndocs/paper/related_work.tex\ndocs/paper/appendix.tex\ndocs/paper/main.tex\ndocs/paper/_pdf_images/main_p16.png\ndocs/paper/_pdf_images/main_p1.png\ndocs/paper/_pdf_images/main_p2.png\ndocs/paper/_pdf_images/main_p3.png\ndocs/paper/_pdf_images/main_p4.png\ndocs/paper/_pdf_images/main_p5.png\ndocs/paper/_pdf_images/main_p6.png\ndocs/paper/_pdf_images/main_p7.png\ndocs/paper/_pdf_images/main_p10.png\ndocs/paper/_pdf_images/main_p11.png\ndocs/paper/_pdf_images/main_p12.png\ndocs/paper/_pdf_images/main_p13.png\ndocs/paper/_pdf_images/main_p14.png\ndocs/paper/_pdf_images/main_p15.png\ndocs/paper/discussion.tex\ndocs/paper/conclusion.tex\ndocs/paper/results.tex\ndocs/paper/main.blg\ndocs/paper/main.bbl\ndocs/paper/main.aux\ndocs/paper/main.out\ndocs/paper/main.fls\ndocs/paper/main.pdf\ndocs/paper/main.log\ndocs/paper/main.fdb_latexmk\ndocs/paper/_pdf_images/main_p8.png\ndocs/paper/_pdf_images/main_p9.png"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260526T124004",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-26T12:42:52.000808+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260526T124004",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/.claude/CLAUDE.md"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-26T12:42:52.001052+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t## 当前项目\n2\t当前绑定项目：**occsafe_vla**\n3\t\n4\t## 按需查阅\n5\t- 项目配置：`load_project_config(\"occsafe_vla\")` 或 `load_project_config(\"occsafe_vla\", section=\"execution\")`\n6\t- 知识文件：`read_project_file(file=...)` 读取项目文件（ROADMAP.md/memory.md/ideas.md/report.md 等）\n7\t- 路线图：`read_roadmap()` 读取研究方向和短期任务\n8\t- 产出目录：`/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/`（写文件后用 `register_artifact` 注册）\n9\t\n10\t## Worker 操作规范\n11\t\n12\t### ssh-env-setup\n13\t\n14\t# 远程服务器环境搭建规范\n15\t\n16\t## 核心原则\n17\t\n18\t**先探测，再安装。** 不要假设服务器上什么都没有——很多包已经装好了。安装前必须走 discovery 流程。\n19\t\n20\t**镜像快速路径**：连接服务器后，先用 `detect_image` 检测是否为预置镜像。如果是已知镜像且版本匹配，跳过基础环境搭建（Phase 1-4），直接安装项目特有依赖。未检测到镜像时走传统流程。\n21\t\n22\t**aml-train 镜像使用 conda 环境**（不是 venv）。环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`。pip/python 在 `/root/miniconda3/bin/` 下。**不要假设 .venv 存在，不要创建 venv。**\n23\t\n24\t## Phase 1: 环境探测（用 ssh_read_only）\n25\t\n26\t连接到服务器后，第一步永远是收集信息，不要直接装东西：\n27\t\n28\t```bash\n29\t# 1. Python 环境\n30\twhich python3 && python3 --version\n31\tpip3 --version 2>/dev/null || echo \"NO_PIP\"\n32\t\n33\t# 2. CUDA 环境\n34\tnvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader 2>/dev/null || echo \"NO_GPU\"\n35\tnvcc --version 2>/dev/null | grep \"release\" || echo \"NO_NVCC\"\n36\t\n37\t# 3. 包管理器\n38\tls -d /opt/miniconda3 ~/miniconda3 ~/.conda 2>/dev/null || echo \"NO_CONDA\"\n39\tls -d .venv venv env 2>/dev/null || echo \"NO_VENV\"\n40\tpip3 list --format=freeze 2>/dev/null | grep -iE \"torch|transformers|flash\" || echo \"NO_ML_PKGS\"\n41\t\n42\t# 4. PEP 668 检查\n43\tpython3 -c \"import sysconfig; print(sysconfig.get_path('stdlib'))\" 2>/dev/null\n44\tls /usr/lib/python*/EXTERNALLY-MANAGED 2>/dev/null && echo \"PEP668_MANAGED\" || echo \"PEP668_OK\"\n45\t```\n46\t\n47\t根据探测结果决定安装策略，不要猜。\n48\t\n49\t## Phase 2: 环境策略选择\n50\t\n51\t根据 Phase 1 结果选择**一个**策略，不要混用：\n52\t\n53\t| 探测结果 | 策略 | 说明 |\n54\t|----------|------|------|\n55\t| 项目目录有 `.venv/` | 用它：`source .venv/bin/activate` | 最优先 |\n56\t| 有 conda 且有写权限 | `conda activate base` 或创建专属 env | 次优先 |\n57\t| PEP668_MANAGED + 无 venv | 创建 venv：\n…[truncated 8080 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260526T124004",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-26T12:42:52.001246+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260526T124004",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-26T12:42:52.001424+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\n2\t\\section{Method}\n3\t\\label{sec:method}\n4\t\n5\tWe fine-tune OpenVLA-7B~\\cite{kim2024openvla} with the OFT recipe~\\cite{kim2025oft}, which concatenates DINOv2~\\cite{oquab2024dinov2} (1024-d) and SigLIP~\\cite{zhai2023siglip} (1152-d) patch features into a 2176-dimensional representation per spatial token. We apply LoRA~\\cite{hu2022lora} (rank 32, $\\alpha{=}16$) and augment the action prediction loss with an auxiliary spatial prediction head:\n6\t\\begin{equation}\n7\t\\mathcal{L}_\\text{total} = \\mathcal{L}_\\text{action} + \\lambda(t) \\cdot \\mathcal{L}_\\text{aux}(h(\\phi_v(o_t)), s_t^*),\n8\t\\quad \\lambda(t) = 0.01 \\cdot \\exp(-t / 50000)\n9\t\\label{eq:total_loss}\n10\t\\end{equation}\n11\twhere $\\lambda(t)$ decays exponentially so that spatial gradients shape early representations without dominating late-stage action refinement. The auxiliary head is discarded at inference.\n12\t\n13\t\\textbf{BEV occupancy head.} The head (1.2M parameters) maps the first 256 patch tokens to a $64{\\times}64$ binary occupancy grid: a linear projection ($2176{\\to}256$) reshaped to $16{\\times}16$, two transposed convolutions ($256{\\to}128{\\to}64$, kernel 4, stride 2) with BatchNorm and GELU, and a $1{\\times}1$ convolution with sigmoid. Ground-truth grids are rendered from MuJoCo state replay. Training uses focal loss~\\cite{lin2017focal} ($\\alpha{=}0.25$, $\\gamma{=}2.0$).\n14\t\n15\t\\textbf{Monocular depth head.} Same architecture with ReLU output and smooth-L1 loss against egocentric depth maps rendered at $64{\\times}64$ from MuJoCo. This head provides an egocentric spatial reference frame, complementing the allocentric BEV occupancy.\n16\t\n17\t\\subsection{Ablation Design}\n18\t\\label{sec:ablation}\n19\t\n20\tWe evaluate twelve conditions that systematically vary gradient flow, label content, normalization type, spatial reference frame, and temporal extent:\n21\t\n22\t\\begin{itemize}[nosep,leftmargin=*]\n23\t\\item \\textbf{Vanilla}: action loss only (baseline).\n24\t\\item \\textbf{Full OCC}: BEV occupancy with ground-truth labels a\n…[truncated 3077 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260526T124004",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-26T12:42:52.001575+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260526T124004",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-26T12:42:52.001960+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **\n…[truncated 5709 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260526T124004",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-26T12:42:52.002129+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260526T124004",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-26T12:42:52.002299+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\n2\t\\section{Introduction}\n3\t\n4\tVision-language-action (VLA) models map visual observations and language instructions directly to robot actions, achieving high task success on manipulation benchmarks~\\cite{brohan2023rt2, kim2024openvla, kim2025oft}. Yet task success does not imply behavioral safety. On SafeLIBERO Level~I~\\cite{hu2025vlsa}, a fine-tuned OpenVLA-OFT completes 90.7\\% of tasks but avoids collisions in only 78.0\\% of episodes; on the three most constrained tasks, collision rates reach 53--93\\%.\n5\t\n6\tAuxiliary spatial prediction (occupancy grids, depth maps, point clouds) improves VLA task success by injecting 3D structure into vision encoders~\\cite{li2026spatialforcing, yuan2025depthvla, wu2025spatialvla}. Separately, safety methods apply runtime action filtering~\\cite{hu2025vlsa} or constrained RL~\\cite{zhang2025safevla} to reduce collisions. These two threads remain disconnected: no spatial method evaluates collision avoidance, and no safety method leverages spatial representations. Whether auxiliary spatial supervision affects safety, and through what mechanism, is unknown.\n7\t\n8\tWe present a systematic factorial study isolating how auxiliary spatial supervision during VLA fine-tuning affects collision avoidance. Twelve conditions on OpenVLA-OFT~\\cite{kim2024openvla, kim2025oft} with LoRA vary gradient flow, label content, normalization type, spatial reference frame, and temporal extent. Figure~\\ref{fig:overview} summarizes the setup and key finding. Our contributions:\n9\t\n10\t\\begin{figure*}[t]\n11\t\\centering\n12\t\\includegraphics[width=\\textwidth]{figures/fig1_overview.pdf}\n13\t\\caption{\\textbf{Overview.} \\textbf{(a)}~VLA policies deployed in contact-rich environments lack collision awareness; a fine-tuned OpenVLA-OFT achieves 90.7\\% task success but only 78.0\\% collision avoidance on SafeLIBERO. \\textbf{(b)}~We attach an auxiliary occupancy prediction head to the vision encoders; it provides gradient flow during training and is discarded at inference (ze\n…[truncated 2135 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260526T124004",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-26T12:42:52.002446+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260526T124004",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-26T12:42:52.002603+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% OccSafe-VLA: Occupancy-Aware Safety for Vision-Language-Action Models\n2\t% Target: CoRL 2026\n3\t\\documentclass{article}\n4\t\n5\t\\usepackage[dvipsnames]{xcolor}\n6\t\\usepackage{corl_2026}\n7\t\n8\t\\usepackage{graphicx}\n9\t\\usepackage{amsmath,amssymb}\n10\t\\usepackage{booktabs}\n11\t\\usepackage{enumitem}\n12\t\\usepackage{subcaption}\n13\t\n14\t\\title{Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer?\\\\ An Empirical Investigation}\n15\t\n16\t\\author{\n17\tAnonymous Author(s)\n18\t}\n19\t\n20\t\\begin{document}\n21\t\\maketitle\n22\t\n23\t\\begin{abstract}\n24\tFine-tuned Vision-Language-Action (VLA) models can achieve high task success yet remain behaviorally unsafe, with collision avoidance rates substantially lagging task completion on safety-critical benchmarks.\n25\tWe present a systematic factorial study isolating how auxiliary spatial supervision during VLA fine-tuning affects collision avoidance, with twelve conditions varying gradient flow, label content, normalization type, spatial reference frame, and temporal extent.\n26\tOur central finding is a statistically significant crossover interaction between normalization type and gradient flow ($p{<}0.05$): BatchNorm with gradient flow is the only configuration that maintains or improves collision avoidance, while removing gradient flow causes catastrophic representational drift. Surprisingly, LayerNorm with gradient flow consistently \\emph{degrades} safety below the no-auxiliary-head baseline, making it the worst configuration tested. Gradient flow benefits are thus BatchNorm-mediated, not an intrinsic property of auxiliary gradients.\n27\tSame-seed gradient analysis reveals the mechanism: LayerNorm redistributes gradient magnitude across vision backbones, suppressing spatial encoder gradients while amplifying semantic encoder gradients. This cross-backbone gradient redistribution, not representation corruption, explains the safety degradation and constitutes a representation-behavior dissociation where representational fidelity does\n…[truncated 759 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260526T124004",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-26T12:42:52.002905+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260526T124004",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex",
+              "content": "\n\\section{Method}\n\\label{sec:method}\n\nWe fine-tune OpenVLA-7B~\\cite{kim2024openvla} with the OFT recipe~\\cite{kim2025oft}, which concatenates DINOv2~\\cite{oquab2024dinov2} (1024-d) and SigLIP~\\cite{zhai2023siglip} (1152-d) patch features into a 2176-dimensional representation per spatial token. We apply LoRA~\\cite{hu2022lora} (rank 32, $\\alpha{=}16$) and augment the action prediction loss with an auxiliary spatial prediction head:\n\\begin{equation}\n\\mathcal{L}_\\text{total} = \\mathcal{L}_\\text{action} + \\lambda(t) \\cdot \\mathcal{L}_\\text{aux}(h(\\phi_v(o_t)), s_t^*),\n\\quad \\lambda(t) = 0.01 \\cdot \\exp(-t / 50000)\n\\label{eq:total_loss}\n\\end{equation}\nwhere $h$ denotes the auxiliary head, $\\phi_v$ the frozen-then-LoRA-adapted vision encoders, and $s_t^*$ the ground-truth spatial label at step $t$. The coefficient $\\lambda(t)$ decays exponentially so that spatial gradients shape early representations without dominating late-stage action refinement. The auxiliary head is discarded at inference, incurring zero additional cost.\n\n\\textbf{BEV occupancy head.} The head (1.2M parameters) maps the first 256 patch tokens to a $64{\\times}64$ binary occupancy grid. A linear projection ($2176{\\to}256$) is reshaped to $16{\\times}16$, followed by two transposed convolutions ($256{\\to}128{\\to}64$, kernel 4, stride 2) each with BatchNorm2d and GELU, and a final $1{\\times}1$ convolution with sigmoid activation. Ground-truth grids are rendered from MuJoCo simulator state replay by projecting object bounding boxes onto the table-plane BEV. Training uses focal loss~\\cite{lin2017focal} ($\\alpha{=}0.25$, $\\gamma{=}2.0$) to handle the sparse occupancy signal.\n\n\\textbf{Monocular depth head.} This head shares the same convolutional architecture but replaces the sigmoid with ReLU and uses smooth-L1 loss. Ground-truth egocentric depth maps are rendered at $64{\\times}64$ resolution from MuJoCo. The depth head provides an egocentric spatial reference frame, complementing the allocentric BEV occupancy grid.\n\n\\subsection{Ablation Design}\n\\label{sec:ablation}\n\nWe evaluate twelve conditions that systematically vary five factors: gradient flow from the auxiliary head into the vision encoders, label content, normalization type in the auxiliary head, spatial reference frame, and temporal extent of auxiliary supervision.\n\n\\begin{itemize}[nosep,leftmargin=*]\n\\item \\textbf{Vanilla}: action loss only (baseline, no auxiliary head).\n\\item \\textbf{Full OCC}: BEV occupancy with ground-truth labels and BatchNorm2d; auxiliary gradients flow through both vision encoders.\n\\item \\textbf{Full OCC+LN}: identical to Full OCC with LayerNorm replacing BatchNorm2d; paired with Full OCC to isolate the effect of normalization under gradient flow.\n\\item \\textbf{Random OCC}: random binary labels replacing ground-truth occupancy, with matched architecture and gradient flow; isolates gradient regularization from spatial content.\n\\item \\textbf{Detach OCC}: ground-truth labels with encoder gradients blocked via \\texttt{stop\\_gradient} and BatchNorm2d in the auxiliary head; paired with Vanilla to isolate the effect of the auxiliary forward pass without encoder gradient flow.\n\\item \\textbf{Detach+LN}: identical to Detach OCC with LayerNorm replacing BatchNorm2d; paired with Detach OCC to isolate normalization under gradient detachment.\n\\item \\textbf{Depth}: egocentric depth maps with gradient flow; paired with Full OCC to compare allocentric and egocentric spatial frames.\n\\item \\textbf{Cutoff@\\{15K, 25K, 35K, 45K\\}}: occupancy supervision active for the first $N$ of 50K training steps. Setting $\\lambda(t){=}0$ after step $N$ retains the auxiliary head forward pass; the post-cutoff period operates in Detach mode (encoder gradients blocked, BatchNorm2d statistics continue to update).\n\\item \\textbf{Reverse Cutoff}: occupancy supervision active for only the last 15K steps (steps 35K--50K); paired with Cutoff@35K to compare early and late gradient flow over the same total duration.\n\\end{itemize}\n\nThe twelve conditions yield nine pairwise comparisons, each isolating a single factor. The four conditions with $2{\\times}2$ factorial structure (Full OCC, Full OCC+LN, Detach OCC, Detach+LN) additionally permit a formal test of the normalization $\\times$ gradient flow interaction. Table~\\ref{tab:ablation_design} summarizes the design.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{4pt}\n\\caption{Ablation design: each comparison isolates one factor.}\n\\label{tab:ablation_design}\n\\begin{tabular}{@{}ll@{}}\n\\toprule\nComparison & Isolated Factor \\\\\n\\midrule\nFull OCC vs.\\ Vanilla & Auxiliary spatial supervision \\\\\nRandom vs.\\ Full OCC & Spatial content vs.\\ gradient flow \\\\\nDetach vs.\\ Vanilla & Encoder gradient flow (presence/absence) \\\\\nDetach+LN vs.\\ Detach OCC & Normalization (BN vs.\\ LN) without gradient flow \\\\\nFull OCC+LN vs.\\ Full OCC & Normalization (BN vs.\\ LN) with gradient flow \\\\\n$2{\\times}2$ factorial & Normalization $\\times$ gradient flow interaction \\\\\nDepth vs.\\ Full OCC & Egocentric vs.\\ allocentric frame \\\\\nCutoff@\\{15K--45K\\} vs.\\ Full OCC & Temporal extent of gradient flow \\\\\nReverse Cutoff vs.\\ Cutoff@35K & Early vs.\\ late gradient flow \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Evaluation}\n\\label{sec:evaluation}\n\nWe evaluate on SafeLIBERO Level~I~\\cite{hu2025vlsa}, which places obstacles in close proximity to manipulation targets across 10 tabletop tasks drawn from LIBERO-Spatial~\\cite{liu2023libero}. We report two metrics: \\textbf{Task Success Rate (TSR)}, the fraction of episodes in which the task is completed, and \\textbf{Collision Avoidance Rate (CAR)}, where a collision is registered when the L1 displacement of any obstacle \\texttt{body\\_xpos} exceeds $10^{-3}$. Each condition uses ${\\geq}3$ independent seeds (Depth: 4; Cutoff@\\{15K, 25K\\}: 2; Cutoff@45K: 1) with 50 rollouts per task per seed (500 episodes per seed). Bootstrap 95\\% confidence intervals are computed via 10{,}000 hierarchical resamples using the percentile method, resampling seeds at the outer level and episodes within each seed at the inner level. Training uses batch size 8, constant learning rate $5 \\times 10^{-4}$, and runs for 50K steps on a single NVIDIA RTX PRO 6000 GPU (98\\,GB); each run takes approximately 12.9 hours. Full hyperparameters are listed in Appendix~\\ref{app:training}.\n"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-26T12:42:52.003185+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260526T124004",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-26T12:42:52.003327+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260526T124004",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-26T12:42:52.003506+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\n2\t\\section{Method}\n3\t\\label{sec:method}\n4\t\n5\tWe fine-tune OpenVLA-7B~\\cite{kim2024openvla} with the OFT recipe~\\cite{kim2025oft}, which concatenates DINOv2~\\cite{oquab2024dinov2} (1024-d) and SigLIP~\\cite{zhai2023siglip} (1152-d) patch features into a 2176-dimensional representation per spatial token. We apply LoRA~\\cite{hu2022lora} (rank 32, $\\alpha{=}16$) and augment the action prediction loss with an auxiliary spatial prediction head:\n6\t\\begin{equation}\n7\t\\mathcal{L}_\\text{total} = \\mathcal{L}_\\text{action} + \\lambda(t) \\cdot \\mathcal{L}_\\text{aux}(h(\\phi_v(o_t)), s_t^*),\n8\t\\quad \\lambda(t) = 0.01 \\cdot \\exp(-t / 50000)\n9\t\\label{eq:total_loss}\n10\t\\end{equation}\n11\twhere $h$ denotes the auxiliary head, $\\phi_v$ the frozen-then-LoRA-adapted vision encoders, and $s_t^*$ the ground-truth spatial label at step $t$. The coefficient $\\lambda(t)$ decays exponentially so that spatial gradients shape early representations without dominating late-stage action refinement. The auxiliary head is discarded at inference, incurring zero additional cost.\n12\t\n13\t\\textbf{BEV occupancy head.} The head (1.2M parameters) maps the first 256 patch tokens to a $64{\\times}64$ binary occupancy grid. A linear projection ($2176{\\to}256$) is reshaped to $16{\\times}16$, followed by two transposed convolutions ($256{\\to}128{\\to}64$, kernel 4, stride 2) each with BatchNorm2d and GELU, and a final $1{\\times}1$ convolution with sigmoid activation. Ground-truth grids are rendered from MuJoCo simulator state replay by projecting object bounding boxes onto the table-plane BEV. Training uses focal loss~\\cite{lin2017focal} ($\\alpha{=}0.25$, $\\gamma{=}2.0$) to handle the sparse occupancy signal.\n14\t\n15\t\\textbf{Monocular depth head.} This head shares the same convolutional architecture but replaces the sigmoid with ReLU and uses smooth-L1 loss. Ground-truth egocentric depth maps are rendered at $64{\\times}64$ resolution from MuJoCo. The depth head provides an egocentric spatial reference frame, complem\n…[truncated 4514 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260526T124004",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-26T12:42:52.003708+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入。与旧版相比的主要修改：\n\n1. **去除结果预判语言**：Full OCC+LN、Detach OCC、Cutoff、Reverse Cutoff 的描述改为中性的 \"paired with X to isolate Y\" 句式，删除了 \"BN interference without gradient compensation\" 和 \"rescue\" 等隐含结论方向的措辞\n2. **方程符号定义**：补充了 $h$、$\\phi_v$、$s_t^*$ 的含义\n3. **BEV head 细节**：补充了 GT grid 的生成方式（projecting object bounding boxes onto table-plane BEV）\n4. **Cutoff 描述精确化**：明确写出 post-cutoff = Detach mode 的具体含义（encoder gradients blocked, BatchNorm2d statistics continue to update）\n5. **种子数明细**：Evaluation 中补充了 Cutoff@{15K, 25K}: 2 seeds 和 Cutoff@45K: 1 seed\n6. **Bootstrap 层级结构**：补充了 hierarchical resampling 的两层结构（seeds → episodes）\n7. **表格紧凑化**：添加 `\\small`、`\\setlength{\\tabcolsep}{4pt}`、`@{}` 列间距\n8. **无禁用术语**：无 crossover interaction、BN-mediated gradient calibration、gradient collapse"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260526T124004"
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing-method-copy-2.md"
+}

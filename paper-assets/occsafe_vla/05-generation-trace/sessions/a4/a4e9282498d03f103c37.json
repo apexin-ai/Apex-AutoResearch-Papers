@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4e9282498d03f103c37",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code sync gradient analysis to 10894",
+  "task_key": "worker_code_sync_gradient_analysis_to_10894_20260524T132631",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sync_gradient_analysis_to_10894_20260524T132631_result.json",
+    "occurrence": 1,
+    "bytes": 315,
+    "sha256": "e1a742c40d4cf2fab5120428b7df5a1883b46973f25f44b7c4e7a7dcbe4c4323"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过：\n- `LN OK: GroupNorm(1, 128, ...)`\n- `BN OK: BatchNorm2d(128, ...)`\n\n同步完成。occ_head.py 两边已一致，gradient_analysis.py 新增了 `--occ_norm` 参数（bn/ln）并传入 `BEVOccupancyHead` 构造。10894 训练完成后可直接跑 `--occ_norm ln` 的梯度分析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sync-gradient-analysis-to-10894.md"
+}

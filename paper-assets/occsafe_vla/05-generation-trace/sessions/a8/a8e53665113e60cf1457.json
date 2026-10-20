@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8e53665113e60cf1457",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "fix kill dup depth s1",
+  "task_key": "worker_fix_kill_dup_depth_s1_20260523T003139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_kill_dup_depth_s1_20260523T003139_result.json",
+    "occurrence": 1,
+    "bytes": 132,
+    "sha256": "fb91d78f4a78e936a3a1d46862b0c3cf4aecb7d4265dae360cee779fd0466d68"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。PID 209167 已 kill，PID 189009（正确脚本 `vla-scripts/evaluate_safelibero.py`）仍在正常运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-kill-dup-depth-s1.md"
+}

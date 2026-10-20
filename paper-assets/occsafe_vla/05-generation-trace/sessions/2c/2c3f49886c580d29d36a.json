@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c3f49886c580d29d36a",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval westd34685 check and eval v2",
+  "task_key": "worker_eval_westd34685_check_and_eval_v2_20260522T234802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_westd34685_check_and_eval_v2_20260522T234802_result.json",
+    "occurrence": 1,
+    "bytes": 608,
+    "sha256": "57779328f37c822fad42a6282e0b65acff344f405e2624b649eb8523b62edc5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部**仍在训练中**，无 50000_chkpt 目录，均只有 40000_chkpt。\n\n| 实验 | 当前 step | 进度 | 速度 | 预计剩余 |\n|------|-----------|------|------|----------|\n| cutoff_s0 | 46529/50005 | 93% | ~1.05 it/s | ~55 min |\n| cutoff_s1 | 48600/50005 | 97% | ~1.06 it/s | ~22 min |\n| depth_s0 | 48569/50005 | 97% | ~1.03 it/s | ~23 min |\n| depth_s1 | 48434/50005 | 97% | ~1.04 it/s | ~25 min |\n\ncutoff_s1 / depth_s0 / depth_s1 约 22-25 分钟后完成，cutoff_s0 约 55 分钟后完成。目前无法启动 eval，需要等训练结束产出 50000_chkpt。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-westd34685-check-and-eval-v2.md"
+}

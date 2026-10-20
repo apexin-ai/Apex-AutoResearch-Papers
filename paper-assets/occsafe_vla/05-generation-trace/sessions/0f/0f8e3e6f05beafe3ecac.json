@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "0f8e3e6f05beafe3ecac",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "code prepare v2 gradient analysis",
+  "task_key": "worker_code_prepare-v2-gradient-analysis_20260527T034223",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare-v2-gradient-analysis_20260527T034223.log",
+    "occurrence": 1,
+    "bytes": 857741,
+    "sha256": "59ce66403d11fd322e0ff2400692b6618509b744b20ada1451fbfa738edba24f"
+  },
+  "statistics": {
+    "messages": 226,
+    "user_turns": 0,
+    "tool_calls": 93,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 36,
+      "tool_call": 93,
+      "tool_result": 93,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 226,
+      "chunks": [
+        {
+          "path": "0f8e3e6f05beafe3ecac-part-0001.json",
+          "message_count": 153
+        },
+        {
+          "path": "0f8e3e6f05beafe3ecac-part-0002.json",
+          "message_count": 73
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-prepare-v2-gradient-analysis.md"
+}

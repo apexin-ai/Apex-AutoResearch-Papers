@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "f5de4b0129f80f5e9796",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "investigate cka s1 s2 verification",
+  "task_key": "worker_investigate_cka_s1_s2_verification_20260525T115944",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigate_cka_s1_s2_verification_20260525T115944.log",
+    "occurrence": 1,
+    "bytes": 625687,
+    "sha256": "400968c1cef627f6ae6ae47866c0c5f574bb29f190aa2f26d4cd213df8c12d8f"
+  },
+  "statistics": {
+    "messages": 172,
+    "user_turns": 0,
+    "tool_calls": 69,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 30,
+      "tool_call": 69,
+      "tool_result": 69,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 172,
+      "chunks": [
+        {
+          "path": "f5de4b0129f80f5e9796-part-0001.json",
+          "message_count": 168
+        },
+        {
+          "path": "f5de4b0129f80f5e9796-part-0002.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/investigate-cka-s1-s2-verification.md"
+}

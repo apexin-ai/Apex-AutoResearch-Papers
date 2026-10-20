@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "50cb331bb90bdbe9476f",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "paper writing intro bn specific cascade",
+  "task_key": "worker_paper_writing_intro_bn_specific_cascade_20260527T195806",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_intro_bn_specific_cascade_20260527T195806_result.json",
+    "occurrence": 1,
+    "bytes": 1021,
+    "sha256": "b4de529434509692ef320bdb34cfde500f5038e0dc9a528ea859ef401a948f7e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Four edits applied. Summary of changes:\n\n1. **Fig 1 caption**: BN-specific framing. BN row: gradient flow harmful (0.725 < 0.745 Vanilla), detach recovers (0.767). LN row: gradient flow benign (0.777 > Vanilla), detach preliminary (0.826, n=1). \"Only BN + gradient flow falls below Vanilla.\"\n\n2. **Central result**: \"negative\" → \"an interaction\" with Cohen's d values (BN: d=−0.94, LN: d=+1.11 vs Vanilla). Factorial sentence: \"ordinal interaction...only BN + gradient flow falls below Vanilla baseline.\"\n\n3. **C1**: Title \"Negative core finding\" → \"Normalization-dependent gradient flow effect.\" Body rewritten as ordinal interaction with Cell-level detail and σ=0.064 instability for BN+gradient flow. \"Spatial label content\" sentence preserved.\n\n4. **C3**: \"Do not add auxiliary spatial heads for the purpose of improving collision avoidance\" → \"Do not add auxiliary spatial heads with gradient flow under BatchNorm architectures.\" Em-dashes removed per writing norms."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-intro-bn-specific-cascade.md"
+}

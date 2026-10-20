@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1320fb3f1bdb2e4874c5",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis same seed gradient",
+  "task_key": "worker_analysis_same_seed_gradient_20260525T031735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_same_seed_gradient_20260525T031735_result.json",
+    "occurrence": 1,
+    "bytes": 759,
+    "sha256": "2ec14e300b3e069b0ab66150b2d84876e28ff5f1e2244d3c4fedfa785e21ef73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已提交并在运行中：\n\n- **实验 ID**: `gradient_analysis_same_seed`\n- **服务器**: westd-10894, PID=9218\n- **GPU**: cuda:0\n- **4 个条件** (均 seed=42, 50K checkpoint, 200 batches):\n  1. Vanilla — `vanilla_retrain_s0`\n  2. Full OCC + BN — `full_occ_retrain_s0`\n  3. Detach + BN — `ablation_occ_detach_s0_retrain`\n  4. Full OCC + LN — `full_occ_ln_s0`\n- **产出路径**:\n  - `/root/autodl-tmp/analysis/gradient_same_seed/gradient_results.json`\n  - `/root/autodl-tmp/analysis/gradient_same_seed/gradient_analysis.pdf`\n- **Cron 监控**: 每 10 分钟检查进度\n\n第一个条件 (Vanilla) 已在处理中，模型加载完毕，正在跑 gradient analysis。预计 4 个条件总计 2-4 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-same-seed-gradient.md"
+}

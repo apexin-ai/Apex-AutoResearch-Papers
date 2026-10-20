@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a51ca36371ac1162d85f",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra scp vanilla s2 and 50r eval",
+  "task_key": "worker_infra_scp-vanilla-s2-and-50r-eval_20260521T110150",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_scp-vanilla-s2-and-50r-eval_20260521T110150_result.json",
+    "occurrence": 1,
+    "bytes": 724,
+    "sha256": "26f96a016b19a06f9aa7fa06f26742d435489b996e849f004600fdf9bb25df89"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**SCP 失败。**\n\n错误：`ssh: connect to host connect.westd.seetacloud.com port 18685: Connection refused`\n\n原因：AutoDL 实例之间无法直接通过公网 SSH 端口互联（端口被封或网络策略限制）。\n\n**建议替代方案：**\n1. **通过本地中转**：从 westd-10894 下载到本地，再上传到 westd-34685（慢，15GB 两次传输）\n2. **AutoDL 共享存储**：如果两台机器在同一区域，可通过 AutoDL 的数据盘共享/文件存储功能传输\n3. **对象存储中转**：先上传到 OSS/COS 等对象存储，再从目标机下载（需配置 access key）\n4. **rsync over SSH proxy**：通过你本地机器做 SSH 隧道中转两台 AutoDL 实例"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-scp-vanilla-s2-and-50r-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "09d8e1b556e9c7a3f615",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_1_1779381502.md",
+  "task_key": "loop_1_1779381502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1_1779381502.md",
+    "occurrence": 1,
+    "bytes": 4586,
+    "sha256": "985ac20a7e93edbcdb59be320c03c7fc062ba019064d42bda9bf9cd8e9f0c544"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: idle_timeout\nupdated: '2026-05-21T14:55:20+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- westd-10894 GPU 白名单: cuda:0, cuda:1, cuda:2, cuda:3；westd-34685 GPU 白名单: cuda:0, cuda:1, cuda:2, cuda:3\n- westd-34685 cuda:3 物理卡死（100% util / 0 MiB），不可用，需重启实例才能恢复\n- WANDB_MODE=disabled（所有 vanilla/occ 实验），cron 系统会因\"无 W&B metrics\"误报 failed——必须 SSH 检查 checkpoint 和 log 判断真实状态\n- checkpoint 每个 ~15GB，westd-10894 磁盘 51% 已用（126G/250G），提交新实验前必须检查磁盘\n- cleanup_checkpoints.sh 已被 kill（之前误删 vanilla_s2 的 25000_chkpt 导致崩溃），不要重新启动\n- occ_index.json 正确格式: `\"demos\": {\"demo_0\": traj_len, ...}`，不是 `\"demo_ids\": [list]`\n- eval 时 `MUJOCO_EGL_DEVICE_ID=X` 必须匹配物理 GPU 编号\n\n### 2. 🖥️ 基础设施快照\n- **westd-10894**: conda env `occsafe`，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`\n  - 项目路径: /root/occsafe_vla/openvla-oft\n  - 数据: /root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops (~25000 episodes)\n  - 模型: /root/autodl-tmp/models/openvla-7b\n  - Checkpoints: /root/autodl-tmp/checkpoints/vanilla_s{0,1,2}/\n  - 活跃进程: PID 225562 (mvp_vanilla_s2, cuda:2), PID 226827 (monitor_and_eval.sh, 已运行 2h+)\n  - 磁盘: 126G/250G used (51%)\n- **westd-34685**: 同样 conda env `occsafe`，同样项目结构\n  - Checkpoints: /root/autodl-tmp/checkpoints/occ_s{0,1,2}/\n  - occ 数据: /root/occsafe_vla/occ_data\n  - 活跃进程: PID 27667 (mvp_occ_s0, cuda:0), PID 28827 (mvp_occ_s1, cuda:1), PID 29970 (mvp_occ_s2, cuda:2)\n  - 磁盘: 111G/350G used (32%)\n\n### 3. 📊 当前状态\n我刚启动 session，收到 mvp_vanilla_s1 失败的 cron 回调。初步分析发现 s0 和 s1 的退出时间与预计完成时间高度吻合（差 <10min），极可能训练已完成但因 WANDB_MODE=disabled 被误标 failed。\n\n**Registry 状态：**\n- mvp_vanilla_s0: DONE/failed (EXIT_CODE=143, 22:42 UTC) — 可能实际已完成\n- mvp_vanilla_s1: DONE/failed (EXIT_CODE=143, 22:47 UTC) — 可能实际已完成\n- mvp_vanilla_s2: RUNNING (PID 225562, cuda:2, resume from 35K, ETA ~00:35 UTC May 21)\n- mvp_occ_s0/s1/s2: RUNNING (westd-34685, cuda:0/1/2, ~40% 进度, ETA ~05:50 UTC May 21)\n\n**等待中：**\n- Worker `worker_diagnose_mvp_vanilla_s0_s1_20260520T225117` 正在 SSH 诊断 s0/s1 真实状态（检查 checkpoint、log、monitor 输出）\n- monitor_and_eval.sh (PID 226827) 仍在 westd-10894 上运行，可能已触发 eval\n\n### 4. 📋 待办（条件触发式）\n- 诊断 Worker 回调 → 若 checkpoint 50000 存在：将 s0/s1 conclusion 改为 success，记录 metrics，检查 monitor 是否已启动 eval；若不存在：按实际 last_step 判断是否值得 resume\n- vanilla s0/s1 确认完成 → 立即启动正式 eval（20 rollouts/task, 10 tasks），用 cuda:0 和 cuda:1（已空闲）\n- vanilla s2 完成 cron 回调 → 同样检查 checkpoint，启动 eval\n- 三个 vanilla eval 全部完成 → 汇总 TSR/CAR，写入 registry，等 occ 完成做对比\n- occ s0/s1/s2 完成 (~05:50 UTC) → 启动 occ eval，注意 occ 之前有 occ_index.json 格式问题（已修复但需确认实际训练是否用了修复后的数据）\n- 全部 6 组 eval 完成 → MVP gate 判定（CAR ≥5% + TSR ≤3% 下降），汇报 Director\n\n### 5. 🎯 战略上下文\n- 核心研究问题: BEV occupancy auxiliary supervision 能否让 VLA 产生 emergent collision avoidance\n- MVP 设计: 3×2 factorial (vanilla vs occ, 3 seeds each)，单 suite (LIBERO-Spatial), 50K steps\n- Mid-eval baseline (vanilla s0 @ 35K): TSR=90.5%, CAR=69.5%；vanilla s1 @ 35K: TSR=86%, CAR=70%\n- CAR ~70% 主要由布局决定（T3/T5/T6 高碰撞，T7/T8/T9 安全），occ 需在 T3/T5/T6 上提升 CAR 才能证明假设\n- Ceiling effect 风险: 3 个 task CAR=0%，即使 occ 全改善最大提升仅 +6pp\n- 目标会议: AAAI 2027 (Abstract Jul 21, Paper Jul 28, ~10 周)\n- Framing 策略: Option C（系统论文 OccSafe-VLA）为主，Option B（分析论文）为 fallback\n- 易错点: s0/s1 的 \"failed\" 很可能是 false positive——下一个\"你\"不要急着重跑，先确认 checkpoint 和 monitor 状态\n- 易错点: occ 实验之前有 100% fallback 全零 label 问题（occ_index.json 格式），虽然标记已修复，但当前跑的 occ s0/s1/s2 是在修复后重启的，需要确认 occ_loss 是否健康下降（之前记录 0.27→0.012，说明修复生效了）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-1779381502.md"
+}

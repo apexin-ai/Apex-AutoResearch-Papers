@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c0d02e3ba1156ef31c5",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops kill cutoff s2 eval",
+  "task_key": "worker_ops_kill_cutoff_s2_eval_20260523T093405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_cutoff_s2_eval_20260523T093405_result.json",
+    "occurrence": 1,
+    "bytes": 453,
+    "sha256": "781d4e6ade0829ac125656ea003f217d03c60611033877ddd09a136643ded084"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 390231 已终止，**cuda:0 已完全释放**（0 MiB / 97887 MiB，0% 利用率）。\n\n当前 GPU 状态：\n\n| GPU | 显存占用 | 利用率 | 状态 |\n|-----|---------|--------|------|\n| 0 | 0 MiB / 97887 MiB | 0% | **空闲** |\n| 1 | 62203 MiB / 97887 MiB | 99% | 占用 (PID 366165) |\n| 2 | 62203 MiB / 97887 MiB | 60% | 占用 (PID 366378) |\n| 3 | 64197 MiB / 97887 MiB | 99% | 占用 (PID 366723) |\n\ncuda:0 可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-cutoff-s2-eval.md"
+}

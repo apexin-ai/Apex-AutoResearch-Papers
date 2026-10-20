@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b0dd90a4a1b16c19f37",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ssh check all training progress",
+  "task_key": "worker_ssh_check_all_training_progress_20260525T193040",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_all_training_progress_20260525T193040_result.json",
+    "occurrence": 1,
+    "bytes": 1756,
+    "sha256": "b481c8dcceba039c7657c4c8a7adb832fc3e7f250c40206aae98cf326d7c17b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| 服务器:GPU | 实验 | 当前step (local) | Global step | 总step | 进度% | 剩余时间 |\n|-----------|------|-----------------|-------------|--------|-------|---------|\n| **westd-10894** | | | | | | |\n| 10894:0 | cutoff_45k_s2_v2 | 7022 | 7022 | 50005 | 14.0% | ~11.0h |\n| 10894:1 | mvp_occ_s3_v2 | 6616 | 26616 | 50005 | 53.2% | ~6.0h |\n| 10894:2 | full_occ_ln_s3_v2 | 6809 | 26809 | 50005 | 53.6% | ~5.9h |\n| 10894:3 | ablation_occ_detach_s3_v2 | 6822 | 26822 | 50005 | 53.6% | ~5.9h |\n| **westd-34685** | | | | | | |\n| 34685:0 | detach_bn_v2_s0 | 6932 | 6932 | 50005 | 13.9% | ~11.0h |\n| 34685:1 | detach_bn_v2_s1 | 6979 | 6979 | 50005 | 14.0% | ~10.9h |\n| 34685:2 | detach_bn_v2_s2 | 6968 | 6968 | 50005 | 13.9% | ~11.0h |\n| 34685:3 | full_occ_bn_v2_s1 | 5436 | 5436 | 50005 | 10.9% | ~11.4h |\n\n**汇总：**\n- 所有 8 个实验均在正常训练中，速度稳定 ~1.08 it/s\n- 3 个 resume 实验（mvp_occ_s3_v2 / full_occ_ln_s3_v2 / ablation_occ_detach_s3_v2）进度过半，目标 local 30005 步（global 50005），预计 ~6h 后完成\n- 5 个从头训练实验进度 ~11-14%，预计 ~11h 后完成\n- full_occ_bn_v2_s1 比同批实验晚启动约 25 分钟，略落后\n\n**最近 loss 快照（step 6800-7000）：**\n| 实验 | occ_loss | action_loss |\n|------|----------|-------------|\n| cutoff_45k_s2_v2 | 0.0120 | 0.1572 |\n| mvp_occ_s3_v2 | 0.0075 | 0.0747 |\n| full_occ_ln_s3_v2 | 0.0079 | 0.0967 |\n| ablation_occ_detach_s3_v2 | 0.0068 | 0.0708 |\n| detach_bn_v2_s0 | 0.0100 | 0.1738 |\n| detach_bn_v2_s1 | 0.0112 | 0.1641 |\n| full_occ_bn_v2_s1 (step 5400) | 0.0143 | 0.1182 |\n\nResume 实验的 loss 明显低于从头训练的，符合预期（它们已经训练了 26K+ global steps）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-all-training-progress.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c7c903fe4a995492a0b9",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra westd 10894 ablation failure investigation",
+  "task_key": "worker_infra_westd-10894-ablation-failure-investigation_20260521T104137",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westd-10894-ablation-failure-investigation_20260521T104137_result.json",
+    "occurrence": 1,
+    "bytes": 2793,
+    "sha256": "92d07017aeeb93dcc534b0c59b8b50f7306b693377c55e943f83d6654b5e5893"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "情况和 Cron 报告不同。让我汇总。\n\n## 调查结果\n\n### Cron 报告有误 — 4 个进程中只有 1 个真正失败\n\n| 实验 | PID | GPU | 状态 | 当前 step | 说明 |\n|------|-----|-----|------|-----------|------|\n| ablation_occ_detach_s0 | 515223 | cuda:0 | **挂死** | 死于 ~12500 | 磁盘满时保存 checkpoint 失败，进程未退出，卡住占 62GB 显存 |\n| ablation_random_occ_s0 | 494454 | cuda:1 | **存活** | ~12350 | 刚保存 step 12500 checkpoint，运行正常 |\n| ablation_occ_detach_s1 | 517869 | cuda:2 | **存活** | ~822 | 正在训练，~1 it/s（有周期性 I/O 尖峰降到 3-6 s/it） |\n| ablation_random_occ_s1 | 519025 | cuda:3 | **存活** | ~821 | 正在训练，~1 it/s（同上） |\n\n### 失败原因\n\n**ablation_occ_detach_s0** — 唯一真正失败的实验：\n- 原因：`safetensors_rust.SafetensorError: I/O error: No space left on device (os error 28)`\n- 发生在 step 12500 保存 checkpoint 时（merge LoRA → save_pretrained）\n- 进程状态 Ssl（sleep），占 62GB GPU 显存但无任何输出，**需要 kill**\n- 最后成功保存的 checkpoint：step 10000\n\n**ablation_occ_detach_s1 和 ablation_random_occ_s1** — Cron 误报，实际仍在训练。可能是 Cron 监控的是 wrapper 脚本 PID 而非 python 进程 PID。\n\n### 磁盘状态\n\n```\n/dev/md0  250G  111G  140G  45%  /root/autodl-tmp\n```\n\n### Checkpoint 空间分布\n\n| 目录 | 大小 | 内容 |\n|------|------|------|\n| vanilla_s0 | 15G | latest + 50000_chkpt（已完成） |\n| vanilla_s1 | 15G | latest + 50000_chkpt（已完成） |\n| vanilla_s2 | 15G | latest + 50000_chkpt（已完成） |\n| ablation_occ_detach_s0 | 15G | latest + 10000_chkpt |\n| ablation_random_occ_s0 | 15G | latest + 12500_chkpt |\n| ablation_occ_detach_s1 | 4K | 仅 dataset_statistics（还没到第一个 save_freq=2500）|\n| ablation_random_occ_s1 | 4K | 同上 |\n| **总计** | **~75G** | |\n\n### I/O 尖峰问题\n\ns1 实验的训练速度周期性从 ~1 it/s 暴跌到 3-8 s/it。时间点与其他实验保存 checkpoint 吻合——4 个实验共享同一块磁盘，checkpoint save（merge 全模型 ~7.5GB）会造成严重 I/O 争抢。\n\n### 建议\n\n1. **立即 kill PID 515223**（ablation_occ_detach_s0 挂死进程），释放 cuda:0 的 62GB 显存\n2. **重启 ablation_occ_detach_s0**，从 step 10000 resume\n3. **可安全清理的 checkpoint**（如果 vanilla 评估已完成）：\n   - `vanilla_s0/s1/s2` 中的 `openvla-7b+...--image_aug/` 目录（非 `--50000_chkpt`）是训练时的中间状态，每个约 7.5G，可删除释放 ~22.5G\n4. 当前磁盘 140G 空余足够，但 4 个 ablation 实验全部跑完（各保存 ~20 个 checkpoint × 清理策略）需要注意空间规划"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westd-10894-ablation-failure-investigation.md"
+}

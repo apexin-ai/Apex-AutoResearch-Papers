@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "808c63d988960bec294c",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ssh adjust cleanup interval both",
+  "task_key": "worker_ssh_adjust_cleanup_interval_both_20260526T040353",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_adjust_cleanup_interval_both_20260526T040353_result.json",
+    "occurrence": 1,
+    "bytes": 125,
+    "sha256": "89b1c7342d5afb1da7f97ce331a2e3bdb28df72570d18a709e824e522b3b5fc7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n10894: daemon interval 7200→1800, PID=86890 ✅\n34685: daemon interval 7200→1800, PID=39450 ✅\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-adjust-cleanup-interval-both.md"
+}

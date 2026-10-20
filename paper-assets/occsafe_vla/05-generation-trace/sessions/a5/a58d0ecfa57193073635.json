@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a58d0ecfa57193073635",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval cutoff s0 eval",
+  "task_key": "worker_eval_cutoff_s0_eval_20260523T005446",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cutoff_s0_eval_20260523T005446_result.json",
+    "occurrence": 1,
+    "bytes": 374,
+    "sha256": "e604028097281b502288ac97a9ec66386285ee2b2ebe1cf1556ea0be8af27ccf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cutoff_s0_eval 已经在运行中，无需重复启动。\n\n**状态总结：**\n- PID 286258，08:53 启动，CUDA_VISIBLE_DEVICES=0，已跑约 9 分钟\n- checkpoint: `openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt`\n- 50 rollouts, seed 42, libero_spatial\n- registry 已注册 hypothesis 和 parent=cutoff_s0"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cutoff-s0-eval.md"
+}

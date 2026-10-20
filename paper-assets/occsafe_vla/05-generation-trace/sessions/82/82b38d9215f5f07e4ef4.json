@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82b38d9215f5f07e4ef4",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "fix 34685 resume restart",
+  "task_key": "worker_fix_34685-resume-restart_20260527T212534",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_34685-resume-restart_20260527T212534_result.json",
+    "occurrence": 1,
+    "bytes": 1909,
+    "sha256": "023ac5c237edeb4c3c9bce8ed175c307acdf0266a64a0cbdf62d0b9c04578b1d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**两个实验已经在正确 resume，不需要 kill。**\n\n验证结果：\n\n**detach_ln_v2_s2** (PID 26152, cuda:0):\n- 命令已包含 `--resume True --resume_step 15000`\n- `--vla_path` 指向 `...--15000_chkpt` checkpoint 目录\n- 日志确认加载了 `proprio_projector--15000`, `action_head--15000`, `occ_head--15000`\n\n**vanilla_object_s0** (PID 26367, cuda:1):\n- 命令已包含 `--resume True --resume_step 10000`\n- `--vla_path` 指向 `...--10000_chkpt` checkpoint 目录\n- 日志确认加载了 `proprio_projector--10000`, `action_head--10000`\n\ntqdm 显示 `0/50005` 是正常行为——`gradient_step_idx` 从 0 计数，但 `log_step = resume_step + gradient_step_idx`（finetune.py:1235）。\n\n**注意事项：** `--max_steps 50005` 未针对 resume 调整，两个实验实际会训练 50005 个额外 gradient step（detach_ln_v2_s2 总计 65005 步，vanilla_object_s0 总计 60005 步）。如果目标是 50005 总步数，需要 kill 重启并调整 max_steps。\n\n全 GPU 状态：4/4 活跃（cuda:0 detach_ln_v2_s2, cuda:1 vanilla_object_s0, cuda:2 full_occ_ln_v2_s3, cuda:3 detach_ln_v2_s3）。\n\n```\nfinetune.py resume 机制: --resume True --resume_step <N>，vla_path 指向 checkpoint 目录。\n  load_checkpoint() 读取 {vla_path}/{module}--{step}_checkpoint.pt\n  log_step = resume_step + gradient_step_idx\n  optimizer/scheduler 不保存，resume 后重新初始化\n\ndetach_ln_v2_s2:\n  状态: 已正确 resume，无需操作\n  resume checkpoint: ...--15000_chkpt\n  起始 step: 15000（log_step = 15000 + gradient_step_idx）\n  训练中: 是（~300 gradient steps completed）\n\nvanilla_object_s0:\n  状态: 已正确 resume，无需操作\n  resume checkpoint: ...--10000_chkpt\n  起始 step: 10000（log_step = 10000 + gradient_step_idx）\n  训练中: 是（~294 gradient steps completed）\n\n全 GPU 状态: 4/4 活跃\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-34685-resume-restart.md"
+}

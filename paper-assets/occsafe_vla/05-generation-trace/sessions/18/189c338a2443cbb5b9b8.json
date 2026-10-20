@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "189c338a2443cbb5b9b8",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval collect s0 40k 45k results",
+  "task_key": "worker_eval_collect_s0_40k_45k_results_20260521T013450",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect_s0_40k_45k_results_20260521T013450_result.json",
+    "occurrence": 1,
+    "bytes": 754,
+    "sha256": "3b34567d72afc453bd48124123f0e99a54c22e35a8a275070e11a3361d1ea296"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 均已完成。**vanilla_s0 完整 learning curve：**\n\n| Step | TSR | CAR | Collisions/200 |\n|------|-----|-----|-----------------|\n| 35K | 90.5% | 69.5% | 61 |\n| **40K** | **95.0%** | **70.0%** | **60** |\n| **45K** | **95.5%** | **74.5%** | **51** |\n| 50K | 91.0% | 77.5% | 45 |\n\n趋势：\n- **TSR** 在 40K-45K 达到峰值 (95-95.5%)，50K 回落到 91%——可能出现轻微过拟合\n- **CAR** 单调递增 69.5% → 70% → 74.5% → 77.5%，安全性持续改善\n- **Collisions** 单调递减 61 → 60 → 51 → 45\n\nTSR 最佳 checkpoint 是 45K（95.5% TSR + 74.5% CAR），综合最优可能也是 45K（TSR 高且 CAR 已较好）。50K 的 CAR/collisions 最优但 TSR 下降了 4.5 个百分点。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-s0-40k-45k-results.md"
+}

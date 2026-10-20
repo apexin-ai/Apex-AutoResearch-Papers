@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74b1c50328008edfa35f",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis detach ln s0 eval",
+  "task_key": "worker_analysis_detach_ln_s0_eval_20260524T082524",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_detach_ln_s0_eval_20260524T082524_result.json",
+    "occurrence": 1,
+    "bytes": 862,
+    "sha256": "487971a0888ac843b7f125b8da55fac2ac93b250b537ab47c4806678e25cefb3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n## 结果\n\n| | CAR | TSR |\n|--|-----|-----|\n| **Detach+LN** | **0.792** | **0.914** |\n| Vanilla | 0.780 | 0.713 |\n| Full OCC | 0.797 | 0.747 |\n| Detach OCC (BN) | 0.746 | 0.647 |\n\n**判定：Scenario A confirmed。**\n\nCAR=0.792 超过 Vanilla (0.780)，接近 Full OCC (0.797)。将 Detach OCC 头的 BatchNorm 替换为 LayerNorm 完全恢复了碰撞规避能力（Δ=+0.046 vs Detach BN）。这证实了 Detach 退化的根因是 BN 推理时 running statistics 失配，而非 gradient flow 中断。\n\nTSR=0.914 远超所有 baseline，这是意外收获——Detach+LN 不仅不伤害任务性能，反而大幅提升。\n\n唯一失败点：T5（bowl on ramekin）CAR=0.020，该任务需精确抬起堆叠物体，对所有方法都困难。\n\nRegistry 已更新为 DONE(success)，分析报告已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-detach-ln-s0-eval.md"
+}

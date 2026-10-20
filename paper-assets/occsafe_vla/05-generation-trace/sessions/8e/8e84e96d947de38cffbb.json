@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8e84e96d947de38cffbb",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ssh check training 10894",
+  "task_key": "worker_ssh_check-training-10894_20260528T223243",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-training-10894_20260528T223243_result.json",
+    "occurrence": 1,
+    "bytes": 1242,
+    "sha256": "a46a5c57eaa89aa32ae22a9d6146cf52febfb28c6d9b69b0fff3f73b417fa701"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## random_occ_v2_s0 训练状态报告\n\n| 项目 | 状态 |\n|------|------|\n| **进程** | **存活** (PID 33308, 已运行 3h01m) |\n| **启动时间** | 2026-05-29 03:31:55 UTC |\n| **当前 step** | 11,132 / 50,005 (22%) |\n| **训练速度** | ~1.04 it/s |\n| **已用时间** | ~3h00m |\n| **预计剩余** | ~10h24m |\n| **预计完成时间** | ~2026-05-29 17:00 UTC (北京时间 5月30日 01:00) |\n\n### Loss 趋势\n| Step | action_loss | occ_loss | depth_loss |\n|------|------------|----------|------------|\n| 0 | 0.6836 | 0.0000 | 0.0000 |\n| 11,100 | 0.1338 | 0.0000 | 0.0000 |\n\n### Checkpoint\n- `10000_chkpt/` — ~15GB，包含 model safetensors + LoRA adapter (463M) + action_head (289M) + occ_head (2.4M) + proprio_projector (65M)\n\n### 注意事项\n1. **运行时间与预期不符**：你说 16-18h 前启动，但进程实际只跑了 3h。这说明原始进程可能崩溃后被重新启动了，或者是重新提交的任务。\n2. **occ_loss 始终为 0.0000**：`--use_occ_head True --random_occ True` 配置下 occ_loss 全程为零，需确认这是否符合预期。\n3. **DDL 风险**：C003 要求 2026-05-28 12:00 UTC 前完成，该 deadline 已过。当前实验预计还需 ~10h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-training-10894-copy-2.md"
+}

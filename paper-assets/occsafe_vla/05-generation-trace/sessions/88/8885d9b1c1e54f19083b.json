@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8885d9b1c1e54f19083b",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval vanilla s0 midtrain 20r collect2",
+  "task_key": "worker_eval_vanilla_s0_midtrain_20r_collect2_20260520T200031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_vanilla_s0_midtrain_20r_collect2_20260520T200031_result.json",
+    "occurrence": 1,
+    "bytes": 51,
+    "sha256": "4d1802d608b89c4831aa6410c87ddc9d3e479b67da7a1cdf94c4b9bc3719e6ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Waiting 3 minutes before next check."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-vanilla-s0-midtrain-20r-collect2.md"
+}

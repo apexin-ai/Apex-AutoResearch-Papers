@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e727fddd3f324e49f562",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ssh verify 10894 experiments",
+  "task_key": "worker_ssh_verify_10894_experiments_20260525T183123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify_10894_experiments_20260525T183123_result.json",
+    "occurrence": 1,
+    "bytes": 1438,
+    "sha256": "1607c79cd3dd5814c451dcacbd8fac74ad52b3a400a1295f0a7d8fdcd9a6ba8d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 10894 实验状态报告\n\n| exp_id | 状态 | GPU | 当前 step | 进度 | action_loss | occ_loss | 速度 | 剩余时间 |\n|--------|------|-----|-----------|------|-------------|----------|------|----------|\n| cutoff_45k_s2_v2 | RUNNING | cuda:0 (99%, 62G) | 3400/50005 | 7% | 0.2061 | 0.0126 | ~1.08 it/s | ~12.0h |\n| mvp_occ_s3_v2 | RUNNING | cuda:1 (99%, 62G) | 3000/50005 | 6% | 0.1123 | 0.0086 | ~1.08 it/s | ~12.1h |\n| full_occ_ln_s3_v2 | RUNNING | cuda:2 (99%, 63G) | 3200/50005 | 6% | 0.0947 | 0.0099 | ~1.08 it/s | ~12.0h |\n| ablation_occ_detach_s3_v2 | RUNNING | cuda:3 (99%, 62G) | 3200/50005 | 6% | 0.0879 | 0.0095 | ~1.08 it/s | ~12.0h |\n\n## 详细信息\n\n**进程存活确认**：4 个 PID 全部存活，uptime 48-55 分钟（非 6h，可能有排队/启动延迟）。\n\n**注意事项**：\n- 3 个 resume 实验的进度条从 0 开始计数（已知 M052 bug：batch_idx 从 0 重新计数）。如果代码用 global_step 判断终止（20000 + batch_idx ≥ 50005），实际只需训练 30005 步，剩余 ~7h。如果用 batch_idx 判断，则跑满 50005 步，剩余 ~12h。\n- cutoff_45k_s2_v2 从头训练，step=0 初始 action_loss=0.6133 → step=3400 降到 0.2061，收敛正常。\n- resume 实验初始 action_loss 较低（0.08-0.10）符合预期（20K checkpoint），但 3000 步后略有上升（0.09-0.11），可能是 lr scheduler 重置导致，需持续观察。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-10894-experiments.md"
+}

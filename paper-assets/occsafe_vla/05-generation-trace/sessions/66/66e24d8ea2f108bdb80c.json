@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "id": "66e24d8ea2f108bdb80c",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "code condition b dryrun",
+  "task_key": "worker_code_condition-b-dryrun_20260520T084232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_condition-b-dryrun_20260520T084232.log",
+    "occurrence": 1,
+    "bytes": 1490309,
+    "sha256": "d442a6542cb5b11a3a1af4555c800a2517e55d813f5a4fcad4bf18715b4887ac"
+  },
+  "statistics": {
+    "messages": 575,
+    "user_turns": 2,
+    "tool_calls": 196,
+    "roles": {
+      "log": 1,
+      "system": 49,
+      "record": 1,
+      "assistant": 129,
+      "tool_call": 196,
+      "tool_result": 196,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 52,
+      "chunks": [
+        {
+          "path": "66e24d8ea2f108bdb80c-part-0001.json",
+          "message_count": 52
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 478,
+      "chunks": [
+        {
+          "path": "66e24d8ea2f108bdb80c-part-0001.json",
+          "message_count": 128
+        },
+        {
+          "path": "66e24d8ea2f108bdb80c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "66e24d8ea2f108bdb80c-part-0003.json",
+          "message_count": 170
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 45,
+      "chunks": [
+        {
+          "path": "66e24d8ea2f108bdb80c-part-0003.json",
+          "message_count": 10
+        },
+        {
+          "path": "66e24d8ea2f108bdb80c-part-0004.json",
+          "message_count": 35
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-condition-b-dryrun.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65da1480fc3c39040ee1",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "fix 34685 preventive cleanup",
+  "task_key": "worker_fix_34685_preventive_cleanup_20260528T014617",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_34685_preventive_cleanup_20260528T014617_result.json",
+    "occurrence": 1,
+    "bytes": 413,
+    "sha256": "53d337a170b074e915b150df891af52b350ee326f550740a7c31dc1ec153e746"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n| 项目 | 值 |\n|------|-----|\n| **清理前** | 300G used / 51G free (86%) |\n| **删除量** | ~135G (9 × 15G) |\n| **清理后** | 166G used / **185G free (48%)** |\n\n**剩余 checkpoint 目录：**\n- `detach_ln_v2_s2/`\n- `detach_ln_v2_s3/`\n- `full_occ_ln_v2_s0c/`\n- `full_occ_ln_v2_s3/`\n- `vanilla_object_s0/`\n\n目标 ≥100G free 已达成（185G available）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-34685-preventive-cleanup.md"
+}

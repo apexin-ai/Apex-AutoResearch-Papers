@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "906e991cb7bd25b1d9a4",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra disk audit westd10894",
+  "task_key": "worker_infra_disk_audit_westd10894_20260521T024322",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_disk_audit_westd10894_20260521T024322_result.json",
+    "occurrence": 1,
+    "bytes": 1356,
+    "sha256": "e654483673a0a6987bda01e9710402aaa8b69ecd2fa9fd684dffe40e8e95592c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据齐全。汇总如下：\n\n---\n\n```\n磁盘总况: 230G / 250G (92% used), 21G 可用\n\nCheckpoint 目录 (总计 193G):\n\nvanilla_s0 (60G):\n  - 35000_chkpt: 15G  ✅ 保留\n  - 40000_chkpt: 15G  🗑 可删\n  - 45000_chkpt: 15G  🗑 可删\n  - 50000_chkpt: 15G  ✅ 保留\n\nvanilla_s1 (60G):\n  - 35000_chkpt: 15G  ✅ 保留\n  - 40000_chkpt: 15G  🗑 可删\n  - 45000_chkpt: 15G  🗑 可删\n  - 50000_chkpt: 15G  ✅ 保留\n\nvanilla_s2 (75G):\n  - 30000_chkpt: 15G  ⚠️ 额外checkpoint，不在策略范围内\n  - 35000_chkpt: 15G  ✅ 保留\n  - 40000_chkpt: 15G  🗑 可删\n  - 45000_chkpt: 15G  🗑 可删\n  - 50000_chkpt: 15G  ✅ 保留\n\nocc_dryrun:  4K (空壳)\nocc_dryrun2: 4K (空壳)\n\n可清理项（按策略: 保留 50K+35K，删 40K+45K）:\n  - vanilla_s0/...--40000_chkpt: 15G\n  - vanilla_s0/...--45000_chkpt: 15G\n  - vanilla_s1/...--40000_chkpt: 15G\n  - vanilla_s1/...--45000_chkpt: 15G\n  - vanilla_s2/...--40000_chkpt: 15G\n  - vanilla_s2/...--45000_chkpt: 15G\n  预计释放: ~90G\n\n需要 Director 确认:\n  - vanilla_s2/...--30000_chkpt (15G): 额外的30K checkpoint，是否也删？\n  - occ_dryrun / occ_dryrun2: 空目录，是否清理？\n\n其他大文件:\n  - models:    15G\n  - data:      2.0G\n  - HF cache:  148K (可忽略)\n  - occsafe_vla 代码: 211M\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-disk-audit-westd10894.md"
+}

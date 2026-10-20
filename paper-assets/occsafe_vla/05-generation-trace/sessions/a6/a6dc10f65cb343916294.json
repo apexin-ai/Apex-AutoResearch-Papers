@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6dc10f65cb343916294",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval d051 batch1 34685",
+  "task_key": "worker_eval_d051_batch1_34685_20260526T073351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_d051_batch1_34685_20260526T073351_result.json",
+    "occurrence": 1,
+    "bytes": 557,
+    "sha256": "9e8de8f939501cddf869780817132e960067f363fc3f4fb919acdf924a525e21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部确认。\n\n## 结果\n\n| 实验 | 状态 | GPU | Eval PID |\n|------|------|-----|----------|\n| detach_bn_v2_s0 | eval 已启动 | cuda:0 | 50552 |\n| detach_bn_v2_s1 | eval 已启动 | cuda:1 | 50755 |\n| detach_bn_v2_s2 | eval 已启动 | cuda:2 | 51018 |\n| full_occ_bn_v2_s1 | **仍在训练** | cuda:3 | — |\n\n日志路径：`~/runs/occsafe_vla/<EXP>_eval.log`\n\n**未启动**：full_occ_bn_v2_s1 的 50000 checkpoint 尚不存在，训练仍在 cuda:3 上运行（PID 7427），需后续训练完成后单独启动 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-d051-batch1-34685.md"
+}

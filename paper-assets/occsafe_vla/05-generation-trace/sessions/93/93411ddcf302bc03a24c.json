@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93411ddcf302bc03a24c",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "debug s0 50r collision anomaly",
+  "task_key": "worker_debug_s0-50r-collision-anomaly_20260521T155224",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_s0-50r-collision-anomaly_20260521T155224_result.json",
+    "occurrence": 1,
+    "bytes": 2133,
+    "sha256": "7689b2691da45bf7ae4d1b5e4dd3a1c488b0bcbecb0c206c878c764ebcca19cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**确认根因。** s0 50r 结果中所有 episode 的 `max_disp` 全是 `0.0`——碰撞检测完全失效。\n\n## 诊断结论\n\n### 1. 根因：`eval_safelibero.py` 的 ObstacleTracker 有 stale sim 引用 bug\n\n`eval_safelibero.py`（s0 50r 用的）第 131 行：\n```python\nself.sim = env.env.sim  # 构造时缓存 sim 引用\n```\n\n`evaluate_safelibero.py`（s2 50r 用的）第 147 行：\n```python\nself.env = env  # 存 env 引用，每次动态解析 sim\n```\n\n执行流程：\n1. `tracker = ObstacleTracker(env, ...)` → `self.sim = env.env.sim`（sim A）\n2. `run_episode()` → `env.reset()` → robosuite 创建新 sim（sim B），`env.env.sim` 指向 sim B\n3. `tracker.record_initial()` → 从 sim A（旧、冻结的）读位置\n4. `tracker.step(t)` → 从 sim A 读位置 → **永远和 initial 一样** → displacement = 0.0 → 永远不触发碰撞\n\n### 2. s0 和 s2 eval 的配置差异\n\n| | s0 50r | s2 50r |\n|---|---|---|\n| 脚本 | `/root/occsafe_vla/eval/eval_safelibero.py` | `/root/occsafe_vla/openvla-oft/vla-scripts/evaluate_safelibero.py` |\n| ObstacleTracker | `self.sim = env.env.sim`（stale 引用） | `self.env = env`（动态解析） |\n| 碰撞数据 | 全部 `max_disp: 0.0` | 有真实位移值（如 0.002597） |\n| episode 字段 | 无 `trajectory_length` | 有 `trajectory_length` |\n\n### 3. eval_safelibero.py vs evaluate_safelibero.py 差异\n\n除了上述 ObstacleTracker bug 外：\n- `eval_safelibero.py` 的 `except Exception: pass` 静默吞掉所有异常，不打 WARNING\n- `evaluate_safelibero.py` 打 WARNING 日志帮助调试\n- `evaluate_safelibero.py` 记录 `trajectory_length` 和 `per_episode` 汇总统计\n\n### 4. 修复方案\n\n**最简方案：** 用 `evaluate_safelibero.py` 重跑 s0 50r eval。这是已验证正确的脚本。\n\n**代码修复：** 如果还需要保留 `eval_safelibero.py`，改 ObstacleTracker 的 `__init__`：\n```python\n# 修改前\nself.sim = env.env.sim\n\n# 修改后\nself.env = env\n```\n并将 `record_initial()` 和 `step()` 中所有 `self.sim.data` 改为 `self.env.env.sim.data`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-s0-50r-collision-anomaly.md"
+}

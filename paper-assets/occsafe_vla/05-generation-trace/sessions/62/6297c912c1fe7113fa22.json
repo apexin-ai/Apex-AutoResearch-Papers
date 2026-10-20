@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6297c912c1fe7113fa22",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops verify resume step counter",
+  "task_key": "worker_ops_verify_resume_step_counter_20260524T180601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_resume_step_counter_20260524T180601_result.json",
+    "occurrence": 1,
+    "bytes": 630,
+    "sha256": "540cdd09a60640f5c58df8e60e1700c24d6f3947077f6a88c3540627f6b12e33"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：max_steps=50005 是绝对计数，不需要修改。**\n\n启动命令确认 `--resume true --resume_step 20000 --max_steps 50005`。源码逻辑：\n\n- `log_step = resume_step(20000) + gradient_step_idx` \n- 终止条件：`log_step == max_steps(50005)` → `gradient_step_idx == 30005` 时停止\n- 总训练步数：20000（已完成） + 30005（新增） = 50005 步\n\n进度条显示 `1/50005` 是因为 tqdm total 设为 max_steps 但从 0 开始计数，视觉上会有误导（最终停在 30005/50005），但**实际训练步数是正确的**。\n\n训练无需干预，继续运行即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-resume-step-counter.md"
+}

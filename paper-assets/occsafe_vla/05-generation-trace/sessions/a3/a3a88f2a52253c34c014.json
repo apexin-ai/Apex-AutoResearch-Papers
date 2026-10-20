@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3a88f2a52253c34c014",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops gradient analysis and cutoff45k check",
+  "task_key": "worker_ops_gradient_analysis_and_cutoff45k_check_20260524T112018",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gradient_analysis_and_cutoff45k_check_20260524T112018_result.json",
+    "occurrence": 1,
+    "bytes": 1527,
+    "sha256": "bd9d2b749c6329c7e8b88de100dc11f6ca52c6ce96be2250230f31c6ca457570"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务都启动正常。汇总如下：\n\n---\n\n### Step 1: cutoff_45k_s0_eval — DONE\n\n| 指标 | 值 |\n|------|------|\n| **TSR** | **0.896 (89.6%)** |\n| **CAR** | **0.764 (76.4%)** |\n\n- 结果文件: `/root/occsafe_vla/artifacts/safelibero_libero_spatial_20260524_184104.json`\n- Registry 已更新: status=DONE, conclusion=success\n\n### Step 2: gradient_analysis_mixed_seed — RUNNING (GPU 1)\n\nPID 821589, 5 条件串行执行中。Vanilla_s0 已在运行 (batch 40+/200)。\n\n| # | 条件 | Checkpoint | 状态 |\n|---|------|-----------|------|\n| 1 | Vanilla_s0 (seed 42) | `vanilla_retrain_s0/.../50000_chkpt` | 运行中 |\n| 2 | Full_OCC_s0 (seed 42) | `full_occ_retrain_s0/.../50000_chkpt` | 排队 |\n| 3 | Detach_LN_s0 (seed 42) | `detach_ln_s0/.../50000_chkpt` | 排队 |\n| 4 | Detach_BN_s2 (seed 44) | `ablation_occ_detach_s2/.../50000_chkpt` | 排队 |\n| 5 | Random_s2 (seed 44) | `ablation_random_occ_s2/.../50000_chkpt` | 排队 |\n\n输出目录: `/root/occsafe_vla/artifacts/gradient_analysis_mixed_seed/`\n\n注意：有一个非致命 WARNING (No occ index entry for one task)，预计不影响结果。\n\n### Step 3: vanilla_retrain_s0_eval — RUNNING (GPU 0)\n\nPID 823300, Task 0 rollout 2/50，刚启动。预计 ~45 分钟完成。\n\n### Checkpoint 路径全部确认存在 ✓\n\nwestd-34685 当前 GPU 分配:\n- GPU 0: vanilla_retrain_s0_eval\n- GPU 1: gradient_analysis_mixed_seed\n- GPU 2: cutoff_25k_s1 (训练中)\n- GPU 3: reverse_cutoff_s1 (训练中)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gradient-analysis-and-cutoff45k-check.md"
+}

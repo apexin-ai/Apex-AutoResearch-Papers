@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "586bc47b7d231112773c",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval ablation detach retrain s0 v2",
+  "task_key": "worker_eval_ablation_detach_retrain_s0_v2_20260525T031404",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_ablation_detach_retrain_s0_v2_20260525T031404_result.json",
+    "occurrence": 1,
+    "bytes": 273,
+    "sha256": "c8f44b0a12eee238061d6f52c24809deba5f86c2607fb13029d4fe15721c6fc4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`ablation_occ_detach_s0_retrain_eval` 已在 cuda:0 上完成，无需重复提交。\n\n**结果：TSR = 94.4%, CAR = 75.4%**\n\nRegistry 已更新为 DONE/success。结果文件：`/root/occsafe_vla/artifacts/safelibero_libero_spatial_20260525_103052.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-ablation-detach-retrain-s0-v2.md"
+}

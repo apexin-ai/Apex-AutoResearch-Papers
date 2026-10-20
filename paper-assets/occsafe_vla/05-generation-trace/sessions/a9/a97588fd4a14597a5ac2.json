@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a97588fd4a14597a5ac2",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "paper revision method results",
+  "task_key": "worker_paper_revision-method-results_20260527T022628",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_revision-method-results_20260527T022628_result.json",
+    "occurrence": 1,
+    "bytes": 351,
+    "sha256": "7567da51f6106b42fd2567e571506491cd6629d896cbfb07e5a9f3a933a57ad7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Edit applied successfully (method.tex v14).\n\nSummary:\n- **method.tex**: Changed \"pending completion of the v2 rebuild\" → \"; this will be updated to fully v2 data before final submission\" (line 49).\n- **results.tex**: Both caveats (Hedges' g CI crosses zero, η² mixed v1/v2 sample) were already present — no changes needed."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-revision-method-results.md"
+}

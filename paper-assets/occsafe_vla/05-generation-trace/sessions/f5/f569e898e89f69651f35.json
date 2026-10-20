@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f569e898e89f69651f35",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code eval anova batch prep",
+  "task_key": "worker_code_eval-anova-batch-prep_20260527T041435",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval-anova-batch-prep_20260527T041435_result.json",
+    "occurrence": 1,
+    "bytes": 1092,
+    "sha256": "6ae192c35ed1c582bd93a40367a4edd0ecb4570327abbf0b83ded131f22c21e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both paths work. The script handles balanced/unbalanced designs correctly.\n\n**Deliverables:**\n\n1. **Eval batch commands** → `artifacts/_project/data/eval_batch_commands.md`\n   - 8 complete nohup eval commands ready to copy-paste via `ssh_execute`\n   - Maps user names (e.g. `s1c_r2`) to actual checkpoint IDs (e.g. `full_occ_ln_v2_s1c`)\n   - Includes monitoring and result collection commands\n\n2. **`run_v2_anova.py`** → `artifacts/_project/data/run_v2_anova.py`\n   - 2x2 ANOVA (Type III SS) via statsmodels\n   - Partial eta-squared, Cohen's d, simple effects\n   - Bootstrap 95% CI (10000 resamples) for cell means and contrasts\n   - Comparison vs Vanilla baseline\n   - Supports `--json data.json` or built-in defaults\n   - Dry-run verified with current data (N=9, min cell n=1) and synthetic full data (N=16)\n\nKey checkpoint ID mapping (user name → actual):\n- `full_occ_ln_v2_s1c_r2` → `full_occ_ln_v2_s1c`\n- `full_occ_ln_v2_s2_r2` → `full_occ_ln_v2_s2`\n- `detach_ln_v2_s0c_r2` → `detach_ln_v2_s0c`\n- `detach_ln_v2_s1_35` → `detach_ln_v2_s1`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-anova-batch-prep.md"
+}

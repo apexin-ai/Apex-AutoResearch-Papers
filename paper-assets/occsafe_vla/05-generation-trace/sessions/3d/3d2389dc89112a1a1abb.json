@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d2389dc89112a1a1abb",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diag random occ v2 s0 loss",
+  "task_key": "worker_diag_random_occ_v2_s0_loss_20260528T223731",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_random_occ_v2_s0_loss_20260528T223731_result.json",
+    "occurrence": 1,
+    "bytes": 2562,
+    "sha256": "6222d6a3fa10aa1eb975f8ae51e921f0f1613630f63fff8da4f1b3b6f6d7bc67"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Root cause confirmed. Here's the diagnosis:\n\n## 1. 实际运行命令\n\n```bash\ntorchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py \\\n  --vla_path /root/autodl-tmp/models/openvla-7b \\\n  --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ \\\n  --dataset_name libero_spatial_no_noops \\\n  --use_l1_regression True --use_diffusion False --use_film False \\\n  --num_images_in_input 2 --use_proprio True --batch_size 8 \\\n  --learning_rate 5e-4 --num_steps_before_decay 100000 --max_steps 50005 \\\n  --save_freq 10000 --image_aug True --lora_rank 32 \\\n  --run_root_dir /root/autodl-tmp/checkpoints/random_occ_v2_s0 \\\n  --run_id_note random_occ_v2_s0 --seed 42 \\\n  --use_occ_head True --occ_detach False --occ_norm_type bn --random_occ True\n```\n\n**缺少 `--occ_data_dir /root/occsafe_vla/occ_data`。**\n\n## 2. 根因\n\n代码逻辑链：\n\n1. `occ_data_dir` 默认值为 `\"\"` (finetune.py:91)\n2. 空字符串传入 dataset → `if self.occ_data_dir:` 为 False (datasets.py:200) → occ labels 从未加载\n3. batch 中没有 `\"occ_labels\"` key → `if occ_head is not None and \"occ_labels\" in batch:` (finetune.py:484) 为 False → occ loss 计算整段跳过\n4. `random_occ` 标志只是 shuffle 已加载的 labels (finetune.py:491-492)，不会自己生成随机数据。没有 labels 可 shuffle → 无效果\n\n**occ_loss=0 是因为 occ 分支从未执行，不是因为 loss 计算结果恰好为零。**\n\n## 3. 实验是否有效\n\n**无效。** 当前实验等同于 vanilla 训练（无 OCC 辅助监督），不是 \"random OCC\" 消融实验。需要 kill 并重启。\n\n## 4. 正确的训练命令\n\n需要补上 `--occ_data_dir`：\n\n```bash\ntorchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py \\\n  --vla_path /root/autodl-tmp/models/openvla-7b \\\n  --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ \\\n  --dataset_name libero_spatial_no_noops \\\n  --use_l1_regression True --use_diffusion False --use_film False \\\n  --num_images_in_input 2 --use_proprio True --batch_size 8 \\\n  --learning_rate 5e-4 --num_steps_before_decay 100000 --max_steps 50005 \\\n  --save_freq 10000 --image_aug True --lora_rank 32 \\\n  --run_root_dir /root/autodl-tmp/checkpoints/random_occ_v2_s0 \\\n  --run_id_note random_occ_v2_s0 --seed 42 \\\n  --use_occ_head True --occ_detach False --occ_norm_type bn --random_occ True \\\n  --occ_data_dir /root/occsafe_vla/occ_data\n```\n\n是否现在 kill PID 33308 并用修正后的命令重启？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-random-occ-v2-s0-loss.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "789dd406546896580cec",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ssh check 10894 all experiments",
+  "task_key": "worker_ssh_check_10894_all_experiments_20260525T183632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_10894_all_experiments_20260525T183632_result.json",
+    "occurrence": 1,
+    "bytes": 2784,
+    "sha256": "11bcedc0851f5868fde38a2c1c6a28b829d66dc7f25b61d4e498e384ea9a18e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态报告\n\n**关键发现：这 4 个实验不是 12 小时前提交的——日志显示它们于 2026-05-26 ~01:36 UTC 启动，运行仅约 1 小时。**\n\n---\n\n### cutoff_45k_s2_v2: **STILL_RUNNING**\n- 进程状态：alive (PID 4212, uptime 1h00m)\n- 当前 step：3715/50005 (7.4%)\n- checkpoint：无（目录为空，尚未到第一个 save_freq=10000）\n- 最新 loss：step=3700, occ_loss=0.0118, action_loss=0.1504\n- 速度：~1.08 it/s\n- 预计完成：~May 26 14:30 UTC（剩余 ~12h）\n\n### mvp_occ_s3_v2: **STILL_RUNNING**\n- 进程状态：alive (PID 11641, uptime 53m)\n- 当前 step：3301/50005 (6.6%)\n- checkpoint：仅有之前训练的 10000_chkpt、20000_chkpt（v2 无新 checkpoint）\n- 最新 loss：step=3300, occ_loss=0.0197, action_loss=0.1226\n- 速度：~1.09 it/s\n- 预计完成：~May 26 14:30 UTC（剩余 ~12h）\n\n### full_occ_ln_s3_v2: **STILL_RUNNING**\n- 进程状态：alive (PID 6947, uptime 57m)\n- 当前 step：3504/50005 (7.0%)\n- checkpoint：仅有之前训练的 10000_chkpt、20000_chkpt（v2 无新 checkpoint）\n- 最新 loss：step=3500, occ_loss=0.0098, action_loss=0.1216\n- 速度：~1.08 it/s\n- 预计完成：~May 26 14:30 UTC（剩余 ~12h）\n\n### ablation_occ_detach_s3_v2: **STILL_RUNNING**\n- 进程状态：alive (PID 7161, uptime 57m)\n- 当前 step：3509/50005 (7.0%)\n- checkpoint：仅有之前训练的 10000_chkpt、20000_chkpt（v2 无新 checkpoint）\n- 最新 loss：step=3500, occ_loss=0.0174, action_loss=0.0962\n- 速度：~1.08 it/s\n- 预计完成：~May 26 14:30 UTC（剩余 ~12h）\n\n---\n\n### GPU 状态\n| GPU | 利用率 | 显存 | 状态 |\n|-----|--------|------|------|\n| cuda:0 | 99% | 62209/97887 MiB | 占用 (cutoff_45k_s2_v2) |\n| cuda:1 | 99% | 62203/97887 MiB | 占用 (mvp_occ_s3_v2) |\n| cuda:2 | 99% | 63037/97887 MiB | 占用 (full_occ_ln_s3_v2) |\n| cuda:3 | 98% | 62209/97887 MiB | 占用 (ablation_occ_detach_s3_v2) |\n\n**4 张 GPU 全部被占用，无空闲 GPU。**\n\n---\n\n### 需关注\n\n1. **时间线不匹配**：你说 12 小时前提交，但实际日志起始时间是 May 26 01:36 UTC（约 1 小时前）。进度条也从 step 0 开始。这些要么是重新提交的，要么之前的 run 崩溃后被重启了。之前的退出记录中没有这 4 个实验的 exit file，说明之前没有以这些 exp_id 提交过。\n\n2. **resume 实验的 max_steps=50005**：三个 resume 实验的进度条显示 X/50005，且 step 从 0 计数。初始 loss 很低（action_loss 0.08~0.10），确认是从 20K checkpoint resume 的。但 tqdm 显示要跑完 50005 步，意味着总步数可能是 20K + 50K = 70K 而非预期的 50K。如果实际意图是训练到 global 50K steps，可能需要确认代码逻辑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-10894-all-experiments.md"
+}

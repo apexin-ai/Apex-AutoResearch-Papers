@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "8680b7ea4ac8d25dc3ab",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "prep 34685 eval audit and setup",
+  "task_key": "worker_prep_34685_eval_audit_and_setup_20260527T152831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_34685_eval_audit_and_setup_20260527T152831.log",
+    "occurrence": 1,
+    "bytes": 600598,
+    "sha256": "6480a68077f8b2aa0118d62b1c6102b99d05f4700998d90988052ffb4e47ed61"
+  },
+  "statistics": {
+    "messages": 161,
+    "user_turns": 1,
+    "tool_calls": 64,
+    "roles": {
+      "log": 1,
+      "system": 10,
+      "assistant": 19,
+      "record": 1,
+      "tool_call": 64,
+      "tool_result": 64,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 21,
+      "chunks": [
+        {
+          "path": "8680b7ea4ac8d25dc3ab-part-0001.json",
+          "message_count": 21
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 140,
+      "chunks": [
+        {
+          "path": "8680b7ea4ac8d25dc3ab-part-0001.json",
+          "message_count": 139
+        },
+        {
+          "path": "8680b7ea4ac8d25dc3ab-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/prep-34685-eval-audit-and-setup.md"
+}

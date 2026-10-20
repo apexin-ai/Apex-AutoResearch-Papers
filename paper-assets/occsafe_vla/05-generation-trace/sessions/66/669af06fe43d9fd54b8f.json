@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "669af06fe43d9fd54b8f",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose 10894 status 20260527",
+  "task_key": "worker_diagnose_10894_status_20260527_20260527T102938",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_10894_status_20260527_20260527T102938_result.json",
+    "occurrence": 1,
+    "bytes": 986,
+    "sha256": "1c164efa2bb37a0f2e9ffe11f49215e805a27f55b8952d72daa68eacb26e79db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 10894 诊断结果 (2026-05-27 ~18:30 UTC)\n\n### GPU 状态 — 4 张全满\n| GPU | 利用率 | 实验 | PID | Step | 预计完成 |\n|-----|--------|------|-----|------|----------|\n| cuda:0 | 67% | full_occ_ln_v2_s1c_r2 | 481426 | 33835/50005 (68%) | ~22:50 UTC |\n| cuda:1 | 99% | full_occ_ln_v2_s2_r2 | 481643 | 33974/50005 (68%) | ~22:40 UTC |\n| cuda:2 | 99% | detach_ln_v2_s0c_r3 | **543255** | 5421/50005 (11%) | ~06:00 May 28 |\n| cuda:3 | 82% | **full_occ_ln_s4** (新!) | 553813 | 3534/50005 (7%) | ~06:40 May 28 |\n\n### 关键发现\n- **cuda:3 不是空闲的** — full_occ_ln_s4（seed=46, occ_detach=false）于 ~17:13 UTC 被启动\n- **full_occ_ln_v2_s0d 失败原因**：磁盘满 (os error 28)，step 20000 checkpoint 保存时 `backend_tokenizer.save()` 失败\n- **磁盘已恢复**：/root/autodl-tmp 从 100% 降到 45%（139G 可用），checkpoints 总计 90G。空间充足\n- **所有 4 个实验均在 DDL (May 28 12:00 UTC) 前完成**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-10894-status-20260527.md"
+}

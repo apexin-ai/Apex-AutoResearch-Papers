@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c35f11e8e38616deecb6",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ssh check training 34685",
+  "task_key": "worker_ssh_check-training-34685_20260528T223237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-training-34685_20260528T223237_result.json",
+    "occurrence": 1,
+    "bytes": 1395,
+    "sha256": "ab7292e5dd104690b68ad0b87d0cebb8103df06c6590f4f668f70f3d9a312ffe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## full_occ_bn_v2_s2_r2 状态汇总\n\n| 项目 | 状态 |\n|------|------|\n| **进程** | ALIVE, PID 19218, 已运行 3h01m |\n| **当前 step** | 11006 / 50005 (**22%**) |\n| **速度** | ~1.02 it/s |\n| **已用时间** | 3h00m |\n| **预计剩余** | ~10.7h |\n| **预计完成时间** | ~2026-05-29 17:15 UTC |\n| **启动时间** | 2026-05-29 03:31 UTC |\n\n### Loss 趋势\n| Step | action_loss | occ_loss | depth_loss |\n|------|------------|----------|------------|\n| 0 | 0.6016 | 0.0000 | 0.0000 |\n| 11000 | 0.1094 | 0.0000 | 0.0000 |\n\n### Checkpoint\n- `10000_chkpt/` — ~15GB（含 model safetensors + lora_adapter 463MB + action_head 289MB + occ_head 2.4MB + proprio_projector 65MB）\n- 下一个 checkpoint 在 step 20000\n\n### 异常\n\n1. **进程仅运行 3h，不是 16-18h。** 启动时间为 2026-05-29 03:31 UTC，说明这是一次较新的启动（可能之前的运行失败/被中断后重新启动了）。\n\n2. **occ_loss 和 depth_loss 始终为 0.0000。** 虽然 `--use_occ_head True --occ_detach False`，但 occ head 没有产生 loss。需要确认这是否符合预期（可能是 v2 版本 occ head 的 loss 权重被设为 0，或者数据中没有 occupancy 标签）。\n\n3. **DDL 风险：** 约束 C003 要求 2026-05-28 12:00 UTC 前完成，但该实验预计 2026-05-29 17:15 UTC 才能完成，已超出 DDL 约 29 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-training-34685-copy-2.md"
+}

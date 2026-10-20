@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f578c13794907f4ea100",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose westd 10894 failures",
+  "task_key": "worker_diagnose_westd-10894-failures_20260521T050337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_westd-10894-failures_20260521T050337_result.json",
+    "occurrence": 1,
+    "bytes": 1820,
+    "sha256": "f87b031d60bd5c12deab4174699d0a6fcff4c110aaa6aae98a617f81fbcfab9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果汇总\n\n### 根因：外部 SIGTERM，疑似 AutoDL 平台操作\n\n4 个 ablation 实验在 `2026-05-21 12:52:12` UTC+8 被 SIGTERM 同时杀死（17ms 窗口内）。\n\n**排除的原因：**\n- ❌ 服务器重启 — 容器自 May 20 持续运行，SSH 正常\n- ❌ OOM killer — OOM 发 SIGKILL(9) 而非 SIGTERM(15)\n- ❌ 用户手动 kill — bash_history 无 kill 命令\n- ❌ 磁盘满 — root 66%, 数据盘 51%\n\n**最可能原因：** AutoDL 平台级操作（维护、计费、GPU 抢占等），对所有用户进程批量发了 SIGTERM。\n\n---\n\n### 各实验被 kill 时的进度和可用 checkpoint\n\n| 实验 | GPU | 被杀时 step | 运行时长 | 可恢复 checkpoint |\n|---|---|---|---|---|\n| ablation_occ_detach_s0 | cuda:0 | 4006/50005 (8%) | ~1h07m | **2500_chkpt** ✓ |\n| ablation_random_occ_s0 | cuda:1 | 3993/50005 (8%) | ~1h07m | **2500_chkpt** ✓ |\n| ablation_occ_detach_s1 | cuda:2 | 1546/50005 (3%) | ~29m | **无** ✗ |\n| ablation_random_occ_s1 | cuda:3 | 1545/50005 (3%) | ~29m | **无** ✗ |\n\ns0 两个实验有 2500 step checkpoint（~14.4GB，文件完整），可从 2500 resume。s1 两个实验没到 2500 步，需从头训练。\n\n---\n\n### Vanilla 实验状态（均完成）\n\n| 实验 | 训练 | Eval | TSR | CAR |\n|---|---|---|---|---|\n| vanilla_s0 | ✅ 50005 steps | ✅ 200 episodes | 0.910 | 0.775 |\n| vanilla_s1 | ✅ 50005 steps | ✅ 200 episodes | 0.935 | 0.765 |\n| vanilla_s2 | ✅ 50005 steps (resumed) | ✅ 200 episodes | 0.910 | 0.770 |\n\n三个 vanilla eval 结果文件在 `/root/occsafe_vla/eval_results/` 下，数据完整。\n\n---\n\n### 服务器当前状态\n\n- 4× RTX PRO 6000 Black (96GB) 全部空闲，0MB 显存占用\n- 无训练进程运行\n- **可以立即重启 ablation 实验**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-westd-10894-failures.md"
+}

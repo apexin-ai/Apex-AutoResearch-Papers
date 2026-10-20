@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e7128fe1c835534e452",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ssh detach bn v2 s1 analyze",
+  "task_key": "worker_ssh_detach_bn_v2_s1_analyze_20260526T073124",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_detach_bn_v2_s1_analyze_20260526T073124_result.json",
+    "occurrence": 1,
+    "bytes": 1340,
+    "sha256": "283f89a8742cd7221cb31e0c279a9274e67445c79725098d98e1dff3b1f74dc6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D051 v2 实验状态汇总\n\n### detach_bn_v2_s1 (cuda:1) — ✅ 完成\n- 正常完成 50005 steps，EXIT_CODE=0\n- **Step 50000 loss**: occ=0.0089, action=0.0513\n- **Checkpoint**: `/root/autodl-tmp/checkpoints/detach_bn_v2_s1/openvla-7b+...--detach_bn_v2_s1--50000_chkpt`\n- GPU 1 已释放 (0 MiB)\n\n### detach_bn_v2_s0 (cuda:0) — ✅ 完成（正在写最后几步）\n- 50000 checkpoint 已保存，step 50004/50005\n- **Step 50000 loss**: occ=0.0095, action=0.0449\n- **Checkpoint**: `detach_bn_v2_s0/...--50000_chkpt`\n\n### detach_bn_v2_s2 (cuda:2) — ⏳ 即将完成\n- 正在保存 50000 checkpoint（merge model shards 中）\n- **Step 50000 loss**: occ=0.0094, action=0.0481\n- 预计 1-2 分钟内完成\n\n### full_occ_bn_v2_s1 (cuda:3) — 🔄 训练中\n- Step **48533**/50005 (97%)，~1.07 it/s\n- **Step 48500 loss**: occ=0.0110, action=0.0557\n- **ETA**: ~23 min\n\n### GPU 空闲情况\n| GPU | 显存 | 状态 |\n|-----|------|------|\n| 0 | 62203/97887 MiB | s0 秒级释放 |\n| 1 | 0 MiB | **空闲** |\n| 2 | 62203/97887 MiB | s2 分钟级释放 |\n| 3 | 62203/97887 MiB | full_occ 在跑，~23min |\n\n3 个 detach_bn 实验 loss 一致性好（occ: 0.0089-0.0095, action: 0.0449-0.0513），全部即将/已完成。full_occ_bn_v2_s1 ~23 分钟后完成，之后 4 张卡全部空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-detach-bn-v2-s1-analyze.md"
+}

@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0",
+  "id": "2b43fd179b17c2089e0d",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "infra env setup",
+  "task_key": "worker_infra_env-setup_20260520T043112",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_env-setup_20260520T043112.log",
+    "occurrence": 1,
+    "bytes": 2089206,
+    "sha256": "2b237352b2d4df17da4dbcfc4ebd988e6cc9e1b271645fd1fd3d66a0f6012f91"
+  },
+  "statistics": {
+    "messages": 1366,
+    "user_turns": 1,
+    "tool_calls": 537,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 284,
+      "tool_call": 537,
+      "tool_result": 537,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 736,
+      "chunks": [
+        {
+          "path": "2b43fd179b17c2089e0d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "2b43fd179b17c2089e0d-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "2b43fd179b17c2089e0d-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "2b43fd179b17c2089e0d-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "2b43fd179b17c2089e0d-part-0005.json",
+          "message_count": 16
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 630,
+      "chunks": [
+        {
+          "path": "2b43fd179b17c2089e0d-part-0005.json",
+          "message_count": 164
+        },
+        {
+          "path": "2b43fd179b17c2089e0d-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "2b43fd179b17c2089e0d-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "2b43fd179b17c2089e0d-part-0008.json",
+          "message_count": 106
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-env-setup.md"
+}

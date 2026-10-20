@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8af3786696d34feadd2",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis gradient analysis script",
+  "task_key": "worker_analysis_gradient_analysis_script_20260524T185559",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gradient_analysis_script_20260524T185559_result.json",
+    "occurrence": 1,
+    "bytes": 1893,
+    "sha256": "238e94441a092bab1d307775c87ba5d7aed83a167d6cb72c0f4a11395d2a99c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本已完成并注册。\n\n**产出：**\n\n1. **`same_seed_gradient_analysis.py`** — 主分析脚本，每次运行一个条件。基于现有 `gradient_analysis.py` 改进：\n   - 固定 seed=42 确保跨条件数据采样一致\n   - 新增 BN running stats drift 分析（提取 occ_head 中 BatchNorm2d 的 running_mean/var 相对初始化的偏移）\n   - 输出标准化 JSON，包含 `occ_norm`、`occ_detach`、`bn_drift` 字段\n   - 默认路径已预填（data_root、occ_data_dir）\n\n2. **`plot_gradient_comparison.py`** — 可视化脚本，读取 2-4 个条件的 JSON 结果，生成 7 张图：\n   - Action gradient norms（DINOv2/SigLIP 分列）\n   - OCC gradient norms\n   - Gradient amplification ratio（Full/Detach）\n   - Cosine similarity\n   - Conflict rate\n   - BN drift 对比\n   - Combined 2×3 summary（论文用）\n\n**运行方式（实验完成后）：**\n\n```bash\n# 在 westd-10894 上，逐个条件运行\ncd /root/occsafe_vla\nconda activate occsafe\n\n# 1. detach_ln (已完成)\npython analysis/same_seed_gradient_analysis.py \\\n  --checkpoint_path /root/autodl-tmp/checkpoints/detach_ln_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt \\\n  --condition_name detach_ln --occ_detach true --occ_norm ln \\\n  --output_dir /root/occsafe_vla/analysis/same_seed_results\n\n# 2-4. 其他条件类似，替换 checkpoint_path 和参数\n\n# 全部完成后生成对比图\npython analysis/plot_gradient_comparison.py \\\n  --results_dir /root/occsafe_vla/analysis/same_seed_results \\\n  --output_dir /root/occsafe_vla/analysis/same_seed_results/figures\n```\n\n**待确认：** `ablation_occ_s0`（Full OCC + BN, seed=42）的 checkpoint 路径在 registry 和当前服务器上未找到，可能在另一台服务器或需要用 `full_occ_retrain_s0` 的 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gradient-analysis-script.md"
+}

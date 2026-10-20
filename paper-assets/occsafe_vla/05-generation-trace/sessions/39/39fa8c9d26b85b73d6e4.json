@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "39fa8c9d26b85b73d6e4",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diag mvp vanilla failed",
+  "task_key": "worker_diag_mvp_vanilla_failed_20260520T091618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_mvp_vanilla_failed_20260520T091618_result.json",
+    "occurrence": 1,
+    "bytes": 735,
+    "sha256": "995bb6df74479bd8adabaa9402575d8783b815daa0de1dc1ed67d632592ebf91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**结论**：三个实验在 `17:15:07.247` 同毫秒被 SIGTERM，根因是 **tmux sessions 被外部命令统一杀掉**（非 OOM、非磁盘满、非重启、非代码错误）。关键证据：10 个 nohup 启动的 `extract_occupancy.py` 进程完全存活，只有 tmux 中的训练进程死亡。\n\n**当前状态**：\n- 自动重试已在 17:16-17:17 重启全部 3 个实验，目前正常训练中\n- 无 checkpoint 损失（save_freq=10000，仅跑到 ~2000 步）\n- 训练从 step 0 重新开始\n- GPU/磁盘/内存均正常，可安全继续\n\n**风险提示**：GPU 0 上 10 个 `extract_occupancy.py` 进程（各 557MiB VRAM）与 s0 训练并行，可能有轻微资源竞争。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-mvp-vanilla-failed.md"
+}

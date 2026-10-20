@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57213470404a42996b70",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops restart cutoff s0",
+  "task_key": "worker_ops_restart-cutoff-s0_20260522T075622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restart-cutoff-s0_20260522T075622_result.json",
+    "occurrence": 1,
+    "bytes": 556,
+    "sha256": "698ea366a2018afcf3d5d55bce84c77df4698bf6e41d563bab4a0a36123069b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "新 cutoff_s0 已启动，GPU 0 利用率 99%。汇报：\n\n| 项目 | 结果 |\n|------|------|\n| 旧 cutoff_s0 checkpoint | **15GB** |\n| 清理后可用空间 | **299GB** (350GB 总量, 52GB 已用) |\n| 磁盘预算 | 4×5×15GB=300GB vs 299GB 可用 — **基本够用**，实际不会 4 个实验同时满 5 个 checkpoint |\n| 现有其他 checkpoint | occ_s1_fresh 30GB；depth_s0/depth_s1/cutoff_s1 尚为空 |\n| 新 cutoff_s0 PID | **136037**，cuda:0，99% GPU 利用率，已开始训练 |\n| save_freq | 10000（原 2500） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-restart-cutoff-s0.md"
+}

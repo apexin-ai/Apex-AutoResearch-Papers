@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07d8e88864dea4004fd2",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "fix full occ ln v2 s3 resume 40k",
+  "task_key": "worker_fix_full_occ_ln_v2_s3_resume_40k_20260528T034326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_full_occ_ln_v2_s3_resume_40k_20260528T034326_result.json",
+    "occurrence": 1,
+    "bytes": 982,
+    "sha256": "ad7a63f30ced1e8e2c5fcf8f89d4fa676e772b4157d75acad078f240a8a22e71"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正在运行。日志末尾确认进度条在推进（step 53，~1.06 it/s）。日志前半部分是之前失败尝试的残留输出。\n\n**总结：**\n\n| 项目 | 状态 |\n|------|------|\n| 40000_chkpt 完整性 | LoRA adapter + heads 完整；merged model 因 SIGHUP 缺失 |\n| 修复方案 | 从 35000_chkpt 软链 merged model safetensors + 复制 config.json 到 40000_chkpt |\n| base model index 修复 | `model.safetensors.index.json` 被其他进程污染（3→4 shards），已 sed 修复 |\n| GPU | westd-34685 cuda:2，PID 56474，~62GB VRAM |\n| 速度 | ~1.06 it/s |\n| 实际训练步数 | 10005 步（log_step 40000→50005） |\n| 预计完成时间 | ~2.6h → 约 14:30 UTC |\n\n**注意事项：**\n- backbone 权重来自 35k merged model（差 5k 步 LoRA），heads 完整在 40k\n- `update_auto_map()` 会在 resume 时修改 vla_path 下的 config.json（会删除原文件再重写），这是之前 config.json 丢失的原因"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-full-occ-ln-v2-s3-resume-40k.md"
+}

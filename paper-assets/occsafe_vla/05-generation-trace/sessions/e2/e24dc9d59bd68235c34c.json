@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e24dc9d59bd68235c34c",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diag mvp vanilla s2 check",
+  "task_key": "worker_diag_mvp_vanilla_s2_check_20260521T003549",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_mvp_vanilla_s2_check_20260521T003549_result.json",
+    "occurrence": 1,
+    "bytes": 543,
+    "sha256": "ca5beef3f63f441164e5eae2273eba773d84fe2a4c53dfcc7fba4c9d57526fb7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**mvp_vanilla_s2 训练已完成，cron 假阳性确认。**\n\n检查结果：\n- `50000_chkpt` 存在且完整（4 model shards + action_head + proprio_projector + lora_adapter）\n- 日志末尾: `\"Max step 50005 reached! Stopping training...\"` + `\"Saved merged model for Step 50000\"`\n- Eval 已由 monitor_and_eval.sh 自动触发（PID 366329），正在跑 `evaluate_safelibero.py --num_rollouts 20`\n\nRegistry 已更新：conclusion → success，checkpoint_path 已设置，notes 已修正。Memory.md 已同步。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-mvp-vanilla-s2-check.md"
+}

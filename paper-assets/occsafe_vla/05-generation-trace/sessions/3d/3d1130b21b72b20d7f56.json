@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d1130b21b72b20d7f56",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops 10894 checkpoint integrity",
+  "task_key": "worker_ops_10894_checkpoint_integrity_20260524T175256",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_10894_checkpoint_integrity_20260524T175256_result.json",
+    "occurrence": 1,
+    "bytes": 2041,
+    "sha256": "a1463636ebcd431a604eef4c3e42ab9dd1d22545ad3751af73b1107446ab9cb3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Checkpoint 完整性报告\n\n### 1. full_occ_ln_s1\n\n| 步数 | 状态 | 详情 |\n|------|------|------|\n| **30000** | **不完整** | .pt 文件 OK (action_head 288MB/16keys, occ_head 2.3MB/12keys, proprio_projector 64MB/4keys)；lora_adapter OK (462MB/879keys)；**model shard 2/4 CORRUPT** (52MB 截断，应~4.7GB)，shard 3-4 缺失，index.json 缺失 |\n| **20000** | **完整** | 全部 .pt OK，lora_adapter OK，4/4 model shards，index.json 存在 |\n| **10000** | 已删除 | — |\n\n### 2. full_occ_ln_s2\n\n| 步数 | 状态 | 详情 |\n|------|------|------|\n| **30000** | **严重不完整** | 仅有 tokenizer/config 文件 + 部分 lora_adapter（无 adapter_config.json）；**无 .pt 文件，无 model shards** |\n| **20000** | **完整** | 全部 .pt OK，lora_adapter OK，4/4 model shards，index.json 存在 |\n| **10000** | 已删除 | — |\n\n### 3. ablation_occ_detach_s0_retrain\n\n| 步数 | 状态 | 详情 |\n|------|------|------|\n| **30000** | **严重不完整** | 仅有 tokenizer/config 文件；**无 lora_adapter，无 .pt 文件，无 model shards** |\n| **20000** | **完整** | 全部 .pt OK (occ_head 18keys vs 其他实验12keys)，lora_adapter OK，4/4 model shards，index.json 存在 |\n| **10000** | 已删除 | — |\n\n### 4. full_occ_ln_s0（参考，仍在运行）\n\n| 步数 | 状态 | 详情 |\n|------|------|------|\n| **30000** | **完整** | 全部 .pt OK，4/4 model shards，index.json 存在 |\n| **20000** | 已删除 | — |\n| **10000** | 已删除 | — |\n\n### 结论\n\n- **3 个崩溃实验的 30000 步 checkpoint 均不可用**，磁盘满导致保存中途中断\n- **3 个实验的 20000 步 checkpoint 均完整可用**，可从 20000 步恢复训练\n- s1 的 30000 步 .pt 文件（action_head / occ_head / proprio_projector）和 lora_adapter 单独完整，但缺基座模型分片，无法直接用于推理\n- 磁盘当前 102G/250G (41%)，空间已恢复充足\n- 所有实验的 10000 步 checkpoint 已被训练进程自动清理"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-10894-checkpoint-integrity.md"
+}

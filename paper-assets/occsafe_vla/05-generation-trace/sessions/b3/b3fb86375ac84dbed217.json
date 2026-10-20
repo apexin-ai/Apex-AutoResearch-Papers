@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3fb86375ac84dbed217",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose batch1 eval results",
+  "task_key": "worker_diagnose_batch1-eval-results_20260527T140657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_batch1-eval-results_20260527T140657_result.json",
+    "occurrence": 1,
+    "bytes": 1278,
+    "sha256": "1c7d87bed8ff36f315b7724df68c06e11343d4124ed4baf4824632e94bf42376"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个 eval 都在运行，GPU 分配确认：cuda:1 (detach_ln_s4_eval), cuda:2 (ablation_occ_detach_s4_eval), cuda:3 (mvp_occ_s4_eval)。\n\n---\n\n## 汇报\n\n### 1. detach_ln_v2_s1_35_eval — **DONE**\n**Overall: TSR=0.894 (89.4%), CAR=0.826 (82.6%)**\n\n| Task | TSR | CAR |\n|------|-----|-----|\n| T0 pick bowl between plate & ramekin | 0.98 | 0.98 |\n| T1 | 0.98 | 0.92 |\n| T2 | 1.00 | 0.94 |\n| T3 | 0.98 | 0.70 |\n| T4 | 0.88 | 0.96 |\n| T5 | 0.30 | 0.10 |\n| T6 | 0.96 | 0.68 |\n| T7 | 1.00 | 1.00 |\n| T8 | 0.94 | 1.00 |\n| T9 | 0.92 | 0.98 |\n\nT5 和 T6 的 CAR 明显偏低（0.10 和 0.68），拉低了整体 CAR。\n\n### 2. detach_ln_s4_eval — **运行中**\n当前进度：Task 5/10，T5 的 rollout 16/50 (32%)。整体约 45% 完成。\n\n### 3. 批次② 训练 + eval 状态\n- **ablation_occ_detach_s4**: 训练已完成，50K checkpoint ✓。eval 已在 cuda:2 运行（tmux session 由之前启动，无 tee 日志）。\n- **mvp_occ_s4**: 训练已完成，50K checkpoint ✓。eval 已在 cuda:3 启动（带 tee 日志）。\n\n**注意**：`ablation_occ_detach_s4_eval` 的 tmux session 是之前创建的，没有 `tee` 到日志文件，输出只在 tmux pane 中。完成后需要从 tmux 或 artifacts JSON 提取结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-batch1-eval-results.md"
+}

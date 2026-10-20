@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a8cc3b106e185551ed8",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops eval file organization",
+  "task_key": "worker_ops_eval-file-organization_20260522T062950",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-file-organization_20260522T062950_result.json",
+    "occurrence": 1,
+    "bytes": 1826,
+    "sha256": "07a4e5cf6c7c756390004d465fddfa3acd68ecccbd766cb257f3a21db0da79fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。以下是统一后的 eval_results 文件清单：\n\n### 标准命名文件（新建/重命名）\n\n**Vanilla (50r, step 50000)**\n| 文件 | 大小 |\n|---|---|\n| `vanilla_s0_50r_50000.json` | 236KB |\n| `vanilla_s1_50r_50000.json` | 236KB |\n| `vanilla_s2_50r_50000.json` | 236KB |\n\n**OCC s0**\n| 文件 | 大小 |\n|---|---|\n| `occ_s0_20r_50000.json` | 97KB |\n| `occ_s0_50r_47500.json` | 236KB |\n| `occ_s0_50r_50000.json` | 236KB |\n\n**OCC s1 (old, 20r only)**\n| 文件 | 大小 |\n|---|---|\n| `occ_s1_20r_30000.json` | 97KB |\n| `occ_s1_20r_35000.json` | 97KB |\n| `occ_s1_20r_40000.json` | 97KB |\n| `occ_s1_20r_45000.json` | 97KB |\n| `occ_s1_20r_50000.json` | 97KB |\n\n**OCC s1_fresh (50r)**\n| 文件 | 大小 |\n|---|---|\n| `occ_s1_fresh_50r_47500.json` | 236KB |\n| `occ_s1_fresh_50r_50000.json` | 236KB |\n\n**OCC s2**\n| 文件 | 大小 |\n|---|---|\n| `occ_s2_20r_50000.json` | 97KB |\n| `occ_s2_50r_47500.json` | 236KB |\n| `occ_s2_50r_50000.json` | 236KB |\n\n**Ablations (50r, step 50000)**\n| 文件 | 大小 |\n|---|---|\n| `ablation_occ_detach_s0_50r_50000.json` | 236KB |\n| `ablation_occ_detach_s0_20r_50000.json` | 97KB |\n| `ablation_occ_detach_s1_50r_50000.json` | 236KB |\n| `ablation_random_occ_s0_50r_50000.json` | 236KB |\n| `ablation_random_occ_s1_50r_50000.json` | 236KB |\n\n旧命名文件已保留未删除。\n\n### 缺失 / 注意事项\n\n1. **occ_s1 (old) 没有 50r eval** — 只有 20r (30K-50K step)。occ_s1_fresh 已替代，有 50r at 47500 和 50000。\n2. **occ_s1_fresh 50r 已到位** — 47500 和 50000 两个 checkpoint 都有。\n3. **depth_s0 / depth_s1 没有任何 eval JSON** — checkpoint 存在但未跑 eval。\n4. **vanilla 没有 20r eval** — 只有 50r。\n5. **occ_s0/s2 没有 47500 的 20r eval** — 只有 50r 版本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-file-organization.md"
+}

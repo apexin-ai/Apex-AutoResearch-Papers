@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "10348d38cb75176d7ce6",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose detach ln failed",
+  "task_key": "worker_diagnose_detach_ln_failed_20260523T170616",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_detach_ln_failed_20260523T170616_result.json",
+    "occurrence": 1,
+    "bytes": 847,
+    "sha256": "6c79393a56ec012410943420e0cef18a0a5d5d9627a6fda1cd615c1b5e1c7f9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。报告已写入 `artifacts/detach_ln_diagnosis.md`。\n\n**核心结论**：三个实验都不是 OOM 或训练问题，而是 checkpoint 保存时的文件路径问题。\n\n- `save_training_checkpoint` 在 LoRA merge 阶段调用 `from_pretrained(cfg.vla_path)`\n- `cfg.vla_path` 指向 resume 用的旧 checkpoint 目录（s0/s1 → `--20000_chkpt`，s2 → `--10000_chkpt`），但该目录在训练期间被删除\n- 训练本身运行正常（s0/s1 跑到 step 30000，s2 跑到 step 20000），崩在第一次 checkpoint save\n\n**已有部分 checkpoint 可恢复**（含 LoRA adapter + 各组件权重，缺 merged base model）。\n\n**修复**：最快方案是设 `merge_lora_during_training=False`；根本方案是让 `cfg.vla_path` 指向 `openvla/openvla-7b` 或持久化的本地 base model 副本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-detach-ln-failed.md"
+}

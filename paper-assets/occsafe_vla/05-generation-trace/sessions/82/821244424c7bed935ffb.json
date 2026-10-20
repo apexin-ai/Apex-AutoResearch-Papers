@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "821244424c7bed935ffb",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis dose response 3seed stats",
+  "task_key": "worker_analysis_dose_response_3seed_stats_20260525T093236",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_dose_response_3seed_stats_20260525T093236_result.json",
+    "occurrence": 1,
+    "bytes": 545,
+    "sha256": "958fda513ce7efb776adc07374be6f9172866e53f562e111f9bd81f65dbc24e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已创建并验证通过。输出：\n\n- **统计汇总表**：7 个条件 vs Vanilla baseline，含 mean±SD/SE、paired t-test (n≥3)、Cohen's d、显著性标记\n- **dose_response_curve_data_car.csv**：matplotlib 可直接消费的曲线数据\n- **dose_response_3seed_final.pdf/png**：学术风格图表，filled circles、Vanilla SE band、Reverse cutoff diamond marker、n= 标注（n<3 红色高亮）\n\n当前结果：Detach+BN 显著低于 Vanilla (p=0.031, d=-3.21)；4 个条件仍有 seeds 在训练中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-dose-response-3seed-stats.md"
+}

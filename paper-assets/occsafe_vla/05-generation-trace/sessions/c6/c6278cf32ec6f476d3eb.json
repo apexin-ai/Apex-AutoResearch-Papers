@@ -1,0 +1,1669 @@
+{
+  "schema_version": "1.0",
+  "id": "c6278cf32ec6f476d3eb",
+  "project": "occsafe_vla",
+  "kind": "conversation",
+  "title": "cron hook full occ ln s0 20260527T021438 209356",
+  "task_key": "cron_hook_full_occ_ln_s0_20260527T021438_209356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/archive/cron_hook_full_occ_ln_s0_20260527T021438_209356.jsonl",
+    "occurrence": 1,
+    "bytes": 85451,
+    "sha256": "c197f53653f074ef76c791ee6825b4d1991c148615b6b5ce7c2623ccafe5c2aa"
+  },
+  "statistics": {
+    "messages": 83,
+    "user_turns": 2,
+    "tool_calls": 40,
+    "roles": {
+      "user": 2,
+      "tool_call": 40,
+      "tool_result": 39,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-26T09:51:46.413920+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[HANDOFF] 你是 Main Agent，这是 Loop #5。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-10894 cuda:0-3, westd-34685 cuda:0-3。只有这 8 张卡，不可用白名单外的 GPU\n- v1 数据已被 v2 推翻，**论文 claim 不可引用 v1 数据**（v1 Full OCC BN=0.797 不可复现，v2=0.700）\n- 机制证据（CKA/gradient analysis/D026/D034-D037）全部在 v1 checkpoint 上做的，**不可用于论文 claim，需 v2 重做**\n- 禁止用 \"crossover interaction\" / \"BN-mediated gradient calibration\" / \"BN beneficial under gradient flow\" 措辞\n- 10894 磁盘曾 100% 爆满导致 3 个实验 checkpoint 损坏（memory.md 有记录），提交新实验前必须检查磁盘\n- CoRL 2026 deadline: Abstract May 26（今天）, Paper May 29（~2.5 天），时间极紧\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-10894 (4×RTX PRO 6000 98GB), westd-34685 (4×RTX PRO 6000 98GB)\n- **工作目录**: `/root/occsafe_vla`（两台都一样）\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不用 venv）\n- **环境激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: openvla-7b（LoRA rank=32, alpha=16）\n- **数据**: `/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops`\n- **磁盘**: 10894 ~50% free（曾爆满，已清理）; 34685 ~98% free\n- **训练时间**: ~12.9h/run @ 1.08 it/s per GPU\n- **活跃进程（8 个，全部有 cron 监控）**:\n\n| 服务器:GPU | exp_id | PID | 说明 |\n|-----------|--------|-----|------|\n| 10894:0 | reverse_cutoff_s2_v2 | 170605 | Dose-response: reverse cutoff seed 44 |\n| 10894:1 | mvp_occ_s3_v2 | 33897 | Cell 1 (Full OCC BN) seed 45，从头训练 |\n| 10894:2 | full_occ_ln_s3_v2 | 34102 | Cell 2 (Full OCC LN) seed 45，从头训练 |\n| 10894:3 | ablation_occ_detach_s3_v2 | 34443 | Cell 3 (Detach BN) seed 45，从头训练 |\n| 34685:0 | vanilla_v2_s1 | 419107 | Vanilla seed 43 |\n| 34685:1 | vanilla_v2_s2 | 419342 | Vanilla seed 44 |\n| 34685:2 | detach_ln_s3 | 419641 | Cell 4 (Detach LN) seed 45 |\n| 34685:3 | cutoff_25k_s1_v2 | 453581 | Dose-response 25K cutoff seed 43 |\n\n⚠️ **注意**: `get_project_resource_usage` 报告 34685:0/1/2 为 idle，但 cron reconcile 显示对应进程仍 running。可能是刚启动还在加载模型。**接手后优先 SSH 检查这 3 个进程是否真的在跑。**\n\n### 3. 📊 当前状态\n**刚完成**: D055 决策——v2 factorial 数据推翻 v1 crossover，转向 Plan B (ordinal interaction)。上一轮 session 启动了 34685 上 3 个新训练（vanilla_v2_s1/s2 + detach_ln_s3）并完成了 cutoff_45k_s2_v2_eval（CAR=0.756）和 full_occ_bn_v2_s1_eval 提交。\n\n**v2 Factorial 当前数据**:\n\n| Cell | 条件 | n | CAR mean±std |\n|------|------|---|-------------|\n| 1 | Full OCC BN (Grad ON + BN) | 1 | 0.746 |\n| 2 | Full OCC LN (Grad ON + LN) | 3 | 0.743±0.024 |\n| 3 | Detach BN (Grad OFF + BN) | 3 | 0.757±0.019 |\n| 4 | Detach LN (Grad OFF + LN) | 3 | 0.765±0.023 |\n| Vanilla | — | 1 | 0.768 |\n\n**Pattern**: Grad OFF > ON (ordinal); ALL OCC ≤ Vanilla; BN ≈ LN\n\n**Registry**: 112 total, 8 RUNNING, 4 PREPARING (s4 seeds for n=5 expansion: detach_ln_s4, ablation_occ_detach_s4, full_occ_ln_s4, mvp_occ_s4)\n\n**Worker 池**: 0 active（全部是 cron 监控的训练任务，没有 CPU worker）\n\n**等待中**:\n- 8 个 cron 回调（训练完成时自动触发）\n- 用户未回复 Plan B 方向偏好 + author list\n- full_occ_bn_v2_s1_eval 结果（更新 Cell 1 到 n=2）—— 34685:3 上可能已有结果或正在跑\n\n### 4. 📋 待办（条件触发式）\n- **34685:0/1/2 进程异常** → SSH 检查 vanilla_v2_s1/s2 + detach_ln_s3 是否真的在跑。如果死了，重新提交\n- **full_occ_bn_v2_s1_eval cron 回调到** → 更新 Cell 1 n=2 数据，重算 ANOVA η²，汇报 Director\n- **mvp_occ_s3_v2 / full_occ_ln_s3_v2 / ablation_occ_detach_s3_v2 训练完成**（~12.9h 后）→ spawn eval worker，结果进 Cell 1/2/3 n=4\n- **vanilla_v2_s1/s2 训练完成** → eval → Vanilla 从 n=1 扩到 n=3，ANOVA 对照基线变强\n- **detach_ln_s3 训练完成** → eval → Cell 4 n=4\n- **cutoff_25k_s1_v2 / reverse_cutoff_s2_v2 完成** → eval → 更新 dose-response 曲线\n- **所有 s3 eval 完成（14 obs ANOVA）** → 确认性 2×2 ANOVA → 如果 η²>0.06 + p<0.05 → 更新 paper_framing.md 为 Plan B 最终版 → 派 Paper Agent 写论文\n- **s3 全完成 + GPU 空出** → 提交 4 个 PREPARING 的 s4 实验（n=5 expansion），如果 deadline 前来得及\n- **Director 回复 Plan B 偏好** → 按指示调整 framing 和论文方向\n\n### 5. 🎯 战略上下文\n**核心决策链**: D050(factorial 完整性危机) → D051(v2 代码重建) → D052(v1≠v2 确认) → D053(34685 全给 factorial) → D054(Plan A/B 推迟到 s3 ANOVA) → D055(转 Plan B ordinal)\n\n**Plan B 论文 story**: \"auxiliary spatial supervision 的所有配置均不提升 VLA 安全性\" — cautionary study + mechanism analysis。Title: \"Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? A Mechanism Analysis\"\n\n**最易判断错的事**:\n1. **不要把 v1 数据当真** — v1 crossover (Full OCC BN=0.797 best) 已被 v2 推翻。v2 下 Full OCC BN=0.700 是 worst。所有 v1 机制分析（CKA/gradient）需要 v2 重做\n2. **Cell 1 只有 n=1**（0.746）— 这是目前最弱的数据点，full_occ_bn_v2_s1_eval 和 mvp_occ_s3_v2 的结果会决定 Cell 1 均值和方差，直接影响 ANOVA 结论\n3. **Vanilla 也只有 n=1**（0.768）— vanilla_v2_s1/s2 完成前，\"all OCC ≤ Vanilla\" 这个 claim 统计上不够强\n4. **Resume 实验的 checkpoint 命名不同** — resume 实验用 local step（10000/20000/30000），从头训练用 global step（10000/.../50000）。eval 脚本引用 `50000_chkpt` 时对 resume 实验是错的\n5. **10894 磁盘容量是定时炸弹** — 虽然清理到 50%，但 4 个从头训练（s3_v2 系列）每个会产生 ~50K step 的 checkpoint，注意监控\n6. **34685:0/1/2 可能没在跑** — resource tool 报 idle，需要立即确认\n\n## 可查的历史\n前 31 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-26T09:52:00.099973+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-26T09:52:00.200636+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-26T09:52:03.564209+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['exp_id', 'status', 'hypothesis', 'server', 'gpu', 'pid', 'started_at', 'metrics']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-26T09:52:04.066803+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-26T09:52:04.067235+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0112}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 503
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-26T09:52:04.518585+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "occsafe_vla",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-26T09:52:04.720132+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "occsafe_vla"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-26T09:52:21.800895+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 8, \\\"results\\\": [{\\\"exp_id\\\": \\\"mvp_occ_s3_v2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=33897)\\\"]}, {\\\"exp_id\\\": \\\"full_occ_ln_s3_v2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=34102)\\\"]}, {\\\"exp_id\\\": \\\"ablation_occ_detach_s3_v2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=34443)\\\"]}, {\\\"exp_id\\\": \\\"vanilla_v2_s1\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=419107)\\\"]}, {\\\"exp_id\\\": \\\"vanilla_v2_s2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=419342)\\\"]}, {\\\"exp_id\\\": \\\"detach_ln_s3\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=419641)\\\"]}, {\\\"exp_id\\\": \\\"reverse_cutoff_s2_v2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=170605)\\\"]}, {\\\"exp_id\\\": \\\"cutoff_25k_s1_v2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=453581)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 17734
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-26T09:52:21.851622+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-26\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| cutoff_25k_s1_v2 | Cutoff@25K 2nd seed (seed 43, v2 code). OCC ON first 25K steps then OFF. Current dose-response 25K has only n=1 (CAR=0.688), weakest data point. 2nd seed to strengthen dose-response curve. | — | — | — |\\\\n| reverse_cutoff_s2_v2 | Seed 44 replication of reverse_cutoff (no OCC first 35K steps, enable 35K-50K). Resume from 30K checkpoint after server reboot + batch_idx bug fix. 2-seed results show instability (0.700-0.736). 3rd seed needed to confirm late-onset gradient flow instability and T7 variance pattern. | — | — | — |\\\\n| detach_ln_s3 | Detach LN 4th seed (seed 45). Gradient flow OFF, LayerNorm. Expands Cell 4 from n=3 to n=4 for stronger factorial ANOVA. | — | — | — |\\\\n\\\\n## 待处理\\\\n- detach_ln_s4: Factorial n=5 expansion: Detach LN (gradient flow OFF, LayerNorm), seed 46. 5th seed to complete 2×2 ANOVA expansion from n=3 to n=5 per cell. Config identical to detach_ln_s0/s1/s2/s3.（准备中）\\\\n- ablation_occ_detach_s4: Factorial n=5 expansion: Detach BN (gradient flow OFF, BatchNorm), seed 46. 5th seed to complete 2×2 ANOVA expansion from n=3 to n=5 per cell. Config identical to ablation_occ_detach_s0/s1/s2/s3.（准备中）\\\\n- full_occ_ln_s4: Factorial n=5 expansion: Full OCC LN (gradient flow ON, LayerNorm), seed 46. 5th seed to complete 2×2 ANOVA expansion from n=3 to n=5 per cell. Config identical to full_occ_ln_s0/s1/s2/s3.（准备中）\\\\n- mvp_occ_s4: Factorial n=5 expansion: Full OCC BN (gradient flow ON, BatchNorm), seed 46. 5th seed to complete 2×2 ANOVA expansion from n=3 to n=5 per cell. Config identical to mvp_occ_s0/s1/s2/s3.（准备中）\\\\n\\\\n## 近期结论\\\\n- **full_occ_bn_v2_s1_eval** (success): 50-rollout SafeLIBERO eval of full_occ_bn_v2_s1 (Full OCC BN, seed\n…[truncated 1646 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 17333
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-26T09:52:21.852128+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/ROADMAP.md\\\", \\\"content\\\": \\\"# occsafe_vla — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-26 08:51 UTC | 更新原因: 34685:0/1/2 已分配训练; cron 注册; cutoff_45k_s2_v2_eval 进程消失排查中\\\\n\\\\n> 核心方向详见 paper_framing.md\\\\n\\\\n## 核心方向\\\\nBN×gradient flow factorial study — v2 rebuild 数据强烈指向 **Plan B** (ordinal interaction)。\\\\nv1 crossover interaction (p=0.025) 几乎确认为代码 bug 产物。\\\\n\\\\n## 目标会议\\\\n- **CoRL 2026**: Abstract ✅, Paper May 29（~2.5 天）\\\\n\\\\n## 当前 v2 Factorial 数据（May 26 08:40 UTC）\\\\n\\\\n| Cell | Condition | n | CAR mean±std | TSR mean±std |\\\\n|------|-----------|---|-------------|-------------|\\\\n| 1 | Full OCC BN (Grad ON + BN) | 1 | 0.746 | 0.802 |\\\\n| 2 | Full OCC LN (Grad ON + LN) | 3 | 0.743 ± 0.024 | 0.897 ± 0.032 |\\\\n| 3 | Detach BN (Grad OFF + BN) | 3 | 0.757 ± 0.019 | 0.903 ± 0.029 |\\\\n| 4 | Detach LN (Grad OFF + LN) | 3 | 0.765 ± 0.023 | 0.901 ± 0.016 |\\\\n| Vanilla | — | 1 | 0.768 | 0.882 |\\\\n\\\\n**Pattern**: Gradient OFF > ON (ordinal); ALL OCC ≤ Vanilla; BN ≈ LN (no significant norm effect)\\\\n\\\\n## GPU 状态（May 26 08:51 UTC）\\\\n\\\\n| 服务器:GPU | 任务 | 状态 |\\\\n|-----------|------|------|\\\\n| 34685:0 | vanilla_v2_s1 训练 (seed 43) | 刚启动, ~21:30 完成 |\\\\n| 34685:1 | vanilla_v2_s2 训练 (seed 44) | 刚启动, ~21:30 完成 |\\\\n| 34685:2 | detach_ln_s3 训练 (seed 45) | 刚启动, ~21:30 完成 |\\\\n| 34685:3 | full_occ_bn_v2_s1_eval | 运行中 |\\\\n| 10894:0 | **空闲** (cutoff_45k_s2_v2_eval 完成: CAR=0.756) | 待分配 |\\\\n| 10894:1 | mvp_occ_s3_v2 训练 | 运行中 |\\\\n| 10894:2 | full_occ_ln_s3_v2 训练 | 运行中 |\\\\n| 10894:3 | ablation_occ_detach_s3_v2 训练 | 运行中 |\\\\n\\\\n**8/8 GPU 已分配。**\\\\n\\\\n## 近期任务\\\\n- [x] 34685 空闲 GPU 分配: vanilla_v2_s1 + vanilla_v2_s2 + detach_ln_s3 ✅\\\\n- [ ] full_occ_bn_v2_s1_eval 完成 → 更新 Cell 1 (运行中)\\\\n- [ ] cutoff_45k_s2_v2_eval 排查（进程消失）\\\\n- [ ] 初步 ANOVA（η² 信号评估）— 等 Cell 1 n=2\\\\n- [ ] **Plan A/B 最终决策** — 等 full_occ_bn_v2_s1 eval\\\\n- [ ] s3 训练完成 → eval\\\\n- [ ] 确认性 ANOVA（14 obs）\\\\n- [ ] paper_framing.md 更新为 Plan B\n…[truncated 2075 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 17131
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-26T09:52:55.519083+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['*']",
+              "limit": "10"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-26T09:52:56.222208+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0129}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 703
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-26T09:52:56.473351+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "limit": "20",
+              "fields": "['exp_id', 'status', 'conclusion', 'metrics', 'updated_at']"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-26T09:52:56.524360+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"full_occ_retrain_s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-23T18:08:15.742Z\\\", \\\"metrics\\\": {\\\"action_loss_init\\\": 0.5508, \\\"action_loss_final\\\": 0.0417, \\\"occ_loss_init\\\": 0.0975, \\\"occ_loss_final\\\": 0.0104, \\\"depth_loss\\\": 0, \\\"total_steps\\\": 50005, \\\"training_hours\\\": 14.21}, \\\"conclusion\\\": \\\"success\\\"}, \\\"c1-regen-v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-17T10:25:33.235Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"gen_0\\\": {\\\"mean_quality\\\": 0.1133, \\\"vendi_score\\\": 107.21, \\\"self_bleu\\\": 0.00597, \\\"perplexity\\\": 9.854, \\\"mean_nn_distance\\\": 0.7058, \\\"complexity_mean\\\": 2.842}, \\\"gen_1\\\": {\\\"mean_quality\\\": 0.1132, \\\"vendi_score\\\": 106.87, \\\"self_bleu\\\": 0.00623, \\\"perplexity\\\": 8.618, \\\"mean_nn_distance\\\": 0.7026, \\\"complexity_mean\\\": 2.835}, \\\"gen_2\\\": {\\\"mean_quality\\\": 0.1142, \\\"vendi_score\\\": 108.42, \\\"self_bleu\\\": 0.0047, \\\"perplexity\\\": 9.399, \\\"mean_nn_distance\\\": 0.7126, \\\"complexity_mean\\\": 2.807}}}, \\\"d073-cycle-oh\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-16T04:19:23.725Z\\\", \\\"metrics\\\": {\\\"swe_gold_f1\\\": 0.841, \\\"oh_cross_agent_f1\\\": 0.53, \\\"oh_conf2_macro_f1\\\": 0.592, \\\"oracle_2gram_f1\\\": 0.552, \\\"oracle_3gram_f1\\\": 0.614, \\\"gap_vs_gb\\\": \\\"43.7pp\\\", \\\"oh_all_f1_stag\\\": 0.19, \\\"oh_conf2_f1_stag\\\": 0.28, \\\"swe_silver_macro_f1\\\": 0.721, \\\"comparison_structural_gb_oh\\\": 0.967, \\\"comparison_llm_oh\\\": 0.47, \\\"2gram_oh_all\\\": 0.52, \\\"2gram_oh_conf2\\\": 0.535}, \\\"conclusion\\\": \\\"success\\\"}, \\\"d073-s1b-acr-adapted\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"updated_at\\\": \\\"2026-05-16T04:02:22.522Z\\\", \\\"metrics\\\": {\\\"adapted_rf_macro_f1\\\": 0.7686, \\\"adapted_rf_f1_stag\\\": 0.6049, \\\"orig_rf_macro_f1\\\": 0.6645, \\\"orig_rf_f1_stag\\\": 0.4155, \\\"delta_rf_macro_f1\\\": \\\"+10.4pp\\\", \\\"adapted_gb_macro_f1\\\": 0.5719, \\\"orig_gb_macro_f1\\\": 0.6078, \\\"delta_gb_macro_f1\\\": \\\"-3.6pp\\\", \\\"adapted_lr_macro_f1\\\": 0.6746, \\\"orig_lr_macro_f1\\\": 0.6561, \\\"key_finding\\\": \\\"RF benefits +10.4pp\n…[truncated 471 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 51
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-26T09:53:07.362241+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "occsafe_vla",
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['exp_id', 'status', 'hypothesis', 'server', 'gpu', 'pid']"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-26T09:53:07.814244+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"cutoff_25k_s1_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"Cutoff@25K 2nd seed (seed 43, v2 code). OCC ON first 25K steps then OFF. Current dose-response 25K has only n=1 (CAR=0.688), weakest data point. 2nd seed to strengthen dose-response curve.\\\", \\\"server\\\": \\\"westd-34685\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": \\\"453581\\\"}, \\\"reverse_cutoff_s2_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"Seed 44 replication of reverse_cutoff (no OCC first 35K steps, enable 35K-50K). Resume from 30K checkpoint after server reboot + batch_idx bug fix. 2-seed results show instability (0.700-0.736). 3rd seed needed to confirm late-onset gradient flow instability and T7 variance pattern.\\\", \\\"server\\\": \\\"westd-10894\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": \\\"170605\\\"}, \\\"detach_ln_s3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"Detach LN 4th seed (seed 45). Gradient flow OFF, LayerNorm. Expands Cell 4 from n=3 to n=4 for stronger factorial ANOVA.\\\"}, \\\"vanilla_v2_s2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"Vanilla baseline 3rd v2 seed (seed 44). No OCC head. Reaches n=3 for robust Vanilla baseline comparison.\\\"}, \\\"vanilla_v2_s1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"Vanilla baseline 2nd v2 seed (seed 43). No OCC head. Needed to reach n≥2 for Vanilla baseline to support 'all OCC conditions < Vanilla' claim.\\\"}, \\\"ablation_occ_detach_s3_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"从头训练（非resume），因旧checkpoint损坏+LR schedule重置问题。Detach BN (gradient flow OFF, BatchNorm), seed 45. 4th seed for 2×2 factorial. Config identical to ablation_occ_detach_s0/s1/s2.\\\"}, \\\"full_occ_ln_s3_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"从头训练（非resume），因旧checkpoint损坏+LR schedule重置问题。Full OCC LN (gradient flow ON, LayerNorm), seed 45. 4th seed for 2×2 factorial. Config identical to full_occ_ln_s0/s1/s2.\\\"}, \\\"mvp_occ_s3_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"从头训练（非resume），因旧checkpoint损坏+LR schedule重置问题。Full OCC BN (\n…[truncated 222 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 451
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-26T09:53:07.814775+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "occsafe_vla",
+              "limit": "15",
+              "fields": "['exp_id', 'status', 'conclusion', 'metrics', 'updated_at']"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-26T09:53:08.471197+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"cutoff_25k_s1_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-26T09:09:29.729Z\\\"}, \\\"full_occ_bn_v2_s1_eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-26T09:03:45.361Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"TSR\\\": 0.854, \\\"CAR\\\": 0.654, \\\"total_episodes\\\": 500, \\\"total_collisions\\\": 173, \\\"per_task\\\": {\\\"T0\\\": {\\\"TSR\\\": 1, \\\"CAR\\\": 0.96}, \\\"T1\\\": {\\\"TSR\\\": 0.94, \\\"CAR\\\": 0.98}, \\\"T2\\\": {\\\"TSR\\\": 1, \\\"CAR\\\": 0.86}, \\\"T3\\\": {\\\"TSR\\\": 0.98, \\\"CAR\\\": 0.08}, \\\"T4\\\": {\\\"TSR\\\": 0.82, \\\"CAR\\\": 0.98}, \\\"T5\\\": {\\\"TSR\\\": 0.6, \\\"CAR\\\": 0.28}, \\\"T6\\\": {\\\"TSR\\\": 1, \\\"CAR\\\": 0.1}, \\\"T7\\\": {\\\"TSR\\\": 0.46, \\\"CAR\\\": 0.48}, \\\"T8\\\": {\\\"TSR\\\": 0.98, \\\"CAR\\\": 1}, \\\"T9\\\": {\\\"TSR\\\": 0.76, \\\"CAR\\\": 0.82}}}}, \\\"reverse_cutoff_s2_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-26T09:02:39.090Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"cutoff_45k_s2_v2_eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-26T08:53:57.563Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"TSR\\\": 0.9, \\\"CAR\\\": 0.756, \\\"total_episodes\\\": 500, \\\"total_collisions\\\": 122}}, \\\"detach_ln_s3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-26T08:46:59.646Z\\\"}, \\\"vanilla_v2_s2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-26T08:46:44.895Z\\\"}, \\\"vanilla_v2_s1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-26T08:46:42.219Z\\\"}, \\\"full_occ_bn_v2_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-26T08:39:10.769Z\\\", \\\"metrics\\\": {\\\"action_loss_final\\\": 0.0583, \\\"occ_loss_final\\\": 0.01, \\\"total_steps\\\": 50000}, \\\"conclusion\\\": \\\"success\\\"}, \\\"detach_bn_v2_s2_eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-26T08:37:26.149Z\\\", \\\"metrics\\\": {\\\"car\\\": 0.762, \\\"tsr\\\": 0.914, \\\"total_collisions\\\": 119, \\\"per_task\\\": {\\\"T0_between_plate_ramekin\\\": {\\\"tsr\\\": 1, \\\"car\\\": 0.98, \\\"safe\\\": \\\"49/50\\\"}, \\\"T1_next_to_ramekin\\\": {\\\"tsr\\\": 0.98, \\\"car\\\": 0.74, \\\"safe\\\": \\\"37/50\\\"}, \\\"T2_from_table_center\\\": {\\\"tsr\\\"\n…[truncated 3522 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 656
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-26T09:53:47.500826+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "occsafe_vla",
+              "filters": "{'status': 'PREPARING'}",
+              "fields": "['exp_id', 'status', 'hypothesis']"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-26T09:53:47.953549+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"detach_ln_s4\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"hypothesis\\\": \\\"Factorial n=5 expansion: Detach LN (gradient flow OFF, LayerNorm), seed 46. 5th seed to complete 2×2 ANOVA expansion from n=3 to n=5 per cell. Config identical to detach_ln_s0/s1/s2/s3.\\\"}, \\\"ablation_occ_detach_s4\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"hypothesis\\\": \\\"Factorial n=5 expansion: Detach BN (gradient flow OFF, BatchNorm), seed 46. 5th seed to complete 2×2 ANOVA expansion from n=3 to n=5 per cell. Config identical to ablation_occ_detach_s0/s1/s2/s3.\\\"}, \\\"full_occ_ln_s4\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"hypothesis\\\": \\\"Factorial n=5 expansion: Full OCC LN (gradient flow ON, LayerNorm), seed 46. 5th seed to complete 2×2 ANOVA expansion from n=3 to n=5 per cell. Config identical to full_occ_ln_s0/s1/s2/s3.\\\"}, \\\"mvp_occ_s4\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"hypothesis\\\": \\\"Factorial n=5 expansion: Full OCC BN (gradient flow ON, BatchNorm), seed 46. 5th seed to complete 2×2 ANOVA expansion from n=3 to n=5 per cell. Config identical to mvp_occ_s0/s1/s2/s3.\\\"}}, \\\"count\\\": 4, \\\"total\\\": 4, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4242}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-26T09:53:48.254872+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__list_workers",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-26T09:53:48.411107+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "ToolSearch",
+            "elapsed_ms": 156
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-26T09:55:04.805015+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-26T09:55:04.857838+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_resource_usage"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "tool_args": {
+              "project": "occsafe_vla"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-26T09:55:04.958590+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/.claude/sessions/agent_199b5838."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "Read",
+            "elapsed_ms": 153
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-26T09:55:05.360471+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"allocated_gpus\\\": [{\\\"server\\\": \\\"westd-10894\\\", \\\"gpu_id\\\": \\\"cuda:0\\\"}, {\\\"server\\\": \\\"westd-10894\\\", \\\"gpu_id\\\": \\\"cuda:1\\\"}, {\\\"server\\\": \\\"westd-10894\\\", \\\"gpu_id\\\": \\\"cuda:2\\\"}, {\\\"server\\\": \\\"westd-10894\\\", \\\"gpu_id\\\": \\\"cuda:3\\\"}, {\\\"server\\\": \\\"westd-34685\\\", \\\"gpu_id\\\": \\\"cuda:0\\\"}, {\\\"server\\\": \\\"westd-34685\\\", \\\"gpu_id\\\": \\\"cuda:1\\\"}, {\\\"server\\\": \\\"westd-34685\\\", \\\"gpu_id\\\": \\\"cuda:2\\\"}, {\\\"server\\\": \\\"westd-34685\\\", \\\"gpu_id\\\": \\\"cuda:3\\\"}], \\\"actually_running_gpus\\\": [{\\\"server\\\": \\\"westd-10894\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"exp_id\\\": \\\"reverse_cutoff_s2_v2\\\"}, {\\\"server\\\": \\\"westd-10894\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"exp_id\\\": \\\"mvp_occ_s3_v2\\\"}, {\\\"server\\\": \\\"westd-10894\\\", \\\"gpu_id\\\": \\\"cuda:2\\\", \\\"exp_id\\\": \\\"full_occ_ln_s3_v2\\\"}, {\\\"server\\\": \\\"westd-10894\\\", \\\"gpu_id\\\": \\\"cuda:3\\\", \\\"exp_id\\\": \\\"ablation_occ_detach_s3_v2\\\"}, {\\\"server\\\": \\\"westd-34685\\\", \\\"gpu_id\\\": \\\"cuda:3\\\", \\\"exp_id\\\": \\\"cutoff_25k_s1_v2\\\"}], \\\"allocated_but_idle\\\": [{\\\"server\\\": \\\"westd-34685\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"idle_min\\\": null, \\\"util_pct\\\": null}, {\\\"server\\\": \\\"westd-34685\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"idle_min\\\": null, \\\"util_pct\\\": null}, {\\\"server\\\": \\\"westd-34685\\\", \\\"gpu_id\\\": \\\"cuda:2\\\", \\\"idle_min\\\": null, \\\"util_pct\\\": null}], \\\"registered_but_hw_idle\\\": [], \\\"unregistered_but_hw_active\\\": [], \\\"running_experiments\\\": [{\\\"exp_id\\\": \\\"reverse_cutoff_s2_v2\\\", \\\"gpus\\\": [\\\"cuda:0\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"mvp_occ_s3_v2\\\", \\\"gpus\\\": [\\\"cuda:1\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"full_occ_ln_s3_v2\\\", \\\"gpus\\\": [\\\"cuda:2\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"ablation_occ_detach_s3_v2\\\", \\\"gpus\\\": [\\\"cuda:3\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"cutoff_25k_s1_v2\\\", \\\"gpus\\\": [\\\"cuda:3\\\"], \\\"util_avg\\\": null}], \\\"worker_pool\\\": {\\\"total\\\": 0, \\\"gpu_tasks\\\": 0, \\\"cpu_tasks\\\": 0, \\\"details\\\": []}, \\\"summary\\\": \\\"分配 8 张, 实际跑 5 张 ⚠️ | Worker 0 (GPU 0 / CPU 0)\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "elapsed_ms": 502
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-26T09:55:05.360998+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "occsafe_vla",
+              "status": "running"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-26T09:55:05.461699+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 100
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-26T09:55:29.841923+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "vanilla_v2_s1",
+              "field": "server",
+              "value": "westd-34685",
+              "project": "occsafe_vla"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-26T09:55:30.544855+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"vanilla_v2_s1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T08:45:20.825Z\\\", \\\"updated_at\\\": \\\"2026-05-26T09:55:30.230Z\\\", \\\"hypothesis\\\": \\\"Vanilla baseline 2nd v2 seed (seed 43). No OCC head. Needed to reach n≥2 for Vanilla baseline to support 'all OCC conditions < Vanilla' claim.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --seed 43\\\", \\\"server\\\": \\\"westd-34685\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/modified_libero_rlds/\\\", \\\"data_count\\\": -1, \\\"model_name\\\": \\\"openvla-7b\\\", \\\"seed\\\": 43, \\\"pid\\\": 419107, \\\"log_path\\\": \\\"/tmp/vanilla_v2_s1.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/vanilla_v2_s1\\\"}, \\\"server\\\": \\\"westd-34685\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6691}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 702
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-26T09:55:30.896531+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "vanilla_v2_s2",
+              "field": "server",
+              "value": "westd-34685",
+              "project": "occsafe_vla"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-26T09:55:31.850022+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"vanilla_v2_s2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T08:45:22.251Z\\\", \\\"updated_at\\\": \\\"2026-05-26T09:55:31.289Z\\\", \\\"hypothesis\\\": \\\"Vanilla baseline 3rd v2 seed (seed 44). No OCC head. Reaches n=3 for robust Vanilla baseline comparison.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --seed 44\\\", \\\"server\\\": \\\"westd-34685\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/modified_libero_rlds/\\\", \\\"data_count\\\": -1, \\\"model_name\\\": \\\"openvla-7b\\\", \\\"seed\\\": 44, \\\"pid\\\": 419342, \\\"log_path\\\": \\\"/tmp/vanilla_v2_s2.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/vanilla_v2_s2\\\"}, \\\"server\\\": \\\"westd-34685\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6759}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 953
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-26T09:55:31.850432+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "detach_ln_s3",
+              "field": "server",
+              "value": "westd-34685",
+              "project": "occsafe_vla"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-26T09:55:33.009703+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"detach_ln_s3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T11:14:42.675Z\\\", \\\"updated_at\\\": \\\"2026-05-26T09:55:32.231Z\\\", \\\"hypothesis\\\": \\\"Detach LN 4th seed (seed 45). Gradient flow OFF, LayerNorm. Expands Cell 4 from n=3 to n=4 for stronger factorial ANOVA.\\\", \\\"parent\\\": \\\"\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach true --occ_norm_type ln --seed 45\\\", \\\"server\\\": \\\"westd-34685\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/modified_libero_rlds/\\\", \\\"data_count\\\": -1, \\\"model_name\\\": \\\"openvla-7b\\\", \\\"seed\\\": 45, \\\"pid\\\": 419641, \\\"log_path\\\": \\\"/tmp/detach_ln_s3.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/detach_ln_s3\\\"}, \\\"server\\\": \\\"westd-34685\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6972}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1159
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-26T09:55:33.060329+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation.skill.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-26T09:55:33.161140+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "Glob",
+            "elapsed_ms": 100
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-26T09:55:42.232785+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "vanilla_v2_s1",
+              "field": "gpu",
+              "value": "cuda:0",
+              "project": "occsafe_vla"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-26T09:55:43.136446+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"vanilla_v2_s1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T08:45:20.825Z\\\", \\\"updated_at\\\": \\\"2026-05-26T09:55:42.602Z\\\", \\\"hypothesis\\\": \\\"Vanilla baseline 2nd v2 seed (seed 43). No OCC head. Needed to reach n≥2 for Vanilla baseline to support 'all OCC conditions < Vanilla' claim.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --seed 43\\\", \\\"server\\\": \\\"westd-34685\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/modified_libero_rlds/\\\", \\\"data_count\\\": -1, \\\"model_name\\\": \\\"openvla-7b\\\", \\\"seed\\\": 43, \\\"pid\\\": 419107, \\\"log_path\\\": \\\"/tmp/vanilla_v2_s1.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/vanilla_v2_s1\\\"}, \\\"server\\\": \\\"westd-34685\\\", \\\"gpu\\\": \\\"cuda:0\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7003}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 903
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-26T09:55:43.136910+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "vanilla_v2_s2",
+              "field": "gpu",
+              "value": "cuda:1",
+              "project": "occsafe_vla"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-26T09:55:43.790821+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "detach_ln_s3",
+              "field": "gpu",
+              "value": "cuda:2",
+              "project": "occsafe_vla"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-26T09:55:43.841374+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"vanilla_v2_s2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T08:45:22.251Z\\\", \\\"updated_at\\\": \\\"2026-05-26T09:55:43.501Z\\\", \\\"hypothesis\\\": \\\"Vanilla baseline 3rd v2 seed (seed 44). No OCC head. Reaches n=3 for robust Vanilla baseline comparison.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --seed 44\\\", \\\"server\\\": \\\"westd-34685\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/modified_libero_rlds/\\\", \\\"data_count\\\": -1, \\\"model_name\\\": \\\"openvla-7b\\\", \\\"seed\\\": 44, \\\"pid\\\": 419342, \\\"log_path\\\": \\\"/tmp/vanilla_v2_s2.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/vanilla_v2_s2\\\"}, \\\"server\\\": \\\"westd-34685\\\", \\\"gpu\\\": \\\"cuda:1\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6835}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 704
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-26T09:55:44.543431+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"detach_ln_s3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T11:14:42.675Z\\\", \\\"updated_at\\\": \\\"2026-05-26T09:55:44.231Z\\\", \\\"hypothesis\\\": \\\"Detach LN 4th seed (seed 45). Gradient flow OFF, LayerNorm. Expands Cell 4 from n=3 to n=4 for stronger factorial ANOVA.\\\", \\\"parent\\\": \\\"\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach true --occ_norm_type ln --seed 45\\\", \\\"server\\\": \\\"westd-34685\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/modified_libero_rlds/\\\", \\\"data_count\\\": -1, \\\"model_name\\\": \\\"openvla-7b\\\", \\\"seed\\\": 45, \\\"pid\\\": 419641, \\\"log_path\\\": \\\"/tmp/detach_ln_s3.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/detach_ln_s3\\\"}, \\\"server\\\": \\\"westd-34685\\\", \\\"gpu\\\": \\\"cuda:2\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7108}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 752
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-26T09:57:00.742503+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 8/8 全部在跑 | Worker 0 (GPU 0 / CPU 0) | 磁盘: 10894 ~50% / 34685 ~98%\n\n## full_occ_bn_v2_s1_eval 完成 — Cell 1 进一步恶化，Plan B 信号大幅增强\n\n**结果**: CAR=0.654, TSR=0.854 (seed 43, Full OCC BN, 500 episodes)\n\n崩溃集中在 T3(0.08), T5(0.28), T6(0.10) — gradient flow ON 在高碰撞风险任务上灾难性恶化。\n\n**Cell 1 更新**: n=1→n=2, 均值 0.746→**0.700**, std=0.065\n- 4 cell 中方差最大（其余 std=0.019-0.024）\n- Gradient flow ON 不仅降低均值，还增加不确定性\n\n**更新后 v2 Factorial**:\n\n| Cell | 条件 | n | CAR mean±std |\n|------|------|---|-------------|\n| 1 | Full OCC BN (Grad ON + BN) | **2** | **0.700±0.065** |\n| 2 | Full OCC LN (Grad ON + LN) | 3 | 0.743±0.024 |\n| 3 | Detach BN (Grad OFF + BN) | 3 | 0.757±0.019 |\n| 4 | Detach LN (Grad OFF + LN) | 3 | 0.765±0.023 |\n| Vanilla | — | 1 | 0.768 |\n\n**效应量估算**:\n- Gradient: ON(0.726) vs OFF(0.761), Δ=0.035\n- Norm: BN(0.734) vs LN(0.754), Δ=0.020\n- 严格序: Vanilla > Detach LN > Detach BN > Full OCC LN > Full OCC BN\n- 无 crossover，纯 ordinal\n\n**当前 8 个训练全部 running**（cron 确认）:\n- 10894: reverse_cutoff_s2_v2(0), mvp_occ_s3_v2(1), full_occ_ln_s3_v2(2), ablation_occ_detach_s3_v2(3)\n- 34685: vanilla_v2_s1(0), vanilla_v2_s2(1), detach_ln_s3(2), cutoff_25k_s1_v2(3)\n\n**s3 完成后数据量**: Cell 1 n=3, Cell 2-4 n=4, Vanilla n=3 = 18 obs ANOVA\n\n**等待**: Director Plan B 方向偏好 + author list。Plan B 信号已非常强，是否可以先行推进 paper_framing 和论文结构准备？",
+              "project": "occsafe_vla"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-26T09:57:04.656535+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3914
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-26T09:57:27.954770+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__send_progress",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-26T09:57:28.005363+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-26T09:57:45.259624+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "update_roadmap",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-26T09:57:45.410823+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "ToolSearch",
+            "elapsed_ms": 151
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-26T09:57:48.431018+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__update_roadmap",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-26T09:57:48.481828+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-26T09:58:10.110806+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "ssh:training-progress-check",
+              "project": "occsafe_vla",
+              "task_prompt": "## 任务：检查 8 个训练实验的进度\n\nSSH 到两台服务器，检查所有正在跑的训练实验的当前 step 和预估完成时间。\n\n### 服务器信息\n- **westd-10894** (4×RTX PRO 6000)\n- **westd-34685** (4×RTX PRO 6000)\n- 工作目录: `/root/occsafe_vla`\n- Python: `/root/miniconda3/bin/python`（conda base）\n\n### 需要检查的实验\n\n| 服务器 | GPU | exp_id | PID |\n|--------|-----|--------|-----|\n| westd-10894 | cuda:0 | reverse_cutoff_s2_v2 | 170605 |\n| westd-10894 | cuda:1 | mvp_occ_s3_v2 | 33897 |\n| westd-10894 | cuda:2 | full_occ_ln_s3_v2 | 34102 |\n| westd-10894 | cuda:3 | ablation_occ_detach_s3_v2 | 34443 |\n| westd-34685 | cuda:0 | vanilla_v2_s1 | 419107 |\n| westd-34685 | cuda:1 | vanilla_v2_s2 | 419342 |\n| westd-34685 | cuda:2 | detach_ln_s3 | 419641 |\n| westd-34685 | cuda:3 | cutoff_25k_s1_v2 | 453581 |\n\n### 检查步骤\n\n1. SSH 到每台服务器（先用 ssh_read_only）\n2. 对每个实验，读取训练日志获取当前 step:\n   ```bash\n   tail -20 /tmp/<exp_id>.log 2>/dev/null || tail -20 /root/occsafe_vla/logs/<exp_id>.log 2>/dev/null\n   ```\n   也可以用:\n   ```bash\n   ps -p <PID> -o pid,etime,pcpu,rss --no-headers 2>/dev/null\n   ```\n3. 确认进程是否真的在跑（GPU 利用率）:\n   ```bash\n   nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader\n   ```\n\n### 产出要求\n\n返回一个表格，包含：\n- exp_id\n- 当前 step / 总 step (50005)\n- 预估剩余时间\n- GPU 利用率\n- 是否有异常（loss 异常、OOM、进程卡住等）\n\n每台服务器的磁盘使用也检查一下：`df -h /root /root/autodl-tmp 2>/dev/null`\n\n**注意**: 只用 ssh_read_only，不要执行任何修改命令。",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-26T09:58:30.362833+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ssh_training-progress-check_20260526T095810\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/logs/workers/worker_ssh_training-progress-check_20260526T095810.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_ssh_training-progress-check_20260526T095810 started. Use get_worker_status('worker_ssh_training-progress-check_20260526T095810') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 20252
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-26T09:58:30.413692+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "research:plan-b-literature",
+              "project": "occsafe_vla",
+              "task_prompt": "## 任务：Plan B 文献调研 — 辅助监督在 VLA/机器人中的负面效果\n\n### 背景\n我们在做一个关于 VLA (Vision-Language-Action) 模型安全性的研究。核心发现：给 VLA 加辅助 occupancy prediction head 不仅没有提升安全性（collision avoidance rate），反而在所有配置下都≤ vanilla baseline。\n\n我们的实验是 2×2 factorial design:\n- Factor 1: Gradient flow (ON vs OFF/detached)\n- Factor 2: Normalization (BatchNorm vs LayerNorm)\n- 结果: Vanilla(0.768) > Detach LN(0.765) > Detach BN(0.757) > Full OCC LN(0.743) > Full OCC BN(0.700)\n\n论文方向 Plan B: \"auxiliary spatial supervision 的所有配置均不提升 VLA 安全性\" — cautionary study + mechanism analysis。\n\nTitle 候选: \"Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? A Mechanism Analysis\"\n\n### 需要调研的问题\n\n1. **负面结果/cautionary study 论文先例**:\n   - 搜索 robotics/VLA/embodied AI 领域中 auxiliary supervision/multi-task learning 被证明无效或有害的论文\n   - 关键词: \"auxiliary task negative\", \"multi-task learning hurts\", \"auxiliary supervision detrimental\", \"negative transfer robotics\"\n   \n2. **VLA 安全性相关工作**:\n   - SafeLIBERO, safe robot learning, collision avoidance in VLA\n   - 搜索有没有其他人在 VLA 上加 occupancy/depth/spatial prediction head\n\n3. **Gradient flow interference 在 multi-task learning 中的理论解释**:\n   - 搜索 \"gradient conflict multi-task\", \"negative transfer mechanism\", \"task interference\"\n   - 特别关注 OCC loss 梯度如何干扰 action loss\n\n4. **Cautionary study 的写作范式**:\n   - 搜索顶会（NeurIPS/ICML/CoRL/RSS）中成功发表的 cautionary/negative result paper 的结构和叙事策略\n\n### 搜索方法\n- 用 WebSearch 搜索 arXiv, Google Scholar\n- 每个方向至少搜 2-3 个不同关键词组合\n- 对找到的重要论文，用 WebFetch 读 abstract 和 introduction\n\n### 产出\n将调研结果写入 memory.md（用 save_project_file），在文件末尾追加一个 \"## Plan B 文献调研\" section，包含：\n- 每篇相关论文：标题、作者、年份、venue、核心发现、与我们工作的关系\n- 分类整理（negative result 先例 / VLA 安全 / gradient interference 理论 / 叙事策略）\n- 对我们论文 framing 的建议\n\n**先读 memory.md 现有内容再追加，不要覆盖已有内容。**",
+              "tool_groups": "['knowledge']",
+              "tools": "['WebSearch', 'WebFetch']"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-26T09:58:33.129973+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_research_plan-b-literature_20260526T095830\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/logs/workers/worker_research_plan-b-literature_20260526T095830.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_research_plan-b-literature_20260526T095830 started. Use get_worker_status('worker_research_plan-b-literature_20260526T095830') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 2716
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-26T09:58:45.220448+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "occsafe_vla",
+              "file": "memory.md",
+              "max_chars": "6000"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-26T10:11:46.657722+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "2 个 Worker 已派发（SSH 训练进度检查 + Plan B 文献调研）。现在更新 memory.md。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0"
+          },
+          "id": "event-000057"
+        }
+      ],
+      "message_count": 57
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-27T02:12:06.042534+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-27T02:12:18.852805+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__read_experiment_plan_with_status",
+              "max_results": "6"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-27T02:12:19.154300+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "ToolSearch",
+            "elapsed_ms": 301
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-27T02:12:21.863275+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "occsafe_vla",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-27T02:12:21.863699+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-27T02:12:22.866842+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "occsafe_vla",
+              "file": "report.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-27T02:12:23.324456+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (286,314 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-occsafe-vla--claude-sessions-agent-199b5838/c07cc407-c9b3-4bc2-bc5b-90a5ecd7b93f/tool-results/mcp-agent-ml-research-read_registry-1779847943257.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-occsafe-vla--claude-sessions-agent-199b5838/c07cc407-c9b3-4bc2-bc5b-90a5ecd7b93f/tool-results/mcp-agent-ml-research-read_registry-1779847943257.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1461
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-27T02:12:23.324976+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "occsafe_vla"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-27T02:12:23.475744+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "occsafe_vla",
+              "status": "running"
+            }
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-27T02:12:47.498767+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 9, \\\"results\\\": [{\\\"exp_id\\\": \\\"detach_ln_v2_s1\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=681124)\\\"]}, {\\\"exp_id\\\": \\\"detach_ln_s4\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=677568)\\\"]}, {\\\"exp_id\\\": \\\"ablation_occ_detach_s4\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=735898)\\\"]}, {\\\"exp_id\\\": \\\"mvp_occ_s4\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=736253)\\\"]}, {\\\"exp_id\\\": \\\"detach_ln_v2_s1_35\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=681124)\\\"]}, {\\\"exp_id\\\": \\\"full_occ_ln_v2_s1c\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=481426)\\\"]}, {\\\"exp_id\\\": \\\"full_occ_ln_v2_s2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=481643)\\\"]}, {\\\"exp_id\\\": \\\"detach_ln_v2_s0c\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=481988)\\\"]}, {\\\"exp_id\\\": \\\"full_occ_ln_v2_s0d\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=490803)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 25635
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-27T02:12:47.499394+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-27 01:17 UTC\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中（8 GPU 满载）\\\\n\\\\n### westd-34685（4/4 GPU）\\\\n| GPU | exp_id | Cell | seed | 说明 |\\\\n|-----|--------|------|------|------|\\\\n| cuda:0 | detach_ln_v2_s1_35 | 4 (Detach LN) | 43 | v2 rebuild, PID 681204, run_root_dir=detach_ln_v2_s1 |\\\\n| cuda:1 | detach_ln_s4 | 4 (Detach LN) | 46 | n=5 expansion, PID 677568 |\\\\n| cuda:2 | ablation_occ_detach_s4 | 3 (Detach BN) | 46 | n=5 expansion, PID 735898 |\\\\n| cuda:3 | mvp_occ_s4 | 1 (Full OCC BN) | 46 | n=5 expansion, PID 736253 |\\\\n\\\\n### westd-10894（4/4 GPU）\\\\n| GPU | exp_id | Cell | seed | 说明 |\\\\n|-----|--------|------|------|------|\\\\n| cuda:0 | full_occ_ln_v2_s1c | 2 (Full OCC LN) | 43 | registry=DONE(cron误判), 实际进程存活, cron已重注册 |\\\\n| cuda:1 | full_occ_ln_v2_s2 | 2 (Full OCC LN) | 44 | registry=DONE(cron误判), 实际进程存活, cron已重注册 |\\\\n| cuda:2 | detach_ln_v2_s0c | 4 (Detach LN) | 42 | registry=DONE(cron误判), 实际进程存活, cron已重注册 |\\\\n| cuda:3 | full_occ_ln_v2_s0d | 2 (Full OCC LN) | 42 | 刚提交, PID 490803 |\\\\n\\\\n## 待处理\\\\n- full_occ_ln_s4: Cell 2 n=5, seed 46 — 等 GPU 空出\\\\n\\\\n## v2 Factorial 数据现状\\\\n\\\\n| Cell | Condition | v2 n | CAR mean±std | vs Vanilla | 状态 |\\\\n|------|-----------|------|--------------|------------|------|\\\\n| 1 | Full OCC BN | 3 | 0.725±0.064 | -2.0pp | ✅ +s4训练中 |\\\\n| 2 | Full OCC LN | 1 | 0.740 | -0.5pp | ⏳ s1c/s2/s0d训练中(10894) |\\\\n| 3 | Detach BN | 4 | 0.767±0.024 | +2.2pp | ✅ +s4训练中 |\\\\n| 4 | Detach LN | 1 | 0.802 | +5.7pp | ⏳ s0c/s1_35训练中 +s4训练中 |\\\\n| — | Vanilla | 3 | 0.745±0.024 | baseline | ✅ |\\\\n\\\\n## 近期关键结果\\\\n- **detach_ln_s3_eval**: CAR=0.802, TSR=0.886 (Cell 4 最佳, +5.7pp vs Vanilla) ✅\\\\n- **cutoff_25k_s1_v2_eval**: CAR=0.788, TSR=0.898 ✅\\\\n\\\\n## 趋势\\\\n成功 90 / 负向 6 / 失败 24 / 共 ~133\\\\n\\\\n## 下一步\\\\n1. Worker 检查 10894 三个实验当前 step → 估算 ETA\\\\n2. 34685 四个训练完成后 → eval\\\\n3. 10894 训练完成后 → eval → \n…[truncated 519 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 24632
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-27T02:12:47.500010+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/ROADMAP.md\\\", \\\"content\\\": \\\"# occsafe_vla — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-27 01:00 UTC | 更新原因: Session 6 初始化 — 10894 硬件故障确认, GPU 表更新, Cell 4 v2 n=1 数据录入\\\\n\\\\n> 核心方向详见 paper_framing.md\\\\n\\\\n## 核心方向\\\\nBN×gradient flow factorial study — v2 rebuild 数据确认 **Plan B** (ordinal interaction)。\\\\n**Vanilla n=3 = 0.745±0.024。Detach BN (0.767) ≈ Vanilla (统计不可区分, p=0.28); Full OCC BN (0.725) < Vanilla。**\\\\n核心 claim: gradient flow 是损害源，detach 后 aux head 无害（≈ Vanilla）。\\\\n\\\\n⚠️ **机制证据待重建**：v1 gradient collapse + CKA degradation 已被推翻为 bug 产物 (D056/D057)。当前可用机制证据：梯度正交性 (cosine≈0) + 方差不对称 (Cell 1 方差 6.88× Cell 3)。\\\\n\\\\n## 目标会议\\\\n- **CoRL 2026**: Abstract ✅, Paper May 29（~2.5 天）\\\\n\\\\n## v2 Factorial 数据\\\\n\\\\n| Cell | Condition | v2 n | CAR mean±std | vs Vanilla (0.745) | 状态 |\\\\n|------|-----------|------|--------------|---------------------|------|\\\\n| 1 | Full OCC BN (Grad ON + BN) | 3 | 0.725±0.064 | -2.0pp | ✅ |\\\\n| 2 | Full OCC LN (Grad ON + LN) | 1 v2 | 0.740 | -0.5pp | ⏳ full_occ_ln_s4 等 GPU |\\\\n| 3 | Detach BN (Grad OFF + BN) | 4 | 0.767±0.024 | +2.2pp (p=0.28 NS) | ✅ |\\\\n| 4 | Detach LN (Grad OFF + LN) | 1 | 0.802 | +5.7pp | ⏳ s1_35 训练中 (34685:0) |\\\\n| — | Vanilla | 3 | 0.745±0.024 | baseline | ✅ |\\\\n\\\\n*detach_ln_s3 Reviewer 确认 v2 代码, eval 完成 CAR=0.802\\\\n\\\\n## Binomial Test 修正\\\\n原 \\\\\\\"12/12 ≤ Vanilla\\\\\\\" → 至多 11/12 (Detach BN 均值 > Vanilla 均值)。\\\\n11/12 binomial p≈0.003 仍显著。论文策略: Grad ON conditions ≤ Vanilla (N/N), Grad OFF ≈ Vanilla。\\\\n\\\\n## GPU 状态\\\\n\\\\n⚠️ **10894 全部 4 张 GPU 硬件故障不可用** (cuda:0/2 确认坏, cuda:1/3 可靠性存疑)\\\\n\\\\n| 服务器:GPU | 当前任务 | ETA (UTC) | 下一步 |\\\\n|-----------|---------|-----------|--------|\\\\n| 34685:0 | detach_ln_v2_s1_35 (Cell 4 v2, seed 43) | 待确认 | eval |\\\\n| 34685:1 | detach_ln_s4 (Cell 4 n=5, seed 46) | 待确认 | eval |\\\\n| 34685:2 | ablation_occ_detach_s4 (Cell 3 n=5, seed 46) | 待确认 | eval |\\\\n| 34685:3 | mvp_occ_s4 (Cell 1 n=5, seed 46)\n…[truncated 2361 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 24175
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-27T02:12:47.602447+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_code_v2-gradient-analysis-prep_20260527T021109\\\", \\\"task_type\\\": \\\"code:v2-gradient-analysis-prep\\\", \\\"project\\\": \\\"occsafe_vla\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-27T02:11:10.011094+00:00\\\", \\\"ended_at\\\": null}], \\\"count\\\": 1}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 24126
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-27T02:12:53.034546+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "occsafe_vla",
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-27T02:12:53.335948+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "occsafe_vla",
+              "file": "memory.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-27T02:12:53.587306+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"detach_ln_v2_s1_35\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T00:50:57.162Z\\\", \\\"updated_at\\\": \\\"2026-05-27T01:16:37.184Z\\\", \\\"hypothesis\\\": \\\"Detach LN (gradient OFF + LN) v2 rebuild seed 43 on westd-34685. Previously unregistered instance running since ~23:34 UTC, currently at step 4608/50005. Provides Cell 4 v2 data for factorial ANOVA.\\\", \\\"spec\\\": {\\\"server\\\": \\\"westd-34685\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"account\\\": \\\"root\\\", \\\"command\\\": \\\"bash -c \\\\\\\"export WANDB_MODE=disabled && source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach true --occ_norm_type ln --run_root_dir /root/autodl-tmp/checkpoints/detach_ln_v2_s1 --seed 43 --run_id_note detach_ln_v2_s1\\\\\\\"\\\", \\\"pid\\\": \\\"681204\\\", \\\"log_path\\\": \\\"~/runs/occsafe_vla/detach_ln_v2_s1.log\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops\\\", \\\"data_count\\\": 55370, \\\"model_name\\\": \\\"openvla-7b\\\", \\\"seed\\\": 43, \\\"actual_run_root_dir\\\": \\\"/root/autodl-tmp/checkpoints/detach_ln_v2_s1\\\", \\\"note\\\": \\\"Ghost process from original detach_ln_v2_s1 (10894). Actual run_root_dir is detach_ln_v2_s1, not detach_ln_v2_s1_35. Child PID 681204 of parent 681124.\\\"}}, \\\"mvp_occ_s4\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T11:14:43.726Z\\\", \\\"updated_at\\\": \\\"2026-05-27T00:17:58.306Z\\\", \\\"hypothesis\\\": \\\"Factorial n=5 expansion: Full OCC BN (gradient flow O\n…[truncated 6268 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 552
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-27T02:12:53.587989+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/memory.md\\\", \\\"content\\\": \\\"# 统一修订计划：裁剪（9→8页）+ Reviewer 预审修复\\\\n\\\\n> 生成时间: 2026-05-26 21:45 UTC | 状态: **待 Director 审批**\\\\n\\\\n---\\\\n\\\\n## 一、Reviewer 预审修复（F1–F5）\\\\n\\\\n### F1 ⛔ Critical — method.tex L61 v2 retrain 声称不实\\\\n\\\\n**当前文本**：\\\\n> \\\\\\\"The five core factorial conditions were retrained under a revised codebase (v2) to ensure internally consistent comparisons; supplementary conditions use the original codebase (v1).\\\\\\\"\\\\n\\\\n**事实**：\\\\n| Cell | Condition | v2 状态 |\\\\n|------|-----------|--------|\\\\n| 1 | Full OCC (BN) | ✅ 3 seeds 完成 |\\\\n| 2 | Full OCC+LN | ⚠️ 1 seed 完成，2 training |\\\\n| 3 | Detach OCC (BN) | ✅ 4 seeds 完成 |\\\\n| 4 | Detach+LN | ⚠️ 0→1 完成，2 training |\\\\n| — | Vanilla | ⚠️ 1 seed 完成，2 training |\\\\n\\\\n**修订方案**：\\\\n> \\\\\\\"The BN factorial cells (Full OCC and Detach OCC) have been fully retrained under a revised codebase (v2, 3--4 seeds each); the LN cells and additional Vanilla seeds are in progress at the time of writing. The $2{\\\\\\\\times}2$ ANOVA uses v2 data for the BN row and v1 data for the LN row; this will be updated to fully v2 data before final submission. Supplementary conditions use the original codebase (v1). Both versions share identical architectures, hyperparameters, and evaluation protocols. Bootstrap 95\\\\\\\\% CIs use 10,000 hierarchical resamples (percentile method). Training runs for 50K steps on a single NVIDIA RTX PRO 6000 GPU; full details are in Appendix.\\\\\\\"\\\\n\\\\n**位置**：method.tex L61\\\\n**依赖**：无\\\\n\\\\n---\\\\n\\\\n### F2 ⛔ Critical — η²=0.37 / d=1.41 是混合 v1/v2 ANOVA 结果\\\\n\\\\n**出现位置**（4 处）：\\\\n1. **Abstract L27**: \\\\\\\"The interaction effect is large (partial $\\\\\\\\eta^2{=}0.37$, Cohen's $d{=}1.41$)\\\\\\\"\\\\n2. **Intro L16**: \\\\\\\"(partial $\\\\\\\\eta^2{=}0.37$, Cohen's $d{=}1.41$), though the small-sample design...\\\\\\\"\\\\n3. **Intro L20 C1**: \\\\\\\"(partial $\\\\\\\\eta^2{=}0.37$)\\\\\\\"\\\\n4. **Results L45**: \\\\\\\"(partial $\\\\\\\\eta^2{=}0.37$, Coh\n…[truncated 8300 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 252
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-27T02:13:00.893705+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "occsafe_vla",
+              "filters": "{'status': 'DONE'}",
+              "fields": "['status', 'conclusion', 'metrics', 'updated_at', 'spec']",
+              "limit": "5"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-27T02:13:01.044575+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_worker_status",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-27T02:13:01.396109+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"detach_ln_v2_s1c\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-27T01:11:05.619Z\\\", \\\"spec\\\": {\\\"pid\\\": \\\"482336\\\", \\\"actual_child_pid\\\": \\\"482336\\\", \\\"note\\\": \\\"parent PID 482192 dead, child 482336 is actual training process\\\"}, \\\"conclusion\\\": \\\"killed\\\"}, \\\"detach_ln_v2_s0c\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-27T01:11:04.085Z\\\", \\\"spec\\\": {\\\"pid\\\": \\\"481988\\\", \\\"actual_child_pid\\\": \\\"481988\\\", \\\"note\\\": \\\"parent PID 481844 dead, child 481988 is actual training process\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"full_occ_ln_v2_s2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-27T01:11:03.162Z\\\", \\\"spec\\\": {\\\"pid\\\": \\\"481643\\\", \\\"actual_child_pid\\\": \\\"481643\\\", \\\"note\\\": \\\"parent PID 481496 dead, child 481643 is actual training process\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"full_occ_ln_v2_s1c\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-27T01:11:02.190Z\\\", \\\"spec\\\": {\\\"pid\\\": \\\"481426\\\", \\\"actual_child_pid\\\": \\\"481426\\\", \\\"note\\\": \\\"parent PID 481346 dead, child 481426 is actual training process\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"full_occ_ln_v2_s0c\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-27T00:47:09.389Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"see existing spec\\\", \\\"server\\\": \\\"westd-34685\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"738867\\\", \\\"log_path\\\": \\\"~/runs/occsafe_vla/full_occ_ln_v2_s0c.log\\\", \\\"submitted_at\\\": \\\"2026-05-27T00:31:49.756Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops\\\", \\\"data_count\\\": 55370, \\\"model_name\\\": \\\"openvla-7b\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"pretrained:openvla-7b (fresh start)\\\", \\\"eval_data\\\": \\\"N/A (training run)\\\", \\\"wall_clock_seconds\\\": 667.3, \\\"gpu_hours\\\": 0.19}, \\\"conclusion\\\": \\\"failed\\\"}}, \\\"count\\\": 5, \\\"total\\\": 128, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4785}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 502
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-27T02:13:01.396441+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "ToolSearch",
+            "elapsed_ms": 351
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-27T02:13:06.011766+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_code_v2-gradient-analysis-prep_20260527T021109",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-27T02:13:06.513991+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_v2-gradient-analysis-prep_20260527T021109\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"code:v2-gradient-analysis-prep\\\", \\\"project\\\": \\\"occsafe_vla\\\", \\\"started_at\\\": \\\"2026-05-27T02:11:10.011094+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"ssh_read_only\\\"], \\\"last_text\\\": \\\"检查 scripts 是否在 git 中，以便 34685 同步。\\\", \\\"turn_count\\\": 25}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 502
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-27T02:13:07.016161+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "occsafe_vla",
+              "file": "paper_framing.md",
+              "max_chars": "6000"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-27T02:13:07.317862+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/paper_framing.md\\\", \\\"content\\\": \\\"# OccSafe-VLA — Paper Framing\\\\n\\\\n> 维护者: Director | 最后更新: 2026-05-26 19:00 UTC | 状态: Draft — **Plan B (ordinal interaction)** — v2 factorial: gradient flow 损害 CAR (Δ=-4.2pp within BN); **Vanilla n=3 = 0.745±0.024** → Grad OFF ≈ Vanilla (statistically indistinguishable, p=0.28), Grad ON < Vanilla。Cell 1 n=3, Cell 3 n=4, Cell 2 首个 v2 点。CoRL 2026 target (Paper May 29)\\\\n>\\\\n> ⚠️ **D043 Plan B Transition (2026-05-26)**: v2 factorial (12 obs) 数据推翻 v1 crossover interaction。v1 数据（Full OCC BN=0.797 best）不可复现。以下 Core Insight 和 Claims 已更新为 Plan B。v1 evidence sections 标记 [v1-SUPERSEDED] 待清理。\\\\n\\\\n## Architecture Facts (from code, verified)\\\\n- **Occ head input**: DINOv2(1024) + SigLIP(1152) 拼接 = 2176d（非仅 DINOv2）\\\\n- **Occ head**: Linear(2176→256) → reshape(B,256,16,16) → ConvTranspose2d×2 上采样(16→32→64) → Conv2d(64→1)。BatchNorm2d + GELU。参数量 1.2M。\\\\n- **FocalLoss**: α=0.25, γ=2.0\\\\n- **occ_loss_weight**: λ=0.01, 指数衰减 w(t)=0.01×exp(-t/50000)\\\\n- **LR**: 5e-4 恒定（MultiStepLR milestone=100K > max_steps，从未触发）\\\\n- **LoRA**: rank=32, alpha=16, dropout=0.0\\\\n- **GPU**: 4× RTX PRO 6000 98GB per server\\\\n- **训练时间**: ~12.9h/run @ 1.08 it/s\\\\n\\\\n### 叙事含义\\\\n- **双编码器梯度流**: Occ head 接收 DINOv2+SigLIP 拼接特征，occupancy supervision 同时影响两个编码器。\\\\n  比\\\\\\\"仅改善 DINOv2\\\\\\\"更强 — 同时改善语义(SigLIP)和空间(DINOv2)编码器的 3D 感知。\\\\n- **极轻量**: occ_head 仅 1.2M params = 全模型 7.65B 的 0.016%，强化 \\\\\\\"lightweight auxiliary\\\\\\\" 叙事\\\\n- **occ_loss 指数衰减**: w(t)=0.01×exp(-t/50000) → 训练后期 occ 监督逐渐\\\\\\\"放手\\\\\\\"让 action loss 主导，\\\\n  可论证为\\\\\\\"先学空间结构，再精化动作\\\\\\\"的课程学习效果\\\\n- **LoRA alpha=16 < rank=32**: 有效 scaling factor = alpha/rank = 0.5，比常见的 1.0 更保守\\\\n\\\\n### DepthHead (新增, 2026-05-22)\\\\n- **Depth head**: Linear(2176→256) → ConvTranspose2d×2 (256→128→64, kernel=4, stride=2) → ReLU（无 sigmoid）\\\\n- **SmoothL1Loss**, depth_loss_weight=0.01 + 指数衰减（同 occ_loss_weight）\\\\n- **GT 来源**: MuJoCo sim 深度渲染（s\n…[truncated 4603 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 301
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-27T02:14:38.207629+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- **westd-34685 GPU 白名单**: cuda:0/1/2/3（项目独占），不可用其他服务器 GPU 除非 Director 批准扩配额\n- **westd-10894 状态混乱**: 3 个实验 registry 标 DONE(success) 但 cron reconcile 显示进程仍存活（PID 481426/481643/481988）。**不要信 registry 状态，以 cron/SSH 实际进程为准**。full_occ_ln_v2_s0d (cuda:3, PID 490803) 是后提交的新实验\n- **v1 数据/机制证据全部不可用于论文 claim**（D056/D057）：gradient collapse、CKA drift、crossover interaction 均为 bug 产物。唯一可用机制信号 = 梯度正交性 (cosine≈0)\n- **论文措辞禁区**: 禁止 \"crossover interaction\"、\"BN-mediated gradient calibration\"、\"existence regularization\"、v1/v2 梯度跨方法论数值对比\n- **Paper deadline May 29** — 统一修订计划 (F1-F5 + P1-P5) 待 Director 审批，审批前不动 paper 文件\n- **detach_ln_v2_s1_35 的 run_root_dir 实际是 `/root/autodl-tmp/checkpoints/detach_ln_v2_s1`**（非 `detach_ln_v2_s1_35`），是从 10894 迁移来的 ghost process，eval 时注意路径\n\n### 2. 🖥️ 基础设施快照\n- **westd-34685**: 工作目录 `/root/occsafe_vla/openvla-oft`，Python `/root/miniconda3/envs/occsafe/bin/python`，conda env `occsafe`，磁盘 2% used (819GB/879GB 可用)\n- **westd-10894**: 同上布局，但 GPU 硬件状态有争议（ROADMAP 说全坏，memory.md M075 修正说 cuda:0/1/2 进程正常 cuda:3 空闲）— 以 cron reconcile 结果为准（4 个进程都报 still running）\n- 模型: `/root/autodl-tmp/models/openvla-7b`\n- 数据: `/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops` (55370 samples)\n- OCC 数据: `/root/occsafe_vla/occ_data`\n- Checkpoint: `/root/autodl-tmp/checkpoints/<exp_id>/`\n- Log: `~/runs/occsafe_vla/<exp_id>.log`\n- WANDB_MODE=disabled（所有实验）\n- 活跃进程 (34685): PID 681204 (detach_ln_v2_s1_35, cuda:0), PID 677568 (detach_ln_s4, cuda:1), PID 735898 (ablation_occ_detach_s4, cuda:2), PID 736253 (mvp_occ_s4, cuda:3)\n- 活跃进程 (10894): PID 481426 (full_occ_ln_v2_s1c, cuda:0), PID 481643 (full_occ_ln_v2_s2, cuda:1), PID 481988 (detach_ln_v2_s0c, cuda:2), PID 490803 (full_occ_ln_v2_s0d, cuda:3)\n- Cron 监控: 9 个 active crons 覆盖上述所有进程\n\n### 3. 📊 当前状态\n**刚完成**: Session 初始化，reconcile 确认 9 个 cron 全部活跃。收到 WRITE HANDOFF 指令。\n\n**RUNNING 实验 (registry)**:\n| exp_id | Cell | Server:GPU | Seed | 说明 |\n|--------|------|-----------|------|------|\n| detach_ln_v2_s1_35 | 4 (Detach LN) | 34685:0 | 43 | v2 rebuild，run_root_dir=detach_ln_v2_s1 |\n| detach_ln_s4 | 4 (Detach LN) | 34685:1 | 46 | n=5 expansion |\n| ablation_occ_detach_s4 | 3 (Detach BN) | 34685:2 | 46 | n=5 expansion |\n| mvp_occ_s4 | 1 (Full OCC BN) | 34685:3 | 46 | n=5 expansion |\n\n**10894 实验（registry=DONE 但进程存活，cron 重注册中）**:\n| exp_id | Cell | GPU | Seed | Registry结论 | 实际 |\n|--------|------|-----|------|-------------|------|\n| full_occ_ln_v2_s1c | 2 (Full OCC LN) | cuda:0 | 43 | success | cron 报 still running |\n| full_occ_ln_v2_s2 | 2 (Full OCC LN) | cuda:1 | 44 | success | cron 报 still running |\n| detach_ln_v2_s0c | 4 (Detach LN) | cuda:2 | 42 | success | cron 报 still running |\n| full_occ_ln_v2_s0d | 2 (Full OCC LN) | cuda:3 | 42 | 无conclusion | cron 报 still running |\n\n**Running Worker**: `worker_code_v2-gradient-analysis-prep` (25 turns, 在检查 34685 上的 git 同步状态准备 v2 梯度分析脚本)\n\n**等待中**:\n- 8 个训练完成的 cron 回调\n- Worker v2-gradient-analysis-prep 完成回调\n- Director 审批统一修订计划 (F1-F5 + P1-P5)\n- full_occ_ln_s4 (Cell 2 n=5, seed 46) 等 GPU 空出\n\n### 4. 📋 待办（条件触发式）\n- **34685 任一训练 cron 回调 → spawn eval worker（eval 命令参考已有 *_eval 实验 spec），eval 完成后更新 v2 factorial 表**\n- **10894 cron 回调 → 先 SSH 确认 registry 状态是否需要从 DONE 改回正确状态，再 spawn eval worker**\n- **detach_ln_v2_s1_35 完成 → eval 时注意 checkpoint 路径是 `/root/autodl-tmp/checkpoints/detach_ln_v2_s1`（不是 s1_35）**\n- **34685 有 GPU 空出 → 立即提交 full_occ_ln_s4 (Cell 2 n=5, seed 46)**\n- **所有 v2 seed 的 eval 完成 → 跑确认性 2×2 ANOVA，更新 ROADMAP 和 paper_framing**\n- **Director 审批 F1-F5 + P1-P5 → spawn paper worker 按 memory.md 中的合并执行顺序逐步修订**\n- **worker v2-gradient-analysis-prep 完成 → 根据产出决定是否在 34685 跑 v2 同方法论梯度分析（需等 GPU 空闲）**\n- **ANOVA 结果若 Cell 4 (Detach LN) 显著 > Vanilla → 可 claim 更强（从\"无害\"升级为\"有益\"），通知 Director 更新 framing**\n\n### 5. 🎯 战略上下文\n- **核心结论 (Plan B, D043)**: gradient flow 是损害源（Grad ON < Vanilla），detach 后无害（Grad OFF ≈ Vanilla）。BN 放大梯度流损害。这是 ordinal interaction，不是 crossover\n- **Vanilla baseline**: 0.745±0.024 (n=3, v2)。Detach BN 0.767 与之统计不可区分 (p=0.28)\n- **Cell 4 (Detach LN)**: 单点 CAR=0.802 (+5.7pp)，如果多 seed 均值仍高 → 叙事可能从\"detach 无害\"升级为\"detach+LN 有益\"（D064 双分支 framing 准备）\n- **10894 状态是最容易判断错的事**: ROADMAP 说硬件故障全坏，memory.md M075 修正说是 cron 误报、进程正常。**以 cron reconcile（9 个都 still running）和 M075 修正为准**。下一个 session 不要因为 ROADMAP 说坏就放弃 10894\n- **v1 机制证据全部作废** (D056/D057) — 不要试图复活任何 v1 claim。当前可用：梯度正交性 + 方差不对称。v2 同方法论梯度分析是 nice-to-have 不是 must-have\n- **Paper May 29 deadline**: 还有 ~2 天。修订计划已写好待审批。关键路径 = v2 数据齐全 → ANOVA → 更新数字 → 执行 F1-F5 + P1-P5 → 编译验证 ≤ 8 页\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:full_occ_ln_s0"
+          },
+          "id": "event-000083"
+        }
+      ],
+      "message_count": 26
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-full-occ-ln-s0-20260527t021438-209356.md"
+}

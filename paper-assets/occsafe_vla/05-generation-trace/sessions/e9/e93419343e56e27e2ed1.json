@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e93419343e56e27e2ed1",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose detach ln failure",
+  "task_key": "worker_diagnose_detach_ln_failure_20260523T170710",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_detach_ln_failure_20260523T170710_result.json",
+    "occurrence": 1,
+    "bytes": 2561,
+    "sha256": "91b8b3ab0268bb8356d31bf9c95225d8885e393824bce4c25a63f4b5a9501f08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n---\n\n## 诊断报告\n\n### 1. 失败错误\n\n三个实验都崩在同一个地方：`finetune.py:725` 的 `save_training_checkpoint()` 函数。\n\n```\nOSError: Incorrect path_or_model_id: \n  '/root/autodl-tmp/checkpoints/detach_ln_s{0,1,2}/openvla-7b+...--image_aug--{resume_step}_chkpt'\n  Please provide either the path to a local folder or the repo_id of a model on the Hub.\n```\n\n完整调用链：\n```\nfinetune.py:1256  finetune() → save_training_checkpoint(...)\nfinetune.py:725   save_training_checkpoint() → AutoModelForVision2Seq.from_pretrained(cfg.vla_path)\n```\n\n### 2. 训练进度\n\n| 实验 | resume_step | 实际训完的 step | 崩溃时间 |\n|------|-------------|-----------------|----------|\n| s0 | 20000 | 30000 (训了 10000 步) | 05-24 01:03:15 |\n| s1 | 20000 | 30000 (训了 10000 步) | 05-24 01:03:07 |\n| s2 | 10000 | 20000 (训了 10000 步) | 05-24 01:04:34 |\n\n三个实验都在第一次触发 checkpoint save 时崩溃。训练本身没有问题（无 NaN / OOM / CUDA error）。\n\n### 3. Root Cause\n\n`merge_lora_during_training` 默认为 `True`（`finetune.py:131`）。save checkpoint 时，代码在 line 725 尝试从 `cfg.vla_path` 重新加载 base model 以合并 LoRA 权重。\n\n问题：当使用 `--resume True` 时，`cfg.vla_path` 被设为 resume checkpoint 路径（如 `...--20000_chkpt`）。但这个路径：\n- **不存在**（`ls` 确认 `--20000_chkpt` 和 `--10000_chkpt` 目录均不在磁盘上）\n- 即使存在也只包含 LoRA adapter + 组件权重，不含完整 base model（无 `config.json`）\n\n`from_pretrained()` 找不到 `config.json` → 抛出 `OSError`。\n\n**LoRA adapter 和 occ_head 等组件权重已经成功保存**（`--30000_chkpt` 目录存在且包含 `action_head`, `occ_head`, `lora_adapter` 等文件），只是最后的 merge 步骤失败。\n\n### 4. 修复建议\n\n**快速修复（推荐）**：启动时加 `--merge_lora_during_training False`。LoRA adapter 会单独保存，跳过 merge 步骤，不会触发 `from_pretrained`。merge 可以离线做。\n\n**代码修复**：在 `finetune.py` 中分离 `cfg.vla_path`（用于 resume 加载组件）和 base model 路径（用于 merge）。例如在 resume 逻辑中保存原始 base model 路径到 `cfg.base_model_path`，line 725 改用 `cfg.base_model_path`。\n\n**恢复训练**：`--30000_chkpt`（s0/s1）已有 adapter 和组件权重，可以从 step 30000 resume（s2 从 20000 resume），加上 `--merge_lora_during_training False`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-detach-ln-failure.md"
+}

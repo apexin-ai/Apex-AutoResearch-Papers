@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9219d8300a6fd169076",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops urgent health check",
+  "task_key": "worker_ops_urgent_health_check_20260524T093840",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent_health_check_20260524T093840_result.json",
+    "occurrence": 1,
+    "bytes": 948,
+    "sha256": "425c6a306bab5622909c06317abbbb144ac2a75781b97e2b8ea2bf30a7452106"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n[10894 状态]\n- PID 746616 (ablation_occ_detach_s0_retrain): alive, GPU 0, 99% util, step ~1571/50005 (3%)\n- PID 742741 (full_occ_ln_s0): alive, GPU 1, 64% util, step ~1927/50005 (4%)\n- PID 742888 (full_occ_ln_s1): alive, GPU 2, 89% util, step ~1931/50005 (4%)\n- PID 743106 (full_occ_ln_s2): alive, GPU 3, 99% util, step ~1919/50005 (4%)\n\n[34685 状态]\n- cutoff_15k_s0 (PID 443639): alive, step 47660/50005 (95%), ETA ~45min\n- cutoff_45k_s0 (PID 456023): alive, step 46826/50005 (94%), ETA ~55min\n- cutoff_25k_s1: step 33841/50005 (68%)\n- reverse_cutoff_s1: step 33886/50005 (68%)\n\n⚠️ 34685 GPU util 全部 0%（内存已占满 62-63GB/98GB），但进程存活且日志在推进，应为瞬时采样到 data loading 间隙，正常。\n\n[行动]\n- 已启动 eval: 无（尚无完成的实验）\n- 需要重启: 无\n- 最快完成: cutoff_15k_s0 约 45 分钟后完成，cutoff_45k_s0 约 55 分钟后\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-health-check.md"
+}

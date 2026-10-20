@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c1de6970846ef197841",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops eval pipeline edgecase",
+  "task_key": "worker_ops_eval-pipeline-edgecase_20260526T174910",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-pipeline-edgecase_20260526T174910_result.json",
+    "occurrence": 1,
+    "bytes": 625,
+    "sha256": "ff4c35476a31e56e8fba68b44cabf065eb961cadf9e1402974fb775cb3cccc93"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/eval_pipeline_check_report.md`。\n\n核心结论：**没有必须修复的问题，8 个 eval 命令可以一次跑通。**\n\n3 个需注意的点：\n1. 命令未指定 `--output_path`，结果按时间戳命名，需通过 JSON 内 `config.checkpoint` 字段反查对应实验。可考虑给每条命令加 `--output_path /root/occsafe_vla/artifacts/{exp_id}_eval.json`。\n2. 输出 JSON 用 `tsr`/`car` 字段名，不是 `success_rate`/`collision_rate`，下游读取代码需匹配。\n3. 训练仍在进行中，启动 eval 前必须确认 `--50000_chkpt` 目录已生成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-pipeline-edgecase.md"
+}

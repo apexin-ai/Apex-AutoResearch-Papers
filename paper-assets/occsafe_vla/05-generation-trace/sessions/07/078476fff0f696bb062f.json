@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "078476fff0f696bb062f",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "train cutoff 15k s1",
+  "task_key": "worker_train_cutoff_15k_s1_20260524T114822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_cutoff_15k_s1_20260524T114822_result.json",
+    "occurrence": 1,
+    "bytes": 727,
+    "sha256": "60c8d3c7adea027f011b55f9b09866bf59e4e5405c8e92658dfaf4053e7fe8d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。cutoff_15k_s1 已在 westd-34685 GPU 1 上成功启动。\n\n**总结：**\n- 服务器：westd-34685，GPU 1（60.8 GB 显存占用）\n- Trainable params：279,977,608（符合预期）\n- 训练速度：~1.01 it/s（符合预期）\n- 50,005 步 × ~1 s/it ≈ ~14 小时完成\n- Registry 状态已更新为 RUNNING\n\n**注意：** 用户提供的命令缺少多个关键参数（`--vla_path`、`--data_root_dir`、`--dataset_name`、`--use_occ_head`、`--occ_data_dir`、`--occ_loss_cutoff_mode`、`--run_root_dir`、`--max_steps`、`--save_freq`），我参照 cutoff_25k_s1 的运行命令补全了这些参数。同时 wandb 未在此服务器配置 API key，使用了 `WANDB_MODE=disabled`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-cutoff-15k-s1.md"
+}

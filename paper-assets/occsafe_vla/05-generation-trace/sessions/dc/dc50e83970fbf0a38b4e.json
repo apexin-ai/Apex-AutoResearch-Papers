@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc50e83970fbf0a38b4e",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops submit cutoff 45k s0",
+  "task_key": "worker_ops_submit_cutoff_45k_s0_20260523T183347",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit_cutoff_45k_s0_20260523T183347_result.json",
+    "occurrence": 1,
+    "bytes": 365,
+    "sha256": "3ea7649ddc5d0d01aad6722ebc03796c143b38365e948aa007d5748c3b454691"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cutoff_45k_s0 已成功启动，全部确认通过：\n\n| 项目 | 状态 |\n|------|------|\n| PID | 456023 |\n| 初始 action_loss | 0.6992 (> 0.6 ✓) |\n| 初始 occ_loss | 0.1007 |\n| cutoff 参数 | `--occ_loss_cutoff_step 45000 --occ_loss_cutoff_mode after` ✓ |\n| GPU 0 占用 | 63013 MiB / 97887 MiB (~64GB) ✓ |\n| 速度 | ~6.72 s/it |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-cutoff-45k-s0.md"
+}

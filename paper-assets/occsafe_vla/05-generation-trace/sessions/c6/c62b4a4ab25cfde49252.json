@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c62b4a4ab25cfde49252",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "check gradient plot script",
+  "task_key": "worker_check_gradient-plot-script_20260527T034215",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gradient-plot-script_20260527T034215_result.json",
+    "occurrence": 1,
+    "bytes": 766,
+    "sha256": "674d7b41da8e48807f72ac731d206e6cb92fdd2b7e1012aad79f3f53fe27c069"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n**`plot_gradient_analysis_v2.py` 已就绪，无需修改。**\n\n关键确认：\n- 脚本自动 glob `*_gradient_stats.json`，不限条件数量，5 条件直接支持\n- `CONDITION_STYLES` 已预定义全部 5 个 v2 条件的颜色/标记/线型\n- 与 `run_gradient_analysis_v2.py` 的输出格式（`{condition_name}_gradient_stats.json` + JSON 内 `\"condition\"` 字段）完全匹配\n- 4-panel 布局自动处理 Vanilla/Detach 无 OCC 梯度的情况\n\n唯一注意：运行 `run_gradient_analysis_v2.py` 时 `--condition_name` 必须用**空格**（如 `\"Vanilla v2\"`），不能用下划线，否则出图样式会退化为灰色默认。\n\n报告已写入 `artifacts/_project/intermediate/gradient_plot_readiness.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gradient-plot-script.md"
+}

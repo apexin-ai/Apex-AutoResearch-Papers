@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "236ba8ee535ad4ce2f51",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis check full occ ln s4 completion",
+  "task_key": "worker_analysis_check_full_occ_ln_s4_completion_20260527T231904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_check_full_occ_ln_s4_completion_20260527T231904_result.json",
+    "occurrence": 1,
+    "bytes": 743,
+    "sha256": "e4836c01a78bdfbfdd5cc37f9b87a5098456b1cf4ec00a1dc86c8b642222e0e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 不存在（可能已被清除或在另一个 session 中创建），无影响。\n\n## 结果\n\n| 项目 | 状态 |\n|------|------|\n| 判断 | **SUCCESS** |\n| 日志结束信息 | `Max step 50005 reached! Stopping training...` |\n| 最终 step | 50000 (occ_loss=0.0118, action_loss=0.0552) |\n| 训练总时长 | ~14h 4min |\n| Checkpoint 路径 | `/root/autodl-tmp/checkpoints/full_occ_ln_s4/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--full_occ_ln_s4--50000_chkpt` |\n| Checkpoint 内容 | 4x safetensors + action_head + occ_head + proprio_projector + lora_adapter + tokenizer（完整） |\n| Registry | 已更新为 ANALYZING |\n\n可以启动 eval。需要我现在启动吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-check-full-occ-ln-s4-completion.md"
+}

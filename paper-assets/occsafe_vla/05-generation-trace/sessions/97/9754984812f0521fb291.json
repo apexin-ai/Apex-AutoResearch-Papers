@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9754984812f0521fb291",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval occ s1 47500 eval",
+  "task_key": "worker_eval_occ-s1-47500-eval_20260521T143250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_occ-s1-47500-eval_20260521T143250_result.json",
+    "occurrence": 1,
+    "bytes": 439,
+    "sha256": "78350bb572a6833fa8fd3d93878aa3ee623f66739f12b0b267eecb7b2433cda6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "47500_chkpt 不存在。occ_s1 可用的 checkpoint 为：\n\n- 17500_chkpt\n- 30000_chkpt\n- 35000_chkpt\n- 40000_chkpt\n- **45000_chkpt**\n- **50000_chkpt**\n- 最终 checkpoint（无后缀，应该也是 50000）\n\n没有 47500 步的 checkpoint。最接近的是 45000 和 50000。\n\n要用哪个？如果 s0/s2 是在 47500 eval 的，s1 这里要 apple-to-apple 对比可能需要确认一下步数对齐的问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-occ-s1-47500-eval.md"
+}

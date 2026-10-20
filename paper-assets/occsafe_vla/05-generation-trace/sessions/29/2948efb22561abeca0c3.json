@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "2948efb22561abeca0c3",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "code fix all occ issues",
+  "task_key": "worker_code_fix_all_occ_issues_20260520T105537",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_all_occ_issues_20260520T105537.log",
+    "occurrence": 1,
+    "bytes": 1107820,
+    "sha256": "a9564cd04f6ae0ee241ffe39e05e068279c3f7836932a608c9b608092a110e4b"
+  },
+  "statistics": {
+    "messages": 328,
+    "user_turns": 1,
+    "tool_calls": 119,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 82,
+      "tool_call": 119,
+      "tool_result": 119,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 272,
+      "chunks": [
+        {
+          "path": "2948efb22561abeca0c3-part-0001.json",
+          "message_count": 148
+        },
+        {
+          "path": "2948efb22561abeca0c3-part-0002.json",
+          "message_count": 124
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 56,
+      "chunks": [
+        {
+          "path": "2948efb22561abeca0c3-part-0002.json",
+          "message_count": 56
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fix-all-occ-issues.md"
+}

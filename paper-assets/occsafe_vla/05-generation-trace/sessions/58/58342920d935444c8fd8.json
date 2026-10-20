@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58342920d935444c8fd8",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code lambda cli param",
+  "task_key": "worker_code_lambda_cli_param_20260528T192037",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_lambda_cli_param_20260528T192037_result.json",
+    "occurrence": 1,
+    "bytes": 830,
+    "sha256": "f3311f4c1e92a68372fb88a9c8212a85a24ac4c8db38919fd2a53dee846882dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "### 汇报\n\n| 项目 | 结果 |\n|------|------|\n| **修改前状态** | 已暴露为 draccus dataclass 字段（第 92 行：`occ_loss_weight: float = 0.01`） |\n| **修改内容** | 无需修改 |\n| **MD5 验证** | westd-34685 = `188d7f040bd2d4d65ae764ff26ac2db5`，westd-10894 = `188d7f040bd2d4d65ae764ff26ac2db5` ✓ 一致 |\n| **westd-13654** | 该服务器不存在。可用服务器仅有 westd-10894 / westd-34685 / westd-19957 / bjb2-23165 |\n\n**CLI 用法**：\n```bash\ntorchrun ... vla-scripts/finetune.py --occ_loss_weight 0.001\n```\n\nλ₀ sweep 三组值直接传参即可：`--occ_loss_weight 0.001`、`--occ_loss_weight 0.01`（默认）、`--occ_loss_weight 0.1`。exponential decay 公式 `cfg.occ_loss_weight * exp(-batch_idx / cfg.occ_loss_decay_steps)` 会自动使用传入的值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-lambda-cli-param.md"
+}

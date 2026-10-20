@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a6c0ae1a8381ff10e9f",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code cutoff experiment config",
+  "task_key": "worker_code_cutoff-experiment-config_20260521T132507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cutoff-experiment-config_20260521T132507_result.json",
+    "occurrence": 1,
+    "bytes": 916,
+    "sha256": "5a02b5deb779ceb8b9b2212348b79fe423fd053fee08e7447b6705861d402f1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `/root/occsafe_vla/scripts/cutoff_experiments.sh`，语法检查通过。\n\n**3 个 cutoff 配置的关键差异：**\n\n| 配置 | `occ_loss_cutoff_step` | `run_root_dir` | 设计意图 |\n|------|----------------------|----------------|----------|\n| cutoff_25K | 25000 | `cutoff_25K_s0` | 最早关闭，OCC 暴露 25K 步（总训练的 50%），剩余 25K 步专注恢复 TSR。测试最小暴露量下限 |\n| cutoff_35K | 35000 | `cutoff_35K_s0` | CAR 开始追赶 vanilla 的拐点处关闭，OCC 暴露 70%，留 15K 步恢复 TSR |\n| cutoff_40K | 40000 | `cutoff_40K_s0` | CAR 追平 vanilla 的时间点关闭，OCC 暴露 80%，最大化空间感知学习，仅留 10K 步恢复 TSR |\n\n其余参数完全相同：`occ_loss_weight=0.01`（默认恒定）、`occ_detach=false`、`max_steps=50005`、`seed=42`。每个命令预留了 `CUDA_VISIBLE_DEVICES={GPU}` 占位。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cutoff-experiment-config.md"
+}

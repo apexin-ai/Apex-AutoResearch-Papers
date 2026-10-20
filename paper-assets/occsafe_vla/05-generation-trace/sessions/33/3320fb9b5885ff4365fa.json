@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3320fb9b5885ff4365fa",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_3_1779738982.md",
+  "task_key": "loop_3_1779738982",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1779738982.md",
+    "occurrence": 1,
+    "bytes": 5160,
+    "sha256": "f29b39d7a4bfe2a32346e71fd10c091b92c50c2b0e552dbb10d35b0412b5bf4f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-25T19:53:54+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-34685: cuda:0/1/2/3，westd-10894: cuda:0/1/2/3。共 8 张，不可用白名单外 GPU\n- cutoff_45k_s1 已连续失败 2 次（首次进程死亡 + 恢复后 EXIT_CODE=1），第二次诊断 Worker 已派出但尚未回调。重启前必须等诊断结果，不要盲目第三次重试\n- westd-10894 根分区历史上多次磁盘满导致实验崩溃（3 个实验从 step 20K 恢复过）。提交前必须 check_disk_before_experiment\n- submit_training_job 命令必须自带环境激活（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`），GPU 编号始终从 0 开始\n\n### 2. 🖥️ 基础设施快照\n- **westd-34685**: 工作目录 `/root/occsafe_vla/openvla-oft`，conda env `occsafe`，磁盘 819G/879G 可用(2%)\n- **westd-10894**: 同上结构，磁盘 425G/879G 可用(50%)——曾爆满，已清理\n- Python: `/root/miniconda3/bin/python`（conda base 下 occsafe env）\n- 模型: `/root/autodl-tmp/models/openvla-7b`\n- 数据: `/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops`（4500 条）\n- OCC 数据: `/root/occsafe_vla/occ_data`\n- Checkpoints: `/root/autodl-tmp/checkpoints/{exp_id}/`\n- Eval artifacts: `/root/occsafe_vla/artifacts/`\n- WANDB_MODE=disabled（全部实验）\n- 活跃 cron: cutoff_25k_s2(pid 998127, 34685:2), reverse_cutoff_s2(pid 998624, 34685:3), cutoff_15k_s1(pid 861222, 34685:1), full_occ_ln_s0(pid 742741, 10894:1), full_occ_ln_s1(pid 777222, 10894:2), full_occ_ln_s2(pid 777428, 10894:3), ablation_occ_detach_s0_retrain(pid 775880, 10894:0)\n\n### 3. 📊 当前状态\n**刚做完**: 收到 cutoff_45k_s1 第二次失败 cron 回调，派了诊断 Worker（worker_diagnose_cutoff_45k_s1_v2_20260525T035154），尚未回调。第一次诊断 Worker（worker_diagnose_cutoff_45k_s1_20260524T213601）也可能还没回调（上个 session 派的）。\n\n**RUNNING（7 个）**:\n| exp_id | 服务器:GPU | 说明 |\n|--------|-----------|------|\n| cutoff_25k_s2 | 34685:2 | seed 44, ~6% 进度, ETA May 25 ~14:04 |\n| reverse_cutoff_s2 | 34685:3 | seed 44, ~6% 进度, ETA May 25 ~14:11 |\n| cutoff_15k_s1 | 34685:1 | seed 43, ~39% 进度, ETA May 25 ~09:47 |\n| full_occ_ln_s0 | 10894:1 | ~61% 进度, ETA May 24 ~23:00（可能已完成待回调） |\n| full_occ_ln_s1 | 10894:2 | 从 20K 恢复, ETA May 25 ~01:00（可能已完成） |\n| full_occ_ln_s2 | 10894:3 | 从 20K 恢复, ETA May 25 ~01:00（可能已完成） |\n| ablation_occ_detach_s0_retrain | 10894:0 | 从 20K 恢复, ETA May 25 ~01:00（可能已完成） |\n\n**注意**: registry 显示 full_occ_ln_s1_eval/s2_eval/cutoff_15k_s1_eval/ablation_occ_detach_s0_retrain_eval 已完成（本 session 发现），说明 10894 的 4 个训练实验 + 34685 cutoff_15k_s1 已在之前 session 完成并进入了 eval。这些 eval 结果尚未向 Director 完整汇报（本 session 只汇报了 cutoff_45k_s1 失败）。\n\n**空闲 GPU**: westd-34685:cuda:0（cutoff_45k_s1 失败后空出）\n\n**等待中**:\n- Worker 诊断 cutoff_45k_s1 回调\n- 7 个 RUNNING 实验的 cron 完成回调\n\n### 4. 📋 待办（条件触发式）\n- 诊断 Worker 回调 → 根据失败原因决定：磁盘/临时问题则从最新 checkpoint 恢复 cutoff_45k_s1 到 34685:cuda:0；代码 bug 则修复后重试；硬件问题则换 GPU 或汇报 Director\n- full_occ_ln 3-seed eval 全部完成（已完成）→ **重要**: full_occ_ln 3-seed mean CAR=0.743 < Full OCC BN baseline 0.797，是 negative 结果。需要按 on-experiment-done negative 流程汇报 Director（被证伪的 hypothesis + 推导 + 文献联动）\n- cutoff_15k_s1_eval 完成（CAR=0.76）→ 与 cutoff_15k_s0 (CAR=0.804) 对比，2-seed 均值待计算。需汇报 Director dose-response 进展\n- ablation_occ_detach_s0_retrain_eval 完成（CAR=0.754）→ same-seed 梯度分析 baseline 就位，汇报 Director\n- cutoff_25k_s2 / reverse_cutoff_s2 完成 → eval → 3rd seed dose-response 确认\n- 任何 GPU 空出 → 检查 experiment_plan 和 ideas.md 有无可铺实验\n\n### 5. 🎯 战略上下文\n- **核心发现**: Dual mechanism (BN interference + gradient flow absence) + differential encoder vulnerability + continuity principle\n- **2×2 Factorial**: Full OCC+LN 3-seed 结果是 negative (mean CAR=0.743 vs BN 0.797)。这证明 LN 替换 BN 并不能改善安全性——BN interference 不是简单的 normalization 问题。这是重要 negative 结果，需要认真分析对 framing 的影响\n- **Dose-response**: cutoff 系列实验正在收集 multi-seed 数据。cutoff_15k_s1 eval CAR=0.76 vs s0 0.804，种子间方差较大。cutoff_45k 两次失败是当前瓶颈\n- **CoRL 2026 deadline**: Abstract May 26（1天！），Paper May 29（4天）。时间极紧\n- **易错点**: \n  - full_occ_ln negative 结果的汇报是高优先级，不要被 cutoff_45k_s1 诊断挡住\n  - 10894 的实验可能已全部完成但 cron 回调被上个 session 消费，reconcile_crons 会显示真实状态\n  - westd-34685:cuda:0 空闲是违反\"分配了必须跑\"的红线，诊断后必须立即填上\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1779738982.md"
+}

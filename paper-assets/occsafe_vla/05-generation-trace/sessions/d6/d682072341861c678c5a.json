@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d682072341861c678c5a",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval depth s0",
+  "task_key": "worker_eval_depth_s0_20260523T002315",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_depth_s0_20260523T002315_result.json",
+    "occurrence": 1,
+    "bytes": 549,
+    "sha256": "ec18f7db75456ecdf72f3178d9147c03c71794c50aac62998d78559051ab9976"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "depth_s0_eval 进程 PID 189393 正在运行（cuda:1，正在加载模型）。\n\n完成情况：\n- **depth_s0 训练**：已完成 50005 steps，EXIT_CODE=0，final losses: depth_loss=0.0950, action_loss=0.0510\n- **checkpoint**：`/root/autodl-tmp/checkpoints/depth_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt`（完整，含 4 个 model shards + action_head/depth_head/proprio_projector）\n- **depth_s0_eval**：已提交，PID 189393，cuda:1，registry 已更新为 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-depth-s0.md"
+}

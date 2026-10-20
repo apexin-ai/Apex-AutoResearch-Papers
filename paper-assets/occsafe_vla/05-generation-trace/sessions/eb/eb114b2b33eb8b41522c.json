@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb114b2b33eb8b41522c",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "check gradient cmd verify",
+  "task_key": "worker_check_gradient-cmd-verify_20260527T033538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gradient-cmd-verify_20260527T033538_result.json",
+    "occurrence": 1,
+    "bytes": 785,
+    "sha256": "1250a88ec3fd2a3076a3fe34023dccb30fcc939630b1469657e9c3c35bd9d515"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成，修正后的命令已写入 `gradient_commands_verified.md`（artifact `art_20260527_7a1aae`）。\n\n**关键发现与修正：**\n\n| # | 条件 | Checkpoint | 服务器 / GPU |\n|---|------|-----------|-------------|\n| 1 | Vanilla | `vanilla_v2_s1` | westd-34685 cuda:0 |\n| 2 | Full OCC BN | `full_occ_bn_v2_s1` | westd-34685 cuda:1 |\n| 3 | Full OCC LN | `full_occ_ln_s3_v2` | westd-10894 cuda:0 |\n| 4 | Detach BN | `detach_bn_v2_s1` | westd-34685 cuda:2 |\n| 5 | **Detach LN** (已修正) | `detach_ln_s3` | westd-34685 cuda:3 |\n\n**修正内容**：条件5从错误的 Detach BN 重复改为 `detach_ln_s3`（在 westd-34685 上找到）。所有5个checkpoint路径均已验证存在，condition_name 全部唯一，5条命令可并行执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gradient-cmd-verify.md"
+}

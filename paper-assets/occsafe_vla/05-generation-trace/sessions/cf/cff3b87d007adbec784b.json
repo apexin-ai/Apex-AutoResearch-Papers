@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cff3b87d007adbec784b",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code fix analysis script methodology",
+  "task_key": "worker_code_fix-analysis-script-methodology_20260521T140807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-analysis-script-methodology_20260521T140807_result.json",
+    "occurrence": 1,
+    "bytes": 1280,
+    "sha256": "d6dd5702e8a08f099e62b73d972eaa456efedd2e2e3e2c9d9297ee314468d61d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个修复全部生效，脚本运行成功。\n\n### 修复总结\n\n**Fix (a) — ΔCAR 不再混合不同 step 的 seed**\n- `plot_delta()` 改为仅用 2-seed 50K（s0+s2），同一 checkpoint step\n- 新增 `plot_delta_3seed()` 预留 3-seed 版本，检测到 `OCC s1 50K` 数据后自动生成\n- 输出：`delta_car_2seed.pdf/.png`（旧 `delta_car.png` 保留为历史）\n\n**Fix (b) — 统一用 20r 数据对比**\n- 新增 `VANILLA_20R_AVG_CAR` 字典（3-seed 20r 平均 CAR）\n- 所有对比图和表格的 vanilla baseline 从 50r 改为 20r\n- Table 2 标题改为 `(all 20r)`，学习曲线中 vanilla CAR baseline 标注 `20r`\n- TSR baseline 仍用 50r（无 20r 数据），已在图例中标注 `50r`\n\n**Fix (c) — T9 标注无 OCC supervision**\n- `NO_OCC_TASKS = {9}` + `task_label()` 函数自动为 T9 加 `†`\n- 所有图表的 x 轴/y 轴标签：`T9 †`\n- 所有图表底部脚注：`† T9: no OCC supervision (missing in occ_index.json)`\n- 表格中 T9 行和脚注都已标注\n\n### 生成的图表\n- `/root/occsafe_vla/figures/learning_curve.pdf/.png`\n- `/root/occsafe_vla/figures/car_heatmap.pdf/.png`\n- `/root/occsafe_vla/figures/delta_car_2seed.pdf/.png`\n- `delta_car_3seed` 已跳过（等 OCC s1 50K 数据）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-analysis-script-methodology.md"
+}

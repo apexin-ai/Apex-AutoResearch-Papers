@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6abe6aaaccf45d82f0a",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "paper discussion detach mechanism",
+  "task_key": "worker_paper_discussion_detach_mechanism_20260523T101456",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_discussion_detach_mechanism_20260523T101456_result.json",
+    "occurrence": 1,
+    "bytes": 1616,
+    "sha256": "474b022de98453be400641a5f93e17223472b40adc8c5983b55845008f57ec7b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Structure is correct now: L28 (gradient analysis) → L30 (new BN hypothesis paragraph) → L32 (TSR instability). All three are separate paragraphs.\n\n**汇报：**\n\n**(1) 数据合规检查**\n- L28 梯度引用：只引用 Random OCC 和 Depth（有数据）vs Detach（有数据），并标注\"A complete four-condition comparison awaits...\"。**合规，无需修正。**\n- L46 \"significantly\"：无统计检验支撑，已改为 \"does not improve CAR beyond Vanilla\"（后面括号已提供数值解释）。\n- 未发现引用 Full OCC / Vanilla / Cutoff 梯度数据的违规声明。\n\n**(2) 新增段落**\n- 位置：§5.2 L30，介于梯度分析段落 (L28) 和 TSR instability 段落 (L32) 之间。\n- 内容：BatchNorm contamination hypothesis。具体阐述 BN running statistics 在 Detach 模式下的不对称耦合机制（1.2M 参数的 parasitic pathway），明确标记为 hypothesis (\"We hypothesize\", \"If this account is correct\")，末尾以 italic 标注 Detach+LN (plan_027) 作为 discriminating test 及两种结果的解释。\n- 删除了原 L28 末尾 \"Ongoing experiments replace...\" 句（已被新段落更完整地覆盖）。\n- 未引用 Full OCC 或 Vanilla 梯度数据。\n\n**(3) 一致性**\n- 与 §5.1 三个 hypothesis 一致：新段落提出 BN 作为 forward-pass interference 的具体机制，不与三个宏观假说冲突。\n- 与 §5.3 cutoff 分析无交叉。\n- 与 §5.4 practical recommendation 一致：recommendation 基于经验发现（\"gradients must flow\"），不依赖于 BN vs gradient-flow 的机制区分。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-discussion-detach-mechanism.md"
+}

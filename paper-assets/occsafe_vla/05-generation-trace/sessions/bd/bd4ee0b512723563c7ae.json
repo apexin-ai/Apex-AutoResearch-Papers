@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "bd4ee0b512723563c7ae",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "writing post submission fixes",
+  "task_key": "worker_writing_post-submission-fixes_20260528T150051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_post-submission-fixes_20260528T150051.log",
+    "occurrence": 1,
+    "bytes": 853236,
+    "sha256": "8433a9824d4eeef9dcd1a70c974609b62ea7d80da2dd0ed2448e3a47455cada1"
+  },
+  "statistics": {
+    "messages": 222,
+    "user_turns": 0,
+    "tool_calls": 85,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 48,
+      "tool_call": 85,
+      "tool_result": 85,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 222,
+      "chunks": [
+        {
+          "path": "bd4ee0b512723563c7ae-part-0001.json",
+          "message_count": 153
+        },
+        {
+          "path": "bd4ee0b512723563c7ae-part-0002.json",
+          "message_count": 69
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/writing-post-submission-fixes.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "e92d1ce70f5921dd056f",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "ops westd34685 fill gpus",
+  "task_key": "worker_ops_westd34685_fill_gpus_20260523T180247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd34685_fill_gpus_20260523T180247.log",
+    "occurrence": 1,
+    "bytes": 579211,
+    "sha256": "dfc18a5291134694b7a39dfe5b1a0c6e9cb6a01adc9a062fe471749145739dfc"
+  },
+  "statistics": {
+    "messages": 222,
+    "user_turns": 0,
+    "tool_calls": 81,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 56,
+      "tool_call": 81,
+      "tool_result": 81,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 222,
+      "chunks": [
+        {
+          "path": "e92d1ce70f5921dd056f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e92d1ce70f5921dd056f-part-0002.json",
+          "message_count": 42
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-westd34685-fill-gpus.md"
+}

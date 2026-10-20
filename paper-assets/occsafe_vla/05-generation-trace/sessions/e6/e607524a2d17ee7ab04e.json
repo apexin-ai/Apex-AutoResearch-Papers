@@ -1,0 +1,411 @@
+{
+  "schema_version": "1.0",
+  "id": "e607524a2d17ee7ab04e",
+  "project": "occsafe_vla",
+  "kind": "conversation",
+  "title": "paper revision intro abstract",
+  "task_key": "worker_paper_revision-intro-abstract_20260527T022614",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_revision-intro-abstract_20260527T022614.jsonl",
+    "occurrence": 1,
+    "bytes": 18021,
+    "sha256": "3673336f109a9df0210534725c10111b0b487c173a99b0e937d7d754d1278cd7"
+  },
+  "statistics": {
+    "messages": 19,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "tool_call": 9,
+      "tool_result": 9,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-27T02:28:11.045595+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_revision-intro-abstract_20260527T022614",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__edit_paper_section",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-27T02:28:11.045965+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_revision-intro-abstract_20260527T022614",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-27T02:28:11.046144+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_revision-intro-abstract_20260527T022614",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "occsafe_vla",
+              "file": "introduction.tex",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-27T02:28:11.046283+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file must be one of ['ARCHITECTURE.md', 'DATA.md', 'EVALUATION.md', 'MODELS.md', 'ROADMAP.md', 'constraints.yaml', 'decisions.yaml', 'ideas.md', 'literature_map.yaml', 'memory.md', 'mistakes.yaml', 'paper_checklist.yaml', 'paper_framing.md', 'paper_provenance.yaml', 'report.md', 'writing_plan.yaml'], got 'introduction.tex'\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_revision-intro-abstract_20260527T022614",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-27T02:28:11.046410+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_revision-intro-abstract_20260527T022614",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-27T02:28:11.046580+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% OccSafe-VLA: Occupancy-Aware Safety for Vision-Language-Action Models\n2\t% Target: CoRL 2026\n3\t\\documentclass{article}\n4\t\n5\t\\usepackage[dvipsnames]{xcolor}\n6\t\\usepackage{corl_2026}\n7\t\n8\t\\usepackage{graphicx}\n9\t\\usepackage{amsmath,amssymb}\n10\t\\usepackage{booktabs}\n11\t\\usepackage{enumitem}\n12\t\\usepackage{subcaption}\n13\t\\usepackage{placeins}\n14\t\n15\t\\title{Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer?\\\\ An Empirical Investigation}\n16\t\n17\t\\author{\n18\tAnonymous Author(s)\n19\t}\n20\t\n21\t\\begin{document}\n22\t\\maketitle\n23\t\n24\t\\begin{abstract}\n25\tFine-tuned Vision-Language-Action (VLA) models can achieve high task success yet remain behaviorally unsafe, with collision avoidance rates substantially lagging task completion on safety-critical benchmarks.\n26\tWe present a systematic factorial study isolating how auxiliary spatial supervision during VLA fine-tuning affects collision avoidance, with twelve conditions varying gradient flow, label content, normalization type, spatial reference frame, and temporal extent.\n27\tOur central finding is negative: \\textbf{all auxiliary spatial head configurations perform at or below the no-auxiliary-head baseline} on Collision Avoidance Rate (0 of 12 configurations improve; sign test on four factorial cell means, $p{=}0.0625$, with directional consistency across all twelve structurally related conditions). A $2{\\times}2$ factorial (gradient flow $\\times$ normalization) shows a pattern consistent with an ordinal interaction: gradient flow through the auxiliary head into the vision encoders is associated with lower safety under both normalization types ($\\Delta{=}-4.2$\\,pp within BatchNorm, $-$2.5\\,pp within LayerNorm). Effect sizes are large but the small-sample design ($n{\\leq}4$ per cell) limits pairwise power; whether normalization type modulates the magnitude requires additional LN seeds to confirm. The BatchNorm + gradient flow cell is both the worst-performing and the most unstable configuration, with cross\n…[truncated 1144 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_revision-intro-abstract_20260527T022614",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-27T02:28:11.046805+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_revision-intro-abstract_20260527T022614",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-27T02:28:11.046983+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\n3\tVision-language-action (VLA) models map visual observations and language instructions to robot actions, and recent fine-tuning recipes achieve high task success on standard manipulation benchmarks~\\cite{brohan2023rt2, kim2024openvla, kim2025oft}. Behavioral safety, however, does not follow from task completion. On SafeLIBERO Level~I~\\cite{hu2025vlsa}, OpenVLA-7B fine-tuned with the OFT recipe~\\cite{kim2025oft} reaches a Task Success Rate (TSR) of 90.7\\% but a Collision Avoidance Rate (CAR) of only 78.0\\%. On the three most constrained tasks, collision rates reach 43--93\\%. These numbers expose a gap between what training objectives optimize for and what safe deployment requires: the robot completes the task but fails to avoid contact with surrounding objects. Identifying which fine-tuning design choices affect collision avoidance is a prerequisite for closing this gap.\n4\t\n5\tTwo active research threads address related but distinct aspects of this problem. The first enriches VLA models with auxiliary spatial prediction (occupancy grids, depth maps, point clouds) to inject 3D geometric structure into vision encoders~\\cite{li2026spatialforcing, yuan2025depthvla, wu2025spatialvla, liu2025occvla}. At least fifteen such methods have appeared in the past year~\\cite{wu2026stvla, chen2026gstvla, tu2026sgvla, xiao2026stemvla, li2025pointvla, sun2025geovla, bhat20253dcavla, li2025qdepthvla, abouzeid2025geoaware, rao2026augvla3d, li2026corridorvla}, all reporting improved task success. The implicit assumption in this literature is that better spatial awareness should also yield safer behavior, since the robot ``knows where things are.'' The second thread targets VLA safety directly through runtime action filtering~\\cite{hu2025vlsa, zhai2026cofreevla, raja2024ogmcbf} or constrained reinforcement learning~\\cite{zhang2025safevla}. These two lines of work are disconnected: no spatial method evaluates its effect on collision avoidance, and no safety meth\n…[truncated 4143 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_revision-intro-abstract_20260527T022614",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-27T02:28:11.047216+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__edit_paper_section"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_revision-intro-abstract_20260527T022614",
+            "tool": "mcp__agent-ml-research__edit_paper_section",
+            "tool_args": {
+              "project": "occsafe_vla",
+              "section": "introduction",
+              "old_text": "The central result is negative: \\textbf{all auxiliary spatial head configurations perform at or below the Vanilla baseline} on Collision Avoidance Rate (0 of 12 configurations improve; sign test on four factorial cell means, $p{=}0.0625$). The $2{\\times}2$ factorial subset reveals a pattern consistent with an ordinal interaction: gradient flow through the auxiliary head degrades safety under both normalization types ($\\Delta{=}-4.2$\\,pp within BatchNorm, $-$2.5\\,pp within LayerNorm), the BN + gradient flow cell is the most unstable configuration ($\\sigma > 2.5{\\times}$ other cells), and spatial label content is irrelevant (\\S\\ref{sec:results}).",
+              "new_text": "The central result is negative: \\textbf{at most 1 of 12 auxiliary spatial head configurations exceeds the Vanilla baseline} on Collision Avoidance Rate, and this difference is not statistically significant ($p{=}0.28$); the remaining 11 perform at or below baseline (11/12 $\\leq$ Vanilla; $p{\\approx}0.003$, binomial test). A $2{\\times}2$ factorial subset reveals a pattern consistent with an ordinal interaction: gradient flow degrades safety, BatchNorm amplifies the deficit and increases training instability, and spatial label content is irrelevant (\\S\\ref{sec:results})."
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-27T02:28:11.047368+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"section_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/introduction.tex\\\", \\\"version\\\": 12, \\\"coverage\\\": \\\"0/46\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_revision-intro-abstract_20260527T022614",
+            "tool": "mcp__agent-ml-research__edit_paper_section",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-27T02:28:11.047532+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__edit_paper_section"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_revision-intro-abstract_20260527T022614",
+            "tool": "mcp__agent-ml-research__edit_paper_section",
+            "tool_args": {
+              "project": "occsafe_vla",
+              "section": "introduction",
+              "old_text": "shows large effect sizes consistent with an ordinal interaction:",
+              "new_text": "shows large effect sizes consistent with an ordinal interaction pattern:"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-27T02:28:11.047684+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"section_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/introduction.tex\\\", \\\"version\\\": 13, \\\"coverage\\\": \\\"0/46\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_revision-intro-abstract_20260527T022614",
+            "tool": "mcp__agent-ml-research__edit_paper_section",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-27T02:28:11.047836+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__edit_paper_section"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_revision-intro-abstract_20260527T022614",
+            "tool": "mcp__agent-ml-research__edit_paper_section",
+            "tool_args": {
+              "project": "occsafe_vla",
+              "section": "main",
+              "old_text": "Our central finding is negative: \\textbf{all auxiliary spatial head configurations perform at or below the no-auxiliary-head baseline} on Collision Avoidance Rate (0 of 12 configurations improve; sign test on four factorial cell means, $p{=}0.0625$, with directional consistency across all twelve structurally related conditions). A $2{\\times}2$ factorial (gradient flow $\\times$ normalization) shows a pattern consistent with an ordinal interaction: gradient flow through the auxiliary head into the vision encoders is associated with lower safety under both normalization types ($\\Delta{=}-4.2$\\,pp within BatchNorm, $-$2.5\\,pp within LayerNorm). Effect sizes are large but the small-sample design ($n{\\leq}4$ per cell) limits pairwise power; whether normalization type modulates the magnitude requires additional LN seeds to confirm. The BatchNorm + gradient flow cell is both the worst-performing and the most unstable configuration, with cross-seed standard deviation more than $2.5{\\times}$ that of other cells.",
+              "new_text": "Our central finding is negative: \\textbf{at most 1 of 12 auxiliary spatial head configurations exceeds the Vanilla baseline} on Collision Avoidance Rate (CAR), and this difference is not statistically significant ($p{=}0.28$); the remaining 11 perform at or below baseline (11/12 $\\leq$ Vanilla; $p{\\approx}0.003$, binomial test). A $2{\\times}2$ factorial (gradient flow $\\times$ normalization) shows a pattern consistent with an ordinal interaction: gradient flow through the auxiliary head into the vision encoders is associated with lower safety ($\\Delta{=}-4.2$\\,pp within the BatchNorm conditions), and BatchNorm amplifies this deficit compared to LayerNorm. Effect sizes are large but the small-sample design ($n{\\leq}4$ per cell) limits pairwise power; the global directional consistency across all twelve conditions provides the primary statistical evidence. The BatchNorm + gradient flow cell is both the worst-performing and the most unstable configuration, with cross-seed standard deviation more than $2.5{\\times}$ that of other cells."
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-27T02:28:11.047982+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"section_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/main.tex\\\", \\\"version\\\": 15, \\\"coverage\\\": \\\"0/46\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_revision-intro-abstract_20260527T022614",
+            "tool": "mcp__agent-ml-research__edit_paper_section",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-27T02:28:11.048123+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_revision-intro-abstract_20260527T022614",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/introduction.tex",
+              "offset": "15",
+              "limit": "11"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-27T02:28:11.048259+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "15\t\n16\tThe central result is negative: \\textbf{at most 1 of 12 auxiliary spatial head configurations exceeds the Vanilla baseline} on Collision Avoidance Rate, and this difference is not statistically significant ($p{=}0.28$); the remaining 11 perform at or below baseline (11/12 $\\leq$ Vanilla; $p{\\approx}0.003$, binomial test). A $2{\\times}2$ factorial subset reveals a pattern consistent with an ordinal interaction: gradient flow degrades safety, BatchNorm amplifies the deficit and increases training instability, and spatial label content is irrelevant (\\S\\ref{sec:results}).\n17\t\n18\tOur contributions are:\n19\t\\begin{enumerate}[nosep,leftmargin=*]\n20\t    \\item \\textbf{Negative core finding.} We show that auxiliary spatial supervision does not improve VLA collision avoidance under any of 12 configurations tested. A $2{\\times}2$ factorial (gradient flow $\\times$ normalization) shows large effect sizes consistent with an ordinal interaction pattern: gradient flow is associated with lower safety under both normalization types, and the BN + gradient flow combination is the most unstable configuration. Spatial label content does not affect outcomes (\\S\\ref{sec:results}, Table~\\ref{tab:main_results}, Figure~\\ref{fig:factorial}).\n21\t\n22\t    \\item \\textbf{Factorial methodology for VLA auxiliary heads.} We introduce the first systematic factorial comparison of how auxiliary head design choices interact during VLA fine-tuning. This design can detect interactions that single-factor ablations would miss (\\S\\ref{sec:ablation}, Table~\\ref{tab:ablation_design}).\n23\t\n24\t    \\item \\textbf{Actionable guidelines at zero cost.} Do not add auxiliary spatial heads for the purpose of improving collision avoidance. If an auxiliary head is required by other objectives, use detached gradients with LayerNorm (Detach+LN), and never combine BatchNorm with gradient flow. No ground-truth spatial labels are needed; the auxiliary head is discarded at inference (\\S\\ref{sec:discussion}).\n25\t\\end{enumera\n…[truncated 3 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_revision-intro-abstract_20260527T022614",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-27T02:28:11.048400+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_revision-intro-abstract_20260527T022614",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/main.tex",
+              "offset": "24",
+              "limit": "8"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-27T02:28:11.048532+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "24\t\\begin{abstract}\n25\tFine-tuned Vision-Language-Action (VLA) models can achieve high task success yet remain behaviorally unsafe, with collision avoidance rates substantially lagging task completion on safety-critical benchmarks.\n26\tWe present a systematic factorial study isolating how auxiliary spatial supervision during VLA fine-tuning affects collision avoidance, with twelve conditions varying gradient flow, label content, normalization type, spatial reference frame, and temporal extent.\n27\tOur central finding is negative: \\textbf{at most 1 of 12 auxiliary spatial head configurations exceeds the Vanilla baseline} on Collision Avoidance Rate (CAR), and this difference is not statistically significant ($p{=}0.28$); the remaining 11 perform at or below baseline (11/12 $\\leq$ Vanilla; $p{\\approx}0.003$, binomial test). A $2{\\times}2$ factorial (gradient flow $\\times$ normalization) shows a pattern consistent with an ordinal interaction: gradient flow through the auxiliary head into the vision encoders is associated with lower safety ($\\Delta{=}-4.2$\\,pp within the BatchNorm conditions), and BatchNorm amplifies this deficit compared to LayerNorm. Effect sizes are large but the small-sample design ($n{\\leq}4$ per cell) limits pairwise power; the global directional consistency across all twelve conditions provides the primary statistical evidence. The BatchNorm + gradient flow cell is both the worst-performing and the most unstable configuration, with cross-seed standard deviation more than $2.5{\\times}$ that of other cells.\n28\tGradient analysis confirms orthogonality between action and auxiliary gradients (cosine similarity near zero), ruling out direct gradient conflict. Spatial label content (ground-truth occupancy, random binary labels, egocentric depth maps) does not affect safety outcomes, indicating that the gradient pathway, not the spatial information, determines the result.\n29\tPractical guidelines: do not add auxiliary spatial heads for safety purposes. If a\n…[truncated 241 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_revision-intro-abstract_20260527T022614",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-27T02:28:11.048730+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修订完成，验证通过：\n\n- **Introduction ¶4 (L16)**: 压缩至 ~60w，改用 \"at most 1 of 12\" + binomial test ($p\\approx0.003$)，删除旧 sign test 和 η²/d 数字\n- **Introduction C1 (L20)**: \"ordinal interaction\" → \"ordinal interaction pattern\"，无 η² 残留\n- **Abstract ¶3 (L27)**: 重构为 \"at most 1 of 12\" + binomial test，LayerNorm 对比改为单侧 $\\Delta$，pairwise power 说明改为 \"global directional consistency provides the primary statistical evidence\""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_revision-intro-abstract_20260527T022614"
+          },
+          "id": "event-000019"
+        }
+      ],
+      "message_count": 19
+    }
+  ],
+  "readable_path": "readable/conversations/paper-revision-intro-abstract.md"
+}

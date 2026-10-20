@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "024548bead4b737452a9",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "diagnose detach ln s4 anomaly",
+  "task_key": "worker_diagnose_detach_ln_s4_anomaly_20260527T144548",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_detach_ln_s4_anomaly_20260527T144548.log",
+    "occurrence": 1,
+    "bytes": 901932,
+    "sha256": "d4c52f0fc9df55a2fdf22bfe6d840231d630a9987013f579a706379bd07c8cb3"
+  },
+  "statistics": {
+    "messages": 341,
+    "user_turns": 0,
+    "tool_calls": 129,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 79,
+      "tool_call": 129,
+      "tool_result": 129,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 341,
+      "chunks": [
+        {
+          "path": "024548bead4b737452a9-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "024548bead4b737452a9-part-0002.json",
+          "message_count": 161
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diagnose-detach-ln-s4-anomaly.md"
+}

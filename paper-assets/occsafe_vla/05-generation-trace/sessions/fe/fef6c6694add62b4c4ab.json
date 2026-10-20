@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fef6c6694add62b4c4ab",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_4_1779793787.md",
+  "task_key": "loop_4_1779793787",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1779793787.md",
+    "occurrence": 1,
+    "bytes": 4448,
+    "sha256": "aea9798ff7ff3ff34eb7bc8f04e23927a87709140ea4bdd952ae07cf1d9e148c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-26T10:35:14+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-10894 cuda:0/1/2/3 + westd-34685 cuda:0/1/2/3，共 8 张。超出必须 push back Director\n- CoRL 2026 deadline：Abstract May 26（今天），Paper May 29（3 天）\n- 10894 根分区曾磁盘满，大文件必须放 `/root/autodl-tmp/`\n- D050 共线问题：v1/v2 代码不等价（同种子 Full OCC BN CAR 差 8.6pp），所有跨版本比较不可信。当前 D051 rebuild 全用 v2 代码\n- Resume 实验 eval 时取 local step=30000 checkpoint（= 全局 50K steps）\n- 叙事门控决策依赖 ablation_occ_detach_s3_v2 的 CAR：<0.750→Branch A, 0.770-0.780→B, >0.780→C\n\n### 2. 🖥️ 基础设施快照\n- **westd-10894**: 工作目录 `/root/occsafe_vla/openvla-oft`，Python `/root/miniconda3/bin/python`，conda env `occsafe`，激活 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`\n- **westd-34685**: 同上结构\n- 模型 checkpoint：`/root/autodl-tmp/checkpoints/<exp_id>/`\n- 数据集：`/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops`（25000 条）\n- HF cache：`/root/autodl-tmp/.hf_cache`，WANDB_MODE=disabled\n- **34685 活跃进程**（cron 确认全部 running）：\n  - detach_bn_v2_s0: PID 5086, cuda:0, ETA ~May 26 07:00\n  - detach_bn_v2_s1: PID 2786, cuda:1, ETA ~May 26 07:00\n  - detach_bn_v2_s2: PID 3003, cuda:2, ETA ~May 26 07:00\n  - full_occ_bn_v2_s1: PID 7347, cuda:3, ETA ~May 26 07:30\n- **10894 进程**（状态未确认！见下）：\n  - cutoff_45k_s2_v2: PID 4212, cuda:0, ETA ~May 26 06:30（从头）\n  - mvp_occ_s3_v2: PID 11641, cuda:1, ETA ~May 26 02:00（resume from 20K）\n  - full_occ_ln_s3_v2: PID 6947, cuda:2, ETA ~May 26 02:00（resume from 20K）\n  - ablation_occ_detach_s3_v2: PID 7161, cuda:3, ETA ~May 26 02:00（resume from 20K）\n\n### 3. 📊 当前状态\n**刚做完**：session-start 初始化。发现关键问题——10894 的 4 个实验 registry=QUEUED（应为 RUNNING），且**无 cron 监控**。reconcile_crons 只发现 34685 的 4 个实验。\n\n**已派出但未回调**：Worker `worker_ssh_verify_10894_experiments_20260525T183123` 正在 SSH 检查 10894 上 4 个实验是否存活。这是最高优先级——resume 实验理论上可能已完成（ETA May 26 02:00，现在可能已过）。\n\n**full_occ_ln_s0 已处理**：registry 显示 DONE/success（之前 handoff 说 ANALYZING，现在已完成 eval）。\n\n**未向 Director 汇报**：等 10894 验证结果后一并汇报。\n\n### 4. 📋 待办（条件触发式）\n- Worker `worker_ssh_verify_10894_experiments` 回调 → 分叉：\n  - 实验仍在跑 → `update_registry(status=RUNNING)` + `register_cron` 补监控\n  - 实验已完成（resume 3 个很可能已完成）→ `update_registry(status=DONE, conclusion=success)` + 立即派 eval Workers（50r SafeLIBERO，resume 实验用 local step 30000 checkpoint）\n  - 实验已死 → 立即重启\n- s3 eval 完成（mvp_occ_s3_v2 + ablation_occ_detach_s3_v2 + full_occ_ln_s3_v2）→ **叙事门控决策**（ablation_occ_detach_s3 CAR 决定 Branch A/B/C）→ 向 Director 汇报\n- 34685 D051 实验 cron 回调（~May 26 07:00）→ 派 eval Workers（ckpt=50000）\n- D051 eval 全部完成 → v2 2×2 ANOVA → framing 决策 Plan A vs Plan B → 向 Director 汇报\n- 排队中的 PREPARING 实验（detach_ln_s3/s4, ablation_occ_detach_s4, full_occ_ln_s4, mvp_occ_s4）→ 等 GPU 释放后提交\n\n### 5. 🎯 战略上下文\n**核心 story**：D051 v2 code rebuild 是论文的救命稻草。D050 发现 v1/v2 代码不等价（共线），旧 factorial 数据全部作废。当前 8 个实验全用 v2 代码，完成后才有 clean 2×2 factorial。\n\n**交互效应存活概率 ~10-15%**（ROADMAP 判断），Plan B 替代 framing 已准备（B1: mechanism analysis / B2: normalization as hidden variable / B3: cautionary study）。\n\n**最容易判断错的事**：\n1. 10894 的 4 个实验 registry=QUEUED 但实际可能已完成——**不要以为它们还在排队等 GPU**，它们已经提交过了（有 PID），只是 registry 状态没更新\n2. Resume 实验 eval 必须用 local step 30000 checkpoint（不是 50000），因为 resume from 20K 后只再训练 30K steps\n3. v1 数据（mvp_occ_s0 CAR=0.832 等）不能与 v2 数据直接比较——同种子同配置差 8.6pp\n4. full_occ_ln_s0 已经 DONE/success，不需要再处理 eval\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1779793787.md"
+}

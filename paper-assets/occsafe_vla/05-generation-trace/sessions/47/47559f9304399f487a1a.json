@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "47559f9304399f487a1a",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose full occ ln s3",
+  "task_key": "worker_diagnose_full_occ_ln_s3_20260525T172356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_full_occ_ln_s3_20260525T172356_result.json",
+    "occurrence": 1,
+    "bytes": 521,
+    "sha256": "4d5399cade04541c5c20145b6ea2f958bb5cc3eda0616a19c02dad073d5567d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练仍在运行中。当前进度 20398/50005 (41%)，已运行 ~5h52m，预计还需 ~7h40m。\n\n关键发现：\n- **进度**: step 20398/50005，未完成\n- **Checkpoints**: 已保存 10K 和 20K checkpoint，无 50K\n- **v2 确认**: `[AUX]` 出现 204 次，确认使用 v2 代码\n- **速度**: ~1.08 it/s，稳定\n\n**结论：训练尚未完成，仍在正常运行中。** 不更新 registry 状态，不删除 cron。预计完成时间约 8 小时后（~北京时间 5/26 14:00 左右）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-full-occ-ln-s3.md"
+}

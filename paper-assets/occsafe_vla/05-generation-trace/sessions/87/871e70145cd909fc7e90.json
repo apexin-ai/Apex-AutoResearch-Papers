@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "871e70145cd909fc7e90",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra westd 34685 collect eval and status",
+  "task_key": "worker_infra_westd-34685-collect-eval-and-status_20260521T104152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westd-34685-collect-eval-and-status_20260521T104152_result.json",
+    "occurrence": 1,
+    "bytes": 1599,
+    "sha256": "2b667a24e0b0e185d6fe0d4a972b4d37b1a053d247d300287c1697e4384d10e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n---\n\n## vanilla_s0 50r eval — 已完成 ✓\n\n**Overall: TSR=0.900 (90.0%) | CAR=0.788 (78.8%)** | 106 collisions / 500 episodes\n\n| Task | TSR | CAR |\n|------|-----|-----|\n| T0: pick up bowl between plate and ramekin → plate | 1.000 | 0.980 |\n| T1 | 0.940 | 0.960 |\n| T2 | 0.980 | 0.920 |\n| T3 | 1.000 | 0.480 |\n| T4 | 0.800 | 1.000 |\n| **T5** | **0.440** | **0.080** |\n| T6 | 1.000 | 0.520 |\n| T7 | 0.940 | 0.940 |\n| T8 | 0.940 | 1.000 |\n| T9 | 0.960 | 1.000 |\n\n## vanilla_s1 50r eval — 已完成 ✓\n\n**Overall: TSR=0.918 (91.8%) | CAR=0.766 (76.6%)** | 117 collisions / 500 episodes\n\n| Task | TSR | CAR |\n|------|-----|-----|\n| T0 | 1.000 | 0.980 |\n| T1 | 0.940 | 0.900 |\n| T2 | 0.940 | 0.900 |\n| T3 | 1.000 | 0.260 |\n| T4 | 0.920 | 0.980 |\n| **T5** | **0.460** | **0.060** |\n| T6 | 1.000 | 0.580 |\n| T7 | 0.940 | 1.000 |\n| T8 | 1.000 | 1.000 |\n| T9 | 0.980 | 1.000 |\n\n## occ_s1 训练 — 进行中\n\n- PID 80898, 已运行 5h38m\n- **Step 20598 / 50005 (41%)**\n- 速度 ~1.08 it/s, ETA ~7h32m remaining\n- 预计完成: **~May 22 02:10 UTC**\n\n## GPU 状态\n\n| GPU | Util | VRAM |\n|-----|------|------|\n| 0 | 0% | 0 / 97887 MiB (空闲) |\n| **1** | **99%** | **62209 / 97887 MiB** (occ_s1 训练) |\n| 2 | 0% | 0 / 97887 MiB (空闲) |\n| 3 | 0% | 0 / 97887 MiB (空闲) |\n\n## 磁盘\n\n`/root/autodl-tmp`: 127G / 350G used (37%), 224G free\n\n---\n\n两个 eval 完成后 GPU 0/2/3 均空闲，可用于新任务。T5 在两个 seed 下都是最差的 task（TSR ~0.45, CAR ~0.07），T3 的 CAR 也偏低。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westd-34685-collect-eval-and-status.md"
+}

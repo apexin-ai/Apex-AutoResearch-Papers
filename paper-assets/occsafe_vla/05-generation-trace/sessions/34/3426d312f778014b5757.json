@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "3426d312f778014b5757",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "analysis gradient cka scripts v2",
+  "task_key": "worker_analysis_gradient_cka_scripts_v2_20260523T034132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gradient_cka_scripts_v2_20260523T034132.log",
+    "occurrence": 1,
+    "bytes": 952366,
+    "sha256": "6474d958c3a47973020d25e92071b21a027306e284359adbbd5e5d0faeaed7ab"
+  },
+  "statistics": {
+    "messages": 292,
+    "user_turns": 0,
+    "tool_calls": 113,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 62,
+      "tool_call": 113,
+      "tool_result": 113,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 292,
+      "chunks": [
+        {
+          "path": "3426d312f778014b5757-part-0001.json",
+          "message_count": 163
+        },
+        {
+          "path": "3426d312f778014b5757-part-0002.json",
+          "message_count": 129
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-gradient-cka-scripts-v2.md"
+}

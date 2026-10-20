@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e1f5381adc900c41d0d",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "paper writing method",
+  "task_key": "worker_paper_writing_method_20260526T124004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_method_20260526T124004_result.json",
+    "occurrence": 1,
+    "bytes": 1090,
+    "sha256": "b3d05596e6e59e59548b8d26ed3b7c49084700e7f388365c873207c4e86d60ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入。与旧版相比的主要修改：\n\n1. **去除结果预判语言**：Full OCC+LN、Detach OCC、Cutoff、Reverse Cutoff 的描述改为中性的 \"paired with X to isolate Y\" 句式，删除了 \"BN interference without gradient compensation\" 和 \"rescue\" 等隐含结论方向的措辞\n2. **方程符号定义**：补充了 $h$、$\\phi_v$、$s_t^*$ 的含义\n3. **BEV head 细节**：补充了 GT grid 的生成方式（projecting object bounding boxes onto table-plane BEV）\n4. **Cutoff 描述精确化**：明确写出 post-cutoff = Detach mode 的具体含义（encoder gradients blocked, BatchNorm2d statistics continue to update）\n5. **种子数明细**：Evaluation 中补充了 Cutoff@{15K, 25K}: 2 seeds 和 Cutoff@45K: 1 seed\n6. **Bootstrap 层级结构**：补充了 hierarchical resampling 的两层结构（seeds → episodes）\n7. **表格紧凑化**：添加 `\\small`、`\\setlength{\\tabcolsep}{4pt}`、`@{}` 列间距\n8. **无禁用术语**：无 crossover interaction、BN-mediated gradient calibration、gradient collapse"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-method-copy-3.md"
+}

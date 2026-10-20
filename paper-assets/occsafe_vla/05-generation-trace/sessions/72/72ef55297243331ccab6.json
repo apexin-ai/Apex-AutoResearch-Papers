@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "72ef55297243331ccab6",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "fix appendix cohens d",
+  "task_key": "worker_fix_appendix-cohens-d_20260527T043352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_appendix-cohens-d_20260527T043352_result.json",
+    "occurrence": 1,
+    "bytes": 771,
+    "sha256": "01175cd82d2dbcab8135ad17b535fcef17b56631a2771322efdb26d83aeea5fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**v1 per-seed CARs (来源: registry, at_50000_50r)**\n\n| 条件 | exp_id | s0 | s1 | s2 | mean |\n|------|--------|-----|-----|-----|------|\n| Vanilla | mvp_vanilla_s{0,1,2} | 0.788 | 0.766 | 0.786 | 0.780 |\n| Detach BN | ablation_occ_detach_s{0,1,2} | 0.746 | 0.744 | 0.748 | 0.746 |\n\n**正确的 Cohen's d = -3.90**（pooled SD = 0.0087）\n\n原文报告 d ≈ -0.04 确实是计算错误，偏差约 100 倍（可能小数点错位）。Reviewer 怀疑合理。\n\n**修改状态：段落已不存在，无需修改。** appendix.tex 中已无任何包含 \"d ≈ -0.04\" 的文本，L69 附近的统计段落已被 D067 修复中重写，当前版本只描述统计方法（paired t-test + Cohen's d），不再报告具体数值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-appendix-cohens-d.md"
+}

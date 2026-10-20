@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e337ac8267ba48a2a62",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops disk cleanup 34685",
+  "task_key": "worker_ops_disk-cleanup-34685_20260526T085806",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk-cleanup-34685_20260526T085806_result.json",
+    "occurrence": 1,
+    "bytes": 899,
+    "sha256": "0993dfc4810edf875b453c589dd7a1b162a69365d635ae6798f7cf8220158f78"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n## 汇总\n\n| 指标 | 清理前 | 清理后 |\n|------|--------|--------|\n| `/dev/md127` 已用 | 246G (71%) | 142G (41%) |\n| 可用空间 | 105G | 209G |\n| **释放空间** | | **104G** |\n\n### 删除明细\n\n| 删除项 | 释放 |\n|--------|------|\n| `cutoff_45k_s1_v3/` (整目录，失败实验) | ~30G |\n| `reverse_cutoff_s2_v3/` (整目录，失败实验) | ~30G |\n| `cutoff_15k_s2/`, `cutoff_45k_s1/`, `cutoff_45k_s1_v2/` (空目录) | ~0 |\n| `detach_bn_v2_s0/` 40000_chkpt | ~15G |\n| `detach_bn_v2_s1/` 40000_chkpt | ~15G |\n| `detach_bn_v2_s2/` 40000_chkpt | ~15G |\n\n### 保留的 checkpoint\n\n- `detach_bn_v2_s0/s1/s2`: latest + 50000_chkpt (各15G)\n- `full_occ_retrain_s0`: latest + 50000_chkpt (15G)\n- `vanilla_retrain_s0`: latest + 50000_chkpt (15G)\n- `cutoff_15k_s1`: latest + 50000_chkpt (15G)\n- 4个运行中实验目录未触碰"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-34685.md"
+}

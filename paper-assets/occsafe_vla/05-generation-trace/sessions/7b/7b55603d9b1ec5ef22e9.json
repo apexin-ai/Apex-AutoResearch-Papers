@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b55603d9b1ec5ef22e9",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval collect occ s1 50K results",
+  "task_key": "worker_eval_collect-occ-s1-50K-results_20260521T142228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect-occ-s1-50K-results_20260521T142228_result.json",
+    "occurrence": 1,
+    "bytes": 1766,
+    "sha256": "bd7203ac0378fd40127d5ebaea24e1b4a05535e3a95115d434fe2e9dc3631a72"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 50K eval 结果已收集完毕。\n\n---\n\n## occ_s1 50K Eval 结果\n\n**Checkpoint**: `occ_s1/...50000_chkpt` | 200 episodes (10 tasks × 20 rollouts)\n\n**Overall: TSR = 0.765 (76.5%) | CAR = 0.685 (68.5%) | Collisions = 63/200**\n\n| Task | TSR | CAR |\n|------|-----|-----|\n| T0 | 0.950 | 0.950 |\n| T1 | 0.950 | 1.000 |\n| T2 | 1.000 | 0.900 |\n| T3 | 1.000 | 0.050 |\n| T4 | 0.800 | 1.000 |\n| T5 | 0.000 | 0.150 |\n| T6 | 1.000 | 0.500 |\n| T7 | 0.500 | 0.700 |\n| T8 | 0.850 | 1.000 |\n| T9 | 0.600 | 0.600 |\n\nT5 完全失败 (TSR=0)，T3 虽然全部成功但几乎全碰撞 (CAR=0.05)。\n\n---\n\n## occ_s0 50K Eval 结果\n\n**Overall: TSR = 0.915 (91.5%) | CAR = 0.800 (80.0%) | Collisions = 40/200**\n\n| Task | TSR | CAR |\n|------|-----|-----|\n| T0 | 1.000 | 0.950 |\n| T1 | 0.900 | 0.850 |\n| T2 | 1.000 | 0.900 |\n| T3 | 1.000 | 0.800 |\n| T4 | 0.900 | 1.000 |\n| T5 | 0.450 | 0.150 |\n| T6 | 0.950 | 0.350 |\n| T7 | 1.000 | 1.000 |\n| T8 | 0.950 | 1.000 |\n| T9 | 1.000 | 1.000 |\n\n---\n\n## occ_s2 50K Eval 结果\n\n**Overall: TSR = 0.850 (85.0%) | CAR = 0.730 (73.0%) | Collisions = 54/200**\n\n| Task | TSR | CAR |\n|------|-----|-----|\n| T0 | 1.000 | 0.950 |\n| T1 | 0.900 | 1.000 |\n| T2 | 1.000 | 0.900 |\n| T3 | 1.000 | 0.000 |\n| T4 | 0.400 | 1.000 |\n| T5 | 0.350 | 0.100 |\n| T6 | 0.950 | 0.350 |\n| T7 | 1.000 | 1.000 |\n| T8 | 0.950 | 1.000 |\n| T9 | 0.950 | 1.000 |\n\n---\n\n## 三模型 50K 对比\n\n| Model | TSR | CAR | Collisions |\n|-------|-----|-----|------------|\n| **occ_s0** | **0.915** | **0.800** | 40 |\n| occ_s2 | 0.850 | 0.730 | 54 |\n| occ_s1 | 0.765 | 0.685 | 63 |\n\nocc_s0 在 TSR 和 CAR 上均最优。三个模型共同弱项：T5 (TSR 低) 和 T3/T6 (CAR 低，频繁碰撞)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-occ-s1-50k-results.md"
+}

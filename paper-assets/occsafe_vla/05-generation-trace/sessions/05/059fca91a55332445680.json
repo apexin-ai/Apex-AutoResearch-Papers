@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "059fca91a55332445680",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra urgent westd 34685 status check",
+  "task_key": "worker_infra_urgent-westd-34685-status-check_20260521T070131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_urgent-westd-34685-status-check_20260521T070131_result.json",
+    "occurrence": 1,
+    "bytes": 2116,
+    "sha256": "886555ab1163674c58c745ac7901d9eec207a8878ff87ed9a33eabbcccab1b3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both evals are running successfully — models loaded, rollouts in progress.\n\n---\n\n## 完整状态报告\n\n### 1. finetune 进程\n| Seed | 状态 | 详情 |\n|------|------|------|\n| **s0** | DEAD | kill 脚本于 06:57:27 UTC 杀死 (PID 76998)，50000_chkpt 已保存 |\n| **s1** | ALIVE | PID 80898，GPU 1 (99%, 62GB)，从 17500 resume，当前 20000_chkpt |\n| **s2** | DEAD | kill 脚本于 06:58:02 UTC 杀死 (PID 78171)，50000_chkpt 已保存 |\n\n### 2-3. Checkpoints\n| Seed | 最新 checkpoint | 时间 |\n|------|-----------------|------|\n| s0 | **50000_chkpt** ✓ | May 21 14:58 |\n| s1 | 20000_chkpt (训练中) | May 21 13:44 |\n| s2 | **50000_chkpt** ✓ | May 21 14:58 |\n\n### 4-5. Eval trigger\n- `monitor_and_eval_occ.sh` — 12:39 失败（PID 已过期）\n- `eval_occ_salvage.sh` — 14:57 检测到 50000_chkpt 并触发 eval，但 **eval 失败**：50000_chkpt 是轻量保存（只有 LoRA adapter + heads），缺少 `config.json` 和 base model safetensors\n\n### 6. Kill 脚本\n正常工作：检测到 50000_chkpt 后成功杀死 s0/s2\n\n### 7. GPU 状态\n| GPU | Util | Memory | 用途 |\n|-----|------|--------|------|\n| 0 | 0% → eval | 0 → loading | **已启动 s0 eval** (PID 88639) |\n| 1 | 99% | 62209 MiB | s1 训练中 |\n| 2 | 0% → eval | 0 → loading | **已启动 s2 eval** (PID 90003) |\n| 3 | 100% | 0 MiB | 异常（100% util 但 0 MiB） |\n\n### 8. Eval 修复与重启\n**根因**: 50000_chkpt 是轻量 checkpoint（仅含 LoRA adapter、action_head、occ_head、proprio_projector），不包含 config.json 和 model safetensors。\n\n**修复**: 从 47500_chkpt 符号链接了 9 个缺失文件（config.json、generation_config.json、4 个 model safetensors 等）到 50000_chkpt，s0 和 s2 各做一次。\n\n**当前状态**: 两个 eval 均已成功加载模型，正在跑 rollouts：\n- s0: Task 0, rollout 7/20, ~5s/rollout\n- s2: Task 0, rollout 1/20, ~9s/rollout\n\n### 预计完成时间\n10 tasks × 20 rollouts ≈ **20-30 分钟**后出结果，日志在 `/root/runs/occsafe_vla/eval_s0.log` 和 `eval_s2.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-urgent-westd-34685-status-check.md"
+}

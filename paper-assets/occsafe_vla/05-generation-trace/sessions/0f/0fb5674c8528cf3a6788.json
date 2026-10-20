@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0fb5674c8528cf3a6788",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code fix gradient analysis ln support",
+  "task_key": "worker_code_fix_gradient_analysis_ln_support_20260524T125811",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_gradient_analysis_ln_support_20260524T125811_result.json",
+    "occurrence": 1,
+    "bytes": 571,
+    "sha256": "a7003f782776fec2d9f7305eb56ee3aa5c7d4eaa101a6ac991b2e5a083f9c201"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过：\n\n- `norm_type='ln'` → `GroupNorm(1, 128, eps=1e-05, affine=True)`\n- `norm_type='bn'` → `BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)`\n\n修改完成。两处改动：\n\n1. **occ_head.py** — `BEVOccupancyHead.__init__` 新增 `norm_type=\"bn\"` 参数，`\"ln\"` 时用 `GroupNorm(1, C)` 替代 `BatchNorm2d`\n2. **gradient_analysis.py** — 新增 `--occ_norm` 参数（`bn`/`ln`），传入 `BEVOccupancyHead` 构造\n\n使用时加 `--occ_norm ln` 即可加载 Detach_LN_s0 的 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-gradient-analysis-ln-support.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57212f6ca41b1cc08f25",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval occ s1 45K wait and eval",
+  "task_key": "worker_eval_occ-s1-45K-wait-and-eval_20260521T115118",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_occ-s1-45K-wait-and-eval_20260521T115118_result.json",
+    "occurrence": 1,
+    "bytes": 189,
+    "sha256": "44bdfdef81254c90fc7dddb5f42fa558c20366ae2b7b89dc8842959c16044d96"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练当前 tqdm=25019/50005 (实际 step=42519)，速度 ~1.09 it/s。距离 45K checkpoint (tqdm=27500) 还差约 2481 步，预计 ~38 分钟。2 分钟后再次检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-occ-s1-45k-wait-and-eval.md"
+}

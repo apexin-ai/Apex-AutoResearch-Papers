@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c62532b133b87d0695ee",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval ablation occ detach s0 retrain",
+  "task_key": "worker_eval_ablation_occ_detach_s0_retrain_20260525T022927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_ablation_occ_detach_s0_retrain_20260525T022927_result.json",
+    "occurrence": 1,
+    "bytes": 509,
+    "sha256": "9041225b7268e485dac3b7c0db6cdd98d866c2ed2b31b7ecd6d59c53dcf22c75"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **Registry**: `ablation_occ_detach_s0_retrain_eval` 已注册，状态 RUNNING\n- **Checkpoint**: `/root/autodl-tmp/checkpoints/ablation_occ_detach_s0_retrain/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt`\n- **运行**: tmux session `ablation_occ_detach_s0_retrain_eval` on westd-10894 cuda:0，模型正在加载\n- **日志**: `/root/runs/occsafe_vla/ablation_occ_detach_s0_retrain_eval.log`\n\n预计运行约 45-80 分钟。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-ablation-occ-detach-s0-retrain.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a588909c135aaeeddc93",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diag gpu reset 10894",
+  "task_key": "worker_diag_gpu-reset-10894_20260528T142027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_gpu-reset-10894_20260528T142027_result.json",
+    "occurrence": 1,
+    "bytes": 1092,
+    "sha256": "4610a6e65d2407028528ee4413ca0dc72a4bf0027fc82e768fed3eddcd2ed88a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**修复失败 — 无法从容器内部修复。**\n\n### 根因\n\nwestd-10894 是 AutoDL Docker 容器（hostname: `autodl-container-mr3q92uumz-3531f842`），容器启动时：\n- `NVIDIA_VISIBLE_DEVICES=void`（跳过 nvidia-container-runtime 自动注入）\n- 仅挂载了 `/dev/nvidia1`（device minor 1，对应宿主机 bus 38:00.0 的 1 张 GPU）\n- cgroup v2 BPF 设备过滤器在**内核层面**阻止访问 nvidia0/2/3（`EPERM`）\n\n宿主机有 9 张 RTX PRO 6000，但此容器仅分配了 1 张。这不是 driver crash 导致的丢 GPU，而是**容器创建时就只配了 1 张 GPU**。\n\n### 尝试过的方法\n\n| 方法 | 结果 |\n|------|------|\n| `nvidia-smi -r` | 不支持 |\n| 重启 nvidia-persistenced | 无 systemd |\n| 创建 `/dev/nvidia{0,2,3}` 设备节点 | 创建成功但内核 EPERM 拒绝访问 |\n| CUDA driver API 枚举 | 仅 1 设备 |\n\n### 需要的操作\n\n**去 AutoDL 控制台重新配置此容器为 4 GPU 实例**（或停止后重建）。从容器内部无法绕过 cgroup 设备访问限制。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-gpu-reset-10894.md"
+}

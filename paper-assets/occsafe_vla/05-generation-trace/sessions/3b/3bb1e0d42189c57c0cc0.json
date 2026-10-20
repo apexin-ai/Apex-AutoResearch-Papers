@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3bb1e0d42189c57c0cc0",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "fix detach ln v2 s3 resume 40k",
+  "task_key": "worker_fix_detach_ln_v2_s3_resume_40k_20260528T034604",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_detach_ln_v2_s3_resume_40k_20260528T034604_result.json",
+    "occurrence": 1,
+    "bytes": 738,
+    "sha256": "ee793dbcdfade0cca99c33539c6ac5c705c1272bfe68298bbdb4c6ad95fa4144"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练成功启动。\n\n**结果汇总：**\n\n| 项目 | 状态 |\n|------|------|\n| 40000_chkpt | 原始不完整（SIGHUP 中断了 safetensors 保存），已通过 35000 base + 40000 LoRA adapter 合并重建 |\n| 训练 PID | 56822（GPU 3） |\n| GPU 3 | 63000MiB / 97887MiB, 99% 利用率 |\n| 起始 step | 40000（gradient_step_idx=0, log_step=40000） |\n| 停止条件 | log_step == 50005, 即 ~10005 步 |\n| 预计完成 | ~2.5h（约 14:25 UTC） |\n| 日志 | `~/runs/occsafe_vla/detach_ln_v2_s3.log` |\n| 首步 loss | action_loss=0.1299, occ_loss=0.0 |\n\n注意：GPU 2 出现了两个新进程（PID 56474, 58736），不是本次操作产生的。GPU 0 的 detach_ln_v2_s2 (PID 47238) 正常运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-detach-ln-v2-s3-resume-40k.md"
+}

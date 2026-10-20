@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8498ae67eb6c6381988c",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "research paper data aggregation",
+  "task_key": "worker_research_paper-data-aggregation_20260525T202620",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_paper-data-aggregation_20260525T202620_result.json",
+    "occurrence": 1,
+    "bytes": 770,
+    "sha256": "fafcb5e65c5620b73316239bb73b247a6bf6ef187f52718e17e6abde1f2af5cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已生成 `factorial_data_summary.md` 并注册为 artifact。关键发现：\n\n**V2 已完成数据**：\n- Cell 2 (Full OCC LN): 3 seeds, CAR=0.743±0.024, TSR=0.897±0.032\n- Cell 4 (Detach LN): 3 seeds, CAR=0.765±0.023, TSR=0.901±0.016\n- Cell 1 (Full OCC BN): 仅 1 seed (CAR=0.746)\n- Cell 3 (Detach BN): 0 seeds (3 个在跑)\n\n**最大瓶颈**: Cell 1 (Full OCC BN) 当前 RUNNING 全部完成后也只有 2 seeds，不够 3-seed 平衡 ANOVA。需要再安排 1 个 seed (~17h)。\n\n**初步观察** (v2 已有数据): Full OCC LN CAR(0.743) ≈ Full OCC BN CAR(0.746)，Detach LN CAR(0.765) 反而最高——gradient OFF + LN 组合在 v2 下表现最好，与 v1 时代的叙事相反。不过 Cell 1 仅 1 seed，需更多数据确认。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paper-data-aggregation.md"
+}

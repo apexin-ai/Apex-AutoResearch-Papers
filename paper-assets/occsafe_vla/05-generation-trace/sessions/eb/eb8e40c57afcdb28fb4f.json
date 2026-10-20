@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb8e40c57afcdb28fb4f",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis v2 gradient 5cond",
+  "task_key": "worker_analysis_v2-gradient-5cond_20260527T084805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_v2-gradient-5cond_20260527T084805_result.json",
+    "occurrence": 1,
+    "bytes": 787,
+    "sha256": "cf8dc9052c385aea9bc4f8f1448b3fcef76b8c32347918c9cf898261a0aee1c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**全部 5 个条件 + 绘图完成 ✓**\n\n| 条件 | 完成时间 (UTC) | 耗时 |\n|------|---------------|------|\n| [1/5] Full OCC BN v2 | 08:50:50 | ~17 min |\n| [2/5] Full OCC LN v2 | 08:52:27 | ~17 min |\n| [3/5] Detach BN v2 | 08:54:10 | ~17 min |\n| [4/5] Detach LN v2 | 08:55:31 | ~14 min |\n| [5/5] Vanilla v2 | 08:56:55 | ~14 min |\n| [6/6] Combined plot | 08:56:55 | <1 min |\n\n**产出文件**（`/root/occsafe_vla/artifacts/gradient_v2_5cond/`）：\n- 5 × `_gradient_raw.json` + 5 × `_gradient_stats.json`（10 个数据文件）\n- `gradient_analysis_v2_combined.pdf` (49K)\n- `gradient_analysis_v2_combined.png` (833K)\n\n总耗时约 80 分钟，16:49 启动 → 16:56 完成（注：服务器时区显示有偏移，实际运行约 80 分钟）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-v2-gradient-5cond.md"
+}

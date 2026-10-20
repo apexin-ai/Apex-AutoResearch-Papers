@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19a016b6419d1d047c1b",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_3_1779737029.md",
+  "task_key": "loop_3_1779737029",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1779737029.md",
+    "occurrence": 1,
+    "bytes": 4390,
+    "sha256": "fcb407523661bca92cb84c1f0ec08375134ac3826e31133936c81adef87865ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-25T19:23:27+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：westd-10894 cuda:0-3 + westd-34685 cuda:0-3（共 8 卡）\n- westd-10894 根分区小，大文件必须放 `/root/autodl-tmp/`，HF_HOME 设为 `/root/autodl-tmp/.hf_cache`\n- full_occ_ln 训练使用 `--occ_norm_type ln`（不是默认 BN），checkpoint 路径含 `full_occ_ln_sX/`\n- eval 命令必须带 `MUJOCO_EGL_DEVICE_ID=N MUJOCO_GL=egl`，否则渲染失败\n- 10894 磁盘曾爆过（D事故），清理后 ~149G 可用，提交前必须检查磁盘\n\n### 2. 🖥️ 基础设施快照\n- **westd-10894**: 工作目录 `/root/occsafe_vla/openvla-oft`，Python `/root/miniconda3/bin/python`，conda env `occsafe`\n- **westd-34685**: 同上结构\n- 模型 base: `/root/autodl-tmp/models/openvla-7b`\n- 数据集: `/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops`（训练）、`libero_spatial`（eval）\n- Checkpoints: `/root/autodl-tmp/checkpoints/{exp_name}/`\n- 分析输出: `/root/autodl-tmp/analysis/`\n- Eval 日志: `~/runs/occsafe_vla/{exp_id}.log`\n- W&B: 训练时启用，eval 时 WANDB_MODE=disabled\n\n### 3. 📊 当前状态\n**刚做的事**: 收到 `full_occ_ln_s1_eval` cron 回调（进程正常退出），已派 Worker `worker_analysis_full_occ_ln_eval_results_20260525T031613` 同时读取 s1_eval 和 s2_eval 两个日志。**Worker 尚未回调。**\n\n**ANALYZING（等结果）**:\n- `full_occ_ln_s1_eval` — Full OCC+LN seed 43 的 50r eval，10894:cuda:0\n- `full_occ_ln_s2_eval` — Full OCC+LN seed 44 的 50r eval，10894:cuda:1\n\n**RUNNING（cron 监控中）**:\n- `cutoff_45k_s1` — 34685:cuda:0，~35%，ETA May 25 ~10:24\n- `cutoff_15k_s1_eval` — 34685:cuda:1，50r eval\n- `cutoff_25k_s2` — 34685:cuda:2，~6%，ETA May 25 ~14:04\n- `reverse_cutoff_s2` — 34685:cuda:3，~6%，ETA May 25 ~14:11\n- `ablation_occ_detach_s0_retrain_eval` — 10894:cuda:0（但 cron reconcile 未列出，需确认是否还在跑）\n\n**PREPARING**:\n- `cka_full_occ_ln_s2` — CKA 分析 seed 44，等 GPU 空出\n\n**尚未汇报 Director**——等 Worker 回调拿到 eval metrics 后一起汇报。\n\n### 4. 📋 待办\n- Worker `analysis_full_occ_ln_eval_results` 回调 → 提取 s1/s2 CAR/TSR/per-task → update_registry 两个实验到 DONE → 计算 Full OCC+LN 3-seed 均值（s0=0.766, s1=?, s2=?）→ 与 Full OCC BN 均值 0.797 对比 → 填 2×2 factorial 表 → 汇报 Director\n- eval 完成后 10894 cuda:0/1 空出 → 立即提交 `cka_full_occ_ln_s2`（PREPARING）+ 检查是否有其他可铺实验\n- `ablation_occ_detach_s0_retrain_eval` 回调 → 提取 metrics → same-seed Detach baseline，供梯度分析对比\n- `cutoff_15k_s1_eval` 回调 → 提取 CAR → 与 s0 的 CAR=0.804 对比，验证 non-monotonic dose-response\n- `cutoff_45k_s1` 训练完成 → 提交 eval\n- `cutoff_25k_s2` / `reverse_cutoff_s2` 完成 → eval → 3rd seed 确认 withdrawal framing\n- 全部 factorial + dose-response 数据到齐 → 更新论文图表 + paper sections\n\n### 5. 🎯 战略上下文\n**核心发现链**:\n- D032: CKA 证实 Detach 导致灾难性表征偏离（DINOv2 CKA↓↓）\n- D034: detach_ln 3-seed 确认 BN 干扰是表征漂移的 100% 原因\n- D035: 表征-行为分离（Detach+LN CKA 高但 CAR 低）\n- D036: 梯度正交性证实\"存在性正则化\"机制\n- D037: Per-layer 分析揭示 DINOv2 vs SigLIP 差异化脆弱性\n- D039: 撤回 D043 crossover interaction 假说（s1 CKA=0.965 正常，s0 的 0.640 是 seed-specific outlier）\n\n**2×2 Factorial 是当前最关键数据**:\n| | BN | LN |\n|--|----|----|\n| Gradient Flow | Full OCC (0.797) | **Full OCC+LN (s0=0.766, s1=?, s2=?)** |\n| No Gradient | Detach (0.746) | Detach+LN (0.765) |\n\n如果 Full OCC+LN 3-seed 均值 ≈ 0.797 → norm type 不重要（gradient flow 是主效应）。如果显著低 → LN 在有 gradient flow 时反而不如 BN（interaction effect）。\n\n**易错点**:\n- cka_full_occ_ln_s0 的 DINOv2 CKA=0.640 是 seed-specific outlier（D039 已撤回 crossover 假说），不要再基于此构建 narrative\n- 10894 上 torchrun 训练退出时经常报 exit_code=1（destroy_process_group warning），是 false positive failure，训练实际完成了——检查 checkpoint 存在 + final step 即可\n- CoRL 2026 deadline: Abstract May 26（1天）、Paper May 29（4天），时间极紧\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1779737029.md"
+}

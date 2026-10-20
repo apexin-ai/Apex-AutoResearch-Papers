@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "55fcc4a9b89b335366d0",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose westd 34685 failures",
+  "task_key": "worker_diagnose_westd-34685-failures_20260521T050321",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_westd-34685-failures_20260521T050321_result.json",
+    "occurrence": 1,
+    "bytes": 3013,
+    "sha256": "8dd073ce46c8c748b25a7ac60cafdc987d4257922a60410141777037c52317c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在信息足够了。汇总诊断结果：\n\n---\n\n## 诊断报告\n\n### 根因：两种失败模式叠加\n\n**1. 磁盘 I/O 错误（主因）**\n`occ_s1_restart.log` 明确记录了 `RuntimeError: basic_ios::clear: iostream error` — 在 `torch.save()` 保存 checkpoint 时发生磁盘写入错误（`inline_container.cc:672: unexpected pos 148992 vs 148880`）。这是之前磁盘满事件的后遗症/重现。保存 checkpoint 时磁盘空间不足或文件系统异常导致进程崩溃。\n\n**2. SIGTERM 外部杀进程（衍生）**\n所有 3 个实验都收到了 `Signals.SIGTERM` (signal 15)，不是内部崩溃。这是监控/自动化系统检测到进程异常后发送的 kill 信号，用于重启。\n\n**3 个实验是同一根因**：磁盘 I/O 问题导致进程死亡 → 监控系统检测到 → 发 SIGTERM 重启。\n\n### 各实验最后训练到的 step\n\n| 实验 | 崩溃前最后 step（本轮 local） | 失败时间 | 失败方式 |\n|------|------|------|------|\n| occ_s0 | 无日志可查（mvp_occ_s0.log 不存在） | ~05:00 UTC | process dead 5× |\n| occ_s1 | step 5894 (mvp_occ_s1.log) → 后来 restart 到 step 12500 再崩 → resume2 到 step 307 再被杀 | 09:15 / 12:35 / 13:03 UTC | SIGTERM → I/O error → SIGTERM |\n| occ_s2 | 无日志可查（mvp_occ_s2.log 不存在） | ~05:00 UTC | process dead 5× |\n\n### 最新可用 checkpoint\n\n| 实验 | 最新 checkpoint | checkpoint step |\n|------|------|------|\n| occ_s0 | `42500_chkpt` | 42500 |\n| occ_s1 | `17500_chkpt` | 17500 |\n| occ_s2 | `42500_chkpt` | 42500 |\n\n**无任何新 checkpoint 产生** — 崩溃后所有重启都未训练到下一个 save 点。\n\n### 当前状态\n\n3 个实验已被自动重启且正在运行（GPU 0/1/2 util 68-99%）：\n\n| 实验 | 日志 | 当前 local step | Resume from | PID |\n|------|------|------|------|------|\n| occ_s0 | occ_s0_resume2.log | ~454 | 42500_chkpt | 76998 |\n| occ_s1 | occ_s1_resume3.log | 刚启动（加载中） | 17500_chkpt | 80898 |\n| occ_s2 | occ_s2_resume2.log | ~413 | 42500_chkpt | 78171 |\n\n磁盘当前正常：root 40%（12G/30G），数据盘 2%（15G/879G）。\n\n### 风险提示\n\n**step 计数器每次重启从 0 开始**，意味着之前所有 checkpoint 之间的训练 step 全部浪费。occ_s1 尤其严重 — 从 7500 训到 ~20000 的过程中，17500 checkpoint 保存成功，但 20000 checkpoint 写入失败，然后又反复从 17500 重启了 3 次。\n\n**occ_s1 持续被 SIGTERM**：resume2 在仅训练 307 步后就被杀掉（13:03 UTC），然后立即启动了 resume3。需要确认什么在发 SIGTERM — 可能是自动化系统检测到某种异常触发了重启循环。\n\n### 是否可以 resume\n\n可以，且已在 resume 中：\n- **occ_s0**: 从 `42500_chkpt` resume ✓（已在运行）\n- **occ_s1**: 从 `17500_chkpt` resume ✓（已在运行，但注意反复被杀的问题）\n- **occ_s2**: 从 `42500_chkpt` resume ✓（已在运行）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-westd-34685-failures.md"
+}

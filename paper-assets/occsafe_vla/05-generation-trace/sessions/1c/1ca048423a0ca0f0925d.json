@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ca048423a0ca0f0925d",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "data and train 10894 libero object",
+  "task_key": "worker_data_and_train_10894_libero_object_20260527T165128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_and_train_10894_libero_object_20260527T165128_result.json",
+    "occurrence": 1,
+    "bytes": 475,
+    "sha256": "84721ca3412097677d1bc5bb952479d8868d7de2d2891f439d3dc3235acf2b2d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n- **数据拉取**：libero_object_no_noops 已下载完成，2.7G，32 个 tfrecord shards\n- **训练启动**：vanilla_object_s1 在 westd-10894 cuda:0 上正常运行\n  - step 0 action_loss=0.5664，速度 ~1.05 it/s\n  - 预计训练时间 ~13h（50005 steps）\n- **磁盘**：/root/autodl-tmp 使用 177G/250G，剩余 74G 充足\n- **GPU 状态**：cuda:0 训练中（99%），cuda:1 空闲，cuda:2/3 其他实验运行中"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-and-train-10894-libero-object.md"
+}

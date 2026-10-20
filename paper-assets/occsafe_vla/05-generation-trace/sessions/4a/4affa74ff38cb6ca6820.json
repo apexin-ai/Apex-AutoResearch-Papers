@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4affa74ff38cb6ca6820",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis cka full occ ln s2",
+  "task_key": "worker_analysis_cka_full_occ_ln_s2_20260525T031418",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cka_full_occ_ln_s2_20260525T031418_result.json",
+    "occurrence": 1,
+    "bytes": 403,
+    "sha256": "967d07147af7eda4a04f8e615ef823443f17758d23d90bdc7ee4f580b846b16b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。CKA 分析已在提交时瞬间跑完（~2秒），结果已注册。\n\n**结论：s0 DINOv2 CKA=0.640 确认为 seed-specific outlier。**\n\n三个 seed 的 DINOv2 CKA 对比：\n- s0: 0.640 (异常)\n- s1: 0.965 (正常)\n- s2: **0.9651** (正常)\n\n产出文件在 `/root/autodl-tmp/analysis/cka_full_occ_ln_s2/`（cka_results.json, cka_analysis.pdf, cka_analysis.png）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cka-full-occ-ln-s2.md"
+}

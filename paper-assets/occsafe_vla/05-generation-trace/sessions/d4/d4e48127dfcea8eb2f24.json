@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d4e48127dfcea8eb2f24",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops check progress westd10894",
+  "task_key": "worker_ops_check_progress_westd10894_20260523T194603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_progress_westd10894_20260523T194603_result.json",
+    "occurrence": 1,
+    "bytes": 1182,
+    "sha256": "fb5f48ca1de3ce5111b517391321399be2affa4972a7eb46bf05ac1ba0f04ee6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已收集。汇总报告：\n\n---\n\n## 训练进度报告 — westd-10894 (2026-05-24)\n\n| 实验 | PID | GPU | Step | 总步 | 进度 | 速度 | 已运行 | 预估剩余 |\n|------|-----|-----|------|------|------|------|--------|----------|\n| **cutoff_s2_v2** | 435043 | cuda:0 | 19498 | 50005 | **39%** | 1.08 it/s | 5h34m | ~7h50m |\n| **detach_ln_s0** | 459087 | cuda:1 | 8698 | 50005 | **17%** | 1.08 it/s | 2h35m | ~10h35m |\n| **detach_ln_s1** | 459294 | cuda:2 | 8641 | 50005 | **17%** | 1.08 it/s | 2h35m | ~10h40m |\n| **detach_ln_s2** | 459635 | cuda:3 | 8662 | 50005 | **17%** | 1.07 it/s | 2h35m | ~10h42m |\n\n**Loss (step 8600)**:\n- detach_ln_s1: occ=0.0116, action=0.1338\n- detach_ln_s2: occ=0.0092, action=0.1245\n\n**Checkpoint 保存情况**:\n- cutoff_s2_v2: 已保存 10000 步 checkpoint，下一个在 20000 步\n- detach_ln 系列: 尚未到 10000 步，无 checkpoint\n\n**GPU**: 4卡均满载 (83-99% util)，各占 ~62GB / 97GB VRAM\n\n**磁盘**: `/root/autodl-tmp` 52GB / 250GB (21%)，空间充足\n\n**预计完成时间**:\n- cutoff_s2_v2: ~今天中午 (约 5/24 12:00)\n- detach_ln 系列: ~今晚 (约 5/24 15:00)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-progress-westd10894.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd6b74d6cdd39548c210",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code occ head norm type",
+  "task_key": "worker_code_occ_head_norm_type_20260523T052405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_occ_head_norm_type_20260523T052405_result.json",
+    "occurrence": 1,
+    "bytes": 619,
+    "sha256": "271576de21246f9b18f3958e307bab7f66f2b0191b2cbbbe9051d1c47ed41585"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。修改验证通过：\n\n**改动汇总：**\n\n1. **`prismatic/models/occ_head.py`** — `BEVOccupancyHead.__init__` 新增 `norm_type: str = \"bn\"` 参数。内部用 `_norm(channels)` 工厂函数：`\"bn\"` → `BatchNorm2d`，`\"ln\"` → `GroupNorm(1, channels)`（等价 LayerNorm）。\n\n2. **`vla-scripts/finetune.py`** — `FinetuneConfig` 新增 `occ_norm_type: str = \"bn\"`（第96行），OccHead 实例化处传入 `\"norm_type\": cfg.occ_norm_type`（第1016行）。\n\n**使用方式：** 训练时加 `--occ_norm_type ln` 即可启用 LayerNorm。默认行为不变。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-occ-head-norm-type.md"
+}

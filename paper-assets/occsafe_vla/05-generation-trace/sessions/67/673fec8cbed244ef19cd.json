@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "673fec8cbed244ef19cd",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops progress check both servers",
+  "task_key": "worker_ops_progress_check_both_servers_20260523T214739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_progress_check_both_servers_20260523T214739_result.json",
+    "occurrence": 1,
+    "bytes": 1648,
+    "sha256": "262fbca2382bc0ffdadd0e1cc9fc60a22f2502032f3f917401bf8aadfeb06504"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-34685 (4x H100)\n\n| GPU | Util | VRAM |\n|-----|------|------|\n| 0 | 97% | 63.0/97.9 GB |\n| 1 | 99% | 63.0/97.9 GB |\n| 2 | 0% | 16.8/97.9 GB |\n| 3 | 1% | 16.8/97.9 GB |\n\n| 实验 | 类型 | 进度 | 速度 | 预估剩余 |\n|------|------|------|------|----------|\n| **cutoff_45k_s0** | train | 10198/50005 (20%) | ~1.08 it/s | ~10.2h |\n| **cutoff_15k_s0** | train | 11102/50005 (22%) | ~1.08 it/s | ~10.0h |\n| **reverse_cutoff_s0_eval_v3** | eval | Task 7/10, T7: 2/50 | ~6s/ep | ~20min |\n| **cutoff_25k_s0_eval_v3** | eval | Task 7/10, T7: 33/50 | ~6s/ep | ~15min |\n\ncutoff_15k_s0 最新 loss: `occ=0.0106, action=0.0981` (step 11100)\n\n---\n\n## westd-10894 (4x H100)\n\n| GPU | Util | VRAM |\n|-----|------|------|\n| 0 | 83% | 62.2/97.9 GB |\n| 1 | 99% | 62.2/97.9 GB |\n| 2 | 99% | 62.2/97.9 GB |\n| 3 | 99% | 62.2/97.9 GB |\n\n| 实验 | 类型 | 进度 | 速度 | 预估剩余 |\n|------|------|------|------|----------|\n| **detach_ln_s0** | train | **50005/50005 ✅ 已完成** | — | 0 |\n| **cutoff_s2_v2** | train | 26452/50005 (53%) | ~1.08 it/s | ~6.1h |\n| **detach_ln_s1** | train | 15671/50005 (31%) | ~1.08 it/s | ~8.8h |\n| **detach_ln_s2** | train | 15552/50005 (31%) | ~1.08 it/s | ~8.9h |\n\n- **detach_ln_s0** 已训练完成 (EXIT_CODE=0)，耗时 14h12m\n- **cutoff_s2_v2** 最新 loss: `occ=0.0113, action=0.0791` (step 26400)\n- **detach_ln_s1** 最新 loss: `occ=0.0095, action=0.1060` (step 15500)\n- **detach_ln_s2** 最新 loss: `occ=0.0121, action=0.1299` (step 15500)\n\ndetach_ln_s0 完成后 GPU 仍被占用（62GB），可能进程未完全退出或有新任务接管。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-progress-check-both-servers.md"
+}

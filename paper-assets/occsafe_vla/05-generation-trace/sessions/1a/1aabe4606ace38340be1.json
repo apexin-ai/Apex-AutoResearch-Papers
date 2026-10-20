@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1aabe4606ace38340be1",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops disk cleanup westd10894",
+  "task_key": "worker_ops_disk-cleanup-westd10894_20260521T190421",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk-cleanup-westd10894_20260521T190421_result.json",
+    "occurrence": 1,
+    "bytes": 1200,
+    "sha256": "99111956ca4c1de66b29af21b77661b1d4e029d969858cc5ffbd7b38ba88003f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。汇总报告：\n\n## 清理结果\n\n### 删除明细\n| Step | 目标 | 释放空间 |\n|------|------|----------|\n| 1 | `vanilla_s2/` | **15G** |\n| 2 | `ablation_occ_detach_s0` 10000_chkpt | **15G** |\n| 2 | `ablation_random_occ_s0` 10000_chkpt | **15G** |\n| 2 | `ablation_occ_detach_s1` 10000_chkpt | **15G** |\n| 2 | `ablation_random_occ_s1` 10000_chkpt | **15G** |\n| **合计** | | **~75G** |\n\n### 磁盘状态\n- **清理前**: 171G used / 80G avail (69%)\n- **清理后**: 97G used / 154G avail (39%)\n\n### 4 个 ablation 训练状态（确认未中断）\n| 实验 | 当前 step | 状态 |\n|------|-----------|------|\n| ablation_occ_detach_s0 | ~27066 | 正常训练 |\n| ablation_random_occ_s0 | ~27418 | 正常训练 |\n| ablation_occ_detach_s1 | ~27104 | 正常训练 |\n| ablation_random_occ_s1 | ~27082 | 正常训练 |\n\n每个 ablation 保留了 20000_chkpt 和当前训练目录（含 latest checkpoint）。\n\n### 其他大目录（仅报告）\n| 目录 | 大小 |\n|------|------|\n| `/root/autodl-tmp/runs/` | 15G |\n| `/root/autodl-tmp/models/` | 15G |\n| `/root/autodl-tmp/libero_datasets/` | 5.9G |\n| `/root/autodl-tmp/data/` | 2.0G |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-westd10894.md"
+}

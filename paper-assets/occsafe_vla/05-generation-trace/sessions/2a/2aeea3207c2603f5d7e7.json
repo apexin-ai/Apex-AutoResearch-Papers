@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "2aeea3207c2603f5d7e7",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "code bootstrap ci script",
+  "task_key": "worker_code_bootstrap_ci_script_20260523T060243",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bootstrap_ci_script_20260523T060243.log",
+    "occurrence": 1,
+    "bytes": 626101,
+    "sha256": "a00f1206f038a8552a0d9d86ea680d6703f47d7feeee9df1ae76a65b8ec34893"
+  },
+  "statistics": {
+    "messages": 184,
+    "user_turns": 1,
+    "tool_calls": 61,
+    "roles": {
+      "log": 1,
+      "system": 13,
+      "record": 1,
+      "assistant": 45,
+      "tool_call": 61,
+      "tool_result": 61,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 33,
+      "chunks": [
+        {
+          "path": "2aeea3207c2603f5d7e7-part-0001.json",
+          "message_count": 33
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 151,
+      "chunks": [
+        {
+          "path": "2aeea3207c2603f5d7e7-part-0001.json",
+          "message_count": 140
+        },
+        {
+          "path": "2aeea3207c2603f5d7e7-part-0002.json",
+          "message_count": 11
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-bootstrap-ci-script.md"
+}

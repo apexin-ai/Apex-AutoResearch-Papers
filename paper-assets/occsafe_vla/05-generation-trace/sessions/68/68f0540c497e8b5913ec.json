@@ -1,0 +1,732 @@
+{
+  "schema_version": "1.0",
+  "id": "68f0540c497e8b5913ec",
+  "project": "occsafe_vla",
+  "kind": "conversation",
+  "title": "diag occ warning investigation",
+  "task_key": "worker_diag_occ_warning_investigation_20260520T161310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_diag_occ_warning_investigation_20260520T161310.jsonl",
+    "occurrence": 1,
+    "bytes": 30904,
+    "sha256": "a45c29bce0b6e853ce0b7699896368587418f031e333989dfee87b55afdcbfbf"
+  },
+  "statistics": {
+    "messages": 35,
+    "user_turns": 0,
+    "tool_calls": 17,
+    "roles": {
+      "tool_call": 17,
+      "tool_result": 17,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T16:14:51.167459+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_occ_warning_investigation_20260520T161310",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T16:14:51.167799+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_occ_warning_investigation_20260520T161310",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T16:14:51.167991+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_occ_warning_investigation_20260520T161310",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34685",
+              "command": "grep -c \"Failed to load occ label\" /root/autodl-tmp/checkpoints/occ_s0_train.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T16:14:51.168127+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_occ_warning_investigation_20260520T161310",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34685",
+              "command": "grep \"Failed to load occ label\" /root/autodl-tmp/checkpoints/occ_s0_train.log | head -20",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T16:14:51.168260+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2516\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_occ_warning_investigation_20260520T161310",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T16:14:51.168382+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_occ_warning_investigation_20260520T161310",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T16:14:51.168501+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_occ_warning_investigation_20260520T161310",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34685",
+              "command": "grep \"Failed to load occ label\" /root/autodl-tmp/checkpoints/occ_s0_train.log | tail -20",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T16:14:51.168619+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_occ_warning_investigation_20260520T161310",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T16:14:51.168817+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_occ_warning_investigation_20260520T161310",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34685",
+              "command": "grep -m 20 \"Failed to load occ label\" /root/autodl-tmp/checkpoints/occ_s0_train.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T16:14:51.168966+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"05/21 [00:08:00] WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n\\\\r  0%|          | 1/50005 [00:10<149:17:52, 10.75s/it]05/21 [00:08:02] WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n\\\\r  0%|          | 2/50005 [00:11<71:07:42,  5.12s/it] 05/21 [00:08:03] WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n\\\\r  0%|          | 3/50005 [00:12<44:30:55,  3.20s/it]05/21 [00:08:04] WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_occ_warning_investigation_20260520T161310",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T16:14:51.169112+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_occ_warning_investigation_20260520T161310",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34685",
+              "command": "grep -A2 -m 15 \"Failed to load occ label\" /root/autodl-tmp/checkpoints/occ_s0_train.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T16:14:51.169234+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_occ_warning_investigation_20260520T161310",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34685",
+              "command": "wc -l /root/autodl-tmp/checkpoints/occ_s0_train.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T16:14:51.169448+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"05/21 [00:08:00] WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> No occ index entry for task:      datasets.py:195\\\\n                          pick_up_the_black_bowl_on_the_wooden_c                \\\\n--\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n/root/miniconda3/envs/occsafe/lib/python3.10/site-packages/torch/autograd/graph.py:869: UserWarning: Grad strides do not match bucket view strides. This may indicate grad was not created according to the gradient layout contract, or that the param's strides changed since DDP was constructed.  This is not an error, but may impair performance.\\\\ngrad.sizes() = [1, 64, 1, 1], strides() = [64, 1, 64, 64]\\\\n--\\\\n\\\\r  0%|          | 1/50005 [00:10<149:17:52, 10.75s/it]05/21 [00:08:02] WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n\\\\r  0%|          | 2/50005 [00:11<71:07:42,  5.12s/it] 05/21\n…[truncated 265 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_occ_warning_investigation_20260520T161310",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T16:14:51.169871+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2657 /root/autodl-tmp/checkpoints/occ_s0_train.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_occ_warning_investigation_20260520T161310",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T16:14:51.170126+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_occ_warning_investigation_20260520T161310",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34685",
+              "command": "grep -n -A25 \"_load_occ_label\" /root/occsafe_vla/openvla-oft/prismatic/vla/datasets/datasets.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T16:14:51.170382+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"153:            occ_label = self._load_occ_label(rlds_batch)\\\\n154-            if occ_label is not None:\\\\n155-                return_dict[\\\\\\\"occ_labels\\\\\\\"] = torch.from_numpy(occ_label).float()\\\\n156-\\\\n157-        # Add additional inputs\\\\n158-        if self.use_wrist_image:\\\\n159-            all_wrist_pixels = []\\\\n160-            for k in rlds_batch[\\\\\\\"observation\\\\\\\"].keys():\\\\n161-                if \\\\\\\"wrist\\\\\\\" in k:\\\\n162-                    img_wrist = Image.fromarray(rlds_batch[\\\\\\\"observation\\\\\\\"][k][0])\\\\n163-                    pixel_values_wrist = self.image_transform(img_wrist)\\\\n164-                    all_wrist_pixels.append(pixel_values_wrist)\\\\n165-            return_dict[\\\\\\\"pixel_values_wrist\\\\\\\"] = torch.cat(all_wrist_pixels, dim=0)\\\\n166-        if self.use_proprio and \\\\\\\"proprio\\\\\\\" in rlds_batch[\\\\\\\"observation\\\\\\\"]:\\\\n167-            proprio = rlds_batch[\\\\\\\"observation\\\\\\\"][\\\\\\\"proprio\\\\\\\"]\\\\n168-            return_dict[\\\\\\\"proprio\\\\\\\"] = proprio\\\\n169-\\\\n170-        return return_dict\\\\n171-\\\\n172-\\\\n173:    def _load_occ_label(self, rlds_batch):\\\\n174-        \\\\\\\"\\\\\\\"\\\\\\\"Load BEV occupancy label, preferring in-memory cache over HDF5 file I/O.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n175-        fallback = np.zeros((self.occ_resolution, self.occ_resolution), dtype=np.float32)\\\\n176-        if self._occ_index is None:\\\\n177-            return fallback\\\\n178-\\\\n179-        try:\\\\n180-            lang = rlds_batch[\\\\\\\"task\\\\\\\"][\\\\\\\"language_instruction\\\\\\\"]\\\\n181-            if isinstance(lang, bytes):\\\\n182-                lang = lang.decode()\\\\n183-            task_name = lang.lower().replace(\\\\\\\" \\\\\\\", \\\\\\\"_\\\\\\\")\\\\n184-            timestep = int(rlds_batch[\\\\\\\"observation\\\\\\\"][\\\\\\\"timestep\\\\\\\"][0])\\\\n185-\\\\n186-            traj_len = 0\\\\n187-            if \\\\\\\"_traj_len\\\\\\\" in rlds_batch:\\\\n188-                v = rlds_batch[\\\\\\\"_traj_len\\\\\\\"]\\\\n189-                traj_len = int(v) if np.ndim(v) == 0 el\n…[truncated 578 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_occ_warning_investigation_20260520T161310",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T16:14:51.170606+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_occ_warning_investigation_20260520T161310",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34685",
+              "command": "python3 -c \"import json; idx=json.load(open('/root/occsafe_vla/occ_data/occ_index.json')); k=list(idx.keys())[0]; print(k); print(list(idx[k].keys()))\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T16:14:51.170821+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_occ_warning_investigation_20260520T161310",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T16:14:51.171014+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_occ_warning_investigation_20260520T161310",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34685",
+              "command": "grep -c \"No occ index entry\" /root/autodl-tmp/checkpoints/occ_s0_train.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T16:14:51.171196+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_occ_warning_investigation_20260520T161310",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T16:14:51.171407+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_occ_warning_investigation_20260520T161310",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34685",
+              "command": "grep -n -A50 \"Demo matching\" /root/occsafe_vla/openvla-oft/prismatic/vla/datasets/datasets.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T16:14:51.171630+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"198:            # Demo matching: pick demo whose original_len is closest to traj_len\\\\n199-            demos = task_info[\\\\\\\"demos\\\\\\\"]\\\\n200-            best_demo, best_offset = None, 0\\\\n201-\\\\n202-            if traj_len > 0:\\\\n203-                min_offset = float(\\\\\\\"inf\\\\\\\")\\\\n204-                for demo_key, orig_len in demos.items():\\\\n205-                    offset = orig_len - traj_len\\\\n206-                    if offset >= 0 and timestep + offset < orig_len:\\\\n207-                        if offset < min_offset:\\\\n208-                            min_offset = offset\\\\n209-                            best_demo = demo_key\\\\n210-                            best_offset = offset\\\\n211-\\\\n212-            if best_demo is None:\\\\n213-                for demo_key, orig_len in demos.items():\\\\n214-                    if timestep < orig_len:\\\\n215-                        best_demo = demo_key\\\\n216-                        best_offset = 0\\\\n217-                        break\\\\n218-\\\\n219-            if best_demo is None:\\\\n220-                return fallback\\\\n221-\\\\n222-            occ_step = timestep + best_offset\\\\n223-\\\\n224-            # Cache hit: no file I/O needed\\\\n225-            task_cache = self._occ_cache.get(task_name)\\\\n226-            if task_cache is not None and best_demo in task_cache:\\\\n227-                bev_data = task_cache[best_demo]\\\\n228-                if occ_step < bev_data.shape[0]:\\\\n229-                    return bev_data[occ_step].astype(np.float32)\\\\n230-                return fallback\\\\n231-\\\\n232-            # Cache miss fallback: read from HDF5\\\\n233-            import h5py\\\\n234-            occ_path = os.path.join(self.occ_data_dir, task_info[\\\\\\\"file\\\\\\\"])\\\\n235-            if not os.path.exists(occ_path):\\\\n236-                if task_name not in self._occ_warn_tasks:\\\\n237-                    self._occ_warn_tasks.add(task_name)\\\\n238-                    logger.warning(\\\\\\\"O\n…[truncated 550 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_occ_warning_investigation_20260520T161310",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T16:14:51.171890+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_occ_warning_investigation_20260520T161310",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34685",
+              "command": "python3 -c \"\nimport json\nwith open('/root/occsafe_vla/occ_data/occ_index.json') as f:\n    idx = json.load(f)\nk = list(idx.keys())[0]\nprint('first task:', k)\nprint('keys:', list(idx[k].keys()))\nprint('sample:', str(idx[k])[:500])\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T16:14:51.172083+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_occ_warning_investigation_20260520T161310",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T16:14:51.172260+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_occ_warning_investigation_20260520T161310",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34685",
+              "command": "grep -n -A10 \"BlockingIOError\" /root/occsafe_vla/openvla-oft/prismatic/vla/datasets/datasets.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T16:14:51.172409+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"95:            except BlockingIOError:\\\\n96-                logger.warning(\\\\\\\"Occ preload: file locked (pipeline running?): %s\\\\\\\", occ_path)\\\\n97-                skipped_files += 1\\\\n98-            except Exception as e:\\\\n99-                logger.warning(\\\\\\\"Occ preload: failed to read %s: %s\\\\\\\", occ_path, e)\\\\n100-                skipped_files += 1\\\\n101-\\\\n102-        elapsed = _time.time() - t0\\\\n103-        mem_mb = total_bytes / (1024 * 1024)\\\\n104-        logger.info(\\\\n105-            \\\\\\\"Occ preload done: %d files, %d samples, %.1f MB, %.1fs (skipped %d)\\\\\\\",\\\\n--\\\\n248:        except BlockingIOError:\\\\n249-            if task_name not in self._occ_warn_tasks:\\\\n250-                self._occ_warn_tasks.add(task_name)\\\\n251-                logger.warning(\\\\\\\"Occ file locked (pipeline running?): %s\\\\\\\", occ_path)\\\\n252-            return fallback\\\\n253-        except Exception as e:\\\\n254-            logger.warning(\\\\\\\"Failed to load occ label: %s\\\\\\\", e)\\\\n255-            return fallback\\\\n256-\\\\n257-\\\\n258-class RLDSDataset(IterableDataset):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_occ_warning_investigation_20260520T161310",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T16:14:51.172539+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_occ_warning_investigation_20260520T161310",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34685",
+              "command": "head -50 /root/occsafe_vla/occ_data/occ_index.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T16:14:51.172719+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n    \\\\\\\"file\\\\\\\": \\\\\\\"/root/occsafe_vla/occ_data/occ_pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate_demo.hdf5\\\\\\\",\\\\n    \\\\\\\"num_demos\\\\\\\": 50,\\\\n    \\\\\\\"demo_ids\\\\\\\": [\\\\n      \\\\\\\"demo_0\\\\\\\",\\\\n      \\\\\\\"demo_1\\\\\\\",\\\\n      \\\\\\\"demo_10\\\\\\\",\\\\n      \\\\\\\"demo_11\\\\\\\",\\\\n      \\\\\\\"demo_12\\\\\\\",\\\\n      \\\\\\\"demo_13\\\\\\\",\\\\n      \\\\\\\"demo_14\\\\\\\",\\\\n      \\\\\\\"demo_15\\\\\\\",\\\\n      \\\\\\\"demo_16\\\\\\\",\\\\n      \\\\\\\"demo_17\\\\\\\",\\\\n      \\\\\\\"demo_18\\\\\\\",\\\\n      \\\\\\\"demo_19\\\\\\\",\\\\n      \\\\\\\"demo_2\\\\\\\",\\\\n      \\\\\\\"demo_20\\\\\\\",\\\\n      \\\\\\\"demo_21\\\\\\\",\\\\n      \\\\\\\"demo_22\\\\\\\",\\\\n      \\\\\\\"demo_23\\\\\\\",\\\\n      \\\\\\\"demo_24\\\\\\\",\\\\n      \\\\\\\"demo_25\\\\\\\",\\\\n      \\\\\\\"demo_26\\\\\\\",\\\\n      \\\\\\\"demo_27\\\\\\\",\\\\n      \\\\\\\"demo_28\\\\\\\",\\\\n      \\\\\\\"demo_29\\\\\\\",\\\\n      \\\\\\\"demo_3\\\\\\\",\\\\n      \\\\\\\"demo_30\\\\\\\",\\\\n      \\\\\\\"demo_31\\\\\\\",\\\\n      \\\\\\\"demo_32\\\\\\\",\\\\n      \\\\\\\"demo_33\\\\\\\",\\\\n      \\\\\\\"demo_34\\\\\\\",\\\\n      \\\\\\\"demo_35\\\\\\\",\\\\n      \\\\\\\"demo_36\\\\\\\",\\\\n      \\\\\\\"demo_37\\\\\\\",\\\\n      \\\\\\\"demo_38\\\\\\\",\\\\n      \\\\\\\"demo_39\\\\\\\",\\\\n      \\\\\\\"demo_4\\\\\\\",\\\\n      \\\\\\\"demo_40\\\\\\\",\\\\n      \\\\\\\"demo_41\\\\\\\",\\\\n      \\\\\\\"demo_42\\\\\\\",\\\\n      \\\\\\\"demo_43\\\\\\\",\\\\n      \\\\\\\"demo_44\\\\\\\",\\\\n      \\\\\\\"demo_45\\\\\\\",\\\\n      \\\\\\\"demo_46\\\\\\\",\\\\n      \\\\\\\"demo_47\\\\\\\",\\\\n      \\\\\\\"demo_48\\\\\\\",\\\\n      \\\\\\\"demo_49\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_occ_warning_investigation_20260520T161310",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T16:14:51.172921+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_occ_warning_investigation_20260520T161310",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34685",
+              "command": "head -80 /root/occsafe_vla/occ_data/occ_index.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T16:14:51.173099+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n    \\\\\\\"file\\\\\\\": \\\\\\\"/root/occsafe_vla/occ_data/occ_pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate_demo.hdf5\\\\\\\",\\\\n    \\\\\\\"num_demos\\\\\\\": 50,\\\\n    \\\\\\\"demo_ids\\\\\\\": [\\\\n      \\\\\\\"demo_0\\\\\\\",\\\\n      \\\\\\\"demo_1\\\\\\\",\\\\n      \\\\\\\"demo_10\\\\\\\",\\\\n      \\\\\\\"demo_11\\\\\\\",\\\\n      \\\\\\\"demo_12\\\\\\\",\\\\n      \\\\\\\"demo_13\\\\\\\",\\\\n      \\\\\\\"demo_14\\\\\\\",\\\\n      \\\\\\\"demo_15\\\\\\\",\\\\n      \\\\\\\"demo_16\\\\\\\",\\\\n      \\\\\\\"demo_17\\\\\\\",\\\\n      \\\\\\\"demo_18\\\\\\\",\\\\n      \\\\\\\"demo_19\\\\\\\",\\\\n      \\\\\\\"demo_2\\\\\\\",\\\\n      \\\\\\\"demo_20\\\\\\\",\\\\n      \\\\\\\"demo_21\\\\\\\",\\\\n      \\\\\\\"demo_22\\\\\\\",\\\\n      \\\\\\\"demo_23\\\\\\\",\\\\n      \\\\\\\"demo_24\\\\\\\",\\\\n      \\\\\\\"demo_25\\\\\\\",\\\\n      \\\\\\\"demo_26\\\\\\\",\\\\n      \\\\\\\"demo_27\\\\\\\",\\\\n      \\\\\\\"demo_28\\\\\\\",\\\\n      \\\\\\\"demo_29\\\\\\\",\\\\n      \\\\\\\"demo_3\\\\\\\",\\\\n      \\\\\\\"demo_30\\\\\\\",\\\\n      \\\\\\\"demo_31\\\\\\\",\\\\n      \\\\\\\"demo_32\\\\\\\",\\\\n      \\\\\\\"demo_33\\\\\\\",\\\\n      \\\\\\\"demo_34\\\\\\\",\\\\n      \\\\\\\"demo_35\\\\\\\",\\\\n      \\\\\\\"demo_36\\\\\\\",\\\\n      \\\\\\\"demo_37\\\\\\\",\\\\n      \\\\\\\"demo_38\\\\\\\",\\\\n      \\\\\\\"demo_39\\\\\\\",\\\\n      \\\\\\\"demo_4\\\\\\\",\\\\n      \\\\\\\"demo_40\\\\\\\",\\\\n      \\\\\\\"demo_41\\\\\\\",\\\\n      \\\\\\\"demo_42\\\\\\\",\\\\n      \\\\\\\"demo_43\\\\\\\",\\\\n      \\\\\\\"demo_44\\\\\\\",\\\\n      \\\\\\\"demo_45\\\\\\\",\\\\n      \\\\\\\"demo_46\\\\\\\",\\\\n      \\\\\\\"demo_47\\\\\\\",\\\\n      \\\\\\\"demo_48\\\\\\\",\\\\n      \\\\\\\"demo_49\\\\\\\",\\\\n      \\\\\\\"demo_5\\\\\\\",\\\\n      \\\\\\\"demo_6\\\\\\\",\\\\n      \\\\\\\"demo_7\\\\\\\",\\\\n      \\\\\\\"demo_8\\\\\\\",\\\\n      \\\\\\\"demo_9\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\\\\\": {\\\\n    \\\\\\\"file\\\\\\\": \\\\\\\"/root/occsafe_vla/occ_data/occ_pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate_demo.hdf5\\\\\\\",\\\\n    \\\\\\\"num_demos\\\\\\\": 50,\\\\n    \\\\\\\"demo_ids\\\\\\\": [\\\\n      \\\\\\\"demo_0\\\\\\\",\\\\n      \\\\\\\"demo_1\\\\\\\",\\\\n      \\\\\\\"demo_10\\\\\\\",\\\\n      \\\\\\\"demo_11\\\\\\\",\\\\n      \\\\\n…[truncated 470 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_occ_warning_investigation_20260520T161310",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T16:14:51.173251+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_occ_warning_investigation_20260520T161310",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34685",
+              "command": "grep -c \"step\" /root/autodl-tmp/checkpoints/occ_s0_train.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T16:14:51.173377+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_occ_warning_investigation_20260520T161310",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T16:14:51.173522+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_occ_warning_investigation_20260520T161310",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34685",
+              "command": "tail -30 /root/autodl-tmp/checkpoints/occ_s0_train.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T16:14:51.173690+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n\\\\r  1%|          | 400/50005 [06:26<12:53:04,  1.07it/s]05/21 [00:14:17] WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n[OCC] step=400, occ_loss=0.0054, action_loss=0.3730\\\\n\\\\r  1%|          | 401/50005 [06:27<12:49:26,  1.07it/s]05/21 [00:14:18] WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n                 WARNING  | >> Failed to load occ label: 'demos' datasets.py:254\\\\n\\\\r  1%|          | 402/50005 [06\n…[truncated 792 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_occ_warning_investigation_20260520T161310",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T16:14:51.173931+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 根因\n\n**`occ_index.json` schema 与 `datasets.py` 代码不匹配。**\n\n代码 `datasets.py:199` 执行 `demos = task_info[\"demos\"]`，期望一个 `{demo_key: original_len}` 字典。\n\n但 `occ_index.json` 的实际结构是：\n```json\n{\n  \"task_name\": {\n    \"file\": \"...\",\n    \"num_demos\": 50,\n    \"demo_ids\": [\"demo_0\", \"demo_1\", ...]   // ← 列表，且没有 \"demos\" 键\n  }\n}\n```\n\n**每次**调用 `_load_occ_label` 都在第 199 行抛 `KeyError: 'demos'`，被第 253 行的通用 `except Exception as e` 捕获，打印 `Failed to load occ label: 'demos'`，然后返回全零 fallback。\n\n### 数量和比例\n\n| 指标 | 值 |\n|------|-----|\n| 总警告数 | 2516（\"Failed to load occ label: 'demos'\"） |\n| \"No occ index entry\" 警告 | 1（`pick_up_the_black_bowl_on_the_wooden_c...` 不在 index 中） |\n| 当前训练进度 | step 402/50005, ~1.08 it/s |\n| occ 加载失败率 | **100%**（每个 sample 都失败，每 step 约 6-8 条警告 = batch_size） |\n\n### 模式\n\n**固定失败，非随机。** 所有有 occ index entry 的 task 都因 `KeyError: 'demos'` 失败，与具体 demo/timestep 无关。\n\n### 影响\n\n训练没有 crash，但 occ head 在全零 label 上训练：\n- `occ_loss=0.0054` — 看起来很低，实际是因为 target 全零，模型只要输出接近零就行\n- **occ safety head 没有学到任何有意义的东西**\n- `action_loss=0.3730` — action head 不受影响，正常训练\n\n### 是否需要修复\n\n**必须修复。** 当前 occ head 完全没有收到有效标签，等于没训练。需要：\n\n1. 重建 `occ_index.json`，把 `demo_ids` 列表改为 `demos` 字典，格式 `{\"demo_0\": original_traj_len, ...}`（从 HDF5 文件中读取每个 demo 的 trajectory 长度）\n2. 或者修改 `datasets.py:199` 适配当前的 `demo_ids` 列表格式（但仍需要补充 `original_len` 信息供 demo matching 使用）\n\n**建议方案 1**（改 JSON），因为代码的 demo matching 逻辑依赖 `original_len` 来匹配最合适的 demo，这个信息必须有。修复后需要重启训练。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_occ_warning_investigation_20260520T161310"
+          },
+          "id": "event-000035"
+        }
+      ],
+      "message_count": 35
+    }
+  ],
+  "readable_path": "readable/conversations/diag-occ-warning-investigation.md"
+}

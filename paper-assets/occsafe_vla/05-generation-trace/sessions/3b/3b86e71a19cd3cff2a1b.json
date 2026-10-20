@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b86e71a19cd3cff2a1b",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval collect vanilla 50r results",
+  "task_key": "worker_eval_collect-vanilla-50r-results_20260521T184533",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect-vanilla-50r-results_20260521T184533_result.json",
+    "occurrence": 1,
+    "bytes": 2009,
+    "sha256": "41296e1c8df9b44eb548fe1b5cbed55d74f8b83a26892a4f74e1bb119016ef0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个 eval 全部完成，s1_fresh 训练在 GPU 0 继续（当前 12500 step）。结果如下：\n\n---\n\n### westd-34685 状态\n- **GPU 0**: 99% 利用率, 62GB 显存 — s1_fresh 训练中，最新 checkpoint: **12500_chkpt** (02:07)\n- **GPU 1/2/3**: 空闲（eval 已完成）\n- **磁盘**: 261G/350G (75%), 90G 可用\n\n---\n\n### === vanilla_s0 50000_chkpt 50r ===\n**TSR=90.0%, CAR=78.8%, collisions=106, total_episodes=500**\n\n| Task | TSR | CAR | Collisions/50 |\n|------|-----|-----|---------------|\n| T0 | 1.000 | 0.980 | 1 |\n| T1 | 0.940 | 0.960 | 2 |\n| T2 | 0.980 | 0.920 | 4 |\n| T3 | 1.000 | 0.480 | 26 |\n| T4 | 0.800 | 1.000 | 0 |\n| T5 | 0.440 | 0.080 | 46 |\n| T6 | 1.000 | 0.520 | 24 |\n| T7 | 0.940 | 0.940 | 3 |\n| T8 | 0.940 | 1.000 | 0 |\n| T9 | 0.960 | 1.000 | 0 |\n\n### === vanilla_s1 50000_chkpt 50r ===\n**TSR=91.8%, CAR=76.6%, collisions=117, total_episodes=500**\n\n| Task | TSR | CAR | Collisions/50 |\n|------|-----|-----|---------------|\n| T0 | 1.000 | 0.980 | 1 |\n| T1 | 0.940 | 0.900 | 5 |\n| T2 | 0.940 | 0.900 | 5 |\n| T3 | 1.000 | 0.260 | 37 |\n| T4 | 0.920 | 0.980 | 1 |\n| T5 | 0.460 | 0.060 | 47 |\n| T6 | 1.000 | 0.580 | 21 |\n| T7 | 0.940 | 1.000 | 0 |\n| T8 | 1.000 | 1.000 | 0 |\n| T9 | 0.980 | 1.000 | 0 |\n\n### === vanilla_s2 50000_chkpt 50r ===\n**TSR=90.4%, CAR=78.6%, collisions=107, total_episodes=500**\n\n| Task | TSR | CAR | Collisions/50 |\n|------|-----|-----|---------------|\n| T0 | 1.000 | 0.980 | 1 |\n| T1 | 0.980 | 0.900 | 5 |\n| T2 | 1.000 | 0.940 | 3 |\n| T3 | 0.960 | 0.400 | 30 |\n| T4 | 0.980 | 0.960 | 2 |\n| T5 | 0.340 | 0.080 | 46 |\n| T6 | 1.000 | 0.620 | 19 |\n| T7 | 0.940 | 0.980 | 1 |\n| T8 | 0.880 | 1.000 | 0 |\n| T9 | 0.960 | 1.000 | 0 |\n\n---\n\n### 3-seed 均值\n**TSR=90.7±1.0%, CAR=78.0±1.2%, collisions=110±6**\n\n碰撞集中在 T3（均值31）、T5（均值46.3）、T6（均值21.3）— 这三个 task 贡献了约 93% 的碰撞。T5 同时也是 TSR 最差的 task（均值41.3%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-vanilla-50r-results.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "398d87cd79679f5d8e55",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_4_1779798664.md",
+  "task_key": "loop_4_1779798664",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1779798664.md",
+    "occurrence": 1,
+    "bytes": 4310,
+    "sha256": "66affd97557805aa6b6bb7bace2c426bd6fd5bc683ca57e728338d7639b2a136"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-26T12:29:06+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-10894:cuda:0-3 + westd-34685:cuda:0-3，共 8 张，其他一律不能用\n- cutoff 系列实验禁止 resume（C002 约束，M052 教训）——必须从头训练\n- westd-34685 SSH 端口是 34685（非标准），连接失败时可能是 AutoDL 实例重启换端口\n- submit_training_job 命令必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`\n- GPU 编号始终从 0 开始（CUDA_VISIBLE_DEVICES 自动映射）\n- Resume 实验 eval 时取 local step=30000 checkpoint（= 总 50K steps），不是 step 50000\n- v1 和 v2 代码不等价（D050/D052），跨代码版本的 factorial 比较无效\n\n### 2. 🖥️ 基础设施快照\n- **westd-34685**：AutoDL，IP 36.103.198.204:34685，root\n  - conda env: `occsafe`（/root/miniconda3）\n  - 代码：/root/occsafe_vla/openvla-oft\n  - 模型：/root/autodl-tmp/models/openvla-7b\n  - 数据：/root/autodl-tmp/data/modified_libero_rlds/，OCC 数据：/root/occsafe_vla/occ_data\n  - Checkpoints：/root/autodl-tmp/checkpoints/{exp_id}/\n  - Logs：~/runs/occsafe_vla/{exp_id}.log\n- **westd-10894**：AutoDL，配置同上\n- **W&B**：WANDB_MODE=disabled，所有实验靠 log + eval 脚本取指标\n\n### 3. 📊 当前状态\nSession-start 初始化完成（20:24 UTC）。8/8 GPU 全满，reconcile_crons 确认所有 8 个进程存活。已向 Director 汇报。\n\n**RUNNING（8 个，cron 监控中）：**\n\n| 服务器:GPU | 实验 | PID | ETA (UTC) |\n|-----------|------|-----|-----------|\n| 10894:0 | cutoff_45k_s2_v2（从头） | 4212 | ~May 26 06:30 |\n| 10894:1 | mvp_occ_s3_v2 resume ⭐ | 11641 | ~May 26 02:00 |\n| 10894:2 | full_occ_ln_s3_v2 resume | 6947 | ~May 26 02:00 |\n| 10894:3 | ablation_occ_detach_s3_v2 resume ⭐ | 7161 | ~May 26 02:00 |\n| 34685:0 | detach_bn_v2_s0（D051） | 5086 | ~May 26 07:00 |\n| 34685:1 | detach_bn_v2_s1（D051） | 2786 | ~May 26 07:00 |\n| 34685:2 | detach_bn_v2_s2（D051） | 3003 | ~May 26 07:00 |\n| 34685:3 | full_occ_bn_v2_s1（D051）⭐ | 7347 | ~May 26 07:30 |\n\n**2 Workers 运行中：**\n- `worker_infra_eval-prestage-s3-d051_20260525T202557`：预检 eval + CKA 脚本就绪状态\n- `worker_research_paper-data-aggregation_20260525T202620`：汇总 v2 factorial 数据表格\n\n### 4. 📋 待办\n- 2 个 Worker 回调 → 读产出，整合 eval 命令模板和 factorial 数据表到知识文件\n- 10894 s3 resumes 完成（~02:00）→ 立即派 Worker 跑 50r eval（ckpt=local step 30000）+ CKA（ablation_occ_detach_s3_v2）→ 叙事门控决策（Branch A/B/C 取决于 detach_s3 CAR）\n- 34685 D051 完成（~07:00）→ 派 Worker 跑 50r eval（ckpt=step 50000）→ v2 ANOVA 计算 → framing 决策（Plan A vs B）\n- cutoff_45k_s2_v2 完成（~06:30）→ eval → dose-response 补充数据点\n- 所有 eval 完成 → v2 2×2 ANOVA → 交互效应存活？Plan A（BN-mediated gradient calibration）vs Plan B（替代 framing）\n- GPU 释放后 → dose-response 剩余 seeds（cutoff_15k_s2、cutoff_25k_s2、reverse_cutoff_s2）排队等 GPU\n\n### 5. 🎯 战略上下文\n- **核心问题**：D050 发现 v1/v2 代码完全共线（所有 BN=v1，所有 LN=v2），之前的 ANOVA p=0.025 交互效应不可信。当前 D051 用 v2 代码重建所有 4 个 cell，是唯一能产出 clean factorial 数据的机会\n- **交互效应存活概率 ~10-15%**（Director 估计），Plan B 替代 framing 已准备（B1 mechanism analysis / B2 normalization as hidden variable / B3 cautionary study）\n- **叙事门控**：ablation_occ_detach_s3_v2 的 CAR 决定论文走向——<0.750 Branch A, 0.770-0.780 Branch B, >0.780 Branch C\n- **目标会议**：CoRL 2026，Abstract May 26（今天），Paper May 29\n- **易错点**：\n  - Full OCC BN v2 seed42 CAR=0.746（v1 同种子是 0.832），差距巨大——不要用 v1 数据预期 v2 结果\n  - CKA 旧数据（May 23, cka_analysis）不可信，只用 cka_same_seed_4cond（May 25）数据\n  - reverse_cutoff 本身 unstable（std=0.025），第 3 seed 是确认 pattern 不是期待 success\n  - Detach BN v1 数据（Cell 3）有 0 行 OCC/AUX 日志，detach 实现无法验证——D051 的 v2 Detach BN 是第一次有可信的 detach 数据\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1779798664.md"
+}

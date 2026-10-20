@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d7c45cccf56fc73673b",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra investigate vanilla s2 status",
+  "task_key": "worker_infra_investigate_vanilla_s2_status_20260521T004423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_investigate_vanilla_s2_status_20260521T004423_result.json",
+    "occurrence": 1,
+    "bytes": 1061,
+    "sha256": "34e6fb4e2a051c665398e12d30def4cbf24ffd63ee2ce9594f073c8f135bacab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "排查结果汇总：\n\n- **PID 225562**: 已死亡，进程正常退出\n- **实际训练状态**: **已完成** — `train_resume2.log` 显示 \"Max step 50005 reached! Stopping training...\" 于 08:33:53 UTC May 21\n- **50000_chkpt**: **存在**，08:34 UTC May 21 创建\n- **checkpoint 列表**:\n  - `30000_chkpt` (May 21 01:58)\n  - `35000_chkpt` (May 21 04:40)\n  - `40000_chkpt` (May 21 05:59)\n  - `45000_chkpt` (May 21 07:16)\n  - `50000_chkpt` (May 21 08:34)\n- **auto-eval**: **未触发** — 无 `.launched_*` 或 `.done_*` 文件，无 monitor_and_eval 进程在运行\n- **GPU 状态**: 全部空闲，无计算进程\n\n**矛盾解释**: 另一个 Worker 看到 \"从 step 0 重跑, step ~13487\" 是因为 `train_resume2.log` 的 progress bar 使用**相对 step 计数**（从 resume 点 35000 开始计为 0）。实际是从 35000_chkpt resume 正常运行，relative step 15006 = absolute step 50006 ≥ 50005，正常完成。\n\n**建议**: vanilla_s2 训练已成功完成，需要启动 auto-eval 评估 50000_chkpt。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-investigate-vanilla-s2-status.md"
+}

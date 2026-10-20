@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95f805ece4aa2718e905",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops eval monitor and cka launch",
+  "task_key": "worker_ops_eval_monitor_and_cka_launch_20260524T052618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval_monitor_and_cka_launch_20260524T052618_result.json",
+    "occurrence": 1,
+    "bytes": 102,
+    "sha256": "c39c82bc792e2a9d08edb334294b748a0735f672ab0098277ac4801e06c621a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "T8 已完成 (TSR=0.960, CAR=1.000)，T9 正在跑 (18%)。约3分钟后回来检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-monitor-and-cka-launch.md"
+}

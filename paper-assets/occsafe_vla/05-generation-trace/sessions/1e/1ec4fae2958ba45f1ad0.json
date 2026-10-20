@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ec4fae2958ba45f1ad0",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose gpu audit 10894",
+  "task_key": "worker_diagnose_gpu_audit_10894_20260527T174100",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_gpu_audit_10894_20260527T174100_result.json",
+    "occurrence": 1,
+    "bytes": 1191,
+    "sha256": "d3acf8efd60592d81f8db7bf29810e8896d5ffe326e5b1e24554653008c5afc5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### GPU 状态\n\n| GPU | 利用率 | 显存 | 进程 |\n|-----|--------|------|------|\n| cuda:0 | 0% | 0/98GB | 空闲 |\n| cuda:1 | 0% | 0/98GB | 空闲 |\n| cuda:2 | 99% | 62GB/98GB | detach_ln_v2_s0c_r3 (PID 543255) |\n| cuda:3 | 99% | 63GB/98GB | full_occ_ln_s4 (PID 553813) |\n\n### 训练进度\n\n| 实验 | 当前 step | 进度 | 速度 | 预计完成 (UTC) |\n|------|-----------|------|------|----------------|\n| detach_ln_v2_s0c_r3 | 30564/50005 | 61% | ~1.08 it/s | ~07:00 May 28 |\n| full_occ_ln_s4 | 28790/50005 | 58% | ~1.08 it/s | ~07:30 May 28 |\n\n- detach_ln_v2_s0c_r3 最近指标 (step 30500): occ_loss=0.0113, action_loss=0.0942\n- 两个实验均在 DDL (12:00 UTC May 28) 前完成，无风险\n\n### libero_object 数据拉取\n\n- **31/32 tfrecord 已下载**（每个 77-91MB），总计 2.6GB\n- **tfrecord-00018-of-00032 仍是 LFS 指针**（133 bytes），git lfs pull 仍在运行（PID 796437）\n- 即将完成\n\n### 磁盘\n\n- `/root/autodl-tmp`: 176GB / 250GB (71%)，剩余 75GB，充足\n\n### 异常\n\n- 无异常。cuda:0/1 空闲待命，等 libero_object 最后 1 个文件下载完即可启动 vanilla_object_s1。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-gpu-audit-10894.md"
+}

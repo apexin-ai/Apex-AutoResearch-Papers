@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1de969ab1c05b867c86",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ssh verify 10894 processes",
+  "task_key": "worker_ssh_verify_10894_processes_20260526T120709",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify_10894_processes_20260526T120709_result.json",
+    "occurrence": 1,
+    "bytes": 1103,
+    "sha256": "e04cb06a875aef3670b11b005a17bf79060c2148349221db0cc4312edbd7a823"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### GPU 占用（4/4 全满）\n\n| PID | 实验 | 进度 | GPU 显存 | 启动时间 |\n|-----|------|------|---------|---------|\n| 170698 | **reverse_cutoff_s2_v2** | 11129/50005 (22%), ~10h剩余 | 62194 MiB | 17:02 |\n| 341771 | **full_occ_ln_v2_s0** | 126/50005 (0.25%) | 63028 MiB | 20:05 |\n| 341987 | **full_occ_ln_v2_s1** | 124/50005 (0.25%) | 62194 MiB | 20:05 |\n| 342341 | **detach_ln_v2_s0** | 115/50005 (0.23%) | 62194 MiB | 20:05 |\n\n3 个新实验均在正常训练，速度 ~1.08 it/s。\n\n### 旧 PID 状态\n\n6 个旧 PID (340237, 340452, 340735, 341693, 341843, 342191) 均不在进程列表中 → **全部已死**。当前运行的是重新提交的进程。\n\n### full_occ_ln_s3_v2_eval\n\n**已完成**，EXIT_CODE=0。结果：\n\n- **TSR = 84.2%** | **CAR = 74.0%**\n- 结果文件：`/root/occsafe_vla/artifacts/safelibero_libero_spatial_20260526_191143.json`\n- 10 个 task 中 T9 最后完成，单 task TSR 从 0.98 到 1.0 不等\n\n### reverse_cutoff_s2_v2\n\n运行中，step 11129/50005 (22%)，已跑约 3h，预计还需 ~10h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-10894-processes.md"
+}

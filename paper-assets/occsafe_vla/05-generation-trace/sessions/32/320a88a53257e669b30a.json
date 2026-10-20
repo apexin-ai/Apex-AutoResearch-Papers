@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "320a88a53257e669b30a",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "research cka feasibility",
+  "task_key": "worker_research_cka_feasibility_20260523T233317",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_cka_feasibility_20260523T233317.log",
+    "occurrence": 1,
+    "bytes": 1163129,
+    "sha256": "607b827265d170f34a4ede031773bcb247c616c8d3c6f39a1592c1f5f04c3459"
+  },
+  "statistics": {
+    "messages": 387,
+    "user_turns": 1,
+    "tool_calls": 145,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 89,
+      "tool_call": 145,
+      "tool_result": 145,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 343,
+      "chunks": [
+        {
+          "path": "320a88a53257e669b30a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "320a88a53257e669b30a-part-0002.json",
+          "message_count": 163
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 44,
+      "chunks": [
+        {
+          "path": "320a88a53257e669b30a-part-0002.json",
+          "message_count": 17
+        },
+        {
+          "path": "320a88a53257e669b30a-part-0003.json",
+          "message_count": 27
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-cka-feasibility.md"
+}

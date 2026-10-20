@@ -1,0 +1,134 @@
+{
+  "schema_version": "1.0",
+  "id": "5921037537bccbaa290a",
+  "project": "occsafe_vla",
+  "kind": "conversation",
+  "title": "paper fix appendix v1 stats",
+  "task_key": "worker_paper_fix-appendix-v1-stats_20260527T042745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_fix-appendix-v1-stats_20260527T042745.jsonl",
+    "occurrence": 1,
+    "bytes": 4011,
+    "sha256": "ad727082d4eee7e19a284d95eb4ebbb924ca276bf69a1debbdb1c018e28a541d"
+  },
+  "statistics": {
+    "messages": 5,
+    "user_turns": 0,
+    "tool_calls": 2,
+    "roles": {
+      "tool_call": 2,
+      "tool_result": 2,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-27T04:28:07.447185+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_fix-appendix-v1-stats_20260527T042745",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/appendix.tex",
+              "offset": "60",
+              "limit": "20"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-27T04:28:07.447527+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "60\tAux.\\ head parameters & 1.2M \\\\\n61\tHardware & NVIDIA RTX PRO 6000 (98\\,GB) \\\\\n62\tWall time per run & $\\sim$12.9 hours \\\\\n63\t\\bottomrule\n64\t\\end{tabular}\n65\t\\end{table}\n66\t\n67\t\\textbf{Evaluation protocol.} Each condition uses 3+ seeds (Depth uses 4; Cutoff@15K, Cutoff@25K, and Reverse Cutoff use 2; Cutoff@45K uses 1) with 50 rollouts per task per seed (500 episodes per seed). A collision is registered when the L1 displacement of the obstacle's \\texttt{body\\_xpos} exceeds $10^{-3}$. Bootstrap 95\\% CIs are computed via 10{,}000 resamples (percentile method).\n68\t\n69\t\\textbf{Statistical tests.} Pairwise comparisons against Vanilla use two-tailed paired $t$-tests on per-seed mean CARs with Cohen's $d$ for effect size. With $n{=}3$ seeds, statistical power is limited; we report $p$-values and effect sizes for transparency. Detach OCC shows negligible difference from Vanilla ($d \\approx -0.04$, $p = 0.91$), confirming that gradient-detached auxiliary supervision does not harm collision avoidance; all gradient-flow conditions also show $p > 0.35$.\n70\t\n71\t\\textbf{CKA analysis.} Centered Kernel Alignment~\\cite{kornblith2019similarity} measures representational similarity between fine-tuned and pretrained encoder features. We extract patch token activations from the final layer of DINOv2 and SigLIP for 1{,}000 validation images, compute linear CKA per layer, and report the mean across layers. Higher CKA indicates better preservation of pretrained representations.\n72\t\n73\t\\textbf{Cutoff implementation.} As described in Section~\\ref{sec:ablation}, setting $\\lambda(t){=}0$ does not disable the auxiliary head's forward pass; the post-cutoff phase operates in Detach mode with BatchNorm statistics continuing to update (see the Cutoff description therein for details).\n74\t\n75\t\\section{Extended Analysis}\n76\t\n77\t\\begin{figure}[h]\n78\t\\centering\n79\t\\includegraphics[width=\\textwidth]{figures/gradient_analysis_combined.pdf}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_fix-appendix-v1-stats_20260527T042745",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-27T04:28:07.447765+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_fix-appendix-v1-stats_20260527T042745",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/appendix.tex",
+              "old_string": "Detach OCC shows negligible difference from Vanilla ($d \\approx -0.04$, $p = 0.91$), confirming that gradient-detached auxiliary supervision does not harm collision avoidance; all gradient-flow conditions also show $p > 0.35$.",
+              "new_string": "Under the v1 codebase, Detach OCC shows negligible difference from Vanilla ($d \\approx -0.04$, $p = 0.91$); under v2 (Table~\\ref{tab:main_results}), the effect reverses in sign ($\\Delta{=}+2.2$\\,pp, $p = 0.28$) but remains statistically indistinguishable from Vanilla, confirming that gradient-detached auxiliary supervision does not harm collision avoidance regardless of codebase version. Under v1, all gradient-flow conditions also show $p > 0.35$."
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-27T04:28:07.448122+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_fix-appendix-v1-stats_20260527T042745",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-27T04:28:07.448392+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。v1 统计数据已标注来源，v2 主文结果已交叉引用，核心结论保持不变。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_fix-appendix-v1-stats_20260527T042745"
+          },
+          "id": "event-000005"
+        }
+      ],
+      "message_count": 5
+    }
+  ],
+  "readable_path": "readable/conversations/paper-fix-appendix-v1-stats.md"
+}

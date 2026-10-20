@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52925162006e7fedd460",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "train cutoff 15k s2",
+  "task_key": "worker_train_cutoff_15k_s2_20260525T033155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_cutoff_15k_s2_20260525T033155_result.json",
+    "occurrence": 1,
+    "bytes": 198,
+    "sha256": "ca0c417f8e1c41031b850cc187214a1cf229ee2e452df9cfade2b4b0efc0e677"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **实验 ID**: cutoff_15k_s2\n- **服务器**: westd-34685, cuda:1\n- **PID**: 94304\n- **日志**: ~/runs/occsafe_vla/cutoff_15k_s2.log\n- **Registry 状态**: RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-cutoff-15k-s2.md"
+}

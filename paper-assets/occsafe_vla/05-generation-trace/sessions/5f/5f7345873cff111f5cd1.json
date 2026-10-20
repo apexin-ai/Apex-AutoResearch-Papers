@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f7345873cff111f5cd1",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "monitor training progress check",
+  "task_key": "worker_monitor_training-progress-check_20260527T044230",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_training-progress-check_20260527T044230_result.json",
+    "occurrence": 1,
+    "bytes": 914,
+    "sha256": "3647619a02f614db80ddbaa95413787e23ae0460af786dbe024b5878f529528d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "8/8 实验全部正常运行，无异常。\n\n| exp_id | Step | 进度 | ETA (UTC) | action_loss |\n|--------|------|------|-----------|-------------|\n| full_occ_ln_v2_s1c_r2 | ~14868 | 29.7% | 5/27 ~14:00 | 0.117 |\n| full_occ_ln_v2_s2_r2 | ~14856 | 29.7% | 5/27 ~14:00 | 0.124 |\n| detach_ln_v2_s0c_r2 | ~14845 | 29.7% | 5/27 ~13:50 | 0.122 |\n| full_occ_ln_v2_s0d | ~12272 | 24.5% | 5/27 ~16:30 | 0.150 |\n| detach_ln_v2_s1_35 | ~19184 | 38.4% | 5/27 ~12:40 | 0.091 |\n| detach_ln_s4 | ~19205 | 38.4% | 5/27 ~12:40 | 0.129 |\n| ablation_occ_detach_s4 | ~16400 | 32.8% | 5/27 ~13:30 | 0.135 |\n| mvp_occ_s4 | ~16356 | 32.7% | 5/27 ~13:30 | 0.115 |\n\n最晚的 full_occ_ln_v2_s0d 预计 5/27 16:30 UTC 完成，距 DDL (5/28 12:00 UTC) 有 ~19h 余量。GPU 利用率 84-99%，磁盘 10894 剩 38G、34685 剩 92G，均充足。\n\n报告已写入 `artifacts/training_status_20260527_0446.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-training-progress-check.md"
+}

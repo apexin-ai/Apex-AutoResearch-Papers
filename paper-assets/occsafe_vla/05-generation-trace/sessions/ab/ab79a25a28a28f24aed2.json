@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab79a25a28a28f24aed2",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis process eval update csv",
+  "task_key": "worker_analysis_process_eval_update_csv_20260525T062014",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_process_eval_update_csv_20260525T062014_result.json",
+    "occurrence": 1,
+    "bytes": 542,
+    "sha256": "3993420829c92c44e315f9a109994f49374b51f565683517e370475b690addac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "CSV 更新完成。\n\n**full_occ_retrain_s0 eval 结果**：TSR=0.802, CAR=0.746, 127 collisions, 500 episodes。CAR=0.746 略低于其他 Full OCC seeds（0.765-0.832）。\n\n**CSV 更新汇总**（共 10 行）：\n- `full_occ_retrain_s0`: eval_pending → 实际结果\n- 9 行从 200-episode 更新为 500-episode 50-rollout 数据：mvp_vanilla_s0/s1/s2, mvp_occ_s0/s2, ablation_occ_detach_s0/s1, ablation_random_occ_s0/s1\n\n注意：`mvp_occ_s1`（line 7）仍为 200 episodes，任务中未提供 50-rollout 数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-process-eval-update-csv.md"
+}

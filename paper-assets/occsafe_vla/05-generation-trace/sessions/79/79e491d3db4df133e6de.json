@@ -1,0 +1,450 @@
+{
+  "schema_version": "1.0",
+  "id": "79e491d3db4df133e6de",
+  "project": "occsafe_vla",
+  "kind": "conversation",
+  "title": "paper experiment section draft",
+  "task_key": "worker_paper_experiment_section_draft_20260523T092013",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_experiment_section_draft_20260523T092013.jsonl",
+    "occurrence": 1,
+    "bytes": 26942,
+    "sha256": "f8dd946a599f0b8c03409057ce236cfb08b423ca53678b0621074fec202d8543"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "tool_call": 10,
+      "tool_result": 10,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T09:23:04.401427+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_experiment_section_draft_20260523T092013",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T09:23:04.402095+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **\n…[truncated 5709 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_experiment_section_draft_20260523T092013",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T09:23:04.402324+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_experiment_section_draft_20260523T092013",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/experiments.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T09:23:04.402497+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\n3\t\\subsection{Benchmark and Tasks}\n4\t\n5\tWe evaluate on the SafeLIBERO benchmark~\\cite{hu2025vlsa}, which augments the LIBERO-Spatial suite with collision-aware evaluation. SafeLIBERO comprises 32 scenarios across 10 tabletop manipulation tasks organized into two difficulty levels: Level~I (basic spatial reasoning) and Level~II (complex multi-step manipulation). Each task requires the agent to reach, grasp, and place objects among surrounding obstacles. Several tasks deliberately position objects in close proximity (e.g., a bowl resting on a ramekin), creating natural collision challenges that test whether the agent can complete the instructed task without disturbing nearby objects.\n6\t\n7\t\\subsection{Evaluation Protocol}\n8\t\n9\tWe measure two complementary metrics aligned with the VLSA-AEGIS protocol~\\cite{hu2025vlsa}. \\textbf{Task Success Rate (TSR)} is the fraction of episodes in which the robot completes the instructed task. \\textbf{Collision Avoidance Rate (CAR)} is the fraction of episodes with zero unintended object displacement, computed as $\\text{CAR} = 1 - n_{\\text{collide}} / N$, where $n_{\\text{collide}}$ counts episodes whose maximum L1 \\texttt{body\\_xpos} displacement exceeds a threshold of $0.001$. For each of the 10 tasks, we run 50 rollouts per seed (500 episodes per seed). Seeds vary by condition (2--4 seeds; see Table~\\ref{tab:main_results}). We report mean and standard deviation across seeds.\n10\t\n11\t\\subsection{Experimental Conditions}\n12\t\n13\tWe design six conditions that form a mechanism ablation chain, progressively isolating the role of occupancy-grounded gradient flow:\n14\t\n15\t\\begin{itemize}[nosep,leftmargin=*]\n16\t  \\item \\textbf{Vanilla}: OpenVLA-OFT fine-tuned without any auxiliary supervision (baseline).\n17\t  \\item \\textbf{Full OCC}: BEV occupancy auxiliary head with gradients flowing into the vision encoder (\\texttt{occ\\_detach=False}).\n18\t  \\item \\textbf{Detach OCC}: Occupancy head with detached gradients (\\texttt{o\n…[truncated 2584 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_experiment_section_draft_20260523T092013",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T09:23:04.402696+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_experiment_section_draft_20260523T092013",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T09:23:04.402907+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\n2\t\\section{Discussion}\n3\t\\label{sec:discussion}\n4\t\n5\t\\subsection{Why Does Gradient Flow Improve Collision Avoidance?}\n6\t\\label{sec:why_gradient}\n7\t\n8\tThe ablation results reveal a consistent pattern: conditions with auxiliary gradient flow through the vision encoder (Full OCC at 0.797 CAR, Random OCC at 0.789) remain comparable to Vanilla (0.780), while Detach OCC (0.746) falls well below all others. The dominant effect is not that gradient flow \\emph{improves} CAR above Vanilla, but that its \\emph{absence} degrades CAR below Vanilla. Three candidate mechanisms can explain this ``damage prevention'' pattern.\n9\t\n10\t\\textbf{Hypothesis 1: Anti-overfitting regularization.}\n11\tAuxiliary gradients prevent the vision encoder from overfitting to the action prediction objective, preserving more general spatial features in the DINOv2 and SigLIP representations. Multi-task learning theory predicts this effect: shared representations trained on multiple objectives retain broader feature diversity than those specialized to a single task~\\cite{caruana1997multitask, ruder2017overview}. Lippl and Lindsey~\\cite{lippl2024implicit} show that multi-task training in overparameterized networks induces $\\ell_{1,2}$ mixed-norm regularization that encourages feature sharing, while single-task fine-tuning exhibits nested feature selection that discards unused pretrained features. Under this hypothesis, Random OCC and Full OCC both regularize because both supply non-trivial gradients through the encoder---the label content matters less than the gradient signal itself. The observation that Full OCC (0.797) and Random OCC (0.789) achieve nearly identical CAR (0.8pp difference, 3 seeds each) is consistent with this account. However, the current data more strongly support a ``damage prevention'' framing than a ``positive regularization'' framing: gradient-flow conditions do not clearly exceed Vanilla, but their absence clearly harms performance.\n12\t\n13\t\\textbf{Hypothesis 2: Optimization landsc\n…[truncated 13535 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_experiment_section_draft_20260523T092013",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T09:23:04.403167+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_experiment_section_draft_20260523T092013",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/experiments.tex",
+              "old_string": "\\noindent The chain Vanilla $\\to$ Random OCC $\\to$ Depth $\\to$ Detach OCC $\\to$ Full OCC isolates, in turn, auxiliary regularization, geometric supervision, and occupancy-specific gradient flow. The Cutoff condition additionally isolates the temporal requirement of auxiliary supervision.",
+              "new_string": "\\noindent The chain Vanilla $\\to$ Random OCC $\\to$ Depth $\\to$ Detach OCC $\\to$ Full OCC isolates, in turn, auxiliary regularization, geometric supervision, and occupancy-specific gradient flow. The Cutoff condition additionally isolates the temporal requirement of auxiliary supervision.\n\nEach pairwise comparison isolates a single experimental factor. Vanilla vs.\\ Full OCC tests whether occupancy supervision affects collision behavior. Full OCC vs.\\ Detach OCC holds architecture and labels constant while toggling gradient flow, isolating the causal role of encoder-level gradient routing. Full OCC vs.\\ Random OCC preserves architecture and gradient flow while replacing structured labels with random binary targets, isolating the contribution of label content. Full OCC vs.\\ Depth substitutes the allocentric BEV reference frame with egocentric depth supervision, isolating the spatial representation. The Cutoff condition selectively disables gradient flow partway through training, isolating the temporal extent of auxiliary supervision. This factorial structure ensures that each mechanism (gradient flow, label content, spatial reference frame, temporal duration) is tested by exactly one controlled comparison."
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T09:23:04.403351+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_experiment_section_draft_20260523T092013",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T09:23:04.403482+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_experiment_section_draft_20260523T092013",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex",
+              "old_string": "The TSR instability reveals a second consequence of gradient detachment.",
+              "new_string": "Gradient analysis at convergence provides complementary evidence. In gradient-flow conditions (Full OCC, Random OCC, Depth, Cutoff), the action head's gradient norm at the encoder remains comparable to Vanilla; the auxiliary pathway does not suppress the primary learning signal. In the Detach condition, the action gradient norm is substantially lower than in all gradient-flow conditions. This pattern is consistent with the forward-pass interference account: the auxiliary head's BatchNorm layers perturb encoder feature statistics, and without compensating auxiliary gradients, the encoder converges to a region where action gradients are attenuated. Action and occupancy gradients are approximately orthogonal (cosine similarity near zero); this orthogonality implies that the auxiliary task provides an independent gradient direction rather than a competing signal for the action objective. Ongoing experiments replace the auxiliary head's BatchNorm with LayerNorm in the Detach configuration to disentangle the normalization artifact from the gradient-flow effect.\n\nThe TSR instability reveals a second consequence of gradient detachment."
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T09:23:04.403683+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_experiment_section_draft_20260523T092013",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T09:23:04.403847+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_experiment_section_draft_20260523T092013",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex",
+              "old_string": "The TSR--CAR dissociation further constrains the mechanism. Cutoff achieves the highest TSR among all conditions (0.915 vs.\\ 0.907 Vanilla), indicating that early-phase auxiliary training durably improves motor learning. Collision avoidance on the hardest tasks, however, appears sensitive to the temporal extent of gradient flow: Cutoff's aggregate CAR matches Vanilla (0.783 vs.\\ 0.780), but its Task~5 CAR collapses to 0.00. This temporal asymmetry suggests that task completion and collision avoidance depend on different aspects of encoder representation: motor skill may be encoded in features that stabilize early, while obstacle clearance depends on features that require ongoing auxiliary gradient support to maintain.\n\n\\subsection{Implications for VLA Safety}",
+              "new_string": "The TSR--CAR dissociation further constrains the mechanism. Cutoff achieves the highest TSR among all conditions (0.915 vs.\\ 0.907 Vanilla), indicating that early-phase auxiliary training durably improves motor learning. Collision avoidance on the hardest tasks, however, appears sensitive to the temporal extent of gradient flow: Cutoff's aggregate CAR matches Vanilla (0.783 vs.\\ 0.780), but its Task~5 CAR collapses to 0.00. This temporal asymmetry suggests that task completion and collision avoidance depend on different aspects of encoder representation: motor skill may be encoded in features that stabilize early, while obstacle clearance depends on features that require ongoing auxiliary gradient support to maintain.\n\nThe current analysis tests a single temporal schedule (gradient flow for the first 35{,}000 of 50{,}000 steps). Two additional conditions are in progress to map the dose-response relationship more precisely. A Cutoff@25K condition disables gradient flow after 25{,}000 steps to identify the minimum exposure duration required for the auxiliary signal to take effect. A reverse cutoff condition withholds auxiliary gradients during early training and enables them only during the final phase; this tests whether late-stage gradient flow alone is sufficient. Together with the existing Cutoff@35K data, these conditions will trace the temporal sensitivity curve and determine whether the critical window lies in early training, late training, or spans the full schedule. \\textit{[Results to be added upon completion of 3-seed runs.]}\n\n\\subsection{Implications for VLA Safety}"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T09:23:04.404039+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_experiment_section_draft_20260523T092013",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T09:23:04.404178+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_experiment_section_draft_20260523T092013",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/experiments.tex",
+              "offset": "22",
+              "limit": "10"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T09:23:04.404318+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "22\t\\end{itemize}\n23\t\n24\t\\noindent The chain Vanilla $\\to$ Random OCC $\\to$ Depth $\\to$ Detach OCC $\\to$ Full OCC isolates, in turn, auxiliary regularization, geometric supervision, and occupancy-specific gradient flow. The Cutoff condition additionally isolates the temporal requirement of auxiliary supervision.\n25\t\n26\tEach pairwise comparison isolates a single experimental factor. Vanilla vs.\\ Full OCC tests whether occupancy supervision affects collision behavior. Full OCC vs.\\ Detach OCC holds architecture and labels constant while toggling gradient flow, isolating the causal role of encoder-level gradient routing. Full OCC vs.\\ Random OCC preserves architecture and gradient flow while replacing structured labels with random binary targets, isolating the contribution of label content. Full OCC vs.\\ Depth substitutes the allocentric BEV reference frame with egocentric depth supervision, isolating the spatial representation. The Cutoff condition selectively disables gradient flow partway through training, isolating the temporal extent of auxiliary supervision. This factorial structure ensures that each mechanism (gradient flow, label content, spatial reference frame, temporal duration) is tested by exactly one controlled comparison.\n27\t\n28\t\\subsection{Implementation Details}\n29\t\n30\tAll conditions share the same base model: OpenVLA-OFT 7B~\\cite{kim2025oft}, pre-trained on Open X-Embodiment. We fine-tune with LoRA (rank 32, $\\alpha{=}16$) for 50K steps using AdamW (weight decay $0.01$), a batch size of 8, a constant learning rate of $5 \\times 10^{-4}$, and 2--4 random seeds per condition (see Table~\\ref{tab:main_results}). The LoRA adapter adds 110.8M trainable parameters (1.45\\% of 7.65B total).\n31\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_experiment_section_draft_20260523T092013",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T09:23:04.404454+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_experiment_section_draft_20260523T092013",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex",
+              "offset": "24",
+              "limit": "12"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T09:23:04.404592+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "24\tDetach OCC produces the lowest CAR (0.746) among all conditions, falling 3.4 percentage points below Vanilla (0.780), and exhibits uniquely high TSR variance ($\\sigma = 0.163$ vs.\\ $< 0.050$ for all other conditions). This result may appear surprising: the Detach condition has identical architecture and forward computation to Full OCC, differing only in gradient routing.\n25\t\n26\tThe primary mechanism is forward-pass interference without compensating gradient signal. The auxiliary head contains BatchNorm2d layers that consume encoder feature statistics during the forward pass, modifying the batch-level statistics that the encoder representations are conditioned on. In the Full OCC and Random OCC conditions, the auxiliary loss sends gradients back through the encoder that allow it to adapt to these statistics---effectively co-optimizing the shared representations. With \\texttt{stop\\_gradient}, the encoder receives gradients from $\\mathcal{L}_\\text{action}$ alone and cannot adapt to the statistical perturbation introduced by the auxiliary head's forward computation. The encoder bears the cost of the auxiliary pathway (altered batch statistics, additional forward computation) without receiving the auxiliary-task training benefit that gradient flow provides. The 3.4pp CAR deficit relative to Vanilla, consistent across 3 seeds ($\\sigma = 0.002$), confirms that gradient flow is a necessary condition for the auxiliary task to avoid harming performance.\n27\t\n28\tGradient analysis at convergence provides complementary evidence. In gradient-flow conditions (Full OCC, Random OCC, Depth, Cutoff), the action head's gradient norm at the encoder remains comparable to Vanilla; the auxiliary pathway does not suppress the primary learning signal. In the Detach condition, the action gradient norm is substantially lower than in all gradient-flow conditions. This pattern is consistent with the forward-pass interference account: the auxiliary head's BatchNorm layers perturb encoder featur\n…[truncated 1966 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_experiment_section_draft_20260523T092013",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T09:23:04.404805+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_experiment_section_draft_20260523T092013",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex",
+              "offset": "42",
+              "limit": "12"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T09:23:04.404959+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "42\t\n43\t\\subsection{Implications for VLA Safety}\n44\t\\label{sec:implications}\n45\t\n46\t\\textbf{Practical recommendation.} The central finding is a necessary condition rather than a benefit: if practitioners attach an auxiliary head to the vision encoder during VLA fine-tuning, gradients \\emph{must} flow through the encoder. Blocking gradient flow (Detach) degrades CAR by 3.4pp below the no-auxiliary baseline and destabilizes task execution. With gradient flow maintained, the auxiliary head does not significantly improve CAR beyond Vanilla (differences of 0.0--1.7pp, within cross-seed variance), but it does not harm it either---and no ground-truth spatial labels are required (Random OCC matches Full OCC at 0.8pp difference). The auxiliary head is discarded after training, adding zero inference cost.\n47\t\n48\t\\textbf{Complementarity with runtime safety.} Our approach modifies the training signal to produce policies that collide less frequently, but provides no formal safety guarantee for any individual episode. Runtime constraint methods such as CBF-based action filtering~\\cite{hu2025vlsa, raja2024ogmcbf} offer per-step guarantees but add inference cost and require access to obstacle geometry. These two strategies are complementary: auxiliary-task training reduces the frequency of unsafe action proposals, while runtime filtering can catch the remaining violations. A natural extension is to construct a barrier function that operates on the spatial features already learned by the occupancy-trained encoder, avoiding the need for explicit geometric representations at test time.\n49\t\n50\t\\textbf{Zero inference cost.} Unlike existing VLA safety methods that add modules at inference~\\cite{hu2025vlsa, zhang2025safevla, zhai2026cofreevla}, auxiliary spatial supervision modifies only the training phase. The auxiliary head is discarded after training, so the deployed model has identical latency, memory footprint, and computational cost to the Vanilla baseline.\n51\t\n52\t\\subsection{Limitat\n…[truncated 32 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_experiment_section_draft_20260523T092013",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T09:23:04.405115+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_experiment_section_draft_20260523T092013",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex",
+              "offset": "37",
+              "limit": "8"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T09:23:04.405250+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "37\tThis pattern connects to the candidate mechanisms in Section~\\ref{sec:why_gradient}. Under the anti-overfitting hypothesis, removing auxiliary gradients after 35{,}000 steps allows the encoder to re-specialize toward action prediction during the final 15{,}000 steps, losing the feature diversity that continuous gradient flow preserves. Under the optimization landscape hypothesis, the loss surface may sharpen once the auxiliary loss is removed, allowing the encoder to settle into a sharper minimum during late training. Both accounts predict that collision avoidance on the most physically constrained tasks---where the policy must maintain precise clearance---would be most sensitive to late-stage gradient withdrawal, consistent with the Task~5 result.\n38\t\n39\tThe TSR--CAR dissociation further constrains the mechanism. Cutoff achieves the highest TSR among all conditions (0.915 vs.\\ 0.907 Vanilla), indicating that early-phase auxiliary training durably improves motor learning. Collision avoidance on the hardest tasks, however, appears sensitive to the temporal extent of gradient flow: Cutoff's aggregate CAR matches Vanilla (0.783 vs.\\ 0.780), but its Task~5 CAR collapses to 0.00. This temporal asymmetry suggests that task completion and collision avoidance depend on different aspects of encoder representation: motor skill may be encoded in features that stabilize early, while obstacle clearance depends on features that require ongoing auxiliary gradient support to maintain.\n40\t\n41\tThe current analysis tests a single temporal schedule (gradient flow for the first 35{,}000 of 50{,}000 steps). Two additional conditions are in progress to map the dose-response relationship more precisely. A Cutoff@25K condition disables gradient flow after 25{,}000 steps to identify the minimum exposure duration required for the auxiliary signal to take effect. A reverse cutoff condition withholds auxiliary gradients during early training and enables them only during the final phase; this\n…[truncated 411 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_experiment_section_draft_20260523T092013",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T09:23:04.405431+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "三处编辑全部到位：\n\n1. **experiments.tex** (line 26): 添加了 factorial design rationale 段落，逐一说明每个 pairwise comparison 隔离的单一变量（gradient flow / label content / spatial reference frame / temporal duration）。\n\n2. **discussion.tex §5.2** (line 28): 在 BN interference 机制和 TSR instability 之间插入梯度分析证据段落。包含：gradient-flow 条件的 action gradient norm 与 Vanilla 可比、Detach 条件 substantially lower、action/OCC 梯度正交（cosine≈0）、Detach+LN 实验作为 ongoing work。措辞用 \"at convergence\"，未用具体倍数。\n\n3. **discussion.tex §5.3** (line 41): 添加 dose-response 框架段落，描述 Cutoff@25K 和 reverse cutoff 两个计划实验，末尾用 `\\textit{[Results to be added]}` 占位。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_experiment_section_draft_20260523T092013"
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/conversations/paper-experiment-section-draft.md"
+}

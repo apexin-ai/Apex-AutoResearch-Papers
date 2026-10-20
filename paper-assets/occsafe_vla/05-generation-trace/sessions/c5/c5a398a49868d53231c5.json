@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c5a398a49868d53231c5",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval depth s0 eval",
+  "task_key": "worker_eval_depth_s0_eval_20260523T002819",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_depth_s0_eval_20260523T002819_result.json",
+    "occurrence": 1,
+    "bytes": 826,
+    "sha256": "642849e086c717346bcd426083db9b5a0eaa2f1bccc7d6c328db89baca36fa8d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**depth_s0 的 50r eval 已经在 cuda:1 上运行了。** 已有进程 PID 189393，启动于 08:24：\n\n```\nCUDA_VISIBLE_DEVICES=1 python vla-scripts/evaluate_safelibero.py \\\n  --pretrained_checkpoint /root/autodl-tmp/checkpoints/depth_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt \\\n  --num_rollouts 50 --seed 42\n```\n\n我刚启动的进程（PID 206937）已退出，大概率是因为 cuda:1 已被上述进程占用导致 OOM。\n\n**汇总：**\n- Checkpoint: `/root/autodl-tmp/checkpoints/depth_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt`\n- 已有 eval 进程 PID: **189393**（cuda:1，50 rollouts，运行中）\n- 日志: `~/runs/occsafe_vla/depth_s0_eval.log`\n\n不需要重复启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-depth-s0-eval-copy-2.md"
+}

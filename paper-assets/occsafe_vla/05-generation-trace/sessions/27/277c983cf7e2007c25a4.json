@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "277c983cf7e2007c25a4",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra reduce occ parallelism",
+  "task_key": "worker_infra_reduce_occ_parallelism_20260520T112924",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_reduce_occ_parallelism_20260520T112924_result.json",
+    "occurrence": 1,
+    "bytes": 1553,
+    "sha256": "26f99f879871ce074a35773aa05506b46819e60ca8fba5dc8621d874d739bf38"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据完整了。汇总报告：\n\n---\n\n## 结果\n\n### Kill 操作\n**已 kill 的 5 个进程**（进度最少）：\n| PID | task_id | 文件大小 |\n|------|---------|---------|\n| 104227 | 1 | 2.73MB |\n| 104231 | 5 | 2.72MB |\n| 104232 | 6 | 2.85MB |\n| 104233 | 7 | 2.69MB |\n| 104235 | 9 | 2.79MB |\n\n### 保留的 5 个进程\n| PID | task_id | 已完成 demo | 剩余 |\n|------|---------|-----------|------|\n| 104226 | 0 | 1/50 | 49 |\n| 104228 | 2 | 35/50 | 15 |\n| 104229 | 3 | 40/50 | 10 |\n| 104230 | 4 | 0/50 | 50 |\n| 104234 | 8 | 36/50 | 14 |\n\n### 速度对比\n| 指标 | Kill 前 (10进程) | Kill 后 (5进程) |\n|------|---------------|---------------|\n| 帧速度 | ~1750 ms/frame | ~1430 ms/frame |\n| CPU/进程 | ~430-460% | ~431-467% |\n| **提速** | — | **~18%** |\n\n提速幅度有限，因为机器有 208 核，10 进程时 CPU 就不是瓶颈。瓶颈可能是内存带宽/L3 cache 争抢。\n\n### 预估完成时间（按 1430 ms/frame）\n| task_id | 剩余 demo | 帧/demo | 预计耗时 |\n|---------|----------|---------|---------|\n| 0 | 49 | ~98 | ~1.9h |\n| 2 | 15 | ~103 | ~37min |\n| 3 | 10 | ~100 | ~24min |\n| 4 | 50 | ~153 | **~3.0h**（瓶颈） |\n| 8 | 14 | ~115 | ~38min |\n\n**整体瓶颈是 task 4**（153 帧/demo 且刚开始），预计还需 ~3 小时完成。Tasks 2/3/8 约 30-40 分钟内完成。\n\n被 kill 的 5 个 task（1/5/6/7/9）需要后续重新启动。其 HDF5 输出文件可能因进程中断而损坏，建议重跑时用 `\"w\"` 模式覆盖。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-reduce-occ-parallelism.md"
+}

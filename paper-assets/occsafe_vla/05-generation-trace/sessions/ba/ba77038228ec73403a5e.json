@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba77038228ec73403a5e",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose ablation occ detach s3 v2",
+  "task_key": "worker_diagnose_ablation_occ_detach_s3_v2_20260525T202800",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_ablation_occ_detach_s3_v2_20260525T202800_result.json",
+    "occurrence": 1,
+    "bytes": 596,
+    "sha256": "a98bb03580c15a661cd433bad3345641eb992147e63bc6cf08558518ecdf3e64"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**根因**：两个实验同一原因 —— `/root/autodl-tmp` 磁盘 250GB 100% 占满（checkpoints 占 229GB）。两个实验都成功训练了 step 20000→30000 的 10k 步，但在 step 30000 保存 checkpoint 时 `safetensors` 序列化因磁盘空间不足报 `os error 28` 失败。\n\n**关键发现**：\n- 两个实验的 30000 checkpoint 均不完整（损坏），需要删除\n- 20000 checkpoint 完好，可以重新 resume\n- 重试前必须清理磁盘，建议至少释放 30-50GB\n\n报告已写入 `artifacts/diagnose_s3_v2_failures.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-ablation-occ-detach-s3-v2.md"
+}

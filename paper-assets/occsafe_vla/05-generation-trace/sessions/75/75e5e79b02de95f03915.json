@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75e5e79b02de95f03915",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops deploy rotation script 10894",
+  "task_key": "worker_ops_deploy-rotation-script-10894_20260522T140456",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_deploy-rotation-script-10894_20260522T140456_result.json",
+    "occurrence": 1,
+    "bytes": 656,
+    "sha256": "84efffa8d3d1de5302489148f384929c8709e6248a822f7917c3d6194013b19d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Checkpoint rotation 已就绪：**\n\n- **PID**: 991149，正常运行中\n- **日志**: `/root/rotation_new.log`（暂无删除记录，正常）\n- **磁盘**: `/root/autodl-tmp` 250G 总量，已用 97G，剩余 **154G (39%)**\n- **当前 checkpoint 分布**（4 个实验各有 1 个 checkpoint）：\n\n| 实验 | checkpoint |\n|------|-----------|\n| ablation_occ_detach_s2 | 20000_chkpt |\n| ablation_random_occ_s2 | 20000_chkpt |\n| depth_s2 | 20000_chkpt |\n| depth_s3 | 20000_chkpt |\n\n脚本每 5 分钟扫描一次，每个实验目录只保留最新 1 个 checkpoint，30K checkpoint 写入后旧的 20K 会被自动清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-deploy-rotation-script-10894.md"
+}

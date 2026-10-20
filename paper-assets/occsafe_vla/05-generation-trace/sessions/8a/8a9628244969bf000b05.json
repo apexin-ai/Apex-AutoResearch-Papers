@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a9628244969bf000b05",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose d051 bn v2 failures",
+  "task_key": "worker_diagnose_d051_bn_v2_failures_20260525T134337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_d051_bn_v2_failures_20260525T134337_result.json",
+    "occurrence": 1,
+    "bytes": 568,
+    "sha256": "9ffab953eac5602e3ea9f5f83164f5eb833846de8d8bb9f2c9216bd410060578"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**根因**：westd-34685 上的代码没有同步 D051 v2 改动。三个实验传入了 `--occ_norm_type bn`，但该服务器上的 `finetune.py`（commit `bdaee754`）根本没有定义这个参数，argparse 直接报错退出（exitcode 2）。westd-10894 的代码（commit `e4287e94`）才有 `occ_norm_type`（finetune.py:98）。与 GPU 冲突无关——崩溃发生在 argparse 阶段，还没碰 CUDA。\n\n**修复**：在 westd-34685 上 `cd /root/occsafe_vla/openvla-oft && git pull origin main` 同步代码，然后重启三个实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-d051-bn-v2-failures.md"
+}

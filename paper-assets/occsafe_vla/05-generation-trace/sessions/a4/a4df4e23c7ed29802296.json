@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4df4e23c7ed29802296",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "check all running eta",
+  "task_key": "worker_check_all-running-eta_20260528T105429",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_all-running-eta_20260528T105429_result.json",
+    "occurrence": 1,
+    "bytes": 881,
+    "sha256": "22a40d7b893f4bc08e51fc05b942d29b2a65fc27d94e1a128799675fc393b65d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`detach_ln_v2_s2_eval` 的日志内容不是训练进度，看起来是 eval 输出。其余 4 个结果如下：\n\n| exp_id | server | step/total | speed | 剩余时间 | 1h内完成? |\n|--------|--------|------------|-------|----------|----------|\n| detach_ln_v2_s4 | westd-10894 | 44519/50005 (89%) | 1.07 it/s | ~1h25m | **NO** |\n| vanilla_object_s2 | westd-10894 | 20757/50005 (41%) | 1.10 it/s | ~7h24m | **NO** |\n| full_occ_bn_v2_s3 | westd-10894 | 20711/50005 (41%) | 1.09 it/s | ~7h28m | **NO** |\n| full_occ_bn_v2_s2 | westd-34685 | 23400/50005 (47%) | 1.09 it/s | ~6h47m | **NO** |\n| detach_ln_v2_s2_eval | westd-34685 | — | — | 日志非进度条格式 | **不确定** |\n\n**结论：没有任何实验能在 12:00 UTC 前完成。** `detach_ln_v2_s4` 最接近，还需约 1.5h。其余三个训练实验都只到 41-47%，还需 7h 左右。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-all-running-eta.md"
+}

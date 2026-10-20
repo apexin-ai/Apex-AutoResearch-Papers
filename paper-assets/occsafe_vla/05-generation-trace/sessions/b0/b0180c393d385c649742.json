@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0180c393d385c649742",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code add per episode data to eval",
+  "task_key": "worker_code_add_per_episode_data_to_eval_20260520T182019",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_add_per_episode_data_to_eval_20260520T182019_result.json",
+    "occurrence": 1,
+    "bytes": 1761,
+    "sha256": "41727a23982a56e10f8bf8ea411ec8e2e59225688a0d2ed46eb25bfd578b7760"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 结果\n\n**两台服务器均已修改，语法验证通过，行数一致（454 → 476，+22行）。**\n\n### 修改摘要（7处 patch）\n\n| # | 位置 | 改动 |\n|---|------|------|\n| 1 | `run_episode` 函数体 | 新增 `step_count = 0` |\n| 2 | episode 步进循环 | `step_count += 1`（在 `prepare_obs` 前，仅计实际步） |\n| 3 | `run_episode` 返回值 | `return success, replay_images, step_count` |\n| 4 | `main` 初始化 | 新增 `all_episodes = []` |\n| 5 | `main` 调用处 | 解包 `success, replay, step_count = run_episode(...)` |\n| 6 | `episodes.append` | 增加 `trajectory_length`；新增 `all_episodes.append(...)` 收集全局数据 |\n| 7 | `results[\"summary\"]` | 增加 `total_collisions` + `displacement_stats`(min/max/mean/median)；新增 `results[\"per_episode\"]` |\n\n### JSON 输出结构示例\n\n```json\n{\n  \"config\": { \"checkpoint\": \"...\", \"task_suite\": \"libero_spatial\", ... },\n  \"tasks\": {\n    \"pick up the black bowl...\": {\n      \"task_id\": 0, \"n\": 20, \"tsr\": 0.85, \"car\": 0.70,\n      \"episodes\": [\n        {\"ep\": 0, \"success\": true, \"collision\": false, \"max_disp\": 0.000312, \"coll_step\": -1, \"trajectory_length\": 145},\n        ...\n      ]\n    }\n  },\n  \"per_episode\": [\n    {\"task_id\": 0, \"task_name\": \"pick up the black bowl...\", \"episode_idx\": 0,\n     \"max_displacement\": 0.000312, \"collision_detected\": false, \"trajectory_length\": 145, \"task_success\": true},\n    ...\n  ],\n  \"summary\": {\n    \"total_episodes\": 200, \"tsr\": 0.82, \"car\": 0.65,\n    \"total_collisions\": 70,\n    \"displacement_stats\": {\"min\": 0.0001, \"max\": 0.0523, \"mean\": 0.0089, \"median\": 0.0034}\n  }\n}\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-add-per-episode-data-to-eval.md"
+}

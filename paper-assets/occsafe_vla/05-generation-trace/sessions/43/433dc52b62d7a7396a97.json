@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "433dc52b62d7a7396a97",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops 34685 detach ln s3 eval diagnose",
+  "task_key": "worker_ops_34685-detach-ln-s3-eval-diagnose_20260526T235737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_34685-detach-ln-s3-eval-diagnose_20260526T235737_result.json",
+    "occurrence": 1,
+    "bytes": 1145,
+    "sha256": "c65e7358e540ced081fab5b7cfea860c96453e3404706f87edf8cd4519e1f8a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n### 1. detach_ln_s3_eval 失败原因\n**假阳性——eval 实际已成功完成。** 10 个 task × 50 rollouts 全部跑完，EXIT_CODE=2 可能来自 TensorFlow/robosuite 启动时的 warning（非致命错误），不影响结果。\n\n结果：**TSR = 0.886 (88.6%), CAR = 0.802 (80.2%)**，总碰撞 99 次。\n\n### 2. 结果文件\n完整 JSON 已保存：`/root/occsafe_vla/artifacts/safelibero_libero_spatial_20260527_070927.json`\n（注意不在 experiments 目录下，在 artifacts 目录）\n\n### 3. cutoff_25k_s1_v2_eval 状态\n**仍在运行**（PID 620069，已运行 ~37 分钟），当前进度：Task 3，44/50 episodes (88%)。即大约在第 4/10 个 task，预计还需 ~1.5 小时完成。\n\n### 4. 34685 GPU 使用情况\n\n| GPU | 利用率 | 显存 | 状态 |\n|-----|--------|------|------|\n| cuda:0 | 99% | 62.2/97.9 GB | 占用 (PID 681204) |\n| cuda:1 | 97% | 62.2/97.9 GB | 占用 (PID 677648) |\n| cuda:2 | 0% | 1 MB/97.9 GB | **空闲** (detach_ln_s3_eval 已结束) |\n| cuda:3 | 14% | 16.7/97.9 GB | cutoff_25k_s1_v2_eval |\n\n**cuda:2 现在空闲，可安排新任务。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-34685-detach-ln-s3-eval-diagnose.md"
+}

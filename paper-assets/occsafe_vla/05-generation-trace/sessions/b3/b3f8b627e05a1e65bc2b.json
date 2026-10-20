@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "b3f8b627e05a1e65bc2b",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "code bev aux head",
+  "task_key": "worker_code_bev-aux-head_20260520T065627",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bev-aux-head_20260520T065627.log",
+    "occurrence": 1,
+    "bytes": 834325,
+    "sha256": "f69829001809b09d18f75a4ef0a7b32e0240b377b2cff97cad0273fdab27d0f6"
+  },
+  "statistics": {
+    "messages": 208,
+    "user_turns": 0,
+    "tool_calls": 76,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 52,
+      "tool_call": 76,
+      "tool_result": 76,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 208,
+      "chunks": [
+        {
+          "path": "b3f8b627e05a1e65bc2b-part-0001.json",
+          "message_count": 138
+        },
+        {
+          "path": "b3f8b627e05a1e65bc2b-part-0002.json",
+          "message_count": 70
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-bev-aux-head.md"
+}

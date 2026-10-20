@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c5a06c6d58f2b9a5a54",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval ablation occ detach s2 50r retry",
+  "task_key": "worker_eval_ablation_occ_detach_s2_50r_retry_20260522T210859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_ablation_occ_detach_s2_50r_retry_20260522T210859_result.json",
+    "occurrence": 1,
+    "bytes": 532,
+    "sha256": "374d221c7fab2b84073d023a5ad9531a02acdcf53f02774f6741c8c2466ce8db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估已成功启动并在正常运行：\n\n- **PID 60481** 在 GPU 1 (`00000000:38:00.0`)，占用 16760 MiB\n- 模型加载完成，已开始 rollout（Task 0, 1/50 完成，~4s/rollout）\n- 10 个 task × 50 rollouts，预计 ~35-50 分钟完成\n\n**修正关键**：`MUJOCO_EGL_DEVICE_ID=1`（不是 0）。EGL 设备编号不受 `CUDA_VISIBLE_DEVICES` 影响，仍使用物理设备号。robosuite 的断言做字符串检查 `\"1\" in \"1\"` 通过。日志路径：`/tmp/eval_ablation_occ_detach_s2.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-ablation-occ-detach-s2-50r-retry.md"
+}

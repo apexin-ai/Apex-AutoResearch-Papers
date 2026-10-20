@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af00aca7b40441eaca24",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ssh diagnose 10894 and precheck ckpt",
+  "task_key": "worker_ssh_diagnose_10894_and_precheck_ckpt_20260525T195143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_diagnose_10894_and_precheck_ckpt_20260525T195143_result.json",
+    "occurrence": 1,
+    "bytes": 3245,
+    "sha256": "a1d89ca70d35db751a94b0dc2986a673342f9d8576da2084b054c4e6aeb94b70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有实际命令已确认。现在汇总结果。\n\n## 10894 诊断结果\n\n| 实验 | GPU | 状态 | 当前 local step | log_step | 目标 log_step | 速度 | 下一个 checkpoint ETA |\n|------|-----|------|----------------|----------|-------------|------|----------------------|\n| cutoff_45k_s2_v2 | 0 | 训练中 | 8565/50005 | 8565 | 50000 | ~1.08 it/s | step 10000 → ~22min |\n| mvp_occ_s3_v2 | 1 | 训练中 | 8163/50005 | 28163 | 50000 | ~1.09 it/s | step 30000 → ~28min |\n| full_occ_ln_s3_v2 | 2 | 训练中 | 8349/50005 | 28349 | 50000 | ~1.08 it/s | step 30000 → ~25min |\n| ablation_occ_detach_s3_v2 | 3 | 训练中 | 8364/50005 | 28364 | 50000 | ~1.08 it/s | step 30000 → ~25min |\n\n**GPU**: 4× RTX PRO 6000 Blackwell (98GB)，全部 96-99% 利用率\n\n### Checkpoint 命名规则\n\n代码确认 (finetune.py:675):\n```\ncheckpoint_dir = Path(str(run_dir) + f\"--{log_step}_chkpt\")\n```\n\n**Resume 实验** (`--resume True --resume_step 20000`):\n- `log_step = 20000 + gradient_step_idx`（用 global step，不是 local）\n- save_freq=10000，下次保存在 **log_step 30000**（gradient_step_idx=10000）\n- 训练自动结束于 log_step=50005（gradient_step_idx=30005）\n\n### 确切 Checkpoint 路径\n\n**step 30000 checkpoint**（resume 实验下一个保存点，~25-28min 后）：\n```\n/root/autodl-tmp/checkpoints/mvp_occ_s3/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--mvp_occ_s3--30000_chkpt\n/root/autodl-tmp/checkpoints/full_occ_ln_s3/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--full_occ_ln_s3--30000_chkpt\n/root/autodl-tmp/checkpoints/ablation_occ_detach_s3/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--ablation_occ_detach_s3--30000_chkpt\n```\n\n**step 50000 checkpoint**（resume 实验最终保存点，gradient_step_idx=30000，~5.5h 后）：\n同上路径，后缀改为 `--50000_chkpt`\n\n**cutoff step 10000**（下一个，~22min 后）：\n```\n/root/autodl-tmp/checkpoints/cutoff_45k_s2_v2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--cutoff_45k_s2_v2--10000_chkpt\n```\n\n**cutoff step 50000**（最终，~10.7h 后）：同上路径，后缀 `--50000_chkpt`\n\n### 磁盘 — 红色警报\n\n```\n/root/autodl-tmp: 231G / 250G (93%),  仅剩 20GB\n/（根分区）:       22G / 30G  (71%),  仅剩 9GB\n```\n\n**每个 checkpoint ≈ 14.4GB。25-28 分钟内 4 个实验同时要保存 checkpoint（cutoff 的 10K + 3个 resume 的 30K），总计约 58GB，但只有 20GB 可用。第一个 checkpoint 保存成功后，后续 3 个将因磁盘满而失败，训练可能崩溃。**\n\n### \"local step 30000\" 的歧义\n\n代码中 progress bar 显示的是 `gradient_step_idx`（从 0 开始），但 checkpoint 用 `log_step`（= 20000 + gradient_step_idx）。\n\n- 如果 Director 说的 \"local step 30000\" = gradient_step_idx 30000 → 对应 log_step=50000，training 自动结束，无需 kill\n- 如果指 log_step 30000 → gradient_step_idx=10000，约 25 min 后到达，需要手动 kill\n\n请确认 Director 的意图，以及是否需要立即清理磁盘空间以避免 checkpoint 保存失败。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-diagnose-10894-and-precheck-ckpt.md"
+}

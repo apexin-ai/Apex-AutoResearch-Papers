@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "776d76b19cd8c7b7d851",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose detach ln s4 anomaly",
+  "task_key": "worker_diagnose_detach_ln_s4_anomaly_20260527T144548",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_detach_ln_s4_anomaly_20260527T144548_result.json",
+    "occurrence": 1,
+    "bytes": 3051,
+    "sha256": "31c75877f04a44464b12d645e4848194e4cb28f2d44e172c252a5de4ebc45604"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**确定根因。**\n\n## 排查报告：detach_ln_s4_eval TSR=0.018\n\n### 1. Action Loss 收敛情况\n**无法直接确认** — 训练日志完全缺失（westd-34685、westd-10894 的 `/root/occsafe_vla/logs/`、`/root/autodl-tmp/logs/` 均无 detach_ln_s4 训练日志，bash_history 为空，WandB offline run 数据不可解析）。\n\n但通过间接证据：\n- 40k→50k checkpoint 的 LoRA 权重几乎不变（growth ratio ~1.00x），说明训练已收敛/稳定\n- 权重中无 NaN/Inf\n- **但收敛到了错误解**\n\n### 2. Checkpoint 路径\n**正确** — eval 加载了 `/root/autodl-tmp/checkpoints/detach_ln_s4/...--detach_ln_s4--50000_chkpt`，checkpoint 文件完整（model shards、LoRA adapter、action_head、occ_head、proprio_projector 齐全）。\n\n### 3. 代码版本\ncheckpoint 中的 modeling_prismatic.py 和 configuration_prismatic.py 与 v2_s1 **完全一致**。eval 代码路径无差异。\n\n### 4. 根因判断：**训练产生了过度偏移的 LoRA 权重**\n\n直接推理对比（相同 dummy 输入）：\n\n| 指标 | s4 (broken) | v2_s1 (good) |\n|------|-------------|-------------|\n| 首步 z-action | **-0.824** | -0.247 |\n| gripper action | **1.0**（饱和）| 0.305 |\n| action range | [-0.83, 1.02] | [-0.26, 0.52] |\n| action mean | -0.015 | 0.034 |\n\n**s4 的动作预测值比正常模型大 2-4 倍。** 机器人执行极端动作，无法完成任何任务但会随机碰撞物体（CAR=67.2%）。\n\n根源是 **LLM 早期层 LoRA delta_W 异常**：\n\n| 层 | s4 delta_W std | v2 delta_W std | 倍率 |\n|----|-------------|-------------|------|\n| L0.q_proj | 0.00791 | 0.00254 | **3.1x** |\n| L0.v_proj | 0.00269 | 0.00055 | **4.9x** |\n| L0.down_proj | 0.00411 | 0.00084 | **4.9x** |\n| L15.q_proj | 0.00671 | 0.00677 | 1.0x |\n| L31.q_proj | 0.00650 | 0.00522 | 1.2x |\n\n早期层（L0-L1，处理视觉特征输入的层）LoRA 修正量过大 → hidden states 被放大 → action head 输出极端值。\n\n### 5. 为什么训练出了问题？\n\n无法确定确切原因（训练日志缺失），但发现以下线索：\n\n1. **代码版本差异**：训练时 committed 代码（`bdaee75`）**没有 `occ_norm_type` 参数**。尽管实验名含 \"ln\"，实际 occ_head 使用的是 BatchNorm（因为 LN 支持在未提交的修改中才添加）。但 `occ_detach=True` 理论上阻止了 occ 梯度回传，BN vs LN 不应影响 action loss。\n\n2. **另一个 v1 实验（s3）** 早期层也偏大但程度较轻（1.4-2.5x），提示 v1 训练可能系统性地存在早期层过度适应的倾向。\n\n3. **最可能解释**：不良随机种子导致训练早期阶段 L0 层接收到异常梯度信号后\"锁定\"在次优解上。40k 和 50k 权重几乎相同，说明问题在训练前半段就已形成。\n\n### 建议下一步\n- 这个 checkpoint **不可挽救**，需要用 v2 代码（含 LN 支持）以不同种子重新训练\n- 或者直接用已有的 3 个 v2 种子（s0/s1/s2）的结果，不再追加 v1 数据点"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-detach-ln-s4-anomaly.md"
+}

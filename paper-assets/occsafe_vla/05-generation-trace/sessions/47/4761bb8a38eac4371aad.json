@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4761bb8a38eac4371aad",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_8_1780049752.md",
+  "task_key": "loop_8_1780049752",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1780049752.md",
+    "occurrence": 1,
+    "bytes": 3658,
+    "sha256": "991f9ab9820ef0078fd9431ec9845a8d50a4d90769fe15edbb4bf171f07ac5f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-29T10:04:46+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: westd-10894 cuda:0/1/2/3 + westd-34685 cuda:0/1/2/3（共 8 张）\n- **GPU 当前不可用** — 两台均因 cgroup v2 限制只分配 1 卡，需用户在 AutoDL 控制台重启为 4 卡配置。未恢复前禁止提交任何实验\n- 10894 上 3 个实验曾因系统 RAM OOM 同时被杀（detach_ln_v2_s4 / vanilla_object_s2 / full_occ_bn_v2_s3），恢复后同时跑 3+ 实验需注意 RAM 压力，考虑减到 2 并发\n- 10894 基础模型目录 `/root/autodl-tmp/models/openvla-7b/model.safetensors.index.json` 曾被 checkpoint save 污染（4-shard 覆盖原始 3-shard），**提交新实验前必须先修复此文件**\n- submit_training_job 的 command 必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && ...`\n- v2 数据是 pure v2，不混入 v1 detach 数据（Director D072 决策）\n\n### 2. 🖥️ 基础设施快照\n- **westd-10894**: 工作目录 `/root/occsafe_vla/openvla-oft/`，conda env `occsafe`（`/root/miniconda3/envs/occsafe/`），数据 `/root/autodl-tmp/data/modified_libero_rlds/`，checkpoints `/root/autodl-tmp/checkpoints/`，磁盘 ~139G free (45%)\n- **westd-34685**: 同上路径结构，磁盘 ~819G free (2%)（注意：2% 是 used，即大量可用）\n- 模型: openvla-7b（`/root/autodl-tmp/models/openvla-7b`），LoRA rank 32\n- W&B: WANDB_MODE=disabled，cron 靠进程存活检测\n- **活跃进程: 无**（0 RUNNING 实验，0 active crons）\n- **活跃 Worker**: `worker_planning_post-submission-experiments_20260528T175139`（turn 9，SSH 探测中，可能已超时/卡住）\n\n### 3. 📊 当前状态\n项目已进入**审稿修复阶段**。论文已提交 SafeRL Workshop @ RSS 2025，第 3 轮审稿 4/10 Weak Reject，17 issue 中 12 个写作类已解决。\n\n剩余 5 个实验类 issue（全部需 GPU）：\n- RD2-N1: 加 seeds n≥5/cell 统计功效\n- RD2-N2: v2 Random OCC 验证 content irrelevance\n- RD2-W4: BN eval mode 消融\n- RD3-W3: λ₀ sweep {0.001, 0.01, 0.1}\n- R1-C9: v1/v2 mixing（关联 RD2-N2）\n\nRegistry: 160 实验全部终态（success 112, negative 6, failed 27, killed 等），0 RUNNING/PREPARING/QUEUED。\n\n本轮我做了 session-start 初始化 + 向 Director 汇报当前状态，问了 GPU 恢复进展。尚未收到 Director 回复。\n\n### 4. 📋 待办\n- 用户在 AutoDL 控制台重启 4 卡 → SSH 验证 GPU 可用 → 修复 10894 的 index.json → 按 ROADMAP 剩余 5 issue 批量提交实验\n- Worker `planning_post-submission-experiments` 返回 → 读取实验规划，整合到实验计划\n- Director 回复 GPU 恢复进展 → 按指示行动\n- GPU 恢复 + 实验规划就绪 → 立即并行提交（8 卡全开，优先 RD2-N1 种子扩展 + RD2-N2 Random OCC）\n\n### 5. 🎯 战略上下文\n- **核心 claim**: gradient flow 是 OCC head 损害源，detach 后 aux head 无害（≈ Vanilla）。两个 additive main effects：BN+gradient flow 有害（g=0.78）；LN 优势（g=0.88）。ANOVA 交互项零\n- **关键决策链**: D070→D074 确立 dual framing + v2 factorial；D075 保持 Cell 4 n=3 不纳入 s2；D076 revert 论文到 paper-final-check 版本\n- **易错点**:\n  - 那个 planning worker 已跑 >12h（从 17:51 UTC May 28 到现在），很可能已卡死/超时，接手后先 check 再决定是否 cancel 并重新规划\n  - libero_object 是 bonus 不是核心——GPU 恢复后优先核心 factorial 种子扩展\n  - 10894 的 `model.safetensors.index.json` 污染问题是个定时炸弹，不修所有后续实验 checkpoint save 都会崩\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1780049752.md"
+}

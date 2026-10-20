@@ -1,0 +1,492 @@
+{
+  "schema_version": "1.0",
+  "session_id": "2aeea3207c2603f5d7e7",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 174,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CdcW84UfZwkcTHVvj3MtPB",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-34685",
+                "command": "cat > /root/occsafe_vla/analysis/bootstrap_config.json << 'CONFIG_EOF'\n{\n  \"Vanilla\": [\n    \"/root/occsafe_vla/artifacts/safelibero_libero_spatial_20260522_015120.json\",\n    \"/root/occsafe_vla/artifacts/safelibero_libero_spatial_20260522_015159.json\",\n    \"/root/occsafe_vla/artifacts/safelibero_libero_spatial_20260522_015219.json\"\n  ],\n  \"Full OCC\": [\n    \"/root/occsafe_vla/artifacts/safelibero_libero_spatial_20260521_234842.json\",\n    \"/root/occsafe_vla/artifacts/safelibero_libero_spatial_20260522_120641.json\",\n    \"/root/occsafe_vla/artifacts/safelibero_libero_spatial_20260522_002946.json\"\n  ],\n  \"Detach OCC\": [\n    \"/root/occsafe_vla/analysis/eval_data_from_10894/ablation_occ_detach_s0_50r_50000.json\",\n    \"/root/occsafe_vla/analysis/eval_data_from_10894/ablation_occ_detach_s1_50r_50000.json\",\n    \"/root/occsafe_vla/analysis/eval_data_from_10894/ablation_occ_detach_s2_50r_50000.json\"\n  ],\n  \"Random OCC\": [\n    \"/root/occsafe_vla/analysis/eval_data_from_10894/ablation_random_occ_s0_50r_50000.json\",\n    \"/root/occsafe_vla/analysis/eval_data_from_10894/ablation_random_occ_s1_50r_50000.json\",\n    \"/root/occsafe_vla/analysis/eval_data_from_10894/ablation_random_occ_s2_50r_50000.json\"\n  ],\n  \"Depth\": [\n    \"/root/occsafe_vla/artifacts/safelibero_libero_spatial_20260523_082448.json\",\n    \"/root/occsafe_vla/artifacts/safelibero_libero_spatial_20260523_082442.json\",\n    \"/root/occsafe_vla/analysis/eval_data_from_10894/depth_s2_50r_50000.json\",\n    \"/root/occsafe_vla/analysis/eval_data_from_10894/depth_s3_50r_50000.json\"\n  ],\n  \"Cutoff\": [\n    \"/root/occsafe_vla/artifacts/safelibero_libero_spatial_20260523_085344.json\",\n    \"/root/occsafe_vla/artifacts/safelibero_libero_spatial_20260523_090427.json\"\n  ]\n}\nCONFIG_EOF\necho \"DONE: config written\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a2d76e6d-3899-4694-b414-93605249b9fe",
+            "uuid": "bc4b08a0-62e7-4672-9323-e685b8074ddd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TPgiDBj6X7JG9cubiFJtAf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5150,
+                "cache_read_input_tokens": 107999,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5150
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000174"
+        },
+        {
+          "source_line": 175,
+          "timestamp": "2026-05-23T06:18:07.636Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CdcW84UfZwkcTHVvj3MtPB",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"DONE: config written\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a2d76e6d-3899-4694-b414-93605249b9fe",
+            "uuid": "097274af-1c32-41a3-8fae-e481d13493e9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"DONE: config written\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"DONE: config written\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000175"
+        },
+        {
+          "source_line": 176,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FxUdFGqsXu9zdfMfSuKGJk",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-34685",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/analysis && python3 bootstrap_ci.py --config bootstrap_config.json --output bootstrap_results.json --n-bootstrap 10000",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a2d76e6d-3899-4694-b414-93605249b9fe",
+            "uuid": "137e4bda-b5df-4381-b8ea-09c7b1ca0059",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015YhcmzkTNKpmhuVoJ56Bkd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 996,
+                "cache_read_input_tokens": 113149,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 996
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000176"
+        },
+        {
+          "source_line": 177,
+          "timestamp": "2026-05-23T06:18:18.708Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FxUdFGqsXu9zdfMfSuKGJk",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n% ============ MAIN TABLE ============\\\\n\\\\\\\\begin{table}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{SafeLIBERO evaluation results with 95\\\\\\\\% bootstrap CI ($B=10{,}000$).}\\\\n\\\\\\\\label{tab:bootstrap_results}\\\\n\\\\\\\\begin{tabular}{lcccc}\\\\n\\\\\\\\toprule\\\\nCondition & Seeds & TSR (mean$\\\\\\\\pm$std) & CAR (mean$\\\\\\\\pm$std) & CAR 95\\\\\\\\% CI \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n  Vanilla & 3 & $0.907 \\\\\\\\pm 0.009$ & $0.780 \\\\\\\\pm 0.012$ & $[0.759,\\\\\\\\ 0.801]$ \\\\\\\\\\\\\\\\\\\\n  Full OCC & 3 & $0.894 \\\\\\\\pm 0.050$ & $0.797 \\\\\\\\pm 0.032$ & $[0.776,\\\\\\\\ 0.817]$ \\\\\\\\\\\\\\\\\\\\n  Detach OCC & 3 & $0.812 \\\\\\\\pm 0.163$ & $0.746 \\\\\\\\pm 0.002$ & $[0.723,\\\\\\\\ 0.768]$ \\\\\\\\\\\\\\\\\\\\n  Random OCC & 3 & $0.869 \\\\\\\\pm 0.029$ & $0.789 \\\\\\\\pm 0.031$ & $[0.767,\\\\\\\\ 0.809]$ \\\\\\\\\\\\\\\\\\\\n  Depth & 4 & $0.888 \\\\\\\\pm 0.042$ & $0.780 \\\\\\\\pm 0.039$ & $[0.762,\\\\\\\\ 0.797]$ \\\\\\\\\\\\\\\\\\\\n  Cutoff & 2 & $0.915 \\\\\\\\pm 0.004$ & $0.783 \\\\\\\\pm 0.021$ & $[0.757,\\\\\\\\ 0.808]$ \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n% ============ PAIRWISE TABLE ============\\\\n\\\\\\\\begin{table}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Pairwise $\\\\\\\\Delta$ CAR with 95\\\\\\\\% bootstrap CI.}\\\\n\\\\\\\\label{tab:pairwise_car}\\\\n\\\\\\\\begin{tabular}{llccc}\\\\n\\\\\\\\toprule\\\\nCondition A & Condition B & $\\\\\\\\Delta$ CAR & 95\\\\\\\\% CI & Significant? \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n  Vanilla & Full OCC & $-0.017$ & $[-0.045,\\\\\\\\ +0.012]$ & No \\\\\\\\\\\\\\\\\\\\n  Vanilla & Detach OCC & $+0.034$ & $[+0.003,\\\\\\\\ +0.065]$ & \\\\\\\\textbf{Yes} \\\\\\\\\\\\\\\\\\\\n  Vanilla & Random OCC & $-0.009$ & $[-0.039,\\\\\\\\ +0.021]$ & No \\\\\\\\\\\\\\\\\\\\n  Vanilla & Depth & $+0.000$ & $[-0.027,\\\\\\\\ +0.028]$ & No \\\\\\\\\\\\\\\\\\\\n  Vanilla & Cutoff & $-0.003$ & $[-0.035,\\\\\\\\ +0.030]$ & No \\\\\\\\\\\\\\\\\\\\n  Full OCC & Detach OCC & $+0.051$ & $[+0.021,\\\\\\\\ +0.081]$ & \\\\\\\\textbf{Yes} \\\\\\\\\\\\\\\\\\\\n  Full OCC & Random OCC & $+0.008$ & $[-0.021,\\\\\\\\ +0.037]$ & No \\\\\\\\\\\\\\\\\\\\n  Full OCC & Depth & $+0.017$ & $[-0.010,\\\\\\\\ +0.045]$ & No \\\\\\\\\\\\\\\\\\\\n  Full OCC & Cutoff & $+0.014$ & $[-0.018,\\\\\\\\ +0.047]$ & No \\\\\\\\\\\\\\\\\\\\n  Detach OCC & Random OCC & $-0.043$ & $[-0.073,\\\\\\\\ -0.013]$ & \\\\\\\\textbf{Yes} \\\\\\\\\\\\\\\\\\\\n  Detach OCC & Depth & $-0.034$ & $[-0.062,\\\\\\\\ -0.005]$ & \\\\\\\\textbf{Yes} \\\\\\\\\\\\\\\\\\\\n  Detach OCC & Cutoff & $-0.037$ & $[-0.071,\\\\\\\\ -0.004]$ & \\\\\\\\textbf{Yes} \\\\\\\\\\\\\\\\\\\\n  Random OCC & Depth & $+0.009$ & $[-0.018,\\\\\\\\ +0.037]$ & No \\\\\\\\\\\\\\\\\\\\n  Random OCC & Cutoff & $+0.006$ & $[-0.027,\\\\\\\\ +0.038]$ & No \\\\\\\\\\\\\\\\\\\\n  Depth & Cutoff & $-0.003$ & $[-0.034,\\\\\\\\ +0.027]$ & No \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\", \\\"stderr\\\": \\\"  Loaded /root/occsafe_vla/artifacts/safelibero_libero_spatial_20260522_015120.json: 500 episodes\\\\n  Loaded /root/occsafe_vla/artifacts/safelibero_libero_spatial_20260522_015159.json: 500 episodes\\\\n  Loaded /root/occsafe_vla/artifacts/safelibero_libero_spatial_20260522_015219.json: 500 episodes\\\\n  Loaded /root/occsafe_vla/artifacts/safelibero_libero_spatial_20260521_234842.json: 500 episodes\\\\n  Loaded /root/occsafe_vla/artifacts/safelibero_libero_spatial_20260522_120641.json: 500 episodes\\\\n  Loaded /root/occsafe_vla/artifacts/safelibero_libero_spatial_20260522_002946.json: 500 episodes\\\\n  Loaded /root/occsafe_vla/analysis/eval_data_from_10894/ablation_occ_detach_s0_50r_50000.json: 500 episodes\\\\n  Loaded /root/occsafe_vla/analysis/eval_data_from_10894/ablation_occ_detach_s1_50r_50000.json: 500 episodes\\\\n  Loaded /root/occsafe_vla/analysis/eval_data_from_10894/ablation_occ_detach_s2_50r_50000.json: 500 episodes\\\\n  Loaded /root/occsafe_vla/analysis/eval_data_from_10894/ablation_random_occ_s0_50r_50000.json: 500 episodes\\\\n  Loaded /root/occsafe_vla/analysis/eval_data_from_10894/ablation_random_occ_s1_50r_50000.json: 500 episodes\\\\n  Loaded /root/occsafe_vla/analysis/eval_data_from_10894/ablation_random_occ_s2_50r_50000.json: 500 episodes\\\\n  Loaded /root/occsafe_vla/artifacts/safelibero_libero_spatial_20260523_082448.json: 500 episodes\\\\n  Loaded /root/occsafe_vla/artifacts/safelibero_libero_spatial_20260523_082442.json: 500 episodes\\\\n  Loaded /root/occsafe_vla/analysis/eval_data_from_10894/depth_s2_50r_50000.json: 500 episodes\\\\n  Loaded /root/occsafe_vla/analysis/eval_data_from_10894/depth_s3_50r_50000.json: 500 episodes\\\\n  Loaded /root/occsafe_vla/artifacts/safelibero_libero_spatial_20260523_085344.json: 500 episodes\\\\n  Loaded /root/occsafe_vla/artifacts/safelibero_libero_spatial_20260523_090427.json: 500 episodes\\\\n======================================================================\\\\nPer-condition bootstrap results:\\\\n======================================================================\\\\n  [Vanilla] seeds=3  TSR=0.907±0.009  CAR=0.780±0.012  95% CI [0.759, 0.801]\\\\n  [Full OCC] seeds=3  TSR=0.894±0.050  CAR=0.797±0.032  95% CI [0.776, 0.817]\\\\n  [Detach OCC] seeds=3  TSR=0.812±0.163  CAR=0.746±0.002  95% CI [0.723, 0.768]\\\\n  [Random OCC] seeds=3  TSR=0.869±0.029  CAR=0.789±0.031  95% CI [0.767, 0.809]\\\\n  [Depth] seeds=4  TSR=0.888±0.042  CAR=0.780±0.039  95% CI [0.762, 0.797]\\\\n  [Cutoff] seeds=2  TSR=0.915±0.004  CAR=0.783±0.021  95% CI [0.757, 0.808]\\\\n\\\\n======================================================================\\\\nPairwise comparisons:\\\\n======================================================================\\\\n  Vanilla vs Full OCC: ΔCAR=-0.017  95% CI [-0.045, +0.012]\\\\n  Vanilla vs Detach OCC: ΔCAR=+0.034  95% CI [+0.003, +0.065] ***\\\\n  Vanilla vs Random OCC: ΔCAR=-0.009  95% CI [-0.039, +0.021]\\\\n  Vanilla vs Depth: ΔCAR=+0.000  95% CI [-0.027, +0.028]\\\\n  Vanilla vs Cutoff: ΔCAR=-0.003  95% CI [-0.035, +0.030]\\\\n  Full OCC vs Detach OCC: ΔCAR=+0.051  95% CI [+0.021, +0.081] ***\\\\n  Full OCC vs Random OCC: ΔCAR=+0.008  95% CI [-0.021, +0.037]\\\\n  Full OCC vs Depth: ΔCAR=+0.017  95% CI [-0.010, +0.045]\\\\n  Full OCC vs Cutoff: ΔCAR=+0.014  95% CI [-0.018, +0.047]\\\\n  Detach OCC vs Random OCC: ΔCAR=-0.043  95% CI [-0.073, -0.013] ***\\\\n  Detach OCC vs Depth: ΔCAR=-0.034  95% CI [-0.062, -0.005] ***\\\\n  Detach OCC vs Cutoff: ΔCAR=-0.037  95% CI [-0.071, -0.004] ***\\\\n  Random OCC vs Depth: ΔCAR=+0.009  95% CI [-0.018, +0.037]\\\\n  Random OCC vs Cutoff: ΔCAR=+0.006  95% CI [-0.027, +0.038]\\\\n  Depth vs Cutoff: ΔCAR=-0.003  95% CI [-0.034, +0.027]\\\\n\\\\nResults saved to bootstrap_results.json\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.22}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a2d76e6d-3899-4694-b414-93605249b9fe",
+            "uuid": "544454a7-5087-4b56-9ddc-3359ad3e6505",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n% ============ MAIN TABLE ============\\\\n\\\\\\\\begin{table}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{SafeLIBERO evaluation results with 95\\\\\\\\% bootstrap CI ($B=10{,}000$).}\\\\n\\\\\\\\label{tab:bootstrap_results}\\\\n\\\\\\\\begin{tabular}{lcccc}\\\\n\\\\\\\\toprule\\\\nCondition & Seeds & TSR (mean$\\\\\\\\pm$std) & CAR (mean$\\\\\\\\pm$std) & CAR 95\\\\\\\\% CI \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n  Vanilla & 3 & $0.907 \\\\\\\\pm 0.009$ & $0.780 \\\\\\\\pm 0.012$ & $[0.759,\\\\\\\\ 0.801]$ \\\\\\\\\\\\\\\\\\\\n  Full OCC & 3 & $0.894 \\\\\\\\pm 0.050$ & $0.797 \\\\\\\\pm 0.032$ & $[0.776,\\\\\\\\ 0.817]$ \\\\\\\\\\\\\\\\\\\\n  Detach OCC & 3 & $0.812 \\\\\\\\pm 0.163$ & $0.746 \\\\\\\\pm 0.002$ & $[0.723,\\\\\\\\ 0.768]$ \\\\\\\\\\\\\\\\\\\\n  Random OCC & 3 & $0.869 \\\\\\\\pm 0.029$ & $0.789 \\\\\\\\pm 0.031$ & $[0.767,\\\\\\\\ 0.809]$ \\\\\\\\\\\\\\\\\\\\n  Depth & 4 & $0.888 \\\\\\\\pm 0.042$ & $0.780 \\\\\\\\pm 0.039$ & $[0.762,\\\\\\\\ 0.797]$ \\\\\\\\\\\\\\\\\\\\n  Cutoff & 2 & $0.915 \\\\\\\\pm 0.004$ & $0.783 \\\\\\\\pm 0.021$ & $[0.757,\\\\\\\\ 0.808]$ \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n% ============ PAIRWISE TABLE ============\\\\n\\\\\\\\begin{table}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Pairwise $\\\\\\\\Delta$ CAR with 95\\\\\\\\% bootstrap CI.}\\\\n\\\\\\\\label{tab:pairwise_car}\\\\n\\\\\\\\begin{tabular}{llccc}\\\\n\\\\\\\\toprule\\\\nCondition A & Condition B & $\\\\\\\\Delta$ CAR & 95\\\\\\\\% CI & Significant? \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n  Vanilla & Full OCC & $-0.017$ & $[-0.045,\\\\\\\\ +0.012]$ & No \\\\\\\\\\\\\\\\\\\\n  Vanilla & Detach OCC & $+0.034$ & $[+0.003,\\\\\\\\ +0.065]$ & \\\\\\\\textbf{Yes} \\\\\\\\\\\\\\\\\\\\n  Vanilla & Random OCC & $-0.009$ & $[-0.039,\\\\\\\\ +0.021]$ & No \\\\\\\\\\\\\\\\\\\\n  Vanilla & Depth & $+0.000$ & $[-0.027,\\\\\\\\ +0.028]$ & No \\\\\\\\\\\\\\\\\\\\n  Vanilla & Cutoff & $-0.003$ & $[-0.035,\\\\\\\\ +0.030]$ & No \\\\\\\\\\\\\\\\\\\\n  Full OCC & Detach OCC & $+0.051$ & $[+0.021,\\\\\\\\ +0.081]$ & \\\\\\\\textbf{Yes} \\\\\\\\\\\\\\\\\\\\n  Full OCC & Random OCC & $+0.008$ & $[-0.021,\\\\\\\\ +0.037]$ & No \\\\\\\\\\\\\\\\\\\\n  Full OCC & Depth & $+0.017$ & $[-0.010,\\\\\\\\ +0.045]$ & No \\\\\\\\\\\\\\\\\\\\n  Full OCC & Cutoff & $+0.014$ & $[-0.018,\\\\\\\\ +0.047]$ & No \\\\\\\\\\\\\\\\\\\\n  Detach OCC & Random OCC & $-0.043$ & $[-0.073,\\\\\\\\ -0.013]$ & \\\\\\\\textbf{Yes} \\\\\\\\\\\\\\\\\\\\n  Detach OCC & Depth & $-0.034$ & $[-0.062,\\\\\\\\ -0.005]$ & \\\\\\\\textbf{Yes} \\\\\\\\\\\\\\\\\\\\n  Detach OCC & Cutoff & $-0.037$ & $[-0.071,\\\\\\\\ -0.004]$ & \\\\\\\\textbf{Yes} \\\\\\\\\\\\\\\\\\\\n  Random OCC & Depth & $+0.009$ & $[-0.018,\\\\\\\\ +0.037]$ & No \\\\\\\\\\\\\\\\\\\\n  Random OCC & Cutoff & $+0.006$ & $[-0.027,\\\\\\\\ +0.038]$ & No \\\\\\\\\\\\\\\\\\\\n  Depth & Cutoff & $-0.003$ & $[-0.034,\\\\\\\\ +0.027]$ & No \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\", \\\"stderr\\\": \\\"  Loaded /root/occsafe_vla/artifacts/safelibero_libero_spatial_20260522_015120.json: 500 episodes\\\\n  Loaded /root/occsafe_vla/artifacts/safelibero_libero_spatial_20260522_015159.json: 500 episodes\\\\n  Loaded /root/occsafe_vla/artifacts/safelibero_libero_spatial_20260522_015219.json: 500 episodes\\\\n  Loaded /root/occsafe_vla/artifacts/safelibero_libero_spatial_20260521_234842.json: 500 episodes\\\\n  Loaded /root/occsafe_vla/artifacts/safelibero_libero_spatial_20260522_120641.json: 500 episodes\\\\n  Loaded /root/occsafe_vla/artifacts/safelibero_libero_spatial_20260522_002946.json: 500 episodes\\\\n  Loaded /root/occsafe_vla/analysis/eval_data_from_10894/ablation_occ_detach_s0_50r_50000.json: 500 episodes\\\\n  Loaded /root/occsafe_vla/analysis/eval_data_from_10894/ablation_occ_detach_s1_50r_50000.json: 500 episodes\\\\n  Loaded /root/occsafe_vla/analysis/eval_data_from_10894/ablation_occ_detach_s2_50r_50000.json: 500 episodes\\\\n  Loaded /root/occsafe_vla/analysis/eval_data_from_10894/ablation_random_occ_s0_50r_50000.json: 500 episodes\\\\n  Loaded /root/occsafe_vla/analysis/eval_data_from_10894/ablation_random_occ_s1_50r_50000.json: 500 episodes\\\\n  Loaded /root/occsafe_vla/analysis/eval_data_from_10894/ablation_random_occ_s2_50r_50000.json: 500 episodes\\\\n  Loaded /root/occsafe_vla/artifacts/safelibero_libero_spatial_20260523_082448.json: 500 episodes\\\\n  Loaded /root/occsafe_vla/artifacts/safelibero_libero_spatial_20260523_082442.json: 500 episodes\\\\n  Loaded /root/occsafe_vla/analysis/eval_data_from_10894/depth_s2_50r_50000.json: 500 episodes\\\\n  Loaded /root/occsafe_vla/analysis/eval_data_from_10894/depth_s3_50r_50000.json: 500 episodes\\\\n  Loaded /root/occsafe_vla/artifacts/safelibero_libero_spatial_20260523_085344.json: 500 episodes\\\\n  Loaded /root/occsafe_vla/artifacts/safelibero_libero_spatial_20260523_090427.json: 500 episodes\\\\n======================================================================\\\\nPer-condition bootstrap results:\\\\n======================================================================\\\\n  [Vanilla] seeds=3  TSR=0.907±0.009  CAR=0.780±0.012  95% CI [0.759, 0.801]\\\\n  [Full OCC] seeds=3  TSR=0.894±0.050  CAR=0.797±0.032  95% CI [0.776, 0.817]\\\\n  [Detach OCC] seeds=3  TSR=0.812±0.163  CAR=0.746±0.002  95% CI [0.723, 0.768]\\\\n  [Random OCC] seeds=3  TSR=0.869±0.029  CAR=0.789±0.031  95% CI [0.767, 0.809]\\\\n  [Depth] seeds=4  TSR=0.888±0.042  CAR=0.780±0.039  95% CI [0.762, 0.797]\\\\n  [Cutoff] seeds=2  TSR=0.915±0.004  CAR=0.783±0.021  95% CI [0.757, 0.808]\\\\n\\\\n======================================================================\\\\nPairwise comparisons:\\\\n======================================================================\\\\n  Vanilla vs Full OCC: ΔCAR=-0.017  95% CI [-0.045, +0.012]\\\\n  Vanilla vs Detach OCC: ΔCAR=+0.034  95% CI [+0.003, +0.065] ***\\\\n  Vanilla vs Random OCC: ΔCAR=-0.009  95% CI [-0.039, +0.021]\\\\n  Vanilla vs Depth: ΔCAR=+0.000  95% CI [-0.027, +0.028]\\\\n  Vanilla vs Cutoff: ΔCAR=-0.003  95% CI [-0.035, +0.030]\\\\n  Full OCC vs Detach OCC: ΔCAR=+0.051  95% CI [+0.021, +0.081] ***\\\\n  Full OCC vs Random OCC: ΔCAR=+0.008  95% CI [-0.021, +0.037]\\\\n  Full OCC vs Depth: ΔCAR=+0.017  95% CI [-0.010, +0.045]\\\\n  Full OCC vs Cutoff: ΔCAR=+0.014  95% CI [-0.018, +0.047]\\\\n  Detach OCC vs Random OCC: ΔCAR=-0.043  95% CI [-0.073, -0.013] ***\\\\n  Detach OCC vs Depth: ΔCAR=-0.034  95% CI [-0.062, -0.005] ***\\\\n  Detach OCC vs Cutoff: ΔCAR=-0.037  95% CI [-0.071, -0.004] ***\\\\n  Random OCC vs Depth: ΔCAR=+0.009  95% CI [-0.018, +0.037]\\\\n  Random OCC vs Cutoff: ΔCAR=+0.006  95% CI [-0.027, +0.038]\\\\n  Depth vs Cutoff: ΔCAR=-0.003  95% CI [-0.034, +0.027]\\\\n\\\\nResults saved to bootstrap_results.json\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.22}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n% ============ MAIN TABLE ============\\n\\\\begin{table}[t]\\n\\\\centering\\n\\\\caption{SafeLIBERO evaluation results with 95\\\\% bootstrap CI ($B=10{,}000$).}\\n\\\\label{tab:bootstrap_results}\\n\\\\begin{tabular}{lcccc}\\n\\\\toprule\\nCondition & Seeds & TSR (mean$\\\\pm$std) & CAR (mean$\\\\pm$std) & CAR 95\\\\% CI \\\\\\\\\\n\\\\midrule\\n  Vanilla & 3 & $0.907 \\\\pm 0.009$ & $0.780 \\\\pm 0.012$ & $[0.759,\\\\ 0.801]$ \\\\\\\\\\n  Full OCC & 3 & $0.894 \\\\pm 0.050$ & $0.797 \\\\pm 0.032$ & $[0.776,\\\\ 0.817]$ \\\\\\\\\\n  Detach OCC & 3 & $0.812 \\\\pm 0.163$ & $0.746 \\\\pm 0.002$ & $[0.723,\\\\ 0.768]$ \\\\\\\\\\n  Random OCC & 3 & $0.869 \\\\pm 0.029$ & $0.789 \\\\pm 0.031$ & $[0.767,\\\\ 0.809]$ \\\\\\\\\\n  Depth & 4 & $0.888 \\\\pm 0.042$ & $0.780 \\\\pm 0.039$ & $[0.762,\\\\ 0.797]$ \\\\\\\\\\n  Cutoff & 2 & $0.915 \\\\pm 0.004$ & $0.783 \\\\pm 0.021$ & $[0.757,\\\\ 0.808]$ \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\n% ============ PAIRWISE TABLE ============\\n\\\\begin{table}[t]\\n\\\\centering\\n\\\\caption{Pairwise $\\\\Delta$ CAR with 95\\\\% bootstrap CI.}\\n\\\\label{tab:pairwise_car}\\n\\\\begin{tabular}{llccc}\\n\\\\toprule\\nCondition A & Condition B & $\\\\Delta$ CAR & 95\\\\% CI & Significant? \\\\\\\\\\n\\\\midrule\\n  Vanilla & Full OCC & $-0.017$ & $[-0.045,\\\\ +0.012]$ & No \\\\\\\\\\n  Vanilla & Detach OCC & $+0.034$ & $[+0.003,\\\\ +0.065]$ & \\\\textbf{Yes} \\\\\\\\\\n  Vanilla & Random OCC & $-0.009$ & $[-0.039,\\\\ +0.021]$ & No \\\\\\\\\\n  Vanilla & Depth & $+0.000$ & $[-0.027,\\\\ +0.028]$ & No \\\\\\\\\\n  Vanilla & Cutoff & $-0.003$ & $[-0.035,\\\\ +0.030]$ & No \\\\\\\\\\n  Full OCC & Detach OCC & $+0.051$ & $[+0.021,\\\\ +0.081]$ & \\\\textbf{Yes} \\\\\\\\\\n  Full OCC & Random OCC & $+0.008$ & $[-0.021,\\\\ +0.037]$ & No \\\\\\\\\\n  Full OCC & Depth & $+0.017$ & $[-0.010,\\\\ +0.045]$ & No \\\\\\\\\\n  Full OCC & Cutoff & $+0.014$ & $[-0.018,\\\\ +0.047]$ & No \\\\\\\\\\n  Detach OCC & Random OCC & $-0.043$ & $[-0.073,\\\\ -0.013]$ & \\\\textbf{Yes} \\\\\\\\\\n  Detach OCC & Depth & $-0.034$ & $[-0.062,\\\\ -0.005]$ & \\\\textbf{Yes} \\\\\\\\\\n  Detach OCC & Cutoff & $-0.037$ & $[-0.071,\\\\ -0.004]$ & \\\\textbf{Yes} \\\\\\\\\\n  Random OCC & Depth & $+0.009$ & $[-0.018,\\\\ +0.037]$ & No \\\\\\\\\\n  Random OCC & Cutoff & $+0.006$ & $[-0.027,\\\\ +0.038]$ & No \\\\\\\\\\n  Depth & Cutoff & $-0.003$ & $[-0.034,\\\\ +0.027]$ & No \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\", \"stderr\": \"  Loaded /root/occsafe_vla/artifacts/safelibero_libero_spatial_20260522_015120.json: 500 episodes\\n  Loaded /root/occsafe_vla/artifacts/safelibero_libero_spatial_20260522_015159.json: 500 episodes\\n  Loaded /root/occsafe_vla/artifacts/safelibero_libero_spatial_20260522_015219.json: 500 episodes\\n  Loaded /root/occsafe_vla/artifacts/safelibero_libero_spatial_20260521_234842.json: 500 episodes\\n  Loaded /root/occsafe_vla/artifacts/safelibero_libero_spatial_20260522_120641.json: 500 episodes\\n  Loaded /root/occsafe_vla/artifacts/safelibero_libero_spatial_20260522_002946.json: 500 episodes\\n  Loaded /root/occsafe_vla/analysis/eval_data_from_10894/ablation_occ_detach_s0_50r_50000.json: 500 episodes\\n  Loaded /root/occsafe_vla/analysis/eval_data_from_10894/ablation_occ_detach_s1_50r_50000.json: 500 episodes\\n  Loaded /root/occsafe_vla/analysis/eval_data_from_10894/ablation_occ_detach_s2_50r_50000.json: 500 episodes\\n  Loaded /root/occsafe_vla/analysis/eval_data_from_10894/ablation_random_occ_s0_50r_50000.json: 500 episodes\\n  Loaded /root/occsafe_vla/analysis/eval_data_from_10894/ablation_random_occ_s1_50r_50000.json: 500 episodes\\n  Loaded /root/occsafe_vla/analysis/eval_data_from_10894/ablation_random_occ_s2_50r_50000.json: 500 episodes\\n  Loaded /root/occsafe_vla/artifacts/safelibero_libero_spatial_20260523_082448.json: 500 episodes\\n  Loaded /root/occsafe_vla/artifacts/safelibero_libero_spatial_20260523_082442.json: 500 episodes\\n  Loaded /root/occsafe_vla/analysis/eval_data_from_10894/depth_s2_50r_50000.json: 500 episodes\\n  Loaded /root/occsafe_vla/analysis/eval_data_from_10894/depth_s3_50r_50000.json: 500 episodes\\n  Loaded /root/occsafe_vla/artifacts/safelibero_libero_spatial_20260523_085344.json: 500 episodes\\n  Loaded /root/occsafe_vla/artifacts/safelibero_libero_spatial_20260523_090427.json: 500 episodes\\n======================================================================\\nPer-condition bootstrap results:\\n======================================================================\\n  [Vanilla] seeds=3  TSR=0.907±0.009  CAR=0.780±0.012  95% CI [0.759, 0.801]\\n  [Full OCC] seeds=3  TSR=0.894±0.050  CAR=0.797±0.032  95% CI [0.776, 0.817]\\n  [Detach OCC] seeds=3  TSR=0.812±0.163  CAR=0.746±0.002  95% CI [0.723, 0.768]\\n  [Random OCC] seeds=3  TSR=0.869±0.029  CAR=0.789±0.031  95% CI [0.767, 0.809]\\n  [Depth] seeds=4  TSR=0.888±0.042  CAR=0.780±0.039  95% CI [0.762, 0.797]\\n  [Cutoff] seeds=2  TSR=0.915±0.004  CAR=0.783±0.021  95% CI [0.757, 0.808]\\n\\n======================================================================\\nPairwise comparisons:\\n======================================================================\\n  Vanilla vs Full OCC: ΔCAR=-0.017  95% CI [-0.045, +0.012]\\n  Vanilla vs Detach OCC: ΔCAR=+0.034  95% CI [+0.003, +0.065] ***\\n  Vanilla vs Random OCC: ΔCAR=-0.009  95% CI [-0.039, +0.021]\\n  Vanilla vs Depth: ΔCAR=+0.000  95% CI [-0.027, +0.028]\\n  Vanilla vs Cutoff: ΔCAR=-0.003  95% CI [-0.035, +0.030]\\n  Full OCC vs Detach OCC: ΔCAR=+0.051  95% CI [+0.021, +0.081] ***\\n  Full OCC vs Random OCC: ΔCAR=+0.008  95% CI [-0.021, +0.037]\\n  Full OCC vs Depth: ΔCAR=+0.017  95% CI [-0.010, +0.045]\\n  Full OCC vs Cutoff: ΔCAR=+0.014  95% CI [-0.018, +0.047]\\n  Detach OCC vs Random OCC: ΔCAR=-0.043  95% CI [-0.073, -0.013] ***\\n  Detach OCC vs Depth: ΔCAR=-0.034  95% CI [-0.062, -0.005] ***\\n  Detach OCC vs Cutoff: ΔCAR=-0.037  95% CI [-0.071, -0.004] ***\\n  Random OCC vs Depth: ΔCAR=+0.009  95% CI [-0.018, +0.037]\\n  Random OCC vs Cutoff: ΔCAR=+0.006  95% CI [-0.027, +0.038]\\n  Depth vs Cutoff: ΔCAR=-0.003  95% CI [-0.034, +0.027]\\n\\nResults saved to bootstrap_results.json\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.22}}"
+              }
+            }
+          },
+          "id": "event-000177"
+        },
+        {
+          "source_line": 178,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本运行成功，结果完整。注册 artifacts。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a2d76e6d-3899-4694-b414-93605249b9fe",
+            "uuid": "73062d9b-6ecd-449b-9022-0f5d9b3a1d70",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017CFhJfuWGutY54p3SRCseJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3179,
+                "cache_read_input_tokens": 114145,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3179
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013t3QFJ3W1WaytUsxt4Mir2",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "bootstrap_ci_script",
+                "type": "data",
+                "description": "Bootstrap CI analysis script for SafeLIBERO eval results (10000 iterations, hierarchical bootstrap, LaTeX output)",
+                "project": "occsafe_vla",
+                "source_path": "/root/occsafe_vla/analysis/bootstrap_ci.py",
+                "tags": [
+                  "analysis",
+                  "bootstrap",
+                  "statistics"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a2d76e6d-3899-4694-b414-93605249b9fe",
+            "uuid": "f205353d-eead-48c5-9f2f-6ec16a92c7c5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017CFhJfuWGutY54p3SRCseJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3179,
+                "cache_read_input_tokens": 114145,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3179
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000179"
+        },
+        {
+          "source_line": 180,
+          "timestamp": "2026-05-23T06:18:24.582Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013t3QFJ3W1WaytUsxt4Mir2",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/occsafe_vla/analysis/bootstrap_ci.py\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a2d76e6d-3899-4694-b414-93605249b9fe",
+            "uuid": "12b7406e-6cab-4f51-a006-276d3e2ce9c9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/occsafe_vla/analysis/bootstrap_ci.py\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/occsafe_vla/analysis/bootstrap_ci.py\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000180"
+        },
+        {
+          "source_line": 181,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01K6iScahsW6CoeEHwgdYNBH",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "bootstrap_ci_results",
+                "type": "data",
+                "description": "Bootstrap CI analysis results for 6 conditions (Vanilla, Full OCC, Detach OCC, Random OCC, Depth, Cutoff) with pairwise comparisons",
+                "project": "occsafe_vla",
+                "content_filename": "bootstrap_results_summary.txt",
+                "content": "Bootstrap CI Results (B=10000, hierarchical bootstrap, 95% percentile CI)\n\nPer-condition:\n  [Vanilla]    seeds=3  TSR=0.907±0.009  CAR=0.780±0.012  95% CI [0.759, 0.801]\n  [Full OCC]   seeds=3  TSR=0.894±0.050  CAR=0.797±0.032  95% CI [0.776, 0.817]\n  [Detach OCC] seeds=3  TSR=0.812±0.163  CAR=0.746±0.002  95% CI [0.723, 0.768]\n  [Random OCC] seeds=3  TSR=0.869±0.029  CAR=0.789±0.031  95% CI [0.767, 0.809]\n  [Depth]      seeds=4  TSR=0.888±0.042  CAR=0.780±0.039  95% CI [0.762, 0.797]\n  [Cutoff]     seeds=2  TSR=0.915±0.004  CAR=0.783±0.021  95% CI [0.757, 0.808]\n\nSignificant pairwise comparisons (CI excludes 0):\n  Vanilla vs Detach OCC:    ΔCAR=+0.034  95% CI [+0.003, +0.065]\n  Full OCC vs Detach OCC:   ΔCAR=+0.051  95% CI [+0.021, +0.081]\n  Detach OCC vs Random OCC: ΔCAR=-0.043  95% CI [-0.073, -0.013]\n  Detach OCC vs Depth:      ΔCAR=-0.034  95% CI [-0.062, -0.005]\n  Detach OCC vs Cutoff:     ΔCAR=-0.037  95% CI [-0.071, -0.004]\n\nFiles on westd-34685:\n  Script: /root/occsafe_vla/analysis/bootstrap_ci.py\n  Config: /root/occsafe_vla/analysis/bootstrap_config.json\n  Results JSON: /root/occsafe_vla/analysis/bootstrap_results.json\n  Manifest: /root/occsafe_vla/analysis/eval_data_manifest.json",
+                "tags": [
+                  "analysis",
+                  "bootstrap",
+                  "statistics"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a2d76e6d-3899-4694-b414-93605249b9fe",
+            "uuid": "a0c41ae7-4a1d-423a-bede-0b45206695f0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01G9FruuuqcUT7HF3Z335qFG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 394,
+                "cache_read_input_tokens": 117324,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 394
+                },
+                "output_tokens": 60,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": "2026-05-23T06:18:36.051Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01K6iScahsW6CoeEHwgdYNBH",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260523_2f92df\\\", \\\"name\\\": \\\"bootstrap_ci_results\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Bootstrap CI analysis results for 6 conditions (Vanilla, Full OCC, Detach OCC, Random OCC, Depth, Cutoff) with pairwise comparisons\\\", \\\"path\\\": \\\"projects/occsafe_vla/artifacts/_project/data/bootstrap_results_summary.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"occsafe_vla\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-23T06:18:36.022153+00:00\\\", \\\"tags\\\": [\\\"analysis\\\", \\\"bootstrap\\\", \\\"statistics\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a2d76e6d-3899-4694-b414-93605249b9fe",
+            "uuid": "b5353087-e1c7-437a-a6ea-4a148786db55",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260523_2f92df\\\", \\\"name\\\": \\\"bootstrap_ci_results\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Bootstrap CI analysis results for 6 conditions (Vanilla, Full OCC, Detach OCC, Random OCC, Depth, Cutoff) with pairwise comparisons\\\", \\\"path\\\": \\\"projects/occsafe_vla/artifacts/_project/data/bootstrap_results_summary.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"occsafe_vla\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-23T06:18:36.022153+00:00\\\", \\\"tags\\\": [\\\"analysis\\\", \\\"bootstrap\\\", \\\"statistics\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260523_2f92df\", \"name\": \"bootstrap_ci_results\", \"type\": \"data\", \"description\": \"Bootstrap CI analysis results for 6 conditions (Vanilla, Full OCC, Detach OCC, Random OCC, Depth, Cutoff) with pairwise comparisons\", \"path\": \"projects/occsafe_vla/artifacts/_project/data/bootstrap_results_summary.txt\", \"url\": null, \"project\": \"occsafe_vla\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-23T06:18:36.022153+00:00\", \"tags\": [\"analysis\", \"bootstrap\", \"statistics\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。以下是汇总：\n\n## 任务 1：Bootstrap CI 脚本\n\n**文件：** `westd-34685:/root/occsafe_vla/analysis/bootstrap_ci.py`\n\n用法：\n```bash\npython3 bootstrap_ci.py --config bootstrap_config.json --output bootstrap_results.json\n```\n\n**运行结果（B=10000, hierarchical bootstrap, 95% percentile CI）：**\n\n| Condition | Seeds | TSR | CAR | CAR 95% CI |\n|-----------|-------|-----|-----|------------|\n| Vanilla | 3 | 0.907±0.009 | 0.780±0.012 | [0.759, 0.801] |\n| Full OCC | 3 | 0.894±0.050 | **0.797±0.032** | [0.776, 0.817] |\n| Detach OCC | 3 | 0.812±0.163 | 0.746±0.002 | [0.723, 0.768] |\n| Random OCC | 3 | 0.869±0.029 | 0.789±0.031 | [0.767, 0.809] |\n| Depth | 4 | 0.888±0.042 | 0.780±0.039 | [0.762, 0.797] |\n| Cutoff | 2 | 0.915±0.004 | 0.783±0.021 | [0.757, 0.808] |\n\n**显著 pairwise 差异（CI 不包含 0）：** Detach OCC 显著差于其他所有条件（CAR 最低）。Full OCC vs Vanilla 的 ΔCAR=+0.017 不显著但方向正确。\n\n## 任务 2：Eval 数据清单\n\n**文件：** `westd-34685:/root/occsafe_vla/analysis/eval_data_manifest.json`\n\n已找到全部 50r eval 数据：\n- **Vanilla**: 3 seeds ✓ (westd-34685)\n- **Full OCC**: 3 seeds ✓ (westd-34685, s1 用 occ_s1_fresh)\n- **Detach OCC**: 3 seeds ✓ (westd-10894 → 已拷贝到 westd-34685)\n- **Random OCC**: 3 seeds ✓ (westd-10894 → 已拷贝到 westd-34685)\n- **Depth**: 4 seeds ✓ (s0/s1 westd-34685, s2/s3 westd-10894 → 已拷贝)\n- **Cutoff**: 2 seeds（s2 eval 待完成）\n\nwestd-10894 的 8 个 eval JSON 已重建到 `westd-34685:/root/occsafe_vla/analysis/eval_data_from_10894/`。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a2d76e6d-3899-4694-b414-93605249b9fe",
+            "uuid": "09da1683-1738-47ef-8cd0-545dfb0b94f8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K1PsQHc8592tf6nLPQ3rr8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1091,
+                "cache_read_input_tokens": 117718,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1091
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。以下是汇总：\n\n## 任务 1：Bootstrap CI 脚本\n\n**文件：** `westd-34685:/root/occsafe_vla/analysis/bootstrap_ci.py`\n\n用法：\n```bash\npython3 bootstrap_ci.py --config bootstrap_config.json --output bootstrap_results.json\n```\n\n**运行结果（B=10000, hierarchical bootstrap, 95% percentile CI）：**\n\n| Condition | Seeds | TSR | CAR | CAR 95% CI |\n|-----------|-------|-----|-----|------------|\n| Vanilla | 3 | 0.907±0.009 | 0.780±0.012 | [0.759, 0.801] |\n| Full OCC | 3 | 0.894±0.050 | **0.797±0.032** | [0.776, 0.817] |\n| Detach OCC | 3 | 0.812±0.163 | 0.746±0.002 | [0.723, 0.768] |\n| Random OCC | 3 | 0.869±0.029 | 0.789±0.031 | [0.767, 0.809] |\n| Depth | 4 | 0.888±0.042 | 0.780±0.039 | [0.762, 0.797] |\n| Cutoff | 2 | 0.915±0.004 | 0.783±0.021 | [0.757, 0.808] |\n\n**显著 pairwise 差异（CI 不包含 0）：** Detach OCC 显著差于其他所有条件（CAR 最低）。Full OCC vs Vanilla 的 ΔCAR=+0.017 不显著但方向正确。\n\n## 任务 2：Eval 数据清单\n\n**文件：** `westd-34685:/root/occsafe_vla/analysis/eval_data_manifest.json`\n\n已找到全部 50r eval 数据：\n- **Vanilla**: 3 seeds ✓ (westd-34685)\n- **Full OCC**: 3 seeds ✓ (westd-34685, s1 用 occ_s1_fresh)\n- **Detach OCC**: 3 seeds ✓ (westd-10894 → 已拷贝到 westd-34685)\n- **Random OCC**: 3 seeds ✓ (westd-10894 → 已拷贝到 westd-34685)\n- **Depth**: 4 seeds ✓ (s0/s1 westd-34685, s2/s3 westd-10894 → 已拷贝)\n- **Cutoff**: 2 seeds（s2 eval 待完成）\n\nwestd-10894 的 8 个 eval JSON 已重建到 `westd-34685:/root/occsafe_vla/analysis/eval_data_from_10894/`。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 957252,
+            "duration_api_ms": 933136,
+            "num_turns": 52,
+            "stop_reason": "end_turn",
+            "session_id": "a2d76e6d-3899-4694-b414-93605249b9fe",
+            "total_cost_usd": 3.7005272500000013,
+            "usage": {
+              "input_tokens": 56,
+              "cache_creation_input_tokens": 106968,
+              "cache_read_input_tokens": 3174017,
+              "output_tokens": 45688,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 106968,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 776,
+                  "cache_read_input_tokens": 117718,
+                  "cache_creation_input_tokens": 1091,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1091
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1636,
+                "outputTokens": 15,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001711,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 68,
+                "outputTokens": 50006,
+                "cacheReadInputTokens": 3275390,
+                "cacheCreationInputTokens": 129701,
+                "webSearchRequests": 0,
+                "costUSD": 3.698816250000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "5875a25f-4a83-4b36-9583-fe451efe046e"
+          },
+          "id": "event-000184"
+        }
+      ]
+    }
+  ]
+}

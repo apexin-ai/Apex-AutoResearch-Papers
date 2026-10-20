@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "958b2385dd981f04fcb0",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra kill cleanup s1 fresh",
+  "task_key": "worker_infra_kill-cleanup-s1-fresh_20260521T144557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill-cleanup-s1-fresh_20260521T144557_result.json",
+    "occurrence": 1,
+    "bytes": 489,
+    "sha256": "55422b9317d43ce191afeb43ffe12ecdb0380f90bd557a2915d4b7392c98801d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n| 项目 | 状态 |\n|------|------|\n| 进程 | 已杀死（480459 整棵进程树，含子进程 480543） |\n| cuda:0 | 空闲（0MiB / 0% utilization） |\n| checkpoint 目录 | 已清除（`occ_s1_fresh/` 不存在） |\n| 磁盘 | `/root/autodl-tmp/` 172G used / 350G total（49%） |\n\n注意：`kill_job` 只杀了 tmux session，进程树没有被终止，是手动 `kill -9` 清理的。后续可能需要检查 `kill_job` 的实现。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-kill-cleanup-s1-fresh.md"
+}

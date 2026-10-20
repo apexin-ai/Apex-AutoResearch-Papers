@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "a4de430f573d147fba63",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "infra westd10894 vanilla check and cleanup",
+  "task_key": "worker_infra_westd10894_vanilla_check_and_cleanup_20260520T165441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westd10894_vanilla_check_and_cleanup_20260520T165441.log",
+    "occurrence": 1,
+    "bytes": 579601,
+    "sha256": "0b462aeed0d3b8ad5d70d5723f38ab72437f7d86c9e403db66843f4d84f2584c"
+  },
+  "statistics": {
+    "messages": 236,
+    "user_turns": 0,
+    "tool_calls": 82,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 68,
+      "tool_call": 82,
+      "tool_result": 82,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 236,
+      "chunks": [
+        {
+          "path": "a4de430f573d147fba63-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a4de430f573d147fba63-part-0002.json",
+          "message_count": 56
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-westd10894-vanilla-check-and-cleanup.md"
+}

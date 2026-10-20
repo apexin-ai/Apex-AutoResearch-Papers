@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "id": "7a37ed9af5e023a720fd",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose full occ ln v2 s0c",
+  "task_key": "worker_diagnose_full_occ_ln_v2_s0c_20260527T004657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_full_occ_ln_v2_s0c_20260527T004657_result.json",
+    "occurrence": 1,
+    "bytes": 2484,
+    "sha256": "5d29afc94ccc5d2b9794fd8f34064364c5c7d0524220ced5069568655f080dd3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "westd-34685 所有 4 张 GPU 都被占用，全是正常训练实验：\n\n```json\n{\n  \"pid_681204_cmd\": \"finetune.py --run_id_note detach_ln_v2_s1 --seed 43 --occ_detach true --occ_norm_type ln (cuda:0)\",\n  \"pid_681124_cmd\": \"bash wrapper for detach_ln_v2_s1 (parent shell)\",\n  \"relationship\": \"parent-child (681124 spawned 681204)\",\n  \"gpu_usage\": {\n    \"cuda:0\": {\"pid\": 681204, \"experiment\": \"detach_ln_v2_s1\", \"memory_used_gb\": 60.7, \"uptime\": \"1h13m\"},\n    \"cuda:1\": {\"pid\": 677648, \"experiment\": \"detach_ln_s4\", \"memory_used_gb\": 60.7, \"uptime\": \"1h14m\"},\n    \"cuda:2\": {\"pid\": 735982, \"experiment\": \"ablation_occ_detach_s4\", \"memory_used_gb\": 60.7, \"uptime\": \"30m\"},\n    \"cuda:3\": {\"pid\": 736344, \"experiment\": \"mvp_occ_s4\", \"memory_used_gb\": 61.6, \"uptime\": \"29m\"}\n  },\n  \"all_gpus_utilization\": \"98-99%\",\n  \"is_making_progress\": true,\n  \"detach_ln_v2_s1_progress\": \"4594/50005 (9%), ~1.09 it/s, ETA ~11.6h\",\n  \"recommendation\": \"keep all — westd-34685 全部 4 张 GPU 已满载运行合法实验，full_occ_ln_v2_s0c 无法在此服务器启动，需要等待某个实验结束或改到 westd-10894 上运行\"\n}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "pid_681204_cmd": "finetune.py --run_id_note detach_ln_v2_s1 --seed 43 --occ_detach true --occ_norm_type ln (cuda:0)",
+              "pid_681124_cmd": "bash wrapper for detach_ln_v2_s1 (parent shell)",
+              "relationship": "parent-child (681124 spawned 681204)",
+              "gpu_usage": {
+                "cuda:0": {
+                  "pid": 681204,
+                  "experiment": "detach_ln_v2_s1",
+                  "memory_used_gb": 60.7,
+                  "uptime": "1h13m"
+                },
+                "cuda:1": {
+                  "pid": 677648,
+                  "experiment": "detach_ln_s4",
+                  "memory_used_gb": 60.7,
+                  "uptime": "1h14m"
+                },
+                "cuda:2": {
+                  "pid": 735982,
+                  "experiment": "ablation_occ_detach_s4",
+                  "memory_used_gb": 60.7,
+                  "uptime": "30m"
+                },
+                "cuda:3": {
+                  "pid": 736344,
+                  "experiment": "mvp_occ_s4",
+                  "memory_used_gb": 61.6,
+                  "uptime": "29m"
+                }
+              },
+              "all_gpus_utilization": "98-99%",
+              "is_making_progress": true,
+              "detach_ln_v2_s1_progress": "4594/50005 (9%), ~1.09 it/s, ETA ~11.6h",
+              "recommendation": "keep all — westd-34685 全部 4 张 GPU 已满载运行合法实验，full_occ_ln_v2_s0c 无法在此服务器启动，需要等待某个实验结束或改到 westd-10894 上运行"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-full-occ-ln-v2-s0c.md"
+}

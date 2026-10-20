@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ac3d0e343cbc211901f",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval occ s2 50r",
+  "task_key": "worker_eval_occ-s2-50r_20260521T145118",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_occ-s2-50r_20260521T145118_result.json",
+    "occurrence": 1,
+    "bytes": 523,
+    "sha256": "c01a24e76879148127835c063e5bde800f59a3f379487d13bdd5e422121c5d44"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 正常运行，cuda:2 占用 16.8GB。\n\n**状态汇总：**\n- **PID**: 491663\n- **配置**: occ_s2 47500_chkpt, libero_spatial, 50 rollouts/task, cuda:2\n- **日志**: `/root/runs/occsafe_vla/eval_occ_s2_50r.log`\n- **结果输出**: `/root/autodl-tmp/checkpoints/occ_s2/eval_47500_50r.json`\n- **预计耗时**: ~90 分钟（20 rollouts 用了 35 分钟，50 rollouts 约 2.5x）\n\n之前 20-rollout eval (50000_chkpt) 结果作参考：TSR=0.850, CAR=0.730。\n\n需要我定时轮询进度吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-occ-s2-50r.md"
+}

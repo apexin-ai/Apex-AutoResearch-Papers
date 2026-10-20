@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8214d8b6bdf4987fda82",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose vanilla v2 s1",
+  "task_key": "worker_diagnose_vanilla_v2_s1_20260526T224341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_vanilla_v2_s1_20260526T224341_result.json",
+    "occurrence": 1,
+    "bytes": 575,
+    "sha256": "a5cd14af0aa906d03ecb77e068c775edc3420769e4539121db9861cbf698cae0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。**vanilla_v2_s1 没有失败，是 Cron 监控误报。**\n\n关键发现：\n- 训练 100% 完成（50005/50005 steps，耗时 ~13h46m）\n- step 40000 和 50000 的 checkpoint 均已保存\n- 进程正常退出后 GPU cuda:0 已释放，无残留\n- 日志无任何错误，与成功完成的 vanilla_v2_s2 行为完全一致\n- 监控因未检测到 sentinel/W&B 而将正常退出误判为 crash\n\n报告已写入 `artifacts/diagnosis_vanilla_v2_s1.md`。建议后续修复监控逻辑，增加对 max_steps checkpoint 存在性的检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-vanilla-v2-s1.md"
+}

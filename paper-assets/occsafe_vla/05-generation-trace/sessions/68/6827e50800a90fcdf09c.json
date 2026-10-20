@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6827e50800a90fcdf09c",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops check 10894 urgent",
+  "task_key": "worker_ops_check_10894_urgent_20260524T174906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_10894_urgent_20260524T174906_result.json",
+    "occurrence": 1,
+    "bytes": 1369,
+    "sha256": "29d729be7a74be338943123a5ca9fa899b2e77880c07a2479631654d5b65cdd0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n| GPU | exp_id | PID | 状态 | Step/Total | ETA |\n|-----|--------|-----|------|------------|-----|\n| cuda:0 | ablation_occ_detach_s0_retrain | 746696 | **CRASHED** | 30000/50005 | - |\n| cuda:1 | full_occ_ln_s0 | 742821 | **RUNNING** | ~30755/50005 (61%) | ~5h |\n| cuda:2 | full_occ_ln_s1 | 743031 | **CRASHED** | 30000/50005 | - |\n| cuda:3 | full_occ_ln_s2 | 743375 | **CRASHED** | 30000/50005 | - |\n\n**空闲 GPU：cuda:0, cuda:2, cuda:3**\n\n### 崩溃原因\n\n**全部相同：`No space left on device (os error 28)`**\n\n三个实验都在 step 30000 保存 checkpoint 时因磁盘满而崩溃（01:38~01:44 UTC）。\n\n磁盘状态：\n- `/root/autodl-tmp`：**250G / 250G (100% 已满，仅剩 740K)**\n- `/root`（系统盘）：30G 用了 21G，还有 9.1G\n\n### 紧急风险\n\n`full_occ_ln_s0`（cuda:1）当前仍在运行，但下一个 checkpoint 保存点是 step 40000。**如果不清理磁盘空间，它也会在 ~5h 后崩溃。**\n\n### 需要立即行动\n\n1. **清理 `/root/autodl-tmp/` 磁盘空间**（删除旧 checkpoint、清理 HF cache 等）\n2. 清理后重启 cuda:0/2/3 上的三个实验（可从 step 30000 checkpoint 恢复，如果保存成功的话）\n3. 确保 `full_occ_ln_s0` 在 step 40000 前有足够空间\n\nRegistry 已更新：三个崩溃实验状态设为 DONE(failed)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-10894-urgent.md"
+}

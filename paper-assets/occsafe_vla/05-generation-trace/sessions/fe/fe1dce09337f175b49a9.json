@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe1dce09337f175b49a9",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "writing post submission fixes",
+  "task_key": "worker_writing_post-submission-fixes_20260528T150051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_post-submission-fixes_20260528T150051_result.json",
+    "occurrence": 1,
+    "bytes": 1177,
+    "sha256": "0dfdab6e544a3d04443bd7371e106e1687262a7a1e436b7d2396462ebe255aef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Summary of changes:\n\n**Task 1 (Factorial description):** Fixed \"twelve conditions varying five factors\" framing in abstract, introduction, method, and fig1 caption. Now accurately describes a 2×2 factorial core + single-factor ablations. Softened \"cannot detect interactions\" to \"cannot decompose joint effects\" to avoid contradiction with p=0.76 interaction result.\n\n**Task 2 (Causal language):** Downgraded ~15 causal expressions (\"reduces\", \"degrades\", \"harmful\", \"destabilizes\", \"detrimental\", \"damage\") across all 6 tex files to associative language (\"is associated with\", \"corresponds to\", \"deficit\"). Added power analysis to limitations (estimated power ~0.35–0.45, ANOVA results should be interpreted as exploratory, n≥8 needed for confirmatory).\n\n**Task 3 (Cohen's d → Hedges' g):** Replaced all Cohen's d values with Hedges' g across abstract, introduction, results, discussion, conclusion, limitations, and appendix. Correction factors: 0.800 (n₁+n₂=6), 0.842 (n₁+n₂=7), 0.870 (n₁+n₂=8). Updated pairwise table (10 entries), all inline effect sizes, table/figure captions, and methodology descriptions."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-post-submission-fixes.md"
+}

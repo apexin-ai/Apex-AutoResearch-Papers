@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b7f68dbe49c80dce9615",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops westd34685 disk check",
+  "task_key": "worker_ops_westd34685_disk_check_20260523T141006",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd34685_disk_check_20260523T141006_result.json",
+    "occurrence": 1,
+    "bytes": 2467,
+    "sha256": "a780c0f47631db6f1a5207d5a990d78726311631186c011072f32db2650c0d6a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n---\n\n## 磁盘预警检查报告\n\n### 1. 磁盘状态\n\n| 总量 | 已用 | 可用 | 使用率 |\n|------|------|------|--------|\n| 350G | 289G | **62G** | 83% |\n\n### 2. Checkpoint 目录占用\n\n| 目录 | 大小 | 状态 |\n|------|------|------|\n| vanilla_retrain_s0 | 45G | **运行中** (4 子目录: latest + 10K/20K/30K) |\n| full_occ_retrain_s0 | 45G | **运行中** (同上) |\n| reverse_cutoff_s0 | 45G | **运行中** (同上) |\n| cutoff_25k_s0 | 45G | **运行中** (同上) |\n| cutoff_s0 | 15G | 旧实验 (eval 已完成) |\n| cutoff_s1 | 15G | 旧实验 (eval 已完成) |\n| depth_s0 | 15G | 旧实验 (eval 已完成) |\n| depth_s1 | 15G | 旧实验 (eval 已完成) |\n| ablation_occ_detach_s2 | 15G | 旧实验 |\n| ablation_random_occ_s2 | 15G | 旧实验 |\n| **总计** | **270G** | |\n\n### 3. 训练进度 & 剩余 checkpoint 需求\n\n| 实验 | 当前 step | 已保存 ckpt | 还需保存 | 额外空间需求 |\n|------|-----------|------------|---------|-------------|\n| vanilla_retrain_s0 | ~37,300 (75%) | 10K, 20K, 30K | 40K, 50K | **30G** |\n| full_occ_retrain_s0 | ~37,180 (74%) | 10K, 20K, 30K | 40K, 50K | **30G** |\n| reverse_cutoff_s0 | ~30,550 (61%) | 10K, 20K, 30K | 40K, 50K | **30G** |\n| cutoff_25k_s0 | ~30,600 (61%) | 10K, 20K, 30K | 40K, 50K | **30G** |\n| **合计** | | | **8 个** | **120G** |\n\n### 4. 空间判断\n\n**严重不足。** 可用 62G，需要 120G，缺口 **~58G**。\n\n- vanilla_retrain_s0 和 full_occ_retrain_s0 最快到 40K step（约 2,700 步，~42 分钟），届时同时写两个 15G checkpoint 就需要 30G，勉强能过第一波\n- 但 reverse_cutoff_s0 和 cutoff_25k_s0 到 40K 时再来 30G，磁盘必满\n- 50K checkpoint 完全无空间\n\n### 5. 推荐清理方案\n\n**旧实验 checkpoint（eval 已完成，可安全删除）：**\n\n| 可删目录 | 释放空间 |\n|----------|---------|\n| cutoff_s0 | 15G |\n| cutoff_s1 | 15G |\n| depth_s0 | 15G |\n| depth_s1 | 15G |\n| ablation_occ_detach_s2 | 15G |\n| ablation_random_occ_s2 | 15G |\n| **合计** | **90G** |\n\n清理后可用空间 = 62G + 90G = **152G**，满足 120G 需求，余量 32G。\n\n### 6. 建议\n\n- **立即删除 6 个旧实验 checkpoint**，释放 90G，空间充裕\n- 如果不愿全删，**至少删 4 个**（释放 60G），加上现有 62G = 122G，刚好够\n- save_freq 不需要调整，清理后空间足够\n\n**需要我执行删除吗？**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd34685-disk-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c1bb6c4eb5beac06bd5",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops cleanup old checkpoints 34685",
+  "task_key": "worker_ops_cleanup_old_checkpoints_34685_20260524T042304",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup_old_checkpoints_34685_20260524T042304_result.json",
+    "occurrence": 1,
+    "bytes": 262,
+    "sha256": "ae08c821efedca7f81f38331e4cf26f9e71bc64af54071aa816a2762bd50942d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n| | 删除前 | 删除后 |\n|---|---|---|\n| 已用 | 259G (74%) | 200G (58%) |\n| 可用 | 92G | 151G |\n\n释放了 **59G**。两个实验目录下仅保留 50000_chkpt 和训练主目录，30000/40000 checkpoint 已全部清除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-old-checkpoints-34685.md"
+}

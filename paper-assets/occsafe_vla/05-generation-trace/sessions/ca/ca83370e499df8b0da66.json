@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca83370e499df8b0da66",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "viz bn vs ln gradient redistribution",
+  "task_key": "worker_viz_bn_vs_ln_gradient_redistribution_20260525T041101",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_bn_vs_ln_gradient_redistribution_20260525T041101_result.json",
+    "occurrence": 1,
+    "bytes": 212,
+    "sha256": "c6b65ccd58bea5d2d8369cd1f4ff1f7b5e2bd6a395fba18833b9513d5137e75a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SSH 连接 westd-10894 失败（端口 10894 无法连接）。AutoDL 实例重启后端口会变——请去控制台确认实例状态和新的 SSH 端口，更新 `~/.ssh/config` 后告诉我。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-bn-vs-ln-gradient-redistribution.md"
+}

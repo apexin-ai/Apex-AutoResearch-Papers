@@ -1,0 +1,494 @@
+{
+  "schema_version": "1.0",
+  "id": "bffe0f3ef72c05e1f1b9",
+  "project": "occsafe_vla",
+  "kind": "conversation",
+  "title": "paper fix uncited bib",
+  "task_key": "worker_paper_fix_uncited_bib_20260523T152021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_fix_uncited_bib_20260523T152021.jsonl",
+    "occurrence": 1,
+    "bytes": 16403,
+    "sha256": "1ff376c19d489dbc84b9d2531a1a7b26a911b98e71e42dda61af0be027363231"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "tool_call": 11,
+      "tool_result": 11,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T15:27:33.353310+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_fix_uncited_bib_20260523T152021",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T15:27:33.353737+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\n2\t\\section{Related Work}\n3\t\n4\t\\subsection{Safety in Vision-Language-Action Models}\n5\t\n6\tVision-language-action (VLA) models achieve high task success rates on manipulation benchmarks~\\cite{kim2024openvla, brohan2023rt2} % Kim et al., OpenVLA, arXiv:2406.09246; Brohan et al., RT-2, arXiv:2307.15818\n7\tbut remain prone to collisions when obstacles occupy the manipulation workspace. Two strategies have emerged to address this gap between task completion and behavioral safety.\n8\t\n9\tThe first strategy applies runtime constraints to filter or adjust unsafe actions. The AEGIS framework~\\cite{hu2025vlsa} % Hu et al., \"VLSA: Vision-Language-Action Models with Plug-and-Play Safety Constraint Layer\", arXiv:2512.11891, 2025\n10\tadds a plug-and-play safety layer that identifies obstacles through a vision-language assessment module and enforces avoidance via a control barrier function (CBF) quadratic program, improving collision avoidance rate by 59.16 percentage points on SafeLIBERO, a benchmark of 32 safety-critical manipulation scenarios introduced in the same work. CoFreeVLA~\\cite{zhai2026cofreevla} % Zhai et al., \"CoFreeVLA: Collision-Free Dual-Arm Manipulation via VLA Model and Risk Estimation\", arXiv:2601.21712, 2026\n11\taddresses a related problem in dual-arm settings by training a short-horizon collision risk estimator that gates risky commands and triggers recovery to safe configurations. Control barrier functions have also been applied directly to manipulation independently of VLAs. Morton and Pavone~\\cite{morton2025oscbf} % Morton and Pavone, \"Safe, Task-Consistent Manipulation with Operational Space Control Barrier Functions\", IROS 2025, arXiv:2503.06736\n12\tformulate operational-space CBFs that scale to hundreds of simultaneous constraints at real-time control rates, and Raja et al.~\\cite{raja2024ogmcbf} % Raja et al., \"Safe Robot Control using Occupancy Grid Map-based Control Barrier Function (OGM-CBF)\", arXiv:2405.10703, 2024\n13\tconstruct CBFs from occupancy grid m\n…[truncated 9354 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_fix_uncited_bib_20260523T152021",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T15:27:33.353961+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_fix_uncited_bib_20260523T152021",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/references.bib"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T15:27:33.354227+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% References for OccSafe-VLA\n2\t% Bib key convention: {first_author_surname_lower}{year}{keyword_lower}\n3\t\n4\t% ============================================================\n5\t% VLA Safety\n6\t% ============================================================\n7\t\n8\t@article{hu2025vlsa,\n9\t  author    = {Songqiao Hu and Zeyi Liu and Shuang Liu and Jun Cen and Zihan Meng and Xiao He},\n10\t  title     = {{VLSA}: Vision-Language-Action Models with Plug-and-Play Safety Constraint Layer},\n11\t  journal   = {arXiv preprint arXiv:2512.11891},\n12\t  year      = {2025},\n13\t  note      = {arXiv:2512.11891}\n14\t}\n15\t\n16\t@inproceedings{zhang2025safevla,\n17\t  author    = {Borong Zhang and others},\n18\t  title     = {{SafeVLA}: Towards Safety Alignment of Vision-Language-Action Model via Constrained Learning},\n19\t  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n20\t  year      = {2025},\n21\t  note      = {Spotlight. arXiv:2503.03480}\n22\t}\n23\t\n24\t@article{zhai2026cofreevla,\n25\t  author    = {Xuanran Zhai and others},\n26\t  title     = {{CoFreeVLA}: Collision-Free Dual-Arm Manipulation via {VLA} Model and Risk Estimation},\n27\t  journal   = {arXiv preprint arXiv:2601.21712},\n28\t  year      = {2026},\n29\t  note      = {arXiv:2601.21712}\n30\t}\n31\t\n32\t@article{yu2026safenightvla,\n33\t  author    = {Yu and others},\n34\t  title     = {{Safe-Night VLA}: Seeing the Unseen via Thermal-Perceptive Vision-Language-Action Models for Safety-Critical Manipulation},\n35\t  journal   = {arXiv preprint arXiv:2603.05754},\n36\t  year      = {2026},\n37\t  note      = {arXiv:2603.05754}\n38\t}\n39\t\n40\t@article{li2026vlasafety,\n41\t  author    = {Li and others},\n42\t  title     = {Vision-Language-Action Safety: Threats, Challenges, Evaluations, and Mechanisms},\n43\t  journal   = {arXiv preprint arXiv:2604.23775},\n44\t  year      = {2026},\n45\t  note      = {arXiv:2604.23775}\n46\t}\n47\t\n48\t% ============================================================\n49\t% Safety Mechanisms (barrier functions / occupancy-based sa\n…[truncated 17397 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_fix_uncited_bib_20260523T152021",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T15:27:33.354717+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_fix_uncited_bib_20260523T152021",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/related_work.tex",
+              "old_string": "Vision-language-action (VLA) models achieve high task success rates on manipulation benchmarks~\\cite{kim2024openvla, brohan2023rt2} % Kim et al., OpenVLA, arXiv:2406.09246; Brohan et al., RT-2, arXiv:2307.15818\nbut remain prone to collisions when obstacles occupy the manipulation workspace. Two strategies have emerged to address this gap between task completion and behavioral safety.",
+              "new_string": "Vision-language-action (VLA) models achieve high task success rates on manipulation benchmarks~\\cite{kim2024openvla, brohan2023rt2, ma2026vlanext, shukor2025smolvla} % Kim et al., OpenVLA, arXiv:2406.09246; Brohan et al., RT-2, arXiv:2307.15818\nbut remain prone to collisions when obstacles occupy the manipulation workspace. Two strategies have emerged to address this gap between task completion and behavioral safety~\\cite{li2026vlasafety}."
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T15:27:33.354943+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_fix_uncited_bib_20260523T152021",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T15:27:33.355081+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_fix_uncited_bib_20260523T152021",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/related_work.tex",
+              "old_string": "The first strategy applies runtime constraints to filter or adjust unsafe actions. The AEGIS framework~\\cite{hu2025vlsa}",
+              "new_string": "The first strategy applies runtime constraints to filter or adjust unsafe actions~\\cite{yu2026safenightvla}. The AEGIS framework~\\cite{hu2025vlsa}"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T15:27:33.355254+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_fix_uncited_bib_20260523T152021",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T15:27:33.355385+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_fix_uncited_bib_20260523T152021",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/related_work.tex",
+              "old_string": "Control barrier functions have also been applied directly to manipulation independently of VLAs. Morton and Pavone~\\cite{morton2025oscbf}",
+              "new_string": "Control barrier functions have also been applied directly to manipulation independently of VLAs~\\cite{kwon2026learningnudge, long2025neuralcsbf}. Morton and Pavone~\\cite{morton2025oscbf}"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T15:27:33.355547+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_fix_uncited_bib_20260523T152021",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T15:27:33.355708+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_fix_uncited_bib_20260523T152021",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/related_work.tex",
+              "old_string": "Recent work brings 3D structure into manipulation VLAs through several mechanisms. Depth-based approaches fuse monocular depth predictions with visual features: DepthVLA~\\cite{yuan2025depthvla}",
+              "new_string": "Recent work brings 3D structure into manipulation VLAs through several mechanisms~\\cite{sun2025geovla, tu2026sgvla, li2026corridorvla, pan2026savla}. Depth-based approaches fuse monocular depth predictions with visual features~\\cite{chen2026gstvla, li2025qdepthvla, bhat20253dcavla}: DepthVLA~\\cite{yuan2025depthvla}"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T15:27:33.355897+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_fix_uncited_bib_20260523T152021",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T15:27:33.356027+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_fix_uncited_bib_20260523T152021",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/related_work.tex",
+              "old_string": "Alignment-based approaches instead regularize internal representations: Spatial Forcing~\\cite{li2026spatialforcing}",
+              "new_string": "Alignment-based approaches instead regularize internal representations~\\cite{abouzeid2025geoaware, lin2025evo0}: Spatial Forcing~\\cite{li2026spatialforcing}"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T15:27:33.356191+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_fix_uncited_bib_20260523T152021",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T15:27:33.356313+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_fix_uncited_bib_20260523T152021",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/related_work.tex",
+              "old_string": "Point cloud representations offer an alternative: PointVLA~\\cite{li2025pointvla}",
+              "new_string": "Point cloud representations offer an alternative~\\cite{xiao2026stemvla}: PointVLA~\\cite{li2025pointvla}"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T15:27:33.356470+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_fix_uncited_bib_20260523T152021",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T15:27:33.356604+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_fix_uncited_bib_20260523T152021",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/references.bib",
+              "old_string": "@article{choi2026vlaeval,\n  author    = {Choi and others},\n  title     = {vla-eval: A Unified Evaluation Harness for Vision-Language-Action Models},\n  journal   = {arXiv preprint arXiv:2603.13966},\n  year      = {2026},\n  note      = {arXiv:2603.13966}\n}\n\n% ============================================================\n% Benchmarks",
+              "new_string": "% ============================================================\n% Benchmarks"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T15:27:33.356831+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_fix_uncited_bib_20260523T152021",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T15:27:33.356982+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_fix_uncited_bib_20260523T152021",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T15:27:33.357167+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\n2\t\\section{Related Work}\n3\t\n4\t\\subsection{Safety in Vision-Language-Action Models}\n5\t\n6\tVision-language-action (VLA) models achieve high task success rates on manipulation benchmarks~\\cite{kim2024openvla, brohan2023rt2, ma2026vlanext, shukor2025smolvla} % Kim et al., OpenVLA, arXiv:2406.09246; Brohan et al., RT-2, arXiv:2307.15818\n7\tbut remain prone to collisions when obstacles occupy the manipulation workspace. Two strategies have emerged to address this gap between task completion and behavioral safety~\\cite{li2026vlasafety}.\n8\t\n9\tThe first strategy applies runtime constraints to filter or adjust unsafe actions~\\cite{yu2026safenightvla}. The AEGIS framework~\\cite{hu2025vlsa} % Hu et al., \"VLSA: Vision-Language-Action Models with Plug-and-Play Safety Constraint Layer\", arXiv:2512.11891, 2025\n10\tadds a plug-and-play safety layer that identifies obstacles through a vision-language assessment module and enforces avoidance via a control barrier function (CBF) quadratic program, improving collision avoidance rate by 59.16 percentage points on SafeLIBERO, a benchmark of 32 safety-critical manipulation scenarios introduced in the same work. CoFreeVLA~\\cite{zhai2026cofreevla} % Zhai et al., \"CoFreeVLA: Collision-Free Dual-Arm Manipulation via VLA Model and Risk Estimation\", arXiv:2601.21712, 2026\n11\taddresses a related problem in dual-arm settings by training a short-horizon collision risk estimator that gates risky commands and triggers recovery to safe configurations. Control barrier functions have also been applied directly to manipulation independently of VLAs~\\cite{kwon2026learningnudge, long2025neuralcsbf}. Morton and Pavone~\\cite{morton2025oscbf} % Morton and Pavone, \"Safe, Task-Consistent Manipulation with Operational Space Control Barrier Functions\", IROS 2025, arXiv:2503.06736\n12\tformulate operational-space CBFs that scale to hundreds of simultaneous constraints at real-time control rates, and Raja et al.~\\cite{raja2024ogmcbf} % Raja et al., \"Safe Robot Contro\n…[truncated 9673 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_fix_uncited_bib_20260523T152021",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T15:27:33.357338+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_fix_uncited_bib_20260523T152021",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "choi2026vlaeval",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/references.bib",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T15:27:33.357461+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_fix_uncited_bib_20260523T152021",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-23T15:27:33.357624+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Confirmed deleted. Summary:\n\n**16 entries cited** (in existing survey sentences / citation lists, no fabricated descriptions):\n\n| Section | Entries cited | Placement |\n|---|---|---|\n| §2.1 opening VLA cite | `ma2026vlanext`, `shukor2025smolvla` | Appended to `\\cite{kim2024openvla, brohan2023rt2, ...}` |\n| §2.1 \"Two strategies\" | `li2026vlasafety` | VLA safety survey reference |\n| §2.1 first strategy | `yu2026safenightvla` | Another runtime safety approach |\n| §2.1 CBF sentence | `kwon2026learningnudge`, `long2025neuralcsbf` | Additional CBF methods |\n| §2.2 intro | `sun2025geovla`, `tu2026sgvla`, `li2026corridorvla`, `pan2026savla` | \"Recent work brings 3D structure...\" |\n| §2.2 depth-based | `chen2026gstvla`, `li2025qdepthvla`, `bhat20253dcavla` | Category-level cite |\n| §2.2 alignment-based | `abouzeid2025geoaware`, `lin2025evo0` | Category-level cite |\n| §2.2 point cloud | `xiao2026stemvla` | Category-level cite |\n\n**1 entry deleted** from `.bib`:\n- `choi2026vlaeval` — evaluation harness, no thematic connection to safety or spatial representations"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_fix_uncited_bib_20260523T152021"
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ],
+  "readable_path": "readable/conversations/paper-fix-uncited-bib.md"
+}

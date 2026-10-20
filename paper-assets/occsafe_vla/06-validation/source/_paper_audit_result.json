@@ -1,0 +1,349 @@
+{
+  "phase1": {
+    "figure_check": {
+      "passed": true,
+      "critical": [],
+      "warning": [
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:permanova} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:mechanism} is never referenced",
+          "location": "cross-file"
+        }
+      ],
+      "info": [],
+      "summary": "0 critical, 2 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper",
+      "sections": [
+        {
+          "file": "conclusion.tex",
+          "role": "headline",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "discussion.tex",
+          "role": "other",
+          "num_numbers": 20,
+          "num_cites": 6
+        },
+        {
+          "file": "experiments_old.tex",
+          "role": "other",
+          "num_numbers": 8,
+          "num_cites": 2
+        },
+        {
+          "file": "introduction.tex",
+          "role": "intro",
+          "num_numbers": 4,
+          "num_cites": 24
+        },
+        {
+          "file": "limitations.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "method.tex",
+          "role": "other",
+          "num_numbers": 5,
+          "num_cites": 8
+        },
+        {
+          "file": "references.tex",
+          "role": "other",
+          "num_numbers": 72,
+          "num_cites": 0
+        },
+        {
+          "file": "related_work.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 41
+        },
+        {
+          "file": "results.tex",
+          "role": "result",
+          "num_numbers": 144,
+          "num_cites": 1
+        }
+      ],
+      "critical": [],
+      "warning": [
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'anderson2001permanova' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'lippl2024implicit' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'montgomery2017doe' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'sener2018mgda' is never cited.",
+          "location": "references.bib"
+        }
+      ],
+      "info": [
+        {
+          "kind": "notation_per_section",
+          "message": "Inline math symbols collected per section.",
+          "data": {
+            "discussion": [
+              "\\Delta",
+              "\\approx",
+              "\\eta",
+              "\\geq",
+              "\\leq"
+            ],
+            "experiments_old": [
+              "\\alpha",
+              "\\cdot",
+              "\\exp",
+              "\\gamma",
+              "\\lambda",
+              "\\tau",
+              "\\times",
+              "\\to"
+            ],
+            "introduction": [
+              "\\times"
+            ],
+            "method": [
+              "\\alpha",
+              "\\cdot",
+              "\\gamma",
+              "\\lambda",
+              "\\phi",
+              "\\times",
+              "\\to"
+            ],
+            "results": [
+              "\\Delta",
+              "\\alpha",
+              "\\approx",
+              "\\ddagger",
+              "\\eta",
+              "\\geq",
+              "\\leq",
+              "\\pm",
+              "\\sigma",
+              "\\star",
+              "\\times"
+            ]
+          }
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "warning": 4,
+        "info": 1
+      }
+    },
+    "compile_result": {
+      "success": true,
+      "passed": true,
+      "compiled": {
+        "success": true,
+        "pdf_path": "<compiled-in-isolated-tmpdir>",
+        "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/_audit_compile_9umvqe04",
+        "main_tex": "main.tex",
+        "log_tail": "-batch de-pen-dence in batch-\n []\n\n[11]) [12] (./appendix.tex\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n\nUnderfull \\vbox (badness 4454) has occurred while \\output is active []\n\n [13\n\n]\n<figures/per_layer_combined.pdf, id=425, 497.5846pt x 323.48352pt>\nFile: figures/per_layer_combined.pdf Graphic file (type pdf)\n<use figures/per_layer_combined.pdf>\nPackage pdftex.def Info: figures/per_layer_combined.pdf  used on input line 86.\n\n(pdftex.def)             Requested size: 397.48499pt x 258.41696pt.\n\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n<figures/dose_response.pdf, id=429, 341.75179pt x 242.00037pt>\nFile: figures/dose_response.pdf Graphic file (type pdf)\n<use figures/dose_response.pdf>\nPackage pdftex.def Info: figures/dose_response.pdf  used on input line 97.\n(pdftex.def)             Requested size: 298.11374pt x 211.09988pt.\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n[14]\nUnderfull \\vbox (badness 1038) has occurred while \\output is active []\n\n [15 <./figures/per_layer_combined.pdf>]\nUnderfull \\vbox (badness 2065) has occurred while \\output is active []\n\n [16 <./figures/dose_response.pdf>]\nUnderfull \\vbox (badness 6268) has occurred while \\output is active []\n\n [17])\n[18] (./main.aux)\n ***********\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n ***********\nPackage rerunfilecheck Info: File `main.out' has not changed.\n(rerunfilecheck)             Checksum: 97656B52412D95ADF58F8A99B4C363E8;3407.\n ) \nHere is how much of TeX's memory you used:\n 13751 strings out of 469438\n 215748 string characters out of 5468411\n 654838 words of memory out of 5000000\n 42103 multiletter control sequences out of 15000+600000\n 650048 words of font info for 85 fonts, out of 8000000 for 9000\n 59 hyphenation exceptions out of 8191\n 84i,12n,93p,1872b,667s stack positions out of 10000i,1000n,20000p,200000b,200000s\n</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></u\nsr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/sha\nre/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texl\nive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/tex\nmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist\n/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/\ntype1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu\nblic/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams\nfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/\ncm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy\n7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb><\n/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/s\nhare/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive\n/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fon\nts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/ti\nmes/utmri8a.pfb>\nOutput written on main.pdf (18 pages, 3859926 bytes).\nPDF statistics:\n 605 PDF objects out of 1000 (max. 8388607)\n 489 compressed objects within 5 object streams\n 114 named destinations out of 1000 (max. 500000)\n 210 words of extra memory for PDF output out of 10000 (max. 10000000)\n",
+        "error": "",
+        "pages": 18,
+        "warnings": [
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'."
+        ]
+      },
+      "pages": 18,
+      "page_status": "ok",
+      "max_pages": null,
+      "min_pages": null,
+      "critical_warnings": [],
+      "minor_warnings": [
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 1354) in paragraph at lines 318--324",
+        "Underfull \\vbox (badness 4454) has occurred while \\output is active []",
+        "Underfull \\vbox (badness 1038) has occurred while \\output is active []",
+        "Underfull \\vbox (badness 2065) has occurred while \\output is active []",
+        "Underfull \\vbox (badness 6268) has occurred while \\output is active []"
+      ],
+      "issues": [],
+      "summary": "PASS"
+    },
+    "refs_result": null,
+    "internal_leak": {
+      "passed": true,
+      "critical": [],
+      "warning": [],
+      "info": [],
+      "summary": "0 critical, 0 warning, 0 info"
+    }
+  },
+  "content_findings": [
+    {
+      "severity": "critical",
+      "dimension": "叙事一致性",
+      "message": "Abstract 含 \"v2 replication pending\"，Discussion 含 \"v2 replication needed\"——会议提交论文不应在正文中标注未完成的复现实验。审稿人会将此视为 incomplete submission。spatial content irrelevance 是论文的核心 surprising finding 之一，但在 v2 框架下尚未验证。建议：要么删除该 claim 并移至 future work，要么完成 v2 复现后再提交。"
+    },
+    {
+      "severity": "critical",
+      "dimension": "写作规则",
+      "message": "Limitations 约 72 词，远低于 150 词质量阈值。CoRL 2026 要求 \"explicitly describing limiting assumptions, failure modes, and other limitations... and how these might be addressed in the future\"。当前版本：(a) 未讨论任何 failure modes（如 codebase sensitivity 导致结论可能不稳定）；(b) 未说明 how to address（无 \"future work\" 方向）；(c) 遗漏关键 limitation：temporal/content ablation 全部基于 v1 且 seed 数仅 1-3。"
+    },
+    {
+      "severity": "critical",
+      "dimension": "叙事一致性",
+      "message": "Contribution 1 声称 \"Spatial label content shows no detectable influence (Table 1, Figure 2b)\"，但 Table 1 中 Random OCC 标记 ★（v1 code），其 ΔCAR 被显式省略（\"cross-codebase baseline mismatch\"）。将 v1-only finding 呈现为 v2 factorial 结论的一部分，证据基础与 claim 不匹配。"
+    },
+    {
+      "severity": "critical",
+      "dimension": "Claim 强度",
+      "message": "Abstract 写 \"actually reduces safety below baseline\"（因果措辞），Results 节正确使用 \"is associated with reduced safety\"（关联措辞）。Full OCC vs Vanilla 在 Bonferroni 校正后未达统计显著。Abstract 因果性语言与正文关联性语言之间存在矛盾——Abstract 是审稿人首先阅读的部分，overclaim 风险最高。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "Claim 强度",
+      "message": "Abstract \"the answer depends entirely on how the auxiliary head is attached\"——\"entirely\" 排除所有其他因素。论文仅测试 2 normalization × 2 gradient flow，spatial content 仅在 v1 验证，未测试 loss weight、head capacity、训练 schedule 等其他设计选择。建议改为 \"depends critically on\" 或 \"is largely determined by\"。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "贡献-范围对齐",
+      "message": "Title \"Vision-Language-Action Models\"（泛指复数）但仅测试 OpenVLA-7B 一个模型、LoRA 一种微调方式、SafeLIBERO Level I 一个 benchmark。Title scope 与实验覆盖不匹配。建议 title 加限定（如 \"a Case Study with OpenVLA\"）或在 Abstract 首句即明确限定范围。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "results.tex:13 \"Notably, TSR remains relatively stable...\"——\"Notably\" 是 AI 写作 filler word。直接写 \"TSR remains relatively stable...\"。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "多处 -ing 分词短语收尾（典型 AI 写作模式）：introduction.tex:27 \"establishing that effects are additive\"；results.tex:13 \"indicating that the safety deficit...\"；results.tex:91 caption \"confirming orthogonality\"；related_work.tex:10 \"suggesting a different mechanism\"；conclusion.tex:4 \"redirecting attention from...\"。建议改写为独立句或用句号断开。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "Limitations 诚实度",
+      "message": "Limitations 遗漏两个重要项：(a) codebase sensitivity——论文自身证明非超参实现细节可导致 8.6pp CAR 偏移，超过最大实验效应(5.7pp)，这意味着其他实现中结论可能不同；(b) 补充条件均为 v1+低 seed 数（n=1-3），temporal findings 为 preliminary。这两者在 Discussion/Appendix 中提到但 Limitations 未收录。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "实验严谨性",
+      "message": "部分条件 seed 数偏少但 results 措辞未相应降级：Cutoff@25K (n=2) \"shows a large deficit\"、Reverse Cutoff (n=2) \"produces the worst supplementary result\"。n=2 数据应使用 \"preliminary observation\" 级别语言。results.tex:82 的 temporal dynamics 段尾确实加了 caveat (\"preliminary\")，但段首的强措辞可能先入为主。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "贡献-范围对齐",
+      "message": "Codebase sensitivity 在 Discussion 中称 \"an independent finding with implications for VLA fine-tuning reproducibility\"，占 Discussion 约 1/4 篇幅 + 整个 Appendix C 节，但未列入 Contribution。存在\"孤儿章节\"风险：审稿人可能质疑为何投入大量篇幅但不作为贡献声明。建议：升级为 Contribution 4，或精简到 1-2 句作为 caveat。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "章节结构",
+      "message": "Related Work 仅 2 个子节且篇幅偏短。缺少对 VLA fine-tuning 方法论（LoRA vs full FT vs other PEFT）的讨论——这是论文实验的核心前提（仅用 LoRA），应在 Related Work 中定位。"
+    },
+    {
+      "severity": "info",
+      "dimension": "符号",
+      "message": "Appendix per-task table 列名 \"Detach\" / \"Det+LN\" vs 正文条件名 \"Detach OCC\" / \"Detach+LN\"——术语缩写不完全一致，建议统一。"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验严谨性",
+      "message": "10 个 task 中 7 个存在 ceiling effect (Vanilla CAR ≥ 0.92)，实际区分力集中在 T3/T5/T6 三个 hard task。虽已在 Appendix 说明，但主文未充分讨论这对结论泛化性的影响——效果主要由 3/10 task 驱动。"
+    },
+    {
+      "severity": "info",
+      "dimension": "可复现性",
+      "message": "BEV occupancy ground-truth 生成仅描述为 \"rendered from MuJoCo simulator state replay by projecting object bounding boxes onto the table-plane BEV\"，缺少投影参数、grid 坐标系定义、occupancy threshold 等具体细节。"
+    },
+    {
+      "severity": "info",
+      "dimension": "去AI",
+      "message": "introduction.tex:5 \"Moreover, single-factor ablations...\"——\"Moreover\" 作为过渡词。全文仅此一处，风险较低，但建议替换为更自然的连接方式。"
+    },
+    {
+      "severity": "info",
+      "dimension": "内部信息",
+      "message": "\"v1\" / \"v2\" 命名虽诚实透明，但作为论文术语稍显非正式。正文中已混用 \"original codebase\" / \"revised codebase\"，建议全文统一用描述性名称。"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节过渡",
+      "message": "Method 最后一段（Evaluation）与 Results 开头之间缺少过渡，Results 直接从 Table 描述开始。"
+    }
+  ],
+  "visual_findings": [
+    {
+      "severity": "warning",
+      "dimension": "page 7",
+      "message": "Figure 3 四面板布局导致 legend 和 axis label 字号偏小（目测低于正文 70%），尤其是 (c)(d) 面板的图例文字在打印时可能难以辨认。建议放大字号或拆为两行两列全宽 figure*"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 12",
+      "message": "参考文献尾页仅 4 条 ([50]-[53])，约 3/4 页面空白。虽然是 references 页，但视觉上显得未完成。可考虑调整 bibliography 字号或间距压缩空白"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "首页为纯文本（Title + Abstract + Intro 开头），无 display item。第一个 display item（Figure 1）出现在 page 2 顶部，在 3 页窗口内，但 page 1 缺少视觉锚点"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 2",
+      "message": "Figure 1(b) factorial design 表格内文字偏小，条件标签和 layer 名称在缩小打印时可能不够清晰"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "正文最后一页为纯文本（Discussion 尾部 + Conclusion + Limitations），与 page 7 下半部分合计约 1.5 页连续无 display item。对实证论文而言节奏稍显单调，但 Discussion/Conclusion 性质如此，可接受"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 15",
+      "message": "附录 Figure 4 六面板布局，legend 文字非常小（amplitude/direction 标签、条件名称），建议适当放大或简化图例"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "Table 2 和 Table 3 已加粗最优值，但未标注次优（下划线）。添加次优标记和列头 ↑/↓ 方向箭头可提升可读性"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "Figure 2 使用了不同 marker shape + 颜色区分条件，辅助色盲友好；但建议确认具体配色方案（如 Okabe-Ito）以确保全色盲安全"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 13",
+      "message": "附录 Table 4 列数较多（9 列），整体偏密。数据清晰可读但留意打印缩放后的可辨性"
+    }
+  ],
+  "counts": {
+    "critical": 4,
+    "warning": 25,
+    "info": 13
+  },
+  "error": "",
+  "timestamp": "2026-05-29T11:03:23.709228+00:00"
+}

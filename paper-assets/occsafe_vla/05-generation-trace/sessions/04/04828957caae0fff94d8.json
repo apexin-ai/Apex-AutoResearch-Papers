@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04828957caae0fff94d8",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code gradient analysis 5cond prep",
+  "task_key": "worker_code_gradient-analysis-5cond-prep_20260527T041413",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gradient-analysis-5cond-prep_20260527T041413_result.json",
+    "occurrence": 1,
+    "bytes": 1958,
+    "sha256": "c0be3d5ed8d93c6063875dd7a5499ca9eff45d3af65faaefd3a3e87b7f18394c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Confirmed: 3 checkpoints on 10894, 2 need SCP from 34685.\n\n## 产出报告\n\n### 脚本状态\n\n| 脚本 | 路径 | 状态 |\n|------|------|------|\n| `run_gradient_analysis_v2.py` | `/root/occsafe_vla/scripts/` | 已支持 5 条件，无需修改。`--occ_norm bn/ln` + condition name 自动检测。 |\n| `compare_gradient_5cond.py` | `/root/occsafe_vla/scripts/` | **新建**。5 条件对比，支持 JSON 输入和 checkpoint 输入两种模式。输出 per-layer 表格 + BN/LN 对比 + summary ratios。 |\n| `run_gradient_analysis_5cond.sh` | `/root/occsafe_vla/scripts/` | **新建**。Batch runner，含 pre-flight 检查、SCP 提示、5 条件顺序执行 + 对比。 |\n\n### Checkpoint 路径确认\n\n| 条件 | Exp ID | 50K Checkpoint | 服务器 | 状态 |\n|------|--------|---------------|--------|------|\n| Full OCC BN | `mvp_occ_s3_v2` | `...--mvp_occ_s3_v2--50000_chkpt` | 10894 | ✅ 就绪 |\n| Full OCC LN | `full_occ_ln_s3_v2` | `...--full_occ_ln_s3_v2--50000_chkpt` | 10894 | ✅ 就绪 |\n| Detach BN | `ablation_occ_detach_s3_v2` | `...--ablation_occ_detach_s3_v2--50000_chkpt` | 10894 | ✅ 就绪 |\n| Detach LN | `detach_ln_s3` | `...--detach_ln_s3--50000_chkpt` | 34685 | ⚠️ 需 SCP 到 10894 |\n| Vanilla | `vanilla_v2_s1` | `...--vanilla_v2_s1--50000_chkpt` | 34685 | ⚠️ 需 SCP 到 10894 |\n\n### 运行前需执行的 SCP\n\n```bash\n# On westd-10894:\nmkdir -p /root/autodl-tmp/checkpoints/vanilla_v2_s1/\nscp -r westd-34685:/root/autodl-tmp/checkpoints/vanilla_v2_s1/ /root/autodl-tmp/checkpoints/vanilla_v2_s1/\n\nmkdir -p /root/autodl-tmp/checkpoints/detach_ln_s3/\nscp -r westd-34685:/root/autodl-tmp/checkpoints/detach_ln_s3/ /root/autodl-tmp/checkpoints/detach_ln_s3/\n```\n\n### 运行命令\n\n```bash\n# GPU 释放后在 10894 上执行:\nGPU=0 bash /root/occsafe_vla/scripts/run_gradient_analysis_5cond.sh\n```\n\n预估耗时：5 × ~15-20 min = ~75-100 min（单 GPU 串行）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gradient-analysis-5cond-prep.md"
+}

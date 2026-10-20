@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "134b1f3dfe83740317ba",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_1_1779413473.md",
+  "task_key": "loop_1_1779413473",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1_1779413473.md",
+    "occurrence": 1,
+    "bytes": 3782,
+    "sha256": "e1563a5b31ae07fffd579b4a9ab2cf8213509f5c7a64aa05a5ebd763950e26e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_wall_time\nupdated: '2026-05-22T01:31:12+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-10894 cuda:0-3, westd-34685 cuda:0-3（共 8 卡），不可用白名单外 GPU\n- occ 训练在 M009 bug 修复前不可重启——occ_index.json 格式错误导致 100% 全零 label，跑了也是废实验\n- WANDB_MODE=disabled 是当前所有实验的设定，cron 不会收到 W&B metrics，进程退出即判定完成/失败\n- westd-34685 cuda:3 疑似 driver artifact（100% util / 0 MiB），提交实验前需确认 GPU 健康\n\n### 2. 🖥️ 基础设施快照\n- **westd-10894** (4× RTX PRO 6000 96GB)\n  - 工作目录: /root/occsafe_vla/openvla-oft/\n  - Python: /root/miniconda3/bin/python (conda env: occsafe)\n  - 激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`\n  - 模型: /root/autodl-tmp/models/openvla-7b\n  - 数据: /root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops\n  - Checkpoints: /root/autodl-tmp/checkpoints/vanilla_s{0,1,2}\n  - 磁盘: 49% 已用，416GB 可用\n  - 活跃进程: mvp_vanilla_s0 (PID 100203, cuda:0), mvp_vanilla_s1 (PID 97847, cuda:1)\n\n- **westd-34685** (4× RTX PRO 6000 94GB)\n  - 同样结构，occ 数据额外在 /root/occsafe_vla/occ_data/\n  - Checkpoints: /root/autodl-tmp/checkpoints/occ_s{0,1,2}\n  - 磁盘: 2% 已用，819GB 可用\n  - 活跃进程: 无（occ 全部失败）\n\n### 3. 📊 当前状态\n刚收到 mvp_occ_s0/s1/s2 全部失败的 cron 回调（\"process dead 5× with no sentinel/W&B\"）。已派 Worker `diag:occ_crash` SSH 到 westd-34685 读日志诊断精确崩溃原因。已向 Director 汇报 6/8 GPU 空闲状态。\n\n**Registry 状态**:\n| exp_id | status | conclusion | server |\n|--------|--------|------------|--------|\n| mvp_vanilla_s0 | RUNNING | — | westd-10894 cuda:0 |\n| mvp_vanilla_s1 | RUNNING | — | westd-10894 cuda:1 |\n| mvp_vanilla_s2 | DONE | failed (SIGTERM) | westd-10894 cuda:2 |\n| mvp_occ_s0 | DONE | failed | westd-34685 cuda:0 |\n| mvp_occ_s1 | DONE | failed | westd-34685 cuda:1 |\n| mvp_occ_s2 | DONE | failed | westd-34685 cuda:2 |\n\n**等待中**:\n- Worker `diag:occ_crash` 回调 → 崩溃原因诊断报告\n- mvp_vanilla_s0/s1 cron 监控 → 训练完成回调\n- Director 决策：M009 修复方案 + 资源重分配\n\n### 4. 📋 待办\n- diag:occ_crash Worker 回调 → 读诊断报告 → 更新 registry failure_reason → 派 Worker 修复 occ_index.json（改 demo_ids→demos dict{str→int} 含 traj_len）→ 验证非零 label → 向 Director 申请重启 occ 3 seeds\n- mvp_vanilla_s0/s1 完成回调 → 跑 SafeLIBERO eval（westd-10894 cuda:2 或 3）\n- mvp_vanilla_s2 需要重启（之前 SIGTERM killed），等 Director 确认后在 westd-10894 cuda:2 重新提交\n- Director 确认修复方案 → 重启 occ 3 seeds（westd-34685 cuda:0-2）\n- 6 runs 全部训练完成 → SafeLIBERO 评估 → MVP gate 判定（CAR ≥5% + TSR 下降 ≤3% = Pass）\n\n### 5. 🎯 战略上下文\n- **项目核心**: 首个系统研究 VLA 空间表征与安全机制交互的工作（OccSafe-VLA），目标 AAAI 2027（Abstract Jul 21, Paper Jul 28, ~10 周）\n- **MVP 设计**: vanilla OpenVLA-OFT vs +BEV occ aux head，单 suite (LIBERO-Spatial)，50K steps，3 seeds，SafeLIBERO Level I 评估 CAR/TSR\n- **关键决策链**: D001(MVP 方案) → D002(判定标准: ≥3seeds+paired t-test) → D003(范围缩小: 单suite) → D004(AAAI 2027) → D005(Post-MVP 扩展计划)\n- **易错点**: (1) occ_index.json 修复后必须验证非零 label 再提交，不要假设修了就对了 (2) 所有实验 WANDB_MODE=disabled，不要期望 W&B metrics (3) mvp_vanilla_s2 的 SIGTERM 原因未明，重启前应查清 (4) 当前 6/8 GPU 空闲是严重浪费，修复+重启应分钟级完成\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-1779413473.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f8e70fbecaf7c2c5863",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose occ s1 fresh",
+  "task_key": "worker_diagnose_occ_s1_fresh_20260522T040304",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_occ_s1_fresh_20260522T040304_result.json",
+    "occurrence": 1,
+    "bytes": 1278,
+    "sha256": "3897237c261d97ba59cc56738c9b0adcf5bf0d684b8f8e8bacffca6fcfd9c9c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告：occ_s1_fresh\n\n### 结论：训练已正常完成，EXIT_CODE=129 是误报\n\n| 项目 | 详情 |\n|------|------|\n| **训练进度** | 50005/50005 (100%) |\n| **最后指标** | step=50000, occ_loss=0.0089, action_loss=0.0496 |\n| **最后 checkpoint** | `50000_chkpt` — 完整（4 个 safetensors 分片 + action_head + occ_head + proprio_projector + lora_adapter 全部保存） |\n| **磁盘** | 200G/350G (58%)，充足 |\n| **Traceback/OOM** | 无 |\n\n### EXIT_CODE=129 根因\n\n日志末尾明确打印了 `Max step 50005 reached! Stopping training...`，训练已跑完所有步数。之后 PyTorch 发出 `destroy_process_group() was not called before program exit` 警告，说明进程是在分布式清理阶段（而非训练阶段）收到 SIGHUP。\n\n因为是 nohup 启动而非 tmux，SSH session 断开时发送的 SIGHUP 在进程退出清理期间被捕获，导致退出码为 129 而非 0。**训练本身无任何异常。**\n\n### 行动建议\n\n- **无需重跑。** 50000 checkpoint 是最终可用模型，最后 5 步（50001-50005）没有触发额外保存，loss 在该阶段已收敛。\n- 后续实验建议用 `submit_training_job`（走 tmux），避免 nohup 的 SIGHUP 问题导致退出码误报。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-occ-s1-fresh.md"
+}

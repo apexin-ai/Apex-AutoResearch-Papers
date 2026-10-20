@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c3ba2a5f2b86003a1d12",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose ablation batch kill",
+  "task_key": "worker_diagnose_ablation_batch_kill_20260521T045340",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_ablation_batch_kill_20260521T045340_result.json",
+    "occurrence": 1,
+    "bytes": 2719,
+    "sha256": "c7512f68a58f3cecc577a6bd3afdff5bde1e83cd9a9c5fe8de1e5da67179c494"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "信息已充分。以下是诊断报告。\n\n---\n\n## 诊断报告：westd-10894 Ablation 实验批量 SIGTERM\n\n### 1. 杀死原因\n\n**结论：外部批量 `kill` 命令（非 OOM、非重启、非 cron）**\n\n证据：\n- 4 个进程在 **完全相同的秒**（`12:52:12`）收到 SIGTERM，时间精确到毫秒级（.120/.125/.131/.137/.138）\n- **无重启**：uptime 156 天，无 reboot 记录\n- **无 OOM**：dmesg 被容器限制无法读取，但进程是收到 SIGTERM(15) 而非 SIGKILL(9)，排除 OOM Killer\n- **无 crontab**，bash_history 中无 kill 命令\n- **无 syslog/auth.log** 记录\n- ablation 实验没有 tmux session（vanilla 的 3 个 tmux session 仍存在），说明是通过 ssh_execute 后台启动的\n\n**最可能的场景**：通过 agent 系统的 `ssh_execute` 发出了 `pkill -f torchrun` 或类似命令。这类命令不会写入 bash_history。\n\n### 2. 每个实验最后 step\n\n| 实验 | GPU | 启动 | 最后 step | 进度 | 运行时长 |\n|------|-----|------|-----------|------|----------|\n| ablation_occ_detach_s0 | cuda:0 | 11:44 | **4006**/50005 | 8.0% | ~1h08m |\n| ablation_random_occ_s0 | cuda:1 | 11:44 | **3993**/50005 | 8.0% | ~1h08m |\n| ablation_occ_detach_s1 | cuda:2 | 12:22 | **1546**/50005 | 3.1% | ~30m |\n| ablation_random_occ_s1 | cuda:3 | 12:22 | **1545**/50005 | 3.1% | ~30m |\n\n**Loss 值不可用**：WANDB_MODE=disabled 且 tqdm 没有打印 loss。\n\n### 3. Checkpoint 状况\n\n| 实验 | Checkpoint | 大小 |\n|------|------------|------|\n| ablation_occ_detach_s0 | **step 2500** ✅ 完整 | ~14GB（含 merged model + action_head/occ_head/proprio_projector） |\n| ablation_random_occ_s0 | **step 2500** ✅ 完整 | ~14GB |\n| ablation_occ_detach_s1 | **无** ❌（被杀时仅到 step 1546） | - |\n| ablation_random_occ_s1 | **无** ❌（被杀时仅到 step 1545） | - |\n\n### 4. GPU 当前可用性\n\n4× NVIDIA RTX PRO 6000 Blackwell（98GB each）：\n- **全部空闲**：0MiB 显存占用，无运行进程\n- GPU 0-2 显示 100% util 是残留状态，实际无负载\n- **可立即使用**\n\n磁盘：根分区 66%（11GB 可用），数据盘 51%（416GB 可用）— 充足。\n\n### 5. 建议\n\n- **可立即重启全部 4 个实验**\n- **s0 实验**（occ_detach_s0 / random_occ_s0）：从 **step 2500 checkpoint resume**，节省 ~40 分钟\n- **s1 实验**（occ_detach_s1 / random_occ_s1）：**从头开始**\n- 建议用 **tmux** 或 **nohup** 启动并将日志重定向到文件，避免被 SSH 断连影响\n- 注意：之前 vanilla_s2 在 step 25000 因根分区磁盘满而失败（\"No space left on device\"），确保 checkpoint 存到数据盘 `/root/autodl-tmp/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-ablation-batch-kill.md"
+}

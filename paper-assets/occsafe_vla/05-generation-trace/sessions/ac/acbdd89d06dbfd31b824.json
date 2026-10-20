@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "acbdd89d06dbfd31b824",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "fix detach ln v2 s2 resume from 30k",
+  "task_key": "worker_fix_detach_ln_v2_s2_resume_from_30k_20260528T020400",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_detach_ln_v2_s2_resume_from_30k_20260528T020400_result.json",
+    "occurrence": 1,
+    "bytes": 1175,
+    "sha256": "d045424c20869f7f941629cd2fd872242076c9656c7072896a5aa8810c0764e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动并运行中。但有两个需要注意的问题。\n\n**汇报：**\n\n**30000_chkpt 完整性：** 部分缺失。存在 action_head/occ_head/proprio_projector .pt 文件和 lora_adapter/adapter_model.safetensors，但 **缺少** model.safetensors (4 shards + index.json) 和 config.json。训练仍然成功启动了。\n\n**进程状态：**\n- PID: 45380，GPU 0\n- VRAM: 62194MiB / 97887MiB\n- GPU 利用率: 94%\n- 速度: ~1.1 it/s\n\n**日志输出：** 训练正在推进（step 61+），但进度条显示 total=35005 步，而非预期的 20005 步。35005 = 50005 - 15000，说明 finetune.py 的 max_steps 可能是相对于原始起始 checkpoint（15000_chkpt）计算的，而非相对于 resume_step(30000)。如果是这样，实际训练会跑到 step 15000+35005=50005，结果正确，只是 progress bar 的含义不同。\n\n**潜在风险：** 30000_chkpt 缺少 model.safetensors 和 config.json。如果 save_training_checkpoint 仍需从 --vla_path 加载完整 base model 做 LoRA merge，首次 save（~step 5000 relative）可能会再次崩溃。建议关注 step 35000（即相对 step ~5000）附近的日志。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-detach-ln-v2-s2-resume-from-30k.md"
+}

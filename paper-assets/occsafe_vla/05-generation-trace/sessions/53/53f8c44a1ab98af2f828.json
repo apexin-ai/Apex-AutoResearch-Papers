@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53f8c44a1ab98af2f828",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops disk cleanup and scp",
+  "task_key": "worker_ops_disk_cleanup_and_scp_20260523T140332",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk_cleanup_and_scp_20260523T140332_result.json",
+    "occurrence": 1,
+    "bytes": 1058,
+    "sha256": "37bfcdd2403095348cc45b1bda5df3b8ffe94efb12a1d9eb2eccab5d05240068"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报如下：\n\n---\n\n### 阶段 1：清理结果\n\n| 删除项 | 释放空间 |\n|--------|---------|\n| cutoff_s2 (旧实验) | ~74G |\n| depth_s2 + depth_s3 (eval 已完成) | ~30G |\n| detach_ln_s0/step-030000 (损坏) | 少量 |\n| detach_ln_s2/step-020000 (损坏) | 少量 |\n| cutoff_s2_v2 (损坏) | ~540K |\n| **阶段 1 合计释放** | **~103G** |\n\n### 阶段 2：SCP 迁移结果\n\n| Checkpoint | 大小 | safetensors 文件数 | 状态 |\n|-----------|------|-------------------|------|\n| ablation_occ_detach_s2 50K | 15G | 5 (4 shard + 1 lora) | 完整 |\n| ablation_random_occ_s2 50K | 15G | 5 (4 shard + 1 lora) | 完整 |\n\n源文件已从 westd-10894 删除，额外释放 30G。\n\n### 最终磁盘状态\n\n| 服务器 | 总容量 | 已用 | 可用 | 使用率 |\n|--------|-------|------|------|--------|\n| **westd-10894** | 250G | 117G | 134G | **47%** (从 100% 降) |\n| **westd-34685** | 350G | 289G | 62G | 83% (从 74% 升) |\n\nwestd-10894 剩余 checkpoint 80G（detach_ln_s0/s1/s2）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-and-scp.md"
+}

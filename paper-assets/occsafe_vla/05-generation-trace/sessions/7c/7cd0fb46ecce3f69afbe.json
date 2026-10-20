@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7cd0fb46ecce3f69afbe",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "paper fix fig1 sd",
+  "task_key": "worker_paper_fix_fig1_sd_20260527T201511",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix_fig1_sd_20260527T201511_result.json",
+    "occurrence": 1,
+    "bytes": 170,
+    "sha256": "d00c78c356814d891957ec21ef28e468126ef17680bf5e77c1c96bc56e4f0223"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。Full OCC+LN 的 `sd` 已从 `None` 改为 `0.032`，PDF/PNG 已重新生成（时间戳 20:15）。现在所有 n≥3 的条件都有 error bar。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-fig1-sd.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "581a1dc0d865d9835b0c",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "ops resume westd10894 4gpu",
+  "task_key": "worker_ops_resume_westd10894_4gpu_20260523T140850",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_resume_westd10894_4gpu_20260523T140850.log",
+    "occurrence": 1,
+    "bytes": 723094,
+    "sha256": "f9f23874179d68880d01e648f2e4e7de12953cf0fbfae69c1a2920f343e0931c"
+  },
+  "statistics": {
+    "messages": 328,
+    "user_turns": 0,
+    "tool_calls": 116,
+    "roles": {
+      "log": 1,
+      "system": 9,
+      "record": 1,
+      "assistant": 84,
+      "tool_call": 116,
+      "tool_result": 116,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 328,
+      "chunks": [
+        {
+          "path": "581a1dc0d865d9835b0c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "581a1dc0d865d9835b0c-part-0002.json",
+          "message_count": 148
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-resume-westd10894-4gpu.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "018e691582087c84086b",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose cutoff s0 exit v2",
+  "task_key": "worker_diagnose_cutoff-s0-exit-v2_20260522T140430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_cutoff-s0-exit-v2_20260522T140430_result.json",
+    "occurrence": 1,
+    "bytes": 686,
+    "sha256": "c820d6e9e13214c900113c1dffa29b6fcc497edbe9216bcfdf1cc98f10068452"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：实验正常运行中 (still-running)**\n\n- **进程状态**: PID 137021 存活，运行时间 5h55m，状态 Ssl（正常）\n- **GPU 占用**: cuda:0 上占用 62194 MiB\n- **当前进度**: step 17627/50005 (35%), ~1.05 it/s\n- **最新 loss**: step 17600 — occ_loss=0.0096, action_loss=0.1357\n- **最新 checkpoint**: `10000_chkpt`（预期下一个 checkpoint 在 step 20000）\n- **预计剩余**: ~8.5 小时\n\nCron 报告的进程退出是**误报**。PID 137021 从未退出，日志显示训练持续推进，step 15700 附近和 17568 附近各有一次短暂减速（可能是 checkpoint 保存或 IO 抖动），但随后恢复正常速度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-cutoff-s0-exit-v2.md"
+}

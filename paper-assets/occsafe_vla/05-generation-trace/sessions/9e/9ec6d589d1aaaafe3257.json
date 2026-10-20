@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ec6d589d1aaaafe3257",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "paper writing results v2 stats patch",
+  "task_key": "worker_paper_writing_results_v2_stats_patch_20260527T192215",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_results_v2_stats_patch_20260527T192215_result.json",
+    "occurrence": 1,
+    "bytes": 1350,
+    "sha256": "d9dbfd588d083abd7e1bc731a105e3699dc47f0145db7b751a1d1102e149f808"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 9 edits applied cleanly. Final file verified. Summary of changes:\n\n1. **Table 1 Cell 4**: Placeholder row → `OFF & LN & 1 & $0.826^{b}$ & $0.894$ & $+$8.1`; removed n=2/n=3+ comment lines\n2. **Table 2 LayerNorm row**: `\\texttt{CAR4}` → `$0.826^{b}$`, `\\texttt{$\\Delta$LN}` → `$-$4.9$^{b}$`\n3. **Table 2 Delta row**: `\\texttt{$\\Delta$OFF}` → `$-$5.9$^{b}$`, `\\texttt{int.}` → `---`\n4. **Table 2 caption**: Rewritten with BN simple effect $d{=}0.93$ (large), main effect $p{=}0.396$ (n.s.), Cell 4 $n{=}1$\n5. **Section 4.2 para 1**: New heading \"Gradient flow is harmful under BatchNorm but benign under LayerNorm\"; BN simple effect first (g=-0.93, p=0.286), then LN row, then interaction interpretation\n6. **Branch A/B/A2/B2 comments** (~98 lines): Deleted and replaced with 8-line active paragraph using permutation tests + Hedges' g; ANOVA deferred to appendix\n7. **Ordinal interaction paragraph**: Updated with actual deficits (-4.2pp, -4.9pp preliminary) and absolute-position framing (LN above Vanilla, BN+gradient ON below)\n8. **Figure caption**: Filled with actual numbers, added `$n{\\geq}2$` error bar qualifier\n9. **Section 4.1 para 1**: Reframed from \"gradient flow degrades safety\" → \"gradient flow interacts with normalization type\"; all `\\texttt` placeholders filled with Cell 4 data"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-results-v2-stats-patch.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24024cf0e084694963bc",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops diagnose restart detach retrain",
+  "task_key": "worker_ops_diagnose_restart_detach_retrain_20260524T181604",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose_restart_detach_retrain_20260524T181604_result.json",
+    "occurrence": 1,
+    "bytes": 726,
+    "sha256": "3927e128eea54711650c62c1b463e72fd10b60dfd1ba6059a70f172c2c0289e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。总结：\n\n**诊断结果：**\n- **崩溃原因**：无法确定。log 已被新进程覆盖，原 PID 775880 的 error traceback 丢失。磁盘充足（154GB avail），排除磁盘满。推测为瞬时 NCCL/OOM 错误。\n- **实验已自动重启**：当前 PID 775953 在 GPU 0 上正常运行，从 20K checkpoint 恢复，已跑到 step ~839（全局 ~20839）。无需手动重启。\n- **最新 checkpoint**：仍为 20000（崩溃前未到达下一个 save_freq=10000 的存档点 30000）。\n\n**Registry 更新：**\n- PID: 775880 → 775953\n- 状态: RUNNING（维持不变）\n- log: `/root/autodl-tmp/logs/ablation_occ_detach_s0_retrain_resume.log`\n- resume_step: 20000"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-restart-detach-retrain.md"
+}

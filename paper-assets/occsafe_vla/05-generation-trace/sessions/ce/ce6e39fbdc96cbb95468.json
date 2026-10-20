@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ce6e39fbdc96cbb95468",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "train reverse cutoff s2 fresh",
+  "task_key": "worker_train_reverse_cutoff_s2_fresh_20260525T043824",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_reverse_cutoff_s2_fresh_20260525T043824_result.json",
+    "occurrence": 1,
+    "bytes": 496,
+    "sha256": "a5ef2bb9ee164f333d034dafc2c98b79f946c2ee5a52ce2a11bae0d439259fa3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已正常运行。\n\n**结果汇总：**\n- 已 kill 旧的 resume 进程 (PID 5764)\n- `reverse_cutoff_s2_v3` 从 pretrained 权重 (`/root/autodl-tmp/models/openvla-7b`) 从头训练，**无 --resume**\n- 服务器: westd-34685, GPU: cuda:1\n- **PID: 8347**\n- step 0 开始，`occ_loss_cutoff_step=35000, mode=before`（前 35K 步无 OCC loss）\n- tmux session: `reverse_cutoff_s2_v3`\n- 日志: `~/runs/occsafe_vla/reverse_cutoff_s2_v3.log`\n- Registry 状态: RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-reverse-cutoff-s2-fresh.md"
+}

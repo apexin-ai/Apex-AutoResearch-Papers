@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0232e42c04e4112f60e",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops 34685 speed check",
+  "task_key": "worker_ops_34685-speed-check_20260526T111348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_34685-speed-check_20260526T111348_result.json",
+    "occurrence": 1,
+    "bytes": 822,
+    "sha256": "2bb309c6814c2e827adad34019a804abd681c1740838317251e36de79404429d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已收集。汇总如下：\n\n**CKA 进程状态：已 kill，ps aux 中无 PID 460707，无 cka 相关进程。**\n\n**GPU 利用率：4 卡均 99%（GPU2 为 81%），显存各占用 ~62GB/98GB，正常。**\n\n| GPU | 实验 | 当前步数 | 速度 | 恢复? | 剩余步数 | ETA |\n|-----|------|---------|------|-------|---------|-----|\n| 0 | vanilla_v2_s1 | 8459/50005 | ~1.09 it/s | **Y** | 41546 | ~10.6h |\n| 1 | vanilla_v2_s2 | 8499/50005 | ~1.10 it/s | **Y** | 41506 | ~10.5h |\n| 2 | detach_ln_s3 | 8456/50005 | ~1.08 it/s | **Y** | 41549 | ~10.7h |\n| 3 | cutoff_25k_s1_v2 | 7067/50005 | ~1.08 it/s | **Y** | 42938 | ~11.0h |\n\n4 个训练速度全部恢复到正常水平（~1.08-1.10 it/s），CKA 进程已确认被 kill。预计所有实验明天早上 5-7 点左右完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-34685-speed-check.md"
+}

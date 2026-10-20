@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2156691de68f5767d5be",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ssh verify occ loss fix",
+  "task_key": "worker_ssh_verify-occ-loss-fix_20260528T230208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify-occ-loss-fix_20260528T230208_result.json",
+    "occurrence": 1,
+    "bytes": 962,
+    "sha256": "fac1b88c9b261db336a883b3213859f01d4dc504f42dfc37c036c33f71a6263d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**两个实验都已崩溃**，原因相同：**wandb API key 未配置**。\n\n### 崩溃详情\n\n| 实验 | 服务器 | 崩溃时间 | 错误 |\n|------|--------|----------|------|\n| full_occ_bn_v2_s2_r3 | westd-34685 | 07:01:58 | `wandb.errors.UsageError: No API key configured` |\n| random_occ_v2_s0_r2 | westd-10894 | 07:02:03 | 同上 |\n\n两个进程都已退出（PID 不存在，/proc/cmdline 也不存在），没有产生任何训练 step，因此没有 occ_loss 输出。\n\n### 根因\n\n`finetune.py:876` 调用 `wandb.init()` 时失败，服务器上没有配置 `WANDB_API_KEY` 环境变量，也没有执行过 `wandb login`。\n\n### 修复方案\n\n重新启动时需要在启动命令前设置 wandb key，或者禁用 wandb：\n1. **设置 key**：`export WANDB_API_KEY=[REDACTED] 后再启动\n2. **禁用 wandb**：如果 finetune.py 支持 `--wandb_project \"\"` 或 `WANDB_MODE=disabled` 参数\n\n需要哪种方式？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-occ-loss-fix.md"
+}

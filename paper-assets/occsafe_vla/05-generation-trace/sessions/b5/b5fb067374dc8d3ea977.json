@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5fb067374dc8d3ea977",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra gpu status and s2 50k eval",
+  "task_key": "worker_infra_gpu-status-and-s2-50k-eval_20260521T162802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gpu-status-and-s2-50k-eval_20260521T162802_result.json",
+    "occurrence": 1,
+    "bytes": 975,
+    "sha256": "0608f193a43b138be37e7e19da2eb7e1f3c5af2701cbe8a38bed7f907c1844b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n### GPU 任务分配（4/4 全部占满）\n\n| GPU | 利用率 | 显存 | 任务 |\n|-----|--------|------|------|\n| 0 | 99% | 62203/97887 MiB | occ_s1_fresh finetune（CUDA_VISIBLE_DEVICES=0） |\n| 1 | ~0% | 16778/97887 MiB | occ_s0 47500 50r rerun eval（CUDA_VISIBLE_DEVICES=1） |\n| 2 | 30% | 16778/97887 MiB | **occ_s2 50K 50r eval**（刚启动，CUDA_VISIBLE_DEVICES=2） |\n| 3 | ~0% | 16211/97887 MiB | occ_s0 50K eval |\n\n### s0 47500 rerun 碰撞检测\n\n**正常。** CAR 值明显小于 1.0（如 Task 3 CAR=0.200，Task 5 CAR=0.260，Task 6 CAR=0.360），确认碰撞被正确检测。当前进度 T7 94%，接近完成。\n\n### s2 50K eval 启动结果\n\n- **PID: 673918**（实际 python 进程；外层 bash PID 673916）\n- 模型已加载，正在跑 T0 rollouts（~3.8s/it）\n- 日志：`/root/eval_logs/occ_s2_50k_50r_eval.log`\n\n### 备注\n\n这台机器是 **4 GPU**（非 8 GPU），4/4 全部有任务在跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gpu-status-and-s2-50k-eval.md"
+}

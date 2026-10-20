@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96ec7af951d42dbfe251",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra confirm occ s0 kill and eval",
+  "task_key": "worker_infra_confirm-occ-s0-kill-and-eval_20260521T065651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_confirm-occ-s0-kill-and-eval_20260521T065651_result.json",
+    "occurrence": 1,
+    "bytes": 1542,
+    "sha256": "258b3e5d83320470b671816d55b75e8869cda607e55b099668ca10c71af8415c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 检查结果\n\n### s0 (PID 76998) — 已退出\n- **退出时间**: 14:56:24，exitcode 1\n- **50000_chkpt 已保存**: `/root/autodl-tmp/checkpoints/occ_s0/...--50000_chkpt` (14:56 创建)\n- **退出原因**: 训练完成后正常退出（到达 max_steps 后 save 了 50000_chkpt，然后 exit）。**不是 kill 脚本触发的** — kill 脚本最后一次检查在 14:55:56，此时还没发现 checkpoint，下次检查在 ~14:57:56\n\n### s2 (PID 78171) — 已退出\n- PID 已不存在\n- **50000_chkpt 也已保存** (14:56 创建)\n- 与 s0 同时完成训练\n\n### s1 (PID 80898) — 仍在训练\n- 状态正常，584% CPU，cuda:1\n\n### kill 脚本 (PID 86294) — 仍在运行但未触发\n- 日志最后一条: `14:55:56 no final checkpoint yet`\n- s0/s2 在 kill 脚本下次检查前已自行退出（max_steps 到了）\n\n### eval trigger (PID 85512) — 仍在运行，尚未触发 eval\n- 当前正在 sleep 30（PID 87534，14:56 开始）\n- 日志全部是 \"Waiting...\" 状态，还没检测到进程退出\n- **预计 ~14:57 醒来后会检测到 s0/s2 PID 已退出，应触发 eval**\n- 目前无 `evaluate_safelibero` 进程在运行\n\n### eval 结果\n- `/root/occsafe_vla/eval_results/` 只有 `monitor_status.txt`，尚无实际结果\n\n### 结论\ns0 和 s2 都是**正常训练完成退出**（非被 kill），50000_chkpt 均已保存。eval trigger 脚本即将（~1 分钟内）检测到退出并启动 eval。建议 1-2 分钟后再检查一次确认 eval 是否成功启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-confirm-occ-s0-kill-and-eval.md"
+}

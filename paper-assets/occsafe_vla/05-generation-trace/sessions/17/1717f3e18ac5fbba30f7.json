@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1717f3e18ac5fbba30f7",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "fix d067 paper text",
+  "task_key": "worker_fix_d067-paper-text_20260527T042938",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_d067-paper-text_20260527T042938_result.json",
+    "occurrence": 1,
+    "bytes": 918,
+    "sha256": "79aebfda93b6975687b2b1e3b93ca27ded5a08bef3ecc4c3243371b8461a5e1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修改完成，编译无错误。汇总：\n\n| 项目 | 修改内容 |\n|------|---------|\n| **Table 1 Detach+LN 行** | 已有 `$^\\star$` 和 `---`，无需改 |\n| **Table 1 caption** | `$^\\star$v1 code` → `$^\\star$Trained with v1 code; v2 multi-seed results pending` |\n| **正文 ΔCAR 描述** | 删除 Detach+LN 的 `$\\Delta{=}+2.0$\\,pp`，改为 `Detach+LN$^\\star$ (0.765) shows a comparable level under v1 code` |\n| **Table 2** | `Detach+LN (0.765)` → `Detach+LN$^\\star$ (0.765)` |\n| **Table 2 caption** | `$n{=}1$ for LN cells` → `Full OCC+LN: $n{=}1$, v2; Detach+LN: $n{=}3$, v1$^\\star$` |\n| **Figure 2 caption** | `LN cells have $n{=}1$` → `Full OCC+LN has $n{=}1$ (v2); Detach+LN has $n{=}3$ (v1, marked $^\\star$)` |\n| **appendix.tex Statistical tests** | 删除 v1 统计数据（`d ≈ -0.04, p = 0.91` 及相关句子） |\n| **编译** | pdflatex 无报错 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-d067-paper-text.md"
+}

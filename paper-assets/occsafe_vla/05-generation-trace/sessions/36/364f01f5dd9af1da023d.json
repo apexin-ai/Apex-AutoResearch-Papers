@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "364f01f5dd9af1da023d",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra deploy auto eval scripts",
+  "task_key": "worker_infra_deploy_auto_eval_scripts_20260520T191916",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_deploy_auto_eval_scripts_20260520T191916_result.json",
+    "occurrence": 1,
+    "bytes": 1062,
+    "sha256": "c23e3769b33a1c0e915b33f2bbd7405a6986b6b2e445da1cf6704b56733dbd40"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n### westd-10894 (vanilla)\n- **Monitor PID**: 199374，已在后台运行\n- **日志确认**: 3 个训练 PID 全部存活，脚本正在每 5 分钟轮询\n- **脚本路径**: `/root/occsafe_vla/monitor_and_eval.sh`\n- **日志路径**: `/root/occsafe_vla/eval_results/monitor.log`\n- **状态文件**: `/root/occsafe_vla/eval_results/monitor_status.txt`\n\n### westd-34685 (occ)\n- **脚本已写入**: `/root/occsafe_vla/monitor_and_eval_occ.sh`（未启动）\n- PID 映射: (27667→GPU0→occ_s0), (28827→GPU1→occ_s1), (29970→GPU2→occ_s2)\n- 启动命令：`nohup bash /root/occsafe_vla/monitor_and_eval_occ.sh > /root/occsafe_vla/eval_results/monitor.log 2>&1 & disown`\n\n### 脚本逻辑\n- 每 300 秒检查训练 PID 是否存活\n- PID 消失 → 找 `openvla-7b+*_chkpt` 最新 checkpoint → 在对应 GPU 启动 `evaluate_safelibero.py`\n- 多组 eval 并行执行（不同 GPU）\n- 用 `.launched_*` / `.done_*` 标记文件跟踪状态，避免重复启动\n- 3 组全部完成后自动退出"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-deploy-auto-eval-scripts.md"
+}

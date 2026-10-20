@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef7cacaf21d6d25a484b",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis investigate detach ln missing",
+  "task_key": "worker_analysis_investigate_detach_ln_missing_20260524T125128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_investigate_detach_ln_missing_20260524T125128_result.json",
+    "occurrence": 1,
+    "bytes": 3190,
+    "sha256": "8c903ddb89f798dd8b26f72a7a617ef721fd0241e9df2010a0384500ec91cbab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "根因已确认，信息足够出报告了。\n\n---\n\n## 调查结论\n\n### 缺失原因\n\n**`BEVOccupancyHead` 的 norm 类型不匹配。**\n\n日志文件 `/root/runs/occsafe_vla/gradient_analysis_mixed_seed.log` 第 209 行的错误：\n\n```\nRuntimeError: Error(s) in loading state_dict for BEVOccupancyHead:\n    Missing key(s) in state_dict: \"decoder.1.running_mean\", \"decoder.1.running_var\", \n    \"decoder.4.running_mean\", \"decoder.4.running_var\".\n```\n\n- `Detach_LN_s0` 的 checkpoint（`/root/autodl-tmp/checkpoints/detach_ln_s0/.../occ_head--50000_checkpoint.pt`）中 `decoder.1` 和 `decoder.4` 只有 `weight` + `bias`（2 个参数），说明训练时用的是 **GroupNorm(1, C)**（LayerNorm 等价）\n- `gradient_analysis.py` 第 220 行始终创建 `BEVOccupancyHead`，而 `occ_head.py` 中该类硬编码使用 **BatchNorm2d**（额外有 `running_mean`, `running_var`）\n- 加载 state_dict 时 strict 模式报缺失 key，脚本崩溃退出，其余 4 个条件（均使用 BN 版 OCC head）不受影响\n\n### 修复方案\n\n需要修改两处：\n\n**1. `occ_head.py` — 给 `BEVOccupancyHead` 加 `norm_type` 参数：**\n\n```python\nclass BEVOccupancyHead(nn.Module):\n    def __init__(self, in_dim: int, out_resolution: int = 64, num_classes: int = 1,\n                 hidden_dim: int = 256, num_patches_per_image: int = 256, norm_type: str = \"bn\"):\n        super().__init__()\n        # ...\n        norm1 = nn.GroupNorm(1, 128) if norm_type == \"ln\" else nn.BatchNorm2d(128)\n        norm2 = nn.GroupNorm(1, 64)  if norm_type == \"ln\" else nn.BatchNorm2d(64)\n        self.decoder = nn.Sequential(\n            nn.ConvTranspose2d(hidden_dim, 128, kernel_size=4, stride=2, padding=1),\n            norm1,\n            nn.GELU(),\n            nn.ConvTranspose2d(128, 64, kernel_size=4, stride=2, padding=1),\n            norm2,\n            nn.GELU(),\n            nn.Conv2d(64, num_classes, kernel_size=1),\n        )\n```\n\n**2. `gradient_analysis.py` — 加 `--occ_norm` 参数并传给 head：**\n\n```python\n# argparse 部分加一行\np.add_argument(\"--occ_norm\", type=str, default=\"bn\", choices=[\"bn\", \"ln\"])\n\n# 第 220 行创建 head 处\naux_head = BEVOccupancyHead(in_dim=embed_dim, out_resolution=64, num_classes=1,\n                            hidden_dim=256, norm_type=args.occ_norm)\n```\n\n**3. 重跑 Detach_LN_s0 单条件命令：**\n\n```bash\ncd /root/occsafe_vla/openvla-oft && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && \\\nCUDA_VISIBLE_DEVICES=0 python /root/occsafe_vla/analysis/gradient_analysis.py \\\n  --checkpoint_path /root/autodl-tmp/checkpoints/detach_ln_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt \\\n  --condition_name Detach_LN_s0 --condition_type occ --occ_detach true \\\n  --occ_norm ln \\\n  --data_root /root/autodl-tmp/data/modified_libero_rlds \\\n  --occ_data_dir /root/occsafe_vla/occ_data \\\n  --num_batches 200 --batch_size 4 \\\n  --output_dir /root/occsafe_vla/artifacts/gradient_analysis_mixed_seed/\n```\n\n需要我直接在服务器上执行修复并重跑吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-investigate-detach-ln-missing.md"
+}

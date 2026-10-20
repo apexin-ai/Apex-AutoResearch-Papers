@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2930a7f124ab1ab2fd54",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops urgent status westd10894",
+  "task_key": "worker_ops_urgent_status_westd10894_20260523T195036",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent_status_westd10894_20260523T195036_result.json",
+    "occurrence": 1,
+    "bytes": 1017,
+    "sha256": "04418607469ef8645bc2a58dc1698ecb27a224d1d0dee85652187f2697b7c34b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练进度汇总\n\n| 实验 | GPU | 当前 Step | 总步数 | 进度 | 速度 | 剩余时间 | 预估完成 |\n|------|-----|----------|--------|------|------|---------|---------|\n| **cutoff_s2_v2** | cuda:0 (80%) | 19,760 | 50,005 | **39.5%** | 1.08 it/s | ~7h48m | ~5/24 17:30 |\n| **detach_ln_s0** | cuda:1 (99%) | 8,960 | 50,005 | **17.9%** | 1.08 it/s | ~10h29m | ~5/24 20:10 |\n| **detach_ln_s1** | cuda:2 (99%) | 8,900 | 50,005 | **17.8%** | 1.08 it/s | ~10h36m | ~5/24 20:15 |\n| **detach_ln_s2** | cuda:3 (99%) | 8,920 | 50,005 | **17.8%** | 1.08 it/s | ~10h34m | ~5/24 20:15 |\n\n**最新 loss**:\n- cutoff_s2_v2 @ step 19700: occ=0.0106, action=0.0977\n- detach_ln_s0 @ step 8900: occ=0.0094, action=0.1182\n- detach_ln_s2 @ step 8900: occ=0.0094, action=0.1108\n\n**Checkpoint**: cutoff_s2_v2 已保存 10000 步 checkpoint，其余 3 个尚未到达首个存档点。\n\n**磁盘**: /root/autodl-tmp 250G，已用 52G (21%)，空间充裕。\n\n**所有 4 个进程运行正常。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-status-westd10894.md"
+}

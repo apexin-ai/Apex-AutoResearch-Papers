@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0bb9ed16a6a15c7b2376",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diag gpu reset 34685",
+  "task_key": "worker_diag_gpu-reset-34685_20260528T144025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_gpu-reset-34685_20260528T144025_result.json",
+    "occurrence": 1,
+    "bytes": 1101,
+    "sha256": "0f3cd3815f9b321d8ebb6b6da8ee64a76f4cf55b3ac692bfbcdea54547e6400c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 0 的异常状态已修复（100% → 0%，P0 → P8，98W → 35W）。创建一次 CUDA context 清除了 driver 的卡死状态。\n\n**最终结果：**\n\n| 项目 | 状态 |\n|------|------|\n| 可见 GPU 数量 | **1 张**（应为 4 张） |\n| GPU 0 型号 | NVIDIA RTX PRO 6000 Blackwell Server Edition (96GB) |\n| GPU 0 状态 | **已修复** — 0% util, 0 MiB used, 31°C, P8 idle |\n| 残留进程 | 无 |\n\n**无法修复的问题：**\n\n容器 `westd-34685` 在 AutoDL 平台层只分配了 **1 张 GPU**（`NVIDIA_VISIBLE_DEVICES=void` in PID 1 env，实际通过 device node `/dev/nvidia1` 映射了 minor 1 对应的那张）。主机共 9 张 GPU，但容器只能访问其中 1 张。\n\n这是容器创建时的配置，无法从容器内部修改。需要：\n1. 去 AutoDL 控制台确认该实例的 GPU 配置（是否确实租了 4 卡实例）\n2. 如果配置正确但只显示 1 张，**关机后重新开机**（不是重启容器，是 AutoDL 控制台的\"关机\"再\"开机\"）\n3. 如果仍然不行，联系 AutoDL 客服或重新创建实例"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-gpu-reset-34685.md"
+}

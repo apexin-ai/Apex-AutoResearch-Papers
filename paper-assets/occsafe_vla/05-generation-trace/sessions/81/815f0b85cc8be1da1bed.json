@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "815f0b85cc8be1da1bed",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops verify gpu23 westd34685",
+  "task_key": "worker_ops_verify_gpu23_westd34685_20260523T224827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_gpu23_westd34685_20260523T224827_result.json",
+    "occurrence": 1,
+    "bytes": 908,
+    "sha256": "5d499d565bc594e7b2c1a900162027bd505362c6ff8acc43d26c08934b2d5d6b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个训练进程均已成功启动，运行正常。\n\n**GPU 占用**（4 块 GPU 均已分配显存）：\n\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| 0 | 0% | 63,013 / 97,887 MiB |\n| 1 | 0% | 63,037 / 97,887 MiB |\n| 2 | 0% | 62,203 / 97,887 MiB |\n| 3 | 0% | 62,209 / 97,887 MiB |\n\nGPU 2 和 GPU 3 各占用约 62GB 显存，内存已充分分配。\n\n**训练进度**：\n\n| 实验 | 当前步数 | 总步数 | 速度 | 最新 loss |\n|------|----------|--------|------|-----------|\n| cutoff_25k_s1 | ~850/50005 (2%) | 50,005 | ~1.05 it/s | occ=0.0258, action=0.2793 |\n| reverse_cutoff_s1 | ~846/50005 (2%) | 50,005 | ~1.03 it/s | occ=0.1952, action=0.3047 |\n\n两个实验已训练约 16 分钟，进度一致，loss 正常下降。`ps` 命令因管道符被 `ssh_read_only` 拦截，但从 GPU 显存占用和日志持续更新可确认进程在跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-gpu23-westd34685.md"
+}

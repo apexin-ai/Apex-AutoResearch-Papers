@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ee953b5e63bdfaa3be4",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops reverse cutoff s2 v2 eval",
+  "task_key": "worker_ops_reverse-cutoff-s2-v2-eval_20260526T232320",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_reverse-cutoff-s2-v2-eval_20260526T232320_result.json",
+    "occurrence": 1,
+    "bytes": 299,
+    "sha256": "eddbd3d4071fc873c2cd92480d005e00da2aa5d2e680699e1c698ab31ae33256"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval launched and running. Summary:\n- **PID**: 428963 on westd-10894 cuda:0\n- **Checkpoint**: 50000_chkpt (reverse_cutoff_s2_v2)\n- **Log**: `/tmp/reverse_cutoff_s2_v2_eval.log`\n- **Registry**: `reverse_cutoff_s2_v2_eval` → RUNNING\n\nWill check back in ~15 minutes for progress."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-reverse-cutoff-s2-v2-eval.md"
+}

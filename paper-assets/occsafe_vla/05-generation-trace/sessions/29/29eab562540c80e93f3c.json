@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "29eab562540c80e93f3c",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_3_1779740575.md",
+  "task_key": "loop_3_1779740575",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1779740575.md",
+    "occurrence": 1,
+    "bytes": 5262,
+    "sha256": "41d266bc87cdb985f75b6b41277d2178a4401b0492a45934d8c54f16d8016c08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-25T19:56:22+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-10894 cuda:0/1/2/3 + westd-34685 cuda:0/1/2/3，共 8 张，不可用白名单外 GPU\n- `submit_training_job` 的 command 必须用 `bash -c \"...\"` 包裹（tmux 用 sh 不是 bash，不包会 EXIT_CODE=127）\n- 训练命令必须显式指定 `--num_images_in_input 2 --use_proprio True --use_l1_regression True --batch_size 8 --learning_rate 5e-4 --lora_rank 32 --image_aug True`，不依赖脚本默认值（D023 事故教训）\n- eval 脚本参数是 `--num_rollouts`（不是 `--num_trials_per_task`），用错会 EXIT_CODE=2\n- eval 脚本用 `--pretrained_checkpoint`（不是 `--vla_path`）\n- torchrun EXIT_CODE=1 + `destroy_process_group()` 警告 = false positive，不要标记为 failed——检查日志确认 \"Max step 50005 reached!\" 和 checkpoint 已保存\n- 数据/模型/HF cache 全放 `/root/autodl-tmp/`，根分区只有 ~30GB\n\n### 2. 🖥️ 基础设施快照\n- **westd-10894**：conda env `occsafe`，激活 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`，工作目录 `/root/occsafe_vla/openvla-oft`，磁盘 50% (425GB 可用)\n- **westd-34685**：同上 conda env `occsafe`，同路径，磁盘 2% (819GB 可用)\n- 数据集：`/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops`\n- OCC 数据：`/root/occsafe_vla/occ_data`\n- Base 模型：`/root/autodl-tmp/models/openvla-7b`\n- 活跃进程：\n  - `full_occ_ln_s1_eval` PID 859060, tmux=full_occ_ln_s1_eval, 10894:cuda:0, cron 已注册\n  - `full_occ_ln_s2_eval` PID 859426, tmux=full_occ_ln_s2_eval, 10894:cuda:1, cron 已注册\n  - `cutoff_15k_s1_eval` PID 40809, tmux=cutoff_15k_s1_eval, 34685:cuda:1, cron 已注册\n  - `cutoff_45k_s1` PID 20913, tmux=cutoff_45k_s1, 34685:cuda:0, cron 已注册\n  - `cutoff_25k_s2` PID 998127, tmux=cutoff_25k_s2, 34685:cuda:2, cron 已注册\n  - `reverse_cutoff_s2` PID 998624, tmux=reverse_cutoff_s2, 34685:cuda:3, cron 已注册\n\n### 3. 📊 当前状态\n刚处理 cron 回调：full_occ_ln_s1/s2 和 cutoff_15k_s1 三个实验被误报为 failed（torchrun destroy_process_group 警告导致 exit_code=1）。已诊断为 false positive，更正 conclusion 为 success，提交了 3 个 eval 实验。已向 Director 汇报，等待 10894:cuda:2/3 空闲 GPU 的任务分配决策。\n\n**RUNNING（6 个）**：\n| exp_id | 服务器:GPU | 类型 | ETA (UTC) |\n|--------|-----------|------|-----------|\n| full_occ_ln_s1_eval | 10894:0 | eval 50r | ~03:30 |\n| full_occ_ln_s2_eval | 10894:1 | eval 50r | ~03:30 |\n| cutoff_15k_s1_eval | 34685:1 | eval 50r | ~03:30 |\n| cutoff_45k_s1 | 34685:0 | 训练 | ~10:24 |\n| cutoff_25k_s2 | 34685:2 | 训练 | ~14:04 |\n| reverse_cutoff_s2 | 34685:3 | 训练 | ~14:11 |\n\n**空闲 GPU**：10894:cuda:2, 10894:cuda:3——已向 Director 报告，等决策。\n\n**等待**：Director 对空闲 GPU 的任务分配回复。\n\n### 4. 📋 待办（条件触发式）\n- full_occ_ln_s1_eval/s2_eval 完成 → 提取 CAR/TSR，与 s0 (CAR=0.766) 合并计算 3-seed 均值 → 完成 2×2 factorial 分析（gradient flow × norm type 交互效应）→ 汇报 Director\n- cutoff_15k_s1_eval 完成 → 提取 CAR，与 s0 (CAR=0.804) 合并 → 更新 dose-response 曲线 2-seed 数据 → 汇报\n- cutoff_45k_s1 完成 (~10:24) → 提交 cutoff_45k_s1_eval 在 34685:cuda:0 → 同时提交 cutoff_45k_s2 训练（memory.md 有命令模板，改 GPU 编号即可）\n- cutoff_15k_s1_eval 完成释放 34685:cuda:1 → 提交 cutoff_15k_s2 训练（memory.md 有命令模板）\n- cutoff_25k_s2/reverse_cutoff_s2 完成 (~14:00) → 提交 eval → 3rd seed 确认 withdrawal instability pattern\n- Director 回复 10894 空闲 GPU 任务 → 执行分配（建议选项：CKA 分析 / same-seed 梯度分析 / 新训练）\n- 2×2 factorial 3-seed 结果出齐 → 如果 LN+gradient flow 显著不同于 BN+gradient flow → 可能需要更新 paper framing（交互效应方向）\n\n### 5. 🎯 战略上下文\n- **核心发现**：Dual mechanism（BN 干扰 + 梯度流缺失）+ differential encoder vulnerability + continuity principle。论文 framing 已锁定为分析型论文\n- **目标**：CoRL 2026，Abstract deadline May 26（1天后），Paper deadline May 29（4天后）\n- **2×2 Factorial 关键**：full_occ_ln_s0 eval CAR=0.766，低于 Full OCC BN 3-seed avg 0.797。如果 3-seed 确认 LN < BN with gradient flow，说明 **BN 在有梯度流时反而有益**（与 D035 \"BN 是表征退化 100% 原因\" 的 Detach 条件下结论形成对比）——这是一个 crossover interaction（D043），strengthens the paper\n- **Dose-response 非单调**：cutoff_15k_s0 CAR=0.804 > Full OCC avg 0.797。如果 cutoff_15k_s1 eval 也高 → 非单调 dose-response 是真实的，paper 可以 claim \"optimal gradient flow duration exists\"\n- **易错点**：\n  - 不要把 s0 单 seed 的 Full OCC BN (0.832) 当 baseline——用 3-seed avg (0.797)\n  - full_occ_ln 的 progress bar 因 resume 显示不准（30000/50005 就结束），但 internal step 正确到 50000\n  - spec 字段用 `update_registry(field=\"spec\", value={...})` 更新时会**覆盖**整个 spec，不是 merge——要保留原有字段必须一起传\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1779740575.md"
+}

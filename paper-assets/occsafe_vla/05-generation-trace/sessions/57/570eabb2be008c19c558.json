@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "570eabb2be008c19c558",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval ablation 50r monitor and rerun",
+  "task_key": "worker_eval_ablation-50r-monitor-and-rerun_20260522T020237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_ablation-50r-monitor-and-rerun_20260522T020237_result.json",
+    "occurrence": 1,
+    "bytes": 506,
+    "sha256": "e73ddbb3af64eeddf4d2195ba0d6ada60122c23b613ad3263be487e4ba1b97b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态总结：\n\n| GPU | 任务 | seed 42 | 进度 | 预计完成 |\n|-----|------|---------|------|----------|\n| 0 | detach_s0 | ✅ 有 | T6 48% (~63%) | ~15 min |\n| 1 | random_s0 | ❌ 无 | T6 56% (~65%) | ~15 min → 完成后重跑 |\n| 2 | detach_s1 | ✅ 有 | T0 84% (~8%) | ~35 min |\n| 3 | random_s1 | ✅ 有 | T0 84% (~8%) | ~35 min |\n\n**detach_s0 已带 seed 42**，不需要重跑。只有 **random_s0** 需要完成后重跑。\n\n3 分钟后继续检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-ablation-50r-monitor-and-rerun.md"
+}

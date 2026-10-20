@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4090e810eb48ae8b0798",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code bev aux head",
+  "task_key": "worker_code_bev-aux-head_20260520T065627",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bev-aux-head_20260520T065627_result.json",
+    "occurrence": 1,
+    "bytes": 2267,
+    "sha256": "75f41612967fedfe75e1250c2b14300a0af8bc0f20f4370ae48540dce066164d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结如下：\n\n---\n\n## 代码变更清单\n\n### 新增文件\n- **`prismatic/models/occ_head.py`** — BEVOccupancyHead (1.2M params) + FocalLoss\n  - 输入: `(B, 256, 2176)` fused visual features (projector 前)\n  - 架构: Linear(2176→256) → ConvTranspose2d 16→32 → ConvTranspose2d 32→64 → Conv2d → `(B, 1, 64, 64)`\n  - 多视角输入自动取第一视角的 256 patches\n\n### 修改文件\n\n**`prismatic/extern/hf/modeling_prismatic.py`** (1 行)\n- `_process_vision_features()` 中添加 `self._cached_patch_features = patch_features`，在 projector 投影前缓存原始特征\n\n**`vla-scripts/finetune.py`** (6 处修改)\n- 新增 `import`: `BEVOccupancyHead`, `FocalLoss`, `math`\n- `FinetuneConfig` 新增 6 个参数: `use_occ_head`, `occ_data_dir`, `occ_loss_weight`(0.01), `occ_loss_decay_steps`(50000), `occ_detach`(True), `occ_resolution`(64)\n- 新增 `get_base_model()` helper: 解包 DDP + PEFT 获取基础模型\n- `run_forward_pass()`: 新增 occ 参数，在主 loss 后计算 `loss = loss_action + λ_occ * loss_occ`\n- `finetune()`: 初始化 occ_head (DDP-wrapped) + 加入 optimizer + metrics + 训练循环 + checkpoint 保存\n- Loss 权重指数衰减: `λ = 0.01 × exp(-step / 50000)`\n\n**`prismatic/vla/datasets/datasets.py`** (4 处修改)\n- `RLDSBatchTransform`: 新增 `occ_data_dir`, `occ_resolution` 字段\n- 新增 `_load_occ_label()`: 从 HDF5 加载 BEV 标签，未找到时 fallback 到全零\n- `DummyDataset`: 返回 dummy `occ_labels` (64×64 全零)\n\n**`prismatic/util/data_utils.py`** (1 处修改)\n- `PaddedCollatorForActionPrediction`: collate `occ_labels` tensor\n\n### 干跑验证\n- BEVOccupancyHead: 输入 `(2, 256, 2176)` → 输出 `(2, 1, 64, 64)` ✓\n- 多视角输入 `(2, 512, 2176)` → 正确截取 → `(2, 1, 64, 64)` ✓\n- FocalLoss 计算正确，梯度回传正常 ✓\n- bfloat16 兼容 ✓\n- 所有 5 个文件语法检查通过 ✓\n- 33 个集成点全部验证通过 ✓\n\n### 使用方式\n```bash\n# 启用 occ head 训练\npython vla-scripts/finetune.py \\\n    --use_occ_head true \\\n    --occ_data_dir /path/to/bev_labels \\\n    --occ_loss_weight 0.01 \\\n    --occ_loss_decay_steps 50000 \\\n    --occ_detach true\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bev-aux-head.md"
+}

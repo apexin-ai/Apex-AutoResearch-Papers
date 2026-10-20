@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3411562164c0187ab26b",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra diagnose occ s2 exit",
+  "task_key": "worker_infra_diagnose_occ_s2_exit_20260521T043634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_diagnose_occ_s2_exit_20260521T043634_result.json",
+    "occurrence": 1,
+    "bytes": 978,
+    "sha256": "9e47a2f6991997bc6884cde2939aba7c17b075f12f7c1edb9a94d7257998d44f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n```\nocc_s2 退出原因: 异常退出 — 磁盘满 (No space left on device)\n最终 step: 45000（在保存 45000_chkpt 时 merged_vla.save_pretrained() 写 safetensors 失败）\n50000_chkpt: 不存在\n错误信息: safetensors_rust.SafetensorError: I/O error: No space left on device (os error 28)\neval 已触发: 否\n\nocc_s0 状态: 也异常退出（同一原因 — 保存 45000_chkpt 时磁盘满）\nocc_s0 最终 checkpoint: 45000_chkpt（同样无 50000_chkpt）\n\nocc_s1 (PID 58802): 也已退出（大概率同一原因）\n```\n\n**磁盘状态**: `/root/autodl-tmp` 350G 已用 350G (100%)，其中 checkpoints 占 329G（occ_s0=119G, occ_s1=90G, occ_s2=121G）。\n\n三个训练都在 step 45000 保存 checkpoint 时因磁盘满而崩溃。需要清理旧 checkpoint 腾出空间后从 45000 恢复训练。每个实验有 9 个 checkpoint（5000, 7500, 30000-45000 每 2500 步），删除早期的即可释放空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-diagnose-occ-s2-exit.md"
+}

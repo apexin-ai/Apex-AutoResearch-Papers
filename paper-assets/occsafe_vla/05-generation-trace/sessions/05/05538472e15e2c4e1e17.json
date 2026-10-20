@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05538472e15e2c4e1e17",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "director / loop_17.md",
+  "task_key": "loop_17",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_17.md",
+    "occurrence": 1,
+    "bytes": 3280,
+    "sha256": "ebb69ec1abb58495ee96685d4d2831892c7ae4fe2f69c2cb0e3fd49e8df97470"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: max_messages\nupdated: '2026-05-29T03:33:09+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 分配需通过 `get_project_status` 确认 `gpu_ids` 白名单，不得使用白名单外的 GPU\n- AutoDL 服务器有 cgroup v2 GPU 限制问题，用户需要从 AutoDL 控制台重启服务器才能解决\n- Figure 1 用户已明确拒绝 PaperBanana 重绘方案（`fig1_architecture_pb.py`），**不要再用 PaperBanana 重画 Figure 1**。当前使用 `fig1_architecture.py` 的回退版本\n- BN eval mode 实验（RD2-W4）需要 `--occ_bn_eval True` 参数**重新训练**，不是 eval-time 切换——occ_head 的 BN 层在 eval 时不加载\n\n### 2. 🖥️ 基础设施快照\n- 论文目录：`/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/`\n- 图表脚本：`figures/fig1_architecture.py`（当前使用）、`fig_car_factorial_combined.py`（Fig2）、`plot_gradient_v2_combined.py`（Fig3）\n- 实验服务器：AutoDL（cgroup v2 问题待用户重启）\n- 项目知识文件：`projects/occsafe_vla/` 下 ROADMAP.md / paper_framing.md / experiment_plan.yaml / report.md / decisions.yaml / constraints.yaml / mistakes.yaml\n- 审稿阶段已启动，review_chat_id: `oc_faa96524df7d6444f5c8cbc48d5a616b`\n\n### 3. 📊 当前状态\n刚完成 Figure 1 回退到旧版 + 增量美化，重新编译论文 PDF 并上传飞书（`occsafe_vla_20260529_033203.pdf`）。等待用户游承松确认 Figure 1 是否满意。\n\n审稿修复进度：17 个 issue 中 12 个已 resolved，5 个 open。D079 叙事重构已完成，Reviewer 给出 WARNING（Cell 4 数据同步 + permutation 排序问题已处理）。\n\nGPU 实验全部 blocked：AutoDL 服务器 cgroup v2 限制，等用户重启。待跑：\n- RD2-W4: BN eval mode training (`--occ_bn_eval True`, ~13h)\n- RD3-W3: λ₀=0.001 sweep (~13h)\n- RD3-W3: λ₀=0.1 sweep (~13h)\n- 两个实验可能已完成：`random_occ_v2_s0_r4` 和 `full_occ_bn_v2_s2_r5`（预计 ~13:00 UTC May 29）\n\n### 4. 📋 待办\n- 用户确认 Figure 1 满意 → 继续处理剩余 5 个 open review issues\n- 用户确认 Figure 1 不满意 → 在 `fig1_architecture.py` 基础上按反馈微调（不用 PaperBanana）\n- AutoDL 服务器重启完成 → 立即派 Agent 启动 RD2-W4 + RD3-W3 三组实验并行\n- `random_occ_v2_s0_r4` / `full_occ_bn_v2_s2_r5` 完成回调 → 分析结果，更新论文数据（η² claim、Cell 4 n=3→n=4 同步）\n- 新实验结果出来 → 更新 results.tex 中的 permutation p-values 和 effect sizes\n\n### 5. 🎯 战略上下文\n- 目标：SafeRL Workshop @ RSS 2025 投稿\n- 核心结论：2×2 factorial design（gradient flow ON/OFF × BN/LN）揭示 auxiliary OCC task 对 VLA 安全性的影响\n- 关键发现：seed-dependent outcomes + overtraining 是 MVP 阶段主要发现；permutation ANOVA 现在是 primary 统计方法\n- 易错点：(1) 不要把 `fig1_architecture_pb` 系列文件当作当前版本——用户明确拒绝了 (2) Cell 4 数据 n=3→n=4 同步是 deliberate defer（D075/D078），不要急着改 (3) η² 的 claim 需要等 N=15 数据确认后再更新 abstract 中的 TODO\n- 用户对图表审美非常敏感，游承松已三次对 Figure 1 提意见——后续修改务必保守增量，不要大改\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-17.md"
+}

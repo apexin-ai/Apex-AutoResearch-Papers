@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "256955c090d66a402c68",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "audit 34685 survival check",
+  "task_key": "worker_audit_34685-survival-check_20260527T213221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_34685-survival-check_20260527T213221_result.json",
+    "occurrence": 1,
+    "bytes": 1255,
+    "sha256": "c60a4cf7414b6b646ce5683e61e43b1dc80399563c4f525a673ef0926fd72841"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-34685 全部实验状态\n\n```\nGPU 0: detach_ln_v2_s2   — ✅ 存活 — step 704/50005 (1%)   — 1.09 it/s — 刚 resume，运行 ~11min\nGPU 1: vanilla_object_s0  — ✅ 存活 — step 702/50005 (1%)   — 1.10 it/s — 刚 resume，运行 ~11min\nGPU 2: full_occ_ln_v2_s3  — ✅ 存活 — step 17846/50005 (36%) — 1.08 it/s — 运行 4h52m\nGPU 3: detach_ln_v2_s3    — ✅ 存活 — step 17808/50005 (36%) — 1.08 it/s — 运行 4h53m\n```\n\n**关键实验：**\n- **full_occ_ln_v2_s3** (Cell 2): 正常，step 17800 处 occ_loss=0.0135, action_loss=0.1216\n- **detach_ln_v2_s3** (Cell 4): 正常，step 17800 处 occ_loss=0.0099, action_loss=0.1147\n\n**resume 实验：**\n- detach_ln_v2_s2: step 700 处 occ_loss=0.0000 (detach 模式正常), action_loss=0.0962\n- vanilla_object_s0: step 700 处 occ_loss=0.0000, action_loss=0.1475\n\n**ETA 估算：** 4 个实验都以 ~1.08-1.10 it/s 运行。GPU 2/3 剩余 ~32200 steps ≈ 8.2h（约 05-28 14:00 UTC 完成）。GPU 0/1 剩余 ~49300 steps ≈ 12.5h（约 05-28 18:00 UTC 完成）。\n\n**磁盘：** 110GB 可用，充足。\n\n⚠️ GPU 0/1 的 ETA（18:00 UTC）超过 C003 截止时间 12:00 UTC 约 6 小时。GPU 2/3 也会超约 2 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-34685-survival-check.md"
+}

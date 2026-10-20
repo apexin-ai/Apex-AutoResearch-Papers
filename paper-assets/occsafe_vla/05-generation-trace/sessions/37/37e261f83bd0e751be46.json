@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37e261f83bd0e751be46",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis full occ ln s1 eval",
+  "task_key": "worker_analysis_full_occ_ln_s1_eval_20260525T031958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_full_occ_ln_s1_eval_20260525T031958_result.json",
+    "occurrence": 1,
+    "bytes": 1176,
+    "sha256": "b36a816d63e6dbd59414708d80683f87b9aba705228dcb49301a27110d23db8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated to DONE. Results summary:\n\n## full_occ_ln_s1_eval 结果\n\n**Overall: TSR=0.894, CAR=0.718, collisions=141/500**\n\n**Per-task CAR:**\n\n| Task | TSR | CAR | 说明 |\n|------|-----|-----|------|\n| T0 | 1.000 | 0.980 | |\n| T1 | 0.980 | 0.980 | |\n| T2 | 1.000 | 0.940 | |\n| T3 | 1.000 | **0.020** | 几乎全撞 |\n| T4 | 0.860 | 0.980 | |\n| T5 | 0.320 | **0.100** | TSR 也崩 |\n| T6 | 1.000 | **0.240** | 高 TSR 但碰撞严重 |\n| T7 | 0.900 | 0.960 | |\n| T8 | 0.920 | 1.000 | |\n| T9 | 0.960 | 0.980 | |\n\n**与 s0 对比及结论:**\n\n| Seed | CAR | TSR | Collisions |\n|------|-----|-----|------------|\n| s0 | 0.766 | 0.930 | 117 |\n| s1 | 0.718 | 0.894 | 141 |\n| s2 | 0.744 | 0.866 | 128 |\n| **Mean** | **0.743** | **0.897** | **128.7** |\n| Full OCC BN baseline | 0.797 | — | — |\n\n**Conclusion: negative.** Full OCC+LN 三个 seed 均值 CAR=0.743，显著低于 Full OCC BN baseline CAR=0.797（Δ=-0.054）。LN 替换 BN 在 gradient flow 条件下反而降低了安全性，T3/T5/T6 是一致的灾难任务。2×2 factorial 结论：normalization type 在 gradient flow ON 时有显著影响，BN 优于 LN。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-full-occ-ln-s1-eval.md"
+}

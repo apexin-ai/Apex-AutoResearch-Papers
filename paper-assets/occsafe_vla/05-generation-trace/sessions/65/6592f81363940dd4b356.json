@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6592f81363940dd4b356",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops check progress westd34685",
+  "task_key": "worker_ops_check_progress_westd34685_20260523T194356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_progress_westd34685_20260523T194356_result.json",
+    "occurrence": 1,
+    "bytes": 810,
+    "sha256": "7580e3f9b72a85a558b49ecc1ad67d6a54103392455068958e9ae58928a3c663"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练进度报告\n\n| 实验 | Step | 进度 | 速度 | 预估剩余 | 最新 loss |\n|------|------|------|------|----------|-----------|\n| **reverse_cutoff_s0** (cuda:2) | 47839/50005 | 96% | ~1.04 it/s | **~35 min** | occ=0.0108, action=0.0540 |\n| **cutoff_25k_s0** (cuda:3) | 47959/50005 | 96% | ~1.03 it/s | **~33 min** | occ=0.0119, action=0.0630 |\n| **cutoff_15k_s0** (cuda:1) | 4105/50005 | 8% | ~1.05 it/s | **~12.1 h** | occ=0.0120, action=0.1309 |\n| **cutoff_45k_s0** (cuda:0) | 3153/50005 | 6% | ~1.04 it/s | **~12.5 h** | occ=0.0098, action=0.2412 |\n\n4 个进程全部在运行。reverse_cutoff_s0 和 cutoff_25k_s0 预计约 **~14:50 UTC** 完成（比预估的 18:40-20:30 UTC 早很多）。cutoff_15k_s0 和 cutoff_45k_s0 预计明天凌晨 ~02:30-03:00 UTC 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-progress-westd34685.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c1e6deb441247ace7d7",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis detach ln s1 eval",
+  "task_key": "worker_analysis_detach_ln_s1_eval_20260524T082927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_detach_ln_s1_eval_20260524T082927_result.json",
+    "occurrence": 1,
+    "bytes": 309,
+    "sha256": "d86d496a664bac84dfdcc593028884895f83cba93991210341e76da79691d9ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "detach_ln_s1_eval 已更新为 DONE。\n\n**结果汇总** — Detach+LN seed 43 (s1):\n- **TSR=0.906, CAR=0.756**\n- 与 s0 (TSR=0.914, CAR=0.792) 对比：TSR 接近，CAR 略低\n- T5 仍是瓶颈 (TSR=0.38, CAR=0.12)，T3/T6 CAR 也偏低 (0.56/0.36)\n- T7/T8/T9 CAR=1.000，完全无碰撞"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-detach-ln-s1-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca8c82a1f6546eed2041",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "fix register 10894 crons",
+  "task_key": "worker_fix_register_10894_crons_20260528T004414",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_register_10894_crons_20260528T004414_result.json",
+    "occurrence": 1,
+    "bytes": 948,
+    "sha256": "cb1bc5fdeaebc2ce54c158e3043162ca22d0d7b6d671666cc2858a894b3c6f35"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n| 实验 | GPU | 确认 PID | 预期 PID | Cron ID | 状态 |\n|------|-----|---------|---------|---------|------|\n| vanilla_object_s1 | cuda:0 | **798980** | 798900 | `8d41dadc` | ✅ 存活，cron 已注册 |\n| detach_ln_v2_s4 | cuda:1 | **822480** | 822402 | `289b2a51` | ✅ 存活，cron 已注册 |\n| full_occ_bn_object_s0 | cuda:2 | **930834** | 930752 | `1c9dee3d` | ✅ 存活，cron 已注册 |\n| detach_bn_object_s0 | cuda:3 | **931057** | 930908 | `64427350` | ✅ 存活，cron 已注册 |\n\n**PID 偏差说明**：实际 PID 与预期差 78-149，均为同一实验的 GPU 子进程（通过 `/proc/<pid>/cmdline` 中的 `--run_id_note` 确认身份匹配）。4 张 GPU 各占 ~62GB 显存，均在正常训练中。\n\n**Cron 监控**：每 17 分钟检查一次各实验的进程存活状态和日志进度，进程异常终止时立即报告。Session-only，7 天后自动过期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-register-10894-crons.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51eb1a88363714bc7837",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analyze cutoff s0",
+  "task_key": "worker_analyze_cutoff_s0_20260523T005240",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_cutoff_s0_20260523T005240_result.json",
+    "occurrence": 1,
+    "bytes": 579,
+    "sha256": "4957d9d96a1e8e8a478676149388b6c69b554558b778d6c514195539fed8e540"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n1. **训练完成**: 到达 50005 步，EXIT_CODE=0\n2. **最终指标** (step 50000):\n   - action_loss = **0.0513** (初始 0.6914)\n   - occ_loss = **0.0087** (初始 0.0979)\n   - depth_loss = 0.0000\n3. **Checkpoint 完整**: `50000_chkpt/` 包含 4 个 safetensors 分片 (~14.5GB)、action_head、occ_head、proprio_projector、lora_adapter、tokenizer、config 等全部文件\n4. **Eval 已提交**:\n   - exp_id: `cutoff_s0_eval`\n   - server: westd-34685, cuda:0\n   - log: `~/runs/occsafe_vla/cutoff_s0_eval.log`\n   - 50 rollouts, seed 42"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-cutoff-s0.md"
+}

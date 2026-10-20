@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4333a7b78fa1d8146adf",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analyze cutoff s1",
+  "task_key": "worker_analyze_cutoff_s1_20260523T005329",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_cutoff_s1_20260523T005329_result.json",
+    "occurrence": 1,
+    "bytes": 578,
+    "sha256": "a8fbeb5119a865c05688ccd1902fa341d1de27f1d768767af8306d28cafc8996"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**cutoff_s1 训练报告：**\n\n1. **训练完成** — 50005 步，EXIT_CODE=0，耗时 ~17.4 GPU 小时\n2. **最终 loss** — action_loss=0.0547, occ_loss=0.0129\n3. **Cutoff 效果** — occ_loss 在 cutoff (35k步) 前稳定在 ~0.010，cutoff 后略升至 0.013-0.015（梯度停止但 loss 仍计算，符合预期）；action_loss 持续收敛\n4. **Checkpoint 完整** — 4 个 model shard + action_head + occ_head + proprio_projector + tokenizer 均存在\n5. **Registry 已更新** — conclusion=success, status=DONE, metrics 已记录"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-cutoff-s1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49c22c0435789e547baa",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra scp checkpoints for gradient analysis",
+  "task_key": "worker_infra_scp-checkpoints-for-gradient-analysis_20260527T042509",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_scp-checkpoints-for-gradient-analysis_20260527T042509_result.json",
+    "occurrence": 1,
+    "bytes": 422,
+    "sha256": "5d52b7d75cdc209d89b4622117511d1cdbd0b5e85adfc81fc5a49b673a41e026"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 个 50K checkpoint 全部就绪于 westd-10894，各 15GB：\n\n| 条件 | 目录 | 大小 |\n|------|------|------|\n| Full OCC BN | `mvp_occ_s3_v2` | 15G |\n| Full OCC LN | `full_occ_ln_s3_v2` | 15G |\n| Detach BN | `ablation_occ_detach_s3_v2` | 15G |\n| Vanilla | `vanilla_v2_s1` | 15G |\n| Detach LN | `detach_ln_s3` | 15G |\n\n梯度分析脚本 `run_gradient_analysis_5cond.sh` 可以直接运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-scp-checkpoints-for-gradient-analysis.md"
+}

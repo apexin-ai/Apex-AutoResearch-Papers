@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "id": "92bba5ba771fd6d8bf48",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "eval occ s0 47500 50r rerun",
+  "task_key": "worker_eval_occ-s0-47500-50r-rerun_20260521T155301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_occ-s0-47500-50r-rerun_20260521T155301.log",
+    "occurrence": 1,
+    "bytes": 1548670,
+    "sha256": "c9c03c0900baab16b8422ff04fdebc5b725e1531015c880ec7a345a58829b672"
+  },
+  "statistics": {
+    "messages": 1092,
+    "user_turns": 1,
+    "tool_calls": 502,
+    "roles": {
+      "log": 1,
+      "system": 20,
+      "record": 2,
+      "assistant": 59,
+      "tool_call": 502,
+      "tool_result": 502,
+      "user": 1,
+      "result": 5
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1015,
+      "chunks": [
+        {
+          "path": "92bba5ba771fd6d8bf48-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "92bba5ba771fd6d8bf48-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "92bba5ba771fd6d8bf48-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "92bba5ba771fd6d8bf48-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "92bba5ba771fd6d8bf48-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "92bba5ba771fd6d8bf48-part-0006.json",
+          "message_count": 115
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 77,
+      "chunks": [
+        {
+          "path": "92bba5ba771fd6d8bf48-part-0006.json",
+          "message_count": 65
+        },
+        {
+          "path": "92bba5ba771fd6d8bf48-part-0007.json",
+          "message_count": 12
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-occ-s0-47500-50r-rerun.md"
+}

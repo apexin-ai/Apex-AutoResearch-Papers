@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b23a6499aec019de959b",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "paper table1 bootstrap ci",
+  "task_key": "worker_paper_table1_bootstrap_ci_20260523T065221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_table1_bootstrap_ci_20260523T065221_result.json",
+    "occurrence": 1,
+    "bytes": 1056,
+    "sha256": "66c16ecb0a73a756598832dbd10745110fc0388e983a9056f5c816274ca3887f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "变更总结：\n\n1. **开头段落**（L8）：将\"formal significance requires additional replications\"替换为 bootstrap CI 方法描述。\n\n2. **Table 1**（L20-37）：\n   - 新增 `$95\\%$ CI` 列，格式 `[.776, .817]`（省略前导零，紧凑）\n   - Cutoff 行补充了 ±std（TSR ±0.004, CAR ±0.021）\n   - Caption 加入 bootstrap 方法说明和 Cutoff † 脚注更新\n\n3. **Gradient flow 段落**（L12）：\n   - Full OCC vs Vanilla：明确 \"$+$1.7pp is directionally positive but not statistically significant (bootstrap 95\\% CI for the pairwise difference includes zero)\"\n   - Detach OCC：明确 \"statistically significant degradation\" + \"bootstrap 95\\% CIs for all pairwise differences... exclude zero\"\n   - 修复了 em-dash `---` 为括号格式\n\n4. **Label content 段落**（L14）：补充 \"whose bootstrap CI overlaps broadly\"，修复 em-dash。\n\nMechanism analysis（L59-67）、Cutoff（L113-119）、Depth（L127-133）各段数值和措辞与 CI 结果一致，无需修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-table1-bootstrap-ci.md"
+}

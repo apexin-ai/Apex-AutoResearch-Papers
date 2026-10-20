@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd9d4453b0340a64a7f5",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops eval script verify",
+  "task_key": "worker_ops_eval-script-verify_20260526T150634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-script-verify_20260526T150634_result.json",
+    "occurrence": 1,
+    "bytes": 869,
+    "sha256": "893a004db829d93ca852665b3017a006be27dbc88168e1a1e260f74732649327"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两台服务器全部就绪。\n\n## Eval 就绪报告\n\n| 检查项 | westd-34685 | westd-10894 |\n|--------|:-----------:|:-----------:|\n| eval 脚本存在 | ✓ | ✓ |\n| conda env `occsafe` + torch 2.11.0+cu128 | ✓ | ✓ |\n| mujoco + libero 可导入 | ✓ | ✓ |\n| draccus + robosuite 可导入 | ✓ (robosuite warning 可忽略) | ✓ (同) |\n| LIBERO bddl_files (含 libero_spatial) | ✓ | ✓ |\n| LIBERO init_files (含 libero_spatial) | ✓ | ✓ |\n| LIBERO config.yaml 路径正确 | ✓ | ✓ |\n\n**结论：两台服务器 eval 环境均已就绪，训练完成后可直接运行。**\n\n唯一差异：westd-10894 的 `datasets` 路径指向包内默认位置（`../datasets`），而 westd-34685 的指向 `/root/autodl-tmp/libero_datasets`。这不影响 eval（eval 不读 datasets，只用 bddl_files 和 init_states）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-script-verify.md"
+}

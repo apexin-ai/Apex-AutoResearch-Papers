@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef147edaed04cddc0673",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops resume vanilla object s1",
+  "task_key": "worker_ops_resume_vanilla_object_s1_20260528T050054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_resume_vanilla_object_s1_20260528T050054_result.json",
+    "occurrence": 1,
+    "bytes": 356,
+    "sha256": "4a5d97dbd669bc9deae1bde16c344508cdce7e3e8e3fbfd3f7e2b5840cfcde97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**无需操作。** cuda:0 上 vanilla_object_s1 训练已经在跑：\n\n- **PID**: 798980（已运行 11h09m）\n- **配置**: 从 pretrained 开始，max_steps=50005\n- **已保存 checkpoint**: 35000、40000\n- **状态**: 已过 step 40000，正在继续训练到 50005\n\n这个进程会自行跑完到 step 50005，不需要 resume。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-resume-vanilla-object-s1.md"
+}

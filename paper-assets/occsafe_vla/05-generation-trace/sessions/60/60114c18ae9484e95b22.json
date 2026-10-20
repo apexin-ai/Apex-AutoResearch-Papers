@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60114c18ae9484e95b22",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops 10894 restart final",
+  "task_key": "worker_ops_10894-restart-final_20260526T182405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_10894-restart-final_20260526T182405_result.json",
+    "occurrence": 1,
+    "bytes": 1721,
+    "sha256": "8596992af1a4cea2891e90855841cdaea627ab95fdfc23f5e7436bb07505f18f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "reverse_cutoff_s2_v2 已保存 30000 步 checkpoint，GPU 0 仍在运行（99% 利用率），正常。tmux capture 为空可能是因为训练输出重定向到了日志或进度条覆盖了 buffer。\n\n---\n\n## 汇报\n\n### 1. 进程 PID\n| 实验 | GPU | PID |\n|------|-----|-----|\n| reverse_cutoff_s2_v2 | cuda:0 | 170698 |\n| full_occ_ln_v2_s0 | cuda:1 | 390852 |\n| full_occ_ln_v2_s1 | cuda:2 | 391060 |\n| detach_ln_v2_s0 | cuda:3 | 391402 |\n\n### 2. GPU 利用率\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 62203 MiB | 99% |\n| 1 | 62203 MiB | 99% |\n| 2 | 63013 MiB | 99% |\n| 3 | 62203 MiB | 99% |\n\n### 3. 训练进度（启动 ~2.5 分钟后）\n| 实验 | 当前 step | 速度 | occ_loss | action_loss |\n|------|----------|------|----------|-------------|\n| full_occ_ln_v2_s0 | ~147/50005 | 1.07 it/s | 0.0369 | 0.4648 |\n| full_occ_ln_v2_s1 | ~145/50005 | 1.06 it/s | 0.0340 | 0.3828 |\n| detach_ln_v2_s0 | ~143/50005 | 1.07 it/s | 0.0357 | 0.3672 |\n\n预计训练时长: 50005 steps / 1.07 it/s ≈ **13 小时**，约在 5/27 15:30 UTC 完成，在 deadline (5/28 12:00 UTC) 之前。\n\n### 4. tmux ls\n```\ndetach_ln_v2_s0: 1 windows (created Wed May 27 02:25:05 2026)\nfull_occ_ln_v2_s0: 1 windows (created Wed May 27 02:24:58 2026)\nfull_occ_ln_v2_s1: 1 windows (created Wed May 27 02:25:02 2026)\nreverse_cutoff_s2_v2: 1 windows (created Tue May 26 17:02:24 2026)\n```\n\n### 5. reverse_cutoff_s2_v2 状态\n正常运行中。GPU 0 占用 62203 MiB / 99%。已保存 30000 步 checkpoint（01:46 UTC），当前应在 30000+ 步继续训练。\n\n### 6. 磁盘\n```\n/dev/md0  250G  127G  124G  51%  /root/autodl-tmp\n```\n124GB 可用，充足。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-10894-restart-final.md"
+}

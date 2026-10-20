@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19d1dfe540ac6e4c1790",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval vanilla s0 intermediate retry",
+  "task_key": "worker_eval_vanilla_s0_intermediate_retry_20260521T011145",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_vanilla_s0_intermediate_retry_20260521T011145_result.json",
+    "occurrence": 1,
+    "bytes": 118,
+    "sha256": "fec085839a06b7fe7e8af34e6764504c85d8b538a8dbe174771679b3e5fb45bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 在 GPU 1/2 上并行运行中，预计约 10 分钟后完成。到时自动检查结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-vanilla-s0-intermediate-retry.md"
+}

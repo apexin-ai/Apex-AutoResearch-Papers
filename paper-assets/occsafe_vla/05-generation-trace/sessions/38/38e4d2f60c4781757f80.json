@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "38e4d2f60c4781757f80",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "audit 10894 openvla7b index",
+  "task_key": "worker_audit_10894_openvla7b_index_20260528T034900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_10894_openvla7b_index_20260528T034900_result.json",
+    "occurrence": 1,
+    "bytes": 333,
+    "sha256": "2e4edb910a60e957d78d85ad83ab5b1b63714d3149e1df6ae1811e10c90c9671"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "### 产出\n\n- **index.json 状态**：**3-shard，安全**，未被污染。shard 文件名均为 `model-0000{1,2,3}-of-00003.safetensors`，与实际磁盘文件一致。\n- **detach_ln_v2_s4 进程**：正在运行，进度 39%（19371/50005），已运行约 5h09m，速度 ~1.07 it/s，预计还需 ~8h 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-10894-openvla7b-index.md"
+}

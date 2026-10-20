@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "0c422b05449e803c4826",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "analysis gradient dose response",
+  "task_key": "worker_analysis_gradient_dose_response_20260525T054511",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gradient_dose_response_20260525T054511.log",
+    "occurrence": 1,
+    "bytes": 1250568,
+    "sha256": "66da9d8e9b5ec4ce486c5e88e487b22fca339ea08472fdfd6f447e477741e45c"
+  },
+  "statistics": {
+    "messages": 674,
+    "user_turns": 1,
+    "tool_calls": 263,
+    "roles": {
+      "log": 1,
+      "system": 13,
+      "record": 3,
+      "assistant": 128,
+      "tool_call": 263,
+      "tool_result": 263,
+      "user": 1,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 587,
+      "chunks": [
+        {
+          "path": "0c422b05449e803c4826-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0c422b05449e803c4826-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "0c422b05449e803c4826-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "0c422b05449e803c4826-part-0004.json",
+          "message_count": 47
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 87,
+      "chunks": [
+        {
+          "path": "0c422b05449e803c4826-part-0004.json",
+          "message_count": 87
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-gradient-dose-response.md"
+}

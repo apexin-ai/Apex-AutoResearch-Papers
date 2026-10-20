@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc0ec99f92f81068f7f8",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "paper fix appendix v1 stats",
+  "task_key": "worker_paper_fix-appendix-v1-stats_20260527T042745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-appendix-v1-stats_20260527T042745_result.json",
+    "occurrence": 1,
+    "bytes": 123,
+    "sha256": "481bef0edc258d6bab8056530c92493080d69ce5e21f274496ced351b0c3d1ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。v1 统计数据已标注来源，v2 主文结果已交叉引用，核心结论保持不变。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-appendix-v1-stats.md"
+}

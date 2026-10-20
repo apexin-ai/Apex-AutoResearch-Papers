@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b0eead6240e2cc48523",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose vanilla object s1",
+  "task_key": "worker_diagnose_vanilla_object_s1_20260528T072905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_vanilla_object_s1_20260528T072905_result.json",
+    "occurrence": 1,
+    "bytes": 993,
+    "sha256": "ada29620443c0725879de2e11521b9bf4754245b87b53abcf3dc720145acda6c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**判断：success** — 训练正常完成。\n\n**日志关键行：**\n```\n100%|██████████| 50005/50005 [13:28:34<00:00, 7.59s/it]\nMax step 50005 reached! Stopping training...\nSaved merged model for Step 50000 at: /root/autodl-tmp/checkpoints/vanilla_object_s1/openvla-7b+libero_object_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--vanilla_object_s1--50000_chkpt\n[AUX] step=50000, occ_loss=0.0000, depth_loss=0.0000, action_loss=0.0996\n```\n\n**Checkpoint 路径：**\n`/root/autodl-tmp/checkpoints/vanilla_object_s1/openvla-7b+libero_object_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--vanilla_object_s1--50000_chkpt`\n\n（另有 40000 和 45000 步的中间 checkpoint）\n\n**Registry 更新已执行：**\n- `conclusion` → `success`\n- `status` → `DONE`\n- `log_path` → `/root/runs/occsafe_vla/vanilla_object_s1.log`\n- `checkpoint_path` → 50000 步 checkpoint 路径\n- `spec` 已恢复完整对象"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-vanilla-object-s1.md"
+}

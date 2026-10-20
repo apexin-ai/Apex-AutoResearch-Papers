@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "09e8c5d5543e1e41ef44",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "paper reference audit",
+  "task_key": "worker_paper_reference-audit_20260526T194657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_reference-audit_20260526T194657_result.json",
+    "occurrence": 1,
+    "bytes": 594,
+    "sha256": "b2a6428c7473f5a62c88cf12e128809ebdc0de6c2e5c462bdcf06950f6463ec3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。\n\n**46 条引用全部验证为真实论文，无幻觉引用。** 修正了 12 处问题：\n\n- 1 处作者名错误（`chen2026gstvla`: \"Md Sarowar Morshed\" → \"Md Selim Sarowar\"）\n- 10 处作者名不完整（缺少 given name，已补全）\n- 1 处发表场所不准确（`li2017adabn`: ICLR 主会 → ICLR Workshop）\n\n无缺失引用、无孤立条目、无重复条目。2 处 bib key 命名不一致（`wu2025spatialvla` 和 `chen2026gstvla`）未修改以避免破坏 tex 引用。\n\n报告已写入 `artifacts/reference_audit_report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-reference-audit.md"
+}

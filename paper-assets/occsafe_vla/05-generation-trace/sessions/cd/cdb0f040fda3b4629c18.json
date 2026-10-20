@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "cdb0f040fda3b4629c18",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "check gradient checkpoint versions",
+  "task_key": "worker_check_gradient-checkpoint-versions_20260527T091018",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gradient-checkpoint-versions_20260527T091018.log",
+    "occurrence": 1,
+    "bytes": 641634,
+    "sha256": "149facecc6a2556b57606b37e85a165b91d499cfd44b818132c8b3c4efdbb1fb"
+  },
+  "statistics": {
+    "messages": 222,
+    "user_turns": 0,
+    "tool_calls": 86,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 46,
+      "tool_call": 86,
+      "tool_result": 86,
+      "record": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 222,
+      "chunks": [
+        {
+          "path": "cdb0f040fda3b4629c18-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "cdb0f040fda3b4629c18-part-0002.json",
+          "message_count": 42
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/check-gradient-checkpoint-versions.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c440675a052a8b3ebc1",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code random occ bn eval flags",
+  "task_key": "worker_code_random-occ-bn-eval-flags_20260528T180753",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_random-occ-bn-eval-flags_20260528T180753_result.json",
+    "occurrence": 1,
+    "bytes": 1043,
+    "sha256": "4fdb2add3b5ba882f244ab3d8a825ec7b495d4607a4e8585a3be067d3caca29f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "draccus API 可能不同，但 syntax + config instantiation 已通过。两个 flag 是标准 dataclass bool 字段，draccus 会自动解析。\n\n## 修改汇总\n\n| # | 位置 | 行号 | 修改内容 |\n|---|------|------|----------|\n| 1 | `FinetuneConfig` | 100 | 添加 `random_occ: bool = False` |\n| 2 | `FinetuneConfig` | 101 | 添加 `occ_bn_eval: bool = False` |\n| 3 | `run_forward_pass` 签名 | 326 | 添加参数 `random_occ=False` |\n| 4 | OCC loss 计算 | 491-493 | `if random_occ: perm = torch.randperm(...); occ_targets = occ_targets[perm]` |\n| 5 | 训练循环 | 1197-1200 | `if cfg.occ_bn_eval: ... m.eval()` (在 `run_forward_pass` 调用前) |\n| 6 | 训练循环调用 | 1221 | 传入 `random_occ=cfg.random_occ` |\n\n**验证结果**：\n- `py_compile`: Syntax OK\n- Config 实例化：`random_occ=False, occ_bn_eval=False` 正确\n\n**是否需要同步到 westd-10894**：代码在 westd-34685 上修改完成。如果 westd-10894 也需要运行这些实验，需要通过 git push/pull 同步。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-random-occ-bn-eval-flags.md"
+}

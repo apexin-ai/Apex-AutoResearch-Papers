@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aaf8d9c67c1dd1534621",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis cka full occ ln s0",
+  "task_key": "worker_analysis_cka_full_occ_ln_s0_20260525T014618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cka_full_occ_ln_s0_20260525T014618_result.json",
+    "occurrence": 1,
+    "bytes": 802,
+    "sha256": "28b953a4d8bcdac1e30886fbe7d55c2203f1da75c6af891f3401e3ffed648c37"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。\n\n**CKA 分析结果 (Full OCC+LN vs Pretrained)**:\n\n| 指标 | DINOv2 | SigLIP |\n|------|--------|--------|\n| Mean CKA | **0.6404** | **0.9497** |\n| Min CKA | 0.2558 | 0.8479 |\n\n**关键发现**: Full OCC+LN 的 DINOv2 表征漂移显著（mean CKA=0.64），远低于 Full OCC BN 的 ~0.96。SigLIP 保持高度相似（0.95）。这说明 LayerNorm 在全梯度流条件下会导致 DINOv2 特征大幅偏离预训练表征，而 BatchNorm 能更好地保持 DINOv2 稳定性。2×2 factorial 表征维度数据完整。\n\n**产出文件**（服务器 westd-10894）:\n- `/root/autodl-tmp/analysis/cka_full_occ_ln/cka_results.json`\n- `/root/autodl-tmp/analysis/cka_full_occ_ln/cka_analysis.pdf`\n- `/root/autodl-tmp/analysis/cka_full_occ_ln/cka_analysis.png`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cka-full-occ-ln-s0.md"
+}

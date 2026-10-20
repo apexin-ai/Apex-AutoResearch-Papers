@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7be529e964a25fcbc133",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra verify vanilla training",
+  "task_key": "worker_infra_verify-vanilla-training_20260520T074604",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_verify-vanilla-training_20260520T074604_result.json",
+    "occurrence": 1,
+    "bytes": 650,
+    "sha256": "b49c52889acba742a8afbe1065eaaba9b0ebb30702e9b9c23419f60317b41fec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n| 进程 | GPU | PID | 显存占用 | 状态 | 当前进度 |\n|------|-----|-----|----------|------|----------|\n| mvp_vanilla_s0 | cuda:0 | 57072 | 15,824 MiB | **初始化中** | 模型已加载，正在准备数据集 |\n| mvp_vanilla_s1 | cuda:1 | 57227 | 12,016 MiB | **初始化中** | 模型已加载，checkpoint shards 100% |\n| mvp_vanilla_s2 | cuda:2 | 56580 | 62,184 MiB | **训练中** | step 18/50005, ~1.1-2.9 s/it |\n\n3 个进程全部存活，GPU 3 空闲。s2 已进入迭代，s0 和 s1 还在初始化阶段（加载数据集/构建 dataloader），预计几分钟内也会开始迭代。无异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-verify-vanilla-training.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac3e9227b6edb97d901c",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose gpu full audit both servers",
+  "task_key": "worker_diagnose_gpu_full_audit_both_servers_20260527T184851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_gpu_full_audit_both_servers_20260527T184851_result.json",
+    "occurrence": 1,
+    "bytes": 1682,
+    "sha256": "8b36a41c3dfdcd27b349c38478768e87a8f782631b08c7f1845199f8342f2414"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "服务器 UTC 时间: **2026-05-27 18:49 UTC** | DDL: **2026-05-28 12:00 UTC** (余 17h11m)\n\n```\n服务器       | GPU | 实验                  | step/50005 (%)    | speed     | ETA (UTC)         | DDL余量\n-------------|-----|-----------------------|-------------------|-----------|-------------------|--------\nwestd-34685  | 0   | detach_ln_v2_s2       | 12468 (24.9%)     | 1.08 it/s | May28 04:28 UTC   | +7h32m ✅\nwestd-34685  | 1   | vanilla_object_s0     |  7169 (14.3%)     | 1.08 it/s | May28 05:50 UTC   | +6h10m ✅\nwestd-34685  | 2   | full_occ_ln_v2_s3     | ~7950 (15.9%) est | ~1.09 it/s| May28 05:32 UTC   | ~+6h28m ✅\nwestd-34685  | 3   | detach_ln_v2_s3       |  7969 (15.9%)     | 1.08 it/s | May28 05:38 UTC   | +6h22m ✅\n-------------|-----|-----------------------|-------------------|-----------|-------------------|--------\nwestd-10894  | 0   | vanilla_object_s1     |  3754 (7.5%)      | 1.10 it/s | May28 06:30 UTC   | +5h30m ✅\nwestd-10894  | 1   | IDLE                  |  —                | —         | —                 | —\nwestd-10894  | 2   | detach_ln_v2_s0c_r3   | 34754 (69.5%)     | 1.07 it/s | May27 22:46 UTC   | +13h14m ✅\nwestd-10894  | 3   | full_occ_ln_s4        |  3725 (7.4%)      | 1.10 it/s | May28 06:30 UTC   | +5h30m ✅\n```\n\n**所有 7 个实验均在 DDL 前完成，最紧的余量 +5h30m。**\n\n备注:\n- `full_occ_ln_v2_s3` 步数是估算（日志被截断），基于与 `detach_ln_v2_s3` 同时启动推算\n- `detach_ln_v2_s0c_r3` 最先完成（今晚 22:46 UTC），之后 10894 GPU 2 将空闲\n- **10894 GPU 1 当前空闲**\n- OCC pipeline (34685): 仍在下载中 (~5.2G)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-gpu-full-audit-both-servers.md"
+}

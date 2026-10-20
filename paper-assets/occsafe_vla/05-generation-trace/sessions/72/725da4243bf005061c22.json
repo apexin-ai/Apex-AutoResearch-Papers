@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "725da4243bf005061c22",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "eval vanilla s1 midtrain",
+  "task_key": "worker_eval_vanilla_s1_midtrain_20260520T185629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_vanilla_s1_midtrain_20260520T185629.log",
+    "occurrence": 1,
+    "bytes": 1063067,
+    "sha256": "6d5fb7a636f0a7caaa55821d8f0e99572fdb1c6dfa8d1c4bc719fb26396a1041"
+  },
+  "statistics": {
+    "messages": 628,
+    "user_turns": 0,
+    "tool_calls": 284,
+    "roles": {
+      "log": 1,
+      "system": 2,
+      "record": 1,
+      "assistant": 55,
+      "tool_call": 284,
+      "tool_result": 284,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 628,
+      "chunks": [
+        {
+          "path": "725da4243bf005061c22-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "725da4243bf005061c22-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "725da4243bf005061c22-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "725da4243bf005061c22-part-0004.json",
+          "message_count": 88
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-vanilla-s1-midtrain.md"
+}

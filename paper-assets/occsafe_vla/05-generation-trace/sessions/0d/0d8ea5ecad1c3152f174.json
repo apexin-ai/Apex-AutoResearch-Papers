@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d8ea5ecad1c3152f174",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diag sigterm root cause",
+  "task_key": "worker_diag_sigterm_root_cause_20260520T093111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_sigterm_root_cause_20260520T093111_result.json",
+    "occurrence": 1,
+    "bytes": 2253,
+    "sha256": "945d27dbcca20dd5dd4b116284b2c9f9ace0d5c412032159f6a8ebc09d95bda6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 根因确认\n\n**根因：agent-ml-research 框架的 `fix-training-timeout` worker 在 09:13 UTC 通过 SSH 执行了 `kill 56500 56993 57083`，杀死了三个 `timeout 64800` wrapper 进程。`timeout` 将 SIGTERM 转发给子进程组，导致三个训练进程同毫秒死亡。**\n\n### 完整时间线（北京时间）\n\n| 时间 | 事件 |\n|------|------|\n| 12:17 | 容器启动 |\n| 13:31 | 环境搭建（EGL/git-lfs） |\n| 15:10 | tmux 安装 |\n| ~15:45 | 旧训练启动（带 `timeout 64800` wrapper） |\n| 17:10 (09:10 UTC) | `vanilla-training-health` worker 检查训练状态 |\n| 17:13 (09:13 UTC) | `fix-training-timeout` worker 启动，执行 `kill 56500 56993 57083` |\n| 17:15 (09:15 UTC) | 三个训练进程收到 SIGTERM 死亡 |\n| 17:19 | worker 创建新 tmux session |\n| 17:20-22 | 新训练启动（无 timeout wrapper） |\n\n### 排除的假设\n\n- **非 OOM**：1TB 内存，776GB 空闲\n- **非磁盘满**：根 63%，数据盘 15%\n- **非 cron/定时任务**：仅 e2scrub_all（无关）\n- **非 timeout 自然过期**：仅运行 1.5h，远未到 18h 上限\n- **非平台维护**：container 未重启，extract_occupancy 进程存活\n\n### 为什么 worker 做了这个决策\n\n从 worker 日志可见，它认为 `timeout 64800` wrapper 有问题（kill timeout 时会级联杀死训练），决定：\n1. 杀掉旧的 timeout-wrapped 进程\n2. 清理旧 checkpoint 目录\n3. 用 tmux session 重新启动训练（更可控）\n\n### 后续训练风险评估\n\n**当前训练安全**：新训练在 tmux 中运行，无 timeout wrapper，不会再被框架误杀。但有两个注意点：\n\n1. **save_freq 问题**：旧训练 save_freq=10000（每 10000 步才存一次），被杀时 ~1900 步，checkpoint 全丢。当前新训练同样是 save_freq=5000，如果再次中断仍可能丢失数小时进度\n2. **GPU 竞争**：10 个 extract_occupancy.py 进程与训练共享 GPU 0，拖慢训练速度（1.02→1.8 s/it）。前一个 worker 已建议 SIGSTOP 暂停 occ 提取\n\n### 防护建议\n\n- **降低 save_freq**（如 2000-3000 步）减少中断时的进度损失\n- 框架 worker 杀进程前应检查训练进度并保存 checkpoint，而不是直接 kill"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-sigterm-root-cause.md"
+}

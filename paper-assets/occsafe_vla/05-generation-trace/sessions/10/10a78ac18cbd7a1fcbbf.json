@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "10a78ac18cbd7a1fcbbf",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops training status check",
+  "task_key": "worker_ops_training-status-check_20260522T125311",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_training-status-check_20260522T125311_result.json",
+    "occurrence": 1,
+    "bytes": 1641,
+    "sha256": "c10aa9589fb49c428454b8e5413d5cbdaaa7b58e9386f1546602e180c4558f57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| 实验 | 服务器/GPU | PID | 当前 Step | 进度 | 速度 | 关键 Loss (最近 AUX) | 剩余时间 |\n|------|-----------|-----|----------|------|------|---------------------|---------|\n| cutoff_s0 | 34685/cuda:0 | 136941 | 14174 | 28% | ~1.03 it/s | (截断不可见) | ~9h40m |\n| depth_s0 | 34685/cuda:1 | 131535 | 16146 | 32% | ~1.06 it/s | occ=0.0000 depth=0.0206 action=0.0991 | ~8h52m |\n| depth_s1 | 34685/cuda:2 | 131682 | 16110 | 32% | ~1.06 it/s | occ=0.0000 depth=0.0204 action=0.1001 | ~8h53m |\n| cutoff_s1 | 34685/cuda:3 | 131898 | 16159 | 32% | ~1.07 it/s | occ=0.0099 depth=0.0000 action=0.1108 | ~8h47m |\n| random_occ_s2 | 10894/cuda:0 | 932619 | 22794 | 46% | ~1.07 it/s | (刚存 ckpt@20000) | ~7h04m |\n| detach_s2 | 10894/cuda:1 | 932767 | 22804 | 46% | ~1.08 it/s | (刚存 ckpt@20000) | ~7h00m |\n| depth_s2 | 10894/cuda:2 | 942037 | 19669 | 39% | ~1.07 it/s | occ=0.0000 depth=0.1039 action=0.1221 | ~7h53m |\n| depth_s3 | 10894/cuda:3 | 942187 | 19657 | 39% | ~1.07 it/s | (截断不可见) | ~7h53m |\n\n**备注：**\n- westd-34685 GPU 利用率瞬时 0%（内存 62GB/98GB 已占满），可能是采样时恰在 step 间隙，日志显示仍在正常推进\n- westd-10894 GPU 利用率 98-99%，运行正常\n- cutoff_s0 比同服务器其他实验落后 ~2000 步（PID 更高，应是晚启动）\n- random_occ_s2 和 detach_s2 刚完成 step 20000 的 checkpoint 保存和模型合并\n\n**磁盘：**\n| 服务器 | 总量 | 已用 | 可用 | 使用率 |\n|--------|------|------|------|--------|\n| westd-34685 | 350G | 111G | 240G | 32% |\n| westd-10894 | 250G | 126G | 125G | 51% |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-training-status-check.md"
+}

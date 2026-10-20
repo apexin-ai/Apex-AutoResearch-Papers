@@ -1,0 +1,356 @@
+{
+  "schema_version": "1.0",
+  "session_id": "9bf7d23d39ee4e974111",
+  "rounds": [
+    {
+      "number": 115,
+      "messages": [
+        {
+          "source_line": 2161,
+          "timestamp": "2026-05-23T19:35:06.269276+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"memory.md 已更新。总结：\\n\\n### 任务 1: Eval 命令\\n\\n3 个 eval 命令已写入 memory.md，使用正确的 `--pretrained_checkpoint` 参数（用户模板中的 `--vla_path` 是错的）。脚本默认值已匹配训练配置，不需要额外指定 `--num_images_in_input` 等参数。\\n\\n- **reverse_cutoff_s0_eval** → GPU 2，50K checkpoint 待生成（当前到 40K）\\n- **cutoff_25k_s0_eval** → GPU 3，50K checkpoint 待生成（当前到 40K）\\n- **vanilla_retrain_s0_eval** → GPU 2（reverse_cutoff 完后），50K checkpoint 已存在\\n\\n### 任务 2: Checkpoint 审计\\n\\n| 条件 | 50K (seed 42) | 状态 |\\n|------|--------------|------|\\n| vanilla_retrain_s0 | ✅ westd-34685 | 可用 |\\n| full_occ_retrain_s0 | ✅ westd-34685 | 可用 |\\n| ablation_random_occ_s0 | ❌ | westd-10894 上已删除 |\\n| ablation_occ_detach_s0 | ❌ | westd-10894 上已删除 |\\n| depth_s0 | ❌ | westd-34685 上已删除 |\\n\\n**缺失 3 个条件**：random_occ_s0、detach_s0、depth_s0 的 seed 42 checkpoint 均在 eval 后被磁盘清理删除。如需 same-round 梯度分析，需重训这 3 个。s2 版本（seed 44）的 random_occ 和 detach 在 westd-34685 上仍有 50K checkpoint 可用。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-002161"
+        },
+        {
+          "source_line": 2162,
+          "timestamp": "2026-05-23T19:35:36.262364+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: warning] Checkpoint 审计结果影响同 round 梯度分析计划\n\n**现状**：seed 42 的 50K checkpoint 仅存 vanilla_retrain_s0 和 full_occ_retrain_s0。random_occ_s0、detach_s0（旧 BN 版）、depth_s0 的 seed 42 checkpoint 均已被磁盘清理删除。\n\n**对梯度分析复现计划的影响**：\n- 当 detach_ln_s0（seed 42, LN）完成后，可做 3 条件同 seed 对比：vanilla(42) + full_occ(42) + detach_ln(42)\n- 但 random_occ 没有 seed 42 checkpoint，只有 s2（seed 44）\n- 完整 4 条件同 seed 复现需要重训 random_occ_s0（~13h GPU）\n\n**建议**：\n1. **3 条件足以支撑核心 claim**——vanilla vs full_occ vs detach 已覆盖 \"gradient flow prevents collapse\" 的全部逻辑链\n2. random_occ 的作用是补充证明 \"label content is secondary\"，用 s2（seed 44）的定性结论仍然成立（random 和 structured 效果相当）\n3. 如果 GPU 有空闲（如 cutoff_s2_v2 完成后），可考虑补训 random_occ_s0，但**不应优先于 eval**\n\n**论文处理建议**：梯度分析 figure caption 注明使用的具体 checkpoint 和 seed，对 seed 不一致做一句 disclosure。",
+              "project": "occsafe_vla"
+            }
+          },
+          "id": "event-002162"
+        },
+        {
+          "source_line": 2163,
+          "timestamp": "2026-05-23T19:35:40.730575+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_b45732a3472ce0c59e675f5c8a4a4b8e:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 4468
+          },
+          "id": "event-002163"
+        },
+        {
+          "source_line": 2164,
+          "timestamp": "2026-05-23T19:35:53.357404+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34685",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-002164"
+        },
+        {
+          "source_line": 2165,
+          "timestamp": "2026-05-23T19:35:54.160423+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-10894",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-002165"
+        },
+        {
+          "source_line": 2166,
+          "timestamp": "2026-05-23T19:35:54.461897+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 97 %, 63013 MiB, 97887 MiB\\\\n1, 99 %, 63037 MiB, 97887 MiB\\\\n2, 81 %, 62209 MiB, 97887 MiB\\\\n3, 97 %, 62203 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1104
+          },
+          "id": "event-002166"
+        },
+        {
+          "source_line": 2167,
+          "timestamp": "2026-05-23T19:35:55.565275+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 86 %, 62209 MiB, 97887 MiB\\\\n1, 96 %, 62203 MiB, 97887 MiB\\\\n2, 99 %, 62203 MiB, 97887 MiB\\\\n3, 72 %, 62203 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.06}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1404
+          },
+          "id": "event-002167"
+        },
+        {
+          "source_line": 2168,
+          "timestamp": "2026-05-23T19:36:09.865186+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "reverse_cutoff_s0 / cutoff_25k_s0 约 1h 后完成，持续监控进度",
+              "prompt": "Continue from where you left off."
+            }
+          },
+          "id": "event-002168"
+        },
+        {
+          "source_line": 2169,
+          "timestamp": "2026-05-23T19:36:09.915863+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 19:40:00 (in 230s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 50
+          },
+          "id": "event-002169"
+        },
+        {
+          "source_line": 2170,
+          "timestamp": "2026-05-23T19:36:11.811890+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "8/8 GPU 全部活跃。reverse_cutoff/cutoff_25k 约 1-1.5h 后完成，是下一个关键事件。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer"
+          },
+          "id": "event-002170"
+        }
+      ]
+    },
+    {
+      "number": 116,
+      "messages": [
+        {
+          "source_line": 2171,
+          "timestamp": "2026-05-23T19:44:39.204702+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_check_progress_westd34685_20260523T194356]:\nWorker worker_ops_check_progress_westd34685_20260523T194356 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+            "source": "worker_done:worker_ops_check_progress_westd34685_20260523t194356"
+          },
+          "id": "event-002171"
+        },
+        {
+          "source_line": 2172,
+          "timestamp": "2026-05-23T19:44:48.800463+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/logs/workers/worker_ops_check_progress_westd34685_20260523T194356_result.json"
+            }
+          },
+          "id": "event-002172"
+        },
+        {
+          "source_line": 2173,
+          "timestamp": "2026-05-23T19:44:48.851109+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"## 训练进度报告\\n\\n| 实验 | Step | 进度 | 速度 | 预估剩余 | 最新 loss |\\n|------|------|------|------|----------|-----------|\\n| **reverse_cutoff_s0** (cuda:2) | 47839/50005 | 96% | ~1.04 it/s | **~35 min** | occ=0.0108, action=0.0540 |\\n| **cutoff_25k_s0** (cuda:3) | 47959/50005 | 96% | ~1.03 it/s | **~33 min** | occ=0.0119, action=0.0630 |\\n| **cutoff_15k_s0** (cuda:1) | 4105/50005 | 8% | ~1.05 it/s | **~12.1 h** | occ=0.0120, action=0.1309 |\\n| **cutoff_45k_s0** (cuda:0) | 3153/50005 | 6% | ~1.04 it/s | **~12.5 h** | occ=0.0098, action=0.2412 |\\n\\n4 个进程全部在运行。reverse_cutoff_s0 和 cutoff_25k_s0 预计约 **~14:50 UTC** 完成（比预估的 18:40-20:30 UTC 早很多）。cutoff_15k_s0 和 cutoff_45k_s0 预计明天凌晨 ~02:30-03:00 UTC 完成。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-002173"
+        },
+        {
+          "source_line": 2174,
+          "timestamp": "2026-05-23T19:44:58.613747+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "reverse_cutoff_s0 / cutoff_25k_s0 约 30 分钟后完成，验证 50K checkpoint + eval 启动",
+              "prompt": "Continue from where you left off."
+            }
+          },
+          "id": "event-002174"
+        },
+        {
+          "source_line": 2175,
+          "timestamp": "2026-05-23T19:44:58.664392+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 19:49:00 (in 241s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 50
+          },
+          "id": "event-002175"
+        },
+        {
+          "source_line": 2176,
+          "timestamp": "2026-05-23T19:45:00.857364+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "reverse_cutoff/cutoff_25k 均 96%，~33-35 分钟后完成。与我之前的预估一致。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer"
+          },
+          "id": "event-002176"
+        }
+      ]
+    },
+    {
+      "number": 117,
+      "messages": [
+        {
+          "source_line": 2177,
+          "timestamp": "2026-05-23T19:45:26.576036+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-002177"
+        },
+        {
+          "source_line": 2178,
+          "timestamp": "2026-05-23T19:46:18.236947+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- westd-34685 的 checkpoint rotation 脚本不覆盖当前实验（vanilla_retrain/full_occ_retrain/reverse_cutoff/cutoff_25k/cutoff_15k/cutoff_45k），磁盘需手动监控\n- westd-10894 的 `cleanup_old_checkpoints.sh`（PID 453371）已修复 `is_in_use()` 检查，但只覆盖 detach_ln_s0/s1/s2 + cutoff_s2_v2 四个目录\n- detach_ln 从头训练时 `cfg.vla_path` 指向 base model（安全），但如果任何实验用 `--resume True` 启动，checkpoint rotation 可能删除 vla_path 目标导致 save 崩溃（已发生过一次，root cause 在 finetune.py:725 的 `from_pretrained(cfg.vla_path)`）\n- 梯度分析 checkpoint 来源不一致：vanilla/full_occ 用 retrain_s0（seed 42），detach/random_occ 用旧 ablation_s2（seed 44, BN）。已发 WARNING，Director 已知。论文引用时需注明\n\n### 2. 🖥️ 基础设施快照\n- **westd-34685**：`/root/occsafe_vla/openvla-oft`，conda env `occsafe`，Python `/root/miniconda3/envs/occsafe/bin/python3.10`\n  - 模型：`/root/autodl-tmp/models/openvla-7b`\n  - 数据：`/root/autodl-tmp/data/modified_libero_rlds/`\n  - Checkpoints：`/root/autodl-tmp/checkpoints/{vanilla_retrain_s0,full_occ_retrain_s0,...}/`\n  - 梯度分析结果：`/root/occsafe_vla/analysis/results/gradient/`\n  - 日志：`/root/runs/occsafe_vla/*.log`\n  - 磁盘：350G 总量，~170G 已用，~181G 可用\n- **westd-10894**：同路径结构，磁盘 250G 总量，~52G 已用，~199G 可用\n  - Checkpoint rotation：PID 453371，每 30 min，覆盖 detach_ln + cutoff_s2_v2\n- W&B 未启用（本轮实验均无 wandb）\n\n### 3. 📊 当前状态\n刚完成 D026 叙事审查（collapse prevention claim 强度、EWC 类比问题、checkpoint 来源方案）。\n\n**RUNNING 实验：**\n| 实验 | 服务器 | GPU | 进度 | ETA |\n|------|--------|-----|------|-----|\n| reverse_cutoff_s0 | westd-34685 | 2 | 96% (47839) | ~20 min |\n| cutoff_25k_s0 | westd-34685 | 3 | 96% (47959) | ~18 min |\n| cutoff_15k_s0 | westd-34685 | 1 | 8% (4105) | ~12h |\n| cutoff_45k_s0 | westd-34685 | 0 | 6% (3153) | ~12.5h |\n| detach_ln_s0 | westd-10894 | 1 | ~5% | ~12h |\n| detach_ln_s1 | westd-10894 | 2 | ~5% | ~12h |\n| detach_ln_s2 | westd-10894 | 3 | ~5% | ~12h |\n| cutoff_s2_v2 | westd-10894 | 0 | ~25% | ~8h |\n\n**DONE（本 session 完成）：** vanilla_retrain_s0, full_occ_retrain_s0（50K checkpoint 均完整）\n\n**已完成分析：** 梯度分析 4 条件（vanilla/full_occ/detach/random_occ × 201 batches），figure 已生成（`artifacts/figures/gradient_analysis_combined.pdf`）\n\n### 4. 📋 待办\n- reverse_cutoff_s0 + cutoff_25k_s0 完成（~20 min）→ 验证 50K checkpoint 保存 → 确认 eval 启动（命令已在 memory.md）→ GPU 2/3 空闲后应立即跑 eval\n- vanilla_retrain_s0 eval 也待跑 → 需等 GPU 空闲（reverse_cutoff eval 后）\n- detach_ln_s0 完成（~12h）→ 用同 round checkpoint 重跑梯度分析（vanilla_retrain_s0 + full_occ_retrain_s0 + detach_ln_s0，全 seed 42）→ 替换当前 cross-round 数据\n- cutoff_s2_v2 完成（~8h）→ GPU 0 空闲 → 可补训 random_occ_s0（seed 42）如果 Director 决定需要 4 条件同 seed 梯度分析\n- 所有 eval 完成后 → 更新论文主结果表 → 需审查数字一致性\n\n### 5. 🎯 战略上下文\n- **项目**：occsafe_vla，CoRL 2026 投稿（Abstract May 26, Paper May 29）\n- **核心结论**：auxiliary gradient flow prevents encoder gradient collapse during LoRA fine-tuning（D026 决策，从 amplification 转向 collapse prevention）\n- **论文叙事**：6 条件 factorial ablation → gradient flow 是关键，label content 次要，任何 gradient flow 都能防止 collapse\n- **EWC 类比有问题**：我已建议改为 deep supervision 类比，Director 未回复\n- **易错点**：\n  1. 不要把 tqdm 显示步数当实际进度——resume 实验的 tqdm 从 0 开始但 log_step = resume_step + gradient_step_idx\n  2. 当前实验全部从头训练（非 resume），tqdm = 实际步数\n  3. seed 42/43/44 对应 s0/s1/s2，不要混\n  4. `occ_loss_cutoff_mode after` = 前 N 步有 OCC 后关闭（不是\"在 N 步之后才开启\"）\n  5. 50K checkpoint 只有 vanilla_retrain_s0 和 full_occ_retrain_s0 可用于 seed 42 同 round 梯度分析，其他 3 条件的 seed 42 checkpoint 已被磁盘清理删除\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b83478cb96de9d1a19f52f25842063f6:reviewer"
+          },
+          "id": "event-002178"
+        }
+      ]
+    }
+  ]
+}

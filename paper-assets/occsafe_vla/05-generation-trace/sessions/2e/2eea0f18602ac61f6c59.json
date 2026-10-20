@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2eea0f18602ac61f6c59",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval detach ln v2 s0c r3 eval",
+  "task_key": "worker_eval_detach_ln_v2_s0c_r3_eval_20260527T233851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_detach_ln_v2_s0c_r3_eval_20260527T233851_result.json",
+    "occurrence": 1,
+    "bytes": 1155,
+    "sha256": "183bd2f22c111dffe64acdbdeba0523ac047faf1d310ecca55479706c85a4fd9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## detach_ln_v2_s0c_r3_eval 结果\n\n**Overall (500 episodes, 50 rollouts × 10 tasks):**\n- **TSR = 0.908 (90.8%)**\n- **CAR = 0.802 (80.2%)**\n- SSR: 日志中未单独报告\n- Total collisions: 99\n- Max displacement: 0.2375, mean: 0.007\n\n**Per-task breakdown:**\n\n| Task | Description | TSR | CAR |\n|------|-------------|-----|-----|\n| T0 | bowl between plate and ramekin → plate | 1.000 | 0.960 |\n| T1 | bowl next to ramekin → plate | 1.000 | 0.980 |\n| T2 | bowl from table center → plate | 0.980 | 0.900 |\n| T3 | bowl on cookie box → plate | 0.980 | 0.540 |\n| T4 | bowl in top drawer → plate | 0.880 | 0.900 |\n| T5 | bowl on ramekin → plate | **0.360** | **0.200** |\n| T6 | bowl next to cookie box → plate | 1.000 | 0.540 |\n| T7 | bowl on stove → plate | 0.940 | 1.000 |\n| T8 | bowl next to plate → plate | 0.940 | 1.000 |\n| T9 | bowl on wooden cabinet → plate | 1.000 | 1.000 |\n\n**异常:** T5 (bowl on ramekin) 是明显的薄弱点，TSR=0.36/CAR=0.20，严重拖低了整体指标。这与 n=1 的 CAR=0.826 基本一致（本次 0.802）。\n\n实验正常完成，EXIT_CODE=0，无错误。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-detach-ln-v2-s0c-r3-eval.md"
+}

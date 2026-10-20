@@ -1,0 +1,1004 @@
+{
+  "schema_version": "1.0",
+  "id": "b64b4355a4238f774836",
+  "project": "occsafe_vla",
+  "kind": "conversation",
+  "title": "paper writing method",
+  "task_key": "worker_paper_writing_method_20260520T201906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_method_20260520T201906.jsonl",
+    "occurrence": 1,
+    "bytes": 42542,
+    "sha256": "99bd74621ec1e38dd95c1546ac8af96c7588674353e13663405a63496eeb5ac2"
+  },
+  "statistics": {
+    "messages": 49,
+    "user_turns": 0,
+    "tool_calls": 24,
+    "roles": {
+      "tool_call": 24,
+      "tool_result": 24,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T20:25:13.634466+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T20:25:13.635158+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **\n…[truncated 5709 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T20:25:13.635359+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T20:25:13.635750+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认\n…[truncated 7201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T20:25:13.635931+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T20:25:13.636060+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/references.bib\ndocs/paper/experiments.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T20:25:13.636209+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/experiments.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T20:25:13.636356+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\n3\t\\subsection{Benchmark and Tasks}\n4\t\n5\tWe evaluate on the SafeLIBERO benchmark~\\cite{hu2025aegis}, which augments the LIBERO-Spatial suite with collision-aware evaluation. SafeLIBERO comprises 32 scenarios across 10 tabletop manipulation tasks organized into two difficulty levels: Level~I (basic spatial reasoning) and Level~II (complex multi-step manipulation). Each task requires the agent to reach, grasp, and place objects among surrounding obstacles. Several tasks deliberately position objects in close proximity (e.g., a bowl resting on a ramekin), creating natural collision challenges that test whether the agent can complete the instructed task without disturbing nearby objects.\n6\t\n7\t\\subsection{Evaluation Protocol}\n8\t\n9\tWe measure two complementary metrics aligned with the VLSA-AEGIS protocol~\\cite{hu2025aegis}. \\textbf{Task Success Rate (TSR)} is the fraction of episodes in which the robot completes the instructed task. \\textbf{Collision Avoidance Rate (CAR)} is the fraction of episodes with zero unintended object displacement, computed as $\\text{CAR} = 1 - n_{\\text{collide}} / N$, where $n_{\\text{collide}}$ counts episodes whose maximum L1 \\texttt{body\\_xpos} displacement exceeds a threshold of $0.001$. For each of the 10 tasks, we run 20 rollouts per random seed across 3 seeds (42, 43, 44), yielding 60 rollouts per task and 600 total. We report mean and 95\\% confidence intervals, with paired $t$-tests and Cohen's $d$ effect sizes for pairwise comparisons.\n10\t\n11\t\\subsection{Experimental Conditions}\n12\t\n13\tWe design five conditions that form a mechanism ablation chain, progressively isolating the role of occupancy-grounded gradient flow:\n14\t\n15\t\\begin{itemize}[nosep,leftmargin=*]\n16\t  \\item \\textbf{Vanilla}: OpenVLA-OFT fine-tuned without any auxiliary supervision (baseline).\n17\t  \\item \\textbf{+Occ}: BEV occupancy auxiliary head with gradients flowing into the vision encoder (\\texttt{occ\\_detach=False}).\n18\t  \\item \\textbf{+Occ-Det\n…[truncated 1509 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T20:25:13.636495+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/references.bib"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T20:25:13.636697+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% References for OccSafe-VLA (AAAI 2027)\n2\t% Auto-generated from literature_map.yaml\n3\t\n4\t% ============================================================\n5\t% Direct Competitors (spatial-safety intersection)\n6\t% ============================================================\n7\t\n8\t@article{liu2025occvla,\n9\t  author    = {Liu and others},\n10\t  title     = {{OccVLA}: Vision-Language-Action Model with Implicit 3D Occupancy Supervision},\n11\t  journal   = {arXiv preprint arXiv:2509.05578},\n12\t  year      = {2025},\n13\t  note      = {arXiv:2509.05578}\n14\t}\n15\t\n16\t@article{hu2025aegis,\n17\t  author    = {Hu and others},\n18\t  title     = {{VLSA}: Vision-Language-Action Models with Plug-and-Play Safety Constraint Layer},\n19\t  journal   = {arXiv preprint arXiv:2512.11891},\n20\t  year      = {2025},\n21\t  note      = {arXiv:2512.11891}\n22\t}\n23\t\n24\t@inproceedings{zhan2025safevla,\n25\t  author    = {Zhan and others},\n26\t  title     = {{SafeVLA}: Towards Safety Alignment of Vision-Language-Action Model via Constrained Learning},\n27\t  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n28\t  year      = {2025},\n29\t  note      = {Spotlight. arXiv:2503.03480}\n30\t}\n31\t\n32\t@article{chen2026cofreevla,\n33\t  author    = {Chen and others},\n34\t  title     = {{CoFreeVLA}: Collision-Free Dual-Arm Manipulation via {VLA} Model and Risk Estimation},\n35\t  journal   = {arXiv preprint arXiv:2601.21712},\n36\t  year      = {2026},\n37\t  note      = {arXiv:2601.21712}\n38\t}\n39\t\n40\t@article{safenightvla2026,\n41\t  author    = {Yu and others},\n42\t  title     = {{Safe-Night VLA}: Seeing the Unseen via Thermal-Perceptive Vision-Language-Action Models for Safety-Critical Manipulation},\n43\t  journal   = {arXiv preprint arXiv:2603.05754},\n44\t  year      = {2026},\n45\t  note      = {arXiv:2603.05754}\n46\t}\n47\t\n48\t@article{vlasafetysurvey2026,\n49\t  author    = {Li and others},\n50\t  title     = {Vision-Language-Action Safety: Threats, Challenges, Evaluations, and Mechanisms},\n51\t  journal   = {arXiv pre\n…[truncated 7743 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T20:25:13.637045+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex",
+              "content": "\\section{Method}\n\\label{sec:method}\n\nWe present OccSafe-VLA, a framework that improves collision safety in Vision-Language-Action models through two complementary mechanisms. The first is a BEV occupancy auxiliary head that injects spatial awareness into the vision encoder at zero inference cost (Section~\\ref{sec:occ_head}). The second is OCC-CBF, a conceptual framework for explicit safety guarantees conditioned on learned spatial features (Section~\\ref{sec:occ_cbf}). We begin by formalizing the problem setting and evaluation metrics.\n\n\\subsection{Problem Formulation}\n\\label{sec:formulation}\n\nWe consider a \\textbf{Vision-Language-Action (VLA)} policy $\\pi(a_t \\mid o_t, l)$ that maps a visual observation $o_t$ and a language instruction $l$ to a 7-DOF action $a_t$ (delta end-effector pose) at each timestep $t$. The policy is parameterized by a large pretrained vision-language model fine-tuned on robot demonstration data. We evaluate performance along two complementary axes. \\textbf{Task Success Rate (TSR)} measures the fraction of episodes in which the robot completes the instructed task:\n\\begin{equation}\n  \\text{TSR} = \\frac{n_{\\text{success}}}{N},\n\\end{equation}\nwhere $n_{\\text{success}}$ is the number of successful episodes out of $N$ total rollouts. \\textbf{Collision Avoidance Rate (CAR)} measures the fraction of episodes free of unintended object displacement:\n\\begin{equation}\n  \\text{CAR} = 1 - \\frac{n_{\\text{collide}}}{N},\n\\end{equation}\nwhere $n_{\\text{collide}}$ counts episodes whose maximum L1 \\texttt{body\\_xpos} displacement exceeds a threshold of $0.001$, following the VLSA/AEGIS protocol~\\cite{hu2025aegis}. Our objective is to improve CAR without degrading TSR. A policy that avoids collisions by refusing to act is not useful; a practical safe manipulation policy must maintain high task completion while reducing unintended contact with surrounding objects.\n\n\\subsection{BEV Occupancy Auxiliary Head}\n\\label{sec:occ_head}\n\nModern VLA models such as OpenVLA~\\cite{kim2024openvla} and OpenVLA-OFT~\\cite{kim2025openvlaoft} rely on 2D pretrained vision encoders (DINOv2, SigLIP) that excel at semantic understanding and language grounding. These encoders learn effective semantic-to-action mappings through fine-tuning, yet they lack explicit reasoning about 3D object boundaries and free space. When a robot must navigate tight clearances between objects in cluttered scenes, this gap becomes critical. A policy that cannot distinguish occupied from free regions of the workspace will collide with obstacles even when it correctly identifies the target object. The challenge is to inject 3D spatial structure into the vision encoder without adding inference cost or sacrificing the benefits of large-scale 2D pretraining.\n\nWe address this challenge with a \\textbf{BEV occupancy auxiliary head} that predicts a bird's-eye-view occupancy grid of the workspace. The BEV representation encodes object boundaries in a view-independent, allocentric coordinate frame, providing a natural supervisory signal for spatial structure. Unlike depth maps, which remain tied to the camera viewpoint, BEV occupancy offers an explicit top-down decomposition of occupied and free space that directly corresponds to the robot's planning geometry. The head itself is a lightweight two-layer MLP with 256 hidden units that takes DINOv2 patch features as input and produces a $64 \\times 64$ binary occupancy grid. We train this head with Focal Loss to handle the class imbalance between occupied and free cells:\n\\begin{equation}\n  \\mathcal{L}_{\\text{occ}} = -\\alpha\\,(1 - p_t)^{\\gamma}\\,\\log(p_t),\n\\end{equation}\nwhere $\\alpha = 0.75$ and $\\gamma = 2.0$ are the balancing and focusing parameters, $p_t$ is the predicted probability for the ground-truth class, and the occupancy loss is weighted by $\\lambda = 0.1$ relative to the action loss.\n\nThe critical design principle is \\textbf{zero inference cost}. During training, the occupancy head forces the vision encoder to internalize spatial structure: accurate occupancy prediction requires the encoder to represent where objects begin and end in 3D space. At inference time, we discard the occupancy head entirely, and the spatial awareness acquired during training persists as an emergent property of the encoder's learned features. This paradigm of training with auxiliary geometric supervision and deploying without it has been validated in autonomous driving by OccVLA~\\cite{liu2025occvla}, which uses volumetric occupancy prediction to enhance a VLA's spatial understanding for navigation. Our work applies the same principle to tabletop manipulation, where the spatial scale and task geometry differ but the core insight holds: auxiliary occupancy supervision reshapes encoder representations to encode spatial boundaries that transfer to safer action prediction.\n\n\\subsection{Training Pipeline}\n\\label{sec:training}\n\nWe build on OpenVLA-OFT 7B~\\cite{kim2025openvlaoft} as the base model, which combines a Llama~2 language backbone with DINOv2 and SigLIP as dual vision encoders. The total training objective combines the action prediction loss with the occupancy auxiliary loss:\n\\begin{equation}\n  \\mathcal{L}_{\\text{total}} = \\mathcal{L}_{\\text{action}} + \\lambda \\cdot \\mathcal{L}_{\\text{occ}},\n\\end{equation}\nwhere $\\mathcal{L}_{\\text{action}}$ is the L1 action regression loss from OpenVLA-OFT and $\\lambda = 0.1$. The mechanism that makes occupancy supervision effective is \\textbf{gradient flow}: with \\texttt{occ\\_detach=False}, gradients from $\\mathcal{L}_{\\text{occ}}$ propagate through the occupancy head back into the DINOv2 vision encoder. This forces the encoder to develop internal representations that encode spatial structure, because producing accurate occupancy predictions requires features that capture object boundaries and spatial layout. If we instead detach the gradients (\\texttt{occ\\_detach=True}), the occupancy head becomes a passive observer that reads encoder features without modifying them, and the auxiliary loss functions as a multi-task regularizer rather than a representation shaper. This is not a subtle distinction: as we show in our ablation study (Section~4), detaching gradients eliminates the safety benefit entirely, confirming that the encoder must be directly shaped by the occupancy objective.\n\nWe fine-tune all conditions with LoRA at rank~32 for 50K steps, using a batch size of 8 and a learning rate of $5 \\times 10^{-4}$ with cosine decay. Training data consists of approximately 25K demonstration episodes from the LIBERO-Spatial suite. All hyperparameters are shared across experimental conditions to ensure fair comparison; only the auxiliary head configuration varies between conditions. Each training run completes in approximately 17 hours on a single A100 GPU.\n\n\\subsection{OCC-CBF: Occupancy-Conditioned Control Barrier Function}\n\\label{sec:occ_cbf}\n\nThe BEV occupancy auxiliary head provides implicit safety by reshaping the encoder's spatial representations at zero inference cost. In certain dense clutter scenarios, however, implicit spatial awareness alone may not guarantee collision avoidance. For such cases, we outline \\textbf{OCC-CBF}, a second line of defense that constructs an explicit safety constraint from the spatial features learned by the occupancy-trained encoder.\n\nOCC-CBF defines a learned barrier function conditioned on occupancy features. Let $z_{\\text{occ}}$ denote the spatial features extracted from the occupancy-trained vision encoder and let $x_{\\text{robot}}$ denote the robot's current state. The occupancy-conditioned barrier function takes the form:\n\\begin{equation}\n  h_{\\text{occ}}(x) = f_\\theta(z_{\\text{occ}},\\, x_{\\text{robot}}),\n\\end{equation}\nwhere $f_\\theta$ is a learned function that maps the combined feature-state pair to a scalar safety value. States satisfying $h_{\\text{occ}}(x) \\geq 0$ are considered safe, and the control barrier constraint modifies the VLA's proposed action to maintain this invariant.\n\nOCC-CBF differs from existing barrier function approaches in its use of learned volumetric features rather than hand-crafted geometric representations. The Euclidean-distance barrier in AEGIS~\\cite{hu2025aegis} operates on explicit object positions from a world model, restricting its applicability to scenarios where object states are directly observable. OGM-CBF~\\cite{ji2024ogmcbf} constructs barriers from discrete occupancy grids via signed distance fields, but relies on accurate grid-level occupancy at test time rather than learned continuous features. Learning to Nudge~\\cite{kwon2026learningnudge} trains object-centric barrier functions (DCBF) that reason about individual objects, requiring explicit object decomposition that may not scale to highly cluttered scenes. Neural CS-BF~\\cite{neuralcsbf2025} learns barriers in configuration space for manipulation planning, but operates on geometric state representations independently of a VLA's perceptual features. In contrast, OCC-CBF operates in the VLA's continuous learned feature space and can perform semantic collision reasoning without explicit object segmentation, distance computation, or a separate perception pipeline.\n\n\\textit{We defer the detailed formulation, training procedure, and experimental validation of OCC-CBF to the extended version of this paper. The experiments in Section~4 evaluate the occupancy auxiliary head in isolation, which already yields substantial safety improvements without runtime overhead.}\n"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T20:25:13.637300+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T20:25:13.637445+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T20:25:13.637716+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\tWe present OccSafe-VLA, a framework that improves collision safety in Vision-Language-Action models through two complementary mechanisms. The first is a BEV occupancy auxiliary head that injects spatial awareness into the vision encoder at zero inference cost (Section~\\ref{sec:occ_head}). The second is OCC-CBF, a conceptual framework for explicit safety guarantees conditioned on learned spatial features (Section~\\ref{sec:occ_cbf}). We begin by formalizing the problem setting and evaluation metrics.\n5\t\n6\t\\subsection{Problem Formulation}\n7\t\\label{sec:formulation}\n8\t\n9\tWe consider a \\textbf{Vision-Language-Action (VLA)} policy $\\pi(a_t \\mid o_t, l)$ that maps a visual observation $o_t$ and a language instruction $l$ to a 7-DOF action $a_t$ (delta end-effector pose) at each timestep $t$. The policy is parameterized by a large pretrained vision-language model fine-tuned on robot demonstration data. We evaluate performance along two complementary axes. \\textbf{Task Success Rate (TSR)} measures the fraction of episodes in which the robot completes the instructed task:\n10\t\\begin{equation}\n11\t  \\text{TSR} = \\frac{n_{\\text{success}}}{N},\n12\t\\end{equation}\n13\twhere $n_{\\text{success}}$ is the number of successful episodes out of $N$ total rollouts. \\textbf{Collision Avoidance Rate (CAR)} measures the fraction of episodes free of unintended object displacement:\n14\t\\begin{equation}\n15\t  \\text{CAR} = 1 - \\frac{n_{\\text{collide}}}{N},\n16\t\\end{equation}\n17\twhere $n_{\\text{collide}}$ counts episodes whose maximum L1 \\texttt{body\\_xpos} displacement exceeds a threshold of $0.001$, following the VLSA/AEGIS protocol~\\cite{hu2025aegis}. Our objective is to improve CAR without degrading TSR. A policy that avoids collisions by refusing to act is not useful; a practical safe manipulation policy must maintain high task completion while reducing unintended contact with surrounding objects.\n18\t\n19\t\\subsection{BEV Occupancy Auxiliary Head}\n20\t\\label\n…[truncated 7648 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T20:25:13.637941+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "—",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T20:25:13.638115+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T20:25:13.638251+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": " – ",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T20:25:13.638374+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T20:25:13.638489+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "ing[,.]",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T20:25:13.638603+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "22:[Omitted long matching line]\n30:[Omitted long matching line]\n54:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T20:25:13.638753+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "Furthermore|Moreover|Additionally|delve|leverage|utilize",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T20:25:13.638875+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T20:25:13.638998+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "ing[,.]",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T20:25:13.639111+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "22:[Omitted long matching line]\n30:[Omitted long matching line]\n54:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T20:25:13.639227+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "ing[,.]",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex",
+              "output_mode": "content",
+              "head_limit": "20",
+              "context": "0"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T20:25:13.639341+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "22:[Omitted long matching line]\n30:[Omitted long matching line]\n54:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T20:25:13.639463+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex",
+              "offset": "21",
+              "limit": "1"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T20:25:13.639576+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<system-reminder>Warning: the file exists but is shorter than the provided offset (21). The file has 57 lines.</system-reminder>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T20:25:13.639704+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex",
+              "offset": "29",
+              "limit": "1"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T20:25:13.639820+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<system-reminder>Warning: the file exists but is shorter than the provided offset (29). The file has 57 lines.</system-reminder>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T20:25:13.639929+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex",
+              "offset": "53",
+              "limit": "1"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T20:25:13.640036+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<system-reminder>Warning: the file exists but is shorter than the provided offset (53). The file has 57 lines.</system-reminder>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T20:25:13.640158+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex",
+              "offset": "20",
+              "limit": "3"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T20:25:13.640271+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "20\t\\label{sec:occ_head}\n21\t\n22\tModern VLA models such as OpenVLA~\\cite{kim2024openvla} and OpenVLA-OFT~\\cite{kim2025openvlaoft} rely on 2D pretrained vision encoders (DINOv2, SigLIP) that excel at semantic understanding and language grounding. These encoders learn effective semantic-to-action mappings through fine-tuning, yet they lack explicit reasoning about 3D object boundaries and free space. When a robot must navigate tight clearances between objects in cluttered scenes, this gap becomes critical. A policy that cannot distinguish occupied from free regions of the workspace will collide with obstacles even when it correctly identifies the target object. The challenge is to inject 3D spatial structure into the vision encoder without adding inference cost or sacrificing the benefits of large-scale 2D pretraining."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T20:25:13.640403+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex",
+              "offset": "28",
+              "limit": "3"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-20T20:25:13.640527+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "28\twhere $\\alpha = 0.75$ and $\\gamma = 2.0$ are the balancing and focusing parameters, $p_t$ is the predicted probability for the ground-truth class, and the occupancy loss is weighted by $\\lambda = 0.1$ relative to the action loss.\n29\t\n30\tThe critical design principle is \\textbf{zero inference cost}. During training, the occupancy head forces the vision encoder to internalize spatial structure: accurate occupancy prediction requires the encoder to represent where objects begin and end in 3D space. At inference time, we discard the occupancy head entirely, and the spatial awareness acquired during training persists as an emergent property of the encoder's learned features. This paradigm of training with auxiliary geometric supervision and deploying without it has been validated in autonomous driving by OccVLA~\\cite{liu2025occvla}, which uses volumetric occupancy prediction to enhance a VLA's spatial understanding for navigation. Our work applies the same principle to tabletop manipulation, where the spatial scale and task geometry differ but the core insight holds: auxiliary occupancy supervision reshapes encoder representations to encode spatial boundaries that transfer to safer action prediction."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T20:25:13.640646+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex",
+              "offset": "52",
+              "limit": "3"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-20T20:25:13.640786+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "52\twhere $f_\\theta$ is a learned function that maps the combined feature-state pair to a scalar safety value. States satisfying $h_{\\text{occ}}(x) \\geq 0$ are considered safe, and the control barrier constraint modifies the VLA's proposed action to maintain this invariant.\n53\t\n54\tOCC-CBF differs from existing barrier function approaches in its use of learned volumetric features rather than hand-crafted geometric representations. The Euclidean-distance barrier in AEGIS~\\cite{hu2025aegis} operates on explicit object positions from a world model, restricting its applicability to scenarios where object states are directly observable. OGM-CBF~\\cite{ji2024ogmcbf} constructs barriers from discrete occupancy grids via signed distance fields, but relies on accurate grid-level occupancy at test time rather than learned continuous features. Learning to Nudge~\\cite{kwon2026learningnudge} trains object-centric barrier functions (DCBF) that reason about individual objects, requiring explicit object decomposition that may not scale to highly cluttered scenes. Neural CS-BF~\\cite{neuralcsbf2025} learns barriers in configuration space for manipulation planning, but operates on geometric state representations independently of a VLA's perceptual features. In contrast, OCC-CBF operates in the VLA's continuous learned feature space and can perform semantic collision reasoning without explicit object segmentation, distance computation, or a separate perception pipeline."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-20T20:25:13.640964+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex",
+              "old_string": "The BEV representation encodes object boundaries in a view-independent, allocentric coordinate frame, providing a natural supervisory signal for spatial structure.",
+              "new_string": "The BEV representation encodes object boundaries in a view-independent, allocentric coordinate frame and serves as a natural supervisory signal for spatial structure."
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-20T20:25:13.641126+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-20T20:25:13.641248+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex",
+              "old_string": "operates on explicit object positions from a world model, restricting its applicability to scenarios where object states are directly observable.",
+              "new_string": "operates on explicit object positions from a world model, which limits its applicability to scenarios where object states are directly observable."
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-20T20:25:13.641401+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-20T20:25:13.641520+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex",
+              "old_string": "trains object-centric barrier functions (DCBF) that reason about individual objects, requiring explicit object decomposition that may not scale to highly cluttered scenes.",
+              "new_string": "trains object-centric barrier functions (DCBF) that reason about individual objects and require explicit object decomposition, which may not scale to highly cluttered scenes."
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-20T20:25:13.641687+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-20T20:25:13.641826+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"ing[,.]\" /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex | grep -E \", [a-z]+ing \" || echo \"No -ing participial endings found\"",
+              "description": "Check for remaining -ing participial phrase endings"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-20T20:25:13.641944+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No -ing participial endings found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-20T20:25:13.642057+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-20T20:25:13.642220+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\tWe present OccSafe-VLA, a framework that improves collision safety in Vision-Language-Action models through two complementary mechanisms. The first is a BEV occupancy auxiliary head that injects spatial awareness into the vision encoder at zero inference cost (Section~\\ref{sec:occ_head}). The second is OCC-CBF, a conceptual framework for explicit safety guarantees conditioned on learned spatial features (Section~\\ref{sec:occ_cbf}). We begin by formalizing the problem setting and evaluation metrics.\n5\t\n6\t\\subsection{Problem Formulation}\n7\t\\label{sec:formulation}\n8\t\n9\tWe consider a \\textbf{Vision-Language-Action (VLA)} policy $\\pi(a_t \\mid o_t, l)$ that maps a visual observation $o_t$ and a language instruction $l$ to a 7-DOF action $a_t$ (delta end-effector pose) at each timestep $t$. The policy is parameterized by a large pretrained vision-language model fine-tuned on robot demonstration data. We evaluate performance along two complementary axes. \\textbf{Task Success Rate (TSR)} measures the fraction of episodes in which the robot completes the instructed task:\n10\t\\begin{equation}\n11\t  \\text{TSR} = \\frac{n_{\\text{success}}}{N},\n12\t\\end{equation}\n13\twhere $n_{\\text{success}}$ is the number of successful episodes out of $N$ total rollouts. \\textbf{Collision Avoidance Rate (CAR)} measures the fraction of episodes free of unintended object displacement:\n14\t\\begin{equation}\n15\t  \\text{CAR} = 1 - \\frac{n_{\\text{collide}}}{N},\n16\t\\end{equation}\n17\twhere $n_{\\text{collide}}$ counts episodes whose maximum L1 \\texttt{body\\_xpos} displacement exceeds a threshold of $0.001$, following the VLSA/AEGIS protocol~\\cite{hu2025aegis}. Our objective is to improve CAR without degrading TSR. A policy that avoids collisions by refusing to act is not useful; a practical safe manipulation policy must maintain high task completion while reducing unintended contact with surrounding objects.\n18\t\n19\t\\subsection{BEV Occupancy Auxiliary Head}\n20\t\\label\n…[truncated 7655 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-20T20:25:13.642407+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex`。\n\n验证清单:\n- **参数一致性**: LoRA rank 32, 50K steps, batch 8, lr 5e-4, cosine decay, 2-layer MLP 256 hidden, 64×64 BEV, Focal Loss α=0.75 γ=2.0, λ=0.1 均与 experiments.tex 完全一致\n- **Notation 统一**: π(a|o,l), o_t, l, a_t, L_occ, λ, z_occ, h_occ 全部按规范使用\n- **引用**: kim2025openvlaoft, kim2024openvla, liu2025occvla, hu2025aegis, ji2024ogmcbf, kwon2026learningnudge, neuralcsbf2025 (均在 references.bib 中)\n- **风格检查**: 无 em-dash/en-dash, 无 -ing 分词短语结尾, 无 Furthermore/Moreover/Additionally 连用, 无黑名单用词\n- **§3.4**: 标注为 conceptual framework, 末尾用 \\textit{} 声明 defer detailed formulation"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260520T201906"
+          },
+          "id": "event-000049"
+        }
+      ],
+      "message_count": 49
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing-method.md"
+}

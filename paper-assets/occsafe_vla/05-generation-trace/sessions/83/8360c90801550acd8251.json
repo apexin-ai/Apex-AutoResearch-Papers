@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8360c90801550acd8251",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval collect s0 50r and rerun",
+  "task_key": "worker_eval_collect-s0-50r-and-rerun_20260522T021316",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect-s0-50r-and-rerun_20260522T021316_result.json",
+    "occurrence": 1,
+    "bytes": 129,
+    "sha256": "c673c7a1abc12b19181d96557f92a703bae24e928722a087caaf61782d897f6f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 仍在运行中（4 GPU 都有进程），结果文件尚未生成。已设定 2 分钟后再检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-s0-50r-and-rerun.md"
+}

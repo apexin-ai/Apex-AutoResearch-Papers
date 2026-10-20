@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e91352fe6f75ce89258a",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ssh check training 10894",
+  "task_key": "worker_ssh_check-training-10894_20260528T223037",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-training-10894_20260528T223037_result.json",
+    "occurrence": 1,
+    "bytes": 578,
+    "sha256": "797d1baa56b99d2630db667d6620a59982f8edd72f18d554714663cb1365b36b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## random_occ_v2_s0 训练状态\n\n| 项目 | 状态 |\n|------|------|\n| **进程** | PID 33308 **alive**，已运行 2h59m |\n| **当前进度** | step **10991 / 50005** (22%)，训练时长 2h58m |\n| **速度** | ~1.03-1.05 it/s |\n| **预估剩余** | ~10h25m（约今天下午 ~17:25 UTC 完成） |\n| **Checkpoint** | 已保存 step 10000 checkpoint (`--10000_chkpt/lora_adapter/`) |\n| **GPU** | PID 33388 占用 **62152 MiB**（cuda:0，正常） |\n\n**DDL 风险**：deadline 是 12:00 UTC，预计 ~17:25 UTC 完成，**会超时约 5.5 小时**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-training-10894.md"
+}

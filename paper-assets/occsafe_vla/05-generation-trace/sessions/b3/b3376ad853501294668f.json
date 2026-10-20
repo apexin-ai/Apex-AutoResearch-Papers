@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3376ad853501294668f",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diag eval process check",
+  "task_key": "worker_diag_eval-process-check_20260522T013732",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_eval-process-check_20260522T013732_result.json",
+    "occurrence": 1,
+    "bytes": 2667,
+    "sha256": "07ba218971cd9f027bc42d6ae0185b733bfcc6baa20ffbefb2dec2427436540c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### Checkpoint 状态\n4 个 ablation 的 `50000_chkpt` **全部存在**：\n\n| Ablation | 50000_chkpt | 创建时间 |\n|---|---|---|\n| ablation_occ_detach_s0 | ✅ | 09:34 |\n| ablation_random_occ_s0 | ✅ | 09:32 |\n| ablation_occ_detach_s1 | ✅ | 09:32 |\n| ablation_random_occ_s1 | ✅ | 09:32 |\n\n### GPU 进程状态 — **GPU 0 和 GPU 1 有冲突**\n\n| GPU | 内存占用 | 进程 | 问题 |\n|---|---|---|---|\n| **GPU 0** | 33553/97887 MiB | **2 个 eval 进程** | ⚠️ 冲突 |\n| **GPU 1** | 32986/97887 MiB | **2 个 eval 进程** | ⚠️ 冲突 |\n| GPU 2 | 16778/97887 MiB | 1 个 eval 进程 | ✅ 正常 |\n| GPU 3 | 16778/97887 MiB | 1 个 eval 进程 | ✅ 正常 |\n\n### 冲突详情\n\n**两批 eval 同时在跑：**\n\n**Batch 1**（20 rollouts，09:31 启动，4 GPU 各 1 个）— 来自 `eval:ablation-4gpu-parallel`：\n- PID 614640 (GPU 0): `ablation_occ_detach_s0`, 20 rollouts → `/root/occsafe_vla/eval_results/`\n- PID 614641 (GPU 1): `ablation_random_occ_s0`, 20 rollouts\n- PID 614642 (GPU 2): `ablation_occ_detach_s1`, 20 rollouts\n- PID 614643 (GPU 3): `ablation_random_occ_s1`, 20 rollouts\n- 进度：都在 Task 3/10，约 50-90% rollouts\n\n**Batch 2**（50 rollouts，09:32-09:34 启动）— 来自 `eval:ablation-batch-4`：\n- PID 632709 (GPU 0): `ablation_occ_detach_s0`, **50 rollouts**, seed 42 → `/root/autodl-tmp/checkpoints/ablation_occ_detach_s0/eval_results.json`\n- PID 615702 (GPU 1): `ablation_random_occ_s0`, **50 rollouts** → `/root/autodl-tmp/checkpoints/ablation_random_occ_s0/eval_results.json`\n- GPU 2、3 的 s1 eval 尚未被 Batch 2 启动\n\n**Batch 2 进度**：\n- GPU 0 (detach_s0, 50r): Task 0 刚完成 (TSR=0.980)，开始 Task 1\n- GPU 1 (random_s0, 50r): Task 1 进行中 (40%)\n\n### 关键问题\n\n1. **GPU 0、1 双重占用**：每张卡上同时跑着 20r 和 50r 两个 eval，两个进程争抢同一 GPU。虽然 98GB 显存暂时够用（~33GB/卡），但会互相拖慢。\n2. **结果冲突风险**：两批 eval 对同一 checkpoint 产出不同 rollout 数的结果文件（20r vs 50r），输出路径不同所以文件不会覆盖，但分析时需要区分。\n3. **Batch 2 不完整**：只启动了 s0 的两个 eval（GPU 0、1），s1 的两个（GPU 2、3）还没启动。如果后续 Batch 2 worker 再启动 s1 eval，GPU 2、3 也会出现同样的双重占用。\n\n### 建议处置\n- 如果 50 rollouts 才是最终需要的结果，可以 kill Batch 1 的 4 个进程（PID 614640-614643）释放资源\n- 如果 20 rollouts 足够，kill Batch 2 的 2 个进程（PID 632709, 615702）并阻止后续 s1 启动"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-eval-process-check.md"
+}

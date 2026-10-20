@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f3e43cca19d6b8b14e8b",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "paper compilation check",
+  "task_key": "worker_paper_compilation_check_20260528T062030",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_compilation_check_20260528T062030_result.json",
+    "occurrence": 1,
+    "bytes": 3538,
+    "sha256": "7ab2a4f9158302f9e8fe7eaf499d13daa0c9f5f89071d264fb12428df916d00d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here's the complete audit:\n\n---\n\n## 论文状态清单\n\n### 1. 文件位置\n- **本地**: `/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/` (main.tex + 7 section files + references.bib)\n- **远程 (westd-34685)**: 无 .tex 文件，仅有分析产出 PDF（`/root/occsafe_vla/artifacts/`, `/root/occsafe_vla/analysis/`）\n- **已有 Patch 模板**: `docs/paper/BATCH_A_PATCH_TEMPLATE.md`\n\n### 2. 编译状态\n- **最近成功编译**: 2026-05-28 02:04 UTC（main.pdf, 466KB）\n- **编译错误**: **无**（main.log 中无 `!` error）\n- 编译器: pdfTeX/TeX Live 2025\n\n### 3. 内部数据不一致 (CRITICAL)\n\n**Cell 4 (Detach+LN) 数值冲突**:\n| 文件 | 行号 | CAR 值 | n |\n|------|------|--------|---|\n| results.tex | 28 | 0.826 | 1 |\n| results.tex | 9, 49, 62 | 0.826 | 1 |\n| **discussion.tex** | **10** | **0.814** | **2** |\n| appendix.tex | 85, 156, 160 | 0.826 | 1 |\n| method.tex | 51 | — | 1 |\n| figures/fig1_overview.py | 216 | 0.826 | 1 |\n\n`discussion.tex:10` 已更新为 n=2, CAR=0.814，但**所有其他文件仍为 n=1, CAR=0.826**。必须统一。\n\n### 4. 需更新的位置（按 Cell 4 新数据到达后）\n\n**BATCH_A_PATCH_TEMPLATE.md 已列出完整更新清单**，核心 16 处：\n\n| # | 文件:行 | 当前值 | 更新内容 |\n|---|---------|--------|---------|\n| 1 | results.tex:28 | `0.826^{b}`, n=1, TSR=0.894, Δ=+8.1 | CAR/n/TSR/Δ |\n| 2 | results.tex:9 | \"0.826, n=1\" | CAR/n |\n| 3 | results.tex:49 | \"-4.9pp, n=1 preliminary\" | LN simple effect + n |\n| 4 | results.tex:55 | \"$^{b}$Cell~4 preliminary (n=1)\" | caption |\n| 5 | results.tex:62 | `$0.826^{b}$`, `-4.9^{b}` | Table 2 LN row |\n| 6 | results.tex:72 | \"Cell~4 n=1; in progress\" | Figure 2 caption |\n| 7 | discussion.tex:8 | \"Cell~4 preliminary\" | 移除 preliminary |\n| 8 | discussion.tex:10 | **0.814 (n=2)** ← 已部分更新 | 统一到最终值 |\n| 9 | appendix.tex:85 | \"n=1, CAR $0.826$\" | CAR/n |\n| 10 | appendix.tex:139-154 | ANOVA: F=0.02, p=0.89, η²=0.003 | 全部重算 |\n| 11 | appendix.tex:156,160 | \"preliminary (n=1)\" | caption |\n| 12 | appendix.tex:169,171,172,177 | Pairwise d involving Cell 4 | 全部重算 |\n| 13 | method.tex:51 | \"n=1, preliminary\" | n |\n| 14 | main.tex:27 (abstract) | 无直接 0.826 引用，但引用效应量 | 核对效应量 |\n| 15 | figures/factorial_2x2.pdf | Cell 4 单点 | **重绘** |\n| 16 | figures/fig1_overview.py:216 | 0.826 hardcoded | **重绘** |\n\n### 5. 派生统计量（需重算）\n\n当 Cell 4 值确定后：\n- Gradient flow 主效应 d（当前 d=-0.60）\n- Normalization 主效应 d（当前 d≈1.03）\n- LN simple effect（当前 -4.9pp）\n- Δ(BN-LN) Grad OFF（当前 -5.9pp）\n- ANOVA F/p/η²\n- 6 个 pairwise Cohen's d\n\n### 6. Placeholder\n\n- **appendix.tex:116-117**: `CAR \\textbf{X.XX} ($n{=}2$)` — LIBERO-Object Vanilla baseline，TODO 注释标注 \"~08:45 UTC\"\n\n### 7. Cell 4 样本量提及\n\nCell 4 n 值的 \"preliminary\" / \"$^{b}$\" 标记出现在 **14 处**（上面已列）。如果最终 n≥3，所有 `$^{b}$` 和 \"preliminary\" 标记都需移除；如果 n=2，改为 \"Two seeds; additional seeds in camera-ready\"。\n\n### 8. 当前训练进度（per paper_framing.md）\n- `detach_ln_v2_s3` (34685:cuda:3) — ETA 05:51 UTC May 28\n- `detach_ln_v2_s2` (34685:cuda:0) — resume\n- `detach_ln_v2_s0c_r3` (10894:cuda:2) — ETA 22:45 UTC today（超 DDL）\n\n最乐观情况: DDL 前 Cell 4 可达 n=2-3。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-compilation-check.md"
+}

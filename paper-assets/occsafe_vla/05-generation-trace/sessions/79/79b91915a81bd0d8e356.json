@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79b91915a81bd0d8e356",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code fig combined fontfix",
+  "task_key": "worker_code_fig-combined-fontfix_20260529T020209",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fig-combined-fontfix_20260529T020209_result.json",
+    "occurrence": 1,
+    "bytes": 571,
+    "sha256": "0f0b4f500876e1a83a851972f6eee33f7647e52ca0e9916e1ba95641e76220d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All text in (b) is now visibly larger and ≥ 7pt. Layout is clean with no overflow. Changes made:\n\n- **Titles shortened**: \"Action norms\", \"Aux norms (10×)\", \"Cosine sim. (≈46% conflict)\", \"Norm ratio\"\n- **Font sizes increased**: titles 7.5→9pt, axis labels 6.5→8pt, tick labels 6.5→7pt, legend 5.5→7pt\n- **Legends consolidated**: only the top-left subplot (Action norms) keeps the legend; removed from the other 3\n- **Spacing/height adjusted**: hspace 0.50→0.55, wspace 0.38→0.42, figsize height 3.2→3.4\n- **(a) untouched**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fig-combined-fontfix.md"
+}

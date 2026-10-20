@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d8d907bbf2fdbb7af29c",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "check eval status all",
+  "task_key": "worker_check_eval_status_all_20260523T014625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_eval_status_all_20260523T014625_result.json",
+    "occurrence": 1,
+    "bytes": 1883,
+    "sha256": "5f80fbeee67b00900667e618198738eefde0ec912b6746c11dd54669c033ee89"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 个 eval 已完成，registry 已更新为 DONE。\n\n---\n\n## 结果汇总\n\n### Overall Summary\n\n| Eval | TSR | CAR | Collisions | Episodes | Status |\n|------|-----|-----|------------|----------|--------|\n| **depth_s0** | **0.940** | **0.736** | 132 | 500 | DONE |\n| **depth_s1** | **0.906** | **0.818** | 91 | 500 | DONE |\n| cutoff_s0 | 0.912 | 0.768 | 116 | 500 | DONE |\n| cutoff_s1 | 0.918 | 0.798 | 101 | 500 | DONE |\n\n### Per-Task TSR\n\n| Task | depth_s0 | depth_s1 | cutoff_s0 | cutoff_s1 |\n|------|----------|----------|-----------|-----------|\n| T0 | 0.98 | 1.00 | 1.00 | 0.98 |\n| T1 | 0.98 | 0.98 | 1.00 | 0.96 |\n| T2 | 0.96 | 1.00 | 1.00 | 1.00 |\n| T3 | 0.98 | 0.96 | 1.00 | 1.00 |\n| T4 | 0.94 | 0.96 | 0.92 | 1.00 |\n| T5 | **0.84** | 0.28 | 0.30 | 0.36 |\n| T6 | 0.96 | 0.98 | 1.00 | 0.96 |\n| T7 | 0.94 | 0.96 | 0.92 | 1.00 |\n| T8 | 0.96 | 0.98 | 1.00 | 0.96 |\n| T9 | 0.86 | 0.96 | 0.98 | 0.96 |\n\n### Per-Task CAR\n\n| Task | depth_s0 | depth_s1 | cutoff_s0 | cutoff_s1 |\n|------|----------|----------|-----------|-----------|\n| T0 | 0.98 | 0.98 | 0.98 | 0.98 |\n| T1 | 0.98 | 0.94 | 0.98 | 0.90 |\n| T2 | 0.88 | 0.92 | 0.94 | 0.94 |\n| T3 | 0.32 | 0.70 | 0.58 | 0.74 |\n| T4 | 0.92 | 0.94 | 0.98 | 0.98 |\n| T5 | 0.14 | 0.10 | 0.00 | 0.00 |\n| T6 | 0.16 | 0.60 | 0.28 | 0.46 |\n| T7 | 0.98 | 1.00 | 0.94 | 1.00 |\n| T8 | 1.00 | 1.00 | 1.00 | 0.98 |\n| T9 | 1.00 | 1.00 | 1.00 | 1.00 |\n\n### MVP Gate 关键数据 — Depth 条件\n\n- **depth_s0**: TSR=0.940 (最高), CAR=0.736 (最低), 132 collisions\n- **depth_s1**: TSR=0.906, CAR=0.818, 91 collisions\n\ndepth_s0 的 TSR 异常高（0.94），但 CAR 偏低；depth_s1 的 CAR 显著更好（0.818），TSR 略低。T5 和 T6 仍是 CAR 弱项（全条件一致）。depth_s0 在 T5 上 TSR=0.84 远超其他种子（0.28-0.36），但 CAR 也很差（0.14）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-eval-status-all.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de0c207f835a0c666f39",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops eval finish then cka",
+  "task_key": "worker_ops_eval_finish_then_cka_20260524T052408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval_finish_then_cka_20260524T052408_result.json",
+    "occurrence": 1,
+    "bytes": 113,
+    "sha256": "cb6f6eeeb67ab8a4803b12e62bda6890e858fc980367337769260ae5e52259bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval is on T8 at 54%, about 6-8 minutes left. I've set a watcher and will check back in 3 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-finish-then-cka.md"
+}

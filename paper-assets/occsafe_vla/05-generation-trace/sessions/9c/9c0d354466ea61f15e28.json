@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c0d354466ea61f15e28",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra migrate occ to gpu3",
+  "task_key": "worker_infra_migrate_occ_to_gpu3_20260520T093238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_migrate_occ_to_gpu3_20260520T093238_result.json",
+    "occurrence": 1,
+    "bytes": 1301,
+    "sha256": "ee4bc91b0c8946b5a3bb48b3df1c0ba8db39a3f9401d911a2989557c337f7f95"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Task 9 还在处理 demo_0 的首批帧（MuJoCo 模拟 + EGL 渲染较慢）。提取进程稳定运行中。\n\n## 总结\n\n### Phase 1: GPU 0 清理\n- **之前**: 10 个 extract_occupancy 进程（PID 50744-72346, Tl 状态）占用 GPU 0\n- **之后**: 全部 kill -9，GPU 0 只剩 vanilla_s0 训练（PID 100203, 62998MiB, 99% util）\n\n### Phase 2: GPU 3 重启\n- **命令**: `CUDA_VISIBLE_DEVICES=3 MUJOCO_EGL_DEVICE_ID=3 nohup python extract_occupancy.py --task_id {0-9} ...`\n- **PID**: 104226-104235（10 个进程，Rl 状态）\n- **GPU 3 占用**: 5672MiB / 97887MiB（每进程 ~557MiB）\n- **日志**: `/root/autodl-tmp/logs/extract_occ_gpu3_task{0-9}.log`\n- **注意**: 首次启动时需要 `MUJOCO_EGL_DEVICE_ID=3`，否则 robosuite 的 EGL 断言失败\n\n### 已有产出情况\n- 之前 10 个 HDF5 文件全部损坏（SIGSTOP 导致 HDF5 未正确关闭），已清理\n- **需要全部重跑**，脚本无断点续传\n\n### vanilla_s0 训练\n- 速度已恢复到 ~1.0-1.5 s/it（去除 occ 进程前 GPU 0 被挤占）\n\n### 预计完成时间\n- 原始进程运行 ~6.5 小时后被 SIGSTOP，10 个 task 各 50 个 demo\n- 现在 GPU 3 专用，无竞争，但仍需估算（需等首批 frame 输出后才能精确估计）\n- 粗估 **4-8 小时**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-migrate-occ-to-gpu3.md"
+}

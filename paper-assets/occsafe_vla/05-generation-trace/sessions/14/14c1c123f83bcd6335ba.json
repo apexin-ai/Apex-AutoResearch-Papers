@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "14c1c123f83bcd6335ba",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "check server 34685 urgent",
+  "task_key": "worker_check_server-34685-urgent_20260527T040938",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_server-34685-urgent_20260527T040938_result.json",
+    "occurrence": 1,
+    "bytes": 850,
+    "sha256": "3341731024d4959231c66197ce9a6558ef7f785c25959d89fc2a65d0770f6464"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "原始结果汇总：\n\n**GPU 利用率 (nvidia-smi)**\n```\n79 %, 62203 MiB\n80 %, 62203 MiB\n71 %, 62203 MiB\n81 %, 63037 MiB\n```\n\n**Checkpoints (`/root/autodl-tmp/checkpoints/`)**\n- 无 `checkpoint_50000.pt` 文件\n- 最新目录：`mvp_occ_s4` (10:59), `ablation_occ_detach_s4` (10:58), `detach_ln_v2_s1` (10:13), `detach_ln_s4` (10:11)\n\n**训练进程 (4个)**\n| GPU | 实验 | 参数 |\n|-----|------|------|\n| 0 | `detach_ln_s4` | occ_detach=true, occ_norm_type=ln, seed=46 |\n| 1 | `detach_ln_v2_s1` | occ_detach=true, occ_norm_type=ln, seed=43 |\n| 2 | `ablation_occ_detach_s4` | occ_detach=true, seed=46 |\n| 3 | `mvp_occ_s4` | occ_detach=false, seed=46 |\n\n4 张 GPU 全部在跑，利用率 71-81%，max_steps=50005，尚未产出 checkpoint_50000.pt。`tmux` 和 `date` 不在 read_only 白名单无法执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-server-34685-urgent.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "69e15aa0ce008f8f45f0",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra fix occ s1 resume only",
+  "task_key": "worker_infra_fix_occ_s1_resume_only_20260521T050118",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_fix_occ_s1_resume_only_20260521T050118_result.json",
+    "occurrence": 1,
+    "bytes": 1514,
+    "sha256": "139b9143e8088d0e8e76a81cb11c5ffd931e241f948c4723b1ced76f472a829b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证完成。汇总报告：\n\n---\n\n## 结果汇总\n\n### 1. s0/s2 未受影响 ✅\n| | PID (python) | 状态 |\n|---|---|---|\n| s0 (cuda:0) | **76998** (未变) | 正常训练 |\n| s2 (cuda:2) | **78171** (未变) | 正常训练 |\n\n### 2. s1 新进程\n- Wrapper PID: **80825**\n- Python PID: **80898**\n- GPU 1: 99% 利用率, 62209 MiB\n\n### 3. Resume 日志\nCheckpoint 加载成功：\n```\nLoading checkpoint: .../proprio_projector--17500_checkpoint.pt\nLoading checkpoint: .../action_head--17500_checkpoint.pt\nLoading checkpoint: .../occ_head--17500_checkpoint.pt\n```\n\n### 4. Step 编号\ntqdm 和 `[OCC]` 日志显示从 0 开始 — 这是**代码显示 bug，不影响训练**：\n- Line 1146 用 `gradient_step_idx`（从 0 开始）打 OCC 日志\n- Line 1152 `log_step = resume_step + gradient_step_idx` = 17500 + n（内部正确）\n- checkpoint 保存、训练终止、WandB 日志全部使用 `log_step`，下次存档在 step 20000\n\n### 5. 速度\n~**1.08 it/s** ✅（稳定后）\n\n### 6. occ_loss\n`[OCC] step=500, occ_loss=0.0117, action_loss=0.0918` — occ_loss 在正常范围\n\n### 7. s0/s2 进度与 ETA\n\n| Seed | tqdm step | 内部 log_step | 剩余 steps | ETA |\n|---|---|---|---|---|\n| s0 | ~553 | 43053 | ~6952 | **~1.8h** |\n| s2 | ~512 | 43012 | ~6993 | **~1.8h** |\n| s1 | ~553 | 18053 | ~31952 | **~8.2h** |\n\ns0 log: `[OCC] step=500, occ_loss=0.0094, action_loss=0.0942`\ns2 log: `[OCC] step=500, occ_loss=0.0094, action_loss=0.0942`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-fix-occ-s1-resume-only.md"
+}

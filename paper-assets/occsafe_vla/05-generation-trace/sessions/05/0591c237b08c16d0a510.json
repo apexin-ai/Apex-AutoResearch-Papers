@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0591c237b08c16d0a510",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code fig3a legend fix",
+  "task_key": "worker_code_fig3a-legend-fix_20260529T005808",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fig3a-legend-fix_20260529T005808_result.json",
+    "occurrence": 1,
+    "bytes": 112,
+    "sha256": "5b9e858f72482e1876b1b1363e1a3b72172b6ce5de0507b990d20459780dfb81"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Panel (a) 的图例已移到左下角，不再遮挡数据线。其他三个子图未受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fig3a-legend-fix.md"
+}

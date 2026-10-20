@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22d9696357221f646da7",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval occ s1 learning curve",
+  "task_key": "worker_eval_occ-s1-learning-curve_20260521T110656",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_occ-s1-learning-curve_20260521T110656_result.json",
+    "occurrence": 1,
+    "bytes": 278,
+    "sha256": "ce22a90bf95d8de61284ad5eee27a50bfd25d67dc103285b14b837e2e6a59543"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前进度：\n- **30000_chkpt eval**: cuda:0, PID 324808, 运行中\n- **35000_chkpt eval**: cuda:2, PID 326195, 运行中\n- **25000_chkpt**: 训练当前 step ~22255，25000 预计 ~40 分钟后保存，届时启动第 3 个 eval\n- 下次检查 ~5 分钟后"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-occ-s1-learning-curve.md"
+}

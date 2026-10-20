@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c57c56ccba197f404111",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "fix 10894 disk full triage",
+  "task_key": "worker_fix_10894-disk-full-triage_20260527T071434",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_10894-disk-full-triage_20260527T071434_result.json",
+    "occurrence": 1,
+    "bytes": 3107,
+    "sha256": "308a13bb518c6b077689bda8b4f0860886f86460f0c53cbb3f27bae121f82b91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here's the full diagnostic report.\n\n---\n\n## 1. Experiment Status\n\n| Experiment | GPU | Status | Detail |\n|---|---|---|---|\n| **full_occ_ln_v2_s1c** | cuda:0 | **RUNNING** | PID 481426, ~step 20k+, 62GB VRAM, started 08:37 CST |\n| **full_occ_ln_v2_s2** | cuda:1 | **RUNNING** | PID 481643, ~step 20k+, 62GB VRAM, started 08:37 CST |\n| **detach_ln_v2_s0c** | cuda:2 | **CRASHED** | Disk full at 20k checkpoint save (~14:30 CST). GPU idle. **Checkpoint dir already deleted** (by cleanup daemon or externally). |\n| **full_occ_ln_v2_s0d** | cuda:3 | **CRASHED** | Same cause and timing. GPU idle. **Checkpoint dir already deleted.** |\n\nNone of the 4 experiments are in the registry.\n\nEstimated schedule for running experiments: 30k save ~17:30 CST, 40k ~20:30, 50k ~23:30.\n\n---\n\n## 2. Disk Usage Distribution\n\n**Total: 216G / 250G (87%), 34G free** (was 100% at 14:35, freed by crash cleanup at 15:35)\n\n| Category | Size |\n|---|---|\n| Checkpoints | ~171G |\n| Models (openvla-7b) | 15G |\n| Libero datasets | 5.9G |\n| Data (modified_libero_rlds) | 2G |\n| Other | ~22G |\n\n**Checkpoint breakdown:**\n\nOld completed (each ~15G, only 50k_chkpt):\n| Dir | Size | Registry |\n|---|---|---|\n| ablation_occ_detach_s3_v2 | 15G | DONE/success |\n| cutoff_45k_s2_v2 | 15G | — |\n| detach_ln_s3 | 15G | — |\n| full_occ_ln_s0 | 15G | — |\n| full_occ_ln_s3_v2 | 15G | DONE/success |\n| mvp_occ_s3_v2 | 15G | DONE/success |\n| reverse_cutoff_s2_v2 | 15G | DONE/success |\n| vanilla_v2_s1 | 15G | — |\n| cutoff_15k_s1 | 0.5G | — |\n| **Subtotal** | **~120.5G** | |\n\nRunning (each has 10k + 20k checkpoints):\n| Dir | Size |\n|---|---|\n| full_occ_ln_v2_s1c | 30G |\n| full_occ_ln_v2_s2 | 30G |\n\n11 empty/abandoned dirs (0-4K each): negligible.\n\n---\n\n## 3. Safe Deletion Candidates\n\n**Tier 1 — Empty/abandoned dirs (~0 space, just cleanup):**\ncutoff_25k_s2, reverse_cutoff_s2, full_occ_ln_v2_s0, full_occ_ln_v2_s1, detach_ln_v2_s0, detach_ln_v2_s0b, detach_ln_v2_s1, detach_ln_v2_s1c, full_occ_bn_v2_s1, full_occ_ln_v2_s0b, full_occ_ln_v2_s1b\n\n**Tier 2 — Old completed experiments (need your confirmation on which are fully evaluated):**\n\n| Dir | Size | Notes |\n|---|---|---|\n| ablation_occ_detach_s3_v2 | 15G | DONE/success in registry |\n| cutoff_45k_s2_v2 | 15G | |\n| detach_ln_s3 | 15G | |\n| full_occ_ln_s0 | 15G | |\n| full_occ_ln_s3_v2 | 15G | DONE/success in registry |\n| mvp_occ_s3_v2 | 15G | DONE/success in registry |\n| reverse_cutoff_s2_v2 | 15G | DONE/success, has 40k+50k |\n| vanilla_v2_s1 | 15G | |\n| cutoff_15k_s1 | 0.5G | |\n| **Total if all deleted** | **~120.5G** | |\n\n---\n\n## 4. Space Projection\n\n**If only 2 experiments continue (no restart):** 34G free is enough. The cleanup daemon (keeps 2 latest chkpts) handles rolling saves. Next save at ~17:30 CST will temporarily use 30G but daemon will reclaim it at next cycle.\n\n**If restarting crashed 2 on GPU 2,3:** Peak usage at overlapping save times could hit ~285G (>250G). **Need to delete at least 60G of old checkpoints** (4 old experiment dirs) before restarting."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-10894-disk-full-triage.md"
+}

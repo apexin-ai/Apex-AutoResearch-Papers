@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2b43884888133d77b5fd",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops detach ln s3 check",
+  "task_key": "worker_ops_detach-ln-s3-check_20260526T223343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_detach-ln-s3-check_20260526T223343_result.json",
+    "occurrence": 1,
+    "bytes": 291,
+    "sha256": "a10d4cfd81fdf2e7007a0c86803d765051703a11d85a25130da4e3ffed46470d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**detach_ln_s3 诊断完成：训练成功。**\n\n- 50005 步全部完成，50000_chkpt 已保存（含 model safetensors、action_head、occ_head、config.json 等）\n- 最终 loss：occ_loss=0.0094, action_loss=0.0664\n- Registry 已更新为 DONE/success，cron 已删除"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-detach-ln-s3-check.md"
+}

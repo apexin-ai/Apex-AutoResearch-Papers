@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca9e63a075cd4ac62a0f",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code merge fig2 fig3",
+  "task_key": "worker_code_merge-fig2-fig3_20260529T015457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_merge-fig2-fig3_20260529T015457_result.json",
+    "occurrence": 1,
+    "bytes": 942,
+    "sha256": "dc92776a402604474ab0413b4da2cb319e6e8bb3d05f1e5fd043f4e539954cad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**改动摘要**：\n\n1. **新建合并脚本** `docs/paper/figures/fig_combined_factorial_gradient.py` — figsize (7.0, 3.2)，左 33% 为 (a) factorial 交互图，右 67% 为 (b) gradient 2×2 四子图。颜色方案统一，字号 ≥ 6.5pt。\n\n2. **输出文件**：`fig_combined_factorial_gradient.pdf` 和 `.png`，数据均正确（BN OFF=0.767, ON=0.725; LN OFF=0.802, ON=0.773; Vanilla=0.745）。\n\n3. **LaTeX 更新** (`results.tex`)：\n   - 原 Fig 2 (`fig:factorial`) 和 Fig 3 (`fig:gradient_analysis`) 注释保留，合并为一个 `figure*` 环境，label `fig:factorial_gradient`\n   - Caption 合并了两图描述\n\n4. **全局引用更新**：`results.tex`、`introduction.tex`、`discussion.tex`、`appendix.tex` 中所有 `\\ref{fig:factorial}` → `\\ref{fig:factorial_gradient}a`，所有 `\\ref{fig:gradient_analysis}` → `\\ref{fig:factorial_gradient}b`。无残留旧引用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-merge-fig2-fig3.md"
+}

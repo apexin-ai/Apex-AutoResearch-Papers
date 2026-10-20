@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bfb24f1b70e5a1531b34",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "director / loop_10.md",
+  "task_key": "loop_10",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_10.md",
+    "occurrence": 1,
+    "bytes": 3675,
+    "sha256": "ca8d21c52a4fdf2b95b8d4ffd643c807094744d207911f016b3b481387f43780"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: max_messages\nupdated: '2026-05-26T11:59:15+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：10894:cuda:0-3 + 34685:cuda:0-3，共 8 张，不得用其他设备\n- 34685 禁止同时跑 CKA 分析 + 训练（IO 互斥，之前导致 10-17× 减速危机）\n- v2 代码是唯一合法版本——v1 数据已确认有 bug（D050/D052），不得混用 v1/v2 数据做 ANOVA\n- 用户自行提交论文（D058），不要代提交\n- Plan B (ordinal interaction) 已确认（D055/D058），不要回退到 Plan A (crossover)\n\n### 2. 🖥️ 基础设施快照\n- **10894**: connect.westd.seetacloud.com, root, /root/occsafe_vla, RTX PRO 6000 98GB ×4, 磁盘 63%\n- **34685**: connect.westd.seetacloud.com, root, /root/occsafe_vla, RTX PRO 6000 98GB ×4, 磁盘 41%（⚠️ 之前 2%，需确认）\n- Python: 两台均 conda base（aml-train 镜像），`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- HF cache: /root/autodl-tmp/.hf_cache（两台）\n- Cron 监控已设置（eval 完成自动回调），具体 cron ID 需重新查\n\n### 3. 📊 当前状态\n**关键问题**：Agent 连续 3 次 rotation 后 idle 16h，eval 结果和 Cell 2/4 v2 训练可能未被启动。首要任务是 SSH 确认 10894 和 34685 实际进程状态。\n\n预期中的实验状态（需验证）：\n- 10894:0 — reverse_cutoff_s2_v2 训练中（ETA ~May 27 06:40）\n- 10894:1/2/3 — 3 个 s3 eval（mvp_occ_s3_v2_eval / full_occ_ln_s3_v2_eval / ablation_occ_detach_s3_v2_eval）应该已完成（ETA 原为 May 26 12:10 UTC）。**eval 后应启动 3 个 v2 训练但 Agent idle 期间可能没启动**\n- 34685:0/1/2/3 — vanilla_v2_s1, vanilla_v2_s2, detach_ln_s3, cutoff_25k_s1_v2（ETA May 27 05:30-06:00）\n\nRegistry 中 PREPARING 状态（~10 个）：包括 full_occ_ln_v2_s0, full_occ_ln_v2_s1, detach_ln_v2_s0 等 Cell 2/4 v2 补训。\n\n### 4. 📋 待办\n- **立即**：SSH 10894 确认 cuda:1/2/3 实际状态 → 如 eval 已完成且 GPU 空闲 → 立即启动 full_occ_ln_v2_s0(cuda:1) + full_occ_ln_v2_s1(cuda:2) + detach_ln_v2_s0(cuda:3)\n- **立即**：如 eval 结果文件已生成 → 收集 CAR 数据录入 registry\n- reverse_cutoff_s2_v2 完成(10894:0) → 启动 detach_ln_v2_s1 (Cell 4, seed=43)\n- 34685 训练完成(~May 27 05:30-06:00) → 逐个 eval（vanilla_v2_s1_eval, vanilla_v2_s2_eval, detach_ln_s3_eval, cutoff_25k_s1_v2_eval）\n- 全 v2 factorial n=3 齐全 → 确认性 2×2 ANOVA（Gradient × Norm）\n- 用户确认后 → 启动 Paper Agent（Intro/Method/Related Work 可先写，Results 后补）\n\n### 5. 🎯 战略上下文\n**核心结论**：Plan B — OCC auxiliary loss 对 VLA 无益（ordinal interaction，ALL OCC ≤ Vanilla）。论文转为 analysis/negative-result contribution：BN×gradient flow factorial study。\n\n**v2 factorial 设计**（2×2 + vanilla baseline）：\n- Cell 1: Full OCC BN (Grad ON + BN) — CAR ~0.700, v2 n=2→3\n- Cell 2: Full OCC LN (Grad ON + LN) — v1 only, v2 补训中\n- Cell 3: Detach BN (Grad OFF + BN) — CAR 0.757, v2 n=3 ✅\n- Cell 4: Detach LN (Grad OFF + LN) — v1 only, v2 补训中\n- Vanilla — CAR 0.768, v2 n=1→3\n\nPartial ANOVA (v2 Cell 1 vs 3): Hedges' g=-1.023（大效应），p=0.422（不显著，功效低），方向一致。\n\n**易错点**：\n- v1 机制证据（gradient collapse, CKA degradation）已被推翻为 bug 产物（D056/D057），不要引用\n- 当前可用机制证据仅有梯度正交性 (cosine≈0)\n- 论文 deadline CoRL May 29，全 v2 数据预计 May 27 齐全，时间很紧\n- Agent idle 问题：连续多次 rotation 后未执行任务，新 session 第一件事必须 SSH 确认实际 GPU 状态\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10.md"
+}

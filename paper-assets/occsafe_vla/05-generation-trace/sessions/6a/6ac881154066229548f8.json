@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6ac881154066229548f8",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis gradient dose response s0",
+  "task_key": "worker_analysis_gradient_dose_response_s0_20260525T072629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gradient_dose_response_s0_20260525T072629_result.json",
+    "occurrence": 1,
+    "bytes": 1243,
+    "sha256": "008bfd968515d1782a1921be3e1cb3e25ca8f726d4e9a6db6e2f8bffc1d90fe6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果与第一次运行一致（微小浮点差异）。\n\n4 个 s0 条件的梯度分析完成：\n- JSON: `/root/autodl-tmp/analysis/gradient_dose_response_s0/results.json`\n- PDF/PNG: `/root/autodl-tmp/analysis/gradient_dose_response_s0/gradient_dose_response.{pdf,png}`\n\ncutoff s0 checkpoints 仍未从 34685 SCP 到位。脚本已更新支持共享 OCC head，一旦 cutoff s0 checkpoints 到位，重新运行即可自动纳入分析。\n\n**当前结果摘要**:\n\n| 条件 | Action Grad (mean) | Aux Grad (mean) | Cosine Sim | Conflict Rate |\n|------|-------------------|-----------------|------------|---------------|\n| Vanilla | 7.554 | 0 | 0 | 0 |\n| Full OCC BN | 8.895 | 0.167 | -0.018 | 0.470 |\n| Detach BN | 5.905 | 0 | 0 | 0 |\n| Full OCC LN | 11.930 | 0.260 | -0.000 | 0.471 |\n\n关键发现：\n1. Full OCC 条件的 aux 梯度确实注入 vision backbone（BN: 0.167, LN: 0.260）\n2. Detach 条件验证了梯度切断（0 aux 梯度）\n3. Action/Aux 梯度方向近正交（cosine ~0），conflict rate ~47%（接近随机水平50%），说明 OCC 梯度不与 action 梯度冲突\n4. Full OCC LN 的 action 梯度最大（11.93），可能与 GroupNorm vs BatchNorm 的梯度特性相关"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gradient-dose-response-s0.md"
+}

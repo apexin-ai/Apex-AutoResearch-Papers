@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17b76b09911297517dc2",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops eval definitive attempt",
+  "task_key": "worker_ops_eval_definitive_attempt_20260523T204909",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval_definitive_attempt_20260523T204909_result.json",
+    "occurrence": 1,
+    "bytes": 644,
+    "sha256": "f112265922daf8efb355802c98ffb38f6c07bb6bf43799f85a1b7037c39f7967"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n**验证结果汇总：**\n\n| 检查项 | reverse_cutoff_s0_eval | cutoff_25k_s0_eval |\n|--------|----------------------|-------------------|\n| tmux session | ✅ 存在 | ✅ 存在 |\n| Python PID | ✅ 518746 | ✅ 519021 |\n| GPU | ✅ GPU 2: 16778 MiB / 97887 MiB | ✅ GPU 3: 16778 MiB / 97887 MiB |\n| 日志 | ✅ T0: 12% (6/50), ~4.4s/it | ✅ T0: 14% (7/50), ~4.1s/it |\n| 错误 | 无 | 无 |\n\n两个 eval 均在正常执行 libero_spatial 任务（10 tasks × 50 rollouts），当前都在 Task 0 的 rollout 阶段，每个 rollout 约 4-5 秒。预计总运行时间约 35-40 分钟。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-definitive-attempt.md"
+}

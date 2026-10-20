@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7f55d01231027333a44",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis per layer conflict rate",
+  "task_key": "worker_analysis_per_layer_conflict_rate_20260524T134602",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_per_layer_conflict_rate_20260524T134602_result.json",
+    "occurrence": 1,
+    "bytes": 1242,
+    "sha256": "d496f3f10cb11cb8d99acb44610b4e3e352b14241b39fcbe766c36d7466f60e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心发现：\n\n**假设被反转**——late layers 冲突更少，不是更多。\n\n| Encoder | Early | Mid | Late |\n|---------|-------|-----|------|\n| **DINOv2** | 49.8% | 49.9% | 49.9% |\n| **SigLIP** | 49.7% | 49.6% | **25.8%** (Full_OCC) / **25.3%** (Random) |\n\n两个关键模式：\n\n1. **DINOv2 全层均匀 ~50%**：action 和 aux 梯度在所有深度完全正交（等价于随机独立方向），无论 early/late。\n\n2. **SigLIP late layers 冲突率骤降至 ~25%**：siglip_21~24 低至 19-21%，说明 action 和 OCC 辅助梯度在高层语义层是**协同的（aligned）**，而非对抗。逐层看：siglip_18=43% → siglip_20=26% → siglip_22=20% → siglip_25=24%。\n\n论文可用结论：OCC auxiliary loss 不会在 late vision encoder layers 与 action learning 竞争，反而在 SigLIP 高层语义特征空间中两个任务梯度方向趋于一致。Full_OCC 和 Random 表现一致，说明这是结构性特征而非 OCC target 质量的结果。\n\n产出文件：\n- `per_layer_conflict_rate.csv` — 完整逐层数据（49层 × 2条件）\n- `per_layer_summary.json` — 分组汇总\n- Registry `gradient_analysis_mixed_seed.metrics.per_layer_conflict` 已更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-per-layer-conflict-rate.md"
+}

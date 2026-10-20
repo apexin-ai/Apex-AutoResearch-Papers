@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "948073655d2dd99129e0",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code fig1c figsize fix",
+  "task_key": "worker_code_fig1c-figsize-fix_20260529T014432",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fig1c-figsize-fix_20260529T014432_result.json",
+    "occurrence": 1,
+    "bytes": 735,
+    "sha256": "e207e44a50e9709537f74d23258a4903e61f67892bb603e8e7facf2dba3782b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表检查通过：\n\n- 数据值正确：0.725±0.064, 0.767±0.024, 0.773±0.027, 0.802±0.024, Vanilla 0.745\n- 误差条清晰可见\n- 文字可读无重叠\n- Vanilla 基线虚线可见\n- Δpp 标注正确（-4.2 pp, -2.9 pp）\n- figsize 已改为 (3.4, 3.0)，字号全部在 9-11pt 范围\n\n修改汇总：\n| 属性 | 旧值 | 新值 |\n|------|------|------|\n| figsize | (3.5, 3.2) | (3.4, 3.0) |\n| font.size (default) | 14 | 11 |\n| Vanilla label | 11.5pt | 10pt |\n| Data value labels | 11pt | 9.5pt |\n| Δpp annotations | 11pt | 9pt |\n| BN/LN group labels | 11pt | 9.5pt |\n| Y tick labels | 10.5pt | 10pt |\n| X tick labels | 12pt | 10pt |\n| Marker size | 11 | 9 |\n\nPNG 和 PDF 均已保存。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fig1c-figsize-fix.md"
+}

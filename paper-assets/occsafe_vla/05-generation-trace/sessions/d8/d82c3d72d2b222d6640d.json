@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d82c3d72d2b222d6640d",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra check occ training progress",
+  "task_key": "worker_infra_check_occ_training_progress_20260521T015829",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_check_occ_training_progress_20260521T015829_result.json",
+    "occurrence": 1,
+    "bytes": 1365,
+    "sha256": "b2186c89e031b0e86fbcc20e8825adf37918964a919e81da5871183671ac6283"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "关键发现：occ_s1 之前 crash 了，已被重启但进度大幅落后。\n\n```\nocc_s0: step ~35235/50005 (70.5%), 1.08 it/s, 剩余 ~3h48m\n         loss@35200: occ=0.0083, action=0.0542\n         checkpoints: 5000, 7500, 30000, 32500, 35000\n\nocc_s1: ⚠️ 之前 crash (PID 28900, exitcode 1, 07:57:05)\n         已重启为 PID 58875, 运行 43 分钟\n         实际 step ~10279/50005 (20.6%), 1.09 it/s, 剩余 ~10h07m\n         tqdm 显示 2779/50005 (从 0 计数, 实际 global step = 7500+2779=10279)\n         log → /root/occsafe_vla/occ_s1_restart.log\n         checkpoints: 5000, 7500, 10000\n\nocc_s2: step ~35221/50005 (70.4%), 1.08 it/s, 剩余 ~3h48m\n         loss@35200: occ=0.0099, action=0.0635\n         checkpoints: 5000, 7500, 30000, 32500, 35000\n\nMonitor PID 61526: alive (运行 9m48s)\n\nGPU utilization:\n  cuda:0  99%, 62203/97887 MiB\n  cuda:1  99%, 62203/97887 MiB\n  cuda:2  99%, 62209/97887 MiB\n  cuda:3 100%,     0/97887 MiB (空闲,仅显示计算占用)\n```\n\n**occ_s1 问题总结**：原进程 PID 28900 在 07:57 crash（torchrun ChildFailedError, exitcode 1, 无详细 traceback）。已被重启（可能由 monitor 脚本触发），从 7500 checkpoint resume，当前在 step ~10279，比 s0/s2 落后约 25000 步（~6.4 小时）。s0 和 s2 预计还需 ~3h48m 完成，s1 需要 ~10h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-occ-training-progress.md"
+}

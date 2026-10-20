@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74cb15aac73a1d940139",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops fix cron exit129 logic",
+  "task_key": "worker_ops_fix-cron-exit129-logic_20260528T070507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-cron-exit129-logic_20260528T070507_result.json",
+    "occurrence": 1,
+    "bytes": 1093,
+    "sha256": "b731aeabeb7243e91820a47056263e228214c1a9fc6ded4af8ba7a4f0ce96d87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本都已读取完毕。分析如下：\n\n**westd-34685 `poll_eval_detach_ln_v2_s2.sh`** 和 **westd-10894 `poll_eval_vanilla_object_s1.sh`** 的逻辑都是：\n1. 轮询检测 `50000_chkpt` 目录 + `adapter_config.json` 存在\n2. 等待 60s 确保写入完成\n3. `kill` 训练进程（不依赖其退出码）\n4. 启动 eval\n5. `break` 退出循环\n\n两个脚本都**不使用训练进程的退出码做任何判断**。`$?` 只在日志中记录的是 eval 的退出码，不是训练的。脚本最终通过 `break` 退出 while 循环，自身退出码为 0（最后执行的 `echo` 成功）。\n\n**结论：脚本本身无问题，问题在 cron 监控层。**\n\ncron 监控系统独立追踪训练进程的 PID，当训练进程被轮询脚本 kill 后以 exit 129 (128 + SIGHUP) 退出时，cron 系统将其判定为 `conclusion=failed`。这是 cron 监控系统的退出码判定逻辑问题——它没有区分\"被外部 kill 导致的非零退出\"和\"训练本身失败导致的非零退出\"。\n\n按要求，不修改 cron 监控代码。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-cron-exit129-logic.md"
+}

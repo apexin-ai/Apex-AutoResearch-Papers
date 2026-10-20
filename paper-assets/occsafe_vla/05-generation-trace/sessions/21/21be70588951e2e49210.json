@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21be70588951e2e49210",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "monitor training progress check",
+  "task_key": "worker_monitor_training-progress-check_20260528T063420",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_training-progress-check_20260528T063420_result.json",
+    "occurrence": 1,
+    "bytes": 2390,
+    "sha256": "a528d180387ae6c58ed74c8bc222a6cd0f18e42467f6f867f593a70042e4e34f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Current server time: **2026-05-28 14:38 +0800 = 06:38 UTC**. DDL in **5h22m**.\n\n## Training Progress Summary\n\n| # | Experiment | Cell | Server | Step | Speed | Remaining | Train ETA (UTC) | +Eval | DDL? |\n|---|-----------|------|--------|------|-------|-----------|----------------|-------|------|\n| 1 | vanilla_object_s1 | obj | 10894:0 | 47815/50005 | 1.08/s | **34m** | 07:12 | 07:52 | **OK** |\n| 2 | detach_ln_v2_s4 | **Cell4** | 10894:1 | 29183/50005 | 1.08/s | **5h21m** | 11:59 | 12:39 | **TIGHT** |\n| 3 | full_occ_bn_v2_s3 | Cell1 | 10894:2 | 5267/50005 | 1.08/s | 11h30m | 18:08 | 18:48 | MISS |\n| 4 | vanilla_object_s2 | obj | 10894:3 | 5254/50005 | 1.08/s | 11h30m | 18:08 | 18:48 | MISS |\n| 5 | full_occ_bn_v2_s2 | Cell1 | 34685:1 | 6631/50005 | 1.09/s | 11h03m | 17:41 | 18:21 | MISS |\n\n### Resumed experiments (two possible outcomes)\n\nThese three use `--resume True`, and tqdm shows batch_idx from 0. Key question: does training stop when **global_step** (= resume_step + batch_idx) hits 50005, or when **batch_idx** hits 50005?\n\n| Experiment | Cell | Resume | batch_idx | Global Step | If global_step termination | If batch_idx termination |\n|-----------|------|--------|-----------|-------------|---------------------------|--------------------------|\n| **detach_ln_v2_s3** | **Cell4** | 40000 | 9756 | 49756 | **~4min left → 06:42+eval 07:22 OK** | 10h15m → 16:53 MISS |\n| **full_occ_ln_v2_s3** | Cell2 | 40000 | 9742 | 49742 | **~4min left → 06:42+eval 07:22 OK** | 10h15m → 16:53 MISS |\n| **detach_ln_v2_s2** | **Cell4** | 25000 | 16091 | 41091 | **2h16m → 08:54+eval 09:34 OK** | 8h39m → 15:17 MISS |\n\n## Cell 4 ANOVA Verdict (need n>=3; s0, s1 already done)\n\n**Best case** (global_step termination):\n- s3 finishes in ~4min, s2 at ~08:54, s4 at ~11:59 UTC\n- n=3 achievable by ~07:22 (s3 eval done), n=4 by ~09:34 (s2 eval done)\n- s4 training ends at 11:59 + 40min eval = 12:39 → slightly past DDL\n\n**Worst case** (batch_idx termination):\n- Only s4 (from scratch, no resume ambiguity) could finish training at 11:59 UTC\n- But eval takes 40min → 12:39 UTC → MISS\n- n=3 not achievable before DDL\n\n**Recommendation**: Check in ~5-10 minutes whether detach_ln_v2_s3 and full_occ_ln_v2_s3 terminate (they're at 97.5%+ global progress if the code uses global_step). That will resolve the ambiguity immediately."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-training-progress-check-copy-2.md"
+}

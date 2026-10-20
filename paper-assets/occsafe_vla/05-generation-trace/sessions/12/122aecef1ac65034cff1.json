@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "122aecef1ac65034cff1",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code eval pipeline prep",
+  "task_key": "worker_code_eval-pipeline-prep_20260527T071200",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval-pipeline-prep_20260527T071200_result.json",
+    "occurrence": 1,
+    "bytes": 1141,
+    "sha256": "a7bcef459e8296942e914ea1cebe97e35ae44d39183ee43af4b39f695abd2efd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Plan registered as `art_20260527_eb1a25`.\n\n## 关键发现\n\n**⚠️ 2 个实验已崩溃（需立即处理）**：\n- `detach_ln_v2_s0c_r2`（10894 cuda:2）和 `full_occ_ln_v2_s0d`（10894 cuda:3）已停止运行\n- 两台 GPU 当前空闲（0% util），均有 20k checkpoint 可 resume\n- 如果立即重启，~7.7h 后完成，仍在 DDL 内\n\n**6 个实验正常训练中**：\n- 34685: 2 个 57%（~5.5h），2 个 51%（~6.3h）\n- 10894: 2 个 45%（~7h）\n\n**Eval 脚本确认**：\n- 脚本是 `evaluate_safelibero.py`（不是 `eval_libero.py`）\n- 参数用 `--pretrained_checkpoint`（不是 `--checkpoint_path`）\n- 默认 `num_rollouts=20`，需显式指定 `--num_rollouts 50`\n- 需要 `MUJOCO_GL=egl` + `MUJOCO_EGL_DEVICE_ID` 匹配物理 GPU\n\n**梯度分析**：\n- `gradient_analysis_v2.py` 仅在 34685 上存在\n- `run_gradient_analysis_v2.py` 不存在\n- Cell 1/3/5 的已完成 checkpoint 在 34685，Cell 2 在 10894\n- 建议等训练完成后再跑，所有 v2 checkpoint 齐备\n\n**预估时间线**：所有 eval + 梯度分析 ~19:00 UTC May 27 完成，距 DDL 有 ~17h 缓冲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-pipeline-prep.md"
+}

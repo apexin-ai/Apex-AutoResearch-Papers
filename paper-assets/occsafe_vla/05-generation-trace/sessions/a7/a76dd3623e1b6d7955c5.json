@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a76dd3623e1b6d7955c5",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops cleanup intermediate 10894",
+  "task_key": "worker_ops_cleanup_intermediate_10894_20260525T031606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup_intermediate_10894_20260525T031606_result.json",
+    "occurrence": 1,
+    "bytes": 225,
+    "sha256": "912fabea942e6bcdb628a0b7b86e8ebf260edf79fffae0248538fd20ae91864e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n- 释放 ~90G，可用空间从 50G → **140G** (45%)\n- 每个实验目录仅保留 50K checkpoint（各 15G），符合安全规则\n- `vanilla_retrain_s0` 和 `full_occ_retrain_s0` 未动"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-intermediate-10894.md"
+}

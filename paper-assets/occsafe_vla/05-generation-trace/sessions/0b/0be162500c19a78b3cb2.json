@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0be162500c19a78b3cb2",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops eval fix final attempt",
+  "task_key": "worker_ops_eval_fix_final_attempt_20260523T204307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval_fix_final_attempt_20260523T204307_result.json",
+    "occurrence": 1,
+    "bytes": 525,
+    "sha256": "eddd6cf3cd60677fd677289acc38fb940b5a2f786f49466a3aa37cc0c948ab9b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过，两个 eval 正常运行：\n\n| Eval | PID | GPU | 显存占用 | 进度 |\n|------|-----|-----|---------|------|\n| cutoff_25k_s0_eval | 502805 | GPU 3 | 16778 MiB | T0: 42% (21/50) |\n| reverse_cutoff_s0_eval | 503988 | GPU 2 | 16778 MiB | T0: 26% (13/50) |\n\n- 两个进程均在运行，无 error/traceback\n- 日志显示正常 rollout 进度（~4s/it）\n- `--num_rollouts 50` 参数生效，总计 50 个 rollout\n- GPU 0/1 被其他任务占用（99%），GPU 2/3 被 eval 使用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-fix-final-attempt.md"
+}

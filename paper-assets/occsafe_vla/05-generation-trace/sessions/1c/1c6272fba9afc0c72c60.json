@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c6272fba9afc0c72c60",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval depth s1",
+  "task_key": "worker_eval_depth_s1_20260523T002322",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_depth_s1_20260523T002322_result.json",
+    "occurrence": 1,
+    "bytes": 439,
+    "sha256": "2bdb6dbfbcd9d752247df36e6d44abb239e59761cd9343b115e8b376e2c3ee03"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**depth_s1 训练验证**：50005 steps 完成，EXIT_CODE=0，最终 loss: depth=0.0128, action=0.052。Checkpoint 完整（4 safetensors + action_head + depth_head + proprio_projector + lora_adapter）。Registry 已更新为 DONE/success。\n\n**depth_s1_eval 已提交**：PID 189004，cuda:2 westd-34685，50r SafeLIBERO eval，日志 `/root/runs/occsafe_vla/depth_s1_eval.log`。Registry 状态 RUNNING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-depth-s1.md"
+}

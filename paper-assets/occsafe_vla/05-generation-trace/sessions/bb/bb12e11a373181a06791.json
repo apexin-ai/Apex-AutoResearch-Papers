@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb12e11a373181a06791",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops check westd10894 all gpus",
+  "task_key": "worker_ops_check_westd10894_all_gpus_20260523T135815",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_westd10894_all_gpus_20260523T135815_result.json",
+    "occurrence": 1,
+    "bytes": 2288,
+    "sha256": "b8164cff8d3e18ab1038a189bf02da856cebb4eec800d707a8d7d06a19ff76ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n**根因：数据盘 `/root/autodl-tmp` 250G 100% 满。全部 4 个实验在保存 checkpoint 时因 `No space left on device (errno 28)` 崩溃。**\n\n---\n\n```\nexp_id: detach_ln_s0\n状态: 崩溃\n崩溃时间: 2026-05-23 21:54:29\n错误: OSError: [Errno 28] No space left on device (保存 30K checkpoint 时 tokenizer.model 写入失败)\n最终 step: ~30000 (30K checkpoint 损坏，仅有 tokenizer 文件，无 model shards)\n最后完好 checkpoint: 20K (4/4 model shards + action_head + occ_head + proprio_projector)\n50K checkpoint: 无\neval 提交: 否(未完成训练)\n```\n\n```\nexp_id: detach_ln_s1\n状态: 崩溃\n崩溃时间: 2026-05-23 21:55:35\n错误: ChildFailedError (磁盘满，30K checkpoint 目录未创建)\n最终 step: ~30000 (20K 后又跑了 ~2.5h)\n最后完好 checkpoint: 20K (4/4 model shards 完整)\n50K checkpoint: 无\neval 提交: 否(未完成训练)\n```\n\n```\nexp_id: detach_ln_s2\n状态: 崩溃\n崩溃时间: 2026-05-23 19:20:54\n错误: safetensors_rust.SafetensorError: I/O error: No space left on device (保存 20K checkpoint 序列化失败)\n最终 step: ~20000 (20K checkpoint 损坏，仅 2/4 model shards)\n最后完好 checkpoint: 10K (4/4 model shards 完整)\n50K checkpoint: 无\neval 提交: 否(未完成训练)\n```\n\n```\nexp_id: cutoff_s2_v2\n状态: 崩溃\n崩溃时间: 2026-05-23 20:29:15\n错误: Exception: No space left on device (保存 10K checkpoint 失败)\n最终 step: 10000 (10K checkpoint 损坏，仅 532K tokenizer 文件，lora_adapter 目录为空)\n最后完好 checkpoint: 无 (仅有初始权重目录)\n50K checkpoint: 无\neval 提交: 否(未完成训练)\n```\n\n---\n\n### 磁盘占用分析\n\n| 目录 | 大小 | 备注 |\n|------|------|------|\n| cutoff_s2 (旧实验) | 74G | 最大占用 |\n| detach_ln_s0 | 30G | 含损坏 30K |\n| detach_ln_s1 | 30G | |\n| detach_ln_s2 | 21G | 含损坏 20K |\n| ablation_occ_detach_s2 | 15G | 旧实验 |\n| ablation_random_occ_s2 | 15G | 旧实验 |\n| depth_s2 | 15G | 旧实验 |\n| depth_s3 | 15G | 旧实验 |\n| cutoff_s2_v2 | 540K | 损坏 |\n\n**旧实验 (cutoff_s2 + ablation × 2 + depth × 2) 占 134G。** 清理这些 + 损坏 checkpoint 可腾出 ~140G 空间，足够恢复训练。等你指令。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-westd10894-all-gpus.md"
+}

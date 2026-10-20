@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a993fe36b33c92021b94",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ssh 10894 progress check",
+  "task_key": "worker_ssh_10894_progress_check_20260526T054914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_10894_progress_check_20260526T054914_result.json",
+    "occurrence": 1,
+    "bytes": 1053,
+    "sha256": "0a5eee9676fc44bad81fbca269ea6067028eafc0d31075954451209c6d327e28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-10894 训练进度 (2026-05-26)\n\n| exp_id | GPU | step/50K | 进度% | occ_loss | action_loss | 速度 | ETA |\n|--------|-----|----------|-------|----------|-------------|------|-----|\n| cutoff_45k_s2_v2 | cuda:0 | 42934/50005 | **85.9%** | 0.0131 | 0.0569 | 1.07 it/s | ~1h50m |\n| mvp_occ_s3_v2 | cuda:1 | 31800/50005 | **63.6%** | 0.0104 | 0.0688 | 1.07 it/s | ~4h44m |\n| full_occ_ln_s3_v2 | cuda:2 | 31700/50005 | **63.4%** | 0.0092 | 0.0559 | 1.07 it/s | ~4h45m |\n| ablation_occ_detach_s3_v2 | cuda:3 | 31600/50005 | **63.2%** | 0.0125 | 0.0669 | 1.06 it/s | ~4h49m |\n\n**进程状态**: 4 个全部存活。PID 4212 (cutoff) 已运行 12h13m，其余 3 个 ~9h07m。\n\n**GPU 利用率**: 全部 99%，显存 62.2/95.6 GB (~65%)\n\n**磁盘**: `/root/autodl-tmp` 156G/250G (63%)，剩余 95G，充足\n\n**备注**: cutoff_45k_s2_v2 预计最先完成（~1h50m 后）；其余 3 个实验进度接近，预计 ~4h45m 后完成。full_occ_ln_s3_v2 的 occ_loss 最低 (0.0092)，ablation_occ_detach 最高 (0.0125)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-10894-progress-check.md"
+}

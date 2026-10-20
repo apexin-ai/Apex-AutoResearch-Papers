@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5dfbcbb0492ecb51965e",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code v2 gradient v1 aligned",
+  "task_key": "worker_code_v2-gradient-v1-aligned_20260526T203838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_v2-gradient-v1-aligned_20260526T203838_result.json",
+    "occurrence": 1,
+    "bytes": 872,
+    "sha256": "d27025ebe0ab3b4b6187f722b9c1988aa7023eccf0f0268843e3687307dac106"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**修正内容**：\n- `run_gradient_analysis_v2.py`：`--num_samples` 默认值 200 → 800（对齐 v1 的 200 batches × bs=4 = 800 samples）\n- `compare_gradient_conditions.py`：`--num-samples` 默认值 200 → 800\n\n**方法论对照结论**：除样本数外，v2 与 v1 在所有核心维度完全一致——数据源（真实 RLDS DataLoader）、梯度获取（`torch.autograd.grad` on `vision_backbone.named_parameters()`）、层分组（DINOv2 40 blocks + SigLIP 27 blocks）、L2 norm 计算、cosine similarity。两个不影响结论的差异：Vanilla 条件 OCC head 处理方式不同（功能等价）、v2 缺少 BN drift 记录（不影响梯度数据）。\n\n报告已写入 `artifacts/gradient_v1_v2_methodology_comparison.md`，含完整运行命令（3 个条件的 checkpoint 路径用变量占位）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-v2-gradient-v1-aligned.md"
+}

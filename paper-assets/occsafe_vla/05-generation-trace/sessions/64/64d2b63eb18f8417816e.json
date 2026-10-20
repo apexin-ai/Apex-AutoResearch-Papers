@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "64d2b63eb18f8417816e",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code fig1 redesign v3",
+  "task_key": "worker_code_fig1-redesign-v3_20260529T025404",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fig1-redesign-v3_20260529T025404_result.json",
+    "occurrence": 1,
+    "bytes": 2111588,
+    "sha256": "91130e259fe9a4ab4043bc0cf2ec8dfc48b02d354cc36c0f6497687cf53de964"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2111608,
+                "serialized_sha256": "7a26359d5fcd7d18d52154cbaf3c1adf414f1029cafba6898bca976a3fb4c0e0",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fig1-redesign-v3.md"
+}

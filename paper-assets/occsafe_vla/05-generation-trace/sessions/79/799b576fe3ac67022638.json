@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "799b576fe3ac67022638",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose ablation occ detach s3",
+  "task_key": "worker_diagnose_ablation_occ_detach_s3_20260525T171942",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_ablation_occ_detach_s3_20260525T171942_result.json",
+    "occurrence": 1,
+    "bytes": 566,
+    "sha256": "97edfbf0008e3f6aff18eded4a4afac8321e26b801809ffdae37e0c0a6f29362"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练**仍在运行中**，尚未完成。\n\n当前状态：\n- **进度**: step 20376/50005 (41%)，已运行 ~5h52m\n- **速度**: ~1.08 it/s\n- **预计剩余**: ~7h38m\n- **Checkpoints**: 10K 和 20K checkpoint 已保存，50K 尚未生成\n- **v2 代码确认**: [AUX] 标志出现 204 次，确认使用的是 Detach BN v2 代码\n- **无异常**: 日志正常推进，无 error/OOM\n\n**结论**: 不满足判断条件，训练预计还需约 7.5 小时完成（约今天下午1:30左右）。不执行 registry 更新和 cron 删除操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-ablation-occ-detach-s3.md"
+}

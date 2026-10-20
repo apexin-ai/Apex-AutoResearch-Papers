@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57f30501d96cefe661c6",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops verify and eval cutoff25k reverse s1",
+  "task_key": "worker_ops_verify_and_eval_cutoff25k_reverse_s1_20260524T145043",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_and_eval_cutoff25k_reverse_s1_20260524T145043_result.json",
+    "occurrence": 1,
+    "bytes": 388,
+    "sha256": "b0bc547cb8f8b9cb7c7d4886f392371aa241611364f101eb4390ce91a9ad8e56"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**训练验证：**\n- `cutoff_25k_s1`: step 50005 完成，EXIT_CODE=0，50000_chkpt ✓\n- `reverse_cutoff_s1`: step 50005 完成，EXIT_CODE=0，50000_chkpt ✓\n\n**Registry 更新：** 两个训练实验 conclusion=success ✓\n\n**Eval 已提交：**\n- `cutoff_25k_s1_eval` → cuda:2, PID 892641\n- `reverse_cutoff_s1_eval` → cuda:3, PID 892913"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-and-eval-cutoff25k-reverse-s1.md"
+}

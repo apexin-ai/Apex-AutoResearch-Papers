@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c6b550720d6deb7c646f",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis run statistical tests",
+  "task_key": "worker_analysis_run_statistical_tests_20260527T194600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_run_statistical_tests_20260527T194600_result.json",
+    "occurrence": 1,
+    "bytes": 1224,
+    "sha256": "6382e986dd43fca5aa1df8b012cfc0fd54b636928446a644f875bdadad0b4b42"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本仅输出到 stdout，未生成新文件。`factorial_data.json` 是之前已存在的（May 27 20:20）。\n\n数值验证结果：\n\n```\n脚本执行: 成功（return_code=0）\n输出文件: 无新文件生成（仅 stdout 输出）\n数值验证: 全部一致\n```\n\n逐项对比：\n\n| 指标 | 预期值 | 脚本输出 | 匹配 |\n|------|--------|----------|------|\n| Cell 1 Full OCC BN mean | ~0.725 | 0.7253 | ✓ |\n| Cell 1 数据 | [0.746, 0.654, 0.776] n=3 | 同上 | ✓ |\n| Cell 2 Full OCC LN mean | ~0.777 | 0.7767 | ✓ |\n| Cell 2 数据 | [0.740, 0.792, 0.798] n=3 | 同上 | ✓ |\n| Cell 3 Detach BN mean | ~0.767 | 0.7665 | ✓ |\n| Cell 3 数据 | [0.774, 0.736, 0.762, 0.794] n=4 | 同上 | ✓ |\n| Cell 4 Detach LN mean | 0.826 | 0.8260 | ✓ |\n| Cell 4 数据 | [0.826] n=1 | 同上 | ✓ |\n| Vanilla mean | ~0.745 | 0.7453 | ✓ |\n| Vanilla 数据 | [0.768, 0.748, 0.720] n=3 | 同上 | ✓ |\n| Gradient flow main effect Δ | ≈-0.027 | -0.0274 | ✓ |\n| Gradient flow p | ≈0.396 | 0.3961 | ✓ |\n| Gradient flow Cohen's d | ≈-0.60 | -0.602 | ✓ |\n| Cell 1 vs Cell 3 Cohen's d | ≈-0.93 | -0.928 | ✓ |\n\n所有数值与预期完全一致，无差异。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-run-statistical-tests.md"
+}

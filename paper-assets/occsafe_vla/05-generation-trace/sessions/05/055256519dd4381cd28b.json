@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "055256519dd4381cd28b",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra confirm eval triggered and progress",
+  "task_key": "worker_infra_confirm_eval_triggered_and_progress_20260520T224900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_confirm_eval_triggered_and_progress_20260520T224900_result.json",
+    "occurrence": 1,
+    "bytes": 1211,
+    "sha256": "fb3512bd09879e7e8c5cb9f1f05af96368331e9e3566d6cc2eb7e97083f472aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. Eval 触发状态：已自动触发，无需手动启动\n\n| seed | .launched 时间 | 进度（截至 06:50） |\n|------|---------------|-------------------|\n| s0 | 06:43 | Task 3 完成，继续中 |\n| s1 | 06:48 | Task 0 完成，继续中 |\n\n两个 eval 都在运行，无 `.done_*` 文件。每 task ~80-90s，10 tasks × 20 rollouts，预计 s0 约 06:55 完成，s1 约 07:02 完成。\n\n### 2. 使用的 checkpoint\n\n- s0: `vanilla_s0/...--50000_chkpt` ✓\n- s1: `vanilla_s1/...--50000_chkpt` ✓\n\n### 3. s2 训练进度\n\n- 从 `35000_chkpt` 恢复（04:40:46 启动）\n- tqdm: **8269/50005**，elapsed 2h08m，速度 **~1.08 it/s**\n- 实际 step: 35000 + 8269 = **43269**\n- tqdm total=50005 但训练在 actual step 50005 停止 → 即 tqdm 到 **15005** 时结束\n- 剩余: 15005 - 8269 = **6736 步 ≈ 1h 44min**\n- 最新 checkpoint: **40000_chkpt**，下个 checkpoint 在 45000（tqdm ~10000）\n- **ETA ≈ ~08:33 UTC**\n\n### 4. s0/s1 训练完成确认\n\n- s0: 最终 checkpoint **50000_chkpt** ✓（checkpoints: 35000→40000→45000→50000）\n- s1: 最终 checkpoint **50000_chkpt** ✓（checkpoints: 35000→40000→45000→50000）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-confirm-eval-triggered-and-progress.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b056c5ea49cc3eb3ad0",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose 10894 triple failure",
+  "task_key": "worker_diagnose_10894_triple_failure_20260526T180601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_10894_triple_failure_20260526T180601_result.json",
+    "occurrence": 1,
+    "bytes": 799,
+    "sha256": "460ed99091fbe51c6142ae38a9d8e8fa2f2b2c862eb467374ccbe4006ee7e92f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断报告已写入 `artifacts/diag_10894_triple_failure.md`。\n\n**根因：磁盘满 (ENOSPC)**。三个实验几乎同时到达 step 20000 触发 checkpoint 保存（每个 ~15GB），数据盘 250GB 已有 154GB 旧 checkpoints，并发写入 ~45GB 导致磁盘满。三个实验各自在 `save_training_checkpoint()` 的不同子步骤崩溃。reverse_cutoff_s2_v2 因 checkpoint 保存时间错开而未受影响。\n\n**不能直接重试**。当前剩余 75GB 仍不够三个实验后续所有 checkpoint。需要先：\n1. 删除三个残缺的 20000_chkpt（~5-10GB）\n2. 清理不再需要的旧 checkpoints（目标释放 ≥60GB）——需要你确认 `full_occ_ln_s0`、`cutoff_15k_s1` 等旧实验的 checkpoint 是否可删\n3. 然后从 10000_chkpt resume 重启"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-10894-triple-failure.md"
+}

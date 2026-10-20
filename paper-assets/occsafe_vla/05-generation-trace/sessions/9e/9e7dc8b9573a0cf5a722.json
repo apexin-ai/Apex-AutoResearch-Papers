@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e7dc8b9573a0cf5a722",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code find ln flag",
+  "task_key": "worker_code_find_ln_flag_20260525T112403",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_find_ln_flag_20260525T112403_result.json",
+    "occurrence": 1,
+    "bytes": 1411,
+    "sha256": "c214f71316e176b574f52de463a5379f04ccb0684f5166fc10eea7c1523c6b5b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "信息已全部收集完毕。\n\n## 结果\n\n**参数名**: `--occ_norm_type`  \n**值**: `\"ln\"` (LayerNorm) 或 `\"bn\"` (BatchNorm, 默认)\n\n定义位置: `finetune.py:98`\n```python\nocc_norm_type: str = \"bn\"  # Norm type for occ head: \"bn\" (BatchNorm) or \"ln\" (GroupNorm-1 = LayerNorm)\n```\n\n实现位置: `prismatic/models/occ_head.py:23` — 当 `norm_type == \"ln\"` 时使用 `nn.GroupNorm(1, channels)` (等价于 LayerNorm)。\n\n---\n\n**完整训练命令模板** (`full_occ_ln` 系列):\n\n```bash\ntorchrun --standalone --nnodes 1 --nproc-per-node 4 \\\n  vla-scripts/finetune.py \\\n  --vla_path /root/autodl-tmp/models/openvla-7b \\\n  --dataset_name libero_spatial_no_noops \\\n  --data_root_dir /root/autodl-tmp/data/modified_libero_rlds \\\n  --run_root_dir /root/autodl-tmp/checkpoints/full_occ_ln_s{SEED} \\\n  --use_l1_regression true \\\n  --use_proprio true \\\n  --use_occ_head true \\\n  --occ_data_dir /root/occsafe_vla/occ_data \\\n  --occ_loss_weight 0.01 \\\n  --occ_norm_type ln \\\n  --occ_resolution 64 \\\n  --batch_size 8 \\\n  --learning_rate 5e-4 \\\n  --max_steps 50000 \\\n  --save_freq 10000 \\\n  --seed {SEED} \\\n  --image_aug true \\\n  --wandb_project occsafe_vla \\\n  --wandb_entity {YOUR_ENTITY}\n```\n\n关键差异：`full_occ_bn` 用 `--occ_norm_type bn`（或省略，默认就是 bn），`full_occ_ln` 用 `--occ_norm_type ln`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-find-ln-flag.md"
+}

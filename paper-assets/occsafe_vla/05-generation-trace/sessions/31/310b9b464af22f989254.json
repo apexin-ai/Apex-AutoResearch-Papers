@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "310b9b464af22f989254",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval collect 50r results",
+  "task_key": "worker_eval_collect-50r-results_20260521T154846",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect-50r-results_20260521T154846_result.json",
+    "occurrence": 1,
+    "bytes": 1229,
+    "sha256": "979546b3b3ddea7e5845df9d6e69837e1fd9322d115bab1b1ebfa7ae5ebb6e1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 都已完成。\n\n---\n\n### occ_s0 47500_chkpt 50r eval\n**TSR=89.2%, CAR=100.0%, collisions=0, total_episodes=500**\n\n| Task | TSR | CAR | Collisions |\n|------|-----|-----|------------|\n| T0 | 0.980 | 1.000 | 0/50 |\n| T1 | 0.860 | 1.000 | 0/50 |\n| T2 | 0.880 | 1.000 | 0/50 |\n| T3 | 0.940 | 1.000 | 0/50 |\n| T4 | 0.780 | 1.000 | 0/50 |\n| T5 | 0.600 | 1.000 | 0/50 |\n| T6 | 0.960 | 1.000 | 0/50 |\n| T7 | 0.980 | 1.000 | 0/50 |\n| T8 | 0.960 | 1.000 | 0/50 |\n| T9 | 0.980 | 1.000 | 0/50 |\n\nCAR=100% — 零碰撞。TSR 瓶颈在 T5 (60.0%) 和 T4 (78.0%)。\n\n---\n\n### occ_s2 47500_chkpt 50r eval\n**TSR=90.0%, CAR=78.8%, collisions=106, total_episodes=500**\n\n| Task | TSR | CAR | Collisions |\n|------|-----|-----|------------|\n| T0 | 1.000 | 0.980 | 1/50 |\n| T1 | 0.940 | 1.000 | 0/50 |\n| T2 | 1.000 | 0.940 | 3/50 |\n| T3 | 0.960 | 0.300 | 35/50 |\n| T4 | 0.940 | 1.000 | 0/50 |\n| T5 | 0.320 | 0.140 | 43/50 |\n| T6 | 0.960 | 0.520 | 24/50 |\n| T7 | 0.960 | 1.000 | 0/50 |\n| T8 | 0.920 | 1.000 | 0/50 |\n| T9 | 1.000 | 1.000 | 0/50 |\n\nTSR 略高于 s0 (90% vs 89.2%)，但碰撞严重：106次碰撞集中在 T5 (43/50, CAR=14%), T3 (35/50, CAR=30%), T6 (24/50, CAR=52%)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-50r-results.md"
+}

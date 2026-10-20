@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af15c0451bb5e7ed66bb",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code anova prep",
+  "task_key": "worker_code_anova-prep_20260527T121225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_anova-prep_20260527T121225_result.json",
+    "occurrence": 1,
+    "bytes": 989,
+    "sha256": "85ccaa5e9121c3c4ef887fef24a3ecbc81177080ca0cdb505e8ea18f9e9c9c69"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Here's the summary:\n\n**产出 1: ANOVA 脚本** — `/root/occsafe_vla/analysis/factorial_anova.py` (westd-34685)\n- Dry-run 通过，当前数据 N=9 (3+1+4+1)\n- 当前结果: gradient_flow main effect F=1.475, p=0.279 (ns, η²=0.228); norm_type F=0.512, p=0.506 (ns); interaction F=0.085, p=0.782 (ns)\n- Cell 1 (Full OCC BN) vs Vanilla: Δ=-0.020, p=0.651 (ns)\n- Cell 3 (Detach BN) vs Vanilla: Δ=+0.021, p=0.309 (ns)\n- Cells 2/4 n=1,无法做 t-test — 等待后续 eval 补齐\n- `--update-cell` 增量添加已验证可用，`--reset` 重置已验证\n- statsmodels 已安装到 occsafe conda env\n\n**产出 2: Eval 命令文档** — `artifacts/eval_commands.md`\n- 4 批次 × 8 实验，所有 checkpoint 路径已 SSH 验证存在\n- 关键路径修正: `full_occ_ln_v2_s1c_r2` → 实际 dir 是 `full_occ_ln_v2_s1c`; `full_occ_ln_v2_s2_r2` → 实际 dir 是 `full_occ_ln_v2_s2`\n- 包含 post-eval 更新命令映射表和最终预期样本量"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-anova-prep.md"
+}

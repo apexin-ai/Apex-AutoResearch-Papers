@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "43c9feb42a641ea20d18",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "paper writing related work",
+  "task_key": "worker_paper_writing_related_work_20260526T125941",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_related_work_20260526T125941_result.json",
+    "occurrence": 1,
+    "bytes": 775,
+    "sha256": "ad910f9fac70ed000c8e9e006e096046a20380f2101d3f2e54a2ec4d7aa91f1b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入。内容确认：\n\n- **§2.1** (~500w): VLA safety 线 (AEGIS, SafeVLA, CoFreeVLA, OGM-CBF, survey) + Spatial-VLA 线 (15+ methods across depth/alignment/point-cloud/driving categories) + gap sentence\n- **§2.2** (~400w): MTL foundations → implicit regularization → gradient conflict methods → intermediate supervision → gradient starvation → BN sensitivity → LoRA+auxiliary gap → our contribution (ordinal interaction)\n- 所有 `\\cite{}` keys 均来自 `references.bib`，无 MISSING 占位\n- 无违禁词（no \"crossover interaction\", \"BN-mediated gradient calibration\", \"existence regularization\", \"gradient collapse\"）\n- 使用了允许术语 \"ordinal interaction\" 和 \"gradient orthogonality\" 相关描述"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-related-work-copy-2.md"
+}

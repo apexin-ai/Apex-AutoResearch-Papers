@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70361091c8c254bfbc62",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "paper fix uncited bib",
+  "task_key": "worker_paper_fix_uncited_bib_20260523T152021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix_uncited_bib_20260523T152021_result.json",
+    "occurrence": 1,
+    "bytes": 1112,
+    "sha256": "59954c7d1e4f3ff76a4cfda10c137db5cbd90b76596079225d9724ddc2b3ec47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Confirmed deleted. Summary:\n\n**16 entries cited** (in existing survey sentences / citation lists, no fabricated descriptions):\n\n| Section | Entries cited | Placement |\n|---|---|---|\n| §2.1 opening VLA cite | `ma2026vlanext`, `shukor2025smolvla` | Appended to `\\cite{kim2024openvla, brohan2023rt2, ...}` |\n| §2.1 \"Two strategies\" | `li2026vlasafety` | VLA safety survey reference |\n| §2.1 first strategy | `yu2026safenightvla` | Another runtime safety approach |\n| §2.1 CBF sentence | `kwon2026learningnudge`, `long2025neuralcsbf` | Additional CBF methods |\n| §2.2 intro | `sun2025geovla`, `tu2026sgvla`, `li2026corridorvla`, `pan2026savla` | \"Recent work brings 3D structure...\" |\n| §2.2 depth-based | `chen2026gstvla`, `li2025qdepthvla`, `bhat20253dcavla` | Category-level cite |\n| §2.2 alignment-based | `abouzeid2025geoaware`, `lin2025evo0` | Category-level cite |\n| §2.2 point cloud | `xiao2026stemvla` | Category-level cite |\n\n**1 entry deleted** from `.bib`:\n- `choi2026vlaeval` — evaluation harness, no thematic connection to safety or spatial representations"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-uncited-bib.md"
+}

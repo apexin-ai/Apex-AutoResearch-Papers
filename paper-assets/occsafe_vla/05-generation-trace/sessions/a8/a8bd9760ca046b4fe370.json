@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8bd9760ca046b4fe370",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops check 10894 full occ ln",
+  "task_key": "worker_ops_check_10894_full_occ_ln_20260524T143430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_10894_full_occ_ln_20260524T143430_result.json",
+    "occurrence": 1,
+    "bytes": 955,
+    "sha256": "48ae94248f692190d6636e0a2d6112ec7c11de5650f1576d5d3db04ca3790362"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个训练全部正常运行。\n\n| GPU | exp_id | PID | Step/Total | Speed | Remaining |\n|-----|--------|-----|------------|-------|-----------|\n| 0 | ablation_occ_detach_s0_retrain | 746696 | 19161/50005 (38%) | ~1.08 it/s | ~7h 56m |\n| 1 | full_occ_ln_s0 | 742821 | 19579/50005 (39%) | ~1.08 it/s | ~7h 49m |\n| 2 | full_occ_ln_s1 | 743031 | 19549/50005 (39%) | ~1.08 it/s | ~7h 49m |\n| 3 | full_occ_ln_s2 | 743375 | 19513/50005 (39%) | ~1.07 it/s | ~7h 53m |\n\nGPU 显存使用：4 卡均 ~62GB/98GB，利用率 44-99%。\n\n最新 loss（每 500 步打印）：\n\n| exp_id | step | occ_loss | action_loss |\n|--------|------|----------|-------------|\n| full_occ_ln_s1 | 19500 | 0.0122 | 0.0864 |\n| full_occ_ln_s2 | 19500 | 0.0079 | 0.0942 |\n| ablation_occ_detach_s0_retrain | 19100 | 0.0118 | 0.1133 |\n\n全部约 8 小时后完成（预计 UTC 5/24 ~21:30 左右）。ablation 比 ln 组慢约 400 步，因其晚启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-10894-full-occ-ln.md"
+}

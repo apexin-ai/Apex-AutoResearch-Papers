@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c607257d32ad8d018ba8",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval depth s2 50r",
+  "task_key": "worker_eval_depth_s2_50r_20260522T215450",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_depth_s2_50r_20260522T215450_result.json",
+    "occurrence": 1,
+    "bytes": 385,
+    "sha256": "1653e497b653a61d2e505f0af484be914ee3a57c0e2edaee58618354ac822722"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估已成功启动：\n\n- **PID**: 147956，GPU 0（bus 16:00.0），占用 16202 MiB 显存\n- **模型加载完成**，正在运行 Task 0 的 rollouts（已完成 3/50）\n- **日志**: `/tmp/eval_depth_s2.log`\n- **experiment_id**: `depth_s2`\n\nGPU 1 上的另一个进程（PID 60481）不受影响。预计 ~50 分钟完成全部 10 个 task × 50 rollouts。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-depth-s2-50r.md"
+}

@@ -1,0 +1,1051 @@
+{
+  "schema_version": "1.0",
+  "id": "f9dddeb4314bedd291ad",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "paper fix appendix v1 claim and collapse",
+  "task_key": "worker_paper_fix_appendix-v1-claim-and-collapse_20260526T151143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix_appendix-v1-claim-and-collapse_20260526T151143.log",
+    "occurrence": 1,
+    "bytes": 102117,
+    "sha256": "65b1be0cc77e265242fa662e10c75098a0127550aee1fafb84648c6784266de1"
+  },
+  "statistics": {
+    "messages": 22,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 7,
+      "tool_result": 7,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla",
+                "session_id": "1bea17aa-9397-4e45-8f33-a2c3c974b602",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "e79fb3fa-4e20-4087-811c-fa40803638ca",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-6/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-occsafe-vla/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779809400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "cb58fe23-1a61-4b7d-a270-6b0ec2fc5869",
+                "session_id": "1bea17aa-9397-4e45-8f33-a2c3c974b602"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read the appendix.tex file first to understand its contents and find the specific locations that need to be modified.",
+              "signature": "EsICCmMIDhgCKkA/vYOZvXuBIA7I+wyJ5kIjTKI8ZStPYi6zzNi+xxleWhuYvvZKvx433P68l3pzNhOsfjFUOtRGGzED/DEhR8CJMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDFIGSvHNlX97Pze8/xoMVr+YZqpJbaKhKMuHIjA9Pe1pu6KIy2vagf5Tj2HWAuUN7aqSoSe5GuwhC56VjN6bnqteqAGxOZA7CUValqMqjAGk1zP3YgDNC9PGOFgnAAJLKPtEhZRoFfnePu+vpbiOAQVJWxv/enyROkJlGfjLztLB7yI5RYVk+zqWfECdl8Hsbd6EIfUghpdQfK8rxj3XW4LxVudE2y+lY3Ya8m6IFwrP9hRBjnt28rHKpYmVmBKyx69mtnjsNUXPXlw2n3F7NuNlOycQuZJrEBKy/RgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1bea17aa-9397-4e45-8f33-a2c3c974b602",
+            "uuid": "2131b7b8-773e-43e1-ab41-3ccea81e49f6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ByJ5s3XmiU3VuzEM3i84wq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11530,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11530
+                },
+                "output_tokens": 23,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KqNrDA6frLAK86XvB4ZbLZ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/appendix.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1bea17aa-9397-4e45-8f33-a2c3c974b602",
+            "uuid": "0c612290-7c1f-44e5-b4f0-582b6104db83",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ByJ5s3XmiU3VuzEM3i84wq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11530,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11530
+                },
+                "output_tokens": 23,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-26T15:11:56.974Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KqNrDA6frLAK86XvB4ZbLZ",
+              "type": "tool_result",
+              "content": "1\t\n2\t\\section{Extended Per-Task Results}\n3\t\\label{app:per_task}\n4\t\n5\tTable~\\ref{tab:per_task} reports per-task mean CAR across seeds for each condition. Seven tasks achieve CAR $\\geq$ 0.92 under Vanilla, while three physically constrained tasks (T3, T5, T6) fall below 0.58. The overall CAR differences reported in the main text are dominated by these three hard tasks, which average 0.342 compared to 0.968 for the seven easy tasks.\n6\t\n7\t\\begin{table}[h]\n8\t\\centering\n9\t\\caption{Per-task mean CAR across seeds (50 rollouts per seed, v1 code). All conditions use 3 seeds except Depth (4). Detach+LN per-task uses 2 seeds (s1, s2; s0 lacks per-task breakdown). Main-text Table~\\ref{tab:main_results} uses v2 code for factorial cell CAR.}\n10\t\\label{tab:per_task}\n11\t\\begin{tabular}{clccccccc}\n12\t\\toprule\n13\t & & \\multicolumn{7}{c}{Mean CAR by Condition} \\\\\n14\t\\cmidrule(lr){3-9}\n15\tTask & Diff. & Vanilla & Full OCC & Random & Detach & Det+LN & Depth & Cut@35K \\\\\n16\t\\midrule\n17\tT0 & Easy  & 0.98 & 0.98 & 0.99 & 0.97 & 0.97 & 0.99 & 0.98 \\\\\n18\tT1 & Easy  & 0.92 & 0.93 & 0.99 & 0.89 & 0.78 & 0.93 & 0.95 \\\\\n19\tT2 & Easy  & 0.92 & 0.93 & 0.94 & 0.93 & 0.90 & 0.90 & 0.94 \\\\\n20\tT3 & Hard  & 0.38 & 0.37 & 0.31 & \\textbf{0.11} & 0.44 & 0.50 & 0.55 \\\\\n21\tT4 & Easy  & 0.98 & 0.99 & 0.95 & 0.98 & 0.96 & 0.92 & 0.97 \\\\\n22\tT5 & Hard  & 0.07 & 0.17 & 0.23 & \\textbf{0.05} & 0.12 & 0.08 & 0.04 \\\\\n23\tT6 & Hard  & 0.57 & 0.61 & 0.55 & 0.56 & 0.36 & 0.54 & 0.38 \\\\\n24\tT7 & Easy  & 0.97 & 0.99 & 0.95 & 0.98 & 1.00 & 0.96 & 0.98 \\\\\n25\tT8 & Easy  & 1.00 & 1.00 & 1.00 & 0.99 & 0.99 & 0.99 & 0.99 \\\\\n26\tT9 & Easy  & 1.00 & 0.99 & 0.99 & 1.00 & 1.00 & 1.00 & 1.00 \\\\\n27\t\\midrule\n28\t\\multicolumn{2}{l}{Overall} & 0.780 & 0.797 & 0.789 & 0.746 & 0.765 & 0.780 & 0.779 \\\\\n29\t\\bottomrule\n30\t\\end{tabular}\n31\t\\end{table}\n32\t\n33\t\\textbf{Ceiling effects.} On the seven easy tasks (T0--T2, T4, T7--T9), all conditions achieve CAR $\\geq$ 0.89, leaving minimal room for auxiliary training to improve performance. The obstacle is spatially separated from the manipulation path in these tasks.\n34\t\n35\t\\textbf{Hard task patterns.} On Task~5 (Vanilla CAR 0.07), gradient-flow conditions (Random OCC 0.23, Full OCC 0.17) exceed Vanilla and Detach (0.05), but all values remain below 0.23. Cutoff@35K achieves the highest T3 CAR (0.55) but the lowest T5 CAR (0.04), which illustrates task-specific temporal sensitivity. Depth exhibits high cross-seed variance on hard tasks (T3 range: 0.20--0.78; T6 range: 0.16--0.84), consistent with auxiliary supervision increasing seed sensitivity.\n36\t\n37\t\\section{Training Details}\n38\t\\label{app:training}\n39\t\n40\t\\begin{table}[h]\n41\t\\centering\n42\t\\caption{Training hyperparameters.}\n43\t\\label{tab:hyperparams}\n44\t\\begin{tabular}{ll}\n45\t\\toprule\n46\tParameter & Value \\\\\n47\t\\midrule\n48\tBase model & OpenVLA-7B~\\cite{kim2024openvla} \\\\\n49\tFine-tuning recipe & OFT~\\cite{kim2025oft} \\\\\n50\tVision encoders & DINOv2 (1024-d) + SigLIP (1152-d) \\\\\n51\tPatch token dim. & 2176 (concatenated) \\\\\n52\tLoRA rank / $\\alpha$ & 32 / 16 \\\\\n53\tBatch size & 8 \\\\\n54\tLearning rate & $5 \\times 10^{-4}$ (constant) \\\\\n55\tTraining steps & 50{,}000 \\\\\n56\tAux.\\ loss weight $\\lambda_0$ & 0.01 \\\\\n57\tAux.\\ loss decay & $\\exp(-t / 50{,}000)$ \\\\\n58\tBEV grid resolution & $64 \\times 64$ \\\\\n59\tFocal loss $\\alpha$ / $\\gamma$ & 0.25 / 2.0 \\\\\n60\tDepth loss & Smooth-L1 \\\\\n61\tAux.\\ head parameters & 1.2M \\\\\n62\tHardware & NVIDIA RTX PRO 6000 (98\\,GB) \\\\\n63\tWall time per run & $\\sim$12.9 hours \\\\\n64\t\\bottomrule\n65\t\\end{tabular}\n66\t\\end{table}\n67\t\n68\t\\textbf{Evaluation protocol.} Each condition uses 3+ seeds (Depth uses 4; Cutoff@15K, Cutoff@25K, and Reverse Cutoff use 2; Cutoff@45K uses 1) with 50 rollouts per task per seed (500 episodes per seed). A collision is registered when the L1 displacement of the obstacle's \\texttt{body\\_xpos} exceeds $10^{-3}$. Bootstrap 95\\% CIs are computed via 10{,}000 resamples (percentile method).\n69\t\n70\t\\textbf{Statistical tests.} Pairwise comparisons against Vanilla use two-tailed paired $t$-tests on per-seed mean CARs with Cohen's $d$ for effect size. With $n{=}3$ seeds, statistical power is limited; we report $p$-values and effect sizes for transparency. Only Detach OCC reaches significance ($p{=}0.031$, $d{=}-3.90$); all gradient-flow conditions show $p > 0.35$.\n71\t\n72\t\\textbf{CKA analysis.} Centered Kernel Alignment~\\cite{kornblith2019similarity} measures representational similarity between fine-tuned and pretrained encoder features. We extract patch token activations from the final layer of DINOv2 and SigLIP for 1{,}000 validation images, compute linear CKA per layer, and report the mean across layers. Higher CKA indicates better preservation of pretrained representations.\n73\t\n74\t\\textbf{Cutoff implementation.} Setting the auxiliary loss weight to zero at step $N$ does \\emph{not} disable the auxiliary head's forward pass. The head's BatchNorm2d layers continue computing batch statistics, which shift the encoder's internal activations without compensating gradient flow. The post-cutoff phase thus operates in Detach mode, not Vanilla mode. This is a property of the implementation (the head remains in the forward graph), not a deliberate design choice.\n75\t\n76\t\\section{Extended Analysis}\n77\t\\label{app:extended}\n78\t\n79\tThe Detach+LN ablation replaces BatchNorm2d with LayerNorm in the auxiliary head while retaining \\texttt{stop\\_gradient}. Results (3 seeds) are reported in Table~\\ref{tab:main_results} and analyzed in Section~\\ref{sec:why_gradient}. Detach+LN (CAR 0.765) approaches the Vanilla baseline, consistent with the ordinal interaction pattern: removing gradient flow mitigates safety degradation regardless of normalization choice. The ordinal interaction (Section~\\ref{sec:mechanism}) shows that gradient flow is detrimental under both BN and LN, with BN amplifying the damage.\n80\t\n81\t\\textbf{Per-layer gradient analysis.} Figure~\\ref{fig:per_layer_combined} decomposes auxiliary gradient flow into two dimensions: amplitude (top row) and direction (bottom row). The amplitude heatmap (panels a--b) shows that Vanilla, Full OCC, and Random OCC maintain comparable action gradient norms across all layers (warm colors), while Detach collapses to 1--13\\% of Vanilla uniformly across both encoders (dark), consistent with a global gradient flow disruption rather than layer-specific interference. The directional analysis (panels c--d) reveals encoder-specific alignment: DINOv2 conflict rates hover near 50\\% across all layers while SigLIP late layers (blocks 21--24) drop to 19--25\\%, which indicates cooperative gradient alignment in semantically rich layers. Both patterns are identical for Full OCC and Random OCC, which confirms they arise from architectural structure rather than label content. The aggregate conflict rates (Full OCC 44.1\\%, Random OCC 43.9\\%) fall below the 50\\% expected for random vectors because they reflect this mixture of two encoder-specific patterns.\n82\t\n83\t\\begin{figure}[h]\n84\t\\centering\n85\t\\includegraphics[width=\\textwidth]{figures/per_layer_combined.pdf}\n86\t\\caption{Per-layer gradient analysis decomposed into amplitude and direction. \\textbf{Top (a--b):} Action gradient norm heatmap (log scale). Gradient-flow conditions (Vanilla, Full OCC, Random OCC) maintain comparable norms; Detach collapses to 1--13\\% of Vanilla across all layers. \\textbf{Bottom (c--d):} Gradient conflict rate between action and auxiliary losses. DINOv2 maintains $\\sim$50\\% conflict (near-orthogonal), while SigLIP late layers drop to 19--25\\% (cooperative alignment). Both amplitude and directional patterns are identical for Full OCC and Random OCC, which confirms architectural rather than label-dependent structure.}\n87\t\\label{fig:per_layer_combined}\n88\t\\label{fig:conflict_rate}\n89\t\\label{fig:grad_norm_heatmap}\n90\t\\end{figure}\n91\t\n92\t\\label{app:temporal}\n93\t\\textbf{Dose-response: gradient flow duration vs.\\ CAR.} Figure~\\ref{fig:dose_response} plots CAR against the number of OCC gradient flow steps for the cutoff series (15K--45K, plus Detach at 0K and Full OCC at 50K). Cutoff@15K (2 seeds, CAR 0.782) clusters near Vanilla (0.780), while Cutoff@25K (2 seeds, 0.724) falls substantially below. Multi-seed conditions (Cutoff@35K and Full OCC) also cluster near the Vanilla baseline. Reverse Cutoff (late 15K) falls below the early-cutoff counterpart at the same gradient flow duration, consistent with the continuity hypothesis. The pattern suggests intermediate cutoff $\\approx$ Vanilla rather than a non-monotonic dose-response; the earlier single-seed Cutoff@15K result (0.804) was seed noise.\n94\t\n95\t\\begin{figure}[h]\n96\t\\centering\n97\t\\includegraphics[width=0.75\\textwidth]{figures/dose_response.pdf}\n98\t\\caption{Dose-response: CAR vs.\\ OCC gradient flow duration. Filled circles: early-cutoff conditions with all 3 seeds completed; open circles: conditions with $\\leq$2 seeds (counts annotated as $n$). Diamond ($\\diamond$): Reverse Cutoff (gradient flow restricted to the last 15K steps). Dashed line: Vanilla 3-seed mean; shaded band: $\\pm\\,$1\\,SE. The ``+0.2\\%'' annotation marks the Cutoff@15K--Vanilla gap. Intermediate cutoff conditions cluster near Vanilla, while Cutoff@25K and Reverse Cutoff fall substantially below.}\n99\t\\label{fig:dose_response}\n100\t\\end{figure}\n101\t\n102\t\\section{Additional Observations}\n103\t\\label{app:additional}\n104\t\n105\t\\textbf{Per-task concentration.} Seven of ten tasks achieve CAR $\\geq$ 0.92 under Vanilla; overall CAR is dominated by three physically constrained tasks (T3, T5, T6; Section~\\ref{app:per_task}). Detach is systematically worst on these hard tasks (T3: 0.11, T5: 0.05), consistent with gradient collapse exacerbating degradation where obstacle proximity is tight.\n106\t\n107\t\\textbf{Egocentric depth matches Vanilla.} Depth (4 seeds) achieves CAR 0.780 $\\pm$ 0.039, identical to Vanilla, despite providing per-pixel geometric information. Three label types (structured BEV, random binary, egocentric depth) yield comparable CAR when gradient flow is maintained.\n108\t\n109\t\\textbf{Temporal dynamics (preliminary).} Cutoff@35K (3 seeds) achieves CAR 0.779, statistically indistinguishable from Vanilla ($\\Delta = -$0.1\\,pp), which confirms that 35K steps of gradient flow fully protects collision avoidance. Surprisingly, Cutoff@25K (0.724, 2 seeds) and Reverse Cutoff (0.718, 2 seeds) fall substantially \\emph{below} Vanilla. The most parsimonious explanation: setting the loss weight to zero retains the auxiliary head forward pass, so the post-cutoff period operates in Detach mode; BatchNorm interference acts on representations shaped by gradient flow, without gradient compensation. This is not withdrawal from gradient flow \\emph{per se}, but transition into an actively harmful regime. Third seeds are in progress; extended analysis in Section~\\ref{app:temporal}.\n110\t\n111\t\\section{Limitations}\n112\t\\label{app:limitations}\n113\t\n114\tOur study uses a single architecture (OpenVLA-OFT with LoRA rank 32); full fine-tuning may alter the interaction between auxiliary heads and encoder optimization because all parameters update simultaneously, potentially changing the gradient flow dynamics we observe. All experiments are conducted in MuJoCo simulation (SafeLIBERO Level~I, 10 tasks); real-world deployment introduces additional sources of distributional shift that could interact differently with auxiliary head training dynamics. The benchmark contains only static obstacles; dynamic obstacle scenarios may induce time-varying distributions where auxiliary head dynamics behave differently. Our collision metric is binary (L1 displacement threshold $10^{-3}$), which does not capture collision severity or near-miss behavior; a continuous safety metric might reveal finer-grained differences between conditions. CKA measures linear representational similarity, which may miss nonlinear structure relevant to safety behavior. The ordinal interaction is based on $n{=}1$--$4$ seeds per cell; larger-scale replication would further strengthen conclusions. Cutoff conditions have 1--3 seeds, limiting temporal conclusions to preliminary observations.\n115\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1bea17aa-9397-4e45-8f33-a2c3c974b602",
+            "uuid": "cfc03925-e116-4c4e-af12-143967598a22",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/appendix.tex",
+                "content": "\n\\section{Extended Per-Task Results}\n\\label{app:per_task}\n\nTable~\\ref{tab:per_task} reports per-task mean CAR across seeds for each condition. Seven tasks achieve CAR $\\geq$ 0.92 under Vanilla, while three physically constrained tasks (T3, T5, T6) fall below 0.58. The overall CAR differences reported in the main text are dominated by these three hard tasks, which average 0.342 compared to 0.968 for the seven easy tasks.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task mean CAR across seeds (50 rollouts per seed, v1 code). All conditions use 3 seeds except Depth (4). Detach+LN per-task uses 2 seeds (s1, s2; s0 lacks per-task breakdown). Main-text Table~\\ref{tab:main_results} uses v2 code for factorial cell CAR.}\n\\label{tab:per_task}\n\\begin{tabular}{clccccccc}\n\\toprule\n & & \\multicolumn{7}{c}{Mean CAR by Condition} \\\\\n\\cmidrule(lr){3-9}\nTask & Diff. & Vanilla & Full OCC & Random & Detach & Det+LN & Depth & Cut@35K \\\\\n\\midrule\nT0 & Easy  & 0.98 & 0.98 & 0.99 & 0.97 & 0.97 & 0.99 & 0.98 \\\\\nT1 & Easy  & 0.92 & 0.93 & 0.99 & 0.89 & 0.78 & 0.93 & 0.95 \\\\\nT2 & Easy  & 0.92 & 0.93 & 0.94 & 0.93 & 0.90 & 0.90 & 0.94 \\\\\nT3 & Hard  & 0.38 & 0.37 & 0.31 & \\textbf{0.11} & 0.44 & 0.50 & 0.55 \\\\\nT4 & Easy  & 0.98 & 0.99 & 0.95 & 0.98 & 0.96 & 0.92 & 0.97 \\\\\nT5 & Hard  & 0.07 & 0.17 & 0.23 & \\textbf{0.05} & 0.12 & 0.08 & 0.04 \\\\\nT6 & Hard  & 0.57 & 0.61 & 0.55 & 0.56 & 0.36 & 0.54 & 0.38 \\\\\nT7 & Easy  & 0.97 & 0.99 & 0.95 & 0.98 & 1.00 & 0.96 & 0.98 \\\\\nT8 & Easy  & 1.00 & 1.00 & 1.00 & 0.99 & 0.99 & 0.99 & 0.99 \\\\\nT9 & Easy  & 1.00 & 0.99 & 0.99 & 1.00 & 1.00 & 1.00 & 1.00 \\\\\n\\midrule\n\\multicolumn{2}{l}{Overall} & 0.780 & 0.797 & 0.789 & 0.746 & 0.765 & 0.780 & 0.779 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\textbf{Ceiling effects.} On the seven easy tasks (T0--T2, T4, T7--T9), all conditions achieve CAR $\\geq$ 0.89, leaving minimal room for auxiliary training to improve performance. The obstacle is spatially separated from the manipulation path in these tasks.\n\n\\textbf{Hard task patterns.} On Task~5 (Vanilla CAR 0.07), gradient-flow conditions (Random OCC 0.23, Full OCC 0.17) exceed Vanilla and Detach (0.05), but all values remain below 0.23. Cutoff@35K achieves the highest T3 CAR (0.55) but the lowest T5 CAR (0.04), which illustrates task-specific temporal sensitivity. Depth exhibits high cross-seed variance on hard tasks (T3 range: 0.20--0.78; T6 range: 0.16--0.84), consistent with auxiliary supervision increasing seed sensitivity.\n\n\\section{Training Details}\n\\label{app:training}\n\n\\begin{table}[h]\n\\centering\n\\caption{Training hyperparameters.}\n\\label{tab:hyperparams}\n\\begin{tabular}{ll}\n\\toprule\nParameter & Value \\\\\n\\midrule\nBase model & OpenVLA-7B~\\cite{kim2024openvla} \\\\\nFine-tuning recipe & OFT~\\cite{kim2025oft} \\\\\nVision encoders & DINOv2 (1024-d) + SigLIP (1152-d) \\\\\nPatch token dim. & 2176 (concatenated) \\\\\nLoRA rank / $\\alpha$ & 32 / 16 \\\\\nBatch size & 8 \\\\\nLearning rate & $5 \\times 10^{-4}$ (constant) \\\\\nTraining steps & 50{,}000 \\\\\nAux.\\ loss weight $\\lambda_0$ & 0.01 \\\\\nAux.\\ loss decay & $\\exp(-t / 50{,}000)$ \\\\\nBEV grid resolution & $64 \\times 64$ \\\\\nFocal loss $\\alpha$ / $\\gamma$ & 0.25 / 2.0 \\\\\nDepth loss & Smooth-L1 \\\\\nAux.\\ head parameters & 1.2M \\\\\nHardware & NVIDIA RTX PRO 6000 (98\\,GB) \\\\\nWall time per run & $\\sim$12.9 hours \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\textbf{Evaluation protocol.} Each condition uses 3+ seeds (Depth uses 4; Cutoff@15K, Cutoff@25K, and Reverse Cutoff use 2; Cutoff@45K uses 1) with 50 rollouts per task per seed (500 episodes per seed). A collision is registered when the L1 displacement of the obstacle's \\texttt{body\\_xpos} exceeds $10^{-3}$. Bootstrap 95\\% CIs are computed via 10{,}000 resamples (percentile method).\n\n\\textbf{Statistical tests.} Pairwise comparisons against Vanilla use two-tailed paired $t$-tests on per-seed mean CARs with Cohen's $d$ for effect size. With $n{=}3$ seeds, statistical power is limited; we report $p$-values and effect sizes for transparency. Only Detach OCC reaches significance ($p{=}0.031$, $d{=}-3.90$); all gradient-flow conditions show $p > 0.35$.\n\n\\textbf{CKA analysis.} Centered Kernel Alignment~\\cite{kornblith2019similarity} measures representational similarity between fine-tuned and pretrained encoder features. We extract patch token activations from the final layer of DINOv2 and SigLIP for 1{,}000 validation images, compute linear CKA per layer, and report the mean across layers. Higher CKA indicates better preservation of pretrained representations.\n\n\\textbf{Cutoff implementation.} Setting the auxiliary loss weight to zero at step $N$ does \\emph{not} disable the auxiliary head's forward pass. The head's BatchNorm2d layers continue computing batch statistics, which shift the encoder's internal activations without compensating gradient flow. The post-cutoff phase thus operates in Detach mode, not Vanilla mode. This is a property of the implementation (the head remains in the forward graph), not a deliberate design choice.\n\n\\section{Extended Analysis}\n\\label{app:extended}\n\nThe Detach+LN ablation replaces BatchNorm2d with LayerNorm in the auxiliary head while retaining \\texttt{stop\\_gradient}. Results (3 seeds) are reported in Table~\\ref{tab:main_results} and analyzed in Section~\\ref{sec:why_gradient}. Detach+LN (CAR 0.765) approaches the Vanilla baseline, consistent with the ordinal interaction pattern: removing gradient flow mitigates safety degradation regardless of normalization choice. The ordinal interaction (Section~\\ref{sec:mechanism}) shows that gradient flow is detrimental under both BN and LN, with BN amplifying the damage.\n\n\\textbf{Per-layer gradient analysis.} Figure~\\ref{fig:per_layer_combined} decomposes auxiliary gradient flow into two dimensions: amplitude (top row) and direction (bottom row). The amplitude heatmap (panels a--b) shows that Vanilla, Full OCC, and Random OCC maintain comparable action gradient norms across all layers (warm colors), while Detach collapses to 1--13\\% of Vanilla uniformly across both encoders (dark), consistent with a global gradient flow disruption rather than layer-specific interference. The directional analysis (panels c--d) reveals encoder-specific alignment: DINOv2 conflict rates hover near 50\\% across all layers while SigLIP late layers (blocks 21--24) drop to 19--25\\%, which indicates cooperative gradient alignment in semantically rich layers. Both patterns are identical for Full OCC and Random OCC, which confirms they arise from architectural structure rather than label content. The aggregate conflict rates (Full OCC 44.1\\%, Random OCC 43.9\\%) fall below the 50\\% expected for random vectors because they reflect this mixture of two encoder-specific patterns.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/per_layer_combined.pdf}\n\\caption{Per-layer gradient analysis decomposed into amplitude and direction. \\textbf{Top (a--b):} Action gradient norm heatmap (log scale). Gradient-flow conditions (Vanilla, Full OCC, Random OCC) maintain comparable norms; Detach collapses to 1--13\\% of Vanilla across all layers. \\textbf{Bottom (c--d):} Gradient conflict rate between action and auxiliary losses. DINOv2 maintains $\\sim$50\\% conflict (near-orthogonal), while SigLIP late layers drop to 19--25\\% (cooperative alignment). Both amplitude and directional patterns are identical for Full OCC and Random OCC, which confirms architectural rather than label-dependent structure.}\n\\label{fig:per_layer_combined}\n\\label{fig:conflict_rate}\n\\label{fig:grad_norm_heatmap}\n\\end{figure}\n\n\\label{app:temporal}\n\\textbf{Dose-response: gradient flow duration vs.\\ CAR.} Figure~\\ref{fig:dose_response} plots CAR against the number of OCC gradient flow steps for the cutoff series (15K--45K, plus Detach at 0K and Full OCC at 50K). Cutoff@15K (2 seeds, CAR 0.782) clusters near Vanilla (0.780), while Cutoff@25K (2 seeds, 0.724) falls substantially below. Multi-seed conditions (Cutoff@35K and Full OCC) also cluster near the Vanilla baseline. Reverse Cutoff (late 15K) falls below the early-cutoff counterpart at the same gradient flow duration, consistent with the continuity hypothesis. The pattern suggests intermediate cutoff $\\approx$ Vanilla rather than a non-monotonic dose-response; the earlier single-seed Cutoff@15K result (0.804) was seed noise.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=0.75\\textwidth]{figures/dose_response.pdf}\n\\caption{Dose-response: CAR vs.\\ OCC gradient flow duration. Filled circles: early-cutoff conditions with all 3 seeds completed; open circles: conditions with $\\leq$2 seeds (counts annotated as $n$). Diamond ($\\diamond$): Reverse Cutoff (gradient flow restricted to the last 15K steps). Dashed line: Vanilla 3-seed mean; shaded band: $\\pm\\,$1\\,SE. The ``+0.2\\%'' annotation marks the Cutoff@15K--Vanilla gap. Intermediate cutoff conditions cluster near Vanilla, while Cutoff@25K and Reverse Cutoff fall substantially below.}\n\\label{fig:dose_response}\n\\end{figure}\n\n\\section{Additional Observations}\n\\label{app:additional}\n\n\\textbf{Per-task concentration.} Seven of ten tasks achieve CAR $\\geq$ 0.92 under Vanilla; overall CAR is dominated by three physically constrained tasks (T3, T5, T6; Section~\\ref{app:per_task}). Detach is systematically worst on these hard tasks (T3: 0.11, T5: 0.05), consistent with gradient collapse exacerbating degradation where obstacle proximity is tight.\n\n\\textbf{Egocentric depth matches Vanilla.} Depth (4 seeds) achieves CAR 0.780 $\\pm$ 0.039, identical to Vanilla, despite providing per-pixel geometric information. Three label types (structured BEV, random binary, egocentric depth) yield comparable CAR when gradient flow is maintained.\n\n\\textbf{Temporal dynamics (preliminary).} Cutoff@35K (3 seeds) achieves CAR 0.779, statistically indistinguishable from Vanilla ($\\Delta = -$0.1\\,pp), which confirms that 35K steps of gradient flow fully protects collision avoidance. Surprisingly, Cutoff@25K (0.724, 2 seeds) and Reverse Cutoff (0.718, 2 seeds) fall substantially \\emph{below} Vanilla. The most parsimonious explanation: setting the loss weight to zero retains the auxiliary head forward pass, so the post-cutoff period operates in Detach mode; BatchNorm interference acts on representations shaped by gradient flow, without gradient compensation. This is not withdrawal from gradient flow \\emph{per se}, but transition into an actively harmful regime. Third seeds are in progress; extended analysis in Section~\\ref{app:temporal}.\n\n\\section{Limitations}\n\\label{app:limitations}\n\nOur study uses a single architecture (OpenVLA-OFT with LoRA rank 32); full fine-tuning may alter the interaction between auxiliary heads and encoder optimization because all parameters update simultaneously, potentially changing the gradient flow dynamics we observe. All experiments are conducted in MuJoCo simulation (SafeLIBERO Level~I, 10 tasks); real-world deployment introduces additional sources of distributional shift that could interact differently with auxiliary head training dynamics. The benchmark contains only static obstacles; dynamic obstacle scenarios may induce time-varying distributions where auxiliary head dynamics behave differently. Our collision metric is binary (L1 displacement threshold $10^{-3}$), which does not capture collision severity or near-miss behavior; a continuous safety metric might reveal finer-grained differences between conditions. CKA measures linear representational similarity, which may miss nonlinear structure relevant to safety behavior. The ordinal interaction is based on $n{=}1$--$4$ seeds per cell; larger-scale replication would further strengthen conclusions. Cutoff conditions have 1--3 seeds, limiting temporal conclusions to preliminary observations.\n",
+                "numLines": 115,
+                "startLine": 1,
+                "totalLines": 115
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I'll make the three edits."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1bea17aa-9397-4e45-8f33-a2c3c974b602",
+            "uuid": "2bf62a77-e767-495a-9d01-1a19dca68655",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01We2WuAZkJQvaDgKCf4HF2S",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4228,
+                "cache_read_input_tokens": 23371,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4228
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KCdJg8rSavmUw2iuTbRS8H",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/appendix.tex",
+                "old_string": "Only Detach OCC reaches significance ($p{=}0.031$, $d{=}-3.90$); all gradient-flow conditions show $p > 0.35$.",
+                "new_string": "Detach OCC shows negligible difference from Vanilla ($d \\approx -0.04$, $p = 0.91$), confirming that gradient-detached auxiliary supervision does not harm collision avoidance; all gradient-flow conditions also show $p > 0.35$."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1bea17aa-9397-4e45-8f33-a2c3c974b602",
+            "uuid": "4d976319-2bab-4770-93ad-ce9f3e6d0a41",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01We2WuAZkJQvaDgKCf4HF2S",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4228,
+                "cache_read_input_tokens": 23371,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4228
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-26T15:12:04.567Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KCdJg8rSavmUw2iuTbRS8H",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1bea17aa-9397-4e45-8f33-a2c3c974b602",
+            "uuid": "1b9e5c02-de46-44f5-b733-d5da95140eda",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/appendix.tex",
+              "oldString": "Only Detach OCC reaches significance ($p{=}0.031$, $d{=}-3.90$); all gradient-flow conditions show $p > 0.35$.",
+              "newString": "Detach OCC shows negligible difference from Vanilla ($d \\approx -0.04$, $p = 0.91$), confirming that gradient-detached auxiliary supervision does not harm collision avoidance; all gradient-flow conditions also show $p > 0.35$.",
+              "originalFile": "\n\\section{Extended Per-Task Results}\n\\label{app:per_task}\n\nTable~\\ref{tab:per_task} reports per-task mean CAR across seeds for each condition. Seven tasks achieve CAR $\\geq$ 0.92 under Vanilla, while three physically constrained tasks (T3, T5, T6) fall below 0.58. The overall CAR differences reported in the main text are dominated by these three hard tasks, which average 0.342 compared to 0.968 for the seven easy tasks.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task mean CAR across seeds (50 rollouts per seed, v1 code). All conditions use 3 seeds except Depth (4). Detach+LN per-task uses 2 seeds (s1, s2; s0 lacks per-task breakdown). Main-text Table~\\ref{tab:main_results} uses v2 code for factorial cell CAR.}\n\\label{tab:per_task}\n\\begin{tabular}{clccccccc}\n\\toprule\n & & \\multicolumn{7}{c}{Mean CAR by Condition} \\\\\n\\cmidrule(lr){3-9}\nTask & Diff. & Vanilla & Full OCC & Random & Detach & Det+LN & Depth & Cut@35K \\\\\n\\midrule\nT0 & Easy  & 0.98 & 0.98 & 0.99 & 0.97 & 0.97 & 0.99 & 0.98 \\\\\nT1 & Easy  & 0.92 & 0.93 & 0.99 & 0.89 & 0.78 & 0.93 & 0.95 \\\\\nT2 & Easy  & 0.92 & 0.93 & 0.94 & 0.93 & 0.90 & 0.90 & 0.94 \\\\\nT3 & Hard  & 0.38 & 0.37 & 0.31 & \\textbf{0.11} & 0.44 & 0.50 & 0.55 \\\\\nT4 & Easy  & 0.98 & 0.99 & 0.95 & 0.98 & 0.96 & 0.92 & 0.97 \\\\\nT5 & Hard  & 0.07 & 0.17 & 0.23 & \\textbf{0.05} & 0.12 & 0.08 & 0.04 \\\\\nT6 & Hard  & 0.57 & 0.61 & 0.55 & 0.56 & 0.36 & 0.54 & 0.38 \\\\\nT7 & Easy  & 0.97 & 0.99 & 0.95 & 0.98 & 1.00 & 0.96 & 0.98 \\\\\nT8 & Easy  & 1.00 & 1.00 & 1.00 & 0.99 & 0.99 & 0.99 & 0.99 \\\\\nT9 & Easy  & 1.00 & 0.99 & 0.99 & 1.00 & 1.00 & 1.00 & 1.00 \\\\\n\\midrule\n\\multicolumn{2}{l}{Overall} & 0.780 & 0.797 & 0.789 & 0.746 & 0.765 & 0.780 & 0.779 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\textbf{Ceiling effects.} On the seven easy tasks (T0--T2, T4, T7--T9), all conditions achieve CAR $\\geq$ 0.89, leaving minimal room for auxiliary training to improve performance. The obstacle is spatially separated from the manipulation path in these tasks.\n\n\\textbf{Hard task patterns.} On Task~5 (Vanilla CAR 0.07), gradient-flow conditions (Random OCC 0.23, Full OCC 0.17) exceed Vanilla and Detach (0.05), but all values remain below 0.23. Cutoff@35K achieves the highest T3 CAR (0.55) but the lowest T5 CAR (0.04), which illustrates task-specific temporal sensitivity. Depth exhibits high cross-seed variance on hard tasks (T3 range: 0.20--0.78; T6 range: 0.16--0.84), consistent with auxiliary supervision increasing seed sensitivity.\n\n\\section{Training Details}\n\\label{app:training}\n\n\\begin{table}[h]\n\\centering\n\\caption{Training hyperparameters.}\n\\label{tab:hyperparams}\n\\begin{tabular}{ll}\n\\toprule\nParameter & Value \\\\\n\\midrule\nBase model & OpenVLA-7B~\\cite{kim2024openvla} \\\\\nFine-tuning recipe & OFT~\\cite{kim2025oft} \\\\\nVision encoders & DINOv2 (1024-d) + SigLIP (1152-d) \\\\\nPatch token dim. & 2176 (concatenated) \\\\\nLoRA rank / $\\alpha$ & 32 / 16 \\\\\nBatch size & 8 \\\\\nLearning rate & $5 \\times 10^{-4}$ (constant) \\\\\nTraining steps & 50{,}000 \\\\\nAux.\\ loss weight $\\lambda_0$ & 0.01 \\\\\nAux.\\ loss decay & $\\exp(-t / 50{,}000)$ \\\\\nBEV grid resolution & $64 \\times 64$ \\\\\nFocal loss $\\alpha$ / $\\gamma$ & 0.25 / 2.0 \\\\\nDepth loss & Smooth-L1 \\\\\nAux.\\ head parameters & 1.2M \\\\\nHardware & NVIDIA RTX PRO 6000 (98\\,GB) \\\\\nWall time per run & $\\sim$12.9 hours \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\textbf{Evaluation protocol.} Each condition uses 3+ seeds (Depth uses 4; Cutoff@15K, Cutoff@25K, and Reverse Cutoff use 2; Cutoff@45K uses 1) with 50 rollouts per task per seed (500 episodes per seed). A collision is registered when the L1 displacement of the obstacle's \\texttt{body\\_xpos} exceeds $10^{-3}$. Bootstrap 95\\% CIs are computed via 10{,}000 resamples (percentile method).\n\n\\textbf{Statistical tests.} Pairwise comparisons against Vanilla use two-tailed paired $t$-tests on per-seed mean CARs with Cohen's $d$ for effect size. With $n{=}3$ seeds, statistical power is limited; we report $p$-values and effect sizes for transparency. Only Detach OCC reaches significance ($p{=}0.031$, $d{=}-3.90$); all gradient-flow conditions show $p > 0.35$.\n\n\\textbf{CKA analysis.} Centered Kernel Alignment~\\cite{kornblith2019similarity} measures representational similarity between fine-tuned and pretrained encoder features. We extract patch token activations from the final layer of DINOv2 and SigLIP for 1{,}000 validation images, compute linear CKA per layer, and report the mean across layers. Higher CKA indicates better preservation of pretrained representations.\n\n\\textbf{Cutoff implementation.} Setting the auxiliary loss weight to zero at step $N$ does \\emph{not} disable the auxiliary head's forward pass. The head's BatchNorm2d layers continue computing batch statistics, which shift the encoder's internal activations without compensating gradient flow. The post-cutoff phase thus operates in Detach mode, not Vanilla mode. This is a property of the implementation (the head remains in the forward graph), not a deliberate design choice.\n\n\\section{Extended Analysis}\n\\label{app:extended}\n\nThe Detach+LN ablation replaces BatchNorm2d with LayerNorm in the auxiliary head while retaining \\texttt{stop\\_gradient}. Results (3 seeds) are reported in Table~\\ref{tab:main_results} and analyzed in Section~\\ref{sec:why_gradient}. Detach+LN (CAR 0.765) approaches the Vanilla baseline, consistent with the ordinal interaction pattern: removing gradient flow mitigates safety degradation regardless of normalization choice. The ordinal interaction (Section~\\ref{sec:mechanism}) shows that gradient flow is detrimental under both BN and LN, with BN amplifying the damage.\n\n\\textbf{Per-layer gradient analysis.} Figure~\\ref{fig:per_layer_combined} decomposes auxiliary gradient flow into two dimensions: amplitude (top row) and direction (bottom row). The amplitude heatmap (panels a--b) shows that Vanilla, Full OCC, and Random OCC maintain comparable action gradient norms across all layers (warm colors), while Detach collapses to 1--13\\% of Vanilla uniformly across both encoders (dark), consistent with a global gradient flow disruption rather than layer-specific interference. The directional analysis (panels c--d) reveals encoder-specific alignment: DINOv2 conflict rates hover near 50\\% across all layers while SigLIP late layers (blocks 21--24) drop to 19--25\\%, which indicates cooperative gradient alignment in semantically rich layers. Both patterns are identical for Full OCC and Random OCC, which confirms they arise from architectural structure rather than label content. The aggregate conflict rates (Full OCC 44.1\\%, Random OCC 43.9\\%) fall below the 50\\% expected for random vectors because they reflect this mixture of two encoder-specific patterns.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/per_layer_combined.pdf}\n\\caption{Per-layer gradient analysis decomposed into amplitude and direction. \\textbf{Top (a--b):} Action gradient norm heatmap (log scale). Gradient-flow conditions (Vanilla, Full OCC, Random OCC) maintain comparable norms; Detach collapses to 1--13\\% of Vanilla across all layers. \\textbf{Bottom (c--d):} Gradient conflict rate between action and auxiliary losses. DINOv2 maintains $\\sim$50\\% conflict (near-orthogonal), while SigLIP late layers drop to 19--25\\% (cooperative alignment). Both amplitude and directional patterns are identical for Full OCC and Random OCC, which confirms architectural rather than label-dependent structure.}\n\\label{fig:per_layer_combined}\n\\label{fig:conflict_rate}\n\\label{fig:grad_norm_heatmap}\n\\end{figure}\n\n\\label{app:temporal}\n\\textbf{Dose-response: gradient flow duration vs.\\ CAR.} Figure~\\ref{fig:dose_response} plots CAR against the number of OCC gradient flow steps for the cutoff series (15K--45K, plus Detach at 0K and Full OCC at 50K). Cutoff@15K (2 seeds, CAR 0.782) clusters near Vanilla (0.780), while Cutoff@25K (2 seeds, 0.724) falls substantially below. Multi-seed conditions (Cutoff@35K and Full OCC) also cluster near the Vanilla baseline. Reverse Cutoff (late 15K) falls below the early-cutoff counterpart at the same gradient flow duration, consistent with the continuity hypothesis. The pattern suggests intermediate cutoff $\\approx$ Vanilla rather than a non-monotonic dose-response; the earlier single-seed Cutoff@15K result (0.804) was seed noise.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=0.75\\textwidth]{figures/dose_response.pdf}\n\\caption{Dose-response: CAR vs.\\ OCC gradient flow duration. Filled circles: early-cutoff conditions with all 3 seeds completed; open circles: conditions with $\\leq$2 seeds (counts annotated as $n$). Diamond ($\\diamond$): Reverse Cutoff (gradient flow restricted to the last 15K steps). Dashed line: Vanilla 3-seed mean; shaded band: $\\pm\\,$1\\,SE. The ``+0.2\\%'' annotation marks the Cutoff@15K--Vanilla gap. Intermediate cutoff conditions cluster near Vanilla, while Cutoff@25K and Reverse Cutoff fall substantially below.}\n\\label{fig:dose_response}\n\\end{figure}\n\n\\section{Additional Observations}\n\\label{app:additional}\n\n\\textbf{Per-task concentration.} Seven of ten tasks achieve CAR $\\geq$ 0.92 under Vanilla; overall CAR is dominated by three physically constrained tasks (T3, T5, T6; Section~\\ref{app:per_task}). Detach is systematically worst on these hard tasks (T3: 0.11, T5: 0.05), consistent with gradient collapse exacerbating degradation where obstacle proximity is tight.\n\n\\textbf{Egocentric depth matches Vanilla.} Depth (4 seeds) achieves CAR 0.780 $\\pm$ 0.039, identical to Vanilla, despite providing per-pixel geometric information. Three label types (structured BEV, random binary, egocentric depth) yield comparable CAR when gradient flow is maintained.\n\n\\textbf{Temporal dynamics (preliminary).} Cutoff@35K (3 seeds) achieves CAR 0.779, statistically indistinguishable from Vanilla ($\\Delta = -$0.1\\,pp), which confirms that 35K steps of gradient flow fully protects collision avoidance. Surprisingly, Cutoff@25K (0.724, 2 seeds) and Reverse Cutoff (0.718, 2 seeds) fall substantially \\emph{below} Vanilla. The most parsimonious explanation: setting the loss weight to zero retains the auxiliary head forward pass, so the post-cutoff period operates in Detach mode; BatchNorm interference acts on representations shaped by gradient flow, without gradient compensation. This is not withdrawal from gradient flow \\emph{per se}, but transition into an actively harmful regime. Third seeds are in progress; extended analysis in Section~\\ref{app:temporal}.\n\n\\section{Limitations}\n\\label{app:limitations}\n\nOur study uses a single architecture (OpenVLA-OFT with LoRA rank 32); full fine-tuning may alter the interaction between auxiliary heads and encoder optimization because all parameters update simultaneously, potentially changing the gradient flow dynamics we observe. All experiments are conducted in MuJoCo simulation (SafeLIBERO Level~I, 10 tasks); real-world deployment introduces additional sources of distributional shift that could interact differently with auxiliary head training dynamics. The benchmark contains only static obstacles; dynamic obstacle scenarios may induce time-varying distributions where auxiliary head dynamics behave differently. Our collision metric is binary (L1 displacement threshold $10^{-3}$), which does not capture collision severity or near-miss behavior; a continuous safety metric might reveal finer-grained differences between conditions. CKA measures linear representational similarity, which may miss nonlinear structure relevant to safety behavior. The ordinal interaction is based on $n{=}1$--$4$ seeds per cell; larger-scale replication would further strengthen conclusions. Cutoff conditions have 1--3 seeds, limiting temporal conclusions to preliminary observations.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 67,
+                  "oldLines": 7,
+                  "newStart": 67,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    " \\textbf{Evaluation protocol.} Each condition uses 3+ seeds (Depth uses 4; Cutoff@15K, Cutoff@25K, and Reverse Cutoff use 2; Cutoff@45K uses 1) with 50 rollouts per task per seed (500 episodes per seed). A collision is registered when the L1 displacement of the obstacle's \\texttt{body\\_xpos} exceeds $10^{-3}$. Bootstrap 95\\% CIs are computed via 10{,}000 resamples (percentile method).",
+                    " ",
+                    "-\\textbf{Statistical tests.} Pairwise comparisons against Vanilla use two-tailed paired $t$-tests on per-seed mean CARs with Cohen's $d$ for effect size. With $n{=}3$ seeds, statistical power is limited; we report $p$-values and effect sizes for transparency. Only Detach OCC reaches significance ($p{=}0.031$, $d{=}-3.90$); all gradient-flow conditions show $p > 0.35$.",
+                    "+\\textbf{Statistical tests.} Pairwise comparisons against Vanilla use two-tailed paired $t$-tests on per-seed mean CARs with Cohen's $d$ for effect size. With $n{=}3$ seeds, statistical power is limited; we report $p$-values and effect sizes for transparency. Detach OCC shows negligible difference from Vanilla ($d \\approx -0.04$, $p = 0.91$), confirming that gradient-detached auxiliary supervision does not harm collision avoidance; all gradient-flow conditions also show $p > 0.35$.",
+                    " ",
+                    " \\textbf{CKA analysis.} Centered Kernel Alignment~\\cite{kornblith2019similarity} measures representational similarity between fine-tuned and pretrained encoder features. We extract patch token activations from the final layer of DINOv2 and SigLIP for 1{,}000 validation images, compute linear CKA per layer, and report the mean across layers. Higher CKA indicates better preservation of pretrained representations.",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015M3Dk7QLByGLCYSgGrg2j3",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/appendix.tex",
+                "old_string": "while Detach collapses to 1--13\\% of Vanilla uniformly across both encoders (dark), consistent with a global gradient flow disruption rather than layer-specific interference.",
+                "new_string": "while Detach gradient norms reduce to 1--13\\% of Vanilla uniformly across both encoders (dark), consistent with a global gradient flow disruption rather than layer-specific interference."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1bea17aa-9397-4e45-8f33-a2c3c974b602",
+            "uuid": "9f4cc382-3635-46a8-997f-97095d45d945",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01We2WuAZkJQvaDgKCf4HF2S",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4228,
+                "cache_read_input_tokens": 23371,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4228
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-26T15:12:07.416Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015M3Dk7QLByGLCYSgGrg2j3",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1bea17aa-9397-4e45-8f33-a2c3c974b602",
+            "uuid": "86c00325-ebe0-4464-86af-313ff24743a6",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/appendix.tex",
+              "oldString": "while Detach collapses to 1--13\\% of Vanilla uniformly across both encoders (dark), consistent with a global gradient flow disruption rather than layer-specific interference.",
+              "newString": "while Detach gradient norms reduce to 1--13\\% of Vanilla uniformly across both encoders (dark), consistent with a global gradient flow disruption rather than layer-specific interference.",
+              "originalFile": "\n\\section{Extended Per-Task Results}\n\\label{app:per_task}\n\nTable~\\ref{tab:per_task} reports per-task mean CAR across seeds for each condition. Seven tasks achieve CAR $\\geq$ 0.92 under Vanilla, while three physically constrained tasks (T3, T5, T6) fall below 0.58. The overall CAR differences reported in the main text are dominated by these three hard tasks, which average 0.342 compared to 0.968 for the seven easy tasks.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task mean CAR across seeds (50 rollouts per seed, v1 code). All conditions use 3 seeds except Depth (4). Detach+LN per-task uses 2 seeds (s1, s2; s0 lacks per-task breakdown). Main-text Table~\\ref{tab:main_results} uses v2 code for factorial cell CAR.}\n\\label{tab:per_task}\n\\begin{tabular}{clccccccc}\n\\toprule\n & & \\multicolumn{7}{c}{Mean CAR by Condition} \\\\\n\\cmidrule(lr){3-9}\nTask & Diff. & Vanilla & Full OCC & Random & Detach & Det+LN & Depth & Cut@35K \\\\\n\\midrule\nT0 & Easy  & 0.98 & 0.98 & 0.99 & 0.97 & 0.97 & 0.99 & 0.98 \\\\\nT1 & Easy  & 0.92 & 0.93 & 0.99 & 0.89 & 0.78 & 0.93 & 0.95 \\\\\nT2 & Easy  & 0.92 & 0.93 & 0.94 & 0.93 & 0.90 & 0.90 & 0.94 \\\\\nT3 & Hard  & 0.38 & 0.37 & 0.31 & \\textbf{0.11} & 0.44 & 0.50 & 0.55 \\\\\nT4 & Easy  & 0.98 & 0.99 & 0.95 & 0.98 & 0.96 & 0.92 & 0.97 \\\\\nT5 & Hard  & 0.07 & 0.17 & 0.23 & \\textbf{0.05} & 0.12 & 0.08 & 0.04 \\\\\nT6 & Hard  & 0.57 & 0.61 & 0.55 & 0.56 & 0.36 & 0.54 & 0.38 \\\\\nT7 & Easy  & 0.97 & 0.99 & 0.95 & 0.98 & 1.00 & 0.96 & 0.98 \\\\\nT8 & Easy  & 1.00 & 1.00 & 1.00 & 0.99 & 0.99 & 0.99 & 0.99 \\\\\nT9 & Easy  & 1.00 & 0.99 & 0.99 & 1.00 & 1.00 & 1.00 & 1.00 \\\\\n\\midrule\n\\multicolumn{2}{l}{Overall} & 0.780 & 0.797 & 0.789 & 0.746 & 0.765 & 0.780 & 0.779 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\textbf{Ceiling effects.} On the seven easy tasks (T0--T2, T4, T7--T9), all conditions achieve CAR $\\geq$ 0.89, leaving minimal room for auxiliary training to improve performance. The obstacle is spatially separated from the manipulation path in these tasks.\n\n\\textbf{Hard task patterns.} On Task~5 (Vanilla CAR 0.07), gradient-flow conditions (Random OCC 0.23, Full OCC 0.17) exceed Vanilla and Detach (0.05), but all values remain below 0.23. Cutoff@35K achieves the highest T3 CAR (0.55) but the lowest T5 CAR (0.04), which illustrates task-specific temporal sensitivity. Depth exhibits high cross-seed variance on hard tasks (T3 range: 0.20--0.78; T6 range: 0.16--0.84), consistent with auxiliary supervision increasing seed sensitivity.\n\n\\section{Training Details}\n\\label{app:training}\n\n\\begin{table}[h]\n\\centering\n\\caption{Training hyperparameters.}\n\\label{tab:hyperparams}\n\\begin{tabular}{ll}\n\\toprule\nParameter & Value \\\\\n\\midrule\nBase model & OpenVLA-7B~\\cite{kim2024openvla} \\\\\nFine-tuning recipe & OFT~\\cite{kim2025oft} \\\\\nVision encoders & DINOv2 (1024-d) + SigLIP (1152-d) \\\\\nPatch token dim. & 2176 (concatenated) \\\\\nLoRA rank / $\\alpha$ & 32 / 16 \\\\\nBatch size & 8 \\\\\nLearning rate & $5 \\times 10^{-4}$ (constant) \\\\\nTraining steps & 50{,}000 \\\\\nAux.\\ loss weight $\\lambda_0$ & 0.01 \\\\\nAux.\\ loss decay & $\\exp(-t / 50{,}000)$ \\\\\nBEV grid resolution & $64 \\times 64$ \\\\\nFocal loss $\\alpha$ / $\\gamma$ & 0.25 / 2.0 \\\\\nDepth loss & Smooth-L1 \\\\\nAux.\\ head parameters & 1.2M \\\\\nHardware & NVIDIA RTX PRO 6000 (98\\,GB) \\\\\nWall time per run & $\\sim$12.9 hours \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\textbf{Evaluation protocol.} Each condition uses 3+ seeds (Depth uses 4; Cutoff@15K, Cutoff@25K, and Reverse Cutoff use 2; Cutoff@45K uses 1) with 50 rollouts per task per seed (500 episodes per seed). A collision is registered when the L1 displacement of the obstacle's \\texttt{body\\_xpos} exceeds $10^{-3}$. Bootstrap 95\\% CIs are computed via 10{,}000 resamples (percentile method).\n\n\\textbf{Statistical tests.} Pairwise comparisons against Vanilla use two-tailed paired $t$-tests on per-seed mean CARs with Cohen's $d$ for effect size. With $n{=}3$ seeds, statistical power is limited; we report $p$-values and effect sizes for transparency. Detach OCC shows negligible difference from Vanilla ($d \\approx -0.04$, $p = 0.91$), confirming that gradient-detached auxiliary supervision does not harm collision avoidance; all gradient-flow conditions also show $p > 0.35$.\n\n\\textbf{CKA analysis.} Centered Kernel Alignment~\\cite{kornblith2019similarity} measures representational similarity between fine-tuned and pretrained encoder features. We extract patch token activations from the final layer of DINOv2 and SigLIP for 1{,}000 validation images, compute linear CKA per layer, and report the mean across layers. Higher CKA indicates better preservation of pretrained representations.\n\n\\textbf{Cutoff implementation.} Setting the auxiliary loss weight to zero at step $N$ does \\emph{not} disable the auxiliary head's forward pass. The head's BatchNorm2d layers continue computing batch statistics, which shift the encoder's internal activations without compensating gradient flow. The post-cutoff phase thus operates in Detach mode, not Vanilla mode. This is a property of the implementation (the head remains in the forward graph), not a deliberate design choice.\n\n\\section{Extended Analysis}\n\\label{app:extended}\n\nThe Detach+LN ablation replaces BatchNorm2d with LayerNorm in the auxiliary head while retaining \\texttt{stop\\_gradient}. Results (3 seeds) are reported in Table~\\ref{tab:main_results} and analyzed in Section~\\ref{sec:why_gradient}. Detach+LN (CAR 0.765) approaches the Vanilla baseline, consistent with the ordinal interaction pattern: removing gradient flow mitigates safety degradation regardless of normalization choice. The ordinal interaction (Section~\\ref{sec:mechanism}) shows that gradient flow is detrimental under both BN and LN, with BN amplifying the damage.\n\n\\textbf{Per-layer gradient analysis.} Figure~\\ref{fig:per_layer_combined} decomposes auxiliary gradient flow into two dimensions: amplitude (top row) and direction (bottom row). The amplitude heatmap (panels a--b) shows that Vanilla, Full OCC, and Random OCC maintain comparable action gradient norms across all layers (warm colors), while Detach collapses to 1--13\\% of Vanilla uniformly across both encoders (dark), consistent with a global gradient flow disruption rather than layer-specific interference. The directional analysis (panels c--d) reveals encoder-specific alignment: DINOv2 conflict rates hover near 50\\% across all layers while SigLIP late layers (blocks 21--24) drop to 19--25\\%, which indicates cooperative gradient alignment in semantically rich layers. Both patterns are identical for Full OCC and Random OCC, which confirms they arise from architectural structure rather than label content. The aggregate conflict rates (Full OCC 44.1\\%, Random OCC 43.9\\%) fall below the 50\\% expected for random vectors because they reflect this mixture of two encoder-specific patterns.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/per_layer_combined.pdf}\n\\caption{Per-layer gradient analysis decomposed into amplitude and direction. \\textbf{Top (a--b):} Action gradient norm heatmap (log scale). Gradient-flow conditions (Vanilla, Full OCC, Random OCC) maintain comparable norms; Detach collapses to 1--13\\% of Vanilla across all layers. \\textbf{Bottom (c--d):} Gradient conflict rate between action and auxiliary losses. DINOv2 maintains $\\sim$50\\% conflict (near-orthogonal), while SigLIP late layers drop to 19--25\\% (cooperative alignment). Both amplitude and directional patterns are identical for Full OCC and Random OCC, which confirms architectural rather than label-dependent structure.}\n\\label{fig:per_layer_combined}\n\\label{fig:conflict_rate}\n\\label{fig:grad_norm_heatmap}\n\\end{figure}\n\n\\label{app:temporal}\n\\textbf{Dose-response: gradient flow duration vs.\\ CAR.} Figure~\\ref{fig:dose_response} plots CAR against the number of OCC gradient flow steps for the cutoff series (15K--45K, plus Detach at 0K and Full OCC at 50K). Cutoff@15K (2 seeds, CAR 0.782) clusters near Vanilla (0.780), while Cutoff@25K (2 seeds, 0.724) falls substantially below. Multi-seed conditions (Cutoff@35K and Full OCC) also cluster near the Vanilla baseline. Reverse Cutoff (late 15K) falls below the early-cutoff counterpart at the same gradient flow duration, consistent with the continuity hypothesis. The pattern suggests intermediate cutoff $\\approx$ Vanilla rather than a non-monotonic dose-response; the earlier single-seed Cutoff@15K result (0.804) was seed noise.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=0.75\\textwidth]{figures/dose_response.pdf}\n\\caption{Dose-response: CAR vs.\\ OCC gradient flow duration. Filled circles: early-cutoff conditions with all 3 seeds completed; open circles: conditions with $\\leq$2 seeds (counts annotated as $n$). Diamond ($\\diamond$): Reverse Cutoff (gradient flow restricted to the last 15K steps). Dashed line: Vanilla 3-seed mean; shaded band: $\\pm\\,$1\\,SE. The ``+0.2\\%'' annotation marks the Cutoff@15K--Vanilla gap. Intermediate cutoff conditions cluster near Vanilla, while Cutoff@25K and Reverse Cutoff fall substantially below.}\n\\label{fig:dose_response}\n\\end{figure}\n\n\\section{Additional Observations}\n\\label{app:additional}\n\n\\textbf{Per-task concentration.} Seven of ten tasks achieve CAR $\\geq$ 0.92 under Vanilla; overall CAR is dominated by three physically constrained tasks (T3, T5, T6; Section~\\ref{app:per_task}). Detach is systematically worst on these hard tasks (T3: 0.11, T5: 0.05), consistent with gradient collapse exacerbating degradation where obstacle proximity is tight.\n\n\\textbf{Egocentric depth matches Vanilla.} Depth (4 seeds) achieves CAR 0.780 $\\pm$ 0.039, identical to Vanilla, despite providing per-pixel geometric information. Three label types (structured BEV, random binary, egocentric depth) yield comparable CAR when gradient flow is maintained.\n\n\\textbf{Temporal dynamics (preliminary).} Cutoff@35K (3 seeds) achieves CAR 0.779, statistically indistinguishable from Vanilla ($\\Delta = -$0.1\\,pp), which confirms that 35K steps of gradient flow fully protects collision avoidance. Surprisingly, Cutoff@25K (0.724, 2 seeds) and Reverse Cutoff (0.718, 2 seeds) fall substantially \\emph{below} Vanilla. The most parsimonious explanation: setting the loss weight to zero retains the auxiliary head forward pass, so the post-cutoff period operates in Detach mode; BatchNorm interference acts on representations shaped by gradient flow, without gradient compensation. This is not withdrawal from gradient flow \\emph{per se}, but transition into an actively harmful regime. Third seeds are in progress; extended analysis in Section~\\ref{app:temporal}.\n\n\\section{Limitations}\n\\label{app:limitations}\n\nOur study uses a single architecture (OpenVLA-OFT with LoRA rank 32); full fine-tuning may alter the interaction between auxiliary heads and encoder optimization because all parameters update simultaneously, potentially changing the gradient flow dynamics we observe. All experiments are conducted in MuJoCo simulation (SafeLIBERO Level~I, 10 tasks); real-world deployment introduces additional sources of distributional shift that could interact differently with auxiliary head training dynamics. The benchmark contains only static obstacles; dynamic obstacle scenarios may induce time-varying distributions where auxiliary head dynamics behave differently. Our collision metric is binary (L1 displacement threshold $10^{-3}$), which does not capture collision severity or near-miss behavior; a continuous safety metric might reveal finer-grained differences between conditions. CKA measures linear representational similarity, which may miss nonlinear structure relevant to safety behavior. The ordinal interaction is based on $n{=}1$--$4$ seeds per cell; larger-scale replication would further strengthen conclusions. Cutoff conditions have 1--3 seeds, limiting temporal conclusions to preliminary observations.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 78,
+                  "oldLines": 7,
+                  "newStart": 78,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    " The Detach+LN ablation replaces BatchNorm2d with LayerNorm in the auxiliary head while retaining \\texttt{stop\\_gradient}. Results (3 seeds) are reported in Table~\\ref{tab:main_results} and analyzed in Section~\\ref{sec:why_gradient}. Detach+LN (CAR 0.765) approaches the Vanilla baseline, consistent with the ordinal interaction pattern: removing gradient flow mitigates safety degradation regardless of normalization choice. The ordinal interaction (Section~\\ref{sec:mechanism}) shows that gradient flow is detrimental under both BN and LN, with BN amplifying the damage.",
+                    " ",
+                    "-\\textbf{Per-layer gradient analysis.} Figure~\\ref{fig:per_layer_combined} decomposes auxiliary gradient flow into two dimensions: amplitude (top row) and direction (bottom row). The amplitude heatmap (panels a--b) shows that Vanilla, Full OCC, and Random OCC maintain comparable action gradient norms across all layers (warm colors), while Detach collapses to 1--13\\% of Vanilla uniformly across both encoders (dark), consistent with a global gradient flow disruption rather than layer-specific interference. The directional analysis (panels c--d) reveals encoder-specific alignment: DINOv2 conflict rates hover near 50\\% across all layers while SigLIP late layers (blocks 21--24) drop to 19--25\\%, which indicates cooperative gradient alignment in semantically rich layers. Both patterns are identical for Full OCC and Random OCC, which confirms they arise from architectural structure rather than label content. The aggregate conflict rates (Full OCC 44.1\\%, Random OCC 43.9\\%) fall below the 50\\% expected for random vectors because they reflect this mixture of two encoder-specific patterns.",
+                    "+\\textbf{Per-layer gradient analysis.} Figure~\\ref{fig:per_layer_combined} decomposes auxiliary gradient flow into two dimensions: amplitude (top row) and direction (bottom row). The amplitude heatmap (panels a--b) shows that Vanilla, Full OCC, and Random OCC maintain comparable action gradient norms across all layers (warm colors), while Detach gradient norms reduce to 1--13\\% of Vanilla uniformly across both encoders (dark), consistent with a global gradient flow disruption rather than layer-specific interference. The directional analysis (panels c--d) reveals encoder-specific alignment: DINOv2 conflict rates hover near 50\\% across all layers while SigLIP late layers (blocks 21--24) drop to 19--25\\%, which indicates cooperative gradient alignment in semantically rich layers. Both patterns are identical for Full OCC and Random OCC, which confirms they arise from architectural structure rather than label content. The aggregate conflict rates (Full OCC 44.1\\%, Random OCC 43.9\\%) fall below the 50\\% expected for random vectors because they reflect this mixture of two encoder-specific patterns.",
+                    " ",
+                    " \\begin{figure}[h]",
+                    " \\centering"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DKdYxRMqdE5BuaeB8Qsrzr",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/appendix.tex",
+                "old_string": "consistent with gradient collapse exacerbating degradation where obstacle proximity is tight.",
+                "new_string": "consistent with reduced gradient flow exacerbating degradation where obstacle proximity is tight."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1bea17aa-9397-4e45-8f33-a2c3c974b602",
+            "uuid": "9bdd93c0-16b1-49c7-99c1-50ba3388bb95",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01We2WuAZkJQvaDgKCf4HF2S",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4228,
+                "cache_read_input_tokens": 23371,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4228
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-26T15:12:08.335Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DKdYxRMqdE5BuaeB8Qsrzr",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1bea17aa-9397-4e45-8f33-a2c3c974b602",
+            "uuid": "5949c1fa-c772-426e-a2d6-046df2753488",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/appendix.tex",
+              "oldString": "consistent with gradient collapse exacerbating degradation where obstacle proximity is tight.",
+              "newString": "consistent with reduced gradient flow exacerbating degradation where obstacle proximity is tight.",
+              "originalFile": "\n\\section{Extended Per-Task Results}\n\\label{app:per_task}\n\nTable~\\ref{tab:per_task} reports per-task mean CAR across seeds for each condition. Seven tasks achieve CAR $\\geq$ 0.92 under Vanilla, while three physically constrained tasks (T3, T5, T6) fall below 0.58. The overall CAR differences reported in the main text are dominated by these three hard tasks, which average 0.342 compared to 0.968 for the seven easy tasks.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task mean CAR across seeds (50 rollouts per seed, v1 code). All conditions use 3 seeds except Depth (4). Detach+LN per-task uses 2 seeds (s1, s2; s0 lacks per-task breakdown). Main-text Table~\\ref{tab:main_results} uses v2 code for factorial cell CAR.}\n\\label{tab:per_task}\n\\begin{tabular}{clccccccc}\n\\toprule\n & & \\multicolumn{7}{c}{Mean CAR by Condition} \\\\\n\\cmidrule(lr){3-9}\nTask & Diff. & Vanilla & Full OCC & Random & Detach & Det+LN & Depth & Cut@35K \\\\\n\\midrule\nT0 & Easy  & 0.98 & 0.98 & 0.99 & 0.97 & 0.97 & 0.99 & 0.98 \\\\\nT1 & Easy  & 0.92 & 0.93 & 0.99 & 0.89 & 0.78 & 0.93 & 0.95 \\\\\nT2 & Easy  & 0.92 & 0.93 & 0.94 & 0.93 & 0.90 & 0.90 & 0.94 \\\\\nT3 & Hard  & 0.38 & 0.37 & 0.31 & \\textbf{0.11} & 0.44 & 0.50 & 0.55 \\\\\nT4 & Easy  & 0.98 & 0.99 & 0.95 & 0.98 & 0.96 & 0.92 & 0.97 \\\\\nT5 & Hard  & 0.07 & 0.17 & 0.23 & \\textbf{0.05} & 0.12 & 0.08 & 0.04 \\\\\nT6 & Hard  & 0.57 & 0.61 & 0.55 & 0.56 & 0.36 & 0.54 & 0.38 \\\\\nT7 & Easy  & 0.97 & 0.99 & 0.95 & 0.98 & 1.00 & 0.96 & 0.98 \\\\\nT8 & Easy  & 1.00 & 1.00 & 1.00 & 0.99 & 0.99 & 0.99 & 0.99 \\\\\nT9 & Easy  & 1.00 & 0.99 & 0.99 & 1.00 & 1.00 & 1.00 & 1.00 \\\\\n\\midrule\n\\multicolumn{2}{l}{Overall} & 0.780 & 0.797 & 0.789 & 0.746 & 0.765 & 0.780 & 0.779 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\textbf{Ceiling effects.} On the seven easy tasks (T0--T2, T4, T7--T9), all conditions achieve CAR $\\geq$ 0.89, leaving minimal room for auxiliary training to improve performance. The obstacle is spatially separated from the manipulation path in these tasks.\n\n\\textbf{Hard task patterns.} On Task~5 (Vanilla CAR 0.07), gradient-flow conditions (Random OCC 0.23, Full OCC 0.17) exceed Vanilla and Detach (0.05), but all values remain below 0.23. Cutoff@35K achieves the highest T3 CAR (0.55) but the lowest T5 CAR (0.04), which illustrates task-specific temporal sensitivity. Depth exhibits high cross-seed variance on hard tasks (T3 range: 0.20--0.78; T6 range: 0.16--0.84), consistent with auxiliary supervision increasing seed sensitivity.\n\n\\section{Training Details}\n\\label{app:training}\n\n\\begin{table}[h]\n\\centering\n\\caption{Training hyperparameters.}\n\\label{tab:hyperparams}\n\\begin{tabular}{ll}\n\\toprule\nParameter & Value \\\\\n\\midrule\nBase model & OpenVLA-7B~\\cite{kim2024openvla} \\\\\nFine-tuning recipe & OFT~\\cite{kim2025oft} \\\\\nVision encoders & DINOv2 (1024-d) + SigLIP (1152-d) \\\\\nPatch token dim. & 2176 (concatenated) \\\\\nLoRA rank / $\\alpha$ & 32 / 16 \\\\\nBatch size & 8 \\\\\nLearning rate & $5 \\times 10^{-4}$ (constant) \\\\\nTraining steps & 50{,}000 \\\\\nAux.\\ loss weight $\\lambda_0$ & 0.01 \\\\\nAux.\\ loss decay & $\\exp(-t / 50{,}000)$ \\\\\nBEV grid resolution & $64 \\times 64$ \\\\\nFocal loss $\\alpha$ / $\\gamma$ & 0.25 / 2.0 \\\\\nDepth loss & Smooth-L1 \\\\\nAux.\\ head parameters & 1.2M \\\\\nHardware & NVIDIA RTX PRO 6000 (98\\,GB) \\\\\nWall time per run & $\\sim$12.9 hours \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\textbf{Evaluation protocol.} Each condition uses 3+ seeds (Depth uses 4; Cutoff@15K, Cutoff@25K, and Reverse Cutoff use 2; Cutoff@45K uses 1) with 50 rollouts per task per seed (500 episodes per seed). A collision is registered when the L1 displacement of the obstacle's \\texttt{body\\_xpos} exceeds $10^{-3}$. Bootstrap 95\\% CIs are computed via 10{,}000 resamples (percentile method).\n\n\\textbf{Statistical tests.} Pairwise comparisons against Vanilla use two-tailed paired $t$-tests on per-seed mean CARs with Cohen's $d$ for effect size. With $n{=}3$ seeds, statistical power is limited; we report $p$-values and effect sizes for transparency. Detach OCC shows negligible difference from Vanilla ($d \\approx -0.04$, $p = 0.91$), confirming that gradient-detached auxiliary supervision does not harm collision avoidance; all gradient-flow conditions also show $p > 0.35$.\n\n\\textbf{CKA analysis.} Centered Kernel Alignment~\\cite{kornblith2019similarity} measures representational similarity between fine-tuned and pretrained encoder features. We extract patch token activations from the final layer of DINOv2 and SigLIP for 1{,}000 validation images, compute linear CKA per layer, and report the mean across layers. Higher CKA indicates better preservation of pretrained representations.\n\n\\textbf{Cutoff implementation.} Setting the auxiliary loss weight to zero at step $N$ does \\emph{not} disable the auxiliary head's forward pass. The head's BatchNorm2d layers continue computing batch statistics, which shift the encoder's internal activations without compensating gradient flow. The post-cutoff phase thus operates in Detach mode, not Vanilla mode. This is a property of the implementation (the head remains in the forward graph), not a deliberate design choice.\n\n\\section{Extended Analysis}\n\\label{app:extended}\n\nThe Detach+LN ablation replaces BatchNorm2d with LayerNorm in the auxiliary head while retaining \\texttt{stop\\_gradient}. Results (3 seeds) are reported in Table~\\ref{tab:main_results} and analyzed in Section~\\ref{sec:why_gradient}. Detach+LN (CAR 0.765) approaches the Vanilla baseline, consistent with the ordinal interaction pattern: removing gradient flow mitigates safety degradation regardless of normalization choice. The ordinal interaction (Section~\\ref{sec:mechanism}) shows that gradient flow is detrimental under both BN and LN, with BN amplifying the damage.\n\n\\textbf{Per-layer gradient analysis.} Figure~\\ref{fig:per_layer_combined} decomposes auxiliary gradient flow into two dimensions: amplitude (top row) and direction (bottom row). The amplitude heatmap (panels a--b) shows that Vanilla, Full OCC, and Random OCC maintain comparable action gradient norms across all layers (warm colors), while Detach gradient norms reduce to 1--13\\% of Vanilla uniformly across both encoders (dark), consistent with a global gradient flow disruption rather than layer-specific interference. The directional analysis (panels c--d) reveals encoder-specific alignment: DINOv2 conflict rates hover near 50\\% across all layers while SigLIP late layers (blocks 21--24) drop to 19--25\\%, which indicates cooperative gradient alignment in semantically rich layers. Both patterns are identical for Full OCC and Random OCC, which confirms they arise from architectural structure rather than label content. The aggregate conflict rates (Full OCC 44.1\\%, Random OCC 43.9\\%) fall below the 50\\% expected for random vectors because they reflect this mixture of two encoder-specific patterns.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/per_layer_combined.pdf}\n\\caption{Per-layer gradient analysis decomposed into amplitude and direction. \\textbf{Top (a--b):} Action gradient norm heatmap (log scale). Gradient-flow conditions (Vanilla, Full OCC, Random OCC) maintain comparable norms; Detach collapses to 1--13\\% of Vanilla across all layers. \\textbf{Bottom (c--d):} Gradient conflict rate between action and auxiliary losses. DINOv2 maintains $\\sim$50\\% conflict (near-orthogonal), while SigLIP late layers drop to 19--25\\% (cooperative alignment). Both amplitude and directional patterns are identical for Full OCC and Random OCC, which confirms architectural rather than label-dependent structure.}\n\\label{fig:per_layer_combined}\n\\label{fig:conflict_rate}\n\\label{fig:grad_norm_heatmap}\n\\end{figure}\n\n\\label{app:temporal}\n\\textbf{Dose-response: gradient flow duration vs.\\ CAR.} Figure~\\ref{fig:dose_response} plots CAR against the number of OCC gradient flow steps for the cutoff series (15K--45K, plus Detach at 0K and Full OCC at 50K). Cutoff@15K (2 seeds, CAR 0.782) clusters near Vanilla (0.780), while Cutoff@25K (2 seeds, 0.724) falls substantially below. Multi-seed conditions (Cutoff@35K and Full OCC) also cluster near the Vanilla baseline. Reverse Cutoff (late 15K) falls below the early-cutoff counterpart at the same gradient flow duration, consistent with the continuity hypothesis. The pattern suggests intermediate cutoff $\\approx$ Vanilla rather than a non-monotonic dose-response; the earlier single-seed Cutoff@15K result (0.804) was seed noise.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=0.75\\textwidth]{figures/dose_response.pdf}\n\\caption{Dose-response: CAR vs.\\ OCC gradient flow duration. Filled circles: early-cutoff conditions with all 3 seeds completed; open circles: conditions with $\\leq$2 seeds (counts annotated as $n$). Diamond ($\\diamond$): Reverse Cutoff (gradient flow restricted to the last 15K steps). Dashed line: Vanilla 3-seed mean; shaded band: $\\pm\\,$1\\,SE. The ``+0.2\\%'' annotation marks the Cutoff@15K--Vanilla gap. Intermediate cutoff conditions cluster near Vanilla, while Cutoff@25K and Reverse Cutoff fall substantially below.}\n\\label{fig:dose_response}\n\\end{figure}\n\n\\section{Additional Observations}\n\\label{app:additional}\n\n\\textbf{Per-task concentration.} Seven of ten tasks achieve CAR $\\geq$ 0.92 under Vanilla; overall CAR is dominated by three physically constrained tasks (T3, T5, T6; Section~\\ref{app:per_task}). Detach is systematically worst on these hard tasks (T3: 0.11, T5: 0.05), consistent with gradient collapse exacerbating degradation where obstacle proximity is tight.\n\n\\textbf{Egocentric depth matches Vanilla.} Depth (4 seeds) achieves CAR 0.780 $\\pm$ 0.039, identical to Vanilla, despite providing per-pixel geometric information. Three label types (structured BEV, random binary, egocentric depth) yield comparable CAR when gradient flow is maintained.\n\n\\textbf{Temporal dynamics (preliminary).} Cutoff@35K (3 seeds) achieves CAR 0.779, statistically indistinguishable from Vanilla ($\\Delta = -$0.1\\,pp), which confirms that 35K steps of gradient flow fully protects collision avoidance. Surprisingly, Cutoff@25K (0.724, 2 seeds) and Reverse Cutoff (0.718, 2 seeds) fall substantially \\emph{below} Vanilla. The most parsimonious explanation: setting the loss weight to zero retains the auxiliary head forward pass, so the post-cutoff period operates in Detach mode; BatchNorm interference acts on representations shaped by gradient flow, without gradient compensation. This is not withdrawal from gradient flow \\emph{per se}, but transition into an actively harmful regime. Third seeds are in progress; extended analysis in Section~\\ref{app:temporal}.\n\n\\section{Limitations}\n\\label{app:limitations}\n\nOur study uses a single architecture (OpenVLA-OFT with LoRA rank 32); full fine-tuning may alter the interaction between auxiliary heads and encoder optimization because all parameters update simultaneously, potentially changing the gradient flow dynamics we observe. All experiments are conducted in MuJoCo simulation (SafeLIBERO Level~I, 10 tasks); real-world deployment introduces additional sources of distributional shift that could interact differently with auxiliary head training dynamics. The benchmark contains only static obstacles; dynamic obstacle scenarios may induce time-varying distributions where auxiliary head dynamics behave differently. Our collision metric is binary (L1 displacement threshold $10^{-3}$), which does not capture collision severity or near-miss behavior; a continuous safety metric might reveal finer-grained differences between conditions. CKA measures linear representational similarity, which may miss nonlinear structure relevant to safety behavior. The ordinal interaction is based on $n{=}1$--$4$ seeds per cell; larger-scale replication would further strengthen conclusions. Cutoff conditions have 1--3 seeds, limiting temporal conclusions to preliminary observations.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 102,
+                  "oldLines": 7,
+                  "newStart": 102,
+                  "newLines": 7,
+                  "lines": [
+                    " \\section{Additional Observations}",
+                    " \\label{app:additional}",
+                    " ",
+                    "-\\textbf{Per-task concentration.} Seven of ten tasks achieve CAR $\\geq$ 0.92 under Vanilla; overall CAR is dominated by three physically constrained tasks (T3, T5, T6; Section~\\ref{app:per_task}). Detach is systematically worst on these hard tasks (T3: 0.11, T5: 0.05), consistent with gradient collapse exacerbating degradation where obstacle proximity is tight.",
+                    "+\\textbf{Per-task concentration.} Seven of ten tasks achieve CAR $\\geq$ 0.92 under Vanilla; overall CAR is dominated by three physically constrained tasks (T3, T5, T6; Section~\\ref{app:per_task}). Detach is systematically worst on these hard tasks (T3: 0.11, T5: 0.05), consistent with reduced gradient flow exacerbating degradation where obstacle proximity is tight.",
+                    " ",
+                    " \\textbf{Egocentric depth matches Vanilla.} Depth (4 seeds) achieves CAR 0.780 $\\pm$ 0.039, identical to Vanilla, despite providing per-pixel geometric information. Three label types (structured BEV, random binary, egocentric depth) yield comparable CAR when gradient flow is maintained.",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me check for remaining \"collapse\" occurrences in the figure caption (L86)."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1bea17aa-9397-4e45-8f33-a2c3c974b602",
+            "uuid": "48576ccf-8807-485a-9360-94c4157baff2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EYF3xbF5mThhVUvVnQJJxn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 825,
+                "cache_read_input_tokens": 27599,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 825
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ANqzAudSXomRpY6J3i8192",
+              "name": "Grep",
+              "input": {
+                "pattern": "collapse|Collapse|COLLAPSE",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/appendix.tex",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1bea17aa-9397-4e45-8f33-a2c3c974b602",
+            "uuid": "9611e218-2505-4be3-aaa2-4fc53c8398f9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EYF3xbF5mThhVUvVnQJJxn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 825,
+                "cache_read_input_tokens": 27599,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 825
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-26T15:12:12.252Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ANqzAudSXomRpY6J3i8192",
+              "type": "tool_result",
+              "content": "86:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1bea17aa-9397-4e45-8f33-a2c3c974b602",
+            "uuid": "59548a83-201b-4993-9e1a-e9f81b7e2e03",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "86:[Omitted long matching line]",
+              "numLines": 1
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PS7oohEJvtrdSZRzZ9gWPE",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/appendix.tex",
+                "offset": 83,
+                "limit": 8
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1bea17aa-9397-4e45-8f33-a2c3c974b602",
+            "uuid": "dd501f36-1093-47d5-9038-85baa0f06f40",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NmJfLPiri82DAJEKofEEe5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 170,
+                "cache_read_input_tokens": 28424,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 170
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-26T15:12:15.030Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PS7oohEJvtrdSZRzZ9gWPE",
+              "type": "tool_result",
+              "content": "83\t\\begin{figure}[h]\n84\t\\centering\n85\t\\includegraphics[width=\\textwidth]{figures/per_layer_combined.pdf}\n86\t\\caption{Per-layer gradient analysis decomposed into amplitude and direction. \\textbf{Top (a--b):} Action gradient norm heatmap (log scale). Gradient-flow conditions (Vanilla, Full OCC, Random OCC) maintain comparable norms; Detach collapses to 1--13\\% of Vanilla across all layers. \\textbf{Bottom (c--d):} Gradient conflict rate between action and auxiliary losses. DINOv2 maintains $\\sim$50\\% conflict (near-orthogonal), while SigLIP late layers drop to 19--25\\% (cooperative alignment). Both amplitude and directional patterns are identical for Full OCC and Random OCC, which confirms architectural rather than label-dependent structure.}\n87\t\\label{fig:per_layer_combined}\n88\t\\label{fig:conflict_rate}\n89\t\\label{fig:grad_norm_heatmap}\n90\t\\end{figure}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1bea17aa-9397-4e45-8f33-a2c3c974b602",
+            "uuid": "477ecf83-8f5f-41d8-a12b-698f55b4b452",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/appendix.tex",
+                "content": "\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/per_layer_combined.pdf}\n\\caption{Per-layer gradient analysis decomposed into amplitude and direction. \\textbf{Top (a--b):} Action gradient norm heatmap (log scale). Gradient-flow conditions (Vanilla, Full OCC, Random OCC) maintain comparable norms; Detach collapses to 1--13\\% of Vanilla across all layers. \\textbf{Bottom (c--d):} Gradient conflict rate between action and auxiliary losses. DINOv2 maintains $\\sim$50\\% conflict (near-orthogonal), while SigLIP late layers drop to 19--25\\% (cooperative alignment). Both amplitude and directional patterns are identical for Full OCC and Random OCC, which confirms architectural rather than label-dependent structure.}\n\\label{fig:per_layer_combined}\n\\label{fig:conflict_rate}\n\\label{fig:grad_norm_heatmap}\n\\end{figure}",
+                "numLines": 8,
+                "startLine": 83,
+                "totalLines": 115
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AY8Bq9F18kKz91AafqG31H",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/appendix.tex",
+                "old_string": "Detach collapses to 1--13\\% of Vanilla across all layers.",
+                "new_string": "Detach gradient norms reduce to 1--13\\% of Vanilla across all layers."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1bea17aa-9397-4e45-8f33-a2c3c974b602",
+            "uuid": "15ae5e4c-ab6e-40d9-bc38-1fcc8745e162",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0145jUQdB7r9hSgFadEery55",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 396,
+                "cache_read_input_tokens": 28594,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 396
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-26T15:12:23.449Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AY8Bq9F18kKz91AafqG31H",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1bea17aa-9397-4e45-8f33-a2c3c974b602",
+            "uuid": "6ee96801-285b-4bb8-8886-c8d5b5347c38",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/appendix.tex",
+              "oldString": "Detach collapses to 1--13\\% of Vanilla across all layers.",
+              "newString": "Detach gradient norms reduce to 1--13\\% of Vanilla across all layers.",
+              "originalFile": "\n\\section{Extended Per-Task Results}\n\\label{app:per_task}\n\nTable~\\ref{tab:per_task} reports per-task mean CAR across seeds for each condition. Seven tasks achieve CAR $\\geq$ 0.92 under Vanilla, while three physically constrained tasks (T3, T5, T6) fall below 0.58. The overall CAR differences reported in the main text are dominated by these three hard tasks, which average 0.342 compared to 0.968 for the seven easy tasks.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task mean CAR across seeds (50 rollouts per seed, v1 code). All conditions use 3 seeds except Depth (4). Detach+LN per-task uses 2 seeds (s1, s2; s0 lacks per-task breakdown). Main-text Table~\\ref{tab:main_results} uses v2 code for factorial cell CAR.}\n\\label{tab:per_task}\n\\begin{tabular}{clccccccc}\n\\toprule\n & & \\multicolumn{7}{c}{Mean CAR by Condition} \\\\\n\\cmidrule(lr){3-9}\nTask & Diff. & Vanilla & Full OCC & Random & Detach & Det+LN & Depth & Cut@35K \\\\\n\\midrule\nT0 & Easy  & 0.98 & 0.98 & 0.99 & 0.97 & 0.97 & 0.99 & 0.98 \\\\\nT1 & Easy  & 0.92 & 0.93 & 0.99 & 0.89 & 0.78 & 0.93 & 0.95 \\\\\nT2 & Easy  & 0.92 & 0.93 & 0.94 & 0.93 & 0.90 & 0.90 & 0.94 \\\\\nT3 & Hard  & 0.38 & 0.37 & 0.31 & \\textbf{0.11} & 0.44 & 0.50 & 0.55 \\\\\nT4 & Easy  & 0.98 & 0.99 & 0.95 & 0.98 & 0.96 & 0.92 & 0.97 \\\\\nT5 & Hard  & 0.07 & 0.17 & 0.23 & \\textbf{0.05} & 0.12 & 0.08 & 0.04 \\\\\nT6 & Hard  & 0.57 & 0.61 & 0.55 & 0.56 & 0.36 & 0.54 & 0.38 \\\\\nT7 & Easy  & 0.97 & 0.99 & 0.95 & 0.98 & 1.00 & 0.96 & 0.98 \\\\\nT8 & Easy  & 1.00 & 1.00 & 1.00 & 0.99 & 0.99 & 0.99 & 0.99 \\\\\nT9 & Easy  & 1.00 & 0.99 & 0.99 & 1.00 & 1.00 & 1.00 & 1.00 \\\\\n\\midrule\n\\multicolumn{2}{l}{Overall} & 0.780 & 0.797 & 0.789 & 0.746 & 0.765 & 0.780 & 0.779 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\textbf{Ceiling effects.} On the seven easy tasks (T0--T2, T4, T7--T9), all conditions achieve CAR $\\geq$ 0.89, leaving minimal room for auxiliary training to improve performance. The obstacle is spatially separated from the manipulation path in these tasks.\n\n\\textbf{Hard task patterns.} On Task~5 (Vanilla CAR 0.07), gradient-flow conditions (Random OCC 0.23, Full OCC 0.17) exceed Vanilla and Detach (0.05), but all values remain below 0.23. Cutoff@35K achieves the highest T3 CAR (0.55) but the lowest T5 CAR (0.04), which illustrates task-specific temporal sensitivity. Depth exhibits high cross-seed variance on hard tasks (T3 range: 0.20--0.78; T6 range: 0.16--0.84), consistent with auxiliary supervision increasing seed sensitivity.\n\n\\section{Training Details}\n\\label{app:training}\n\n\\begin{table}[h]\n\\centering\n\\caption{Training hyperparameters.}\n\\label{tab:hyperparams}\n\\begin{tabular}{ll}\n\\toprule\nParameter & Value \\\\\n\\midrule\nBase model & OpenVLA-7B~\\cite{kim2024openvla} \\\\\nFine-tuning recipe & OFT~\\cite{kim2025oft} \\\\\nVision encoders & DINOv2 (1024-d) + SigLIP (1152-d) \\\\\nPatch token dim. & 2176 (concatenated) \\\\\nLoRA rank / $\\alpha$ & 32 / 16 \\\\\nBatch size & 8 \\\\\nLearning rate & $5 \\times 10^{-4}$ (constant) \\\\\nTraining steps & 50{,}000 \\\\\nAux.\\ loss weight $\\lambda_0$ & 0.01 \\\\\nAux.\\ loss decay & $\\exp(-t / 50{,}000)$ \\\\\nBEV grid resolution & $64 \\times 64$ \\\\\nFocal loss $\\alpha$ / $\\gamma$ & 0.25 / 2.0 \\\\\nDepth loss & Smooth-L1 \\\\\nAux.\\ head parameters & 1.2M \\\\\nHardware & NVIDIA RTX PRO 6000 (98\\,GB) \\\\\nWall time per run & $\\sim$12.9 hours \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\textbf{Evaluation protocol.} Each condition uses 3+ seeds (Depth uses 4; Cutoff@15K, Cutoff@25K, and Reverse Cutoff use 2; Cutoff@45K uses 1) with 50 rollouts per task per seed (500 episodes per seed). A collision is registered when the L1 displacement of the obstacle's \\texttt{body\\_xpos} exceeds $10^{-3}$. Bootstrap 95\\% CIs are computed via 10{,}000 resamples (percentile method).\n\n\\textbf{Statistical tests.} Pairwise comparisons against Vanilla use two-tailed paired $t$-tests on per-seed mean CARs with Cohen's $d$ for effect size. With $n{=}3$ seeds, statistical power is limited; we report $p$-values and effect sizes for transparency. Detach OCC shows negligible difference from Vanilla ($d \\approx -0.04$, $p = 0.91$), confirming that gradient-detached auxiliary supervision does not harm collision avoidance; all gradient-flow conditions also show $p > 0.35$.\n\n\\textbf{CKA analysis.} Centered Kernel Alignment~\\cite{kornblith2019similarity} measures representational similarity between fine-tuned and pretrained encoder features. We extract patch token activations from the final layer of DINOv2 and SigLIP for 1{,}000 validation images, compute linear CKA per layer, and report the mean across layers. Higher CKA indicates better preservation of pretrained representations.\n\n\\textbf{Cutoff implementation.} Setting the auxiliary loss weight to zero at step $N$ does \\emph{not} disable the auxiliary head's forward pass. The head's BatchNorm2d layers continue computing batch statistics, which shift the encoder's internal activations without compensating gradient flow. The post-cutoff phase thus operates in Detach mode, not Vanilla mode. This is a property of the implementation (the head remains in the forward graph), not a deliberate design choice.\n\n\\section{Extended Analysis}\n\\label{app:extended}\n\nThe Detach+LN ablation replaces BatchNorm2d with LayerNorm in the auxiliary head while retaining \\texttt{stop\\_gradient}. Results (3 seeds) are reported in Table~\\ref{tab:main_results} and analyzed in Section~\\ref{sec:why_gradient}. Detach+LN (CAR 0.765) approaches the Vanilla baseline, consistent with the ordinal interaction pattern: removing gradient flow mitigates safety degradation regardless of normalization choice. The ordinal interaction (Section~\\ref{sec:mechanism}) shows that gradient flow is detrimental under both BN and LN, with BN amplifying the damage.\n\n\\textbf{Per-layer gradient analysis.} Figure~\\ref{fig:per_layer_combined} decomposes auxiliary gradient flow into two dimensions: amplitude (top row) and direction (bottom row). The amplitude heatmap (panels a--b) shows that Vanilla, Full OCC, and Random OCC maintain comparable action gradient norms across all layers (warm colors), while Detach gradient norms reduce to 1--13\\% of Vanilla uniformly across both encoders (dark), consistent with a global gradient flow disruption rather than layer-specific interference. The directional analysis (panels c--d) reveals encoder-specific alignment: DINOv2 conflict rates hover near 50\\% across all layers while SigLIP late layers (blocks 21--24) drop to 19--25\\%, which indicates cooperative gradient alignment in semantically rich layers. Both patterns are identical for Full OCC and Random OCC, which confirms they arise from architectural structure rather than label content. The aggregate conflict rates (Full OCC 44.1\\%, Random OCC 43.9\\%) fall below the 50\\% expected for random vectors because they reflect this mixture of two encoder-specific patterns.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/per_layer_combined.pdf}\n\\caption{Per-layer gradient analysis decomposed into amplitude and direction. \\textbf{Top (a--b):} Action gradient norm heatmap (log scale). Gradient-flow conditions (Vanilla, Full OCC, Random OCC) maintain comparable norms; Detach collapses to 1--13\\% of Vanilla across all layers. \\textbf{Bottom (c--d):} Gradient conflict rate between action and auxiliary losses. DINOv2 maintains $\\sim$50\\% conflict (near-orthogonal), while SigLIP late layers drop to 19--25\\% (cooperative alignment). Both amplitude and directional patterns are identical for Full OCC and Random OCC, which confirms architectural rather than label-dependent structure.}\n\\label{fig:per_layer_combined}\n\\label{fig:conflict_rate}\n\\label{fig:grad_norm_heatmap}\n\\end{figure}\n\n\\label{app:temporal}\n\\textbf{Dose-response: gradient flow duration vs.\\ CAR.} Figure~\\ref{fig:dose_response} plots CAR against the number of OCC gradient flow steps for the cutoff series (15K--45K, plus Detach at 0K and Full OCC at 50K). Cutoff@15K (2 seeds, CAR 0.782) clusters near Vanilla (0.780), while Cutoff@25K (2 seeds, 0.724) falls substantially below. Multi-seed conditions (Cutoff@35K and Full OCC) also cluster near the Vanilla baseline. Reverse Cutoff (late 15K) falls below the early-cutoff counterpart at the same gradient flow duration, consistent with the continuity hypothesis. The pattern suggests intermediate cutoff $\\approx$ Vanilla rather than a non-monotonic dose-response; the earlier single-seed Cutoff@15K result (0.804) was seed noise.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=0.75\\textwidth]{figures/dose_response.pdf}\n\\caption{Dose-response: CAR vs.\\ OCC gradient flow duration. Filled circles: early-cutoff conditions with all 3 seeds completed; open circles: conditions with $\\leq$2 seeds (counts annotated as $n$). Diamond ($\\diamond$): Reverse Cutoff (gradient flow restricted to the last 15K steps). Dashed line: Vanilla 3-seed mean; shaded band: $\\pm\\,$1\\,SE. The ``+0.2\\%'' annotation marks the Cutoff@15K--Vanilla gap. Intermediate cutoff conditions cluster near Vanilla, while Cutoff@25K and Reverse Cutoff fall substantially below.}\n\\label{fig:dose_response}\n\\end{figure}\n\n\\section{Additional Observations}\n\\label{app:additional}\n\n\\textbf{Per-task concentration.} Seven of ten tasks achieve CAR $\\geq$ 0.92 under Vanilla; overall CAR is dominated by three physically constrained tasks (T3, T5, T6; Section~\\ref{app:per_task}). Detach is systematically worst on these hard tasks (T3: 0.11, T5: 0.05), consistent with reduced gradient flow exacerbating degradation where obstacle proximity is tight.\n\n\\textbf{Egocentric depth matches Vanilla.} Depth (4 seeds) achieves CAR 0.780 $\\pm$ 0.039, identical to Vanilla, despite providing per-pixel geometric information. Three label types (structured BEV, random binary, egocentric depth) yield comparable CAR when gradient flow is maintained.\n\n\\textbf{Temporal dynamics (preliminary).} Cutoff@35K (3 seeds) achieves CAR 0.779, statistically indistinguishable from Vanilla ($\\Delta = -$0.1\\,pp), which confirms that 35K steps of gradient flow fully protects collision avoidance. Surprisingly, Cutoff@25K (0.724, 2 seeds) and Reverse Cutoff (0.718, 2 seeds) fall substantially \\emph{below} Vanilla. The most parsimonious explanation: setting the loss weight to zero retains the auxiliary head forward pass, so the post-cutoff period operates in Detach mode; BatchNorm interference acts on representations shaped by gradient flow, without gradient compensation. This is not withdrawal from gradient flow \\emph{per se}, but transition into an actively harmful regime. Third seeds are in progress; extended analysis in Section~\\ref{app:temporal}.\n\n\\section{Limitations}\n\\label{app:limitations}\n\nOur study uses a single architecture (OpenVLA-OFT with LoRA rank 32); full fine-tuning may alter the interaction between auxiliary heads and encoder optimization because all parameters update simultaneously, potentially changing the gradient flow dynamics we observe. All experiments are conducted in MuJoCo simulation (SafeLIBERO Level~I, 10 tasks); real-world deployment introduces additional sources of distributional shift that could interact differently with auxiliary head training dynamics. The benchmark contains only static obstacles; dynamic obstacle scenarios may induce time-varying distributions where auxiliary head dynamics behave differently. Our collision metric is binary (L1 displacement threshold $10^{-3}$), which does not capture collision severity or near-miss behavior; a continuous safety metric might reveal finer-grained differences between conditions. CKA measures linear representational similarity, which may miss nonlinear structure relevant to safety behavior. The ordinal interaction is based on $n{=}1$--$4$ seeds per cell; larger-scale replication would further strengthen conclusions. Cutoff conditions have 1--3 seeds, limiting temporal conclusions to preliminary observations.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 83,
+                  "oldLines": 7,
+                  "newStart": 83,
+                  "newLines": 7,
+                  "lines": [
+                    " \\begin{figure}[h]",
+                    " \\centering",
+                    " \\includegraphics[width=\\textwidth]{figures/per_layer_combined.pdf}",
+                    "-\\caption{Per-layer gradient analysis decomposed into amplitude and direction. \\textbf{Top (a--b):} Action gradient norm heatmap (log scale). Gradient-flow conditions (Vanilla, Full OCC, Random OCC) maintain comparable norms; Detach collapses to 1--13\\% of Vanilla across all layers. \\textbf{Bottom (c--d):} Gradient conflict rate between action and auxiliary losses. DINOv2 maintains $\\sim$50\\% conflict (near-orthogonal), while SigLIP late layers drop to 19--25\\% (cooperative alignment). Both amplitude and directional patterns are identical for Full OCC and Random OCC, which confirms architectural rather than label-dependent structure.}",
+                    "+\\caption{Per-layer gradient analysis decomposed into amplitude and direction. \\textbf{Top (a--b):} Action gradient norm heatmap (log scale). Gradient-flow conditions (Vanilla, Full OCC, Random OCC) maintain comparable norms; Detach gradient norms reduce to 1--13\\% of Vanilla across all layers. \\textbf{Bottom (c--d):} Gradient conflict rate between action and auxiliary losses. DINOv2 maintains $\\sim$50\\% conflict (near-orthogonal), while SigLIP late layers drop to 19--25\\% (cooperative alignment). Both amplitude and directional patterns are identical for Full OCC and Random OCC, which confirms architectural rather than label-dependent structure.}",
+                    " \\label{fig:per_layer_combined}",
+                    " \\label{fig:conflict_rate}",
+                    " \\label{fig:grad_norm_heatmap}"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 处修改完成：\n\n1. **L70**: `p=0.031, d=-3.90` significance claim → v2 数据一致的表述 (`d ≈ -0.04, p = 0.91`)\n2. **L81**: \"Detach collapses to\" → \"Detach gradient norms reduce to\"\n3. **L86** (caption): \"Detach collapses to\" → \"Detach gradient norms reduce to\"\n4. **L105**: \"gradient collapse exacerbating\" → \"reduced gradient flow exacerbating\"\n\n无残余 \"collapse\" 出现。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1bea17aa-9397-4e45-8f33-a2c3c974b602",
+            "uuid": "9cb37598-5f9c-413e-b7cf-e65c0e6f042c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QLdHDYJdqkb1wMhzKwcdW7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 234,
+                "cache_read_input_tokens": 28990,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 234
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 处修改完成：\n\n1. **L70**: `p=0.031, d=-3.90` significance claim → v2 数据一致的表述 (`d ≈ -0.04, p = 0.91`)\n2. **L81**: \"Detach collapses to\" → \"Detach gradient norms reduce to\"\n3. **L86** (caption): \"Detach collapses to\" → \"Detach gradient norms reduce to\"\n4. **L105**: \"gradient collapse exacerbating\" → \"reduced gradient flow exacerbating\"\n\n无残余 \"collapse\" 出现。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 36307,
+            "duration_api_ms": 37244,
+            "num_turns": 8,
+            "stop_reason": "end_turn",
+            "session_id": "1bea17aa-9397-4e45-8f33-a2c3c974b602",
+            "total_cost_usd": 0.21698725000000002,
+            "usage": {
+              "input_tokens": 8,
+              "cache_creation_input_tokens": 17383,
+              "cache_read_input_tokens": 148819,
+              "output_tokens": 1299,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 17383,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 157,
+                  "cache_read_input_tokens": 28990,
+                  "cache_creation_input_tokens": 234,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 234
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1324,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0014190000000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 8,
+                "outputTokens": 1299,
+                "cacheReadInputTokens": 148819,
+                "cacheCreationInputTokens": 17383,
+                "webSearchRequests": 0,
+                "costUSD": 0.21556825000000002,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "08ce2cb6-e9e9-4516-8522-b120299e581e"
+          },
+          "id": "event-000022"
+        }
+      ],
+      "message_count": 22
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-fix-appendix-v1-claim-and-collapse.md"
+}

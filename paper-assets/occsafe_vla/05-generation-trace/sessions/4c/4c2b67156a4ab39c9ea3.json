@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c2b67156a4ab39c9ea3",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops detach ln s3 eval launch",
+  "task_key": "worker_ops_detach-ln-s3-eval-launch_20260526T230813",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_detach-ln-s3-eval-launch_20260526T230813_result.json",
+    "occurrence": 1,
+    "bytes": 1281,
+    "sha256": "f046437e14091e4ff947db157a563df4359b35e335c448df0deddd44d9117a78"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 均已成功启动并在正常运行：\n\n| 任务 | GPU | PID | 状态 |\n|------|-----|-----|------|\n| detach_ln_s3_eval | cuda:2 (57%, 16.8GB) | 565722 | T0: 24% (12/50) |\n| cutoff_25k_s1_v2_eval | cuda:3 (43%, 16.8GB) | 567676 | T0: 8% (4/50) |\n\n**使用的脚本**：`vla-scripts/evaluate_safelibero.py`\n\n**完整命令**：\n```bash\n# detach_ln_s3_eval (cuda:2)\nCUDA_VISIBLE_DEVICES=2 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=2 python vla-scripts/evaluate_safelibero.py \\\n  --pretrained_checkpoint /root/autodl-tmp/checkpoints/detach_ln_s3/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--detach_ln_s3--50000_chkpt \\\n  --num_rollouts 50 --seed 42 --task_suite_name libero_spatial\n\n# cutoff_25k_s1_v2_eval (cuda:3)\nCUDA_VISIBLE_DEVICES=3 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=3 python vla-scripts/evaluate_safelibero.py \\\n  --pretrained_checkpoint /root/autodl-tmp/checkpoints/cutoff_25k_s1_v2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--cutoff_25k_s1_v2--50000_chkpt \\\n  --num_rollouts 50 --seed 42 --task_suite_name libero_spatial\n```\n\n日志位置：`/tmp/detach_ln_s3_eval.log`、`/tmp/cutoff_25k_s1_v2_eval.log`。westd-34685 四张卡现在全部在跑 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-detach-ln-s3-eval-launch.md"
+}

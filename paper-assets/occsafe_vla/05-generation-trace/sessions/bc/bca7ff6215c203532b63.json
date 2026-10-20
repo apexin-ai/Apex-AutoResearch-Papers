@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bca7ff6215c203532b63",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_5_1779857567.md",
+  "task_key": "loop_5_1779857567",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1779857567.md",
+    "occurrence": 1,
+    "bytes": 5178,
+    "sha256": "6ae0e64f08d5195f37d1e046e78f6e1ada1ef144b9d75c19fdcbee61d39a1cc3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-27T04:41:29+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-10894:cuda:0-3 + westd-34685:cuda:0-3，其他一律不用\n- C002：cutoff 系列实验禁止 resume，必须 from scratch（M052 教训，batch_idx bug）\n- WANDB_MODE=disabled（本项目训练全部关闭 W&B，cron 靠日志 + 进程监控）\n- conda env 名为 `occsafe`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`\n- CoRL 2026：Abstract 已提交，Paper deadline May 29（~2 天）\n- v1/v2 代码不等价——Full OCC BN 同种子差 8.6pp CAR，跨版本数据不可直接比较，不要混入同一 ANOVA\n- Resume 实验 eval 时取 local step=30000 checkpoint（= 全局 50K steps）\n- `read_registry(filters={\"status\": \"RUNNING\"})` 工具有 bug 返回空——用 `Grep` 搜 registry.yaml 原文或 `reconcile_crons` 确认\n\n### 2. 🖥️ 基础设施快照\n- **westd-34685**：工作目录 `/root/occsafe_vla/openvla-oft`，Python `/root/miniconda3/envs/occsafe/bin/python`，磁盘 2% used (819GB 可用)\n- **westd-10894**：同上结构，磁盘 50% used (425GB 可用)\n- 模型：`/root/autodl-tmp/models/openvla-7b`\n- 数据：`/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops`\n- OCC 数据：`/root/occsafe_vla/occ_data`\n- Checkpoints：`/root/autodl-tmp/checkpoints/{exp_id}/`\n- 日志：`~/runs/occsafe_vla/{exp_id}.log`（34685 的 vanilla/detach_ln_s3 日志在 `/tmp/{exp_id}.log`）\n- 活跃进程（reconcile_crons 确认 all running）：\n  - reverse_cutoff_s2_v2: PID 170605, 10894:cuda:0, ETA ~May 26 23:00\n  - full_occ_ln_v2_s0: PID 341771, 10894:cuda:1, ETA ~May 27 01:15\n  - full_occ_ln_v2_s1: PID 341987, 10894:cuda:2, ETA ~May 27 01:15\n  - detach_ln_v2_s0: PID 342341, 10894:cuda:3, ETA ~May 27 01:15\n  - vanilla_v2_s1: PID 419107, 34685:cuda:0, ETA ~May 26 23:30\n  - vanilla_v2_s2: PID 419342, 34685:cuda:1, ETA ~May 26 23:30\n  - detach_ln_s3: PID 419641, 34685:cuda:2, ETA ~May 26 23:30\n  - cutoff_25k_s1_v2: PID 453581, 34685:cuda:3, ETA ~May 27 00:00\n\n### 3. 📊 当前状态\nSession-start 完成：reconcile_crons 确认 8/8 GPU 在跑，registry 与 ROADMAP 一致。已向 Director 汇报状态并提议启动 Paper Agent 写不依赖结果的章节（等回复中）。\n\n**RUNNING（8）：** 见上方进程列表。\n**PREPARING（1）：** detach_ln_v2_s1（Cell 4 v2 seed 43，等 10894:cuda:0 空出 ~23:00）。\n**Workers running（2）：** worker_monitor_training-progress-check + worker_prepare_eval-commands。\n**等待：** Director 回复是否批准启动 Paper Agent。\n\n**v2 Factorial 数据进度：**\n- Cell 1 (Full OCC BN): n=3 done, CAR=0.725±0.064 ✅\n- Cell 2 (Full OCC LN): n=1 done (s3=0.740), s0+s1 training\n- Cell 3 (Detach BN): n=4 done, CAR=0.767±0.024 ✅\n- Cell 4 (Detach LN): 0 eval done, s3+s0 training (s3 confirmed v2 code)\n- Vanilla: n=1 done (s0=0.768), s1+s2 training\n\n### 4. 📋 待办（条件触发式）\n- 34685 训练完成（~May 26 23:00-00:00）→ cron 回调 → spawn 4 个 eval Worker（vanilla_v2_s1, vanilla_v2_s2, detach_ln_s3, cutoff_25k_s1_v2），50-rollout SafeLIBERO eval\n- reverse_cutoff_s2_v2 完成（~May 26 23:00）→ eval + 立即启动 detach_ln_v2_s1 on 10894:cuda:0\n- 10894:1,2,3 训练完成（~May 27 01:15）→ spawn 3 个 eval Worker（full_occ_ln_v2_s0, full_occ_ln_v2_s1, detach_ln_v2_s0）\n- detach_ln_v2_s1 完成（~May 27 12:00-13:00）→ eval → Cell 4 v2 最后一个数据点\n- 全 v2 factorial 数据齐全（~May 27 13:00）→ 确认性 2×2 ANOVA → framing 最终决策（Plan A crossover vs Plan B ordinal）\n- Director 批准 Paper Agent → 启动 Intro/Method/RW 写作（不依赖最终 ANOVA 结果）\n- ANOVA 结果出来 → Results/Discussion/Abstract 写作 → May 29 提交\n\n### 5. 🎯 战略上下文\n- **核心问题**：BN×gradient flow 交互效应是否在 v2 代码下存活？D050 发现所有 BN=v1 代码、所有 LN=v2 代码，交互效应可能是代码版本混淆。D051 用 v2 代码重建全部 4 格。Partial ANOVA（Cell 1 n=3 vs Cell 3 n=4）显示 ordinal interaction（d=-0.93, p=0.279，方向明确但 underpowered）。Plan B（ordinal interaction）已由 D058 确认。\n- **最硬 claim**：Cell 3 (Detach BN) vs Vanilla d=-0.06, p=0.91 → 零差异。这意味着\"detach gradient + BN ≈ Vanilla\"，即不让梯度流过 OCC head 就能避免性能损失。\n- **Cell 1 s1=0.654 可能是 outlier**（其他两个 seed 0.746/0.776），若排除则 gradient 效应大幅缩小。全 v2 ANOVA 需要更多数据点来确认。\n- **易错点**：\n  1. `read_registry` 的 RUNNING filter 返回空是工具 bug——用 Grep registry.yaml 或 reconcile_crons\n  2. detach_ln_s3 虽无 `_v2` 后缀，Reviewer 确认 34685 repo 是 v2 代码，可作 Cell 4 v2 数据\n  3. 34685 的 vanilla/detach_ln_s3 日志在 `/tmp/` 不在 `~/runs/`\n  4. full_occ_ln_v2_s0/s1 和 detach_ln_v2_s0 都有 `previous_failure`（retry_count=1），当前 run 是第二次尝试，别被 registry 里的 failure_reason 误导\n  5. 时间极紧：May 29 paper deadline，从全数据齐全（~May 27 13:00）到提交只有 ~1.5 天\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1779857567.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e081af87345f63d09d67",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ssh 34685 disk prevention urgent",
+  "task_key": "worker_ssh_34685_disk_prevention_urgent_20260525T213159",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_34685_disk_prevention_urgent_20260525T213159_result.json",
+    "occurrence": 1,
+    "bytes": 299,
+    "sha256": "e57f76ae99874b6737280d3ebcc559aef454322550f7bb2fd7544cd9486182d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 34685 磁盘预防\n\n清理前: 87% (46G free)\n清理后: 54% (165G free)\n删除: cutoff_15k_s2_v2 (45G) + cutoff_25k_s2_v3 (45G) + 2 个旧子 checkpoint (~30G)\nDaemon: PID 19472, 每 2h 执行，.bashrc 自启动 ✅\nD051 50K checkpoint 存储安全: ✅ (需 60G, 有 165G)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-34685-disk-prevention-urgent.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46027fa8d808d7629469",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis check s1 checkpoints",
+  "task_key": "worker_analysis_check_s1_checkpoints_20260525T074534",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_check_s1_checkpoints_20260525T074534_result.json",
+    "occurrence": 1,
+    "bytes": 1503,
+    "sha256": "8d70e015947147133121e42b0fb6b632e30b35f1537e39c284536a08d459a9ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n### S1 Checkpoint 可用性\n\n| Checkpoint | 状态 | 位置 | 详情 |\n|---|---|---|---|\n| **cutoff_15k_s1** | ✅ 可用 | 34685: 15G (完整 merged model + lora_adapter)<br>10894: 463M (仅 lora_adapter) | 34685 上有完整的 50000_chkpt，含 4 个 safetensors shard + action_head/occ_head/proprio_projector |\n| **cutoff_25k_s1** | ❌ 丢失 | 两台服务器均不存在 | |\n| **cutoff_s1** (50k) | ❌ 丢失 | 两台服务器均不存在 | |\n| **cutoff_45k_s1** | ❌ 不可用 | 34685: 目录存在但仅含 dataset_statistics.json (4K)，无模型文件 | 旧训练未完成/失败 |\n| **reverse_cutoff_s0** | ❌ 丢失 | 两台服务器均不存在 | |\n| **reverse_cutoff_s1** | ❌ 丢失 | 两台服务器均不存在 | |\n\n**结论：6 个目标 checkpoint 中，仅 cutoff_15k_s1 可用（在 34685 上）。**\n\n### 正在训练的实验 (34685) — 中间 checkpoint 状态\n\n4 个实验均已产生 `10000_chkpt` 中间 checkpoint：\n\n| 实验 | 中间 checkpoint | 目录大小 |\n|---|---|---|\n| cutoff_25k_s2_v3 | ✅ 有 10000_chkpt | — |\n| reverse_cutoff_s2_v3 | ✅ 有 10000_chkpt | — |\n| cutoff_45k_s1_v3 | ✅ 有 10000_chkpt | 15G |\n| cutoff_15k_s2_v2 | ✅ 有 10000_chkpt | — |\n\n注意 `cutoff_45k_s1_v3` 总共 15G，说明其 10000_chkpt 已保存了完整模型。该实验完成后将填补 cutoff_45k_s1 的空缺。\n\n### 磁盘\n- 34685: `/root/autodl-tmp/` 350G 总量，已用 216G，剩余 135G (62%)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-check-s1-checkpoints.md"
+}

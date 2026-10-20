@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "773ea5deb09ecd92912f",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis figure prep and consistency",
+  "task_key": "worker_analysis_figure_prep_and_consistency_20260525T082701",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_figure_prep_and_consistency_20260525T082701_result.json",
+    "occurrence": 1,
+    "bytes": 3907,
+    "sha256": "5fc8d4d6e5acd407851769d09c2b523bea33cec79832f7a2a01573f815ed5105"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在汇总三部分结果。\n\n---\n\n## Part 1: 数据一致性检查\n\n**结论：无风险。** 两台服务器上不存在 factorial 2×2 bar chart 脚本或任何包含硬编码 CAR 值的图表生成代码。搜索范围：\n- `find` 全路径搜索 `*factorial*`, `*2x2*`, `*bar*` → 无匹配\n- `grep \"0.797\"` 在所有 `.py` 分析脚本中 → 无匹配\n- 无 LaTeX 文件存在\n\n现有的 CKA/gradient dose-response 脚本引用 `full_occ_retrain_s0` checkpoint，但仅用于机制分析（CKA similarity、gradient norms），不涉及 CAR 值。**factorial 2×2 图表尚未生成。**\n\n后续创建时须确保使用原始 3-seed 数据（Full OCC BN mean=0.797），而非 retrain_s0 数据。\n\n---\n\n## Part 2: Dose-Response 图表模板\n\n已创建并生成：\n- **脚本**: `/root/autodl-tmp/analysis/dose_response_figure.py`\n- **输出**: `/root/autodl-tmp/analysis/dose_response_car.pdf` + `.png`\n- **副本**: `/root/occsafe_vla/artifacts/dose_response_car.png`\n\n特性：\n- 主曲线：Forward cutoff (15K→25K→35K→45K→50K/Full) 含 SE error band\n- Reverse cutoff 单独标注为菱形（◇），偏移放置避免混入主趋势线\n- Vanilla baseline 水平虚线\n- 实心圆 = 3-seed 完成，空心圆 = 待补 seed（标 `n=2` 或 `n=1`）\n- 15K→Vanilla gap 标注 `+0.2%`\n- 底部注释 \"Open markers: 3rd seed pending\"\n- 300 DPI PDF + PNG，DejaVu Sans 字体，色盲友好配色\n\n---\n\n## Part 3: 现有 Figures 清单\n\n### `/root/autodl-tmp/analysis/` (westd-10894)\n\n| 文件 | 修改时间 | 分析类型 |\n|------|---------|---------|\n| `cka_random_occ/cka_analysis.pdf` | 05-24 13:33 | CKA vs pretrained (Random OCC) |\n| `cka_detach_ln/cka_analysis.pdf` | 05-24 16:37 | CKA vs pretrained (Detach+LN) |\n| `cka_full_occ_ln/cka_analysis.pdf` | 05-25 09:47 | CKA vs pretrained (Full OCC LN, s0) |\n| `cka_full_occ_ln_s1/cka_analysis.pdf` | 05-25 10:31 | CKA vs pretrained (Full OCC LN, s1) |\n| `cka_full_occ_ln_s2/cka_analysis.pdf` | 05-25 11:15 | CKA vs pretrained (Full OCC LN, s2) |\n| `cka_same_seed/cka_analysis.pdf` | 05-25 13:03 | CKA 4-condition same-seed 对比 |\n| `cka_dose_response/cka_dose_response.pdf` | 05-25 14:00 | CKA dose-response (per-layer) |\n| `gradient_same_seed/gradient_summary.pdf` | 05-25 11:28 | Gradient 4-condition summary (6-panel) |\n| `gradient_same_seed/gradient_analysis.pdf` | 05-25 11:28 | Gradient analysis (合并版) |\n| `gradient_same_seed/action_gradient_norms.pdf` | 05-25 11:28 | Per-layer action gradient norms |\n| `gradient_same_seed/occ_gradient_norms.pdf` | 05-25 11:28 | Per-layer aux gradient norms |\n| `gradient_same_seed/gradient_amplification.pdf` | 05-25 11:28 | Full/Detach amplification ratio |\n| `gradient_same_seed/cosine_similarity.pdf` | 05-25 11:28 | Action↔Aux cosine similarity |\n| `gradient_same_seed/conflict_rate.pdf` | 05-25 11:28 | Gradient conflict rate |\n| `gradient_same_seed/bn_drift.pdf` | 05-25 11:28 | BN running stats drift |\n| `gradient_dose_response_s0/gradient_dose_response.pdf` | 05-25 15:48 | Gradient dose-response (all conditions, s0) |\n| **`dose_response_car.pdf`** | **05-25 16:30** | **CAR dose-response (新建)** |\n\n### `/root/occsafe_vla/analysis/results/` (westd-10894)\n\n| 文件 | 修改时间 | 分析类型 |\n|------|---------|---------|\n| `random_occ_s2_dryrun_gradient_analysis.pdf` | 05-23 12:09 | Random OCC s2 dryrun gradient |\n| `random_occ_s2_gradient_analysis.pdf` | 05-23 12:13 | Random OCC s2 gradient |\n| `detach_s2_gradient_analysis.pdf` | 05-23 12:14 | Detach s2 gradient |\n| `gradient_comparison.pdf` | 05-23 12:15 | Multi-condition gradient comparison |\n\n### `/root/occsafe_vla/artifacts/` (westd-10894)\n\n10 张 BEV 可视化 demo (`bev_*.png`) + 新增 `dose_response_car.png`\n\n### westd-34685\n\n无 figure 文件（仅用于训练和 eval，分析产出在 10894）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-figure-prep-and-consistency.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d6ca7bf205e46bc43f6",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis gradient aggregation audit",
+  "task_key": "worker_analysis_gradient_aggregation_audit_20260525T080605",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gradient_aggregation_audit_20260525T080605_result.json",
+    "occurrence": 1,
+    "bytes": 3840,
+    "sha256": "c7a6202a1d4576bb4dbd361029df0e10b5efa38ab23a9d04361c2837b1dc2d5f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。结果令人意外——现在汇总全部发现。\n\n---\n\n## 调查报告：梯度聚合方法不一致\n\n### 1. 原始脚本位置\n\n| 脚本 | 服务器 | 路径 |\n|------|--------|------|\n| 原始 mixed-seed 梯度分析 | westd-34685 | `/root/occsafe_vla/analysis/gradient_analysis.py` |\n| same-seed 梯度分析 | westd-10894 | `/root/occsafe_vla/analysis/gradient_analysis.py` |\n| gradient_dose_response_s0 | westd-10894 | `/root/autodl-tmp/analysis/gradient_dose_response_s0/gradient_dose_response_s0.py` |\n\n### 2. 聚合方法精确对比\n\n**原始脚本 (`gradient_analysis.py`)：**\n```python\n# 损失函数：L1 action loss（~0.15-0.22）\npred_actions = action_head.predict_action(act_hidden)\naction_loss = nn.L1Loss()(gt_actions, pred_actions)\n\n# 梯度计算：per-batch torch.autograd.grad\naction_grads = torch.autograd.grad(action_loss, all_encoder_params, ...)\n\n# 聚合：per-layer L2 norm → mean across 201 batches → mean across 51 layers\nflat_a = torch.cat([g.float().reshape(-1) for g in action_grads])\nstats = {\"action_grad_norm\": flat_a.norm().item()}\n```\n\n**新脚本 (`gradient_dose_response_s0.py`)：**\n```python\n# 损失函数：CE language model loss（~24）\noutput = model(input_ids=..., labels=batch_labels)\nloss = output.loss / num_batches\nloss.backward()  # 梯度累积 4 batches\n\n# 梯度计算：读 param.grad（累积后）\nlayer_grads[key].append(param.grad.detach().float().flatten())\n\n# 聚合：per-layer L2 norm → mean across vision layers\naction_grad_norm = action_grads[key].norm().item()\n```\n\n**三个关键差异：**\n\n| 维度 | 原始脚本 | 新脚本 |\n|------|---------|--------|\n| 损失函数 | L1 action loss (~0.15) | CE LM loss (~24), 包含所有 token |\n| 梯度路径 | action_head → hidden_states → LM → vision | LM_head → LM → vision |\n| 聚合 | per-batch 独立计算 norm, 再 mean across batches | 累积 4 batches 的梯度再算 norm |\n\n### 3. 用 retrained same-seed checkpoints 的复现结果\n\n在 westd-10894 上跑验证脚本，同时计算两种梯度 norm（20 batches, seed 42）：\n\n```\nMetric                         Vanilla       Detach     D/V ratio\n─────────────────────────────────────────────────────────────────\nL1 action loss grad norm       0.138974     0.159509      114.8%\nCE loss grad norm                5.0132       6.2222      124.1%\n```\n\n**原始 mixed-seed 数据回顾：**\n- Detach_BN_**s2**: mean_action_grad_norm = 0.004931\n- Vanilla_**s0**: mean_action_grad_norm = 0.126248\n- ratio = 3.9%\n\n### 4. 结论\n\n**论文 §4.3 的 1-13% ratio 不可用 same-seed checkpoints 复现。**\n\n根本原因不是聚合方法差异，而是**实验设计问题**：\n\n1. **原始实验比较了不同 seed 的 checkpoints**：`ablation_occ_detach_s2`（seed 2）vs `vanilla_retrain_s0`（seed 0）。不同 seed 导致完全不同的训练数据顺序和收敛状态。\n\n2. **same-seed retrained checkpoints 的 ratio 是 ~115%**（L1 loss）和 ~124%（CE loss）。Detach 的视觉编码器梯度 norm 实际上略大于 Vanilla，而非论文声称的 1-13%。\n\n3. **gradient_dose_response_s0 的 78% ratio** 方向正确（接近 1:1），但因使用 CE loss 而非 L1 action loss，数值与原始方法不直接可比。\n\n4. **关于论文的建议**：§4.3 的梯度分析数据依赖于 mixed-seed 比较，该结论不稳健。应使用 same-seed checkpoints 重做梯度分析。如果 Detach 的核心 claim 是\"减少辅助损失对 action gradient 的干扰\"，需要比较的是 **有/无 OCC loss 时的 action gradient 变化**，而非跨条件的绝对 gradient norm 大小。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gradient-aggregation-audit.md"
+}

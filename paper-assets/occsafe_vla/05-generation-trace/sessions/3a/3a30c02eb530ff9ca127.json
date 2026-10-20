@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a30c02eb530ff9ca127",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "check server 10894 urgent",
+  "task_key": "worker_check_server-10894-urgent_20260527T040945",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_server-10894-urgent_20260527T040945_result.json",
+    "occurrence": 1,
+    "bytes": 930,
+    "sha256": "0f809a0c96d2913febcb35cadf68e5e19c3298be0eee838d34a791672e12c9b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**GPU 状态：**\n```\nGPU0: 99%, 62203 MiB\nGPU1: 49%, 62203 MiB\nGPU2: 99%, 62209 MiB\nGPU3: 99%, 62203 MiB\n```\n\n**4 个训练进程运行中：**\n\n| 实验 | GPU | 进度 | 速度 | ETA |\n|------|-----|------|------|-----|\n| full_occ_ln_v2_s1c (seed43) | cuda:0 | 12911/50005 (26%) | ~1.08 it/s | ~9.5h |\n| full_occ_ln_v2_s2 (seed44) | cuda:1 | 12900/50005 (26%) | ~1.08 it/s | ~9.5h |\n| full_occ_ln_v2_s0d (seed42) | cuda:3 | 10358/50005 (21%) | ~1.08 it/s | ~10.2h |\n| detach_ln_v2_s0c (seed42) | cuda:2 | 12883/50005 (26%) | ~1.08 it/s | ~9.5h |\n\n**Checkpoints：** `/root/occsafe_vla/checkpoints/` 不存在，checkpoints 在 `/root/autodl-tmp/checkpoints/` 下（暂无 checkpoint_50000.pt，均未到 50k）。\n\n**关键指标（最近 AUX log）：**\n- full_occ_ln_v2_s1c step=12900: occ_loss=0.0117, action_loss=0.1377\n- full_occ_ln_v2_s0d step=10300: occ_loss=0.0143, action_loss=0.1167"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-server-10894-urgent.md"
+}

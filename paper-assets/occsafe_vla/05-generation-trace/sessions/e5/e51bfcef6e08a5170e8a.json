@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e51bfcef6e08a5170e8a",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "data git lfs pull 34685",
+  "task_key": "worker_data_git_lfs_pull_34685_20260527T161519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_git_lfs_pull_34685_20260527T161519_result.json",
+    "occurrence": 1,
+    "bytes": 797,
+    "sha256": "ef32e4f61316b5b46eb9f9dba71e8d3138e8f14b004196b8e658d08ddc9e2310"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 tfrecord 都是真实数据（每个 ~100-125MB）。注意文件名是 `liber_o10-train.tfrecord-*`。\n\n汇报：\n\n**git lfs pull 完成（~23分钟）**\n\n| Suite | 大小 | tfrecord 数 | 状态 |\n|-------|------|-------------|------|\n| libero_spatial_no_noops | 1.8G | 32 | 已有 |\n| libero_10_no_noops | 3.5G | 32 | **新拉取** |\n| libero_goal_no_noops | 1.8G | 32 | **新拉取** |\n| libero_object_no_noops | 2.7G | 32 | **新拉取** |\n\n**dataset_statistics.json**：不存在于 repo 中（仅 spatial 有训练时生成的缓存文件 `dataset_statistics_*.json`）。训练代码首次加载新 suite 时会自动生成。\n\n**可以立即开始训练**。每个 suite 都有完整的 32 个 tfrecord shard + `dataset_info.json` + `features.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-git-lfs-pull-34685.md"
+}

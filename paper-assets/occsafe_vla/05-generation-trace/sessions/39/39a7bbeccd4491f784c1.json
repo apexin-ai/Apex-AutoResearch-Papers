@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "39a7bbeccd4491f784c1",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "ops cleanup and depth launch 10894",
+  "task_key": "worker_ops_cleanup-and-depth-launch-10894_20260522T064745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup-and-depth-launch-10894_20260522T064745.log",
+    "occurrence": 1,
+    "bytes": 593791,
+    "sha256": "ced987f39b8206f85b70a5690c5daa247324f5134fb83fade2a3759cdc7e95c7"
+  },
+  "statistics": {
+    "messages": 255,
+    "user_turns": 0,
+    "tool_calls": 91,
+    "roles": {
+      "log": 1,
+      "system": 10,
+      "record": 1,
+      "assistant": 60,
+      "tool_call": 91,
+      "tool_result": 91,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 255,
+      "chunks": [
+        {
+          "path": "39a7bbeccd4491f784c1-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "39a7bbeccd4491f784c1-part-0002.json",
+          "message_count": 75
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-cleanup-and-depth-launch-10894.md"
+}

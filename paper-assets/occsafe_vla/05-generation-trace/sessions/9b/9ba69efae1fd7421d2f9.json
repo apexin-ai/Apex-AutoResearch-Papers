@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ba69efae1fd7421d2f9",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "writing post submission fixes batch2",
+  "task_key": "worker_writing_post-submission-fixes-batch2_20260528T173444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_post-submission-fixes-batch2_20260528T173444_result.json",
+    "occurrence": 1,
+    "bytes": 1997,
+    "sha256": "6f52abd77bf46eb8df8526bc97ab2c94bc4eacf8711e420813051074662f085d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有修改完整。最终总结：\n\n**完成的 5 项任务**:\n\n1. **RD2-W3（标题范围限定）**: discussion.tex practical guideline 段加了 \"For OpenVLA with LoRA fine-tuning on tabletop manipulation:\"；conclusion.tex 加了 \"Under our OpenVLA/LoRA/tabletop setup\" 和 \"beyond tabletop manipulation\"。\n\n2. **RD2-W5（Codebase sensitivity 引用）**: practical guideline 末尾加了 \"Given the codebase sensitivity discussed above (up to 8.6\\,pp; Appendix E), these guidelines should be verified in each specific VLA implementation.\"\n\n3. **RD2-W6（补充 10 项文献）**: 全部通过 WebSearch 验证后添加到 references.bib 并在相应位置引用：\n   - Related Work §2.1: π₀ (black2024pi0), Octo (team2024octo)\n   - Related Work §2.2: Bilen & Vedaldi 2017, Maninis et al. 2019, Rebuffi et al. 2018, Ioffe 2017\n   - Discussion: Sener & Koltun 2018, Kendall et al. 2018\n   - Appendix (permutation test): Anderson 2001, Montgomery 2017\n\n4. **RD3-W1（Permutation test）**: \n   - 用 Python 计算了 permutation-based ANOVA（10,000 permutations）\n   - 结果：gradient flow p_perm=0.050, normalization p_perm=0.018, interaction p_perm=0.774\n   - results.tex §4.1 ANOVA 报告处加了一句引用结果\n   - appendix.tex 新增 Appendix G (Permutation-Based ANOVA) 含方法描述和完整结果表\n\n5. **RD3-W2（区分 gradient conflict vs BN corruption）**: discussion.tex 第一段重构为：\n   - **Excluded mechanism—gradient conflict**: 引用 cosine similarity ≈ 0、conflict rate ~46%、comparable norms\n   - **Hypothesis—BN forward-pass statistics corruption**: 明确标注为 forward-pass 机制（非 backward-pass）\n   - **Unverified 标注**: \"This hypothesis remains unverified; targeted experiments...would be needed\"\n\n**编译结果**: 0 errors, 0 undefined refs/citations。18 pages total, 主文 8 页（Limitations 在第 8 页内），References 从第 9 页开始，494,813 bytes。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-post-submission-fixes-batch2.md"
+}

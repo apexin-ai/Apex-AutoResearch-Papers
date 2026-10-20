@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7c86dbf43ba9d1e58ca",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ssh 10894 eval precheck",
+  "task_key": "worker_ssh_10894_eval_precheck_20260525T212859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_10894_eval_precheck_20260525T212859_result.json",
+    "occurrence": 1,
+    "bytes": 2243,
+    "sha256": "989f176b9230699fcb7b9963466fd1809bea5e28ca5fe0f7da26eb2b35fc7a20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 10894 Eval 预检\n\n| 项目 | 状态 | 详情 |\n|------|------|------|\n| Eval 脚本 | ✅ | `/root/occsafe_vla/openvla-oft/vla-scripts/evaluate_safelibero.py` (draccus-based) |\n| SafeLIBERO 数据 | ✅ | `/root/autodl-tmp/libero_datasets/libero_spatial` |\n| MuJoCo | ✅ | v3.8.1, EGL 模块存在 |\n| robosuite | ✅ | 已安装 |\n| CKA 脚本 | ✅ | `/root/occsafe_vla/analysis/cka_analysis.py` |\n| Batch eval 脚本 | ⚠️ | `eval_batch_10894.sh` 存在但**路径指向旧实验**（见下） |\n\n### Checkpoint 命名格式（v2 实验）\n\n```\n/root/autodl-tmp/checkpoints/<exp_name>/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--<exp_name>--50000_chkpt\n```\n\n当前 v2 checkpoints 状态（均为训练中的 running dir，尚无 `--50000_chkpt`）：\n- `mvp_occ_s3_v2` — 仅 running dir\n- `full_occ_ln_s3_v2` — 仅 running dir\n- `ablation_occ_detach_s3_v2` — 仅 running dir\n- `cutoff_45k_s2_v2` — 有 `--10000_chkpt`（中间检查点），无 50k\n\n### 示例 eval 命令（s3 ablation_occ_detach_s3_v2）\n\n```bash\ncd /root/occsafe_vla/openvla-oft && \\\nCUDA_VISIBLE_DEVICES=3 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=3 \\\n  python vla-scripts/evaluate_safelibero.py \\\n  --pretrained_checkpoint /root/autodl-tmp/checkpoints/ablation_occ_detach_s3_v2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--ablation_occ_detach_s3_v2--50000_chkpt \\\n  --task_suite_name libero_spatial \\\n  --num_rollouts 50\n```\n\n### ⚠️ 需要修复\n\n**`eval_batch_10894.sh` 路径错误**：当前脚本引用旧路径（`mvp_occ_s3`, `full_occ_ln_s3`, `ablation_occ_detach_s3`），v2 实验的 checkpoint 名称带 `_v2` 后缀。训练完成前需更新此脚本，否则会因路径不存在直接 abort。\n\n正确映射应为：\n```\nmvp_occ_s3_v2       → ${CKPT_ROOT}/mvp_occ_s3_v2/${P}--mvp_occ_s3_v2--50000_chkpt\nfull_occ_ln_s3_v2   → ${CKPT_ROOT}/full_occ_ln_s3_v2/${P}--full_occ_ln_s3_v2--50000_chkpt\nablation_occ_detach_s3_v2 → ${CKPT_ROOT}/ablation_occ_detach_s3_v2/${P}--ablation_occ_detach_s3_v2--50000_chkpt\ncutoff_45k_s2_v2    → ${CKPT_ROOT}/cutoff_45k_s2_v2/${P}--cutoff_45k_s2_v2--50000_chkpt\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-10894-eval-precheck.md"
+}

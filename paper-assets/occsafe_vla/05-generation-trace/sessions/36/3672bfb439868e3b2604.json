@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3672bfb439868e3b2604",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis check s0c r3 completion",
+  "task_key": "worker_analysis_check_s0c_r3_completion_20260527T225003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_check_s0c_r3_completion_20260527T225003_result.json",
+    "occurrence": 1,
+    "bytes": 752,
+    "sha256": "0a2cd8fb919229ca1fa2a8d7d27bc39ce5bea056685247073b0777f911031b27"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**判断：SUCCESS** — 训练成功完成。\n\n关键证据：\n- 日志最后显示 `Max step 50005 reached! Stopping training...`\n- step 50000 指标：`occ_loss=0.0092, depth_loss=0.0000, action_loss=0.0454`\n- 50000_chkpt 已保存并完成 merge，包含完整模型文件（4个 safetensors 分片 + action_head + occ_head + proprio_projector + lora_adapter）\n- 总训练时间约 14h5m，速度 ~1.08 it/s\n\n**Checkpoint 目录**（3个保留）：\n- `...--30000_chkpt`\n- `...--40000_chkpt`\n- `...--50000_chkpt`\n\n**最终 checkpoint 路径**：\n```\n/root/autodl-tmp/checkpoints/detach_ln_v2_s0c_r3/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--detach_ln_v2_s0c_r3--50000_chkpt\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-check-s0c-r3-completion.md"
+}

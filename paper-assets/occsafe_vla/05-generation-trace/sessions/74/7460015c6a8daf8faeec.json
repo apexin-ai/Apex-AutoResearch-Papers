@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7460015c6a8daf8faeec",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra P0 fix rotation and eval 47500",
+  "task_key": "worker_infra_P0-fix-rotation-and-eval-47500_20260521T070226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_P0-fix-rotation-and-eval-47500_20260521T070226_result.json",
+    "occurrence": 1,
+    "bytes": 844,
+    "sha256": "0611af793b65e820bee056d808652236f25397f1f45a52125b4da88dadae0efe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个紧急任务全部完成。\n\n---\n\n### 紧急 1 结果\n- **17500_chkpt**: 安全，未被删除\n- **S1 训练**: PID 80898 正常运行\n- **新 rotation**: PID 88572，已确认 17500_chkpt 标记为 PROTECTED\n- 旧 rotation (PID 71055) 已 kill\n\n### 紧急 2 结果\n- **47500_chkpt**: s0 和 s2 均完整（4 shards + action_head + occ_head + proprio_projector）\n- **S0 eval**: PID 89038，GPU 0，已在执行 rollout（进度 35% T0）\n- **S2 eval**: PID 92050，GPU 2，已开始执行\n- 参数从 `monitor_and_eval_occ.sh` 获取：`--model_family openvla --pretrained_checkpoint --num_steps_wait 10 --num_rollouts 20 --center_crop True --use_l1_regression True --num_images_in_input 2 --use_proprio True`\n- 结果将保存到：`/root/occsafe_vla/eval_results/occ_s0_final.json` 和 `occ_s2_final.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-p0-fix-rotation-and-eval-47500.md"
+}

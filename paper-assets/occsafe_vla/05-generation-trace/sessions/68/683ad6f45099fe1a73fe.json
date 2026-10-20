@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "683ad6f45099fe1a73fe",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "train cutoff 45k s1 v3",
+  "task_key": "worker_train_cutoff_45k_s1_v3_20260525T043226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_cutoff_45k_s1_v3_20260525T043226_result.json",
+    "occurrence": 1,
+    "bytes": 301,
+    "sha256": "b4801541951e927e101b23cc63a3e304a74623be3553ea186efdeab7f63a4613"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动并注册完成。\n\n- **实验**: cutoff_45k_s1_v3\n- **服务器**: westd-34685, cuda:2\n- **PID**: 2112\n- **状态**: RUNNING\n- **日志**: ~/runs/occsafe_vla/cutoff_45k_s1_v3.log\n- **进度**: 已开始迭代（~1.17s/it），预计约 16 小时完成 50005 steps"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-cutoff-45k-s1-v3.md"
+}

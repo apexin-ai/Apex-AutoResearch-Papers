@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3633f585977425c12528",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analyze ablation occ detach s2",
+  "task_key": "worker_analyze_ablation_occ_detach_s2_20260522T215935",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_ablation_occ_detach_s2_20260522T215935_result.json",
+    "occurrence": 1,
+    "bytes": 673,
+    "sha256": "ef178e0f4bed52cccb338c656b72d66afc9c7e130728b78aee721c8d6088a1ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`ablation_occ_detach_s2` 已推进到 DONE。\n\n**训练结果摘要：**\n- 50005 steps 正常完成，EXIT_CODE=0，无异常错误\n- 训练时长：14.76 小时（~1.08 it/s）\n- Checkpoint：`/root/autodl-tmp/checkpoints/ablation_occ_detach_s2/openvla-7b+...--50000_chkpt`（15GB，含 action_head/occ_head/proprio_projector + 4 shard merged model）\n- 训练 loss 未记录到日志（仅 tqdm 进度条），与 detach_s0/s1 一致\n\n**注意：** final_action_loss / final_occ_loss 无法从日志提取（losses 仅写入 wandb，本地无 wandb 目录）。需要 eval 才能得到 CAR/TSR 指标，与 s0 (CAR=0.746) / s1 (CAR=0.744) 对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-ablation-occ-detach-s2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d79bb6ebf00038e98d41",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "director / loop_13.md",
+  "task_key": "loop_13",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_13.md",
+    "occurrence": 1,
+    "bytes": 3673,
+    "sha256": "a1ce6f490775e292164b192a8fb750ca6b6e23a3e98892b7324afff66d18b576"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: max_messages\nupdated: '2026-05-27T04:10:24+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-10894 cuda:0-3 + westd-34685 cuda:0-3，共 8 卡，不得使用其他服务器/GPU\n- Detach+LN 数据：v1 checkpoint (detach_ln_s3, CAR=0.765) 不得标为 v2 使用。梯度分析 Detach LN 条件必须等 v2 checkpoint 完成\n- D067 决策：Table 1 Detach+LN 标 $^\\star$ 省略 ΔCAR（方案 A），不得用 v2 n=1 值替换，等 v2 多 seed 到位再统一更新\n- 论文 interaction narrative 不要基于混合 v1/v2 数据做 claim\n\n### 2. 🖥️ 基础设施快照\n- **westd-34685** (connect.westd.seetacloud.com): 4× RTX PRO 6000 98GB, /root/occsafe_vla, 磁盘 2% used (819GB 可用)\n- **westd-10894** (connect.westd.seetacloud.com): 4× RTX PRO 6000 98GB, /root/occsafe_vla, 磁盘 50% (425GB 可用)\n- 梯度分析脚本：run_gradient_analysis_v2.py, compare_gradient_conditions.py, plot_gradient_analysis_v2.py（已多次验证就绪）\n- eval 命令文档：artifact eval_commands_batch3.md + batch_eval.sh（已验证）\n- Cron：9 个训练监控 cron 曾活跃（但 Agent 连续 5 次 idle 16h，cron 回调未能唤醒 Agent）\n\n### 3. 📊 当前状态\n**我（Director）没有执行任何工作**——只做了决策和指令下发。Agent 连续 5 次 reset 后 idle 16h（累计 ~80h），所有指令未被执行。\n\n**训练**（最后确认状态 ~03:40 UTC May 27，距今可能已 80h+）：\n- 34685: detach_ln_v2_s1_35 (Cell4 s43), detach_ln_s4 (Cell4 n=5 s46), ablation_occ_detach_s4 (Cell3 n=5 s46), mvp_occ_s4 (Cell1 n=5 s46) — 当时 22-30%，ETA ~12:30-13:21 UTC May 27\n- 10894: full_occ_ln_v2_s1c_r2 (Cell2 s43), full_occ_ln_v2_s2_r2 (Cell2 s44), detach_ln_v2_s0c_r2 (Cell4 s42), full_occ_ln_v2_s0d (Cell2 s42) — 当时 14-22%，ETA ~13:39-14:21 UTC May 27\n\n**训练几乎确定已完成**，但 eval、梯度分析、论文修复全未执行。\n\n**CoRL DDL May 28 12:00 UTC 已过**。已通知用户，等用户确认后续安排。\n\n### 4. 📋 待办\n- 新 session 启动 → **立即 SSH 两台服务器确认训练完成状态**（不要做 prep，直接 ssh_read_only nvidia-smi + ls checkpoints）\n- 训练已完成 → 并行 3 个 Worker：(A) 8 实验 eval, (B) 4-5 条件 v2 梯度分析, (C) D067 论文文本修复\n- D067 论文修复清单：Table 1 Detach+LN 加 $^\\star$ + ΔCAR→---; caption 改; results.tex L9/L45 修正; Table 2/Figure 2 caption 修正 n 数; appendix.tex L69 删 v1 统计\n- 梯度分析 condition_name 用空格不用下划线（Reviewer 后来说 fuzzy matching 能处理，但用空格更安全）\n- eval + 梯度分析完成 → ANOVA + Table 1 更新 + 论文最终修订\n- 用户回复 DDL 安排 → 按新 DDL 调整节奏\n\n### 5. 🎯 战略上下文\n- **核心 claim**：gradient flow 是损害源，detach 后 aux head 无害（≈ Vanilla）。Vanilla n=3 = 0.745±0.024; Detach BN 0.767 ≈ Vanilla (p=0.28 NS); Full OCC BN 0.725 < Vanilla\n- **v1 机制证据已推翻**（D056/D057）：gradient collapse + CKA degradation 是 bug 产物。当前可用机制证据：梯度正交性 (cosine≈0) + 方差不对称。v2 梯度分析是重建机制证据的关键\n- **最易判断错的事**：v1/v2 数据边界。Table 1/Table 2 中 Detach+LN 和 Random OCC 是 v1 数据，其余是 v2。LN cells 的 n 数不统一（Full OCC+LN n=1 v2, Detach+LN n=3 v1）。不要混用做 interaction 比较\n- **M078 教训**：不要依赖 cron 回调唤醒 Agent，关键路径 ETA 后应主动发 urgent_message\n- D066 核心修订已完成（R1-R4 baseline fix, F1-F7 hedging/LN rationale）\n- PREPARING: full_occ_ln_s4 (Cell 2 n=5 s46) 等 GPU\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-13.md"
+}

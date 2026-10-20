@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e20dfa1167a940606115",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "fix kill stale tmux 10894",
+  "task_key": "worker_fix_kill_stale_tmux_10894_20260525T174128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_kill_stale_tmux_10894_20260525T174128_result.json",
+    "occurrence": 1,
+    "bytes": 508,
+    "sha256": "b953bc704b4322d35ae0de1e9464ec2de2edb5ff759648ac87dd010a10bd68f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**tmux 清理结果：** `mvp_occ_s3_v2` 已 kill。剩余 4 个活跃 session：\n- `cutoff_45k_s2_v2` — GPU 0\n- `full_occ_bn_v2_s1` — GPU 1\n- `full_occ_ln_s3_v2` — GPU 2\n- `ablation_occ_detach_s3_v2` — GPU 3\n\n**GPU 状态：**\n\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 62209 MiB | 43% |\n| 1 | 62203 MiB | 99% |\n| 2 | 63037 MiB | 99% |\n| 3 | 62209 MiB | 99% |\n\n4 张卡全部被占用，各跑一个 finetune 任务，无残留/孤立进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-kill-stale-tmux-10894.md"
+}

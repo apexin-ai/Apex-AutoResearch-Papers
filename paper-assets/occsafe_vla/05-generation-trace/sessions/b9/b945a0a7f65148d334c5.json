@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b945a0a7f65148d334c5",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose detach ln s4 eval",
+  "task_key": "worker_diagnose_detach_ln_s4_eval_20260527T144200",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_detach_ln_s4_eval_20260527T144200_result.json",
+    "occurrence": 1,
+    "bytes": 223,
+    "sha256": "3224a9dfe59dbbbbc1ae9ec179bd7b14646a9f980da63811c8c9c622abe2a4c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`detach_ln_s4_eval` 成功完成，registry 已更新为 DONE。\n\n**结果**: TSR=0.018 (1.8%), CAR=0.672 (67.2%)，500 episodes，164 次碰撞。这是 Cell 4 原始版本 (v1, seed 46) 的 eval 数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-detach-ln-s4-eval.md"
+}

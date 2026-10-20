@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57fc55f7f35ae1cb73a0",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra verify ablation launch",
+  "task_key": "worker_infra_verify_ablation_launch_20260521T034447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_verify_ablation_launch_20260521T034447_result.json",
+    "occurrence": 1,
+    "bytes": 999,
+    "sha256": "998a613d751de3f6b961492adc958b175dba0f242165cecd2b002dc39500453a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有信息收集完毕。\n\n## ablation_occ_detach_s0\n- PID (wrapper/python): 481666 / 481746\n- GPU: cuda:0, util 99%, mem 62.2GB / 97.9GB\n- 参数验证: **OK** — `--occ_detach true`, `--num_images_in_input 2`, `--use_proprio True`, `--use_occ_head True` 均确认\n- 速度: ~1.08-1.09 it/s（step 89）\n- Loss: 尚未输出（日志仅含 progress bar，loss 可能在 step 100 或更晚的 logging interval 才打印）\n- 状态: **正常**\n\n## ablation_random_occ_s0\n- PID (wrapper/python): 481813 / 481960\n- GPU: cuda:1, util 99%, mem 62.2GB / 97.9GB\n- 参数验证: **OK** — `--random_occ True`, `--occ_detach false`, `--num_images_in_input 2`, `--use_proprio True`, `--use_occ_head True` 均确认\n- 速度: ~1.07-1.08 it/s（step 86）\n- Loss: 尚未输出（同上）\n- 状态: **正常**\n\n两个实验均正常运行，参数正确，GPU 占用充分，速度与预期一致。Loss 值需要等到下一个 logging interval 才会出现在日志中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-verify-ablation-launch.md"
+}

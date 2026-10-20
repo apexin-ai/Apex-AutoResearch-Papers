@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89721e2064150cc2831d",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose detach ln v2 s1 35 completion",
+  "task_key": "worker_diagnose_detach_ln_v2_s1_35-completion_20260527T131912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_detach_ln_v2_s1_35-completion_20260527T131912_result.json",
+    "occurrence": 1,
+    "bytes": 941,
+    "sha256": "55e52060c066f3b5945d7f94b45db24f0ec048ee3824778be9ca6644bc9fa63a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n**训练诊断结果：**\n| 实验 | 状态 | 完成步数 | EXIT_CODE |\n|------|------|---------|-----------|\n| detach_ln_v2_s1_35 | 成功 | 50005/50005 | 0 |\n| detach_ln_s4 | 成功 | 50005/50005 | 0 |\n\n**Checkpoint 路径：**\n- detach_ln_v2_s1_35: `/root/autodl-tmp/checkpoints/detach_ln_v2_s1/...--detach_ln_v2_s1--50000_chkpt`\n- detach_ln_s4: `/root/autodl-tmp/checkpoints/detach_ln_s4/...--detach_ln_s4--50000_chkpt`\n\n**已执行操作：**\n- Registry: 两个训练实验 → ANALYZING (conclusion=success)\n- Cron: 无活跃 cron 需删除\n- Eval 已启动（westd-34685 tmux session）:\n  - `detach_ln_v2_s1_35_eval` → cuda:0, MUJOCO_EGL_DEVICE_ID=0\n  - `detach_ln_s4_eval` → cuda:1, MUJOCO_EGL_DEVICE_ID=1\n  - 两个 eval 均为 50-rollout SafeLIBERO (libero_spatial, seed=42)\n\n**注意：** `submit_training_job` 工具不可用，改用 tmux session 提交 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-detach-ln-v2-s1-35-completion.md"
+}

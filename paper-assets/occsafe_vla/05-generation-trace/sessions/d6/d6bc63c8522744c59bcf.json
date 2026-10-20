@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6bc63c8522744c59bcf",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops check ablation 10894",
+  "task_key": "worker_ops_check_ablation_10894_20260525T020911",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_ablation_10894_20260525T020911_result.json",
+    "occurrence": 1,
+    "bytes": 702,
+    "sha256": "fadc9313d8d951ecf7db8cb0c8eecbf3738684d2a6b5d659068594c2741fd1ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:0 状态：正常运行中，无需干预。**\n\n- **当前 step**: 29,402 / 50,005（59%）\n- **已从 40K checkpoint resume**，当前实际训练从 step 40,000 恢复（日志显示连续进度）\n- **速度**: ~1.07 it/s\n- **预计剩余**: ~5.5h 完成到 50K\n- **最新 loss** (step 29,400): occ_loss=0.0091, action_loss=0.0400\n- **GPU 0**: 67°C, 437W, 62GB/98GB 显存, 99% 利用率\n\n等等——日志显示 step 29,402 而非预期的 40,000+。这说明 resume 是从 step 0 重新计数到 50,005，而不是接续 40,000 的编号。当前 29,402/50,005 意味着整个训练已完成 59%，还剩约 5.5 小时。\n\n不做任何操作，让训练继续。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-ablation-10894.md"
+}

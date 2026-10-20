@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "783d1e0fd7ca9e26b5e6",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_3_1779738834.md",
+  "task_key": "loop_3_1779738834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1779738834.md",
+    "occurrence": 1,
+    "bytes": 4082,
+    "sha256": "18f028852cbd7b818dbe65e42a8e8e86dd3699436448fab20fac445ea9d51d72"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_wall_time\nupdated: '2026-05-25T19:23:49+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-10894:cuda:0-3 + westd-34685:cuda:0-3，严禁用其他\n- C002：cutoff/reverse_cutoff 实验禁止 --resume，必须 from scratch\n- D050：v1 BN 数据不得与 v2 数据混合做 ANOVA（代码版本共线）\n- Resume 实验 eval 必须用 **local step 30000** checkpoint（不是 50000），因 step counter 从 0 重启\n- 从头训练实验 eval 用 **step 50000** checkpoint\n- MUJOCO_EGL_DEVICE_ID 必须匹配物理 GPU 编号（不受 CUDA_VISIBLE_DEVICES 影响）\n- submit_on_allocated 命令必须 `bash -c \"...\"` 包装（tmux 用 /bin/sh）\n\n### 2. 🖥️ 基础设施快照\n- **westd-34685**: conda env `occsafe`, 工作目录 `/root/occsafe_vla/openvla-oft`, 磁盘 98% 可用 (819GB)\n- **westd-10894**: conda env `occsafe`, 同上工作目录, 磁盘 50% 可用 (425GB)\n- Python: `/root/miniconda3/bin/python` (conda activate occsafe)\n- 模型: `/root/autodl-tmp/models/openvla-7b`\n- 数据: `/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops`\n- OCC 数据: `/root/occsafe_vla/occ_data`\n- Checkpoints: `/root/autodl-tmp/checkpoints/{exp_id}/`\n- Logs: `~/runs/occsafe_vla/{exp_id}.log`\n- WANDB: disabled (WANDB_MODE=disabled)\n- Eval 脚本: `vla-scripts/` 目录下（用 --num_rollouts 不是 --num_trials_per_task）\n\n### 3. 📊 当前状态\n**刚做完**：D053 部署——集群级重启导致 8 实验全死，已全部诊断、更新 registry、重新部署 8/8 GPU。\n\n**34685 (D051 v2 rebuild, 从头训练)**:\n- detach_bn_v2_s0 (cuda:0, PID 5086) — Detach BN s42\n- detach_bn_v2_s1 (cuda:1, PID 2786) — Detach BN s43\n- detach_bn_v2_s2 (cuda:2, PID 3003) — Detach BN s44\n- full_occ_bn_v2_s1 (cuda:3, PID 7347) — Full OCC BN s43\n\n**10894 (resume + cutoff 重训)**:\n- cutoff_45k_s2_v2 (cuda:0, PID 4212) — 从头, cutoff@45K s44\n- mvp_occ_s3_v2 (cuda:1, PID 11641) — resume 20K, Full OCC BN s45 ⭐\n- full_occ_ln_s3_v2 (cuda:2, PID 6947) — resume 20K, Full OCC LN s45\n- ablation_occ_detach_s3_v2 (cuda:3, PID 7161) — resume 20K, Detach BN s45 ⭐\n\n**等待中**：\n- Worker `worker_diagnose_10894_status_and_eval_20260525T192240` — 正在检查 10894 实验状态（可能已完成，Director 报告 GPU 空闲）\n- Worker `worker_check_34685_d051_progress_20260525T192245` — 检查 34685 进度\n- 这两个 Worker 可能已完成但 handoff 前未收到回调\n\n### 4. 📋 待办（条件触发式）\n- 10894 诊断 Worker 返回 \"已完成\" → 立即对每个实验启动 eval (50r)：resume 用 30K ckpt, cutoff 用 50K ckpt\n- 10894 诊断返回 \"已崩溃\" → 查 log，报 Director，决定是否 restart\n- Eval 完成 → 汇报 CAR/TSR，对 ablation_occ_detach_s3_v2 额外执行 CKA 分析 (CUDA_VISIBLE_DEVICES=3)\n- 34685 D051 完成（~May 26 07:00 UTC）→ eval (50r) 用 50K ckpt → 计算 v2 2×2 ANOVA → 汇报\n- ANOVA 完成 → 叙事决策点：s3 CAR 决定 Branch A/B/C（见 ROADMAP 门控决策点）\n- cutoff_45k_s2_v2 eval 完成 → 低优先级汇报\n\n### 5. 🎯 战略上下文\n- **核心目标**：CoRL 2026 Paper deadline May 29。Abstract 已提交。\n- **D050 危机**：发现 v1≠v2 代码差异使原始 factorial ANOVA (p=0.025) 不可信。D051 = 用 v2 代码重建全部 4 格。\n- **叙事决策点**：s3 CAR（mvp_occ_s3_v2 + ablation_occ_detach_s3_v2 的 eval 结果）决定论文走哪个 Branch：\n  - CAR < 0.750 → Branch A \"Aux heads universally hurt safety\"\n  - CAR ≈ 0.770-0.780 → Branch B \"Gradient flow hurts safety\"\n  - CAR > 0.780 → Branch C \"Detach BN helps via forward-pass regularization\"\n- **易错点**：\n  - 不要混淆 _v2 实验和原始实验的 metrics（v1 数据已废弃）\n  - Resume 实验的 step 从 0 计，容易选错 eval checkpoint（30K 不是 50K！）\n  - full_occ_bn_v2_s1 之前在 10894:cuda:1 被错误提交过一次再 kill，registry 有 3 次 retry 记录——这是正常的\n  - 10894 今天 01:18 UTC 经历过集群级重启（两台同时），如果再次全死优先检查 uptime\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1779738834.md"
+}

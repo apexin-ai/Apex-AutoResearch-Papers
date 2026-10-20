@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "11782bedb2870db8ac9a",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose ablation batch fail",
+  "task_key": "worker_diagnose_ablation_batch_fail_20260521T051349",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_ablation_batch_fail_20260521T051349_result.json",
+    "occurrence": 1,
+    "bytes": 517,
+    "sha256": "99391a7adcf609cb0dc50be84ef29a921d616eeb589c2f2ea72e4f7423eca5cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**根因**：SeetaCloud/WestD 平台在 `12:52:12 UTC+8` 同时向 4 个进程发送 SIGTERM。非 OOM、非重启、非 crontab——是平台级 kill（计费到期/维护最可能）。\n\n**进度**：\n- s0 两组跑到 ~4000 步（8%），有 step 2500 完整 checkpoint，可 resume\n- s1 两组只跑到 ~1545 步（3%），无 checkpoint，需从头来\n\n**环境完好**，可以直接重跑。关键是先去 WestD 控制台确认实例计费状态，避免再被 kill。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-ablation-batch-fail.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2646a6d52e70a162bc45",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis comprehensive results table",
+  "task_key": "worker_analysis_comprehensive_results_table_20260524T223512",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_comprehensive_results_table_20260524T223512_result.json",
+    "occurrence": 1,
+    "bytes": 703,
+    "sha256": "f86e937e1eb26067b9ce196f648d592e46f932ab4fb6bce092d4c7c699fbb065"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "CSV 已生成并注册：`artifacts/comprehensive_results.csv` (art_20260524_d8c934)\n\n**39 行，覆盖 15 个 condition：**\n\n| 状态 | 数量 | 说明 |\n|------|------|------|\n| 有 eval 数据 | 30 行 | TSR/CAR/collisions 完整 |\n| training | 6 行 | full_occ_ln ×3, cutoff_15k_s1, cutoff_25k_s2, cutoff_45k_s1, reverse_cutoff_s2 |\n| eval_pending | 1 行 | full_occ_retrain_s0（训练完无 eval） |\n\n注意事项：\n- 早期 mvp 实验用 20 rollouts (200 episodes)，后续实验用 50 rollouts (500 episodes)\n- cutoff_s2_v2_eval 缺 collisions 数据（原始 metrics 中未记录）\n- occ_s1_fresh 包含 47500 和 50000 两个 checkpoint 的 eval，分列两行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-comprehensive-results-table.md"
+}

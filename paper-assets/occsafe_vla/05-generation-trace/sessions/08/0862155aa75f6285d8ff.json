@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0862155aa75f6285d8ff",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code depth data extraction script",
+  "task_key": "worker_code_depth-data-extraction-script_20260522T024138",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_depth-data-extraction-script_20260522T024138_result.json",
+    "occurrence": 1,
+    "bytes": 1434,
+    "sha256": "7765319f92064ebd46d76fe3f8d23d2866d45a55f336af1737a44d66e1a06e75"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 完成报告\n\n### 1. 脚本路径\n- 服务器: `/root/occsafe_vla/occ_pipeline/extract_depth.py`\n- 本地: `artifacts/extract_depth.py`\n\n### 2. Depth 值格式\n- **类型**: float32, 线性化距离（米），由 `mujoco.Renderer.enable_depth_rendering()` 产生\n- **NOT** normalized Z-buffer，是真实度量深度\n- **值域**: ~0.15 - 3.06m（桌面场景典型范围）\n- **shape**: `(T, 64, 64)` per demo\n- **相机**: agentview\n\n### 3. 每个 task 的 demo/帧数\n\n| Task | Demos | Frames |\n|------|-------|--------|\n| bowl_between_plate_and_ramekin | 50 | 5,068 |\n| bowl_from_table_center | 50 | 5,882 |\n| bowl_in_top_drawer | 50 | 7,479 |\n| bowl_next_to_cookie_box | 50 | 6,312 |\n| bowl_next_to_plate | 50 | 5,963 |\n| bowl_next_to_ramekin | 50 | 6,707 |\n| bowl_on_cookie_box | 50 | 5,052 |\n| bowl_on_ramekin | 50 | 5,796 |\n| bowl_on_stove | 50 | 7,111 |\n| **bowl_on_wooden_cabinet** | **跳过** | **demo HDF5 损坏** |\n\n### 4. 总数据\n- **9/10 tasks** 完成，450 demos，55,370 frames\n- **总大小**: 301MB（gzip 压缩）\n- **生成速度**: ~2ms/frame，全量 ~3 分钟\n\n### 5. 遗留问题\n- Task 9 (`pick_up_the_black_bowl_on_the_wooden_cabinet`) 的原始 demo HDF5 文件损坏（`OSError: file signature not found`），无法提取 depth。需要重新下载该 demo 文件。\n- 脚本已加 try/except 防护，后续重跑不会因单个文件崩溃。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-depth-data-extraction-script.md"
+}

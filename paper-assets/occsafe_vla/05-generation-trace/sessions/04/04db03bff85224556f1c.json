@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04db03bff85224556f1c",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code gradient viz template",
+  "task_key": "worker_code_gradient-viz-template_20260526T174850",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gradient-viz-template_20260526T174850_result.json",
+    "occurrence": 1,
+    "bytes": 603,
+    "sha256": "fcc488fc876b77376611d5b7f4bfb7364a6e0a16d7d2611fb0844c269c3f6204"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三张图全部正常生成，质量符合论文标准：\n\n1. **Heatmap** — DINOv2 (23 blocks) + SigLIP (26 blocks) 双面板，log-scale inferno colormap，共享 colorbar\n2. **Cosine similarity** — 带 shaded std 的折线图，y=0 虚线参考线，仅显示有 OCC 数据的条件\n3. **CAR variance bar chart** — 自动标注 max/min 倍数关系（6.92×），带 bracket 和数值标签\n\n脚本已写入 `artifacts/plot_gradient_analysis_v2_paper.py`，支持 `.pt` / `.json` 输入，3 种数据格式自动检测，torch 懒加载（`--help` 不需要 GPU 环境）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gradient-viz-template.md"
+}

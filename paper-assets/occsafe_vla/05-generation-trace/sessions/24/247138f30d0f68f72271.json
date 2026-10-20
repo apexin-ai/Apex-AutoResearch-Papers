@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "247138f30d0f68f72271",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "ops kill rerun and transfer 50r",
+  "task_key": "worker_ops_kill-rerun-and-transfer-50r_20260522T024744",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-rerun-and-transfer-50r_20260522T024744.log",
+    "occurrence": 1,
+    "bytes": 1029133,
+    "sha256": "c7e007fbedc6a21e597dec14da8765b4580e91a49656ebeaa1d20618ded241ca"
+  },
+  "statistics": {
+    "messages": 290,
+    "user_turns": 2,
+    "tool_calls": 102,
+    "roles": {
+      "log": 1,
+      "system": 18,
+      "record": 1,
+      "assistant": 63,
+      "tool_call": 102,
+      "tool_result": 102,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 132,
+      "chunks": [
+        {
+          "path": "247138f30d0f68f72271-part-0001.json",
+          "message_count": 117
+        },
+        {
+          "path": "247138f30d0f68f72271-part-0002.json",
+          "message_count": 15
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 70,
+      "chunks": [
+        {
+          "path": "247138f30d0f68f72271-part-0002.json",
+          "message_count": 70
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 88,
+      "chunks": [
+        {
+          "path": "247138f30d0f68f72271-part-0002.json",
+          "message_count": 88
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-kill-rerun-and-transfer-50r.md"
+}

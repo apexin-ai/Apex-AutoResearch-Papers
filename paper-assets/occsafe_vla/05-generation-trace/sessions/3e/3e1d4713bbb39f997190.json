@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e1d4713bbb39f997190",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra verify fix 50K and check 45K",
+  "task_key": "worker_infra_verify-fix-50K-and-check-45K_20260521T130428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_verify-fix-50K-and-check-45K_20260521T130428_result.json",
+    "occurrence": 1,
+    "bytes": 882,
+    "sha256": "825665de0d73e076470dfc6be0de2afed438fbfaa523fe19ff228f8f677946f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部结果汇总：\n\n### 1. 50K 修复版脚本：无 bug\n脚本使用 `--pretrained_checkpoint \"$CHKPT_PATTERN\"`，无 `--checkpoint_path`，路径正确。**无需修复。**\n\n50K auto-eval 进程 (PID 418059) 正在运行，每分钟轮询等待 `50000_chkpt` 目录出现。\n\n### 2. 45K eval：已完成\n\n**整体：TSR = 0.790 (79.0%) | CAR = 0.690 (69.0%)**\n\n| Task | TSR | CAR |\n|------|-----|-----|\n| T0 | 1.000 | 0.950 |\n| T1 | 0.950 | 0.850 |\n| T2 | 1.000 | 0.900 |\n| T3 | 1.000 | 0.500 |\n| T4 | 0.900 | 1.000 |\n| T5 | 0.100 | 0.350 |\n| T6 | 1.000 | 0.250 |\n| T7 | 0.350 | 0.350 |\n| T8 | 0.850 | 1.000 |\n| T9 | 0.750 | 0.750 |\n\nT5 和 T7 的 TSR 明显低（0.100 / 0.350），T3 和 T6 的 CAR 较低（0.500 / 0.250）。\n\n### 3. 当前 eval 进程\n- `auto_eval_50K_fixed.sh` (PID 418059) — 正在等待 50000_chkpt 出现"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-verify-fix-50k-and-check-45k.md"
+}

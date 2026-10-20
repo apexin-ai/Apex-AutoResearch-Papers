@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b8ea14ff2bb0caaaa8b",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra P0 westd 10894 disk full recovery",
+  "task_key": "worker_infra_P0-westd-10894-disk-full-recovery_20260521T080318",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_P0-westd-10894-disk-full-recovery_20260521T080318_result.json",
+    "occurrence": 1,
+    "bytes": 1197,
+    "sha256": "012e72786889b6ca690b6170d52cdec9d8ad5fdf99955834ce5f9922a242cb78"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "速度仍在 warmup 阶段（前 10 步不稳定，JIT 编译 + 数据管道预热）。4 个实验都在运行，20 个进程活跃。\n\n---\n\n## 产出汇总\n\n| 项目 | 结果 |\n|------|------|\n| **磁盘诊断** | 250G/250G = 100% 满。checkpoints 214G, runs 15G, models 15G |\n| **清理释放** | ~49G（vanilla 35000_chkpt ×3 = 45G + 损坏的 s1 5000_chkpt ×2 = 4G）→ 磁盘 81%, 50G 可用 |\n| **Rotation 脚本** | PID 504685，每 10 分钟轮转，保护运行中实验的 vla_path |\n| **s0 两组存活** | ablation_occ_detach_s0 (cuda:0, 63GB) + ablation_random_occ_s0 (cuda:1, 62GB) 正常运行 |\n| **s1 重启** | 首次尝试 5000_chkpt 失败（磁盘满导致 checkpoint 损坏，缺 model shard），回退到 2500_chkpt 成功 |\n| **ablation_occ_detach_s1** | PID 505677, cuda:2, 62GB, resume_step=2500, 训练中 |\n| **ablation_random_occ_s1** | PID 505824, cuda:3, 61GB, resume_step=2500, 训练中 |\n| **Cron 监控** | 两组 s1 已注册，120s 轮询 |\n\n**注意**：s1 两组因损坏的 5000_chkpt 损失了 2500 步（从 step 2500 而非 5000 恢复），预计多 ~40 分钟训练时间。速度待 warmup 后稳定到 ~1 it/s。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-p0-westd-10894-disk-full-recovery.md"
+}

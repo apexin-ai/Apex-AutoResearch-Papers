@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "982cd267dc00802e20fb",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "check 34685 full status",
+  "task_key": "worker_check_34685_full_status_20260525T172455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_34685_full_status_20260525T172455_result.json",
+    "occurrence": 1,
+    "bytes": 1455,
+    "sha256": "729187288d619dbcbc44cae90e6b40ce1e7fdf8f76f3ae8c4f8c77c79703994c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-34685 状态报告\n\n### 系统\n- **服务器重启过**：PID 1 启动于今天 01:18，所有训练进程被杀\n- **GPU 全部空闲**：4 卡均 0 MiB / 0% 利用率 / 27-28°C\n- **无任何 python/torchrun 进程**\n\n### finetune.py 修复\n`occ_norm_type` 已在 line 98（定义）和 line 1018（使用）—— 修复确认。\n\n### 实验状态\n\n| 实验 | GPU | PID 存活 | 最终 step | 50K checkpoint | 状态 |\n|------|-----|---------|-----------|---------------|------|\n| cutoff_25k_s2_v3 | cuda:0 | 死 | ~40824 (82%) | 无 | **中断** |\n| reverse_cutoff_s2_v3 | cuda:1 | 死 | ~41049 (82%) | 无 | **中断** |\n| cutoff_45k_s1_v3 | cuda:2 | 死 | ~41147 (82%) | 无 | **中断** |\n| cutoff_15k_s2_v2 | cuda:3 | 死 | ~41215 (82%) | 无 | **中断** |\n\n每个实验的最新 checkpoint 都是 **40000_chkpt**（另有 20000、30000）。\n\n### 最后一条 AUX 日志\n\n| 实验 | step | occ_loss | action_loss |\n|------|------|----------|-------------|\n| cutoff_25k_s2_v3 | 40800 | 0.0141 | 0.0708 |\n| reverse_cutoff_s2_v3 | 41000 | 0.0127 | 0.0591 |\n| cutoff_45k_s1_v3 | 41100 | 0.0136 | 0.0806 |\n| cutoff_15k_s2_v2 | 41200 | 0.0152 | 0.0520 |\n\n### 关键问题\n4 个实验全部因服务器重启在 ~82% 处中断。按 **C002 约束**（cutoff/reverse_cutoff 禁止 --resume），需要从 pretrained 权重重新训练，每个约 12.7h。4 卡当前全部空闲，可立即使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-34685-full-status.md"
+}

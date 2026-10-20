@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1da03c0e712113aa2fd4",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra westd10894 vanilla check and cleanup",
+  "task_key": "worker_infra_westd10894_vanilla_check_and_cleanup_20260520T165441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westd10894_vanilla_check_and_cleanup_20260520T165441_result.json",
+    "occurrence": 1,
+    "bytes": 1926,
+    "sha256": "222dc8d890cfe281965e58ad891256c1ef93d25383968d410e54814a39de963a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 报告\n\n### Task 1: Vanilla 训练状态\n\n| Seed | PID | 状态 | 当前 Step | 进度 | 速度 | 预计完成 |\n|------|-----|------|-----------|------|------|---------|\n| s0 | 100203 | **运行中** | 28558/50005 | 57.1% | 1.10 it/s | ~5.4h |\n| s1 | 97847 | **运行中** | 28319/50005 | 56.6% | 1.08 it/s | ~5.6h |\n| s2 | 149428 (resumed) | **运行中** | 26838/50005 | 53.7% | 1.09 it/s | ~5.9h |\n\n**s2 崩溃原因**：在 step 25000 保存 checkpoint 时磁盘满（`No space left on device`），safetensors 序列化失败。25000 checkpoint 完整（文件大小与 s0 一致）。s2 已由先前进程从 25000 恢复（torchrun master PID 149354，child PID 149428），无需再次重启。\n\n**GPU 分配**：GPU 0/1/2 各跑一个 seed（~63GB, 99%），GPU 3 空闲。  \n**磁盘**：250G 总量，81G 已用（33%），170G 可用。\n\n### Task 2: Checkpoint 滚动删除\n\n- 脚本部署：`/root/autodl-tmp/cleanup_checkpoints.sh`（保留每个 seed 最新 2 个 `*_chkpt` 目录）\n- **crontab 不可用**，改为后台循环执行（PID 152257，每 30 分钟一次）\n- 首次清理：当前每个 seed 仅 1 个 checkpoint 目录，无需删除\n- 磁盘前后无变化（81G → 81G），下次产生新 checkpoint 后才会触发清理\n\n### Task 3: SafeLIBERO Eval Dry-Run\n\n在 GPU 3 上成功运行，使用 vanilla_s0 的 25000 checkpoint：\n\n| 指标 | 值 |\n|------|-----|\n| TSR | **0.9000 (90.0%)** |\n| CAR | **1.0000 (100.0%)** |\n| Tasks | 10 (libero_spatial) |\n| Rollouts/task | 2 |\n| 总耗时 | ~110 秒 |\n\n- Task 5（\"pick up the black bowl on the ramekin\"）失败（TSR=0），其余 9 个 task 全部成功\n- 所有 episode 无碰撞（CAR=100%）\n- 结果保存：`/root/occsafe_vla/artifacts/safelibero_libero_spatial_20260521_010704.json`\n- 遇到问题：需设置 `MUJOCO_EGL_DEVICE_ID=3` 才能正确初始化 EGL 渲染"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westd10894-vanilla-check-and-cleanup.md"
+}

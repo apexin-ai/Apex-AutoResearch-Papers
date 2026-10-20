@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c07c17ffe65b9770ec14",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "check detach ln v2 s0c r2 status",
+  "task_key": "worker_check_detach-ln-v2-s0c-r2-status_20260527T071137",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_detach-ln-v2-s0c-r2-status_20260527T071137_result.json",
+    "occurrence": 1,
+    "bytes": 1057,
+    "sha256": "429736cc9d3a7ac64abf9c135e344e063e87a5c39710ec35b18665aff425c0b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。同时注意到 GPU 3 上的 `full_occ_ln_v2_s0d` 也标记为 RUNNING 但 GPU 3 同样空闲，很可能也崩了（同样的磁盘满问题）。\n\n## 报告\n\n| 项目 | 结果 |\n|------|------|\n| **状态** | **CRASHED** — 进程已死，GPU 2 空闲 |\n| **崩溃原因** | `No space left on device (os error 28)` — 保存 step 20000 checkpoint 时磁盘满 |\n| **崩溃时间** | 2026-05-27 14:29 UTC（约 46 分钟前） |\n| **训练进度** | ~20000/50005 steps（40%） |\n| **有效 checkpoint** | step 10000 (`detach_ln_v2_s0c--10000_chkpt`) |\n| **损坏 checkpoint** | step 20000（仅 1/4 model shards，不可用） |\n| **磁盘** | `/root/autodl-tmp` **250G/250G, 100% 满** |\n| **Registry** | 已更新为 DONE(failed) |\n\n**紧急问题**: 磁盘 100% 满会影响所有使用 `/root/autodl-tmp` 保存 checkpoint 的实验。`full_occ_ln_v2_s0d`（cuda:3）同样 GPU 空闲但 registry 标 RUNNING，大概率也因磁盘满崩溃。需要清理磁盘空间后才能重启这些训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-detach-ln-v2-s0c-r2-status.md"
+}

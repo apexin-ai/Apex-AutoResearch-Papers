@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3dca7b60f1ce92d9a1f",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_3_1779729887.md",
+  "task_key": "loop_3_1779729887",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1779729887.md",
+    "occurrence": 1,
+    "bytes": 4910,
+    "sha256": "55ebcdf6ea56076db06e73a23f397db76ac1b3d6b95c9a8010bc4937fbaa5ce5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-25T08:04:22+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**仅** westd-10894:0-3 + westd-34685:0-3（C001）。Director 指令也不能覆盖此约束\n- C002：cutoff 系列实验**禁止 resume**（batch_idx bug 未完整修复），必须 fresh start from pretrained weights\n- cutoff_15k_s0 checkpoint 永久丢失，cutoff_35k 所有 checkpoint 永久丢失——不要尝试引用或恢复\n- 训练命令必须显式指定 `--num_images_in_input 2 --use_proprio True --use_l1_regression True --batch_size 8 --learning_rate 5e-4 --lora_rank 32 --image_aug True`，不依赖脚本默认值\n- WANDB_MODE=disabled 的实验 cron 报 failed 时，先 tail 日志确认是否实际完成（看 \"Max step reached\"），torchrun 退出 code=1 是已知误报\n- eval 脚本参数是 `--num_rollouts`（不是 `--num_trials_per_task`）\n\n### 2. 🖥️ 基础设施快照\n- **westd-34685**: 工作目录 `/root/occsafe_vla/openvla-oft`，Python `/root/miniconda3/bin/python`，conda env `occsafe`（激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`）\n- **westd-10894**: 同上路径和 conda env\n- 模型：`/root/autodl-tmp/models/openvla-7b`（两台服务器均有）\n- 数据：`/root/autodl-tmp/data/modified_libero_rlds/`，OCC 数据 `/root/occsafe_vla/occ_data`\n- Checkpoints：`/root/autodl-tmp/checkpoints/<exp_name>/`\n- Logs：`/root/runs/occsafe_vla/<exp_name>.log`\n- **活跃进程（34685 四卡满载，reconcile 确认存活）**：\n  - cutoff_25k_s2_v3: PID 11510, cuda:0\n  - reverse_cutoff_s2_v3: PID 8347, cuda:1\n  - cutoff_45k_s1_v3: PID 2112, cuda:2\n  - cutoff_15k_s2_v2: PID 2475, cuda:3\n  - 四个实验均有 cron 监控，ETA ~16:30-17:00 UTC（约 22% 进度）\n- **10894**: 4 GPU 空闲，D045 决策保留用于分析 + eval 准备\n\n### 3. 📊 当前状态\n**刚做完**：本 session 完成了大量工作——same-seed CKA 4条件分析、梯度 dose-response 分析、eval pipeline dry-run 准备、论文 provenance 修复至 23/23 (100%)、34685 四卡 dose-response 3rd seed 训练提交并确认存活。\n\n**RUNNING (4)**：\n- `cutoff_25k_s2_v3` — seed 44, OCC 梯度 cutoff@25K, 34685:0\n- `reverse_cutoff_s2_v3` — seed 44, no OCC first 35K then enable, 34685:1\n- `cutoff_45k_s1_v3` — seed 43, cutoff@45K, 34685:2\n- `cutoff_15k_s2_v2` — seed 44, cutoff@15K, 34685:3\n\n**PREPARING (1)**：\n- `reverse_cutoff_s2_v2` — 被 D044 撤回（C002 禁止 resume），已被 v3 fresh start 替代，可以清理\n\n**等待中**：\n- 4 个 cron 回调（训练完成 ETA ~16:30-17:00 UTC）\n- 训练完成后需立即并行 4 个 eval（50r SafeLIBERO）\n- 无 running Worker，无 pending Director 决策\n\n**⚠️ P0 未解决**：ROADMAP 标注的梯度聚合方法不一致问题（Reviewer WARNING：78% vs 论文 1-13%）——上一 session 标记\"调查中\"但未见结论。下一个\"你\"需要优先处理此项。\n\n### 4. 📋 待办（条件触发式）\n- 4 个训练 cron 任一完成 → spawn Worker 读日志确认成功 → update_registry → 立即在 10894 对应 GPU 上启动 eval（50r SafeLIBERO）\n- 4 个 eval 全部完成 → 3-seed dose-response 统计分析（cutoff_15k/25k/45k/reverse_cutoff 各 3 seed 均值+std）→ 更新 dose-response 图表 → patch 论文\n- **梯度聚合 WARNING 调查**（P0）→ 确认是 per-layer vs per-encoder 聚合口径差异还是真正 bug → 修正论文数字或梯度分析代码\n- dose-response 3-seed 统计完成 → 论文最终 polish + compilation check → CoRL 2026 May 29 deadline\n- `reverse_cutoff_s2_v2` (PREPARING) 已被 v3 替代 → update_registry(status=DONE, conclusion=killed) 清理\n\n### 5. 🎯 战略上下文\n**项目核心结论**：BN × gradient flow 存在交叉交互（p=0.025, η²=0.484）。BN 在有梯度流时是最优 normalization（校准梯度分配），无梯度流时导致表征灾难。LN + gradient flow 反而最差（DINOv2 梯度被抑制 3.5×）。这是 D042 的核心发现，论文 story 围绕此展开。\n\n**当前阶段**：Abstract 已提交（May 26 deadline ✅），paper deadline May 29（还剩 4 天）。Paper v42 已 23/23 provenance。当前在跑 dose-response 3rd seed 实验补齐统计力度。\n\n**易错点**：\n- 不要混淆 cutoff 实验的 s0/s1/s2 seed 编号——s0=42, s1=43, s2=44。部分条件 s1 缺失（cutoff_45k 只有 s0+s1_v3 在跑，没有 s2）\n- dose-response 非单调模式（cutoff_25k < cutoff_35k）是已知现象，D041 结论是 seed noise，3rd seed 数据将给出最终判定\n- 10894 的 4 GPU 看起来空闲但 D045 决策保留用于分析+eval——不要擅自启动新训练实验（plan_028 第二基已被 D045 否决）\n- 论文中梯度 norm 数字（\"1-13%\"）来自 mixed-seed 分析，same-seed 分析可能给出不同数值——78% vs 1-13% 的 WARNING 必须先解决再 patch 论文\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1779729887.md"
+}

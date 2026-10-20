@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "13e1dfb51c3dd1529c1c",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval full occ retrain s0 v2",
+  "task_key": "worker_eval_full_occ_retrain_s0_v2_20260525T043109",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_full_occ_retrain_s0_v2_20260525T043109_result.json",
+    "occurrence": 1,
+    "bytes": 479,
+    "sha256": "8708943c14d79c6dbba4e2f2971a4f4e1f4016ab1daa8a9cd2a5784ed903da3b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 正在正常运行。\n\n**提交状态汇总：**\n- **实验**: `full_occ_retrain_s0_eval_v2` → RUNNING\n- **服务器**: westd-10894, cuda:0\n- **PID**: 1933\n- **日志**: `~/runs/occsafe_vla/full_occ_retrain_s0_eval_v2.log`\n- **进度**: Task 0 已完成 16%（8/50 rollouts），~3.5s/it\n- **Checkpoint**: `/root/autodl-tmp/checkpoints/full_occ_retrain_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-full-occ-retrain-s0-v2.md"
+}

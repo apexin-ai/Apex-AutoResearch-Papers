@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "019ef37bbf8e6891458a",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops prep cutoff evals and gradient check",
+  "task_key": "worker_ops_prep_cutoff_evals_and_gradient_check_20260524T080620",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prep_cutoff_evals_and_gradient_check_20260524T080620_result.json",
+    "occurrence": 1,
+    "bytes": 1541,
+    "sha256": "1dde63e0a8ec1b2683e500e526838b216259a78ca9537f626ee34cc450161864"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Plan written. Here's the full report:\n\n---\n\n## 1. Cutoff Eval Plan\n\n**Checkpoint status**: 50000_chkpt **不存在**，两个实验当前都在 ~40k steps，等待训练完成。\n\n完成后 checkpoint 路径：\n- `cutoff_15k_s0`: `/root/autodl-tmp/checkpoints/cutoff_15k_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt`\n- `cutoff_45k_s0`: `/root/autodl-tmp/checkpoints/cutoff_45k_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt`\n\n**Eval 在 westd-34685 直接跑** — LIBERO 已装在 conda env `occsafe` 中，无需跨服务器传输。当前 5 个 GPU 空闲 (2,3,5,7,8)，两个 eval 可并行。完整命令已写入 `/tmp/cutoff_eval_plan.txt`。\n\n---\n\n## 2. 梯度分析就绪状态\n\n**三个 checkpoint 全部就绪且完整：**\n\n| Checkpoint | 路径 | safetensors | 附加组件 |\n|---|---|---|---|\n| Vanilla (s42) | `vanilla_retrain_s0/.../50000_chkpt` | 4/4 | action_head, proprio_projector |\n| Full OCC (s42) | `full_occ_retrain_s0/.../50000_chkpt` | 4/4 | action_head, proprio_projector, **occ_head** |\n| Detach LN (s42) | `detach_ln_s0/.../50000_chkpt` | 4/4 | action_head, proprio_projector, **occ_head** |\n\n**梯度分析脚本**: `/root/occsafe_vla/analysis/gradient_analysis.py` — 已存在，支持 `--condition_type occ --occ_detach true/false`。辅助绘图脚本 `plot_gradient_figure.py` 和 `plot_gradient_paper.py` 也在。\n\n**可以立即启动**，空闲 GPU 充足。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prep-cutoff-evals-and-gradient-check.md"
+}

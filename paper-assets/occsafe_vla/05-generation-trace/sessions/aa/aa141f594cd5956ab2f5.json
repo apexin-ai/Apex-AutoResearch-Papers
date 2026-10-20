@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "aa141f594cd5956ab2f5",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "analysis v2 gradient analysis",
+  "task_key": "worker_analysis_v2_gradient_analysis_20260526T100632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_v2_gradient_analysis_20260526T100632.log",
+    "occurrence": 1,
+    "bytes": 761021,
+    "sha256": "cafa599ba3107126ccb2bcff9b6205a9d07e32a560a38f9606709729c5a1db2d"
+  },
+  "statistics": {
+    "messages": 199,
+    "user_turns": 0,
+    "tool_calls": 75,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 44,
+      "tool_call": 75,
+      "tool_result": 75,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 199,
+      "chunks": [
+        {
+          "path": "aa141f594cd5956ab2f5-part-0001.json",
+          "message_count": 137
+        },
+        {
+          "path": "aa141f594cd5956ab2f5-part-0002.json",
+          "message_count": 62
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-v2-gradient-analysis.md"
+}

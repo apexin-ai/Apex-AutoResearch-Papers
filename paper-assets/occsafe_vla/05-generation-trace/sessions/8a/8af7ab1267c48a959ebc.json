@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8af7ab1267c48a959ebc",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra download checkpoint analysis",
+  "task_key": "worker_infra_download_checkpoint_analysis_20260525T112657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_download_checkpoint_analysis_20260525T112657_result.json",
+    "occurrence": 1,
+    "bytes": 150,
+    "sha256": "eb0730ca6ab31addd9701a8e8092be84b48b6abe0c4e30163fa37f74dc2b30c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已从 `/root/autodl-tmp/analysis/checkpoint_analysis_summary.md` 下载到本地 artifacts 并注册为 `art_20260525_15cb68`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-download-checkpoint-analysis.md"
+}

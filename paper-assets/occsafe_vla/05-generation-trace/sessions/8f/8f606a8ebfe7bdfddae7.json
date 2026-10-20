@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f606a8ebfe7bdfddae7",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval fix stuck evals 34685",
+  "task_key": "worker_eval_fix_stuck_evals_34685_20260526T232112",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_fix_stuck_evals_34685_20260526T232112_result.json",
+    "occurrence": 1,
+    "bytes": 906,
+    "sha256": "8f9d994a0872cad5538d01a4bb19c0fe9344fb4936df925ac658326ba934e16d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "杀掉重复进程后 cuda:3 显存从 33553 MiB 降到 16778 MiB，正常。\n\n**结果汇总：**\n\n| Eval | GPU | 状态 | 进度 |\n|------|-----|------|------|\n| vanilla_v2_s1_eval | cuda:0 | RUNNING | Task 8/10 (80%) |\n| vanilla_v2_s2_eval | cuda:1 | RUNNING (之前已正常) | Task 7-8/10 |\n| detach_ln_s3_eval | cuda:2 | RUNNING (nohup) | Task 3/10 (30%) |\n| cutoff_25k_s1_v2_eval | cuda:3 | RUNNING (tmux) | Task 0/10 (刚启动) |\n\n**做了什么：**\n1. 发现 2 个\"stuck\"实验实际已被其他 agent 通过 nohup 修复并在运行（用了正确的 `evaluate_safelibero.py`）\n2. 杀掉 cuda:3 上重复的 nohup 进程 (PID 567681)，保留 registry 追踪的 tmux 进程\n3. 将 3 个 eval 的 registry 状态从 PREPARING 更新为 RUNNING（vanilla_v2_s1_eval, detach_ln_s3_eval, cutoff_25k_s1_v2_eval）\n\n4 张卡全部在跑 eval，各占 ~17GB 显存。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-fix-stuck-evals-34685.md"
+}

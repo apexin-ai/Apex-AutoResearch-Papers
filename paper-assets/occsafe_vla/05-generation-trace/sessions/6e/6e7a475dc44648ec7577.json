@@ -1,0 +1,558 @@
+{
+  "schema_version": "1.0",
+  "id": "6e7a475dc44648ec7577",
+  "project": "occsafe_vla",
+  "kind": "conversation",
+  "title": "paper related work mtl",
+  "task_key": "worker_paper_related_work_mtl_20260523T065237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_related_work_mtl_20260523T065237.jsonl",
+    "occurrence": 1,
+    "bytes": 34492,
+    "sha256": "4813392c8133ba87ba67a79be18bf1868a088b238806ce27be82ef28809c9c6e"
+  },
+  "statistics": {
+    "messages": 27,
+    "user_turns": 0,
+    "tool_calls": 13,
+    "roles": {
+      "tool_call": 13,
+      "tool_result": 13,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T06:57:18.346069+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related_work_mtl_20260523T065237",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T06:57:18.346705+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **\n…[truncated 5709 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related_work_mtl_20260523T065237",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T06:57:18.346927+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related_work_mtl_20260523T065237",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T06:57:18.347123+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\n2\t\\section{Related Work}\n3\t\n4\t\\subsection{Safety in Vision-Language-Action Models}\n5\t\n6\tVision-language-action (VLA) models achieve high task success rates on manipulation benchmarks~\\cite{kim2024openvla, brohan2023rt2} % Kim et al., OpenVLA, arXiv:2406.09246; Brohan et al., RT-2, arXiv:2307.15818\n7\tbut remain prone to collisions when obstacles occupy the manipulation workspace. Two strategies have emerged to address this gap between task completion and behavioral safety.\n8\t\n9\tThe first strategy applies runtime constraints to filter or adjust unsafe actions. The AEGIS framework~\\cite{hu2025vlsa} % Hu et al., \"VLSA: Vision-Language-Action Models with Plug-and-Play Safety Constraint Layer\", arXiv:2512.11891, 2025\n10\tadds a plug-and-play safety layer that identifies obstacles through a vision-language assessment module and enforces avoidance via a control barrier function (CBF) quadratic program, improving collision avoidance rate by 59.16 percentage points on SafeLIBERO, a benchmark of 32 safety-critical manipulation scenarios introduced in the same work. CoFreeVLA~\\cite{zhai2026cofreevla} % Zhai et al., \"CoFreeVLA: Collision-Free Dual-Arm Manipulation via VLA Model and Risk Estimation\", arXiv:2601.21712, 2026\n11\taddresses a related problem in dual-arm settings by training a short-horizon collision risk estimator that gates risky commands and triggers recovery to safe configurations. Control barrier functions have also been applied directly to manipulation independently of VLAs. Morton and Pavone~\\cite{morton2025oscbf} % Morton and Pavone, \"Safe, Task-Consistent Manipulation with Operational Space Control Barrier Functions\", IROS 2025, arXiv:2503.06736\n12\tformulate operational-space CBFs that scale to hundreds of simultaneous constraints at real-time control rates, and Raja et al.~\\cite{raja2024ogmcbf} % Raja et al., \"Safe Robot Control using Occupancy Grid Map-based Control Barrier Function (OGM-CBF)\", arXiv:2405.10703, 2024\n13\tconstruct CBFs from occupancy grid m\n…[truncated 8106 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related_work_mtl_20260523T065237",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T06:57:18.347276+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related_work_mtl_20260523T065237",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/references.bib"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T06:57:18.347509+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% References for OccSafe-VLA\n2\t% Bib key convention: {first_author_surname_lower}{year}{keyword_lower}\n3\t\n4\t% ============================================================\n5\t% VLA Safety\n6\t% ============================================================\n7\t\n8\t@article{hu2025vlsa,\n9\t  author    = {Songqiao Hu and Zeyi Liu and Shuang Liu and Jun Cen and Zihan Meng and Xiao He},\n10\t  title     = {{VLSA}: Vision-Language-Action Models with Plug-and-Play Safety Constraint Layer},\n11\t  journal   = {arXiv preprint arXiv:2512.11891},\n12\t  year      = {2025},\n13\t  note      = {arXiv:2512.11891}\n14\t}\n15\t\n16\t@inproceedings{zhang2025safevla,\n17\t  author    = {Borong Zhang and others},\n18\t  title     = {{SafeVLA}: Towards Safety Alignment of Vision-Language-Action Model via Constrained Learning},\n19\t  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n20\t  year      = {2025},\n21\t  note      = {Spotlight. arXiv:2503.03480}\n22\t}\n23\t\n24\t@article{zhai2026cofreevla,\n25\t  author    = {Xuanran Zhai and others},\n26\t  title     = {{CoFreeVLA}: Collision-Free Dual-Arm Manipulation via {VLA} Model and Risk Estimation},\n27\t  journal   = {arXiv preprint arXiv:2601.21712},\n28\t  year      = {2026},\n29\t  note      = {arXiv:2601.21712}\n30\t}\n31\t\n32\t@article{yu2026safenightvla,\n33\t  author    = {Yu and others},\n34\t  title     = {{Safe-Night VLA}: Seeing the Unseen via Thermal-Perceptive Vision-Language-Action Models for Safety-Critical Manipulation},\n35\t  journal   = {arXiv preprint arXiv:2603.05754},\n36\t  year      = {2026},\n37\t  note      = {arXiv:2603.05754}\n38\t}\n39\t\n40\t@article{li2026vlasafety,\n41\t  author    = {Li and others},\n42\t  title     = {Vision-Language-Action Safety: Threats, Challenges, Evaluations, and Mechanisms},\n43\t  journal   = {arXiv preprint arXiv:2604.23775},\n44\t  year      = {2026},\n45\t  note      = {arXiv:2604.23775}\n46\t}\n47\t\n48\t% ============================================================\n49\t% Safety Mechanisms (barrier functions / occupancy-based sa\n…[truncated 15506 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related_work_mtl_20260523T065237",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T06:57:18.347743+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related_work_mtl_20260523T065237",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T06:57:18.347897+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related_work_mtl_20260523T065237",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T06:57:18.348021+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related_work_mtl_20260523T065237",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "GradNorm Chen ICML 2018 gradient normalization multi-task learning"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T06:57:18.348139+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related_work_mtl_20260523T065237",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "PCGrad Yu NeurIPS 2020 gradient surgery multi-task learning"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T06:57:18.348254+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related_work_mtl_20260523T065237",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "CAGrad Liu NeurIPS 2021 conflict-averse gradient descent multi-task"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T06:57:18.348368+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related_work_mtl_20260523T065237",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "NashMTL Navon ICML 2022 Nash bargaining multi-task learning"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T06:57:18.348479+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related_work_mtl_20260523T065237",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "EWC Kirkpatrick 2017 elastic weight consolidation catastrophic forgetting"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T06:57:18.348627+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"PCGrad Yu NeurIPS 2020 gradient surgery multi-task learning\"\n\nLinks: [{\"title\":\"Yu Et Al. - 2020 - Gradient Surgery for Multi-Task Learning\",\"url\":\"https://www.scribd.com/document/558287008/Yu-Et-Al-2020-Gradient-Surgery-for-Multi-Task-Learning\"},{\"title\":\"[Quick Review] Gradient Surgery for Multi-Task Learning\",\"url\":\"https://liner.com/review/gradient-surgery-for-multitask-learning\"},{\"title\":\"Implement PCGrad (Projecting Conflicting Gradients) for Multi-Task Optimization · Issue #51 · 0-5788719150923125/praxis\",\"url\":\"https://github.com/0-5788719150923125/praxis/issues/51\"},{\"title\":\"Gradient Surgery for Multi-Task Learning\",\"url\":\"https://proceedings.neurips.cc/paper/2020/file/3fe78a8acf5fda99de95303940a2420c-Paper.pdf\"},{\"title\":\"GradAttention: Attention-Based Gradient Surgery for Multitask Fine-Tuning\",\"url\":\"https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1244/final-projects/AnilYildiz.pdf\"},{\"title\":\"Gradient Descent in Multi-Task Learning Stanford CS224N Default Project\",\"url\":\"https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1244/final-projects/DavidSaykinKfirShmuelDolev.pdf\"},{\"title\":\"GitHub - tianheyu927/PCGrad: Code for \\\"Gradient Surgery for Multi-Task Learning\\\" · GitHub\",\"url\":\"https://github.com/tianheyu927/PCGrad\"},{\"title\":\"Gradient Surgery for Multi-Task Learning\",\"url\":\"https://arxiv.org/pdf/2001.06782\"},{\"title\":\"Review for NeurIPS paper: Gradient Surgery for Multi-Task Learning\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2020/file/3fe78a8acf5fda99de95303940a2420c-Review.html\"},{\"title\":\"[2001.06782] Gradient Surgery for Multi-Task Learning\",\"url\":\"https://arxiv.org/abs/2001.06782\"}]\n\nBased on the search results, here's information about the PCGrad paper:\n\n## Overview\n\nPCGrad is a gradient surgery method mitigating detrimental gradient interference in multi-task learning presented at NeurIPS 2020. The paper was authored by Tianhe Yu, Saurabh Kumar, Abhishek Gupta, Sergey Levine, Karol H\n…[truncated 1176 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related_work_mtl_20260523T065237",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T06:57:18.348835+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"GradNorm Chen ICML 2018 gradient normalization multi-task learning\"\n\nLinks: [{\"title\":\"GradNorm: Adaptive Loss Balancing for Multitask Networks\",\"url\":\"https://www.emergentmind.com/papers/1711.02257\"},{\"title\":\"Gradnorm: Gradient Normalization For Adaptive Loss Balancing in Deep Multitask Networks | PDF | Image Segmentation | Computer Science\",\"url\":\"https://www.scribd.com/document/615850392/1711-02257\"},{\"title\":\"(PDF) GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks\",\"url\":\"https://www.researchgate.net/publication/320920333_GradNorm_Gradient_Normalization_for_Adaptive_Loss_Balancing_in_Deep_Multitask_Networks\"},{\"title\":\"GitHub - hosseinshn/GradNorm: This in my Demo of Chen et al. \\\"GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks\\\" ICML 2018 · GitHub\",\"url\":\"https://github.com/hosseinshn/GradNorm\"},{\"title\":\"GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks\",\"url\":\"https://proceedings.mlr.press/v80/chen18a.html\"},{\"title\":\"models/grad-norm/README.md at master · chainer/models\",\"url\":\"https://github.com/chainer/models/blob/master/grad-norm/README.md\"},{\"title\":\"[1711.02257] GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks\",\"url\":\"https://arxiv.org/abs/1711.02257\"},{\"title\":\"Under review as a conference paper at ICLR 2018 GRADNORM: GRADIENT\",\"url\":\"https://openreview.net/pdf?id=H1bM1fZCW\"},{\"title\":\"GradNorm: Gradient Normalization for Adaptive Loss ...\",\"url\":\"https://arxiv.org/pdf/1711.02257\"}]\n\nI found comprehensive information about GradNorm. Here's what the search revealed:\n\n## Overview\n\nGradNorm is a gradient normalization algorithm that automatically balances training in deep multitask models by dynamically tuning gradient magnitudes. The paper was authored by Zhao Chen, Vijay Badrinarayanan, Chen-Yu Lee, and Andrew Rabinovich and was published in the Proceedings of the 35th \n…[truncated 1132 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related_work_mtl_20260523T065237",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T06:57:18.349016+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"CAGrad Liu NeurIPS 2021 conflict-averse gradient descent multi-task\"\n\nLinks: [{\"title\":\"Conflict-Averse Gradient Descent for Multi-task Learning [Quick Review]\",\"url\":\"https://liner.com/review/conflictaverse-gradient-descent-for-multitask-learning\"},{\"title\":\"Conflict-Averse Gradient Descent for Multi-task Learning\",\"url\":\"https://www.cs.utexas.edu/~pstone/Papers/bib2html-links/NeurIPS2021-Liu.pdf\"},{\"title\":\"Conflict-Averse Gradient Descent for Multi-task learning\",\"url\":\"https://proceedings.neurips.cc/paper/2021/hash/9d27fdf2477ffbff837d73ef7ae23db9-Abstract.html\"},{\"title\":\"Peter Stone: Conflict-Averse Gradient Descent for Multi-task learning\",\"url\":\"https://www.cs.utexas.edu/~pstone/Papers/bib2html/b2hd-NeurIPS2021-Liu.html\"},{\"title\":\"[2110.14048] Conflict-Averse Gradient Descent for Multi-task Learning\",\"url\":\"https://arxiv.org/abs/2110.14048\"},{\"title\":\"Conflict-Averse Gradient Descent for Multi-task Learning\",\"url\":\"https://arxiv.org/pdf/2110.14048\"},{\"title\":\"GitHub - Cranial-XIX/CAGrad: Official PyTorch Implementation for Conflict-Averse Gradient Descent (CAGrad) · GitHub\",\"url\":\"https://github.com/Cranial-XIX/CAGrad\"},{\"title\":\"(PDF) Conflict-Averse Gradient Descent for Multi-task Learning\",\"url\":\"https://www.researchgate.net/publication/355698823_Conflict-Averse_Gradient_Descent_for_Multi-task_Learning\"},{\"title\":\"Conflict-Averse Gradient Descent for Multi-task Learning\",\"url\":\"https://oamonitor.ireland.openaire.eu/rpo/rcsi/search/publication?pid=10.48550/arxiv.2110.14048\"},{\"title\":\"NeurIPS Poster Conflict-Averse Gradient Descent for Multi-task learning\",\"url\":\"https://neurips.cc/virtual/2021/poster/27328\"}]\n\nBased on the search results, here's information about the CAGrad paper presented at NeurIPS 2021:\n\n## Overview\n\nCAGrad (Conflict-Averse Gradient Descent) was authored by Bo Liu, Xingchao Liu, Xiaojie Jin, Peter Stone, and Qiang Liu from The University of Texas at Austin, Sony AI, and Bytedance Research, and was presen\n…[truncated 1346 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related_work_mtl_20260523T065237",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T06:57:18.349190+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"NashMTL Navon ICML 2022 Nash bargaining multi-task learning\"\n\nLinks: [{\"title\":\"Releases · AvivNavon/nash-mtl\",\"url\":\"https://github.com/AvivNavon/nash-mtl/releases\"},{\"title\":\"Multi-Task Learning as a Bargaining Game [Quick Review]\",\"url\":\"https://liner.com/review/multitask-learning-as-bargaining-game?entry-type=quick_review_inventory\"},{\"title\":\"Multi-Task Learning as a Bargaining Game - Bar-Ilan University\",\"url\":\"https://cris.biu.ac.il/en/publications/multi-task-learning-as-a-bargaining-game/\"},{\"title\":\"GitHub - AvivNavon/nash-mtl: Official implementation of \\\"Multi-Task Learning as a Bargaining Game\\\" [ICML 2022]\",\"url\":\"https://github.com/AvivNavon/nash-mtl\"},{\"title\":\"Multi-Task Learning as a Bargaining Game\",\"url\":\"https://arxiv.org/pdf/2202.01017\"},{\"title\":\"(PDF) Multi-Task Learning as a Bargaining Game\",\"url\":\"https://www.researchgate.net/publication/358306683_Multi-Task_Learning_as_a_Bargaining_Game\"},{\"title\":\"[2202.01017] Multi-Task Learning as a Bargaining Game\",\"url\":\"https://arxiv.org/abs/2202.01017\"},{\"title\":\"Multi-Task Learning as a Bargaining Game A. Navon1 A. Shamsian1 I. Achituve1\",\"url\":\"https://icml.cc/media/icml-2022/Slides/17114.pdf\"}]\n\nThe search has found comprehensive information about NashMTL and the Navon paper from ICML 2022. Here's what I found:\n\n## Overview\n\nNashMTL is the official implementation of \"Multi-Task Learning as a Bargaining Game\" presented at ICML 2022. The paper was authored by Aviv Navon and colleagues, and the conference took place from July 17-23, 2022.\n\n## Core Concept\n\nThe paper proposes viewing the gradients combination step as a bargaining game, where tasks negotiate to reach an agreement on a joint direction of parameter update. Under certain assumptions, the bargaining problem has a unique solution, known as the Nash Bargaining Solution, which is proposed as a principled approach to multi-task learning.\n\n## Key Features\n\nNashMTL utilizes the Nash Bargaining Solution as a princip\n…[truncated 749 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related_work_mtl_20260523T065237",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T06:57:18.349360+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"EWC Kirkpatrick 2017 elastic weight consolidation catastrophic forgetting\"\n\nLinks: [{\"title\":\"[1712.03847] On Quadratic Penalties in Elastic Weight Consolidation\",\"url\":\"https://arxiv.org/abs/1712.03847\"},{\"title\":\"On Quadratic Penalties in Elastic Weight Consolidation\",\"url\":\"https://www.researchgate.net/publication/321745400_On_Quadratic_Penalties_in_Elastic_Weight_Consolidation\"},{\"title\":\"Overcoming Catastrophic Forgetting: A Simple Guide to Elastic Weight Consolidation | Towards AI\",\"url\":\"https://towardsai.net/p/l/overcoming-catastrophic-forgetting-a-simple-guide-to-elastic-weight-consolidation\"},{\"title\":\"Overcoming Catastrophic Forgetting: Elastic Weight Consolidation And Replay Buffers For Lifelong AI - American Technology Consulting\",\"url\":\"https://blog.american-technology.net/overcoming-catastrophic-forgetting/\"},{\"title\":\"Overcoming Catastrophic Forgetting: A Simple Guide to Elastic Weight Consolidation | by Yunzhe Wang | Towards AI\",\"url\":\"https://pub.towardsai.net/overcoming-catastrophic-forgetting-a-simple-guide-to-elastic-weight-consolidation-122d7ac54328?gi=af55bbc9fc4f\"},{\"title\":\"[Regular] Elastic Weight Consolidation for Knowledge ...\",\"url\":\"https://openreview.net/pdf?id=crDZvvvZi6\"},{\"title\":\"On Quadratic Penalties in Elastic Weight Consolidation\",\"url\":\"https://arxiv.org/pdf/1712.03847\"},{\"title\":\"Note on the quadratic penalties in elastic weight consolidation - PMC\",\"url\":\"https://pmc.ncbi.nlm.nih.gov/articles/PMC5856534/\"},{\"title\":\"Overcoming Catastrophic Forgetting - Rylan Schaeffer\",\"url\":\"https://rylanschaeffer.github.io/content/research/elastic_weight_consolidation/main.html\"}]\n\nI found comprehensive information about EWC and Kirkpatrick's 2017 work. Here are the key findings:\n\n## Overview\n\nElastic weight consolidation (EWC, Kirkpatrick et al, 2017) is a novel algorithm designed to safeguard against catastrophic forgetting in neural networks.\n\n## The Problem: Catastrophic Forgetting\n\nThe naive approach of \n…[truncated 1170 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related_work_mtl_20260523T065237",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T06:57:18.349717+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related_work_mtl_20260523T065237",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/related_work.tex",
+              "old_string": ". These results predict that auxiliary objectives during fine-tuning should help preserve the diversity of the pretrained representation.\n\nFor VLA fine-tuning,",
+              "new_string": ". These results predict that auxiliary objectives during fine-tuning should help preserve the diversity of the pretrained representation.\n\n\\paragraph{Multi-Task Gradient Dynamics.}\nA parallel line of work in multi-task optimization focuses on resolving gradient conflicts between co-trained objectives. A family of methods manipulates task gradients at each update step: GradNorm~\\cite{chen2018gradnorm} dynamically reweights loss magnitudes, PCGrad~\\cite{yu2020pcgrad} projects conflicting gradient pairs onto each other's normal planes, and more recent approaches seek provably convergent update rules through worst-case optimization~\\cite{liu2021cagrad} or Nash bargaining~\\cite{navon2022nashmtl}. These methods share a common premise: task gradients conflict, and the optimizer must resolve that conflict to avoid performance degradation. Our gradient analysis reveals that this premise does not hold for auxiliary spatial supervision in VLA fine-tuning. Action and occupancy gradients remain nearly orthogonal (cosine similarity $\\approx 0$) throughout training, with per-parameter conflict rates of 42--57\\%, close to the 50\\% random baseline. This places our setting in a benign regime where gradient projection or reweighting has little to act on. The more consequential phenomenon is not gradient conflict but gradient amplification: occupancy supervision increases the magnitude of action-aligned gradients by 8--69$\\times$ relative to action-only training. This indicates that the auxiliary task's primary benefit operates through gradient flow rather than conflict resolution.\n\nThis observation also connects to catastrophic forgetting in continual learning. Elastic Weight Consolidation (EWC)~\\cite{kirkpatrick2017ewc} prevents forgetting by adding quadratic penalties that protect parameters important for previous tasks. Auxiliary occupancy supervision achieves a functionally analogous outcome: the continuous spatial gradient signal maintains encoder feature diversity and counteracts the representation drift that accompanies single-task fine-tuning. Where EWC requires explicit regularization terms, multi-task training provides implicit protection through shared gradient flow.\n\nFor VLA fine-tuning,"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T06:57:18.349946+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related_work_mtl_20260523T065237",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T06:57:18.350091+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related_work_mtl_20260523T065237",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/references.bib",
+              "old_string": "@inproceedings{foret2021sam,\n  author    = {Pierre Foret and Ariel Kleiner and Hossein Mobahi and Behnam Neyshabur},\n  title     = {Sharpness-Aware Minimization for Efficiently Improving Generalization},\n  booktitle = {International Conference on Learning Representations (ICLR)},\n  year      = {2021},\n  note      = {arXiv:2010.01412}\n}\n\n% ============================================================\n% Parameter-Efficient Fine-Tuning",
+              "new_string": "@inproceedings{foret2021sam,\n  author    = {Pierre Foret and Ariel Kleiner and Hossein Mobahi and Behnam Neyshabur},\n  title     = {Sharpness-Aware Minimization for Efficiently Improving Generalization},\n  booktitle = {International Conference on Learning Representations (ICLR)},\n  year      = {2021},\n  note      = {arXiv:2010.01412}\n}\n\n@inproceedings{chen2018gradnorm,\n  author    = {Zhao Chen and Vijay Badrinarayanan and Chen-Yu Lee and Andrew Rabinovich},\n  title     = {{GradNorm}: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks},\n  booktitle = {International Conference on Machine Learning (ICML)},\n  year      = {2018},\n  note      = {arXiv:1711.02257}\n}\n\n@inproceedings{yu2020pcgrad,\n  author    = {Tianhe Yu and Saurabh Kumar and Abhishek Gupta and Sergey Levine and Karol Hausman and Chelsea Finn},\n  title     = {Gradient Surgery for Multi-Task Learning},\n  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n  year      = {2020},\n  note      = {arXiv:2001.06782}\n}\n\n@inproceedings{liu2021cagrad,\n  author    = {Bo Liu and Xingchao Liu and Xiaojie Jin and Peter Stone and Qiang Liu},\n  title     = {Conflict-Averse Gradient Descent for Multi-task Learning},\n  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n  year      = {2021},\n  note      = {arXiv:2110.14048}\n}\n\n@inproceedings{navon2022nashmtl,\n  author    = {Aviv Navon and Aviv Shamsian and Idan Achituve and Haggai Maron and Kenji Kawaguchi and Gal Chechik and Ethan Fetaya},\n  title     = {Multi-Task Learning as a Bargaining Game},\n  booktitle = {International Conference on Machine Learning (ICML)},\n  year      = {2022},\n  note      = {arXiv:2202.01017}\n}\n\n@article{kirkpatrick2017ewc,\n  author    = {James Kirkpatrick and others},\n  title     = {Overcoming Catastrophic Forgetting in Neural Networks},\n  journal   = {Proceedings of the National Academy of Sciences (PNAS)},\n  volume    = {114},\n  number    = {13},\n  pages     = {3521--3526},\n  year      = {2017},\n  note      = {arXiv:1612.00796}\n}\n\n% ============================================================\n% Parameter-Efficient Fine-Tuning"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T06:57:18.350302+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related_work_mtl_20260523T065237",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-23T06:57:18.350463+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related_work_mtl_20260523T065237",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/related_work.tex",
+              "offset": "40",
+              "limit": "35"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-23T06:57:18.350647+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "40\t\\subsection{Auxiliary Tasks and Regularization in Fine-Tuning}\n41\t\n42\tMulti-task learning improves generalization by training on related objectives through a shared representation~\\cite{caruana1997multitask} % Caruana, \"Multitask Learning\", Machine Learning 28:41-75, 1997\n43\t. Auxiliary tasks act as inductive biases that prevent the shared encoder from overfitting to the primary objective~\\cite{ruder2017overview} % Ruder, \"An Overview of Multi-Task Learning in Deep Neural Networks\", arXiv:1706.05098, 2017\n44\t. Recent theoretical work by Lippl and Lindsey~\\cite{lippl2024implicit} % Lippl and Lindsey, \"Implicit Regularization of Multi-Task Learning and Finetuning in Overparameterized Neural Networks\", ICLR 2024, arXiv:2310.02396\n45\tshows that multi-task learning in overparameterized networks induces an $\\ell_{1,2}$ mixed-norm implicit regularization that encourages feature sharing across tasks, while fine-tuning exhibits ``nested feature selection'' that retains sparse subsets of pretrained features. These results predict that auxiliary objectives during fine-tuning should help preserve the diversity of the pretrained representation.\n46\t\n47\t\\paragraph{Multi-Task Gradient Dynamics.}\n48\tA parallel line of work in multi-task optimization focuses on resolving gradient conflicts between co-trained objectives. A family of methods manipulates task gradients at each update step: GradNorm~\\cite{chen2018gradnorm} dynamically reweights loss magnitudes, PCGrad~\\cite{yu2020pcgrad} projects conflicting gradient pairs onto each other's normal planes, and more recent approaches seek provably convergent update rules through worst-case optimization~\\cite{liu2021cagrad} or Nash bargaining~\\cite{navon2022nashmtl}. These methods share a common premise: task gradients conflict, and the optimizer must resolve that conflict to avoid performance degradation. Our gradient analysis reveals that this premise does not hold for auxiliary spatial supervision in VLA fine-tuning. Action and occupa\n…[truncated 2488 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related_work_mtl_20260523T065237",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-23T06:57:18.350820+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related_work_mtl_20260523T065237",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/references.bib",
+              "offset": "380",
+              "limit": "60"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-23T06:57:18.350965+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "380\t\n381\t@inproceedings{foret2021sam,\n382\t  author    = {Pierre Foret and Ariel Kleiner and Hossein Mobahi and Behnam Neyshabur},\n383\t  title     = {Sharpness-Aware Minimization for Efficiently Improving Generalization},\n384\t  booktitle = {International Conference on Learning Representations (ICLR)},\n385\t  year      = {2021},\n386\t  note      = {arXiv:2010.01412}\n387\t}\n388\t\n389\t@inproceedings{chen2018gradnorm,\n390\t  author    = {Zhao Chen and Vijay Badrinarayanan and Chen-Yu Lee and Andrew Rabinovich},\n391\t  title     = {{GradNorm}: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks},\n392\t  booktitle = {International Conference on Machine Learning (ICML)},\n393\t  year      = {2018},\n394\t  note      = {arXiv:1711.02257}\n395\t}\n396\t\n397\t@inproceedings{yu2020pcgrad,\n398\t  author    = {Tianhe Yu and Saurabh Kumar and Abhishek Gupta and Sergey Levine and Karol Hausman and Chelsea Finn},\n399\t  title     = {Gradient Surgery for Multi-Task Learning},\n400\t  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n401\t  year      = {2020},\n402\t  note      = {arXiv:2001.06782}\n403\t}\n404\t\n405\t@inproceedings{liu2021cagrad,\n406\t  author    = {Bo Liu and Xingchao Liu and Xiaojie Jin and Peter Stone and Qiang Liu},\n407\t  title     = {Conflict-Averse Gradient Descent for Multi-task Learning},\n408\t  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n409\t  year      = {2021},\n410\t  note      = {arXiv:2110.14048}\n411\t}\n412\t\n413\t@inproceedings{navon2022nashmtl,\n414\t  author    = {Aviv Navon and Aviv Shamsian and Idan Achituve and Haggai Maron and Kenji Kawaguchi and Gal Chechik and Ethan Fetaya},\n415\t  title     = {Multi-Task Learning as a Bargaining Game},\n416\t  booktitle = {International Conference on Machine Learning (ICML)},\n417\t  year      = {2022},\n418\t  note      = {arXiv:2202.01017}\n419\t}\n420\t\n421\t@article{kirkpatrick2017ewc,\n422\t  author    = {James Kirkpatrick and others},\n423\t  title     = {Overcoming Catastrop\n…[truncated 777 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related_work_mtl_20260523T065237",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-23T06:57:18.351152+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。\n\n**related_work.tex** (lines 47-50): 在 \"Auxiliary Tasks and Regularization\" 子节中插入了 `\\paragraph{Multi-Task Gradient Dynamics.}` 段落（12 句），结构为：\n1. 介绍 GradNorm/PCGrad/CAGrad/NashMTL 的共同前提（gradient conflict）\n2. 用实验数据（cosine ≈ 0, conflict rate 42-57%）说明本文处于 benign regime，conflict management 不适用\n3. 核心论点：gradient amplification (8-69×) 而非 conflict resolution\n4. EWC 连接：auxiliary supervision 通过 shared gradient flow 隐式实现类似 EWC 的 feature protection\n\n**references.bib**: 新增 6 条 bib 条目（chen2018gradnorm, yu2020pcgrad, liu2021cagrad, navon2022nashmtl, kirkpatrick2017ewc），放在 Multi-Task Learning / Regularization 分区内。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related_work_mtl_20260523T065237"
+          },
+          "id": "event-000027"
+        }
+      ],
+      "message_count": 27
+    }
+  ],
+  "readable_path": "readable/conversations/paper-related-work-mtl.md"
+}

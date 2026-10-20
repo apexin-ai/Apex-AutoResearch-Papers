@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "07e2617ef5d37fcad122",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "code occ dryrun mini",
+  "task_key": "worker_code_occ_dryrun_mini_20260520T101527",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_occ_dryrun_mini_20260520T101527.log",
+    "occurrence": 1,
+    "bytes": 641509,
+    "sha256": "99fb22a4d63d519cb3c924e548e7693567e13ff2f16a90cfe54b34f240ccca3d"
+  },
+  "statistics": {
+    "messages": 219,
+    "user_turns": 0,
+    "tool_calls": 80,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 53,
+      "tool_call": 80,
+      "tool_result": 80,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 219,
+      "chunks": [
+        {
+          "path": "07e2617ef5d37fcad122-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "07e2617ef5d37fcad122-part-0002.json",
+          "message_count": 39
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-occ-dryrun-mini.md"
+}

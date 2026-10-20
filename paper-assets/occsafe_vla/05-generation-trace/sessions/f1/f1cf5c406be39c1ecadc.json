@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1cf5c406be39c1ecadc",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "train vanilla object s0 34685 cuda1",
+  "task_key": "worker_train_vanilla_object_s0_34685_cuda1_20260527T164502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_vanilla_object_s0_34685_cuda1_20260527T164502_result.json",
+    "occurrence": 1,
+    "bytes": 472,
+    "sha256": "9a12cccc83de89da2f5ef7fc2dcf291307cce268079dd12aa27f86e7ae8eb7a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动并开始迭代：\n\n- **数据集**: libero_object_no_noops（454 episodes）\n- **进度**: step 3/50005，正常运行中\n- **action_loss**: 0.5938（初始值合理）\n- **occ_loss/depth_loss**: 0.0（Vanilla 模式，符合预期）\n- **速度**: ~2s/step，预计约 28 小时完成（在 deadline 前可跑到 ~43k steps，接近 50k）\n- **GPU**: westd-34685 cuda:1\n- **日志**: `~/runs/occsafe_vla/vanilla_object_s0.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-vanilla-object-s0-34685-cuda1.md"
+}

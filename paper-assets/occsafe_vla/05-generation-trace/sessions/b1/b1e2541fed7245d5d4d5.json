@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1e2541fed7245d5d4d5",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval cell2 v2 10894",
+  "task_key": "worker_eval_cell2_v2_10894_20260527T154901",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cell2_v2_10894_20260527T154901_result.json",
+    "occurrence": 1,
+    "bytes": 591,
+    "sha256": "2b9e1b2eb43b44429b4646819b1268b1e310308065332a739a60fedaa3d886b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 均正常启动，正在加载模型（tensorflow GPU warning 是无害的，不影响 PyTorch eval）。\n\n**汇总：**\n\n| Eval | GPU | PID | Checkpoint | tmux session |\n|------|-----|-----|------------|--------------|\n| full_occ_ln_v2_s1c_eval | cuda:0 | 592547 | `...full_occ_ln_v2_s1c--50000_chkpt` | full_occ_ln_v2_s1c_eval |\n| full_occ_ln_v2_s2_eval | cuda:1 | 592815 | `...full_occ_ln_v2_s2--50000_chkpt` | full_occ_ln_v2_s2_eval |\n\n预计每个 eval ~30-40min 完成，约 UTC 16:20-16:30 前出结果。完成后 Cell 2 v2 将有 n=3 数据点。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cell2-v2-10894.md"
+}

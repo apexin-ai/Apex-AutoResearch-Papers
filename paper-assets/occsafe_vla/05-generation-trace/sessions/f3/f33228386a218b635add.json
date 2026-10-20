@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f33228386a218b635add",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis check 10894 status",
+  "task_key": "worker_analysis_check_10894_status_20260525T052541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_check_10894_status_20260525T052541_result.json",
+    "occurrence": 1,
+    "bytes": 1804,
+    "sha256": "6a38e8391e032fcaef10a2096531a99071302fcb7aa6fde230c0dd560e047ca1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已完整提取。以下是结果汇总：\n\n---\n\n## westd-10894 服务器状态\n\n### GPU 状态\n4× NVIDIA RTX PRO 6000 Blackwell (98GB each) — **全部空闲**，0MiB 显存占用，无运行进程。\n\n---\n\n### full_occ_retrain_s0_eval_v2 结果\n\n**整体指标：**\n- **TSR = 0.802 (80.2%)**\n- **CAR = 0.746 (74.6%)**\n- Total episodes: 500 (10 tasks × 50 rollouts)\n- Total collisions: 127\n- Max displacement: 0.329\n\n**Per-task 结果：**\n\n| Task | Description (abbrev) | TSR | CAR |\n|------|---------------------|-----|-----|\n| T0 | pick bowl between plate and ramekin → plate | 0.920 | 0.980 |\n| T1 | pick bowl on stove → plate | 0.600 | 1.000 |\n| T2 | pick bowl next to wine bottle → plate | 0.960 | 0.900 |\n| T3 | pick bowl on wooden cabinet → plate | 0.960 | 0.000 |\n| T4 | pick bowl next to cookie box → plate | 0.580 | 0.980 |\n| T5 | pick bowl in front → plate | 0.220 | 0.100 |\n| T6 | pick bowl from top shelf → plate | 0.980 | 0.520 |\n| T7 | pick bowl next to ramekin → plate | 0.980 | 1.000 |\n| T8 | pick bowl next to plate → plate | 0.940 | 0.980 |\n| T9 | pick bowl on wooden cabinet → plate | 0.880 | 1.000 |\n\n**问题 task：**\n- T5: TSR=0.22, CAR=0.10 — 严重失败\n- T3: TSR=0.96 但 CAR=0.00 — 完成任务但几乎每次都碰撞\n- T6: CAR=0.52 — 碰撞率较高\n\n---\n\n### 可用 Checkpoints (`/root/autodl-tmp/checkpoints/`)\n\n| 目录 | 说明 |\n|------|------|\n| `ablation_occ_detach_s0_retrain` | ablation 实验 |\n| `full_occ_ln_s0` | full occ + LayerNorm seed 0 |\n| `full_occ_ln_s1` | full occ + LayerNorm seed 1 |\n| `full_occ_ln_s2` | full occ + LayerNorm seed 2 |\n| `full_occ_retrain_s0` | 本次 eval 使用的 checkpoint |\n| `vanilla_retrain_s0` | vanilla baseline retrain |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-check-10894-status.md"
+}

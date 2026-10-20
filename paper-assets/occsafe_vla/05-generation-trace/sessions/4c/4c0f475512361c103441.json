@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c0f475512361c103441",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_5_1779877393.md",
+  "task_key": "loop_5_1779877393",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1779877393.md",
+    "occurrence": 1,
+    "bytes": 4547,
+    "sha256": "5224bf8589a71818ba691a3817231503f6b8a26399d3bd0f6dad5b5ae06e5e30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-27T04:52:47+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0, cuda:1, cuda:2, cuda:3（两台服务器各 4 张）。禁止使用白名单外 GPU。\n- 服务器只有 westd-10894 和 westd-34685，不要连其他机器。\n- **CoRL 2026 Paper DDL: May 28 12:00 UTC**。用户自行提交（D058），Agent 不提交论文。\n- detach_ln_v2_s1_35 和 detach_ln_v2_s1 共享 PID 681124（同一进程双 registry 条目），不要重复操作。\n- 10894 曾有 driver stuck counter 问题（cron 误报 torchrun 父进程退出为 failed），已修复。判定进程死亡前必须交叉验证 nvidia-smi + ps aux。\n- D067 决策：Detach+LN (Cell 4) 标为 v1 数据（$^\\star$），省略 ΔCAR。不要在论文中将 Cell 4 v1 数据与 v2 数据直接混合做 ANOVA。\n- submit_training_job 不支持 shell builtin（source/conda activate 需用绝对路径）。\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：westd-10894 + westd-34685，各 4× RTX PRO 6000 (98GB)\n- **工作目录**：/root/occsafe_vla（两台服务器相同）\n- **Python**：/root/miniconda3/bin/python（conda base 环境，不是 venv）\n- **磁盘**：34685 仅 2% used（819GB/879GB 可用）；10894 未最近检查\n- **W&B**：项目 occsafe_vla（metrics 自动上报）\n- **活跃进程**：\n  - 34685:cuda:0 — detach_ln_v2_s1_35, PID 681124\n  - 34685:cuda:1 — detach_ln_s4, PID 677568\n  - 34685:cuda:2 — ablation_occ_detach_s4, PID 735898\n  - 34685:cuda:3 — mvp_occ_s4, PID 736253\n  - 10894:cuda:0 — full_occ_ln_v2_s1c_r2, PID 481426\n  - 10894:cuda:1 — full_occ_ln_v2_s2_r2, PID 481643\n  - 10894:cuda:2 — detach_ln_v2_s0c_r2, PID 481988\n  - 10894:cuda:3 — full_occ_ln_v2_s0d, PID 490803\n- **Cron 监控**：9 个活跃 cron（含 detach_ln_v2_s1 和 detach_ln_v2_s1_35 共享 PID），reconcile 确认全部 still running。\n\n### 3. 📊 当前状态\n- **8/8 GPU 满载**，全部在跑 2×2 factorial 数据扩展（BN×gradient_flow, n=5 扩展 + v2 rebuild）。\n- **D066 核心修订已完成**（R1-R4 baseline fix, F1-F7 hedging/LN rationale）。P2-P5 trimming 低优先级待做。\n- **0 个活跃 Worker**。上一轮 Worker 全部完成，当前无 CPU 任务在跑。\n- **1 个 PREPARING**：full_occ_ln_s4（Cell 2 n=5, seed 46），等 GPU 释放。\n- **ETA**：34685 四个训练 ~12:30-13:30 May 27 UTC 完成；10894 四个 ~13:30-14:30 完成。\n- **Registry 总览**：128 实验（93 success / 6 negative / 20 failed）。\n\n### 4. 📋 待办（条件触发式）\n- 34685 任一训练完成 cron 回调 → spawn Worker 跑 50-rollout SafeLIBERO eval（+50min）→ 更新 registry + report.md\n- 10894 任一训练完成 cron 回调 → 同上 eval 流程\n- **所有当前训练完成后 → v2 梯度分析（5 条件 全 factorial + Vanilla）是最高优先级**，优先于新训练提交。派 Worker 在释放的 GPU 上跑梯度正交性 + 方差分析。\n- 梯度分析完成 → 更新 paper method.tex / results.tex 中机制证据段\n- full_occ_ln_s4 (PREPARING) → GPU 释放后提交（Cell 2 第 5 个种子）\n- v2 数据齐全后 → 确认性 2×2 ANOVA（全 v2 数据），更新 η²/d 数字\n- P2-P5 trimming → DDL 前如有时间执行（低优先级，D066 已完成核心修订）\n- 编译验证 → DDL 前预留 30min\n\n### 5. 🎯 战略上下文\n- **核心结论**：所有 aux spatial head 配置 ≤ Vanilla baseline（binomial p<0.001）。Gradient flow 是损害源，detach 后 aux head 无害（≈Vanilla, p=0.28 NS）。BN 放大损害（-4.2pp vs LN -2.5pp），但 pairwise 不显著（Hedges' g CI 跨零）。\n- **Plan B (ordinal interaction)** 已确认（D058）：不追求 pairwise 显著性，以全局方向一致性 + 大效应量为主要论证。\n- **机制证据缺口**：v1 gradient collapse + CKA degradation 已被推翻为 bug 产物（D056/D057）。当前仅有梯度正交性（cosine≈0）+ 方差不对称（Cell 1 方差 6.88× Cell 3）。**v2 梯度分析是填补这个缺口的关键**——完成后才有可靠的机制证据写入论文。\n- **易错点**：\n  - 不要把 v1 数据和 v2 数据混合做统计检验（除非明确标注 mixed）\n  - Cell 4 (Detach LN) 当前只有 1 个 v2 数据点（CAR=0.802），其余为 v1。D067 决定标星号处理。\n  - 10894 cron 可能再次误报（torchrun 父进程退出），务必交叉验证再判定 failed。\n  - memory.md 中的\"统一修订计划\"是 D065/D066 的产物，F1-F7 已执行完毕，P2-P5 未执行。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1779877393.md"
+}

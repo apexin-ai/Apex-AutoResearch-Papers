@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac50627b6673b3f2e439",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_7_1779949797.md",
+  "task_key": "loop_7_1779949797",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1779949797.md",
+    "occurrence": 1,
+    "bytes": 4354,
+    "sha256": "90870d52abd8a010af5e1c756a20fee51eaf1b07723e1259b51a404c922d5415"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-28T06:19:42+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-34685 cuda:0-3, westd-10894 cuda:0-3（共 8 卡，全部已分配本项目）\n- **Paper DDL: May 28 12:00 UTC（SafeRL Workshop @ RSS 2025）**——所有操作以此为硬截止\n- Eval 脚本需要 `MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID={gpu_id}` 环境变量，漏了会 segfault\n- v2 rebuild 实验的 checkpoint 路径可能与 exp_id 不一致（如 detach_ln_v2_s1_35 的 run_root_dir 实际是 `detach_ln_v2_s1`，因为是 ghost process 继承的目录名）\n- Cell 4 (Detach LN) 当前只有 n=1 v2 数据（CAR=0.802），其余是 v1——Table 1 中 Detach+LN 行须标 `$^\\star$` 注明混用 v1 数据（D067 决策）\n\n### 2. 🖥️ 基础设施快照\n- **westd-34685**: 工作目录 `/root/occsafe_vla/openvla-oft`, Python `/root/miniconda3/bin/python`, conda env `occsafe`, checkpoint `/root/autodl-tmp/checkpoints/`, 日志 `/root/runs/occsafe_vla/` 或 `/root/occsafe_vla/logs/`\n- **westd-10894**: 同上布局，磁盘 112G free (55%)\n- WANDB_MODE=disabled（全部实验）\n- 活跃 cron（reconcile 确认）：\n  - `full_occ_ln_v2_s1c` (PID 481426, 10894) — Cell 2 v2 seed 43\n  - `full_occ_ln_v2_s2` (PID 481643, 10894) — Cell 2 v2 seed 44\n  - `detach_ln_v2_s0c_r3` (PID 543255, 10894) — Cell 4 v2 seed 42\n  - `full_occ_ln_s4` (PID 553813, 10894) — Cell 2 seed 46\n  - `detach_ln_s4_eval` (34685) — Cell 4 eval seed 46\n  - `ablation_occ_detach_s4_eval` (34685) — Cell 3 eval seed 46\n\n### 3. 📊 当前状态\n**刚收到 CRON 回调**：`detach_ln_v2_s1_35_eval` 报 \"Process exited without valid W&B metrics\"。Registry 里 conclusion=success 但 report.md 标 failed——存在不一致。已派 Worker (`worker_diagnose_detach_ln_v2_s1_35_eval_20260527T141442`) SSH 查日志诊断，**尚未收到回调**。\n\n**RUNNING/活跃实验**（按批次）：\n- 批次①已完成训练：34685:0/1 的 `detach_ln_v2_s1_35` 和 `detach_ln_s4` 都 DONE(success)，eval 阶段中\n- 批次②已完成训练：34685:2/3 的 `ablation_occ_detach_s4` 和 `mvp_occ_s4` 都 DONE(success)，eval 阶段中\n- 批次③：10894:0/1 的 `full_occ_ln_v2_s1c` / `full_occ_ln_v2_s2` 训练中 (~69%)，ETA ~22:50 May 27\n- 批次④：10894:2/3 的 `detach_ln_v2_s0c_r3` / `full_occ_ln_s4` 训练中 (~8-12%)，ETA ~06:20-06:50 May 28\n\n**等待中**：\n- Worker 诊断回调（detach_ln_v2_s1_35_eval 失败原因）\n- `detach_ln_s4_eval` cron 回调（Cell 4 eval）\n- `ablation_occ_detach_s4_eval` cron 回调（Cell 3 eval）\n\n### 4. 📋 待办（条件触发式）\n- Worker 诊断回调到达 → 如果 eval 实际失败：在 34685:0 重跑 eval（checkpoint 在 `/root/autodl-tmp/checkpoints/detach_ln_v2_s1/...--50000_chkpt`）；如果实际成功但 CRON 误报：更新 registry metrics + report.md\n- `detach_ln_s4_eval` 完成 → 更新 Cell 4 数据（n+1），汇报 Director\n- `ablation_occ_detach_s4_eval` 完成 → 更新 Cell 3 数据（n=5），汇报 Director\n- 批次①②所有 eval 完成 → 34685 四卡空出，等 10894 批次③训练完后可安排批次③ eval\n- 批次③ eval 完成（~23:40 May 27）→ Cell 2 v2 达 n=3，替换 Table 1 LN row\n- 批次④ eval 完成（~07:30 May 28）→ Cell 4 v2 达 n=3，Table 1 全纯 v2\n- 全 v2 数据就绪 → 跑 2×2 ANOVA + 更新 Table 1 + 最终编译 + 提交（窗口 07:30-11:00 May 28，DDL 12:00）\n\n### 5. 🎯 战略上下文\n- **核心 claim**：gradient flow 是损害源，detach 后 aux OCC head 无害（≈ Vanilla）。Detach BN (0.767) ≈ Vanilla (0.745, p=0.28)；Full OCC BN (0.725) < Vanilla。\n- **当前论文状态**：Plan B (ordinal interaction) narrative。D066 放弃 binomial test，改用 factorial ANOVA 作主要统计论证。D067 允许 Cell 4 Detach+LN 混用 v1 数据（标 $^\\star$）。\n- **最易判断错的事**：detach_ln_v2_s1_35 的 checkpoint 路径名是 `detach_ln_v2_s1`（不是 `detach_ln_v2_s1_35`），因为是 ghost process 继承的目录。eval 命令里的 checkpoint 路径要用实际目录名。\n- **时间极紧**：DDL 不到 22 小时，批次④的 ETA 距 DDL 仅 5 小时余量。任何 eval 失败需立即重跑，不能犹豫。\n- 成功率 96/134（71%），失败 23 个多为早期 v1 和磁盘/driver 问题，不影响当前 v2 数据收集。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1779949797.md"
+}

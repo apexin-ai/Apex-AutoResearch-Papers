@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c7002b04bef991a9bec4",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code analysis scripts v2",
+  "task_key": "worker_code_analysis-scripts-v2_20260521T185745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_analysis-scripts-v2_20260521T185745_result.json",
+    "occurrence": 1,
+    "bytes": 1619,
+    "sha256": "d293a99ff07398a87a8fae0131b5464bcfe963b0dea0b331695bb5454683259f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 产出清单\n\n### 创建的文件\n| 路径 | 用途 |\n|------|------|\n| `/root/occsafe_vla/openvla-oft/analysis/eval_utils.py` | 共用工具（数据加载、bootstrap CI、diff test） |\n| `/root/occsafe_vla/openvla-oft/analysis/per_task_comparison.py` | 多条件 per-task TSR/CAR 对比 |\n| `/root/occsafe_vla/openvla-oft/analysis/seed_instability.py` | 跨 seed 方差分析 |\n| `/root/occsafe_vla/openvla-oft/analysis/ablation_diagnostic.py` | Ablation 诊断（4 条件 + 2×2 scatter） |\n\n### Dry-run 验证结果\n\n3 个脚本全部成功，共生成 19 个输出文件：\n\n| 脚本 | 状态 | 输出 |\n|------|------|------|\n| `per_task_comparison.py` | **通过** | `per_task_tsr.pdf` (16K), `per_task_car.pdf` (16K), `hard_tasks.pdf` (15K), `comparison_stats.json` (122B — 单条件无 pairwise 对比，预期行为) |\n| `seed_instability.py` | **通过** | `seed_variance_heatmap.pdf` (27K), `variance_ratio.pdf` (25K), `instability_stats.json` (1.4K) |\n| `ablation_diagnostic.py` | **通过** | `ablation_car_comparison.pdf` (23K), `ablation_tsr_comparison.pdf` (22K), `diagnostic_matrix.pdf` (25K), `diagnostic_report.json` (2.2K) |\n\n所有 PDF + PNG 双格式输出。\n\n### 数据格式发现\n- eval JSON 实际路径: `/root/occsafe_vla/eval_results/`（非 `/root/eval_logs/`）\n- CAR 字段已是安全率（`car`），不需要 `1 - collision_rate` 转换\n- 目前缺 `vanilla_s2` 的 JSON（eval_results 里只有 s0、s1）\n- OCC 可用: `occ_s0_50000.json`, `occ_s2_50000.json`（另有 `occ_s0_final.json`, `occ_s2_final.json`）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-analysis-scripts-v2.md"
+}

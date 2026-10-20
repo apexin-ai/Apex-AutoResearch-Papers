@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "793c42e0c9bf776bfff6",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis vanilla retrain s0",
+  "task_key": "worker_analysis_vanilla_retrain_s0_20260523T175902",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_vanilla_retrain_s0_20260523T175902_result.json",
+    "occurrence": 1,
+    "bytes": 1535,
+    "sha256": "956fd1c3e1ef686f2892742944b8db7c660e8e0dc89e619f8ac76ff3a13d3488"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已齐全。\n\n## 结果摘要\n- **conclusion: success**\n- 总步数: 50005（跑满）\n- 最终 loss: 0.0457 (action_loss)\n- checkpoint 路径: `/root/autodl-tmp/checkpoints/vanilla_retrain_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt`\n- W&B run_id: 无（本次训练未启用 W&B）\n- 训练时长: ~14h 8min\n- EXIT_CODE: 0\n\n**Loss 曲线（每 10k 步采样）:**\n\n| Step | action_loss | occ_loss | depth_loss |\n|------|------------|----------|------------|\n| 0 | 0.6836 | 0.0000 | 0.0000 |\n| 10000 | 0.1211 | 0.0000 | 0.0000 |\n| 20000 | 0.1216 | 0.0000 | 0.0000 |\n| 30000 | 0.0845 | 0.0000 | 0.0000 |\n| 40000 | 0.0654 | 0.0000 | 0.0000 |\n| 50000 | 0.0457 | 0.0000 | 0.0000 |\n\n## 详细发现\n\n1. **Loss 收敛正常**：action_loss 从 0.68 单调下降到 0.046，无异常波动。occ/depth loss 始终为 0（符合 vanilla baseline 无辅助头的预期）。\n\n2. **Checkpoint 部分缺失**：日志确认 5 个 checkpoint（10k/20k/30k/40k/50k）均已保存，但磁盘上仅存 10000、40000、50000 三个。20000 和 30000 可能被清理释放磁盘空间。对 plan_023 梯度分析影响不大——最终 checkpoint (50000) 完整存在。\n\n3. **最终 checkpoint 完整**：15GB，包含 4 个 safetensor 分片、action_head (289MB)、proprio_projector (65MB)、lora_adapter、tokenizer 等全部文件。可直接用于后续梯度分析。\n\n4. **训练速度稳定**：~1.08 it/s，无明显 slowdown 或 OOM。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-vanilla-retrain-s0.md"
+}

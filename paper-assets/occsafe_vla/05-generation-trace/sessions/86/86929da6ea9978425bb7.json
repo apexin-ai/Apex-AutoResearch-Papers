@@ -1,0 +1,652 @@
+{
+  "schema_version": "1.0",
+  "id": "86929da6ea9978425bb7",
+  "project": "occsafe_vla",
+  "kind": "conversation",
+  "title": "ops full status check post restart",
+  "task_key": "worker_ops_full_status_check_post_restart_20260524T111609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_full_status_check_post_restart_20260524T111609.jsonl",
+    "occurrence": 1,
+    "bytes": 31283,
+    "sha256": "03bcb816210e1328521807b83a078eb310ee473c3c84f1641a6f78e89e4d05b9"
+  },
+  "statistics": {
+    "messages": 31,
+    "user_turns": 0,
+    "tool_calls": 15,
+    "roles": {
+      "tool_call": 15,
+      "tool_result": 15,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T11:17:30.230386+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_full_status_check_post_restart_20260524T111609",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-24T11:17:30.230763+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_full_status_check_post_restart_20260524T111609",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-24T11:17:30.230967+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_full_status_check_post_restart_20260524T111609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-10894",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-24T11:17:30.231104+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_full_status_check_post_restart_20260524T111609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34685",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-24T11:17:30.231245+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 99 %, 62203 MiB, 97887 MiB\\\\n1, 99 %, 62203 MiB, 97887 MiB\\\\n2, 99 %, 62203 MiB, 97887 MiB\\\\n3, 99 %, 63013 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.18}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_full_status_check_post_restart_20260524T111609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-24T11:17:30.231377+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 %, 16778 MiB, 97887 MiB\\\\n1, 0 %, 1 MiB, 97887 MiB\\\\n2, 99 %, 62203 MiB, 97887 MiB\\\\n3, 99 %, 62209 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.93}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_full_status_check_post_restart_20260524T111609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-24T11:17:30.231500+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_full_status_check_post_restart_20260524T111609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-10894",
+              "command": "ps -p 746616,742741,742888,743106 -o pid,etime,rss,%cpu,cmd --no-headers",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-24T11:17:30.231683+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"742741    02:16:06  3548  0.0 bash -c rm -f /tmp/agent-ml-exit/full_occ_ln_s0.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/occsafe_vla/full_occ_ln_s0.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/full_occ_ln_s0.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/occsafe_vla && export CUDA_VISIBLE_DEVICES=1 && timeout 64800 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && MASTER_PORT=29506 WANDB_MODE=disabled torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach false --occ_norm_type ln --run_root_dir /root/autodl-tmp/checkpoints/full_occ_ln_s0 --seed 42\\\\\\\"'; } > ~/runs/occsafe_vla/full_occ_ln_s0.log 2>&1\\\\n742888    02:16:03  3508  0.0 bash -c rm -f /tmp/agent-ml-exit/full_occ_ln_s1.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/occsafe_vla/full_occ_ln_s1.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/full_occ_ln_s1.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/occsafe_vla && export CUDA_VISIBLE_DEVICES=2 && timeout 64800 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && MASTER_PORT=29507 WANDB_MODE=disabled torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-s\n…[truncated 3228 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_full_status_check_post_restart_20260524T111609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-24T11:17:30.231860+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_full_status_check_post_restart_20260524T111609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34685",
+              "command": "ps -p 672857,673004 -o pid,etime,rss,%cpu --no-headers",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-24T11:17:30.231994+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"672857    12:44:31  3752  0.0\\\\n673004    12:44:28  3644  0.0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_full_status_check_post_restart_20260524T111609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-24T11:17:30.232146+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_full_status_check_post_restart_20260524T111609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-10894",
+              "command": "tail -5 /root/runs/occsafe_vla/ablation_occ_detach_s0_retrain.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-24T11:17:30.232373+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r 14%|█▍        | 6901/50005 [2:02:44<11:02:54,  1.08it/s]\\\\r 14%|█▍        | 6902/50005 [2:02:45<11:01:37,  1.09it/s]\\\\r 14%|█▍        | 6903/50005 [2:02:45<11:01:02,  1.09it/s]\\\\r 14%|█▍        | 6904/50005 [2:02:46<11:02:03,  1.09it/s]\\\\r 14%|█▍        | 6905/50005 [2:02:47<11:02:30,  1.08it/s]\\\\r 14%|█▍        | 6906/50005 [2:02:48<11:03:13,  1.08it/s]\\\\r 14%|█▍        | 6907/50005 [2:02:49<11:03:55,  1.08it/s]\\\\r 14%|█▍        | 6908/50005 [2:02:50<11:04:17,  1.08it/s]\\\\r 14%|█▍        | 6909/50005 [2:02:51<11:03:21,  1.08it/s]\\\\r 14%|█▍        | 6910/50005 [2:02:52<11:01:47,  1.09it/s]\\\\r 14%|█▍        | 6911/50005 [2:02:53<11:07:49,  1.08it/s]\\\\r 14%|█▍        | 6912/50005 [2:02:54<11:07:50,  1.08it/s]\\\\r 14%|█▍        | 6913/50005 [2:02:55<11:05:01,  1.08it/s]\\\\r 14%|█▍        | 6914/50005 [2:02:56<11:03:21,  1.08it/s]\\\\r 14%|█▍        | 6915/50005 [2:02:57<11:02:45,  1.08it/s]\\\\r 14%|█▍        | 6916/50005 [2:02:57<11:01:16,  1.09it/s]\\\\r 14%|��▍        | 6917/50005 [2:02:58<10:59:51,  1.09it/s]\\\\r 14%|█▍        | 6918/50005 [2:02:59<10:59:26,  1.09it/s]\\\\r 14%|█▍        | 6919/50005 [2:03:00<11:01:35,  1.09it/s]\\\\r 14%|█▍        | 6920/50005 [2:03:01<11:06:26,  1.08it/s]\\\\r 14%|█▍        | 6921/50005 [2:03:02<11:03:33,  1.08it/s]\\\\r 14%|█▍        | 6922/50005 [2:03:03<11:01:44,  1.09it/s]\\\\r 14%|█▍        | 6923/50005 [2:03:04<11:01:00,  1.09it/s]\\\\r 14%|█▍        | 6924/50005 [2:03:05<11:01:00,  1.09it/s]\\\\r 14%|█▍        | 6925/50005 [2:03:06<11:02:00,  1.08it/s]\\\\r 14%|█▍        | 6926/50005 [2:03:07<11:02:09,  1.08it/s]\\\\r 14%|█▍        | 6927/50005 [2:03:08<11:01:32,  1.09it/s]\\\\r 14%|█▍        | 6928/50005 [2:03:09<10:59:48,  1.09it/s]\\\\r 14%|█▍        | 6929/50005 [2:03:09<10:58:50,  1.09it/s]\\\\r 14%|█▍        | 6930/50005 [2:03:10<11:00:06,  1.09it/s]\\\\r 14%|█▍        | 6931/50005 [2:03:11<11:00:20,  1.09it/s]\\\\r 14%|█▍        | 6932/50005 [2:03:12<10:59:39,  1.09it/s]\\\\r 14%|█▍        | 693\n…[truncated 6475 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_full_status_check_post_restart_20260524T111609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-24T11:17:30.232547+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_full_status_check_post_restart_20260524T111609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-10894",
+              "command": "tail -5 /root/runs/occsafe_vla/full_occ_ln_s0.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-24T11:17:30.232697+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_full_status_check_post_restart_20260524T111609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-10894",
+              "command": "tail -5 /root/runs/occsafe_vla/full_occ_ln_s1.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-24T11:17:30.232912+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r 15%|█▍        | 7301/50005 [2:09:12<10:59:40,  1.08it/s]\\\\r 15%|█▍        | 7302/50005 [2:09:13<10:58:15,  1.08it/s]\\\\r 15%|█▍        | 7303/50005 [2:09:14<11:04:54,  1.07it/s]\\\\r 15%|█▍        | 7304/50005 [2:09:15<11:17:40,  1.05it/s]\\\\r 15%|█▍        | 7305/50005 [2:09:16<11:15:34,  1.05it/s]\\\\r 15%|█▍        | 7306/50005 [2:09:17<11:09:01,  1.06it/s]\\\\r 15%|█▍        | 7307/50005 [2:09:17<11:05:16,  1.07it/s]\\\\r 15%|█▍        | 7308/50005 [2:09:18<11:11:49,  1.06it/s]\\\\r 15%|█▍        | 7309/50005 [2:09:19<11:08:12,  1.06it/s]\\\\r 15%|█▍        | 7310/50005 [2:09:20<11:05:35,  1.07it/s]\\\\r 15%|█▍        | 7311/50005 [2:09:21<11:02:23,  1.07it/s]\\\\r 15%|█▍        | 7312/50005 [2:09:22<11:02:24,  1.07it/s]\\\\r 15%|█▍        | 7313/50005 [2:09:23<11:03:13,  1.07it/s]\\\\r 15%|█▍        | 7314/50005 [2:09:24<11:01:51,  1.08it/s]\\\\r 15%|█▍        | 7315/50005 [2:09:25<11:10:13,  1.06it/s]\\\\r 15%|█▍        | 7316/50005 [2:09:26<11:20:04,  1.05it/s]\\\\r 15%|��▍        | 7317/50005 [2:09:27<11:14:53,  1.05it/s]\\\\r 15%|█▍        | 7318/50005 [2:09:28<11:11:36,  1.06it/s]\\\\r 15%|█▍        | 7319/50005 [2:09:29<11:07:39,  1.07it/s]\\\\r 15%|█▍        | 7320/50005 [2:09:30<11:42:27,  1.01it/s]\\\\r 15%|█▍        | 7321/50005 [2:09:31<11:48:57,  1.00it/s]\\\\r 15%|█▍        | 7322/50005 [2:09:32<11:35:37,  1.02it/s]\\\\r 15%|█▍        | 7323/50005 [2:09:33<11:29:03,  1.03it/s]\\\\r 15%|█▍        | 7324/50005 [2:09:34<11:18:40,  1.05it/s]\\\\r 15%|█▍        | 7325/50005 [2:09:35<11:10:16,  1.06it/s]\\\\r 15%|█▍        | 7326/50005 [2:09:35<11:04:53,  1.07it/s]\\\\r 15%|█▍        | 7327/50005 [2:09:36<11:01:01,  1.08it/s]\\\\r 15%|█▍        | 7328/50005 [2:09:37<10:58:16,  1.08it/s]\\\\r 15%|█▍        | 7329/50005 [2:09:38<10:56:48,  1.08it/s]\\\\r 15%|█▍        | 7330/50005 [2:09:39<10:55:39,  1.08it/s]\\\\r 15%|█▍        | 7331/50005 [2:09:40<10:54:34,  1.09it/s]\\\\r 15%|█▍        | 7332/50005 [2:09:41<10:54:00,  1.09it/s]\\\\r 15%|█▍        | 733\n…[truncated 6476 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_full_status_check_post_restart_20260524T111609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-24T11:17:30.233143+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r 14%|█▍        | 7201/50005 [2:07:37<11:12:21,  1.06it/s]\\\\r 14%|█▍        | 7202/50005 [2:07:38<11:22:33,  1.05it/s]\\\\r 14%|█▍        | 7203/50005 [2:07:39<11:26:34,  1.04it/s]\\\\r 14%|█▍        | 7204/50005 [2:07:40<11:22:05,  1.05it/s]\\\\r 14%|█▍        | 7205/50005 [2:07:41<11:24:38,  1.04it/s]\\\\r 14%|█▍        | 7206/50005 [2:07:42<11:19:24,  1.05it/s]\\\\r 14%|█▍        | 7207/50005 [2:07:43<11:19:06,  1.05it/s]\\\\r 14%|█▍        | 7208/50005 [2:07:44<11:16:09,  1.05it/s]\\\\r 14%|█▍        | 7209/50005 [2:07:46<15:52:24,  1.34s/it]\\\\r 14%|█▍        | 7210/50005 [2:07:47<14:44:19,  1.24s/it]\\\\r 14%|█▍        | 7211/50005 [2:07:48<13:47:43,  1.16s/it]\\\\r 14%|█▍        | 7212/50005 [2:07:49<13:35:29,  1.14s/it]\\\\r 14%|█▍        | 7213/50005 [2:07:50<12:54:19,  1.09s/it]\\\\r 14%|█▍        | 7214/50005 [2:07:51<12:21:33,  1.04s/it]\\\\r 14%|█▍        | 7215/50005 [2:07:52<11:58:11,  1.01s/it]\\\\r 14%|█▍        | 7216/50005 [2:07:53<11:50:20,  1.00it/s]\\\\r 14%|��▍        | 7217/50005 [2:07:54<11:35:31,  1.03it/s]\\\\r 14%|█▍        | 7218/50005 [2:07:55<11:25:31,  1.04it/s]\\\\r 14%|█▍        | 7219/50005 [2:07:55<11:18:40,  1.05it/s]\\\\r 14%|█▍        | 7220/50005 [2:07:56<11:13:22,  1.06it/s]\\\\r 14%|█▍        | 7221/50005 [2:07:57<11:09:32,  1.07it/s]\\\\r 14%|█▍        | 7222/50005 [2:07:58<11:06:10,  1.07it/s]\\\\r 14%|█▍        | 7223/50005 [2:07:59<11:05:29,  1.07it/s]\\\\r 14%|█▍        | 7224/50005 [2:08:00<11:04:01,  1.07it/s]\\\\r 14%|█▍        | 7225/50005 [2:08:01<11:03:12,  1.08it/s]\\\\r 14%|█▍        | 7226/50005 [2:08:02<11:04:22,  1.07it/s]\\\\r 14%|█▍        | 7227/50005 [2:08:03<11:04:12,  1.07it/s]\\\\r 14%|█▍        | 7228/50005 [2:08:04<11:03:01,  1.08it/s]\\\\r 14%|█▍        | 7229/50005 [2:08:05<11:02:09,  1.08it/s]\\\\r 14%|█▍        | 7230/50005 [2:08:06<11:01:09,  1.08it/s]\\\\r 14%|█▍        | 7231/50005 [2:08:07<11:00:38,  1.08it/s]\\\\r 14%|█▍        | 7232/50005 [2:08:07<10:59:59,  1.08it/s]\\\\r 14%|█▍        | 723\n…[truncated 6476 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_full_status_check_post_restart_20260524T111609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-24T11:17:30.233304+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_full_status_check_post_restart_20260524T111609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-10894",
+              "command": "tail -5 /root/runs/occsafe_vla/full_occ_ln_s2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-24T11:17:30.233512+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r 14%|█▍        | 7201/50005 [2:07:57<11:06:35,  1.07it/s]\\\\r 14%|█▍        | 7202/50005 [2:07:58<11:04:34,  1.07it/s]\\\\r 14%|█▍        | 7203/50005 [2:07:59<11:04:11,  1.07it/s]\\\\r 14%|█▍        | 7204/50005 [2:07:59<11:06:36,  1.07it/s]\\\\r 14%|█▍        | 7205/50005 [2:08:00<11:04:44,  1.07it/s]\\\\r 14%|█▍        | 7206/50005 [2:08:01<11:03:10,  1.08it/s]\\\\r 14%|█▍        | 7207/50005 [2:08:02<11:02:46,  1.08it/s]\\\\r 14%|█▍        | 7208/50005 [2:08:03<11:01:39,  1.08it/s]\\\\r 14%|█▍        | 7209/50005 [2:08:04<10:59:49,  1.08it/s]\\\\r 14%|█▍        | 7210/50005 [2:08:05<11:00:25,  1.08it/s]\\\\r 14%|█▍        | 7211/50005 [2:08:06<11:00:49,  1.08it/s]\\\\r 14%|█▍        | 7212/50005 [2:08:07<11:17:56,  1.05it/s]\\\\r 14%|█▍        | 7213/50005 [2:08:08<11:12:47,  1.06it/s]\\\\r 14%|█▍        | 7214/50005 [2:08:09<11:09:28,  1.07it/s]\\\\r 14%|█▍        | 7215/50005 [2:08:10<11:06:45,  1.07it/s]\\\\r 14%|█▍        | 7216/50005 [2:08:11<11:05:30,  1.07it/s]\\\\r 14%|��▍        | 7217/50005 [2:08:12<11:04:20,  1.07it/s]\\\\r 14%|█▍        | 7218/50005 [2:08:13<11:03:47,  1.07it/s]\\\\r 14%|█▍        | 7219/50005 [2:08:13<11:04:06,  1.07it/s]\\\\r 14%|█▍        | 7220/50005 [2:08:14<11:03:59,  1.07it/s]\\\\r 14%|█▍        | 7221/50005 [2:08:15<11:01:19,  1.08it/s]\\\\r 14%|█▍        | 7222/50005 [2:08:16<11:01:05,  1.08it/s]\\\\r 14%|█▍        | 7223/50005 [2:08:17<11:01:32,  1.08it/s]\\\\r 14%|█▍        | 7224/50005 [2:08:18<11:02:17,  1.08it/s]\\\\r 14%|█▍        | 7225/50005 [2:08:19<11:01:55,  1.08it/s]\\\\r 14%|█▍        | 7226/50005 [2:08:20<10:59:42,  1.08it/s]\\\\r 14%|█▍        | 7227/50005 [2:08:21<10:58:51,  1.08it/s]\\\\r 14%|█▍        | 7228/50005 [2:08:22<10:59:17,  1.08it/s]\\\\r 14%|█▍        | 7229/50005 [2:08:23<10:58:54,  1.08it/s]\\\\r 14%|█▍        | 7230/50005 [2:08:24<10:57:34,  1.08it/s]\\\\r 14%|█▍        | 7231/50005 [2:08:25<10:58:24,  1.08it/s]\\\\r 14%|█▍        | 7232/50005 [2:08:25<10:58:20,  1.08it/s]\\\\r 14%|█▍        | 723\n…[truncated 6476 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_full_status_check_post_restart_20260524T111609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-24T11:17:30.233691+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_full_status_check_post_restart_20260524T111609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34685",
+              "command": "grep -oP \"step \\d+\" /root/runs/occsafe_vla/cutoff_25k_s1.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-24T11:17:30.233830+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_full_status_check_post_restart_20260524T111609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-24T11:17:30.233956+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_full_status_check_post_restart_20260524T111609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34685",
+              "command": "grep -oP \"step \\d+\" /root/runs/occsafe_vla/reverse_cutoff_s1.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-24T11:17:30.234081+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_full_status_check_post_restart_20260524T111609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-24T11:17:30.234199+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_full_status_check_post_restart_20260524T111609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34685",
+              "command": "tail -20 /root/runs/occsafe_vla/cutoff_15k_s0_eval.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-24T11:17:30.234347+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rT9:  96%|█████████▌| 48/50 [04:15<00:11,  5.51s/it]\\\\u001b[A\\\\n\\\\rT9:  98%|█████████▊| 49/50 [04:20<00:05,  5.38s/it]\\\\u001b[A\\\\n\\\\rT9: 100%|██████████| 50/50 [04:25<00:00,  5.34s/it]\\\\u001b[A\\\\n\\\\r                                                   \\\\u001b[A05/24 [19:12:04] INFO     | >> Task 9 'pick up the    evaluate_safelibero.py:439\\\\n                          black bowl on the wooden                              \\\\n                          cabinet and place it on the                           \\\\n                          plate': TSR=1.000                                     \\\\n                          CAR=1.000                                             \\\\n\\\\rTasks: 100%|██████████| 10/10 [45:51<00:00, 274.21s/it]\\\\rTasks: 100%|██████████| 10/10 [45:51<00:00, 275.12s/it]\\\\n                 INFO     | >>                        evaluate_safelibero.py:467\\\\n                          ===========================                           \\\\n                          ===========================                           \\\\n                          ======                                                \\\\n                 INFO     | >> TSR = 0.9120 (91.2%)   evaluate_safelibero.py:468\\\\n                          |  CAR = 0.8040 (80.4%)                               \\\\n                 INFO     | >> Results ->             evaluate_safelibero.py:470\\\\n                          /root/occsafe_vla/artifacts                           \\\\n                          /safelibero_libero_spatial_                           \\\\n                          20260524_182606.json                                  \\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_full_status_check_post_restart_20260524T111609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-24T11:17:30.234500+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_full_status_check_post_restart_20260524T111609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34685",
+              "command": "tail -20 /root/runs/occsafe_vla/cutoff_45k_s0_eval.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-24T11:17:30.234692+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rT7:  56%|█████▌    | 28/50 [02:32<01:58,  5.37s/it]\\\\u001b[A\\\\n\\\\rT7:  58%|█████▊    | 29/50 [02:38<01:54,  5.44s/it]\\\\u001b[A\\\\n\\\\rT7:  60%|██████    | 30/50 [02:47<02:13,  6.69s/it]\\\\u001b[A\\\\n\\\\rT7:  62%|██████▏   | 31/50 [02:53<01:59,  6.30s/it]\\\\u001b[A\\\\n\\\\rT7:  64%|██████▍   | 32/50 [02:58<01:48,  6.03s/it]\\\\u001b[A\\\\n\\\\rT7:  66%|██████▌   | 33/50 [03:04<01:40,  5.89s/it]\\\\u001b[A\\\\n\\\\rT7:  68%|██████▊   | 34/50 [03:09<01:30,  5.66s/it]\\\\u001b[A\\\\n\\\\rT7:  70%|███████   | 35/50 [03:15<01:25,  5.68s/it]\\\\u001b[A\\\\n\\\\rT7:  72%|███████▏  | 36/50 [03:21<01:21,  5.85s/it]\\\\u001b[A\\\\n\\\\rT7:  74%|███████▍  | 37/50 [03:26<01:12,  5.61s/it]\\\\u001b[A\\\\n\\\\rT7:  76%|███████▌  | 38/50 [03:32<01:07,  5.59s/it]\\\\u001b[A\\\\n\\\\rT7:  78%|███████▊  | 39/50 [03:37<01:00,  5.53s/it]\\\\u001b[A\\\\n\\\\rT7:  80%|████████  | 40/50 [03:42<00:54,  5.45s/it]\\\\u001b[A\\\\n\\\\rT7:  82%|████████▏ | 41/50 [03:47<00:48,  5.40s/it]\\\\u001b[A\\\\n\\\\rT7:  84%|��███████▍ | 42/50 [03:53<00:43,  5.45s/it]\\\\u001b[A\\\\n\\\\rT7:  86%|████████▌ | 43/50 [03:59<00:38,  5.55s/it]\\\\u001b[A\\\\n\\\\rT7:  88%|████████▊ | 44/50 [04:04<00:32,  5.47s/it]\\\\u001b[A\\\\n\\\\rT7:  90%|█████████ | 45/50 [04:10<00:27,  5.49s/it]\\\\u001b[A\\\\n\\\\rT7:  92%|█████████▏| 46/50 [04:15<00:21,  5.41s/it]\\\\u001b[A\\\\n\\\\rT7:  94%|█████████▍| 47/50 [04:21<00:16,  5.49s/it]\\\\u001b[A\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_full_status_check_post_restart_20260524T111609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-24T11:17:30.234884+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_full_status_check_post_restart_20260524T111609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34685",
+              "command": "tail -3 /root/runs/occsafe_vla/cutoff_25k_s1.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-24T11:17:30.235012+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_full_status_check_post_restart_20260524T111609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34685",
+              "command": "tail -3 /root/runs/occsafe_vla/reverse_cutoff_s1.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-24T11:17:30.235228+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r 78%|███████▊  | 39201/50005 [12:40:57<2:47:13,  1.08it/s]\\\\r 78%|███████▊  | 39202/50005 [12:40:58<2:47:20,  1.08it/s]\\\\r 78%|███████▊  | 39203/50005 [12:40:59<2:46:59,  1.08it/s]\\\\r 78%|███████▊  | 39204/50005 [12:41:00<2:47:08,  1.08it/s]\\\\r 78%|███████▊  | 39205/50005 [12:41:01<2:46:47,  1.08it/s]\\\\r 78%|███████▊  | 39206/50005 [12:41:02<2:46:40,  1.08it/s]\\\\r 78%|███████▊  | 39207/50005 [12:41:03<2:46:34,  1.08it/s]\\\\r 78%|███████▊  | 39208/50005 [12:41:04<2:46:30,  1.08it/s]\\\\r 78%|███████▊  | 39209/50005 [12:41:05<2:46:53,  1.08it/s]\\\\r 78%|███████▊  | 39210/50005 [12:41:06<2:47:16,  1.08it/s]\\\\r 78%|███████▊  | 39211/50005 [12:41:06<2:47:44,  1.07it/s]\\\\r 78%|███████▊  | 39212/50005 [12:41:08<3:05:58,  1.03s/it]\\\\r 78%|███████▊  | 39213/50005 [12:41:09<3:05:32,  1.03s/it]\\\\r 78%|██████���▊  | 39214/50005 [12:41:10<3:02:25,  1.01s/it]\\\\r 78%|███████▊  | 39215/50005 [12:41:11<2:58:09,  1.01it/s]\\\\r 78%|███████▊  | 39216/50005 [12:41:12<2:55:17,  1.03it/s]\\\\r 78%|███████▊  | 39217/50005 [12:41:13<2:53:32,  1.04it/s]\\\\r 78%|███████▊  | 39218/50005 [12:41:13<2:51:45,  1.05it/s]\\\\r 78%|███████▊  | 39219/50005 [12:41:14<2:50:49,  1.05it/s]\\\\r 78%|███████▊  | 39220/50005 [12:41:15<2:49:59,  1.06it/s]\\\\r 78%|███████▊  | 39221/50005 [12:41:16<2:52:31,  1.04it/s]\\\\r 78%|███████▊  | 39222/50005 [12:41:17<2:51:29,  1.05it/s]\\\\r 78%|███████▊  | 39223/50005 [12:41:18<2:50:35,  1.05it/s]\\\\r 78%|███████▊  | 39224/50005 [12:41:19<2:50:07,  1.06it/s]\\\\r 78%|███████▊  | 39225/50005 [12:41:20<2:50:15,  1.06it/s]\\\\r 78%|███████▊  | 39226/50005 [12:41:21<2:50:03,  1.06it/s]\\\\r 78%|███████▊  | 39227/50005 [12:41:22<2:52:16,  1.04it/s]\\\\r 78%|███████▊  | 39228/50005 [12:41:23<2:55:11,  1.03it/s]\\\\r 78%|███████▊  | 39229/50005 [12:41:24<2:55:26,  1.02it/s]\\\\r 78%|███████▊  | 39230/50005 [12:41:25<2:53:36,  1.03it/s]\\\\r 78%|███████▊  | 39231/50005 [12:41:26<2:54:14,  1.03it/s]\\\\r 78%|███████▊  | 39232/50005 [12:41:27<2:52:19, \n…[truncated 6471 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_full_status_check_post_restart_20260524T111609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-24T11:17:30.235460+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r 78%|███████▊  | 39201/50005 [12:39:59<2:50:49,  1.05it/s]\\\\r 78%|███████▊  | 39202/50005 [12:40:00<2:50:08,  1.06it/s]\\\\r 78%|███████▊  | 39203/50005 [12:40:01<2:49:47,  1.06it/s]\\\\r 78%|███████▊  | 39204/50005 [12:40:02<3:13:35,  1.08s/it]\\\\r 78%|███████▊  | 39205/50005 [12:40:03<3:07:00,  1.04s/it]\\\\r 78%|███████▊  | 39206/50005 [12:40:04<3:01:07,  1.01s/it]\\\\r 78%|███████▊  | 39207/50005 [12:40:05<2:59:47,  1.00it/s]\\\\r 78%|███████▊  | 39208/50005 [12:40:06<2:58:43,  1.01it/s]\\\\r 78%|███████▊  | 39209/50005 [12:40:07<2:55:02,  1.03it/s]\\\\r 78%|███████▊  | 39210/50005 [12:40:08<2:52:49,  1.04it/s]\\\\r 78%|███████▊  | 39211/50005 [12:40:09<2:51:11,  1.05it/s]\\\\r 78%|███████▊  | 39212/50005 [12:40:10<2:50:06,  1.06it/s]\\\\r 78%|███████▊  | 39213/50005 [12:40:11<2:48:44,  1.07it/s]\\\\r 78%|██████���▊  | 39214/50005 [12:40:12<2:48:02,  1.07it/s]\\\\r 78%|███████▊  | 39215/50005 [12:40:13<2:47:52,  1.07it/s]\\\\r 78%|███████▊  | 39216/50005 [12:40:14<2:48:55,  1.06it/s]\\\\r 78%|███████▊  | 39217/50005 [12:40:15<2:49:30,  1.06it/s]\\\\r 78%|███████▊  | 39218/50005 [12:40:16<2:48:49,  1.06it/s]\\\\r 78%|███████▊  | 39219/50005 [12:40:17<2:48:07,  1.07it/s]\\\\r 78%|███████▊  | 39220/50005 [12:40:18<2:47:41,  1.07it/s]\\\\r 78%|███████▊  | 39221/50005 [12:40:18<2:49:18,  1.06it/s]\\\\r 78%|███████▊  | 39222/50005 [12:40:20<2:58:59,  1.00it/s]\\\\r 78%|███████▊  | 39223/50005 [12:40:21<2:58:13,  1.01it/s]\\\\r 78%|███████▊  | 39224/50005 [12:40:22<2:54:41,  1.03it/s]\\\\r 78%|███████▊  | 39225/50005 [12:40:22<2:51:57,  1.04it/s]\\\\r 78%|███████▊  | 39226/50005 [12:40:23<2:50:19,  1.05it/s]\\\\r 78%|███████▊  | 39227/50005 [12:40:24<2:49:25,  1.06it/s]\\\\r 78%|███████▊  | 39228/50005 [12:40:25<2:48:18,  1.07it/s]\\\\r 78%|███████▊  | 39229/50005 [12:40:26<2:47:27,  1.07it/s]\\\\r 78%|███████▊  | 39230/50005 [12:40:27<2:47:08,  1.07it/s]\\\\r 78%|███████▊  | 39231/50005 [12:40:28<2:46:44,  1.08it/s]\\\\r 78%|███████▊  | 39232/50005 [12:40:29<2:46:40, \n…[truncated 6471 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_full_status_check_post_restart_20260524T111609",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-24T11:17:30.235712+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n[westd-10894]\nGPU 0: util 99%, mem 61/96GB — ablation_occ_detach_s0_retrain PID alive, step 7334/50005 (15%)\nGPU 1: util 99%, mem 61/96GB — full_occ_ln_s0 PID alive, step 7702/50005 (15%)\nGPU 2: util 99%, mem 61/96GB — full_occ_ln_s1 PID alive, step 7698/50005 (15%)\nGPU 3: util 99%, mem 62/96GB — full_occ_ln_s2 PID alive, step 7677/50005 (15%)\n\n[westd-34685]\nGPU 0: util 0%, mem 16/96GB — cutoff_45k_s0_eval: 运行中 (Task 7/10, 94%)\nGPU 1: util 0%, mem 0/96GB — cutoff_15k_s0_eval: ✓ 已完成\nGPU 2: util 99%, mem 61/96GB — cutoff_25k_s1 PID alive, step 39423/50005 (79%)\nGPU 3: util 99%, mem 61/96GB — reverse_cutoff_s1 PID alive, step 39481/50005 (79%)\n\n[Eval 结果]\n- cutoff_15k_s0_eval: TSR=0.912, CAR=0.804 → /root/occsafe_vla/artifacts/safelibero_libero_spatial_20260524_182606.json\n- cutoff_45k_s0_eval: 进行中，预计 ~15 分钟完成\n\n[需要行动]\n- GPU 1 (westd-34685) 已空闲，可安排新任务\n- cutoff_45k_s0_eval 即将完成，完成后 GPU 0 也将空闲\n- westd-10894 四个训练均正常，运行 ~2h，ETA ~11h\n- cutoff_25k_s1 / reverse_cutoff_s1 运行 ~12.7h，ETA ~2.7h\n```"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_full_status_check_post_restart_20260524T111609"
+          },
+          "id": "event-000031"
+        }
+      ],
+      "message_count": 31
+    }
+  ],
+  "readable_path": "readable/conversations/ops-full-status-check-post-restart.md"
+}

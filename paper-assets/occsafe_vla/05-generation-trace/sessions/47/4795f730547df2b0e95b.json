@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4795f730547df2b0e95b",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose detach ln v2 s2",
+  "task_key": "worker_diagnose_detach_ln_v2_s2_20260528T091041",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_detach_ln_v2_s2_20260528T091041_result.json",
+    "occurrence": 1,
+    "bytes": 1839,
+    "sha256": "32db5f19a93a391004d45c32a08e2b96bbdf79377e9edbf402444b04b8d7c011"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 训练实际已成功完成，EXIT_CODE=1 是误报\n\n**直接原因**: EXIT_CODE=1 来自 PyTorch distributed 清理问题：\n```\n[rank0]:[W528 17:08:28] WARNING: destroy_process_group() was not called before program exit\n```\n这是一个 cleanup warning，不是训练错误。\n\n**根因分析**: \n\n日志开头显示本次 run 从 25000_chkpt 恢复：\n```\nFine-tuning OpenVLA Model `.../detach_ln_v2_s2--25000_chkpt`\n```\n\n训练从全局 step 25000 开始，又跑了 ~25006 iterations，全局步数达到 ~50006 ≥ max_steps(50005)，触发正常停止。进度条显示 50% (25006/50005) 是因为它显示的是当前 run 的 batch_idx 而非全局步数——**这是预期行为**。\n\n**完成证据**:\n- `50000_chkpt` 已保存 (May 28 17:09)\n- `45000_chkpt` 已保存 (May 28 15:51)\n- 日志末尾：`Max step 50005 reached! Stopping training...`\n- 无 OOM / CUDA error / Python traceback\n\n**Checkpoint 列表**:\n| Checkpoint | 时间 |\n|---|---|\n| 25000_chkpt_backup | May 28 10:15 |\n| 25000_chkpt | May 28 14:16 (重新保存) |\n| 45000_chkpt | May 28 15:51 |\n| **50000_chkpt** | **May 28 17:09** |\n\n### 结论\n\n- **不需要重启** — 训练已完成全部 50000 步，最终 checkpoint 已保存\n- **反复 retry 的原因**: job manager 把 EXIT_CODE=1 当失败处理，但实际是 torch distributed 的 cleanup warning 导致的非零退出码\n- **GPU cuda:0 状态**: 有一个进程 PID 179444 占用 ~16.7GB，不是本实验（已结束），可能是其他实验或残留进程\n- **磁盘空间**: 正常，根分区 39%，数据盘 2%\n\n**下一步**: 直接用 `50000_chkpt` 进行评估即可，无需再跑训练。如需修复 exit code 问题防止未来误报，可在训练脚本末尾加 `dist.destroy_process_group()` 调用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-detach-ln-v2-s2.md"
+}

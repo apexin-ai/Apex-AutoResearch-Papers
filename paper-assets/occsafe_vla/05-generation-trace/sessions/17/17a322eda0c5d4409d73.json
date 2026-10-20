@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17a322eda0c5d4409d73",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis full occ ln s3 v2 eval",
+  "task_key": "worker_analysis_full_occ_ln_s3_v2_eval_20260526T120506",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_full_occ_ln_s3_v2_eval_20260526T120506_result.json",
+    "occurrence": 1,
+    "bytes": 741,
+    "sha256": "a894dc684113ecd79dadb315df306384168970d4aed767d0f34823df4f5b5328"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。`full_occ_ln_s3_v2_eval` 结果：\n\n| 指标 | 值 |\n|------|-----|\n| **CAR** | **0.740** |\n| **TSR** | **0.842** |\n| **total_collisions** | **130** |\n\nPer-task:\n\n| Task | TSR | CAR |\n|------|-----|-----|\n| T0 | 1.00 | 0.98 |\n| T1 | 1.00 | 0.96 |\n| T2 | 1.00 | 0.94 |\n| T3 | 0.94 | 0.30 |\n| T4 | 0.96 | 0.96 |\n| T5 | 0.20 | 0.12 |\n| T6 | 1.00 | 0.58 |\n| T7 | 0.48 | 0.58 |\n| T8 | 0.86 | 0.98 |\n| T9 | 0.98 | 1.00 |\n\n对比其他两个 eval：Full OCC LN (CAR=0.740) < MVP OCC (CAR=0.776) < Detach OCC (CAR=0.794)。T5 和 T6 是所有方法共同的弱点任务，T3 在 Full OCC LN 中 CAR 降到 0.30（远低于其他两个的 0.50/0.54）。T7 的 TSR 也显著下降到 0.48。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-full-occ-ln-s3-v2-eval.md"
+}

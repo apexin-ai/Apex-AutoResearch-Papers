@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ad81a7e10db83eb5e32",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "check 10894 disk capacity for s4",
+  "task_key": "worker_check_10894-disk-capacity-for-s4_20260527T090440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_10894-disk-capacity-for-s4_20260527T090440_result.json",
+    "occurrence": 1,
+    "bytes": 1900,
+    "sha256": "1cf5a366e47b57054cd73b377a5fbabbde6d397acc89cd63560c611f9427fe23"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. 当前进度与 checkpoint 占用\n\n| 实验 | GPU | 当前 Step | 总 Steps | 速度 | Checkpoints | 占用 |\n|---|---|---|---|---|---|---|\n| full_occ_ln_v2_s1c (r2) | cuda:0 | ~29,894 | 50,005 | ~1.05 it/s | 10000, 20000 | 30G |\n| full_occ_ln_v2_s2 (r2) | cuda:1 | ~29,971 | 50,005 | ~1.08 it/s | 10000, 20000 | 30G |\n| detach_ln_v2_s0c_r3 | cuda:2 | ~1,330 | 50,005 | ~1.07 it/s | 无 | 0G |\n\n### 2. 峰值磁盘推算（keep=3）\n\n| 实验 | 当前占用 | 峰值占用 | 增量 |\n|---|---|---|---|\n| s1c_r2 | 30G | 45G（step 30000 后） | +15G |\n| s2_r2 | 30G | 45G（step 30000 后） | +15G |\n| s0c_r3 | 0G | 45G（step 30000 时） | +45G |\n| **s4（新）** | 0G | 45G（step 30000 时） | +45G |\n| **合计增量** | | | **+120G** |\n\n当前可用空间：**95G**，缺口 **25G**。\n\n### 3. 启动 full_occ_ln_s4 是否安全\n\n**否。** 4 个实验同时到达 3-checkpoint 峰值时需要额外 120G，当前只有 95G 可用，会导致磁盘满。\n\n### 4. 替代方案\n\n**方案 A — 清理已完成实验 checkpoint 腾出空间：**\n\n服务器上有 6 个已完成训练（含 50000_chkpt）的实验：\n\n| 实验 | 占用 |\n|---|---|\n| ablation_occ_detach_s3_v2 | 15G |\n| cutoff_15k_s1 | 463M |\n| detach_ln_s3 | 15G |\n| full_occ_ln_s3_v2 | 15G |\n| mvp_occ_s3_v2 | 15G |\n| vanilla_v2_s1 | 15G |\n\n清理其中任意 2 个（≥30G），即可安全启动 s4。\n\n**方案 B — 用 cuda:3 跑 eval：**\n\n上述 6 个已完成实验均可做 50-rollout eval（~50 min/个，磁盘写入极小）。如果其中有未 eval 的，可以立刻利用 cuda:3。\n\n**方案 C — 等 s1c/s2 完成再启动 s4：**\n\ns1c/s2 均还需 ~20,100 步，预计 ~5.3h 后完成（约 UTC 13:40）。完成后清理其 checkpoint 可释放 90G。s4 训练需 ~13h，仍能在 deadline（May 28 12:00 UTC）前完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-10894-disk-capacity-for-s4.md"
+}

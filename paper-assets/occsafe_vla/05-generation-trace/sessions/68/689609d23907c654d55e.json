@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "689609d23907c654d55e",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra full check westd 34685",
+  "task_key": "worker_infra_full-check-westd-34685_20260521T164823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_full-check-westd-34685_20260521T164823_result.json",
+    "occurrence": 1,
+    "bytes": 1967,
+    "sha256": "f4d68841e614ee7fdfc50c7e6e367554eada122e590c6ed4926963bf715f19f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-34685 状态报告\n\n### GPU 分配\n\n| GPU | 利用率 | 显存 | 进程 | 任务 |\n|-----|--------|------|------|------|\n| 0 | 72% | 62.2/97.9 GB | PID 487053 | occ_s1_fresh 训练 |\n| 1 | 0% | 空闲 | - | **空闲** |\n| 2 | 55% | 16.8/97.9 GB | PID 673918 | occ_s2 50K 50r eval |\n| 3 | 0% | 空闲 | - | **空闲** |\n\n### s1_fresh 训练 — RUNNING\n\n- PID 487053，已运行 ~2h\n- 进度：7556/50005 steps (**15.1%**)，速度 ~1.07 it/s\n- 已保存 checkpoints：2500, 5000, 7500\n- 预计剩余 ~11h\n\n### 已完成的 50r Eval\n\n#### occ_s0 47500_chkpt (rerun)\n**TSR = 89.2%  |  CAR = 75.0%**  (125 collisions / 500 eps)\n\n| Task | T0 | T1 | T2 | T3 | T4 | T5 | T6 | T7 | T8 | T9 |\n|------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|\n| TSR | .98 | .86 | .88 | .94 | .78 | .60 | .96 | .98 | .96 | .98 |\n| CAR | .98 | .86 | .88 | .20 | .98 | .26 | .36 | .98 | 1.0 | 1.0 |\n\n#### occ_s0 50000_chkpt\n**TSR = 90.4%  |  CAR = 83.2%**  (84 collisions / 500 eps)\n\n| Task | T0 | T1 | T2 | T3 | T4 | T5 | T6 | T7 | T8 | T9 |\n|------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|\n| TSR | 1.0 | .96 | .96 | .96 | .90 | .38 | .98 | .96 | .94 | 1.0 |\n| CAR | .98 | .82 | .94 | .80 | .98 | .20 | .62 | .98 | 1.0 | 1.0 |\n\n#### occ_s2 47500_chkpt\n**TSR = 90.0%  |  CAR = 78.8%**  (106 collisions / 500 eps)\n\n| Task | T0 | T1 | T2 | T3 | T4 | T5 | T6 | T7 | T8 | T9 |\n|------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|\n| TSR | 1.0 | .94 | 1.0 | .96 | .94 | .32 | .96 | .96 | .92 | 1.0 |\n| CAR | .98 | 1.0 | .94 | .30 | 1.0 | .14 | .52 | 1.0 | 1.0 | 1.0 |\n\n### 进行中的 Eval\n\n#### occ_s2 50000_chkpt (50r) — RUNNING\n- GPU 2, PID 673918, 已运行 ~20min\n- 当前进度：Task 4 (T4), rollout 33/50, 总体 4/10 tasks 完成\n- 预计还需 ~25-30 分钟\n\n### 磁盘\n/root/autodl-tmp: 217G / 350G (62%)\n\n### 空闲 GPU\n**GPU 1 和 GPU 3** 可分配。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-full-check-westd-34685.md"
+}

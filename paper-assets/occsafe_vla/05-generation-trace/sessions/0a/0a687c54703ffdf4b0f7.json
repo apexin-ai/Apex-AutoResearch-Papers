@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a687c54703ffdf4b0f7",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval full occ retrain s0",
+  "task_key": "worker_eval_full_occ_retrain_s0_20260525T035044",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_full_occ_retrain_s0_20260525T035044_result.json",
+    "occurrence": 1,
+    "bytes": 283,
+    "sha256": "9eae9e9b8ad7fc072f02cfabd2f4f97bdaa2049caca9c636efdc9a98bb00a9e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **exp_id**: `full_occ_retrain_s0_eval`\n- **服务器**: westd-10894, cuda:1\n- **PID**: 14967\n- **日志**: `~/runs/occsafe_vla/full_occ_retrain_s0_eval.log`\n- **状态**: RUNNING，Task 0 已在跑（~3.6s/it，50 rollouts 预计约 3 分钟/task）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-full-occ-retrain-s0.md"
+}

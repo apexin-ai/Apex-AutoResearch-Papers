@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e893c01602555c554bf",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops emergency eval launch 34685",
+  "task_key": "worker_ops_emergency-eval-launch-34685_20260528T064224",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_emergency-eval-launch-34685_20260528T064224_result.json",
+    "occurrence": 1,
+    "bytes": 792,
+    "sha256": "61a5b50caa1f1ba6c3369b5554fc9e5918d601acc4f0467b6211c3328f3f0ff4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Eval 已在运行，无需干预。**\n\n状态汇总：\n\n| 项目 | 状态 |\n|------|------|\n| 轮询脚本 | PID 69355/69356 正常运行，已在 14:40 触发 eval |\n| 50000_chkpt | 两个都存在且完整 |\n| 训练 PID 56474/56822 | 已自然退出（进程列表中不存在） |\n| **full_occ_ln_v2_s3 eval** | PID 70951，T0 进度 40% (20/50 rollouts)，~5s/rollout |\n| **detach_ln_v2_s3 eval** | PID 70950，T0 进度 42% (21/50 rollouts)，~4.7s/rollout |\n\nGPU 使用：\n- GPU-e566d524: detach_ln_v2_s2 训练 (62GB) + 两个 eval (各 16GB)\n- GPU-eebe2f28: full_occ_bn_v2_s2 训练 (62GB)\n\n**预估 eval 完成时间**：10 个 task × 50 rollouts × ~5s = ~42 分钟。启动于 ~06:40 UTC，预计 ~07:22 UTC 完成，远在 12:00 UTC 截止前。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-emergency-eval-launch-34685.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23ce7317623196b31355",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra verify analyze mvp gate",
+  "task_key": "worker_infra_verify-analyze-mvp-gate_20260521T061854",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_verify-analyze-mvp-gate_20260521T061854_result.json",
+    "occurrence": 1,
+    "bytes": 1638,
+    "sha256": "2b97ecc74ea8d4f19a6b648cea9b7f447b8a052274a9e0ec9d69474dc4a2ed59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。汇总如下：\n\n---\n\n### 脚本状态\n- **存在**: `/root/occsafe_vla/scripts/analyze_mvp_gate.py` (10255 bytes, May 21 12:24)\n- **依赖完整**: numpy + scipy 均在 `occsafe` conda 环境中\n- **vanilla-only 运行成功**: 无报错，输出正常\n\n### Vanilla eval 结果文件\n\n| 文件 | TSR | CAR |\n|------|-----|-----|\n| `vanilla_s0_final.json` | 91.0% | 77.5% |\n| `vanilla_s1_final.json` | 93.5% | 76.5% |\n| `vanilla_s2_final.json` | 91.0% | 77.0% |\n| **均值** | **91.8%±1.4%** | **77.0%±0.5%** |\n\nHard-task CAR (T3/T5/T6): **30.6%±2.5%**\n\n### MVP Gate 阈值（由脚本自动从 vanilla 基线计算）\n\n| Gate | 条件 | 阈值 |\n|------|------|------|\n| Gate 1 | Overall CAR ≥ vanilla+5pp | **≥ 82.0%** |\n| Gate 2 | Hard-task CAR ≥ vanilla+10pp | **≥ 40.6%** |\n| Gate 3 | Overall TSR ≥ vanilla-3pp | **≥ 88.8%** |\n\n### Occ eval 到来后的 workflow\n\n1. **预期文件名**: `occ_s0_final.json`, `occ_s1_final.json`, `occ_s2_final.json`（脚本 `discover_files` 中 hardcoded 的命名规则）\n2. **存放目录**: `/root/occsafe_vla/eval_results/`\n3. **格式要求**: 与 vanilla 完全一致 — 顶层 `tasks` dict（每个 task 含 `task_id`, `tsr`, `car`, `n`, `successes`, `safe`）+ `summary` dict（含 `tsr`, `car`）\n4. **运行命令**: `conda activate occsafe && python3 /root/occsafe_vla/scripts/analyze_mvp_gate.py`\n5. 如果 occ 文件来自其他服务器（如 westd-34685），需 scp 到 eval_results 目录\n\n### 结论\n脚本就绪，vanilla 数据完整，occ eval 文件到位后可立即运行 MVP gate 判定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-verify-analyze-mvp-gate.md"
+}

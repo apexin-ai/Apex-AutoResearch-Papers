@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2259fdab45a77a194f53",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "cleanup 34685 disk intermediate checkpoints",
+  "task_key": "worker_cleanup_34685_disk_intermediate_checkpoints_20260527T165011",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cleanup_34685_disk_intermediate_checkpoints_20260527T165011_result.json",
+    "occurrence": 1,
+    "bytes": 497,
+    "sha256": "6201f09d94485a9e92be64fe67b2146f16af3c875ac1a82abe1b772a00ba17b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n**结果**：\n- 可用空间：89G → **148G**（释放 59G）\n- 删除内容：cutoff_25k_s1_v2、mvp_occ_s4、vanilla_v2_s1、vanilla_v2_s2 的 40000_chkpt（各 15G）\n- 保留：每个实验的 50000_chkpt（50K final）均完好\n- 正在运行的 4 个实验未受影响\n\n148G 接近 149G 目标，差 1G 在 du 舍入误差范围内。如需进一步清理，detach_ln_s3 的 40000_chkpt（15G）也可清理，但它不在明确批准的列表中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cleanup-34685-disk-intermediate-checkpoints.md"
+}

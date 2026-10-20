@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1eb69c9c614630d9d519",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "prep cell2 v2 eval commands",
+  "task_key": "worker_prep_cell2_v2_eval_commands_20260527T141742",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_cell2_v2_eval_commands_20260527T141742_result.json",
+    "occurrence": 1,
+    "bytes": 3496,
+    "sha256": "bb0f228197142cf3bb81ad5a28d3baa5d46ba9cbecba344c7ffafa2842d94d40"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个训练都在 ~47k/50k，约 45-50 分钟内完成。\n\n汇总结果：\n\n---\n\n## Eval 准备方案\n\n### 训练进度\n- **full_occ_ln_v2_s1c**: step 46806/50005，~49 min 后完成\n- **full_occ_ln_v2_s2**: step 47030/50005，~46 min 后完成\n\n### Checkpoint 路径（10894 上）\n```\n# s1c\n/root/autodl-tmp/checkpoints/full_occ_ln_v2_s1c/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--full_occ_ln_v2_s1c--50000_chkpt\n\n# s2\n/root/autodl-tmp/checkpoints/full_occ_ln_v2_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--full_occ_ln_v2_s2--50000_chkpt\n```\n\n### 前置步骤：scp checkpoint 到 34685\n\n**磁盘空间警告**：34685 `/root/autodl-tmp` 仅剩 32GB，每个 checkpoint ~15GB，两个共 ~30GB。空间极其紧张。\n\n从 10894 拷贝到 34685（在 10894 上执行）：\n```bash\n# s1c checkpoint → 34685\nmkdir -p /root/autodl-tmp/checkpoints/full_occ_ln_v2_s1c/ && \\\nscp -r westd-10894:/root/autodl-tmp/checkpoints/full_occ_ln_v2_s1c/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--full_occ_ln_v2_s1c--50000_chkpt \\\n  /root/autodl-tmp/checkpoints/full_occ_ln_v2_s1c/\n```\n\n```bash\n# s2 checkpoint → 34685\nmkdir -p /root/autodl-tmp/checkpoints/full_occ_ln_v2_s2/ && \\\nscp -r westd-10894:/root/autodl-tmp/checkpoints/full_occ_ln_v2_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--full_occ_ln_v2_s2--50000_chkpt \\\n  /root/autodl-tmp/checkpoints/full_occ_ln_v2_s2/\n```\n\n（需要在 34685 上执行，或根据 SSH 配置调整方向。如果服务器间无直连，需通过跳板机或 agent 本机中转。）\n\n### Eval 命令（在 34685 上执行）\n\n**full_occ_ln_v2_s1c eval（GPU 0）：**\n```bash\nnohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && \\\nCUDA_VISIBLE_DEVICES=0 MUJOCO_EGL_DEVICE_ID=0 MUJOCO_GL=egl \\\npython3 vla-scripts/evaluate_safelibero.py \\\n  --pretrained_checkpoint /root/autodl-tmp/checkpoints/full_occ_ln_v2_s1c/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--full_occ_ln_v2_s1c--50000_chkpt \\\n  --task_suite_name libero_spatial \\\n  --num_rollouts 50 \\\n  --seed 42' > /root/occsafe_vla/logs/full_occ_ln_v2_s1c_r2_eval.log 2>&1 &\n```\n\n**full_occ_ln_v2_s2 eval（GPU 1）：**\n```bash\nnohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && \\\nCUDA_VISIBLE_DEVICES=1 MUJOCO_EGL_DEVICE_ID=1 MUJOCO_GL=egl \\\npython3 vla-scripts/evaluate_safelibero.py \\\n  --pretrained_checkpoint /root/autodl-tmp/checkpoints/full_occ_ln_v2_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--full_occ_ln_v2_s2--50000_chkpt \\\n  --task_suite_name libero_spatial \\\n  --num_rollouts 50 \\\n  --seed 42' > /root/occsafe_vla/logs/full_occ_ln_v2_s2_r2_eval.log 2>&1 &\n```\n\n**监控：**\n```bash\ntail -f /root/occsafe_vla/logs/full_occ_ln_v2_s1c_r2_eval.log /root/occsafe_vla/logs/full_occ_ln_v2_s2_r2_eval.log\n```\n\n### 时间估算\n- 训练完成：~当前 +50 min\n- scp 传输：15GB/checkpoint，取决于带宽（内网 1Gbps ~2min/checkpoint，100Mbps ~20min）\n- Eval 运行：~30-40 min/experiment\n- 如果 GPU 0/1 被占用，可改用其他空闲 GPU（调整 CUDA_VISIBLE_DEVICES 和 MUJOCO_EGL_DEVICE_ID 一致即可）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-cell2-v2-eval-commands.md"
+}

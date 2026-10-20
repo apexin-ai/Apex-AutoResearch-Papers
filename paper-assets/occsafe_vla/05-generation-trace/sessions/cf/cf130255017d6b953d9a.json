@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf130255017d6b953d9a",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops 10894 verify and promote",
+  "task_key": "worker_ops_10894-verify-and-promote_20260527T000044",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_10894-verify-and-promote_20260527T000044_result.json",
+    "occurrence": 1,
+    "bytes": 1355,
+    "sha256": "4aae250a1c22058f936a59233262bb7e76c36e33bcc1a271e5b828abbdea7a03"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 registry 更新完成。汇报如下：\n\n## westd-10894 GPU 状态\n\n| GPU | VRAM | Util | 实验 | PID | Step | 状态 |\n|-----|------|------|------|-----|------|------|\n| cuda:0 | 79788/97887 MiB | 99% | **detach_ln_v2_s1** (PID 433768) + **reverse_cutoff_s2_v2_eval** (PID 428963) | 433768 + 428963 | 1384 + T5 27/50 | RUNNING |\n| cuda:1 | 62203/97887 MiB | 33% | **full_occ_ln_v2_s0b** | 458224 | ~308 | QUEUED→RUNNING ✓ |\n| cuda:2 | 62203/97887 MiB | 61% | **full_occ_ln_v2_s1b** | 458541 | ~305 | QUEUED→RUNNING ✓ |\n| cuda:3 | 63013/97887 MiB | 99% | **detach_ln_v2_s0b** | 458889 | ~304 | QUEUED→RUNNING ✓ |\n\n## 关键发现\n\n1. **PID 433768 = detach_ln_v2_s1**（occ_detach=true, occ_norm_type=ln, seed=43）。Registry 原先错误标记为 westd-34685，已修正为 westd-10894 PID 433768。当前 step 1384，~1.1 s/it。\n\n2. **reverse_cutoff_s2_v2_eval**：已完成 5/10 tasks，当前 T5 的 27/50 rollouts。PREPARING→RUNNING ✓。Log 在 `/tmp/reverse_cutoff_s2_v2_eval.log`。\n\n3. **3 个 b-variants 均已突破 step 275 关卡**（旧版 stall 点），正常训练中，~1.07-1.08 it/s。\n\n## 磁盘\n- 根分区：15G/30G used (48%)\n- 数据盘：127G/250G used (51%)\n\n## 未完成项\n- 未注册 cron 监控（需要 CronCreate 工具）。需要确认是否需要设置。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-10894-verify-and-promote.md"
+}

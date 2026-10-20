@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "71e2fcd4a6a2ce2aeec6",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops preventive disk cleanup",
+  "task_key": "worker_ops_preventive-disk-cleanup_20260522T133632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_preventive-disk-cleanup_20260522T133632_result.json",
+    "occurrence": 1,
+    "bytes": 716,
+    "sha256": "b491a4ac143d0e2703fa1b371c7ef2a50ab3c6ff74ee80b4941ae6ee95788f9a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### westd-10894\n- 删除 4 个 10000_chkpt（每个 ~15G，共 ~60G）：\n  - `ablation_occ_detach_s2/...--10000_chkpt`\n  - `ablation_random_occ_s2/...--10000_chkpt`\n  - `depth_s2/...--10000_chkpt`\n  - `depth_s3/...--10000_chkpt`\n- 释放 ~59G（156G → 97G used）\n- **最终可用：154G / 250G（39% used）**，30K checkpoint 写入空间充足\n\n### westd-34685\n- 删除 2 个 checkpoint + 整个 occ_s1_fresh 目录：\n  - `occ_s1_fresh/...--47500_chkpt`（15G）\n  - `occ_s1_fresh/...--50000_chkpt`（15G）\n  - `occ_s1_fresh/` 残留目录（仅含 dataset_statistics.json，3KB）\n- 释放 ~30G（111G → 81G used）\n- **最终可用：270G / 350G（24% used）**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-preventive-disk-cleanup.md"
+}

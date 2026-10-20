@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "13e47ccca09232bede41",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra ablation dryrun westd10894",
+  "task_key": "worker_infra_ablation_dryrun_westd10894_20260521T020051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_ablation_dryrun_westd10894_20260521T020051_result.json",
+    "occurrence": 1,
+    "bytes": 1963,
+    "sha256": "11cbcfecd75a2133cabea45c12754ad9c17a506802a438e83d7f99ff0ddf3935"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成，磁盘恢复到 21G 可用。\n\n---\n\n## run_occ_detach.sh dry-run\n- **脚本路径**: `/root/occsafe_vla/scripts/run_occ_detach.sh`\n- **实际执行命令**: `WANDB_MODE=disabled CUDA_VISIBLE_DEVICES=0 MUJOCO_GL=egl torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py ... --occ_detach true --max_steps 5 --save_freq 3 --run_root_dir /root/autodl-tmp/checkpoints/dryrun_occ_detach --seed 42`\n- **结果**: 成功\n- **训练 log**: `Max step 5 reached! Stopping training...`\n- **Checkpoint 产出**: 是（step 3 checkpoint 完整保存，含 model safetensors、action_head、occ_head、lora_adapter、proprio_projector）\n- **注意**: 所有 occ label 加载均返回 `Failed to load occ label: Unable to synchronously open file (bad object header version number)` 警告，训练本身不受阻\n\n## run_random_occ.sh dry-run\n- **脚本路径**: `/root/occsafe_vla/scripts/run_random_occ.sh`\n- **实际执行命令**: 同上，`--occ_detach true` 替换为 `--random_occ True`\n- **结果**: 训练执行成功（跑完 5 步），但 checkpoint 保存失败\n- **失败原因**: `SafetensorError: I/O error: No space left on device (os error 28)` — 第一个 dry-run 的 ~15GB checkpoint 占满了数据盘（250G 盘 92% 已用）\n- **Checkpoint 产出**: 部分（step 3 checkpoint 写入中断，仅完成 5.5GB/~15GB）\n- **结论**: 脚本逻辑正确，训练可正常启动和执行，磁盘空间是唯一阻碍\n\n## 清理\n- **已 kill 进程**: 无残留进程\n- **已删除 checkpoint**: `dryrun_occ_detach/`、`dryrun_random_occ/`、两个 log 文件\n- **磁盘恢复**: 21G 可用\n\n**关键发现**: occ_data HDF5 文件全部无法读取（`bad object header version number`），正式跑之前需要排查 HDF5 版本兼容性问题。磁盘空间也需要在正式实验前清理出足够余量（两个 ablation 实验各需 ~15GB/checkpoint × 多个 save 点）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-ablation-dryrun-westd10894.md"
+}

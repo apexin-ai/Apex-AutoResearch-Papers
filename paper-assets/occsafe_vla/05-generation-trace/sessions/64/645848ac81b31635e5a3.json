@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0",
+  "id": "645848ac81b31635e5a3",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "pipeline cell4 s2 eval anova compile",
+  "task_key": "worker_pipeline_cell4-s2-eval-anova-compile_20260528T090128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_pipeline_cell4-s2-eval-anova-compile_20260528T090128.log",
+    "occurrence": 1,
+    "bytes": 1078094,
+    "sha256": "ea29bc4bb58cf80f61bea41eb790ee560a7d8bce07f689552542647208fe98e1"
+  },
+  "statistics": {
+    "messages": 441,
+    "user_turns": 3,
+    "tool_calls": 153,
+    "roles": {
+      "log": 1,
+      "system": 39,
+      "record": 3,
+      "assistant": 88,
+      "tool_call": 153,
+      "tool_result": 153,
+      "user": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 42,
+      "chunks": [
+        {
+          "path": "645848ac81b31635e5a3-part-0001.json",
+          "message_count": 42
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 15,
+      "chunks": [
+        {
+          "path": "645848ac81b31635e5a3-part-0001.json",
+          "message_count": 15
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 371,
+      "chunks": [
+        {
+          "path": "645848ac81b31635e5a3-part-0001.json",
+          "message_count": 108
+        },
+        {
+          "path": "645848ac81b31635e5a3-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "645848ac81b31635e5a3-part-0003.json",
+          "message_count": 83
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 13,
+      "chunks": [
+        {
+          "path": "645848ac81b31635e5a3-part-0003.json",
+          "message_count": 13
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/pipeline-cell4-s2-eval-anova-compile.md"
+}

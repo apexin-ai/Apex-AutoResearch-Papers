@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92d06cbd51fa92c3a99f",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diag westd 34685 cuda0",
+  "task_key": "worker_diag_westd-34685-cuda0_20260528T141826",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_westd-34685-cuda0_20260528T141826_result.json",
+    "occurrence": 1,
+    "bytes": 335,
+    "sha256": "67c73230bd31a8ee0f9c8a4cf63f5e003547eb47e8f6a748aa6f8f5a068f29b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:0 空闲。**\n\nnvidia-smi 显示 GPU 0 (NVIDIA RTX PRO 6000 Black, 96GB) 上无任何进程运行，显存占用 0MiB。\n\n注意到一个异常：GPU-Util 显示 100% 但无进程且显存为 0。这通常是 GPU 刚释放进程后的短暂状态，或 persistence mode 下的显示延迟，不影响使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-westd-34685-cuda0.md"
+}

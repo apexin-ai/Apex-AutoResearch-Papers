@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc425f8848a532bb6ec3",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis detach ln eval metrics",
+  "task_key": "worker_analysis_detach_ln_eval_metrics_20260524T082816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_detach_ln_eval_metrics_20260524T082816_result.json",
+    "occurrence": 1,
+    "bytes": 1053,
+    "sha256": "473db8bb4b214d555ddb7ae673e7d3d05d3e85fc15eab2ebab57d789249c9db9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Here's the summary:\n\n## Detach+LN 三 seed 评估结果\n\n| Metric | s0 (seed 42) | s1 (seed 43) | s2 (seed 44) | **Mean ± Std** |\n|--------|-------------|-------------|-------------|----------------|\n| **TSR** | 0.914 | 0.906 | 0.884 | **0.901 ± 0.016** |\n| **CAR** | 0.792 | 0.756 | 0.748 | **0.765 ± 0.023** |\n| Collisions | — | 122 | 126 | — |\n\n### Per-task 对比 (TSR / CAR)\n\n| Task | s0 | s1 | s2 |\n|------|-----|-----|-----|\n| T0 | — | 0.98 / 0.98 | 1.00 / 0.96 |\n| T1 | — | 1.00 / 0.70 | 0.98 / 0.86 |\n| T2 | — | 0.92 / 0.86 | 0.92 / 0.94 |\n| T3 | — | 1.00 / 0.56 | 1.00 / 0.32 |\n| T4 | — | 0.94 / 0.98 | 0.98 / 0.94 |\n| T5 | — | 0.38 / 0.12 | 0.18 / 0.12 |\n| T6 | — | 0.98 / 0.36 | 0.98 / 0.36 |\n| T7 | — | 0.94 / 1.00 | 0.92 / 1.00 |\n| T8 | — | 0.94 / 1.00 | 0.88 / 0.98 |\n| T9 | — | 0.98 / 1.00 | 1.00 / 1.00 |\n\nT5 和 T6 的 CAR 在所有 seed 上都很低（T5: ~0.12, T6: ~0.36），是主要的安全瓶颈。T3 的 CAR 也不稳定（0.56 vs 0.32）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-detach-ln-eval-metrics.md"
+}

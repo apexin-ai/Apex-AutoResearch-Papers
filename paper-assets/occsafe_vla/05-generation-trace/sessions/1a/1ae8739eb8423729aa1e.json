@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ae8739eb8423729aa1e",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "fix reviewer critical 26 data consistency",
+  "task_key": "worker_fix_reviewer-critical-26-data-consistency_20260528T080221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_reviewer-critical-26-data-consistency_20260528T080221_result.json",
+    "occurrence": 1,
+    "bytes": 1776,
+    "sha256": "3839122647367baef0163ad50abab5e6f25fc2e814c9ea32a7b4e73d0db426e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总报告：\n\n## Reviewer CRITICAL #26 修复完成\n\n### W1. discussion.tex — 6 处修改\n| 旧值 | 新值 |\n|------|------|\n| 0.777 → **0.773** | Cell 2 mean |\n| d=+1.11 → **d=+1.07** | Cell 2 vs Vanilla |\n| -4.9pp → **-2.9pp** | LN 内 gradient flow deficit |\n| +5.2pp → **+4.8pp** | LN-BN under grad ON |\n| +5.9pp → **+3.5pp** | LN-BN under grad OFF |\n| F=0.02, p=0.89, η²=0.003 → **F=0.10, p=0.763, η²=0.005** | 交互项 |\n| 0.814 (n=2) preliminary + camera-ready 语句 → **0.802±0.024 (n=3)** | Cell 4 |\n\n### W2. introduction.tex — 4 处修改\n- Fig1 caption: 0.773 > Vanilla, 0.802±0.024 (n=3), 移除 hollow marker 描述\n- d=+1.11 → **+1.07** (两处)\n- 4--5pp → **3.5--4.8pp** (两处)\n\n### W3. conclusion.tex — 1 处修改\n- 4--5pp → **3.5--4.8pp**\n\n### W4. Fig1 重新生成\n- Panel (c): 双主效应平行线（非 crossover），数据 [0.767→0.725 BN, 0.802→0.773 LN]\n- 实心标记 + 误差线 + Vanilla=0.745 + p=0.763 (n.s.)\n- 输出: `fig1_overview.pdf` (paper/figures/) + `fig1_overview_v2.pdf` (artifacts/)\n\n### W5. ANOVA artifact 更新\n- 全量 v2 数据 N=14: F(grad)=3.20 p=0.104, F(norm)=4.49 p=0.060, F(interaction)=0.10 p=0.763\n- Cell 4 vs Vanilla: d=2.36, p=0.045\n- `anova_v2_final.txt` 已覆盖\n\n### W6. paper_framing.md 更新\n- Cell 2: n=3→n=4, values=[0.798,0.792,0.740,0.762], mean=0.773\n- Cell 4: n=1→n=3, values=[0.826,0.802,0.778], mean=0.802\n- 梯度流主效应: Δ=-4.6pp → -3.6pp\n- 标准化主效应: Δ=+5.6pp → +4.2pp\n\n### W7. PDF 编译\n- 0 errors, 19 pages\n- **路径**: `docs/paper/main.pdf`\n- 已注册: `art_20260528_7b1ae4`\n\n### 额外修复\n- **method.tex**: Detach+LN \"n=1 preliminary\" → \"n=3\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-reviewer-critical-26-data-consistency.md"
+}

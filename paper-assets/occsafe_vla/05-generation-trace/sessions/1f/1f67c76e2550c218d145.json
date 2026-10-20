@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f67c76e2550c218d145",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis gradient cka summary",
+  "task_key": "worker_analysis_gradient_cka_summary_20260524T194411",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gradient_cka_summary_20260524T194411_result.json",
+    "occurrence": 1,
+    "bytes": 750,
+    "sha256": "eba320a4cae8604a4710c660378756d4c4ef727656eb071c58bb588814f38ed5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。结构化摘要写入 `artifacts/gradient_cka_summary.md` 并注册（`art_20260524_2230d8`）。\n\n摘要包含三个部分：\n- **A. 梯度分析**：global norms（Detach=4% of Vanilla, Full OCC/Random≈1×）、per-layer conflict（DINOv2 全层正交 ~50%, SigLIP late layers 降至 ~25%）、Detach 低方差签名\n- **B. CKA 分析**：5 条件对比表、Detach+LN Paradox（CKA 完全恢复但 CAR 仍低 1.5pp → BN 是表征漂移 100% 原因，梯度流有非表征通道的行为贡献）\n- **C. 综合**：H1（gradient diversity → representation → safety）部分否定；H2（implicit regularization → prevent collapse）成立；H3（BN stats → drift）成立；双机制模型 56%/44% 分解"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gradient-cka-summary.md"
+}

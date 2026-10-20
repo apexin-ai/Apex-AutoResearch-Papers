@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fcddf95f681934d81e87",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "paper writing abstract bn specific reframe",
+  "task_key": "worker_paper_writing_abstract_bn_specific_reframe_20260527T193857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_abstract_bn_specific_reframe_20260527T193857_result.json",
+    "occurrence": 1,
+    "bytes": 617,
+    "sha256": "41b901aee1621d19a84ef17081b8c88853388cef380ccf87edc6b5612e5fa808"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Abstract 替换完成。核心变更：\n\n- **旧 claim** \"gradient flow is the dominant source of safety degradation\" → **新 claim** \"crossover interaction between gradient flow and normalization type\"\n- 加入 BN 行（d = −0.94）和 LN 行（d = +1.11）双向证据\n- 报告 main effect p = 0.396 作为交互效应信号\n- 保留 BN + gradient flow 最不稳定的描述\n- 机制归因于 BN running statistics vs LN per-token computation\n- 实用建议按 normalization type 分条件给出\n- ~230 words，无 em-dash，无 -ing 尾句，无 \"significantly\"/\"dominant source\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-abstract-bn-specific-reframe.md"
+}

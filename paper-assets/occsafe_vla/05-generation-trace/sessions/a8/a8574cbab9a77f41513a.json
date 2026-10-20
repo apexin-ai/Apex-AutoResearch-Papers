@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8574cbab9a77f41513a",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "research check retrain s0 resume",
+  "task_key": "worker_research_check_retrain_s0_resume_20260525T123327",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_check_retrain_s0_resume_20260525T123327_result.json",
+    "occurrence": 1,
+    "bytes": 806,
+    "sha256": "aea8b1adc97a0f40276c27372b99120a0dcf24b53eb0721ff233418199ce1c62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论：**Fresh train (从头训练)**，是 clean v2 数据点。\n\n### 证据\n\n| 项目 | 内容 |\n|------|------|\n| **起始模型** | `Fine-tuning OpenVLA Model /root/autodl-tmp/models/openvla-7b` — 从 pretrained base 加载，非 checkpoint |\n| **resume 关键词** | `grep -i \"resume\"` 全文零命中 |\n| **起始 step** | `[AUX] step=0, occ_loss=0.0975, depth_loss=0.0000, action_loss=0.5508` |\n| **结束 step** | `Max step 50005 reached!` — 完整跑完 50005 步 |\n| **训练时长** | 14h12m44s（2026-05-23 11:48 → 05-24 02:01） |\n| **checkpoint** | 在 step 50000 保存了 merged model |\n\n### 代码版本：**v2**\n\n- `[AUX]` 日志出现 501 次 — v2 特征\n- 日志含 `occ_loss` + `depth_loss` 字段\n- `occ_head` trainable params: 1,213,313"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-check-retrain-s0-resume.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb21f4d7461516221f31",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval cutoff s1",
+  "task_key": "worker_eval_cutoff_s1_20260523T002334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cutoff_s1_20260523T002334_result.json",
+    "occurrence": 1,
+    "bytes": 596,
+    "sha256": "ff4c4c9ceb1f593b89e314260cbfcdfa6f3104e8c1e454e8151556fcfdb12011"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**cutoff_s1 训练验证**:\n- 50005 steps 完成，EXIT_CODE=0\n- Checkpoint 完整（4 model shards + action_head + occ_head + proprio_projector）\n- OCC loss cutoff 行为：loss 在 35K 后仍被 forward pass 计算并 log（0.011-0.015），但不参与 backprop\n\n**cutoff_s1_eval 已在运行**:\n- tmux session `cutoff_s1_eval` on westd-34685 cuda:3\n- Task 0 已完成：TSR=0.980, CAR=0.980\n- Task 1 进行中\n\n**Registry 已更新**:\n- `cutoff_s1`: 设置了 checkpoint_path 和 log_path\n- `cutoff_s1_eval`: 创建并设为 RUNNING，parent=cutoff_s1"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cutoff-s1-copy-2.md"
+}

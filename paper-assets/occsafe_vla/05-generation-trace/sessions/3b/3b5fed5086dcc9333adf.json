@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "id": "3b5fed5086dcc9333adf",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "ops find vanilla checkpoint",
+  "task_key": "worker_ops_find_vanilla_checkpoint_20260523T033955",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_find_vanilla_checkpoint_20260523T033955.log",
+    "occurrence": 1,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "statistics": {
+    "messages": 0,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {},
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [],
+  "readable_path": "readable/worker-executions/ops-find-vanilla-checkpoint.md"
+}

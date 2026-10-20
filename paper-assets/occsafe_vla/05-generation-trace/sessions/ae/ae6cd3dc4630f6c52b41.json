@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae6cd3dc4630f6c52b41",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis eval dryrun prep",
+  "task_key": "worker_analysis_eval_dryrun_prep_20260525T055947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_dryrun_prep_20260525T055947_result.json",
+    "occurrence": 1,
+    "bytes": 849,
+    "sha256": "24a1f869ecee969d8d62aa4ef014f7b11277425122bd9a34c154b939c5ebb312"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 完成，一切正常。\n\n**结果汇总：**\n\n1. ✅ 两个脚本已创建：\n   - `/root/occsafe_vla/eval_batch_34685.sh` — 单实验 eval\n   - `/root/occsafe_vla/scp_and_eval.sh` — scp + eval 一键\n\n2. ✅ Dry-run 成功（`full_occ_retrain_s0`, cuda:2, 1 rollout）：\n   - 10 tasks 全部完成，耗时 60s\n   - TSR=0.9000 (90%), CAR=0.8000 (80%)\n   - 结果保存至 `/root/occsafe_vla/artifacts/safelibero_libero_spatial_20260525_140125.json`\n\n**34685 训练完成后的使用方式：**\n```bash\n# 在 10894 上，对每个实验分配一个 GPU\nbash /root/occsafe_vla/scp_and_eval.sh cutoff_25k_s2_v3 0 0\nbash /root/occsafe_vla/scp_and_eval.sh reverse_cutoff_s2_v3 1 1\nbash /root/occsafe_vla/scp_and_eval.sh cutoff_45k_s1_v3 2 2\nbash /root/occsafe_vla/scp_and_eval.sh cutoff_15k_s2_v2 3 3\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-dryrun-prep-copy-2.md"
+}

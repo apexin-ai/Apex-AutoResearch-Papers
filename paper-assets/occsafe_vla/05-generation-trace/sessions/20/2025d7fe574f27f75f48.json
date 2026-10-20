@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2025d7fe574f27f75f48",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "train cell24 v2 rebuild 10894",
+  "task_key": "worker_train_cell24-v2-rebuild-10894_20260526T120432",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_cell24-v2-rebuild-10894_20260526T120432_result.json",
+    "occurrence": 1,
+    "bytes": 379,
+    "sha256": "a0dab0c2906b9bc39829f1dffeb7119d28de48d74da55444b5a470c4bd12276d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n| 实验 | GPU | PID | 状态 |\n|------|-----|-----|------|\n| full_occ_ln_v2_s0 (Cell 2, seed=42) | cuda:1 | 341693 | RUNNING |\n| full_occ_ln_v2_s1 (Cell 2, seed=43) | cuda:2 | 341843 | RUNNING |\n| detach_ln_v2_s0 (Cell 4, seed=42) | cuda:3 | 342191 | RUNNING |\n\ncuda:0 上的 reverse_cutoff_s2_v2 未受影响。Registry spec 已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-cell24-v2-rebuild-10894.md"
+}

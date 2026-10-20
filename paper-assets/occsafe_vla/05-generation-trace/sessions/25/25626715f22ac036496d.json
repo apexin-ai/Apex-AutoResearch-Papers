@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0",
+  "id": "25626715f22ac036496d",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose libero object checkpoint",
+  "task_key": "worker_diagnose_libero_object_checkpoint_20260528T015457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_libero_object_checkpoint_20260528T015457_result.json",
+    "occurrence": 1,
+    "bytes": 9306,
+    "sha256": "f26eec6164a2597ffd82a5e6f561f986e4c5588cc0eb038cf2d5ad75b6909769"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Full picture is clear. Here's the diagnosis:\n\n```json\n{\n  \"10894_full_occ_bn_5000_chkpt\": {\n    \"exists\": true,\n    \"has_model_files\": \"INCOMPLETE - 3/4 shards, shard 3 truncated\",\n    \"files_detail\": {\n      \"model-00001-of-00004.safetensors\": \"4.9GB ✓\",\n      \"model-00002-of-00004.safetensors\": \"4.9GB ✓\",\n      \"model-00003-of-00004.safetensors\": \"24KB ✗ (TRUNCATED, should be ~5GB)\",\n      \"model-00004-of-00004.safetensors\": \"MISSING\",\n      \"model.safetensors.index.json\": \"MISSING\",\n      \"action_head--5000_checkpoint.pt\": \"302MB ✓\",\n      \"proprio_projector--5000_checkpoint.pt\": \"67MB ✓\",\n      \"occ_head--5000_checkpoint.pt\": \"2.4MB ✓\",\n      \"lora_adapter/\": \"exists ✓\",\n      \"config/tokenizer/processor jsons\": \"all present ✓\"\n    },\n    \"crash_log\": \"OSError: no file named pytorch_model.bin...found in directory ...5000_chkpt (resume attempt at 09:45)\"\n  },\n  \"10894_detach_bn_5000_chkpt\": {\n    \"exists\": true,\n    \"has_model_files\": \"INCOMPLETE - only 1/4 shards\",\n    \"files_detail\": {\n      \"model-00001-of-00004.safetensors\": \"4.0GB ✓\",\n      \"model-00002-of-00004.safetensors\": \"MISSING\",\n      \"model-00003-of-00004.safetensors\": \"MISSING\",\n      \"model-00004-of-00004.safetensors\": \"MISSING\",\n      \"model.safetensors.index.json\": \"MISSING\",\n      \"action_head--5000_checkpoint.pt\": \"302MB ✓\",\n      \"proprio_projector--5000_checkpoint.pt\": \"67MB ✓\",\n      \"occ_head--5000_checkpoint.pt\": \"2.4MB ✓\",\n      \"lora_adapter/\": \"exists ✓\"\n    },\n    \"crash_log\": \"OSError: no file named pytorch_model.bin...found in directory ...5000_chkpt (resume attempt at 09:45)\"\n  },\n  \"34685_vanilla_10000_chkpt\": {\n    \"exists\": false,\n    \"has_model_files\": false,\n    \"note\": \"10000_chkpt directory was NEVER CREATED. Existing checkpoints: 15000 (complete), 20000 (complete), 25000 (INCOMPLETE - crashed during save)\",\n    \"25000_chkpt_status\": \"Only has action_head, proprio_projector, tokenizer files. NO model safetensors, NO config.json. Process crashed mid-save.\",\n    \"crash_log\": \"HFValidationError + OSError: save_training_checkpoint() at line 727 tried AutoModelForVision2Seq.from_pretrained('...--10000_chkpt') but 10000_chkpt doesn't exist → crash at 09:51:23\"\n  },\n  \"new_experiments_status\": {\n    \"vanilla_object_s1\": \"RUNNING on westd-10894 cuda:0, step 30483/50005 (61%), ~1.08 it/s. Checkpoints: 20000 ✓ (complete 4/4), 25000 ✓ (complete 4/4), 30000 ✓ (complete 4/4). HEALTHY.\",\n    \"detach_ln_v2_s4\": \"RUNNING on westd-10894 cuda:1, step 11972/50005 (24%), ~1.10 it/s. Checkpoints: 5000 ✓ (complete 4/4 + index.json), 10000 ✓ (complete 4/4 + index.json). HEALTHY.\"\n  },\n  \"disk_space\": {\n    \"10894\": \"250G total, 116G used (47%), 135G free — NOT the cause\",\n    \"34685\": \"350G total, 168G used (48%), 183G free — NOT the cause\"\n  },\n  \"root_cause\": \"save_training_checkpoint() in finetune.py (line 727) is non-atomic. It writes auxiliary files first (tokenizer, .pt heads, config), then calls AutoModelForVision2Seq.from_pretrained() to load a base model for LoRA merging, then saves safetensors shards sequentially. If the process is interrupted during safetensors writing (or the from_pretrained call fails), the checkpoint is left in a half-written state: auxiliary files present but model safetensors incomplete/missing. For vanilla_object_s0, the save function tried to load from a 10000_chkpt path that was never created → the save at step 25000 crashed. For 10894 experiments, the original training runs produced truncated checkpoints (possibly interrupted during concurrent saves on same disk), and the subsequent resume attempts failed because from_pretrained can't load incomplete safetensors.\",\n  \"fix_recommendation\": \"1) These 3 experiments (full_occ_bn_object_s0, detach_bn_object_s0, vanilla_object_s0) need to be re-run FROM SCRATCH (from pretrained weights, not resume). 2) Investigate save_training_checkpoint() line 727: the from_pretrained path computation is buggy — for vanilla_object_s0 it referenced a 10000_chkpt that was never saved. The function should load the base model from the original vla_path, not a derived checkpoint path. 3) Consider atomic checkpoint saving (write to temp dir, then rename).\"\n}\n```\n\n**Summary of the 3 failures:**\n\n| Experiment | Server | Failure Mode |\n|---|---|---|\n| `full_occ_bn_object_s0` | 10894 | 5000_chkpt has truncated shard 3 (24KB) + missing shard 4. Resume crashed. |\n| `detach_bn_object_s0` | 10894 | 5000_chkpt has only shard 1/4. Resume crashed. |\n| `vanilla_object_s0` | 34685 | `save_training_checkpoint()` tried to load nonexistent 10000_chkpt as base model → process killed at step ~25000. Has usable complete checkpoints at 15000 and 20000. |\n\n**Good news:** `vanilla_object_s1` and `detach_ln_v2_s4` are both running healthy with complete checkpoints."
+            }
+          ],
+          "metadata": {
+            "data": {
+              "10894_full_occ_bn_5000_chkpt": {
+                "exists": true,
+                "has_model_files": "INCOMPLETE - 3/4 shards, shard 3 truncated",
+                "files_detail": {
+                  "model-00001-of-00004.safetensors": "4.9GB ✓",
+                  "model-00002-of-00004.safetensors": "4.9GB ✓",
+                  "model-00003-of-00004.safetensors": "24KB ✗ (TRUNCATED, should be ~5GB)",
+                  "model-00004-of-00004.safetensors": "MISSING",
+                  "model.safetensors.index.json": "MISSING",
+                  "action_head--5000_checkpoint.pt": "302MB ✓",
+                  "proprio_projector--5000_checkpoint.pt": "67MB ✓",
+                  "occ_head--5000_checkpoint.pt": "2.4MB ✓",
+                  "lora_adapter/": "exists ✓",
+                  "config/tokenizer/processor jsons": "all present ✓"
+                },
+                "crash_log": "OSError: no file named pytorch_model.bin...found in directory ...5000_chkpt (resume attempt at 09:45)"
+              },
+              "10894_detach_bn_5000_chkpt": {
+                "exists": true,
+                "has_model_files": "INCOMPLETE - only 1/4 shards",
+                "files_detail": {
+                  "model-00001-of-00004.safetensors": "4.0GB ✓",
+                  "model-00002-of-00004.safetensors": "MISSING",
+                  "model-00003-of-00004.safetensors": "MISSING",
+                  "model-00004-of-00004.safetensors": "MISSING",
+                  "model.safetensors.index.json": "MISSING",
+                  "action_head--5000_checkpoint.pt": "302MB ✓",
+                  "proprio_projector--5000_checkpoint.pt": "67MB ✓",
+                  "occ_head--5000_checkpoint.pt": "2.4MB ✓",
+                  "lora_adapter/": "exists ✓"
+                },
+                "crash_log": "OSError: no file named pytorch_model.bin...found in directory ...5000_chkpt (resume attempt at 09:45)"
+              },
+              "34685_vanilla_10000_chkpt": {
+                "exists": false,
+                "has_model_files": false,
+                "note": "10000_chkpt directory was NEVER CREATED. Existing checkpoints: 15000 (complete), 20000 (complete), 25000 (INCOMPLETE - crashed during save)",
+                "25000_chkpt_status": "Only has action_head, proprio_projector, tokenizer files. NO model safetensors, NO config.json. Process crashed mid-save.",
+                "crash_log": "HFValidationError + OSError: save_training_checkpoint() at line 727 tried AutoModelForVision2Seq.from_pretrained('...--10000_chkpt') but 10000_chkpt doesn't exist → crash at 09:51:23"
+              },
+              "new_experiments_status": {
+                "vanilla_object_s1": "RUNNING on westd-10894 cuda:0, step 30483/50005 (61%), ~1.08 it/s. Checkpoints: 20000 ✓ (complete 4/4), 25000 ✓ (complete 4/4), 30000 ✓ (complete 4/4). HEALTHY.",
+                "detach_ln_v2_s4": "RUNNING on westd-10894 cuda:1, step 11972/50005 (24%), ~1.10 it/s. Checkpoints: 5000 ✓ (complete 4/4 + index.json), 10000 ✓ (complete 4/4 + index.json). HEALTHY."
+              },
+              "disk_space": {
+                "10894": "250G total, 116G used (47%), 135G free — NOT the cause",
+                "34685": "350G total, 168G used (48%), 183G free — NOT the cause"
+              },
+              "root_cause": "save_training_checkpoint() in finetune.py (line 727) is non-atomic. It writes auxiliary files first (tokenizer, .pt heads, config), then calls AutoModelForVision2Seq.from_pretrained() to load a base model for LoRA merging, then saves safetensors shards sequentially. If the process is interrupted during safetensors writing (or the from_pretrained call fails), the checkpoint is left in a half-written state: auxiliary files present but model safetensors incomplete/missing. For vanilla_object_s0, the save function tried to load from a 10000_chkpt path that was never created → the save at step 25000 crashed. For 10894 experiments, the original training runs produced truncated checkpoints (possibly interrupted during concurrent saves on same disk), and the subsequent resume attempts failed because from_pretrained can't load incomplete safetensors.",
+              "fix_recommendation": "1) These 3 experiments (full_occ_bn_object_s0, detach_bn_object_s0, vanilla_object_s0) need to be re-run FROM SCRATCH (from pretrained weights, not resume). 2) Investigate save_training_checkpoint() line 727: the from_pretrained path computation is buggy — for vanilla_object_s0 it referenced a 10000_chkpt that was never saved. The function should load the base model from the original vla_path, not a derived checkpoint path. 3) Consider atomic checkpoint saving (write to temp dir, then rename)."
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-libero-object-checkpoint.md"
+}

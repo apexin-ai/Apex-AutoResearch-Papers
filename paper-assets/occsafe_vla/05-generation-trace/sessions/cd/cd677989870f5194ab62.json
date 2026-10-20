@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd677989870f5194ab62",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops 10894 progress check",
+  "task_key": "worker_ops_10894-progress-check_20260526T192927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_10894-progress-check_20260526T192927_result.json",
+    "occurrence": 1,
+    "bytes": 1980,
+    "sha256": "aecc3ffdaffb38dd4ab90e59a24778f9fcea51eb691899d1fda0b3488e743e17"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "情况清楚了。汇报如下：\n\n---\n\n## 训练进度汇报（westd-10894）\n\n### GPU 状态\n| GPU | 利用率 | 显存使用 |\n|-----|--------|----------|\n| cuda:0 | 99% | 62.2/97.9 GB |\n| cuda:1 | 41% | 62.2/97.9 GB |\n| cuda:2 | 80% | 63.0/97.9 GB |\n| cuda:3 | 83% | 62.2/97.9 GB |\n\n4 GPU 全部活跃。\n\n---\n\n### 1. reverse_cutoff_s2_v2 (PID 170605, cuda:0)\n- **当前步数**: 36248 / 50005\n- **进度**: **72.5%**\n- **速度**: 1.08 it/s\n- **已运行**: 10h26m\n- **剩余**: ~3h33m\n- **预计完成**: 约 May 27 07:00 (UTC+8)\n- **Checkpoints**: `20000_chkpt`, `30000_chkpt`\n- **最新 loss** (step 36200): occ=0.0198, action=0.0713\n\n**状态正常，稳定推进中。**\n\n---\n\n### 2. full_occ_ln_v2_s0 (PID 390852, cuda:1)\n### 3. full_occ_ln_v2_s1 (PID 391060, cuda:2)\n### 4. detach_ln_v2_s0 (PID 391402, cuda:3)\n\n这 3 个实验**之前的进程崩溃了**（exitcode 2，崩溃时间 ~02:08-02:09 UTC+8），随后被重启，**从 step 0 重新训练**。\n\n| 实验 | PID | 已运行 | 估算当前步数 | 进度 | Checkpoints |\n|------|-----|--------|-------------|------|-------------|\n| full_occ_ln_v2_s0 | 390852 | 1h07m | ~4300 | ~8.6% | 无 |\n| full_occ_ln_v2_s1 | 391060 | 1h05m | ~4200 | ~8.4% | 无 |\n| detach_ln_v2_s0 | 391402 | 1h05m | ~4200 | ~8.4% | 无 |\n\n- **速度**: ~1.08 it/s\n- **剩余**: ~11.8h\n- **预计完成**: 约 May 27 15:00-16:00 (UTC+8)\n\n注意：train.log 在 step ~275 后停止写入（输出到 tmux 终端 /dev/pts/1），步数是基于运行时间和速度估算的。\n\n---\n\n### DDL 风险评估\nDDL: **2026-05-28 20:00 UTC+8**\n\n- reverse_cutoff_s2_v2: 约 May 27 07:00 完成 → **无风险**\n- 其余 3 个: 约 May 27 15:00-16:00 完成 → **无风险**，还有 ~28h 余量\n\n### 需关注\n3 个实验崩溃原因是 exitcode 2（可能是代码错误或参数问题），虽然重启后正在运行，但建议确认崩溃原因防止再次中断。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-10894-progress-check-copy-2.md"
+}

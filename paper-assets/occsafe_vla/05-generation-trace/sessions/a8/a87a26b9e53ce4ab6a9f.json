@@ -1,0 +1,110 @@
+{
+  "schema_version": "1.0",
+  "id": "a87a26b9e53ce4ab6a9f",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis file align and rerun",
+  "task_key": "worker_analysis_file-align-and-rerun_20260521T203752",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_file-align-and-rerun_20260521T203752_result.json",
+    "occurrence": 1,
+    "bytes": 4901,
+    "sha256": "cd51534f8595585e484761932837a1b2368b08ec8e5fdf7f25eb4fa9478b1e4f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。以下是完整产出：\n\n---\n\n## 1. Rollout Count 确认\n\n| 文件 | Checkpoint | Rollouts/Task | Total Episodes |\n|------|-----------|---------------|----------------|\n| vanilla_s0_50r.json | vanilla_s0 step-50000 | **50** | 500 |\n| vanilla_s1_50r.json | vanilla_s1 step-50000 | **50** | 500 |\n| occ_s0_47500_50r.json | occ_s0 step-47500 | **50** | 500 |\n| occ_s2_47500_50r.json | occ_s2 step-47500 | **50** | 500 |\n\n## 2. comparison_stats.json\n\n```json\n{\n  \"T0\": {\"tsr_diff\": 0.01, \"tsr_ci\": [0.0, 0.03], \"tsr_p\": 0.6308, \"car_diff\": 0.0, \"car_ci\": [-0.04, 0.04], \"car_p\": 1.0},\n  \"T1\": {\"tsr_diff\": 0.04, \"tsr_ci\": [-0.03, 0.12], \"tsr_p\": 0.5716, \"car_diff\": 0.0, \"car_ci\": [-0.07, 0.07], \"car_p\": 1.0},\n  \"T2\": {\"tsr_diff\": 0.02, \"tsr_ci\": [-0.04, 0.08], \"tsr_p\": 0.6414, \"car_diff\": 0.0, \"car_ci\": [-0.08, 0.08], \"car_p\": 1.0},\n  \"T3\": {\"tsr_diff\": 0.05, \"tsr_ci\": [0.01, 0.1], \"tsr_p\": 0.5595, \"car_diff\": 0.12, \"car_ci\": [-0.01, 0.25], \"car_p\": 0.5292},\n  \"T4\": {\"tsr_diff\": 0.0, \"tsr_ci\": [-0.1, 0.1], \"tsr_p\": 1.0, \"car_diff\": 0.0, \"car_ci\": [-0.03, 0.03], \"car_p\": 1.0},\n  \"T5\": {\"tsr_diff\": -0.01, \"tsr_ci\": [-0.15, 0.13], \"tsr_p\": 0.9266, \"car_diff\": -0.13, \"car_ci\": [-0.22, -0.04], \"car_p\": 0.5355},\n  \"T6\": {\"tsr_diff\": 0.04, \"tsr_ci\": [0.01, 0.08], \"tsr_p\": 0.5739, \"car_diff\": 0.11, \"car_ci\": [-0.03, 0.25], \"car_p\": 0.509},\n  \"T7\": {\"tsr_diff\": -0.03, \"tsr_ci\": [-0.09, 0.03], \"tsr_p\": 0.5454, \"car_diff\": -0.02, \"car_ci\": [-0.06, 0.02], \"car_p\": 0.622},\n  \"T8\": {\"tsr_diff\": 0.03, \"tsr_ci\": [-0.03, 0.09], \"tsr_p\": 0.5531, \"car_diff\": 0.0, \"car_ci\": [0.0, 0.0], \"car_p\": 1.0},\n  \"T9\": {\"tsr_diff\": -0.02, \"tsr_ci\": [-0.06, 0.02], \"tsr_p\": 0.6172, \"car_diff\": 0.0, \"car_ci\": [0.0, 0.0], \"car_p\": 1.0}\n}\n```\n\n所有 p-value 均 > 0.5，**vanilla vs occ_47500 在 TSR 和 CAR 上均无显著差异**。T5 的 CAR CI 不过零 ([-0.22, -0.04])，但 p=0.54 不显著。\n\n## 3. instability_stats.json\n\n```json\n{\n  \"T0\": {\"vanilla_std\": 0.0, \"occ_std\": 0.0, \"ratio\": \"nan\", \"levene_p\": null},\n  \"T1\": {\"vanilla_std\": 0.0424, \"occ_std\": 0.099, \"ratio\": 2.3333, \"levene_p\": null},\n  \"T2\": {\"vanilla_std\": 0.0141, \"occ_std\": 0.0424, \"ratio\": 3.0, \"levene_p\": null},\n  \"T3\": {\"vanilla_std\": 0.1556, \"occ_std\": 0.0707, \"ratio\": 0.4545, \"levene_p\": null},\n  \"T4\": {\"vanilla_std\": 0.0141, \"occ_std\": 0.0141, \"ratio\": 1.0, \"levene_p\": null},\n  \"T5\": {\"vanilla_std\": 0.0141, \"occ_std\": 0.0849, \"ratio\": 6.0, \"levene_p\": null},\n  \"T6\": {\"vanilla_std\": 0.0424, \"occ_std\": 0.1131, \"ratio\": 2.6667, \"levene_p\": null},\n  \"T7\": {\"vanilla_std\": 0.0424, \"occ_std\": 0.0141, \"ratio\": 0.3333, \"levene_p\": null},\n  \"T8\": {\"vanilla_std\": 0.0, \"occ_std\": 0.0, \"ratio\": \"nan\", \"levene_p\": null},\n  \"T9\": {\"vanilla_std\": 0.0, \"occ_std\": 0.0, \"ratio\": \"nan\", \"levene_p\": null}\n}\n```\n\nLevene 检验全部 null（n=2 per condition，样本不足）。T5 的 occ_std/vanilla_std ratio=6.0 最高，T3 ratio=0.45 occ 比 vanilla 更稳定。\n\n## 4. 图表文件列表\n\n| 文件 | 大小 |\n|------|------|\n| per_task_tsr.pdf / .png | 17KB / 76KB |\n| per_task_car.pdf / .png | 17KB / 79KB |\n| hard_tasks.pdf / .png | 17KB / 66KB |\n| seed_variance_heatmap.pdf / .png | 27KB / 147KB |\n| variance_ratio.pdf / .png | 25KB / 91KB |\n| comparison_stats.json | 2.5KB |\n| instability_stats.json | 1.4KB |\n\n注：文件在 westd-34685 的 `/root/occsafe_vla/openvla-oft/analysis/output/` 下（非 westd-10894）。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "T0": {
+                "vanilla_std": 0.0,
+                "occ_std": 0.0,
+                "ratio": "nan",
+                "levene_p": null
+              },
+              "T1": {
+                "vanilla_std": 0.0424,
+                "occ_std": 0.099,
+                "ratio": 2.3333,
+                "levene_p": null
+              },
+              "T2": {
+                "vanilla_std": 0.0141,
+                "occ_std": 0.0424,
+                "ratio": 3.0,
+                "levene_p": null
+              },
+              "T3": {
+                "vanilla_std": 0.1556,
+                "occ_std": 0.0707,
+                "ratio": 0.4545,
+                "levene_p": null
+              },
+              "T4": {
+                "vanilla_std": 0.0141,
+                "occ_std": 0.0141,
+                "ratio": 1.0,
+                "levene_p": null
+              },
+              "T5": {
+                "vanilla_std": 0.0141,
+                "occ_std": 0.0849,
+                "ratio": 6.0,
+                "levene_p": null
+              },
+              "T6": {
+                "vanilla_std": 0.0424,
+                "occ_std": 0.1131,
+                "ratio": 2.6667,
+                "levene_p": null
+              },
+              "T7": {
+                "vanilla_std": 0.0424,
+                "occ_std": 0.0141,
+                "ratio": 0.3333,
+                "levene_p": null
+              },
+              "T8": {
+                "vanilla_std": 0.0,
+                "occ_std": 0.0,
+                "ratio": "nan",
+                "levene_p": null
+              },
+              "T9": {
+                "vanilla_std": 0.0,
+                "occ_std": 0.0,
+                "ratio": "nan",
+                "levene_p": null
+              }
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-file-align-and-rerun.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a382710983816b10b193",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose westd 34685 batch failure",
+  "task_key": "worker_diagnose_westd-34685-batch-failure_20260522T072750",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_westd-34685-batch-failure_20260522T072750_result.json",
+    "occurrence": 1,
+    "bytes": 1043,
+    "sha256": "f0289d80822eae6a4b9f1e0e47d6d5993bc69ebf0ade15bb286dd22586722e61"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n**根因**：`/root/autodl-tmp` 磁盘 100% 满（350G/350G，仅剩 300K）。checkpoints 目录占 329G。三个实验在保存 checkpoint 时同时触发 `No space left on device (os error 28)`：\n- `depth_s0`/`depth_s1`：step 15000 保存 merged model 时失败\n- `cutoff_s1`：step 2500 保存 merged model 时失败\n\n具体崩溃位置：`finetune.py:731` → `save_training_checkpoint` → `merged_vla.save_pretrained` → safetensors 序列化写盘失败。\n\n**cutoff_s0 状态**：仍在 GPU 0 运行（step ~2805），但它下一次保存 checkpoint（step 5000）时也会因磁盘满而崩溃。\n\n**影响范围**：4 个实验全部受影响（3 已死，1 即将死）。\n\n**可以直接重跑**：不是代码 bug，是磁盘空间不足。需要先清理 `/root/autodl-tmp/checkpoints/` 下的旧 checkpoint（如之前的 occ_s0/s1/s2 实验数据），释放空间后重跑。depth_s0/s1 可从 step 12500 checkpoint 恢复（最后成功保存的），cutoff_s1 需从头跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-westd-34685-batch-failure.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec7d242599467745b202",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops cutoff evals status and results",
+  "task_key": "worker_ops_cutoff_evals_status_and_results_20260524T111524",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cutoff_evals_status_and_results_20260524T111524_result.json",
+    "occurrence": 1,
+    "bytes": 741,
+    "sha256": "de897e95a192db4a4969e18155fa08102fb7819493ca790c10a136cacf3cbcd9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## cutoff_15k_s0_eval — DONE ✓\n\n| Task | TSR | CAR |\n|------|-----|-----|\n| T0 | 1.00 | 0.98 |\n| T1 | 0.98 | 0.88 |\n| T2 | 1.00 | 0.94 |\n| T3 | 0.96 | 0.74 |\n| T4 | 0.96 | 0.94 |\n| T5 | 0.30 | 0.12 |\n| T6 | 1.00 | 0.44 |\n| T7 | 0.98 | 1.00 |\n| T8 | 0.94 | 1.00 |\n| T9 | 1.00 | 1.00 |\n| **Overall** | **0.912** | **0.804** |\n\nRegistry 已更新：metrics + conclusion=success + checkpoint_path + status=DONE。\n\n## cutoff_45k_s0_eval — RUNNING\n\n正在 westd-34685 GPU0 上运行，当前进度 **T7 78%** (39/50 episodes)。按每 task ~4.5min 估算，还剩 T7 剩余 + T8 + T9 ≈ **12-15 分钟**完成。\n\nRegistry 已从 PREPARING 修正为 RUNNING（经 QUEUED 中转）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cutoff-evals-status-and-results.md"
+}

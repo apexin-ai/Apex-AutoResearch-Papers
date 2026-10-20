@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7be760fc384c9d147140",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra check ablation status 10894",
+  "task_key": "worker_infra_check-ablation-status-10894_20260521T114249",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_check-ablation-status-10894_20260521T114249_result.json",
+    "occurrence": 1,
+    "bytes": 1543,
+    "sha256": "1d9f1531fd9940142682ab291f8e29afce6129af68be7f1e6e1d17aa5636f2fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 4 个 Ablation 实验状态汇总\n\n| 实验 | 实际 PID | GPU | Step | 速度 | tqdm ETA | 预计完成 (UTC) |\n|------|---------|-----|------|------|----------|---------------|\n| ablation_occ_detach_s0 | 523492 | cuda:0 (99%, 62G/98G) | **2377**/50005 | 1.08 it/s | ~12h14m | ~May 22 08:00 |\n| ablation_random_occ_s0 | 522013 | cuda:1 (41%, 63G/98G) | **2758**/50005 | 1.08 it/s | ~12h09m | ~May 22 07:50 |\n| ablation_occ_detach_s1 | 523704 | cuda:2 (99%, 62G/98G) | **2375**/50005 | 1.08 it/s | ~12h16m | ~May 22 08:00 |\n| ablation_random_occ_s1 | 524055 | cuda:3 (99%, 62G/98G) | **2371**/50005 | 1.08 it/s | ~12h15m | ~May 22 08:00 |\n\n**关键信息：**\n- **全部 4 个实验正常运行**，进度 ~5%\n- PID 与预期不完全一致（预期的是 bash wrapper PID，实际 python worker PID 不同，但 wrapper 进程存活）\n- `ablation_random_occ_s0` 比其他 3 个早启动 7 分钟（18:55 vs 19:02），所以 step 稍领先\n- GPU 1 利用率瞬时 41%（其余 99%），可能是采样抖动，不影响训练速度\n- **Checkpoint**: 4 个实验目录均只有 run 子目录，尚无编号 checkpoint（step < 10000，save_freq=10000，符合预期）\n- **磁盘**: `/root/autodl-tmp/` 52G/250G 已用（21%），空间充足\n- **Cron 监控**: 无（无 cron_*.pid 文件）\n- **Warning**: `ablation_occ_detach_s0` 和 `ablation_random_occ_s0` 日志中有 occ index missing 的 WARNING（`pick_up_the_black_bowl...` task 无 occ 数据），不影响训练但该 task 的 occ 数据缺失"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-ablation-status-10894.md"
+}

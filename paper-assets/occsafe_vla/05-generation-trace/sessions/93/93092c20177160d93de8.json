@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93092c20177160d93de8",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose vanilla object s1",
+  "task_key": "worker_diagnose_vanilla_object_s1_20260528T073205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_vanilla_object_s1_20260528T073205_result.json",
+    "occurrence": 1,
+    "bytes": 630,
+    "sha256": "5f5cbc712019dfe43d77d28e3295924c082b4be624180d3ca76b9fd516f81178"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n- **失败原因：cron 误报，训练实际已正常完成**\n- **最后 step：50005/50005（100%），日志显示 \"Max step 50005 reached! Stopping training...\"**\n- **checkpoint 状态：50000_chkpt 已保存（2026-05-28 15:21），还有 40000 和 45000 checkpoint**\n- **cuda:0 当前状态：正在运行 `evaluate_safelibero.py` 评估脚本（PID 975315，16.6GB 显存，评估 vanilla_object_s1 的 50000_chkpt）**\n- **磁盘状态：/root/autodl-tmp 250G 用了 146G，剩余 105G（59%），正常**\n- **建议：无需任何操作。训练已完成，评估已在进行中**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-vanilla-object-s1-copy-2.md"
+}

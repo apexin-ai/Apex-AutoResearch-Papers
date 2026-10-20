@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "daab390d02eb96a837cf",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops 34685 status check",
+  "task_key": "worker_ops_34685-status-check_20260526T223938",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_34685-status-check_20260526T223938_result.json",
+    "occurrence": 1,
+    "bytes": 2311,
+    "sha256": "f2f0ffa94e8e4a266b21f54d26f1aa51c215e24475435b41e5bfcc0a045d3d73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告 — westd-34685\n\n### 1. GPU 状态\n\n| GPU | 状态 | 显存 | 利用率 |\n|-----|------|------|--------|\n| cuda:0 | **空闲** | 0MiB / 97887MiB | 0% |\n| cuda:1 | **空闲** | 0MiB / 97887MiB | 0% |\n| cuda:2 | **空闲** | 0MiB / 97887MiB | 0% |\n| cuda:3 | **占用** | 62203MiB / 97887MiB | 99% |\n\nGPU 型号：NVIDIA RTX PRO 6000 Blackwell (96GB)，CUDA 13.0\n\n---\n\n### 2. vanilla_v2_s1 — **已完成 ✅**\n\n- `50000_chkpt` 目录存在且完整（model safetensors × 4、action_head、proprio_projector、lora_adapter、tokenizer 等全部到位），时间戳 May 27 06:31-06:32\n- `40000_chkpt` 也保存了\n- 运行目录 `openvla-7b+...--vanilla_v2_s1/` 仅有 `dataset_statistics.json`（正常，latest checkpoint 不保存完整模型）\n- 没有找到这个实验的训练日志文件（不在 `/root/runs/` 下，可能是通过 tmux 手动启动的），但 **50000_chkpt 的完整存在已充分证明训练跑完了 50005 步**\n\n---\n\n### 3. detach_ln_s4 — **已失败 ❌**\n\n- PID 510461 已不存在\n- exit 文件：`1|2026-05-26T22:33:05Z`（退出码 1）\n- **失败原因：wandb 未登录**。日志显示 `wandb.errors.errors.UsageError: No API key configured. Use wandb login to log in.`\n- checkpoint 目录为空（0 个文件），说明还没开始训练就挂了\n- 需要重新提交，启动命令中加 `WANDB_MODE=disabled` 或先 `wandb login`\n\n---\n\n### 4. cutoff_25k_s1_v2 — **运行中 🟢**\n\n- PID 453581 存活，在 cuda:3 上跑\n- 当前进度：**49043/50005**（98%），速度 ~1.09 it/s\n- 预计剩余 ~15 分钟完成\n\n---\n\n### 5. eval 脚本\n\n`/root/occsafe_vla/openvla-oft/vla-scripts/` 下的文件：\n- `finetune.py`\n- `deploy.py`\n- **`evaluate_safelibero.py`** ← eval 脚本\n- `merge_lora_weights_and_save.py`\n- `extern/`\n\n---\n\n### 6. 磁盘空间\n\n`/root/autodl-tmp/`: 200G used / 350G total，**151G 可用 (58%)**，充足。\n\n---\n\n### 总结\n\n| 项目 | 状态 |\n|------|------|\n| **可用 GPU** | **cuda:0, cuda:1, cuda:2** 空闲，可立即用于 eval |\n| vanilla_v2_s1 | 完成，50000_chkpt 就绪 |\n| detach_ln_s4 | 失败（wandb 未配置），需重新提交 |\n| cutoff_25k_s1_v2 | ~15 分钟后完成 |\n| eval 脚本 | `evaluate_safelibero.py` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-34685-status-check.md"
+}

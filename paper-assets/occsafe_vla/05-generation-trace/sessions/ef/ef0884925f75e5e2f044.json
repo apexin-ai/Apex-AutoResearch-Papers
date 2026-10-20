@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef0884925f75e5e2f044",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code per task analysis script",
+  "task_key": "worker_code_per-task-analysis-script_20260521T132439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_per-task-analysis-script_20260521T132439_result.json",
+    "occurrence": 1,
+    "bytes": 756,
+    "sha256": "19b6d12aa4cf33641f99daaa4a71a588050bc23b8b095eaab5d544242f628e65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本运行成功。生成的文件：\n\n**脚本**: `/root/occsafe_vla/scripts/analyze_learning_curve.py`\n\n**图表** (均有 PDF + PNG, DPI=300):\n- `/root/occsafe_vla/figures/learning_curve.png` — OCC s1 整体+per-task CAR 学习曲线 vs Vanilla baseline\n- `/root/occsafe_vla/figures/car_heatmap.png` — Per-task CAR 热力图 (30K→45K)\n- `/root/occsafe_vla/figures/delta_car.png` — ΔCAR 柱状图 (OCC 3-seed avg vs Vanilla 2-seed avg)\n\n**关键发现**:\n- OCC s1 整体 CAR 从 30K(65.0%) → 40K(73.0%) 上升后 45K(69.0%) 回落\n- Hard tasks (T3/T5) 在 OCC 中持续改善 (+6.3pp / +13.0pp vs vanilla)\n- T6 和 T7 是主要退化点 (−23.3pp / −18.7pp)，T7 跨 seed 方差极大 (s0=100%, s1=35%, s2=100%)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-per-task-analysis-script.md"
+}

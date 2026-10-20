@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "415222388600de140d78",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval cutoff 25k reverse cutoff",
+  "task_key": "worker_eval_cutoff_25k_reverse_cutoff_20260523T203327",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cutoff_25k_reverse_cutoff_20260523T203327_result.json",
+    "occurrence": 1,
+    "bytes": 862,
+    "sha256": "3d13b119094023adab08f96728f64a879993ac6c2e0f52ff51d60e0e48050238"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n### 训练结果\n\n| 实验 | action_loss | occ_loss | steps | GPU hours |\n|------|------------|----------|-------|-----------|\n| cutoff_25k_s0 | 0.0718 | 0.0106 | 50000 | 15.1h |\n| reverse_cutoff_s0 | 0.0481 | 0.0083 | 50000 | 15.1h |\n\n### Checkpoint 路径\n- **cutoff_25k_s0**: `/root/autodl-tmp/checkpoints/cutoff_25k_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt`\n- **reverse_cutoff_s0**: `/root/autodl-tmp/checkpoints/reverse_cutoff_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt`\n\n### Eval 提交状态\n- **cutoff_25k_s0_eval** → westd-34685 cuda:2, PID 479938, RUNNING\n- **reverse_cutoff_s0_eval** → westd-34685 cuda:3, RUNNING\n\n两个 registry 已更新为 DONE，两个 eval 已成功提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cutoff-25k-reverse-cutoff.md"
+}

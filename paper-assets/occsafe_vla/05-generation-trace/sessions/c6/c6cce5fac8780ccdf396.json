@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "c6cce5fac8780ccdf396",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "analysis figure1 hero",
+  "task_key": "worker_analysis_figure1_hero_20260525T093909",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_figure1_hero_20260525T093909.log",
+    "occurrence": 1,
+    "bytes": 607989,
+    "sha256": "9eb77e0475141b74c7e21a29b1118bb3fba0783ed653ea73950937898ac708cb"
+  },
+  "statistics": {
+    "messages": 100,
+    "user_turns": 0,
+    "tool_calls": 35,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 26,
+      "tool_call": 35,
+      "tool_result": 35,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 100,
+      "chunks": [
+        {
+          "path": "c6cce5fac8780ccdf396-part-0001.json",
+          "message_count": 94
+        },
+        {
+          "path": "c6cce5fac8780ccdf396-part-0002.json",
+          "message_count": 6
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-figure1-hero.md"
+}

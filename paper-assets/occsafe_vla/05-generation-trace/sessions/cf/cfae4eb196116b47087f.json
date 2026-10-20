@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cfae4eb196116b47087f",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "research openvla oft survey",
+  "task_key": "worker_research_openvla-oft-survey_20260520T040517",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_openvla-oft-survey_20260520T040517_result.json",
+    "occurrence": 1,
+    "bytes": 904,
+    "sha256": "11e25dc5c51f2385a2331d61644c857fcbe528fae78c0c0faf4f357d2d66dce8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/openvla_oft_survey.md`。\n\n核心发现：\n\n- **OpenVLA-OFT** (MIT, ~1200 stars, RSS 2025) 是 Stanford 出的 Optimized Fine-Tuning 方案，在 LIBERO 上 97.1% SOTA，推理速度 26× 提升\n- **原生支持 LIBERO**：有完整的数据转换、训练脚本、预训练 checkpoint (HuggingFace)\n- **A100 80GB 单卡可训练** (batch_size=8, ~62GB)，依赖自定义 transformers fork（bidirectional attention）\n- **SafeLIBERO 是纯评估 benchmark**，不含训练数据和 occupancy 标注——数据生成是最大工程瓶颈\n- **辅助头最佳位置**：SigLIP+DINOv2 fused features 输出后（16×16 空间分辨率），QDepth-VLA 已验证此位置加 geometric auxiliary head 可行\n- **预估总工期 3-4 周**，关键路径在 occupancy GT 数据生成 (Phase 3)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-openvla-oft-survey.md"
+}

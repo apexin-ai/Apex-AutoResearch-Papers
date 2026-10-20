@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b541ecbdf6a4a6985d90",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "audit get pids 34685",
+  "task_key": "worker_audit_get-pids-34685_20260527T221359",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_get-pids-34685_20260527T221359_result.json",
+    "occurrence": 1,
+    "bytes": 137,
+    "sha256": "ab6aecd1b57f1886b4d45c83c75111a511a7edad976fbf3e75180a25b5fee6fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 8066 是 detach_ln_v2_s3 的 torchrun 主进程。\n\n```\nfull_occ_ln_v2_s3 PID: 7850\ndetach_ln_v2_s3 PID: 8066\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-get-pids-34685.md"
+}

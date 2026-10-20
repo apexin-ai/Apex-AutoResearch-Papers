@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f8bf66221c45e41a527",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra extract code ground truth",
+  "task_key": "worker_infra_extract_code_ground_truth_20260520T202654",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_extract_code_ground_truth_20260520T202654_result.json",
+    "occurrence": 1,
+    "bytes": 3084,
+    "sha256": "532fc281dddc82d57b7d08c038fbe649e690c00298df86d592cda0410733667d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the compiled output:\n\n```\n=== finetune.py 超参 ===\nocc_loss_weight = 0.01 (finetune.py:L92, default, cmdline未覆盖)\nocc_loss_decay_steps = 50000 (finetune.py:L93, default, cmdline未覆盖)\n  公式: w(t) = 0.01 * exp(-t / 50000)  (finetune.py:L1109)\nocc_detach = False (finetune.py:L94, cmdline传了false)\nocc_resolution = 64 (finetune.py:L95)\nlearning_rate = 5e-4 (finetune.py:L100, cmdline一致)\nlr_warmup_steps = 0 (finetune.py:L101, default, 即无warmup)\nnum_steps_before_decay = 100000 (finetune.py:L102, cmdline一致)\n  LR scheduler: MultiStepLR(milestones=[100000], gamma=0.1)  (finetune.py:L1006-1009)\n  注意: max_steps=50005 < 100000，所以LR decay从未触发\nmax_steps = 50005 (cmdline覆盖，default=200000, finetune.py:L104)\nsave_freq = 2500 (cmdline覆盖，default=10000, finetune.py:L108)\nbatch_size = 8 (finetune.py:L98, per device, 单GPU训练)\ngrad_accumulation_steps = 1 (finetune.py:L103, default, cmdline未覆盖)\n  有效batch_size = 8 * 1 = 8\nLoRA rank = 32 (finetune.py:L118, cmdline一致)\nLoRA alpha = min(32, 16) = 16 (finetune.py:L892)\nLoRA dropout = 0.0 (finetune.py:L119, default)\noptimizer = AdamW(lr=5e-4) (finetune.py:L1000, weight_decay用PyTorch默认0.01)\nseed = 42/43/44 for s0/s1/s2 (cmdline)\n\n=== occ_head.py 完整架构 (prismatic/models/occ_head.py) ===\nBEVOccupancyHead:\n  输入: visual_features (B, N, D), D=vision_embed_dim\n  1. 截取前 num_patches_per_image=256 个patch (即16x16第一视角)\n  2. Linear(in_dim=2176, hidden_dim=256)                   — project层\n  3. reshape → (B, 256, 16, 16)\n  4. ConvTranspose2d(256→128, k=4, s=2, p=1)               — 16→32\n  5. BatchNorm2d(128)\n  6. GELU()\n  7. ConvTranspose2d(128→64, k=4, s=2, p=1)                — 32→64\n  8. BatchNorm2d(64)\n  9. GELU()\n  10. Conv2d(64→1, k=1)                                     — 最终logits\n  输出: (B, 1, 64, 64) occupancy logits\n\n输入维度 = 2176 (DINOv2-ViT-L 1024 + SigLIP-ViT-So400m 1152, dinosiglip_vit.py:L154-155)\n  验证: occ_head参数量 = 1,213,313 (训练日志确认)\n输出分辨率 = 64×64\n\nFocalLoss (occ_head.py:L52):\n  alpha = 0.25 (default, 实例化时无参数: FocalLoss().to(device_id), finetune.py约L987)\n  gamma = 2.0 (default)\n  实现: binary CE + focal weight = alpha_t * (1-pt)^gamma\n\n=== 其他训练配置 (cmdline) ===\nuse_l1_regression = True\nuse_diffusion = False\nuse_film = False\nnum_images_in_input = 2\nuse_proprio = True\nimage_aug = True\ndataset = libero_spatial_no_noops\n\n可训练参数:\n  VLA LoRA: 110,828,288 (1.45% of 7.65B)\n  proprio_projector: 16,818,176\n  action_head (L1): 151,117,831\n  occ_head: 1,213,313\n  total: 279,977,608\n\n=== 硬件信息 ===\nGPU 型号 = 4× NVIDIA RTX PRO 6000 Blackwell Server Edition (98GB each)\n实际使用 = 每个seed用1张GPU (CUDA_VISIBLE_DEVICES=0/1/2)\n训练速度 = ~1.08 it/s (稳态)\n预估训练时间 = 50005 / 1.08 / 3600 ≈ 12.9 小时\n当前进度(occ_s2) = step 14630/50005 (29%), 已跑 ~3h51m\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-extract-code-ground-truth.md"
+}

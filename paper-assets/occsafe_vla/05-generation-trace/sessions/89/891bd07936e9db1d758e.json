@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "891bd07936e9db1d758e",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "analysis gradient cka westd34685",
+  "task_key": "worker_analysis_gradient_cka_westd34685_20260523T030330",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gradient_cka_westd34685_20260523T030330.log",
+    "occurrence": 1,
+    "bytes": 778574,
+    "sha256": "3e23af03ab44746a9f9feff593d7b0a890b599469fbfa209ab351062a31492f6"
+  },
+  "statistics": {
+    "messages": 198,
+    "user_turns": 0,
+    "tool_calls": 74,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 47,
+      "tool_call": 74,
+      "tool_result": 74
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 198,
+      "chunks": [
+        {
+          "path": "891bd07936e9db1d758e-part-0001.json",
+          "message_count": 169
+        },
+        {
+          "path": "891bd07936e9db1d758e-part-0002.json",
+          "message_count": 29
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-gradient-cka-westd34685.md"
+}

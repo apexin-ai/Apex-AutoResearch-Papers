@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "33b4cd0a04651f6f601c",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ssh status check 10894",
+  "task_key": "worker_ssh_status-check-10894_20260528T232349",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_status-check-10894_20260528T232349_result.json",
+    "occurrence": 1,
+    "bytes": 1108,
+    "sha256": "fec95539b1271e044de0cb20fea1e75a74065ff0d6a38cd4a1b048ff1d60ccc7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-10894 状态报告\n\n### 训练进度: random_occ_v2_s0_r4 (PID 49565)\n\n| 指标 | 值 |\n|------|-----|\n| 当前 step | **900 / 50,005** (1.8%) |\n| 已运行 | 15h 02m |\n| 速度 | ~1.01 s/it |\n| 剩余 | ~49,105 steps ≈ **13.8h** |\n| 预计完成 | ~05/30 05:00 UTC (北京 ~13:00) |\n| Checkpoint | 目录已建，尚无 checkpoint（首次保存在 step 10,000）|\n\n### Loss 趋势\n\n| Step | occ_loss | action_loss |\n|------|----------|-------------|\n| 0 | 0.1068 | 0.6094 |\n| 800 | 0.0428 | 0.2578 |\n| 900 | 0.0417 | 0.2344 |\n\nocc_loss ↓61%，action_loss ↓62%，两者持续下降，趋势正常。depth_loss 始终 0.0000（未启用）。\n\n### GPU\n\n| GPU | 型号 | 显存使用 | 显存空闲 | 总显存 | 占用进程 |\n|-----|------|----------|----------|--------|----------|\n| cuda:0 | RTX PRO 6000 Blackwell SE | 62 GB | 35 GB | 98 GB | PID 49565 |\n\n**仅 1 张 GPU 可见**（cgroup 限制），无空闲 GPU。\n\n### ⚠️ 时间风险\n\nC003 deadline（2026-05-28 12:00 UTC）**已过**。此实验预计还需 ~13.8h 才能完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-status-check-10894.md"
+}

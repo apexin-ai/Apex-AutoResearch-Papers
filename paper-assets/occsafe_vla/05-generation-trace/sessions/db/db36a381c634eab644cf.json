@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "db36a381c634eab644cf",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra training progress panorama",
+  "task_key": "worker_infra_training_progress_panorama_20260520T215439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_training_progress_panorama_20260520T215439_result.json",
+    "occurrence": 1,
+    "bytes": 1635,
+    "sha256": "d2bb4b0b94fe6a6524f684800389bc4c2bb119d933243d6f7ac9bd926b78a21e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the summary:\n\n```\n| exp_id         | server      | PID    | current_step | total_steps | speed (it/s) | ETA (UTC)        |\n|----------------|-------------|--------|--------------|-------------|--------------|------------------|\n| mvp_vanilla_s0 | westd-10894 | 100203 | 46993        | 50005       | 1.11         | 2026-05-20 02:45 |\n| mvp_vanilla_s1 | westd-10894 | 97847  | 46658        | 50005       | 1.09         | 2026-05-20 02:51 |\n| mvp_vanilla_s2 | westd-10894 | 225562 | 39773        | 50005       | 1.09         | 2026-05-20 04:37 |\n| mvp_occ_s0     | westd-34685 | 27667  | 20208        | 50005       | 1.05         | 2026-05-20 10:20 |\n| mvp_occ_s1     | westd-34685 | 28827  | 20155        | 50005       | 1.07         | 2026-05-20 10:06 |\n| mvp_occ_s2     | westd-34685 | 29970  | 20148        | 50005       | 1.07         | 2026-05-20 10:10 |\n```\n\n**备注：**\n- 所有 6 个进程存活，GPU 利用率正常（westd-10894 GPU 0/1/2: 90%/45%/97%；westd-34685 GPU 0/1/2: 82%/38%/53%）\n- vanilla_s2 的 step 计算：tqdm 显示 4773/50005（从 0 开始），实际 step = 35000 + 4773 = **39773**\n- vanilla_s0/s1 预计 ~45-51 分钟完成；vanilla_s2 预计 ~2.5h 完成\n- occ_s0/s1/s2 均刚过 20000 checkpoint，预计还需 ~8h，occ 因额外 occ_head 计算略慢于 vanilla（1.05 vs 1.09 it/s）\n- occ 实验打印了 OCC loss：occ_s0 `occ_loss=0.0098, action_loss=0.0854`；occ_s1 `occ_loss=0.0109, action_loss=0.1016`；occ_s2 `occ_loss=0.0079, action_loss=0.1079`\n- 当前 UTC 时间估算 ≈ 2026-05-20 02:00（基于进程 etime 反推）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-training-progress-panorama.md"
+}

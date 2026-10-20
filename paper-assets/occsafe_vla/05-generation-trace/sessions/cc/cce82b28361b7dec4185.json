@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cce82b28361b7dec4185",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ssh 34685 progress check",
+  "task_key": "worker_ssh_34685_progress_check_20260526T054909",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_34685_progress_check_20260526T054909_result.json",
+    "occurrence": 1,
+    "bytes": 990,
+    "sha256": "3180bafc668833f7559f5b91536ec39d0df2a82a27c3f0d69f760ae93429be1f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-34685 训练进度 (2026-05-26)\n\n| exp_id | GPU | step/50K | 进度% | occ_loss | action_loss | speed | ETA |\n|--------|-----|----------|-------|----------|-------------|-------|-----|\n| detach_bn_v2_s0 | cuda:0 | 43785/50005 | 87.6% | 0.0112 | 0.0728 | 1.07 it/s | ~1h37m |\n| detach_bn_v2_s1 | cuda:1 | 43870/50005 | 87.7% | 0.0080 | 0.0625 | 1.07 it/s | ~1h36m |\n| detach_bn_v2_s2 | cuda:2 | 43746/50005 | 87.5% | 0.0086 | 0.0566 | 1.06 it/s | ~1h39m |\n| full_occ_bn_v2_s1 | cuda:3 | 42305/50005 | 84.6% | 0.0089 | 0.0845 | 1.08 it/s | ~1h59m |\n\n**GPU 利用率**:\n| GPU | util | VRAM |\n|-----|------|------|\n| 0 | 99% | 62.2/97.9 GB |\n| 1 | 99% | 62.2/97.9 GB |\n| 2 | 86% | 62.2/97.9 GB |\n| 3 | 50% | 62.2/97.9 GB |\n\n**磁盘**: 40% (12G/30G)\n\n**进程**: 4 个全部存活，运行时长均 ~12h。Loss 均已收敛至平稳区间，detach 三个 seed 的 action_loss 在 0.05-0.07 区间，full_occ_bn_v2_s1 的 action_loss 略高 (0.0845)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-34685-progress-check.md"
+}

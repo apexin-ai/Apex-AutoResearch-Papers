@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "998910b5283fc33c49d3",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval vanilla s0 midtrain 20r collect",
+  "task_key": "worker_eval_vanilla_s0_midtrain_20r_collect_20260520T195705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_vanilla_s0_midtrain_20r_collect_20260520T195705_result.json",
+    "occurrence": 1,
+    "bytes": 350,
+    "sha256": "d6d36d65c8f886b05b04104bd28c422979b2e8fd48807c8d322706b805badbac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "原始 eval 因参数错误（`--num_trials_per_task` 和 `--gpu_id` 不是合法参数）未能运行。已用正确参数重新启动：\n- PID: 201876\n- GPU: cuda:3（`CUDA_VISIBLE_DEVICES=3 MUJOCO_EGL_DEVICE_ID=3`）\n- 模型已加载，T0 rollouts 正在进行中\n- 预计 ~18 分钟完成\n\n4.5 分钟后回来检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-vanilla-s0-midtrain-20r-collect.md"
+}

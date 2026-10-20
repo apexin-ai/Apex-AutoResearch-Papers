@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "10d10d44a3c496cb91bb",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "resume 10894 batch",
+  "task_key": "worker_resume_10894_batch_20260525T173508",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_resume_10894_batch_20260525T173508.log",
+    "occurrence": 1,
+    "bytes": 617813,
+    "sha256": "f50b7d3a947c2f4caa6b2eb880684d8522e56b015a01182ddbd54f4489a211da"
+  },
+  "statistics": {
+    "messages": 278,
+    "user_turns": 0,
+    "tool_calls": 104,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 66,
+      "tool_call": 104,
+      "tool_result": 104,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 278,
+      "chunks": [
+        {
+          "path": "10d10d44a3c496cb91bb-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "10d10d44a3c496cb91bb-part-0002.json",
+          "message_count": 98
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/resume-10894-batch.md"
+}

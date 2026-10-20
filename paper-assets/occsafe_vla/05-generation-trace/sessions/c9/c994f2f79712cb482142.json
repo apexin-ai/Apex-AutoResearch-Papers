@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c994f2f79712cb482142",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analyze ablation s0 eval",
+  "task_key": "worker_analyze_ablation-s0-eval_20260522T013218",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_ablation-s0-eval_20260522T013218_result.json",
+    "occurrence": 1,
+    "bytes": 1232,
+    "sha256": "8d164b936b5028d0c6f1dccd8fe861bc10b86bddab136d4163c724a9cd05c9ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Status summary:**\n\nBoth ablation trainings completed successfully (50005 steps, EXIT_CODE=0). Checkpoints are complete at 50000_chkpt with all expected components (4 model shards, action_head, occ_head, proprio_projector, lora_adapter).\n\n**Currently running evals (6 total):**\n\n| Experiment | Rollouts | GPU | PID | Status |\n|---|---|---|---|---|\n| ablation_occ_detach_s0 | 20r | GPU 0 | 614640 | running |\n| ablation_random_occ_s0 | 20r | GPU 1 | 614641 | running |\n| ablation_occ_detach_s1 | 20r | GPU 2 | 614642 | running |\n| ablation_random_occ_s1 | 20r | GPU 3 | 614643 | running |\n| ablation_random_occ_s0 | **50r** | GPU 1 | 615702 | T0: 72% |\n| ablation_occ_detach_s0 | **50r** | GPU 0 | 632704 | T0: 4% (just launched) |\n\nEstimated completion: ~25-30 min from now (both 50r evals). The 20r evals should finish in ~10-12 min.\n\nOutput paths:\n- 50r detach: `/root/autodl-tmp/checkpoints/ablation_occ_detach_s0/eval_results.json`\n- 50r random: `/root/autodl-tmp/checkpoints/ablation_random_occ_s0/eval_results.json`\n- 20r all: `/root/occsafe_vla/eval_results/ablation_*_20r_50000.json`\n\nI'll check back for results. Want me to poll periodically, or should I wait and check in ~30 minutes?"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-ablation-s0-eval.md"
+}

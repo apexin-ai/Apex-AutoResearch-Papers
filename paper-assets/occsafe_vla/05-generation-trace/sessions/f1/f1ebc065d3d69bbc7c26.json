@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1ebc065d3d69bbc7c26",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "monitor training progress 34685",
+  "task_key": "worker_monitor_training-progress-34685_20260527T024936",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_training-progress-34685_20260527T024936_result.json",
+    "occurrence": 1,
+    "bytes": 1222,
+    "sha256": "f998aee9b15ee31c0d0f514a907f406163a9f9dda816c106a7928ac7d033869f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前服务器时间: 2026-05-27 10:51 +0800 (02:51 UTC)\n\n| exp_id | PID | 存活 | 当前 step | max_steps | 进度% | 剩余时间 | ETA (UTC) |\n|--------|-----|------|-----------|-----------|-------|----------|-----------|\n| detach_ln_v2_s1_35 | 681124 | ✓ | 12274 | 50005 | 24.5% | ~9h42m | May 27 ~12:33 |\n| detach_ln_s4 | 677568 | ✓ | 12333 | 50005 | 24.7% | ~9h40m | May 27 ~12:31 |\n| ablation_occ_detach_s4 | 735898 | ✓ | 9522 | 50005 | 19.0% | ~10h19m | May 27 ~13:10 |\n| mvp_occ_s4 | 736253 | ✓ | 9502 | 50005 | 19.0% | ~10h22m | May 27 ~13:13 |\n\n**GPU 状态 (westd-34685):**\n\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 99% | 62203/97887 MiB (64%) |\n| 1 | 73% | 62203/97887 MiB (64%) |\n| 2 | 99% | 62203/97887 MiB (64%) |\n| 3 | 97% | 63037/97887 MiB (64%) |\n\n**最新 loss (AUX log):**\n- detach_ln_s4 @12300: occ=0.0095, action=0.1504\n- ablation_occ_detach_s4 @9500: occ=0.0217, action=0.1226\n- mvp_occ_s4 @9500: occ=0.0088, action=0.1377\n\n**结论:** 4 个实验全部正常运行，速度 ~1.08 it/s。预计全部在 May 27 ~13:13 UTC 前完成，远早于 DDL (May 28 12:00 UTC)，有 ~23h 余量。GPU 1 利用率略低 (73%)，但无异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-training-progress-34685-copy-2.md"
+}

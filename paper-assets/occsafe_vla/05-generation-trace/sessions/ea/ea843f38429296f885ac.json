@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea843f38429296f885ac",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ssh diagnose 34685 full",
+  "task_key": "worker_ssh_diagnose_34685_full_20260525T193131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_diagnose_34685_full_20260525T193131_result.json",
+    "occurrence": 1,
+    "bytes": 1272,
+    "sha256": "5caeb59b0ec92c58d6bcce298ac404e6b8f7abb8a4e834472389e253f74f946d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 34685 诊断结果\n\n| 实验 | 状态 | 当前 step | 进度 | 速度 | 预计完成(UTC) | checkpoint | 备注 |\n|------|------|-----------|------|------|--------------|------------|------|\n| detach_bn_v2_s0 | **运行中** | 6984/50005 | 14% | 1.08 it/s | ~14:30 May 26 | 无（首次存档在 step 10000） | GPU0, 正常 |\n| detach_bn_v2_s1 | **运行中** | 7030/50005 | 14% | 1.08 it/s | ~14:30 May 26 | 无 | GPU1, 正常 |\n| detach_bn_v2_s2 | **运行中** | 7020/50005 | 14% | 1.09 it/s | ~14:30 May 26 | 无 | GPU2, 正常 |\n| full_occ_bn_v2_s1 | **运行中** | 5488/50005 | 11% | 1.09 it/s | ~14:50 May 26 | 无 | GPU3, 晚启动约25min |\n\n**GPU 使用率**: 4×RTX PRO 6000 (98GB), 全部 99%/99%/99%/47% util, 各占 ~62GB VRAM\n**磁盘**: /root 30G, 已用 13G (41%), 无独立 autodl-tmp 分区（overlay 根分区）\n\n### 关键判断\n- 所有 4 个实验**健康运行中**，从头训练，当前 ~14% 进度\n- save_freq=10000，尚未产生任何 checkpoint（最早 step-010000 预计 ~2h 后出现）\n- step-050000 checkpoint 预计 **May 26 14:30-15:00 UTC** 完成\n- **距 CoRL deadline 3.5 天，训练将在 ~11h 后完成——时间充足**\n- Registry 无需更新（状态仍为 RUNNING，与实际一致）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-diagnose-34685-full.md"
+}

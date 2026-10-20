@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f715aa4712e7a5a92219",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code paperbanana fig2",
+  "task_key": "worker_code_paperbanana-fig2_20260529T013921",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_paperbanana-fig2_20260529T013921_result.json",
+    "occurrence": 1,
+    "bytes": 944,
+    "sha256": "23e1dc474811ee517b5359d684eb457da3a16c59749bd66a9f9528f809012048"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Final visual check passes:\n\n1. **Data points**: BN OFF=0.767, BN ON=0.725, LN OFF=0.802, LN ON=0.773 — all correct\n2. **Error bars**: Correct sizes (BN: ±0.024/±0.064, LN: ±0.024/±0.027)\n3. **Vanilla baseline**: At 0.745, labeled correctly\n4. **Colors**: BN muted red, LN gold, baseline blue\n5. **\"−4.2 pp\" and \"−2.9 pp\"**: Clear, no overlap with baseline\n6. **Legend**: Solid (BN) vs dashed (LN) distinguishable\n7. **n-labels**: All 4 visible (n=4, n=3, n=3, n=4)\n8. **Serif font, no top/right spines, 300 DPI**\n\n产出：\n- PNG: `docs/paper/figures/factorial_2x2_pb.png`\n- PDF: `docs/paper/figures/factorial_2x2_pb.pdf`\n- 脚本: `artifacts/figures/gen_factorial_2x2_v3.py`\n\nLN 数据已修正（OFF: 0.826→0.802, ON: 0.777→0.773），n 值也更新（OFF: 1→3, ON: 3→4）。PaperBanana 因 Gemini API 报错无法使用，已用 matplotlib 手写脚本完成，迭代 4 轮视觉检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-paperbanana-fig2.md"
+}

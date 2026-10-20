@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af503be0d6e07545e290",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra occ salvage monitor kill eval",
+  "task_key": "worker_infra_occ-salvage-monitor-kill-eval_20260521T062905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_occ-salvage-monitor-kill-eval_20260521T062905_result.json",
+    "occurrence": 1,
+    "bytes": 263,
+    "sha256": "af218bc89108723337c7de86465e90fbfdc9d0798c29c37ba9242c2394cb9f01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "监控循环已启动。270 秒后检查 50000_chkpt 是否出现。\n\n当前进度：\n- s0/s2: 47500_chkpt 已存在（tqdm=5000），等待 50000_chkpt（tqdm=7500）\n- s1: 20000_chkpt（继续训练不动）\n- eval trigger 脚本正常待命"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-occ-salvage-monitor-kill-eval.md"
+}

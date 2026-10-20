@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1dc8b4a7694c0d6f5959",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code prepare v2 gradient analysis",
+  "task_key": "worker_code_prepare-v2-gradient-analysis_20260527T034223",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare-v2-gradient-analysis_20260527T034223_result.json",
+    "occurrence": 1,
+    "bytes": 2363,
+    "sha256": "6dc175824b4cad11fddf1762bb14cce991bbd2ad0e2a9f79725c5a9b8fc8fa3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本就绪。以下是完整报告。\n\n---\n\n## 报告\n\n### 脚本\n\n`/root/occsafe_vla/openvla-oft/scripts/v2_gradient_analysis.py` (438 行)\n\n### v2 关键接口差异（vs v1）\n\n- **patch_features 来源**：v2 通过 `_process_vision_features()` 在 `modeling_prismatic.py:447` 缓存到 `self._cached_patch_features`，无需手动 hook vision backbone\n- **访问方式**：`get_base_model(vla)._cached_patch_features`，在 VLA forward 之后自动可用\n- **OCC head**：直接消费 `patch_features (B, 256, vision_dim)` → `BEVOccupancyHead` → `(B, 1, 64, 64)` logits\n- **梯度流**：`occ_detach=False` 时梯度直接通过 patch_features 流回 vision backbone；`occ_detach=True` 时 `.detach()` 截断\n\n### 使用方法\n\n```bash\n# Dry-run（已验证通过）\npython scripts/v2_gradient_analysis.py --dry_run\n\n# 完整分析（需要 1 张 GPU ~14GB VRAM）\npython scripts/v2_gradient_analysis.py \\\n  --checkpoint_path /root/autodl-tmp/checkpoints/full_occ_ln_s3_v2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--full_occ_ln_s3_v2--50000_chkpt \\\n  --condition_name full_occ_ln \\\n  --num_samples 100 --device cuda:0\n```\n\n### 5 个条件的 checkpoint 映射\n\n| Condition | Checkpoint 路径 | 状态 |\n|-----------|----------------|------|\n| **full_occ_ln** | `full_occ_ln_s3_v2/...--50000_chkpt` | 50k 已完成 |\n| **detach_bn** | `ablation_occ_detach_s3_v2/...--50000_chkpt` | 50k 已完成 |\n| **full_occ_bn** | `full_occ_bn_v2_s1/...` | 训练中，无 50k |\n| **detach_ln** | `detach_ln_v2_s0c/...--10000_chkpt` | 仅 10k |\n| **vanilla** | 无 v2 checkpoint | 需要指定 |\n\n### Dry-run 结果\n\n全部 5 个 condition 的 import + 参数解析通过。`ACTION_DIM=7, NUM_ACTIONS_CHUNK=8`。\n\n### 预估运行时间\n\n每个条件：加载模型 ~30s + 100 samples × ~2s/sample ≈ **4 分钟/条件**。5 个条件串行约 20 分钟（单 GPU）。\n\n### 注意事项\n\n- 当前 8 GPU 全忙，不能跑完整分析\n- 脚本使用合成数据（随机图像 + 随机 OCC labels）做前向/反向。对于梯度方向和比率的统计分析，合成数据足够（梯度流由模型权重决定）\n- 已有的 v1 分析脚本在 `/root/occsafe_vla/scripts/same_seed_gradient_analysis.py`（D056/D057 确认其有 bug），不要使用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-v2-gradient-analysis.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "494913bd6cd9d6037204",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval fix 45K 50K eval scripts",
+  "task_key": "worker_eval_fix-45K-50K-eval-scripts_20260521T124350",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_fix-45K-50K-eval-scripts_20260521T124350_result.json",
+    "occurrence": 1,
+    "bytes": 674,
+    "sha256": "5daa50e04cd14d42c29edcd8e996a50bbc96e9291e4590927a7cdb9733317958"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "45K eval 正常推进中，Task 0 已到 75% (15/20 rollouts)。10 个 task × 20 rollouts，每个 ~4s，预计总耗时约 15 分钟。\n\n### 汇总\n\n| 项目 | 状态 |\n|------|------|\n| **正确 eval 脚本路径** | `vla-scripts/evaluate_safelibero.py` |\n| **45K eval** | PID 415706, cuda:0, 日志 `/root/occsafe_vla/eval_results/occ_s1_45000.log` |\n| **50K auto-eval (修复版)** | PID 418059, cuda:2, 等待 50K checkpoint 出现后自动启动，日志 `/root/eval_logs/auto_eval_50K_fixed_wrapper.log` |\n| **旧 50K 脚本 bug** | 已杀掉 (PID 389317)，两个 bug：① 缺 `vla-scripts/` 前缀 ② `--pretrained_checkpoint` 后无值 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-fix-45k-50k-eval-scripts.md"
+}

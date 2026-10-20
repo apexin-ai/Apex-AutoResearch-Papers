@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e55b93660c941d2d42ae",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra deploy kill on checkpoint script",
+  "task_key": "worker_infra_deploy-kill-on-checkpoint-script_20260521T063405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_deploy-kill-on-checkpoint-script_20260521T063405_result.json",
+    "occurrence": 1,
+    "bytes": 446,
+    "sha256": "cebe3b85496a86d6150a4b9854fe4ccc879542847012c563a061b6de284265e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n| 项目 | 状态 |\n|------|------|\n| kill 脚本 PID | **86294** |\n| s0 checkpoint | 47500_chkpt（等待 50000_chkpt） |\n| s2 checkpoint | 47500_chkpt（等待 50000_chkpt） |\n| s0 训练 (76998) | 运行中 |\n| s2 训练 (78171) | 运行中 |\n| eval trigger (85512) | 运行中 |\n\n脚本每 60 秒检查一次 50000_chkpt 是否出现，发现后等 30 秒确认写入完成再 kill 对应进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-deploy-kill-on-checkpoint-script.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3d478f3dce46003b595",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops check gradient analysis checkpoints",
+  "task_key": "worker_ops_check_gradient_analysis_checkpoints_20260524T094437",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_gradient_analysis_checkpoints_20260524T094437_result.json",
+    "occurrence": 1,
+    "bytes": 1072,
+    "sha256": "b38b61b04c3e9fec12a9a544af5c98853b2af6b31601e42d6687362578c18119"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "只有 `dataset_statistics.json`，尚未产出任何 checkpoint。\n\n## 汇总：6 条件 checkpoint 可用性\n\n| # | 条件 | 状态 | 位置 |\n|---|------|------|------|\n| 1 | **Vanilla_s0** | ✅ 可用 | 34685: `/root/autodl-tmp/checkpoints/vanilla_retrain_s0/.../50000_chkpt` |\n| 2 | **Full OCC_s0** | ✅ 可用 | 34685: `/root/autodl-tmp/checkpoints/full_occ_retrain_s0/.../50000_chkpt` |\n| 3 | **Detach BN_s0** | ⏳ 重训中 | 10894: `ablation_occ_detach_s0_retrain/` — 目前仅有 dataset_statistics.json，尚无 checkpoint 产出 |\n| 4 | **Detach+LN_s0** | ✅ 可用 | 34685 & 10894 均有: `.../detach_ln_s0/.../50000_chkpt` |\n| 5 | **Random OCC_s0** | ❌ 缺失 | 两台服务器仅有 **s2**（`ablation_random_occ_s2`），**s0 不存在，需重训** |\n| 6 | **Depth_s0** | ❌ 缺失 | 两台服务器均无任何 depth checkpoint，**需重训** |\n\n**需要行动：**\n- **Random OCC_s0** 和 **Depth_s0** 都需要从头重训（seed 42）\n- **Detach BN_s0** 正在训练但刚开始，需等待完成后传到 34685"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-gradient-analysis-checkpoints.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a1b23936b1a83ae39eca",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval depth s0 eval",
+  "task_key": "worker_eval_depth_s0_eval_20260523T002254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_depth_s0_eval_20260523T002254_result.json",
+    "occurrence": 1,
+    "bytes": 354,
+    "sha256": "51132159a21797f853414e50f03cc60060fd97d5a88fede5cd033c29814e2a9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n- **depth_s0 训练**：正常完成，50005 steps，EXIT_CODE=0。最终 loss：action=0.051, depth=0.095。Registry 已标记 DONE/success。\n- **depth_s0_eval**：已在 westd-34685 cuda:1 启动，PID 189384，tmux session `depth_s0_eval`，日志 `~/runs/occsafe_vla/depth_s0_eval.log`。50 rollouts, seed 42。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-depth-s0-eval.md"
+}

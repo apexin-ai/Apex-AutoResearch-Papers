@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e53b64c4be3706204950",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "check paper v1v2 consistency",
+  "task_key": "worker_check_paper-v1v2-consistency_20260527T033604",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_paper-v1v2-consistency_20260527T033604_result.json",
+    "occurrence": 1,
+    "bytes": 1203,
+    "sha256": "75e828480cd5794577e23d22cdd56ef7bfa8b9a9979e3f5e7463c32227247684"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审查完成。报告写入 `artifacts/_project/intermediate/paper_consistency_audit.md`。\n\n发现 **3 个需要立即处理的问题**：\n\n1. **appendix.tex:69 — v1 统计残留**：报告 Detach OCC vs Vanilla 的 d≈-0.04, p=0.91，这是 v1 数据。主文用 v2 数据报告 p=0.28，两者直接矛盾且未标注 v1。\n\n2. **Detach+LN 数据源矛盾**：Table 1 表注说\"midrule 以上用 v2 code\"，但 Detach+LN 实际用 v1 数据（0.765, n=3）。v2 truth source 是 **0.802**（n=1）。后果严重——如果用 v2 值，LN factorial delta 从 -2.5pp 变成 **-6.2pp**，\"BN deficit 大于 LN\" 的 claim 会反转。同时，Random OCC（同为 v1 在 midrule 上方）的 ΔCAR 被正确省略，但 Detach+LN 的 ΔCAR（+2.0）却保留了，处理方式不一致。\n\n3. **\"LN cells have n=1 each\" 与 Detach+LN n=3 矛盾**（results.tex:45）：文字说 LN cells 各 n=1，但表格中 Detach+LN 有 3 seeds。两种解读都有问题。\n\n其余核心 v2 数据（Vanilla、Full OCC BN、Detach OCC BN、Full OCC+LN）全部正确。无 gradient collapse / CKA degradation 等 v1 残留 claim。补充条件的 ΔCAR 计算全部内部一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-paper-v1v2-consistency.md"
+}

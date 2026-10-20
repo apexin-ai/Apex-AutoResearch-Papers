@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8cfb37ab94ddefdac5e",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops emergency disk cleanup 10894",
+  "task_key": "worker_ops_emergency_disk_cleanup_10894_20260525T004212",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_emergency_disk_cleanup_10894_20260525T004212_result.json",
+    "occurrence": 1,
+    "bytes": 1655,
+    "sha256": "fdca25dee649c0b806c540a49fb684ec53107841d36f2ccc965d6c8114d2cece"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已收集完毕。汇总如下：\n\n## 磁盘使用现状\n\n| 目录 | 大小 |\n|------|------|\n| checkpoints/ | 179G |\n| ├─ full_occ_ln_s0 (30K/40K/50K) | 45G |\n| ├─ full_occ_ln_s1 (20K/30K/40K) | 45G |\n| ├─ full_occ_ln_s2 (20K/30K/40K) | 45G |\n| └─ ablation_occ_detach_s0_retrain (20K/30K/40K) | 45G |\n| runs/ (vanilla 100_chkpt) | 15G |\n| models/openvla-7b | 15G |\n| libero_datasets/ | 5.9G |\n| data/ | 2G |\n| logs/ (archive) | 716M |\n| **总计** | **216G / 250G (35G 可用)** |\n\n每个 checkpoint 子目录 = 15G。3 个正在训练的实验目前在 ~40K，到 50K 时各需写入 15G，共需 **45G**，超过剩余 35G。\n\n## 删除计划\n\n| # | 目标 | 大小 | 理由 |\n|---|------|------|------|\n| 1 | full_occ_ln_s0 / 30000_chkpt | 15G | eval 已完成，有 50K，30K 无用 |\n| 2 | full_occ_ln_s0 / 40000_chkpt | 15G | 同上 |\n| 3 | full_occ_ln_s1 / 30000_chkpt | 15G | 正在训练，40K 是最新，30K 冗余 |\n| 4 | full_occ_ln_s2 / 30000_chkpt | 15G | 同上 |\n| 5 | ablation_occ_detach_s0_retrain / 30000_chkpt | 15G | 同上 |\n| 6 | runs/...--100_chkpt | 15G | 旧 vanilla baseline checkpoint |\n| 7 | logs/archive | 713M | 旧日志 |\n| | **合计释放** | **~91G** | |\n\n**不删除**：\n- s1/s2/ablation 的 20K checkpoint（用户指定保留）\n- s1/s2/ablation 的 40K checkpoint（当前最新 resume 点）\n- full_occ_ln_s0 的 50K checkpoint（最终模型，梯度分析可能需要）\n- models/openvla-7b（基础模型）\n\n清理后预计可用空间：35G + 91G = **~126G**，足够 3 个训练到 50K（需 45G）。\n\n确认后执行删除？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-emergency-disk-cleanup-10894.md"
+}

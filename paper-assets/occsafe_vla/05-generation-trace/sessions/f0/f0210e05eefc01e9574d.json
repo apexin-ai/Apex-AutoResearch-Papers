@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0210e05eefc01e9574d",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis cka full occ ln s1",
+  "task_key": "worker_analysis_cka_full_occ_ln_s1_20260525T022941",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cka_full_occ_ln_s1_20260525T022941_result.json",
+    "occurrence": 1,
+    "bytes": 442,
+    "sha256": "59cf8c0432e0d344ca6da04d1aa16e949a7cc697ede7f92db25c572ad6ff1b13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。总结：\n\n**cka_full_occ_ln_s1 — 结论 negative**\n\n| 指标 | DINOv2 | SigLIP |\n|------|--------|--------|\n| Mean CKA | 0.965 | 0.950 |\n| Min CKA | 0.923 (block 1) | 0.832 (block 26) |\n\ns0 的 DINOv2 CKA=0.640 在 s1 中未复现（s1 全部 >0.92）。DINOv2 表征漂移是 seed-specific 的偶发现象，不是 OCC+LN 训练的系统性效应。norm×gradient-flow interaction 假说不成立。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cka-full-occ-ln-s1.md"
+}

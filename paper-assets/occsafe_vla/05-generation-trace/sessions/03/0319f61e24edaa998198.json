@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0319f61e24edaa998198",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval mvp occ s4",
+  "task_key": "worker_eval_mvp_occ_s4_20260527T140923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_mvp_occ_s4_20260527T140923_result.json",
+    "occurrence": 1,
+    "bytes": 545,
+    "sha256": "e302f9baab9775d80f670f54c0a603b68234aed27e1f85dcb19e97ef1b96c4d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**mvp_occ_s4 训练**：\n- 状态：DONE (success)，step 50005，13.8h\n- 最终 metrics：occ_loss=0.011, action_loss=0.0525\n- Checkpoint: `/root/autodl-tmp/checkpoints/mvp_occ_s4/...--mvp_occ_s4--50000_chkpt`\n\n**mvp_occ_s4_eval**：\n- on_complete hook 已自动启动，PID 877552，westd-34685:cuda:3\n- 当前进度：Task 0 约 40%（20/50 rollouts），运行正常\n- Log: `/root/occsafe_vla/logs/mvp_occ_s4_eval.log`\n- 已注册到 registry，状态 RUNNING\n- 预计 ~40-50 分钟完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-mvp-occ-s4.md"
+}

@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "69a83297ffb5fc5f93ed",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose ablation occ detach s0 retrain",
+  "task_key": "worker_diagnose_ablation_occ_detach_s0_retrain_20260525T022401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_ablation_occ_detach_s0_retrain_20260525T022401_result.json",
+    "occurrence": 1,
+    "bytes": 1901,
+    "sha256": "dce1368452ff9b4a87f156a62965e33dfe157ed6bcda775740c755fbcdd72a1b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已完成，日志显示 \"Max step 50005 reached! Stopping training...\"。最后记录的 AUX 指标是 step=30000（resume 日志中只有两条 AUX 记录）。\n\n```json\n{\n  \"checkpoint_50k_exists\": true,\n  \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/ablation_occ_detach_s0_retrain/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt\",\n  \"checkpoint_size\": \"15G\",\n  \"checkpoint_contents\": [\"action_head--50000_checkpoint.pt\", \"occ_head--50000_checkpoint.pt\", \"proprio_projector--50000_checkpoint.pt\", \"lora_adapter\", \"model-00001~00004-of-00004.safetensors\", \"config.json\", \"dataset_statistics.json\", \"tokenizer files...\"],\n  \"last_aux_metrics\": \"step=30000, occ_loss=0.0179, depth_loss=0.0000, action_loss=0.0562\",\n  \"training_status\": \"completed (Max step 50005 reached)\",\n  \"other_checkpoints\": [\"20000_chkpt\", \"40000_chkpt\"]\n}\n```\n\n注意：没有 30K checkpoint 目录（日志中 30K 处只记录了 AUX 指标但未保存 checkpoint）。20K 和 40K checkpoint 都存在。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "checkpoint_50k_exists": true,
+              "checkpoint_path": "/root/autodl-tmp/checkpoints/ablation_occ_detach_s0_retrain/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt",
+              "checkpoint_size": "15G",
+              "checkpoint_contents": [
+                "action_head--50000_checkpoint.pt",
+                "occ_head--50000_checkpoint.pt",
+                "proprio_projector--50000_checkpoint.pt",
+                "lora_adapter",
+                "model-00001~00004-of-00004.safetensors",
+                "config.json",
+                "dataset_statistics.json",
+                "tokenizer files..."
+              ],
+              "last_aux_metrics": "step=30000, occ_loss=0.0179, depth_loss=0.0000, action_loss=0.0562",
+              "training_status": "completed (Max step 50005 reached)",
+              "other_checkpoints": [
+                "20000_chkpt",
+                "40000_chkpt"
+              ]
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-ablation-occ-detach-s0-retrain.md"
+}

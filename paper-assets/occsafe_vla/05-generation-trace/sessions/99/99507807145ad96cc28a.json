@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99507807145ad96cc28a",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code ablation eval prep",
+  "task_key": "worker_code_ablation-eval-prep_20260521T195252",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ablation-eval-prep_20260521T195252_result.json",
+    "occurrence": 1,
+    "bytes": 1077,
+    "sha256": "58d99add1658d8e60af6244c15ac6cadd069de22e3035f224bf78fffb8dad4d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已创建，语法验证通过。\n\n### 产出汇总\n\n1. **脚本路径**: `/root/occsafe_vla/openvla-oft/run_ablation_eval.sh`\n   - 用法: `bash run_ablation_eval.sh 20`（快速诊断）或 `bash run_ablation_eval.sh 50`（完整数据）\n   - 启动前自动检查 4 个 checkpoint 是否存在，不齐则 abort\n\n2. **evaluate_safelibero.py 实际参数**:\n   - `--pretrained_checkpoint` (路径)\n   - `--task_suite_name` (libero_spatial)\n   - `--num_rollouts` (20/50)\n   - `--seed` (42)\n   - `--output_path` (JSON 输出路径)\n   - `--collision_threshold` (0.001, 用默认值)\n   - `--save_videos` (未启用)\n   - 无 `--gpu_id` 参数（run_eval.sh 里的是多余的，被 draccus 忽略）\n\n3. **4 个 ablation checkpoint 目录名前缀**: `openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug`\n   - 当前已有中间 checkpoint: 20000_chkpt（全部）、30000_chkpt（仅 random_occ_s0）\n   - 最终 50000_chkpt 尚未生成（训练 ~55%）\n\n4. **语法验证**: `bash -n` 返回 0，通过"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ablation-eval-prep.md"
+}

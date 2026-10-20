@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "3bf40ce63b1553f19247",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "analysis gradient analysis script",
+  "task_key": "worker_analysis_gradient_analysis_script_20260524T185559",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gradient_analysis_script_20260524T185559.log",
+    "occurrence": 1,
+    "bytes": 893916,
+    "sha256": "b2c34fade129681fec18701299aab2ed26e07534a3d5ff9025c7d31749a64214"
+  },
+  "statistics": {
+    "messages": 197,
+    "user_turns": 0,
+    "tool_calls": 81,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 31,
+      "tool_call": 81,
+      "tool_result": 81,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 197,
+      "chunks": [
+        {
+          "path": "3bf40ce63b1553f19247-part-0001.json",
+          "message_count": 144
+        },
+        {
+          "path": "3bf40ce63b1553f19247-part-0002.json",
+          "message_count": 53
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-gradient-analysis-script.md"
+}

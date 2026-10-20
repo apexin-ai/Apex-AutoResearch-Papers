@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a1c1e1e61a20c716d902",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose cutoff 45k s1",
+  "task_key": "worker_diagnose_cutoff_45k_s1_20260524T213601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_cutoff_45k_s1_20260524T213601_result.json",
+    "occurrence": 1,
+    "bytes": 1562,
+    "sha256": "de80fb7d5cdc41120c15a24fc074a82faca360780e35de4e2949161a033308ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告：cutoff_45k_s1\n\n### 失败原因\n**磁盘空间不足。** 在保存 step 30000 checkpoint 时，`safetensors` 序列化写入失败：\n```\nsafetensors_rust.SafetensorError: Error while serializing: I/O error: No space left on device (os error 28)\n```\n数据盘 `/root/autodl-tmp` 已 **100% 占满**（350G/350G，剩余 4KB）。\n\n### 训练进度\n- 日志最后记录的训练 step：**~30000**（在保存 30000 checkpoint 期间崩溃）\n- 实际训练到 30000 步，但 checkpoint 写入时磁盘满了\n\n### Checkpoint 状态\n| Checkpoint | 状态 |\n|---|---|\n| 10000_chkpt | 存在（未验证完整性，但早于磁盘满） |\n| 20000_chkpt | **完整** — 4/4 safetensor shards 齐全，约 14.4GB |\n| 30000_chkpt | **不完整** — 仅写入 1/4 shard（915MB vs 应有的 ~14.4GB），需删除 |\n\n### GPU 状态\n- cuda:0（RTX PRO 6000 Blackwell 96GB）：空闲，进程已死。正常。\n- cuda:1/2/3 被其他实验占用（99% utilization）\n\n### 恢复方案\n1. 删除损坏的 30000_chkpt（~1.2GB）释放少量空间\n2. 但核心问题是 **350G 盘不够**——每个完整 checkpoint 约 14.4GB，3 个 checkpoint + 模型 + 数据已占满\n3. 恢复训练前需要：\n   - 删除不需要的旧 checkpoint（如 10000_chkpt）腾出空间\n   - 或清理其他占用空间的文件\n   - 预估还需保存 step 30000/40000/50000 三个 checkpoint ≈ 43GB，至少需要腾出这么多空间\n4. 代码支持从 checkpoint 恢复的话，可从 **20000_chkpt** 继续训练"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-cutoff-45k-s1.md"
+}

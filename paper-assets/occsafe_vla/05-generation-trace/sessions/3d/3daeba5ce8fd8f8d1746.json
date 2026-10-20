@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "3daeba5ce8fd8f8d1746",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "fix reviewer critical 26 data consistency",
+  "task_key": "worker_fix_reviewer-critical-26-data-consistency_20260528T080221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_reviewer-critical-26-data-consistency_20260528T080221.log",
+    "occurrence": 1,
+    "bytes": 993853,
+    "sha256": "fa93e1d336e99e48eac79afb1d2c07614e4ec38f7cf910f14bb3a04cff3e2dd1"
+  },
+  "statistics": {
+    "messages": 228,
+    "user_turns": 1,
+    "tool_calls": 83,
+    "roles": {
+      "log": 1,
+      "system": 8,
+      "assistant": 50,
+      "tool_call": 83,
+      "tool_result": 83,
+      "record": 1,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 32,
+      "chunks": [
+        {
+          "path": "3daeba5ce8fd8f8d1746-part-0001.json",
+          "message_count": 32
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 196,
+      "chunks": [
+        {
+          "path": "3daeba5ce8fd8f8d1746-part-0001.json",
+          "message_count": 125
+        },
+        {
+          "path": "3daeba5ce8fd8f8d1746-part-0002.json",
+          "message_count": 71
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-reviewer-critical-26-data-consistency.md"
+}

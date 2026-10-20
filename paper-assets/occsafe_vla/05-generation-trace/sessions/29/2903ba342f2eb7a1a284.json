@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2903ba342f2eb7a1a284",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose 34685 processes",
+  "task_key": "worker_diagnose_34685_processes_20260525T172726",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_34685_processes_20260525T172726_result.json",
+    "occurrence": 1,
+    "bytes": 1461,
+    "sha256": "f9d31170f90a758aa6e2925cc71957181cbb9a71396d92e95f95bd9ea6dae4b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 34685 进程诊断\n\n| exp_id | pid | 存活? | 最后step | 目标step | 状态判断 | 最新checkpoint |\n|--------|-----|-------|---------|---------|---------|---------------|\n| cutoff_15k_s2_v2 | 2475 | **死** | 41215 | 50005 | **崩溃** (82%) | 40000_chkpt |\n| cutoff_25k_s2_v3 | 11510 | **死** | 40824 | 50005 | **崩溃** (82%) | 40000_chkpt |\n| reverse_cutoff_s2_v3 | 8347 | **死** | 41049 | 50005 | **崩溃** (82%) | 40000_chkpt |\n\n**关键发现：**\n- 4 张 GPU 全部空闲（0% 利用率，0 MiB 显存）\n- 三个进程在差不多同一时间段（elapsed ~12:25-12:35）全部死亡，日志无 traceback/error，只有进度条戛然而止 → **大概率被系统同时 kill（OOM 或外部干预）**\n- 系统 uptime 152 天，非重启\n- 三个实验均已保存 40000 checkpoint，需 resume 跑完剩余 ~9000 步\n\n**checkpoint 路径：**\n- `cutoff_15k_s2_v2`: `/root/autodl-tmp/checkpoints/cutoff_15k_s2_v2/openvla-7b+..--cutoff_15k_s2_v2--40000_chkpt`\n- `cutoff_25k_s2_v3`: `/root/autodl-tmp/checkpoints/cutoff_25k_s2_v3/openvla-7b+..--cutoff_25k_s2_v3--40000_chkpt`\n- `reverse_cutoff_s2_v3`: `/root/autodl-tmp/checkpoints/reverse_cutoff_s2_v3/openvla-7b+..--reverse_cutoff_s2_v3--40000_chkpt`\n\n**注意：** C002 约束禁止 cutoff/reverse_cutoff 使用 `--resume`，必须从 pretrained 重头训练。如果要恢复这三个实验，需要确认是否能绕过此约束或重新从头跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-34685-processes.md"
+}

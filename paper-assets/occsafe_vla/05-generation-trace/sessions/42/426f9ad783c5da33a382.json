@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "426f9ad783c5da33a382",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops 10894 kill all",
+  "task_key": "worker_ops_10894-kill-all_20260527T002229",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_10894-kill-all_20260527T002229_result.json",
+    "occurrence": 1,
+    "bytes": 390,
+    "sha256": "1271d22fc49525b559139a66eb28b53d3caa1f741f3a7f31c02c774776c93ab7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：**\n\n- 所有 8 个目标进程已成功 kill（5 个有 GPU 占用的 + 3 个无 GPU 占用的）\n- 无 torchrun/finetune/evaluate 残留进程\n- **GPU 显存已全部释放**（4 张卡均 0 MiB used）\n- 注意：GPU 0 和 GPU 2 仍显示 100% utilization，但显存已归零——这是 GPU 故障的表现（与 Director 判断一致），非正常负载"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-10894-kill-all.md"
+}

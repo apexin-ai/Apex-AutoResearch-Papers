@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d194a3487658694d22cd",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops 34685 vanilla eval results",
+  "task_key": "worker_ops_34685-vanilla-eval-results_20260526T233020",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_34685-vanilla-eval-results_20260526T233020_result.json",
+    "occurrence": 1,
+    "bytes": 571,
+    "sha256": "14f3b30b6a5e2d7ed689f52f844e2f16860c59a5b9af985bc74c1e2b2db5d13c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**Eval 结果**\n\n| Experiment | TSR | CAR | Collisions/500 |\n|---|---|---|---|\n| vanilla_v2_s1_eval | 0.908 | 0.748 | 126 |\n| vanilla_v2_s2_eval | 0.844 | 0.720 | 140 |\n\nRegistry 已更新为 DONE/success。\n\n**已启动训练**\n\n| Experiment | GPU | PID | Server |\n|---|---|---|---|\n| detach_ln_v2_s1 | cuda:0 | 681124 | westd-34685 |\n| detach_ln_s4 | cuda:1 | 677568 | westd-34685 |\n\nwestd-34685 当前 4 GPU 全部在用：cuda:0-1 新训练，cuda:2-3 继续跑 detach_ln_s3_eval 和 cutoff_25k_s1_v2_eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-34685-vanilla-eval-results.md"
+}

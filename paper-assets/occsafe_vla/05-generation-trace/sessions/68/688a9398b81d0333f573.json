@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "688a9398b81d0333f573",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops 10894 progress check",
+  "task_key": "worker_ops_10894-progress-check_20260527T011714",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_10894-progress-check_20260527T011714_result.json",
+    "occurrence": 1,
+    "bytes": 964,
+    "sha256": "a99ad488593bffac5f9c93f87a6ba4000bd0b3d9d6bb19bd293c43484a5dc89b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练进度汇总\n\n| 实验 | GPU | PID | 当前 step | 进度 | 速度 | tqdm 剩余 | step 2500 losses |\n|------|-----|-----|-----------|------|------|-----------|------------------|\n| full_occ_ln_v2_s1c | cuda:0 | 481426 | ~2545/50005 | 5.1% | 1.08 it/s | ~12h15m | occ=0.0125, act=0.1631 |\n| full_occ_ln_v2_s2 | cuda:1 | 481643 | ~2534/50005 | 5.1% | 1.07 it/s | ~12h15m | occ=0.0137, act=0.1377 |\n| detach_ln_v2_s0c | cuda:2 | 481988 | ~2531/50005 | 5.1% | 1.06 it/s | ~12h25m | occ=0.0187, act=0.1689 |\n\n预计完成时间：约 12-12.5 小时后，即 **5月27日 ~13:30 UTC**（北京时间 ~21:30），远在 5月28日 12:00 UTC 截止线之前。\n\n**cuda:3 状态**：PID 482336 (detach_ln_v2_s1c) 已死，但有新进程 **PID 490883** 在 cuda:3 运行 `full_occ_ln_v2_s0d`（seed=42, Full OCC LN），已运行 1m50s，占用 62GB 显存。这不在原始 3 个实验列表中——有人额外启动了第 4 个实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-10894-progress-check.md"
+}

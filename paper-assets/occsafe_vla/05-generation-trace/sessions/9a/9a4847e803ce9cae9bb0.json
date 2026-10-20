@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a4847e803ce9cae9bb0",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra restart 4 ablation experiments",
+  "task_key": "worker_infra_restart-4-ablation-experiments_20260521T062404",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_restart-4-ablation-experiments_20260521T062404_result.json",
+    "occurrence": 1,
+    "bytes": 629,
+    "sha256": "c8045b5c849d8241307d18404ab5c48d90368db58d6e72e25b50bc9124b3c9d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n| 实验 | GPU | 内存 | 速度 | 恢复方式 | PID |\n|------|-----|------|------|----------|-----|\n| ablation_occ_detach_s0 | cuda:0 | 63GB | 1.08 it/s | resume 2500_chkpt | 494161 |\n| ablation_random_occ_s0 | cuda:1 | 62GB | 1.07 it/s | resume 2500_chkpt | 494372 |\n| ablation_occ_detach_s1 | cuda:2 | 62GB | 1.08 it/s | 从头 | 494649 |\n| ablation_random_occ_s1 | cuda:3 | 62GB | 1.08 it/s | 从头 | 494992 |\n\n4 个实验全部在训练，CRON 已注册（120s 间隔），registry notes 已更新。预计 ~13h 完成（约 UTC 19:25，北京时间 5/22 凌晨 3:25）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-restart-4-ablation-experiments.md"
+}

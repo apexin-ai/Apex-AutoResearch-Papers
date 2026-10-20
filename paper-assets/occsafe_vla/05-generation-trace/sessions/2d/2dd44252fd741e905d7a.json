@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2dd44252fd741e905d7a",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "audit eval script history",
+  "task_key": "worker_audit_eval-script-history_20260521T172834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_eval-script-history_20260521T172834_result.json",
+    "occurrence": 1,
+    "bytes": 3054,
+    "sha256": "1d8faf2046507a027c73c821d24bb0a0c7f00a0445f3c3617ee1bb4f14e33d5e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。以下是完整结果。\n\n## 审计结论\n\n**所有 20r eval 均使用了正确的 `evaluate_safelibero.py`，无污染。**\n\n唯一使用错误脚本 `eval_safelibero.py` 的是一次 50r eval（`occ_s0_50r_eval.log`），且已用正确脚本重跑。\n\n---\n\n### westd-34685 eval 汇总\n\n| 实验 | Checkpoint | 日志文件 | 脚本 | 有效? | TSR |\n|------|-----------|---------|------|------|-----|\n| mvp_occ_s0 | 47500_chkpt (20r) | `eval_results/occ_s0_eval.log` | evaluate_safelibero.py | ✅ | 91.0% |\n| mvp_occ_s0 | 47500_chkpt (50r 初次) | `eval_logs/occ_s0_50r_eval.log` | **eval_safelibero.py** | ❌ | 89.2% |\n| mvp_occ_s0 | 47500_chkpt (50r 重跑) | `eval_logs/occ_s0_47500_50r_rerun.log` | evaluate_safelibero.py | ✅ | 89.2% |\n| mvp_occ_s0 | 50000_chkpt (20r) | `eval_results/occ_s0_50000.log` | evaluate_safelibero.py | ✅ | 91.5% |\n| mvp_occ_s1 | 30000_chkpt (20r) | `eval_results/occ_s1_30000.log` | evaluate_safelibero.py | ✅ | 80.5% |\n| mvp_occ_s1 | 35000_chkpt (20r) | `eval_results/occ_s1_35000.log` | evaluate_safelibero.py | ✅ | 75.0% |\n| mvp_occ_s1 | 40000_chkpt (20r) | `eval_results/occ_s1_40000.log` | evaluate_safelibero.py | ✅ | 78.5% |\n| mvp_occ_s1 | 45000_chkpt (20r) | `eval_results/occ_s1_45000.log` | evaluate_safelibero.py | ✅ | 79.0% |\n| mvp_occ_s1 | 45000_chkpt (auto_eval) | `eval_logs/occ_s1_45000_eval.log` | N/A | ⚠️ 失败 | N/A |\n| mvp_occ_s1 | 50000_chkpt (20r) | `eval_results/occ_s1_50000_20r.log` | evaluate_safelibero.py | ✅ | 76.5% |\n| mvp_occ_s2 | 47500_chkpt (20r) | `eval_results/occ_s2_eval.log` | evaluate_safelibero.py | ✅ | 91.5% |\n| mvp_occ_s2 | 50000_chkpt (20r) | `eval_results/occ_s2_50000.log` | evaluate_safelibero.py | ✅ | 85.0% |\n\n### westd-10894 eval 汇总\n\n| 实验 | Checkpoint | 日志/JSON | 脚本 | 有效? | TSR |\n|------|-----------|----------|------|------|-----|\n| mvp_vanilla_s0 | 50000_chkpt (20r) | `vanilla_s0_final.json` + monitor.log | evaluate_safelibero.py | ✅ | 91.0% |\n| mvp_vanilla_s1 | 50000_chkpt (20r) | `vanilla_s1_final.json` + monitor.log | evaluate_safelibero.py | ✅ | 93.5% |\n| mvp_vanilla_s2 | 50000_chkpt (20r) | `vanilla_s2_final.json` + monitor.log | evaluate_safelibero.py | ✅ | 91.0% |\n\n### 关键发现\n\n1. **❌ 唯一受污染的 eval**：`occ_s0_50r_eval.log`（occ_s0 47500_chkpt 的 50r eval）使用了错误的 `eval_safelibero.py`（日志中行号 323/332/405/421 — 与正确脚本的 346/355/439/467 不同）。**但已用正确脚本重跑**（`occ_s0_47500_50r_rerun.log`）。\n\n2. **⚠️ 失败的 eval**：`eval_logs/occ_s1_45000_eval.log` — `auto_eval_45K.sh` 尝试调用 `evaluate_safelibero.py`，但脚本文件当时不存在于 `/root/occsafe_vla/openvla-oft/` 路径。后来在 `eval_results/occ_s1_45000.log` 中成功重跑。\n\n3. **所有现存 JSON 结果文件**均由正确脚本 `evaluate_safelibero.py` 产生，包含 `collision_threshold`、`safe`、`car` 等碰撞检测字段 — 碰撞检测正常工作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-eval-script-history.md"
+}

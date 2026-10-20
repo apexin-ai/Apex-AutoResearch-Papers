@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1362e1a7e06ccdd94511",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops check 34685 progress",
+  "task_key": "worker_ops_check_34685_progress_20260524T174911",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_34685_progress_20260524T174911_result.json",
+    "occurrence": 1,
+    "bytes": 784,
+    "sha256": "a3a430cd4e4ae9b03e4c074c042489145a9fb9bcf6fcba3779c44aca8aaf6c61"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| GPU | exp_id | PID | Step/Total | Progress | Speed | ETA (UTC) |\n|-----|--------|-----|-----------|----------|-------|-----------|\n| 0 | cutoff_45k_s1 | 882188 | 17332/50005 | 34.7% | 1.07 it/s | May 25 ~10:24 |\n| 1 | cutoff_15k_s1 | 861222 | 19699/50005 | 39.4% | 1.07 it/s | May 25 ~09:47 |\n| 2 | cutoff_25k_s2 | 998127 | 2791/50005 | 5.6% | 1.08 it/s | May 25 ~14:04 |\n| 3 | reverse_cutoff_s2 | 998624 | 2764/50005 | 5.5% | 1.07 it/s | May 25 ~14:11 |\n\n全部 4 GPU 利用率 99%，显存 ~62G/97G，状态正常。\n\n备注：\n- cutoff_15k_s1 的日志在 `/root/occsafe_vla/logs/cutoff_15k_s1.log`（非 `/root/runs/` 路径）\n- 最新 loss：cutoff_45k_s1 @ 17300 → occ=0.0138, action=0.1201；reverse_cutoff_s2 @ 2700 → occ=0.1301, action=0.1855"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-34685-progress-copy-2.md"
+}

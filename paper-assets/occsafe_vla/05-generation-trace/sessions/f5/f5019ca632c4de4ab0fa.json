@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5019ca632c4de4ab0fa",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "paper figure fig factorial v2",
+  "task_key": "worker_paper_figure_fig_factorial_v2_20260526T210326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_factorial_v2_20260526T210326_result.json",
+    "occurrence": 1,
+    "bytes": 335,
+    "sha256": "96b2ae75033713c2329383004e7495de577e8b8dddc7b22588a87d7f9ecc4d0a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。输出文件：\n\n- **PDF**: `docs/paper/figures/factorial_2x2.pdf`\n- **PNG**: `docs/paper/figures/factorial_2x2.png`\n- **脚本**: `artifacts/figures/gen_factorial_2x2_v2.py`\n\n5 轮迭代，ordinal 交互模式已验证：BN -4.2 pp、LN -2.5 pp，均从 OFF→ON 下降，Vanilla baseline 在最上方。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig-factorial-v2.md"
+}

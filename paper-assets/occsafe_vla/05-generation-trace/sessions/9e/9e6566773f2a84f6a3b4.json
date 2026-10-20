@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e6566773f2a84f6a3b4",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval ablation 4gpu parallel",
+  "task_key": "worker_eval_ablation-4gpu-parallel_20260522T013036",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_ablation-4gpu-parallel_20260522T013036_result.json",
+    "occurrence": 1,
+    "bytes": 2741,
+    "sha256": "49510e615f96df4f55e27b0f50bc40006b6a7dac327fe7470cc7fb58f3171061"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 产出汇总\n\n### 1. 训练完成确认\n\n所有 4 个训练正常退出（EXIT_CODE=0, max_steps=50005 reached）。50000_chkpt 完整（22 files each）。\n\n### 2. Eval 启动确认\n\n| Experiment | GPU | PID |\n|---|---|---|\n| occ_detach_s0 | 0 | 614640 |\n| random_occ_s0 | 1 | 614641 |\n| occ_detach_s1 | 2 | 614642 |\n| random_occ_s1 | 3 | 614643 |\n\n全部成功完成，输出文件均 ~96KB。\n\n### 3. Per-task 结果\n\n#### ablation_occ_detach_s0\n| Task | TSR | CAR | N |\n|---|---|---|---|\n| T0: bowl between plate & ramekin → plate | 0.950 | 0.950 | 20 |\n| T1: bowl next to ramekin → plate | 0.950 | 0.950 | 20 |\n| T2: bowl from table center → plate | 1.000 | 0.900 | 20 |\n| T3: bowl on cookie box → plate | 1.000 | 0.200 | 20 |\n| T4: bowl in top drawer → plate | 0.850 | 0.900 | 20 |\n| T5: bowl on ramekin → plate | 0.450 | 0.000 | 20 |\n| T6: bowl next to cookie box → plate | 1.000 | 0.250 | 20 |\n| T7: bowl on stove → plate | 1.000 | 1.000 | 20 |\n| T8: bowl next to plate → plate | 0.950 | 1.000 | 20 |\n| T9: bowl on wooden cabinet → plate | 1.000 | 1.000 | 20 |\n| **MEAN** | **0.915** | **0.715** | |\n\n#### ablation_random_occ_s0\n| Task | TSR | CAR | N |\n|---|---|---|---|\n| T0 | 1.000 | 0.950 | 20 |\n| T1 | 0.700 | 1.000 | 20 |\n| T2 | 1.000 | 0.900 | 20 |\n| T3 | 0.950 | 0.400 | 20 |\n| T4 | 0.800 | 1.000 | 20 |\n| T5 | 0.100 | 0.100 | 20 |\n| T6 | 0.950 | 0.450 | 20 |\n| T7 | 1.000 | 1.000 | 20 |\n| T8 | 0.950 | 1.000 | 20 |\n| T9 | 0.950 | 1.000 | 20 |\n| **MEAN** | **0.840** | **0.780** | |\n\n#### ablation_occ_detach_s1\n| Task | TSR | CAR | N |\n|---|---|---|---|\n| T0 | 1.000 | 0.900 | 20 |\n| T1 | 1.000 | 0.900 | 20 |\n| T2 | 1.000 | 0.900 | 20 |\n| T3 | 1.000 | 0.150 | 20 |\n| T4 | 0.850 | 0.950 | 20 |\n| T5 | 0.450 | 0.050 | 20 |\n| T6 | 1.000 | 0.450 | 20 |\n| T7 | 1.000 | 1.000 | 20 |\n| T8 | 0.950 | 0.950 | 20 |\n| T9 | 1.000 | 1.000 | 20 |\n| **MEAN** | **0.925** | **0.725** | |\n\n#### ablation_random_occ_s1\n| Task | TSR | CAR | N |\n|---|---|---|---|\n| T0 | 1.000 | 1.000 | 20 |\n| T1 | 0.900 | 1.000 | 20 |\n| T2 | 1.000 | 0.900 | 20 |\n| T3 | 1.000 | 0.250 | 20 |\n| T4 | 0.750 | 1.000 | 20 |\n| T5 | 0.850 | 0.450 | 20 |\n| T6 | 1.000 | 0.350 | 20 |\n| T7 | 0.850 | 0.850 | 20 |\n| T8 | 0.900 | 1.000 | 20 |\n| T9 | 0.850 | 0.900 | 20 |\n| **MEAN** | **0.910** | **0.770** | |\n\n### 4. Aggregate 汇总\n\n| Experiment | TSR | CAR |\n|---|---|---|\n| ablation_occ_detach_s0 | 0.915 | 0.715 |\n| ablation_random_occ_s0 | 0.840 | 0.780 |\n| ablation_occ_detach_s1 | 0.925 | 0.725 |\n| ablation_random_occ_s1 | 0.910 | 0.770 |\n\n### 5. 磁盘状态\n\n`/root/autodl-tmp/`: 250G 总量，215G 已用，36G 可用（86%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-ablation-4gpu-parallel.md"
+}

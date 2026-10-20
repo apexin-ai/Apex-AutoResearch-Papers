@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b89759f606edfe286a5e",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code occ gt pipeline continue",
+  "task_key": "worker_code_occ-gt-pipeline-continue_20260520T065536",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_occ-gt-pipeline-continue_20260520T065536_result.json",
+    "occurrence": 1,
+    "bytes": 2902,
+    "sha256": "73bdef1bc24cb37e2191b61a4d6d6ab298bfe8bcae6e07526b3a0c8ba141b18d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载因 AutoDL 代理无法稳定连接 XET CDN 而极慢。脚本会在后台持续重试。让我整理当前已完成的 9/10 任务的报告。\n\n## 当前状态汇总\n\n### Step 1-2: 已完成的工作\n\n**Pipeline 代码** (`/root/occsafe_vla/occ_pipeline/`): 完整\n- `extract_occupancy.py` — 主提取脚本，支持 `--all`/`--task_id` + `--max_demos`\n- `occupancy_3d.py` — 3D 体素占据计算（64³），支持 BOX/SPHERE/CYLINDER/CAPSULE/ELLIPSOID/MESH\n- `geom_classifier.py` — 语义分类：0=free, 1=table, 2=robot, 3=target\n- `bev_projection.py` — 3D→BEV 投影 (any-axis=2, max-axis=2)\n- `visualize_bev.py` — BEV 可视化工具\n\n**已完成提取 (9/10)**:\n\n| 任务 | Demo数 | 帧数 | 占据率 | 语义分布 (free/table/robot/target) | avg ms/帧 | 文件大小 | 异常帧 |\n|------|--------|------|--------|-----------------------------------|-----------|----------|--------|\n| between_plate_ramekin | 1 | 98 | 42.4% | 57.6/17.3/14.1/10.9 | 1287 | 84K | 无 |\n| from_table_center | 1 | 103 | 40.6% | 59.4/16.6/12.2/11.8 | 1252 | 86K | 无 |\n| in_top_drawer_cabinet | 1 | 153 | 45.5% | 54.5/19.3/14.5/11.8 | 1243 | 123K | 无 |\n| next_to_cookie_box | 1 | 123 | 42.8% | 57.2/13.2/16.1/13.5 | 1253 | 111K | 无 |\n| next_to_plate | 1 | 115 | 39.1% | 60.9/16.1/12.6/10.4 | 1202 | 91K | 无 |\n| next_to_ramekin | 1 | 152 | 37.9% | 62.1/17.0/8.8/12.1 | 1255 | 122K | 无 |\n| on_cookie_box | 1 | 99 | 40.6% | 59.4/13.7/14.5/12.3 | 1251 | 84K | 无 |\n| on_ramekin | 1 | 137 | 40.1% | 59.9/16.4/12.9/10.9 | 1273 | 110K | 无 |\n| on_stove | 1 | 155 | 34.2% | 65.8/11.9/9.7/12.6 | 1248 | 119K | 无 |\n\n**质量验证**:\n- 无全零帧，无全一帧\n- 占据率 34-46%，合理\n- 语义分布：robot/target/table 均有合理占比，target 10-14%\n- 速度：~1250 ms/帧\n- 9 个 BEV 可视化已保存到 `/root/occsafe_vla/artifacts/bev_*.png`\n\n### Step 3: 缺失任务\n\n**Task 9: `on_the_wooden_cabinet`** — demo HDF5 文件（688MB）从 HuggingFace XET CDN 下载中，AutoDL 代理连接不稳定。后台脚本持续重试中：\n- 下载脚本 PID: 50093 (`/tmp/dl_fast_retry.py`)，日志 `/tmp/dl_fast_retry.log`\n- 提取脚本 PID: 49895 (`/tmp/extract_and_validate.sh`)，自动等待文件就绪后提取\n- 当前已下载：42MB/689MB\n\n### 数据路径\n- 占据数据：`/root/occsafe_vla/occ_data/occ_*.hdf5`（每文件含 `data/demo_0/bev_binary` (T,64,64) bool + `bev_semantic` (T,64,64) uint8）\n- 可视化：`/root/occsafe_vla/artifacts/bev_*.png`\n- 源 demo：`/root/autodl-tmp/libero_datasets/libero_spatial/*.hdf5`\n\n### 注意\n- 每个任务当前只提取了 **demo_0**（1/50 demos），源文件各含 50 个 demo\n- 如需全部 50 demos，每任务额外需 ~100 分钟（50 demos × 100帧 × 1.25s/帧）\n- 第 10 个任务下载完成后会自动提取（后台脚本处理中）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-occ-gt-pipeline-continue.md"
+}

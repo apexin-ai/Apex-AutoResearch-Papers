@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb1a702b38d6a05b918e",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "reviewer / loop_7.md",
+  "task_key": "loop_7",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_7.md",
+    "occurrence": 1,
+    "bytes": 3547,
+    "sha256": "53f9c02dcf2dcdf186888ee57394069e7324d103f96d6834bf035f7f18df25d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: max_wall_time\nupdated: '2026-05-26T12:02:12+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-10894 cuda:0-3，westd-34685 cuda:0-3。越界进程立即 CRITICAL + 要求 kill\n- cutoff / reverse_cutoff 实验禁止 --resume（C002）\n- 10894 上 eval 日志路径在 `/root/runs/occsafe_vla/`，不在 `/root/autodl-tmp/logs/`——之前反复踩坑\n- Registry filter 用 `{\"exp_id\": \"xxx\"}` 经常返回空，用 `limit=N` 按更新时间降序查更可靠\n\n### 2. 🖥️ 基础设施快照\n- **westd-10894**: `/root/occsafe_vla`，训练日志 `/root/runs/occsafe_vla/*.log`，checkpoints `/root/autodl-tmp/checkpoints/`\n- **westd-34685**: `/root/occsafe_vla`，同结构\n- 两台服务器均 4×A800-96GB\n- 10894 当前：cuda:0 跑 reverse_cutoff_s2_v2（~14% 进度），cuda:1/2/3 **空闲**（eval 已完成，PREPARING 实验未启动）\n- 34685 当前：4 卡满载（vanilla_v2_s1/s2, detach_ln_s3, cutoff_25k_s1_v2），IO 问题已解决（CKA 进程已 kill），速度恢复 ~1.09 it/s\n\n### 3. 📊 当前状态\n刚完成 10894 三组 s3 eval 结果审查并提交报告（第 6 份，累计 11 份）：\n- mvp_occ_s3_v2_eval: CAR=0.776, TSR=0.906 → DONE ✅\n- ablation_occ_detach_s3_v2_eval: CAR=0.794, TSR=0.922 → DONE ✅\n- full_occ_ln_s3_v2_eval: CAR=0.740, TSR=0.842 → ANALYZING（Agent 未录入 metrics）\n\n**Registry RUNNING**: reverse_cutoff_s2_v2 (10894:0), vanilla_v2_s1 (34685:0), vanilla_v2_s2 (34685:1), detach_ln_s3 (34685:2), cutoff_25k_s1_v2 (34685:3)\n**Registry PREPARING（未启动！）**: full_occ_ln_v2_s0, full_occ_ln_v2_s1, detach_ln_v2_s0 — 自 11:18 UTC 起一直卡在 PREPARING，已在报告中 WARNING\n\n**已知 bug**: torchrun 退出时 `destroy_process_group()` 警告导致 cron on_failed 误触发。已报告 3 次，Agent 已人工修正 registry，但 cron 逻辑未修复——后续训练完成仍可能收到假 failed 通知\n\n### 4. 📋 待办\n- full_occ_ln_s3_v2_eval 状态变 DONE → 核实 metrics 与日志一致（CAR=0.740, TSR=0.842）\n- PREPARING 实验（full_occ_ln_v2_s0/s1, detach_ln_v2_s0）启动 → 核实 GPU 分配在白名单内\n- 34685 四个训练完成 → 审查结果 + 催 eval 启动\n- reverse_cutoff_s2_v2 完成后 → 10894:0 释放给 detach_ln_v2_s1（全 v2 factorial 的瓶颈，预计 May 27 ~06:40 UTC）\n- Agent 更新 partial_anova_v2 加入 s3 数据 → 审查新统计结论（预期效应量从 g=-1.023 缩至 ~-0.78，方向不变但 Cell 1 方差很大）\n\n### 5. 🎯 战略上下文\n- **核心 story**: Plan B — ordinal interaction，所有 OCC 条件 ≤ Vanilla，Grad OFF > Grad ON，无 crossover\n- **v2 rebuild 背景**: v1 的机制证据（gradient collapse, CKA degradation）被发现是代码 bug artifacts，全部实验用 v2 代码重跑\n- **当前 factorial 数据**: Cell 1 n=3 (mean=0.725, std=0.064), Cell 2 n=1 (0.740), Cell 3 n=4 (mean=0.767, std=0.024), Cell 4 无 v2 数据, Vanilla n=1 (0.768)\n- **最容易判断错的事**:\n  1. Cell 1 s1 (0.654) 可能是 outlier——其他两个 seed (0.746, 0.776) 明显更高。如果后续 seed 确认 0.654 是异常值，Cell 1 均值会升至 ~0.76，梯度效应几乎消失\n  2. cron on_failed 通知 ≠ 真失败，先看日志尾部确认 EXIT_CODE 和 checkpoint 是否存在\n  3. 不要假设 PREPARING 实验会自动启动——本 session 已两次发现 GPU 空闲几十分钟无人管\n- **CoRL 2026 deadline**: May 29，距今 ~2.5 天。detach_ln_v2_s1 是 factorial 数据完整的瓶颈（May 27 ~18:00 UTC）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-copy-3.md"
+}

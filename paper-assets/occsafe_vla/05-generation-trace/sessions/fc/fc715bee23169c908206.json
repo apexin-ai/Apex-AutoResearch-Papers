@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc715bee23169c908206",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "fix symlink 30k chkpt model",
+  "task_key": "worker_fix_symlink_30k_chkpt_model_20260528T021111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_symlink_30k_chkpt_model_20260528T021111_result.json",
+    "occurrence": 1,
+    "bytes": 776,
+    "sha256": "e3e6febd4dd5b1a0cab2767461c85a6cf1ac50b2d08b46999e3eb3f1093a1a91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。30000_chkpt 目录现在包含：\n\n**Symlinks（5 个，指向 `/root/autodl-tmp/models/openvla-7b/`）：**\n- `model-00001-of-00003.safetensors` → openvla-7b base\n- `model-00002-of-00003.safetensors` → openvla-7b base\n- `model-00003-of-00003.safetensors` → openvla-7b base\n- `model.safetensors.index.json` → openvla-7b index\n- `config.json` → openvla-7b config\n\n**注意差异：** 原始 openvla-7b 是 **3 shards**（`*-of-00003`），而其他已完成的 checkpoint（如 25000_chkpt）是 **4 shards**（`*-of-00004`，LoRA merge 后重新分片）。这些 symlinks 提供的是 base model 权重（未合并 LoRA），不是 merged 权重。LoRA adapter 已存在于 `lora_adapter/` 子目录，后续可按需重新 merge。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-symlink-30k-chkpt-model.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d382e209b9f411bcfb5c",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_6_1779948718.md",
+  "task_key": "loop_6_1779948718",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1779948718.md",
+    "occurrence": 1,
+    "bytes": 5000,
+    "sha256": "5fa0a51b19e0f5e35d1efb7dc3316e1a87215476944e8ef47d247a74a4048f26"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-27T12:37:43+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-34685 cuda:0-3 + westd-10894 cuda:0-3，共 8 卡。白名单外即使 Director 指令也必须 push back\n- **C002**：禁止 resume 训练（batch_idx bug + LR schedule 重置），所有实验从 pretrained 权重从头训练\n- **v2 代码唯一合法**：D050 发现 v1/v2 代码不等价（Full OCC BN v2 CAR=0.746 vs v1 更高）。v1 结果已作废，v2 ANOVA 必须全部用 v2 实验数据，禁止混用\n- **10894 磁盘脆弱**：曾 100% 满导致 3 个实验崩溃，提交新实验前必须 check_disk_before_experiment 预检\n- detach_ln_s3 虽无 \"_v2\" 后缀，Reviewer 确认 34685 repo 是 v2 代码，可作 Cell 4 v2 数据\n\n### 2. 🖥️ 基础设施快照\n- **westd-34685**（4× RTX PRO 6000 98GB）：工作目录 `/root/occsafe_vla/openvla-oft`，conda env `occsafe`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`\n  - 模型：`/root/autodl-tmp/models/openvla-7b`，数据：`/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops`\n  - Checkpoints：`/root/autodl-tmp/checkpoints/`，OCC 数据：`/root/occsafe_vla/occ_data`\n  - 磁盘 2% used，W&B disabled（D051 实验）\n- **westd-10894**（同配置）：同路径结构，磁盘 50% used\n- **代码 commit**: bdaee754bfccb386cfdd277a0410314daf32f374（v2 verified）\n- **活跃进程**（全 RUNNING，cron 监控中，reconcile_crons 已确认 8/8 存活）：\n  - 34685: vanilla_v2_s1(PID=419107) / vanilla_v2_s2(PID=419342) / detach_ln_s3(PID=419641) / cutoff_25k_s1_v2(PID=453581)\n  - 10894: reverse_cutoff_s2_v2(PID=170605) / full_occ_ln_v2_s0(PID=390852) / full_occ_ln_v2_s1(PID=391060) / detach_ln_v2_s0(PID=391402)\n\n### 3. 📊 当前状态\nSession #6 刚完成初始化：reconcile_crons 确认 8/8 进程存活，已向 Director 汇报。无活跃 Worker。\n\n**RUNNING (8)**：\n| 实验 | 服务器:GPU | ETA (UTC) | 角色 |\n|------|-----------|-----------|------|\n| vanilla_v2_s1/s2 | 34685:0,1 | May 27 ~06:20 | Vanilla baseline n=2,3 |\n| detach_ln_s3 | 34685:2 | May 27 ~06:20 | Cell 4 v2 第1个点 |\n| cutoff_25k_s1_v2 | 34685:3 | May 27 ~06:20 | Dose-response 25K 第2 seed |\n| reverse_cutoff_s2_v2 | 10894:0 | May 27 ~07:00 | Dose-response reverse 第3 seed |\n| full_occ_ln_v2_s0/s1 | 10894:1,2 | May 27 ~11:50 | Cell 2 v2 第1,2个点 |\n| detach_ln_v2_s0 | 10894:3 | May 27 ~11:50 | Cell 4 v2 第2个点 |\n\n**PREPARING (5)**：detach_ln_s4, ablation_occ_detach_s4, full_occ_ln_s4, mvp_occ_s4（n=5 expansion）+ detach_ln_v2_s1（Cell 4 v2 seed 43）\n\n### 4. 📋 待办（条件触发式）\n- **34685 4 实验完成 (~06:20)** → spawn eval Worker 跑 4 个 SafeLIBERO eval（vanilla_v2_s1, vanilla_v2_s2, detach_ln_s3, cutoff_25k_s1_v2）；34685 eval 完成后启动 4 个 n=5 expansion（detach_ln_s4, ablation_occ_detach_s4, full_occ_ln_s4, mvp_occ_s4）\n- **reverse_cutoff_s2_v2 完成 (~07:00)** → eval；10894:0 释放后启动 detach_ln_v2_s1（Cell 4 最后 v2 seed）\n- **10894:1-3 完成 (~11:50)** → spawn eval Worker 跑 3 个 eval（full_occ_ln_v2_s0, full_occ_ln_v2_s1, detach_ln_v2_s0）\n- **detach_ln_v2_s1 完成 (~21:00)** → eval → 全 v2 factorial 数据齐全\n- **全 v2 数据齐全 (~23:00)** → 确认性 2×2 ANOVA\n- **ANOVA 完成后** → Paper Agent 写作（Plan B ordinal interaction 已确认）\n- **Director 可随时分配的非 GPU 任务**：论文 Intro/Method/RW（不依赖结果）、v2 梯度分析方案设计、文献联动\n\n### 5. 🎯 战略上下文\n**核心**：2×2 factorial（gradient flow × norm type）。v1 发现 BN×gradient flow 交叉交互（p=0.025），但 D050 发现 v1/v2 代码不等价 → D051 全 v2 rebuild。D055 确认交互效应在 v2 下不存活 → **Plan B (ordinal interaction)** 已由用户确认（D058）。\n\n**v2 factorial 当前数据**：Cell 1 (Full OCC BN) n=3 CAR=0.725±0.064 ✅ | Cell 2 (Full OCC LN) n=1 训练中+2 | Cell 3 (Detach BN) n=4 CAR=0.767±0.024 ✅ | Cell 4 (Detach LN) n=0→训练中 3 | Vanilla n=1 训练中+2\n\n**机制证据待重建**：v1 gradient collapse + CKA degradation 已被推翻为 bug 产物（D056/D057）。当前可用：梯度正交性（cosine≈0）+ 方差不对称（Cell 1 方差 6.88× Cell 3）。v2 梯度分析需等 10894 checkpoint 到位（~11:50）。\n\n**决策链**：D001→D008→D034→D040→D050(共线性)→D051(v2 rebuild)→D052(v1≠v2)→D053(8卡全分配)→D055(Plan B确认)→D058(用户确认Plan B+自行提交)\n\n**最易判断错的事**：\n1. v1 数据和 v2 数据绝不能混用做 ANOVA\n2. 10894 的磁盘 50% used，提交新实验前必须预检（曾因满盘崩 3 个实验）\n3. Cell 1 s1=0.654 可能是 outlier——若排除则 gradient 效应大幅缩小，ANOVA 解读需谨慎\n4. CoRL deadline May 29，仅剩 ~2 天，零空转\n5. 论文 Intro 需修正 \"collision rates reach 53-93%\" → 等 v2 Vanilla 3-seed 数据统一修正\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1779948718.md"
+}

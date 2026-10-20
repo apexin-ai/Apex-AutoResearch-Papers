@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2eeaaaf07ffa8495316",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "train 34685 vanilla detach ln batch",
+  "task_key": "worker_train_34685_vanilla_detach_ln_batch_20260526T084439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_34685_vanilla_detach_ln_batch_20260526T084439_result.json",
+    "occurrence": 1,
+    "bytes": 498,
+    "sha256": "46a9931eecd4ebf87dd9ac9706657629497a610452d54e1a2d63400e176e95cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个实验全部启动成功，训练正常进行中。\n\n| 实验 | GPU | PID | 显存占用 | GPU利用率 | 速度 |\n|------|-----|-----|---------|----------|------|\n| vanilla_v2_s1 | cuda:0 | 419107 | 62193 MiB | 99% | ~1.08 it/s |\n| vanilla_v2_s2 | cuda:1 | 419342 | 62231 MiB | 98% | ~1.08 it/s |\n| detach_ln_s3 | cuda:2 | 419641 | 62203 MiB | 99% | ~1.08 it/s |\n\n预计训练时长：50005 steps / 1.08 it/s ≈ **12.9 小时**。Registry 已全部更新为 RUNNING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-34685-vanilla-detach-ln-batch.md"
+}

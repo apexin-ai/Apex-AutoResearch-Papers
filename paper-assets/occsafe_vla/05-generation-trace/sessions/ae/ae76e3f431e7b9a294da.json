@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "ae76e3f431e7b9a294da",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "ops fix gradient analysis launch",
+  "task_key": "worker_ops_fix_gradient_analysis_launch_20260523T181026",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_gradient_analysis_launch_20260523T181026.log",
+    "occurrence": 1,
+    "bytes": 1307865,
+    "sha256": "b76949bbb1da5cbb1bd67d52055fbae6003f5468454aebe4eba8b3fc6f9fbaa6"
+  },
+  "statistics": {
+    "messages": 770,
+    "user_turns": 1,
+    "tool_calls": 332,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 98,
+      "tool_call": 332,
+      "tool_result": 332,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 719,
+      "chunks": [
+        {
+          "path": "ae76e3f431e7b9a294da-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ae76e3f431e7b9a294da-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ae76e3f431e7b9a294da-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "ae76e3f431e7b9a294da-part-0004.json",
+          "message_count": 179
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 51,
+      "chunks": [
+        {
+          "path": "ae76e3f431e7b9a294da-part-0004.json",
+          "message_count": 1
+        },
+        {
+          "path": "ae76e3f431e7b9a294da-part-0005.json",
+          "message_count": 50
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-fix-gradient-analysis-launch.md"
+}

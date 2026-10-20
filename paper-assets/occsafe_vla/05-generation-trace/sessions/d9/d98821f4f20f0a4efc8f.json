@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d98821f4f20f0a4efc8f",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops verify polling script path",
+  "task_key": "worker_ops_verify-polling-script-path_20260528T062150",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-polling-script-path_20260528T062150_result.json",
+    "occurrence": 1,
+    "bytes": 501,
+    "sha256": "a66402ab1fa4b15ec16b2e0799f1a61ee768b2a94689b84f35af7cfc6cfa7790"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**修复完成。**\n\n| 项目 | 详情 |\n|------|------|\n| **脚本检查路径（修复前）** | `$CHKPT_DIR/adapter_config.json` |\n| **实际路径** | `$CHKPT_DIR/lora_adapter/adapter_config.json` |\n| **是否匹配** | **不匹配** — eval 永远不会触发 |\n| **修复动作** | 3 个脚本已 sed 修正路径，kill 旧 PID (61243/61244/61245)，重启新进程 |\n| **新 PID** | detach_ln_v2_s3: **69355**, full_occ_ln_v2_s3: **69356**, detach_ln_v2_s2: **69357** |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-polling-script-path.md"
+}

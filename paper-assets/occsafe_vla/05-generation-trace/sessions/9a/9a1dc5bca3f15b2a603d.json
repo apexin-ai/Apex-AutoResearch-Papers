@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a1dc5bca3f15b2a603d",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "train cutoff 25k s2 fresh",
+  "task_key": "worker_train_cutoff_25k_s2_fresh_20260525T043816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_cutoff_25k_s2_fresh_20260525T043816_result.json",
+    "occurrence": 1,
+    "bytes": 590,
+    "sha256": "8b2403106b86a28d5386bb65bd9198f7f5b31cca50721223c52c4ee646e28f96"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行。\n\n- **PID**: 11510（worker 进程），11437（nohup 包裹）\n- **服务器**: westd-34685, cuda:0\n- **状态**: 从 pretrained 权重从头训练（无 resume），step 17/50005，~1.09 it/s\n- **首个 step 指标**: occ_loss=0.1304, action_loss=0.6328\n- **预计时长**: ~12.7 小时\n\n注意：第一次启动时因 GPU 0 上有其他进程（PID 6112）导致 OOM，第二次启动后 reverse_cutoff_s2 进程（PID 11716，违反 C002 使用了 --resume）短暂出现在 GPU 0 但已自行退出，训练现在独占 GPU 0 正常运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-cutoff-25k-s2-fresh.md"
+}

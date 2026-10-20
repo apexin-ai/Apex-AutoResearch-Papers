@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "14e4f5a028916d79635f",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra update monitor and start",
+  "task_key": "worker_infra_update_monitor_and_start_20260521T014747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_update_monitor_and_start_20260521T014747_result.json",
+    "occurrence": 1,
+    "bytes": 358,
+    "sha256": "7bc8f994cf6775fc0f5dd65aa0e5b655223d9e47c3771111389678d19fa4b38c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三步全部完成。\n\n```\nStep 1: PID 替换 [28827 → 58802], 验证 PASS\n  PIDS=(27667 58802 29970)\n\nStep 2:\n  occ_s0 checkpoints: 5000, 7500, 30000, 32500\n  occ_s1 checkpoints: 5000, 7500\n  occ_s2 checkpoints: 5000, 7500, 30000, 32500\n\nStep 3: Monitor PID 61526, 状态 运行中\n  三个训练进程 (s0/s1/s2) 均在线\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-update-monitor-and-start.md"
+}

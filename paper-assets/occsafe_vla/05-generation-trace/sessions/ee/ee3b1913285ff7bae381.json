@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee3b1913285ff7bae381",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code gradient analysis prep",
+  "task_key": "worker_code_gradient_analysis_prep_20260527T041505",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gradient_analysis_prep_20260527T041505_result.json",
+    "occurrence": 1,
+    "bytes": 4211,
+    "sha256": "b0eb53a0a1a7fcddda3f643f2eddf06c87479876e73f3e41f59afc506830f60f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在我有了完整的调研信息。下面是总结。\n\n---\n\n## 调研报告：v2 梯度分析脚本准备\n\n### 1. 现有脚本情况\n\n**没有现成的梯度分析脚本。** `analysis/` 目录下只有evaluation层面的消融诊断脚本：\n- `ablation_diagnostic.py` — 比较 CAR/TSR 指标的消融矩阵\n- `bootstrap_ci.py`, `per_task_comparison.py`, `seed_instability.py` — 统计分析\n\n**需要从头写梯度分析脚本。**\n\n### 2. 代码架构理解\n\n**Loss 计算流（`finetune.py:481-490`）：**\n```\ntotal_loss = action_loss + occ_weight * occ_loss\n```\n\n**梯度流路径：**\n- **共享参数**（backbone + LLM + projector）：同时被 action_loss 和 occ_loss（Cell 1/2 不 detach 时）的梯度更新\n- **Action head**（`L1RegressionActionHead`，2层 MLP ResNet）：仅 action_loss 梯度\n- **OCC head**（`BEVOccupancyHead`，ConvTranspose decoder）：仅 occ_loss 梯度\n- `_cached_patch_features`（`modeling_prismatic.py:447`）：OCC head 从此获取 backbone 特征\n- `occ_detach=True` 时：`patch_features = patch_features.detach()`，切断 occ_loss 对 backbone 的梯度\n\n**关键：梯度分析应聚焦共享 backbone/LLM 参数，而非 action head 自身参数。**\n\n### 3. 可用 v2 Checkpoints\n\n| 条件 | 服务器 | Checkpoint 路径 | Step |\n|------|--------|----------------|------|\n| Cell 1 (Full OCC BN) | westd-34685 | `/root/autodl-tmp/checkpoints/full_occ_bn_v2_s1/...-50000_chkpt` | 50k ✓ |\n| Cell 2 (Full OCC LN) | westd-10894 | `/root/autodl-tmp/checkpoints/full_occ_ln_s3_v2/...-50000_chkpt` | 50k ✓ |\n| Cell 3 (Detach BN) | westd-34685 | `/root/autodl-tmp/checkpoints/detach_bn_v2_s0/...-50000_chkpt` | 50k ✓ |\n| Cell 4 (Detach LN) | westd-34685 | `/root/autodl-tmp/checkpoints/detach_ln_v2_s1/...-10000_chkpt` | 10k (可能仍在训练) |\n| Vanilla | westd-34685 | `/root/autodl-tmp/checkpoints/vanilla_v2_s1/...-50000_chkpt` | 50k ✓ |\n\nCell 4 只有 10k checkpoint，可能正在训练中（8/8 GPU 满载，RTX PRO 6000 96GB）。\n\n### 4. 脚本设计方案\n\n**需要写的脚本：`gradient_analysis_v2.py`**\n\n核心逻辑：\n```python\n# 对每个 checkpoint:\n# 1. 加载模型 + checkpoint（含 LoRA adapter + action_head + occ_head）\n# 2. 加载同一批 data（固定 seed 保证跨条件可比）\n# 3. 前向传播得到 action_loss 和 occ_loss（分别计算）\n# 4. action_loss.backward(retain_graph=True) → 收集共享参数梯度 → 保存 → zero_grad\n# 5. occ_loss.backward() → 收集共享参数梯度\n# 6. 计算:\n#    - cosine similarity（action_grad vs occ_grad）逐层 + 全局\n#    - L2 norm ratio（occ_grad_norm / action_grad_norm）\n#    - 梯度方差（跨 batch 的方差不对称性）\n# Vanilla 无 OCC head，只计算 action gradient baseline\n```\n\n**需要从 `finetune.py` 借用的部分：**\n- `FinetuneConfig` dataclass 及模型加载逻辑（~L1000-1050）\n- `run_forward_pass()` 需要拆分成分别返回 action_loss 和 occ_loss 的版本\n- 数据加载：`RLDSDataset` + `RLDSBatchTransform` + collator\n\n**Checkpoint 加载需要的文件：**\n每个 checkpoint 目录包含：`action_head--*_checkpoint.pt`, `occ_head--*_checkpoint.pt`, `lora_adapter/`, `config.json`, `model-*.safetensors`\n\n### 5. 运行计划\n\n| 步骤 | 内容 | GPU 需求 | 预估时间 |\n|------|------|----------|---------|\n| 编写脚本 | 本地或远程 | 无 | ~1h |\n| 跑 Cell 1 | 加载 checkpoint + 100 batch forward/backward | 1 GPU, ~30GB | ~15min |\n| 跑 Cell 2 | 同上 | 1 GPU | ~15min |\n| 跑 Cell 3 | 同上 | 1 GPU | ~15min |\n| 跑 Cell 4 | 同上 | 1 GPU | ~15min |\n| 跑 Vanilla | 同上（只有 action grad） | 1 GPU | ~10min |\n| 汇总出图 | 无 GPU，生成 cosine/norm 对比图 | CPU | ~5min |\n\n**总 GPU 时间：~70min（1 GPU）。**\n\n**约束：** 当前 8/8 GPU 全部满载。需要等待某个训练完成后腾出 GPU，或等所有训练在 DDL (2026-05-28 12:00 UTC) 前完成后再跑。考虑到 CoRL DDL，建议：\n1. 先把脚本写好（不需要 GPU）\n2. 一旦有 GPU 空出，立刻 5 条件串行跑完（~70min）\n3. 或者用 2 张 GPU 并行跑（~35min）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gradient-analysis-prep.md"
+}

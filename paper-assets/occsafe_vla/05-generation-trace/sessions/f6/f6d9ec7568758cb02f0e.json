@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6d9ec7568758cb02f0e",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose mvp occ s3 v2",
+  "task_key": "worker_diagnose_mvp_occ_s3_v2_20260525T203037",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_mvp_occ_s3_v2_20260525T203037_result.json",
+    "occurrence": 1,
+    "bytes": 1173,
+    "sha256": "1cdbe5e07c4a309fc16b53edb506c3786439007fee80e9d0de727e8337507bea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n## 诊断结果\n\n**根因**：`/root/autodl-tmp` 磁盘 100% 满（250G/250G，剩余 292K），导致 step 30000 checkpoint 保存时 tokenizer.json 写入失败（`No space left on device, os error 28`）。\n\n**训练进度**：已完成 local step 30000（从 20K resume，即全局 50K），训练本身已跑完。崩溃发生在保存最终 checkpoint 阶段。\n\n**Checkpoint 状态**：\n- 30000_chkpt 目录已创建，但 **不完整**——`lora_adapter/` 为空目录，`tokenizer.json` 为 0 字节。此 checkpoint 不可用。\n- 20000_chkpt 和 10000_chkpt 存在且应完整可用。\n\n**GPU cuda:1 状态**：空闲（0 MiB / 97887 MiB, 0% util）。cuda:2、cuda:3 也空闲。仅 cuda:0 有任务在跑（62GB used, 99% util）。\n\n## 建议\n\n需要先清磁盘空间，然后从 20000_chkpt resume 重跑最后 10K steps：\n1. 清理磁盘（删旧 checkpoint 或无用模型缓存释放空间）\n2. 从 `mvp_occ_s3--20000_chkpt` resume，只需跑 step 20001→30000（约 2.5h）\n3. 注意：约束 C002 禁止 cutoff/reverse_cutoff 实验用 resume，但 mvp_occ_s3 不是 cutoff 实验，可以 resume"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-mvp-occ-s3-v2.md"
+}

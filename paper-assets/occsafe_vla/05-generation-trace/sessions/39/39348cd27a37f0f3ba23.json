@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "39348cd27a37f0f3ba23",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra P0 westd 10894 disk full v3",
+  "task_key": "worker_infra_P0-westd-10894-disk-full-v3_20260521T095817",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_P0-westd-10894-disk-full-v3_20260521T095817_result.json",
+    "occurrence": 1,
+    "bytes": 717,
+    "sha256": "475523ad267f6cf025909b739524745a5d4f7e803eb3e4167658478c36a42640"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 个实验运行中，4 个 GPU 都有显存占用。\n\n## P0 westd-10894 磁盘满修复 v3\n\n### 清理\n- 释放空间: 80G（221G → 141G）\n- 磁盘状态: 141G/250G (57%)\n\n### Rotation 脚本\n- 旧 PID 504685: killed\n- 新 PID: 514991\n- 策略: 保留 1 个 checkpoint, 300s 间隔\n\n### ablation_occ_detach_s0 重启\n- resume checkpoint: `openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--10000_chkpt`\n- resume step: 10000\n- 新 PID: 515223\n\n### 验证\n- finetune.py 进程数: 4 组（每组含 torchrun wrapper + worker）\n- GPU 状态: 全部 4 卡有显存占用（GPU0: 15.8G 加载中, GPU1-3: ~62G）\n- 磁盘: 110G 可用，充裕"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-p0-westd-10894-disk-full-v3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a19118d64c03103e456d",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_3_1779696262.md",
+  "task_key": "loop_3_1779696262",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1779696262.md",
+    "occurrence": 1,
+    "bytes": 4883,
+    "sha256": "890d6059b9d29018aede79025fb7539667db8dbf7b17da96f39d1602dc40c8ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-25T07:45:20+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: westd-10894 cuda:0-3 + westd-34685 cuda:0-3，共 8 张，不得使用其他\n- 两台服务器都是 AutoDL，用 conda 环境 `occsafe`（不是 base，不是 venv）：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`\n- Checkpoint 和数据必须放 `/root/autodl-tmp/`，根分区只有 30GB\n- pip install 前必须 `source /etc/network_turbo`；HF 下载设 `HF_HUB_DISABLE_XET=1`\n- CoRL 2026 Abstract deadline: **May 26（明天）**, Paper deadline: **May 29（4天后）**\n\n### 2. 🖥️ 基础设施快照\n- **westd-10894**: 工作目录 `/root/occsafe_vla/openvla-oft`，磁盘 50% used (425GB free)\n- **westd-34685**: 工作目录 `/root/occsafe_vla/openvla-oft`，磁盘 2% used (819GB free)\n- Python: `/root/miniconda3/envs/occsafe/bin/python`\n- 模型: `/root/autodl-tmp/models/openvla-7b`\n- 数据: `/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops`\n- OCC 数据: `/root/occsafe_vla/occ_data`\n- Checkpoints: `/root/autodl-tmp/checkpoints/<exp_id>/`\n- 活跃进程（截至 handoff）:\n  - westd-10894: full_occ_ln_s0 (PID 742741, cuda:1), full_occ_ln_s1 (PID 742888, cuda:2), full_occ_ln_s2 (PID 743106, cuda:3), ablation_occ_detach_s0_retrain (PID 746616, cuda:0)\n  - westd-34685: cutoff_45k_s1 (PID 882188, cuda:0, reconcile 确认仍在跑), cutoff_15k_s1 (PID 861222, cuda:1)\n  - westd-34685: cuda:2 和 cuda:3 **已空闲**（cutoff_25k_s1_eval 和 reverse_cutoff_s1_eval 刚完成）\n- Cron: cutoff_45k_s1 有活跃 cron 在监控\n\n### 3. 📊 当前状态\n**刚做完**: 收到 `cutoff_25k_s1_eval` cron 回调。发现 `reverse_cutoff_s1_eval` 也同时完成。已派 Worker (`worker_eval_cutoff_25k_s1_eval_reverse_cutoff_s1_eval_20260524T154313`) 去 SSH 读两个 eval 日志、提取 CAR/TSR 指标、更新 registry → DONE。**Worker 尚未回调，指标还未入 registry。**\n\n**RUNNING 实验**:\n| exp_id | 服务器:GPU | 目的 |\n|--------|-----------|------|\n| cutoff_45k_s1 | 34685:0 | dose-response 45K seed 43 (s0: CAR=0.764) |\n| cutoff_15k_s1 | 34685:1 | dose-response 15K seed 43 (s0: CAR=0.804, 惊人高) |\n| full_occ_ln_s0 | 10894:1 | 2×2 factorial LN+Gradient 格 |\n| full_occ_ln_s1 | 10894:2 | 2×2 factorial LN+Gradient 格 |\n| full_occ_ln_s2 | 10894:3 | 2×2 factorial LN+Gradient 格 |\n| ablation_occ_detach_s0_retrain | 10894:0 | same-seed 梯度重分析用 checkpoint |\n\n**等待中**:\n- Worker 回调: eval 指标提取 Worker\n- 34685:cuda:2, cuda:3 空闲，应立即安排新任务\n- full_occ_ln ×3 完成后需要 eval → 填满 2×2 factorial\n\n### 4. 📋 待办（条件触发式）\n- **Worker 回调到达** → 核实 cutoff_25k_s1_eval 和 reverse_cutoff_s1_eval 指标已入 registry；与 s0 对比确认 withdrawal 效应一致性；更新 report.md；汇报 Director（含 2-seed 均值±std）\n- **cutoff_15k_s1 训练完成** → 提交 eval（34685 空闲 GPU）；s0 的 CAR=0.804 是 dose-response 曲线最关键数据点（非单调性验证）\n- **cutoff_45k_s1 训练完成** → 提交 eval；与 s0 CAR=0.764 对比\n- **full_occ_ln ×3 训练完成** → 提交 eval ×3；结果填入 2×2 factorial 右上格（LN+Gradient Flow）；若 CAR ≈ Full OCC → LN 不影响 gradient flow 的保护效果 → 强化 \"BN is the sole mediator\" claim\n- **ablation_occ_detach_s0_retrain 完成** → 派 Worker 跑 same-seed 4-condition 梯度分析（Vanilla_s0 + Full_OCC_s0 + Detach+LN_s0 + Detach_BN_s0）\n- **34685:cuda:2/3 空闲** → 立即安排任务（dose-response 的其他 cutoff 点 eval、或 15k/45k s1 eval 如果训练已完成）\n\n### 5. 🎯 战略上下文\n**核心结论链**: \n- D029: cutoff_25k/reverse_cutoff 打破简单 dose-response → 说明 BN 干扰比 gradient flow 缺失更严重\n- D032-D035: CKA 分析证实 BN 是表征漂移的 100% 原因（Detach+LN CKA ≈ Vanilla，Detach BN CKA 灾难）\n- D036-D037: Per-layer 梯度分析 → dual mechanism（BN interference + gradient flow absence），SigLIP late-layer \"double jeopardy\"（cooperative alignment 被破坏）vs DINOv2 purely orthogonal 更耐受\n- **Framing**: 分析论文 \"representation-behavior dissociation + differential encoder vulnerability\"\n\n**易错点**:\n- cutoff_15k_s0 的 CAR=0.804 **高于 Full OCC 均值 0.797**——这可能是 seed variance 也可能是真正的非单调 dose-response。s1 结果是关键验证。如果 s1 也高 → 重大发现（早期 gradient flow 最有价值）；如果 s1 低 → seed variance，dose-response 退回单调\n- 不要把 cutoff（after 模式，前 N 步有 gradient flow 后关掉）和 reverse_cutoff（before 模式，前 35K 无 gradient flow 后开启）混淆——它们测的是完全不同的假设\n- westd-34685:cuda:2/3 现在空着 = 失职风险，必须尽快安排\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1779696262.md"
+}

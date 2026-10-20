@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44e9ee3cedce3132ae5f",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops 10894 progress v2",
+  "task_key": "worker_ops_10894-progress-v2_20260526T212413",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_10894-progress-v2_20260526T212413_result.json",
+    "occurrence": 1,
+    "bytes": 1100,
+    "sha256": "c6e4a1c17d87787d66af5b09ff2607b99ff4f1771acfc93609d826a0e535ed69"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n| 实验 | GPU | 当前 step | 进度 | 速度 | 已运行 | ETA |\n|------|-----|----------|------|------|--------|-----|\n| **reverse_cutoff_s2_v2** | cuda:0 | 43075/50005 | **86.1%** | ~1.07 it/s | 12h22m | **~1h48m** (≈07:13 UTC) |\n| **full_occ_ln_v2_s0** | cuda:1 | 10753/50005 | **21.5%** | ~1.00 it/s | 3h00m | **~10h51m** (≈16:16 UTC) |\n| **full_occ_ln_v2_s1** | cuda:2 | 10716/50005 | **21.4%** | ~1.01 it/s | 3h00m | **~10h46m** (≈16:11 UTC) |\n| **detach_ln_v2_s0** | cuda:3 | 10762/50005 | **21.5%** | ~1.01 it/s | 3h00m | **~10h45m** (≈16:10 UTC) |\n\n**Checkpoints:**\n- reverse_cutoff_s2_v2: 30000_chkpt, 40000_chkpt ✓\n- full_occ_ln_v2_s0: 10000_chkpt ✓\n- full_occ_ln_v2_s1: 10000_chkpt ✓\n- detach_ln_v2_s0: 10000_chkpt ✓\n\n**关键信息：**\n- 4 张 GPU 满载（99%/99%/81%/99%），4 个进程全部健康\n- reverse_cutoff_s2_v2 预计 ~07:13 UTC 完成（DDL 前约 29 小时）\n- 其余 3 个实验预计 ~16:10-16:16 UTC 完成（DDL 前约 20 小时）\n- 全部 4 个实验在 5/28 12:00 UTC DDL 前完成，无风险"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-10894-progress-v2.md"
+}

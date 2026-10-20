@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "db0a468fad395795865c",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops kill dup eval and align files",
+  "task_key": "worker_ops_kill-dup-eval-and-align-files_20260521T205703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-dup-eval-and-align-files_20260521T205703_result.json",
+    "occurrence": 1,
+    "bytes": 1039,
+    "sha256": "e7823c3b350e3cae20f63b72b34ad08d91534c3709039d0ac51cbd04bce1816c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n### 1. Kill 确认\n- PID 937783/937784 (occ_s0 50K 50r on cuda:2) — **已杀**\n- PID 939566/939567 (occ_s2 50K 50r on cuda:3) — **已杀**\n- GPU 2/3 已释放（0%, 0 MiB）\n\n### 2. Artifacts 源文件\n- occ_s0 50K 50r → `artifacts/safelibero_libero_spatial_20260521_234842.json`\n- occ_s2 50K 50r → `artifacts/safelibero_libero_spatial_20260522_002946.json`\n\n### 3. eval_results/ 完整清单\n\n| 文件 | rollouts/task | total_eps |\n|------|:---:|:---:|\n| `vanilla_s0_50r.json` | 50 | 500 |\n| `vanilla_s1_50r.json` | 50 | 500 |\n| `occ_s0_47500_50r.json` | 50 | 500 |\n| `occ_s0_50000_50r.json` | 50 | 500 |\n| `occ_s0_50000.json` | 20 | 200 |\n| `occ_s0_final.json` | 20 | 200 |\n| `occ_s2_47500_50r.json` | 50 | 500 |\n| `occ_s2_50000_50r.json` | 50 | 500 |\n| `occ_s2_50000.json` | 20 | 200 |\n| `occ_s2_final.json` | 20 | 200 |\n\n6 个 50r 文件齐全（vanilla_s0/s1, occ_s0/s2 47500, occ_s0/s2 50000）。另有 4 个 20r 文件（occ_s0/s2 的 50000 和 final）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-dup-eval-and-align-files.md"
+}

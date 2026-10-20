@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad1673d16bc4ff64a36e",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "train depth s2 10894",
+  "task_key": "worker_train_depth-s2-10894_20260522T064147",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_depth-s2-10894_20260522T064147_result.json",
+    "occurrence": 1,
+    "bytes": 1323,
+    "sha256": "0220096d46e0c9e164e0c9519d38530002968aa8bdc7aba555792c090433b125"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "磁盘空间不足。westd-10894 只有 **36G 可用**，远低于 100GB 阈值。\n\n**磁盘占用明细（westd-10894 /root/autodl-tmp/checkpoints/）**：\n- ablation_random_occ_s0 — 45G（DONE ✓）\n- ablation_random_occ_s1 — 45G（DONE ✓）\n- ablation_occ_detach_s0 — 45G（DONE ✓）\n- ablation_occ_detach_s1 — 45G（DONE ✓）\n- ablation_random_occ_s2 — 4K（刚开始训练）\n- ablation_occ_detach_s2 — 4K（刚开始训练）\n- 合计 ~180G 被已完成实验的 checkpoint 占用\n\n**单个 depth checkpoint 约 15G**（westd-34685 数据：75G / 5 个 checkpoint）。depth_s2 训练到 50005 步：\n- save_freq=2500 → 20 个 checkpoint → ~300G（不可能）\n- save_freq=10000 → 5 个 checkpoint → ~75G（需要先清理出空间）\n\n**可行方案**：\n如果删除 4 个已完成的 ablation s0/s1 checkpoint（已经 DONE 且有 eval 结果），可释放 180G，总可用 ~216G，足够 depth_s2 甚至 depth_s3。\n\n每个已完成实验都保留了 3 个 checkpoint（30000/40000/50000）和 eval 结果。如果评估已完成且结论已记录，这些 checkpoint 可以安全删除。\n\n**需要你确认**：是否可以删除 westd-10894 上这 4 个已完成 ablation 实验的 checkpoint 目录来腾出空间？还是你想换其他方案？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-depth-s2-10894.md"
+}

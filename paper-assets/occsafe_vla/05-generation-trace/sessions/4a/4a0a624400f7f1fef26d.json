@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a0a624400f7f1fef26d",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_5.md",
+  "task_key": "loop_5",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5.md",
+    "occurrence": 1,
+    "bytes": 4555,
+    "sha256": "a11b326b4a862636853913bbe63214c01a6093da29e82e341ae84de559ed4ecf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-26T19:43:42+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-10894:cuda:0-3 + westd-34685:cuda:0-3，共 8 张，不可用其他\n- westd-34685 eval 时 `MUJOCO_EGL_DEVICE_ID` 必须与 cuda 编号一致（cuda:2→DEVICE_ID=2）\n- cutoff 实验禁止 resume（C002，D044 撤回了 D043 的放宽——batch_idx bug 未修复）\n- conda env 名 `occsafe`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`\n- Checkpoint 目录名格式固定，用 `ls` 确认实际名称再引用，不要拼接猜测\n- CoRL 2026 deadline: Abstract May 26 ✅已完成, Paper May 29（3天）\n\n### 2. 🖥️ 基础设施快照\n- **westd-34685**: 工作目录 `/root/occsafe_vla/openvla-oft`，数据 `/root/autodl-tmp/data/modified_libero_rlds/`，模型 `/root/autodl-tmp/models/openvla-7b`，checkpoint 根目录 `/root/autodl-tmp/checkpoints/`，occ 数据 `/root/occsafe_vla/occ_data`，日志 `~/runs/occsafe_vla/`，磁盘 46%（cleanup daemon active）\n- **westd-10894**: 同结构，磁盘 55%（cleanup daemon active）\n- Python: `/root/miniconda3/bin/python`，conda env: `occsafe`（两台都是）\n- 产出目录：`/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/`\n\n### 3. 📊 当前状态\nSession-start 完成：registry 同步、cron reconcile、Director 汇报均已做。当前 0 Worker，8/8 GPU 满载训练中。\n\n**RUNNING 实验（8 个，全在训练，03:39 UTC 快照）**：\n\n| 服务器:GPU | exp_id | step/50K | 进度 | ETA (UTC May 26) |\n|-----------|--------|----------|------|-------------------|\n| 34685:0 | detach_bn_v2_s0 (D051) | 36035 | 72% | ~07:15 |\n| 34685:1 | detach_bn_v2_s1 (D051) | 36105 | 72% | ~07:15 |\n| 34685:2 | detach_bn_v2_s2 (D051) | 35977 | 72% | ~07:16 |\n| 34685:3 | full_occ_bn_v2_s1 (D051) | 34552 | 69% | ~07:40 |\n| 10894:0 | cutoff_45k_s2_v2 | 35302 | 71% | ~07:40 |\n| 10894:1 | mvp_occ_s3_v2 (s3) | 24095 | 48% | ~10:40 |\n| 10894:2 | full_occ_ln_s3_v2 (s3) | 24008 | 48% | ~10:40 |\n| 10894:3 | ablation_occ_detach_s3_v2 (s3) | 23955 | 48% | ~10:40 |\n\n**等待**：8 个训练 cron 回调。无 pending Worker 回调。\n\n### 4. 📋 待办（条件触发式）\n- D051 训练完成（detach_bn_v2_s0/s1/s2 + full_occ_bn_v2_s1）→ spawn eval workers on 34685 → v2 ANOVA 交互检验 → **Plan A/B 决策**（交互显著→Plan A BN×gradient framing，不显著→Plan B 替代 framing）\n- cutoff_45k_s2_v2 完成 → eval on 10894:0 → 45K 2-seed 数据点（s0=0.764, s2=?）\n- s3 三实验完成（mvp_occ_s3_v2, full_occ_ln_s3_v2, ablation_occ_detach_s3_v2）→ eval → n=4 factorial + 叙事门控（detach s3 CAR <0.750/0.770-0.780/>0.780 三分支）\n- 34685 D051 eval 完成后 4 卡释放 → 重跑 dose-response 3rd seeds（cutoff_15k_s2, cutoff_25k_s2, reverse_cutoff_s2，均 failed 未重跑）\n- 所有 dose-response 3-seed 完成 → 更新图表为 3-seed 版本 → 论文表格 → Director 汇报完整曲线\n- Paper 待办：Experiments 框架 + Intro + Abstract（ROADMAP 标记\"派发中\"，可能前序 loop 已派 Paper Agent）\n\n### 5. 🎯 战略上下文\n- **核心发现 (D037-D042)**：Dual mechanism — BN interference + gradient flow absence。2×2 factorial 交互显著 (p=0.025, η²=0.484)。BN 在有梯度流时是 calibrator（+5.4pp），无梯度流时是 interference（-1.9pp）\n- **D050-D053 危机链**：发现 v1/v2 代码不一致（Full OCC BN v2 CAR=0.746 vs v1 s0=0.832），导致 D051 v2 rebuild 全部 factorial。D051 结果将决定交互效应是否在统一代码版本下成立（存活概率 ~10-15%），Plan B 替代 framing 已准备\n- **Dose-response D041 结论**：s0 的非单调模式是 seed noise。多 seed 趋势：cutoff_15k (0.782) ≈ Vanilla (0.780) > cutoff_25k (0.724) > reverse (0.718)\n- **易错点**：\n  - cutoff_25k seed 方差极大 (s0=0.688, s1=0.760, std=0.051)，不要在 2-seed 基础上做强 claim\n  - `full_occ_retrain_s0_eval_v2` CAR=0.746 远低于原始 s0 的 0.832——这是 v1/v2 代码差异+CUDA 非确定性，不是 bug\n  - Full OCC LN 3-seed CAR=0.743 是负向结果（-5.4pp vs BN），但这是 BN-mediated gradient calibration 叙事的核心证据\n  - CKA 旧数据 (0.539/0.312) 基于 v1 代码已不可信（D049），retrain 版本 CKA 全部 >0.95，s3 是验证点\n  - reverse_cutoff_s2_v2 在 PREPARING(killed) 状态是 orphan，忽略\n  - 10894 当前合法空闲无 eval-pending checkpoint（非失职），但训练完成后必须立即用于 eval\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-copy-2.md"
+}

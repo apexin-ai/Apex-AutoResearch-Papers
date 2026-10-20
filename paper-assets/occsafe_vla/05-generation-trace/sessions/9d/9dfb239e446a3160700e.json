@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9dfb239e446a3160700e",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops verify eval pids westd34685",
+  "task_key": "worker_ops_verify_eval_pids_westd34685_20260523T203727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_eval_pids_westd34685_20260523T203727_result.json",
+    "occurrence": 1,
+    "bytes": 927,
+    "sha256": "71e2655e1aa2f48737acd09b89cd90fa7a9bd1e127b313c09ef772f8cecab4ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**两个 eval 都在正常运行，但日志写到了 `/tmp/` 而非 `/root/runs/`**（`/root/runs/` 下的日志是启动时参数报错的旧日志）。\n\n| Eval | 父 PID | Python PID | GPU | 进度 |\n|------|--------|-----------|-----|------|\n| **cutoff_25k_s0** | 463144 | **463150** | GPU 3 | T2: 40% (20/50), ~4.6s/it |\n| **reverse_cutoff_s0** | 464449 | **464454** | GPU 2 | T2: 16% (8/50), ~4.9s/it |\n\n**GPU 状态**:\n- GPU 0: 99% util, 63GB/98GB — 有其他任务占用\n- GPU 1: 53% util, 63GB/98GB — 有其他任务占用\n- GPU 2: 1% util, 17GB/98GB — reverse_cutoff eval（GPU 利用率低是因为 LIBERO 仿真 CPU-bound）\n- GPU 3: 0% util, 16GB/98GB — cutoff_25k eval\n\n两个 eval 均已正常启动（去掉了 `--num_trials_per_task 50` 参数），正在跑 Task 2 的 rollouts。实际日志路径是 `/tmp/cutoff_25k_s0_eval.log` 和 `/tmp/reverse_cutoff_s0_eval.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-eval-pids-westd34685.md"
+}

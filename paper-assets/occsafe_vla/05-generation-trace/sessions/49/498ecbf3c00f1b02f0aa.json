@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "498ecbf3c00f1b02f0aa",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code prep full occ ln",
+  "task_key": "worker_code_prep_full_occ_ln_20260524T083855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep_full_occ_ln_20260524T083855_result.json",
+    "occurrence": 1,
+    "bytes": 3211,
+    "sha256": "f4181efebb5b193a12f5d31c595ccc2f96f4b2edac3c72c2756b0e50a76252b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果\n\n### 代码确认\n\n- **LN 控制参数**: `--occ_norm_type ln`（finetune.py:98，默认 `\"bn\"`）\n- **实现方式**: `nn.GroupNorm(1, channels)`（occ_head.py:23），等价于 LayerNorm\n- **与 detach 独立**: `occ_norm_type` 和 `occ_detach` 是完全独立的参数，在代码中无任何耦合\n\n### Dry-run 验证（`--occ_detach false --occ_norm_type ln`）\n\n| 指标 | 结果 |\n|------|------|\n| trainable params | **279,977,608** ✅（与 detach_ln 一致）|\n| occ_head params | 1,213,313 |\n| 初始 occ_loss | 0.1192 |\n| 训练速度 | ~1.2-1.6 s/it |\n| 梯度流 | 正常（无 detach）|\n| 状态 | 5 步完成，无错误 |\n\n### 3 个训练命令\n\n**Seed 42 → westd-10894 cuda:1**\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && CUDA_VISIBLE_DEVICES=1 MASTER_PORT=29506 WANDB_MODE=disabled torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach false --occ_norm_type ln --run_root_dir /root/autodl-tmp/checkpoints/full_occ_ln_s0 --seed 42\n```\n\n**Seed 43 → westd-10894 cuda:2**\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && CUDA_VISIBLE_DEVICES=2 MASTER_PORT=29507 WANDB_MODE=disabled torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach false --occ_norm_type ln --run_root_dir /root/autodl-tmp/checkpoints/full_occ_ln_s1 --seed 43\n```\n\n**Seed 44 → westd-10894 cuda:3**\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && CUDA_VISIBLE_DEVICES=3 MASTER_PORT=29508 WANDB_MODE=disabled torchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py --vla_path /root/autodl-tmp/models/openvla-7b --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/ --dataset_name libero_spatial_no_noops --use_l1_regression True --num_images_in_input 2 --use_proprio True --batch_size 8 --learning_rate 5e-4 --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32 --use_occ_head True --occ_data_dir /root/occsafe_vla/occ_data --occ_detach false --occ_norm_type ln --run_root_dir /root/autodl-tmp/checkpoints/full_occ_ln_s2 --seed 44\n```\n\n与 detach_ln 命令的唯一差异：`--occ_detach false`（detach_ln 用 `true`）+ checkpoint 目录名 `full_occ_ln_s{N}`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-full-occ-ln.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75bbaabc93d365f6f518",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "train cutoff 15k s2 v2",
+  "task_key": "worker_train_cutoff_15k_s2_v2_20260525T043235",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_cutoff_15k_s2_v2_20260525T043235_result.json",
+    "occurrence": 1,
+    "bytes": 371,
+    "sha256": "2d1d27c42b25da09bda8977659d1b3bfe5b2a7fd46aaa839e9fa6900a452948a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已提交并在运行中。\n\n**cutoff_15k_s2_v2 训练汇总：**\n- 服务器：westd-34685, cuda:3\n- PID：2475\n- 状态：RUNNING，从 pretrained 从头训练（seed=44）\n- 日志：`~/runs/occsafe_vla/cutoff_15k_s2_v2.log`\n- Checkpoint：`/root/autodl-tmp/checkpoints/cutoff_15k_s2_v2`\n- 速度：~1.0s/it，50K steps 预计约 14 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-cutoff-15k-s2-v2.md"
+}

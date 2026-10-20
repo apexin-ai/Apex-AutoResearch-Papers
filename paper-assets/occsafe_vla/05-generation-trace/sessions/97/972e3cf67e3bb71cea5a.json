@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "972e3cf67e3bb71cea5a",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code occ dryrun mini",
+  "task_key": "worker_code_occ_dryrun_mini_20260520T101527",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_occ_dryrun_mini_20260520T101527_result.json",
+    "occurrence": 1,
+    "bytes": 1498,
+    "sha256": "a3bd5303f9419e94da42fa2de73f9f8ceb59d0c0ff8acf3018e1e482ddc2aeb3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完毕。下面是 **dry-run 完整结果**：\n\n---\n\n## Occ 训练 Mini Dry-Run 结果\n\n### Loss 曲线（20 步）\n\n| Step | loss_value | action_l1 | next_action_l1 | occ_loss |\n|------|-----------|-----------|----------------|----------|\n| 0 | 0.7695 | 0.6250 | 0.7930 | 0.1195 |\n| 5 | 0.9375 | 1.3438 | 0.8789 | 0.0910 |\n| 10 | 0.6289 | 0.6094 | 0.6289 | 0.0695 |\n| 15 | 0.4707 | 0.4648 | 0.4707 | 0.0589 |\n| 19 | 0.5664 | 0.5547 | 0.5664 | 0.0542 |\n\n### 验证结论\n\n1. **occ_loss**: 非零、非 NaN，从 0.1195 单调下降到 0.0542（-55%），FocalLoss 工作正常\n2. **action_loss**: 正常范围（初始 spike 后收敛到 ~0.5），与无 occ head 的 vanilla 训练行为一致\n3. **标签非零**: dummy 数据 ~15% occupied，occ_loss 非零确认标签被正确加载和使用\n4. **无 NaN、无 OOM**: 20 步零错误完成\n5. **VRAM 共存**: 提取进程 10 × 557MiB = 5.6GB + dry-run ~62GB，cuda:3 总 97.9GB 足够\n6. **occ_detach=false**: 梯度回传到 vision encoder 正常（DDP grad stride warning 是已知无害警告）\n7. **occ_index.json 加载成功**: 日志确认 \"Loaded occ index: 10 tasks\"\n8. **occ_head 参数**: 1,213,313（1.2M），相对 action_head 151M 很轻量\n\n### 注意事项\n- 使用的是 dummy 随机 occ 数据（提取进程仍在运行，真实 HDF5 被锁定）\n- 真实数据可用后需要重新验证 occ_loss 的绝对值范围\n- print 语句已回滚，finetune.py 恢复原状"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-occ-dryrun-mini.md"
+}

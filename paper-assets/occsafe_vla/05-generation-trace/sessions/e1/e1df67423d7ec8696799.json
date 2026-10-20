@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1df67423d7ec8696799",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops disk cleanup westd34685",
+  "task_key": "worker_ops_disk-cleanup-westd34685_20260521T190405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk-cleanup-westd34685_20260521T190405_result.json",
+    "occurrence": 1,
+    "bytes": 624,
+    "sha256": "80188e6c7544c9e2dd38056de07918461a093426095256ad7933dcd28b6db863"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。汇总：\n\n| 步骤 | 删除目录 | 释放空间 |\n|------|---------|---------|\n| Step 1 | `occ_s1/` | 90G |\n| Step 2 | `vanilla_s0/`, `vanilla_s1/`, `vanilla_s2/` | 45G |\n| Step 3 | `occ_s1_fresh/--2500_chkpt/`, `--5000_chkpt/` | 30G |\n| **合计** | | **~165G** |\n\n**最终磁盘状态**：350G 总量，113G 已用，238G 可用（33%），从 79% 降至 33%。\n\n**剩余 checkpoints**：\n- `occ_s0/` — 16G\n- `occ_s1_fresh/` — 60G（保留 7500/10000/12500/15000 + latest）\n- `occ_s2/` — 16G\n\n**occ_s1_fresh 当前 step ~16074**，训练正常运行中，未中断。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-westd34685-copy-2.md"
+}

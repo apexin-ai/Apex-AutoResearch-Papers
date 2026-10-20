@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f98f5fbba904cdbb09e",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis fix data and rerun viz",
+  "task_key": "worker_analysis_fix-data-and-rerun-viz_20260521T195354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_fix-data-and-rerun-viz_20260521T195354_result.json",
+    "occurrence": 1,
+    "bytes": 1848,
+    "sha256": "e99b37a7e9a99b48f144bfca23844da6c09cee542e9d35e95e7b8d1c1c5bb6fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。汇总如下：\n\n---\n\n## 产出报告\n\n### 1. 实际使用的 50r 文件\n\n| 文件 | Checkpoint | Rollouts/task | Total |\n|------|-----------|--------------|-------|\n| `vanilla_s0_50r.json` | vanilla_s0/50000 | 50 | 500 |\n| `vanilla_s1_50r.json` | vanilla_s1/50000 | 50 | 500 |\n| `occ_s2_47500_50r.json` | occ_s2/47500 | 50 | 500 |\n\n### 2. 数据传输记录\n\n- `westd-34685:/root/autodl-tmp/checkpoints/occ_s2/eval_47500_50r.json` → `westd-34685:/root/occsafe_vla/eval_results/occ_s2_47500_50r.json` (cp)\n\n### 3. comparison_stats.json 关键结果 (vanilla 2 seeds vs occ 1 seed)\n\n所有 task 的 p 值 > 0.5，无统计显著差异。细节：\n\n| Task | TSR diff (V-O) | CAR diff (V-O) | 备注 |\n|------|---------------|----------------|------|\n| T0 | 0.00 | 0.00 | 完全持平 |\n| T1 | 0.00 | -0.07 [-0.12,-0.03] | OCC CAR 略优 |\n| T2 | -0.04 | -0.03 | OCC 略优 |\n| T3 | +0.04 | +0.07 | Vanilla 略优 |\n| T5 | +0.13 [-0.04,0.29] | -0.07 | TSR vanilla 优，CAR occ 优 |\n| T8 | +0.05 | 0.00 | 差异不大 |\n| T9 | -0.03 | 0.00 | 差异不大 |\n\n### 4. instability_stats.json\n\n**OCC 只有 1 seed，std dev 全为 0，levene_p 全为 null——此分析当前无意义。**\n\nVanilla (N=2): T3 std=0.156 (最不稳定)，其余 0~0.042。\n\n### 5. 剩余数据问题\n\n| 缺失数据 | 现状 | 可否补救 |\n|----------|------|---------|\n| **vanilla_s2 50r** | 只有 20r (westd-10894)，checkpoint 已删除 | ❌ 无法重跑 |\n| **occ_s0 47500 50r** | 只有 20r，**checkpoint 在 westd-34685 可用** | ✅ 可以跑 50r eval |\n\n**建议下一步：** 在 westd-34685 上对 occ_s0 47500 checkpoint 跑 50r eval，拿到后重跑分析可以有 vanilla(2 seeds) vs occ(2 seeds)，seed_instability 分析也才有参考价值。vanilla_s2 50r 永久丢失。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-fix-data-and-rerun-viz.md"
+}

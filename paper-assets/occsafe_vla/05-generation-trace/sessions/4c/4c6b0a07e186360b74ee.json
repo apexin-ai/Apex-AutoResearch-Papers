@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c6b0a07e186360b74ee",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "director / loop_6.md",
+  "task_key": "loop_6",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_6.md",
+    "occurrence": 1,
+    "bytes": 4326,
+    "sha256": "bc81280ee142a1be83ca6e0d323ca0446a34f9646216d09d4539dc6374b5c52d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: max_messages\nupdated: '2026-05-25T03:16:50+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：westd-10894 cuda:0-3 + westd-34685 cuda:0-3，共 8 张，不可用其他服务器/GPU\n- NCCL false-fail 模式：torchrun 训练结束时 `destroy_process_group()` 产生 exit code=1，cron 误判为 failed。收到训练 \"failed\" 通知必须先检查日志 \"Max step reached\" + 50K checkpoint 是否存在，再判断\n- 10894 磁盘紧张（~50G 可用），禁止跨服务器 SCP 大文件或启动新训练。中间 checkpoint（20K/40K）清理指令已发但 Agent 可能尚未执行\n- D043 \"BN coupling crossover\" 假说已被 D044 撤回（s1 CKA=0.965 未复现 s0 的 DINOv2 漂移）。不要用 crossover interaction 叙事\n\n### 2. 🖥️ 基础设施快照\n- **westd-10894**: connect.westd.seetacloud.com, root, 项目路径 /root/occsafe_vla, checkpoints /root/autodl-tmp/checkpoints/\n- **westd-34685**: connect.westd.seetacloud.com, root, 同上路径结构\n- 镜像 aml-train（conda 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- HF_HOME=/root/autodl-tmp/.hf_cache\n- W&B 未配置（WANDB_MODE=disabled）\n- Same-seed 梯度分析 checkpoint 全部在 10894：vanilla_retrain_s0 / full_occ_retrain_s0（SCP 自 34685）/ ablation_occ_detach_s0_retrain / full_occ_ln_s0\n- 活跃进程：10894 上 3 个 eval（full_occ_ln_s1_eval, s2_eval, ablation_retrain_eval）+ CKA s2；34685 上 cutoff_15k_s1_eval + 3 个训练（cutoff_45k_s1, cutoff_25k_s2, reverse_cutoff_s2）\n\n### 3. 📊 当前状态\n**刚做完**：CKA s1 确认 s0 DINOv2 漂移是 outlier（D044），撤回 crossover 假说。综合指令合并混乱队列，8/8 GPU 全满。\n\n**RUNNING**（约 15-30min 内完成）：\n- full_occ_ln_s1_eval, full_occ_ln_s2_eval（10894:0,3）→ 2×2 factorial 3-seed CAR\n- ablation_occ_detach_s0_retrain_eval（10894:2）→ same-seed detach baseline\n- cka_full_occ_ln_s2（10894:1）→ 确认 s0 outlier 的最后数据点\n- cutoff_15k_s1_eval（34685:1）→ dose-response 第二 seed\n\n**RUNNING 训练**（数小时）：\n- cutoff_45k_s1（34685:0, ~20%, ~9h）\n- cutoff_25k_s2（34685:2, ~54%, ~5h）\n- reverse_cutoff_s2（34685:3, ~54%, ~5h）\n\n**等待回调**：4 个 eval + 1 个 CKA 的 Worker done 回调。Agent 队列深度 ~4。\n\n**未执行的已发指令**：10894 中间 checkpoint 清理（90G 可释放）在 Agent 队列中待处理。\n\n### 4. 📋 待办\n- eval 回调到达 → 汇总 2×2 factorial 3-seed 结果表，更新 paper_framing.md 中的 evidence table\n- cka_full_occ_ln_s2 完成 → 如 DINOv2 CKA≈0.96 则 s0 outlier 确认，附录中报告；如异常则重新评估\n- 10894 eval 完成释放 GPU → 立即在 cuda:1 上启动 same-seed 4 条件梯度分析（checkpoint 已就位）\n- cutoff_15k_s1_eval 完成 → 清理 34685 中间 checkpoint（60G），汇报 dose-response 数据\n- cutoff_25k_s2 / reverse_cutoff_s2 完成（~5h）→ eval → 3rd seed 确认 withdrawal 效应\n- cutoff_45k_s1 完成（~9h）→ eval → dose-response 曲线最后数据点\n- 所有 eval/CKA/gradient 分析完成 → 更新 ROADMAP，评估是否具备 CoRL abstract 提交条件\n\n### 5. 🎯 战略上下文\n- **CoRL 2026**：Abstract DDL May 26（今天/明天），Paper DDL May 29\n- **核心叙事**：Dual mechanism — BN interference（表征层面 ~56%）+ gradient flow absence（行为层面 ~44%），representation-behavior dissociation 是核心亮点\n- **Framing**：分析论文（Option B），非方法论文。\"BN interference\" 是单方向效应（仅在无梯度流时有害），不是 crossover\n- **决策链**：D034（dual mechanism）→ D035（representation-behavior dissociation）→ D036（gradient orthogonality）→ D037（differential encoder vulnerability）→ D043（crossover 假说）→ D044（撤回 crossover）\n- **易错点**：\n  1. s0 CKA outlier（DINOv2=0.640）不要用来支持任何 claim，这是种子噪声\n  2. Full OCC vs Vanilla 差异 +1.7pp 不显著，用 \"comparable/maintains\" 不用 \"improves\"\n  3. cutoff 实验的实现是 weight=0 但 forward pass 未停止 = 后半段是 Detach 模式（BN 干扰仍在），不是 Vanilla\n  4. Agent 队列容易堆积，注意检查 depth 再发消息，必要时用 replace_agent_queue 合并\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6.md"
+}

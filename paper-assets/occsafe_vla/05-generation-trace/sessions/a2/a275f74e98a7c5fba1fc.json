@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a275f74e98a7c5fba1fc",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval ablation occ detach s2 50r",
+  "task_key": "worker_eval_ablation_occ_detach_s2_50r_20260522T210654",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_ablation_occ_detach_s2_50r_20260522T210654_result.json",
+    "occurrence": 1,
+    "bytes": 223,
+    "sha256": "02709fdccd64dc2ae1c32603a1e3b85baf4cb94c57f2677abb784e8a82608a87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`ablation_occ_detach_s2` 评估已在 GPU 1 上运行（PID 47839，占用 16760 MiB）。tmux session `eval_detach_s2` 已存在且正在执行，当前进度 Task 0 — 7/50 rollouts。无需重复启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-ablation-occ-detach-s2-50r.md"
+}

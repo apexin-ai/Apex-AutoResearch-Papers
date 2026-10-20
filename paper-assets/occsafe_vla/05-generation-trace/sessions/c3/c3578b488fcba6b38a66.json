@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c3578b488fcba6b38a66",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_8_1780011411.md",
+  "task_key": "loop_8_1780011411",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1780011411.md",
+    "occurrence": 1,
+    "bytes": 3776,
+    "sha256": "4724fe6fd2706b33361c0a22fc8c55175b7882f39f43cca1934c018d3f2c2fcf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-28T23:35:22+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-10894:cuda:0/1/2/3 + westd-34685:cuda:0/1/2/3，共 8 张\n- libero_object OCC pipeline 已被 Director 放弃（post-DDL），不要再启动 OCC 相关的 libero_object 实验\n- v1 数据不纳入 v2 factorial 分析（Director 决策 D070），Cell 1/3 的 v1 s4 eval 数据不计入 v2 n count\n- DDL: SafeRL Workshop @ RSS 2025，**May 28 12:00 UTC**——今天\n\n### 2. 🖥️ 基础设施快照\n- **westd-10894**: 工作目录 `/root/autodl-tmp/`，Python `/root/miniconda3/bin/python`，conda base\n  - 模型：`/root/autodl-tmp/models/openvla-7b`\n  - 数据：`/root/autodl-tmp/data/modified_libero_rlds/`（libero_spatial_no_noops / libero_object_no_noops）\n  - Checkpoints：`/root/autodl-tmp/checkpoints/<exp_id>/`\n  - 日志：`~/runs/occsafe_vla/<exp_id>.log`\n  - 磁盘：426G/879G 可用\n- **westd-34685**: 同结构，磁盘 819G/879G 可用\n- **活跃进程（cron 确认）**:\n  - detach_ln_v2_s4 (PID 822402, westd-10894, GPU 未追踪)\n  - detach_ln_v2_s2 (PID 47162, westd-34685, GPU 未追踪)\n  - vanilla_object_s2 (PID 959808, westd-10894:cuda:3)\n  - full_occ_bn_v2_s3 (PID 959661, westd-10894:cuda:2)\n  - full_occ_bn_v2_s2 (PID 62455, westd-34685:cuda:1)\n  - detach_ln_v2_s3_eval (PID 70950, westd-34685, 无 cron)\n  - full_occ_ln_v2_s3_eval (PID 70951, westd-34685, 无 cron)\n\n### 3. 📊 当前状态\n**刚发生**：vanilla_object_s1 (westd-10894:cuda:0) 失败——\"process dead 5× with no sentinel/W&B\"。已派诊断 Worker (`worker_diagnose_vanilla_object_s1_20260528T073205`) SSH 读日志+检查 checkpoint，**等回调**。\n\n**等待中**:\n- 诊断 Worker 回调 → 决定是否在 cuda:0 重启（但 50k steps ~5-6h 可能超 DDL）\n- detach_ln_v2_s3_eval + full_occ_ln_v2_s3_eval 完成 → Cell 4 n+1, Cell 2 n+1\n- detach_ln_v2_s2 完成 → Cell 4 又一个种子，需要 eval\n- detach_ln_v2_s4 完成 → Cell 4 又一个种子，需要 eval\n- full_occ_bn_v2_s2/s3 完成 → Cell 1 扩种子\n\n**已向 Director 汇报**：vanilla_object_s1 失败 + 诊断已派发 + cuda:0 空闲\n\n### 4. 📋 待办\n- 诊断 Worker 回调 → 若 checkpoint 存在(cron 误报) → update_registry conclusion=success + 启动 eval；若真失败 → 评估剩余时间决定重启或放弃，汇报 Director\n- detach_ln_v2_s3_eval / full_occ_ln_v2_s3_eval 完成 → 收集 CAR metrics → update_registry → 这是 Cell 4 n=3 / Cell 2 n=5 的关键数据\n- 全部 eval 就绪 → 全量数据重跑 ANOVA + Table 1 更新 + 论文编译 + 提交（预留 1h）\n- detach_ln_v2_s2/s4 训练完成 → 立即启动 eval（50-rollout SafeLIBERO）\n- full_occ_bn_v2_s2/s3 完成 → Cell 1 扩种子 eval\n\n### 5. 🎯 战略上下文\n- **核心 claim**: gradient flow 是损害源，detach 后 aux head 无害（≈ Vanilla）。Plan B ordinal interaction framing。\n- **v2 factorial 数据矩阵**:\n  - Cell 1 (Full OCC BN): n=3 confirmed + 2 running (s2,s3)\n  - Cell 2 (Full OCC LN): n=3 confirmed + eval 中 (s3→n=4)\n  - Cell 3 (Detach BN): n=4 confirmed\n  - Cell 4 (Detach LN): n=1 confirmed + eval 中 (s3→n=2) + s2/s4/s0c_r3 在跑或刚完成\n  - Vanilla: n=3 confirmed\n- **Cell 4 n≥3 是 DDL 前的最低目标**，已确认可达\n- **易错点**: detach_ln_v2_s2/s4 的 GPU 映射缺失，不要假设它们在哪张卡上——SSH 查 nvidia-smi 确认。full_occ_ln_v2_s3 和 detach_ln_v2_s3 之前也报 failed (EXIT_CODE=129) 但实际完成了(cron 误报)，vanilla_object_s1 可能同样情况\n- **D074**: Framing 从 \"ordinal interaction\" 转 \"dual\"\n- **统计分析**: P0/P1/P2 已完成（纯 v2 数据），statistical_tests.py 在 CPU 验证中，待 Cell 4 n≥3 后用全量数据重跑\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1780011411.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2cb333ce080de45f8171",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra eval trigger occ salvage",
+  "task_key": "worker_infra_eval-trigger-occ-salvage_20260521T061839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_eval-trigger-occ-salvage_20260521T061839_result.json",
+    "occurrence": 1,
+    "bytes": 496,
+    "sha256": "4f081b3202887a3c795b36a1a19604f4c3f53afcff17f330aa2a8e85ef935a4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本运行正常：\n\n- **PID**: 85512\n- **状态**: 正在每 120 秒轮询，等待 `*--50000_chkpt` 或 `*--7500_chkpt` 出现\n- s0/s2 当前最新 checkpoint 为 47500，最终 checkpoint 尚未生成\n- 脚本检测到 final checkpoint 后会等训练 PID 退出，然后自动在对应 GPU 上启动 eval\n- eval 结果将保存为 `/root/occsafe_vla/eval_results/occ_s0_salvage.json` 和 `occ_s2_salvage.json`\n- 日志: `/root/occsafe_vla/scripts/eval_occ_salvage.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-eval-trigger-occ-salvage.md"
+}

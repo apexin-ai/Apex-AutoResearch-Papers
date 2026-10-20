@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1c192b5c803d1ba26fa",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_5_1779856552.md",
+  "task_key": "loop_5_1779856552",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1779856552.md",
+    "occurrence": 1,
+    "bytes": 5385,
+    "sha256": "2206ef87ce9c5719348ee6b4b78d0e944a7ae50882bfe01067e6f375a4f36adc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-27T04:22:26+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-10894 cuda:0-3, westd-34685 cuda:0-3（共 8 张 RTX PRO 6000 98GB）。白名单外的 GPU 不可用，即使 Director 说也要 push back\n- **Paper DDL: May 28 12:00 UTC**（CoRL 2026）。距提交约 ~9h 修订窗口（截至本 handoff 时）\n- 论文叙事已锁定 Plan B (ordinal interaction)：gradient flow 是损害源，detach 后 aux head 无害（≈ Vanilla）。不要改叙事方向\n- v1 gradient collapse + CKA degradation 数据已被推翻为 bug 产物 (D056/D057)，**禁止引用**。当前可用机制证据仅有：梯度正交性 (cosine≈0) + 方差不对称\n- D067 决策：Detach+LN 标为 v1 数据（$^\\star$），省略 ΔCAR——不要在论文中给 Cell 4 LN 写具体 ΔCAR\n- Binomial test 修正：最多 11/12 ≤ Vanilla（Detach BN 均值 > Vanilla），不是 12/12。11/12 p≈0.003 仍显著\n\n### 2. 🖥️ 基础设施快照\n- **westd-34685**：工作目录 `/root/occsafe_vla`，磁盘 2% used (819GB/879GB 可用)\n- **westd-10894**：工作目录 `/root/occsafe_vla`，driver stuck counter 已修复(M075)，4 GPU 恢复正常\n- Python 路径：两台均为 conda 环境 `/root/miniconda3/bin/python`（aml-train 镜像，不用 venv）\n- 模型/数据：`/root/autodl-tmp/` 或 `/root/occsafe_vla/` 下（具体路径见各实验 spec）\n- **活跃 cron（9 个）**：\n  - 34685: detach_ln_v2_s1_35 (PID 681124, cuda:0), detach_ln_s4 (PID 677568, cuda:1), ablation_occ_detach_s4 (PID 735898, cuda:2), mvp_occ_s4 (PID 736253, cuda:3)\n  - 10894: full_occ_ln_v2_s1c_r2 (PID 481426, cuda:0), full_occ_ln_v2_s2_r2 (PID 481643, cuda:1), detach_ln_v2_s0c_r2 (PID 481988, cuda:2), full_occ_ln_v2_s0d (PID 490803, cuda:3)\n  - 注意：detach_ln_v2_s1_35 和 detach_ln_v2_s1 共享 PID 681124（同一进程两个 registry 条目）\n- **活跃 Worker**：worker_code_eval-anova-batch-prep（运行中，准备 eval + ANOVA 批处理脚本）\n\n### 3. 📊 当前状态\n**刚完成**：D066 核心修订（R1-R4 baseline fix, F1-F7 hedging/LN rationale）已完成。Paper 修订计划 F1-F5 + P1-P5 在 memory.md 中，F1-F5 已执行，P2-P5 trimming 低优先级待做。\n\n**8/8 GPU 满载运行中**：\n| 服务器:GPU | exp_id | Cell | 内容 | ETA (UTC) |\n|-----------|--------|------|------|-----------|\n| 34685:0 | detach_ln_v2_s1_35 | Cell 4 v2, seed 43 | ~27% | ~12:30 May 27 |\n| 34685:1 | detach_ln_s4 | Cell 4 n=5, seed 46 | ~27% | ~12:27 May 27 |\n| 34685:2 | ablation_occ_detach_s4 | Cell 3 n=5, seed 46 | ~22% | ~13:21 May 27 |\n| 34685:3 | mvp_occ_s4 | Cell 1 n=5, seed 46 | ~22% | ~13:15 May 27 |\n| 10894:0 | full_occ_ln_v2_s1c_r2 | Cell 2 v2, seed 43 | ~19% | ~13:39 May 27 |\n| 10894:1 | full_occ_ln_v2_s2_r2 | Cell 2 v2, seed 44 | ~19% | ~13:39 May 27 |\n| 10894:2 | detach_ln_v2_s0c_r2 | Cell 4 v2, seed 42 | ~19% | ~13:39 May 27 |\n| 10894:3 | full_occ_ln_v2_s0d | Cell 2 v2, seed 42 | ~14% | ~14:21 May 27 |\n\n**待处理**：full_occ_ln_s4 (Cell 2 n=5, seed 46) 状态 PREPARING，需要 GPU 释放后提交。但梯度分析优先于新训练。\n\n**等待中**：Worker eval-anova-batch-prep 正在运行，准备 eval 和 ANOVA 批处理脚本。\n\n### 4. 📋 待办（条件触发式）\n- 34685 上 4 个训练完成（ETA ~12:30-13:21 May 27）→ **优先执行 v2 梯度分析（5 条件 全 factorial + Vanilla）**，不是启动新训练\n- 10894 上 4 个训练完成（ETA ~13:39-14:21 May 27）→ 同上，梯度分析优先\n- 梯度分析完成 → 更新论文 method.tex 中梯度相关段落（替换已推翻的 v1 定量数据）\n- 各训练完成 → spawn Worker 跑 50-rollout SafeLIBERO eval（每个 ~50min）\n- eval 全部完成 + Cell 2/4 v2 数据齐全 → 确认性 2×2 ANOVA（全 v2 数据）\n- ANOVA 完成 → 更新论文 results.tex 中的效应量数字（替换 F2 中的 mixed v1/v2 η²/d）\n- P2-P5 trimming 待 Director 指示或 DDL 前执行\n- 编译验证：预留 30min，DDL 前必做\n- Worker eval-anova-batch-prep 完成 → 读取产出，准备 eval 批处理\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D058: 用户确认 Plan B (ordinal interaction) + 用户自行提交论文\n- D060: 论文梯度分析采用双保险——移除 v1 定量数据，计划 v2 梯度分析替换\n- D063: Vanilla n=3 (0.745±0.024) 确立 baseline。Detach BN p=0.28 统计不可区分 Vanilla\n- D066: Reviewer critical——放弃 binomial test 作为主要论证，转向 factorial + ordinal interaction\n- D067: Detach+LN 标为 v1 数据（$^\\star$），省略 ΔCAR\n\n**易错点**：\n- 10894 的 cron 曾误报（torchrun 父进程退出但子进程活跃 → 被标 failed）。遇到 10894 实验 cron 报 failed 时，先 SSH 检查实际训练子进程 PID 再判断\n- 不要把 v1 和 v2 数据混在一起做 ANOVA——当前 Cell 2/4 LN 行数据仍不足（Cell 2 仅 1 个 v2 seed，Cell 4 仅 1 个 v2 seed）。要等正在训练的 v2 seeds 完成\n- full_occ_ln_s4 延后，梯度分析优先——不要因为 GPU 空闲就先提交 full_occ_ln_s4\n- 论文中 η²=0.37 / d=1.41 是混合 v1/v2 ANOVA 结果，正文已加 caveat（F2/F4），全 v2 ANOVA 完成前不要删除 caveat\n- 成功率看起来高（93 success），但大量 failed (20) 多数是 10894 driver 问题和 v2 重建过程中的反复重试，不是方法问题\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1779856552.md"
+}

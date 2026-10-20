@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9be13e2e276204f1dca5",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "investigate cka code diff",
+  "task_key": "worker_investigate_cka_code_diff_20260525T120022",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigate_cka_code_diff_20260525T120022_result.json",
+    "occurrence": 1,
+    "bytes": 4317,
+    "sha256": "5069989e4287c3820339923d3a43270d7dd2df9eb76f0ccbfe0238da5fa6385f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在有完整的证据了。以下是分析报告。\n\n---\n\n## 代码变更时间线与 CKA 矛盾分析\n\n### 1. 时间线\n\n| 时间 | 事件 | 依据 |\n|------|------|------|\n| **May 20 15:06** | occ_head.py **v1** 编译 (Python 3.12 pyc) | pyc 时间戳 |\n| **May 20 19:34** | modeling_prismatic.py 加入 `_cached_patch_features` | file stat |\n| **May 21 07:29** | run_occ_detach.sh 创建 | file stat |\n| **May 21 19:02** | **ablation_occ_detach_s0/s1 启动**（旧代码） | 训练日志 |\n| **May 22 ~09:30** | s0 训练完成 (50K steps) | 日志 |\n| **May 22 14:12** | s2 启动（同一份旧代码） | 训练日志 |\n| **May 23 13:25** | occ_head.py **v2** 修改（加入 `norm_type`, `DepthHead`） | file stat |\n| **May 23 13:27** | v2 编译 (Python 3.10 pyc) | pyc 时间戳 |\n| **May 24 09:05** | cka_analysis.py 创建 | file stat |\n| **May 24~25** | **ablation_occ_detach_s0_retrain 训练**（新代码） | 训练日志 |\n| **May 25 12:33** | finetune.py 最后修改 | file stat |\n\n### 2. occ_head.py 旧版 vs 新版（反编译 pyc 确认）\n\n**旧版 (May 20 pyc)**：\n```python\nclass BEVOccupancyHead:\n    def __init__(self, in_dim, out_resolution=64, num_classes=1,\n                 hidden_dim=256, num_patches_per_image=256):\n        # 无 norm_type 参数\n        # 硬编码 nn.BatchNorm2d(128) 和 nn.BatchNorm2d(64)\n# 仅 BEVOccupancyHead + FocalLoss，无 DepthHead\n```\n\n**新版 (May 23)**：\n```python\nclass BEVOccupancyHead:\n    def __init__(self, ..., norm_type=\"bn\"):\n        def _norm(channels):\n            return GroupNorm(1, ch) if norm_type == \"ln\" else BatchNorm2d(ch)\n# 新增 DepthHead + DepthLoss\n```\n\n**两者默认都是 BatchNorm2d → norm 类型本身没有区别。**\n\n### 3. finetune.py 差异证据\n\n所有 OCC 代码从未 commit（git diff 全部是 `+` 行），因此只能通过间接证据推断 May 21 版本：\n\n| 特征 | 原始训练 (May 21) | 重训 (May 24+) |\n|------|-------------------|----------------|\n| `[AUX]` 日志行 | **无** (175行日志全无) | **有** (`[AUX] step=...`) |\n| `norm_type` 传参 | **不可能**（旧 occ_head 不接受此参数） | 有 (`cfg.occ_norm_type`) |\n| `occ_detach` 实现 | **无法确认** | 确认存在 (line 484-485) |\n| `gradient_step_idx` 位置 | loss 计算之后 | 移到 loss 计算之前 |\n\n### 4. 根因判断\n\n**原始 May 21 代码极有可能没有正确实现 `occ_detach`。**\n\n核心证据链：\n1. CKA=0.539/0.312 → 说明 backbone 特征发生了显著改变 → OCC 梯度**确实流回了 backbone**\n2. CKA=0.964/0.953 (retrain) ≈ Vanilla CKA=0.968/0.955 → detach 正确工作时，backbone 几乎不变\n3. 旧代码处于早期/不完整状态（无 `[AUX]` 日志、无 `norm_type` 支持、无 `DepthHead`）\n4. `occ_head.py` 在 May 23 被修改 → **finetune.py 也很可能同期被修改**以适配新 API\n5. `cka_same_seed` 中 \"Detach+BN\" (retrain) 的 CKA 完美符合理论预期\n\n**最可能的失败模式**：\n\n旧版 `run_forward_pass` 没有 `if occ_detach: patch_features = patch_features.detach()` 这行代码（或 `occ_detach` 参数虽然在 config 中定义但未传入 forward），导致 OCC loss 梯度直通 backbone。实际运行等效于 **Full OCC（非 detach）**。\n\n### 5. BN 行为说明\n\n这不是 BN 问题。原因：\n- CKA 测量的是 **vision backbone**（DINOv2/SigLIP）的特征，这些使用 **LayerNorm**，不含 BatchNorm\n- OCC head 内部的 BN 仅影响 OCC head 自身的 running stats，与 CKA 测量目标无关\n- `detach()` 发生在 backbone forward pass **之后** → 即使 detach 不存在，backbone 的 BN 行为也相同\n- `detach()` 只影响反向传播的梯度流，不影响前向传播中 BN 的 running stats 更新\n\n### 6. 结论\n\n**CKA 矛盾的根因不是 BN 行为差异，而是旧代码缺失 detach 实现。** 原始训练实际上是一个 \"Full OCC\" 训练（OCC 梯度流回 backbone），而非 detach 训练。重训修复了这个问题。\n\n原始 `ablation_occ_detach_s0` checkpoint 已被删除，无法直接验证。但 `cka_same_seed` 分析显示当前代码的 \"Detach+BN\" CKA (0.964/0.953) 与 \"Vanilla\" (0.968/0.955) 高度一致，确认现有 detach 实现正确。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-cka-code-diff.md"
+}

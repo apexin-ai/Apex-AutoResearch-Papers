@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "83450a4c27004d8a99d2",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_3_1779766644.md",
+  "task_key": "loop_3_1779766644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1779766644.md",
+    "occurrence": 1,
+    "bytes": 4189,
+    "sha256": "12064837fa60f7251917cbd0c25cf57b3251b10c6ac4d83609eb191218e016d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-25T20:27:25+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-10894:cuda:0-3 + westd-34685:cuda:0-3，其他一律不用\n- C002：cutoff 系列实验禁止 resume（M052 教训，batch_idx bug 导致 cutoff 从未触发）。必须 from scratch\n- WANDB_MODE=disabled（本项目训练全部关闭 W&B，cron 靠日志 + 进程监控）\n- conda env 名为 `occsafe`（不是 base），激活方式：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`\n- CoRL 2026 deadline：Abstract May 26, Paper May 29——一切实验调度以此倒排\n\n### 2. 🖥️ 基础设施快照\n- **westd-34685**：工作目录 `/root/occsafe_vla/openvla-oft`，Python `/root/miniconda3/envs/occsafe/bin/python`\n- **westd-10894**：同上结构\n- 模型：`/root/autodl-tmp/models/openvla-7b`\n- 数据：`/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops`\n- OCC 数据：`/root/occsafe_vla/occ_data`\n- Checkpoints：`/root/autodl-tmp/checkpoints/{exp_id}/`\n- 日志：`~/runs/occsafe_vla/{exp_id}.log`\n- 活跃进程（registry RUNNING，但 SSH 可达性待确认）：\n  - cutoff_45k_s1_v2: PID 96645, westd-34685:cuda:0\n  - cutoff_15k_s2: PID 94304, westd-34685:cuda:1\n  - full_occ_retrain_s0_eval: PID 14967, westd-10894:cuda:1\n\n### 3. 📊 当前状态\n**刚发生的事**：cron 回调报告 cutoff_25k_s2 和 reverse_cutoff_s2 失败，原因均为\"SSH check failed 5x — Unable to connect to port 34685\"。两者此前在 westd-34685:cuda:2/3 上运行，最后已知进度约 77%（step ~38500/50K）。同服务器 cuda:0/1 上的实验仍标记为 RUNNING，高概率是 SSH 临时中断导致误判。\n\n**已派发未回调的 Worker**：\n- `worker_diagnose_cutoff_25k_s2_reverse_cutoff_s2_20260525T042041`：SSH 到 westd-34685 检查进程存活 + GPU 状态 + 日志尾部。回调后根据结果决定：进程仍活则恢复 RUNNING + 重建 cron；已死则从日志诊断原因并重提交\n\n**已汇报 Director**：告知 SSH 中断告警 + 诊断 Worker 已派发，等回调后再汇报确认结果\n\n**Registry 概览**：79 实验，63 success / 6 negative / 3 failed / 4 killed / 3 RUNNING\n\n**空闲 GPU**：westd-10894:cuda:0,2,3（Director 上一轮已催促填满，P0 待办）\n\n### 4. 📋 待办（条件触发式）\n- 诊断 Worker 回调 → 若进程仍活：`update_registry` 恢复 RUNNING + `register_cron` 重建监控；若已死：从日志定位 root cause → 重提交（用原始 spec 中的 command，注意 C002 不 resume）\n- cutoff_25k_s2 训练完成 → spawn eval Worker（50r SafeLIBERO eval），结果补全 dose-response 3rd seed\n- reverse_cutoff_s2 训练完成 → 同上 eval\n- cutoff_45k_s1_v2 完成 → eval（这是 C002 修复后的首个有效 seed）\n- cutoff_15k_s2 完成 → eval → 3rd seed 完成后 cutoff@15K 有 3-seed 均值\n- full_occ_retrain_s0_eval 完成 → 更新 2×2 factorial 数据，same-seed s0 baseline 确认\n- **gradient_analysis_same_seed registry 未更新到 DONE**（Director 已催 4 次）→ 立即 update_registry\n- westd-10894:cuda:0,2,3 空闲 → 填满（可跑 eval 或下一轮 seed replication）\n\n### 5. 🎯 战略上下文\n- **核心结论**：BN×gradient flow 交叉交互显著（2×2 ANOVA p=0.025, η²=0.484）。D042 机制：LN 导致 DINOv2 梯度被抑制 3.5×、SigLIP 被放大 2.5×，BN 起 gradient calibration 作用\n- **论文状态**：v42 已 23/24 coverage，D042 patch 已入论文（ANOVA + 梯度机制 + CKA 修正）。Abstract deadline 明天（May 26）\n- **当前实验目标**：dose-response 3rd seed（cutoff_15k/25k/45k + reverse_cutoff 各需 seed 44 数据点），用于收窄 CI、支撑论文 claims\n- **易错点**：\n  - westd-34685 SSH 不稳定——如果诊断发现进程仍活，不要重提交（会产生重复进程），而是恢复 registry + 重建 cron\n  - cutoff 实验绝对不能用 `--resume`，必须 from scratch（C002）\n  - 10894:0,2,3 空闲是 P0 问题，Director 已多次催促，新 session 启动后优先处理\n  - gradient_analysis_same_seed 已 success 但 registry 未标 DONE，这是第 4 次被提醒，立刻更新\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1779766644.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93f9a937170015b7fb80",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_3_1779737007.md",
+  "task_key": "loop_3_1779737007",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1779737007.md",
+    "occurrence": 1,
+    "bytes": 4725,
+    "sha256": "433e734c90186aeee4346bdb3f03253cdbfb893aa5b1cd60737276d213f4b478"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-25T19:23:27+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-34685:cuda:0,1,2,3 + westd-10894:cuda:0,1,2,3，共 8 张，超出必须 push back Director\n- westd-10894 根分区只有 ~425GB 可用（50% 已用），checkpoint 必须放 /root/autodl-tmp/；westd-34685 根分区 819GB 可用（2%），相对宽裕\n- eval 脚本必须带 `MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID={gpu_id}`，否则渲染失败\n- cutoff 系列训练的 occ_head 在 cutoff step 后仍做 forward（只是 detach gradient），不是完全关闭——这是 D030 确认的关键实现细节，影响 framing 措辞\n- 论文 deadline：CoRL 2026 Abstract May 26（1天），Paper May 29（4天）\n\n### 2. 🖥️ 基础设施快照\n- **westd-34685**：工作目录 `/root/occsafe_vla/openvla-oft`，Python `/root/miniconda3/envs/occsafe/bin/python`，conda env `occsafe`（激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`）\n- **westd-10894**：同上结构，conda env `occsafe`\n- 模型 checkpoint：`/root/autodl-tmp/checkpoints/{exp_name}/`\n- 数据集：libero_spatial（SafeLIBERO），eval 用 50 rollouts seed 42\n- W&B：项目名 `occsafe_vla`，训练 run 有 W&B，eval run 一般 WANDB_MODE=disabled\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 活跃进程（westd-34685）：\n  - cutoff_45k_s1: PID 20913, tmux, cuda:0\n  - cutoff_25k_s2: PID 998127, tmux, cuda:2\n  - reverse_cutoff_s2: PID 998624, tmux, cuda:3\n- westd-10894：当前无活跃进程，4 GPU 全空闲\n\n### 3. 📊 当前状态\n刚收到 `cutoff_15k_s1_eval` 完成回调（ANALYZING），已派 3 个 Worker 并行分析：\n1. **worker_analysis_cutoff_15k_s1_eval** — 读日志提取 eval 结果，s0 CAR=0.804，验证 s1 是否确认非单调 dose-response\n2. **worker_analysis_full_occ_ln_s1_eval** — full_occ_ln s1 eval 也在 ANALYZING，一并处理\n3. **worker_analysis_full_occ_ln_s2_eval** — full_occ_ln s2 eval 也在 ANALYZING，一并处理\n\n以上 3 个 Worker 回调**尚未到达**，下一个 session 需要处理这些回调结果。\n\nRegistry RUNNING：\n- `cutoff_45k_s1` — 34685:cuda:0，~35%，ETA May 25 ~10:24 UTC\n- `cutoff_25k_s2` — 34685:cuda:2，~6%，ETA May 25 ~14:04 UTC\n- `reverse_cutoff_s2` — 34685:cuda:3，~6%，ETA May 25 ~14:11 UTC\n\nwestd-10894 全部 4 GPU 空闲 + westd-34685:cuda:1 空闲 = **5 GPU 空闲，违反 L1 红线 #6**。需要立即安排实验或向 Director 汇报。\n\n### 4. 📋 待办（条件触发式）\n- **3 个 Worker 回调到达** → 读取 metrics，整合 cutoff_15k 2-seed 均值 + full_occ_ln 3-seed 均值，更新 report.md，向 Director 汇报 dose-response 曲线进展 + 2×2 factorial 完成情况\n- **cutoff_15k_s1_eval 结果出来** → 如果 s1 CAR 接近 s0 的 0.804（≥0.75），确认非单调 dose-response 是真实 pattern；如果大幅偏低，标记为 seed variance。两种情况都需要 dose-response 曲线更新\n- **full_occ_ln 3-seed 结果全出** → 完成 2×2 factorial 表格（BN/LN × Gradient/No-Gradient），这是论文核心 Table\n- **cutoff_45k_s1 完成** → 提交 eval（westd-34685:cuda:0 释放后立即用），补齐 dose-response 最后一个 2-seed 点\n- **cutoff_25k_s2 / reverse_cutoff_s2 完成** → 提交 eval，3rd seed 确认 withdrawal instability pattern\n- **5 GPU 空闲** → 立即检查 experiment_plan.yaml 是否有可提交实验（特别是 10894 的 4 GPU），或向 Director 汇报并申请任务\n\n### 5. 🎯 战略上下文\n- **核心发现**：Dual mechanism（BN interference + gradient flow absence）+ differential encoder vulnerability + continuity principle。详见 D030-D042 决策链\n- **dose-response 曲线**（已有 1-seed 数据）：15K cutoff CAR=0.804 > Full OCC 0.797 > cutoff_35k 0.770 > 25K 0.688-0.760 > 45K 0.764。15K 意外最高，暗示非单调关系——early gradient flow 足够，late gradient flow 可能有 BN interference 累积效应\n- **D044 撤回了 D043**：CKA crossover interaction 假说被 s1 数据推翻（s1 CKA=0.965 正常），s0 DINOv2 drift（CKA=0.640）是 seed-specific outlier\n- **易错点**：\n  - cutoff 的 \"15K\" 指前 15K steps 有 gradient flow，之后 detach。不是\"在 15K step 停止训练\"\n  - eval 用 50 rollouts × seed 42，所有实验统一。per-task variance 很大（T5 普遍低，T7/T9 是 representation-fragile tasks）\n  - full_occ_ln 实验在 10894 上从 20K step 恢复过（磁盘满事故），训练完整性没问题但 wall-clock 时间不反映实际训练时长\n  - 不要把 cutoff_s2_v2_eval（CAR=0.770，这是 35K cutoff seed 44）和 cutoff_s0（35K cutoff seed 42）搞混——命名不一致是历史遗留\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1779737007.md"
+}

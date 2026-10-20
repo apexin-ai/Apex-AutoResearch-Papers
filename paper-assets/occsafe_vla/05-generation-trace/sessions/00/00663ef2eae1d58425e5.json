@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "00663ef2eae1d58425e5",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "check cka script verify",
+  "task_key": "worker_check_cka_script_verify_20260525T144509",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_cka_script_verify_20260525T144509_result.json",
+    "occurrence": 1,
+    "bytes": 1327,
+    "sha256": "122520171c38823e98bb9a29174ee6cb9638ed903c72ed5a40becb9696c6ada3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证结果汇总：\n\n### 1. run_command.sh — 存在且完整\n- 激活 `conda activate occsafe` 环境\n- checkpoint 搜索模式：`${CKPT_DIR}/*50000_chkpt`，其中 `CKPT_DIR` = `/root/autodl-tmp/checkpoints/ablation_occ_detach_s3/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--ablation_occ_detach_s3`\n- 使用 `CUDA_VISIBLE_DEVICES=3`，`--gpu 0`\n- 输出到 `/root/autodl-tmp/analysis/cka_s3_verification/`\n\n### 2. cka_analysis.py — JSON summary 确认\n- L8: `import json`\n- L216: 构建 `cka_results[\"summary\"]`\n- L227: 写入 `cka_results.json`\n- L229: `json.dump(cka_results, f, indent=2)`\n\n输出格式正确。\n\n### 3. checkpoint 路径匹配\n当前 s3 checkpoint 目录下有：\n- 训练中目录（无 `_chkpt` 后缀）\n- `10000_chkpt`（已保存）\n\n50K checkpoint 保存后文件名将是 `...--50000_chkpt`，与 `run_command.sh` 中 `*50000_chkpt` glob 模式**匹配**。无需修改。\n\n### 4. pretrained baseline 模型\n`/root/autodl-tmp/models/openvla-7b/` 存在，包含完整模型文件（3 个 safetensors 分片 + tokenizer + config）。\n\n### 结论\n脚本有效，路径全部匹配，无需修改。s3 训练到 50K step 后直接执行 `bash /root/autodl-tmp/analysis/cka_s3_verification/run_command.sh` 即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-cka-script-verify.md"
+}

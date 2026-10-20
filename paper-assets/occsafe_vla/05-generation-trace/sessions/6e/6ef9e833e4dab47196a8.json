@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6ef9e833e4dab47196a8",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops kill rerun and transfer 50r",
+  "task_key": "worker_ops_kill-rerun-and-transfer-50r_20260522T024744",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-rerun-and-transfer-50r_20260522T024744_result.json",
+    "occurrence": 1,
+    "bytes": 2073,
+    "sha256": "de438efbecb1b94002a0f337387014009cc95b0827aa62f0308ef26162c7fa8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## Report\n\n### Part A — Kill `eval_random_s0_rerun`\nKilled successfully (completed in earlier context). GPU released on westd-10894.\n\n### Part B — Copy ablation files to standard paths\nAll 4 files at standard paths on westd-10894 `/root/occsafe_vla/eval_results/`:\n- `ablation_occ_detach_s0_50r_50000.json` (236297 bytes)\n- `ablation_random_occ_s0_50r_50000.json` (236170 bytes)\n- `ablation_occ_detach_s1_50r_50000.json` (236226 bytes)\n- `ablation_random_occ_s1_50r_50000.json` (236219 bytes)\n\n### Part C — File transfer\nAll 4 files transferred from westd-10894 → westd-34685 via direct SCP relay (bypassed earlier base64 corruption issue by setting up key-based SSH from this machine to westd-10894). File sizes verified identical.\n\n### Part D — Diagnostic output\n\n**Case Diagnosis:** Majority of tasks (6/10) fall into **Case B: Spatial signal useless**\n\nPer-task breakdown:\n\n| Task | full_occ CAR | detach CAR | random CAR | vanilla CAR | Δ_detach | Δ_random | Case |\n|------|-------------|-----------|-----------|------------|----------|----------|------|\n| T0 | 0.98 | 0.97 | 0.99 | 0.98 | +0.01 | -0.01 | B |\n| T1 | 0.93 | 0.90 | 0.99 | 0.93 | +0.03 | -0.06 | D |\n| T2 | 0.91 | 0.93 | 0.94 | 0.91 | -0.02 | -0.03 | B |\n| T3 | 0.25 | 0.17 | 0.40 | 0.37 | +0.08 | -0.15 | C |\n| T4 | 0.99 | 0.97 | 1.00 | 0.99 | +0.02 | -0.01 | B |\n| T5 | 0.20 | 0.05 | 0.24 | 0.07 | +0.15 | -0.04 | B |\n| T6 | 0.44 | 0.47 | 0.58 | 0.55 | -0.03 | -0.14 | C |\n| T7 | 0.99 | 1.00 | 0.94 | 0.97 | -0.01 | +0.05 | D |\n| T8 | 1.00 | 0.99 | 1.00 | 1.00 | +0.01 | 0.00 | B |\n| T9 | 1.00 | 1.00 | 0.98 | 1.00 | 0.00 | +0.02 | B |\n\nCase counts: A=0, B=6, C=2, D=2\n\n**Generated charts** (in `/root/occsafe_vla/openvla-oft/analysis/output/`):\n- `ablation_car_comparison.pdf/png` — CAR comparison across all 4 conditions\n- `ablation_tsr_comparison.pdf/png` — TSR comparison across all 4 conditions\n- `diagnostic_matrix.pdf/png` — Per-task case classification heatmap\n- `diagnostic_report.json` — Full numerical report"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-rerun-and-transfer-50r.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8ac15fd504681804384",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops download random occ cka",
+  "task_key": "worker_ops_download_random_occ_cka_20260524T053655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_download_random_occ_cka_20260524T053655_result.json",
+    "occurrence": 1,
+    "bytes": 422,
+    "sha256": "db5850c53816d1f88c09c0ed1cbd068ad1e217ff07c8e079b6f22e1a87370ab0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。3 个文件已下载并注册：\n\n| 文件 | 本地路径 | Artifact ID |\n|------|---------|-------------|\n| `cka_random_occ_results.json` | `artifacts/cka_random_occ_results.json` | `art_20260524_9cf129` |\n| `cka_random_occ.pdf` | `artifacts/figures/cka_random_occ.pdf` | `art_20260524_3dd47c` |\n| `cka_random_occ.png` | `artifacts/figures/cka_random_occ.png` | `art_20260524_7c7ac4` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-download-random-occ-cka.md"
+}

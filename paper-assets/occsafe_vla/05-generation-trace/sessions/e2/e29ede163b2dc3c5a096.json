@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e29ede163b2dc3c5a096",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval quick status check",
+  "task_key": "worker_eval_quick-status-check_20260522T021523",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_quick-status-check_20260522T021523_result.json",
+    "occurrence": 1,
+    "bytes": 797,
+    "sha256": "16cb66d15035096f4a36ee0a764829007f9e242ac2eb6671c8154fadb2432ef6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Eval 状态汇总\n\n### 结果文件\n全部 6 个 50r 结果文件 **均未生成**，eval 全部还在跑。\n\n### 4 个 GPU 上的 Eval 进程\n\n| GPU | PID | 实验 | 当前进度 | 启动时间 |\n|-----|-----|------|----------|----------|\n| GPU 0 | 632709 | `ablation_occ_detach_s0` | T9: 50% (25/50) | 09:34 |\n| GPU 1 | 615702 | `ablation_random_occ_s0` | T9: 68% (34/50) | 09:32 |\n| GPU 2 | 760227 | `ablation_occ_detach_s1` | T4: 16% (8/50) | 10:00 |\n| GPU 3 | 760427 | `ablation_random_occ_s1` | T4: 20% (10/50) | 10:00 |\n\n每个进程占用 ~16.7GB 显存。\n\n### 进度估算\n- **s0 两组**（GPU 0/1）：已跑到 Task 9（共 10 个 task），约还需 15-25 分钟完成\n- **s1 两组**（GPU 2/3）：才跑到 Task 4，约还需 40-50 分钟完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-quick-status-check.md"
+}

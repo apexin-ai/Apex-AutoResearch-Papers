@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "760cf2bbb887ead9ff58",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops post restart status check",
+  "task_key": "worker_ops_post-restart-status-check_20260527T133906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_post-restart-status-check_20260527T133906_result.json",
+    "occurrence": 1,
+    "bytes": 1900,
+    "sha256": "1f906185cdc44dfdfd2e7802230716c2d6b2fc411a66dbfc637d0abd78d596a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-34685\n\n| 实验 | 类型 | GPU | PID 状态 | 进度/Step | 备注 |\n|------|------|-----|---------|----------|------|\n| detach_ln_v2_s1_35_eval | eval | 0,1 | 735898 alive (S, 13h21m) | T4: 29/50 (58%) | 正常运行 |\n| detach_ln_s4_eval | eval | 0,1 | 735898 (同上) | Tasks 2/10, T1: 24/50 (48%) | 正常运行 |\n| ablation_occ_detach_s4 | train | 2 | 736253 alive (S, 13h21m) | 48572/50005 (97%) | ETA ~22min, ~1.08it/s |\n| mvp_occ_s4 | train | 3 | 736253 (同上) | 48442/50005 (97%) | ETA ~24min, ~1.08it/s |\n\nGPU 使用：0/1 低占用(17GB/98GB, 7-56%)，2/3 满载(62-63GB, 97-99%)\n\n## westd-10894\n\n| 实验 | 类型 | GPU | PID 状态 | 进度/Step | 备注 |\n|------|------|-----|---------|----------|------|\n| full_occ_ln_v2_s1c | train | 0 | 481426 alive (R, 13h02m) | 44384/50005 (89%) | ETA ~1h27m, chkpt=40000 |\n| full_occ_ln_v2_s2 | train | 1 | 481643 alive (R, 13h02m) | 44597/50005 (89%) | ETA ~1h24m, chkpt=40000 |\n| detach_ln_v2_s0c_r3 | train | 2 | 543255 alive (S, 4h56m) | 15993/50005 (32%) | ETA ~8h52m, chkpt=10000 |\n| full_occ_ln_s4 | train | 3 | 553813 alive (S, 4h26m) | 14163/50005 (28%) | ETA ~9h18m, chkpt=10000 |\n\nGPU 使用：全部满载(62-63GB/98GB, 93-99%)\n\n**异常记录：**\n- `detach_ln_v2_s0c_r3` 的旧日志 (`/root/runs/occsafe_vla/detach_ln_v2_s0c.log`) 显示之前崩溃过（exitcode 1, 14:29:15），但已被重启（PID 543255, 4h56m），当前日志在 `/root/autodl-tmp/checkpoints/detach_ln_v2_s0c_r3.log`，正常训练中。\n\n**DDL 风险评估（2026-05-28 12:00 UTC）：**\n- westd-34685 两个训练实验 ~30min 内完成，无风险\n- westd-10894 的 s1c/s2 ~1.5h 后完成，无风险\n- detach_ln_v2_s0c_r3 ETA ~8.9h → 约 UTC 23:30 完成，无风险\n- full_occ_ln_s4 ETA ~9.3h → 约 UTC 00:00 May 28 完成，无风险\n\n**全部 8 个实验进程存活，无需干预。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-post-restart-status-check.md"
+}

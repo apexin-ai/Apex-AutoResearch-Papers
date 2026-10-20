@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22717e18d7c4deb39071",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose 10894 processes",
+  "task_key": "worker_diagnose_10894_processes_20260525T172721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_10894_processes_20260525T172721_result.json",
+    "occurrence": 1,
+    "bytes": 1269,
+    "sha256": "1cf7a198ec2b8597ce754293e6e3afc05303f23639dacc25c4d484a7333e154a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 10894 进程诊断\n\n**根因：服务器被重启**（PID 1 = boot.sh 启动于 01:18，所有训练 PID 不存在，4 张 GPU 全部空闲 0%/0MiB）。\n\n| exp_id | pid | 存活? | 最后step | 状态判断 | checkpoint |\n|--------|-----|-------|---------|---------|------------|\n| mvp_occ_s3 | 256611 | ❌ | ~20423/50005 (41%) | 服务器重启被杀 | 10k, 20k merged chkpt ✅ |\n| cutoff_45k_s2 | 74225 | ❌ | ~26480/50005 (53%) | 服务器重启被杀 | 10k, 20k merged chkpt ✅ |\n| full_occ_ln_s3 | 256695 | ❌ | ~20398/50005 (41%) | 服务器重启被杀 | 10k, 20k merged chkpt ✅ |\n| ablation_occ_detach_s3 | 257041 | ❌ | ~20376/50005 (41%) | 服务器重启被杀 | 10k, 20k merged chkpt ✅ |\n\n**关键发现：**\n\n- **4 个实验全部非正常完成**，均未到达 step 50005，是被服务器重启中断的\n- **mvp_occ_s3** 不是正常完成后被误判 — 它确实在 step ~20423 处被杀，只完成了 41%\n- **cutoff_45k_s2** 进度最高（53%，step ~26480），但受 C002 约束不能 --resume，需从头重训\n- 每个实验都有 `latest` + `10000_chkpt` + `20000_chkpt` 三个 checkpoint 目录\n- 日志中最后一条 AUX 输出均正常（无 OOM/CUDA error），纯粹是进程被外部杀死"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-10894-processes.md"
+}

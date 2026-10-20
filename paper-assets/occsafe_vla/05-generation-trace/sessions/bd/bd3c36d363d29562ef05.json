@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd3c36d363d29562ef05",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis detach ln s2 eval",
+  "task_key": "worker_analysis_detach_ln_s2_eval_20260524T082934",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_detach_ln_s2_eval_20260524T082934_result.json",
+    "occurrence": 1,
+    "bytes": 616,
+    "sha256": "45981934559a3a3fdfdeb9ad6c3b829100d5c7dd8295f4996f02e8fcef1747c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`detach_ln_s2_eval` 已更新为 DONE。\n\n**结果汇总 — Detach+LN seed 44 (s2)：**\n\n| | TSR | CAR |\n|---|---|---|\n| **Overall** | **0.884** | **0.748** |\n\nPer-task:\n\n| Task | TSR | CAR |\n|------|-----|-----|\n| T0 | 1.00 | 0.96 |\n| T1 | 0.98 | 0.86 |\n| T2 | 0.92 | 0.94 |\n| T3 | 1.00 | 0.32 |\n| T4 | 0.98 | 0.94 |\n| T5 | 0.18 | 0.12 |\n| T6 | 0.98 | 0.36 |\n| T7 | 0.92 | 1.00 |\n| T8 | 0.88 | 0.98 |\n| T9 | 1.00 | 1.00 |\n\n与 s1 (TSR=0.906, CAR=0.756) 对比，s2 的 TSR 略低（-0.022），CAR 相当（-0.008）。T3/T5/T6 仍是 CAR 薄弱点，模式与 s0/s1 一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-detach-ln-s2-eval.md"
+}

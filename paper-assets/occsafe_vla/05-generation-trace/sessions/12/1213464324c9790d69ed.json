@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1213464324c9790d69ed",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code n5 expansion prep",
+  "task_key": "worker_code_n5-expansion-prep_20260526T202905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_n5-expansion-prep_20260526T202905_result.json",
+    "occurrence": 1,
+    "bytes": 690,
+    "sha256": "f763b8b004f2ea8aaaa5fb8f043d067a3d979b8e766a88e11418d777f7e0f127"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文档已生成并注册：`artifacts/n5_expansion_launch_commands.md`\n\n内容包含：\n- **Phase 1**: 4 个 eval 命令（vanilla_v2_s1/s2, detach_ln_s3, cutoff_25k_s1_v2），各绑定对应 GPU，MUJOCO_EGL_DEVICE_ID 已匹配\n- **Phase 2**: 4 个 n=5 训练命令（seed=46），GPU 分配按任务要求：cuda:0→detach_ln_s4, cuda:1→ablation_occ_detach_s4, cuda:2→full_occ_ln_s4, cuda:3→mvp_occ_s4\n- GPU 分配表、前置条件检查清单、时间估算\n\n有一个需要确认的点：eval 脚本名在任务中是 `safelibero_eval.py`，但 registry 历史记录中是 `evaluate_safelibero.py`，启动前需确认 34685 上实际存在的文件名。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-n5-expansion-prep.md"
+}

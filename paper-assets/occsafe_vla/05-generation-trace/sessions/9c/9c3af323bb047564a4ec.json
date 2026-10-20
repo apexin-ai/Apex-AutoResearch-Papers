@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c3af323bb047564a4ec",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops progress check 34685",
+  "task_key": "worker_ops_progress-check-34685_20260522T070720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_progress-check-34685_20260522T070720_result.json",
+    "occurrence": 1,
+    "bytes": 898,
+    "sha256": "b5dd9c9db43f5e6d9b21f172898e1521adb631ff0e3c1bf341217e83ac8bb76c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\ndepth_s0:  step 14230/50005 (28.5%), depth_loss=0.0251, action_loss=0.1050, speed=~1.07 it/s\ndepth_s1:  step 14235/50005 (28.5%), depth_loss=0.0166, action_loss=0.1099, speed=~1.07 it/s\ncutoff_s0: step  1739/50005 ( 3.5%), occ_loss=0.0172, action_loss=0.1533, speed=~1.08 it/s\ncutoff_s1: step  1740/50005 ( 3.5%), occ_loss=0.0145, action_loss=0.2246, speed=~1.08 it/s\n\nGPU utilization: cuda:0 99%, cuda:1 80%, cuda:2 99%, cuda:3 50%\nGPU memory: 全部 ~62G/98G\n\nDisk: 350G total, 319G used, 32G avail (91%)\nCheckpoints: depth_s0 75G, depth_s1 75G, cutoff_s0 4K, cutoff_s1 4K\n```\n\n**注意：** cutoff_s0 和 cutoff_s1 明显是最近重启过的——运行仅 ~34 分钟，step 才到 1700 附近，checkpoint 目录为空。depth 两组运行约 4 小时，已保存了 12500 step 的 checkpoint。磁盘 91% 使用需留意，两个 depth checkpoint 各占 75G。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-progress-check-34685.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04bcaf0d91805cb415b7",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ssh audit occ data 34685",
+  "task_key": "worker_ssh_audit-occ-data-34685_20260528T225633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_audit-occ-data-34685_20260528T225633_result.json",
+    "occurrence": 1,
+    "bytes": 2398,
+    "sha256": "6af1136f7d2d8a9cda6f13b7341ed5596386d1bbb2ddc6f9182dab9f15f54726"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。以下是完整审计结果。\n\n---\n\n## M096 审计结果：westd-34685 occ_data_dir 和 occ_loss\n\n### 1. RUNNING 实验完整命令行（PID 19218）\n\n```\ntorchrun --standalone --nnodes 1 --nproc-per-node 1 vla-scripts/finetune.py\n  --vla_path /root/autodl-tmp/models/openvla-7b\n  --data_root_dir /root/autodl-tmp/data/modified_libero_rlds/\n  --dataset_name libero_spatial_no_noops\n  --use_l1_regression True --use_diffusion False --use_film False\n  --num_images_in_input 2 --use_proprio True --batch_size 8\n  --learning_rate 5e-4 --num_steps_before_decay 100000\n  --max_steps 50005 --save_freq 10000 --image_aug True --lora_rank 32\n  --run_root_dir /root/autodl-tmp/checkpoints/full_occ_bn_v2_s2_r2\n  --run_id_note full_occ_bn_v2_s2_r2 --seed 44\n  --use_occ_head True --occ_detach False --occ_norm_type bn\n```\n\n**没有 `--occ_data_dir` 参数。**\n\n### 2. occ_loss 对比（按是否加载了 occ 数据分组）\n\n#### occ 数据已加载（日志中有 `Loaded occ index: 9 tasks, 55370 samples`）\n\n| 实验 | 启动日期 | step=0 occ_loss | 最终 occ_loss |\n|---|---|---|---|\n| full_occ_bn_v2_s1 | 05/26 | **0.1853** | 0.0100 (step 50000) |\n| detach_bn_v2_s0 | 05/26 | **0.1014** | 0.0095 (step 50000) |\n| detach_ln_v2_s1 | 05/27 | **0.1963** | 0.0325 (step 200, 进行中) |\n\n#### occ 数据未加载（日志中无 occ preload 行）\n\n| 实验 | 启动日期 | occ_loss | 状态 |\n|---|---|---|---|\n| full_occ_bn_v2_s2 | 05/28 | **0.0000 始终** | 运行中 ~24000步 |\n| full_occ_bn_v2_s2_r2 (RUNNING) | 05/29 | **0.0000 始终** | 运行中 ~12500步 |\n| detach_ln_v2_s2 | 05/28 (resume) | **0.0000 始终** | 已完成 |\n| full_occ_ln_v2_s3 | 05/28 | **0.0000 始终** | 进行中 |\n| detach_ln_v2_s3 | 05/28 | **0.0000 始终** | 进行中 |\n\n### 3. 结论\n\n**05/26-27 启动的实验**正确加载了 `/root/occsafe_vla/occ_data/occ_index.json`（9 tasks, 55370 samples），occ_loss 非零且正常下降。\n\n**05/28 之后启动的所有实验**均未加载 occ 数据，occ_loss 从 step 0 起恒为 0.0000。occ_head 虽然被创建（参数 1,213,313），但从未接收到训练信号，**等同于 vanilla baseline + 死权重**。\n\n当前 RUNNING 的 `full_occ_bn_v2_s2_r2` 属于后者——occ_loss=0.0000 到 step 12500，这个实验产出的 checkpoint 在 occ 维度上无意义。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-audit-occ-data-34685.md"
+}

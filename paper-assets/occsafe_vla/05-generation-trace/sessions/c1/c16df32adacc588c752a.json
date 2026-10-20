@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c16df32adacc588c752a",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis cutoff 45k s2 v2",
+  "task_key": "worker_analysis_cutoff_45k_s2_v2_20260526T075923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cutoff_45k_s2_v2_20260526T075923_result.json",
+    "occurrence": 1,
+    "bytes": 1797,
+    "sha256": "148dc359be052ffaf34beb0d194dfdb7816e855763d7e0aa36415fb460712939"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完成。汇总如下：\n\n---\n\n## cutoff_45k_s2_v2 训练结果\n\n**状态**: 正常完成，50005/50005 steps，EXIT_CODE=0\n\n**最终指标** (step 50000):\n| Metric | Value |\n|--------|-------|\n| action_loss | 0.0703 |\n| occ_loss | 0.0080 |\n| depth_loss | 0.0000 |\n| 训练时长 | ~14.3h |\n\n**Checkpoint**: `/root/autodl-tmp/checkpoints/cutoff_45k_s2_v2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--cutoff_45k_s2_v2--50000_chkpt`\n\n**W&B**: 未启用，日志中无 wandb 记录。\n\n---\n\n### cutoff_45k 系列对比\n\n| 实验 | Status | action_loss | occ_loss | Eval TSR | Eval CAR |\n|------|--------|-------------|----------|----------|----------|\n| cutoff_45k_s0 | DONE/success | — | — | 0.896 | 0.764 |\n| cutoff_45k_s1 | killed | — | — | — | — |\n| cutoff_45k_s1_v2 | failed | — | — | — | — |\n| cutoff_45k_s1_v3 | failed | — | — | — | — |\n| **cutoff_45k_s2_v2** | **DONE/success** | **0.0703** | **0.0080** | **待 eval** | **待 eval** |\n\n**s1 全部失败**，无法做完整 3-seed 对比。目前只有 s0 和 s2 两个 seed 成功训练完成。\n\n### 与 baseline 对比（训练 loss）\n\n| 实验 | action_loss | occ_loss |\n|------|-------------|----------|\n| mvp_occ_s0 (Full OCC BN) | — | — |\n| full_occ_retrain_s0 | 0.0417 | 0.0104 |\n| cutoff_45k_s2_v2 | 0.0703 | 0.0080 |\n\ncutoff_45k_s2_v2 的 action_loss (0.0703) 明显高于 full_occ_retrain_s0 (0.0417)，但 occ_loss (0.008) 略低。这与 cutoff 的设计预期一致——45k step 后切断 OCC 梯度，action_loss 没有 OCC 辅助信号的持续帮助，收敛稍差。\n\n### 需要启动 eval\n\n是，cutoff_45k_s2_v2 训练完成，需要启动 eval 以获取 TSR/CAR 指标。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cutoff-45k-s2-v2.md"
+}

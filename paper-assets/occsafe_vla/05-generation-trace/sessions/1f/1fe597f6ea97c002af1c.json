@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1fe597f6ea97c002af1c",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_5_1779854484.md",
+  "task_key": "loop_5_1779854484",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1779854484.md",
+    "occurrence": 1,
+    "bytes": 4804,
+    "sha256": "faee51954adbb3060cd2a343a85df88995af7ed6f3442b8bc394b8011e662ffa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-27T03:38:58+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-10894 cuda:0-3 + westd-34685 cuda:0-3（共 8 卡）\n- 10894 根分区小，大文件必须放 `/root/autodl-tmp/`，HF_HOME=/root/autodl-tmp/.hf_cache\n- full_occ_ln 训练使用 `--occ_norm_type ln`（不是默认 BN）\n- eval 命令必须带 `MUJOCO_EGL_DEVICE_ID=N MUJOCO_GL=egl`，否则渲染失败\n- Resume 实验 eval 时取 **local step=30000 checkpoint**（= 总 50K steps），不是 50000_chkpt\n- torchrun 训练退出常报 exit_code=1（destroy_process_group warning），是 false positive——检查 checkpoint 存在 + final step 即可\n- v1/v2 代码不等价（D050/D052）：v1 Full OCC BN CAR=0.832 vs v2 CAR=0.746，禁止跨版本直接比较\n- CoRL 2026: Abstract ✅, Paper May 29\n\n### 2. 🖥️ 基础设施快照\n- **westd-10894**: 工作目录 `/root/occsafe_vla/openvla-oft`，Python `/root/miniconda3/bin/python`，conda env `occsafe`（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`）\n- **westd-34685**: 同上结构\n- 模型 base: `/root/autodl-tmp/models/openvla-7b`\n- 数据集: `/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops`（训练）、`libero_spatial`（eval）\n- Checkpoints: `/root/autodl-tmp/checkpoints/{exp_name}/`\n- Eval 日志: `~/runs/occsafe_vla/{exp_id}.log`\n- W&B: WANDB_MODE=disabled\n- 磁盘: 10894 ~50% used（425GB 可用），34685 ~2% used（819GB 可用）\n\n### 3. 📊 当前状态\n**刚做的事**: Loop #5 session-start。发现 10894 cuda:1/2/3 的 3 个 eval jobs 被上轮 submit_training_job 启动（有 PID）但状态卡在 PREPARING。已手动推进 PREPARING→QUEUED→ALLOCATED→RUNNING 并注册 cron 监控。已向 Director 汇报。已派 Worker（worker_check_eval_status_10894）验证进程存活，尚未回调。\n\n**RUNNING (8/8 GPU)**:\n\n| 服务器:GPU | 实验 | 类型 | ETA (UTC) |\n|-----------|------|------|-----------|\n| 10894:0 | reverse_cutoff_s2_v2 | 训练 | ~May 27 06:40 |\n| 10894:1 | mvp_occ_s3_v2_eval | eval (Cell 1 s3, pid 186624) | ~12:10 |\n| 10894:2 | full_occ_ln_s3_v2_eval | eval (Cell 2 s3, pid 186832) | ~12:10 |\n| 10894:3 | ablation_occ_detach_s3_v2_eval | eval (Cell 3 s3, pid 189896) | ~12:10 |\n| 34685:0 | vanilla_v2_s1 (seed 43) | 训练 | ~May 27 05:30 |\n| 34685:1 | vanilla_v2_s2 (seed 44) | 训练 | ~May 27 05:30 |\n| 34685:2 | detach_ln_s3 (seed 45, Cell 4) | 训练 | ~May 27 05:40 |\n| 34685:3 | cutoff_25k_s1_v2 (seed 43) | 训练 | ~May 27 06:00 |\n\n**PREPARING (7)**:\n- v2 rebuild: full_occ_ln_v2_s0, full_occ_ln_v2_s1, detach_ln_v2_s0（等 10894 eval 完后启动）\n- n=5 expansion: detach_ln_s4, ablation_occ_detach_s4, full_occ_ln_s4, mvp_occ_s4（低优先级，等 GPU）\n\n**等待中**: Worker worker_check_eval_status_10894 回调（验证 eval 进程存活）\n\n### 4. 📋 待办\n- **worker_check_eval_status_10894 回调** → 确认 3 个 eval 存活；若死亡则重新提交\n- **10894 eval cron 回调（~12:10 UTC）** → 提取 CAR 结果 → update_registry(conclusion, metrics) → 立即在 10894:1/2/3 启动 v2 rebuild 训练（full_occ_ln_v2_s0 on cuda:1, full_occ_ln_v2_s1 on cuda:2, detach_ln_v2_s0 on cuda:3）\n- **v2 rebuild 训练完成（~May 26 23:10）** → 提交 eval → Cell 2/4 v2 数据点\n- **34685 训练完成（~May 27 05:30-06:00）** → 提交 eval（vanilla_v2_s1/s2, detach_ln_s3, cutoff_25k_s1_v2）\n- **全 v2 factorial 数据齐全（~May 27 18:00）** → 确认性 2×2 ANOVA → framing 最终决策（Plan A/B） → Paper Agent 启动\n\n### 5. 🎯 战略上下文\n**核心问题**: D050 发现所有 BN=v1 代码、所有 LN=v2 代码，2×2 factorial 的交互效应 p=0.025 不可信。D051 用 v2 重建全部 4 格。\n\n**已有 v2 数据**:\n- Cell 1 (Full OCC BN): s0=0.746, s1=0.654 → mean=0.700±0.065（很低）\n- Cell 3 (Detach BN): s0=0.774, s1=0.736, s2=0.762 → mean=0.757±0.019\n- Vanilla v2: s0=0.768（s1/s2 在训练）\n- Cell 2/4: 仅 v1 数据，v2 数据待补\n\n**Pattern**: Gradient OFF > ON (ordinal)；ALL OCC ≤ Vanilla。交互效应存活概率 ~10-15%，Plan B（ordinal interaction / mechanism analysis）已准备。\n\n**易错点**:\n- cka_full_occ_ln_s0 DINOv2 CKA=0.640 是 seed-specific outlier（D039 已撤回 crossover 假说），不要基于此构建 narrative\n- dose-response 数据全为 v1 代码，内部一致但不可与 v2 实验比较\n- 10894 torchrun exit_code=1 常是 false positive，必须检查 checkpoint 而非信 exit code\n- v2 梯度分析（D056/D057）推翻了 v1 的 gradient collapse + CKA degradation，当前可用机制证据仅有梯度正交性（cosine≈0）\n- submit_training_job 有时不完整更新状态（本轮就遇到了 PREPARING 卡住），需要手动检查 + 修复\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1779854484.md"
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "3d353b403293f02855e1",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "analysis cka dose response",
+  "task_key": "worker_analysis_cka_dose_response_20260525T054451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cka_dose_response_20260525T054451.log",
+    "occurrence": 1,
+    "bytes": 937099,
+    "sha256": "64960e3777bd62d160074ab81811e1cfce9319c19d8becf4d068b3e28acad7fb"
+  },
+  "statistics": {
+    "messages": 320,
+    "user_turns": 1,
+    "tool_calls": 108,
+    "roles": {
+      "log": 1,
+      "system": 35,
+      "record": 1,
+      "assistant": 65,
+      "tool_call": 108,
+      "tool_result": 108,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 182,
+      "chunks": [
+        {
+          "path": "3d353b403293f02855e1-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "3d353b403293f02855e1-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 138,
+      "chunks": [
+        {
+          "path": "3d353b403293f02855e1-part-0002.json",
+          "message_count": 138
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-cka-dose-response.md"
+}

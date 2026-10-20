@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "afd2755a0c196dd8ae9b",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diag server state check",
+  "task_key": "worker_diag_server_state_check_20260520T092535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_server_state_check_20260520T092535_result.json",
+    "occurrence": 1,
+    "bytes": 1297,
+    "sha256": "6d6519a16ba016f8be839d3b3f06148517e0f92cd0ed9202d28d624523b92eeb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**三个实验全部在正常训练中，registry 状态滞后。**\n\n### 训练进程状态\n\n| 实验 | PID | GPU | VRAM | 启动时间 | 当前 Step | 速度 | tmux session |\n|------|-----|-----|------|----------|-----------|------|-------------|\n| vanilla_s0 | 100203 | GPU 0 | 63.0 GB | 17:22 | **178**/50005 | ~1.02s/it | vanilla_s0 (pts/0) |\n| vanilla_s1 | 97847 | GPU 1 | 62.2 GB | 17:20 | **277**/50005 | ~1.06s/it | vanilla_s0 (pts/1) |\n| vanilla_s2 | 98174 | GPU 2 | 62.2 GB | 17:20 | **274**/50005 | ~1.04s/it | vanilla_s0 (pts/2) |\n\nGPU 利用率：GPU 0 35%, GPU 1 42%, GPU 2 99%, GPU 3 空闲。\n\n### extract_occupancy.py 进程\n\n10 个进程在跑（task_id 0-9），全部在 CPU 上运行，每个占 ~2.4 GB RAM，每个在 GPU 0 上占 557 MiB VRAM（总计 ~5.6 GB）。从 15:23 起运行至今。\n\n### 磁盘\n\n`/root/autodl-tmp`: 37G / 250G used, **214G 可用 (15%)**，充足。\n\n### 结论\n\n三个实验**确实在训练**，自动重试成功。s1/s2 于 17:20 启动，s0 晚 2 分钟于 17:22 启动，目前 s1/s2 已跑约 275 步，s0 约 178 步。按当前速度 (~1.05s/step)，50005 步预计总耗时约 **14.5 小时**，大约在明天 08:00 左右完成。Registry 的 DONE(failed) 状态需要更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-server-state-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6bb005a33103eebf8e7",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops 10894 disk cleanup",
+  "task_key": "worker_ops_10894_disk_cleanup_20260524T175145",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_10894_disk_cleanup_20260524T175145_result.json",
+    "occurrence": 1,
+    "bytes": 1284,
+    "sha256": "784e3bbfc47dafc6c0e53e57e613d9619c40c71f3e63d32319b842217d122218"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。**已释放 75G，可用空间从 740K → 75G（71% 使用率）**。\n\n## 当前状态\n\n### 保留的 checkpoints (140G)\n| 实验 | 保留内容 | 大小 |\n|------|---------|------|\n| detach_ln_s0/s1/s2 | 50000 步 (final) | 15G × 3 |\n| cutoff_s2_v2 | 50000 步 (final) | 15G |\n| ablation_random_occ_s2 | 50000 步 (final) | 15G |\n| full_occ_ln_s0 | 30000 步 | 15G |\n| full_occ_ln_s1 | 20000 步 + 损坏的 30000 步 (5.5G) | 21G |\n| full_occ_ln_s2 | 20000 步 + 损坏的 30000 步 (2.5M) | 15G |\n| ablation_occ_detach_s0_retrain | 20000 步 + 损坏的 30000 步 (532K) | 15G |\n\n### 需要你决策的事项\n\n1. **3 个损坏的 30000 步 checkpoint** — full_occ_ln_s1 (5.5G)、full_occ_ln_s2 (2.5M)、ablation_occ_detach_s0_retrain (532K) 均写入不完整，无法用于恢复。这 3 个实验恢复时只能从 **20000 步** 重启。要删除这些损坏文件吗？\n\n2. **`runs/...--100_chkpt`** (15G) — 这是 step 100 的非常早期的 checkpoint，还需要保留吗？删除可再释放 15G。\n\n3. **75G 够用吗？** — full_occ_ln_s0 正在运行（step ~30755），下次保存在 step 40000。3 个崩溃实验恢复后各需约 15G 保存新 checkpoint。75G 可以覆盖约 5 个 checkpoint 的写入。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-10894-disk-cleanup.md"
+}

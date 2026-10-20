@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "d6eaa8ef643413c7a0d6",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "code occ gt pipeline continue",
+  "task_key": "worker_code_occ-gt-pipeline-continue_20260520T065536",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_occ-gt-pipeline-continue_20260520T065536.log",
+    "occurrence": 1,
+    "bytes": 845731,
+    "sha256": "77b21945c4cf2171b383f9e2e46efd12ef9271cf9d934c9918fe3a9b7e9f8a44"
+  },
+  "statistics": {
+    "messages": 547,
+    "user_turns": 0,
+    "tool_calls": 206,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 130,
+      "tool_call": 206,
+      "tool_result": 206,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 547,
+      "chunks": [
+        {
+          "path": "d6eaa8ef643413c7a0d6-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d6eaa8ef643413c7a0d6-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d6eaa8ef643413c7a0d6-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "d6eaa8ef643413c7a0d6-part-0004.json",
+          "message_count": 7
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-occ-gt-pipeline-continue.md"
+}

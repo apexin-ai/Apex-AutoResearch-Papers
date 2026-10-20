@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60ed9bd6b8efc8928114",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops cleanup invalid ablation output",
+  "task_key": "worker_ops_cleanup-invalid-ablation-output_20260521T205424",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup-invalid-ablation-output_20260521T205424_result.json",
+    "occurrence": 1,
+    "bytes": 669,
+    "sha256": "836e7574de63760c8996eb73ad42222be34e2003bc1595a2fa09b87060fa15ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n### 产出\n\n1. **删除的文件**（7个，目录已清空后自动移除）：\n   - `diagnostic_report.json`\n   - `ablation_car_comparison.pdf` / `.png`\n   - `ablation_tsr_comparison.pdf` / `.png`\n   - `diagnostic_matrix.pdf` / `.png`\n\n2. **创建了 `analysis/ablation_diagnostic.py`**，guard 逻辑：\n   - `--detach` 和 `--random` 为必需参数\n   - 启动时逐个检查所有传入的 JSON 文件是否存在\n   - 缺失则立即 `sys.exit` 并打印明确错误信息，禁止 fallback\n\n3. **Guard 验证通过**：传入不存在的路径时正确输出 `ERROR: ablation eval data not found: /nonexistent/file.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-invalid-ablation-output.md"
+}

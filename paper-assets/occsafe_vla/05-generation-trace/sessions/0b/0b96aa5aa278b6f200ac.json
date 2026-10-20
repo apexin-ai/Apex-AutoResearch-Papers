@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b96aa5aa278b6f200ac",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_4_1779824622.md",
+  "task_key": "loop_4_1779824622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1779824622.md",
+    "occurrence": 1,
+    "bytes": 5436,
+    "sha256": "6a19c707fa699a2f1a69554fa9b100a752c942f1af841b7f9c0cde55ae1bdcc1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-26T12:35:56+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-10894:cuda:0-3 + westd-34685:cuda:0-3，其他一律不用\n- C002：cutoff 系列实验禁止 resume，必须 from scratch（M052 教训，batch_idx bug）\n- WANDB_MODE=disabled（本项目训练全部关闭 W&B，cron 靠日志 + 进程监控）\n- conda env 名为 `occsafe`（不是 base），激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`\n- CoRL 2026 deadline：Abstract May 26（今天！），Paper May 29\n- v1/v2 代码不等价——Full OCC BN 同种子差 8.6pp CAR，跨版本数据不可直接比较\n- Resume 实验 eval 时取 local step=30000 checkpoint（= 全局 50K steps）\n\n### 2. 🖥️ 基础设施快照\n- **westd-34685**：工作目录 `/root/occsafe_vla/openvla-oft`，Python `/root/miniconda3/envs/occsafe/bin/python`，磁盘 2% used (819GB 可用)\n- **westd-10894**：同上结构，磁盘 50% used (425GB 可用)\n- 模型：`/root/autodl-tmp/models/openvla-7b`\n- 数据：`/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops`\n- OCC 数据：`/root/occsafe_vla/occ_data`\n- Checkpoints：`/root/autodl-tmp/checkpoints/{exp_id}/`\n- 日志：`~/runs/occsafe_vla/{exp_id}.log`\n- 活跃进程（reconcile 已确认 still running）：\n  - detach_bn_v2_s0: PID 5086, westd-34685:cuda:0, ETA ~May 26 07:00\n  - detach_bn_v2_s1: PID 2786, westd-34685:cuda:1, ETA ~May 26 07:00\n  - detach_bn_v2_s2: PID 3003, westd-34685:cuda:2, ETA ~May 26 07:00\n  - full_occ_bn_v2_s1: PID 7347, westd-34685:cuda:3, ETA ~May 26 07:30\n  - cutoff_45k_s2_v2: PID 4212, westd-10894:cuda:0, ETA ~May 26 06:30\n\n### 3. 📊 当前状态\n**刚发生的事**：reconcile_crons 发现 mvp_occ_s3_v2 EXIT_CODE=1 → DONE(failed)。report.md 显示 ablation_occ_detach_s3_v2 和 full_occ_ln_s3_v2 也在之前几分钟失败。三个 s3 resume 实验全部在 10894:cuda:1,2,3 上几乎同时挂掉（20:25-20:28 UTC），运行约 2.8h（~10K local steps），均 EXIT_CODE=1。\n\n**已派发未回调的 Worker（5 个）**：\n- `worker_diagnose_mvp_occ_s3_v2_20260525T203037`：我刚 spawn，SSH 到 10894 查 mvp_occ_s3_v2 日志 + 进程 + checkpoint\n- `worker_diagnose_full_occ_ln_s3_v2_20260525T202749`：前一轮 spawn，诊断 full_occ_ln_s3_v2\n- `worker_diagnose_ablation_occ_detach_s3_v2_20260525T202800`：前一轮 spawn，诊断 ablation_occ_detach_s3_v2\n- `worker_infra_eval-prestage-s3-d051_20260525T202557`：eval 预准备\n- `worker_research_paper-data-aggregation_20260525T202620`：论文数据汇总\n\n**已汇报 Director**：告知 3 个 s3 实验全失败 + 3 GPU 空闲 + 诊断 Worker 已派发\n\n**Registry**：104 实验，65 success / 6 negative / 17 failed / 5 killed / 5 RUNNING / 5 PREPARING / 1 QUEUED(killed)\n\n**空闲 GPU**：westd-10894:cuda:1,2,3（P0 红线违规！）\n\n**gradient_analysis_same_seed**：已确认 registry 状态为 DONE/success，handoff 提到的遗留问题已解决。\n\n### 4. 📋 待办（条件触发式）\n- 3 个诊断 Worker 任一回调 → 读日志根因。若进程实际完成（训练到了 local 30K = 全局 50K）只是退出码异常 → 检查 checkpoint 完整性 → 可直接进 eval。若真失败 → 根据根因决定重提交方案（注意 mvp_occ_s3_v2 是 Full OCC BN 可以 resume，但如果是代码 bug 则需修复后从头跑）\n- 诊断完成后 → 10894:cuda:1,2,3 必须立即重新填满（重启 s3 或启动 PREPARING 队列中的 s4 实验）\n- detach_bn_v2_s0/s1/s2 完成（~May 26 07:00）→ spawn eval Worker（50r SafeLIBERO eval），结果用于 v2 2×2 factorial Detach BN 格\n- full_occ_bn_v2_s1 完成（~May 26 07:30）→ eval → 与 mvp_occ_s0 v1 CAR=0.904 对比，确认 v2 代码影响\n- cutoff_45k_s2_v2 完成（~May 26 06:30）→ eval → dose-response 45K 3rd seed\n- 所有 D051 eval 完成 → v2 2×2 ANOVA 计算 → framing 决策（Plan A vs Plan B）\n- eval-prestage Worker 回调 → 确认 eval 脚本就绪\n- paper-data-aggregation Worker 回调 → 整合数据到论文\n\n### 5. 🎯 战略上下文\n- **核心问题**：BN×gradient flow 交互效应是否在 v2 代码下存活？D050 发现所有 BN=v1、所有 LN=v2，交互效应可能是代码版本混淆。D051 用 v2 代码重建 factorial 4 格（detach_bn_v2 s0/s1/s2 + full_occ_bn_v2_s1 正在跑）。交互存活概率 ~10-15%，Plan B 替代 framing 已准备。\n- **叙事门控**：s3 实验（mvp_occ_s3_v2 / ablation_occ_detach_s3_v2 / full_occ_ln_s3_v2）的 CAR 决定 Branch A/B/C。但这三个刚全挂了，诊断中。\n- **时间线极紧**：Abstract 今天（May 26），Paper May 29。D051 预计 May 26 07:00-07:30 完成训练，~10:00 eval 出结果 → framing 决策，然后只剩 2-3 天写论文。\n- **易错点**：\n  1. 三个 s3 实验同时失败高度可疑——可能是 10894 服务器问题而非代码问题。诊断时优先检查 dmesg / 系统日志\n  2. s3 resume 实验用的是 v2 代码 + 20K checkpoint（v2 代码生成的 checkpoint）。如果需要从头重跑，命令参考 full_occ_bn_v2_s1 的 spec（完整 torchrun 命令，不用 resume）\n  3. 不要把 v1 数据和 v2 数据混在同一个 ANOVA 里\n  4. cutoff 实验（cutoff_45k_s2_v2 在跑）绝对不能 resume（C002）\n  5. PREPARING 队列里有 5 个实验（s3/s4 系列），但它们是 n=5 扩展，优先级低于 s3 叙事门控实验的重启\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1779824622.md"
+}

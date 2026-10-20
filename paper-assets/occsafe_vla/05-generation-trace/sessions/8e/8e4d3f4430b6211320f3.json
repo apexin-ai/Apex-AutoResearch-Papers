@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8e4d3f4430b6211320f3",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "check server status 10894",
+  "task_key": "worker_check_server-status-10894_20260527T033803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_server-status-10894_20260527T033803_result.json",
+    "occurrence": 1,
+    "bytes": 1067,
+    "sha256": "53d4470328aa01e925f91cc5d91be419b70c2e8d23f0ebc2479466c23f2b2e54"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-10894 训练状态报告\n\n### GPU 状态\n| GPU | 利用率 | 显存使用 |\n|-----|--------|----------|\n| 0 | 99% | 62.2 / 97.9 GB |\n| 1 | 92% | 62.2 / 97.9 GB |\n| 2 | 99% | 62.2 / 97.9 GB |\n| 3 | 99% | 62.2 / 97.9 GB |\n\n### 训练进度（4/4 运行中）\n| 实验 | GPU | PID | Step | 进度 | 速度 | 预计剩余 |\n|------|-----|-----|------|------|------|----------|\n| full_occ_ln_v2_s1c | 0 | 481426 | ~10964/50005 | 22% | ~1.08 it/s | ~10h |\n| full_occ_ln_v2_s2 | 1 | 481643 | ~10947/50005 | 22% | ~1.07 it/s | ~10h |\n| detach_ln_v2_s0c | 2 | 481988 | ~10934/50005 | 22% | ~1.08 it/s | ~10h |\n| full_occ_ln_v2_s0d | 3 | 490883 | ~8437/50005 | 17% | ~1.06 it/s | ~11h |\n\n前3个已跑~3h，s0d 晚启动约40min（已跑~2h20m）。按当前速度，预计完成时间：\n- s1c/s2/s0c: ~May 28 00:00-01:00 UTC\n- s0d: ~May 28 01:30-02:00 UTC\n\n全部在 DDL (May 28 12:00 UTC) 前完成，余量充足。\n\n### 已完成实验 50K checkpoint\n- **full_occ_ln_s3_v2**: 存在\n- **ablation_occ_detach_s3_v2**: 存在"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-server-status-10894.md"
+}

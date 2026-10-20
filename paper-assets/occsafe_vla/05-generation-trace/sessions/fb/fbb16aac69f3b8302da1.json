@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fbb16aac69f3b8302da1",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ssh kill and restart 34685",
+  "task_key": "worker_ssh_kill-and-restart-34685_20260528T230832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill-and-restart-34685_20260528T230832_result.json",
+    "occurrence": 1,
+    "bytes": 562,
+    "sha256": "e79481447861b56cab3455d91ff93fc0ce6ea9d03091aeab14795365ebc37d13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**全部验证通过。最终判定：成功。**\n\n| 检查项 | 结果 |\n|--------|------|\n| GPU 僵尸进程清理 | westd-34685 GPU 已清空（0 MiB → 重启后 63940 MiB） |\n| tmux session | `full_occ_bn_v2_s2_r5` 存在，TMUX_OK |\n| 进程存活 | PID 30149，占用 63940 MiB GPU 显存 |\n| Occ 数据加载 | Occ preload done: 9 files, 55370 条目 |\n| occ_loss | step=0, occ_loss=0.1422 > 0 |\n| 错误/异常 | 无 traceback、无 exception |\n| 训练速度 | ~1.03 s/it，已到 step 14，预计约 14.4h 完成 50005 步 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-and-restart-34685.md"
+}

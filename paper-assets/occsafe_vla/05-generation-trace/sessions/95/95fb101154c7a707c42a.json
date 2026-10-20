@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95fb101154c7a707c42a",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops check vanilla object s1 exit",
+  "task_key": "worker_ops_check-vanilla-object-s1-exit_20260528T072615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-vanilla-object-s1-exit_20260528T072615_result.json",
+    "occurrence": 1,
+    "bytes": 856,
+    "sha256": "98a324e1f91991802419ce5438a93ec285ad62f6525f4b548cbdc152c214cf19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：训练成功完成。**\n\n| 项目 | 状态 |\n|------|------|\n| 训练 | **成功** — 50005/50005 steps 完成，日志显示 \"Max step 50005 reached! Stopping training...\" |\n| 50000_chkpt | **存在** — 包含 merged model (4 safetensors shards)、lora_adapter/、action_head、dataset_statistics.json 等完整文件 |\n| 其他 checkpoints | 40000_chkpt, 45000_chkpt 也存在 |\n| 训练 PID 798980 | 已退出（正常结束） |\n| Eval 轮询 PID 969726 | **仍在运行**（已运行 1h02m），eval 已触发且正在执行中，当前进度 T0: 80% (40/50 episodes) |\n| 最终 loss | action_loss=0.0996, occ_loss=0.0, depth_loss=0.0（vanilla 无 aux loss 正常） |\n\n注意：任务中给的 checkpoint 路径用了 `libero_spatial`，实际路径是 `libero_object`（因为这是 object task suite）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-vanilla-object-s1-exit.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "ae36509ed1606739f774",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "train cutoff s2",
+  "task_key": "worker_train_cutoff_s2_20260523T002835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_cutoff_s2_20260523T002835.log",
+    "occurrence": 1,
+    "bytes": 525468,
+    "sha256": "439907a4c3df51f8ff1ecffc724cf2e0d7175a10c31409da411407f002c05de9"
+  },
+  "statistics": {
+    "messages": 331,
+    "user_turns": 0,
+    "tool_calls": 110,
+    "roles": {
+      "log": 1,
+      "system": 17,
+      "record": 1,
+      "assistant": 89,
+      "tool_call": 110,
+      "tool_result": 110,
+      "result": 3
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 331,
+      "chunks": [
+        {
+          "path": "ae36509ed1606739f774-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ae36509ed1606739f774-part-0002.json",
+          "message_count": 151
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/train-cutoff-s2.md"
+}

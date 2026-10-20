@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82e33a51ef8accef8f83",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code post mvp ablation prep",
+  "task_key": "worker_code_post_mvp_ablation_prep_20260520T232620",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_post_mvp_ablation_prep_20260520T232620_result.json",
+    "occurrence": 1,
+    "bytes": 1674,
+    "sha256": "e92494e1db2ec1d3eaad414b0b0e0e3d956e2de7aac77ea8cbfc5803657297c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 汇报\n\n### 文件清单\n\n| 配置 | 文件路径 | 状态 |\n|------|----------|------|\n| +Occ-Detach | `/root/occsafe_vla/scripts/run_occ_detach.sh` | **可直接跑** |\n| +Random-Occ | `/root/occsafe_vla/scripts/run_random_occ.sh` | **可直接跑** |\n| +Depth | `/root/occsafe_vla/scripts/run_depth.sh` | 占位，需集成到 finetune.py |\n| Depth Head 模型 | `openvla-oft/prismatic/models/depth_head.py` | 已完成 |\n| Depth 评估 | `/root/occsafe_vla/scripts/depth_head_assessment.md` | — |\n\n### occ_detach 实现方式\n\n`finetune.py:467-468`：在计算 occ loss 时，`patch_features = patch_features.detach()` 切断 `_cached_patch_features` 的梯度图。occ_head 仍正常前向+反向更新自身参数，但梯度不回传到 vision encoder。`--occ_detach true` 已有完整支持，无需改代码。\n\n### depth head 改造评估\n\n- **代码**: depth_head.py 已写好（~55 行）；还需 ~85 行集成代码（finetune.py 配置/初始化/loss 计算 + datasets.py 数据加载）\n- **数据**: depth GT labels 不存在，推荐用 Depth Anything V2 生成伪标签，**2-4 小时**\n- **总体**: **半天**可完成全部准备\n\n### random_occ 实现方式\n\n方案 A（最小侵入）：\n- `FinetuneConfig` 添加 `random_occ: bool = False`（finetune.py:96）\n- 传递到 `RLDSBatchTransform`（finetune.py:1045）\n- `RLDSBatchTransform` 新增 `random_occ` 字段（datasets.py:44）\n- 在 `__call__` 中加载真实 occ label 后，用 `np.random.binomial(1, occ_ratio, shape)` 替换（datasets.py:156），保持与真实 label 相同的 occupied ratio，每次调用生成不同随机 map"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-post-mvp-ablation-prep.md"
+}

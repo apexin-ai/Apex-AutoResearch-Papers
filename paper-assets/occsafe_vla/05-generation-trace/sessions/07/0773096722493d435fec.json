@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0773096722493d435fec",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "fix 34685 disk cleanup restart",
+  "task_key": "worker_fix_34685-disk-cleanup-restart_20260527T211548",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_34685-disk-cleanup-restart_20260527T211548_result.json",
+    "occurrence": 1,
+    "bytes": 1303,
+    "sha256": "4b0d57f563401e1edeb1730149f38bd14baae517c3e35688851346ee9b6e5457"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个 GPU 全部 99% 利用率，两个实验已开始训练。\n\n## 汇报\n\n### Phase 1: 磁盘清理\n| 删除项 | 大小 |\n|--------|------|\n| detach_ln_v2_s2 不完整 20000_chkpt | 6.1G |\n| vanilla_object_s0 不完整 15000_chkpt | 532K |\n| detach_ln_s3 中间 40000_chkpt | 15G |\n| full_occ_ln_v2_s3 旧 10000_chkpt | 15G |\n| detach_ln_v2_s3 旧 10000_chkpt | 15G |\n| **总计释放** | **~51G** |\n\n磁盘：60G → **110G free** (69% used)\n\n### Phase 2: 实验重启\n| 实验 | GPU | Resume Step | 剩余步数 |\n|------|-----|------------|---------|\n| detach_ln_v2_s2 | cuda:0 | 15000 | 35005 |\n| vanilla_object_s0 | cuda:1 | 10000 | 40005 |\n\n两个实验已成功加载 checkpoint 并开始训练（action_loss 正常：0.14 / 0.19）。\n\n### Phase 3: 状态确认\n- 4 个 GPU 全部 99% 利用率，62GB 显存\n- 代码内置 checkpoint 轮转（保留最近 3 个），磁盘不会再爆\n\n### ETA 预估（~1.0s/step）\n| 实验 | 预计完成 (UTC) | 北京时间 |\n|------|---------------|---------|\n| detach_ln_v2_s2 | ~15:00 | ~23:00 |\n| vanilla_object_s0 | ~16:30 | ~00:30 (29日) |\n| full_occ_ln_v2_s3 | ~14:40 | ~22:40 |\n| detach_ln_v2_s3 | ~14:40 | ~22:40 |\n\n**注意**：4 个实验都会超出 12:00 UTC deadline 约 3-4.5 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-34685-disk-cleanup-restart.md"
+}

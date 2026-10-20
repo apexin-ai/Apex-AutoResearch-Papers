@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0bc1256ce2ed95dd747c",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra status check both servers",
+  "task_key": "worker_infra_status_check_both_servers_20260521T014037",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_status_check_both_servers_20260521T014037_result.json",
+    "occurrence": 1,
+    "bytes": 2167,
+    "sha256": "93ff3d249711cfc87b7d271b603b8817fe81ebb9e390df66dfb00310cdfff546"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-34685 (occ 训练)\n\n| Seed | 主PID | GPU | Util | 显存 | 最新 Checkpoint | Step |\n|------|-------|-----|------|------|----------------|------|\n| occ_s0 | 27667 | 0 | 99% | 62 GB | 32500_chkpt (09:15) | ~32500+ |\n| occ_s1 | 58802 (重启) | 1 | 99% | 62 GB | 7500_chkpt (09:16) | ~7500+ |\n| occ_s2 | 29970 | 2 | 95% | 62 GB | 32500_chkpt (09:15) | ~32500+ |\n| — | — | 3 | 100% | 0 MB | — | 空闲 |\n\n- **occ_s1 已重启**: 原始 PID 28827 已死，当前 PID 58802。restart log 最后一条: `step=1600, occ_loss=0.0099, action_loss=0.1260`（log 滞后，实际已到 7500+）\n- **occ_s0/s2 进度一致**，~32500/50000（65%）\n- **monitor_and_eval_occ.sh**: 存在，监控 PID 27667/28827/29970，训练结束后自动触发 eval。**注意**: PID 28827(s1 原进程) 已死，monitor 可能已误判 s1 训练完成并触发了一次 eval（但 eval 结果目录中没有 occ_s1 结果，所以可能只是检测到退出但没找到 checkpoint）\n\n## westd-10894 (eval)\n\n- **eval 进程**: 无，全部完成\n- **GPU**: 4 卡全空闲 (0%, 0 MiB)\n- **monitor_status.txt**: All evals completed at 2026-05-21 08:50:13\n\n### Eval 结果汇总 (vanilla baseline, libero_spatial, 200 episodes, threshold=0.001)\n\n**vanilla_s0:**\n| Step | TSR | CAR | Collisions |\n|------|-----|-----|------------|\n| 35000 | 0.905 | 0.695 | 61 |\n| 40000 | 0.950 | 0.700 | 60 |\n| 45000 | 0.955 | 0.745 | 51 |\n| 50000 (final) | 0.910 | 0.775 | 45 |\n\n**vanilla_s1:**\n| Step | TSR | CAR | Collisions |\n|------|-----|-----|------------|\n| 35000 | 0.860 | 0.700 | 60 |\n| 40000 | 0.910 | 0.725 | 55 |\n| 45000 | 0.965 | 0.730 | 54 |\n| 50000 (final) | 0.935 | 0.765 | 47 |\n\n**vanilla_s2:**\n| Step | TSR | CAR | Collisions |\n|------|-----|-----|------------|\n| 50000 (final) | 0.910 | 0.770 | 46 |\n\n`safelibero_*.json` × 2 是 vanilla_s0 step 40000/45000 的重复 eval（结果完全一致）。`midtrain` 文件 = step 35000 的别名。\n\n**趋势**: TSR 在 step 45000 达到峰值（s0=0.955, s1=0.965），50000 略回落。CAR 随 step 单调上升，50000 最优（~0.77）。碰撞数从 ~60 降到 ~46。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-status-check-both-servers.md"
+}

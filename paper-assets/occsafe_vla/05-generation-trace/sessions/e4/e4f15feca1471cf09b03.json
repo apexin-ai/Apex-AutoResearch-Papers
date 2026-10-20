@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e4f15feca1471cf09b03",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "check training progress all",
+  "task_key": "worker_check_training-progress-all_20260527T043314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_training-progress-all_20260527T043314_result.json",
+    "occurrence": 1,
+    "bytes": 1616,
+    "sha256": "6b7f2c73f24c51c0e0a49cfcdca5300b9e2950d0609a74a7e6d5b9b6c17312c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在有所有 8 个实验的最新 step 数据。汇总如下（数据采集时间 ~12:36 UTC May 27）：\n\n| 实验 | 服务器 | GPU | Step/Total | 进度% | 速度(it/s) | 预计完成(UTC) |\n|---|---|---|---|---|---|---|\n| detach_ln_v2_s1 | westd-34685 | 0 | 18841/50005 | 37.7% | ~1.04 | ~20:55 |\n| detach_ln_s4 | westd-34685 | 1 | 18738/50005 | 37.5% | ~1.03 | ~21:01 |\n| ablation_occ_detach_s4 | westd-34685 | 2 | 16046/50005 | 32.1% | ~1.03 | ~21:44 |\n| mvp_occ_s4 | westd-34685 | 3 | 15883/50005 | 31.8% | ~1.03 | ~21:48 |\n| full_occ_ln_v2_s1c | westd-10894 | 0 | 14507/50005 | 29.0% | ~1.01 | ~22:21 |\n| full_occ_ln_v2_s2 | westd-10894 | 1 | 14492/50005 | 29.0% | ~1.01 | ~22:21 |\n| detach_ln_v2_s0c | westd-10894 | 2 | 14349/50005 | 28.7% | ~1.00 | ~22:30 |\n| full_occ_ln_v2_s0d | westd-10894 | 3 | 11820/50005 | 23.6% | ~1.00 | ~23:12 |\n\n**与 ROADMAP ETA 对比：**\n- ROADMAP 预期 34685 ~12:30 UTC → 实际 ~20:55-21:48 UTC，**晚 ~8-9h**\n- ROADMAP 预期 10894 ~13:30-14:00 UTC → 实际 ~22:21-23:12 UTC，**晚 ~8-9h**\n\n**原因**：实验启动时间晚于预期（34685 上 GPU 0/1 在 07:33 启动，GPU 2/3 在 ~08:17 启动；10894 上 GPU 0-2 在 08:37 启动，GPU 3 在 ~09:19 启动）。\n\n**关键结论：**\n- 全部 8 个实验将于 **May 27 ~23:12 UTC 前完成**，距 C003 deadline (May 28 12:00 UTC) 还有 ~13h 余量，**不会超期**\n- cutoff_25k_s1_v2 已完成（50005/50005, EXIT_CODE=0），GPU 3 已被 mvp_occ_s4 接管\n- 8 张 GPU 利用率均 98-99%（10894 GPU 2 瞬时 20-24%，可能是 checkpoint 保存的短暂波动）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-training-progress-all-copy-2.md"
+}

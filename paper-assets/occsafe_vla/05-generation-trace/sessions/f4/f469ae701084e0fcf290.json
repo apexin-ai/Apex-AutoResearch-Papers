@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f469ae701084e0fcf290",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "fix backup 25k chkpt",
+  "task_key": "worker_fix_backup_25k_chkpt_20260528T021428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_backup_25k_chkpt_20260528T021428_result.json",
+    "occurrence": 1,
+    "bytes": 354,
+    "sha256": "29f19d247736cc55ac4a77c98f5210e1e72d58c96f4126f495a81a224b8d7447"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n| 项目 | 结果 |\n|------|------|\n| Backup 大小 | **15G** |\n| Watch 脚本 PID | **48594** |\n| 原始 25000_chkpt | 存在 |\n| Backup | 存在 |\n| 训练进程 47162 | 运行中 |\n\nWatch 脚本每 30 秒检查一次，若 25000_chkpt 被轮转删除会自动从 backup 恢复，训练结束后自动退出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-backup-25k-chkpt.md"
+}

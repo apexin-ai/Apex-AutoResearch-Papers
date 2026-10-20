@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5093c1cc5625eda0d92",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "deploy 10894 verify and fix",
+  "task_key": "worker_deploy_10894_verify_and_fix_20260525T174500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_deploy_10894_verify_and_fix_20260525T174500_result.json",
+    "occurrence": 1,
+    "bytes": 599,
+    "sha256": "f1ccf34e88be25583b4dca16ce5cf7a7867993c5127869037a1e6dabef0f9588"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**全部 4 个实验正常运行，无冲突。**\n\n| GPU | 实验 | 当前 step | 速度 | 状态 |\n|-----|------|-----------|------|------|\n| cuda:0 | cutoff_45k_s2_v2 | ~373/50005 | ~1.07 it/s | ✅ 从头训练中 |\n| cuda:1 | mvp_occ_s3_v2 | 训练中 | ~1.08 it/s | ✅ resume from 20K |\n| cuda:2 | full_occ_ln_s3_v2 | 训练中 | ~1.06 it/s | ✅ resume from 20K |\n| cuda:3 | ablation_occ_detach_s3_v2 | ~336/50005 | ~1.06 it/s | ✅ 训练中 |\n\n`full_occ_bn_v2_s1` 冲突 session 已不存在，无需额外操作。所有实验约 6 分钟前启动，进度正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-10894-verify-and-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a470a71c9ecccefbe43a",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis eval dryrun prep",
+  "task_key": "worker_analysis_eval_dryrun_prep_20260525T061953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_dryrun_prep_20260525T061953_result.json",
+    "occurrence": 1,
+    "bytes": 920,
+    "sha256": "500e21583d571f187979c7526335cb7df7fe01218fcecc845c7152215af32e18"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果汇总：**\n\n| 项目 | 状态 |\n|------|------|\n| eval 脚本创建（10894） | `eval_34685_batch.sh` + `eval_cmds/` 4个独立脚本 |\n| dry-run（10894 cuda:2） | 通过 — 模型加载、MUJOCO EGL 初始化均正常 |\n| 部署到 34685 | 5个脚本已部署到 34685 同路径 |\n\n**Checkpoint 路径格式：**\n```\n/root/autodl-tmp/checkpoints/{exp_id}/openvla-7b+...--image_aug--{exp_id}--50000_chkpt\n```\n\n**训练完成后在 34685 上启动 eval：**\n```bash\n# 4个GPU并行，每个nohup独立跑\nnohup bash eval_cmds/eval_cutoff_25k_s2_v3.sh > /tmp/eval_cutoff_25k_s2_v3.log 2>&1 &\nnohup bash eval_cmds/eval_reverse_cutoff_s2_v3.sh > /tmp/eval_reverse_cutoff_s2_v3.log 2>&1 &\nnohup bash eval_cmds/eval_cutoff_45k_s1_v3.sh > /tmp/eval_cutoff_45k_s1_v3.log 2>&1 &\nnohup bash eval_cmds/eval_cutoff_15k_s2_v2.sh > /tmp/eval_cutoff_15k_s2_v2.log 2>&1 &\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-dryrun-prep.md"
+}

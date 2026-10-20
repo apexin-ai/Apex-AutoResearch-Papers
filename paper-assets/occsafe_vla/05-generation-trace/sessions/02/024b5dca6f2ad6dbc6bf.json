@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "024b5dca6f2ad6dbc6bf",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis cka dose response full s0",
+  "task_key": "worker_analysis_cka_dose_response_full_s0_20260525T064526",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cka_dose_response_full_s0_20260525T064526_result.json",
+    "occurrence": 1,
+    "bytes": 1174,
+    "sha256": "6f4af76188538ba334a6e38d88fe38c686f5e3bef0c73ec07bb9480693cbd4cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**s0 cutoff checkpoints 不存在。** 两台服务器上都没有。\n\n现有 cutoff checkpoints 的 seed 分布：\n\n| 条件 | 可用 seed | s0 存在? |\n|------|-----------|----------|\n| cutoff_15k | s1, s2 | ❌ |\n| cutoff_25k | s2 | ❌ |\n| cutoff_35k | 无任何 seed | ❌ |\n| cutoff_45k | s1 | ❌ |\n| reverse_cutoff | s2 | ❌ |\n\n**已有 s0 CKA 数据**（来自 `cka_same_seed/cka_results.json`）：\n- Vanilla s0: DINOv2 mean ≈ 0.968, SigLIP mean ≈ 0.953\n- Full OCC (BN) s0: DINOv2 mean ≈ 0.964, SigLIP mean ≈ 0.960\n- Detach+BN s0: DINOv2 mean ≈ 0.965, SigLIP mean ≈ 0.955\n- Full OCC (LN) s0: DINOv2 mean ≈ 0.660, SigLIP mean ≈ 0.955\n\n**结论：** 5 个 cutoff s0 实验需要先训练才能构建完整 dose-response 曲线。这 5 个训练任务（cutoff_15k_s0, cutoff_25k_s0, cutoff_s0, cutoff_45k_s0, reverse_cutoff_s0）都尚未启动。\n\n要继续推进，有两个选项：\n1. **先训练 5 个 s0 cutoff 模型**（每个约 50K steps），然后再做 CKA 分析\n2. **用现有不同 seed 的 cutoff checkpoints 先出一版 mixed-seed 曲线**，待 s0 训练完成后替换\n\n你想怎么走？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cka-dose-response-full-s0.md"
+}

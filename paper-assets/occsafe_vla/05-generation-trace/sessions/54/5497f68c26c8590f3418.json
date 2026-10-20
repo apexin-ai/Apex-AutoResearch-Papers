@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5497f68c26c8590f3418",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "check 34685 d051 progress",
+  "task_key": "worker_check_34685_d051_progress_20260525T192245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_34685_d051_progress_20260525T192245_result.json",
+    "occurrence": 1,
+    "bytes": 876,
+    "sha256": "654ab4bdf8a99aa1fc055a8dfac7443f9a1480f41bde32639c2b3e557209a437"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 GPU 全部满载运行，全部存活。\n\n| 实验 | GPU | Step | 进度 | 速度 | 剩余时间 | 预计完成 |\n|------|-----|------|------|------|---------|---------|\n| detach_bn_v2_s0 | cuda:0 (99%, 62GB) | 6406/50005 | 12.8% | ~1.08 it/s | ~11h16m | ~5/26 早晨 |\n| detach_bn_v2_s1 | cuda:1 (97%, 62GB) | 6452/50005 | 12.9% | ~1.08 it/s | ~11h11m | ~5/26 早晨 |\n| detach_bn_v2_s2 | cuda:2 (96%, 62GB) | 6445/50005 | 12.9% | ~1.07 it/s | ~11h18m | ~5/26 早晨 |\n| full_occ_bn_v2_s1 | cuda:3 (99%, 62GB) | 4909/50005 | 9.8% | ~1.08 it/s | ~11h37m | ~5/26 早晨 |\n\n**最新 loss (step 6400)**:\n- s0: occ=0.0113, action=0.1318\n- s1: occ=0.0242, action=0.1475\n- s2: occ=0.0123, action=0.1357\n- full_occ (step 4900): occ=0.0116, action=0.1729\n\nfull_occ_bn_v2_s1 比其他 3 个晚启动约 1500 步（~25min），但都将在明早完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-34685-d051-progress.md"
+}

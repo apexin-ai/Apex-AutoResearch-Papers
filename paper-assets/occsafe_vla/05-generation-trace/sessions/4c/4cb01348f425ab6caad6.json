@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4cb01348f425ab6caad6",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose westd 34685 failures",
+  "task_key": "worker_diagnose_westd-34685-failures_20260522T072817",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_westd-34685-failures_20260522T072817_result.json",
+    "occurrence": 1,
+    "bytes": 1811,
+    "sha256": "727be2805de56a85cdaa50528104154c3be3d645edfa3a79c99ad7d60a2515e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 根因：数据盘 `/root/autodl-tmp` 磁盘空间耗尽\n\n```\n/dev/md127    350G  350G  300K  100%  /root/autodl-tmp\n```\n\n三个实验在几乎同一时刻触发 checkpoint 保存，全部因 `No space left on device (os error 28)` 失败。\n\n### 各实验错误详情\n\n| 实验 | 崩溃时刻 | 崩溃点 | 错误 |\n|------|---------|--------|------|\n| depth_s0 | 15:24:39 UTC | 保存 step 15000 merged checkpoint | `safetensors_rust.SafetensorError: I/O error: No space left on device` |\n| depth_s1 | 15:24:38 UTC | 保存 step 15000 merged checkpoint | 同上 |\n| cutoff_s1 | 15:24:37 UTC | 保存 step 2500 merged checkpoint | 同上 |\n\n三者崩溃栈完全一致：`finetune.py:1254 → save_training_checkpoint → merged_vla.save_pretrained → safe_save_file`\n\n### 磁盘占用明细\n\n| 目录 | 大小 |\n|------|------|\n| occ_s1_fresh | **149G** |\n| depth_s1 | 80G |\n| depth_s0 | 76G |\n| cutoff_s0 | 15G |\n| cutoff_s1 | 11G |\n| 其他日志 | ~10M |\n| **合计** | ~331G / 350G |\n\n`occ_s1_fresh` 独占 149G，是最大的空间消耗者。\n\n### cutoff_s0 状态\n\n仍在运行（GPU 0, step ~2837/50005, ~1.08 it/s），但**即将在 step 5000 保存 checkpoint 时同样崩溃**，因为磁盘仍然满。预计约 33 分钟后触发。\n\n### 能否直接重启\n\n**不能。** 磁盘满的问题不解决，重启后三个实验还是会在第一个 checkpoint 处崩溃。需要先清理空间：\n\n1. **最有效**：如果 `occ_s1_fresh`（149G）的旧 checkpoint 不再需要，清理它可以立刻释放大量空间\n2. depth_s0/depth_s1 各有 6 个 checkpoint（每个 ~13G），可以只保留最新的，删掉旧的\n3. **紧急**：cutoff_s0 大约 33 分钟后也会撞上同样的问题，需要尽快清理"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-westd-34685-failures-copy-2.md"
+}

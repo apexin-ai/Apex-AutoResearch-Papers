@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "efcec32147441d40ae2c",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose mvp vanilla failed",
+  "task_key": "worker_diagnose_mvp_vanilla_failed_20260520T072518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_mvp_vanilla_failed_20260520T072518_result.json",
+    "occurrence": 1,
+    "bytes": 1811,
+    "sha256": "c2ba71223a3dcd221d05db21432c571a64d5ea293166937315ff1fa923dce744"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 错误类型\n**网络不可达 + HF 缓存路径未配置**\n\n### 具体错误消息\n```\nOSError: [Errno 101] Network is unreachable\n```\n```\nOSError: We couldn't connect to 'https://huggingface.co' to load this file, couldn't find it \nin the cached files and it looks like openvla/openvla-7b is not the path to a directory \ncontaining a file named config.json.\n```\n\n崩溃位置：`finetune.py:877`\n```python\nprocessor = AutoProcessor.from_pretrained(cfg.vla_path, trust_remote_code=True)\n```\n\n### 根因分析\n\n两个实验错误完全一致，因果链如下：\n\n1. **`vla_path` 默认值是 HF Hub ID** `\"openvla/openvla-7b\"`（非本地路径）\n2. 代码 L856 调 `model_is_on_hf_hub(cfg.vla_path)` 尝试连 HF Hub → **网络不通**，返回 False\n3. 因为返回 False，`snapshot_download` 未执行，`cfg.vla_path` **仍为** `\"openvla/openvla-7b\"`\n4. L877 `AutoProcessor.from_pretrained(\"openvla/openvla-7b\")` → 本地找不到这个相对路径，网络也不通 → **崩溃**\n\n模型实际已缓存在两个位置：\n- `/root/autodl-tmp/models/openvla-7b/config.json` ✅\n- `/root/autodl-tmp/.hf_cache/hub/models--openvla--openvla-7b/` ✅\n\n但启动时 **`HF_HOME` 未设置**（env 中没有），HF 库查默认路径 `~/.cache/huggingface/` 找不到缓存。\n\n### 修复建议\n\n**方案 A（推荐）**：启动命令加 `--vla_path /root/autodl-tmp/models/openvla-7b`，直接指向本地模型目录，跳过 HF Hub 检查。\n\n**方案 B**：在启动脚本中 export `HF_HOME=/root/autodl-tmp/.hf_cache`，让 `from_pretrained` 能从 HF 缓存命中。\n\n**方案 C**：启动前 `source /etc/network_turbo` 开代理（AutoDL 典型做法），但训练期间保持网络依赖不稳定，不建议。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-mvp-vanilla-failed.md"
+}

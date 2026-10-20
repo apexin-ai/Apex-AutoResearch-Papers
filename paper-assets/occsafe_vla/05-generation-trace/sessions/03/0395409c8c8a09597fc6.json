@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0395409c8c8a09597fc6",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra delayed extraction check",
+  "task_key": "worker_infra_delayed_extraction_check_20260520T131948",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_delayed_extraction_check_20260520T131948_result.json",
+    "occurrence": 1,
+    "bytes": 278,
+    "sha256": "5eb36bf64299cd06e46044d9fd46944f0e1b4ad191e1b10eb84bfc231adfdd2f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态：\n- 监控脚本 PID 11205 正常运行（已 ~9 分钟）\n- 5/9 tasks 完成（batch 1 就绪，batch 2 提取中）\n- 已设置 4.5 分钟后自动检查，会持续轮询直到 9 个 task 全部完成，然后自动执行 build index + dry-run"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-delayed-extraction-check.md"
+}

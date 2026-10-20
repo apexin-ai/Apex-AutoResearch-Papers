@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "261d5b887ac8b3df1d4c",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "research v1 v2 code diff audit",
+  "task_key": "worker_research_v1-v2-code-diff-audit_20260526T165844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_v1-v2-code-diff-audit_20260526T165844_result.json",
+    "occurrence": 1,
+    "bytes": 3510,
+    "sha256": "4afc060adc764f218822b267c26041002c394e037cae5aaffe39e2eb681badec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整 decisions.yaml 揭示了全貌。现在可以回答了。\n\n---\n\n## 核查结论\n\n### 1. v1 Cell 1 三个实验是否使用了 --resume？\n\n| 实验 | --resume? | 证据 |\n|------|-----------|------|\n| **mvp_occ_s0** | **极大概率未使用** | 日志已删除，无法直接确认。但 D013 仅标记 occ_s1 有 \"resume 永久损伤\"，从未提及 s0。如果 s0 也 resume 过且出了问题，D013 理应一并排除。 |\n| **occ_s1_fresh** | **确认未使用** | 日志头明确: `Fine-tuning OpenVLA Model /root/autodl-tmp/models/openvla-7b`（pretrained base）。step 0 的 action_loss=0.6367（pretrained 水平）。 |\n| **mvp_occ_s2** | **极大概率未使用** | 同 s0，日志已删除。D013 仅标记 occ_s1 resume 问题。 |\n\n注：34685 上存在 `occ_s0_resume2.log` 和 `occ_s2_resume2.log`，但这些是**后来的重训尝试**（从 42500_chkpt 加载权重重新训练），且两者都**崩溃了**（save_training_checkpoint 错误，仅 262 行）。它们不是原始 v1 Cell 1 实验。\n\n**结论：v1 Cell 1 的 3 个实验都没有使用 --resume。method.tex 中 \"batch index tracking bug affecting training step counting during checkpoint resumption\" 的归因对 Cell 1 不成立。**\n\n### 2. v1→v2 代码改动清单\n\n两台服务器当前代码完全相同（1315 行），原始 v1 代码已被就地覆盖。通过日志差异和 git history 重建：\n\n| 改动 | 与 Cell 1 的相关性 |\n|------|-------------------|\n| **occ_head.py 重构**：v1 无 `norm_type` 参数，v2 新增。D049 指出 v1 的 `occ_detach` 实现极可能缺失（\"bug\"） | **高** — 即使 Cell 1 不用 detach，occ_head 内部结构变了 |\n| **新增 DepthHead**：commit b1144c6，即使 `depth_loss_weight=0` 也初始化了 depth head | **高** — 改变计算图和参数计数 |\n| **datasets.py 重大改动**：行号偏移 54→56, 195→249；v2 新增 OCC preload（`Occ preload done: 55370 samples, 216.3 MB`） | **高** — 数据加载逻辑变化可能影响采样顺序 |\n| **loss 记录重构**：`[OCC]` → `[AUX]` 格式（增加 `depth_loss` 字段） | **低** — 仅日志格式 |\n| **cutoff 参数**：新增 `occ_loss_cutoff_step`, `occ_loss_decay_steps` | **无** — Cell 1 不用 cutoff |\n| **clean_cutoff flag**：commit bdaee75 | **无** — Cell 1 不用 cutoff |\n\n### 3. v1/v2 差异 (7.2pp) 的真正原因\n\n由于 Cell 1 不涉及 resume，batch_idx bug 无法解释差异。D052 用**同一 seed (42)** 确认了差异的存在：\n\n- v1 mvp_occ_s0 (seed 42): CAR=0.832\n- v2 full_occ_retrain_s0 (seed 42): CAR=0.746\n- **同 seed 差异: 8.6pp**\n\nD052 推测原因: \"v2 新增 DepthHead、loss 记录重构等\"。更可能的完整解释：\n\n1. **occ_head.py 结构变更**是最可疑的因素 — v1 和 v2 的 occ_head 内部实现不同（norm_type 参数等），直接影响 OCC loss 的梯度流路径\n2. **DepthHead 初始化**即使 weight=0 也改变了模型的计算图，可能通过参数初始化或梯度计算产生涟漪效应\n3. **数据加载 preload vs on-the-fly** 可能改变了 batch 内 OCC 样本的采样模式\n\n**method.tex 需要修正**：将 v1/v2 差异归因从 \"batch index tracking bug\" 改为如实说明代码结构变更（occ_head 重构、DepthHead 引入、数据加载变化），并承认具体因果机制未能完全隔离。D059 已决定采用 \"direction 2\"（如实说明 v1/v2 差异），此核查支持该方向。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-v1-v2-code-diff-audit.md"
+}

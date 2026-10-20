@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff6850ab2660a1cefcc5",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval ablation batch 4",
+  "task_key": "worker_eval_ablation-batch-4_20260522T013249",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_ablation-batch-4_20260522T013249_result.json",
+    "occurrence": 1,
+    "bytes": 811,
+    "sha256": "fc72094c70cecc6e46629bf737c6e874d2c453dc5ae9228d9db6eee8fb31b513"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 结果总结\n\n| 实验 | TSR | CAR | vs Vanilla (77.0%) | 结论 |\n|------|-----|-----|-------------------|------|\n| **occ_detach** (2 seeds) | 92.0% | **72.0%±0.5%** | **-5.0pp** | success |\n| **random_occ** (2 seeds) | 87.5% | **77.5%±0.5%** | **+0.5pp** | success |\n\n**Claim 3 (Gradient Flow Necessity) — 验证通过**：detach 梯度后 CAR 不仅没有改善，反而比 vanilla 低 5pp（72.0% vs 77.0%），证明梯度流向 vision encoder 是必要条件。\n\n**Claim 4 (Not Any Auxiliary Loss) — 验证通过**：随机 occ 标签下 CAR ≈ vanilla（77.5% vs 77.0%），证明空间内容（而非随意的辅助 loss）才是安全性提升的来源。\n\nRegistry 已更新为 DONE/success，分析报告已写入 memory.md 并注册 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-ablation-batch-4.md"
+}

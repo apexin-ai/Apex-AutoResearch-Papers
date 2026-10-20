@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a89e5a1795c5d5bde630",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra investigate westd34685 cuda3",
+  "task_key": "worker_infra_investigate_westd34685_cuda3_20260520T185638",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_investigate_westd34685_cuda3_20260520T185638_result.json",
+    "occurrence": 1,
+    "bytes": 1087,
+    "sha256": "9fbe6f8ecd69a93863264dd1685e0e8e4916557047da89e70b35fb9e389a3711"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 排查结论\n\n### 1. cuda:3 上的进程\n**无进程。** nvidia-smi Processes 列表为空，`lsof /dev/nvidia6` 无输出，无 MPS/CUDA daemon 残留。\n\n### 2. 异常原因\nGPU 3 compute engine 卡死 — P0 状态、\"Idle: Not Active\"、utilization 100%、memory 0 MiB。典型症状：之前某个进程崩溃后未正确释放 GPU compute context。\n\n### 3. 处理结果\n- `nvidia-smi -i 3 -r` → 容器环境不支持 GPU reset\n- persistence mode 切换 → 无效，utilization 仍 100%\n\n**无法通过软件手段修复，需要重启实例才能恢复 GPU 3。**\n\n### 4. 最终 GPU 状态\n\n| GPU | Memory | Utilization | 状态 |\n|-----|--------|-------------|------|\n| 0 | 62203 MiB | 99% | 正常 (occ_s0, seed=42) |\n| 1 | 62203 MiB | 83-99% | 正常 (occ_s1, seed=43) |\n| 2 | 62209 MiB | 97-99% | 正常 (occ_s2, seed=44) |\n| **3** | **0 MiB** | **100%** | **卡死，需重启实例** |\n\nGPU 0-2 上的 3 个训练任务不受影响，正常运行中。GPU 3 当前不可用，等 3 个训练跑完后重启实例即可恢复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-investigate-westd34685-cuda3.md"
+}

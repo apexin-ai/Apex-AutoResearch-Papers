@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "88484a8d8ff27eb09f52",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra urgent westd 10894 status check",
+  "task_key": "worker_infra_urgent-westd-10894-status-check_20260521T091253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_urgent-westd-10894-status-check_20260521T091253_result.json",
+    "occurrence": 1,
+    "bytes": 1229,
+    "sha256": "d9ad2c33b396e7c8498dd1acde8fa62ce3ceb014ae5f2c798e960b056511c6aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-10894 状态\n\n**误报 — 4/4 实验全部正常运行。**\n\n### GPU 状态\n| GPU | 利用率 | 显存占用 |\n|-----|--------|---------|\n| 0 | 99% | 63037 / 97887 MiB |\n| 1 | 99% | 62203 / 97887 MiB |\n| 2 | 21% | 62209 / 97887 MiB |\n| 3 | 39% | 62203 / 97887 MiB |\n\n### 各实验状态\n| 实验 | GPU | 状态 | 当前步数 | 最新 checkpoint | 速度 |\n|------|-----|------|---------|----------------|------|\n| ablation_occ_detach_s0 | cuda:0 | **running** | ~8554/50005 (17%) | 10000_chkpt | ~1.07 it/s |\n| ablation_random_occ_s0 | cuda:1 | **running** | ~8574/50005 (17%) | 10000_chkpt | ~1.08 it/s |\n| ablation_occ_detach_s1 | cuda:2 | **running** | ~2919/50005 (6%) | 5000_chkpt | ~1.01 it/s |\n| ablation_random_occ_s1 | cuda:3 | **running** | ~2911/50005 (6%) | 5000_chkpt | ~1.03 it/s |\n\ns0 组（14:24 启动）比 s1 组（16:07 启动）早约 1.7 小时，进度差异合理。\n\n### 磁盘\n`/root/autodl-tmp`: 230G / 250G (92%), 剩余 21G — 偏高但暂时够用，checkpoint rotation 脚本在控制。\n\n### Rotation 脚本\nPID 504685 — **alive**\n\n### 修复动作\n无需修复，所有实验正常运行中。System 报告 \"0/4 GPU 在用\" 是误报。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-urgent-westd-10894-status-check.md"
+}

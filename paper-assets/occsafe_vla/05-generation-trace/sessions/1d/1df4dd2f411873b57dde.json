@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1df4dd2f411873b57dde",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "check training progress",
+  "task_key": "worker_check_training_progress_20260529T100620",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_training_progress_20260529T100620_result.json",
+    "occurrence": 1,
+    "bytes": 790,
+    "sha256": "2b685265c53ec8612b7dbcf8e94362b9f4de0f7fcf8f6008006295db5c443eb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n实验 1: random_occ_v2_s0_r4 @westd-10894\n- 进程状态：alive（持续输出中）\n- 当前 step: 38532 / 50005 (77.1%)\n- 已运行时间：10h 57m\n- 预估剩余：~3h 12m（tqdm 估计）\n- 预估完成时间：~14:08 UTC（约北京时间 22:08）\n- 最新 loss (step 38500): occ=0.0408, action=0.0732\n\n实验 2: full_occ_bn_v2_s2_r5 @westd-34685\n- 进程状态：alive（持续输出中）\n- 当前 step: 38560 / 50005 (77.1%)\n- 已运行时间：10h 57m\n- 预估剩余：~3h 12m（tqdm 估计）\n- 预估完成时间：~14:08 UTC（约北京时间 22:08）\n- 最新 loss (step 38500): occ=0.0096, action=0.1011\n```\n\n两个实验进度基本同步，速度稳定在 ~1.01 s/step。DDL (05-28 12:00 UTC) 已过，但实验仍在正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-training-progress.md"
+}

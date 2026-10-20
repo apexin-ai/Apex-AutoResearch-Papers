@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "11294c674e35568f25c1",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "planning post submission experiments",
+  "task_key": "worker_planning_post-submission-experiments_20260528T175139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_planning_post-submission-experiments_20260528T175139.log",
+    "occurrence": 1,
+    "bytes": 929284,
+    "sha256": "700f61932163f3a36875b53d1cb06e817c5d12813cec496371d7ce6436261224"
+  },
+  "statistics": {
+    "messages": 201,
+    "user_turns": 1,
+    "tool_calls": 77,
+    "roles": {
+      "log": 1,
+      "system": 24,
+      "record": 1,
+      "assistant": 19,
+      "tool_call": 77,
+      "tool_result": 77,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 15,
+      "chunks": [
+        {
+          "path": "11294c674e35568f25c1-part-0001.json",
+          "message_count": 15
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 186,
+      "chunks": [
+        {
+          "path": "11294c674e35568f25c1-part-0001.json",
+          "message_count": 69
+        },
+        {
+          "path": "11294c674e35568f25c1-part-0002.json",
+          "message_count": 117
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/planning-post-submission-experiments.md"
+}

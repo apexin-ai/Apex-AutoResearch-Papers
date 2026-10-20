@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "785bfb8936c6baa69e17",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "paper writing method fix",
+  "task_key": "worker_paper_writing_method_fix_20260520T210126",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_method_fix_20260520T210126_result.json",
+    "occurrence": 1,
+    "bytes": 1826,
+    "sha256": "cda575f0ae1fdd1b3196adf0de7b82bab186c10e4aa1fbc6867d3c7d54f64fcf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The -ing matches are nouns (\"pretraining\", \"training\"), not banned participial phrase endings. All clean.\n\n---\n\n## Report\n\n### 5 Corrections (code-verified via SSH)\n\n| # | Location | Old (wrong) | New (correct) | Code source |\n|---|----------|-------------|---------------|-------------|\n| 1 | §3.2 L24: architecture | \"lightweight two-layer MLP with 256 hidden units\" | Convolutional decoder: Linear→256ch, reshape 16×16, two ConvTranspose2d (256→128→64, k4s2) + BN + GELU, 1×1 Conv output | `occ_head.py` L20-30 |\n| 2 | §3.2 L28: focal alpha | α = 0.75 | α = 0.25 | `occ_head.py` L56 `FocalLoss(alpha=0.25)` |\n| 3 | §3.2 L28: loss weight | λ = 0.1 (static) | λ\\_occ = 0.01 with exponential decay τ=50K | `finetune.py` L92-93 |\n| 4 | §3.3 L39: total loss | λ = 0.1 (static formula) | λ\\_occ(t) = 0.01 · exp(-t/τ), τ=50K (formula updated with decay term) | `finetune.py` L92-93 |\n| 5 | §3.3 L41: lr + GPU | \"cosine decay\" + \"17h on A100\" | fixed lr 5e-4 + ~13h on NVIDIA RTX PRO 6000 | `finetune.py` L100,102 (MultiStepLR milestone 100K, never triggers at 50K) |\n\n### §3.4 OCC-CBF\n\n- **Removed** from `method.tex` (entire subsection + intro paragraph reference)\n- **Created** `discussion.tex` with OCC-CBF as future direction: covers (1) limitations of implicit safety, (2) OCC-CBF concept (learned barrier on encoder features), (3) distinction from AEGIS/OGM-CBF/DCBF (operates in learned feature space, no explicit geometry), (4) marked as future work\n\n### Self-check\n\n- No §3.4 in method.tex\n- All 5 values match experiments.tex §4.4 exactly\n- Zero em-dashes (—) or explanatory en-dashes (–)\n- `discussion.tex` needs `\\input{discussion}` added to `main.tex` (not done, since the task scope was method.tex rewrite + discussion.tex creation)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-method-fix.md"
+}

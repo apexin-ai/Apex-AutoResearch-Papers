@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "831159905527abb5be29",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose 10894 cuda1 process",
+  "task_key": "worker_diagnose_10894-cuda1-process_20260528T094539",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_10894-cuda1-process_20260528T094539_result.json",
+    "occurrence": 1,
+    "bytes": 246,
+    "sha256": "e0a08be10b6c020ef4589b0d744bf17e4354ec6a2626994215221b8f9ec0a80d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**确认是 detach_ln_v2_s4 训练进程**，PID 822480，seed 46，参数完全匹配。这是已知实验，registry 已有记录但缺 GPU 信息。\n\n**结论**：cuda:1 被 detach_ln_v2_s4 实验正常占用，无需处理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-10894-cuda1-process.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "53268a9f79b5052c0d8b",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "analysis anova table1 compile",
+  "task_key": "worker_analysis_anova_table1_compile_20260528T073309",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_anova_table1_compile_20260528T073309.log",
+    "occurrence": 1,
+    "bytes": 1056456,
+    "sha256": "505eac0139f78de32aff10f9e7c715785afc9c42e560bece490c80393efe8dac"
+  },
+  "statistics": {
+    "messages": 245,
+    "user_turns": 0,
+    "tool_calls": 90,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 61,
+      "tool_call": 90,
+      "tool_result": 90,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 245,
+      "chunks": [
+        {
+          "path": "53268a9f79b5052c0d8b-part-0001.json",
+          "message_count": 154
+        },
+        {
+          "path": "53268a9f79b5052c0d8b-part-0002.json",
+          "message_count": 91
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-anova-table1-compile.md"
+}

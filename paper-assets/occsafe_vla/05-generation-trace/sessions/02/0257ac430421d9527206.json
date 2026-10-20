@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0257ac430421d9527206",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "train ablation s2 10894",
+  "task_key": "worker_train_ablation-s2-10894_20260522T061007",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_ablation-s2-10894_20260522T061007_result.json",
+    "occurrence": 1,
+    "bytes": 821,
+    "sha256": "512a5ab16a7e34a39a2b715c79366bd0129edb65bb1cf80c8d975420efbd3999"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 ablation seed-2 训练已成功启动并注册监控。\n\n**汇总：**\n\n| 实验 | GPU | PID | tmux session | 速度 | 预计耗时 |\n|------|-----|-----|-------------|------|---------|\n| ablation_random_occ_s2 | cuda:0 | 932619 | `ablation_random_occ_s2` | ~1.65s/it | ~23h |\n| ablation_occ_detach_s2 | cuda:1 | 932767 | `ablation_occ_detach_s2` | ~1.63s/it | ~23h |\n\n**参数配置：**\n- seed=44, max_steps=50005, save_freq=10000, occ_loss_weight=0.01 (default)\n- random_occ_s2: `--random_occ True --use_occ_head True`\n- occ_detach_s2: `--occ_detach true --use_occ_head True`\n- 日志：`/root/runs/occsafe_vla/ablation_{random_occ,occ_detach}_s2.log`\n- Checkpoint 输出：`/root/autodl-tmp/checkpoints/ablation_{random_occ,occ_detach}_s2/`\n- Cron 监控已注册（300s 间隔）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-ablation-s2-10894.md"
+}

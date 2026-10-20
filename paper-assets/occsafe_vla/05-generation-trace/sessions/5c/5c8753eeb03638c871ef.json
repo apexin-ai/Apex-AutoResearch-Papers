@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c8753eeb03638c871ef",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval vanilla s0 midtrain 20r",
+  "task_key": "worker_eval_vanilla_s0_midtrain_20r_20260520T195433",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_vanilla_s0_midtrain_20r_20260520T195433_result.json",
+    "occurrence": 1,
+    "bytes": 250,
+    "sha256": "0afb93f3050f5d997048b4d01a05c9002dba169dfcb3dc6098af6786e4dff468"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已在 westd-10894 cuda:3 上启动：\n- **Checkpoint**: vanilla_s0 step 35000\n- **PID**: 201172\n- **配置**: 10 tasks × 20 rollouts = 200 episodes\n- **日志**: `/tmp/vanilla_s0_eval.log`\n\n2 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-vanilla-s0-midtrain-20r.md"
+}

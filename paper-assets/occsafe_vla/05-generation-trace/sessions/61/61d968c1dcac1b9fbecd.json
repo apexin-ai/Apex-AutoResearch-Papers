@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61d968c1dcac1b9fbecd",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "infra westd 10894 unified restart",
+  "task_key": "worker_infra_westd-10894-unified-restart_20260521T110135",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westd-10894-unified-restart_20260521T110135_result.json",
+    "occurrence": 1,
+    "bytes": 110,
+    "sha256": "9e3cd23d3714d997ddd55731299101fb242e0e38eac3a6dac5cddcf63af23641"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后台等待任务已完成，验证已在上面执行完毕，4 个实验全部正常运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westd-10894-unified-restart.md"
+}

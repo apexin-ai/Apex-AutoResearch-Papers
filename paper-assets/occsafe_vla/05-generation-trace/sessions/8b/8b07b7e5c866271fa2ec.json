@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b07b7e5c866271fa2ec",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "train cutoff 45k s1",
+  "task_key": "worker_train_cutoff_45k_s1_20260524T122919",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_cutoff_45k_s1_20260524T122919_result.json",
+    "occurrence": 1,
+    "bytes": 632,
+    "sha256": "2ea34df85d2d668bece529c7b2e1735930eaca92d674d39b3aba54561f42872b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cutoff_45k_s1 已启动，训练正常运行。**\n\n总结：\n- **服务器**: westd-34685, GPU 0, tmux session `cutoff_45k_s1`\n- **PID**: 882188\n- **配置**: `--occ_loss_cutoff_step 45000 --occ_loss_cutoff_mode after --seed 43`\n- **Trainable params**: 279,977,608 ✓\n- **初始 loss**: occ_loss=0.178, action_loss=0.652\n- **日志**: `~/runs/occsafe_vla/cutoff_45k_s1.log`\n- **Registry**: RUNNING\n\n注意：任务指令中部分路径与实际运行环境不一致，已按 cutoff_15k_s1/cutoff_25k_s1 的实际命令格式修正（`--vla_path`、`--occ_data_dir`、`--occ_loss_cutoff_mode after`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-cutoff-45k-s1.md"
+}

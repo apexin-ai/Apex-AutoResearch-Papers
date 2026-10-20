@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "a6d31919fd79ef87289f",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "analysis gradient aggregation investigation",
+  "task_key": "worker_analysis_gradient_aggregation_investigation_20260525T080558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gradient_aggregation_investigation_20260525T080558.log",
+    "occurrence": 1,
+    "bytes": 899719,
+    "sha256": "6597bb3e3593782aa51988e26f791716ecfa178d802fb9f7f4978cae8223e6b3"
+  },
+  "statistics": {
+    "messages": 165,
+    "user_turns": 0,
+    "tool_calls": 58,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 45,
+      "tool_call": 58,
+      "tool_result": 58,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 165,
+      "chunks": [
+        {
+          "path": "a6d31919fd79ef87289f-part-0001.json",
+          "message_count": 108
+        },
+        {
+          "path": "a6d31919fd79ef87289f-part-0002.json",
+          "message_count": 57
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-gradient-aggregation-investigation.md"
+}

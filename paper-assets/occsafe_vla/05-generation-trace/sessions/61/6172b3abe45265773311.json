@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6172b3abe45265773311",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose 10894 status and eval",
+  "task_key": "worker_diagnose_10894_status_and_eval_20260525T192240",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_10894_status_and_eval_20260525T192240_result.json",
+    "occurrence": 1,
+    "bytes": 956,
+    "sha256": "ddd45143416b54cc896285f0ccb1138040f3fe43a4079d61434e6b5d201d44a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部**仍在运行**，但进度远低于预期——只跑了约 1h40m，不像是 12h 前启动的。\n\n| 实验 | GPU | 当前 step | 进度 | 已跑时间 | 预计剩余 |\n|------|-----|-----------|------|----------|----------|\n| cutoff_45k_s2_v2 | cuda:0 (99%, 72°C) | ~6555/50005 | 13% | 1h45m | ~11h |\n| mvp_occ_s3_v2 | cuda:1 (80%, 68°C) | ~6151/50005 | 12% | 1h38m | ~11h |\n| full_occ_ln_s3_v2 | cuda:2 (99%, 73°C) | ~6344/50005 | 13% | 1h42m | ~11h |\n| ablation_occ_detach_s3_v2 | cuda:3 (49%, 68°C) | ~6356/50005 | 13% | 1h42m | ~11h |\n\n所有 GPU 显存满载（~62GB），训练正常进行中，速度 ~1.08 it/s。\n\n**异常点**：进度条显示只跑了约 1h40m，说明这些实验可能在中间崩溃后被重新启动过，或者启动时间比预期晚。预计还需 **~11 小时**才能完成，不具备启动 eval 的条件。\n\n需要我检查是否有之前崩溃的 log 记录吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-10894-status-and-eval.md"
+}

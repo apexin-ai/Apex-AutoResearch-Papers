@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c33d7867eed33d498015",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis anova table1 compile",
+  "task_key": "worker_analysis_anova_table1_compile_20260528T073309",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_anova_table1_compile_20260528T073309_result.json",
+    "occurrence": 1,
+    "bytes": 1566,
+    "sha256": "1ed56caa1a60858bf4c00cdf8e504fac5d184b87f5c7ba0a72f5036c7ff09699"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n---\n\n## 完成报告\n\n### Phase 1: Eval 结果\n两个 eval 均已完成（westd-34685），结果从 poll logs 提取并写入 registry：\n- **full_occ_ln_v2_s3_eval** (Cell 2): **CAR=0.762**, TSR=0.948\n- **detach_ln_v2_s3_eval** (Cell 4): **CAR=0.778**, TSR=0.930\n\n### Phase 2: 全量 v2 数据\n\n| Cell | Condition | n | CARs | Mean±SD |\n|------|-----------|---|------|---------|\n| 1 | Full OCC BN (ON+BN) | 3 | 0.654, 0.746, 0.776 | **0.725±0.064** |\n| 2 | Full OCC LN (ON+LN) | 4 | 0.798, 0.792, 0.740, 0.762 | **0.773±0.027** |\n| 3 | Detach BN (OFF+BN) | 4 | 0.794, 0.762, 0.736, 0.774 | **0.767±0.024** |\n| 4 | Detach LN (OFF+LN) | 3 | 0.802, 0.826, 0.778 | **0.802±0.024** |\n| — | Vanilla | 3 | 0.768, 0.748, 0.720 | **0.745±0.024** |\n\n### Phase 3: ANOVA 结果\n\n**2×2 Factorial ANOVA (Type II, N=14):**\n| Source | F | df | p | η² |\n|--------|---|----|----|-----|\n| Gradient flow | 3.20 | 1,10 | 0.104 | 0.180 |\n| Norm type | **4.49** | 1,10 | **0.060** | **0.253** |\n| Interaction | 0.10 | 1,10 | 0.763 | 0.005 |\n\n- Norm type 主效应接近显著 (p=0.060)，交互效应可忽略\n- Cell 4 vs Vanilla: Cohen's d=2.36 (very large), uncorrected p=0.045\n\n### Phase 4 & 5: 论文更新 + PDF 编译\n已更新：Abstract、Table 1、Table 2 (factorial)、Results 文本、Appendix (ANOVA table, pairwise d)、Figure caption、stat power section\n\n**PDF 路径**: `/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/_project/paper/main.pdf` (19 pages)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-anova-table1-compile.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e37e24819289899274f4",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops download cka figures",
+  "task_key": "worker_ops_download_cka_figures_20260524T004053",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_download_cka_figures_20260524T004053_result.json",
+    "occurrence": 1,
+    "bytes": 270,
+    "sha256": "8bf0436c808574e915d0a31c85fa6f0efc9a4d119f504c7f13041e270102dffc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个文件全部下载成功：\n\n| 文件 | 本地路径 | 大小 |\n|------|---------|------|\n| PDF | `artifacts/figures/cka_analysis.pdf` | 32K |\n| PNG | `artifacts/figures/cka_analysis.png` | 181K |\n| JSON | `artifacts/cka_results.json` | 5.0K |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-download-cka-figures.md"
+}

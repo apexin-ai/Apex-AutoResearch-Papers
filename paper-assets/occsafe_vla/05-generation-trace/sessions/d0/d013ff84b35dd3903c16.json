@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d013ff84b35dd3903c16",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose failed 10894 v2",
+  "task_key": "worker_diagnose_failed_10894_v2_20260526T180252",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_failed_10894_v2_20260526T180252_result.json",
+    "occurrence": 1,
+    "bytes": 2877,
+    "sha256": "118173003e098ba47b398f30335311aaadef18fe6d612f72da87cb9d07c9d0fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 共同根因：数据盘 `/root/autodl-tmp` 100% 满\n\n```\nFilesystem   Size  Used  Avail  Use%\n/dev/md0     250G  250G    40K  100%\n```\n\n**checkpoints 目录占 229G / 250G**，是主要元凶。\n\n---\n\n### 实验 1: full_occ_ln_v2_s0 (cuda:1)\n\n- **失败位置**: step 20000 checkpoint 保存，`merged_vla.save_pretrained()` 写 safetensors 时\n- **错误**: `safetensors_rust.SafetensorError: I/O error: No space left on device (os error 28)`\n- **时间**: 2026-05-27 02:00:57\n- **部分写入**: 20G 已占用（完整 checkpoint ~15G，多出来的是不完整的写入）\n\n### 实验 2: detach_ln_v2_s0 (cuda:3)\n\n- **失败位置**: step 20000 checkpoint 保存，`processor.save_pretrained()` → tokenizer save 时\n- **错误**: `Exception: No space left on device (os error 28)`\n- **时间**: 2026-05-27 02:01:07\n- **部分写入**: 15G 已占用\n\n### 对照: full_occ_ln_v2_s1 (cuda:2)\n\n- 当前在 step ~20001，**正在保存 step 20000 checkpoint**\n- **极大概率也会失败**——磁盘仅剩 40K\n- GPU 2 仍有进程（62GB VRAM），暂未崩溃\n\n### GPU 状态\n\n| GPU | VRAM | Util | 状态 |\n|-----|------|------|------|\n| 0 | 62194MiB | 92% | 有进程运行（非本次三个实验） |\n| 1 | 0MiB | 0% | 空闲（full_occ_ln_v2_s0 已崩） |\n| 2 | 62194MiB | 0% | full_occ_ln_v2_s1 正在存盘 |\n| 3 | 0MiB | 0% | 空闲（detach_ln_v2_s0 已崩） |\n\n### 空间明细 `/root/autodl-tmp/checkpoints/`\n\n| 目录 | 大小 | 备注 |\n|------|------|------|\n| reverse_cutoff_s2_v2 | 45G | 历史 |\n| ablation_occ_detach_s3_v2 | 30G | 历史 |\n| cutoff_45k_s2_v2 | 30G | 历史 |\n| full_occ_ln_s3_v2 | 30G | 历史 |\n| mvp_occ_s3_v2 | 30G | 历史 |\n| full_occ_ln_v2_s0 | 20G | 本次失败（含不完整写入） |\n| full_occ_ln_s0 | 15G | 历史 |\n| full_occ_ln_v2_s1 | 15G | 本次正在运行 |\n| detach_ln_v2_s0 | 15G | 本次失败（含不完整写入） |\n| **合计** | **~229G** | |\n\n---\n\n### 建议修复方案\n\n1. **紧急**：清理历史 checkpoint 释放空间。如果以下实验已完成评估，可删除：\n   - `reverse_cutoff_s2_v2` (45G)、`ablation_occ_detach_s3_v2` (30G)、`cutoff_45k_s2_v2` (30G)、`full_occ_ln_s3_v2` (30G)、`mvp_occ_s3_v2` (30G)、`full_occ_ln_s0` (15G)\n   - 总计可释放 **~180G**\n\n2. **清理失败实验的不完整 checkpoint**：`full_occ_ln_v2_s0` 和 `detach_ln_v2_s0` 的 20000 step checkpoint 目录是不完整的，需删除后重新保存\n\n3. **重启两个失败实验**：清理空间后用 `--resume` 从最近完整 checkpoint 继续（需确认 resume 逻辑是否适用于这两个实验——注意 C002 约束只禁止 cutoff/reverse_cutoff 实验用 resume，这两个不受限）\n\n4. **监控 full_occ_ln_v2_s1**：它大概率也会因磁盘满而失败，需尽快清理空间"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-failed-10894-v2.md"
+}

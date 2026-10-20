@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22bd4f34cbf4d20aa0b4",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diag batch2 progress check",
+  "task_key": "worker_diag_batch2_progress_check_20260520T134901",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_batch2_progress_check_20260520T134901_result.json",
+    "occurrence": 1,
+    "bytes": 940,
+    "sha256": "ef32449360f3c1411b130a4712f350012f97e7800960256d5fe2ad9f9d9df9ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 提取进度 (westd-34685)\n\n**5/9 tasks 完成，4 个正在提取中。**\n\n| Task | 状态 |\n|------|------|\n| `between_the_plate_and_the_ramekin` | COMPLETE |\n| `from_table_center` | COMPLETE |\n| `in_the_top_drawer` | COMPLETE |\n| `next_to_the_plate` | COMPLETE |\n| `on_the_cookie_box` | COMPLETE |\n| `next_to_the_cookie_box` | LOCKED (extracting, 3.4MB) |\n| `next_to_the_ramekin` | LOCKED (extracting, 3.1MB) |\n| `on_the_ramekin` | LOCKED (extracting, 3.2MB) |\n| `on_the_stove` | LOCKED (extracting, 3.2MB) |\n\n**进程状态**：4 个提取进程仍在运行（PID 6450/6451/6452/6453），已运行 1h37m，状态 `Rl`（活跃运行中）。文件最后修改时间在 21:47-21:49，确认正在写入。\n\n**预估剩余时间**：已完成文件大小 3.2-6.0MB，正在提取的文件已达 3.1-3.4MB。考虑到 5 个已完成 task 在 ~1h 内完成，剩余 4 个预计还需 **30-60 分钟**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-batch2-progress-check.md"
+}

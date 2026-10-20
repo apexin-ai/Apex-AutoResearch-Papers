@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07de384a7436a935c1b5",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "train occ cutoff 34685",
+  "task_key": "worker_train_occ-cutoff-34685_20260522T062941",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_occ-cutoff-34685_20260522T062941_result.json",
+    "occurrence": 1,
+    "bytes": 1064,
+    "sha256": "f8bac196a46c63d1edca11612466166f9e7051e212b40265ce781283b1d3e1b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已正常运行。汇报：\n\n## 结果\n\n**代码改动**：无。`occ_loss_cutoff_step` 参数和 cutoff 逻辑已存在于 `finetune.py:94,1164-1166`。\n\n**实验状态**：\n\n| 实验 | GPU | PID | tmux | seed | 速度 | ETA |\n|------|-----|-----|------|------|------|-----|\n| cutoff_s0 | cuda:0 | 125522 | cutoff_s0 | 42 | ~1.07 it/s | ~13h (May 23 ~04:00 UTC) |\n| cutoff_s1 | cuda:3 | 125672 | cutoff_s1 | 43 | ~1.05 it/s | ~13h (May 23 ~04:00 UTC) |\n\n**初始 metrics**：\n- cutoff_s0: step=0, occ_loss=0.1080, action_loss=0.6523\n- cutoff_s1: step=0, occ_loss=0.1656, action_loss=0.5391\n\n**GPU 占用**：4 卡全部活跃（cuda:0/3 cutoff，cuda:1/2 depth），各 ~62GB VRAM。\n\n**磁盘**：/root/autodl-tmp 62GB 可用。save_freq=2500 × 50K steps = 20 checkpoints/run，LoRA checkpoints 较小，空间充足。\n\n**Cron 监控**：cutoff_s0 和 cutoff_s1 均已注册，120s 轮询。\n\n**关键参数**：`occ_loss_cutoff_step=35000`，前 35K 步 OCC loss 正常衰减，35K 后 occ_weight 归零。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-occ-cutoff-34685.md"
+}

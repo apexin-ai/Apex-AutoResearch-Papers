@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "85d45633b17405c33ba8",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops 10894 progress check",
+  "task_key": "worker_ops_10894-progress-check_20260526T224023",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_10894-progress-check_20260526T224023_result.json",
+    "occurrence": 1,
+    "bytes": 1404,
+    "sha256": "0497b3c99646b64c3079211b49bb773b9e96d1e345d433fb7f0b82e40c21e9fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验进度汇总（May 27 06:40 UTC）\n\n### GPU 使用\n| GPU | 实验 | 温度 | 显存 | 利用率 |\n|-----|------|------|------|--------|\n| 0 | reverse_cutoff_s2_v2 | 73°C | 62G/98G | 99% |\n| 1 | full_occ_ln_v2_s0 | 71°C | 62G/98G | 99% |\n| 2 | full_occ_ln_v2_s1 | 70°C | 63G/98G | 96% |\n| 3 | detach_ln_v2_s0 | 72°C | 62G/98G | 99% |\n\n### 实验详情\n\n| 实验 | 当前 step | 进度 | 速度 | 预计完成 (UTC) |\n|------|-----------|------|------|----------------|\n| **reverse_cutoff_s2_v2** | 47672/50005 | 95% | ~1.06 it/s | **~07:17** (约37分钟后) |\n| **full_occ_ln_v2_s0** | ~15700/50005 (估算) | ~31% | ~1.08 it/s | **~15:30** |\n| **full_occ_ln_v2_s1** | ~15500/50005 (估算) | ~31% | ~1.08 it/s | **~15:35** |\n| **detach_ln_v2_s0** | ~15600/50005 (估算) | ~31% | ~1.08 it/s | **~15:33** |\n\n### 备注\n- **reverse_cutoff_s2_v2**: 即将完成，50000_chkpt 尚未生成（30k/40k chkpt 已存在）\n- **后三个实验**: 之前的运行在 02:08-02:09 UTC 崩溃（exitcode 2），已用新 PID 重启。stdout 输出到 tmux 终端 (/dev/pts/1)，无独立日志文件，step 数基于 10000_chkpt 保存时间（~05:12）推算。wandb 未启用\n- **三个实验 ETA ~15:30 UTC**，在 deadline（05-28 12:00 UTC）前约 20.5 小时完成，时间充足\n\n### 磁盘\n- `/root/autodl-tmp`: 171G / 250G（69%），剩余 80G，充足"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-10894-progress-check-copy-4.md"
+}

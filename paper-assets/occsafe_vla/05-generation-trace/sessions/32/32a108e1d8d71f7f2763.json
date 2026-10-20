@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32a108e1d8d71f7f2763",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval occ s0 47500 50r monitor",
+  "task_key": "worker_eval_occ-s0-47500-50r-monitor_20260521T200408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_occ-s0-47500-50r-monitor_20260521T200408_result.json",
+    "occurrence": 1,
+    "bytes": 185,
+    "sha256": "d61819d0858543ca6836ad1945274117336dd6ca7c7e315005c2914708888c40"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 正在进行中：T0 @ 64%（32/50），共 10 个 task。预计还需 ~30 分钟。已设置 3 分钟轮询，等进程结束后自动验证结果并重跑分析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-occ-s0-47500-50r-monitor.md"
+}

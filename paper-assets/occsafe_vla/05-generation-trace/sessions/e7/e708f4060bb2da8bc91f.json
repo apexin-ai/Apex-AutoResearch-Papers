@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e708f4060bb2da8bc91f",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops submit detach ln evals",
+  "task_key": "worker_ops_submit_detach_ln_evals_20260524T074047",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit_detach_ln_evals_20260524T074047_result.json",
+    "occurrence": 1,
+    "bytes": 538,
+    "sha256": "221db3741c0b54d8b9c21cf4f0b80b651be82d142229565af9fb663d89f22032"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 eval tmux session 全部运行中。\n\n**提交结果：**\n\n| Eval | GPU | PID | tmux session |\n|------|-----|-----|-------------|\n| detach_ln_s0_eval | cuda:0 | 585626 | detach_ln_s0_eval |\n| detach_ln_s1_eval | cuda:1 | 585894 | detach_ln_s1_eval |\n| detach_ln_s2_eval | cuda:2 | 586100 | detach_ln_s2_eval |\n\n日志路径：`~/runs/occsafe_vla/detach_ln_s{0,1,2}_eval.log`\n\nGPU 进程尚在模型加载阶段（nvidia-smi 暂未显示占用），属正常行为，加载完成后会出现显存占用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-detach-ln-evals.md"
+}

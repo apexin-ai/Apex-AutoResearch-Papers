@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3adf3ed9178bd3c65e3b",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose detach ln v2 s2 failure",
+  "task_key": "worker_diagnose_detach_ln_v2_s2_failure_20260528T015532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_detach_ln_v2_s2_failure_20260528T015532_result.json",
+    "occurrence": 1,
+    "bytes": 1041,
+    "sha256": "2e4bcbec90affbf6cfc6d867f42238c45efaaeab73981678f1ec5a3d82572993"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。报告已写入 `artifacts/diagnose_batch_failure_20260528.md`。\n\n关键发现：\n\n1. **根因**：`finetune.py:727` 的 `save_training_checkpoint` 在合并 LoRA 时需要从 `cfg.vla_path` 加载 base model。两个失败实验的 `--vla_path` 指向旧 checkpoint（15000_chkpt / 10000_chkpt），但这些 checkpoint 已被清理脚本删除 → `OSError`。\n\n2. **确认的失败**：\n   - `detach_ln_v2_s2`：15000_chkpt 被删，现存 20000/25000/30000\n   - `vanilla_object_s0`：10000_chkpt 被删，现存 15000/20000/25000\n\n3. **未找到的日志**：`detach_bn_object_s0` 和 `full_occ_bn_object_s0` 在 westd-34685 上不存在，可能在其他服务器。\n\n4. **安全的实验**：cuda:2/3 上的 `full_occ_ln_v2_s3` 和 `detach_ln_v2_s3` 使用原始 `openvla-7b` 作为 vla_path，不受影响。\n\n5. **重启建议**：最快方案是加 `--merge_lora_during_training=false` 重启；或者直接用现存的最新 merged checkpoint（30000/25000）做评估，跳过重启。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-detach-ln-v2-s2-failure.md"
+}

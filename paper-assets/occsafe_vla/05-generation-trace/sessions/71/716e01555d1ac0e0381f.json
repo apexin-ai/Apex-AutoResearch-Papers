@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "716e01555d1ac0e0381f",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "data git lfs pull 34685",
+  "task_key": "worker_data_git_lfs_pull_34685_20260527T161519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_git_lfs_pull_34685_20260527T161519.log",
+    "occurrence": 1,
+    "bytes": 783501,
+    "sha256": "9c78c8885471b2326b7284f660cc8b40af59c7e16eecc4813aabbec3d00f296b"
+  },
+  "statistics": {
+    "messages": 618,
+    "user_turns": 0,
+    "tool_calls": 261,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 92,
+      "tool_call": 261,
+      "tool_result": 261,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 618,
+      "chunks": [
+        {
+          "path": "716e01555d1ac0e0381f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "716e01555d1ac0e0381f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "716e01555d1ac0e0381f-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "716e01555d1ac0e0381f-part-0004.json",
+          "message_count": 78
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/data-git-lfs-pull-34685.md"
+}

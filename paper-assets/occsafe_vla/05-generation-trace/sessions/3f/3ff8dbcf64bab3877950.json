@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ff8dbcf64bab3877950",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code v2 gradient analysis script",
+  "task_key": "worker_code_v2-gradient-analysis-script_20260526T160534",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_v2-gradient-analysis-script_20260526T160534_result.json",
+    "occurrence": 1,
+    "bytes": 2031,
+    "sha256": "2183d586ab534e0c63637f3027ed88f44fa3b29cd89ed8dd8bed6e0064f71c3e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本已部署并验证通过。\n\n**`run_gradient_analysis_v2.py`** — 分析脚本：\n- 参数：`--checkpoint_dir`, `--condition_name`, `--seed`, `--num_samples`(默认200）, `--output_dir`, `--data_dir`, `--occ_data_dir`, `--gpu`\n- 自动检测 `occ_detach`（condition 含 \"detach\"/\"vanilla\" → True）和 `occ_norm`（含 \"bn\" → bn，否则 ln）\n- 自动检测 Vanilla（无 OCC head checkpoint → 跳过 OCC 梯度计算）\n- 方法论完全匹配 v1：逐层 backbone 参数梯度、L2 norm、cosine similarity、conflict rate\n- 输出 `{condition}_gradient_stats.json` + `{condition}_gradient_raw.json`\n\n**`plot_gradient_analysis_v2.py`** — 可视化脚本：\n- 4 panel：(a) action grad norms, (b) OCC grad norms, (c) cosine similarity, (d) ratio vs Vanilla\n- 可选 `--v1_results_dir /root/autodl-tmp/analysis/gradient_same_seed/` 生成 v1 vs v2 对比 CSV\n- 输出 PDF + PNG\n\n**运行示例**（v2 checkpoint 到位后）：\n```bash\ncd /root/occsafe_vla/openvla-oft\nOUT=/root/occsafe_vla/artifacts/gradient_v2\n\n# 1. Vanilla\npython3 /root/occsafe_vla/scripts/run_gradient_analysis_v2.py \\\n  --checkpoint_dir /root/autodl-tmp/checkpoints/vanilla_retrain_s0/.../50000_chkpt \\\n  --condition_name \"Vanilla v2\" --seed 42 --output_dir $OUT\n\n# 2. Full OCC LN v2\npython3 /root/occsafe_vla/scripts/run_gradient_analysis_v2.py \\\n  --checkpoint_dir /root/autodl-tmp/checkpoints/full_occ_ln_v2_s0/.../50000_chkpt \\\n  --condition_name \"Full OCC LN v2\" --seed 42 --output_dir $OUT\n\n# 3. Detach LN v2\npython3 /root/occsafe_vla/scripts/run_gradient_analysis_v2.py \\\n  --checkpoint_dir /root/autodl-tmp/checkpoints/detach_ln_v2_s0/.../50000_chkpt \\\n  --condition_name \"Detach LN v2\" --seed 42 --output_dir $OUT\n\n# 4. 生成图 + v1对比\npython3 /root/occsafe_vla/scripts/plot_gradient_analysis_v2.py \\\n  --results_dir $OUT \\\n  --v1_results_dir /root/autodl-tmp/analysis/gradient_same_seed/ \\\n  --output $OUT/gradient_analysis_v2_combined.pdf\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-v2-gradient-analysis-script.md"
+}

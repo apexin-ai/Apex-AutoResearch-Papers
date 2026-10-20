@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "98bab16ba2ce2e2f84f9",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose object failures",
+  "task_key": "worker_diagnose_object_failures_20260528T015248",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_object_failures_20260528T015248_result.json",
+    "occurrence": 1,
+    "bytes": 1139,
+    "sha256": "2be4aa8d584eb6a1342a5e29fe74e344e2d26e2108e1e90be77be1fe0e3016a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n**诊断总结：**\n\n| 实验 | 服务器 | 根因 | 训练进度 |\n|------|--------|------|----------|\n| detach_bn_object_s0 | westd-10894 | step 5000 checkpoint 损坏：只有 1/4 safetensors shard，缺 index 文件，`from_pretrained` 无法加载 | 0（启动即崩） |\n| full_occ_bn_object_s0 | westd-10894 | 同上：3/4 shard 但缺 index 文件 | 0（启动即崩） |\n| vanilla_object_s0 | westd-34685 | checkpoint 轮转在保存 20000 时删除了 10000_chkpt，保存 25000 时 `save_training_checkpoint` 试图从已删除的 10000_chkpt 加载 base model 失败 | ~4.2h，训练到 step ~25000 |\n\n**共同根因**：finetune.py 的 checkpoint 管理有两个 bug——(1) safetensors 保存缺 index 文件导致不完整 checkpoint 不可恢复；(2) checkpoint 轮转删除了 `save_training_checkpoint` 依赖的 resume 源。\n\n**修复路径**：\n- westd-10894 两个实验：5000 checkpoint 已损坏，无法 resume，需从 pretrained 从头训练\n- westd-34685 vanilla：可从 20000_chkpt resume，但需先修复 `save_training_checkpoint` 中 base_model_path 的硬编码问题"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-object-failures.md"
+}

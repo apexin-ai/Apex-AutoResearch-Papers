@@ -1,0 +1,1901 @@
+{
+  "schema_version": "1.0",
+  "id": "d1e0a08841c4f16f74e5",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "paper writing discussion equivalence",
+  "task_key": "worker_paper_writing_discussion_equivalence_20260528T013838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_discussion_equivalence_20260528T013838.log",
+    "occurrence": 1,
+    "bytes": 144519,
+    "sha256": "46cddd4bc3d90638a838fc78f16114929e1027a2d4f26eab121ab9c01e29a8f9"
+  },
+  "statistics": {
+    "messages": 41,
+    "user_turns": 0,
+    "tool_calls": 14,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 14,
+      "tool_result": 14,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla",
+                "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__auto_build_provenance",
+                  "mcp__agent-ml-research__bootstrap_provenance",
+                  "mcp__agent-ml-research__check_figures_and_layout",
+                  "mcp__agent-ml-research__check_paper_consistency",
+                  "mcp__agent-ml-research__check_provenance_completeness",
+                  "mcp__agent-ml-research__cleanup_pdf_images",
+                  "mcp__agent-ml-research__compute_coverage_matrix",
+                  "mcp__agent-ml-research__edit_paper_section",
+                  "mcp__agent-ml-research__get_image_info",
+                  "mcp__agent-ml-research__get_worker_status",
+                  "mcp__agent-ml-research__list_artifacts",
+                  "mcp__agent-ml-research__list_workers",
+                  "mcp__agent-ml-research__load_project_config",
+                  "mcp__agent-ml-research__overleaf_init",
+                  "mcp__agent-ml-research__overleaf_pull",
+                  "mcp__agent-ml-research__overleaf_push",
+                  "mcp__agent-ml-research__overleaf_status",
+                  "mcp__agent-ml-research__overleaf_sync",
+                  "mcp__agent-ml-research__paper_agent_post_to_director",
+                  "mcp__agent-ml-research__paper_agent_request_review",
+                  "mcp__agent-ml-research__paper_compile_and_check",
+                  "mcp__agent-ml-research__pdf_to_images",
+                  "mcp__agent-ml-research__read_experiment_plan_with_status",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__read_roadmap",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__send_progress",
+                  "mcp__agent-ml-research__spawn_worker",
+                  "mcp__agent-ml-research__verify_references",
+                  "mcp__agent-ml-research__write_paper_section"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "6e3148e7-3dc1-4c9c-877c-4ace6c543c43",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-occsafe-vla/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed_warning",
+                  "resetsAt": 1780012800,
+                  "rateLimitType": "seven_day",
+                  "utilization": 0.82,
+                  "isUsingOverage": false,
+                  "surpassedThreshold": 0.75
+                },
+                "uuid": "384806a5-dd75-45ea-a1f3-a61531f5d6d2",
+                "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the writing norms and the current discussion.tex file."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "8918f862-50c7-4555-95dd-11975c8b35d1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NLQFz8Gx2MeCGHC1fpdAHS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12746,
+                "cache_read_input_tokens": 11845,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12746
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01W2ehXqPATLvSp4LSrSJCyL",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "277ab151-a61d-445a-9a46-96a3c1182d63",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NLQFz8Gx2MeCGHC1fpdAHS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12746,
+                "cache_read_input_tokens": 11845,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12746
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-28T01:38:51.409Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01W2ehXqPATLvSp4LSrSJCyL",
+              "type": "tool_result",
+              "content": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **禁止过度宣传**：不说 \"revolutionary\"、\"groundbreaking\"\n75\t- **禁止写成 Introduction 的缩写**：Abstract 是独立阅读单元\n76\t- **禁止术语堆积**：如果审稿人几十秒内判断不出价值，就失败了\n77\t- **缩写必须定义**：Abstract 中首次出现的缩写必须展开\n78\t\n79\t### 2.3 审稿人视角检验\n80\t\n81\t写完后用这个标准自检：审稿人能否在 30 秒内判断——\n82\t- 问题是否重要？\n83\t- 方法是否清楚？\n84\t- 贡献是否可信？\n85\t- 结果是否有说服力？\n86\t\n87\t---\n88\t\n89\t## 三、Introduction 写作规范\n90\t\n91\t### 3.1 完整叙事线（5 段结构）\n92\t\n93\tIntroduction 需要从一个清晰、重要的问题切入，逐步把读者带到核心贡献：\n94\t\n95\t1. **研究背景**（1-2 段）：大模型在某类能力/应用中已取得进展，但仍存在一个关键瓶颈\n96\t2. **问题重要性**（1 段）：结合真实应用、已有方法局限或当前趋势，说明这不是小问题\n97\t3. **现有方法不足**（1 段）：系统梳理为什么不够（依赖更大模型/更多数据/更复杂推理/更高成本，或只在特定 benchmark 有效）\n98\t4. **本文核心想法**（1 段）：我们观察到什么、提出了什么方法、为什么能解决上述问题\n99\t5. **贡献总结**（列表）：清楚列出方法贡献、实验贡献和分析贡献\n100\t\n101\t### 3.2 整体叙事结构\n102\t\n103\t```\n104\t现有进展 → 关键缺口 → 本文洞察 → 方法概述 → 实验证据 → 贡献总结\n105\t```\n106\t\n107\t### 3.3 禁忌\n108\t\n109\t- **禁止泛泛介绍**：不要开头就写 \"LLMs have shown remarkable capabilities...\"，要从具体问题切入\n110\t- **禁止缺少过渡**：每段之间必须有逻辑连接\n111\t- **禁止实验报告风格**：Introduction 不是 \"我们做了 X 实验得到了 Y 结果\" 的罗列\n112\t- 每条 Contribution 必须有对应的 section/table 支撑\n113\t- Contribution 列表中不能出现未在前文铺垫过的概念\n114\t\n115\t---\n116\t\n117\t## 四、Related Work 写作规范\n118\t\n119\t### 4.1 目标\n120\t\n121\t让审稿人相信：作者理解这个领域，知道自己的方法站在什么位置，清楚相对已有工作的真实增量在哪里。\n122\t\n123\t### 4.2 结构要求\n124\t\n125\t- 把已有工作分成几个清晰的主题（如模型训练、推理增强、工具调用、数据构建、评测等）\n126\t- 每类简要说明：已有方法做了什么、解决了哪些问题、和本文的关系\n127\t- 帮助读者理解：哪些是本文直接继承的，哪些方法不同但解决相似问题，哪些留下了本文要解决的缺口\n128\t\n129\t### 4.3 禁忌\n130\t\n131\t- **禁止论文堆砌**：不要写成 \"A proposed X. B proposed Y. C proposed Z.\" 的列表\n132\t- **目标不是展示读了多少论文**，而是做归纳和比较\n133\t- Contribution claim（\"To our knowledge, no prior work...\"）应放在 Introduction，不在 Related Work\n134\t\n135\t### 4.4 引用充足度\n136\t\n137\t- 引用必须覆盖：**直接相关方法、baseline 论文、评测 benchmark 论文、理论基础**\n138\t- 任何一类缺失，审稿人会立刻看出来调研不充分\n139\t- 引用密度参照目标会议近年录用论文的量级——明显偏少意味着 Related Work 调研不足\n140\t\n141\t---\n142\t\n143\t## 五、去 AI 写作风格（硬规则）\n144\t\n145\t以下模式是 AI 生成文本的典型标志，审稿人一眼能看出。**必须全部消除。**\n146\t\n147\t### 5.1 严禁破折号（最显著的 AI 痕迹）\n148\t\n149\t**这是 AI 写作最容易被识别的标志，审稿人最敏感。单列为最高优先级硬规则。**\n150\t\n151\t- 解释性 em-dash（—，U+2014）和 en-dash（–，U+2013）必须**全部删除**\n152\t- 替代方式：用逗号、括号或拆分为两个句子\n153\t- 强制检查命令：\n154\t  ```bash\n155\t  grep -n \"—\" paper/*.tex     # em-dash，每处人工判断是否必要\n156\t  grep -n \" – \" paper/*.tex   # 解释性 en-dash，几乎都应删除\n157\t  ```\n158\t- 例外（允许保留）：表格分隔符、数字范围（`2020–2024`、`pp. 12–18`）、专有名词（`Newton–Raphson`）\n159\t\n160\t### 5.2 段落与句式\n161\t\n162\t- **禁止过度分段**：不需要每 2-3 句就换段，自然段 5-8 句是正常的\n163\t- **减少关系从句**（which, that, who）：能用简洁直接的句子就不用从句\n164\t- **禁止 -ing 短语结尾**：如 \"..., highlighting the applicability of...\" / \"..., demonstrating the effectiveness of...\"。这是 AI 写作最典型的标志之一\n165\t- **禁止连续使用 \"Furthermore\" / \"Moreover\" / \"Additionally\"**：一段内最多用一个过渡词\n166\t- **避免 \"It is worth noting that...\" / \"Notably, ...\"**：直接写要说的内容\n167\t\n168\t### 5.3 用词黑名单\n169\t\n170\t- 避免 \"delve into\" / \"leverage\" / \"utilize\" / \"facilitate\" — 用 \"explore\" / \"use\" / \"enable\"\n171\t- 避免 \"a myriad of\" / \"a plethora of\" — 用 \"many\" / \"various\"\n172\t- 避免 \"in the realm of\" / \"in the context of\" — 直接说\n173\t- 避免 \"paradigm shift\" / \"novel\" 过度使用\n174\t\n175\t### 5.4 校对清单（4 步）\n176\t\n177\t1. 全文 proofread 语法和拼写\n178\t2. 检查所有代词/指示词（this, that, it）是否指代明确\n179\t3. **`grep \"—\"` + `grep \" – \"` 全文清零**（删除所有解释性 dash，§5.1）\n180\t4. `grep \"ing,\"` 模式——大部分 -ing 分词短语需要改写\n181\t\n182\t---\n183\t\n184\t## 六、图表与视觉规范\n185\t\n186\t### 6.1 知识密度原则\n187\t\n188\t- **图表的信息必须紧凑**——不能为了美观而留大量白空间\n189\t- 一张图如果只传达一个简单信息，要么缩小要么合并到其他图中\n190\t- 能用 inline text 说清的不要占一整个 Figure\n191\t\n192\t### 6.2 表格规范\n193\t\n194\t- 表格和正文文字不能视觉重叠（检查 column 宽度和 alignment）\n195\t- 小数精度全表统一\n196\t- 最优加粗、次优下划线\n197\t- Caption 必须自包含\n198\t\n199\t### 6.3 图片规范\n200\t\n201\t- 数值标签不能被线、bar、点遮住——用白色背景或偏移标签\n202\t- 图中字体 >= 7pt（打印后仍可读）\n203\t- 栏宽约束需匹配目标 venue 模板要求\n204\t- 概念图/流程图要有信息量，不要画一个 trivial 的 pipeline 然后占半页\n205\t\n206\t### 6.4 空间效率\n207\t\n208\t- 顶会正文页数严格受限（具体页数查目标会议官网），每 cm² 都是宝贵资源\n209\t- 优先使用 `\\subfigure` 合并相关图\n210\t- Table 能 inline 就不要单独浮动\n211\t- 图表占比与其对叙事的贡献成正比\n212\t\n213\t### 6.5 页面节奏\n214\t\n215\t好论文的页面有节奏感——text、equation、figure 交替出现，读者视觉不疲劳：\n216\t\n217\t- **text-equation-figure 三重奏**：重要概念用\"文字解释 → 公式定义 → 图表直觉\"三步展开\n218\t- 连续 2 页纯文本（无 figure/equation/table）→ 穿插一个 display item 打破节奏\n219\t- 连续 2 个 figure 页（整页被 float 占满）→ 至少隔 1 段文字再放下一个 float\n220\t- Section heading 不孤悬页底（heading 后至少跟 2 行正文，否则强制分页）\n221\t- 最后一页内容 ≥ 2/3 页面高度（太空显得凑数，太满放不下 references）\n222\t\n223\t### 6.6 表格 LaTeX 规范\n224\t\n225\t**Booktabs 标准（硬规则）**：\n226\t- 用 `\\toprule` / `\\midrule` / `\\bottomrule`，禁止 `\\hline`，禁止竖线 `|`\n227\t- 用 `\\centering` 不用 `\\begin{center}`（后者多加垂直空白）\n228\t- 最优结果加粗（`\\textbf{}`），次优下划线（`\\underline{}`）+ 方向箭头 `↑`/`↓` 标明指标方向\n229\t- 小数精度全表统一（如全部保留 1 位或 2 位）\n230\t- Caption 在表格上方（`\\caption` 在 `\\begin{tabular}` 之前）\n231\t\n232\t**宽度决策树**：\n233\t- ≤5 列 → 单栏宽度（`\\columnwidth`）\n234\t- 6–8 列 → 全文宽度（`\\textwidth`，双栏模板用 `table*`）\n235\t- >8 列 → 拆成两张表或移入 appendix\n236\t\n237\t---\n238\t\n239\t## 七、投稿前通用准备\n240\t\n241\t### 7.1 模板必须官方（硬规则）\n242\t\n243\t- LaTeX 模板**必须从目标会议官网下载**（CallForPapers / Author Instructions 页面）\n244\t- **不要用**：\n245\t  - 网上他人转载的复制版本（可能被改过 margin / 行号设置）\n246\t  - 上一年的模板（参数可能变：字体、margin、行号、anonymous 选项等）\n247\t  - 组里学长留的旧版本（来源不明、无法追溯）\n248\t- 风险：\n249\t  - 样式不符合 → desk reject\n250\t  - margin 不对 → 被审稿人质疑诚信\n251\t  - reference 格式错 → 被认为不规范\n252\t- 流程：先查会议官网 templates → 找不到再 `WebSearch \"{venue} {year} latex template official\"` → 仍找不到汇报 Director（不要用就近年版本顶替）\n253\t- `\\documentclass[]{}` 选项必须与目标 venue + 阶段（review / camera-ready）一致\n254\t\n255\t### 7.2 投稿要求逐项核对\n256\t\n257\t- 目标会议如要求 Checklist / Ethical Statement / Broader Impact Statement / Reproducibility Statement，必须**认真填每一项**，不要全写 N/A\n258\t- 页数限制：查目标会议官网\n259\t- 匿名化要求：review 版 vs camera-ready 版本设置不同\n260\t- 行号开启（review 版常需）\n261\t- 字体大小、margin 不得修改 sty 文件\n262\t\n263\t### 7.3 最终修改 10 项检查流程\n264\t\n265\t提交前必须逐一检查：\n266\t1. 所有最新实验结果已全部录入\n267\t2. 根据实验结果将叙事调至最优状态\n268\t3. 附录所有内容在正文中被引用且融入叙事\n269\t4. 无数据堆砌（每个数字服务于叙事推进）\n270\t5. Abstract 和 Introduction 具有吸引力（不是实验报告风格）\n271\t6. 全文主线统一（idea 变化后各章节逻辑一致）\n272\t7. 所有专有名词有定义\n273\t8. 无 AI 风格标志（dash、-ing phrases、过度分段）\n274\t9. 图表知识密度高、无视觉遮挡\n275\t10. Reference 覆盖直接相关方法、baseline、benchmark、理论基础\n276\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "85b0612d-932d-4592-bfd3-f1c223c0b389",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md",
+                "content": "---\nname: paper-writing-norms\ndescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\nallowed-tools: [Read, Write, Edit, Glob, Grep]\nscope: global\nversion: 2\npriority: 9\ntags:\n  - writing\n  - paper\n  - style\n  - norms\nroles:\n  - agent\n  - worker\n  - paper_agent\n---\n\n# 论文写作风格规范\n\n> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n\n---\n\n## 一、总体写作哲学\n\n### 1.1 故事驱动，不是数据堆砌\n\n- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n\n### 1.2 主线统一性\n\n- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n\n### 1.3 专有名词必须有定义\n\n- 首次出现的专有名词/缩写必须给出完整定义和解释\n- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n\n### 1.4 写作前必读同类优秀论文\n\n- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n- 重点学：\n  - Abstract 怎么用最少篇幅讲完故事\n  - Introduction 怎么从大问题切入到具体贡献\n  - Related Work 怎么 positioning 自己（不是 survey）\n  - Table/Figure 怎么压缩信息密度\n- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n\n---\n\n## 二、Abstract 写作规范\n\n### 2.1 四个必答问题（150-250 words）\n\nAbstract 必须在很短的篇幅内清楚回答：\n1. **研究什么问题** — 1-2 句话交代背景和痛点\n2. **为什么重要** — 现有方法的不足（不用写太多）\n3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n4. **结果说明什么** — 用具体实验结论支撑贡献\n\n### 2.2 禁忌\n\n- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n- **禁止过度宣传**：不说 \"revolutionary\"、\"groundbreaking\"\n- **禁止写成 Introduction 的缩写**：Abstract 是独立阅读单元\n- **禁止术语堆积**：如果审稿人几十秒内判断不出价值，就失败了\n- **缩写必须定义**：Abstract 中首次出现的缩写必须展开\n\n### 2.3 审稿人视角检验\n\n写完后用这个标准自检：审稿人能否在 30 秒内判断——\n- 问题是否重要？\n- 方法是否清楚？\n- 贡献是否可信？\n- 结果是否有说服力？\n\n---\n\n## 三、Introduction 写作规范\n\n### 3.1 完整叙事线（5 段结构）\n\nIntroduction 需要从一个清晰、重要的问题切入，逐步把读者带到核心贡献：\n\n1. **研究背景**（1-2 段）：大模型在某类能力/应用中已取得进展，但仍存在一个关键瓶颈\n2. **问题重要性**（1 段）：结合真实应用、已有方法局限或当前趋势，说明这不是小问题\n3. **现有方法不足**（1 段）：系统梳理为什么不够（依赖更大模型/更多数据/更复杂推理/更高成本，或只在特定 benchmark 有效）\n4. **本文核心想法**（1 段）：我们观察到什么、提出了什么方法、为什么能解决上述问题\n5. **贡献总结**（列表）：清楚列出方法贡献、实验贡献和分析贡献\n\n### 3.2 整体叙事结构\n\n```\n现有进展 → 关键缺口 → 本文洞察 → 方法概述 → 实验证据 → 贡献总结\n```\n\n### 3.3 禁忌\n\n- **禁止泛泛介绍**：不要开头就写 \"LLMs have shown remarkable capabilities...\"，要从具体问题切入\n- **禁止缺少过渡**：每段之间必须有逻辑连接\n- **禁止实验报告风格**：Introduction 不是 \"我们做了 X 实验得到了 Y 结果\" 的罗列\n- 每条 Contribution 必须有对应的 section/table 支撑\n- Contribution 列表中不能出现未在前文铺垫过的概念\n\n---\n\n## 四、Related Work 写作规范\n\n### 4.1 目标\n\n让审稿人相信：作者理解这个领域，知道自己的方法站在什么位置，清楚相对已有工作的真实增量在哪里。\n\n### 4.2 结构要求\n\n- 把已有工作分成几个清晰的主题（如模型训练、推理增强、工具调用、数据构建、评测等）\n- 每类简要说明：已有方法做了什么、解决了哪些问题、和本文的关系\n- 帮助读者理解：哪些是本文直接继承的，哪些方法不同但解决相似问题，哪些留下了本文要解决的缺口\n\n### 4.3 禁忌\n\n- **禁止论文堆砌**：不要写成 \"A proposed X. B proposed Y. C proposed Z.\" 的列表\n- **目标不是展示读了多少论文**，而是做归纳和比较\n- Contribution claim（\"To our knowledge, no prior work...\"）应放在 Introduction，不在 Related Work\n\n### 4.4 引用充足度\n\n- 引用必须覆盖：**直接相关方法、baseline 论文、评测 benchmark 论文、理论基础**\n- 任何一类缺失，审稿人会立刻看出来调研不充分\n- 引用密度参照目标会议近年录用论文的量级——明显偏少意味着 Related Work 调研不足\n\n---\n\n## 五、去 AI 写作风格（硬规则）\n\n以下模式是 AI 生成文本的典型标志，审稿人一眼能看出。**必须全部消除。**\n\n### 5.1 严禁破折号（最显著的 AI 痕迹）\n\n**这是 AI 写作最容易被识别的标志，审稿人最敏感。单列为最高优先级硬规则。**\n\n- 解释性 em-dash（—，U+2014）和 en-dash（–，U+2013）必须**全部删除**\n- 替代方式：用逗号、括号或拆分为两个句子\n- 强制检查命令：\n  ```bash\n  grep -n \"—\" paper/*.tex     # em-dash，每处人工判断是否必要\n  grep -n \" – \" paper/*.tex   # 解释性 en-dash，几乎都应删除\n  ```\n- 例外（允许保留）：表格分隔符、数字范围（`2020–2024`、`pp. 12–18`）、专有名词（`Newton–Raphson`）\n\n### 5.2 段落与句式\n\n- **禁止过度分段**：不需要每 2-3 句就换段，自然段 5-8 句是正常的\n- **减少关系从句**（which, that, who）：能用简洁直接的句子就不用从句\n- **禁止 -ing 短语结尾**：如 \"..., highlighting the applicability of...\" / \"..., demonstrating the effectiveness of...\"。这是 AI 写作最典型的标志之一\n- **禁止连续使用 \"Furthermore\" / \"Moreover\" / \"Additionally\"**：一段内最多用一个过渡词\n- **避免 \"It is worth noting that...\" / \"Notably, ...\"**：直接写要说的内容\n\n### 5.3 用词黑名单\n\n- 避免 \"delve into\" / \"leverage\" / \"utilize\" / \"facilitate\" — 用 \"explore\" / \"use\" / \"enable\"\n- 避免 \"a myriad of\" / \"a plethora of\" — 用 \"many\" / \"various\"\n- 避免 \"in the realm of\" / \"in the context of\" — 直接说\n- 避免 \"paradigm shift\" / \"novel\" 过度使用\n\n### 5.4 校对清单（4 步）\n\n1. 全文 proofread 语法和拼写\n2. 检查所有代词/指示词（this, that, it）是否指代明确\n3. **`grep \"—\"` + `grep \" – \"` 全文清零**（删除所有解释性 dash，§5.1）\n4. `grep \"ing,\"` 模式——大部分 -ing 分词短语需要改写\n\n---\n\n## 六、图表与视觉规范\n\n### 6.1 知识密度原则\n\n- **图表的信息必须紧凑**——不能为了美观而留大量白空间\n- 一张图如果只传达一个简单信息，要么缩小要么合并到其他图中\n- 能用 inline text 说清的不要占一整个 Figure\n\n### 6.2 表格规范\n\n- 表格和正文文字不能视觉重叠（检查 column 宽度和 alignment）\n- 小数精度全表统一\n- 最优加粗、次优下划线\n- Caption 必须自包含\n\n### 6.3 图片规范\n\n- 数值标签不能被线、bar、点遮住——用白色背景或偏移标签\n- 图中字体 >= 7pt（打印后仍可读）\n- 栏宽约束需匹配目标 venue 模板要求\n- 概念图/流程图要有信息量，不要画一个 trivial 的 pipeline 然后占半页\n\n### 6.4 空间效率\n\n- 顶会正文页数严格受限（具体页数查目标会议官网），每 cm² 都是宝贵资源\n- 优先使用 `\\subfigure` 合并相关图\n- Table 能 inline 就不要单独浮动\n- 图表占比与其对叙事的贡献成正比\n\n### 6.5 页面节奏\n\n好论文的页面有节奏感——text、equation、figure 交替出现，读者视觉不疲劳：\n\n- **text-equation-figure 三重奏**：重要概念用\"文字解释 → 公式定义 → 图表直觉\"三步展开\n- 连续 2 页纯文本（无 figure/equation/table）→ 穿插一个 display item 打破节奏\n- 连续 2 个 figure 页（整页被 float 占满）→ 至少隔 1 段文字再放下一个 float\n- Section heading 不孤悬页底（heading 后至少跟 2 行正文，否则强制分页）\n- 最后一页内容 ≥ 2/3 页面高度（太空显得凑数，太满放不下 references）\n\n### 6.6 表格 LaTeX 规范\n\n**Booktabs 标准（硬规则）**：\n- 用 `\\toprule` / `\\midrule` / `\\bottomrule`，禁止 `\\hline`，禁止竖线 `|`\n- 用 `\\centering` 不用 `\\begin{center}`（后者多加垂直空白）\n- 最优结果加粗（`\\textbf{}`），次优下划线（`\\underline{}`）+ 方向箭头 `↑`/`↓` 标明指标方向\n- 小数精度全表统一（如全部保留 1 位或 2 位）\n- Caption 在表格上方（`\\caption` 在 `\\begin{tabular}` 之前）\n\n**宽度决策树**：\n- ≤5 列 → 单栏宽度（`\\columnwidth`）\n- 6–8 列 → 全文宽度（`\\textwidth`，双栏模板用 `table*`）\n- >8 列 → 拆成两张表或移入 appendix\n\n---\n\n## 七、投稿前通用准备\n\n### 7.1 模板必须官方（硬规则）\n\n- LaTeX 模板**必须从目标会议官网下载**（CallForPapers / Author Instructions 页面）\n- **不要用**：\n  - 网上他人转载的复制版本（可能被改过 margin / 行号设置）\n  - 上一年的模板（参数可能变：字体、margin、行号、anonymous 选项等）\n  - 组里学长留的旧版本（来源不明、无法追溯）\n- 风险：\n  - 样式不符合 → desk reject\n  - margin 不对 → 被审稿人质疑诚信\n  - reference 格式错 → 被认为不规范\n- 流程：先查会议官网 templates → 找不到再 `WebSearch \"{venue} {year} latex template official\"` → 仍找不到汇报 Director（不要用就近年版本顶替）\n- `\\documentclass[]{}` 选项必须与目标 venue + 阶段（review / camera-ready）一致\n\n### 7.2 投稿要求逐项核对\n\n- 目标会议如要求 Checklist / Ethical Statement / Broader Impact Statement / Reproducibility Statement，必须**认真填每一项**，不要全写 N/A\n- 页数限制：查目标会议官网\n- 匿名化要求：review 版 vs camera-ready 版本设置不同\n- 行号开启（review 版常需）\n- 字体大小、margin 不得修改 sty 文件\n\n### 7.3 最终修改 10 项检查流程\n\n提交前必须逐一检查：\n1. 所有最新实验结果已全部录入\n2. 根据实验结果将叙事调至最优状态\n3. 附录所有内容在正文中被引用且融入叙事\n4. 无数据堆砌（每个数字服务于叙事推进）\n5. Abstract 和 Introduction 具有吸引力（不是实验报告风格）\n6. 全文主线统一（idea 变化后各章节逻辑一致）\n7. 所有专有名词有定义\n8. 无 AI 风格标志（dash、-ing phrases、过度分段）\n9. 图表知识密度高、无视觉遮挡\n10. Reference 覆盖直接相关方法、baseline、benchmark、理论基础\n",
+                "numLines": 276,
+                "startLine": 1,
+                "totalLines": 276
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JJirSvmtmQ7ErcYbpaanmF",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "baf1153d-498c-4fcd-9677-fcc2416cffd6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NLQFz8Gx2MeCGHC1fpdAHS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12746,
+                "cache_read_input_tokens": 11845,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12746
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-28T01:38:51.708Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JJirSvmtmQ7ErcYbpaanmF",
+              "type": "tool_result",
+              "content": "1\t\n2\t\\section{Discussion}\n3\t\\label{sec:discussion}\n4\t\\label{sec:why_gradient}\n5\t\n6\tBatchNorm is not inherently harmful---Detach OCC (BN, gradient OFF) matches or slightly exceeds Vanilla (0.767 vs.\\ 0.745, $p{=}0.28$). The damage is BN-specific: under BatchNorm, gradient flow drops CAR below the Vanilla baseline (0.725 vs.\\ 0.745, $d{=}{-}0.93$), while under LayerNorm, gradient flow is benign (0.777 vs.\\ 0.745, $d{=}{+}1.11$). Both normalization rows show within-row deficits from gradient flow ($-$4.2\\,pp for BN, $-$4.9\\,pp for LN), but only the BN row falls below the no-auxiliary baseline. CKA analysis confirms that encoder representations remain intact under all conditions (CKA $\\geq$ 0.95 for both DINOv2 and SigLIP), ruling out representational drift and localizing the effect to optimization dynamics. The BN + gradient flow cell is both the worst-performing and the most unstable configuration ($\\sigma{=}0.064$, ${\\geq}\\,2{\\times}$ all other cells). We hypothesize that BatchNorm's running statistics introduce sensitivity to distributional shifts from auxiliary gradients, a coupling absent in LayerNorm's per-token computation. The numerical advantage of Detach OCC ($+$2.2\\,pp, with 3 of 4 seeds exceeding the Vanilla mean) raises the possibility that detached auxiliary heads provide a mild regularization benefit, though larger samples are needed to confirm.\n7\t\n8\t\\textbf{Normalization independently affects safety.} LN provides a consistent safety advantage over BN ($+$5.2\\,pp under gradient flow, $d{=}1.03$; $+$5.9\\,pp without, Cell~4 preliminary), comparable in magnitude to the gradient flow effect. For practitioners who must retain gradient flow, LayerNorm converts the BN safety deficit into a gain---an architectural advantage, since label content does not detectably affect outcomes.\n9\t\n10\tGradient analysis confirms orthogonality between action and auxiliary gradients (cosine $\\approx$ 0, conflict rate $\\approx$ 46\\%), ruling out direct gradient conflict~\\cite{yu2020pcgrad, liu2021cagrad}. The detrimental effect operates through indirect channels---likely reshaping the LoRA optimization trajectory under a dual-objective loss landscape~\\cite{lippl2024implicit, jiang2023forkmerge}---rather than through gradient interference. This sensitivity extends to implementation details: a codebase revision (v2) that fixed a batch-index resume bug---without changing any model architecture, hyperparameter, or evaluation protocol---shifts absolute CAR by up to 8.6\\,pp for the same seed (Vanilla stable, $<$1.5\\,pp), and the effect pattern itself changed from an apparent crossover under v1 to the dual main effects reported here (Appendix~\\ref{app:codebase}). This level of sensitivity to non-hyperparameter implementation details has not been documented in prior multi-task learning work and constitutes an independent finding.\n11\t\n12\tThe content irrelevance finding (structured $\\approx$ random $\\approx$ depth labels) was observed under v1; whether it persists under v2 remains open, but is indirectly supported by the gradient orthogonality analysis (confirmed under v2), which shows identical gradient geometry for structured and random labels.\n13\t\n14\tThese safety findings do not contradict task success improvements reported by spatial VLA methods~\\cite{li2026spatialforcing, yuan2025depthvla, wu2025spatialvla, liu2025occvla}; safety and task success can respond differently to auxiliary supervision, making independent safety evaluation essential. Normalization type and gradient flow configuration---rarely specified in current work---should be standard reporting practice. Safety differences concentrate on three physically constrained tasks (Appendix~\\ref{app:additional}).\n15\t\n16\t\\textbf{LoRA-specificity caveat.} All experiments use LoRA adapters; whether full fine-tuning exhibits the same pattern is open. The low-rank constraint may amplify sensitivity to dual-objective landscapes that full-rank updates could absorb.\n17\t\n18\t\\textbf{Practical guideline.} Do not add auxiliary spatial heads for safety purposes. If required, use detached gradients with LayerNorm; avoid combining BatchNorm with gradient flow. No ground-truth labels are needed; the head is discarded at zero inference cost, complementing runtime methods~\\cite{hu2025vlsa, raja2024ogmcbf}. Limitations are in Appendix~\\ref{app:limitations}.\n19\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "a715ce76-7b4e-445d-aca7-bce3edee2232",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex",
+                "content": "\n\\section{Discussion}\n\\label{sec:discussion}\n\\label{sec:why_gradient}\n\nBatchNorm is not inherently harmful---Detach OCC (BN, gradient OFF) matches or slightly exceeds Vanilla (0.767 vs.\\ 0.745, $p{=}0.28$). The damage is BN-specific: under BatchNorm, gradient flow drops CAR below the Vanilla baseline (0.725 vs.\\ 0.745, $d{=}{-}0.93$), while under LayerNorm, gradient flow is benign (0.777 vs.\\ 0.745, $d{=}{+}1.11$). Both normalization rows show within-row deficits from gradient flow ($-$4.2\\,pp for BN, $-$4.9\\,pp for LN), but only the BN row falls below the no-auxiliary baseline. CKA analysis confirms that encoder representations remain intact under all conditions (CKA $\\geq$ 0.95 for both DINOv2 and SigLIP), ruling out representational drift and localizing the effect to optimization dynamics. The BN + gradient flow cell is both the worst-performing and the most unstable configuration ($\\sigma{=}0.064$, ${\\geq}\\,2{\\times}$ all other cells). We hypothesize that BatchNorm's running statistics introduce sensitivity to distributional shifts from auxiliary gradients, a coupling absent in LayerNorm's per-token computation. The numerical advantage of Detach OCC ($+$2.2\\,pp, with 3 of 4 seeds exceeding the Vanilla mean) raises the possibility that detached auxiliary heads provide a mild regularization benefit, though larger samples are needed to confirm.\n\n\\textbf{Normalization independently affects safety.} LN provides a consistent safety advantage over BN ($+$5.2\\,pp under gradient flow, $d{=}1.03$; $+$5.9\\,pp without, Cell~4 preliminary), comparable in magnitude to the gradient flow effect. For practitioners who must retain gradient flow, LayerNorm converts the BN safety deficit into a gain---an architectural advantage, since label content does not detectably affect outcomes.\n\nGradient analysis confirms orthogonality between action and auxiliary gradients (cosine $\\approx$ 0, conflict rate $\\approx$ 46\\%), ruling out direct gradient conflict~\\cite{yu2020pcgrad, liu2021cagrad}. The detrimental effect operates through indirect channels---likely reshaping the LoRA optimization trajectory under a dual-objective loss landscape~\\cite{lippl2024implicit, jiang2023forkmerge}---rather than through gradient interference. This sensitivity extends to implementation details: a codebase revision (v2) that fixed a batch-index resume bug---without changing any model architecture, hyperparameter, or evaluation protocol---shifts absolute CAR by up to 8.6\\,pp for the same seed (Vanilla stable, $<$1.5\\,pp), and the effect pattern itself changed from an apparent crossover under v1 to the dual main effects reported here (Appendix~\\ref{app:codebase}). This level of sensitivity to non-hyperparameter implementation details has not been documented in prior multi-task learning work and constitutes an independent finding.\n\nThe content irrelevance finding (structured $\\approx$ random $\\approx$ depth labels) was observed under v1; whether it persists under v2 remains open, but is indirectly supported by the gradient orthogonality analysis (confirmed under v2), which shows identical gradient geometry for structured and random labels.\n\nThese safety findings do not contradict task success improvements reported by spatial VLA methods~\\cite{li2026spatialforcing, yuan2025depthvla, wu2025spatialvla, liu2025occvla}; safety and task success can respond differently to auxiliary supervision, making independent safety evaluation essential. Normalization type and gradient flow configuration---rarely specified in current work---should be standard reporting practice. Safety differences concentrate on three physically constrained tasks (Appendix~\\ref{app:additional}).\n\n\\textbf{LoRA-specificity caveat.} All experiments use LoRA adapters; whether full fine-tuning exhibits the same pattern is open. The low-rank constraint may amplify sensitivity to dual-objective landscapes that full-rank updates could absorb.\n\n\\textbf{Practical guideline.} Do not add auxiliary spatial heads for safety purposes. If required, use detached gradients with LayerNorm; avoid combining BatchNorm with gradient flow. No ground-truth labels are needed; the head is discarded at zero inference cost, complementing runtime methods~\\cite{hu2025vlsa, raja2024ogmcbf}. Limitations are in Appendix~\\ref{app:limitations}.\n",
+                "numLines": 19,
+                "startLine": 1,
+                "totalLines": 19
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a clear picture of what needs to be done:\n\n1. Add an \"Equivalence of protections\" paragraph after line 8 (after the \"Normalization independently affects safety\" paragraph)\n2. Clean up all em-dashes (`---`) throughout the file\n\nLet me identify all the `---` occurrences:\n\nLine 6: `harmful---Detach` → need to replace\nLine 8: `gain---an` → need to replace\nLine 10: `channels---likely` → need to replace\nLine 10: `bug---without` → need to replace\nLine 10: `protocol---shifts` → need to replace\n\n\nLine 14: `configuration---rarely` → need to replace\n\nNow I'm working through the replacements. For line 6, a colon would work well to introduce the explanation. For line 8, I need to look at the full sentence context to decide between using a period with a new sentence, parentheses, or another connector. The sentence about LayerNorm converting the BN safety deficit into a gain needs careful handling to maintain readability.\n\nFor line 10, I can replace the em-dashes with commas since they're functioning as appositives. The batch-index resume bug line is tricky since it has nested parenthetical information, so I need to decide whether to keep the parentheses or convert them to commas while preserving the meaning about the codebase revision that fixed the bug without architectural changes.\n\nLine 14 also needs the em-dash converted to a comma. Now I'm thinking about the new paragraph that should go after line 8—I need to compare the cell values showing that switching normalization types versus detaching gradients produce similar protection levels, which suggests these mechanisms are related. Applying both protections together pushes performance to 0.826, outpacing either remedy alone by at least 4.9 percentage points, though I'd need more runs to solidify that estimate since this is preliminary with just one seed so far.\n\nSince I'm using exact string matching with the Edit tool, the order of my changes doesn't matter—I can apply them all at once rather than worrying about line number shifts.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "bcfd558b-4356-4049-8052-9b4e3a082568",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UevLCTsRNf2v5SWNmftrMw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6868,
+                "cache_read_input_tokens": 24591,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6868
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll make all the edits now. First, let me do the em-dash replacements and the new paragraph insertion."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "5c3eb666-01bc-4919-9146-2b4b3b036c8f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UevLCTsRNf2v5SWNmftrMw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6868,
+                "cache_read_input_tokens": 24591,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6868
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01P9hBiqmq89RhSaEJnuHXvj",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex",
+                "old_string": "BatchNorm is not inherently harmful---Detach",
+                "new_string": "BatchNorm is not inherently harmful: Detach"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "d613b7b4-ed7d-40bd-b419-f0135f1eae37",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UevLCTsRNf2v5SWNmftrMw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6868,
+                "cache_read_input_tokens": 24591,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6868
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-28T01:39:28.019Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01P9hBiqmq89RhSaEJnuHXvj",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "59a884d2-25a5-4941-89b7-54a80d4757a1",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex",
+              "oldString": "BatchNorm is not inherently harmful---Detach",
+              "newString": "BatchNorm is not inherently harmful: Detach",
+              "originalFile": "\n\\section{Discussion}\n\\label{sec:discussion}\n\\label{sec:why_gradient}\n\nBatchNorm is not inherently harmful---Detach OCC (BN, gradient OFF) matches or slightly exceeds Vanilla (0.767 vs.\\ 0.745, $p{=}0.28$). The damage is BN-specific: under BatchNorm, gradient flow drops CAR below the Vanilla baseline (0.725 vs.\\ 0.745, $d{=}{-}0.93$), while under LayerNorm, gradient flow is benign (0.777 vs.\\ 0.745, $d{=}{+}1.11$). Both normalization rows show within-row deficits from gradient flow ($-$4.2\\,pp for BN, $-$4.9\\,pp for LN), but only the BN row falls below the no-auxiliary baseline. CKA analysis confirms that encoder representations remain intact under all conditions (CKA $\\geq$ 0.95 for both DINOv2 and SigLIP), ruling out representational drift and localizing the effect to optimization dynamics. The BN + gradient flow cell is both the worst-performing and the most unstable configuration ($\\sigma{=}0.064$, ${\\geq}\\,2{\\times}$ all other cells). We hypothesize that BatchNorm's running statistics introduce sensitivity to distributional shifts from auxiliary gradients, a coupling absent in LayerNorm's per-token computation. The numerical advantage of Detach OCC ($+$2.2\\,pp, with 3 of 4 seeds exceeding the Vanilla mean) raises the possibility that detached auxiliary heads provide a mild regularization benefit, though larger samples are needed to confirm.\n\n\\textbf{Normalization independently affects safety.} LN provides a consistent safety advantage over BN ($+$5.2\\,pp under gradient flow, $d{=}1.03$; $+$5.9\\,pp without, Cell~4 preliminary), comparable in magnitude to the gradient flow effect. For practitioners who must retain gradient flow, LayerNorm converts the BN safety deficit into a gain---an architectural advantage, since label content does not detectably affect outcomes.\n\nGradient analysis confirms orthogonality between action and auxiliary gradients (cosine $\\approx$ 0, conflict rate $\\approx$ 46\\%), ruling out direct gradient conflict~\\cite{yu2020pcgrad, liu2021cagrad}. The detrimental effect operates through indirect channels---likely reshaping the LoRA optimization trajectory under a dual-objective loss landscape~\\cite{lippl2024implicit, jiang2023forkmerge}---rather than through gradient interference. This sensitivity extends to implementation details: a codebase revision (v2) that fixed a batch-index resume bug---without changing any model architecture, hyperparameter, or evaluation protocol---shifts absolute CAR by up to 8.6\\,pp for the same seed (Vanilla stable, $<$1.5\\,pp), and the effect pattern itself changed from an apparent crossover under v1 to the dual main effects reported here (Appendix~\\ref{app:codebase}). This level of sensitivity to non-hyperparameter implementation details has not been documented in prior multi-task learning work and constitutes an independent finding.\n\nThe content irrelevance finding (structured $\\approx$ random $\\approx$ depth labels) was observed under v1; whether it persists under v2 remains open, but is indirectly supported by the gradient orthogonality analysis (confirmed under v2), which shows identical gradient geometry for structured and random labels.\n\nThese safety findings do not contradict task success improvements reported by spatial VLA methods~\\cite{li2026spatialforcing, yuan2025depthvla, wu2025spatialvla, liu2025occvla}; safety and task success can respond differently to auxiliary supervision, making independent safety evaluation essential. Normalization type and gradient flow configuration---rarely specified in current work---should be standard reporting practice. Safety differences concentrate on three physically constrained tasks (Appendix~\\ref{app:additional}).\n\n\\textbf{LoRA-specificity caveat.} All experiments use LoRA adapters; whether full fine-tuning exhibits the same pattern is open. The low-rank constraint may amplify sensitivity to dual-objective landscapes that full-rank updates could absorb.\n\n\\textbf{Practical guideline.} Do not add auxiliary spatial heads for safety purposes. If required, use detached gradients with LayerNorm; avoid combining BatchNorm with gradient flow. No ground-truth labels are needed; the head is discarded at zero inference cost, complementing runtime methods~\\cite{hu2025vlsa, raja2024ogmcbf}. Limitations are in Appendix~\\ref{app:limitations}.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 3,
+                  "oldLines": 7,
+                  "newStart": 3,
+                  "newLines": 7,
+                  "lines": [
+                    " \\label{sec:discussion}",
+                    " \\label{sec:why_gradient}",
+                    " ",
+                    "-BatchNorm is not inherently harmful---Detach OCC (BN, gradient OFF) matches or slightly exceeds Vanilla (0.767 vs.\\ 0.745, $p{=}0.28$). The damage is BN-specific: under BatchNorm, gradient flow drops CAR below the Vanilla baseline (0.725 vs.\\ 0.745, $d{=}{-}0.93$), while under LayerNorm, gradient flow is benign (0.777 vs.\\ 0.745, $d{=}{+}1.11$). Both normalization rows show within-row deficits from gradient flow ($-$4.2\\,pp for BN, $-$4.9\\,pp for LN), but only the BN row falls below the no-auxiliary baseline. CKA analysis confirms that encoder representations remain intact under all conditions (CKA $\\geq$ 0.95 for both DINOv2 and SigLIP), ruling out representational drift and localizing the effect to optimization dynamics. The BN + gradient flow cell is both the worst-performing and the most unstable configuration ($\\sigma{=}0.064$, ${\\geq}\\,2{\\times}$ all other cells). We hypothesize that BatchNorm's running statistics introduce sensitivity to distributional shifts from auxiliary gradients, a coupling absent in LayerNorm's per-token computation. The numerical advantage of Detach OCC ($+$2.2\\,pp, with 3 of 4 seeds exceeding the Vanilla mean) raises the possibility that detached auxiliary heads provide a mild regularization benefit, though larger samples are needed to confirm.",
+                    "+BatchNorm is not inherently harmful: Detach OCC (BN, gradient OFF) matches or slightly exceeds Vanilla (0.767 vs.\\ 0.745, $p{=}0.28$). The damage is BN-specific: under BatchNorm, gradient flow drops CAR below the Vanilla baseline (0.725 vs.\\ 0.745, $d{=}{-}0.93$), while under LayerNorm, gradient flow is benign (0.777 vs.\\ 0.745, $d{=}{+}1.11$). Both normalization rows show within-row deficits from gradient flow ($-$4.2\\,pp for BN, $-$4.9\\,pp for LN), but only the BN row falls below the no-auxiliary baseline. CKA analysis confirms that encoder representations remain intact under all conditions (CKA $\\geq$ 0.95 for both DINOv2 and SigLIP), ruling out representational drift and localizing the effect to optimization dynamics. The BN + gradient flow cell is both the worst-performing and the most unstable configuration ($\\sigma{=}0.064$, ${\\geq}\\,2{\\times}$ all other cells). We hypothesize that BatchNorm's running statistics introduce sensitivity to distributional shifts from auxiliary gradients, a coupling absent in LayerNorm's per-token computation. The numerical advantage of Detach OCC ($+$2.2\\,pp, with 3 of 4 seeds exceeding the Vanilla mean) raises the possibility that detached auxiliary heads provide a mild regularization benefit, though larger samples are needed to confirm.",
+                    " ",
+                    " \\textbf{Normalization independently affects safety.} LN provides a consistent safety advantage over BN ($+$5.2\\,pp under gradient flow, $d{=}1.03$; $+$5.9\\,pp without, Cell~4 preliminary), comparable in magnitude to the gradient flow effect. For practitioners who must retain gradient flow, LayerNorm converts the BN safety deficit into a gain---an architectural advantage, since label content does not detectably affect outcomes.",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SLJxUCFbT3Fo8EBqkx6bTj",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex",
+                "old_string": "into a gain---an architectural advantage, since",
+                "new_string": "into a gain, an architectural advantage, since"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "05dc166b-d9eb-4ec1-9e81-3802f286fbca",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UevLCTsRNf2v5SWNmftrMw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6868,
+                "cache_read_input_tokens": 24591,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6868
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-28T01:39:28.180Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SLJxUCFbT3Fo8EBqkx6bTj",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "72ec641f-c1b6-46a1-8097-d9b0344d0fd2",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex",
+              "oldString": "into a gain---an architectural advantage, since",
+              "newString": "into a gain, an architectural advantage, since",
+              "originalFile": "\n\\section{Discussion}\n\\label{sec:discussion}\n\\label{sec:why_gradient}\n\nBatchNorm is not inherently harmful: Detach OCC (BN, gradient OFF) matches or slightly exceeds Vanilla (0.767 vs.\\ 0.745, $p{=}0.28$). The damage is BN-specific: under BatchNorm, gradient flow drops CAR below the Vanilla baseline (0.725 vs.\\ 0.745, $d{=}{-}0.93$), while under LayerNorm, gradient flow is benign (0.777 vs.\\ 0.745, $d{=}{+}1.11$). Both normalization rows show within-row deficits from gradient flow ($-$4.2\\,pp for BN, $-$4.9\\,pp for LN), but only the BN row falls below the no-auxiliary baseline. CKA analysis confirms that encoder representations remain intact under all conditions (CKA $\\geq$ 0.95 for both DINOv2 and SigLIP), ruling out representational drift and localizing the effect to optimization dynamics. The BN + gradient flow cell is both the worst-performing and the most unstable configuration ($\\sigma{=}0.064$, ${\\geq}\\,2{\\times}$ all other cells). We hypothesize that BatchNorm's running statistics introduce sensitivity to distributional shifts from auxiliary gradients, a coupling absent in LayerNorm's per-token computation. The numerical advantage of Detach OCC ($+$2.2\\,pp, with 3 of 4 seeds exceeding the Vanilla mean) raises the possibility that detached auxiliary heads provide a mild regularization benefit, though larger samples are needed to confirm.\n\n\\textbf{Normalization independently affects safety.} LN provides a consistent safety advantage over BN ($+$5.2\\,pp under gradient flow, $d{=}1.03$; $+$5.9\\,pp without, Cell~4 preliminary), comparable in magnitude to the gradient flow effect. For practitioners who must retain gradient flow, LayerNorm converts the BN safety deficit into a gain---an architectural advantage, since label content does not detectably affect outcomes.\n\nGradient analysis confirms orthogonality between action and auxiliary gradients (cosine $\\approx$ 0, conflict rate $\\approx$ 46\\%), ruling out direct gradient conflict~\\cite{yu2020pcgrad, liu2021cagrad}. The detrimental effect operates through indirect channels---likely reshaping the LoRA optimization trajectory under a dual-objective loss landscape~\\cite{lippl2024implicit, jiang2023forkmerge}---rather than through gradient interference. This sensitivity extends to implementation details: a codebase revision (v2) that fixed a batch-index resume bug---without changing any model architecture, hyperparameter, or evaluation protocol---shifts absolute CAR by up to 8.6\\,pp for the same seed (Vanilla stable, $<$1.5\\,pp), and the effect pattern itself changed from an apparent crossover under v1 to the dual main effects reported here (Appendix~\\ref{app:codebase}). This level of sensitivity to non-hyperparameter implementation details has not been documented in prior multi-task learning work and constitutes an independent finding.\n\nThe content irrelevance finding (structured $\\approx$ random $\\approx$ depth labels) was observed under v1; whether it persists under v2 remains open, but is indirectly supported by the gradient orthogonality analysis (confirmed under v2), which shows identical gradient geometry for structured and random labels.\n\nThese safety findings do not contradict task success improvements reported by spatial VLA methods~\\cite{li2026spatialforcing, yuan2025depthvla, wu2025spatialvla, liu2025occvla}; safety and task success can respond differently to auxiliary supervision, making independent safety evaluation essential. Normalization type and gradient flow configuration---rarely specified in current work---should be standard reporting practice. Safety differences concentrate on three physically constrained tasks (Appendix~\\ref{app:additional}).\n\n\\textbf{LoRA-specificity caveat.} All experiments use LoRA adapters; whether full fine-tuning exhibits the same pattern is open. The low-rank constraint may amplify sensitivity to dual-objective landscapes that full-rank updates could absorb.\n\n\\textbf{Practical guideline.} Do not add auxiliary spatial heads for safety purposes. If required, use detached gradients with LayerNorm; avoid combining BatchNorm with gradient flow. No ground-truth labels are needed; the head is discarded at zero inference cost, complementing runtime methods~\\cite{hu2025vlsa, raja2024ogmcbf}. Limitations are in Appendix~\\ref{app:limitations}.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 5,
+                  "oldLines": 7,
+                  "newStart": 5,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    " BatchNorm is not inherently harmful: Detach OCC (BN, gradient OFF) matches or slightly exceeds Vanilla (0.767 vs.\\ 0.745, $p{=}0.28$). The damage is BN-specific: under BatchNorm, gradient flow drops CAR below the Vanilla baseline (0.725 vs.\\ 0.745, $d{=}{-}0.93$), while under LayerNorm, gradient flow is benign (0.777 vs.\\ 0.745, $d{=}{+}1.11$). Both normalization rows show within-row deficits from gradient flow ($-$4.2\\,pp for BN, $-$4.9\\,pp for LN), but only the BN row falls below the no-auxiliary baseline. CKA analysis confirms that encoder representations remain intact under all conditions (CKA $\\geq$ 0.95 for both DINOv2 and SigLIP), ruling out representational drift and localizing the effect to optimization dynamics. The BN + gradient flow cell is both the worst-performing and the most unstable configuration ($\\sigma{=}0.064$, ${\\geq}\\,2{\\times}$ all other cells). We hypothesize that BatchNorm's running statistics introduce sensitivity to distributional shifts from auxiliary gradients, a coupling absent in LayerNorm's per-token computation. The numerical advantage of Detach OCC ($+$2.2\\,pp, with 3 of 4 seeds exceeding the Vanilla mean) raises the possibility that detached auxiliary heads provide a mild regularization benefit, though larger samples are needed to confirm.",
+                    " ",
+                    "-\\textbf{Normalization independently affects safety.} LN provides a consistent safety advantage over BN ($+$5.2\\,pp under gradient flow, $d{=}1.03$; $+$5.9\\,pp without, Cell~4 preliminary), comparable in magnitude to the gradient flow effect. For practitioners who must retain gradient flow, LayerNorm converts the BN safety deficit into a gain---an architectural advantage, since label content does not detectably affect outcomes.",
+                    "+\\textbf{Normalization independently affects safety.} LN provides a consistent safety advantage over BN ($+$5.2\\,pp under gradient flow, $d{=}1.03$; $+$5.9\\,pp without, Cell~4 preliminary), comparable in magnitude to the gradient flow effect. For practitioners who must retain gradient flow, LayerNorm converts the BN safety deficit into a gain, an architectural advantage, since label content does not detectably affect outcomes.",
+                    " ",
+                    " Gradient analysis confirms orthogonality between action and auxiliary gradients (cosine $\\approx$ 0, conflict rate $\\approx$ 46\\%), ruling out direct gradient conflict~\\cite{yu2020pcgrad, liu2021cagrad}. The detrimental effect operates through indirect channels---likely reshaping the LoRA optimization trajectory under a dual-objective loss landscape~\\cite{lippl2024implicit, jiang2023forkmerge}---rather than through gradient interference. This sensitivity extends to implementation details: a codebase revision (v2) that fixed a batch-index resume bug---without changing any model architecture, hyperparameter, or evaluation protocol---shifts absolute CAR by up to 8.6\\,pp for the same seed (Vanilla stable, $<$1.5\\,pp), and the effect pattern itself changed from an apparent crossover under v1 to the dual main effects reported here (Appendix~\\ref{app:codebase}). This level of sensitivity to non-hyperparameter implementation details has not been documented in prior multi-task learning work and constitutes an independent finding.",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TKEqN8ttDYH9HSN4oS8D9K",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex",
+                "old_string": "through indirect channels---likely reshaping",
+                "new_string": "through indirect channels, likely reshaping"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "75660ef5-5c5a-4c19-b352-9248091b0b75",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UevLCTsRNf2v5SWNmftrMw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6868,
+                "cache_read_input_tokens": 24591,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6868
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-28T01:39:28.238Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TKEqN8ttDYH9HSN4oS8D9K",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "60083a9c-5f39-46f8-b0d1-e874de139b26",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex",
+              "oldString": "through indirect channels---likely reshaping",
+              "newString": "through indirect channels, likely reshaping",
+              "originalFile": "\n\\section{Discussion}\n\\label{sec:discussion}\n\\label{sec:why_gradient}\n\nBatchNorm is not inherently harmful: Detach OCC (BN, gradient OFF) matches or slightly exceeds Vanilla (0.767 vs.\\ 0.745, $p{=}0.28$). The damage is BN-specific: under BatchNorm, gradient flow drops CAR below the Vanilla baseline (0.725 vs.\\ 0.745, $d{=}{-}0.93$), while under LayerNorm, gradient flow is benign (0.777 vs.\\ 0.745, $d{=}{+}1.11$). Both normalization rows show within-row deficits from gradient flow ($-$4.2\\,pp for BN, $-$4.9\\,pp for LN), but only the BN row falls below the no-auxiliary baseline. CKA analysis confirms that encoder representations remain intact under all conditions (CKA $\\geq$ 0.95 for both DINOv2 and SigLIP), ruling out representational drift and localizing the effect to optimization dynamics. The BN + gradient flow cell is both the worst-performing and the most unstable configuration ($\\sigma{=}0.064$, ${\\geq}\\,2{\\times}$ all other cells). We hypothesize that BatchNorm's running statistics introduce sensitivity to distributional shifts from auxiliary gradients, a coupling absent in LayerNorm's per-token computation. The numerical advantage of Detach OCC ($+$2.2\\,pp, with 3 of 4 seeds exceeding the Vanilla mean) raises the possibility that detached auxiliary heads provide a mild regularization benefit, though larger samples are needed to confirm.\n\n\\textbf{Normalization independently affects safety.} LN provides a consistent safety advantage over BN ($+$5.2\\,pp under gradient flow, $d{=}1.03$; $+$5.9\\,pp without, Cell~4 preliminary), comparable in magnitude to the gradient flow effect. For practitioners who must retain gradient flow, LayerNorm converts the BN safety deficit into a gain, an architectural advantage, since label content does not detectably affect outcomes.\n\nGradient analysis confirms orthogonality between action and auxiliary gradients (cosine $\\approx$ 0, conflict rate $\\approx$ 46\\%), ruling out direct gradient conflict~\\cite{yu2020pcgrad, liu2021cagrad}. The detrimental effect operates through indirect channels---likely reshaping the LoRA optimization trajectory under a dual-objective loss landscape~\\cite{lippl2024implicit, jiang2023forkmerge}---rather than through gradient interference. This sensitivity extends to implementation details: a codebase revision (v2) that fixed a batch-index resume bug---without changing any model architecture, hyperparameter, or evaluation protocol---shifts absolute CAR by up to 8.6\\,pp for the same seed (Vanilla stable, $<$1.5\\,pp), and the effect pattern itself changed from an apparent crossover under v1 to the dual main effects reported here (Appendix~\\ref{app:codebase}). This level of sensitivity to non-hyperparameter implementation details has not been documented in prior multi-task learning work and constitutes an independent finding.\n\nThe content irrelevance finding (structured $\\approx$ random $\\approx$ depth labels) was observed under v1; whether it persists under v2 remains open, but is indirectly supported by the gradient orthogonality analysis (confirmed under v2), which shows identical gradient geometry for structured and random labels.\n\nThese safety findings do not contradict task success improvements reported by spatial VLA methods~\\cite{li2026spatialforcing, yuan2025depthvla, wu2025spatialvla, liu2025occvla}; safety and task success can respond differently to auxiliary supervision, making independent safety evaluation essential. Normalization type and gradient flow configuration---rarely specified in current work---should be standard reporting practice. Safety differences concentrate on three physically constrained tasks (Appendix~\\ref{app:additional}).\n\n\\textbf{LoRA-specificity caveat.} All experiments use LoRA adapters; whether full fine-tuning exhibits the same pattern is open. The low-rank constraint may amplify sensitivity to dual-objective landscapes that full-rank updates could absorb.\n\n\\textbf{Practical guideline.} Do not add auxiliary spatial heads for safety purposes. If required, use detached gradients with LayerNorm; avoid combining BatchNorm with gradient flow. No ground-truth labels are needed; the head is discarded at zero inference cost, complementing runtime methods~\\cite{hu2025vlsa, raja2024ogmcbf}. Limitations are in Appendix~\\ref{app:limitations}.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 7,
+                  "oldLines": 7,
+                  "newStart": 7,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    " \\textbf{Normalization independently affects safety.} LN provides a consistent safety advantage over BN ($+$5.2\\,pp under gradient flow, $d{=}1.03$; $+$5.9\\,pp without, Cell~4 preliminary), comparable in magnitude to the gradient flow effect. For practitioners who must retain gradient flow, LayerNorm converts the BN safety deficit into a gain, an architectural advantage, since label content does not detectably affect outcomes.",
+                    " ",
+                    "-Gradient analysis confirms orthogonality between action and auxiliary gradients (cosine $\\approx$ 0, conflict rate $\\approx$ 46\\%), ruling out direct gradient conflict~\\cite{yu2020pcgrad, liu2021cagrad}. The detrimental effect operates through indirect channels---likely reshaping the LoRA optimization trajectory under a dual-objective loss landscape~\\cite{lippl2024implicit, jiang2023forkmerge}---rather than through gradient interference. This sensitivity extends to implementation details: a codebase revision (v2) that fixed a batch-index resume bug---without changing any model architecture, hyperparameter, or evaluation protocol---shifts absolute CAR by up to 8.6\\,pp for the same seed (Vanilla stable, $<$1.5\\,pp), and the effect pattern itself changed from an apparent crossover under v1 to the dual main effects reported here (Appendix~\\ref{app:codebase}). This level of sensitivity to non-hyperparameter implementation details has not been documented in prior multi-task learning work and constitutes an independent finding.",
+                    "+Gradient analysis confirms orthogonality between action and auxiliary gradients (cosine $\\approx$ 0, conflict rate $\\approx$ 46\\%), ruling out direct gradient conflict~\\cite{yu2020pcgrad, liu2021cagrad}. The detrimental effect operates through indirect channels, likely reshaping the LoRA optimization trajectory under a dual-objective loss landscape~\\cite{lippl2024implicit, jiang2023forkmerge}---rather than through gradient interference. This sensitivity extends to implementation details: a codebase revision (v2) that fixed a batch-index resume bug---without changing any model architecture, hyperparameter, or evaluation protocol---shifts absolute CAR by up to 8.6\\,pp for the same seed (Vanilla stable, $<$1.5\\,pp), and the effect pattern itself changed from an apparent crossover under v1 to the dual main effects reported here (Appendix~\\ref{app:codebase}). This level of sensitivity to non-hyperparameter implementation details has not been documented in prior multi-task learning work and constitutes an independent finding.",
+                    " ",
+                    " The content irrelevance finding (structured $\\approx$ random $\\approx$ depth labels) was observed under v1; whether it persists under v2 remains open, but is indirectly supported by the gradient orthogonality analysis (confirmed under v2), which shows identical gradient geometry for structured and random labels.",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Pb7zQDFvdeBYiJSwNczCNM",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex",
+                "old_string": "resume bug---without changing any model architecture, hyperparameter, or evaluation protocol---shifts",
+                "new_string": "resume bug (without changing any model architecture, hyperparameter, or evaluation protocol) shifts"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "ccb9820d-368f-48bc-9aae-25b1c96ded47",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UevLCTsRNf2v5SWNmftrMw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6868,
+                "cache_read_input_tokens": 24591,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6868
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-28T01:39:28.318Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Pb7zQDFvdeBYiJSwNczCNM",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "f4508cb9-8d48-4b9b-9b9e-cb5e43bad2ef",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex",
+              "oldString": "resume bug---without changing any model architecture, hyperparameter, or evaluation protocol---shifts",
+              "newString": "resume bug (without changing any model architecture, hyperparameter, or evaluation protocol) shifts",
+              "originalFile": "\n\\section{Discussion}\n\\label{sec:discussion}\n\\label{sec:why_gradient}\n\nBatchNorm is not inherently harmful: Detach OCC (BN, gradient OFF) matches or slightly exceeds Vanilla (0.767 vs.\\ 0.745, $p{=}0.28$). The damage is BN-specific: under BatchNorm, gradient flow drops CAR below the Vanilla baseline (0.725 vs.\\ 0.745, $d{=}{-}0.93$), while under LayerNorm, gradient flow is benign (0.777 vs.\\ 0.745, $d{=}{+}1.11$). Both normalization rows show within-row deficits from gradient flow ($-$4.2\\,pp for BN, $-$4.9\\,pp for LN), but only the BN row falls below the no-auxiliary baseline. CKA analysis confirms that encoder representations remain intact under all conditions (CKA $\\geq$ 0.95 for both DINOv2 and SigLIP), ruling out representational drift and localizing the effect to optimization dynamics. The BN + gradient flow cell is both the worst-performing and the most unstable configuration ($\\sigma{=}0.064$, ${\\geq}\\,2{\\times}$ all other cells). We hypothesize that BatchNorm's running statistics introduce sensitivity to distributional shifts from auxiliary gradients, a coupling absent in LayerNorm's per-token computation. The numerical advantage of Detach OCC ($+$2.2\\,pp, with 3 of 4 seeds exceeding the Vanilla mean) raises the possibility that detached auxiliary heads provide a mild regularization benefit, though larger samples are needed to confirm.\n\n\\textbf{Normalization independently affects safety.} LN provides a consistent safety advantage over BN ($+$5.2\\,pp under gradient flow, $d{=}1.03$; $+$5.9\\,pp without, Cell~4 preliminary), comparable in magnitude to the gradient flow effect. For practitioners who must retain gradient flow, LayerNorm converts the BN safety deficit into a gain, an architectural advantage, since label content does not detectably affect outcomes.\n\nGradient analysis confirms orthogonality between action and auxiliary gradients (cosine $\\approx$ 0, conflict rate $\\approx$ 46\\%), ruling out direct gradient conflict~\\cite{yu2020pcgrad, liu2021cagrad}. The detrimental effect operates through indirect channels, likely reshaping the LoRA optimization trajectory under a dual-objective loss landscape~\\cite{lippl2024implicit, jiang2023forkmerge}---rather than through gradient interference. This sensitivity extends to implementation details: a codebase revision (v2) that fixed a batch-index resume bug---without changing any model architecture, hyperparameter, or evaluation protocol---shifts absolute CAR by up to 8.6\\,pp for the same seed (Vanilla stable, $<$1.5\\,pp), and the effect pattern itself changed from an apparent crossover under v1 to the dual main effects reported here (Appendix~\\ref{app:codebase}). This level of sensitivity to non-hyperparameter implementation details has not been documented in prior multi-task learning work and constitutes an independent finding.\n\nThe content irrelevance finding (structured $\\approx$ random $\\approx$ depth labels) was observed under v1; whether it persists under v2 remains open, but is indirectly supported by the gradient orthogonality analysis (confirmed under v2), which shows identical gradient geometry for structured and random labels.\n\nThese safety findings do not contradict task success improvements reported by spatial VLA methods~\\cite{li2026spatialforcing, yuan2025depthvla, wu2025spatialvla, liu2025occvla}; safety and task success can respond differently to auxiliary supervision, making independent safety evaluation essential. Normalization type and gradient flow configuration---rarely specified in current work---should be standard reporting practice. Safety differences concentrate on three physically constrained tasks (Appendix~\\ref{app:additional}).\n\n\\textbf{LoRA-specificity caveat.} All experiments use LoRA adapters; whether full fine-tuning exhibits the same pattern is open. The low-rank constraint may amplify sensitivity to dual-objective landscapes that full-rank updates could absorb.\n\n\\textbf{Practical guideline.} Do not add auxiliary spatial heads for safety purposes. If required, use detached gradients with LayerNorm; avoid combining BatchNorm with gradient flow. No ground-truth labels are needed; the head is discarded at zero inference cost, complementing runtime methods~\\cite{hu2025vlsa, raja2024ogmcbf}. Limitations are in Appendix~\\ref{app:limitations}.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 7,
+                  "oldLines": 7,
+                  "newStart": 7,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    " \\textbf{Normalization independently affects safety.} LN provides a consistent safety advantage over BN ($+$5.2\\,pp under gradient flow, $d{=}1.03$; $+$5.9\\,pp without, Cell~4 preliminary), comparable in magnitude to the gradient flow effect. For practitioners who must retain gradient flow, LayerNorm converts the BN safety deficit into a gain, an architectural advantage, since label content does not detectably affect outcomes.",
+                    " ",
+                    "-Gradient analysis confirms orthogonality between action and auxiliary gradients (cosine $\\approx$ 0, conflict rate $\\approx$ 46\\%), ruling out direct gradient conflict~\\cite{yu2020pcgrad, liu2021cagrad}. The detrimental effect operates through indirect channels, likely reshaping the LoRA optimization trajectory under a dual-objective loss landscape~\\cite{lippl2024implicit, jiang2023forkmerge}---rather than through gradient interference. This sensitivity extends to implementation details: a codebase revision (v2) that fixed a batch-index resume bug---without changing any model architecture, hyperparameter, or evaluation protocol---shifts absolute CAR by up to 8.6\\,pp for the same seed (Vanilla stable, $<$1.5\\,pp), and the effect pattern itself changed from an apparent crossover under v1 to the dual main effects reported here (Appendix~\\ref{app:codebase}). This level of sensitivity to non-hyperparameter implementation details has not been documented in prior multi-task learning work and constitutes an independent finding.",
+                    "+Gradient analysis confirms orthogonality between action and auxiliary gradients (cosine $\\approx$ 0, conflict rate $\\approx$ 46\\%), ruling out direct gradient conflict~\\cite{yu2020pcgrad, liu2021cagrad}. The detrimental effect operates through indirect channels, likely reshaping the LoRA optimization trajectory under a dual-objective loss landscape~\\cite{lippl2024implicit, jiang2023forkmerge}---rather than through gradient interference. This sensitivity extends to implementation details: a codebase revision (v2) that fixed a batch-index resume bug (without changing any model architecture, hyperparameter, or evaluation protocol) shifts absolute CAR by up to 8.6\\,pp for the same seed (Vanilla stable, $<$1.5\\,pp), and the effect pattern itself changed from an apparent crossover under v1 to the dual main effects reported here (Appendix~\\ref{app:codebase}). This level of sensitivity to non-hyperparameter implementation details has not been documented in prior multi-task learning work and constitutes an independent finding.",
+                    " ",
+                    " The content irrelevance finding (structured $\\approx$ random $\\approx$ depth labels) was observed under v1; whether it persists under v2 remains open, but is indirectly supported by the gradient orthogonality analysis (confirmed under v2), which shows identical gradient geometry for structured and random labels.",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Wh6tRgse3R1LxUqgwFi7jq",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex",
+                "old_string": "configuration---rarely specified",
+                "new_string": "configuration, rarely specified"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "8d31a799-28e5-4d7c-aa13-24e9280322bf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UevLCTsRNf2v5SWNmftrMw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6868,
+                "cache_read_input_tokens": 24591,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6868
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-28T01:39:28.810Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Wh6tRgse3R1LxUqgwFi7jq",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "c4399da0-2b1f-4d0e-9a85-72e8282fa539",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex",
+              "oldString": "configuration---rarely specified",
+              "newString": "configuration, rarely specified",
+              "originalFile": "\n\\section{Discussion}\n\\label{sec:discussion}\n\\label{sec:why_gradient}\n\nBatchNorm is not inherently harmful: Detach OCC (BN, gradient OFF) matches or slightly exceeds Vanilla (0.767 vs.\\ 0.745, $p{=}0.28$). The damage is BN-specific: under BatchNorm, gradient flow drops CAR below the Vanilla baseline (0.725 vs.\\ 0.745, $d{=}{-}0.93$), while under LayerNorm, gradient flow is benign (0.777 vs.\\ 0.745, $d{=}{+}1.11$). Both normalization rows show within-row deficits from gradient flow ($-$4.2\\,pp for BN, $-$4.9\\,pp for LN), but only the BN row falls below the no-auxiliary baseline. CKA analysis confirms that encoder representations remain intact under all conditions (CKA $\\geq$ 0.95 for both DINOv2 and SigLIP), ruling out representational drift and localizing the effect to optimization dynamics. The BN + gradient flow cell is both the worst-performing and the most unstable configuration ($\\sigma{=}0.064$, ${\\geq}\\,2{\\times}$ all other cells). We hypothesize that BatchNorm's running statistics introduce sensitivity to distributional shifts from auxiliary gradients, a coupling absent in LayerNorm's per-token computation. The numerical advantage of Detach OCC ($+$2.2\\,pp, with 3 of 4 seeds exceeding the Vanilla mean) raises the possibility that detached auxiliary heads provide a mild regularization benefit, though larger samples are needed to confirm.\n\n\\textbf{Normalization independently affects safety.} LN provides a consistent safety advantage over BN ($+$5.2\\,pp under gradient flow, $d{=}1.03$; $+$5.9\\,pp without, Cell~4 preliminary), comparable in magnitude to the gradient flow effect. For practitioners who must retain gradient flow, LayerNorm converts the BN safety deficit into a gain, an architectural advantage, since label content does not detectably affect outcomes.\n\nGradient analysis confirms orthogonality between action and auxiliary gradients (cosine $\\approx$ 0, conflict rate $\\approx$ 46\\%), ruling out direct gradient conflict~\\cite{yu2020pcgrad, liu2021cagrad}. The detrimental effect operates through indirect channels, likely reshaping the LoRA optimization trajectory under a dual-objective loss landscape~\\cite{lippl2024implicit, jiang2023forkmerge}---rather than through gradient interference. This sensitivity extends to implementation details: a codebase revision (v2) that fixed a batch-index resume bug (without changing any model architecture, hyperparameter, or evaluation protocol) shifts absolute CAR by up to 8.6\\,pp for the same seed (Vanilla stable, $<$1.5\\,pp), and the effect pattern itself changed from an apparent crossover under v1 to the dual main effects reported here (Appendix~\\ref{app:codebase}). This level of sensitivity to non-hyperparameter implementation details has not been documented in prior multi-task learning work and constitutes an independent finding.\n\nThe content irrelevance finding (structured $\\approx$ random $\\approx$ depth labels) was observed under v1; whether it persists under v2 remains open, but is indirectly supported by the gradient orthogonality analysis (confirmed under v2), which shows identical gradient geometry for structured and random labels.\n\nThese safety findings do not contradict task success improvements reported by spatial VLA methods~\\cite{li2026spatialforcing, yuan2025depthvla, wu2025spatialvla, liu2025occvla}; safety and task success can respond differently to auxiliary supervision, making independent safety evaluation essential. Normalization type and gradient flow configuration---rarely specified in current work---should be standard reporting practice. Safety differences concentrate on three physically constrained tasks (Appendix~\\ref{app:additional}).\n\n\\textbf{LoRA-specificity caveat.} All experiments use LoRA adapters; whether full fine-tuning exhibits the same pattern is open. The low-rank constraint may amplify sensitivity to dual-objective landscapes that full-rank updates could absorb.\n\n\\textbf{Practical guideline.} Do not add auxiliary spatial heads for safety purposes. If required, use detached gradients with LayerNorm; avoid combining BatchNorm with gradient flow. No ground-truth labels are needed; the head is discarded at zero inference cost, complementing runtime methods~\\cite{hu2025vlsa, raja2024ogmcbf}. Limitations are in Appendix~\\ref{app:limitations}.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 11,
+                  "oldLines": 7,
+                  "newStart": 11,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    " The content irrelevance finding (structured $\\approx$ random $\\approx$ depth labels) was observed under v1; whether it persists under v2 remains open, but is indirectly supported by the gradient orthogonality analysis (confirmed under v2), which shows identical gradient geometry for structured and random labels.",
+                    " ",
+                    "-These safety findings do not contradict task success improvements reported by spatial VLA methods~\\cite{li2026spatialforcing, yuan2025depthvla, wu2025spatialvla, liu2025occvla}; safety and task success can respond differently to auxiliary supervision, making independent safety evaluation essential. Normalization type and gradient flow configuration---rarely specified in current work---should be standard reporting practice. Safety differences concentrate on three physically constrained tasks (Appendix~\\ref{app:additional}).",
+                    "+These safety findings do not contradict task success improvements reported by spatial VLA methods~\\cite{li2026spatialforcing, yuan2025depthvla, wu2025spatialvla, liu2025occvla}; safety and task success can respond differently to auxiliary supervision, making independent safety evaluation essential. Normalization type and gradient flow configuration, rarely specified in current work---should be standard reporting practice. Safety differences concentrate on three physically constrained tasks (Appendix~\\ref{app:additional}).",
+                    " ",
+                    " \\textbf{LoRA-specificity caveat.} All experiments use LoRA adapters; whether full fine-tuning exhibits the same pattern is open. The low-rank constraint may amplify sensitivity to dual-objective landscapes that full-rank updates could absorb.",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FHqLRrerX6EtUkm5sR5Dtp",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex",
+                "old_string": "\\textbf{Normalization independently affects safety.} LN provides a consistent safety advantage over BN ($+$5.2\\,pp under gradient flow, $d{=}1.03$; $+$5.9\\,pp without, Cell~4 preliminary), comparable in magnitude to the gradient flow effect. For practitioners who must retain gradient flow, LayerNorm converts the BN safety deficit",
+                "new_string": "\\textbf{Normalization independently affects safety.} LN provides a consistent safety advantage over BN ($+$5.2\\,pp under gradient flow, $d{=}1.03$; $+$5.9\\,pp without, Cell~4 preliminary), comparable in magnitude to the gradient flow effect. For practitioners who must retain gradient flow, LayerNorm converts the BN safety deficit"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "cc8bdad5-c4ab-4b54-aa5c-19796dc38281",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UevLCTsRNf2v5SWNmftrMw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6868,
+                "cache_read_input_tokens": 24591,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6868
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-28T01:39:31.462Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "<tool_use_error>No changes to make: old_string and new_string are exactly the same.</tool_use_error>",
+              "is_error": true,
+              "tool_use_id": "toolu_01FHqLRrerX6EtUkm5sR5Dtp"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "26d7bfe9-73c5-4fe2-914e-cb932b3ac9c9",
+            "tool_use_result": "Error: No changes to make: old_string and new_string are exactly the same."
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good, the 5 em-dash replacements are done. The last one was a no-op since I accidentally copied the same text. Now I need to insert the new paragraph after the \"Normalization independently affects safety\" paragraph. Let me insert it after line 8 (the end of that paragraph).",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "bf25b098-b348-4d4d-8da6-b6149f107307",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XCSDt4Z1TSBwt3XkyqiZA4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2771,
+                "cache_read_input_tokens": 31459,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2771
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Em-dash replacements done. Now inserting the new paragraph after the \"Normalization independently affects safety\" paragraph."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "4e1bcf9a-6453-41a0-a284-60e3953f2586",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XCSDt4Z1TSBwt3XkyqiZA4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2771,
+                "cache_read_input_tokens": 31459,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2771
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CjvE8YwgYCaKY4Um6nQW9B",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex",
+                "old_string": "into a gain, an architectural advantage, since label content does not detectably affect outcomes.\n\nGradient analysis confirms orthogonality",
+                "new_string": "into a gain, an architectural advantage, since label content does not detectably affect outcomes.\n\n\\textbf{Equivalence of protections.} Switching normalization (BN$\\to$LN, Cell~2: 0.777) and detaching gradients (Cell~3: 0.767) yield comparable safety improvements over the Full OCC~BN configuration, and both exceed the Vanilla baseline (0.745). Cell~1 (Full OCC~BN, 0.725) is the only cell that falls below Vanilla, confirming that safety loss requires the joint presence of BatchNorm and gradient flow; removing either condition restores performance above baseline. Practitioners therefore face two interchangeable remedies for the BN-gradient coupling: adopting LayerNorm or detaching auxiliary gradients. When both protections are applied simultaneously (Cell~4: Detach+LN, 0.826, $n{=}1$, preliminary), CAR exceeds either single-protection cell by ${\\geq}$4.9\\,pp, suggesting an additive or super-additive benefit, though this estimate requires additional seeds to confirm.\n\nGradient analysis confirms orthogonality"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "3a579af0-0a12-4a0b-8ee2-aab8e85ea606",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XCSDt4Z1TSBwt3XkyqiZA4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2771,
+                "cache_read_input_tokens": 31459,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2771
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-28T01:39:47.303Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CjvE8YwgYCaKY4Um6nQW9B",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "e8c9bfab-470e-4106-ab20-b8f9aa88c275",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex",
+              "oldString": "into a gain, an architectural advantage, since label content does not detectably affect outcomes.\n\nGradient analysis confirms orthogonality",
+              "newString": "into a gain, an architectural advantage, since label content does not detectably affect outcomes.\n\n\\textbf{Equivalence of protections.} Switching normalization (BN$\\to$LN, Cell~2: 0.777) and detaching gradients (Cell~3: 0.767) yield comparable safety improvements over the Full OCC~BN configuration, and both exceed the Vanilla baseline (0.745). Cell~1 (Full OCC~BN, 0.725) is the only cell that falls below Vanilla, confirming that safety loss requires the joint presence of BatchNorm and gradient flow; removing either condition restores performance above baseline. Practitioners therefore face two interchangeable remedies for the BN-gradient coupling: adopting LayerNorm or detaching auxiliary gradients. When both protections are applied simultaneously (Cell~4: Detach+LN, 0.826, $n{=}1$, preliminary), CAR exceeds either single-protection cell by ${\\geq}$4.9\\,pp, suggesting an additive or super-additive benefit, though this estimate requires additional seeds to confirm.\n\nGradient analysis confirms orthogonality",
+              "originalFile": "\n\\section{Discussion}\n\\label{sec:discussion}\n\\label{sec:why_gradient}\n\nBatchNorm is not inherently harmful: Detach OCC (BN, gradient OFF) matches or slightly exceeds Vanilla (0.767 vs.\\ 0.745, $p{=}0.28$). The damage is BN-specific: under BatchNorm, gradient flow drops CAR below the Vanilla baseline (0.725 vs.\\ 0.745, $d{=}{-}0.93$), while under LayerNorm, gradient flow is benign (0.777 vs.\\ 0.745, $d{=}{+}1.11$). Both normalization rows show within-row deficits from gradient flow ($-$4.2\\,pp for BN, $-$4.9\\,pp for LN), but only the BN row falls below the no-auxiliary baseline. CKA analysis confirms that encoder representations remain intact under all conditions (CKA $\\geq$ 0.95 for both DINOv2 and SigLIP), ruling out representational drift and localizing the effect to optimization dynamics. The BN + gradient flow cell is both the worst-performing and the most unstable configuration ($\\sigma{=}0.064$, ${\\geq}\\,2{\\times}$ all other cells). We hypothesize that BatchNorm's running statistics introduce sensitivity to distributional shifts from auxiliary gradients, a coupling absent in LayerNorm's per-token computation. The numerical advantage of Detach OCC ($+$2.2\\,pp, with 3 of 4 seeds exceeding the Vanilla mean) raises the possibility that detached auxiliary heads provide a mild regularization benefit, though larger samples are needed to confirm.\n\n\\textbf{Normalization independently affects safety.} LN provides a consistent safety advantage over BN ($+$5.2\\,pp under gradient flow, $d{=}1.03$; $+$5.9\\,pp without, Cell~4 preliminary), comparable in magnitude to the gradient flow effect. For practitioners who must retain gradient flow, LayerNorm converts the BN safety deficit into a gain, an architectural advantage, since label content does not detectably affect outcomes.\n\nGradient analysis confirms orthogonality between action and auxiliary gradients (cosine $\\approx$ 0, conflict rate $\\approx$ 46\\%), ruling out direct gradient conflict~\\cite{yu2020pcgrad, liu2021cagrad}. The detrimental effect operates through indirect channels, likely reshaping the LoRA optimization trajectory under a dual-objective loss landscape~\\cite{lippl2024implicit, jiang2023forkmerge}---rather than through gradient interference. This sensitivity extends to implementation details: a codebase revision (v2) that fixed a batch-index resume bug (without changing any model architecture, hyperparameter, or evaluation protocol) shifts absolute CAR by up to 8.6\\,pp for the same seed (Vanilla stable, $<$1.5\\,pp), and the effect pattern itself changed from an apparent crossover under v1 to the dual main effects reported here (Appendix~\\ref{app:codebase}). This level of sensitivity to non-hyperparameter implementation details has not been documented in prior multi-task learning work and constitutes an independent finding.\n\nThe content irrelevance finding (structured $\\approx$ random $\\approx$ depth labels) was observed under v1; whether it persists under v2 remains open, but is indirectly supported by the gradient orthogonality analysis (confirmed under v2), which shows identical gradient geometry for structured and random labels.\n\nThese safety findings do not contradict task success improvements reported by spatial VLA methods~\\cite{li2026spatialforcing, yuan2025depthvla, wu2025spatialvla, liu2025occvla}; safety and task success can respond differently to auxiliary supervision, making independent safety evaluation essential. Normalization type and gradient flow configuration, rarely specified in current work---should be standard reporting practice. Safety differences concentrate on three physically constrained tasks (Appendix~\\ref{app:additional}).\n\n\\textbf{LoRA-specificity caveat.} All experiments use LoRA adapters; whether full fine-tuning exhibits the same pattern is open. The low-rank constraint may amplify sensitivity to dual-objective landscapes that full-rank updates could absorb.\n\n\\textbf{Practical guideline.} Do not add auxiliary spatial heads for safety purposes. If required, use detached gradients with LayerNorm; avoid combining BatchNorm with gradient flow. No ground-truth labels are needed; the head is discarded at zero inference cost, complementing runtime methods~\\cite{hu2025vlsa, raja2024ogmcbf}. Limitations are in Appendix~\\ref{app:limitations}.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 7,
+                  "oldLines": 6,
+                  "newStart": 7,
+                  "newLines": 8,
+                  "lines": [
+                    " ",
+                    " \\textbf{Normalization independently affects safety.} LN provides a consistent safety advantage over BN ($+$5.2\\,pp under gradient flow, $d{=}1.03$; $+$5.9\\,pp without, Cell~4 preliminary), comparable in magnitude to the gradient flow effect. For practitioners who must retain gradient flow, LayerNorm converts the BN safety deficit into a gain, an architectural advantage, since label content does not detectably affect outcomes.",
+                    " ",
+                    "+\\textbf{Equivalence of protections.} Switching normalization (BN$\\to$LN, Cell~2: 0.777) and detaching gradients (Cell~3: 0.767) yield comparable safety improvements over the Full OCC~BN configuration, and both exceed the Vanilla baseline (0.745). Cell~1 (Full OCC~BN, 0.725) is the only cell that falls below Vanilla, confirming that safety loss requires the joint presence of BatchNorm and gradient flow; removing either condition restores performance above baseline. Practitioners therefore face two interchangeable remedies for the BN-gradient coupling: adopting LayerNorm or detaching auxiliary gradients. When both protections are applied simultaneously (Cell~4: Detach+LN, 0.826, $n{=}1$, preliminary), CAR exceeds either single-protection cell by ${\\geq}$4.9\\,pp, suggesting an additive or super-additive benefit, though this estimate requires additional seeds to confirm.",
+                    "+",
+                    " Gradient analysis confirms orthogonality between action and auxiliary gradients (cosine $\\approx$ 0, conflict rate $\\approx$ 46\\%), ruling out direct gradient conflict~\\cite{yu2020pcgrad, liu2021cagrad}. The detrimental effect operates through indirect channels, likely reshaping the LoRA optimization trajectory under a dual-objective loss landscape~\\cite{lippl2024implicit, jiang2023forkmerge}---rather than through gradient interference. This sensitivity extends to implementation details: a codebase revision (v2) that fixed a batch-index resume bug (without changing any model architecture, hyperparameter, or evaluation protocol) shifts absolute CAR by up to 8.6\\,pp for the same seed (Vanilla stable, $<$1.5\\,pp), and the effect pattern itself changed from an apparent crossover under v1 to the dual main effects reported here (Appendix~\\ref{app:codebase}). This level of sensitivity to non-hyperparameter implementation details has not been documented in prior multi-task learning work and constitutes an independent finding.",
+                    " ",
+                    " The content irrelevance finding (structured $\\approx$ random $\\approx$ depth labels) was observed under v1; whether it persists under v2 remains open, but is indirectly supported by the gradient orthogonality analysis (confirmed under v2), which shows identical gradient geometry for structured and random labels."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me verify the final file and check for any remaining `---`."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "6776222f-4758-43bc-8829-2620925abb42",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Bt7ie7ZqoQXSogERpM7NCs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 593,
+                "cache_read_input_tokens": 34230,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 593
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RksdHGxKykN3sgEEe4VUTC",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "c8811dd7-10f0-4645-9dba-76345fafa64a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Bt7ie7ZqoQXSogERpM7NCs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 593,
+                "cache_read_input_tokens": 34230,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 593
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-28T01:39:52.505Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RksdHGxKykN3sgEEe4VUTC",
+              "type": "tool_result",
+              "content": "1\t\n2\t\\section{Discussion}\n3\t\\label{sec:discussion}\n4\t\\label{sec:why_gradient}\n5\t\n6\tBatchNorm is not inherently harmful: Detach OCC (BN, gradient OFF) matches or slightly exceeds Vanilla (0.767 vs.\\ 0.745, $p{=}0.28$). The damage is BN-specific: under BatchNorm, gradient flow drops CAR below the Vanilla baseline (0.725 vs.\\ 0.745, $d{=}{-}0.93$), while under LayerNorm, gradient flow is benign (0.777 vs.\\ 0.745, $d{=}{+}1.11$). Both normalization rows show within-row deficits from gradient flow ($-$4.2\\,pp for BN, $-$4.9\\,pp for LN), but only the BN row falls below the no-auxiliary baseline. CKA analysis confirms that encoder representations remain intact under all conditions (CKA $\\geq$ 0.95 for both DINOv2 and SigLIP), ruling out representational drift and localizing the effect to optimization dynamics. The BN + gradient flow cell is both the worst-performing and the most unstable configuration ($\\sigma{=}0.064$, ${\\geq}\\,2{\\times}$ all other cells). We hypothesize that BatchNorm's running statistics introduce sensitivity to distributional shifts from auxiliary gradients, a coupling absent in LayerNorm's per-token computation. The numerical advantage of Detach OCC ($+$2.2\\,pp, with 3 of 4 seeds exceeding the Vanilla mean) raises the possibility that detached auxiliary heads provide a mild regularization benefit, though larger samples are needed to confirm.\n7\t\n8\t\\textbf{Normalization independently affects safety.} LN provides a consistent safety advantage over BN ($+$5.2\\,pp under gradient flow, $d{=}1.03$; $+$5.9\\,pp without, Cell~4 preliminary), comparable in magnitude to the gradient flow effect. For practitioners who must retain gradient flow, LayerNorm converts the BN safety deficit into a gain, an architectural advantage, since label content does not detectably affect outcomes.\n9\t\n10\t\\textbf{Equivalence of protections.} Switching normalization (BN$\\to$LN, Cell~2: 0.777) and detaching gradients (Cell~3: 0.767) yield comparable safety improvements over the Full OCC~BN configuration, and both exceed the Vanilla baseline (0.745). Cell~1 (Full OCC~BN, 0.725) is the only cell that falls below Vanilla, confirming that safety loss requires the joint presence of BatchNorm and gradient flow; removing either condition restores performance above baseline. Practitioners therefore face two interchangeable remedies for the BN-gradient coupling: adopting LayerNorm or detaching auxiliary gradients. When both protections are applied simultaneously (Cell~4: Detach+LN, 0.826, $n{=}1$, preliminary), CAR exceeds either single-protection cell by ${\\geq}$4.9\\,pp, suggesting an additive or super-additive benefit, though this estimate requires additional seeds to confirm.\n11\t\n12\tGradient analysis confirms orthogonality between action and auxiliary gradients (cosine $\\approx$ 0, conflict rate $\\approx$ 46\\%), ruling out direct gradient conflict~\\cite{yu2020pcgrad, liu2021cagrad}. The detrimental effect operates through indirect channels, likely reshaping the LoRA optimization trajectory under a dual-objective loss landscape~\\cite{lippl2024implicit, jiang2023forkmerge}---rather than through gradient interference. This sensitivity extends to implementation details: a codebase revision (v2) that fixed a batch-index resume bug (without changing any model architecture, hyperparameter, or evaluation protocol) shifts absolute CAR by up to 8.6\\,pp for the same seed (Vanilla stable, $<$1.5\\,pp), and the effect pattern itself changed from an apparent crossover under v1 to the dual main effects reported here (Appendix~\\ref{app:codebase}). This level of sensitivity to non-hyperparameter implementation details has not been documented in prior multi-task learning work and constitutes an independent finding.\n13\t\n14\tThe content irrelevance finding (structured $\\approx$ random $\\approx$ depth labels) was observed under v1; whether it persists under v2 remains open, but is indirectly supported by the gradient orthogonality analysis (confirmed under v2), which shows identical gradient geometry for structured and random labels.\n15\t\n16\tThese safety findings do not contradict task success improvements reported by spatial VLA methods~\\cite{li2026spatialforcing, yuan2025depthvla, wu2025spatialvla, liu2025occvla}; safety and task success can respond differently to auxiliary supervision, making independent safety evaluation essential. Normalization type and gradient flow configuration, rarely specified in current work---should be standard reporting practice. Safety differences concentrate on three physically constrained tasks (Appendix~\\ref{app:additional}).\n17\t\n18\t\\textbf{LoRA-specificity caveat.} All experiments use LoRA adapters; whether full fine-tuning exhibits the same pattern is open. The low-rank constraint may amplify sensitivity to dual-objective landscapes that full-rank updates could absorb.\n19\t\n20\t\\textbf{Practical guideline.} Do not add auxiliary spatial heads for safety purposes. If required, use detached gradients with LayerNorm; avoid combining BatchNorm with gradient flow. No ground-truth labels are needed; the head is discarded at zero inference cost, complementing runtime methods~\\cite{hu2025vlsa, raja2024ogmcbf}. Limitations are in Appendix~\\ref{app:limitations}.\n21\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "d2173b71-3970-471f-902d-f82c77afcf95",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex",
+                "content": "\n\\section{Discussion}\n\\label{sec:discussion}\n\\label{sec:why_gradient}\n\nBatchNorm is not inherently harmful: Detach OCC (BN, gradient OFF) matches or slightly exceeds Vanilla (0.767 vs.\\ 0.745, $p{=}0.28$). The damage is BN-specific: under BatchNorm, gradient flow drops CAR below the Vanilla baseline (0.725 vs.\\ 0.745, $d{=}{-}0.93$), while under LayerNorm, gradient flow is benign (0.777 vs.\\ 0.745, $d{=}{+}1.11$). Both normalization rows show within-row deficits from gradient flow ($-$4.2\\,pp for BN, $-$4.9\\,pp for LN), but only the BN row falls below the no-auxiliary baseline. CKA analysis confirms that encoder representations remain intact under all conditions (CKA $\\geq$ 0.95 for both DINOv2 and SigLIP), ruling out representational drift and localizing the effect to optimization dynamics. The BN + gradient flow cell is both the worst-performing and the most unstable configuration ($\\sigma{=}0.064$, ${\\geq}\\,2{\\times}$ all other cells). We hypothesize that BatchNorm's running statistics introduce sensitivity to distributional shifts from auxiliary gradients, a coupling absent in LayerNorm's per-token computation. The numerical advantage of Detach OCC ($+$2.2\\,pp, with 3 of 4 seeds exceeding the Vanilla mean) raises the possibility that detached auxiliary heads provide a mild regularization benefit, though larger samples are needed to confirm.\n\n\\textbf{Normalization independently affects safety.} LN provides a consistent safety advantage over BN ($+$5.2\\,pp under gradient flow, $d{=}1.03$; $+$5.9\\,pp without, Cell~4 preliminary), comparable in magnitude to the gradient flow effect. For practitioners who must retain gradient flow, LayerNorm converts the BN safety deficit into a gain, an architectural advantage, since label content does not detectably affect outcomes.\n\n\\textbf{Equivalence of protections.} Switching normalization (BN$\\to$LN, Cell~2: 0.777) and detaching gradients (Cell~3: 0.767) yield comparable safety improvements over the Full OCC~BN configuration, and both exceed the Vanilla baseline (0.745). Cell~1 (Full OCC~BN, 0.725) is the only cell that falls below Vanilla, confirming that safety loss requires the joint presence of BatchNorm and gradient flow; removing either condition restores performance above baseline. Practitioners therefore face two interchangeable remedies for the BN-gradient coupling: adopting LayerNorm or detaching auxiliary gradients. When both protections are applied simultaneously (Cell~4: Detach+LN, 0.826, $n{=}1$, preliminary), CAR exceeds either single-protection cell by ${\\geq}$4.9\\,pp, suggesting an additive or super-additive benefit, though this estimate requires additional seeds to confirm.\n\nGradient analysis confirms orthogonality between action and auxiliary gradients (cosine $\\approx$ 0, conflict rate $\\approx$ 46\\%), ruling out direct gradient conflict~\\cite{yu2020pcgrad, liu2021cagrad}. The detrimental effect operates through indirect channels, likely reshaping the LoRA optimization trajectory under a dual-objective loss landscape~\\cite{lippl2024implicit, jiang2023forkmerge}---rather than through gradient interference. This sensitivity extends to implementation details: a codebase revision (v2) that fixed a batch-index resume bug (without changing any model architecture, hyperparameter, or evaluation protocol) shifts absolute CAR by up to 8.6\\,pp for the same seed (Vanilla stable, $<$1.5\\,pp), and the effect pattern itself changed from an apparent crossover under v1 to the dual main effects reported here (Appendix~\\ref{app:codebase}). This level of sensitivity to non-hyperparameter implementation details has not been documented in prior multi-task learning work and constitutes an independent finding.\n\nThe content irrelevance finding (structured $\\approx$ random $\\approx$ depth labels) was observed under v1; whether it persists under v2 remains open, but is indirectly supported by the gradient orthogonality analysis (confirmed under v2), which shows identical gradient geometry for structured and random labels.\n\nThese safety findings do not contradict task success improvements reported by spatial VLA methods~\\cite{li2026spatialforcing, yuan2025depthvla, wu2025spatialvla, liu2025occvla}; safety and task success can respond differently to auxiliary supervision, making independent safety evaluation essential. Normalization type and gradient flow configuration, rarely specified in current work---should be standard reporting practice. Safety differences concentrate on three physically constrained tasks (Appendix~\\ref{app:additional}).\n\n\\textbf{LoRA-specificity caveat.} All experiments use LoRA adapters; whether full fine-tuning exhibits the same pattern is open. The low-rank constraint may amplify sensitivity to dual-objective landscapes that full-rank updates could absorb.\n\n\\textbf{Practical guideline.} Do not add auxiliary spatial heads for safety purposes. If required, use detached gradients with LayerNorm; avoid combining BatchNorm with gradient flow. No ground-truth labels are needed; the head is discarded at zero inference cost, complementing runtime methods~\\cite{hu2025vlsa, raja2024ogmcbf}. Limitations are in Appendix~\\ref{app:limitations}.\n",
+                "numLines": 21,
+                "startLine": 1,
+                "totalLines": 21
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CM8K41WPVTrJD6geyKNxcH",
+              "name": "Grep",
+              "input": {
+                "pattern": "---",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "6e787117-6c3f-432d-9628-644ccb6231e6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Bt7ie7ZqoQXSogERpM7NCs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 593,
+                "cache_read_input_tokens": 34230,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 593
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-28T01:39:53.038Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CM8K41WPVTrJD6geyKNxcH",
+              "type": "tool_result",
+              "content": "12:[Omitted long matching line]\n16:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "350a6cad-69b5-45a7-8aba-e3a7d37793bb",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "12:[Omitted long matching line]\n16:[Omitted long matching line]",
+              "numLines": 2
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "There are still two `---` remaining:\n\nLine 12: `landscape~\\cite{lippl2024implicit, jiang2023forkmerge}---rather than through gradient interference.`\n\nLine 16: `current work---should be standard reporting practice.`\n\nLet me fix these.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "4890fcdf-d39b-43af-a4dc-36815fbedbad",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018F9MG8aT3ee6uU6eXv7PyV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1688,
+                "cache_read_input_tokens": 34823,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1688
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Two remaining `---` on lines 12 and 16."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "f6a55b89-9344-4857-8e05-ea52d9a1667c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018F9MG8aT3ee6uU6eXv7PyV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1688,
+                "cache_read_input_tokens": 34823,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1688
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DmjnnqbwbxJQSQxz1G3ydn",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex",
+                "old_string": "jiang2023forkmerge}---rather",
+                "new_string": "jiang2023forkmerge}, rather"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "938ffc34-cbab-451c-8c4b-7c313f19aed8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018F9MG8aT3ee6uU6eXv7PyV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1688,
+                "cache_read_input_tokens": 34823,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1688
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-28T01:39:59.873Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DmjnnqbwbxJQSQxz1G3ydn",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "d61d3e88-e936-41f8-b4bf-bf21504665ab",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex",
+              "oldString": "jiang2023forkmerge}---rather",
+              "newString": "jiang2023forkmerge}, rather",
+              "originalFile": "\n\\section{Discussion}\n\\label{sec:discussion}\n\\label{sec:why_gradient}\n\nBatchNorm is not inherently harmful: Detach OCC (BN, gradient OFF) matches or slightly exceeds Vanilla (0.767 vs.\\ 0.745, $p{=}0.28$). The damage is BN-specific: under BatchNorm, gradient flow drops CAR below the Vanilla baseline (0.725 vs.\\ 0.745, $d{=}{-}0.93$), while under LayerNorm, gradient flow is benign (0.777 vs.\\ 0.745, $d{=}{+}1.11$). Both normalization rows show within-row deficits from gradient flow ($-$4.2\\,pp for BN, $-$4.9\\,pp for LN), but only the BN row falls below the no-auxiliary baseline. CKA analysis confirms that encoder representations remain intact under all conditions (CKA $\\geq$ 0.95 for both DINOv2 and SigLIP), ruling out representational drift and localizing the effect to optimization dynamics. The BN + gradient flow cell is both the worst-performing and the most unstable configuration ($\\sigma{=}0.064$, ${\\geq}\\,2{\\times}$ all other cells). We hypothesize that BatchNorm's running statistics introduce sensitivity to distributional shifts from auxiliary gradients, a coupling absent in LayerNorm's per-token computation. The numerical advantage of Detach OCC ($+$2.2\\,pp, with 3 of 4 seeds exceeding the Vanilla mean) raises the possibility that detached auxiliary heads provide a mild regularization benefit, though larger samples are needed to confirm.\n\n\\textbf{Normalization independently affects safety.} LN provides a consistent safety advantage over BN ($+$5.2\\,pp under gradient flow, $d{=}1.03$; $+$5.9\\,pp without, Cell~4 preliminary), comparable in magnitude to the gradient flow effect. For practitioners who must retain gradient flow, LayerNorm converts the BN safety deficit into a gain, an architectural advantage, since label content does not detectably affect outcomes.\n\n\\textbf{Equivalence of protections.} Switching normalization (BN$\\to$LN, Cell~2: 0.777) and detaching gradients (Cell~3: 0.767) yield comparable safety improvements over the Full OCC~BN configuration, and both exceed the Vanilla baseline (0.745). Cell~1 (Full OCC~BN, 0.725) is the only cell that falls below Vanilla, confirming that safety loss requires the joint presence of BatchNorm and gradient flow; removing either condition restores performance above baseline. Practitioners therefore face two interchangeable remedies for the BN-gradient coupling: adopting LayerNorm or detaching auxiliary gradients. When both protections are applied simultaneously (Cell~4: Detach+LN, 0.826, $n{=}1$, preliminary), CAR exceeds either single-protection cell by ${\\geq}$4.9\\,pp, suggesting an additive or super-additive benefit, though this estimate requires additional seeds to confirm.\n\nGradient analysis confirms orthogonality between action and auxiliary gradients (cosine $\\approx$ 0, conflict rate $\\approx$ 46\\%), ruling out direct gradient conflict~\\cite{yu2020pcgrad, liu2021cagrad}. The detrimental effect operates through indirect channels, likely reshaping the LoRA optimization trajectory under a dual-objective loss landscape~\\cite{lippl2024implicit, jiang2023forkmerge}---rather than through gradient interference. This sensitivity extends to implementation details: a codebase revision (v2) that fixed a batch-index resume bug (without changing any model architecture, hyperparameter, or evaluation protocol) shifts absolute CAR by up to 8.6\\,pp for the same seed (Vanilla stable, $<$1.5\\,pp), and the effect pattern itself changed from an apparent crossover under v1 to the dual main effects reported here (Appendix~\\ref{app:codebase}). This level of sensitivity to non-hyperparameter implementation details has not been documented in prior multi-task learning work and constitutes an independent finding.\n\nThe content irrelevance finding (structured $\\approx$ random $\\approx$ depth labels) was observed under v1; whether it persists under v2 remains open, but is indirectly supported by the gradient orthogonality analysis (confirmed under v2), which shows identical gradient geometry for structured and random labels.\n\nThese safety findings do not contradict task success improvements reported by spatial VLA methods~\\cite{li2026spatialforcing, yuan2025depthvla, wu2025spatialvla, liu2025occvla}; safety and task success can respond differently to auxiliary supervision, making independent safety evaluation essential. Normalization type and gradient flow configuration, rarely specified in current work---should be standard reporting practice. Safety differences concentrate on three physically constrained tasks (Appendix~\\ref{app:additional}).\n\n\\textbf{LoRA-specificity caveat.} All experiments use LoRA adapters; whether full fine-tuning exhibits the same pattern is open. The low-rank constraint may amplify sensitivity to dual-objective landscapes that full-rank updates could absorb.\n\n\\textbf{Practical guideline.} Do not add auxiliary spatial heads for safety purposes. If required, use detached gradients with LayerNorm; avoid combining BatchNorm with gradient flow. No ground-truth labels are needed; the head is discarded at zero inference cost, complementing runtime methods~\\cite{hu2025vlsa, raja2024ogmcbf}. Limitations are in Appendix~\\ref{app:limitations}.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 9,
+                  "oldLines": 7,
+                  "newStart": 9,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    " \\textbf{Equivalence of protections.} Switching normalization (BN$\\to$LN, Cell~2: 0.777) and detaching gradients (Cell~3: 0.767) yield comparable safety improvements over the Full OCC~BN configuration, and both exceed the Vanilla baseline (0.745). Cell~1 (Full OCC~BN, 0.725) is the only cell that falls below Vanilla, confirming that safety loss requires the joint presence of BatchNorm and gradient flow; removing either condition restores performance above baseline. Practitioners therefore face two interchangeable remedies for the BN-gradient coupling: adopting LayerNorm or detaching auxiliary gradients. When both protections are applied simultaneously (Cell~4: Detach+LN, 0.826, $n{=}1$, preliminary), CAR exceeds either single-protection cell by ${\\geq}$4.9\\,pp, suggesting an additive or super-additive benefit, though this estimate requires additional seeds to confirm.",
+                    " ",
+                    "-Gradient analysis confirms orthogonality between action and auxiliary gradients (cosine $\\approx$ 0, conflict rate $\\approx$ 46\\%), ruling out direct gradient conflict~\\cite{yu2020pcgrad, liu2021cagrad}. The detrimental effect operates through indirect channels, likely reshaping the LoRA optimization trajectory under a dual-objective loss landscape~\\cite{lippl2024implicit, jiang2023forkmerge}---rather than through gradient interference. This sensitivity extends to implementation details: a codebase revision (v2) that fixed a batch-index resume bug (without changing any model architecture, hyperparameter, or evaluation protocol) shifts absolute CAR by up to 8.6\\,pp for the same seed (Vanilla stable, $<$1.5\\,pp), and the effect pattern itself changed from an apparent crossover under v1 to the dual main effects reported here (Appendix~\\ref{app:codebase}). This level of sensitivity to non-hyperparameter implementation details has not been documented in prior multi-task learning work and constitutes an independent finding.",
+                    "+Gradient analysis confirms orthogonality between action and auxiliary gradients (cosine $\\approx$ 0, conflict rate $\\approx$ 46\\%), ruling out direct gradient conflict~\\cite{yu2020pcgrad, liu2021cagrad}. The detrimental effect operates through indirect channels, likely reshaping the LoRA optimization trajectory under a dual-objective loss landscape~\\cite{lippl2024implicit, jiang2023forkmerge}, rather than through gradient interference. This sensitivity extends to implementation details: a codebase revision (v2) that fixed a batch-index resume bug (without changing any model architecture, hyperparameter, or evaluation protocol) shifts absolute CAR by up to 8.6\\,pp for the same seed (Vanilla stable, $<$1.5\\,pp), and the effect pattern itself changed from an apparent crossover under v1 to the dual main effects reported here (Appendix~\\ref{app:codebase}). This level of sensitivity to non-hyperparameter implementation details has not been documented in prior multi-task learning work and constitutes an independent finding.",
+                    " ",
+                    " The content irrelevance finding (structured $\\approx$ random $\\approx$ depth labels) was observed under v1; whether it persists under v2 remains open, but is indirectly supported by the gradient orthogonality analysis (confirmed under v2), which shows identical gradient geometry for structured and random labels.",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PbKGz3iJa8irctopua8gaQ",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex",
+                "old_string": "current work---should",
+                "new_string": "current work, should"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "f0a7443b-5371-4fc7-9025-060855685586",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018F9MG8aT3ee6uU6eXv7PyV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1688,
+                "cache_read_input_tokens": 34823,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1688
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-28T01:40:00.564Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PbKGz3iJa8irctopua8gaQ",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "8cd68014-e30d-428b-9d53-a339ad3ab051",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex",
+              "oldString": "current work---should",
+              "newString": "current work, should",
+              "originalFile": "\n\\section{Discussion}\n\\label{sec:discussion}\n\\label{sec:why_gradient}\n\nBatchNorm is not inherently harmful: Detach OCC (BN, gradient OFF) matches or slightly exceeds Vanilla (0.767 vs.\\ 0.745, $p{=}0.28$). The damage is BN-specific: under BatchNorm, gradient flow drops CAR below the Vanilla baseline (0.725 vs.\\ 0.745, $d{=}{-}0.93$), while under LayerNorm, gradient flow is benign (0.777 vs.\\ 0.745, $d{=}{+}1.11$). Both normalization rows show within-row deficits from gradient flow ($-$4.2\\,pp for BN, $-$4.9\\,pp for LN), but only the BN row falls below the no-auxiliary baseline. CKA analysis confirms that encoder representations remain intact under all conditions (CKA $\\geq$ 0.95 for both DINOv2 and SigLIP), ruling out representational drift and localizing the effect to optimization dynamics. The BN + gradient flow cell is both the worst-performing and the most unstable configuration ($\\sigma{=}0.064$, ${\\geq}\\,2{\\times}$ all other cells). We hypothesize that BatchNorm's running statistics introduce sensitivity to distributional shifts from auxiliary gradients, a coupling absent in LayerNorm's per-token computation. The numerical advantage of Detach OCC ($+$2.2\\,pp, with 3 of 4 seeds exceeding the Vanilla mean) raises the possibility that detached auxiliary heads provide a mild regularization benefit, though larger samples are needed to confirm.\n\n\\textbf{Normalization independently affects safety.} LN provides a consistent safety advantage over BN ($+$5.2\\,pp under gradient flow, $d{=}1.03$; $+$5.9\\,pp without, Cell~4 preliminary), comparable in magnitude to the gradient flow effect. For practitioners who must retain gradient flow, LayerNorm converts the BN safety deficit into a gain, an architectural advantage, since label content does not detectably affect outcomes.\n\n\\textbf{Equivalence of protections.} Switching normalization (BN$\\to$LN, Cell~2: 0.777) and detaching gradients (Cell~3: 0.767) yield comparable safety improvements over the Full OCC~BN configuration, and both exceed the Vanilla baseline (0.745). Cell~1 (Full OCC~BN, 0.725) is the only cell that falls below Vanilla, confirming that safety loss requires the joint presence of BatchNorm and gradient flow; removing either condition restores performance above baseline. Practitioners therefore face two interchangeable remedies for the BN-gradient coupling: adopting LayerNorm or detaching auxiliary gradients. When both protections are applied simultaneously (Cell~4: Detach+LN, 0.826, $n{=}1$, preliminary), CAR exceeds either single-protection cell by ${\\geq}$4.9\\,pp, suggesting an additive or super-additive benefit, though this estimate requires additional seeds to confirm.\n\nGradient analysis confirms orthogonality between action and auxiliary gradients (cosine $\\approx$ 0, conflict rate $\\approx$ 46\\%), ruling out direct gradient conflict~\\cite{yu2020pcgrad, liu2021cagrad}. The detrimental effect operates through indirect channels, likely reshaping the LoRA optimization trajectory under a dual-objective loss landscape~\\cite{lippl2024implicit, jiang2023forkmerge}, rather than through gradient interference. This sensitivity extends to implementation details: a codebase revision (v2) that fixed a batch-index resume bug (without changing any model architecture, hyperparameter, or evaluation protocol) shifts absolute CAR by up to 8.6\\,pp for the same seed (Vanilla stable, $<$1.5\\,pp), and the effect pattern itself changed from an apparent crossover under v1 to the dual main effects reported here (Appendix~\\ref{app:codebase}). This level of sensitivity to non-hyperparameter implementation details has not been documented in prior multi-task learning work and constitutes an independent finding.\n\nThe content irrelevance finding (structured $\\approx$ random $\\approx$ depth labels) was observed under v1; whether it persists under v2 remains open, but is indirectly supported by the gradient orthogonality analysis (confirmed under v2), which shows identical gradient geometry for structured and random labels.\n\nThese safety findings do not contradict task success improvements reported by spatial VLA methods~\\cite{li2026spatialforcing, yuan2025depthvla, wu2025spatialvla, liu2025occvla}; safety and task success can respond differently to auxiliary supervision, making independent safety evaluation essential. Normalization type and gradient flow configuration, rarely specified in current work---should be standard reporting practice. Safety differences concentrate on three physically constrained tasks (Appendix~\\ref{app:additional}).\n\n\\textbf{LoRA-specificity caveat.} All experiments use LoRA adapters; whether full fine-tuning exhibits the same pattern is open. The low-rank constraint may amplify sensitivity to dual-objective landscapes that full-rank updates could absorb.\n\n\\textbf{Practical guideline.} Do not add auxiliary spatial heads for safety purposes. If required, use detached gradients with LayerNorm; avoid combining BatchNorm with gradient flow. No ground-truth labels are needed; the head is discarded at zero inference cost, complementing runtime methods~\\cite{hu2025vlsa, raja2024ogmcbf}. Limitations are in Appendix~\\ref{app:limitations}.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 13,
+                  "oldLines": 7,
+                  "newStart": 13,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    " The content irrelevance finding (structured $\\approx$ random $\\approx$ depth labels) was observed under v1; whether it persists under v2 remains open, but is indirectly supported by the gradient orthogonality analysis (confirmed under v2), which shows identical gradient geometry for structured and random labels.",
+                    " ",
+                    "-These safety findings do not contradict task success improvements reported by spatial VLA methods~\\cite{li2026spatialforcing, yuan2025depthvla, wu2025spatialvla, liu2025occvla}; safety and task success can respond differently to auxiliary supervision, making independent safety evaluation essential. Normalization type and gradient flow configuration, rarely specified in current work---should be standard reporting practice. Safety differences concentrate on three physically constrained tasks (Appendix~\\ref{app:additional}).",
+                    "+These safety findings do not contradict task success improvements reported by spatial VLA methods~\\cite{li2026spatialforcing, yuan2025depthvla, wu2025spatialvla, liu2025occvla}; safety and task success can respond differently to auxiliary supervision, making independent safety evaluation essential. Normalization type and gradient flow configuration, rarely specified in current work, should be standard reporting practice. Safety differences concentrate on three physically constrained tasks (Appendix~\\ref{app:additional}).",
+                    " ",
+                    " \\textbf{LoRA-specificity caveat.} All experiments use LoRA adapters; whether full fine-tuning exhibits the same pattern is open. The low-rank constraint may amplify sensitivity to dual-objective landscapes that full-rank updates could absorb.",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GTPcp9UDjPoenMAmHzMVgK",
+              "name": "Grep",
+              "input": {
+                "pattern": "---",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "a6ad36d1-b860-453c-8e5c-3f6b90ee19f5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Rn6UVpoqFLLSybHuUmSphz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 528,
+                "cache_read_input_tokens": 36511,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 528
+                },
+                "output_tokens": 61,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-28T01:40:03.275Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GTPcp9UDjPoenMAmHzMVgK",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "7b69b2bb-11ba-43f9-aa5f-ad45852658eb",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "",
+              "numLines": 0
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 `---` 已清除。完成的修改：\n\n1. **新增 \"Equivalence of protections\" 段落**（line 10）：论证 Cell 2 ≈ Cell 3（两种保护等效）、Cell 1 是唯一低于 Vanilla 的配置（BN 为安全损害的必要条件）、Cell 4 叠加保护超过单一保护（preliminary caveat）。\n\n2. **清理 7 处 em-dash**：\n   - `harmful---Detach` → 冒号\n   - `gain---an` → 逗号\n   - `channels---likely` → 逗号\n   - `bug---without...protocol---shifts` → 括号\n   - `forkmerge}---rather` → 逗号\n   - `work---should` → 逗号"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "uuid": "24b34391-45e8-4ce8-805d-c01a49d82daa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012nhmhLAdtEgMUwyYUCxR16",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 136,
+                "cache_read_input_tokens": 37039,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 136
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 `---` 已清除。完成的修改：\n\n1. **新增 \"Equivalence of protections\" 段落**（line 10）：论证 Cell 2 ≈ Cell 3（两种保护等效）、Cell 1 是唯一低于 Vanilla 的配置（BN 为安全损害的必要条件）、Cell 4 叠加保护超过单一保护（preliminary caveat）。\n\n2. **清理 7 处 em-dash**：\n   - `harmful---Detach` → 冒号\n   - `gain---an` → 逗号\n   - `channels---likely` → 逗号\n   - `bug---without...protocol---shifts` → 括号\n   - `forkmerge}---rather` → 逗号\n   - `work---should` → 逗号"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 84386,
+            "duration_api_ms": 85587,
+            "num_turns": 15,
+            "stop_reason": "end_turn",
+            "session_id": "678d6751-a454-4c75-a55c-5bfd350f57c0",
+            "total_cost_usd": 0.36126249999999993,
+            "usage": {
+              "input_tokens": 9,
+              "cache_creation_input_tokens": 25330,
+              "cache_read_input_tokens": 210498,
+              "output_tokens": 3818,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 25330,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 225,
+                  "cache_read_input_tokens": 37039,
+                  "cache_creation_input_tokens": 136,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 136
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2101,
+                "outputTokens": 21,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002206,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 9,
+                "outputTokens": 3818,
+                "cacheReadInputTokens": 210498,
+                "cacheCreationInputTokens": 25330,
+                "webSearchRequests": 0,
+                "costUSD": 0.35905649999999995,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "ca9227bc-6c92-40b8-bf86-4d0bd2b3fbbc"
+          },
+          "id": "event-000041"
+        }
+      ],
+      "message_count": 41
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-writing-discussion-equivalence.md"
+}

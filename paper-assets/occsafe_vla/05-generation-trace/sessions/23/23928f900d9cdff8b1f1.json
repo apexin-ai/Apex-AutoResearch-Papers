@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23928f900d9cdff8b1f1",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ssh 10894 status and eval",
+  "task_key": "worker_ssh_10894_status_and_eval_20260526T033748",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_10894_status_and_eval_20260526T033748_result.json",
+    "occurrence": 1,
+    "bytes": 1088,
+    "sha256": "2756bd7e43110c93c922a158b433c52d15dc251b32ddac0131e3484265bccf69"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Director 的报告有误——**4 张 GPU 全部在跑，利用率 89-99%**，没有实验完成或失败。\n\n## 10894 状态\n\n| 实验 | 训练状态 | 当前 step | 进度 | 50K ckpt | eval 状态 | GPU |\n|------|---------|----------|------|----------|----------|-----|\n| cutoff_45k_s2_v2 | **训练中** | 35302/50005 | 71% | 无 | — | cuda:0 (99%) |\n| mvp_occ_s3_v2 | **训练中** | 24095/50005 | 48% | 无 | — | cuda:1 (99%) |\n| full_occ_ln_s3_v2 | **训练中** | 24008/50005 | 48% | 无 | — | cuda:2 (89%) |\n| ablation_occ_detach_s3_v2 | **训练中** | 23955/50005 | 48% | 无 | — | cuda:3 (98%) |\n\n**关键指标（最新 log）**：\n- cutoff_45k_s2_v2 @ step 35300: occ_loss=0.0086, action_loss=0.0967\n- full_occ_ln_s3_v2 @ step 24000: occ_loss=0.0109, action_loss=0.0952\n- ablation_occ_detach_s3_v2 @ step 23900: occ_loss=0.0109, action_loss=0.0903\n\n**ETA 预估**：\n- cutoff_45k_s2_v2: ~4h 剩余（~1.05 it/s）\n- 其余 3 个: ~7h 剩余（~1.06 it/s）\n\n**空闲 GPU**: 无。所有 4 张 GPU 满载运行中。不启动 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-10894-status-and-eval.md"
+}

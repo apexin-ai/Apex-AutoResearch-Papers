@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ee8fba8fc6aab379ae2",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "resume 10894 batch",
+  "task_key": "worker_resume_10894_batch_20260525T173508",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_resume_10894_batch_20260525T173508_result.json",
+    "occurrence": 1,
+    "bytes": 837,
+    "sha256": "272302e1c2342521536e280b7dbfe5cb5aee50fca33b07cf6c60398f9603af05"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 GPU 全部占用，全部训练中。\n\n## 汇总\n\n| 实验 | GPU | PID | 状态 | 说明 |\n|------|-----|-----|------|------|\n| **cutoff_45k_s2_v2** | cuda:0 | 4294 | 训练中 (step ~250+) | 从头训练，~1.08 it/s |\n| **mvp_occ_s3_v2** | cuda:1 | 11641 | 训练中 (step 0+) | Resume from 20K, action_loss=0.08 确认权重恢复 |\n| **full_occ_ln_s3_v2** | cuda:2 | 6947→7027 | 训练中 (step ~30+) | Resume from 20K, ~1.08 it/s |\n| **ablation_occ_detach_s3_v2** | cuda:3 | 7161→7243 | 训练中 (step ~30+) | Resume from 20K, ~1.08 it/s |\n\n**修复的问题：**\n1. Resume 命令原始版本缺少 `--resume_step 20000` 且 `--vla_path` 需要指向 checkpoint 目录而非 pretrained 模型目录\n2. cuda:1 被 full_occ_bn_v2_s1 的自动重试占用，需要手动杀掉 orphan 进程释放 GPU"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/resume-10894-batch.md"
+}

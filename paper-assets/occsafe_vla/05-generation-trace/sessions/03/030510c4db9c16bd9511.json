@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "030510c4db9c16bd9511",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops cleanup and depth launch 10894",
+  "task_key": "worker_ops_cleanup-and-depth-launch-10894_20260522T064745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup-and-depth-launch-10894_20260522T064745_result.json",
+    "occurrence": 1,
+    "bytes": 1207,
+    "sha256": "29b536b05b1ab7323965ed1666846aa5f82493f0f41dc1df414fa5f740871ea4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报：任务已在先前 session 完成\n\n**当前状态（westd-10894）**\n\n1. **checkpoint 清理**：4 个目标目录（ablation_random_occ_s0/s1, ablation_occ_detach_s0/s1）已不存在。当前 `/root/autodl-tmp/checkpoints/` 仅剩 ablation_occ_detach_s2、ablation_random_occ_s2、depth_s2、depth_s3。磁盘 250G 已用 37G，**可用 214G (85% free)**。\n\n2. **代码文件已就位**：\n   - finetune.py: 55693 B\n   - datasets.py: 23158 B\n   - occ_head.py: 5159 B\n   - data_utils.py: 7011 B\n\n3. **depth_data 已就位**：9 个 task 的 HDF5 + depth_index.json，位置 `/root/occsafe_vla/depth_data/`。\n\n4. **训练已运行**（registry 显示均为 RUNNING，updated_at 2026-05-22T07:01）：\n   - **depth_s2** (cuda:2, seed=44, PID 942037)：step 100, depth_loss=0.1294, action_loss=0.3262, ~1.07 it/s, ETA ~13h\n   - **depth_s3** (cuda:3, seed=45, PID 940106, master_port=29501)：step 113, depth_loss=0.2577, action_loss=0.3516, ~1.06 it/s, ETA ~13h\n\n5. **GPU 占用**：cuda:0 (random_occ_s2) 99% / cuda:1 (occ_detach_s2) 99% / cuda:2 (depth_s2) 83% / cuda:3 (depth_s3) 84%，4 卡全负载，各 ~62GB 显存。\n\n无需重复执行任何操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-and-depth-launch-10894.md"
+}

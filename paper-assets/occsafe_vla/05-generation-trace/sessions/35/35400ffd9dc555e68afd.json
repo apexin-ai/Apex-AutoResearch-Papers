@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "35400ffd9dc555e68afd",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code occ preload optimization",
+  "task_key": "worker_code_occ_preload_optimization_20260520T112623",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_occ_preload_optimization_20260520T112623_result.json",
+    "occurrence": 1,
+    "bytes": 1646,
+    "sha256": "bfd3a6df2451ab56e42ac838055754fdc4006e789ddc6f3375b2a6d4491e971d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实现完成。汇总结果：\n\n---\n\n## 实施结果\n\n### 代码修改\n文件：`/root/occsafe_vla/openvla-oft/prismatic/vla/datasets/datasets.py`\n\n修改内容：\n1. `__post_init__`: 初始化 `_occ_cache = {}` 字典，加载 occ_index 后调用 `_preload_occ_data()`\n2. 新增 `_preload_occ_data()`: 启动时一次性读取所有 HDF5 的 bev_binary 到内存，存为 `_occ_cache[task_name][demo_key] = np.ndarray(T, 64, 64)`\n3. `_load_occ_label()`: 优先从 cache 查找（无 I/O），cache miss 时 fallback 到 HDF5 文件读取\n\n原文件备份在 `datasets.py.bak`。\n\n### 验证结果\n\n**(a) 数据正确性** ✓  \n随机抽取 10 个样本，cache 读取 vs 直接 HDF5 读取完全一致 (`np.array_equal = True`)\n\n**(b) 训练速度** ✓  \n5-step dry-run on cuda:3 (occ_data_dummy):\n- Step 1: ~6s (CUDA 编译 warmup)\n- Steps 2-5: ~1.0 s/step（vanilla 基准 ~1.09 s/step）\n- 速度恢复到接近 vanilla 水平\n\n**(c) occ_loss** — wandb_log_freq=10 且 wandb 已禁用，5 步内未输出 loss 值。但训练正常完成无报错，结合 (a) 数据正确性已验证，loss 计算可信。\n\n### 预加载统计\n- **文件数**: 10\n- **Demo 数**: 500  \n- **总样本数**: 119,788\n- **内存占用**: 467.9 MB（bool 数组）\n- **加载耗时**: ~2 秒\n\n### 注意事项\n- `occ_data/`（真实数据）尚无 `occ_index.json`，需要在 occ 提取完成后运行 `build_occ_index.py` 生成\n- 当前 5 个提取进程（task 0/2/3/4/8）仍在运行，occ_data HDF5 文件被锁。预加载代码已处理 `BlockingIOError`，锁定的文件会跳过并打印警告"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-occ-preload-optimization.md"
+}

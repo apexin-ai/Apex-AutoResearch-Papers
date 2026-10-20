@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3048e023c8fa0061426e",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_7_1780008784.md",
+  "task_key": "loop_7_1780008784",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1780008784.md",
+    "occurrence": 1,
+    "bytes": 3867,
+    "sha256": "8d2663e768c73db13f428b823bc8c382cf5a74a95d9f9792a355bf223826c558"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-28T22:49:24+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-10894 cuda:0-3, westd-34685 cuda:0-3（共 8 张），白名单外禁止启动实验\n- DDL: **2026-05-28 12:00 UTC (SafeRL Workshop @ RSS 2025)**，今天就是截止日\n- 纯 v2 数据策略：v1 数据（detach_ln_s4 eval 等）不纳入 v2 factorial ANOVA，Director 已决策（D067/D071）\n- torchrun 训练命令中 GPU 编号始终用 `--gpu 0`（框架自动映射物理 GPU）\n- 训练恢复命令：`--resume True --resume_step 40000 --vla_path rebuilt_40000_chkpt`（从 40000 rebuild checkpoint 恢复到 50005）\n\n### 2. 🖥️ 基础设施快照\n- **westd-34685**：工作目录 /root/occsafe_vla，Python /root/miniconda3/bin/python，conda base\n  - 模型 checkpoint：/root/autodl-tmp/checkpoints/{exp_id}/\n  - 数据集：/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops（4600 条）\n  - Eval 结果：/root/occsafe_vla/artifacts/safelibero_*.json\n  - 磁盘：819G free (2% used)\n- **westd-10894**：同结构，磁盘 431G free (49% used)\n- 活跃 cron 监控 6 个实验：detach_ln_v2_s4, detach_ln_v2_s2, vanilla_object_s2, full_occ_bn_v2_s3, full_occ_bn_v2_s2, vanilla_object_s1\n- Eval 轮询脚本：westd-34685 PID 69355/69356（非 cron 管理，手动轮询触发 eval）\n\n### 3. 📊 当前状态\n**刚完成**：处理 full_occ_ln_v2_s3 + detach_ln_v2_s3 的 cron 误报（EXIT_CODE=129）。两个训练实际已完成，50000_chkpt 存在。已派 Worker (`worker_ops_monitor-batch-c-eval_20260528T064628`) 监控 eval 并采集 metrics。已向 Director 汇报。\n\n**RUNNING 实验**（6 个）：\n| exp_id | 服务器:GPU | 说明 |\n|--------|-----------|------|\n| detach_ln_v2_s2 | 34685:cuda:0 | Cell 4 seed 扩展 |\n| full_occ_bn_v2_s2 | 34685:cuda:1 | Cell 1 seed 扩展 |\n| detach_ln_v2_s4 | 10894:? | Cell 4 seed 扩展 |\n| vanilla_object_s1 | 10894:? | libero_object baseline |\n| full_occ_bn_v2_s3 | 10894:cuda:2 | Cell 1 seed 扩展 |\n| vanilla_object_s2 | 10894:cuda:3 | libero_object baseline |\n\n**等待中**：\n- Worker `monitor-batch-c-eval` 回调 → 带回 full_occ_ln_v2_s3 + detach_ln_v2_s3 的 eval metrics (CAR/TSR)\n- Batch B eval（detach_ln_v2_s2 训练完成后）→ Cell 4 n=3\n- 全部 seed 到齐后 → ANOVA + Table 1 + 编译 + 提交\n\n### 4. 📋 待办（条件触发式）\n- monitor-batch-c-eval Worker 回调 → 更新 registry metrics + conclusion, 刷新 report.md, 对标 ROADMAP Batch C 完成\n- detach_ln_v2_s2 cron 完成回调 → 立即派 eval Worker (Batch B), Cell 4 n=3 达成\n- Cell 4 n≥3 + Cell 2 n≥4 全部 eval 完成 → 派 Worker 跑全量 ANOVA (statistical_tests.py) + 更新 Table 1 + 编译 PDF\n- 编译完成 → 向 Director 汇报最终数据 + 请求提交审批\n- 34685:cuda:2 和 cuda:3 空闲 → 可用于 eval 或下一批实验\n\n### 5. 🎯 战略上下文\n- **核心 claim**: gradient flow 是安全损害源，detach 后 aux OCC head 无害（≈ Vanilla）。Plan B: ordinal interaction（BN×gradient flow）\n- **论文架构**（D071/D073）：BN 行作核心论证（Cell 1 n=3 + Cell 3 n=4），LN normalization 主效应作为 secondary claim\n- **Framing**（D074）：从 \"ordinal interaction\" 转向 \"dual\" 叙事\n- **易错点**：\n  - full_occ_ln_v2_s3 和 detach_ln_v2_s3 在 registry 里 conclusion=failed，但训练实际完成——等 eval Worker 回来后必须改 conclusion\n  - detach_ln_s4 的 eval 数据（CAR=0.672）是 v1 代码产出（commit bdaee75 缺 occ_norm_type），不纳入 v2 分析\n  - 时间极紧：eval ~07:22 → ANOVA + Table 1 + 编译必须在 ~11:00 前完成，留 1h 给最终提交\n  - cron 系统不监控轮询脚本启动的 eval（PID 70950/70951），只有 Worker 在盯——如果 Worker 超时或失败，eval 结果可能丢失，需手动 SSH 采集\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1780008784.md"
+}

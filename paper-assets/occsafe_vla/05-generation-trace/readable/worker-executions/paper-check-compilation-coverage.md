@@ -1,0 +1,7073 @@
+# paper check compilation coverage
+
+**Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? A Factorial Analysis** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 130
+- **Recorded user turns:** 1
+- **Tool calls:** 44
+- **Original source:** `logs/workers/worker_paper_check-compilation-coverage_20260525T065754.log`
+- **Structured JSON:** [`4965fe8088143e8af56b.json`](../../sessions/49/4965fe8088143e8af56b.json)
+
+## Before a recorded user message
+
+27 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "af1dedf5-dc54-4659-95f9-be41a587371d",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-occsafe-vla/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779709200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "9ae91bb9-1577-413a-9ac1-863ad895d6ec",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll check the paper status. Let me start by reading the project files and exploring the paper directory.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "1187a412-bd77-4785-903a-f1d0b51a7a9b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HBrRASnqMndiww1d5xpty6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11551,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11551
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01VyfXmJFNtvLuerQwCPtaAK`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "e90aab77-aca9-4b7d-8897-07fe861dfb34",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HBrRASnqMndiww1d5xpty6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11551,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11551
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-25T06:58:07.401Z_
+
+<details><summary>↩ Tool result · `toolu_01VyfXmJFNtvLuerQwCPtaAK`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "87b333b0-ebaf-44a6-b9b7-f8d45aec65e2",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the paper framing and exploring the paper directory in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "1d0566c9-6dc6-4855-b02d-aa823e069500",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01419sNd4hpBWYfP5LAMTTKh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1334,
+      "cache_read_input_tokens": 23392,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1334
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01Vp7vhkhDs3B8TKf6wYsZ1c`</summary>
+
+```json
+{
+  "project": "occsafe_vla",
+  "file": "paper_framing.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "c6725a5a-edd5-42da-96f1-557bb0ebbb21",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01419sNd4hpBWYfP5LAMTTKh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1334,
+      "cache_read_input_tokens": 23392,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1334
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-25T06:58:12.037Z_
+
+<details><summary>↩ Tool result · `toolu_01Vp7vhkhDs3B8TKf6wYsZ1c`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/paper_framing.md\", \"content\": \"# OccSafe-VLA — Paper Framing\\n\\n> 维护者: Director | 最后更新: 2026-05-25 04:00 UTC | 状态: Draft (D040 BN×gradient flow crossover interaction — BN beneficial under gradient flow (+5.4pp), harmful without (-1.9pp). Full OCC+LN is worst condition. CoRL 2026 target)\\n\\n## Architecture Facts (from code, verified)\\n- **Occ head input**: DINOv2(1024) + SigLIP(1152) 拼接 = 2176d（非仅 DINOv2）\\n- **Occ head**: Linear(2176→256) → reshape(B,256,16,16) → ConvTranspose2d×2 上采样(16→32→64) → Conv2d(64→1)。BatchNorm2d + GELU。参数量 1.2M。\\n- **FocalLoss**: α=0.25, γ=2.0\\n- **occ_loss_weight**: λ=0.01, 指数衰减 w(t)=0.01×exp(-t/50000)\\n- **LR**: 5e-4 恒定（MultiStepLR milestone=100K > max_steps，从未触发）\\n- **LoRA**: rank=32, alpha=16, dropout=0.0\\n- **GPU**: 4× RTX PRO 6000 98GB per server\\n- **训练时间**: ~12.9h/run @ 1.08 it/s\\n\\n### 叙事含义\\n- **双编码器梯度流**: Occ head 接收 DINOv2+SigLIP 拼接特征，occupancy supervision 同时影响两个编码器。\\n  比\\\"仅改善 DINOv2\\\"更强 — 同时改善语义(SigLIP)和空间(DINOv2)编码器的 3D 感知。\\n- **极轻量**: occ_head 仅 1.2M params = 全模型 7.65B 的 0.016%，强化 \\\"lightweight auxiliary\\\" 叙事\\n- **occ_loss 指数衰减**: w(t)=0.01×exp(-t/50000) → 训练后期 occ 监督逐渐\\\"放手\\\"让 action loss 主导，\\n  可论证为\\\"先学空间结构，再精化动作\\\"的课程学习效果\\n- **LoRA alpha=16 < rank=32**: 有效 scaling factor = alpha/rank = 0.5，比常见的 1.0 更保守\\n\\n### DepthHead (新增, 2026-05-22)\\n- **Depth head**: Linear(2176→256) → ConvTranspose2d×2 (256→128→64, kernel=4, stride=2) → ReLU（无 sigmoid）\\n- **SmoothL1Loss**, depth_loss_weight=0.01 + 指数衰减（同 occ_loss_weight）\\n- **GT 来源**: MuJoCo sim 深度渲染（state replay），分辨率 64×64\\n- **参数量**: ~1.2M（与 OccHead 同量级）\\n\\n## Core Insight (D034 修正, 2026-05-24)\\n\\n**原始假设（已推翻）**：BEV occupancy 迫使 vision encoder 发展 3D 空间感知 → safety emergence。\\n\\n**D017 发现**：辅助任务的梯度流提供正则化效应。\\n\\n**D019 修正**：梯度流是防止损害的条件，非提供收益的条件。\\n\\n**D026 机制确认 — Gradient Collapse Prevention**：\\n梯度分析（4 条件统一对比）揭示了具体机制：\\n- Vanilla / Full OCC / Random OCC 的 encoder gradient norms 量级相当（0.87-1.14×）\\n- **Detach 的 encoder gradient norms 仅为正常的 1-13%** — 梯度灾难性崩塌\\n\\n**D034 Dual Mechanism — BN Interference + Gradient Flow Absence（行为层面）**：\\ndetach_ln 实验（替换 BN→LN，保持 detach 模式）揭示 Detach OCC 的 3.4pp CAR 下降来自两个独立因素：\\n- **BN forward-pass 干扰**：贡献 ~1.9pp (~56%) — 替换 BN→LN 后恢复此部分\\n- **梯度流缺失**：贡献 ~1.5pp (~44%) — LN 替换后仍存在的残余 gap\\n- Detach+LN 3-seed: CAR=0.765±0.023，介于 Detach BN(0.746) 和 Vanilla(0.780) 之间\\n- 95% CI [0.726, 0.804] 与两端均有重叠，种子方差大（s0=0.792, s1=0.756, s2=0.748）\\n\\n**D035 Representation-Behavior Dissociation（表征层面，CKA 证据）**：\\nDetach+LN CKA 分析揭示了行为层面和表征层面的关键分离：\\n- **Detach+LN CKA 完全恢复**：DINOv2=0.966, SigLIP=0.960（≈ Vanilla 0.968/0.953，≈ Full OCC 0.964/0.960）\\n- **但行为仍低 1.5pp**：CAR=0.765 vs Vanilla=0.780，表征恢复并未完全恢复行为\\n- **结论**：BN 是表征漂移（CKA 退化）的 **100%** 原因，不是行为退化的 56%\\n- 梯度流的行为贡献（~1.5pp）**不通过表征保持**这条路径操作——是独立于表征保持的行为正则化机制\\n\\n**Core Insight（D035 定稿）**：VLA LoRA fine-tuning 中，auxiliary head 的 forward pass 通过**两个在不同层面操作的独立机制**影响 encoder：\\n1. **BN interference（表征层面）**：BN running stats 在 forward pass 中偏移 encoder 特征分布 → 灾难性表征漂移（CKA 0.31-0.54）→ 行为退化 ~1.9pp。替换 LN 后表征和行为均部分恢复。\\n2. **Gradient flow absence（行为层面，非表征层面）**：切断梯度流 → 行为退化 ~1.5pp，但 **CKA 不受影响**（Detach+LN CKA ≈ Vanilla）。梯度流提供的是一种**超越表征保持的行为正则化**。\\n两个机制在**不同分析层面**独立操作：BN 破坏表征 → 破坏行为；梯度流缺失不破坏表征但仍损害行为。\\n空间内容类型仍然不重要——任何梯度流（包括随机标签）都能补偿。\\n\\n**D036 Gradient Orthogonality — \\\"Existence Regularization\\\" 机制**：\\n- 辅助梯度与 action 梯度近乎正交（cosine ≈ 0，conflict rate ~50%）\\n- 梯度流不通过方向对齐起作用，而是通过\\\"存在性正则化\\\"——维持梯度幅度，防止 collapse\\n- Random OCC 具有相同的正交性特征 → 再次确认空间内容无关\\n\\n**D037 Per-Layer Dual-Encoder Differential Vulnerability**：\\n- **SigLIP late layers (block 23-26)**：cooperative gradient alignment（cosine > 0）→ detach 时遭受 \\\"double jeopardy\\\"：同时失去 anti-freeze 正则化和协作梯度信号\\n- **DINOv2**：purely orthogonal gradient structure（~50% conflict）→ 对 detach 更具韧性，但仍受 anti-freeze 机制失效影响\\n- 解释了不对称 CKA 退化：Detach BN 下 SigLIP (0.312) >> DINOv2 (0.539)\\n- **Claim 升级**：从 empirical observation 升级为 principled mechanism — 梯度流的保护作用因编码器架构和层级而异，不是均匀的\\n\\n**D040 2×2 Factorial Crossover Interaction — BN×Gradient Flow 交叉交互**：\\nFull OCC+LN 3-seed 完成（CAR: s0=0.766, s1=0.718, s2=0.744, mean=0.743±0.024），揭示 BN 和 gradient flow 存在**经典交叉交互**，而非独立加性效应：\\n\\n| | BN | LN | Δ(LN-BN) |\\n|--|----|----|-----------|\\n| **Gradient ON** | 0.797±0.032 | **0.743±0.024** | **-5.4pp** |\\n| **Gradient OFF** | 0.746±0.002 | 0.765±0.023 | **+1.9pp** |\\n| Δ(ON-OFF) | +5.1pp | -2.2pp | interaction=7.3pp |\\n\\n- BN+gradient flow = 最优（0.797）：梯度校准 BN stats → 有益 normalization coupling\\n- LN+no gradient flow = 可接受（0.765）：无 BN 干扰，无梯度也无害\\n- BN+no gradient flow = 有害（0.746）：BN 未校准 → 表征腐败\\n- **LN+gradient flow = 最差（0.743）**：低于 Vanilla 3.7pp！梯度流在无 BN coupling 时反而有害\\n- D036 \\\"existence regularization\\\" 仅在 BN 条件下成立；LN 下梯度流反而负面\\n- CKA s2=0.965 确认 s0 DINOv2=0.640 是 outlier\\n\\n**D042 统计验证 + 梯度重分配机制（same-seed gradient analysis）**：\\n- **2×2 ANOVA**: 交互效应 F(1,8)=7.511, **p=0.0254**, partial η²=0.484, Cohen f=0.969（极大效应量）。观测功效 0.671。**主效应均不显著**（Gradient p=0.326, Norm p=0.231）→ 交互是唯一统计显著信号。\\n- **Simple effects**（均为边缘/不显著）：BN ON vs OFF t=2.746 p=0.052；LN ON vs OFF t=-1.170 p=0.307；ON BN vs LN t=2.342 p=0.079。论文中报方向 + effect size，不做 simple effect 的 \\\"significantly\\\" claim。\\n- **Same-seed 梯度分析（D042 机制证据）**：4 条件 seed=42, 200 batches, 50K checkpoint：\\n  - **LN 导致跨 backbone 梯度幅度重新分配**：DINOv2 action grad 被抑制 3.5×（0.048 vs BN 0.168），SigLIP 被放大 2.5×（0.206 vs BN 0.081）\\n  - Conflict rate 仍≈50%（BN/LN 均如此）→ 问题非方向冲突，而是**幅度重新分配**——DINOv2 空间感知被\\\"饿死\\\"，SigLIP 被\\\"过度喂养\\\"\\n  - **BN 条件下梯度分配温和**：Full OCC/Detach 放大比仅 DINOv2 0.8×, SigLIP 1.0× → 保持平衡\\n  - 完整机制链：LN + gradient flow → DINOv2 梯度抑制 → 空间特征适应不足 → CKA 高（表征未漂移）但 CAR 低（空间感知不足）\\n\\n**Core Insight（D042 升级）**：VLA LoRA fine-tuning 中，auxiliary head 的 normalization 类型与 gradient flow 存在**交叉交互**（p=0.025）：\\n1. **BN 是 context-dependent 双刃剑**：有 gradient flow 时保持温和/平衡的梯度分配（DINOv2 0.8×, SigLIP 1.0×）→ 最优配置；无 gradient flow 时导致灾难性表征漂移（CKA 0.31-0.54）。\\n2. **LN + gradient flow 导致病理性梯度重分配**：DINOv2 被抑制 3.5×（空间感知饿死），SigLIP 被放大 2.5×（过度喂养）→ 最差配置。不是方向冲突（conflict ≈50%），是跨 backbone 的学习资源失衡。\\n3. **D036 \\\"existence regularization\\\" 修正为 \\\"BN-mediated gradient calibration\\\"**：梯度流的正则化效应不是固有属性，而是 BN 提供的梯度分配平衡所介导的。LN 下梯度流反而造成失衡。\\n4. **Representation-behavior dissociation（定性观察）**：Full OCC+LN CKA 正常（s1/s2=0.965）但 CAR 最差（0.743）。n=3 下 CKA-CAR 相关性不显著(r=-0.84, p=0.364)，限于定性呈现，不做统计 claim。\\n5. **Differential encoder vulnerability (D037)** 仍成立：SigLIP late layers 在 Detach BN 下受损最严重。\\n\\n**措辞约束**：\\n- \\\"crossover interaction\\\" 是核心叙事——BN 和 gradient flow 不可独立优化\\n- BN+gradient flow 的 +1.7pp vs Vanilla 不显著（simple effect p=0.052），用 \\\"comparable/maintains\\\"\\n- Full OCC+LN 的 -3.7pp vs Vanilla 是 3-seed 一致的，用 \\\"consistently degrades\\\"\\n- **交互效应 7.3pp 统计显著（p=0.025, η²=0.484）** ✅，可正式 claim\\n- **Simple effects 均不显著**（最好 p=0.052），论文中报方向和 effect size 而非 \\\"significantly\\\"\\n- CKA-CAR 反关联限于定性，不做统计 claim（n=3 不足）\\n\\n**已确认（D022）**：Depth CAR = 0.780 = Vanilla exactly (4 seeds)，egocentric depth 不比 random noise 更好。\\n\\n## Framing Strategy (D019 修正)\\n\\n**确定路线: Option B 分析论文**（Reviewer 审查通过）\\n\\n**核心叙事转变 (D026)**：从\\\"梯度流是必要条件\\\"→\\\"梯度流防止 encoder gradient collapse\\\"（具体机制，非抽象论断）\\n\\n**Title（暂定）**: \\\"Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? A Mechanism Analysis\\\"\\n\\n**3-Contribution 结构（D034 修正）**：\\n- **C1 (核心发现)**: Auxiliary head 通过两个**在不同层面操作的独立机制**影响 VLA encoder：\\n  - **表征层面**: BN 干扰是表征漂移的 100% 原因（Detach BN CKA 0.31-0.54; Detach+LN CKA 0.96+ = 完全恢复）\\n  - **行为层面**: 即使表征完全恢复（LN 替换），行为仍低 ~1.5pp → 梯度流提供超越表征保持的行为正则化\\n  - 机制证据 (D026): Detach gradient norms = 1-13% of Vanilla/Full OCC/Random (梯度崩塌)\\n  - BN 分离证据 (D034): Detach+LN CAR=0.765，恢复 1.9pp 但仍低于 Vanilla 1.5pp\\n  - CKA 分离证据 (D035): Detach+LN CKA 完全恢复（DINOv2=0.966, SigLIP=0.960）但行为 gap 仍存在\\n  - 正交性证据 (D036→D042 修正): cosine ≈ 0、conflict ~50%，但效应依赖 normalization。BN 保持温和梯度分配（\\\"BN-mediated gradient calibration\\\"）；LN 导致跨 backbone 梯度重分配（DINOv2 ↓3.5×, SigLIP ↑2.5×）\\n  - Dual-encoder 差异化 (D037): SigLIP late layers cooperative alignment → detach \\\"double jeopardy\\\"；DINOv2 purely orthogonal → 更耐受。解释 CKA 不对称退化（SigLIP 0.312 vs DINOv2 0.539）\\n  - 空间内容无关: Full OCC ≈ Random OCC ≈ Depth ≈ Vanilla（差异在 seed variance 内）\\n  - **措辞约束**: Full OCC +1.7pp 不具统计显著性，用 \\\"comparable/maintains\\\"\\n  - **措辞约束**: 梯度流行为贡献 1.5pp (n=3, CI 重叠) — 用 \\\"modest but consistent\\\"\\n- **C2 (方法论贡献)**: 首个 7+ condition factorial study design for VLA auxiliary head mechanism analysis（含 normalization ablation）\\n- **C3 (实用贡献, D040 修正)**: 附加辅助 head 时 (a) 保留 BN + gradient flow（唯一有益配置），(b) 若无法保证 gradient flow，用 LN 替代 BN 以减害，(c) **绝不用 LN + gradient flow**（比无辅助 head 更差）\\n- **Observation (非 core claim, D041 修正)**: Temporal dynamics — continuous flow 最优，reverse（late-only）一致最差(timing>duration)，中间 cutoff ≈ Vanilla。~~非单调 dose-response~~ 是 seed noise。\\n\\n## Core Contribution Evidence (D019 修正, 3-seed 数据)\\n\\n### C1: Auxiliary Gradient Flow Prevents Encoder Gradient Collapse\\n\\n**Behavioral Evidence (8 conditions @50K, 50r)**:\\n| 条件 | Seeds | TSR | CAR | vs Vanilla CAR |\\n|------|-------|-----|-----|---------------|\\n| Full OCC (BN) | 3 | 0.894±0.050 | **0.797**±0.032 | **+1.7pp** |\\n| Random OCC (BN) | 3 | 0.869±0.029 | 0.789±0.031 | **+0.9pp** |\\n| Depth (BN) | 4 | 0.854±0.039 | 0.782±0.034 | +0.2pp |\\n| Vanilla | 3 | 0.907±0.009 | 0.780±0.012 | baseline |\\n| Detach+LN | 3 | 0.898±0.027 | 0.765±0.023 | **-1.5pp** |\\n| Detach OCC (BN) | 3 | 0.812±0.163 | 0.746±0.002 | **-3.4pp** |\\n| **Full OCC+LN** | **3** | **0.897±0.032** | **0.743±0.024** | **-3.7pp** |\\n\\n**Mechanistic Evidence (D026 + D042 same-seed, gradient analysis @50K checkpoint)**:\\n| 条件 | Encoder Grad Norm (vs Vanilla) | DINOv2 Action Grad | SigLIP Action Grad |\\n|------|-------------------------------|--------------------|--------------------|\\n| Full OCC (BN) | 0.87-1.14× (comparable) | 0.168 (1.0×) | 0.081 (1.0×) |\\n| Full OCC+LN | — | **0.048 (0.29×)** | **0.206 (2.5×)** |\\n| Random OCC (BN) | 0.87-1.14× (comparable) | — | — |\\n| Vanilla | 1.00× (baseline) | 0.168 (baseline) | 0.081 (baseline) |\\n| Detach OCC (BN) | **0.01-0.13×** (collapse) | 0.006 (0.04×) | 0.004 (0.05×) |\\n\\n**D042 关键机制**：LN 下 OCC 梯度流导致 DINOv2 action grad 被抑制 3.5×（空间感知饿死），SigLIP 被放大 2.5×（过度喂养）。BN 下分配温和（DINOv2 0.8×, SigLIP 1.0×）。Conflict rate 均≈50% → 问题是幅度重分配非方向冲突。\\n\\n**CKA Representational Evidence (D032/D035/D040)**:\\n| 条件 | DINOv2 mean CKA | SigLIP mean CKA | CAR | 表征状态 |\\n|------|-----------------|-----------------|-----|---------|\\n| Vanilla | 0.968 | 0.953 | 0.780 | baseline |\\n| Full OCC (BN) | 0.964 | 0.960 | 0.797 | ≈ baseline |\\n| Detach+LN | 0.966 | 0.960 | 0.765 | ≈ baseline（CKA 恢复但 CAR 仍低） |\\n| **Full OCC+LN** | **0.965*** | **0.948*** | **0.743** | **≈ baseline 但 CAR 最差！** |\\n| Detach OCC (BN) | **0.539** | **0.312** | 0.746 | **灾难性漂移** |\\n\\n*Full OCC+LN CKA: s0=0.640/0.950(outlier), s1=0.965/0.950, s2=0.965/0.945。排除 s0 outlier 后均值。\\n\\n**D035 Representation-Behavior Dissociation 揭示**：\\n- BN 是表征漂移的 **100%** 原因：移除 BN（Detach+LN）后 CKA 完全恢复至 Vanilla 水平\\n- 但行为 gap 仍存在：Detach+LN CAR=0.765 vs Vanilla=0.780（-1.5pp）\\n- 因此梯度流的行为贡献（~1.5pp）**不通过表征保持操作**——是独立的行为正则化机制\\n- SigLIP 语义特征退化 > DINOv2 几何特征（Detach BN: 0.31 vs 0.54），中层 block 10-16 CKA 跌至 0.22-0.26\\n- Vanilla ≈ Full OCC ≈ Detach+LN（CKA 0.95-0.97），只有 Detach BN 异常\\n**注意**：CKA 同样使用跨 seed checkpoint，需在论文中与 gradient analysis 一同注明。\\n\\n**Detach 系统性弱点（per-task 分析，3 seeds）**：\\n- T3 CAR: 0.200, 0.140, 0.000 — 三 seed 均低，系统性失败\\n- T5 TSR: 0.340, 0.360, 0.160; CAR: 0.060, 0.040, 0.040 — 三 seed 均低\\n- s2 TSR 全面崩溃（10/10 tasks 均退化），但 CAR 不变（0.748 vs 0.746/0.744）\\n\\n**两种失败模式（D031）**：\\n- **Detach = 均匀退化**: per-task CAR std=0.002，所有任务等量下降。对应均匀梯度 collapse → 均匀表征退化。\\n- **Withdrawal (cutoff) = 选择性灾难遗忘**: per-task CAR 方差极大（cutoff_25k: T8=1.00 vs T3=0.22），部分任务崩溃部分保持。对应依赖形成后突然移除 → 选择性表征破坏。\\n→ 论文中区分这两种失败模式可增加机制分析深度。\\n\\n**Status**: ✅ 2×2 factorial 全 4 cells × 3 seeds 完成。ANOVA 交互显著 p=0.025。Same-seed 梯度分析完成（D042 机制证据）。Depth 4-seed complete (D022)。Cutoff multi-seed 进行中（cutoff_15k_s2 训练完成待 eval，cutoff_25k_s2/reverse_cutoff_s2 可能已完成）。\\n\\n### Claim 2 (Mechanism): Gradient Collapse Prevention\\n辅助头的梯度流防止 encoder gradient collapse。Detach gradient norms = 1-13%（D026）。\\n行为表征：Detach(0.746) < Vanilla(0.780)，TSR σ=0.163 不稳定。\\n**措辞**：gradient flow 是 collapse prevention 的充分条件（未排除其他正则化替代方案）。\\n\\n### Claim 3: Spatial Content Secondary to Gradient Flow Presence\\nFull OCC (0.797) 和 Random OCC (0.789) 差异仅 0.8pp（3 seeds each），\\n远小于 Detach 退化（-3.4pp）。梯度流的存在/缺失是主要因素，空间内容次要。\\n**注意**: 3-seed 数据中 Full OCC > Random OCC（D017 时 Random > Full），\\n但差异太小不改变结论。\\n\\n### Claim 4 (Depth Comparison): ✅ Confirmed (D022)\\nDepth CAR = 0.780 = Vanilla exactly (4 seeds), confirms spatial content is secondary to gradient flow.\\nPath B confirmed: egocentric depth supervision offers no advantage over no auxiliary supervision at all.\\n\\n## Depth MVP Gate（预注册，锁定于 2026-05-22 09:30 UTC，depth eval 前）\\n\\n**【Pass（必须同时满足）】**\\n1. Depth 4-seed mean CAR 的 bootstrap 95% CI 下界 > 0.780（Vanilla 3-seed mean）\\n2. Depth 4-seed mean TSR ≥ 0.870\\n\\n**【Fail（满足任一）】**\\n1. Depth 4-seed mean CAR < 0.780\\n2. Depth 4-seed mean TSR < 0.870\\n\\n## Anticipated Reviewer Concerns\\n\\n### RC1 [CRITICAL]: Collision Detection Metric Validity — ✅ RESOLVED\\n### RC2 [HIGH]: \\\"Why Not Just Use CBF?\\\" — Defense: zero inference cost + complementarity\\n### RC3 [HIGH]: Depth Ablation — ✅ RESOLVED (D022: Depth=Vanilla, 4 seeds)\\n### RC4 [MEDIUM]: Single VLA Architecture — Acknowledge in Limitations\\n### RC5 [MEDIUM]: Single Benchmark — Acknowledge in Limitations\\n### RC6 [LOW]: n=3 Statistical Power — Report Cohen's d and bootstrap CI\\n\\n## 待定关键实验\\n\\n### plan_027: Detach + LayerNorm (BN Artifact Test) — ✅ DONE (D034)\\n替换 OccHead 的 BatchNorm2d 为 LayerNorm，在 detach 模式下测试。\\n- **结果: Scenario C (混合)** — Detach+LN CAR=0.765±0.023，介于 Detach BN(0.746) 和 Vanilla(0.780)\\n- BN 干扰贡献 ~1.9pp (~56%)，梯度流缺失贡献 ~1.5pp (~44%)\\n- 种子方差大（s0=0.792, s1=0.756, s2=0.748），95% CI 与两端均有重叠\\n- ✅ **Detach+LN CKA 分析完成 (D035)**：DINOv2=0.966, SigLIP=0.960 — 表征完全恢复，确认 BN=100% 表征漂移原因，揭示 representation-behavior dissociation\\n\\n### Cutoff Temporal Dynamics (D029/D030/D041)\\n\\n**D030 确认：cutoff 实现仅设 weight=0，occ head forward pass 未停止。** cutoff 后 = Detach 模式（BN 干扰 + 无梯度补偿），非 Vanilla。\\n\\n**D041 多 seed 修正：s0 非单调模式是 seed noise，非真实信号。**\\ncutoff_15k/35k/Vanilla 2-seed 均值几乎相等（0.782/0.779/0.780），s0 排序在 s1 完全不复现。\\n\\n| 条件 | s0 CAR | s1 CAR | s2 CAR | Mean | 安全 claim |\\n|------|--------|--------|--------|------|-----------|\\n| Full OCC | 0.832 | 0.788 | 0.770 | 0.797 | ✅ 最优（continuous flow） |\\n| cutoff_15k | 0.804 | 0.760 | — | 0.782 | ≈ Vanilla |\\n| cutoff_35k | 0.768 | 0.798 | 0.770 | 0.779 | ≈ Vanilla |\\n| Vanilla | 0.788 | 0.766 | 0.786 | 0.780 | baseline |\\n| cutoff_25k | 0.688 | 0.760 | running | 0.724 | 高方差，等 3rd seed |\\n| reverse | 0.700 | 0.736 | running | 0.718 | ✅ 一致最差（timing>duration） |\\n\\n**安全 claim（D041 限缩后）**：\\n1. ✅ Continuous gradient flow（Full OCC）> 任何 interrupted 版本\\n2. ✅ Reverse cutoff（late-only flow）一致最差 → **timing > duration**（早期 imprinting > 晚期补充）\\n3. ✅ 中间 cutoff 点 ≈ Vanilla — 梯度流在 cutoff 后不持久（因 BN 干扰抵消）\\n4. ❌ ~~非单调 dose-response~~ / ~~15K sweet spot~~ — seed noise，不可 claim\\n\\n**不安全 claim**：任何特定 cutoff 点优于另一个、非单调\\\"sweet spot\\\"。\\n\\n**M052 影响**：cutoff_45k_s1 因 resume bug 无效，需从头重跑（~13h）。cutoff_25k_s2/reverse_cutoff_s2 正在训练（~3h），将提供关键 3rd seed。\\n\\n### Same-Seed 梯度重分析 — 条件式 (D028)\\n当前 Fig.3 用了不同 seed/round 的 checkpoint。重分析方案**取决于 plan_027 结果**：\\n- **Scenario B** (detach_ln ≈ Detach): detach_ln_s0 (seed42, LN) 可替代 detach 做 same-seed 分析 ✓\\n- **Scenario A** (detach_ln ≈ Vanilla): 需重训 detach_s0 (seed42, **BN**) 或保留 detach_s2 (seed44) 注明 seed 差异\\n- **Scenario C**: 需两版分析（BN 和 LN）\\nFig.3 至少保留 3 核心条件：Vanilla, Full OCC, Detach。Random OCC 可省略或标注 \\\"旧 round\\\"。\\n\\n## Framing Risk Ranking (D034 更新)\\n\\n| 排名 | 风险 | 状态 | 应对 |\\n|------|------|------|------|\\n| **1** | ~~2×2 交叉交互统计显著性~~ | ✅ 已验证 | F(1,8)=7.511, p=0.025, η²=0.484 |\\n| **2** | ~~LN+gradient flow 为何最差？~~ | ✅ 已解释 | DINOv2 梯度抑制 3.5×, SigLIP 放大 2.5× — 幅度重分配非方向冲突 |\\n| **3** | Cutoff dose-response BN 混淆 (D029/D030) | 已 reframe | withdrawal/transition 分析，3rd seed 进行中 |\\n| **4** | 单 benchmark 弱点（只有 LIBERO-Spatial） | 仍存在 | Acknowledge in Limitations |\\n| **5** | ~~Same-seed 梯度分析一致性~~ | ✅ 完成 | 4 条件 same-seed 完成，与 mixed-seed 一致 |\\n\\n## 目标会议\\n**CoRL 2026**: Abstract May 26, Paper May 29\\n\", \"total_chars\": 15673, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "0cecd4b3-2fd7-426e-8af0-a8566e670109",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/paper_framing.md\\\", \\\"content\\\": \\\"# OccSafe-VLA — Paper Framing\\\\n\\\\n> 维护者: Director | 最后更新: 2026-05-25 04:00 UTC | 状态: Draft (D040 BN×gradient flow crossover interaction — BN beneficial under gradient flow (+5.4pp), harmful without (-1.9pp). Full OCC+LN is worst condition. CoRL 2026 target)\\\\n\\\\n## Architecture Facts (from code, verified)\\\\n- **Occ head input**: DINOv2(1024) + SigLIP(1152) 拼接 = 2176d（非仅 DINOv2）\\\\n- **Occ head**: Linear(2176→256) → reshape(B,256,16,16) → ConvTranspose2d×2 上采样(16→32→64) → Conv2d(64→1)。BatchNorm2d + GELU。参数量 1.2M。\\\\n- **FocalLoss**: α=0.25, γ=2.0\\\\n- **occ_loss_weight**: λ=0.01, 指数衰减 w(t)=0.01×exp(-t/50000)\\\\n- **LR**: 5e-4 恒定（MultiStepLR milestone=100K > max_steps，从未触发）\\\\n- **LoRA**: rank=32, alpha=16, dropout=0.0\\\\n- **GPU**: 4× RTX PRO 6000 98GB per server\\\\n- **训练时间**: ~12.9h/run @ 1.08 it/s\\\\n\\\\n### 叙事含义\\\\n- **双编码器梯度流**: Occ head 接收 DINOv2+SigLIP 拼接特征，occupancy supervision 同时影响两个编码器。\\\\n  比\\\\\\\"仅改善 DINOv2\\\\\\\"更强 — 同时改善语义(SigLIP)和空间(DINOv2)编码器的 3D 感知。\\\\n- **极轻量**: occ_head 仅 1.2M params = 全模型 7.65B 的 0.016%，强化 \\\\\\\"lightweight auxiliary\\\\\\\" 叙事\\\\n- **occ_loss 指数衰减**: w(t)=0.01×exp(-t/50000) → 训练后期 occ 监督逐渐\\\\\\\"放手\\\\\\\"让 action loss 主导，\\\\n  可论证为\\\\\\\"先学空间结构，再精化动作\\\\\\\"的课程学习效果\\\\n- **LoRA alpha=16 < rank=32**: 有效 scaling factor = alpha/rank = 0.5，比常见的 1.0 更保守\\\\n\\\\n### DepthHead (新增, 2026-05-22)\\\\n- **Depth head**: Linear(2176→256) → ConvTranspose2d×2 (256→128→64, kernel=4, stride=2) → ReLU（无 sigmoid）\\\\n- **SmoothL1Loss**, depth_loss_weight=0.01 + 指数衰减（同 occ_loss_weight）\\\\n- **GT 来源**: MuJoCo sim 深度渲染（state replay），分辨率 64×64\\\\n- **参数量**: ~1.2M（与 OccHead 同量级）\\\\n\\\\n## Core Insight (D034 修正, 2026-05-24)\\\\n\\\\n**原始假设（已推翻）**：BEV occupancy 迫使 vision encoder 发展 3D 空间感知 → safety emergence。\\\\n\\\\n**D017 发现**：辅助任务的梯度流提供正则化效应。\\\\n\\\\n**D019 修正**：梯度流是防止损害的条件，非提供收益的条件。\\\\n\\\\n**D026 机制确认 — Gradient Collapse Prevention**：\\\\n梯度分析（4 条件统一对比）揭示了具体机制：\\\\n- Vanilla / Full OCC / Random OCC 的 encoder gradient norms 量级相当（0.87-1.14×）\\\\n- **Detach 的 encoder gradient norms 仅为正常的 1-13%** — 梯度灾难性崩塌\\\\n\\\\n**D034 Dual Mechanism — BN Interference + Gradient Flow Absence（行为层面）**：\\\\ndetach_ln 实验（替换 BN→LN，保持 detach 模式）揭示 Detach OCC 的 3.4pp CAR 下降来自两个独立因素：\\\\n- **BN forward-pass 干扰**：贡献 ~1.9pp (~56%) — 替换 BN→LN 后恢复此部分\\\\n- **梯度流缺失**：贡献 ~1.5pp (~44%) — LN 替换后仍存在的残余 gap\\\\n- Detach+LN 3-seed: CAR=0.765±0.023，介于 Detach BN(0.746) 和 Vanilla(0.780) 之间\\\\n- 95% CI [0.726, 0.804] 与两端均有重叠，种子方差大（s0=0.792, s1=0.756, s2=0.748）\\\\n\\\\n**D035 Representation-Behavior Dissociation（表征层面，CKA 证据）**：\\\\nDetach+LN CKA 分析揭示了行为层面和表征层面的关键分离：\\\\n- **Detach+LN CKA 完全恢复**：DINOv2=0.966, SigLIP=0.960（≈ Vanilla 0.968/0.953，≈ Full OCC 0.964/0.960）\\\\n- **但行为仍低 1.5pp**：CAR=0.765 vs Vanilla=0.780，表征恢复并未完全恢复行为\\\\n- **结论**：BN 是表征漂移（CKA 退化）的 **100%** 原因，不是行为退化的 56%\\\\n- 梯度流的行为贡献（~1.5pp）**不通过表征保持**这条路径操作——是独立于表征保持的行为正则化机制\\\\n\\\\n**Core Insight（D035 定稿）**：VLA LoRA fine-tuning 中，auxiliary head 的 forward pass 通过**两个在不同层面操作的独立机制**影响 encoder：\\\\n1. **BN interference（表征层面）**：BN running stats 在 forward pass 中偏移 encoder 特征分布 → 灾难性表征漂移（CKA 0.31-0.54）→ 行为退化 ~1.9pp。替换 LN 后表征和行为均部分恢复。\\\\n2. **Gradient flow absence（行为层面，非表征层面）**：切断梯度流 → 行为退化 ~1.5pp，但 **CKA 不受影响**（Detach+LN CKA ≈ Vanilla）。梯度流提供的是一种**超越表征保持的行为正则化**。\\\\n两个机制在**不同分析层面**独立操作：BN 破坏表征 → 破坏行为；梯度流缺失不破坏表征但仍损害行为。\\\\n空间内容类型仍然不重要——任何梯度流（包括随机标签）都能补偿。\\\\n\\\\n**D036 Gradient Orthogonality — \\\\\\\"Existence Regularization\\\\\\\" 机制**：\\\\n- 辅助梯度与 action 梯度近乎正交（cosine ≈ 0，conflict rate ~50%）\\\\n- 梯度流不通过方向对齐起作用，而是通过\\\\\\\"存在性正则化\\\\\\\"——维持梯度幅度，防止 collapse\\\\n- Random OCC 具有相同的正交性特征 → 再次确认空间内容无关\\\\n\\\\n**D037 Per-Layer Dual-Encoder Differential Vulnerability**：\\\\n- **SigLIP late layers (block 23-26)**：cooperative gradient alignment（cosine > 0）→ detach 时遭受 \\\\\\\"double jeopardy\\\\\\\"：同时失去 anti-freeze 正则化和协作梯度信号\\\\n- **DINOv2**：purely orthogonal gradient structure（~50% conflict）→ 对 detach 更具韧性，但仍受 anti-freeze 机制失效影响\\\\n- 解释了不对称 CKA 退化：Detach BN 下 SigLIP (0.312) >> DINOv2 (0.539)\\\\n- **Claim 升级**：从 empirical observation 升级为 principled mechanism — 梯度流的保护作用因编码器架构和层级而异，不是均匀的\\\\n\\\\n**D040 2×2 Factorial Crossover Interaction — BN×Gradient Flow 交叉交互**：\\\\nFull OCC+LN 3-seed 完成（CAR: s0=0.766, s1=0.718, s2=0.744, mean=0.743±0.024），揭示 BN 和 gradient flow 存在**经典交叉交互**，而非独立加性效应：\\\\n\\\\n| | BN | LN | Δ(LN-BN) |\\\\n|--|----|----|-----------|\\\\n| **Gradient ON** | 0.797±0.032 | **0.743±0.024** | **-5.4pp** |\\\\n| **Gradient OFF** | 0.746±0.002 | 0.765±0.023 | **+1.9pp** |\\\\n| Δ(ON-OFF) | +5.1pp | -2.2pp | interaction=7.3pp |\\\\n\\\\n- BN+gradient flow = 最优（0.797）：梯度校准 BN stats → 有益 normalization coupling\\\\n- LN+no gradient flow = 可接受（0.765）：无 BN 干扰，无梯度也无害\\\\n- BN+no gradient flow = 有害（0.746）：BN 未校准 → 表征腐败\\\\n- **LN+gradient flow = 最差（0.743）**：低于 Vanilla 3.7pp！梯度流在无 BN coupling 时反而有害\\\\n- D036 \\\\\\\"existence regularization\\\\\\\" 仅在 BN 条件下成立；LN 下梯度流反而负面\\\\n- CKA s2=0.965 确认 s0 DINOv2=0.640 是 outlier\\\\n\\\\n**D042 统计验证 + 梯度重分配机制（same-seed gradient analysis）**：\\\\n- **2×2 ANOVA**: 交互效应 F(1,8)=7.511, **p=0.0254**, partial η²=0.484, Cohen f=0.969（极大效应量）。观测功效 0.671。**主效应均不显著**（Gradient p=0.326, Norm p=0.231）→ 交互是唯一统计显著信号。\\\\n- **Simple effects**（均为边缘/不显著）：BN ON vs OFF t=2.746 p=0.052；LN ON vs OFF t=-1.170 p=0.307；ON BN vs LN t=2.342 p=0.079。论文中报方向 + effect size，不做 simple effect 的 \\\\\\\"significantly\\\\\\\" claim。\\\\n- **Same-seed 梯度分析（D042 机制证据）**：4 条件 seed=42, 200 batches, 50K checkpoint：\\\\n  - **LN 导致跨 backbone 梯度幅度重新分配**：DINOv2 action grad 被抑制 3.5×（0.048 vs BN 0.168），SigLIP 被放大 2.5×（0.206 vs BN 0.081）\\\\n  - Conflict rate 仍≈50%（BN/LN 均如此）→ 问题非方向冲突，而是**幅度重新分配**——DINOv2 空间感知被\\\\\\\"饿死\\\\\\\"，SigLIP 被\\\\\\\"过度喂养\\\\\\\"\\\\n  - **BN 条件下梯度分配温和**：Full OCC/Detach 放大比仅 DINOv2 0.8×, SigLIP 1.0× → 保持平衡\\\\n  - 完整机制链：LN + gradient flow → DINOv2 梯度抑制 → 空间特征适应不足 → CKA 高（表征未漂移）但 CAR 低（空间感知不足）\\\\n\\\\n**Core Insight（D042 升级）**：VLA LoRA fine-tuning 中，auxiliary head 的 normalization 类型与 gradient flow 存在**交叉交互**（p=0.025）：\\\\n1. **BN 是 context-dependent 双刃剑**：有 gradient flow 时保持温和/平衡的梯度分配（DINOv2 0.8×, SigLIP 1.0×）→ 最优配置；无 gradient flow 时导致灾难性表征漂移（CKA 0.31-0.54）。\\\\n2. **LN + gradient flow 导致病理性梯度重分配**：DINOv2 被抑制 3.5×（空间感知饿死），SigLIP 被放大 2.5×（过度喂养）→ 最差配置。不是方向冲突（conflict ≈50%），是跨 backbone 的学习资源失衡。\\\\n3. **D036 \\\\\\\"existence regularization\\\\\\\" 修正为 \\\\\\\"BN-mediated gradient calibration\\\\\\\"**：梯度流的正则化效应不是固有属性，而是 BN 提供的梯度分配平衡所介导的。LN 下梯度流反而造成失衡。\\\\n4. **Representation-behavior dissociation（定性观察）**：Full OCC+LN CKA 正常（s1/s2=0.965）但 CAR 最差（0.743）。n=3 下 CKA-CAR 相关性不显著(r=-0.84, p=0.364)，限于定性呈现，不做统计 claim。\\\\n5. **Differential encoder vulnerability (D037)** 仍成立：SigLIP late layers 在 Detach BN 下受损最严重。\\\\n\\\\n**措辞约束**：\\\\n- \\\\\\\"crossover interaction\\\\\\\" 是核心叙事——BN 和 gradient flow 不可独立优化\\\\n- BN+gradient flow 的 +1.7pp vs Vanilla 不显著（simple effect p=0.052），用 \\\\\\\"comparable/maintains\\\\\\\"\\\\n- Full OCC+LN 的 -3.7pp vs Vanilla 是 3-seed 一致的，用 \\\\\\\"consistently degrades\\\\\\\"\\\\n- **交互效应 7.3pp 统计显著（p=0.025, η²=0.484）** ✅，可正式 claim\\\\n- **Simple effects 均不显著**（最好 p=0.052），论文中报方向和 effect size 而非 \\\\\\\"significantly\\\\\\\"\\\\n- CKA-CAR 反关联限于定性，不做统计 claim（n=3 不足）\\\\n\\\\n**已确认（D022）**：Depth CAR = 0.780 = Vanilla exactly (4 seeds)，egocentric depth 不比 random noise 更好。\\\\n\\\\n## Framing Strategy (D019 修正)\\\\n\\\\n**确定路线: Option B 分析论文**（Reviewer 审查通过）\\\\n\\\\n**核心叙事转变 (D026)**：从\\\\\\\"梯度流是必要条件\\\\\\\"→\\\\\\\"梯度流防止 encoder gradient collapse\\\\\\\"（具体机制，非抽象论断）\\\\n\\\\n**Title（暂定）**: \\\\\\\"Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? A Mechanism Analysis\\\\\\\"\\\\n\\\\n**3-Contribution 结构（D034 修正）**：\\\\n- **C1 (核心发现)**: Auxiliary head 通过两个**在不同层面操作的独立机制**影响 VLA encoder：\\\\n  - **表征层面**: BN 干扰是表征漂移的 100% 原因（Detach BN CKA 0.31-0.54; Detach+LN CKA 0.96+ = 完全恢复）\\\\n  - **行为层面**: 即使表征完全恢复（LN 替换），行为仍低 ~1.5pp → 梯度流提供超越表征保持的行为正则化\\\\n  - 机制证据 (D026): Detach gradient norms = 1-13% of Vanilla/Full OCC/Random (梯度崩塌)\\\\n  - BN 分离证据 (D034): Detach+LN CAR=0.765，恢复 1.9pp 但仍低于 Vanilla 1.5pp\\\\n  - CKA 分离证据 (D035): Detach+LN CKA 完全恢复（DINOv2=0.966, SigLIP=0.960）但行为 gap 仍存在\\\\n  - 正交性证据 (D036→D042 修正): cosine ≈ 0、conflict ~50%，但效应依赖 normalization。BN 保持温和梯度分配（\\\\\\\"BN-mediated gradient calibration\\\\\\\"）；LN 导致跨 backbone 梯度重分配（DINOv2 ↓3.5×, SigLIP ↑2.5×）\\\\n  - Dual-encoder 差异化 (D037): SigLIP late layers cooperative alignment → detach \\\\\\\"double jeopardy\\\\\\\"；DINOv2 purely orthogonal → 更耐受。解释 CKA 不对称退化（SigLIP 0.312 vs DINOv2 0.539）\\\\n  - 空间内容无关: Full OCC ≈ Random OCC ≈ Depth ≈ Vanilla（差异在 seed variance 内）\\\\n  - **措辞约束**: Full OCC +1.7pp 不具统计显著性，用 \\\\\\\"comparable/maintains\\\\\\\"\\\\n  - **措辞约束**: 梯度流行为贡献 1.5pp (n=3, CI 重叠) — 用 \\\\\\\"modest but consistent\\\\\\\"\\\\n- **C2 (方法论贡献)**: 首个 7+ condition factorial study design for VLA auxiliary head mechanism analysis（含 normalization ablation）\\\\n- **C3 (实用贡献, D040 修正)**: 附加辅助 head 时 (a) 保留 BN + gradient flow（唯一有益配置），(b) 若无法保证 gradient flow，用 LN 替代 BN 以减害，(c) **绝不用 LN + gradient flow**（比无辅助 head 更差）\\\\n- **Observation (非 core claim, D041 修正)**: Temporal dynamics — continuous flow 最优，reverse（late-only）一致最差(timing>duration)，中间 cutoff ≈ Vanilla。~~非单调 dose-response~~ 是 seed noise。\\\\n\\\\n## Core Contribution Evidence (D019 修正, 3-seed 数据)\\\\n\\\\n### C1: Auxiliary Gradient Flow Prevents Encoder Gradient Collapse\\\\n\\\\n**Behavioral Evidence (8 conditions @50K, 50r)**:\\\\n| 条件 | Seeds | TSR | CAR | vs Vanilla CAR |\\\\n|------|-------|-----|-----|---------------|\\\\n| Full OCC (BN) | 3 | 0.894±0.050 | **0.797**±0.032 | **+1.7pp** |\\\\n| Random OCC (BN) | 3 | 0.869±0.029 | 0.789±0.031 | **+0.9pp** |\\\\n| Depth (BN) | 4 | 0.854±0.039 | 0.782±0.034 | +0.2pp |\\\\n| Vanilla | 3 | 0.907±0.009 | 0.780±0.012 | baseline |\\\\n| Detach+LN | 3 | 0.898±0.027 | 0.765±0.023 | **-1.5pp** |\\\\n| Detach OCC (BN) | 3 | 0.812±0.163 | 0.746±0.002 | **-3.4pp** |\\\\n| **Full OCC+LN** | **3** | **0.897±0.032** | **0.743±0.024** | **-3.7pp** |\\\\n\\\\n**Mechanistic Evidence (D026 + D042 same-seed, gradient analysis @50K checkpoint)**:\\\\n| 条件 | Encoder Grad Norm (vs Vanilla) | DINOv2 Action Grad | SigLIP Action Grad |\\\\n|------|-------------------------------|--------------------|--------------------|\\\\n| Full OCC (BN) | 0.87-1.14× (comparable) | 0.168 (1.0×) | 0.081 (1.0×) |\\\\n| Full OCC+LN | — | **0.048 (0.29×)** | **0.206 (2.5×)** |\\\\n| Random OCC (BN) | 0.87-1.14× (comparable) | — | — |\\\\n| Vanilla | 1.00× (baseline) | 0.168 (baseline) | 0.081 (baseline) |\\\\n| Detach OCC (BN) | **0.01-0.13×** (collapse) | 0.006 (0.04×) | 0.004 (0.05×) |\\\\n\\\\n**D042 关键机制**：LN 下 OCC 梯度流导致 DINOv2 action grad 被抑制 3.5×（空间感知饿死），SigLIP 被放大 2.5×（过度喂养）。BN 下分配温和（DINOv2 0.8×, SigLIP 1.0×）。Conflict rate 均≈50% → 问题是幅度重分配非方向冲突。\\\\n\\\\n**CKA Representational Evidence (D032/D035/D040)**:\\\\n| 条件 | DINOv2 mean CKA | SigLIP mean CKA | CAR | 表征状态 |\\\\n|------|-----------------|-----------------|-----|---------|\\\\n| Vanilla | 0.968 | 0.953 | 0.780 | baseline |\\\\n| Full OCC (BN) | 0.964 | 0.960 | 0.797 | ≈ baseline |\\\\n| Detach+LN | 0.966 | 0.960 | 0.765 | ≈ baseline（CKA 恢复但 CAR 仍低） |\\\\n| **Full OCC+LN** | **0.965*** | **0.948*** | **0.743** | **≈ baseline 但 CAR 最差！** |\\\\n| Detach OCC (BN) | **0.539** | **0.312** | 0.746 | **灾难性漂移** |\\\\n\\\\n*Full OCC+LN CKA: s0=0.640/0.950(outlier), s1=0.965/0.950, s2=0.965/0.945。排除 s0 outlier 后均值。\\\\n\\\\n**D035 Representation-Behavior Dissociation 揭示**：\\\\n- BN 是表征漂移的 **100%** 原因：移除 BN（Detach+LN）后 CKA 完全恢复至 Vanilla 水平\\\\n- 但行为 gap 仍存在：Detach+LN CAR=0.765 vs Vanilla=0.780（-1.5pp）\\\\n- 因此梯度流的行为贡献（~1.5pp）**不通过表征保持操作**——是独立的行为正则化机制\\\\n- SigLIP 语义特征退化 > DINOv2 几何特征（Detach BN: 0.31 vs 0.54），中层 block 10-16 CKA 跌至 0.22-0.26\\\\n- Vanilla ≈ Full OCC ≈ Detach+LN（CKA 0.95-0.97），只有 Detach BN 异常\\\\n**注意**：CKA 同样使用跨 seed checkpoint，需在论文中与 gradient analysis 一同注明。\\\\n\\\\n**Detach 系统性弱点（per-task 分析，3 seeds）**：\\\\n- T3 CAR: 0.200, 0.140, 0.000 — 三 seed 均低，系统性失败\\\\n- T5 TSR: 0.340, 0.360, 0.160; CAR: 0.060, 0.040, 0.040 — 三 seed 均低\\\\n- s2 TSR 全面崩溃（10/10 tasks 均退化），但 CAR 不变（0.748 vs 0.746/0.744）\\\\n\\\\n**两种失败模式（D031）**：\\\\n- **Detach = 均匀退化**: per-task CAR std=0.002，所有任务等量下降。对应均匀梯度 collapse → 均匀表征退化。\\\\n- **Withdrawal (cutoff) = 选择性灾难遗忘**: per-task CAR 方差极大（cutoff_25k: T8=1.00 vs T3=0.22），部分任务崩溃部分保持。对应依赖形成后突然移除 → 选择性表征破坏。\\\\n→ 论文中区分这两种失败模式可增加机制分析深度。\\\\n\\\\n**Status**: ✅ 2×2 factorial 全 4 cells × 3 seeds 完成。ANOVA 交互显著 p=0.025。Same-seed 梯度分析完成（D042 机制证据）。Depth 4-seed complete (D022)。Cutoff multi-seed 进行中（cutoff_15k_s2 训练完成待 eval，cutoff_25k_s2/reverse_cutoff_s2 可能已完成）。\\\\n\\\\n### Claim 2 (Mechanism): Gradient Collapse Prevention\\\\n辅助头的梯度流防止 encoder gradient collapse。Detach gradient norms = 1-13%（D026）。\\\\n行为表征：Detach(0.746) < Vanilla(0.780)，TSR σ=0.163 不稳定。\\\\n**措辞**：gradient flow 是 collapse prevention 的充分条件（未排除其他正则化替代方案）。\\\\n\\\\n### Claim 3: Spatial Content Secondary to Gradient Flow Presence\\\\nFull OCC (0.797) 和 Random OCC (0.789) 差异仅 0.8pp（3 seeds each），\\\\n远小于 Detach 退化（-3.4pp）。梯度流的存在/缺失是主要因素，空间内容次要。\\\\n**注意**: 3-seed 数据中 Full OCC > Random OCC（D017 时 Random > Full），\\\\n但差异太小不改变结论。\\\\n\\\\n### Claim 4 (Depth Comparison): ✅ Confirmed (D022)\\\\nDepth CAR = 0.780 = Vanilla exactly (4 seeds), confirms spatial content is secondary to gradient flow.\\\\nPath B confirmed: egocentric depth supervision offers no advantage over no auxiliary supervision at all.\\\\n\\\\n## Depth MVP Gate（预注册，锁定于 2026-05-22 09:30 UTC，depth eval 前）\\\\n\\\\n**【Pass（必须同时满足）】**\\\\n1. Depth 4-seed mean CAR 的 bootstrap 95% CI 下界 > 0.780（Vanilla 3-seed mean）\\\\n2. Depth 4-seed mean TSR ≥ 0.870\\\\n\\\\n**【Fail（满足任一）】**\\\\n1. Depth 4-seed mean CAR < 0.780\\\\n2. Depth 4-seed mean TSR < 0.870\\\\n\\\\n## Anticipated Reviewer Concerns\\\\n\\\\n### RC1 [CRITICAL]: Collision Detection Metric Validity — ✅ RESOLVED\\\\n### RC2 [HIGH]: \\\\\\\"Why Not Just Use CBF?\\\\\\\" — Defense: zero inference cost + complementarity\\\\n### RC3 [HIGH]: Depth Ablation — ✅ RESOLVED (D022: Depth=Vanilla, 4 seeds)\\\\n### RC4 [MEDIUM]: Single VLA Architecture — Acknowledge in Limitations\\\\n### RC5 [MEDIUM]: Single Benchmark — Acknowledge in Limitations\\\\n### RC6 [LOW]: n=3 Statistical Power — Report Cohen's d and bootstrap CI\\\\n\\\\n## 待定关键实验\\\\n\\\\n### plan_027: Detach + LayerNorm (BN Artifact Test) — ✅ DONE (D034)\\\\n替换 OccHead 的 BatchNorm2d 为 LayerNorm，在 detach 模式下测试。\\\\n- **结果: Scenario C (混合)** — Detach+LN CAR=0.765±0.023，介于 Detach BN(0.746) 和 Vanilla(0.780)\\\\n- BN 干扰贡献 ~1.9pp (~56%)，梯度流缺失贡献 ~1.5pp (~44%)\\\\n- 种子方差大（s0=0.792, s1=0.756, s2=0.748），95% CI 与两端均有重叠\\\\n- ✅ **Detach+LN CKA 分析完成 (D035)**：DINOv2=0.966, SigLIP=0.960 — 表征完全恢复，确认 BN=100% 表征漂移原因，揭示 representation-behavior dissociation\\\\n\\\\n### Cutoff Temporal Dynamics (D029/D030/D041)\\\\n\\\\n**D030 确认：cutoff 实现仅设 weight=0，occ head forward pass 未停止。** cutoff 后 = Detach 模式（BN 干扰 + 无梯度补偿），非 Vanilla。\\\\n\\\\n**D041 多 seed 修正：s0 非单调模式是 seed noise，非真实信号。**\\\\ncutoff_15k/35k/Vanilla 2-seed 均值几乎相等（0.782/0.779/0.780），s0 排序在 s1 完全不复现。\\\\n\\\\n| 条件 | s0 CAR | s1 CAR | s2 CAR | Mean | 安全 claim |\\\\n|------|--------|--------|--------|------|-----------|\\\\n| Full OCC | 0.832 | 0.788 | 0.770 | 0.797 | ✅ 最优（continuous flow） |\\\\n| cutoff_15k | 0.804 | 0.760 | — | 0.782 | ≈ Vanilla |\\\\n| cutoff_35k | 0.768 | 0.798 | 0.770 | 0.779 | ≈ Vanilla |\\\\n| Vanilla | 0.788 | 0.766 | 0.786 | 0.780 | baseline |\\\\n| cutoff_25k | 0.688 | 0.760 | running | 0.724 | 高方差，等 3rd seed |\\\\n| reverse | 0.700 | 0.736 | running | 0.718 | ✅ 一致最差（timing>duration） |\\\\n\\\\n**安全 claim（D041 限缩后）**：\\\\n1. ✅ Continuous gradient flow（Full OCC）> 任何 interrupted 版本\\\\n2. ✅ Reverse cutoff（late-only flow）一致最差 → **timing > duration**（早期 imprinting > 晚期补充）\\\\n3. ✅ 中间 cutoff 点 ≈ Vanilla — 梯度流在 cutoff 后不持久（因 BN 干扰抵消）\\\\n4. ❌ ~~非单调 dose-response~~ / ~~15K sweet spot~~ — seed noise，不可 claim\\\\n\\\\n**不安全 claim**：任何特定 cutoff 点优于另一个、非单调\\\\\\\"sweet spot\\\\\\\"。\\\\n\\\\n**M052 影响**：cutoff_45k_s1 因 resume bug 无效，需从头重跑（~13h）。cutoff_25k_s2/reverse_cutoff_s2 正在训练（~3h），将提供关键 3rd seed。\\\\n\\\\n### Same-Seed 梯度重分析 — 条件式 (D028)\\\\n当前 Fig.3 用了不同 seed/round 的 checkpoint。重分析方案**取决于 plan_027 结果**：\\\\n- **Scenario B** (detach_ln ≈ Detach): detach_ln_s0 (seed42, LN) 可替代 detach 做 same-seed 分析 ✓\\\\n- **Scenario A** (detach_ln ≈ Vanilla): 需重训 detach_s0 (seed42, **BN**) 或保留 detach_s2 (seed44) 注明 seed 差异\\\\n- **Scenario C**: 需两版分析（BN 和 LN）\\\\nFig.3 至少保留 3 核心条件：Vanilla, Full OCC, Detach。Random OCC 可省略或标注 \\\\\\\"旧 round\\\\\\\"。\\\\n\\\\n## Framing Risk Ranking (D034 更新)\\\\n\\\\n| 排名 | 风险 | 状态 | 应对 |\\\\n|------|------|------|------|\\\\n| **1** | ~~2×2 交叉交互统计显著性~~ | ✅ 已验证 | F(1,8)=7.511, p=0.025, η²=0.484 |\\\\n| **2** | ~~LN+gradient flow 为何最差？~~ | ✅ 已解释 | DINOv2 梯度抑制 3.5×, SigLIP 放大 2.5× — 幅度重分配非方向冲突 |\\\\n| **3** | Cutoff dose-response BN 混淆 (D029/D030) | 已 reframe | withdrawal/transition 分析，3rd seed 进行中 |\\\\n| **4** | 单 benchmark 弱点（只有 LIBERO-Spatial） | 仍存在 | Acknowledge in Limitations |\\\\n| **5** | ~~Same-seed 梯度分析一致性~~ | ✅ 完成 | 4 条件 same-seed 完成，与 mixed-seed 一致 |\\\\n\\\\n## 目标会议\\\\n**CoRL 2026**: Abstract May 26, Paper May 29\\\\n\\\", \\\"total_chars\\\": 15673, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/paper_framing.md\", \"content\": \"# OccSafe-VLA — Paper Framing\\n\\n> 维护者: Director | 最后更新: 2026-05-25 04:00 UTC | 状态: Draft (D040 BN×gradient flow crossover interaction — BN beneficial under gradient flow (+5.4pp), harmful without (-1.9pp). Full OCC+LN is worst condition. CoRL 2026 target)\\n\\n## Architecture Facts (from code, verified)\\n- **Occ head input**: DINOv2(1024) + SigLIP(1152) 拼接 = 2176d（非仅 DINOv2）\\n- **Occ head**: Linear(2176→256) → reshape(B,256,16,16) → ConvTranspose2d×2 上采样(16→32→64) → Conv2d(64→1)。BatchNorm2d + GELU。参数量 1.2M。\\n- **FocalLoss**: α=0.25, γ=2.0\\n- **occ_loss_weight**: λ=0.01, 指数衰减 w(t)=0.01×exp(-t/50000)\\n- **LR**: 5e-4 恒定（MultiStepLR milestone=100K > max_steps，从未触发）\\n- **LoRA**: rank=32, alpha=16, dropout=0.0\\n- **GPU**: 4× RTX PRO 6000 98GB per server\\n- **训练时间**: ~12.9h/run @ 1.08 it/s\\n\\n### 叙事含义\\n- **双编码器梯度流**: Occ head 接收 DINOv2+SigLIP 拼接特征，occupancy supervision 同时影响两个编码器。\\n  比\\\"仅改善 DINOv2\\\"更强 — 同时改善语义(SigLIP)和空间(DINOv2)编码器的 3D 感知。\\n- **极轻量**: occ_head 仅 1.2M params = 全模型 7.65B 的 0.016%，强化 \\\"lightweight auxiliary\\\" 叙事\\n- **occ_loss 指数衰减**: w(t)=0.01×exp(-t/50000) → 训练后期 occ 监督逐渐\\\"放手\\\"让 action loss 主导，\\n  可论证为\\\"先学空间结构，再精化动作\\\"的课程学习效果\\n- **LoRA alpha=16 < rank=32**: 有效 scaling factor = alpha/rank = 0.5，比常见的 1.0 更保守\\n\\n### DepthHead (新增, 2026-05-22)\\n- **Depth head**: Linear(2176→256) → ConvTranspose2d×2 (256→128→64, kernel=4, stride=2) → ReLU（无 sigmoid）\\n- **SmoothL1Loss**, depth_loss_weight=0.01 + 指数衰减（同 occ_loss_weight）\\n- **GT 来源**: MuJoCo sim 深度渲染（state replay），分辨率 64×64\\n- **参数量**: ~1.2M（与 OccHead 同量级）\\n\\n## Core Insight (D034 修正, 2026-05-24)\\n\\n**原始假设（已推翻）**：BEV occupancy 迫使 vision encoder 发展 3D 空间感知 → safety emergence。\\n\\n**D017 发现**：辅助任务的梯度流提供正则化效应。\\n\\n**D019 修正**：梯度流是防止损害的条件，非提供收益的条件。\\n\\n**D026 机制确认 — Gradient Collapse Prevention**：\\n梯度分析（4 条件统一对比）揭示了具体机制：\\n- Vanilla / Full OCC / Random OCC 的 encoder gradient norms 量级相当（0.87-1.14×）\\n- **Detach 的 encoder gradient norms 仅为正常的 1-13%** — 梯度灾难性崩塌\\n\\n**D034 Dual Mechanism — BN Interference + Gradient Flow Absence（行为层面）**：\\ndetach_ln 实验（替换 BN→LN，保持 detach 模式）揭示 Detach OCC 的 3.4pp CAR 下降来自两个独立因素：\\n- **BN forward-pass 干扰**：贡献 ~1.9pp (~56%) — 替换 BN→LN 后恢复此部分\\n- **梯度流缺失**：贡献 ~1.5pp (~44%) — LN 替换后仍存在的残余 gap\\n- Detach+LN 3-seed: CAR=0.765±0.023，介于 Detach BN(0.746) 和 Vanilla(0.780) 之间\\n- 95% CI [0.726, 0.804] 与两端均有重叠，种子方差大（s0=0.792, s1=0.756, s2=0.748）\\n\\n**D035 Representation-Behavior Dissociation（表征层面，CKA 证据）**：\\nDetach+LN CKA 分析揭示了行为层面和表征层面的关键分离：\\n- **Detach+LN CKA 完全恢复**：DINOv2=0.966, SigLIP=0.960（≈ Vanilla 0.968/0.953，≈ Full OCC 0.964/0.960）\\n- **但行为仍低 1.5pp**：CAR=0.765 vs Vanilla=0.780，表征恢复并未完全恢复行为\\n- **结论**：BN 是表征漂移（CKA 退化）的 **100%** 原因，不是行为退化的 56%\\n- 梯度流的行为贡献（~1.5pp）**不通过表征保持**这条路径操作——是独立于表征保持的行为正则化机制\\n\\n**Core Insight（D035 定稿）**：VLA LoRA fine-tuning 中，auxiliary head 的 forward pass 通过**两个在不同层面操作的独立机制**影响 encoder：\\n1. **BN interference（表征层面）**：BN running stats 在 forward pass 中偏移 encoder 特征分布 → 灾难性表征漂移（CKA 0.31-0.54）→ 行为退化 ~1.9pp。替换 LN 后表征和行为均部分恢复。\\n2. **Gradient flow absence（行为层面，非表征层面）**：切断梯度流 → 行为退化 ~1.5pp，但 **CKA 不受影响**（Detach+LN CKA ≈ Vanilla）。梯度流提供的是一种**超越表征保持的行为正则化**。\\n两个机制在**不同分析层面**独立操作：BN 破坏表征 → 破坏行为；梯度流缺失不破坏表征但仍损害行为。\\n空间内容类型仍然不重要——任何梯度流（包括随机标签）都能补偿。\\n\\n**D036 Gradient Orthogonality — \\\"Existence Regularization\\\" 机制**：\\n- 辅助梯度与 action 梯度近乎正交（cosine ≈ 0，conflict rate ~50%）\\n- 梯度流不通过方向对齐起作用，而是通过\\\"存在性正则化\\\"——维持梯度幅度，防止 collapse\\n- Random OCC 具有相同的正交性特征 → 再次确认空间内容无关\\n\\n**D037 Per-Layer Dual-Encoder Differential Vulnerability**：\\n- **SigLIP late layers (block 23-26)**：cooperative gradient alignment（cosine > 0）→ detach 时遭受 \\\"double jeopardy\\\"：同时失去 anti-freeze 正则化和协作梯度信号\\n- **DINOv2**：purely orthogonal gradient structure（~50% conflict）→ 对 detach 更具韧性，但仍受 anti-freeze 机制失效影响\\n- 解释了不对称 CKA 退化：Detach BN 下 SigLIP (0.312) >> DINOv2 (0.539)\\n- **Claim 升级**：从 empirical observation 升级为 principled mechanism — 梯度流的保护作用因编码器架构和层级而异，不是均匀的\\n\\n**D040 2×2 Factorial Crossover Interaction — BN×Gradient Flow 交叉交互**：\\nFull OCC+LN 3-seed 完成（CAR: s0=0.766, s1=0.718, s2=0.744, mean=0.743±0.024），揭示 BN 和 gradient flow 存在**经典交叉交互**，而非独立加性效应：\\n\\n| | BN | LN | Δ(LN-BN) |\\n|--|----|----|-----------|\\n| **Gradient ON** | 0.797±0.032 | **0.743±0.024** | **-5.4pp** |\\n| **Gradient OFF** | 0.746±0.002 | 0.765±0.023 | **+1.9pp** |\\n| Δ(ON-OFF) | +5.1pp | -2.2pp | interaction=7.3pp |\\n\\n- BN+gradient flow = 最优（0.797）：梯度校准 BN stats → 有益 normalization coupling\\n- LN+no gradient flow = 可接受（0.765）：无 BN 干扰，无梯度也无害\\n- BN+no gradient flow = 有害（0.746）：BN 未校准 → 表征腐败\\n- **LN+gradient flow = 最差（0.743）**：低于 Vanilla 3.7pp！梯度流在无 BN coupling 时反而有害\\n- D036 \\\"existence regularization\\\" 仅在 BN 条件下成立；LN 下梯度流反而负面\\n- CKA s2=0.965 确认 s0 DINOv2=0.640 是 outlier\\n\\n**D042 统计验证 + 梯度重分配机制（same-seed gradient analysis）**：\\n- **2×2 ANOVA**: 交互效应 F(1,8)=7.511, **p=0.0254**, partial η²=0.484, Cohen f=0.969（极大效应量）。观测功效 0.671。**主效应均不显著**（Gradient p=0.326, Norm p=0.231）→ 交互是唯一统计显著信号。\\n- **Simple effects**（均为边缘/不显著）：BN ON vs OFF t=2.746 p=0.052；LN ON vs OFF t=-1.170 p=0.307；ON BN vs LN t=2.342 p=0.079。论文中报方向 + effect size，不做 simple effect 的 \\\"significantly\\\" claim。\\n- **Same-seed 梯度分析（D042 机制证据）**：4 条件 seed=42, 200 batches, 50K checkpoint：\\n  - **LN 导致跨 backbone 梯度幅度重新分配**：DINOv2 action grad 被抑制 3.5×（0.048 vs BN 0.168），SigLIP 被放大 2.5×（0.206 vs BN 0.081）\\n  - Conflict rate 仍≈50%（BN/LN 均如此）→ 问题非方向冲突，而是**幅度重新分配**——DINOv2 空间感知被\\\"饿死\\\"，SigLIP 被\\\"过度喂养\\\"\\n  - **BN 条件下梯度分配温和**：Full OCC/Detach 放大比仅 DINOv2 0.8×, SigLIP 1.0× → 保持平衡\\n  - 完整机制链：LN + gradient flow → DINOv2 梯度抑制 → 空间特征适应不足 → CKA 高（表征未漂移）但 CAR 低（空间感知不足）\\n\\n**Core Insight（D042 升级）**：VLA LoRA fine-tuning 中，auxiliary head 的 normalization 类型与 gradient flow 存在**交叉交互**（p=0.025）：\\n1. **BN 是 context-dependent 双刃剑**：有 gradient flow 时保持温和/平衡的梯度分配（DINOv2 0.8×, SigLIP 1.0×）→ 最优配置；无 gradient flow 时导致灾难性表征漂移（CKA 0.31-0.54）。\\n2. **LN + gradient flow 导致病理性梯度重分配**：DINOv2 被抑制 3.5×（空间感知饿死），SigLIP 被放大 2.5×（过度喂养）→ 最差配置。不是方向冲突（conflict ≈50%），是跨 backbone 的学习资源失衡。\\n3. **D036 \\\"existence regularization\\\" 修正为 \\\"BN-mediated gradient calibration\\\"**：梯度流的正则化效应不是固有属性，而是 BN 提供的梯度分配平衡所介导的。LN 下梯度流反而造成失衡。\\n4. **Representation-behavior dissociation（定性观察）**：Full OCC+LN CKA 正常（s1/s2=0.965）但 CAR 最差（0.743）。n=3 下 CKA-CAR 相关性不显著(r=-0.84, p=0.364)，限于定性呈现，不做统计 claim。\\n5. **Differential encoder vulnerability (D037)** 仍成立：SigLIP late layers 在 Detach BN 下受损最严重。\\n\\n**措辞约束**：\\n- \\\"crossover interaction\\\" 是核心叙事——BN 和 gradient flow 不可独立优化\\n- BN+gradient flow 的 +1.7pp vs Vanilla 不显著（simple effect p=0.052），用 \\\"comparable/maintains\\\"\\n- Full OCC+LN 的 -3.7pp vs Vanilla 是 3-seed 一致的，用 \\\"consistently degrades\\\"\\n- **交互效应 7.3pp 统计显著（p=0.025, η²=0.484）** ✅，可正式 claim\\n- **Simple effects 均不显著**（最好 p=0.052），论文中报方向和 effect size 而非 \\\"significantly\\\"\\n- CKA-CAR 反关联限于定性，不做统计 claim（n=3 不足）\\n\\n**已确认（D022）**：Depth CAR = 0.780 = Vanilla exactly (4 seeds)，egocentric depth 不比 random noise 更好。\\n\\n## Framing Strategy (D019 修正)\\n\\n**确定路线: Option B 分析论文**（Reviewer 审查通过）\\n\\n**核心叙事转变 (D026)**：从\\\"梯度流是必要条件\\\"→\\\"梯度流防止 encoder gradient collapse\\\"（具体机制，非抽象论断）\\n\\n**Title（暂定）**: \\\"Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? A Mechanism Analysis\\\"\\n\\n**3-Contribution 结构（D034 修正）**：\\n- **C1 (核心发现)**: Auxiliary head 通过两个**在不同层面操作的独立机制**影响 VLA encoder：\\n  - **表征层面**: BN 干扰是表征漂移的 100% 原因（Detach BN CKA 0.31-0.54; Detach+LN CKA 0.96+ = 完全恢复）\\n  - **行为层面**: 即使表征完全恢复（LN 替换），行为仍低 ~1.5pp → 梯度流提供超越表征保持的行为正则化\\n  - 机制证据 (D026): Detach gradient norms = 1-13% of Vanilla/Full OCC/Random (梯度崩塌)\\n  - BN 分离证据 (D034): Detach+LN CAR=0.765，恢复 1.9pp 但仍低于 Vanilla 1.5pp\\n  - CKA 分离证据 (D035): Detach+LN CKA 完全恢复（DINOv2=0.966, SigLIP=0.960）但行为 gap 仍存在\\n  - 正交性证据 (D036→D042 修正): cosine ≈ 0、conflict ~50%，但效应依赖 normalization。BN 保持温和梯度分配（\\\"BN-mediated gradient calibration\\\"）；LN 导致跨 backbone 梯度重分配（DINOv2 ↓3.5×, SigLIP ↑2.5×）\\n  - Dual-encoder 差异化 (D037): SigLIP late layers cooperative alignment → detach \\\"double jeopardy\\\"；DINOv2 purely orthogonal → 更耐受。解释 CKA 不对称退化（SigLIP 0.312 vs DINOv2 0.539）\\n  - 空间内容无关: Full OCC ≈ Random OCC ≈ Depth ≈ Vanilla（差异在 seed variance 内）\\n  - **措辞约束**: Full OCC +1.7pp 不具统计显著性，用 \\\"comparable/maintains\\\"\\n  - **措辞约束**: 梯度流行为贡献 1.5pp (n=3, CI 重叠) — 用 \\\"modest but consistent\\\"\\n- **C2 (方法论贡献)**: 首个 7+ condition factorial study design for VLA auxiliary head mechanism analysis（含 normalization ablation）\\n- **C3 (实用贡献, D040 修正)**: 附加辅助 head 时 (a) 保留 BN + gradient flow（唯一有益配置），(b) 若无法保证 gradient flow，用 LN 替代 BN 以减害，(c) **绝不用 LN + gradient flow**（比无辅助 head 更差）\\n- **Observation (非 core claim, D041 修正)**: Temporal dynamics — continuous flow 最优，reverse（late-only）一致最差(timing>duration)，中间 cutoff ≈ Vanilla。~~非单调 dose-response~~ 是 seed noise。\\n\\n## Core Contribution Evidence (D019 修正, 3-seed 数据)\\n\\n### C1: Auxiliary Gradient Flow Prevents Encoder Gradient Collapse\\n\\n**Behavioral Evidence (8 conditions @50K, 50r)**:\\n| 条件 | Seeds | TSR | CAR | vs Vanilla CAR |\\n|------|-------|-----|-----|---------------|\\n| Full OCC (BN) | 3 | 0.894±0.050 | **0.797**±0.032 | **+1.7pp** |\\n| Random OCC (BN) | 3 | 0.869±0.029 | 0.789±0.031 | **+0.9pp** |\\n| Depth (BN) | 4 | 0.854±0.039 | 0.782±0.034 | +0.2pp |\\n| Vanilla | 3 | 0.907±0.009 | 0.780±0.012 | baseline |\\n| Detach+LN | 3 | 0.898±0.027 | 0.765±0.023 | **-1.5pp** |\\n| Detach OCC (BN) | 3 | 0.812±0.163 | 0.746±0.002 | **-3.4pp** |\\n| **Full OCC+LN** | **3** | **0.897±0.032** | **0.743±0.024** | **-3.7pp** |\\n\\n**Mechanistic Evidence (D026 + D042 same-seed, gradient analysis @50K checkpoint)**:\\n| 条件 | Encoder Grad Norm (vs Vanilla) | DINOv2 Action Grad | SigLIP Action Grad |\\n|------|-------------------------------|--------------------|--------------------|\\n| Full OCC (BN) | 0.87-1.14× (comparable) | 0.168 (1.0×) | 0.081 (1.0×) |\\n| Full OCC+LN | — | **0.048 (0.29×)** | **0.206 (2.5×)** |\\n| Random OCC (BN) | 0.87-1.14× (comparable) | — | — |\\n| Vanilla | 1.00× (baseline) | 0.168 (baseline) | 0.081 (baseline) |\\n| Detach OCC (BN) | **0.01-0.13×** (collapse) | 0.006 (0.04×) | 0.004 (0.05×) |\\n\\n**D042 关键机制**：LN 下 OCC 梯度流导致 DINOv2 action grad 被抑制 3.5×（空间感知饿死），SigLIP 被放大 2.5×（过度喂养）。BN 下分配温和（DINOv2 0.8×, SigLIP 1.0×）。Conflict rate 均≈50% → 问题是幅度重分配非方向冲突。\\n\\n**CKA Representational Evidence (D032/D035/D040)**:\\n| 条件 | DINOv2 mean CKA | SigLIP mean CKA | CAR | 表征状态 |\\n|------|-----------------|-----------------|-----|---------|\\n| Vanilla | 0.968 | 0.953 | 0.780 | baseline |\\n| Full OCC (BN) | 0.964 | 0.960 | 0.797 | ≈ baseline |\\n| Detach+LN | 0.966 | 0.960 | 0.765 | ≈ baseline（CKA 恢复但 CAR 仍低） |\\n| **Full OCC+LN** | **0.965*** | **0.948*** | **0.743** | **≈ baseline 但 CAR 最差！** |\\n| Detach OCC (BN) | **0.539** | **0.312** | 0.746 | **灾难性漂移** |\\n\\n*Full OCC+LN CKA: s0=0.640/0.950(outlier), s1=0.965/0.950, s2=0.965/0.945。排除 s0 outlier 后均值。\\n\\n**D035 Representation-Behavior Dissociation 揭示**：\\n- BN 是表征漂移的 **100%** 原因：移除 BN（Detach+LN）后 CKA 完全恢复至 Vanilla 水平\\n- 但行为 gap 仍存在：Detach+LN CAR=0.765 vs Vanilla=0.780（-1.5pp）\\n- 因此梯度流的行为贡献（~1.5pp）**不通过表征保持操作**——是独立的行为正则化机制\\n- SigLIP 语义特征退化 > DINOv2 几何特征（Detach BN: 0.31 vs 0.54），中层 block 10-16 CKA 跌至 0.22-0.26\\n- Vanilla ≈ Full OCC ≈ Detach+LN（CKA 0.95-0.97），只有 Detach BN 异常\\n**注意**：CKA 同样使用跨 seed checkpoint，需在论文中与 gradient analysis 一同注明。\\n\\n**Detach 系统性弱点（per-task 分析，3 seeds）**：\\n- T3 CAR: 0.200, 0.140, 0.000 — 三 seed 均低，系统性失败\\n- T5 TSR: 0.340, 0.360, 0.160; CAR: 0.060, 0.040, 0.040 — 三 seed 均低\\n- s2 TSR 全面崩溃（10/10 tasks 均退化），但 CAR 不变（0.748 vs 0.746/0.744）\\n\\n**两种失败模式（D031）**：\\n- **Detach = 均匀退化**: per-task CAR std=0.002，所有任务等量下降。对应均匀梯度 collapse → 均匀表征退化。\\n- **Withdrawal (cutoff) = 选择性灾难遗忘**: per-task CAR 方差极大（cutoff_25k: T8=1.00 vs T3=0.22），部分任务崩溃部分保持。对应依赖形成后突然移除 → 选择性表征破坏。\\n→ 论文中区分这两种失败模式可增加机制分析深度。\\n\\n**Status**: ✅ 2×2 factorial 全 4 cells × 3 seeds 完成。ANOVA 交互显著 p=0.025。Same-seed 梯度分析完成（D042 机制证据）。Depth 4-seed complete (D022)。Cutoff multi-seed 进行中（cutoff_15k_s2 训练完成待 eval，cutoff_25k_s2/reverse_cutoff_s2 可能已完成）。\\n\\n### Claim 2 (Mechanism): Gradient Collapse Prevention\\n辅助头的梯度流防止 encoder gradient collapse。Detach gradient norms = 1-13%（D026）。\\n行为表征：Detach(0.746) < Vanilla(0.780)，TSR σ=0.163 不稳定。\\n**措辞**：gradient flow 是 collapse prevention 的充分条件（未排除其他正则化替代方案）。\\n\\n### Claim 3: Spatial Content Secondary to Gradient Flow Presence\\nFull OCC (0.797) 和 Random OCC (0.789) 差异仅 0.8pp（3 seeds each），\\n远小于 Detach 退化（-3.4pp）。梯度流的存在/缺失是主要因素，空间内容次要。\\n**注意**: 3-seed 数据中 Full OCC > Random OCC（D017 时 Random > Full），\\n但差异太小不改变结论。\\n\\n### Claim 4 (Depth Comparison): ✅ Confirmed (D022)\\nDepth CAR = 0.780 = Vanilla exactly (4 seeds), confirms spatial content is secondary to gradient flow.\\nPath B confirmed: egocentric depth supervision offers no advantage over no auxiliary supervision at all.\\n\\n## Depth MVP Gate（预注册，锁定于 2026-05-22 09:30 UTC，depth eval 前）\\n\\n**【Pass（必须同时满足）】**\\n1. Depth 4-seed mean CAR 的 bootstrap 95% CI 下界 > 0.780（Vanilla 3-seed mean）\\n2. Depth 4-seed mean TSR ≥ 0.870\\n\\n**【Fail（满足任一）】**\\n1. Depth 4-seed mean CAR < 0.780\\n2. Depth 4-seed mean TSR < 0.870\\n\\n## Anticipated Reviewer Concerns\\n\\n### RC1 [CRITICAL]: Collision Detection Metric Validity — ✅ RESOLVED\\n### RC2 [HIGH]: \\\"Why Not Just Use CBF?\\\" — Defense: zero inference cost + complementarity\\n### RC3 [HIGH]: Depth Ablation — ✅ RESOLVED (D022: Depth=Vanilla, 4 seeds)\\n### RC4 [MEDIUM]: Single VLA Architecture — Acknowledge in Limitations\\n### RC5 [MEDIUM]: Single Benchmark — Acknowledge in Limitations\\n### RC6 [LOW]: n=3 Statistical Power — Report Cohen's d and bootstrap CI\\n\\n## 待定关键实验\\n\\n### plan_027: Detach + LayerNorm (BN Artifact Test) — ✅ DONE (D034)\\n替换 OccHead 的 BatchNorm2d 为 LayerNorm，在 detach 模式下测试。\\n- **结果: Scenario C (混合)** — Detach+LN CAR=0.765±0.023，介于 Detach BN(0.746) 和 Vanilla(0.780)\\n- BN 干扰贡献 ~1.9pp (~56%)，梯度流缺失贡献 ~1.5pp (~44%)\\n- 种子方差大（s0=0.792, s1=0.756, s2=0.748），95% CI 与两端均有重叠\\n- ✅ **Detach+LN CKA 分析完成 (D035)**：DINOv2=0.966, SigLIP=0.960 — 表征完全恢复，确认 BN=100% 表征漂移原因，揭示 representation-behavior dissociation\\n\\n### Cutoff Temporal Dynamics (D029/D030/D041)\\n\\n**D030 确认：cutoff 实现仅设 weight=0，occ head forward pass 未停止。** cutoff 后 = Detach 模式（BN 干扰 + 无梯度补偿），非 Vanilla。\\n\\n**D041 多 seed 修正：s0 非单调模式是 seed noise，非真实信号。**\\ncutoff_15k/35k/Vanilla 2-seed 均值几乎相等（0.782/0.779/0.780），s0 排序在 s1 完全不复现。\\n\\n| 条件 | s0 CAR | s1 CAR | s2 CAR | Mean | 安全 claim |\\n|------|--------|--------|--------|------|-----------|\\n| Full OCC | 0.832 | 0.788 | 0.770 | 0.797 | ✅ 最优（continuous flow） |\\n| cutoff_15k | 0.804 | 0.760 | — | 0.782 | ≈ Vanilla |\\n| cutoff_35k | 0.768 | 0.798 | 0.770 | 0.779 | ≈ Vanilla |\\n| Vanilla | 0.788 | 0.766 | 0.786 | 0.780 | baseline |\\n| cutoff_25k | 0.688 | 0.760 | running | 0.724 | 高方差，等 3rd seed |\\n| reverse | 0.700 | 0.736 | running | 0.718 | ✅ 一致最差（timing>duration） |\\n\\n**安全 claim（D041 限缩后）**：\\n1. ✅ Continuous gradient flow（Full OCC）> 任何 interrupted 版本\\n2. ✅ Reverse cutoff（late-only flow）一致最差 → **timing > duration**（早期 imprinting > 晚期补充）\\n3. ✅ 中间 cutoff 点 ≈ Vanilla — 梯度流在 cutoff 后不持久（因 BN 干扰抵消）\\n4. ❌ ~~非单调 dose-response~~ / ~~15K sweet spot~~ — seed noise，不可 claim\\n\\n**不安全 claim**：任何特定 cutoff 点优于另一个、非单调\\\"sweet spot\\\"。\\n\\n**M052 影响**：cutoff_45k_s1 因 resume bug 无效，需从头重跑（~13h）。cutoff_25k_s2/reverse_cutoff_s2 正在训练（~3h），将提供关键 3rd seed。\\n\\n### Same-Seed 梯度重分析 — 条件式 (D028)\\n当前 Fig.3 用了不同 seed/round 的 checkpoint。重分析方案**取决于 plan_027 结果**：\\n- **Scenario B** (detach_ln ≈ Detach): detach_ln_s0 (seed42, LN) 可替代 detach 做 same-seed 分析 ✓\\n- **Scenario A** (detach_ln ≈ Vanilla): 需重训 detach_s0 (seed42, **BN**) 或保留 detach_s2 (seed44) 注明 seed 差异\\n- **Scenario C**: 需两版分析（BN 和 LN）\\nFig.3 至少保留 3 核心条件：Vanilla, Full OCC, Detach。Random OCC 可省略或标注 \\\"旧 round\\\"。\\n\\n## Framing Risk Ranking (D034 更新)\\n\\n| 排名 | 风险 | 状态 | 应对 |\\n|------|------|------|------|\\n| **1** | ~~2×2 交叉交互统计显著性~~ | ✅ 已验证 | F(1,8)=7.511, p=0.025, η²=0.484 |\\n| **2** | ~~LN+gradient flow 为何最差？~~ | ✅ 已解释 | DINOv2 梯度抑制 3.5×, SigLIP 放大 2.5× — 幅度重分配非方向冲突 |\\n| **3** | Cutoff dose-response BN 混淆 (D029/D030) | 已 reframe | withdrawal/transition 分析，3rd seed 进行中 |\\n| **4** | 单 benchmark 弱点（只有 LIBERO-Spatial） | 仍存在 | Acknowledge in Limitations |\\n| **5** | ~~Same-seed 梯度分析一致性~~ | ✅ 完成 | 4 条件 same-seed 完成，与 mixed-seed 一致 |\\n\\n## 目标会议\\n**CoRL 2026**: Abstract May 26, Paper May 29\\n\", \"total_chars\": 15673, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01GrFupiLtRRUymWqYh3WT81`</summary>
+
+```json
+{
+  "pattern": "**/*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "50f11e9a-4805-4e80-8d4d-1610db6732bc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01419sNd4hpBWYfP5LAMTTKh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1334,
+      "cache_read_input_tokens": 23392,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1334
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-25T06:58:13.197Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01GrFupiLtRRUymWqYh3WT81`</summary>
+
+```text
+&lt;tool_use_error>Directory does not exist: /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/paper. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla.&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "e6152d35-135f-4810-a49b-2fd09b0f99d0",
+  "tool_use_result": "Error: Directory does not exist: /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/paper. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla."
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01DTFK6cUMeU7bLydh3JkNBi`</summary>
+
+```json
+{
+  "project": "occsafe_vla",
+  "file": "paper_checklist.yaml",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "8cf61ff9-ca17-430f-bce3-d24e4c6f7948",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01419sNd4hpBWYfP5LAMTTKh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1334,
+      "cache_read_input_tokens": 23392,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1334
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-25T06:58:13.491Z_
+
+<details><summary>↩ Tool result · `toolu_01DTFK6cUMeU7bLydh3JkNBi`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"No paper_checklist.yaml found for 'occsafe_vla'.\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "63ff0ff8-b725-4899-8e46-96981cd51b82",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No paper_checklist.yaml found for 'occsafe_vla'.\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"No paper_checklist.yaml found for 'occsafe_vla'.\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The paper directory doesn't exist at the expected path. Let me search for paper files and also check the writing plan to understand the coverage status.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "339927d8-a194-4a8f-bee3-f61ac84967f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L8eCoPk37KWKfyCmJAHkPP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10287,
+      "cache_read_input_tokens": 24726,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10287
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+Paper directory doesn't exist at the expected path. Let me find the actual paper files and read the writing plan.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "59d3b0ea-6d84-4441-9414-a6f435b575d4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L8eCoPk37KWKfyCmJAHkPP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10287,
+      "cache_read_input_tokens": 24726,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10287
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01PnmgzGSoSVYX83YyLp5HwU`</summary>
+
+```json
+{
+  "pattern": "**/*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "8a25de98-c3c2-469c-aa4e-1b1f3bc9395f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L8eCoPk37KWKfyCmJAHkPP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10287,
+      "cache_read_input_tokens": 24726,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10287
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-25T06:58:29.057Z_
+
+<details><summary>↩ Tool result · `toolu_01PnmgzGSoSVYX83YyLp5HwU`</summary>
+
+```text
+artifacts/_project/paper/related_work.tex
+docs/paper/references.tex
+docs/paper/experiment_setup.tex
+artifacts/dream_reports/dream_20260523T025401/best/paper.tex
+artifacts/dream_reports/dream_20260523T025401/median/paper.tex
+artifacts/dream_reports/dream_20260523T034027/best/paper.tex
+artifacts/dream_reports/dream_20260523T034027/median/paper.tex
+artifacts/dream_reports/dream_20260523T034027/worst/paper.tex
+docs/paper/experiments_old.tex
+docs/drafts/scenario_variants.tex
+docs/paper/experiments.tex
+docs/paper/related_work.tex
+docs/paper/method.tex
+docs/paper/appendix.tex
+docs/paper/results.tex
+docs/paper/discussion.tex
+docs/paper/main.tex
+docs/paper/introduction.tex
+docs/paper/conclusion.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "1a91b2cd-f163-4ab3-b546-5f490bbdc16e",
+  "tool_use_result": {
+    "filenames": [
+      "artifacts/_project/paper/related_work.tex",
+      "docs/paper/references.tex",
+      "docs/paper/experiment_setup.tex",
+      "artifacts/dream_reports/dream_20260523T025401/best/paper.tex",
+      "artifacts/dream_reports/dream_20260523T025401/median/paper.tex",
+      "artifacts/dream_reports/dream_20260523T034027/best/paper.tex",
+      "artifacts/dream_reports/dream_20260523T034027/median/paper.tex",
+      "artifacts/dream_reports/dream_20260523T034027/worst/paper.tex",
+      "docs/paper/experiments_old.tex",
+      "docs/drafts/scenario_variants.tex",
+      "docs/paper/experiments.tex",
+      "docs/paper/related_work.tex",
+      "docs/paper/method.tex",
+      "docs/paper/appendix.tex",
+      "docs/paper/results.tex",
+      "docs/paper/discussion.tex",
+      "docs/paper/main.tex",
+      "docs/paper/introduction.tex",
+      "docs/paper/conclusion.tex"
+    ],
+    "durationMs": 12,
+    "numFiles": 19,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01NWsq88RT6vjGqFMJ9DyHRg`</summary>
+
+```json
+{
+  "project": "occsafe_vla",
+  "file": "writing_plan.yaml",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "0dfa7df8-e64b-468b-a527-804890095fd8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L8eCoPk37KWKfyCmJAHkPP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10287,
+      "cache_read_input_tokens": 24726,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10287
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-25T06:58:29.290Z_
+
+<details><summary>↩ Tool result · `toolu_01NWsq88RT6vjGqFMJ9DyHRg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/writing_plan.yaml\", \"content\": \"meta:\\n  venue: CoRL 2026\\n  track: main\\n  template: corl_2026\\n  template_note: \\\"CoRL 2026 template (corl_2026.sty), 8 pages main + unlimited refs/appendix\\\"\\n  page_limit: 8\\n  abstract_deadline: 2026-05-26\\n  deadline: 2026-05-29\\n  core_claim: >\\n    Auxiliary spatial supervision during VLA fine-tuning affects collision avoidance\\n    through a crossover interaction between normalization type and gradient flow\\n    (7.3pp interaction effect). BatchNorm with gradient flow is the only beneficial\\n    configuration; LayerNorm with gradient flow consistently degrades safety below\\n    Vanilla despite preserving pretrained representations — a deep representation-behavior\\n    dissociation. Gradient flow benefits are BatchNorm-mediated, not intrinsic.\\n  framing: \\\"Option B (mechanism analysis paper)\\\"\\n  title: \\\"Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? An Empirical Investigation\\\"\\n  created_at: 2026-05-20T20:00:00Z\\n  updated_at: 2026-05-24T22:00:00Z\\n\\npaper_outline:\\n  - section: abstract\\n    word_budget: 200\\n    core_bullets:\\n      - \\\"Problem: VLAs achieve 90.7% TSR but only 78.0% CAR on SafeLIBERO\\\"\\n      - \\\"Method: First factorial study — 11 conditions varying gradient flow, label content, reference frame, temporal extent\\\"\\n      - \\\"Finding 1: Detach −3.4pp decomposes into BN interference (1.9pp, all representational drift) + gradient flow absence (1.5pp, behavioral regularization)\\\"\\n      - \\\"Finding 2: Representation-behavior dissociation — LN recovers CKA but not full CAR\\\"\\n      - \\\"Finding 3: Label content does not matter — existence regularization\\\"\\n      - \\\"Practical: maintain gradient flow + use LN, zero inference cost\\\"\\n    dependencies: [results, discussion]\\n\\n  - section: introduction\\n    word_budget: 1000\\n    core_bullets:\\n      - \\\"Hook: TSR=90.7% but CAR=78.0% — task success ≠ behavioral safety\\\"\\n      - \\\"Context: Spatial-VLA (15+) and safety-VLA (4+) threads are disconnected\\\"\\n      - \\\"Question: Does auxiliary spatial supervision affect collision avoidance? Through what mechanism?\\\"\\n      - \\\"C1: Dual mechanism — BN interference (representational) + gradient flow absence (behavioral)\\\"\\n      - \\\"C2: 7+ condition factorial ablation design (reusable methodology)\\\"\\n      - \\\"C3: Practical guideline — maintain gradient flow + LN, no GT labels needed, zero cost\\\"\\n    dependencies: [results]\\n    figures: [fig1_overview]\\n    citation_hints:\\n      - \\\"OpenVLA, OpenVLA-OFT for base architecture\\\"\\n      - \\\"VLSA/AEGIS for benchmark and CAR metric\\\"\\n      - \\\"Representative spatial-VLA and safety-VLA methods for gap\\\"\\n\\n  - section: related_work\\n    word_budget: 1000\\n    core_bullets:\\n      - \\\"§2.1 3D Representations for VLA (~400w): 15+ methods, none evaluate collision safety\\\"\\n      - \\\"§2.2 Safe Robot Manipulation with VLAs (~300w): AEGIS, SafeVLA, CoFreeVLA, Safe-Night VLA — none leverage 3D representations\\\"\\n      - \\\"§2.3 Auxiliary Task Effects in Deep Learning (~200w): gradient regularization, multi-task learning, auxiliary losses — context for existence regularization\\\"\\n      - \\\"Gap: No work isolates how auxiliary spatial supervision mechanisms affect VLA safety\\\"\\n    dependencies: [introduction]\\n\\n  - section: method\\n    word_budget: 1200\\n    core_bullets:\\n      - \\\"§3 Base setup: OpenVLA-OFT + LoRA, L_total = L_action + λ(t)·L_aux, exponential decay\\\"\\n      - \\\"BEV occ head: 1.2M params, conv decoder, FocalLoss, zero inference cost\\\"\\n      - \\\"Depth head: same arch, SmoothL1, egocentric reference frame\\\"\\n      - \\\"§3.1 Ablation Design: 8 conditions (Vanilla/Full OCC/Random OCC/Detach/Detach+LN/Depth/Cutoff/Reverse)\\\"\\n      - \\\"Table: each pairwise comparison isolates one factor\\\"\\n      - \\\"§3.2 Evaluation: SafeLIBERO Level I, TSR + CAR, 50 rollouts × 3+ seeds, bootstrap 95% CI\\\"\\n    dependencies: []\\n    notation_table:\\n      pi: \\\"VLA policy π(a|o,l)\\\"\\n      L_aux: \\\"auxiliary spatial prediction loss\\\"\\n      lambda_t: \\\"exponential decay weight 0.01·exp(-t/50000)\\\"\\n\\n  - section: results\\n    word_budget: 1600\\n    core_bullets:\\n      - \\\"§4.1 Main Results: Table with all conditions, TSR/CAR/CI/ΔCAR\\\"\\n      - \\\"§4.2 Factorial Decomposition: 2×2 (gradient flow × label content), gradient flow dominates\\\"\\n      - \\\"§4.3 Gradient Dynamics: gradient norms (Detach=1-13%), CKA analysis, per-layer decomposition\\\"\\n      - \\\"§4.4 Temporal Dynamics: cutoff dose-response, withdrawal effect (preliminary)\\\"\\n    dependencies: []\\n    registry_refs:\\n      - mvp_vanilla_s0, mvp_vanilla_s1, mvp_vanilla_s2\\n      - mvp_occ_s0, mvp_occ_s1, mvp_occ_s2\\n      - ablation_occ_detach_s0, ablation_occ_detach_s1, ablation_occ_detach_s2\\n      - ablation_random_occ_s0, ablation_random_occ_s1, ablation_random_occ_s2\\n      - depth_s0, depth_s1, depth_s2, depth_s3\\n      - detach_ln_s0, detach_ln_s1, detach_ln_s2\\n      - cutoff_35k_s0, cutoff_35k_s1, cutoff_35k_s2\\n    tables: [tab_main_results, tab_factorial, tab_ablation_design]\\n    figures: [fig_gradient_analysis, fig_cka_analysis, fig_per_layer_combined, fig_dose_response]\\n\\n  - section: discussion\\n    word_budget: 1200\\n    core_bullets:\\n      - \\\"§5.1 Dual Mechanism: BN interference (representational, 1.9pp) + gradient flow absence (behavioral, 1.5pp)\\\"\\n      - \\\"Convergent evidence: gradient norms + CKA + normalization ablation + behavioral metrics\\\"\\n      - \\\"Representation-behavior dissociation: Detach+LN CKA ≈ Vanilla but CAR still −1.5pp\\\"\\n      - \\\"Differential encoder vulnerability: SigLIP > DINOv2\\\"\\n      - \\\"§5.2 Implications and Limitations: practical guideline + honest limitations\\\"\\n    dependencies: [results]\\n\\n  - section: conclusion\\n    word_budget: 300\\n    core_bullets:\\n      - \\\"First factorial study of auxiliary spatial supervision → collision avoidance in VLAs\\\"\\n      - \\\"Dual mechanism: BN interference + existence regularization\\\"\\n      - \\\"Practical guideline: gradient flow + LN, zero cost, no GT labels\\\"\\n      - \\\"Limitations: single arch, single benchmark, sim-only, n=3\\\"\\n    dependencies: [results, discussion]\\n\\n  - section: appendix\\n    word_budget: 2000\\n    core_bullets:\\n      - \\\"Training details, per-task breakdown, additional figures\\\"\\n      - \\\"Gradient/CKA analysis details, per-layer plots\\\"\\n      - \\\"Dose-response curves, cutoff implementation details\\\"\\n    dependencies: [results]\\n\\nvisualization_plan:\\n  - fig_id: fig1_overview\\n    type: conceptual\\n    tool: paperbanana\\n    description: \\\"Factorial study overview: training conditions varying gradient flow, label content, normalization; dual mechanism revealed\\\"\\n    narrative_intent: \\\"Show the factorial design and the two distinct mechanisms (BN interference at representation level, gradient flow at behavior level)\\\"\\n    design_notes:\\n      - \\\"Training setup with auxiliary head variants\\\"\\n      - \\\"Gradient flow ON/OFF × label type matrix\\\"\\n      - \\\"Two causal pathways highlighted\\\"\\n    placement: introduction\\n    aspect_ratio: \\\"16:6\\\"\\n    status: fallback_ready\\n    fallback_path: figures/fig1_overview.pdf\\n\\n  - fig_id: fig_gradient_analysis\\n    type: statistical\\n    tool: matplotlib\\n    description: \\\"Combined gradient norm analysis: bar chart of per-condition encoder gradient norms\\\"\\n    narrative_intent: \\\"Detach gradient norms collapse to 1-13% of Vanilla; all gradient-flow conditions maintain comparable norms\\\"\\n    data_source: \\\"gradient checkpoints from registry conditions\\\"\\n    placement: results\\n    aspect_ratio: \\\"4:3\\\"\\n    status: done\\n    path: figures/gradient_analysis_combined.pdf\\n\\n  - fig_id: fig_cka_analysis\\n    type: statistical\\n    tool: matplotlib\\n    description: \\\"CKA similarity to pretrained features: DINOv2 and SigLIP per condition\\\"\\n    narrative_intent: \\\"Detach BN causes catastrophic drift (CKA 0.31-0.54); Detach+LN fully recovers (0.96+); establishes BN as 100% cause of representational drift\\\"\\n    data_source: \\\"CKA analysis from registry conditions\\\"\\n    placement: results\\n    aspect_ratio: \\\"4:3\\\"\\n    status: done\\n    path: figures/cka_analysis.pdf\\n\\n  - fig_id: fig_per_layer_combined\\n    type: statistical\\n    tool: matplotlib\\n    description: \\\"Per-layer gradient norm ratio + conflict rate across encoders\\\"\\n    narrative_intent: \\\"DINOv2 ~50% conflict (orthogonal); SigLIP late layers 19-25% (cooperative) — explains differential vulnerability\\\"\\n    data_source: \\\"per-layer gradient analysis\\\"\\n    placement: appendix\\n    aspect_ratio: \\\"2:1\\\"\\n    status: done\\n    path: figures/per_layer_combined.pdf\\n\\n  - fig_id: fig_dose_response\\n    type: statistical\\n    tool: matplotlib\\n    description: \\\"Dose-response curve: CAR vs gradient flow duration + withdrawal effect\\\"\\n    narrative_intent: \\\"Non-monotonic response; mid-training transitions destabilize more than consistent regimes\\\"\\n    data_source: \\\"cutoff conditions from registry\\\"\\n    placement: appendix\\n    aspect_ratio: \\\"4:3\\\"\\n    status: done\\n    path: figures/dose_response.pdf\\n\\ntable_plan:\\n  - table_id: tab_main_results\\n    caption: \\\"Overall results on SafeLIBERO Level I (10 tasks). Bootstrap 95% CIs via 10,000 hierarchical resamples.\\\"\\n    placement: results\\n    type: comparison\\n    columns: [Condition, Seeds, TSR, CAR, 95% CI, ΔCAR]\\n    data_source: \\\"registry: all conditions\\\"\\n    status: done\\n\\n  - table_id: tab_factorial\\n    caption: \\\"2×2 factorial: gradient flow × label content.\\\"\\n    placement: results\\n    type: factorial\\n    columns: [Structured, Random/None, Column Effect]\\n    data_source: \\\"registry: Full OCC, Random OCC, Detach, Vanilla\\\"\\n    status: done\\n\\n  - table_id: tab_ablation_design\\n    caption: \\\"Ablation design: each comparison isolates one factor.\\\"\\n    placement: method\\n    type: design\\n    columns: [Comparison, Isolated Factor]\\n    status: done\\n\\nliterature_strategy:\\n  citation_budget: 45\\n  macro_context:\\n    - \\\"3D spatial representations for VLAs\\\"\\n    - \\\"safety and collision avoidance for robot manipulation VLAs\\\"\\n    - \\\"auxiliary task effects and gradient regularization in deep learning\\\"\\n  micro_clusters:\\n    - cluster_name: \\\"spatial-vla\\\"\\n      target_count: 15\\n      must_cite:\\n        - \\\"SpatialVLA (RSS 2026)\\\"\\n        - \\\"Spatial Forcing (ICLR 2026)\\\"\\n        - \\\"DepthVLA\\\"\\n        - \\\"GST-VLA\\\"\\n        - \\\"StemVLA\\\"\\n        - \\\"3D-CAVLA\\\"\\n        - \\\"CorridorVLA\\\"\\n      status: done\\n\\n    - cluster_name: \\\"safety-vla\\\"\\n      target_count: 5\\n      must_cite:\\n        - \\\"AEGIS/VLSA\\\"\\n        - \\\"SafeVLA (NeurIPS 2025)\\\"\\n        - \\\"CoFreeVLA\\\"\\n      status: done\\n\\n    - cluster_name: \\\"auxiliary-tasks-regularization\\\"\\n      target_count: 5\\n      must_cite:\\n        - \\\"Deeply-supervised nets (Lee 2015)\\\"\\n        - \\\"Gradient starvation (Pezeshki 2021)\\\"\\n      status: done\\n\\n    - cluster_name: \\\"infrastructure\\\"\\n      target_count: 5\\n      must_cite:\\n        - \\\"OpenVLA\\\"\\n        - \\\"OpenVLA-OFT\\\"\\n        - \\\"LIBERO\\\"\\n      status: done\\n\\nwriting_order:\\n  # All sections written (Patch mode):\\n  - method            # done\\n  - related_work      # done\\n  - results           # done (pending full_occ_ln data update)\\n  - discussion        # done\\n  - introduction      # done\\n  - abstract          # done (being refined)\\n  - conclusion        # done\\n  - appendix          # done\\n\\ncolor_palette:\\n  vanilla: \\\"#4C72B0\\\"\\n  full_occ: \\\"#E69F00\\\"\\n  random_occ: \\\"#55A868\\\"\\n  detach: \\\"#C44E52\\\"\\n  detach_ln: \\\"#8172B3\\\"\\n  depth: \\\"#937860\\\"\\n  cutoff: \\\"#CCB974\\\"\\n\", \"total_chars\": 11098, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "392f3321-2528-40a2-b5a6-3e3ca587195b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/writing_plan.yaml\\\", \\\"content\\\": \\\"meta:\\\\n  venue: CoRL 2026\\\\n  track: main\\\\n  template: corl_2026\\\\n  template_note: \\\\\\\"CoRL 2026 template (corl_2026.sty), 8 pages main + unlimited refs/appendix\\\\\\\"\\\\n  page_limit: 8\\\\n  abstract_deadline: 2026-05-26\\\\n  deadline: 2026-05-29\\\\n  core_claim: >\\\\n    Auxiliary spatial supervision during VLA fine-tuning affects collision avoidance\\\\n    through a crossover interaction between normalization type and gradient flow\\\\n    (7.3pp interaction effect). BatchNorm with gradient flow is the only beneficial\\\\n    configuration; LayerNorm with gradient flow consistently degrades safety below\\\\n    Vanilla despite preserving pretrained representations — a deep representation-behavior\\\\n    dissociation. Gradient flow benefits are BatchNorm-mediated, not intrinsic.\\\\n  framing: \\\\\\\"Option B (mechanism analysis paper)\\\\\\\"\\\\n  title: \\\\\\\"Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? An Empirical Investigation\\\\\\\"\\\\n  created_at: 2026-05-20T20:00:00Z\\\\n  updated_at: 2026-05-24T22:00:00Z\\\\n\\\\npaper_outline:\\\\n  - section: abstract\\\\n    word_budget: 200\\\\n    core_bullets:\\\\n      - \\\\\\\"Problem: VLAs achieve 90.7% TSR but only 78.0% CAR on SafeLIBERO\\\\\\\"\\\\n      - \\\\\\\"Method: First factorial study — 11 conditions varying gradient flow, label content, reference frame, temporal extent\\\\\\\"\\\\n      - \\\\\\\"Finding 1: Detach −3.4pp decomposes into BN interference (1.9pp, all representational drift) + gradient flow absence (1.5pp, behavioral regularization)\\\\\\\"\\\\n      - \\\\\\\"Finding 2: Representation-behavior dissociation — LN recovers CKA but not full CAR\\\\\\\"\\\\n      - \\\\\\\"Finding 3: Label content does not matter — existence regularization\\\\\\\"\\\\n      - \\\\\\\"Practical: maintain gradient flow + use LN, zero inference cost\\\\\\\"\\\\n    dependencies: [results, discussion]\\\\n\\\\n  - section: introduction\\\\n    word_budget: 1000\\\\n    core_bullets:\\\\n      - \\\\\\\"Hook: TSR=90.7% but CAR=78.0% — task success ≠ behavioral safety\\\\\\\"\\\\n      - \\\\\\\"Context: Spatial-VLA (15+) and safety-VLA (4+) threads are disconnected\\\\\\\"\\\\n      - \\\\\\\"Question: Does auxiliary spatial supervision affect collision avoidance? Through what mechanism?\\\\\\\"\\\\n      - \\\\\\\"C1: Dual mechanism — BN interference (representational) + gradient flow absence (behavioral)\\\\\\\"\\\\n      - \\\\\\\"C2: 7+ condition factorial ablation design (reusable methodology)\\\\\\\"\\\\n      - \\\\\\\"C3: Practical guideline — maintain gradient flow + LN, no GT labels needed, zero cost\\\\\\\"\\\\n    dependencies: [results]\\\\n    figures: [fig1_overview]\\\\n    citation_hints:\\\\n      - \\\\\\\"OpenVLA, OpenVLA-OFT for base architecture\\\\\\\"\\\\n      - \\\\\\\"VLSA/AEGIS for benchmark and CAR metric\\\\\\\"\\\\n      - \\\\\\\"Representative spatial-VLA and safety-VLA methods for gap\\\\\\\"\\\\n\\\\n  - section: related_work\\\\n    word_budget: 1000\\\\n    core_bullets:\\\\n      - \\\\\\\"§2.1 3D Representations for VLA (~400w): 15+ methods, none evaluate collision safety\\\\\\\"\\\\n      - \\\\\\\"§2.2 Safe Robot Manipulation with VLAs (~300w): AEGIS, SafeVLA, CoFreeVLA, Safe-Night VLA — none leverage 3D representations\\\\\\\"\\\\n      - \\\\\\\"§2.3 Auxiliary Task Effects in Deep Learning (~200w): gradient regularization, multi-task learning, auxiliary losses — context for existence regularization\\\\\\\"\\\\n      - \\\\\\\"Gap: No work isolates how auxiliary spatial supervision mechanisms affect VLA safety\\\\\\\"\\\\n    dependencies: [introduction]\\\\n\\\\n  - section: method\\\\n    word_budget: 1200\\\\n    core_bullets:\\\\n      - \\\\\\\"§3 Base setup: OpenVLA-OFT + LoRA, L_total = L_action + λ(t)·L_aux, exponential decay\\\\\\\"\\\\n      - \\\\\\\"BEV occ head: 1.2M params, conv decoder, FocalLoss, zero inference cost\\\\\\\"\\\\n      - \\\\\\\"Depth head: same arch, SmoothL1, egocentric reference frame\\\\\\\"\\\\n      - \\\\\\\"§3.1 Ablation Design: 8 conditions (Vanilla/Full OCC/Random OCC/Detach/Detach+LN/Depth/Cutoff/Reverse)\\\\\\\"\\\\n      - \\\\\\\"Table: each pairwise comparison isolates one factor\\\\\\\"\\\\n      - \\\\\\\"§3.2 Evaluation: SafeLIBERO Level I, TSR + CAR, 50 rollouts × 3+ seeds, bootstrap 95% CI\\\\\\\"\\\\n    dependencies: []\\\\n    notation_table:\\\\n      pi: \\\\\\\"VLA policy π(a|o,l)\\\\\\\"\\\\n      L_aux: \\\\\\\"auxiliary spatial prediction loss\\\\\\\"\\\\n      lambda_t: \\\\\\\"exponential decay weight 0.01·exp(-t/50000)\\\\\\\"\\\\n\\\\n  - section: results\\\\n    word_budget: 1600\\\\n    core_bullets:\\\\n      - \\\\\\\"§4.1 Main Results: Table with all conditions, TSR/CAR/CI/ΔCAR\\\\\\\"\\\\n      - \\\\\\\"§4.2 Factorial Decomposition: 2×2 (gradient flow × label content), gradient flow dominates\\\\\\\"\\\\n      - \\\\\\\"§4.3 Gradient Dynamics: gradient norms (Detach=1-13%), CKA analysis, per-layer decomposition\\\\\\\"\\\\n      - \\\\\\\"§4.4 Temporal Dynamics: cutoff dose-response, withdrawal effect (preliminary)\\\\\\\"\\\\n    dependencies: []\\\\n    registry_refs:\\\\n      - mvp_vanilla_s0, mvp_vanilla_s1, mvp_vanilla_s2\\\\n      - mvp_occ_s0, mvp_occ_s1, mvp_occ_s2\\\\n      - ablation_occ_detach_s0, ablation_occ_detach_s1, ablation_occ_detach_s2\\\\n      - ablation_random_occ_s0, ablation_random_occ_s1, ablation_random_occ_s2\\\\n      - depth_s0, depth_s1, depth_s2, depth_s3\\\\n      - detach_ln_s0, detach_ln_s1, detach_ln_s2\\\\n      - cutoff_35k_s0, cutoff_35k_s1, cutoff_35k_s2\\\\n    tables: [tab_main_results, tab_factorial, tab_ablation_design]\\\\n    figures: [fig_gradient_analysis, fig_cka_analysis, fig_per_layer_combined, fig_dose_response]\\\\n\\\\n  - section: discussion\\\\n    word_budget: 1200\\\\n    core_bullets:\\\\n      - \\\\\\\"§5.1 Dual Mechanism: BN interference (representational, 1.9pp) + gradient flow absence (behavioral, 1.5pp)\\\\\\\"\\\\n      - \\\\\\\"Convergent evidence: gradient norms + CKA + normalization ablation + behavioral metrics\\\\\\\"\\\\n      - \\\\\\\"Representation-behavior dissociation: Detach+LN CKA ≈ Vanilla but CAR still −1.5pp\\\\\\\"\\\\n      - \\\\\\\"Differential encoder vulnerability: SigLIP > DINOv2\\\\\\\"\\\\n      - \\\\\\\"§5.2 Implications and Limitations: practical guideline + honest limitations\\\\\\\"\\\\n    dependencies: [results]\\\\n\\\\n  - section: conclusion\\\\n    word_budget: 300\\\\n    core_bullets:\\\\n      - \\\\\\\"First factorial study of auxiliary spatial supervision → collision avoidance in VLAs\\\\\\\"\\\\n      - \\\\\\\"Dual mechanism: BN interference + existence regularization\\\\\\\"\\\\n      - \\\\\\\"Practical guideline: gradient flow + LN, zero cost, no GT labels\\\\\\\"\\\\n      - \\\\\\\"Limitations: single arch, single benchmark, sim-only, n=3\\\\\\\"\\\\n    dependencies: [results, discussion]\\\\n\\\\n  - section: appendix\\\\n    word_budget: 2000\\\\n    core_bullets:\\\\n      - \\\\\\\"Training details, per-task breakdown, additional figures\\\\\\\"\\\\n      - \\\\\\\"Gradient/CKA analysis details, per-layer plots\\\\\\\"\\\\n      - \\\\\\\"Dose-response curves, cutoff implementation details\\\\\\\"\\\\n    dependencies: [results]\\\\n\\\\nvisualization_plan:\\\\n  - fig_id: fig1_overview\\\\n    type: conceptual\\\\n    tool: paperbanana\\\\n    description: \\\\\\\"Factorial study overview: training conditions varying gradient flow, label content, normalization; dual mechanism revealed\\\\\\\"\\\\n    narrative_intent: \\\\\\\"Show the factorial design and the two distinct mechanisms (BN interference at representation level, gradient flow at behavior level)\\\\\\\"\\\\n    design_notes:\\\\n      - \\\\\\\"Training setup with auxiliary head variants\\\\\\\"\\\\n      - \\\\\\\"Gradient flow ON/OFF × label type matrix\\\\\\\"\\\\n      - \\\\\\\"Two causal pathways highlighted\\\\\\\"\\\\n    placement: introduction\\\\n    aspect_ratio: \\\\\\\"16:6\\\\\\\"\\\\n    status: fallback_ready\\\\n    fallback_path: figures/fig1_overview.pdf\\\\n\\\\n  - fig_id: fig_gradient_analysis\\\\n    type: statistical\\\\n    tool: matplotlib\\\\n    description: \\\\\\\"Combined gradient norm analysis: bar chart of per-condition encoder gradient norms\\\\\\\"\\\\n    narrative_intent: \\\\\\\"Detach gradient norms collapse to 1-13% of Vanilla; all gradient-flow conditions maintain comparable norms\\\\\\\"\\\\n    data_source: \\\\\\\"gradient checkpoints from registry conditions\\\\\\\"\\\\n    placement: results\\\\n    aspect_ratio: \\\\\\\"4:3\\\\\\\"\\\\n    status: done\\\\n    path: figures/gradient_analysis_combined.pdf\\\\n\\\\n  - fig_id: fig_cka_analysis\\\\n    type: statistical\\\\n    tool: matplotlib\\\\n    description: \\\\\\\"CKA similarity to pretrained features: DINOv2 and SigLIP per condition\\\\\\\"\\\\n    narrative_intent: \\\\\\\"Detach BN causes catastrophic drift (CKA 0.31-0.54); Detach+LN fully recovers (0.96+); establishes BN as 100% cause of representational drift\\\\\\\"\\\\n    data_source: \\\\\\\"CKA analysis from registry conditions\\\\\\\"\\\\n    placement: results\\\\n    aspect_ratio: \\\\\\\"4:3\\\\\\\"\\\\n    status: done\\\\n    path: figures/cka_analysis.pdf\\\\n\\\\n  - fig_id: fig_per_layer_combined\\\\n    type: statistical\\\\n    tool: matplotlib\\\\n    description: \\\\\\\"Per-layer gradient norm ratio + conflict rate across encoders\\\\\\\"\\\\n    narrative_intent: \\\\\\\"DINOv2 ~50% conflict (orthogonal); SigLIP late layers 19-25% (cooperative) — explains differential vulnerability\\\\\\\"\\\\n    data_source: \\\\\\\"per-layer gradient analysis\\\\\\\"\\\\n    placement: appendix\\\\n    aspect_ratio: \\\\\\\"2:1\\\\\\\"\\\\n    status: done\\\\n    path: figures/per_layer_combined.pdf\\\\n\\\\n  - fig_id: fig_dose_response\\\\n    type: statistical\\\\n    tool: matplotlib\\\\n    description: \\\\\\\"Dose-response curve: CAR vs gradient flow duration + withdrawal effect\\\\\\\"\\\\n    narrative_intent: \\\\\\\"Non-monotonic response; mid-training transitions destabilize more than consistent regimes\\\\\\\"\\\\n    data_source: \\\\\\\"cutoff conditions from registry\\\\\\\"\\\\n    placement: appendix\\\\n    aspect_ratio: \\\\\\\"4:3\\\\\\\"\\\\n    status: done\\\\n    path: figures/dose_response.pdf\\\\n\\\\ntable_plan:\\\\n  - table_id: tab_main_results\\\\n    caption: \\\\\\\"Overall results on SafeLIBERO Level I (10 tasks). Bootstrap 95% CIs via 10,000 hierarchical resamples.\\\\\\\"\\\\n    placement: results\\\\n    type: comparison\\\\n    columns: [Condition, Seeds, TSR, CAR, 95% CI, ΔCAR]\\\\n    data_source: \\\\\\\"registry: all conditions\\\\\\\"\\\\n    status: done\\\\n\\\\n  - table_id: tab_factorial\\\\n    caption: \\\\\\\"2×2 factorial: gradient flow × label content.\\\\\\\"\\\\n    placement: results\\\\n    type: factorial\\\\n    columns: [Structured, Random/None, Column Effect]\\\\n    data_source: \\\\\\\"registry: Full OCC, Random OCC, Detach, Vanilla\\\\\\\"\\\\n    status: done\\\\n\\\\n  - table_id: tab_ablation_design\\\\n    caption: \\\\\\\"Ablation design: each comparison isolates one factor.\\\\\\\"\\\\n    placement: method\\\\n    type: design\\\\n    columns: [Comparison, Isolated Factor]\\\\n    status: done\\\\n\\\\nliterature_strategy:\\\\n  citation_budget: 45\\\\n  macro_context:\\\\n    - \\\\\\\"3D spatial representations for VLAs\\\\\\\"\\\\n    - \\\\\\\"safety and collision avoidance for robot manipulation VLAs\\\\\\\"\\\\n    - \\\\\\\"auxiliary task effects and gradient regularization in deep learning\\\\\\\"\\\\n  micro_clusters:\\\\n    - cluster_name: \\\\\\\"spatial-vla\\\\\\\"\\\\n      target_count: 15\\\\n      must_cite:\\\\n        - \\\\\\\"SpatialVLA (RSS 2026)\\\\\\\"\\\\n        - \\\\\\\"Spatial Forcing (ICLR 2026)\\\\\\\"\\\\n        - \\\\\\\"DepthVLA\\\\\\\"\\\\n        - \\\\\\\"GST-VLA\\\\\\\"\\\\n        - \\\\\\\"StemVLA\\\\\\\"\\\\n        - \\\\\\\"3D-CAVLA\\\\\\\"\\\\n        - \\\\\\\"CorridorVLA\\\\\\\"\\\\n      status: done\\\\n\\\\n    - cluster_name: \\\\\\\"safety-vla\\\\\\\"\\\\n      target_count: 5\\\\n      must_cite:\\\\n        - \\\\\\\"AEGIS/VLSA\\\\\\\"\\\\n        - \\\\\\\"SafeVLA (NeurIPS 2025)\\\\\\\"\\\\n        - \\\\\\\"CoFreeVLA\\\\\\\"\\\\n      status: done\\\\n\\\\n    - cluster_name: \\\\\\\"auxiliary-tasks-regularization\\\\\\\"\\\\n      target_count: 5\\\\n      must_cite:\\\\n        - \\\\\\\"Deeply-supervised nets (Lee 2015)\\\\\\\"\\\\n        - \\\\\\\"Gradient starvation (Pezeshki 2021)\\\\\\\"\\\\n      status: done\\\\n\\\\n    - cluster_name: \\\\\\\"infrastructure\\\\\\\"\\\\n      target_count: 5\\\\n      must_cite:\\\\n        - \\\\\\\"OpenVLA\\\\\\\"\\\\n        - \\\\\\\"OpenVLA-OFT\\\\\\\"\\\\n        - \\\\\\\"LIBERO\\\\\\\"\\\\n      status: done\\\\n\\\\nwriting_order:\\\\n  # All sections written (Patch mode):\\\\n  - method            # done\\\\n  - related_work      # done\\\\n  - results           # done (pending full_occ_ln data update)\\\\n  - discussion        # done\\\\n  - introduction      # done\\\\n  - abstract          # done (being refined)\\\\n  - conclusion        # done\\\\n  - appendix          # done\\\\n\\\\ncolor_palette:\\\\n  vanilla: \\\\\\\"#4C72B0\\\\\\\"\\\\n  full_occ: \\\\\\\"#E69F00\\\\\\\"\\\\n  random_occ: \\\\\\\"#55A868\\\\\\\"\\\\n  detach: \\\\\\\"#C44E52\\\\\\\"\\\\n  detach_ln: \\\\\\\"#8172B3\\\\\\\"\\\\n  depth: \\\\\\\"#937860\\\\\\\"\\\\n  cutoff: \\\\\\\"#CCB974\\\\\\\"\\\\n\\\", \\\"total_chars\\\": 11098, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/writing_plan.yaml\", \"content\": \"meta:\\n  venue: CoRL 2026\\n  track: main\\n  template: corl_2026\\n  template_note: \\\"CoRL 2026 template (corl_2026.sty), 8 pages main + unlimited refs/appendix\\\"\\n  page_limit: 8\\n  abstract_deadline: 2026-05-26\\n  deadline: 2026-05-29\\n  core_claim: >\\n    Auxiliary spatial supervision during VLA fine-tuning affects collision avoidance\\n    through a crossover interaction between normalization type and gradient flow\\n    (7.3pp interaction effect). BatchNorm with gradient flow is the only beneficial\\n    configuration; LayerNorm with gradient flow consistently degrades safety below\\n    Vanilla despite preserving pretrained representations — a deep representation-behavior\\n    dissociation. Gradient flow benefits are BatchNorm-mediated, not intrinsic.\\n  framing: \\\"Option B (mechanism analysis paper)\\\"\\n  title: \\\"Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? An Empirical Investigation\\\"\\n  created_at: 2026-05-20T20:00:00Z\\n  updated_at: 2026-05-24T22:00:00Z\\n\\npaper_outline:\\n  - section: abstract\\n    word_budget: 200\\n    core_bullets:\\n      - \\\"Problem: VLAs achieve 90.7% TSR but only 78.0% CAR on SafeLIBERO\\\"\\n      - \\\"Method: First factorial study — 11 conditions varying gradient flow, label content, reference frame, temporal extent\\\"\\n      - \\\"Finding 1: Detach −3.4pp decomposes into BN interference (1.9pp, all representational drift) + gradient flow absence (1.5pp, behavioral regularization)\\\"\\n      - \\\"Finding 2: Representation-behavior dissociation — LN recovers CKA but not full CAR\\\"\\n      - \\\"Finding 3: Label content does not matter — existence regularization\\\"\\n      - \\\"Practical: maintain gradient flow + use LN, zero inference cost\\\"\\n    dependencies: [results, discussion]\\n\\n  - section: introduction\\n    word_budget: 1000\\n    core_bullets:\\n      - \\\"Hook: TSR=90.7% but CAR=78.0% — task success ≠ behavioral safety\\\"\\n      - \\\"Context: Spatial-VLA (15+) and safety-VLA (4+) threads are disconnected\\\"\\n      - \\\"Question: Does auxiliary spatial supervision affect collision avoidance? Through what mechanism?\\\"\\n      - \\\"C1: Dual mechanism — BN interference (representational) + gradient flow absence (behavioral)\\\"\\n      - \\\"C2: 7+ condition factorial ablation design (reusable methodology)\\\"\\n      - \\\"C3: Practical guideline — maintain gradient flow + LN, no GT labels needed, zero cost\\\"\\n    dependencies: [results]\\n    figures: [fig1_overview]\\n    citation_hints:\\n      - \\\"OpenVLA, OpenVLA-OFT for base architecture\\\"\\n      - \\\"VLSA/AEGIS for benchmark and CAR metric\\\"\\n      - \\\"Representative spatial-VLA and safety-VLA methods for gap\\\"\\n\\n  - section: related_work\\n    word_budget: 1000\\n    core_bullets:\\n      - \\\"§2.1 3D Representations for VLA (~400w): 15+ methods, none evaluate collision safety\\\"\\n      - \\\"§2.2 Safe Robot Manipulation with VLAs (~300w): AEGIS, SafeVLA, CoFreeVLA, Safe-Night VLA — none leverage 3D representations\\\"\\n      - \\\"§2.3 Auxiliary Task Effects in Deep Learning (~200w): gradient regularization, multi-task learning, auxiliary losses — context for existence regularization\\\"\\n      - \\\"Gap: No work isolates how auxiliary spatial supervision mechanisms affect VLA safety\\\"\\n    dependencies: [introduction]\\n\\n  - section: method\\n    word_budget: 1200\\n    core_bullets:\\n      - \\\"§3 Base setup: OpenVLA-OFT + LoRA, L_total = L_action + λ(t)·L_aux, exponential decay\\\"\\n      - \\\"BEV occ head: 1.2M params, conv decoder, FocalLoss, zero inference cost\\\"\\n      - \\\"Depth head: same arch, SmoothL1, egocentric reference frame\\\"\\n      - \\\"§3.1 Ablation Design: 8 conditions (Vanilla/Full OCC/Random OCC/Detach/Detach+LN/Depth/Cutoff/Reverse)\\\"\\n      - \\\"Table: each pairwise comparison isolates one factor\\\"\\n      - \\\"§3.2 Evaluation: SafeLIBERO Level I, TSR + CAR, 50 rollouts × 3+ seeds, bootstrap 95% CI\\\"\\n    dependencies: []\\n    notation_table:\\n      pi: \\\"VLA policy π(a|o,l)\\\"\\n      L_aux: \\\"auxiliary spatial prediction loss\\\"\\n      lambda_t: \\\"exponential decay weight 0.01·exp(-t/50000)\\\"\\n\\n  - section: results\\n    word_budget: 1600\\n    core_bullets:\\n      - \\\"§4.1 Main Results: Table with all conditions, TSR/CAR/CI/ΔCAR\\\"\\n      - \\\"§4.2 Factorial Decomposition: 2×2 (gradient flow × label content), gradient flow dominates\\\"\\n      - \\\"§4.3 Gradient Dynamics: gradient norms (Detach=1-13%), CKA analysis, per-layer decomposition\\\"\\n      - \\\"§4.4 Temporal Dynamics: cutoff dose-response, withdrawal effect (preliminary)\\\"\\n    dependencies: []\\n    registry_refs:\\n      - mvp_vanilla_s0, mvp_vanilla_s1, mvp_vanilla_s2\\n      - mvp_occ_s0, mvp_occ_s1, mvp_occ_s2\\n      - ablation_occ_detach_s0, ablation_occ_detach_s1, ablation_occ_detach_s2\\n      - ablation_random_occ_s0, ablation_random_occ_s1, ablation_random_occ_s2\\n      - depth_s0, depth_s1, depth_s2, depth_s3\\n      - detach_ln_s0, detach_ln_s1, detach_ln_s2\\n      - cutoff_35k_s0, cutoff_35k_s1, cutoff_35k_s2\\n    tables: [tab_main_results, tab_factorial, tab_ablation_design]\\n    figures: [fig_gradient_analysis, fig_cka_analysis, fig_per_layer_combined, fig_dose_response]\\n\\n  - section: discussion\\n    word_budget: 1200\\n    core_bullets:\\n      - \\\"§5.1 Dual Mechanism: BN interference (representational, 1.9pp) + gradient flow absence (behavioral, 1.5pp)\\\"\\n      - \\\"Convergent evidence: gradient norms + CKA + normalization ablation + behavioral metrics\\\"\\n      - \\\"Representation-behavior dissociation: Detach+LN CKA ≈ Vanilla but CAR still −1.5pp\\\"\\n      - \\\"Differential encoder vulnerability: SigLIP > DINOv2\\\"\\n      - \\\"§5.2 Implications and Limitations: practical guideline + honest limitations\\\"\\n    dependencies: [results]\\n\\n  - section: conclusion\\n    word_budget: 300\\n    core_bullets:\\n      - \\\"First factorial study of auxiliary spatial supervision → collision avoidance in VLAs\\\"\\n      - \\\"Dual mechanism: BN interference + existence regularization\\\"\\n      - \\\"Practical guideline: gradient flow + LN, zero cost, no GT labels\\\"\\n      - \\\"Limitations: single arch, single benchmark, sim-only, n=3\\\"\\n    dependencies: [results, discussion]\\n\\n  - section: appendix\\n    word_budget: 2000\\n    core_bullets:\\n      - \\\"Training details, per-task breakdown, additional figures\\\"\\n      - \\\"Gradient/CKA analysis details, per-layer plots\\\"\\n      - \\\"Dose-response curves, cutoff implementation details\\\"\\n    dependencies: [results]\\n\\nvisualization_plan:\\n  - fig_id: fig1_overview\\n    type: conceptual\\n    tool: paperbanana\\n    description: \\\"Factorial study overview: training conditions varying gradient flow, label content, normalization; dual mechanism revealed\\\"\\n    narrative_intent: \\\"Show the factorial design and the two distinct mechanisms (BN interference at representation level, gradient flow at behavior level)\\\"\\n    design_notes:\\n      - \\\"Training setup with auxiliary head variants\\\"\\n      - \\\"Gradient flow ON/OFF × label type matrix\\\"\\n      - \\\"Two causal pathways highlighted\\\"\\n    placement: introduction\\n    aspect_ratio: \\\"16:6\\\"\\n    status: fallback_ready\\n    fallback_path: figures/fig1_overview.pdf\\n\\n  - fig_id: fig_gradient_analysis\\n    type: statistical\\n    tool: matplotlib\\n    description: \\\"Combined gradient norm analysis: bar chart of per-condition encoder gradient norms\\\"\\n    narrative_intent: \\\"Detach gradient norms collapse to 1-13% of Vanilla; all gradient-flow conditions maintain comparable norms\\\"\\n    data_source: \\\"gradient checkpoints from registry conditions\\\"\\n    placement: results\\n    aspect_ratio: \\\"4:3\\\"\\n    status: done\\n    path: figures/gradient_analysis_combined.pdf\\n\\n  - fig_id: fig_cka_analysis\\n    type: statistical\\n    tool: matplotlib\\n    description: \\\"CKA similarity to pretrained features: DINOv2 and SigLIP per condition\\\"\\n    narrative_intent: \\\"Detach BN causes catastrophic drift (CKA 0.31-0.54); Detach+LN fully recovers (0.96+); establishes BN as 100% cause of representational drift\\\"\\n    data_source: \\\"CKA analysis from registry conditions\\\"\\n    placement: results\\n    aspect_ratio: \\\"4:3\\\"\\n    status: done\\n    path: figures/cka_analysis.pdf\\n\\n  - fig_id: fig_per_layer_combined\\n    type: statistical\\n    tool: matplotlib\\n    description: \\\"Per-layer gradient norm ratio + conflict rate across encoders\\\"\\n    narrative_intent: \\\"DINOv2 ~50% conflict (orthogonal); SigLIP late layers 19-25% (cooperative) — explains differential vulnerability\\\"\\n    data_source: \\\"per-layer gradient analysis\\\"\\n    placement: appendix\\n    aspect_ratio: \\\"2:1\\\"\\n    status: done\\n    path: figures/per_layer_combined.pdf\\n\\n  - fig_id: fig_dose_response\\n    type: statistical\\n    tool: matplotlib\\n    description: \\\"Dose-response curve: CAR vs gradient flow duration + withdrawal effect\\\"\\n    narrative_intent: \\\"Non-monotonic response; mid-training transitions destabilize more than consistent regimes\\\"\\n    data_source: \\\"cutoff conditions from registry\\\"\\n    placement: appendix\\n    aspect_ratio: \\\"4:3\\\"\\n    status: done\\n    path: figures/dose_response.pdf\\n\\ntable_plan:\\n  - table_id: tab_main_results\\n    caption: \\\"Overall results on SafeLIBERO Level I (10 tasks). Bootstrap 95% CIs via 10,000 hierarchical resamples.\\\"\\n    placement: results\\n    type: comparison\\n    columns: [Condition, Seeds, TSR, CAR, 95% CI, ΔCAR]\\n    data_source: \\\"registry: all conditions\\\"\\n    status: done\\n\\n  - table_id: tab_factorial\\n    caption: \\\"2×2 factorial: gradient flow × label content.\\\"\\n    placement: results\\n    type: factorial\\n    columns: [Structured, Random/None, Column Effect]\\n    data_source: \\\"registry: Full OCC, Random OCC, Detach, Vanilla\\\"\\n    status: done\\n\\n  - table_id: tab_ablation_design\\n    caption: \\\"Ablation design: each comparison isolates one factor.\\\"\\n    placement: method\\n    type: design\\n    columns: [Comparison, Isolated Factor]\\n    status: done\\n\\nliterature_strategy:\\n  citation_budget: 45\\n  macro_context:\\n    - \\\"3D spatial representations for VLAs\\\"\\n    - \\\"safety and collision avoidance for robot manipulation VLAs\\\"\\n    - \\\"auxiliary task effects and gradient regularization in deep learning\\\"\\n  micro_clusters:\\n    - cluster_name: \\\"spatial-vla\\\"\\n      target_count: 15\\n      must_cite:\\n        - \\\"SpatialVLA (RSS 2026)\\\"\\n        - \\\"Spatial Forcing (ICLR 2026)\\\"\\n        - \\\"DepthVLA\\\"\\n        - \\\"GST-VLA\\\"\\n        - \\\"StemVLA\\\"\\n        - \\\"3D-CAVLA\\\"\\n        - \\\"CorridorVLA\\\"\\n      status: done\\n\\n    - cluster_name: \\\"safety-vla\\\"\\n      target_count: 5\\n      must_cite:\\n        - \\\"AEGIS/VLSA\\\"\\n        - \\\"SafeVLA (NeurIPS 2025)\\\"\\n        - \\\"CoFreeVLA\\\"\\n      status: done\\n\\n    - cluster_name: \\\"auxiliary-tasks-regularization\\\"\\n      target_count: 5\\n      must_cite:\\n        - \\\"Deeply-supervised nets (Lee 2015)\\\"\\n        - \\\"Gradient starvation (Pezeshki 2021)\\\"\\n      status: done\\n\\n    - cluster_name: \\\"infrastructure\\\"\\n      target_count: 5\\n      must_cite:\\n        - \\\"OpenVLA\\\"\\n        - \\\"OpenVLA-OFT\\\"\\n        - \\\"LIBERO\\\"\\n      status: done\\n\\nwriting_order:\\n  # All sections written (Patch mode):\\n  - method            # done\\n  - related_work      # done\\n  - results           # done (pending full_occ_ln data update)\\n  - discussion        # done\\n  - introduction      # done\\n  - abstract          # done (being refined)\\n  - conclusion        # done\\n  - appendix          # done\\n\\ncolor_palette:\\n  vanilla: \\\"#4C72B0\\\"\\n  full_occ: \\\"#E69F00\\\"\\n  random_occ: \\\"#55A868\\\"\\n  detach: \\\"#C44E52\\\"\\n  detach_ln: \\\"#8172B3\\\"\\n  depth: \\\"#937860\\\"\\n  cutoff: \\\"#CCB974\\\"\\n\", \"total_chars\": 11098, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01RuEgRR96ZdaXfytViD1yfJ`</summary>
+
+```json
+{
+  "pattern": "**/*paper*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "837afc06-8112-45b3-a1e8-5dc8938f404f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L8eCoPk37KWKfyCmJAHkPP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10287,
+      "cache_read_input_tokens": 24726,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10287
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-25T06:58:29.665Z_
+
+<details><summary>↩ Tool result · `toolu_01RuEgRR96ZdaXfytViD1yfJ`</summary>
+
+```text
+logs/chats/feishu_group_oc_b83478cb96de9d1a19f52f25842063f6_paper_agent.lock
+logs/workers/worker_paper_research_20260520T200319.log
+logs/chats/worker_paper_research_20260520T200319.lock
+logs/chats/worker_paper_research_20260520T200319.jsonl
+logs/workers/worker_paper_research_20260520T200319_result.json
+logs/workers/worker_paper_writing_experiments_setup_20260520T201038.log
+logs/chats/worker_paper_writing_experiments_setup_20260520T201038.lock
+logs/chats/worker_paper_writing_experiments_setup_20260520T201038.jsonl
+logs/workers/worker_paper_writing_experiments_setup_20260520T201038_result.json
+paper_provenance.lock
+logs/workers/worker_paper_writing_method_20260520T201415.log
+logs/workers/worker_paper_writing_method_20260520T201415_result.json
+logs/workers/worker_paper_writing_method_20260520T201906.log
+logs/chats/worker_paper_writing_method_20260520T201906.lock
+logs/chats/worker_paper_writing_method_20260520T201906.jsonl
+logs/workers/worker_paper_writing_method_20260520T201906_result.json
+logs/workers/worker_paper_writing_related_work_20260520T203848.log
+logs/workers/worker_paper_writing_related_work_20260520T203848_result.json
+logs/workers/worker_paper_writing_experiments_setup_fix_20260520T204105.log
+logs/chats/worker_paper_writing_experiments_setup_fix_20260520T204105.lock
+logs/chats/worker_paper_writing_experiments_setup_fix_20260520T204105.jsonl
+logs/workers/worker_paper_writing_experiments_setup_fix_20260520T204105_result.json
+logs/workers/worker_paper_writing_method_fix_20260520T210126.log
+logs/chats/worker_paper_writing_method_fix_20260520T210126.lock
+logs/chats/worker_paper_writing_method_fix_20260520T210126.jsonl
+logs/workers/worker_paper_writing_method_fix_20260520T210126_result.json
+logs/workers/worker_paper_prewrite-sections_20260522T125352.log
+logs/workers/worker_paper_prewrite-sections_20260522T125352_result.json
+logs/workers/worker_paper_fix-citations-and-warnings_20260522T131347.log
+logs/workers/worker_paper_fix-citations-and-warnings_20260522T131347_result.json
+logs/workers/worker_paper_write-discussion_20260522T181556.log
+logs/workers/worker_paper_write-discussion_20260522T181556_result.json
+logs/workers/worker_paper_write-introduction_20260522T182228.log
+logs/workers/worker_paper_write-introduction_20260522T182228_result.json
+logs/workers/worker_paper_write-conclusion_20260522T183625.log
+logs/workers/worker_paper_write-conclusion_20260522T183625_result.json
+logs/workers/worker_paper_write-results_20260522T183913.log
+logs/workers/worker_paper_write-results_20260522T183913_result.json
+logs/workers/worker_paper_latex-compile-check_20260522T185014.log
+logs/chats/worker_paper_latex-compile-check_20260522T185014.lock
+logs/chats/worker_paper_latex-compile-check_20260522T185014.jsonl
+logs/workers/worker_paper_latex-compile-check_20260522T185014_result.json
+artifacts/dream_reports/dream_20260523T025401/best/paper_framing.md
+artifacts/dream_reports/dream_20260523T025401/best/paper.tex
+artifacts/dream_reports/dream_20260523T025401/best/paper.aux
+artifacts/dream_reports/dream_20260523T025401/best/paper.out
+artifacts/dream_reports/dream_20260523T025401/best/paper.pdf
+artifacts/dream_reports/dream_20260523T025401/best/paper.log
+artifacts/dream_reports/dream_20260523T025401/logs/paper_agent_best.log
+artifacts/dream_reports/dream_20260523T025401/median/paper_framing.md
+artifacts/dream_reports/dream_20260523T025401/median/paper.tex
+artifacts/dream_reports/dream_20260523T025401/median/paper.aux
+artifacts/dream_reports/dream_20260523T025401/median/paper.out
+artifacts/dream_reports/dream_20260523T025401/median/paper.pdf
+artifacts/dream_reports/dream_20260523T025401/median/paper.log
+artifacts/dream_reports/dream_20260523T025401/logs/paper_agent_median.log
+artifacts/dream_reports/dream_20260523T025401/worst/paper_framing.md
+artifacts/dream_reports/dream_20260523T025401/logs/paper_agent_worst.log
+artifacts/dream_reports/dream_20260523T034027/best/paper_framing.md
+artifacts/dream_reports/dream_20260523T034027/best/paper.tex
+artifacts/dream_reports/dream_20260523T034027/best/paper.aux
+artifacts/dream_reports/dream_20260523T034027/best/paper.out
+artifacts/dream_reports/dream_20260523T034027/best/paper.pdf
+artifacts/dream_reports/dream_20260523T034027/best/paper.log
+artifacts/dream_reports/dream_20260523T034027/logs/paper_agent_best.log
+artifacts/dream_reports/dream_20260523T034027/median/paper_framing.md
+artifacts/dream_reports/dream_20260523T034027/median/paper.tex
+artifacts/dream_reports/dream_20260523T034027/median/paper.aux
+artifacts/dream_reports/dream_20260523T034027/median/paper.out
+artifacts/dream_reports/dream_20260523T034027/median/paper.pdf
+artifacts/dream_reports/dream_20260523T034027/median/paper.log
+artifacts/dream_reports/dream_20260523T034027/logs/paper_agent_median.log
+artifacts/dream_reports/dream_20260523T034027/worst/paper_framing.md
+artifacts/dream_reports/dream_20260523T034027/worst/paper.tex
+artifacts/dream_reports/dream_20260523T034027/worst/paper.aux
+artifacts/dream_reports/dream_20260523T034027/worst/paper.out
+artifacts/dream_reports/dream_20260523T034027/worst/paper.pdf
+artifacts/dream_reports/dream_20260523T034027/worst/paper.log
+artifacts/dream_reports/dream_20260523T034027/logs/paper_agent_worst.log
+logs/workers/worker_paper_table1_bootstrap_ci_20260523T065221.log
+logs/chats/worker_paper_table1_bootstrap_ci_20260523T065221.lock
+logs/chats/worker_paper_table1_bootstrap_ci_20260523T065221.jsonl
+logs/workers/worker_paper_table1_bootstrap_ci_20260523T065221_result.json
+logs/workers/worker_paper_related_work_mtl_20260523T065237.log
+logs/chats/worker_paper_related_work_mtl_20260523T065237.lock
+logs/chats/worker_paper_related_work_mtl_20260523T065237.jsonl
+logs/workers/worker_paper_related_work_mtl_20260523T065237_result.json
+logs/workers/worker_paper_claim_wording_audit_20260523T071232.log
+logs/workers/worker_paper_claim_wording_audit_20260523T071232_result.json
+logs/workers/worker_paper_experiment_section_draft_20260523T092013.log
+logs/chats/worker_paper_experiment_section_draft_20260523T092013.lock
+logs/chats/worker_paper_experiment_section_draft_20260523T092013.jsonl
+logs/workers/worker_paper_experiment_section_draft_20260523T092013_result.json
+logs/workers/worker_paper_discussion_detach_mechanism_20260523T101456.log
+logs/workers/worker_paper_discussion_detach_mechanism_20260523T101456_result.json
+logs/workers/worker_paper_fix_uncited_bib_20260523T152021.log
+logs/chats/worker_paper_fix_uncited_bib_20260523T152021.lock
+logs/chats/worker_paper_fix_uncited_bib_20260523T152021.jsonl
+logs/workers/worker_paper_fix_uncited_bib_20260523T152021_result.json
+logs/workers/worker_paper_gradient_figure_20260523T183457.log
+(Results are truncated. Consider using a more specific path or pattern.)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "acf177e7-de98-4251-ab45-6882a2f509fb",
+  "tool_use_result": {
+    "filenames": [
+      "logs/chats/feishu_group_oc_b83478cb96de9d1a19f52f25842063f6_paper_agent.lock",
+      "logs/workers/worker_paper_research_20260520T200319.log",
+      "logs/chats/worker_paper_research_20260520T200319.lock",
+      "logs/chats/worker_paper_research_20260520T200319.jsonl",
+      "logs/workers/worker_paper_research_20260520T200319_result.json",
+      "logs/workers/worker_paper_writing_experiments_setup_20260520T201038.log",
+      "logs/chats/worker_paper_writing_experiments_setup_20260520T201038.lock",
+      "logs/chats/worker_paper_writing_experiments_setup_20260520T201038.jsonl",
+      "logs/workers/worker_paper_writing_experiments_setup_20260520T201038_result.json",
+      "paper_provenance.lock",
+      "logs/workers/worker_paper_writing_method_20260520T201415.log",
+      "logs/workers/worker_paper_writing_method_20260520T201415_result.json",
+      "logs/workers/worker_paper_writing_method_20260520T201906.log",
+      "logs/chats/worker_paper_writing_method_20260520T201906.lock",
+      "logs/chats/worker_paper_writing_method_20260520T201906.jsonl",
+      "logs/workers/worker_paper_writing_method_20260520T201906_result.json",
+      "logs/workers/worker_paper_writing_related_work_20260520T203848.log",
+      "logs/workers/worker_paper_writing_related_work_20260520T203848_result.json",
+      "logs/workers/worker_paper_writing_experiments_setup_fix_20260520T204105.log",
+      "logs/chats/worker_paper_writing_experiments_setup_fix_20260520T204105.lock",
+      "logs/chats/worker_paper_writing_experiments_setup_fix_20260520T204105.jsonl",
+      "logs/workers/worker_paper_writing_experiments_setup_fix_20260520T204105_result.json",
+      "logs/workers/worker_paper_writing_method_fix_20260520T210126.log",
+      "logs/chats/worker_paper_writing_method_fix_20260520T210126.lock",
+      "logs/chats/worker_paper_writing_method_fix_20260520T210126.jsonl",
+      "logs/workers/worker_paper_writing_method_fix_20260520T210126_result.json",
+      "logs/workers/worker_paper_prewrite-sections_20260522T125352.log",
+      "logs/workers/worker_paper_prewrite-sections_20260522T125352_result.json",
+      "logs/workers/worker_paper_fix-citations-and-warnings_20260522T131347.log",
+      "logs/workers/worker_paper_fix-citations-and-warnings_20260522T131347_result.json",
+      "logs/workers/worker_paper_write-discussion_20260522T181556.log",
+      "logs/workers/worker_paper_write-discussion_20260522T181556_result.json",
+      "logs/workers/worker_paper_write-introduction_20260522T182228.log",
+      "logs/workers/worker_paper_write-introduction_20260522T182228_result.json",
+      "logs/workers/worker_paper_write-conclusion_20260522T183625.log",
+      "logs/workers/worker_paper_write-conclusion_20260522T183625_result.json",
+      "logs/workers/worker_paper_write-results_20260522T183913.log",
+      "logs/workers/worker_paper_write-results_20260522T183913_result.json",
+      "logs/workers/worker_paper_latex-compile-check_20260522T185014.log",
+      "logs/chats/worker_paper_latex-compile-check_20260522T185014.lock",
+      "logs/chats/worker_paper_latex-compile-check_20260522T185014.jsonl",
+      "logs/workers/worker_paper_latex-compile-check_20260522T185014_result.json",
+      "artifacts/dream_reports/dream_20260523T025401/best/paper_framing.md",
+      "artifacts/dream_reports/dream_20260523T025401/best/paper.tex",
+      "artifacts/dream_reports/dream_20260523T025401/best/paper.aux",
+      "artifacts/dream_reports/dream_20260523T025401/best/paper.out",
+      "artifacts/dream_reports/dream_20260523T025401/best/paper.pdf",
+      "artifacts/dream_reports/dream_20260523T025401/best/paper.log",
+      "artifacts/dream_reports/dream_20260523T025401/logs/paper_agent_best.log",
+      "artifacts/dream_reports/dream_20260523T025401/median/paper_framing.md",
+      "artifacts/dream_reports/dream_20260523T025401/median/paper.tex",
+      "artifacts/dream_reports/dream_20260523T025401/median/paper.aux",
+      "artifacts/dream_reports/dream_20260523T025401/median/paper.out",
+      "artifacts/dream_reports/dream_20260523T025401/median/paper.pdf",
+      "artifacts/dream_reports/dream_20260523T025401/median/paper.log",
+      "artifacts/dream_reports/dream_20260523T025401/logs/paper_agent_median.log",
+      "artifacts/dream_reports/dream_20260523T025401/worst/paper_framing.md",
+      "artifacts/dream_reports/dream_20260523T025401/logs/paper_agent_worst.log",
+      "artifacts/dream_reports/dream_20260523T034027/best/paper_framing.md",
+      "artifacts/dream_reports/dream_20260523T034027/best/paper.tex",
+      "artifacts/dream_reports/dream_20260523T034027/best/paper.aux",
+      "artifacts/dream_reports/dream_20260523T034027/best/paper.out",
+      "artifacts/dream_reports/dream_20260523T034027/best/paper.pdf",
+      "artifacts/dream_reports/dream_20260523T034027/best/paper.log",
+      "artifacts/dream_reports/dream_20260523T034027/logs/paper_agent_best.log",
+      "artifacts/dream_reports/dream_20260523T034027/median/paper_framing.md",
+      "artifacts/dream_reports/dream_20260523T034027/median/paper.tex",
+      "artifacts/dream_reports/dream_20260523T034027/median/paper.aux",
+      "artifacts/dream_reports/dream_20260523T034027/median/paper.out",
+      "artifacts/dream_reports/dream_20260523T034027/median/paper.pdf",
+      "artifacts/dream_reports/dream_20260523T034027/median/paper.log",
+      "artifacts/dream_reports/dream_20260523T034027/logs/paper_agent_median.log",
+      "artifacts/dream_reports/dream_20260523T034027/worst/paper_framing.md",
+      "artifacts/dream_reports/dream_20260523T034027/worst/paper.tex",
+      "artifacts/dream_reports/dream_20260523T034027/worst/paper.aux",
+      "artifacts/dream_reports/dream_20260523T034027/worst/paper.out",
+      "artifacts/dream_reports/dream_20260523T034027/worst/paper.pdf",
+      "artifacts/dream_reports/dream_20260523T034027/worst/paper.log",
+      "artifacts/dream_reports/dream_20260523T034027/logs/paper_agent_worst.log",
+      "logs/workers/worker_paper_table1_bootstrap_ci_20260523T065221.log",
+      "logs/chats/worker_paper_table1_bootstrap_ci_20260523T065221.lock",
+      "logs/chats/worker_paper_table1_bootstrap_ci_20260523T065221.jsonl",
+      "logs/workers/worker_paper_table1_bootstrap_ci_20260523T065221_result.json",
+      "logs/workers/worker_paper_related_work_mtl_20260523T065237.log",
+      "logs/chats/worker_paper_related_work_mtl_20260523T065237.lock",
+      "logs/chats/worker_paper_related_work_mtl_20260523T065237.jsonl",
+      "logs/workers/worker_paper_related_work_mtl_20260523T065237_result.json",
+      "logs/workers/worker_paper_claim_wording_audit_20260523T071232.log",
+      "logs/workers/worker_paper_claim_wording_audit_20260523T071232_result.json",
+      "logs/workers/worker_paper_experiment_section_draft_20260523T092013.log",
+      "logs/chats/worker_paper_experiment_section_draft_20260523T092013.lock",
+      "logs/chats/worker_paper_experiment_section_draft_20260523T092013.jsonl",
+      "logs/workers/worker_paper_experiment_section_draft_20260523T092013_result.json",
+      "logs/workers/worker_paper_discussion_detach_mechanism_20260523T101456.log",
+      "logs/workers/worker_paper_discussion_detach_mechanism_20260523T101456_result.json",
+      "logs/workers/worker_paper_fix_uncited_bib_20260523T152021.log",
+      "logs/chats/worker_paper_fix_uncited_bib_20260523T152021.lock",
+      "logs/chats/worker_paper_fix_uncited_bib_20260523T152021.jsonl",
+      "logs/workers/worker_paper_fix_uncited_bib_20260523T152021_result.json",
+      "logs/workers/worker_paper_gradient_figure_20260523T183457.log"
+    ],
+    "durationMs": 19,
+    "numFiles": 100,
+    "truncated": true
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_016FRF5RgM2ViqfNSZRoGU7R`</summary>
+
+```json
+{
+  "pattern": "artifacts/**",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "1b995932-618c-422f-95b5-09c03639a1a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L8eCoPk37KWKfyCmJAHkPP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10287,
+      "cache_read_input_tokens": 24726,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10287
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-25T06:58:30.174Z_
+
+<details><summary>↩ Tool result · `toolu_016FRF5RgM2ViqfNSZRoGU7R`</summary>
+
+```text
+artifacts/_project/report/safelibero_survey.md
+artifacts/safelibero_survey.md
+artifacts/_project/report/openvla_oft_survey.md
+artifacts/openvla_oft_survey.md
+artifacts/_project/report/occ_gt_design.md
+artifacts/occ_gt_design.md
+artifacts/occ_pipeline/bev_projection.py
+artifacts/occ_pipeline/__init__.py
+artifacts/occ_pipeline/geom_classifier.py
+artifacts/occ_pipeline/occupancy_3d.py
+artifacts/occ_pipeline/extract_occupancy.py
+artifacts/occ_pipeline/visualize_bev.py
+artifacts/_project/intermediate/bev_aux_head_changes.md
+artifacts/_project/report/occ_crash_diagnosis.md
+artifacts/occ_crash_diagnosis.md
+artifacts/_project/paper/related_work.tex
+artifacts/diagnose_westd10894_batch_kill.md
+artifacts/diagnose_ablation_batch_fail.md
+artifacts/analyze_learning_curve_fixed.py
+artifacts/_project/intermediate/analysis_scripts_v2_manifest.txt
+artifacts/_project/chart/vanilla_occ_viz_report.txt
+artifacts/_project/chart/comparison_50r_aligned_report.txt
+artifacts/ablation_random_occ_s0/report/ablation_random_occ_s0_analysis.md
+artifacts/_project/report/ablation_eval_analysis.txt
+artifacts/extract_depth.py
+artifacts/_project/report/ablation_50r_diagnostic.txt
+artifacts/eval_commands.md
+artifacts/dream_reports/dream_20260523T025401/logs/orchestrator.log
+artifacts/dream_reports/dream_20260523T025401/logs/phase1_attempt0.log
+artifacts/dream_reports/dream_20260523T025401/logs/phase2_best_attempt0.log
+artifacts/dream_reports/dream_20260523T025401/logs/phase2_median_attempt0.log
+artifacts/dream_reports/dream_20260523T025401/logs/phase2_worst_attempt0.log
+artifacts/dream_reports/dream_20260523T025401/best/imagined_experiments.yaml
+artifacts/dream_reports/dream_20260523T025401/best/experiment_data.json
+artifacts/dream_reports/dream_20260523T025401/best/paper_framing.md
+artifacts/dream_reports/dream_20260523T025401/best/paper.tex
+artifacts/dream_reports/dream_20260523T025401/best/paper.aux
+artifacts/dream_reports/dream_20260523T025401/best/paper.out
+artifacts/dream_reports/dream_20260523T025401/best/paper.pdf
+artifacts/dream_reports/dream_20260523T025401/best/paper.log
+artifacts/dream_reports/dream_20260523T025401/logs/paper_agent_best.log
+artifacts/dream_reports/dream_20260523T025401/median/imagined_experiments.yaml
+artifacts/dream_reports/dream_20260523T025401/median/experiment_data.json
+artifacts/dream_reports/dream_20260523T025401/median/paper_framing.md
+artifacts/dream_reports/dream_20260523T025401/median/paper.tex
+artifacts/dream_reports/dream_20260523T025401/median/paper.aux
+artifacts/dream_reports/dream_20260523T025401/median/paper.out
+artifacts/dream_reports/dream_20260523T025401/median/paper.pdf
+artifacts/dream_reports/dream_20260523T025401/median/paper.log
+artifacts/dream_reports/dream_20260523T025401/logs/paper_agent_median.log
+artifacts/dream_reports/dream_20260523T025401/worst/imagined_experiments.yaml
+artifacts/dream_reports/dream_20260523T025401/worst/experiment_data.json
+artifacts/dream_reports/dream_20260523T025401/worst/paper_framing.md
+artifacts/dream_reports/dream_20260523T025401/logs/paper_agent_worst.log
+artifacts/dream_reports/dream_20260523T034027/logs/phase1_attempt0.log
+artifacts/dream_reports/dream_20260523T034027/logs/phase2_best_attempt0.log
+artifacts/_project/intermediate/analysis_scripts_index.txt
+artifacts/dream_reports/dream_20260523T034027/logs/phase2_median_attempt0.log
+artifacts/dream_reports/dream_20260523T034027/logs/phase2_worst_attempt0.log
+artifacts/dream_reports/dream_20260523T034027/best/imagined_experiments.yaml
+artifacts/dream_reports/dream_20260523T034027/best/experiment_data.json
+artifacts/dream_reports/dream_20260523T034027/best/paper_framing.md
+artifacts/dream_reports/dream_20260523T034027/best/paper.tex
+artifacts/dream_reports/dream_20260523T034027/best/paper.aux
+artifacts/dream_reports/dream_20260523T034027/best/paper.out
+artifacts/dream_reports/dream_20260523T034027/best/paper.pdf
+artifacts/dream_reports/dream_20260523T034027/best/paper.log
+artifacts/dream_reports/dream_20260523T034027/logs/paper_agent_best.log
+artifacts/dream_reports/dream_20260523T034027/median/imagined_experiments.yaml
+artifacts/dream_reports/dream_20260523T034027/median/experiment_data.json
+artifacts/dream_reports/dream_20260523T034027/median/paper_framing.md
+artifacts/_project/report/gradient_analysis_report.md
+artifacts/dream_reports/dream_20260523T034027/median/paper.tex
+artifacts/dream_reports/dream_20260523T034027/median/paper.aux
+artifacts/dream_reports/dream_20260523T034027/median/paper.out
+artifacts/dream_reports/dream_20260523T034027/median/paper.pdf
+artifacts/dream_reports/dream_20260523T034027/median/paper.log
+artifacts/dream_reports/dream_20260523T034027/logs/paper_agent_median.log
+artifacts/dream_reports/dream_20260523T034027/worst/imagined_experiments.yaml
+artifacts/dream_reports/dream_20260523T034027/worst/experiment_data.json
+artifacts/dream_reports/dream_20260523T034027/worst/paper_framing.md
+artifacts/dream_reports/dream_20260523T034027/worst/paper.tex
+artifacts/dream_reports/dream_20260523T034027/worst/paper.aux
+artifacts/dream_reports/dream_20260523T034027/worst/paper.out
+artifacts/dream_reports/dream_20260523T034027/worst/paper.pdf
+artifacts/dream_reports/dream_20260523T034027/worst/paper.log
+artifacts/dream_reports/dream_20260523T034027/logs/paper_agent_worst.log
+artifacts/dream_reports/dream_20260523T034027/best/review_context.yaml
+artifacts/dream_reports/dream_20260523T034027/logs/review_best.log
+artifacts/dream_reports/dream_20260523T034027/best/review_report.md
+artifacts/dream_reports/dream_20260523T034027/median/review_context.yaml
+artifacts/dream_reports/dream_20260523T034027/logs/review_median.log
+artifacts/dream_reports/dream_20260523T034027/median/review_report.md
+artifacts/dream_reports/dream_20260523T034027/worst/review_context.yaml
+artifacts/dream_reports/dream_20260523T034027/logs/review_worst.log
+artifacts/dream_reports/dream_20260523T034027/logs/orchestrator.log
+artifacts/dream_reports/dream_20260523T034027/worst/review_report.md
+artifacts/dream_reports/dream_20260523T034027/meta.yaml
+artifacts/_project/data/bootstrap_results_summary.txt
+artifacts/detach_ln_diagnosis.md
+(Results are truncated. Consider using a more specific path or pattern.)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "8fce6dc4-7767-41f2-9dfc-4fffec6d5433",
+  "tool_use_result": {
+    "filenames": [
+      "artifacts/_project/report/safelibero_survey.md",
+      "artifacts/safelibero_survey.md",
+      "artifacts/_project/report/openvla_oft_survey.md",
+      "artifacts/openvla_oft_survey.md",
+      "artifacts/_project/report/occ_gt_design.md",
+      "artifacts/occ_gt_design.md",
+      "artifacts/occ_pipeline/bev_projection.py",
+      "artifacts/occ_pipeline/__init__.py",
+      "artifacts/occ_pipeline/geom_classifier.py",
+      "artifacts/occ_pipeline/occupancy_3d.py",
+      "artifacts/occ_pipeline/extract_occupancy.py",
+      "artifacts/occ_pipeline/visualize_bev.py",
+      "artifacts/_project/intermediate/bev_aux_head_changes.md",
+      "artifacts/_project/report/occ_crash_diagnosis.md",
+      "artifacts/occ_crash_diagnosis.md",
+      "artifacts/_project/paper/related_work.tex",
+      "artifacts/diagnose_westd10894_batch_kill.md",
+      "artifacts/diagnose_ablation_batch_fail.md",
+      "artifacts/analyze_learning_curve_fixed.py",
+      "artifacts/_project/intermediate/analysis_scripts_v2_manifest.txt",
+      "artifacts/_project/chart/vanilla_occ_viz_report.txt",
+      "artifacts/_project/chart/comparison_50r_aligned_report.txt",
+      "artifacts/ablation_random_occ_s0/report/ablation_random_occ_s0_analysis.md",
+      "artifacts/_project/report/ablation_eval_analysis.txt",
+      "artifacts/extract_depth.py",
+      "artifacts/_project/report/ablation_50r_diagnostic.txt",
+      "artifacts/eval_commands.md",
+      "artifacts/dream_reports/dream_20260523T025401/logs/orchestrator.log",
+      "artifacts/dream_reports/dream_20260523T025401/logs/phase1_attempt0.log",
+      "artifacts/dream_reports/dream_20260523T025401/logs/phase2_best_attempt0.log",
+      "artifacts/dream_reports/dream_20260523T025401/logs/phase2_median_attempt0.log",
+      "artifacts/dream_reports/dream_20260523T025401/logs/phase2_worst_attempt0.log",
+      "artifacts/dream_reports/dream_20260523T025401/best/imagined_experiments.yaml",
+      "artifacts/dream_reports/dream_20260523T025401/best/experiment_data.json",
+      "artifacts/dream_reports/dream_20260523T025401/best/paper_framing.md",
+      "artifacts/dream_reports/dream_20260523T025401/best/paper.tex",
+      "artifacts/dream_reports/dream_20260523T025401/best/paper.aux",
+      "artifacts/dream_reports/dream_20260523T025401/best/paper.out",
+      "artifacts/dream_reports/dream_20260523T025401/best/paper.pdf",
+      "artifacts/dream_reports/dream_20260523T025401/best/paper.log",
+      "artifacts/dream_reports/dream_20260523T025401/logs/paper_agent_best.log",
+      "artifacts/dream_reports/dream_20260523T025401/median/imagined_experiments.yaml",
+      "artifacts/dream_reports/dream_20260523T025401/median/experiment_data.json",
+      "artifacts/dream_reports/dream_20260523T025401/median/paper_framing.md",
+      "artifacts/dream_reports/dream_20260523T025401/median/paper.tex",
+      "artifacts/dream_reports/dream_20260523T025401/median/paper.aux",
+      "artifacts/dream_reports/dream_20260523T025401/median/paper.out",
+      "artifacts/dream_reports/dream_20260523T025401/median/paper.pdf",
+      "artifacts/dream_reports/dream_20260523T025401/median/paper.log",
+      "artifacts/dream_reports/dream_20260523T025401/logs/paper_agent_median.log",
+      "artifacts/dream_reports/dream_20260523T025401/worst/imagined_experiments.yaml",
+      "artifacts/dream_reports/dream_20260523T025401/worst/experiment_data.json",
+      "artifacts/dream_reports/dream_20260523T025401/worst/paper_framing.md",
+      "artifacts/dream_reports/dream_20260523T025401/logs/paper_agent_worst.log",
+      "artifacts/dream_reports/dream_20260523T034027/logs/phase1_attempt0.log",
+      "artifacts/dream_reports/dream_20260523T034027/logs/phase2_best_attempt0.log",
+      "artifacts/_project/intermediate/analysis_scripts_index.txt",
+      "artifacts/dream_reports/dream_20260523T034027/logs/phase2_median_attempt0.log",
+      "artifacts/dream_reports/dream_20260523T034027/logs/phase2_worst_attempt0.log",
+      "artifacts/dream_reports/dream_20260523T034027/best/imagined_experiments.yaml",
+      "artifacts/dream_reports/dream_20260523T034027/best/experiment_data.json",
+      "artifacts/dream_reports/dream_20260523T034027/best/paper_framing.md",
+      "artifacts/dream_reports/dream_20260523T034027/best/paper.tex",
+      "artifacts/dream_reports/dream_20260523T034027/best/paper.aux",
+      "artifacts/dream_reports/dream_20260523T034027/best/paper.out",
+      "artifacts/dream_reports/dream_20260523T034027/best/paper.pdf",
+      "artifacts/dream_reports/dream_20260523T034027/best/paper.log",
+      "artifacts/dream_reports/dream_20260523T034027/logs/paper_agent_best.log",
+      "artifacts/dream_reports/dream_20260523T034027/median/imagined_experiments.yaml",
+      "artifacts/dream_reports/dream_20260523T034027/median/experiment_data.json",
+      "artifacts/dream_reports/dream_20260523T034027/median/paper_framing.md",
+      "artifacts/_project/report/gradient_analysis_report.md",
+      "artifacts/dream_reports/dream_20260523T034027/median/paper.tex",
+      "artifacts/dream_reports/dream_20260523T034027/median/paper.aux",
+      "artifacts/dream_reports/dream_20260523T034027/median/paper.out",
+      "artifacts/dream_reports/dream_20260523T034027/median/paper.pdf",
+      "artifacts/dream_reports/dream_20260523T034027/median/paper.log",
+      "artifacts/dream_reports/dream_20260523T034027/logs/paper_agent_median.log",
+      "artifacts/dream_reports/dream_20260523T034027/worst/imagined_experiments.yaml",
+      "artifacts/dream_reports/dream_20260523T034027/worst/experiment_data.json",
+      "artifacts/dream_reports/dream_20260523T034027/worst/paper_framing.md",
+      "artifacts/dream_reports/dream_20260523T034027/worst/paper.tex",
+      "artifacts/dream_reports/dream_20260523T034027/worst/paper.aux",
+      "artifacts/dream_reports/dream_20260523T034027/worst/paper.out",
+      "artifacts/dream_reports/dream_20260523T034027/worst/paper.pdf",
+      "artifacts/dream_reports/dream_20260523T034027/worst/paper.log",
+      "artifacts/dream_reports/dream_20260523T034027/logs/paper_agent_worst.log",
+      "artifacts/dream_reports/dream_20260523T034027/best/review_context.yaml",
+      "artifacts/dream_reports/dream_20260523T034027/logs/review_best.log",
+      "artifacts/dream_reports/dream_20260523T034027/best/review_report.md",
+      "artifacts/dream_reports/dream_20260523T034027/median/review_context.yaml",
+      "artifacts/dream_reports/dream_20260523T034027/logs/review_median.log",
+      "artifacts/dream_reports/dream_20260523T034027/median/review_report.md",
+      "artifacts/dream_reports/dream_20260523T034027/worst/review_context.yaml",
+      "artifacts/dream_reports/dream_20260523T034027/logs/review_worst.log",
+      "artifacts/dream_reports/dream_20260523T034027/logs/orchestrator.log",
+      "artifacts/dream_reports/dream_20260523T034027/worst/review_report.md",
+      "artifacts/dream_reports/dream_20260523T034027/meta.yaml",
+      "artifacts/_project/data/bootstrap_results_summary.txt",
+      "artifacts/detach_ln_diagnosis.md"
+    ],
+    "durationMs": 10,
+    "numFiles": 100,
+    "truncated": true
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The paper files are in `docs/paper/`. Let me now read the main paper sections and search for TODOs/FIXMEs. I'll also check the ROADMAP to understand the 23/24 coverage tracking. Let me launch parallel reads of the key paper files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "46088dd7-00d9-4e4a-a516-cdb216979d9f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B8u497LgjM4UmacQVUL7TR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9407,
+      "cache_read_input_tokens": 35013,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9407
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+Paper files are in `docs/paper/`. Let me read the key sections and search for TODOs/placeholders.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "0009782c-8e9b-4bc1-8045-407457947633",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B8u497LgjM4UmacQVUL7TR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9407,
+      "cache_read_input_tokens": 35013,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9407
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01UoaoVutncTTkKnNbMAj1fD`</summary>
+
+```json
+{
+  "subagent_type": "Explore",
+  "description": "Search paper TODOs/placeholders",
+  "prompt": "Search all .tex files under /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/ for any TODO, FIXME, PLACEHOLDER, XXX, TBD, ???, or \\hl{} (highlight) markers. Also search for patterns like \"INSERT\", \"FILL\", \"[MISSING]\", \"CITE\", \"REF\". Show all matches with file paths, line numbers, and context. Be thorough — search breadth: very thorough."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "d0ed56ae-d273-430e-aad0-053c820911f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B8u497LgjM4UmacQVUL7TR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9407,
+      "cache_read_input_tokens": 35013,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9407
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 27_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "ad95296947d7402eb",
+  "tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "description": "Search paper TODOs/placeholders",
+  "task_type": "local_agent",
+  "prompt": "Search all .tex files under /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/ for any TODO, FIXME, PLACEHOLDER, XXX, TBD, ???, or \\hl{} (highlight) markers. Also search for patterns like \"INSERT\", \"FILL\", \"[MISSING]\", \"CITE\", \"REF\". Show all matches with file paths, line numbers, and context. Be thorough — search breadth: very thorough.",
+  "uuid": "cfc49e87-2922-466e-84a9-a3f4b444844c",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b"
+}
+```
+
+---
+
+## Round 1
+
+103 recorded events
+
+### User
+
+_source line 28 · 2026-05-25T06:58:40.666Z_
+
+Search all .tex files under /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/ for any TODO, FIXME, PLACEHOLDER, XXX, TBD, ???, or \hl{} (highlight) markers. Also search for patterns like "INSERT", "FILL", "[MISSING]", "CITE", "REF". Show all matches with file paths, line numbers, and context. Be thorough — search breadth: very thorough.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "99839939-afa4-4915-810a-db790acd89f1"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01UM8urgC5UtmtzVX3j3WQZh`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "40826f1b-613f-4fe3-bc93-4dc1f3391b69",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B8u497LgjM4UmacQVUL7TR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9407,
+      "cache_read_input_tokens": 35013,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9407
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-25T06:58:41.558Z_
+
+<details><summary>↩ Tool result · `toolu_01UM8urgC5UtmtzVX3j3WQZh`</summary>
+
+```text
+1	% OccSafe-VLA: Occupancy-Aware Safety for Vision-Language-Action Models
+2	% Target: CoRL 2026
+3	\documentclass{article}
+4	
+5	\usepackage[dvipsnames]{xcolor}
+6	\usepackage{corl_2026}
+7	
+8	\usepackage{graphicx}
+9	\usepackage{amsmath,amssymb}
+10	\usepackage{booktabs}
+11	\usepackage{enumitem}
+12	\usepackage{subcaption}
+13	
+14	\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+15	
+16	\title{Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer?\\ An Empirical Investigation}
+17	
+18	\author{
+19	Anonymous Author(s)
+20	}
+21	
+22	\begin{document}
+23	\maketitle
+24	
+25	\begin{abstract}
+26	Fine-tuned Vision-Language-Action (VLA) models can achieve high task success yet remain behaviorally unsafe: on SafeLIBERO Level~I, a fine-tuned OpenVLA-OFT attains 90.7\% task success but only 78.0\% collision avoidance.
+27	We present the first factorial study isolating how auxiliary spatial supervision during VLA fine-tuning affects collision avoidance, with twelve conditions varying gradient flow, label content, normalization type, spatial reference frame, and temporal extent.
+28	Our central finding is a crossover interaction between normalization type and gradient flow in the auxiliary head (interaction effect: 7.3\,pp, $p{=}0.025$). BatchNorm with gradient flow maintains CAR comparable to Vanilla (0.797 vs.\ 0.780), but without gradient flow causes catastrophic representational drift (Detach OCC 0.746, CKA $\downarrow$0.31--0.54). LayerNorm eliminates this drift under detachment (Detach+LN 0.765, CKA $\geq$0.96) but consistently degrades safety when gradient flow is present (Full OCC+LN 0.743, $-$3.7\,pp vs.\ Vanilla)---the worst configuration tested. Gradient flow benefits are thus BatchNorm-mediated, not an intrinsic property of auxiliary gradients.
+29	This reveals a deep representation-behavior dissociation: Full OCC+LN preserves pretrained representations yet achieves the lowest collision avoidance, demonstrating that representational fidelity does not predict safety behavior. Label content (structured, random, depth) does not affect outcomes when gradient flow is maintained.
+30	Practical guidelines: maintain BatchNorm with gradient flow---the only configuration that preserves CAR; if gradient flow is unavailable, substitute LayerNorm to prevent representational drift; never combine LayerNorm with gradient flow. The auxiliary head is discarded after training at zero inference cost.
+31	\end{abstract}
+32	
+33	\keywords{Vision-Language-Action Models, Robot Safety, Auxiliary Supervision, Collision Avoidance}
+34	
+35	\input{introduction}
+36	
+37	\input{related_work}
+38	
+39	\input{method}
+40	
+41	\input{results}
+42	
+43	\input{discussion}
+44	
+45	\input{conclusion}
+46	
+47	\bibliography{references}
+48	
+49	\clearpage
+50	\appendix
+51	\input{appendix}
+52	
+53	\end{document}
+54	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "a0380351-f6f2-4eb2-a1d3-7c4618ac60b1",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/main.tex",
+      "content": "% OccSafe-VLA: Occupancy-Aware Safety for Vision-Language-Action Models\n% Target: CoRL 2026\n\\documentclass{article}\n\n\\usepackage[dvipsnames]{xcolor}\n\\usepackage{corl_2026}\n\n\\usepackage{graphicx}\n\\usepackage{amsmath,amssymb}\n\\usepackage{booktabs}\n\\usepackage{enumitem}\n\\usepackage{subcaption}\n\n\\newcommand{\\todo}[1]{\\textcolor{red}{[TODO: #1]}}\n\n\\title{Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer?\\\\ An Empirical Investigation}\n\n\\author{\nAnonymous Author(s)\n}\n\n\\begin{document}\n\\maketitle\n\n\\begin{abstract}\nFine-tuned Vision-Language-Action (VLA) models can achieve high task success yet remain behaviorally unsafe: on SafeLIBERO Level~I, a fine-tuned OpenVLA-OFT attains 90.7\\% task success but only 78.0\\% collision avoidance.\nWe present the first factorial study isolating how auxiliary spatial supervision during VLA fine-tuning affects collision avoidance, with twelve conditions varying gradient flow, label content, normalization type, spatial reference frame, and temporal extent.\nOur central finding is a crossover interaction between normalization type and gradient flow in the auxiliary head (interaction effect: 7.3\\,pp, $p{=}0.025$). BatchNorm with gradient flow maintains CAR comparable to Vanilla (0.797 vs.\\ 0.780), but without gradient flow causes catastrophic representational drift (Detach OCC 0.746, CKA $\\downarrow$0.31--0.54). LayerNorm eliminates this drift under detachment (Detach+LN 0.765, CKA $\\geq$0.96) but consistently degrades safety when gradient flow is present (Full OCC+LN 0.743, $-$3.7\\,pp vs.\\ Vanilla)---the worst configuration tested. Gradient flow benefits are thus BatchNorm-mediated, not an intrinsic property of auxiliary gradients.\nThis reveals a deep representation-behavior dissociation: Full OCC+LN preserves pretrained representations yet achieves the lowest collision avoidance, demonstrating that representational fidelity does not predict safety behavior. Label content (structured, random, depth) does not affect outcomes when gradient flow is maintained.\nPractical guidelines: maintain BatchNorm with gradient flow---the only configuration that preserves CAR; if gradient flow is unavailable, substitute LayerNorm to prevent representational drift; never combine LayerNorm with gradient flow. The auxiliary head is discarded after training at zero inference cost.\n\\end{abstract}\n\n\\keywords{Vision-Language-Action Models, Robot Safety, Auxiliary Supervision, Collision Avoidance}\n\n\\input{introduction}\n\n\\input{related_work}\n\n\\input{method}\n\n\\input{results}\n\n\\input{discussion}\n\n\\input{conclusion}\n\n\\bibliography{references}\n\n\\clearpage\n\\appendix\n\\input{appendix}\n\n\\end{document}\n",
+      "numLines": 54,
+      "startLine": 1,
+      "totalLines": 54
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01R5BLuTFHKUdmJC54SjgciB`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/results.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "45cd434c-0974-451a-96ce-c04344a1d302",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B8u497LgjM4UmacQVUL7TR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9407,
+      "cache_read_input_tokens": 35013,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9407
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-25T06:58:42.042Z_
+
+<details><summary>↩ Tool result · `toolu_01R5BLuTFHKUdmJC54SjgciB`</summary>
+
+```text
+1	
+2	\section{Results}
+3	\label{sec:results}
+4	
+5	\subsection{Main Results}
+6	\label{sec:main_results}
+7	
+8	Table~\ref{tab:main_results} summarizes TSR and CAR across conditions (50 rollouts $\times$ 10 tasks per seed). Statistical comparisons use paired $t$-tests and Cohen's $d$ against the Vanilla baseline.
+9	
+10	\textbf{Crossover interaction between normalization and gradient flow.} The four conditions crossing normalization type (BN/LN) with gradient flow (ON/OFF) reveal a crossover interaction rather than additive effects (Section~\ref{sec:mechanism}). Full OCC with BN maintains CAR comparable to Vanilla (0.797 vs.\ 0.780, $d{=}+0.69$, $p{=}0.44$). Detach OCC with BN falls 3.4\,pp below Vanilla ($p{=}0.031$, $d{=}-3.90$), the only statistically significant pairwise difference. Detach+LN (0.765) recovers 1.9\,pp of this deficit by eliminating BatchNorm interference. However, Full OCC+LN (0.743) consistently degrades CAR by 3.7\,pp below Vanilla despite maintaining gradient flow---the worst configuration tested. BN is thus beneficial when gradient flow calibrates its statistics, but harmful when gradient flow is absent; LN shows the opposite pattern. Label content does not affect outcomes: Random OCC (0.789), Depth (0.780), and Full OCC (0.797) are all within cross-seed variance ($p > 0.4$).
+11	
+12	\textbf{Detach destabilizes optimization broadly.} Detach OCC exhibits TSR variance an order of magnitude above other conditions ($\sigma = 0.163$ vs.\ $< 0.050$): one seed collapses to TSR 0.624 with uniform degradation across all tasks, while its CAR (0.748) stays comparable to the other two seeds. The remarkably low CAR variance ($\sigma = 0.002$) despite volatile TSR ($\sigma = 0.163$) suggests deterministic convergence to a degraded safety behavior---BN interference imposes a consistent representational distortion regardless of initialization.
+13	
+14	
+15	
+16	\begin{table}[t]
+17	\centering
+18	\caption{Overall results on SafeLIBERO Level~I (10 tasks). Mean $\pm$ SD across seeds; 95\% CIs via bootstrap. $^\dagger$1 seed; $^\ddagger$2 seeds. $^*$Statistically significant vs.\ Vanilla (paired $t$-test $p{<}0.05$). Cutoff conditions retain the auxiliary head forward pass post-cutoff (Detach mode).}
+19	\label{tab:main_results}
+20	\small
+21	\setlength{\tabcolsep}{4pt}
+22	\begin{tabular}{lccccc}
+23	\toprule
+24	Condition & Seeds & TSR & CAR & $95\%$ CI & $\Delta$CAR \\
+25	\midrule
+26	Full OCC (BN)      & 3 & 0.894 $\pm$ 0.050 & \textbf{0.797} $\pm$ 0.032 & [.770, .832] & $+$1.7 \\
+27	Random OCC (BN)    & 3 & 0.869 $\pm$ 0.029 & 0.789 $\pm$ 0.031 & [.754, .814] & $+$0.9 \\
+28	Vanilla       & 3 & 0.907 $\pm$ 0.009 & 0.780 $\pm$ 0.012 & [.766, .788] & ---    \\
+29	Detach+LN     & 3 & 0.901 $\pm$ 0.016 & 0.765 $\pm$ 0.023 & [.748, .792] & $-$1.5 \\
+30	Detach OCC (BN)$^*$    & 3 & 0.812 $\pm$ 0.163 & 0.746 $\pm$ 0.002 & [.744, .748] & $-$3.4 \\
+31	Full OCC+LN   & 3 & 0.897 $\pm$ 0.032 & 0.743 $\pm$ 0.024 & [.718, .766] & $-$3.7 \\
+32	\midrule
+33	Depth             & 4 & 0.889 $\pm$ 0.042 & 0.780 $\pm$ 0.039 & [.747, .812] & 0.0 \\
+34	Cutoff@15K$^\dagger$    & 1 & 0.912 & 0.804 & --- & $+$2.4 \\
+35	Cutoff@25K$^\ddagger$   & 2 & 0.887 $\pm$ 0.061 & 0.724 $\pm$ 0.051 & --- & $-$5.6 \\
+36	Cutoff@35K        & 3 & 0.933 $\pm$ 0.032 & 0.779 $\pm$ 0.017 & [.768, .798] & $-$0.1 \\
+37	Cutoff@45K$^\dagger$    & 1 & 0.896 & 0.764 & --- & $-$1.6 \\
+38	Reverse Cutoff$^\ddagger$ & 2 & 0.839 $\pm$ 0.072 & 0.718 $\pm$ 0.025 & --- & $-$6.2 \\
+39	\bottomrule
+40	\end{tabular}
+41	\end{table}
+42	
+43	\subsection{Normalization--Gradient Flow Interaction}
+44	\label{sec:mechanism}
+45	
+46	The four conditions crossing normalization type (BN/LN) with gradient flow (ON/OFF) form a $2{\times}2$ factorial (Table~\ref{tab:factorial}). A $2{\times}2$ ANOVA confirms a significant interaction ($F(1,8){=}7.511$, $p{=}0.025$, partial $\eta^2{=}0.484$, Cohen's $f{=}0.969$), while neither main effect reaches significance (gradient flow: $p{=}0.326$; normalization: $p{=}0.231$). The interaction effect is 7.3\,pp: gradient flow's effect on CAR reverses sign depending on normalization type.
+47	
+48	\textbf{Crossover, not additive.} With BN, gradient flow improves CAR by $+$5.1\,pp (Full OCC 0.797 vs.\ Detach 0.746; simple effect $p{=}0.052$, $d{=}5.13$). With LN, gradient flow \emph{degrades} CAR by $-$2.2\,pp (Full OCC+LN 0.743 vs.\ Detach+LN 0.765; $p{=}0.26$). Neither simple effect reaches significance individually, but the large effect sizes and opposing directions confirm the crossover pattern. This rules out an additive decomposition: gradient flow benefits are BatchNorm-mediated, arising from gradient calibration of BN running statistics, not from an intrinsic regularization property of auxiliary gradients.
+49	
+50	\textbf{Full OCC+LN is the worst configuration.} Despite maintaining gradient flow and using a normalization layer that eliminates representational drift (Section~\ref{sec:gradient_dynamics}), Full OCC+LN (0.743) falls 3.7\,pp below Vanilla---consistently across all three seeds (0.766, 0.718, 0.744). This is the strongest evidence for a representation-behavior dissociation: the configuration that best preserves pretrained representations produces the worst safety behavior.
+51	
+52	\begin{table}[t]
+53	\centering
+54	\caption{$2{\times}2$ factorial: normalization type $\times$ gradient flow. The 7.3\,pp interaction effect indicates a crossover: gradient flow benefits are BN-mediated.}
+55	\label{tab:factorial}
+56	\begin{tabular}{lccc}
+57	\toprule
+58	 & Gradient ON & Gradient OFF & $\Delta$(ON$-$OFF) \\
+59	\midrule
+60	BatchNorm    & Full OCC (\textbf{0.797}) & Detach OCC (0.746) & $+$5.1 \\
+61	LayerNorm    & Full OCC+LN (0.743) & Detach+LN (0.765) & $-$2.2 \\
+62	\midrule
+63	$\Delta$(BN$-$LN) & $+$5.4 & $-$1.9 & interaction: 7.3 \\
+64	\bottomrule
+65	\end{tabular}
+66	\end{table}
+67	
+68	\subsection{Gradient Dynamics}
+69	\label{sec:gradient_dynamics}
+70	
+71	\begin{figure}[t]
+72	\centering
+73	\includegraphics[width=\textwidth]{figures/gradient_analysis_combined.pdf}
+74	\caption{Gradient dynamics during VLA fine-tuning (seed 42, 200 batches at 50K checkpoint; four conditions: Vanilla, Full OCC, Detach+BN, Full OCC+LN). (a)~Action loss gradient norms per encoder layer: Vanilla, Full OCC, and Random OCC are comparable, while Detach collapses to 1--13\% of Vanilla. (b)~Auxiliary loss gradient norms in the shared encoder (Detach excluded---no auxiliary gradients by design). (c)~Action--auxiliary gradient cosine similarity per layer (near zero for both Full OCC and Random OCC, confirming orthogonality). (d)~Gradient collapse ratio (Detach / Vanilla) quantifying the per-layer collapse magnitude.}
+75	\label{fig:gradient_analysis}
+76	\end{figure}
+77	
+78	Figure~\ref{fig:gradient_analysis} reveals a gradient collapse mechanism underlying the Detach degradation. Action loss gradient norms are comparable across Vanilla and gradient-flow conditions (0.87--1.14$\times$ Vanilla norms), ruling out gradient amplification. Detach OCC, however, exhibits catastrophic collapse: encoder gradient norms fall to 1--13\% of Vanilla across all layers (action gradient norm 0.005 vs.\ Vanilla 0.126, a 25$\times$ reduction). Per-layer analysis (Figure~\ref{fig:per_layer_combined}, Appendix) decomposes auxiliary gradient flow into amplitude and direction: Detach collapses uniformly while gradient-flow conditions maintain Vanilla-comparable norms; DINOv2 layers show $\sim$50\% conflict rate while SigLIP late layers (blocks 21--24) drop to 19--25\%, indicating cooperative alignment. Both patterns are identical for structured and random labels. The crossover interaction (Section~\ref{sec:mechanism}) reveals that gradient flow's collapse-prevention effect is BN-mediated: under LN, gradient flow degrades rather than improves CAR.
+79	
+80	\textbf{LN induces cross-backbone gradient redistribution.} Same-seed analysis (seed 42, four conditions, 200 batches at 50K checkpoint) reveals why LayerNorm with gradient flow degrades CAR. Under Full OCC+LN, action loss gradients in DINOv2 are suppressed 3.5$\times$ relative to BN (mean norm 0.048 vs.\ 0.168), while SigLIP action gradients are amplified 2.5$\times$ (0.206 vs.\ 0.081). Conflict rates remain ${\sim}$50\% in both conditions, ruling out directional conflict as the cause. The mechanism is cross-backbone amplitude redistribution: LN normalization redistributes gradient magnitude from DINOv2 to SigLIP, disrupting the balanced allocation that BN maintains (DINOv2: 0.8$\times$ Vanilla, SigLIP: 1.0$\times$ Vanilla). This explains why Full OCC+LN degrades CAR despite preserving pretrained representations---the problem is not \emph{what} the encoders represent, but \emph{how} gradient flow allocates learning signal across them.
+81	
+82	\begin{figure}[t]
+83	\centering
+84	\includegraphics[width=0.75\textwidth]{figures/cka_analysis.pdf}
+85	\caption{CKA similarity between fine-tuned and pretrained encoder features. All conditions except Detach OCC preserve pretrained structure (CKA $\geq$0.95), including Full OCC+LN---which achieves the lowest CAR despite high CKA, evidencing a representation-behavior dissociation. Detach OCC drifts catastrophically, especially in SigLIP middle layers, confirming BatchNorm as the sole cause of representational drift.}
+86	\label{fig:cka_analysis}
+87	\end{figure}
+88	
+89	\textbf{CKA confirms BN as the sole cause of representational drift---but representations do not predict behavior.} CKA between fine-tuned and pretrained features (Figure~\ref{fig:cka_analysis}) shows that all non-Detach-BN conditions preserve pretrained structure (CKA $\geq$ 0.95): Vanilla, Full OCC, Random OCC, Detach+LN, and Full OCC+LN. Detach OCC alone drifts catastrophically (DINOv2: 0.539; SigLIP: 0.312). CKA analysis indicates that LN generally does not cause representational drift (s1, s2 CKA${\approx}$0.97), suggesting that the CAR degradation under Full OCC+LN operates through gradient dynamics---specifically the cross-backbone gradient redistribution described above---rather than representation corruption. Yet Full OCC+LN achieves the \emph{lowest} CAR (0.743) while Full OCC with BN achieves the highest (0.797), both at high CKA. This \emph{representation-behavior dissociation} demonstrates that preserving pretrained features is neither sufficient nor predictive of collision avoidance.
+90	
+91	\textbf{Same-seed validation.} The cross-backbone gradient redistribution findings are confirmed by same-seed analysis (seed 42, four conditions trained identically except for normalization and gradient flow), eliminating cross-seed confounds present in earlier cross-seed comparisons.
+92	
+93	\subsection{Additional Observations}
+94	\label{sec:per_task}
+95	\label{sec:temporal}
+96	
+97	\textbf{Per-task concentration.} Seven of ten tasks achieve CAR $\geq$ 0.92 under Vanilla; overall CAR is dominated by three physically constrained tasks (T3, T5, T6; Appendix~\ref{app:per_task}). Detach is systematically worst on these hard tasks (T3: 0.11, T5: 0.05), consistent with gradient collapse exacerbating degradation where obstacle proximity is tight.
+98	
+99	\textbf{Egocentric depth matches Vanilla.} Depth (4 seeds) achieves CAR 0.780 $\pm$ 0.039---identical to Vanilla---despite providing per-pixel geometric information. Three label types (structured BEV, random binary, egocentric depth) yield comparable CAR when gradient flow is maintained.
+100	
+101	\textbf{Temporal dynamics (preliminary).} Cutoff@35K (3 seeds) achieves CAR 0.779, statistically indistinguishable from Vanilla ($\Delta = -$0.1\,pp), confirming that 35K steps of gradient flow fully protects collision avoidance. Surprisingly, Cutoff@25K (0.724, 2 seeds) and Reverse Cutoff (0.718, 2 seeds) fall substantially \emph{below} Vanilla. The most parsimonious explanation: setting the loss weight to zero retains the auxiliary head forward pass, so the post-cutoff period operates in Detach mode---BatchNorm interference acts on representations shaped by gradient flow, without gradient compensation. This is not withdrawal from gradient flow \emph{per se}, but transition into an actively harmful regime. Third seeds are in progress; extended analysis in Appendix~\ref{app:temporal}.
+102	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "96942cab-d549-4f3d-91db-227aaa3176b3",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/results.tex",
+      "content": "\n\\section{Results}\n\\label{sec:results}\n\n\\subsection{Main Results}\n\\label{sec:main_results}\n\nTable~\\ref{tab:main_results} summarizes TSR and CAR across conditions (50 rollouts $\\times$ 10 tasks per seed). Statistical comparisons use paired $t$-tests and Cohen's $d$ against the Vanilla baseline.\n\n\\textbf{Crossover interaction between normalization and gradient flow.} The four conditions crossing normalization type (BN/LN) with gradient flow (ON/OFF) reveal a crossover interaction rather than additive effects (Section~\\ref{sec:mechanism}). Full OCC with BN maintains CAR comparable to Vanilla (0.797 vs.\\ 0.780, $d{=}+0.69$, $p{=}0.44$). Detach OCC with BN falls 3.4\\,pp below Vanilla ($p{=}0.031$, $d{=}-3.90$), the only statistically significant pairwise difference. Detach+LN (0.765) recovers 1.9\\,pp of this deficit by eliminating BatchNorm interference. However, Full OCC+LN (0.743) consistently degrades CAR by 3.7\\,pp below Vanilla despite maintaining gradient flow---the worst configuration tested. BN is thus beneficial when gradient flow calibrates its statistics, but harmful when gradient flow is absent; LN shows the opposite pattern. Label content does not affect outcomes: Random OCC (0.789), Depth (0.780), and Full OCC (0.797) are all within cross-seed variance ($p > 0.4$).\n\n\\textbf{Detach destabilizes optimization broadly.} Detach OCC exhibits TSR variance an order of magnitude above other conditions ($\\sigma = 0.163$ vs.\\ $< 0.050$): one seed collapses to TSR 0.624 with uniform degradation across all tasks, while its CAR (0.748) stays comparable to the other two seeds. The remarkably low CAR variance ($\\sigma = 0.002$) despite volatile TSR ($\\sigma = 0.163$) suggests deterministic convergence to a degraded safety behavior---BN interference imposes a consistent representational distortion regardless of initialization.\n\n\n\n\\begin{table}[t]\n\\centering\n\\caption{Overall results on SafeLIBERO Level~I (10 tasks). Mean $\\pm$ SD across seeds; 95\\% CIs via bootstrap. $^\\dagger$1 seed; $^\\ddagger$2 seeds. $^*$Statistically significant vs.\\ Vanilla (paired $t$-test $p{<}0.05$). Cutoff conditions retain the auxiliary head forward pass post-cutoff (Detach mode).}\n\\label{tab:main_results}\n\\small\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{lccccc}\n\\toprule\nCondition & Seeds & TSR & CAR & $95\\%$ CI & $\\Delta$CAR \\\\\n\\midrule\nFull OCC (BN)      & 3 & 0.894 $\\pm$ 0.050 & \\textbf{0.797} $\\pm$ 0.032 & [.770, .832] & $+$1.7 \\\\\nRandom OCC (BN)    & 3 & 0.869 $\\pm$ 0.029 & 0.789 $\\pm$ 0.031 & [.754, .814] & $+$0.9 \\\\\nVanilla       & 3 & 0.907 $\\pm$ 0.009 & 0.780 $\\pm$ 0.012 & [.766, .788] & ---    \\\\\nDetach+LN     & 3 & 0.901 $\\pm$ 0.016 & 0.765 $\\pm$ 0.023 & [.748, .792] & $-$1.5 \\\\\nDetach OCC (BN)$^*$    & 3 & 0.812 $\\pm$ 0.163 & 0.746 $\\pm$ 0.002 & [.744, .748] & $-$3.4 \\\\\nFull OCC+LN   & 3 & 0.897 $\\pm$ 0.032 & 0.743 $\\pm$ 0.024 & [.718, .766] & $-$3.7 \\\\\n\\midrule\nDepth             & 4 & 0.889 $\\pm$ 0.042 & 0.780 $\\pm$ 0.039 & [.747, .812] & 0.0 \\\\\nCutoff@15K$^\\dagger$    & 1 & 0.912 & 0.804 & --- & $+$2.4 \\\\\nCutoff@25K$^\\ddagger$   & 2 & 0.887 $\\pm$ 0.061 & 0.724 $\\pm$ 0.051 & --- & $-$5.6 \\\\\nCutoff@35K        & 3 & 0.933 $\\pm$ 0.032 & 0.779 $\\pm$ 0.017 & [.768, .798] & $-$0.1 \\\\\nCutoff@45K$^\\dagger$    & 1 & 0.896 & 0.764 & --- & $-$1.6 \\\\\nReverse Cutoff$^\\ddagger$ & 2 & 0.839 $\\pm$ 0.072 & 0.718 $\\pm$ 0.025 & --- & $-$6.2 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Normalization--Gradient Flow Interaction}\n\\label{sec:mechanism}\n\nThe four conditions crossing normalization type (BN/LN) with gradient flow (ON/OFF) form a $2{\\times}2$ factorial (Table~\\ref{tab:factorial}). A $2{\\times}2$ ANOVA confirms a significant interaction ($F(1,8){=}7.511$, $p{=}0.025$, partial $\\eta^2{=}0.484$, Cohen's $f{=}0.969$), while neither main effect reaches significance (gradient flow: $p{=}0.326$; normalization: $p{=}0.231$). The interaction effect is 7.3\\,pp: gradient flow's effect on CAR reverses sign depending on normalization type.\n\n\\textbf{Crossover, not additive.} With BN, gradient flow improves CAR by $+$5.1\\,pp (Full OCC 0.797 vs.\\ Detach 0.746; simple effect $p{=}0.052$, $d{=}5.13$). With LN, gradient flow \\emph{degrades} CAR by $-$2.2\\,pp (Full OCC+LN 0.743 vs.\\ Detach+LN 0.765; $p{=}0.26$). Neither simple effect reaches significance individually, but the large effect sizes and opposing directions confirm the crossover pattern. This rules out an additive decomposition: gradient flow benefits are BatchNorm-mediated, arising from gradient calibration of BN running statistics, not from an intrinsic regularization property of auxiliary gradients.\n\n\\textbf{Full OCC+LN is the worst configuration.} Despite maintaining gradient flow and using a normalization layer that eliminates representational drift (Section~\\ref{sec:gradient_dynamics}), Full OCC+LN (0.743) falls 3.7\\,pp below Vanilla---consistently across all three seeds (0.766, 0.718, 0.744). This is the strongest evidence for a representation-behavior dissociation: the configuration that best preserves pretrained representations produces the worst safety behavior.\n\n\\begin{table}[t]\n\\centering\n\\caption{$2{\\times}2$ factorial: normalization type $\\times$ gradient flow. The 7.3\\,pp interaction effect indicates a crossover: gradient flow benefits are BN-mediated.}\n\\label{tab:factorial}\n\\begin{tabular}{lccc}\n\\toprule\n & Gradient ON & Gradient OFF & $\\Delta$(ON$-$OFF) \\\\\n\\midrule\nBatchNorm    & Full OCC (\\textbf{0.797}) & Detach OCC (0.746) & $+$5.1 \\\\\nLayerNorm    & Full OCC+LN (0.743) & Detach+LN (0.765) & $-$2.2 \\\\\n\\midrule\n$\\Delta$(BN$-$LN) & $+$5.4 & $-$1.9 & interaction: 7.3 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Gradient Dynamics}\n\\label{sec:gradient_dynamics}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/gradient_analysis_combined.pdf}\n\\caption{Gradient dynamics during VLA fine-tuning (seed 42, 200 batches at 50K checkpoint; four conditions: Vanilla, Full OCC, Detach+BN, Full OCC+LN). (a)~Action loss gradient norms per encoder layer: Vanilla, Full OCC, and Random OCC are comparable, while Detach collapses to 1--13\\% of Vanilla. (b)~Auxiliary loss gradient norms in the shared encoder (Detach excluded---no auxiliary gradients by design). (c)~Action--auxiliary gradient cosine similarity per layer (near zero for both Full OCC and Random OCC, confirming orthogonality). (d)~Gradient collapse ratio (Detach / Vanilla) quantifying the per-layer collapse magnitude.}\n\\label{fig:gradient_analysis}\n\\end{figure}\n\nFigure~\\ref{fig:gradient_analysis} reveals a gradient collapse mechanism underlying the Detach degradation. Action loss gradient norms are comparable across Vanilla and gradient-flow conditions (0.87--1.14$\\times$ Vanilla norms), ruling out gradient amplification. Detach OCC, however, exhibits catastrophic collapse: encoder gradient norms fall to 1--13\\% of Vanilla across all layers (action gradient norm 0.005 vs.\\ Vanilla 0.126, a 25$\\times$ reduction). Per-layer analysis (Figure~\\ref{fig:per_layer_combined}, Appendix) decomposes auxiliary gradient flow into amplitude and direction: Detach collapses uniformly while gradient-flow conditions maintain Vanilla-comparable norms; DINOv2 layers show $\\sim$50\\% conflict rate while SigLIP late layers (blocks 21--24) drop to 19--25\\%, indicating cooperative alignment. Both patterns are identical for structured and random labels. The crossover interaction (Section~\\ref{sec:mechanism}) reveals that gradient flow's collapse-prevention effect is BN-mediated: under LN, gradient flow degrades rather than improves CAR.\n\n\\textbf{LN induces cross-backbone gradient redistribution.} Same-seed analysis (seed 42, four conditions, 200 batches at 50K checkpoint) reveals why LayerNorm with gradient flow degrades CAR. Under Full OCC+LN, action loss gradients in DINOv2 are suppressed 3.5$\\times$ relative to BN (mean norm 0.048 vs.\\ 0.168), while SigLIP action gradients are amplified 2.5$\\times$ (0.206 vs.\\ 0.081). Conflict rates remain ${\\sim}$50\\% in both conditions, ruling out directional conflict as the cause. The mechanism is cross-backbone amplitude redistribution: LN normalization redistributes gradient magnitude from DINOv2 to SigLIP, disrupting the balanced allocation that BN maintains (DINOv2: 0.8$\\times$ Vanilla, SigLIP: 1.0$\\times$ Vanilla). This explains why Full OCC+LN degrades CAR despite preserving pretrained representations---the problem is not \\emph{what} the encoders represent, but \\emph{how} gradient flow allocates learning signal across them.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.75\\textwidth]{figures/cka_analysis.pdf}\n\\caption{CKA similarity between fine-tuned and pretrained encoder features. All conditions except Detach OCC preserve pretrained structure (CKA $\\geq$0.95), including Full OCC+LN---which achieves the lowest CAR despite high CKA, evidencing a representation-behavior dissociation. Detach OCC drifts catastrophically, especially in SigLIP middle layers, confirming BatchNorm as the sole cause of representational drift.}\n\\label{fig:cka_analysis}\n\\end{figure}\n\n\\textbf{CKA confirms BN as the sole cause of representational drift---but representations do not predict behavior.} CKA between fine-tuned and pretrained features (Figure~\\ref{fig:cka_analysis}) shows that all non-Detach-BN conditions preserve pretrained structure (CKA $\\geq$ 0.95): Vanilla, Full OCC, Random OCC, Detach+LN, and Full OCC+LN. Detach OCC alone drifts catastrophically (DINOv2: 0.539; SigLIP: 0.312). CKA analysis indicates that LN generally does not cause representational drift (s1, s2 CKA${\\approx}$0.97), suggesting that the CAR degradation under Full OCC+LN operates through gradient dynamics---specifically the cross-backbone gradient redistribution described above---rather than representation corruption. Yet Full OCC+LN achieves the \\emph{lowest} CAR (0.743) while Full OCC with BN achieves the highest (0.797), both at high CKA. This \\emph{representation-behavior dissociation} demonstrates that preserving pretrained features is neither sufficient nor predictive of collision avoidance.\n\n\\textbf{Same-seed validation.} The cross-backbone gradient redistribution findings are confirmed by same-seed analysis (seed 42, four conditions trained identically except for normalization and gradient flow), eliminating cross-seed confounds present in earlier cross-seed comparisons.\n\n\\subsection{Additional Observations}\n\\label{sec:per_task}\n\\label{sec:temporal}\n\n\\textbf{Per-task concentration.} Seven of ten tasks achieve CAR $\\geq$ 0.92 under Vanilla; overall CAR is dominated by three physically constrained tasks (T3, T5, T6; Appendix~\\ref{app:per_task}). Detach is systematically worst on these hard tasks (T3: 0.11, T5: 0.05), consistent with gradient collapse exacerbating degradation where obstacle proximity is tight.\n\n\\textbf{Egocentric depth matches Vanilla.} Depth (4 seeds) achieves CAR 0.780 $\\pm$ 0.039---identical to Vanilla---despite providing per-pixel geometric information. Three label types (structured BEV, random binary, egocentric depth) yield comparable CAR when gradient flow is maintained.\n\n\\textbf{Temporal dynamics (preliminary).} Cutoff@35K (3 seeds) achieves CAR 0.779, statistically indistinguishable from Vanilla ($\\Delta = -$0.1\\,pp), confirming that 35K steps of gradient flow fully protects collision avoidance. Surprisingly, Cutoff@25K (0.724, 2 seeds) and Reverse Cutoff (0.718, 2 seeds) fall substantially \\emph{below} Vanilla. The most parsimonious explanation: setting the loss weight to zero retains the auxiliary head forward pass, so the post-cutoff period operates in Detach mode---BatchNorm interference acts on representations shaped by gradient flow, without gradient compensation. This is not withdrawal from gradient flow \\emph{per se}, but transition into an actively harmful regime. Third seeds are in progress; extended analysis in Appendix~\\ref{app:temporal}.\n",
+      "numLines": 102,
+      "startLine": 1,
+      "totalLines": 102
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — Read · `toolu_0148TBUJy4bwrgV7s5TCTZt6`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "38bb62c7-6381-4bf1-bd87-a7321609e7dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B8u497LgjM4UmacQVUL7TR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9407,
+      "cache_read_input_tokens": 35013,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9407
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 34_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad95296947d7402eb",
+  "tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "description": "Finding /home/ubuntu/.agent-ml-research-idea_gen_0513/pro…",
+  "usage": {
+    "total_tokens": 18478,
+    "tool_uses": 1,
+    "duration_ms": 2414
+  },
+  "last_tool_name": "Glob",
+  "uuid": "5b4200a3-1973-4ba4-82ee-e144dbe370eb",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01BboNeppMT8jhtczE1JK1Xa`</summary>
+
+```json
+{
+  "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/**/*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "81b66411-d1fe-4b8d-958d-7829d3dcec58",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_0159kXH1oJLbpUYnMoGoLsUQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 18467,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 18467,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-25T06:58:43.091Z_
+
+<details><summary>↩ Tool result · `toolu_01BboNeppMT8jhtczE1JK1Xa`</summary>
+
+```text
+docs/paper/references.tex
+docs/paper/experiment_setup.tex
+docs/paper/experiments_old.tex
+docs/paper/experiments.tex
+docs/paper/related_work.tex
+docs/paper/method.tex
+docs/paper/appendix.tex
+docs/paper/results.tex
+docs/paper/discussion.tex
+docs/paper/main.tex
+docs/paper/introduction.tex
+docs/paper/conclusion.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "f42e91eb-df7a-47d7-bf05-25ec82e85f70"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-25T06:58:42.915Z_
+
+<details><summary>↩ Tool result · `toolu_0148TBUJy4bwrgV7s5TCTZt6`</summary>
+
+```text
+1	
+2	\section{Discussion}
+3	\label{sec:discussion}
+4	\label{sec:why_gradient}
+5	\label{sec:why_detach}
+6	
+7	Gradient norms, CKA, normalization ablation, and behavioral metrics converge on a crossover interaction account. BatchNorm and gradient flow are not independent factors with additive effects; they interact (7.3\,pp interaction effect). BN is a context-dependent component: when gradient flow calibrates its running statistics, BN coupling is beneficial (Full OCC 0.797, the best configuration); without gradient calibration, BN statistics drift uncompensated, causing catastrophic representational corruption (Detach OCC CKA $\downarrow$0.31--0.54). This is consistent with the known sensitivity of BatchNorm to distribution shift~\cite{ioffe2015batchnorm}, here manifested as a training-time phenomenon rather than the typical train/test discrepancy.
+8	
+9	The crossover is most striking in the Full OCC+LN result: gradient flow with LayerNorm produces the \emph{worst} safety behavior (CAR 0.743) despite preserving pretrained representations (CKA $\geq$0.95). Same-seed gradient analysis reveals the mechanism: LN redistributes gradient magnitude across backbones, suppressing DINOv2 action gradients 3.5$\times$ while amplifying SigLIP 2.5$\times$ relative to BN, without increasing directional conflict. This cross-backbone gradient redistribution---not representation corruption---explains the CAR degradation, constituting a representation-behavior dissociation where representational fidelity does not predict safety. This rules out the hypothesis that gradient flow provides intrinsic behavioral regularization~\cite{lee2015deeply, pezeshki2021gradient}. Instead, gradient flow benefits are entirely BN-mediated: BN maintains balanced gradient allocation across encoders (DINOv2: 0.8$\times$, SigLIP: 1.0$\times$ Vanilla norms), a calibration effect that LN disrupts.
+10	
+11	We observe that under Detach BN, SigLIP drifts more than DINOv2 (CKA 0.312 vs.\ 0.539). SigLIP's cooperative gradient alignment in late layers (19--25\% conflict) creates vulnerability when auxiliary flow is removed; DINOv2's orthogonal structure ($\sim$50\% conflict) confers resilience. LayerNorm fully resolves this asymmetry (Detach+LN: both encoders CKA $\geq$ 0.96).
+12	
+13	\textbf{Practical guideline.} Maintain BatchNorm with gradient flow---the only configuration that preserves or improves CAR. If gradient flow cannot be maintained, substitute LayerNorm to prevent representational drift. Never combine LayerNorm with gradient flow, as this consistently degrades safety below Vanilla. No ground-truth spatial labels are required; the head is discarded at zero inference cost. This training-time intervention complements runtime safety methods~\cite{hu2025vlsa, raja2024ogmcbf}.
+14	
+15	\textbf{Limitations.} Single architecture (OpenVLA-OFT, LoRA rank 32), single benchmark (SafeLIBERO Level~I, 10 tasks, static obstacles). The interaction effect is statistically confirmed ($F(1,8){=}7.511$, $p{=}0.025$) but based on $n{=}3$ seeds per cell; larger-scale replication would further strengthen conclusions. Gradient redistribution findings are validated by same-seed analysis (seed 42, four conditions). Cutoff conditions have 1--3 seeds, limiting temporal conclusions to preliminary observations.
+16	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "afbf7a26-025b-431e-bb74-2ec078f46476",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex",
+      "content": "\n\\section{Discussion}\n\\label{sec:discussion}\n\\label{sec:why_gradient}\n\\label{sec:why_detach}\n\nGradient norms, CKA, normalization ablation, and behavioral metrics converge on a crossover interaction account. BatchNorm and gradient flow are not independent factors with additive effects; they interact (7.3\\,pp interaction effect). BN is a context-dependent component: when gradient flow calibrates its running statistics, BN coupling is beneficial (Full OCC 0.797, the best configuration); without gradient calibration, BN statistics drift uncompensated, causing catastrophic representational corruption (Detach OCC CKA $\\downarrow$0.31--0.54). This is consistent with the known sensitivity of BatchNorm to distribution shift~\\cite{ioffe2015batchnorm}, here manifested as a training-time phenomenon rather than the typical train/test discrepancy.\n\nThe crossover is most striking in the Full OCC+LN result: gradient flow with LayerNorm produces the \\emph{worst} safety behavior (CAR 0.743) despite preserving pretrained representations (CKA $\\geq$0.95). Same-seed gradient analysis reveals the mechanism: LN redistributes gradient magnitude across backbones, suppressing DINOv2 action gradients 3.5$\\times$ while amplifying SigLIP 2.5$\\times$ relative to BN, without increasing directional conflict. This cross-backbone gradient redistribution---not representation corruption---explains the CAR degradation, constituting a representation-behavior dissociation where representational fidelity does not predict safety. This rules out the hypothesis that gradient flow provides intrinsic behavioral regularization~\\cite{lee2015deeply, pezeshki2021gradient}. Instead, gradient flow benefits are entirely BN-mediated: BN maintains balanced gradient allocation across encoders (DINOv2: 0.8$\\times$, SigLIP: 1.0$\\times$ Vanilla norms), a calibration effect that LN disrupts.\n\nWe observe that under Detach BN, SigLIP drifts more than DINOv2 (CKA 0.312 vs.\\ 0.539). SigLIP's cooperative gradient alignment in late layers (19--25\\% conflict) creates vulnerability when auxiliary flow is removed; DINOv2's orthogonal structure ($\\sim$50\\% conflict) confers resilience. LayerNorm fully resolves this asymmetry (Detach+LN: both encoders CKA $\\geq$ 0.96).\n\n\\textbf{Practical guideline.} Maintain BatchNorm with gradient flow---the only configuration that preserves or improves CAR. If gradient flow cannot be maintained, substitute LayerNorm to prevent representational drift. Never combine LayerNorm with gradient flow, as this consistently degrades safety below Vanilla. No ground-truth spatial labels are required; the head is discarded at zero inference cost. This training-time intervention complements runtime safety methods~\\cite{hu2025vlsa, raja2024ogmcbf}.\n\n\\textbf{Limitations.} Single architecture (OpenVLA-OFT, LoRA rank 32), single benchmark (SafeLIBERO Level~I, 10 tasks, static obstacles). The interaction effect is statistically confirmed ($F(1,8){=}7.511$, $p{=}0.025$) but based on $n{=}3$ seeds per cell; larger-scale replication would further strengthen conclusions. Gradient redistribution findings are validated by same-seed analysis (seed 42, four conditions). Cutoff conditions have 1--3 seeds, limiting temporal conclusions to preliminary observations.\n",
+      "numLines": 16,
+      "startLine": 1,
+      "totalLines": 16
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01M9UCzLHCuA3ySTVDqozLzz`</summary>
+
+```json
+{
+  "project": "occsafe_vla",
+  "file": "ROADMAP.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "a7b5af9d-866b-453e-a869-23f884843c2d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B8u497LgjM4UmacQVUL7TR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9407,
+      "cache_read_input_tokens": 35013,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9407
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 39_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad95296947d7402eb",
+  "tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "description": "Searching for TODO|FIXME|PLACEHOLDER|XXX|TBD|\\?\\?\\?|\\\\hl\\{",
+  "usage": {
+    "total_tokens": 19542,
+    "tool_uses": 2,
+    "duration_ms": 6139
+  },
+  "last_tool_name": "Grep",
+  "uuid": "9829dec6-7d0f-403e-8988-b66969c315c2",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01E9knr87VZikjpu7EKPTqxF`</summary>
+
+```json
+{
+  "pattern": "TODO|FIXME|PLACEHOLDER|XXX|TBD|\\?\\?\\?|\\\\hl\\{",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper",
+  "glob": "**/*.tex",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "b3fcd8bd-80e3-4b45-a986-e269f5816403",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01B8aP2uKes4S4qfAumLKSwz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 1060,
+      "cache_read_input_tokens": 18467,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1060,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-25T06:58:46.827Z_
+
+<details><summary>↩ Tool result · `toolu_01E9knr87VZikjpu7EKPTqxF`</summary>
+
+```text
+docs/paper/main.tex:14:\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "1301de15-3c7e-46b3-900b-641cfa0b1589"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 42_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad95296947d7402eb",
+  "tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "description": "Searching for INSERT|FILL|\\\\[MISSING\\\\]|\\\\bCITE|\\\\bREF",
+  "usage": {
+    "total_tokens": 19543,
+    "tool_uses": 3,
+    "duration_ms": 6754
+  },
+  "last_tool_name": "Grep",
+  "uuid": "03405b47-b51f-4850-953b-69853246a237",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01CKZfg1m4cwiH19hWtVRnHT`</summary>
+
+```json
+{
+  "pattern": "INSERT|FILL|\\\\[MISSING\\\\]|\\\\bCITE|\\\\bREF",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper",
+  "glob": "**/*.tex",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "c162b66d-0510-41b5-b67b-254440262b93",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01B8aP2uKes4S4qfAumLKSwz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 1060,
+      "cache_read_input_tokens": 18467,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1060,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-25T06:58:47.432Z_
+
+<details><summary>↩ Tool result · `toolu_01CKZfg1m4cwiH19hWtVRnHT`</summary>
+
+```text
+docs/paper/main.tex:16:\title{Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer?\\ An Empirical Investigation}
+docs/paper/method.tex:42:Comparison & Isolated Factor \\
+docs/paper/method.tex:44:Full OCC vs.\ Vanilla & Auxiliary spatial supervision \\
+docs/paper/method.tex:45:Random vs.\ Full OCC & Spatial content vs.\ gradient flow \\
+docs/paper/method.tex:46:Detach vs.\ Vanilla & Necessity of encoder gradient flow \\
+docs/paper/method.tex:47:Detach+LN vs.\ Detach OCC & Normalization (BN vs.\ LN) without gradient flow \\
+docs/paper/method.tex:48:Full OCC+LN vs.\ Full OCC & Normalization (BN vs.\ LN) with gradient flow \\
+docs/paper/method.tex:49:$2{\times}2$ factorial & Normalization $\times$ gradient flow interaction \\
+docs/paper/method.tex:50:Depth vs.\ Full OCC & Egocentric vs.\ allocentric frame \\
+docs/paper/method.tex:51:Cutoff@\{15K--45K\} vs.\ Full OCC & Temporal extent of gradient flow \\
+docs/paper/method.tex:52:Reverse Cutoff vs.\ Cutoff@35K & Early vs.\ late gradient flow \\
+docs/paper/appendix.tex:13: & & \multicolumn{7}{c}{Mean CAR by Condition} \\
+docs/paper/appendix.tex:15:Task & Diff. & Vanilla & Full OCC & Random & Detach & Det+LN & Depth & Cut@35K \\
+docs/paper/appendix.tex:17:T0 & Easy  & 0.98 & 0.98 & 0.99 & 0.97 & 0.97 & 0.99 & 0.98 \\
+docs/paper/appendix.tex:18:T1 & Easy  & 0.92 & 0.93 & 0.99 & 0.89 & 0.78 & 0.93 & 0.95 \\
+docs/paper/appendix.tex:19:T2 & Easy  & 0.92 & 0.93 & 0.94 & 0.93 & 0.90 & 0.90 & 0.94 \\
+docs/paper/appendix.tex:20:T3 & Hard  & 0.38 & 0.37 & 0.31 & \textbf{0.11} & 0.44 & 0.50 & 0.55 \\
+docs/paper/appendix.tex:21:T4 & Easy  & 0.98 & 0.99 & 0.95 & 0.98 & 0.96 & 0.92 & 0.97 \\
+docs/paper/appendix.tex:22:T5 & Hard  & 0.07 & 0.17 & 0.23 & \textbf{0.05} & 0.12 & 0.08 & 0.04 \\
+docs/paper/appendix.tex:23:T6 & Hard  & 0.57 & 0.61 & 0.55 & 0.56 & 0.36 & 0.54 & 0.38 \\
+docs/paper/appendix.tex:24:T7 & Easy  & 0.97 & 0.99 & 0.95 & 0.98 & 1.00 & 0.96 & 0.98 \\
+docs/paper/appendix.tex:25:T8 & Easy  & 1.00 & 1.00 & 1.00 & 0.99 & 0.99 & 0.99 & 0.99 \\
+docs/paper/appendix.tex:26:T9 & Easy  & 1.00 & 0.99 & 0.99 & 1.00 & 1.00 & 1.00 & 1.00 \\
+docs/paper/appendix.tex:28:\multicolumn{2}{l}{Overall} & 0.780 & 0.797 & 0.789 & 0.746 & 0.765 & 0.780 & 0.779 \\
+docs/paper/appendix.tex:46:Parameter & Value \\
+docs/paper/appendix.tex:48:Base model & OpenVLA-7B~\cite{kim2024openvla} \\
+docs/paper/appendix.tex:49:Fine-tuning recipe & OFT~\cite{kim2025oft} \\
+docs/paper/appendix.tex:50:Vision encoders & DINOv2 (1024-d) + SigLIP (1152-d) \\
+docs/paper/appendix.tex:51:Patch token dim. & 2176 (concatenated) \\
+docs/paper/appendix.tex:52:LoRA rank / $\alpha$ & 32 / 16 \\
+docs/paper/appendix.tex:53:Batch size & 8 \\
+docs/paper/appendix.tex:54:Learning rate & $5 \times 10^{-4}$ (constant) \\
+docs/paper/appendix.tex:55:Training steps & 50{,}000 \\
+docs/paper/appendix.tex:56:Aux.\ loss weight $\lambda_0$ & 0.01 \\
+docs/paper/appendix.tex:57:Aux.\ loss decay & $\exp(-t / 50{,}000)$ \\
+docs/paper/appendix.tex:58:BEV grid resolution & $64 \times 64$ \\
+docs/paper/appendix.tex:59:Focal loss $\alpha$ / $\gamma$ & 0.25 / 2.0 \\
+docs/paper/appendix.tex:60:Depth loss & Smooth-L1 \\
+docs/paper/appendix.tex:61:Aux.\ head parameters & 1.2M \\
+docs/paper/appendix.tex:62:Hardware & NVIDIA RTX PRO 6000 (98\,GB) \\
+docs/paper/appendix.tex:63:Wall time per run & $\sim$12.9 hours \\
+docs/paper/results.tex:24:Condition & Seeds & TSR & CAR & $95\%$ CI & $\Delta$CAR \\
+docs/paper/results.tex:26:Full OCC (BN)      & 3 & 0.894 $\pm$ 0.050 & \textbf{0.797} $\pm$ 0.032 & [.770, .832] & $+$1.7 \\
+docs/paper/results.tex:27:Random OCC (BN)    & 3 & 0.869 $\pm$ 0.029 & 0.789 $\pm$ 0.031 & [.754, .814] & $+$0.9 \\
+docs/paper/results.tex:28:Vanilla       & 3 & 0.907 $\pm$ 0.009 & 0.780 $\pm$ 0.012 & [.766, .788] & ---    \\
+docs/paper/results.tex:29:Detach+LN     & 3 & 0.901 $\pm$ 0.016 & 0.765 $\pm$ 0.023 & [.748, .792] & $-$1.5 \\
+docs/paper/results.tex:30:Detach OCC (BN)$^*$    & 3 & 0.812 $\pm$ 0.163 & 0.746 $\pm$ 0.002 & [.744, .748] & $-$3.4 \\
+docs/paper/results.tex:31:Full OCC+LN   & 3 & 0.897 $\pm$ 0.032 & 0.743 $\pm$ 0.024 & [.718, .766] & $-$3.7 \\
+docs/paper/results.tex:33:Depth             & 4 & 0.889 $\pm$ 0.042 & 0.780 $\pm$ 0.039 & [.747, .812] & 0.0 \\
+docs/paper/results.tex:34:Cutoff@15K$^\dagger$    & 1 & 0.912 & 0.804 & --- & $+$2.4 \\
+docs/paper/results.tex:35:Cutoff@25K$^\ddagger$   & 2 & 0.887 $\pm$ 0.061 & 0.724 $\pm$ 0.051 & --- & $-$5.6 \\
+docs/paper/results.tex:36:Cutoff@35K        & 3 & 0.933 $\pm$ 0.032 & 0.779 $\pm$ 0.017 & [.768, .798] & $-$0.1 \\
+docs/paper/results.tex:37:Cutoff@45K$^\dagger$    & 1 & 0.896 & 0.764 & --- & $-$1.6 \\
+docs/paper/results.tex:38:Reverse Cutoff$^\ddagger$ & 2 & 0.839 $\pm$ 0.072 & 0.718 $\pm$ 0.025 & --- & $-$6.2 \\
+docs/paper/results.tex:58: & Gradient ON & Gradient OFF & $\Delta$(ON$-$OFF) \\
+docs/paper/results.tex:60:BatchNorm    & Full OCC (\textbf{0.797}) & Detach OCC (0.746) & $+$5.1 \\
+docs/paper/results.tex:61:LayerNorm    & Full OCC+LN (0.743) & Detach+LN (0.765) & $-$2.2 \\
+docs/paper/results.tex:63:$\Delta$(BN$-$LN) & $+$5.4 & $-$1.9 & interaction: 7.3 \\
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "142aa71d-24eb-4bdf-bf72-678df0e8891b"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 45_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad95296947d7402eb",
+  "tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "description": "Reading docs/paper/main.tex",
+  "usage": {
+    "total_tokens": 22639,
+    "tool_uses": 4,
+    "duration_ms": 9242
+  },
+  "last_tool_name": "Read",
+  "uuid": "280b5de9-f49f-4f02-ac53-8bb3a71032ad",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01FWQevNrLk39xnbpuQNZ5qY`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/main.tex",
+  "limit": 30
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "dc1e9fe1-23f8-497c-82ff-9d433e75c840",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01LrCrJnxUMKiNXaiVwSeLqZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 3093,
+      "cache_read_input_tokens": 19527,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3093,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-25T06:58:49.913Z_
+
+<details><summary>↩ Tool result · `toolu_01FWQevNrLk39xnbpuQNZ5qY`</summary>
+
+```text
+1	% OccSafe-VLA: Occupancy-Aware Safety for Vision-Language-Action Models
+2	% Target: CoRL 2026
+3	\documentclass{article}
+4	
+5	\usepackage[dvipsnames]{xcolor}
+6	\usepackage{corl_2026}
+7	
+8	\usepackage{graphicx}
+9	\usepackage{amsmath,amssymb}
+10	\usepackage{booktabs}
+11	\usepackage{enumitem}
+12	\usepackage{subcaption}
+13	
+14	\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+15	
+16	\title{Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer?\\ An Empirical Investigation}
+17	
+18	\author{
+19	Anonymous Author(s)
+20	}
+21	
+22	\begin{document}
+23	\maketitle
+24	
+25	\begin{abstract}
+26	Fine-tuned Vision-Language-Action (VLA) models can achieve high task success yet remain behaviorally unsafe: on SafeLIBERO Level~I, a fine-tuned OpenVLA-OFT attains 90.7\% task success but only 78.0\% collision avoidance.
+27	We present the first factorial study isolating how auxiliary spatial supervision during VLA fine-tuning affects collision avoidance, with twelve conditions varying gradient flow, label content, normalization type, spatial reference frame, and temporal extent.
+28	Our central finding is a crossover interaction between normalization type and gradient flow in the auxiliary head (interaction effect: 7.3\,pp, $p{=}0.025$). BatchNorm with gradient flow maintains CAR comparable to Vanilla (0.797 vs.\ 0.780), but without gradient flow causes catastrophic representational drift (Detach OCC 0.746, CKA $\downarrow$0.31--0.54). LayerNorm eliminates this drift under detachment (Detach+LN 0.765, CKA $\geq$0.96) but consistently degrades safety when gradient flow is present (Full OCC+LN 0.743, $-$3.7\,pp vs.\ Vanilla)---the worst configuration tested. Gradient flow benefits are thus BatchNorm-mediated, not an intrinsic property of auxiliary gradients.
+29	This reveals a deep representation-behavior dissociation: Full OCC+LN preserves pretrained representations yet achieves the lowest collision avoidance, demonstrating that representational fidelity does not predict safety behavior. Label content (structured, random, depth) does not affect outcomes when gradient flow is maintained.
+30	Practical guidelines: maintain BatchNorm with gradient flow---the only configuration that preserves CAR; if gradient flow is unavailable, substitute LayerNorm to prevent representational drift; never combine LayerNorm with gradient flow. The auxiliary head is discarded after training at zero inference cost.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "9ccd4f5f-0cf6-4075-a4a9-2b87758e23da"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 48_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad95296947d7402eb",
+  "tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "description": "Searching for \\\\cite\\{|\\\\ref\\{|underfull|overfull|missing|COMME…",
+  "usage": {
+    "total_tokens": 22640,
+    "tool_uses": 5,
+    "duration_ms": 9858
+  },
+  "last_tool_name": "Grep",
+  "uuid": "4e0af8c9-57ba-4c38-b746-cb6aab0bbbdf",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01Br2Rm2N43gUShPVMn6qer7`</summary>
+
+```json
+{
+  "pattern": "\\\\cite\\{|\\\\ref\\{|underfull|overfull|missing|COMMENT|NOTE",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper",
+  "glob": "**/*.tex",
+  "output_mode": "content",
+  "-n": true,
+  "head_limit": 100
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "57402288-d0b2-48df-b662-004fb6a879b2",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01LrCrJnxUMKiNXaiVwSeLqZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 3093,
+      "cache_read_input_tokens": 19527,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3093,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-25T06:58:50.535Z_
+
+<details><summary>↩ Tool result · `toolu_01Br2Rm2N43gUShPVMn6qer7`</summary>
+
+```text
+docs/paper/related_work.tex:7:[Omitted long matching line]
+docs/paper/related_work.tex:9:[Omitted long matching line]
+docs/paper/related_work.tex:13:[Omitted long matching line]
+docs/paper/related_work.tex:15:For VLA fine-tuning with LoRA~\cite{hu2022lora}, the interaction between auxiliary losses and adapter updates has not been studied. Among spatial VLA methods, Spatial Forcing~\cite{li2026spatialforcing} uses an auxiliary depth-alignment loss and reports improved convergence, but does not separate the regularization effect of gradient flow from the informational content of the spatial signal. Our factorial design isolates these factors.
+docs/paper/experiments.tex:7:We evaluate on SafeLIBERO Level I~\cite{hu2025vlsa} % Hu et al., "VLSA: Vision-Language-Action Models with Plug-and-Play Safety Constraint Layer", arXiv:2512.11891, 2025
+docs/paper/experiments.tex:8:[Omitted long matching line]
+docs/paper/experiments.tex:17:The base model is OpenVLA-7B~\cite{kim2024openvla} % Kim et al., "OpenVLA: An Open-Source Vision-Language-Action Model", arXiv:2406.09246, 2024
+docs/paper/experiments.tex:18:with the OFT fine-tuning recipe~\cite{kim2025oft} % Kim et al., "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success", arXiv:2502.19645, 2025
+docs/paper/experiment_setup.tex:7:We evaluate on SafeLIBERO Level I~\cite{hu2025vlsa} % Hu et al., "VLSA: Vision-Language-Action Models with Plug-and-Play Safety Constraint Layer", arXiv:2512.11891, 2025
+docs/paper/experiment_setup.tex:8:[Omitted long matching line]
+docs/paper/experiment_setup.tex:17:The base model is OpenVLA-7B~\cite{kim2024openvla} % Kim et al., "OpenVLA: An Open-Source Vision-Language-Action Model", arXiv:2406.09246, 2024
+docs/paper/experiment_setup.tex:18:with the OFT fine-tuning recipe~\cite{kim2025oft} % Kim et al., "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success", arXiv:2502.19645, 2025
+docs/paper/discussion.tex:7:[Omitted long matching line]
+docs/paper/discussion.tex:9:[Omitted long matching line]
+docs/paper/discussion.tex:13:[Omitted long matching line]
+docs/paper/method.tex:5:We fine-tune OpenVLA-7B~\cite{kim2024openvla} with the OFT recipe~\cite{kim2025oft}, which concatenates DINOv2~\cite{oquab2024dinov2} (1024-d) and SigLIP~\cite{zhai2023siglip} (1152-d) patch features into a 2176-dimensional representation per spatial token. We apply LoRA~\cite{hu2022lora} (rank 32, $\alpha{=}16$) and augment the action prediction loss with an auxiliary spatial prediction head:
+docs/paper/method.tex:13:\textbf{BEV occupancy head.} The head (1.2M parameters) maps the first 256 patch tokens to a $64{\times}64$ binary occupancy grid: a linear projection ($2176{\to}256$) reshaped to $16{\times}16$, two transposed convolutions ($256{\to}128{\to}64$, kernel 4, stride 2) with BatchNorm and GELU, and a $1{\times}1$ convolution with sigmoid. Ground-truth grids are rendered from MuJoCo state replay. Training uses focal loss~\cite{lin2017focal} ($\alpha{=}0.25$, $\gamma{=}2.0$).
+docs/paper/method.tex:34:Table~\ref{tab:ablation_design} summarizes what each pairwise comparison isolates.
+docs/paper/method.tex:60:[Omitted long matching line]
+docs/paper/appendix.tex:5:Table~\ref{tab:per_task} reports per-task mean CAR across seeds for each condition. Seven tasks achieve CAR $\geq$ 0.92 under Vanilla, while three physically constrained tasks (T3, T5, T6) fall below 0.58. The overall CAR differences reported in the main text are dominated by these three hard tasks, which average 0.342 compared to 0.968 for the seven easy tasks.
+docs/paper/appendix.tex:9:\caption{Per-task mean CAR across seeds (50 rollouts per seed). All conditions use 3 seeds except Depth (4). Detach+LN per-task uses 2 seeds (s1, s2; s0 lacks per-task breakdown); 3-seed aggregate is in Table~\ref{tab:main_results}.}
+docs/paper/appendix.tex:48:Base model & OpenVLA-7B~\cite{kim2024openvla} \\
+docs/paper/appendix.tex:49:Fine-tuning recipe & OFT~\cite{kim2025oft} \\
+docs/paper/appendix.tex:72:\textbf{CKA analysis.} Centered Kernel Alignment~\cite{kornblith2019similarity} measures representational similarity between fine-tuned and pretrained encoder features. We extract patch token activations from the final layer of DINOv2 and SigLIP for 1{,}000 validation images, compute linear CKA per layer, and report the mean across layers. Higher CKA indicates better preservation of pretrained representations.
+docs/paper/appendix.tex:79:[Omitted long matching line]
+docs/paper/appendix.tex:81:[Omitted long matching line]
+docs/paper/appendix.tex:93:[Omitted long matching line]
+docs/paper/experiments_old.tex:5:[Omitted long matching line]
+docs/paper/experiments_old.tex:9:[Omitted long matching line]
+docs/paper/experiments_old.tex:30:All conditions share the same base model: OpenVLA-OFT 7B~\cite{kim2025oft}, pre-trained on Open X-Embodiment. We fine-tune with LoRA (rank 32, $\alpha{=}16$) for 50K steps using AdamW (weight decay $0.01$), a batch size of 8, a constant learning rate of $5 \times 10^{-4}$, and 2--4 random seeds per condition (see Table~\ref{tab:main_results}). The LoRA adapter adds 110.8M trainable parameters (1.45\% of 7.65B total).
+docs/paper/introduction.tex:4:Vision-language-action (VLA) models map visual observations and language instructions directly to robot actions, achieving high task success on manipulation benchmarks~\cite{brohan2023rt2, kim2024openvla, kim2025oft}. Yet task success does not imply behavioral safety. On SafeLIBERO Level~I~\cite{hu2025vlsa}, a fine-tuned OpenVLA-OFT completes 90.7\% of tasks but avoids collisions in only 78.0\% of episodes; on the three most constrained tasks, collision rates reach 53--93\%.
+docs/paper/introduction.tex:6:[Omitted long matching line]
+docs/paper/introduction.tex:8:We present the first factorial study isolating how auxiliary spatial supervision during VLA fine-tuning affects collision avoidance. Twelve conditions on OpenVLA-OFT~\cite{kim2024openvla, kim2025oft} with LoRA vary gradient flow, label content, normalization type, spatial reference frame, and temporal extent. Our contributions:
+docs/paper/introduction.tex:13:    \item \textbf{Factorial ablation design.} Each pairwise comparison isolates one factor (gradient flow, label content, normalization type, reference frame, temporal extent), providing a reusable methodology for analyzing auxiliary task effects in VLA training (Table~\ref{tab:ablation_design}).
+docs/paper/results.tex:8:Table~\ref{tab:main_results} summarizes TSR and CAR across conditions (50 rollouts $\times$ 10 tasks per seed). Statistical comparisons use paired $t$-tests and Cohen's $d$ against the Vanilla baseline.
+docs/paper/results.tex:10:[Omitted long matching line]
+docs/paper/results.tex:46:The four conditions crossing normalization type (BN/LN) with gradient flow (ON/OFF) form a $2{\times}2$ factorial (Table~\ref{tab:factorial}). A $2{\times}2$ ANOVA confirms a significant interaction ($F(1,8){=}7.511$, $p{=}0.025$, partial $\eta^2{=}0.484$, Cohen's $f{=}0.969$), while neither main effect reaches significance (gradient flow: $p{=}0.326$; normalization: $p{=}0.231$). The interaction effect is 7.3\,pp: gradient flow's effect on CAR reverses sign depending on normalization type.
+docs/paper/results.tex:50:\textbf{Full OCC+LN is the worst configuration.} Despite maintaining gradient flow and using a normalization layer that eliminates representational drift (Section~\ref{sec:gradient_dynamics}), Full OCC+LN (0.743) falls 3.7\,pp below Vanilla---consistently across all three seeds (0.766, 0.718, 0.744). This is the strongest evidence for a representation-behavior dissociation: the configuration that best preserves pretrained representations produces the worst safety behavior.
+docs/paper/results.tex:78:[Omitted long matching line]
+docs/paper/results.tex:89:[Omitted long matching line]
+docs/paper/results.tex:97:\textbf{Per-task concentration.} Seven of ten tasks achieve CAR $\geq$ 0.92 under Vanilla; overall CAR is dominated by three physically constrained tasks (T3, T5, T6; Appendix~\ref{app:per_task}). Detach is systematically worst on these hard tasks (T3: 0.11, T5: 0.05), consistent with gradient collapse exacerbating degradation where obstacle proximity is tight.
+docs/paper/results.tex:101:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "3355955b-0ed8-4305-b5ca-ecf222beb124"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 51_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad95296947d7402eb",
+  "tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "description": "Searching for \\\\cite\\{\\s*\\}|\\\\ref\\{\\s*\\}|cite\\{[^}]*\\?|ref\\{[^}…",
+  "usage": {
+    "total_tokens": 26355,
+    "tool_uses": 6,
+    "duration_ms": 12912
+  },
+  "last_tool_name": "Grep",
+  "uuid": "cfc544c4-6bfe-4bf9-ad0f-1bd498cfbb22",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_016JZJJfX7pbuWNGBtQUbaQm`</summary>
+
+```json
+{
+  "pattern": "\\\\cite\\{\\s*\\}|\\\\ref\\{\\s*\\}|cite\\{[^}]*\\?|ref\\{[^}]*\\?|\\[TODO\\]|\\[FIXME\\]",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper",
+  "glob": "**/*.tex",
+  "output_mode": "content",
+  "multiline": false
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "6226db1a-f0e7-4c1c-b39c-5dd8108863ce",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01Eoi1jHBFWBaQky8KEsavAL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 3713,
+      "cache_read_input_tokens": 22620,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3713,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-25T06:58:53.604Z_
+
+<details><summary>↩ Tool result · `toolu_016JZJJfX7pbuWNGBtQUbaQm`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "6ba2c1bb-46f8-4d88-9127-2f4d8f1f8984"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 54_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad95296947d7402eb",
+  "tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "description": "Searching for \\$\\{|TODO|todo\\{|TOWRITE|WORK-IN-PROGRESS",
+  "usage": {
+    "total_tokens": 26356,
+    "tool_uses": 7,
+    "duration_ms": 13417
+  },
+  "last_tool_name": "Grep",
+  "uuid": "584507ee-7231-4125-bb9f-9107b53b179e",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_0178vjo6wwjDa2kquJkSKkd3`</summary>
+
+```json
+{
+  "pattern": "\\$\\{|TODO|todo\\{|TOWRITE|WORK-IN-PROGRESS",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper",
+  "glob": "**/*.tex",
+  "output_mode": "content",
+  "multiline": false
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "8bdfa349-4b19-4e63-949a-9b5b553957c9",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01Eoi1jHBFWBaQky8KEsavAL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 3713,
+      "cache_read_input_tokens": 22620,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3713,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-25T06:58:54.103Z_
+
+<details><summary>↩ Tool result · `toolu_0178vjo6wwjDa2kquJkSKkd3`</summary>
+
+```text
+docs/paper/main.tex:14:\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+docs/paper/results.tex:80:[Omitted long matching line]
+docs/paper/results.tex:89:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "0063e94d-a11b-4b0f-81da-0203466ff5e7"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 57_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad95296947d7402eb",
+  "tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "description": "Reading docs/paper/introduction.tex",
+  "usage": {
+    "total_tokens": 26973,
+    "tool_uses": 8,
+    "duration_ms": 15242
+  },
+  "last_tool_name": "Read",
+  "uuid": "bb630c59-fa8d-478b-8f26-9766913b7c18",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01DqCkVWWeYgpHuo5J1x1ACV`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "40efe3f1-9130-4ee2-8dfe-37b7dda3e9bd",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01RRLjNHyfn8oKKpk6NnEffQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 615,
+      "cache_read_input_tokens": 26333,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 615,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-25T06:58:55.914Z_
+
+<details><summary>↩ Tool result · `toolu_01DqCkVWWeYgpHuo5J1x1ACV`</summary>
+
+```text
+1	
+2	\section{Introduction}
+3	
+4	Vision-language-action (VLA) models map visual observations and language instructions directly to robot actions, achieving high task success on manipulation benchmarks~\cite{brohan2023rt2, kim2024openvla, kim2025oft}. Yet task success does not imply behavioral safety. On SafeLIBERO Level~I~\cite{hu2025vlsa}, a fine-tuned OpenVLA-OFT completes 90.7\% of tasks but avoids collisions in only 78.0\% of episodes; on the three most constrained tasks, collision rates reach 53--93\%.
+5	
+6	Auxiliary spatial prediction---occupancy grids, depth maps, point clouds---improves VLA task success by injecting 3D structure into vision encoders~\cite{li2026spatialforcing, yuan2025depthvla, wu2025spatialvla}. Separately, safety methods apply runtime action filtering~\cite{hu2025vlsa} or constrained RL~\cite{zhang2025safevla} to reduce collisions. These two threads remain disconnected: no spatial method evaluates collision avoidance, and no safety method leverages spatial representations. Whether auxiliary spatial supervision affects safety---and through what mechanism---is unknown.
+7	
+8	We present the first factorial study isolating how auxiliary spatial supervision during VLA fine-tuning affects collision avoidance. Twelve conditions on OpenVLA-OFT~\cite{kim2024openvla, kim2025oft} with LoRA vary gradient flow, label content, normalization type, spatial reference frame, and temporal extent. Our contributions:
+9	
+10	\begin{enumerate}[nosep,leftmargin=*]
+11	    \item \textbf{Crossover interaction.} Normalization type and gradient flow interact rather than compose additively (interaction effect: 7.3\,pp, $p{=}0.025$). BatchNorm with gradient flow maintains CAR comparable to Vanilla (0.797 vs.\ 0.780), but without gradient flow causes catastrophic representational drift (CKA $\downarrow$0.31--0.54). LayerNorm eliminates drift under detachment (CKA $\geq$0.96) but consistently degrades safety when gradient flow is present (Full OCC+LN 0.743, $-$3.7\,pp)---the worst configuration tested. Gradient flow benefits are BatchNorm-mediated, not an intrinsic property of auxiliary gradients. Label content does not affect outcomes.
+12	
+13	    \item \textbf{Factorial ablation design.} Each pairwise comparison isolates one factor (gradient flow, label content, normalization type, reference frame, temporal extent), providing a reusable methodology for analyzing auxiliary task effects in VLA training (Table~\ref{tab:ablation_design}).
+14	
+15	    \item \textbf{Zero-cost guideline.} Maintain BatchNorm with gradient flow---the only configuration that preserves CAR. If gradient flow is unavailable, substitute LayerNorm to prevent representational drift. Never combine LayerNorm with gradient flow. No ground-truth spatial labels are required; the auxiliary head is discarded after training at zero inference cost.
+16	\end{enumerate}
+17	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "4454301a-211a-4615-9478-8d7fd4acb43e"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 60_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad95296947d7402eb",
+  "tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "description": "Reading docs/paper/method.tex",
+  "usage": {
+    "total_tokens": 26974,
+    "tool_uses": 9,
+    "duration_ms": 15319
+  },
+  "last_tool_name": "Read",
+  "uuid": "2e1a7efa-3a90-4b3f-b823-623b4f4c6ec1",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01AryEDpCcUeznTYCSiAPTJm`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "e70eaf16-be4c-4490-9277-182218f51268",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01RRLjNHyfn8oKKpk6NnEffQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 615,
+      "cache_read_input_tokens": 26333,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 615,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-25T06:58:55.989Z_
+
+<details><summary>↩ Tool result · `toolu_01AryEDpCcUeznTYCSiAPTJm`</summary>
+
+```text
+1	
+2	\section{Method}
+3	\label{sec:method}
+4	
+5	We fine-tune OpenVLA-7B~\cite{kim2024openvla} with the OFT recipe~\cite{kim2025oft}, which concatenates DINOv2~\cite{oquab2024dinov2} (1024-d) and SigLIP~\cite{zhai2023siglip} (1152-d) patch features into a 2176-dimensional representation per spatial token. We apply LoRA~\cite{hu2022lora} (rank 32, $\alpha{=}16$) and augment the action prediction loss with an auxiliary spatial prediction head:
+6	\begin{equation}
+7	\mathcal{L}_\text{total} = \mathcal{L}_\text{action} + \lambda(t) \cdot \mathcal{L}_\text{aux}(h(\phi_v(o_t)), s_t^*),
+8	\quad \lambda(t) = 0.01 \cdot \exp(-t / 50000)
+9	\label{eq:total_loss}
+10	\end{equation}
+11	where $\lambda(t)$ decays exponentially so that spatial gradients shape early representations without dominating late-stage action refinement. The auxiliary head is discarded at inference.
+12	
+13	\textbf{BEV occupancy head.} The head (1.2M parameters) maps the first 256 patch tokens to a $64{\times}64$ binary occupancy grid: a linear projection ($2176{\to}256$) reshaped to $16{\times}16$, two transposed convolutions ($256{\to}128{\to}64$, kernel 4, stride 2) with BatchNorm and GELU, and a $1{\times}1$ convolution with sigmoid. Ground-truth grids are rendered from MuJoCo state replay. Training uses focal loss~\cite{lin2017focal} ($\alpha{=}0.25$, $\gamma{=}2.0$).
+14	
+15	\textbf{Monocular depth head.} Same architecture with ReLU output and smooth-L1 loss against egocentric depth maps rendered at $64{\times}64$ from MuJoCo. This head provides an egocentric spatial reference frame, complementing the allocentric BEV occupancy.
+16	
+17	\subsection{Ablation Design}
+18	\label{sec:ablation}
+19	
+20	We evaluate twelve conditions that systematically vary gradient flow, label content, normalization type, spatial reference frame, and temporal extent:
+21	
+22	\begin{itemize}[nosep,leftmargin=*]
+23	\item \textbf{Vanilla}: action loss only (baseline).
+24	\item \textbf{Full OCC}: BEV occupancy with ground-truth labels and BatchNorm; gradients flow through both encoders.
+25	\item \textbf{Full OCC+LN}: same as Full OCC but with LayerNorm replacing BatchNorm2d; tests whether gradient flow benefits are normalization-dependent.
+26	\item \textbf{Random OCC}: random binary labels with matched gradient flow; isolates gradient regularization from spatial content.
+27	\item \textbf{Detach OCC}: ground-truth labels with encoder gradients blocked (\texttt{stop\_gradient}) and BatchNorm; tests whether gradient flow is necessary.
+28	\item \textbf{Detach+LN}: same as Detach OCC but with LayerNorm replacing BatchNorm2d; isolates the contribution of normalization design from gradient flow absence.
+29	\item \textbf{Depth}: egocentric depth maps with gradient flow; compares allocentric vs.\ egocentric spatial frames.
+30	\item \textbf{Cutoff@\{15K,25K,35K,45K\}}: occupancy supervision for the first 15K--45K of 50K steps. Setting the loss weight to zero retains the auxiliary head forward pass; the post-cutoff period operates in Detach mode (BN interference without gradient compensation).
+31	\item \textbf{Reverse Cutoff}: occupancy supervision for only the last 15K steps; tests whether late-stage gradient flow can rescue early Detach-mode training.
+32	\end{itemize}
+33	
+34	Table~\ref{tab:ablation_design} summarizes what each pairwise comparison isolates.
+35	
+36	\begin{table}[t]
+37	\centering
+38	\caption{Ablation design: each comparison isolates one factor.}
+39	\label{tab:ablation_design}
+40	\begin{tabular}{ll}
+41	\toprule
+42	Comparison & Isolated Factor \\
+43	\midrule
+44	Full OCC vs.\ Vanilla & Auxiliary spatial supervision \\
+45	Random vs.\ Full OCC & Spatial content vs.\ gradient flow \\
+46	Detach vs.\ Vanilla & Necessity of encoder gradient flow \\
+47	Detach+LN vs.\ Detach OCC & Normalization (BN vs.\ LN) without gradient flow \\
+48	Full OCC+LN vs.\ Full OCC & Normalization (BN vs.\ LN) with gradient flow \\
+49	$2{\times}2$ factorial & Normalization $\times$ gradient flow interaction \\
+50	Depth vs.\ Full OCC & Egocentric vs.\ allocentric frame \\
+51	Cutoff@\{15K--45K\} vs.\ Full OCC & Temporal extent of gradient flow \\
+52	Reverse Cutoff vs.\ Cutoff@35K & Early vs.\ late gradient flow \\
+53	\bottomrule
+54	\end{tabular}
+55	\end{table}
+56	
+57	\subsection{Evaluation}
+58	\label{sec:evaluation}
+59	
+60	We evaluate on SafeLIBERO Level~I~\cite{hu2025vlsa}, which places obstacles in close proximity to targets across 10 tabletop manipulation tasks drawn from LIBERO-Spatial~\cite{liu2023libero}. We report \textbf{Task Success Rate (TSR)} and \textbf{Collision Avoidance Rate (CAR)}, where a collision is registered when the L1 displacement of the obstacle's \texttt{body\_xpos} exceeds $10^{-3}$. Each condition uses 3+ seeds (Depth uses 4) with 50 rollouts per task per seed. Bootstrap 95\% CIs are computed via 10{,}000 hierarchical resamples. Training uses a batch size of 8, constant learning rate $5 \times 10^{-4}$, and runs for 50K steps on NVIDIA RTX PRO 6000 GPUs (98\,GB); each run takes $\sim$12.9 hours. Full training details are in Appendix~\ref{app:training}.
+61	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "2842ca53-7e14-4b20-adf0-63eeec93c423"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 63_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad95296947d7402eb",
+  "tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "description": "Reading docs/paper/experiments.tex",
+  "usage": {
+    "total_tokens": 26975,
+    "tool_uses": 10,
+    "duration_ms": 15471
+  },
+  "last_tool_name": "Read",
+  "uuid": "b7a81fd1-c39b-44a5-8e53-a957cdd1c740",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — Read · `toolu_012zk1GrvrGrHLX7rhspMFQd`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "e647c5f3-bb17-4d89-a650-33c7491436cf",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01RRLjNHyfn8oKKpk6NnEffQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 615,
+      "cache_read_input_tokens": 26333,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 615,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-25T06:58:56.141Z_
+
+<details><summary>↩ Tool result · `toolu_012zk1GrvrGrHLX7rhspMFQd`</summary>
+
+```text
+1	
+2	\section{Experimental Setup}
+3	\label{sec:exp_setup}
+4	
+5	\subsection{Benchmark and Tasks}
+6	
+7	We evaluate on SafeLIBERO Level I~\cite{hu2025vlsa} % Hu et al., "VLSA: Vision-Language-Action Models with Plug-and-Play Safety Constraint Layer", arXiv:2512.11891, 2025
+8	, which places obstacles in close proximity to target objects across 10 tabletop manipulation tasks. Task difficulty varies with spatial layout: in simple configurations the obstacle is isolated from the manipulation path (e.g., an object placed far from the target), while in physically constrained scenarios the obstacle sits directly on or adjacent to the target (e.g., a bowl placed on top of a ramekin). Training data comes from LIBERO-Spatial~\cite{liu2023libero} % Liu et al., "LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning", NeurIPS 2023, arXiv:2306.03310
+9	, comprising approximately 25,000 teleoperated demonstration episodes across the 10 tasks.
+10	
+11	\subsection{Evaluation Metrics}
+12	
+13	We report two primary metrics. \textbf{Task Success Rate (TSR)} measures the fraction of evaluation episodes in which the robot completes the instructed manipulation. \textbf{Collision Avoidance Rate (CAR)} measures the fraction of episodes with no collision, following the SafeLIBERO protocol: a collision is registered when the L1 displacement of the obstacle's body position (\texttt{body\_xpos}) exceeds a threshold of $10^{-3}$ during execution. We report both overall metrics (averaged across all 10 tasks) and per-task breakdowns, since ceiling effects on spatially simple tasks, where the baseline already achieves near-perfect CAR, compress overall differences and mask the effect on physically challenging tasks.
+14	
+15	\subsection{Training Configuration}
+16	
+17	The base model is OpenVLA-7B~\cite{kim2024openvla} % Kim et al., "OpenVLA: An Open-Source Vision-Language-Action Model", arXiv:2406.09246, 2024
+18	with the OFT fine-tuning recipe~\cite{kim2025oft} % Kim et al., "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success", arXiv:2502.19645, 2025
+19	. LoRA adapters use rank 32, $\alpha = 16$, and no dropout. Each training sample consists of two input frames (\texttt{--num\_images\_in\_input 2}): the current observation and the preceding frame, providing temporal displacement cues. Image augmentation is enabled during training (\texttt{--image\_aug True}), applying random crops and color jitter. Training uses a batch size of 8, a constant learning rate of $5 \times 10^{-4}$, and runs for 50,005 steps with checkpoints saved every 10,000 steps. Each condition is trained with at least 3 random seeds (42, 43, 44); the depth condition uses 4 seeds (42, 43, 44, 45) for additional statistical power given that it is the primary comparison of interest. Evaluation uses 50 rollouts per task per checkpoint to reduce per-task confidence intervals to approximately $\pm$13 percentage points (compared to $\pm$21pp at 20 rollouts).
+20	
+21	\subsection{Hardware and Compute}
+22	
+23	Experiments run on servers equipped with 4 NVIDIA RTX PRO 6000 GPUs (98\,GB each). Each training run completes in approximately 12.9 hours at 1.08 iterations per second. The full experimental matrix (6 conditions $\times$ 2--4 seeds) requires approximately 250 GPU-hours for training and 60 GPU-hours for evaluation.
+24	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "c1e9afb1-2696-4cc3-a4fd-4f2ef20c55a9"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 66_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad95296947d7402eb",
+  "tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "description": "Reading docs/paper/results.tex",
+  "usage": {
+    "total_tokens": 30769,
+    "tool_uses": 11,
+    "duration_ms": 17345
+  },
+  "last_tool_name": "Read",
+  "uuid": "69dd3e53-65fd-48fb-a542-0d80e4012167",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01XX5g8K7xpK1FKtWHK4Esbs`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/results.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "0c3750ab-62a1-49dc-9356-ad59460fb130",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_018DhA9NFR4Q4mYJBQUekopb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 3790,
+      "cache_read_input_tokens": 26948,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3790,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-25T06:58:58.016Z_
+
+<details><summary>↩ Tool result · `toolu_01XX5g8K7xpK1FKtWHK4Esbs`</summary>
+
+```text
+1	
+2	\section{Results}
+3	\label{sec:results}
+4	
+5	\subsection{Main Results}
+6	\label{sec:main_results}
+7	
+8	Table~\ref{tab:main_results} summarizes TSR and CAR across conditions (50 rollouts $\times$ 10 tasks per seed). Statistical comparisons use paired $t$-tests and Cohen's $d$ against the Vanilla baseline.
+9	
+10	\textbf{Crossover interaction between normalization and gradient flow.} The four conditions crossing normalization type (BN/LN) with gradient flow (ON/OFF) reveal a crossover interaction rather than additive effects (Section~\ref{sec:mechanism}). Full OCC with BN maintains CAR comparable to Vanilla (0.797 vs.\ 0.780, $d{=}+0.69$, $p{=}0.44$). Detach OCC with BN falls 3.4\,pp below Vanilla ($p{=}0.031$, $d{=}-3.90$), the only statistically significant pairwise difference. Detach+LN (0.765) recovers 1.9\,pp of this deficit by eliminating BatchNorm interference. However, Full OCC+LN (0.743) consistently degrades CAR by 3.7\,pp below Vanilla despite maintaining gradient flow---the worst configuration tested. BN is thus beneficial when gradient flow calibrates its statistics, but harmful when gradient flow is absent; LN shows the opposite pattern. Label content does not affect outcomes: Random OCC (0.789), Depth (0.780), and Full OCC (0.797) are all within cross-seed variance ($p > 0.4$).
+11	
+12	\textbf{Detach destabilizes optimization broadly.} Detach OCC exhibits TSR variance an order of magnitude above other conditions ($\sigma = 0.163$ vs.\ $< 0.050$): one seed collapses to TSR 0.624 with uniform degradation across all tasks, while its CAR (0.748) stays comparable to the other two seeds. The remarkably low CAR variance ($\sigma = 0.002$) despite volatile TSR ($\sigma = 0.163$) suggests deterministic convergence to a degraded safety behavior---BN interference imposes a consistent representational distortion regardless of initialization.
+13	
+14	
+15	
+16	\begin{table}[t]
+17	\centering
+18	\caption{Overall results on SafeLIBERO Level~I (10 tasks). Mean $\pm$ SD across seeds; 95\% CIs via bootstrap. $^\dagger$1 seed; $^\ddagger$2 seeds. $^*$Statistically significant vs.\ Vanilla (paired $t$-test $p{<}0.05$). Cutoff conditions retain the auxiliary head forward pass post-cutoff (Detach mode).}
+19	\label{tab:main_results}
+20	\small
+21	\setlength{\tabcolsep}{4pt}
+22	\begin{tabular}{lccccc}
+23	\toprule
+24	Condition & Seeds & TSR & CAR & $95\%$ CI & $\Delta$CAR \\
+25	\midrule
+26	Full OCC (BN)      & 3 & 0.894 $\pm$ 0.050 & \textbf{0.797} $\pm$ 0.032 & [.770, .832] & $+$1.7 \\
+27	Random OCC (BN)    & 3 & 0.869 $\pm$ 0.029 & 0.789 $\pm$ 0.031 & [.754, .814] & $+$0.9 \\
+28	Vanilla       & 3 & 0.907 $\pm$ 0.009 & 0.780 $\pm$ 0.012 & [.766, .788] & ---    \\
+29	Detach+LN     & 3 & 0.901 $\pm$ 0.016 & 0.765 $\pm$ 0.023 & [.748, .792] & $-$1.5 \\
+30	Detach OCC (BN)$^*$    & 3 & 0.812 $\pm$ 0.163 & 0.746 $\pm$ 0.002 & [.744, .748] & $-$3.4 \\
+31	Full OCC+LN   & 3 & 0.897 $\pm$ 0.032 & 0.743 $\pm$ 0.024 & [.718, .766] & $-$3.7 \\
+32	\midrule
+33	Depth             & 4 & 0.889 $\pm$ 0.042 & 0.780 $\pm$ 0.039 & [.747, .812] & 0.0 \\
+34	Cutoff@15K$^\dagger$    & 1 & 0.912 & 0.804 & --- & $+$2.4 \\
+35	Cutoff@25K$^\ddagger$   & 2 & 0.887 $\pm$ 0.061 & 0.724 $\pm$ 0.051 & --- & $-$5.6 \\
+36	Cutoff@35K        & 3 & 0.933 $\pm$ 0.032 & 0.779 $\pm$ 0.017 & [.768, .798] & $-$0.1 \\
+37	Cutoff@45K$^\dagger$    & 1 & 0.896 & 0.764 & --- & $-$1.6 \\
+38	Reverse Cutoff$^\ddagger$ & 2 & 0.839 $\pm$ 0.072 & 0.718 $\pm$ 0.025 & --- & $-$6.2 \\
+39	\bottomrule
+40	\end{tabular}
+41	\end{table}
+42	
+43	\subsection{Normalization--Gradient Flow Interaction}
+44	\label{sec:mechanism}
+45	
+46	The four conditions crossing normalization type (BN/LN) with gradient flow (ON/OFF) form a $2{\times}2$ factorial (Table~\ref{tab:factorial}). A $2{\times}2$ ANOVA confirms a significant interaction ($F(1,8){=}7.511$, $p{=}0.025$, partial $\eta^2{=}0.484$, Cohen's $f{=}0.969$), while neither main effect reaches significance (gradient flow: $p{=}0.326$; normalization: $p{=}0.231$). The interaction effect is 7.3\,pp: gradient flow's effect on CAR reverses sign depending on normalization type.
+47	
+48	\textbf{Crossover, not additive.} With BN, gradient flow improves CAR by $+$5.1\,pp (Full OCC 0.797 vs.\ Detach 0.746; simple effect $p{=}0.052$, $d{=}5.13$). With LN, gradient flow \emph{degrades} CAR by $-$2.2\,pp (Full OCC+LN 0.743 vs.\ Detach+LN 0.765; $p{=}0.26$). Neither simple effect reaches significance individually, but the large effect sizes and opposing directions confirm the crossover pattern. This rules out an additive decomposition: gradient flow benefits are BatchNorm-mediated, arising from gradient calibration of BN running statistics, not from an intrinsic regularization property of auxiliary gradients.
+49	
+50	\textbf{Full OCC+LN is the worst configuration.} Despite maintaining gradient flow and using a normalization layer that eliminates representational drift (Section~\ref{sec:gradient_dynamics}), Full OCC+LN (0.743) falls 3.7\,pp below Vanilla---consistently across all three seeds (0.766, 0.718, 0.744). This is the strongest evidence for a representation-behavior dissociation: the configuration that best preserves pretrained representations produces the worst safety behavior.
+51	
+52	\begin{table}[t]
+53	\centering
+54	\caption{$2{\times}2$ factorial: normalization type $\times$ gradient flow. The 7.3\,pp interaction effect indicates a crossover: gradient flow benefits are BN-mediated.}
+55	\label{tab:factorial}
+56	\begin{tabular}{lccc}
+57	\toprule
+58	 & Gradient ON & Gradient OFF & $\Delta$(ON$-$OFF) \\
+59	\midrule
+60	BatchNorm    & Full OCC (\textbf{0.797}) & Detach OCC (0.746) & $+$5.1 \\
+61	LayerNorm    & Full OCC+LN (0.743) & Detach+LN (0.765) & $-$2.2 \\
+62	\midrule
+63	$\Delta$(BN$-$LN) & $+$5.4 & $-$1.9 & interaction: 7.3 \\
+64	\bottomrule
+65	\end{tabular}
+66	\end{table}
+67	
+68	\subsection{Gradient Dynamics}
+69	\label{sec:gradient_dynamics}
+70	
+71	\begin{figure}[t]
+72	\centering
+73	\includegraphics[width=\textwidth]{figures/gradient_analysis_combined.pdf}
+74	\caption{Gradient dynamics during VLA fine-tuning (seed 42, 200 batches at 50K checkpoint; four conditions: Vanilla, Full OCC, Detach+BN, Full OCC+LN). (a)~Action loss gradient norms per encoder layer: Vanilla, Full OCC, and Random OCC are comparable, while Detach collapses to 1--13\% of Vanilla. (b)~Auxiliary loss gradient norms in the shared encoder (Detach excluded---no auxiliary gradients by design). (c)~Action--auxiliary gradient cosine similarity per layer (near zero for both Full OCC and Random OCC, confirming orthogonality). (d)~Gradient collapse ratio (Detach / Vanilla) quantifying the per-layer collapse magnitude.}
+75	\label{fig:gradient_analysis}
+76	\end{figure}
+77	
+78	Figure~\ref{fig:gradient_analysis} reveals a gradient collapse mechanism underlying the Detach degradation. Action loss gradient norms are comparable across Vanilla and gradient-flow conditions (0.87--1.14$\times$ Vanilla norms), ruling out gradient amplification. Detach OCC, however, exhibits catastrophic collapse: encoder gradient norms fall to 1--13\% of Vanilla across all layers (action gradient norm 0.005 vs.\ Vanilla 0.126, a 25$\times$ reduction). Per-layer analysis (Figure~\ref{fig:per_layer_combined}, Appendix) decomposes auxiliary gradient flow into amplitude and direction: Detach collapses uniformly while gradient-flow conditions maintain Vanilla-comparable norms; DINOv2 layers show $\sim$50\% conflict rate while SigLIP late layers (blocks 21--24) drop to 19--25\%, indicating cooperative alignment. Both patterns are identical for structured and random labels. The crossover interaction (Section~\ref{sec:mechanism}) reveals that gradient flow's collapse-prevention effect is BN-mediated: under LN, gradient flow degrades rather than improves CAR.
+79	
+80	\textbf{LN induces cross-backbone gradient redistribution.} Same-seed analysis (seed 42, four conditions, 200 batches at 50K checkpoint) reveals why LayerNorm with gradient flow degrades CAR. Under Full OCC+LN, action loss gradients in DINOv2 are suppressed 3.5$\times$ relative to BN (mean norm 0.048 vs.\ 0.168), while SigLIP action gradients are amplified 2.5$\times$ (0.206 vs.\ 0.081). Conflict rates remain ${\sim}$50\% in both conditions, ruling out directional conflict as the cause. The mechanism is cross-backbone amplitude redistribution: LN normalization redistributes gradient magnitude from DINOv2 to SigLIP, disrupting the balanced allocation that BN maintains (DINOv2: 0.8$\times$ Vanilla, SigLIP: 1.0$\times$ Vanilla). This explains why Full OCC+LN degrades CAR despite preserving pretrained representations---the problem is not \emph{what} the encoders represent, but \emph{how} gradient flow allocates learning signal across them.
+81	
+82	\begin{figure}[t]
+83	\centering
+84	\includegraphics[width=0.75\textwidth]{figures/cka_analysis.pdf}
+85	\caption{CKA similarity between fine-tuned and pretrained encoder features. All conditions except Detach OCC preserve pretrained structure (CKA $\geq$0.95), including Full OCC+LN---which achieves the lowest CAR despite high CKA, evidencing a representation-behavior dissociation. Detach OCC drifts catastrophically, especially in SigLIP middle layers, confirming BatchNorm as the sole cause of representational drift.}
+86	\label{fig:cka_analysis}
+87	\end{figure}
+88	
+89	\textbf{CKA confirms BN as the sole cause of representational drift---but representations do not predict behavior.} CKA between fine-tuned and pretrained features (Figure~\ref{fig:cka_analysis}) shows that all non-Detach-BN conditions preserve pretrained structure (CKA $\geq$ 0.95): Vanilla, Full OCC, Random OCC, Detach+LN, and Full OCC+LN. Detach OCC alone drifts catastrophically (DINOv2: 0.539; SigLIP: 0.312). CKA analysis indicates that LN generally does not cause representational drift (s1, s2 CKA${\approx}$0.97), suggesting that the CAR degradation under Full OCC+LN operates through gradient dynamics---specifically the cross-backbone gradient redistribution described above---rather than representation corruption. Yet Full OCC+LN achieves the \emph{lowest} CAR (0.743) while Full OCC with BN achieves the highest (0.797), both at high CKA. This \emph{representation-behavior dissociation} demonstrates that preserving pretrained features is neither sufficient nor predictive of collision avoidance.
+90	
+91	\textbf{Same-seed validation.} The cross-backbone gradient redistribution findings are confirmed by same-seed analysis (seed 42, four conditions trained identically except for normalization and gradient flow), eliminating cross-seed confounds present in earlier cross-seed comparisons.
+92	
+93	\subsection{Additional Observations}
+94	\label{sec:per_task}
+95	\label{sec:temporal}
+96	
+97	\textbf{Per-task concentration.} Seven of ten tasks achieve CAR $\geq$ 0.92 under Vanilla; overall CAR is dominated by three physically constrained tasks (T3, T5, T6; Appendix~\ref{app:per_task}). Detach is systematically worst on these hard tasks (T3: 0.11, T5: 0.05), consistent with gradient collapse exacerbating degradation where obstacle proximity is tight.
+98	
+99	\textbf{Egocentric depth matches Vanilla.} Depth (4 seeds) achieves CAR 0.780 $\pm$ 0.039---identical to Vanilla---despite providing per-pixel geometric information. Three label types (structured BEV, random binary, egocentric depth) yield comparable CAR when gradient flow is maintained.
+100	
+101	\textbf{Temporal dynamics (preliminary).} Cutoff@35K (3 seeds) achieves CAR 0.779, statistically indistinguishable from Vanilla ($\Delta = -$0.1\,pp), confirming that 35K steps of gradient flow fully protects collision avoidance. Surprisingly, Cutoff@25K (0.724, 2 seeds) and Reverse Cutoff (0.718, 2 seeds) fall substantially \emph{below} Vanilla. The most parsimonious explanation: setting the loss weight to zero retains the auxiliary head forward pass, so the post-cutoff period operates in Detach mode---BatchNorm interference acts on representations shaped by gradient flow, without gradient compensation. This is not withdrawal from gradient flow \emph{per se}, but transition into an actively harmful regime. Third seeds are in progress; extended analysis in Appendix~\ref{app:temporal}.
+102	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "3b37bf72-3b3d-4bf9-b1a8-c4f6e72a3d8f"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 69_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad95296947d7402eb",
+  "tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "description": "Reading docs/paper/discussion.tex",
+  "usage": {
+    "total_tokens": 30771,
+    "tool_uses": 12,
+    "duration_ms": 17584
+  },
+  "last_tool_name": "Read",
+  "uuid": "daecb47a-eecb-4abc-aa8a-8dba3aad58ca",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01VJVjwioAR2zss9Ljim6XqL`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/discussion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "4829ee16-0810-4a20-86fa-77b1b74b07d4",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_018DhA9NFR4Q4mYJBQUekopb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 3790,
+      "cache_read_input_tokens": 26948,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3790,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-25T06:58:58.255Z_
+
+<details><summary>↩ Tool result · `toolu_01VJVjwioAR2zss9Ljim6XqL`</summary>
+
+```text
+1	
+2	\section{Discussion}
+3	\label{sec:discussion}
+4	\label{sec:why_gradient}
+5	\label{sec:why_detach}
+6	
+7	Gradient norms, CKA, normalization ablation, and behavioral metrics converge on a crossover interaction account. BatchNorm and gradient flow are not independent factors with additive effects; they interact (7.3\,pp interaction effect). BN is a context-dependent component: when gradient flow calibrates its running statistics, BN coupling is beneficial (Full OCC 0.797, the best configuration); without gradient calibration, BN statistics drift uncompensated, causing catastrophic representational corruption (Detach OCC CKA $\downarrow$0.31--0.54). This is consistent with the known sensitivity of BatchNorm to distribution shift~\cite{ioffe2015batchnorm}, here manifested as a training-time phenomenon rather than the typical train/test discrepancy.
+8	
+9	The crossover is most striking in the Full OCC+LN result: gradient flow with LayerNorm produces the \emph{worst} safety behavior (CAR 0.743) despite preserving pretrained representations (CKA $\geq$0.95). Same-seed gradient analysis reveals the mechanism: LN redistributes gradient magnitude across backbones, suppressing DINOv2 action gradients 3.5$\times$ while amplifying SigLIP 2.5$\times$ relative to BN, without increasing directional conflict. This cross-backbone gradient redistribution---not representation corruption---explains the CAR degradation, constituting a representation-behavior dissociation where representational fidelity does not predict safety. This rules out the hypothesis that gradient flow provides intrinsic behavioral regularization~\cite{lee2015deeply, pezeshki2021gradient}. Instead, gradient flow benefits are entirely BN-mediated: BN maintains balanced gradient allocation across encoders (DINOv2: 0.8$\times$, SigLIP: 1.0$\times$ Vanilla norms), a calibration effect that LN disrupts.
+10	
+11	We observe that under Detach BN, SigLIP drifts more than DINOv2 (CKA 0.312 vs.\ 0.539). SigLIP's cooperative gradient alignment in late layers (19--25\% conflict) creates vulnerability when auxiliary flow is removed; DINOv2's orthogonal structure ($\sim$50\% conflict) confers resilience. LayerNorm fully resolves this asymmetry (Detach+LN: both encoders CKA $\geq$ 0.96).
+12	
+13	\textbf{Practical guideline.} Maintain BatchNorm with gradient flow---the only configuration that preserves or improves CAR. If gradient flow cannot be maintained, substitute LayerNorm to prevent representational drift. Never combine LayerNorm with gradient flow, as this consistently degrades safety below Vanilla. No ground-truth spatial labels are required; the head is discarded at zero inference cost. This training-time intervention complements runtime safety methods~\cite{hu2025vlsa, raja2024ogmcbf}.
+14	
+15	\textbf{Limitations.} Single architecture (OpenVLA-OFT, LoRA rank 32), single benchmark (SafeLIBERO Level~I, 10 tasks, static obstacles). The interaction effect is statistically confirmed ($F(1,8){=}7.511$, $p{=}0.025$) but based on $n{=}3$ seeds per cell; larger-scale replication would further strengthen conclusions. Gradient redistribution findings are validated by same-seed analysis (seed 42, four conditions). Cutoff conditions have 1--3 seeds, limiting temporal conclusions to preliminary observations.
+16	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "912a80ad-1b15-473a-a70c-048ee9090cc4"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 72_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad95296947d7402eb",
+  "tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "description": "Reading docs/paper/conclusion.tex",
+  "usage": {
+    "total_tokens": 30773,
+    "tool_uses": 13,
+    "duration_ms": 17707
+  },
+  "last_tool_name": "Read",
+  "uuid": "e6118e37-c638-4be1-afb2-4ae5e59cd272",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01PEuZepdkGJb9AtbLVtZ91w`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/conclusion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "5cfa5f61-bd5d-4ce7-89ee-5b8ca31ffbf2",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_018DhA9NFR4Q4mYJBQUekopb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 3790,
+      "cache_read_input_tokens": 26948,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3790,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-25T06:58:58.377Z_
+
+<details><summary>↩ Tool result · `toolu_01PEuZepdkGJb9AtbLVtZ91w`</summary>
+
+```text
+1	
+2	\section{Conclusion}
+3	\label{sec:conclusion}
+4	
+5	We presented the first factorial study of how auxiliary spatial supervision during VLA fine-tuning affects collision avoidance. The central finding is a crossover interaction between normalization type and gradient flow (7.3\,pp interaction effect, $p{=}0.025$): BatchNorm with gradient flow is the only beneficial configuration, while LayerNorm with gradient flow consistently degrades safety below Vanilla despite preserving pretrained representations---a deep representation-behavior dissociation. Three label types achieve comparable CAR, confirming that label content does not matter. Practical guidelines: maintain BatchNorm with gradient flow; if gradient flow is unavailable, substitute LayerNorm; never combine LayerNorm with gradient flow. No ground-truth labels needed, zero inference cost. Same-seed gradient analysis reveals BN-mediated gradient calibration operates through balanced cross-backbone gradient allocation, which LN disrupts via amplitude redistribution. Open directions include generalization to other VLA architectures and benchmarks, dynamic obstacles, and real-world deployment.
+6	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "657288d7-ee2b-442c-a7da-aaa559f31a94"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 75_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad95296947d7402eb",
+  "tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "description": "Reading docs/paper/related_work.tex",
+  "usage": {
+    "total_tokens": 36456,
+    "tool_uses": 14,
+    "duration_ms": 20129
+  },
+  "last_tool_name": "Read",
+  "uuid": "9babed0f-82a4-4b8a-8577-0f9a24f46ac0",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — Read · `toolu_015YhoM8vhzDsbwB5dytNnG9`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/related_work.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "ee3a4741-c68e-44c6-965b-92aad28da2c6",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01SxkSU4BvadkQ32qLJzr3L6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 5679,
+      "cache_read_input_tokens": 30738,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 5679,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-25T06:59:00.803Z_
+
+<details><summary>↩ Tool result · `toolu_015YhoM8vhzDsbwB5dytNnG9`</summary>
+
+```text
+1	
+2	\section{Related Work}
+3	\label{sec:related}
+4	
+5	\subsection{VLA Safety and Spatial Representations}
+6	
+7	VLA models achieve high task success but remain prone to collisions~\cite{li2026vlasafety}. Two strategies address this gap. Runtime constraint methods add safety layers at inference: AEGIS~\cite{hu2025vlsa} filters actions via a CBF constructed from vision-language obstacle detection, improving CAR by 59pp on SafeLIBERO; CoFreeVLA~\cite{zhai2026cofreevla} trains a collision risk estimator for dual-arm settings; and OGM-CBF~\cite{raja2024ogmcbf} builds CBFs from occupancy grid maps. Training-time methods embed safety into the policy: SafeVLA~\cite{zhang2025safevla} applies constrained RL to reduce safety violations by 84\%. Both strategies treat safety as a behavioral constraint problem without investigating whether the VLA's internal spatial representations contribute to collision avoidance.
+8	
+9	Separately, a growing body of work injects 3D structure into VLA vision encoders to improve task success. Depth-based methods fuse monocular predictions with visual features~\cite{yuan2025depthvla, li2025qdepthvla, rao2026augvla3d, bhat20253dcavla, abouzeid2025geoaware}, building on foundation models like Depth Anything~\cite{yang2024depthanything}. Alignment-based approaches regularize internal representations: Spatial Forcing~\cite{li2026spatialforcing} aligns VLA embeddings with pretrained 3D features (ICLR 2026); SpatialVLA~\cite{wu2025spatialvla} introduces egocentric 3D position encoding (RSS 2025). Point cloud and geometric methods encode explicit 3D structure~\cite{li2025pointvla, sun2025geovla, wu2026stvla, chen2026gstvla, tu2026sgvla, xiao2026stemvla, li2026corridorvla}. In autonomous driving, OccVLA~\cite{liu2025occvla} uses occupancy prediction as auxiliary VLA supervision, drawing on BEV representations~\cite{li2022bevformer, sima2023occnet, tian2023occ3d}. These spatial methods consistently improve task success but none evaluates collision avoidance. Our work bridges this gap: we study whether auxiliary spatial supervision affects safety, and design a factorial ablation to isolate the operative mechanism.
+10	
+11	\subsection{Auxiliary Tasks and Multi-Task Gradient Dynamics}
+12	
+13	Multi-task learning improves generalization by training shared representations on related objectives~\cite{caruana1997multitask, ruder2017overview}. Lippl and Lindsey~\cite{lippl2024implicit} show that multi-task training induces implicit $\ell_{1,2}$ regularization in overparameterized networks, while single-task fine-tuning exhibits nested feature selection that discards unused pretrained features. A parallel line of work addresses gradient conflicts in multi-task optimization through gradient manipulation~\cite{chen2018gradnorm, yu2020pcgrad, liu2021cagrad, navon2022nashmtl}. These methods share a common premise: task gradients may conflict, and the optimizer must resolve the conflict. Our gradient analysis shows that action and auxiliary gradients are approximately orthogonal (cosine similarity $\approx 0$), and that blocking auxiliary gradients causes encoder gradient norms to collapse to 1--13\% of baseline. This pattern is more consistent with intermediate supervision~\cite{lee2015deeply} and continual learning perspectives on preserving pretrained features~\cite{kirkpatrick2017ewc} than with gradient conflict resolution: the auxiliary gradient prevents encoder gradient collapse rather than resolving a directional conflict. The collapse mechanism also resonates with gradient starvation~\cite{pezeshki2021gradient}, where removing a gradient source causes certain feature directions to receive vanishingly small updates.
+14	
+15	For VLA fine-tuning with LoRA~\cite{hu2022lora}, the interaction between auxiliary losses and adapter updates has not been studied. Among spatial VLA methods, Spatial Forcing~\cite{li2026spatialforcing} uses an auxiliary depth-alignment loss and reports improved convergence, but does not separate the regularization effect of gradient flow from the informational content of the spatial signal. Our factorial design isolates these factors.
+16	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "6a1dd760-9678-41ca-99a0-1cf2a05685d3"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 78_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad95296947d7402eb",
+  "tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "description": "Reading docs/paper/appendix.tex",
+  "usage": {
+    "total_tokens": 36458,
+    "tool_uses": 15,
+    "duration_ms": 20400
+  },
+  "last_tool_name": "Read",
+  "uuid": "8bb95fdb-d63e-44ab-9cd0-57073e5ee185",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 79_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01BXJ2CwTTFZuhEhSTGKVcoF`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/appendix.tex",
+  "limit": 100
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "56d60e45-c60f-4afc-b2ae-1870c28031ca",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01SxkSU4BvadkQ32qLJzr3L6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 5679,
+      "cache_read_input_tokens": 30738,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 5679,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-25T06:59:01.072Z_
+
+<details><summary>↩ Tool result · `toolu_01BXJ2CwTTFZuhEhSTGKVcoF`</summary>
+
+```text
+1	
+2	\section{Extended Per-Task Results}
+3	\label{app:per_task}
+4	
+5	Table~\ref{tab:per_task} reports per-task mean CAR across seeds for each condition. Seven tasks achieve CAR $\geq$ 0.92 under Vanilla, while three physically constrained tasks (T3, T5, T6) fall below 0.58. The overall CAR differences reported in the main text are dominated by these three hard tasks, which average 0.342 compared to 0.968 for the seven easy tasks.
+6	
+7	\begin{table}[h]
+8	\centering
+9	\caption{Per-task mean CAR across seeds (50 rollouts per seed). All conditions use 3 seeds except Depth (4). Detach+LN per-task uses 2 seeds (s1, s2; s0 lacks per-task breakdown); 3-seed aggregate is in Table~\ref{tab:main_results}.}
+10	\label{tab:per_task}
+11	\begin{tabular}{clccccccc}
+12	\toprule
+13	 & & \multicolumn{7}{c}{Mean CAR by Condition} \\
+14	\cmidrule(lr){3-9}
+15	Task & Diff. & Vanilla & Full OCC & Random & Detach & Det+LN & Depth & Cut@35K \\
+16	\midrule
+17	T0 & Easy  & 0.98 & 0.98 & 0.99 & 0.97 & 0.97 & 0.99 & 0.98 \\
+18	T1 & Easy  & 0.92 & 0.93 & 0.99 & 0.89 & 0.78 & 0.93 & 0.95 \\
+19	T2 & Easy  & 0.92 & 0.93 & 0.94 & 0.93 & 0.90 & 0.90 & 0.94 \\
+20	T3 & Hard  & 0.38 & 0.37 & 0.31 & \textbf{0.11} & 0.44 & 0.50 & 0.55 \\
+21	T4 & Easy  & 0.98 & 0.99 & 0.95 & 0.98 & 0.96 & 0.92 & 0.97 \\
+22	T5 & Hard  & 0.07 & 0.17 & 0.23 & \textbf{0.05} & 0.12 & 0.08 & 0.04 \\
+23	T6 & Hard  & 0.57 & 0.61 & 0.55 & 0.56 & 0.36 & 0.54 & 0.38 \\
+24	T7 & Easy  & 0.97 & 0.99 & 0.95 & 0.98 & 1.00 & 0.96 & 0.98 \\
+25	T8 & Easy  & 1.00 & 1.00 & 1.00 & 0.99 & 0.99 & 0.99 & 0.99 \\
+26	T9 & Easy  & 1.00 & 0.99 & 0.99 & 1.00 & 1.00 & 1.00 & 1.00 \\
+27	\midrule
+28	\multicolumn{2}{l}{Overall} & 0.780 & 0.797 & 0.789 & 0.746 & 0.765 & 0.780 & 0.779 \\
+29	\bottomrule
+30	\end{tabular}
+31	\end{table}
+32	
+33	\textbf{Ceiling effects.} On the seven easy tasks (T0--T2, T4, T7--T9), all conditions achieve CAR $\geq$ 0.89, leaving minimal room for auxiliary training to improve performance. The obstacle is spatially separated from the manipulation path in these tasks.
+34	
+35	\textbf{Hard task patterns.} On Task~5 (Vanilla CAR 0.07), gradient-flow conditions (Random OCC 0.23, Full OCC 0.17) exceed Vanilla and Detach (0.05), but all values remain below 0.23. Cutoff@35K achieves the highest T3 CAR (0.55) but the lowest T5 CAR (0.04), illustrating task-specific temporal sensitivity. Depth exhibits high cross-seed variance on hard tasks (T3 range: 0.20--0.78; T6 range: 0.16--0.84), consistent with auxiliary supervision increasing seed sensitivity.
+36	
+37	\section{Training Details}
+38	\label{app:training}
+39	
+40	\begin{table}[h]
+41	\centering
+42	\caption{Training hyperparameters.}
+43	\label{tab:hyperparams}
+44	\begin{tabular}{ll}
+45	\toprule
+46	Parameter & Value \\
+47	\midrule
+48	Base model & OpenVLA-7B~\cite{kim2024openvla} \\
+49	Fine-tuning recipe & OFT~\cite{kim2025oft} \\
+50	Vision encoders & DINOv2 (1024-d) + SigLIP (1152-d) \\
+51	Patch token dim. & 2176 (concatenated) \\
+52	LoRA rank / $\alpha$ & 32 / 16 \\
+53	Batch size & 8 \\
+54	Learning rate & $5 \times 10^{-4}$ (constant) \\
+55	Training steps & 50{,}000 \\
+56	Aux.\ loss weight $\lambda_0$ & 0.01 \\
+57	Aux.\ loss decay & $\exp(-t / 50{,}000)$ \\
+58	BEV grid resolution & $64 \times 64$ \\
+59	Focal loss $\alpha$ / $\gamma$ & 0.25 / 2.0 \\
+60	Depth loss & Smooth-L1 \\
+61	Aux.\ head parameters & 1.2M \\
+62	Hardware & NVIDIA RTX PRO 6000 (98\,GB) \\
+63	Wall time per run & $\sim$12.9 hours \\
+64	\bottomrule
+65	\end{tabular}
+66	\end{table}
+67	
+68	\textbf{Evaluation protocol.} Each condition uses 3+ seeds (Depth uses 4; Cutoff@25K and Reverse Cutoff use 2; Cutoff@15K and Cutoff@45K use 1) with 50 rollouts per task per seed (500 episodes per seed). A collision is registered when the L1 displacement of the obstacle's \texttt{body\_xpos} exceeds $10^{-3}$. Bootstrap 95\% CIs are computed via 10{,}000 resamples (percentile method).
+69	
+70	\textbf{Statistical tests.} Pairwise comparisons against Vanilla use two-tailed paired $t$-tests on per-seed mean CARs with Cohen's $d$ for effect size. With $n{=}3$ seeds, statistical power is limited; we report $p$-values and effect sizes for transparency. Only Detach OCC reaches significance ($p{=}0.031$, $d{=}-3.90$); all gradient-flow conditions show $p > 0.35$.
+71	
+72	\textbf{CKA analysis.} Centered Kernel Alignment~\cite{kornblith2019similarity} measures representational similarity between fine-tuned and pretrained encoder features. We extract patch token activations from the final layer of DINOv2 and SigLIP for 1{,}000 validation images, compute linear CKA per layer, and report the mean across layers. Higher CKA indicates better preservation of pretrained representations.
+73	
+74	\textbf{Cutoff implementation.} Setting the auxiliary loss weight to zero at step $N$ does \emph{not} disable the auxiliary head's forward pass. The head's BatchNorm2d layers continue computing batch statistics, which shift the encoder's internal activations without compensating gradient flow. The post-cutoff phase thus operates in Detach mode, not Vanilla mode. This is a property of the implementation (the head remains in the forward graph), not a deliberate design choice.
+75	
+76	\section{Extended Analysis}
+77	\label{app:extended}
+78	
+79	The Detach+LN ablation replaces BatchNorm2d with LayerNorm in the auxiliary head while retaining \texttt{stop\_gradient}. Results (3 seeds) are reported in Table~\ref{tab:main_results} and analyzed in Section~\ref{sec:why_gradient}. Detach+LN recovers 1.9\,pp of the 3.4\,pp Detach deficit (CAR 0.765 vs.\ Detach 0.746) and fully restores pretrained CKA to Vanilla level (DINOv2: 0.966, SigLIP: 0.960), confirming that BatchNorm interference accounts for all representational drift. The crossover interaction (Section~\ref{sec:mechanism}) reveals that this recovery is normalization-dependent: Full OCC+LN (gradient flow ON, LayerNorm) achieves CAR 0.743---\emph{below} Detach+LN---demonstrating that gradient flow benefits are BN-mediated rather than intrinsic.
+80	
+81	\textbf{Per-layer gradient analysis.} Figure~\ref{fig:per_layer_combined} decomposes auxiliary gradient flow into two dimensions: amplitude (top row) and direction (bottom row). The amplitude heatmap (panels a--b) shows that Vanilla, Full OCC, and Random OCC maintain comparable action gradient norms across all layers (warm colors), while Detach collapses to 1--13\% of Vanilla uniformly across both encoders (dark), consistent with a global gradient flow disruption rather than layer-specific interference. The directional analysis (panels c--d) reveals encoder-specific alignment: DINOv2 conflict rates hover near 50\% across all layers while SigLIP late layers (blocks 21--24) drop to 19--25\%, indicating cooperative gradient alignment in semantically rich layers. Both patterns are identical for Full OCC and Random OCC, confirming they arise from architectural structure rather than label content. The aggregate conflict rates (Full OCC 44.1\%, Random OCC 43.9\%) fall below the 50\% expected for random vectors because they reflect this mixture of two encoder-specific patterns.
+82	
+83	\begin{figure}[h]
+84	\centering
+85	\includegraphics[width=\textwidth]{figures/per_layer_combined.pdf}
+86	\caption{Per-layer gradient analysis decomposed into amplitude and direction. \textbf{Top (a--b):} Action gradient norm heatmap (log scale). Gradient-flow conditions (Vanilla, Full OCC, Random OCC) maintain comparable norms; Detach collapses to 1--13\% of Vanilla across all layers. \textbf{Bottom (c--d):} Gradient conflict rate between action and auxiliary losses. DINOv2 maintains $\sim$50\% conflict (near-orthogonal), while SigLIP late layers drop to 19--25\% (cooperative alignment). Both amplitude and directional patterns are identical for Full OCC and Random OCC, confirming architectural rather than label-dependent structure.}
+87	\label{fig:per_layer_combined}
+88	\label{fig:conflict_rate}
+89	\label{fig:grad_norm_heatmap}
+90	\end{figure}
+91	
+92	\label{app:temporal}
+93	\textbf{Dose-response: gradient flow duration vs.\ CAR.} Figure~\ref{fig:dose_response} plots CAR against the number of OCC gradient flow steps for the cutoff series (15K--45K, plus Detach at 0K and Full OCC at 50K). The relationship is non-monotonic with substantial seed-dependent variability: Cutoff@15K (1 seed) achieves the highest CAR (0.804) despite the shortest gradient flow period, while Cutoff@25K (2 seeds) shows the lowest (0.724). Multi-seed conditions (Cutoff@35K and Full OCC) cluster near the Vanilla baseline. Reverse Cutoff (late 15K) falls below the early-cutoff counterpart at the same gradient flow duration, consistent with the continuity hypothesis. The non-monotonicity and high variance across low-seed conditions underscore that transition \emph{timing} and \emph{seed sensitivity}---not gradient flow dose alone---drive cutoff outcomes.
+94	
+95	\begin{figure}[h]
+96	\centering
+97	\includegraphics[width=0.75\textwidth]{figures/dose_response.pdf}
+98	\caption{Dose-response: CAR vs.\ OCC gradient flow duration. Blue circles: early-cutoff progression (gradient flow for the first $N$ steps, Detach mode thereafter). Red square: Reverse Cutoff (gradient flow for the last 15K steps). Gray band: Vanilla $\pm$ 1 SD. Seed counts annotated; error bars show cross-seed SD where available. The non-monotonic pattern and high variance for low-seed conditions suggest that transition timing matters more than gradient flow dose.}
+99	\label{fig:dose_response}
+100	\end{figure}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "d9004478-a90b-449d-be26-c31469526e56"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 81_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad95296947d7402eb",
+  "tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "description": "Reading docs/paper/references.tex",
+  "usage": {
+    "total_tokens": 36460,
+    "tool_uses": 16,
+    "duration_ms": 20598
+  },
+  "last_tool_name": "Read",
+  "uuid": "96410c70-4028-4237-bd93-f7176a0aef5a",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 82_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01XEU8FEz3V3Sn5sRCrkHt78`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/references.tex",
+  "limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "f110a3cf-a2e7-42fc-a050-2f37d7ae126f",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01SxkSU4BvadkQ32qLJzr3L6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 5679,
+      "cache_read_input_tokens": 30738,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 5679,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-25T06:59:01.279Z_
+
+<details><summary>↩ Tool result · `toolu_01XEU8FEz3V3Sn5sRCrkHt78`</summary>
+
+```text
+1	% References for OccSafe-VLA
+2	% Bib key convention: {first_author_surname_lower}{year}{keyword_lower}
+3	
+4	% ============================================================
+5	% VLA Safety
+6	% ============================================================
+7	
+8	@article{hu2025vlsa,
+9	  author    = {Songqiao Hu and Zeyi Liu and Shuang Liu and Jun Cen and Zihan Meng and Xiao He},
+10	  title     = {{VLSA}: Vision-Language-Action Models with Plug-and-Play Safety Constraint Layer},
+11	  journal   = {arXiv preprint arXiv:2512.11891},
+12	  year      = {2025},
+13	  note      = {arXiv:2512.11891}
+14	}
+15	
+16	@inproceedings{zhang2025safevla,
+17	  author    = {Borong Zhang and others},
+18	  title     = {{SafeVLA}: Towards Safety Alignment of Vision-Language-Action Model via Constrained Learning},
+19	  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+20	  year      = {2025},
+21	  note      = {Spotlight. arXiv:2503.03480}
+22	}
+23	
+24	@article{zhai2026cofreevla,
+25	  author    = {Xuanran Zhai and others},
+26	  title     = {{CoFreeVLA}: Collision-Free Dual-Arm Manipulation via {VLA} Model and Risk Estimation},
+27	  journal   = {arXiv preprint arXiv:2601.21712},
+28	  year      = {2026},
+29	  note      = {arXiv:2601.21712}
+30	}
+31	
+32	@article{yu2026safenightvla,
+33	  author    = {Yu and others},
+34	  title     = {{Safe-Night VLA}: Seeing the Unseen via Thermal-Perceptive Vision-Language-Action Models for Safety-Critical Manipulation},
+35	  journal   = {arXiv preprint arXiv:2603.05754},
+36	  year      = {2026},
+37	  note      = {arXiv:2603.05754}
+38	}
+39	
+40	@article{li2026vlasafety,
+41	  author    = {Li and others},
+42	  title     = {Vision-Language-Action Safety: Threats, Challenges, Evaluations, and Mechanisms},
+43	  journal   = {arXiv preprint arXiv:2604.23775},
+44	  year      = {2026},
+45	  note      = {arXiv:2604.23775}
+46	}
+47	
+48	% ============================================================
+49	% Safety Mechanisms (barrier functions / occupancy-based safety)
+50	% ============================================================
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "ad00bbca-991a-4236-901a-259220a4484a"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 84_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad95296947d7402eb",
+  "tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "description": "Reading docs/paper/experiments_old.tex",
+  "usage": {
+    "total_tokens": 42153,
+    "tool_uses": 17,
+    "duration_ms": 22646
+  },
+  "last_tool_name": "Read",
+  "uuid": "405363e9-52b9-4ac2-8e14-26ada0d923d4",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 85_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Xdv8w1zQYC1gjz4szfeUuk`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/experiments_old.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "bc886847-259b-4f82-b652-0cc048300aeb",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01DE1XELq18qLZczBFMjTYg2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 5691,
+      "cache_read_input_tokens": 36417,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 5691,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-25T06:59:03.318Z_
+
+<details><summary>↩ Tool result · `toolu_01Xdv8w1zQYC1gjz4szfeUuk`</summary>
+
+```text
+1	\section{Experiments}
+2	
+3	\subsection{Benchmark and Tasks}
+4	
+5	We evaluate on the SafeLIBERO benchmark~\cite{hu2025vlsa}, which augments the LIBERO-Spatial suite with collision-aware evaluation. SafeLIBERO comprises 32 scenarios across 10 tabletop manipulation tasks organized into two difficulty levels: Level~I (basic spatial reasoning) and Level~II (complex multi-step manipulation). Each task requires the agent to reach, grasp, and place objects among surrounding obstacles. Several tasks deliberately position objects in close proximity (e.g., a bowl resting on a ramekin), creating natural collision challenges that test whether the agent can complete the instructed task without disturbing nearby objects.
+6	
+7	\subsection{Evaluation Protocol}
+8	
+9	We measure two complementary metrics aligned with the VLSA-AEGIS protocol~\cite{hu2025vlsa}. \textbf{Task Success Rate (TSR)} is the fraction of episodes in which the robot completes the instructed task. \textbf{Collision Avoidance Rate (CAR)} is the fraction of episodes with zero unintended object displacement, computed as $\text{CAR} = 1 - n_{\text{collide}} / N$, where $n_{\text{collide}}$ counts episodes whose maximum L1 \texttt{body\_xpos} displacement exceeds a threshold of $0.001$. For each of the 10 tasks, we run 50 rollouts per seed (500 episodes per seed). Seeds vary by condition (2--4 seeds; see Table~\ref{tab:main_results}). We report mean and standard deviation across seeds.
+10	
+11	\subsection{Experimental Conditions}
+12	
+13	We design six conditions that form a mechanism ablation chain, progressively isolating the role of occupancy-grounded gradient flow:
+14	
+15	\begin{itemize}[nosep,leftmargin=*]
+16	  \item \textbf{Vanilla}: OpenVLA-OFT fine-tuned without any auxiliary supervision (baseline).
+17	  \item \textbf{Full OCC}: BEV occupancy auxiliary head with gradients flowing into the vision encoder (\texttt{occ\_detach=False}).
+18	  \item \textbf{Detach OCC}: Occupancy head with detached gradients (\texttt{occ\_detach=True}), testing whether gradient flow to the encoder is necessary.
+19	  \item \textbf{Depth}: Depth prediction auxiliary head (same architecture, labels from MuJoCo simulator depth rendering at $64{\times}64$ resolution), testing whether collision avoidance is specific to occupancy or arises from any geometric auxiliary task.
+20	  \item \textbf{Random OCC}: Occupancy head trained with randomized labels, controlling for the regularization effect of an auxiliary loss.
+21	  \item \textbf{Cutoff}: Occupancy head with gradient flow active for the first 35{,}000 steps, then disabled for the remaining 15{,}000 steps, testing whether early-phase gradient flow is sufficient or continuous auxiliary supervision is required.
+22	\end{itemize}
+23	
+24	\noindent The chain Vanilla $\to$ Random OCC $\to$ Depth $\to$ Detach OCC $\to$ Full OCC isolates, in turn, auxiliary regularization, geometric supervision, and occupancy-specific gradient flow. The Cutoff condition additionally isolates the temporal requirement of auxiliary supervision.
+25	
+26	Each pairwise comparison isolates a single experimental factor. Vanilla vs.\ Full OCC tests whether occupancy supervision affects collision behavior. Full OCC vs.\ Detach OCC holds architecture and labels constant while toggling gradient flow, isolating the causal role of encoder-level gradient routing. Full OCC vs.\ Random OCC preserves architecture and gradient flow while replacing structured labels with random binary targets, isolating the contribution of label content. Full OCC vs.\ Depth substitutes the allocentric BEV reference frame with egocentric depth supervision, isolating the spatial representation. The Cutoff condition selectively disables gradient flow partway through training, isolating the temporal extent of auxiliary supervision. This factorial structure ensures that each mechanism (gradient flow, label content, spatial reference frame, temporal duration) is tested by exactly one controlled comparison.
+27	
+28	\subsection{Implementation Details}
+29	
+30	All conditions share the same base model: OpenVLA-OFT 7B~\cite{kim2025oft}, pre-trained on Open X-Embodiment. We fine-tune with LoRA (rank 32, $\alpha{=}16$) for 50K steps using AdamW (weight decay $0.01$), a batch size of 8, a constant learning rate of $5 \times 10^{-4}$, and 2--4 random seeds per condition (see Table~\ref{tab:main_results}). The LoRA adapter adds 110.8M trainable parameters (1.45\% of 7.65B total).
+31	
+32	The occupancy head (1.2M parameters) is a convolutional decoder that maps concatenated DINOv2+SigLIP patch features (2176 dimensions) to a $64{\times}64$ BEV occupancy grid. The first 256 patch tokens from the primary camera view are selected and projected via a linear layer ($2176{\to}256$), then reshaped into a $16{\times}16$ spatial map. Two transposed convolutions ($256{\to}128{\to}64$, kernel 4, stride 2) with BatchNorm and GELU upsample this map to $64{\times}64$, and a $1{\times}1$ convolution produces the binary occupancy logits. The head is trained with Focal Loss ($\alpha{=}0.25$, $\gamma{=}2.0$); the occupancy loss weight $\lambda_{\text{occ}}$ starts at $0.01$ and decays exponentially as $\lambda_{\text{occ}}(t) = 0.01 \cdot \exp(-t/\tau)$ with $\tau{=}50$K steps. The depth head uses the same decoder architecture with continuous regression targets. Each run trains in approximately 12.9 hours on a single NVIDIA RTX PRO 6000 GPU (98\,GB). Evaluation uses \texttt{MUJOCO\_GL=egl} for headless rendering with deterministic rollout seeds.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "e29ddce8-343c-4b8a-88c0-7acbc20ad364"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 87_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad95296947d7402eb",
+  "tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "description": "Reading docs/paper/references.tex",
+  "usage": {
+    "total_tokens": 42154,
+    "tool_uses": 18,
+    "duration_ms": 22908
+  },
+  "last_tool_name": "Read",
+  "uuid": "3d15f267-c868-4c8b-ae04-ed5919a6a26a",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 88_
+
+<details open><summary>🔧 Tool call — Read · `toolu_012NsRaJwKFEESvdnNL5MVWP`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/references.tex",
+  "limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "f680d112-f114-4a21-8d93-d9d2511b483c",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01DE1XELq18qLZczBFMjTYg2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 5691,
+      "cache_read_input_tokens": 36417,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 5691,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-25T06:59:03.576Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_012NsRaJwKFEESvdnNL5MVWP`</summary>
+
+```text
+&lt;tool_use_error>InputValidationError: [
+  {
+    "origin": "number",
+    "code": "too_small",
+    "minimum": 0,
+    "inclusive": false,
+    "path": [
+      "limit"
+    ],
+    "message": "Too small: expected number to be >0"
+  }
+]&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "c2adc45b-4603-4ef3-be7c-3fdd22c5554a",
+  "tool_use_result": "InputValidationError: [\n  {\n    \"origin\": \"number\",\n    \"code\": \"too_small\",\n    \"minimum\": 0,\n    \"inclusive\": false,\n    \"path\": [\n      \"limit\"\n    ],\n    \"message\": \"Too small: expected number to be >0\"\n  }\n]"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 90_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad95296947d7402eb",
+  "tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "description": "Running wc -l /home/ubuntu/.agent-ml-research-idea_gen_05…",
+  "usage": {
+    "total_tokens": 44047,
+    "tool_uses": 19,
+    "duration_ms": 25077
+  },
+  "last_tool_name": "Bash",
+  "uuid": "83e816a7-6cb1-4db0-958d-0bf314745ae5",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 91_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01FZ6doKXTZVGAsGHFqFUqDY`</summary>
+
+```json
+{
+  "command": "wc -l /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/references.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "0696225f-154c-4995-adec-6252756e5849",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01FcjqBvBHFfiM2NZSfFdkKU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 1891,
+      "cache_read_input_tokens": 42108,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1891,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-25T06:59:05.961Z_
+
+<details><summary>↩ Tool result · `toolu_01FZ6doKXTZVGAsGHFqFUqDY`</summary>
+
+```text
+403 /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/references.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "fc283adc-b46a-485f-8f22-db30b49d8ab7"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 93_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad95296947d7402eb",
+  "tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "description": "Reading docs/paper/references.tex",
+  "usage": {
+    "total_tokens": 44238,
+    "tool_uses": 20,
+    "duration_ms": 26708
+  },
+  "last_tool_name": "Read",
+  "uuid": "e53fad35-ba27-4235-a0eb-bf2b8a845a39",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 94_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01XVrVVqH9ZN2vXwbsyxNLHk`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/references.tex",
+  "limit": 200
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "b74c88d5-aba1-4c5e-b4d6-f08545fdd577",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01UtHWojDohA2EjkdX26jfgp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 147,
+      "cache_read_input_tokens": 43999,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 147,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-25T06:59:07.380Z_
+
+<details><summary>↩ Tool result · `toolu_01XVrVVqH9ZN2vXwbsyxNLHk`</summary>
+
+```text
+1	% References for OccSafe-VLA
+2	% Bib key convention: {first_author_surname_lower}{year}{keyword_lower}
+3	
+4	% ============================================================
+5	% VLA Safety
+6	% ============================================================
+7	
+8	@article{hu2025vlsa,
+9	  author    = {Songqiao Hu and Zeyi Liu and Shuang Liu and Jun Cen and Zihan Meng and Xiao He},
+10	  title     = {{VLSA}: Vision-Language-Action Models with Plug-and-Play Safety Constraint Layer},
+11	  journal   = {arXiv preprint arXiv:2512.11891},
+12	  year      = {2025},
+13	  note      = {arXiv:2512.11891}
+14	}
+15	
+16	@inproceedings{zhang2025safevla,
+17	  author    = {Borong Zhang and others},
+18	  title     = {{SafeVLA}: Towards Safety Alignment of Vision-Language-Action Model via Constrained Learning},
+19	  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+20	  year      = {2025},
+21	  note      = {Spotlight. arXiv:2503.03480}
+22	}
+23	
+24	@article{zhai2026cofreevla,
+25	  author    = {Xuanran Zhai and others},
+26	  title     = {{CoFreeVLA}: Collision-Free Dual-Arm Manipulation via {VLA} Model and Risk Estimation},
+27	  journal   = {arXiv preprint arXiv:2601.21712},
+28	  year      = {2026},
+29	  note      = {arXiv:2601.21712}
+30	}
+31	
+32	@article{yu2026safenightvla,
+33	  author    = {Yu and others},
+34	  title     = {{Safe-Night VLA}: Seeing the Unseen via Thermal-Perceptive Vision-Language-Action Models for Safety-Critical Manipulation},
+35	  journal   = {arXiv preprint arXiv:2603.05754},
+36	  year      = {2026},
+37	  note      = {arXiv:2603.05754}
+38	}
+39	
+40	@article{li2026vlasafety,
+41	  author    = {Li and others},
+42	  title     = {Vision-Language-Action Safety: Threats, Challenges, Evaluations, and Mechanisms},
+43	  journal   = {arXiv preprint arXiv:2604.23775},
+44	  year      = {2026},
+45	  note      = {arXiv:2604.23775}
+46	}
+47	
+48	% ============================================================
+49	% Safety Mechanisms (barrier functions / occupancy-based safety)
+50	% ============================================================
+51	
+52	@inproceedings{morton2025oscbf,
+53	  author    = {Daniel Morton and Marco Pavone},
+54	  title     = {Safe, Task-Consistent Manipulation with Operational Space Control Barrier Functions},
+55	  booktitle = {IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+56	  year      = {2025},
+57	  note      = {arXiv:2503.06736}
+58	}
+59	
+60	@article{raja2024ogmcbf,
+61	  author    = {Golnaz Raja and Teemu M{\"o}kk{\"o}nen and Reza Ghabcheloo},
+62	  title     = {Safe Robot Control using Occupancy Grid Map-based Control Barrier Function ({OGM-CBF})},
+63	  journal   = {arXiv preprint arXiv:2405.10703},
+64	  year      = {2024},
+65	  note      = {arXiv:2405.10703}
+66	}
+67	
+68	@article{kwon2026learningnudge,
+69	  author    = {Kwon and others},
+70	  title     = {Learning to Nudge: A Scalable Barrier Function Framework for Safe Robot Interaction in Dense Clutter},
+71	  journal   = {arXiv preprint arXiv:2601.02686},
+72	  year      = {2026},
+73	  note      = {arXiv:2601.02686}
+74	}
+75	
+76	@article{long2025neuralcsbf,
+77	  author    = {Long and others},
+78	  title     = {Neural Configuration-Space Barriers for Manipulation Planning and Control},
+79	  journal   = {arXiv preprint arXiv:2503.04929},
+80	  year      = {2025},
+81	  note      = {arXiv:2503.04929}
+82	}
+83	
+84	% ============================================================
+85	% Spatial VLA (3D representation for VLA)
+86	% ============================================================
+87	
+88	@article{liu2025occvla,
+89	  author    = {Ruixun Liu and others},
+90	  title     = {{OccVLA}: Vision-Language-Action Model with Implicit 3D Occupancy Supervision},
+91	  journal   = {arXiv preprint arXiv:2509.05578},
+92	  year      = {2025},
+93	  note      = {arXiv:2509.05578}
+94	}
+95	
+96	@inproceedings{li2026spatialforcing,
+97	  author    = {Fuhao Li and others},
+98	  title     = {Spatial Forcing: Implicit Spatial Representation Alignment for Vision-Language-Action Model},
+99	  booktitle = {International Conference on Learning Representations (ICLR)},
+100	  year      = {2026},
+101	  note      = {arXiv:2510.12276}
+102	}
+103	
+104	@article{yuan2025depthvla,
+105	  author    = {Tianyuan Yuan and others},
+106	  title     = {{DepthVLA}: Enhancing Vision-Language-Action Models with Depth-Aware Spatial Reasoning},
+107	  journal   = {arXiv preprint arXiv:2510.13375},
+108	  year      = {2025},
+109	  note      = {arXiv:2510.13375}
+110	}
+111	
+112	@article{chen2026gstvla,
+113	  author    = {Chen and others},
+114	  title     = {{GST-VLA}: Structured {Gaussian} Spatial Tokens for 3D Depth-Aware {VLA} Models},
+115	  journal   = {arXiv preprint arXiv:2603.09079},
+116	  year      = {2026},
+117	  note      = {arXiv:2603.09079}
+118	}
+119	
+120	@inproceedings{wu2025spatialvla,
+121	  author    = {Wu and others},
+122	  title     = {{SpatialVLA}: Exploring Spatial Representations for Visual-Language-Action Model},
+123	  booktitle = {Robotics: Science and Systems (RSS)},
+124	  year      = {2025},
+125	  note      = {arXiv:2501.15830}
+126	}
+127	
+128	@article{li2025qdepthvla,
+129	  author    = {Li and others},
+130	  title     = {{QDepth-VLA}: Quantized Depth Prediction as Auxiliary Supervision for Vision-Language-Action Models},
+131	  journal   = {arXiv preprint arXiv:2510.14836},
+132	  year      = {2025},
+133	  note      = {arXiv:2510.14836}
+134	}
+135	
+136	@article{abouzeid2025geoaware,
+137	  author    = {Abouzeid and others},
+138	  title     = {{GeoAware-VLA}: Implicit Geometry Aware Vision-Language-Action Model},
+139	  journal   = {arXiv preprint arXiv:2509.14117},
+140	  year      = {2025},
+141	  note      = {arXiv:2509.14117}
+142	}
+143	
+144	@article{rao2026augvla3d,
+145	  author    = {Zhifeng Rao and others},
+146	  title     = {{AugVLA-3D}: Depth-Driven Feature Augmentation for Vision-Language-Action Models},
+147	  journal   = {arXiv preprint arXiv:2602.10698},
+148	  year      = {2026},
+149	  note      = {arXiv:2602.10698}
+150	}
+151	
+152	@article{lin2025evo0,
+153	  author    = {Lin and others},
+154	  title     = {{Evo-0}: Vision-Language-Action Model with Implicit Spatial Understanding},
+155	  journal   = {arXiv preprint arXiv:2507.00416},
+156	  year      = {2025},
+157	  note      = {arXiv:2507.00416}
+158	}
+159	
+160	@article{tu2026sgvla,
+161	  author    = {Tu and others},
+162	  title     = {{SG-VLA}: Learning Spatially-Grounded Vision-Language-Action Models for Mobile Manipulation},
+163	  journal   = {arXiv preprint arXiv:2603.22760},
+164	  year      = {2026},
+165	  note      = {arXiv:2603.22760}
+166	}
+167	
+168	@article{xiao2026stemvla,
+169	  author    = {Xiao and others},
+170	  title     = {{StemVLA}: An Open-Source {VLA} with Future 3D Spatial Geometry Knowledge and 4D Historical Representation},
+171	  journal   = {arXiv preprint arXiv:2602.23721},
+172	  year      = {2026},
+173	  note      = {arXiv:2602.23721}
+174	}
+175	
+176	@article{bhat20253dcavla,
+177	  author    = {Bhat and others},
+178	  title     = {{3D-CAVLA}: Leveraging Depth and 3D Context to Generalize {VLA} for Unseen Tasks},
+179	  journal   = {arXiv preprint arXiv:2505.05800},
+180	  year      = {2025},
+181	  note      = {arXiv:2505.05800}
+182	}
+183	
+184	@article{wu2026stvla,
+185	  author    = {Wu and others},
+186	  title     = {{ST-VLA}: Enabling 4D-Aware Spatiotemporal Understanding for General Robot Manipulation},
+187	  journal   = {arXiv preprint arXiv:2603.13788},
+188	  year      = {2026},
+189	  note      = {arXiv:2603.13788}
+190	}
+191	
+192	@article{li2026corridorvla,
+193	  author    = {Li and others},
+194	  title     = {{CorridorVLA}: Explicit Spatial Constraints for Generative Action Heads via Sparse Anchors},
+195	  journal   = {arXiv preprint arXiv:2604.21241},
+196	  year      = {2026},
+197	  note      = {arXiv:2604.21241}
+198	}
+199	
+200	@article{sun2025geovla,
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "3124b354-f8a3-49b3-ac35-8d8af786d54c"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 96_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad95296947d7402eb",
+  "tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "description": "Searching for \\\\todo\\{|WORK.IN.PROGRESS|draft|DRAFT|pending|Pen…",
+  "usage": {
+    "total_tokens": 47314,
+    "tool_uses": 21,
+    "duration_ms": 29638
+  },
+  "last_tool_name": "Grep",
+  "uuid": "78eec788-637f-43ad-92d4-0a3959c3ab53",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 97_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_019XXwqYgFTh3xtoeYb6Aqrz`</summary>
+
+```json
+{
+  "pattern": "\\\\todo\\{|WORK.IN.PROGRESS|draft|DRAFT|pending|Pending|PENDING",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper",
+  "glob": "**/*.tex",
+  "output_mode": "content",
+  "multiline": false
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "7e9f8847-e19a-45dc-8077-61ec89308622",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01517kt9Yt63vGEqQeQ6EpV5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 3074,
+      "cache_read_input_tokens": 44146,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3074,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-25T06:59:10.321Z_
+
+<details><summary>↩ Tool result · `toolu_019XXwqYgFTh3xtoeYb6Aqrz`</summary>
+
+```text
+docs/paper/results.tex:46:The four conditions crossing normalization type (BN/LN) with gradient flow (ON/OFF) form a $2{\times}2$ factorial (Table~\ref{tab:factorial}). A $2{\times}2$ ANOVA confirms a significant interaction ($F(1,8){=}7.511$, $p{=}0.025$, partial $\eta^2{=}0.484$, Cohen's $f{=}0.969$), while neither main effect reaches significance (gradient flow: $p{=}0.326$; normalization: $p{=}0.231$). The interaction effect is 7.3\,pp: gradient flow's effect on CAR reverses sign depending on normalization type.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "cc8e10b3-20dc-42c8-814a-2f406e9d2a65"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 99_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "ad95296947d7402eb",
+  "tool_use_id": "toolu_01UoaoVutncTTkKnNbMAj1fD",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Search paper TODOs/placeholders",
+  "usage": {
+    "total_tokens": 47699,
+    "tool_uses": 21,
+    "duration_ms": 37389
+  },
+  "uuid": "1bb19d73-973a-4542-b18c-150d99e07ad1",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b"
+}
+```
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-25T06:59:18.057Z_
+
+<details><summary>↩ Tool result · `toolu_01UoaoVutncTTkKnNbMAj1fD`</summary>
+
+```text
+Perfect. Now let me create a comprehensive summary of all findings:
+
+## Summary of TODO, FIXME, PLACEHOLDER, and Other Markers in .tex Files
+
+I have completed a thorough search of all .tex files in `/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/`. Here are the findings:
+
+### Files Scanned
+- main.tex
+- introduction.tex
+- method.tex
+- experiments.tex (current version)
+- experiment_setup.tex
+- results.tex
+- discussion.tex
+- conclusion.tex
+- related_work.tex
+- appendix.tex
+- experiments_old.tex (archived version)
+- references.tex
+
+### Findings
+
+**Only ONE marker found:**
+
+| File | Line | Pattern | Context |
+|------|------|---------|---------|
+| `/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/main.tex` | 14 | `\todo{...}` command definition | `\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}` |
+
+This is a **macro definition** for a `\todo` command that allows TODOs to be marked in the document (they render as red text). The macro itself is not a TODO marker—it's just infrastructure for creating them. No actual TODOs are currently being called in the document.
+
+### Other Observations
+
+1. **No actual TODO/FIXME calls found** - Despite the `\todo` macro being defined, it is not used anywhere in the paper.
+
+2. **No PLACEHOLDER, XXX, TBD, or ??? markers found** - None of these patterns appear in any .tex files.
+
+3. **No \hl{} highlighting markers found** - No explicit highlighted sections via `\hl{}` command.
+
+4. **No empty citations or references found** - All `\cite{}` commands have proper reference keys. References file (references.tex) is well-populated with 403 lines of bibliography entries.
+
+5. **No [MISSING], INSERT, or FILL patterns found** - All content appears complete.
+
+6. **Papers appears complete and ready** - The paper is a finished draft with:
+   - Full introduction, method, experimental setup, results, discussion, and conclusion sections
+   - Comprehensive tables, figures, and analysis
+   - Extended appendix with per-task results, training details, and extended analysis
+   - Complete bibliography with 403 lines of references
+   - All mathematical notation properly formatted
+   - All experimental conditions fully documented
+
+### Conclusion
+
+The paper appears to be **in excellent shape with no unresolved TODOs or placeholders**. All sections are complete and well-integrated. The only TODO infrastructure present (the `\todo` macro definition) is unused, suggesting the paper has already passed its draft stage and is ready for submission.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "2df7c1a9-3d4e-4f0d-ac36-50611101c157",
+  "tool_use_result": {
+    "status": "completed",
+    "prompt": "Search all .tex files under /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/ for any TODO, FIXME, PLACEHOLDER, XXX, TBD, ???, or \\hl{} (highlight) markers. Also search for patterns like \"INSERT\", \"FILL\", \"[MISSING]\", \"CITE\", \"REF\". Show all matches with file paths, line numbers, and context. Be thorough — search breadth: very thorough.",
+    "agentId": "ad95296947d7402eb",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "Perfect. Now let me create a comprehensive summary of all findings:\n\n## Summary of TODO, FIXME, PLACEHOLDER, and Other Markers in .tex Files\n\nI have completed a thorough search of all .tex files in `/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/`. Here are the findings:\n\n### Files Scanned\n- main.tex\n- introduction.tex\n- method.tex\n- experiments.tex (current version)\n- experiment_setup.tex\n- results.tex\n- discussion.tex\n- conclusion.tex\n- related_work.tex\n- appendix.tex\n- experiments_old.tex (archived version)\n- references.tex\n\n### Findings\n\n**Only ONE marker found:**\n\n| File | Line | Pattern | Context |\n|------|------|---------|---------|\n| `/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/main.tex` | 14 | `\\todo{...}` command definition | `\\newcommand{\\todo}[1]{\\textcolor{red}{[TODO: #1]}}` |\n\nThis is a **macro definition** for a `\\todo` command that allows TODOs to be marked in the document (they render as red text). The macro itself is not a TODO marker—it's just infrastructure for creating them. No actual TODOs are currently being called in the document.\n\n### Other Observations\n\n1. **No actual TODO/FIXME calls found** - Despite the `\\todo` macro being defined, it is not used anywhere in the paper.\n\n2. **No PLACEHOLDER, XXX, TBD, or ??? markers found** - None of these patterns appear in any .tex files.\n\n3. **No \\hl{} highlighting markers found** - No explicit highlighted sections via `\\hl{}` command.\n\n4. **No empty citations or references found** - All `\\cite{}` commands have proper reference keys. References file (references.tex) is well-populated with 403 lines of bibliography entries.\n\n5. **No [MISSING], INSERT, or FILL patterns found** - All content appears complete.\n\n6. **Papers appears complete and ready** - The paper is a finished draft with:\n   - Full introduction, method, experimental setup, results, discussion, and conclusion sections\n   - Comprehensive tables, figures, and analysis\n   - Extended appendix with per-task results, training details, and extended analysis\n   - Complete bibliography with 403 lines of references\n   - All mathematical notation properly formatted\n   - All experimental conditions fully documented\n\n### Conclusion\n\nThe paper appears to be **in excellent shape with no unresolved TODOs or placeholders**. All sections are complete and well-integrated. The only TODO infrastructure present (the `\\todo` macro definition) is unused, suggesting the paper has already passed its draft stage and is ready for submission."
+      }
+    ],
+    "totalDurationMs": 37390,
+    "totalTokens": 48279,
+    "totalToolUseCount": 21,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 385,
+      "cache_read_input_tokens": 47220,
+      "output_tokens": 670,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 385
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 4,
+          "output_tokens": 670,
+          "cache_read_input_tokens": 47220,
+          "cache_creation_input_tokens": 385,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 385,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 13,
+      "searchCount": 7,
+      "bashCount": 1,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 0
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-25T06:59:18.067Z_
+
+<details><summary>↩ Tool result · `toolu_01M9UCzLHCuA3ySTVDqozLzz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/ROADMAP.md\", \"content\": \"# occsafe_vla — Research Dashboard\\n\\n> 最后更新: 2026-05-25 04:45 UTC | 更新原因: Reviewer 确认 34685 4/4 满载；派 Agent 利用 10894 空闲 GPU\\n\\n> 核心方向详见 paper_framing.md\\n\\n## 核心方向\\n12 条件 factorial study：BN×gradient flow 交叉交互（7.3pp, p=0.025）。\\nD042 机制：LN 导致 DINOv2 梯度抑制 3.5×, SigLIP 放大 2.5× — BN-mediated gradient calibration。\\n\\n## 目标会议\\n- **CoRL 2026**: Abstract May 26 ✅, Paper May 29\\n\\n## 当前进展\\n- **Abstract**: ✅ 完成\\n- **2×2 Factorial**: ✅ 完成 + ANOVA 显著 (p=0.025)\\n- **Same-seed 梯度分析**: ✅ 完成 + registry DONE\\n- **Paper Agent**: D042 Patch 完成（ANOVA + 梯度机制 + CKA 修正入论文）\\n- **论文 v42**: 23/24 coverage, 0 critical consistency issues\\n- **宕机恢复**: Reviewer 确认 westd-34685 4/4 GPU 全部活跃（cutoff_25k_s2_v3 + reverse_cutoff_s2_v3 已从头启动）\\n\\n### GPU 状态\\n\\n| 服务器:GPU | 任务 | 状态 | 预计完成 (UTC) |\\n|-----------|------|------|---------------|\\n| 34685:0 | cutoff_25k_s2_v3 | 训练中 99% util | ~May 25 17:30 |\\n| 34685:1 | reverse_cutoff_s2_v3 | 训练中 97% util | ~May 25 17:30 |\\n| 34685:2 | cutoff_45k_s1_v3 | 训练中 99% util | ~May 25 17:30 |\\n| 34685:3 | cutoff_15k_s2_v2 | 训练中 95% util | ~May 25 17:30 |\\n| 10894:0 | full_occ_retrain_s0_eval_v2 | eval 中 | ~May 25 06:00 |\\n| 10894:1 | 待分配（已派 Agent） | — | — |\\n| 10894:2 | 待分配（已派 Agent） | — | — |\\n| 10894:3 | 待分配（已派 Agent） | — | — |\\n\\n**利用率: 5/8**（34685 满载 + 10894:0 eval）\\n\\n## 近期任务\\n- [x] 启动 cutoff_25k_s2_v3 + reverse_cutoff_s2_v3 从头训练（34685:0,1）— Reviewer 确认运行中\\n- [ ] **P0** 利用 10894 GPU 1-3（已派 Agent：跑 pending eval / 图表生成 / 准备后续 eval）\\n- [ ] **P1** 34685 训练完成后 4 个 eval\\n- [ ] **P1** 更新论文图表（same-seed gradient figures）\\n- [ ] **P1** 清理 orphan registry（cutoff_25k_s2_v2, reverse_cutoff_s2_v2）\\n- [ ] **P2** 论文最终 polish + compilation check\\n\\n## GPU 预算\\n- 分配：8 GPU（westd-34685 ×4 + westd-10894 ×4）\\n- 利用率：5/8（34685 满载, 10894:0 eval, 1-3 待分配中）\\n- 宕机损失：~47.5 GPU-h\\n\\n## 约束\\n- C001: GPU 白名单 westd-10894:0-3 + westd-34685:0-3\\n- C002: cutoff 实验禁止 resume（D043 尝试放宽，D044 撤回——batch_idx bug 未修复）\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D044 | 2026-05-25 | D044: 撤回 D043 C002 放宽——batch_idx bug 修复不完整，resume  | cutoff_25k_s2, reverse_cutoff_s2 |\\n| D043 | 2026-05-25 | D046: 放宽 C002 允许 cutoff_25k_s2 和 reverse_cutoff_s2 | cutoff_25k_s2, reverse_cutoff_s2, cutoff_45k_s1_v2, cutoff_15k_s2 |\\n| D042 | 2026-05-25 | D042: 2×2 ANOVA 交互显著(p=0.025, η²=0.484) + same-see | gradient_analysis_same_seed, full_occ_ln_s0, full_occ_ln_s1, full_occ_ln_s2 |\\n| D041 | 2026-05-25 | D041: Dose-response 非单调模式是 seed noise——cutoff_15k/ | cutoff_15k_s1_eval, cutoff_15k_s0_eval, cutoff_s1_eval |\\n| D040 | 2026-05-25 | D045: 2×2 Factorial 揭示 BN×Gradient Flow 交叉交互——BN 在 | full_occ_ln_s0, full_occ_ln_s1, full_occ_ln_s2, detach_ln_s0, detach_ln_s1, detach_ln_s2 |\\n| D039 | 2026-05-25 | D044: 撤回 D043 crossover interaction 假说——s1 CKA=0.9 | cka_full_occ_ln_s0, cka_full_occ_ln_s1 |\\n| D038 | 2026-05-25 | D043: CKA crossover interaction — BN coupling 双刃剑机 | cka_full_occ_ln_s0, cka_analysis |\\n| D037 | 2026-05-24 | D037: Per-layer 梯度分析揭示 dual-encoder 差异化机制——DINOv2  | gradient_analysis_mixed_seed, cka_analysis |\\n| D036 | 2026-05-24 | D036: 梯度正交性证实\\\"存在性正则化\\\"机制——辅助梯度与 action 梯度 cosine≈0、 | gradient_analysis_mixed_seed, cka_analysis, ablation_random_occ_s0 |\\n| D035 | 2026-05-24 | D035: Detach+LN CKA 揭示表征-行为分离——BN 是表征漂移的 100% 原因（C | cka_random_occ, detach_ln_s0, detach_ln_s1, detach_ln_s2 |\\n\\n\\n\\n\", \"total_chars\": 3255, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "3c315e07-95a3-4838-b25f-2e06ca4b0777",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/ROADMAP.md\\\", \\\"content\\\": \\\"# occsafe_vla — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-25 04:45 UTC | 更新原因: Reviewer 确认 34685 4/4 满载；派 Agent 利用 10894 空闲 GPU\\\\n\\\\n> 核心方向详见 paper_framing.md\\\\n\\\\n## 核心方向\\\\n12 条件 factorial study：BN×gradient flow 交叉交互（7.3pp, p=0.025）。\\\\nD042 机制：LN 导致 DINOv2 梯度抑制 3.5×, SigLIP 放大 2.5× — BN-mediated gradient calibration。\\\\n\\\\n## 目标会议\\\\n- **CoRL 2026**: Abstract May 26 ✅, Paper May 29\\\\n\\\\n## 当前进展\\\\n- **Abstract**: ✅ 完成\\\\n- **2×2 Factorial**: ✅ 完成 + ANOVA 显著 (p=0.025)\\\\n- **Same-seed 梯度分析**: ✅ 完成 + registry DONE\\\\n- **Paper Agent**: D042 Patch 完成（ANOVA + 梯度机制 + CKA 修正入论文）\\\\n- **论文 v42**: 23/24 coverage, 0 critical consistency issues\\\\n- **宕机恢复**: Reviewer 确认 westd-34685 4/4 GPU 全部活跃（cutoff_25k_s2_v3 + reverse_cutoff_s2_v3 已从头启动）\\\\n\\\\n### GPU 状态\\\\n\\\\n| 服务器:GPU | 任务 | 状态 | 预计完成 (UTC) |\\\\n|-----------|------|------|---------------|\\\\n| 34685:0 | cutoff_25k_s2_v3 | 训练中 99% util | ~May 25 17:30 |\\\\n| 34685:1 | reverse_cutoff_s2_v3 | 训练中 97% util | ~May 25 17:30 |\\\\n| 34685:2 | cutoff_45k_s1_v3 | 训练中 99% util | ~May 25 17:30 |\\\\n| 34685:3 | cutoff_15k_s2_v2 | 训练中 95% util | ~May 25 17:30 |\\\\n| 10894:0 | full_occ_retrain_s0_eval_v2 | eval 中 | ~May 25 06:00 |\\\\n| 10894:1 | 待分配（已派 Agent） | — | — |\\\\n| 10894:2 | 待分配（已派 Agent） | — | — |\\\\n| 10894:3 | 待分配（已派 Agent） | — | — |\\\\n\\\\n**利用率: 5/8**（34685 满载 + 10894:0 eval）\\\\n\\\\n## 近期任务\\\\n- [x] 启动 cutoff_25k_s2_v3 + reverse_cutoff_s2_v3 从头训练（34685:0,1）— Reviewer 确认运行中\\\\n- [ ] **P0** 利用 10894 GPU 1-3（已派 Agent：跑 pending eval / 图表生成 / 准备后续 eval）\\\\n- [ ] **P1** 34685 训练完成后 4 个 eval\\\\n- [ ] **P1** 更新论文图表（same-seed gradient figures）\\\\n- [ ] **P1** 清理 orphan registry（cutoff_25k_s2_v2, reverse_cutoff_s2_v2）\\\\n- [ ] **P2** 论文最终 polish + compilation check\\\\n\\\\n## GPU 预算\\\\n- 分配：8 GPU（westd-34685 ×4 + westd-10894 ×4）\\\\n- 利用率：5/8（34685 满载, 10894:0 eval, 1-3 待分配中）\\\\n- 宕机损失：~47.5 GPU-h\\\\n\\\\n## 约束\\\\n- C001: GPU 白名单 westd-10894:0-3 + westd-34685:0-3\\\\n- C002: cutoff 实验禁止 resume（D043 尝试放宽，D044 撤回——batch_idx bug 未修复）\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D044 | 2026-05-25 | D044: 撤回 D043 C002 放宽——batch_idx bug 修复不完整，resume  | cutoff_25k_s2, reverse_cutoff_s2 |\\\\n| D043 | 2026-05-25 | D046: 放宽 C002 允许 cutoff_25k_s2 和 reverse_cutoff_s2 | cutoff_25k_s2, reverse_cutoff_s2, cutoff_45k_s1_v2, cutoff_15k_s2 |\\\\n| D042 | 2026-05-25 | D042: 2×2 ANOVA 交互显著(p=0.025, η²=0.484) + same-see | gradient_analysis_same_seed, full_occ_ln_s0, full_occ_ln_s1, full_occ_ln_s2 |\\\\n| D041 | 2026-05-25 | D041: Dose-response 非单调模式是 seed noise——cutoff_15k/ | cutoff_15k_s1_eval, cutoff_15k_s0_eval, cutoff_s1_eval |\\\\n| D040 | 2026-05-25 | D045: 2×2 Factorial 揭示 BN×Gradient Flow 交叉交互——BN 在 | full_occ_ln_s0, full_occ_ln_s1, full_occ_ln_s2, detach_ln_s0, detach_ln_s1, detach_ln_s2 |\\\\n| D039 | 2026-05-25 | D044: 撤回 D043 crossover interaction 假说——s1 CKA=0.9 | cka_full_occ_ln_s0, cka_full_occ_ln_s1 |\\\\n| D038 | 2026-05-25 | D043: CKA crossover interaction — BN coupling 双刃剑机 | cka_full_occ_ln_s0, cka_analysis |\\\\n| D037 | 2026-05-24 | D037: Per-layer 梯度分析揭示 dual-encoder 差异化机制——DINOv2  | gradient_analysis_mixed_seed, cka_analysis |\\\\n| D036 | 2026-05-24 | D036: 梯度正交性证实\\\\\\\"存在性正则化\\\\\\\"机制——辅助梯度与 action 梯度 cosine≈0、 | gradient_analysis_mixed_seed, cka_analysis, ablation_random_occ_s0 |\\\\n| D035 | 2026-05-24 | D035: Detach+LN CKA 揭示表征-行为分离——BN 是表征漂移的 100% 原因（C | cka_random_occ, detach_ln_s0, detach_ln_s1, detach_ln_s2 |\\\\n\\\\n\\\\n\\\\n\\\", \\\"total_chars\\\": 3255, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/ROADMAP.md\", \"content\": \"# occsafe_vla — Research Dashboard\\n\\n> 最后更新: 2026-05-25 04:45 UTC | 更新原因: Reviewer 确认 34685 4/4 满载；派 Agent 利用 10894 空闲 GPU\\n\\n> 核心方向详见 paper_framing.md\\n\\n## 核心方向\\n12 条件 factorial study：BN×gradient flow 交叉交互（7.3pp, p=0.025）。\\nD042 机制：LN 导致 DINOv2 梯度抑制 3.5×, SigLIP 放大 2.5× — BN-mediated gradient calibration。\\n\\n## 目标会议\\n- **CoRL 2026**: Abstract May 26 ✅, Paper May 29\\n\\n## 当前进展\\n- **Abstract**: ✅ 完成\\n- **2×2 Factorial**: ✅ 完成 + ANOVA 显著 (p=0.025)\\n- **Same-seed 梯度分析**: ✅ 完成 + registry DONE\\n- **Paper Agent**: D042 Patch 完成（ANOVA + 梯度机制 + CKA 修正入论文）\\n- **论文 v42**: 23/24 coverage, 0 critical consistency issues\\n- **宕机恢复**: Reviewer 确认 westd-34685 4/4 GPU 全部活跃（cutoff_25k_s2_v3 + reverse_cutoff_s2_v3 已从头启动）\\n\\n### GPU 状态\\n\\n| 服务器:GPU | 任务 | 状态 | 预计完成 (UTC) |\\n|-----------|------|------|---------------|\\n| 34685:0 | cutoff_25k_s2_v3 | 训练中 99% util | ~May 25 17:30 |\\n| 34685:1 | reverse_cutoff_s2_v3 | 训练中 97% util | ~May 25 17:30 |\\n| 34685:2 | cutoff_45k_s1_v3 | 训练中 99% util | ~May 25 17:30 |\\n| 34685:3 | cutoff_15k_s2_v2 | 训练中 95% util | ~May 25 17:30 |\\n| 10894:0 | full_occ_retrain_s0_eval_v2 | eval 中 | ~May 25 06:00 |\\n| 10894:1 | 待分配（已派 Agent） | — | — |\\n| 10894:2 | 待分配（已派 Agent） | — | — |\\n| 10894:3 | 待分配（已派 Agent） | — | — |\\n\\n**利用率: 5/8**（34685 满载 + 10894:0 eval）\\n\\n## 近期任务\\n- [x] 启动 cutoff_25k_s2_v3 + reverse_cutoff_s2_v3 从头训练（34685:0,1）— Reviewer 确认运行中\\n- [ ] **P0** 利用 10894 GPU 1-3（已派 Agent：跑 pending eval / 图表生成 / 准备后续 eval）\\n- [ ] **P1** 34685 训练完成后 4 个 eval\\n- [ ] **P1** 更新论文图表（same-seed gradient figures）\\n- [ ] **P1** 清理 orphan registry（cutoff_25k_s2_v2, reverse_cutoff_s2_v2）\\n- [ ] **P2** 论文最终 polish + compilation check\\n\\n## GPU 预算\\n- 分配：8 GPU（westd-34685 ×4 + westd-10894 ×4）\\n- 利用率：5/8（34685 满载, 10894:0 eval, 1-3 待分配中）\\n- 宕机损失：~47.5 GPU-h\\n\\n## 约束\\n- C001: GPU 白名单 westd-10894:0-3 + westd-34685:0-3\\n- C002: cutoff 实验禁止 resume（D043 尝试放宽，D044 撤回——batch_idx bug 未修复）\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D044 | 2026-05-25 | D044: 撤回 D043 C002 放宽——batch_idx bug 修复不完整，resume  | cutoff_25k_s2, reverse_cutoff_s2 |\\n| D043 | 2026-05-25 | D046: 放宽 C002 允许 cutoff_25k_s2 和 reverse_cutoff_s2 | cutoff_25k_s2, reverse_cutoff_s2, cutoff_45k_s1_v2, cutoff_15k_s2 |\\n| D042 | 2026-05-25 | D042: 2×2 ANOVA 交互显著(p=0.025, η²=0.484) + same-see | gradient_analysis_same_seed, full_occ_ln_s0, full_occ_ln_s1, full_occ_ln_s2 |\\n| D041 | 2026-05-25 | D041: Dose-response 非单调模式是 seed noise——cutoff_15k/ | cutoff_15k_s1_eval, cutoff_15k_s0_eval, cutoff_s1_eval |\\n| D040 | 2026-05-25 | D045: 2×2 Factorial 揭示 BN×Gradient Flow 交叉交互——BN 在 | full_occ_ln_s0, full_occ_ln_s1, full_occ_ln_s2, detach_ln_s0, detach_ln_s1, detach_ln_s2 |\\n| D039 | 2026-05-25 | D044: 撤回 D043 crossover interaction 假说——s1 CKA=0.9 | cka_full_occ_ln_s0, cka_full_occ_ln_s1 |\\n| D038 | 2026-05-25 | D043: CKA crossover interaction — BN coupling 双刃剑机 | cka_full_occ_ln_s0, cka_analysis |\\n| D037 | 2026-05-24 | D037: Per-layer 梯度分析揭示 dual-encoder 差异化机制——DINOv2  | gradient_analysis_mixed_seed, cka_analysis |\\n| D036 | 2026-05-24 | D036: 梯度正交性证实\\\"存在性正则化\\\"机制——辅助梯度与 action 梯度 cosine≈0、 | gradient_analysis_mixed_seed, cka_analysis, ablation_random_occ_s0 |\\n| D035 | 2026-05-24 | D035: Detach+LN CKA 揭示表征-行为分离——BN 是表征漂移的 100% 原因（C | cka_random_occ, detach_ln_s0, detach_ln_s1, detach_ln_s2 |\\n\\n\\n\\n\", \"total_chars\": 3255, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 102_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Now I have a clear picture:
+
+1. The paper is at `docs/paper/` with main.tex and section files
+2. Writing plan shows all sections are "done" (in Patch mode)
+3. ROADMAP says "23/24 coverage, 0 critical consistency issues"
+4. No TODOs/FIXMEs/placeholders found in the tex files
+
+I need to figure out:
+1. What is the 1 missing coverage item (the 24th)
+2. Check if latest results (2×2 ANOVA p=0.025, dose-response 2-seed, same-seed gradient analysis) are in the paper
+
+
+3. Try compiling the LaTeX to check for errors, and look through the remaining sections to understand what the "23/24" coverage refers to—it's probably tracked in paper_provenance.yaml rather than the checklist.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "3ce2820d-a2c7-426f-8448-66d89d05f72c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NqW1axwQWaQ4zeCFeu84gi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9546,
+      "cache_read_input_tokens": 44420,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9546
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 103_
+
+Let me check the paper provenance for the coverage tracking and try to compile the LaTeX.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "01ebb7e0-ad11-4d8f-a5b6-eb925e765a3b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NqW1axwQWaQ4zeCFeu84gi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9546,
+      "cache_read_input_tokens": 44420,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9546
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 104_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01XWcGPzn8gmMiv5bC3cqwvL`</summary>
+
+```json
+{
+  "project": "occsafe_vla",
+  "file": "paper_provenance.yaml",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "f9e2f208-8ca8-4124-84d0-a4999d4233d4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NqW1axwQWaQ4zeCFeu84gi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9546,
+      "cache_read_input_tokens": 44420,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9546
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 105 · 2026-05-25T06:59:29.232Z_
+
+<details><summary>↩ Tool result · `toolu_01XWcGPzn8gmMiv5bC3cqwvL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/paper_provenance.yaml\", \"content\": \"paper:\\n  title: ''\\n  version: 42\\n  generated_at: '2026-05-25T03:54:11.822206+00:00'\\nclaims:\\n- id: C001\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: SafeLIBERO comprises 32 scenarios across 10 tabletop manipulation tasks\\n  type: factual\\n  evidence:\\n  - hu2025aegis\\n  decisions: []\\n  deprecated: true\\n- id: C003\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: CAR metric uses L1 body_xpos displacement with threshold 0.001, aligned with\\n    VLSA-AEGIS\\n  type: factual\\n  evidence:\\n  - hu2025aegis\\n  decisions: []\\n  deprecated: true\\n- id: C006\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: 20 rollouts per task x 3 seeds = 600 total rollouts\\n  type: factual\\n  evidence: []\\n  decisions: []\\n  deprecated: true\\n- id: C010\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: OpenVLA-OFT 7B fine-tuned with LoRA rank 32, 50K steps, batch 8, lr 5e-4\\n  type: factual\\n  evidence:\\n  - kim2025openvlaoft\\n  decisions: []\\n  deprecated: true\\n- id: C015\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Occ head: 2-layer MLP, 256 hidden, 64x64 BEV grid, FocalLoss alpha=0.75 gamma=2.0,\\n    lambda=0.1'\\n  type: factual\\n  evidence: []\\n  decisions: []\\n  deprecated: true\\n- id: C021\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: Each run ~17 hours on single A100\\n  type: factual\\n  evidence: []\\n  decisions: []\\n  deprecated: true\\n- id: C022\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: BEV occupancy auxiliary head predicts 64x64 BEV grid at zero inference cost\\n    — discarded at test time\\n  type: design\\n  evidence:\\n  - liu2025occvla\\n  decisions: []\\n  deprecated: true\\n- id: C024\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Gradient flow mechanism: occ_detach=False propagates L_occ gradients into\\n    DINOv2 encoder; occ_detach=True eliminates safety benefit'\\n  type: methodological\\n  evidence: []\\n  decisions: []\\n  deprecated: true\\n- id: C027\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: L_total = L_action + lambda * L_occ with lambda=0.1\\n  type: methodological\\n  evidence: []\\n  decisions: []\\n  deprecated: true\\n- id: C031\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Training data: ~25K demonstration episodes from LIBERO-Spatial suite'\\n  type: factual\\n  evidence: []\\n  decisions: []\\n  deprecated: true\\n- id: C036\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: 'OpenVLA-OFT 7B base: Llama 2 + DINOv2 + SigLIP dual vision encoders'\\n  type: factual\\n  evidence:\\n  - kim2025openvlaoft\\n  decisions: []\\n  deprecated: true\\n- id: C042\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: LoRA rank 32, 50K steps, batch 8, lr 5e-4, cosine decay (shared across all\\n    conditions)\\n  type: factual\\n  evidence:\\n  - kim2025openvlaoft\\n  decisions: []\\n  deprecated: true\\n- id: C049\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: 'OCC-CBF: h_occ(x) = f_theta(z_occ, x_robot), learned barrier conditioned\\n    on occ features — conceptual framework, deferred to extended version'\\n  type: conceptual\\n  evidence: []\\n  decisions: []\\n  deprecated: true\\n- id: C057\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: AEGIS uses Euclidean-distance barrier on explicit object positions from world\\n    model\\n  type: citation\\n  evidence:\\n  - hu2025aegis\\n  decisions: []\\n  deprecated: true\\n- id: C066\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: OGM-CBF constructs barriers from discrete occupancy grids via signed distance\\n    fields\\n  type: citation\\n  evidence:\\n  - ji2024ogmcbf\\n  decisions: []\\n  deprecated: true\\n- id: C076\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: Learning to Nudge trains object-centric DCBF requiring explicit object decomposition\\n  type: citation\\n  evidence:\\n  - kwon2026learningnudge\\n  decisions: []\\n  deprecated: true\\n- id: C077\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: SafeLIBERO comprises 32 scenarios across 10 tabletop manipulation tasks\\n  type: factual\\n  evidence:\\n  - hu2025aegis\\n  decisions: []\\n  deprecated: true\\n- id: C079\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: CAR metric uses L1 body_xpos displacement with threshold 0.001, aligned with\\n    VLSA-AEGIS\\n  type: factual\\n  evidence:\\n  - hu2025aegis\\n  decisions: []\\n  deprecated: true\\n- id: C082\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: 20 rollouts per task x 3 seeds = 600 total rollouts\\n  type: factual\\n  evidence: []\\n  decisions: []\\n  deprecated: true\\n- id: C086\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: OpenVLA-OFT 7B fine-tuned with LoRA rank 32, 50K steps, batch 8, fixed lr\\n    5e-4\\n  type: factual\\n  evidence:\\n  - kim2025openvlaoft\\n  - finetune.py:L99-L119\\n  decisions: []\\n  deprecated: true\\n- id: C091\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Occ head: conv decoder Linear->reshape(B,256,16,16)->ConvTranspose2d(256->128)->BN->GELU->ConvTranspose2d(128->64)->BN->GELU->Conv2d(64->1),\\n    64x64 BEV, FocalLoss alpha=0.25 gamma=2.0, lambda_occ=0.01 exponential decay tau=50K'\\n  type: factual\\n  evidence:\\n  - occ_head.py:L18-L28\\n  - finetune.py:L93-L94\\n  decisions: []\\n  deprecated: true\\n- id: C097\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: Each run ~13 hours on single NVIDIA RTX PRO 6000 GPU\\n  type: factual\\n  evidence:\\n  - nvidia-smi\\n  - training-log:1.09it/s\\n  decisions: []\\n  deprecated: true\\n- id: C098\\n  location:\\n    section: related_work\\n    paragraph: 0\\n    sentence: 0\\n  text: 15+ spatial-VLA methods improve spatial reasoning but none evaluate collision\\n    safety metrics\\n  type: survey\\n  evidence:\\n  - an2025depthvla\\n  - wu2025spatialvla\\n  - li2025spatialforcing\\n  - chen2026gstvla\\n  - stemvla2026\\n  - 3dcavla2025\\n  - corridorvla2026\\n  - stvla2026\\n  - augvla3d2026\\n  - evo02025\\n  - geoaware2025\\n  - geovla2025\\n  - pointvla2025\\n  - sgvla2026\\n  - savla2026\\n  - qdepthvla2025\\n  decisions: []\\n  deprecated: true\\n- id: C100\\n  location:\\n    section: related_work\\n    paragraph: 0\\n    sentence: 0\\n  text: AEGIS/VLSA achieves 59.16% CAR improvement on SafeLIBERO via plug-in CBF\\n  type: citation\\n  evidence:\\n  - hu2025aegis\\n  decisions: []\\n  deprecated: true\\n- id: C103\\n  location:\\n    section: related_work\\n    paragraph: 0\\n    sentence: 0\\n  text: SafeVLA uses constrained RL for safety alignment (NeurIPS 2025 Spotlight)\\n  type: citation\\n  evidence:\\n  - zhan2025safevla\\n  decisions: []\\n  deprecated: true\\n- id: C107\\n  location:\\n    section: related_work\\n    paragraph: 0\\n    sentence: 0\\n  text: No existing safety-VLA method exploits 3D spatial representation advances\\n  type: gap\\n  evidence:\\n  - hu2025aegis\\n  - zhan2025safevla\\n  - chen2026cofreevla\\n  - safenightvla2026\\n  - vlasafetysurvey2026\\n  decisions: []\\n  deprecated: true\\n- id: C112\\n  location:\\n    section: related_work\\n    paragraph: 0\\n    sentence: 0\\n  text: No existing work combines occupancy-grounded representation learning with\\n    safety-aware VLA training for manipulation\\n  type: gap\\n  evidence:\\n  - liu2025occvla\\n  - ji2024ogmcbf\\n  - kwon2026learningnudge\\n  - neuralcsbf2025\\n  decisions: []\\n  deprecated: true\\n- id: C113\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: 'BEV occ head: convolutional decoder Linear->256ch->reshape(B,256,16,16)->ConvTranspose2d(256->128,k4s2p1)->BN->GELU->ConvTranspose2d(128->64,k4s2p1)->BN->GELU->Conv2d(64->1,k1),\\n    zero inference cost (discarded at test time)'\\n  type: factual\\n  evidence:\\n  - occ_head.py:L18-L28\\n  - liu2025occvla\\n  decisions: []\\n  deprecated: true\\n- id: C115\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: Conv decoder exploits ViT patch spatial adjacency (inductive bias vs MLP)\\n  type: design\\n  evidence:\\n  - occ_head.py:L18-L28\\n  decisions: []\\n  deprecated: true\\n- id: C118\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: FocalLoss alpha=0.25 gamma=2.0\\n  type: factual\\n  evidence:\\n  - occ_head.py:L47-L56\\n  decisions: []\\n  deprecated: true\\n- id: C122\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: lambda_occ(t) = 0.01 * exp(-t/tau), tau=50K steps (exponential decay)\\n  type: factual\\n  evidence:\\n  - finetune.py:L92-L94\\n  - finetune.py:L1110\\n  decisions: []\\n  deprecated: true\\n- id: C127\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Gradient flow mechanism: occ_detach=False propagates L_occ gradients into\\n    DINOv2 encoder; occ_detach=True eliminates safety benefit'\\n  type: methodological\\n  evidence: []\\n  decisions: []\\n  deprecated: true\\n- id: C133\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: 'OpenVLA-OFT 7B base: Llama 2 + DINOv2 + SigLIP dual vision encoders'\\n  type: factual\\n  evidence:\\n  - kim2025openvlaoft\\n  decisions: []\\n  deprecated: true\\n- id: C140\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: LoRA rank 32, 50K steps, batch 8, fixed lr 5e-4\\n  type: factual\\n  evidence:\\n  - finetune.py:L99-L119\\n  decisions: []\\n  deprecated: true\\n- id: C148\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: ~25K demonstration episodes from LIBERO-Spatial\\n  type: factual\\n  evidence: []\\n  decisions: []\\n  deprecated: true\\n- id: C157\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: ~13h per run on single NVIDIA RTX PRO 6000 GPU\\n  type: factual\\n  evidence:\\n  - nvidia-smi\\n  - training-log:1.09it/s\\n  decisions: []\\n  deprecated: true\\n- id: C158\\n  location:\\n    section: discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: 'OCC-CBF: future direction, learned barrier function h(z_occ, x_robot) >=\\n    0 conditioned on occ encoder features, not yet implemented'\\n  type: conceptual\\n  evidence:\\n  - hu2025aegis\\n  - ji2024ogmcbf\\n  - kwon2026learningnudge\\n  decisions: []\\n  deprecated: false\\n- id: C159\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: SafeLIBERO comprises 32 scenarios across 10 tabletop manipulation tasks\\n  type: factual\\n  evidence:\\n  - hu2025aegis\\n  decisions: []\\n  deprecated: false\\n- id: C161\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: CAR metric uses L1 body_xpos displacement with threshold 0.001, aligned with\\n    VLSA-AEGIS\\n  type: factual\\n  evidence:\\n  - hu2025aegis\\n  decisions: []\\n  deprecated: false\\n- id: C164\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: 20 rollouts per task x 3 seeds = 600 total rollouts\\n  type: factual\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C168\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: OpenVLA-OFT 7B, LoRA rank 32 alpha 16, 50K steps, AdamW wd=0.01, batch 8,\\n    constant lr 5e-4. LoRA 110.8M params (1.45% of 7.65B)\\n  type: factual\\n  evidence:\\n  - kim2025openvlaoft\\n  - finetune.py\\n  decisions: []\\n  deprecated: false\\n- id: C173\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Occ head 1.2M params: input DINOv2+SigLIP concat 2176d, first 256 patches\\n    (16x16 primary view), Linear(2176->256)->reshape(B,256,16,16)->ConvTranspose2d(256->128,k4s2p1)->BN->GELU->ConvTranspose2d(128->64,k4s2p1)->BN->GELU->Conv2d(64->1,k1)'\\n  type: factual\\n  evidence:\\n  - occ_head.py\\n  decisions: []\\n  deprecated: false\\n- id: C179\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: FocalLoss alpha=0.25 gamma=2.0, lambda_occ=0.01 with exponential decay exp(-t/50000)\\n  type: factual\\n  evidence:\\n  - occ_head.py\\n  - finetune.py\\n  decisions: []\\n  deprecated: false\\n- id: C186\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: Each run ~12.9 hours on single NVIDIA RTX PRO 6000 GPU (98GB)\\n  type: factual\\n  evidence:\\n  - nvidia-smi\\n  - training-log:1.08it/s\\n  decisions: []\\n  deprecated: false\\n- id: C187\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Occ head input: concatenated DINOv2+SigLIP patch features (2176d = DINOv2\\n    1024 + SigLIP 1152)'\\n  type: factual\\n  evidence:\\n  - occ_head.py\\n  decisions: []\\n  deprecated: true\\n- id: C189\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: First 256 patch tokens selected (16x16 grid, primary camera view)\\n  type: factual\\n  evidence:\\n  - occ_head.py\\n  decisions: []\\n  deprecated: true\\n- id: C192\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Conv decoder: Linear(2176->256)->reshape(B,256,16,16)->ConvTranspose2d(256->128,k4s2p1)->BN->GELU->ConvTranspose2d(128->64,k4s2p1)->BN->GELU->Conv2d(64->1,k1).\\n    1.2M params'\\n  type: factual\\n  evidence:\\n  - occ_head.py:L18-28\\n  decisions: []\\n  deprecated: true\\n- id: C196\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: FocalLoss alpha=0.25 gamma=2.0\\n  type: factual\\n  evidence:\\n  - occ_head.py:L47-56\\n  decisions: []\\n  deprecated: true\\n- id: C201\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: lambda_occ(t) = 0.01 * exp(-t/50000), exponential decay\\n  type: factual\\n  evidence:\\n  - finetune.py:L92-94\\n  - finetune.py:L1110\\n  decisions: []\\n  deprecated: true\\n- id: C207\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Gradient flow: occ_detach=False propagates gradients into DINOv2+SigLIP encoders;\\n    occ_detach=True eliminates safety benefit'\\n  type: methodological\\n  evidence: []\\n  decisions: []\\n  deprecated: true\\n- id: C214\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: LoRA rank 32 alpha 16, 110.8M params (1.45% of 7.65B). Occ head 1.2M params\\n  type: factual\\n  evidence:\\n  - finetune.py\\n  decisions: []\\n  deprecated: true\\n- id: C222\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: AdamW (wd=0.01), constant lr 5e-4, batch 8, 50K steps\\n  type: factual\\n  evidence:\\n  - finetune.py\\n  decisions: []\\n  deprecated: true\\n- id: C231\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: ~12.9h per run on single NVIDIA RTX PRO 6000 GPU (98GB)\\n  type: factual\\n  evidence:\\n  - nvidia-smi\\n  - training-log:1.08it/s\\n  decisions: []\\n  deprecated: true\\n- id: C232\\n  location:\\n    section: related_work\\n    paragraph: 0\\n    sentence: 0\\n  text: VLA safety literature focuses on behavioral constraints (CBF, RL penalties)\\n    without examining whether spatial representations affect collision avoidance\\n  type: positioning\\n  evidence:\\n  - VLSA/AEGIS uses CBF QP solver\\n  - SafeVLA uses constrained MDP\\n  - CoFreeVLA uses risk estimator\\n  decisions: []\\n  deprecated: false\\n- id: C234\\n  location:\\n    section: related_work\\n    paragraph: 0\\n    sentence: 0\\n  text: Spatial VLA literature improves task performance but never evaluates safety\\n    metrics\\n  type: positioning\\n  evidence:\\n  - SpatialForcing evaluates success rate\\n  - DepthVLA evaluates success rate\\n  - SpatialVLA evaluates success rate\\n  - PointVLA evaluates success rate\\n  decisions: []\\n  deprecated: false\\n- id: C237\\n  location:\\n    section: related_work\\n    paragraph: 0\\n    sentence: 0\\n  text: Multi-task learning theory predicts auxiliary tasks preserve pretrained representation\\n    diversity through implicit regularization\\n  type: theoretical\\n  evidence:\\n  - Wang et al. 2023 L1,2 mixed-norm result\\n  - Caruana 1997 MTL framework\\n  decisions: []\\n  deprecated: false\\n- id: C238\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: Auxiliary head adds 1.2M parameters (0.016% of 7.65B total), zero inference\\n    cost\\n  type: architectural\\n  evidence:\\n  - paper_framing.md Architecture Facts\\n  decisions: []\\n  deprecated: false\\n- id: C240\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Dual-encoder gradient flow: occupancy supervision simultaneously affects\\n    DINOv2 (spatial) and SigLIP (semantic) encoders'\\n  type: architectural\\n  evidence:\\n  - 'paper_framing.md: Occ head input is DINOv2+SigLIP concatenation = 2176d'\\n  decisions: []\\n  deprecated: false\\n- id: C243\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: Five-condition ablation isolates gradient flow, spatial content, and reference\\n    frame\\n  type: methodological\\n  evidence:\\n  - Vanilla/FullOCC/RandomOCC/DetachOCC/Depth design\\n  decisions:\\n  - D017\\n  deprecated: false\\n- id: C244\\n  location:\\n    section: experiment_setup\\n    paragraph: 0\\n    sentence: 0\\n  text: SafeLIBERO Level I provides 10 tasks with obstacles in close proximity to\\n    targets\\n  type: experimental\\n  evidence:\\n  - li2025vlsa SafeLIBERO benchmark definition\\n  decisions: []\\n  deprecated: false\\n- id: C246\\n  location:\\n    section: experiment_setup\\n    paragraph: 0\\n    sentence: 0\\n  text: 50 rollouts per task yields per-task CI of approximately ±13pp\\n  type: statistical\\n  evidence:\\n  - 'paper_framing.md: 50r CI ~±13pp vs 20r ~±21pp'\\n  decisions: []\\n  deprecated: false\\n- id: C249\\n  location:\\n    section: experiment_setup\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Training configuration: LoRA rank 32, alpha 16, batch 8, lr 5e-4, 50005 steps'\\n  type: experimental\\n  evidence:\\n  - paper_framing.md Architecture Facts\\n  - memory.md Training Configuration\\n  decisions: []\\n  deprecated: false\\n- id: C250\\n  location:\\n    section: results\\n    paragraph: 0\\n    sentence: 0\\n  text: 2x2 ANOVA interaction F(1,8)=7.511, p=0.025, partial eta2=0.484, Cohen f=0.969\\n  type: quantitative\\n  evidence:\\n  - exp_id: anova_2x2_factorial\\n    metric: F_interaction\\n    value: '7.511'\\n  decisions: []\\n  deprecated: false\\n- id: C251\\n  location:\\n    section: results\\n    paragraph: 0\\n    sentence: 0\\n  text: Neither main effect significant (gradient flow p=0.326, normalization p=0.231)\\n  type: quantitative\\n  evidence:\\n  - exp_id: anova_2x2_factorial\\n    metric: p_gradient_main\\n    value: '0.326'\\n  - exp_id: anova_2x2_factorial\\n    metric: p_norm_main\\n    value: '0.231'\\n  decisions: []\\n  deprecated: false\\n- id: C252\\n  location:\\n    section: results\\n    paragraph: 0\\n    sentence: 0\\n  text: BN simple effect p=0.052, d=5.13; LN simple effect p=0.26; neither individually\\n    significant\\n  type: quantitative\\n  evidence:\\n  - exp_id: anova_2x2_factorial\\n    metric: p_simple_BN\\n    value: '0.052'\\n  - exp_id: anova_2x2_factorial\\n    metric: d_simple_BN\\n    value: '5.13'\\n  decisions: []\\n  deprecated: false\\n- id: C253\\n  location:\\n    section: results\\n    paragraph: 0\\n    sentence: 0\\n  text: LN suppresses DINOv2 action gradients 3.5x (0.048 vs BN 0.168) and amplifies\\n    SigLIP 2.5x (0.206 vs 0.081)\\n  type: quantitative\\n  evidence:\\n  - exp_id: gradient_analysis_same_seed\\n    metric: dinov2_action_grad_norm_ln\\n    value: '0.048'\\n  - exp_id: gradient_analysis_same_seed\\n    metric: dinov2_action_grad_norm_bn\\n    value: '0.168'\\n  - exp_id: gradient_analysis_same_seed\\n    metric: siglip_action_grad_norm_ln\\n    value: '0.206'\\n  - exp_id: gradient_analysis_same_seed\\n    metric: siglip_action_grad_norm_bn\\n    value: '0.081'\\n  decisions: []\\n  deprecated: false\\n- id: C254\\n  location:\\n    section: results\\n    paragraph: 0\\n    sentence: 0\\n  text: Conflict rates ~50% in both BN and LN conditions\\n  type: quantitative\\n  evidence:\\n  - exp_id: gradient_analysis_same_seed\\n    metric: conflict_rate\\n    value: ~0.50\\n  decisions: []\\n  deprecated: false\\n- id: C255\\n  location:\\n    section: results\\n    paragraph: 0\\n    sentence: 0\\n  text: BN maintains balanced gradient allocation (DINOv2 0.8x, SigLIP 1.0x Vanilla)\\n  type: quantitative\\n  evidence:\\n  - exp_id: gradient_analysis_same_seed\\n    metric: dinov2_ratio_bn\\n    value: '0.8'\\n  - exp_id: gradient_analysis_same_seed\\n    metric: siglip_ratio_bn\\n    value: '1.0'\\n  decisions: []\\n  deprecated: false\\n- id: C256\\n  location:\\n    section: results\\n    paragraph: 0\\n    sentence: 0\\n  text: LN does not cause representational drift (s1, s2 CKA~0.97); CAR degradation\\n    operates through gradient dynamics not representation corruption\\n  type: qualitative\\n  evidence:\\n  - exp_id: cka_full_occ_ln_s1\\n    metric: dinov2_mean_cka\\n    value: '0.965'\\n  - exp_id: cka_full_occ_ln_s2\\n    metric: dinov2_mean_cka\\n    value: '0.965'\\n  decisions: []\\n  deprecated: false\\ntables: []\\nfigures: []\\n_completeness:\\n  coverage: 23/24\\n  claims: 24\\n  tables: 0\\n  figures: 0\\n  tier_counts:\\n    tier1: 0\\n    tier2: 23\\n    tier3: 1\\n    tierX: 0\\n  last_checked: '2026-05-25T03:54:11.822240+00:00'\\n\", \"total_chars\": 20444, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "1e2cf553-2748-4d32-9a0a-0ac9d92ef402",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/paper_provenance.yaml\\\", \\\"content\\\": \\\"paper:\\\\n  title: ''\\\\n  version: 42\\\\n  generated_at: '2026-05-25T03:54:11.822206+00:00'\\\\nclaims:\\\\n- id: C001\\\\n  location:\\\\n    section: experiments\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: SafeLIBERO comprises 32 scenarios across 10 tabletop manipulation tasks\\\\n  type: factual\\\\n  evidence:\\\\n  - hu2025aegis\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C003\\\\n  location:\\\\n    section: experiments\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: CAR metric uses L1 body_xpos displacement with threshold 0.001, aligned with\\\\n    VLSA-AEGIS\\\\n  type: factual\\\\n  evidence:\\\\n  - hu2025aegis\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C006\\\\n  location:\\\\n    section: experiments\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 20 rollouts per task x 3 seeds = 600 total rollouts\\\\n  type: factual\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C010\\\\n  location:\\\\n    section: experiments\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: OpenVLA-OFT 7B fine-tuned with LoRA rank 32, 50K steps, batch 8, lr 5e-4\\\\n  type: factual\\\\n  evidence:\\\\n  - kim2025openvlaoft\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C015\\\\n  location:\\\\n    section: experiments\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 'Occ head: 2-layer MLP, 256 hidden, 64x64 BEV grid, FocalLoss alpha=0.75 gamma=2.0,\\\\n    lambda=0.1'\\\\n  type: factual\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C021\\\\n  location:\\\\n    section: experiments\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Each run ~17 hours on single A100\\\\n  type: factual\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C022\\\\n  location:\\\\n    section: method\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: BEV occupancy auxiliary head predicts 64x64 BEV grid at zero inference cost\\\\n    — discarded at test time\\\\n  type: design\\\\n  evidence:\\\\n  - liu2025occvla\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C024\\\\n  location:\\\\n    section: method\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 'Gradient flow mechanism: occ_detach=False propagates L_occ gradients into\\\\n    DINOv2 encoder; occ_detach=True eliminates safety benefit'\\\\n  type: methodological\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C027\\\\n  location:\\\\n    section: method\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: L_total = L_action + lambda * L_occ with lambda=0.1\\\\n  type: methodological\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C031\\\\n  location:\\\\n    section: method\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 'Training data: ~25K demonstration episodes from LIBERO-Spatial suite'\\\\n  type: factual\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C036\\\\n  location:\\\\n    section: method\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 'OpenVLA-OFT 7B base: Llama 2 + DINOv2 + SigLIP dual vision encoders'\\\\n  type: factual\\\\n  evidence:\\\\n  - kim2025openvlaoft\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C042\\\\n  location:\\\\n    section: method\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: LoRA rank 32, 50K steps, batch 8, lr 5e-4, cosine decay (shared across all\\\\n    conditions)\\\\n  type: factual\\\\n  evidence:\\\\n  - kim2025openvlaoft\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C049\\\\n  location:\\\\n    section: method\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 'OCC-CBF: h_occ(x) = f_theta(z_occ, x_robot), learned barrier conditioned\\\\n    on occ features — conceptual framework, deferred to extended version'\\\\n  type: conceptual\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C057\\\\n  location:\\\\n    section: method\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: AEGIS uses Euclidean-distance barrier on explicit object positions from world\\\\n    model\\\\n  type: citation\\\\n  evidence:\\\\n  - hu2025aegis\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C066\\\\n  location:\\\\n    section: method\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: OGM-CBF constructs barriers from discrete occupancy grids via signed distance\\\\n    fields\\\\n  type: citation\\\\n  evidence:\\\\n  - ji2024ogmcbf\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C076\\\\n  location:\\\\n    section: method\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Learning to Nudge trains object-centric DCBF requiring explicit object decomposition\\\\n  type: citation\\\\n  evidence:\\\\n  - kwon2026learningnudge\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C077\\\\n  location:\\\\n    section: experiments\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: SafeLIBERO comprises 32 scenarios across 10 tabletop manipulation tasks\\\\n  type: factual\\\\n  evidence:\\\\n  - hu2025aegis\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C079\\\\n  location:\\\\n    section: experiments\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: CAR metric uses L1 body_xpos displacement with threshold 0.001, aligned with\\\\n    VLSA-AEGIS\\\\n  type: factual\\\\n  evidence:\\\\n  - hu2025aegis\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C082\\\\n  location:\\\\n    section: experiments\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 20 rollouts per task x 3 seeds = 600 total rollouts\\\\n  type: factual\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C086\\\\n  location:\\\\n    section: experiments\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: OpenVLA-OFT 7B fine-tuned with LoRA rank 32, 50K steps, batch 8, fixed lr\\\\n    5e-4\\\\n  type: factual\\\\n  evidence:\\\\n  - kim2025openvlaoft\\\\n  - finetune.py:L99-L119\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C091\\\\n  location:\\\\n    section: experiments\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 'Occ head: conv decoder Linear->reshape(B,256,16,16)->ConvTranspose2d(256->128)->BN->GELU->ConvTranspose2d(128->64)->BN->GELU->Conv2d(64->1),\\\\n    64x64 BEV, FocalLoss alpha=0.25 gamma=2.0, lambda_occ=0.01 exponential decay tau=50K'\\\\n  type: factual\\\\n  evidence:\\\\n  - occ_head.py:L18-L28\\\\n  - finetune.py:L93-L94\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C097\\\\n  location:\\\\n    section: experiments\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Each run ~13 hours on single NVIDIA RTX PRO 6000 GPU\\\\n  type: factual\\\\n  evidence:\\\\n  - nvidia-smi\\\\n  - training-log:1.09it/s\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C098\\\\n  location:\\\\n    section: related_work\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 15+ spatial-VLA methods improve spatial reasoning but none evaluate collision\\\\n    safety metrics\\\\n  type: survey\\\\n  evidence:\\\\n  - an2025depthvla\\\\n  - wu2025spatialvla\\\\n  - li2025spatialforcing\\\\n  - chen2026gstvla\\\\n  - stemvla2026\\\\n  - 3dcavla2025\\\\n  - corridorvla2026\\\\n  - stvla2026\\\\n  - augvla3d2026\\\\n  - evo02025\\\\n  - geoaware2025\\\\n  - geovla2025\\\\n  - pointvla2025\\\\n  - sgvla2026\\\\n  - savla2026\\\\n  - qdepthvla2025\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C100\\\\n  location:\\\\n    section: related_work\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: AEGIS/VLSA achieves 59.16% CAR improvement on SafeLIBERO via plug-in CBF\\\\n  type: citation\\\\n  evidence:\\\\n  - hu2025aegis\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C103\\\\n  location:\\\\n    section: related_work\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: SafeVLA uses constrained RL for safety alignment (NeurIPS 2025 Spotlight)\\\\n  type: citation\\\\n  evidence:\\\\n  - zhan2025safevla\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C107\\\\n  location:\\\\n    section: related_work\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: No existing safety-VLA method exploits 3D spatial representation advances\\\\n  type: gap\\\\n  evidence:\\\\n  - hu2025aegis\\\\n  - zhan2025safevla\\\\n  - chen2026cofreevla\\\\n  - safenightvla2026\\\\n  - vlasafetysurvey2026\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C112\\\\n  location:\\\\n    section: related_work\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: No existing work combines occupancy-grounded representation learning with\\\\n    safety-aware VLA training for manipulation\\\\n  type: gap\\\\n  evidence:\\\\n  - liu2025occvla\\\\n  - ji2024ogmcbf\\\\n  - kwon2026learningnudge\\\\n  - neuralcsbf2025\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C113\\\\n  location:\\\\n    section: method\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 'BEV occ head: convolutional decoder Linear->256ch->reshape(B,256,16,16)->ConvTranspose2d(256->128,k4s2p1)->BN->GELU->ConvTranspose2d(128->64,k4s2p1)->BN->GELU->Conv2d(64->1,k1),\\\\n    zero inference cost (discarded at test time)'\\\\n  type: factual\\\\n  evidence:\\\\n  - occ_head.py:L18-L28\\\\n  - liu2025occvla\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C115\\\\n  location:\\\\n    section: method\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Conv decoder exploits ViT patch spatial adjacency (inductive bias vs MLP)\\\\n  type: design\\\\n  evidence:\\\\n  - occ_head.py:L18-L28\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C118\\\\n  location:\\\\n    section: method\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: FocalLoss alpha=0.25 gamma=2.0\\\\n  type: factual\\\\n  evidence:\\\\n  - occ_head.py:L47-L56\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C122\\\\n  location:\\\\n    section: method\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: lambda_occ(t) = 0.01 * exp(-t/tau), tau=50K steps (exponential decay)\\\\n  type: factual\\\\n  evidence:\\\\n  - finetune.py:L92-L94\\\\n  - finetune.py:L1110\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C127\\\\n  location:\\\\n    section: method\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 'Gradient flow mechanism: occ_detach=False propagates L_occ gradients into\\\\n    DINOv2 encoder; occ_detach=True eliminates safety benefit'\\\\n  type: methodological\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C133\\\\n  location:\\\\n    section: method\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 'OpenVLA-OFT 7B base: Llama 2 + DINOv2 + SigLIP dual vision encoders'\\\\n  type: factual\\\\n  evidence:\\\\n  - kim2025openvlaoft\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C140\\\\n  location:\\\\n    section: method\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: LoRA rank 32, 50K steps, batch 8, fixed lr 5e-4\\\\n  type: factual\\\\n  evidence:\\\\n  - finetune.py:L99-L119\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C148\\\\n  location:\\\\n    section: method\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: ~25K demonstration episodes from LIBERO-Spatial\\\\n  type: factual\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C157\\\\n  location:\\\\n    section: method\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: ~13h per run on single NVIDIA RTX PRO 6000 GPU\\\\n  type: factual\\\\n  evidence:\\\\n  - nvidia-smi\\\\n  - training-log:1.09it/s\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C158\\\\n  location:\\\\n    section: discussion\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 'OCC-CBF: future direction, learned barrier function h(z_occ, x_robot) >=\\\\n    0 conditioned on occ encoder features, not yet implemented'\\\\n  type: conceptual\\\\n  evidence:\\\\n  - hu2025aegis\\\\n  - ji2024ogmcbf\\\\n  - kwon2026learningnudge\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C159\\\\n  location:\\\\n    section: experiments\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: SafeLIBERO comprises 32 scenarios across 10 tabletop manipulation tasks\\\\n  type: factual\\\\n  evidence:\\\\n  - hu2025aegis\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C161\\\\n  location:\\\\n    section: experiments\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: CAR metric uses L1 body_xpos displacement with threshold 0.001, aligned with\\\\n    VLSA-AEGIS\\\\n  type: factual\\\\n  evidence:\\\\n  - hu2025aegis\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C164\\\\n  location:\\\\n    section: experiments\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 20 rollouts per task x 3 seeds = 600 total rollouts\\\\n  type: factual\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C168\\\\n  location:\\\\n    section: experiments\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: OpenVLA-OFT 7B, LoRA rank 32 alpha 16, 50K steps, AdamW wd=0.01, batch 8,\\\\n    constant lr 5e-4. LoRA 110.8M params (1.45% of 7.65B)\\\\n  type: factual\\\\n  evidence:\\\\n  - kim2025openvlaoft\\\\n  - finetune.py\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C173\\\\n  location:\\\\n    section: experiments\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 'Occ head 1.2M params: input DINOv2+SigLIP concat 2176d, first 256 patches\\\\n    (16x16 primary view), Linear(2176->256)->reshape(B,256,16,16)->ConvTranspose2d(256->128,k4s2p1)->BN->GELU->ConvTranspose2d(128->64,k4s2p1)->BN->GELU->Conv2d(64->1,k1)'\\\\n  type: factual\\\\n  evidence:\\\\n  - occ_head.py\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C179\\\\n  location:\\\\n    section: experiments\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: FocalLoss alpha=0.25 gamma=2.0, lambda_occ=0.01 with exponential decay exp(-t/50000)\\\\n  type: factual\\\\n  evidence:\\\\n  - occ_head.py\\\\n  - finetune.py\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C186\\\\n  location:\\\\n    section: experiments\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Each run ~12.9 hours on single NVIDIA RTX PRO 6000 GPU (98GB)\\\\n  type: factual\\\\n  evidence:\\\\n  - nvidia-smi\\\\n  - training-log:1.08it/s\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C187\\\\n  location:\\\\n    section: method\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 'Occ head input: concatenated DINOv2+SigLIP patch features (2176d = DINOv2\\\\n    1024 + SigLIP 1152)'\\\\n  type: factual\\\\n  evidence:\\\\n  - occ_head.py\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C189\\\\n  location:\\\\n    section: method\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: First 256 patch tokens selected (16x16 grid, primary camera view)\\\\n  type: factual\\\\n  evidence:\\\\n  - occ_head.py\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C192\\\\n  location:\\\\n    section: method\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 'Conv decoder: Linear(2176->256)->reshape(B,256,16,16)->ConvTranspose2d(256->128,k4s2p1)->BN->GELU->ConvTranspose2d(128->64,k4s2p1)->BN->GELU->Conv2d(64->1,k1).\\\\n    1.2M params'\\\\n  type: factual\\\\n  evidence:\\\\n  - occ_head.py:L18-28\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C196\\\\n  location:\\\\n    section: method\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: FocalLoss alpha=0.25 gamma=2.0\\\\n  type: factual\\\\n  evidence:\\\\n  - occ_head.py:L47-56\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C201\\\\n  location:\\\\n    section: method\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: lambda_occ(t) = 0.01 * exp(-t/50000), exponential decay\\\\n  type: factual\\\\n  evidence:\\\\n  - finetune.py:L92-94\\\\n  - finetune.py:L1110\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C207\\\\n  location:\\\\n    section: method\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 'Gradient flow: occ_detach=False propagates gradients into DINOv2+SigLIP encoders;\\\\n    occ_detach=True eliminates safety benefit'\\\\n  type: methodological\\\\n  evidence: []\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C214\\\\n  location:\\\\n    section: method\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: LoRA rank 32 alpha 16, 110.8M params (1.45% of 7.65B). Occ head 1.2M params\\\\n  type: factual\\\\n  evidence:\\\\n  - finetune.py\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C222\\\\n  location:\\\\n    section: method\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: AdamW (wd=0.01), constant lr 5e-4, batch 8, 50K steps\\\\n  type: factual\\\\n  evidence:\\\\n  - finetune.py\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C231\\\\n  location:\\\\n    section: method\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: ~12.9h per run on single NVIDIA RTX PRO 6000 GPU (98GB)\\\\n  type: factual\\\\n  evidence:\\\\n  - nvidia-smi\\\\n  - training-log:1.08it/s\\\\n  decisions: []\\\\n  deprecated: true\\\\n- id: C232\\\\n  location:\\\\n    section: related_work\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: VLA safety literature focuses on behavioral constraints (CBF, RL penalties)\\\\n    without examining whether spatial representations affect collision avoidance\\\\n  type: positioning\\\\n  evidence:\\\\n  - VLSA/AEGIS uses CBF QP solver\\\\n  - SafeVLA uses constrained MDP\\\\n  - CoFreeVLA uses risk estimator\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C234\\\\n  location:\\\\n    section: related_work\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Spatial VLA literature improves task performance but never evaluates safety\\\\n    metrics\\\\n  type: positioning\\\\n  evidence:\\\\n  - SpatialForcing evaluates success rate\\\\n  - DepthVLA evaluates success rate\\\\n  - SpatialVLA evaluates success rate\\\\n  - PointVLA evaluates success rate\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C237\\\\n  location:\\\\n    section: related_work\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Multi-task learning theory predicts auxiliary tasks preserve pretrained representation\\\\n    diversity through implicit regularization\\\\n  type: theoretical\\\\n  evidence:\\\\n  - Wang et al. 2023 L1,2 mixed-norm result\\\\n  - Caruana 1997 MTL framework\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C238\\\\n  location:\\\\n    section: method\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Auxiliary head adds 1.2M parameters (0.016% of 7.65B total), zero inference\\\\n    cost\\\\n  type: architectural\\\\n  evidence:\\\\n  - paper_framing.md Architecture Facts\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C240\\\\n  location:\\\\n    section: method\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 'Dual-encoder gradient flow: occupancy supervision simultaneously affects\\\\n    DINOv2 (spatial) and SigLIP (semantic) encoders'\\\\n  type: architectural\\\\n  evidence:\\\\n  - 'paper_framing.md: Occ head input is DINOv2+SigLIP concatenation = 2176d'\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C243\\\\n  location:\\\\n    section: method\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Five-condition ablation isolates gradient flow, spatial content, and reference\\\\n    frame\\\\n  type: methodological\\\\n  evidence:\\\\n  - Vanilla/FullOCC/RandomOCC/DetachOCC/Depth design\\\\n  decisions:\\\\n  - D017\\\\n  deprecated: false\\\\n- id: C244\\\\n  location:\\\\n    section: experiment_setup\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: SafeLIBERO Level I provides 10 tasks with obstacles in close proximity to\\\\n    targets\\\\n  type: experimental\\\\n  evidence:\\\\n  - li2025vlsa SafeLIBERO benchmark definition\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C246\\\\n  location:\\\\n    section: experiment_setup\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 50 rollouts per task yields per-task CI of approximately ±13pp\\\\n  type: statistical\\\\n  evidence:\\\\n  - 'paper_framing.md: 50r CI ~±13pp vs 20r ~±21pp'\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C249\\\\n  location:\\\\n    section: experiment_setup\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 'Training configuration: LoRA rank 32, alpha 16, batch 8, lr 5e-4, 50005 steps'\\\\n  type: experimental\\\\n  evidence:\\\\n  - paper_framing.md Architecture Facts\\\\n  - memory.md Training Configuration\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C250\\\\n  location:\\\\n    section: results\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: 2x2 ANOVA interaction F(1,8)=7.511, p=0.025, partial eta2=0.484, Cohen f=0.969\\\\n  type: quantitative\\\\n  evidence:\\\\n  - exp_id: anova_2x2_factorial\\\\n    metric: F_interaction\\\\n    value: '7.511'\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C251\\\\n  location:\\\\n    section: results\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Neither main effect significant (gradient flow p=0.326, normalization p=0.231)\\\\n  type: quantitative\\\\n  evidence:\\\\n  - exp_id: anova_2x2_factorial\\\\n    metric: p_gradient_main\\\\n    value: '0.326'\\\\n  - exp_id: anova_2x2_factorial\\\\n    metric: p_norm_main\\\\n    value: '0.231'\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C252\\\\n  location:\\\\n    section: results\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: BN simple effect p=0.052, d=5.13; LN simple effect p=0.26; neither individually\\\\n    significant\\\\n  type: quantitative\\\\n  evidence:\\\\n  - exp_id: anova_2x2_factorial\\\\n    metric: p_simple_BN\\\\n    value: '0.052'\\\\n  - exp_id: anova_2x2_factorial\\\\n    metric: d_simple_BN\\\\n    value: '5.13'\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C253\\\\n  location:\\\\n    section: results\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: LN suppresses DINOv2 action gradients 3.5x (0.048 vs BN 0.168) and amplifies\\\\n    SigLIP 2.5x (0.206 vs 0.081)\\\\n  type: quantitative\\\\n  evidence:\\\\n  - exp_id: gradient_analysis_same_seed\\\\n    metric: dinov2_action_grad_norm_ln\\\\n    value: '0.048'\\\\n  - exp_id: gradient_analysis_same_seed\\\\n    metric: dinov2_action_grad_norm_bn\\\\n    value: '0.168'\\\\n  - exp_id: gradient_analysis_same_seed\\\\n    metric: siglip_action_grad_norm_ln\\\\n    value: '0.206'\\\\n  - exp_id: gradient_analysis_same_seed\\\\n    metric: siglip_action_grad_norm_bn\\\\n    value: '0.081'\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C254\\\\n  location:\\\\n    section: results\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: Conflict rates ~50% in both BN and LN conditions\\\\n  type: quantitative\\\\n  evidence:\\\\n  - exp_id: gradient_analysis_same_seed\\\\n    metric: conflict_rate\\\\n    value: ~0.50\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C255\\\\n  location:\\\\n    section: results\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: BN maintains balanced gradient allocation (DINOv2 0.8x, SigLIP 1.0x Vanilla)\\\\n  type: quantitative\\\\n  evidence:\\\\n  - exp_id: gradient_analysis_same_seed\\\\n    metric: dinov2_ratio_bn\\\\n    value: '0.8'\\\\n  - exp_id: gradient_analysis_same_seed\\\\n    metric: siglip_ratio_bn\\\\n    value: '1.0'\\\\n  decisions: []\\\\n  deprecated: false\\\\n- id: C256\\\\n  location:\\\\n    section: results\\\\n    paragraph: 0\\\\n    sentence: 0\\\\n  text: LN does not cause representational drift (s1, s2 CKA~0.97); CAR degradation\\\\n    operates through gradient dynamics not representation corruption\\\\n  type: qualitative\\\\n  evidence:\\\\n  - exp_id: cka_full_occ_ln_s1\\\\n    metric: dinov2_mean_cka\\\\n    value: '0.965'\\\\n  - exp_id: cka_full_occ_ln_s2\\\\n    metric: dinov2_mean_cka\\\\n    value: '0.965'\\\\n  decisions: []\\\\n  deprecated: false\\\\ntables: []\\\\nfigures: []\\\\n_completeness:\\\\n  coverage: 23/24\\\\n  claims: 24\\\\n  tables: 0\\\\n  figures: 0\\\\n  tier_counts:\\\\n    tier1: 0\\\\n    tier2: 23\\\\n    tier3: 1\\\\n    tierX: 0\\\\n  last_checked: '2026-05-25T03:54:11.822240+00:00'\\\\n\\\", \\\"total_chars\\\": 20444, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/paper_provenance.yaml\", \"content\": \"paper:\\n  title: ''\\n  version: 42\\n  generated_at: '2026-05-25T03:54:11.822206+00:00'\\nclaims:\\n- id: C001\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: SafeLIBERO comprises 32 scenarios across 10 tabletop manipulation tasks\\n  type: factual\\n  evidence:\\n  - hu2025aegis\\n  decisions: []\\n  deprecated: true\\n- id: C003\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: CAR metric uses L1 body_xpos displacement with threshold 0.001, aligned with\\n    VLSA-AEGIS\\n  type: factual\\n  evidence:\\n  - hu2025aegis\\n  decisions: []\\n  deprecated: true\\n- id: C006\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: 20 rollouts per task x 3 seeds = 600 total rollouts\\n  type: factual\\n  evidence: []\\n  decisions: []\\n  deprecated: true\\n- id: C010\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: OpenVLA-OFT 7B fine-tuned with LoRA rank 32, 50K steps, batch 8, lr 5e-4\\n  type: factual\\n  evidence:\\n  - kim2025openvlaoft\\n  decisions: []\\n  deprecated: true\\n- id: C015\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Occ head: 2-layer MLP, 256 hidden, 64x64 BEV grid, FocalLoss alpha=0.75 gamma=2.0,\\n    lambda=0.1'\\n  type: factual\\n  evidence: []\\n  decisions: []\\n  deprecated: true\\n- id: C021\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: Each run ~17 hours on single A100\\n  type: factual\\n  evidence: []\\n  decisions: []\\n  deprecated: true\\n- id: C022\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: BEV occupancy auxiliary head predicts 64x64 BEV grid at zero inference cost\\n    — discarded at test time\\n  type: design\\n  evidence:\\n  - liu2025occvla\\n  decisions: []\\n  deprecated: true\\n- id: C024\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Gradient flow mechanism: occ_detach=False propagates L_occ gradients into\\n    DINOv2 encoder; occ_detach=True eliminates safety benefit'\\n  type: methodological\\n  evidence: []\\n  decisions: []\\n  deprecated: true\\n- id: C027\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: L_total = L_action + lambda * L_occ with lambda=0.1\\n  type: methodological\\n  evidence: []\\n  decisions: []\\n  deprecated: true\\n- id: C031\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Training data: ~25K demonstration episodes from LIBERO-Spatial suite'\\n  type: factual\\n  evidence: []\\n  decisions: []\\n  deprecated: true\\n- id: C036\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: 'OpenVLA-OFT 7B base: Llama 2 + DINOv2 + SigLIP dual vision encoders'\\n  type: factual\\n  evidence:\\n  - kim2025openvlaoft\\n  decisions: []\\n  deprecated: true\\n- id: C042\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: LoRA rank 32, 50K steps, batch 8, lr 5e-4, cosine decay (shared across all\\n    conditions)\\n  type: factual\\n  evidence:\\n  - kim2025openvlaoft\\n  decisions: []\\n  deprecated: true\\n- id: C049\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: 'OCC-CBF: h_occ(x) = f_theta(z_occ, x_robot), learned barrier conditioned\\n    on occ features — conceptual framework, deferred to extended version'\\n  type: conceptual\\n  evidence: []\\n  decisions: []\\n  deprecated: true\\n- id: C057\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: AEGIS uses Euclidean-distance barrier on explicit object positions from world\\n    model\\n  type: citation\\n  evidence:\\n  - hu2025aegis\\n  decisions: []\\n  deprecated: true\\n- id: C066\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: OGM-CBF constructs barriers from discrete occupancy grids via signed distance\\n    fields\\n  type: citation\\n  evidence:\\n  - ji2024ogmcbf\\n  decisions: []\\n  deprecated: true\\n- id: C076\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: Learning to Nudge trains object-centric DCBF requiring explicit object decomposition\\n  type: citation\\n  evidence:\\n  - kwon2026learningnudge\\n  decisions: []\\n  deprecated: true\\n- id: C077\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: SafeLIBERO comprises 32 scenarios across 10 tabletop manipulation tasks\\n  type: factual\\n  evidence:\\n  - hu2025aegis\\n  decisions: []\\n  deprecated: true\\n- id: C079\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: CAR metric uses L1 body_xpos displacement with threshold 0.001, aligned with\\n    VLSA-AEGIS\\n  type: factual\\n  evidence:\\n  - hu2025aegis\\n  decisions: []\\n  deprecated: true\\n- id: C082\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: 20 rollouts per task x 3 seeds = 600 total rollouts\\n  type: factual\\n  evidence: []\\n  decisions: []\\n  deprecated: true\\n- id: C086\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: OpenVLA-OFT 7B fine-tuned with LoRA rank 32, 50K steps, batch 8, fixed lr\\n    5e-4\\n  type: factual\\n  evidence:\\n  - kim2025openvlaoft\\n  - finetune.py:L99-L119\\n  decisions: []\\n  deprecated: true\\n- id: C091\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Occ head: conv decoder Linear->reshape(B,256,16,16)->ConvTranspose2d(256->128)->BN->GELU->ConvTranspose2d(128->64)->BN->GELU->Conv2d(64->1),\\n    64x64 BEV, FocalLoss alpha=0.25 gamma=2.0, lambda_occ=0.01 exponential decay tau=50K'\\n  type: factual\\n  evidence:\\n  - occ_head.py:L18-L28\\n  - finetune.py:L93-L94\\n  decisions: []\\n  deprecated: true\\n- id: C097\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: Each run ~13 hours on single NVIDIA RTX PRO 6000 GPU\\n  type: factual\\n  evidence:\\n  - nvidia-smi\\n  - training-log:1.09it/s\\n  decisions: []\\n  deprecated: true\\n- id: C098\\n  location:\\n    section: related_work\\n    paragraph: 0\\n    sentence: 0\\n  text: 15+ spatial-VLA methods improve spatial reasoning but none evaluate collision\\n    safety metrics\\n  type: survey\\n  evidence:\\n  - an2025depthvla\\n  - wu2025spatialvla\\n  - li2025spatialforcing\\n  - chen2026gstvla\\n  - stemvla2026\\n  - 3dcavla2025\\n  - corridorvla2026\\n  - stvla2026\\n  - augvla3d2026\\n  - evo02025\\n  - geoaware2025\\n  - geovla2025\\n  - pointvla2025\\n  - sgvla2026\\n  - savla2026\\n  - qdepthvla2025\\n  decisions: []\\n  deprecated: true\\n- id: C100\\n  location:\\n    section: related_work\\n    paragraph: 0\\n    sentence: 0\\n  text: AEGIS/VLSA achieves 59.16% CAR improvement on SafeLIBERO via plug-in CBF\\n  type: citation\\n  evidence:\\n  - hu2025aegis\\n  decisions: []\\n  deprecated: true\\n- id: C103\\n  location:\\n    section: related_work\\n    paragraph: 0\\n    sentence: 0\\n  text: SafeVLA uses constrained RL for safety alignment (NeurIPS 2025 Spotlight)\\n  type: citation\\n  evidence:\\n  - zhan2025safevla\\n  decisions: []\\n  deprecated: true\\n- id: C107\\n  location:\\n    section: related_work\\n    paragraph: 0\\n    sentence: 0\\n  text: No existing safety-VLA method exploits 3D spatial representation advances\\n  type: gap\\n  evidence:\\n  - hu2025aegis\\n  - zhan2025safevla\\n  - chen2026cofreevla\\n  - safenightvla2026\\n  - vlasafetysurvey2026\\n  decisions: []\\n  deprecated: true\\n- id: C112\\n  location:\\n    section: related_work\\n    paragraph: 0\\n    sentence: 0\\n  text: No existing work combines occupancy-grounded representation learning with\\n    safety-aware VLA training for manipulation\\n  type: gap\\n  evidence:\\n  - liu2025occvla\\n  - ji2024ogmcbf\\n  - kwon2026learningnudge\\n  - neuralcsbf2025\\n  decisions: []\\n  deprecated: true\\n- id: C113\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: 'BEV occ head: convolutional decoder Linear->256ch->reshape(B,256,16,16)->ConvTranspose2d(256->128,k4s2p1)->BN->GELU->ConvTranspose2d(128->64,k4s2p1)->BN->GELU->Conv2d(64->1,k1),\\n    zero inference cost (discarded at test time)'\\n  type: factual\\n  evidence:\\n  - occ_head.py:L18-L28\\n  - liu2025occvla\\n  decisions: []\\n  deprecated: true\\n- id: C115\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: Conv decoder exploits ViT patch spatial adjacency (inductive bias vs MLP)\\n  type: design\\n  evidence:\\n  - occ_head.py:L18-L28\\n  decisions: []\\n  deprecated: true\\n- id: C118\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: FocalLoss alpha=0.25 gamma=2.0\\n  type: factual\\n  evidence:\\n  - occ_head.py:L47-L56\\n  decisions: []\\n  deprecated: true\\n- id: C122\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: lambda_occ(t) = 0.01 * exp(-t/tau), tau=50K steps (exponential decay)\\n  type: factual\\n  evidence:\\n  - finetune.py:L92-L94\\n  - finetune.py:L1110\\n  decisions: []\\n  deprecated: true\\n- id: C127\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Gradient flow mechanism: occ_detach=False propagates L_occ gradients into\\n    DINOv2 encoder; occ_detach=True eliminates safety benefit'\\n  type: methodological\\n  evidence: []\\n  decisions: []\\n  deprecated: true\\n- id: C133\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: 'OpenVLA-OFT 7B base: Llama 2 + DINOv2 + SigLIP dual vision encoders'\\n  type: factual\\n  evidence:\\n  - kim2025openvlaoft\\n  decisions: []\\n  deprecated: true\\n- id: C140\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: LoRA rank 32, 50K steps, batch 8, fixed lr 5e-4\\n  type: factual\\n  evidence:\\n  - finetune.py:L99-L119\\n  decisions: []\\n  deprecated: true\\n- id: C148\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: ~25K demonstration episodes from LIBERO-Spatial\\n  type: factual\\n  evidence: []\\n  decisions: []\\n  deprecated: true\\n- id: C157\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: ~13h per run on single NVIDIA RTX PRO 6000 GPU\\n  type: factual\\n  evidence:\\n  - nvidia-smi\\n  - training-log:1.09it/s\\n  decisions: []\\n  deprecated: true\\n- id: C158\\n  location:\\n    section: discussion\\n    paragraph: 0\\n    sentence: 0\\n  text: 'OCC-CBF: future direction, learned barrier function h(z_occ, x_robot) >=\\n    0 conditioned on occ encoder features, not yet implemented'\\n  type: conceptual\\n  evidence:\\n  - hu2025aegis\\n  - ji2024ogmcbf\\n  - kwon2026learningnudge\\n  decisions: []\\n  deprecated: false\\n- id: C159\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: SafeLIBERO comprises 32 scenarios across 10 tabletop manipulation tasks\\n  type: factual\\n  evidence:\\n  - hu2025aegis\\n  decisions: []\\n  deprecated: false\\n- id: C161\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: CAR metric uses L1 body_xpos displacement with threshold 0.001, aligned with\\n    VLSA-AEGIS\\n  type: factual\\n  evidence:\\n  - hu2025aegis\\n  decisions: []\\n  deprecated: false\\n- id: C164\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: 20 rollouts per task x 3 seeds = 600 total rollouts\\n  type: factual\\n  evidence: []\\n  decisions: []\\n  deprecated: false\\n- id: C168\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: OpenVLA-OFT 7B, LoRA rank 32 alpha 16, 50K steps, AdamW wd=0.01, batch 8,\\n    constant lr 5e-4. LoRA 110.8M params (1.45% of 7.65B)\\n  type: factual\\n  evidence:\\n  - kim2025openvlaoft\\n  - finetune.py\\n  decisions: []\\n  deprecated: false\\n- id: C173\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Occ head 1.2M params: input DINOv2+SigLIP concat 2176d, first 256 patches\\n    (16x16 primary view), Linear(2176->256)->reshape(B,256,16,16)->ConvTranspose2d(256->128,k4s2p1)->BN->GELU->ConvTranspose2d(128->64,k4s2p1)->BN->GELU->Conv2d(64->1,k1)'\\n  type: factual\\n  evidence:\\n  - occ_head.py\\n  decisions: []\\n  deprecated: false\\n- id: C179\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: FocalLoss alpha=0.25 gamma=2.0, lambda_occ=0.01 with exponential decay exp(-t/50000)\\n  type: factual\\n  evidence:\\n  - occ_head.py\\n  - finetune.py\\n  decisions: []\\n  deprecated: false\\n- id: C186\\n  location:\\n    section: experiments\\n    paragraph: 0\\n    sentence: 0\\n  text: Each run ~12.9 hours on single NVIDIA RTX PRO 6000 GPU (98GB)\\n  type: factual\\n  evidence:\\n  - nvidia-smi\\n  - training-log:1.08it/s\\n  decisions: []\\n  deprecated: false\\n- id: C187\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Occ head input: concatenated DINOv2+SigLIP patch features (2176d = DINOv2\\n    1024 + SigLIP 1152)'\\n  type: factual\\n  evidence:\\n  - occ_head.py\\n  decisions: []\\n  deprecated: true\\n- id: C189\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: First 256 patch tokens selected (16x16 grid, primary camera view)\\n  type: factual\\n  evidence:\\n  - occ_head.py\\n  decisions: []\\n  deprecated: true\\n- id: C192\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Conv decoder: Linear(2176->256)->reshape(B,256,16,16)->ConvTranspose2d(256->128,k4s2p1)->BN->GELU->ConvTranspose2d(128->64,k4s2p1)->BN->GELU->Conv2d(64->1,k1).\\n    1.2M params'\\n  type: factual\\n  evidence:\\n  - occ_head.py:L18-28\\n  decisions: []\\n  deprecated: true\\n- id: C196\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: FocalLoss alpha=0.25 gamma=2.0\\n  type: factual\\n  evidence:\\n  - occ_head.py:L47-56\\n  decisions: []\\n  deprecated: true\\n- id: C201\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: lambda_occ(t) = 0.01 * exp(-t/50000), exponential decay\\n  type: factual\\n  evidence:\\n  - finetune.py:L92-94\\n  - finetune.py:L1110\\n  decisions: []\\n  deprecated: true\\n- id: C207\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Gradient flow: occ_detach=False propagates gradients into DINOv2+SigLIP encoders;\\n    occ_detach=True eliminates safety benefit'\\n  type: methodological\\n  evidence: []\\n  decisions: []\\n  deprecated: true\\n- id: C214\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: LoRA rank 32 alpha 16, 110.8M params (1.45% of 7.65B). Occ head 1.2M params\\n  type: factual\\n  evidence:\\n  - finetune.py\\n  decisions: []\\n  deprecated: true\\n- id: C222\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: AdamW (wd=0.01), constant lr 5e-4, batch 8, 50K steps\\n  type: factual\\n  evidence:\\n  - finetune.py\\n  decisions: []\\n  deprecated: true\\n- id: C231\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: ~12.9h per run on single NVIDIA RTX PRO 6000 GPU (98GB)\\n  type: factual\\n  evidence:\\n  - nvidia-smi\\n  - training-log:1.08it/s\\n  decisions: []\\n  deprecated: true\\n- id: C232\\n  location:\\n    section: related_work\\n    paragraph: 0\\n    sentence: 0\\n  text: VLA safety literature focuses on behavioral constraints (CBF, RL penalties)\\n    without examining whether spatial representations affect collision avoidance\\n  type: positioning\\n  evidence:\\n  - VLSA/AEGIS uses CBF QP solver\\n  - SafeVLA uses constrained MDP\\n  - CoFreeVLA uses risk estimator\\n  decisions: []\\n  deprecated: false\\n- id: C234\\n  location:\\n    section: related_work\\n    paragraph: 0\\n    sentence: 0\\n  text: Spatial VLA literature improves task performance but never evaluates safety\\n    metrics\\n  type: positioning\\n  evidence:\\n  - SpatialForcing evaluates success rate\\n  - DepthVLA evaluates success rate\\n  - SpatialVLA evaluates success rate\\n  - PointVLA evaluates success rate\\n  decisions: []\\n  deprecated: false\\n- id: C237\\n  location:\\n    section: related_work\\n    paragraph: 0\\n    sentence: 0\\n  text: Multi-task learning theory predicts auxiliary tasks preserve pretrained representation\\n    diversity through implicit regularization\\n  type: theoretical\\n  evidence:\\n  - Wang et al. 2023 L1,2 mixed-norm result\\n  - Caruana 1997 MTL framework\\n  decisions: []\\n  deprecated: false\\n- id: C238\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: Auxiliary head adds 1.2M parameters (0.016% of 7.65B total), zero inference\\n    cost\\n  type: architectural\\n  evidence:\\n  - paper_framing.md Architecture Facts\\n  decisions: []\\n  deprecated: false\\n- id: C240\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Dual-encoder gradient flow: occupancy supervision simultaneously affects\\n    DINOv2 (spatial) and SigLIP (semantic) encoders'\\n  type: architectural\\n  evidence:\\n  - 'paper_framing.md: Occ head input is DINOv2+SigLIP concatenation = 2176d'\\n  decisions: []\\n  deprecated: false\\n- id: C243\\n  location:\\n    section: method\\n    paragraph: 0\\n    sentence: 0\\n  text: Five-condition ablation isolates gradient flow, spatial content, and reference\\n    frame\\n  type: methodological\\n  evidence:\\n  - Vanilla/FullOCC/RandomOCC/DetachOCC/Depth design\\n  decisions:\\n  - D017\\n  deprecated: false\\n- id: C244\\n  location:\\n    section: experiment_setup\\n    paragraph: 0\\n    sentence: 0\\n  text: SafeLIBERO Level I provides 10 tasks with obstacles in close proximity to\\n    targets\\n  type: experimental\\n  evidence:\\n  - li2025vlsa SafeLIBERO benchmark definition\\n  decisions: []\\n  deprecated: false\\n- id: C246\\n  location:\\n    section: experiment_setup\\n    paragraph: 0\\n    sentence: 0\\n  text: 50 rollouts per task yields per-task CI of approximately ±13pp\\n  type: statistical\\n  evidence:\\n  - 'paper_framing.md: 50r CI ~±13pp vs 20r ~±21pp'\\n  decisions: []\\n  deprecated: false\\n- id: C249\\n  location:\\n    section: experiment_setup\\n    paragraph: 0\\n    sentence: 0\\n  text: 'Training configuration: LoRA rank 32, alpha 16, batch 8, lr 5e-4, 50005 steps'\\n  type: experimental\\n  evidence:\\n  - paper_framing.md Architecture Facts\\n  - memory.md Training Configuration\\n  decisions: []\\n  deprecated: false\\n- id: C250\\n  location:\\n    section: results\\n    paragraph: 0\\n    sentence: 0\\n  text: 2x2 ANOVA interaction F(1,8)=7.511, p=0.025, partial eta2=0.484, Cohen f=0.969\\n  type: quantitative\\n  evidence:\\n  - exp_id: anova_2x2_factorial\\n    metric: F_interaction\\n    value: '7.511'\\n  decisions: []\\n  deprecated: false\\n- id: C251\\n  location:\\n    section: results\\n    paragraph: 0\\n    sentence: 0\\n  text: Neither main effect significant (gradient flow p=0.326, normalization p=0.231)\\n  type: quantitative\\n  evidence:\\n  - exp_id: anova_2x2_factorial\\n    metric: p_gradient_main\\n    value: '0.326'\\n  - exp_id: anova_2x2_factorial\\n    metric: p_norm_main\\n    value: '0.231'\\n  decisions: []\\n  deprecated: false\\n- id: C252\\n  location:\\n    section: results\\n    paragraph: 0\\n    sentence: 0\\n  text: BN simple effect p=0.052, d=5.13; LN simple effect p=0.26; neither individually\\n    significant\\n  type: quantitative\\n  evidence:\\n  - exp_id: anova_2x2_factorial\\n    metric: p_simple_BN\\n    value: '0.052'\\n  - exp_id: anova_2x2_factorial\\n    metric: d_simple_BN\\n    value: '5.13'\\n  decisions: []\\n  deprecated: false\\n- id: C253\\n  location:\\n    section: results\\n    paragraph: 0\\n    sentence: 0\\n  text: LN suppresses DINOv2 action gradients 3.5x (0.048 vs BN 0.168) and amplifies\\n    SigLIP 2.5x (0.206 vs 0.081)\\n  type: quantitative\\n  evidence:\\n  - exp_id: gradient_analysis_same_seed\\n    metric: dinov2_action_grad_norm_ln\\n    value: '0.048'\\n  - exp_id: gradient_analysis_same_seed\\n    metric: dinov2_action_grad_norm_bn\\n    value: '0.168'\\n  - exp_id: gradient_analysis_same_seed\\n    metric: siglip_action_grad_norm_ln\\n    value: '0.206'\\n  - exp_id: gradient_analysis_same_seed\\n    metric: siglip_action_grad_norm_bn\\n    value: '0.081'\\n  decisions: []\\n  deprecated: false\\n- id: C254\\n  location:\\n    section: results\\n    paragraph: 0\\n    sentence: 0\\n  text: Conflict rates ~50% in both BN and LN conditions\\n  type: quantitative\\n  evidence:\\n  - exp_id: gradient_analysis_same_seed\\n    metric: conflict_rate\\n    value: ~0.50\\n  decisions: []\\n  deprecated: false\\n- id: C255\\n  location:\\n    section: results\\n    paragraph: 0\\n    sentence: 0\\n  text: BN maintains balanced gradient allocation (DINOv2 0.8x, SigLIP 1.0x Vanilla)\\n  type: quantitative\\n  evidence:\\n  - exp_id: gradient_analysis_same_seed\\n    metric: dinov2_ratio_bn\\n    value: '0.8'\\n  - exp_id: gradient_analysis_same_seed\\n    metric: siglip_ratio_bn\\n    value: '1.0'\\n  decisions: []\\n  deprecated: false\\n- id: C256\\n  location:\\n    section: results\\n    paragraph: 0\\n    sentence: 0\\n  text: LN does not cause representational drift (s1, s2 CKA~0.97); CAR degradation\\n    operates through gradient dynamics not representation corruption\\n  type: qualitative\\n  evidence:\\n  - exp_id: cka_full_occ_ln_s1\\n    metric: dinov2_mean_cka\\n    value: '0.965'\\n  - exp_id: cka_full_occ_ln_s2\\n    metric: dinov2_mean_cka\\n    value: '0.965'\\n  decisions: []\\n  deprecated: false\\ntables: []\\nfigures: []\\n_completeness:\\n  coverage: 23/24\\n  claims: 24\\n  tables: 0\\n  figures: 0\\n  tier_counts:\\n    tier1: 0\\n    tier2: 23\\n    tier3: 1\\n    tierX: 0\\n  last_checked: '2026-05-25T03:54:11.822240+00:00'\\n\", \"total_chars\": 20444, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 106_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01LU9rVxPmeYSK5RhuRX6VUp`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper && ls -la *.tex *.bib *.sty 2>/dev/null && echo \"---\" && which pdflatex latexmk 2>/dev/null || echo \"NO_LATEX\"",
+  "description": "Check paper directory and LaTeX availability"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "3d3b20db-314e-49ce-b7ae-084767ef1325",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NqW1axwQWaQ4zeCFeu84gi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9546,
+      "cache_read_input_tokens": 44420,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9546
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 107 · 2026-05-25T06:59:31.740Z_
+
+<details><summary>↩ Tool result · `toolu_01LU9rVxPmeYSK5RhuRX6VUp`</summary>
+
+```text
+-rw-r--r-- 1 ubuntu ubuntu 11802 May 23 02:17 aaai25.sty
+-rw-r--r-- 1 ubuntu ubuntu  9178 May 25 03:45 appendix.tex
+-rw-r--r-- 1 ubuntu ubuntu  1155 May 25 03:54 conclusion.tex
+-rw-r--r-- 1 ubuntu ubuntu 14861 May 23 15:46 corl_2026.sty
+-rw-r--r-- 1 ubuntu ubuntu  3262 May 25 03:53 discussion.tex
+-rw-r--r-- 1 ubuntu ubuntu  3270 May 23 02:14 experiment_setup.tex
+-rw-r--r-- 1 ubuntu ubuntu  3270 May 23 15:56 experiments.tex
+-rw-r--r-- 1 ubuntu ubuntu  5437 May 23 09:22 experiments_old.tex
+-rw-r--r-- 1 ubuntu ubuntu  2831 May 25 03:53 introduction.tex
+-rw-r--r-- 1 ubuntu ubuntu  2662 May 25 03:53 main.tex
+-rw-r--r-- 1 ubuntu ubuntu  4903 May 25 03:42 method.tex
+-rw-r--r-- 1 ubuntu ubuntu 15867 May 25 03:42 references.bib
+-rw-r--r-- 1 ubuntu ubuntu 15627 May 22 13:24 references.tex
+-rw-r--r-- 1 ubuntu ubuntu  4095 May 24 23:42 related_work.tex
+-rw-r--r-- 1 ubuntu ubuntu 11902 May 25 03:52 results.tex
+---
+/usr/bin/pdflatex
+/usr/bin/latexmk
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "6306fc2a-8953-4eb5-813a-a4e07dd40613",
+  "tool_use_result": {
+    "stdout": "-rw-r--r-- 1 ubuntu ubuntu 11802 May 23 02:17 aaai25.sty\n-rw-r--r-- 1 ubuntu ubuntu  9178 May 25 03:45 appendix.tex\n-rw-r--r-- 1 ubuntu ubuntu  1155 May 25 03:54 conclusion.tex\n-rw-r--r-- 1 ubuntu ubuntu 14861 May 23 15:46 corl_2026.sty\n-rw-r--r-- 1 ubuntu ubuntu  3262 May 25 03:53 discussion.tex\n-rw-r--r-- 1 ubuntu ubuntu  3270 May 23 02:14 experiment_setup.tex\n-rw-r--r-- 1 ubuntu ubuntu  3270 May 23 15:56 experiments.tex\n-rw-r--r-- 1 ubuntu ubuntu  5437 May 23 09:22 experiments_old.tex\n-rw-r--r-- 1 ubuntu ubuntu  2831 May 25 03:53 introduction.tex\n-rw-r--r-- 1 ubuntu ubuntu  2662 May 25 03:53 main.tex\n-rw-r--r-- 1 ubuntu ubuntu  4903 May 25 03:42 method.tex\n-rw-r--r-- 1 ubuntu ubuntu 15867 May 25 03:42 references.bib\n-rw-r--r-- 1 ubuntu ubuntu 15627 May 22 13:24 references.tex\n-rw-r--r-- 1 ubuntu ubuntu  4095 May 24 23:42 related_work.tex\n-rw-r--r-- 1 ubuntu ubuntu 11902 May 25 03:52 results.tex\n---\n/usr/bin/pdflatex\n/usr/bin/latexmk",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 108_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Fcy9RodS1Rg4U1sKURUSqX`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "8b1a7331-92db-4745-8fc4-48da26f65528",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NqW1axwQWaQ4zeCFeu84gi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9546,
+      "cache_read_input_tokens": 44420,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9546
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 109 · 2026-05-25T06:59:32.197Z_
+
+<details><summary>↩ Tool result · `toolu_01Fcy9RodS1Rg4U1sKURUSqX`</summary>
+
+```text
+1	
+2	\section{Introduction}
+3	
+4	Vision-language-action (VLA) models map visual observations and language instructions directly to robot actions, achieving high task success on manipulation benchmarks~\cite{brohan2023rt2, kim2024openvla, kim2025oft}. Yet task success does not imply behavioral safety. On SafeLIBERO Level~I~\cite{hu2025vlsa}, a fine-tuned OpenVLA-OFT completes 90.7\% of tasks but avoids collisions in only 78.0\% of episodes; on the three most constrained tasks, collision rates reach 53--93\%.
+5	
+6	Auxiliary spatial prediction---occupancy grids, depth maps, point clouds---improves VLA task success by injecting 3D structure into vision encoders~\cite{li2026spatialforcing, yuan2025depthvla, wu2025spatialvla}. Separately, safety methods apply runtime action filtering~\cite{hu2025vlsa} or constrained RL~\cite{zhang2025safevla} to reduce collisions. These two threads remain disconnected: no spatial method evaluates collision avoidance, and no safety method leverages spatial representations. Whether auxiliary spatial supervision affects safety---and through what mechanism---is unknown.
+7	
+8	We present the first factorial study isolating how auxiliary spatial supervision during VLA fine-tuning affects collision avoidance. Twelve conditions on OpenVLA-OFT~\cite{kim2024openvla, kim2025oft} with LoRA vary gradient flow, label content, normalization type, spatial reference frame, and temporal extent. Our contributions:
+9	
+10	\begin{enumerate}[nosep,leftmargin=*]
+11	    \item \textbf{Crossover interaction.} Normalization type and gradient flow interact rather than compose additively (interaction effect: 7.3\,pp, $p{=}0.025$). BatchNorm with gradient flow maintains CAR comparable to Vanilla (0.797 vs.\ 0.780), but without gradient flow causes catastrophic representational drift (CKA $\downarrow$0.31--0.54). LayerNorm eliminates drift under detachment (CKA $\geq$0.96) but consistently degrades safety when gradient flow is present (Full OCC+LN 0.743, $-$3.7\,pp)---the worst configuration tested. Gradient flow benefits are BatchNorm-mediated, not an intrinsic property of auxiliary gradients. Label content does not affect outcomes.
+12	
+13	    \item \textbf{Factorial ablation design.} Each pairwise comparison isolates one factor (gradient flow, label content, normalization type, reference frame, temporal extent), providing a reusable methodology for analyzing auxiliary task effects in VLA training (Table~\ref{tab:ablation_design}).
+14	
+15	    \item \textbf{Zero-cost guideline.} Maintain BatchNorm with gradient flow---the only configuration that preserves CAR. If gradient flow is unavailable, substitute LayerNorm to prevent representational drift. Never combine LayerNorm with gradient flow. No ground-truth spatial labels are required; the auxiliary head is discarded after training at zero inference cost.
+16	\end{enumerate}
+17	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "5188a0ce-8a81-44d8-87a0-cde05a713f16",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/introduction.tex",
+      "content": "\n\\section{Introduction}\n\nVision-language-action (VLA) models map visual observations and language instructions directly to robot actions, achieving high task success on manipulation benchmarks~\\cite{brohan2023rt2, kim2024openvla, kim2025oft}. Yet task success does not imply behavioral safety. On SafeLIBERO Level~I~\\cite{hu2025vlsa}, a fine-tuned OpenVLA-OFT completes 90.7\\% of tasks but avoids collisions in only 78.0\\% of episodes; on the three most constrained tasks, collision rates reach 53--93\\%.\n\nAuxiliary spatial prediction---occupancy grids, depth maps, point clouds---improves VLA task success by injecting 3D structure into vision encoders~\\cite{li2026spatialforcing, yuan2025depthvla, wu2025spatialvla}. Separately, safety methods apply runtime action filtering~\\cite{hu2025vlsa} or constrained RL~\\cite{zhang2025safevla} to reduce collisions. These two threads remain disconnected: no spatial method evaluates collision avoidance, and no safety method leverages spatial representations. Whether auxiliary spatial supervision affects safety---and through what mechanism---is unknown.\n\nWe present the first factorial study isolating how auxiliary spatial supervision during VLA fine-tuning affects collision avoidance. Twelve conditions on OpenVLA-OFT~\\cite{kim2024openvla, kim2025oft} with LoRA vary gradient flow, label content, normalization type, spatial reference frame, and temporal extent. Our contributions:\n\n\\begin{enumerate}[nosep,leftmargin=*]\n    \\item \\textbf{Crossover interaction.} Normalization type and gradient flow interact rather than compose additively (interaction effect: 7.3\\,pp, $p{=}0.025$). BatchNorm with gradient flow maintains CAR comparable to Vanilla (0.797 vs.\\ 0.780), but without gradient flow causes catastrophic representational drift (CKA $\\downarrow$0.31--0.54). LayerNorm eliminates drift under detachment (CKA $\\geq$0.96) but consistently degrades safety when gradient flow is present (Full OCC+LN 0.743, $-$3.7\\,pp)---the worst configuration tested. Gradient flow benefits are BatchNorm-mediated, not an intrinsic property of auxiliary gradients. Label content does not affect outcomes.\n\n    \\item \\textbf{Factorial ablation design.} Each pairwise comparison isolates one factor (gradient flow, label content, normalization type, reference frame, temporal extent), providing a reusable methodology for analyzing auxiliary task effects in VLA training (Table~\\ref{tab:ablation_design}).\n\n    \\item \\textbf{Zero-cost guideline.} Maintain BatchNorm with gradient flow---the only configuration that preserves CAR. If gradient flow is unavailable, substitute LayerNorm to prevent representational drift. Never combine LayerNorm with gradient flow. No ground-truth spatial labels are required; the auxiliary head is discarded after training at zero inference cost.\n\\end{enumerate}\n",
+      "numLines": 17,
+      "startLine": 1,
+      "totalLines": 17
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 110_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01TNriucR9EViGQkLxnfygrA`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "e535d616-2a2b-4719-9e19-b39d0bfda77a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NqW1axwQWaQ4zeCFeu84gi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9546,
+      "cache_read_input_tokens": 44420,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9546
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 111 · 2026-05-25T06:59:32.476Z_
+
+<details><summary>↩ Tool result · `toolu_01TNriucR9EViGQkLxnfygrA`</summary>
+
+```text
+1	
+2	\section{Extended Per-Task Results}
+3	\label{app:per_task}
+4	
+5	Table~\ref{tab:per_task} reports per-task mean CAR across seeds for each condition. Seven tasks achieve CAR $\geq$ 0.92 under Vanilla, while three physically constrained tasks (T3, T5, T6) fall below 0.58. The overall CAR differences reported in the main text are dominated by these three hard tasks, which average 0.342 compared to 0.968 for the seven easy tasks.
+6	
+7	\begin{table}[h]
+8	\centering
+9	\caption{Per-task mean CAR across seeds (50 rollouts per seed). All conditions use 3 seeds except Depth (4). Detach+LN per-task uses 2 seeds (s1, s2; s0 lacks per-task breakdown); 3-seed aggregate is in Table~\ref{tab:main_results}.}
+10	\label{tab:per_task}
+11	\begin{tabular}{clccccccc}
+12	\toprule
+13	 & & \multicolumn{7}{c}{Mean CAR by Condition} \\
+14	\cmidrule(lr){3-9}
+15	Task & Diff. & Vanilla & Full OCC & Random & Detach & Det+LN & Depth & Cut@35K \\
+16	\midrule
+17	T0 & Easy  & 0.98 & 0.98 & 0.99 & 0.97 & 0.97 & 0.99 & 0.98 \\
+18	T1 & Easy  & 0.92 & 0.93 & 0.99 & 0.89 & 0.78 & 0.93 & 0.95 \\
+19	T2 & Easy  & 0.92 & 0.93 & 0.94 & 0.93 & 0.90 & 0.90 & 0.94 \\
+20	T3 & Hard  & 0.38 & 0.37 & 0.31 & \textbf{0.11} & 0.44 & 0.50 & 0.55 \\
+21	T4 & Easy  & 0.98 & 0.99 & 0.95 & 0.98 & 0.96 & 0.92 & 0.97 \\
+22	T5 & Hard  & 0.07 & 0.17 & 0.23 & \textbf{0.05} & 0.12 & 0.08 & 0.04 \\
+23	T6 & Hard  & 0.57 & 0.61 & 0.55 & 0.56 & 0.36 & 0.54 & 0.38 \\
+24	T7 & Easy  & 0.97 & 0.99 & 0.95 & 0.98 & 1.00 & 0.96 & 0.98 \\
+25	T8 & Easy  & 1.00 & 1.00 & 1.00 & 0.99 & 0.99 & 0.99 & 0.99 \\
+26	T9 & Easy  & 1.00 & 0.99 & 0.99 & 1.00 & 1.00 & 1.00 & 1.00 \\
+27	\midrule
+28	\multicolumn{2}{l}{Overall} & 0.780 & 0.797 & 0.789 & 0.746 & 0.765 & 0.780 & 0.779 \\
+29	\bottomrule
+30	\end{tabular}
+31	\end{table}
+32	
+33	\textbf{Ceiling effects.} On the seven easy tasks (T0--T2, T4, T7--T9), all conditions achieve CAR $\geq$ 0.89, leaving minimal room for auxiliary training to improve performance. The obstacle is spatially separated from the manipulation path in these tasks.
+34	
+35	\textbf{Hard task patterns.} On Task~5 (Vanilla CAR 0.07), gradient-flow conditions (Random OCC 0.23, Full OCC 0.17) exceed Vanilla and Detach (0.05), but all values remain below 0.23. Cutoff@35K achieves the highest T3 CAR (0.55) but the lowest T5 CAR (0.04), illustrating task-specific temporal sensitivity. Depth exhibits high cross-seed variance on hard tasks (T3 range: 0.20--0.78; T6 range: 0.16--0.84), consistent with auxiliary supervision increasing seed sensitivity.
+36	
+37	\section{Training Details}
+38	\label{app:training}
+39	
+40	\begin{table}[h]
+41	\centering
+42	\caption{Training hyperparameters.}
+43	\label{tab:hyperparams}
+44	\begin{tabular}{ll}
+45	\toprule
+46	Parameter & Value \\
+47	\midrule
+48	Base model & OpenVLA-7B~\cite{kim2024openvla} \\
+49	Fine-tuning recipe & OFT~\cite{kim2025oft} \\
+50	Vision encoders & DINOv2 (1024-d) + SigLIP (1152-d) \\
+51	Patch token dim. & 2176 (concatenated) \\
+52	LoRA rank / $\alpha$ & 32 / 16 \\
+53	Batch size & 8 \\
+54	Learning rate & $5 \times 10^{-4}$ (constant) \\
+55	Training steps & 50{,}000 \\
+56	Aux.\ loss weight $\lambda_0$ & 0.01 \\
+57	Aux.\ loss decay & $\exp(-t / 50{,}000)$ \\
+58	BEV grid resolution & $64 \times 64$ \\
+59	Focal loss $\alpha$ / $\gamma$ & 0.25 / 2.0 \\
+60	Depth loss & Smooth-L1 \\
+61	Aux.\ head parameters & 1.2M \\
+62	Hardware & NVIDIA RTX PRO 6000 (98\,GB) \\
+63	Wall time per run & $\sim$12.9 hours \\
+64	\bottomrule
+65	\end{tabular}
+66	\end{table}
+67	
+68	\textbf{Evaluation protocol.} Each condition uses 3+ seeds (Depth uses 4; Cutoff@25K and Reverse Cutoff use 2; Cutoff@15K and Cutoff@45K use 1) with 50 rollouts per task per seed (500 episodes per seed). A collision is registered when the L1 displacement of the obstacle's \texttt{body\_xpos} exceeds $10^{-3}$. Bootstrap 95\% CIs are computed via 10{,}000 resamples (percentile method).
+69	
+70	\textbf{Statistical tests.} Pairwise comparisons against Vanilla use two-tailed paired $t$-tests on per-seed mean CARs with Cohen's $d$ for effect size. With $n{=}3$ seeds, statistical power is limited; we report $p$-values and effect sizes for transparency. Only Detach OCC reaches significance ($p{=}0.031$, $d{=}-3.90$); all gradient-flow conditions show $p > 0.35$.
+71	
+72	\textbf{CKA analysis.} Centered Kernel Alignment~\cite{kornblith2019similarity} measures representational similarity between fine-tuned and pretrained encoder features. We extract patch token activations from the final layer of DINOv2 and SigLIP for 1{,}000 validation images, compute linear CKA per layer, and report the mean across layers. Higher CKA indicates better preservation of pretrained representations.
+73	
+74	\textbf{Cutoff implementation.} Setting the auxiliary loss weight to zero at step $N$ does \emph{not} disable the auxiliary head's forward pass. The head's BatchNorm2d layers continue computing batch statistics, which shift the encoder's internal activations without compensating gradient flow. The post-cutoff phase thus operates in Detach mode, not Vanilla mode. This is a property of the implementation (the head remains in the forward graph), not a deliberate design choice.
+75	
+76	\section{Extended Analysis}
+77	\label{app:extended}
+78	
+79	The Detach+LN ablation replaces BatchNorm2d with LayerNorm in the auxiliary head while retaining \texttt{stop\_gradient}. Results (3 seeds) are reported in Table~\ref{tab:main_results} and analyzed in Section~\ref{sec:why_gradient}. Detach+LN recovers 1.9\,pp of the 3.4\,pp Detach deficit (CAR 0.765 vs.\ Detach 0.746) and fully restores pretrained CKA to Vanilla level (DINOv2: 0.966, SigLIP: 0.960), confirming that BatchNorm interference accounts for all representational drift. The crossover interaction (Section~\ref{sec:mechanism}) reveals that this recovery is normalization-dependent: Full OCC+LN (gradient flow ON, LayerNorm) achieves CAR 0.743---\emph{below} Detach+LN---demonstrating that gradient flow benefits are BN-mediated rather than intrinsic.
+80	
+81	\textbf{Per-layer gradient analysis.} Figure~\ref{fig:per_layer_combined} decomposes auxiliary gradient flow into two dimensions: amplitude (top row) and direction (bottom row). The amplitude heatmap (panels a--b) shows that Vanilla, Full OCC, and Random OCC maintain comparable action gradient norms across all layers (warm colors), while Detach collapses to 1--13\% of Vanilla uniformly across both encoders (dark), consistent with a global gradient flow disruption rather than layer-specific interference. The directional analysis (panels c--d) reveals encoder-specific alignment: DINOv2 conflict rates hover near 50\% across all layers while SigLIP late layers (blocks 21--24) drop to 19--25\%, indicating cooperative gradient alignment in semantically rich layers. Both patterns are identical for Full OCC and Random OCC, confirming they arise from architectural structure rather than label content. The aggregate conflict rates (Full OCC 44.1\%, Random OCC 43.9\%) fall below the 50\% expected for random vectors because they reflect this mixture of two encoder-specific patterns.
+82	
+83	\begin{figure}[h]
+84	\centering
+85	\includegraphics[width=\textwidth]{figures/per_layer_combined.pdf}
+86	\caption{Per-layer gradient analysis decomposed into amplitude and direction. \textbf{Top (a--b):} Action gradient norm heatmap (log scale). Gradient-flow conditions (Vanilla, Full OCC, Random OCC) maintain comparable norms; Detach collapses to 1--13\% of Vanilla across all layers. \textbf{Bottom (c--d):} Gradient conflict rate between action and auxiliary losses. DINOv2 maintains $\sim$50\% conflict (near-orthogonal), while SigLIP late layers drop to 19--25\% (cooperative alignment). Both amplitude and directional patterns are identical for Full OCC and Random OCC, confirming architectural rather than label-dependent structure.}
+87	\label{fig:per_layer_combined}
+88	\label{fig:conflict_rate}
+89	\label{fig:grad_norm_heatmap}
+90	\end{figure}
+91	
+92	\label{app:temporal}
+93	\textbf{Dose-response: gradient flow duration vs.\ CAR.} Figure~\ref{fig:dose_response} plots CAR against the number of OCC gradient flow steps for the cutoff series (15K--45K, plus Detach at 0K and Full OCC at 50K). The relationship is non-monotonic with substantial seed-dependent variability: Cutoff@15K (1 seed) achieves the highest CAR (0.804) despite the shortest gradient flow period, while Cutoff@25K (2 seeds) shows the lowest (0.724). Multi-seed conditions (Cutoff@35K and Full OCC) cluster near the Vanilla baseline. Reverse Cutoff (late 15K) falls below the early-cutoff counterpart at the same gradient flow duration, consistent with the continuity hypothesis. The non-monotonicity and high variance across low-seed conditions underscore that transition \emph{timing} and \emph{seed sensitivity}---not gradient flow dose alone---drive cutoff outcomes.
+94	
+95	\begin{figure}[h]
+96	\centering
+97	\includegraphics[width=0.75\textwidth]{figures/dose_response.pdf}
+98	\caption{Dose-response: CAR vs.\ OCC gradient flow duration. Blue circles: early-cutoff progression (gradient flow for the first $N$ steps, Detach mode thereafter). Red square: Reverse Cutoff (gradient flow for the last 15K steps). Gray band: Vanilla $\pm$ 1 SD. Seed counts annotated; error bars show cross-seed SD where available. The non-monotonic pattern and high variance for low-seed conditions suggest that transition timing matters more than gradient flow dose.}
+99	\label{fig:dose_response}
+100	\end{figure}
+101	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "de7d4113-027c-49c5-8517-da22ad43d1f3",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/appendix.tex",
+      "content": "\n\\section{Extended Per-Task Results}\n\\label{app:per_task}\n\nTable~\\ref{tab:per_task} reports per-task mean CAR across seeds for each condition. Seven tasks achieve CAR $\\geq$ 0.92 under Vanilla, while three physically constrained tasks (T3, T5, T6) fall below 0.58. The overall CAR differences reported in the main text are dominated by these three hard tasks, which average 0.342 compared to 0.968 for the seven easy tasks.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-task mean CAR across seeds (50 rollouts per seed). All conditions use 3 seeds except Depth (4). Detach+LN per-task uses 2 seeds (s1, s2; s0 lacks per-task breakdown); 3-seed aggregate is in Table~\\ref{tab:main_results}.}\n\\label{tab:per_task}\n\\begin{tabular}{clccccccc}\n\\toprule\n & & \\multicolumn{7}{c}{Mean CAR by Condition} \\\\\n\\cmidrule(lr){3-9}\nTask & Diff. & Vanilla & Full OCC & Random & Detach & Det+LN & Depth & Cut@35K \\\\\n\\midrule\nT0 & Easy  & 0.98 & 0.98 & 0.99 & 0.97 & 0.97 & 0.99 & 0.98 \\\\\nT1 & Easy  & 0.92 & 0.93 & 0.99 & 0.89 & 0.78 & 0.93 & 0.95 \\\\\nT2 & Easy  & 0.92 & 0.93 & 0.94 & 0.93 & 0.90 & 0.90 & 0.94 \\\\\nT3 & Hard  & 0.38 & 0.37 & 0.31 & \\textbf{0.11} & 0.44 & 0.50 & 0.55 \\\\\nT4 & Easy  & 0.98 & 0.99 & 0.95 & 0.98 & 0.96 & 0.92 & 0.97 \\\\\nT5 & Hard  & 0.07 & 0.17 & 0.23 & \\textbf{0.05} & 0.12 & 0.08 & 0.04 \\\\\nT6 & Hard  & 0.57 & 0.61 & 0.55 & 0.56 & 0.36 & 0.54 & 0.38 \\\\\nT7 & Easy  & 0.97 & 0.99 & 0.95 & 0.98 & 1.00 & 0.96 & 0.98 \\\\\nT8 & Easy  & 1.00 & 1.00 & 1.00 & 0.99 & 0.99 & 0.99 & 0.99 \\\\\nT9 & Easy  & 1.00 & 0.99 & 0.99 & 1.00 & 1.00 & 1.00 & 1.00 \\\\\n\\midrule\n\\multicolumn{2}{l}{Overall} & 0.780 & 0.797 & 0.789 & 0.746 & 0.765 & 0.780 & 0.779 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\textbf{Ceiling effects.} On the seven easy tasks (T0--T2, T4, T7--T9), all conditions achieve CAR $\\geq$ 0.89, leaving minimal room for auxiliary training to improve performance. The obstacle is spatially separated from the manipulation path in these tasks.\n\n\\textbf{Hard task patterns.} On Task~5 (Vanilla CAR 0.07), gradient-flow conditions (Random OCC 0.23, Full OCC 0.17) exceed Vanilla and Detach (0.05), but all values remain below 0.23. Cutoff@35K achieves the highest T3 CAR (0.55) but the lowest T5 CAR (0.04), illustrating task-specific temporal sensitivity. Depth exhibits high cross-seed variance on hard tasks (T3 range: 0.20--0.78; T6 range: 0.16--0.84), consistent with auxiliary supervision increasing seed sensitivity.\n\n\\section{Training Details}\n\\label{app:training}\n\n\\begin{table}[h]\n\\centering\n\\caption{Training hyperparameters.}\n\\label{tab:hyperparams}\n\\begin{tabular}{ll}\n\\toprule\nParameter & Value \\\\\n\\midrule\nBase model & OpenVLA-7B~\\cite{kim2024openvla} \\\\\nFine-tuning recipe & OFT~\\cite{kim2025oft} \\\\\nVision encoders & DINOv2 (1024-d) + SigLIP (1152-d) \\\\\nPatch token dim. & 2176 (concatenated) \\\\\nLoRA rank / $\\alpha$ & 32 / 16 \\\\\nBatch size & 8 \\\\\nLearning rate & $5 \\times 10^{-4}$ (constant) \\\\\nTraining steps & 50{,}000 \\\\\nAux.\\ loss weight $\\lambda_0$ & 0.01 \\\\\nAux.\\ loss decay & $\\exp(-t / 50{,}000)$ \\\\\nBEV grid resolution & $64 \\times 64$ \\\\\nFocal loss $\\alpha$ / $\\gamma$ & 0.25 / 2.0 \\\\\nDepth loss & Smooth-L1 \\\\\nAux.\\ head parameters & 1.2M \\\\\nHardware & NVIDIA RTX PRO 6000 (98\\,GB) \\\\\nWall time per run & $\\sim$12.9 hours \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\textbf{Evaluation protocol.} Each condition uses 3+ seeds (Depth uses 4; Cutoff@25K and Reverse Cutoff use 2; Cutoff@15K and Cutoff@45K use 1) with 50 rollouts per task per seed (500 episodes per seed). A collision is registered when the L1 displacement of the obstacle's \\texttt{body\\_xpos} exceeds $10^{-3}$. Bootstrap 95\\% CIs are computed via 10{,}000 resamples (percentile method).\n\n\\textbf{Statistical tests.} Pairwise comparisons against Vanilla use two-tailed paired $t$-tests on per-seed mean CARs with Cohen's $d$ for effect size. With $n{=}3$ seeds, statistical power is limited; we report $p$-values and effect sizes for transparency. Only Detach OCC reaches significance ($p{=}0.031$, $d{=}-3.90$); all gradient-flow conditions show $p > 0.35$.\n\n\\textbf{CKA analysis.} Centered Kernel Alignment~\\cite{kornblith2019similarity} measures representational similarity between fine-tuned and pretrained encoder features. We extract patch token activations from the final layer of DINOv2 and SigLIP for 1{,}000 validation images, compute linear CKA per layer, and report the mean across layers. Higher CKA indicates better preservation of pretrained representations.\n\n\\textbf{Cutoff implementation.} Setting the auxiliary loss weight to zero at step $N$ does \\emph{not} disable the auxiliary head's forward pass. The head's BatchNorm2d layers continue computing batch statistics, which shift the encoder's internal activations without compensating gradient flow. The post-cutoff phase thus operates in Detach mode, not Vanilla mode. This is a property of the implementation (the head remains in the forward graph), not a deliberate design choice.\n\n\\section{Extended Analysis}\n\\label{app:extended}\n\nThe Detach+LN ablation replaces BatchNorm2d with LayerNorm in the auxiliary head while retaining \\texttt{stop\\_gradient}. Results (3 seeds) are reported in Table~\\ref{tab:main_results} and analyzed in Section~\\ref{sec:why_gradient}. Detach+LN recovers 1.9\\,pp of the 3.4\\,pp Detach deficit (CAR 0.765 vs.\\ Detach 0.746) and fully restores pretrained CKA to Vanilla level (DINOv2: 0.966, SigLIP: 0.960), confirming that BatchNorm interference accounts for all representational drift. The crossover interaction (Section~\\ref{sec:mechanism}) reveals that this recovery is normalization-dependent: Full OCC+LN (gradient flow ON, LayerNorm) achieves CAR 0.743---\\emph{below} Detach+LN---demonstrating that gradient flow benefits are BN-mediated rather than intrinsic.\n\n\\textbf{Per-layer gradient analysis.} Figure~\\ref{fig:per_layer_combined} decomposes auxiliary gradient flow into two dimensions: amplitude (top row) and direction (bottom row). The amplitude heatmap (panels a--b) shows that Vanilla, Full OCC, and Random OCC maintain comparable action gradient norms across all layers (warm colors), while Detach collapses to 1--13\\% of Vanilla uniformly across both encoders (dark), consistent with a global gradient flow disruption rather than layer-specific interference. The directional analysis (panels c--d) reveals encoder-specific alignment: DINOv2 conflict rates hover near 50\\% across all layers while SigLIP late layers (blocks 21--24) drop to 19--25\\%, indicating cooperative gradient alignment in semantically rich layers. Both patterns are identical for Full OCC and Random OCC, confirming they arise from architectural structure rather than label content. The aggregate conflict rates (Full OCC 44.1\\%, Random OCC 43.9\\%) fall below the 50\\% expected for random vectors because they reflect this mixture of two encoder-specific patterns.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/per_layer_combined.pdf}\n\\caption{Per-layer gradient analysis decomposed into amplitude and direction. \\textbf{Top (a--b):} Action gradient norm heatmap (log scale). Gradient-flow conditions (Vanilla, Full OCC, Random OCC) maintain comparable norms; Detach collapses to 1--13\\% of Vanilla across all layers. \\textbf{Bottom (c--d):} Gradient conflict rate between action and auxiliary losses. DINOv2 maintains $\\sim$50\\% conflict (near-orthogonal), while SigLIP late layers drop to 19--25\\% (cooperative alignment). Both amplitude and directional patterns are identical for Full OCC and Random OCC, confirming architectural rather than label-dependent structure.}\n\\label{fig:per_layer_combined}\n\\label{fig:conflict_rate}\n\\label{fig:grad_norm_heatmap}\n\\end{figure}\n\n\\label{app:temporal}\n\\textbf{Dose-response: gradient flow duration vs.\\ CAR.} Figure~\\ref{fig:dose_response} plots CAR against the number of OCC gradient flow steps for the cutoff series (15K--45K, plus Detach at 0K and Full OCC at 50K). The relationship is non-monotonic with substantial seed-dependent variability: Cutoff@15K (1 seed) achieves the highest CAR (0.804) despite the shortest gradient flow period, while Cutoff@25K (2 seeds) shows the lowest (0.724). Multi-seed conditions (Cutoff@35K and Full OCC) cluster near the Vanilla baseline. Reverse Cutoff (late 15K) falls below the early-cutoff counterpart at the same gradient flow duration, consistent with the continuity hypothesis. The non-monotonicity and high variance across low-seed conditions underscore that transition \\emph{timing} and \\emph{seed sensitivity}---not gradient flow dose alone---drive cutoff outcomes.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=0.75\\textwidth]{figures/dose_response.pdf}\n\\caption{Dose-response: CAR vs.\\ OCC gradient flow duration. Blue circles: early-cutoff progression (gradient flow for the first $N$ steps, Detach mode thereafter). Red square: Reverse Cutoff (gradient flow for the last 15K steps). Gray band: Vanilla $\\pm$ 1 SD. Seed counts annotated; error bars show cross-seed SD where available. The non-monotonic pattern and high variance for low-seed conditions suggest that transition timing matters more than gradient flow dose.}\n\\label{fig:dose_response}\n\\end{figure}\n",
+      "numLines": 101,
+      "startLine": 1,
+      "totalLines": 101
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 112_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive view. Let me identify the missing coverage item. The provenance shows `coverage: 23/24` and `tier3: 1`. There is 1 tier3 claim (least coverage). Let me find it by checking which of the 24 non-deprecated claims has tier3 coverage.
+
+Looking at the non-deprecated claims:
+- C158 (OCC-CBF future direction - discussion)
+- C159 (SafeLIBERO 32 scenarios)
+- C161 (CAR metric)
+- C164 (20 rollouts x 3 seeds = 600)
+
+
+- C168 (OpenVLA-OFT training config)
+- C173 (Occ head architecture)
+- C179 (FocalLoss)
+- C186 (Training time)
+- C232 (VLA safety literature positioning)
+- C234 (Spatial VLA no safety metrics)
+- C237 (MTL theory)
+- C238 (Aux head 1.2M params)
+- C240 (Dual-encoder gradient flow)
+- C243 (Five-condition ablation)
+- C244 (SafeLIBERO Level I)
+- C246 (50 rollouts CI)
+- C249 (Training config)
+- C250 (2x2 ANOVA)
+- C251 (No main effects significant)
+- C252 (BN simple effect)
+- C253 (LN gradient redistribution)
+- C254 (Conflict rates ~50%)
+- C255 (BN gradient allocation)
+- C256 (LN no representational drift, CKA)
+
+That's 24 non-deprecated claims with one tier3 entry. I'm checking the provenance more carefully to identify which one—looking at C158 about the OCC-CBF future direction with a learned barrier function, which appears in the discussion section but the text cuts off mid-sentence.
+
+The tier breakdown shows 23 tier2 claims and 1 tier3, so C158 is likely the weakly covered one since the discussion doesn't explicitly develop this concept. I'm also noticing C164 claims 20 rollouts per task across 3 seeds for 600 total, but the paper actually specifies 50 rollouts, suggesting this claim is outdated even though it's tracked as active.
+
+Now I'm trying to compile the LaTeX document—I have pdflatex and latexmk available, and I see both a references.bib file and a references.tex file present.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "c5b429bf-1ec0-4bc7-94f5-ee26a077c333",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JrtRrS4d7XSA5AySY9sHhj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13858,
+      "cache_read_input_tokens": 53966,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13858
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 113_
+
+Now let me compile the LaTeX and read the remaining sections.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "abe34627-465b-433c-b182-e4161d8b1ff4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JrtRrS4d7XSA5AySY9sHhj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13858,
+      "cache_read_input_tokens": 53966,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13858
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 114_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01CoM87HditktC57TM8B81Vy`</summary>
+
+```json
+{
+  "command": "latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | tail -80",
+  "description": "Compile LaTeX paper",
+  "timeout": 120000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "df972791-5893-4b01-86e5-1cbddf6c5ff7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JrtRrS4d7XSA5AySY9sHhj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13858,
+      "cache_read_input_tokens": 53966,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13858
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 115_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01KuMt6mxdxTz5UU2HtXEMkQ`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "1aaa45e3-cd2e-46e5-8685-bdee571a4df3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JrtRrS4d7XSA5AySY9sHhj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13858,
+      "cache_read_input_tokens": 53966,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13858
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 116_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01HzjugwYa3CLQJftRunUnsd`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/conclusion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "c839f8cd-baf5-4609-827e-1184565e66cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JrtRrS4d7XSA5AySY9sHhj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13858,
+      "cache_read_input_tokens": 53966,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13858
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 117 · 2026-05-25T07:00:07.672Z_
+
+<details><summary>↩ Tool result · `toolu_01CoM87HditktC57TM8B81Vy`</summary>
+
+```text
+* v-part:(T,H,B)=(72.26999pt, 650.43pt, 72.27pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=397.48499pt
+* \textheight=650.43pt
+* \oddsidemargin=36.13501pt
+* \evensidemargin=36.13501pt
+* \topmargin=-37.0pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1phv.fd) (./introduction.tex
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-
+dist/fonts/enc/dvips/base/8r.enc}]) (./related_work.tex [2]) (./method.tex
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd) [3]) (./results.tex
+[4]
+Underfull \vbox (badness 2512) has occurred while \output is active [5]
+Underfull \vbox (badness 2762) has occurred while \output is active [6 <./figur
+es/gradient_analysis_combined.pdf>]) (./discussion.tex [7 <./figures/cka_analys
+is.pdf>]) (./conclusion.tex) (./main.bbl [8] [9] [10]) [11] (./appendix.tex
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[12]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+) [13] [14 <./figures/per_layer_combined.pdf> <./figures/dose_response.pdf>]
+(./main.aux) )
+(see the transcript file for additional information)&lt;/usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb>&lt;/usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmmi7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmr7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10
+.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb>&lt;/
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>&lt;/usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>&lt;/usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>&lt;/usr/share/texlive/te
+xmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fon
+ts/type1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/ti
+mes/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb
+>
+Output written on main.pdf (14 pages, 340048 bytes).
+Transcript written on main.log.
+Latexmk: Getting log file 'main.log'
+Latexmk: Examining 'main.fls'
+Latexmk: Examining 'main.log'
+Latexmk: Found input bbl file 'main.bbl'
+Latexmk: Found input bbl file 'main.bbl'
+Latexmk: Found input bbl file 'main.bbl'
+Latexmk: Found input bbl file 'main.bbl'
+Latexmk: Log file says output to 'main.pdf'
+Latexmk: Using bibtex to make bibliography file(s).
+  ===Source file 'main.bbl' for 'pdflatex'
+Latexmk: Found bibliography file(s):
+  ./references.bib
+Latexmk: All targets (main.pdf) are up-to-date
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "339195ff-43ee-46a7-96f5-266842f5030c",
+  "tool_use_result": {
+    "stdout": "* v-part:(T,H,B)=(72.26999pt, 650.43pt, 72.27pt)\n* \\paperwidth=614.295pt\n* \\paperheight=794.96999pt\n* \\textwidth=397.48499pt\n* \\textheight=650.43pt\n* \\oddsidemargin=36.13501pt\n* \\evensidemargin=36.13501pt\n* \\topmargin=-37.0pt\n* \\headheight=12.0pt\n* \\headsep=25.0pt\n* \\topskip=10.0pt\n* \\footskip=30.0pt\n* \\marginparwidth=65.0pt\n* \\marginparsep=11.0pt\n* \\columnsep=10.0pt\n* \\skip\\footins=9.0pt plus 4.0pt minus 2.0pt\n* \\hoffset=0.0pt\n* \\voffset=0.0pt\n* \\mag=1000\n* \\@twocolumnfalse\n* \\@twosidefalse\n* \\@mparswitchfalse\n* \\@reversemarginfalse\n* (1in=72.27pt=25.4mm, 1cm=28.453pt)\n\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1phv.fd) (./introduction.tex\n[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-\ndist/fonts/enc/dvips/base/8r.enc}]) (./related_work.tex [2]) (./method.tex\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd) [3]) (./results.tex\n[4]\nUnderfull \\vbox (badness 2512) has occurred while \\output is active [5]\nUnderfull \\vbox (badness 2762) has occurred while \\output is active [6 <./figur\nes/gradient_analysis_combined.pdf>]) (./discussion.tex [7 <./figures/cka_analys\nis.pdf>]) (./conclusion.tex) (./main.bbl [8] [9] [10]) [11] (./appendix.tex\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n[12]\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n) [13] [14 <./figures/per_layer_combined.pdf> <./figures/dose_response.pdf>]\n(./main.aux) )\n(see the transcript file for additional information)&lt;/usr/share/texlive/texmf-d\nist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb>&lt;/usr/share/texlive/texmf-dist/f\nonts/type1/public/amsfonts/cm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/t\nype1/public/amsfonts/cm/cmmi7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pu\nblic/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/am\nsfonts/cm/cmr7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c\nm/cmr9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10\n.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb>&lt;/\nusr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>&lt;/usr/sha\nre/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>&lt;/usr/share/texl\nive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>&lt;/usr/share/texlive/te\nxmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fon\nts/type1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/ti\nmes/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb\n>\nOutput written on main.pdf (14 pages, 340048 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 118 · 2026-05-25T07:00:07.681Z_
+
+<details><summary>↩ Tool result · `toolu_01HzjugwYa3CLQJftRunUnsd`</summary>
+
+```text
+1	
+2	\section{Conclusion}
+3	\label{sec:conclusion}
+4	
+5	We presented the first factorial study of how auxiliary spatial supervision during VLA fine-tuning affects collision avoidance. The central finding is a crossover interaction between normalization type and gradient flow (7.3\,pp interaction effect, $p{=}0.025$): BatchNorm with gradient flow is the only beneficial configuration, while LayerNorm with gradient flow consistently degrades safety below Vanilla despite preserving pretrained representations---a deep representation-behavior dissociation. Three label types achieve comparable CAR, confirming that label content does not matter. Practical guidelines: maintain BatchNorm with gradient flow; if gradient flow is unavailable, substitute LayerNorm; never combine LayerNorm with gradient flow. No ground-truth labels needed, zero inference cost. Same-seed gradient analysis reveals BN-mediated gradient calibration operates through balanced cross-backbone gradient allocation, which LN disrupts via amplitude redistribution. Open directions include generalization to other VLA architectures and benchmarks, dynamic obstacles, and real-world deployment.
+6	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "b3ffa7ce-b1c5-4e65-8ef1-8535a8f88fe1",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/conclusion.tex",
+      "content": "\n\\section{Conclusion}\n\\label{sec:conclusion}\n\nWe presented the first factorial study of how auxiliary spatial supervision during VLA fine-tuning affects collision avoidance. The central finding is a crossover interaction between normalization type and gradient flow (7.3\\,pp interaction effect, $p{=}0.025$): BatchNorm with gradient flow is the only beneficial configuration, while LayerNorm with gradient flow consistently degrades safety below Vanilla despite preserving pretrained representations---a deep representation-behavior dissociation. Three label types achieve comparable CAR, confirming that label content does not matter. Practical guidelines: maintain BatchNorm with gradient flow; if gradient flow is unavailable, substitute LayerNorm; never combine LayerNorm with gradient flow. No ground-truth labels needed, zero inference cost. Same-seed gradient analysis reveals BN-mediated gradient calibration operates through balanced cross-backbone gradient allocation, which LN disrupts via amplitude redistribution. Open directions include generalization to other VLA architectures and benchmarks, dynamic obstacles, and real-world deployment.\n",
+      "numLines": 6,
+      "startLine": 1,
+      "totalLines": 6
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 119 · 2026-05-25T07:00:07.684Z_
+
+<details><summary>↩ Tool result · `toolu_01KuMt6mxdxTz5UU2HtXEMkQ`</summary>
+
+```text
+1	
+2	\section{Method}
+3	\label{sec:method}
+4	
+5	We fine-tune OpenVLA-7B~\cite{kim2024openvla} with the OFT recipe~\cite{kim2025oft}, which concatenates DINOv2~\cite{oquab2024dinov2} (1024-d) and SigLIP~\cite{zhai2023siglip} (1152-d) patch features into a 2176-dimensional representation per spatial token. We apply LoRA~\cite{hu2022lora} (rank 32, $\alpha{=}16$) and augment the action prediction loss with an auxiliary spatial prediction head:
+6	\begin{equation}
+7	\mathcal{L}_\text{total} = \mathcal{L}_\text{action} + \lambda(t) \cdot \mathcal{L}_\text{aux}(h(\phi_v(o_t)), s_t^*),
+8	\quad \lambda(t) = 0.01 \cdot \exp(-t / 50000)
+9	\label{eq:total_loss}
+10	\end{equation}
+11	where $\lambda(t)$ decays exponentially so that spatial gradients shape early representations without dominating late-stage action refinement. The auxiliary head is discarded at inference.
+12	
+13	\textbf{BEV occupancy head.} The head (1.2M parameters) maps the first 256 patch tokens to a $64{\times}64$ binary occupancy grid: a linear projection ($2176{\to}256$) reshaped to $16{\times}16$, two transposed convolutions ($256{\to}128{\to}64$, kernel 4, stride 2) with BatchNorm and GELU, and a $1{\times}1$ convolution with sigmoid. Ground-truth grids are rendered from MuJoCo state replay. Training uses focal loss~\cite{lin2017focal} ($\alpha{=}0.25$, $\gamma{=}2.0$).
+14	
+15	\textbf{Monocular depth head.} Same architecture with ReLU output and smooth-L1 loss against egocentric depth maps rendered at $64{\times}64$ from MuJoCo. This head provides an egocentric spatial reference frame, complementing the allocentric BEV occupancy.
+16	
+17	\subsection{Ablation Design}
+18	\label{sec:ablation}
+19	
+20	We evaluate twelve conditions that systematically vary gradient flow, label content, normalization type, spatial reference frame, and temporal extent:
+21	
+22	\begin{itemize}[nosep,leftmargin=*]
+23	\item \textbf{Vanilla}: action loss only (baseline).
+24	\item \textbf{Full OCC}: BEV occupancy with ground-truth labels and BatchNorm; gradients flow through both encoders.
+25	\item \textbf{Full OCC+LN}: same as Full OCC but with LayerNorm replacing BatchNorm2d; tests whether gradient flow benefits are normalization-dependent.
+26	\item \textbf{Random OCC}: random binary labels with matched gradient flow; isolates gradient regularization from spatial content.
+27	\item \textbf{Detach OCC}: ground-truth labels with encoder gradients blocked (\texttt{stop\_gradient}) and BatchNorm; tests whether gradient flow is necessary.
+28	\item \textbf{Detach+LN}: same as Detach OCC but with LayerNorm replacing BatchNorm2d; isolates the contribution of normalization design from gradient flow absence.
+29	\item \textbf{Depth}: egocentric depth maps with gradient flow; compares allocentric vs.\ egocentric spatial frames.
+30	\item \textbf{Cutoff@\{15K,25K,35K,45K\}}: occupancy supervision for the first 15K--45K of 50K steps. Setting the loss weight to zero retains the auxiliary head forward pass; the post-cutoff period operates in Detach mode (BN interference without gradient compensation).
+31	\item \textbf{Reverse Cutoff}: occupancy supervision for only the last 15K steps; tests whether late-stage gradient flow can rescue early Detach-mode training.
+32	\end{itemize}
+33	
+34	Table~\ref{tab:ablation_design} summarizes what each pairwise comparison isolates.
+35	
+36	\begin{table}[t]
+37	\centering
+38	\caption{Ablation design: each comparison isolates one factor.}
+39	\label{tab:ablation_design}
+40	\begin{tabular}{ll}
+41	\toprule
+42	Comparison & Isolated Factor \\
+43	\midrule
+44	Full OCC vs.\ Vanilla & Auxiliary spatial supervision \\
+45	Random vs.\ Full OCC & Spatial content vs.\ gradient flow \\
+46	Detach vs.\ Vanilla & Necessity of encoder gradient flow \\
+47	Detach+LN vs.\ Detach OCC & Normalization (BN vs.\ LN) without gradient flow \\
+48	Full OCC+LN vs.\ Full OCC & Normalization (BN vs.\ LN) with gradient flow \\
+49	$2{\times}2$ factorial & Normalization $\times$ gradient flow interaction \\
+50	Depth vs.\ Full OCC & Egocentric vs.\ allocentric frame \\
+51	Cutoff@\{15K--45K\} vs.\ Full OCC & Temporal extent of gradient flow \\
+52	Reverse Cutoff vs.\ Cutoff@35K & Early vs.\ late gradient flow \\
+53	\bottomrule
+54	\end{tabular}
+55	\end{table}
+56	
+57	\subsection{Evaluation}
+58	\label{sec:evaluation}
+59	
+60	We evaluate on SafeLIBERO Level~I~\cite{hu2025vlsa}, which places obstacles in close proximity to targets across 10 tabletop manipulation tasks drawn from LIBERO-Spatial~\cite{liu2023libero}. We report \textbf{Task Success Rate (TSR)} and \textbf{Collision Avoidance Rate (CAR)}, where a collision is registered when the L1 displacement of the obstacle's \texttt{body\_xpos} exceeds $10^{-3}$. Each condition uses 3+ seeds (Depth uses 4) with 50 rollouts per task per seed. Bootstrap 95\% CIs are computed via 10{,}000 hierarchical resamples. Training uses a batch size of 8, constant learning rate $5 \times 10^{-4}$, and runs for 50K steps on NVIDIA RTX PRO 6000 GPUs (98\,GB); each run takes $\sim$12.9 hours. Full training details are in Appendix~\ref{app:training}.
+61	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "593bf907-333f-4693-b387-585cb9d4e5f5",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/method.tex",
+      "content": "\n\\section{Method}\n\\label{sec:method}\n\nWe fine-tune OpenVLA-7B~\\cite{kim2024openvla} with the OFT recipe~\\cite{kim2025oft}, which concatenates DINOv2~\\cite{oquab2024dinov2} (1024-d) and SigLIP~\\cite{zhai2023siglip} (1152-d) patch features into a 2176-dimensional representation per spatial token. We apply LoRA~\\cite{hu2022lora} (rank 32, $\\alpha{=}16$) and augment the action prediction loss with an auxiliary spatial prediction head:\n\\begin{equation}\n\\mathcal{L}_\\text{total} = \\mathcal{L}_\\text{action} + \\lambda(t) \\cdot \\mathcal{L}_\\text{aux}(h(\\phi_v(o_t)), s_t^*),\n\\quad \\lambda(t) = 0.01 \\cdot \\exp(-t / 50000)\n\\label{eq:total_loss}\n\\end{equation}\nwhere $\\lambda(t)$ decays exponentially so that spatial gradients shape early representations without dominating late-stage action refinement. The auxiliary head is discarded at inference.\n\n\\textbf{BEV occupancy head.} The head (1.2M parameters) maps the first 256 patch tokens to a $64{\\times}64$ binary occupancy grid: a linear projection ($2176{\\to}256$) reshaped to $16{\\times}16$, two transposed convolutions ($256{\\to}128{\\to}64$, kernel 4, stride 2) with BatchNorm and GELU, and a $1{\\times}1$ convolution with sigmoid. Ground-truth grids are rendered from MuJoCo state replay. Training uses focal loss~\\cite{lin2017focal} ($\\alpha{=}0.25$, $\\gamma{=}2.0$).\n\n\\textbf{Monocular depth head.} Same architecture with ReLU output and smooth-L1 loss against egocentric depth maps rendered at $64{\\times}64$ from MuJoCo. This head provides an egocentric spatial reference frame, complementing the allocentric BEV occupancy.\n\n\\subsection{Ablation Design}\n\\label{sec:ablation}\n\nWe evaluate twelve conditions that systematically vary gradient flow, label content, normalization type, spatial reference frame, and temporal extent:\n\n\\begin{itemize}[nosep,leftmargin=*]\n\\item \\textbf{Vanilla}: action loss only (baseline).\n\\item \\textbf{Full OCC}: BEV occupancy with ground-truth labels and BatchNorm; gradients flow through both encoders.\n\\item \\textbf{Full OCC+LN}: same as Full OCC but with LayerNorm replacing BatchNorm2d; tests whether gradient flow benefits are normalization-dependent.\n\\item \\textbf{Random OCC}: random binary labels with matched gradient flow; isolates gradient regularization from spatial content.\n\\item \\textbf{Detach OCC}: ground-truth labels with encoder gradients blocked (\\texttt{stop\\_gradient}) and BatchNorm; tests whether gradient flow is necessary.\n\\item \\textbf{Detach+LN}: same as Detach OCC but with LayerNorm replacing BatchNorm2d; isolates the contribution of normalization design from gradient flow absence.\n\\item \\textbf{Depth}: egocentric depth maps with gradient flow; compares allocentric vs.\\ egocentric spatial frames.\n\\item \\textbf{Cutoff@\\{15K,25K,35K,45K\\}}: occupancy supervision for the first 15K--45K of 50K steps. Setting the loss weight to zero retains the auxiliary head forward pass; the post-cutoff period operates in Detach mode (BN interference without gradient compensation).\n\\item \\textbf{Reverse Cutoff}: occupancy supervision for only the last 15K steps; tests whether late-stage gradient flow can rescue early Detach-mode training.\n\\end{itemize}\n\nTable~\\ref{tab:ablation_design} summarizes what each pairwise comparison isolates.\n\n\\begin{table}[t]\n\\centering\n\\caption{Ablation design: each comparison isolates one factor.}\n\\label{tab:ablation_design}\n\\begin{tabular}{ll}\n\\toprule\nComparison & Isolated Factor \\\\\n\\midrule\nFull OCC vs.\\ Vanilla & Auxiliary spatial supervision \\\\\nRandom vs.\\ Full OCC & Spatial content vs.\\ gradient flow \\\\\nDetach vs.\\ Vanilla & Necessity of encoder gradient flow \\\\\nDetach+LN vs.\\ Detach OCC & Normalization (BN vs.\\ LN) without gradient flow \\\\\nFull OCC+LN vs.\\ Full OCC & Normalization (BN vs.\\ LN) with gradient flow \\\\\n$2{\\times}2$ factorial & Normalization $\\times$ gradient flow interaction \\\\\nDepth vs.\\ Full OCC & Egocentric vs.\\ allocentric frame \\\\\nCutoff@\\{15K--45K\\} vs.\\ Full OCC & Temporal extent of gradient flow \\\\\nReverse Cutoff vs.\\ Cutoff@35K & Early vs.\\ late gradient flow \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Evaluation}\n\\label{sec:evaluation}\n\nWe evaluate on SafeLIBERO Level~I~\\cite{hu2025vlsa}, which places obstacles in close proximity to targets across 10 tabletop manipulation tasks drawn from LIBERO-Spatial~\\cite{liu2023libero}. We report \\textbf{Task Success Rate (TSR)} and \\textbf{Collision Avoidance Rate (CAR)}, where a collision is registered when the L1 displacement of the obstacle's \\texttt{body\\_xpos} exceeds $10^{-3}$. Each condition uses 3+ seeds (Depth uses 4) with 50 rollouts per task per seed. Bootstrap 95\\% CIs are computed via 10{,}000 hierarchical resamples. Training uses a batch size of 8, constant learning rate $5 \\times 10^{-4}$, and runs for 50K steps on NVIDIA RTX PRO 6000 GPUs (98\\,GB); each run takes $\\sim$12.9 hours. Full training details are in Appendix~\\ref{app:training}.\n",
+      "numLines": 61,
+      "startLine": 1,
+      "totalLines": 61
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 120_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information. Let me compile the report.
+
+**LaTeX Compilation**: Successful! PDF output (14 pages, 340KB). No errors. Warnings:
+- 3x `'h' float specifier changed to 'ht'` (minor, in appendix)
+- 2x `Underfull \vbox` (minor layout warnings)
+
+**TODO/FIXME/Placeholder**: None found. The `\todo` macro is defined but never used.
+
+**Coverage gap (23/24)**: Looking at the provenance, there are 24 non-deprecated claims. 
+
+The tier counts show 23 tier2 and 1 tier3 claim. C158 stands out as the tier3 candidate—it's about OCC-CBF as a future direction with a learned barrier function that hasn't been implemented yet, categorized as conceptual in the discussion section. The current text mentions how training-time intervention complements runtime safety methods, but doesn't fully elaborate on the OCC-CBF learned barrier concept itself.
+
+Checking the discussion and conclusion sections, neither explicitly describes the learned barrier function h(z_occ, x_robot) or the OCC-CBF framework that C158 references. This makes C158 the uncovered claim—a conceptual future direction that should have been more thoroughly explained in the discussion.
+
+I've also verified the other key claims: the 2×2 factorial ANOVA p-value appears in results, the dose-response data with 2-seed information is documented, and the same-seed gradient analysis is present in the results section.
+
+There's a discrepancy in the provenance tracking where C164 mentions 600 rollouts (20 per task × 3 seeds) but the paper states 50 rollouts per task per seed—this is a tracking issue rather than an error in the paper itself. Now I'll compile the report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "5eeba1c1-a382-456c-acd2-f29db47a6ef4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A6juDmR3Yr9b52UvcoRcay",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 282,
+      "cache_creation_input_tokens": 4601,
+      "cache_read_input_tokens": 67824,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4601
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 121_
+
+LaTeX compiles successfully (14 pages, 0 errors). Let me now compile the full report.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "854a3338-b5dc-4068-bee8-3c07547c6e88",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A6juDmR3Yr9b52UvcoRcay",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 282,
+      "cache_creation_input_tokens": 4601,
+      "cache_read_input_tokens": 67824,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4601
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 122_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01HgQMyuwiEGcH8Lk4gPfWug`</summary>
+
+```json
+{
+  "command": "grep -n \"Warning\\|Error\\|Overfull\\|Underfull\" main.log | head -30",
+  "description": "Extract LaTeX warnings from log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "11bb1445-1466-4b55-ba21-923e043f1d98",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A6juDmR3Yr9b52UvcoRcay",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 282,
+      "cache_creation_input_tokens": 4601,
+      "cache_read_input_tokens": 67824,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4601
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 123 · 2026-05-25T07:00:39.195Z_
+
+<details><summary>↩ Tool result · `toolu_01HgQMyuwiEGcH8Lk4gPfWug`</summary>
+
+```text
+563:Underfull \vbox (badness 2512) has occurred while \output is active []
+572:Underfull \vbox (badness 2762) has occurred while \output is active []
+578:LaTeX Warning: `h' float specifier changed to `ht'.
+591:LaTeX Warning: `h' float specifier changed to `ht'.
+599:LaTeX Warning: `h' float specifier changed to `ht'.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "29dc1eff-1689-4d6c-8c0d-f3949b4b6aaf",
+  "tool_use_result": {
+    "stdout": "563:Underfull \\vbox (badness 2512) has occurred while \\output is active []\n572:Underfull \\vbox (badness 2762) has occurred while \\output is active []\n578:LaTeX Warning: `h' float specifier changed to `ht'.\n591:LaTeX Warning: `h' float specifier changed to `ht'.\n599:LaTeX Warning: `h' float specifier changed to `ht'.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 124_
+
+Now writing the status report.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "23457873-870a-40ae-ba4d-9330f926d60d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0111HawpnVyWnrWAsXH5Pb5p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1132,
+      "cache_read_input_tokens": 72425,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1132
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 125_
+
+<details open><summary>🔧 Tool call — Write · `toolu_012GYa3BC65gdEVnCYmQFRq9`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/paper_status_check_20260525.md",
+  "content": "# Paper Status Check — 2026-05-25\n\n## Summary\n- **Version**: v42, 14 pages (8 main + 2 refs + 4 appendix)\n- **Coverage**: 23/24 claims covered (tier2: 23, tier3: 1)\n- **Compilation**: Clean (0 errors, 5 minor warnings)\n- **TODOs/Placeholders**: 0\n\n---\n\n## 1. Coverage Gap (1/24 uncovered)\n\n**C158 (tier3)**: \"OCC-CBF: future direction, learned barrier function h(z_occ, x_robot) >= 0 conditioned on occ encoder features, not yet implemented\" (section: discussion, type: conceptual)\n\nThe discussion mentions \"This training-time intervention complements runtime safety methods\" as a single sentence but does **not** explicitly describe the OCC-CBF concept — a learned barrier function conditioned on occupancy encoder features. The conclusion lists \"Open directions include generalization to other VLA architectures and benchmarks, dynamic obstacles, and real-world deployment\" but omits OCC-CBF.\n\n**To close this gap**: Add 1-2 sentences in the discussion or conclusion describing the OCC-CBF future direction (learned barrier using occ encoder features as a bridge to runtime safety), or deprecate C158 if the team considers this out of scope for the current paper.\n\n---\n\n## 2. Latest Results Coverage Check\n\n| Result | In Paper? | Location |\n|--------|-----------|----------|\n| 2×2 factorial ANOVA p=0.025, η²=0.484 | ✅ | results.tex:46 (§4.2) |\n| Same-seed gradient analysis (DINOv2 3.5× suppression, SigLIP 2.5× amplification) | ✅ | results.tex:80 (§4.3) |\n| Dose-response 2-seed data (cutoff_25k, reverse_cutoff) | ✅ | results.tex:101 (§4.4), Table 1 |\n| Full OCC+LN 3-seed (0.743±0.024) | ✅ | results.tex:31, Table 1 |\n| CKA representation-behavior dissociation | ✅ | results.tex:89 (§4.3) |\n| Cohen's f=0.969 (large effect) | ✅ | results.tex:46 |\n| Simple effects not significant (BN p=0.052, LN p=0.26) | ✅ | results.tex:48 |\n\nAll key D042 results are incorporated.\n\n---\n\n## 3. LaTeX Compilation\n\n**Status**: Compiles successfully with `latexmk -pdf`\n\n**Output**: main.pdf — 14 pages, 340KB\n\n**Warnings** (5 total, all minor):\n| # | Type | Location | Severity |\n|---|------|----------|----------|\n| 1 | Underfull vbox (badness 2512) | p5-6 transition | Low — page break layout |\n| 2 | Underfull vbox (badness 2762) | p6-7 transition | Low — page break layout |\n| 3 | Float specifier `h` → `ht` | appendix (per-task table) | Low — LaTeX auto-adjusts |\n| 4 | Float specifier `h` → `ht` | appendix (hyperparams table) | Low — LaTeX auto-adjusts |\n| 5 | Float specifier `h` → `ht` | appendix (dose-response figure) | Low — LaTeX auto-adjusts |\n\n**Errors**: 0\n\n**Missing figures**: 0 (all 4 PDFs present: gradient_analysis_combined.pdf, cka_analysis.pdf, per_layer_combined.pdf, dose_response.pdf)\n\n---\n\n## 4. TODO/FIXME/Placeholder Scan\n\n**Found**: 0\n\nThe `\\todo` macro is defined in main.tex:14 but never invoked anywhere in the paper.\n\n---\n\n## 5. Provenance Note\n\nC164 in paper_provenance.yaml states \"20 rollouts per task\" but the paper correctly says \"50 rollouts per task per seed\". This is a stale provenance entry, not a paper error.\n\n---\n\n## 6. Page Budget\n\n- Main text (intro through conclusion): ~8 pages (within CoRL limit)\n- References: ~2 pages\n- Appendix: ~4 pages (unlimited per CoRL rules)\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "17a7e9f6-174c-4a34-8edb-46490f8b90d9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0111HawpnVyWnrWAsXH5Pb5p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1132,
+      "cache_read_input_tokens": 72425,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1132
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 126 · 2026-05-25T07:01:06.361Z_
+
+<details><summary>↩ Tool result · `toolu_012GYa3BC65gdEVnCYmQFRq9`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/paper_status_check_20260525.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "9e041190-75db-495b-b837-327d9218de7b",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/paper_status_check_20260525.md",
+    "content": "# Paper Status Check — 2026-05-25\n\n## Summary\n- **Version**: v42, 14 pages (8 main + 2 refs + 4 appendix)\n- **Coverage**: 23/24 claims covered (tier2: 23, tier3: 1)\n- **Compilation**: Clean (0 errors, 5 minor warnings)\n- **TODOs/Placeholders**: 0\n\n---\n\n## 1. Coverage Gap (1/24 uncovered)\n\n**C158 (tier3)**: \"OCC-CBF: future direction, learned barrier function h(z_occ, x_robot) >= 0 conditioned on occ encoder features, not yet implemented\" (section: discussion, type: conceptual)\n\nThe discussion mentions \"This training-time intervention complements runtime safety methods\" as a single sentence but does **not** explicitly describe the OCC-CBF concept — a learned barrier function conditioned on occupancy encoder features. The conclusion lists \"Open directions include generalization to other VLA architectures and benchmarks, dynamic obstacles, and real-world deployment\" but omits OCC-CBF.\n\n**To close this gap**: Add 1-2 sentences in the discussion or conclusion describing the OCC-CBF future direction (learned barrier using occ encoder features as a bridge to runtime safety), or deprecate C158 if the team considers this out of scope for the current paper.\n\n---\n\n## 2. Latest Results Coverage Check\n\n| Result | In Paper? | Location |\n|--------|-----------|----------|\n| 2×2 factorial ANOVA p=0.025, η²=0.484 | ✅ | results.tex:46 (§4.2) |\n| Same-seed gradient analysis (DINOv2 3.5× suppression, SigLIP 2.5× amplification) | ✅ | results.tex:80 (§4.3) |\n| Dose-response 2-seed data (cutoff_25k, reverse_cutoff) | ✅ | results.tex:101 (§4.4), Table 1 |\n| Full OCC+LN 3-seed (0.743±0.024) | ✅ | results.tex:31, Table 1 |\n| CKA representation-behavior dissociation | ✅ | results.tex:89 (§4.3) |\n| Cohen's f=0.969 (large effect) | ✅ | results.tex:46 |\n| Simple effects not significant (BN p=0.052, LN p=0.26) | ✅ | results.tex:48 |\n\nAll key D042 results are incorporated.\n\n---\n\n## 3. LaTeX Compilation\n\n**Status**: Compiles successfully with `latexmk -pdf`\n\n**Output**: main.pdf — 14 pages, 340KB\n\n**Warnings** (5 total, all minor):\n| # | Type | Location | Severity |\n|---|------|----------|----------|\n| 1 | Underfull vbox (badness 2512) | p5-6 transition | Low — page break layout |\n| 2 | Underfull vbox (badness 2762) | p6-7 transition | Low — page break layout |\n| 3 | Float specifier `h` → `ht` | appendix (per-task table) | Low — LaTeX auto-adjusts |\n| 4 | Float specifier `h` → `ht` | appendix (hyperparams table) | Low — LaTeX auto-adjusts |\n| 5 | Float specifier `h` → `ht` | appendix (dose-response figure) | Low — LaTeX auto-adjusts |\n\n**Errors**: 0\n\n**Missing figures**: 0 (all 4 PDFs present: gradient_analysis_combined.pdf, cka_analysis.pdf, per_layer_combined.pdf, dose_response.pdf)\n\n---\n\n## 4. TODO/FIXME/Placeholder Scan\n\n**Found**: 0\n\nThe `\\todo` macro is defined in main.tex:14 but never invoked anywhere in the paper.\n\n---\n\n## 5. Provenance Note\n\nC164 in paper_provenance.yaml states \"20 rollouts per task\" but the paper correctly says \"50 rollouts per task per seed\". This is a stale provenance entry, not a paper error.\n\n---\n\n## 6. Page Budget\n\n- Main text (intro through conclusion): ~8 pages (within CoRL limit)\n- References: ~2 pages\n- Appendix: ~4 pages (unlimited per CoRL rules)\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 127_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01Eb7zAtFT6PcYTrmUn4Z9ur`</summary>
+
+```json
+{
+  "name": "paper_status_check_20260525",
+  "type": "report",
+  "description": "Paper v42 status check: compilation, coverage gap, TODO scan for CoRL 2026 deadline",
+  "project": "occsafe_vla",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/paper_status_check_20260525.md",
+  "tags": [
+    "paper",
+    "status",
+    "corl2026"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "781e654d-d6db-4556-a22d-f8806f9510ad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vz2D6JJZSYHAgAH4DpTCiu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1271,
+      "cache_read_input_tokens": 73557,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1271
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 128 · 2026-05-25T07:01:11.790Z_
+
+<details><summary>↩ Tool result · `toolu_01Eb7zAtFT6PcYTrmUn4Z9ur`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260525_b25400\", \"name\": \"paper_status_check_20260525\", \"type\": \"report\", \"description\": \"Paper v42 status check: compilation, coverage gap, TODO scan for CoRL 2026 deadline\", \"path\": \"projects/occsafe_vla/artifacts/_project/report/paper_status_check_20260525.md\", \"url\": null, \"project\": \"occsafe_vla\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-25T07:01:11.698973+00:00\", \"tags\": [\"paper\", \"status\", \"corl2026\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "2bef4405-7665-4d86-b05b-be404aea7c52",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260525_b25400\\\", \\\"name\\\": \\\"paper_status_check_20260525\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Paper v42 status check: compilation, coverage gap, TODO scan for CoRL 2026 deadline\\\", \\\"path\\\": \\\"projects/occsafe_vla/artifacts/_project/report/paper_status_check_20260525.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"occsafe_vla\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-25T07:01:11.698973+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"status\\\", \\\"corl2026\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260525_b25400\", \"name\": \"paper_status_check_20260525\", \"type\": \"report\", \"description\": \"Paper v42 status check: compilation, coverage gap, TODO scan for CoRL 2026 deadline\", \"path\": \"projects/occsafe_vla/artifacts/_project/report/paper_status_check_20260525.md\", \"url\": null, \"project\": \"occsafe_vla\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-25T07:01:11.698973+00:00\", \"tags\": [\"paper\", \"status\", \"corl2026\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 129_
+
+报告已写入并注册。
+
+**结果**：
+
+1. **Coverage gap (1/24)**: **C158 — OCC-CBF future direction**。Discussion 只提了一句"complements runtime safety methods"，未展开描述 learned barrier function h(z_occ, x_robot) 这个概念。可以加 1-2 句关闭 gap，或 deprecate 这条 claim（若认为超出本文 scope）。
+
+2. **编译**: 0 errors，5 minor warnings（2 underfull vbox + 3 float specifier auto-adjust），均无需处理。PDF 14 页正常输出。
+
+3. **TODO/Placeholder**: 0 处。`\todo` 宏定义了但未使用。
+
+4. **最新结果覆盖**: 2×2 ANOVA p=0.025、same-seed 梯度分析、dose-response 2-seed 数据均已在论文中。
+
+5. **注意**: provenance C164 仍记录 "20 rollouts"，但论文已正确写为 "50 rollouts"——provenance 条目过期。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "uuid": "63eb1ee6-3609-4261-b299-181b9e577372",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017nYumRBb6dUvzzJteTK2bg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 501,
+      "cache_read_input_tokens": 74828,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 501
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 130_
+
+报告已写入并注册。
+
+**结果**：
+
+1. **Coverage gap (1/24)**: **C158 — OCC-CBF future direction**。Discussion 只提了一句"complements runtime safety methods"，未展开描述 learned barrier function h(z_occ, x_robot) 这个概念。可以加 1-2 句关闭 gap，或 deprecate 这条 claim（若认为超出本文 scope）。
+
+2. **编译**: 0 errors，5 minor warnings（2 underfull vbox + 3 float specifier auto-adjust），均无需处理。PDF 14 页正常输出。
+
+3. **TODO/Placeholder**: 0 处。`\todo` 宏定义了但未使用。
+
+4. **最新结果覆盖**: 2×2 ANOVA p=0.025、same-seed 梯度分析、dose-response 2-seed 数据均已在论文中。
+
+5. **注意**: provenance C164 仍记录 "20 rollouts"，但论文已正确写为 "50 rollouts"——provenance 条目过期。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 214395,
+  "duration_api_ms": 216650,
+  "num_turns": 24,
+  "stop_reason": "end_turn",
+  "session_id": "a105b87d-be95-46f1-b962-f2c6062d963b",
+  "total_cost_usd": 0.9005645499999999,
+  "usage": {
+    "input_tokens": 295,
+    "cache_creation_input_tokens": 63488,
+    "cache_read_input_tokens": 481992,
+    "output_tokens": 5948,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 63488,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 303,
+        "cache_read_input_tokens": 74828,
+        "cache_creation_input_tokens": 501,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 501
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1395,
+      "outputTokens": 3168,
+      "cacheReadInputTokens": 358523,
+      "cacheCreationInputTokens": 47605,
+      "webSearchRequests": 0,
+      "costUSD": 0.11259355,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 295,
+      "outputTokens": 5948,
+      "cacheReadInputTokens": 481992,
+      "cacheCreationInputTokens": 63488,
+      "webSearchRequests": 0,
+      "costUSD": 0.787971,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "0fa7a9fc-a99d-4680-9b0f-1d935790d94b"
+}
+```
+
+</details>
+
+---

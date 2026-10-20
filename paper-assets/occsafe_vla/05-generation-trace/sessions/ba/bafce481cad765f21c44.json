@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bafce481cad765f21c44",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code v2 gradient dryrun",
+  "task_key": "worker_code_v2-gradient-dryrun_20260526T183446",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_v2-gradient-dryrun_20260526T183446_result.json",
+    "occurrence": 1,
+    "bytes": 3222,
+    "sha256": "8852acc8076f726c0bb235113eefdb7e40a4275223de8a606b5b6a2aa6fdf92f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 脚本路径\n- 分析脚本：`/root/occsafe_vla/scripts/run_gradient_analysis_v2.py` (17KB)\n- 绘图脚本：`/root/occsafe_vla/scripts/plot_gradient_analysis_v2.py` (15KB)\n\n### D057 要求逐项确认\n\n| # | 要求 | 状态 | 实现 |\n|---|---|---|---|\n| 1 | 真实 DataLoader | ✅ | `RLDSDataset` 从 `/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops` 加载 |\n| 2 | 逐层 backbone 梯度 | ✅ | `get_layer_groups()` 遍历 `model.vision_backbone.named_parameters()`，按 block 分组 |\n| 3a | 每层 action grad norm (mean, std) | ✅ | `torch.autograd.grad(action_loss, all_params)` → `compute_per_layer_grads()` |\n| 3b | 每层 occ grad norm（仅 Full OCC） | ✅ | 仅当 `occ_head is not None and not occ_detach` 时计算 |\n| 3c | action vs occ cosine similarity（逐层） | ✅ | `F.cosine_similarity` + conflict_rate |\n| 3d | cross-condition ratio | ⚠️ | 在 plot 脚本中做后处理（设计合理） |\n| 4 | ≥200 样本 | ✅ | `--num_samples` 默认值 200 |\n| 5 | 50K checkpoint | ✅ | 用户通过 `--checkpoint_dir` 指定 |\n| 6 | 输出格式 | ✅ | JSON（summary + raw 两个文件） |\n\n### Dry-run 验证（无 GPU 可用，仅静态检查）\n\n| 检查项 | 结果 |\n|---|---|\n| AST 语法 | ✅ |\n| `--help` | ✅ |\n| 全部 13 个 import | ✅ |\n| 数据路径存在 | ✅ |\n| OCC 数据路径存在 | ✅ |\n| 3 个条件的 50K checkpoint + occ_head 文件 | ✅ |\n\n### 注意：缺少 Vanilla v2 checkpoint\n\n`/root/autodl-tmp/checkpoints/` 中**无 vanilla_v2 目录**。可能正在训练中。现有 50K v2 checkpoints：\n- `full_occ_ln_s3_v2` ✅\n- `ablation_occ_detach_s3_v2` ✅\n- `mvp_occ_s3_v2`（有 occ_head，不是 vanilla）\n\n### 运行命令模板\n\n```bash\nENV=\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft\"\nOUT=\"/root/occsafe_vla/artifacts/gradient_v2\"\n\n# 1. Full OCC LN v2\n$ENV && python3 /root/occsafe_vla/scripts/run_gradient_analysis_v2.py \\\n  --checkpoint_dir /root/autodl-tmp/checkpoints/full_occ_ln_s3_v2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--full_occ_ln_s3_v2--50000_chkpt \\\n  --condition_name \"Full_OCC_LN_v2\" --seed 42 --gpu <FREE_GPU> \\\n  --output_dir $OUT\n\n# 2. Detach LN v2\n$ENV && python3 /root/occsafe_vla/scripts/run_gradient_analysis_v2.py \\\n  --checkpoint_dir /root/autodl-tmp/checkpoints/ablation_occ_detach_s3_v2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--ablation_occ_detach_s3_v2--50000_chkpt \\\n  --condition_name \"Detach_LN_v2\" --seed 42 --gpu <FREE_GPU> \\\n  --output_dir $OUT\n\n# 3. Vanilla v2 — checkpoint 路径待确认\n$ENV && python3 /root/occsafe_vla/scripts/run_gradient_analysis_v2.py \\\n  --checkpoint_dir /root/autodl-tmp/checkpoints/<VANILLA_V2_EXP_ID>/openvla-7b+...--<VANILLA_V2_EXP_ID>--50000_chkpt \\\n  --condition_name \"Vanilla_v2\" --seed 42 --gpu <FREE_GPU> \\\n  --output_dir $OUT\n```\n\n**condition_name 不要包含空格**（用作输出文件名）。3 条可以串行跑同一 GPU，每条约 20-30 分钟（200 samples / bs=4 = 50 batches）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-v2-gradient-dryrun.md"
+}

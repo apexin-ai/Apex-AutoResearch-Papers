@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "282dd73bc88e41c846b7",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diag immediate batch2 status",
+  "task_key": "worker_diag_immediate_batch2_status_20260520T140707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_immediate_batch2_status_20260520T140707_result.json",
+    "occurrence": 1,
+    "bytes": 1002,
+    "sha256": "bfa977abc5ff66049ab50597620ecbd41e30203ea79bc6698047a032b502ddab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Batch 2 提取状态\n\n**5/9 tasks 完成，4 个仍在提取中。未就绪。**\n\n### 已完成 (5)\n| Task | Status |\n|------|--------|\n| between_plate_and_ramekin | COMPLETE (50/50) |\n| from_table_center | COMPLETE (50/50) |\n| in_the_top_drawer | COMPLETE (50/50) |\n| next_to_the_plate | COMPLETE (50/50) |\n| on_the_cookie_box | COMPLETE (50/50) |\n\n### 进行中 (4)\n| Task | PID | Demos done | Progress |\n|------|-----|-----------|----------|\n| next_to_ramekin (task 1) | 6450 | ~34/50 | demo_34 提取中 |\n| next_to_cookie_box (task 5) | 6451 | ~37/50 | demo_36 刚完成 |\n| on_ramekin (task 6) | 6452 | ~35/50 | demo_34 刚完成 |\n| on_stove (task 7) | 6453 | ~33/50 | demo_33 提取中 |\n\n### 速度与预估\n- 速率：~1.3s/frame，~120 frames/demo → **~2.6 min/demo**\n- 剩余最多的 task 7 还需 ~17 demos → **~44 min**\n- 最快的 task 5 还需 ~13 demos → **~34 min**\n\n**预估全部完成时间：约 22:55 CST（~45 分钟后）。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-immediate-batch2-status.md"
+}

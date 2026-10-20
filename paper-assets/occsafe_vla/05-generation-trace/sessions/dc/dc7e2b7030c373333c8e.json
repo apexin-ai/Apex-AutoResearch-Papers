@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc7e2b7030c373333c8e",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis registry audit 34685",
+  "task_key": "worker_analysis_registry_audit_34685_20260525T102859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_registry_audit_34685_20260525T102859_result.json",
+    "occurrence": 1,
+    "bytes": 963,
+    "sha256": "2903a4ea3d353362f92584b4fa58c270c5cc686e4448f9fa224140ae851f0fd2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "westd-34685 全部 4 张 GPU 的进程均与 registry 一一对应，无遗漏、无多余进程。\n\n| GPU | nvidia-smi PID | Registry exp_id | Registry PID | 当前 step | 进度 | 速度 | 预计完成 |\n|-----|---------------|-----------------|-------------|----------|------|------|---------|\n| 0 | 11510 | cutoff_25k_s2_v3 | 11510 ✓ | ~17606/50005 | 35% | ~1.06 it/s | ~03:00 May 26 |\n| 1 | 8347 | reverse_cutoff_s2_v3 | 8347 ✓ | ~17732/50005 | 35% | ~1.04 it/s | ~02:58 May 26 |\n| 2 | 2186 | cutoff_45k_s1_v3 | 2112 (父进程) ✓ | ~18031/50005 | 36% | ~1.08 it/s | ~02:42 May 26 |\n| 3 | 2617 | cutoff_15k_s2_v2 | 2475 (父进程) ✓ | ~18080/50005 | 36% | ~1.08 it/s | ~02:40 May 26 |\n\n**状态：一切正常。** GPU 2/3 的 PID 差异是 nohup bash wrapper（registry 记录）vs 子 python 进程（nvidia-smi 显示），属正常行为。4 个实验均已训练约 5h55min，预计明天凌晨 ~03:00 前全部完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-registry-audit-34685.md"
+}

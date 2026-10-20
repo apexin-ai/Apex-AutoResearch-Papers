@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3bc471bbd1a8a76229b6",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops deploy object eval poller 10894",
+  "task_key": "worker_ops_deploy_object_eval_poller_10894_20260528T050311",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_deploy_object_eval_poller_10894_20260528T050311_result.json",
+    "occurrence": 1,
+    "bytes": 426,
+    "sha256": "96dfa0407dd4b99bca6b408fd5810c2bd8699aea8aa6d229acc3297d0e1e7c81"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "轮询脚本已部署并运行。\n\n- **轮询脚本 PID: 962263**\n- 每 60s 检查 `*50000_chkpt/adapter_config.json` 是否存在\n- 检测到后等 60s（确保 checkpoint 写完），再等训练进程自然退出（最多 10 分钟，超时则 kill）\n- 然后在 `cuda:0` 上启动 eval：`--task_suite_name libero_object --num_rollouts 50 --seed 42`\n- 日志：`/root/poll_eval_vanilla_object_s1.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-deploy-object-eval-poller-10894.md"
+}

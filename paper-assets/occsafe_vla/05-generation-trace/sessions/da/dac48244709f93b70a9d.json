@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dac48244709f93b70a9d",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops eval and progress check 10894",
+  "task_key": "worker_ops_eval_and_progress_check_10894_20260524T052142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval_and_progress_check_10894_20260524T052142_result.json",
+    "occurrence": 1,
+    "bytes": 1331,
+    "sha256": "30e7ac688b310d590e380b5ff5a06954b701a70032dd6ae1b38d30fb330cd16e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 1. cutoff_s2_v2_eval\n状态: **running** — 7/10 tasks 完成，T7 进行中 (43/50 rollouts)\n\n已完成 task 结果：\n\n| Task | Description | TSR | CAR |\n|------|-------------|-----|-----|\n| T0 | black bowl between plate and ramekin → plate | 1.000 | 0.980 |\n| T1 | black bowl next to ramekin → plate | 1.000 | 0.960 |\n| T2 | black bowl from table center → plate | 0.980 | 0.940 |\n| T3 | black bowl on cookie box → plate | 1.000 | 0.340 |\n| T4 | black bowl in top drawer of cabinet → plate | 0.940 | 0.960 |\n| T5 | black bowl on ramekin → plate | 0.880 | 0.120 |\n| T6 | black bowl next to cookie box → plate | 1.000 | 0.400 |\n\n**前 7 task 部分统计：TSR=0.971, CAR=0.671**\n\nT7 还剩 ~7 rollouts (~35s)，之后还有 T8、T9。预计 ~10 分钟内完成全部 eval。\n\n## 2. Random OCC CKA\n就绪: **yes**\n- `cka_analysis.py` ✓\n- Random OCC checkpoint ✓\n- openvla-7b pretrained ✓\n\neval 完成后可直接在 GPU 0 启动 CKA。\n\n## 3. detach_ln 进度\n\n| exp | step | 进度 | ETA (剩余) |\n|-----|------|------|-----------|\n| detach_ln_s0 | 41550/50005 | 83.1% | ~2h10m |\n| detach_ln_s1 | 41273/50005 | 82.5% | ~2h16m |\n| detach_ln_s2 | 41300/50005 | 82.6% | ~2h16m |\n\n三个训练均在 ~1.07 it/s 稳定运行，预计 ~14:20-14:30 UTC 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-and-progress-check-10894.md"
+}

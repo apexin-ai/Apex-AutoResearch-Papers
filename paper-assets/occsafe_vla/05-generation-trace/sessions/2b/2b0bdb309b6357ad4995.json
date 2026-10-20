@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2b0bdb309b6357ad4995",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis extract remaining conflict rate",
+  "task_key": "worker_analysis_extract_remaining_conflict_rate_20260524T144639",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_extract_remaining_conflict_rate_20260524T144639_result.json",
+    "occurrence": 1,
+    "bytes": 1283,
+    "sha256": "6f85c3dff030d26eea0d0afbb3b229db333af9350a5830406e53cd3bd8c9638a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总如下：\n\n### 数据可用性\n\n| 条件 | 数据文件 | conflict_rate | cosine_sim | aux_grad_norm | action_grad_norm | 行数 |\n|------|---------|---------------|------------|---------------|------------------|------|\n| **Vanilla_s0** | 有 | 无 | 无 | 无 | 有 | 49 |\n| **Full_OCC_s0** | 有 | 有 | 有 | 有 | 有 | 49 |\n| **Detach_BN_s2** | 有 | 无 | 无 | 无 | 有 | 49 |\n| **Detach_LN_s0** | **无文件** | — | — | — | — | 0 |\n| **Random_s2** | 有 | 有 | 有 | 有 | 有 | 49 |\n\n### 原因\n\n- **Vanilla_s0**：无 aux head，只采集了 action gradient norm，无法计算 conflict rate\n- **Detach_BN_s2**：`occ_detach=true`，aux gradient 被 detach 阻断，不流经 backbone 层，分析脚本只记录了 action gradient norm\n- **Detach_LN_s0**：数据文件完全缺失，确认之前 BN/LN mismatch 导致脚本崩溃未产生输出\n\n### 输出文件\n\n- 服务器：`/root/occsafe_vla/artifacts/gradient_analysis_mixed_seed/per_layer_conflict_rate_full.csv`（196 行数据）\n- 本地：`artifacts/gradient_analysis/per_layer_conflict_rate_full.csv`\n\nCSV 格式与原 `per_layer_conflict_rate.csv` 一致，Vanilla_s0 和 Detach_BN_s2 的 conflict_rate/cosine_sim/aux_grad_norm 列为空值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-extract-remaining-conflict-rate.md"
+}

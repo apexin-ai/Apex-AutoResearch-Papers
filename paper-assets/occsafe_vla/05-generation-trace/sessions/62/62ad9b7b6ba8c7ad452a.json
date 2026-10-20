@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62ad9b7b6ba8c7ad452a",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops 10894 progress check",
+  "task_key": "worker_ops_10894-progress-check_20260526T191723",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_10894-progress-check_20260526T191723_result.json",
+    "occurrence": 1,
+    "bytes": 1098,
+    "sha256": "88b6a52d79d414ce571c8c63b0d467b5d3ebb447a0d7fd8bfa9696124c3b14ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n## GPU 状态\n\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| 0 | 99% | 62203 MiB |\n| 1 | 41% | 62203 MiB |\n| 2 | 99% | 63013 MiB |\n| 3 | 31% | 62203 MiB |\n\n## 实验进度\n\n| 实验 | GPU | 当前 step | 总 step | 进度 | 速度 | 已运行 | 剩余预估 | 预计完成 (UTC) |\n|------|-----|-----------|---------|------|------|--------|----------|----------------|\n| **reverse_cutoff_s2_v2** | 0 | 35566 | 50005 | 71% | ~1.08 it/s | 10h14m | ~3h44m | **5/27 ~00:00** |\n| **full_occ_ln_v2_s0** | 1 | 3140 | 50005 | 6% | ~1.07 it/s | 52m | ~12h11m | **5/27 ~14:40** |\n| **full_occ_ln_v2_s1** | 2 | 3117 | 50005 | 6% | ~1.07 it/s | 52m | ~12h07m | **5/27 ~14:35** |\n| **detach_ln_v2_s0** | 3 | 3137 | 50005 | 6% | ~1.07 it/s | 52m | ~12h08m | **5/27 ~14:35** |\n\n**reverse_cutoff_s2_v2** 预计今天 5/27 00:00 UTC 完成，DDL 前没问题。\n\n**full_occ_ln_v2_s0 / s1 / detach_ln_v2_s0** 三个实验刚启动约 52 分钟，预计 5/27 14:35-14:40 UTC 完成，距 DDL（5/28 12:00 UTC）有 ~21h 余量，也没问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-10894-progress-check-copy-3.md"
+}

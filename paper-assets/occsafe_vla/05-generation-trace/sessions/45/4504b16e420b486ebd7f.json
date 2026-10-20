@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4504b16e420b486ebd7f",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis anova v2 final",
+  "task_key": "worker_analysis_anova_v2_final_20260528T070541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_anova_v2_final_20260528T070541_result.json",
+    "occurrence": 1,
+    "bytes": 1103,
+    "sha256": "c31b12c1a6159cd0bd00b8d5db62d20f9af8582edc71586088de01f10f2feb87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存并注册。核心发现：\n\n**ANOVA 结果：**\n\n| Source | SS | df | F | p | η²_p |\n|--------|----|----|---|---|------|\n| gradient_flow (ON/OFF) | 0.0029 | 1 | 2.083 | .183 | .188 |\n| norm_type (BN/LN) | 0.0030 | 1 | 2.157 | .176 | .193 |\n| **交互效应** | **0.000003** | **1** | **0.002** | **.967** | **<.001** |\n| Residual | 0.0126 | 9 | | | |\n\n**关键解读：**\n\n1. **交互效应完全不显著** (F=0.002, p=.967)。gradient_flow 的效应在 BN 和 LN 间是一致的，不存在 gradient × norm 的交互。这意味着论文叙事需要调整——不是 \"交互效应\"，而是 **gradient_flow 的干净主效应**。\n\n2. **gradient_flow 主效应方向正确**：OFF (M=0.782) > ON (M=0.751)，partial η²=.188（中大效应量），但 p=.183 不显著。\n\n3. **Detach 合并 vs Vanilla**：p=.085 (two-tailed)，不显著。Detach 数值上高于 Vanilla，支持 \"detach 恢复安全性\" 的 claim。\n\n4. **vanilla_v2_s0_eval 不在 registry 中**，Vanilla 仅 n=2。如果能补上第三个 seed，统计功效会改善。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-anova-v2-final.md"
+}

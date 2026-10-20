@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c0f2d8f66b19270ded4",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "diagnose 10894 3 dead processes",
+  "task_key": "worker_diagnose_10894-3-dead-processes_20260527T103921",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_10894-3-dead-processes_20260527T103921_result.json",
+    "occurrence": 1,
+    "bytes": 1935,
+    "sha256": "23a142c719243c72278e930c27e4c2c07be050ee19db6646f9f3af5de34761e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果：所有 4 个进程均存活\n\n**进程没有消失。** PID 完全匹配，GPU 利用率 82-99%。只是 tmux session 断了（fd/0 → `/dev/pts/0 (deleted)`），但进程因 stdout/stderr 已重定向到日志文件而继续运行。\n\n---\n\n### 各实验状态\n\n| 实验 | GPU | PID | 当前 step | 目标 | 速度 | 预计完成 (UTC) | 状态 |\n|------|-----|-----|----------|------|------|---------------|------|\n| full_occ_ln_v2_s1c_r2 | cuda:0 | 481426 | **34,305** / 50,005 | 50k | ~1.05 it/s | ~22:50 May 27 | 正常运行 |\n| full_occ_ln_v2_s2_r2 | cuda:1 | 481643 | **34,449** / 50,005 | 50k | ~1.07 it/s | ~22:40 May 27 | 正常运行 |\n| detach_ln_v2_s0c_r3 | cuda:2 | 543255 | **5,859** / 50,005 | 50k | ~1.06 it/s | ~06:20 May 28 | 正常运行 |\n| full_occ_ln_s4 | cuda:3 | 553813 | **4,023** / 50,005 | 50k | ~1.05 it/s | ~06:50 May 28 | 正常运行 |\n\n### Checkpoint 情况\n\n- **s1c_r2**: `/root/autodl-tmp/checkpoints/full_occ_ln_v2_s1c/` — 有 20000_chkpt, 30000_chkpt（无 50000 yet）\n- **s2_r2**: `/root/autodl-tmp/checkpoints/full_occ_ln_v2_s2/` — 有 20000_chkpt, 30000_chkpt（无 50000 yet）\n- **s0c_r3**: `/root/autodl-tmp/checkpoints/detach_ln_v2_s0c_r3/` — 仅 running checkpoint\n- **s4**: `/root/autodl-tmp/checkpoints/full_occ_ln_s4/` — 仅 running checkpoint\n\n### 日志路径\n\n- s1c_r2 → `/root/runs/occsafe_vla/full_occ_ln_v2_s1c.log`\n- s2_r2 → `/root/runs/occsafe_vla/full_occ_ln_v2_s2.log`\n- s0c_r3 → `/root/autodl-tmp/checkpoints/detach_ln_v2_s0c_r3.log`\n- s4 → `/root/autodl-tmp/checkpoints/full_occ_ln_s4.log`\n\n### 关键信息\n\n- **磁盘**: 45% (112G/250G)，不是磁盘问题\n- **所有 4 个实验预计在 DDL（May 28 12:00 UTC）前完成**\n- **空闲 GPU: 无** — 4 张卡全在跑\n- tmux session 可能因网络断开或手动关闭消失，但进程不受影响（nohup/重定向保护了它们）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-10894-3-dead-processes.md"
+}

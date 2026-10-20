@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "43bcd0ff41d6141d1ff2",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "train cutoff s2",
+  "task_key": "worker_train_cutoff_s2_20260523T002835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_cutoff_s2_20260523T002835_result.json",
+    "occurrence": 1,
+    "bytes": 194,
+    "sha256": "afddcfa5aea83cca0dbd9fbe12974b97fca24e49e7f0f5919174a90d55dba313"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitor 超时是因为训练早已启动成功，日志中不再有新的匹配 pattern 出现在最后 5 行（已被进度条覆盖）。训练正常运行中，无需操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-cutoff-s2.md"
+}

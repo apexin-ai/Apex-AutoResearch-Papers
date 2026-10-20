@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1ebb69fd782940728f9",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis cutoff 25k s1 v2",
+  "task_key": "worker_analysis_cutoff_25k_s1_v2_20260526T225939",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cutoff_25k_s1_v2_20260526T225939_result.json",
+    "occurrence": 1,
+    "bytes": 1039,
+    "sha256": "ec16678945034f7cb6dc0f39561fcc35415b2ae246ce743566a0f52d98d011ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Summary:\n\n## cutoff_25k_s1_v2 分析结果\n\n**Conclusion: success**\n\n### Final Metrics (step 50000)\n- action_loss: **0.0439**\n- occ_loss: **0.0121**\n- depth_loss: 0.0000\n\n### Checkpoint\n`/root/autodl-tmp/checkpoints/cutoff_25k_s1_v2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--cutoff_25k_s1_v2--50000_chkpt`\n\n(另有 30000 和 40000 中间 checkpoint)\n\n### 与 parent (cutoff_25k_s0) 对比\n\n| Metric | s0 (seed 42) | s1_v2 (seed 43) |\n|--------|-------------|-----------------|\n| action_loss | 0.0718 | **0.0439** |\n| occ_loss | 0.0106 | 0.0121 |\n\n- action_loss 显著低于 parent（0.0439 vs 0.0718），seed 间存在较大方差\n- occ_loss 接近 parent（0.0121 vs 0.0106），说明 cutoff 行为一致\n- OCC cutoff 行为符合预期：25K 时 occ_loss=0.0088（OCC ON 阶段最低点），cutoff 后 occ_loss 回升至 0.0140 (40K)，最终稳定在 0.0121 (50K)\n\n### W&B\n未检测到此实验的 W&B run（WANDB_MODE=disabled）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cutoff-25k-s1-v2.md"
+}

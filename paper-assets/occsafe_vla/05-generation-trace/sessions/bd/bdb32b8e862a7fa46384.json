@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0",
+  "id": "bdb32b8e862a7fa46384",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "code occ gt pipeline",
+  "task_key": "worker_code_occ-gt-pipeline_20260520T053311",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_occ-gt-pipeline_20260520T053311.log",
+    "occurrence": 1,
+    "bytes": 2824162,
+    "sha256": "52bef6473e0f88ce657b474ea07bd59e795719308825ae51c5ae6fdb3955cb77"
+  },
+  "statistics": {
+    "messages": 1614,
+    "user_turns": 2,
+    "tool_calls": 659,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 1,
+      "assistant": 284,
+      "tool_call": 659,
+      "tool_result": 659,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 454,
+      "chunks": [
+        {
+          "path": "bdb32b8e862a7fa46384-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "bdb32b8e862a7fa46384-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "bdb32b8e862a7fa46384-part-0003.json",
+          "message_count": 94
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 598,
+      "chunks": [
+        {
+          "path": "bdb32b8e862a7fa46384-part-0003.json",
+          "message_count": 86
+        },
+        {
+          "path": "bdb32b8e862a7fa46384-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "bdb32b8e862a7fa46384-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "bdb32b8e862a7fa46384-part-0006.json",
+          "message_count": 152
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 562,
+      "chunks": [
+        {
+          "path": "bdb32b8e862a7fa46384-part-0006.json",
+          "message_count": 28
+        },
+        {
+          "path": "bdb32b8e862a7fa46384-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "bdb32b8e862a7fa46384-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "bdb32b8e862a7fa46384-part-0009.json",
+          "message_count": 174
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-occ-gt-pipeline.md"
+}

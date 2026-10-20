@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21fd0ccd984c447dcfd2",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops verify 34685 processes",
+  "task_key": "worker_ops_verify_34685_processes_20260525T075053",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_34685_processes_20260525T075053_result.json",
+    "occurrence": 1,
+    "bytes": 740,
+    "sha256": "0daeb0f801110303d66cb26e50b8cb0ba44130bd53c2b3a9f601047a03fa4bfb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**全部 4 个实验均存活，GPU 满载运行。**\n\n| 实验 | PID | GPU | 状态 | 运行时间 | GPU利用率 | 显存占用 |\n|------|-----|-----|------|----------|-----------|----------|\n| cutoff_25k_s2_v3 | 11510 | cuda:0 | **存活** (Ssl) | 3h08m | 99% | 62203/97887 MiB |\n| reverse_cutoff_s2_v3 | 8347 | cuda:1 | **存活** (Rsl) | 3h11m | 99% | 62203/97887 MiB |\n| cutoff_45k_s1_v3 | 2112 | cuda:2 | **存活** (S) | 3h17m | 98% | 62779/97887 MiB |\n| cutoff_15k_s2_v2 | 2475 | cuda:3 | **存活** (S) | 3h17m | 99% | 62203/97887 MiB |\n\n`get_project_resource_usage` 显示 cuda:0 和 cuda:1 空闲是误报——实际 4 张 GPU 全部 98-99% 利用率，显存各占 ~62GB/98GB。Registry 无需更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-34685-processes.md"
+}

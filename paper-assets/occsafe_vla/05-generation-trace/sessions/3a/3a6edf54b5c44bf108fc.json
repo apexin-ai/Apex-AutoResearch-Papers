@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a6edf54b5c44bf108fc",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "audit verify restart steps",
+  "task_key": "worker_audit_verify-restart-steps_20260527T212207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_verify-restart-steps_20260527T212207_result.json",
+    "occurrence": 1,
+    "bytes": 977,
+    "sha256": "c8dd5a72078296386d516aa31763632392fb8f2631569fc8503689bce226236f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\ndetach_ln_v2_s2:\n  20000 checkpoint: 已删除（仅存 15000_chkpt）\n  恢复 step: 从 15000_chkpt 作为 pretrained 加载，训练从 step 0 重新开始（无 --resume）\n  当前 step: ~72（刚启动约 1 分钟，05:20 UTC 启动）\n  训练中: 是（GPU cuda:2, PID 26152, ~1.0s/it）\n\nvanilla_object_s0:\n  checkpoint: 仅存 10000_chkpt\n  恢复 step: 从 10000_chkpt 作为 pretrained 加载，训练从 step 0 重新开始（无 --resume）\n  当前 step: ~67（刚启动约 1 分钟，05:20 UTC 启动）\n  训练中: 是（GPU cuda:3, PID 26367, ~1.1s/it）\n```\n\n关键发现：两个实验都是把 checkpoint 作为 `--vla_path` 传入（等同 from_pretrained），**不是** `--resume`，所以 batch_idx 从 0 重计。这符合 C002 约束。按 ~1.0s/it 速度，50005 steps 约需 **13.9 小时**，预计完成时间约 **19:20 UTC（北京时间 05-29 03:20）**——超过 C003 的 12:00 UTC deadline 约 7 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-verify-restart-steps.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0c760f4ddba95c92d8f",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops check 34685 cutoff15k",
+  "task_key": "worker_ops_check_34685_cutoff15k_20260525T020829",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_34685_cutoff15k_20260525T020829_result.json",
+    "occurrence": 1,
+    "bytes": 884,
+    "sha256": "881b33aff9e173849d7b1856b080813de5424722b3c3d0adaf56746c15db07aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## cutoff_15k_s1 状态报告\n\n**状态：仍在训练中，接近完成**\n\n| 指标 | 值 |\n|------|-----|\n| 当前 step | 49,158 / 50,005 |\n| 进度 | 98% |\n| 速度 | ~1.08 it/s |\n| 剩余 steps | ~847 |\n| 预估剩余时间 | **~13 分钟** |\n| 最新 loss (step 49100) | occ=0.0331, depth=0.0000, action=0.0574 |\n\n**GPU 状态：** 4× GPU 全部 85-99% 利用率，各占用 62GB/98GB 显存\n\n**Checkpoints（已保存 4 个）：**\n\n| Checkpoint | 大小 |\n|------------|------|\n| 10000_chkpt | 15G |\n| 20000_chkpt | 15G |\n| 30000_chkpt | 15G |\n| 40000_chkpt | 15G |\n| **合计** | **60G** |\n\n**磁盘：** `/root/autodl-tmp/` 350G 用了 245G，剩余 106G (70%)\n\n---\n\n训练约 13 分钟后完成，届时会生成 50000_chkpt（额外 15G）。完成后可清理中间 checkpoint（10K/20K/30K/40K），释放约 **60G** 空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-34685-cutoff15k.md"
+}

@@ -1,0 +1,524 @@
+{
+  "schema_version": "1.0",
+  "id": "6960e26fc832c84f0ca5",
+  "project": "occsafe_vla",
+  "kind": "conversation",
+  "title": "analysis anova prep",
+  "task_key": "worker_analysis_anova_prep_20260526T060836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_anova_prep_20260526T060836.jsonl",
+    "occurrence": 1,
+    "bytes": 23743,
+    "sha256": "8d0b1280607f56af891c9a8ba54117afafe23a9811a45de30e826df9b95283c8"
+  },
+  "statistics": {
+    "messages": 25,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "tool_call": 12,
+      "tool_result": 12,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-26T06:10:40.727480+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_anova_prep_20260526T060836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/",
+              "description": "List artifacts directory"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-26T06:10:40.728027+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "10894_health_check.md\n_project\nablation_random_occ_s0\nanalyze_learning_curve_fixed.py\ncheckpoint_analysis_summary.md\ncka_analysis\ncka_analysis.py\ncka_detach_ln\ncka_detach_ln.pdf\ncka_detach_ln.png\ncka_detach_ln_results.json\ncka_dose_response.py\ncka_dose_response_results.json\ncka_full_occ_ln_s0\ncka_full_occ_ln_s1\ncka_random_occ_results.json\ncka_results.json\ncka_same_seed_4cond\ncomprehensive_results.csv\ncompute_statistics.py\nd051_bn_v2_failure_diagnosis.md\ndetach_ln_diagnosis.md\ndetach_ln_s0_eval\ndetach_ln_s0_eval_analysis.md\ndiag_eval_failure_20260523.md\ndiagnose_ablation_batch_fail.md\ndiagnose_s3_v2_failures.md\ndiagnose_westd10894_batch_kill.md\ndiagnose_westd34685_20260525.md\ndiagnosis_disk_full_20260526.md\ndiagnosis_experiment_crash_20260526.md\ndose_response_3seed_analysis.py\ndose_response_3seed_final.pdf\ndose_response_3seed_final.png\ndose_response_curve_data_car.csv\ndose_response_data.json\ndream_reports\neval_commands.md\neval_completeness_audit.md\neval_pending_checklist.md\neval_readiness_report.md\nextract_depth.py\nfactorial_2x2_config.json\nfactorial_data_summary.md\nfig1_overview_v2.pdf\nfig1_overview_v2.png\nfig1_overview_v2.py\nfig_dose_response_2seed.pdf\nfig_dose_response_2seed.png\nfig_factorial_2x2.pdf\nfig_factorial_2x2.png\nfigures\ngen_dose_response.py\ngen_factorial_2x2.py\ngradient_aggregation_investigation.md\ngradient_analysis\ngradient_analysis_mixed_seed\ngradient_cka_summary.md\ngradient_dose_response.py\ngradient_dose_response_s0.py\nmanifest.yaml\nocc_crash_diagnosis.md\nocc_gt_design.md\nocc_pipeline\nopenvla_oft_survey.md\npaper_status_check_20260525.md\nplot_dose_response.py\nplot_factorial_2x2.py\nplot_gradient_comparison.py\nrun_gradient_same_seed.sh\nsafelibero_survey.md\nsame_seed_gradient_analysis.py\nstatistical_tests.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_anova_prep_20260526T060836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-26T06:10:40.728404+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_anova_prep_20260526T060836",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/anova_2x2_factorial.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"2×2 Factorial ANOVA for OCC auxiliary head ablation study.\n\nFactors:\n  A (gradient_flow): Full OCC (ON) vs Detach (OFF)\n  B (norm_type): BatchNorm vs LayerNorm\n\nDV: CAR (Collision Avoidance Rate, 0-1)\n\"\"\"\n\nimport argparse\nimport json\nimport sys\nimport warnings\nfrom pathlib import Path\n\nimport numpy as np\nfrom scipy import stats\nfrom statsmodels.stats.anova import AnovaRM\nfrom statsmodels.stats.multicomp import pairwise_tukeyhsd\nimport statsmodels.api as sm\nfrom statsmodels.formula.api import ols\n\n\ndef load_data(args):\n    if args.json:\n        data = json.loads(args.json)\n    elif args.input:\n        with open(args.input) as f:\n            data = json.load(f)\n    else:\n        print(\"ERROR: provide --json or --input\", file=sys.stderr)\n        sys.exit(1)\n\n    required = {\"full_occ_bn\", \"full_occ_ln\", \"detach_bn\", \"detach_ln\"}\n    missing = required - set(data.keys())\n    if missing:\n        print(f\"ERROR: missing keys: {missing}\", file=sys.stderr)\n        sys.exit(1)\n\n    return data\n\n\ndef build_long_format(data):\n    rows = []\n    mapping = {\n        \"full_occ_bn\": (\"ON\", \"BN\"),\n        \"full_occ_ln\": (\"ON\", \"LN\"),\n        \"detach_bn\": (\"OFF\", \"BN\"),\n        \"detach_ln\": (\"OFF\", \"LN\"),\n    }\n    for key, (grad, norm) in mapping.items():\n        for val in data[key]:\n            rows.append({\n                \"gradient_flow\": grad,\n                \"norm_type\": norm,\n                \"car\": float(val),\n            })\n    return rows\n\n\ndef run_anova(rows):\n    import pandas as pd\n\n    df = pd.DataFrame(rows)\n\n    model = ols(\"car ~ C(gradient_flow) * C(norm_type)\", data=df).fit()\n    anova_table = sm.stats.anova_lm(model, typ=2)\n\n    ss = anova_table[\"sum_sq\"]\n    ss_resid = ss[\"Residual\"]\n\n    results = {}\n    for effect, label in [\n        (\"C(gradient_flow)\", \"gradient_flow\"),\n        (\"C(norm_type)\", \"norm_type\"),\n        (\"C(gradient_flow):C(norm_type)\", \"interaction\"),\n    ]:\n        row = anova_table.loc[effect]\n        eta_sq = row[\"sum_sq\"] / (row[\"sum_sq\"] + ss_resid)\n        results[label] = {\n            \"F\": float(row[\"F\"]),\n            \"p\": float(row[\"PR(>F)\"]),\n            \"df\": float(row[\"df\"]),\n            \"SS\": float(row[\"sum_sq\"]),\n            \"partial_eta_squared\": float(eta_sq),\n        }\n\n    results[\"residual\"] = {\n        \"df\": float(anova_table.loc[\"Residual\", \"df\"]),\n        \"SS\": float(ss_resid),\n    }\n\n    return results, df\n\n\ndef run_tukey(df):\n    df = df.copy()\n    df[\"cell\"] = df[\"gradient_flow\"] + \"_\" + df[\"norm_type\"]\n    tukey = pairwise_tukeyhsd(df[\"car\"], df[\"cell\"], alpha=0.05)\n\n    comparisons = []\n    for i in range(len(tukey.summary().data) - 1):\n        row = tukey.summary().data[i + 1]\n        comparisons.append({\n            \"group1\": str(row[0]),\n            \"group2\": str(row[1]),\n            \"meandiff\": float(row[2]),\n            \"p_adj\": float(row[3]),\n            \"lower\": float(row[4]),\n            \"upper\": float(row[5]),\n            \"reject\": bool(row[6]),\n        })\n    return comparisons\n\n\ndef descriptive_stats(data):\n    cell_stats = {}\n    for key, values in data.items():\n        arr = np.array(values, dtype=float)\n        cell_stats[key] = {\n            \"mean\": float(np.mean(arr)),\n            \"std\": float(np.std(arr, ddof=1)) if len(arr) > 1 else 0.0,\n            \"n\": len(arr),\n        }\n    return cell_stats\n\n\ndef decision_helper(anova_results):\n    lines = []\n    alpha = 0.05\n\n    p_int = anova_results[\"interaction\"][\"p\"]\n    p_grad = anova_results[\"gradient_flow\"][\"p\"]\n    p_norm = anova_results[\"norm_type\"][\"p\"]\n\n    if p_int < alpha:\n        lines.append(\n            f\"INTERACTION SIGNIFICANT (p={p_int:.4f}) — \"\n            \"Plan A: gradient_flow × norm_type interaction narrative\"\n        )\n    else:\n        lines.append(\n            f\"NO SIGNIFICANT INTERACTION (p={p_int:.4f}) — \"\n            \"Plan B needed. Check main effects.\"\n        )\n\n    if p_grad < alpha:\n        lines.append(\n            f\"Gradient flow main effect significant (p={p_grad:.4f}, \"\n            f\"η²={anova_results['gradient_flow']['partial_eta_squared']:.3f})\"\n        )\n    if p_norm < alpha:\n        lines.append(\n            f\"Norm type main effect significant (p={p_norm:.4f}, \"\n            f\"η²={anova_results['norm_type']['partial_eta_squared']:.3f})\"\n        )\n\n    return lines\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"2×2 Factorial ANOVA: gradient_flow × norm_type → CAR\"\n    )\n    parser.add_argument(\"--json\", type=str, help=\"JSON string with 4 cell arrays\")\n    parser.add_argument(\"--input\", type=str, help=\"Path to JSON file with cell data\")\n    parser.add_argument(\n        \"--output\", type=str, default=\"anova_results.json\",\n        help=\"Output JSON path (default: anova_results.json)\"\n    )\n    args = parser.parse_args()\n\n    if not args.json and not args.input:\n        parser.print_help()\n        sys.exit(1)\n\n    data = load_data(args)\n    cell_stats = descriptive_stats(data)\n\n    min_n = min(s[\"n\"] for s in cell_stats.values())\n    if min_n < 5:\n        print(f\"\\n⚠  WARNING: min cell n={min_n} < 5 — underpowered, interpret with caution\\n\")\n\n    total_n = sum(s[\"n\"] for s in cell_stats.values())\n    if total_n < 8:\n        print(\"ERROR: need at least 2 observations per cell for ANOVA\", file=sys.stderr)\n        sys.exit(1)\n\n    rows = build_long_format(data)\n    anova_results, df = run_anova(rows)\n    tukey = run_tukey(df)\n    decisions = decision_helper(anova_results)\n\n    print(\"=\" * 60)\n    print(\"  2×2 Factorial ANOVA: gradient_flow × norm_type → CAR\")\n    print(\"=\" * 60)\n\n    print(\"\\n── Descriptive Statistics ──\")\n    for key, s in cell_stats.items():\n        print(f\"  {key:15s}  mean={s['mean']:.4f}  std={s['std']:.4f}  n={s['n']}\")\n\n    print(\"\\n── ANOVA Results ──\")\n    for effect in [\"gradient_flow\", \"norm_type\", \"interaction\"]:\n        r = anova_results[effect]\n        sig = \"*\" if r[\"p\"] < 0.05 else \"\"\n        print(\n            f\"  {effect:20s}  F({r['df']:.0f},{anova_results['residual']['df']:.0f})\"\n            f\"={r['F']:8.3f}  p={r['p']:.4f}{sig}  η²={r['partial_eta_squared']:.3f}\"\n        )\n\n    print(\"\\n── Tukey HSD Post-hoc ──\")\n    for c in tukey:\n        sig = \"*\" if c[\"reject\"] else \"\"\n        print(\n            f\"  {c['group1']:8s} vs {c['group2']:8s}  \"\n            f\"diff={c['meandiff']:+.4f}  p={c['p_adj']:.4f}{sig}  \"\n            f\"CI=[{c['lower']:.4f}, {c['upper']:.4f}]\"\n        )\n\n    print(\"\\n── Decision Helper ──\")\n    for line in decisions:\n        print(f\"  → {line}\")\n    print()\n\n    output = {\n        \"factors\": {\n            \"A\": \"gradient_flow (ON=Full OCC, OFF=Detach)\",\n            \"B\": \"norm_type (BN=BatchNorm, LN=LayerNorm)\",\n        },\n        \"cell_means\": {k: v[\"mean\"] for k, v in cell_stats.items()},\n        \"cell_stds\": {k: v[\"std\"] for k, v in cell_stats.items()},\n        \"cell_ns\": {k: v[\"n\"] for k, v in cell_stats.items()},\n        \"anova\": {\n            \"gradient_flow\": anova_results[\"gradient_flow\"],\n            \"norm_type\": anova_results[\"norm_type\"],\n            \"interaction\": anova_results[\"interaction\"],\n        },\n        \"p_values\": {\n            \"gradient_flow\": anova_results[\"gradient_flow\"][\"p\"],\n            \"norm_type\": anova_results[\"norm_type\"][\"p\"],\n            \"interaction\": anova_results[\"interaction\"][\"p\"],\n        },\n        \"F_stats\": {\n            \"gradient_flow\": anova_results[\"gradient_flow\"][\"F\"],\n            \"norm_type\": anova_results[\"norm_type\"][\"F\"],\n            \"interaction\": anova_results[\"interaction\"][\"F\"],\n        },\n        \"eta_squared\": {\n            \"gradient_flow\": anova_results[\"gradient_flow\"][\"partial_eta_squared\"],\n            \"norm_type\": anova_results[\"norm_type\"][\"partial_eta_squared\"],\n            \"interaction\": anova_results[\"interaction\"][\"partial_eta_squared\"],\n        },\n        \"significant_interactions\": anova_results[\"interaction\"][\"p\"] < 0.05,\n        \"tukey_hsd\": tukey,\n        \"decisions\": decisions,\n        \"interpretation_hint\": decisions[0],\n    }\n\n    Path(args.output).write_text(json.dumps(output, indent=2, ensure_ascii=False))\n    print(f\"Results saved to {args.output}\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-26T06:10:40.728890+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/anova_2x2_factorial.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_anova_prep_20260526T060836",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-26T06:10:40.729135+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_anova_prep_20260526T060836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts && python anova_2x2_factorial.py --help",
+              "description": "Test --help"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-26T06:10:40.729333+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 127\n/bin/bash: line 1: python: command not found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_anova_prep_20260526T060836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-26T06:10:40.729528+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_anova_prep_20260526T060836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts && python3 anova_2x2_factorial.py --help",
+              "description": "Test --help with python3"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-26T06:10:40.729745+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/anova_2x2_factorial.py\", line 19, in <module>\n    from statsmodels.stats.anova import AnovaRM\nModuleNotFoundError: No module named 'statsmodels'"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_anova_prep_20260526T060836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-26T06:10:40.729938+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_anova_prep_20260526T060836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "pip3 install statsmodels --quiet 2>&1 | tail -3",
+              "description": "Install statsmodels"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-26T06:10:40.730121+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "note: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.\nhint: See PEP 668 for the detailed specification."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_anova_prep_20260526T060836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-26T06:10:40.730305+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_anova_prep_20260526T060836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "pip3 install statsmodels --quiet --user 2>&1 | tail -5",
+              "description": "Install statsmodels with --user flag"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-26T06:10:40.730484+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "    See /usr/share/doc/python3.14/README.venv for more information.\n\nnote: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.\nhint: See PEP 668 for the detailed specification."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_anova_prep_20260526T060836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-26T06:10:40.730698+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_anova_prep_20260526T060836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -m venv /tmp/anova_venv && source /tmp/anova_venv/bin/activate && pip install scipy numpy statsmodels pandas --quiet 2>&1 | tail -3",
+              "description": "Create venv and install dependencies"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-26T06:10:40.730903+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "WARNING: Cache entry deserialization failed, entry ignored\nWARNING: Cache entry deserialization failed, entry ignored"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_anova_prep_20260526T060836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-26T06:10:40.731080+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_anova_prep_20260526T060836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "source /tmp/anova_venv/bin/activate && cd /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts && python anova_2x2_factorial.py --help",
+              "description": "Test --help in venv"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-26T06:10:40.731265+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "usage: anova_2x2_factorial.py [-h] [--json JSON] [--input INPUT]\n                              [--output OUTPUT]\n\n2×2 Factorial ANOVA: gradient_flow × norm_type → CAR\n\noptions:\n  -h, --help       show this help message and exit\n  --json JSON      JSON string with 4 cell arrays\n  --input INPUT    Path to JSON file with cell data\n  --output OUTPUT  Output JSON path (default: anova_results.json)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_anova_prep_20260526T060836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-26T06:10:40.731463+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_anova_prep_20260526T060836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "source /tmp/anova_venv/bin/activate && python anova_2x2_factorial.py --json '{\"full_occ_bn\": [0.746, 0.75, 0.74], \"full_occ_ln\": [0.78, 0.77, 0.79], \"detach_bn\": [0.76, 0.77, 0.75], \"detach_ln\": [0.80, 0.81, 0.79]}' --output /tmp/test_anova_results.json",
+              "description": "Run with mock data"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-26T06:10:40.731693+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "⚠  WARNING: min cell n=3 < 5 — underpowered, interpret with caution\n\n============================================================\n  2×2 Factorial ANOVA: gradient_flow × norm_type → CAR\n============================================================\n\n── Descriptive Statistics ──\n  full_occ_bn      mean=0.7453  std=0.0050  n=3\n  full_occ_ln      mean=0.7800  std=0.0100  n=3\n  detach_bn        mean=0.7600  std=0.0100  n=3\n  detach_ln        mean=0.8000  std=0.0100  n=3\n\n── ANOVA Results ──\n  gradient_flow         F(1,8)=  11.082  p=0.0104*  η²=0.581\n  norm_type             F(1,8)=  51.410  p=0.0001*  η²=0.865\n  interaction           F(1,8)=   0.262  p=0.6224  η²=0.032\n\n── Tukey HSD Post-hoc ──\n  OFF_BN   vs OFF_LN    diff=+0.0400  p=0.0028*  CI=[0.0164, 0.0636]\n  OFF_BN   vs ON_BN     diff=-0.0147  p=0.2669  CI=[-0.0382, 0.0089]\n  OFF_BN   vs ON_LN     diff=+0.0200  p=0.0993  CI=[-0.0036, 0.0436]\n  OFF_LN   vs ON_BN     diff=-0.0547  p=0.0003*  CI=[-0.0782, -0.0311]\n  OFF_LN   vs ON_LN     diff=-0.0200  p=0.0993  CI=[-0.0436, 0.0036]\n  ON_BN    vs ON_LN     diff=+0.0347  p=0.0066*  CI=[0.0111, 0.0582]\n\n── Decision Helper ──\n  → NO SIGNIFICANT INTERACTION (p=0.6224) — Plan B needed. Check main effects.\n  → Gradient flow main effect significant (p=0.0104, η²=0.581)\n  → Norm type main effect significant (p=0.0001, η²=0.865)\n\nResults saved to /tmp/test_anova_results.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_anova_prep_20260526T060836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-26T06:10:40.731917+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_anova_prep_20260526T060836",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/tmp/test_anova_results.json"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-26T06:10:40.732215+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"factors\": {\n3\t    \"A\": \"gradient_flow (ON=Full OCC, OFF=Detach)\",\n4\t    \"B\": \"norm_type (BN=BatchNorm, LN=LayerNorm)\"\n5\t  },\n6\t  \"cell_means\": {\n7\t    \"full_occ_bn\": 0.7453333333333333,\n8\t    \"full_occ_ln\": 0.7799999999999999,\n9\t    \"detach_bn\": 0.7600000000000001,\n10\t    \"detach_ln\": 0.8000000000000002\n11\t  },\n12\t  \"cell_stds\": {\n13\t    \"full_occ_bn\": 0.0050332229568471705,\n14\t    \"full_occ_ln\": 0.010000000000000009,\n15\t    \"detach_bn\": 0.010000000000000009,\n16\t    \"detach_ln\": 0.010000000000000009\n17\t  },\n18\t  \"cell_ns\": {\n19\t    \"full_occ_bn\": 3,\n20\t    \"full_occ_ln\": 3,\n21\t    \"detach_bn\": 3,\n22\t    \"detach_ln\": 3\n23\t  },\n24\t  \"anova\": {\n25\t    \"gradient_flow\": {\n26\t      \"F\": 11.081967213114716,\n27\t      \"p\": 0.01040049767755281,\n28\t      \"df\": 1.0,\n29\t      \"SS\": 0.0009013333333333318,\n30\t      \"partial_eta_squared\": 0.5807560137457036\n31\t    },\n32\t    \"norm_type\": {\n33\t      \"F\": 51.409836065573565,\n34\t      \"p\": 9.519901968414285e-05,\n35\t      \"df\": 1.0,\n36\t      \"SS\": 0.004181333333333323,\n37\t      \"partial_eta_squared\": 0.8653421633554079\n38\t    },\n39\t    \"interaction\": {\n40\t      \"F\": 0.2622950819672694,\n41\t      \"p\": 0.6223833291543066,\n42\t      \"df\": 1.0,\n43\t      \"SS\": 2.133333333333795e-05,\n44\t      \"partial_eta_squared\": 0.03174603174603834\n45\t    }\n46\t  },\n47\t  \"p_values\": {\n48\t    \"gradient_flow\": 0.01040049767755281,\n49\t    \"norm_type\": 9.519901968414285e-05,\n50\t    \"interaction\": 0.6223833291543066\n51\t  },\n52\t  \"F_stats\": {\n53\t    \"gradient_flow\": 11.081967213114716,\n54\t    \"norm_type\": 51.409836065573565,\n55\t    \"interaction\": 0.2622950819672694\n56\t  },\n57\t  \"eta_squared\": {\n58\t    \"gradient_flow\": 0.5807560137457036,\n59\t    \"norm_type\": 0.8653421633554079,\n60\t    \"interaction\": 0.03174603174603834\n61\t  },\n62\t  \"significant_interactions\": false,\n63\t  \"tukey_hsd\": [\n64\t    {\n65\t      \"group1\": \"OFF_BN\",\n66\t      \"group2\": \"OFF_LN\",\n67\t      \"meandiff\": 0.04,\n68\t      \"p_adj\": 0.0028,\n69\t      \"lower\": 0.0164,\n70\t      \"upper\": 0.0636,\n71\n…[truncated 1461 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_anova_prep_20260526T060836",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-26T06:10:40.732477+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_anova_prep_20260526T060836",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-26T06:10:40.732680+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_anova_prep_20260526T060836",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-26T06:10:40.732874+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_anova_prep_20260526T060836",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "anova_2x2_factorial",
+              "type": "data",
+              "description": "2×2 Factorial ANOVA script for gradient_flow × norm_type → CAR analysis. Supports JSON input, outputs structured results with F-stats, p-values, partial eta-squared, Tukey HSD post-hoc, and decision helper.",
+              "project": "occsafe_vla",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/anova_2x2_factorial.py",
+              "tags": "['statistics', 'anova', 'factorial', 'CAR']"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-26T06:10:40.733112+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260526_da7577\\\", \\\"name\\\": \\\"anova_2x2_factorial\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"2×2 Factorial ANOVA script for gradient_flow × norm_type → CAR analysis. Supports JSON input, outputs structured results with F-stats, p-values, partial eta-squared, Tukey HSD post-hoc, and decision helper.\\\", \\\"path\\\": \\\"projects/occsafe_vla/artifacts/_project/data/anova_2x2_factorial.py\\\", \\\"url\\\": null, \\\"project\\\": \\\"occsafe_vla\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-26T06:10:33.852017+00:00\\\", \\\"tags\\\": [\\\"statistics\\\", \\\"anova\\\", \\\"factorial\\\", \\\"CAR\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_anova_prep_20260526T060836",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-26T06:10:40.733376+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已完成，mock 数据测试通过。\n\n**路径**: `artifacts/anova_2x2_factorial.py`\n\n**用法**:\n```bash\n# JSON 字符串\npython anova_2x2_factorial.py --json '{\"full_occ_bn\": [...], \"full_occ_ln\": [...], \"detach_bn\": [...], \"detach_ln\": [...]}'\n\n# JSON 文件\npython anova_2x2_factorial.py --input data.json --output results.json\n```\n\n**输出内容**: descriptive stats、Type II ANOVA (gradient_flow / norm_type / interaction)、partial η²、Tukey HSD post-hoc、decision helper (Plan A/B 建议)，同时写 JSON 到 `--output`。n<5 时自动打印 underpowered warning。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_anova_prep_20260526T060836"
+          },
+          "id": "event-000025"
+        }
+      ],
+      "message_count": 25
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-anova-prep.md"
+}

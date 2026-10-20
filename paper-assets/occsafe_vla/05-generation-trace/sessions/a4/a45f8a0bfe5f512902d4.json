@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a45f8a0bfe5f512902d4",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval collect vanilla s2 final",
+  "task_key": "worker_eval_collect_vanilla_s2_final_20260521T010852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect_vanilla_s2_final_20260521T010852_result.json",
+    "occurrence": 1,
+    "bytes": 1418,
+    "sha256": "7f0890b520e87af67a8a9dbe24b61b35283172143ccca6d8f8c12f34206a751b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## vanilla_s2 @ 50K Final Eval (20 rollouts × 10 tasks)\n\n**Overall: TSR=91%, CAR=77%, Collisions=46/200**\n\n### Per-task:\n\n| Task | Description | TSR | CAR | Coll |\n|------|-------------|-----|-----|------|\n| T0 | pick up black bowl between plate and ramekin → plate | 100% (20/20) | 95% | 1 |\n| T1 | pick up black bowl next to ramekin → plate | 100% (20/20) | 95% | 1 |\n| T2 | pick up black bowl from table center → plate | 100% (20/20) | 90% | 2 |\n| T3 | pick up black bowl on cookie box → plate | 95% (19/20) | 50% | 10 |\n| T4 | pick up black bowl in top drawer → plate | 95% (19/20) | 95% | 1 |\n| T5 | pick up black bowl on ramekin → plate | 40% (8/20) | 10% | 18 |\n| T6 | pick up black bowl next to cookie box → plate | 100% (20/20) | 40% | 12 |\n| T7 | pick up black bowl on stove → plate | 95% (19/20) | 95% | 1 |\n| T8 | pick up black bowl next to plate → plate | 95% (19/20) | 100% | 0 |\n| T9 | pick up black bowl on wooden cabinet → plate | 90% (18/20) | 100% | 0 |\n\n### vs s0/s1:\n\n| Seed | TSR | CAR |\n|------|-----|-----|\n| s0 | 91% | 77.5% |\n| s1 | 93.5% | 76.5% |\n| s2 | 91% | 77% |\n| **Mean±Std** | **91.8% ± 1.2%** | **77.0% ± 0.4%** |\n\ns2 与 s0/s1 高度一致。T5（bowl on ramekin）仍是最难 task（TSR=40%, CAR=10%），T3 和 T6 碰撞多但成功率尚可。三个 seed 的 vanilla baseline 已收敛：TSR≈92%, CAR≈77%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-vanilla-s2-final.md"
+}

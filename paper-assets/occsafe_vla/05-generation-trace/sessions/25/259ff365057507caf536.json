@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "259ff365057507caf536",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops 34685 eval phase2 collect",
+  "task_key": "worker_ops_34685-eval-phase2-collect_20260526T233659",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_34685-eval-phase2-collect_20260526T233659_result.json",
+    "occurrence": 1,
+    "bytes": 105,
+    "sha256": "33c4ec83a76073717902d907096d84c4bc7f389bdf592ee8130f77a0f5f339fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 进程 (565727, 620069) 仍在运行。已设置 ~4.5 分钟后再次轮询。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-34685-eval-phase2-collect.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f04589cf11a5cf14bf48",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval occ s0 50k 50r",
+  "task_key": "worker_eval_occ-s0-50k-50r_20260521T154700",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_occ-s0-50k-50r_20260521T154700_result.json",
+    "occurrence": 1,
+    "bytes": 261,
+    "sha256": "484d3048a1c5baded70bcba4c7b3a998de6e5e63ea38ee361da9effdda087e8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval 已启动并在正常运行：\n- **PID**: 584663\n- **GPU 3**: 16778 MiB 显存占用\n- **当前进度**: Task 0, rollout 1/50, ~4.7s/rollout\n- **预计耗时**: ~42 分钟（500 episodes × ~5s）\n- 下次 ~4 分钟后自动检查进度"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-occ-s0-50k-50r.md"
+}

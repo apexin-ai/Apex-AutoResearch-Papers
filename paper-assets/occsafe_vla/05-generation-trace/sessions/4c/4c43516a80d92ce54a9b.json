@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c43516a80d92ce54a9b",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops execute disk cleanup 10894",
+  "task_key": "worker_ops_execute_disk_cleanup_10894_20260525T012117",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_execute_disk_cleanup_10894_20260525T012117_result.json",
+    "occurrence": 1,
+    "bytes": 321,
+    "sha256": "27ef9ec2e716a0008f06a786de9d4a144c82a98a427ce3a9956fced30d159125"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n**结果**：\n- 可用空间：**125GB**（之前 ~35GB），释放约 90GB，达到目标\n- `full_occ_ln_s0` 的 30K/40K checkpoint 本身不存在（只有 50K），所以实际删除了 4 个目录\n- 剩余 checkpoints 总计 104GB（各实验保留的 final + 关键 checkpoint）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-execute-disk-cleanup-10894.md"
+}

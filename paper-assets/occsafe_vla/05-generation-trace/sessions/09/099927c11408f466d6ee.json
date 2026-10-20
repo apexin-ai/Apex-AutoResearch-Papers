@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "099927c11408f466d6ee",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_4_1779769723.md",
+  "task_key": "loop_4_1779769723",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1779769723.md",
+    "occurrence": 1,
+    "bytes": 5018,
+    "sha256": "d71fa02cbe684db82a55d1a84d7fb73f07ade9fab36d8246c573ca8f7ef1e96e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-26T03:54:28+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: westd-10894 cuda:0-3 + westd-34685 cuda:0-3，共 8 张，不得使用其他\n- 两台服务器都用 conda 环境 `occsafe`（不是 base，不是 venv）：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe`\n- Checkpoint 和数据必须放 `/root/autodl-tmp/`，根分区只有 30GB\n- pip install 前必须 `source /etc/network_turbo`；HF 下载设 `HF_HUB_DISABLE_XET=1`\n- CoRL 2026 Abstract deadline: **May 26（今天）**, Paper deadline: **May 29（3天后）**\n- cutoff 实验禁止 resume（C002 约束，batch_idx bug 未修复）\n\n### 2. 🖥️ 基础设施快照\n- **westd-10894**: 工作目录 `/root/occsafe_vla/openvla-oft`，磁盘 50% used (425GB free)\n- **westd-34685**: 工作目录 `/root/occsafe_vla/openvla-oft`，磁盘 2% used (819GB free)\n- Python: `/root/miniconda3/envs/occsafe/bin/python`\n- 模型: `/root/autodl-tmp/models/openvla-7b`\n- 数据: `/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops`\n- OCC 数据: `/root/occsafe_vla/occ_data`\n- Checkpoints: `/root/autodl-tmp/checkpoints/<exp_id>/`\n- **Cron 已注册**（本轮新注册）: cutoff_25k_s2_v3, reverse_cutoff_s2_v3, cutoff_45k_s1_v3, cutoff_15k_s2_v2（全在 34685，interval=120s）\n\n### 3. 📊 当前状态\n**刚做完**: Session start 初始化。发现 `get_project_resource_usage` 显示 34685:cuda:0/1 空闲（但 registry 标 RUNNING），已注册 4 个 cron + 派 Worker 验证进程存活 + 向 Director 汇报。\n\n**RUNNING 实验（registry，待验证）**:\n| exp_id | 服务器:GPU | PID | 状态 |\n|--------|-----------|-----|------|\n| cutoff_25k_s2_v3 | 34685:0 | 11510 | ⚠️ 待验证（resource tool 说空闲）|\n| reverse_cutoff_s2_v3 | 34685:1 | 8347 | ⚠️ 待验证 |\n| cutoff_45k_s1_v3 | 34685:2 | 2112 | ✅ 确认在跑 |\n| cutoff_15k_s2_v2 | 34685:3 | 2475 | ✅ 确认在跑 |\n\n**10894: 全部 4 GPU 空闲**（所有训练/eval 循环完成）\n\n**活跃 Worker**:\n1. `worker_analysis_gradient_dose_response_s0` — 用共享 OCC head 做 cutoff 条件梯度分析（turn 8，修改脚本中）\n2. `worker_analysis_check_s1_checkpoints` — 检查训练中实验中间 checkpoint（turn 28）\n3. `worker_ops_verify_34685_processes` — 刚派出，验证 34685 4 个 PID 存活\n\n**等待中**:\n- Worker 3 回调：34685 进程验证结果\n- Director 决策：10894 GPU 去向（A: plan_028 第二基准 / B: 保持分析用 / C: 释放）\n- Director 决策：若 cuda:0/1 进程死亡，是否重新训练\n\n### 4. 📋 待办（条件触发式）\n- **Worker verify_34685 回调到达** → 若 cuda:0/1 进程死亡且无 50K checkpoint：立即向 Director 确认后从头重新提交 cutoff_25k_s2_v3 和 reverse_cutoff_s2_v3；若有 50K checkpoint 则提交 eval\n- **Worker verify_34685 确认进程存活** → 无需行动，等 cron 回调训练完成\n- **任何训练完成 cron 回调** → 立即在同一 GPU 提交 eval（50r SafeLIBERO），eval 命令模板在 memory.md\n- **4 个 dose-response 3rd seed eval 全部完成** → 汇总 3-seed 均值±std；更新论文 dose-response 图表；向 Director 汇报最终数据\n- **Director 回复 10894 决策** → 按指示行动（plan_028 需要准备 LIBERO-Object 数据集 + eval 脚本）\n- **gradient_dose_response Worker 完成** → 提取结果入 registry，更新论文梯度分析章节\n- **所有 dose-response 数据就绪** → 派 Worker 生成最终 dose-response 曲线图（paper figure）\n\n### 5. 🎯 战略上下文\n**核心结论链**:\n- D029: cutoff_25k/reverse_cutoff 打破简单 dose-response → BN 干扰 > gradient flow 缺失\n- D032-D035: CKA 证实 BN 是表征漂移 100% 原因（Detach+LN CKA 完全恢复）\n- D036-D037: Per-layer 梯度分析 → dual mechanism（BN interference + gradient flow absence）\n- D040/D042: 2×2 ANOVA 交互显著 (p=0.025, η²=0.484) + LN 导致 DINOv2 梯度抑制 3.5×\n- D041: Dose-response 非单调模式是 seed noise（2-seed 均值回归正常）\n- **Framing**: \"representation-behavior dissociation + differential encoder vulnerability\"\n\n**易错点**:\n- `get_project_resource_usage` 可能因为 cron 未触发而显示 GPU 空闲（进程实际在跑但工具未交叉验证 nvidia-smi）——不要直接假设进程死了就重新提交，必须 SSH 验证\n- cutoff_25k_s2_v3 和 reverse_cutoff_s2_v3 如果真死了，可能是 34685 又重启过（AutoDL 不稳定历史）——检查 uptime\n- full_occ_retrain_s0_eval_v2 CAR=0.746 远低于原始 s0 (0.832)——这是 retrain 用于 same-seed 梯度分析的 baseline，不影响论文主 claim（主 claim 用原始 3-seed 数据）\n- 10894 上无训练可做是正常的——experiment_plan P0/P1 全部完成，剩余 plan_028 (P2) 78 GPU-h 需要 Director 批准\n- Worker pool = 3 刚好满足 ≥2 约束，但 gradient_dose_response Worker 已 8 turn 可能快完成——完成后需要补充新 Worker 保持 ≥2\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1779769723.md"
+}

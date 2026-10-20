@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d4d1c26e87c469538415",
+  "project": "occsafe_vla",
+  "kind": "history",
+  "title": "agent / loop_1_1779413463.md",
+  "task_key": "loop_1_1779413463",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1_1779413463.md",
+    "occurrence": 1,
+    "bytes": 4813,
+    "sha256": "80d593f16513968f6e42f8153a323c8557fc6f02ec3a5807dc86e3cd7795a6d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_wall_time\nupdated: '2026-05-21T18:54:09+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- westd-34685 GPU 分配：cuda:0 专属 occ_s1_fresh 训练，cuda:1/2/3 当前空闲可用于 eval/分析\n- westd-10894 GPU 分配：cuda:0/1/2/3 全部跑 ablation，完成前不可抢占\n- eval 脚本必须用 `vla-scripts/evaluate_safelibero.py`（正确），**严禁用** `eval_safelibero.py`（有 stale sim 引用 bug，ObstacleTracker line 131 缓存 self.sim 导致 CAR 永远 100%）\n- occ_s1（非 occ_s1_fresh）已被 D013 排除出 aggregate 分析（resume 永久损伤），不可用于 3-seed 统计\n- MUJOCO_EGL_DEVICE_ID 必须匹配物理 GPU 编号，否则 eval 静默用错卡\n- save_freq: occ_s1_fresh 用 2500（Director 明确修正过，原 5000 已被 kill 重启），ablation 用 10000\n\n### 2. 🖥️ 基础设施快照\n**westd-34685**:\n- 工作目录: `/root/occsafe_vla/openvla-oft/`\n- Python: `/root/miniconda3/bin/python` (conda base)\n- 数据: `/root/autodl-tmp/data/modified_libero_rlds/libero_spatial_no_noops`\n- 模型: `/root/autodl-tmp/models/openvla-7b`\n- Checkpoints: `/root/autodl-tmp/checkpoints/{occ_s0,occ_s1,occ_s2,vanilla_s0,vanilla_s1,vanilla_s2,occ_s1_fresh}/`\n- Eval logs: `/root/eval_logs/`\n- 活跃: occ_s1_fresh PID 487053 (nohup, cuda:0), cron 已注册监控此 PID\n- 分析脚本: `/root/occsafe_vla/openvla-oft/analysis/`（Worker 正在创建 per_task_comparison.py + bootstrap_ci.py）\n- 磁盘: 90G 可用 (75%)\n\n**westd-10894**:\n- 工作目录: `/root/occsafe_vla/openvla-oft/`\n- Python: conda occsafe 环境\n- Checkpoints: `/root/autodl-tmp/checkpoints/{ablation_occ_detach_s0,ablation_random_occ_s0,ablation_occ_detach_s1,ablation_random_occ_s1}/`\n- 活跃 PID: 523492 (detach_s0, cuda:0), 522013 (random_s0, cuda:1), 523704 (detach_s1, cuda:2), 524055 (random_s1, cuda:3)\n- 磁盘: ~80G 可用 (69%)，4 ablation save_freq=10000 共 ~5 checkpoint 轮次，需监控\n\n### 3. 📊 当前状态\n**刚完成**: Vanilla 50r 三种子结果收集 + registry 更新 + Director 汇报（apple-to-apple 对比）。核心发现：OCC 没有可靠超过 vanilla baseline（@47500 两项均差，@50K CAR +2.1pp 但 TSR -3.5pp）。\n\n**Registry RUNNING**:\n- `occ_s1_fresh`: westd-34685 cuda:0, ~25% (step ~12500/50005), ETA ~03:30 UTC May 22\n- `ablation_occ_detach_s0`: westd-10894 cuda:0, ~50%, ETA ~00:30 UTC May 22\n- `ablation_random_occ_s0`: westd-10894 cuda:1, ~50%, ETA ~00:45 UTC May 22\n- `ablation_occ_detach_s1`: westd-10894 cuda:2, ~50%, ETA ~00:40 UTC May 22\n- `ablation_random_occ_s1`: westd-10894 cuda:3, ~50%, ETA ~00:35 UTC May 22\n\n**等待中**:\n- Worker `worker_eval_collect-vanilla-50r-and-status_20260521T184907`: 收集两台服务器最新状态（仍 running）\n- Worker `worker_code_per-task-analysis-scripts_20260521T185301`: 创建分析脚本（刚启动）\n- 5 个 cron 监控上述 5 个 RUNNING 实验\n\n### 4. 📋 待办（条件触发式）\n- 4 ablation cron 回调（~00:30-00:45 UTC May 22）→ spawn worker SSH 收集 training log 最终 metrics + 在 westd-10894 4 GPU 并行跑 eval（用 `evaluate_safelibero.py`，50r each）→ 收集结果 → 更新 registry → 汇报 Director 诊断结论\n- occ_s1_fresh cron 回调（~03:30 UTC May 22）→ eval 47500_chkpt + 50000_chkpt（50r each）→ 补齐 3-seed OCC 数据 → 更新 aggregate 比较\n- 分析脚本 Worker 完成 → 确认 PDF/PNG 生成成功 → register_artifact\n- ablation 结果到手后 → 用分析脚本追加 ablation 数据出图 → 完整诊断报告给 Director\n- Director 可能的决策：ablation 诊断 → 如果 detach 和 random 都不 work → 指向核心假设错误 → 需要 read red-section skill 产出 Framing 调整提案\n\n### 5. 🎯 战略上下文\n**核心结论链**: MVP FAIL (D008) → OCC aggregate CAR 不达标 (76.9%@47500, 80.1%@50K vs gate 82%) → 50r apple-to-apple 确认 OCC 不优于 vanilla → 等 ablation 诊断 why\n\n**关键数据 (50r, 全部已入 registry)**:\n- Vanilla 3-seed: TSR=90.7±0.9%, CAR=78.0±1.2%\n- OCC @47500 2-seed: TSR=89.6%, CAR=76.9% (ΔCAR=-1.1pp)\n- OCC @50K 2-seed: TSR=87.2%, CAR=80.1% (ΔCAR=+2.1pp, ΔTSR=-3.5pp)\n- T5 是唯一 OCC 一致优于 vanilla 的 task (CAR 7.3% → 18-20%)\n\n**易错点**:\n- 不要混用 20r 和 50r 数据做对比（系统性偏差: TSR 偏低 1pp, CAR 偏高 1pp）\n- ablation eval 必须也用 50r 保持一致性\n- occ_s1（旧，resume 损伤）和 occ_s1_fresh（新，从头训练）是不同实验，不可混淆\n- westd-10894 磁盘偏紧（69%），ablation 如果中途存太多 checkpoint 可能爆盘——完成后优先清理中间 checkpoint\n- Framing 当前是 Option B（分析论文），Tier 1 路径（negative → diagnosis → fix）。ablation 诊断结果直接决定后续走 \"fix 方法\" 还是 \"pivot framing\"\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-1779413463.md"
+}

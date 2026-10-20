@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76bb587e5a364179b05a",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "code batch eval script",
+  "task_key": "worker_code_batch-eval-script_20260526T165454",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_batch-eval-script_20260526T165454_result.json",
+    "occurrence": 1,
+    "bytes": 812,
+    "sha256": "5e4f7bcae08e41110e1636df03f713fb62e3f96949eff41cb1e34af573283c90"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两台服务器均已部署成功。exit code 1 是因为无参数运行触发了 usage 输出（符合预期）。\n\n部署结果：\n- **westd-10894**: `/root/occsafe_vla/scripts/batch_eval.sh` ✓\n- **westd-34685**: `/root/occsafe_vla/scripts/batch_eval.sh` ✓\n\n使用方式：\n```bash\n# 34685 上跑 4 个 eval\nbash /root/occsafe_vla/scripts/batch_eval.sh \\\n  vanilla_v2_s1:0 vanilla_v2_s2:1 detach_ln_s3:2 cutoff_25k_s1_v2:3\n\n# 10894 上跑 3 个 eval\nbash /root/occsafe_vla/scripts/batch_eval.sh \\\n  full_occ_ln_v2_s0:1 full_occ_ln_v2_s1:2 detach_ln_v2_s0:3\n```\n\n脚本会先检查所有 checkpoint 目录是否存在，全部 OK 才启动 eval；每个 eval 在独立 tmux session 中运行（`{exp_id}_eval`），日志写到 `/root/occsafe_vla/logs/{exp_id}_eval.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-batch-eval-script.md"
+}

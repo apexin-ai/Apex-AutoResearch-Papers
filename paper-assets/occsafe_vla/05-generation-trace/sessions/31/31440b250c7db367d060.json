@@ -1,0 +1,2243 @@
+{
+  "schema_version": "1.0",
+  "id": "31440b250c7db367d060",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "eval detach bn v2 3seeds",
+  "task_key": "worker_eval_detach_bn_v2_3seeds_20260526T073800",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_detach_bn_v2_3seeds_20260526T073800.log",
+    "occurrence": 1,
+    "bytes": 174249,
+    "sha256": "5eb2ef98211457b832d940fa0d2378e8653a0a4c2e6a1fbc734624e15fa03094"
+  },
+  "statistics": {
+    "messages": 54,
+    "user_turns": 0,
+    "tool_calls": 20,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 10,
+      "tool_call": 20,
+      "tool_result": 20,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla",
+                "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__submit_training_job",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "4af52ec1-ac1c-495d-8ffe-9ed9bc11d15e",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-occsafe-vla/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779796200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "f893e82c-ac9c-4b74-91d3-44c5cdf3e756",
+                "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by verifying the training completion for the 3 Detach BN v2 experiments on westd-34685.",
+              "signature": "EqkCCmMIDhgCKkAPImo8K4PkLY8gxNeU2QPn61wIyQtSXt3e2xsB5WYWLDNFXbTLT7uiTREZiUNBJN4UBUMsmBS+yEV1SdIRuBe+Mg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDFU2GcpR6MUXBwuULhoMXgLSGyGDS7ZBNFmiIjCjWShrxi9QEITwA3glmwMvSAFIfZTfjNDWwt7V4teAVZdz/FbTfA7qNsPvE8jZGckqdNNbFdiczgkaaxSlkjOioZqg/+SNma2b0StKIoc/lO+ifm7AGE7ZYZ4qfqp/GM04612G60I4Ju8Dx1bYYJcdHf/vRmO365jpgE0BF5WOC0Z3sC1QAx8FaNQhnd/+6pgj7q8aroMhnu/O29BvbQWSt/IdMTz8GAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "59a1fa7f-1d49-4e57-8967-d1604b34b490",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CK99Pthc2PkLV3xBzs4kPy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12690,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12690
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证训练完成状态，先查日志和 checkpoint。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "45089b3b-5090-462d-a650-ceab7943d427",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CK99Pthc2PkLV3xBzs4kPy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12690,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12690
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019V8FkQMQNx6Xkh6VFT6Vkj",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "7c0c10de-9c28-4448-8ef4-79807e70684d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CK99Pthc2PkLV3xBzs4kPy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12690,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12690
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-26T07:38:11.331Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_019V8FkQMQNx6Xkh6VFT6Vkj",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "ce37bb6f-eb84-4e16-ad16-6e1857ff0a48",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 27
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QJCF68cu1riC6acxdcTPLB",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-34685",
+                "command": "tail -50 ~/runs/occsafe_vla/detach_bn_v2_s0.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "ebbb3eb6-c724-430b-a7f8-df3d4d0adb55",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FhxDgW3kLdo582qWgiAPJg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 489,
+                "cache_read_input_tokens": 24531,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 489
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013Pr16gFW3NShAbbXvMyBTL",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-34685",
+                "command": "tail -50 ~/runs/occsafe_vla/detach_bn_v2_s1.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "88657764-8bc0-479a-9d1c-eed8adb5954d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FhxDgW3kLdo582qWgiAPJg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 489,
+                "cache_read_input_tokens": 24531,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 489
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Km4cFRUwnYAGYdkYB5y81T",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-34685",
+                "command": "tail -50 ~/runs/occsafe_vla/detach_bn_v2_s2.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "1d9bb802-b3bf-4b55-9468-bff94f806d44",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FhxDgW3kLdo582qWgiAPJg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 489,
+                "cache_read_input_tokens": 24531,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 489
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-26T07:38:16.042Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QJCF68cu1riC6acxdcTPLB",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r 94%|█████████▍| 47101/50005 [13:03:12<45:33,  1.06it/s]\\\\r 94%|█████████▍| 47102/50005 [13:03:13<45:35,  1.06it/s]\\\\r 94%|█████████▍| 47103/50005 [13:03:14<45:32,  1.06it/s]\\\\r 94%|█████████▍| 47104/50005 [13:03:15<45:31,  1.06it/s]\\\\r 94%|█████████▍| 47105/50005 [13:03:16<46:52,  1.03it/s]\\\\r 94%|█████████▍| 47106/50005 [13:03:17<46:28,  1.04it/s]\\\\r 94%|█████████▍| 47107/50005 [13:03:18<46:01,  1.05it/s]\\\\r 94%|█████████▍| 47108/50005 [13:03:19<45:40,  1.06it/s]\\\\r 94%|█████████▍| 47109/50005 [13:03:20<45:27,  1.06it/s]\\\\r 94%|█████████▍| 47110/50005 [13:03:20<45:16,  1.07it/s]\\\\r 94%|█████████▍| 47111/50005 [13:03:21<45:07,  1.07it/s]\\\\r 94%|█████████▍| 47112/50005 [13:03:22<45:01,  1.07it/s]\\\\r 94%|█████████▍| 47113/50005 [13:03:23<44:58,  1.07it/s]\\\\r 94%|█████████▍| 47114/50005 [13:03:24<44:59,  1.07it/s]\\\\r 94%|█████████▍| 47115/50005 [13:03:25<44:53,  1.07it/s]\\\\r 94%|█████████▍| 47116/50005 [13:03:26<44:51,  1.07it/s]\\\\r 94%|█████████▍| 47117/50005 [13:03:27<44:49,  1.07it/s]\\\\r 94%|█████████▍| 47118/50005 [13:03:28<44:48,  1.07it/s]\\\\r 94%|█████████▍| 47119/50005 [13:03:29<44:50,  1.07it/s]\\\\r 94%|█████████▍| 47120/50005 [13:03:30<44:49,  1.07it/s]\\\\r 94%|█████████▍| 47121/50005 [13:03:31<44:47,  1.07it/s]\\\\r 94%|█████████▍| 47122/50005 [13:03:32<44:43,  1.07it/s]\\\\r 94%|█████████▍| 47123/50005 [13:03:33<44:42,  1.07it/s]\\\\r 94%|█████████▍| 47124/50005 [13:03:34<44:49,  1.07it/s]\\\\r 94%|█████████▍| 47125/50005 [13:03:34<44:59,  1.07it/s]\\\\r 94%|█████████▍| 47126/50005 [13:03:35<44:54,  1.07it/s]\\\\r 94%|█████████▍| 47127/50005 [13:03:36<44:47,  1.07it/s]\\\\r 94%|█████████▍| 47128/50005 [13:03:37<44:43,  1.07it/s]\\\\r 94%|█████████▍| 47129/50005 [13:03:38<44:51,  1.07it/s]\\\\r 94%|█████████▍| 47130/50005 [13:03:39<45:29,  1.05it/s]\\\\r 94%|█████████▍| 47131/50005 [13:03:40<45:28,  1.05it/s]\\\\r 94%|█████████▍| 47132/50005 [13:03:41<45:14,  1.06it/s]\\\\r 94%|█████████▍| 47133/50005 [13:03:42<45:04,  1.06it/s]\\\\r 94%|█████████▍| 47134/50005 [13:03:43<45:09,  1.06it/s]\\\\r 94%|█████████▍| 47135/50005 [13:03:44<44:59,  1.06it/s]\\\\r 94%|█████████▍| 47136/50005 [13:03:45<44:47,  1.07it/s]\\\\r 94%|█████████▍| 47137/50005 [13:03:46<44:39,  1.07it/s]\\\\r 94%|█████████▍| 47138/50005 [13:03:47<44:43,  1.07it/s]\\\\r 94%|█████████▍| 47139/50005 [13:03:48<44:40,  1.07it/s]\\\\r 94%|█████████▍| 47140/50005 [13:03:49<44:51,  1.06it/s]\\\\r 94%|█████████▍| 47141/50005 [13:03:50<44:49,  1.06it/s]\\\\r 94%|█████████▍| 47142/50005 [13:03:50<44:57,  1.06it/s]\\\\r 94%|█████████▍| 47143/50005 [13:03:51<44:50,  1.06it/s]\\\\r 94%|█████████▍| 47144/50005 [13:03:52<44:37,  1.07it/s]\\\\r 94%|█████████▍| 47145/50005 [13:03:53<44:32,  1.07it/s]\\\\r 94%|█████████▍| 47146/50005 [13:03:54<44:31,  1.07it/s]\\\\r 94%|█████████▍| 47147/50005 [13:03:55<44:25,  1.07it/s]\\\\r 94%|█████████▍| 47148/50005 [13:03:56<44:18,  1.07it/s]\\\\r 94%|█████████▍| 47149/50005 [13:03:57<44:16,  1.08it/s]\\\\r 94%|█████████▍| 47150/50005 [13:03:58<44:16,  1.07it/s]\\\\r 94%|█████████▍| 47151/50005 [13:03:59<44:46,  1.06it/s]\\\\r 94%|█████████▍| 47152/50005 [13:04:00<44:38,  1.07it/s]\\\\r 94%|█████████▍| 47153/50005 [13:04:01<44:26,  1.07it/s]\\\\r 94%|█████████▍| 47154/50005 [13:04:02<44:22,  1.07it/s]\\\\r 94%|█████████▍| 47155/50005 [13:04:03<44:19,  1.07it/s]\\\\r 94%|█████████▍| 47156/50005 [13:04:04<44:19,  1.07it/s]\\\\r 94%|█████████▍| 47157/50005 [13:04:04<44:39,  1.06it/s]\\\\r 94%|█████████▍| 47158/50005 [13:04:05<44:26,  1.07it/s]\\\\r 94%|█████████▍| 47159/50005 [13:04:06<44:20,  1.07it/s]\\\\r 94%|█████████▍| 47160/50005 [13:04:07<44:13,  1.07it/s]\\\\r 94%|█████████▍| 47161/50005 [13:04:08<44:10,  1.07it/s]\\\\r 94%|█████████▍| 47162/50005 [13:04:09<44:07,  1.07it/s]\\\\r 94%|█████████▍| 47163/50005 [13:04:10<44:15,  1.07it/s]\\\\r 94%|█████████▍| 47164/50005 [13:04:11<44:16,  1.07it/s]\\\\r 94%|█████████▍| 47165/50005 [13:04:12<44:42,  1.06it/s]\\\\r 94%|█████████▍| 47166/50005 [13:04:13<44:27,  1.06it/s]\\\\r 94%|█████████▍| 47167/50005 [13:04:14<44:17,  1.07it/s]\\\\r 94%|█████████▍| 47168/50005 [13:04:15<44:11,  1.07it/s]\\\\r 94%|█████████▍| 47169/50005 [13:04:16<44:08,  1.07it/s]\\\\r 94%|█████████▍| 47170/50005 [13:04:17<44:06,  1.07it/s]\\\\r 94%|████\\\\n\\\\n... [截断: 输出过长，省略 162024 字符] ...\\\\n\\\\nit/s]\\\\r100%|█████████▉| 49975/50005 [13:50:44<00:27,  1.07it/s]\\\\r100%|█████████▉| 49976/50005 [13:50:44<00:27,  1.07it/s]\\\\r100%|█████████▉| 49977/50005 [13:50:45<00:26,  1.07it/s]\\\\r100%|█████████▉| 49978/50005 [13:50:46<00:25,  1.07it/s]\\\\r100%|█████████▉| 49979/50005 [13:50:47<00:24,  1.05it/s]\\\\r100%|█████████▉| 49980/50005 [13:50:49<00:26,  1.04s/it]\\\\r100%|█████████▉| 49981/50005 [13:50:50<00:24,  1.01s/it]\\\\r100%|█████████▉| 49982/50005 [13:50:50<00:22,  1.02it/s]\\\\r100%|█████████▉| 49983/50005 [13:50:51<00:21,  1.03it/s]\\\\r100%|█████████▉| 49984/50005 [13:50:52<00:20,  1.05it/s]\\\\r100%|█████████▉| 49985/50005 [13:50:53<00:18,  1.06it/s]\\\\r100%|█████████▉| 49986/50005 [13:50:54<00:17,  1.06it/s]\\\\r100%|█████████▉| 49987/50005 [13:50:55<00:16,  1.07it/s]\\\\r100%|█████████▉| 49988/50005 [13:50:56<00:15,  1.07it/s]\\\\r100%|█████████▉| 49989/50005 [13:50:57<00:14,  1.07it/s]\\\\r100%|█████████▉| 49990/50005 [13:50:58<00:13,  1.07it/s]\\\\r100%|█████████▉| 49991/50005 [13:50:59<00:13,  1.08it/s]\\\\r100%|█████████▉| 49992/50005 [13:51:00<00:12,  1.08it/s]\\\\r100%|█████████▉| 49993/50005 [13:51:01<00:11,  1.08it/s]\\\\r100%|█████████▉| 49994/50005 [13:51:02<00:10,  1.08it/s]\\\\r100%|█████████▉| 49995/50005 [13:51:02<00:09,  1.08it/s]\\\\r100%|█████████▉| 49996/50005 [13:51:03<00:08,  1.08it/s]\\\\r100%|█████████▉| 49997/50005 [13:51:04<00:07,  1.08it/s]\\\\r100%|█████████▉| 49998/50005 [13:51:05<00:06,  1.06it/s]\\\\r100%|█████████▉| 49999/50005 [13:51:06<00:05,  1.07it/s]\\\\r100%|█████████▉| 50000/50005 [13:51:07<00:04,  1.08it/s][AUX] step=50000, occ_loss=0.0095, depth_loss=0.0000, action_loss=0.0449\\\\n\\\\r100%|█████████▉| 50001/50005 [13:51:08<00:03,  1.08it/s]05/26 [15:31:20] INFO     | >> [*] Saved dataset statistics    data_utils.py:284\\\\n                          file at path                                          \\\\n                          /root/autodl-tmp/checkpoints/detach_                  \\\\n                          bn_v2_s0/openvla-7b+libero_spatial_n                  \\\\n                          o_noops+b8+lr-0.0005+lora-r32+dropou                  \\\\n                          t-0.0--image_aug--detach_bn_v2_s0--5                  \\\\n                          0000_chkpt/dataset_statistics.json                    \\\\nSaving Model Checkpoint for Step 50000\\\\n/root/miniconda3/envs/occsafe/lib/python3.10/site-packages/peft/utils/save_and_load.py:180: UserWarning: Setting `save_embedding_layers` to `True` as embedding layers found in `target_modules`.\\\\n  warnings.warn(\\\\\\\"Setting `save_embedding_layers` to `True` as embedding layers found in `target_modules`.\\\\\\\")\\\\n\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\\\u001b[A\\\\n\\\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  3.75it/s]\\\\u001b[A\\\\n\\\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00,  4.54it/s]\\\\u001b[A\\\\n\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  5.17it/s]\\\\u001b[A\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  4.87it/s]\\\\nSaved merged model for Step 50000 at: /root/autodl-tmp/checkpoints/detach_bn_v2_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--detach_bn_v2_s0--50000_chkpt\\\\n/root/miniconda3/envs/occsafe/lib/python3.10/site-packages/torch/distributed/c10d_logger.py:83: UserWarning: barrier(): using the device under current context. You can specify `device_id` in `init_process_group` to mute this warning.\\\\n  return func(*args, **kwargs)\\\\n\\\\r100%|█████████▉| 50002/50005 [13:51:49<00:39, 13.03s/it]\\\\r100%|█████████▉| 50003/50005 [13:51:50<00:18,  9.40s/it]\\\\r100%|█████████▉| 50004/50005 [13:51:51<00:06,  6.90s/it]\\\\r100%|██████████| 50005/50005 [13:51:54<00:00,  5.51s/it]\\\\r50006it [13:51:55,  4.25s/it]                           Max step 50005 reached! Stopping training...\\\\n\\\\r                             \\\\r[rank0]:[W526 15:32:15.105165264 ProcessGroupNCCL.cpp:1575] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.27}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "07c01e6b-189f-4535-b4ba-0e45942ced75",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r 94%|█████████▍| 47101/50005 [13:03:12<45:33,  1.06it/s]\\\\r 94%|█████████▍| 47102/50005 [13:03:13<45:35,  1.06it/s]\\\\r 94%|█████████▍| 47103/50005 [13:03:14<45:32,  1.06it/s]\\\\r 94%|█████████▍| 47104/50005 [13:03:15<45:31,  1.06it/s]\\\\r 94%|█████████▍| 47105/50005 [13:03:16<46:52,  1.03it/s]\\\\r 94%|█████████▍| 47106/50005 [13:03:17<46:28,  1.04it/s]\\\\r 94%|█████████▍| 47107/50005 [13:03:18<46:01,  1.05it/s]\\\\r 94%|█████████▍| 47108/50005 [13:03:19<45:40,  1.06it/s]\\\\r 94%|█████████▍| 47109/50005 [13:03:20<45:27,  1.06it/s]\\\\r 94%|█████████▍| 47110/50005 [13:03:20<45:16,  1.07it/s]\\\\r 94%|█████████▍| 47111/50005 [13:03:21<45:07,  1.07it/s]\\\\r 94%|█████████▍| 47112/50005 [13:03:22<45:01,  1.07it/s]\\\\r 94%|█████████▍| 47113/50005 [13:03:23<44:58,  1.07it/s]\\\\r 94%|█████████▍| 47114/50005 [13:03:24<44:59,  1.07it/s]\\\\r 94%|█████████▍| 47115/50005 [13:03:25<44:53,  1.07it/s]\\\\r 94%|█████████▍| 47116/50005 [13:03:26<44:51,  1.07it/s]\\\\r 94%|█████████▍| 47117/50005 [13:03:27<44:49,  1.07it/s]\\\\r 94%|█████████▍| 47118/50005 [13:03:28<44:48,  1.07it/s]\\\\r 94%|█████████▍| 47119/50005 [13:03:29<44:50,  1.07it/s]\\\\r 94%|█████████▍| 47120/50005 [13:03:30<44:49,  1.07it/s]\\\\r 94%|█████████▍| 47121/50005 [13:03:31<44:47,  1.07it/s]\\\\r 94%|█████████▍| 47122/50005 [13:03:32<44:43,  1.07it/s]\\\\r 94%|█████████▍| 47123/50005 [13:03:33<44:42,  1.07it/s]\\\\r 94%|█████████▍| 47124/50005 [13:03:34<44:49,  1.07it/s]\\\\r 94%|█████████▍| 47125/50005 [13:03:34<44:59,  1.07it/s]\\\\r 94%|█████████▍| 47126/50005 [13:03:35<44:54,  1.07it/s]\\\\r 94%|█████████▍| 47127/50005 [13:03:36<44:47,  1.07it/s]\\\\r 94%|█████████▍| 47128/50005 [13:03:37<44:43,  1.07it/s]\\\\r 94%|█████████▍| 47129/50005 [13:03:38<44:51,  1.07it/s]\\\\r 94%|█████████▍| 47130/50005 [13:03:39<45:29,  1.05it/s]\\\\r 94%|█████████▍| 47131/50005 [13:03:40<45:28,  1.05it/s]\\\\r 94%|█████████▍| 47132/50005 [13:03:41<45:14,  1.06it/s]\\\\r 94%|█████████▍| 47133/50005 [13:03:42<45:04,  1.06it/s]\\\\r 94%|█████████▍| 47134/50005 [13:03:43<45:09,  1.06it/s]\\\\r 94%|█████████▍| 47135/50005 [13:03:44<44:59,  1.06it/s]\\\\r 94%|█████████▍| 47136/50005 [13:03:45<44:47,  1.07it/s]\\\\r 94%|█████████▍| 47137/50005 [13:03:46<44:39,  1.07it/s]\\\\r 94%|█████████▍| 47138/50005 [13:03:47<44:43,  1.07it/s]\\\\r 94%|█████████▍| 47139/50005 [13:03:48<44:40,  1.07it/s]\\\\r 94%|█████████▍| 47140/50005 [13:03:49<44:51,  1.06it/s]\\\\r 94%|█████████▍| 47141/50005 [13:03:50<44:49,  1.06it/s]\\\\r 94%|█████████▍| 47142/50005 [13:03:50<44:57,  1.06it/s]\\\\r 94%|█████████▍| 47143/50005 [13:03:51<44:50,  1.06it/s]\\\\r 94%|█████████▍| 47144/50005 [13:03:52<44:37,  1.07it/s]\\\\r 94%|█████████▍| 47145/50005 [13:03:53<44:32,  1.07it/s]\\\\r 94%|█████████▍| 47146/50005 [13:03:54<44:31,  1.07it/s]\\\\r 94%|█████████▍| 47147/50005 [13:03:55<44:25,  1.07it/s]\\\\r 94%|█████████▍| 47148/50005 [13:03:56<44:18,  1.07it/s]\\\\r 94%|█████████▍| 47149/50005 [13:03:57<44:16,  1.08it/s]\\\\r 94%|█████████▍| 47150/50005 [13:03:58<44:16,  1.07it/s]\\\\r 94%|█████████▍| 47151/50005 [13:03:59<44:46,  1.06it/s]\\\\r 94%|█████████▍| 47152/50005 [13:04:00<44:38,  1.07it/s]\\\\r 94%|█████████▍| 47153/50005 [13:04:01<44:26,  1.07it/s]\\\\r 94%|█████████▍| 47154/50005 [13:04:02<44:22,  1.07it/s]\\\\r 94%|█████████▍| 47155/50005 [13:04:03<44:19,  1.07it/s]\\\\r 94%|█████████▍| 47156/50005 [13:04:04<44:19,  1.07it/s]\\\\r 94%|█████████▍| 47157/50005 [13:04:04<44:39,  1.06it/s]\\\\r 94%|█████████▍| 47158/50005 [13:04:05<44:26,  1.07it/s]\\\\r 94%|█████████▍| 47159/50005 [13:04:06<44:20,  1.07it/s]\\\\r 94%|█████████▍| 47160/50005 [13:04:07<44:13,  1.07it/s]\\\\r 94%|█████████▍| 47161/50005 [13:04:08<44:10,  1.07it/s]\\\\r 94%|█████████▍| 47162/50005 [13:04:09<44:07,  1.07it/s]\\\\r 94%|█████████▍| 47163/50005 [13:04:10<44:15,  1.07it/s]\\\\r 94%|█████████▍| 47164/50005 [13:04:11<44:16,  1.07it/s]\\\\r 94%|█████████▍| 47165/50005 [13:04:12<44:42,  1.06it/s]\\\\r 94%|█████████▍| 47166/50005 [13:04:13<44:27,  1.06it/s]\\\\r 94%|█████████▍| 47167/50005 [13:04:14<44:17,  1.07it/s]\\\\r 94%|█████████▍| 47168/50005 [13:04:15<44:11,  1.07it/s]\\\\r 94%|█████████▍| 47169/50005 [13:04:16<44:08,  1.07it/s]\\\\r 94%|█████████▍| 47170/50005 [13:04:17<44:06,  1.07it/s]\\\\r 94%|████\\\\n\\\\n... [截断: 输出过长，省略 162024 字符] ...\\\\n\\\\nit/s]\\\\r100%|█████████▉| 49975/50005 [13:50:44<00:27,  1.07it/s]\\\\r100%|█████████▉| 49976/50005 [13:50:44<00:27,  1.07it/s]\\\\r100%|█████████▉| 49977/50005 [13:50:45<00:26,  1.07it/s]\\\\r100%|█████████▉| 49978/50005 [13:50:46<00:25,  1.07it/s]\\\\r100%|█████████▉| 49979/50005 [13:50:47<00:24,  1.05it/s]\\\\r100%|█████████▉| 49980/50005 [13:50:49<00:26,  1.04s/it]\\\\r100%|█████████▉| 49981/50005 [13:50:50<00:24,  1.01s/it]\\\\r100%|█████████▉| 49982/50005 [13:50:50<00:22,  1.02it/s]\\\\r100%|█████████▉| 49983/50005 [13:50:51<00:21,  1.03it/s]\\\\r100%|█████████▉| 49984/50005 [13:50:52<00:20,  1.05it/s]\\\\r100%|█████████▉| 49985/50005 [13:50:53<00:18,  1.06it/s]\\\\r100%|█████████▉| 49986/50005 [13:50:54<00:17,  1.06it/s]\\\\r100%|█████████▉| 49987/50005 [13:50:55<00:16,  1.07it/s]\\\\r100%|█████████▉| 49988/50005 [13:50:56<00:15,  1.07it/s]\\\\r100%|█████████▉| 49989/50005 [13:50:57<00:14,  1.07it/s]\\\\r100%|█████████▉| 49990/50005 [13:50:58<00:13,  1.07it/s]\\\\r100%|█████████▉| 49991/50005 [13:50:59<00:13,  1.08it/s]\\\\r100%|█████████▉| 49992/50005 [13:51:00<00:12,  1.08it/s]\\\\r100%|█████████▉| 49993/50005 [13:51:01<00:11,  1.08it/s]\\\\r100%|█████████▉| 49994/50005 [13:51:02<00:10,  1.08it/s]\\\\r100%|█████████▉| 49995/50005 [13:51:02<00:09,  1.08it/s]\\\\r100%|█████████▉| 49996/50005 [13:51:03<00:08,  1.08it/s]\\\\r100%|█████████▉| 49997/50005 [13:51:04<00:07,  1.08it/s]\\\\r100%|█████████▉| 49998/50005 [13:51:05<00:06,  1.06it/s]\\\\r100%|█████████▉| 49999/50005 [13:51:06<00:05,  1.07it/s]\\\\r100%|█████████▉| 50000/50005 [13:51:07<00:04,  1.08it/s][AUX] step=50000, occ_loss=0.0095, depth_loss=0.0000, action_loss=0.0449\\\\n\\\\r100%|█████████▉| 50001/50005 [13:51:08<00:03,  1.08it/s]05/26 [15:31:20] INFO     | >> [*] Saved dataset statistics    data_utils.py:284\\\\n                          file at path                                          \\\\n                          /root/autodl-tmp/checkpoints/detach_                  \\\\n                          bn_v2_s0/openvla-7b+libero_spatial_n                  \\\\n                          o_noops+b8+lr-0.0005+lora-r32+dropou                  \\\\n                          t-0.0--image_aug--detach_bn_v2_s0--5                  \\\\n                          0000_chkpt/dataset_statistics.json                    \\\\nSaving Model Checkpoint for Step 50000\\\\n/root/miniconda3/envs/occsafe/lib/python3.10/site-packages/peft/utils/save_and_load.py:180: UserWarning: Setting `save_embedding_layers` to `True` as embedding layers found in `target_modules`.\\\\n  warnings.warn(\\\\\\\"Setting `save_embedding_layers` to `True` as embedding layers found in `target_modules`.\\\\\\\")\\\\n\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\\\u001b[A\\\\n\\\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  3.75it/s]\\\\u001b[A\\\\n\\\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00,  4.54it/s]\\\\u001b[A\\\\n\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  5.17it/s]\\\\u001b[A\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  4.87it/s]\\\\nSaved merged model for Step 50000 at: /root/autodl-tmp/checkpoints/detach_bn_v2_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--detach_bn_v2_s0--50000_chkpt\\\\n/root/miniconda3/envs/occsafe/lib/python3.10/site-packages/torch/distributed/c10d_logger.py:83: UserWarning: barrier(): using the device under current context. You can specify `device_id` in `init_process_group` to mute this warning.\\\\n  return func(*args, **kwargs)\\\\n\\\\r100%|█████████▉| 50002/50005 [13:51:49<00:39, 13.03s/it]\\\\r100%|█████████▉| 50003/50005 [13:51:50<00:18,  9.40s/it]\\\\r100%|█████████▉| 50004/50005 [13:51:51<00:06,  6.90s/it]\\\\r100%|██████████| 50005/50005 [13:51:54<00:00,  5.51s/it]\\\\r50006it [13:51:55,  4.25s/it]                           Max step 50005 reached! Stopping training...\\\\n\\\\r                             \\\\r[rank0]:[W526 15:32:15.105165264 ProcessGroupNCCL.cpp:1575] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.27}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\r 94%|█████████▍| 47101/50005 [13:03:12<45:33,  1.06it/s]\\r 94%|█████████▍| 47102/50005 [13:03:13<45:35,  1.06it/s]\\r 94%|█████████▍| 47103/50005 [13:03:14<45:32,  1.06it/s]\\r 94%|█████████▍| 47104/50005 [13:03:15<45:31,  1.06it/s]\\r 94%|█████████▍| 47105/50005 [13:03:16<46:52,  1.03it/s]\\r 94%|█████████▍| 47106/50005 [13:03:17<46:28,  1.04it/s]\\r 94%|█████████▍| 47107/50005 [13:03:18<46:01,  1.05it/s]\\r 94%|█████████▍| 47108/50005 [13:03:19<45:40,  1.06it/s]\\r 94%|█████████▍| 47109/50005 [13:03:20<45:27,  1.06it/s]\\r 94%|█████████▍| 47110/50005 [13:03:20<45:16,  1.07it/s]\\r 94%|█████████▍| 47111/50005 [13:03:21<45:07,  1.07it/s]\\r 94%|█████████▍| 47112/50005 [13:03:22<45:01,  1.07it/s]\\r 94%|█████████▍| 47113/50005 [13:03:23<44:58,  1.07it/s]\\r 94%|█████████▍| 47114/50005 [13:03:24<44:59,  1.07it/s]\\r 94%|█████████▍| 47115/50005 [13:03:25<44:53,  1.07it/s]\\r 94%|█████████▍| 47116/50005 [13:03:26<44:51,  1.07it/s]\\r 94%|█████████▍| 47117/50005 [13:03:27<44:49,  1.07it/s]\\r 94%|█████████▍| 47118/50005 [13:03:28<44:48,  1.07it/s]\\r 94%|█████████▍| 47119/50005 [13:03:29<44:50,  1.07it/s]\\r 94%|█████████▍| 47120/50005 [13:03:30<44:49,  1.07it/s]\\r 94%|█████████▍| 47121/50005 [13:03:31<44:47,  1.07it/s]\\r 94%|█████████▍| 47122/50005 [13:03:32<44:43,  1.07it/s]\\r 94%|█████████▍| 47123/50005 [13:03:33<44:42,  1.07it/s]\\r 94%|█████████▍| 47124/50005 [13:03:34<44:49,  1.07it/s]\\r 94%|█████████▍| 47125/50005 [13:03:34<44:59,  1.07it/s]\\r 94%|█████████▍| 47126/50005 [13:03:35<44:54,  1.07it/s]\\r 94%|█████████▍| 47127/50005 [13:03:36<44:47,  1.07it/s]\\r 94%|█████████▍| 47128/50005 [13:03:37<44:43,  1.07it/s]\\r 94%|█████████▍| 47129/50005 [13:03:38<44:51,  1.07it/s]\\r 94%|█████████▍| 47130/50005 [13:03:39<45:29,  1.05it/s]\\r 94%|█████████▍| 47131/50005 [13:03:40<45:28,  1.05it/s]\\r 94%|█████████▍| 47132/50005 [13:03:41<45:14,  1.06it/s]\\r 94%|█████████▍| 47133/50005 [13:03:42<45:04,  1.06it/s]\\r 94%|█████████▍| 47134/50005 [13:03:43<45:09,  1.06it/s]\\r 94%|█████████▍| 47135/50005 [13:03:44<44:59,  1.06it/s]\\r 94%|█████████▍| 47136/50005 [13:03:45<44:47,  1.07it/s]\\r 94%|█████████▍| 47137/50005 [13:03:46<44:39,  1.07it/s]\\r 94%|█████████▍| 47138/50005 [13:03:47<44:43,  1.07it/s]\\r 94%|█████████▍| 47139/50005 [13:03:48<44:40,  1.07it/s]\\r 94%|█████████▍| 47140/50005 [13:03:49<44:51,  1.06it/s]\\r 94%|█████████▍| 47141/50005 [13:03:50<44:49,  1.06it/s]\\r 94%|█████████▍| 47142/50005 [13:03:50<44:57,  1.06it/s]\\r 94%|█████████▍| 47143/50005 [13:03:51<44:50,  1.06it/s]\\r 94%|█████████▍| 47144/50005 [13:03:52<44:37,  1.07it/s]\\r 94%|█████████▍| 47145/50005 [13:03:53<44:32,  1.07it/s]\\r 94%|█████████▍| 47146/50005 [13:03:54<44:31,  1.07it/s]\\r 94%|█████████▍| 47147/50005 [13:03:55<44:25,  1.07it/s]\\r 94%|█████████▍| 47148/50005 [13:03:56<44:18,  1.07it/s]\\r 94%|█████████▍| 47149/50005 [13:03:57<44:16,  1.08it/s]\\r 94%|█████████▍| 47150/50005 [13:03:58<44:16,  1.07it/s]\\r 94%|█████████▍| 47151/50005 [13:03:59<44:46,  1.06it/s]\\r 94%|█████████▍| 47152/50005 [13:04:00<44:38,  1.07it/s]\\r 94%|█████████▍| 47153/50005 [13:04:01<44:26,  1.07it/s]\\r 94%|█████████▍| 47154/50005 [13:04:02<44:22,  1.07it/s]\\r 94%|█████████▍| 47155/50005 [13:04:03<44:19,  1.07it/s]\\r 94%|█████████▍| 47156/50005 [13:04:04<44:19,  1.07it/s]\\r 94%|█████████▍| 47157/50005 [13:04:04<44:39,  1.06it/s]\\r 94%|█████████▍| 47158/50005 [13:04:05<44:26,  1.07it/s]\\r 94%|█████████▍| 47159/50005 [13:04:06<44:20,  1.07it/s]\\r 94%|█████████▍| 47160/50005 [13:04:07<44:13,  1.07it/s]\\r 94%|█████████▍| 47161/50005 [13:04:08<44:10,  1.07it/s]\\r 94%|█████████▍| 47162/50005 [13:04:09<44:07,  1.07it/s]\\r 94%|█████████▍| 47163/50005 [13:04:10<44:15,  1.07it/s]\\r 94%|█████████▍| 47164/50005 [13:04:11<44:16,  1.07it/s]\\r 94%|█████████▍| 47165/50005 [13:04:12<44:42,  1.06it/s]\\r 94%|█████████▍| 47166/50005 [13:04:13<44:27,  1.06it/s]\\r 94%|█████████▍| 47167/50005 [13:04:14<44:17,  1.07it/s]\\r 94%|█████████▍| 47168/50005 [13:04:15<44:11,  1.07it/s]\\r 94%|█████████▍| 47169/50005 [13:04:16<44:08,  1.07it/s]\\r 94%|█████████▍| 47170/50005 [13:04:17<44:06,  1.07it/s]\\r 94%|████\\n\\n... [截断: 输出过长，省略 162024 字符] ...\\n\\nit/s]\\r100%|█████████▉| 49975/50005 [13:50:44<00:27,  1.07it/s]\\r100%|█████████▉| 49976/50005 [13:50:44<00:27,  1.07it/s]\\r100%|█████████▉| 49977/50005 [13:50:45<00:26,  1.07it/s]\\r100%|█████████▉| 49978/50005 [13:50:46<00:25,  1.07it/s]\\r100%|█████████▉| 49979/50005 [13:50:47<00:24,  1.05it/s]\\r100%|█████████▉| 49980/50005 [13:50:49<00:26,  1.04s/it]\\r100%|█████████▉| 49981/50005 [13:50:50<00:24,  1.01s/it]\\r100%|█████████▉| 49982/50005 [13:50:50<00:22,  1.02it/s]\\r100%|█████████▉| 49983/50005 [13:50:51<00:21,  1.03it/s]\\r100%|█████████▉| 49984/50005 [13:50:52<00:20,  1.05it/s]\\r100%|█████████▉| 49985/50005 [13:50:53<00:18,  1.06it/s]\\r100%|█████████▉| 49986/50005 [13:50:54<00:17,  1.06it/s]\\r100%|█████████▉| 49987/50005 [13:50:55<00:16,  1.07it/s]\\r100%|█████████▉| 49988/50005 [13:50:56<00:15,  1.07it/s]\\r100%|█████████▉| 49989/50005 [13:50:57<00:14,  1.07it/s]\\r100%|█████████▉| 49990/50005 [13:50:58<00:13,  1.07it/s]\\r100%|█████████▉| 49991/50005 [13:50:59<00:13,  1.08it/s]\\r100%|█████████▉| 49992/50005 [13:51:00<00:12,  1.08it/s]\\r100%|█████████▉| 49993/50005 [13:51:01<00:11,  1.08it/s]\\r100%|█████████▉| 49994/50005 [13:51:02<00:10,  1.08it/s]\\r100%|█████████▉| 49995/50005 [13:51:02<00:09,  1.08it/s]\\r100%|█████████▉| 49996/50005 [13:51:03<00:08,  1.08it/s]\\r100%|█████████▉| 49997/50005 [13:51:04<00:07,  1.08it/s]\\r100%|█████████▉| 49998/50005 [13:51:05<00:06,  1.06it/s]\\r100%|█████████▉| 49999/50005 [13:51:06<00:05,  1.07it/s]\\r100%|█████████▉| 50000/50005 [13:51:07<00:04,  1.08it/s][AUX] step=50000, occ_loss=0.0095, depth_loss=0.0000, action_loss=0.0449\\n\\r100%|█████████▉| 50001/50005 [13:51:08<00:03,  1.08it/s]05/26 [15:31:20] INFO     | >> [*] Saved dataset statistics    data_utils.py:284\\n                          file at path                                          \\n                          /root/autodl-tmp/checkpoints/detach_                  \\n                          bn_v2_s0/openvla-7b+libero_spatial_n                  \\n                          o_noops+b8+lr-0.0005+lora-r32+dropou                  \\n                          t-0.0--image_aug--detach_bn_v2_s0--5                  \\n                          0000_chkpt/dataset_statistics.json                    \\nSaving Model Checkpoint for Step 50000\\n/root/miniconda3/envs/occsafe/lib/python3.10/site-packages/peft/utils/save_and_load.py:180: UserWarning: Setting `save_embedding_layers` to `True` as embedding layers found in `target_modules`.\\n  warnings.warn(\\\"Setting `save_embedding_layers` to `True` as embedding layers found in `target_modules`.\\\")\\n\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\u001b[A\\n\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  3.75it/s]\\u001b[A\\n\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00,  4.54it/s]\\u001b[A\\n\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  5.17it/s]\\u001b[A\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  4.87it/s]\\nSaved merged model for Step 50000 at: /root/autodl-tmp/checkpoints/detach_bn_v2_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--detach_bn_v2_s0--50000_chkpt\\n/root/miniconda3/envs/occsafe/lib/python3.10/site-packages/torch/distributed/c10d_logger.py:83: UserWarning: barrier(): using the device under current context. You can specify `device_id` in `init_process_group` to mute this warning.\\n  return func(*args, **kwargs)\\n\\r100%|█████████▉| 50002/50005 [13:51:49<00:39, 13.03s/it]\\r100%|█████████▉| 50003/50005 [13:51:50<00:18,  9.40s/it]\\r100%|█████████▉| 50004/50005 [13:51:51<00:06,  6.90s/it]\\r100%|██████████| 50005/50005 [13:51:54<00:00,  5.51s/it]\\r50006it [13:51:55,  4.25s/it]                           Max step 50005 reached! Stopping training...\\n\\r                             \\r[rank0]:[W526 15:32:15.105165264 ProcessGroupNCCL.cpp:1575] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.27}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-26T07:38:16.641Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013Pr16gFW3NShAbbXvMyBTL",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r 94%|█████████▍| 47101/50005 [13:02:21<44:50,  1.08it/s]\\\\r 94%|█████████▍| 47102/50005 [13:02:22<44:47,  1.08it/s]\\\\r 94%|█████████▍| 47103/50005 [13:02:22<44:45,  1.08it/s]\\\\r 94%|█████████▍| 47104/50005 [13:02:23<44:44,  1.08it/s]\\\\r 94%|█████████▍| 47105/50005 [13:02:24<44:40,  1.08it/s]\\\\r 94%|█████████▍| 47106/50005 [13:02:25<44:45,  1.08it/s]\\\\r 94%|█████████▍| 47107/50005 [13:02:26<44:49,  1.08it/s]\\\\r 94%|█████████▍| 47108/50005 [13:02:27<44:57,  1.07it/s]\\\\r 94%|█████████▍| 47109/50005 [13:02:28<44:56,  1.07it/s]\\\\r 94%|█████████▍| 47110/50005 [13:02:29<44:55,  1.07it/s]\\\\r 94%|█████████▍| 47111/50005 [13:02:30<44:58,  1.07it/s]\\\\r 94%|█████████▍| 47112/50005 [13:02:31<44:54,  1.07it/s]\\\\r 94%|█████████▍| 47113/50005 [13:02:32<44:55,  1.07it/s]\\\\r 94%|█████████▍| 47114/50005 [13:02:33<44:54,  1.07it/s]\\\\r 94%|█████████▍| 47115/50005 [13:02:34<44:51,  1.07it/s]\\\\r 94%|█████████▍| 47116/50005 [13:02:35<44:49,  1.07it/s]\\\\r 94%|█████████▍| 47117/50005 [13:02:35<44:43,  1.08it/s]\\\\r 94%|█████████▍| 47118/50005 [13:02:36<44:39,  1.08it/s]\\\\r 94%|█████████▍| 47119/50005 [13:02:37<44:34,  1.08it/s]\\\\r 94%|█████████▍| 47120/50005 [13:02:38<44:31,  1.08it/s]\\\\r 94%|█████████▍| 47121/50005 [13:02:39<44:31,  1.08it/s]\\\\r 94%|█████████▍| 47122/50005 [13:02:40<44:29,  1.08it/s]\\\\r 94%|█████████▍| 47123/50005 [13:02:41<44:28,  1.08it/s]\\\\r 94%|█████████▍| 47124/50005 [13:02:42<44:25,  1.08it/s]\\\\r 94%|█████████▍| 47125/50005 [13:02:43<44:25,  1.08it/s]\\\\r 94%|█████████▍| 47126/50005 [13:02:44<44:25,  1.08it/s]\\\\r 94%|█████████▍| 47127/50005 [13:02:45<44:22,  1.08it/s]\\\\r 94%|█████████▍| 47128/50005 [13:02:46<44:20,  1.08it/s]\\\\r 94%|█████████▍| 47129/50005 [13:02:47<44:20,  1.08it/s]\\\\r 94%|█████████▍| 47130/50005 [13:02:48<44:25,  1.08it/s]\\\\r 94%|█████████▍| 47131/50005 [13:02:48<44:23,  1.08it/s]\\\\r 94%|█████████▍| 47132/50005 [13:02:49<44:26,  1.08it/s]\\\\r 94%|█████████▍| 47133/50005 [13:02:50<44:23,  1.08it/s]\\\\r 94%|█████████▍| 47134/50005 [13:02:51<44:27,  1.08it/s]\\\\r 94%|█████████▍| 47135/50005 [13:02:52<44:28,  1.08it/s]\\\\r 94%|█████████▍| 47136/50005 [13:02:53<44:33,  1.07it/s]\\\\r 94%|█████████▍| 47137/50005 [13:02:54<44:35,  1.07it/s]\\\\r 94%|█████████▍| 47138/50005 [13:02:55<44:33,  1.07it/s]\\\\r 94%|█████████▍| 47139/50005 [13:02:56<44:33,  1.07it/s]\\\\r 94%|█████████▍| 47140/50005 [13:02:57<44:26,  1.07it/s]\\\\r 94%|█████████▍| 47141/50005 [13:02:58<44:21,  1.08it/s]\\\\r 94%|█████████▍| 47142/50005 [13:02:59<44:14,  1.08it/s]\\\\r 94%|█████████▍| 47143/50005 [13:03:00<44:10,  1.08it/s]\\\\r 94%|█████████▍| 47144/50005 [13:03:01<44:05,  1.08it/s]\\\\r 94%|█████████▍| 47145/50005 [13:03:01<44:03,  1.08it/s]\\\\r 94%|█████████▍| 47146/50005 [13:03:02<44:00,  1.08it/s]\\\\r 94%|█████████▍| 47147/50005 [13:03:03<44:00,  1.08it/s]\\\\r 94%|█████████▍| 47148/50005 [13:03:04<43:56,  1.08it/s]\\\\r 94%|█████████▍| 47149/50005 [13:03:05<43:54,  1.08it/s]\\\\r 94%|█████████▍| 47150/50005 [13:03:06<43:54,  1.08it/s]\\\\r 94%|█████████▍| 47151/50005 [13:03:07<43:51,  1.08it/s]\\\\r 94%|█████████▍| 47152/50005 [13:03:08<43:51,  1.08it/s]\\\\r 94%|█████████▍| 47153/50005 [13:03:09<43:55,  1.08it/s]\\\\r 94%|█████████▍| 47154/50005 [13:03:10<43:54,  1.08it/s]\\\\r 94%|█████████▍| 47155/50005 [13:03:11<43:55,  1.08it/s]\\\\r 94%|█████████▍| 47156/50005 [13:03:12<43:50,  1.08it/s]\\\\r 94%|█████████▍| 47157/50005 [13:03:13<43:56,  1.08it/s]\\\\r 94%|█████████▍| 47158/50005 [13:03:13<43:53,  1.08it/s]\\\\r 94%|█████████▍| 47159/50005 [13:03:14<43:49,  1.08it/s]\\\\r 94%|█████████▍| 47160/50005 [13:03:15<43:47,  1.08it/s]\\\\r 94%|█████████▍| 47161/50005 [13:03:16<43:42,  1.08it/s]\\\\r 94%|█████████▍| 47162/50005 [13:03:17<43:43,  1.08it/s]\\\\r 94%|█████████▍| 47163/50005 [13:03:18<43:41,  1.08it/s]\\\\r 94%|█████████▍| 47164/50005 [13:03:19<43:40,  1.08it/s]\\\\r 94%|█████████▍| 47165/50005 [13:03:20<43:40,  1.08it/s]\\\\r 94%|█████████▍| 47166/50005 [13:03:21<43:39,  1.08it/s]\\\\r 94%|█████████▍| 47167/50005 [13:03:22<43:42,  1.08it/s]\\\\r 94%|█████████▍| 47168/50005 [13:03:23<43:40,  1.08it/s]\\\\r 94%|█████████▍| 47169/50005 [13:03:24<43:40,  1.08it/s]\\\\r 94%|█████████▍| 47170/50005 [13:03:25<43:38,  1.08it/s]\\\\r 94%|████\\\\n\\\\n... [截断: 输出过长，省略 162019 字符] ...\\\\n\\\\n/s]\\\\r100%|█████████▉| 49975/50005 [13:49:09<00:27,  1.08it/s]\\\\r100%|█████████▉| 49976/50005 [13:49:10<00:26,  1.08it/s]\\\\r100%|█████████▉| 49977/50005 [13:49:11<00:26,  1.08it/s]\\\\r100%|█████████▉| 49978/50005 [13:49:12<00:25,  1.08it/s]\\\\r100%|█████████▉| 49979/50005 [13:49:12<00:24,  1.08it/s]\\\\r100%|█████████▉| 49980/50005 [13:49:13<00:23,  1.08it/s]\\\\r100%|█████████▉| 49981/50005 [13:49:14<00:22,  1.08it/s]\\\\r100%|█████████▉| 49982/50005 [13:49:15<00:21,  1.08it/s]\\\\r100%|█████████▉| 49983/50005 [13:49:16<00:20,  1.07it/s]\\\\r100%|█████████▉| 49984/50005 [13:49:17<00:20,  1.03it/s]\\\\r100%|█████████▉| 49985/50005 [13:49:18<00:19,  1.04it/s]\\\\r100%|█████████▉| 49986/50005 [13:49:19<00:19,  1.02s/it]\\\\r100%|█████████▉| 49987/50005 [13:49:20<00:18,  1.05s/it]\\\\r100%|█████████▉| 49988/50005 [13:49:22<00:18,  1.06s/it]\\\\r100%|█████████▉| 49989/50005 [13:49:23<00:16,  1.04s/it]\\\\r100%|█████████▉| 49990/50005 [13:49:23<00:15,  1.01s/it]\\\\r100%|█████████▉| 49991/50005 [13:49:24<00:13,  1.01it/s]\\\\r100%|█████████▉| 49992/50005 [13:49:25<00:12,  1.02it/s]\\\\r100%|█████████▉| 49993/50005 [13:49:26<00:11,  1.03it/s]\\\\r100%|█████████▉| 49994/50005 [13:49:27<00:10,  1.04it/s]\\\\r100%|█████████▉| 49995/50005 [13:49:28<00:09,  1.05it/s]\\\\r100%|█████████▉| 49996/50005 [13:49:29<00:08,  1.06it/s]\\\\r100%|█████████▉| 49997/50005 [13:49:30<00:07,  1.06it/s]\\\\r100%|█████████▉| 49998/50005 [13:49:31<00:06,  1.07it/s]\\\\r100%|█████████▉| 49999/50005 [13:49:32<00:05,  1.07it/s]\\\\r100%|█████████▉| 50000/50005 [13:49:33<00:04,  1.06it/s][AUX] step=50000, occ_loss=0.0089, depth_loss=0.0000, action_loss=0.0513\\\\n\\\\r100%|█████████▉| 50001/50005 [13:49:34<00:03,  1.06it/s]05/26 [15:29:12] INFO     | >> [*] Saved dataset statistics    data_utils.py:284\\\\n                          file at path                                          \\\\n                          /root/autodl-tmp/checkpoints/detach_                  \\\\n                          bn_v2_s1/openvla-7b+libero_spatial_n                  \\\\n                          o_noops+b8+lr-0.0005+lora-r32+dropou                  \\\\n                          t-0.0--image_aug--detach_bn_v2_s1--5                  \\\\n                          0000_chkpt/dataset_statistics.json                    \\\\nSaving Model Checkpoint for Step 50000\\\\n/root/miniconda3/envs/occsafe/lib/python3.10/site-packages/peft/utils/save_and_load.py:180: UserWarning: Setting `save_embedding_layers` to `True` as embedding layers found in `target_modules`.\\\\n  warnings.warn(\\\\\\\"Setting `save_embedding_layers` to `True` as embedding layers found in `target_modules`.\\\\\\\")\\\\n\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\\\u001b[A\\\\n\\\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  3.57it/s]\\\\u001b[A\\\\n\\\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00,  4.36it/s]\\\\u001b[A\\\\n\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  4.89it/s]\\\\u001b[A\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  4.62it/s]\\\\nSaved merged model for Step 50000 at: /root/autodl-tmp/checkpoints/detach_bn_v2_s1/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--detach_bn_v2_s1--50000_chkpt\\\\n/root/miniconda3/envs/occsafe/lib/python3.10/site-packages/torch/distributed/c10d_logger.py:83: UserWarning: barrier(): using the device under current context. You can specify `device_id` in `init_process_group` to mute this warning.\\\\n  return func(*args, **kwargs)\\\\n\\\\r100%|█████████▉| 50002/50005 [13:50:35<00:57, 19.09s/it]\\\\r100%|█████████▉| 50003/50005 [13:50:36<00:27, 13.64s/it]\\\\r100%|█████████▉| 50004/50005 [13:50:37<00:09,  9.83s/it]\\\\r100%|██���███████| 50005/50005 [13:50:38<00:00,  7.16s/it]\\\\r50006it [13:50:39,  5.29s/it]                           Max step 50005 reached! Stopping training...\\\\n\\\\r                             \\\\r[rank0]:[W526 15:30:21.508092522 ProcessGroupNCCL.cpp:1575] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "e0e17fc9-a80c-433b-a65a-c02f29987f3d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r 94%|█████████▍| 47101/50005 [13:02:21<44:50,  1.08it/s]\\\\r 94%|█████████▍| 47102/50005 [13:02:22<44:47,  1.08it/s]\\\\r 94%|█████████▍| 47103/50005 [13:02:22<44:45,  1.08it/s]\\\\r 94%|█████████▍| 47104/50005 [13:02:23<44:44,  1.08it/s]\\\\r 94%|█████████▍| 47105/50005 [13:02:24<44:40,  1.08it/s]\\\\r 94%|█████████▍| 47106/50005 [13:02:25<44:45,  1.08it/s]\\\\r 94%|█████████▍| 47107/50005 [13:02:26<44:49,  1.08it/s]\\\\r 94%|█████████▍| 47108/50005 [13:02:27<44:57,  1.07it/s]\\\\r 94%|█████████▍| 47109/50005 [13:02:28<44:56,  1.07it/s]\\\\r 94%|█████████▍| 47110/50005 [13:02:29<44:55,  1.07it/s]\\\\r 94%|█████████▍| 47111/50005 [13:02:30<44:58,  1.07it/s]\\\\r 94%|█████████▍| 47112/50005 [13:02:31<44:54,  1.07it/s]\\\\r 94%|█████████▍| 47113/50005 [13:02:32<44:55,  1.07it/s]\\\\r 94%|█████████▍| 47114/50005 [13:02:33<44:54,  1.07it/s]\\\\r 94%|█████████▍| 47115/50005 [13:02:34<44:51,  1.07it/s]\\\\r 94%|█████████▍| 47116/50005 [13:02:35<44:49,  1.07it/s]\\\\r 94%|█████████▍| 47117/50005 [13:02:35<44:43,  1.08it/s]\\\\r 94%|█████████▍| 47118/50005 [13:02:36<44:39,  1.08it/s]\\\\r 94%|█████████▍| 47119/50005 [13:02:37<44:34,  1.08it/s]\\\\r 94%|█████████▍| 47120/50005 [13:02:38<44:31,  1.08it/s]\\\\r 94%|█████████▍| 47121/50005 [13:02:39<44:31,  1.08it/s]\\\\r 94%|█████████▍| 47122/50005 [13:02:40<44:29,  1.08it/s]\\\\r 94%|█████████▍| 47123/50005 [13:02:41<44:28,  1.08it/s]\\\\r 94%|█████████▍| 47124/50005 [13:02:42<44:25,  1.08it/s]\\\\r 94%|█████████▍| 47125/50005 [13:02:43<44:25,  1.08it/s]\\\\r 94%|█████████▍| 47126/50005 [13:02:44<44:25,  1.08it/s]\\\\r 94%|█████████▍| 47127/50005 [13:02:45<44:22,  1.08it/s]\\\\r 94%|█████████▍| 47128/50005 [13:02:46<44:20,  1.08it/s]\\\\r 94%|█████████▍| 47129/50005 [13:02:47<44:20,  1.08it/s]\\\\r 94%|█████████▍| 47130/50005 [13:02:48<44:25,  1.08it/s]\\\\r 94%|█████████▍| 47131/50005 [13:02:48<44:23,  1.08it/s]\\\\r 94%|█████████▍| 47132/50005 [13:02:49<44:26,  1.08it/s]\\\\r 94%|█████████▍| 47133/50005 [13:02:50<44:23,  1.08it/s]\\\\r 94%|█████████▍| 47134/50005 [13:02:51<44:27,  1.08it/s]\\\\r 94%|█████████▍| 47135/50005 [13:02:52<44:28,  1.08it/s]\\\\r 94%|█████████▍| 47136/50005 [13:02:53<44:33,  1.07it/s]\\\\r 94%|█████████▍| 47137/50005 [13:02:54<44:35,  1.07it/s]\\\\r 94%|█████████▍| 47138/50005 [13:02:55<44:33,  1.07it/s]\\\\r 94%|█████████▍| 47139/50005 [13:02:56<44:33,  1.07it/s]\\\\r 94%|█████████▍| 47140/50005 [13:02:57<44:26,  1.07it/s]\\\\r 94%|█████████▍| 47141/50005 [13:02:58<44:21,  1.08it/s]\\\\r 94%|█████████▍| 47142/50005 [13:02:59<44:14,  1.08it/s]\\\\r 94%|█████████▍| 47143/50005 [13:03:00<44:10,  1.08it/s]\\\\r 94%|█████████▍| 47144/50005 [13:03:01<44:05,  1.08it/s]\\\\r 94%|█████████▍| 47145/50005 [13:03:01<44:03,  1.08it/s]\\\\r 94%|█████████▍| 47146/50005 [13:03:02<44:00,  1.08it/s]\\\\r 94%|█████████▍| 47147/50005 [13:03:03<44:00,  1.08it/s]\\\\r 94%|█████████▍| 47148/50005 [13:03:04<43:56,  1.08it/s]\\\\r 94%|█████████▍| 47149/50005 [13:03:05<43:54,  1.08it/s]\\\\r 94%|█████████▍| 47150/50005 [13:03:06<43:54,  1.08it/s]\\\\r 94%|█████████▍| 47151/50005 [13:03:07<43:51,  1.08it/s]\\\\r 94%|█████████▍| 47152/50005 [13:03:08<43:51,  1.08it/s]\\\\r 94%|█████████▍| 47153/50005 [13:03:09<43:55,  1.08it/s]\\\\r 94%|█████████▍| 47154/50005 [13:03:10<43:54,  1.08it/s]\\\\r 94%|█████████▍| 47155/50005 [13:03:11<43:55,  1.08it/s]\\\\r 94%|█████████▍| 47156/50005 [13:03:12<43:50,  1.08it/s]\\\\r 94%|█████████▍| 47157/50005 [13:03:13<43:56,  1.08it/s]\\\\r 94%|█████████▍| 47158/50005 [13:03:13<43:53,  1.08it/s]\\\\r 94%|█████████▍| 47159/50005 [13:03:14<43:49,  1.08it/s]\\\\r 94%|█████████▍| 47160/50005 [13:03:15<43:47,  1.08it/s]\\\\r 94%|█████████▍| 47161/50005 [13:03:16<43:42,  1.08it/s]\\\\r 94%|█████████▍| 47162/50005 [13:03:17<43:43,  1.08it/s]\\\\r 94%|█████████▍| 47163/50005 [13:03:18<43:41,  1.08it/s]\\\\r 94%|█████████▍| 47164/50005 [13:03:19<43:40,  1.08it/s]\\\\r 94%|█████████▍| 47165/50005 [13:03:20<43:40,  1.08it/s]\\\\r 94%|█████████▍| 47166/50005 [13:03:21<43:39,  1.08it/s]\\\\r 94%|█████████▍| 47167/50005 [13:03:22<43:42,  1.08it/s]\\\\r 94%|█████████▍| 47168/50005 [13:03:23<43:40,  1.08it/s]\\\\r 94%|█████████▍| 47169/50005 [13:03:24<43:40,  1.08it/s]\\\\r 94%|█████████▍| 47170/50005 [13:03:25<43:38,  1.08it/s]\\\\r 94%|████\\\\n\\\\n... [截断: 输出过长，省略 162019 字符] ...\\\\n\\\\n/s]\\\\r100%|█████████▉| 49975/50005 [13:49:09<00:27,  1.08it/s]\\\\r100%|█████████▉| 49976/50005 [13:49:10<00:26,  1.08it/s]\\\\r100%|█████████▉| 49977/50005 [13:49:11<00:26,  1.08it/s]\\\\r100%|█████████▉| 49978/50005 [13:49:12<00:25,  1.08it/s]\\\\r100%|█████████▉| 49979/50005 [13:49:12<00:24,  1.08it/s]\\\\r100%|█████████▉| 49980/50005 [13:49:13<00:23,  1.08it/s]\\\\r100%|█████████▉| 49981/50005 [13:49:14<00:22,  1.08it/s]\\\\r100%|█████████▉| 49982/50005 [13:49:15<00:21,  1.08it/s]\\\\r100%|█████████▉| 49983/50005 [13:49:16<00:20,  1.07it/s]\\\\r100%|█████████▉| 49984/50005 [13:49:17<00:20,  1.03it/s]\\\\r100%|█████████▉| 49985/50005 [13:49:18<00:19,  1.04it/s]\\\\r100%|█████████▉| 49986/50005 [13:49:19<00:19,  1.02s/it]\\\\r100%|█████████▉| 49987/50005 [13:49:20<00:18,  1.05s/it]\\\\r100%|█████████▉| 49988/50005 [13:49:22<00:18,  1.06s/it]\\\\r100%|█████████▉| 49989/50005 [13:49:23<00:16,  1.04s/it]\\\\r100%|█████████▉| 49990/50005 [13:49:23<00:15,  1.01s/it]\\\\r100%|█████████▉| 49991/50005 [13:49:24<00:13,  1.01it/s]\\\\r100%|█████████▉| 49992/50005 [13:49:25<00:12,  1.02it/s]\\\\r100%|█████████▉| 49993/50005 [13:49:26<00:11,  1.03it/s]\\\\r100%|█████████▉| 49994/50005 [13:49:27<00:10,  1.04it/s]\\\\r100%|█████████▉| 49995/50005 [13:49:28<00:09,  1.05it/s]\\\\r100%|█████████▉| 49996/50005 [13:49:29<00:08,  1.06it/s]\\\\r100%|█████████▉| 49997/50005 [13:49:30<00:07,  1.06it/s]\\\\r100%|█████████▉| 49998/50005 [13:49:31<00:06,  1.07it/s]\\\\r100%|█████████▉| 49999/50005 [13:49:32<00:05,  1.07it/s]\\\\r100%|█████████▉| 50000/50005 [13:49:33<00:04,  1.06it/s][AUX] step=50000, occ_loss=0.0089, depth_loss=0.0000, action_loss=0.0513\\\\n\\\\r100%|█████████▉| 50001/50005 [13:49:34<00:03,  1.06it/s]05/26 [15:29:12] INFO     | >> [*] Saved dataset statistics    data_utils.py:284\\\\n                          file at path                                          \\\\n                          /root/autodl-tmp/checkpoints/detach_                  \\\\n                          bn_v2_s1/openvla-7b+libero_spatial_n                  \\\\n                          o_noops+b8+lr-0.0005+lora-r32+dropou                  \\\\n                          t-0.0--image_aug--detach_bn_v2_s1--5                  \\\\n                          0000_chkpt/dataset_statistics.json                    \\\\nSaving Model Checkpoint for Step 50000\\\\n/root/miniconda3/envs/occsafe/lib/python3.10/site-packages/peft/utils/save_and_load.py:180: UserWarning: Setting `save_embedding_layers` to `True` as embedding layers found in `target_modules`.\\\\n  warnings.warn(\\\\\\\"Setting `save_embedding_layers` to `True` as embedding layers found in `target_modules`.\\\\\\\")\\\\n\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\\\u001b[A\\\\n\\\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  3.57it/s]\\\\u001b[A\\\\n\\\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00,  4.36it/s]\\\\u001b[A\\\\n\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  4.89it/s]\\\\u001b[A\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  4.62it/s]\\\\nSaved merged model for Step 50000 at: /root/autodl-tmp/checkpoints/detach_bn_v2_s1/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--detach_bn_v2_s1--50000_chkpt\\\\n/root/miniconda3/envs/occsafe/lib/python3.10/site-packages/torch/distributed/c10d_logger.py:83: UserWarning: barrier(): using the device under current context. You can specify `device_id` in `init_process_group` to mute this warning.\\\\n  return func(*args, **kwargs)\\\\n\\\\r100%|█████████▉| 50002/50005 [13:50:35<00:57, 19.09s/it]\\\\r100%|█████████▉| 50003/50005 [13:50:36<00:27, 13.64s/it]\\\\r100%|█████████▉| 50004/50005 [13:50:37<00:09,  9.83s/it]\\\\r100%|██���███████| 50005/50005 [13:50:38<00:00,  7.16s/it]\\\\r50006it [13:50:39,  5.29s/it]                           Max step 50005 reached! Stopping training...\\\\n\\\\r                             \\\\r[rank0]:[W526 15:30:21.508092522 ProcessGroupNCCL.cpp:1575] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\r 94%|█████████▍| 47101/50005 [13:02:21<44:50,  1.08it/s]\\r 94%|█████████▍| 47102/50005 [13:02:22<44:47,  1.08it/s]\\r 94%|█████████▍| 47103/50005 [13:02:22<44:45,  1.08it/s]\\r 94%|█████████▍| 47104/50005 [13:02:23<44:44,  1.08it/s]\\r 94%|█████████▍| 47105/50005 [13:02:24<44:40,  1.08it/s]\\r 94%|█████████▍| 47106/50005 [13:02:25<44:45,  1.08it/s]\\r 94%|█████████▍| 47107/50005 [13:02:26<44:49,  1.08it/s]\\r 94%|█████████▍| 47108/50005 [13:02:27<44:57,  1.07it/s]\\r 94%|█████████▍| 47109/50005 [13:02:28<44:56,  1.07it/s]\\r 94%|█████████▍| 47110/50005 [13:02:29<44:55,  1.07it/s]\\r 94%|█████████▍| 47111/50005 [13:02:30<44:58,  1.07it/s]\\r 94%|█████████▍| 47112/50005 [13:02:31<44:54,  1.07it/s]\\r 94%|█████████▍| 47113/50005 [13:02:32<44:55,  1.07it/s]\\r 94%|█████████▍| 47114/50005 [13:02:33<44:54,  1.07it/s]\\r 94%|█████████▍| 47115/50005 [13:02:34<44:51,  1.07it/s]\\r 94%|█████████▍| 47116/50005 [13:02:35<44:49,  1.07it/s]\\r 94%|█████████▍| 47117/50005 [13:02:35<44:43,  1.08it/s]\\r 94%|█████████▍| 47118/50005 [13:02:36<44:39,  1.08it/s]\\r 94%|█████████▍| 47119/50005 [13:02:37<44:34,  1.08it/s]\\r 94%|█████████▍| 47120/50005 [13:02:38<44:31,  1.08it/s]\\r 94%|█████████▍| 47121/50005 [13:02:39<44:31,  1.08it/s]\\r 94%|█████████▍| 47122/50005 [13:02:40<44:29,  1.08it/s]\\r 94%|█████████▍| 47123/50005 [13:02:41<44:28,  1.08it/s]\\r 94%|█████████▍| 47124/50005 [13:02:42<44:25,  1.08it/s]\\r 94%|█████████▍| 47125/50005 [13:02:43<44:25,  1.08it/s]\\r 94%|█████████▍| 47126/50005 [13:02:44<44:25,  1.08it/s]\\r 94%|█████████▍| 47127/50005 [13:02:45<44:22,  1.08it/s]\\r 94%|█████████▍| 47128/50005 [13:02:46<44:20,  1.08it/s]\\r 94%|█████████▍| 47129/50005 [13:02:47<44:20,  1.08it/s]\\r 94%|█████████▍| 47130/50005 [13:02:48<44:25,  1.08it/s]\\r 94%|█████████▍| 47131/50005 [13:02:48<44:23,  1.08it/s]\\r 94%|█████████▍| 47132/50005 [13:02:49<44:26,  1.08it/s]\\r 94%|█████████▍| 47133/50005 [13:02:50<44:23,  1.08it/s]\\r 94%|█████████▍| 47134/50005 [13:02:51<44:27,  1.08it/s]\\r 94%|█████████▍| 47135/50005 [13:02:52<44:28,  1.08it/s]\\r 94%|█████████▍| 47136/50005 [13:02:53<44:33,  1.07it/s]\\r 94%|█████████▍| 47137/50005 [13:02:54<44:35,  1.07it/s]\\r 94%|█████████▍| 47138/50005 [13:02:55<44:33,  1.07it/s]\\r 94%|█████████▍| 47139/50005 [13:02:56<44:33,  1.07it/s]\\r 94%|█████████▍| 47140/50005 [13:02:57<44:26,  1.07it/s]\\r 94%|█████████▍| 47141/50005 [13:02:58<44:21,  1.08it/s]\\r 94%|█████████▍| 47142/50005 [13:02:59<44:14,  1.08it/s]\\r 94%|█████████▍| 47143/50005 [13:03:00<44:10,  1.08it/s]\\r 94%|█████████▍| 47144/50005 [13:03:01<44:05,  1.08it/s]\\r 94%|█████████▍| 47145/50005 [13:03:01<44:03,  1.08it/s]\\r 94%|█████████▍| 47146/50005 [13:03:02<44:00,  1.08it/s]\\r 94%|█████████▍| 47147/50005 [13:03:03<44:00,  1.08it/s]\\r 94%|█████████▍| 47148/50005 [13:03:04<43:56,  1.08it/s]\\r 94%|█████████▍| 47149/50005 [13:03:05<43:54,  1.08it/s]\\r 94%|█████████▍| 47150/50005 [13:03:06<43:54,  1.08it/s]\\r 94%|█████████▍| 47151/50005 [13:03:07<43:51,  1.08it/s]\\r 94%|█████████▍| 47152/50005 [13:03:08<43:51,  1.08it/s]\\r 94%|█████████▍| 47153/50005 [13:03:09<43:55,  1.08it/s]\\r 94%|█████████▍| 47154/50005 [13:03:10<43:54,  1.08it/s]\\r 94%|█████████▍| 47155/50005 [13:03:11<43:55,  1.08it/s]\\r 94%|█████████▍| 47156/50005 [13:03:12<43:50,  1.08it/s]\\r 94%|█████████▍| 47157/50005 [13:03:13<43:56,  1.08it/s]\\r 94%|█████████▍| 47158/50005 [13:03:13<43:53,  1.08it/s]\\r 94%|█████████▍| 47159/50005 [13:03:14<43:49,  1.08it/s]\\r 94%|█████████▍| 47160/50005 [13:03:15<43:47,  1.08it/s]\\r 94%|█████████▍| 47161/50005 [13:03:16<43:42,  1.08it/s]\\r 94%|█████████▍| 47162/50005 [13:03:17<43:43,  1.08it/s]\\r 94%|█████████▍| 47163/50005 [13:03:18<43:41,  1.08it/s]\\r 94%|█████████▍| 47164/50005 [13:03:19<43:40,  1.08it/s]\\r 94%|█████████▍| 47165/50005 [13:03:20<43:40,  1.08it/s]\\r 94%|█████████▍| 47166/50005 [13:03:21<43:39,  1.08it/s]\\r 94%|█████████▍| 47167/50005 [13:03:22<43:42,  1.08it/s]\\r 94%|█████████▍| 47168/50005 [13:03:23<43:40,  1.08it/s]\\r 94%|█████████▍| 47169/50005 [13:03:24<43:40,  1.08it/s]\\r 94%|█████████▍| 47170/50005 [13:03:25<43:38,  1.08it/s]\\r 94%|████\\n\\n... [截断: 输出过长，省略 162019 字符] ...\\n\\n/s]\\r100%|█████████▉| 49975/50005 [13:49:09<00:27,  1.08it/s]\\r100%|█████████▉| 49976/50005 [13:49:10<00:26,  1.08it/s]\\r100%|█████████▉| 49977/50005 [13:49:11<00:26,  1.08it/s]\\r100%|█████████▉| 49978/50005 [13:49:12<00:25,  1.08it/s]\\r100%|█████████▉| 49979/50005 [13:49:12<00:24,  1.08it/s]\\r100%|█████████▉| 49980/50005 [13:49:13<00:23,  1.08it/s]\\r100%|█████████▉| 49981/50005 [13:49:14<00:22,  1.08it/s]\\r100%|█████████▉| 49982/50005 [13:49:15<00:21,  1.08it/s]\\r100%|█████████▉| 49983/50005 [13:49:16<00:20,  1.07it/s]\\r100%|█████████▉| 49984/50005 [13:49:17<00:20,  1.03it/s]\\r100%|█████████▉| 49985/50005 [13:49:18<00:19,  1.04it/s]\\r100%|█████████▉| 49986/50005 [13:49:19<00:19,  1.02s/it]\\r100%|█████████▉| 49987/50005 [13:49:20<00:18,  1.05s/it]\\r100%|█████████▉| 49988/50005 [13:49:22<00:18,  1.06s/it]\\r100%|█████████▉| 49989/50005 [13:49:23<00:16,  1.04s/it]\\r100%|█████████▉| 49990/50005 [13:49:23<00:15,  1.01s/it]\\r100%|█████████▉| 49991/50005 [13:49:24<00:13,  1.01it/s]\\r100%|█████████▉| 49992/50005 [13:49:25<00:12,  1.02it/s]\\r100%|█████████▉| 49993/50005 [13:49:26<00:11,  1.03it/s]\\r100%|█████████▉| 49994/50005 [13:49:27<00:10,  1.04it/s]\\r100%|█████████▉| 49995/50005 [13:49:28<00:09,  1.05it/s]\\r100%|█████████▉| 49996/50005 [13:49:29<00:08,  1.06it/s]\\r100%|█████████▉| 49997/50005 [13:49:30<00:07,  1.06it/s]\\r100%|█████████▉| 49998/50005 [13:49:31<00:06,  1.07it/s]\\r100%|█████████▉| 49999/50005 [13:49:32<00:05,  1.07it/s]\\r100%|█████████▉| 50000/50005 [13:49:33<00:04,  1.06it/s][AUX] step=50000, occ_loss=0.0089, depth_loss=0.0000, action_loss=0.0513\\n\\r100%|█████████▉| 50001/50005 [13:49:34<00:03,  1.06it/s]05/26 [15:29:12] INFO     | >> [*] Saved dataset statistics    data_utils.py:284\\n                          file at path                                          \\n                          /root/autodl-tmp/checkpoints/detach_                  \\n                          bn_v2_s1/openvla-7b+libero_spatial_n                  \\n                          o_noops+b8+lr-0.0005+lora-r32+dropou                  \\n                          t-0.0--image_aug--detach_bn_v2_s1--5                  \\n                          0000_chkpt/dataset_statistics.json                    \\nSaving Model Checkpoint for Step 50000\\n/root/miniconda3/envs/occsafe/lib/python3.10/site-packages/peft/utils/save_and_load.py:180: UserWarning: Setting `save_embedding_layers` to `True` as embedding layers found in `target_modules`.\\n  warnings.warn(\\\"Setting `save_embedding_layers` to `True` as embedding layers found in `target_modules`.\\\")\\n\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\u001b[A\\n\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  3.57it/s]\\u001b[A\\n\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00,  4.36it/s]\\u001b[A\\n\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  4.89it/s]\\u001b[A\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  4.62it/s]\\nSaved merged model for Step 50000 at: /root/autodl-tmp/checkpoints/detach_bn_v2_s1/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--detach_bn_v2_s1--50000_chkpt\\n/root/miniconda3/envs/occsafe/lib/python3.10/site-packages/torch/distributed/c10d_logger.py:83: UserWarning: barrier(): using the device under current context. You can specify `device_id` in `init_process_group` to mute this warning.\\n  return func(*args, **kwargs)\\n\\r100%|█████████▉| 50002/50005 [13:50:35<00:57, 19.09s/it]\\r100%|█████████▉| 50003/50005 [13:50:36<00:27, 13.64s/it]\\r100%|█████████▉| 50004/50005 [13:50:37<00:09,  9.83s/it]\\r100%|██���███████| 50005/50005 [13:50:38<00:00,  7.16s/it]\\r50006it [13:50:39,  5.29s/it]                           Max step 50005 reached! Stopping training...\\n\\r                             \\r[rank0]:[W526 15:30:21.508092522 ProcessGroupNCCL.cpp:1575] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-26T07:38:17.192Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Km4cFRUwnYAGYdkYB5y81T",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r 94%|█████████▍| 47101/50005 [13:04:16<45:28,  1.06it/s]\\\\r 94%|█████████▍| 47102/50005 [13:04:17<45:29,  1.06it/s]\\\\r 94%|█████████▍| 47103/50005 [13:04:18<45:23,  1.07it/s]\\\\r 94%|█████████▍| 47104/50005 [13:04:19<45:07,  1.07it/s]\\\\r 94%|█████████▍| 47105/50005 [13:04:20<45:00,  1.07it/s]\\\\r 94%|█████████▍| 47106/50005 [13:04:21<45:10,  1.07it/s]\\\\r 94%|█████████▍| 47107/50005 [13:04:22<45:27,  1.06it/s]\\\\r 94%|█████████▍| 47108/50005 [13:04:23<45:17,  1.07it/s]\\\\r 94%|█████████▍| 47109/50005 [13:04:24<45:32,  1.06it/s]\\\\r 94%|█████████▍| 47110/50005 [13:04:24<45:22,  1.06it/s]\\\\r 94%|█████████▍| 47111/50005 [13:04:25<45:12,  1.07it/s]\\\\r 94%|█████████▍| 47112/50005 [13:04:26<45:00,  1.07it/s]\\\\r 94%|█████████▍| 47113/50005 [13:04:27<45:00,  1.07it/s]\\\\r 94%|█████████▍| 47114/50005 [13:04:28<45:13,  1.07it/s]\\\\r 94%|█████████▍| 47115/50005 [13:04:29<44:57,  1.07it/s]\\\\r 94%|█████████▍| 47116/50005 [13:04:30<44:47,  1.08it/s]\\\\r 94%|█████████▍| 47117/50005 [13:04:31<44:39,  1.08it/s]\\\\r 94%|█████████▍| 47118/50005 [13:04:32<45:14,  1.06it/s]\\\\r 94%|█████████▍| 47119/50005 [13:04:33<45:06,  1.07it/s]\\\\r 94%|█████████▍| 47120/50005 [13:04:34<44:55,  1.07it/s]\\\\r 94%|█████████▍| 47121/50005 [13:04:35<44:49,  1.07it/s]\\\\r 94%|█████████▍| 47122/50005 [13:04:36<44:48,  1.07it/s]\\\\r 94%|█████████▍| 47123/50005 [13:04:37<44:53,  1.07it/s]\\\\r 94%|█████████▍| 47124/50005 [13:04:38<45:27,  1.06it/s]\\\\r 94%|█████████▍| 47125/50005 [13:04:38<45:04,  1.06it/s]\\\\r 94%|█████████▍| 47126/50005 [13:04:39<44:52,  1.07it/s]\\\\r 94%|█████████▍| 47127/50005 [13:04:40<44:36,  1.08it/s]\\\\r 94%|█████████▍| 47128/50005 [13:04:41<44:37,  1.07it/s]\\\\r 94%|█████████▍| 47129/50005 [13:04:42<44:33,  1.08it/s]\\\\r 94%|█████████▍| 47130/50005 [13:04:43<44:45,  1.07it/s]\\\\r 94%|█████████▍| 47131/50005 [13:04:44<44:35,  1.07it/s]\\\\r 94%|█████████▍| 47132/50005 [13:04:45<45:16,  1.06it/s]\\\\r 94%|█████████▍| 47133/50005 [13:04:46<44:59,  1.06it/s]\\\\r 94%|█████████▍| 47134/50005 [13:04:47<44:50,  1.07it/s]\\\\r 94%|█████████▍| 47135/50005 [13:04:48<44:43,  1.07it/s]\\\\r 94%|█████████▍| 47136/50005 [13:04:49<44:42,  1.07it/s]\\\\r 94%|█████████▍| 47137/50005 [13:04:50<44:41,  1.07it/s]\\\\r 94%|█████████▍| 47138/50005 [13:04:51<44:32,  1.07it/s]\\\\r 94%|█████████▍| 47139/50005 [13:04:52<44:43,  1.07it/s]\\\\r 94%|█████████▍| 47140/50005 [13:04:53<45:14,  1.06it/s]\\\\r 94%|█████████▍| 47141/50005 [13:04:54<46:01,  1.04it/s]\\\\r 94%|█████████▍| 47142/50005 [13:04:54<45:48,  1.04it/s]\\\\r 94%|█████████▍| 47143/50005 [13:04:55<45:24,  1.05it/s]\\\\r 94%|█████████▍| 47144/50005 [13:04:56<45:06,  1.06it/s]\\\\r 94%|█████████▍| 47145/50005 [13:04:57<44:55,  1.06it/s]\\\\r 94%|█████████▍| 47146/50005 [13:04:58<44:38,  1.07it/s]\\\\r 94%|█████████▍| 47147/50005 [13:04:59<44:23,  1.07it/s]\\\\r 94%|█████████▍| 47148/50005 [13:05:00<44:42,  1.06it/s]\\\\r 94%|█████████▍| 47149/50005 [13:05:01<45:50,  1.04it/s]\\\\r 94%|█████████▍| 47150/50005 [13:05:02<45:47,  1.04it/s]\\\\r 94%|█████████▍| 47151/50005 [13:05:03<45:18,  1.05it/s]\\\\r 94%|█████████▍| 47152/50005 [13:05:04<44:54,  1.06it/s]\\\\r 94%|█████████▍| 47153/50005 [13:05:05<44:35,  1.07it/s]\\\\r 94%|█████████▍| 47154/50005 [13:05:06<44:23,  1.07it/s]\\\\r 94%|█████████▍| 47155/50005 [13:05:07<44:16,  1.07it/s]\\\\r 94%|█████████▍| 47156/50005 [13:05:08<44:07,  1.08it/s]\\\\r 94%|█████████▍| 47157/50005 [13:05:09<44:12,  1.07it/s]\\\\r 94%|█████████▍| 47158/50005 [13:05:09<44:28,  1.07it/s]\\\\r 94%|█████████▍| 47159/50005 [13:05:10<44:33,  1.06it/s]\\\\r 94%|█████████▍| 47160/50005 [13:05:11<44:38,  1.06it/s]\\\\r 94%|█████████▍| 47161/50005 [13:05:12<44:40,  1.06it/s]\\\\r 94%|█████████▍| 47162/50005 [13:05:13<44:55,  1.05it/s]\\\\r 94%|█████████▍| 47163/50005 [13:05:14<44:51,  1.06it/s]\\\\r 94%|█████████▍| 47164/50005 [13:05:15<44:54,  1.05it/s]\\\\r 94%|█████████▍| 47165/50005 [13:05:16<44:51,  1.06it/s]\\\\r 94%|█████████▍| 47166/50005 [13:05:17<44:57,  1.05it/s]\\\\r 94%|█████████▍| 47167/50005 [13:05:18<45:03,  1.05it/s]\\\\r 94%|█████████▍| 47168/50005 [13:05:19<45:09,  1.05it/s]\\\\r 94%|█████████▍| 47169/50005 [13:05:20<46:20,  1.02it/s]\\\\r 94%|█████████▍| 47170/50005 [13:05:21<45:49,  1.03it/s]\\\\r 94%|████\\\\n\\\\n... [截断: 输出过长，省略 162028 字符] ...\\\\n\\\\nit/s]\\\\r100%|█████████▉| 49975/50005 [13:51:40<00:28,  1.06it/s]\\\\r100%|█████████▉| 49976/50005 [13:51:41<00:27,  1.07it/s]\\\\r100%|█████████▉| 49977/50005 [13:51:42<00:26,  1.07it/s]\\\\r100%|█████████▉| 49978/50005 [13:51:43<00:25,  1.08it/s]\\\\r100%|█████████▉| 49979/50005 [13:51:44<00:24,  1.08it/s]\\\\r100%|█████████▉| 49980/50005 [13:51:49<00:56,  2.27s/it]\\\\r100%|█████████▉| 49981/50005 [13:51:53<01:06,  2.78s/it]\\\\r100%|█████████▉| 49982/50005 [13:51:56<01:06,  2.89s/it]\\\\r100%|█████████▉| 49983/50005 [13:51:59<01:04,  2.94s/it]\\\\r100%|█████████▉| 49984/50005 [13:52:06<01:22,  3.92s/it]\\\\r100%|█████████▉| 49985/50005 [13:52:07<01:00,  3.03s/it]\\\\r100%|█████████▉| 49986/50005 [13:52:07<00:45,  2.40s/it]\\\\r100%|█████████▉| 49987/50005 [13:52:08<00:35,  1.97s/it]\\\\r100%|█████████▉| 49988/50005 [13:52:09<00:28,  1.66s/it]\\\\r100%|█████████▉| 49989/50005 [13:52:10<00:23,  1.44s/it]\\\\r100%|█████████▉| 49990/50005 [13:52:11<00:19,  1.30s/it]\\\\r100%|█████████▉| 49991/50005 [13:52:12<00:16,  1.18s/it]\\\\r100%|█████████▉| 49992/50005 [13:52:13<00:14,  1.10s/it]\\\\r100%|█████████▉| 49993/50005 [13:52:14<00:12,  1.05s/it]\\\\r100%|█████████▉| 49994/50005 [13:52:15<00:11,  1.01s/it]\\\\r100%|█████████▉| 49995/50005 [13:52:16<00:09,  1.02it/s]\\\\r100%|█████████▉| 49996/50005 [13:52:17<00:08,  1.04it/s]\\\\r100%|█████████▉| 49997/50005 [13:52:18<00:07,  1.05it/s]\\\\r100%|█████████▉| 49998/50005 [13:52:19<00:06,  1.06it/s]\\\\r100%|█████████▉| 49999/50005 [13:52:20<00:05,  1.06it/s]\\\\r100%|█████████▉| 50000/50005 [13:52:20<00:04,  1.07it/s][AUX] step=50000, occ_loss=0.0094, depth_loss=0.0000, action_loss=0.0481\\\\n\\\\r100%|█████████▉| 50001/50005 [13:52:21<00:03,  1.07it/s]05/26 [15:32:01] INFO     | >> [*] Saved dataset statistics    data_utils.py:284\\\\n                          file at path                                          \\\\n                          /root/autodl-tmp/checkpoints/detach_                  \\\\n                          bn_v2_s2/openvla-7b+libero_spatial_n                  \\\\n                          o_noops+b8+lr-0.0005+lora-r32+dropou                  \\\\n                          t-0.0--image_aug--detach_bn_v2_s2--5                  \\\\n                          0000_chkpt/dataset_statistics.json                    \\\\nSaving Model Checkpoint for Step 50000\\\\n/root/miniconda3/envs/occsafe/lib/python3.10/site-packages/peft/utils/save_and_load.py:180: UserWarning: Setting `save_embedding_layers` to `True` as embedding layers found in `target_modules`.\\\\n  warnings.warn(\\\\\\\"Setting `save_embedding_layers` to `True` as embedding layers found in `target_modules`.\\\\\\\")\\\\n\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\\\u001b[A\\\\n\\\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  4.58it/s]\\\\u001b[A\\\\n\\\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00,  5.34it/s]\\\\u001b[A\\\\n\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  5.79it/s]\\\\u001b[A\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  5.56it/s]\\\\nSaved merged model for Step 50000 at: /root/autodl-tmp/checkpoints/detach_bn_v2_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--detach_bn_v2_s2--50000_chkpt\\\\n/root/miniconda3/envs/occsafe/lib/python3.10/site-packages/torch/distributed/c10d_logger.py:83: UserWarning: barrier(): using the device under current context. You can specify `device_id` in `init_process_group` to mute this warning.\\\\n  return func(*args, **kwargs)\\\\n\\\\r100%|█████████▉| 50002/50005 [13:52:51<00:28,  9.62s/it]\\\\r100%|█████████▉| 50003/50005 [13:52:52<00:14,  7.03s/it]\\\\r100%|█████████▉| 50004/50005 [13:52:53<00:05,  5.20s/it]\\\\r100%|██████████| 50005/50005 [13:52:54<00:00,  3.92s/it]\\\\r50006it [13:52:55,  3.02s/it]                           Max step 50005 reached! Stopping training...\\\\n\\\\r                             \\\\r[rank0]:[W526 15:32:39.800739781 ProcessGroupNCCL.cpp:1575] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "2741b19e-657f-4852-90e8-fa8acf4375cb",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r 94%|█████████▍| 47101/50005 [13:04:16<45:28,  1.06it/s]\\\\r 94%|█████████▍| 47102/50005 [13:04:17<45:29,  1.06it/s]\\\\r 94%|█████████▍| 47103/50005 [13:04:18<45:23,  1.07it/s]\\\\r 94%|█████████▍| 47104/50005 [13:04:19<45:07,  1.07it/s]\\\\r 94%|█████████▍| 47105/50005 [13:04:20<45:00,  1.07it/s]\\\\r 94%|█████████▍| 47106/50005 [13:04:21<45:10,  1.07it/s]\\\\r 94%|█████████▍| 47107/50005 [13:04:22<45:27,  1.06it/s]\\\\r 94%|█████████▍| 47108/50005 [13:04:23<45:17,  1.07it/s]\\\\r 94%|█████████▍| 47109/50005 [13:04:24<45:32,  1.06it/s]\\\\r 94%|█████████▍| 47110/50005 [13:04:24<45:22,  1.06it/s]\\\\r 94%|█████████▍| 47111/50005 [13:04:25<45:12,  1.07it/s]\\\\r 94%|█████████▍| 47112/50005 [13:04:26<45:00,  1.07it/s]\\\\r 94%|█████████▍| 47113/50005 [13:04:27<45:00,  1.07it/s]\\\\r 94%|█████████▍| 47114/50005 [13:04:28<45:13,  1.07it/s]\\\\r 94%|█████████▍| 47115/50005 [13:04:29<44:57,  1.07it/s]\\\\r 94%|█████████▍| 47116/50005 [13:04:30<44:47,  1.08it/s]\\\\r 94%|█████████▍| 47117/50005 [13:04:31<44:39,  1.08it/s]\\\\r 94%|█████████▍| 47118/50005 [13:04:32<45:14,  1.06it/s]\\\\r 94%|█████████▍| 47119/50005 [13:04:33<45:06,  1.07it/s]\\\\r 94%|█████████▍| 47120/50005 [13:04:34<44:55,  1.07it/s]\\\\r 94%|█████████▍| 47121/50005 [13:04:35<44:49,  1.07it/s]\\\\r 94%|█████████▍| 47122/50005 [13:04:36<44:48,  1.07it/s]\\\\r 94%|█████████▍| 47123/50005 [13:04:37<44:53,  1.07it/s]\\\\r 94%|█████████▍| 47124/50005 [13:04:38<45:27,  1.06it/s]\\\\r 94%|█████████▍| 47125/50005 [13:04:38<45:04,  1.06it/s]\\\\r 94%|█████████▍| 47126/50005 [13:04:39<44:52,  1.07it/s]\\\\r 94%|█████████▍| 47127/50005 [13:04:40<44:36,  1.08it/s]\\\\r 94%|█████████▍| 47128/50005 [13:04:41<44:37,  1.07it/s]\\\\r 94%|█████████▍| 47129/50005 [13:04:42<44:33,  1.08it/s]\\\\r 94%|█████████▍| 47130/50005 [13:04:43<44:45,  1.07it/s]\\\\r 94%|█████████▍| 47131/50005 [13:04:44<44:35,  1.07it/s]\\\\r 94%|█████████▍| 47132/50005 [13:04:45<45:16,  1.06it/s]\\\\r 94%|█████████▍| 47133/50005 [13:04:46<44:59,  1.06it/s]\\\\r 94%|█████████▍| 47134/50005 [13:04:47<44:50,  1.07it/s]\\\\r 94%|█████████▍| 47135/50005 [13:04:48<44:43,  1.07it/s]\\\\r 94%|█████████▍| 47136/50005 [13:04:49<44:42,  1.07it/s]\\\\r 94%|█████████▍| 47137/50005 [13:04:50<44:41,  1.07it/s]\\\\r 94%|█████████▍| 47138/50005 [13:04:51<44:32,  1.07it/s]\\\\r 94%|█████████▍| 47139/50005 [13:04:52<44:43,  1.07it/s]\\\\r 94%|█████████▍| 47140/50005 [13:04:53<45:14,  1.06it/s]\\\\r 94%|█████████▍| 47141/50005 [13:04:54<46:01,  1.04it/s]\\\\r 94%|█████████▍| 47142/50005 [13:04:54<45:48,  1.04it/s]\\\\r 94%|█████████▍| 47143/50005 [13:04:55<45:24,  1.05it/s]\\\\r 94%|█████████▍| 47144/50005 [13:04:56<45:06,  1.06it/s]\\\\r 94%|█████████▍| 47145/50005 [13:04:57<44:55,  1.06it/s]\\\\r 94%|█████████▍| 47146/50005 [13:04:58<44:38,  1.07it/s]\\\\r 94%|█████████▍| 47147/50005 [13:04:59<44:23,  1.07it/s]\\\\r 94%|█████████▍| 47148/50005 [13:05:00<44:42,  1.06it/s]\\\\r 94%|█████████▍| 47149/50005 [13:05:01<45:50,  1.04it/s]\\\\r 94%|█████████▍| 47150/50005 [13:05:02<45:47,  1.04it/s]\\\\r 94%|█████████▍| 47151/50005 [13:05:03<45:18,  1.05it/s]\\\\r 94%|█████████▍| 47152/50005 [13:05:04<44:54,  1.06it/s]\\\\r 94%|█████████▍| 47153/50005 [13:05:05<44:35,  1.07it/s]\\\\r 94%|█████████▍| 47154/50005 [13:05:06<44:23,  1.07it/s]\\\\r 94%|█████████▍| 47155/50005 [13:05:07<44:16,  1.07it/s]\\\\r 94%|█████████▍| 47156/50005 [13:05:08<44:07,  1.08it/s]\\\\r 94%|█████████▍| 47157/50005 [13:05:09<44:12,  1.07it/s]\\\\r 94%|█████████▍| 47158/50005 [13:05:09<44:28,  1.07it/s]\\\\r 94%|█████████▍| 47159/50005 [13:05:10<44:33,  1.06it/s]\\\\r 94%|█████████▍| 47160/50005 [13:05:11<44:38,  1.06it/s]\\\\r 94%|█████████▍| 47161/50005 [13:05:12<44:40,  1.06it/s]\\\\r 94%|█████████▍| 47162/50005 [13:05:13<44:55,  1.05it/s]\\\\r 94%|█████████▍| 47163/50005 [13:05:14<44:51,  1.06it/s]\\\\r 94%|█████████▍| 47164/50005 [13:05:15<44:54,  1.05it/s]\\\\r 94%|█████████▍| 47165/50005 [13:05:16<44:51,  1.06it/s]\\\\r 94%|█████████▍| 47166/50005 [13:05:17<44:57,  1.05it/s]\\\\r 94%|█████████▍| 47167/50005 [13:05:18<45:03,  1.05it/s]\\\\r 94%|█████████▍| 47168/50005 [13:05:19<45:09,  1.05it/s]\\\\r 94%|█████████▍| 47169/50005 [13:05:20<46:20,  1.02it/s]\\\\r 94%|█████████▍| 47170/50005 [13:05:21<45:49,  1.03it/s]\\\\r 94%|████\\\\n\\\\n... [截断: 输出过长，省略 162028 字符] ...\\\\n\\\\nit/s]\\\\r100%|█████████▉| 49975/50005 [13:51:40<00:28,  1.06it/s]\\\\r100%|█████████▉| 49976/50005 [13:51:41<00:27,  1.07it/s]\\\\r100%|█████████▉| 49977/50005 [13:51:42<00:26,  1.07it/s]\\\\r100%|█████████▉| 49978/50005 [13:51:43<00:25,  1.08it/s]\\\\r100%|█████████▉| 49979/50005 [13:51:44<00:24,  1.08it/s]\\\\r100%|█████████▉| 49980/50005 [13:51:49<00:56,  2.27s/it]\\\\r100%|█████████▉| 49981/50005 [13:51:53<01:06,  2.78s/it]\\\\r100%|█████████▉| 49982/50005 [13:51:56<01:06,  2.89s/it]\\\\r100%|█████████▉| 49983/50005 [13:51:59<01:04,  2.94s/it]\\\\r100%|█████████▉| 49984/50005 [13:52:06<01:22,  3.92s/it]\\\\r100%|█████████▉| 49985/50005 [13:52:07<01:00,  3.03s/it]\\\\r100%|█████████▉| 49986/50005 [13:52:07<00:45,  2.40s/it]\\\\r100%|█████████▉| 49987/50005 [13:52:08<00:35,  1.97s/it]\\\\r100%|█████████▉| 49988/50005 [13:52:09<00:28,  1.66s/it]\\\\r100%|█████████▉| 49989/50005 [13:52:10<00:23,  1.44s/it]\\\\r100%|█████████▉| 49990/50005 [13:52:11<00:19,  1.30s/it]\\\\r100%|█████████▉| 49991/50005 [13:52:12<00:16,  1.18s/it]\\\\r100%|█████████▉| 49992/50005 [13:52:13<00:14,  1.10s/it]\\\\r100%|█████████▉| 49993/50005 [13:52:14<00:12,  1.05s/it]\\\\r100%|█████████▉| 49994/50005 [13:52:15<00:11,  1.01s/it]\\\\r100%|█████████▉| 49995/50005 [13:52:16<00:09,  1.02it/s]\\\\r100%|█████████▉| 49996/50005 [13:52:17<00:08,  1.04it/s]\\\\r100%|█████████▉| 49997/50005 [13:52:18<00:07,  1.05it/s]\\\\r100%|█████████▉| 49998/50005 [13:52:19<00:06,  1.06it/s]\\\\r100%|█████████▉| 49999/50005 [13:52:20<00:05,  1.06it/s]\\\\r100%|█████████▉| 50000/50005 [13:52:20<00:04,  1.07it/s][AUX] step=50000, occ_loss=0.0094, depth_loss=0.0000, action_loss=0.0481\\\\n\\\\r100%|█████████▉| 50001/50005 [13:52:21<00:03,  1.07it/s]05/26 [15:32:01] INFO     | >> [*] Saved dataset statistics    data_utils.py:284\\\\n                          file at path                                          \\\\n                          /root/autodl-tmp/checkpoints/detach_                  \\\\n                          bn_v2_s2/openvla-7b+libero_spatial_n                  \\\\n                          o_noops+b8+lr-0.0005+lora-r32+dropou                  \\\\n                          t-0.0--image_aug--detach_bn_v2_s2--5                  \\\\n                          0000_chkpt/dataset_statistics.json                    \\\\nSaving Model Checkpoint for Step 50000\\\\n/root/miniconda3/envs/occsafe/lib/python3.10/site-packages/peft/utils/save_and_load.py:180: UserWarning: Setting `save_embedding_layers` to `True` as embedding layers found in `target_modules`.\\\\n  warnings.warn(\\\\\\\"Setting `save_embedding_layers` to `True` as embedding layers found in `target_modules`.\\\\\\\")\\\\n\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\\\u001b[A\\\\n\\\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  4.58it/s]\\\\u001b[A\\\\n\\\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00,  5.34it/s]\\\\u001b[A\\\\n\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  5.79it/s]\\\\u001b[A\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  5.56it/s]\\\\nSaved merged model for Step 50000 at: /root/autodl-tmp/checkpoints/detach_bn_v2_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--detach_bn_v2_s2--50000_chkpt\\\\n/root/miniconda3/envs/occsafe/lib/python3.10/site-packages/torch/distributed/c10d_logger.py:83: UserWarning: barrier(): using the device under current context. You can specify `device_id` in `init_process_group` to mute this warning.\\\\n  return func(*args, **kwargs)\\\\n\\\\r100%|█████████▉| 50002/50005 [13:52:51<00:28,  9.62s/it]\\\\r100%|█████████▉| 50003/50005 [13:52:52<00:14,  7.03s/it]\\\\r100%|█████████▉| 50004/50005 [13:52:53<00:05,  5.20s/it]\\\\r100%|██████████| 50005/50005 [13:52:54<00:00,  3.92s/it]\\\\r50006it [13:52:55,  3.02s/it]                           Max step 50005 reached! Stopping training...\\\\n\\\\r                             \\\\r[rank0]:[W526 15:32:39.800739781 ProcessGroupNCCL.cpp:1575] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\r 94%|█████████▍| 47101/50005 [13:04:16<45:28,  1.06it/s]\\r 94%|█████████▍| 47102/50005 [13:04:17<45:29,  1.06it/s]\\r 94%|█████████▍| 47103/50005 [13:04:18<45:23,  1.07it/s]\\r 94%|█████████▍| 47104/50005 [13:04:19<45:07,  1.07it/s]\\r 94%|█████████▍| 47105/50005 [13:04:20<45:00,  1.07it/s]\\r 94%|█████████▍| 47106/50005 [13:04:21<45:10,  1.07it/s]\\r 94%|█████████▍| 47107/50005 [13:04:22<45:27,  1.06it/s]\\r 94%|█████████▍| 47108/50005 [13:04:23<45:17,  1.07it/s]\\r 94%|█████████▍| 47109/50005 [13:04:24<45:32,  1.06it/s]\\r 94%|█████████▍| 47110/50005 [13:04:24<45:22,  1.06it/s]\\r 94%|█████████▍| 47111/50005 [13:04:25<45:12,  1.07it/s]\\r 94%|█████████▍| 47112/50005 [13:04:26<45:00,  1.07it/s]\\r 94%|█████████▍| 47113/50005 [13:04:27<45:00,  1.07it/s]\\r 94%|█████████▍| 47114/50005 [13:04:28<45:13,  1.07it/s]\\r 94%|█████████▍| 47115/50005 [13:04:29<44:57,  1.07it/s]\\r 94%|█████████▍| 47116/50005 [13:04:30<44:47,  1.08it/s]\\r 94%|█████████▍| 47117/50005 [13:04:31<44:39,  1.08it/s]\\r 94%|█████████▍| 47118/50005 [13:04:32<45:14,  1.06it/s]\\r 94%|█████████▍| 47119/50005 [13:04:33<45:06,  1.07it/s]\\r 94%|█████████▍| 47120/50005 [13:04:34<44:55,  1.07it/s]\\r 94%|█████████▍| 47121/50005 [13:04:35<44:49,  1.07it/s]\\r 94%|█████████▍| 47122/50005 [13:04:36<44:48,  1.07it/s]\\r 94%|█████████▍| 47123/50005 [13:04:37<44:53,  1.07it/s]\\r 94%|█████████▍| 47124/50005 [13:04:38<45:27,  1.06it/s]\\r 94%|█████████▍| 47125/50005 [13:04:38<45:04,  1.06it/s]\\r 94%|█████████▍| 47126/50005 [13:04:39<44:52,  1.07it/s]\\r 94%|█████████▍| 47127/50005 [13:04:40<44:36,  1.08it/s]\\r 94%|█████████▍| 47128/50005 [13:04:41<44:37,  1.07it/s]\\r 94%|█████████▍| 47129/50005 [13:04:42<44:33,  1.08it/s]\\r 94%|█████████▍| 47130/50005 [13:04:43<44:45,  1.07it/s]\\r 94%|█████████▍| 47131/50005 [13:04:44<44:35,  1.07it/s]\\r 94%|█████████▍| 47132/50005 [13:04:45<45:16,  1.06it/s]\\r 94%|█████████▍| 47133/50005 [13:04:46<44:59,  1.06it/s]\\r 94%|█████████▍| 47134/50005 [13:04:47<44:50,  1.07it/s]\\r 94%|█████████▍| 47135/50005 [13:04:48<44:43,  1.07it/s]\\r 94%|█████████▍| 47136/50005 [13:04:49<44:42,  1.07it/s]\\r 94%|█████████▍| 47137/50005 [13:04:50<44:41,  1.07it/s]\\r 94%|█████████▍| 47138/50005 [13:04:51<44:32,  1.07it/s]\\r 94%|█████████▍| 47139/50005 [13:04:52<44:43,  1.07it/s]\\r 94%|█████████▍| 47140/50005 [13:04:53<45:14,  1.06it/s]\\r 94%|█████████▍| 47141/50005 [13:04:54<46:01,  1.04it/s]\\r 94%|█████████▍| 47142/50005 [13:04:54<45:48,  1.04it/s]\\r 94%|█████████▍| 47143/50005 [13:04:55<45:24,  1.05it/s]\\r 94%|█████████▍| 47144/50005 [13:04:56<45:06,  1.06it/s]\\r 94%|█████████▍| 47145/50005 [13:04:57<44:55,  1.06it/s]\\r 94%|█████████▍| 47146/50005 [13:04:58<44:38,  1.07it/s]\\r 94%|█████████▍| 47147/50005 [13:04:59<44:23,  1.07it/s]\\r 94%|█████████▍| 47148/50005 [13:05:00<44:42,  1.06it/s]\\r 94%|█████████▍| 47149/50005 [13:05:01<45:50,  1.04it/s]\\r 94%|█████████▍| 47150/50005 [13:05:02<45:47,  1.04it/s]\\r 94%|█████████▍| 47151/50005 [13:05:03<45:18,  1.05it/s]\\r 94%|█████████▍| 47152/50005 [13:05:04<44:54,  1.06it/s]\\r 94%|█████████▍| 47153/50005 [13:05:05<44:35,  1.07it/s]\\r 94%|█████████▍| 47154/50005 [13:05:06<44:23,  1.07it/s]\\r 94%|█████████▍| 47155/50005 [13:05:07<44:16,  1.07it/s]\\r 94%|█████████▍| 47156/50005 [13:05:08<44:07,  1.08it/s]\\r 94%|█████████▍| 47157/50005 [13:05:09<44:12,  1.07it/s]\\r 94%|█████████▍| 47158/50005 [13:05:09<44:28,  1.07it/s]\\r 94%|█████████▍| 47159/50005 [13:05:10<44:33,  1.06it/s]\\r 94%|█████████▍| 47160/50005 [13:05:11<44:38,  1.06it/s]\\r 94%|█████████▍| 47161/50005 [13:05:12<44:40,  1.06it/s]\\r 94%|█████████▍| 47162/50005 [13:05:13<44:55,  1.05it/s]\\r 94%|█████████▍| 47163/50005 [13:05:14<44:51,  1.06it/s]\\r 94%|█████████▍| 47164/50005 [13:05:15<44:54,  1.05it/s]\\r 94%|█████████▍| 47165/50005 [13:05:16<44:51,  1.06it/s]\\r 94%|█████████▍| 47166/50005 [13:05:17<44:57,  1.05it/s]\\r 94%|█████████▍| 47167/50005 [13:05:18<45:03,  1.05it/s]\\r 94%|█████████▍| 47168/50005 [13:05:19<45:09,  1.05it/s]\\r 94%|█████████▍| 47169/50005 [13:05:20<46:20,  1.02it/s]\\r 94%|█████████▍| 47170/50005 [13:05:21<45:49,  1.03it/s]\\r 94%|████\\n\\n... [截断: 输出过长，省略 162028 字符] ...\\n\\nit/s]\\r100%|█████████▉| 49975/50005 [13:51:40<00:28,  1.06it/s]\\r100%|█████████▉| 49976/50005 [13:51:41<00:27,  1.07it/s]\\r100%|█████████▉| 49977/50005 [13:51:42<00:26,  1.07it/s]\\r100%|█████████▉| 49978/50005 [13:51:43<00:25,  1.08it/s]\\r100%|█████████▉| 49979/50005 [13:51:44<00:24,  1.08it/s]\\r100%|█████████▉| 49980/50005 [13:51:49<00:56,  2.27s/it]\\r100%|█████████▉| 49981/50005 [13:51:53<01:06,  2.78s/it]\\r100%|█████████▉| 49982/50005 [13:51:56<01:06,  2.89s/it]\\r100%|█████████▉| 49983/50005 [13:51:59<01:04,  2.94s/it]\\r100%|█████████▉| 49984/50005 [13:52:06<01:22,  3.92s/it]\\r100%|█████████▉| 49985/50005 [13:52:07<01:00,  3.03s/it]\\r100%|█████████▉| 49986/50005 [13:52:07<00:45,  2.40s/it]\\r100%|█████████▉| 49987/50005 [13:52:08<00:35,  1.97s/it]\\r100%|█████████▉| 49988/50005 [13:52:09<00:28,  1.66s/it]\\r100%|█████████▉| 49989/50005 [13:52:10<00:23,  1.44s/it]\\r100%|█████████▉| 49990/50005 [13:52:11<00:19,  1.30s/it]\\r100%|█████████▉| 49991/50005 [13:52:12<00:16,  1.18s/it]\\r100%|█████████▉| 49992/50005 [13:52:13<00:14,  1.10s/it]\\r100%|█████████▉| 49993/50005 [13:52:14<00:12,  1.05s/it]\\r100%|█████████▉| 49994/50005 [13:52:15<00:11,  1.01s/it]\\r100%|█████████▉| 49995/50005 [13:52:16<00:09,  1.02it/s]\\r100%|█████████▉| 49996/50005 [13:52:17<00:08,  1.04it/s]\\r100%|█████████▉| 49997/50005 [13:52:18<00:07,  1.05it/s]\\r100%|█████████▉| 49998/50005 [13:52:19<00:06,  1.06it/s]\\r100%|█████████▉| 49999/50005 [13:52:20<00:05,  1.06it/s]\\r100%|█████████▉| 50000/50005 [13:52:20<00:04,  1.07it/s][AUX] step=50000, occ_loss=0.0094, depth_loss=0.0000, action_loss=0.0481\\n\\r100%|█████████▉| 50001/50005 [13:52:21<00:03,  1.07it/s]05/26 [15:32:01] INFO     | >> [*] Saved dataset statistics    data_utils.py:284\\n                          file at path                                          \\n                          /root/autodl-tmp/checkpoints/detach_                  \\n                          bn_v2_s2/openvla-7b+libero_spatial_n                  \\n                          o_noops+b8+lr-0.0005+lora-r32+dropou                  \\n                          t-0.0--image_aug--detach_bn_v2_s2--5                  \\n                          0000_chkpt/dataset_statistics.json                    \\nSaving Model Checkpoint for Step 50000\\n/root/miniconda3/envs/occsafe/lib/python3.10/site-packages/peft/utils/save_and_load.py:180: UserWarning: Setting `save_embedding_layers` to `True` as embedding layers found in `target_modules`.\\n  warnings.warn(\\\"Setting `save_embedding_layers` to `True` as embedding layers found in `target_modules`.\\\")\\n\\n\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\u001b[A\\n\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  4.58it/s]\\u001b[A\\n\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00,  5.34it/s]\\u001b[A\\n\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  5.79it/s]\\u001b[A\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  5.56it/s]\\nSaved merged model for Step 50000 at: /root/autodl-tmp/checkpoints/detach_bn_v2_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--detach_bn_v2_s2--50000_chkpt\\n/root/miniconda3/envs/occsafe/lib/python3.10/site-packages/torch/distributed/c10d_logger.py:83: UserWarning: barrier(): using the device under current context. You can specify `device_id` in `init_process_group` to mute this warning.\\n  return func(*args, **kwargs)\\n\\r100%|█████████▉| 50002/50005 [13:52:51<00:28,  9.62s/it]\\r100%|█████████▉| 50003/50005 [13:52:52<00:14,  7.03s/it]\\r100%|█████████▉| 50004/50005 [13:52:53<00:05,  5.20s/it]\\r100%|██████████| 50005/50005 [13:52:54<00:00,  3.92s/it]\\r50006it [13:52:55,  3.02s/it]                           Max step 50005 reached! Stopping training...\\n\\r                             \\r[rank0]:[W526 15:32:39.800739781 ProcessGroupNCCL.cpp:1575] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "All 3 experiments completed successfully. Let me extract the key info:\n\n- **s0**: step 50000 → occ_loss=0.0095, action_loss=0.0449, reached step 50005, EXIT_CODE=0\n- **s1**: step 50000 → occ_loss=0.0089, action_loss=0.0513, reached step 50005, EXIT_CODE=0\n- **s2**: step 50000 → occ_loss=0.0094, action_loss=0.0481, reached step 50005, EXIT_CODE=0\n\n\n- All checkpoints saved at step 50000, now verifying the files are actually there.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "0b7bc5d4-0cdd-4c2e-8bd2-21e625220cc7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CR2zbQj1T7bYrxqoEpmU25",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 14757,
+                "cache_read_input_tokens": 25020,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14757
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个训练全部正常完成（step 50005, EXIT_CODE=0）。验证 checkpoint 文件。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "6bf4223d-b2fa-41f8-8f43-71650cc84c21",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CR2zbQj1T7bYrxqoEpmU25",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 14757,
+                "cache_read_input_tokens": 25020,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14757
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011FmCkvfueeW5X2RsoswbeW",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-34685",
+                "command": "ls -la /root/autodl-tmp/checkpoints/detach_bn_v2_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--detach_bn_v2_s0--50000_chkpt/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "15e119a3-5451-46c0-8210-c47bf0f05d7c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CR2zbQj1T7bYrxqoEpmU25",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 14757,
+                "cache_read_input_tokens": 25020,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14757
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-26T07:38:26.768Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011FmCkvfueeW5X2RsoswbeW",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 15094968\\\\ndrwxr-xr-x 3 root root       4096 May 26 15:35 .\\\\ndrwxr-xr-x 5 root root       4096 May 26 15:35 ..\\\\n-rw-r--r-- 1 root root  302243095 May 26 15:31 action_head--50000_checkpoint.pt\\\\n-rw-r--r-- 1 root root         21 May 26 15:31 added_tokens.json\\\\n-rw-r--r-- 1 root root      60768 May 26 15:35 config.json\\\\n-rw-r--r-- 1 root root      60769 May 26 15:31 config.json.back.20260526_153522\\\\n-rw-r--r-- 1 root root       5865 May 26 15:31 configuration_prismatic.py\\\\n-rw-r--r-- 1 root root       2957 May 26 15:31 dataset_statistics.json\\\\n-rw-r--r-- 1 root root        136 May 26 15:31 generation_config.json\\\\ndrwxr-xr-x 2 root root         99 May 26 15:31 lora_adapter\\\\n-rw-r--r-- 1 root root 4925122448 May 26 15:31 model-00001-of-00004.safetensors\\\\n-rw-r--r-- 1 root root 4947392496 May 26 15:31 model-00002-of-00004.safetensors\\\\n-rw-r--r-- 1 root root 4947417456 May 26 15:31 model-00003-of-00004.safetensors\\\\n-rw-r--r-- 1 root root  262668432 May 26 15:31 model-00004-of-00004.safetensors\\\\n-rw-r--r-- 1 root root      94764 May 26 15:32 model.safetensors.index.json\\\\n-rw-r--r-- 1 root root      49036 May 26 15:31 modeling_prismatic.py\\\\n-rw-r--r-- 1 root root    2434741 May 26 15:31 occ_head--50000_checkpoint.pt\\\\n-rw-r--r-- 1 root root       1650 May 26 15:31 preprocessor_config.json\\\\n-rw-r--r-- 1 root root      12718 May 26 15:31 processing_prismatic.py\\\\n-rw-r--r-- 1 root root        130 May 26 15:31 processor_config.json\\\\n-rw-r--r-- 1 root root   67275701 May 26 15:31 proprio_projector--50000_checkpoint.pt\\\\n-rw-r--r-- 1 root root        552 May 26 15:31 special_tokens_map.json\\\\n-rw-r--r-- 1 root root    1842976 May 26 15:31 tokenizer.json\\\\n-rw-r--r-- 1 root root     499723 May 26 15:31 tokenizer.model\\\\n-rw-r--r-- 1 root root       1192 May 26 15:31 tokenizer_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "56bdb666-cd5f-4283-a571-f18b8f6e2cca",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 15094968\\\\ndrwxr-xr-x 3 root root       4096 May 26 15:35 .\\\\ndrwxr-xr-x 5 root root       4096 May 26 15:35 ..\\\\n-rw-r--r-- 1 root root  302243095 May 26 15:31 action_head--50000_checkpoint.pt\\\\n-rw-r--r-- 1 root root         21 May 26 15:31 added_tokens.json\\\\n-rw-r--r-- 1 root root      60768 May 26 15:35 config.json\\\\n-rw-r--r-- 1 root root      60769 May 26 15:31 config.json.back.20260526_153522\\\\n-rw-r--r-- 1 root root       5865 May 26 15:31 configuration_prismatic.py\\\\n-rw-r--r-- 1 root root       2957 May 26 15:31 dataset_statistics.json\\\\n-rw-r--r-- 1 root root        136 May 26 15:31 generation_config.json\\\\ndrwxr-xr-x 2 root root         99 May 26 15:31 lora_adapter\\\\n-rw-r--r-- 1 root root 4925122448 May 26 15:31 model-00001-of-00004.safetensors\\\\n-rw-r--r-- 1 root root 4947392496 May 26 15:31 model-00002-of-00004.safetensors\\\\n-rw-r--r-- 1 root root 4947417456 May 26 15:31 model-00003-of-00004.safetensors\\\\n-rw-r--r-- 1 root root  262668432 May 26 15:31 model-00004-of-00004.safetensors\\\\n-rw-r--r-- 1 root root      94764 May 26 15:32 model.safetensors.index.json\\\\n-rw-r--r-- 1 root root      49036 May 26 15:31 modeling_prismatic.py\\\\n-rw-r--r-- 1 root root    2434741 May 26 15:31 occ_head--50000_checkpoint.pt\\\\n-rw-r--r-- 1 root root       1650 May 26 15:31 preprocessor_config.json\\\\n-rw-r--r-- 1 root root      12718 May 26 15:31 processing_prismatic.py\\\\n-rw-r--r-- 1 root root        130 May 26 15:31 processor_config.json\\\\n-rw-r--r-- 1 root root   67275701 May 26 15:31 proprio_projector--50000_checkpoint.pt\\\\n-rw-r--r-- 1 root root        552 May 26 15:31 special_tokens_map.json\\\\n-rw-r--r-- 1 root root    1842976 May 26 15:31 tokenizer.json\\\\n-rw-r--r-- 1 root root     499723 May 26 15:31 tokenizer.model\\\\n-rw-r--r-- 1 root root       1192 May 26 15:31 tokenizer_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 15094968\\ndrwxr-xr-x 3 root root       4096 May 26 15:35 .\\ndrwxr-xr-x 5 root root       4096 May 26 15:35 ..\\n-rw-r--r-- 1 root root  302243095 May 26 15:31 action_head--50000_checkpoint.pt\\n-rw-r--r-- 1 root root         21 May 26 15:31 added_tokens.json\\n-rw-r--r-- 1 root root      60768 May 26 15:35 config.json\\n-rw-r--r-- 1 root root      60769 May 26 15:31 config.json.back.20260526_153522\\n-rw-r--r-- 1 root root       5865 May 26 15:31 configuration_prismatic.py\\n-rw-r--r-- 1 root root       2957 May 26 15:31 dataset_statistics.json\\n-rw-r--r-- 1 root root        136 May 26 15:31 generation_config.json\\ndrwxr-xr-x 2 root root         99 May 26 15:31 lora_adapter\\n-rw-r--r-- 1 root root 4925122448 May 26 15:31 model-00001-of-00004.safetensors\\n-rw-r--r-- 1 root root 4947392496 May 26 15:31 model-00002-of-00004.safetensors\\n-rw-r--r-- 1 root root 4947417456 May 26 15:31 model-00003-of-00004.safetensors\\n-rw-r--r-- 1 root root  262668432 May 26 15:31 model-00004-of-00004.safetensors\\n-rw-r--r-- 1 root root      94764 May 26 15:32 model.safetensors.index.json\\n-rw-r--r-- 1 root root      49036 May 26 15:31 modeling_prismatic.py\\n-rw-r--r-- 1 root root    2434741 May 26 15:31 occ_head--50000_checkpoint.pt\\n-rw-r--r-- 1 root root       1650 May 26 15:31 preprocessor_config.json\\n-rw-r--r-- 1 root root      12718 May 26 15:31 processing_prismatic.py\\n-rw-r--r-- 1 root root        130 May 26 15:31 processor_config.json\\n-rw-r--r-- 1 root root   67275701 May 26 15:31 proprio_projector--50000_checkpoint.pt\\n-rw-r--r-- 1 root root        552 May 26 15:31 special_tokens_map.json\\n-rw-r--r-- 1 root root    1842976 May 26 15:31 tokenizer.json\\n-rw-r--r-- 1 root root     499723 May 26 15:31 tokenizer.model\\n-rw-r--r-- 1 root root       1192 May 26 15:31 tokenizer_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XYMNLWC5dzGPBhXA9eccmQ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-34685",
+                "command": "ls -la /root/autodl-tmp/checkpoints/detach_bn_v2_s1/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--detach_bn_v2_s1--50000_chkpt/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "96aabeab-8516-4592-8e2f-fdb87d11df19",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CR2zbQj1T7bYrxqoEpmU25",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 14757,
+                "cache_read_input_tokens": 25020,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14757
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-26T07:38:28.210Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XYMNLWC5dzGPBhXA9eccmQ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 15094968\\\\ndrwxr-xr-x 3 root root       4096 May 26 15:35 .\\\\ndrwxr-xr-x 5 root root       4096 May 26 15:35 ..\\\\n-rw-r--r-- 1 root root  302243095 May 26 15:29 action_head--50000_checkpoint.pt\\\\n-rw-r--r-- 1 root root         21 May 26 15:29 added_tokens.json\\\\n-rw-r--r-- 1 root root      60768 May 26 15:35 config.json\\\\n-rw-r--r-- 1 root root      60769 May 26 15:29 config.json.back.20260526_153524\\\\n-rw-r--r-- 1 root root       5865 May 26 15:29 configuration_prismatic.py\\\\n-rw-r--r-- 1 root root       2957 May 26 15:29 dataset_statistics.json\\\\n-rw-r--r-- 1 root root        136 May 26 15:29 generation_config.json\\\\ndrwxr-xr-x 2 root root         83 May 26 15:29 lora_adapter\\\\n-rw-r--r-- 1 root root 4925122448 May 26 15:30 model-00001-of-00004.safetensors\\\\n-rw-r--r-- 1 root root 4947392496 May 26 15:30 model-00002-of-00004.safetensors\\\\n-rw-r--r-- 1 root root 4947417456 May 26 15:30 model-00003-of-00004.safetensors\\\\n-rw-r--r-- 1 root root  262668432 May 26 15:30 model-00004-of-00004.safetensors\\\\n-rw-r--r-- 1 root root      94764 May 26 15:30 model.safetensors.index.json\\\\n-rw-r--r-- 1 root root      49036 May 26 15:29 modeling_prismatic.py\\\\n-rw-r--r-- 1 root root    2434741 May 26 15:29 occ_head--50000_checkpoint.pt\\\\n-rw-r--r-- 1 root root       1650 May 26 15:29 preprocessor_config.json\\\\n-rw-r--r-- 1 root root      12718 May 26 15:29 processing_prismatic.py\\\\n-rw-r--r-- 1 root root        130 May 26 15:29 processor_config.json\\\\n-rw-r--r-- 1 root root   67275701 May 26 15:29 proprio_projector--50000_checkpoint.pt\\\\n-rw-r--r-- 1 root root        552 May 26 15:29 special_tokens_map.json\\\\n-rw-r--r-- 1 root root    1842976 May 26 15:29 tokenizer.json\\\\n-rw-r--r-- 1 root root     499723 May 26 15:29 tokenizer.model\\\\n-rw-r--r-- 1 root root       1192 May 26 15:29 tokenizer_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "0914c958-5c12-4299-9c02-6f0b103f73a6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 15094968\\\\ndrwxr-xr-x 3 root root       4096 May 26 15:35 .\\\\ndrwxr-xr-x 5 root root       4096 May 26 15:35 ..\\\\n-rw-r--r-- 1 root root  302243095 May 26 15:29 action_head--50000_checkpoint.pt\\\\n-rw-r--r-- 1 root root         21 May 26 15:29 added_tokens.json\\\\n-rw-r--r-- 1 root root      60768 May 26 15:35 config.json\\\\n-rw-r--r-- 1 root root      60769 May 26 15:29 config.json.back.20260526_153524\\\\n-rw-r--r-- 1 root root       5865 May 26 15:29 configuration_prismatic.py\\\\n-rw-r--r-- 1 root root       2957 May 26 15:29 dataset_statistics.json\\\\n-rw-r--r-- 1 root root        136 May 26 15:29 generation_config.json\\\\ndrwxr-xr-x 2 root root         83 May 26 15:29 lora_adapter\\\\n-rw-r--r-- 1 root root 4925122448 May 26 15:30 model-00001-of-00004.safetensors\\\\n-rw-r--r-- 1 root root 4947392496 May 26 15:30 model-00002-of-00004.safetensors\\\\n-rw-r--r-- 1 root root 4947417456 May 26 15:30 model-00003-of-00004.safetensors\\\\n-rw-r--r-- 1 root root  262668432 May 26 15:30 model-00004-of-00004.safetensors\\\\n-rw-r--r-- 1 root root      94764 May 26 15:30 model.safetensors.index.json\\\\n-rw-r--r-- 1 root root      49036 May 26 15:29 modeling_prismatic.py\\\\n-rw-r--r-- 1 root root    2434741 May 26 15:29 occ_head--50000_checkpoint.pt\\\\n-rw-r--r-- 1 root root       1650 May 26 15:29 preprocessor_config.json\\\\n-rw-r--r-- 1 root root      12718 May 26 15:29 processing_prismatic.py\\\\n-rw-r--r-- 1 root root        130 May 26 15:29 processor_config.json\\\\n-rw-r--r-- 1 root root   67275701 May 26 15:29 proprio_projector--50000_checkpoint.pt\\\\n-rw-r--r-- 1 root root        552 May 26 15:29 special_tokens_map.json\\\\n-rw-r--r-- 1 root root    1842976 May 26 15:29 tokenizer.json\\\\n-rw-r--r-- 1 root root     499723 May 26 15:29 tokenizer.model\\\\n-rw-r--r-- 1 root root       1192 May 26 15:29 tokenizer_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 15094968\\ndrwxr-xr-x 3 root root       4096 May 26 15:35 .\\ndrwxr-xr-x 5 root root       4096 May 26 15:35 ..\\n-rw-r--r-- 1 root root  302243095 May 26 15:29 action_head--50000_checkpoint.pt\\n-rw-r--r-- 1 root root         21 May 26 15:29 added_tokens.json\\n-rw-r--r-- 1 root root      60768 May 26 15:35 config.json\\n-rw-r--r-- 1 root root      60769 May 26 15:29 config.json.back.20260526_153524\\n-rw-r--r-- 1 root root       5865 May 26 15:29 configuration_prismatic.py\\n-rw-r--r-- 1 root root       2957 May 26 15:29 dataset_statistics.json\\n-rw-r--r-- 1 root root        136 May 26 15:29 generation_config.json\\ndrwxr-xr-x 2 root root         83 May 26 15:29 lora_adapter\\n-rw-r--r-- 1 root root 4925122448 May 26 15:30 model-00001-of-00004.safetensors\\n-rw-r--r-- 1 root root 4947392496 May 26 15:30 model-00002-of-00004.safetensors\\n-rw-r--r-- 1 root root 4947417456 May 26 15:30 model-00003-of-00004.safetensors\\n-rw-r--r-- 1 root root  262668432 May 26 15:30 model-00004-of-00004.safetensors\\n-rw-r--r-- 1 root root      94764 May 26 15:30 model.safetensors.index.json\\n-rw-r--r-- 1 root root      49036 May 26 15:29 modeling_prismatic.py\\n-rw-r--r-- 1 root root    2434741 May 26 15:29 occ_head--50000_checkpoint.pt\\n-rw-r--r-- 1 root root       1650 May 26 15:29 preprocessor_config.json\\n-rw-r--r-- 1 root root      12718 May 26 15:29 processing_prismatic.py\\n-rw-r--r-- 1 root root        130 May 26 15:29 processor_config.json\\n-rw-r--r-- 1 root root   67275701 May 26 15:29 proprio_projector--50000_checkpoint.pt\\n-rw-r--r-- 1 root root        552 May 26 15:29 special_tokens_map.json\\n-rw-r--r-- 1 root root    1842976 May 26 15:29 tokenizer.json\\n-rw-r--r-- 1 root root     499723 May 26 15:29 tokenizer.model\\n-rw-r--r-- 1 root root       1192 May 26 15:29 tokenizer_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ACvujQQGoEPHn7AmSzKU2C",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-34685",
+                "command": "ls -la /root/autodl-tmp/checkpoints/detach_bn_v2_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--detach_bn_v2_s2--50000_chkpt/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "547b82d2-a142-4af5-85ca-9508c0236153",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CR2zbQj1T7bYrxqoEpmU25",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 14757,
+                "cache_read_input_tokens": 25020,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14757
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-26T07:38:29.033Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ACvujQQGoEPHn7AmSzKU2C",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 15094968\\\\ndrwxr-xr-x 3 root root       4096 May 26 15:35 .\\\\ndrwxr-xr-x 5 root root       4096 May 26 15:35 ..\\\\n-rw-r--r-- 1 root root  302243095 May 26 15:32 action_head--50000_checkpoint.pt\\\\n-rw-r--r-- 1 root root         21 May 26 15:32 added_tokens.json\\\\n-rw-r--r-- 1 root root      60768 May 26 15:35 config.json\\\\n-rw-r--r-- 1 root root      60769 May 26 15:32 config.json.back.20260526_153526\\\\n-rw-r--r-- 1 root root       5865 May 26 15:32 configuration_prismatic.py\\\\n-rw-r--r-- 1 root root       2957 May 26 15:32 dataset_statistics.json\\\\n-rw-r--r-- 1 root root        136 May 26 15:32 generation_config.json\\\\ndrwxr-xr-x 2 root root         99 May 26 15:32 lora_adapter\\\\n-rw-r--r-- 1 root root 4925122448 May 26 15:32 model-00001-of-00004.safetensors\\\\n-rw-r--r-- 1 root root 4947392496 May 26 15:32 model-00002-of-00004.safetensors\\\\n-rw-r--r-- 1 root root 4947417456 May 26 15:32 model-00003-of-00004.safetensors\\\\n-rw-r--r-- 1 root root  262668432 May 26 15:32 model-00004-of-00004.safetensors\\\\n-rw-r--r-- 1 root root      94764 May 26 15:32 model.safetensors.index.json\\\\n-rw-r--r-- 1 root root      49036 May 26 15:32 modeling_prismatic.py\\\\n-rw-r--r-- 1 root root    2434741 May 26 15:32 occ_head--50000_checkpoint.pt\\\\n-rw-r--r-- 1 root root       1650 May 26 15:32 preprocessor_config.json\\\\n-rw-r--r-- 1 root root      12718 May 26 15:32 processing_prismatic.py\\\\n-rw-r--r-- 1 root root        130 May 26 15:32 processor_config.json\\\\n-rw-r--r-- 1 root root   67275701 May 26 15:32 proprio_projector--50000_checkpoint.pt\\\\n-rw-r--r-- 1 root root        552 May 26 15:32 special_tokens_map.json\\\\n-rw-r--r-- 1 root root    1842976 May 26 15:32 tokenizer.json\\\\n-rw-r--r-- 1 root root     499723 May 26 15:32 tokenizer.model\\\\n-rw-r--r-- 1 root root       1192 May 26 15:32 tokenizer_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "9bb141fb-ba4c-413f-ba86-779517fbdeb1",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 15094968\\\\ndrwxr-xr-x 3 root root       4096 May 26 15:35 .\\\\ndrwxr-xr-x 5 root root       4096 May 26 15:35 ..\\\\n-rw-r--r-- 1 root root  302243095 May 26 15:32 action_head--50000_checkpoint.pt\\\\n-rw-r--r-- 1 root root         21 May 26 15:32 added_tokens.json\\\\n-rw-r--r-- 1 root root      60768 May 26 15:35 config.json\\\\n-rw-r--r-- 1 root root      60769 May 26 15:32 config.json.back.20260526_153526\\\\n-rw-r--r-- 1 root root       5865 May 26 15:32 configuration_prismatic.py\\\\n-rw-r--r-- 1 root root       2957 May 26 15:32 dataset_statistics.json\\\\n-rw-r--r-- 1 root root        136 May 26 15:32 generation_config.json\\\\ndrwxr-xr-x 2 root root         99 May 26 15:32 lora_adapter\\\\n-rw-r--r-- 1 root root 4925122448 May 26 15:32 model-00001-of-00004.safetensors\\\\n-rw-r--r-- 1 root root 4947392496 May 26 15:32 model-00002-of-00004.safetensors\\\\n-rw-r--r-- 1 root root 4947417456 May 26 15:32 model-00003-of-00004.safetensors\\\\n-rw-r--r-- 1 root root  262668432 May 26 15:32 model-00004-of-00004.safetensors\\\\n-rw-r--r-- 1 root root      94764 May 26 15:32 model.safetensors.index.json\\\\n-rw-r--r-- 1 root root      49036 May 26 15:32 modeling_prismatic.py\\\\n-rw-r--r-- 1 root root    2434741 May 26 15:32 occ_head--50000_checkpoint.pt\\\\n-rw-r--r-- 1 root root       1650 May 26 15:32 preprocessor_config.json\\\\n-rw-r--r-- 1 root root      12718 May 26 15:32 processing_prismatic.py\\\\n-rw-r--r-- 1 root root        130 May 26 15:32 processor_config.json\\\\n-rw-r--r-- 1 root root   67275701 May 26 15:32 proprio_projector--50000_checkpoint.pt\\\\n-rw-r--r-- 1 root root        552 May 26 15:32 special_tokens_map.json\\\\n-rw-r--r-- 1 root root    1842976 May 26 15:32 tokenizer.json\\\\n-rw-r--r-- 1 root root     499723 May 26 15:32 tokenizer.model\\\\n-rw-r--r-- 1 root root       1192 May 26 15:32 tokenizer_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 15094968\\ndrwxr-xr-x 3 root root       4096 May 26 15:35 .\\ndrwxr-xr-x 5 root root       4096 May 26 15:35 ..\\n-rw-r--r-- 1 root root  302243095 May 26 15:32 action_head--50000_checkpoint.pt\\n-rw-r--r-- 1 root root         21 May 26 15:32 added_tokens.json\\n-rw-r--r-- 1 root root      60768 May 26 15:35 config.json\\n-rw-r--r-- 1 root root      60769 May 26 15:32 config.json.back.20260526_153526\\n-rw-r--r-- 1 root root       5865 May 26 15:32 configuration_prismatic.py\\n-rw-r--r-- 1 root root       2957 May 26 15:32 dataset_statistics.json\\n-rw-r--r-- 1 root root        136 May 26 15:32 generation_config.json\\ndrwxr-xr-x 2 root root         99 May 26 15:32 lora_adapter\\n-rw-r--r-- 1 root root 4925122448 May 26 15:32 model-00001-of-00004.safetensors\\n-rw-r--r-- 1 root root 4947392496 May 26 15:32 model-00002-of-00004.safetensors\\n-rw-r--r-- 1 root root 4947417456 May 26 15:32 model-00003-of-00004.safetensors\\n-rw-r--r-- 1 root root  262668432 May 26 15:32 model-00004-of-00004.safetensors\\n-rw-r--r-- 1 root root      94764 May 26 15:32 model.safetensors.index.json\\n-rw-r--r-- 1 root root      49036 May 26 15:32 modeling_prismatic.py\\n-rw-r--r-- 1 root root    2434741 May 26 15:32 occ_head--50000_checkpoint.pt\\n-rw-r--r-- 1 root root       1650 May 26 15:32 preprocessor_config.json\\n-rw-r--r-- 1 root root      12718 May 26 15:32 processing_prismatic.py\\n-rw-r--r-- 1 root root        130 May 26 15:32 processor_config.json\\n-rw-r--r-- 1 root root   67275701 May 26 15:32 proprio_projector--50000_checkpoint.pt\\n-rw-r--r-- 1 root root        552 May 26 15:32 special_tokens_map.json\\n-rw-r--r-- 1 root root    1842976 May 26 15:32 tokenizer.json\\n-rw-r--r-- 1 root root     499723 May 26 15:32 tokenizer.model\\n-rw-r--r-- 1 root root       1192 May 26 15:32 tokenizer_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "All checkpoints exist and contain the expected files (model shards, action_head, occ_head, proprio_projector, etc.). Each checkpoint is ~14.4GB.\n\nTraining summary:\n- **s0**: step 50005, occ_loss=0.0095, action_loss=0.0449, EXIT_CODE=0\n- **s1**: step 50005, occ_loss=0.0089, action_loss=0.0513, EXIT_CODE=0\n\n\n- **s2**: step 50005, occ_loss=0.0094, action_loss=0.0481, EXIT_CODE=0\n\nNow I need to set up the evaluation pipeline by creating registry entries for the three eval experiments and submitting the corresponding jobs. Let me start by loading the necessary tools.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "5fafe1b0-9037-4e16-813b-e12041d863f4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0124M6M5kQxjwUcWz6LaBxmj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3664,
+                "cache_read_input_tokens": 39777,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3664
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Checkpoint 全部存在且完整（~14.4GB，含 model shards + action_head + occ_head + proprio_projector）。\n\n现在注册 eval 实验条目并提交 eval 任务。先加载工具。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "12ef43bc-1f80-41bb-aef1-22d1ffdb8cb9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0124M6M5kQxjwUcWz6LaBxmj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3664,
+                "cache_read_input_tokens": 39777,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3664
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015ezHfkCWEeJNb6zJaPaVw4",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__submit_training_job",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "6a4ba957-ab3b-42d9-9193-b773551c6c40",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0124M6M5kQxjwUcWz6LaBxmj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3664,
+                "cache_read_input_tokens": 39777,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3664
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-26T07:38:36.177Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_015ezHfkCWEeJNb6zJaPaVw4",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__update_registry"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__submit_training_job"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "354da15a-05c5-4788-8c92-b66ea37f957a",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__update_registry",
+                "mcp__agent-ml-research__submit_training_job"
+              ],
+              "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__submit_training_job",
+              "total_deferred_tools": 27
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "注册 3 个 eval 实验条目。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "fa6ba959-c077-459b-a0fd-f7bbbce170fe",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SKSHe59WkEtPBBEtJ8m7QJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1741,
+                "cache_read_input_tokens": 43441,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1741
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01R5Cn8XY8P2gRxrt8ExkgRd",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "detach_bn_v2_s0_eval",
+                "field": "status",
+                "value": "PREPARING",
+                "project": "occsafe_vla"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "cf8f9a95-8593-400f-95f7-27f3f2b04dbc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SKSHe59WkEtPBBEtJ8m7QJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1741,
+                "cache_read_input_tokens": 43441,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1741
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JXojpixhsEwtXU2gJzWidE",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "detach_bn_v2_s1_eval",
+                "field": "status",
+                "value": "PREPARING",
+                "project": "occsafe_vla"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "79693e9d-22db-423c-b9bb-4479b2300a90",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SKSHe59WkEtPBBEtJ8m7QJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1741,
+                "cache_read_input_tokens": 43441,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1741
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ri6BnokNbyGiSpzQTvRLq7",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "detach_bn_v2_s2_eval",
+                "field": "status",
+                "value": "PREPARING",
+                "project": "occsafe_vla"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "fec5ab22-3f32-4ec4-ad0d-4b03763b81be",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SKSHe59WkEtPBBEtJ8m7QJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1741,
+                "cache_read_input_tokens": 43441,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1741
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-26T07:38:42.457Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01R5Cn8XY8P2gRxrt8ExkgRd",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"detach_bn_v2_s0_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T07:38:41.587Z\\\", \\\"updated_at\\\": \\\"2026-05-26T07:38:41.587Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2363}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "dc8fe784-40e3-4990-b22e-f043c9e32cb6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"detach_bn_v2_s0_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T07:38:41.587Z\\\", \\\"updated_at\\\": \\\"2026-05-26T07:38:41.587Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2363}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"detach_bn_v2_s0_eval\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T07:38:41.587Z\", \"updated_at\": \"2026-05-26T07:38:41.587Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2363}}"
+              }
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-26T07:38:43.699Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JXojpixhsEwtXU2gJzWidE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"detach_bn_v2_s1_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T07:38:42.851Z\\\", \\\"updated_at\\\": \\\"2026-05-26T07:38:42.851Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2318}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "821b56f0-ae7f-4f27-a653-fb455381eb55",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"detach_bn_v2_s1_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T07:38:42.851Z\\\", \\\"updated_at\\\": \\\"2026-05-26T07:38:42.851Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2318}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"detach_bn_v2_s1_eval\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T07:38:42.851Z\", \"updated_at\": \"2026-05-26T07:38:42.851Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2318}}"
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-26T07:38:44.878Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ri6BnokNbyGiSpzQTvRLq7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"detach_bn_v2_s2_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T07:38:44.080Z\\\", \\\"updated_at\\\": \\\"2026-05-26T07:38:44.080Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1693}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "c33d9791-c803-4b41-8cbb-3c03a5f9e60a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"detach_bn_v2_s2_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T07:38:44.080Z\\\", \\\"updated_at\\\": \\\"2026-05-26T07:38:44.080Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1693}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"detach_bn_v2_s2_eval\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T07:38:44.080Z\", \"updated_at\": \"2026-05-26T07:38:44.080Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1693}}"
+              }
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "设置 hypothesis 和 parent。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "14c1ec6b-9e88-481a-ab43-4b6fe91b64e5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Nm5B63EXSwXmdvMp793PVu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 891,
+                "cache_read_input_tokens": 45182,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 891
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CqCNhBWCBpnanrbKjbfYdc",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "detach_bn_v2_s0_eval",
+                "field": "hypothesis",
+                "value": "50r SafeLIBERO eval of detach_bn_v2_s0 (Detach BN v2, gradient flow OFF + BatchNorm, seed 42). D051 v2 code rebuild. Part of 2×2 factorial (detach vs full_occ) × (BN vs LN).",
+                "project": "occsafe_vla"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "3365448c-52d6-47d0-9e08-6c113531e3a0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Nm5B63EXSwXmdvMp793PVu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 891,
+                "cache_read_input_tokens": 45182,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 891
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-26T07:38:51.643Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CqCNhBWCBpnanrbKjbfYdc",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"detach_bn_v2_s0_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T07:38:41.587Z\\\", \\\"updated_at\\\": \\\"2026-05-26T07:38:51.355Z\\\", \\\"hypothesis\\\": \\\"50r SafeLIBERO eval of detach_bn_v2_s0 (Detach BN v2, gradient flow OFF + BatchNorm, seed 42). D051 v2 code rebuild. Part of 2×2 factorial (detach vs full_occ) × (BN vs LN).\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6638}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "d8566d0f-9a7d-4647-8b52-1d0d0c666e59",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"detach_bn_v2_s0_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T07:38:41.587Z\\\", \\\"updated_at\\\": \\\"2026-05-26T07:38:51.355Z\\\", \\\"hypothesis\\\": \\\"50r SafeLIBERO eval of detach_bn_v2_s0 (Detach BN v2, gradient flow OFF + BatchNorm, seed 42). D051 v2 code rebuild. Part of 2×2 factorial (detach vs full_occ) × (BN vs LN).\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6638}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"detach_bn_v2_s0_eval\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T07:38:41.587Z\", \"updated_at\": \"2026-05-26T07:38:51.355Z\", \"hypothesis\": \"50r SafeLIBERO eval of detach_bn_v2_s0 (Detach BN v2, gradient flow OFF + BatchNorm, seed 42). D051 v2 code rebuild. Part of 2×2 factorial (detach vs full_occ) × (BN vs LN).\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6638}}"
+              }
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FmpNapQjTAhPKJyxFkMtj4",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "detach_bn_v2_s0_eval",
+                "field": "parent",
+                "value": "detach_bn_v2_s0",
+                "project": "occsafe_vla"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "7388f1ea-f257-4159-8362-6be5e61f0d9e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Nm5B63EXSwXmdvMp793PVu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 891,
+                "cache_read_input_tokens": 45182,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 891
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-26T07:38:52.530Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FmpNapQjTAhPKJyxFkMtj4",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"detach_bn_v2_s0_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T07:38:41.587Z\\\", \\\"updated_at\\\": \\\"2026-05-26T07:38:52.264Z\\\", \\\"hypothesis\\\": \\\"50r SafeLIBERO eval of detach_bn_v2_s0 (Detach BN v2, gradient flow OFF + BatchNorm, seed 42). D051 v2 code rebuild. Part of 2×2 factorial (detach vs full_occ) × (BN vs LN).\\\", \\\"parent\\\": \\\"detach_bn_v2_s0\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6426}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "340724f7-a706-4d85-a409-d97245850150",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"detach_bn_v2_s0_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T07:38:41.587Z\\\", \\\"updated_at\\\": \\\"2026-05-26T07:38:52.264Z\\\", \\\"hypothesis\\\": \\\"50r SafeLIBERO eval of detach_bn_v2_s0 (Detach BN v2, gradient flow OFF + BatchNorm, seed 42). D051 v2 code rebuild. Part of 2×2 factorial (detach vs full_occ) × (BN vs LN).\\\", \\\"parent\\\": \\\"detach_bn_v2_s0\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6426}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"detach_bn_v2_s0_eval\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T07:38:41.587Z\", \"updated_at\": \"2026-05-26T07:38:52.264Z\", \"hypothesis\": \"50r SafeLIBERO eval of detach_bn_v2_s0 (Detach BN v2, gradient flow OFF + BatchNorm, seed 42). D051 v2 code rebuild. Part of 2×2 factorial (detach vs full_occ) × (BN vs LN).\", \"parent\": \"detach_bn_v2_s0\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6426}}"
+              }
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HmMbLyC1CE41ifAU5q4Dds",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "detach_bn_v2_s1_eval",
+                "field": "hypothesis",
+                "value": "50r SafeLIBERO eval of detach_bn_v2_s1 (Detach BN v2, gradient flow OFF + BatchNorm, seed 43). D051 v2 code rebuild. Part of 2×2 factorial (detach vs full_occ) × (BN vs LN).",
+                "project": "occsafe_vla"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "855dbcff-a288-4509-83c2-179946c7c6af",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Nm5B63EXSwXmdvMp793PVu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 891,
+                "cache_read_input_tokens": 45182,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 891
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-26T07:38:53.966Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HmMbLyC1CE41ifAU5q4Dds",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"detach_bn_v2_s1_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T07:38:42.851Z\\\", \\\"updated_at\\\": \\\"2026-05-26T07:38:53.705Z\\\", \\\"hypothesis\\\": \\\"50r SafeLIBERO eval of detach_bn_v2_s1 (Detach BN v2, gradient flow OFF + BatchNorm, seed 43). D051 v2 code rebuild. Part of 2×2 factorial (detach vs full_occ) × (BN vs LN).\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6288}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "39494217-812a-4154-aedf-7180db60c37d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"detach_bn_v2_s1_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T07:38:42.851Z\\\", \\\"updated_at\\\": \\\"2026-05-26T07:38:53.705Z\\\", \\\"hypothesis\\\": \\\"50r SafeLIBERO eval of detach_bn_v2_s1 (Detach BN v2, gradient flow OFF + BatchNorm, seed 43). D051 v2 code rebuild. Part of 2×2 factorial (detach vs full_occ) × (BN vs LN).\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6288}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"detach_bn_v2_s1_eval\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T07:38:42.851Z\", \"updated_at\": \"2026-05-26T07:38:53.705Z\", \"hypothesis\": \"50r SafeLIBERO eval of detach_bn_v2_s1 (Detach BN v2, gradient flow OFF + BatchNorm, seed 43). D051 v2 code rebuild. Part of 2×2 factorial (detach vs full_occ) × (BN vs LN).\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6288}}"
+              }
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FFMp8YapgmtogD8jmKdBie",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "detach_bn_v2_s1_eval",
+                "field": "parent",
+                "value": "detach_bn_v2_s1",
+                "project": "occsafe_vla"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "1a592b91-54c0-4f10-97e8-483def0203f8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Nm5B63EXSwXmdvMp793PVu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 891,
+                "cache_read_input_tokens": 45182,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 891
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-26T07:38:54.922Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FFMp8YapgmtogD8jmKdBie",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"detach_bn_v2_s1_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T07:38:42.851Z\\\", \\\"updated_at\\\": \\\"2026-05-26T07:38:54.649Z\\\", \\\"hypothesis\\\": \\\"50r SafeLIBERO eval of detach_bn_v2_s1 (Detach BN v2, gradient flow OFF + BatchNorm, seed 43). D051 v2 code rebuild. Part of 2×2 factorial (detach vs full_occ) × (BN vs LN).\\\", \\\"parent\\\": \\\"detach_bn_v2_s1\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6452}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "d3f6ebeb-fc36-480c-b235-7cdb9480570b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"detach_bn_v2_s1_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T07:38:42.851Z\\\", \\\"updated_at\\\": \\\"2026-05-26T07:38:54.649Z\\\", \\\"hypothesis\\\": \\\"50r SafeLIBERO eval of detach_bn_v2_s1 (Detach BN v2, gradient flow OFF + BatchNorm, seed 43). D051 v2 code rebuild. Part of 2×2 factorial (detach vs full_occ) × (BN vs LN).\\\", \\\"parent\\\": \\\"detach_bn_v2_s1\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6452}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"detach_bn_v2_s1_eval\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T07:38:42.851Z\", \"updated_at\": \"2026-05-26T07:38:54.649Z\", \"hypothesis\": \"50r SafeLIBERO eval of detach_bn_v2_s1 (Detach BN v2, gradient flow OFF + BatchNorm, seed 43). D051 v2 code rebuild. Part of 2×2 factorial (detach vs full_occ) × (BN vs LN).\", \"parent\": \"detach_bn_v2_s1\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6452}}"
+              }
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XCjLZ39xC4y3iP6fyyjy6W",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "detach_bn_v2_s2_eval",
+                "field": "hypothesis",
+                "value": "50r SafeLIBERO eval of detach_bn_v2_s2 (Detach BN v2, gradient flow OFF + BatchNorm, seed 44). D051 v2 code rebuild. Part of 2×2 factorial (detach vs full_occ) × (BN vs LN).",
+                "project": "occsafe_vla"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "9ea2bf22-dc3b-40ad-8a98-3612c585511c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Nm5B63EXSwXmdvMp793PVu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 891,
+                "cache_read_input_tokens": 45182,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 891
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CWB3H1ehqhvp2XS5SRvsXh",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "detach_bn_v2_s2_eval",
+                "field": "parent",
+                "value": "detach_bn_v2_s2",
+                "project": "occsafe_vla"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "afbcc347-e808-495c-899e-daf1f5eae28e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Nm5B63EXSwXmdvMp793PVu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 891,
+                "cache_read_input_tokens": 45182,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 891
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-26T07:38:56.362Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XCjLZ39xC4y3iP6fyyjy6W",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"detach_bn_v2_s2_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T07:38:44.080Z\\\", \\\"updated_at\\\": \\\"2026-05-26T07:38:56.092Z\\\", \\\"hypothesis\\\": \\\"50r SafeLIBERO eval of detach_bn_v2_s2 (Detach BN v2, gradient flow OFF + BatchNorm, seed 44). D051 v2 code rebuild. Part of 2×2 factorial (detach vs full_occ) × (BN vs LN).\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6578}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "8e8a02e3-8d49-4466-a9a3-58ea76f1e435",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"detach_bn_v2_s2_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T07:38:44.080Z\\\", \\\"updated_at\\\": \\\"2026-05-26T07:38:56.092Z\\\", \\\"hypothesis\\\": \\\"50r SafeLIBERO eval of detach_bn_v2_s2 (Detach BN v2, gradient flow OFF + BatchNorm, seed 44). D051 v2 code rebuild. Part of 2×2 factorial (detach vs full_occ) × (BN vs LN).\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6578}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"detach_bn_v2_s2_eval\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T07:38:44.080Z\", \"updated_at\": \"2026-05-26T07:38:56.092Z\", \"hypothesis\": \"50r SafeLIBERO eval of detach_bn_v2_s2 (Detach BN v2, gradient flow OFF + BatchNorm, seed 44). D051 v2 code rebuild. Part of 2×2 factorial (detach vs full_occ) × (BN vs LN).\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6578}}"
+              }
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-26T07:38:57.098Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CWB3H1ehqhvp2XS5SRvsXh",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"detach_bn_v2_s2_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T07:38:44.080Z\\\", \\\"updated_at\\\": \\\"2026-05-26T07:38:56.778Z\\\", \\\"hypothesis\\\": \\\"50r SafeLIBERO eval of detach_bn_v2_s2 (Detach BN v2, gradient flow OFF + BatchNorm, seed 44). D051 v2 code rebuild. Part of 2×2 factorial (detach vs full_occ) × (BN vs LN).\\\", \\\"parent\\\": \\\"detach_bn_v2_s2\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7258}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "ac796769-fbb8-4b81-b948-a46ca609428a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"detach_bn_v2_s2_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T07:38:44.080Z\\\", \\\"updated_at\\\": \\\"2026-05-26T07:38:56.778Z\\\", \\\"hypothesis\\\": \\\"50r SafeLIBERO eval of detach_bn_v2_s2 (Detach BN v2, gradient flow OFF + BatchNorm, seed 44). D051 v2 code rebuild. Part of 2×2 factorial (detach vs full_occ) × (BN vs LN).\\\", \\\"parent\\\": \\\"detach_bn_v2_s2\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7258}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"detach_bn_v2_s2_eval\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T07:38:44.080Z\", \"updated_at\": \"2026-05-26T07:38:56.778Z\", \"hypothesis\": \"50r SafeLIBERO eval of detach_bn_v2_s2 (Detach BN v2, gradient flow OFF + BatchNorm, seed 44). D051 v2 code rebuild. Part of 2×2 factorial (detach vs full_occ) × (BN vs LN).\", \"parent\": \"detach_bn_v2_s2\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7258}}"
+              }
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 条目就绪。提交 3 路并行 eval。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "be8fe39c-b7f3-40ff-9b89-c524f38dd131",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011Da8W2s3k23zL8X7cMf48o",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2624,
+                "cache_read_input_tokens": 46073,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2624
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014rQjhXkE8KnQa9cbUM8t1e",
+              "name": "mcp__agent-ml-research__submit_training_job",
+              "input": {
+                "server": "westd-34685",
+                "gpu_ids": [
+                  "cuda:0"
+                ],
+                "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && MUJOCO_EGL_DEVICE_ID=0 MUJOCO_GL=egl WANDB_MODE=disabled python vla-scripts/evaluate_safelibero.py --pretrained_checkpoint /root/autodl-tmp/checkpoints/detach_bn_v2_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--detach_bn_v2_s0--50000_chkpt --num_rollouts 50 --seed 42\"",
+                "exp_id": "detach_bn_v2_s0_eval",
+                "account": "root",
+                "project": "occsafe_vla",
+                "timeout_hours": 12
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "14f4de34-d8dd-4448-b292-2456787c749c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011Da8W2s3k23zL8X7cMf48o",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2624,
+                "cache_read_input_tokens": 46073,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2624
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-26T07:39:08.919Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014rQjhXkE8KnQa9cbUM8t1e",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"69726\\\", \\\"log_file\\\": \\\"~/runs/occsafe_vla/detach_bn_v2_s0_eval.log\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"server\\\": \\\"westd-34685\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"0\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"detach_bn_v2_s0_eval\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.07}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "41f14ab3-9832-40d3-8021-bc9e5107df13",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"69726\\\", \\\"log_file\\\": \\\"~/runs/occsafe_vla/detach_bn_v2_s0_eval.log\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"server\\\": \\\"westd-34685\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"0\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"detach_bn_v2_s0_eval\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.07}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"pid\": \"69726\", \"log_file\": \"~/runs/occsafe_vla/detach_bn_v2_s0_eval.log\", \"gpu_ids\": [\"cuda:0\"], \"server\": \"westd-34685\", \"account\": \"root\", \"cuda_visible_devices\": \"0\", \"backend\": \"tmux\", \"tmux_session\": \"detach_bn_v2_s0_eval\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.07}}"
+              }
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01D1n8qh77icYMynN2Qc2P2J",
+              "name": "mcp__agent-ml-research__submit_training_job",
+              "input": {
+                "server": "westd-34685",
+                "gpu_ids": [
+                  "cuda:1"
+                ],
+                "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && MUJOCO_EGL_DEVICE_ID=1 MUJOCO_GL=egl WANDB_MODE=disabled python vla-scripts/evaluate_safelibero.py --pretrained_checkpoint /root/autodl-tmp/checkpoints/detach_bn_v2_s1/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--detach_bn_v2_s1--50000_chkpt --num_rollouts 50 --seed 42\"",
+                "exp_id": "detach_bn_v2_s1_eval",
+                "account": "root",
+                "project": "occsafe_vla",
+                "timeout_hours": 12
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "5c981f48-5e3f-4131-8b03-28a095d4a392",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011Da8W2s3k23zL8X7cMf48o",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2624,
+                "cache_read_input_tokens": 46073,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2624
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-26T07:39:11.753Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01D1n8qh77icYMynN2Qc2P2J",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"70093\\\", \\\"log_file\\\": \\\"~/runs/occsafe_vla/detach_bn_v2_s1_eval.log\\\", \\\"gpu_ids\\\": [\\\"cuda:1\\\"], \\\"server\\\": \\\"westd-34685\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"1\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"detach_bn_v2_s1_eval\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.08}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "f4456d02-0be8-44d0-b66c-2b080c9a86f4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"70093\\\", \\\"log_file\\\": \\\"~/runs/occsafe_vla/detach_bn_v2_s1_eval.log\\\", \\\"gpu_ids\\\": [\\\"cuda:1\\\"], \\\"server\\\": \\\"westd-34685\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"1\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"detach_bn_v2_s1_eval\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.08}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"pid\": \"70093\", \"log_file\": \"~/runs/occsafe_vla/detach_bn_v2_s1_eval.log\", \"gpu_ids\": [\"cuda:1\"], \"server\": \"westd-34685\", \"account\": \"root\", \"cuda_visible_devices\": \"1\", \"backend\": \"tmux\", \"tmux_session\": \"detach_bn_v2_s1_eval\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.08}}"
+              }
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HLT2X5g6YHoWjRJHY3fiSV",
+              "name": "mcp__agent-ml-research__submit_training_job",
+              "input": {
+                "server": "westd-34685",
+                "gpu_ids": [
+                  "cuda:2"
+                ],
+                "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate occsafe && cd /root/occsafe_vla/openvla-oft && MUJOCO_EGL_DEVICE_ID=2 MUJOCO_GL=egl WANDB_MODE=disabled python vla-scripts/evaluate_safelibero.py --pretrained_checkpoint /root/autodl-tmp/checkpoints/detach_bn_v2_s2/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--detach_bn_v2_s2--50000_chkpt --num_rollouts 50 --seed 42\"",
+                "exp_id": "detach_bn_v2_s2_eval",
+                "account": "root",
+                "project": "occsafe_vla",
+                "timeout_hours": 12
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "2d4c4efa-f931-4157-84f7-83058ca14fa3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011Da8W2s3k23zL8X7cMf48o",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2624,
+                "cache_read_input_tokens": 46073,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2624
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-26T07:39:14.026Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HLT2X5g6YHoWjRJHY3fiSV",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"70490\\\", \\\"log_file\\\": \\\"~/runs/occsafe_vla/detach_bn_v2_s2_eval.log\\\", \\\"gpu_ids\\\": [\\\"cuda:2\\\"], \\\"server\\\": \\\"westd-34685\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"2\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"detach_bn_v2_s2_eval\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.02}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "c2fb6b8e-10aa-4418-bc60-7960a99cf232",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"70490\\\", \\\"log_file\\\": \\\"~/runs/occsafe_vla/detach_bn_v2_s2_eval.log\\\", \\\"gpu_ids\\\": [\\\"cuda:2\\\"], \\\"server\\\": \\\"westd-34685\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"2\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"detach_bn_v2_s2_eval\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.02}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"pid\": \"70490\", \"log_file\": \"~/runs/occsafe_vla/detach_bn_v2_s2_eval.log\", \"gpu_ids\": [\"cuda:2\"], \"server\": \"westd-34685\", \"account\": \"root\", \"cuda_visible_devices\": \"2\", \"backend\": \"tmux\", \"tmux_session\": \"detach_bn_v2_s2_eval\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.02}}"
+              }
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### 训练验证（全部通过）\n\n| exp_id | final step | occ_loss | action_loss | checkpoint | EXIT_CODE |\n|--------|-----------|----------|-------------|------------|-----------|\n| detach_bn_v2_s0 | 50005 | 0.0095 | 0.0449 | ✅ ~14.4GB | 0 |\n| detach_bn_v2_s1 | 50005 | 0.0089 | 0.0513 | ✅ ~14.4GB | 0 |\n| detach_bn_v2_s2 | 50005 | 0.0094 | 0.0481 | ✅ ~14.4GB | 0 |\n\n### Eval 提交（全部成功）\n\n| eval_id | server | GPU | PID | log |\n|---------|--------|-----|-----|-----|\n| detach_bn_v2_s0_eval | westd-34685 | cuda:0 | 69726 | `~/runs/occsafe_vla/detach_bn_v2_s0_eval.log` |\n| detach_bn_v2_s1_eval | westd-34685 | cuda:1 | 70093 | `~/runs/occsafe_vla/detach_bn_v2_s1_eval.log` |\n| detach_bn_v2_s2_eval | westd-34685 | cuda:2 | 70490 | `~/runs/occsafe_vla/detach_bn_v2_s2_eval.log` |\n\n无异常。3 路 50-rollout SafeLIBERO eval 已在 westd-34685 cuda:0/1/2 并行运行。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "uuid": "2a6d190c-3fc6-44ff-bd00-638624d94514",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LWPE4zHRvYyEzoQJvLq6SC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1733,
+                "cache_read_input_tokens": 48697,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1733
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### 训练验证（全部通过）\n\n| exp_id | final step | occ_loss | action_loss | checkpoint | EXIT_CODE |\n|--------|-----------|----------|-------------|------------|-----------|\n| detach_bn_v2_s0 | 50005 | 0.0095 | 0.0449 | ✅ ~14.4GB | 0 |\n| detach_bn_v2_s1 | 50005 | 0.0089 | 0.0513 | ✅ ~14.4GB | 0 |\n| detach_bn_v2_s2 | 50005 | 0.0094 | 0.0481 | ✅ ~14.4GB | 0 |\n\n### Eval 提交（全部成功）\n\n| eval_id | server | GPU | PID | log |\n|---------|--------|-----|-----|-----|\n| detach_bn_v2_s0_eval | westd-34685 | cuda:0 | 69726 | `~/runs/occsafe_vla/detach_bn_v2_s0_eval.log` |\n| detach_bn_v2_s1_eval | westd-34685 | cuda:1 | 70093 | `~/runs/occsafe_vla/detach_bn_v2_s1_eval.log` |\n| detach_bn_v2_s2_eval | westd-34685 | cuda:2 | 70490 | `~/runs/occsafe_vla/detach_bn_v2_s2_eval.log` |\n\n无异常。3 路 50-rollout SafeLIBERO eval 已在 westd-34685 cuda:0/1/2 并行运行。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 75831,
+            "duration_api_ms": 70360,
+            "num_turns": 21,
+            "stop_reason": "end_turn",
+            "session_id": "9f7ad757-f00b-4c37-8c46-aa5b311b01bc",
+            "total_cost_usd": 0.49988825,
+            "usage": {
+              "input_tokens": 14,
+              "cache_creation_input_tokens": 38589,
+              "cache_read_input_tokens": 284562,
+              "output_tokens": 4553,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 38589,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 460,
+                  "cache_read_input_tokens": 48697,
+                  "cache_creation_input_tokens": 1733,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1733
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2416,
+                "outputTokens": 23,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0025310000000000003,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 14,
+                "outputTokens": 4553,
+                "cacheReadInputTokens": 284562,
+                "cacheCreationInputTokens": 38589,
+                "webSearchRequests": 0,
+                "costUSD": 0.4973572499999999,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "f4399e69-2a94-4220-ba6a-6265e789fd59"
+          },
+          "id": "event-000054"
+        }
+      ],
+      "message_count": 54
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-detach-bn-v2-3seeds.md"
+}

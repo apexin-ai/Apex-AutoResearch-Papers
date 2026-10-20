@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "964791cf8a8ba9e03d4f",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval cutoff s1",
+  "task_key": "worker_eval_cutoff_s1_20260523T001725",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cutoff_s1_20260523T001725_result.json",
+    "occurrence": 1,
+    "bytes": 622,
+    "sha256": "3e0d5e1f285a3115ab5cfa69dd13eddc9f229ad7b8501993d64c26cb71adfde7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型加载成功，eval 已开始运行。\n\n**状态汇总：**\n- **Checkpoint**: `/root/autodl-tmp/checkpoints/cutoff_s1/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt`\n- **训练日志**: 50005 steps 正常完成，EXIT_CODE=0，最终 occ_loss=0.0129, action_loss=0.0547\n- **Eval**: 已在 tmux session `cutoff_s1_eval` 中启动，cuda:3，10 tasks × 50 rollouts，当前 Task 0 进行中\n- **日志**: `/root/runs/occsafe_vla/cutoff_s1_eval.log`\n- **脚本**: `vla-scripts/evaluate_safelibero.py`（正确版本）\n- **预计耗时**: 2-3 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cutoff-s1.md"
+}

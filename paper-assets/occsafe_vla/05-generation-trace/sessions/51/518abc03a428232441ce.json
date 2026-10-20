@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "518abc03a428232441ce",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "eval full occ ln s1",
+  "task_key": "worker_eval_full_occ_ln_s1_20260525T024906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_full_occ_ln_s1_20260525T024906_result.json",
+    "occurrence": 1,
+    "bytes": 480,
+    "sha256": "8fee63ec31cf118223a705ffc61a16e4df99b3fd72b4906a1ccdf1e78a3affac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已在运行中，无需重复提交。\n\n- **状态**: RUNNING，PID 859060，已运行 ~18 分钟\n- **GPU**: cuda:0（非任务指定的 cuda:2，但已在跑）\n- **进度**: Task 4 (T4) 正在 eval，当前 35/50 rollouts (70%)\n- **Checkpoint**: `/root/autodl-tmp/checkpoints/full_occ_ln_s1/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt`\n\n预计再过 ~15-20 分钟完成全部 10 个 task 的评估。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-full-occ-ln-s1.md"
+}

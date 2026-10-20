@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c6d984d930926dc27461",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis full occ ln s0",
+  "task_key": "worker_analysis_full_occ_ln_s0_20260524T231602",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_full_occ_ln_s0_20260524T231602_result.json",
+    "occurrence": 1,
+    "bytes": 527,
+    "sha256": "6b78ff39dfe16223f9569d8caafaf0a2d43ebcc678d18e63971328f405103437"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nSTATUS: success\nFINAL_STEP: 50005\nCHECKPOINT_PATH: /root/autodl-tmp/checkpoints/full_occ_ln_s0/openvla-7b+libero_spatial_no_noops+b8+lr-0.0005+lora-r32+dropout-0.0--image_aug--50000_chkpt\nFINAL_LOSS: action_loss=0.0593, occ_loss=0.0088, depth_loss=0.0000 (at step 50000)\nNOTES: 训练正常完成，EXIT_CODE=0。共保存 3 个 checkpoint（30000/40000/50000）。无 OOM/异常/killed。仅有 TensorFlow CostEstimator 和 ProcessGroupNCCL destroy 的无害 warning。总训练时长约 14h11m。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-full-occ-ln-s0.md"
+}

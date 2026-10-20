@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "35ec462fed487ae05d4f",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis reverse cutoff s2 v2 eval failure",
+  "task_key": "worker_analysis_reverse_cutoff_s2_v2_eval_failure_20260527T041446",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_reverse_cutoff_s2_v2_eval_failure_20260527T041446_result.json",
+    "occurrence": 1,
+    "bytes": 494,
+    "sha256": "c2458aac643fb650081c03ccd6f86cbd9dbc1e50a4efc2f42b04da8a9fa57e48"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n**总结**：\n- **失败原因**：westd-10894 GPU 硬件挂起（与 registry 原有记录一致，但实际进度比之前记录的更远——到了 T7 33/50，而非 T5 27/50）\n- **数据状态**：7/10 tasks 有完整结果（仅存在于日志中，无持久化结果文件），T7-T9 未完成\n- **部分均值**：TSR=0.854, CAR=0.677（不完整，缺 3 个 task）\n- **需要重跑**：如需完整 10-task 结果，需要重新启动 eval"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-reverse-cutoff-s2-v2-eval-failure.md"
+}

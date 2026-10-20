@@ -1,0 +1,1540 @@
+{
+  "schema_version": "1.0",
+  "id": "1005dbe6991bbe578247",
+  "project": "occsafe_vla",
+  "kind": "worker",
+  "title": "code fig combined fontfix",
+  "task_key": "worker_code_fig-combined-fontfix_20260529T020209",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fig-combined-fontfix_20260529T020209.log",
+    "occurrence": 1,
+    "bytes": 138944,
+    "sha256": "7db31cda4411791fec42ec2902bb393e5fa8342daee1c146e879905b927ac124"
+  },
+  "statistics": {
+    "messages": 31,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 10,
+      "tool_result": 10,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla",
+                "session_id": "803a6337-9a54-4f64-b72b-b4e1e56bbc45",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__allocate_and_submit",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__approve_worker",
+                  "mcp__agent-ml-research__auto_build_provenance",
+                  "mcp__agent-ml-research__backup_project_to_s3",
+                  "mcp__agent-ml-research__cancel_worker",
+                  "mcp__agent-ml-research__check_job_status",
+                  "mcp__agent-ml-research__check_paper_consistency",
+                  "mcp__agent-ml-research__check_provenance_completeness",
+                  "mcp__agent-ml-research__cleanup_pdf_images",
+                  "mcp__agent-ml-research__compute_coverage_matrix",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__distill_papers",
+                  "mcp__agent-ml-research__edit_paper_section",
+                  "mcp__agent-ml-research__feishu_read_tum_pending_key",
+                  "mcp__agent-ml-research__feishu_send_alert",
+                  "mcp__agent-ml-research__feishu_send_approval_card",
+                  "mcp__agent-ml-research__feishu_send_result_card",
+                  "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+                  "mcp__agent-ml-research__fetch_wandb_metrics",
+                  "mcp__agent-ml-research__get_baseline_metrics",
+                  "mcp__agent-ml-research__get_distill_status",
+                  "mcp__agent-ml-research__get_gpu_health",
+                  "mcp__agent-ml-research__get_image_info",
+                  "mcp__agent-ml-research__get_matrix_value",
+                  "mcp__agent-ml-research__get_project_resource_usage",
+                  "mcp__agent-ml-research__get_tum_config",
+                  "mcp__agent-ml-research__get_worker_status",
+                  "mcp__agent-ml-research__impact_analysis",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__list_artifacts",
+                  "mcp__agent-ml-research__list_available_gpus",
+                  "mcp__agent-ml-research__list_constraints",
+                  "mcp__agent-ml-research__list_s3_backups",
+                  "mcp__agent-ml-research__list_workers",
+                  "mcp__agent-ml-research__load_project_config",
+                  "mcp__agent-ml-research__main_agent_post_to_director",
+                  "mcp__agent-ml-research__matrix_gap_analysis",
+                  "mcp__agent-ml-research__pdf_to_images",
+                  "mcp__agent-ml-research__poll_cron",
+                  "mcp__agent-ml-research__poll_secret_request",
+                  "mcp__agent-ml-research__read_experiment_plan_with_status",
+                  "mcp__agent-ml-research__read_matrix",
+                  "mcp__agent-ml-research__read_mistakes",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__read_roadmap",
+                  "mcp__agent-ml-research__reconcile_crons",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__register_cron",
+                  "mcp__agent-ml-research__request_secret",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__send_progress",
+                  "mcp__agent-ml-research__spawn_worker",
+                  "mcp__agent-ml-research__submit_on_allocated",
+                  "mcp__agent-ml-research__submit_training_job",
+                  "mcp__agent-ml-research__sync_matrix_status",
+                  "mcp__agent-ml-research__tail_training_logs",
+                  "mcp__agent-ml-research__update_baseline",
+                  "mcp__agent-ml-research__update_matrix",
+                  "mcp__agent-ml-research__update_registry",
+                  "mcp__agent-ml-research__verify_references",
+                  "mcp__agent-ml-research__write_paper_section"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "903c9dd4-3db1-436f-9b75-c758314b6581",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-6/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-occsafe-vla/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1780024200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "7deb98c1-b577-4b9b-9c54-cf0d9e658645",
+                "session_id": "803a6337-9a54-4f64-b72b-b4e1e56bbc45"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Looking at the current script first."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "803a6337-9a54-4f64-b72b-b4e1e56bbc45",
+            "uuid": "f81d7ac7-fb8d-4a98-8a82-25377f50c412",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PFYS2bJy9vZzoF4gMcTY72",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12868,
+                "cache_read_input_tokens": 11845,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12868
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018NKogPKgmjjABNbFXjnmsx",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/fig_combined_factorial_gradient.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "803a6337-9a54-4f64-b72b-b4e1e56bbc45",
+            "uuid": "650ccbab-9bba-4ca2-9e53-9242d32fbb77",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PFYS2bJy9vZzoF4gMcTY72",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12868,
+                "cache_read_input_tokens": 11845,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12868
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-29T02:02:21.820Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018NKogPKgmjjABNbFXjnmsx",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"Combined Figure: (a) Factorial 2x2 interaction + (b) Gradient analysis 2x2.\"\"\"\n3\t\n4\timport json\n5\timport os\n6\timport numpy as np\n7\timport matplotlib\n8\tmatplotlib.use('Agg')\n9\timport matplotlib.pyplot as plt\n10\timport matplotlib.patheffects as pe\n11\timport matplotlib.gridspec as gridspec\n12\tfrom pathlib import Path\n13\t\n14\t# === Global settings ===\n15\tplt.rcParams.update({\n16\t    'font.family': 'serif',\n17\t    'font.serif': ['DejaVu Serif', 'Liberation Serif', 'Times New Roman'],\n18\t    'font.size': 7,\n19\t    'axes.titlesize': 7.5,\n20\t    'axes.labelsize': 7,\n21\t    'xtick.labelsize': 6.5,\n22\t    'ytick.labelsize': 6.5,\n23\t    'legend.fontsize': 6,\n24\t    'figure.dpi': 300,\n25\t    'savefig.dpi': 300,\n26\t    'savefig.bbox': 'tight',\n27\t    'savefig.pad_inches': 0.03,\n28\t    'axes.spines.top': False,\n29\t    'axes.spines.right': False,\n30\t    'lines.linewidth': 1.2,\n31\t    'axes.grid': False,\n32\t    'axes.linewidth': 0.6,\n33\t    'pdf.fonttype': 42,\n34\t    'ps.fonttype': 42,\n35\t    'mathtext.fontset': 'cm',\n36\t})\n37\t\n38\t# === Colors ===\n39\tCOLORS = {\n40\t    'vanilla':     '#4C72B0',\n41\t    'full_occ_bn': '#C44E52',\n42\t    'full_occ_ln': '#E69F00',\n43\t    'detach_bn':   '#8172B3',\n44\t    'detach_ln':   '#937860',\n45\t}\n46\t\n47\t# === Factorial data ===\n48\tfactorial_data = {\n49\t    'BN': {\n50\t        'OFF': {'mean': 0.767, 'std': 0.024, 'n': 4},\n51\t        'ON':  {'mean': 0.725, 'std': 0.064, 'n': 3},\n52\t    },\n53\t    'LN': {\n54\t        'OFF': {'mean': 0.802, 'std': 0.024, 'n': 3},\n55\t        'ON':  {'mean': 0.773, 'std': 0.027, 'n': 4},\n56\t    },\n57\t}\n58\tVANILLA_CAR = 0.745\n59\t\n60\t# === Gradient styles ===\n61\tGRAD_STYLES = {\n62\t    'Vanilla v2':      {'color': COLORS['vanilla'],     'ls': ':', 'marker': 'x', 'label': 'Vanilla',        'lw': 1.0, 'ms': 2.5},\n63\t    'Full OCC BN v2':  {'color': COLORS['full_occ_bn'], 'ls': '-', 'marker': '^', 'label': 'Full OCC (BN)',  'lw': 1.2, 'ms': 2.5},\n64\t    'Full OCC LN v2':  {'color': COLORS['full_occ_ln'], 'ls': '-', 'marker': 'o', 'label': 'Full OCC (LN)',  'lw': 1.2, 'ms': 2.5},\n65\t    'Detach BN v2':    {'color': COLORS['detach_bn'],   'ls': '--', 'marker': 'D', 'label': 'Detach (BN)',   'lw': 1.0, 'ms': 2.2},\n66\t    'Detach LN v2':    {'color': COLORS['detach_ln'],   'ls': '--', 'marker': 's', 'label': 'Detach (LN)',   'lw': 1.0, 'ms': 2.2},\n67\t}\n68\t\n69\t# === Load gradient data ===\n70\tDATA_DIR = Path('/tmp/gradient_v2_5cond')\n71\tall_data = {}\n72\tfor fpath in sorted(DATA_DIR.glob('*_gradient_stats.json')):\n73\t    with open(fpath) as f:\n74\t        d = json.load(f)\n75\t    all_data[d['condition']] = d\n76\t\n77\tdef extract_dino_blocks(per_layer):\n78\t    blocks = {}\n79\t    for layer_name, stats in per_layer.items():\n80\t        if layer_name.startswith('featurizer.blocks.'):\n81\t            idx = int(layer_name.split('.')[2])\n82\t            blocks[idx] = stats\n83\t    return dict(sorted(blocks.items()))\n84\t\n85\tdino_data = {}\n86\tfor cond, d in all_data.items():\n87\t    blocks = extract_dino_blocks(d['per_layer'])\n88\t    idxs = np.array(sorted(blocks.keys()))\n89\t    dino_data[cond] = {\n90\t        'idx': idxs,\n91\t        'action_norm': np.array([blocks[i]['action_grad_norm_mean'] for i in idxs]),\n92\t        'action_std':  np.array([blocks[i]['action_grad_norm_std'] for i in idxs]),\n93\t        'occ_norm':    np.array([blocks[i].get('occ_grad_norm_mean') or 0 for i in idxs], dtype=float),\n94\t        'occ_std':     np.array([blocks[i].get('occ_grad_norm_std') or 0 for i in idxs], dtype=float),\n95\t        'cosine':      np.array([blocks[i].get('cosine_sim_mean') or 0 for i in idxs], dtype=float),\n96\t        'cosine_std':  np.array([blocks[i].get('cosine_sim_std') or 0 for i in idxs], dtype=float),\n97\t    }\n98\t\n99\tvanilla_norms = dino_data['Vanilla v2']['action_norm']\n100\t\n101\t# === Figure layout ===\n102\tfig = plt.figure(figsize=(7.0, 3.2))\n103\tgs = gridspec.GridSpec(1, 2, figure=fig, width_ratios=[0.33, 0.67], wspace=0.15)\n104\t\n105\t# Left: factorial (a)\n106\tgs_left = gs[0].subgridspec(1, 1)\n107\tax_fact = fig.add_subplot(gs_left[0])\n108\t\n109\t# Right: gradient 2x2 (b)\n110\tgs_right = gs[1].subgridspec(2, 2, hspace=0.50, wspace=0.38)\n111\tax_b = [[fig.add_subplot(gs_right[r, c]) for c in range(2)] for r in range(2)]\n112\t\n113\t# ============================================================\n114\t# (a) Factorial interaction plot\n115\t# ============================================================\n116\tC_BN = COLORS['full_occ_bn']\n117\tC_LN = COLORS['full_occ_ln']\n118\tC_VAN = COLORS['vanilla']\n119\t\n120\tax = ax_fact\n121\tax.axhspan(0.68, VANILLA_CAR, color=C_BN, alpha=0.03, zorder=0)\n122\tax.axhline(y=VANILLA_CAR, color=C_VAN, linestyle=':', linewidth=0.8, alpha=0.5, zorder=1)\n123\tt_van = ax.text(0.97, VANILLA_CAR + 0.002, 'Vanilla (0.745)', fontsize=6,\n124\t                color=C_VAN, va='bottom', ha='right',\n125\t                transform=ax.get_yaxis_transform(), fontweight='medium')\n126\tt_van.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n127\t\n128\tx_positions = [0, 1]\n129\t\n130\tbn_y = [factorial_data['BN']['OFF']['mean'], factorial_data['BN']['ON']['mean']]\n131\tbn_err = [factorial_data['BN'][gf]['std'] for gf in ['OFF', 'ON']]\n132\tax.errorbar(x_positions, bn_y, yerr=bn_err, color=C_BN,\n133\t            marker='o', markersize=5.5, markeredgecolor='white', markeredgewidth=0.7,\n134\t            linestyle='-', linewidth=1.4, capsize=3, capthick=0.8,\n135\t            elinewidth=0.8, label='BatchNorm (BN)', zorder=3)\n136\t\n137\tln_y = [factorial_data['LN']['OFF']['mean'], factorial_data['LN']['ON']['mean']]\n138\tln_err = [factorial_data['LN'][gf]['std'] for gf in ['OFF', 'ON']]\n139\tax.errorbar(x_positions, ln_y, yerr=ln_err, color=C_LN,\n140\t            marker='s', markersize=5.5, markeredgecolor='white', markeredgewidth=0.7,\n141\t            linestyle=(0, (4, 2.5)), linewidth=1.4, capsize=3, capthick=0.8,\n142\t            elinewidth=0.8, label='LayerNorm (LN)', zorder=3)\n143\t\n144\t# Delta annotations\n145\tdelta_bn = (factorial_data['BN']['ON']['mean'] - factorial_data['BN']['OFF']['mean']) * 100\n146\tdelta_ln = (factorial_data['LN']['ON']['mean'] - factorial_data['LN']['OFF']['mean']) * 100\n147\t\n148\tmid_bn_y = np.mean(bn_y)\n149\tt_bn = ax.annotate(f'−{abs(delta_bn):.1f} pp', xy=(0.55, mid_bn_y - 0.008),\n150\t                   fontsize=7, fontweight='bold', color=C_BN, ha='center', va='top', zorder=5)\n151\tt_bn.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n152\t\n153\tmid_ln_y = np.mean(ln_y)\n154\tt_ln = ax.annotate(f'−{abs(delta_ln):.1f} pp', xy=(0.45, mid_ln_y + 0.008),\n155\t                   fontsize=7, fontweight='bold', color=C_LN, ha='center', va='bottom', zorder=5)\n156\tt_ln.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n157\t\n158\t# n-labels\n159\tn_offsets = {\n160\t    ('BN', 'OFF'): (-12, -10),\n161\t    ('BN', 'ON'):  (12, -14),\n162\t    ('LN', 'OFF'): (-12, 8),\n163\t    ('LN', 'ON'):  (12, 10),\n164\t}\n165\tfor gf_idx, gf in enumerate(['OFF', 'ON']):\n166\t    for norm in ['BN', 'LN']:\n167\t        n_val = factorial_data[norm][gf]['n']\n168\t        y_val = factorial_data[norm][gf]['mean']\n169\t        ox, oy = n_offsets[(norm, gf)]\n170\t        c = C_BN if norm == 'BN' else C_LN\n171\t        ax.annotate(f'n={n_val}', (x_positions[gf_idx], y_val),\n172\t                    xytext=(ox, oy), textcoords='offset points',\n173\t                    fontsize=5.5, color=c, ha='center', fontstyle='italic', alpha=0.6)\n174\t\n175\tax.set_xticks(x_positions)\n176\tax.set_xticklabels(['OFF\\n(Detach)', 'ON\\n(Full)'], fontsize=7)\n177\tax.set_xlabel('Gradient Flow', fontsize=8)\n178\tax.set_ylabel('Collision Avoidance Rate (CAR)', fontsize=8)\n179\tax.set_xlim(-0.3, 1.3)\n180\tax.set_ylim(0.68, 0.86)\n181\tax.yaxis.set_major_locator(plt.MultipleLocator(0.02))\n182\tax.legend(loc='upper right', frameon=True, framealpha=0.95, edgecolor='none',\n183\t          handlelength=2.0, handletextpad=0.4, fontsize=6.5)\n184\t\n185\t# Panel label\n186\tax.text(-0.18, 1.08, '(a)', transform=ax.transAxes, fontsize=9.5, fontweight='bold', va='top')\n187\t\n188\t# ============================================================\n189\t# (b) Gradient analysis 2x2\n190\t# ============================================================\n191\t\n192\t# --- (b) Panel label on top-left of gradient region ---\n193\tax_b[0][0].text(-0.22, 1.18, '(b)', transform=ax_b[0][0].transAxes,\n194\t                fontsize=9.5, fontweight='bold', va='top')\n195\t\n196\t# --- b-i: Action gradient norms ---\n197\tax = ax_b[0][0]\n198\tfor cond in ['Vanilla v2', 'Full OCC BN v2', 'Full OCC LN v2', 'Detach BN v2', 'Detach LN v2']:\n199\t    s = GRAD_STYLES[cond]\n200\t    d = dino_data[cond]\n201\t    ax.semilogy(d['idx'], d['action_norm'], color=s['color'], ls=s['ls'],\n202\t                lw=s['lw'], marker=s['marker'], markersize=s['ms'],\n203\t                markeredgewidth=0, alpha=0.85, label=s['label'])\n204\t    ax.fill_between(d['idx'],\n205\t                    np.maximum(d['action_norm'] - d['action_std'], 1e-4),\n206\t                    d['action_norm'] + d['action_std'],\n207\t                    alpha=0.04, color=s['color'])\n208\tax.set_ylabel('Gradient L2 norm', fontsize=6.5)\n209\tax.set_title('Action grad norms', fontsize=7.5, pad=3)\n210\tax.legend(loc='lower left', ncol=2, framealpha=0.95, edgecolor='none', fontsize=5.5,\n211\t          columnspacing=0.6, handlelength=1.2, handletextpad=0.3)\n212\tax.grid(True, alpha=0.08, axis='y')\n213\tax.set_xlim(-0.5, 22.5)\n214\t\n215\t# --- b-ii: Auxiliary gradient norms ---\n216\tax = ax_b[0][1]\n217\tfor cond in ['Full OCC BN v2', 'Full OCC LN v2']:\n218\t    s = GRAD_STYLES[cond]\n219\t    d = dino_data[cond]\n220\t    mask = d['occ_norm'] > 0\n221\t    ax.semilogy(d['idx'][mask], d['occ_norm'][mask], color=s['color'], ls=s['ls'],\n222\t                lw=s['lw'], marker=s['marker'], markersize=s['ms'],\n223\t                markeredgewidth=0, alpha=0.85, label=s['label'])\n224\t    ax.fill_between(d['idx'][mask],\n225\t                    np.maximum(d['occ_norm'][mask] - d['occ_std'][mask], 1e-4),\n226\t                    d['occ_norm'][mask] + d['occ_std'][mask],\n227\t                    alpha=0.06, color=s['color'])\n228\tax.set_ylabel('Gradient L2 norm', fontsize=6.5)\n229\tax.set_title(r'Auxiliary grad norms (10$\\times$ smaller)', fontsize=7.5, pad=3)\n230\tax.legend(loc='lower right', framealpha=0.9, edgecolor='none', fontsize=5.5,\n231\t          handlelength=1.2, handletextpad=0.3)\n232\tax.grid(True, alpha=0.08, axis='y')\n233\tax.set_xlim(-0.5, 22.5)\n234\t\n235\t# --- b-iii: Cosine similarity ---\n236\tax = ax_b[1][0]\n237\tfor cond in ['Full OCC BN v2', 'Full OCC LN v2']:\n238\t    s = GRAD_STYLES[cond]\n239\t    d = dino_data[cond]\n240\t    mask = d['cosine'] != 0\n241\t    ax.plot(d['idx'][mask], d['cosine'][mask], color=s['color'], ls=s['ls'],\n242\t            lw=s['lw'], marker=s['marker'], markersize=s['ms'],\n243\t            markeredgewidth=0, alpha=0.85, label=s['label'])\n244\t    ax.fill_between(d['idx'][mask],\n245\t                    d['cosine'][mask] - d['cosine_std'][mask],\n246\t                    d['cosine'][mask] + d['cosine_std'][mask],\n247\t                    alpha=0.03, color=s['color'])\n248\tax.axhline(0, color='#888888', linestyle='--', linewidth=0.5, alpha=0.5, zorder=1)\n249\tax.set_ylim(-0.15, 0.15)\n250\tax.set_xlabel('DINOv2 block index', fontsize=6.5)\n251\tax.set_ylabel('Cosine similarity', fontsize=6.5)\n252\tax.set_title(r'Action–aux cosine ($\\approx$46% conflict)', fontsize=7.5, pad=3)\n253\tax.legend(loc='lower left', framealpha=0.95, edgecolor='none', fontsize=5.5,\n254\t          handlelength=1.2, handletextpad=0.3)\n255\tax.grid(True, alpha=0.08, axis='y')\n256\tax.set_xlim(-0.5, 22.5)\n257\t\n258\t# --- b-iv: Norm ratio ---\n259\tax = ax_b[1][1]\n260\tfor cond in ['Full OCC BN v2', 'Full OCC LN v2', 'Detach BN v2', 'Detach LN v2']:\n261\t    s = GRAD_STYLES[cond]\n262\t    d = dino_data[cond]\n263\t    safe_vanilla = np.where(vanilla_norms > 1e-6, vanilla_norms, 1.0)\n264\t    ratio = d['action_norm'] / safe_vanilla\n265\t    valid = vanilla_norms > 1e-6\n266\t    ax.plot(d['idx'][valid], ratio[valid], color=s['color'], ls=s['ls'],\n267\t            lw=s['lw'], marker=s['marker'], markersize=s['ms'],\n268\t            markeredgewidth=0, alpha=0.85, label=s['label'])\n269\tax.axhline(1.0, color='#888888', linestyle='--', linewidth=0.6, alpha=0.5, zorder=1)\n270\tax.set_xlabel('DINOv2 block index', fontsize=6.5)\n271\tax.set_ylabel('Ratio (cond. / Vanilla)', fontsize=6.5)\n272\tax.set_title('Norm ratio: no amplification', fontsize=7.5, pad=3)\n273\tax.legend(loc='lower left', ncol=2, framealpha=0.9, edgecolor='none', fontsize=5.5,\n274\t          columnspacing=0.6, handlelength=1.2, handletextpad=0.3)\n275\tax.grid(True, alpha=0.08, axis='y')\n276\tax.set_xlim(-0.5, 22.5)\n277\t\n278\t# Remove x-labels from top row of (b)\n279\tfor c in range(2):\n280\t    ax_b[0][c].set_xlabel('')\n281\t\n282\t# === Save ===\n283\tOUT_DIR = Path('/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures')\n284\tfor fmt in ['pdf', 'png']:\n285\t    path = OUT_DIR / f'fig_combined_factorial_gradient.{fmt}'\n286\t    fig.savefig(path)\n287\t    print(f'Saved: {path}')\n288\tplt.close(fig)\n289\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "803a6337-9a54-4f64-b72b-b4e1e56bbc45",
+            "uuid": "bc38bb33-5236-4a02-8781-5fb87f85fc6c",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/fig_combined_factorial_gradient.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"Combined Figure: (a) Factorial 2x2 interaction + (b) Gradient analysis 2x2.\"\"\"\n\nimport json\nimport os\nimport numpy as np\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patheffects as pe\nimport matplotlib.gridspec as gridspec\nfrom pathlib import Path\n\n# === Global settings ===\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['DejaVu Serif', 'Liberation Serif', 'Times New Roman'],\n    'font.size': 7,\n    'axes.titlesize': 7.5,\n    'axes.labelsize': 7,\n    'xtick.labelsize': 6.5,\n    'ytick.labelsize': 6.5,\n    'legend.fontsize': 6,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.03,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.2,\n    'axes.grid': False,\n    'axes.linewidth': 0.6,\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n    'mathtext.fontset': 'cm',\n})\n\n# === Colors ===\nCOLORS = {\n    'vanilla':     '#4C72B0',\n    'full_occ_bn': '#C44E52',\n    'full_occ_ln': '#E69F00',\n    'detach_bn':   '#8172B3',\n    'detach_ln':   '#937860',\n}\n\n# === Factorial data ===\nfactorial_data = {\n    'BN': {\n        'OFF': {'mean': 0.767, 'std': 0.024, 'n': 4},\n        'ON':  {'mean': 0.725, 'std': 0.064, 'n': 3},\n    },\n    'LN': {\n        'OFF': {'mean': 0.802, 'std': 0.024, 'n': 3},\n        'ON':  {'mean': 0.773, 'std': 0.027, 'n': 4},\n    },\n}\nVANILLA_CAR = 0.745\n\n# === Gradient styles ===\nGRAD_STYLES = {\n    'Vanilla v2':      {'color': COLORS['vanilla'],     'ls': ':', 'marker': 'x', 'label': 'Vanilla',        'lw': 1.0, 'ms': 2.5},\n    'Full OCC BN v2':  {'color': COLORS['full_occ_bn'], 'ls': '-', 'marker': '^', 'label': 'Full OCC (BN)',  'lw': 1.2, 'ms': 2.5},\n    'Full OCC LN v2':  {'color': COLORS['full_occ_ln'], 'ls': '-', 'marker': 'o', 'label': 'Full OCC (LN)',  'lw': 1.2, 'ms': 2.5},\n    'Detach BN v2':    {'color': COLORS['detach_bn'],   'ls': '--', 'marker': 'D', 'label': 'Detach (BN)',   'lw': 1.0, 'ms': 2.2},\n    'Detach LN v2':    {'color': COLORS['detach_ln'],   'ls': '--', 'marker': 's', 'label': 'Detach (LN)',   'lw': 1.0, 'ms': 2.2},\n}\n\n# === Load gradient data ===\nDATA_DIR = Path('/tmp/gradient_v2_5cond')\nall_data = {}\nfor fpath in sorted(DATA_DIR.glob('*_gradient_stats.json')):\n    with open(fpath) as f:\n        d = json.load(f)\n    all_data[d['condition']] = d\n\ndef extract_dino_blocks(per_layer):\n    blocks = {}\n    for layer_name, stats in per_layer.items():\n        if layer_name.startswith('featurizer.blocks.'):\n            idx = int(layer_name.split('.')[2])\n            blocks[idx] = stats\n    return dict(sorted(blocks.items()))\n\ndino_data = {}\nfor cond, d in all_data.items():\n    blocks = extract_dino_blocks(d['per_layer'])\n    idxs = np.array(sorted(blocks.keys()))\n    dino_data[cond] = {\n        'idx': idxs,\n        'action_norm': np.array([blocks[i]['action_grad_norm_mean'] for i in idxs]),\n        'action_std':  np.array([blocks[i]['action_grad_norm_std'] for i in idxs]),\n        'occ_norm':    np.array([blocks[i].get('occ_grad_norm_mean') or 0 for i in idxs], dtype=float),\n        'occ_std':     np.array([blocks[i].get('occ_grad_norm_std') or 0 for i in idxs], dtype=float),\n        'cosine':      np.array([blocks[i].get('cosine_sim_mean') or 0 for i in idxs], dtype=float),\n        'cosine_std':  np.array([blocks[i].get('cosine_sim_std') or 0 for i in idxs], dtype=float),\n    }\n\nvanilla_norms = dino_data['Vanilla v2']['action_norm']\n\n# === Figure layout ===\nfig = plt.figure(figsize=(7.0, 3.2))\ngs = gridspec.GridSpec(1, 2, figure=fig, width_ratios=[0.33, 0.67], wspace=0.15)\n\n# Left: factorial (a)\ngs_left = gs[0].subgridspec(1, 1)\nax_fact = fig.add_subplot(gs_left[0])\n\n# Right: gradient 2x2 (b)\ngs_right = gs[1].subgridspec(2, 2, hspace=0.50, wspace=0.38)\nax_b = [[fig.add_subplot(gs_right[r, c]) for c in range(2)] for r in range(2)]\n\n# ============================================================\n# (a) Factorial interaction plot\n# ============================================================\nC_BN = COLORS['full_occ_bn']\nC_LN = COLORS['full_occ_ln']\nC_VAN = COLORS['vanilla']\n\nax = ax_fact\nax.axhspan(0.68, VANILLA_CAR, color=C_BN, alpha=0.03, zorder=0)\nax.axhline(y=VANILLA_CAR, color=C_VAN, linestyle=':', linewidth=0.8, alpha=0.5, zorder=1)\nt_van = ax.text(0.97, VANILLA_CAR + 0.002, 'Vanilla (0.745)', fontsize=6,\n                color=C_VAN, va='bottom', ha='right',\n                transform=ax.get_yaxis_transform(), fontweight='medium')\nt_van.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n\nx_positions = [0, 1]\n\nbn_y = [factorial_data['BN']['OFF']['mean'], factorial_data['BN']['ON']['mean']]\nbn_err = [factorial_data['BN'][gf]['std'] for gf in ['OFF', 'ON']]\nax.errorbar(x_positions, bn_y, yerr=bn_err, color=C_BN,\n            marker='o', markersize=5.5, markeredgecolor='white', markeredgewidth=0.7,\n            linestyle='-', linewidth=1.4, capsize=3, capthick=0.8,\n            elinewidth=0.8, label='BatchNorm (BN)', zorder=3)\n\nln_y = [factorial_data['LN']['OFF']['mean'], factorial_data['LN']['ON']['mean']]\nln_err = [factorial_data['LN'][gf]['std'] for gf in ['OFF', 'ON']]\nax.errorbar(x_positions, ln_y, yerr=ln_err, color=C_LN,\n            marker='s', markersize=5.5, markeredgecolor='white', markeredgewidth=0.7,\n            linestyle=(0, (4, 2.5)), linewidth=1.4, capsize=3, capthick=0.8,\n            elinewidth=0.8, label='LayerNorm (LN)', zorder=3)\n\n# Delta annotations\ndelta_bn = (factorial_data['BN']['ON']['mean'] - factorial_data['BN']['OFF']['mean']) * 100\ndelta_ln = (factorial_data['LN']['ON']['mean'] - factorial_data['LN']['OFF']['mean']) * 100\n\nmid_bn_y = np.mean(bn_y)\nt_bn = ax.annotate(f'−{abs(delta_bn):.1f} pp', xy=(0.55, mid_bn_y - 0.008),\n                   fontsize=7, fontweight='bold', color=C_BN, ha='center', va='top', zorder=5)\nt_bn.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n\nmid_ln_y = np.mean(ln_y)\nt_ln = ax.annotate(f'−{abs(delta_ln):.1f} pp', xy=(0.45, mid_ln_y + 0.008),\n                   fontsize=7, fontweight='bold', color=C_LN, ha='center', va='bottom', zorder=5)\nt_ln.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n\n# n-labels\nn_offsets = {\n    ('BN', 'OFF'): (-12, -10),\n    ('BN', 'ON'):  (12, -14),\n    ('LN', 'OFF'): (-12, 8),\n    ('LN', 'ON'):  (12, 10),\n}\nfor gf_idx, gf in enumerate(['OFF', 'ON']):\n    for norm in ['BN', 'LN']:\n        n_val = factorial_data[norm][gf]['n']\n        y_val = factorial_data[norm][gf]['mean']\n        ox, oy = n_offsets[(norm, gf)]\n        c = C_BN if norm == 'BN' else C_LN\n        ax.annotate(f'n={n_val}', (x_positions[gf_idx], y_val),\n                    xytext=(ox, oy), textcoords='offset points',\n                    fontsize=5.5, color=c, ha='center', fontstyle='italic', alpha=0.6)\n\nax.set_xticks(x_positions)\nax.set_xticklabels(['OFF\\n(Detach)', 'ON\\n(Full)'], fontsize=7)\nax.set_xlabel('Gradient Flow', fontsize=8)\nax.set_ylabel('Collision Avoidance Rate (CAR)', fontsize=8)\nax.set_xlim(-0.3, 1.3)\nax.set_ylim(0.68, 0.86)\nax.yaxis.set_major_locator(plt.MultipleLocator(0.02))\nax.legend(loc='upper right', frameon=True, framealpha=0.95, edgecolor='none',\n          handlelength=2.0, handletextpad=0.4, fontsize=6.5)\n\n# Panel label\nax.text(-0.18, 1.08, '(a)', transform=ax.transAxes, fontsize=9.5, fontweight='bold', va='top')\n\n# ============================================================\n# (b) Gradient analysis 2x2\n# ============================================================\n\n# --- (b) Panel label on top-left of gradient region ---\nax_b[0][0].text(-0.22, 1.18, '(b)', transform=ax_b[0][0].transAxes,\n                fontsize=9.5, fontweight='bold', va='top')\n\n# --- b-i: Action gradient norms ---\nax = ax_b[0][0]\nfor cond in ['Vanilla v2', 'Full OCC BN v2', 'Full OCC LN v2', 'Detach BN v2', 'Detach LN v2']:\n    s = GRAD_STYLES[cond]\n    d = dino_data[cond]\n    ax.semilogy(d['idx'], d['action_norm'], color=s['color'], ls=s['ls'],\n                lw=s['lw'], marker=s['marker'], markersize=s['ms'],\n                markeredgewidth=0, alpha=0.85, label=s['label'])\n    ax.fill_between(d['idx'],\n                    np.maximum(d['action_norm'] - d['action_std'], 1e-4),\n                    d['action_norm'] + d['action_std'],\n                    alpha=0.04, color=s['color'])\nax.set_ylabel('Gradient L2 norm', fontsize=6.5)\nax.set_title('Action grad norms', fontsize=7.5, pad=3)\nax.legend(loc='lower left', ncol=2, framealpha=0.95, edgecolor='none', fontsize=5.5,\n          columnspacing=0.6, handlelength=1.2, handletextpad=0.3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\n\n# --- b-ii: Auxiliary gradient norms ---\nax = ax_b[0][1]\nfor cond in ['Full OCC BN v2', 'Full OCC LN v2']:\n    s = GRAD_STYLES[cond]\n    d = dino_data[cond]\n    mask = d['occ_norm'] > 0\n    ax.semilogy(d['idx'][mask], d['occ_norm'][mask], color=s['color'], ls=s['ls'],\n                lw=s['lw'], marker=s['marker'], markersize=s['ms'],\n                markeredgewidth=0, alpha=0.85, label=s['label'])\n    ax.fill_between(d['idx'][mask],\n                    np.maximum(d['occ_norm'][mask] - d['occ_std'][mask], 1e-4),\n                    d['occ_norm'][mask] + d['occ_std'][mask],\n                    alpha=0.06, color=s['color'])\nax.set_ylabel('Gradient L2 norm', fontsize=6.5)\nax.set_title(r'Auxiliary grad norms (10$\\times$ smaller)', fontsize=7.5, pad=3)\nax.legend(loc='lower right', framealpha=0.9, edgecolor='none', fontsize=5.5,\n          handlelength=1.2, handletextpad=0.3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\n\n# --- b-iii: Cosine similarity ---\nax = ax_b[1][0]\nfor cond in ['Full OCC BN v2', 'Full OCC LN v2']:\n    s = GRAD_STYLES[cond]\n    d = dino_data[cond]\n    mask = d['cosine'] != 0\n    ax.plot(d['idx'][mask], d['cosine'][mask], color=s['color'], ls=s['ls'],\n            lw=s['lw'], marker=s['marker'], markersize=s['ms'],\n            markeredgewidth=0, alpha=0.85, label=s['label'])\n    ax.fill_between(d['idx'][mask],\n                    d['cosine'][mask] - d['cosine_std'][mask],\n                    d['cosine'][mask] + d['cosine_std'][mask],\n                    alpha=0.03, color=s['color'])\nax.axhline(0, color='#888888', linestyle='--', linewidth=0.5, alpha=0.5, zorder=1)\nax.set_ylim(-0.15, 0.15)\nax.set_xlabel('DINOv2 block index', fontsize=6.5)\nax.set_ylabel('Cosine similarity', fontsize=6.5)\nax.set_title(r'Action–aux cosine ($\\approx$46% conflict)', fontsize=7.5, pad=3)\nax.legend(loc='lower left', framealpha=0.95, edgecolor='none', fontsize=5.5,\n          handlelength=1.2, handletextpad=0.3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\n\n# --- b-iv: Norm ratio ---\nax = ax_b[1][1]\nfor cond in ['Full OCC BN v2', 'Full OCC LN v2', 'Detach BN v2', 'Detach LN v2']:\n    s = GRAD_STYLES[cond]\n    d = dino_data[cond]\n    safe_vanilla = np.where(vanilla_norms > 1e-6, vanilla_norms, 1.0)\n    ratio = d['action_norm'] / safe_vanilla\n    valid = vanilla_norms > 1e-6\n    ax.plot(d['idx'][valid], ratio[valid], color=s['color'], ls=s['ls'],\n            lw=s['lw'], marker=s['marker'], markersize=s['ms'],\n            markeredgewidth=0, alpha=0.85, label=s['label'])\nax.axhline(1.0, color='#888888', linestyle='--', linewidth=0.6, alpha=0.5, zorder=1)\nax.set_xlabel('DINOv2 block index', fontsize=6.5)\nax.set_ylabel('Ratio (cond. / Vanilla)', fontsize=6.5)\nax.set_title('Norm ratio: no amplification', fontsize=7.5, pad=3)\nax.legend(loc='lower left', ncol=2, framealpha=0.9, edgecolor='none', fontsize=5.5,\n          columnspacing=0.6, handlelength=1.2, handletextpad=0.3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\n\n# Remove x-labels from top row of (b)\nfor c in range(2):\n    ax_b[0][c].set_xlabel('')\n\n# === Save ===\nOUT_DIR = Path('/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures')\nfor fmt in ['pdf', 'png']:\n    path = OUT_DIR / f'fig_combined_factorial_gradient.{fmt}'\n    fig.savefig(path)\n    print(f'Saved: {path}')\nplt.close(fig)\n",
+                "numLines": 289,
+                "startLine": 1,
+                "totalLines": 289
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I understand the current state. Let me make the required changes:\n\n1. Increase font sizes in (b) region by 1-2pt\n2. Shorten subplot titles\n3. Consolidate legends - only show in the first subplot\n4. Adjust spacing if needed\n\nLet me make the edits:\n\nCurrent (b) font sizes:\n- subplot titles: 7.5pt → 9pt\n- axis labels (ylabel/xlabel): 6.5pt → 8pt\n- tick labels: 6.5pt (global rcParams) - need to override locally → 7pt\n\n\n- legend: 5.5pt → 7pt\n\nI need to be careful about the global rcParams setting tick labels to 6.5pt and override them specifically for the (b) subplots. My plan is to increase the figure height slightly from 3.2 to 3.4, shorten the titles, boost font sizes on the (b) axes, and consolidate the legends to appear only in the first subplot.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "803a6337-9a54-4f64-b72b-b4e1e56bbc45",
+            "uuid": "ca9c2345-80d8-415f-b192-81b8066a9c1a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HWmXdWqF7gjA5xinuPvzfn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5691,
+                "cache_read_input_tokens": 24713,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5691
+                },
+                "output_tokens": 12,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I'll make the edits to fix the (b) gradient subplot font sizes and titles."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "803a6337-9a54-4f64-b72b-b4e1e56bbc45",
+            "uuid": "bc62a0ae-76c1-4e7c-ad0c-8f2059cf8bef",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HWmXdWqF7gjA5xinuPvzfn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5691,
+                "cache_read_input_tokens": 24713,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5691
+                },
+                "output_tokens": 12,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JFAMCzn671EEAgaz9Si7fb",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/fig_combined_factorial_gradient.py",
+                "old_string": "fig = plt.figure(figsize=(7.0, 3.2))\ngs = gridspec.GridSpec(1, 2, figure=fig, width_ratios=[0.33, 0.67], wspace=0.15)",
+                "new_string": "fig = plt.figure(figsize=(7.0, 3.4))\ngs = gridspec.GridSpec(1, 2, figure=fig, width_ratios=[0.33, 0.67], wspace=0.15)"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "803a6337-9a54-4f64-b72b-b4e1e56bbc45",
+            "uuid": "3424e797-0edf-4c01-ae66-3fa0a42f2b81",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HWmXdWqF7gjA5xinuPvzfn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5691,
+                "cache_read_input_tokens": 24713,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5691
+                },
+                "output_tokens": 12,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-29T02:02:32.332Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JFAMCzn671EEAgaz9Si7fb",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/fig_combined_factorial_gradient.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "803a6337-9a54-4f64-b72b-b4e1e56bbc45",
+            "uuid": "d085ba48-2849-49f2-9d62-33da04f8f440",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/fig_combined_factorial_gradient.py",
+              "oldString": "fig = plt.figure(figsize=(7.0, 3.2))\ngs = gridspec.GridSpec(1, 2, figure=fig, width_ratios=[0.33, 0.67], wspace=0.15)",
+              "newString": "fig = plt.figure(figsize=(7.0, 3.4))\ngs = gridspec.GridSpec(1, 2, figure=fig, width_ratios=[0.33, 0.67], wspace=0.15)",
+              "originalFile": "#!/usr/bin/env python3\n\"\"\"Combined Figure: (a) Factorial 2x2 interaction + (b) Gradient analysis 2x2.\"\"\"\n\nimport json\nimport os\nimport numpy as np\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patheffects as pe\nimport matplotlib.gridspec as gridspec\nfrom pathlib import Path\n\n# === Global settings ===\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['DejaVu Serif', 'Liberation Serif', 'Times New Roman'],\n    'font.size': 7,\n    'axes.titlesize': 7.5,\n    'axes.labelsize': 7,\n    'xtick.labelsize': 6.5,\n    'ytick.labelsize': 6.5,\n    'legend.fontsize': 6,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.03,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.2,\n    'axes.grid': False,\n    'axes.linewidth': 0.6,\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n    'mathtext.fontset': 'cm',\n})\n\n# === Colors ===\nCOLORS = {\n    'vanilla':     '#4C72B0',\n    'full_occ_bn': '#C44E52',\n    'full_occ_ln': '#E69F00',\n    'detach_bn':   '#8172B3',\n    'detach_ln':   '#937860',\n}\n\n# === Factorial data ===\nfactorial_data = {\n    'BN': {\n        'OFF': {'mean': 0.767, 'std': 0.024, 'n': 4},\n        'ON':  {'mean': 0.725, 'std': 0.064, 'n': 3},\n    },\n    'LN': {\n        'OFF': {'mean': 0.802, 'std': 0.024, 'n': 3},\n        'ON':  {'mean': 0.773, 'std': 0.027, 'n': 4},\n    },\n}\nVANILLA_CAR = 0.745\n\n# === Gradient styles ===\nGRAD_STYLES = {\n    'Vanilla v2':      {'color': COLORS['vanilla'],     'ls': ':', 'marker': 'x', 'label': 'Vanilla',        'lw': 1.0, 'ms': 2.5},\n    'Full OCC BN v2':  {'color': COLORS['full_occ_bn'], 'ls': '-', 'marker': '^', 'label': 'Full OCC (BN)',  'lw': 1.2, 'ms': 2.5},\n    'Full OCC LN v2':  {'color': COLORS['full_occ_ln'], 'ls': '-', 'marker': 'o', 'label': 'Full OCC (LN)',  'lw': 1.2, 'ms': 2.5},\n    'Detach BN v2':    {'color': COLORS['detach_bn'],   'ls': '--', 'marker': 'D', 'label': 'Detach (BN)',   'lw': 1.0, 'ms': 2.2},\n    'Detach LN v2':    {'color': COLORS['detach_ln'],   'ls': '--', 'marker': 's', 'label': 'Detach (LN)',   'lw': 1.0, 'ms': 2.2},\n}\n\n# === Load gradient data ===\nDATA_DIR = Path('/tmp/gradient_v2_5cond')\nall_data = {}\nfor fpath in sorted(DATA_DIR.glob('*_gradient_stats.json')):\n    with open(fpath) as f:\n        d = json.load(f)\n    all_data[d['condition']] = d\n\ndef extract_dino_blocks(per_layer):\n    blocks = {}\n    for layer_name, stats in per_layer.items():\n        if layer_name.startswith('featurizer.blocks.'):\n            idx = int(layer_name.split('.')[2])\n            blocks[idx] = stats\n    return dict(sorted(blocks.items()))\n\ndino_data = {}\nfor cond, d in all_data.items():\n    blocks = extract_dino_blocks(d['per_layer'])\n    idxs = np.array(sorted(blocks.keys()))\n    dino_data[cond] = {\n        'idx': idxs,\n        'action_norm': np.array([blocks[i]['action_grad_norm_mean'] for i in idxs]),\n        'action_std':  np.array([blocks[i]['action_grad_norm_std'] for i in idxs]),\n        'occ_norm':    np.array([blocks[i].get('occ_grad_norm_mean') or 0 for i in idxs], dtype=float),\n        'occ_std':     np.array([blocks[i].get('occ_grad_norm_std') or 0 for i in idxs], dtype=float),\n        'cosine':      np.array([blocks[i].get('cosine_sim_mean') or 0 for i in idxs], dtype=float),\n        'cosine_std':  np.array([blocks[i].get('cosine_sim_std') or 0 for i in idxs], dtype=float),\n    }\n\nvanilla_norms = dino_data['Vanilla v2']['action_norm']\n\n# === Figure layout ===\nfig = plt.figure(figsize=(7.0, 3.2))\ngs = gridspec.GridSpec(1, 2, figure=fig, width_ratios=[0.33, 0.67], wspace=0.15)\n\n# Left: factorial (a)\ngs_left = gs[0].subgridspec(1, 1)\nax_fact = fig.add_subplot(gs_left[0])\n\n# Right: gradient 2x2 (b)\ngs_right = gs[1].subgridspec(2, 2, hspace=0.50, wspace=0.38)\nax_b = [[fig.add_subplot(gs_right[r, c]) for c in range(2)] for r in range(2)]\n\n# ============================================================\n# (a) Factorial interaction plot\n# ============================================================\nC_BN = COLORS['full_occ_bn']\nC_LN = COLORS['full_occ_ln']\nC_VAN = COLORS['vanilla']\n\nax = ax_fact\nax.axhspan(0.68, VANILLA_CAR, color=C_BN, alpha=0.03, zorder=0)\nax.axhline(y=VANILLA_CAR, color=C_VAN, linestyle=':', linewidth=0.8, alpha=0.5, zorder=1)\nt_van = ax.text(0.97, VANILLA_CAR + 0.002, 'Vanilla (0.745)', fontsize=6,\n                color=C_VAN, va='bottom', ha='right',\n                transform=ax.get_yaxis_transform(), fontweight='medium')\nt_van.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n\nx_positions = [0, 1]\n\nbn_y = [factorial_data['BN']['OFF']['mean'], factorial_data['BN']['ON']['mean']]\nbn_err = [factorial_data['BN'][gf]['std'] for gf in ['OFF', 'ON']]\nax.errorbar(x_positions, bn_y, yerr=bn_err, color=C_BN,\n            marker='o', markersize=5.5, markeredgecolor='white', markeredgewidth=0.7,\n            linestyle='-', linewidth=1.4, capsize=3, capthick=0.8,\n            elinewidth=0.8, label='BatchNorm (BN)', zorder=3)\n\nln_y = [factorial_data['LN']['OFF']['mean'], factorial_data['LN']['ON']['mean']]\nln_err = [factorial_data['LN'][gf]['std'] for gf in ['OFF', 'ON']]\nax.errorbar(x_positions, ln_y, yerr=ln_err, color=C_LN,\n            marker='s', markersize=5.5, markeredgecolor='white', markeredgewidth=0.7,\n            linestyle=(0, (4, 2.5)), linewidth=1.4, capsize=3, capthick=0.8,\n            elinewidth=0.8, label='LayerNorm (LN)', zorder=3)\n\n# Delta annotations\ndelta_bn = (factorial_data['BN']['ON']['mean'] - factorial_data['BN']['OFF']['mean']) * 100\ndelta_ln = (factorial_data['LN']['ON']['mean'] - factorial_data['LN']['OFF']['mean']) * 100\n\nmid_bn_y = np.mean(bn_y)\nt_bn = ax.annotate(f'−{abs(delta_bn):.1f} pp', xy=(0.55, mid_bn_y - 0.008),\n                   fontsize=7, fontweight='bold', color=C_BN, ha='center', va='top', zorder=5)\nt_bn.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n\nmid_ln_y = np.mean(ln_y)\nt_ln = ax.annotate(f'−{abs(delta_ln):.1f} pp', xy=(0.45, mid_ln_y + 0.008),\n                   fontsize=7, fontweight='bold', color=C_LN, ha='center', va='bottom', zorder=5)\nt_ln.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n\n# n-labels\nn_offsets = {\n    ('BN', 'OFF'): (-12, -10),\n    ('BN', 'ON'):  (12, -14),\n    ('LN', 'OFF'): (-12, 8),\n    ('LN', 'ON'):  (12, 10),\n}\nfor gf_idx, gf in enumerate(['OFF', 'ON']):\n    for norm in ['BN', 'LN']:\n        n_val = factorial_data[norm][gf]['n']\n        y_val = factorial_data[norm][gf]['mean']\n        ox, oy = n_offsets[(norm, gf)]\n        c = C_BN if norm == 'BN' else C_LN\n        ax.annotate(f'n={n_val}', (x_positions[gf_idx], y_val),\n                    xytext=(ox, oy), textcoords='offset points',\n                    fontsize=5.5, color=c, ha='center', fontstyle='italic', alpha=0.6)\n\nax.set_xticks(x_positions)\nax.set_xticklabels(['OFF\\n(Detach)', 'ON\\n(Full)'], fontsize=7)\nax.set_xlabel('Gradient Flow', fontsize=8)\nax.set_ylabel('Collision Avoidance Rate (CAR)', fontsize=8)\nax.set_xlim(-0.3, 1.3)\nax.set_ylim(0.68, 0.86)\nax.yaxis.set_major_locator(plt.MultipleLocator(0.02))\nax.legend(loc='upper right', frameon=True, framealpha=0.95, edgecolor='none',\n          handlelength=2.0, handletextpad=0.4, fontsize=6.5)\n\n# Panel label\nax.text(-0.18, 1.08, '(a)', transform=ax.transAxes, fontsize=9.5, fontweight='bold', va='top')\n\n# ============================================================\n# (b) Gradient analysis 2x2\n# ============================================================\n\n# --- (b) Panel label on top-left of gradient region ---\nax_b[0][0].text(-0.22, 1.18, '(b)', transform=ax_b[0][0].transAxes,\n                fontsize=9.5, fontweight='bold', va='top')\n\n# --- b-i: Action gradient norms ---\nax = ax_b[0][0]\nfor cond in ['Vanilla v2', 'Full OCC BN v2', 'Full OCC LN v2', 'Detach BN v2', 'Detach LN v2']:\n    s = GRAD_STYLES[cond]\n    d = dino_data[cond]\n    ax.semilogy(d['idx'], d['action_norm'], color=s['color'], ls=s['ls'],\n                lw=s['lw'], marker=s['marker'], markersize=s['ms'],\n                markeredgewidth=0, alpha=0.85, label=s['label'])\n    ax.fill_between(d['idx'],\n                    np.maximum(d['action_norm'] - d['action_std'], 1e-4),\n                    d['action_norm'] + d['action_std'],\n                    alpha=0.04, color=s['color'])\nax.set_ylabel('Gradient L2 norm', fontsize=6.5)\nax.set_title('Action grad norms', fontsize=7.5, pad=3)\nax.legend(loc='lower left', ncol=2, framealpha=0.95, edgecolor='none', fontsize=5.5,\n          columnspacing=0.6, handlelength=1.2, handletextpad=0.3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\n\n# --- b-ii: Auxiliary gradient norms ---\nax = ax_b[0][1]\nfor cond in ['Full OCC BN v2', 'Full OCC LN v2']:\n    s = GRAD_STYLES[cond]\n    d = dino_data[cond]\n    mask = d['occ_norm'] > 0\n    ax.semilogy(d['idx'][mask], d['occ_norm'][mask], color=s['color'], ls=s['ls'],\n                lw=s['lw'], marker=s['marker'], markersize=s['ms'],\n                markeredgewidth=0, alpha=0.85, label=s['label'])\n    ax.fill_between(d['idx'][mask],\n                    np.maximum(d['occ_norm'][mask] - d['occ_std'][mask], 1e-4),\n                    d['occ_norm'][mask] + d['occ_std'][mask],\n                    alpha=0.06, color=s['color'])\nax.set_ylabel('Gradient L2 norm', fontsize=6.5)\nax.set_title(r'Auxiliary grad norms (10$\\times$ smaller)', fontsize=7.5, pad=3)\nax.legend(loc='lower right', framealpha=0.9, edgecolor='none', fontsize=5.5,\n          handlelength=1.2, handletextpad=0.3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\n\n# --- b-iii: Cosine similarity ---\nax = ax_b[1][0]\nfor cond in ['Full OCC BN v2', 'Full OCC LN v2']:\n    s = GRAD_STYLES[cond]\n    d = dino_data[cond]\n    mask = d['cosine'] != 0\n    ax.plot(d['idx'][mask], d['cosine'][mask], color=s['color'], ls=s['ls'],\n            lw=s['lw'], marker=s['marker'], markersize=s['ms'],\n            markeredgewidth=0, alpha=0.85, label=s['label'])\n    ax.fill_between(d['idx'][mask],\n                    d['cosine'][mask] - d['cosine_std'][mask],\n                    d['cosine'][mask] + d['cosine_std'][mask],\n                    alpha=0.03, color=s['color'])\nax.axhline(0, color='#888888', linestyle='--', linewidth=0.5, alpha=0.5, zorder=1)\nax.set_ylim(-0.15, 0.15)\nax.set_xlabel('DINOv2 block index', fontsize=6.5)\nax.set_ylabel('Cosine similarity', fontsize=6.5)\nax.set_title(r'Action–aux cosine ($\\approx$46% conflict)', fontsize=7.5, pad=3)\nax.legend(loc='lower left', framealpha=0.95, edgecolor='none', fontsize=5.5,\n          handlelength=1.2, handletextpad=0.3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\n\n# --- b-iv: Norm ratio ---\nax = ax_b[1][1]\nfor cond in ['Full OCC BN v2', 'Full OCC LN v2', 'Detach BN v2', 'Detach LN v2']:\n    s = GRAD_STYLES[cond]\n    d = dino_data[cond]\n    safe_vanilla = np.where(vanilla_norms > 1e-6, vanilla_norms, 1.0)\n    ratio = d['action_norm'] / safe_vanilla\n    valid = vanilla_norms > 1e-6\n    ax.plot(d['idx'][valid], ratio[valid], color=s['color'], ls=s['ls'],\n            lw=s['lw'], marker=s['marker'], markersize=s['ms'],\n            markeredgewidth=0, alpha=0.85, label=s['label'])\nax.axhline(1.0, color='#888888', linestyle='--', linewidth=0.6, alpha=0.5, zorder=1)\nax.set_xlabel('DINOv2 block index', fontsize=6.5)\nax.set_ylabel('Ratio (cond. / Vanilla)', fontsize=6.5)\nax.set_title('Norm ratio: no amplification', fontsize=7.5, pad=3)\nax.legend(loc='lower left', ncol=2, framealpha=0.9, edgecolor='none', fontsize=5.5,\n          columnspacing=0.6, handlelength=1.2, handletextpad=0.3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\n\n# Remove x-labels from top row of (b)\nfor c in range(2):\n    ax_b[0][c].set_xlabel('')\n\n# === Save ===\nOUT_DIR = Path('/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures')\nfor fmt in ['pdf', 'png']:\n    path = OUT_DIR / f'fig_combined_factorial_gradient.{fmt}'\n    fig.savefig(path)\n    print(f'Saved: {path}')\nplt.close(fig)\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 99,
+                  "oldLines": 7,
+                  "newStart": 99,
+                  "newLines": 7,
+                  "lines": [
+                    " vanilla_norms = dino_data['Vanilla v2']['action_norm']",
+                    " ",
+                    " # === Figure layout ===",
+                    "-fig = plt.figure(figsize=(7.0, 3.2))",
+                    "+fig = plt.figure(figsize=(7.0, 3.4))",
+                    " gs = gridspec.GridSpec(1, 2, figure=fig, width_ratios=[0.33, 0.67], wspace=0.15)",
+                    " ",
+                    " # Left: factorial (a)"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013RcfZpp5d6Hv6jaFom93Tx",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/fig_combined_factorial_gradient.py",
+                "old_string": "gs_right = gs[1].subgridspec(2, 2, hspace=0.50, wspace=0.38)",
+                "new_string": "gs_right = gs[1].subgridspec(2, 2, hspace=0.55, wspace=0.42)"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "803a6337-9a54-4f64-b72b-b4e1e56bbc45",
+            "uuid": "018f1a0d-cdc9-4852-b4d1-c9dbeade746d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015Ji8LtvnviTko4YVBFb7UV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 603,
+                "cache_read_input_tokens": 30404,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 603
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-29T02:02:37.213Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013RcfZpp5d6Hv6jaFom93Tx",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/fig_combined_factorial_gradient.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "803a6337-9a54-4f64-b72b-b4e1e56bbc45",
+            "uuid": "7dc0190c-e4e5-4c01-a5ff-a2b0ae6c9941",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/fig_combined_factorial_gradient.py",
+              "oldString": "gs_right = gs[1].subgridspec(2, 2, hspace=0.50, wspace=0.38)",
+              "newString": "gs_right = gs[1].subgridspec(2, 2, hspace=0.55, wspace=0.42)",
+              "originalFile": "#!/usr/bin/env python3\n\"\"\"Combined Figure: (a) Factorial 2x2 interaction + (b) Gradient analysis 2x2.\"\"\"\n\nimport json\nimport os\nimport numpy as np\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patheffects as pe\nimport matplotlib.gridspec as gridspec\nfrom pathlib import Path\n\n# === Global settings ===\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['DejaVu Serif', 'Liberation Serif', 'Times New Roman'],\n    'font.size': 7,\n    'axes.titlesize': 7.5,\n    'axes.labelsize': 7,\n    'xtick.labelsize': 6.5,\n    'ytick.labelsize': 6.5,\n    'legend.fontsize': 6,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.03,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.2,\n    'axes.grid': False,\n    'axes.linewidth': 0.6,\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n    'mathtext.fontset': 'cm',\n})\n\n# === Colors ===\nCOLORS = {\n    'vanilla':     '#4C72B0',\n    'full_occ_bn': '#C44E52',\n    'full_occ_ln': '#E69F00',\n    'detach_bn':   '#8172B3',\n    'detach_ln':   '#937860',\n}\n\n# === Factorial data ===\nfactorial_data = {\n    'BN': {\n        'OFF': {'mean': 0.767, 'std': 0.024, 'n': 4},\n        'ON':  {'mean': 0.725, 'std': 0.064, 'n': 3},\n    },\n    'LN': {\n        'OFF': {'mean': 0.802, 'std': 0.024, 'n': 3},\n        'ON':  {'mean': 0.773, 'std': 0.027, 'n': 4},\n    },\n}\nVANILLA_CAR = 0.745\n\n# === Gradient styles ===\nGRAD_STYLES = {\n    'Vanilla v2':      {'color': COLORS['vanilla'],     'ls': ':', 'marker': 'x', 'label': 'Vanilla',        'lw': 1.0, 'ms': 2.5},\n    'Full OCC BN v2':  {'color': COLORS['full_occ_bn'], 'ls': '-', 'marker': '^', 'label': 'Full OCC (BN)',  'lw': 1.2, 'ms': 2.5},\n    'Full OCC LN v2':  {'color': COLORS['full_occ_ln'], 'ls': '-', 'marker': 'o', 'label': 'Full OCC (LN)',  'lw': 1.2, 'ms': 2.5},\n    'Detach BN v2':    {'color': COLORS['detach_bn'],   'ls': '--', 'marker': 'D', 'label': 'Detach (BN)',   'lw': 1.0, 'ms': 2.2},\n    'Detach LN v2':    {'color': COLORS['detach_ln'],   'ls': '--', 'marker': 's', 'label': 'Detach (LN)',   'lw': 1.0, 'ms': 2.2},\n}\n\n# === Load gradient data ===\nDATA_DIR = Path('/tmp/gradient_v2_5cond')\nall_data = {}\nfor fpath in sorted(DATA_DIR.glob('*_gradient_stats.json')):\n    with open(fpath) as f:\n        d = json.load(f)\n    all_data[d['condition']] = d\n\ndef extract_dino_blocks(per_layer):\n    blocks = {}\n    for layer_name, stats in per_layer.items():\n        if layer_name.startswith('featurizer.blocks.'):\n            idx = int(layer_name.split('.')[2])\n            blocks[idx] = stats\n    return dict(sorted(blocks.items()))\n\ndino_data = {}\nfor cond, d in all_data.items():\n    blocks = extract_dino_blocks(d['per_layer'])\n    idxs = np.array(sorted(blocks.keys()))\n    dino_data[cond] = {\n        'idx': idxs,\n        'action_norm': np.array([blocks[i]['action_grad_norm_mean'] for i in idxs]),\n        'action_std':  np.array([blocks[i]['action_grad_norm_std'] for i in idxs]),\n        'occ_norm':    np.array([blocks[i].get('occ_grad_norm_mean') or 0 for i in idxs], dtype=float),\n        'occ_std':     np.array([blocks[i].get('occ_grad_norm_std') or 0 for i in idxs], dtype=float),\n        'cosine':      np.array([blocks[i].get('cosine_sim_mean') or 0 for i in idxs], dtype=float),\n        'cosine_std':  np.array([blocks[i].get('cosine_sim_std') or 0 for i in idxs], dtype=float),\n    }\n\nvanilla_norms = dino_data['Vanilla v2']['action_norm']\n\n# === Figure layout ===\nfig = plt.figure(figsize=(7.0, 3.4))\ngs = gridspec.GridSpec(1, 2, figure=fig, width_ratios=[0.33, 0.67], wspace=0.15)\n\n# Left: factorial (a)\ngs_left = gs[0].subgridspec(1, 1)\nax_fact = fig.add_subplot(gs_left[0])\n\n# Right: gradient 2x2 (b)\ngs_right = gs[1].subgridspec(2, 2, hspace=0.50, wspace=0.38)\nax_b = [[fig.add_subplot(gs_right[r, c]) for c in range(2)] for r in range(2)]\n\n# ============================================================\n# (a) Factorial interaction plot\n# ============================================================\nC_BN = COLORS['full_occ_bn']\nC_LN = COLORS['full_occ_ln']\nC_VAN = COLORS['vanilla']\n\nax = ax_fact\nax.axhspan(0.68, VANILLA_CAR, color=C_BN, alpha=0.03, zorder=0)\nax.axhline(y=VANILLA_CAR, color=C_VAN, linestyle=':', linewidth=0.8, alpha=0.5, zorder=1)\nt_van = ax.text(0.97, VANILLA_CAR + 0.002, 'Vanilla (0.745)', fontsize=6,\n                color=C_VAN, va='bottom', ha='right',\n                transform=ax.get_yaxis_transform(), fontweight='medium')\nt_van.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n\nx_positions = [0, 1]\n\nbn_y = [factorial_data['BN']['OFF']['mean'], factorial_data['BN']['ON']['mean']]\nbn_err = [factorial_data['BN'][gf]['std'] for gf in ['OFF', 'ON']]\nax.errorbar(x_positions, bn_y, yerr=bn_err, color=C_BN,\n            marker='o', markersize=5.5, markeredgecolor='white', markeredgewidth=0.7,\n            linestyle='-', linewidth=1.4, capsize=3, capthick=0.8,\n            elinewidth=0.8, label='BatchNorm (BN)', zorder=3)\n\nln_y = [factorial_data['LN']['OFF']['mean'], factorial_data['LN']['ON']['mean']]\nln_err = [factorial_data['LN'][gf]['std'] for gf in ['OFF', 'ON']]\nax.errorbar(x_positions, ln_y, yerr=ln_err, color=C_LN,\n            marker='s', markersize=5.5, markeredgecolor='white', markeredgewidth=0.7,\n            linestyle=(0, (4, 2.5)), linewidth=1.4, capsize=3, capthick=0.8,\n            elinewidth=0.8, label='LayerNorm (LN)', zorder=3)\n\n# Delta annotations\ndelta_bn = (factorial_data['BN']['ON']['mean'] - factorial_data['BN']['OFF']['mean']) * 100\ndelta_ln = (factorial_data['LN']['ON']['mean'] - factorial_data['LN']['OFF']['mean']) * 100\n\nmid_bn_y = np.mean(bn_y)\nt_bn = ax.annotate(f'−{abs(delta_bn):.1f} pp', xy=(0.55, mid_bn_y - 0.008),\n                   fontsize=7, fontweight='bold', color=C_BN, ha='center', va='top', zorder=5)\nt_bn.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n\nmid_ln_y = np.mean(ln_y)\nt_ln = ax.annotate(f'−{abs(delta_ln):.1f} pp', xy=(0.45, mid_ln_y + 0.008),\n                   fontsize=7, fontweight='bold', color=C_LN, ha='center', va='bottom', zorder=5)\nt_ln.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n\n# n-labels\nn_offsets = {\n    ('BN', 'OFF'): (-12, -10),\n    ('BN', 'ON'):  (12, -14),\n    ('LN', 'OFF'): (-12, 8),\n    ('LN', 'ON'):  (12, 10),\n}\nfor gf_idx, gf in enumerate(['OFF', 'ON']):\n    for norm in ['BN', 'LN']:\n        n_val = factorial_data[norm][gf]['n']\n        y_val = factorial_data[norm][gf]['mean']\n        ox, oy = n_offsets[(norm, gf)]\n        c = C_BN if norm == 'BN' else C_LN\n        ax.annotate(f'n={n_val}', (x_positions[gf_idx], y_val),\n                    xytext=(ox, oy), textcoords='offset points',\n                    fontsize=5.5, color=c, ha='center', fontstyle='italic', alpha=0.6)\n\nax.set_xticks(x_positions)\nax.set_xticklabels(['OFF\\n(Detach)', 'ON\\n(Full)'], fontsize=7)\nax.set_xlabel('Gradient Flow', fontsize=8)\nax.set_ylabel('Collision Avoidance Rate (CAR)', fontsize=8)\nax.set_xlim(-0.3, 1.3)\nax.set_ylim(0.68, 0.86)\nax.yaxis.set_major_locator(plt.MultipleLocator(0.02))\nax.legend(loc='upper right', frameon=True, framealpha=0.95, edgecolor='none',\n          handlelength=2.0, handletextpad=0.4, fontsize=6.5)\n\n# Panel label\nax.text(-0.18, 1.08, '(a)', transform=ax.transAxes, fontsize=9.5, fontweight='bold', va='top')\n\n# ============================================================\n# (b) Gradient analysis 2x2\n# ============================================================\n\n# --- (b) Panel label on top-left of gradient region ---\nax_b[0][0].text(-0.22, 1.18, '(b)', transform=ax_b[0][0].transAxes,\n                fontsize=9.5, fontweight='bold', va='top')\n\n# --- b-i: Action gradient norms ---\nax = ax_b[0][0]\nfor cond in ['Vanilla v2', 'Full OCC BN v2', 'Full OCC LN v2', 'Detach BN v2', 'Detach LN v2']:\n    s = GRAD_STYLES[cond]\n    d = dino_data[cond]\n    ax.semilogy(d['idx'], d['action_norm'], color=s['color'], ls=s['ls'],\n                lw=s['lw'], marker=s['marker'], markersize=s['ms'],\n                markeredgewidth=0, alpha=0.85, label=s['label'])\n    ax.fill_between(d['idx'],\n                    np.maximum(d['action_norm'] - d['action_std'], 1e-4),\n                    d['action_norm'] + d['action_std'],\n                    alpha=0.04, color=s['color'])\nax.set_ylabel('Gradient L2 norm', fontsize=6.5)\nax.set_title('Action grad norms', fontsize=7.5, pad=3)\nax.legend(loc='lower left', ncol=2, framealpha=0.95, edgecolor='none', fontsize=5.5,\n          columnspacing=0.6, handlelength=1.2, handletextpad=0.3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\n\n# --- b-ii: Auxiliary gradient norms ---\nax = ax_b[0][1]\nfor cond in ['Full OCC BN v2', 'Full OCC LN v2']:\n    s = GRAD_STYLES[cond]\n    d = dino_data[cond]\n    mask = d['occ_norm'] > 0\n    ax.semilogy(d['idx'][mask], d['occ_norm'][mask], color=s['color'], ls=s['ls'],\n                lw=s['lw'], marker=s['marker'], markersize=s['ms'],\n                markeredgewidth=0, alpha=0.85, label=s['label'])\n    ax.fill_between(d['idx'][mask],\n                    np.maximum(d['occ_norm'][mask] - d['occ_std'][mask], 1e-4),\n                    d['occ_norm'][mask] + d['occ_std'][mask],\n                    alpha=0.06, color=s['color'])\nax.set_ylabel('Gradient L2 norm', fontsize=6.5)\nax.set_title(r'Auxiliary grad norms (10$\\times$ smaller)', fontsize=7.5, pad=3)\nax.legend(loc='lower right', framealpha=0.9, edgecolor='none', fontsize=5.5,\n          handlelength=1.2, handletextpad=0.3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\n\n# --- b-iii: Cosine similarity ---\nax = ax_b[1][0]\nfor cond in ['Full OCC BN v2', 'Full OCC LN v2']:\n    s = GRAD_STYLES[cond]\n    d = dino_data[cond]\n    mask = d['cosine'] != 0\n    ax.plot(d['idx'][mask], d['cosine'][mask], color=s['color'], ls=s['ls'],\n            lw=s['lw'], marker=s['marker'], markersize=s['ms'],\n            markeredgewidth=0, alpha=0.85, label=s['label'])\n    ax.fill_between(d['idx'][mask],\n                    d['cosine'][mask] - d['cosine_std'][mask],\n                    d['cosine'][mask] + d['cosine_std'][mask],\n                    alpha=0.03, color=s['color'])\nax.axhline(0, color='#888888', linestyle='--', linewidth=0.5, alpha=0.5, zorder=1)\nax.set_ylim(-0.15, 0.15)\nax.set_xlabel('DINOv2 block index', fontsize=6.5)\nax.set_ylabel('Cosine similarity', fontsize=6.5)\nax.set_title(r'Action–aux cosine ($\\approx$46% conflict)', fontsize=7.5, pad=3)\nax.legend(loc='lower left', framealpha=0.95, edgecolor='none', fontsize=5.5,\n          handlelength=1.2, handletextpad=0.3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\n\n# --- b-iv: Norm ratio ---\nax = ax_b[1][1]\nfor cond in ['Full OCC BN v2', 'Full OCC LN v2', 'Detach BN v2', 'Detach LN v2']:\n    s = GRAD_STYLES[cond]\n    d = dino_data[cond]\n    safe_vanilla = np.where(vanilla_norms > 1e-6, vanilla_norms, 1.0)\n    ratio = d['action_norm'] / safe_vanilla\n    valid = vanilla_norms > 1e-6\n    ax.plot(d['idx'][valid], ratio[valid], color=s['color'], ls=s['ls'],\n            lw=s['lw'], marker=s['marker'], markersize=s['ms'],\n            markeredgewidth=0, alpha=0.85, label=s['label'])\nax.axhline(1.0, color='#888888', linestyle='--', linewidth=0.6, alpha=0.5, zorder=1)\nax.set_xlabel('DINOv2 block index', fontsize=6.5)\nax.set_ylabel('Ratio (cond. / Vanilla)', fontsize=6.5)\nax.set_title('Norm ratio: no amplification', fontsize=7.5, pad=3)\nax.legend(loc='lower left', ncol=2, framealpha=0.9, edgecolor='none', fontsize=5.5,\n          columnspacing=0.6, handlelength=1.2, handletextpad=0.3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\n\n# Remove x-labels from top row of (b)\nfor c in range(2):\n    ax_b[0][c].set_xlabel('')\n\n# === Save ===\nOUT_DIR = Path('/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures')\nfor fmt in ['pdf', 'png']:\n    path = OUT_DIR / f'fig_combined_factorial_gradient.{fmt}'\n    fig.savefig(path)\n    print(f'Saved: {path}')\nplt.close(fig)\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 107,
+                  "oldLines": 7,
+                  "newStart": 107,
+                  "newLines": 7,
+                  "lines": [
+                    " ax_fact = fig.add_subplot(gs_left[0])",
+                    " ",
+                    " # Right: gradient 2x2 (b)",
+                    "-gs_right = gs[1].subgridspec(2, 2, hspace=0.50, wspace=0.38)",
+                    "+gs_right = gs[1].subgridspec(2, 2, hspace=0.55, wspace=0.42)",
+                    " ax_b = [[fig.add_subplot(gs_right[r, c]) for c in range(2)] for r in range(2)]",
+                    " ",
+                    " # ============================================================"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now update the (b) subplot titles, labels, and legends:"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "803a6337-9a54-4f64-b72b-b4e1e56bbc45",
+            "uuid": "98c4d26f-ee91-464e-a161-9d87eac0d6ac",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KEvmjmDkt6MfPKgBEofLma",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 271,
+                "cache_read_input_tokens": 31007,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 271
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NGqPrDETMUQHS91GUek8Co",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/fig_combined_factorial_gradient.py",
+                "old_string": "ax.set_ylabel('Gradient L2 norm', fontsize=6.5)\nax.set_title('Action grad norms', fontsize=7.5, pad=3)\nax.legend(loc='lower left', ncol=2, framealpha=0.95, edgecolor='none', fontsize=5.5,\n          columnspacing=0.6, handlelength=1.2, handletextpad=0.3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)",
+                "new_string": "ax.set_ylabel('Gradient L2 norm', fontsize=8)\nax.set_title('Action norms', fontsize=9, pad=3)\nax.legend(loc='lower left', ncol=2, framealpha=0.95, edgecolor='none', fontsize=7,\n          columnspacing=0.6, handlelength=1.2, handletextpad=0.3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\nax.tick_params(labelsize=7)"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "803a6337-9a54-4f64-b72b-b4e1e56bbc45",
+            "uuid": "404f5389-589c-4d17-9349-68af8e91d79c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KEvmjmDkt6MfPKgBEofLma",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 271,
+                "cache_read_input_tokens": 31007,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 271
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-29T02:02:45.410Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NGqPrDETMUQHS91GUek8Co",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/fig_combined_factorial_gradient.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "803a6337-9a54-4f64-b72b-b4e1e56bbc45",
+            "uuid": "294e462c-f595-4458-be42-387a9fba08f3",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/fig_combined_factorial_gradient.py",
+              "oldString": "ax.set_ylabel('Gradient L2 norm', fontsize=6.5)\nax.set_title('Action grad norms', fontsize=7.5, pad=3)\nax.legend(loc='lower left', ncol=2, framealpha=0.95, edgecolor='none', fontsize=5.5,\n          columnspacing=0.6, handlelength=1.2, handletextpad=0.3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)",
+              "newString": "ax.set_ylabel('Gradient L2 norm', fontsize=8)\nax.set_title('Action norms', fontsize=9, pad=3)\nax.legend(loc='lower left', ncol=2, framealpha=0.95, edgecolor='none', fontsize=7,\n          columnspacing=0.6, handlelength=1.2, handletextpad=0.3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\nax.tick_params(labelsize=7)",
+              "originalFile": "#!/usr/bin/env python3\n\"\"\"Combined Figure: (a) Factorial 2x2 interaction + (b) Gradient analysis 2x2.\"\"\"\n\nimport json\nimport os\nimport numpy as np\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patheffects as pe\nimport matplotlib.gridspec as gridspec\nfrom pathlib import Path\n\n# === Global settings ===\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['DejaVu Serif', 'Liberation Serif', 'Times New Roman'],\n    'font.size': 7,\n    'axes.titlesize': 7.5,\n    'axes.labelsize': 7,\n    'xtick.labelsize': 6.5,\n    'ytick.labelsize': 6.5,\n    'legend.fontsize': 6,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.03,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.2,\n    'axes.grid': False,\n    'axes.linewidth': 0.6,\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n    'mathtext.fontset': 'cm',\n})\n\n# === Colors ===\nCOLORS = {\n    'vanilla':     '#4C72B0',\n    'full_occ_bn': '#C44E52',\n    'full_occ_ln': '#E69F00',\n    'detach_bn':   '#8172B3',\n    'detach_ln':   '#937860',\n}\n\n# === Factorial data ===\nfactorial_data = {\n    'BN': {\n        'OFF': {'mean': 0.767, 'std': 0.024, 'n': 4},\n        'ON':  {'mean': 0.725, 'std': 0.064, 'n': 3},\n    },\n    'LN': {\n        'OFF': {'mean': 0.802, 'std': 0.024, 'n': 3},\n        'ON':  {'mean': 0.773, 'std': 0.027, 'n': 4},\n    },\n}\nVANILLA_CAR = 0.745\n\n# === Gradient styles ===\nGRAD_STYLES = {\n    'Vanilla v2':      {'color': COLORS['vanilla'],     'ls': ':', 'marker': 'x', 'label': 'Vanilla',        'lw': 1.0, 'ms': 2.5},\n    'Full OCC BN v2':  {'color': COLORS['full_occ_bn'], 'ls': '-', 'marker': '^', 'label': 'Full OCC (BN)',  'lw': 1.2, 'ms': 2.5},\n    'Full OCC LN v2':  {'color': COLORS['full_occ_ln'], 'ls': '-', 'marker': 'o', 'label': 'Full OCC (LN)',  'lw': 1.2, 'ms': 2.5},\n    'Detach BN v2':    {'color': COLORS['detach_bn'],   'ls': '--', 'marker': 'D', 'label': 'Detach (BN)',   'lw': 1.0, 'ms': 2.2},\n    'Detach LN v2':    {'color': COLORS['detach_ln'],   'ls': '--', 'marker': 's', 'label': 'Detach (LN)',   'lw': 1.0, 'ms': 2.2},\n}\n\n# === Load gradient data ===\nDATA_DIR = Path('/tmp/gradient_v2_5cond')\nall_data = {}\nfor fpath in sorted(DATA_DIR.glob('*_gradient_stats.json')):\n    with open(fpath) as f:\n        d = json.load(f)\n    all_data[d['condition']] = d\n\ndef extract_dino_blocks(per_layer):\n    blocks = {}\n    for layer_name, stats in per_layer.items():\n        if layer_name.startswith('featurizer.blocks.'):\n            idx = int(layer_name.split('.')[2])\n            blocks[idx] = stats\n    return dict(sorted(blocks.items()))\n\ndino_data = {}\nfor cond, d in all_data.items():\n    blocks = extract_dino_blocks(d['per_layer'])\n    idxs = np.array(sorted(blocks.keys()))\n    dino_data[cond] = {\n        'idx': idxs,\n        'action_norm': np.array([blocks[i]['action_grad_norm_mean'] for i in idxs]),\n        'action_std':  np.array([blocks[i]['action_grad_norm_std'] for i in idxs]),\n        'occ_norm':    np.array([blocks[i].get('occ_grad_norm_mean') or 0 for i in idxs], dtype=float),\n        'occ_std':     np.array([blocks[i].get('occ_grad_norm_std') or 0 for i in idxs], dtype=float),\n        'cosine':      np.array([blocks[i].get('cosine_sim_mean') or 0 for i in idxs], dtype=float),\n        'cosine_std':  np.array([blocks[i].get('cosine_sim_std') or 0 for i in idxs], dtype=float),\n    }\n\nvanilla_norms = dino_data['Vanilla v2']['action_norm']\n\n# === Figure layout ===\nfig = plt.figure(figsize=(7.0, 3.4))\ngs = gridspec.GridSpec(1, 2, figure=fig, width_ratios=[0.33, 0.67], wspace=0.15)\n\n# Left: factorial (a)\ngs_left = gs[0].subgridspec(1, 1)\nax_fact = fig.add_subplot(gs_left[0])\n\n# Right: gradient 2x2 (b)\ngs_right = gs[1].subgridspec(2, 2, hspace=0.55, wspace=0.42)\nax_b = [[fig.add_subplot(gs_right[r, c]) for c in range(2)] for r in range(2)]\n\n# ============================================================\n# (a) Factorial interaction plot\n# ============================================================\nC_BN = COLORS['full_occ_bn']\nC_LN = COLORS['full_occ_ln']\nC_VAN = COLORS['vanilla']\n\nax = ax_fact\nax.axhspan(0.68, VANILLA_CAR, color=C_BN, alpha=0.03, zorder=0)\nax.axhline(y=VANILLA_CAR, color=C_VAN, linestyle=':', linewidth=0.8, alpha=0.5, zorder=1)\nt_van = ax.text(0.97, VANILLA_CAR + 0.002, 'Vanilla (0.745)', fontsize=6,\n                color=C_VAN, va='bottom', ha='right',\n                transform=ax.get_yaxis_transform(), fontweight='medium')\nt_van.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n\nx_positions = [0, 1]\n\nbn_y = [factorial_data['BN']['OFF']['mean'], factorial_data['BN']['ON']['mean']]\nbn_err = [factorial_data['BN'][gf]['std'] for gf in ['OFF', 'ON']]\nax.errorbar(x_positions, bn_y, yerr=bn_err, color=C_BN,\n            marker='o', markersize=5.5, markeredgecolor='white', markeredgewidth=0.7,\n            linestyle='-', linewidth=1.4, capsize=3, capthick=0.8,\n            elinewidth=0.8, label='BatchNorm (BN)', zorder=3)\n\nln_y = [factorial_data['LN']['OFF']['mean'], factorial_data['LN']['ON']['mean']]\nln_err = [factorial_data['LN'][gf]['std'] for gf in ['OFF', 'ON']]\nax.errorbar(x_positions, ln_y, yerr=ln_err, color=C_LN,\n            marker='s', markersize=5.5, markeredgecolor='white', markeredgewidth=0.7,\n            linestyle=(0, (4, 2.5)), linewidth=1.4, capsize=3, capthick=0.8,\n            elinewidth=0.8, label='LayerNorm (LN)', zorder=3)\n\n# Delta annotations\ndelta_bn = (factorial_data['BN']['ON']['mean'] - factorial_data['BN']['OFF']['mean']) * 100\ndelta_ln = (factorial_data['LN']['ON']['mean'] - factorial_data['LN']['OFF']['mean']) * 100\n\nmid_bn_y = np.mean(bn_y)\nt_bn = ax.annotate(f'−{abs(delta_bn):.1f} pp', xy=(0.55, mid_bn_y - 0.008),\n                   fontsize=7, fontweight='bold', color=C_BN, ha='center', va='top', zorder=5)\nt_bn.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n\nmid_ln_y = np.mean(ln_y)\nt_ln = ax.annotate(f'−{abs(delta_ln):.1f} pp', xy=(0.45, mid_ln_y + 0.008),\n                   fontsize=7, fontweight='bold', color=C_LN, ha='center', va='bottom', zorder=5)\nt_ln.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n\n# n-labels\nn_offsets = {\n    ('BN', 'OFF'): (-12, -10),\n    ('BN', 'ON'):  (12, -14),\n    ('LN', 'OFF'): (-12, 8),\n    ('LN', 'ON'):  (12, 10),\n}\nfor gf_idx, gf in enumerate(['OFF', 'ON']):\n    for norm in ['BN', 'LN']:\n        n_val = factorial_data[norm][gf]['n']\n        y_val = factorial_data[norm][gf]['mean']\n        ox, oy = n_offsets[(norm, gf)]\n        c = C_BN if norm == 'BN' else C_LN\n        ax.annotate(f'n={n_val}', (x_positions[gf_idx], y_val),\n                    xytext=(ox, oy), textcoords='offset points',\n                    fontsize=5.5, color=c, ha='center', fontstyle='italic', alpha=0.6)\n\nax.set_xticks(x_positions)\nax.set_xticklabels(['OFF\\n(Detach)', 'ON\\n(Full)'], fontsize=7)\nax.set_xlabel('Gradient Flow', fontsize=8)\nax.set_ylabel('Collision Avoidance Rate (CAR)', fontsize=8)\nax.set_xlim(-0.3, 1.3)\nax.set_ylim(0.68, 0.86)\nax.yaxis.set_major_locator(plt.MultipleLocator(0.02))\nax.legend(loc='upper right', frameon=True, framealpha=0.95, edgecolor='none',\n          handlelength=2.0, handletextpad=0.4, fontsize=6.5)\n\n# Panel label\nax.text(-0.18, 1.08, '(a)', transform=ax.transAxes, fontsize=9.5, fontweight='bold', va='top')\n\n# ============================================================\n# (b) Gradient analysis 2x2\n# ============================================================\n\n# --- (b) Panel label on top-left of gradient region ---\nax_b[0][0].text(-0.22, 1.18, '(b)', transform=ax_b[0][0].transAxes,\n                fontsize=9.5, fontweight='bold', va='top')\n\n# --- b-i: Action gradient norms ---\nax = ax_b[0][0]\nfor cond in ['Vanilla v2', 'Full OCC BN v2', 'Full OCC LN v2', 'Detach BN v2', 'Detach LN v2']:\n    s = GRAD_STYLES[cond]\n    d = dino_data[cond]\n    ax.semilogy(d['idx'], d['action_norm'], color=s['color'], ls=s['ls'],\n                lw=s['lw'], marker=s['marker'], markersize=s['ms'],\n                markeredgewidth=0, alpha=0.85, label=s['label'])\n    ax.fill_between(d['idx'],\n                    np.maximum(d['action_norm'] - d['action_std'], 1e-4),\n                    d['action_norm'] + d['action_std'],\n                    alpha=0.04, color=s['color'])\nax.set_ylabel('Gradient L2 norm', fontsize=6.5)\nax.set_title('Action grad norms', fontsize=7.5, pad=3)\nax.legend(loc='lower left', ncol=2, framealpha=0.95, edgecolor='none', fontsize=5.5,\n          columnspacing=0.6, handlelength=1.2, handletextpad=0.3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\n\n# --- b-ii: Auxiliary gradient norms ---\nax = ax_b[0][1]\nfor cond in ['Full OCC BN v2', 'Full OCC LN v2']:\n    s = GRAD_STYLES[cond]\n    d = dino_data[cond]\n    mask = d['occ_norm'] > 0\n    ax.semilogy(d['idx'][mask], d['occ_norm'][mask], color=s['color'], ls=s['ls'],\n                lw=s['lw'], marker=s['marker'], markersize=s['ms'],\n                markeredgewidth=0, alpha=0.85, label=s['label'])\n    ax.fill_between(d['idx'][mask],\n                    np.maximum(d['occ_norm'][mask] - d['occ_std'][mask], 1e-4),\n                    d['occ_norm'][mask] + d['occ_std'][mask],\n                    alpha=0.06, color=s['color'])\nax.set_ylabel('Gradient L2 norm', fontsize=6.5)\nax.set_title(r'Auxiliary grad norms (10$\\times$ smaller)', fontsize=7.5, pad=3)\nax.legend(loc='lower right', framealpha=0.9, edgecolor='none', fontsize=5.5,\n          handlelength=1.2, handletextpad=0.3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\n\n# --- b-iii: Cosine similarity ---\nax = ax_b[1][0]\nfor cond in ['Full OCC BN v2', 'Full OCC LN v2']:\n    s = GRAD_STYLES[cond]\n    d = dino_data[cond]\n    mask = d['cosine'] != 0\n    ax.plot(d['idx'][mask], d['cosine'][mask], color=s['color'], ls=s['ls'],\n            lw=s['lw'], marker=s['marker'], markersize=s['ms'],\n            markeredgewidth=0, alpha=0.85, label=s['label'])\n    ax.fill_between(d['idx'][mask],\n                    d['cosine'][mask] - d['cosine_std'][mask],\n                    d['cosine'][mask] + d['cosine_std'][mask],\n                    alpha=0.03, color=s['color'])\nax.axhline(0, color='#888888', linestyle='--', linewidth=0.5, alpha=0.5, zorder=1)\nax.set_ylim(-0.15, 0.15)\nax.set_xlabel('DINOv2 block index', fontsize=6.5)\nax.set_ylabel('Cosine similarity', fontsize=6.5)\nax.set_title(r'Action–aux cosine ($\\approx$46% conflict)', fontsize=7.5, pad=3)\nax.legend(loc='lower left', framealpha=0.95, edgecolor='none', fontsize=5.5,\n          handlelength=1.2, handletextpad=0.3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\n\n# --- b-iv: Norm ratio ---\nax = ax_b[1][1]\nfor cond in ['Full OCC BN v2', 'Full OCC LN v2', 'Detach BN v2', 'Detach LN v2']:\n    s = GRAD_STYLES[cond]\n    d = dino_data[cond]\n    safe_vanilla = np.where(vanilla_norms > 1e-6, vanilla_norms, 1.0)\n    ratio = d['action_norm'] / safe_vanilla\n    valid = vanilla_norms > 1e-6\n    ax.plot(d['idx'][valid], ratio[valid], color=s['color'], ls=s['ls'],\n            lw=s['lw'], marker=s['marker'], markersize=s['ms'],\n            markeredgewidth=0, alpha=0.85, label=s['label'])\nax.axhline(1.0, color='#888888', linestyle='--', linewidth=0.6, alpha=0.5, zorder=1)\nax.set_xlabel('DINOv2 block index', fontsize=6.5)\nax.set_ylabel('Ratio (cond. / Vanilla)', fontsize=6.5)\nax.set_title('Norm ratio: no amplification', fontsize=7.5, pad=3)\nax.legend(loc='lower left', ncol=2, framealpha=0.9, edgecolor='none', fontsize=5.5,\n          columnspacing=0.6, handlelength=1.2, handletextpad=0.3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\n\n# Remove x-labels from top row of (b)\nfor c in range(2):\n    ax_b[0][c].set_xlabel('')\n\n# === Save ===\nOUT_DIR = Path('/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures')\nfor fmt in ['pdf', 'png']:\n    path = OUT_DIR / f'fig_combined_factorial_gradient.{fmt}'\n    fig.savefig(path)\n    print(f'Saved: {path}')\nplt.close(fig)\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 205,
+                  "oldLines": 12,
+                  "newStart": 205,
+                  "newLines": 13,
+                  "lines": [
+                    "                     np.maximum(d['action_norm'] - d['action_std'], 1e-4),",
+                    "                     d['action_norm'] + d['action_std'],",
+                    "                     alpha=0.04, color=s['color'])",
+                    "-ax.set_ylabel('Gradient L2 norm', fontsize=6.5)",
+                    "-ax.set_title('Action grad norms', fontsize=7.5, pad=3)",
+                    "-ax.legend(loc='lower left', ncol=2, framealpha=0.95, edgecolor='none', fontsize=5.5,",
+                    "+ax.set_ylabel('Gradient L2 norm', fontsize=8)",
+                    "+ax.set_title('Action norms', fontsize=9, pad=3)",
+                    "+ax.legend(loc='lower left', ncol=2, framealpha=0.95, edgecolor='none', fontsize=7,",
+                    "           columnspacing=0.6, handlelength=1.2, handletextpad=0.3)",
+                    " ax.grid(True, alpha=0.08, axis='y')",
+                    " ax.set_xlim(-0.5, 22.5)",
+                    "+ax.tick_params(labelsize=7)",
+                    " ",
+                    " # --- b-ii: Auxiliary gradient norms ---",
+                    " ax = ax_b[0][1]"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016zPX3p5N9JyeP1dzus4WfV",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/fig_combined_factorial_gradient.py",
+                "old_string": "ax.set_ylabel('Gradient L2 norm', fontsize=6.5)\nax.set_title(r'Auxiliary grad norms (10$\\times$ smaller)', fontsize=7.5, pad=3)\nax.legend(loc='lower right', framealpha=0.9, edgecolor='none', fontsize=5.5,\n          handlelength=1.2, handletextpad=0.3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)",
+                "new_string": "ax.set_ylabel('Gradient L2 norm', fontsize=8)\nax.set_title(r'Aux norms (10$\\times$)', fontsize=9, pad=3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\nax.tick_params(labelsize=7)"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "803a6337-9a54-4f64-b72b-b4e1e56bbc45",
+            "uuid": "4b7d23ee-675b-43fe-b4e5-3e39cb53dd7a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C4hf85zEfsqWNjs6RY3xR2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 507,
+                "cache_read_input_tokens": 31278,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 507
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-29T02:02:50.223Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016zPX3p5N9JyeP1dzus4WfV",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/fig_combined_factorial_gradient.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "803a6337-9a54-4f64-b72b-b4e1e56bbc45",
+            "uuid": "b3b4d277-56d7-479d-9f29-49ced7ee3172",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/fig_combined_factorial_gradient.py",
+              "oldString": "ax.set_ylabel('Gradient L2 norm', fontsize=6.5)\nax.set_title(r'Auxiliary grad norms (10$\\times$ smaller)', fontsize=7.5, pad=3)\nax.legend(loc='lower right', framealpha=0.9, edgecolor='none', fontsize=5.5,\n          handlelength=1.2, handletextpad=0.3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)",
+              "newString": "ax.set_ylabel('Gradient L2 norm', fontsize=8)\nax.set_title(r'Aux norms (10$\\times$)', fontsize=9, pad=3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\nax.tick_params(labelsize=7)",
+              "originalFile": "#!/usr/bin/env python3\n\"\"\"Combined Figure: (a) Factorial 2x2 interaction + (b) Gradient analysis 2x2.\"\"\"\n\nimport json\nimport os\nimport numpy as np\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patheffects as pe\nimport matplotlib.gridspec as gridspec\nfrom pathlib import Path\n\n# === Global settings ===\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['DejaVu Serif', 'Liberation Serif', 'Times New Roman'],\n    'font.size': 7,\n    'axes.titlesize': 7.5,\n    'axes.labelsize': 7,\n    'xtick.labelsize': 6.5,\n    'ytick.labelsize': 6.5,\n    'legend.fontsize': 6,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.03,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.2,\n    'axes.grid': False,\n    'axes.linewidth': 0.6,\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n    'mathtext.fontset': 'cm',\n})\n\n# === Colors ===\nCOLORS = {\n    'vanilla':     '#4C72B0',\n    'full_occ_bn': '#C44E52',\n    'full_occ_ln': '#E69F00',\n    'detach_bn':   '#8172B3',\n    'detach_ln':   '#937860',\n}\n\n# === Factorial data ===\nfactorial_data = {\n    'BN': {\n        'OFF': {'mean': 0.767, 'std': 0.024, 'n': 4},\n        'ON':  {'mean': 0.725, 'std': 0.064, 'n': 3},\n    },\n    'LN': {\n        'OFF': {'mean': 0.802, 'std': 0.024, 'n': 3},\n        'ON':  {'mean': 0.773, 'std': 0.027, 'n': 4},\n    },\n}\nVANILLA_CAR = 0.745\n\n# === Gradient styles ===\nGRAD_STYLES = {\n    'Vanilla v2':      {'color': COLORS['vanilla'],     'ls': ':', 'marker': 'x', 'label': 'Vanilla',        'lw': 1.0, 'ms': 2.5},\n    'Full OCC BN v2':  {'color': COLORS['full_occ_bn'], 'ls': '-', 'marker': '^', 'label': 'Full OCC (BN)',  'lw': 1.2, 'ms': 2.5},\n    'Full OCC LN v2':  {'color': COLORS['full_occ_ln'], 'ls': '-', 'marker': 'o', 'label': 'Full OCC (LN)',  'lw': 1.2, 'ms': 2.5},\n    'Detach BN v2':    {'color': COLORS['detach_bn'],   'ls': '--', 'marker': 'D', 'label': 'Detach (BN)',   'lw': 1.0, 'ms': 2.2},\n    'Detach LN v2':    {'color': COLORS['detach_ln'],   'ls': '--', 'marker': 's', 'label': 'Detach (LN)',   'lw': 1.0, 'ms': 2.2},\n}\n\n# === Load gradient data ===\nDATA_DIR = Path('/tmp/gradient_v2_5cond')\nall_data = {}\nfor fpath in sorted(DATA_DIR.glob('*_gradient_stats.json')):\n    with open(fpath) as f:\n        d = json.load(f)\n    all_data[d['condition']] = d\n\ndef extract_dino_blocks(per_layer):\n    blocks = {}\n    for layer_name, stats in per_layer.items():\n        if layer_name.startswith('featurizer.blocks.'):\n            idx = int(layer_name.split('.')[2])\n            blocks[idx] = stats\n    return dict(sorted(blocks.items()))\n\ndino_data = {}\nfor cond, d in all_data.items():\n    blocks = extract_dino_blocks(d['per_layer'])\n    idxs = np.array(sorted(blocks.keys()))\n    dino_data[cond] = {\n        'idx': idxs,\n        'action_norm': np.array([blocks[i]['action_grad_norm_mean'] for i in idxs]),\n        'action_std':  np.array([blocks[i]['action_grad_norm_std'] for i in idxs]),\n        'occ_norm':    np.array([blocks[i].get('occ_grad_norm_mean') or 0 for i in idxs], dtype=float),\n        'occ_std':     np.array([blocks[i].get('occ_grad_norm_std') or 0 for i in idxs], dtype=float),\n        'cosine':      np.array([blocks[i].get('cosine_sim_mean') or 0 for i in idxs], dtype=float),\n        'cosine_std':  np.array([blocks[i].get('cosine_sim_std') or 0 for i in idxs], dtype=float),\n    }\n\nvanilla_norms = dino_data['Vanilla v2']['action_norm']\n\n# === Figure layout ===\nfig = plt.figure(figsize=(7.0, 3.4))\ngs = gridspec.GridSpec(1, 2, figure=fig, width_ratios=[0.33, 0.67], wspace=0.15)\n\n# Left: factorial (a)\ngs_left = gs[0].subgridspec(1, 1)\nax_fact = fig.add_subplot(gs_left[0])\n\n# Right: gradient 2x2 (b)\ngs_right = gs[1].subgridspec(2, 2, hspace=0.55, wspace=0.42)\nax_b = [[fig.add_subplot(gs_right[r, c]) for c in range(2)] for r in range(2)]\n\n# ============================================================\n# (a) Factorial interaction plot\n# ============================================================\nC_BN = COLORS['full_occ_bn']\nC_LN = COLORS['full_occ_ln']\nC_VAN = COLORS['vanilla']\n\nax = ax_fact\nax.axhspan(0.68, VANILLA_CAR, color=C_BN, alpha=0.03, zorder=0)\nax.axhline(y=VANILLA_CAR, color=C_VAN, linestyle=':', linewidth=0.8, alpha=0.5, zorder=1)\nt_van = ax.text(0.97, VANILLA_CAR + 0.002, 'Vanilla (0.745)', fontsize=6,\n                color=C_VAN, va='bottom', ha='right',\n                transform=ax.get_yaxis_transform(), fontweight='medium')\nt_van.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n\nx_positions = [0, 1]\n\nbn_y = [factorial_data['BN']['OFF']['mean'], factorial_data['BN']['ON']['mean']]\nbn_err = [factorial_data['BN'][gf]['std'] for gf in ['OFF', 'ON']]\nax.errorbar(x_positions, bn_y, yerr=bn_err, color=C_BN,\n            marker='o', markersize=5.5, markeredgecolor='white', markeredgewidth=0.7,\n            linestyle='-', linewidth=1.4, capsize=3, capthick=0.8,\n            elinewidth=0.8, label='BatchNorm (BN)', zorder=3)\n\nln_y = [factorial_data['LN']['OFF']['mean'], factorial_data['LN']['ON']['mean']]\nln_err = [factorial_data['LN'][gf]['std'] for gf in ['OFF', 'ON']]\nax.errorbar(x_positions, ln_y, yerr=ln_err, color=C_LN,\n            marker='s', markersize=5.5, markeredgecolor='white', markeredgewidth=0.7,\n            linestyle=(0, (4, 2.5)), linewidth=1.4, capsize=3, capthick=0.8,\n            elinewidth=0.8, label='LayerNorm (LN)', zorder=3)\n\n# Delta annotations\ndelta_bn = (factorial_data['BN']['ON']['mean'] - factorial_data['BN']['OFF']['mean']) * 100\ndelta_ln = (factorial_data['LN']['ON']['mean'] - factorial_data['LN']['OFF']['mean']) * 100\n\nmid_bn_y = np.mean(bn_y)\nt_bn = ax.annotate(f'−{abs(delta_bn):.1f} pp', xy=(0.55, mid_bn_y - 0.008),\n                   fontsize=7, fontweight='bold', color=C_BN, ha='center', va='top', zorder=5)\nt_bn.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n\nmid_ln_y = np.mean(ln_y)\nt_ln = ax.annotate(f'−{abs(delta_ln):.1f} pp', xy=(0.45, mid_ln_y + 0.008),\n                   fontsize=7, fontweight='bold', color=C_LN, ha='center', va='bottom', zorder=5)\nt_ln.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n\n# n-labels\nn_offsets = {\n    ('BN', 'OFF'): (-12, -10),\n    ('BN', 'ON'):  (12, -14),\n    ('LN', 'OFF'): (-12, 8),\n    ('LN', 'ON'):  (12, 10),\n}\nfor gf_idx, gf in enumerate(['OFF', 'ON']):\n    for norm in ['BN', 'LN']:\n        n_val = factorial_data[norm][gf]['n']\n        y_val = factorial_data[norm][gf]['mean']\n        ox, oy = n_offsets[(norm, gf)]\n        c = C_BN if norm == 'BN' else C_LN\n        ax.annotate(f'n={n_val}', (x_positions[gf_idx], y_val),\n                    xytext=(ox, oy), textcoords='offset points',\n                    fontsize=5.5, color=c, ha='center', fontstyle='italic', alpha=0.6)\n\nax.set_xticks(x_positions)\nax.set_xticklabels(['OFF\\n(Detach)', 'ON\\n(Full)'], fontsize=7)\nax.set_xlabel('Gradient Flow', fontsize=8)\nax.set_ylabel('Collision Avoidance Rate (CAR)', fontsize=8)\nax.set_xlim(-0.3, 1.3)\nax.set_ylim(0.68, 0.86)\nax.yaxis.set_major_locator(plt.MultipleLocator(0.02))\nax.legend(loc='upper right', frameon=True, framealpha=0.95, edgecolor='none',\n          handlelength=2.0, handletextpad=0.4, fontsize=6.5)\n\n# Panel label\nax.text(-0.18, 1.08, '(a)', transform=ax.transAxes, fontsize=9.5, fontweight='bold', va='top')\n\n# ============================================================\n# (b) Gradient analysis 2x2\n# ============================================================\n\n# --- (b) Panel label on top-left of gradient region ---\nax_b[0][0].text(-0.22, 1.18, '(b)', transform=ax_b[0][0].transAxes,\n                fontsize=9.5, fontweight='bold', va='top')\n\n# --- b-i: Action gradient norms ---\nax = ax_b[0][0]\nfor cond in ['Vanilla v2', 'Full OCC BN v2', 'Full OCC LN v2', 'Detach BN v2', 'Detach LN v2']:\n    s = GRAD_STYLES[cond]\n    d = dino_data[cond]\n    ax.semilogy(d['idx'], d['action_norm'], color=s['color'], ls=s['ls'],\n                lw=s['lw'], marker=s['marker'], markersize=s['ms'],\n                markeredgewidth=0, alpha=0.85, label=s['label'])\n    ax.fill_between(d['idx'],\n                    np.maximum(d['action_norm'] - d['action_std'], 1e-4),\n                    d['action_norm'] + d['action_std'],\n                    alpha=0.04, color=s['color'])\nax.set_ylabel('Gradient L2 norm', fontsize=8)\nax.set_title('Action norms', fontsize=9, pad=3)\nax.legend(loc='lower left', ncol=2, framealpha=0.95, edgecolor='none', fontsize=7,\n          columnspacing=0.6, handlelength=1.2, handletextpad=0.3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\nax.tick_params(labelsize=7)\n\n# --- b-ii: Auxiliary gradient norms ---\nax = ax_b[0][1]\nfor cond in ['Full OCC BN v2', 'Full OCC LN v2']:\n    s = GRAD_STYLES[cond]\n    d = dino_data[cond]\n    mask = d['occ_norm'] > 0\n    ax.semilogy(d['idx'][mask], d['occ_norm'][mask], color=s['color'], ls=s['ls'],\n                lw=s['lw'], marker=s['marker'], markersize=s['ms'],\n                markeredgewidth=0, alpha=0.85, label=s['label'])\n    ax.fill_between(d['idx'][mask],\n                    np.maximum(d['occ_norm'][mask] - d['occ_std'][mask], 1e-4),\n                    d['occ_norm'][mask] + d['occ_std'][mask],\n                    alpha=0.06, color=s['color'])\nax.set_ylabel('Gradient L2 norm', fontsize=6.5)\nax.set_title(r'Auxiliary grad norms (10$\\times$ smaller)', fontsize=7.5, pad=3)\nax.legend(loc='lower right', framealpha=0.9, edgecolor='none', fontsize=5.5,\n          handlelength=1.2, handletextpad=0.3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\n\n# --- b-iii: Cosine similarity ---\nax = ax_b[1][0]\nfor cond in ['Full OCC BN v2', 'Full OCC LN v2']:\n    s = GRAD_STYLES[cond]\n    d = dino_data[cond]\n    mask = d['cosine'] != 0\n    ax.plot(d['idx'][mask], d['cosine'][mask], color=s['color'], ls=s['ls'],\n            lw=s['lw'], marker=s['marker'], markersize=s['ms'],\n            markeredgewidth=0, alpha=0.85, label=s['label'])\n    ax.fill_between(d['idx'][mask],\n                    d['cosine'][mask] - d['cosine_std'][mask],\n                    d['cosine'][mask] + d['cosine_std'][mask],\n                    alpha=0.03, color=s['color'])\nax.axhline(0, color='#888888', linestyle='--', linewidth=0.5, alpha=0.5, zorder=1)\nax.set_ylim(-0.15, 0.15)\nax.set_xlabel('DINOv2 block index', fontsize=6.5)\nax.set_ylabel('Cosine similarity', fontsize=6.5)\nax.set_title(r'Action–aux cosine ($\\approx$46% conflict)', fontsize=7.5, pad=3)\nax.legend(loc='lower left', framealpha=0.95, edgecolor='none', fontsize=5.5,\n          handlelength=1.2, handletextpad=0.3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\n\n# --- b-iv: Norm ratio ---\nax = ax_b[1][1]\nfor cond in ['Full OCC BN v2', 'Full OCC LN v2', 'Detach BN v2', 'Detach LN v2']:\n    s = GRAD_STYLES[cond]\n    d = dino_data[cond]\n    safe_vanilla = np.where(vanilla_norms > 1e-6, vanilla_norms, 1.0)\n    ratio = d['action_norm'] / safe_vanilla\n    valid = vanilla_norms > 1e-6\n    ax.plot(d['idx'][valid], ratio[valid], color=s['color'], ls=s['ls'],\n            lw=s['lw'], marker=s['marker'], markersize=s['ms'],\n            markeredgewidth=0, alpha=0.85, label=s['label'])\nax.axhline(1.0, color='#888888', linestyle='--', linewidth=0.6, alpha=0.5, zorder=1)\nax.set_xlabel('DINOv2 block index', fontsize=6.5)\nax.set_ylabel('Ratio (cond. / Vanilla)', fontsize=6.5)\nax.set_title('Norm ratio: no amplification', fontsize=7.5, pad=3)\nax.legend(loc='lower left', ncol=2, framealpha=0.9, edgecolor='none', fontsize=5.5,\n          columnspacing=0.6, handlelength=1.2, handletextpad=0.3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\n\n# Remove x-labels from top row of (b)\nfor c in range(2):\n    ax_b[0][c].set_xlabel('')\n\n# === Save ===\nOUT_DIR = Path('/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures')\nfor fmt in ['pdf', 'png']:\n    path = OUT_DIR / f'fig_combined_factorial_gradient.{fmt}'\n    fig.savefig(path)\n    print(f'Saved: {path}')\nplt.close(fig)\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 226,
+                  "oldLines": 12,
+                  "newStart": 226,
+                  "newLines": 11,
+                  "lines": [
+                    "                     np.maximum(d['occ_norm'][mask] - d['occ_std'][mask], 1e-4),",
+                    "                     d['occ_norm'][mask] + d['occ_std'][mask],",
+                    "                     alpha=0.06, color=s['color'])",
+                    "-ax.set_ylabel('Gradient L2 norm', fontsize=6.5)",
+                    "-ax.set_title(r'Auxiliary grad norms (10$\\times$ smaller)', fontsize=7.5, pad=3)",
+                    "-ax.legend(loc='lower right', framealpha=0.9, edgecolor='none', fontsize=5.5,",
+                    "-          handlelength=1.2, handletextpad=0.3)",
+                    "+ax.set_ylabel('Gradient L2 norm', fontsize=8)",
+                    "+ax.set_title(r'Aux norms (10$\\times$)', fontsize=9, pad=3)",
+                    " ax.grid(True, alpha=0.08, axis='y')",
+                    " ax.set_xlim(-0.5, 22.5)",
+                    "+ax.tick_params(labelsize=7)",
+                    " ",
+                    " # --- b-iii: Cosine similarity ---",
+                    " ax = ax_b[1][0]"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017KW6SCzonLdKdbzHhN42Nt",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/fig_combined_factorial_gradient.py",
+                "old_string": "ax.set_xlabel('DINOv2 block index', fontsize=6.5)\nax.set_ylabel('Cosine similarity', fontsize=6.5)\nax.set_title(r'Action–aux cosine ($\\approx$46% conflict)', fontsize=7.5, pad=3)\nax.legend(loc='lower left', framealpha=0.95, edgecolor='none', fontsize=5.5,\n          handlelength=1.2, handletextpad=0.3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)",
+                "new_string": "ax.set_xlabel('DINOv2 block index', fontsize=8)\nax.set_ylabel('Cosine similarity', fontsize=8)\nax.set_title(r'Cosine sim. ($\\approx$46% conflict)', fontsize=9, pad=3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\nax.tick_params(labelsize=7)"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "803a6337-9a54-4f64-b72b-b4e1e56bbc45",
+            "uuid": "5f9ae63f-9948-4bf6-8100-267c45bd0a58",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Jv4QP2tQsbyM45WTvY4diB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 437,
+                "cache_read_input_tokens": 31785,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 437
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-29T02:02:57.632Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017KW6SCzonLdKdbzHhN42Nt",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/fig_combined_factorial_gradient.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "803a6337-9a54-4f64-b72b-b4e1e56bbc45",
+            "uuid": "9f8b2fbc-1c57-4bcb-aaff-13760bb1d4e9",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/fig_combined_factorial_gradient.py",
+              "oldString": "ax.set_xlabel('DINOv2 block index', fontsize=6.5)\nax.set_ylabel('Cosine similarity', fontsize=6.5)\nax.set_title(r'Action–aux cosine ($\\approx$46% conflict)', fontsize=7.5, pad=3)\nax.legend(loc='lower left', framealpha=0.95, edgecolor='none', fontsize=5.5,\n          handlelength=1.2, handletextpad=0.3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)",
+              "newString": "ax.set_xlabel('DINOv2 block index', fontsize=8)\nax.set_ylabel('Cosine similarity', fontsize=8)\nax.set_title(r'Cosine sim. ($\\approx$46% conflict)', fontsize=9, pad=3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\nax.tick_params(labelsize=7)",
+              "originalFile": "#!/usr/bin/env python3\n\"\"\"Combined Figure: (a) Factorial 2x2 interaction + (b) Gradient analysis 2x2.\"\"\"\n\nimport json\nimport os\nimport numpy as np\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patheffects as pe\nimport matplotlib.gridspec as gridspec\nfrom pathlib import Path\n\n# === Global settings ===\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['DejaVu Serif', 'Liberation Serif', 'Times New Roman'],\n    'font.size': 7,\n    'axes.titlesize': 7.5,\n    'axes.labelsize': 7,\n    'xtick.labelsize': 6.5,\n    'ytick.labelsize': 6.5,\n    'legend.fontsize': 6,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.03,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.2,\n    'axes.grid': False,\n    'axes.linewidth': 0.6,\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n    'mathtext.fontset': 'cm',\n})\n\n# === Colors ===\nCOLORS = {\n    'vanilla':     '#4C72B0',\n    'full_occ_bn': '#C44E52',\n    'full_occ_ln': '#E69F00',\n    'detach_bn':   '#8172B3',\n    'detach_ln':   '#937860',\n}\n\n# === Factorial data ===\nfactorial_data = {\n    'BN': {\n        'OFF': {'mean': 0.767, 'std': 0.024, 'n': 4},\n        'ON':  {'mean': 0.725, 'std': 0.064, 'n': 3},\n    },\n    'LN': {\n        'OFF': {'mean': 0.802, 'std': 0.024, 'n': 3},\n        'ON':  {'mean': 0.773, 'std': 0.027, 'n': 4},\n    },\n}\nVANILLA_CAR = 0.745\n\n# === Gradient styles ===\nGRAD_STYLES = {\n    'Vanilla v2':      {'color': COLORS['vanilla'],     'ls': ':', 'marker': 'x', 'label': 'Vanilla',        'lw': 1.0, 'ms': 2.5},\n    'Full OCC BN v2':  {'color': COLORS['full_occ_bn'], 'ls': '-', 'marker': '^', 'label': 'Full OCC (BN)',  'lw': 1.2, 'ms': 2.5},\n    'Full OCC LN v2':  {'color': COLORS['full_occ_ln'], 'ls': '-', 'marker': 'o', 'label': 'Full OCC (LN)',  'lw': 1.2, 'ms': 2.5},\n    'Detach BN v2':    {'color': COLORS['detach_bn'],   'ls': '--', 'marker': 'D', 'label': 'Detach (BN)',   'lw': 1.0, 'ms': 2.2},\n    'Detach LN v2':    {'color': COLORS['detach_ln'],   'ls': '--', 'marker': 's', 'label': 'Detach (LN)',   'lw': 1.0, 'ms': 2.2},\n}\n\n# === Load gradient data ===\nDATA_DIR = Path('/tmp/gradient_v2_5cond')\nall_data = {}\nfor fpath in sorted(DATA_DIR.glob('*_gradient_stats.json')):\n    with open(fpath) as f:\n        d = json.load(f)\n    all_data[d['condition']] = d\n\ndef extract_dino_blocks(per_layer):\n    blocks = {}\n    for layer_name, stats in per_layer.items():\n        if layer_name.startswith('featurizer.blocks.'):\n            idx = int(layer_name.split('.')[2])\n            blocks[idx] = stats\n    return dict(sorted(blocks.items()))\n\ndino_data = {}\nfor cond, d in all_data.items():\n    blocks = extract_dino_blocks(d['per_layer'])\n    idxs = np.array(sorted(blocks.keys()))\n    dino_data[cond] = {\n        'idx': idxs,\n        'action_norm': np.array([blocks[i]['action_grad_norm_mean'] for i in idxs]),\n        'action_std':  np.array([blocks[i]['action_grad_norm_std'] for i in idxs]),\n        'occ_norm':    np.array([blocks[i].get('occ_grad_norm_mean') or 0 for i in idxs], dtype=float),\n        'occ_std':     np.array([blocks[i].get('occ_grad_norm_std') or 0 for i in idxs], dtype=float),\n        'cosine':      np.array([blocks[i].get('cosine_sim_mean') or 0 for i in idxs], dtype=float),\n        'cosine_std':  np.array([blocks[i].get('cosine_sim_std') or 0 for i in idxs], dtype=float),\n    }\n\nvanilla_norms = dino_data['Vanilla v2']['action_norm']\n\n# === Figure layout ===\nfig = plt.figure(figsize=(7.0, 3.4))\ngs = gridspec.GridSpec(1, 2, figure=fig, width_ratios=[0.33, 0.67], wspace=0.15)\n\n# Left: factorial (a)\ngs_left = gs[0].subgridspec(1, 1)\nax_fact = fig.add_subplot(gs_left[0])\n\n# Right: gradient 2x2 (b)\ngs_right = gs[1].subgridspec(2, 2, hspace=0.55, wspace=0.42)\nax_b = [[fig.add_subplot(gs_right[r, c]) for c in range(2)] for r in range(2)]\n\n# ============================================================\n# (a) Factorial interaction plot\n# ============================================================\nC_BN = COLORS['full_occ_bn']\nC_LN = COLORS['full_occ_ln']\nC_VAN = COLORS['vanilla']\n\nax = ax_fact\nax.axhspan(0.68, VANILLA_CAR, color=C_BN, alpha=0.03, zorder=0)\nax.axhline(y=VANILLA_CAR, color=C_VAN, linestyle=':', linewidth=0.8, alpha=0.5, zorder=1)\nt_van = ax.text(0.97, VANILLA_CAR + 0.002, 'Vanilla (0.745)', fontsize=6,\n                color=C_VAN, va='bottom', ha='right',\n                transform=ax.get_yaxis_transform(), fontweight='medium')\nt_van.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n\nx_positions = [0, 1]\n\nbn_y = [factorial_data['BN']['OFF']['mean'], factorial_data['BN']['ON']['mean']]\nbn_err = [factorial_data['BN'][gf]['std'] for gf in ['OFF', 'ON']]\nax.errorbar(x_positions, bn_y, yerr=bn_err, color=C_BN,\n            marker='o', markersize=5.5, markeredgecolor='white', markeredgewidth=0.7,\n            linestyle='-', linewidth=1.4, capsize=3, capthick=0.8,\n            elinewidth=0.8, label='BatchNorm (BN)', zorder=3)\n\nln_y = [factorial_data['LN']['OFF']['mean'], factorial_data['LN']['ON']['mean']]\nln_err = [factorial_data['LN'][gf]['std'] for gf in ['OFF', 'ON']]\nax.errorbar(x_positions, ln_y, yerr=ln_err, color=C_LN,\n            marker='s', markersize=5.5, markeredgecolor='white', markeredgewidth=0.7,\n            linestyle=(0, (4, 2.5)), linewidth=1.4, capsize=3, capthick=0.8,\n            elinewidth=0.8, label='LayerNorm (LN)', zorder=3)\n\n# Delta annotations\ndelta_bn = (factorial_data['BN']['ON']['mean'] - factorial_data['BN']['OFF']['mean']) * 100\ndelta_ln = (factorial_data['LN']['ON']['mean'] - factorial_data['LN']['OFF']['mean']) * 100\n\nmid_bn_y = np.mean(bn_y)\nt_bn = ax.annotate(f'−{abs(delta_bn):.1f} pp', xy=(0.55, mid_bn_y - 0.008),\n                   fontsize=7, fontweight='bold', color=C_BN, ha='center', va='top', zorder=5)\nt_bn.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n\nmid_ln_y = np.mean(ln_y)\nt_ln = ax.annotate(f'−{abs(delta_ln):.1f} pp', xy=(0.45, mid_ln_y + 0.008),\n                   fontsize=7, fontweight='bold', color=C_LN, ha='center', va='bottom', zorder=5)\nt_ln.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n\n# n-labels\nn_offsets = {\n    ('BN', 'OFF'): (-12, -10),\n    ('BN', 'ON'):  (12, -14),\n    ('LN', 'OFF'): (-12, 8),\n    ('LN', 'ON'):  (12, 10),\n}\nfor gf_idx, gf in enumerate(['OFF', 'ON']):\n    for norm in ['BN', 'LN']:\n        n_val = factorial_data[norm][gf]['n']\n        y_val = factorial_data[norm][gf]['mean']\n        ox, oy = n_offsets[(norm, gf)]\n        c = C_BN if norm == 'BN' else C_LN\n        ax.annotate(f'n={n_val}', (x_positions[gf_idx], y_val),\n                    xytext=(ox, oy), textcoords='offset points',\n                    fontsize=5.5, color=c, ha='center', fontstyle='italic', alpha=0.6)\n\nax.set_xticks(x_positions)\nax.set_xticklabels(['OFF\\n(Detach)', 'ON\\n(Full)'], fontsize=7)\nax.set_xlabel('Gradient Flow', fontsize=8)\nax.set_ylabel('Collision Avoidance Rate (CAR)', fontsize=8)\nax.set_xlim(-0.3, 1.3)\nax.set_ylim(0.68, 0.86)\nax.yaxis.set_major_locator(plt.MultipleLocator(0.02))\nax.legend(loc='upper right', frameon=True, framealpha=0.95, edgecolor='none',\n          handlelength=2.0, handletextpad=0.4, fontsize=6.5)\n\n# Panel label\nax.text(-0.18, 1.08, '(a)', transform=ax.transAxes, fontsize=9.5, fontweight='bold', va='top')\n\n# ============================================================\n# (b) Gradient analysis 2x2\n# ============================================================\n\n# --- (b) Panel label on top-left of gradient region ---\nax_b[0][0].text(-0.22, 1.18, '(b)', transform=ax_b[0][0].transAxes,\n                fontsize=9.5, fontweight='bold', va='top')\n\n# --- b-i: Action gradient norms ---\nax = ax_b[0][0]\nfor cond in ['Vanilla v2', 'Full OCC BN v2', 'Full OCC LN v2', 'Detach BN v2', 'Detach LN v2']:\n    s = GRAD_STYLES[cond]\n    d = dino_data[cond]\n    ax.semilogy(d['idx'], d['action_norm'], color=s['color'], ls=s['ls'],\n                lw=s['lw'], marker=s['marker'], markersize=s['ms'],\n                markeredgewidth=0, alpha=0.85, label=s['label'])\n    ax.fill_between(d['idx'],\n                    np.maximum(d['action_norm'] - d['action_std'], 1e-4),\n                    d['action_norm'] + d['action_std'],\n                    alpha=0.04, color=s['color'])\nax.set_ylabel('Gradient L2 norm', fontsize=8)\nax.set_title('Action norms', fontsize=9, pad=3)\nax.legend(loc='lower left', ncol=2, framealpha=0.95, edgecolor='none', fontsize=7,\n          columnspacing=0.6, handlelength=1.2, handletextpad=0.3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\nax.tick_params(labelsize=7)\n\n# --- b-ii: Auxiliary gradient norms ---\nax = ax_b[0][1]\nfor cond in ['Full OCC BN v2', 'Full OCC LN v2']:\n    s = GRAD_STYLES[cond]\n    d = dino_data[cond]\n    mask = d['occ_norm'] > 0\n    ax.semilogy(d['idx'][mask], d['occ_norm'][mask], color=s['color'], ls=s['ls'],\n                lw=s['lw'], marker=s['marker'], markersize=s['ms'],\n                markeredgewidth=0, alpha=0.85, label=s['label'])\n    ax.fill_between(d['idx'][mask],\n                    np.maximum(d['occ_norm'][mask] - d['occ_std'][mask], 1e-4),\n                    d['occ_norm'][mask] + d['occ_std'][mask],\n                    alpha=0.06, color=s['color'])\nax.set_ylabel('Gradient L2 norm', fontsize=8)\nax.set_title(r'Aux norms (10$\\times$)', fontsize=9, pad=3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\nax.tick_params(labelsize=7)\n\n# --- b-iii: Cosine similarity ---\nax = ax_b[1][0]\nfor cond in ['Full OCC BN v2', 'Full OCC LN v2']:\n    s = GRAD_STYLES[cond]\n    d = dino_data[cond]\n    mask = d['cosine'] != 0\n    ax.plot(d['idx'][mask], d['cosine'][mask], color=s['color'], ls=s['ls'],\n            lw=s['lw'], marker=s['marker'], markersize=s['ms'],\n            markeredgewidth=0, alpha=0.85, label=s['label'])\n    ax.fill_between(d['idx'][mask],\n                    d['cosine'][mask] - d['cosine_std'][mask],\n                    d['cosine'][mask] + d['cosine_std'][mask],\n                    alpha=0.03, color=s['color'])\nax.axhline(0, color='#888888', linestyle='--', linewidth=0.5, alpha=0.5, zorder=1)\nax.set_ylim(-0.15, 0.15)\nax.set_xlabel('DINOv2 block index', fontsize=6.5)\nax.set_ylabel('Cosine similarity', fontsize=6.5)\nax.set_title(r'Action–aux cosine ($\\approx$46% conflict)', fontsize=7.5, pad=3)\nax.legend(loc='lower left', framealpha=0.95, edgecolor='none', fontsize=5.5,\n          handlelength=1.2, handletextpad=0.3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\n\n# --- b-iv: Norm ratio ---\nax = ax_b[1][1]\nfor cond in ['Full OCC BN v2', 'Full OCC LN v2', 'Detach BN v2', 'Detach LN v2']:\n    s = GRAD_STYLES[cond]\n    d = dino_data[cond]\n    safe_vanilla = np.where(vanilla_norms > 1e-6, vanilla_norms, 1.0)\n    ratio = d['action_norm'] / safe_vanilla\n    valid = vanilla_norms > 1e-6\n    ax.plot(d['idx'][valid], ratio[valid], color=s['color'], ls=s['ls'],\n            lw=s['lw'], marker=s['marker'], markersize=s['ms'],\n            markeredgewidth=0, alpha=0.85, label=s['label'])\nax.axhline(1.0, color='#888888', linestyle='--', linewidth=0.6, alpha=0.5, zorder=1)\nax.set_xlabel('DINOv2 block index', fontsize=6.5)\nax.set_ylabel('Ratio (cond. / Vanilla)', fontsize=6.5)\nax.set_title('Norm ratio: no amplification', fontsize=7.5, pad=3)\nax.legend(loc='lower left', ncol=2, framealpha=0.9, edgecolor='none', fontsize=5.5,\n          columnspacing=0.6, handlelength=1.2, handletextpad=0.3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\n\n# Remove x-labels from top row of (b)\nfor c in range(2):\n    ax_b[0][c].set_xlabel('')\n\n# === Save ===\nOUT_DIR = Path('/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures')\nfor fmt in ['pdf', 'png']:\n    path = OUT_DIR / f'fig_combined_factorial_gradient.{fmt}'\n    fig.savefig(path)\n    print(f'Saved: {path}')\nplt.close(fig)\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 247,
+                  "oldLines": 13,
+                  "newStart": 247,
+                  "newLines": 12,
+                  "lines": [
+                    "                     alpha=0.03, color=s['color'])",
+                    " ax.axhline(0, color='#888888', linestyle='--', linewidth=0.5, alpha=0.5, zorder=1)",
+                    " ax.set_ylim(-0.15, 0.15)",
+                    "-ax.set_xlabel('DINOv2 block index', fontsize=6.5)",
+                    "-ax.set_ylabel('Cosine similarity', fontsize=6.5)",
+                    "-ax.set_title(r'Action–aux cosine ($\\approx$46% conflict)', fontsize=7.5, pad=3)",
+                    "-ax.legend(loc='lower left', framealpha=0.95, edgecolor='none', fontsize=5.5,",
+                    "-          handlelength=1.2, handletextpad=0.3)",
+                    "+ax.set_xlabel('DINOv2 block index', fontsize=8)",
+                    "+ax.set_ylabel('Cosine similarity', fontsize=8)",
+                    "+ax.set_title(r'Cosine sim. ($\\approx$46% conflict)', fontsize=9, pad=3)",
+                    " ax.grid(True, alpha=0.08, axis='y')",
+                    " ax.set_xlim(-0.5, 22.5)",
+                    "+ax.tick_params(labelsize=7)",
+                    " ",
+                    " # --- b-iv: Norm ratio ---",
+                    " ax = ax_b[1][1]"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RzTEjMCb1WGRexCTTkf6F4",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/fig_combined_factorial_gradient.py",
+                "old_string": "ax.set_xlabel('DINOv2 block index', fontsize=6.5)\nax.set_ylabel('Ratio (cond. / Vanilla)', fontsize=6.5)\nax.set_title('Norm ratio: no amplification', fontsize=7.5, pad=3)\nax.legend(loc='lower left', ncol=2, framealpha=0.9, edgecolor='none', fontsize=5.5,\n          columnspacing=0.6, handlelength=1.2, handletextpad=0.3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)",
+                "new_string": "ax.set_xlabel('DINOv2 block index', fontsize=8)\nax.set_ylabel('Ratio (cond. / Vanilla)', fontsize=8)\nax.set_title('Norm ratio', fontsize=9, pad=3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\nax.tick_params(labelsize=7)"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "803a6337-9a54-4f64-b72b-b4e1e56bbc45",
+            "uuid": "df33829f-a737-432d-b790-2e5f6f5e14a8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015Ewc5DhWiAjj3vn6w8WCvv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 481,
+                "cache_read_input_tokens": 32222,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 481
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-29T02:03:03.094Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RzTEjMCb1WGRexCTTkf6F4",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/fig_combined_factorial_gradient.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "803a6337-9a54-4f64-b72b-b4e1e56bbc45",
+            "uuid": "3740f221-901b-4e9c-9766-8bce07bb5bff",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/fig_combined_factorial_gradient.py",
+              "oldString": "ax.set_xlabel('DINOv2 block index', fontsize=6.5)\nax.set_ylabel('Ratio (cond. / Vanilla)', fontsize=6.5)\nax.set_title('Norm ratio: no amplification', fontsize=7.5, pad=3)\nax.legend(loc='lower left', ncol=2, framealpha=0.9, edgecolor='none', fontsize=5.5,\n          columnspacing=0.6, handlelength=1.2, handletextpad=0.3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)",
+              "newString": "ax.set_xlabel('DINOv2 block index', fontsize=8)\nax.set_ylabel('Ratio (cond. / Vanilla)', fontsize=8)\nax.set_title('Norm ratio', fontsize=9, pad=3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\nax.tick_params(labelsize=7)",
+              "originalFile": "#!/usr/bin/env python3\n\"\"\"Combined Figure: (a) Factorial 2x2 interaction + (b) Gradient analysis 2x2.\"\"\"\n\nimport json\nimport os\nimport numpy as np\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patheffects as pe\nimport matplotlib.gridspec as gridspec\nfrom pathlib import Path\n\n# === Global settings ===\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['DejaVu Serif', 'Liberation Serif', 'Times New Roman'],\n    'font.size': 7,\n    'axes.titlesize': 7.5,\n    'axes.labelsize': 7,\n    'xtick.labelsize': 6.5,\n    'ytick.labelsize': 6.5,\n    'legend.fontsize': 6,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.03,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.2,\n    'axes.grid': False,\n    'axes.linewidth': 0.6,\n    'pdf.fonttype': 42,\n    'ps.fonttype': 42,\n    'mathtext.fontset': 'cm',\n})\n\n# === Colors ===\nCOLORS = {\n    'vanilla':     '#4C72B0',\n    'full_occ_bn': '#C44E52',\n    'full_occ_ln': '#E69F00',\n    'detach_bn':   '#8172B3',\n    'detach_ln':   '#937860',\n}\n\n# === Factorial data ===\nfactorial_data = {\n    'BN': {\n        'OFF': {'mean': 0.767, 'std': 0.024, 'n': 4},\n        'ON':  {'mean': 0.725, 'std': 0.064, 'n': 3},\n    },\n    'LN': {\n        'OFF': {'mean': 0.802, 'std': 0.024, 'n': 3},\n        'ON':  {'mean': 0.773, 'std': 0.027, 'n': 4},\n    },\n}\nVANILLA_CAR = 0.745\n\n# === Gradient styles ===\nGRAD_STYLES = {\n    'Vanilla v2':      {'color': COLORS['vanilla'],     'ls': ':', 'marker': 'x', 'label': 'Vanilla',        'lw': 1.0, 'ms': 2.5},\n    'Full OCC BN v2':  {'color': COLORS['full_occ_bn'], 'ls': '-', 'marker': '^', 'label': 'Full OCC (BN)',  'lw': 1.2, 'ms': 2.5},\n    'Full OCC LN v2':  {'color': COLORS['full_occ_ln'], 'ls': '-', 'marker': 'o', 'label': 'Full OCC (LN)',  'lw': 1.2, 'ms': 2.5},\n    'Detach BN v2':    {'color': COLORS['detach_bn'],   'ls': '--', 'marker': 'D', 'label': 'Detach (BN)',   'lw': 1.0, 'ms': 2.2},\n    'Detach LN v2':    {'color': COLORS['detach_ln'],   'ls': '--', 'marker': 's', 'label': 'Detach (LN)',   'lw': 1.0, 'ms': 2.2},\n}\n\n# === Load gradient data ===\nDATA_DIR = Path('/tmp/gradient_v2_5cond')\nall_data = {}\nfor fpath in sorted(DATA_DIR.glob('*_gradient_stats.json')):\n    with open(fpath) as f:\n        d = json.load(f)\n    all_data[d['condition']] = d\n\ndef extract_dino_blocks(per_layer):\n    blocks = {}\n    for layer_name, stats in per_layer.items():\n        if layer_name.startswith('featurizer.blocks.'):\n            idx = int(layer_name.split('.')[2])\n            blocks[idx] = stats\n    return dict(sorted(blocks.items()))\n\ndino_data = {}\nfor cond, d in all_data.items():\n    blocks = extract_dino_blocks(d['per_layer'])\n    idxs = np.array(sorted(blocks.keys()))\n    dino_data[cond] = {\n        'idx': idxs,\n        'action_norm': np.array([blocks[i]['action_grad_norm_mean'] for i in idxs]),\n        'action_std':  np.array([blocks[i]['action_grad_norm_std'] for i in idxs]),\n        'occ_norm':    np.array([blocks[i].get('occ_grad_norm_mean') or 0 for i in idxs], dtype=float),\n        'occ_std':     np.array([blocks[i].get('occ_grad_norm_std') or 0 for i in idxs], dtype=float),\n        'cosine':      np.array([blocks[i].get('cosine_sim_mean') or 0 for i in idxs], dtype=float),\n        'cosine_std':  np.array([blocks[i].get('cosine_sim_std') or 0 for i in idxs], dtype=float),\n    }\n\nvanilla_norms = dino_data['Vanilla v2']['action_norm']\n\n# === Figure layout ===\nfig = plt.figure(figsize=(7.0, 3.4))\ngs = gridspec.GridSpec(1, 2, figure=fig, width_ratios=[0.33, 0.67], wspace=0.15)\n\n# Left: factorial (a)\ngs_left = gs[0].subgridspec(1, 1)\nax_fact = fig.add_subplot(gs_left[0])\n\n# Right: gradient 2x2 (b)\ngs_right = gs[1].subgridspec(2, 2, hspace=0.55, wspace=0.42)\nax_b = [[fig.add_subplot(gs_right[r, c]) for c in range(2)] for r in range(2)]\n\n# ============================================================\n# (a) Factorial interaction plot\n# ============================================================\nC_BN = COLORS['full_occ_bn']\nC_LN = COLORS['full_occ_ln']\nC_VAN = COLORS['vanilla']\n\nax = ax_fact\nax.axhspan(0.68, VANILLA_CAR, color=C_BN, alpha=0.03, zorder=0)\nax.axhline(y=VANILLA_CAR, color=C_VAN, linestyle=':', linewidth=0.8, alpha=0.5, zorder=1)\nt_van = ax.text(0.97, VANILLA_CAR + 0.002, 'Vanilla (0.745)', fontsize=6,\n                color=C_VAN, va='bottom', ha='right',\n                transform=ax.get_yaxis_transform(), fontweight='medium')\nt_van.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n\nx_positions = [0, 1]\n\nbn_y = [factorial_data['BN']['OFF']['mean'], factorial_data['BN']['ON']['mean']]\nbn_err = [factorial_data['BN'][gf]['std'] for gf in ['OFF', 'ON']]\nax.errorbar(x_positions, bn_y, yerr=bn_err, color=C_BN,\n            marker='o', markersize=5.5, markeredgecolor='white', markeredgewidth=0.7,\n            linestyle='-', linewidth=1.4, capsize=3, capthick=0.8,\n            elinewidth=0.8, label='BatchNorm (BN)', zorder=3)\n\nln_y = [factorial_data['LN']['OFF']['mean'], factorial_data['LN']['ON']['mean']]\nln_err = [factorial_data['LN'][gf]['std'] for gf in ['OFF', 'ON']]\nax.errorbar(x_positions, ln_y, yerr=ln_err, color=C_LN,\n            marker='s', markersize=5.5, markeredgecolor='white', markeredgewidth=0.7,\n            linestyle=(0, (4, 2.5)), linewidth=1.4, capsize=3, capthick=0.8,\n            elinewidth=0.8, label='LayerNorm (LN)', zorder=3)\n\n# Delta annotations\ndelta_bn = (factorial_data['BN']['ON']['mean'] - factorial_data['BN']['OFF']['mean']) * 100\ndelta_ln = (factorial_data['LN']['ON']['mean'] - factorial_data['LN']['OFF']['mean']) * 100\n\nmid_bn_y = np.mean(bn_y)\nt_bn = ax.annotate(f'−{abs(delta_bn):.1f} pp', xy=(0.55, mid_bn_y - 0.008),\n                   fontsize=7, fontweight='bold', color=C_BN, ha='center', va='top', zorder=5)\nt_bn.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n\nmid_ln_y = np.mean(ln_y)\nt_ln = ax.annotate(f'−{abs(delta_ln):.1f} pp', xy=(0.45, mid_ln_y + 0.008),\n                   fontsize=7, fontweight='bold', color=C_LN, ha='center', va='bottom', zorder=5)\nt_ln.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n\n# n-labels\nn_offsets = {\n    ('BN', 'OFF'): (-12, -10),\n    ('BN', 'ON'):  (12, -14),\n    ('LN', 'OFF'): (-12, 8),\n    ('LN', 'ON'):  (12, 10),\n}\nfor gf_idx, gf in enumerate(['OFF', 'ON']):\n    for norm in ['BN', 'LN']:\n        n_val = factorial_data[norm][gf]['n']\n        y_val = factorial_data[norm][gf]['mean']\n        ox, oy = n_offsets[(norm, gf)]\n        c = C_BN if norm == 'BN' else C_LN\n        ax.annotate(f'n={n_val}', (x_positions[gf_idx], y_val),\n                    xytext=(ox, oy), textcoords='offset points',\n                    fontsize=5.5, color=c, ha='center', fontstyle='italic', alpha=0.6)\n\nax.set_xticks(x_positions)\nax.set_xticklabels(['OFF\\n(Detach)', 'ON\\n(Full)'], fontsize=7)\nax.set_xlabel('Gradient Flow', fontsize=8)\nax.set_ylabel('Collision Avoidance Rate (CAR)', fontsize=8)\nax.set_xlim(-0.3, 1.3)\nax.set_ylim(0.68, 0.86)\nax.yaxis.set_major_locator(plt.MultipleLocator(0.02))\nax.legend(loc='upper right', frameon=True, framealpha=0.95, edgecolor='none',\n          handlelength=2.0, handletextpad=0.4, fontsize=6.5)\n\n# Panel label\nax.text(-0.18, 1.08, '(a)', transform=ax.transAxes, fontsize=9.5, fontweight='bold', va='top')\n\n# ============================================================\n# (b) Gradient analysis 2x2\n# ============================================================\n\n# --- (b) Panel label on top-left of gradient region ---\nax_b[0][0].text(-0.22, 1.18, '(b)', transform=ax_b[0][0].transAxes,\n                fontsize=9.5, fontweight='bold', va='top')\n\n# --- b-i: Action gradient norms ---\nax = ax_b[0][0]\nfor cond in ['Vanilla v2', 'Full OCC BN v2', 'Full OCC LN v2', 'Detach BN v2', 'Detach LN v2']:\n    s = GRAD_STYLES[cond]\n    d = dino_data[cond]\n    ax.semilogy(d['idx'], d['action_norm'], color=s['color'], ls=s['ls'],\n                lw=s['lw'], marker=s['marker'], markersize=s['ms'],\n                markeredgewidth=0, alpha=0.85, label=s['label'])\n    ax.fill_between(d['idx'],\n                    np.maximum(d['action_norm'] - d['action_std'], 1e-4),\n                    d['action_norm'] + d['action_std'],\n                    alpha=0.04, color=s['color'])\nax.set_ylabel('Gradient L2 norm', fontsize=8)\nax.set_title('Action norms', fontsize=9, pad=3)\nax.legend(loc='lower left', ncol=2, framealpha=0.95, edgecolor='none', fontsize=7,\n          columnspacing=0.6, handlelength=1.2, handletextpad=0.3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\nax.tick_params(labelsize=7)\n\n# --- b-ii: Auxiliary gradient norms ---\nax = ax_b[0][1]\nfor cond in ['Full OCC BN v2', 'Full OCC LN v2']:\n    s = GRAD_STYLES[cond]\n    d = dino_data[cond]\n    mask = d['occ_norm'] > 0\n    ax.semilogy(d['idx'][mask], d['occ_norm'][mask], color=s['color'], ls=s['ls'],\n                lw=s['lw'], marker=s['marker'], markersize=s['ms'],\n                markeredgewidth=0, alpha=0.85, label=s['label'])\n    ax.fill_between(d['idx'][mask],\n                    np.maximum(d['occ_norm'][mask] - d['occ_std'][mask], 1e-4),\n                    d['occ_norm'][mask] + d['occ_std'][mask],\n                    alpha=0.06, color=s['color'])\nax.set_ylabel('Gradient L2 norm', fontsize=8)\nax.set_title(r'Aux norms (10$\\times$)', fontsize=9, pad=3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\nax.tick_params(labelsize=7)\n\n# --- b-iii: Cosine similarity ---\nax = ax_b[1][0]\nfor cond in ['Full OCC BN v2', 'Full OCC LN v2']:\n    s = GRAD_STYLES[cond]\n    d = dino_data[cond]\n    mask = d['cosine'] != 0\n    ax.plot(d['idx'][mask], d['cosine'][mask], color=s['color'], ls=s['ls'],\n            lw=s['lw'], marker=s['marker'], markersize=s['ms'],\n            markeredgewidth=0, alpha=0.85, label=s['label'])\n    ax.fill_between(d['idx'][mask],\n                    d['cosine'][mask] - d['cosine_std'][mask],\n                    d['cosine'][mask] + d['cosine_std'][mask],\n                    alpha=0.03, color=s['color'])\nax.axhline(0, color='#888888', linestyle='--', linewidth=0.5, alpha=0.5, zorder=1)\nax.set_ylim(-0.15, 0.15)\nax.set_xlabel('DINOv2 block index', fontsize=8)\nax.set_ylabel('Cosine similarity', fontsize=8)\nax.set_title(r'Cosine sim. ($\\approx$46% conflict)', fontsize=9, pad=3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\nax.tick_params(labelsize=7)\n\n# --- b-iv: Norm ratio ---\nax = ax_b[1][1]\nfor cond in ['Full OCC BN v2', 'Full OCC LN v2', 'Detach BN v2', 'Detach LN v2']:\n    s = GRAD_STYLES[cond]\n    d = dino_data[cond]\n    safe_vanilla = np.where(vanilla_norms > 1e-6, vanilla_norms, 1.0)\n    ratio = d['action_norm'] / safe_vanilla\n    valid = vanilla_norms > 1e-6\n    ax.plot(d['idx'][valid], ratio[valid], color=s['color'], ls=s['ls'],\n            lw=s['lw'], marker=s['marker'], markersize=s['ms'],\n            markeredgewidth=0, alpha=0.85, label=s['label'])\nax.axhline(1.0, color='#888888', linestyle='--', linewidth=0.6, alpha=0.5, zorder=1)\nax.set_xlabel('DINOv2 block index', fontsize=6.5)\nax.set_ylabel('Ratio (cond. / Vanilla)', fontsize=6.5)\nax.set_title('Norm ratio: no amplification', fontsize=7.5, pad=3)\nax.legend(loc='lower left', ncol=2, framealpha=0.9, edgecolor='none', fontsize=5.5,\n          columnspacing=0.6, handlelength=1.2, handletextpad=0.3)\nax.grid(True, alpha=0.08, axis='y')\nax.set_xlim(-0.5, 22.5)\n\n# Remove x-labels from top row of (b)\nfor c in range(2):\n    ax_b[0][c].set_xlabel('')\n\n# === Save ===\nOUT_DIR = Path('/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures')\nfor fmt in ['pdf', 'png']:\n    path = OUT_DIR / f'fig_combined_factorial_gradient.{fmt}'\n    fig.savefig(path)\n    print(f'Saved: {path}')\nplt.close(fig)\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 266,
+                  "oldLines": 13,
+                  "newStart": 266,
+                  "newLines": 12,
+                  "lines": [
+                    "             lw=s['lw'], marker=s['marker'], markersize=s['ms'],",
+                    "             markeredgewidth=0, alpha=0.85, label=s['label'])",
+                    " ax.axhline(1.0, color='#888888', linestyle='--', linewidth=0.6, alpha=0.5, zorder=1)",
+                    "-ax.set_xlabel('DINOv2 block index', fontsize=6.5)",
+                    "-ax.set_ylabel('Ratio (cond. / Vanilla)', fontsize=6.5)",
+                    "-ax.set_title('Norm ratio: no amplification', fontsize=7.5, pad=3)",
+                    "-ax.legend(loc='lower left', ncol=2, framealpha=0.9, edgecolor='none', fontsize=5.5,",
+                    "-          columnspacing=0.6, handlelength=1.2, handletextpad=0.3)",
+                    "+ax.set_xlabel('DINOv2 block index', fontsize=8)",
+                    "+ax.set_ylabel('Ratio (cond. / Vanilla)', fontsize=8)",
+                    "+ax.set_title('Norm ratio', fontsize=9, pad=3)",
+                    " ax.grid(True, alpha=0.08, axis='y')",
+                    " ax.set_xlim(-0.5, 22.5)",
+                    "+ax.tick_params(labelsize=7)",
+                    " ",
+                    " # Remove x-labels from top row of (b)",
+                    " for c in range(2):"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now run the script to generate the figure."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "803a6337-9a54-4f64-b72b-b4e1e56bbc45",
+            "uuid": "348e6efc-be23-44b1-a652-09c2dfb51a70",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TZHRRaUV1cp9uizvcq8tsz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 588,
+                "cache_read_input_tokens": 32703,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 588
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NV8carSF4TfsQfc8XFUVxQ",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures && python fig_combined_factorial_gradient.py",
+                "description": "Generate combined factorial+gradient figure",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "803a6337-9a54-4f64-b72b-b4e1e56bbc45",
+            "uuid": "8e2f8042-dd33-4ca7-9d76-071890930985",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TZHRRaUV1cp9uizvcq8tsz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 588,
+                "cache_read_input_tokens": 32703,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 588
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-29T02:03:06.803Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Exit code 127\n/bin/bash: line 1: python: command not found",
+              "is_error": true,
+              "tool_use_id": "toolu_01NV8carSF4TfsQfc8XFUVxQ"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "803a6337-9a54-4f64-b72b-b4e1e56bbc45",
+            "uuid": "ec233fc8-b56b-4dc0-ae21-a290968b8c2a",
+            "tool_use_result": "Error: Exit code 127\n/bin/bash: line 1: python: command not found"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014XLsSr7Qb8pUS5p9e6K4kc",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures && python3 fig_combined_factorial_gradient.py",
+                "description": "Generate combined factorial+gradient figure",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "803a6337-9a54-4f64-b72b-b4e1e56bbc45",
+            "uuid": "a219c5af-9de9-4653-9fb6-3ab10e4135ce",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ua3kh6cHEwTEtiTWofqqZP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 184,
+                "cache_read_input_tokens": 33291,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 184
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-29T02:03:12.920Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014XLsSr7Qb8pUS5p9e6K4kc",
+              "type": "tool_result",
+              "content": "'created' timestamp seems very low; regarding as unix timestamp\n'modified' timestamp seems very low; regarding as unix timestamp\nSaved: /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/fig_combined_factorial_gradient.pdf\nSaved: /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/fig_combined_factorial_gradient.png",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "803a6337-9a54-4f64-b72b-b4e1e56bbc45",
+            "uuid": "56931934-1324-4f5d-b820-1c950bd2176c",
+            "tool_use_result": {
+              "stdout": "'created' timestamp seems very low; regarding as unix timestamp\n'modified' timestamp seems very low; regarding as unix timestamp\nSaved: /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/fig_combined_factorial_gradient.pdf\nSaved: /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/fig_combined_factorial_gradient.png",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XEPPWQ4y8bG4Xax2jX5DFc",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/occsafe_vla/docs/paper/figures/fig_combined_factorial_gradient.png"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "803a6337-9a54-4f64-b72b-b4e1e56bbc45",
+            "uuid": "94cc875f-28d0-4395-804f-fd2fb506e935",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Pe4bzXbUS3S7563t4QLZur",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 265,
+                "cache_read_input_tokens": 33475,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 265
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-29T02:03:15.968Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XEPPWQ4y8bG4Xax2jX5DFc",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "image",
+                  "source": {
+                    "type": "base64",
+                    "data": "[ATTACHMENT_DATA_REDACTED]",
+                    "media_type": "image/png"
+                  }
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "803a6337-9a54-4f64-b72b-b4e1e56bbc45",
+            "uuid": "82d97d62-5a6f-4866-b3a2-6f7ebf5ad774",
+            "tool_use_result": {
+              "type": "image",
+              "file": {
+                "base64": "[ATTACHMENT_DATA_REDACTED]",
+                "type": "image/png",
+                "originalSize": 297762
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The figure looks good. Let me check:\n\n1. Font sizes look improved - all text in (b) appears to be ≥ 7pt now\n2. Titles are shortened: \"Action norms\", \"Aux norms (10×)\", \"Cosine sim. (≈46% conflict)\", \"Norm ratio\"\n3. Legends - I removed legends from b-ii, b-iii, b-iv and kept only the one in b-i (Action norms). That looks clean.\n4. The (a) part is untouched\n5. Layout looks fine, no text overflow\n\n\n6. The single legend in the top-left subplot displays all 5 conditions clearly, while the other subplots remain uncluttered. All text is readable at the proper size, so I should verify the final file state to ensure consistency.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "803a6337-9a54-4f64-b72b-b4e1e56bbc45",
+            "uuid": "839fb225-aef7-427c-881e-8b8cfdaa75c0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0199d3f3FQ6pz7aSUqYsNbm9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 264,
+                "cache_read_input_tokens": 33740,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 264
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All text in (b) is now visibly larger and ≥ 7pt. Layout is clean with no overflow. Changes made:\n\n- **Titles shortened**: \"Action norms\", \"Aux norms (10×)\", \"Cosine sim. (≈46% conflict)\", \"Norm ratio\"\n- **Font sizes increased**: titles 7.5→9pt, axis labels 6.5→8pt, tick labels 6.5→7pt, legend 5.5→7pt\n- **Legends consolidated**: only the top-left subplot (Action norms) keeps the legend; removed from the other 3\n- **Spacing/height adjusted**: hspace 0.50→0.55, wspace 0.38→0.42, figsize height 3.2→3.4\n- **(a) untouched**"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "803a6337-9a54-4f64-b72b-b4e1e56bbc45",
+            "uuid": "ed85d564-bec7-48b9-ae1b-9664b13deb03",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0199d3f3FQ6pz7aSUqYsNbm9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 264,
+                "cache_read_input_tokens": 33740,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 264
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All text in (b) is now visibly larger and ≥ 7pt. Layout is clean with no overflow. Changes made:\n\n- **Titles shortened**: \"Action norms\", \"Aux norms (10×)\", \"Cosine sim. (≈46% conflict)\", \"Norm ratio\"\n- **Font sizes increased**: titles 7.5→9pt, axis labels 6.5→8pt, tick labels 6.5→7pt, legend 5.5→7pt\n- **Legends consolidated**: only the top-left subplot (Action norms) keeps the legend; removed from the other 3\n- **Spacing/height adjusted**: hspace 0.50→0.55, wspace 0.38→0.42, figsize height 3.2→3.4\n- **(a) untouched**"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 70992,
+            "duration_api_ms": 69473,
+            "num_turns": 11,
+            "stop_reason": "end_turn",
+            "session_id": "803a6337-9a54-4f64-b72b-b4e1e56bbc45",
+            "total_cost_usd": 0.38664525000000005,
+            "usage": {
+              "input_tokens": 13,
+              "cache_creation_input_tokens": 22159,
+              "cache_read_input_tokens": 326463,
+              "output_tokens": 3325,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 22159,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 442,
+                  "cache_read_input_tokens": 33740,
+                  "cache_creation_input_tokens": 264,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 264
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1640,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.00173,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 13,
+                "outputTokens": 3325,
+                "cacheReadInputTokens": 326463,
+                "cacheCreationInputTokens": 22159,
+                "webSearchRequests": 0,
+                "costUSD": 0.38491525000000004,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "7c0ebcb4-ab14-4ecf-8546-18b7bd34eadc"
+          },
+          "id": "event-000031"
+        }
+      ],
+      "message_count": 31
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fig-combined-fontfix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c818e73a70c222230813",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "ops vanilla v2 s1 eval",
+  "task_key": "worker_ops_vanilla-v2-s1-eval_20260526T224827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_vanilla-v2-s1-eval_20260526T224827_result.json",
+    "occurrence": 1,
+    "bytes": 66,
+    "sha256": "ad7a36674c38ac28e95b1c7cc859bc0082898caa386b8f2a0b6dd4fa7b84889a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已启动，4.5 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-vanilla-v2-s1-eval.md"
+}

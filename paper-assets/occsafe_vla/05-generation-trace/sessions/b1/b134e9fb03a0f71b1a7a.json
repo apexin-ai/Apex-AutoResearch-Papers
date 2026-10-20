@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b134e9fb03a0f71b1a7a",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "investigate server status 10894",
+  "task_key": "worker_investigate_server_status_10894_20260526T234544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigate_server_status_10894_20260526T234544_result.json",
+    "occurrence": 1,
+    "bytes": 3043,
+    "sha256": "042be5b0123a69ec0b60e63b6213a544f887c75a909794d19169324241f19659"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 train.log 只记录了前 ~275 步就停止写入了，但 10k checkpoint 已保存、GPU 利用率 99%，表明训练正常进行。以下是汇总报告。\n\n---\n\n## westd-10894 GPU 进程状态报告\n\n### GPU 总览\n\n| GPU | PID | 实验 | 显存 | 利用率 |\n|-----|-----|------|------|--------|\n| 0 | 428963 | reverse_cutoff_s2_v2_eval (评估) | 16,759 MiB | 99% |\n| 0 | 433768 | **detach_ln_v2_s1** (训练) | 63,004 MiB | 99% |\n| 1 | 390852 | **full_occ_ln_v2_s0** (训练) | 62,194 MiB | 99% |\n| 2 | 391060 | **full_occ_ln_v2_s1** (训练) | 63,004 MiB | 99% |\n| 3 | 391402 | **detach_ln_v2_s0** (训练) | 62,194 MiB | 45% |\n\n磁盘：`/root/autodl-tmp` 250G 用了 171G，剩余 80G，充裕。\n\n---\n\n### 各实验详情\n\n**1. full_occ_ln_v2_s0** (PID 390852, GPU 1)\n- 状态：**正常训练中**\n- 首次启动 ~02:08 因 `--resume_from_checkpoint` 参数不被识别而崩溃（exitcode=2）\n- 随后被 cron 重启（不含该参数），从 pretrained 权重从头训练，~02:15 开始\n- 已运行 5h21m，10k checkpoint 已于 05:12 保存\n- 预估当前 step: ~19,000-20,000（基于 ~1.08 it/s）\n- 预计完成：~15:10 UTC May 27\n\n**2. full_occ_ln_v2_s1** (PID 391060, GPU 2)\n- 状态：**正常训练中**\n- 同上，首次启动崩溃后被重启，~02:15 开始\n- 10k checkpoint 已于 05:13 保存\n- 预计完成：~15:10 UTC May 27\n\n**3. detach_ln_v2_s0** (PID 391402, GPU 3)\n- 状态：**正常训练中**\n- 同上，首次启动崩溃后被重启，~02:15 开始\n- 10k checkpoint 已于 05:12 保存\n- GPU 利用率偶尔较低 (45%)，但正在训练\n- 预计完成：~15:10 UTC May 27\n\n**4. detach_ln_v2_s1** (PID 433768, GPU 0)\n- 状态：**正常训练中**，刚启动约 20 分钟\n- Registry 中 PID 681124 已死，433768 是重新启动的新进程\n- 当前 step: ~750/50005\n- 预计完成：~20:10 UTC May 27\n\n**5. reverse_cutoff_s2_v2** (PID 428963, GPU 0)\n- 状态：**训练已完成** (50005 步, EXIT_CODE=0)，checkpoint 已保存\n- 当前正在执行评估 (evaluate_safelibero.py)，运行约 22 分钟\n\n---\n\n### Registry 矛盾解释\n\n- `full_occ_ln_v2_s0/s1` registry 显示 conclusion=failed：**首次启动确实失败了**（`--resume_from_checkpoint` 参数错误），但 cron 已自动重启，实际在正常训练。Registry 的 PID (390852/391060) 指向的是重启后的进程。\n- `detach_ln_v2_s1` registry PID=681124：该进程已死，实际训练进程是新启动的 PID 433768。\n\n### 失败原因\n\n三个实验首次启动都因同一原因失败：`finetune.py` 不认识 `--resume_from_checkpoint` 参数。这是启动脚本的 bug——该参数不在 finetune.py 的 argparse 中。重启时去掉了该参数，训练正常进行。\n\n### 时间线风险\n\n所有实验预计在 May 27 15:10-20:10 UTC 完成训练。DDL 是 May 28 12:00 UTC。评估还需额外时间。**detach_ln_v2_s1 完成最晚（~20:10 UTC May 27），加上评估时间仍在 DDL 内，但余量不大。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-server-status-10894.md"
+}

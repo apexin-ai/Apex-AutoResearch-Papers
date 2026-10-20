@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d4e89e305ad5a718ac9",
+  "project": "occsafe_vla",
+  "kind": "result",
+  "title": "analysis anova prep",
+  "task_key": "worker_analysis_anova_prep_20260526T060836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_anova_prep_20260526T060836_result.json",
+    "occurrence": 1,
+    "bytes": 624,
+    "sha256": "3ee0b89a402d118b4ddf16b36d30629dea4215b1fb500e49867732ddbf92db5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已完成，mock 数据测试通过。\n\n**路径**: `artifacts/anova_2x2_factorial.py`\n\n**用法**:\n```bash\n# JSON 字符串\npython anova_2x2_factorial.py --json '{\"full_occ_bn\": [...], \"full_occ_ln\": [...], \"detach_bn\": [...], \"detach_ln\": [...]}'\n\n# JSON 文件\npython anova_2x2_factorial.py --input data.json --output results.json\n```\n\n**输出内容**: descriptive stats、Type II ANOVA (gradient_flow / norm_type / interaction)、partial η²、Tukey HSD post-hoc、decision helper (Plan A/B 建议)，同时写 JSON 到 `--output`。n<5 时自动打印 underpowered warning。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-anova-prep.md"
+}
