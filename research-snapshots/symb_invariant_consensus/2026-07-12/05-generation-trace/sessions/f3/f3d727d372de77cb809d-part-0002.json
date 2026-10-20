@@ -1,0 +1,1150 @@
+{
+  "schema_version": "1.0",
+  "session_id": "f3d727d372de77cb809d",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 158,
+          "timestamp": "2026-05-21T05:15:01.857Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015UdsWN1D5Mpu5CYPDmsvRD",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-25068",
+                "command": "cat > /root/symb_invariant_consensus/nli_tiebreak_audit.py << 'SCRIPT'\n#!/usr/bin/env python3\n\"\"\"Audit NLI combo tiebreaking: Counter.most_common() vs alphabetical.\"\"\"\nimport json\nimport os\nfrom collections import Counter\nfrom scipy.stats import binomtest\n\nVALID = {\"True\", \"False\", \"Unknown\"}\nWEIGHTS = [1, 3, 5]\n\nSC_PATH = \"/root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/exp046_results.json\"\nNLI_PATH = \"/root/symb_invariant_consensus/results/direction_r_nli_pw600/results.json\"\nOUT_PATH = \"/root/symb_invariant_consensus/results/nli_tiebreak_audit/results.json\"\n\ndef majority_alpha(vote_dist):\n    if not vote_dist:\n        return \"Unknown\"\n    filtered = {k: v for k, v in vote_dist.items() if k in VALID}\n    if not filtered:\n        return \"Unknown\"\n    max_count = max(filtered.values())\n    winners = sorted([k for k, v in filtered.items() if v == max_count])\n    return winners[0]\n\ndef majority_counter(vote_dist):\n    if not vote_dist:\n        return \"Unknown\"\n    c = Counter()\n    for k, v in vote_dist.items():\n        if k in VALID:\n            c[k] = v\n    if not c:\n        return \"Unknown\"\n    return c.most_common(1)[0][0]\n\ndef combo_vote(sc_dist, nli_pred, w, tiebreak=\"alpha\"):\n    combined = {}\n    for k, v in sc_dist.items():\n        if k in VALID:\n            combined[k] = combined.get(k, 0) + v\n    if nli_pred in VALID:\n        combined[nli_pred] = combined.get(nli_pred, 0) + w\n    if tiebreak == \"alpha\":\n        return majority_alpha(combined)\n    else:\n        return majority_counter(combined)\n\ndef mcnemar_exact(correct_a, correct_b):\n    n = len(correct_a)\n    b = sum(1 for i in range(n) if correct_a[i] and not correct_b[i])\n    c = sum(1 for i in range(n) if not correct_a[i] and correct_b[i])\n    n_disc = b + c\n    if n_disc == 0:\n        return {\"b\": 0, \"c\": 0, \"n_discordant\": 0, \"p_value\": 1.0}\n    p = binomtest(min(b, c), n_disc, 0.5).pvalue\n    return {\"b\": b, \"c\": c, \"n_discordant\": n_disc, \"p_value\": round(p, 6)}\n\ndef main():\n    with open(SC_PATH) as f:\n        sc_data = json.load(f)\n    with open(NLI_PATH) as f:\n        nli_data = json.load(f)\n\n    sc_results = {r[\"problem_id\"]: r for r in sc_data[\"results\"]}\n    nli_per_q = nli_data[\"per_question\"]\n    pids = [r[\"problem_id\"] for r in sc_data[\"results\"]]\n\n    questions = []\n    for pid in pids:\n        sc_r = sc_results[pid]\n        nli_q = nli_per_q.get(pid)\n        if not nli_q:\n            continue\n        questions.append({\n            \"pid\": pid,\n            \"gold\": sc_r[\"ground_truth\"],\n            \"sc_dist\": sc_r[\"sc_vote_distribution\"],\n            \"nli_pred\": nli_q[\"deberta_pred\"],\n        })\n\n    n = len(questions)\n    print(f\"Total questions: {n}\")\n\n    # SC baseline\n    sc_alpha_correct = []\n    sc_counter_correct = []\n    sc_tie_diffs = []\n    for q in questions:\n        sa = majority_alpha(q[\"sc_dist\"])\n        sc = majority_counter(q[\"sc_dist\"])\n        sc_alpha_correct.append(sa == q[\"gold\"])\n        sc_counter_correct.append(sc == q[\"gold\"])\n        if sa != sc:\n            sc_tie_diffs.append({\"pid\": q[\"pid\"], \"gold\": q[\"gold\"], \"alpha\": sa, \"counter\": sc, \"dist\": q[\"sc_dist\"]})\n\n    sc_alpha_acc = sum(sc_alpha_correct) / n\n    sc_counter_acc = sum(sc_counter_correct) / n\n    sc_alpha_n = sum(sc_alpha_correct)\n    sc_counter_n = sum(sc_counter_correct)\n\n    print(f\"\\nSC baseline:\")\n    print(f\"  Alphabetical: {sc_alpha_acc:.4f} ({sc_alpha_n}/{n})\")\n    print(f\"  Counter.most_common: {sc_counter_acc:.4f} ({sc_counter_n}/{n})\")\n    print(f\"  SC tiebreak differences: {len(sc_tie_diffs)} questions\")\n    for d in sc_tie_diffs[:5]:\n        print(f\"    {d['pid']}: gold={d['gold']}, alpha={d['alpha']}, counter={d['counter']}, dist={d['dist']}\")\n\n    # Combo with both methods\n    combo_data = {}\n    for w in WEIGHTS:\n        combo_alpha_correct = []\n        combo_counter_correct = []\n        changed_questions = []\n\n        for i, q in enumerate(questions):\n            ca = combo_vote(q[\"sc_dist\"], q[\"nli_pred\"], w, \"alpha\")\n            cc = combo_vote(q[\"sc_dist\"], q[\"nli_pred\"], w, \"counter\")\n            ca_ok = (ca == q[\"gold\"])\n            cc_ok = (cc == q[\"gold\"])\n            combo_alpha_correct.append(ca_ok)\n            combo_counter_correct.append(cc_ok)\n\n            if ca != cc:\n                changed_questions.append({\n                    \"pid\": q[\"pid\"], \"gold\": q[\"gold\"],\n                    \"alpha_ans\": ca, \"counter_ans\": cc,\n                    \"alpha_correct\": ca_ok, \"counter_correct\": cc_ok,\n                    \"nli_pred\": q[\"nli_pred\"], \"sc_dist\": q[\"sc_dist\"],\n                })\n\n        alpha_acc = sum(combo_alpha_correct) / n\n        counter_acc = sum(combo_counter_correct) / n\n        alpha_n = sum(combo_alpha_correct)\n        counter_n = sum(combo_counter_correct)\n        mcn_alpha = mcnemar_exact(sc_alpha_correct, combo_alpha_correct)\n        mcn_counter = mcnemar_exact(sc_counter_correct, combo_counter_correct)\n\n        combo_data[f\"w{w}\"] = {\n            \"alphabetical\": {\"accuracy\": round(alpha_acc, 4), \"correct\": alpha_n, \"accuracy_pct\": round(alpha_acc * 100, 2)},\n            \"counter_most_common\": {\"accuracy\": round(counter_acc, 4), \"correct\": counter_n, \"accuracy_pct\": round(counter_acc * 100, 2)},\n            \"delta_alpha_minus_counter_pp\": round((alpha_acc - counter_acc) * 100, 2),\n            \"n_changed_questions\": len(changed_questions),\n            \"alpha_gains\": sum(1 for cq in changed_questions if cq[\"alpha_correct\"] and not cq[\"counter_correct\"]),\n            \"alpha_losses\": sum(1 for cq in changed_questions if not cq[\"alpha_correct\"] and cq[\"counter_correct\"]),\n            \"mcnemar_alpha_combo_vs_sc_alpha\": mcn_alpha,\n            \"mcnemar_counter_combo_vs_sc_counter\": mcn_counter,\n            \"changed_questions\": changed_questions,\n        }\n\n        print(f\"\\nCombo w={w}:\")\n        print(f\"  Alphabetical: {alpha_acc:.4f} ({alpha_n}/{n})\")\n        print(f\"  Counter:      {counter_acc:.4f} ({counter_n}/{n})\")\n        print(f\"  Delta: {(alpha_acc-counter_acc)*100:+.2f}pp, {len(changed_questions)} questions changed\")\n        print(f\"  McNemar alpha_combo vs SC_alpha: p={mcn_alpha['p_value']}, b={mcn_alpha['b']}, c={mcn_alpha['c']}\")\n        print(f\"  McNemar counter_combo vs SC_counter: p={mcn_counter['p_value']}, b={mcn_counter['b']}, c={mcn_counter['c']}\")\n\n    # --- FOLIO ---\n    folio_info = None\n    folio_r_path = \"/root/symb_invariant_consensus/results/direction_r_nli_small/results.json\"\n    folio_traces_path = \"/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/sc_answer_matrix.json\"\n    try:\n        with open(folio_r_path) as f:\n            folio_r = json.load(f)\n        with open(folio_traces_path) as f:\n            folio_sc = json.load(f)\n\n        folio_results = folio_r.get(\"results\", [])\n        folio_changed = 0\n        folio_n = len(folio_results)\n        folio_alpha_correct = 0\n        folio_counter_correct = 0\n        folio_diffs = []\n\n        for fr in folio_results:\n            fid = fr[\"id\"]\n            gold = fr[\"ground_truth\"]\n            sc_dist = fr.get(\"sc_distribution\", {})\n            nli_ans = fr.get(\"nli_answer\", \"Unknown\")\n\n            # Counter-based (original): add NLI as w=1\n            c_counter = Counter()\n            for k, v in sc_dist.items():\n                if k in VALID:\n                    c_counter[k] = v\n            if nli_ans in VALID:\n                c_counter[nli_ans] = c_counter.get(nli_ans, 0) + 1\n            counter_combo = c_counter.most_common(1)[0][0] if c_counter else \"Unknown\"\n\n            # Alphabetical\n            alpha_combined = {}\n            for k, v in sc_dist.items():\n                if k in VALID:\n                    alpha_combined[k] = alpha_combined.get(k, 0) + v\n            if nli_ans in VALID:\n                alpha_combined[nli_ans] = alpha_combined.get(nli_ans, 0) + 1\n            alpha_combo = majority_alpha(alpha_combined)\n\n            if counter_combo != alpha_combo:\n                folio_changed += 1\n                folio_diffs.append({\"id\": fid, \"gold\": gold, \"alpha\": alpha_combo, \"counter\": counter_combo, \"sc_dist\": sc_dist, \"nli\": nli_ans})\n            if alpha_combo == gold:\n                folio_alpha_correct += 1\n            if counter_combo == gold:\n                folio_counter_correct += 1\n\n        folio_info = {\n            \"n_questions\": folio_n,\n            \"n_changed\": folio_changed,\n            \"alpha_correct\": folio_alpha_correct,\n            \"alpha_acc\": round(folio_alpha_correct / folio_n, 4) if folio_n else 0,\n            \"counter_correct\": folio_counter_correct,\n            \"counter_acc\": round(folio_counter_correct / folio_n, 4) if folio_n else 0,\n            \"delta_pp\": round((folio_alpha_correct - folio_counter_correct) / folio_n * 100, 2) if folio_n else 0,\n            \"changed_details\": folio_diffs,\n        }\n        print(f\"\\nFOLIO NLI combo (n={folio_n}, w=1):\")\n        print(f\"  Alphabetical: {folio_info['alpha_acc']:.4f} ({folio_alpha_correct}/{folio_n})\")\n        print(f\"  Counter:      {folio_info['counter_acc']:.4f} ({folio_counter_correct}/{folio_n})\")\n        print(f\"  Changed: {folio_changed}, delta: {folio_info['delta_pp']:+.2f}pp\")\n    except Exception as e:\n        print(f\"\\nFOLIO check failed: {e}\")\n        folio_info = {\"error\": str(e)}\n\n    # --- Verify DRC cascade pilot consistency ---\n    drc_path = \"/root/symb_invariant_consensus/results/drc_cascade_pilot/results.json\"\n    drc_check = None\n    try:\n        with open(drc_path) as f:\n            drc = json.load(f)\n        drc_combo_w3 = drc[\"baselines\"][\"full_combo_w3\"]\n        our_alpha_w3 = combo_data[\"w3\"][\"alphabetical\"]\n        match = (drc_combo_w3[\"correct\"] == our_alpha_w3[\"correct\"])\n        drc_check = {\n            \"drc_pilot_combo_w3\": drc_combo_w3,\n            \"our_alpha_w3\": our_alpha_w3,\n            \"match\": match,\n        }\n        print(f\"\\nDRC pilot cross-check: combo_w3={drc_combo_w3['correct']}/600, our alpha={our_alpha_w3['correct']}/600, match={match}\")\n    except Exception as e:\n        drc_check = {\"error\": str(e)}\n\n    # --- Output ---\n    output = {\n        \"investigation\": {\n            \"affected_scripts\": [\n                \"direction_r_deberta_proofwriter.py — uses Counter.most_common()\",\n                \"dir_j3_nli_multi_verifier.py — uses Counter.most_common()\",\n                \"dir_k_nli_qwen3_pw600.py — uses Counter.most_common()\",\n                \"direction_rg_combo.py — uses Counter.most_common() in sc_majority()\",\n                \"direction_r_nli_verifier.py (FOLIO) — uses Counter.most_common()\",\n            ],\n            \"tiebreaking_method\": \"Counter.most_common(1)[0][0]\",\n            \"correct_method\": \"sorted(tied_candidates)[0] — alphabetical\",\n            \"drc_cascade_pilot_uses\": \"alphabetical (correct)\",\n            \"code_snippet_combo\": \"votes.most_common(1)[0][0]  # insertion-order tiebreaking under ties\",\n            \"code_snippet_sc\": \"c = Counter(valid); return c.most_common(1)[0][0]\",\n        },\n        \"sc_baseline_check\": {\n            \"sc_alphabetical\": {\"accuracy\": round(sc_alpha_acc, 4), \"correct\": sc_alpha_n},\n            \"sc_counter\": {\"accuracy\": round(sc_counter_acc, 4), \"correct\": sc_counter_n},\n            \"n_sc_tiebreak_diffs\": len(sc_tie_diffs),\n            \"sc_tie_examples\": sc_tie_diffs[:10],\n        },\n        \"mistral_7b_pw600\": {\n            \"n\": n,\n            \"sc_alpha\": {\"accuracy\": round(sc_alpha_acc, 4), \"correct\": sc_alpha_n},\n            \"sc_counter\": {\"accuracy\": round(sc_counter_acc, 4), \"correct\": sc_counter_n},\n            \"combo\": combo_data,\n        },\n        \"drc_cross_check\": drc_check,\n        \"folio_combo\": folio_info,\n        \"paper_reported\": {\n            \"mistral_combo_w1\": \"40.17% (241/600)\",\n            \"mistral_combo_w3\": \"42.83% (257/600)\",\n            \"mistral_combo_w5\": \"50.0% (300/600)\",\n            \"drc_pilot_combo_w3\": \"46.0% (276/600)\",\n            \"discrepancy_w3\": \"19 questions, 3.17pp\",\n        },\n        \"other_models_status\": {\n            \"note\": \"LLaMA-3.1-8B, Qwen2.5-14B, Qwen3-14B raw data on westd-16639 (not on westd-25068). Same Counter.most_common() code was used. Need to recompute on original server or transfer data.\",\n            \"expected_impact\": \"Lower for high-SC models (fewer ties). LLaMA (SC=70%), Qwen2.5 (SC=73.5%), Qwen3 (SC=85%) will have smaller deltas.\",\n        },\n    }\n\n    # Summary\n    w3 = combo_data[\"w3\"]\n    summary_lines = [\n        f\"BUG CONFIRMED: NLI combo scripts use Counter.most_common() (insertion-order tiebreaking), DRC cascade pilot uses alphabetical.\",\n        f\"Mistral-7B PW600 combo_w3: alphabetical={w3['alphabetical']['accuracy_pct']}% ({w3['alphabetical']['correct']}/600) vs counter={w3['counter_most_common']['accuracy_pct']}% ({w3['counter_most_common']['correct']}/600).\",\n        f\"Delta: {w3['delta_alpha_minus_counter_pp']:+.2f}pp, {w3['n_changed_questions']} questions affected.\",\n        f\"McNemar alpha_combo vs SC_alpha: p={w3['mcnemar_alpha_combo_vs_sc_alpha']['p_value']}, b={w3['mcnemar_alpha_combo_vs_sc_alpha']['b']}, c={w3['mcnemar_alpha_combo_vs_sc_alpha']['c']}.\",\n        f\"SC baseline itself: {len(sc_tie_diffs)} questions differ between alpha/counter (alpha={sc_alpha_n}, counter={sc_counter_n}).\",\n    ]\n    if folio_info and \"n_changed\" in folio_info:\n        summary_lines.append(f\"FOLIO: {folio_info['n_changed']} questions differ, delta={folio_info['delta_pp']:+.2f}pp.\")\n    output[\"impact_summary\"] = \" \".join(summary_lines)\n\n    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)\n    with open(OUT_PATH, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nSaved: {OUT_PATH}\")\n    print(f\"\\n{'='*60}\")\n    print(\"IMPACT SUMMARY\")\n    print('='*60)\n    for line in summary_lines:\n        print(f\"  {line}\")\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT\necho \"Done\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cc207cb9-b9e2-4873-8a10-ab74cc11c3ea",
+            "isSidechain": false,
+            "requestId": "req_011CbF9EE1fvPRAfe9UbDrFT",
+            "type": "assistant",
+            "uuid": "4251cbf4-8885-4358-8f3b-1d9542db0345",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "9886d10a-b8b6-45fd-aeb4-8c160e3243d3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DLfGTTPgUxyjhFYbc8YReu",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 514,
+                "cache_read_input_tokens": 91986,
+                "output_tokens": 5148,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 514,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 5148,
+                    "cache_read_input_tokens": 91986,
+                    "cache_creation_input_tokens": 514,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 514
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000158"
+        },
+        {
+          "source_line": 159,
+          "timestamp": "2026-05-21T05:15:02.392Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015UdsWN1D5Mpu5CYPDmsvRD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Done\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4251cbf4-8885-4358-8f3b-1d9542db0345",
+            "isSidechain": false,
+            "promptId": "e45dd98c-9e8c-4c13-b66b-3bdced9ef51e",
+            "type": "user",
+            "uuid": "6e944104-c52b-4d7e-b081-f45b81d446bf",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Done\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Done\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+              }
+            },
+            "sourceToolAssistantUUID": "4251cbf4-8885-4358-8f3b-1d9542db0345",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "9886d10a-b8b6-45fd-aeb4-8c160e3243d3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": "2026-05-21T05:15:07.215Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Mt42Fr5e8PZNTSCbR2t531",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-25068",
+                "command": "cd /root/symb_invariant_consensus && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python nli_tiebreak_audit.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6e944104-c52b-4d7e-b081-f45b81d446bf",
+            "isSidechain": false,
+            "requestId": "req_011CbF9Kj6nbgzJH83Qcpdv6",
+            "type": "assistant",
+            "uuid": "15cc7038-af2b-4921-b1c7-82d45ac7fba8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "9886d10a-b8b6-45fd-aeb4-8c160e3243d3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D3BHnmddaYmDBhWon1QksS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5223,
+                "cache_read_input_tokens": 92500,
+                "output_tokens": 128,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5223,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 128,
+                    "cache_read_input_tokens": 92500,
+                    "cache_creation_input_tokens": 5223,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5223
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": "2026-05-21T05:15:08.514Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Mt42Fr5e8PZNTSCbR2t531",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Total questions: 600\\\\n\\\\nSC baseline:\\\\n  Alphabetical: 0.3933 (236/600)\\\\n  Counter.most_common: 0.3933 (236/600)\\\\n  SC tiebreak differences: 11 questions\\\\n    ProofWriter_AttNeg-OWA-D5-276_Q4: gold=False, alpha=True, counter=Unknown, dist={'Unknown': 4, 'Erin is not white.': 1, 'True': 4, 'False': 2, 'False (but with a caveat)': 1}\\\\n    ProofWriter_AttNeg-OWA-D5-908_Q16: gold=Unknown, alpha=False, counter=Unknown, dist={'Unknown': 5, 'False': 5}\\\\n    ProofWriter_AttNeg-OWA-D5-562_Q17: gold=Unknown, alpha=True, counter=Unknown, dist={'False': 1, 'Unknown': 4, 'True': 4}\\\\n    ProofWriter_AttNeg-OWA-D5-550_Q16: gold=Unknown, alpha=False, counter=Unknown, dist={'Unknown': 5, 'False': 5}\\\\n    ProofWriter_RelNoneg-OWA-D5-31_Q12: gold=False, alpha=True, counter=Unknown, dist={'Unknown': 5, '?': 1, 'True': 5}\\\\n\\\\nCombo w=1:\\\\n  Alphabetical: 0.4017 (241/600)\\\\n  Counter:      0.4017 (241/600)\\\\n  Delta: +0.00pp, 17 questions changed\\\\n  McNemar alpha_combo vs SC_alpha: p=0.359283, b=7, c=12\\\\n  McNemar counter_combo vs SC_counter: p=0.266846, b=4, c=9\\\\n\\\\nCombo w=3:\\\\n  Alphabetical: 0.4600 (276/600)\\\\n  Counter:      0.4283 (257/600)\\\\n  Delta: +3.17pp, 30 questions changed\\\\n  McNemar alpha_combo vs SC_alpha: p=1.1e-05, b=21, c=61\\\\n  McNemar counter_combo vs SC_counter: p=0.012503, b=22, c=43\\\\n\\\\nCombo w=5:\\\\n  Alphabetical: 0.5033 (302/600)\\\\n  Counter:      0.5000 (300/600)\\\\n  Delta: +0.33pp, 53 questions changed\\\\n  McNemar alpha_combo vs SC_alpha: p=1e-06, b=54, c=120\\\\n  McNemar counter_combo vs SC_counter: p=0.0, b=35, c=99\\\\n\\\\nFOLIO NLI combo (n=204, w=1):\\\\n  Alphabetical: 0.5637 (115/204)\\\\n  Counter:      0.5784 (118/204)\\\\n  Changed: 8, delta: -1.47pp\\\\n\\\\nDRC pilot cross-check: combo_w3=276/600, our alpha=276/600, match=True\\\\n\\\\nSaved: /root/symb_invariant_consensus/results/nli_tiebreak_audit/results.json\\\\n\\\\n============================================================\\\\nIMPACT SUMMARY\\\\n============================================================\\\\n  BUG CONFIRMED: NLI combo scripts use Counter.most_common() (insertion-order tiebreaking), DRC cascade pilot uses alphabetical.\\\\n  Mistral-7B PW600 combo_w3: alphabetical=46.0% (276/600) vs counter=42.83% (257/600).\\\\n  Delta: +3.17pp, 30 questions affected.\\\\n  McNemar alpha_combo vs SC_alpha: p=1.1e-05, b=21, c=61.\\\\n  SC baseline itself: 11 questions differ between alpha/counter (alpha=236, counter=236).\\\\n  FOLIO: 8 questions differ, delta=-1.47pp.\\\\n\\\", \\\"stderr\\\": \\\"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.28}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "15cc7038-af2b-4921-b1c7-82d45ac7fba8",
+            "isSidechain": false,
+            "promptId": "e45dd98c-9e8c-4c13-b66b-3bdced9ef51e",
+            "type": "user",
+            "uuid": "99473ad4-4a7a-452d-9ddc-7d7680cc698b",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Total questions: 600\\\\n\\\\nSC baseline:\\\\n  Alphabetical: 0.3933 (236/600)\\\\n  Counter.most_common: 0.3933 (236/600)\\\\n  SC tiebreak differences: 11 questions\\\\n    ProofWriter_AttNeg-OWA-D5-276_Q4: gold=False, alpha=True, counter=Unknown, dist={'Unknown': 4, 'Erin is not white.': 1, 'True': 4, 'False': 2, 'False (but with a caveat)': 1}\\\\n    ProofWriter_AttNeg-OWA-D5-908_Q16: gold=Unknown, alpha=False, counter=Unknown, dist={'Unknown': 5, 'False': 5}\\\\n    ProofWriter_AttNeg-OWA-D5-562_Q17: gold=Unknown, alpha=True, counter=Unknown, dist={'False': 1, 'Unknown': 4, 'True': 4}\\\\n    ProofWriter_AttNeg-OWA-D5-550_Q16: gold=Unknown, alpha=False, counter=Unknown, dist={'Unknown': 5, 'False': 5}\\\\n    ProofWriter_RelNoneg-OWA-D5-31_Q12: gold=False, alpha=True, counter=Unknown, dist={'Unknown': 5, '?': 1, 'True': 5}\\\\n\\\\nCombo w=1:\\\\n  Alphabetical: 0.4017 (241/600)\\\\n  Counter:      0.4017 (241/600)\\\\n  Delta: +0.00pp, 17 questions changed\\\\n  McNemar alpha_combo vs SC_alpha: p=0.359283, b=7, c=12\\\\n  McNemar counter_combo vs SC_counter: p=0.266846, b=4, c=9\\\\n\\\\nCombo w=3:\\\\n  Alphabetical: 0.4600 (276/600)\\\\n  Counter:      0.4283 (257/600)\\\\n  Delta: +3.17pp, 30 questions changed\\\\n  McNemar alpha_combo vs SC_alpha: p=1.1e-05, b=21, c=61\\\\n  McNemar counter_combo vs SC_counter: p=0.012503, b=22, c=43\\\\n\\\\nCombo w=5:\\\\n  Alphabetical: 0.5033 (302/600)\\\\n  Counter:      0.5000 (300/600)\\\\n  Delta: +0.33pp, 53 questions changed\\\\n  McNemar alpha_combo vs SC_alpha: p=1e-06, b=54, c=120\\\\n  McNemar counter_combo vs SC_counter: p=0.0, b=35, c=99\\\\n\\\\nFOLIO NLI combo (n=204, w=1):\\\\n  Alphabetical: 0.5637 (115/204)\\\\n  Counter:      0.5784 (118/204)\\\\n  Changed: 8, delta: -1.47pp\\\\n\\\\nDRC pilot cross-check: combo_w3=276/600, our alpha=276/600, match=True\\\\n\\\\nSaved: /root/symb_invariant_consensus/results/nli_tiebreak_audit/results.json\\\\n\\\\n============================================================\\\\nIMPACT SUMMARY\\\\n============================================================\\\\n  BUG CONFIRMED: NLI combo scripts use Counter.most_common() (insertion-order tiebreaking), DRC cascade pilot uses alphabetical.\\\\n  Mistral-7B PW600 combo_w3: alphabetical=46.0% (276/600) vs counter=42.83% (257/600).\\\\n  Delta: +3.17pp, 30 questions affected.\\\\n  McNemar alpha_combo vs SC_alpha: p=1.1e-05, b=21, c=61.\\\\n  SC baseline itself: 11 questions differ between alpha/counter (alpha=236, counter=236).\\\\n  FOLIO: 8 questions differ, delta=-1.47pp.\\\\n\\\", \\\"stderr\\\": \\\"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.28}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Total questions: 600\\n\\nSC baseline:\\n  Alphabetical: 0.3933 (236/600)\\n  Counter.most_common: 0.3933 (236/600)\\n  SC tiebreak differences: 11 questions\\n    ProofWriter_AttNeg-OWA-D5-276_Q4: gold=False, alpha=True, counter=Unknown, dist={'Unknown': 4, 'Erin is not white.': 1, 'True': 4, 'False': 2, 'False (but with a caveat)': 1}\\n    ProofWriter_AttNeg-OWA-D5-908_Q16: gold=Unknown, alpha=False, counter=Unknown, dist={'Unknown': 5, 'False': 5}\\n    ProofWriter_AttNeg-OWA-D5-562_Q17: gold=Unknown, alpha=True, counter=Unknown, dist={'False': 1, 'Unknown': 4, 'True': 4}\\n    ProofWriter_AttNeg-OWA-D5-550_Q16: gold=Unknown, alpha=False, counter=Unknown, dist={'Unknown': 5, 'False': 5}\\n    ProofWriter_RelNoneg-OWA-D5-31_Q12: gold=False, alpha=True, counter=Unknown, dist={'Unknown': 5, '?': 1, 'True': 5}\\n\\nCombo w=1:\\n  Alphabetical: 0.4017 (241/600)\\n  Counter:      0.4017 (241/600)\\n  Delta: +0.00pp, 17 questions changed\\n  McNemar alpha_combo vs SC_alpha: p=0.359283, b=7, c=12\\n  McNemar counter_combo vs SC_counter: p=0.266846, b=4, c=9\\n\\nCombo w=3:\\n  Alphabetical: 0.4600 (276/600)\\n  Counter:      0.4283 (257/600)\\n  Delta: +3.17pp, 30 questions changed\\n  McNemar alpha_combo vs SC_alpha: p=1.1e-05, b=21, c=61\\n  McNemar counter_combo vs SC_counter: p=0.012503, b=22, c=43\\n\\nCombo w=5:\\n  Alphabetical: 0.5033 (302/600)\\n  Counter:      0.5000 (300/600)\\n  Delta: +0.33pp, 53 questions changed\\n  McNemar alpha_combo vs SC_alpha: p=1e-06, b=54, c=120\\n  McNemar counter_combo vs SC_counter: p=0.0, b=35, c=99\\n\\nFOLIO NLI combo (n=204, w=1):\\n  Alphabetical: 0.5637 (115/204)\\n  Counter:      0.5784 (118/204)\\n  Changed: 8, delta: -1.47pp\\n\\nDRC pilot cross-check: combo_w3=276/600, our alpha=276/600, match=True\\n\\nSaved: /root/symb_invariant_consensus/results/nli_tiebreak_audit/results.json\\n\\n============================================================\\nIMPACT SUMMARY\\n============================================================\\n  BUG CONFIRMED: NLI combo scripts use Counter.most_common() (insertion-order tiebreaking), DRC cascade pilot uses alphabetical.\\n  Mistral-7B PW600 combo_w3: alphabetical=46.0% (276/600) vs counter=42.83% (257/600).\\n  Delta: +3.17pp, 30 questions affected.\\n  McNemar alpha_combo vs SC_alpha: p=1.1e-05, b=21, c=61.\\n  SC baseline itself: 11 questions differ between alpha/counter (alpha=236, counter=236).\\n  FOLIO: 8 questions differ, delta=-1.47pp.\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.28}}"
+              }
+            },
+            "sourceToolAssistantUUID": "15cc7038-af2b-4921-b1c7-82d45ac7fba8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "9886d10a-b8b6-45fd-aeb4-8c160e3243d3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000161"
+        },
+        {
+          "source_line": 162,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "99473ad4-4a7a-452d-9ddc-7d7680cc698b",
+                "sessionId": "9886d10a-b8b6-45fd-aeb4-8c160e3243d3"
+              }
+            }
+          ],
+          "id": "event-000162"
+        },
+        {
+          "source_line": 163,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Audit NLI combo tiebreaking consistency",
+                "sessionId": "9886d10a-b8b6-45fd-aeb4-8c160e3243d3"
+              }
+            }
+          ],
+          "id": "event-000163"
+        },
+        {
+          "source_line": 164,
+          "timestamp": "2026-05-21T05:15:34.355Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Excellent! The audit is complete. Let me summarize the key findings:\n\n## Key Results\n\n### SC Baseline\n- Alphabetical: 39.33% (236/600)\n- Counter.most_common: 39.33% (236/600)\n- **11 questions differ** but end up with the same total count — both give 236 correct. This makes sense because the SC baseline has K=12 votes, so ties are less common, and when they occur, the direction of the error is roughly balanced.\n\n### NLI Combo Results (Mistral-7B PW600, DeBERTa)\n\n\nNow I'm looking at the performance metrics across different weighting schemes. The w=3 configuration stands out dramatically — it achieves 46% accuracy with alphabetical ordering but only 42.83% with counter-based selection, a 3.17 percentage point gap that affects 30 questions. The w=5 setting shows much tighter alignment between the two methods, with nearly identical performance around 50%. McNemar's test confirms that w=3 produces a highly significant difference (p=1.1e-05) compared to the SC baseline, while w=1 shows no statistical significance.\n\nChecking against the original DRC pilot data validates my alphabetical recomputation — the 276/600 result for w=3 matches exactly. On the FOLIO dataset, though, the pattern reverses: counter-based selection actually outperforms alphabetical by 1.47 percentage points, suggesting the alphabetical tiebreaker isn't universally beneficial. The McNemar tests for the counter combo align with the paper's reported values across all weight settings, which is reassuring. The key insight emerging is that alphabetical tiebreaking has a substantial and inconsistent effect depending on the dataset and weight configuration — it dramatically improves Mistral w=3 performance but underperforms on FOLIO. The McNemar p-value is actually 1.1e-05, which is much more significant than the 0.0125 reported. Now I need to examine the other weight configurations to understand the pattern—at w=1 the accuracy stays the same despite 17 questions flipping, but at w=3 there's a 19-question swing in favor of alphabetical ordering, and at w=5 only 2 questions differ. The w=3 weight appears to be the critical point where NLI creates the most ties, making the ordering choice most impactful.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "99473ad4-4a7a-452d-9ddc-7d7680cc698b",
+            "isSidechain": false,
+            "requestId": "req_011CbF9LBCvVKLsNT4kgMuuY",
+            "type": "assistant",
+            "uuid": "dbbf44f7-b662-44c7-9798-9c641e598443",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "9886d10a-b8b6-45fd-aeb4-8c160e3243d3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YDwjBeHspEaA4phBWndnmq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1262,
+                "cache_read_input_tokens": 97723,
+                "output_tokens": 1147,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1262,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1147,
+                    "cache_read_input_tokens": 97723,
+                    "cache_creation_input_tokens": 1262,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1262
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": "2026-05-21T05:15:34.357Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "重算完成，结果非常清晰。DRC pilot cross-check 完美匹配。现在下载完整结果到本地。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dbbf44f7-b662-44c7-9798-9c641e598443",
+            "isSidechain": false,
+            "requestId": "req_011CbF9LBCvVKLsNT4kgMuuY",
+            "type": "assistant",
+            "uuid": "37b2f029-6210-4d87-ab1b-b1e289a139b8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "9886d10a-b8b6-45fd-aeb4-8c160e3243d3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YDwjBeHspEaA4phBWndnmq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1262,
+                "cache_read_input_tokens": 97723,
+                "output_tokens": 1147,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1262,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1147,
+                    "cache_read_input_tokens": 97723,
+                    "cache_creation_input_tokens": 1262,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1262
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": "2026-05-21T05:15:34.412Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016urDLZ315X9zwXkxhXE9e7",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-25068",
+                "command": "cat /root/symb_invariant_consensus/results/nli_tiebreak_audit/results.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "37b2f029-6210-4d87-ab1b-b1e289a139b8",
+            "isSidechain": false,
+            "requestId": "req_011CbF9LBCvVKLsNT4kgMuuY",
+            "type": "assistant",
+            "uuid": "82bc3fe5-d079-4aad-8bf1-944ad544d1ac",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "9886d10a-b8b6-45fd-aeb4-8c160e3243d3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YDwjBeHspEaA4phBWndnmq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1262,
+                "cache_read_input_tokens": 97723,
+                "output_tokens": 1147,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1262,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1147,
+                    "cache_read_input_tokens": 97723,
+                    "cache_creation_input_tokens": 1262,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1262
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": "2026-05-21T05:15:35.073Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016urDLZ315X9zwXkxhXE9e7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"investigation\\\\\\\": {\\\\n    \\\\\\\"affected_scripts\\\\\\\": [\\\\n      \\\\\\\"direction_r_deberta_proofwriter.py \\\\\\\\u2014 uses Counter.most_common()\\\\\\\",\\\\n      \\\\\\\"dir_j3_nli_multi_verifier.py \\\\\\\\u2014 uses Counter.most_common()\\\\\\\",\\\\n      \\\\\\\"dir_k_nli_qwen3_pw600.py \\\\\\\\u2014 uses Counter.most_common()\\\\\\\",\\\\n      \\\\\\\"direction_rg_combo.py \\\\\\\\u2014 uses Counter.most_common() in sc_majority()\\\\\\\",\\\\n      \\\\\\\"direction_r_nli_verifier.py (FOLIO) \\\\\\\\u2014 uses Counter.most_common()\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"tiebreaking_method\\\\\\\": \\\\\\\"Counter.most_common(1)[0][0]\\\\\\\",\\\\n    \\\\\\\"correct_method\\\\\\\": \\\\\\\"sorted(tied_candidates)[0] \\\\\\\\u2014 alphabetical\\\\\\\",\\\\n    \\\\\\\"drc_cascade_pilot_uses\\\\\\\": \\\\\\\"alphabetical (correct)\\\\\\\",\\\\n    \\\\\\\"code_snippet_combo\\\\\\\": \\\\\\\"votes.most_common(1)[0][0]  # insertion-order tiebreaking under ties\\\\\\\",\\\\n    \\\\\\\"code_snippet_sc\\\\\\\": \\\\\\\"c = Counter(valid); return c.most_common(1)[0][0]\\\\\\\"\\\\n  },\\\\n  \\\\\\\"sc_baseline_check\\\\\\\": {\\\\n    \\\\\\\"sc_alphabetical\\\\\\\": {\\\\n      \\\\\\\"accuracy\\\\\\\": 0.3933,\\\\n      \\\\\\\"correct\\\\\\\": 236\\\\n    },\\\\n    \\\\\\\"sc_counter\\\\\\\": {\\\\n      \\\\\\\"accuracy\\\\\\\": 0.3933,\\\\n      \\\\\\\"correct\\\\\\\": 236\\\\n    },\\\\n    \\\\\\\"n_sc_tiebreak_diffs\\\\\\\": 11,\\\\n    \\\\\\\"sc_tie_examples\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"pid\\\\\\\": \\\\\\\"ProofWriter_AttNeg-OWA-D5-276_Q4\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 4,\\\\n          \\\\\\\"Erin is not white.\\\\\\\": 1,\\\\n          \\\\\\\"True\\\\\\\": 4,\\\\n          \\\\\\\"False\\\\\\\": 2,\\\\n          \\\\\\\"False (but with a caveat)\\\\\\\": 1\\\\n        }\\\\n      },\\\\n      {\\\\n        \\\\\\\"pid\\\\\\\": \\\\\\\"ProofWriter_AttNeg-OWA-D5-908_Q16\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 5,\\\\n          \\\\\\\"False\\\\\\\": 5\\\\n        }\\\\n      },\\\\n      {\\\\n        \\\\\\\"pid\\\\\\\": \\\\\\\"ProofWriter_AttNeg-OWA-D5-562_Q17\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"dist\\\\\\\": {\\\\n          \\\\\\\"False\\\\\\\": 1,\\\\n          \\\\\\\"Unknown\\\\\\\": 4,\\\\n          \\\\\\\"True\\\\\\\": 4\\\\n        }\\\\n      },\\\\n      {\\\\n        \\\\\\\"pid\\\\\\\": \\\\\\\"ProofWriter_AttNeg-OWA-D5-550_Q16\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 5,\\\\n          \\\\\\\"False\\\\\\\": 5\\\\n        }\\\\n      },\\\\n      {\\\\n        \\\\\\\"pid\\\\\\\": \\\\\\\"ProofWriter_RelNoneg-OWA-D5-31_Q12\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 5,\\\\n          \\\\\\\"?\\\\\\\": 1,\\\\n          \\\\\\\"True\\\\\\\": 5\\\\n        }\\\\n      },\\\\n      {\\\\n        \\\\\\\"pid\\\\\\\": \\\\\\\"ProofWriter_RelNeg-OWA-D5-355_Q4\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"dist\\\\\\\": {\\\\n          \\\\\\\"True\\\\\\\": 5,\\\\n          \\\\\\\"False\\\\\\\": 5\\\\n        }\\\\n      },\\\\n      {\\\\n        \\\\\\\"pid\\\\\\\": \\\\\\\"ProofWriter_AttNoneg-OWA-D5-718_Q3\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"dist\\\\\\\": {\\\\n          \\\\\\\"False\\\\\\\": 1,\\\\n          \\\\\\\"Charlie is smart, but we don't know if he is quiet.\\\\\\\": 1,\\\\n          \\\\\\\"Unknown\\\\\\\": 3,\\\\n          \\\\\\\"True\\\\\\\": 3,\\\\n          \\\\\\\"Charlie is smart.\\\\\\\": 1\\\\n        }\\\\n      },\\\\n      {\\\\n        \\\\\\\"pid\\\\\\\": \\\\\\\"ProofWriter_RelNoneg-OWA-D5-1036_Q11\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 5,\\\\n          \\\\\\\"False\\\\\\\": 5\\\\n        }\\\\n      },\\\\n      {\\\\n        \\\\\\\"pid\\\\\\\": \\\\\\\"ProofWriter_RelNoneg-OWA-D5-683_Q4\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 5,\\\\n          \\\\\\\"True\\\\\\\": 5\\\\n        }\\\\n      },\\\\n      {\\\\n        \\\\\\\"pid\\\\\\\": \\\\\\\"ProofWriter_AttNoneg-OWA-D5-882_Q2\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 3,\\\\n          \\\\\\\"Harry is not white.\\\\\\\": 1,\\\\n          \\\\\\\"False\\\\\\\": 3,\\\\n          \\\\\\\"True\\\\\\\": 2,\\\\n          \\\\\\\"Harry is not white (W').\\\\\\\": 1\\\\n        }\\\\n      }\\\\n    ]\\\\n  },\\\\n  \\\\\\\"mistral_7b_pw600\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 600,\\\\n    \\\\\\\"sc_alpha\\\\\\\": {\\\\n      \\\\\\\"accuracy\\\\\\\": 0.3933,\\\\n      \\\\\\\"correct\\\\\\\": 236\\\\n    },\\\\n    \\\\\\\"sc_counter\\\\\\\": {\\\\n      \\\\\\\"accuracy\\\\\\\": 0.3933,\\\\n      \\\\\\\"correct\\\\\\\": 236\\\\n    },\\\\n    \\\\\\\"combo\\\\\\\": {\\\\n      \\\\\\\"w1\\\\\\\": {\\\\n        \\\\\\\"alphabetical\\\\\\\": {\\\\n          \\\\\\\"accuracy\\\\\\\": 0.4017,\\\\n          \\\\\\\"correct\\\\\\\": 241,\\\\n          \\\\\\\"accuracy_pct\\\\\\\": 40.17\\\\n        },\\\\n        \\\\\\\"counter_most_common\\\\\\\": {\\\\n   \\\\n\\\\n... [截断: 输出过长，省略 43347 字符] ...\\\\n\\\\nlpha_correct\\\\\\\": true,\\\\n            \\\\\\\"counter_correct\\\\\\\": false,\\\\n            \\\\\\\"nli_pred\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n            \\\\\\\"sc_dist\\\\\\\": {\\\\n              \\\\\\\"True\\\\\\\": 7,\\\\n              \\\\\\\"False\\\\\\\": 2,\\\\n              \\\\\\\"Unknown\\\\\\\": 2\\\\n            }\\\\n          },\\\\n          {\\\\n            \\\\\\\"pid\\\\\\\": \\\\\\\"ProofWriter_RelNoneg-OWA-D5-775_Q9\\\\\\\",\\\\n            \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n            \\\\\\\"alpha_ans\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n            \\\\\\\"counter_ans\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n            \\\\\\\"alpha_correct\\\\\\\": true,\\\\n            \\\\\\\"counter_correct\\\\\\\": false,\\\\n            \\\\\\\"nli_pred\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n            \\\\\\\"sc_dist\\\\\\\": {\\\\n              \\\\\\\"Unknown\\\\\\\": 6,\\\\n              \\\\\\\"True\\\\\\\": 1,\\\\n              \\\\\\\"False\\\\\\\": 1\\\\n            }\\\\n          }\\\\n        ]\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"drc_cross_check\\\\\\\": {\\\\n    \\\\\\\"drc_pilot_combo_w3\\\\\\\": {\\\\n      \\\\\\\"accuracy\\\\\\\": 0.46,\\\\n      \\\\\\\"correct\\\\\\\": 276\\\\n    },\\\\n    \\\\\\\"our_alpha_w3\\\\\\\": {\\\\n      \\\\\\\"accuracy\\\\\\\": 0.46,\\\\n      \\\\\\\"correct\\\\\\\": 276,\\\\n      \\\\\\\"accuracy_pct\\\\\\\": 46.0\\\\n    },\\\\n    \\\\\\\"match\\\\\\\": true\\\\n  },\\\\n  \\\\\\\"folio_combo\\\\\\\": {\\\\n    \\\\\\\"n_questions\\\\\\\": 204,\\\\n    \\\\\\\"n_changed\\\\\\\": 8,\\\\n    \\\\\\\"alpha_correct\\\\\\\": 115,\\\\n    \\\\\\\"alpha_acc\\\\\\\": 0.5637,\\\\n    \\\\\\\"counter_correct\\\\\\\": 118,\\\\n    \\\\\\\"counter_acc\\\\\\\": 0.5784,\\\\n    \\\\\\\"delta_pp\\\\\\\": -1.47,\\\\n    \\\\\\\"changed_details\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"id\\\\\\\": \\\\\\\"folio_18\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"sc_dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 5,\\\\n          \\\\\\\"False\\\\\\\": 4\\\\n        },\\\\n        \\\\\\\"nli\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"id\\\\\\\": \\\\\\\"folio_99\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"sc_dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 5,\\\\n          \\\\\\\"True\\\\\\\": 5\\\\n        },\\\\n        \\\\\\\"nli\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"id\\\\\\\": \\\\\\\"folio_101\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"sc_dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 4,\\\\n          \\\\\\\"False\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"nli\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"id\\\\\\\": \\\\\\\"folio_133\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"sc_dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 6,\\\\n          \\\\\\\"False\\\\\\\": 5\\\\n        },\\\\n        \\\\\\\"nli\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"id\\\\\\\": \\\\\\\"folio_136\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"sc_dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 6,\\\\n          \\\\\\\"False\\\\\\\": 5\\\\n        },\\\\n        \\\\\\\"nli\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"id\\\\\\\": \\\\\\\"folio_142\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"sc_dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 6,\\\\n          \\\\\\\"False\\\\\\\": 5\\\\n        },\\\\n        \\\\\\\"nli\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"id\\\\\\\": \\\\\\\"folio_159\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"sc_dist\\\\\\\": {\\\\n          \\\\\\\"True\\\\\\\": 4,\\\\n          \\\\\\\"False\\\\\\\": 3,\\\\n          \\\\\\\"Unknown\\\\\\\": 2\\\\n        },\\\\n        \\\\\\\"nli\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"id\\\\\\\": \\\\\\\"folio_171\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"sc_dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 4,\\\\n          \\\\\\\"False\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"nli\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n      }\\\\n    ]\\\\n  },\\\\n  \\\\\\\"paper_reported\\\\\\\": {\\\\n    \\\\\\\"mistral_combo_w1\\\\\\\": \\\\\\\"40.17% (241/600)\\\\\\\",\\\\n    \\\\\\\"mistral_combo_w3\\\\\\\": \\\\\\\"42.83% (257/600)\\\\\\\",\\\\n    \\\\\\\"mistral_combo_w5\\\\\\\": \\\\\\\"50.0% (300/600)\\\\\\\",\\\\n    \\\\\\\"drc_pilot_combo_w3\\\\\\\": \\\\\\\"46.0% (276/600)\\\\\\\",\\\\n    \\\\\\\"discrepancy_w3\\\\\\\": \\\\\\\"19 questions, 3.17pp\\\\\\\"\\\\n  },\\\\n  \\\\\\\"other_models_status\\\\\\\": {\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"LLaMA-3.1-8B, Qwen2.5-14B, Qwen3-14B raw data on westd-16639 (not on westd-25068). Same Counter.most_common() code was used. Need to recompute on original server or transfer data.\\\\\\\",\\\\n    \\\\\\\"expected_impact\\\\\\\": \\\\\\\"Lower for high-SC models (fewer ties). LLaMA (SC=70%), Qwen2.5 (SC=73.5%), Qwen3 (SC=85%) will have smaller deltas.\\\\\\\"\\\\n  },\\\\n  \\\\\\\"impact_summary\\\\\\\": \\\\\\\"BUG CONFIRMED: NLI combo scripts use Counter.most_common() (insertion-order tiebreaking), DRC cascade pilot uses alphabetical. Mistral-7B PW600 combo_w3: alphabetical=46.0% (276/600) vs counter=42.83% (257/600). Delta: +3.17pp, 30 questions affected. McNemar alpha_combo vs SC_alpha: p=1.1e-05, b=21, c=61. SC baseline itself: 11 questions differ between alpha/counter (alpha=236, counter=236). FOLIO: 8 questions differ, delta=-1.47pp.\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "82bc3fe5-d079-4aad-8bf1-944ad544d1ac",
+            "isSidechain": false,
+            "promptId": "e45dd98c-9e8c-4c13-b66b-3bdced9ef51e",
+            "type": "user",
+            "uuid": "bdfdaa66-77e1-48e0-9b80-478cb4a85ebe",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"investigation\\\\\\\": {\\\\n    \\\\\\\"affected_scripts\\\\\\\": [\\\\n      \\\\\\\"direction_r_deberta_proofwriter.py \\\\\\\\u2014 uses Counter.most_common()\\\\\\\",\\\\n      \\\\\\\"dir_j3_nli_multi_verifier.py \\\\\\\\u2014 uses Counter.most_common()\\\\\\\",\\\\n      \\\\\\\"dir_k_nli_qwen3_pw600.py \\\\\\\\u2014 uses Counter.most_common()\\\\\\\",\\\\n      \\\\\\\"direction_rg_combo.py \\\\\\\\u2014 uses Counter.most_common() in sc_majority()\\\\\\\",\\\\n      \\\\\\\"direction_r_nli_verifier.py (FOLIO) \\\\\\\\u2014 uses Counter.most_common()\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"tiebreaking_method\\\\\\\": \\\\\\\"Counter.most_common(1)[0][0]\\\\\\\",\\\\n    \\\\\\\"correct_method\\\\\\\": \\\\\\\"sorted(tied_candidates)[0] \\\\\\\\u2014 alphabetical\\\\\\\",\\\\n    \\\\\\\"drc_cascade_pilot_uses\\\\\\\": \\\\\\\"alphabetical (correct)\\\\\\\",\\\\n    \\\\\\\"code_snippet_combo\\\\\\\": \\\\\\\"votes.most_common(1)[0][0]  # insertion-order tiebreaking under ties\\\\\\\",\\\\n    \\\\\\\"code_snippet_sc\\\\\\\": \\\\\\\"c = Counter(valid); return c.most_common(1)[0][0]\\\\\\\"\\\\n  },\\\\n  \\\\\\\"sc_baseline_check\\\\\\\": {\\\\n    \\\\\\\"sc_alphabetical\\\\\\\": {\\\\n      \\\\\\\"accuracy\\\\\\\": 0.3933,\\\\n      \\\\\\\"correct\\\\\\\": 236\\\\n    },\\\\n    \\\\\\\"sc_counter\\\\\\\": {\\\\n      \\\\\\\"accuracy\\\\\\\": 0.3933,\\\\n      \\\\\\\"correct\\\\\\\": 236\\\\n    },\\\\n    \\\\\\\"n_sc_tiebreak_diffs\\\\\\\": 11,\\\\n    \\\\\\\"sc_tie_examples\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"pid\\\\\\\": \\\\\\\"ProofWriter_AttNeg-OWA-D5-276_Q4\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 4,\\\\n          \\\\\\\"Erin is not white.\\\\\\\": 1,\\\\n          \\\\\\\"True\\\\\\\": 4,\\\\n          \\\\\\\"False\\\\\\\": 2,\\\\n          \\\\\\\"False (but with a caveat)\\\\\\\": 1\\\\n        }\\\\n      },\\\\n      {\\\\n        \\\\\\\"pid\\\\\\\": \\\\\\\"ProofWriter_AttNeg-OWA-D5-908_Q16\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 5,\\\\n          \\\\\\\"False\\\\\\\": 5\\\\n        }\\\\n      },\\\\n      {\\\\n        \\\\\\\"pid\\\\\\\": \\\\\\\"ProofWriter_AttNeg-OWA-D5-562_Q17\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"dist\\\\\\\": {\\\\n          \\\\\\\"False\\\\\\\": 1,\\\\n          \\\\\\\"Unknown\\\\\\\": 4,\\\\n          \\\\\\\"True\\\\\\\": 4\\\\n        }\\\\n      },\\\\n      {\\\\n        \\\\\\\"pid\\\\\\\": \\\\\\\"ProofWriter_AttNeg-OWA-D5-550_Q16\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 5,\\\\n          \\\\\\\"False\\\\\\\": 5\\\\n        }\\\\n      },\\\\n      {\\\\n        \\\\\\\"pid\\\\\\\": \\\\\\\"ProofWriter_RelNoneg-OWA-D5-31_Q12\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 5,\\\\n          \\\\\\\"?\\\\\\\": 1,\\\\n          \\\\\\\"True\\\\\\\": 5\\\\n        }\\\\n      },\\\\n      {\\\\n        \\\\\\\"pid\\\\\\\": \\\\\\\"ProofWriter_RelNeg-OWA-D5-355_Q4\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"dist\\\\\\\": {\\\\n          \\\\\\\"True\\\\\\\": 5,\\\\n          \\\\\\\"False\\\\\\\": 5\\\\n        }\\\\n      },\\\\n      {\\\\n        \\\\\\\"pid\\\\\\\": \\\\\\\"ProofWriter_AttNoneg-OWA-D5-718_Q3\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"dist\\\\\\\": {\\\\n          \\\\\\\"False\\\\\\\": 1,\\\\n          \\\\\\\"Charlie is smart, but we don't know if he is quiet.\\\\\\\": 1,\\\\n          \\\\\\\"Unknown\\\\\\\": 3,\\\\n          \\\\\\\"True\\\\\\\": 3,\\\\n          \\\\\\\"Charlie is smart.\\\\\\\": 1\\\\n        }\\\\n      },\\\\n      {\\\\n        \\\\\\\"pid\\\\\\\": \\\\\\\"ProofWriter_RelNoneg-OWA-D5-1036_Q11\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 5,\\\\n          \\\\\\\"False\\\\\\\": 5\\\\n        }\\\\n      },\\\\n      {\\\\n        \\\\\\\"pid\\\\\\\": \\\\\\\"ProofWriter_RelNoneg-OWA-D5-683_Q4\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 5,\\\\n          \\\\\\\"True\\\\\\\": 5\\\\n        }\\\\n      },\\\\n      {\\\\n        \\\\\\\"pid\\\\\\\": \\\\\\\"ProofWriter_AttNoneg-OWA-D5-882_Q2\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 3,\\\\n          \\\\\\\"Harry is not white.\\\\\\\": 1,\\\\n          \\\\\\\"False\\\\\\\": 3,\\\\n          \\\\\\\"True\\\\\\\": 2,\\\\n          \\\\\\\"Harry is not white (W').\\\\\\\": 1\\\\n        }\\\\n      }\\\\n    ]\\\\n  },\\\\n  \\\\\\\"mistral_7b_pw600\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 600,\\\\n    \\\\\\\"sc_alpha\\\\\\\": {\\\\n      \\\\\\\"accuracy\\\\\\\": 0.3933,\\\\n      \\\\\\\"correct\\\\\\\": 236\\\\n    },\\\\n    \\\\\\\"sc_counter\\\\\\\": {\\\\n      \\\\\\\"accuracy\\\\\\\": 0.3933,\\\\n      \\\\\\\"correct\\\\\\\": 236\\\\n    },\\\\n    \\\\\\\"combo\\\\\\\": {\\\\n      \\\\\\\"w1\\\\\\\": {\\\\n        \\\\\\\"alphabetical\\\\\\\": {\\\\n          \\\\\\\"accuracy\\\\\\\": 0.4017,\\\\n          \\\\\\\"correct\\\\\\\": 241,\\\\n          \\\\\\\"accuracy_pct\\\\\\\": 40.17\\\\n        },\\\\n        \\\\\\\"counter_most_common\\\\\\\": {\\\\n   \\\\n\\\\n... [截断: 输出过长，省略 43347 字符] ...\\\\n\\\\nlpha_correct\\\\\\\": true,\\\\n            \\\\\\\"counter_correct\\\\\\\": false,\\\\n            \\\\\\\"nli_pred\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n            \\\\\\\"sc_dist\\\\\\\": {\\\\n              \\\\\\\"True\\\\\\\": 7,\\\\n              \\\\\\\"False\\\\\\\": 2,\\\\n              \\\\\\\"Unknown\\\\\\\": 2\\\\n            }\\\\n          },\\\\n          {\\\\n            \\\\\\\"pid\\\\\\\": \\\\\\\"ProofWriter_RelNoneg-OWA-D5-775_Q9\\\\\\\",\\\\n            \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n            \\\\\\\"alpha_ans\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n            \\\\\\\"counter_ans\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n            \\\\\\\"alpha_correct\\\\\\\": true,\\\\n            \\\\\\\"counter_correct\\\\\\\": false,\\\\n            \\\\\\\"nli_pred\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n            \\\\\\\"sc_dist\\\\\\\": {\\\\n              \\\\\\\"Unknown\\\\\\\": 6,\\\\n              \\\\\\\"True\\\\\\\": 1,\\\\n              \\\\\\\"False\\\\\\\": 1\\\\n            }\\\\n          }\\\\n        ]\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"drc_cross_check\\\\\\\": {\\\\n    \\\\\\\"drc_pilot_combo_w3\\\\\\\": {\\\\n      \\\\\\\"accuracy\\\\\\\": 0.46,\\\\n      \\\\\\\"correct\\\\\\\": 276\\\\n    },\\\\n    \\\\\\\"our_alpha_w3\\\\\\\": {\\\\n      \\\\\\\"accuracy\\\\\\\": 0.46,\\\\n      \\\\\\\"correct\\\\\\\": 276,\\\\n      \\\\\\\"accuracy_pct\\\\\\\": 46.0\\\\n    },\\\\n    \\\\\\\"match\\\\\\\": true\\\\n  },\\\\n  \\\\\\\"folio_combo\\\\\\\": {\\\\n    \\\\\\\"n_questions\\\\\\\": 204,\\\\n    \\\\\\\"n_changed\\\\\\\": 8,\\\\n    \\\\\\\"alpha_correct\\\\\\\": 115,\\\\n    \\\\\\\"alpha_acc\\\\\\\": 0.5637,\\\\n    \\\\\\\"counter_correct\\\\\\\": 118,\\\\n    \\\\\\\"counter_acc\\\\\\\": 0.5784,\\\\n    \\\\\\\"delta_pp\\\\\\\": -1.47,\\\\n    \\\\\\\"changed_details\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"id\\\\\\\": \\\\\\\"folio_18\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"sc_dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 5,\\\\n          \\\\\\\"False\\\\\\\": 4\\\\n        },\\\\n        \\\\\\\"nli\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"id\\\\\\\": \\\\\\\"folio_99\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"sc_dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 5,\\\\n          \\\\\\\"True\\\\\\\": 5\\\\n        },\\\\n        \\\\\\\"nli\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"id\\\\\\\": \\\\\\\"folio_101\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"sc_dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 4,\\\\n          \\\\\\\"False\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"nli\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"id\\\\\\\": \\\\\\\"folio_133\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"sc_dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 6,\\\\n          \\\\\\\"False\\\\\\\": 5\\\\n        },\\\\n        \\\\\\\"nli\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"id\\\\\\\": \\\\\\\"folio_136\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"sc_dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 6,\\\\n          \\\\\\\"False\\\\\\\": 5\\\\n        },\\\\n        \\\\\\\"nli\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"id\\\\\\\": \\\\\\\"folio_142\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"sc_dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 6,\\\\n          \\\\\\\"False\\\\\\\": 5\\\\n        },\\\\n        \\\\\\\"nli\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"id\\\\\\\": \\\\\\\"folio_159\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"sc_dist\\\\\\\": {\\\\n          \\\\\\\"True\\\\\\\": 4,\\\\n          \\\\\\\"False\\\\\\\": 3,\\\\n          \\\\\\\"Unknown\\\\\\\": 2\\\\n        },\\\\n        \\\\\\\"nli\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n      },\\\\n      {\\\\n        \\\\\\\"id\\\\\\\": \\\\\\\"folio_171\\\\\\\",\\\\n        \\\\\\\"gold\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"alpha\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"counter\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"sc_dist\\\\\\\": {\\\\n          \\\\\\\"Unknown\\\\\\\": 4,\\\\n          \\\\\\\"False\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"nli\\\\\\\": \\\\\\\"False\\\\\\\"\\\\n      }\\\\n    ]\\\\n  },\\\\n  \\\\\\\"paper_reported\\\\\\\": {\\\\n    \\\\\\\"mistral_combo_w1\\\\\\\": \\\\\\\"40.17% (241/600)\\\\\\\",\\\\n    \\\\\\\"mistral_combo_w3\\\\\\\": \\\\\\\"42.83% (257/600)\\\\\\\",\\\\n    \\\\\\\"mistral_combo_w5\\\\\\\": \\\\\\\"50.0% (300/600)\\\\\\\",\\\\n    \\\\\\\"drc_pilot_combo_w3\\\\\\\": \\\\\\\"46.0% (276/600)\\\\\\\",\\\\n    \\\\\\\"discrepancy_w3\\\\\\\": \\\\\\\"19 questions, 3.17pp\\\\\\\"\\\\n  },\\\\n  \\\\\\\"other_models_status\\\\\\\": {\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"LLaMA-3.1-8B, Qwen2.5-14B, Qwen3-14B raw data on westd-16639 (not on westd-25068). Same Counter.most_common() code was used. Need to recompute on original server or transfer data.\\\\\\\",\\\\n    \\\\\\\"expected_impact\\\\\\\": \\\\\\\"Lower for high-SC models (fewer ties). LLaMA (SC=70%), Qwen2.5 (SC=73.5%), Qwen3 (SC=85%) will have smaller deltas.\\\\\\\"\\\\n  },\\\\n  \\\\\\\"impact_summary\\\\\\\": \\\\\\\"BUG CONFIRMED: NLI combo scripts use Counter.most_common() (insertion-order tiebreaking), DRC cascade pilot uses alphabetical. Mistral-7B PW600 combo_w3: alphabetical=46.0% (276/600) vs counter=42.83% (257/600). Delta: +3.17pp, 30 questions affected. McNemar alpha_combo vs SC_alpha: p=1.1e-05, b=21, c=61. SC baseline itself: 11 questions differ between alpha/counter (alpha=236, counter=236). FOLIO: 8 questions differ, delta=-1.47pp.\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"investigation\\\": {\\n    \\\"affected_scripts\\\": [\\n      \\\"direction_r_deberta_proofwriter.py \\\\u2014 uses Counter.most_common()\\\",\\n      \\\"dir_j3_nli_multi_verifier.py \\\\u2014 uses Counter.most_common()\\\",\\n      \\\"dir_k_nli_qwen3_pw600.py \\\\u2014 uses Counter.most_common()\\\",\\n      \\\"direction_rg_combo.py \\\\u2014 uses Counter.most_common() in sc_majority()\\\",\\n      \\\"direction_r_nli_verifier.py (FOLIO) \\\\u2014 uses Counter.most_common()\\\"\\n    ],\\n    \\\"tiebreaking_method\\\": \\\"Counter.most_common(1)[0][0]\\\",\\n    \\\"correct_method\\\": \\\"sorted(tied_candidates)[0] \\\\u2014 alphabetical\\\",\\n    \\\"drc_cascade_pilot_uses\\\": \\\"alphabetical (correct)\\\",\\n    \\\"code_snippet_combo\\\": \\\"votes.most_common(1)[0][0]  # insertion-order tiebreaking under ties\\\",\\n    \\\"code_snippet_sc\\\": \\\"c = Counter(valid); return c.most_common(1)[0][0]\\\"\\n  },\\n  \\\"sc_baseline_check\\\": {\\n    \\\"sc_alphabetical\\\": {\\n      \\\"accuracy\\\": 0.3933,\\n      \\\"correct\\\": 236\\n    },\\n    \\\"sc_counter\\\": {\\n      \\\"accuracy\\\": 0.3933,\\n      \\\"correct\\\": 236\\n    },\\n    \\\"n_sc_tiebreak_diffs\\\": 11,\\n    \\\"sc_tie_examples\\\": [\\n      {\\n        \\\"pid\\\": \\\"ProofWriter_AttNeg-OWA-D5-276_Q4\\\",\\n        \\\"gold\\\": \\\"False\\\",\\n        \\\"alpha\\\": \\\"True\\\",\\n        \\\"counter\\\": \\\"Unknown\\\",\\n        \\\"dist\\\": {\\n          \\\"Unknown\\\": 4,\\n          \\\"Erin is not white.\\\": 1,\\n          \\\"True\\\": 4,\\n          \\\"False\\\": 2,\\n          \\\"False (but with a caveat)\\\": 1\\n        }\\n      },\\n      {\\n        \\\"pid\\\": \\\"ProofWriter_AttNeg-OWA-D5-908_Q16\\\",\\n        \\\"gold\\\": \\\"Unknown\\\",\\n        \\\"alpha\\\": \\\"False\\\",\\n        \\\"counter\\\": \\\"Unknown\\\",\\n        \\\"dist\\\": {\\n          \\\"Unknown\\\": 5,\\n          \\\"False\\\": 5\\n        }\\n      },\\n      {\\n        \\\"pid\\\": \\\"ProofWriter_AttNeg-OWA-D5-562_Q17\\\",\\n        \\\"gold\\\": \\\"Unknown\\\",\\n        \\\"alpha\\\": \\\"True\\\",\\n        \\\"counter\\\": \\\"Unknown\\\",\\n        \\\"dist\\\": {\\n          \\\"False\\\": 1,\\n          \\\"Unknown\\\": 4,\\n          \\\"True\\\": 4\\n        }\\n      },\\n      {\\n        \\\"pid\\\": \\\"ProofWriter_AttNeg-OWA-D5-550_Q16\\\",\\n        \\\"gold\\\": \\\"Unknown\\\",\\n        \\\"alpha\\\": \\\"False\\\",\\n        \\\"counter\\\": \\\"Unknown\\\",\\n        \\\"dist\\\": {\\n          \\\"Unknown\\\": 5,\\n          \\\"False\\\": 5\\n        }\\n      },\\n      {\\n        \\\"pid\\\": \\\"ProofWriter_RelNoneg-OWA-D5-31_Q12\\\",\\n        \\\"gold\\\": \\\"False\\\",\\n        \\\"alpha\\\": \\\"True\\\",\\n        \\\"counter\\\": \\\"Unknown\\\",\\n        \\\"dist\\\": {\\n          \\\"Unknown\\\": 5,\\n          \\\"?\\\": 1,\\n          \\\"True\\\": 5\\n        }\\n      },\\n      {\\n        \\\"pid\\\": \\\"ProofWriter_RelNeg-OWA-D5-355_Q4\\\",\\n        \\\"gold\\\": \\\"False\\\",\\n        \\\"alpha\\\": \\\"False\\\",\\n        \\\"counter\\\": \\\"True\\\",\\n        \\\"dist\\\": {\\n          \\\"True\\\": 5,\\n          \\\"False\\\": 5\\n        }\\n      },\\n      {\\n        \\\"pid\\\": \\\"ProofWriter_AttNoneg-OWA-D5-718_Q3\\\",\\n        \\\"gold\\\": \\\"True\\\",\\n        \\\"alpha\\\": \\\"True\\\",\\n        \\\"counter\\\": \\\"Unknown\\\",\\n        \\\"dist\\\": {\\n          \\\"False\\\": 1,\\n          \\\"Charlie is smart, but we don't know if he is quiet.\\\": 1,\\n          \\\"Unknown\\\": 3,\\n          \\\"True\\\": 3,\\n          \\\"Charlie is smart.\\\": 1\\n        }\\n      },\\n      {\\n        \\\"pid\\\": \\\"ProofWriter_RelNoneg-OWA-D5-1036_Q11\\\",\\n        \\\"gold\\\": \\\"True\\\",\\n        \\\"alpha\\\": \\\"False\\\",\\n        \\\"counter\\\": \\\"Unknown\\\",\\n        \\\"dist\\\": {\\n          \\\"Unknown\\\": 5,\\n          \\\"False\\\": 5\\n        }\\n      },\\n      {\\n        \\\"pid\\\": \\\"ProofWriter_RelNoneg-OWA-D5-683_Q4\\\",\\n        \\\"gold\\\": \\\"False\\\",\\n        \\\"alpha\\\": \\\"True\\\",\\n        \\\"counter\\\": \\\"Unknown\\\",\\n        \\\"dist\\\": {\\n          \\\"Unknown\\\": 5,\\n          \\\"True\\\": 5\\n        }\\n      },\\n      {\\n        \\\"pid\\\": \\\"ProofWriter_AttNoneg-OWA-D5-882_Q2\\\",\\n        \\\"gold\\\": \\\"False\\\",\\n        \\\"alpha\\\": \\\"False\\\",\\n        \\\"counter\\\": \\\"Unknown\\\",\\n        \\\"dist\\\": {\\n          \\\"Unknown\\\": 3,\\n          \\\"Harry is not white.\\\": 1,\\n          \\\"False\\\": 3,\\n          \\\"True\\\": 2,\\n          \\\"Harry is not white (W').\\\": 1\\n        }\\n      }\\n    ]\\n  },\\n  \\\"mistral_7b_pw600\\\": {\\n    \\\"n\\\": 600,\\n    \\\"sc_alpha\\\": {\\n      \\\"accuracy\\\": 0.3933,\\n      \\\"correct\\\": 236\\n    },\\n    \\\"sc_counter\\\": {\\n      \\\"accuracy\\\": 0.3933,\\n      \\\"correct\\\": 236\\n    },\\n    \\\"combo\\\": {\\n      \\\"w1\\\": {\\n        \\\"alphabetical\\\": {\\n          \\\"accuracy\\\": 0.4017,\\n          \\\"correct\\\": 241,\\n          \\\"accuracy_pct\\\": 40.17\\n        },\\n        \\\"counter_most_common\\\": {\\n   \\n\\n... [截断: 输出过长，省略 43347 字符] ...\\n\\nlpha_correct\\\": true,\\n            \\\"counter_correct\\\": false,\\n            \\\"nli_pred\\\": \\\"False\\\",\\n            \\\"sc_dist\\\": {\\n              \\\"True\\\": 7,\\n              \\\"False\\\": 2,\\n              \\\"Unknown\\\": 2\\n            }\\n          },\\n          {\\n            \\\"pid\\\": \\\"ProofWriter_RelNoneg-OWA-D5-775_Q9\\\",\\n            \\\"gold\\\": \\\"True\\\",\\n            \\\"alpha_ans\\\": \\\"True\\\",\\n            \\\"counter_ans\\\": \\\"Unknown\\\",\\n            \\\"alpha_correct\\\": true,\\n            \\\"counter_correct\\\": false,\\n            \\\"nli_pred\\\": \\\"True\\\",\\n            \\\"sc_dist\\\": {\\n              \\\"Unknown\\\": 6,\\n              \\\"True\\\": 1,\\n              \\\"False\\\": 1\\n            }\\n          }\\n        ]\\n      }\\n    }\\n  },\\n  \\\"drc_cross_check\\\": {\\n    \\\"drc_pilot_combo_w3\\\": {\\n      \\\"accuracy\\\": 0.46,\\n      \\\"correct\\\": 276\\n    },\\n    \\\"our_alpha_w3\\\": {\\n      \\\"accuracy\\\": 0.46,\\n      \\\"correct\\\": 276,\\n      \\\"accuracy_pct\\\": 46.0\\n    },\\n    \\\"match\\\": true\\n  },\\n  \\\"folio_combo\\\": {\\n    \\\"n_questions\\\": 204,\\n    \\\"n_changed\\\": 8,\\n    \\\"alpha_correct\\\": 115,\\n    \\\"alpha_acc\\\": 0.5637,\\n    \\\"counter_correct\\\": 118,\\n    \\\"counter_acc\\\": 0.5784,\\n    \\\"delta_pp\\\": -1.47,\\n    \\\"changed_details\\\": [\\n      {\\n        \\\"id\\\": \\\"folio_18\\\",\\n        \\\"gold\\\": \\\"True\\\",\\n        \\\"alpha\\\": \\\"False\\\",\\n        \\\"counter\\\": \\\"Unknown\\\",\\n        \\\"sc_dist\\\": {\\n          \\\"Unknown\\\": 5,\\n          \\\"False\\\": 4\\n        },\\n        \\\"nli\\\": \\\"False\\\"\\n      },\\n      {\\n        \\\"id\\\": \\\"folio_99\\\",\\n        \\\"gold\\\": \\\"Unknown\\\",\\n        \\\"alpha\\\": \\\"True\\\",\\n        \\\"counter\\\": \\\"Unknown\\\",\\n        \\\"sc_dist\\\": {\\n          \\\"Unknown\\\": 5,\\n          \\\"True\\\": 5\\n        },\\n        \\\"nli\\\": \\\"False\\\"\\n      },\\n      {\\n        \\\"id\\\": \\\"folio_101\\\",\\n        \\\"gold\\\": \\\"False\\\",\\n        \\\"alpha\\\": \\\"False\\\",\\n        \\\"counter\\\": \\\"Unknown\\\",\\n        \\\"sc_dist\\\": {\\n          \\\"Unknown\\\": 4,\\n          \\\"False\\\": 3\\n        },\\n        \\\"nli\\\": \\\"False\\\"\\n      },\\n      {\\n        \\\"id\\\": \\\"folio_133\\\",\\n        \\\"gold\\\": \\\"Unknown\\\",\\n        \\\"alpha\\\": \\\"False\\\",\\n        \\\"counter\\\": \\\"Unknown\\\",\\n        \\\"sc_dist\\\": {\\n          \\\"Unknown\\\": 6,\\n          \\\"False\\\": 5\\n        },\\n        \\\"nli\\\": \\\"False\\\"\\n      },\\n      {\\n        \\\"id\\\": \\\"folio_136\\\",\\n        \\\"gold\\\": \\\"Unknown\\\",\\n        \\\"alpha\\\": \\\"False\\\",\\n        \\\"counter\\\": \\\"Unknown\\\",\\n        \\\"sc_dist\\\": {\\n          \\\"Unknown\\\": 6,\\n          \\\"False\\\": 5\\n        },\\n        \\\"nli\\\": \\\"False\\\"\\n      },\\n      {\\n        \\\"id\\\": \\\"folio_142\\\",\\n        \\\"gold\\\": \\\"True\\\",\\n        \\\"alpha\\\": \\\"False\\\",\\n        \\\"counter\\\": \\\"Unknown\\\",\\n        \\\"sc_dist\\\": {\\n          \\\"Unknown\\\": 6,\\n          \\\"False\\\": 5\\n        },\\n        \\\"nli\\\": \\\"False\\\"\\n      },\\n      {\\n        \\\"id\\\": \\\"folio_159\\\",\\n        \\\"gold\\\": \\\"True\\\",\\n        \\\"alpha\\\": \\\"False\\\",\\n        \\\"counter\\\": \\\"True\\\",\\n        \\\"sc_dist\\\": {\\n          \\\"True\\\": 4,\\n          \\\"False\\\": 3,\\n          \\\"Unknown\\\": 2\\n        },\\n        \\\"nli\\\": \\\"False\\\"\\n      },\\n      {\\n        \\\"id\\\": \\\"folio_171\\\",\\n        \\\"gold\\\": \\\"True\\\",\\n        \\\"alpha\\\": \\\"False\\\",\\n        \\\"counter\\\": \\\"Unknown\\\",\\n        \\\"sc_dist\\\": {\\n          \\\"Unknown\\\": 4,\\n          \\\"False\\\": 3\\n        },\\n        \\\"nli\\\": \\\"False\\\"\\n      }\\n    ]\\n  },\\n  \\\"paper_reported\\\": {\\n    \\\"mistral_combo_w1\\\": \\\"40.17% (241/600)\\\",\\n    \\\"mistral_combo_w3\\\": \\\"42.83% (257/600)\\\",\\n    \\\"mistral_combo_w5\\\": \\\"50.0% (300/600)\\\",\\n    \\\"drc_pilot_combo_w3\\\": \\\"46.0% (276/600)\\\",\\n    \\\"discrepancy_w3\\\": \\\"19 questions, 3.17pp\\\"\\n  },\\n  \\\"other_models_status\\\": {\\n    \\\"note\\\": \\\"LLaMA-3.1-8B, Qwen2.5-14B, Qwen3-14B raw data on westd-16639 (not on westd-25068). Same Counter.most_common() code was used. Need to recompute on original server or transfer data.\\\",\\n    \\\"expected_impact\\\": \\\"Lower for high-SC models (fewer ties). LLaMA (SC=70%), Qwen2.5 (SC=73.5%), Qwen3 (SC=85%) will have smaller deltas.\\\"\\n  },\\n  \\\"impact_summary\\\": \\\"BUG CONFIRMED: NLI combo scripts use Counter.most_common() (insertion-order tiebreaking), DRC cascade pilot uses alphabetical. Mistral-7B PW600 combo_w3: alphabetical=46.0% (276/600) vs counter=42.83% (257/600). Delta: +3.17pp, 30 questions affected. McNemar alpha_combo vs SC_alpha: p=1.1e-05, b=21, c=61. SC baseline itself: 11 questions differ between alpha/counter (alpha=236, counter=236). FOLIO: 8 questions differ, delta=-1.47pp.\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"
+              }
+            },
+            "sourceToolAssistantUUID": "82bc3fe5-d079-4aad-8bf1-944ad544d1ac",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "9886d10a-b8b6-45fd-aeb4-8c160e3243d3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000167"
+        },
+        {
+          "source_line": 168,
+          "timestamp": "2026-05-21T05:15:35.080Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "bdfdaa66-77e1-48e0-9b80-478cb4a85ebe",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "d25b646d-10f2-43aa-9dc5-e65aa203b4ab",
+                "timestamp": "2026-05-21T05:15:35.080Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+                "sessionId": "9886d10a-b8b6-45fd-aeb4-8c160e3243d3",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000168"
+        },
+        {
+          "source_line": 169,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "d25b646d-10f2-43aa-9dc5-e65aa203b4ab",
+                "sessionId": "9886d10a-b8b6-45fd-aeb4-8c160e3243d3"
+              }
+            }
+          ],
+          "id": "event-000169"
+        },
+        {
+          "source_line": 170,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Audit NLI combo tiebreaking consistency",
+                "sessionId": "9886d10a-b8b6-45fd-aeb4-8c160e3243d3"
+              }
+            }
+          ],
+          "id": "event-000170"
+        },
+        {
+          "source_line": 171,
+          "timestamp": "2026-05-21T05:15:50.292Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me save this as a local artifact and register it. Let me create the local file and also a condensed summary.\n\nLet me also note the key findings for the user:\n\n## Key Findings\n\n### Bug Confirmed\nAll NLI combo scripts use `Counter.most_common(1)[0][0]` (insertion-order tiebreaking), while DRC cascade pilot uses alphabetical tiebreaking — confirming the inconsistency.\n\n### Mistral-7B PW600 Impact\n\n| Weight | Alphabetical | Counter (paper) | Delta | Changed Qs |\n\n\n|--------|-------------|-----------------|-------|------------|\n| w=1 | 40.17% (241) | 40.17% (241) | 0pp | 17 |\n| w=3 | **46.0% (276)** | **42.83% (257)** | **+3.17pp** | 30 |\n| w=5 | 50.33% (302) | 50.00% (300) | +0.33pp | 53 |\n\nThe weight-3 configuration shows the most significant divergence at 3.17 percentage points, with the DRC pilot's alphabetical approach matching the higher accuracy. The SC baseline produces identical results across both tiebreaking methods, suggesting the inconsistency primarily affects certain weighting configurations.\n\nMcNemar's test reveals that alphabetical tiebreaking strengthens the statistical significance for weight-3 (p=1.1e-05) and weight-5 (p=1e-06) comparisons, making the Mistral combo results more compelling for the paper. FOLIO shows a slight performance dip with this approach, though it may not appear in the main results table. I need to recompute the other model comparisons using the original data to assess whether the tiebreaking method produces consistent improvements across the board.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d25b646d-10f2-43aa-9dc5-e65aa203b4ab",
+            "isSidechain": false,
+            "requestId": "req_011CbF9N8rLbxCgV9FhnbB8s",
+            "type": "assistant",
+            "uuid": "0391712c-0832-457b-bab0-1afcffff800c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "9886d10a-b8b6-45fd-aeb4-8c160e3243d3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019fRt9GV9GnFLLqpuQdpwAg",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5881,
+                "cache_read_input_tokens": 98985,
+                "output_tokens": 665,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5881,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 665,
+                    "cache_read_input_tokens": 98985,
+                    "cache_creation_input_tokens": 5881,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5881
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000171"
+        },
+        {
+          "source_line": 172,
+          "timestamp": "2026-05-21T05:15:50.297Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整结果已获取。现在写本地 artifact 文件。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0391712c-0832-457b-bab0-1afcffff800c",
+            "isSidechain": false,
+            "requestId": "req_011CbF9N8rLbxCgV9FhnbB8s",
+            "type": "assistant",
+            "uuid": "59fd33a5-9c96-4fe4-82e2-f20c828e644d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "9886d10a-b8b6-45fd-aeb4-8c160e3243d3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019fRt9GV9GnFLLqpuQdpwAg",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5881,
+                "cache_read_input_tokens": 98985,
+                "output_tokens": 665,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5881,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 665,
+                    "cache_read_input_tokens": 98985,
+                    "cache_creation_input_tokens": 5881,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5881
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000172"
+        },
+        {
+          "source_line": 173,
+          "timestamp": "2026-05-21T05:15:51.328Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KKphSpWTFjYfekPnmtGHq3",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/",
+                "description": "List artifacts directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "59fd33a5-9c96-4fe4-82e2-f20c828e644d",
+            "isSidechain": false,
+            "requestId": "req_011CbF9N8rLbxCgV9FhnbB8s",
+            "type": "assistant",
+            "uuid": "298aa186-511d-4d2b-b766-6b66ef4500c6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "9886d10a-b8b6-45fd-aeb4-8c160e3243d3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019fRt9GV9GnFLLqpuQdpwAg",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5881,
+                "cache_read_input_tokens": 98985,
+                "output_tokens": 665,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5881,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 665,
+                    "cache_read_input_tokens": 98985,
+                    "cache_creation_input_tokens": 5881,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5881
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000173"
+        },
+        {
+          "source_line": 174,
+          "timestamp": "2026-05-21T05:15:51.517Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KKphSpWTFjYfekPnmtGHq3",
+              "type": "tool_result",
+              "content": "_extracted\n_project\nablation_text.py\naime30_v2_partial_analysis.md\naime_bias_ratio_results.json\nanalysis_exp045.md\nanalysis_prove_verify.py\nanalyze_adaptive_sica.py\nanalyze_discriminative_rate.py\nanalyze_expanded.py\nanalyze_seed_replication.py\nappendix_prompt_template.md\nbackward_verification.py\ncase_study_materials.md\ncitation_verification.md\ncode_verify_report.md\nconfirmation_bias_results.json\nconstraint_ablation\nconstraint_extractor.py\nconstraint_extractor_fixed.py\nconstraint_quality_crossmethod.json\ncrd_audit_report.md\ncross_model_kappa_results.json\ncross_model_sica_results.json\ncross_trace_unsat.py\nd016_model_pivot_report.md\nd116_qwen3_pw_deberta_large.py\ndiagnose_exp039.md\ndiagnose_exp062_exp065.md\ndir_c_premise_only.py\ndir_d_dpp_trace_selection.py\ndir_f2_self_verify.py\ndir_f3_cross_model.py\ndir_f_prm_verifier_pilot.py\ndir_f_prm_verifier_pilot_v2.py\ndir_h_provenance_analysis\ndir_h_provenance_analysis.py\ndir_i2_single_model_baselines.py\ndir_j2_nli_qwen3.py\ndir_j3_nli_multi_verifier.py\ndir_k_nli_qwen3_proofwriter\ndirection_a_atom_verification.py\ndirection_a_prove_results.json\ndirection_b_weighted_maxsat.py\ndirection_c_counterfactual.py\ndirection_d_cegis_results_partial.json\ndirection_e_abstention.py\ndirection_e_abstention_results.json\ndirection_gr_combo.py\ndirection_j\ndirection_j_results.json\ndirection_r_deberta_proofwriter.py\ndirection_r_nli_large\ndrc_cascade_pilot.py\ndream_reports\nentropy_breakdown_crossmodel.json\nerror_categorization.py\nerror_categorization_discordant.json\nexp-001\nexp-005\nexp-007-qwen72b-awq\nexp-009\nexp-010-mistral-v2\nexp-011\nexp-011-llama8b\nexp-013-constraint-ablation\nexp-014\nexp-016\nexp-017-strategyqa-v3\nexp-017-strategyqa-v3_analysis.md\nexp-019\nexp-021-oracle-folio\nexp-022\nexp-022-oracle-proofwriter\nexp-023-discriminative-rate\nexp-030-crossmodel-mistral-folio204\nexp-031-oracle-folio-regen\nexp-038\nexp-045-backward-verification\nexp-046\nexp-060-cross-qwen25-14b-extractor\nexp-064\nexp-064-diagnosis.md\nexp-074\nexp-078-debate-mistral-logiqa200\nexp-084-diag.md\nexp011_truncation_bias_analysis.md\nexp019_analysis.md\nexp033_analysis.md\nexp046_analysis.md\nexp069_data_pipeline_audit.md\nexp_005_qwq_regime\nexp_009_overhead\nexp_016_weighted_sc\nf2_discriminative_analysis.md\nf2_preview.png\nf3_preview.png\nfigures\nfleiss_kappa_raw_all.json\nfleiss_kappa_unified_merged.json\nfolio_c0_precheck_raw.json\nfolio_c0_precheck_report.md\ngsm8k_pilot_14b\nicg_kappa_corrected.json\nkappa_icg_contrastive.json\nlaunch_mvp.sh\nliterature_independence_bottleneck.md\nllama8b_sc_prep.md\nmanifest.yaml\nmaxsat_diagnosis_proofwriter30_v2.md\nmcnemar_method_experiments.json\nmcnemar_recompute.py\noracle_experiment_design.md\npatch_debate_logiqa.py\npipeline.py\nprepare_proofwriter.py\nprocess_kappa_analysis.py\nprocess_kappa_cross_model.json\nprocess_kappa_diagnostic.py\nproofwriter30_v2\nproofwriter30_v2_interim_analysis.md\npush_b_stronger_nli.py\nquality_metrics.csv\nqwen14b_kappa_analysis.json\nr8_n1_quantifier_proportion\nrecompute_folio_sc.py\nreport_proofwriter30_v2_progress.md\nreview_issues.yaml\nreview_reports\nrun_consistency_filtering.py\nrun_exp017_strategyqa.sh\nrun_exp018_arc.sh\nrun_exp024_llama70b.sh\nrun_exp025_qwen72b.sh\nrun_full_mvp.py\nrun_icg_logiqa.py\nrun_icl_oracle.py\nrun_icl_oracle.sh\nrun_mvp.py\nsc_tiebreak_revalidation.py\nsica_aime30_v2\nsica_d012_14b\nsica_expanded_14b\nsica_folio30\nsica_k_sensitivity_14b\nstatus_check_20260519.md\nsub_population_appendix_draft.tex\nsub_population_results.json\nsummarize_k_sensitivity.py\ntable1_bh_correction.json\ntable1_bh_draft.tex\ntrace_generator.py\ntrack_discordant_pairs.py\nwestd16639_crash_diagnosis.md\nwestd16639_gpu_saturation_report.md\nwestd16639_recovery_report.md\nwestd25068_downloads_report.md\nwestd25068_gpu_saturation_report.md\nwild1_max_unsat_results.json\nwild2_ascii_results.json\nwild3_perturbation_results.json\nwild4_process_kappa_results.json\nwild6_combined.py\nwild6_kappa_aware_sc_results.json\nwild6_kappa_sc_analysis.py\nwild6_run_all.py\nz3_maxsat_patched.py",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "298aa186-511d-4d2b-b766-6b66ef4500c6",
+            "isSidechain": false,
+            "promptId": "e45dd98c-9e8c-4c13-b66b-3bdced9ef51e",
+            "type": "user",
+            "uuid": "394b83c9-e60e-4359-9880-3c6444e44fad",
+            "toolUseResult": {
+              "stdout": "_extracted\n_project\nablation_text.py\naime30_v2_partial_analysis.md\naime_bias_ratio_results.json\nanalysis_exp045.md\nanalysis_prove_verify.py\nanalyze_adaptive_sica.py\nanalyze_discriminative_rate.py\nanalyze_expanded.py\nanalyze_seed_replication.py\nappendix_prompt_template.md\nbackward_verification.py\ncase_study_materials.md\ncitation_verification.md\ncode_verify_report.md\nconfirmation_bias_results.json\nconstraint_ablation\nconstraint_extractor.py\nconstraint_extractor_fixed.py\nconstraint_quality_crossmethod.json\ncrd_audit_report.md\ncross_model_kappa_results.json\ncross_model_sica_results.json\ncross_trace_unsat.py\nd016_model_pivot_report.md\nd116_qwen3_pw_deberta_large.py\ndiagnose_exp039.md\ndiagnose_exp062_exp065.md\ndir_c_premise_only.py\ndir_d_dpp_trace_selection.py\ndir_f2_self_verify.py\ndir_f3_cross_model.py\ndir_f_prm_verifier_pilot.py\ndir_f_prm_verifier_pilot_v2.py\ndir_h_provenance_analysis\ndir_h_provenance_analysis.py\ndir_i2_single_model_baselines.py\ndir_j2_nli_qwen3.py\ndir_j3_nli_multi_verifier.py\ndir_k_nli_qwen3_proofwriter\ndirection_a_atom_verification.py\ndirection_a_prove_results.json\ndirection_b_weighted_maxsat.py\ndirection_c_counterfactual.py\ndirection_d_cegis_results_partial.json\ndirection_e_abstention.py\ndirection_e_abstention_results.json\ndirection_gr_combo.py\ndirection_j\ndirection_j_results.json\ndirection_r_deberta_proofwriter.py\ndirection_r_nli_large\ndrc_cascade_pilot.py\ndream_reports\nentropy_breakdown_crossmodel.json\nerror_categorization.py\nerror_categorization_discordant.json\nexp-001\nexp-005\nexp-007-qwen72b-awq\nexp-009\nexp-010-mistral-v2\nexp-011\nexp-011-llama8b\nexp-013-constraint-ablation\nexp-014\nexp-016\nexp-017-strategyqa-v3\nexp-017-strategyqa-v3_analysis.md\nexp-019\nexp-021-oracle-folio\nexp-022\nexp-022-oracle-proofwriter\nexp-023-discriminative-rate\nexp-030-crossmodel-mistral-folio204\nexp-031-oracle-folio-regen\nexp-038\nexp-045-backward-verification\nexp-046\nexp-060-cross-qwen25-14b-extractor\nexp-064\nexp-064-diagnosis.md\nexp-074\nexp-078-debate-mistral-logiqa200\nexp-084-diag.md\nexp011_truncation_bias_analysis.md\nexp019_analysis.md\nexp033_analysis.md\nexp046_analysis.md\nexp069_data_pipeline_audit.md\nexp_005_qwq_regime\nexp_009_overhead\nexp_016_weighted_sc\nf2_discriminative_analysis.md\nf2_preview.png\nf3_preview.png\nfigures\nfleiss_kappa_raw_all.json\nfleiss_kappa_unified_merged.json\nfolio_c0_precheck_raw.json\nfolio_c0_precheck_report.md\ngsm8k_pilot_14b\nicg_kappa_corrected.json\nkappa_icg_contrastive.json\nlaunch_mvp.sh\nliterature_independence_bottleneck.md\nllama8b_sc_prep.md\nmanifest.yaml\nmaxsat_diagnosis_proofwriter30_v2.md\nmcnemar_method_experiments.json\nmcnemar_recompute.py\noracle_experiment_design.md\npatch_debate_logiqa.py\npipeline.py\nprepare_proofwriter.py\nprocess_kappa_analysis.py\nprocess_kappa_cross_model.json\nprocess_kappa_diagnostic.py\nproofwriter30_v2\nproofwriter30_v2_interim_analysis.md\npush_b_stronger_nli.py\nquality_metrics.csv\nqwen14b_kappa_analysis.json\nr8_n1_quantifier_proportion\nrecompute_folio_sc.py\nreport_proofwriter30_v2_progress.md\nreview_issues.yaml\nreview_reports\nrun_consistency_filtering.py\nrun_exp017_strategyqa.sh\nrun_exp018_arc.sh\nrun_exp024_llama70b.sh\nrun_exp025_qwen72b.sh\nrun_full_mvp.py\nrun_icg_logiqa.py\nrun_icl_oracle.py\nrun_icl_oracle.sh\nrun_mvp.py\nsc_tiebreak_revalidation.py\nsica_aime30_v2\nsica_d012_14b\nsica_expanded_14b\nsica_folio30\nsica_k_sensitivity_14b\nstatus_check_20260519.md\nsub_population_appendix_draft.tex\nsub_population_results.json\nsummarize_k_sensitivity.py\ntable1_bh_correction.json\ntable1_bh_draft.tex\ntrace_generator.py\ntrack_discordant_pairs.py\nwestd16639_crash_diagnosis.md\nwestd16639_gpu_saturation_report.md\nwestd16639_recovery_report.md\nwestd25068_downloads_report.md\nwestd25068_gpu_saturation_report.md\nwild1_max_unsat_results.json\nwild2_ascii_results.json\nwild3_perturbation_results.json\nwild4_process_kappa_results.json\nwild6_combined.py\nwild6_kappa_aware_sc_results.json\nwild6_kappa_sc_analysis.py\nwild6_run_all.py\nz3_maxsat_patched.py",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "298aa186-511d-4d2b-b766-6b66ef4500c6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "9886d10a-b8b6-45fd-aeb4-8c160e3243d3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000174"
+        },
+        {
+          "source_line": 175,
+          "timestamp": "2026-05-21T05:16:20.575Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BbWEW3Y8Bwu3Gd8BgLiJu7",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/nli_tiebreaking_audit.json",
+                "content": "{\n  \"investigation\": {\n    \"affected_scripts\": [\n      \"direction_r_deberta_proofwriter.py\",\n      \"dir_j3_nli_multi_verifier.py\",\n      \"dir_k_nli_qwen3_pw600.py\",\n      \"direction_rg_combo.py\",\n      \"direction_r_nli_verifier.py (FOLIO)\"\n    ],\n    \"tiebreaking_method\": \"Counter.most_common(1)[0][0] — insertion-order tiebreaking under ties\",\n    \"correct_method\": \"sorted(tied_candidates)[0] — alphabetical (consistent with SC baseline standard)\",\n    \"drc_cascade_pilot_method\": \"alphabetical (correct, in scripts/drc_cascade_pilot.py)\",\n    \"code_snippet\": \"combo_answer = votes.most_common(1)[0][0]  # BUG: non-alphabetical tiebreaking\"\n  },\n  \"experiments\": {\n    \"exp-090 (Mistral-7B PW)\": {\n      \"n\": 600,\n      \"sc_baseline_alpha\": \"39.33% (236/600)\",\n      \"sc_baseline_counter\": \"39.33% (236/600)\",\n      \"sc_tiebreak_diffs\": 11,\n      \"combo_w1\": {\n        \"current_counter\": \"40.17% (241/600)\",\n        \"corrected_alpha\": \"40.17% (241/600)\",\n        \"delta\": \"0.00pp\",\n        \"changed_questions\": 17,\n        \"mcnemar_alpha_vs_sc\": {\"p\": 0.359283, \"b\": 7, \"c\": 12},\n        \"mcnemar_counter_vs_sc\": {\"p\": 0.266846, \"b\": 4, \"c\": 9}\n      },\n      \"combo_w3\": {\n        \"current_counter\": \"42.83% (257/600)\",\n        \"corrected_alpha\": \"46.00% (276/600)\",\n        \"delta\": \"+3.17pp\",\n        \"changed_questions\": 30,\n        \"mcnemar_alpha_vs_sc\": {\"p\": 1.1e-05, \"b\": 21, \"c\": 61},\n        \"mcnemar_counter_vs_sc\": {\"p\": 0.012503, \"b\": 22, \"c\": 43}\n      },\n      \"combo_w5\": {\n        \"current_counter\": \"50.00% (300/600)\",\n        \"corrected_alpha\": \"50.33% (302/600)\",\n        \"delta\": \"+0.33pp\",\n        \"changed_questions\": 53,\n        \"mcnemar_alpha_vs_sc\": {\"p\": 1e-06, \"b\": 54, \"c\": 120},\n        \"mcnemar_counter_vs_sc\": {\"p\": 0.0, \"b\": 35, \"c\": 99}\n      }\n    },\n    \"exp-091 (Qwen3 PW)\": {\n      \"status\": \"NEEDS_RECOMPUTATION\",\n      \"data_location\": \"westd-16639:d116_qwen3_pw_deberta_large\",\n      \"paper_reported_sc\": \"85.0%\",\n      \"paper_reported_combo_w3\": \"86.0%\",\n      \"expected_impact\": \"Small — high SC accuracy means few ties\"\n    },\n    \"exp-092 (LLaMA PW)\": {\n      \"status\": \"NEEDS_RECOMPUTATION\",\n      \"data_location\": \"westd-16639:exp092_llama8b_pw_nli_combo\",\n      \"paper_reported_sc\": \"70.0%\",\n      \"paper_reported_combo_w3\": \"74.17%\",\n      \"expected_impact\": \"Moderate — some ties possible\"\n    },\n    \"exp-093 (Qwen2.5 PW)\": {\n      \"status\": \"NEEDS_RECOMPUTATION\",\n      \"data_location\": \"westd-16639:qwen14b_pw_nli_combo\",\n      \"paper_reported_sc\": \"73.5%\",\n      \"paper_reported_combo_w3\": \"74.33%\",\n      \"expected_impact\": \"Moderate — some ties possible\"\n    }\n  },\n  \"folio_combo\": {\n    \"n_questions\": 204,\n    \"n_changed_by_tiebreak\": 8,\n    \"alpha_accuracy\": \"56.37% (115/204)\",\n    \"counter_accuracy\": \"57.84% (118/204)\",\n    \"delta\": \"-1.47pp (alphabetical is WORSE for FOLIO)\",\n    \"note\": \"FOLIO NLI combo uses w=1 (direction_r_nli_verifier.py), different from PW weighted combo\"\n  },\n  \"drc_cascade_pilot_crosscheck\": {\n    \"drc_pilot_combo_w3\": \"46.0% (276/600) — alphabetical tiebreaking\",\n    \"our_recomputed_alpha_w3\": \"46.0% (276/600)\",\n    \"match\": true\n  },\n  \"impact_summary\": \"BUG CONFIRMED: All NLI combo scripts use Counter.most_common() (insertion-order tiebreaking) while the paper's SC baselines use alphabetical. The biggest impact is Mistral-7B combo_w3: paper reports 42.83% but alphabetical gives 46.00% (+3.17pp, 30 questions affected). This changes McNemar p from 0.0125 to 1.1e-05 (much more significant). DRC cascade pilot already uses alphabetical and gives 46.0%, confirming the discrepancy source. w=1 and w=5 are minimally affected. Other 3 models (exp-091 to 093) need recomputation from westd-16639 data but expected impact is smaller. FOLIO combo (w=1) has 8 questions affected with -1.47pp delta (alpha worse).\",\n  \"recommended_action\": \"1) Recompute all 4 PW models' NLI combo with alphabetical tiebreaking. 2) For Mistral w=3: update paper from 42.83% to 46.00%, update McNemar p-value. 3) Rerun BH correction table with new numbers. 4) FOLIO combo numbers also need checking if reported in paper. 5) Fix all combo scripts to use alphabetical tiebreaking.\"\n}\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "394b83c9-e60e-4359-9880-3c6444e44fad",
+            "isSidechain": false,
+            "requestId": "req_011CbF9PMLD9j3PGiGq2EWFB",
+            "type": "assistant",
+            "uuid": "0b8bf235-72a6-4dc9-8ea9-3d3958809193",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "9886d10a-b8b6-45fd-aeb4-8c160e3243d3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WeFdapYuLysT8gVUjETaNh",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2240,
+                "cache_read_input_tokens": 104866,
+                "output_tokens": 1719,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2240,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1719,
+                    "cache_read_input_tokens": 104866,
+                    "cache_creation_input_tokens": 2240,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2240
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000175"
+        },
+        {
+          "source_line": 176,
+          "timestamp": "2026-05-21T05:16:20.621Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BbWEW3Y8Bwu3Gd8BgLiJu7",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/nli_tiebreaking_audit.json"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0b8bf235-72a6-4dc9-8ea9-3d3958809193",
+            "isSidechain": false,
+            "promptId": "e45dd98c-9e8c-4c13-b66b-3bdced9ef51e",
+            "type": "user",
+            "uuid": "2f77c26c-0db1-4fa5-af0e-fc7fbe486884",
+            "toolUseResult": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/nli_tiebreaking_audit.json",
+              "content": "{\n  \"investigation\": {\n    \"affected_scripts\": [\n      \"direction_r_deberta_proofwriter.py\",\n      \"dir_j3_nli_multi_verifier.py\",\n      \"dir_k_nli_qwen3_pw600.py\",\n      \"direction_rg_combo.py\",\n      \"direction_r_nli_verifier.py (FOLIO)\"\n    ],\n    \"tiebreaking_method\": \"Counter.most_common(1)[0][0] — insertion-order tiebreaking under ties\",\n    \"correct_method\": \"sorted(tied_candidates)[0] — alphabetical (consistent with SC baseline standard)\",\n    \"drc_cascade_pilot_method\": \"alphabetical (correct, in scripts/drc_cascade_pilot.py)\",\n    \"code_snippet\": \"combo_answer = votes.most_common(1)[0][0]  # BUG: non-alphabetical tiebreaking\"\n  },\n  \"experiments\": {\n    \"exp-090 (Mistral-7B PW)\": {\n      \"n\": 600,\n      \"sc_baseline_alpha\": \"39.33% (236/600)\",\n      \"sc_baseline_counter\": \"39.33% (236/600)\",\n      \"sc_tiebreak_diffs\": 11,\n      \"combo_w1\": {\n        \"current_counter\": \"40.17% (241/600)\",\n        \"corrected_alpha\": \"40.17% (241/600)\",\n        \"delta\": \"0.00pp\",\n        \"changed_questions\": 17,\n        \"mcnemar_alpha_vs_sc\": {\"p\": 0.359283, \"b\": 7, \"c\": 12},\n        \"mcnemar_counter_vs_sc\": {\"p\": 0.266846, \"b\": 4, \"c\": 9}\n      },\n      \"combo_w3\": {\n        \"current_counter\": \"42.83% (257/600)\",\n        \"corrected_alpha\": \"46.00% (276/600)\",\n        \"delta\": \"+3.17pp\",\n        \"changed_questions\": 30,\n        \"mcnemar_alpha_vs_sc\": {\"p\": 1.1e-05, \"b\": 21, \"c\": 61},\n        \"mcnemar_counter_vs_sc\": {\"p\": 0.012503, \"b\": 22, \"c\": 43}\n      },\n      \"combo_w5\": {\n        \"current_counter\": \"50.00% (300/600)\",\n        \"corrected_alpha\": \"50.33% (302/600)\",\n        \"delta\": \"+0.33pp\",\n        \"changed_questions\": 53,\n        \"mcnemar_alpha_vs_sc\": {\"p\": 1e-06, \"b\": 54, \"c\": 120},\n        \"mcnemar_counter_vs_sc\": {\"p\": 0.0, \"b\": 35, \"c\": 99}\n      }\n    },\n    \"exp-091 (Qwen3 PW)\": {\n      \"status\": \"NEEDS_RECOMPUTATION\",\n      \"data_location\": \"westd-16639:d116_qwen3_pw_deberta_large\",\n      \"paper_reported_sc\": \"85.0%\",\n      \"paper_reported_combo_w3\": \"86.0%\",\n      \"expected_impact\": \"Small — high SC accuracy means few ties\"\n    },\n    \"exp-092 (LLaMA PW)\": {\n      \"status\": \"NEEDS_RECOMPUTATION\",\n      \"data_location\": \"westd-16639:exp092_llama8b_pw_nli_combo\",\n      \"paper_reported_sc\": \"70.0%\",\n      \"paper_reported_combo_w3\": \"74.17%\",\n      \"expected_impact\": \"Moderate — some ties possible\"\n    },\n    \"exp-093 (Qwen2.5 PW)\": {\n      \"status\": \"NEEDS_RECOMPUTATION\",\n      \"data_location\": \"westd-16639:qwen14b_pw_nli_combo\",\n      \"paper_reported_sc\": \"73.5%\",\n      \"paper_reported_combo_w3\": \"74.33%\",\n      \"expected_impact\": \"Moderate — some ties possible\"\n    }\n  },\n  \"folio_combo\": {\n    \"n_questions\": 204,\n    \"n_changed_by_tiebreak\": 8,\n    \"alpha_accuracy\": \"56.37% (115/204)\",\n    \"counter_accuracy\": \"57.84% (118/204)\",\n    \"delta\": \"-1.47pp (alphabetical is WORSE for FOLIO)\",\n    \"note\": \"FOLIO NLI combo uses w=1 (direction_r_nli_verifier.py), different from PW weighted combo\"\n  },\n  \"drc_cascade_pilot_crosscheck\": {\n    \"drc_pilot_combo_w3\": \"46.0% (276/600) — alphabetical tiebreaking\",\n    \"our_recomputed_alpha_w3\": \"46.0% (276/600)\",\n    \"match\": true\n  },\n  \"impact_summary\": \"BUG CONFIRMED: All NLI combo scripts use Counter.most_common() (insertion-order tiebreaking) while the paper's SC baselines use alphabetical. The biggest impact is Mistral-7B combo_w3: paper reports 42.83% but alphabetical gives 46.00% (+3.17pp, 30 questions affected). This changes McNemar p from 0.0125 to 1.1e-05 (much more significant). DRC cascade pilot already uses alphabetical and gives 46.0%, confirming the discrepancy source. w=1 and w=5 are minimally affected. Other 3 models (exp-091 to 093) need recomputation from westd-16639 data but expected impact is smaller. FOLIO combo (w=1) has 8 questions affected with -1.47pp delta (alpha worse).\",\n  \"recommended_action\": \"1) Recompute all 4 PW models' NLI combo with alphabetical tiebreaking. 2) For Mistral w=3: update paper from 42.83% to 46.00%, update McNemar p-value. 3) Rerun BH correction table with new numbers. 4) FOLIO combo numbers also need checking if reported in paper. 5) Fix all combo scripts to use alphabetical tiebreaking.\"\n}\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            },
+            "sourceToolAssistantUUID": "0b8bf235-72a6-4dc9-8ea9-3d3958809193",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "9886d10a-b8b6-45fd-aeb4-8c160e3243d3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000176"
+        },
+        {
+          "source_line": 177,
+          "timestamp": "2026-05-21T05:16:25.721Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0145AvF9PmJ4s1Z9dqd6pakU",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "nli_tiebreaking_audit",
+                "type": "report",
+                "description": "P0 audit: NLI combo tiebreaking inconsistency — Counter.most_common() vs alphabetical. Mistral combo_w3 changes from 42.83% to 46.00% (+3.17pp).",
+                "project": "symb_invariant_consensus",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/nli_tiebreaking_audit.json",
+                "tags": [
+                  "tiebreaking",
+                  "nli-combo",
+                  "audit",
+                  "p0"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2f77c26c-0db1-4fa5-af0e-fc7fbe486884",
+            "isSidechain": false,
+            "requestId": "req_011CbF9RVf5FYT2zAziswBdo",
+            "type": "assistant",
+            "uuid": "d0190562-5150-413e-9f73-92e1e73f565d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "9886d10a-b8b6-45fd-aeb4-8c160e3243d3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GWjgYUxcT7uYWfCWCs3y4Z",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1779,
+                "cache_read_input_tokens": 107106,
+                "output_tokens": 276,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1779,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 276,
+                    "cache_read_input_tokens": 107106,
+                    "cache_creation_input_tokens": 1779,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1779
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000177"
+        },
+        {
+          "source_line": 178,
+          "timestamp": "2026-05-21T05:16:26.106Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0145AvF9PmJ4s1Z9dqd6pakU",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260521_916484\\\", \\\"name\\\": \\\"nli_tiebreaking_audit\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"P0 audit: NLI combo tiebreaking inconsistency — Counter.most_common() vs alphabetical. Mistral combo_w3 changes from 42.83% to 46.00% (+3.17pp).\\\", \\\"path\\\": \\\"projects/symb_invariant_consensus/artifacts/_project/report/nli_tiebreaking_audit.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-21T05:16:25.730637+00:00\\\", \\\"tags\\\": [\\\"tiebreaking\\\", \\\"nli-combo\\\", \\\"audit\\\", \\\"p0\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d0190562-5150-413e-9f73-92e1e73f565d",
+            "isSidechain": false,
+            "promptId": "e45dd98c-9e8c-4c13-b66b-3bdced9ef51e",
+            "type": "user",
+            "uuid": "ddf01122-88bc-4c4c-b46e-647939490b4c",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260521_916484\\\", \\\"name\\\": \\\"nli_tiebreaking_audit\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"P0 audit: NLI combo tiebreaking inconsistency — Counter.most_common() vs alphabetical. Mistral combo_w3 changes from 42.83% to 46.00% (+3.17pp).\\\", \\\"path\\\": \\\"projects/symb_invariant_consensus/artifacts/_project/report/nli_tiebreaking_audit.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"symb_invariant_consensus\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-21T05:16:25.730637+00:00\\\", \\\"tags\\\": [\\\"tiebreaking\\\", \\\"nli-combo\\\", \\\"audit\\\", \\\"p0\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260521_916484\", \"name\": \"nli_tiebreaking_audit\", \"type\": \"report\", \"description\": \"P0 audit: NLI combo tiebreaking inconsistency — Counter.most_common() vs alphabetical. Mistral combo_w3 changes from 42.83% to 46.00% (+3.17pp).\", \"path\": \"projects/symb_invariant_consensus/artifacts/_project/report/nli_tiebreaking_audit.json\", \"url\": null, \"project\": \"symb_invariant_consensus\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-21T05:16:25.730637+00:00\", \"tags\": [\"tiebreaking\", \"nli-combo\", \"audit\", \"p0\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "d0190562-5150-413e-9f73-92e1e73f565d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "9886d10a-b8b6-45fd-aeb4-8c160e3243d3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "ddf01122-88bc-4c4c-b46e-647939490b4c",
+                "sessionId": "9886d10a-b8b6-45fd-aeb4-8c160e3243d3"
+              }
+            }
+          ],
+          "id": "event-000179"
+        },
+        {
+          "source_line": 180,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Audit NLI combo tiebreaking consistency",
+                "sessionId": "9886d10a-b8b6-45fd-aeb4-8c160e3243d3"
+              }
+            }
+          ],
+          "id": "event-000180"
+        },
+        {
+          "source_line": 181,
+          "timestamp": "2026-05-21T05:16:38.338Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完成。核心发现：\n\n## BUG 确认\n\n**所有 NLI combo 脚本** 使用 `Counter.most_common(1)[0][0]`（insertion-order tiebreaking），**DRC cascade pilot** 使用 alphabetical tiebreaking。论文的 SC baseline 已统一为 alphabetical，但 NLI combo 没有同步修复。\n\n## Mistral-7B PW600 重算结果\n\n| Weight | Paper (Counter) | Corrected (Alpha) | Delta | Changed Qs |\n|--------|-----------------|-------------------|-------|------------|\n| w=1 | 40.17% (241) | 40.17% (241) | 0pp | 17 |\n| **w=3** | **42.83% (257)** | **46.00% (276)** | **+3.17pp** | 30 |\n| w=5 | 50.00% (300) | 50.33% (302) | +0.33pp | 53 |\n\n**McNemar (combo_w3 vs SC)**: p 从 0.0125 变为 **1.1e-05**（显著性大幅提升）\n\nDRC pilot cross-check: 276/600 = 46.0% — **完美匹配** alphabetical 重算结果。\n\n## SC baseline 本身\n11 题在两种 tiebreaking 下结果不同，但总正确数恰好相同 (236/600)。\n\n## FOLIO\n8 题受影响，alphabetical 反而更差 (-1.47pp: 56.37% vs 57.84%)。\n\n## 其他 3 个模型\n原始数据在 westd-16639，用了相同的 `Counter.most_common()` 代码，需从原服务器重算。高 SC 模型 (70-85%) 预期影响较小。\n\n## 建议行动\n1. 用 alphabetical tiebreaking 重算全部 4 个 PW 模型的 NLI combo\n2. Mistral w=3 从 42.83% → 46.00%，McNemar p 从 0.0125 → 1.1e-05\n3. 重跑 BH correction table\n4. 修复所有 combo 脚本的 tiebreaking 代码"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ddf01122-88bc-4c4c-b46e-647939490b4c",
+            "isSidechain": false,
+            "requestId": "req_011CbF9Ru1FxoNafWpmXqHkz",
+            "type": "assistant",
+            "uuid": "b4355e5c-60df-4c8e-a258-a0c610683683",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus",
+            "sessionId": "9886d10a-b8b6-45fd-aeb4-8c160e3243d3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QB4GGk8ca7H2C9XvbJjSJ2",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 588,
+                "cache_read_input_tokens": 108885,
+                "output_tokens": 618,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 588,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 618,
+                    "cache_read_input_tokens": 108885,
+                    "cache_creation_input_tokens": 588,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 588
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "b4355e5c-60df-4c8e-a258-a0c610683683",
+                "sessionId": "9886d10a-b8b6-45fd-aeb4-8c160e3243d3"
+              }
+            }
+          ],
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Audit NLI combo tiebreaking consistency",
+                "sessionId": "9886d10a-b8b6-45fd-aeb4-8c160e3243d3"
+              }
+            }
+          ],
+          "id": "event-000183"
+        }
+      ]
+    }
+  ]
+}
